@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10858] glxgears with mesa-git on PCI 10de0322 (NV34)
 	GeForce FX 5200 crashes X
-Date: Fri, 11 May 2007 04:14:40 -0700 (PDT)
-Message-ID: <20070511111440.9185C130061@annarchy.freedesktop.org>
+Date: Fri, 11 May 2007 04:16:43 -0700 (PDT)
+Message-ID: <20070511111643.85F60130061@annarchy.freedesktop.org>
 References: <bug-10858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,16 +28,16 @@ mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-Attachment #9863 is|0                           |1
+Attachment #9862 is|0                           |1
            obsolete|                            |
 
 
 
 
-------- Comment #9 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 04:14 PST -------
-Created an attachment (id=9926)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=9926&action=view)
-new syslog with dri.ko debug=1
+------- Comment #10 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 04:16 PST -------
+Created an attachment (id=9927)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=9927&action=view)
+new Xorg.log
 
 
 -- 
