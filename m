@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10858] glxgears with mesa-git on PCI 10de0322 (NV34)
 	GeForce FX 5200 crashes X
-Date: Fri, 11 May 2007 04:16:43 -0700 (PDT)
-Message-ID: <20070511111643.85F60130061@annarchy.freedesktop.org>
+Date: Fri, 11 May 2007 04:20:22 -0700 (PDT)
+Message-ID: <20070511112022.EB70C130061@annarchy.freedesktop.org>
 References: <bug-10858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,20 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=10858
 
 
-mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-Attachment #9862 is|0                           |1
-           obsolete|                            |
 
 
 
-
-------- Comment #10 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 04:16 PST -------
-Created an attachment (id=9927)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=9927&action=view)
-new Xorg.log
+------- Comment #11 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 04:20 PST -------
+Created an attachment (id=9928)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=9928&action=view)
+image of gears window running and X not crashing (I had enough time to get the
+camera out and take the photo!)
 
 
 -- 
