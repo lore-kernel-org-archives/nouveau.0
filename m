@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10858] glxgears with mesa-git on PCI 10de0322 (NV34)
 	GeForce FX 5200 crashes X
-Date: Fri, 11 May 2007 04:21:38 -0700 (PDT)
-Message-ID: <20070511112138.1ADD3130061@annarchy.freedesktop.org>
+Date: Fri, 11 May 2007 04:29:01 -0700 (PDT)
+Message-ID: <20070511112901.95204130061@annarchy.freedesktop.org>
 References: <bug-10858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,12 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=10858
 
 
-mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-   Attachment #9927|text/x-log                  |text/plain
-          mime type|                            |
 
 
+
+------- Comment #12 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 04:28 PST -------
+another data point, if I start gears and I leave the mouse still things seem
+ok, the minute I move the mouse I get an X crash 0.5s to 2s later
 
 
 -- 
