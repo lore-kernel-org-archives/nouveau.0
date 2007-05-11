@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10858] glxgears with mesa-git on PCI 10de0322 (NV34)
 	GeForce FX 5200 crashes X
-Date: Fri, 11 May 2007 01:40:21 -0700 (PDT)
-Message-ID: <20070511084022.08124130061@annarchy.freedesktop.org>
+Date: Fri, 11 May 2007 02:02:32 -0700 (PDT)
+Message-ID: <20070511090233.172F3130061@annarchy.freedesktop.org>
 References: <bug-10858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10858
 
 
 
-------- Comment #6 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 01:40 PST -------
-Created an attachment (id=9925)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=9925&action=view)
-parsed mmio trace from running nouveau with glxgears started from ~/.xiniitrc
+------- Comment #7 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 02:02 PST -------
+bugs.fd.o wont let me attach a file larger than 1000kb so to work around that
+and to save bugs.fd.o see,
+http://www.careysoft.co.nz/nouveau/10de0322/nouveau-cpu0-parsed.gz and
+http://www.careysoft.co.nz/nouveau/10de0322/nvidia-cpu0-parsed.gz
 
 
 -- 
