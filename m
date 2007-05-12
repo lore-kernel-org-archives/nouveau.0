@@ -1,16 +1,12 @@
-From: Chris Ball <cjb-2X9k7bc8m7Mdnm+yROfE0A@public.gmane.org>
-Subject: Re: How Video Cards Work.
-Date: Sat, 12 May 2007 18:23:22 +0100
-Message-ID: <20070512172322.GA6305@void.printf.net>
-References: <868xc3m90l.fsf@pullcord.laptop.org>
-	<34576580705051331q1b0ea7ft2f8d37b664ccee10@mail.gmail.com>
-	<20070512193706.75c0117e@daedalus.pq.iki.fi>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 10933] New: nouveau defaults to first graphics card
+	in system even when xorg instructed differently
+Date: Sat, 12 May 2007 13:51:54 -0700 (PDT)
+Message-ID: <bug-10933-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20070512193706.75c0117e-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,42 +16,79 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, May 12, 2007 at 07:37:06PM +0300, Pekka Paalanen wrote:
-> I have started a page aimed to be an introduction to working with
-> (Nouveau) graphics from the driver side. I do not know what I am
-> missing and what is relevant, so I'd like to have comments or people
-> could improve the page themselves.
-> 
-> http://nouveau.freedesktop.org/wiki/IntroductoryCourse
-> 
-> This is by no means supposed to a replacement for the long-waited
-> Nouveau driver crash course, but more of a prerequisite.
+http://bugs.freedesktop.org/show_bug.cgi?id=10933
 
-Great!  This is really excellent, much needed work.
+           Summary: nouveau defaults to first graphics card in system even
+                    when xorg instructed differently
+           Product: xorg
+           Version: 7.2
+          Platform: Other
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-A few months ago someone called Honza Havlicek was working on a wiki
-page to try and document the nVidia architecture, which he called
-"Developer Guidebook".  It's at:
-   http://nouveau.freedesktop.org/wiki/HonzaHavlicek
 
-I e-mailed Honza a few days ago to ask if he's still interested in
-hacking on nouveau, but no reply yet.  My hope is that we could work
-together on this document to bring it up to being a complete and
-accurate mid-level description of how we render with 3D.
+Testing nouveau on a system with both;
 
-I also found this document recently:
-   http://rivatv.sourceforge.net/stuff/riva128.txt
+01:00.0 VGA compatible controller: nVidia Corporation NV5 [RIVA TNT2/TNT2 Pro]
+(rev 15) (prog-if 00 [VGA])
+        Subsystem: Compaq Computer Corporation Unknown device 001f
+        Flags: bus master, 66MHz, medium devsel, latency 64, IRQ 19
+        Memory at 42000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at 50000000 (32-bit, prefetchable) [size=32M]
+        [virtual] Expansion ROM at 43000000 [disabled] [size=64K]
+        Capabilities: [60] Power Management version 1
+        Capabilities: [44] AGP version 2.0
+00: de 10 28 00 06 00 b0 02 15 00 00 03 00 40 00 00
 
-It's outdated, but the "Example: How to render a solid rectangle?"
-section makes a lot of sense.  Between Honza's description of the MMIO 
-registers and the functional descriptions at the URL above, I think we 
-could get to a point where we're able to explain how rendering works 
-to someone sufficiently interested.  :)
+02:04.0 VGA compatible controller: nVidia Corporation NV34 [GeForce FX 5200]
+(rev a1) (prog-if 00 [VGA])
+        Subsystem: XFX Pine Group Inc. Unknown device 203e
+        Flags: bus master, 66MHz, medium devsel, latency 64, IRQ 20
+        Memory at 40000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at 48000000 (32-bit, prefetchable) [size=128M]
+        [virtual] Expansion ROM at 41020000 [disabled] [size=128K]
+        Capabilities: [60] Power Management version 2
+00: de 10 22 03 07 00 b0 02 a1 00 00 03 00 40 00 00
 
-- Chris.
+/etc/X11/xorg.conf 
+
+Section "Device"
+        Identifier      "Generic Video Card"
+        Driver          "nouveau"
+        Busid           "PCI:2:4:0"
+        Option          "MigrationHeuristic"    "greedy"
+EndSection
+
+i.e xorg is configured to use 2:4:0, after insmod drm.ko debug=1, the drm
+appears to enable interrupts from both cards (will attache syslog) however only
+works with the first card it sees.
+
+Resulting in repeatable failures on method 0x03b0 as nv05 0028 doesnt
+understand method 0x03b0 (does not appear in a clean renouveau output for
+10de0028).
+
+May 13 08:38:03 daisy kernel: [ 1528.379012] [drm:nouveau_pgraph_irq_handler]
+*ERROR* NV: PGRAPH error interrupt
+May 13 08:38:03 daisy kernel: [ 1528.379023] [drm:nouveau_pgraph_irq_handler]
+*ERROR* nsource:0x00040000^Instatus:0x01000000
+May 13 08:38:03 daisy kernel: [ 1528.379031] [drm:nouveau_pgraph_irq_handler]
+*ERROR* instance:0x00002920
+May 13 08:38:03 daisy kernel: [ 1528.379041] [drm:nouveau_graph_dump_trap_info]
+*ERROR* NV: nSource: 0x00040000, nStatus: 0x01000000
+May 13 08:38:03 daisy kernel: [ 1528.379051] [drm:nouveau_graph_dump_trap_info]
+*ERROR* NV: Channel 1/7 (class 0x0697) -Method 0x03b0, Data 0x00100000
+
+
 -- 
-Chris Ball   <cjb-2X9k7bc8m7Mdnm+yROfE0A@public.gmane.org>
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
