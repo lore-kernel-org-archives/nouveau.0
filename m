@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10933] nouveau defaults to first graphics card in
 	system even when xorg instructed differently
-Date: Sat, 12 May 2007 13:55:22 -0700 (PDT)
-Message-ID: <20070512205522.9C146130061@annarchy.freedesktop.org>
+Date: Sat, 12 May 2007 13:56:09 -0700 (PDT)
+Message-ID: <20070512205609.241DE130061@annarchy.freedesktop.org>
 References: <bug-10933-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10933
 
 
 
-------- Comment #2 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-12 13:55 PST -------
-Created an attachment (id=9948)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=9948&action=view)
-Xorg.log showing working with 2:4:0 does warn about missing device section for
-1:0:0
+------- Comment #3 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-12 13:56 PST -------
+Created an attachment (id=9949)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=9949&action=view)
+glxinfo with mesa git on paths
 
 
 -- 
