@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10933] nouveau defaults to first graphics card in
 	system even when xorg instructed differently
-Date: Sat, 12 May 2007 13:53:29 -0700 (PDT)
-Message-ID: <20070512205329.E12AC130061@annarchy.freedesktop.org>
+Date: Sat, 12 May 2007 13:55:22 -0700 (PDT)
+Message-ID: <20070512205522.9C146130061@annarchy.freedesktop.org>
 References: <bug-10933-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10933
 
 
 
-------- Comment #1 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-12 13:53 PST -------
-Created an attachment (id=9947)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=9947&action=view)
-syslog showing drm working to init 1:0:0 not 2:4:0 and then failing on an
-instruction the card does not understand
+------- Comment #2 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-12 13:55 PST -------
+Created an attachment (id=9948)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=9948&action=view)
+Xorg.log showing working with 2:4:0 does warn about missing device section for
+1:0:0
 
 
 -- 
