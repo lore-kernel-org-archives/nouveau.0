@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10927] New: segmentation fault in NVUploadToScreen,
-	called from exaPutImage
-Date: Sat, 12 May 2007 08:05:30 -0700 (PDT)
-Message-ID: <bug-10927-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: How Video Cards Work.
+Date: Sat, 12 May 2007 19:37:06 +0300
+Message-ID: <20070512193706.75c0117e@daedalus.pq.iki.fi>
+References: <868xc3m90l.fsf@pullcord.laptop.org>
+	<34576580705051331q1b0ea7ft2f8d37b664ccee10@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <34576580705051331q1b0ea7ft2f8d37b664ccee10-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,54 +21,31 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDkyNwoKICAgICAg
-ICAgICBTdW1tYXJ5OiBzZWdtZW50YXRpb24gZmF1bHQgaW4gTlZVcGxvYWRUb1NjcmVlbiwgY2Fs
-bGVkIGZyb20KICAgICAgICAgICAgICAgICAgICBleGFQdXRJbWFnZQogICAgICAgICAgIFByb2R1
-Y3Q6IHhvcmcKICAgICAgICAgICBWZXJzaW9uOiBnaXQKICAgICAgICAgIFBsYXRmb3JtOiB4ODYt
-NjQgKEFNRDY0KQogICAgICAgIE9TL1ZlcnNpb246IExpbnV4IChBbGwpCiAgICAgICAgICAgIFN0
-YXR1czogTkVXCiAgICAgICAgICBTZXZlcml0eTogbm9ybWFsCiAgICAgICAgICBQcmlvcml0eTog
-bWVkaXVtCiAgICAgICAgIENvbXBvbmVudDogRHJpdmVyL25vdXZlYXUKICAgICAgICBBc3NpZ25l
-ZFRvOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwogICAgICAgIFJlcG9ydGVkQnk6IHBx
-QGlraS5maQogICAgICAgICBRQUNvbnRhY3Q6IHhvcmctdGVhbUBsaXN0cy54Lm9yZwoKClVzaW5n
-IFhvcmcgNy4yIHdpdGggeG9yZy1zZXJ2ZXIgMS4zIChhbHNvIDEuMikgYW5kIE5vdXZlYXUgRFJN
-IGFuZCBERFggZnJvbSBnaXQKTWF5IDEydGggMjAwNywgc3RhcnRpbmcgc3lscGhlZWQtY2xhd3Mg
-bGVhZHMgdG8gYSBkZXRlcm1pbmlzdGljIHNlZ2ZhdWx0IHdpdGgKdGhlIGZvbGxvd2luZyBiYWNr
-dHJhY2U6CgojMCAgMHgwMDAwMmI3Zjg2ODljMjM3IGluIE5WVXBsb2FkVG9TY3JlZW4gKHBEc3Q9
-MHhiNzgyYjAsIHg9MCwgeT0wLCB3PTE2LAogICAgaD01LCBzcmM9MHgyYjdmOGUyOTM0NDAgIsW+
-xb7DjMO/xb7FvsOMw7/FvsW+w4zDv1wwMDUiLCBzcmNfcGl0Y2g9NjE0NCkgYXQKbnZfZXhhLmM6
-MzUxCiMxICAweDAwMDAyYjdmODgzYjk0YjEgaW4gZXhhUHV0SW1hZ2UgKHBEcmF3YWJsZT0weGI3
-ODJiMCwgcEdDPTB4N2M4MzAwLAogICAgZGVwdGg9PHZhbHVlIG9wdGltaXplZCBvdXQ+LCB4PS03
-ODQsIHk9LTQ4LCB3PTx2YWx1ZSBvcHRpbWl6ZWQgb3V0PiwgaD02NCwKICAgIGxlZnRQYWQ9MCwg
-Zm9ybWF0PTIsIGJpdHM9MHgyYjdmOGUyM2EwMDAgIiIpIGF0IGV4YV9hY2NlbC5jOjIwNgojMiAg
-MHgwMDAwMDAwMDAwNTIyZmRiIGluIGRhbWFnZVB1dEltYWdlIChwRHJhd2FibGU9MHhiNzgyYjAs
-IHBHQz0weDdjODMwMCwKICAgIGRlcHRoPTMyLCB4PS03ODQsIHk9LTQ4LCB3PTE1MzYsIGg9NjQs
-IGxlZnRQYWQ9MCwgZm9ybWF0PTIsCiAgICBwSW1hZ2U9MHgyYjdmOGUyM2EwMDAgIiIpIGF0IGRh
-bWFnZS5jOjc4NgojMyAgMHgwMDAwMDAwMDAwNGY3MjMyIGluIG1pU2htUHV0SW1hZ2UgKGRzdD0w
-eGI3N2UwMCwgcEdDPTB4YjI4MDMwLCBkZXB0aD0zMiwKICAgIGZvcm1hdD0yLCB3PTE1MzYsIGg9
-NjQsIHN4PS03ODQsIHN5PTQ4LCBzdz0xNiwgc2g9MTYsIGR4PTAsIGR5PTAsCiAgICBkYXRhPTB4
-MmI3ZjhlMjNhMDAwICIiKSBhdCBzaG0uYzo1MjAKIzQgIDB4MDAwMDAwMDAwMDRmODNhZiBpbiBQ
-cm9jU2htUHV0SW1hZ2UgKGNsaWVudD0weDliZmRhMCkgYXQgc2htLmM6ODgxCiM1ICAweDAwMDAw
-MDAwMDA0ZjkxYWMgaW4gUHJvY1NobURpc3BhdGNoIChjbGllbnQ9MHgyYjdmOGM0YzdiYzApIGF0
-IHNobS5jOjExMTQKIzYgIDB4MDAwMDAwMDAwMDQ0OWZmYSBpbiBEaXNwYXRjaCAoKSBhdCBkaXNw
-YXRjaC5jOjQ1NwojNyAgMHgwMDAwMDAwMDAwNDMzMjBiIGluIG1haW4gKGFyZ2M9NywgYXJndj0w
-eDdmZmYyNTg1ZmI4OCwKICAgIGVudnA9PHZhbHVlIG9wdGltaXplZCBvdXQ+KSBhdCBtYWluLmM6
-NDQ1CgpUaGUgb2ZmZW5kaW5nIGxpbmUgbnZfZXhhLmM6MzUxOgptZW1jcHkocE52LT5BR1BTY3Jh
-dGNoLT5tYXAsIHNyYywgbmxpbmVzKnNyY19waXRjaCk7CgpBcHBhcmVudGx5IHRoaXMgbWVtY3B5
-IGlzIGlubGluZWQgYXM6CjB4MDAwMDJiN2Y4Njg5YzIzNyA8TlZVcGxvYWRUb1NjcmVlbisyOTU+
-OiAgICAgIHJlcCBtb3ZzYiAlZHM6KCVyc2kpLCVlczooJXJkaSkKCiVkcyA9IDB4MAolZXMgPSAw
-eDAKJXJzaSA9IDB4MmI3ZjhlMjlhMDAwCiVyZGkgPSAweDJiN2Y4YzRjN2JjMApzcmMgPSAweDJi
-N2Y4ZTI5MzQ0MApwTnYtPkFHUFNjcmF0Y2gtPm1hcCA9IDB4MmI3ZjhjNGMxMDAwCgpDb21wdXRp
-bmcgZnJvbSB0aGVzZSwgU0VHViB0cmlnZ2VycyBvbiB0aGUgNXRoIGxpbmUgYXQgYnl0ZSAzMDA4
-IChvciBieXRlIDI3NTg0CmluIHRvdGFsKS4gSSBoYXZlIG5vdCB2ZXJpZmllZCB0aGVzZSBudW1i
-ZXJzIGFyZSB0aGUgc2FtZSBldmVyeSB0aW1lLCBidXQgdGhlCmJhY2t0cmFjZSBpcyB0aGUgc2Ft
-ZS4KClRoaXMgYnVnIGFwcGVhcmVkIHdoZW4gSSB1cGRhdGVkIGZyb20gWG9yZyA3LjEgdG8gWG9y
-ZyA3LjIuCgpVc2luZyBPcHRpb24gIkVYQU5vVXBsb2FkVG9TY3JlZW4iICJ0cnVlIiBpbiBEZXZp
-Y2Ugc2VjdGlvbiBkb2VzIGNpcmN1bXZlbnQKdGhpcywgYnV0IHRoZSBkZXNrdG9wIGJlY29tZXMg
-dmVyeSBzbHVnZ2lzaCwgYW5kIHRoZW4gSSBjYW4gaGl0IGFub3RoZXIgYnVnLAp3aGljaCBkb2Vz
-IG5vdCBzZWVtIE5vdXZlYXUgcmVsYXRlZC4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6
-Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlv
-dSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFz
-c2lnbmVlIGZvciB0aGUgYnVnLCBvciBhcmUgd2F0Y2hpbmcgdGhlIGFzc2lnbmVlLgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Sun, 6 May 2007 08:31:01 +1200
+"Mark Carey" <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
+> On 5/6/07, Chris Ball <cjb-2X9k7bc8m7Mdnm+yROfE0A@public.gmane.org> wrote:
+> > It would be awesome if this list could be used for us to teach each
+> > other about how to work on drivers.  Does nouveau have anything like
+> > an equivalent of the basic "Radeon Architecture" page yet?
+> 
+> We have a link up to the HowVideoCardsWork on the front page of the
+> wiki and there is some work mooted on understanding video hardware
+> from a beginners point of view (see IRC logs
+> http://lattice.u-strasbg.fr/irclogs/nouveau-2007-05-04).
+
+Hiya,
+
+I have started a page aimed to be an introduction to working with
+(Nouveau) graphics from the driver side. I do not know what I am
+missing and what is relevant, so I'd like to have comments or people
+could improve the page themselves.
+
+http://nouveau.freedesktop.org/wiki/IntroductoryCourse
+
+This is by no means supposed to a replacement for the long-waited
+Nouveau driver crash course, but more of a prerequisite.
+
+-- 
+Pekka "PQ" Paalanen
+http://www.iki.fi/pq/
