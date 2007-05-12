@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10920] glxgears on AGP 10de0028 NV5 [RIVA TNT2/TNT2
 	Pro] works! (but slowly)
-Date: Fri, 11 May 2007 21:03:41 -0700 (PDT)
-Message-ID: <20070512040341.7A696130061@annarchy.freedesktop.org>
+Date: Fri, 11 May 2007 23:00:56 -0700 (PDT)
+Message-ID: <20070512060056.1CF00130061@annarchy.freedesktop.org>
 References: <bug-10920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=10920
 
 
+mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |low
 
 
-
-------- Comment #4 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 21:03 PST -------
-Created an attachment (id=9935)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=9935&action=view)
-Xorg.log from nouveau with gears running
 
 
 -- 
