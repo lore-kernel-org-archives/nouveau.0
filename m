@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10920] glxgears on AGP 10de0028 NV5 [RIVA TNT2/TNT2
 	Pro] works! (but slowly)
-Date: Fri, 11 May 2007 21:01:38 -0700 (PDT)
-Message-ID: <20070512040138.9C74D130061@annarchy.freedesktop.org>
+Date: Fri, 11 May 2007 21:03:01 -0700 (PDT)
+Message-ID: <20070512040301.8868C130061@annarchy.freedesktop.org>
 References: <bug-10920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10920
 
 
 
-------- Comment #2 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 21:01 PST -------
-under nouveau when glxgears is initially started gears spin at a reasonable
-speed for an estimated 0.5-1.0seconds then they slow down and become jerkey as
-if they are being rendered by mesa software.
+------- Comment #3 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-11 21:02 PST -------
+Created an attachment (id=9934)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=9934&action=view)
+syslog output from insmod drm.ko debug=1 for gears working slowly
 
 
 -- 
