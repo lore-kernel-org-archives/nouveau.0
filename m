@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10957] Garbled console text with XAA enabled
-Date: Tue, 15 May 2007 11:05:20 -0700 (PDT)
-Message-ID: <20070515180521.0DA1F13006A@annarchy.freedesktop.org>
+Date: Tue, 15 May 2007 11:06:18 -0700 (PDT)
+Message-ID: <20070515180618.A6FA613006A@annarchy.freedesktop.org>
 References: <bug-10957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10957
 
 
 
-------- Comment #1 from abotezatu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-15 11:05 PST -------
-Created an attachment (id=9974)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=9974&action=view)
-Image of garbled text.
+------- Comment #2 from abotezatu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-15 11:06 PST -------
+Created an attachment (id=9975)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=9975&action=view)
+xorg log
 
 
 -- 
