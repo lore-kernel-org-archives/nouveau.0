@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10957] Garbled console text with XAA enabled
-Date: Tue, 15 May 2007 11:57:19 -0700 (PDT)
-Message-ID: <20070515185719.EA11613006A@annarchy.freedesktop.org>
+Date: Tue, 15 May 2007 12:05:20 -0700 (PDT)
+Message-ID: <20070515190520.7347F13006A@annarchy.freedesktop.org>
 References: <bug-10957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=10957
 
 
+castet.matthieu-GANU6spQydw@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  BugsThisDependsOn|                            |10924
 
 
-
-------- Comment #4 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-05-15 11:57 PST -------
-<matc> abotezatu: strange. In the patch, try to remove in the "if 1 ||
-X_BYTE_ORDER == X_BIG_ENDIAN" the "1 ||".
-<matc> I seems the correct value (as seen by renouveau), but I don't understand
-why my system need to other value.
 
 
 -- 
