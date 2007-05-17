@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10980] New: "Nouveau" kernel modules even built when
-	not requested
-Date: Thu, 17 May 2007 08:27:53 -0700 (PDT)
-Message-ID: <bug-10980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 10980] "Nouveau" kernel modules even built when not
+	requested
+Date: Thu, 17 May 2007 08:35:58 -0700 (PDT)
+Message-ID: <20070517153559.6E8CE13006A@annarchy.freedesktop.org>
+References: <bug-10980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-10980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=10980
 
-           Summary: "Nouveau" kernel modules even built when not requested
-           Product: Mesa
-           Version: CVS
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: jfrieben-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+
+marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
-After checking out "mesa/drm" from the "fdo" development tree, I change the
-working directory to "drm/linux-core". After executing 'make
-DRM_MODULES=savage' not only "drm.ko" and "savage.ko" get built but also
-"nouveau.ko" which had not been requested. A simple mistake in the Makefile, I
-guess.
+
+
+------- Comment #1 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-05-17 08:35 PST -------
+Fixed.
 
 
 -- 
