@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10858] glxgears with mesa-git on PCI 10de0322 (NV34)
 	GeForce FX 5200 crashes X
-Date: Fri, 18 May 2007 22:00:09 -0700 (PDT)
-Message-ID: <20070519050009.96F8E13006F@annarchy.freedesktop.org>
+Date: Fri, 18 May 2007 22:01:13 -0700 (PDT)
+Message-ID: <20070519050114.30C5113006A@annarchy.freedesktop.org>
 References: <bug-10858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,28 +24,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=10858
 
 
+mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+Attachment #9861 is|0                           |1
+           obsolete|                            |
 
 
 
-------- Comment #14 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-18 21:59 PST -------
-refer bug 10933 have put nv34 in another machine. Once installed the new
-machine only has one nvidia card in it the nv34 (will attach a new dmesg and
-lspci).
 
-running glxgears with;
-
-drm: ea98d7e79657469545b865a353784d79fc8cff9d 
-xf86-video-nouveau: 7af7d95eb8826fa3fb9914a8c6ad4b6f4867095e 
-mesa: 25551bdfad8541337a4e59e7e3764fa9b876cb19 
-
-no drm errors encountered!
-
-gears window is drawn, can move mouse around (into and out of windows), can
-move the gears window around.  glxgears consumes as much cpu as possible
-(logged in remotely to verify).
-
-No gears are drawn, and no frame rate information is written to the terminal in
-which gears we started.
+------- Comment #15 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-18 22:01 PST -------
+Created an attachment (id=10023)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10023&action=view)
+lspci output from new machine
 
 
 -- 
