@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10858] glxgears with mesa-git on PCI 10de0322 (NV34)
 	GeForce FX 5200 crashes X
-Date: Sat, 19 May 2007 17:56:17 -0700 (PDT)
-Message-ID: <20070520005617.B384613006A@annarchy.freedesktop.org>
+Date: Sat, 19 May 2007 17:53:34 -0700 (PDT)
+Message-ID: <20070520005334.3884013006A@annarchy.freedesktop.org>
 References: <bug-10858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,33 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10858
 
 
 
-------- Comment #22 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-19 17:56 PST -------
-Created an attachment (id=10032)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10032&action=view)
-Xorg.0.log showing FIFO dump from comment 21
+------- Comment #21 from mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-05-19 17:53 PST -------
+additional data point comment 14 is the result of running glxgears after having
+run glxgears with the nvidia driver (see dmesg output in comment 16), then;
+shutting down X, apt-get remove nvidia-glx, insmod drm.ko debug=1, insmod
+nouveau.ko, startx, exporting LD_LIBRARY_PATH, LIBGL_DRIVERS_PATH and
+re-running glxgears.
 
-Xorg.0.log showing FIFO dump from comment 21
+If I reboot the machine, but not halt/power off (tested through 3 cycles), then
+the behaviour is repeatable (i.e running gears does not crash X, but no gears
+are drawn).
+
+If I halt/power off the machine, wait 20s, power back on, then the same
+drm/xf86-video-nouveau/mesa combination crashes X.
+
+When X crashes, I get nothing abnormal in syslog, I do get a FIFO dump in
+Xorg.log (will attach both)
+
+Does this mean that the nvidia driver (blob) is doing something to initialise
+(?) the card that we are not? I think yes, it appears to persist across reboots
+but not powering off.
+
+I think darktama suggested something like this on IRC at some stage ...
+
+Can I reproduce this behaviour - yes (all I have to do is reinstall
+nvidia-glx-dev and cycle through the steps outlined in this comment), how do I
+track down the configuration stuff that nvidia is doing that nouveau is not yet
+doing to stop the crash?
 
 
 -- 
