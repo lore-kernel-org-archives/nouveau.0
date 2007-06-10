@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10927] segmentation fault in NVUploadToScreen,
 	called from exaPutImage
-Date: Sun, 10 Jun 2007 13:35:04 -0700 (PDT)
-Message-ID: <20070610203504.B983313006D@annarchy.freedesktop.org>
+Date: Sun, 10 Jun 2007 15:15:23 -0700 (PDT)
+Message-ID: <20070610221523.41F6C13006E@annarchy.freedesktop.org>
 References: <bug-10927-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,52 +27,35 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10927
 
 
 
-------- Comment #2 from chris-fdbugs-OsFVWbfNK3isTnJN9+BGXg@public.gmane.org  2007-06-10 13:34 PST -------
-I get the same SIGABRT (note, we're no longer talking about the segfault)
-backtrace with a standard Fedora 7 install, straight after typing my username
-into the gdm username field and hitting return:
+------- Comment #3 from chris-fdbugs-OsFVWbfNK3isTnJN9+BGXg@public.gmane.org  2007-06-10 15:15 PST -------
+My backtrace isn't quite the same as pq's.  His:
 
-Program received signal SIGABRT, Aborted.
-0x006ed402 in __kernel_vsyscall ()
-(gdb) bt
-#0  0x006ed402 in __kernel_vsyscall ()
-#1  0x00428fa0 in raise () from /lib/libc.so.6
-#2  0x0042a8b1 in abort () from /lib/libc.so.6
-#3  0x0045febb in __libc_message () from /lib/libc.so.6
-#4  0x00467f41 in _int_free () from /lib/libc.so.6
-#5  0x0046b580 in free () from /lib/libc.so.6
+#5  0x000000000061161e in Xfree (ptr=0xc9cc50) at utils.c:1470
+#6  0x00002ac5fbfa612c in fbDestroyPixmap (pPixmap=0xc9cc50) at fbpixmap.c:105
+#7  0x00002ac5fc0cb7f3 in exaDestroyPixmap (pPixmap=0xc9cc50) at exa.c:218
+
+Mine:
+
 #6  0x081bb591 in Xfree (ptr=0x0) at utils.c:1470
 #7  0x00fd5a4a in fbDestroyPixmap (pPixmap=0x6) at fbpixmap.c:105
 #8  0x001f066b in exaDestroyPixmap (pPixmap=0x8d2c760) at exa.c:218
-#9  0x0816f054 in damageDestroyPixmap (pPixmap=0x8d2c760) at damage.c:1628
-#10 0x006164e0 in XvDestroyPixmap (pPix=0x8d2c760) at xvmain.c:393
-#11 0x080825d5 in dixDestroyPixmap (value=0x8d2c760, pid=4194652)
-    at dispatch.c:1466
-#12 0x08072bed in FreeResource (id=4194652, skipDeleteFuncType=0)
-    at resource.c:536
-#13 0x080841d3 in ProcFreePixmap (client=0x8cfcaf0) at dispatch.c:1540
-#14 0x0814efd1 in XaceCatchDispatchProc (client=0x8cfcaf0) at xace.c:281
-#15 0x0808936a in Dispatch () at dispatch.c:457
-#16 0x080710a5 in main (argc=10, argv=0xbfa84d24, envp=Cannot access memory at
-address 0xf73
-) at main.c:445
-(gdb) f 6
-#6  0x081bb591 in Xfree (ptr=0x0) at utils.c:1470
-1470            free((char *)ptr); 
-(gdb) f 7
-#7  0x00fd5a4a in fbDestroyPixmap (pPixmap=0x6) at fbpixmap.c:105
-105         xfree(pPixmap);
-(gdb) l
-100     Bool
-101     fbDestroyPixmap (PixmapPtr pPixmap)
-102     {
-103         if(--pPixmap->refcnt)
-104             return TRUE;
-105         xfree(pPixmap);
-106         return TRUE;
-107     }
-108
-109     #define ADDRECT(reg,r,fr,rx1,ry1,rx2,ry2)                       \
+
+I can't see where the pointer's being lost.  I added debugging to
+exaDestroyPixmap(), printing pPixmap, and I get a valid pointer right up to the
+return line:
+
+ 195     return fbDestroyPixmap (pPixmap);
+
+(WW) in exaDestroyPixmap, pPixmap = 8648e30
+(WW) after ExaPixmapPriv, pPixmap = 8648e30
+-- 0x0x400122 (0x500000) (398x50)
+Free 0x13880 -> 0x500000 (0x500000)
+        done freeing
+(WW) after exaOffscreenFree, pPixmap = 8648e30
+(WW) after REGION_UNINIT, pPixmap = 8648e30
+(WW) returning, pPixmap = 8648e30
+
+Yet when we enter fbDestroyPixmap, we have pPixmap=0x6?
 
 
 -- 
