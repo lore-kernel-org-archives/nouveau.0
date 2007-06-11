@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11240] doesn't start X - DMA Queue hang
-Date: Mon, 11 Jun 2007 15:49:02 -0700 (PDT)
-Message-ID: <20070611224903.0D77113006D@annarchy.freedesktop.org>
+Date: Mon, 11 Jun 2007 15:49:30 -0700 (PDT)
+Message-ID: <20070611224930.A302B13006D@annarchy.freedesktop.org>
 References: <bug-11240-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11240
 
 
 
-------- Comment #1 from notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org  2007-06-11 15:48 PST -------
-Created an attachment (id=10262)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10262&action=view)
-xorg conf
+------- Comment #2 from notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org  2007-06-11 15:49 PST -------
+Created an attachment (id=10263)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10263&action=view)
+X log
 
 
 -- 
