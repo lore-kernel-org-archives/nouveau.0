@@ -1,14 +1,13 @@
 From: Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org>
 Subject: Re: Two problems
-Date: Fri, 15 Jun 2007 13:42:40 +0200
-Message-ID: <46727B30.9080501@gmx.de>
+Date: Fri, 15 Jun 2007 14:02:07 +0200
+Message-ID: <46727FBF.7000903@gmx.de>
 References: <4671564A.8010702@gmx.de>
-	<20070614190808.7232a6ef@daedalus.pq.iki.fi>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-15"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20070614190808.7232a6ef-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
+In-Reply-To: <4671564A.8010702-Mmb7MZpHnFY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,33 +17,112 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+I'm sorry, all my problems are solved for now. forget problem 1) in my
+mail.
 
+(I had the message that my card is a GeForce4 420 Go 32M by lspci one
+time, but now the nessage is correct, I don't know why. But the GeForce4
+420 Go 32M has the pci device id 0176 and my card 0179. As soon as I
+know why I get different messages I mail again.)
 
-Pekka Paalanen schrieb:
-> On Thu, 14 Jun 2007 16:52:58 +0200
-> Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org> wrote:
->
->> mkdir: kann Verzeichnis "cards" nicht anlegen: Die Datei existiert
->
+Jan Buecken schrieb:
+> Hello, I have two problems:
+> =
 
-Sorry, it was a only copy and paste of the whole error. But this is
-solved myself (the reason for this error is that I run the script a
-second time without deleting the directory cards or rmtmp. The
-translation of this error is:
-"mkdir: cannot make directory "cards": The directory already exists"
+> 1) Identify my card
+> 2) Error message at dumping
+> =
 
-> Please use English or C locale for reporting error messages.
->
->> bereits detect_devices: Creating probe window failed.
->> Device detection failed.
->
-> Are you using 16-bit color depth? If so, please try 24-bit.
+> 1) It seems to me that I have a special version of the GeForce4 420 Go
+> 32M because my card is a GeForce4 440 Go 64M but both have the same PCI
+> device id. Is this important for the development of the renouveau driver
+> or is this already noted?
+> =
 
-Yes. This helps. Thanks. A irritating error message...
+> Outputs:
+> =
 
->
-> Thanks.
->
+> lspci
+> [...]
+> 01:00.0 VGA compatible controller: nVidia Corporation NV17 [GeForce4 440
+> Go 64M] (rev a3)
+> =
+
+> lspci -n
+> [...]
+> 01:00.0 0300: 10de:0179 (rev a3)
+> =
+
+> =
+
+> System:
+> =
+
+> Operating System: Gentoo
+> =
+
+> uname -a
+> Linux workstation 2.6.20-gentoo-r8 #1 PREEMPT Fri May 11 19:52:29 CEST
+> 2007 i686 Intel(R) Pentium(R) 4 CPU 2.53GHz GenuineIntel GNU/Linux
+> =
+
+> Nvidia Driver: 1.0.8776-r1
+> =
+
+> 2) I want to report following error message. I want to dump my card with
+> KoalaBR's script. The complete output (after answering yes):
+> =
+
+> =
+
+> =
+
+> =
+
+> =
+
+> =
+
+>          ????????????????????????????????????????????????????????????
+>          ? Compilation successful. Now starting renouveau. Please   ?
+>          ? make sure that                                           ?
+>          ?    - You have compiz or beryl disabled                   ?
+>          ?    - That you don't move the renouveau window            ?
+>          ?    - That you don't hide the renouveau window behind     ?
+>          ? other windows or menus                                   ?
+>          ?  In case of questions look here:                         ?
+>          ? http://nouveau.freedesktop.org/wiki/FAQ.                 ?
+>          ?  Choosing 'NO' will abort this script in case you need   ?
+>          ? to deactivate beryl / compiz                             ?
+>          ????????????????????????????????????????????????????????????
+>          ?                 < Yes >         < No  >                  ?
+>          ????????????????????????????????????????????????????????????
+> =
+
+> =
+
+> =
+
+> =
+
+> =
+
+> mkdir: kann Verzeichnis "cards" nicht anlegen: Die Datei existiert bereits
+> detect_devices: Creating probe window failed.
+> Device detection failed.
+> Please report the above error. Press return to continue
+> =
+
+> Is there already a solution?
+> =
+
+> regards
+> Jan B=FCcken
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+> =
