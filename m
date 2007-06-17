@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11289] DMA queue hang: dmaPut=bc6, current=b80,
 	status=0 with the 2d driver
-Date: Sun, 17 Jun 2007 07:05:22 -0700 (PDT)
-Message-ID: <20070617140522.5E10E13006D@annarchy.freedesktop.org>
+Date: Sun, 17 Jun 2007 07:07:22 -0700 (PDT)
+Message-ID: <20070617140722.AC83713006D@annarchy.freedesktop.org>
 References: <bug-11289-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11289
 
 
 
-------- Comment #3 from wesley.hearn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-06-17 07:04 PST -------
-Created an attachment (id=10341)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10341&action=view)
-Excerpt of /var/log/messages
+------- Comment #4 from wesley.hearn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-06-17 07:07 PST -------
+Created an attachment (id=10342)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10342&action=view)
+lspci -vvv and rpm -qi for libdrm and xorg-x11-drv-nouveau
 
 
 -- 
