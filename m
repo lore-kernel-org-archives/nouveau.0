@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11425] EXA on GF6200/AGP and different
 	"MigrationHeuristic" schemas
-Date: Fri, 29 Jun 2007 21:38:12 -0700 (PDT)
-Message-ID: <20070630043813.10FE413005E@annarchy.freedesktop.org>
+Date: Fri, 29 Jun 2007 21:39:13 -0700 (PDT)
+Message-ID: <20070630043913.EE95C13005E@annarchy.freedesktop.org>
 References: <bug-11425-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11425
 
 
 
-------- Comment #3 from randrik-JGs/UdohzUI@public.gmane.org  2007-06-29 21:37 PST -------
-Created an attachment (id=10514)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10514&action=view)
-my working xorg.conf
+------- Comment #4 from randrik-JGs/UdohzUI@public.gmane.org  2007-06-29 21:38 PST -------
+Created an attachment (id=10515)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10515&action=view)
+current xorg.0.log
 
 
 -- 
