@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11425] EXA on GF6200/AGP and different
 	"MigrationHeuristic" schemas
-Date: Fri, 29 Jun 2007 21:37:16 -0700 (PDT)
-Message-ID: <20070630043716.3565013005E@annarchy.freedesktop.org>
+Date: Fri, 29 Jun 2007 21:38:12 -0700 (PDT)
+Message-ID: <20070630043813.10FE413005E@annarchy.freedesktop.org>
 References: <bug-11425-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,13 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11425
 
 
 
-------- Comment #2 from randrik-JGs/UdohzUI@public.gmane.org  2007-06-29 21:36 PST -------
-Created an attachment (id=10513)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10513&action=view)
-text problem  in gkrellm
-
-screenshot taken just before crash/freeze. You should open _really_ many pages
-with _really_ many pics!
+------- Comment #3 from randrik-JGs/UdohzUI@public.gmane.org  2007-06-29 21:37 PST -------
+Created an attachment (id=10514)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10514&action=view)
+my working xorg.conf
 
 
 -- 
