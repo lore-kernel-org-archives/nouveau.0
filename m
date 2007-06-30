@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10717] nouveau fails to start, waiting on dma
-Date: Sat, 30 Jun 2007 00:57:52 -0700 (PDT)
-Message-ID: <20070630080125.E97FD13005E@annarchy.freedesktop.org>
+Date: Sat, 30 Jun 2007 01:03:13 -0700 (PDT)
+Message-ID: <20070630080313.7DF5613005E@annarchy.freedesktop.org>
 References: <bug-10717-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10717
 
 
 
-------- Comment #4 from wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org  2007-06-30 00:57 PST -------
-Created an attachment (id=10517)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10517&action=view)
-xorg log of failed startup
-
-Hi Ben, still fails. Attaching my xorg.log. DRM and the driver from this
-morning's git.
+------- Comment #5 from wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org  2007-06-30 01:02 PST -------
+I suppose that it is failing in a different way, though. Let me know what I can
+do to help.
 
 
 -- 
