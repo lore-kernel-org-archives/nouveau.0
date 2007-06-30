@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10924] XAA crash on NV17
-Date: Sat, 30 Jun 2007 01:40:20 -0700 (PDT)
-Message-ID: <20070630084020.A639413005E@annarchy.freedesktop.org>
+Date: Sat, 30 Jun 2007 01:41:58 -0700 (PDT)
+Message-ID: <20070630084158.B004013005E@annarchy.freedesktop.org>
 References: <bug-10924-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10924
 
 
 
-------- Comment #1 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-06-30 01:39 PST -------
-Created an attachment (id=10518)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10518&action=view)
-set NV04_GDI_RECTANGLE_SET_MONOCHROME_FORMAT to avoid crash
-
-The problem is that to get correct output, I should set the wrong big endian
-order
+------- Comment #2 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-06-30 01:41 PST -------
+The problem still happen with last git version.
 
 
 -- 
