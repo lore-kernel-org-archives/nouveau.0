@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10924] XAA crash on NV17
-Date: Sat, 30 Jun 2007 01:41:58 -0700 (PDT)
-Message-ID: <20070630084158.B004013005E@annarchy.freedesktop.org>
-References: <bug-10924-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11425] EXA on GF6200/AGP and different
+	"MigrationHeuristic" schemas
+Date: Sat, 30 Jun 2007 01:44:17 -0700 (PDT)
+Message-ID: <20070630084417.2F1F913006E@annarchy.freedesktop.org>
+References: <bug-11425-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-10924-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11425-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=10924
+http://bugs.freedesktop.org/show_bug.cgi?id=11425
 
 
 
 
 
-------- Comment #2 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-06-30 01:41 PST -------
-The problem still happen with last git version.
+------- Comment #6 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-06-30 01:43 PST -------
+With a NV17 and default EXA mode, I manage to get screen corruption and after
+some time X crash.
+
+So it seems this problem is reproductible also on nv17.
 
 
 -- 
