@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11425] EXA on GF6200/AGP and different
 	"MigrationHeuristic" schemas
-Date: Sat, 30 Jun 2007 01:44:17 -0700 (PDT)
-Message-ID: <20070630084417.2F1F913006E@annarchy.freedesktop.org>
+Date: Sat, 30 Jun 2007 23:04:52 -0700 (PDT)
+Message-ID: <20070701060452.5AD1013005E@annarchy.freedesktop.org>
 References: <bug-11425-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11425
 
 
 
-------- Comment #6 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-06-30 01:43 PST -------
-With a NV17 and default EXA mode, I manage to get screen corruption and after
-some time X crash.
+------- Comment #7 from randrik-JGs/UdohzUI@public.gmane.org  2007-06-30 23:04 PST -------
+And little more on this.
 
-So it seems this problem is reproductible also on nv17.
+If i have added option "EXANoDownloadFromScreen" "1" - i have stable, and
+acceptable-fast desktop. (switch to text console takes seconds, but in graphics
+mode mozilla and other apps runs fast). 
+
+If i use "EXANoDownloadFromScreen" "1" and default "MigrationHeuristic"
+"always" - i have no screen corruption, but massive, very noticeable slowdown.
 
 
 -- 
