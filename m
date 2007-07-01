@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11441] Minor display corruption
-Date: Sun,  1 Jul 2007 11:44:40 -0700 (PDT)
-Message-ID: <20070701184440.CCD03130061@annarchy.freedesktop.org>
+Date: Sun,  1 Jul 2007 11:45:49 -0700 (PDT)
+Message-ID: <20070701184549.4CFF5130061@annarchy.freedesktop.org>
 References: <bug-11441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11441
 
 
 
-------- Comment #1 from mrsam-W1w4QoW4mIDgLSHwZvcCBg@public.gmane.org  2007-07-01 11:44 PST -------
-Created an attachment (id=10538)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10538&action=view)
-screen shot of the display corruption -- bottom of the desktop
+------- Comment #2 from mrsam-W1w4QoW4mIDgLSHwZvcCBg@public.gmane.org  2007-07-01 11:45 PST -------
+Created an attachment (id=10539)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10539&action=view)
+Xorg.0.log
 
 
 -- 
