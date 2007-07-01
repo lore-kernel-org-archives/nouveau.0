@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11435] XAA incorrect rendering (missing lines?)
-Date: Sun,  1 Jul 2007 04:32:31 -0700 (PDT)
-Message-ID: <20070701113231.BCFD813005E@annarchy.freedesktop.org>
+Date: Sun,  1 Jul 2007 04:33:20 -0700 (PDT)
+Message-ID: <20070701113321.0234713005E@annarchy.freedesktop.org>
 References: <bug-11435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11435
 
 
 
-------- Comment #1 from pq-X3B1VOXEql0@public.gmane.org  2007-07-01 04:32 PST -------
-Created an attachment (id=10528)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10528&action=view)
-Picture of incorrect rendering with XAA.
+------- Comment #2 from pq-X3B1VOXEql0@public.gmane.org  2007-07-01 04:32 PST -------
+Created an attachment (id=10529)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10529&action=view)
+Picture of correct rendering with EXA.
 
 
 -- 
