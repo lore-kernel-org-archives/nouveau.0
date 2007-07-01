@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11425] EXA on GF6200/AGP and different
-	"MigrationHeuristic" schemas
-Date: Sun,  1 Jul 2007 04:27:03 -0700 (PDT)
-Message-ID: <20070701112704.08DD313006E@annarchy.freedesktop.org>
-References: <bug-11425-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11435] New: XAA incorrect rendering (missing lines?)
+Date: Sun,  1 Jul 2007 04:30:45 -0700 (PDT)
+Message-ID: <bug-11435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11425-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +18,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11425
+http://bugs.freedesktop.org/show_bug.cgi?id=11435
+
+           Summary: XAA incorrect rendering (missing lines?)
+           Product: xorg
+           Version: 7.2
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: low
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: pq-X3B1VOXEql0@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Today, with XAA accel, some graphics has incorrect rendering. It looks like
+some lines are missing from Firefox GUI. Also three of four fluxbox window
+buttons are missing their icons, which could well be line graphics.
 
-
-
-------- Comment #9 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-07-01 04:26 PST -------
-rendering is correct, but on iceape (seamonkey on debian), I got hard lockup
-when trying to attach a file in a mail.
+I will attach two images to demostrate the problem.
 
 
 -- 
