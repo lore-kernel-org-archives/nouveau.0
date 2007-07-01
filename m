@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10927] segmentation fault in NVUploadToScreen,
-	called from exaPutImage
-Date: Sun,  1 Jul 2007 03:48:46 -0700 (PDT)
-Message-ID: <20070701104846.4A61D13005E@annarchy.freedesktop.org>
-References: <bug-10927-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11425] EXA on GF6200/AGP and different
+	"MigrationHeuristic" schemas
+Date: Sun,  1 Jul 2007 04:27:03 -0700 (PDT)
+Message-ID: <20070701112704.08DD313006E@annarchy.freedesktop.org>
+References: <bug-11425-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-10927-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11425-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +21,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=10927
+http://bugs.freedesktop.org/show_bug.cgi?id=11425
 
 
 
 
 
-------- Comment #7 from pq-X3B1VOXEql0@public.gmane.org  2007-07-01 03:48 PST -------
-(In reply to comment #6)
-> The original bug should be fixed in latest git.
-> 
-> However, the SIGABRT problem is a different bug (not sure if it's our fault or
-> not).
-
-With the latest commits from Ben to DDX, I confirm both bugs fixed. I mean,
-with little testing where they usually triggered, they do not trigger anymore.
-Both segfault and abort.
+------- Comment #9 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-07-01 04:26 PST -------
+rendering is correct, but on iceape (seamonkey on debian), I got hard lockup
+when trying to attach a file in a mail.
 
 
 -- 
