@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11425] EXA on GF6200/AGP and different
 	"MigrationHeuristic" schemas
-Date: Sat, 30 Jun 2007 23:04:52 -0700 (PDT)
-Message-ID: <20070701060452.5AD1013005E@annarchy.freedesktop.org>
+Date: Sun,  1 Jul 2007 02:14:39 -0700 (PDT)
+Message-ID: <20070701091439.ACB4813006E@annarchy.freedesktop.org>
 References: <bug-11425-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11425
 
 
 
-------- Comment #7 from randrik-JGs/UdohzUI@public.gmane.org  2007-06-30 23:04 PST -------
-And little more on this.
-
-If i have added option "EXANoDownloadFromScreen" "1" - i have stable, and
-acceptable-fast desktop. (switch to text console takes seconds, but in graphics
-mode mozilla and other apps runs fast). 
-
-If i use "EXANoDownloadFromScreen" "1" and default "MigrationHeuristic"
-"always" - i have no screen corruption, but massive, very noticeable slowdown.
+------- Comment #8 from skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-01 02:14 PST -------
+There's some changes in latest git that may fix this, they correct all the
+rendering issues I see here (C51).
 
 
 -- 
