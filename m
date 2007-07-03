@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11441] Minor display corruption
-Date: Sun,  1 Jul 2007 11:47:31 -0700 (PDT)
-Message-ID: <20070701184731.89B5D130061@annarchy.freedesktop.org>
-References: <bug-11441-8800@http.bugs.freedesktop.org/>
+From: doug newcomb <dnewcomb-goaWJWIt5zpWk0Htik3J/w@public.gmane.org>
+Subject: Card donations?
+Date: Mon, 02 Jul 2007 20:06:47 -0400
+Message-ID: <1183421207.3336.3.camel@wombat1.homenet.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +18,9 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11441
+Hi Folks,
+	If it would help, I have an MSI NX6600GT AGP card and a Gigabyte
+N57128D AGP card that I could send to a developer on the nouveau
+project.
 
-
-
-
-
-------- Comment #3 from mrsam-W1w4QoW4mIDgLSHwZvcCBg@public.gmane.org  2007-07-01 11:47 PST -------
-Created an attachment (id=10540)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10540&action=view)
-Output of lspci -v -v and lspci -n
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug, or are watching the assignee.
+Doug Newcomb
