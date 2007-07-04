@@ -1,10 +1,10 @@
-From: doug newcomb <dnewcomb-goaWJWIt5zpWk0Htik3J/w@public.gmane.org>
-Subject: Card donations?
-Date: Mon, 02 Jul 2007 20:06:47 -0400
-Message-ID: <1183421207.3336.3.camel@wombat1.homenet.net>
+From: "xiao dan" <xiaodanbox-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
+Subject: Question About The Steps
+Date: Wed, 04 Jul 2007 10:47:46 +0800
+Message-ID: <BAY122-F85DDA2CB5BCF70304B5AECE030@phx.gbl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,9 +18,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Folks,
-	If it would help, I have an MSI NX6600GT AGP card and a Gigabyte
-N57128D AGP card that I could send to a developer on the nouveau
-project.
-
-Doug Newcomb
+RGVhciBTaXI6CiAgICAgU29ycnkgdG8gIGJvdGhlciB5b3UhIEkgYW0gYSBncmFkdWF0ZSBzdHVk
+ZW50IGluIENoaW5hLGFuZCBteSB0ZWFtIGlzIApjdXJyZW50bHkgd29ya2luZyBvbiB0aGUgdmlk
+ZW8gY2FyZCBkcml2ZXIuIE91ciB0YXJnZXQgaXMgdGhhdCB0aGUgcmVzdWx0IAp3ZSBnZXQgY2Fu
+IGJlIHVzZWQgaW4gc29tZSBraW5kIG9mIE9wZXJhdGluZyBTeXN0ZW0gbGlrZSBsaW51eC4gQXMg
+Cm5ld2Vycyx0aGUgYmlnZ2VzdCBwcm9ibG9tIGZvciB1cyBpcyB0aGF0IHRoZSBzdGVwcyB0byBk
+byB0aGUgd29yayBpcyBub3QgCnZlcnkgY2xlYXIuIEl0IHdpbGwgYmUgdmVyeSBraW5kIG9mIHlv
+dSB0byBnaXZlIHVzIGEgcGljdHVyZSBvZiB0aGUgCnByb2NlZWRpbmcuIFdlIGhhdmUgdGhlIGJh
+c2ljIGtub3dsZWRnZSxidXQgZG9uJ3Qga25vdyB3aGljaCBwb2ludCB0byAKc3RhcnQuCiAgICAg
+V2FpdGluZyBmb3IgeW91ciBhbnN3ZXIgdGhpcnN0aWx5ISBUaGFua3MgYSBsb3QhIAogICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB5b3VycywKICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNo
+YWRvdwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18Kw+K30c/C1NggTVNOIEV4cGxvcmVyOiAgIGh0dHA6Ly9leHBsb3Jlci5t
+c24uY29tL2xjY24vICAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
