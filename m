@@ -1,11 +1,13 @@
-From: "xiao dan" <xiaodanbox-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
-Subject: Question About The Steps
-Date: Wed, 04 Jul 2007 10:47:46 +0800
-Message-ID: <BAY122-F85DDA2CB5BCF70304B5AECE030@phx.gbl>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: Question About The Steps
+Date: Wed, 4 Jul 2007 12:41:17 +0300
+Message-ID: <20070704124117.26312d4d@daedalus.pq.iki.fi>
+References: <BAY122-F85DDA2CB5BCF70304B5AECE030@phx.gbl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <BAY122-F85DDA2CB5BCF70304B5AECE030-MsuGFMq8XAE@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,22 +17,37 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: xiao dan <xiaodanbox-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RGVhciBTaXI6CiAgICAgU29ycnkgdG8gIGJvdGhlciB5b3UhIEkgYW0gYSBncmFkdWF0ZSBzdHVk
-ZW50IGluIENoaW5hLGFuZCBteSB0ZWFtIGlzIApjdXJyZW50bHkgd29ya2luZyBvbiB0aGUgdmlk
-ZW8gY2FyZCBkcml2ZXIuIE91ciB0YXJnZXQgaXMgdGhhdCB0aGUgcmVzdWx0IAp3ZSBnZXQgY2Fu
-IGJlIHVzZWQgaW4gc29tZSBraW5kIG9mIE9wZXJhdGluZyBTeXN0ZW0gbGlrZSBsaW51eC4gQXMg
-Cm5ld2Vycyx0aGUgYmlnZ2VzdCBwcm9ibG9tIGZvciB1cyBpcyB0aGF0IHRoZSBzdGVwcyB0byBk
-byB0aGUgd29yayBpcyBub3QgCnZlcnkgY2xlYXIuIEl0IHdpbGwgYmUgdmVyeSBraW5kIG9mIHlv
-dSB0byBnaXZlIHVzIGEgcGljdHVyZSBvZiB0aGUgCnByb2NlZWRpbmcuIFdlIGhhdmUgdGhlIGJh
-c2ljIGtub3dsZWRnZSxidXQgZG9uJ3Qga25vdyB3aGljaCBwb2ludCB0byAKc3RhcnQuCiAgICAg
-V2FpdGluZyBmb3IgeW91ciBhbnN3ZXIgdGhpcnN0aWx5ISBUaGFua3MgYSBsb3QhIAogICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB5b3VycywKICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNo
-YWRvdwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18Kw+K30c/C1NggTVNOIEV4cGxvcmVyOiAgIGh0dHA6Ly9leHBsb3Jlci5t
-c24uY29tL2xjY24vICAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Wed, 04 Jul 2007 10:47:46 +0800
+"xiao dan" <xiaodanbox-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> wrote:
+
+> Dear Sir:
+>      Sorry to  bother you! I am a graduate student in China,and my
+> team is currently working on the video card driver. Our target is
+> that the result we get can be used in some kind of Operating System
+> like linux. As newers,the biggest problom for us is that the steps to
+> do the work is not very clear. It will be very kind of you to give us
+> a picture of the proceeding. We have the basic knowledge,but don't
+> know which point to start.
+
+Hello,
+
+at least I did not really understand your question, so I'm asking more
+details.
+
+By the video card driver do you mean Nouveau?
+What hardware are you working with?
+By operating system do you mean specifically Linux, or *BSD or
+something else?
+What is it exactly what you want to do?
+Would you be contributing to the Nouveau code base, under the
+propriate licenses and legal terms?
+
+Thanks.
+
+-- 
+Pekka "PQ" Paalanen
+http://www.iki.fi/pq/
