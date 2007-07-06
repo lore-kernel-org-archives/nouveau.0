@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11487] New: Account request
-Date: Fri,  6 Jul 2007 08:59:28 -0700 (PDT)
-Message-ID: <bug-11487-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11487] Account request
+Date: Fri,  6 Jul 2007 09:01:24 -0700 (PDT)
+Message-ID: <20070706160124.A6170130062@annarchy.freedesktop.org>
+References: <bug-11487-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-11487-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=11487
 
-           Summary: Account request
-           Product: xorg
-           Version: git
-          Platform: Other
-               URL: http://www.iki.fi/pq/
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: pq-X3B1VOXEql0@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-I would like an account for fd.o. I am involved in the Nouveau project, would
-probably do something useful for DRM, xf86-video-nouveau and Mesa in their git
-repositories. Maybe even publish my own mmio-trace and rules-ng repositories,
-if that is possible.
 
-My name is Pekka Paalanen, e-mail address pq-X3B1VOXEql0@public.gmane.org and preferred user name is
-pq or ppaalanen.
+
+------- Comment #2 from pq-X3B1VOXEql0@public.gmane.org  2007-07-06 09:01 PST -------
+Created an attachment (id=10604)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10604&action=view)
+public ssh key
 
 
 -- 
