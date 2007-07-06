@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11487] Account request
-Date: Fri,  6 Jul 2007 09:01:24 -0700 (PDT)
-Message-ID: <20070706160124.A6170130062@annarchy.freedesktop.org>
+Date: Fri,  6 Jul 2007 09:00:37 -0700 (PDT)
+Message-ID: <20070706160038.75840130062@annarchy.freedesktop.org>
 References: <bug-11487-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11487
 
 
 
-------- Comment #2 from pq-X3B1VOXEql0@public.gmane.org  2007-07-06 09:01 PST -------
-Created an attachment (id=10604)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10604&action=view)
-public ssh key
+------- Comment #1 from pq-X3B1VOXEql0@public.gmane.org  2007-07-06 09:00 PST -------
+Created an attachment (id=10603)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10603&action=view)
+gpg public key
 
 
 -- 
