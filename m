@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11487] Account request
-Date: Fri,  6 Jul 2007 09:00:37 -0700 (PDT)
-Message-ID: <20070706160038.75840130062@annarchy.freedesktop.org>
+Date: Fri,  6 Jul 2007 15:37:03 -0700 (PDT)
+Message-ID: <20070706223704.177A413006E@annarchy.freedesktop.org>
 References: <bug-11487-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11487
 
 
+marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Driver/nouveau              |New Accounts
+            Product|xorg                        |freedesktop.org
+            Version|git                         |unspecified
 
 
 
-------- Comment #1 from pq-X3B1VOXEql0@public.gmane.org  2007-07-06 09:00 PST -------
-Created an attachment (id=10603)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10603&action=view)
-gpg public key
+
+------- Comment #3 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-07-06 15:36 PST -------
+Ack.
 
 
 -- 
