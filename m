@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11487] Account request
-Date: Fri,  6 Jul 2007 15:37:03 -0700 (PDT)
-Message-ID: <20070706223704.177A413006E@annarchy.freedesktop.org>
+Date: Fri,  6 Jul 2007 15:37:27 -0700 (PDT)
+Message-ID: <20070706223727.DF8B62DC001@annarchy.freedesktop.org>
 References: <bug-11487-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,18 +27,15 @@ marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-          Component|Driver/nouveau              |New Accounts
-            Product|xorg                        |freedesktop.org
-            Version|git                         |unspecified
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|sitewranglers-CC+yJ3UmIYpa6l5+2nELGQ@public.gmane.org
+                   |g                           |g
+          QAContact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
 
 
-
-
-------- Comment #3 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-07-06 15:36 PST -------
-Ack.
 
 
 -- 
 Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
 ------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
 You are the assignee for the bug, or are watching the assignee.
