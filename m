@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11509] Fails to start X with DMA queue hang on 7600
 	GO
-Date: Mon,  9 Jul 2007 07:05:44 -0700 (PDT)
-Message-ID: <20070709140553.924AD13006A@annarchy.freedesktop.org>
+Date: Mon,  9 Jul 2007 16:20:12 -0700 (PDT)
+Message-ID: <20070709232012.AEC3013006A@annarchy.freedesktop.org>
 References: <bug-11509-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,11 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11509
 
 
+chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
-------- Comment #4 from skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-09 07:05 PST -------
-Should be fixed in drm git 023f7d9c0064f912415c92a85c3a9d722191909f.
+
+------- Comment #5 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-09 16:19 PST -------
+Confirmed fixed.  That was quick!
 
 
 -- 
