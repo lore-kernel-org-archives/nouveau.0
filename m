@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11509] Fails to start X with DMA queue hang on 7600
 	GO
-Date: Mon,  9 Jul 2007 06:38:33 -0700 (PDT)
-Message-ID: <20070709133850.6661B13006A@annarchy.freedesktop.org>
+Date: Mon,  9 Jul 2007 06:41:25 -0700 (PDT)
+Message-ID: <20070709134250.3540513006A@annarchy.freedesktop.org>
 References: <bug-11509-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11509
 
 
 
-------- Comment #1 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-09 06:38 PST -------
-Created an attachment (id=10633)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10633&action=view)
-Xorg log of failed session
+------- Comment #2 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-09 06:40 PST -------
+Created an attachment (id=10634)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10634&action=view)
+Dmesg after unsuccessfull X attempt
 
 
 -- 
