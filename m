@@ -1,18 +1,11 @@
 From: "Louise Hoffman" <louise.hoffman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Does Nouveau break the nVidia drivers?
-Date: Sat, 14 Jul 2007 14:11:43 +0200
-Message-ID: <30c82f5f0707140511t31076f06o7b6ec33c80f9cf54@mail.gmail.com>
-References: <30c82f5f0707120641v45a01c72yb3a828271d1d64f9@mail.gmail.com>
-	<46965347.20005@sms.ed.ac.uk>
-	<30c82f5f0707121009o55e1c4dfo6c5a4cc4d7db51da@mail.gmail.com>
-	<469668BB.8030003@sms.ed.ac.uk>
-	<30c82f5f0707121048o4453a2b6n57e752468ef7a2d2@mail.gmail.com>
-	<10164.84.249.198.26.1184324451.squirrel@webmail.mbnet.fi>
+Subject: REnouveau crashed my computer
+Date: Sat, 14 Jul 2007 15:14:28 +0200
+Message-ID: <30c82f5f0707140614r40767d49o53a277182e0c3932@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <10164.84.249.198.26.1184324451.squirrel-2RFepEojUI0TTWcJVwXbgg@public.gmane.org>
 Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -23,30 +16,15 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pekka Paalanen <inventor-E01nCVcF24I@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-> The dumps (renouveau[1] and kmmio[2]) are for the reverse engineering
-> effort. They need the proprietary driver up and running. After all, there is
-> little point in spying the Nouveau driver as it is open source. We want to
-> know what the proprietary driver does, so we can guess how the card works.
+Hi,
 
-I guess it was me that had it all wrong then =) I thought the dumps
-were from the Nouveau drivers, and served as a "gdb" output or a kind
-of "talkback", so you could see what went wrong on the different
-graphics cards =)
+When REnouveau came to "74/75 test_interesting_registers" the CPU used
+100% and I could only use the mouse, but not interact witt anything.
 
-> On the other hand, if you want to try the Nouveau driver, you need the
-> kernel bits (DRM) and Xorg driver bits (DDX), and preferably not the Mesa
-> bits (DRI) unless you want to try your luck with glxgears (I forget which
-> card you have, nv4x cards have a chance). All these bits you get from the
-> respective git repositories [3]. I do not know why people have recommended
-> building a new kernel, that is usually not needed. The DRM bits are built
-> out of kernel tree anyway, you just have to make sure the in-kernel drm.ko
-> module is not used (if it is not a module but is built-in, then you need a
-> new kernel).
+What could be wrong? I am using GeForce 6150 and Fedora 7.
 
-It sounds so easy, but I am sure I will break something if I try now.
-
-I will now try my luck to make a dump from my 6150 (C51 core) =)
+Love,
+Louise
