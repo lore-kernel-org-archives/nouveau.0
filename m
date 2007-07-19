@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11655] Display corruption on 7600GO
-Date: Wed, 18 Jul 2007 18:36:47 -0700 (PDT)
-Message-ID: <20070719013647.9F65C13006D@annarchy.freedesktop.org>
+Date: Wed, 18 Jul 2007 18:38:03 -0700 (PDT)
+Message-ID: <20070719013803.8D02613006D@annarchy.freedesktop.org>
 References: <bug-11655-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11655
 
 
 
-------- Comment #1 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-18 18:36 PST -------
-Created an attachment (id=10797)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10797&action=view)
-Corrupted desktop screenshot containing part of a previous boot's irssi session
+------- Comment #2 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-18 18:37 PST -------
+Created an attachment (id=10798)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10798&action=view)
+Corrupted Firefox screenshot
 
 
 -- 
