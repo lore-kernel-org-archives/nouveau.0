@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11655] Display corruption on 7600GO
-Date: Wed, 18 Jul 2007 18:38:52 -0700 (PDT)
-Message-ID: <20070719013852.421D813006D@annarchy.freedesktop.org>
+Date: Wed, 18 Jul 2007 18:42:24 -0700 (PDT)
+Message-ID: <20070719014224.8224013006D@annarchy.freedesktop.org>
 References: <bug-11655-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11655
 
 
 
-------- Comment #3 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-18 18:38 PST -------
-Created an attachment (id=10799)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=10799&action=view)
-Dmesg log, with debug=1
+------- Comment #4 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-18 18:41 PST -------
+Created an attachment (id=10800)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10800&action=view)
+Xorg log (gzipped to fit on fd.o)
 
 
 -- 
