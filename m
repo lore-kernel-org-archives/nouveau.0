@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11655] New: Display corruption on 7600GO
-Date: Wed, 18 Jul 2007 18:34:35 -0700 (PDT)
-Message-ID: <bug-11655-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11655] Display corruption on 7600GO
+Date: Wed, 18 Jul 2007 18:36:47 -0700 (PDT)
+Message-ID: <20070719013647.9F65C13006D@annarchy.freedesktop.org>
+References: <bug-11655-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-11655-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=11655
 
-           Summary: Display corruption on 7600GO
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-With current git as of 2007/07/19, nouveau suffers from quite a lot of
-graphical corruption, which gets cleared up with a redraw (moving a window
-over, for exampl.).  Screenshots, dmesg & xorg log attached.
 
-Interestingly, some of the graphical corruption contained part of a screen
-image from a previous boot (the screenshot was taken after a warm-boot).  Maybe
-some of the framebuffer is getting memory copied from incorrect places?
+
+------- Comment #1 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-18 18:36 PST -------
+Created an attachment (id=10797)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=10797&action=view)
+Corrupted desktop screenshot containing part of a previous boot's irssi session
 
 
 -- 
