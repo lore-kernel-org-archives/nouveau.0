@@ -1,14 +1,11 @@
-From: "Stephane Marchesin" <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>
-Subject: Re: [patch] bios command length
-Date: Thu, 19 Jul 2007 02:40:23 +0200
-Message-ID: <6a89f9d50707181740h36e3881as29110ee01718d6a1@mail.gmail.com>
-References: <469E0441.3030109@web.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 11655] New: Display corruption on 7600GO
+Date: Wed, 18 Jul 2007 18:34:35 -0700 (PDT)
+Message-ID: <bug-11655-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <469E0441.3030109-S0/GAf8tV78@public.gmane.org>
-Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,18 +15,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Stephan Schmid <stephan_2303-S0/GAf8tV78@public.gmane.org>
-Cc: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 7/18/07, Stephan Schmid <stephan_2303-S0/GAf8tV78@public.gmane.org> wrote:
-> Hello,
-> this ddx patch adds command length, offset and mult for the bios commands with ids
-> 0x8f to 0x92.
-> It avoids the 10000x"Init table command not found:" error messages for those bios commands.
+http://bugs.freedesktop.org/show_bug.cgi?id=11655
 
-These commands are buggy,so this is why they're disabled. Enabling
-them will only cause more issues, unless you volunteer to fix them,
-that is :)
+           Summary: Display corruption on 7600GO
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Stephane
+
+With current git as of 2007/07/19, nouveau suffers from quite a lot of
+graphical corruption, which gets cleared up with a redraw (moving a window
+over, for exampl.).  Screenshots, dmesg & xorg log attached.
+
+Interestingly, some of the graphical corruption contained part of a screen
+image from a previous boot (the screenshot was taken after a warm-boot).  Maybe
+some of the framebuffer is getting memory copied from incorrect places?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
