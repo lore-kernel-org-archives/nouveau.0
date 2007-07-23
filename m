@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11655] Display corruption on 7600GO
-Date: Wed, 18 Jul 2007 19:17:42 -0700 (PDT)
-Message-ID: <20070719021742.E5BB713006D@annarchy.freedesktop.org>
+Date: Mon, 23 Jul 2007 05:50:44 -0700 (PDT)
+Message-ID: <20070723125044.49DD113005E@annarchy.freedesktop.org>
 References: <bug-11655-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11655
 
 
 
-------- Comment #5 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-18 19:17 PST -------
-Adding Option "MigrationHerustic" "Greedy" to the Device section in xorg.conf
-very nearly eliminates the corruption.  The desktop window still starts up with
-a corrupted lower half, but I can't see any application corruption anymore.
+------- Comment #6 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-23 05:50 PST -------
+I still see this, although to a lesser extent, with Iceweasel particularly and
+current GIT (2007-07-23) and MigrationHerustic "always".
+
+ahuillet's branch displays no application corruption, but still gives a
+corrupted desktop.
 
 
 -- 
