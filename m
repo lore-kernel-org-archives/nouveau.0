@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11655] Display corruption on 7600GO
-Date: Mon, 23 Jul 2007 05:50:44 -0700 (PDT)
-Message-ID: <20070723125044.49DD113005E@annarchy.freedesktop.org>
-References: <bug-11655-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11289] DMA queue hang: dmaPut=bc6, current=b80,
+	status=0 with the 2d driver
+Date: Fri, 27 Jul 2007 03:43:38 -0700 (PDT)
+Message-ID: <20070727104338.DC7DD13006A@annarchy.freedesktop.org>
+References: <bug-11289-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11655-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11289-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11655
+http://bugs.freedesktop.org/show_bug.cgi?id=11289
+
+
+carlos-5Pg6muQpQzmeh9uJi0VByw@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
 
 
 
 
-
-------- Comment #6 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-07-23 05:50 PST -------
-I still see this, although to a lesser extent, with Iceweasel particularly and
-current GIT (2007-07-23) and MigrationHerustic "always".
-
-ahuillet's branch displays no application corruption, but still gives a
-corrupted desktop.
+------- Comment #5 from carlos-5Pg6muQpQzmeh9uJi0VByw@public.gmane.org  2007-07-27 03:43 PST -------
+This could be due to a NVWaitVSync() call.
+Try commenting out src/nv_video.c:453 (the call to NVWaitVSync(pScrn) and see
+if it helps. 
 
 
 -- 
