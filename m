@@ -1,7 +1,7 @@
-From: "Stephane Marchesin" <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>
+From: "Christopher Halse Rogers" <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: Kernel module indispensable?
-Date: Thu, 2 Aug 2007 00:18:11 +0200
-Message-ID: <6a89f9d50708011518o1bc1c8a5q83bb85fabf9d09d@mail.gmail.com>
+Date: Thu, 2 Aug 2007 10:37:34 +1000
+Message-ID: <38afb7ef0708011737p353d1099se54f910837801078@mail.gmail.com>
 References: <jwvtzrj2kts.fsf-monnier+gmane.comp.freedesktop.xorg.nouveau@gnu.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,31 +22,18 @@ To: Stefan Monnier <monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 8/1/07, Stefan Monnier <monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org> wrote:
+On 8/2/07, Stefan Monnier <monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org> wrote:
 >
-> I don't need 3D acceleration but I'm interested in the nouveau driver
-> because I hope it'll be able to properly set the mode of my card: currently
-> nv is unable to make my card display 1600x1200 via DVI (it works OK via VGA
-> but the quality is bit less stunning).
+...
 >
-> So I compiled and installed it, but now I encountered a problem: it seems
-> that (contrary to both the nv and the nvidia drivers) the nouveau driver
-> does not work at all without the corresponding kernel module.  Is that true?
-
-The binary nvidia driver does require a kernel module as well.
-
-> Is there some hope to drop this requirement?
-
-Not really, actually we're moving towards a world where graphics
-drivers for X.org depend on a kernel module. Nouvea is just a little
-early here (for a change :).
-
+> PS: I see that the avivo guys already have a Debian package (in
+> experimental), whereas that is still missing for the nouveau driver.
 >
->
->         Stefan "whose kernel says `-1 Unknown symbol in module' when trying
->                 to insert the new drm.ko module"
+Probably because the nouveau drivers require a (moving) git snapshot
+of drm in order to work, which potentially breaks all sorts of
+non-nouveau stuff (and you can't really restrict it to just nouveau
+users).
 
-That should be troubleshoot. Usually dmesg mentions missing symbols
-which in turn points at the real issue.
-
-Stephane
+I'm currently working on making some nightly snapshot Ubuntu packages
+using Launchpad's new PPA infrastructure.  If there's enough demand I
+could also build debian packages from the same source.
