@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11868] Starting X for the second time fails (without
 	reloading drm modules)
-Date: Tue,  7 Aug 2007 23:45:57 -0700 (PDT)
-Message-ID: <20070808064558.1C56813006F@annarchy.freedesktop.org>
+Date: Tue,  7 Aug 2007 23:46:16 -0700 (PDT)
+Message-ID: <20070808064616.6EA25130070@annarchy.freedesktop.org>
 References: <bug-11868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11868
 
 
+skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
-
-------- Comment #2 from skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-07 23:45 PST -------
-I managed to reproduce here, fixed in git:
-
-http://gitweb.freedesktop.org/?p=mesa/drm.git;a=commitdiff;h=05633ca3708f48cfbbb77518da4e791d7e1613c2
 
 
 -- 
