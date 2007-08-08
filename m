@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11906] X server does not start with nouveau driver
-Date: Wed,  8 Aug 2007 16:47:14 -0700 (PDT)
-Message-ID: <20070808234714.AAC9013005C@annarchy.freedesktop.org>
+Date: Wed,  8 Aug 2007 16:47:52 -0700 (PDT)
+Message-ID: <20070808234752.F2CED13005C@annarchy.freedesktop.org>
 References: <bug-11906-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11906
 
 
 
-------- Comment #1 from panov-ABcqYfMUPmYZY0rY4shWHijHesifYMBh@public.gmane.org  2007-08-08 16:47 PST -------
-Created an attachment (id=11047)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11047&action=view)
-xorg.conf
+------- Comment #2 from panov-ABcqYfMUPmYZY0rY4shWHijHesifYMBh@public.gmane.org  2007-08-08 16:47 PST -------
+Created an attachment (id=11048)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11048&action=view)
+Xorg.0.log
 
 
 -- 
