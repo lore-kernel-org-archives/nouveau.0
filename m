@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11907] DRIScreenInit failed: drmSetBusid failed
-Date: Wed,  8 Aug 2007 18:33:19 -0700 (PDT)
-Message-ID: <20070809013320.C684B13005C@annarchy.freedesktop.org>
+Date: Thu,  9 Aug 2007 07:50:31 -0700 (PDT)
+Message-ID: <20070809145031.23B5813006F@annarchy.freedesktop.org>
 References: <bug-11907-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11907
 
 
 
-------- Comment #2 from adonikam-OLPPbL6zjDhg9hUCZPvPmw@public.gmane.org  2007-08-08 18:33 PST -------
-Created an attachment (id=11050)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11050&action=view)
-xorg.conf
+------- Comment #3 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-08-09 07:50 PST -------
+You Xorg log says the driver date is from Jul 17. Are you sure you pulled
+everything recently ?
 
 
 -- 
