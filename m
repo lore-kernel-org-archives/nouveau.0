@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11907] DRIScreenInit failed: drmSetBusid failed
-Date: Thu,  9 Aug 2007 08:42:16 -0700 (PDT)
-Message-ID: <20070809154216.A54BD13005C@annarchy.freedesktop.org>
+Date: Thu,  9 Aug 2007 08:42:50 -0700 (PDT)
+Message-ID: <20070809154250.E365913005C@annarchy.freedesktop.org>
 References: <bug-11907-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +27,9 @@ adonikam-OLPPbL6zjDhg9hUCZPvPmw@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+             Status|RESOLVED                    |CLOSED
 
 
-
-
-------- Comment #4 from adonikam-OLPPbL6zjDhg9hUCZPvPmw@public.gmane.org  2007-08-09 08:42 PST -------
-Ok, sorry I think I forgot to install with PREFIX=/usr since my July attempt ;)
-
-Works with fresh git-clone now, closing. Thanks
 
 
 -- 
