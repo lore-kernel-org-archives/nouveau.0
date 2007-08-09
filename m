@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11907] DRIScreenInit failed: drmSetBusid failed
-Date: Wed,  8 Aug 2007 18:32:25 -0700 (PDT)
-Message-ID: <20070809013225.7679D13005C@annarchy.freedesktop.org>
+Date: Wed,  8 Aug 2007 18:33:19 -0700 (PDT)
+Message-ID: <20070809013320.C684B13005C@annarchy.freedesktop.org>
 References: <bug-11907-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11907
 
 
 
-------- Comment #1 from adonikam-OLPPbL6zjDhg9hUCZPvPmw@public.gmane.org  2007-08-08 18:32 PST -------
-Created an attachment (id=11049)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11049&action=view)
-Xorg.0.log
+------- Comment #2 from adonikam-OLPPbL6zjDhg9hUCZPvPmw@public.gmane.org  2007-08-08 18:33 PST -------
+Created an attachment (id=11050)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11050&action=view)
+xorg.conf
 
 
 -- 
