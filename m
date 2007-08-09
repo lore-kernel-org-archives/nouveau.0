@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11918] drmMap of framebuffer failed
-Date: Thu,  9 Aug 2007 13:28:10 -0700 (PDT)
-Message-ID: <20070809202810.72E88130070@annarchy.freedesktop.org>
+Date: Thu,  9 Aug 2007 15:01:15 -0700 (PDT)
+Message-ID: <20070809220115.B735313006F@annarchy.freedesktop.org>
 References: <bug-11918-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,17 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11918
 
 
 
-------- Comment #3 from carlos-5Pg6muQpQzmeh9uJi0VByw@public.gmane.org  2007-08-09 13:27 PST -------
-xf86-video-nouveau/src/nv_dri.c has a comment showing that we expect (and need)
-the FB to be at the beginning of the physical VRAM space.
+------- Comment #4 from carlos-5Pg6muQpQzmeh9uJi0VByw@public.gmane.org  2007-08-09 15:01 PST -------
+Created an attachment (id=11070)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11070&action=view)
+Move the FB to the high half of VRAM
 
-This has broken now because FIFOs are created in VRAM, so when DRM allocates a
-FIFO for itself, it allocates it at the beginning of VRAM, creating a mapping
-which is much smaller (32KiB) than the one glxext expects to find at that
-offset (namely, half the VRAM).
-
-A second mapping is created, but currently neither the DDX nor glxext are aware
-of this change and expect the FB address not to move.
+In the attached patch I move the FB to the higher half of the VRAM. We probably
+won't run into this bug again, as it's unlikely that that much memory is taken.
+In the final solution I'd like for the DDX to know where the FB should be
+located based on other allocations, but I don't know if that is possible.
 
 
 -- 
