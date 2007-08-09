@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11906] X server does not start with nouveau driver
-Date: Wed,  8 Aug 2007 17:19:09 -0700 (PDT)
-Message-ID: <20070809001912.2326B13006F@annarchy.freedesktop.org>
-References: <bug-11906-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11907] New: DRIScreenInit failed: drmSetBusid failed
+Date: Wed,  8 Aug 2007 18:31:48 -0700 (PDT)
+Message-ID: <bug-11907-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11906-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +18,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11906
+http://bugs.freedesktop.org/show_bug.cgi?id=11907
+
+           Summary: DRIScreenInit failed: drmSetBusid failed
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: adonikam-OLPPbL6zjDhg9hUCZPvPmw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+I tried nouveau again today and it failed with the same message:
 
-
-
-------- Comment #4 from skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-08 17:18 PST -------
-Actually, it probably should've still worked, except your pciid was also
-missing from the drm.  Please try again with latest git :)
+(II) NOUVEAU(0): [drm] drmSetBusid failed (7, pci:0000:01:00.0), Device or
+resource busy
+(EE) NOUVEAU(0): [dri] DRIScreenInit failed.  Disabling DRI.
 
 
 -- 
