@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11919] XServer fails to open DRM
-Date: Fri, 10 Aug 2007 11:22:07 -0700 (PDT)
-Message-ID: <20070810182208.3B62513006F@annarchy.freedesktop.org>
+Date: Fri, 10 Aug 2007 12:25:10 -0700 (PDT)
+Message-ID: <20070810192510.F050C13005C@annarchy.freedesktop.org>
 References: <bug-11919-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,11 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11919
 
 
-carlos-5Pg6muQpQzmeh9uJi0VByw@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
 
 
 
-
-------- Comment #1 from carlos-5Pg6muQpQzmeh9uJi0VByw@public.gmane.org  2007-08-10 11:21 PST -------
-This is because the nouveau kernel module isn't in a place where modprobe
-expects to find it.
-Did you correctly install the kernel module? If not, you'll need to load
-nouveau.ko (and the current drm.ko, not the one that comes with your
-distribution).
+------- Comment #2 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-10 12:24 PST -------
+I used insmod to insert the modules.
 
 
 -- 
