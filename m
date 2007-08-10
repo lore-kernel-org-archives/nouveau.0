@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11919] XServer fails to open DRM
-Date: Fri, 10 Aug 2007 12:32:06 -0700 (PDT)
-Message-ID: <20070810193212.AC15A13005C@annarchy.freedesktop.org>
+Date: Fri, 10 Aug 2007 13:24:49 -0700 (PDT)
+Message-ID: <20070810202450.3810A13005C@annarchy.freedesktop.org>
 References: <bug-11919-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11919
 
 
+drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEEDINFO                    |RESOLVED
+         Resolution|                            |NOTABUG
 
 
-
-------- Comment #3 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-10 12:31 PST -------
-(In reply to comment #2)
-> I used insmod to insert the modules.
-> 
-I also tried to load the modules manually before starting X and the same thing
-happened.
 
 
 -- 
