@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11919] XServer fails to open DRM
-Date: Fri, 10 Aug 2007 13:24:49 -0700 (PDT)
-Message-ID: <20070810202450.3810A13005C@annarchy.freedesktop.org>
-References: <bug-11919-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11935] New: DMA queue hang
+Date: Fri, 10 Aug 2007 14:28:55 -0700 (PDT)
+Message-ID: <bug-11935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11919-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +18,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11919
+http://bugs.freedesktop.org/show_bug.cgi?id=11935
+
+           Summary: DMA queue hang
+           Product: xorg
+           Version: 7.2
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+DMA hangs when loading X.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |RESOLVED
-         Resolution|                            |NOTABUG
-
-
+From XORG log:
+Fatal server error:
+DMA queue hang: dmaPut=c4, current=c8, status=0
 
 
 -- 
