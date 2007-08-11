@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11935] DMA queue hang
-Date: Sat, 11 Aug 2007 07:30:50 -0700 (PDT)
-Message-ID: <20070811143052.91A2913005C@annarchy.freedesktop.org>
+Date: Sat, 11 Aug 2007 07:34:21 -0700 (PDT)
+Message-ID: <20070811143421.E0E0013005C@annarchy.freedesktop.org>
 References: <bug-11935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11935
 
 
+drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #11098|0                           |1
+        is obsolete|                            |
 
 
 
-------- Comment #4 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-11 07:30 PST -------
-Created an attachment (id=11098)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11098&action=view)
+
+------- Comment #5 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-11 07:34 PST -------
+Created an attachment (id=11099)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11099&action=view)
 DRM Kernel Log
 
 
