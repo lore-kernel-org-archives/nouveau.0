@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11935] DMA queue hang
-Date: Sat, 11 Aug 2007 07:34:21 -0700 (PDT)
-Message-ID: <20070811143421.E0E0013005C@annarchy.freedesktop.org>
+Date: Sat, 11 Aug 2007 07:37:09 -0700 (PDT)
+Message-ID: <20070811143709.4D05713005C@annarchy.freedesktop.org>
 References: <bug-11935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,26 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11935
 
 
-drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #11098|0                           |1
-        is obsolete|                            |
 
 
 
+------- Comment #6 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-11 07:36 PST -------
+(In reply to comment #1)
+> This is the worst kind of bug report you can make, just saying it doesn't work.
+> 
+> Hardware information is needed, also load the drm module with debug=1 option
+> ("insmod drm.ko debug=1" in the proper folder), so you can provide a usefull
+> kernel log.
+> 
+> Also make sure you run the latest git versions.
+> 
+> A full xorg log is also usefull.
+> 
+I've attached the kernel and xorg logs.
 
-------- Comment #5 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-11 07:34 PST -------
-Created an attachment (id=11099)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11099&action=view)
-DRM Kernel Log
+My hardware: NVIDIA TNT2 64 32 MB VRAM
+             203 MB RAM
+             Intel Pentium w/ MMX    
 
 
 -- 
