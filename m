@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11935] DMA queue hang
-Date: Sat, 11 Aug 2007 13:11:39 -0700 (PDT)
-Message-ID: <20070811201139.64D9313005C@annarchy.freedesktop.org>
+Date: Sat, 11 Aug 2007 14:55:57 -0700 (PDT)
+Message-ID: <20070811215558.AA2CC13005C@annarchy.freedesktop.org>
 References: <bug-11935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11935
 
 
+drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #11097|0                           |1
+        is obsolete|                            |
 
 
 
-------- Comment #9 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-11 13:11 PST -------
-(In reply to comment #8)
-> (In reply to comment #3)
-> > The log says you're using the "nv" driver, not nouveau.
-> > 
-> 
-> I attached the wrong log.
-> 
-I have to find where I saved the old one.
+
+------- Comment #10 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-11 14:55 PST -------
+Created an attachment (id=11100)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11100&action=view)
+Nouveau XORG log
+
+This is the correct XORG log.
 
 
 -- 
