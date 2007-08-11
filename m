@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10957] Garbled console text with XAA enabled
-Date: Sat, 11 Aug 2007 05:50:24 -0700 (PDT)
-Message-ID: <20070811125024.BF131130070@annarchy.freedesktop.org>
-References: <bug-10957-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11935] DMA queue hang
+Date: Sat, 11 Aug 2007 07:22:51 -0700 (PDT)
+Message-ID: <20070811142251.CE5D013005C@annarchy.freedesktop.org>
+References: <bug-11935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-10957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=10957
+http://bugs.freedesktop.org/show_bug.cgi?id=11935
 
 
-Bug 10957 depends on bug 10924, which changed state.
 
-Bug 10924 Summary: XAA crash on NV17
-http://bugs.freedesktop.org/show_bug.cgi?id=10924
 
-           What    |Old Value                   |New Value
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
 
+------- Comment #2 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-11 07:22 PST -------
+Created an attachment (id=11097)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11097&action=view)
+XORG Log
 
 
 -- 
