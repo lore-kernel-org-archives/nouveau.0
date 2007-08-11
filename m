@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11935] DMA queue hang
-Date: Fri, 10 Aug 2007 14:55:48 -0700 (PDT)
-Message-ID: <20070810215548.8B26C13006F@annarchy.freedesktop.org>
-References: <bug-11935-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11820] two mplayers using Xv make DMA queue hang
+Date: Sat, 11 Aug 2007 02:37:31 -0700 (PDT)
+Message-ID: <20070811093732.6C0BB13005C@annarchy.freedesktop.org>
+References: <bug-11820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11935
+http://bugs.freedesktop.org/show_bug.cgi?id=11820
 
 
-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+pq-X3B1VOXEql0@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
-------- Comment #1 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-10 14:55 PST -------
-This is the worst kind of bug report you can make, just saying it doesn't work.
+------- Comment #2 from pq-X3B1VOXEql0@public.gmane.org  2007-08-11 02:37 PST -------
+Yesterday I ran tvtime and mplayer together for an hour and no crash. Therefore
+I'm closing this bug as fixed, for now. I don't know which commit fixed things.
 
-Hardware information is needed, also load the drm module with debug=1 option
-("insmod drm.ko debug=1" in the proper folder), so you can provide a usefull
-kernel log.
-
-Also make sure you run the latest git versions.
-
-A full xorg log is also usefull.
+btw. I did notice that running two mplayers and tvtime (i.e. three Xv apps) at
+the same time does trigger a similar crash, but at this point I do not think it
+matters.
 
 
 -- 
