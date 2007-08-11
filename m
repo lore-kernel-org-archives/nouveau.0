@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11935] DMA queue hang
-Date: Sat, 11 Aug 2007 07:22:51 -0700 (PDT)
-Message-ID: <20070811142251.CE5D013005C@annarchy.freedesktop.org>
+Date: Sat, 11 Aug 2007 07:27:54 -0700 (PDT)
+Message-ID: <20070811142754.7EE8E13006F@annarchy.freedesktop.org>
 References: <bug-11935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11935
 
 
 
-------- Comment #2 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-11 07:22 PST -------
-Created an attachment (id=11097)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11097&action=view)
-XORG Log
+------- Comment #3 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-08-11 07:27 PST -------
+The log says you're using the "nv" driver, not nouveau.
 
 
 -- 
