@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11935] DMA queue hang
-Date: Sat, 11 Aug 2007 10:16:37 -0700 (PDT)
-Message-ID: <20070811171638.5DCAD13006F@annarchy.freedesktop.org>
+Date: Sat, 11 Aug 2007 13:06:24 -0700 (PDT)
+Message-ID: <20070811200624.EEB5913005C@annarchy.freedesktop.org>
 References: <bug-11935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,23 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11935
 
 
 
-------- Comment #7 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-08-11 10:16 PST -------
-(In reply to comment #6)
-> (In reply to comment #1)
-> > This is the worst kind of bug report you can make, just saying it doesn't work.
-> > 
-> > Hardware information is needed, also load the drm module with debug=1 option
-> > ("insmod drm.ko debug=1" in the proper folder), so you can provide a usefull
-> > kernel log.
-> > 
-> > Also make sure you run the latest git versions.
-> > 
-> > A full xorg log is also usefull.
-> > 
-> I've attached the kernel and xorg logs.
+------- Comment #8 from drcosquared-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-11 13:06 PST -------
+(In reply to comment #3)
+> The log says you're using the "nv" driver, not nouveau.
 > 
 
-It seems to me you attached the kernel log twice...
+I attached the wrong log.
 
 
 -- 
