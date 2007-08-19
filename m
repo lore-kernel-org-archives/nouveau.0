@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12056] "Error initialising the nouveau kernel
 	module: -16" on GF6100
-Date: Sat, 18 Aug 2007 20:41:48 -0700 (PDT)
-Message-ID: <20070819034148.C4E7C13005D@annarchy.freedesktop.org>
+Date: Sat, 18 Aug 2007 20:56:37 -0700 (PDT)
+Message-ID: <20070819035638.0280013006E@annarchy.freedesktop.org>
 References: <bug-12056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12056
 
 
 
-------- Comment #1 from viper.ru-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-18 20:41 PST -------
-Created an attachment (id=11173)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11173&action=view)
-Xorg.0.log
+------- Comment #2 from skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-18 20:56 PST -------
+We're lacking the magic to properly initialise your chipset, in order to
+correct this please follow the instructions at
+http://nouveau.freedesktop.org/wiki/MmioTrace to generate a dump from which we
+can add support for your card.
 
 
 -- 
