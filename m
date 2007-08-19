@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12051] New: inserting nouveau.ko failed with kernel
-	2.6.17 since commit 8a4d7f34d9c0182c466518c6f413d9a039db402d
-Date: Sat, 18 Aug 2007 05:46:24 -0700 (PDT)
-Message-ID: <bug-12051-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12056] New: "Error initialising the nouveau kernel
+	module: -16" on GF6100
+Date: Sat, 18 Aug 2007 20:41:12 -0700 (PDT)
+Message-ID: <bug-12056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,50 +19,37 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12051
+http://bugs.freedesktop.org/show_bug.cgi?id=12056
 
-           Summary: inserting nouveau.ko failed with kernel 2.6.17 since
-                    commit 8a4d7f34d9c0182c466518c6f413d9a039db402d
+           Summary: "Error initialising the nouveau kernel module: -16" on
+                    GF6100
            Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
+           Version: git
+          Platform: Other
         OS/Version: All
             Status: NEW
           Severity: normal
           Priority: medium
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        ReportedBy: viper.ru-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Hi,
+I'm running all X-related stuff from git, LFS with 2.6.22.3 kernel, glibc-2.6 &
+gcc-4.2.1.
 
-Since commit 8a4d7f34d9c0182c466518c6f413d9a039db402d, when I try to insert
-nouveau.ko, it failed with unknown symbol, and dmesg say :
+lspci -nn:
+00:0d.0 VGA compatible controller [0300]: nVidia Corporation GeForce 6100
+nForce 430 [10de:03d0] (rev a2)
 
-[drm] Initialized drm 1.1.0 20060810
-nouveau: Unknown symbol pci_get_bus_and_slot
-
-I get a warning at this place during the compilation
-
-/home/jules/nouveau/drm/linux-core/nouveau_mem.o
-/home/jules/nouveau/drm/linux-core/nouveau_mem.c: In function
-'nouveau_mem_fb_amount_igp':
-/home/jules/nouveau/drm/linux-core/nouveau_mem.c:230: warning: implicit
-declaration of function 'pci_get_bus_and_slot'
-/home/jules/nouveau/drm/linux-core/nouveau_mem.c:230: warning: assignment makes
-pointer from integer without a cast
-
-
-commenting out the body of the function nouveau_mem_fb_amount_igp, I can
-compile without warning and insert the module (and Nouveau works).
-
-
-I'm running linux mandriva 2007.1 with kernel 2.6.17, gcc 4.1.2, x86_64.
-
-01:00.0 VGA compatible controller [0300]: nVidia Corporation NV35 [GeForce FX
-5900XT] [10de:0332] (rev a1)
+dmesg:
+[drm:nv40_graph_init] *ERROR* Unknown ctx_voodoo for chipset 0x4c
+[drm] Allocating FIFO number 0
+[drm:nv40_graph_transfer_context] *ERROR* failed: inst=0x00002905 save=0
+[drm:nv40_graph_transfer_context] *ERROR* 0x40030C = 0x00000006
+[drm] nouveau_fifo_free: freeing fifo 0
+[drm:nouveau_dma_channel_init] *ERROR* Error allocating GPU channel: -16
 
 
 -- 
