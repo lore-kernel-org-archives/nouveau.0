@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12056] "Error initialising the nouveau kernel
 	module: -16" on GF6100
-Date: Sun, 19 Aug 2007 18:36:06 -0700 (PDT)
-Message-ID: <20070820013606.9A05A13006E@annarchy.freedesktop.org>
+Date: Sun, 19 Aug 2007 20:50:51 -0700 (PDT)
+Message-ID: <20070820035051.3F91513006A@annarchy.freedesktop.org>
 References: <bug-12056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12056
 
 
 
-------- Comment #4 from skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-19 18:36 PST -------
-Does X definitely hang?  It can sometimes take several minutes for X to start
-while running mmio-trace.
+------- Comment #5 from viper.ru-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-19 20:50 PST -------
+oops. It really was slow X start ._.
+
+Dump was sended to mmio.dumps@g.c
 
 
 -- 
