@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11949] composite broken on nv17
-Date: Mon, 20 Aug 2007 16:46:53 -0700 (PDT)
-Message-ID: <20070820234653.1799313006E@annarchy.freedesktop.org>
+Date: Tue, 21 Aug 2007 12:58:47 -0700 (PDT)
+Message-ID: <20070821195847.373B913006A@annarchy.freedesktop.org>
 References: <bug-11949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11949
 
 
-arthur.huillet-dFvTVMYgtfk@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|normal                      |major
 
 
 
+------- Comment #2 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-08-21 12:58 PST -------
+Created an attachment (id=11198)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11198&action=view)
+corrupted avatar in gajim
 
-------- Comment #1 from arthur.huillet-dFvTVMYgtfk@public.gmane.org  2007-08-20 16:46 PST -------
-This is the blending that is broken, copying works fine.
-Worked around the problem by disabling blending in NVCheckComposite() upstream,
-and I have a tentative _fix_ (hardware blending works) in my public repository.
+with the last git version (fix with beta1 and beta4), there is some image
+corruption.
+
+With gajim, avatar with transparent background get corrupted if a another
+windows is moved over them.
 
 
 -- 
