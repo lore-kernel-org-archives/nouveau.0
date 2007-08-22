@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12056] "Error initialising the nouveau kernel
 	module: -16" on GF6100
-Date: Wed, 22 Aug 2007 00:07:14 -0700 (PDT)
-Message-ID: <20070822070714.E5FC913006F@annarchy.freedesktop.org>
+Date: Wed, 22 Aug 2007 02:05:31 -0700 (PDT)
+Message-ID: <20070822090531.C53FD13006A@annarchy.freedesktop.org>
 References: <bug-12056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,18 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12056
 
 
-skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
 
 
 
+------- Comment #7 from viper.ru-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-22 02:05 PST -------
+It works, thanks.
 
-------- Comment #6 from skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-08-22 00:07 PST -------
-Thank you, should be fixed in current drm git.
+300 fps in glxgears (800 on nvidia)
 
 
 -- 
