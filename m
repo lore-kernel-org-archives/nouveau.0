@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12190] Account request
-Date: Mon, 27 Aug 2007 16:53:50 -0700 (PDT)
-Message-ID: <20070827235350.A24DF130062@annarchy.freedesktop.org>
+Date: Mon, 27 Aug 2007 16:52:19 -0700 (PDT)
+Message-ID: <20070827235220.0C190130062@annarchy.freedesktop.org>
 References: <bug-12190-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12190
 
 
 
-------- Comment #2 from jpakkane-/E1597aS9LQAvxtiuMwx3w@public.gmane.org  2007-08-27 16:53 PST -------
-Created an attachment (id=11302)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11302&action=view)
-SSH public key
+------- Comment #1 from jpakkane-/E1597aS9LQAvxtiuMwx3w@public.gmane.org  2007-08-27 16:52 PST -------
+Created an attachment (id=11301)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11301&action=view)
+PGP public key
 
 
 -- 
