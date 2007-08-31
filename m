@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12224] Account request
-Date: Thu, 30 Aug 2007 17:21:04 -0700 (PDT)
-Message-ID: <20070831002104.7C1C113006E@annarchy.freedesktop.org>
-References: <bug-12224-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11935] DMA queue hang
+Date: Fri, 31 Aug 2007 03:35:27 -0700 (PDT)
+Message-ID: <20070831103527.C234313006F@annarchy.freedesktop.org>
+References: <bug-11935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12224-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12224
-
-
-marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|sitewranglers-CC+yJ3UmIYpa6l5+2nELGQ@public.gmane.org
-                   |g                           |g
-          QAContact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
+http://bugs.freedesktop.org/show_bug.cgi?id=11935
 
 
 
 
-------- Comment #1 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-08-30 17:21 PST -------
-Ok.
+
+------- Comment #11 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-08-31 03:35 PST -------
+Some NV04 fixes went in. Please retest with latest DRM/DDX
 
 
 -- 
 Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
 ------- You are receiving this mail because: -------
-You are the assignee for the bug, or are watching the assignee.
 You are the assignee for the bug, or are watching the assignee.
