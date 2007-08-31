@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11289] DMA queue hang: dmaPut=bc6, current=b80,
-	status=0 with the 2d driver
-Date: Fri, 31 Aug 2007 03:43:39 -0700 (PDT)
-Message-ID: <20070831104339.62D0613006F@annarchy.freedesktop.org>
-References: <bug-11289-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11240] doesn't start X - DMA Queue hang
+Date: Fri, 31 Aug 2007 03:47:02 -0700 (PDT)
+Message-ID: <20070831104702.7504413006E@annarchy.freedesktop.org>
+References: <bug-11240-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11289-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11240-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11289
-
-
-marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=11240
 
 
 
 
-------- Comment #6 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-08-31 03:43 PST -------
-The fedora packages are known to be broken. Please test with latest git.
+
+------- Comment #7 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-08-31 03:47 PST -------
+Could you try with current GIT ? 10DE:032A works fine here, this card should be
+quite close to yours.
 
 
 -- 
