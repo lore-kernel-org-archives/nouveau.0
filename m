@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12158] mouse cursor disappears
-Date: Sat,  1 Sep 2007 02:32:09 -0700 (PDT)
-Message-ID: <20070901093209.D8D2B13006E@annarchy.freedesktop.org>
+Date: Sat,  1 Sep 2007 02:41:15 -0700 (PDT)
+Message-ID: <20070901094122.D76D313006E@annarchy.freedesktop.org>
 References: <bug-12158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,36 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12158
 
 
-mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
-
-------- Comment #2 from mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-01 02:32 PST -------
-The problem was already present last year.
-
-xf86-nouveau :
-commit c64c55b3133221462980b934a308daf2cc0e473d
-Author: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>
-Date:   Sun Aug 27 09:56:36 2006 +1000
-
-    remove all U0* types in favour of more standard CARD* types
-
-
-drm :
-commit fef9b30a2b437c0103c33443566604027529b91d
-Author: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>
-Date:   Sun Aug 27 08:55:02 2006 +1000
-
-    initial import of nouveau code from nouveau CVS
-
-
-
-I was unable to go before this commit, drm and nouveau failed to compile.
+------- Comment #3 from mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-01 02:41 PST -------
+Created an attachment (id=11373)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11373&action=view)
+my xorg configuration file
 
 
 -- 
