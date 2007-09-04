@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11240] doesn't start X - DMA Queue hang
-Date: Tue,  4 Sep 2007 08:50:14 -0700 (PDT)
-Message-ID: <20070904155015.034E2130070@annarchy.freedesktop.org>
+Date: Tue,  4 Sep 2007 09:50:23 -0700 (PDT)
+Message-ID: <20070904165023.F314C13005E@annarchy.freedesktop.org>
 References: <bug-11240-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11240
 
 
 
-------- Comment #8 from notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org  2007-09-04 08:50 PST -------
-I still get a DMA queue hang; the hex is slightly different.
+------- Comment #9 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-09-04 09:50 PST -------
+Could you provide kernel & X logs with that latest git ? There have been
+numerous change since june, so that the errors might be totally different now.
 
 
 -- 
