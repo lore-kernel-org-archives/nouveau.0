@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12280] Nouveau with Option "randr12" "1" don't work
 	anymore
-Date: Tue,  4 Sep 2007 14:01:10 -0700 (PDT)
-Message-ID: <20070904210110.10A9A130070@annarchy.freedesktop.org>
+Date: Tue,  4 Sep 2007 14:07:04 -0700 (PDT)
+Message-ID: <20070904210704.75E8613006F@annarchy.freedesktop.org>
 References: <bug-12280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,17 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12280
 
 
+madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
-------- Comment #7 from randrik-JGs/UdohzUI@public.gmane.org  2007-09-04 14:01 PST -------
-(In reply to comment #6)
-> Please try current git HEAD. I can use one analog monitor again. Dualhead is
-> still broken for me.
-> 
 
-Yes, 13aeb83d7e5fcb3f051f95faa48a2ef636d67260 fix it. Thanks for very fast
-response!
+------- Comment #8 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-04 14:07 PST -------
+Sorry for the trouble (i broke it in the first place).
 
 
 -- 
