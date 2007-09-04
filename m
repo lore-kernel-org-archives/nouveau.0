@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12280] Nouveau with Option "randr12" "1" don't work
 	anymore
-Date: Tue,  4 Sep 2007 13:24:06 -0700 (PDT)
-Message-ID: <20070904202406.CE0A613006F@annarchy.freedesktop.org>
+Date: Tue,  4 Sep 2007 13:31:31 -0700 (PDT)
+Message-ID: <20070904203134.7DFFF13005E@annarchy.freedesktop.org>
 References: <bug-12280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12280
 
 
 
-------- Comment #4 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-04 13:24 PST -------
-You were able to do this previously on the master branch?
+------- Comment #5 from randrik-JGs/UdohzUI@public.gmane.org  2007-09-04 13:31 PST -------
+(In reply to comment #4)
+> You were able to do this previously on the master branch?
+> 
+
+Yes. But git-bisect will be a bit slow, because text mode was not restore at
+all in earlier versions.
 
 
 -- 
