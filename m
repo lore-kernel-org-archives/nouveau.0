@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11240] doesn't start X - DMA Queue hang
-Date: Tue,  4 Sep 2007 09:50:23 -0700 (PDT)
-Message-ID: <20070904165023.F314C13005E@annarchy.freedesktop.org>
+Date: Tue,  4 Sep 2007 10:02:34 -0700 (PDT)
+Message-ID: <20070904170235.9343013005E@annarchy.freedesktop.org>
 References: <bug-11240-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=11240
 
 
+notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #10263|0                           |1
+        is obsolete|                            |
 
 
 
-------- Comment #9 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-09-04 09:50 PST -------
-Could you provide kernel & X logs with that latest git ? There have been
-numerous change since june, so that the errors might be totally different now.
+
+------- Comment #10 from notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org  2007-09-04 10:02 PST -------
+Created an attachment (id=11413)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11413&action=view)
+X log
 
 
 -- 
