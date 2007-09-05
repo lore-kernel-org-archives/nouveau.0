@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11435] XAA incorrect rendering (missing lines?)
-Date: Wed,  5 Sep 2007 11:21:13 -0700 (PDT)
-Message-ID: <20070905182114.3F61213005E@annarchy.freedesktop.org>
-References: <bug-11435-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Lubo=C5=A1_Dole=C5=BEel?= <lubos-cey1DODAMryZuzBka8ofvg@public.gmane.org>
+Subject: GeForce 6150SE and Renouveau failure
+Date: Wed, 5 Sep 2007 17:35:13 +0200
+Message-ID: <b14fafb0e383aba29dd99a0cce7bf22a@dolezel.info>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +18,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11435
-
-
-pq-X3B1VOXEql0@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |WONTFIX
-
-
-
-
-------- Comment #3 from pq-X3B1VOXEql0@public.gmane.org  2007-09-05 11:21 PST -------
-XAA support was removed in commit 51e3855104ff7b68559d37e774cde306424399d8 on
-Sept 5th, 2007. This bug is no longer applicable.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug, or are watching the assignee.
+CkhlbGxvLAoKcmVub3V2ZWF1IGhhcyBmYWlsZWQgb24gbXkgbWFjaGluZSB3aXRoIGFuIGludGVn
+cmF0ZWQgR2VGb3JjZSA2MTUwU0UKKG5Gb3JjZSA0MzApIC0gUENJIElEIDEwZGU6MDNkMC4KCmRl
+dGVjdF9kZXZpY2VzOiBDcmVhdGluZyBwcm9iZSB3aW5kb3cgZmFpbGVkLgpXZSB0cmllZCB0byBj
+cmVhdGUgYSB3aW5kb3cgYnkgdXNpbmcgU0RMLgpPdXIgT3BlbkdMIHRlc3RzIHJlcXVpcmUgYSBz
+dGVuY2lsIGJ1ZmZlciB3aGljaHVzdWFsbHkKaXMgbm90IGF2YWlsYWJsZSB3aXRoIDE2LWJpdCBk
+ZXNrdG9wIGNvbG9yZGVwdGguIElmIHlvdSBhcmUKdXNpbmcgMTYtYml0IGNvbG9ycywgcGxlYXNl
+IHRyeTI0LWJpdCBpbnN0ZWFkLgpEZXZpY2UgZGV0ZWN0aW9uIGZhaWxlZC4KClRoZSBwcm9ibGVt
+IGlzIEknbSByZWFsbHkgdXNpbmcgdGhlIDI0Yml0IGRlcHRoLCBldmVuIG52aWRpYS1zZXR0aW5n
+cyBzYXlzCnNvLgoKV2hhdCBjYW4gSSBkbz8KUGxlYXNlIENDIG1lIGluIHJlc3BvbnNlLgoKUmVn
+YXJkcywKLS0gCkx1Ym/FoSBEb2xlxb5lbAoKV2ViOiBodHRwOi8vd3d3LmRvbGV6ZWwuaW5mbwpK
+YWJiZXIgSU06IHhtcHA6bHVib3NAZG9sZXplbC5pbmZvCklDUSBJTTogMjIyLTM2NC0xNjkKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
