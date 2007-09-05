@@ -1,13 +1,15 @@
-From: polytan <polytan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: FPS limiter implementation in driver
-Date: Wed, 5 Sep 2007 08:06:28 +0200
-Message-ID: <741f8c060709042306y6a32d57bh9e3897546f3af8d9@mail.gmail.com>
-References: <000601c7ee0c$d0b24230$0901a8c0@775DualVSTA>
-	<20070903192454.48ccadaf@daedalus.pq.iki.fi>
+From: Bernhard Kaindl <bk-l3A5Bk7waGM@public.gmane.org>
+Subject: Re: Fixes and workarounds for regressions and issues in
+ the randr-1.2 branch
+Date: Wed, 5 Sep 2007 17:14:09 +0200 (CEST)
+Message-ID: <alpine.LNX.0.9999-openSUSE-5.0709051657130.24186@jbgna.fhfr.qr>
+References: <alpine.LNX.0.999-openSUSE-1.0709031945560.22918@jbgna.fhfr.qr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0864672409=="
+Content-Type: MULTIPART/MIXED;
+	BOUNDARY="168427776-1028984428-1189005091=:24186"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20070903192454.48ccadaf-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
+In-Reply-To: <alpine.LNX.0.999-openSUSE-1.0709031945560.22918-aORvohZ8rX8NvFgr0RP9cw@public.gmane.org>
+Content-ID: <alpine.LNX.0.9999-openSUSE-5.0709051711370.24186-aORvohZ8rX8NvFgr0RP9cw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,85 +17,173 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Arthur Huillet <arthur.huillet-GANU6spQydw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0864672409==
-Content-Type: multipart/alternative;
-	boundary="----=_Part_49215_3629560.1188972388827"
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-------=_Part_49215_3629560.1188972388827
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+--168427776-1028984428-1189005091=:24186
+Content-Type: TEXT/PLAIN; CHARSET=US-ASCII; FORMAT=flowed
+Content-ID: <alpine.LNX.0.9999-openSUSE-5.0709051711371.24186-aORvohZ8rX8NvFgr0RP9cw@public.gmane.org>
 
-FPS and Refresh rate are different.
-
-http://en.wikipedia.org/wiki/Refresh_rate
-http://en.wikipedia.org/wiki/Frame_rate
-
-Sincerely,
-
-2007/9/3, Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>:
+On Mon, 3 Sep 2007, Bernhard Kaindl wrote:
 >
-> On Mon, 3 Sep 2007 11:28:40 +0200
-> "Manuel Signoret" <manuel.signoret-39ZsbGIQGT5GWvitb5QawA@public.gmane.org> wrote:
->
-> > I dream about a FPS limiter included directly in my NVidia GC.
-> > Because I think that a non-marketing attitude should be to use a FPS
-> > of 30-35 in the majority of the 3D-games.
-> >
-> > In order to economize energy, heat production and improve system
-> > stability. And also to fight a few against some stupid marketing
-> > excesses.
->
-> Isn't Sync to Vertical Blank enough? That should rate limit it to
-> screen refresh rate. Or would you really want to go lower than refresh
-> rate?
->
-> With flat panels you can in theory go very low in refresh rate. I have
-> not experimented with it myself, but I do not know of any reason why
-> e.g. 30 Hz refresh rate would not be possible. Unless frequency
-> generators cannot be adjusted that low...
-> Of course with CRT this is impossible due to flicker.
-> Might also require custom modelines.
->
-> --
-> Pekka "PQ" Paalanen
-> http://www.iki.fi/pq/
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+> They may help others as well but may e.g. also disable the Xv blitter
+> which might be working for some (but didn't on my card) - more information
+> is found in the text comments in the patches.
 
+The patch "xf86-video-nouveau-Xv_noblit.diff" which disabled the Xv blitter
+on some cards was wrong, thanks to encouragement from Arthur Huillet and that
+I had now some time to check out what was failing, I found out that the Xv
+problems which I see are limited to two situations:
 
+1) randr active and monitors configured side-by-side with xrandr
 
--- 
+2) Option "ShadowFB" is used (or other NoAccel trigger)
 
-  -=( Polytan )=-
+While I have no fix for 1) yet, 2) is easy to deal with properly:
 
-------=_Part_49215_3629560.1188972388827
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+As driving the blitter requires the DMA FIFO, and while the overlay might work
+without the DMA FIFO, it has a fallback to the blitter for Composite, we think
+it's best to also disable the overlay for now when pNV->NoAccel is <> 0.
 
-FPS and Refresh rate are different.<br><br><a href="http://en.wikipedia.org/wiki/Refresh_rate">http://en.wikipedia.org/wiki/Refresh_rate</a><br><a href="http://en.wikipedia.org/wiki/Frame_rate">http://en.wikipedia.org/wiki/Frame_rate
-</a><br><br>Sincerely,<br><br><div><span class="gmail_quote">2007/9/3, Pekka Paalanen &lt;<a href="mailto:pq-X3B1VOXEql0@public.gmane.org">pq-X3B1VOXEql0@public.gmane.org</a>&gt;:</span><blockquote class="gmail_quote" style="border-left: 1px solid rgb(204, 204, 204); margin: 0pt 0pt 0pt 0.8ex; padding-left: 1ex;">
-On Mon, 3 Sep 2007 11:28:40 +0200<br>&quot;Manuel Signoret&quot; &lt;<a href="mailto:manuel.signoret-39ZsbGIQGT5GWvitb5QawA@public.gmane.org">manuel.signoret-39ZsbGIQGT5GWvitb5QawA@public.gmane.org</a>&gt; wrote:<br><br>&gt; I dream about a FPS limiter included directly in my NVidia GC.
-<br>&gt; Because I think that a non-marketing attitude should be to use a FPS<br>&gt; of 30-35 in the majority of the 3D-games.<br>&gt;<br>&gt; In order to economize energy, heat production and improve system<br>&gt; stability. And also to fight a few against some stupid marketing
-<br>&gt; excesses.<br><br>Isn&#39;t Sync to Vertical Blank enough? That should rate limit it to<br>screen refresh rate. Or would you really want to go lower than refresh<br>rate?<br><br>With flat panels you can in theory go very low in refresh rate. I have
-<br>not experimented with it myself, but I do not know of any reason why<br>e.g. 30 Hz refresh rate would not be possible. Unless frequency<br>generators cannot be adjusted that low...<br>Of course with CRT this is impossible due to flicker.
-<br>Might also require custom modelines.<br><br>--<br>Pekka &quot;PQ&quot; Paalanen<br><a href="http://www.iki.fi/pq/">http://www.iki.fi/pq/</a><br>_______________________________________________<br>Nouveau mailing list<br>
-<a href="mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a><br><a href="http://lists.freedesktop.org/mailman/listinfo/nouveau">http://lists.freedesktop.org/mailman/listinfo/nouveau</a><br></blockquote>
-</div><br><br clear="all"><br>-- <br><br>&nbsp;&nbsp;-=( Polytan )=-
+I attached and appended patch for the current master branch, which (with one
+small change, which I am going to talk in a separate mail) works for me with
+Randr12 (except for the Xv in side-by-side mode).
 
-------=_Part_49215_3629560.1188972388827--
+Thanks to Arthur for the guidance and explanations!
 
---===============0864672409==
+Bernhard
+
+--- src/nv_video.c	2007-09-05 16:02:00.000000000 +0200
++++ src/nv_video.c	2007-09-05 16:24:22.000000000 +0200
+@@ -2275,10 +2275,13 @@
+  	XF86VideoAdaptorPtr  blitAdaptor = NULL;
+  	int                  num_adaptors;
+
+-	if (pScrn->bitsPerPixel == 8)
+-		return;
+-
+-	if (pNv->Architecture < NV_ARCH_50) {
++	/*
++	 * Driving the blitter requires the DMA FIFO. Using the FIFO
++	 * without accel causes DMA errors. While the overlay might
++	 * might work without accel, we also disable it for now when
++	 * acceleration is disabled:
++	 */
++	if (pScrn->bitsPerPixel != 8 && pNv->Architecture < NV_ARCH_50 && !pNv->NoAccel) {
+  		overlayAdaptor = NVSetupOverlayVideo(pScreen);
+  		blitAdaptor    = NVSetupBlitVideo(pScreen);
+  	}
+======================================================
+
+PS: 
+The inspiration to change from this logic
+
+-       if (pScrn->bitsPerPixel == 8)
+-               return;
+
+to this logic
+
++       if (pScrn->bitsPerPixel != 8 && pNv->Architecture < NV_ARCH_50 && !pNv->NoAccel)
+                 overlayAdaptor = NVSetupOverlayVideo(pScreen);
+                 blitAdaptor    = NVSetupBlitVideo(pScreen);
+         }
+
+to disable overlay and blitter came from the NV50 change (which you see in the
+patch) and it seems reasonable to do it also for 8bit as
+xf86-video-intel-2.1.1/src/i810_video.c does it similar for 8bit:
+
+     if (pScrn->bitsPerPixel != 8)
+     {
+         newAdaptor = I810SetupImageVideo(pScreen);
+         I810InitOffscreenImages(pScreen);
+     }
+
+     num_adaptors = xf86XVListGenericAdaptors(pScrn, &adaptors);
+
+     if(newAdaptor) {
+... similar to nouveau code here
+     }
+
+     if(num_adaptors)
+         xf86XVScreenInit(pScreen, adaptors, num_adaptors);
+
+(The routine in nv_driver has basically the same code)
+
+which means that generic, driver-independent Xv adaptors (such as the v4l Xv
+adaptor) are always initialized, xf86XVListGenericAdaptors lists them if
+such are there:
+
+xf86XVListGenericAdaptors(
+...
+     /*
+      * The v4l driver registers itself first, but can use surfaces registered
+      * by other drivers.  So, call the v4l driver last.
+      */
+..
+}
+
+--168427776-1028984428-1189005091=:24186
+Content-Type: TEXT/X-PATCH; NAME=Xv-NoAccel-master.diff
+Content-Transfer-Encoding: BASE64
+Content-ID: <alpine.LNX.0.9999-openSUSE-5.0709051711310.24186-aORvohZ8rX8NvFgr0RP9cw@public.gmane.org>
+Content-Description: 
+Content-Disposition: ATTACHMENT; FILENAME=Xv-NoAccel-master.diff
+
+LS0tIHNyYy9udl92aWRlby5jCTIwMDctMDktMDUgMTY6MDI6MDAuMDAwMDAw
+MDAwICswMjAwDQorKysgc3JjL252X3ZpZGVvLmMJMjAwNy0wOS0wNSAxNjoy
+NDoyMi4wMDAwMDAwMDAgKzAyMDANCkBAIC0yMjc1LDEwICsyMjc1LDEzIEBA
+DQogCVhGODZWaWRlb0FkYXB0b3JQdHIgIGJsaXRBZGFwdG9yID0gTlVMTDsN
+CiAJaW50ICAgICAgICAgICAgICAgICAgbnVtX2FkYXB0b3JzOw0KIA0KLQlp
+ZiAocFNjcm4tPmJpdHNQZXJQaXhlbCA9PSA4KQ0KLQkJcmV0dXJuOw0KLQ0K
+LQlpZiAocE52LT5BcmNoaXRlY3R1cmUgPCBOVl9BUkNIXzUwKSB7DQorCS8q
+DQorCSAqIERyaXZpbmcgdGhlIGJsaXR0ZXIgcmVxdWlyZXMgdGhlIERNQSBG
+SUZPLiBVc2luZyB0aGUgRklGTw0KKwkgKiB3aXRob3V0IGFjY2VsIGNhdXNl
+cyBETUEgZXJyb3JzLiBXaGlsZSB0aGUgb3ZlcmxheSBtaWdodA0KKwkgKiBt
+aWdodCB3b3JrIHdpdGhvdXQgYWNjZWwsIHdlIGFsc28gZGlzYWJsZSBpdCBm
+b3Igbm93IHdoZW4NCisJICogYWNjZWxlcmF0aW9uIGlzIGRpc2FibGVkOg0K
+KwkgKi8NCisJaWYgKHBTY3JuLT5iaXRzUGVyUGl4ZWwgIT0gOCAmJiBwTnYt
+PkFyY2hpdGVjdHVyZSA8IE5WX0FSQ0hfNTAgJiYgIXBOdi0+Tm9BY2NlbCkg
+ew0KIAkJb3ZlcmxheUFkYXB0b3IgPSBOVlNldHVwT3ZlcmxheVZpZGVvKHBT
+Y3JlZW4pOw0KIAkJYmxpdEFkYXB0b3IgICAgPSBOVlNldHVwQmxpdFZpZGVv
+KHBTY3JlZW4pOw0KIAl9DQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT0NCg0KVGhlIGluc3BpcmF0aW9u
+IHRvIGNoYW5nZSBmcm9tIHRoaXMgbG9naWMNCg0KLSAgICAgICBpZiAocFNj
+cm4tPmJpdHNQZXJQaXhlbCA9PSA4KQ0KLSAgICAgICAgICAgICAgIHJldHVy
+bjsNCg0KdG8gdGhpcyBsb2dpYw0KDQorICAgICAgIGlmIChwU2Nybi0+Yml0
+c1BlclBpeGVsICE9IDggJiYgcE52LT5BcmNoaXRlY3R1cmUgPCBOVl9BUkNI
+XzUwICYmICFwTnYtPk5vQWNjZWwpDQogICAgICAgICAgICAgICAgb3Zlcmxh
+eUFkYXB0b3IgPSBOVlNldHVwT3ZlcmxheVZpZGVvKHBTY3JlZW4pOw0KICAg
+ICAgICAgICAgICAgIGJsaXRBZGFwdG9yICAgID0gTlZTZXR1cEJsaXRWaWRl
+byhwU2NyZWVuKTsNCiAgICAgICAgfQ0KDQp0byBkaXNhYmxlIG92ZXJsYXkg
+YW5kIGJsaXR0ZXIgY2FtZSBmcm9tIHRoZSBOVjUwIGNoYW5nZSAod2hpY2gg
+eW91IHNlZSBhdm92ZSkNCmFuZCBpdCBzZWVtcyByZWFzb25hYmxlIHRvIGRv
+IGl0IGFsc28gZm9yIDhiaXQgYXMNCnhmODYtdmlkZW8taW50ZWwtMi4xLjEv
+c3JjL2k4MTBfdmlkZW8uYyBkb2VzIGl0IHNpbWlsYXIgZm9yIDhiaXQ6DQoN
+CiAgICBpZiAocFNjcm4tPmJpdHNQZXJQaXhlbCAhPSA4KQ0KICAgIHsNCiAg
+ICAgICAgbmV3QWRhcHRvciA9IEk4MTBTZXR1cEltYWdlVmlkZW8ocFNjcmVl
+bik7DQogICAgICAgIEk4MTBJbml0T2Zmc2NyZWVuSW1hZ2VzKHBTY3JlZW4p
+Ow0KICAgIH0NCg0KICAgIG51bV9hZGFwdG9ycyA9IHhmODZYVkxpc3RHZW5l
+cmljQWRhcHRvcnMocFNjcm4sICZhZGFwdG9ycyk7DQoNCiAgICBpZihuZXdB
+ZGFwdG9yKSB7DQouLi4gc2ltaWxhciB0byBub3V2ZWF1IGNvZGUgaGVyZQ0K
+ICAgIH0NCg0KICAgIGlmKG51bV9hZGFwdG9ycykNCiAgICAgICAgeGY4NlhW
+U2NyZWVuSW5pdChwU2NyZWVuLCBhZGFwdG9ycywgbnVtX2FkYXB0b3JzKTsN
+Cg0KKFRoZSByb3V0aW5lIGluIG52X2RyaXZlciBoYXMgYmFzaWNhbGx5IHRo
+ZSBzYW1lIGNvZGUpDQoNCndoaWNoIG1lYW5zIHRoYXQgZ2VuZXJpYywgZHJp
+dmVyLWluZGVwZW5kZW50IFh2IGFkYXB0b3JzIChzdWNoIGFzIHRoZSB2NGwg
+WHYNCmFkYXB0b3IpIGFyZSBhbHdheXMgaW5pdGlhbGl6ZWQsIHhmODZYVkxp
+c3RHZW5lcmljQWRhcHRvcnMgbGlzdHMgdGhlbSBpZg0Kc3VjaCBhcmUgdGhl
+cmU6DQoNCnhmODZYVkxpc3RHZW5lcmljQWRhcHRvcnMoDQouLi4NCiAgICAv
+Kg0KICAgICAqIFRoZSB2NGwgZHJpdmVyIHJlZ2lzdGVycyBpdHNlbGYgZmly
+c3QsIGJ1dCBjYW4gdXNlIHN1cmZhY2VzIHJlZ2lzdGVyZWQNCiAgICAgKiBi
+eSBvdGhlciBkcml2ZXJzLiAgU28sIGNhbGwgdGhlIHY0bCBkcml2ZXIgbGFz
+dC4NCiAgICAgKi8NCi4uDQp9DQoNCg==
+
+--168427776-1028984428-1189005091=:24186
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +194,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0864672409==--
+--168427776-1028984428-1189005091=:24186--
