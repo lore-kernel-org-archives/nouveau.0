@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12300] DMA queue hang (Quadro FX 4500)
-Date: Thu,  6 Sep 2007 05:38:50 -0700 (PDT)
-Message-ID: <20070906123850.54B3013006F@annarchy.freedesktop.org>
+Date: Thu,  6 Sep 2007 05:41:52 -0700 (PDT)
+Message-ID: <20070906124152.AA98A13005E@annarchy.freedesktop.org>
 References: <bug-12300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12300
 
 
 
-------- Comment #1 from dmitry.platonov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-06 05:38 PST -------
-Created an attachment (id=11447)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11447&action=view)
-Xorg log
+------- Comment #2 from dmitry.platonov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-06 05:41 PST -------
+Created an attachment (id=11448)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11448&action=view)
+DRM output
 
 
 -- 
