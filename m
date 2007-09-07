@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12300] DMA queue hang (Quadro FX 4500)
-Date: Fri,  7 Sep 2007 04:02:24 -0700 (PDT)
-Message-ID: <20070907110224.EADBC13006F@annarchy.freedesktop.org>
+Date: Fri,  7 Sep 2007 04:04:44 -0700 (PDT)
+Message-ID: <20070907110444.256DB130070@annarchy.freedesktop.org>
 References: <bug-12300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12300
 
 
 
-------- Comment #3 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-07 04:02 PST -------
-1. The randr-1.2 branch shouldn't be used anymore, use master with Option
-"Randr12" "1".
-
-2. This is an NV47 iirc, currently not supported, please try this patch:
-http://madman2003.ath.cx/nv47_ctx_init.patch
-
-If it doesn't work, then try to go trough this procedure
-http://nouveau.freedesktop.org/wiki/CtxInit
+------- Comment #4 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-07 04:04 PST -------
+That's a drm patch btw.
 
 
 -- 
