@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12308] Account request
-Date: Thu,  6 Sep 2007 17:28:29 -0700 (PDT)
-Message-ID: <20070907002829.B24D313005E@annarchy.freedesktop.org>
+Date: Thu,  6 Sep 2007 18:34:11 -0700 (PDT)
+Message-ID: <20070907013411.6739113005E@annarchy.freedesktop.org>
 References: <bug-12308-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,25 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12308
 
 
+marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|sitewranglers-CC+yJ3UmIYpa6l5+2nELGQ@public.gmane.org
+                   |g                           |g
+          Component|Driver/nouveau              |New Accounts
+            Product|xorg                        |freedesktop.org
+          QAContact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
 
 
 
-------- Comment #2 from peter-sWXtQFFYX8bYtjvyW6yDsg@public.gmane.org  2007-09-06 17:28 PST -------
-Created an attachment (id=11458)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11458&action=view)
-PGP public key
+
+------- Comment #3 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-09-06 18:34 PST -------
+Ok.
 
 
 -- 
 Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
 ------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
 You are the assignee for the bug, or are watching the assignee.
