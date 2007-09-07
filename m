@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12308] Account request
-Date: Thu,  6 Sep 2007 17:24:53 -0700 (PDT)
-Message-ID: <20070907002453.85F9413005E@annarchy.freedesktop.org>
+Date: Thu,  6 Sep 2007 17:28:29 -0700 (PDT)
+Message-ID: <20070907002829.B24D313005E@annarchy.freedesktop.org>
 References: <bug-12308-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12308
 
 
 
-------- Comment #1 from peter-sWXtQFFYX8bYtjvyW6yDsg@public.gmane.org  2007-09-06 17:24 PST -------
-Created an attachment (id=11457)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11457&action=view)
-SSH public key
+------- Comment #2 from peter-sWXtQFFYX8bYtjvyW6yDsg@public.gmane.org  2007-09-06 17:28 PST -------
+Created an attachment (id=11458)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11458&action=view)
+PGP public key
 
 
 -- 
