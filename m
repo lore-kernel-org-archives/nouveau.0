@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12300] DMA queue hang (Quadro FX 4500)
-Date: Fri,  7 Sep 2007 04:04:44 -0700 (PDT)
-Message-ID: <20070907110444.256DB130070@annarchy.freedesktop.org>
+Date: Fri,  7 Sep 2007 06:09:08 -0700 (PDT)
+Message-ID: <20070907130908.9E88013005E@annarchy.freedesktop.org>
 References: <bug-12300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12300
 
 
+dmitry.platonov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #11447|0                           |1
+        is obsolete|                            |
 
 
 
-------- Comment #4 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-07 04:04 PST -------
-That's a drm patch btw.
+
+------- Comment #5 from dmitry.platonov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-07 06:09 PST -------
+Created an attachment (id=11462)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11462&action=view)
+Xorg log after patching drm & switching to master
 
 
 -- 
