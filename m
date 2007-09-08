@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12368] No valid modes on a QUADRO NVS 140M
-Date: Sat,  8 Sep 2007 15:15:09 -0700 (PDT)
-Message-ID: <20070908221509.446D013005E@annarchy.freedesktop.org>
+Date: Sat,  8 Sep 2007 15:33:19 -0700 (PDT)
+Message-ID: <20070908223319.BF7E013006F@annarchy.freedesktop.org>
 References: <bug-12368-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12368
 
 
 
-------- Comment #1 from elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-08 15:15 PST -------
-Created an attachment (id=11474)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11474&action=view)
-xorg log
+------- Comment #2 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-08 15:33 PST -------
+The bios is not detected, this is the initial problem that needs solving.
 
 
 -- 
