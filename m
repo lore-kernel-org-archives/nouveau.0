@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12158] mouse cursor disappears
-Date: Tue, 11 Sep 2007 05:02:41 -0700 (PDT)
-Message-ID: <20070911120242.6FFCC13005D@annarchy.freedesktop.org>
+Date: Tue, 11 Sep 2007 05:39:53 -0700 (PDT)
+Message-ID: <20070911123953.9FA8313005D@annarchy.freedesktop.org>
 References: <bug-12158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12158
 
 
 
-------- Comment #4 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-09-11 05:02 PST -------
-Could you try setting up the SDL environment variable please ?
-try setting SDL_VIDEO_X11_DGAMOUSE=1 or SDL_VIDEO_X11_DGAMOUSE=0
+------- Comment #5 from mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-11 05:39 PST -------
+it works with SDL_VIDEO_X11_DGAMOUSE=0 for all the games where I've saw the
+problem :)
 
 
 -- 
