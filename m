@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12368] No valid modes on a QUADRO NVS 140M
-Date: Tue, 11 Sep 2007 13:31:17 -0700 (PDT)
-Message-ID: <20070911203117.8B1EB13005D@annarchy.freedesktop.org>
+Date: Tue, 11 Sep 2007 13:33:15 -0700 (PDT)
+Message-ID: <20070911203316.2336613005D@annarchy.freedesktop.org>
 References: <bug-12368-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,18 +27,30 @@ elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #11474|0                           |1
-        is obsolete|                            |
+                 CC|                            |elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
 
-------- Comment #3 from elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-11 13:31 PST -------
-Created an attachment (id=11523)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11523&action=view)
-Xorg.0.log
+------- Comment #4 from elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-11 13:33 PST -------
+I uploaded a new log from the latest nouveau_drv.so. The new crash is:
 
-Today, a freshly compiled nouveau_drv.so gives me a new crash.
+/usr/lib/xorg/modules/drivers//nouveau_drv.so(nv30UpdateArbitrationSettings+0x23)
+[0x2ac7262f1823]
+4: /usr/lib/xorg/modules/drivers//nouveau_drv.so(NVCalcStateExt+0x41c)
+[0x2ac7262f277c]
+5: /usr/lib/xorg/modules/drivers//nouveau_drv.so(NVDACInit+0x44f)
+[0x2ac7262ea60f]
+6: /usr/lib/xorg/modules/drivers//nouveau_drv.so [0x2ac7262ee5d5]
+7: /usr/lib/xorg/modules/drivers//nouveau_drv.so [0x2ac7262f002c]
+8: /usr/lib/xorg/modules/drivers//nouveau_drv.so [0x2ac7262f050a]
+9: /usr/bin/X11/X(AddScreen+0x222) [0x439522]
+10: /usr/bin/X11/X(InitOutput+0x268) [0x468a48]
+11: /usr/bin/X11/X(main+0x275) [0x439d25]
+12: /lib/libc.so.6(__libc_start_main+0xf4) [0x2ac72413bb44]
+13: /usr/bin/X11/X(FontFileCompleteXLFD+0x229) [0x439209]
+
+it seems to involve the nvGetClocks call in line 694 in nv_hw.c.
 
 
 -- 
