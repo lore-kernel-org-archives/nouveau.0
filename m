@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12368] No valid modes on a QUADRO NVS 140M
-Date: Tue, 11 Sep 2007 13:51:07 -0700 (PDT)
-Message-ID: <20070911205108.274D413005D@annarchy.freedesktop.org>
+Date: Thu, 13 Sep 2007 09:45:15 -0700 (PDT)
+Message-ID: <20070913164516.C7BC613005D@annarchy.freedesktop.org>
 References: <bug-12368-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12368
 
 
 
-------- Comment #5 from elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-11 13:51 PST -------
-Digging into nvGetClocks, the crash happens at line 191 where *MClk is
-computed:
+------- Comment #6 from elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-13 09:45 PST -------
+Created an attachment (id=11535)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11535&action=view)
+Fix BIOS location on g80s
 
-      *MClk = ((N * NB * pNv->CrystalFreqKHz) / (M * MB)) >> P;
-
-In my case, pll had the value 0x0b01, causing MB to evaluate to zero, thus
-causing a divide by zero error.
+This patch, mostly lifted from nv fixes the missing bios problem on my card
 
 
 -- 
