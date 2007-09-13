@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12368] No valid modes on a QUADRO NVS 140M
-Date: Thu, 13 Sep 2007 09:45:15 -0700 (PDT)
-Message-ID: <20070913164516.C7BC613005D@annarchy.freedesktop.org>
+Date: Thu, 13 Sep 2007 09:46:27 -0700 (PDT)
+Message-ID: <20070913164628.0BAC613005D@annarchy.freedesktop.org>
 References: <bug-12368-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12368
 
 
+elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #11523|0                           |1
+        is obsolete|                            |
 
 
 
-------- Comment #6 from elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-13 09:45 PST -------
-Created an attachment (id=11535)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11535&action=view)
-Fix BIOS location on g80s
 
-This patch, mostly lifted from nv fixes the missing bios problem on my card
+------- Comment #7 from elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-13 09:46 PST -------
+Created an attachment (id=11536)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11536&action=view)
+xorglog after patch applied
 
 
 -- 
