@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12368] No valid modes on a QUADRO NVS 140M
-Date: Thu, 13 Sep 2007 09:46:27 -0700 (PDT)
-Message-ID: <20070913164628.0BAC613005D@annarchy.freedesktop.org>
+Date: Sun, 16 Sep 2007 03:11:20 -0700 (PDT)
+Message-ID: <20070916101121.DDDD613005D@annarchy.freedesktop.org>
 References: <bug-12368-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +27,15 @@ elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #11523|0                           |1
-        is obsolete|                            |
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
-------- Comment #7 from elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-13 09:46 PST -------
-Created an attachment (id=11536)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11536&action=view)
-xorglog after patch applied
+------- Comment #8 from elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-09-16 03:11 PST -------
+Latest nouveau updates from nv makes this bug obsolete (I now get X up on the
+screen, although somwhat garbled)
 
 
 -- 
