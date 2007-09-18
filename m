@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12471] New: [randr12,
-	dualhead] One mousepointer on every screen.
-Date: Tue, 18 Sep 2007 14:26:11 -0700 (PDT)
-Message-ID: <bug-12471-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12472] New: [randr12,
+	dualhead] The full screen is not visible and a purple border
+Date: Tue, 18 Sep 2007 14:32:11 -0700 (PDT)
+Message-ID: <bug-12472-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,9 +19,10 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12471
+http://bugs.freedesktop.org/show_bug.cgi?id=12472
 
-           Summary: [randr12, dualhead] One mousepointer on every screen.
+           Summary: [randr12, dualhead] The full screen is not visible and a
+                    purple border
            Product: xorg
            Version: unspecified
           Platform: Other
@@ -35,24 +36,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12471
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-I have dualhead working on the following controller:
 01:00.0 VGA compatible controller [0300]: nVidia Corporation NV31 [GeForce FX
 5600] [10de:0312] (rev a1)
 
-I have a virtual screen of 2560x1280 spanning over two screens, 1280x1024.
-One of the issues I encountered is that when using hwcursor (i.e. not have
-swcursor true in xorg.conf) i always have one pointer at each screen.
-
-When my mouse moves around on the left screen there is a pointer in the top
-left corner of the right screen. If I move the mouse over a input/markable
-field both pointers change accordingly. If I move my mouse over to the right
-screen the pointer in the top left corner disapperes from the right screen and
-show up on the left.
-With other words: there is always a pointer in the top left corner of the
-screen where my active mouse-pointer is not.
-
-Option "swcursor" "true" in the device section makes the extra pointer
-disappere.
+Two analog monitors.
+My left monitor has a purple line just some pixels wide and about the same
+amount of pixels are not shown at the left side.
+This both in clone-mode and having the desktop span over the both monitors.
 
 
 -- 
