@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12472] New: [randr12,
-	dualhead] The full screen is not visible and a purple border
-Date: Tue, 18 Sep 2007 14:32:11 -0700 (PDT)
-Message-ID: <bug-12472-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12473] New: [randr12] Xv scales to match virtual
+	resulotion, not actual resolution.
+Date: Tue, 18 Sep 2007 14:39:14 -0700 (PDT)
+Message-ID: <bug-12473-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,10 +19,10 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12472
+http://bugs.freedesktop.org/show_bug.cgi?id=12473
 
-           Summary: [randr12, dualhead] The full screen is not visible and a
-                    purple border
+           Summary: [randr12] Xv scales to match virtual resulotion, not
+                    actual resolution.
            Product: xorg
            Version: unspecified
           Platform: Other
@@ -39,10 +39,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12472
 01:00.0 VGA compatible controller [0300]: nVidia Corporation NV31 [GeForce FX
 5600] [10de:0312] (rev a1)
 
-Two analog monitors.
-My left monitor has a purple line just some pixels wide and about the same
-amount of pixels are not shown at the left side.
-This both in clone-mode and having the desktop span over the both monitors.
+Dualhead, using two analog monitors. Resolution is 1280x1024 on both, desktop
+spanning over both (not clone-mode).
+If I in my xorg.conf set
+      virtual      2560 2560
+then it seems like using vx in mplayer on my first monitor scales according to
+the virtual size. If I move the window up and down the picture within the
+window moves more than the window.
+It seems like if I move the window down one third in regards to 1024 pixels
+then the picture moves downward one third in regards to 2560 pixels.
+
+workaround:
+in your xorg.conf set:
+      virtual      2560 1024
 
 
 -- 
