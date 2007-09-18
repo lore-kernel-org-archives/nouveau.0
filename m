@@ -1,10 +1,11 @@
-From: "Elias Naur" <elias.naur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] NV86 context voodoo
-Date: Sun, 16 Sep 2007 23:06:36 +0200
-Message-ID: <c912665b0709161406h186561e6u79be6ae9559ec291@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 12471] New: [randr12,
+	dualhead] One mousepointer on every screen.
+Date: Tue, 18 Sep 2007 14:26:11 -0700 (PDT)
+Message-ID: <bug-12471-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed;
-	boundary="----=_Part_12704_14708878.1189976796482"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,96 +19,43 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-------=_Part_12704_14708878.1189976796482
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+http://bugs.freedesktop.org/show_bug.cgi?id=12471
 
-Hi,
+           Summary: [randr12, dualhead] One mousepointer on every screen.
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-To the best of my knowledge, this patch adds the context voodoo for my
-nv86 card (quadro nvs 140m). It is similar to, but not identical to
-the existing nv84 voodoo.
 
- - elias
+I have dualhead working on the following controller:
+01:00.0 VGA compatible controller [0300]: nVidia Corporation NV31 [GeForce FX
+5600] [10de:0312] (rev a1)
 
-------=_Part_12704_14708878.1189976796482
-Content-Type: text/x-patch; name="nv86_ctx_voodoo.patch"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="nv86_ctx_voodoo.patch"
-X-Attachment-Id: f_f6o1ebxb
+I have a virtual screen of 2560x1280 spanning over two screens, 1280x1024.
+One of the issues I encountered is that when using hwcursor (i.e. not have
+swcursor true in xorg.conf) i always have one pointer at each screen.
 
-ZGlmZiAtLWdpdCBhL3NoYXJlZC1jb3JlL252NTBfZ3JhcGguYyBiL3NoYXJlZC1jb3JlL252NTBf
-Z3JhcGguYwppbmRleCBlNWJiZjY1Li5kMjMzYTQzIDEwMDY0NAotLS0gYS9zaGFyZWQtY29yZS9u
-djUwX2dyYXBoLmMKKysrIGIvc2hhcmVkLWNvcmUvbnY1MF9ncmFwaC5jCkBAIC04NCw2ICs4NCw0
-NyBAQCBudjUwX2dyYXBoX2luaXRfcmVncyhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogCU5WX1dS
-SVRFKE5WMDRfUEdSQVBIX0RFQlVHXzMsICgxPDwyKSAvKiBIV19DT05URVhUX1NXSVRDSF9FTkFC
-TEVEICovKTsKIH0KIAorc3RhdGljIHVpbnQzMl90IG52ODZfY3R4X3Zvb2Rvb1tdID0geworCTB4
-MDA3MDAwOGUsIDB4MDA3MDAwOWMsIDB4MDAyMDAwMjAsIDB4MDA2MDAwMDgsIDB4MDA1MDAwNGMs
-IDB4MDA0MDBlODksCisJMHgwMDIwMDAwMCwgMHgwMDYwMDAwNywgMHgwMDMwMDAwMCwgMHgwMGMw
-MDBmZiwgMHgwMDIwMDAwMCwgMHgwMDgwMDBmZiwKKwkweDAwNzAwMDA5LCAweDAwNDBkZDRkLCAw
-eDAwNDAyOTQ0LCAweDAwNDAyOTA1LCAweDAwNDAyOTBkLCAweDAwNDBiOTA2LAorCTB4MDA2MDAw
-MDUsIDB4MDA0MDE1YzUsIDB4MDA2MDAwMTEsIDB4MDA0MDI3MGIsIDB4MDA0MDIxYzUsIDB4MDA3
-MDAwMDAsCisJMHgwMDcwMDA4MSwgMHgwMDYwMDAwNCwgMHgwMDUwMDA0YSwgMHgwMDIxNmQ4MCwg
-MHgwMDYwMDAwNywgMHgwMGMwMjgwMSwKKwkweDAwMjAwMDJlLCAweDAwODAwMDAxLCAweDAwNTAw
-MGNiLCAweDAwOTBmZmZmLCAweDAwOTFmZmZmLCAweDAwMjAwMDIwLAorCTB4MDA2MDAwMDgsIDB4
-MDA1MDAwNGMsIDB4MDA2MDAwMDksIDB4MDA0MGI5NDUsIDB4MDA0MGQ0NGQsIDB4MDA3MDAwOWQs
-CisJMHgwMDQwMmRjZiwgMHgwMDcwMDA5ZiwgMHgwMDUwMDA5ZiwgMHgwMDQwMmFjMCwgMHgwMDIw
-MDIwMCwgMHgwMDYwMDAwOCwKKwkweDAwNDAyYTRmLCAweDAwNDAyYWMwLCAweDAwNDAzMGNjLCAw
-eDAwNzAwMDgxLCAweDAwMjAwMDAwLCAweDAwNjAwMDA2LAorCTB4MDA3MDAwMDAsIDB4MDAxMTFi
-ZmMsIDB4MDA3MDAwODMsIDB4MDAzMDAwMDAsIDB4MDAyMTZkODAsIDB4MDA2MDAwMDcsCisJMHgw
-MGMwMGIwMSwgMHgwMDIwMDAxZSwgMHgwMDgwMDAwMSwgMHgwMDUwMDBjYiwgMHgwMGMwMDBmZiwg
-MHgwMDcwMDA4MCwKKwkweDAwNzAwMDgzLCAweDAwMjAwMDQ3LCAweDAwNjAwMDA2LCAweDAwMTEw
-MjBhLCAweDAwMjAwMjgwLCAweDAwNjAwMDA3LAorCTB4MDAzMDAwMDAsIDB4MDBjMDAwZmYsIDB4
-MDBjODAwZmYsIDB4MDA0MGM0MDcsIDB4MDAyMDI5MTYsIDB4MDA4MDAwZmYsCisJMHgwMDQwNTA4
-YywgMHgwMDUwMDBjYiwgMHgwMGEwMDIzZiwgMHgwMDIwMDA0MCwgMHgwMDYwMDAwNiwgMHgwMDcw
-MDAwZiwKKwkweDAwMTcwMjAyLCAweDAwMTEwMjBhLCAweDAwMjAwMDMyLCAweDAwMTAwMjBkLCAw
-eDAwMWMwMjQyLCAweDAwMTIwMzAyLAorCTB4MDAxNDA0MDIsIDB4MDAxODA1MDAsIDB4MDAxMzA1
-MDksIDB4MDAxNTA1NTAsIDB4MDAxMTA2MDUsIDB4MDAyMDAwMGYsCisJMHgwMDEwMDYwNywgMHgw
-MDExMDcwMCwgMHgwMDExMDkwMCwgMHgwMDEyMDkwMiwgMHgwMDExMGEwMCwgMHgwMDE2MGIwMiwK
-KwkweDAwMTIwYjI4LCAweDAwMTQwYjJiLCAweDAwMTEwYzAxLCAweDAwMTExNDAwLCAweDAwMTEx
-NDA1LCAweDAwMTExNDA3LAorCTB4MDAxMTE0MDksIDB4MDAxMTE0MGIsIDB4MDAyMDAwY2IsIDB4
-MDAxMDE1MDAsIDB4MDA0MDc5MGYsIDB4MDA0MDc5NGIsCisJMHgwMDIxNGI0MCwgMHgwMDYwMDAw
-NywgMHgwMDIwMDQ0MiwgMHgwMDg4MDBmZiwgMHgwMDcwMDA4ZiwgMHgwMDQwNzk4YywKKwkweDAw
-NTAwMGNiLCAweDAwMDAwMDAwLCAweDAwMjAwMDJiLCAweDAwMTAxYTA1LCAweDAwMTMxYzAwLCAw
-eDAwMTIxYzA0LAorCTB4MDAxNDFjMjAsIDB4MDAxMTFjMjUsIDB4MDAxMzFjNDAsIDB4MDAxMjFj
-NDQsIDB4MDAxNDFjNjAsIDB4MDAxMTFjNjUsCisJMHgwMDEzMWYwMCwgMHgwMDE5MWY0MCwgMHgw
-MDQwOTllMCwgMHgwMDIwMDFkOSwgMHgwMDYwMDAwNiwgMHgwMDIwMDA0NCwKKwkweDAwMTAyMDgw
-LCAweDAwMTEyMGM2LCAweDAwMTUyMGM5LCAweDAwMTkyMGQwLCAweDAwMTIyMTAwLCAweDAwMTIy
-MTAzLAorCTB4MDAxNjIyMDAsIDB4MDAxMjIyMDcsIDB4MDAxMTIyODAsIDB4MDAxMTIzMDAsIDB4
-MDAxMTIzMDIsIDB4MDAxMjIzODAsCisJMHgwMDExMjM4YiwgMHgwMDExMjM5NCwgMHgwMDExMjM5
-YywgMHgwMDAwMDAwMCwgMHgwMDQwYTAwZiwgMHgwMDUwMDBjYiwKKwkweDAwMjE0YjQwLCAweDAw
-NjAwMDA3LCAweDAwMjAwNDQyLCAweDAwODgwMGZmLCAweDAwNTAwMGNiLCAweDAwNDBhMzg3LAor
-CTB4MDA2MDAwMGEsIDB4MDAwMDAwMDAsIDB4MDA0MGIyMDAsIDB4MDA3MDAwYTAsIDB4MDA3MDAw
-ODAsIDB4MDAyMDAyODAsCisJMHgwMDYwMDAwNywgMHgwMDIwMDAwNCwgMHgwMGMwMDBmZiwgMHgw
-MDgwMDBmZiwgMHgwMDUwMDBjYiwgMHgwMDcwMDAwMCwKKwkweDAwMjAwMDAwLCAweDAwNjAwMDA2
-LCAweDAwMTExYmZlLCAweDAwNDBkNDRkLCAweDAwNzAwMDAwLCAweDAwMjAwMDAwLAorCTB4MDA2
-MDAwMDYsIDB4MDAxMTFiZmUsIDB4MDA3MDAwODAsIDB4MDA3MDAwMWQsIDB4MDA0MDExNGQsIDB4
-MDA3MDAwODEsCisJMHgwMDYwMDAwNCwgMHgwMDUwMDA0YSwgMHgwMDQwYmU4OCwgMHgwMDYwMDAw
-YiwgMHgwMDIwMDAwMCwgMHgwMDYwMDAwNiwKKwkweDAwNzAwMDAwLCAweDAwNDBkNDBiLCAweDAw
-MTExYmZkLCAweDAwNDA0MjRkLCAweDAwMjAyOTE2LCAweDAwODAwMGZkLAorCTB4MDA1MDAwY2Is
-IDB4MDBjMDAwMDIsIDB4MDAyMDAyODAsIDB4MDA2MDAwMDcsIDB4MDAyMDAxNjAsIDB4MDA4MDAw
-MDIsCisJMHgwMDUwMDBjYiwgMHgwMGMwMTgwMiwgMHgwMDIwMjdiNiwgMHgwMDgwMDAwMiwgMHgw
-MDUwMDBjYiwgMHgwMDQwNGU0ZCwKKwkweDAwNjAwMDBiLCAweDAwNDBkMjRkLCAweDAwNzAwMDAx
-LCAweDAwNzAwMDAzLCAweDAwNDBkODA2LCAweDAwNDBkOTA1LAorCTB4MDA2MDAwMGQsIDB4MDA3
-MDAwMDUsIDB4MDA3MDAwMGQsIDB4MDA3MDAwMDYsIDB4MDA3MDAwMGIsIDB4MDA3MDAwMGUsCisJ
-MHgwMDcwMDAxYywgMHgwMDYwMDAwYywgfjAKK307CisKIHN0YXRpYyB1aW50MzJfdCBudjg0X2N0
-eF92b29kb29bXSA9IHsKIAkweDAwNzAwMDhlLCAweDAwNzAwMDljLCAweDAwMjAwMDIwLCAweDAw
-NjAwMDA4LCAweDAwNTAwMDRjLCAweDAwNDAwZTg5LAogCTB4MDAyMDAwMDAsIDB4MDA2MDAwMDcs
-IDB4MDAzMDAwMDAsIDB4MDBjMDAwZmYsIDB4MDAyMDAwMDAsIDB4MDA4MDAwZmYsCkBAIC0xNTYs
-NiArMTk3LDkgQEAgbnY1MF9ncmFwaF9pbml0X2N0eGN0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
-KQogCURSTV9ERUJVRygiXG4iKTsKIAogCXN3aXRjaCAoZGV2X3ByaXYtPmNoaXBzZXQpIHsKKwlj
-YXNlIDB4ODY6CisJCXZvb2RvbyA9IG52ODZfY3R4X3Zvb2RvbzsKKwkJYnJlYWs7CiAJY2FzZSAw
-eDg0OgogCQl2b29kb28gPSBudjg0X2N0eF92b29kb287CiAJCWJyZWFrOwo=
-------=_Part_12704_14708878.1189976796482
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+When my mouse moves around on the left screen there is a pointer in the top
+left corner of the right screen. If I move the mouse over a input/markable
+field both pointers change accordingly. If I move my mouse over to the right
+screen the pointer in the top left corner disapperes from the right screen and
+show up on the left.
+With other words: there is always a pointer in the top left corner of the
+screen where my active mouse-pointer is not.
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+Option "swcursor" "true" in the device section makes the extra pointer
+disappere.
 
-------=_Part_12704_14708878.1189976796482--
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
