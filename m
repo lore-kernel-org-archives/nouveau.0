@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12520] EXA greedy mode corruption
-Date: Sat, 22 Sep 2007 05:57:21 -0700 (PDT)
-Message-ID: <20070922125721.83D7F13006A@annarchy.freedesktop.org>
+Date: Sat, 22 Sep 2007 05:59:39 -0700 (PDT)
+Message-ID: <20070922125939.CD83613006A@annarchy.freedesktop.org>
 References: <bug-12520-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12520
 
 
 
-------- Comment #1 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-09-22 05:58 PST -------
-Created an attachment (id=11682)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11682&action=view)
-EXA corruption
+------- Comment #2 from castet.matthieu-GANU6spQydw@public.gmane.org  2007-09-22 06:00 PST -------
+Created an attachment (id=11683)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11683&action=view)
+xorg log
 
 
 -- 
