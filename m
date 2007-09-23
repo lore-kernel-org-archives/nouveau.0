@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12520] EXA greedy mode corruption
-Date: Sun, 23 Sep 2007 08:47:58 -0700 (PDT)
-Message-ID: <20070923154758.9FC02130070@annarchy.freedesktop.org>
+Date: Sun, 23 Sep 2007 08:50:53 -0700 (PDT)
+Message-ID: <20070923155054.0F4C613006E@annarchy.freedesktop.org>
 References: <bug-12520-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,21 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12520
 
 
+marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org
+                   |                            |g
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+                   |g                           |
 
 
-
-------- Comment #4 from swanson-ueoY2BOuUdHYtjvyW6yDsg@public.gmane.org  2007-09-23 08:49 PST -------
-The corruption also appears when using EXA "greedy" with Gnome Nautilus. Any
-redraws for background damage after moving or closing a window, the damage is
-always drawn using top left (0,0) of the background. Switching to EXA "always"
-fixes problem.
-
-This is on a R200 running xorg-server 1.4 release and xf86-video-ati current
-GIT so definitely not a Nouveau issue. Note bug still assigned to Nouveau
-Project project though.
 
 
 -- 
 Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
 ------- You are receiving this mail because: -------
+You are on the CC list for the bug, or are watching someone who is.
+You are the assignee for the bug, or are watching the assignee.
 You are the assignee for the bug, or are watching the assignee.
