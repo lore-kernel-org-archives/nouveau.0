@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12520] EXA greedy mode corruption
-Date: Mon, 24 Sep 2007 03:39:25 -0700 (PDT)
-Message-ID: <20070924103925.BA85E13006F@annarchy.freedesktop.org>
-References: <bug-12520-8800@http.bugs.freedesktop.org/>
+From: Robert Millan <rmh-pC/4jmrOO5FBDgjK7y7TUQ@public.gmane.org>
+Subject: [PATCH] verify SDL_Init
+Date: Mon, 24 Sep 2007 16:58:28 +0200
+Message-ID: <20070924145828.GA29161@thorin>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="h31gzZEtNLTqOjlF"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12520-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +18,55 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12520
+
+--h31gzZEtNLTqOjlF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
 
-
-
-
-------- Comment #5 from michel-CdwZJljFklH+2FeEXyspIVaTQe2KTcn/@public.gmane.org  2007-09-24 03:40 PST -------
-The fallback case in exaFillRegionSolid needs to be fixed to use something else
-than fbFillRegionTiled, so the GC is taken into account properly. Any takers?
-
+Skipping SDL_Init failure leads to segfault in further SDL calls.  This
+patch makes the situation easier to understand to the user.
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are on the CC list for the bug, or are watching someone who is.
+Robert Millan
+
+<GPLv2> I know my rights; I want my phone call!
+<DRM> What use is a phone call, if you are unable to speak?
+(as seen on /.)
+
+--h31gzZEtNLTqOjlF
+Content-Type: text/x-diff; charset=us-ascii
+Content-Disposition: attachment; filename="renouveau_init.diff"
+
+Index: re.c
+===================================================================
+RCS file: /cvsroot/nouveau/renouveau/re.c,v
+retrieving revision 1.125
+diff -u -r1.125 re.c
+--- re.c	28 Aug 2007 11:41:31 -0000	1.125
++++ re.c	24 Sep 2007 13:42:21 -0000
+@@ -53,7 +53,10 @@
+  */
+ void setup_SDL(int opengl)
+ {
+-	SDL_Init(SDL_INIT_VIDEO);
++	if (SDL_Init(SDL_INIT_VIDEO)) {
++                fprintf (stderr, "Failed to initialise SDL video output.\n");
++                exit (1);
++        }
+ 	if (opengl) {
+ 		//SDL_GL_SetAttribute(SDL_GL_STEREO,1);
+ 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,0);
+
+--h31gzZEtNLTqOjlF
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--h31gzZEtNLTqOjlF--
