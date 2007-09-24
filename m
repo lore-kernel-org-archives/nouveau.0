@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12520] EXA greedy mode corruption
-Date: Sun, 23 Sep 2007 08:50:53 -0700 (PDT)
-Message-ID: <20070923155054.0F4C613006E@annarchy.freedesktop.org>
-References: <bug-12520-8800@http.bugs.freedesktop.org/>
+From: Vlad <vladc6-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
+Subject: NV-TV-Out Project
+Date: Sun, 23 Sep 2007 22:41:33 -0700 (PDT)
+Message-ID: <980052.61532.qm@web54409.mail.yahoo.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12520-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,26 +16,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: dthierbach-Mmb7MZpHnFY@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12520
+Hi,
+
+I saw that one of the goals of the Nouveau project is to enable TV-out
+for NVIDIA cards, so I wanted to bring to your attention the fact that
+the free/open-source NV-TV-Out Project already supports TV-out
+functionality on some NVIDIA cards. The code also contains a good
+amount of information about the hardware, which might be helpful to
+Nouveau.
+
+NV-TV-Out Project website:
+http://sourceforge.net/projects/nv-tv-out/
+
+Code:
+http://nv-tv-out.cvs.sourceforge.net/nv-tv-out/
+
+Documentation:
+http://nv-tv-out.cvs.sourceforge.net/nv-tv-out/nvtv/doc/
+
+Thanks,
+-Vlad
 
 
-marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org
-                   |                            |g
-         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-                   |g                           |
-
-
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are on the CC list for the bug, or are watching someone who is.
-You are the assignee for the bug, or are watching the assignee.
-You are the assignee for the bug, or are watching the assignee.
+      ____________________________________________________________________________________
+Shape Yahoo! in your own image.  Join our Network Research Panel today!   http://surveylink.yahoo.com/gmrs/yahoo_panel_invite.asp?a=7 
