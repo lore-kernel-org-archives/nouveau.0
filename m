@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12520] EXA greedy mode corruption
-Date: Wed, 26 Sep 2007 00:47:07 -0700 (PDT)
-Message-ID: <20070926074707.D858613006F@annarchy.freedesktop.org>
+Date: Wed, 26 Sep 2007 08:09:22 -0700 (PDT)
+Message-ID: <20070926150922.CED1313006F@annarchy.freedesktop.org>
 References: <bug-12520-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12520
 
 
 
-------- Comment #6 from michel-CdwZJljFklH+2FeEXyspIVaTQe2KTcn/@public.gmane.org  2007-09-26 00:48 PST -------
-Created an attachment (id=11757)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11757&action=view)
-Probable fix, against server-1.4-branch
-
-Does this patch fix it?
+------- Comment #7 from tilman-pXKshE1ckPq3FNxj4QCNOA@public.gmane.org  2007-09-26 08:10 PST -------
+I tested the master branch by adding
+  pPatOrg->x != 0 || pPatOrg->y != 0
+to the condition which fixes the issues for me.
 
 
 -- 
