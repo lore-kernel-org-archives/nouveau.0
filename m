@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12582] Crash on GeForce 7300 SE
-Date: Wed, 26 Sep 2007 16:02:23 -0700 (PDT)
-Message-ID: <20070926230223.7D45013006E@annarchy.freedesktop.org>
+Date: Wed, 26 Sep 2007 16:19:03 -0700 (PDT)
+Message-ID: <20070926231904.CBACF13006F@annarchy.freedesktop.org>
 References: <bug-12582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12582
 
 
 
-------- Comment #3 from panov-ABcqYfMUPmYZY0rY4shWHijHesifYMBh@public.gmane.org  2007-09-26 16:03 PST -------
-Created an attachment (id=11774)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11774&action=view)
-xorg.conf
+------- Comment #4 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-09-26 16:20 PST -------
+Could you please retry without the nvidiafb module (this is not supported) and
+provide a kernel log ? 
 
 
 -- 
