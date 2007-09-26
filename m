@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11240] doesn't start X - DMA Queue hang
-Date: Tue, 25 Sep 2007 07:42:57 -0700 (PDT)
-Message-ID: <20070925144258.2444213006E@annarchy.freedesktop.org>
-References: <bug-11240-8800@http.bugs.freedesktop.org/>
+From: Giuseppe Bilotta <giuseppe.bilotta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] xf86-video-nouveau: enable backlight toggling for
+	GeForce2 Go
+Date: Wed, 26 Sep 2007 02:25:58 +0200
+Message-ID: <11907663583753-git-send-email-giuseppe.bilotta@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11240-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,23 +17,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Giuseppe Bilotta <giuseppe.bilotta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11240
+GeForce2 Go was explicitly excluded from the NVBacklightEnable() code
+(purposedly, as the code used for the other chipsets on x86 has no
+effect.) This caused the backlight to remain active on laptops
+equipped with such a card, even when DPMS modes were active.
 
+Fix the issue by introducing the proper registry writes to toggle the
+backlight for these cards.
 
+Signed-off-by: Giuseppe Bilotta <giuseppe.bilotta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ src/nv_driver.c |   11 +++++++++--
+ 1 files changed, 9 insertions(+), 2 deletions(-)
 
-
-
-------- Comment #13 from notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org  2007-09-25 07:44 PST -------
-Created an attachment (id=11746)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11746&action=view)
-log with debugging
-
-OK, here's the log with debugging.
-
-
+diff --git a/src/nv_driver.c b/src/nv_driver.c
+index 2a730ab..078d513 100644
+--- a/src/nv_driver.c
++++ b/src/nv_driver.c
+@@ -2014,8 +2014,15 @@ static void NVBacklightEnable(NVPtr pNv,  Bool on)
+ #endif
+     
+     if(pNv->LVDS) {
+-       if(pNv->twoHeads && ((pNv->Chipset & 0x0ff0) != CHIPSET_NV11)) {
+-           nvWriteMC(pNv, 0x130C, on ? 3 : 7);
++       if(pNv->twoHeads) {
++           if((pNv->Chipset & 0x0ff0) != CHIPSET_NV11) {
++               nvWriteMC(pNv, 0x130C, on ? 3 : 7);
++           } else {
++               CARD32 tmp_pcrt;
++               tmp_pcrt = nvReadCRTC0(pNv, NV_CRTC_081C) & 0xFFFFFFFC;
++               if(on) tmp_pcrt |= 0x1;
++               nvWriteCRTC0(pNv, NV_CRTC_081C, tmp_pcrt);
++           }
+        }
+     } else {
+        CARD32 fpcontrol;
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug, or are watching the assignee.
+1.5.3.2
