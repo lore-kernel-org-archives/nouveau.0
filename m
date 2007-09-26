@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12579] Nouveau is slow when repainting the desktop
-Date: Wed, 26 Sep 2007 12:36:31 -0700 (PDT)
-Message-ID: <20070926193631.88B6513006F@annarchy.freedesktop.org>
+Date: Wed, 26 Sep 2007 12:36:49 -0700 (PDT)
+Message-ID: <20070926193649.3C76813006F@annarchy.freedesktop.org>
 References: <bug-12579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12579
 
 
 
-------- Comment #1 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-09-26 12:37 PST -------
-Created an attachment (id=11768)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11768&action=view)
-X log
+------- Comment #2 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-09-26 12:38 PST -------
+Created an attachment (id=11769)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11769&action=view)
+Xorg Conf
 
 
 -- 
