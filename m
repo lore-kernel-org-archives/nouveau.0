@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12582] Crash on GeForce 7300 SE
-Date: Thu, 27 Sep 2007 16:00:56 -0700 (PDT)
-Message-ID: <20070927230056.E62DA13006E@annarchy.freedesktop.org>
+Date: Thu, 27 Sep 2007 16:01:42 -0700 (PDT)
+Message-ID: <20070927230142.D4C9913006E@annarchy.freedesktop.org>
 References: <bug-12582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12582
 
 
 
-------- Comment #6 from panov-ABcqYfMUPmYZY0rY4shWHijHesifYMBh@public.gmane.org  2007-09-27 16:02 PST -------
-Created an attachment (id=11790)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11790&action=view)
-Xorg.0.log made without nvidiafb
+------- Comment #7 from panov-ABcqYfMUPmYZY0rY4shWHijHesifYMBh@public.gmane.org  2007-09-27 16:03 PST -------
+Created an attachment (id=11791)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11791&action=view)
+screenshot of artifacts
 
 
 -- 
