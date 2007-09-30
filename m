@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12520] EXA greedy mode corruption
-Date: Sun, 30 Sep 2007 07:47:40 -0700 (PDT)
-Message-ID: <20070930144741.0DA6213005E@annarchy.freedesktop.org>
-References: <bug-12520-8800@http.bugs.freedesktop.org/>
+From: Stephan Schmid <stephan_2303-S0/GAf8tV78@public.gmane.org>
+Subject: [Patch] reenable fifos if we get an error while fifos
+	disabled
+Date: Sun, 30 Sep 2007 20:46:58 +0200
+Message-ID: <46FFEF22.8080205@web.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="------------010606040103020404040001"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12520-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,20 +15,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMjUyMAoKCgoKCi0t
-LS0tLS0gQ29tbWVudCAjOSBmcm9tIGNhc3RldC5tYXR0aGlldUBmcmVlLmZyICAyMDA3LTA5LTMw
-IDA3OjQ5IFBTVCAtLS0tLS0tCkRlYmlhbiB4b3JnLXNlcnZlciAoMjoxLjQtMykgd29ya3MgZmlu
-ZS4gSXQgZ290IHRoZSBmaXggOgogICogQWRkIDA4X2V4YV9maXhfZXhhRmlsbFJlZ2lvblRpbGVk
-X2ZhbGxiYWNrLmRpZmYgYnkgTWljaGVsIETDg8KkbnplciB0byBwdW50CiAgICBvbiBmYWxsYmFj
-ayBjYXNlIG5vdCBoYW5kbGVkIGNvcnJlY3RseSBpbiBleGFGaWxsUmVnaW9uVGlsZWQgKGJhY2tw
-b3J0ZWQKICAgIGZyb20gbWFzdGVyJ3MgYzdkNmQxZjUpOyBjbG9zZXM6ICM0NDQyMDMuCgoKLS0g
-CkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZz
-LmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVz
-ZTogLS0tLS0tLQpZb3UgYXJlIG9uIHRoZSBDQyBsaXN0IGZvciB0aGUgYnVnLCBvciBhcmUgd2F0
-Y2hpbmcgc29tZW9uZSB3aG8gaXMuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+This is a multi-part message in MIME format.
+--------------010606040103020404040001
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hello,
+while playing around with multiple fifo contexts I got fifo hangs when opening glxgears nr.3.
+The reason is that in drm/linux_core/nouveau_fifo.c l.342 engine->graph.create_context() returns 
+-ENOMEM (I dont know why but I think this problems also appears with other errors).
+But the real problem is that then nouveau_fifo alloc() returns without reenabling fifo execution, 
+so all fifos hang. 
+With this patch glxgears nr.3 only prints scary messages and falls back to software rendering.
+
+Greetings
+Stephan Schmid
+
+
+--------------010606040103020404040001
+Content-Type: text/plain;
+ name="patch_fifo_reenable"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+ filename="patch_fifo_reenable"
+
+diff --git a/shared-core/nouveau_fifo.c b/shared-core/nouveau_fifo.c
+index 437c84f..88a429a 100644
+--- a/shared-core/nouveau_fifo.c
++++ b/shared-core/nouveau_fifo.c
+@@ -342,6 +342,16 @@ nouveau_fifo_alloc(struct drm_device *dev, struct nouveau_channel **chan_ret,
+ 	ret = engine->graph.create_context(chan);
+ 	if (ret) {
+ 		nouveau_fifo_free(chan);
++
++		NV_WRITE(NV04_PFIFO_CACHE1_DMA_PUSH,
++		NV_READ(NV04_PFIFO_CACHE1_DMA_PUSH) | 1);
++		NV_WRITE(NV03_PFIFO_CACHE1_PUSH0, 0x00000001);
++		NV_WRITE(NV04_PFIFO_CACHE1_PULL0, 0x00000001);
++		NV_WRITE(NV04_PFIFO_CACHE1_PULL1, 0x00000001);
++
++		/* reenable the fifo caches */
++		NV_WRITE(NV03_PFIFO_CACHES, 1);
++
+ 		return ret;
+ 	}
+ 
+@@ -349,6 +359,16 @@ nouveau_fifo_alloc(struct drm_device *dev, struct nouveau_channel **chan_ret,
+ 	ret = engine->fifo.create_context(chan);
+ 	if (ret) {
+ 		nouveau_fifo_free(chan);
++
++		NV_WRITE(NV04_PFIFO_CACHE1_DMA_PUSH,
++		NV_READ(NV04_PFIFO_CACHE1_DMA_PUSH) | 1);
++		NV_WRITE(NV03_PFIFO_CACHE1_PUSH0, 0x00000001);
++		NV_WRITE(NV04_PFIFO_CACHE1_PULL0, 0x00000001);
++		NV_WRITE(NV04_PFIFO_CACHE1_PULL1, 0x00000001);
++
++		/* reenable the fifo caches */
++		NV_WRITE(NV03_PFIFO_CACHES, 1);
++
+ 		return ret;
+ 	}
+ 
+
+
+--------------010606040103020404040001
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--------------010606040103020404040001--
