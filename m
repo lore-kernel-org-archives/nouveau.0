@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10572] "MigrationHeuristic" "greedy" by default on
-	GeForce 7600 GS
-Date: Sun, 30 Sep 2007 12:19:23 -0700 (PDT)
-Message-ID: <20070930191923.BCCAC13006F@annarchy.freedesktop.org>
-References: <bug-10572-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 10626] rendering garbage at top and bottom of the
+	screen
+Date: Sun, 30 Sep 2007 12:20:52 -0700 (PDT)
+Message-ID: <20070930192052.C82A513006F@annarchy.freedesktop.org>
+References: <bug-10626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-10572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-10626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +21,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=10572
-
-
-marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=10626
 
 
 
 
-------- Comment #4 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-09-30 12:21 PST -------
-Closing, EXA is working properly & quickly on nv40 these days.
+
+------- Comment #6 from marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org  2007-09-30 12:22 PST -------
+Is this bug still there ? I'd expect not, given the amount of changes that went
+in since april.
 
 
 -- 
