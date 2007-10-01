@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10717] nouveau fails to start, waiting on dma
-Date: Mon,  1 Oct 2007 12:57:49 -0700 (PDT)
-Message-ID: <20071001195749.D8AC713005E@annarchy.freedesktop.org>
+Date: Mon,  1 Oct 2007 12:58:21 -0700 (PDT)
+Message-ID: <20071001195822.09A2113005E@annarchy.freedesktop.org>
 References: <bug-10717-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +27,10 @@ wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #10517|0                           |1
-        is obsolete|                            |
+  Attachment #11845|application/octet-stream    |text/plain
+          mime type|                            |
 
 
-
-
-------- Comment #9 from wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org  2007-10-01 12:59 PST -------
-Created an attachment (id=11845)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11845&action=view)
-xorg log of failed startup
 
 
 -- 
