@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10717] nouveau fails to start, waiting on dma
-Date: Mon,  1 Oct 2007 12:59:30 -0700 (PDT)
-Message-ID: <20071001195937.6ABC513006F@annarchy.freedesktop.org>
+Date: Mon,  1 Oct 2007 13:01:20 -0700 (PDT)
+Message-ID: <20071001200120.B479213005E@annarchy.freedesktop.org>
 References: <bug-10717-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,29 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10717
 
 
 
-------- Comment #10 from wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org  2007-10-01 13:01 PST -------
-Although I had insmod'd drm.ko with debug=1, all I have in the kernel log is
-this:
-
-Oct  1 21:48:47 localhost kernel: [  647.651041] [drm] Initialized drm 1.1.0
-20060810
-Oct  1 21:49:16 localhost kernel: [  676.361546] [drm] Initialized nouveau
-0.0.10 20060213 on minor 0
-Oct  1 21:49:16 localhost kernel: [  676.361656] [drm] Used old pci detect:
-framebuffer loaded
-Oct  1 21:50:31 localhost kernel: [  750.846137] appletouch: incomplete data
-package (first byte: 0, length: 17).
-Oct  1 21:51:03 localhost kernel: [  783.485325] agpgart: Putting AGP V2 device
-at 0000:00:0b.0 into 4x mode
-Oct  1 21:51:03 localhost kernel: [  783.485334] agpgart: Putting AGP V2 device
-at 0000:00:10.0 into 4x mode
-Oct  1 21:51:03 localhost kernel: [  783.508060] [drm] Allocating FIFO number 0
-Oct  1 21:51:03 localhost kernel: [  783.508778] [drm] nouveau_fifo_alloc:
-initialised FIFO 0
-Oct  1 21:51:03 localhost kernel: [  783.528614] [drm] Allocating FIFO number 1
-Oct  1 21:51:03 localhost kernel: [  783.529175] [drm] nouveau_fifo_alloc:
-initialised FIFO 1
-Oct  1 21:53:36 localhost syslogd 1.4.1#21ubuntu3: restart.
+------- Comment #11 from wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org  2007-10-01 13:03 PST -------
+Forgot to mention the symptoms, etc: that's git from an hour ago, and it makes
+it to the point where it displays the X cursor, but then appears to hang in the
+kernel: the front led light (controlled by the kernel) stays in whatever state
+it was in, the system is unresponsive, I have to hard reboot. But this is
+progress, I guess :)
 
 
 -- 
