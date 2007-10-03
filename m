@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12665] Option RandR12 breaks X.org
-Date: Wed,  3 Oct 2007 10:15:23 -0700 (PDT)
-Message-ID: <20071003171524.0555F13006F@annarchy.freedesktop.org>
+Date: Wed,  3 Oct 2007 10:15:38 -0700 (PDT)
+Message-ID: <20071003171538.941E513006F@annarchy.freedesktop.org>
 References: <bug-12665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12665
 
 
 
-------- Comment #2 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-03 10:17 PST -------
-Created an attachment (id=11883)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=11883&action=view)
-X log
+------- Comment #3 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-03 10:17 PST -------
+Created an attachment (id=11884)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11884&action=view)
+/var/log/messages
 
 
 -- 
