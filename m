@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12665] New: Option RandR12 breaks X.org
-Date: Wed,  3 Oct 2007 10:14:45 -0700 (PDT)
-Message-ID: <bug-12665-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12665] Option RandR12 breaks X.org
+Date: Wed,  3 Oct 2007 10:15:08 -0700 (PDT)
+Message-ID: <20071003171508.F275E13006F@annarchy.freedesktop.org>
+References: <bug-12665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-12665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=12665
 
-           Summary: Option RandR12 breaks X.org
-           Product: Mesa
-           Version: CVS
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org
 
 
-Using nouveau from 9.30, X fails to start, with my monitor displaying "Input
-Not Supported", and the regular text terminal is corrupted.  Even w/o the
-option, nouveau is not able to start, but the nvidia driver is able to if I
-build it again.
+
+
+------- Comment #1 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-03 10:17 PST -------
+Created an attachment (id=11882)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=11882&action=view)
+Xorg configuration file
 
 
 -- 
