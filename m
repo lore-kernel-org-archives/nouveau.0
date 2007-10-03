@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12665] Option RandR12 breaks X.org
-Date: Wed,  3 Oct 2007 11:17:03 -0700 (PDT)
-Message-ID: <20071003181703.3725E13006F@annarchy.freedesktop.org>
+Date: Wed,  3 Oct 2007 11:30:10 -0700 (PDT)
+Message-ID: <20071003183010.81B2013006F@annarchy.freedesktop.org>
 References: <bug-12665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12665
 
 
-adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
 
 
 
+------- Comment #6 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-03 11:32 PST -------
+git fetch is the best way, perhaps you need to git rebase origin after it?
 
-------- Comment #5 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-03 11:19 PST -------
-Wow, you're good.  I'd messed up building from git the second time (issues with
-git fetch vs git pull).  Anyway, after PULLing the latest sources and
-rebuilding, the problem has gone away.  Thanks you, and sorry for wasting your
-time.
-
-I guess I'll go ahead and mark it as fixed, because you've already fixed it ;-)
+Sorry for the distorted message, a part that should have been at end, ended up
+in the middle.
 
 
 -- 
