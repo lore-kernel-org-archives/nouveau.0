@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12807] X start,
 	but keyboard and mouse don't work (and i must shutdown the pc)
-Date: Mon, 15 Oct 2007 05:16:21 -0700 (PDT)
-Message-ID: <20071015121622.1714013006F@annarchy.freedesktop.org>
+Date: Mon, 15 Oct 2007 05:17:33 -0700 (PDT)
+Message-ID: <20071015121733.B77D913006F@annarchy.freedesktop.org>
 References: <bug-12807-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12807
 
 
 
-------- Comment #1 from kpietro-whZMOeQn8C0@public.gmane.org  2007-10-15 05:19 PST -------
-Created an attachment (id=12049)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12049&action=view)
-Xorglog
+------- Comment #2 from kpietro-whZMOeQn8C0@public.gmane.org  2007-10-15 05:20 PST -------
+Created an attachment (id=12050)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12050&action=view)
+my xorg.conf
 
 
 -- 
