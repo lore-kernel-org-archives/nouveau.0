@@ -1,7 +1,8 @@
-From: Pietro Capriata <kpietro-whZMOeQn8C0@public.gmane.org>
-Subject: -minline-all-stringops
-Date: Mon, 15 Oct 2007 12:08:34 +0000 (GMT)
-Message-ID: <367939.57136.qm@web27707.mail.ukl.yahoo.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 12807] New: X start,
+	but keyboard and mouse don't work (and i must shutdown the pc)
+Date: Mon, 15 Oct 2007 05:15:26 -0700 (PDT)
+Message-ID: <bug-12807-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,15 +19,28 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-hello
-when i Tried to compile xf86-video-nouveau 
-come this message:
-cc1: error: unrecognized command line option "-minline-all-stringops"
-make[2]: *** [nv_accel_common.lo] Error 1
-make[1]: *** [all-recursive] Error 1
-make: *** [all] Error 2
+http://bugs.freedesktop.org/show_bug.cgi?id=12807
+
+           Summary: X start, but keyboard and mouse don't work (and i must
+                    shutdown the pc)
+           Product: xorg
+           Version: unspecified
+          Platform: PowerPC
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: kpietro-whZMOeQn8C0@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+WIndow maker work, but keyboard and mouse don't work .
+However is a big news !
 
-      ___________________________________ 
-L'email della prossima generazione? Puoi averla con la nuova Yahoo! Mail: http://it.docs.yahoo.com/nowyoucan.html
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
