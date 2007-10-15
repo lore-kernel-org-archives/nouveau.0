@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12805] error dma
-Date: Mon, 15 Oct 2007 01:26:55 -0700 (PDT)
-Message-ID: <20071015082656.109CF13006F@annarchy.freedesktop.org>
-References: <bug-12805-8800@http.bugs.freedesktop.org/>
+From: Pietro Capriata <kpietro-whZMOeQn8C0@public.gmane.org>
+Subject: -minline-all-stringops
+Date: Mon, 15 Oct 2007 12:08:34 +0000 (GMT)
+Message-ID: <367939.57136.qm@web27707.mail.ukl.yahoo.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12805-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +18,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12805
+hello
+when i Tried to compile xf86-video-nouveau 
+come this message:
+cc1: error: unrecognized command line option "-minline-all-stringops"
+make[2]: *** [nv_accel_common.lo] Error 1
+make[1]: *** [all-recursive] Error 1
+make: *** [all] Error 2
 
 
 
-
-
-------- Comment #1 from kpietro-whZMOeQn8C0@public.gmane.org  2007-10-15 01:30 PST -------
-Created an attachment (id=12048)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12048&action=view)
-xorglog
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug, or are watching the assignee.
+      ___________________________________ 
+L'email della prossima generazione? Puoi averla con la nuova Yahoo! Mail: http://it.docs.yahoo.com/nowyoucan.html
