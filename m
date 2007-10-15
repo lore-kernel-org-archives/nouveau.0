@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12804] New: Randr12 fails to start with "no screens
+Subject: [Bug 12804] Randr12 fails to start with "no screens
 	found" on 7600go
-Date: Sun, 14 Oct 2007 19:57:33 -0700 (PDT)
-Message-ID: <bug-12804-8800@http.bugs.freedesktop.org/>
+Date: Sun, 14 Oct 2007 19:58:14 -0700 (PDT)
+Message-ID: <20071015025815.0C60913006F@annarchy.freedesktop.org>
+References: <bug-12804-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-12804-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=12804
 
-           Summary: Randr12 fails to start with "no screens found" on 7600go
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Running on a laptop with a geforce 7600Go & inbuilt LCD.  Without the randr12
-option set, the drivers work fine.
 
-Attaching the Xorg.0.log, as requested.
+
+------- Comment #1 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-14 20:01 PST -------
+Created an attachment (id=12046)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12046&action=view)
+Xorg log with "randr12" "true"
 
 
 -- 
