@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12807] X start,
-	but keyboard and mouse don't work (and i must shutdown the pc)
-Date: Mon, 15 Oct 2007 05:17:33 -0700 (PDT)
-Message-ID: <20071015121733.B77D913006F@annarchy.freedesktop.org>
-References: <bug-12807-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12804] Randr12 fails to start with "no screens
+	found" on 7600go
+Date: Mon, 15 Oct 2007 12:31:19 -0700 (PDT)
+Message-ID: <20071015193119.6E30113006F@annarchy.freedesktop.org>
+References: <bug-12804-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12807-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12804-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12807
+http://bugs.freedesktop.org/show_bug.cgi?id=12804
 
 
 
 
 
-------- Comment #2 from kpietro-whZMOeQn8C0@public.gmane.org  2007-10-15 05:20 PST -------
-Created an attachment (id=12050)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12050&action=view)
-my xorg.conf
+------- Comment #3 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-15 12:34 PST -------
+LVDS is currently unsupported, until someone with a laptop comes around and
+reverse engineers it.
 
 
 -- 
