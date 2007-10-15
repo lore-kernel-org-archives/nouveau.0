@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12804] Randr12 fails to start with "no screens
 	found" on 7600go
-Date: Sun, 14 Oct 2007 19:58:14 -0700 (PDT)
-Message-ID: <20071015025815.0C60913006F@annarchy.freedesktop.org>
+Date: Sun, 14 Oct 2007 20:00:21 -0700 (PDT)
+Message-ID: <20071015030022.2EE7213006F@annarchy.freedesktop.org>
 References: <bug-12804-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12804
 
 
 
-------- Comment #1 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-14 20:01 PST -------
-Created an attachment (id=12046)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12046&action=view)
-Xorg log with "randr12" "true"
+------- Comment #2 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-14 20:03 PST -------
+Created an attachment (id=12047)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12047&action=view)
+Xorg log without randr12
 
 
 -- 
