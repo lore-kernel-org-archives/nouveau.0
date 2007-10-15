@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12807] New: X start,
+Subject: [Bug 12807] X start,
 	but keyboard and mouse don't work (and i must shutdown the pc)
-Date: Mon, 15 Oct 2007 05:15:26 -0700 (PDT)
-Message-ID: <bug-12807-8800@http.bugs.freedesktop.org/>
+Date: Mon, 15 Oct 2007 05:16:21 -0700 (PDT)
+Message-ID: <20071015121622.1714013006F@annarchy.freedesktop.org>
+References: <bug-12807-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-12807-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=12807
 
-           Summary: X start, but keyboard and mouse don't work (and i must
-                    shutdown the pc)
-           Product: xorg
-           Version: unspecified
-          Platform: PowerPC
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: kpietro-whZMOeQn8C0@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-WIndow maker work, but keyboard and mouse don't work .
-However is a big news !
+
+
+------- Comment #1 from kpietro-whZMOeQn8C0@public.gmane.org  2007-10-15 05:19 PST -------
+Created an attachment (id=12049)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12049&action=view)
+Xorglog
 
 
 -- 
