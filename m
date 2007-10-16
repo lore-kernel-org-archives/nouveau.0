@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12804] Randr12 fails to start with "no screens
-	found" on 7600go
-Date: Mon, 15 Oct 2007 23:52:06 -0700 (PDT)
-Message-ID: <20071016065208.2DE8013006F@annarchy.freedesktop.org>
-References: <bug-12804-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12825] New: TvTime shows only the upper left corner
+	(~ 1280x1024) in Randr1.2
+Date: Tue, 16 Oct 2007 06:55:37 -0700 (PDT)
+Message-ID: <bug-12825-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12804-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +19,34 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12804
+http://bugs.freedesktop.org/show_bug.cgi?id=12825
+
+           Summary: TvTime shows only the upper left corner (~ 1280x1024) in
+                    Randr1.2
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+At higher resolutions greater than 1280x1024 TvTime only shows the top left, it
+seems to 1280x1024, the rest is blue. If I see Tvtime in small window in the
+upper left is well, if I put the window in the lower right corner is all blue.
 
+The gdm starts with a resolution of 1280x1024, with nv boots to the maximum
+resolution of monitor, 2048x1536.
 
+The screen displayed a line of vertical pixel roses on the right side and a
+more thin at the bottom.
 
-------- Comment #5 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-15 23:55 PST -------
-You should come to our irc channel (#nouveau on irc.freenode.net), because
-there is no such thing as a simple anser ;-)
+Tvtime does not show any error.
 
 
 -- 
