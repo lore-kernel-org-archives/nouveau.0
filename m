@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12825] TvTime shows only the upper left corner (~
 	1280x1024) in Randr1.2
-Date: Tue, 16 Oct 2007 06:58:15 -0700 (PDT)
-Message-ID: <20071016135816.5A27213006F@annarchy.freedesktop.org>
+Date: Tue, 16 Oct 2007 07:01:06 -0700 (PDT)
+Message-ID: <20071016140108.119AA13006F@annarchy.freedesktop.org>
 References: <bug-12825-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12825
 
 
 
-------- Comment #1 from david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-16 07:01 PST -------
-Created an attachment (id=12070)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12070&action=view)
-log tvtime -v
+------- Comment #2 from david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-16 07:04 PST -------
+Created an attachment (id=12071)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12071&action=view)
+log Xorg
 
 
 -- 
