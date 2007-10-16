@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12804] Randr12 fails to start with "no screens
 	found" on 7600go
-Date: Mon, 15 Oct 2007 17:25:46 -0700 (PDT)
-Message-ID: <20071016002546.78B1313006F@annarchy.freedesktop.org>
+Date: Mon, 15 Oct 2007 23:52:06 -0700 (PDT)
+Message-ID: <20071016065208.2DE8013006F@annarchy.freedesktop.org>
 References: <bug-12804-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12804
 
 
 
-------- Comment #4 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-15 17:29 PST -------
-Ok.  I've got one half of the requirements, then.  Is reverse engineering LVDS
-something that I could (a) provide useful information for, or (b) easily learn
-how to do myself with little previous X experience?
+------- Comment #5 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-15 23:55 PST -------
+You should come to our irc channel (#nouveau on irc.freenode.net), because
+there is no such thing as a simple anser ;-)
 
 
 -- 
