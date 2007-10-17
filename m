@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12807] X start,
 	but keyboard and mouse don't work (and i must shutdown the pc)
-Date: Wed, 17 Oct 2007 07:48:38 -0700 (PDT)
-Message-ID: <20071017144839.AEA5113006F@annarchy.freedesktop.org>
+Date: Wed, 17 Oct 2007 08:23:19 -0700 (PDT)
+Message-ID: <20071017152320.2831013006F@annarchy.freedesktop.org>
 References: <bug-12807-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12807
 
 
 
-------- Comment #4 from kpietro-whZMOeQn8C0@public.gmane.org  2007-10-17 07:52 PST -------
-Hello, i think that the problem i button mouse emulation (because the apple
-mouse has only one button , and the other is emulated by keyboard), because it
-block the pc only when i press the keyboard keys !
+------- Comment #5 from kpietro-whZMOeQn8C0@public.gmane.org  2007-10-17 08:26 PST -------
+Created an attachment (id=12085)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12085&action=view)
+last kernel log
 
 
 -- 
