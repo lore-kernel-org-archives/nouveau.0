@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10717] nouveau fails to start, waiting on dma
-Date: Sat, 20 Oct 2007 07:12:18 -0700 (PDT)
-Message-ID: <20071020141218.69CB013006F@annarchy.freedesktop.org>
-References: <bug-10717-8800@http.bugs.freedesktop.org/>
+From: "Mark Carey" <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [patch] [renouveau] Makefile typofix
+Date: Sun, 21 Oct 2007 08:52:57 +1300
+Message-ID: <34576580710201252m44586bfcoec1e5132dd4493a7@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed;
+	boundary="----=_Part_10968_4173158.1192909977877"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-10717-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +18,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=10717
+------=_Part_10968_4173158.1192909977877
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
+make builds parse_objects not parse-objects fix Makefile to remove the
+correct file
 
+------=_Part_10968_4173158.1192909977877
+Content-Type: text/x-diff; name=renouveau-Makefile-typo-fix.patch
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_f80jsbu9
+Content-Disposition: attachment; filename=renouveau-Makefile-typo-fix.patch
 
+LS0tIE1ha2VmaWxlCTIwMDctMTAtMjEgMDg6MjU6NTkuMDAwMDAwMDAwICsxMzAwCisrKyBNYWtl
+ZmlsZS5vcmlnCTIwMDctMTAtMjEgMDg6MjU6MzUuMDAwMDAwMDAwICsxMzAwCkBAIC03Miw3ICs3
+Miw3IEBACiAKIGNsZWFuOgogCXJtIC1mICQoVEFSR0VUKSAuZGVwZW5kICoubyBkaXNhc21fc2hh
+ZGVyIFwKLQkJcmVub3V2ZWF1LWdlbiBub3V2ZWF1X3JlZy5oIHJlbm91dmVhdS1wYXJzZSBwYXJz
+ZV9vYmplY3RzIFwKKwkJcmVub3V2ZWF1LWdlbiBub3V2ZWF1X3JlZy5oIHJlbm91dmVhdS1wYXJz
+ZSBwYXJzZS1vYmplY3RzIFwKIAkJcmVub3V2ZWF1LXJlcGxheQogCiBkZXA6IC5kZXBlbmQK
+------=_Part_10968_4173158.1192909977877
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
-------- Comment #14 from ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org  2007-10-20 07:16 PST -------
-Created an attachment (id=12135)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12135&action=view)
-xorg log of failed startup with offb
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug, or are watching the assignee.
+------=_Part_10968_4173158.1192909977877--
