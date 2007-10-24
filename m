@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12579] Nouveau is slow when repainting the desktop
-Date: Wed, 24 Oct 2007 12:50:41 -0700 (PDT)
-Message-ID: <20071024195041.9BB6E13000A@annarchy.freedesktop.org>
-References: <bug-12579-8800@http.bugs.freedesktop.org/>
+From: Luc VERNEREY <Luc.VERNEREY-GANU6spQydw@public.gmane.org>
+Subject: GeForce 4 TI 4200 for free (this is no joke,
+	this is no spam !)
+Date: Wed, 24 Oct 2007 21:36:41 +0200
+Message-ID: <200710242136.41182.Luc.VERNEREY@free.fr>
+Reply-To: Luc.VERNEREY-GANU6spQydw@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +21,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12579
+Hi there,
 
+I read on last news about Nouveau on Phoronix that some hardware has been 
+given to Nouveau developers.
 
-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+Therefore, would someone be interested by my old GeForce4-Ti 4200 / 64 Mb ???
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|Drivers/DRI/nouveau         |Driver/nouveau
-            Product|Mesa                        |xorg
-            Version|CVS                         |git
+I can send it to any developper that would be interested, instead of having 
+this card rusting in my basement !
 
+You also can see that proposal on the following topic in the phoronix forums :
+http://www.phoronix.com/forums/showthread.php?t=5724
 
+Let me know.
 
-
-------- Comment #3 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-24 12:54 PST -------
-Wrong product, hopefully this will switch it.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug, or are watching the assignee.
+Luc VERNEREY (France).
