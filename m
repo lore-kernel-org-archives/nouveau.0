@@ -1,15 +1,13 @@
-From: Arthur Huillet <arthur.huillet-GANU6spQydw@public.gmane.org>
-Subject: Re: GeForce 4 TI 4200 for free (this is no joke,
- this is no spam !)
-Date: Wed, 24 Oct 2007 22:33:00 +0200
-Message-ID: <20071024223300.0382f754.arthur.huillet@free.fr>
-References: <200710242136.41182.Luc.VERNEREY@free.fr>
-Reply-To: arthur.huillet-GANU6spQydw@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 12833] Geforce 8400M GS (id 0x427): won't start
+Date: Thu, 25 Oct 2007 02:21:38 -0700 (PDT)
+Message-ID: <20071025092138.901E4130009@annarchy.freedesktop.org>
+References: <bug-12833-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <200710242136.41182.Luc.VERNEREY-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-12833-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +18,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Luc.VERNEREY-GANU6spQydw@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
+http://bugs.freedesktop.org/show_bug.cgi?id=12833
 
-On Wed, 24 Oct 2007 21:36:41 +0200
-Luc VERNEREY <Luc.VERNEREY-GANU6spQydw@public.gmane.org> wrote:
 
-> I read on last news about Nouveau on Phoronix that some hardware has been 
-> given to Nouveau developers.
-> 
-> Therefore, would someone be interested by my old GeForce4-Ti 4200 / 64 Mb ???
-> 
-> I can send it to any developper that would be interested, instead of having 
-> this card rusting in my basement !
+debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org changed:
 
-Thank you for your kind offer - I have already contacted you via phoronix's PM system, but I assume
-you did not see my answer ? :)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Geforce 8400M GS (id 0x427):|Geforce 8400M GS (id 0x427):
+                   |stick to 800x600            |won't start
 
-It was along the lines of "I take it, unless someone else raises the hand and has higher priority
-work going on", but after asking around it seems that nobobdy needs a NV25 except me.
-Note that, as I think I said in my message, I don't need it *right now*, so you don't need to hurry
-so bad.
 
-Along with this reply comes a private mail with my address.
 
-btw: funny subject
- -- 
-Greetings, 
-A.H.
+
+------- Comment #1 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-10-25 02:25 PST -------
+My mistake, X didn't start at all, and Ubuntu started in fail-safe (VESA) mode.
+I don't think you're interested in VESA bugs.
+
+The kernel module failed to insert because of unresolved symbols. I will drop
+the Ubuntu packages and compile it myself for a more accurate bug report.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
