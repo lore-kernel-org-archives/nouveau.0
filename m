@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12833] Geforce 8400M GS (id 0x427): working but slow
-Date: Thu, 25 Oct 2007 10:52:34 -0700 (PDT)
-Message-ID: <20071025175235.24B97130009@annarchy.freedesktop.org>
+Date: Thu, 25 Oct 2007 12:35:58 -0700 (PDT)
+Message-ID: <20071025193558.AD76113000A@annarchy.freedesktop.org>
 References: <bug-12833-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12833
 
 
-debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Geforce 8400M GS (id 0x427):|Geforce 8400M GS (id 0x427):
-                   |won't start                 |working but slow
 
 
 
-
-------- Comment #4 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-10-25 10:56 PST -------
-Forgot to update the summary.
+------- Comment #5 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-25 12:40 PST -------
+NV50 support is far from perfect, i'm trying to get switching back to a VT to
+work. The slowness is to be expected and likely involves text rendering.
+Come to our irc channel (#nouveau on freenode) if your interested in helping
+out.
 
 
 -- 
