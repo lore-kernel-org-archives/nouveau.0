@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12959] New: RandR1.2 on my G70 is now completely
-	broken
-Date: Fri, 26 Oct 2007 08:41:38 -0700 (PDT)
-Message-ID: <bug-12959-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
+Date: Fri, 26 Oct 2007 08:42:39 -0700 (PDT)
+Message-ID: <20071026154239.F3FD4130009@annarchy.freedesktop.org>
+References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-12959-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
-           Summary: RandR1.2 on my G70 is now completely broken
-           Product: xorg
-           Version: 7.2
-          Platform: Other
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-RandR1.2 used to work on my G70, but now X just fails to start (as of today). 
-WIthout the RandR option, nouveau inits everything just fine.  Logs will be
-attached.
+
+
+------- Comment #1 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-26 08:47 PST -------
+Created an attachment (id=12216)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12216&action=view)
+Xorg starting with RandR12
 
 
 -- 
