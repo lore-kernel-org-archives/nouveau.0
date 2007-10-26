@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Fri, 26 Oct 2007 08:42:39 -0700 (PDT)
-Message-ID: <20071026154239.F3FD4130009@annarchy.freedesktop.org>
+Date: Fri, 26 Oct 2007 08:42:59 -0700 (PDT)
+Message-ID: <20071026154259.BAB2D130009@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #1 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-26 08:47 PST -------
-Created an attachment (id=12216)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12216&action=view)
-Xorg starting with RandR12
+------- Comment #2 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-26 08:47 PST -------
+Created an attachment (id=12217)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12217&action=view)
+Xorg without RandR starting fine.
 
 
 -- 
