@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Fri, 26 Oct 2007 08:42:59 -0700 (PDT)
-Message-ID: <20071026154259.BAB2D130009@annarchy.freedesktop.org>
+Date: Fri, 26 Oct 2007 09:15:55 -0700 (PDT)
+Message-ID: <20071026161555.64B08130009@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #2 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-26 08:47 PST -------
-Created an attachment (id=12217)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12217&action=view)
-Xorg without RandR starting fine.
+------- Comment #3 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-26 09:20 PST -------
+I'd be interrested to know the value of NV_RAMDAC_FP_DEBUG_0 on the digital
+output that is refused (look around line 1040 of nv_output.c).
+
+At the moment i can't make you a patch, but if you can help yourself, then add
+an ErrorF to dump the state of that register. Preferably for both heads.
 
 
 -- 
