@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon, 29 Oct 2007 11:14:32 -0700 (PDT)
-Message-ID: <20071029181432.92D9113000B@annarchy.freedesktop.org>
+Date: Mon, 29 Oct 2007 12:08:50 -0700 (PDT)
+Message-ID: <20071029190850.DB45313000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #13 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-29 11:19 PST -------
-Could you provide another log, i'm curious what kind of corruption you get.
+------- Comment #14 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-29 12:13 PST -------
+Created an attachment (id=12247)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12247&action=view)
+Xorg log kind of working
+
+Once I log in, its fine.  It looks like a bad modeline or something like that,
+where the entire image doesn't display, and one half is ghosted over the other.
 
 
 -- 
