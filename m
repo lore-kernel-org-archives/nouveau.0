@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon, 29 Oct 2007 10:34:22 -0700 (PDT)
-Message-ID: <20071029173422.4C75813000B@annarchy.freedesktop.org>
+Date: Mon, 29 Oct 2007 11:08:09 -0700 (PDT)
+Message-ID: <20071029180809.6C7DD13000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #11 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-29 10:39 PST -------
-Please try again.
+------- Comment #12 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-29 11:12 PST -------
+It starts again!  The log in screen is corrupt, but once I log in, Gnome sets
+it to something which works.  Also, my mouse keeps disappearing, but I guess
+that's something else.
 
 
 -- 
