@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon, 29 Oct 2007 03:58:41 -0700 (PDT)
-Message-ID: <20071029105841.E709513000A@annarchy.freedesktop.org>
+Date: Mon, 29 Oct 2007 04:59:56 -0700 (PDT)
+Message-ID: <20071029115956.9519313000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
-debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org
 
 
 
-
-------- Comment #6 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-10-29 04:03 PST -------
-I confirm this on G80 (GeForce 8400M GS).
-
-I wondered why an updated checkout wouldn't start until this bug remembered me
-I activated RandR 1.2.
+------- Comment #7 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-29 05:04 PST -------
+G80 support is completely seperate and always has randr12 on, please file a
+different bug if you have problems (that are not known). Any chance for those
+values i asked for on your G70?
 
 
 -- 
