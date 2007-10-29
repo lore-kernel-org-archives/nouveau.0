@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon, 29 Oct 2007 12:33:19 -0700 (PDT)
-Message-ID: <20071029193320.0AEA213000C@annarchy.freedesktop.org>
+Date: Mon, 29 Oct 2007 12:58:17 -0700 (PDT)
+Message-ID: <20071029195817.277C113000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #15 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-29 12:38 PST -------
-I believe this to be related to poor handling of modelines with negative hsync
-(or vsync). I will look into this.
+------- Comment #16 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-29 13:02 PST -------
+Should I open a new bug with that issue, and have this one be marked as fixed?
 
 
 -- 
