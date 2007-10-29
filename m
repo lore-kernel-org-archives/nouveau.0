@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon, 29 Oct 2007 05:37:28 -0700 (PDT)
-Message-ID: <20071029123728.26AD113000B@annarchy.freedesktop.org>
+Date: Mon, 29 Oct 2007 07:13:59 -0700 (PDT)
+Message-ID: <20071029141400.30A9413000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
+adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #12216|0                           |1
+        is obsolete|                            |
 
 
 
-------- Comment #9 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-29 05:42 PST -------
-I've added the neccesary debug information to git, please checkout the latest
-version and provide X log.
+
+------- Comment #10 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-29 07:18 PST -------
+Created an attachment (id=12244)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12244&action=view)
+Xorg log with RandR 2007.10.29
+
+Done.
 
 
 -- 
