@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12833] Geforce 8400M GS (id 0x427): working but slow
-Date: Mon, 29 Oct 2007 13:30:20 -0700 (PDT)
-Message-ID: <20071029203021.15FD613000A@annarchy.freedesktop.org>
+Date: Mon, 29 Oct 2007 13:37:21 -0700 (PDT)
+Message-ID: <20071029203721.67EF013000C@annarchy.freedesktop.org>
 References: <bug-12833-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,36 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12833
 
 
+debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+                   |g                           |
 
 
 
-------- Comment #7 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-10-29 13:35 PST -------
-Created an attachment (id=12249)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12249&action=view)
-the same head with the nv50.patch
+
+------- Comment #8 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-10-29 13:42 PST -------
+I tried your nv50.patch.
+
+Without it, I switch to the first virtual console and get a black screeN. I
+switch back to X and get back my desktop. Nothing crashed.
+
+With your patch, this is exactly the same behaviour.
+
+I tend to think I missed a step, so here is my bash history:
+
+cd xf86-video-nouveau/
+git-apply nv50.patch
+make
+sudo make install
+
+I saw nv50_display.c compiling, so the driver must be updated.
 
 
 -- 
 Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
 ------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
 You are the assignee for the bug, or are watching the assignee.
