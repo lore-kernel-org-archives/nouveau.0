@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12833] Geforce 8400M GS (id 0x427): working but slow
-Date: Mon, 29 Oct 2007 13:22:31 -0700 (PDT)
-Message-ID: <20071029202231.7C8A513000A@annarchy.freedesktop.org>
+Date: Mon, 29 Oct 2007 13:30:20 -0700 (PDT)
+Message-ID: <20071029203021.15FD613000A@annarchy.freedesktop.org>
 References: <bug-12833-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12833
 
 
-debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #12193|0                           |1
-        is obsolete|                            |
 
 
 
-
-------- Comment #6 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-10-29 13:27 PST -------
-Created an attachment (id=12248)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12248&action=view)
-a new X log from git head f75e36a901fd47bbd9164242c408e9f8b0e03e2c
+------- Comment #7 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-10-29 13:35 PST -------
+Created an attachment (id=12249)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12249&action=view)
+the same head with the nv50.patch
 
 
 -- 
