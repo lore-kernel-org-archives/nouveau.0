@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon, 29 Oct 2007 04:59:56 -0700 (PDT)
-Message-ID: <20071029115956.9519313000C@annarchy.freedesktop.org>
+Date: Mon, 29 Oct 2007 05:09:25 -0700 (PDT)
+Message-ID: <20071029120925.C421413000B@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #7 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-29 05:04 PST -------
-G80 support is completely seperate and always has randr12 on, please file a
-different bug if you have problems (that are not known). Any chance for those
-values i asked for on your G70?
+------- Comment #8 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-29 05:14 PST -------
+Sorry, I don't understand the code well enough for that, yet.  And I don't know
+how information about each head is stored.
 
 
 -- 
