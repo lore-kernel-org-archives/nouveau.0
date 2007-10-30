@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Tue, 30 Oct 2007 05:41:07 -0700 (PDT)
-Message-ID: <20071030124108.0199D13000C@annarchy.freedesktop.org>
+Date: Tue, 30 Oct 2007 13:00:36 -0700 (PDT)
+Message-ID: <20071030200036.70C9A13000B@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #18 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-30 05:45 PST -------
-Could you please try again.
+------- Comment #20 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-30 13:05 PST -------
+Could you retry again, i fixed scaling stuff and i'm curious if it works for
+you.
+
+In default mode your login screen should show blank bands around the image (=
+keeping aspect ratio).
 
 
 -- 
