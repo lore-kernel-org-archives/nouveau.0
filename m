@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Tue, 30 Oct 2007 17:57:18 -0700 (PDT)
-Message-ID: <20071031005718.7958413000B@annarchy.freedesktop.org>
+Date: Wed, 31 Oct 2007 00:20:58 -0700 (PDT)
+Message-ID: <20071031072058.8845613000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #21 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-10-30 18:02 PST -------
-Created an attachment (id=12269)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12269&action=view)
-Xorg log with tearing
+------- Comment #22 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-31 00:25 PST -------
+Does this happen only in login?
 
-Tried again -- unfortunatly, someone in the house tried to use my computer --
-Ubuntu's display config popped up, and my Xorg.conf got nuked.  The image isn't
-quite right.  There's some vertical 'tearing' and doubling.
+What kind of monitor do you have?
 
 
 -- 
