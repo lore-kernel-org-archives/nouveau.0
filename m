@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Wed, 31 Oct 2007 00:20:58 -0700 (PDT)
-Message-ID: <20071031072058.8845613000C@annarchy.freedesktop.org>
+Date: Wed, 31 Oct 2007 00:30:01 -0700 (PDT)
+Message-ID: <20071031073001.2C48A13000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #22 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-31 00:25 PST -------
-Does this happen only in login?
-
-What kind of monitor do you have?
+------- Comment #23 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-10-31 00:34 PST -------
+I suspect you have a slightly broken edid, but i need to know what it's
+supposed to do, for instance, what is the native resolution of your panel?
 
 
 -- 
