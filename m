@@ -1,14 +1,14 @@
 From: Alfred Zastrow <ml.zastrow-zqRNUXuvxA0b1SvskN2V4Q@public.gmane.org>
 Subject: Re: Looking for NV44 testers?
-Date: Thu, 01 Nov 2007 15:09:49 +0100
-Message-ID: <4729DE2D.7050809@t-online.de>
-References: <4729C32E.6050105@t-online.de>
-	<20071101132746.47eb359a.arthur.huillet@agoctrl.org>
+Date: Thu, 01 Nov 2007 22:38:13 +0100
+Message-ID: <472A4745.1000101@t-online.de>
+References: <4729C32E.6050105@t-online.de>	<6a89f9d50711010547q7d06da6dkf919852d87c717e5@mail.gmail.com>	<4729CFE6.50009@t-online.de>
+	<4729D3DA.4080409@t-online.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20071101132746.47eb359a.arthur.huillet-y3fenRfD+QpAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <4729D3DA.4080409-zqRNUXuvxA0b1SvskN2V4Q@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,869 +21,1848 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Arthur Huillet schrieb:
+Alfred Zastrow schrieb:
+>> Stephane Marchesin schrieb:
+>>
+>>> Could you also please provide a matching kernel log ?
+> 
+> here ist the crash visible:
+> 
+> 
+> Nov  1 14:18:15 z1 kernel: Linux agpgart interface v0.102
+> Nov  1 14:18:15 z1 kernel: [drm] Initialized drm 1.1.0 20060810
+> Nov  1 14:18:15 z1 kernel: PCI: Setting latency timer of device
+> 0000:01:00.0 to 64
+> Nov  1 14:18:15 z1 kernel: [drm] Detected an NV44 generation card
+> (0x044100a2)
+> Nov  1 14:18:15 z1 kernel: [drm] Initialized nouveau 0.0.10 20060213 on
+> minor 0
+> Nov  1 14:18:15 z1 kernel: [drm] Used old pci detect: framebuffer loaded
+> Nov  1 14:20:35 z1 kernel: allocation failed: out of vmalloc space - use
+> vmalloc=<size> to increase size.
+> Nov  1 14:20:35 z1 kernel: BUG: unable to handle kernel paging request
+> at virtual address 00010000
+> Nov  1 14:20:35 z1 kernel:  printing eip:
+> Nov  1 14:20:35 z1 kernel: fe4bff5f
+> Nov  1 14:20:35 z1 kernel: *pdpt = 00000000361d9001
+> Nov  1 14:20:35 z1 kernel: *pde = 0000000036d4a067
+> Nov  1 14:20:35 z1 kernel: *pte = 0000000000000000
+> Nov  1 14:20:35 z1 kernel: Oops: 0002 [#1]
+> Nov  1 14:20:35 z1 kernel: PREEMPT SMP
+> Nov  1 14:20:35 z1 kernel: Modules linked in: nouveau drm nvidia_agp
+> agpgart tsdev usbmouse arc4 ecb blkcipher cryptomgr crypto_algapi
+> rc80211_simple tuner tvaudio rtl8187 msp3400 mac80211 cfg80211 bttv
+> video_buf eeprom_93cx6 ir_common compat_ioctl32 btcx_risc tveeprom ipv6
+> evdev k8temp videodev v4l2_common v4l1_compat snd_bt87x fan ohci_hcd
+> hwmon i2c_nforce2 sg forcedeth snd_hda_intel snd_pcm snd_timer snd
+> soundcore snd_page_alloc button ehci_hcd usbcore ide_cd cdrom
+> Nov  1 14:20:35 z1 kernel: CPU:    1
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+I have some success by kernel setting to "vmalloc=256M".
+Nouveau starts so far. A few lines at the bottom of the screen are
+messed up and they are flickering. Also some colours are invisible or
+misscoloured
 
-> please use a serial console or some other means of getting the full kernel log available to you,
-> then load drm.ko with debug=1, and send us the kernel log :)
->
-> Thanks for your help
+---------- snipp ---------------
 
-You are wellcome  :-)
+X.Org X Server 1.4.0
+Release Date: 5 September 2007
+X Protocol Version 11, Revision 0
+Build Operating System: Linux 2.6.23.1 i686
+Current Operating System: Linux z1 2.6.23.1 #2 SMP PREEMPT Sun Oct 21
+08:05:02 CEST 2007 i686
+Build Date: 28 October 2007  07:03:01PM
 
-The last kernel I used had the nvidia-fb copiled in. As Stephane
-recommended I compiled a new kernel featuring this as module without
-loading it.
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+Module Loader present
+Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: "/var/log/Xorg.0.log", Time: Thu Nov  1 22:26:10 2007
+(==) Using config file: "/etc/X11/xorg.conf"
+(==) ServerLayout "X.org Configured"
+(**) |-->Screen "Screen0" (0)
+(**) |   |-->Monitor "Monitor0"
+(**) |   |-->Device "Card0"
+(**) |-->Input Device "Mouse0"
+(**) |-->Input Device "Keyboard0"
+(==) Automatically adding devices
+(==) Automatically enabling devices
+(WW) The directory "/usr/lib/X11/fonts/CID/" does not exist.
+	Entry deleted from font path.
+(WW) `fonts.dir' not found (or not valid) in
+"/usr/lib/X11/fonts/encodings/".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/lib/X11/fonts/encodings/").
+(WW) `fonts.dir' not found (or not valid) in "/usr/lib/X11/fonts/util/".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/lib/X11/fonts/util/").
+(==) Including the default font path
+/usr/lib/X11/fonts/misc/,/usr/lib/X11/fonts/TTF/,/usr/lib/X11/fonts/OTF,/usr/lib/X11/fonts/Type1/,/usr/lib/X11/fonts/100dpi/,/usr/lib/X11/fonts/75dpi/.
+(**) FontPath set to:
+	/usr/lib/X11/fonts/misc/,
+	/usr/lib/X11/fonts/Type1/,
+	/usr/lib/X11/fonts/Speedo/,
+	/usr/lib/X11/fonts/TTF/,
+	/usr/lib/X11/fonts/100dpi/,
+	/usr/lib/X11/fonts/75dpi/,
+	/usr/lib/X11/fonts/cyrillic/,
+	/usr/lib/X11/fonts/OTF,
+	/usr/lib/X11/fonts/misc/,
+	/usr/lib/X11/fonts/TTF/,
+	/usr/lib/X11/fonts/OTF,
+	/usr/lib/X11/fonts/Type1/,
+	/usr/lib/X11/fonts/100dpi/,
+	/usr/lib/X11/fonts/75dpi/
+(**) RgbPath set to "/usr/lib/X11/rgb"
+(**) ModulePath set to "/usr/lib/X11/modules"
+(**) Extension "Composite" is enabled
+(WW) Open ACPI failed (/var/run/acpid.socket) (No such file or directory)
+(II) No APM support in BIOS or kernel
+(II) Loader magic: 0x81ce2e0
+(II) Module ABI versions:
+	X.Org ANSI C Emulation: 0.3
+	X.Org Video Driver: 2.0
+	X.Org XInput driver : 2.0
+	X.Org Server Extension : 0.3
+	X.Org Font Renderer : 0.5
+(II) Loader running on linux
+(II) LoadModule: "pcidata"
+(II) Loading /usr/lib/X11/modules//libpcidata.so
+(II) Module pcidata: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.0
+	ABI class: X.Org Video Driver, version 2.0
+(--) using VT number 7
 
-Here is the next crash with "drm debug=1"
+(II) PCI: PCI scan (all values are in hex)
+(II) PCI: 00:00:0: chip 10de,02f4 card 10de,02f4 rev a2 class 05,00,00
+hdr 80
+(II) PCI: 00:00:1: chip 10de,02fa card 10de,02fa rev a2 class 05,00,00
+hdr 80
+(II) PCI: 00:00:2: chip 10de,02fe card 10de,02fe rev a2 class 05,00,00
+hdr 80
+(II) PCI: 00:00:3: chip 10de,02f8 card 10de,02f8 rev a2 class 05,00,00
+hdr 80
+(II) PCI: 00:00:4: chip 10de,02f9 card 10de,02f9 rev a2 class 05,00,00
+hdr 00
+(II) PCI: 00:00:5: chip 10de,02ff card 10de,02ff rev a2 class 05,00,00
+hdr 80
+(II) PCI: 00:00:6: chip 10de,027f card 10de,027f rev a2 class 05,00,00
+hdr 80
+(II) PCI: 00:00:7: chip 10de,027e card 10de,027e rev a2 class 05,00,00
+hdr 80
+(II) PCI: 00:04:0: chip 10de,02fb card 0000,0000 rev a1 class 06,04,00
+hdr 01
+(II) PCI: 00:08:0: chip 10de,0369 card 1043,cb84 rev a1 class 05,00,00
+hdr 00
+(II) PCI: 00:09:0: chip 10de,0360 card 1043,cb84 rev a2 class 06,01,00
+hdr 80
+(II) PCI: 00:09:1: chip 10de,0368 card 1043,cb84 rev a2 class 0c,05,00
+hdr 80
+(II) PCI: 00:09:2: chip 10de,036a card 1043,cb84 rev a2 class 05,00,00
+hdr 80
+(II) PCI: 00:0a:0: chip 10de,036c card 1043,cb84 rev a1 class 0c,03,10
+hdr 80
+(II) PCI: 00:0a:1: chip 10de,036d card 1043,cb84 rev a2 class 0c,03,20
+hdr 80
+(II) PCI: 00:0c:0: chip 10de,036e card 1043,cb84 rev a1 class 01,01,8a
+hdr 00
+(II) PCI: 00:0d:0: chip 10de,037f card 1043,cb84 rev a2 class 01,01,85
+hdr 80
+(II) PCI: 00:0d:1: chip 10de,037f card 1043,cb84 rev a2 class 01,01,85
+hdr 80
+(II) PCI: 00:0d:2: chip 10de,037f card 1043,cb84 rev a2 class 01,01,85
+hdr 80
+(II) PCI: 00:0e:0: chip 10de,0370 card 0000,0000 rev a2 class 06,04,01
+hdr 81
+(II) PCI: 00:0e:1: chip 10de,0371 card 1043,81f6 rev a2 class 04,03,00
+hdr 80
+(II) PCI: 00:10:0: chip 10de,0373 card 1043,cb84 rev a2 class 06,80,00
+hdr 00
+(II) PCI: 00:11:0: chip 10de,0373 card 1043,cb84 rev a2 class 06,80,00
+hdr 00
+(II) PCI: 00:16:0: chip 10de,0375 card 0000,0000 rev a2 class 06,04,00
+hdr 01
+(II) PCI: 00:18:0: chip 1022,1100 card 0000,0000 rev 00 class 06,00,00
+hdr 80
+(II) PCI: 00:18:1: chip 1022,1101 card 0000,0000 rev 00 class 06,00,00
+hdr 80
+(II) PCI: 00:18:2: chip 1022,1102 card 0000,0000 rev 00 class 06,00,00
+hdr 80
+(II) PCI: 00:18:3: chip 1022,1103 card 0000,0000 rev 00 class 06,00,00
+hdr 80
+(II) PCI: 01:00:0: chip 10de,0161 card 1462,0271 rev a1 class 03,00,00
+hdr 00
+(II) PCI: 02:07:0: chip 109e,036e card 0070,13eb rev 02 class 04,00,00
+hdr 80
+(II) PCI: 02:07:1: chip 109e,0878 card 0070,13eb rev 02 class 04,80,00
+hdr 80
+(II) PCI: 02:0b:0: chip 104c,8023 card 1043,815b rev 00 class 0c,00,10
+hdr 00
+(II) PCI: 03:00:0: chip 1095,3132 card 1043,819f rev 01 class 01,80,00
+hdr 00
+(II) PCI: End of PCI scan
+(II) PCI-to-PCI bridge:
+(II) Bus 1: bridge is at (0:4:0), (0,1,1), BCTRL: 0x001c (VGA_EN is set)
+(II) Bus 1 non-prefetchable memory range:
+	[0] -1	0	0xfa000000 - 0xfcffffff (0x3000000) MX[B]
+(II) Bus 1 prefetchable memory range:
+	[0] -1	0	0xe0000000 - 0xefffffff (0x10000000) MX[B]
+(II) PCI-to-ISA bridge:
+(II) Bus -1: bridge is at (0:9:0), (0,-1,-1), BCTRL: 0x0008 (VGA_EN is set)
+(II) Subtractive PCI-to-PCI bridge:
+(II) Bus 2: bridge is at (0:14:0), (0,2,2), BCTRL: 0x0a04 (VGA_EN is
+cleared)
+(II) Bus 2 non-prefetchable memory range:
+	[0] -1	0	0xfde00000 - 0xfdefffff (0x100000) MX[B]
+(II) Bus 2 prefetchable memory range:
+	[0] -1	0	0xfdf00000 - 0xfdffffff (0x100000) MX[B]
+(II) PCI-to-PCI bridge:
+(II) Bus 3: bridge is at (0:22:0), (0,3,3), BCTRL: 0x0004 (VGA_EN is
+cleared)
+(II) Bus 3 I/O range:
+	[0] -1	0	0x0000a000 - 0x0000a0ff (0x100) IX[B]
+	[1] -1	0	0x0000a400 - 0x0000a4ff (0x100) IX[B]
+	[2] -1	0	0x0000a800 - 0x0000a8ff (0x100) IX[B]
+	[3] -1	0	0x0000ac00 - 0x0000acff (0x100) IX[B]
+(II) Bus 3 non-prefetchable memory range:
+	[0] -1	0	0xfdd00000 - 0xfddfffff (0x100000) MX[B]
+(II) Host-to-PCI bridge:
+(II) Bus 0: bridge is at (0:24:0), (0,0,3), BCTRL: 0x0008 (VGA_EN is set)
+(II) Bus 0 I/O range:
+	[0] -1	0	0x00000000 - 0x0000ffff (0x10000) IX[B]
+(II) Bus 0 non-prefetchable memory range:
+	[0] -1	0	0x00000000 - 0xffffffff (0x0) MX[B]
+(II) Bus 0 prefetchable memory range:
+	[0] -1	0	0x00000000 - 0xffffffff (0x0) MX[B]
+(--) PCI:*(1:0:0) nVidia Corporation NV44 [GeForce 6200 TurboCache(TM)]
+rev 161, Mem @ 0xfa000000/24, 0xe0000000/28, 0xfb000000/24, BIOS @
+0xfcfe0000/17
+(--) PCI: (2:7:0) Brooktree Corporation Bt878 Video Capture rev 2, Mem @
+0xfdfff000/12
+(II) Addressable bus resource ranges are
+	[0] -1	0	0x00000000 - 0xffffffff (0x0) MX[B]
+	[1] -1	0	0x00000000 - 0x0000ffff (0x10000) IX[B]
+(II) OS-reported resource ranges:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[5] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+(II) Active PCI resource ranges:
+	[0] -1	0	0xfddf8000 - 0xfddfbfff (0x4000) MX[B]
+	[1] -1	0	0xfddff000 - 0xfddff07f (0x80) MX[B]
+	[2] -1	0	0xfdef8000 - 0xfdefbfff (0x4000) MX[B]
+	[3] -1	0	0xfdeff000 - 0xfdeff7ff (0x800) MX[B]
+	[4] -1	0	0xfdffe000 - 0xfdffefff (0x1000) MX[B]
+	[5] -1	0	0xfe025000 - 0xfe02500f (0x10) MX[B]
+	[6] -1	0	0xfe026000 - 0xfe0260ff (0x100) MX[B]
+	[7] -1	0	0xfe027000 - 0xfe027fff (0x1000) MX[B]
+	[8] -1	0	0xfe028000 - 0xfe02800f (0x10) MX[B]
+	[9] -1	0	0xfe029000 - 0xfe0290ff (0x100) MX[B]
+	[10] -1	0	0xfe02a000 - 0xfe02afff (0x1000) MX[B]
+	[11] -1	0	0xfe020000 - 0xfe023fff (0x4000) MX[B]
+	[12] -1	0	0xfe02b000 - 0xfe02bfff (0x1000) MX[B]
+	[13] -1	0	0xfe02c000 - 0xfe02cfff (0x1000) MX[B]
+	[14] -1	0	0xfe02d000 - 0xfe02dfff (0x1000) MX[B]
+	[15] -1	0	0xfe02e000 - 0xfe02e0ff (0x100) MX[B]
+	[16] -1	0	0xfe02f000 - 0xfe02ffff (0x1000) MX[B]
+	[17] -1	0	0xfdfff000 - 0xfdffffff (0x1000) MX[B](B)
+	[18] -1	0	0xfcfe0000 - 0xfcffffff (0x20000) MX[B](B)
+	[19] -1	0	0xfb000000 - 0xfbffffff (0x1000000) MX[B](B)
+	[20] -1	0	0xe0000000 - 0xefffffff (0x10000000) MX[B](B)
+	[21] -1	0	0xfa000000 - 0xfaffffff (0x1000000) MX[B](B)
+	[22] -1	0	0x0000ac00 - 0x0000ac7f (0x80) IX[B]
+	[23] -1	0	0x0000b000 - 0x0000b007 (0x8) IX[B]
+	[24] -1	0	0x0000b400 - 0x0000b407 (0x8) IX[B]
+	[25] -1	0	0x0000b800 - 0x0000b80f (0x10) IX[B]
+	[26] -1	0	0x0000bc00 - 0x0000bc03 (0x4) IX[B]
+	[27] -1	0	0x0000c000 - 0x0000c007 (0x8) IX[B]
+	[28] -1	0	0x0000c400 - 0x0000c403 (0x4) IX[B]
+	[29] -1	0	0x0000c800 - 0x0000c807 (0x8) IX[B]
+	[30] -1	0	0x0000cc00 - 0x0000cc0f (0x10) IX[B]
+	[31] -1	0	0x00000b60 - 0x00000b63 (0x4) IX[B]
+	[32] -1	0	0x00000960 - 0x00000967 (0x8) IX[B]
+	[33] -1	0	0x00000be0 - 0x00000be3 (0x4) IX[B]
+	[34] -1	0	0x000009e0 - 0x000009e7 (0x8) IX[B]
+	[35] -1	0	0x0000e000 - 0x0000e00f (0x10) IX[B]
+	[36] -1	0	0x00000b70 - 0x00000b73 (0x4) IX[B]
+	[37] -1	0	0x00000970 - 0x00000977 (0x8) IX[B]
+	[38] -1	0	0x00000bf0 - 0x00000bf3 (0x4) IX[B]
+	[39] -1	0	0x000009f0 - 0x000009f7 (0x8) IX[B]
+	[40] -1	0	0x0000f400 - 0x0000f40f (0x10) IX[B]
+	[41] -1	0	0x00001c40 - 0x00001c7f (0x40) IX[B]
+	[42] -1	0	0x00001c00 - 0x00001c3f (0x40) IX[B]
+(II) Active PCI resource ranges after removing overlaps:
+	[0] -1	0	0xfddf8000 - 0xfddfbfff (0x4000) MX[B]
+	[1] -1	0	0xfddff000 - 0xfddff07f (0x80) MX[B]
+	[2] -1	0	0xfdef8000 - 0xfdefbfff (0x4000) MX[B]
+	[3] -1	0	0xfdeff000 - 0xfdeff7ff (0x800) MX[B]
+	[4] -1	0	0xfdffe000 - 0xfdffefff (0x1000) MX[B]
+	[5] -1	0	0xfe025000 - 0xfe02500f (0x10) MX[B]
+	[6] -1	0	0xfe026000 - 0xfe0260ff (0x100) MX[B]
+	[7] -1	0	0xfe027000 - 0xfe027fff (0x1000) MX[B]
+	[8] -1	0	0xfe028000 - 0xfe02800f (0x10) MX[B]
+	[9] -1	0	0xfe029000 - 0xfe0290ff (0x100) MX[B]
+	[10] -1	0	0xfe02a000 - 0xfe02afff (0x1000) MX[B]
+	[11] -1	0	0xfe020000 - 0xfe023fff (0x4000) MX[B]
+	[12] -1	0	0xfe02b000 - 0xfe02bfff (0x1000) MX[B]
+	[13] -1	0	0xfe02c000 - 0xfe02cfff (0x1000) MX[B]
+	[14] -1	0	0xfe02d000 - 0xfe02dfff (0x1000) MX[B]
+	[15] -1	0	0xfe02e000 - 0xfe02e0ff (0x100) MX[B]
+	[16] -1	0	0xfe02f000 - 0xfe02ffff (0x1000) MX[B]
+	[17] -1	0	0xfdfff000 - 0xfdffffff (0x1000) MX[B](B)
+	[18] -1	0	0xfcfe0000 - 0xfcffffff (0x20000) MX[B](B)
+	[19] -1	0	0xfb000000 - 0xfbffffff (0x1000000) MX[B](B)
+	[20] -1	0	0xe0000000 - 0xefffffff (0x10000000) MX[B](B)
+	[21] -1	0	0xfa000000 - 0xfaffffff (0x1000000) MX[B](B)
+	[22] -1	0	0x0000ac00 - 0x0000ac7f (0x80) IX[B]
+	[23] -1	0	0x0000b000 - 0x0000b007 (0x8) IX[B]
+	[24] -1	0	0x0000b400 - 0x0000b407 (0x8) IX[B]
+	[25] -1	0	0x0000b800 - 0x0000b80f (0x10) IX[B]
+	[26] -1	0	0x0000bc00 - 0x0000bc03 (0x4) IX[B]
+	[27] -1	0	0x0000c000 - 0x0000c007 (0x8) IX[B]
+	[28] -1	0	0x0000c400 - 0x0000c403 (0x4) IX[B]
+	[29] -1	0	0x0000c800 - 0x0000c807 (0x8) IX[B]
+	[30] -1	0	0x0000cc00 - 0x0000cc0f (0x10) IX[B]
+	[31] -1	0	0x00000b60 - 0x00000b63 (0x4) IX[B]
+	[32] -1	0	0x00000960 - 0x00000967 (0x8) IX[B]
+	[33] -1	0	0x00000be0 - 0x00000be3 (0x4) IX[B]
+	[34] -1	0	0x000009e0 - 0x000009e7 (0x8) IX[B]
+	[35] -1	0	0x0000e000 - 0x0000e00f (0x10) IX[B]
+	[36] -1	0	0x00000b70 - 0x00000b73 (0x4) IX[B]
+	[37] -1	0	0x00000970 - 0x00000977 (0x8) IX[B]
+	[38] -1	0	0x00000bf0 - 0x00000bf3 (0x4) IX[B]
+	[39] -1	0	0x000009f0 - 0x000009f7 (0x8) IX[B]
+	[40] -1	0	0x0000f400 - 0x0000f40f (0x10) IX[B]
+	[41] -1	0	0x00001c40 - 0x00001c7f (0x40) IX[B]
+	[42] -1	0	0x00001c00 - 0x00001c3f (0x40) IX[B]
+(II) OS-reported resource ranges after removing overlaps with PCI:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[5] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+(II) All system resource ranges:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0xfddf8000 - 0xfddfbfff (0x4000) MX[B]
+	[5] -1	0	0xfddff000 - 0xfddff07f (0x80) MX[B]
+	[6] -1	0	0xfdef8000 - 0xfdefbfff (0x4000) MX[B]
+	[7] -1	0	0xfdeff000 - 0xfdeff7ff (0x800) MX[B]
+	[8] -1	0	0xfdffe000 - 0xfdffefff (0x1000) MX[B]
+	[9] -1	0	0xfe025000 - 0xfe02500f (0x10) MX[B]
+	[10] -1	0	0xfe026000 - 0xfe0260ff (0x100) MX[B]
+	[11] -1	0	0xfe027000 - 0xfe027fff (0x1000) MX[B]
+	[12] -1	0	0xfe028000 - 0xfe02800f (0x10) MX[B]
+	[13] -1	0	0xfe029000 - 0xfe0290ff (0x100) MX[B]
+	[14] -1	0	0xfe02a000 - 0xfe02afff (0x1000) MX[B]
+	[15] -1	0	0xfe020000 - 0xfe023fff (0x4000) MX[B]
+	[16] -1	0	0xfe02b000 - 0xfe02bfff (0x1000) MX[B]
+	[17] -1	0	0xfe02c000 - 0xfe02cfff (0x1000) MX[B]
+	[18] -1	0	0xfe02d000 - 0xfe02dfff (0x1000) MX[B]
+	[19] -1	0	0xfe02e000 - 0xfe02e0ff (0x100) MX[B]
+	[20] -1	0	0xfe02f000 - 0xfe02ffff (0x1000) MX[B]
+	[21] -1	0	0xfdfff000 - 0xfdffffff (0x1000) MX[B](B)
+	[22] -1	0	0xfcfe0000 - 0xfcffffff (0x20000) MX[B](B)
+	[23] -1	0	0xfb000000 - 0xfbffffff (0x1000000) MX[B](B)
+	[24] -1	0	0xe0000000 - 0xefffffff (0x10000000) MX[B](B)
+	[25] -1	0	0xfa000000 - 0xfaffffff (0x1000000) MX[B](B)
+	[26] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[27] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[28] -1	0	0x0000ac00 - 0x0000ac7f (0x80) IX[B]
+	[29] -1	0	0x0000b000 - 0x0000b007 (0x8) IX[B]
+	[30] -1	0	0x0000b400 - 0x0000b407 (0x8) IX[B]
+	[31] -1	0	0x0000b800 - 0x0000b80f (0x10) IX[B]
+	[32] -1	0	0x0000bc00 - 0x0000bc03 (0x4) IX[B]
+	[33] -1	0	0x0000c000 - 0x0000c007 (0x8) IX[B]
+	[34] -1	0	0x0000c400 - 0x0000c403 (0x4) IX[B]
+	[35] -1	0	0x0000c800 - 0x0000c807 (0x8) IX[B]
+	[36] -1	0	0x0000cc00 - 0x0000cc0f (0x10) IX[B]
+	[37] -1	0	0x00000b60 - 0x00000b63 (0x4) IX[B]
+	[38] -1	0	0x00000960 - 0x00000967 (0x8) IX[B]
+	[39] -1	0	0x00000be0 - 0x00000be3 (0x4) IX[B]
+	[40] -1	0	0x000009e0 - 0x000009e7 (0x8) IX[B]
+	[41] -1	0	0x0000e000 - 0x0000e00f (0x10) IX[B]
+	[42] -1	0	0x00000b70 - 0x00000b73 (0x4) IX[B]
+	[43] -1	0	0x00000970 - 0x00000977 (0x8) IX[B]
+	[44] -1	0	0x00000bf0 - 0x00000bf3 (0x4) IX[B]
+	[45] -1	0	0x000009f0 - 0x000009f7 (0x8) IX[B]
+	[46] -1	0	0x0000f400 - 0x0000f40f (0x10) IX[B]
+	[47] -1	0	0x00001c40 - 0x00001c7f (0x40) IX[B]
+	[48] -1	0	0x00001c00 - 0x00001c3f (0x40) IX[B]
+(II) "extmod" will be loaded. This was enabled by default and also
+specified in the config file.
+(II) "dbe" will be loaded. This was enabled by default and also
+specified in the config file.
+(II) "glx" will be loaded. This was enabled by default and also
+specified in the config file.
+(II) "freetype" will be loaded. This was enabled by default and also
+specified in the config file.
+(II) "type1" will be loaded. This was enabled by default and also
+specified in the config file.
+(II) "record" will be loaded. This was enabled by default and also
+specified in the config file.
+(II) "dri" will be loaded. This was enabled by default and also
+specified in the config file.
+(II) LoadModule: "ddc"(II) Module "ddc" already built-in
+(II) LoadModule: "glx"
+(II) Loading /usr/lib/X11/modules/extensions//libglx.so
+(II) Module glx: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.0
+	ABI class: X.Org Server Extension, version 0.3
+(==) AIGLX enabled
+(II) Loading extension GLX
+(II) LoadModule: "extmod"
+(II) Loading /usr/lib/X11/modules/extensions//libextmod.so
+(II) Module extmod: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension SHAPE
+(II) Loading extension MIT-SUNDRY-NONSTANDARD
+(II) Loading extension BIG-REQUESTS
+(II) Loading extension SYNC
+(II) Loading extension MIT-SCREEN-SAVER
+(II) Loading extension XC-MISC
+(II) Loading extension XFree86-VidModeExtension
+(II) Loading extension XFree86-Misc
+(II) Loading extension XFree86-DGA
+(II) Loading extension DPMS
+(II) Loading extension TOG-CUP
+(II) Loading extension Extended-Visual-Information
+(II) Loading extension XVideo
+(II) Loading extension XVideo-MotionCompensation
+(II) Loading extension X-Resource
+(II) LoadModule: "xtrap"
+(II) Loading /usr/lib/X11/modules/extensions//libxtrap.so
+(II) Module xtrap: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension DEC-XTRAP
+(II) LoadModule: "record"
+(II) Loading /usr/lib/X11/modules/extensions//librecord.so
+(II) Module record: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.13.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension RECORD
+(II) LoadModule: "dbe"
+(II) Loading /usr/lib/X11/modules/extensions//libdbe.so
+(II) Module dbe: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension DOUBLE-BUFFER
+(II) LoadModule: "dri"
+(II) Loading /usr/lib/X11/modules/extensions//libdri.so
+(II) Module dri: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.0
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension XFree86-DRI
+(II) LoadModule: "freetype"
+(II) Loading /usr/lib/X11/modules/fonts//libfreetype.so
+(II) Module freetype: vendor="X.Org Foundation & the After X-TT Project"
+	compiled for 1.4.0, module version = 2.1.0
+	Module class: X.Org Font Renderer
+	ABI class: X.Org Font Renderer, version 0.5
+(II) Loading font FreeType
+(II) LoadModule: "type1"
+(II) Loading /usr/lib/X11/modules/fonts//libtype1.so
+(II) Module type1: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.2
+	Module class: X.Org Font Renderer
+	ABI class: X.Org Font Renderer, version 0.5
+(II) Loading font Type1
+(II) LoadModule: "nouveau"
+(II) Loading /usr/lib/X11/modules/drivers//nouveau_drv.so
+(II) Module nouveau: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.2.0
+	Module class: X.Org Video Driver
+	ABI class: X.Org Video Driver, version 2.0
+(II) LoadModule: "mouse"
+(II) Loading /usr/lib/X11/modules/input//mouse_drv.so
+(II) Module mouse: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.2.2
+	Module class: X.Org XInput Driver
+	ABI class: X.Org XInput driver, version 2.0
+(II) LoadModule: "kbd"
+(II) Loading /usr/lib/X11/modules/input//kbd_drv.so
+(II) Module kbd: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.2.2
+	Module class: X.Org XInput Driver
+	ABI class: X.Org XInput driver, version 2.0
+(II) NOUVEAU driver
+(II) NOUVEAU driver for NVIDIA chipset families :
+	RIVA TNT    (NV04)
+	RIVA TNT2   (NV05)
+	GeForce 256 (NV10)
+	GeForce 2   (NV11, NV15)
+	GeForce 4MX (NV17, NV18)
+	GeForce 3   (NV20)
+	GeForce 4Ti (NV25, NV28)
+	GeForce FX  (NV3x)
+	GeForce 6   (NV4x)
+	GeForce 7   (G7x)
+	GeForce 8   (G8x)
+(II) Primary Device is: PCI 01:00:0
+(--) Assigning device section with no busID to primary device
+(--) Chipset NVIDIA NV44 found
+(II) resource ranges after xf86ClaimFixedResources() call:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0xfddf8000 - 0xfddfbfff (0x4000) MX[B]
+	[5] -1	0	0xfddff000 - 0xfddff07f (0x80) MX[B]
+	[6] -1	0	0xfdef8000 - 0xfdefbfff (0x4000) MX[B]
+	[7] -1	0	0xfdeff000 - 0xfdeff7ff (0x800) MX[B]
+	[8] -1	0	0xfdffe000 - 0xfdffefff (0x1000) MX[B]
+	[9] -1	0	0xfe025000 - 0xfe02500f (0x10) MX[B]
+	[10] -1	0	0xfe026000 - 0xfe0260ff (0x100) MX[B]
+	[11] -1	0	0xfe027000 - 0xfe027fff (0x1000) MX[B]
+	[12] -1	0	0xfe028000 - 0xfe02800f (0x10) MX[B]
+	[13] -1	0	0xfe029000 - 0xfe0290ff (0x100) MX[B]
+	[14] -1	0	0xfe02a000 - 0xfe02afff (0x1000) MX[B]
+	[15] -1	0	0xfe020000 - 0xfe023fff (0x4000) MX[B]
+	[16] -1	0	0xfe02b000 - 0xfe02bfff (0x1000) MX[B]
+	[17] -1	0	0xfe02c000 - 0xfe02cfff (0x1000) MX[B]
+	[18] -1	0	0xfe02d000 - 0xfe02dfff (0x1000) MX[B]
+	[19] -1	0	0xfe02e000 - 0xfe02e0ff (0x100) MX[B]
+	[20] -1	0	0xfe02f000 - 0xfe02ffff (0x1000) MX[B]
+	[21] -1	0	0xfdfff000 - 0xfdffffff (0x1000) MX[B](B)
+	[22] -1	0	0xfcfe0000 - 0xfcffffff (0x20000) MX[B](B)
+	[23] -1	0	0xfb000000 - 0xfbffffff (0x1000000) MX[B](B)
+	[24] -1	0	0xe0000000 - 0xefffffff (0x10000000) MX[B](B)
+	[25] -1	0	0xfa000000 - 0xfaffffff (0x1000000) MX[B](B)
+	[26] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[27] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[28] -1	0	0x0000ac00 - 0x0000ac7f (0x80) IX[B]
+	[29] -1	0	0x0000b000 - 0x0000b007 (0x8) IX[B]
+	[30] -1	0	0x0000b400 - 0x0000b407 (0x8) IX[B]
+	[31] -1	0	0x0000b800 - 0x0000b80f (0x10) IX[B]
+	[32] -1	0	0x0000bc00 - 0x0000bc03 (0x4) IX[B]
+	[33] -1	0	0x0000c000 - 0x0000c007 (0x8) IX[B]
+	[34] -1	0	0x0000c400 - 0x0000c403 (0x4) IX[B]
+	[35] -1	0	0x0000c800 - 0x0000c807 (0x8) IX[B]
+	[36] -1	0	0x0000cc00 - 0x0000cc0f (0x10) IX[B]
+	[37] -1	0	0x00000b60 - 0x00000b63 (0x4) IX[B]
+	[38] -1	0	0x00000960 - 0x00000967 (0x8) IX[B]
+	[39] -1	0	0x00000be0 - 0x00000be3 (0x4) IX[B]
+	[40] -1	0	0x000009e0 - 0x000009e7 (0x8) IX[B]
+	[41] -1	0	0x0000e000 - 0x0000e00f (0x10) IX[B]
+	[42] -1	0	0x00000b70 - 0x00000b73 (0x4) IX[B]
+	[43] -1	0	0x00000970 - 0x00000977 (0x8) IX[B]
+	[44] -1	0	0x00000bf0 - 0x00000bf3 (0x4) IX[B]
+	[45] -1	0	0x000009f0 - 0x000009f7 (0x8) IX[B]
+	[46] -1	0	0x0000f400 - 0x0000f40f (0x10) IX[B]
+	[47] -1	0	0x00001c40 - 0x00001c7f (0x40) IX[B]
+	[48] -1	0	0x00001c00 - 0x00001c3f (0x40) IX[B]
+(II) resource ranges after probing:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0xfddf8000 - 0xfddfbfff (0x4000) MX[B]
+	[5] -1	0	0xfddff000 - 0xfddff07f (0x80) MX[B]
+	[6] -1	0	0xfdef8000 - 0xfdefbfff (0x4000) MX[B]
+	[7] -1	0	0xfdeff000 - 0xfdeff7ff (0x800) MX[B]
+	[8] -1	0	0xfdffe000 - 0xfdffefff (0x1000) MX[B]
+	[9] -1	0	0xfe025000 - 0xfe02500f (0x10) MX[B]
+	[10] -1	0	0xfe026000 - 0xfe0260ff (0x100) MX[B]
+	[11] -1	0	0xfe027000 - 0xfe027fff (0x1000) MX[B]
+	[12] -1	0	0xfe028000 - 0xfe02800f (0x10) MX[B]
+	[13] -1	0	0xfe029000 - 0xfe0290ff (0x100) MX[B]
+	[14] -1	0	0xfe02a000 - 0xfe02afff (0x1000) MX[B]
+	[15] -1	0	0xfe020000 - 0xfe023fff (0x4000) MX[B]
+	[16] -1	0	0xfe02b000 - 0xfe02bfff (0x1000) MX[B]
+	[17] -1	0	0xfe02c000 - 0xfe02cfff (0x1000) MX[B]
+	[18] -1	0	0xfe02d000 - 0xfe02dfff (0x1000) MX[B]
+	[19] -1	0	0xfe02e000 - 0xfe02e0ff (0x100) MX[B]
+	[20] -1	0	0xfe02f000 - 0xfe02ffff (0x1000) MX[B]
+	[21] -1	0	0xfdfff000 - 0xfdffffff (0x1000) MX[B](B)
+	[22] -1	0	0xfcfe0000 - 0xfcffffff (0x20000) MX[B](B)
+	[23] -1	0	0xfb000000 - 0xfbffffff (0x1000000) MX[B](B)
+	[24] -1	0	0xe0000000 - 0xefffffff (0x10000000) MX[B](B)
+	[25] -1	0	0xfa000000 - 0xfaffffff (0x1000000) MX[B](B)
+	[26] 0	0	0x000a0000 - 0x000affff (0x10000) MS[B]
+	[27] 0	0	0x000b0000 - 0x000b7fff (0x8000) MS[B]
+	[28] 0	0	0x000b8000 - 0x000bffff (0x8000) MS[B]
+	[29] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[30] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[31] -1	0	0x0000ac00 - 0x0000ac7f (0x80) IX[B]
+	[32] -1	0	0x0000b000 - 0x0000b007 (0x8) IX[B]
+	[33] -1	0	0x0000b400 - 0x0000b407 (0x8) IX[B]
+	[34] -1	0	0x0000b800 - 0x0000b80f (0x10) IX[B]
+	[35] -1	0	0x0000bc00 - 0x0000bc03 (0x4) IX[B]
+	[36] -1	0	0x0000c000 - 0x0000c007 (0x8) IX[B]
+	[37] -1	0	0x0000c400 - 0x0000c403 (0x4) IX[B]
+	[38] -1	0	0x0000c800 - 0x0000c807 (0x8) IX[B]
+	[39] -1	0	0x0000cc00 - 0x0000cc0f (0x10) IX[B]
+	[40] -1	0	0x00000b60 - 0x00000b63 (0x4) IX[B]
+	[41] -1	0	0x00000960 - 0x00000967 (0x8) IX[B]
+	[42] -1	0	0x00000be0 - 0x00000be3 (0x4) IX[B]
+	[43] -1	0	0x000009e0 - 0x000009e7 (0x8) IX[B]
+	[44] -1	0	0x0000e000 - 0x0000e00f (0x10) IX[B]
+	[45] -1	0	0x00000b70 - 0x00000b73 (0x4) IX[B]
+	[46] -1	0	0x00000970 - 0x00000977 (0x8) IX[B]
+	[47] -1	0	0x00000bf0 - 0x00000bf3 (0x4) IX[B]
+	[48] -1	0	0x000009f0 - 0x000009f7 (0x8) IX[B]
+	[49] -1	0	0x0000f400 - 0x0000f40f (0x10) IX[B]
+	[50] -1	0	0x00001c40 - 0x00001c7f (0x40) IX[B]
+	[51] -1	0	0x00001c00 - 0x00001c3f (0x40) IX[B]
+	[52] 0	0	0x000003b0 - 0x000003bb (0xc) IS[B]
+	[53] 0	0	0x000003c0 - 0x000003df (0x20) IS[B]
+(II) Setting vga for screen 0.
+(II) Loading sub module "int10"
+(II) LoadModule: "int10"
+(II) Loading /usr/lib/X11/modules//libint10.so
+(II) Module int10: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.0
+	ABI class: X.Org Video Driver, version 2.0
+(II) NOUVEAU(0): Initializing int10
+(II) NOUVEAU(0): Primary V_BIOS segment is: 0xc000
+(--) NOUVEAU(0): Chipset: "NVIDIA NV44"
+(**) NOUVEAU(0): Depth 24, (--) framebuffer bpp 32
+(==) NOUVEAU(0): RGB weight 888
+(==) NOUVEAU(0): Default visual is TrueColor
+(II) Loading sub module "vgahw"
+(II) LoadModule: "vgahw"
+(II) Loading /usr/lib/X11/modules//libvgahw.so
+(II) Module vgahw: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 0.1.0
+	ABI class: X.Org Video Driver, version 2.0
+(==) NOUVEAU(0): Randr1.2 support disabled
+(==) NOUVEAU(0): Using HW cursor
+(--) NOUVEAU(0): Linear framebuffer at 0xE0000000
+(--) NOUVEAU(0): MMIO registers at 0xFA000000
+(II) Loading sub module "dri"
+(II) LoadModule: "dri"
+(II) Reloading /usr/lib/X11/modules/extensions//libdri.so
+(II) NOUVEAU(0): Loaded DRI module
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is -1, (No such device or address)
+drmOpenDevice: open result is -1, (No such device or address)
+drmOpenDevice: Open failed
+drmOpenByBusid: Searching for BusID pci:0000:01:00.0
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenByBusid: drmOpenMinor returns 8
+drmOpenByBusid: drmGetBusid reports pci:0000:01:00.0
+(II) NOUVEAU(0): [dri] Found DRI library version 1.3.0 and kernel module
+version 0.0.10
+(II) NOUVEAU(0): Attempting to locate BIOS image in PROM
+(II) NOUVEAU(0): ...appears to be valid
+(II) NOUVEAU(0): BIT signature found.
+(II) NOUVEAU(0): 0x021E: Found BIT command with id 0x00
+(II) NOUVEAU(0): 0x0224: Found BIT command with id 0x32
+(II) NOUVEAU(0): 0x022A: Found BIT command with id 0x42
+(II) NOUVEAU(0): 0x0230: Found BIT command with id 0x43
+(II) NOUVEAU(0): 0x0236: Found BIT command with id 0x44
+(II) NOUVEAU(0): 0x023C: Found BIT command with id 0x49
+(II) NOUVEAU(0): 0x023C: Found init table entry in BIT structure.
+(II) NOUVEAU(0): 0xDE45: Parsing init table 0
+(II) NOUVEAU(0): 0xDE45: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xDE45:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE45: REG: 0x000012C4, VALUE: 0x00C0B030
+(II) NOUVEAU(0): 0xDE45: CURRENT VALUE IS: 0x00C0B030
+(II) NOUVEAU(0): 0xDE52:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE52: REG: 0x00600818, VALUE: 0x01100010
+(II) NOUVEAU(0): 0xDE52: CURRENT VALUE IS: 0x01100010
+(II) NOUVEAU(0): 0xDE5F:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE5F: REG: 0x0060081C, VALUE: 0x66655602
+(II) NOUVEAU(0): 0xDE5F: CURRENT VALUE IS: 0x66655602
+(II) NOUVEAU(0): 0xDE6C:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE6C: REG: 0x00600858, VALUE: 0x00001FFF
+(II) NOUVEAU(0): 0xDE6C: CURRENT VALUE IS: 0x00001FFF
+(II) NOUVEAU(0): 0xDE79:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE79: REG: 0x00602858, VALUE: 0x00001FFF
+(II) NOUVEAU(0): 0xDE79: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xDE86:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE86: REG: 0x00600818, VALUE: 0x01100010
+(II) NOUVEAU(0): 0xDE86: CURRENT VALUE IS: 0x01100010
+(II) NOUVEAU(0): 0xDE93:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE93: REG: 0x0060081C, VALUE: 0x66655602
+(II) NOUVEAU(0): 0xDE93: CURRENT VALUE IS: 0x66655602
+(II) NOUVEAU(0): 0xDEA0:  [ (0x53) -  INIT_ZM_CR ]
+(II) NOUVEAU(0): 0xDEA0: CRTC INDEX: 0x44, VALUE: 0x03
+(II) NOUVEAU(0): 0xDEA0: CURRENT VALUE IS: 0x24
+(II) NOUVEAU(0): 0xDEA3:  [ (0x78) -  INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xDEA3: CRTC REG: 0x03C4, INDEX: 0x0001, VALUE: 0x20
+(II) NOUVEAU(0): 0xDEA3: CURRENT VALUE IS: 0x00
+(II) NOUVEAU(0): 0xDEA9:  [ (0x53) -  INIT_ZM_CR ]
+(II) NOUVEAU(0): 0xDEA9: CRTC INDEX: 0x44, VALUE: 0x00
+(II) NOUVEAU(0): 0xDEA9: CURRENT VALUE IS: 0x24
+(II) NOUVEAU(0): 0xDEAC:  [ (0x78) -  INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xDEAC: CRTC REG: 0x03C4, INDEX: 0x0001, VALUE: 0x20
+(II) NOUVEAU(0): 0xDEAC: CURRENT VALUE IS: 0x00
+(II) NOUVEAU(0): 0xDEB2:  [ (0x65) -  INIT_RESET ]
+(II) NOUVEAU(0): 0xDEB2: REG: 0x00000200, VALUE: 0x01100000
+(II) NOUVEAU(0): 0xDEB2: REG: 0x00000200, VALUE: 0x05110111
+(II) NOUVEAU(0): 0xDEB2: CURRENT VALUE IS: 0x17111113
+(II) NOUVEAU(0): 0xDEBF:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDEBF: REG: 0x00101000, VALUE: 0x2340DE8B
+(II) NOUVEAU(0): 0xDEBF: CURRENT VALUE IS: 0x2340DE8B
+(II) NOUVEAU(0): 0xDECC:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDECC: REG: 0x0010100C, VALUE: 0x00000490
+(II) NOUVEAU(0): 0xDECC: CURRENT VALUE IS: 0x00000490
+(II) NOUVEAU(0): 0xDED9:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDED9: REG: 0x0000C000, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xDED9: CURRENT VALUE IS: 0x00020000
+(II) NOUVEAU(0): 0xDEE2:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDEE2: REG: 0x0000C000, VALUE: 0x00020000
+(II) NOUVEAU(0): 0xDEE2: CURRENT VALUE IS: 0x00020000
+(II) NOUVEAU(0): 0xDEEF:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDEEF: REG: 0x0000C020, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xDEEF: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xDEF8:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDEF8: REG: 0x00100210, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xDEF8: CURRENT VALUE IS: 0x8000A6A6
+(II) NOUVEAU(0): 0xDF01:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF01: REG: 0x0000C040, VALUE: 0x30000000
+(II) NOUVEAU(0): 0xDF01: CURRENT VALUE IS: 0x3C0BC003
+(II) NOUVEAU(0): 0xDF0A:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF0A: REG: 0x00004000, VALUE: 0xC000001C
+(II) NOUVEAU(0): 0xDF0A: CURRENT VALUE IS: 0xC002001C
+(II) NOUVEAU(0): 0xDF13:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF13: REG: 0x00004008, VALUE: 0xE000001C
+(II) NOUVEAU(0): 0xDF13: CURRENT VALUE IS: 0xC000001C
+(II) NOUVEAU(0): 0xDF1C:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF1C: REG: 0x00680580, VALUE: 0x01C0001C
+(II) NOUVEAU(0): 0xDF1C: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xDF25:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF25: REG: 0x00004020, VALUE: 0x2000001C
+(II) NOUVEAU(0): 0xDF25: CURRENT VALUE IS: 0xE041001C
+(II) NOUVEAU(0): 0xDF2E:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF2E: REG: 0x00680510, VALUE: 0x01F0001F
+(II) NOUVEAU(0): 0xDF2E: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xDF37:  [ (0x75) -  INIT_CONDITION ]
+(II) NOUVEAU(0): 0xDF37: CHECKING IF REGVAL: 0x00000000 equals COND:
+0x00000040
+(II) NOUVEAU(0): 0xDF37: CONDITION IS NOT FULFILLED.
+(II) NOUVEAU(0): 0xDF37: ------ SKIPPING FOLLOWING COMMANDS  ------
+(II) NOUVEAU(0): 0xDF39:  [ (0x62) -  INIT_ZM_INDEX_IO ]
+(II) NOUVEAU(0): 0xDF3E:  [ (0x38) -  INIT_NOT ]
+(II) NOUVEAU(0): 0xDF3E: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xDF3F:  [ (0x62) -  INIT_ZM_INDEX_IO ]
+(II) NOUVEAU(0): 0xDF3F: CRTC REG: 0x03D4, INDEX: 0x003C, VALUE: 0x00
+(II) NOUVEAU(0): 0xDF3F: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xDF44:  [ (0x72) -  INIT_RESUME ]
+(II) NOUVEAU(0): 0xDF45:  [ (0x37) -  INIT_COPY ]
+(II) NOUVEAU(0): 0xDF45: CRTC REG: 0x03D4, INDEX: 0x003C, VALUE: 0x20
+(II) NOUVEAU(0): 0xDF45: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xDF50:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF50: REG: 0x00001508, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xDF50: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xDF59:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDF59: REG: 0x00001584, VALUE: 0x00000011
+(II) NOUVEAU(0): 0xDF59: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xDF66:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF66: REG: 0x00680580, VALUE: 0x01F0001F
+(II) NOUVEAU(0): 0xDF66: CURRENT VALUE IS: 0x01F0001F
+(II) NOUVEAU(0): 0xDF6F:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDF6F: REG: 0x00001580, VALUE: 0x30000000
+(II) NOUVEAU(0): 0xDF6F: CURRENT VALUE IS: 0x30000000
+(II) NOUVEAU(0): 0xDF7C:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF7C: REG: 0x0000C044, VALUE: 0x00001010
+(II) NOUVEAU(0): 0xDF7C: CURRENT VALUE IS: 0x00001010
+(II) NOUVEAU(0): 0xDF85:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF85: REG: 0x00000140, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xDF85: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xDF8E:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDF8E: REG: 0x000015B4, VALUE: 0x08000000
+(II) NOUVEAU(0): 0xDF8E: CURRENT VALUE IS: 0x08000000
+(II) NOUVEAU(0): 0xDF9B:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDF9B: REG: 0x000015B8, VALUE: 0x94800000
+(II) NOUVEAU(0): 0xDF9B: CURRENT VALUE IS: 0x94800000
+(II) NOUVEAU(0): 0xDFA4:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDFA4: REG: 0x00000200, VALUE: 0x17111113
+(II) NOUVEAU(0): 0xDFA4: CURRENT VALUE IS: 0x17111113
+(II) NOUVEAU(0): 0xDFB1:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDFB1: REG: 0x00680608, VALUE: 0x00100000
+(II) NOUVEAU(0): 0xDFB1: CURRENT VALUE IS: 0xF0100000
+(II) NOUVEAU(0): 0xDFBA:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDFBA: REG: 0x00682608, VALUE: 0x00100000
+(II) NOUVEAU(0): 0xDFBA: CURRENT VALUE IS: 0xF0110000
+(II) NOUVEAU(0): 0xDFC3:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDFC3: REG: 0x00100080, VALUE: 0x47170020
+(II) NOUVEAU(0): 0xDFC3: CURRENT VALUE IS: 0x47170020
+(II) NOUVEAU(0): 0xDFCC:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xDFCC: REG: 0x00001084, VALUE: 0x00205749
+(II) NOUVEAU(0): 0xDFCC: CURRENT VALUE IS: 0x00205749
+(II) NOUVEAU(0): 0xDFD5:  [ (0x6B) -  INIT_SUB ]
+(II) NOUVEAU(0): 0xDFD5: EXECUTING SUB-SCRIPT: 7
+(II) NOUVEAU(0): 0xE7F5:  [ (0x4A) -  INIT_IO_RESTRICT_PLL ]
+(II) NOUVEAU(0): 0xE7F5: [ NOT YET IMPLEMENTED ]
+(II) NOUVEAU(0): 0xDFD5: END OF SUB-SCRIPT
+(II) NOUVEAU(0): 0xDFD7:  [ (0x6B) -  INIT_SUB ]
+(II) NOUVEAU(0): 0xDFD7: EXECUTING SUB-SCRIPT: 6
+(II) NOUVEAU(0): 0xE7C9:  [ (0x4A) -  INIT_IO_RESTRICT_PLL ]
+(II) NOUVEAU(0): 0xE7C9: [ NOT YET IMPLEMENTED ]
+(II) NOUVEAU(0): 0xDFD7: END OF SUB-SCRIPT
+(II) NOUVEAU(0): 0xDFD9:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xDFD9: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xDFD9: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xDFD9: REG: 0x0010037C, VALUE: 0x0F0F0F0F
+(II) NOUVEAU(0): 0xDFD9: CURRENT VALUE IS: 0x0F0F0F0F
+(II) NOUVEAU(0): 0xE004:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE004: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE004: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE004: REG: 0x00100380, VALUE: 0x0F0F0F0F
+(II) NOUVEAU(0): 0xE004: CURRENT VALUE IS: 0x0F0F0F0F
+(II) NOUVEAU(0): 0xE02F:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE02F: REG: 0x001003AC, VALUE: 0x80808080
+(II) NOUVEAU(0): 0xE02F: CURRENT VALUE IS: 0x80808080
+(II) NOUVEAU(0): 0xE038:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE038: REG: 0x001003B0, VALUE: 0x80808080
+(II) NOUVEAU(0): 0xE038: CURRENT VALUE IS: 0x80808080
+(II) NOUVEAU(0): 0xE041:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE041: REG: 0x00004028, VALUE: 0x80000AA8
+(II) NOUVEAU(0): 0xE041: CURRENT VALUE IS: 0x80000AA8
+(II) NOUVEAU(0): 0xE04A:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE04A: REG: 0x0000C040, VALUE: 0x3C0BC003
+(II) NOUVEAU(0): 0xE04A: CURRENT VALUE IS: 0x3C0BC003
+(II) NOUVEAU(0): 0xE053:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE053: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE053: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE053: REG: 0x00100220, VALUE: 0x06101B15
+(II) NOUVEAU(0): 0xE053: CURRENT VALUE IS: 0x06101B15
+(II) NOUVEAU(0): 0xE07E:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE07E: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE07E: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE07E: REG: 0x00100224, VALUE: 0x0B010804
+(II) NOUVEAU(0): 0xE07E: CURRENT VALUE IS: 0x0B010804
+(II) NOUVEAU(0): 0xE0A9:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE0A9: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE0A9: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE0A9: REG: 0x00100228, VALUE: 0x23230606
+(II) NOUVEAU(0): 0xE0A9: CURRENT VALUE IS: 0x23230606
+(II) NOUVEAU(0): 0xE0D4:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE0D4: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE0D4: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE0D4: REG: 0x0010022C, VALUE: 0x530B9304
+(II) NOUVEAU(0): 0xE0D4: CURRENT VALUE IS: 0x530B9304
+(II) NOUVEAU(0): 0xE0FF:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE0FF: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE0FF: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE0FF: REG: 0x00100230, VALUE: 0x000002FF
+(II) NOUVEAU(0): 0xE0FF: CURRENT VALUE IS: 0x000002FF
+(II) NOUVEAU(0): 0xE12A:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE12A: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE12A: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE12A: REG: 0x00100234, VALUE: 0x00B5FF22
+(II) NOUVEAU(0): 0xE12A: CURRENT VALUE IS: 0x00B5FF22
+(II) NOUVEAU(0): 0xE155:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE155: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE155: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE155: REG: 0x00100238, VALUE: 0x00140200
+(II) NOUVEAU(0): 0xE155: CURRENT VALUE IS: 0x00140200
+(II) NOUVEAU(0): 0xE180:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE180: REG: 0x00100440, VALUE: 0x80300100
+(II) NOUVEAU(0): 0xE180: CURRENT VALUE IS: 0x8030010B
+(II) NOUVEAU(0): 0xE18A: Parsing init table 1
+(II) NOUVEAU(0): 0xE18A: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xE18A:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE18A: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE18A: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE18A: REG: 0x00100350, VALUE: 0x0000440A
+(II) NOUVEAU(0): 0xE18A: CURRENT VALUE IS: 0x0000440A
+(II) NOUVEAU(0): 0xE1B5:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE1B5: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE1B5: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE1B5: REG: 0x001003F4, VALUE: 0x04020204
+(II) NOUVEAU(0): 0xE1B5: CURRENT VALUE IS: 0x04020204
+(II) NOUVEAU(0): 0xE1E0:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE1E0: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE1E0: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE1E0: REG: 0x001003F8, VALUE: 0x04020204
+(II) NOUVEAU(0): 0xE1E0: CURRENT VALUE IS: 0x04020204
+(II) NOUVEAU(0): 0xE20B:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE20B: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE20B: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE20B: REG: 0x00001080, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE20B: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE236:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE236: REG: 0x00100210, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE236: CURRENT VALUE IS: 0x80002626
+(II) NOUVEAU(0): 0xE23F:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE23F: REG: 0x00001220, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE23F: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE248:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE248: REG: 0x00001228, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE248: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE251:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE251: REG: 0x00001210, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE251: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE25A:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE25A: REG: 0x00001214, VALUE: 0x04770101
+(II) NOUVEAU(0): 0xE25A: CURRENT VALUE IS: 0x04770101
+(II) NOUVEAU(0): 0xE263:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE263: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE263: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE263: REG: 0x00001218, VALUE: 0xF0000101
+(II) NOUVEAU(0): 0xE263: CURRENT VALUE IS: 0xF0000101
+(II) NOUVEAU(0): 0xE28E:  [ (0x58) -  INIT_ZM_REG_SEQUENCE ]
+(II) NOUVEAU(0): 0xE28E: REG: 0x00001230, VALUE: 0xBFBFBFBF
+(II) NOUVEAU(0): 0xE28E: CURRENT VALUE IS: 0x80009F9F
+(II) NOUVEAU(0): 0xE28E: REG: 0x00001234, VALUE: 0xBFBFBFBF
+(II) NOUVEAU(0): 0xE28E: CURRENT VALUE IS: 0x206F3DBF
+(II) NOUVEAU(0): 0xE28E: REG: 0x00001238, VALUE: 0xBFBFBEBF
+(II) NOUVEAU(0): 0xE28E: CURRENT VALUE IS: 0xBFBFB41F
+(II) NOUVEAU(0): 0xE2A0:  [ (0x58) -  INIT_ZM_REG_SEQUENCE ]
+(II) NOUVEAU(0): 0xE2A0: REG: 0x00001240, VALUE: 0xBFBFBFBF
+(II) NOUVEAU(0): 0xE2A0: CURRENT VALUE IS: 0x80009F9F
+(II) NOUVEAU(0): 0xE2A0: REG: 0x00001244, VALUE: 0xBFBFBFBF
+(II) NOUVEAU(0): 0xE2A0: CURRENT VALUE IS: 0x246F3DBF
+(II) NOUVEAU(0): 0xE2A0: REG: 0x00001248, VALUE: 0xBFBFBEBF
+(II) NOUVEAU(0): 0xE2A0: CURRENT VALUE IS: 0xBFBFB41F
+(II) NOUVEAU(0): 0xE2A0: REG: 0x0000124C, VALUE: 0xAA11AA11
+(II) NOUVEAU(0): 0xE2A0: CURRENT VALUE IS: 0x0A110A11
+(II) NOUVEAU(0): 0xE2B6:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE2B6: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE2B6: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE2B6: REG: 0x00100360, VALUE: 0x8B303A98
+(II) NOUVEAU(0): 0xE2B6: CURRENT VALUE IS: 0x8B303A98
+(II) NOUVEAU(0): 0xE2E1:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE2E1: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE2E1: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE2E1: REG: 0x00100450, VALUE: 0x00010101
+(II) NOUVEAU(0): 0xE2E1: CURRENT VALUE IS: 0x00010101
+(II) NOUVEAU(0): 0xE30C:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE30C: REG: 0x00100454, VALUE: 0x00000011
+(II) NOUVEAU(0): 0xE30C: CURRENT VALUE IS: 0x00000011
+(II) NOUVEAU(0): 0xE315:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE315: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE315: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE315: REG: 0x00100458, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE315: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE340:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE340: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE340: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE340: REG: 0x0010045C, VALUE: 0x00001011
+(II) NOUVEAU(0): 0xE340: CURRENT VALUE IS: 0x00001011
+(II) NOUVEAU(0): 0xE36B:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE36B: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE36B: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE36B: REG: 0x00100470, VALUE: 0x00000100
+(II) NOUVEAU(0): 0xE36B: CURRENT VALUE IS: 0x00000100
+(II) NOUVEAU(0): 0xE396:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE396: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE396: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE396: REG: 0x00100474, VALUE: 0x11110012
+(II) NOUVEAU(0): 0xE396: CURRENT VALUE IS: 0x11110012
+(II) NOUVEAU(0): 0xE3C1:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE3C1: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE3C1: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE3C1: REG: 0x00100490, VALUE: 0x00000002
+(II) NOUVEAU(0): 0xE3C1: CURRENT VALUE IS: 0x00000002
+(II) NOUVEAU(0): 0xE3EC:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE3EC: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE3EC: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE3EC: REG: 0x00100480, VALUE: 0x77777777
+(II) NOUVEAU(0): 0xE3EC: CURRENT VALUE IS: 0x77777777
+(II) NOUVEAU(0): 0xE417:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE417: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE417: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE417: REG: 0x00100460, VALUE: 0x99999999
+(II) NOUVEAU(0): 0xE417: CURRENT VALUE IS: 0x99999999
+(II) NOUVEAU(0): 0xE442:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE442: Sleeping for 0x03E8 microseconds.
+(II) NOUVEAU(0): 0xE445:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE445: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE445: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE445: REG: 0x00100218, VALUE: 0x00000100
+(II) NOUVEAU(0): 0xE445: CURRENT VALUE IS: 0x00000101
+(II) NOUVEAU(0): 0xE470:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE470: Sleeping for 0x07D0 microseconds.
+(II) NOUVEAU(0): 0xE473:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE473: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE473: REG: 0x0010021C, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE473: CURRENT VALUE IS: 0x00000001
+(II) NOUVEAU(0): 0xE475:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE475: Sleeping for 0x07D0 microseconds.
+(II) NOUVEAU(0): 0xE478:  [ (0x75) -  INIT_CONDITION ]
+(II) NOUVEAU(0): 0xE478: CHECKING IF REGVAL: 0x00000000 equals COND:
+0x00000020
+(II) NOUVEAU(0): 0xE478: CONDITION IS NOT FULFILLED.
+(II) NOUVEAU(0): 0xE478: ------ SKIPPING FOLLOWING COMMANDS  ------
+(II) NOUVEAU(0): 0xE47A:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE4A5:  [ (0x38) -  INIT_NOT ]
+(II) NOUVEAU(0): 0xE4A5: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xE4A6:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE4A6: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE4A6: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE4A6: REG: 0x00100200, VALUE: 0x43003E00
+(II) NOUVEAU(0): 0xE4A6: CURRENT VALUE IS: 0x43003E00
+(II) NOUVEAU(0): 0xE4D1:  [ (0x72) -  INIT_RESUME ]
+(II) NOUVEAU(0): 0xE4D2:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE4D2: Sleeping for 0x07D0 microseconds.
+(II) NOUVEAU(0): 0xE4D5:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE4D5: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE4D5: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE4D5: REG: 0x00100204, VALUE: 0x00559020
+(II) NOUVEAU(0): 0xE4D5: CURRENT VALUE IS: 0x00559020
+(II) NOUVEAU(0): 0xE500:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE500: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE500: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE500: REG: 0x00100210, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE500: CURRENT VALUE IS: 0x80002323
+(II) NOUVEAU(0): 0xE52B:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE52B: REG: 0x00100214, VALUE: 0x000000B0
+(II) NOUVEAU(0): 0xE52B: CURRENT VALUE IS: 0x000000B0
+(II) NOUVEAU(0): 0xE534:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE534: Sleeping for 0x07D0 microseconds.
+(II) NOUVEAU(0): 0xE537:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE537: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE537: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE537: REG: 0x00100218, VALUE: 0x00000100
+(II) NOUVEAU(0): 0xE537: CURRENT VALUE IS: 0x00000101
+(II) NOUVEAU(0): 0xE562:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE562: Sleeping for 0x07D0 microseconds.
+(II) NOUVEAU(0): 0xE565:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE565: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE565: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE565: REG: 0x00100218, VALUE: 0x00000101
+(II) NOUVEAU(0): 0xE565: CURRENT VALUE IS: 0x00000101
+(II) NOUVEAU(0): 0xE590:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE590: Sleeping for 0x07D0 microseconds.
+(II) NOUVEAU(0): 0xE593:  [ (0x39) -  INIT_IO_FLAG_CONDITION ]
+(II) NOUVEAU(0): 0xE593: CHECKING IF DATA: 00 equals COND: 10
+(II) NOUVEAU(0): 0xE593: CONDITION IS NOT FULFILLED.
+(II) NOUVEAU(0): 0xE593: ------ SKIPPING FOLLOWING COMMANDS  ------
+(II) NOUVEAU(0): 0xE595:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE59E:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE5A7:  [ (0x72) -  INIT_RESUME ]
+(II) NOUVEAU(0): 0xE5A7: ---- EXECUTING FOLLOWING COMMANDS ----
+(II) NOUVEAU(0): 0xE5A8:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE5A8: Sleeping for 0x00C8 microseconds.
+(II) NOUVEAU(0): 0xE5AB:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE5AB: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE5AB: REG: 0x001002D8, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE5AB: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE5AD:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE5AD: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE5AD: REG: 0x001002D4, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE5AD: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE5AF:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE5AF: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE5AF: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE5AF: REG: 0x001002E0, VALUE: 0x00200000
+(II) NOUVEAU(0): 0xE5AF: CURRENT VALUE IS: 0x00300000
+(II) NOUVEAU(0): 0xE5DA:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE5DA: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE5DA: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE5DA: REG: 0x001002E8, VALUE: 0x00200000
+(II) NOUVEAU(0): 0xE5DA: CURRENT VALUE IS: 0x00300000
+(II) NOUVEAU(0): 0xE605:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE605: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE605: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE605: REG: 0x001002E0, VALUE: 0x00300000
+(II) NOUVEAU(0): 0xE605: CURRENT VALUE IS: 0x00300000
+(II) NOUVEAU(0): 0xE630:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE630: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE630: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE630: REG: 0x001002E8, VALUE: 0x00300000
+(II) NOUVEAU(0): 0xE630: CURRENT VALUE IS: 0x00300000
+(II) NOUVEAU(0): 0xE65B:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE65B: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE65B: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE65B: REG: 0x001002C4, VALUE: 0x00100006
+(II) NOUVEAU(0): 0xE65B: CURRENT VALUE IS: 0x00100042
+(II) NOUVEAU(0): 0xE686:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE686: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE686: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE686: REG: 0x001002CC, VALUE: 0x00100006
+(II) NOUVEAU(0): 0xE686: CURRENT VALUE IS: 0x00100042
+(II) NOUVEAU(0): 0xE6B1:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE6B1: REG: 0x00100084, VALUE: 0x0000001D
+(II) NOUVEAU(0): 0xE6B1: CURRENT VALUE IS: 0x00000011
+(II) NOUVEAU(0): 0xE6BA:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE6BA: REG: 0x00100090, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE6BA: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE6C4: Parsing init table 2
+(II) NOUVEAU(0): 0xE6C4: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xE6C4:  [ (0x4B) -  INIT_PLL ]
+(II) NOUVEAU(0): 0xE6CD:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE6CD: REG: 0x00001088, VALUE: 0x000011F0
+(II) NOUVEAU(0): 0xE6CD: CURRENT VALUE IS: 0x000211F0
+(II) NOUVEAU(0): 0xE6D6:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE6D6: REG: 0x0000108C, VALUE: 0x000000D1
+(II) NOUVEAU(0): 0xE6D6: CURRENT VALUE IS: 0x000000D1
+(II) NOUVEAU(0): 0xE6DF:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE6DF: REG: 0x00001530, VALUE: 0x80000577
+(II) NOUVEAU(0): 0xE6DF: CURRENT VALUE IS: 0x80000577
+(II) NOUVEAU(0): 0xE6EC:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE6EC: REG: 0x00680880, VALUE: 0x31101191
+(II) NOUVEAU(0): 0xE6EC: CURRENT VALUE IS: 0x21101191
+(II) NOUVEAU(0): 0xE6F9:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE6F9: REG: 0x00680610, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE6F9: CURRENT VALUE IS: 0x94050140
+(II) NOUVEAU(0): 0xE702:  [ (0x54) -  INIT_ZM_CR_GROUP ]
+(II) NOUVEAU(0): 0xE702: CRTC INDEX: 0x38, VALUE: 0x00
+(II) NOUVEAU(0): 0xE702: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE702: CRTC INDEX: 0x1A, VALUE: 0x3F
+(II) NOUVEAU(0): 0xE702: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE702: CRTC INDEX: 0x28, VALUE: 0x00
+(II) NOUVEAU(0): 0xE702: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE702: CRTC INDEX: 0x33, VALUE: 0x00
+(II) NOUVEAU(0): 0xE702: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE702: CRTC INDEX: 0x21, VALUE: 0xFA
+(II) NOUVEAU(0): 0xE702: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE70E:  [ (0x52) -  INIT_CR ]
+(II) NOUVEAU(0): 0xE70E: CRTC INDEX: 0x2B, VALUE: 0x20
+(II) NOUVEAU(0): 0xE70E: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE712:  [ (0x54) -  INIT_ZM_CR_GROUP ]
+(II) NOUVEAU(0): 0xE712: CRTC INDEX: 0x2C, VALUE: 0x00
+(II) NOUVEAU(0): 0xE712: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE712: CRTC INDEX: 0x3A, VALUE: 0x00
+(II) NOUVEAU(0): 0xE712: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE712: CRTC INDEX: 0x3B, VALUE: 0x00
+(II) NOUVEAU(0): 0xE712: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE712: CRTC INDEX: 0x4A, VALUE: 0x00
+(II) NOUVEAU(0): 0xE712: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE712: CRTC INDEX: 0x4B, VALUE: 0x00
+(II) NOUVEAU(0): 0xE712: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE712: CRTC INDEX: 0x4C, VALUE: 0x00
+(II) NOUVEAU(0): 0xE712: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720:  [ (0x51) -  INIT_CR_INDEX_ADDRESS_LATCHED ]
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 57    DATA: 00
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 58    DATA: 7F
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 57    DATA: 01
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 58    DATA: 00
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 57    DATA: 02
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 58    DATA: 00
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 57    DATA: 03
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 58    DATA: 00
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 57    DATA: 04
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 58    DATA: 00
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 57    DATA: 05
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 58    DATA: 00
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 57    DATA: 06
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE720: CRTC INDEX: 58    DATA: 00
+(II) NOUVEAU(0): 0xE720: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE72C:  [ (0x53) -  INIT_ZM_CR ]
+(II) NOUVEAU(0): 0xE72C: CRTC INDEX: 0x43, VALUE: 0x01
+(II) NOUVEAU(0): 0xE72C: CURRENT VALUE IS: 0x20
+(II) NOUVEAU(0): 0xE72F:  [ (0x78) -  INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xE72F: CRTC REG: 0x03D4, INDEX: 0x0085, VALUE: 0xFF
+(II) NOUVEAU(0): 0xE72F: CURRENT VALUE IS: 0xFF
+(II) NOUVEAU(0): 0xE735:  [ (0x78) -  INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xE735: CRTC REG: 0x03D4, INDEX: 0x0086, VALUE: 0x01
+(II) NOUVEAU(0): 0xE735: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE73B:  [ (0x53) -  INIT_ZM_CR ]
+(II) NOUVEAU(0): 0xE73B: CRTC INDEX: 0x44, VALUE: 0x03
+(II) NOUVEAU(0): 0xE73B: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE73E:  [ (0x53) -  INIT_ZM_CR ]
+(II) NOUVEAU(0): 0xE73E: CRTC INDEX: 0x21, VALUE: 0xFA
+(II) NOUVEAU(0): 0xE73E: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE741:  [ (0x78) -  INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xE741: CRTC REG: 0x03D4, INDEX: 0x0085, VALUE: 0xFF
+(II) NOUVEAU(0): 0xE741: CURRENT VALUE IS: 0xFF
+(II) NOUVEAU(0): 0xE747:  [ (0x78) -  INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xE747: CRTC REG: 0x03D4, INDEX: 0x0086, VALUE: 0x01
+(II) NOUVEAU(0): 0xE747: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE74D:  [ (0x52) -  INIT_CR ]
+(II) NOUVEAU(0): 0xE74D: CRTC INDEX: 0x2B, VALUE: 0x00
+(II) NOUVEAU(0): 0xE74D: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE751:  [ (0x54) -  INIT_ZM_CR_GROUP ]
+(II) NOUVEAU(0): 0xE751: CRTC INDEX: 0x2C, VALUE: 0x00
+(II) NOUVEAU(0): 0xE751: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE751: CRTC INDEX: 0x3A, VALUE: 0x00
+(II) NOUVEAU(0): 0xE751: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE751: CRTC INDEX: 0x3B, VALUE: 0x00
+(II) NOUVEAU(0): 0xE751: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE751: CRTC INDEX: 0x3C, VALUE: 0x00
+(II) NOUVEAU(0): 0xE751: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE751: CRTC INDEX: 0x4A, VALUE: 0x00
+(II) NOUVEAU(0): 0xE751: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE751: CRTC INDEX: 0x4B, VALUE: 0x00
+(II) NOUVEAU(0): 0xE751: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE751: CRTC INDEX: 0x4C, VALUE: 0x00
+(II) NOUVEAU(0): 0xE751: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE761:  [ (0x51) -  INIT_CR_INDEX_ADDRESS_LATCHED ]
+(II) NOUVEAU(0): 0xE761: CRTC INDEX: 57    DATA: 00
+(II) NOUVEAU(0): 0xE761: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE761: CRTC INDEX: 58    DATA: 7F
+(II) NOUVEAU(0): 0xE761: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE761: CRTC INDEX: 57    DATA: 01
+(II) NOUVEAU(0): 0xE761: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE761: CRTC INDEX: 58    DATA: 00
+(II) NOUVEAU(0): 0xE761: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE761: CRTC INDEX: 57    DATA: 02
+(II) NOUVEAU(0): 0xE761: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE761: CRTC INDEX: 58    DATA: 00
+(II) NOUVEAU(0): 0xE761: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE769:  [ (0x53) -  INIT_ZM_CR ]
+(II) NOUVEAU(0): 0xE769: CRTC INDEX: 0x43, VALUE: 0x01
+(II) NOUVEAU(0): 0xE769: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE76C:  [ (0x53) -  INIT_ZM_CR ]
+(II) NOUVEAU(0): 0xE76C: CRTC INDEX: 0x44, VALUE: 0x00
+(II) NOUVEAU(0): 0xE76C: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE76F:  [ (0x53) -  INIT_ZM_CR ]
+(II) NOUVEAU(0): 0xE76F: CRTC INDEX: 0x52, VALUE: 0x04
+(II) NOUVEAU(0): 0xE76F: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE772:  [ (0x53) -  INIT_ZM_CR ]
+(II) NOUVEAU(0): 0xE772: CRTC INDEX: 0x53, VALUE: 0x40
+(II) NOUVEAU(0): 0xE772: CURRENT VALUE IS: 0x01
+(II) NOUVEAU(0): 0xE775:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE775: REG: 0x00001584, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE775: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE782:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE782: REG: 0x00100210, VALUE: 0x80000000
+(II) NOUVEAU(0): 0xE782: CURRENT VALUE IS: 0x8000D3D3
+(II) NOUVEAU(0): 0xE78B:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE78B: REG: 0x0068052C, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE78B: CURRENT VALUE IS: 0x00000001
+(II) NOUVEAU(0): 0xE798:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE798: REG: 0x0068252C, VALUE: 0x00000101
+(II) NOUVEAU(0): 0xE798: CURRENT VALUE IS: 0x00000100
+(II) NOUVEAU(0): 0xE7A5:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE7A5: REG: 0x00680848, VALUE: 0x11100101
+(II) NOUVEAU(0): 0xE7A5: CURRENT VALUE IS: 0x11100101
+(II) NOUVEAU(0): 0xE7B2:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE7B2: REG: 0x00682848, VALUE: 0x11100011
+(II) NOUVEAU(0): 0xE7B2: CURRENT VALUE IS: 0x11100011
+(II) NOUVEAU(0): 0xE7BF:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE7BF: REG: 0x00001200, VALUE: 0x0003103C
+(II) NOUVEAU(0): 0xE7BF: CURRENT VALUE IS: 0x0003103C
+(II) NOUVEAU(0): 0xE821: Parsing init table 3
+(II) NOUVEAU(0): 0xE821: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xE821:  [ (0x5B) -  INIT_SUB_DIRECT ]
+(II) NOUVEAU(0): 0xE821: EXECUTING SUB-ROUTINE AT: 0xD2F6
+(II) NOUVEAU(0): 0xD2F6:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xD2F6: REG: 0x00001304, VALUE: 0x00000800
+(II) NOUVEAU(0): 0xD2F6: CURRENT VALUE IS: 0x00000800
+(II) NOUVEAU(0): 0xD2FF:  [ (0x58) -  INIT_ZM_REG_SEQUENCE ]
+(II) NOUVEAU(0): 0xD2FF: REG: 0x00001400, VALUE: 0xA9A81DA2
+(II) NOUVEAU(0): 0xD2FF: CURRENT VALUE IS: 0xA9A81DA2
+(II) NOUVEAU(0): 0xD2FF: REG: 0x00001404, VALUE: 0x7FB71E23
+(II) NOUVEAU(0): 0xD2FF: CURRENT VALUE IS: 0x7FB71E23
+(II) NOUVEAU(0): 0xD2FF: REG: 0x00001408, VALUE: 0xC9C825D7
+(II) NOUVEAU(0): 0xD2FF: CURRENT VALUE IS: 0xC9C825D7
+(II) NOUVEAU(0): 0xD2FF: REG: 0x0000140C, VALUE: 0x7F27C216
+(II) NOUVEAU(0): 0xD2FF: CURRENT VALUE IS: 0x7F27C216
+(II) NOUVEAU(0): 0xD315:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xD315: REG: 0x00001098, VALUE: 0x21CA0604
+(II) NOUVEAU(0): 0xD315: CURRENT VALUE IS: 0x21CA0604
+(II) NOUVEAU(0): 0xD322:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xD322: REG: 0x00001310, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xD322: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE821: END OF SUB-ROUTINE
+(II) NOUVEAU(0): 0xE824:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE824: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE824: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE824: REG: 0x001002C0, VALUE: 0x00000B52
+(II) NOUVEAU(0): 0xE824: CURRENT VALUE IS: 0x00000A52
+(II) NOUVEAU(0): 0xE84F:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE84F: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE84F: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE84F: REG: 0x001002C8, VALUE: 0x00000B52
+(II) NOUVEAU(0): 0xE84F: CURRENT VALUE IS: 0x00000A52
+(II) NOUVEAU(0): 0xE87A:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE87A: Sleeping for 0x03E8 microseconds.
+(II) NOUVEAU(0): 0xE87D:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE87D: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE87D: REG: 0x001002D4, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE87D: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE87F:  [ (0x33) -  INIT_REPEAT ]
+(II) NOUVEAU(0): 0xE87F: REPEATING FOLLOWING SEGMENT 10 TIMES.
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE881:  [ (0x6F) -  INIT_MACRO ]
+(II) NOUVEAU(0): 0xE881: WRITE 1 32-BIT REGS:
+(II) NOUVEAU(0): 0xE881: REG: 0x001002D0, VALUE: 0x00000001
+(II) NOUVEAU(0): 0xE881: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE883:  [ (0x36) -  INIT_END_REPEAT ]
+(II) NOUVEAU(0): 0xE884:  [ (0x6B) -  INIT_SUB ]
+(II) NOUVEAU(0): 0xE884: EXECUTING SUB-SCRIPT: 8
+(II) NOUVEAU(0): 0x5DCE:  [ (0x78) -  INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0x5DCE: CRTC REG: 0x03D4, INDEX: 0x0044, VALUE: 0x00
+(II) NOUVEAU(0): 0x5DCE: CURRENT VALUE IS: 0x00
+(II) NOUVEAU(0): 0x5DD4:  [ (0x39) -  INIT_IO_FLAG_CONDITION ]
+(II) NOUVEAU(0): 0x5DD4: CHECKING IF DATA: 02 equals COND: 21
+(II) NOUVEAU(0): 0x5DD4: CONDITION IS NOT FULFILLED.
+(II) NOUVEAU(0): 0x5DD4: ------ SKIPPING FOLLOWING COMMANDS  ------
+(II) NOUVEAU(0): 0x5DD6:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5DE3:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5DF0:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5DFD:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5E0A:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0x5E0D:  [ (0x72) -  INIT_RESUME ]
+(II) NOUVEAU(0): 0x5E0D: ---- EXECUTING FOLLOWING COMMANDS ----
+(II) NOUVEAU(0): 0x5E0E:  [ (0x39) -  INIT_IO_FLAG_CONDITION ]
+(II) NOUVEAU(0): 0x5E0E: CHECKING IF DATA: 02 equals COND: 23
+(II) NOUVEAU(0): 0x5E0E: CONDITION IS NOT FULFILLED.
+(II) NOUVEAU(0): 0x5E0E: ------ SKIPPING FOLLOWING COMMANDS  ------
+(II) NOUVEAU(0): 0x5E10:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5E1D:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5E2A:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5E37:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5E44:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0x5E47:  [ (0x72) -  INIT_RESUME ]
+(II) NOUVEAU(0): 0x5E47: ---- EXECUTING FOLLOWING COMMANDS ----
+(II) NOUVEAU(0): 0x5E48:  [ (0x39) -  INIT_IO_FLAG_CONDITION ]
+(II) NOUVEAU(0): 0x5E48: CHECKING IF DATA: 00 equals COND: 00
+(II) NOUVEAU(0): 0x5E48: CONDITION FULFILLED - CONTINUING TO EXECUTE
+(II) NOUVEAU(0): 0x5E4A:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5E4A: REG: 0x001002C8, VALUE: 0x00000B52
+(II) NOUVEAU(0): 0x5E4A: CURRENT VALUE IS: 0x00000A52
+(II) NOUVEAU(0): 0x5E57:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5E57: REG: 0x001002C0, VALUE: 0x00000B52
+(II) NOUVEAU(0): 0x5E57: CURRENT VALUE IS: 0x00000A52
+(II) NOUVEAU(0): 0x5E64:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5E64: REG: 0x001002C8, VALUE: 0x00000A52
+(II) NOUVEAU(0): 0x5E64: CURRENT VALUE IS: 0x00000A52
+(II) NOUVEAU(0): 0x5E71:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0x5E71: REG: 0x001002C0, VALUE: 0x00000A52
+(II) NOUVEAU(0): 0x5E71: CURRENT VALUE IS: 0x00000A52
+(II) NOUVEAU(0): 0x5E7E:  [ (0x72) -  INIT_RESUME ]
+(II) NOUVEAU(0): 0xE884: END OF SUB-SCRIPT
+(II) NOUVEAU(0): 0xE886:  [ (0x74) -  INIT_TIME ]
+(II) NOUVEAU(0): 0xE886: Sleeping for 0x0064 microseconds.
+(II) NOUVEAU(0): 0xE889:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE889: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE889: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE889: REG: 0x00100440, VALUE: 0x8030010B
+(II) NOUVEAU(0): 0xE889: CURRENT VALUE IS: 0x8030010B
+(II) NOUVEAU(0): 0xE8B4:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE8B4: REG: 0x00100210, VALUE: 0x80000000
+(II) NOUVEAU(0): 0xE8B4: CURRENT VALUE IS: 0x8000A1A1
+(II) NOUVEAU(0): 0xE8BD:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE8BD: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE8BD: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE8BD: REG: 0x001002C4, VALUE: 0x00100386
+(II) NOUVEAU(0): 0xE8BD: CURRENT VALUE IS: 0x00100042
+(II) NOUVEAU(0): 0xE8E8:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE8E8: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE8E8: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE8E8: REG: 0x001002CC, VALUE: 0x00100386
+(II) NOUVEAU(0): 0xE8E8: CURRENT VALUE IS: 0x00100042
+(II) NOUVEAU(0): 0xE913:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE913: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE913: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE913: REG: 0x001002C4, VALUE: 0x00100042
+(II) NOUVEAU(0): 0xE913: CURRENT VALUE IS: 0x00100042
+(II) NOUVEAU(0): 0xE93E:  [ (0x32) -  INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xE93E: CRTC REG: 0x03D4, INDEX: 0x3C
+(II) NOUVEAU(0): 0xE93E: CONFIGURATION TO USE: 0x02
+(II) NOUVEAU(0): 0xE93E: REG: 0x001002CC, VALUE: 0x00100042
+(II) NOUVEAU(0): 0xE93E: CURRENT VALUE IS: 0x00100042
+(II) NOUVEAU(0): 0xE969:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE969: REG: 0x0070FFF0, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE969: CURRENT VALUE IS: 0x00020000
+(II) NOUVEAU(0): 0xE972:  [ (0x63) -  INIT_COMPUTE_MEM ]
+(II) NOUVEAU(0): 0xE973:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE973: REG: 0x0070FFF0, VALUE: 0x00000000
+(II) NOUVEAU(0): 0xE973: CURRENT VALUE IS: 0x00020000
+(II) NOUVEAU(0): 0xE97C:  [ (0x5F) -  INIT_COPY_NV_REG ]
+(II) NOUVEAU(0): 0xE97C: REG: 0x00001700, VALUE: 0x08000000
+(II) NOUVEAU(0): 0xE97C: CURRENT VALUE IS: 0x08000000
+(II) NOUVEAU(0): 0xE992:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE992: REG: 0x00100200, VALUE: 0x43003E00
+(II) NOUVEAU(0): 0xE992: CURRENT VALUE IS: 0x43003E00
+(II) NOUVEAU(0): 0xE99F:  [ (0x78) -  INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xE99F: CRTC REG: 0x03C4, INDEX: 0x0001, VALUE: 0x00
+(II) NOUVEAU(0): 0xE99F: CURRENT VALUE IS: 0x00
+(II) NOUVEAU(0): 0xE9A5:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE9A5: REG: 0x00011014, VALUE: 0x00008000
+(II) NOUVEAU(0): 0xE9A5: CURRENT VALUE IS: 0x00000000
+(II) NOUVEAU(0): 0xE9B2:  [ (0x7A) -  INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xE9B2: REG: 0x00088150, VALUE: 0x00000002
+(II) NOUVEAU(0): 0xE9B2: CURRENT VALUE IS: 0x00000002
+(II) NOUVEAU(0): 0xE9BB:  [ (0x6E) -  INIT_NV_REG ]
+(II) NOUVEAU(0): 0xE9BB: REG: 0x0008813C, VALUE: 0x07000000
+(II) NOUVEAU(0): 0xE9BB: CURRENT VALUE IS: 0x07000000
+(II) NOUVEAU(0): 0xE9C9: Parsing init table 4
+(II) NOUVEAU(0): 0xE9C9: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0x0242: Found BIT command with id 0x4C
+(II) NOUVEAU(0): 0x0248: Found BIT command with id 0x74
+(II) NOUVEAU(0): 0x024E: Found BIT command with id 0x4D
+(II) NOUVEAU(0): 0x0254: Found BIT command with id 0x4E
+(II) NOUVEAU(0): 0x025A: Found BIT command with id 0x50
+(II) NOUVEAU(0): 0x0260: Found BIT command with id 0x53
+(II) NOUVEAU(0): 0x0266: Found BIT command with id 0x54
+(II) NOUVEAU(0): 0x026C: Found BIT command with id 0x55
+(II) NOUVEAU(0): 0x0272: Found BIT command with id 0x56
+(II) NOUVEAU(0): 0x0278: Found BIT command with id 0x63
+(II) NOUVEAU(0): 0x027E: Found BIT command with id 0x69
+(II) NOUVEAU(0): 0x0284: Found BIT command with id 0x00
+(II) NOUVEAU(0): Display Configuration Block version 3.0 found
+(II) NOUVEAU(0): DCB header length 19, with 0A possible entries
+(II) NOUVEAU(0): Found 10 entries in DCB.
+(II) Loading sub module "i2c"
+(II) LoadModule: "i2c"(II) Module "i2c" already built-in
+(II) Loading sub module "ddc"
+(II) LoadModule: "ddc"(II) Module "ddc" already built-in
+(II) NOUVEAU(0): I2C bus "DDC" initialized.
+(II) NOUVEAU(0): Probing for analog device on output A...
+(--) NOUVEAU(0):   ...can't find one
+(II) NOUVEAU(0): Probing for analog device on output B...
+(--) NOUVEAU(0):   ...found one
+(II) NOUVEAU(0): Probing for EDID on I2C bus A...
+(II) NOUVEAU(0): I2C device "DDC:ddc2" registered at address 0xA0.
+(II) NOUVEAU(0): I2C device "DDC:ddc2" removed.
+(II) NOUVEAU(0):   ... none found
+(II) NOUVEAU(0): Probing for EDID on I2C bus B...
+(II) NOUVEAU(0): I2C device "DDC:ddc2" registered at address 0xA0.
+(II) NOUVEAU(0): I2C device "DDC:ddc2" removed.
+(II) NOUVEAU(0):   ... none found
+(--) NOUVEAU(0): CRTC 0 is currently programmed for DFP
+(II) NOUVEAU(0): Using DFP on CRTC 0
+(--) NOUVEAU(0): Panel size is 1400 x 1050
+(II) NOUVEAU(0): Panel is TMDS
+(--) NOUVEAU(0): VideoRAM: 131072 kBytes
+(==) NOUVEAU(0): Using gamma correction (1.0, 1.0, 1.0)
+(II) NOUVEAU(0): Monitor0: Using hsync range of 30.00-92.00 kHz
+(II) NOUVEAU(0): Monitor0: Using vrefresh range of 50.00-180.00 Hz
+(II) NOUVEAU(0): Clock range:  12.00 to 400.00 MHz
+(II) NOUVEAU(0): Not using default mode "320x175" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "320x200" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "360x200" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "320x240" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "320x240" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "320x240" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "320x240" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "400x300" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "400x300" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "400x300" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "400x300" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "400x300" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1024x768" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "512x384" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "512x384" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "512x384" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "512x384" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "512x384" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "576x432" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "640x480" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "640x480" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "640x512" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "640x512" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "640x512" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1600x1200" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "800x600" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1600x1200" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "800x600" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1600x1200" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "800x600" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1600x1200" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "800x600" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1600x1200" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "800x600" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1792x1344" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "896x672" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1792x1344" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "896x672" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1856x1392" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "928x696" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1856x1392" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "928x696" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1920x1440" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "960x720" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1920x1440" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "960x720" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "416x312" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "576x384" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "700x525" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "700x525" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1600x1024" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "800x512" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "1920x1440" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "960x720" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "2048x1536" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "1024x768" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "2048x1536" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "1024x768" (bad mode
+clock/interlace/doublescan)
+(II) NOUVEAU(0): Not using default mode "2048x1536" (exceeds panel
+dimensions)
+(II) NOUVEAU(0): Not using default mode "1024x768" (bad mode
+clock/interlace/doublescan)
+(--) NOUVEAU(0): Virtual size is 1400x1050 (pitch 1408)
+(**) NOUVEAU(0): *Driver mode "1400x1050": 101.0 MHz, 64.7 kHz, 59.9 Hz
+(II) NOUVEAU(0): Modeline "1400x1050"x59.9  101.00  1400 1448 1480 1560
+ 1050 1053 1057 1080 +hsync -vsync (64.7 kHz)
+(**) NOUVEAU(0):  Default mode "1400x1050": 155.8 MHz, 81.5 kHz, 74.8 Hz
+(II) NOUVEAU(0): Modeline "1400x1050"x74.8  155.80  1400 1464 1784 1912
+ 1050 1052 1064 1090 +hsync +vsync (81.5 kHz)
+(**) NOUVEAU(0):  Default mode "1400x1050": 122.0 MHz, 64.9 kHz, 60.0 Hz
+(II) NOUVEAU(0): Modeline "1400x1050"x60.0  122.00  1400 1488 1640 1880
+ 1050 1052 1064 1082 +hsync +vsync (64.9 kHz)
+(**) NOUVEAU(0):  Default mode "1280x1024": 157.5 MHz, 91.1 kHz, 85.0 Hz
+(II) NOUVEAU(0): Modeline "1280x1024"x85.0  157.50  1280 1344 1504 1728
+ 1024 1025 1028 1072 +hsync +vsync (91.1 kHz)
+(**) NOUVEAU(0):  Default mode "1280x1024": 135.0 MHz, 80.0 kHz, 75.0 Hz
+(II) NOUVEAU(0): Modeline "1280x1024"x75.0  135.00  1280 1296 1440 1688
+ 1024 1025 1028 1066 +hsync +vsync (80.0 kHz)
+(**) NOUVEAU(0):  Default mode "1280x1024": 108.0 MHz, 64.0 kHz, 60.0 Hz
+(II) NOUVEAU(0): Modeline "1280x1024"x60.0  108.00  1280 1328 1440 1688
+ 1024 1025 1028 1066 +hsync +vsync (64.0 kHz)
+(**) NOUVEAU(0):  Default mode "1280x960": 148.5 MHz, 85.9 kHz, 85.0 Hz
+(II) NOUVEAU(0): Modeline "1280x960"x85.0  148.50  1280 1344 1504 1728
+960 961 964 1011 +hsync +vsync (85.9 kHz)
+(**) NOUVEAU(0):  Default mode "1280x960": 108.0 MHz, 60.0 kHz, 60.0 Hz
+(II) NOUVEAU(0): Modeline "1280x960"x60.0  108.00  1280 1376 1488 1800
+960 961 964 1000 +hsync +vsync (60.0 kHz)
+(**) NOUVEAU(0):  Default mode "1152x864": 108.0 MHz, 67.5 kHz, 75.0 Hz
+(II) NOUVEAU(0): Modeline "1152x864"x75.0  108.00  1152 1216 1344 1600
+864 865 868 900 +hsync +vsync (67.5 kHz)
+(**) NOUVEAU(0):  Default mode "1152x768": 65.0 MHz, 44.2 kHz, 54.8 Hz
+(II) NOUVEAU(0): Modeline "1152x768"x54.8   65.00  1152 1178 1314 1472
+768 771 777 806 +hsync +vsync (44.2 kHz)
+(**) NOUVEAU(0):  Default mode "1024x768": 94.5 MHz, 68.7 kHz, 85.0 Hz
+(II) NOUVEAU(0): Modeline "1024x768"x85.0   94.50  1024 1072 1168 1376
+768 769 772 808 +hsync +vsync (68.7 kHz)
+(**) NOUVEAU(0):  Default mode "1024x768": 78.8 MHz, 60.0 kHz, 75.0 Hz
+(II) NOUVEAU(0): Modeline "1024x768"x75.0   78.75  1024 1040 1136 1312
+768 769 772 800 +hsync +vsync (60.0 kHz)
+(**) NOUVEAU(0):  Default mode "1024x768": 75.0 MHz, 56.5 kHz, 70.1 Hz
+(II) NOUVEAU(0): Modeline "1024x768"x70.1   75.00  1024 1048 1184 1328
+768 771 777 806 -hsync -vsync (56.5 kHz)
+(**) NOUVEAU(0):  Default mode "1024x768": 65.0 MHz, 48.4 kHz, 60.0 Hz
+(II) NOUVEAU(0): Modeline "1024x768"x60.0   65.00  1024 1048 1184 1344
+768 771 777 806 -hsync -vsync (48.4 kHz)
+(**) NOUVEAU(0):  Default mode "832x624": 57.3 MHz, 49.7 kHz, 74.6 Hz
+(II) NOUVEAU(0): Modeline "832x624"x74.6   57.28  832 864 928 1152  624
+625 628 667 -hsync -vsync (49.7 kHz)
+(**) NOUVEAU(0):  Default mode "800x600": 56.3 MHz, 53.7 kHz, 85.1 Hz
+(II) NOUVEAU(0): Modeline "800x600"x85.1   56.30  800 832 896 1048  600
+601 604 631 +hsync +vsync (53.7 kHz)
+(**) NOUVEAU(0):  Default mode "800x600": 49.5 MHz, 46.9 kHz, 75.0 Hz
+(II) NOUVEAU(0): Modeline "800x600"x75.0   49.50  800 816 896 1056  600
+601 604 625 +hsync +vsync (46.9 kHz)
+(**) NOUVEAU(0):  Default mode "800x600": 50.0 MHz, 48.1 kHz, 72.2 Hz
+(II) NOUVEAU(0): Modeline "800x600"x72.2   50.00  800 856 976 1040  600
+637 643 666 +hsync +vsync (48.1 kHz)
+(**) NOUVEAU(0):  Default mode "800x600": 40.0 MHz, 37.9 kHz, 60.3 Hz
+(II) NOUVEAU(0): Modeline "800x600"x60.3   40.00  800 840 968 1056  600
+601 605 628 +hsync +vsync (37.9 kHz)
+(**) NOUVEAU(0):  Default mode "800x600": 36.0 MHz, 35.2 kHz, 56.2 Hz
+(II) NOUVEAU(0): Modeline "800x600"x56.2   36.00  800 824 896 1024  600
+601 603 625 +hsync +vsync (35.2 kHz)
+(**) NOUVEAU(0):  Default mode "640x480": 36.0 MHz, 43.3 kHz, 85.0 Hz
+(II) NOUVEAU(0): Modeline "640x480"x85.0   36.00  640 696 752 832  480
+481 484 509 -hsync -vsync (43.3 kHz)
+(**) NOUVEAU(0):  Default mode "640x480": 31.5 MHz, 37.5 kHz, 75.0 Hz
+(II) NOUVEAU(0): Modeline "640x480"x75.0   31.50  640 656 720 840  480
+481 484 500 -hsync -vsync (37.5 kHz)
+(**) NOUVEAU(0):  Default mode "640x480": 31.5 MHz, 37.9 kHz, 72.8 Hz
+(II) NOUVEAU(0): Modeline "640x480"x72.8   31.50  640 664 704 832  480
+489 492 520 -hsync -vsync (37.9 kHz)
+(**) NOUVEAU(0):  Default mode "640x480": 25.2 MHz, 31.5 kHz, 59.9 Hz
+(II) NOUVEAU(0): Modeline "640x480"x59.9   25.18  640 656 752 800  480
+490 492 525 -hsync -vsync (31.5 kHz)
+(**) NOUVEAU(0):  Default mode "720x400": 35.5 MHz, 37.9 kHz, 85.0 Hz
+(II) NOUVEAU(0): Modeline "720x400"x85.0   35.50  720 756 828 936  400
+401 404 446 -hsync +vsync (37.9 kHz)
+(**) NOUVEAU(0):  Default mode "640x400": 31.5 MHz, 37.9 kHz, 85.1 Hz
+(II) NOUVEAU(0): Modeline "640x400"x85.1   31.50  640 672 736 832  400
+401 404 445 -hsync +vsync (37.9 kHz)
+(**) NOUVEAU(0):  Default mode "640x350": 31.5 MHz, 37.9 kHz, 85.1 Hz
+(II) NOUVEAU(0): Modeline "640x350"x85.1   31.50  640 672 736 832  350
+382 385 445 +hsync -vsync (37.9 kHz)
+(==) NOUVEAU(0): DPI set to (75, 75)
+(II) Loading sub module "fb"
+(II) LoadModule: "fb"
+(II) Loading /usr/lib/X11/modules//libfb.so
+(II) Module fb: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.0
+	ABI class: X.Org ANSI C Emulation, version 0.3
+(II) Loading sub module "exa"
+(II) LoadModule: "exa"
+(II) Loading /usr/lib/X11/modules//libexa.so
+(II) Module exa: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 2.2.0
+	ABI class: X.Org Video Driver, version 2.0
+(II) Loading sub module "ramdac"
+(II) LoadModule: "ramdac"(II) Module "ramdac" already built-in
+(--) Depth 24 pixmap format is 32 bpp
+(II) do I need RAC?  No, I don't.
+(II) resource ranges after preInit:
+	[0] 0	0	0xfb000000 - 0xfbffffff (0x1000000) MX[B]
+	[1] 0	0	0xe0000000 - 0xefffffff (0x10000000) MX[B]
+	[2] 0	0	0xfa000000 - 0xfaffffff (0x1000000) MX[B]
+	[3] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[4] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[5] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[6] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[7] -1	0	0xfddf8000 - 0xfddfbfff (0x4000) MX[B]
+	[8] -1	0	0xfddff000 - 0xfddff07f (0x80) MX[B]
+	[9] -1	0	0xfdef8000 - 0xfdefbfff (0x4000) MX[B]
+	[10] -1	0	0xfdeff000 - 0xfdeff7ff (0x800) MX[B]
+	[11] -1	0	0xfdffe000 - 0xfdffefff (0x1000) MX[B]
+	[12] -1	0	0xfe025000 - 0xfe02500f (0x10) MX[B]
+	[13] -1	0	0xfe026000 - 0xfe0260ff (0x100) MX[B]
+	[14] -1	0	0xfe027000 - 0xfe027fff (0x1000) MX[B]
+	[15] -1	0	0xfe028000 - 0xfe02800f (0x10) MX[B]
+	[16] -1	0	0xfe029000 - 0xfe0290ff (0x100) MX[B]
+	[17] -1	0	0xfe02a000 - 0xfe02afff (0x1000) MX[B]
+	[18] -1	0	0xfe020000 - 0xfe023fff (0x4000) MX[B]
+	[19] -1	0	0xfe02b000 - 0xfe02bfff (0x1000) MX[B]
+	[20] -1	0	0xfe02c000 - 0xfe02cfff (0x1000) MX[B]
+	[21] -1	0	0xfe02d000 - 0xfe02dfff (0x1000) MX[B]
+	[22] -1	0	0xfe02e000 - 0xfe02e0ff (0x100) MX[B]
+	[23] -1	0	0xfe02f000 - 0xfe02ffff (0x1000) MX[B]
+	[24] -1	0	0xfdfff000 - 0xfdffffff (0x1000) MX[B](B)
+	[25] -1	0	0xfcfe0000 - 0xfcffffff (0x20000) MX[B](B)
+	[26] -1	0	0xfb000000 - 0xfbffffff (0x1000000) MX[B](B)
+	[27] -1	0	0xe0000000 - 0xefffffff (0x10000000) MX[B](B)
+	[28] -1	0	0xfa000000 - 0xfaffffff (0x1000000) MX[B](B)
+	[29] 0	0	0x000a0000 - 0x000affff (0x10000) MS[B](OprD)
+	[30] 0	0	0x000b0000 - 0x000b7fff (0x8000) MS[B](OprD)
+	[31] 0	0	0x000b8000 - 0x000bffff (0x8000) MS[B](OprD)
+	[32] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[33] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[34] -1	0	0x0000ac00 - 0x0000ac7f (0x80) IX[B]
+	[35] -1	0	0x0000b000 - 0x0000b007 (0x8) IX[B]
+	[36] -1	0	0x0000b400 - 0x0000b407 (0x8) IX[B]
+	[37] -1	0	0x0000b800 - 0x0000b80f (0x10) IX[B]
+	[38] -1	0	0x0000bc00 - 0x0000bc03 (0x4) IX[B]
+	[39] -1	0	0x0000c000 - 0x0000c007 (0x8) IX[B]
+	[40] -1	0	0x0000c400 - 0x0000c403 (0x4) IX[B]
+	[41] -1	0	0x0000c800 - 0x0000c807 (0x8) IX[B]
+	[42] -1	0	0x0000cc00 - 0x0000cc0f (0x10) IX[B]
+	[43] -1	0	0x00000b60 - 0x00000b63 (0x4) IX[B]
+	[44] -1	0	0x00000960 - 0x00000967 (0x8) IX[B]
+	[45] -1	0	0x00000be0 - 0x00000be3 (0x4) IX[B]
+	[46] -1	0	0x000009e0 - 0x000009e7 (0x8) IX[B]
+	[47] -1	0	0x0000e000 - 0x0000e00f (0x10) IX[B]
+	[48] -1	0	0x00000b70 - 0x00000b73 (0x4) IX[B]
+	[49] -1	0	0x00000970 - 0x00000977 (0x8) IX[B]
+	[50] -1	0	0x00000bf0 - 0x00000bf3 (0x4) IX[B]
+	[51] -1	0	0x000009f0 - 0x000009f7 (0x8) IX[B]
+	[52] -1	0	0x0000f400 - 0x0000f40f (0x10) IX[B]
+	[53] -1	0	0x00001c40 - 0x00001c7f (0x40) IX[B]
+	[54] -1	0	0x00001c00 - 0x00001c3f (0x40) IX[B]
+	[55] 0	0	0x000003b0 - 0x000003bb (0xc) IS[B](OprU)
+	[56] 0	0	0x000003c0 - 0x000003df (0x20) IS[B](OprU)
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenByBusid: Searching for BusID pci:0000:01:00.0
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenByBusid: drmOpenMinor returns 8
+drmOpenByBusid: drmGetBusid reports pci:0000:01:00.0
+(II) [drm] DRM interface version 1.3
+(II) [drm] DRM open master succeeded.
+(II) NOUVEAU(0): [drm] Using the DRM lock SAREA also for drawables.
+(II) NOUVEAU(0): [drm] framebuffer handle = 0xe4000000
+(II) NOUVEAU(0): [drm] added 1 reserved context for kernel
+(II) NOUVEAU(0): X context handle = 0x1
+(II) NOUVEAU(0): [drm] installed DRM signal handler
+(II) NOUVEAU(0): Allocated 64MiB VRAM for framebuffer + offscreen pixmaps
+(II) NOUVEAU(0): GART: PCI DMA - using 3840KiB
+(II) NOUVEAU(0): GART: mapped 3MiB at 0xb2744000, offset is 4096
+(II) NOUVEAU(0): Using FIFO channel 1
+(II) NOUVEAU(0):   Control registers : 0xb2718000 (0xfa810000)
+(II) NOUVEAU(0):   DMA command buffer: 0xb2728000 (0xf8942000)
+(II) NOUVEAU(0):   DMA cmdbuf length : 32 KiB
+(II) NOUVEAU(0):   DMA base PUT      : 0x00000000
+(II) EXA(0): Offscreen pixmap area of 61228864 bytes
+(II) EXA(0): Driver registered support for the following operations:
+(II)         Solid
+(II)         Copy
+(II)         Composite (RENDER acceleration)
+(II)         UploadToScreen
+(II)         DownloadFromScreen
+(==) NOUVEAU(0): Backing store disabled
+(==) NOUVEAU(0): Silken mouse enabled
+(II) NOUVEAU(0): [DRI] installation complete
+(WW) NOUVEAU(0): Option "DMPS" is not used
+(WW) NOUVEAU(0): Option "StandbyTime" is not used
+(WW) NOUVEAU(0): Option "SuspendTime" is not used
+(WW) NOUVEAU(0): Option "OffTime" is not used
+(==) RandR enabled
+(II) Initializing built-in extension MIT-SHM
+(II) Initializing built-in extension XInputExtension
+(II) Initializing built-in extension XTEST
+(II) Initializing built-in extension XKEYBOARD
+(II) Initializing built-in extension XC-APPGROUP
+(II) Initializing built-in extension XAccessControlExtension
+(II) Initializing built-in extension SECURITY
+(II) Initializing built-in extension XINERAMA
+(II) Initializing built-in extension XFIXES
+(II) Initializing built-in extension XFree86-Bigfont
+(II) Initializing built-in extension RENDER
+(II) Initializing built-in extension RANDR
+(II) Initializing built-in extension COMPOSITE
+(II) Initializing built-in extension DAMAGE
+(II) Initializing built-in extension XEVIE
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 9, (OK)
+drmOpenByBusid: Searching for BusID pci:0000:01:00.0
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 9, (OK)
+drmOpenByBusid: drmOpenMinor returns 9
+drmOpenByBusid: drmGetBusid reports pci:0000:01:00.0
+(EE) AIGLX error: dlopen of /usr/lib/X11/modules/dri/nouveau_dri.so
+failed (/usr/lib/X11/modules/dri/nouveau_dri.so: cannot open shared
+object file: No such file or directory)
+(EE) AIGLX: reverting to software rendering
+(II) Loading sub module "GLcore"
+(II) LoadModule: "GLcore"
+(II) Loading /usr/lib/X11/modules/extensions//libGLcore.so
+(II) Module GLcore: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.0.0
+	ABI class: X.Org Server Extension, version 0.3
+(II) GLX: Initialized MESA-PROXY GL provider for screen 0
+(WW) Couldn't load XKB keymap, falling back to pre-XKB keymap
+(**) Option "Protocol" "auto"
+(**) Mouse0: Device: "/dev/mouse"
+(**) Mouse0: Protocol: "auto"
+(**) Option "CorePointer"
+(**) Mouse0: always reports core events
+(**) Option "Device" "/dev/mouse"
+(==) Mouse0: Emulate3Buttons, Emulate3Timeout: 50
+(**) Option "ZAxisMapping" "4 5 6 7"
+(**) Mouse0: ZAxisMapping: buttons 4, 5, 6 and 7
+(**) Mouse0: Buttons: 11
+(**) Mouse0: Sensitivity: 1
+(**) Option "CoreKeyboard"
+(**) Keyboard0: always reports core events
+(**) Option "Protocol" "standard"
+(**) Keyboard0: Protocol: standard
+(**) Option "AutoRepeat" "250 30"
+(**) Option "XkbRules" "xorg"
+(**) Keyboard0: XkbRules: "xorg"
+(**) Option "XkbModel" "pc105"
+(**) Keyboard0: XkbModel: "pc105"
+(**) Option "XkbLayout" "de"
+(**) Keyboard0: XkbLayout: "de"
+(**) Option "CustomKeycodes" "off"
+(**) Keyboard0: CustomKeycodes disabled
+(II) evaluating device (Keyboard0)
+(II) XINPUT: Adding extended input device "Keyboard0" (type: KEYBOARD)
+(II) evaluating device (Mouse0)
+(II) XINPUT: Adding extended input device "Mouse0" (type: MOUSE)
+(--) Mouse0: PnP-detected protocol: "ExplorerPS/2"
+(II) Mouse0: ps2EnableDataReporting: succeeded
 
-
-Nov  1 14:53:24 z1 kernel: Linux version 2.6.23.1 (root@z1) (gcc version
-4.2.2) #2 SMP PREEMPT Sun Oct 21 08:05:02 CEST 2007
-Nov  1 14:53:24 z1 kernel: BIOS-provided physical RAM map:
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 0000000000000000 -
-000000000009f000 (usable)
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 000000000009f000 -
-00000000000a0000 (reserved)
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 00000000000f0000 -
-0000000000100000 (reserved)
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 0000000000100000 -
-00000000dfee0000 (usable)
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 00000000dfee0000 -
-00000000dfee3000 (ACPI NVS)
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 00000000dfee3000 -
-00000000dfef0000 (ACPI data)
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 00000000dfef0000 -
-00000000dff00000 (reserved)
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 00000000f0000000 -
-00000000f4000000 (reserved)
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 00000000fec00000 -
-0000000100000000 (reserved)
-Nov  1 14:53:24 z1 kernel:  BIOS-e820: 0000000100000000 -
-0000000120000000 (usable)
-Nov  1 14:53:24 z1 kernel: 3712MB HIGHMEM available.
-Nov  1 14:53:24 z1 kernel: 896MB LOWMEM available.
-Nov  1 14:53:24 z1 kernel: found SMP MP-table at 000f5e30
-Nov  1 14:53:24 z1 kernel: NX (Execute Disable) protection: active
-Nov  1 14:53:24 z1 kernel: Entering add_active_range(0, 0, 1179648) 0
-entries of 256 used
-Nov  1 14:53:24 z1 kernel: Zone PFN ranges:
-Nov  1 14:53:24 z1 kernel:   DMA             0 ->     4096
-Nov  1 14:53:24 z1 kernel:   Normal       4096 ->   229376
-Nov  1 14:53:24 z1 kernel:   HighMem    229376 ->  1179648
-Nov  1 14:53:24 z1 kernel: Movable zone start PFN for each node
-Nov  1 14:53:24 z1 kernel: early_node_map[1] active PFN ranges
-Nov  1 14:53:24 z1 kernel:     0:        0 ->  1179648
-Nov  1 14:53:24 z1 kernel: On node 0 totalpages: 1179648
-Nov  1 14:53:24 z1 kernel:   DMA zone: 32 pages used for memmap
-Nov  1 14:53:24 z1 kernel:   DMA zone: 0 pages reserved
-Nov  1 14:53:24 z1 kernel:   DMA zone: 4064 pages, LIFO batch:0
-Nov  1 14:53:24 z1 kernel:   Normal zone: 1760 pages used for memmap
-Nov  1 14:53:24 z1 kernel:   Normal zone: 223520 pages, LIFO batch:31
-Nov  1 14:53:24 z1 kernel:   HighMem zone: 7424 pages used for memmap
-Nov  1 14:53:24 z1 kernel:   HighMem zone: 942848 pages, LIFO batch:31
-Nov  1 14:53:24 z1 kernel:   Movable zone: 0 pages used for memmap
-Nov  1 14:53:24 z1 kernel: DMI 2.4 present.
-Nov  1 14:53:24 z1 kernel: ACPI: RSDP 000F7BC0, 0024 (r2 Nvidia)
-Nov  1 14:53:24 z1 kernel: ACPI: XSDT DFEE3100, 004C (r1 Nvidia ASUSACPI
-42302E31 AWRD        0)
-Nov  1 14:53:24 z1 kernel: ACPI: FACP DFEEC880, 00F4 (r3 Nvidia ASUSACPI
-42302E31 AWRD        0)
-Nov  1 14:53:24 z1 kernel: ACPI: DSDT DFEE3280, 959D (r1 NVIDIA AWRDACPI
-    1000 MSFT  3000000)
-Nov  1 14:53:24 z1 kernel: ACPI: FACS DFEE0000, 0040
-Nov  1 14:53:24 z1 kernel: ACPI: SSDT DFEECA80, 0206 (r1 PTLTD  POWERNOW
-       1  LTP        1)
-Nov  1 14:53:24 z1 kernel: ACPI: HPET DFEECD00, 0038 (r1 Nvidia ASUSACPI
-42302E31 AWRD       98)
-Nov  1 14:53:24 z1 kernel: ACPI: MCFG DFEECD80, 003C (r1 Nvidia ASUSACPI
-42302E31 AWRD        0)
-Nov  1 14:53:24 z1 kernel: ACPI: APIC DFEEC9C0, 007C (r1 Nvidia ASUSACPI
-42302E31 AWRD        0)
-Nov  1 14:53:24 z1 kernel: ACPI: PM-Timer IO Port: 0x1008
-Nov  1 14:53:24 z1 kernel: ACPI: Local APIC address 0xfee00000
-Nov  1 14:53:24 z1 kernel: ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00]
-enabled)
-Nov  1 14:53:24 z1 kernel: Processor #0 15:11 APIC version 16
-Nov  1 14:53:24 z1 kernel: ACPI: LAPIC (acpi_id[0x01] lapic_id[0x01]
-enabled)
-Nov  1 14:53:24 z1 kernel: Processor #1 15:11 APIC version 16
-Nov  1 14:53:24 z1 kernel: ACPI: LAPIC_NMI (acpi_id[0x00] high edge
-lint[0x1])
-Nov  1 14:53:24 z1 kernel: ACPI: LAPIC_NMI (acpi_id[0x01] high edge
-lint[0x1])
-Nov  1 14:53:24 z1 kernel: ACPI: IOAPIC (id[0x02] address[0xfec00000]
-gsi_base[0])
-Nov  1 14:53:24 z1 kernel: IOAPIC[0]: apic_id 2, version 17, address
-0xfec00000, GSI 0-23
-Nov  1 14:53:24 z1 kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq
-2 dfl dfl)
-Nov  1 14:53:24 z1 kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq
-9 high level)
-Nov  1 14:53:24 z1 kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 14
-global_irq 14 high edge)
-Nov  1 14:53:24 z1 kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 15
-global_irq 15 high edge)
-Nov  1 14:53:24 z1 kernel: ACPI: IRQ0 used by override.
-Nov  1 14:53:24 z1 kernel: ACPI: IRQ2 used by override.
-Nov  1 14:53:24 z1 kernel: ACPI: IRQ9 used by override.
-Nov  1 14:53:24 z1 kernel: ACPI: IRQ14 used by override.
-Nov  1 14:53:24 z1 kernel: ACPI: IRQ15 used by override.
-Nov  1 14:53:24 z1 kernel: Enabling APIC mode:  Flat.  Using 1 I/O APICs
-Nov  1 14:53:24 z1 kernel: ACPI: HPET id: 0x10de8201 base: 0xfefff000
-Nov  1 14:53:24 z1 kernel: Using ACPI (MADT) for SMP configuration
-information
-Nov  1 14:53:24 z1 kernel: Allocating PCI resources starting at e0000000
-(gap: dff00000:10100000)
-Nov  1 14:53:24 z1 kernel: swsusp: Registered nosave memory region:
-000000000009f000 - 00000000000a0000
-Nov  1 14:53:24 z1 kernel: swsusp: Registered nosave memory region:
-00000000000a0000 - 00000000000f0000
-Nov  1 14:53:24 z1 kernel: swsusp: Registered nosave memory region:
-00000000000f0000 - 0000000000100000
-Nov  1 14:53:24 z1 kernel: Built 1 zonelists in Zone order.  Total
-pages: 1170432
-Nov  1 14:53:24 z1 kernel: Kernel command line: BOOT_IMAGE=old_kernel_up
-rw root=/dev/sda1 quiet init=/usr/sbin/init
-Nov  1 14:53:24 z1 kernel: mapped APIC to ffffb000 (fee00000)
-Nov  1 14:53:24 z1 kernel: mapped IOAPIC to ffffa000 (fec00000)
-Nov  1 14:53:24 z1 kernel: Enabling fast FPU save and restore... done.
-Nov  1 14:53:24 z1 kernel: Enabling unmasked SIMD FPU exception
-support... done.
-Nov  1 14:53:24 z1 kernel: Initializing CPU#0
-Nov  1 14:53:24 z1 kernel: PID hash table entries: 4096 (order: 12,
-16384 bytes)
-Nov  1 14:53:24 z1 kernel: Detected 2210.113 MHz processor.
-Nov  1 14:53:24 z1 kernel: spurious 8259A interrupt: IRQ7.
-Nov  1 14:53:24 z1 kernel: Console: colour VGA+ 80x25
-Nov  1 14:53:24 z1 kernel: console [tty0] enabled
-Nov  1 14:53:24 z1 kernel: Dentry cache hash table entries: 131072
-(order: 7, 524288 bytes)
-Nov  1 14:53:24 z1 kernel: Inode-cache hash table entries: 65536 (order:
-6, 262144 bytes)
-Nov  1 14:53:24 z1 kernel: Memory: 4150980k/4718592k available (1881k
-kernel code, 41092k reserved, 707k data, 204k init, 3275648k highmem)
-Nov  1 14:53:24 z1 kernel: virtual kernel memory layout:
-Nov  1 14:53:24 z1 kernel:     fixmap  : 0xfff4d000 - 0xfffff000   ( 712
-kB)
-Nov  1 14:53:24 z1 kernel:     pkmap   : 0xffc00000 - 0xffe00000   (2048
-kB)
-Nov  1 14:53:24 z1 kernel:     vmalloc : 0xf8800000 - 0xffbfe000   ( 115
-MB)
-Nov  1 14:53:24 z1 kernel:     lowmem  : 0xc0000000 - 0xf8000000   ( 896
-MB)
-Nov  1 14:53:24 z1 kernel:       .init : 0xc038d000 - 0xc03c0000   ( 204
-kB)
-Nov  1 14:53:24 z1 kernel:       .data : 0xc02d651e - 0xc03874cc   ( 707
-kB)
-Nov  1 14:53:24 z1 kernel:       .text : 0xc0100000 - 0xc02d651e   (1881
-kB)
-Nov  1 14:53:24 z1 kernel: Checking if this processor honours the WP bit
-even in supervisor mode... Ok.
-Nov  1 14:53:24 z1 kernel: hpet0: at MMIO 0xfefff000, IRQs 2, 8, 31
-Nov  1 14:53:24 z1 kernel: hpet0: 3 32-bit timers, 25000000 Hz
-Nov  1 14:53:24 z1 kernel: Calibrating delay using timer specific
-routine.. 4423.66 BogoMIPS (lpj=8847321)
-Nov  1 14:53:24 z1 kernel: Security Framework v1.0.0 initialized
-Nov  1 14:53:24 z1 kernel: Capability LSM initialized
-Nov  1 14:53:24 z1 kernel: Mount-cache hash table entries: 512
-Nov  1 14:53:24 z1 kernel: CPU: After generic identify, caps: 178bfbff
-ebd3fbff 00000000 00000000 00002001 00000000 0000001f 00000000
-Nov  1 14:53:24 z1 kernel: CPU: L1 I Cache: 64K (64 bytes/line), D cache
-64K (64 bytes/line)
-Nov  1 14:53:24 z1 kernel: CPU: L2 Cache: 512K (64 bytes/line)
-Nov  1 14:53:24 z1 kernel: CPU 0(2) -> Core 0
-Nov  1 14:53:24 z1 kernel: CPU: After all inits, caps: 178bfbff ebd3fbff
-00000000 00000410 00002001 00000000 0000001f 00000000
-Nov  1 14:53:24 z1 kernel: Intel machine check architecture supported.
-Nov  1 14:53:24 z1 kernel: Intel machine check reporting enabled on CPU#0.
-Nov  1 14:53:24 z1 kernel: Compat vDSO mapped to ffffe000.
-Nov  1 14:53:24 z1 kernel: Checking 'hlt' instruction... OK.
-Nov  1 14:53:24 z1 kernel: SMP alternatives: switching to UP code
-Nov  1 14:53:24 z1 kernel: ACPI: Core revision 20070126
-Nov  1 14:53:24 z1 kernel: CPU0: AMD Athlon(tm) 64 X2 Dual Core
-Processor 4200+ stepping 02
-Nov  1 14:53:24 z1 kernel: SMP alternatives: switching to SMP code
-Nov  1 14:53:24 z1 kernel: Booting processor 1/1 eip 3000
-Nov  1 14:53:24 z1 kernel: Initializing CPU#1
-Nov  1 14:53:24 z1 kernel: Calibrating delay using timer specific
-routine.. 4420.13 BogoMIPS (lpj=8840270)
-Nov  1 14:53:24 z1 kernel: CPU: After generic identify, caps: 178bfbff
-ebd3fbff 00000000 00000000 00002001 00000000 0000001f 00000000
-Nov  1 14:53:24 z1 kernel: CPU: L1 I Cache: 64K (64 bytes/line), D cache
-64K (64 bytes/line)
-Nov  1 14:53:24 z1 kernel: CPU: L2 Cache: 512K (64 bytes/line)
-Nov  1 14:53:24 z1 kernel: CPU 1(2) -> Core 1
-Nov  1 14:53:24 z1 kernel: CPU: After all inits, caps: 178bfbff ebd3fbff
-00000000 00000410 00002001 00000000 0000001f 00000000
-Nov  1 14:53:24 z1 kernel: Intel machine check architecture supported.
-Nov  1 14:53:24 z1 kernel: Intel machine check reporting enabled on CPU#1.
-Nov  1 14:53:24 z1 kernel: CPU1: AMD Athlon(tm) 64 X2 Dual Core
-Processor 4200+ stepping 02
-Nov  1 14:53:24 z1 kernel: Total of 2 processors activated (8843.79
-BogoMIPS).
-Nov  1 14:53:24 z1 kernel: ENABLING IO-APIC IRQs
-Nov  1 14:53:24 z1 kernel: ..TIMER: vector=0x31 apic1=0 pin1=2 apic2=-1
-pin2=-1
-Nov  1 14:53:24 z1 kernel: Brought up 2 CPUs
-Nov  1 14:53:24 z1 kernel: NET: Registered protocol family 16
-Nov  1 14:53:24 z1 kernel: ACPI: bus type pci registered
-Nov  1 14:53:24 z1 kernel: PCI: Using MMCONFIG
-Nov  1 14:53:24 z1 kernel: PCI: No mmconfig possible on device 00:18
-Nov  1 14:53:24 z1 kernel: Setting up standard PCI resources
-Nov  1 14:53:24 z1 kernel: ACPI: EC: Look up EC in DSDT
-Nov  1 14:53:24 z1 kernel: ACPI: Interpreter enabled
-Nov  1 14:53:24 z1 kernel: ACPI: (supports S0 S1 S3 S4 S5)
-Nov  1 14:53:24 z1 kernel: ACPI: Using IOAPIC for interrupt routing
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Root Bridge [PCI0] (0000:00)
-Nov  1 14:53:24 z1 kernel: PCI: Transparent bridge - 0000:00:0e.0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Routing Table
-[\_SB_.PCI0._PRT]
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Routing Table
-[\_SB_.PCI0.HUB0._PRT]
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LNK1] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LNK2] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LNK3] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LNK4] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LNK5] (IRQs 5 7 9
-*10 11 14 15)
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LNK6] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LNK7] (IRQs 5 7 9
-10 *11 14 15)
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LNK8] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LP2P] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LUBA] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LMAC] (IRQs 5 7 9
-*10 11 14 15)
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LMC1] (IRQs 5 7 9
-10 *11 14 15)
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LAZA] (IRQs *5 7 9
-10 11 14 15)
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LPMU] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LSMB] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LUB2] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LIDE] (IRQs 5 7 9
-10 11 14 15) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LSID] (IRQs *5 7 9
-10 11 14 15)
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LFID] (IRQs *5 7 9
-10 11 14 15)
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [LSA2] (IRQs *5 7 9
-10 11 14 15)
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC1] (IRQs 16) *0,
-disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC2] (IRQs 17) *0,
-disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC3] (IRQs 18) *0,
-disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC4] (IRQs 19) *0,
-disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC5] (IRQs 16) *0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC6] (IRQs 16) *0,
-disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC7] (IRQs 16) *0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC8] (IRQs 16) *0,
-disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APCF] (IRQs 20 21
-22 23) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APCH] (IRQs 20 21
-22 23) *0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [AMC1] (IRQs 20 21
-22 23) *0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APMU] (IRQs 20 21
-22 23) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [AAZA] (IRQs 20 21
-22 23) *0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APCS] (IRQs 20 21
-22 23) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APCL] (IRQs 20 21
-22 23) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APCM] (IRQs 20 21
-22 23) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APCZ] (IRQs 20 21
-22 23) *0, disabled.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APSI] (IRQs 20 21
-22 23) *0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APSJ] (IRQs 20 21
-22 23) *0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [ASA2] (IRQs 20 21
-22 23) *0
-Nov  1 14:53:24 z1 kernel: Linux Plug and Play Support v0.97 (c) Adam Belay
-Nov  1 14:53:24 z1 kernel: pnp: PnP ACPI init
-Nov  1 14:53:24 z1 kernel: ACPI: bus type pnp registered
-Nov  1 14:53:24 z1 kernel: pnp: PnP ACPI: found 13 devices
-Nov  1 14:53:24 z1 kernel: ACPI: ACPI bus type pnp unregistered
-Nov  1 14:53:24 z1 kernel: SCSI subsystem initialized
-Nov  1 14:53:24 z1 kernel: libata version 2.21 loaded.
-Nov  1 14:53:24 z1 kernel: PCI: Using ACPI for IRQ routing
-Nov  1 14:53:24 z1 kernel: PCI: If a device doesn't work, try
-"pci=routeirq".  If it helps, post a report
-Nov  1 14:53:24 z1 kernel: ACPI: RTC can wake from S4
-Nov  1 14:53:24 z1 kernel: Time: hpet clocksource has been installed.
-Nov  1 14:53:24 z1 kernel: Switched to high resolution mode on CPU 0
-Nov  1 14:53:24 z1 kernel: Switched to high resolution mode on CPU 1
-Nov  1 14:53:24 z1 kernel: pnp: 00:01: ioport range 0x1000-0x107f has
-been reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:01: ioport range 0x1080-0x10ff has
-been reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:01: ioport range 0x1400-0x147f has
-been reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:01: ioport range 0x1480-0x14ff has
-been reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:01: ioport range 0x1800-0x187f has
-been reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:01: ioport range 0x1880-0x18ff has
-been reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:0b: iomem range 0xf0000000-0xf3ffffff
-could not be reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:0c: iomem range 0xea200-0xebfff has
-been reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:0c: iomem range 0xf0000-0xf7fff could
-not be reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:0c: iomem range 0xf8000-0xfbfff could
-not be reserved
-Nov  1 14:53:24 z1 kernel: pnp: 00:0c: iomem range 0xfc000-0xfffff could
-not be reserved
-Nov  1 14:53:24 z1 kernel: PCI: Bridge: 0000:00:04.0
-Nov  1 14:53:24 z1 kernel:   IO window: disabled.
-Nov  1 14:53:24 z1 kernel:   MEM window: fa000000-fcffffff
-Nov  1 14:53:24 z1 kernel:   PREFETCH window: e0000000-efffffff
-Nov  1 14:53:24 z1 kernel: PCI: Bridge: 0000:00:0e.0
-Nov  1 14:53:24 z1 kernel:   IO window: disabled.
-Nov  1 14:53:24 z1 kernel:   MEM window: fde00000-fdefffff
-Nov  1 14:53:24 z1 kernel:   PREFETCH window: fdf00000-fdffffff
-Nov  1 14:53:24 z1 kernel: PCI: Bridge: 0000:00:16.0
-Nov  1 14:53:24 z1 kernel:   IO window: a000-afff
-Nov  1 14:53:24 z1 kernel:   MEM window: fdd00000-fddfffff
-Nov  1 14:53:24 z1 kernel:   PREFETCH window: disabled.
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:04.0 to 64
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:0e.0 to 64
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:16.0 to 64
-Nov  1 14:53:24 z1 kernel: NET: Registered protocol family 2
-Nov  1 14:53:24 z1 kernel: IP route cache hash table entries: 32768
-(order: 5, 131072 bytes)
-Nov  1 14:53:24 z1 kernel: TCP established hash table entries: 131072
-(order: 9, 2097152 bytes)
-Nov  1 14:53:24 z1 kernel: TCP bind hash table entries: 65536 (order: 7,
-786432 bytes)
-Nov  1 14:53:24 z1 kernel: TCP: Hash tables configured (established
-131072 bind 65536)
-Nov  1 14:53:24 z1 kernel: TCP reno registered
-Nov  1 14:53:24 z1 kernel: Machine check exception polling timer started.
-Nov  1 14:53:24 z1 kernel: highmem bounce pool size: 64 pages
-Nov  1 14:53:24 z1 kernel: VFS: Disk quotas dquot_6.5.1
-Nov  1 14:53:24 z1 kernel: Dquot-cache hash table entries: 1024 (order
-0, 4096 bytes)
-Nov  1 14:53:24 z1 kernel: Block layer SCSI generic (bsg) driver version
-0.4 loaded (major 254)
-Nov  1 14:53:24 z1 kernel: io scheduler noop registered
-Nov  1 14:53:24 z1 kernel: io scheduler cfq registered (default)
-Nov  1 14:53:24 z1 kernel: Boot video device is 0000:01:00.0
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:04.0 to 64
-Nov  1 14:53:24 z1 kernel: assign_interrupt_mode Found MSI capability
-Nov  1 14:53:24 z1 kernel: Allocate Port Service[0000:00:04.0:pcie00]
-Nov  1 14:53:24 z1 kernel: Allocate Port Service[0000:00:04.0:pcie03]
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:16.0 to 64
-Nov  1 14:53:24 z1 kernel: assign_interrupt_mode Found MSI capability
-Nov  1 14:53:24 z1 kernel: Allocate Port Service[0000:00:16.0:pcie00]
-Nov  1 14:53:24 z1 kernel: Allocate Port Service[0000:00:16.0:pcie03]
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC5] enabled at
-IRQ 16
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt 0000:01:00.0[A] -> Link
-[APC5] -> GSI 16 (level, low) -> IRQ 16
-Nov  1 14:53:24 z1 kernel: nvidiafb: Device ID: 10de0161
-Nov  1 14:53:24 z1 kernel: nvidiafb: CRTC0 analog not found
-Nov  1 14:53:24 z1 kernel: nvidiafb: CRTC1 analog not found
-Nov  1 14:53:24 z1 kernel: i2c-adapter i2c-0: unable to read EDID block.
-Nov  1 14:53:24 z1 last message repeated 2 times
-Nov  1 14:53:24 z1 kernel: i2c-adapter i2c-1: unable to read EDID block.
-Nov  1 14:53:24 z1 last message repeated 2 times
-Nov  1 14:53:24 z1 kernel: nvidiafb: CRTC 0 is currently programmed for DFP
-Nov  1 14:53:24 z1 kernel: nvidiafb: Using DFP on CRTC 0
-Nov  1 14:53:24 z1 kernel: nvidiafb: Panel size is 1400 x 1050
-Nov  1 14:53:24 z1 kernel: nvidiafb: Panel is TMDS
-Nov  1 14:53:24 z1 kernel: nvidiafb: MTRR set to ON
-Nov  1 14:53:24 z1 kernel: fbcvt: 1400x1050@60: CVT Name - 1.470M3-R
-Nov  1 14:53:24 z1 kernel: nvidiafb: Flat panel dithering disabled
-Nov  1 14:53:24 z1 kernel: Console: switching to colour frame buffer
-device 175x65
-Nov  1 14:53:24 z1 kernel: nvidiafb: PCI nVidia NV16 framebuffer (64MB @
-0xE0000000)
-Nov  1 14:53:24 z1 kernel: vga16fb: initializing
-Nov  1 14:53:24 z1 kernel: vga16fb: mapped to 0xc00a0000
-Nov  1 14:53:24 z1 kernel: fb1: VGA16 VGA frame buffer device
-Nov  1 14:53:24 z1 kernel: hpet_resources: 0xfefff000 is busy
-Nov  1 14:53:24 z1 kernel: RAMDISK driver initialized: 16 RAM disks of
-4096K size 1024 blocksize
-Nov  1 14:53:24 z1 kernel: Uniform Multi-Platform E-IDE driver Revision:
-7.00alpha2
-Nov  1 14:53:24 z1 kernel: ide: Assuming 33MHz system bus speed for PIO
-modes; override with idebus=xx
-Nov  1 14:53:24 z1 kernel: Probing IDE interface ide0...
-Nov  1 14:53:24 z1 kernel: hda: PLEXTOR CD-R PX-W4012A, ATAPI CD/DVD-ROM
-drive
-Nov  1 14:53:24 z1 kernel: hdb: _NEC DVD_RW ND-3500AG, ATAPI CD/DVD-ROM
-drive
-Nov  1 14:53:24 z1 kernel: Probing IDE interface ide1...
-Nov  1 14:53:24 z1 kernel: ide0 at 0x1f0-0x1f7,0x3f6 on irq 14
-Nov  1 14:53:24 z1 kernel: sata_sil24 0000:03:00.0: version 1.0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC7] enabled at
-IRQ 16
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt 0000:03:00.0[A] -> Link
-[APC7] -> GSI 16 (level, low) -> IRQ 16
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:03:00.0 to 64
-Nov  1 14:53:24 z1 kernel: scsi0 : sata_sil24
-Nov  1 14:53:24 z1 kernel: scsi1 : sata_sil24
-Nov  1 14:53:24 z1 kernel: ata1: SATA max UDMA/100 cmd 0xf8840000 ctl
-0x00000000 bmdma 0x00000000 irq 16
-Nov  1 14:53:24 z1 kernel: ata2: SATA max UDMA/100 cmd 0xf8842000 ctl
-0x00000000 bmdma 0x00000000 irq 16
-Nov  1 14:53:24 z1 kernel: ata1: SATA link down (SStatus 0 SControl 300)
-Nov  1 14:53:24 z1 kernel: ata2: SATA link down (SStatus 0 SControl 300)
-Nov  1 14:53:24 z1 kernel: sata_nv 0000:00:0d.0: version 3.5
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APSI] enabled at
-IRQ 23
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt 0000:00:0d.0[A] -> Link
-[APSI] -> GSI 23 (level, low) -> IRQ 17
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:0d.0 to 64
-Nov  1 14:53:24 z1 kernel: scsi2 : sata_nv
-Nov  1 14:53:24 z1 kernel: scsi3 : sata_nv
-Nov  1 14:53:24 z1 kernel: ata3: SATA max UDMA/133 cmd 0x000109f0 ctl
-0x00010bf2 bmdma 0x0001e000 irq 17
-Nov  1 14:53:24 z1 kernel: ata4: SATA max UDMA/133 cmd 0x00010970 ctl
-0x00010b72 bmdma 0x0001e008 irq 17
-Nov  1 14:53:24 z1 kernel: ata3: SATA link down (SStatus 0 SControl 300)
-Nov  1 14:53:24 z1 kernel: ata4: SATA link up 3.0 Gbps (SStatus 123
-SControl 300)
-Nov  1 14:53:24 z1 kernel: ata4.00: ATA-7: ST3500641NS, 3.AEC, max UDMA/133
-Nov  1 14:53:24 z1 kernel: ata4.00: 976773168 sectors, multi 1: LBA48
-NCQ (depth 0/32)
-Nov  1 14:53:24 z1 kernel: ata4.00: configured for UDMA/133
-Nov  1 14:53:24 z1 kernel: scsi 3:0:0:0: Direct-Access     ATA
-ST3500641NS      3.AE PQ: 0 ANSI: 5
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: [sda] 976773168 512-byte hardware
-sectors (500108 MB)
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: [sda] Write Protect is off
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: [sda] Mode Sense: 00 3a 00 00
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: [sda] Write cache: enabled, read
-cache: enabled, doesn't support DPO or FUA
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: [sda] 976773168 512-byte hardware
-sectors (500108 MB)
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: [sda] Write Protect is off
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: [sda] Mode Sense: 00 3a 00 00
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: [sda] Write cache: enabled, read
-cache: enabled, doesn't support DPO or FUA
-Nov  1 14:53:24 z1 kernel:  sda: sda1 sda2
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: [sda] Attached SCSI disk
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APSJ] enabled at
-IRQ 22
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt 0000:00:0d.1[B] -> Link
-[APSJ] -> GSI 22 (level, low) -> IRQ 18
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:0d.1 to 64
-Nov  1 14:53:24 z1 kernel: scsi4 : sata_nv
-Nov  1 14:53:24 z1 kernel: scsi5 : sata_nv
-Nov  1 14:53:24 z1 kernel: ata5: SATA max UDMA/133 cmd 0x000109e0 ctl
-0x00010be2 bmdma 0x0001cc00 irq 18
-Nov  1 14:53:24 z1 kernel: ata6: SATA max UDMA/133 cmd 0x00010960 ctl
-0x00010b62 bmdma 0x0001cc08 irq 18
-Nov  1 14:53:24 z1 kernel: ata5: SATA link down (SStatus 0 SControl 300)
-Nov  1 14:53:24 z1 kernel: ata6: SATA link down (SStatus 0 SControl 300)
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [ASA2] enabled at
-IRQ 21
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt 0000:00:0d.2[C] -> Link
-[ASA2] -> GSI 21 (level, low) -> IRQ 19
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:0d.2 to 64
-Nov  1 14:53:24 z1 kernel: scsi6 : sata_nv
-Nov  1 14:53:24 z1 kernel: scsi7 : sata_nv
-Nov  1 14:53:24 z1 kernel: ata7: SATA max UDMA/133 cmd 0x0001c800 ctl
-0x0001c402 bmdma 0x0001b800 irq 19
-Nov  1 14:53:24 z1 kernel: ata8: SATA max UDMA/133 cmd 0x0001c000 ctl
-0x0001bc02 bmdma 0x0001b808 irq 19
-Nov  1 14:53:24 z1 kernel: ata7: SATA link down (SStatus 0 SControl 300)
-Nov  1 14:53:24 z1 kernel: ata8: SATA link down (SStatus 0 SControl 300)
-Nov  1 14:53:24 z1 kernel: PNP: PS/2 Controller [PNP0303:PS2K] at
-0x60,0x64 irq 1
-Nov  1 14:53:24 z1 kernel: PNP: PS/2 appears to have AUX port disabled,
-if this is incorrect please boot with i8042.nopnp
-Nov  1 14:53:24 z1 kernel: serio: i8042 KBD port at 0x60,0x64 irq 1
-Nov  1 14:53:24 z1 kernel: mice: PS/2 mouse device common for all mice
-Nov  1 14:53:24 z1 kernel: input: AT Translated Set 2 keyboard as
-/class/input/input0
-Nov  1 14:53:24 z1 kernel: TCP cubic registered
-Nov  1 14:53:24 z1 kernel: NET: Registered protocol family 1
-Nov  1 14:53:24 z1 kernel: NET: Registered protocol family 17
-Nov  1 14:53:24 z1 kernel: Using IPI No-Shortcut mode
-Nov  1 14:53:24 z1 kernel: ReiserFS: sda1: found reiserfs format "3.6"
-with standard journal
-Nov  1 14:53:24 z1 kernel: ReiserFS: sda1: using ordered data mode
-Nov  1 14:53:24 z1 kernel: ReiserFS: sda1: journal params: device sda1,
-size 8192, journal first block 18, max trans len 1024, max batch 900,
-max commit age 30, max trans age 30
-Nov  1 14:53:24 z1 kernel: ReiserFS: sda1: checking transaction log (sda1)
-Nov  1 14:53:24 z1 kernel: ReiserFS: sda1: Using r5 hash to sort names
-Nov  1 14:53:24 z1 kernel: VFS: Mounted root (reiserfs filesystem).
-Nov  1 14:53:24 z1 kernel: Freeing unused kernel memory: 204k freed
-Nov  1 14:53:24 z1 kernel: forcedeth.c: Reverse Engineered nForce
-ethernet driver. Version 0.60.
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APCH] enabled at
-IRQ 20
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt 0000:00:10.0[A] -> Link
-[APCH] -> GSI 20 (level, low) -> IRQ 20
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:10.0 to 64
-Nov  1 14:53:24 z1 kernel: forcedeth: using HIGHDMA
-Nov  1 14:53:24 z1 kernel: eth0: forcedeth.c: subsystem: 01043:cb84
-bound to 0000:00:10.0
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [AMC1] enabled at
-IRQ 23
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt 0000:00:11.0[A] -> Link
-[AMC1] -> GSI 23 (level, low) -> IRQ 17
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:11.0 to 64
-Nov  1 14:53:24 z1 kernel: forcedeth: using HIGHDMA
-Nov  1 14:53:24 z1 kernel: Linux video capture interface: v2.00
-Nov  1 14:53:24 z1 kernel: eth1: forcedeth.c: subsystem: 01043:cb84
-bound to 0000:00:11.0
-Nov  1 14:53:24 z1 kernel: sd 3:0:0:0: Attached scsi generic sg0 type 0
-Nov  1 14:53:24 z1 kernel: i2c-adapter i2c-3: nForce2 SMBus adapter at
-0x1c00
-Nov  1 14:53:24 z1 kernel: i2c-adapter i2c-4: nForce2 SMBus adapter at
-0x1c40
-Nov  1 14:53:24 z1 kernel: usbcore: registered new interface driver usbfs
-Nov  1 14:53:24 z1 kernel: usbcore: registered new interface driver hub
-Nov  1 14:53:24 z1 kernel: usbcore: registered new device driver usb
-Nov  1 14:53:24 z1 kernel: fb_ddc: exports duplicate symbol fb_ddc_read
-(owned by kernel)
-Nov  1 14:53:24 z1 kernel: hda: ATAPI 40X CD-ROM CD-R/RW drive, 4096kB
-Cache
-Nov  1 14:53:24 z1 kernel: Uniform CD-ROM driver Revision: 3.20
-Nov  1 14:53:24 z1 kernel: hdb: ATAPI 48X DVD-ROM DVD-R CD-R/RW drive,
-2048kB Cache
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APC2] enabled at
-IRQ 17
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt 0000:02:07.1[A] -> Link
-[APC2] -> GSI 17 (level, low) -> IRQ 21
-Nov  1 14:53:24 z1 kernel: eth1: no link during initialization.
-Nov  1 14:53:24 z1 kernel: eth0: no link during initialization.
-Nov  1 14:53:24 z1 kernel: ohci_hcd: 2006 August 04 USB 1.1 'Open' Host
-Controller (OHCI) Driver
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt Link [APCF] enabled at
-IRQ 22
-Nov  1 14:53:24 z1 kernel: ACPI: PCI Interrupt 0000:00:0a.0[A] -> Link
-[APCF] -> GSI 22 (level, low) -> IRQ 18
-Nov  1 14:53:24 z1 kernel: PCI: Setting latency timer of device
-0000:00:0a.0 to 64
-Nov  1 14:53:24 z1 kernel: ohci_hcd 0000:00:0a.0: OHCI Host Controller
-Nov  1 14:53:24 z1 kernel: ohci_hcd 0000:00:0a.0: new USB bus
-registered, assigned bus number 1
-Nov  1 14:53:24 z1 kernel: ohci_hcd 0000:00:0a.0: irq 18, io mem 0xfe02f000
-Nov  1 14:53:24 z1 kernel: kobject_add failed for nvidiafb with -EEXIST,
-don't try to register things with the same name in the same directory.
-Nov  1 14:55:50 z1 kernel: klogd 1.3-3, log source = /proc/kmsg started.
-Nov  1 14:55:50 z1 kernel: Cannot find map file.
-Nov  1 14:55:50 z1 kernel: No module symbols loaded - kernel modules not
-enabled.
-Nov  1 14:55:50 z1 kernel:  -> GSI 21 (level, low) -> IRQ 19
-Nov  1 14:55:50 z1 kernel: PCI: Setting latency timer of device
-0000:00:0e.1 to 64
-Nov  1 14:55:50 z1 kernel: usb 1-2: new low speed USB device using
-ohci_hcd and address 2
-Nov  1 14:55:50 z1 kernel: ACPI: Fan [FAN] (on)
-Nov  1 14:55:50 z1 kernel: eth0: link up.
-Nov  1 14:55:50 z1 kernel: ADDRCONF(NETDEV_CHANGE): eth0: link becomes
-ready
-Nov  1 14:55:50 z1 kernel: usb 1-2: configuration #1 chosen from 1 choice
-Nov  1 14:55:50 z1 kernel: bttv: driver version 0.9.17 loaded
-Nov  1 14:55:50 z1 kernel: bttv: using 8 buffers with 2080k (520 pages)
-each for capture
-Nov  1 14:55:50 z1 kernel: bttv: Bt8xx card found (0).
-Nov  1 14:55:50 z1 kernel: ACPI: PCI Interrupt 0000:02:07.0[A] -> Link
-[APC2] -> GSI 17 (level, low) -> IRQ 21
-Nov  1 14:55:50 z1 kernel: bttv0: Bt878 (rev 2) at 0000:02:07.0, irq:
-21, latency: 32, mmio: 0xfdfff000
-Nov  1 14:55:50 z1 kernel: bttv0: detected: Hauppauge WinTV [card=10],
-PCI subsystem ID is 0070:13eb
-Nov  1 14:55:50 z1 kernel: bttv0: using: Hauppauge (bt878)
-[card=10,autodetected]
-Nov  1 14:55:50 z1 kernel: bttv0: gpio: en=00000000, out=00000000
-in=00ffffdb [init]
-Nov  1 14:55:50 z1 kernel: bttv0: Hauppauge/Voodoo msp34xx: reset line
-init [5]
-Nov  1 14:55:50 z1 kernel: tveeprom 5-0050: Hauppauge model 61334, rev
-A1B , serial# 607188
-Nov  1 14:55:50 z1 kernel: tveeprom 5-0050: tuner model is Philips
-FM1216 (idx 21, type 5)
-Nov  1 14:55:50 z1 kernel: tveeprom 5-0050: TV standards PAL(B/G)
-(eeprom 0x04)
-Nov  1 14:55:50 z1 kernel: tveeprom 5-0050: audio processor is MSP3415
-(idx 6)
-Nov  1 14:55:50 z1 kernel: tveeprom 5-0050: has radio
-Nov  1 14:55:50 z1 kernel: bttv0: Hauppauge eeprom indicates model#61334
-Nov  1 14:55:50 z1 kernel: bttv0: tuner type=5
-Nov  1 14:55:50 z1 kernel: bttv0: i2c: checking for MSP34xx @ 0x80... found
-Nov  1 14:55:50 z1 kernel: usb 1-9: new full speed USB device using
-ohci_hcd and address 3
-Nov  1 14:55:50 z1 kernel: ACPI: PCI Interrupt Link [APCL] enabled at
-IRQ 20
-Nov  1 14:55:50 z1 kernel: ACPI: PCI Interrupt 0000:00:0a.1[B] -> Link
-[APCL] -> GSI 20 (level, low) -> IRQ 20
-Nov  1 14:55:50 z1 kernel: PCI: Setting latency timer of device
-0000:00:0a.1 to 64
-Nov  1 14:55:50 z1 kernel: ehci_hcd 0000:00:0a.1: EHCI Host Controller
-Nov  1 14:55:50 z1 kernel: ehci_hcd 0000:00:0a.1: new USB bus
-registered, assigned bus number 2
-Nov  1 14:55:50 z1 kernel: ehci_hcd 0000:00:0a.1: debug port 1
-Nov  1 14:55:50 z1 kernel: PCI: cache line size of 64 is not supported
-by device 0000:00:0a.1
-Nov  1 14:55:50 z1 kernel: ehci_hcd 0000:00:0a.1: irq 20, io mem 0xfe02e000
-Nov  1 14:55:50 z1 kernel: ehci_hcd 0000:00:0a.1: USB 2.0 started, EHCI
-1.00, driver 10 Dec 2004
-Nov  1 14:55:50 z1 kernel: usb usb2: configuration #1 chosen from 1 choice
-Nov  1 14:55:50 z1 kernel: hub 2-0:1.0: USB hub found
-Nov  1 14:55:50 z1 kernel: hub 2-0:1.0: 10 ports detected
-Nov  1 14:55:50 z1 kernel: input: Power Button (FF) as /class/input/input1
-Nov  1 14:55:50 z1 kernel: ACPI: Power Button (FF) [PWRF]
-Nov  1 14:55:50 z1 kernel: input: Power Button (CM) as /class/input/input2
-Nov  1 14:55:50 z1 kernel: ACPI: Power Button (CM) [PWRB]
-Nov  1 14:55:50 z1 kernel: usb 1-2: USB disconnect, address 2
-Nov  1 14:55:50 z1 kernel: msp3400 5-0040: MSP3410D-B4 found @ 0x80
-(bt878 #0 [sw])
-Nov  1 14:55:50 z1 kernel: msp3400 5-0040: MSP3410D-B4 supports nicam,
-mode is autodetect
-Nov  1 14:55:50 z1 kernel: bttv0: i2c: checking for TDA9875 @ 0xb0...
-not found
-Nov  1 14:55:50 z1 kernel: bttv0: i2c: checking for TDA7432 @ 0x8a...
-not found
-Nov  1 14:55:50 z1 kernel: usb 2-9: new high speed USB device using
-ehci_hcd and address 3
-Nov  1 14:55:50 z1 kernel: tuner 5-0061: chip found @ 0xc2 (bt878 #0 [sw])
-Nov  1 14:55:50 z1 kernel: tuner 5-0061: type set to 5 (Philips PAL_BG
-(FI1216 and compatibles))
-Nov  1 14:55:50 z1 kernel: tuner 5-0061: type set to 5 (Philips PAL_BG
-(FI1216 and compatibles))
-Nov  1 14:55:50 z1 kernel: bttv0: registered device video0
-Nov  1 14:55:50 z1 kernel: bttv0: registered device vbi0
-Nov  1 14:55:50 z1 kernel: bttv0: registered device radio0
-Nov  1 14:55:50 z1 kernel: bttv0: PLL: 28636363 => 35468950 ..<6>usb
-2-9: configuration #1 chosen from 1 choice
-Nov  1 14:55:50 z1 kernel: usbcore: registered new interface driver
-usbmouse
-Nov  1 14:55:50 z1 kernel: drivers/hid/usbhid/usbmouse.c: v1.6:USB HID
-Boot Protocol mouse driver
-Nov  1 14:55:50 z1 kernel:  ok
-Nov  1 14:55:50 z1 kernel: usb 1-2: new low speed USB device using
-ohci_hcd and address 4
-Nov  1 14:55:50 z1 kernel: usb 1-2: configuration #1 chosen from 1 choice
-Nov  1 14:55:50 z1 kernel: input: USB HIDBP Mouse 062a:0000 as
-/class/input/input3
-Nov  1 14:55:50 z1 kernel: tsdev (compaq touchscreen emulation) is
-scheduled for removal.
-Nov  1 14:55:50 z1 kernel: See
-Documentation/feature-removal-schedule.txt for details.
-Nov  1 14:55:50 z1 kernel: wmaster0: Selected rate control algorithm
-'simple'
-Nov  1 14:55:50 z1 kernel: phy0: hwaddr 00:15:af:01:80:bd, rtl8187 V1 +
-rtl8225z2
-Nov  1 14:55:50 z1 kernel: usbcore: registered new interface driver rtl8187
-Nov  1 14:55:50 z1 kernel: Adding 19286024k swap on /dev/sda2.
-Priority:1 extents:1 across:19286024k
-Nov  1 14:55:50 z1 kernel: eth0: no IPv6 routers present
-Nov  1 14:55:50 z1 kernel: klogd[1340]: segfault at 00000004 eip
-0804b2cc esp bf897c40 error 4
-Nov  1 14:55:50 z1 kernel: Linux agpgart interface v0.102
-Nov  1 14:55:50 z1 kernel: [drm] Initialized drm 1.1.0 20060810
-Nov  1 14:55:50 z1 kernel: [drm:drm_init]
-Nov  1 14:55:50 z1 kernel: [drm:drm_get_dev]
-Nov  1 14:55:50 z1 kernel: PCI: Setting latency timer of device
-0000:01:00.0 to 64
-Nov  1 14:55:50 z1 kernel: [drm:nouveau_load] vendor: 0x10DE device:
-0x161 class: 0x30000
-Nov  1 14:55:50 z1 kernel: [drm] Detected an NV44 generation card
-(0x044100a2)
-Nov  1 14:55:50 z1 kernel: [drm:drm_get_head]
-Nov  1 14:55:50 z1 kernel: [drm:drm_get_head] new minor assigned 0
-Nov  1 14:55:50 z1 kernel: [drm] Initialized nouveau 0.0.10 20060213 on
-minor 0
-Nov  1 14:55:50 z1 kernel: [drm] Used old pci detect: framebuffer loaded
-Nov  1 14:57:06 z1 kernel: [drm:drm_stub_open]
-Nov  1 14:57:06 z1 kernel: [drm:drm_open_helper] pid = 1370, minor = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] offset = 0x00000000,
-size = 0x00002000, type = 2
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] 8192 13 fda16000
-Nov  1 14:57:06 z1 kernel: [drm:drm_setup]
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0246400, nr=0x00, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0246400, nr=0x00, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_release] open_count = 1
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_fifo_cleanup] clearing FIFO
-enables from file_priv
-Nov  1 14:57:06 z1 kernel: [drm:drm_release] pid = 1370, device =
-0xe200, open_count = 1
-Nov  1 14:57:06 z1 kernel: [drm:drm_fasync] fd = -1, device = 0xe200
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose]
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_card_takedown] prev state = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose] driver lastclose completed
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose] lastclose completed
-Nov  1 14:57:06 z1 kernel: [drm:drm_stub_open]
-Nov  1 14:57:06 z1 kernel: [drm:drm_open_helper] pid = 1370, minor = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] offset = 0x00000000,
-size = 0x00002000, type = 2
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] 8192 13 fda16000
-Nov  1 14:57:06 z1 kernel: [drm:drm_setup]
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0106407, nr=0x07, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0086401, nr=0x01, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0086401, nr=0x01, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0246400, nr=0x00, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0246400, nr=0x00, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_release] open_count = 1
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_fifo_cleanup] clearing FIFO
-enables from file_priv
-Nov  1 14:57:06 z1 kernel: [drm:drm_release] pid = 1370, device =
-0xe200, open_count = 1
-Nov  1 14:57:06 z1 kernel: [drm:drm_fasync] fd = -1, device = 0xe200
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose]
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_card_takedown] prev state = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose] driver lastclose completed
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose] lastclose completed
-Nov  1 14:57:06 z1 kernel: [drm:drm_stub_open]
-Nov  1 14:57:06 z1 kernel: [drm:drm_open_helper] pid = 1370, minor = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] offset = 0x00000000,
-size = 0x00002000, type = 2
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] 8192 13 fda16000
-Nov  1 14:57:06 z1 kernel: [drm:drm_setup]
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0246400, nr=0x00, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0246400, nr=0x00, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_release] open_count = 1
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_fifo_cleanup] clearing FIFO
-enables from file_priv
-Nov  1 14:57:06 z1 kernel: [drm:drm_release] pid = 1370, device =
-0xe200, open_count = 1
-Nov  1 14:57:06 z1 kernel: [drm:drm_fasync] fd = -1, device = 0xe200
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose]
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_card_takedown] prev state = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose] driver lastclose completed
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose] lastclose completed
-Nov  1 14:57:06 z1 kernel: [drm:drm_stub_open]
-Nov  1 14:57:06 z1 kernel: [drm:drm_open_helper] pid = 1370, minor = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] offset = 0x00000000,
-size = 0x00002000, type = 2
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] 8192 13 fda16000
-Nov  1 14:57:06 z1 kernel: [drm:drm_setup]
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0246400, nr=0x00, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0246400, nr=0x00, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_release] open_count = 1
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_fifo_cleanup] clearing FIFO
-enables from file_priv
-Nov  1 14:57:06 z1 kernel: [drm:drm_release] pid = 1370, device =
-0xe200, open_count = 1
-Nov  1 14:57:06 z1 kernel: [drm:drm_fasync] fd = -1, device = 0xe200
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose]
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_card_takedown] prev state = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose] driver lastclose completed
-Nov  1 14:57:06 z1 kernel: [drm:drm_lastclose] lastclose completed
-Nov  1 14:57:06 z1 kernel: [drm:drm_stub_open]
-Nov  1 14:57:06 z1 kernel: [drm:drm_open_helper] pid = 1370, minor = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] offset = 0x00000000,
-size = 0x00002000, type = 2
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] 8192 13 fda16000
-Nov  1 14:57:06 z1 kernel: [drm:drm_setup]
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0106407, nr=0x07, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0086401, nr=0x01, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0086401, nr=0x01, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0106407, nr=0x07, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0186415, nr=0x15, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] offset = 0x00000000,
-size = 0x00002000, type = 2
-Nov  1 14:57:06 z1 kernel: [drm:drm_mmap_locked] start = 0xb7b47000, end
-= 0xb7b49000, page offset = 0xfda16
-Nov  1 14:57:06 z1 kernel: [drm:drm_vm_open_locked] 0xb7b47000,0x00002000
-Nov  1 14:57:06 z1 kernel: [drm:drm_do_vm_shm_nopage] shm_nopage 0xb7b47000
-Nov  1 14:57:06 z1 kernel: [drm:drm_do_vm_shm_nopage] shm_nopage 0xb7b48000
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0186415, nr=0x15, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] offset = 0xe4000000,
-size = 0x04000000, type = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0086426, nr=0x26, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0086426, nr=0x26, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0xc0086420, nr=0x20, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_addctx] 1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0x40086422, nr=0x22, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0x4008642a, nr=0x2a, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:drm_lock] 1 (pid 1370) requests lock
-(0x00000000), flags = 0x00000000
-Nov  1 14:57:06 z1 kernel: [drm:drm_lock] 1 has lock
-Nov  1 14:57:06 z1 kernel: [drm:drm_fasync] fd = 8, device = 0xe200
-Nov  1 14:57:06 z1 kernel: [drm:drm_unlocked_ioctl] pid=1370,
-cmd=0x6440, nr=0x40, dev 0xe200, auth=1
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_card_init] prev state = 0
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] offset = 0xfa000000,
-size = 0x01000000, type = 1
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_init_card_mappings] regs mapped
-ok at 0xfa000000
-Nov  1 14:57:06 z1 kernel: [drm:drm_addmap_core] offset = 0xfb000000,
-size = 0x01000000, type = 1
-Nov  1 14:57:06 z1 kernel: allocation failed: out of vmalloc space - use
-vmalloc=<size> to increase size.
-Nov  1 14:57:06 z1 kernel: [drm:nouveau_gpuobj_early_init]
-Nov  1 14:57:06 z1 kernel: [drm:nv04_instmem_determine_amount] RAMIN
-size: 1024KiB
-Nov  1 14:57:06 z1 kernel: BUG: unable to handle kernel paging request
-at virtual address 00010000
-Nov  1 14:57:06 z1 kernel:  printing eip:
-Nov  1 14:57:06 z1 kernel: fe4c7f5f
-Nov  1 14:57:06 z1 kernel: *pdpt = 0000000036ccb001
-Nov  1 14:57:06 z1 kernel: *pde = 0000000036de6067
-Nov  1 14:57:06 z1 kernel: *pte = 0000000000000000
-Nov  1 14:57:06 z1 kernel: Oops: 0002 [#1]
-Nov  1 14:57:06 z1 kernel: PREEMPT SMP
-Nov  1 14:57:06 z1 kernel: Modules linked in: nouveau drm agpgart arc4
-ecb blkcipher cryptomgr crypto_algapi rc80211_simple rtl8187 tsdev
-mac80211 cfg80211 eeprom_93cx6 tuner tvaudio usbmouse msp3400 button
-ehci_hcd bttv video_buf ir_common fan snd_hda_intel ipv6 k8temp hwmon
-ohci_hcd evdev compat_ioctl32 btcx_risc snd_bt87x ide_cd usbcore
-i2c_nforce2 sg tveeprom videodev v4l2_common v4l1_compat cdrom snd_pcm
-snd_timer snd soundcore snd_page_alloc forcedeth
-Nov  1 14:57:06 z1 kernel: CPU:    0
-
+> 
 
 regards
 Alfred
