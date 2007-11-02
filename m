@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Fri,  2 Nov 2007 05:39:03 -0700 (PDT)
-Message-ID: <20071102123903.96BD613000C@annarchy.freedesktop.org>
+Date: Fri,  2 Nov 2007 09:57:48 -0700 (PDT)
+Message-ID: <20071102165748.CF11913000D@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #24 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-02 05:44 PST -------
-Its supposed to be 1440x900.  It shows up as 1400x1050.  And its git breaks my
-setup again.  "Display out of range".  I'll post a log when I get home.
+------- Comment #25 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-02 10:02 PST -------
+Created an attachment (id=12316)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12316&action=view)
+2007 11 02 Xorg log, failing to start
 
 
 -- 
