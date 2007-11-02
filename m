@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Fri,  2 Nov 2007 09:57:48 -0700 (PDT)
-Message-ID: <20071102165748.CF11913000D@annarchy.freedesktop.org>
+Date: Fri,  2 Nov 2007 10:45:15 -0700 (PDT)
+Message-ID: <20071102174515.1EAD013000D@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #25 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-02 10:02 PST -------
-Created an attachment (id=12316)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12316&action=view)
-2007 11 02 Xorg log, failing to start
+------- Comment #26 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-02 10:50 PST -------
+Everything still works without Option "Randr12"?
+
+The kind of failure you get is seems unrelated to randr stuff (the notifier
+timeout), regardless from some inconsistencies on the modesetting side.
+
+Please confirm that non-randr12 works, before i focus on this issue.
 
 
 -- 
