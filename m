@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Fri,  2 Nov 2007 13:20:53 -0700 (PDT)
-Message-ID: <20071102202053.2EB4C13000C@annarchy.freedesktop.org>
+Date: Fri,  2 Nov 2007 13:21:12 -0700 (PDT)
+Message-ID: <20071102202112.A190013000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,24 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
-adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #12316|0                           |1
-        is obsolete|                            |
 
 
 
-
-------- Comment #27 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-02 13:25 PST -------
-Created an attachment (id=12319)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12319&action=view)
-2007 11 02 Xorg, RandR12 chooses a bad mode
-
-Sorry, I was wrong.  Xorg successfully starts (I can hear GDM's login sound),
-but my monitor displays a SIGNAL OUT OF RANGE message.  This is not with
-RandR12 disabled.
+------- Comment #28 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-02 13:26 PST -------
+Created an attachment (id=12320)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12320&action=view)
+Xorg starting without randr
 
 
 -- 
