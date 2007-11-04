@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Sat,  3 Nov 2007 02:01:28 -0700 (PDT)
-Message-ID: <20071103090128.E59C113000D@annarchy.freedesktop.org>
+Date: Sun,  4 Nov 2007 11:32:18 -0800 (PST)
+Message-ID: <20071104193218.B312B13000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #29 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-03 02:06 PST -------
-Please try again, i made some changes which hopefully help.
+------- Comment #30 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-04 11:37 PST -------
+Created an attachment (id=12347)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12347&action=view)
+2007 11 04 Trial run
+
+Still doesn't work.  Monitor displays "Input not supported".
 
 
 -- 
