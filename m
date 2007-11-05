@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12833] Geforce 8400M GS (id 0x427) support
-Date: Mon,  5 Nov 2007 14:00:27 -0800 (PST)
-Message-ID: <20071105220027.3C67113000B@annarchy.freedesktop.org>
+Date: Mon,  5 Nov 2007 14:02:03 -0800 (PST)
+Message-ID: <20071105220203.A9C7213000B@annarchy.freedesktop.org>
 References: <bug-12833-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,34 +27,18 @@ debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Geforce 8400M GS (id 0x427):|Geforce 8400M GS (id 0x427)
-                   |working but slow            |support
+  Attachment #12321|0                           |1
+        is obsolete|                            |
 
 
 
 
-------- Comment #13 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-11-05 14:05 PST -------
-Git head 5ca10da0c7dd2fd689cc4369e37ed385a0c10d21 fixed the black screen, which
-retrospectively was probably the screen switching off to prevent any damage.
+------- Comment #14 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-11-05 14:07 PST -------
+Created an attachment (id=12362)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12362&action=view)
+Xorg log of working git head b36fbf174849b04928efda2909c461b6c1688cdc
 
-AIGLX is deactivated in my xorg.conf at the moment.
-
-But I still have the default frequency at 0 Hz. See xrandr output:
-
-Screen 0: minimum 320 x 200, current 1280 x 800, maximum 1280 x 1280
-VGA1 disconnected
-DVI1 disconnected
-LVDS connected 1280x800+0+0 0mm x 0mm
-   1280x800        0.0*+   60.0  
-   1280x768       60.0  
-   1024x768       60.0  
-   800x600        60.3  
-   640x480        59.9  
-   640x400       120.0  
-   640x384       120.2  
-   512x384       120.0  
-
-I'm eager to test hotplug.
+Working but default frequency is 0 Hz.
 
 
 -- 
