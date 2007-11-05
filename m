@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12833] Geforce 8400M GS (id 0x427) support
-Date: Mon,  5 Nov 2007 14:02:03 -0800 (PST)
-Message-ID: <20071105220203.A9C7213000B@annarchy.freedesktop.org>
-References: <bug-12833-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
+Date: Mon,  5 Nov 2007 14:04:11 -0800 (PST)
+Message-ID: <20071105220412.03B4113000D@annarchy.freedesktop.org>
+References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12833-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12959-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12833
-
-
-debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #12321|0                           |1
-        is obsolete|                            |
+http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
 
-------- Comment #14 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-11-05 14:07 PST -------
-Created an attachment (id=12362)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12362&action=view)
-Xorg log of working git head b36fbf174849b04928efda2909c461b6c1688cdc
 
-Working but default frequency is 0 Hz.
+------- Comment #40 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-05 14:09 PST -------
+For the record, G80 is COMPLETELY seperate from G70 and lower, so i'm somewhat
+confused.
 
 
 -- 
