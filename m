@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon,  5 Nov 2007 06:59:45 -0800 (PST)
-Message-ID: <20071105145945.4094413000D@annarchy.freedesktop.org>
+Date: Mon,  5 Nov 2007 07:27:59 -0800 (PST)
+Message-ID: <20071105152759.8CC3213000D@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #32 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-05 07:05 PST -------
-Created an attachment (id=12357)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12357&action=view)
-2007 11 05 Xorg log
+------- Comment #33 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-05 07:33 PST -------
+Does it still give invalid mode?
 
-Still doesn't work.  
+I have no idea what causes the notifier timeout, but could you disable AIGLX?
+
+Otherwise i'm at a dead end.
+
+Btw, what hardware do you have (architecture for example)?
 
 
 -- 
