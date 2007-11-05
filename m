@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon,  5 Nov 2007 12:14:39 -0800 (PST)
-Message-ID: <20071105201439.A697013000D@annarchy.freedesktop.org>
+Date: Mon,  5 Nov 2007 13:56:51 -0800 (PST)
+Message-ID: <20071105215651.7C8DA13000B@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #38 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-05 12:20 PST -------
-I've pushed a fix, which hopefully fixes your issue.
+------- Comment #39 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-11-05 14:02 PST -------
+Yay! Your fix also brought my G80 back. I'll comment further in my bug #12833.
 
 
 -- 
