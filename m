@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon,  5 Nov 2007 11:13:19 -0800 (PST)
-Message-ID: <20071105191319.A550313000D@annarchy.freedesktop.org>
+Date: Mon,  5 Nov 2007 11:46:25 -0800 (PST)
+Message-ID: <20071105194625.4D7F413000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #35 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-05 11:18 PST -------
-Are you in a position to make a mmio trace of the nvidia binary driver?
-
-I'm curious how this should be fixed in general.
-
-(http://nouveau.freedesktop.org/wiki/MmioTraceHowto)
+------- Comment #36 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-05 11:51 PST -------
+I'll run one when I get home, though I've sent in MMIO traces before, if that's
+any help.
 
 
 -- 
