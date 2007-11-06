@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12582] Crash on GeForce 7300 SE
-Date: Mon,  5 Nov 2007 18:29:36 -0800 (PST)
-Message-ID: <20071106022936.33C5F13000B@annarchy.freedesktop.org>
+Date: Mon,  5 Nov 2007 18:37:19 -0800 (PST)
+Message-ID: <20071106023719.6A2BC13000B@annarchy.freedesktop.org>
 References: <bug-12582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12582
 
 
 
-------- Comment #9 from panov-ABcqYfMUPmYZY0rY4shWHijHesifYMBh@public.gmane.org  2007-11-05 18:34 PST -------
-I tried to remove nouveua_dri.so and there are still artefacts on the screen.
+------- Comment #10 from panov-ABcqYfMUPmYZY0rY4shWHijHesifYMBh@public.gmane.org  2007-11-05 18:42 PST -------
+Created an attachment (id=12364)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12364&action=view)
+the screenshot of glxgears
+
+This screenshot was made with nouveau (mesa, drm) drivers as of 2007.10.31. It
+does not crash or cause kernel lock anymore. But the output of glxgears is very
+distorted. Morever, the new 2d artefact introduced: sometimes fonts are too
+bright (like in the gkrellm window on the screenshot).
 
 
 -- 
