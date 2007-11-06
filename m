@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12833] Geforce 8400M GS (id 0x427) support
-Date: Tue,  6 Nov 2007 00:49:10 -0800 (PST)
-Message-ID: <20071106084911.0FE0B13000B@annarchy.freedesktop.org>
+Date: Tue,  6 Nov 2007 01:05:08 -0800 (PST)
+Message-ID: <20071106090508.CE22013000B@annarchy.freedesktop.org>
 References: <bug-12833-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12833
 
 
 
-------- Comment #16 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-11-06 00:54 PST -------
-Also hotplugged screens are not detected.
+------- Comment #17 from debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org  2007-11-06 01:10 PST -------
+I can't tell you the magic behind, but I still can try git-bisect between
+7054de29c589a7be0a6b027f3067ae2c02e2fc45 and HEAD.
+
+This is a Dell manufactured adapter. I hope this is not some rework of a G70
+design!
 
 
 -- 
