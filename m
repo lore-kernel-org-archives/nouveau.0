@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Wed,  7 Nov 2007 00:43:17 -0800 (PST)
-Message-ID: <20071107084317.C288913000D@annarchy.freedesktop.org>
+Date: Wed,  7 Nov 2007 07:03:21 -0800 (PST)
+Message-ID: <20071107150321.5C82A13000D@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #41 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-07 00:48 PST -------
-Are you still with us?
+------- Comment #42 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-07 07:08 PST -------
+Created an attachment (id=12387)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12387&action=view)
+2007 11 07
+
+Still no go.
 
 
 -- 
