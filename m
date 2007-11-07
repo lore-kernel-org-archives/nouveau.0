@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12833] Geforce 8400M GS (id 0x427) support
-Date: Tue,  6 Nov 2007 01:08:11 -0800 (PST)
-Message-ID: <20071106090811.4A74313000D@annarchy.freedesktop.org>
-References: <bug-12833-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
+Date: Wed,  7 Nov 2007 00:43:17 -0800 (PST)
+Message-ID: <20071107084317.C288913000D@annarchy.freedesktop.org>
+References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12833-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12959-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +20,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12833
+http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
 
 
-------- Comment #18 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-06 01:13 PST -------
-I've fixed the small leak of pre-G80 code into G80, but this did not touch the
-commit you mentioned.
+------- Comment #41 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-07 00:48 PST -------
+Are you still with us?
 
 
 -- 
