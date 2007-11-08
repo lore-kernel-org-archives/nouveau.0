@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13147] nv11 hang at startup with randr12 enabled
-Date: Thu,  8 Nov 2007 11:01:08 -0800 (PST)
-Message-ID: <20071108190108.5148213000B@annarchy.freedesktop.org>
+Date: Thu,  8 Nov 2007 11:01:35 -0800 (PST)
+Message-ID: <20071108190135.902E013000B@annarchy.freedesktop.org>
 References: <bug-13147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13147
 
 
 
-------- Comment #1 from randrik-JGs/UdohzUI@public.gmane.org  2007-11-08 11:06 PST -------
-Created an attachment (id=12406)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12406&action=view)
-Xorg.0.log with randr12 enabled
+------- Comment #2 from randrik-JGs/UdohzUI@public.gmane.org  2007-11-08 11:07 PST -------
+Created an attachment (id=12407)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12407&action=view)
+Normal X log
 
 
 -- 
