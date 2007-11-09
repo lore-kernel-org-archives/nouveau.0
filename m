@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Fri,  9 Nov 2007 09:56:19 -0800 (PST)
-Message-ID: <20071109175619.C3B8C13000D@annarchy.freedesktop.org>
+Date: Fri,  9 Nov 2007 10:37:41 -0800 (PST)
+Message-ID: <20071109183741.904F613000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #47 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-09 10:02 PST -------
-I just plug in both vga and dvi of my panel to test, in case you lack a second
-monitor.
+------- Comment #48 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-09 10:43 PST -------
+Created an attachment (id=12430)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12430&action=view)
+Xorg log
+
+It works now (I even disabled AIGLX in case that makes the log easier to read,
+if you need something out of it).
 
 
 -- 
