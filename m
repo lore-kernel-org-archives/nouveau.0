@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Fri,  9 Nov 2007 06:53:15 -0800 (PST)
-Message-ID: <20071109145315.8191A13000D@annarchy.freedesktop.org>
+Date: Fri,  9 Nov 2007 09:46:04 -0800 (PST)
+Message-ID: <20071109174604.84A0413000D@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #45 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-09 06:59 PST -------
-Created an attachment (id=12423)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12423&action=view)
-2007 11 09 Attempt
+------- Comment #46 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-09 09:51 PST -------
+I've just disabled all the stuff related to register 580.
 
-Still doesn't work.
+I'm curious if you can attach a second monitor, without having it connected at
+boot time?
 
 
 -- 
