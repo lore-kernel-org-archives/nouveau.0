@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Sat, 10 Nov 2007 07:49:05 -0800 (PST)
-Message-ID: <20071110154905.5EC6C13000C@annarchy.freedesktop.org>
+Date: Sat, 10 Nov 2007 10:12:02 -0800 (PST)
+Message-ID: <20071110181202.9E6CA13000D@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #51 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-10 07:54 PST -------
-I will look at it again, do realize i'm not doing this to annoy you, just to
-get many of the G70 cards fully functional.
+------- Comment #52 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-10 10:17 PST -------
+I have a few ideas, but they will require some redesign, so this may take a day
+or two.
 
 
 -- 
