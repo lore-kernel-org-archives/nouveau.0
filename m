@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Sat, 10 Nov 2007 10:12:02 -0800 (PST)
-Message-ID: <20071110181202.9E6CA13000D@annarchy.freedesktop.org>
-References: <bug-12959-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?UsOpbXkgRHVwb250?= <rem11_1999-Qt13gs6zZMY@public.gmane.org>
+Subject: Unused Riva TNT to give.
+Date: Sat, 10 Nov 2007 18:51:26 +0100
+Message-ID: <4735EF9E.8080500@yahoo.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12959-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +18,10 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12959
-
-
-
-
-
-------- Comment #52 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-10 10:17 PST -------
-I have a few ideas, but they will require some redesign, so this may take a day
-or two.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug, or are watching the assignee.
+SGksCgpXb3VsZCBzb21lb25lIGJlIGludGVyZXN0ZWQgYnkgYSBDcmVhdGl2ZSBHcmFwaGljcyBC
+bGFzdGVyIFJpdmEgVE5UIDE2TUIgQUdQIHdoaWNoIGlzIHRha2luZyBkdXN0IG9uIG15IGRlc2su
+CkkgY2FuIHNlbmQgaXQgdG8gYW55IGRldmVsb3BwZXIgdGhhdCB3b3VsZCBiZSBpbnRlcmVzdGVk
+LgoKTGV0IG1lIGtub3cuCgoKClLDqW15IERVUE9OVAoKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
