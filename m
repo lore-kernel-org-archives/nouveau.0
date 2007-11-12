@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon, 12 Nov 2007 07:16:18 -0800 (PST)
-Message-ID: <20071112151618.9D7DD13000D@annarchy.freedesktop.org>
+Date: Mon, 12 Nov 2007 09:11:05 -0800 (PST)
+Message-ID: <20071112171105.CC7A213000C@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #55 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-12 07:22 PST -------
-That's actually good news, i've pushed a fix that should remedy your problem.
+------- Comment #56 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-12 09:17 PST -------
+Created an attachment (id=12481)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12481&action=view)
+2007 11 12 - working
+
+Initial display is working, hot plugging monitors -- not so much.
 
 
 -- 
