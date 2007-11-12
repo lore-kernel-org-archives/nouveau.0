@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12959] RandR1.2 on my G70 is now completely broken
-Date: Mon, 12 Nov 2007 06:48:26 -0800 (PST)
-Message-ID: <20071112144827.1736D13000C@annarchy.freedesktop.org>
+Date: Mon, 12 Nov 2007 07:16:18 -0800 (PST)
+Message-ID: <20071112151618.9D7DD13000D@annarchy.freedesktop.org>
 References: <bug-12959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,16 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12959
 
 
 
-------- Comment #54 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-12 06:54 PST -------
-Created an attachment (id=12480)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12480&action=view)
-Xorg log 2007 11 12 - Input is supported
-
-Display comes up now, but suffers from a distortion that resembles a CRT near a
-running microwave.
-
-I haven't tried hotplugging monitors, because I was afraid to leave my monitor
-in that state.
+------- Comment #55 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-12 07:22 PST -------
+That's actually good news, i've pushed a fix that should remedy your problem.
 
 
 -- 
