@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10673] nouveau can't use a Dell 2001FP in 1600x1200
-	mode
-Date: Sun, 18 Nov 2007 08:08:29 -0800 (PST)
-Message-ID: <20071118160830.0C1DA13000D@annarchy.freedesktop.org>
-References: <bug-10673-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11949] composite broken on nv17
+Date: Sun, 18 Nov 2007 11:10:09 -0800 (PST)
+Message-ID: <20071118191009.C0F6413000B@annarchy.freedesktop.org>
+References: <bug-11949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-10673-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11949-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +20,32 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=10673
+http://bugs.freedesktop.org/show_bug.cgi?id=11949
+
+
+arthur.huillet-dFvTVMYgtfk@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
+                 CC|                            |shlomif-ik1l9ssToec+JF/nGntIXQ@public.gmane.org
+             Status|ASSIGNED                    |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
+------- Comment #3 from arthur.huillet-dFvTVMYgtfk@public.gmane.org  2007-10-05 06:53 PST -------
+This will go away with the new 3D-engine-based EXA implementation for
+NV10-NV20.
 
-------- Comment #3 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-18 08:15 PST -------
-These sort of issues should not exist in the randr-1.2 codepath (Option
-"Randr12" in the device section) of the driver.
 
-This should work reasonably (for your generation of card), if not, then you may
-be asked for a mmio-trace of the nvidia binary, so i can figure out what's
-wrong.
+------- Comment #4 from arthur.huillet-dFvTVMYgtfk@public.gmane.org  2007-10-05 06:54 PST -------
+*** Bug 12251 has been marked as a duplicate of this bug. ***
 
-nv indeed does not change the clocks for flatpanels (at all).
 
-The randr-1.2 codepath of nouveau should detect the largest mode and bring that
-up.
+------- Comment #5 from arthur.huillet-dFvTVMYgtfk@public.gmane.org  2007-11-18 11:16 PST -------
+Fixed with new NV1x EXA.
 
 
 -- 
