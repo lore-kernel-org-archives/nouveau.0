@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10673] nouveau can't use a Dell 2001FP in 1600x1200
 	mode
-Date: Sun, 18 Nov 2007 08:00:32 -0800 (PST)
-Message-ID: <20071118160032.295D113000D@annarchy.freedesktop.org>
+Date: Sun, 18 Nov 2007 08:08:29 -0800 (PST)
+Message-ID: <20071118160830.0C1DA13000D@annarchy.freedesktop.org>
 References: <bug-10673-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,27 +27,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=10673
 
 
 
-------- Comment #2 from ajax-TAsg7VrFCGc@public.gmane.org  2007-11-18 08:07 PST -------
-(In reply to comment #0)
-> The long term best solution would be to figure out why this is being
-> misdetected and correct that. A good short term solution would be to implement
-> the "PanelSize" option in nouveau (see the radeon driver) to allow the user to
-> override the detected panel size and force the driver to attempt to continue.
+------- Comment #3 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-18 08:15 PST -------
+These sort of issues should not exist in the randr-1.2 codepath (Option
+"Randr12" in the device section) of the driver.
 
-I've tried this, it doesn't work.
+This should work reasonably (for your generation of card), if not, then you may
+be asked for a mmio-trace of the nvidia binary, so i can figure out what's
+wrong.
 
-As far as I can tell, what actually happens with nv and nouveau on digital
-connections is that the "resolution" we set is really just the size of the
-framebuffer, which is then fed to an upscaler for scanout.  In other words,
-your panel is always scanning out whatever the BIOS set it to at init time,
-which defaults to 1280x1024 because that's nice and conservative.
+nv indeed does not change the clocks for flatpanels (at all).
 
-The nvidia driver, we can assume, just goes ahead and bangs the output
-registers directly.
-
-Experimentally, using RANDR to resize the screen is subjectively faster on nv
-than on, say, radeon.  This corroborates the above theory; you're not changing
-the signalling timings, so the monitor doesn't need to resync.
+The randr-1.2 codepath of nouveau should detect the largest mode and bring that
+up.
 
 
 -- 
