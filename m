@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13323] 7600Go: RandR12 fails to drive external DVI
-Date: Tue, 20 Nov 2007 13:23:45 -0800 (PST)
-Message-ID: <20071120212346.3873513000B@annarchy.freedesktop.org>
+Date: Tue, 20 Nov 2007 13:47:38 -0800 (PST)
+Message-ID: <20071120214738.2C03013000B@annarchy.freedesktop.org>
 References: <bug-13323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13323
 
 
 
-------- Comment #1 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-20 13:30 PST -------
-Created an attachment (id=12654)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12654&action=view)
-Xorg log with randr12 "true"
+------- Comment #2 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-20 13:54 PST -------
+I see one problem immediatly, i never expected a nv4x range card to have an
+output that only works on crtc1, i will fix this when i get the chance.
 
 
 -- 
