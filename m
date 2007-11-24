@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13373] Nouveau does will not display DVI-A-1
-Date: Fri, 23 Nov 2007 18:28:58 -0800 (PST)
-Message-ID: <20071124022858.DE99213000B@annarchy.freedesktop.org>
+Date: Sat, 24 Nov 2007 04:10:17 -0800 (PST)
+Message-ID: <20071124121027.B3C1413000B@annarchy.freedesktop.org>
 References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
 
-------- Comment #1 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-23 18:36 PST -------
-Created an attachment (id=12707)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12707&action=view)
-Xorg-DVIA1 20071123
-
-This is from a cold start.  Replacing DVI-D-1 with DVI-A-1 doesn't work. 
-Interestingly enough, the monitor does indicate that it's getting a signal, but
-nothing is displayed.  This is from the latest git.
+------- Comment #2 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-24 04:17 PST -------
+I took out a potentional problem, please try again.
 
 
 -- 
