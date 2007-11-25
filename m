@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Sat, 24 Nov 2007 06:41:33 -0800 (PST)
-Message-ID: <20071124144134.03E0813000B@annarchy.freedesktop.org>
-References: <bug-13373-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13323] 7600Go: RandR12 fails to drive external DVI
+Date: Sun, 25 Nov 2007 03:25:42 -0800 (PST)
+Message-ID: <20071125112547.6DC2113000B@annarchy.freedesktop.org>
+References: <bug-13323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +20,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13373
+http://bugs.freedesktop.org/show_bug.cgi?id=13323
 
 
 
 
 
-------- Comment #5 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-24 06:48 PST -------
-Give it another spin.
+------- Comment #4 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-25 03:32 PST -------
+Give it another try.
 
 
 -- 
