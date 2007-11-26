@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Mon, 26 Nov 2007 05:03:23 -0800 (PST)
-Message-ID: <20071126130323.4780313000C@annarchy.freedesktop.org>
+Date: Mon, 26 Nov 2007 10:23:57 -0800 (PST)
+Message-ID: <20071126182357.E71B713000B@annarchy.freedesktop.org>
 References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,24 +23,11 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
-adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #12708|0                           |1
-        is obsolete|                            |
 
 
 
-
-------- Comment #6 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-26 05:10 PST -------
-Created an attachment (id=12722)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12722&action=view)
-Xorg log 2007 11 26
-
-DVI-A-1 comes up fine, but when I run xrandr --auto, my monitor just shows
-"Input Not Supported", and pulling the cable reveals that there is no signal to
-DVI-D-0.
+------- Comment #7 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-26 10:31 PST -------
+Please try again, i fixed something important (for your situation).
 
 
 -- 
