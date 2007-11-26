@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Mon, 26 Nov 2007 11:37:27 -0800 (PST)
-Message-ID: <20071126193727.7C27613000B@annarchy.freedesktop.org>
+Date: Mon, 26 Nov 2007 13:05:56 -0800 (PST)
+Message-ID: <20071126210556.7BC6713000B@annarchy.freedesktop.org>
 References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
 
-------- Comment #9 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-26 11:44 PST -------
-I spotted an even bigger bug, will have to think about how i fix this.
+------- Comment #10 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-26 13:13 PST -------
+It should now set the vpll properly, which means your analog output should at
+least stay alive (i hope ;-)).
 
 
 -- 
