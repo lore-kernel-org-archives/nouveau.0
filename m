@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Mon, 26 Nov 2007 10:23:57 -0800 (PST)
-Message-ID: <20071126182357.E71B713000B@annarchy.freedesktop.org>
+Date: Mon, 26 Nov 2007 11:06:07 -0800 (PST)
+Message-ID: <20071126190607.6624113000B@annarchy.freedesktop.org>
 References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
+adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #12722|0                           |1
+        is obsolete|                            |
 
 
 
-------- Comment #7 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-26 10:31 PST -------
-Please try again, i fixed something important (for your situation).
+
+------- Comment #8 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-26 11:13 PST -------
+Created an attachment (id=12727)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12727&action=view)
+Xorg 2007 11 26 (2nd attempt)
+
+Exact same results as last time.
 
 
 -- 
