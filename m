@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Tue, 27 Nov 2007 05:12:38 -0800 (PST)
-Message-ID: <20071127131238.9B57313000B@annarchy.freedesktop.org>
+Date: Tue, 27 Nov 2007 05:13:15 -0800 (PST)
+Message-ID: <20071127131315.7D05F13000B@annarchy.freedesktop.org>
 References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,16 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
-adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #12727|0                           |1
-        is obsolete|                            |
 
 
 
+------- Comment #12 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-27 05:20 PST -------
+Created an attachment (id=12737)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12737&action=view)
+xrandr output
 
-------- Comment #11 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-27 05:20 PST -------
-Created an attachment (id=12736)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12736&action=view)
-2007 11 27 Attempt
-
-Exact same result.  However, I did switch to a console and try to run xrandr. 
-I'll attach that to see if its helpful.
+I had to run this by switching to VT1 and running DISPLAY=:0 xrandr.  Don't
+know if this is helpful at all.
 
 
 -- 
