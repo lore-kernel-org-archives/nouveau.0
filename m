@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Mon, 26 Nov 2007 13:05:56 -0800 (PST)
-Message-ID: <20071126210556.7BC6713000B@annarchy.freedesktop.org>
-References: <bug-13373-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12472] [randr12,
+	dualhead] The full screen is not visible and a purple border
+Date: Tue, 27 Nov 2007 01:12:27 -0800 (PST)
+Message-ID: <20071127091227.C24B713000B@annarchy.freedesktop.org>
+References: <bug-12472-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12472-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +21,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13373
+http://bugs.freedesktop.org/show_bug.cgi?id=12472
+
+
+xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
-
-------- Comment #10 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-26 13:13 PST -------
-It should now set the vpll properly, which means your analog output should at
-least stay alive (i hope ;-)).
+------- Comment #1 from xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org  2007-11-27 01:19 PST -------
+This seems to be fixed.:-)
 
 
 -- 
