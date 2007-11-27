@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13403] Random crashes.
-Date: Tue, 27 Nov 2007 01:41:44 -0800 (PST)
-Message-ID: <20071127094144.5525313000B@annarchy.freedesktop.org>
+Date: Tue, 27 Nov 2007 01:42:05 -0800 (PST)
+Message-ID: <20071127094205.393AA13000B@annarchy.freedesktop.org>
 References: <bug-13403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #12734|application/octet-stream    |text/plain
+  Attachment #12732|application/octet-stream    |text/plain
           mime type|                            |
 
 
