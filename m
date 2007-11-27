@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13403] Random crashes.
-Date: Tue, 27 Nov 2007 01:38:44 -0800 (PST)
-Message-ID: <20071127093844.3E22613000B@annarchy.freedesktop.org>
+Date: Tue, 27 Nov 2007 01:41:08 -0800 (PST)
+Message-ID: <20071127094108.2CDEC13000B@annarchy.freedesktop.org>
 References: <bug-13403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13403
 
 
 
-------- Comment #2 from xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org  2007-11-27 01:46 PST -------
-Created an attachment (id=12733)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12733&action=view)
-xorg.conf
+------- Comment #3 from xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org  2007-11-27 01:48 PST -------
+Created an attachment (id=12734)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12734&action=view)
+Xorg.0.log
+
+I thing I should add that drm, mesa, libpciacces, glproto and nouveau is one
+day old from git.
+xorg-xserver is about 6 days old as I have been unable to make it compile it
+from git since then.
 
 
 -- 
