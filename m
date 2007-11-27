@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13403] Random crashes.
-Date: Tue, 27 Nov 2007 01:37:33 -0800 (PST)
-Message-ID: <20071127093734.091DD13000B@annarchy.freedesktop.org>
+Date: Tue, 27 Nov 2007 01:38:44 -0800 (PST)
+Message-ID: <20071127093844.3E22613000B@annarchy.freedesktop.org>
 References: <bug-13403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13403
 
 
 
-------- Comment #1 from xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org  2007-11-27 01:45 PST -------
-Created an attachment (id=12732)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12732&action=view)
-grep drm /var/log/messages
+------- Comment #2 from xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org  2007-11-27 01:46 PST -------
+Created an attachment (id=12733)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12733&action=view)
+xorg.conf
 
 
 -- 
