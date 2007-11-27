@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Tue, 27 Nov 2007 05:13:15 -0800 (PST)
-Message-ID: <20071127131315.7D05F13000B@annarchy.freedesktop.org>
+Date: Tue, 27 Nov 2007 08:27:57 -0800 (PST)
+Message-ID: <20071127162758.1554E13000B@annarchy.freedesktop.org>
 References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
 
-------- Comment #12 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-27 05:20 PST -------
-Created an attachment (id=12737)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12737&action=view)
-xrandr output
-
-I had to run this by switching to VT1 and running DISPLAY=:0 xrandr.  Don't
-know if this is helpful at all.
+------- Comment #13 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-27 08:35 PST -------
+Maybe i "fixed" that first thing incorrectly, it still seems like your getting
+the wrong clock. So it's a wrong sel_clk or the order of clocks is the other
+way around.
 
 
 -- 
