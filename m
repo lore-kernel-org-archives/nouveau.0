@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12472] [randr12,
-	dualhead] The full screen is not visible and a purple border
-Date: Tue, 27 Nov 2007 01:12:27 -0800 (PST)
-Message-ID: <20071127091227.C24B713000B@annarchy.freedesktop.org>
-References: <bug-12472-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12471] [randr12,
+	dualhead] One mousepointer on every screen.
+Date: Tue, 27 Nov 2007 01:13:05 -0800 (PST)
+Message-ID: <20071127091305.E9A6713000B@annarchy.freedesktop.org>
+References: <bug-12471-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12472-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12471-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,7 +21,7 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12472
+http://bugs.freedesktop.org/show_bug.cgi?id=12471
 
 
 xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org changed:
@@ -34,8 +34,8 @@ xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org changed:
 
 
 
-------- Comment #1 from xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org  2007-11-27 01:19 PST -------
-This seems to be fixed.:-)
+------- Comment #1 from xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org  2007-11-27 01:20 PST -------
+This problem seems to be fixed.:-)
 
 
 -- 
