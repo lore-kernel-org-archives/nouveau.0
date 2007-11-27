@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13403] Random crashes.
-Date: Tue, 27 Nov 2007 03:46:05 -0800 (PST)
-Message-ID: <20071127114605.E4CE513000C@annarchy.freedesktop.org>
-References: <bug-13403-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13373] Nouveau will not display DVI-A-1
+Date: Tue, 27 Nov 2007 05:12:38 -0800 (PST)
+Message-ID: <20071127131238.9B57313000B@annarchy.freedesktop.org>
+References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13403-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +20,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13403
+http://bugs.freedesktop.org/show_bug.cgi?id=13373
+
+
+adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #12727|0                           |1
+        is obsolete|                            |
 
 
 
 
+------- Comment #11 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-11-27 05:20 PST -------
+Created an attachment (id=12736)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12736&action=view)
+2007 11 27 Attempt
 
-------- Comment #5 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-27 03:53 PST -------
-I meant pmdata, not pmdate.
+Exact same result.  However, I did switch to a console and try to run xrandr. 
+I'll attach that to see if its helpful.
 
 
 -- 
