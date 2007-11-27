@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13403] Random crashes.
-Date: Tue, 27 Nov 2007 03:45:29 -0800 (PST)
-Message-ID: <20071127114529.C25C713000C@annarchy.freedesktop.org>
+Date: Tue, 27 Nov 2007 03:46:05 -0800 (PST)
+Message-ID: <20071127114605.E4CE513000C@annarchy.freedesktop.org>
 References: <bug-13403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13403
 
 
 
-------- Comment #4 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-27 03:53 PST -------
-I think nv30/31 are problematic cards (some issue with the 3d engine i think),
-at least from what i've observed in irc, i suggest you come into irc and ask
-pmdate and/or marcheu about it. A temporary workaround may be to disable
-NV30EXA, this can only be done by removing the composite hooks from the
-sourcecode.
+------- Comment #5 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-27 03:53 PST -------
+I meant pmdata, not pmdate.
 
 
 -- 
