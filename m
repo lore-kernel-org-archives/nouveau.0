@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13323] 7600Go: RandR12 fails to drive external DVI
-Date: Thu, 29 Nov 2007 01:10:53 -0800 (PST)
-Message-ID: <20071129091053.52A72130050@annarchy.freedesktop.org>
+Date: Thu, 29 Nov 2007 01:11:39 -0800 (PST)
+Message-ID: <20071129091139.A7A1D130050@annarchy.freedesktop.org>
 References: <bug-13323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,12 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13323
 
 
-chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #12654|0                           |1
-        is obsolete|                            |
 
 
 
-
-------- Comment #5 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-29 01:10 PST -------
-Created an attachment (id=12821)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12821&action=view)
-Xorg log, randr12 enabled
+------- Comment #6 from chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-29 01:11 PST -------
+Oh, darn.  It still doesn't work, with the same symptoms.  The above Xorg log
+is of my most recent failed attempt.
 
 
 -- 
