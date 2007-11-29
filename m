@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13448] DMA Queue hang
-Date: Thu, 29 Nov 2007 11:03:05 -0800 (PST)
-Message-ID: <20071129190305.78451130050@annarchy.freedesktop.org>
+Date: Thu, 29 Nov 2007 11:04:28 -0800 (PST)
+Message-ID: <20071129190428.E466A130050@annarchy.freedesktop.org>
 References: <bug-13448-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13448
 
 
 
-------- Comment #1 from ddup1-evNnO5DUyiodnm+yROfE0A@public.gmane.org  2007-11-29 11:03 PST -------
-Created an attachment (id=12826)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12826&action=view)
-Xorg log
+------- Comment #2 from ddup1-evNnO5DUyiodnm+yROfE0A@public.gmane.org  2007-11-29 11:04 PST -------
+Created an attachment (id=12827)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12827&action=view)
+debug of drm module
 
 
 -- 
