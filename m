@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13448] DMA Queue hang
-Date: Thu, 29 Nov 2007 11:04:28 -0800 (PST)
-Message-ID: <20071129190428.E466A130050@annarchy.freedesktop.org>
-References: <bug-13448-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13373] Nouveau will not display DVI-A-1
+Date: Fri, 30 Nov 2007 08:00:47 -0800 (PST)
+Message-ID: <20071130160047.B6D08130050@annarchy.freedesktop.org>
+References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13448-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13448
+http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
 
 
 
-------- Comment #2 from ddup1-evNnO5DUyiodnm+yROfE0A@public.gmane.org  2007-11-29 11:04 PST -------
-Created an attachment (id=12827)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12827&action=view)
-debug of drm module
+------- Comment #14 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-11-30 08:00 PST -------
+There were a few significant bugs, please try again.
+
+And yes, it did take this long :-(
 
 
 -- 
