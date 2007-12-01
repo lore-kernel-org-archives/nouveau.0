@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13481] RandR12 fails on GF6600Go
-Date: Sat,  1 Dec 2007 07:46:37 -0800 (PST)
-Message-ID: <20071201154637.2F5D6130050@annarchy.freedesktop.org>
+Date: Sat,  1 Dec 2007 07:47:29 -0800 (PST)
+Message-ID: <20071201154729.EC733130050@annarchy.freedesktop.org>
 References: <bug-13481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13481
 
 
 
-------- Comment #1 from anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org  2007-12-01 07:46 PST -------
-Created an attachment (id=12896)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=12896&action=view)
-X.org server log of failing RandR12 on 6600Go
+------- Comment #2 from anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org  2007-12-01 07:47 PST -------
+Created an attachment (id=12897)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=12897&action=view)
+xrandr output before it crashes X server
 
 
 -- 
