@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13481] RandR12 fails on GF6600Go
-Date: Sat,  1 Dec 2007 08:26:21 -0800 (PST)
-Message-ID: <20071201162621.B7CE2130051@annarchy.freedesktop.org>
-References: <bug-13481-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13373] Nouveau will not display DVI-A-1
+Date: Sun,  2 Dec 2007 06:28:05 -0800 (PST)
+Message-ID: <20071202142813.6565A130050@annarchy.freedesktop.org>
+References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13481
-
-
-
-
-
-------- Comment #3 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-12-01 08:26 PST -------
-Two things:
-
-1 - lvds support is disabled atm
-2 - A mmio-trace of the nvidia driver using the lvds + dvi configuration would
-be helpful(actually, without it i have no clue what to do), since you have an
-odd configuration.
-
-http://nouveau.freedesktop.org/wiki/MmioTraceHowto
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug, or are watching the assignee.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMzM3MwoKCgoKCi0t
+LS0tLS0gQ29tbWVudCAjMTUgZnJvbSBhZGFtQHRwZXRhY2NpYS5jb20gIDIwMDctMTItMDIgMDY6
+MjcgUFNUIC0tLS0tLS0KSnVzdCByZWNvcmRpbmcgdGhhdCBEVkktRC0wIGRvZXNuJ3Qgd29yayBu
+b3cuCkhlcmUncyBhIGxpdHRsZSBjaGFydCBvZiBmdW5jdGlvbmFsaXR5OgoK4oCiIENvbGQgUGx1
+Z2dpbmcKICAg4oiYIC4vIERWSS1BLTArRFZJRDEKICAg4oiYIERWSS1ELTAKICAgICAg4oCjIE5v
+IFNpZ25hbAogICDiiJggLi8gRFZJLUEtMAogICDiiJggLi8gRFZJLUQtMQrigKIgSG90IFBsdWcK
+ICAg4oiYIERWSS1ELTEgaG90cGx1ZyBEVkktQS0wCiAgICAgIOKAoyBEVkktQS0wIGlzIGNvcnJ1
+cHRlZAogICDiiJggRFZJLUEtMCBob3RwbHVnIERWSS1ELTAKICAgICAg4oCjIERWSS1ELTA6IE5v
+IFNpZ25hbAogICDiiJggRFZJLUEtMSBob3RwbHVnIERWSS1ELTEKICAgICAg4oCjIERWSS1ELTE6
+IE5vIFNpZ25hbAoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0
+b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcg
+dGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBi
+dWcsIG9yIGFyZSB3YXRjaGluZyB0aGUgYXNzaWduZWUuCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
