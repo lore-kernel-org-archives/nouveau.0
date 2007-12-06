@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Thu,  6 Dec 2007 06:13:29 -0800 (PST)
-Message-ID: <20071206141330.00F9B130050@annarchy.freedesktop.org>
+Date: Thu,  6 Dec 2007 09:52:54 -0800 (PST)
+Message-ID: <20071206175254.81EC7130050@annarchy.freedesktop.org>
 References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-13373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -20,19 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMzM3MwoKCgoKCi0t
-LS0tLS0gQ29tbWVudCAjMTkgZnJvbSBhZGFtQHRwZXRhY2NpYS5jb20gIDIwMDctMTItMDYgMDY6
-MTMgUFNUIC0tLS0tLS0KQ29sZCBQbHVnCiAg4oiYIC4vIERWSS1BLTArRFZJLUQtMSAoUmFuZFIg
-d29ya3MsIHRvbykKICDiiJggLi9EVkktQS0xCiAg4oiYIFggRFZJLUQtMAogICAg4oCjIFdlaXJk
-IHNpZ25hbAogIOKImCBYIERWSS1ELTEKICAgIOKAoyBObyBTaWduYWwKSG90IFBsdWcKICDiiJgg
-RFZJLUQwIGhvdHBsdWcgRFZJLUEtMQogICAg4oCjIHdlaXJkZXIgY29sb3JzCiAg4oiYIERWSS1B
-LTAgaG90cGx1ZyBEVkktRC0xCiAgICDigKMgTm8gU2lnbmFsCiAg4oiYIERWSS1BLTEgaG90cGx1
-ZyBEVkktRC0wCiAgICDigKMgTm8gU2lnbmFsCgpOb3RlIHRoYXQgdGhlc2UgcmVzdWx0cyBhcmVu
-J3QgY29uc2lzdGFudC4gIEkndmUgZ290dGVuIERWSS1ELTAgdG8gaGF2ZSBhIHZlcnkKb2RkIGxv
-b2tpbmcgb3V0cHV0LCBvciBub25lLgoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1
-Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFy
-ZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWdu
-ZWUgZm9yIHRoZSBidWcsIG9yIGFyZSB3YXRjaGluZyB0aGUgYXNzaWduZWUuCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=13373
+
+
+
+
+
+------- Comment #20 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-12-06 09:52 PST -------
+Please post xlogs of at least the problematic output too.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
