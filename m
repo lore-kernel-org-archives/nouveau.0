@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Thu,  6 Dec 2007 09:52:54 -0800 (PST)
-Message-ID: <20071206175254.81EC7130050@annarchy.freedesktop.org>
+Date: Thu,  6 Dec 2007 12:32:46 -0800 (PST)
+Message-ID: <20071206203246.AD683130050@annarchy.freedesktop.org>
 References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
 
-------- Comment #20 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-12-06 09:52 PST -------
-Please post xlogs of at least the problematic output too.
+------- Comment #21 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-12-06 12:32 PST -------
+I have discovered that a 7600gt only has one dual link transmitter, explaining
+why DVI-D-1 is less problematic.
 
 
 -- 
