@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13481] RandR12 fails on GF6600Go
-Date: Sun,  9 Dec 2007 08:58:02 -0800 (PST)
-Message-ID: <20071209165802.BFF6B130050@annarchy.freedesktop.org>
+Date: Sun,  9 Dec 2007 23:50:20 -0800 (PST)
+Message-ID: <20071210075020.802CD130052@annarchy.freedesktop.org>
 References: <bug-13481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13481
 
 
 
-------- Comment #4 from anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org  2007-12-09 08:58 PST -------
-Sorry for the delay. I just sent the dump to mmio dot dumps.
+------- Comment #5 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-12-09 23:50 PST -------
+A lot of bugs have been fixed in the meantime and your trace shows nothing out
+of the ordinary. Could you try again? LVDS is still disabled though.
 
 
 -- 
