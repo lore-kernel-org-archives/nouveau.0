@@ -1,10 +1,13 @@
-From: Pietro Capriata <kpietro-whZMOeQn8C0@public.gmane.org>
-Subject: nouveau works on my powerpc
-Date: Thu, 13 Dec 2007 10:53:22 +0000 (GMT)
-Message-ID: <347138.86272.qm@web27702.mail.ukl.yahoo.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 13481] RandR12 fails on GF6600Go
+Date: Fri, 14 Dec 2007 13:53:21 -0800 (PST)
+Message-ID: <20071214215321.657C1130051@annarchy.freedesktop.org>
+References: <bug-13481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="0-1787888283-1197543202=:86272"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-13481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,168 +20,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---0-1787888283-1197543202=:86272
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+http://bugs.freedesktop.org/show_bug.cgi?id=13481
 
-nouveau works with some little bug on my imac g4 geforce4mmx ..=0A=0Amy dme=
-sg =0A=0A[ 8086.085247] PCI: Unable to reserve mem region #2:8000000@980000=
-00 for device 0000:00:10.0=0A[ 8086.085390] [drm] Detected an NV17 generati=
-on card (0x018900a3)=0A[ 8086.085480] [drm] Initialized nouveau 0.0.10 2006=
-0213 on minor 0=0A[ 8086.085490] [drm] Used old pci detect: framebuffer loa=
-ded=0A[ 8226.255226] [drm] OF bios successfully copied (2601 bytes)=0A[ 822=
-6.295977] [drm] Allocating FIFO number 0=0A[ 8226.296910] [drm] nouveau_fif=
-o_alloc: initialised FIFO 0=0A[ 8226.297620] [drm] Allocating FIFO number 1=
-=0A[ 8226.298487] [drm] nouveau_fifo_alloc: initialised FIFO 1=0A=0A=0A=0A=
-=0A=0A=0A      ___________________________________ =0AL'email della prossim=
-a generazione? Puoi averla con la nuova Yahoo! Mail: http://it.docs.yahoo.c=
-om/nowyoucan.html
---0-1787888283-1197543202=:86272
-Content-Type: application/x-gzip; name="=?utf-8?q?xlog.gz?="
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="=?utf-8?q?xlog.gz?="
 
-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
+anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org changed:
 
---0-1787888283-1197543202=:86272
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #12896|0                           |1
+        is obsolete|                            |
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---0-1787888283-1197543202=:86272--
+
+
+------- Comment #7 from anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org  2007-12-14 13:53 PST -------
+Created an attachment (id=13111)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13111&action=view)
+X server log when out of frequency, with xrandr run at the end
+
+Tried again. The distortions on native display disappeared, but I still get no
+picture: now I get a "out of frequency" error in the external display.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug, or are watching the assignee.
