@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13481] RandR12 fails on GF6600Go
-Date: Fri, 14 Dec 2007 15:46:02 -0800 (PST)
-Message-ID: <20071214234602.E9E57130051@annarchy.freedesktop.org>
+Date: Fri, 14 Dec 2007 16:18:52 -0800 (PST)
+Message-ID: <20071215001852.214B1130051@annarchy.freedesktop.org>
 References: <bug-13481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13481
 
 
+anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #13112|0                           |1
+        is obsolete|                            |
 
 
 
-------- Comment #9 from anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org  2007-12-14 15:46 PST -------
-Created an attachment (id=13117)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13117&action=view)
-LVDS only when hotplugging DVI, xrandr --auto, LVDS goes to distortions,
-all-blue screen on DVI
+
+------- Comment #10 from anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org  2007-12-14 16:18 PST -------
+Created an attachment (id=13118)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13118&action=view)
+LVDS only, switch to another console, no restore, only distortions (updated)
 
 
 -- 
