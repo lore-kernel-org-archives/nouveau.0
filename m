@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13481] RandR12 fails on GF6600Go
-Date: Fri, 14 Dec 2007 16:18:52 -0800 (PST)
-Message-ID: <20071215001852.214B1130051@annarchy.freedesktop.org>
+Date: Fri, 14 Dec 2007 17:25:33 -0800 (PST)
+Message-ID: <20071215012533.96F27130051@annarchy.freedesktop.org>
 References: <bug-13481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +27,27 @@ anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #13112|0                           |1
+  Attachment #12897|0                           |1
         is obsolete|                            |
 
 
 
 
-------- Comment #10 from anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org  2007-12-14 16:18 PST -------
-Created an attachment (id=13118)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13118&action=view)
-LVDS only, switch to another console, no restore, only distortions (updated)
+------- Comment #11 from anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org  2007-12-14 17:25 PST -------
+Created an attachment (id=13119)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13119&action=view)
+Garbage on LVDS when switching DVI mode
+
+Any switch of DVI mode causes LVDS to go garbage until it is switched as well.
+
+Attached log of the following scenario:
+Initial state: LVDS+DVI, 1400x1050,1280x1024
+1. xrandr DVI to 1680x1050 => LVDS goes garbage
+2. LVDS to 1024x768 => no more garbage
+3. LVDS back to 1400x1050
+
+The earlier xrandr "crashing" problem was my own fault, I had no other X
+clients.
 
 
 -- 
