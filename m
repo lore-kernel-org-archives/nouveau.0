@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13481] RandR12 fails on GF6600Go
-Date: Fri, 14 Dec 2007 17:39:30 -0800 (PST)
-Message-ID: <20071215013930.9A9E1130051@annarchy.freedesktop.org>
+Date: Fri, 14 Dec 2007 17:41:27 -0800 (PST)
+Message-ID: <20071215014127.65894130051@annarchy.freedesktop.org>
 References: <bug-13481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,28 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13481
 
 
+anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #13111|0                           |1
+        is obsolete|                            |
 
 
-
-------- Comment #12 from anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org  2007-12-14 17:39 PST -------
-Created an attachment (id=13120)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13120&action=view)
-Garbage on LVDS stays even after X restart
-
-The garbage mentioned in the previous comment stays even past X restarts.
-
-Attached is the following reproducable scenario:
-1. LVDS is garbaged by switching DVI mode with xrandr.
-2. X is restarted (log starts here), garbage stays
-3. Trying to switch LVDS to 1024x768, but X server drops connection to xrandr.
-3. Trying again, now LVDS switched to 1024x768, and output works fine again.
-4. LVDS switched back to 1400x1050, still works.
-
-Notes:
-- Garbage is the same kind that happens on failing console restore.
-- When switching the LVDS mode, both displays go black for a moment. However,
-when switching DVI mode, the LVDS does not go black, just goes to garbage
-immediately
 
 
 -- 
