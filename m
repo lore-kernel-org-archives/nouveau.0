@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13373] Nouveau will not display DVI-A-1
-Date: Tue, 18 Dec 2007 08:32:11 -0800 (PST)
-Message-ID: <20071218163211.4EBEC130051@annarchy.freedesktop.org>
+Date: Tue, 18 Dec 2007 08:32:54 -0800 (PST)
+Message-ID: <20071218163255.18ECC130051@annarchy.freedesktop.org>
 References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,22 +23,15 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
-adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #12736|0                           |1
-        is obsolete|                            |
 
 
 
+------- Comment #26 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-12-18 08:32 PST -------
+Created an attachment (id=13185)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13185&action=view)
+2007 12 18 - VT Switch
 
-------- Comment #25 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-12-18 08:32 PST -------
-Created an attachment (id=13184)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13184&action=view)
-2007 12 18
-
-Still wrong colors; this is a log before a VT switch.
+Log after the VT switch, with colors fixed.
 
 
 -- 
