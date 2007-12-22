@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13778] DMA queue hang Class 0x0397 Mthd 1808, FX5600
-Date: Sat, 22 Dec 2007 03:59:56 -0800 (PST)
-Message-ID: <20071222115956.DC662130051@annarchy.freedesktop.org>
+Date: Sat, 22 Dec 2007 04:01:09 -0800 (PST)
+Message-ID: <20071222120109.92825130051@annarchy.freedesktop.org>
 References: <bug-13778-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13778
 
 
 
-------- Comment #1 from xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org  2007-12-22 03:59 PST -------
-Created an attachment (id=13308)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13308&action=view)
-dmesg-output
+------- Comment #2 from xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org  2007-12-22 04:01 PST -------
+Created an attachment (id=13309)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13309&action=view)
+first crash
 
 
 -- 
