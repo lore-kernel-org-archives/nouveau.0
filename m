@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13796] tnt2 16Mb agp, corrupted image
-Date: Sun, 23 Dec 2007 08:14:54 -0800 (PST)
-Message-ID: <20071223161454.AFA00130051@annarchy.freedesktop.org>
+Date: Sun, 23 Dec 2007 08:15:56 -0800 (PST)
+Message-ID: <20071223161556.A27AA130051@annarchy.freedesktop.org>
 References: <bug-13796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13796
 
 
 
-------- Comment #1 from randrik-JGs/UdohzUI@public.gmane.org  2007-12-23 08:14 PST -------
-Created an attachment (id=13328)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13328&action=view)
-x.org log
+------- Comment #2 from randrik-JGs/UdohzUI@public.gmane.org  2007-12-23 08:15 PST -------
+Created an attachment (id=13329)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13329&action=view)
+xorg.conf
+
+Now it has nv as working driver. 
 
 
 -- 
