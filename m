@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13796] tnt2 16Mb agp, corrupted image
-Date: Sun, 23 Dec 2007 08:18:14 -0800 (PST)
-Message-ID: <20071223161814.242DF130051@annarchy.freedesktop.org>
+Date: Sun, 23 Dec 2007 09:21:32 -0800 (PST)
+Message-ID: <20071223172132.C58C7130051@annarchy.freedesktop.org>
 References: <bug-13796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,21 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13796
 
 
-randrik-JGs/UdohzUI@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #13329|application/octet-stream    |text/plain
-          mime type|                            |
 
 
+
+------- Comment #5 from randrik-JGs/UdohzUI@public.gmane.org  2007-12-23 09:21 PST -------
+Ok, with 
+
+(**) NOUVEAU(0): Option "MigrationHeuristic" "greedy"                           
+(**) NOUVEAU(0): Option "EXANoComposite" "1"                                    
+(**) NOUVEAU(0): Option "EXANoUploadToScreen" "1"                               
+(**) NOUVEAU(0): Option "EXANoDownloadFromScreen" "1"
+
+it works better. Fonts are back, and window decorations sometimes fully
+visible. But scroll (xchat, mozilla) still give me very strange results - image
+not updated until something "forced" redraw. (i'm using e 0.16.8.11-001 as my
+window manager, but it works just fine with nouveau + nv11 and nouveau + nv40)
 
 
 -- 
