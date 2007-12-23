@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11947] TFT monitor detected as 1x1 pixels
-Date: Sun, 23 Dec 2007 01:34:23 -0800 (PST)
-Message-ID: <20071223093423.E673C130054@annarchy.freedesktop.org>
-References: <bug-11947-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13373] Nouveau will not display DVI-A-1
+Date: Sun, 23 Dec 2007 03:03:50 -0800 (PST)
+Message-ID: <20071223110350.46A83130051@annarchy.freedesktop.org>
+References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11947-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11947
+http://bugs.freedesktop.org/show_bug.cgi?id=13373
 
 
 
 
 
-------- Comment #4 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-12-23 01:34 PST -------
-Please make sure you use an up-to-date driver if you are going to test
-randr-1.2, as it changes a lot.
+------- Comment #27 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-12-23 03:03 PST -------
+You have a reasonable chance now, we were not setting the default color palette
+on a modeset. So let me know if that works.
 
 
 -- 
