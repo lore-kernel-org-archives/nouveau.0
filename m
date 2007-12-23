@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 11947] TFT monitor detected as 1x1 pixels
-Date: Sat, 22 Dec 2007 16:05:09 -0800 (PST)
-Message-ID: <20071223000509.3B539130051@annarchy.freedesktop.org>
+Date: Sun, 23 Dec 2007 01:13:00 -0800 (PST)
+Message-ID: <20071223091300.D70E6130054@annarchy.freedesktop.org>
 References: <bug-11947-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=11947
 
 
 
-------- Comment #2 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2007-12-22 16:05 PST -------
-Any ideas on this? Problem is still present.
+------- Comment #3 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-12-23 01:13 PST -------
+It's unlikely this will work, maybe the randr-1.2 driver (Option "Randr12" "1"
+in your device section) will have better luck detecting this. This will only
+help if your card has a dvi with a strange i2c bus.
 
 
 -- 
