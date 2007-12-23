@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13796] tnt2 16Mb agp, corrupted image
-Date: Sun, 23 Dec 2007 09:47:45 -0800 (PST)
-Message-ID: <20071223174745.F0D3A130051@annarchy.freedesktop.org>
+Date: Sun, 23 Dec 2007 10:25:30 -0800 (PST)
+Message-ID: <20071223182530.B2B53130051@annarchy.freedesktop.org>
 References: <bug-13796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13796
 
 
 
-------- Comment #6 from randrik-JGs/UdohzUI@public.gmane.org  2007-12-23 09:47 PST -------
-Found workaround:
-
-xcompmgr -a
-
-Everything (gtk2) run fast and perfect.
+------- Comment #7 from randrik-JGs/UdohzUI@public.gmane.org  2007-12-23 10:25 PST -------
+with only (**) NOUVEAU(0): Option "MigrationHeuristic" "greedy" i don't need
+xcompmgr anymore. KDE apps works too.
 
 
 -- 
