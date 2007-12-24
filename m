@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13796] tnt2 16Mb agp, corrupted image
-Date: Sun, 23 Dec 2007 10:25:30 -0800 (PST)
-Message-ID: <20071223182530.B2B53130051@annarchy.freedesktop.org>
-References: <bug-13796-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13373] Nouveau will not display DVI-A-1
+Date: Mon, 24 Dec 2007 13:34:48 -0800 (PST)
+Message-ID: <20071224213448.46FDF130053@annarchy.freedesktop.org>
+References: <bug-13373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13796-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +20,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13796
+http://bugs.freedesktop.org/show_bug.cgi?id=13373
+
+
+adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #13184|0                           |1
+        is obsolete|                            |
+  Attachment #13185|0                           |1
+        is obsolete|                            |
 
 
 
 
+------- Comment #28 from adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org  2007-12-24 13:34 PST -------
+Created an attachment (id=13346)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13346&action=view)
+Successful attempt 2007 12 24
 
-------- Comment #7 from randrik-JGs/UdohzUI@public.gmane.org  2007-12-23 10:25 PST -------
-with only (**) NOUVEAU(0): Option "MigrationHeuristic" "greedy" i don't need
-xcompmgr anymore. KDE apps works too.
+It works now, with latest git.  No VT switch required. 
 
 
 -- 
