@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13846] NV04 RIVA TNT
-Date: Fri, 28 Dec 2007 17:50:46 -0800 (PST)
-Message-ID: <20071229015047.06B56130054@annarchy.freedesktop.org>
+Date: Fri, 28 Dec 2007 17:52:47 -0800 (PST)
+Message-ID: <20071229015247.7B94D130054@annarchy.freedesktop.org>
 References: <bug-13846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13846
 
 
 
-------- Comment #1 from bugs-C9EPM1l/obmE5N/NCR/djjMVsmYQW3CHw9A/6/WekEA@public.gmane.org  2007-12-28 17:50 PST -------
-Created an attachment (id=13403)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13403&action=view)
-Xorg.0.log with the marcheu patch and DEBUG enabled
+------- Comment #2 from bugs-C9EPM1l/obmE5N/NCR/djjMVsmYQW3CHw9A/6/WekEA@public.gmane.org  2007-12-28 17:52 PST -------
+Created an attachment (id=13404)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13404&action=view)
+DRM log
 
 
 -- 
