@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13866] New: RandR 1.2 gives Xvideo tearing
-Date: Sun, 30 Dec 2007 11:19:08 -0800 (PST)
-Message-ID: <bug-13866-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13864] crash with RandR12 on server restart
+Date: Sun, 30 Dec 2007 11:21:59 -0800 (PST)
+Message-ID: <20071230192159.76635130009@annarchy.freedesktop.org>
+References: <bug-13864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-13864-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,25 +20,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13866
-
-           Summary: RandR 1.2 gives Xvideo tearing
-           Product: xorg
-           Version: 7.3
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+http://bugs.freedesktop.org/show_bug.cgi?id=13864
 
 
-Enabling RandR 1.2 gives me a lot of video tearing on my Geforce 7300 GT. It
-doesn't matter if two outputs are enabled or not, simply using the new RandR
-1.2 stuff produces the problem.
+
+
+
+------- Comment #2 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2007-12-30 11:21 PST -------
+These are the final lines from X:
+
+nv_output_restore is called
+nv_output_restore is called
+nv_output_restore is called
+pre-Owner: 0x0
+post-Owner: 0x0
+pre-Owner: 0x0
+post-Owner: 0x0
+(EE) NOUVEAU(0): [DRI] Locking deadlock.
+        Already locked with context 157577356,
+        trying to lock with context 2.
+(EE) NOUVEAU(0): Error creating device
+
+Fatal server error:
+AddScreen/ScreenInit failed for driver 0
 
 
 -- 
