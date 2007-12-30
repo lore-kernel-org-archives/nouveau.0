@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13864] crash with RandR12 on server restart
-Date: Sun, 30 Dec 2007 11:21:59 -0800 (PST)
-Message-ID: <20071230192159.76635130009@annarchy.freedesktop.org>
+Date: Sun, 30 Dec 2007 11:22:59 -0800 (PST)
+Message-ID: <20071230192300.213DB130009@annarchy.freedesktop.org>
 References: <bug-13864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,23 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13864
 
 
 
-------- Comment #2 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2007-12-30 11:21 PST -------
-These are the final lines from X:
-
-nv_output_restore is called
-nv_output_restore is called
-nv_output_restore is called
-pre-Owner: 0x0
-post-Owner: 0x0
-pre-Owner: 0x0
-post-Owner: 0x0
-(EE) NOUVEAU(0): [DRI] Locking deadlock.
-        Already locked with context 157577356,
-        trying to lock with context 2.
-(EE) NOUVEAU(0): Error creating device
-
-Fatal server error:
-AddScreen/ScreenInit failed for driver 0
+------- Comment #3 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2007-12-30 11:22 PST -------
+Created an attachment (id=13418)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13418&action=view)
+Xorg.0.log
 
 
 -- 
