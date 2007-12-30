@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13865] New: DVI corruption with RandR 1.2
-Date: Sun, 30 Dec 2007 11:16:57 -0800 (PST)
-Message-ID: <bug-13865-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13866] New: RandR 1.2 gives Xvideo tearing
+Date: Sun, 30 Dec 2007 11:19:08 -0800 (PST)
+Message-ID: <bug-13866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,9 +18,9 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13865
+http://bugs.freedesktop.org/show_bug.cgi?id=13866
 
-           Summary: DVI corruption with RandR 1.2
+           Summary: RandR 1.2 gives Xvideo tearing
            Product: xorg
            Version: 7.3
           Platform: Other
@@ -34,12 +34,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13865
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-When I'm using my Geforce 7300 GT and a DVI monitor, the bottom 10 lines or so
-occasionally fill up with garbage. The data comes from other parts of the
-screen, so it's not completely random but rather some kind of transfer error.
-
-I'm using the RandR 1.2 code as the DVI port refuses to work correctly with my
-monitor with the old stuff.
+Enabling RandR 1.2 gives me a lot of video tearing on my Geforce 7300 GT. It
+doesn't matter if two outputs are enabled or not, simply using the new RandR
+1.2 stuff produces the problem.
 
 
 -- 
