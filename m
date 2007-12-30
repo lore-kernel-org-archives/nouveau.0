@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13864] crash with RandR12 on server restart
-Date: Sun, 30 Dec 2007 11:22:59 -0800 (PST)
-Message-ID: <20071230192300.213DB130009@annarchy.freedesktop.org>
+Date: Sun, 30 Dec 2007 11:23:47 -0800 (PST)
+Message-ID: <20071230192348.13B19130009@annarchy.freedesktop.org>
 References: <bug-13864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13864
 
 
+drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #13418|application/octet-stream    |text/plain
+          mime type|                            |
 
 
-
-------- Comment #3 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2007-12-30 11:22 PST -------
-Created an attachment (id=13418)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13418&action=view)
-Xorg.0.log
 
 
 -- 
