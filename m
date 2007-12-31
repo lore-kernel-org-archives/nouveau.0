@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13865] DVI corruption with RandR 1.2
-Date: Mon, 31 Dec 2007 06:03:26 -0800 (PST)
-Message-ID: <20071231140326.3824B130009@annarchy.freedesktop.org>
+Date: Mon, 31 Dec 2007 06:15:23 -0800 (PST)
+Message-ID: <20071231141523.E233D130054@annarchy.freedesktop.org>
 References: <bug-13865-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13865
 
 
 
-------- Comment #2 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2007-12-31 06:03 PST -------
-Have you committed some changes? Otherwise it's the same Xorg.0.log as in bug
-13864.
+------- Comment #3 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2007-12-31 06:15 PST -------
+Yes i committed some changes ;-)
 
 
 -- 
