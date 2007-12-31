@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13864] crash on server restart
-Date: Sun, 30 Dec 2007 11:44:07 -0800 (PST)
-Message-ID: <20071230194407.E5BFE130054@annarchy.freedesktop.org>
-References: <bug-13864-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 10717] nouveau fails to start, waiting on dma
+Date: Sun, 30 Dec 2007 20:30:00 -0800 (PST)
+Message-ID: <20071231043000.A7D29130056@annarchy.freedesktop.org>
+References: <bug-10717-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13864-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-10717-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +20,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13864
+http://bugs.freedesktop.org/show_bug.cgi?id=10717
 
 
-drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org changed:
+wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|crash with RandR12 on server|crash on server restart
-                   |restart                     |
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
-------- Comment #4 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2007-12-30 11:44 PST -------
-The crash is also present without RandR 1.2 on this card. A case of bad testing
-on my part. Sorry.
+------- Comment #15 from wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org  2007-12-30 20:29 PST -------
+OK! I rebuilt a new kernel from linus' tree today, and drm and the driver from
+today, and * finally* things are working. Thanks to all!
 
 
 -- 
