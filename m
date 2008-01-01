@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13865] DVI corruption with RandR 1.2
-Date: Tue,  1 Jan 2008 08:26:39 -0800 (PST)
-Message-ID: <20080101162639.DC934130009@annarchy.freedesktop.org>
+Date: Tue,  1 Jan 2008 10:15:10 -0800 (PST)
+Message-ID: <20080101181510.6AEFD130009@annarchy.freedesktop.org>
 References: <bug-13865-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13865
 
 
 
-------- Comment #7 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-01 08:26 PST -------
-Created an attachment (id=13445)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13445&action=view)
-bottom (image)
+------- Comment #8 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-01 10:15 PST -------
+Update from discussion on IRC:
+
+The problem only appears with a large maximum framebuffer (2720x768) instead of
+letting X choose a maximum equal to the panel size (1360x768). Maarten
+constructed a patch that solved the issue.
 
 
 -- 
