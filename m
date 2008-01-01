@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13865] DVI corruption with RandR 1.2
-Date: Tue,  1 Jan 2008 06:55:00 -0800 (PST)
-Message-ID: <20080101145500.ABC24130009@annarchy.freedesktop.org>
+Date: Tue,  1 Jan 2008 08:25:28 -0800 (PST)
+Message-ID: <20080101162528.A22FE130009@annarchy.freedesktop.org>
 References: <bug-13865-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,18 @@ drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #13442|application/octet-stream    |text/plain
-          mime type|                            |
+  Attachment #13442|0                           |1
+        is obsolete|                            |
 
 
+
+
+------- Comment #5 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-01 08:25 PST -------
+Created an attachment (id=13443)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13443&action=view)
+Xorg.0.log
+
+Updated log.
 
 
 -- 
