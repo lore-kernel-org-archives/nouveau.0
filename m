@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13865] DVI corruption with RandR 1.2
-Date: Tue,  1 Jan 2008 10:15:10 -0800 (PST)
-Message-ID: <20080101181510.6AEFD130009@annarchy.freedesktop.org>
-References: <bug-13865-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13846] NV04 RIVA TNT 2D support
+Date: Tue,  1 Jan 2008 16:04:51 -0800 (PST)
+Message-ID: <20080102000451.D6507130009@annarchy.freedesktop.org>
+References: <bug-13846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13865-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +20,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13865
+http://bugs.freedesktop.org/show_bug.cgi?id=13846
+
+
+arthur.huillet-dFvTVMYgtfk@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+            Summary|NV04 RIVA TNT 3D Support    |NV04 RIVA TNT 2D support
 
 
 
 
-
-------- Comment #8 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-01 10:15 PST -------
-Update from discussion on IRC:
-
-The problem only appears with a large maximum framebuffer (2720x768) instead of
-letting X choose a maximum equal to the panel size (1360x768). Maarten
-constructed a patch that solved the issue.
+------- Comment #3 from arthur.huillet-dFvTVMYgtfk@public.gmane.org  2008-01-01 16:04 PST -------
+IMAGE_FROM_CPU class was incorrect on NV04/05
 
 
 -- 
