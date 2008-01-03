@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13914] xvidtune causes nouveau to crash
-Date: Thu,  3 Jan 2008 12:20:24 -0800 (PST)
-Message-ID: <20080103202025.226A0130009@annarchy.freedesktop.org>
+Date: Thu,  3 Jan 2008 12:22:00 -0800 (PST)
+Message-ID: <20080103202200.7C857130009@annarchy.freedesktop.org>
 References: <bug-13914-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13914
 
 
 
-------- Comment #1 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-03 12:20 PST -------
-Created an attachment (id=13494)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13494&action=view)
-Xorg.0.log
+------- Comment #2 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-03 12:22 PST -------
+I can also add that restarting X after this hang crashes immediately with
+another "DMA queue hanged". Starting X yet another time gets things going again
+though.
 
 
 -- 
