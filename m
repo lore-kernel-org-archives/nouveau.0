@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13866] nouveau gives Xvideo tearing
-Date: Thu,  3 Jan 2008 14:57:41 -0800 (PST)
-Message-ID: <20080103225741.98EC1130054@annarchy.freedesktop.org>
-References: <bug-13866-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11947] TFT monitor detected as 1x1 pixels
+Date: Thu,  3 Jan 2008 15:07:12 -0800 (PST)
+Message-ID: <20080103230712.BEF06130052@annarchy.freedesktop.org>
+References: <bug-11947-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13866-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11947-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13866
+http://bugs.freedesktop.org/show_bug.cgi?id=11947
 
 
+madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |WONTFIX
 
 
-
-------- Comment #2 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-01-03 14:57 PST -------
-I think you're using the texture adapter, which doesn't have sync to vblank yet
-(it still has to be reverse engineered). But can you confirm that the tearing
-is diaginal? And that xvinfo shows the texture adapter first?
 
 
 -- 
