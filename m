@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13866] nouveau gives Xvideo tearing
-Date: Thu,  3 Jan 2008 12:57:49 -0800 (PST)
-Message-ID: <20080103205749.815E8130009@annarchy.freedesktop.org>
+Date: Thu,  3 Jan 2008 14:57:41 -0800 (PST)
+Message-ID: <20080103225741.98EC1130054@annarchy.freedesktop.org>
 References: <bug-13866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,28 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13866
 
 
-drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|RandR 1.2 gives Xvideo      |nouveau gives Xvideo tearing
-                   |tearing                     |
 
 
 
-
-------- Comment #1 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-03 12:57 PST -------
-I've tested things a bit further. RandR 1.2 is not needed to produce the
-problem, but having two output enabled worsens the problem.
-
-Things work fine with the nv driver, so you do not need to compare with the
-closed one.
-
-I've confirmed that all three test cases (nv, nouveau "normal", nouveau
-"randr") use the same mode line. The RandR code path selects a different one by
-default, but I switched it to get a valid comparison.
-
-This card does not have any overlay, so it's the blitter that's involved.
+------- Comment #2 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-01-03 14:57 PST -------
+I think you're using the texture adapter, which doesn't have sync to vblank yet
+(it still has to be reverse engineered). But can you confirm that the tearing
+is diaginal? And that xvinfo shows the texture adapter first?
 
 
 -- 
