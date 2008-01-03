@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13914] New: xvidtune causes nouveau to crash
-Date: Thu,  3 Jan 2008 12:19:45 -0800 (PST)
-Message-ID: <bug-13914-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13914] xvidtune causes nouveau to crash
+Date: Thu,  3 Jan 2008 12:20:24 -0800 (PST)
+Message-ID: <20080103202025.226A0130009@annarchy.freedesktop.org>
+References: <bug-13914-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-13914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=13914
 
-           Summary: xvidtune causes nouveau to crash
-           Product: xorg
-           Version: 7.3
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-When running nouveau on my board, I get a DMA queue hang. nv handles this just
-fine.
 
-My board is a Geforce 7300 GT and I'm using a flat panel on DVI.
+
+------- Comment #1 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-03 12:20 PST -------
+Created an attachment (id=13494)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13494&action=view)
+Xorg.0.log
 
 
 -- 
