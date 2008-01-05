@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13866] nouveau gives Xvideo tearing
-Date: Sat,  5 Jan 2008 01:55:08 -0800 (PST)
-Message-ID: <20080105095508.EF18C130009@annarchy.freedesktop.org>
+Date: Sat,  5 Jan 2008 03:27:44 -0800 (PST)
+Message-ID: <20080105112745.1D1D0130054@annarchy.freedesktop.org>
 References: <bug-13866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,26 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13866
 
 
 
-------- Comment #4 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-05 01:55 PST -------
-Ah, I see what is happening now, and you were right.
-
-mplayer, where I'm seeing the tearing, uses the first port found. But my tests
-were using the last port. So one used the texture adapter, and one the blitter.
-If I change my tests to use the texture adapter, the problem is apparent. It
-also explains why nv works as it doesn't have the texture adapter.
-
-So I have a couple of questions:
-
-1. What's the difference between the two? Judging from the names I'd guess the
-texture adapter uses the 3D engine and the blitter the 2D engine.
-
-2. Why two? I.e. why is the blitter insufficient?
-
-3. Why is the texture adapter the first (and therefore picked by programs) if
-it is inferior to the blitter when it comes to displaying video?
-
-4. Why does vsync need rev.eng.? I tested adding a simple
-FIRE_RING()/NVWaitVSync() and it removed the tearing.
+------- Comment #5 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-01-05 03:27 PST -------
+1. Indeed.
+2. The blitter doesn't support YV12 which is a very common color space.
+3. It gives people reason to improve it ;-) (also defaults get better feedback)
+4. This does not work well for me and many others. It is believed that the 3d
+engine has it's own sync.
 
 
 -- 
