@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13941] New: Randr 1.2 code doesn't detect VGA
-	connections
-Date: Sat,  5 Jan 2008 18:00:35 -0800 (PST)
-Message-ID: <bug-13941-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13944] New: nouveau video blitter gives tearing with
+	two outputs
+Date: Sun,  6 Jan 2008 07:24:37 -0800 (PST)
+Message-ID: <bug-13944-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,9 +19,9 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13941
+http://bugs.freedesktop.org/show_bug.cgi?id=13944
 
-           Summary: Randr 1.2 code doesn't detect VGA connections
+           Summary: nouveau video blitter gives tearing with two outputs
            Product: xorg
            Version: 7.3
           Platform: Other
@@ -35,11 +35,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13941
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-The Randr 1.2 code does not detect connections on the analog VGA ports, just
-DVI. This seems to be on purpose in commit a4d9732.
-
-The commit message is rather sparse so I don't know why it was disabled. It
-works just fine here. :)
+When I enable two outputs, the video blitter (not the texture adapter) slightly
+mis-syncs so that I have a single tear moving slowly over the screen. Things
+work fine as long as only a single output is enabled.
 
 
 -- 
