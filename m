@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13944] New: nouveau video blitter gives tearing with
-	two outputs
-Date: Sun,  6 Jan 2008 07:24:37 -0800 (PST)
-Message-ID: <bug-13944-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13944] nouveau video blitter gives tearing with two
+	outputs
+Date: Sun,  6 Jan 2008 07:35:27 -0800 (PST)
+Message-ID: <20080106153527.830A3130009@annarchy.freedesktop.org>
+References: <bug-13944-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-13944-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +23,28 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=13944
 
-           Summary: nouveau video blitter gives tearing with two outputs
-           Product: xorg
-           Version: 7.3
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-When I enable two outputs, the video blitter (not the texture adapter) slightly
-mis-syncs so that I have a single tear moving slowly over the screen. Things
-work fine as long as only a single output is enabled.
+
+
+------- Comment #1 from drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org  2008-01-06 07:35 PST -------
+The problem is this part of NVWaitVSync():
+
+        /* If crtc1 is active, this will produce one, otherwise zero */
+        /* The assumption is that at least one is active */
+        OUT_RING  (pNv->crtc_active[1]);
+
+What happens is that it will wait for vsync on CRTC 1 if it's active, and CRTC
+0 otherwise. I assume this was added because bad things happen if you wait for
+an inactive CRTC.
+
+This is of course very incorrect in dual-head as it means it will always wait
+for CRTC 1. And the vsync of the two CRTCs are unlikely to occur at the same
+time.
+
+To fix this, the NVWaitVSync() function needs to wait on the relevant CRTC. But
+pScrn seems to be card global, so I guess another parameter needs to be added.
+I'm not sure how the callers can determine it either though.
 
 
 -- 
