@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13147] nv11 hang at startup with randr12 enabled
-Date: Tue,  8 Jan 2008 11:00:44 -0800 (PST)
-Message-ID: <20080108190045.17ED8130009@annarchy.freedesktop.org>
+Date: Tue,  8 Jan 2008 11:03:22 -0800 (PST)
+Message-ID: <20080108190322.E08E0130009@annarchy.freedesktop.org>
 References: <bug-13147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13147
 
 
 
-------- Comment #5 from randrik-JGs/UdohzUI@public.gmane.org  2008-01-08 11:00 PST -------
-Created an attachment (id=13590)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13590&action=view)
-new X log
+------- Comment #6 from randrik-JGs/UdohzUI@public.gmane.org  2008-01-08 11:03 PST -------
+edit:
+
+console broken = no image, black screen. But X server itself still work. I can
+even restart it blindly after ctrl-alt-backspace combo.
 
 
 -- 
