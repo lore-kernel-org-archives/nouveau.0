@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12473] [randr12] Xv scales to match virtual
-	resulotion, not actual resolution.
-Date: Tue,  8 Jan 2008 08:45:29 -0800 (PST)
-Message-ID: <20080108164529.A9648130009@annarchy.freedesktop.org>
-References: <bug-12473-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13147] nv11 hang at startup with randr12 enabled
+Date: Tue,  8 Jan 2008 08:46:05 -0800 (PST)
+Message-ID: <20080108164605.3F378130055@annarchy.freedesktop.org>
+References: <bug-13147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12473-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13147-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12473
+http://bugs.freedesktop.org/show_bug.cgi?id=13147
 
 
 
 
 
-------- Comment #3 from arthur.huillet-dFvTVMYgtfk@public.gmane.org  2008-01-08 08:45 PST -------
-Hello,
-
-could you please update to latest git, try again and see if you're still
-experiencing the bug?
+------- Comment #3 from arthur.huillet-dFvTVMYgtfk@public.gmane.org  2008-01-08 08:46 PST -------
+Is that one fixed now?
 
 
 -- 
