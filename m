@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13147] nv11 hang at startup with randr12 enabled
-Date: Tue,  8 Jan 2008 08:46:05 -0800 (PST)
-Message-ID: <20080108164605.3F378130055@annarchy.freedesktop.org>
+Date: Tue,  8 Jan 2008 10:59:35 -0800 (PST)
+Message-ID: <20080108185935.4A3C6130009@annarchy.freedesktop.org>
 References: <bug-13147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13147
 
 
 
-------- Comment #3 from arthur.huillet-dFvTVMYgtfk@public.gmane.org  2008-01-08 08:46 PST -------
-Is that one fixed now?
+------- Comment #4 from randrik-JGs/UdohzUI@public.gmane.org  2008-01-08 10:59 PST -------
+yes, it works now (xf86-video-nouveau 4add8cfb68404e9e2764451c4e48ab4d0cf04482)
+but return to text console is broken.
 
 
 -- 
