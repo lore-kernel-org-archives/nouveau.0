@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13993] Display corruption when using iceWM
-Date: Wed,  9 Jan 2008 10:21:45 -0800 (PST)
-Message-ID: <20080109182146.087A5130054@annarchy.freedesktop.org>
+Date: Wed,  9 Jan 2008 10:40:45 -0800 (PST)
+Message-ID: <20080109184046.237FF130009@annarchy.freedesktop.org>
 References: <bug-13993-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13993
 
 
 
-------- Comment #4 from madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-01-09 10:21 PST -------
-Only IceWM has this problem?
-
-Does it also occur when randr12 is disabled?
+------- Comment #5 from jsagarribay-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-01-09 10:40 PST -------
+Yes, it only happens with icewm (well, I've never seen it with anything else)
+and yes, it happens with and without RandR12
 
 
 -- 
