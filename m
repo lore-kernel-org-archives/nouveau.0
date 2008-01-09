@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13993] Display corruption when using iceWM
-Date: Wed,  9 Jan 2008 09:59:58 -0800 (PST)
-Message-ID: <20080109175958.29CAB130009@annarchy.freedesktop.org>
+Date: Wed,  9 Jan 2008 10:01:03 -0800 (PST)
+Message-ID: <20080109180103.CE41A130009@annarchy.freedesktop.org>
 References: <bug-13993-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13993
 
 
 
-------- Comment #1 from jsagarribay-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-01-09 09:59 PST -------
-Created an attachment (id=13621)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13621&action=view)
-Xorg.log when running iceWM
+------- Comment #2 from jsagarribay-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-01-09 10:01 PST -------
+Created an attachment (id=13622)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13622&action=view)
+Screenshot which shows the problem
 
 
 -- 
