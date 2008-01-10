@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14010] TNT2 generate too much noise in logs
-Date: Thu, 10 Jan 2008 09:32:47 -0800 (PST)
-Message-ID: <20080110173247.EBC66130009@annarchy.freedesktop.org>
+Date: Thu, 10 Jan 2008 09:42:13 -0800 (PST)
+Message-ID: <20080110174214.19939130009@annarchy.freedesktop.org>
 References: <bug-14010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14010
 
 
 
-------- Comment #2 from randrik-JGs/UdohzUI@public.gmane.org  2008-01-10 09:32 PST -------
-Created an attachment (id=13645)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13645&action=view)
-/var/log/messages
+------- Comment #3 from randrik-JGs/UdohzUI@public.gmane.org  2008-01-10 09:42 PST -------
+I don't know when this behaviour started, i tried compile old nouveau from 06
+aug 2007 (right after drm interface changes) - but it doesn't compiled on my
+too new X server, and version from around 15 Oct 2007 still have this bug. Git
+bisect give me bogus result (first good commit == first bad commit) if i mark
+non-compiled versions as 'bad' ones. And trying all individual revisions one
+after another is too much for me. 
 
 
 -- 
