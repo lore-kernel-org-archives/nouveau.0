@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14010] TNT2 generate too much noise in logs
-Date: Thu, 10 Jan 2008 09:32:12 -0800 (PST)
-Message-ID: <20080110173212.C193E130009@annarchy.freedesktop.org>
+Date: Thu, 10 Jan 2008 09:32:47 -0800 (PST)
+Message-ID: <20080110173247.EBC66130009@annarchy.freedesktop.org>
 References: <bug-14010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14010
 
 
 
-------- Comment #1 from randrik-JGs/UdohzUI@public.gmane.org  2008-01-10 09:32 PST -------
-Created an attachment (id=13644)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13644&action=view)
-/var/log/debug, last 1000 lines
+------- Comment #2 from randrik-JGs/UdohzUI@public.gmane.org  2008-01-10 09:32 PST -------
+Created an attachment (id=13645)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13645&action=view)
+/var/log/messages
 
 
 -- 
