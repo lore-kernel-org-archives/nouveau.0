@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14025] New: The X11 / X Server Exhibits Jitters in
- the Display after it is on for many hours
-Date: Fri, 11 Jan 2008 09:12:08 -0800 (PST)
-Message-ID: <bug-14025-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14025] The X11 / X Server Exhibits Jitters in the
+ Display after it is on for many hours
+Date: Fri, 11 Jan 2008 09:55:57 -0800 (PST)
+Message-ID: <20080111175557.85E8F130009@annarchy.freedesktop.org>
+References: <bug-14025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=14025
 
-           Summary: The X11 / X Server Exhibits Jitters in the Display after
-                    it is on for many hours
-           Product: xorg
-           Version: 7.2
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: shlomif-ik1l9ssToec+JF/nGntIXQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=13661)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13661)
-Xorg.0.log of the session.
 
-On my setup:
 
-* Mandriva Cooker (updated as of 2008-Jan-10).
-* Pentium 4 2.4 GHz.
-* GeForce 4 MX.
-* Screen: ViewSonic VA-903m
-* xorg-x11-7.2.0-2mdv2008.0
-* Nouveau drivers - mostly up-to-date git master, installed using the
-instructions on the wiki.
-* x11-server-1.4-18mdv2008.1
+--- Comment #1 from Shlomi Fish <shlomif-ik1l9ssToec+JF/nGntIXQ@public.gmane.org>  2008-01-11 09:55:56 PST ---
+Created an attachment (id=13662)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13662)
+Log of Conversation in #nouveau regarding this bug.
 
-I'm getting jitters on the screen - sudden movements of several pixels in a
-certain region that disappear after a fraction of a second. I don't recall
-seeing it a week ago or earlier.
-
-I'll attach an Xorg.0.log file and an IRC log of #nouveau.
+This is a log of the conversation in Freenode's #nouveau about my problems. I
+am rindolf.
 
 
 -- 
