@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14010] TNT2 generate too much noise in logs
-Date: Thu, 10 Jan 2008 09:42:13 -0800 (PST)
-Message-ID: <20080110174214.19939130009@annarchy.freedesktop.org>
+Date: Thu, 10 Jan 2008 17:49:06 -0800 (PST)
+Message-ID: <20080111014906.29C61130009@annarchy.freedesktop.org>
 References: <bug-14010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,21 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14010
 
 
 
-------- Comment #3 from randrik-JGs/UdohzUI@public.gmane.org  2008-01-10 09:42 PST -------
-I don't know when this behaviour started, i tried compile old nouveau from 06
-aug 2007 (right after drm interface changes) - but it doesn't compiled on my
-too new X server, and version from around 15 Oct 2007 still have this bug. Git
-bisect give me bogus result (first good commit == first bad commit) if i mark
-non-compiled versions as 'bad' ones. And trying all individual revisions one
-after another is too much for me. 
+------- Comment #4 from randrik-JGs/UdohzUI@public.gmane.org  2008-01-10 17:49 PST -------
+simple fix from Ben Skeggs, works really well:
+
+diff --git a/shared-core/nv04_graph.c b/shared-core/nv04_graph.c
+index 81a6d5c..50ecc74 100644
+--- a/shared-core/nv04_graph.c
++++ b/shared-core/nv04_graph.c
+@@ -497,7 +497,8 @@ int nv04_graph_init(struct drm_device *d
+        /*haiku same*/
+
+        /*NV_WRITE(NV04_PGRAPH_DEBUG_3, 0xfad4ff31);*/
+-       NV_WRITE(NV04_PGRAPH_DEBUG_3, 0x10d4ff31);
++       // NV_WRITE(NV04_PGRAPH_DEBUG_3, 0x10d4ff31);
++       NV_WRITE(NV04_PGRAPH_DEBUG_3, 0xf0d4ff31); 
+        /*haiku and blob 10d4*/
 
 
 -- 
