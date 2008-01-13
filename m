@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13481] RandR12 fails on GF6600Go
-Date: Sun, 13 Jan 2008 02:20:31 -0800 (PST)
-Message-ID: <20080113102031.3746E130054@annarchy.freedesktop.org>
-References: <bug-13481-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12473] [randr12] Xv scales to match virtual
+ resulotion, not actual resolution.
+Date: Sun, 13 Jan 2008 02:25:54 -0800 (PST)
+Message-ID: <20080113102554.F402B130054@annarchy.freedesktop.org>
+References: <bug-12473-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12473-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +21,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13481
+http://bugs.freedesktop.org/show_bug.cgi?id=12473
 
 
-Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org> changed:
+Arthur Huillet <arthur.huillet-dFvTVMYgtfk@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
+                 CC|                            |arthur.huillet-dFvTVMYgtfk@public.gmane.org
+             Status|ASSIGNED                    |RESOLVED
          Resolution|                            |FIXED
 
 
-
-
---- Comment #15 from Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org>  2008-01-13 02:20:30 PST ---
-All the issues (console restore, DVI switch corrupting LVDS, LVDS not enabled
-by default) are fixed on current git :)
 
 
 -- 
