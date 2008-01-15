@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14060] Server fails to start with randr 1.2 and a
-	NV20
-Date: Sun, 13 Jan 2008 10:18:14 -0800 (PST)
-Message-ID: <20080113181814.4D4ED130052@annarchy.freedesktop.org>
-References: <bug-14060-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13822] Missing text on NV34
+Date: Mon, 14 Jan 2008 16:32:37 -0800 (PST)
+Message-ID: <20080115003238.214DD130052@annarchy.freedesktop.org>
+References: <bug-13822-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14060-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13822-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDA2MAoKCgoKCi0t
-LSBDb21tZW50ICMzIGZyb20gTWF0aGlldSBCw6lyYXJkIDxtYXRoaWV1LmJlcmFyZEBjcmFucy5v
-cmc+ICAyMDA4LTAxLTEzIDEwOjE4OjEzIFBTVCAtLS0KVGhlIGNhcmQgaGFzIDEgVkdBLCAxIERW
-SSBhbmQgMSBTLVZpZGVvIG91dHB1dHMuCgpsc3BjaSAtdnZ2IGluZm86CgowMTowMC4wIFZHQSBj
-b21wYXRpYmxlIGNvbnRyb2xsZXI6IG5WaWRpYSBDb3Jwb3JhdGlvbiBOVjIwIFtHZUZvcmNlMyBU
-aSA1MDBdCihyZXYgYTMpIChwcm9nLWlmIDAwIFtWR0FdKQogICAgICAgIFN1YnN5c3RlbTogTWlj
-cm8tU3RhciBJbnRlcm5hdGlvbmFsIENvLiwgTHRkLiBVbmtub3duIGRldmljZSA1MzAxCiAgICAg
-ICAgQ29udHJvbDogSS9PKyBNZW0rIEJ1c01hc3Rlci0gU3BlY0N5Y2xlLSBNZW1XSU5WLSBWR0FT
-bm9vcC0gUGFyRXJyLQpTdGVwcGluZy0gU0VSUi0gRmFzdEIyQi0KICAgICAgICBTdGF0dXM6IENh
-cCsgNjZNSHorIFVERi0gRmFzdEIyQisgUGFyRXJyLSBERVZTRUw9bWVkaXVtID5UQWJvcnQtCjxU
-QWJvcnQtIDxNQWJvcnQtID5TRVJSLSA8UEVSUi0KICAgICAgICBJbnRlcnJ1cHQ6IHBpbiBBIHJv
-dXRlZCB0byBJUlEgMTgKICAgICAgICBSZWdpb24gMDogTWVtb3J5IGF0IGRlMDAwMDAwICgzMi1i
-aXQsIG5vbi1wcmVmZXRjaGFibGUpIFtzaXplPTE2TV0KICAgICAgICBSZWdpb24gMTogTWVtb3J5
-IGF0IGQ4MDAwMDAwICgzMi1iaXQsIHByZWZldGNoYWJsZSkgW3NpemU9NjRNXQogICAgICAgIFJl
-Z2lvbiAyOiBNZW1vcnkgYXQgZGRiODAwMDAgKDMyLWJpdCwgcHJlZmV0Y2hhYmxlKSBbc2l6ZT01
-MTJLXQogICAgICAgIEV4cGFuc2lvbiBST00gYXQgZGZkZjAwMDAgW2Rpc2FibGVkXSBbc2l6ZT02
-NEtdCiAgICAgICAgQ2FwYWJpbGl0aWVzOiBbNjBdIFBvd2VyIE1hbmFnZW1lbnQgdmVyc2lvbiAy
-CiAgICAgICAgICAgICAgICBGbGFnczogUE1FQ2xrLSBEU0ktIEQxLSBEMi0gQXV4Q3VycmVudD0w
-bUEKUE1FKEQwLSxEMS0sRDItLEQzaG90LSxEM2NvbGQtKQogICAgICAgICAgICAgICAgU3RhdHVz
-OiBEMCBQTUUtRW5hYmxlLSBEU2VsPTAgRFNjYWxlPTAgUE1FLQogICAgICAgIENhcGFiaWxpdGll
-czogWzQ0XSBBR1AgdmVyc2lvbiAyLjAKICAgICAgICAgICAgICAgIFN0YXR1czogUlE9MzIgSXNv
-LSBBcnFTej0wIENhbD0wIFNCQS0gSVRBQ29oLSBHQVJUNjQtIEhUcmFucy0KNjRiaXQtIEZXLSBB
-R1AzLSBSYXRlPXgxLHgyLHg0CiAgICAgICAgICAgICAgICBDb21tYW5kOiBSUT0zMiBBcnFTej0w
-IENhbD0wIFNCQS0gQUdQKyBHQVJUNjQtIDY0Yml0LSBGVy0KUmF0ZT14NAoKCi0tIApDb25maWd1
-cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFi
-PWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0t
-LS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=13822
+
+
+Garnet MacPhee <garnet-vVazHDhchvNCCzmm7wA0Mw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+
+
+
+--- Comment #1 from Garnet MacPhee <garnet-vVazHDhchvNCCzmm7wA0Mw@public.gmane.org>  2008-01-14 16:32:36 PST ---
+Fixed by commit 2879f4518e6830cf0b490cde5b4daca3e931383d
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
