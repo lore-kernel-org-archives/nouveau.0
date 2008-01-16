@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14092] New: No fonts and missing Icons
-Date: Tue, 15 Jan 2008 20:04:36 -0800 (PST)
-Message-ID: <bug-14092-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14092] No fonts and missing Icons
+Date: Tue, 15 Jan 2008 20:06:02 -0800 (PST)
+Message-ID: <20080116040602.2A4E0130052@annarchy.freedesktop.org>
+References: <bug-14092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14092-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=14092
 
-           Summary: No fonts and missing Icons
-           Product: xorg
-           Version: 7.3
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: mike-4+n8WJKc9ve9FHfhHBbuYA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=13736)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13736)
-My xorg.conf
 
-On a nVidia Corporation NV41.8 [GeForce Go 6800] [10de:00c8] (rev a2) Xorg
-loads however the fonts are garbled and once past KDM all the fonts for KDE are
-missing and half of the desktop icons don't show up
+
+--- Comment #2 from Michael Lothian <mike-4+n8WJKc9ve9FHfhHBbuYA@public.gmane.org>  2008-01-15 20:06:01 PST ---
+Created an attachment (id=13738)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13738)
+My dmesg output
 
 
 -- 
