@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13403] Random crashes.
-Date: Thu, 17 Jan 2008 13:57:50 -0800 (PST)
-Message-ID: <20080117215751.80D77130056@annarchy.freedesktop.org>
+Date: Thu, 17 Jan 2008 14:50:04 -0800 (PST)
+Message-ID: <20080117225005.70D5C130052@annarchy.freedesktop.org>
 References: <bug-13403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13403
 
 
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
-
---- Comment #7 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2008-01-17 13:57:48 PST ---
-It was a long time ago I had a crash with nouveau, so I think this is
-fixed....:-)
 
 
 -- 
