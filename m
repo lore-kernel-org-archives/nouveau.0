@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14060] Server fails to start with randr 1.2 and a
-	NV20
-Date: Thu, 17 Jan 2008 08:26:13 -0800 (PST)
-Message-ID: <20080117162614.60006130054@annarchy.freedesktop.org>
-References: <bug-14060-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13403] Random crashes.
+Date: Thu, 17 Jan 2008 13:57:50 -0800 (PST)
+Message-ID: <20080117215751.80D77130056@annarchy.freedesktop.org>
+References: <bug-13403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14060-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13403-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +20,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDA2MAoKCgoKCi0t
-LSBDb21tZW50ICM1IGZyb20gTWF0aGlldSBCw6lyYXJkIDxtYXRoaWV1LmJlcmFyZEBjcmFucy5v
-cmc+ICAyMDA4LTAxLTE3IDA4OjI2OjEyIFBTVCAtLS0KWWVzLApJSVJDLCB0aGUgY29kZSBmb3Jj
-ZSBhbiBlcnJvciB3aGVuIHVua25vd24gRENCIGVudHJpZXMgYXJlIGZvdW5kIHRvIG1ha2Ugc3Vy
-ZQp0aGV5IGdldCByZXBvcnRlZC4gSSB3YXMgdG9sZCB0byBjb21tZW50IHRoZSBjb3JyZXNwb25k
-aW5nIGJsb2NrIG9mIGNvZGUgaW4KbnZfYmlvcy5jIGFuZCB0aGUgc2VydmVyIGlzIG5vdyB1cCBh
-bmQgcnVubmluZyB3aXRoIHJhbmRyIDEuMiAuIEkgc2F3IGEgY29tbWl0Cm9uIHRoYXQgcGFydGlj
-dWxhciBwaWVjZSBvZiBjb2RlICg0NzQ0ZTU0MTBjMjdkOGJkM2MyZjkyYmVlNDU1NDgwMTYzOWRi
-YTI5KQpqdXN0IGFmdGVyIEkgbWFkZSB0aGUgYnVnIHJlcG9ydC4gQnV0IHhzZXJ2ZXIgc3RpbGwg
-cmVmdXNlIHRvIGxhdW5jaCBvdXQgb2YgdGhlCmJveCwgSSBzdGlsbCBoYXZlIHRvIGNvbW1lbnQg
-dGhlIGJsb2NrIGFyb3VuZCAnIEVycm9yRigiVW5rbm93biBEQ0IgMS40IC8gMS41CmVudHJ5LCBw
-bGVhc2UgcmVwb3J0XG4iKTsnIC4KSWYgZmFpbGluZyBvbiB1bmtub3duIERDQiBlbnRyaWVzIGlz
-IGluZGVlZCBhbiBpbnRlbmRlZCAnZmVhdHVyZScsIG1heWJlIHRoaXMKYnVnIGNhbiBiZSBjbG9z
-ZWQuLi4uCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5v
-cmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlz
-IG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=13403
+
+
+
+
+
+--- Comment #7 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2008-01-17 13:57:48 PST ---
+It was a long time ago I had a crash with nouveau, so I think this is
+fixed....:-)
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
