@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13323] 7600Go: RandR12 fails to drive external DVI
-Date: Thu, 17 Jan 2008 14:54:22 -0800 (PST)
-Message-ID: <20080117225422.A8DE5130052@annarchy.freedesktop.org>
-References: <bug-13323-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11441] Minor display corruption
+Date: Thu, 17 Jan 2008 16:26:32 -0800 (PST)
+Message-ID: <20080118002632.36D69130053@annarchy.freedesktop.org>
+References: <bug-11441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,10 +20,10 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13323
+http://bugs.freedesktop.org/show_bug.cgi?id=11441
 
 
-Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Sam Varshavchik <mrsam-W1w4QoW4mIDgLSHwZvcCBg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
@@ -33,9 +33,13 @@ Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane
 
 
 
---- Comment #8 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-01-17 14:54:21 PST ---
-RandR12 now works fine, driving both my internal LVDS and external DVI monitor.
- Marking as fixed.
+--- Comment #5 from Sam Varshavchik <mrsam-W1w4QoW4mIDgLSHwZvcCBg@public.gmane.org>  2008-01-17 16:26:31 PST ---
+Just gave xorg-x11-drv-nouveau-2.1.5-2.fc8 a spin.
+
+This is no longer an issue. No more display corruption, and the driver is just
+slightly slower than nv.
+
+Thanks for your work.
 
 
 -- 
