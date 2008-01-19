@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13941] Randr 1.2 code doesn't detect VGA connections
-Date: Sat, 19 Jan 2008 10:39:07 -0800 (PST)
-Message-ID: <20080119183908.25E8A130054@annarchy.freedesktop.org>
-References: <bug-13941-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12825] TvTime shows only the upper left corner (~
+ 1280x1024) in Randr1 .2
+Date: Sat, 19 Jan 2008 13:09:14 -0800 (PST)
+Message-ID: <20080119210914.E7E53130052@annarchy.freedesktop.org>
+References: <bug-12825-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13941-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12825-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +21,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13941
+http://bugs.freedesktop.org/show_bug.cgi?id=12825
 
 
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
 
 
+
+--- Comment #6 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-01-19 13:09:13 PST ---
+Created an attachment (id=13801)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13801)
+log xorg
 
 
 -- 
