@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13941] Randr 1.2 code doesn't detect VGA connections
-Date: Sat, 19 Jan 2008 09:23:00 -0800 (PST)
-Message-ID: <20080119172300.ACFEB130052@annarchy.freedesktop.org>
+Date: Sat, 19 Jan 2008 10:39:07 -0800 (PST)
+Message-ID: <20080119183908.25E8A130054@annarchy.freedesktop.org>
 References: <bug-13941-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13941
 
 
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
-
---- Comment #2 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-01-19 09:22:59 PST ---
-A few more commits later and now it works nicely. :)
 
 
 -- 
