@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12825] TvTime shows only the upper left corner (~
  1280x1024) in Randr1 .2
-Date: Sat, 19 Jan 2008 13:11:14 -0800 (PST)
-Message-ID: <20080119211114.996F4130058@annarchy.freedesktop.org>
+Date: Sat, 19 Jan 2008 13:34:50 -0800 (PST)
+Message-ID: <20080119213450.3B96C130054@annarchy.freedesktop.org>
 References: <bug-12825-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12825
 
 
 
---- Comment #7 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-01-19 13:11:12 PST ---
-Tvtime has not changed.
-The pink lines has disappeared.
+--- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-01-19 13:34:49 PST ---
+Does this happen with mplayer also?
 
 
 -- 
