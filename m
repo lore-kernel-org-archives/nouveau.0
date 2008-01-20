@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13866] nouveau gives Xvideo tearing
-Date: Sun, 20 Jan 2008 10:08:31 -0800 (PST)
-Message-ID: <20080120180831.2DEBF130055@annarchy.freedesktop.org>
+Date: Sun, 20 Jan 2008 10:40:59 -0800 (PST)
+Message-ID: <20080120184059.7865E130052@annarchy.freedesktop.org>
 References: <bug-13866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=13866
 
 
+Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #9 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-01-20 10:08:30 PST ---
-I removed the potentionally problematic workaround for composite situations,
-please make sure you try without composite.
+
+--- Comment #10 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-01-20 10:40:58 PST ---
+The latest additions correctly vsyncs for the texture adapter on both CRTCs
+here. Closing bug.
 
 
 -- 
