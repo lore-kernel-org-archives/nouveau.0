@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13866] nouveau gives Xvideo tearing
-Date: Sun, 20 Jan 2008 08:17:55 -0800 (PST)
-Message-ID: <20080120161755.9F3F2130054@annarchy.freedesktop.org>
+Date: Sun, 20 Jan 2008 10:08:31 -0800 (PST)
+Message-ID: <20080120180831.2DEBF130055@annarchy.freedesktop.org>
 References: <bug-13866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13866
 
 
 
---- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-01-20 08:17:54 PST ---
-Can you please retry with current git. Please keep in mind that the composited
-case may not be perfect, but it should improve.
+--- Comment #9 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-01-20 10:08:30 PST ---
+I removed the potentionally problematic workaround for composite situations,
+please make sure you try without composite.
 
 
 -- 
