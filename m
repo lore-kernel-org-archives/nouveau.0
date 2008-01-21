@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14168] New: endian bug on powerpc
-Date: Mon, 21 Jan 2008 02:07:14 -0800 (PST)
-Message-ID: <bug-14168-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14174] New: nouveau uses symbols from private header
+	exa_priv.h
+Date: Mon, 21 Jan 2008 07:21:58 -0800 (PST)
+Message-ID: <bug-14174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,42 +19,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14168
+http://bugs.freedesktop.org/show_bug.cgi?id=14174
 
-           Summary: endian bug on powerpc
+           Summary: nouveau uses symbols from private header exa_priv.h
            Product: xorg
-           Version: unspecified
-          Platform: PowerPC
+           Version: git
+          Platform: All
         OS/Version: All
             Status: NEW
-          Severity: normal
-          Priority: medium
+          Severity: minor
+          Priority: low
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org
+        ReportedBy: anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-It seems there is still a endian bug with Xv:
-playing movies requesting a YV12 colorspace show wrong colors (usually green
-people). It's the same for both xv ports.
+nouveau uses symbols
+exaPixmapIsOffscreen,
+exaGetDrawablePixmap
+from exa_priv.h, which is not a public header.
 
-For me (NV34 on ppc), it can be fixed  by applying the following patch:
-
---- nv_video.c~ 2008-01-21 11:33:53.000000000 +0900
-+++ nv_video.c  2008-01-21 19:02:27.000000000 +0900
-@@ -689,11 +689,7 @@
-                        }
-                if (e)  {
-                        unsigned short *vud = (unsigned short *) vuvud;
--#if X_BYTE_ORDER == X_BIG_ENDIAN
--                       *vud = (vs[0]<<8) | (us[0] << 0);
--#else
-                        *vud = vs[0] | (us[0]<<8);
--#endif
-                        }
-                dst += dstPitch ;
-                src1 += srcPitch2;
+Those functions should either be moved to public headers or something else used
+in nouveau instead of them.
 
 
 -- 
