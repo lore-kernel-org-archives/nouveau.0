@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14279] Hotplugging DVI-D-1 on a GeForce 7600 GT fails
-Date: Mon, 28 Jan 2008 09:53:43 -0800 (PST)
-Message-ID: <20080128175343.3365B130054@annarchy.freedesktop.org>
+Date: Mon, 28 Jan 2008 10:13:04 -0800 (PST)
+Message-ID: <20080128181305.9B54F130054@annarchy.freedesktop.org>
 References: <bug-14279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14279
 
 
 
---- Comment #1 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-01-28 09:53:42 PST ---
-Correction: This is with DVI-A-0 at boot, but DVI-A-1.
+--- Comment #2 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-01-28 10:13:04 PST ---
+Created an attachment (id=13989)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=13989)
+DVI-D-1 plugged in at boot
+
+If DVI-D-1 is connected at boot time, it works.
 
 
 -- 
