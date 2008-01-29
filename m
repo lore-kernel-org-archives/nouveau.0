@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14287] New: nouveau crashes at random
-Date: Tue, 29 Jan 2008 02:29:00 -0800 (PST)
-Message-ID: <bug-14287-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14287] nouveau crashes at random
+Date: Tue, 29 Jan 2008 02:29:54 -0800 (PST)
+Message-ID: <20080129102954.4649D130052@annarchy.freedesktop.org>
+References: <bug-14287-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=14287
 
-           Summary: nouveau crashes at random
-           Product: xorg
-           Version: git
-          Platform: PowerPC
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Nouveau just crashed on me, randomly. I'm running
-afca5f2665a62ef2d025c15f07fe1cdc2b40d8d5 nouveau. Attaching dmesg output and
-xorg log.
+
+
+--- Comment #1 from Andy Wingo <wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org>  2008-01-29 02:29:53 PST ---
+Created an attachment (id=14005)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14005)
+xorg log
 
 
 -- 
