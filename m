@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14284] frequent DMA queue hangs on NV34 on powerpc
-Date: Mon, 28 Jan 2008 22:46:33 -0800 (PST)
-Message-ID: <20080129064641.47D61130054@annarchy.freedesktop.org>
+Date: Mon, 28 Jan 2008 23:44:34 -0800 (PST)
+Message-ID: <20080129074434.870E3130052@annarchy.freedesktop.org>
 References: <bug-14284-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14284
 
 
 
---- Comment #1 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-01-28 22:46:30 PST ---
-Created an attachment (id=13998)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=13998)
-xorg log
+--- Comment #2 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-01-28 23:44:33 PST ---
+Created an attachment (id=14002)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14002)
+list of methods before the dma lockup
 
-fifo dump of crash. I have many similar ones. I could not find a connection
-between them. But please ask if more are needed.
+This is a list of methods called by the X driver before it locked up. In this
+particular case I didn't have any output on whether BEGIN_RING==OUT_RING but in
+a previous crash log I outputted this info and it seemed to be ok (the only
+cases in which we have 1 out_ring more is when we hit nouveau_dma_wait)
+
+d.
 
 
 -- 
