@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14279] Hotplugging DVI-D-1 on a GeForce 7600 GT fails
-Date: Tue, 29 Jan 2008 10:13:23 -0800 (PST)
-Message-ID: <20080129181323.77C03130009@annarchy.freedesktop.org>
-References: <bug-14279-8800@http.bugs.freedesktop.org/>
+From: Roel Kluin <12o3l-IWqWACnzNjzz+pZb47iToQ@public.gmane.org>
+Subject: [PATCH] free nvs->pass_rec on error in
+	nouveau_shader_pass2(), nouveau_shader_2.c
+Date: Wed, 30 Jan 2008 00:56:27 +0100
+Message-ID: <479FBD2B.3020309@tiscali.nl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +19,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14279
+in nouveau_shader_pass2()
 
+210:    struct pass2_rec *rec;
+...
+215:    rec = calloc(1, sizeof(struct pass2_rec));
+...
+218:    nvs->pass_rec = rec;
 
+untested, please check.
+--
+also free nvs->pass_rec on error
 
-
-
---- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-01-29 10:13:22 PST ---
-Please run nouveau (for both cases) with NOUVEAU_MODESET_TRACE in nv_local.h
-enabled.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Signed-off-by: Roel Kluin <12o3l-IWqWACnzNjzz+pZb47iToQ@public.gmane.org>
+---
+diff --git a/src/mesa/drivers/dri/nouveau/nouveau_shader_2.c b/src/mesa/drivers/dri/nouveau/nouveau_shader_2.c
+index cd27dac..0bbcb8a 100644
+--- a/src/mesa/drivers/dri/nouveau/nouveau_shader_2.c
++++ b/src/mesa/drivers/dri/nouveau/nouveau_shader_2.c
+@@ -229,6 +229,8 @@ nouveau_shader_pass2(nvsPtr nvs)
+ 			     ((nvsSubroutine*)nvs->program_tree)->insn_head)) {
+ 		free(nvs->program);
+ 		nvs->program = NULL;
++		free(nvs->pass_rec);
++		nvs->pass_rec = NULL;
+ 		return GL_FALSE;
+ 	}
