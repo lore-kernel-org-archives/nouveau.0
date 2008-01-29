@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14287] nouveau crashes at random
-Date: Tue, 29 Jan 2008 02:30:21 -0800 (PST)
-Message-ID: <20080129103021.4B926130055@annarchy.freedesktop.org>
+Date: Tue, 29 Jan 2008 02:30:39 -0800 (PST)
+Message-ID: <20080129103040.36571130055@annarchy.freedesktop.org>
 References: <bug-14287-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14287
 
 
+Andy Wingo <wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #14006|application/octet-stream    |text/plain
+          mime type|                            |
 
 
-
---- Comment #2 from Andy Wingo <wingo-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org>  2008-01-29 02:30:20 PST ---
-Created an attachment (id=14006)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14006)
-dmesg log
 
 
 -- 
