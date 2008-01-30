@@ -1,15 +1,12 @@
-From: Roel Kluin <12o3l-IWqWACnzNjzz+pZb47iToQ@public.gmane.org>
-Subject: Re: [PATCH] free nvs->pass_rec on error in
- nouveau_shader_pass2(), nouveau_shader_2.c
-Date: Wed, 30 Jan 2008 12:34:49 +0100
-Message-ID: <47A060D9.9030800@tiscali.nl>
-References: <479FBD2B.3020309@tiscali.nl>
-	<6a89f9d50801291636j32cb1e39j79c4a921b3c3a9d2@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 14305] New: X crash at start when virtual size
+ exceeds the VRAM capacity
+Date: Wed, 30 Jan 2008 08:05:12 -0800 (PST)
+Message-ID: <bug-14305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6a89f9d50801291636j32cb1e39j79c4a921b3c3a9d2-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,31 +16,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Stephane Marchesin wrote:
-> Hi Roel,
-> 
-> All your patches correct valid flaws. However, as you might have
-> noticed, the old DRI code doesn't see much development at the moment.
-> The reason is that we've decided to jump in the gallium3D wagon before
-> it was even finished. So you have to know that this piece of code is
-> currently not maintained, and that you'd have to finish it by yourself
-> mostly.
-> 
-> I can of course push your patches if you feel like actually working on
-> finishing this old-scheme DRI driver. Just tell me.
-> 
-> Stephane
+http://bugs.freedesktop.org/show_bug.cgi?id=14305
 
-Thanks for your information. I'll focus on gallium3D development instead.
-However, since my patches correct valid flaws, maybe it's best to push
-these patches. Is it a lot of work? If not, please do.
+           Summary: X crash at start when virtual size exceeds the VRAM
+                    capacity
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Chances are that someone in the future copy/pastes code, and with that
-these flaws, or that at a later time it is decided that the original
-driver was the better.
 
-Roel Kluin
+X crash at start when virtual size exceeds the VRAM capacity
+
+Quoting marcheu who sort it out:
+
+<marcheu> (EE) EXA(0): ExaDriverRec::offScreenBase must be <=
+ExaDriverRec::memorySize 
+<marcheu> bad bad bad bad
+<marcheu> (--) NOUVEAU(0): VideoRAM: 16384 kBytes 
+<marcheu> 2624*1200*4=12MB
+<marcheu> we only use half of VRAM for 2D, and 16/2MB < 12MB
+<marcheu> so you don't have the room to create that buffer<marcheu> in fact, X
+should refuse to start if the thing was any sane
+
+I had:
+
+        SubSection "Display"
+                Modes           "1024x768"
+                Virtual 2624 1200
+        EndSubSection
+
+My intention was to combine with a 1600x1200 LCD panel.
+
+Attaching the Xorg.0.log with a backtrace at the end, and the xorg.conf...
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
