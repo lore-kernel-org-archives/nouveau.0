@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14305] New: X crash at start when virtual size
- exceeds the VRAM capacity
-Date: Wed, 30 Jan 2008 08:05:12 -0800 (PST)
-Message-ID: <bug-14305-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14305] X crash at start when virtual size exceeds
+ the VRAM capacity
+Date: Wed, 30 Jan 2008 08:05:48 -0800 (PST)
+Message-ID: <20080130160548.7B650130051@annarchy.freedesktop.org>
+References: <bug-14305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,49 +21,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14305
-
-           Summary: X crash at start when virtual size exceeds the VRAM
-                    capacity
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-X crash at start when virtual size exceeds the VRAM capacity
-
-Quoting marcheu who sort it out:
-
-<marcheu> (EE) EXA(0): ExaDriverRec::offScreenBase must be <=
-ExaDriverRec::memorySize 
-<marcheu> bad bad bad bad
-<marcheu> (--) NOUVEAU(0): VideoRAM: 16384 kBytes 
-<marcheu> 2624*1200*4=12MB
-<marcheu> we only use half of VRAM for 2D, and 16/2MB < 12MB
-<marcheu> so you don't have the room to create that buffer<marcheu> in fact, X
-should refuse to start if the thing was any sane
-
-I had:
-
-        SubSection "Display"
-                Modes           "1024x768"
-                Virtual 2624 1200
-        EndSubSection
-
-My intention was to combine with a 1600x1200 LCD panel.
-
-Attaching the Xorg.0.log with a backtrace at the end, and the xorg.conf...
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDMwNQoKCgoKCi0t
+LSBDb21tZW50ICMxIGZyb20gSGVydsOpIENhdXdlbGllciA8ZGViaWFuQG91cnNvdXJzLm5ldD4g
+IDIwMDgtMDEtMzAgMDg6MDU6NDcgUFNUIC0tLQpDcmVhdGVkIGFuIGF0dGFjaG1lbnQgKGlkPTE0
+MDM1KQogLS0+IChodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9
+MTQwMzUpClggbG9nIGFuZCBiYWNrdHJhY2UKCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6
+Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlv
+dSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFz
+c2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
