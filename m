@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12158] mouse cursor disappears
-Date: Fri,  1 Feb 2008 13:29:15 -0800 (PST)
-Message-ID: <20080201212915.65ECA130009@annarchy.freedesktop.org>
+Date: Fri,  1 Feb 2008 13:47:41 -0800 (PST)
+Message-ID: <20080201214741.CCE5D130009@annarchy.freedesktop.org>
 References: <bug-12158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12158
 
 
 
---- Comment #7 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 13:29:14 PST ---
-Hi,
+--- Comment #8 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 13:47:41 PST ---
+version of SDL : 1.2.11
 
-it prints what you say it should print :
-
-[root@tue-amour xf86dga]# ./dga
-Xserver driver doesn't support DirectVideo on screen 0
+libSDL1.2-1.2.11-7mdv2007.1
 
 
 -- 
