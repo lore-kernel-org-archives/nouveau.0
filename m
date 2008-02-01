@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10933] nouveau defaults to first graphics card in
- system even when xorg instructed differently
-Date: Fri,  1 Feb 2008 11:24:04 -0800 (PST)
-Message-ID: <20080201192405.1E0E5130051@annarchy.freedesktop.org>
-References: <bug-10933-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12300] DMA queue hang (Quadro FX 4500)
+Date: Fri,  1 Feb 2008 11:31:55 -0800 (PST)
+Message-ID: <20080201193155.745A5130051@annarchy.freedesktop.org>
+References: <bug-12300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-10933-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12300-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +20,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=10933
+http://bugs.freedesktop.org/show_bug.cgi?id=12300
+
+
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |WONTFIX
 
 
 
 
-
---- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 11:24:04 PST ---
-What's the status on this bug?
+--- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 11:31:54 PST ---
+This problem is (probably) related to multiple NV47 existing with different
+amount of pipelines, therefore they need different context voodoo's. This
+cannot be handled properly until darktama finishes his microcode generator.
+Don't expect this very soon though.
 
 
 -- 
