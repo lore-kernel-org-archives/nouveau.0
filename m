@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10826] Crash when running glxgears or beryl
-Date: Fri,  1 Feb 2008 11:14:40 -0800 (PST)
-Message-ID: <20080201191440.5E0D8130009@annarchy.freedesktop.org>
-References: <bug-10826-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 10547] nouveau: __ucmpdi2 unresolved on ppc32
+Date: Fri,  1 Feb 2008 11:16:03 -0800 (PST)
+Message-ID: <20080201191603.B5ACC130054@annarchy.freedesktop.org>
+References: <bug-10547-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-10826-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-10547-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +20,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=10826
-
-
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-           Keywords|                            |NEEDINFO
-         Resolution|                            |INVALID
+http://bugs.freedesktop.org/show_bug.cgi?id=10547
 
 
 
 
---- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 11:14:39 PST ---
-Ancient bug, please reopen if glxgears still causes you issues. Beryl is not
-supposed to work.
+
+--- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 11:16:02 PST ---
+I've not heard people complain about this recently, is it still an issue?
 
 
 -- 
