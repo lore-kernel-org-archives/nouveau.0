@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10933] nouveau defaults to first graphics card in
  system even when xorg instructed differently
-Date: Fri,  1 Feb 2008 15:31:32 -0800 (PST)
-Message-ID: <20080201233132.7D074130051@annarchy.freedesktop.org>
+Date: Fri,  1 Feb 2008 15:32:25 -0800 (PST)
+Message-ID: <20080201233225.EF616130009@annarchy.freedesktop.org>
 References: <bug-10933-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=10933
 
 
+Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
-
---- Comment #9 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 15:31:31 PST ---
-Created an attachment (id=14083)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14083)
-enabling Randr12 appears to be ok as well
 
 
 -- 
