@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10933] nouveau defaults to first graphics card in
  system even when xorg instructed differently
-Date: Fri,  1 Feb 2008 15:14:19 -0800 (PST)
-Message-ID: <20080201231419.4C1D3130009@annarchy.freedesktop.org>
+Date: Fri,  1 Feb 2008 15:14:53 -0800 (PST)
+Message-ID: <20080201231453.6737F130051@annarchy.freedesktop.org>
 References: <bug-10933-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,24 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=10933
 
 
-Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-Attachment #9947 is|0                           |1
-           obsolete|                            |
-Attachment #9948 is|0                           |1
-           obsolete|                            |
-Attachment #9949 is|0                           |1
-           obsolete|                            |
 
 
 
-
---- Comment #7 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 15:14:18 PST ---
-Created an attachment (id=14081)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14081)
-kern.log with insmod drm.ko debug=1
+--- Comment #8 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 15:14:52 PST ---
+Created an attachment (id=14082)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14082)
+matching Xorg.0.log
 
 
 -- 
