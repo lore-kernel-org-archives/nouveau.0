@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12825] TvTime shows only the upper left corner (~
- 1280x1024) in Randr1 .2
-Date: Fri,  1 Feb 2008 11:42:17 -0800 (PST)
-Message-ID: <20080201194217.116D8130054@annarchy.freedesktop.org>
-References: <bug-12825-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12833] Geforce 8400M GS (id 0x427) support
+Date: Fri,  1 Feb 2008 11:44:12 -0800 (PST)
+Message-ID: <20080201194412.90BAD130052@annarchy.freedesktop.org>
+References: <bug-12833-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12825-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12833-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +20,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12825
+http://bugs.freedesktop.org/show_bug.cgi?id=12833
 
 
 
 
 
---- Comment #10 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 11:42:16 PST ---
-I think something related got fixed, is this still an issue?
+--- Comment #19 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 11:44:11 PST ---
+Should this be closed? (ignoring the wider scope/lacking good g80 support)
 
 
 -- 
