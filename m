@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14279] Hotplugging DVI-D-1 on a GeForce 7600 GT fails
-Date: Fri,  1 Feb 2008 10:36:18 -0800 (PST)
-Message-ID: <20080201183619.9539B130052@annarchy.freedesktop.org>
-References: <bug-14279-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 10626] rendering garbage at top and bottom of the
+	screen
+Date: Fri,  1 Feb 2008 11:07:27 -0800 (PST)
+Message-ID: <20080201190727.C2266130009@annarchy.freedesktop.org>
+References: <bug-10626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-10626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14279
+http://bugs.freedesktop.org/show_bug.cgi?id=10626
 
 
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Keywords|                            |NEEDINFO
 
 
-
---- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 10:36:18 PST ---
-Come by irc sometime, maybe we can isolate the bug even further.
 
 
 -- 
