@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12158] mouse cursor disappears
-Date: Fri,  1 Feb 2008 13:47:41 -0800 (PST)
-Message-ID: <20080201214741.CCE5D130009@annarchy.freedesktop.org>
+Date: Fri,  1 Feb 2008 14:40:27 -0800 (PST)
+Message-ID: <20080201224028.2B28D130009@annarchy.freedesktop.org>
 References: <bug-12158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12158
 
 
 
---- Comment #8 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 13:47:41 PST ---
-version of SDL : 1.2.11
+--- Comment #9 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 14:40:27 PST ---
+http://www.libsdl.org/release/changes-1.2.html
 
-libSDL1.2-1.2.11-7mdv2007.1
+---snip---
+SDL 1.2.12 Release Notes
+
+Fixed detection of X11 DGA mouse support.
+----------
+
+Any chance for an upgrade to verify?
+
+I personally have no issues with wesnoth and libsdl-1.2.13.
 
 
 -- 
