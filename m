@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13257] using nouveau on NV17 kills the KDE VNC server
-Date: Fri,  1 Feb 2008 13:27:01 -0800 (PST)
-Message-ID: <20080201212701.E70BD130054@annarchy.freedesktop.org>
-References: <bug-13257-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12158] mouse cursor disappears
+Date: Fri,  1 Feb 2008 13:29:15 -0800 (PST)
+Message-ID: <20080201212915.65ECA130009@annarchy.freedesktop.org>
+References: <bug-12158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13257-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12158-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +20,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMzI1NwoKCkhlcnbD
-qSBDYXV3ZWxpZXIgPGRlYmlhbkBvdXJzb3Vycy5uZXQ+IGNoYW5nZWQ6CgogICAgICAgICAgIFdo
-YXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLQogICAgICAgICAgICAgU3RhdHVzfE5FVyAgICAgICAgICAgICAgICAgICAgICAgICB8UkVT
-T0xWRUQKICAgICAgICAgUmVzb2x1dGlvbnwgICAgICAgICAgICAgICAgICAgICAgICAgICAgfExB
-VEVSCgoKCgotLS0gQ29tbWVudCAjMyBmcm9tIEhlcnbDqSBDYXV3ZWxpZXIgPGRlYmlhbkBvdXJz
-b3Vycy5uZXQ+ICAyMDA4LTAyLTAxIDEzOjI3OjAxIFBTVCAtLS0KTm8sIEkgd291bGRuJ3QgYmUg
-YXZhaWxhYmxlIHRvIHRyYWNrIHRoaXMgZG93bi4gSSBkcm9wcGVkIGFsbCBLREUgYW5kIGRvbid0
-CmludGVuZCB0byB0cnkgaXQgYWdhaW4gZm9yIGxvbmcuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWls
-OiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0t
-LS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJl
-IHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=12158
+
+
+
+
+
+--- Comment #7 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 13:29:14 PST ---
+Hi,
+
+it prints what you say it should print :
+
+[root@tue-amour xf86dga]# ./dga
+Xserver driver doesn't support DirectVideo on screen 0
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
