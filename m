@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10626] rendering garbage at top and bottom of the
 	screen
-Date: Fri,  1 Feb 2008 11:07:27 -0800 (PST)
-Message-ID: <20080201190727.C2266130009@annarchy.freedesktop.org>
+Date: Fri,  1 Feb 2008 11:12:41 -0800 (PST)
+Message-ID: <20080201191242.57826130009@annarchy.freedesktop.org>
 References: <bug-10626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,9 +28,14 @@ Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Keywords|                            |NEEDINFO
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
+
+
+--- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 11:12:40 PST ---
+Please reopen if this is still an issue.
 
 
 -- 
