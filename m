@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 10591] nouveau Dma Queue Hang on FreeBSD
-Date: Fri,  1 Feb 2008 11:17:28 -0800 (PST)
-Message-ID: <20080201191728.91207130009@annarchy.freedesktop.org>
-References: <bug-10591-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 10618] glxgears or mouseover on buttons can crash X
+	server
+Date: Fri,  1 Feb 2008 11:20:32 -0800 (PST)
+Message-ID: <20080201192033.6211C130054@annarchy.freedesktop.org>
+References: <bug-10618-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-10591-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-10618-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=10591
+http://bugs.freedesktop.org/show_bug.cgi?id=10618
+
+
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+           Keywords|                            |NEEDINFO
+         Resolution|                            |INVALID
 
 
 
 
-
---- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 11:17:28 PST ---
-Should this bug be closed (the patch is obviously much too old)?
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 11:20:31 PST ---
+Closing this one as it's much too old, please make a new bug with relevant
+information if this still occurs. Labeling it NEEDINFO, so we can track it if
+the need arises.
 
 
 -- 
