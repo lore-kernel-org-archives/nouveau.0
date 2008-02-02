@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 10920] glxgears on AGP 10de0028 NV5 [RIVA TNT2/TNT2
  Pro] works! ( but slowly)
-Date: Fri,  1 Feb 2008 17:29:16 -0800 (PST)
-Message-ID: <20080202012916.7110C130051@annarchy.freedesktop.org>
+Date: Fri,  1 Feb 2008 17:32:01 -0800 (PST)
+Message-ID: <20080202013201.ABB0D130051@annarchy.freedesktop.org>
 References: <bug-10920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,16 +28,16 @@ Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-Attachment #9943 is|0                           |1
+Attachment #9942 is|0                           |1
            obsolete|                            |
 
 
 
 
---- Comment #15 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 17:29:15 PST ---
-Created an attachment (id=14085)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14085)
-Xorg.0.log from nouveau starting prior to crashing
+--- Comment #16 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-01 17:32:01 PST ---
+Created an attachment (id=14086)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14086)
+dmesg/kern.log from boot through X startup, crash and X restart
 
 
 -- 
