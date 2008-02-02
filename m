@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14279] Hotplugging DVI-D-1 on a GeForce 7600 GT fails
-Date: Sat,  2 Feb 2008 08:44:14 -0800 (PST)
-Message-ID: <20080202164414.DF6AD130051@annarchy.freedesktop.org>
+Date: Sat,  2 Feb 2008 10:03:20 -0800 (PST)
+Message-ID: <20080202180320.A897F130009@annarchy.freedesktop.org>
 References: <bug-14279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,15 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14279
 
 
-Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
 
 
 
+--- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-02 10:03:20 PST ---
+Cab you disable DVI-D-0 and then try to move around DVI-D-1?
 
---- Comment #7 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-02-02 08:44:14 PST ---
-After an old hack for 7x00s was removed, I no longer experience this problem. 
-I can hotplug anything with anything booted (not counting actually swapping
-connections).
+(xrandr --output DVI-D-1 --mode <insert> --crtc 0)
+
+Purely for my curiosity ;-)
 
 
 -- 
