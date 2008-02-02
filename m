@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13448] DMA Queue hang
-Date: Sat,  2 Feb 2008 14:24:58 -0800 (PST)
-Message-ID: <20080202222458.C5896130009@annarchy.freedesktop.org>
+Date: Sat,  2 Feb 2008 14:33:44 -0800 (PST)
+Message-ID: <20080202223344.EFB5E130009@annarchy.freedesktop.org>
 References: <bug-13448-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13448
 
 
 
---- Comment #4 from Dup <ddup1-evNnO5DUyiodnm+yROfE0A@public.gmane.org>  2008-02-02 14:24:58 PST ---
-Its a long time i have not test, but if i remember exactly, i unplug the nvidia
-module and test to launch nouveau/drm.
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-02 14:33:44 PST ---
+If it turns out to work, please also retry after using nvidia driver.
 
-So yes, nvidia driver was run before i test nouveau, i will retry nouveau with
-recent svn and report if all is good after a reboot ;)
-
-Sorry for my english :D
+I pushed a fix into the drm tree today, which fixed the issue for me.
 
 
 -- 
