@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12158] mouse cursor disappears
-Date: Sat,  2 Feb 2008 01:34:55 -0800 (PST)
-Message-ID: <20080202093455.1FFFF130051@annarchy.freedesktop.org>
-References: <bug-12158-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14279] Hotplugging DVI-D-1 on a GeForce 7600 GT fails
+Date: Sat,  2 Feb 2008 08:44:14 -0800 (PST)
+Message-ID: <20080202164414.DF6AD130051@annarchy.freedesktop.org>
+References: <bug-14279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12158-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +20,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12158
+http://bugs.freedesktop.org/show_bug.cgi?id=14279
 
 
-Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|                            |NOTOURBUG
+         Resolution|                            |FIXED
 
 
 
 
---- Comment #10 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-02 01:34:54 PST ---
-Seems to be fixed with a SDL 1.2.12
-thx
+--- Comment #7 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-02-02 08:44:14 PST ---
+After an old hack for 7x00s was removed, I no longer experience this problem. 
+I can hotplug anything with anything booted (not counting actually swapping
+connections).
 
 
 -- 
