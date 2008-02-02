@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14025] The X11 / X Server Exhibits Jitters in the
  Display after it is on for many hours
-Date: Sat,  2 Feb 2008 11:41:59 -0800 (PST)
-Message-ID: <20080202194159.BF9AF130052@annarchy.freedesktop.org>
+Date: Sat,  2 Feb 2008 11:54:02 -0800 (PST)
+Message-ID: <20080202195402.7474F130051@annarchy.freedesktop.org>
 References: <bug-14025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14025
 
 
 
---- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-02 11:41:58 PST ---
-Could you make a picture of it?
+--- Comment #5 from Shlomi Fish <shlomif-ik1l9ssToec+JF/nGntIXQ@public.gmane.org>  2008-02-02 11:54:01 PST ---
+(In reply to comment #4)
+> Could you make a picture of it?
+> 
+
+Sorry no, but these jitters disappear shortly after they appear, before I can
+catch them. And they appear only for a fraction of a second.
 
 
 -- 
