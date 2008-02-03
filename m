@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14345] Image with width greater than 8176 pixel make
  firefox crash with X error
-Date: Sun,  3 Feb 2008 07:58:04 -0800 (PST)
-Message-ID: <20080203155804.6CBD0130051@annarchy.freedesktop.org>
+Date: Sun,  3 Feb 2008 10:00:08 -0800 (PST)
+Message-ID: <20080203180009.2C540130051@annarchy.freedesktop.org>
 References: <bug-14345-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,18 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14345
 
 
 
---- Comment #3 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-03 07:58:03 PST ---
-Bug still here with latest git (same error) :/ 
-
-commit 9d9a5acae1deae8c76b512362634066e0c32a817
-Author: Jaime Velasco Juan <jsagarribay-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Date:   Sun Feb 3 15:45:32 2008 +0100
-
-    Don't FIRE_RING() when in NoAccel mode.
-
-
-
-I just inserted drm with debug=1 et no relevant message appears in syslog/dmesg
+--- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-03 10:00:08 PST ---
+I couldn't reproduce your issue and i'm not sure what the issue is.
 
 
 -- 
