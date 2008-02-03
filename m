@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12825] TvTime shows only the upper left corner (~
  1280x1024) in Randr1 .2
-Date: Sun,  3 Feb 2008 10:34:10 -0800 (PST)
-Message-ID: <20080203183411.5DCCE130055@annarchy.freedesktop.org>
+Date: Sun,  3 Feb 2008 10:35:09 -0800 (PST)
+Message-ID: <20080203183510.07E8D130051@annarchy.freedesktop.org>
 References: <bug-12825-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12825
 
 
 
---- Comment #11 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-03 10:34:10 PST ---
-Still the same thing happening with tvtime and mplayer.
-Also still booting gdm to 1280x1024 Is this normal?
+--- Comment #12 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-03 10:35:08 PST ---
+Created an attachment (id=14124)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14124)
+xorg log
 
 
 -- 
