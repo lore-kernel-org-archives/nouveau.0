@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14025] The X11 / X Server Exhibits Jitters in the
  Display after it is on for many hours
-Date: Sun,  3 Feb 2008 11:20:39 -0800 (PST)
-Message-ID: <20080203192039.ED882130055@annarchy.freedesktop.org>
+Date: Sun,  3 Feb 2008 11:49:12 -0800 (PST)
+Message-ID: <20080203194912.A0586130051@annarchy.freedesktop.org>
 References: <bug-14025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,16 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14025
 
 
 
---- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-03 11:20:38 PST ---
-Any chance you could try Option "Randr12" in your device section?
+--- Comment #7 from Shlomi Fish <shlomif-ik1l9ssToec+JF/nGntIXQ@public.gmane.org>  2008-02-03 11:49:11 PST ---
+(In reply to comment #6)
+> Any chance you could try Option "Randr12" in your device section?
+> 
 
-It's a new modeset system, that will hopefully replace the old one in the
-forseeable future.
+Yes, I can. I'll let you know what happens.
+
+Regards,
+
+        Shlomi Fish
 
 
 -- 
