@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 12825] TvTime shows only the upper left corner (~
  1280x1024) in Randr1 .2
-Date: Sun,  3 Feb 2008 10:43:41 -0800 (PST)
-Message-ID: <20080203184341.BCAB0130009@annarchy.freedesktop.org>
+Date: Sun,  3 Feb 2008 10:49:29 -0800 (PST)
+Message-ID: <20080203184929.3CDB3130055@annarchy.freedesktop.org>
 References: <bug-12825-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=12825
 
 
 
---- Comment #13 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-03 10:43:40 PST ---
-It's not the driver's choice what resolution to run, gdm has been known to
-prefer different resolutions, don't ask me why.
+--- Comment #14 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-03 10:49:28 PST ---
+Does the blitter adapter work? (check xvinfo for the adapter number)
 
-You are able to increase to maximum resolution?
+Does this also occur without randr12 enabled?
 
 
 -- 
