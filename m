@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14345] Image with width greater than 8176 pixel make
- firefox crash with X error
-Date: Sun,  3 Feb 2008 12:10:09 -0800 (PST)
-Message-ID: <20080203201010.2F364130053@annarchy.freedesktop.org>
-References: <bug-14345-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14174] nouveau uses symbols from private header
+	exa_priv.h
+Date: Sun,  3 Feb 2008 17:23:50 -0800 (PST)
+Message-ID: <20080204012350.5C563130009@annarchy.freedesktop.org>
+References: <bug-14174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14345-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14345
+http://bugs.freedesktop.org/show_bug.cgi?id=14174
+
+
+Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |
 
 
 
 
-
---- Comment #5 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-03 12:10:09 PST ---
-I'm using Xserver 1.3 (Xorg 7.2) on x86_64 arch.
-
-With option NoAccel, the bug doesn't occur, so it may be related to EXA.
-
-If I remember correctly,  you are using Xserver 1.4.x, maybe it's a bug already
-fixed in this release.
+--- Comment #3 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-02-03 17:23:49 PST ---
+Hmm, I'm reopening, it seems we still use exaGetDrawablePixmap in the video
+texture code.
 
 
 -- 
