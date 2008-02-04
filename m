@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14174] nouveau uses symbols from private header
 	exa_priv.h
-Date: Sun,  3 Feb 2008 17:23:50 -0800 (PST)
-Message-ID: <20080204012350.5C563130009@annarchy.freedesktop.org>
+Date: Sun,  3 Feb 2008 22:50:55 -0800 (PST)
+Message-ID: <20080204065056.01E9C130055@annarchy.freedesktop.org>
 References: <bug-14174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,19 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14174
 
 
-Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org> changed:
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|FIXED                       |
+             Status|REOPENED                    |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
---- Comment #3 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-02-03 17:23:49 PST ---
-Hmm, I'm reopening, it seems we still use exaGetDrawablePixmap in the video
-texture code.
+--- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-03 22:50:54 PST ---
+Closing again.
 
 
 -- 
