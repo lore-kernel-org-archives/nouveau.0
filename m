@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14391] nouveau lockup on NV44 / x86_64
-Date: Tue,  5 Feb 2008 13:16:41 -0800 (PST)
-Message-ID: <20080205211641.33B66130051@annarchy.freedesktop.org>
+Date: Tue,  5 Feb 2008 13:29:30 -0800 (PST)
+Message-ID: <20080205212930.37868130053@annarchy.freedesktop.org>
 References: <bug-14391-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14391
 
 
 
---- Comment #1 from Will Woods <wwoods-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2008-02-05 13:16:40 PST ---
-Created an attachment (id=14160)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14160)
-/var/log/messages 
-
-Full syslog contents from boot to crash. Interesting message at end:
-[drm:nouveau_fifo_irq_handler] *ERROR* Unhandled PFIFO interrupt:
-status=0x00200000
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-05 13:29:29 PST ---
+Your kernel log shows no sign of actually detecting a card, please try building
+all the components (drm and xf86-video-nouveau) manually to make sure that's
+not the problem.
 
 
 -- 
