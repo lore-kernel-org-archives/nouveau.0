@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14394] New: [NV4B] Composite broken on 2nd head
-Date: Tue,  5 Feb 2008 18:07:56 -0800 (PST)
-Message-ID: <bug-14394-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 10547] nouveau: __ucmpdi2 unresolved on ppc32
+Date: Wed,  6 Feb 2008 04:55:51 -0800 (PST)
+Message-ID: <20080206125551.7243E130055@annarchy.freedesktop.org>
+References: <bug-10547-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-10547-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,37 +20,32 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14394
-
-           Summary: [NV4B] Composite broken on 2nd head
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+http://bugs.freedesktop.org/show_bug.cgi?id=10547
 
 
-Created an attachment (id=14164)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14164)
-Xorg log
+Emanuele <emanuele.zamprogno-B2aCaCA9eTITvJdVw9/FMWGXanvQGlWp@public.gmane.org> changed:
 
-When using metacity's composite manager, windows moved from my primary head
-(LVDS) to the second head (DVI-D-0) do not appear at all.  The mouse pointer
-appears correctly, and the pointer changes depending on the contents of the
-invisible window as normal (ie: a text-caret when over a textbox, etc).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |emanuele.zamprogno@medicinao
+                   |                            |pen.info
 
-This happened with the switch to metacity 2.21.8.  One of the changes to the
-compositor was to use the Composite Overlay Window.  The kwin's compositor in
-KDE4 also exhibits the same behaviour.
 
-Composite works correctly when using xcompmgr, which leads me to suspect that
-it's a problem with the COW on the second head.
+
+
+--- Comment #9 from Emanuele <emanuele.zamprogno-B2aCaCA9eTITvJdVw9/FMWGXanvQGlWp@public.gmane.org>  2008-02-06 04:55:50 PST ---
+Hi,
+
+I'm using an gcc 4.2.3 from Debian and a Kernel 2.6.24 in a Powerbook G4
+[ppc32], but when i conpile DRM, i continue to have the problem.
+
+[drm] Initialized drm 1.1.0 20060810
+nouveau: Unknown symbol __ucmpdi2
+
+
+Any ideas? or anything  i can bring here to explain these?
+
+Thanks
 
 
 -- 
