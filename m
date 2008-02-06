@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
-Date: Wed,  6 Feb 2008 14:48:23 -0800 (PST)
-Message-ID: <20080206224823.A3459130055@annarchy.freedesktop.org>
+Date: Wed,  6 Feb 2008 15:41:29 -0800 (PST)
+Message-ID: <20080206234129.415BF130009@annarchy.freedesktop.org>
 References: <bug-14394-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14394
 
 
 
---- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 14:48:23 PST ---
-Did X have a left+right config at startup or was this changed with xrandr (or
-some other config app)? I may have a suspicion what the problem is, but i need
-to gather some more info.
+--- Comment #2 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 15:41:28 PST ---
+This was changed with the command "xrandr --output DVI-D-0 --right-of LVDS-0". 
+If you'd like me to check with this set up in xorg.conf, I'll need to find out
+how to do it :).
 
 
 -- 
