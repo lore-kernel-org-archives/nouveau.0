@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14405] randr-1.2 bug tracker
-Date: Wed,  6 Feb 2008 11:37:17 -0800 (PST)
-Message-ID: <20080206193718.3CFFB130051@annarchy.freedesktop.org>
+Date: Wed,  6 Feb 2008 11:50:28 -0800 (PST)
+Message-ID: <20080206195028.1C14C130051@annarchy.freedesktop.org>
 References: <bug-14405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Depends on|                            |14403
+         Depends on|                            |13668
 
 
 
