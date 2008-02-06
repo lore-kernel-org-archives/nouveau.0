@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14393] New: NV11 card is not detected properly by
- nouveau on big-endian box
-Date: Tue,  5 Feb 2008 17:06:53 -0800 (PST)
-Message-ID: <bug-14393-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14393] NV11 card is not detected properly by nouveau
+ on big-endian box
+Date: Tue,  5 Feb 2008 17:07:25 -0800 (PST)
+Message-ID: <20080206010725.6016E130053@annarchy.freedesktop.org>
+References: <bug-14393-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14393-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,45 +21,13 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14393
-
-           Summary: NV11 card is not detected properly by nouveau on big-
-                    endian box
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: henrik.sorensen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=14162)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14162)
-Xorg log
-
-The system is a gigabit g4 powermac with a PC AGP NV11 (10de:0110) flashed with
-a mac ROM. 
-
-While the drm module seems to identify it as a NV11, the nouveau ddx driver
-does not.
-
-
-[drm] Detected an NV11 generation card (0x011000b2)
-vs 
-(--) NOUVEAU(0): Chipset: "NVIDIA NV20"
-
-There's also a message in further down in the log that seems to suggest endian
-issues.
-
-(EE) NOUVEAU(0): Card is in big endian mode, something is very wrong !
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDM5MwoKCgoKCi0t
+LSBDb21tZW50ICMxIGZyb20gSGVucmlrIFPDuHJlbnNlbiA8aGVucmlrLnNvcmVuc2VuQGdtYWls
+LmNvbT4gIDIwMDgtMDItMDUgMTc6MDc6MjQgUFNUIC0tLQpDcmVhdGVkIGFuIGF0dGFjaG1lbnQg
+KGlkPTE0MTYzKQogLS0+IChodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5j
+Z2k/aWQ9MTQxNjMpCktlcm5lbCBsb2cKCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9i
+dWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBh
+cmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2ln
+bmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
