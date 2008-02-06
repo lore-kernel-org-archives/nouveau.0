@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Wed,  6 Feb 2008 09:36:56 -0800 (PST)
-Message-ID: <20080206173657.238D2130051@annarchy.freedesktop.org>
+Date: Wed,  6 Feb 2008 09:37:48 -0800 (PST)
+Message-ID: <20080206173748.7A591130054@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
 
---- Comment #3 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 09:36:55 PST ---
-Created an attachment (id=14177)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14177)
-randr 1.2 log with debugging turned on
+--- Comment #4 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 09:37:47 PST ---
+Created an attachment (id=14178)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14178)
+Defualt log with debugging turned on
+
+Alright, both are attached.  If you need anything else, just ask. 
 
 
 -- 
