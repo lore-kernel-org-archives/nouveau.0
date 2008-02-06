@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14405] randr-1.2 bug tracker
-Date: Wed,  6 Feb 2008 11:51:24 -0800 (PST)
-Message-ID: <20080206195124.D582B130053@annarchy.freedesktop.org>
-References: <bug-14405-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
+Date: Wed,  6 Feb 2008 14:48:23 -0800 (PST)
+Message-ID: <20080206224823.A3459130055@annarchy.freedesktop.org>
+References: <bug-14394-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14394-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14405
+http://bugs.freedesktop.org/show_bug.cgi?id=14394
 
 
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Depends on|                            |12825
 
 
+
+--- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 14:48:23 PST ---
+Did X have a left+right config at startup or was this changed with xrandr (or
+some other config app)? I may have a suspicion what the problem is, but i need
+to gather some more info.
 
 
 -- 
