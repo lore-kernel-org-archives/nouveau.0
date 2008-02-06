@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Wed,  6 Feb 2008 11:25:28 -0800 (PST)
-Message-ID: <20080206192529.334A8130054@annarchy.freedesktop.org>
+Date: Wed,  6 Feb 2008 11:34:12 -0800 (PST)
+Message-ID: <20080206193412.C687B130009@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
 
---- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 11:25:28 PST ---
-Does the LVDS work on it's own?
+--- Comment #6 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 11:34:12 PST ---
+No, I don't think it does. (I tried it once, and then I plugged in the other
+monitor so I could actually interact with the laptop.) 
+
+However, let me just reconfirm that, and submit new logs (rand1.2 and without)
+without any external monitor attached.  
+
+(Unfortunately, It'll have to wait until tonight.) 
 
 
 -- 
