@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Wed,  6 Feb 2008 07:27:28 -0800 (PST)
-Message-ID: <20080206152728.C2855130009@annarchy.freedesktop.org>
+Date: Wed,  6 Feb 2008 07:45:30 -0800 (PST)
+Message-ID: <20080206154531.498C5130051@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
 
---- Comment #1 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 07:27:28 PST ---
-Oh, I forgot to add:  If I try to switch modes on the LVDS-0 using 'xrandr -s
-..', nothing changes...  (Still black)
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 07:45:30 PST ---
+Please provide a full log with NOUVEAU_MODESET_TRACE in nv_local.h enabled.
 
-When I return to text mode, things are a shade of green, but I can't actually
-see the cursor. (As if things were shifted or something...)  
+A full log includes a VT switch or shutdown.
+
+A comparison log with randr12 disabled would be nice too.
 
 
 -- 
