@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
- works when randr 1.  2 is disabled
-Date: Wed,  6 Feb 2008 16:56:26 -0800 (PST)
-Message-ID: <20080207005627.245F0130009@annarchy.freedesktop.org>
-References: <bug-14403-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
+Date: Thu,  7 Feb 2008 00:42:16 -0800 (PST)
+Message-ID: <20080207084216.4C26E130055@annarchy.freedesktop.org>
+References: <bug-14394-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14403-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14394-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14403
+http://bugs.freedesktop.org/show_bug.cgi?id=14394
 
 
 
 
 
---- Comment #9 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 16:56:26 PST ---
-Oh, and as I suspected, the laptop screen still doesn't work (even when the
-other monitor is not plugged in.)
+--- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-07 00:42:15 PST ---
+Please try. This howto is pretty decent
+http://wiki.debian.org/XStrikeForce/HowToRandR12
 
 
 -- 
