@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Wed,  6 Feb 2008 16:53:43 -0800 (PST)
-Message-ID: <20080207005344.186F6130051@annarchy.freedesktop.org>
+Date: Wed,  6 Feb 2008 16:55:19 -0800 (PST)
+Message-ID: <20080207005519.C5F58130053@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
 
---- Comment #7 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 16:53:43 PST ---
-Created an attachment (id=14187)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14187)
-Non-randr startup using only the laptop screen
+--- Comment #8 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-06 16:55:19 PST ---
+Created an attachment (id=14188)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14188)
+randr1.2 Xorg.0.log using only the laptop screen
+
+Ok. Both of these logs were taken in single user mode after a fresh boot.
 
 
 -- 
