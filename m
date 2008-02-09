@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14426] SIGSEV in NVAccelUploadIFC
-Date: Fri,  8 Feb 2008 10:51:42 -0800 (PST)
-Message-ID: <20080208185142.9E774130051@annarchy.freedesktop.org>
+Date: Sat,  9 Feb 2008 09:03:17 -0800 (PST)
+Message-ID: <20080209170318.0B1A1130009@annarchy.freedesktop.org>
 References: <bug-14426-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14426
 
 
-Jaime Velasco Juan <jsagarribay-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         AssignedTo|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org
-                   |                            |g
 
 
 
+--- Comment #2 from Jaime Velasco Juan <jsagarribay-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-09 09:03:17 PST ---
+Created an attachment (id=14237)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14237)
+Xorg.log with DMA_TRACE and DMA_DEBUG enabled
 
---- Comment #1 from Jaime Velasco Juan <jsagarribay-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-08 10:51:41 PST ---
-Sorry, I selected wrong component
+I enabled NOUVEAU_DMA_DEBUG and NOUVEAU_DMA_TRACE.
+
+The bug triggers when the input needs padding. The code reads the padding bytes
+from the input data, but after the last line of the input there is not valid
+data and the driver gets a SIGSEV. If I force the driver to skip the last line
+it doesn't crash (but I get some corruption).
 
 
 -- 
