@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
-Date: Mon, 11 Feb 2008 13:25:10 -0800 (PST)
-Message-ID: <20080211212510.DC8DA130053@annarchy.freedesktop.org>
+Date: Mon, 11 Feb 2008 13:26:53 -0800 (PST)
+Message-ID: <20080211212655.D4E8D130054@annarchy.freedesktop.org>
 References: <bug-14394-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14394
 
 
 
---- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-11 13:25:10 PST ---
-This is a (test) patch against xserver git, so it may not apply perfectly
-against against 1.4.x, It's also untested as i have no test application for the
-moment.
+--- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-11 13:26:52 PST ---
+Created an attachment (id=14274)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14274)
+An attemp at resizing the composite overlay window.
 
 
 -- 
