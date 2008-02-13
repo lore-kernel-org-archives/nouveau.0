@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Wed, 13 Feb 2008 02:41:10 -0800 (PST)
-Message-ID: <20080213104112.4D42F130059@annarchy.freedesktop.org>
+Date: Wed, 13 Feb 2008 05:44:23 -0800 (PST)
+Message-ID: <20080213134423.5C5B6130061@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,19 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
 
---- Comment #12 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-13 02:41:08 PST ---
-In reply to #10: the pitch is normal, it is different because you want to
-rotate.
-
-Other comments: this issue *seems* to be similar to the one with 12" powerbooks
-(NV34): with rand12, panel does not work. But externally attached (analog)
-displays work fine. To me it seems related to the fact that I see that here and
-in my logs, the BIOS tells us we are on CRTC 1. This is slightly strange maybe,
-but I do not see why it shouldn't work. Of course, I may be wrong and this can
-be a different issue.
-
-
-danny
+--- Comment #13 from Alexander Clausen <alex-cNj2xTjoM4ezQB+pC5nmwQ@public.gmane.org>  2008-02-13 05:44:22 PST ---
+i can confirm this issue, at least that the screen stays black; i haven't
+tested an external display yet. this is on powerbook g4 17", geforce4 440 go
+32m.
 
 
 -- 
