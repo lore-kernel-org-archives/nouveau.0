@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Wed, 13 Feb 2008 05:44:23 -0800 (PST)
-Message-ID: <20080213134423.5C5B6130061@annarchy.freedesktop.org>
+Date: Wed, 13 Feb 2008 07:27:41 -0800 (PST)
+Message-ID: <20080213152741.8098C130061@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
 
---- Comment #13 from Alexander Clausen <alex-cNj2xTjoM4ezQB+pC5nmwQ@public.gmane.org>  2008-02-13 05:44:22 PST ---
-i can confirm this issue, at least that the screen stays black; i haven't
-tested an external display yet. this is on powerbook g4 17", geforce4 440 go
-32m.
+--- Comment #14 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-13 07:27:40 PST ---
+Reply to #11.
+
+Yes, the external monitor works just fine with randr1.2.  I can change
+resolutions , and that works, too. 
+
+The laptop screen is on (backlit) but nothing appears on the screen. 
+
+Also (possibly related), the switch back to text mode fails to. I see text that
+is tinted green, but I don't see my cursor, and when I type nothing appears to
+change on the screen. 
+
+(once again, I DO see text on the external monitor, and am able to type...) 
 
 
 -- 
