@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Wed, 13 Feb 2008 07:41:36 -0800 (PST)
-Message-ID: <20080213154136.9A917130051@annarchy.freedesktop.org>
+Date: Wed, 13 Feb 2008 09:00:34 -0800 (PST)
+Message-ID: <20080213170034.4FDAB130055@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
 
---- Comment #15 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-13 07:41:35 PST ---
-The greenish text/garbage is a sign that the color mode is not correctly set.
-Probably indicating a larger problem.
+--- Comment #16 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-13 09:00:33 PST ---
+Please can you:
+git clone git://people.freedesktop.org/~airlied/radeontool
+git checkout origin/nvidia
+
+then attach to this bug the output of "radeontool regs" when running nouveau
+both in randr12 and non-randr12 modes, when you have booted *without* the
+external head attached (doing it remotely is fine, since obviously in the
+randr12 case you're blind)
 
 
 -- 
