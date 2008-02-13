@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Mon, 11 Feb 2008 14:01:25 -0800 (PST)
-Message-ID: <20080211220125.A4CCC130051@annarchy.freedesktop.org>
+Date: Tue, 12 Feb 2008 18:50:16 -0800 (PST)
+Message-ID: <20080213025016.32D8B130072@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,34 +24,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org
 
 
 
---- Comment #10 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-11 14:01:22 PST ---
-So, I don't know if this is relevant, but I was looking at the log files, and
-it
-seems like the pitch and virtual size is screwed up (or at least different) in
-the randr dump.
 
-I'm going to try to hard code a Virtual size of 1680x1050, and see if anything
-changes.
+--- Comment #11 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-12 18:50:15 PST ---
+Hi,
 
-no randr:
-(--) NOUVEAU(0): Virtual size is 1680x1050 (pitch 1680)
-(**) NOUVEAU(0): *Driver mode "1680x1050": 119.0 MHz, 64.7 kHz, 59.9 Hz
-(II) NOUVEAU(0): Modeline "1680x1050"  119.00  1680 1728 1760 1840  1050 1053
-1059 1080 +hsync -vsync
-
-....
-
-Randr:
-....
-(--) NOUVEAU(0): Virtual size is 1680x1680 (pitch 1728)
-(**) NOUVEAU(0):  Driver mode "1680x1050": 119.1 MHz (scaled from 0.0 MHz),
-64.7 kHz, 59.9 Hz
-(II) NOUVEAU(0): Modeline "1680x1050"  119.12  1680 1728 1760 1840  1050 1052
-1058 1080 -hsync -vsync
-....
+Just to be certain, can you confirm that the external screen works correctly
+when using randr1.2?
+You say the laptop screen is blank - does it appear to be off (no backlight),
+or  black, but still on and backlit?
 
 
 -- 
