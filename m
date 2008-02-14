@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Wed, 13 Feb 2008 17:20:46 -0800 (PST)
-Message-ID: <20080214012046.75AA0130063@annarchy.freedesktop.org>
+Date: Wed, 13 Feb 2008 20:18:51 -0800 (PST)
+Message-ID: <20080214041852.045A813005D@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,21 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
 
---- Comment #19 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-13 17:20:45 PST ---
-Created an attachment (id=14301)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14301)
-Radeon tool dump of nvidia registers: randr 1.2, single head (no external
-monitor)
+--- Comment #20 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-13 20:18:51 PST ---
+Ok, from looking at a quick diff of those, NV_RAMDAC_FP_CONTROL1,
+NV_RAMDAC_FP_DEBUG00, and NV_RAMDAC_OUTPUT* stand out as possibly interesting.
+
+Respectively, can you try these:
+1) nv_crtc.c:1494
+        change regp->fp_control[nv_crtc->head] = 0x00000000;
+        for regp->fp_control[nv_crtc->head] = 0x00100000;
+2) nv_crtc.c:1696-7
+        remove the two lines with PWRDOWN in them
+3) nv_output.c:601-2
+        swap output_reg[0] for output_reg[1], and vice-versa
+
+One other thing (very unlikely to have an effect) is to avoid the ORing of
+pllsel with NV_RAMDAC_PLL_SELECT_VCLK_RATIO_DB2, nv_crtc.c around line 790
 
 
 -- 
