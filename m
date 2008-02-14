@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14393] fifo lockup with nv11 in ppc machine
-Date: Thu, 14 Feb 2008 08:08:39 -0800 (PST)
-Message-ID: <20080214160840.0B17913006F@annarchy.freedesktop.org>
+Date: Thu, 14 Feb 2008 08:08:50 -0800 (PST)
+Message-ID: <20080214160850.C690613005B@annarchy.freedesktop.org>
 References: <bug-14393-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -24,7 +24,7 @@ aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDM5MwoKCkhlbnJp
 ayBTw7hyZW5zZW4gPGhlbnJpay5zb3JlbnNlbkBnbWFpbC5jb20+IGNoYW5nZWQ6CgogICAgICAg
 ICAgIFdoYXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0t
 LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQogIEF0dGFjaG1lbnQgIzE0MTYyfDEgICAgICAgICAgICAgICAgICAgICAgICAg
+LS0tLS0tLS0tLQogIEF0dGFjaG1lbnQgIzE0MTYzfDEgICAgICAgICAgICAgICAgICAgICAgICAg
 ICB8MAogICAgICAgIGlzIG9ic29sZXRlfCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8CgoK
 CgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2Vy
 cHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBi
