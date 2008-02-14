@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
- works when randr 1.  2 is disabled
-Date: Wed, 13 Feb 2008 20:18:51 -0800 (PST)
-Message-ID: <20080214041852.045A813005D@annarchy.freedesktop.org>
-References: <bug-14403-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14393] NV11 card is not detected properly by nouveau
+ on big-endian box
+Date: Thu, 14 Feb 2008 07:05:45 -0800 (PST)
+Message-ID: <20080214150545.99298130051@annarchy.freedesktop.org>
+References: <bug-14393-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14403-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14393-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14403
-
-
-
-
-
---- Comment #20 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-13 20:18:51 PST ---
-Ok, from looking at a quick diff of those, NV_RAMDAC_FP_CONTROL1,
-NV_RAMDAC_FP_DEBUG00, and NV_RAMDAC_OUTPUT* stand out as possibly interesting.
-
-Respectively, can you try these:
-1) nv_crtc.c:1494
-        change regp->fp_control[nv_crtc->head] = 0x00000000;
-        for regp->fp_control[nv_crtc->head] = 0x00100000;
-2) nv_crtc.c:1696-7
-        remove the two lines with PWRDOWN in them
-3) nv_output.c:601-2
-        swap output_reg[0] for output_reg[1], and vice-versa
-
-One other thing (very unlikely to have an effect) is to avoid the ORing of
-pllsel with NV_RAMDAC_PLL_SELECT_VCLK_RATIO_DB2, nv_crtc.c around line 790
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDM5MwoKCkhlbnJp
+ayBTw7hyZW5zZW4gPGhlbnJpay5zb3JlbnNlbkBnbWFpbC5jb20+IGNoYW5nZWQ6CgogICAgICAg
+ICAgIFdoYXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLQogIEF0dGFjaG1lbnQgIzE0MTYyfDAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICB8MQogICAgICAgIGlzIG9ic29sZXRlfCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8CgoK
+CgotLS0gQ29tbWVudCAjMiBmcm9tIEhlbnJpayBTw7hyZW5zZW4gPGhlbnJpay5zb3JlbnNlbkBn
+bWFpbC5jb20+ICAyMDA4LTAyLTE0IDA3OjA1OjQzIFBTVCAtLS0KQ3JlYXRlZCBhbiBhdHRhY2ht
+ZW50IChpZD0xNDMwOSkKIC0tPiAoaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL2F0dGFjaG1l
+bnQuY2dpP2lkPTE0MzA5KQpYIGxvZwoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1
+Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFy
+ZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWdu
+ZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
