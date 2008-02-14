@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14405] randr-1.2 bug tracker
-Date: Wed, 13 Feb 2008 17:04:16 -0800 (PST)
-Message-ID: <20080214010416.22DF2130072@annarchy.freedesktop.org>
-References: <bug-14405-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14491] enabling randr-1. 2 support causes LVDS
+ unknown config bits error when starting the X server
+Date: Wed, 13 Feb 2008 17:07:48 -0800 (PST)
+Message-ID: <20080214010748.CCCBC130053@annarchy.freedesktop.org>
+References: <bug-14491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14405
+http://bugs.freedesktop.org/show_bug.cgi?id=14491
 
 
-Travis M. <travisimo1993-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Depends on|                            |14491
 
 
+
+--- Comment #1 from Travis M. <travisimo1993-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-13 17:07:47 PST ---
+Created an attachment (id=14299)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14299)
+the hacked EDID file to make my LCD work properly under the propriatory nvidia
+driver (it works fine with nv and nouveau out-of-the-box)
 
 
 -- 
