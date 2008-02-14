@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
- works when randr 1.  2 is disabled
-Date: Thu, 14 Feb 2008 09:44:00 -0800 (PST)
-Message-ID: <20080214174400.83F01130072@annarchy.freedesktop.org>
-References: <bug-14403-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
+Date: Thu, 14 Feb 2008 14:31:04 -0800 (PST)
+Message-ID: <20080214223104.BAB1213005A@annarchy.freedesktop.org>
+References: <bug-14394-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14403-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14394-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14403
+http://bugs.freedesktop.org/show_bug.cgi?id=14394
 
 
 
 
 
---- Comment #21 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-14 09:43:59 PST ---
-Just to be absolutely sure about what you are asking me to do.
+--- Comment #9 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-14 14:31:03 PST ---
+(In reply to comment #8)
+> Are you in a position to try a git xserver, as i cannot reproduce the problem?
+> 
 
-Do you want me to try
-#1 
-(back out #1) #2
-(back out #2) #3
-
-Or do you want me to try:
-#1
-#1+#2
-#1+#2+#3
-
-Either way, I'll take a swing at it tonight. 
+I've just applied your patch to Ubuntu's X server (which seems to be a git
+snapshot as of 2008/01/31), and it fixes this.  Sorry for the delay.
 
 
 -- 
