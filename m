@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14403] NV17: LVDS0 is black with Randr 1.2,
  works when randr 1.  2 is disabled
-Date: Fri, 15 Feb 2008 05:13:27 -0800 (PST)
-Message-ID: <20080215131327.6AF2E13005A@annarchy.freedesktop.org>
+Date: Fri, 15 Feb 2008 08:14:13 -0800 (PST)
+Message-ID: <20080215161413.5670E130051@annarchy.freedesktop.org>
 References: <bug-14403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,18 +27,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14403
 
 
 
---- Comment #22 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-15 05:13:26 PST ---
-Created an attachment (id=14334)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14334)
-Register dump after all three fixes have been added to head of line
-
-I tried the patches individually (1, 2, 3), and also 1+2, 1+2+3. 
-
-None of them changed things.
-
-I've attached a register dump with ALL three applied.  I haven't had a chance
-to
-try the other PLL thing that you suggested. 
+--- Comment #23 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-15 08:14:12 PST ---
+Working from the all three applied state of your last dump, the diff against
+no-randr12 shows a few things still, so (on top of the previous changes):
+0) do the PLL_SELECT change (unlikely to do anything, but still)
+1) nv_crtc.c:1454 regp->fp_vert_regs[REG_DISP_CRTC] = 0x41a;
+2) nv_bios.c:2808 
+if (pNv->dcb_table.entry[dcb_entry].type == OUTPUT_LVDS)
+        (i.e. remove dual_link test)
+ & nv_crtc.c:1533 remove "if" test so 
+regp->fp_control[nv_crtc->head] |= (8 << 28) is always set
+3) nv_bios.c:3152 lvdsmanufacturerindex = 1;
 
 
 -- 
