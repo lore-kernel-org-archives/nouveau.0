@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
-Date: Thu, 14 Feb 2008 14:31:04 -0800 (PST)
-Message-ID: <20080214223104.BAB1213005A@annarchy.freedesktop.org>
+Date: Fri, 15 Feb 2008 03:59:49 -0800 (PST)
+Message-ID: <20080215115949.F421D13005B@annarchy.freedesktop.org>
 References: <bug-14394-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14394
 
 
 
---- Comment #9 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-14 14:31:03 PST ---
-(In reply to comment #8)
-> Are you in a position to try a git xserver, as i cannot reproduce the problem?
-> 
-
-I've just applied your patch to Ubuntu's X server (which seems to be a git
-snapshot as of 2008/01/31), and it fixes this.  Sorry for the delay.
+--- Comment #10 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-15 03:59:49 PST ---
+You were running a git xserver before as well?
 
 
 -- 
