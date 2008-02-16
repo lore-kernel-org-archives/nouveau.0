@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
-Date: Sat, 16 Feb 2008 14:56:34 -0800 (PST)
-Message-ID: <20080216225634.80F02130053@annarchy.freedesktop.org>
+Date: Sat, 16 Feb 2008 15:10:46 -0800 (PST)
+Message-ID: <20080216231046.78D7D13007D@annarchy.freedesktop.org>
 References: <bug-14394-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,18 +27,18 @@ Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #14358|0                           |1
+  Attachment #14359|0                           |1
         is obsolete|                            |
 
 
 
 
---- Comment #15 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-16 14:56:33 PST ---
-Created an attachment (id=14359)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14359)
-resize the composite overlay window
+--- Comment #16 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-16 15:10:45 PST ---
+Created an attachment (id=14360)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14360)
+esize the composite overlay window
 
-Make the function static.
+Return FALSE when appropriate.
 
 
 -- 
