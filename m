@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
-Date: Sun, 17 Feb 2008 12:37:28 -0800 (PST)
-Message-ID: <20080217203728.7A02E13007D@annarchy.freedesktop.org>
-References: <bug-14394-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14532] New: Crash on xvtest with NV Video Blitter of
+	NV44
+Date: Sun, 17 Feb 2008 15:29:05 -0800 (PST)
+Message-ID: <bug-14532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14394-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +19,32 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14394
+http://bugs.freedesktop.org/show_bug.cgi?id=14532
+
+           Summary: Crash on xvtest with NV Video Blitter of NV44
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: astralstorm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Created an attachment (id=14367)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14367)
+X log of that session
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |NOTOURBUG
+Card: GeForce Go 7300 (NV44)
 
+I've hit this crash bug trying to test FPS on the second port of the card
+(number 137).
 
-
-
---- Comment #18 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-17 12:37:27 PST ---
-Fixed in xserver git.
+After like 15 seconds, I've got a crash.
 
 
 -- 
