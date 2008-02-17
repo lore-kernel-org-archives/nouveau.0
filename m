@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
-Date: Sat, 16 Feb 2008 17:25:23 -0800 (PST)
-Message-ID: <20080217012524.07D0B130059@annarchy.freedesktop.org>
+Date: Sun, 17 Feb 2008 12:37:28 -0800 (PST)
+Message-ID: <20080217203728.7A02E13007D@annarchy.freedesktop.org>
 References: <bug-14394-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14394
 
 
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTOURBUG
 
 
 
---- Comment #17 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-16 17:25:23 PST ---
-Confirmed, applied to Ubuntu's packages with a git snapshot as of 2008/01/31. 
-Everything works fine with the above patch, xrandr resizing breaks Metacity's
-compositor (as described previously) without the patch.
+
+--- Comment #18 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-17 12:37:27 PST ---
+Fixed in xserver git.
 
 
 -- 
