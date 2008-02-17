@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14394] [NV4B] Composite broken on 2nd head
-Date: Sat, 16 Feb 2008 15:10:46 -0800 (PST)
-Message-ID: <20080216231046.78D7D13007D@annarchy.freedesktop.org>
+Date: Sat, 16 Feb 2008 17:25:23 -0800 (PST)
+Message-ID: <20080217012524.07D0B130059@annarchy.freedesktop.org>
 References: <bug-14394-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,22 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14394
 
 
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #14359|0                           |1
-        is obsolete|                            |
 
 
 
-
---- Comment #16 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-16 15:10:45 PST ---
-Created an attachment (id=14360)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14360)
-esize the composite overlay window
-
-Return FALSE when appropriate.
+--- Comment #17 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-16 17:25:23 PST ---
+Confirmed, applied to Ubuntu's packages with a git snapshot as of 2008/01/31. 
+Everything works fine with the above patch, xrandr resizing breaks Metacity's
+compositor (as described previously) without the patch.
 
 
 -- 
