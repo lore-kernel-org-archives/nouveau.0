@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14491] enabling randr-1. 2 support causes LVDS
  unknown config bits error when starting the X server
-Date: Mon, 18 Feb 2008 11:48:48 -0800 (PST)
-Message-ID: <20080218194848.E54AC130080@annarchy.freedesktop.org>
+Date: Tue, 19 Feb 2008 08:18:29 -0800 (PST)
+Message-ID: <20080219161830.0F4E2130080@annarchy.freedesktop.org>
 References: <bug-14491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-14491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,21 +21,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14491
-
-
-
-
-
---- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-18 11:48:48 PST ---
-Created an attachment (id=14394)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14394)
-Patch to work around DCB v2.0 LVDS config bits issue
-
-See what happens with this patch applied
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDQ5MQoKCgoKCi0t
+LSBDb21tZW50ICM1IGZyb20gSGVucmlrIFPDuHJlbnNlbiA8aGVucmlrLnNvcmVuc2VuQGdtYWls
+LmNvbT4gIDIwMDgtMDItMTkgMDg6MTg6MjkgUFNUIC0tLQpDcmVhdGVkIGFuIGF0dGFjaG1lbnQg
+KGlkPTE0NDE1KQogLS0+IChodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5j
+Z2k/aWQ9MTQ0MTUpClgub3JnIHdpdGggcGF0Y2ggYXBwbGllZAoKCi0tIApDb25maWd1cmUgYnVn
+bWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWls
+Ci0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91
+IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
