@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14567] Randr 1.2 fails on nv17 lvds in a Dell
- Inspiron 8100 ( continued from 14491)
-Date: Tue, 19 Feb 2008 10:25:24 -0800 (PST)
-Message-ID: <20080219182524.D0445130052@annarchy.freedesktop.org>
-References: <bug-14567-8800@http.bugs.freedesktop.org/>
+From: Philipp Jocham <philipp.jocham-hi6Y0CQ0nG0@public.gmane.org>
+Subject: Nouveau / GeForce 7600 GS / DualHead / AMD64x2
+Date: Wed, 20 Feb 2008 00:16:10 +0100
+Message-ID: <47BB633A.5070104@gmx.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +18,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDU2NwoKCkhlbnJp
-ayBTw7hyZW5zZW4gPGhlbnJpay5zb3JlbnNlbkBnbWFpbC5jb20+IGNoYW5nZWQ6CgogICAgICAg
-ICAgIFdoYXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQogICAgICAgICAgICAgQmxvY2tzfCAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICB8MTQ0MDUKCgoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0
-b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcg
-dGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBi
-dWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+Hi all!
+
+I just wanted to tell you that I checked out the latest
+nouveau version and replaced the old 'nv' driver.
+
+Additionally to the installation instruction I added
+   Option "RandR12" "true"
+to the Device section
+and
+   Virtual 2560 1024
+to the Display subsection in the /etc/X11/xorg.conf file.
+
+Putting
+xrandr --output DVI-D-1 --auto --output DVI-D-0 --auto --left-of DVI-D-1
+into my ~/.xinitrc, gives me a nice and working dualhead setup!
+
+Great work!
+
+Regards, Philipp
