@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14610] corrupted nouveau screen output
-Date: Thu, 21 Feb 2008 15:43:35 -0800 (PST)
-Message-ID: <20080221234335.28C20130052@annarchy.freedesktop.org>
+Date: Thu, 21 Feb 2008 15:44:41 -0800 (PST)
+Message-ID: <20080221234442.21DCB130094@annarchy.freedesktop.org>
 References: <bug-14610-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14610
 
 
 
---- Comment #1 from Fabian Fingerle <fabian-x5yzbtgCVuVsET1BNAyrpg@public.gmane.org>  2008-02-21 15:43:34 PST ---
-Created an attachment (id=14486)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14486)
-Xorg.0.log.bz2
+--- Comment #2 from Fabian Fingerle <fabian-x5yzbtgCVuVsET1BNAyrpg@public.gmane.org>  2008-02-21 15:44:41 PST ---
+Created an attachment (id=14487)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14487)
+T61 shot
 
 
 -- 
