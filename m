@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Thu, 21 Feb 2008 00:09:28 -0800 (PST)
-Message-ID: <20080221080928.893F6130098@annarchy.freedesktop.org>
+Date: Thu, 21 Feb 2008 00:11:13 -0800 (PST)
+Message-ID: <20080221081113.94390130083@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #6 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-21 00:09:28 PST ---
-Created an attachment (id=14475)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14475)
-reg dump with randr12 active
+--- Comment #7 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-21 00:11:12 PST ---
+Created an attachment (id=14476)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14476)
+xorg log with randr12 enabled and working
 
-register dump with patch and randr12 working.
+finally the xorg.log of the working configuration.
 
 
 -- 
