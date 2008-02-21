@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Wed, 20 Feb 2008 23:53:07 -0800 (PST)
-Message-ID: <20080221075307.DCA75130063@annarchy.freedesktop.org>
+Date: Wed, 20 Feb 2008 23:57:43 -0800 (PST)
+Message-ID: <20080221075743.8B677130053@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #3 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-20 23:53:07 PST ---
-Created an attachment (id=14472)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14472)
-reg dump randr12 inactive
+--- Comment #4 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-20 23:57:40 PST ---
+Created an attachment (id=14473)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14473)
+reg dump randr12 active
 
-register dump without randr12 running, as intialized by OF.
+register dump with randr12 active and when experiencing a "black" screen. The
+backlight is on in such case but the panel seems completely off (no slight
+flickering, which i can sometimes observe when a mode is set but the screen is
+black).
 
 
 -- 
