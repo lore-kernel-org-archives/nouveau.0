@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Wed, 20 Feb 2008 23:52:02 -0800 (PST)
-Message-ID: <20080221075202.9EE5613005D@annarchy.freedesktop.org>
+Date: Wed, 20 Feb 2008 23:53:07 -0800 (PST)
+Message-ID: <20080221075307.DCA75130063@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,25 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #2 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-20 23:52:01 PST ---
-Created an attachment (id=14471)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14471)
-xorg log with randr enabled.
+--- Comment #3 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-20 23:53:07 PST ---
+Created an attachment (id=14472)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14472)
+reg dump randr12 inactive
 
-Xorg log with randr12 enabled.
-
-Several observations:
--for some reason, X seems to thing 800x600 is a nice resolution. I have no clue
-why. I think this has been fixed in later versions as I saw a 1.4.0 log without
-this sillyness.
--all modes are rejected because VRefresh is out of range. Since DDC says they
-are all 0. Why don't we calculate a sensible VRefresh instead of asking people
-to remove the ranges from the xorg.conf (I may be ignorant here)
--the bitdepth of the console mode is incorrectly detected. However, from
-multiple test i think it only does it wrong the first time on boot (not sure).
-We do not seem to use this info currently.
--screen stays black. Even after fixing above problems and having it set the
-default DDC mode.
+register dump without randr12 running, as intialized by OF.
 
 
 -- 
