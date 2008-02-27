@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14704] randr1.2 broken on apple powerbook 17"
-Date: Wed, 27 Feb 2008 12:11:13 -0800 (PST)
-Message-ID: <20080227201114.66CA01300B1@annarchy.freedesktop.org>
+Date: Wed, 27 Feb 2008 12:11:50 -0800 (PST)
+Message-ID: <20080227201151.5FA981300B2@annarchy.freedesktop.org>
 References: <bug-14704-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14704
 
 
-Alexander Clausen <alex-cNj2xTjoM4ezQB+pC5nmwQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Platform|Other                       |PowerPC
 
 
+
+--- Comment #1 from Alexander Clausen <alex-cNj2xTjoM4ezQB+pC5nmwQ@public.gmane.org>  2008-02-27 12:11:50 PST ---
+Created an attachment (id=14622)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14622)
+"bios" dump as requested
 
 
 -- 
