@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14704] New: randr1.2 broken on apple powerbook 17"
-Date: Wed, 27 Feb 2008 12:10:05 -0800 (PST)
-Message-ID: <bug-14704-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14704] randr1.2 broken on apple powerbook 17"
+Date: Wed, 27 Feb 2008 12:11:13 -0800 (PST)
+Message-ID: <20080227201114.66CA01300B1@annarchy.freedesktop.org>
+References: <bug-14704-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=14704
 
-           Summary: randr1.2 broken on apple powerbook 17"
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: alex-cNj2xTjoM4ezQB+pC5nmwQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Alexander Clausen <alex-cNj2xTjoM4ezQB+pC5nmwQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Platform|Other                       |PowerPC
 
 
-Created an attachment (id=14621)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14621)
-xorg log
-
-symptoms: black screen. worked without randr12 enabled.
-card is a geforce4 go 440 (device id 0179), panel is 17" 1440x900
-xorg log and "bios" dump will be attached shortly
 
 
 -- 
