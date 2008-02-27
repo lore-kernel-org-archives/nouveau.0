@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Wed, 27 Feb 2008 02:06:13 -0800 (PST)
-Message-ID: <20080227100614.6E700130091@annarchy.freedesktop.org>
+Date: Wed, 27 Feb 2008 04:58:03 -0800 (PST)
+Message-ID: <20080227125803.B48E6130118@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #8 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-27 02:06:11 PST ---
-update: with latest git, only the fp_control part of my patch is still needed.
-
-d.
+--- Comment #9 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-27 04:58:02 PST ---
+Fixed?
 
 
 -- 
