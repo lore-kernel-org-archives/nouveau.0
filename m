@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14703] On NV17 on laptop screen: certain resolutions
  are scrambled
-Date: Wed, 27 Feb 2008 11:08:46 -0800 (PST)
-Message-ID: <20080227190846.A55BA1300EC@annarchy.freedesktop.org>
+Date: Wed, 27 Feb 2008 11:09:24 -0800 (PST)
+Message-ID: <20080227190924.E03B513010E@annarchy.freedesktop.org>
 References: <bug-14703-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14703
 
 
 
---- Comment #3 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-27 11:08:45 PST ---
-Created an attachment (id=14619)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14619)
-regdump::broken 1152x864 (with randr 1.2)
+--- Comment #4 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-27 11:09:24 PST ---
+Created an attachment (id=14620)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14620)
+regdump::broken 1024x768 (with randr 1.2)
 
 
 -- 
