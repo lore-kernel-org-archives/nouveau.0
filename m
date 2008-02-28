@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Wed, 27 Feb 2008 21:17:20 -0800 (PST)
-Message-ID: <20080228051720.EF6FD1300C3@annarchy.freedesktop.org>
+Date: Thu, 28 Feb 2008 06:34:31 -0800 (PST)
+Message-ID: <20080228143431.3BA52130053@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #10 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-27 21:17:19 PST ---
-nope. Setting a transition frequency fixes fp_control, but causes the wrong
-LVDS_RESET scripts to run again.
-
-d.
+--- Comment #11 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-28 06:34:30 PST ---
+Please attach xorg logs for both before and after the default transition clock
+addition. Also, using the "before" case + the fp.dual_link patch (i.e. a
+working state), please get nv_output_save to print out all the members of
+regp->TMDS after they have been read in the loop, and attach that too.
 
 
 -- 
