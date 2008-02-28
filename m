@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14704] randr1.2 broken on apple powerbook 17"
-Date: Wed, 27 Feb 2008 12:16:59 -0800 (PST)
-Message-ID: <20080227201659.C4ECC130096@annarchy.freedesktop.org>
-References: <bug-14704-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14597] randr12 failures on 12" powerbooks,
+	and workarounds
+Date: Wed, 27 Feb 2008 21:17:20 -0800 (PST)
+Message-ID: <20080228051720.EF6FD1300C3@annarchy.freedesktop.org>
+References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14704
+http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
 
 
---- Comment #3 from Alexander Clausen <alex-cNj2xTjoM4ezQB+pC5nmwQ@public.gmane.org>  2008-02-27 12:16:59 PST ---
-sorry, forgot to mention, this is git head.
+--- Comment #10 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-27 21:17:19 PST ---
+nope. Setting a transition frequency fixes fp_control, but causes the wrong
+LVDS_RESET scripts to run again.
+
+d.
 
 
 -- 
