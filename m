@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Thu, 28 Feb 2008 20:18:00 -0800 (PST)
-Message-ID: <20080229041800.B89E11300CB@annarchy.freedesktop.org>
+Date: Thu, 28 Feb 2008 20:51:31 -0800 (PST)
+Message-ID: <20080229045131.6C59B1300E9@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,16 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #12 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-28 20:17:59 PST ---
-Created an attachment (id=14678)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14678)
-xorg.log working state
+--- Comment #13 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-28 20:51:30 PST ---
+Created an attachment (id=14680)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14680)
+Xorg log transition clock change applied
 
-Xorg.log of a working configuration, with transition clock change commented and
-with regp->fp_control[nv_crtc->head] |= (8 << 28); commented.
+This is pristine git head, with the transition clock change applied.
 
-TMDS registers printed out below "Printing TMDS registers:" string.
+Note that several LVDS scripts are run which cause the screen to be black (even
+when switching to text mode). The TMDS regs seem to be the same as in previous
+log.
 
 d.
 
