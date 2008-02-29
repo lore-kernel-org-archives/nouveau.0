@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Thu, 28 Feb 2008 20:51:31 -0800 (PST)
-Message-ID: <20080229045131.6C59B1300E9@annarchy.freedesktop.org>
+Date: Thu, 28 Feb 2008 20:56:23 -0800 (PST)
+Message-ID: <20080229045623.59D7A13010D@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +27,21 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #13 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-28 20:51:30 PST ---
-Created an attachment (id=14680)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14680)
-Xorg log transition clock change applied
+--- Comment #14 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-02-28 20:56:22 PST ---
+Created an attachment (id=14681)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14681)
+xorg.log without transition clock change
 
-This is pristine git head, with the transition clock change applied.
+Xorg.log with default transition clock setting commented, but it now sets
+regp->fp_control[nv_crtc->head] |= (8 << 28); which will cause a black screen.
+Text mode restore still works fine in this configuration. And it is fixable "on
+the fly" by using radeontool to manually correct fp_control for crtc 1.
 
-Note that several LVDS scripts are run which cause the screen to be black (even
-when switching to text mode). The TMDS regs seem to be the same as in previous
-log.
+Again the outputted TMDS regs seem to be the same to me.
+
+I hope I understood your requests correctly and this helps.
+
+
 
 d.
 
