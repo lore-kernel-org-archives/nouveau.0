@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14703] On NV17 on laptop screen: certain resolutions
  are scrambled
-Date: Fri, 29 Feb 2008 13:12:46 -0800 (PST)
-Message-ID: <20080229211246.5701D1300AA@annarchy.freedesktop.org>
+Date: Fri, 29 Feb 2008 13:19:05 -0800 (PST)
+Message-ID: <20080229211905.5A58713008B@annarchy.freedesktop.org>
 References: <bug-14703-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14703
 
 
 
---- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-29 13:12:45 PST ---
-Did you ever use the blob and noticed what scaling options nvidia-settings
-offered?
-
-Could you make a picture of the SquiggleFont?
-
-Could you check the broken aspect ratio modes, and see if they have some kind
-of message like: "scaling resolution for widescreen/portrait something"
+--- Comment #9 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-29 13:19:04 PST ---
+I forgot to add, the message may appear in xorg log, about half way the output
+modeset, if that means anything to you.
 
 
 -- 
