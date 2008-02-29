@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14567] Randr 1.2 fails on nv17 lvds in a Dell
  Inspiron 8100 ( continued from 14491)
-Date: Thu, 28 Feb 2008 14:33:59 -0800 (PST)
-Message-ID: <20080228223359.E606A1300F5@annarchy.freedesktop.org>
+Date: Thu, 28 Feb 2008 17:22:22 -0800 (PST)
+Message-ID: <20080229012222.7EFBC130085@annarchy.freedesktop.org>
 References: <bug-14567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-14567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,14 +21,33 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDU2NwoKCgoKCi0t
-LSBDb21tZW50ICM1IGZyb20gSGVucmlrIFPDuHJlbnNlbiA8aGVucmlrLnNvcmVuc2VuQGdtYWls
-LmNvbT4gIDIwMDgtMDItMjggMTQ6MzM6NTkgUFNUIC0tLQpDcmVhdGVkIGFuIGF0dGFjaG1lbnQg
-KGlkPTE0NjY3KQogLS0+IChodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5j
-Z2k/aWQ9MTQ2NjcpCnJhZGVvbnRvb2xzIHJlZ3MgZHVtcCB3aXRoIHJhbmRyMTIgKyBwYXRjaAoK
-Ci0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJw
-cmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJl
-Y2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=14567
+
+
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org
+
+
+
+
+--- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-28 17:22:21 PST ---
+An randr12 and non-randr12 comparison of:
+./radeontool regset 0x6808b0 0x10004
+./radeontool regmatch 0x6808b4
+./radeontool regset 0x6808b8 0x10004
+./radeontool regmatch 0x6808bc
+./radeontool regset 0x6828b0 0x10004
+./radeontool regmatch 0x6828b4
+./radeontool regset 0x6828b8 0x10004
+./radeontool regmatch 0x6828bc
+might be interesting - the fact that the effect isn't cured on exit to console
+indicates the digital output setup is wrong :(
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
