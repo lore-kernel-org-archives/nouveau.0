@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14703] On NV17 on laptop screen: certain resolutions
  are scrambled
-Date: Fri, 29 Feb 2008 08:11:58 -0800 (PST)
-Message-ID: <20080229161159.089F11300AB@annarchy.freedesktop.org>
+Date: Fri, 29 Feb 2008 13:12:46 -0800 (PST)
+Message-ID: <20080229211246.5701D1300AA@annarchy.freedesktop.org>
 References: <bug-14703-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,31 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14703
 
 
 
---- Comment #7 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-29 08:11:58 PST ---
-Alright I've run the battery of scaling options on all of the resolutions that
-randr 1.2 reports. 
+--- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-29 13:12:45 PST ---
+Did you ever use the blob and noticed what scaling options nvidia-settings
+offered?
 
-            Aspect        No Scale       Fullscreen
-1360x768     Works         Corrupt            Works
-1280x800     Works         Corrupt            Works 
-1152x864     Corrupt       Corrupt            Works
-1280x768     Works         Corrupt            Works
-1280x720     Works         Corrupt            Works
-1024x724     Corrupt       Corrupt            SquiggleFont
-800x600      Works         Clipped            SquiggleFont
-640x480      Works         Clipped            SquiggleFont
+Could you make a picture of the SquiggleFont?
 
-
-'Corrupt' means the screen is corrupted and the lines are shifted as described
-above. 
-
-'Clipped' means the screen is looks correct, but it has been (significantly)
-clipped.  Like I am looking into a small window in the screen. (Centered, btw)
-
-'SquiggleFont' means that I can see the screen as it should be. (everything is
-aligned properly), but the fonts seem to have pixels shifted around.
-
-So, in other words, it is readable, there are definite corruptions. 
+Could you check the broken aspect ratio modes, and see if they have some kind
+of message like: "scaling resolution for widescreen/portrait something"
 
 
 -- 
