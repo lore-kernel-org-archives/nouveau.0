@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Fri, 29 Feb 2008 02:37:18 -0800 (PST)
-Message-ID: <20080229103718.57C2C1300C0@annarchy.freedesktop.org>
+Date: Fri, 29 Feb 2008 04:50:23 -0800 (PST)
+Message-ID: <20080229125023.F12231300D6@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,40 +24,30 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
-Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org
 
 
 
+--- Comment #16 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-29 04:50:23 PST ---
+Ok, so afaics the problem here is something the output scripts are doing (the
+intention of the below patch was to put some regs back to the state they were
+in before running the script).
 
---- Comment #15 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-29 02:37:17 PST ---
-Try this:
+The scripts that are called are LVDS_PANEL_OFF, LVDS_RESET, and LVDS_PANEL_ON.
 
-diff --git a/src/nv_bios.c b/src/nv_bios.c
-index 08e4ad8..c62cfac 100644
---- a/src/nv_bios.c
-+++ b/src/nv_bios.c
-@@ -2828,8 +2828,15 @@ static void call_lvds_manufacturer_script(ScrnInfoPtr
-pScrn, int head, int dcb_e
+To confirm that the scripts are the problem, *first test that "return;"ing at
+the very start of call_lvds_manufacturer_script works*. If not, attach the xorg
+log here.
 
-        if (script == LVDS_PANEL_OFF)
-                usleep(off_on_delay * 1000);
--       if (script == LVDS_RESET)
-+       if (script == LVDS_RESET) {
-+               nv32_wr(pScrn, 0x006828b4, 0x72);
-+               nv32_wr(pScrn, 0x006828b0, 0x02);
-+               nv32_wr(pScrn, 0x006828b4, 0x01);
-+               nv32_wr(pScrn, 0x006828b0, 0x2f);
-+               nv32_wr(pScrn, 0x00001588, 0);
-+
-                link_head_and_output(pScrn, head, dcb_entry, false);
-+       }
- }
-
- static uint16_t clkcmptable(bios_t *bios, uint16_t clktable, int pxclk)
+After that, do:
+if (script == LVDS_PANEL_OFF || script == LVDS_PANEL_RESET)
+        return;
+to check if the LVDS_PANEL_ON script is broken.
+If that works, do:
+if (script == LVDS_PANEL_RESET)
+        return;
+to ensure LVDS_PANEL_OFF is ok.
+If we get this far, we'll start doing the LVDS_RESET script by hand, to see
+what is broken in that...
 
 
 -- 
