@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14703] On NV17 on laptop screen: certain resolutions
  are scrambled
-Date: Fri, 29 Feb 2008 05:41:44 -0800 (PST)
-Message-ID: <20080229134145.365BA2DC004@annarchy.freedesktop.org>
+Date: Fri, 29 Feb 2008 08:11:58 -0800 (PST)
+Message-ID: <20080229161159.089F11300AB@annarchy.freedesktop.org>
 References: <bug-14703-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,31 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14703
 
 
 
---- Comment #6 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-29 05:41:43 PST ---
-Created an attachment (id=14714)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14714)
-regdump: Working 800x600 w/randr 1.2 (Default scaling...Aspect?)
+--- Comment #7 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-02-29 08:11:58 PST ---
+Alright I've run the battery of scaling options on all of the resolutions that
+randr 1.2 reports. 
 
-This reg dump is from the 800x600 res in randr 1.2 mode.  It uses the default
-scaling mode, which from my other experiments, appears to be 'aspect'.
+            Aspect        No Scale       Fullscreen
+1360x768     Works         Corrupt            Works
+1280x800     Works         Corrupt            Works 
+1152x864     Corrupt       Corrupt            Works
+1280x768     Works         Corrupt            Works
+1280x720     Works         Corrupt            Works
+1024x724     Corrupt       Corrupt            SquiggleFont
+800x600      Works         Clipped            SquiggleFont
+640x480      Works         Clipped            SquiggleFont
 
-More info to follow later today. 
+
+'Corrupt' means the screen is corrupted and the lines are shifted as described
+above. 
+
+'Clipped' means the screen is looks correct, but it has been (significantly)
+clipped.  Like I am looking into a small window in the screen. (Centered, btw)
+
+'SquiggleFont' means that I can see the screen as it should be. (everything is
+aligned properly), but the fonts seem to have pixels shifted around.
+
+So, in other words, it is readable, there are definite corruptions. 
 
 
 -- 
