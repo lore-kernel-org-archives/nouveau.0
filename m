@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Fri, 29 Feb 2008 16:33:28 -0800 (PST)
-Message-ID: <20080301003329.145471300ED@annarchy.freedesktop.org>
+Date: Sat,  1 Mar 2008 07:29:25 -0800 (PST)
+Message-ID: <20080301152926.1398613009B@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,49 +24,33 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #14474|0                           |1
+        is obsolete|                            |
 
 
 
---- Comment #17 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-02-29 16:33:28 PST ---
-So, to add some notes from IRC conversation:
-LVDS_RESET is the problem causer.
-It seems that even with the script disabled, link_head_and_output causes
-problems.
 
-So:
-Can you find what in link_head_and_output causes the problem? I'd advise
-something like the following (on a clean git copy):
+--- Comment #18 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-01 07:29:23 PST ---
+Created an attachment (id=14733)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14733)
+Unrolled Apple nv34 lvds reset script
 
-1) double check that it works with just link_head... and the script disabled:
+The recent commit affecting link_head_and_output() should have fixed that
+function (hopefully), leaving the remaining problems in something the
+LVDS_RESET script does.
 
-@@ -2838,12 +2838,13 @@ static void call_lvds_manufacturer_script(ScrnInfoPtr
-pScrn, int head, int dcb_e
-        xf86DrvMsg(pScrn->scrnIndex, X_INFO, "Calling LVDS script %d:\n",
-script);
-        nv_idx_port_wr(pScrn, CRTC_INDEX_COLOR, NV_VGA_CRTCX_OWNER,
-                   head ? NV_VGA_CRTCX_OWNER_HEADB : NV_VGA_CRTCX_OWNER_HEADA);
--       parse_init_table(pScrn, bios, scriptofs, &iexec);
-+       if (script != LVDS_RESET)
-+               parse_init_table(pScrn, bios, scriptofs, &iexec);
+This patch has a hand coded version of the script (taken from moondrake's xlog,
+but I think it's the same as sbriglie's), which will get executed instead of
+the script. Someone with the relevant hardware (ppc nv34 laptop) and problem
+needs to progressively enable the commented-out blocks and see what causes it
+to break.
 
-        if (script == LVDS_PANEL_OFF)
-                usleep(off_on_delay * 1000);
--       if (script == LVDS_RESET)
--               link_head_and_output(pScrn, head, dcb_entry);
-+//     if (script == LVDS_RESET)
-+//             link_head_and_output(pScrn, head, dcb_entry);
- }
-
-2) re-enable call to link_head_and_output(), comment all five calls to nv32_wr
-in link_head_and_output(), and progressively re-enable, until it breaks. I'm
-hoping the first two are ok, and the last 3 are the problem here, but the
-hardware likes to defy me.
-
-Note that changing preferred_output (p-o) is not a valid solution here, as it
-dictates the register set written: p-o of 0 causes the writes to go to 0x6808bX
-(which only affects the unused encoder on the unused output), and p-o of 1
-causes them to go to 0x6828bX (the correct encoder) -- see the addition of
-NV_PRAMDAC0_SIZE to tmds_ctrlN.
+The comment blocks are numbered in a suggested order to re-enable. Bonus points
+for subdividing the blocks to find the relevant line(s) causing failure.
 
 
 -- 
