@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Sun,  2 Mar 2008 09:40:23 -0800 (PST)
-Message-ID: <20080302174023.DACFE130102@annarchy.freedesktop.org>
+Date: Sun,  2 Mar 2008 10:01:44 -0800 (PST)
+Message-ID: <20080302180144.B19331300F8@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,38 +27,51 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #20 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-02 09:40:22 PST ---
-(In reply to comment #19)
-> Following some work by sbriglie, it now looks like the change in comment 15
-> might be sufficient (with or without the change to reg 0x1588). Testing of this
-> idea welcome :)
+--- Comment #21 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-02 10:01:43 PST ---
+(In reply to comment #20)
+> (In reply to comment #19)
+> > Following some work by sbriglie, it now looks like the change in comment 15
+> > might be sufficient (with or without the change to reg 0x1588). Testing of this
+> > idea welcome :)
+> > 
+> 
+> After some testing I can say that the working code is this
+> 
+> @@ -2824,11 +2824,17 @@ static void call_lvds_manufacturer_script(ScrnInfoPtr
+> pS
+>         xf86DrvMsg(pScrn->scrnIndex, X_INFO, "Calling LVDS script %d:\n",
+> script
+>         nv_idx_port_wr(pScrn, CRTC_INDEX_COLOR, NV_VGA_CRTCX_OWNER,
+>                    head ? NV_VGA_CRTCX_OWNER_HEADB : NV_VGA_CRTCX_OWNER_HEADA);
+> -       parse_init_table(pScrn, bios, scriptofs, &iexec);
+> +       //parse_init_table(pScrn, bios, scriptofs, &iexec);
+> 
+>         if (script == LVDS_PANEL_OFF)
+>                 usleep(off_on_delay * 1000);
+>         if (script == LVDS_RESET)
+> +               nv32_wr(pScrn, 0x006828b4, 0x72);
+> +               //nv32_wr(pScrn, 0x006828b0, 0x02);
+> +               nv32_wr(pScrn, 0x006828b4, 0x01);
+> +               nv32_wr(pScrn, 0x006828b0, 0x2f);
+> +               nv32_wr(pScrn, 0x00001588, 0);  
+> +               
+>                 link_head_and_output(pScrn, head, dcb_entry);
+>  }
+> 
+> Enabling the second nv32_wr and/or the call to parse_init_table causes the
+> usual badness
 > 
 
-After some testing I can say that the working code is this
+Of course I forgot the brackets. The correct code is
+if (script == LVDS_RESET){
+               nv32_wr(pScrn, 0x006828b4, 0x72);
+               //nv32_wr(pScrn, 0x006828b0, 0x02);
+               nv32_wr(pScrn, 0x006828b4, 0x01);
+               nv32_wr(pScrn, 0x006828b0, 0x2f);
+               nv32_wr(pScrn, 0x00001588, 0);  
 
-@@ -2824,11 +2824,17 @@ static void call_lvds_manufacturer_script(ScrnInfoPtr
-pS
-        xf86DrvMsg(pScrn->scrnIndex, X_INFO, "Calling LVDS script %d:\n",
-script
-        nv_idx_port_wr(pScrn, CRTC_INDEX_COLOR, NV_VGA_CRTCX_OWNER,
-                   head ? NV_VGA_CRTCX_OWNER_HEADB : NV_VGA_CRTCX_OWNER_HEADA);
--       parse_init_table(pScrn, bios, scriptofs, &iexec);
-+       //parse_init_table(pScrn, bios, scriptofs, &iexec);
-
-        if (script == LVDS_PANEL_OFF)
-                usleep(off_on_delay * 1000);
-        if (script == LVDS_RESET)
-+               nv32_wr(pScrn, 0x006828b4, 0x72);
-+               //nv32_wr(pScrn, 0x006828b0, 0x02);
-+               nv32_wr(pScrn, 0x006828b4, 0x01);
-+               nv32_wr(pScrn, 0x006828b0, 0x2f);
-+               nv32_wr(pScrn, 0x00001588, 0);  
-+               
-                link_head_and_output(pScrn, head, dcb_entry);
+                 link_head_and_output(pScrn, head, dcb_entry);
  }
-
-Enabling the second nv32_wr and/or the call to parse_init_table causes the
-usual badness
 
 
 -- 
