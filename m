@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Sun,  2 Mar 2008 21:42:33 -0800 (PST)
-Message-ID: <20080303054233.CDE0A1300EF@annarchy.freedesktop.org>
+Date: Mon,  3 Mar 2008 15:53:07 -0800 (PST)
+Message-ID: <20080303235307.8BE951300E4@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,34 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #22 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-03-02 21:42:33 PST ---
-Yeah I realized that changing the preferred output wasn't making sense much.
+--- Comment #23 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-03 15:53:06 PST ---
+I'm afraid comments 20 & 21 miss the point; that I want parse_init_table to
+run, and any bad reg writes to be fixed up afterwards. If running
+parse_init_table is causing problems, then we need to go back to the code of
+comment 18, and try and figure out what breaks.
 
-I'll update to head and try the patch from comment 21 to see if it works like
-that for me to. I do not have the pbook with me now so it will take me a day or
-so to check.
+From sbriglie's comments on IRC, the code in comment 18 worked when the data
+writen at index 0x02 was changed from 0x32 to 0x72, and the suggestion of using
+comment 15's code was that it would be a patch run *after* the script, to fix
+up the contents of index 0x02 (much like link_head_and_output fixes index 0x04
+currently).
 
-d.
+I guess the step-by-step way forward here is to verify that the unrolled
+version in comment 18 works, when all the code is allowed to execute (no
+comments) and 0x32 is changed to 0x72. THEN, to change that 0x72 back to 0x32,
+and add 
+
+nv32_wr(pScrn, 0x006828b4, 0x72);
+nv32_wr(pScrn, 0x006828b0, 0x02);
+
+on the end of the unrolled script as a fix-up, and check that works.
+
+Assuming that's ok, calling parse_init_table, then calling that same fix-up
+code ought be have exactly the same result, and these two writes can be added
+as a ppc specific quirk.
+
+Hopefully this all makes sense to you ppc people, but if I'm being incoherent
+please say and I'll code up a set of numbered patches of what I want testing :)
 
 
 -- 
