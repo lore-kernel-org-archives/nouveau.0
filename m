@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14820] Double mouse cursor on nv4
-Date: Tue,  4 Mar 2008 15:43:30 -0800 (PST)
-Message-ID: <20080304234330.18017130112@annarchy.freedesktop.org>
+Date: Tue,  4 Mar 2008 15:44:06 -0800 (PST)
+Message-ID: <20080304234406.9565813013C@annarchy.freedesktop.org>
 References: <bug-14820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14820
 
 
 
---- Comment #3 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-03-04 15:43:29 PST ---
-I also get this on an nv10. On that card, the hardware cursor is wrong, but
-that's for another bug.
-
-01:00.0 0300: 10de:0101 (rev 10)
-01:00.0 VGA compatible controller: nVidia Corporation NV10DDR [GeForce 256 DDR]
-(rev 10)
+--- Comment #4 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-03-04 15:44:06 PST ---
+Created an attachment (id=14838)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14838)
+Log file with the nv10
 
 
 -- 
