@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14703] On NV17 on laptop screen: certain resolutions
- are scrambled
-Date: Tue,  4 Mar 2008 07:35:21 -0800 (PST)
-Message-ID: <20080304153521.7009613011E@annarchy.freedesktop.org>
-References: <bug-14703-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14597] randr12 failures on 12" powerbooks,
+	and workarounds
+Date: Tue,  4 Mar 2008 12:13:12 -0800 (PST)
+Message-ID: <20080304201314.AAD01130055@annarchy.freedesktop.org>
+References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14703-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,28 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14703
+http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
 
 
---- Comment #11 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-04 07:35:20 PST ---
-Created an attachment (id=14808)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14808)
-Some corrections to the noscale scaling mode
+--- Comment #26 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-04 12:13:08 PST ---
+(In reply to comment #25)
+> Powerbook specific quirk applied to git. Let me know how it works for you
+> 
 
-See if this patch helps any with corruption of the noscale modes. If it does,
-it's worth seeing if "aspect" works better when regp->fp_hvalid_start and
-regp->fp_hvalid_end do not get set at nv_crtc.c lines ~1380 and ~1400.
+As I wrote in IRC too it works by changing
+-if (pNv->Chipset & 0xffff == 0x0329) {
++if ((pNv->Chipset & 0xffff) == 0x0329) {
+
+otherwise the if condition is always false and the fix never gets executed.
+
+Btw moondrake, I am sbriglie :) On sunday (comments #20 and #21) I was probably
+doing something very dumb with the brackets, that's almost certainly why things
+didn't work for me back then. 
+
+So hopefully this is fixed :) 
 
 
 -- 
