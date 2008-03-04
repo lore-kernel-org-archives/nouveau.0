@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14597] randr12 failures on 12" powerbooks,
 	and workarounds
-Date: Mon,  3 Mar 2008 18:44:37 -0800 (PST)
-Message-ID: <20080304024437.EFE5D13008C@annarchy.freedesktop.org>
+Date: Tue,  4 Mar 2008 06:23:28 -0800 (PST)
+Message-ID: <20080304142328.3687913006A@annarchy.freedesktop.org>
 References: <bug-14597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,27 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14597
 
 
 
---- Comment #24 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-03-03 18:44:35 PST ---
-Actually you make very much sense. I didn't realize yesterday but Jacopo's
-comments seem inconsistent with mine and sbriglies reports on irc.
-
-Your commit indeed fixed link_head_and_output. So it should work anyway when
-parse_init_table is commented, and there would be nothing to "fixup". So to me,
-comment 20 does not make sense. Yesterday evening i tried running with
-parse_init_table and indeed it does not work, but adding the lines from comment
-15 fixes it. Actually only fixing reg 2 fixes it, ie:
-               nv32_wr(pScrn, 0x006828b4, 0x72);
-               nv32_wr(pScrn, 0x006828b0, 0x02);
-               nv32_wr(pScrn, 0x00001588, 0); 
-is enough for me.
-
-Since this wonderfully matches your last comment I think we've solved it. Apart
-from how do you want to check _when_ to apply this fix and when not. It so far
-was only reported on powerbooks, but the hw components are usually not only
-specific to apple and could be used elsewhere. In addition, some types of
-powerbooks have different hw.
-
-d.
+--- Comment #25 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-04 06:23:27 PST ---
+Powerbook specific quirk applied to git. Let me know how it works for you
 
 
 -- 
