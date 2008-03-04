@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14820] Double mouse cursor on nv4
-Date: Tue,  4 Mar 2008 15:44:06 -0800 (PST)
-Message-ID: <20080304234406.9565813013C@annarchy.freedesktop.org>
+Date: Tue,  4 Mar 2008 15:45:42 -0800 (PST)
+Message-ID: <20080304234542.7036613013B@annarchy.freedesktop.org>
 References: <bug-14820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14820
 
 
 
---- Comment #4 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-03-04 15:44:06 PST ---
-Created an attachment (id=14838)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14838)
-Log file with the nv10
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-04 15:45:41 PST ---
+Do you also get this when forcing a SWCursor on a NV11+ card?
 
 
 -- 
