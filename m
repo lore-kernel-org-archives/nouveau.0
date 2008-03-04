@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14821] nv11 does not work with Randr1.2 enabled
-Date: Tue,  4 Mar 2008 15:26:28 -0800 (PST)
-Message-ID: <20080304232628.81C9E1300F6@annarchy.freedesktop.org>
-References: <bug-14821-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14822] New: nv11 is offset one line vertically with
+	randr1.2
+Date: Tue,  4 Mar 2008 15:37:48 -0800 (PST)
+Message-ID: <bug-14822-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14821-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +19,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14821
+http://bugs.freedesktop.org/show_bug.cgi?id=14822
+
+           Summary: nv11 is offset one line vertically with randr1.2
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=14837)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14837)
+Xorg log file
 
+When randr1.2 is enabled, I get the display offset one line downwards (the
+whole screen is down by a single line, and the line from the bottom is
+displayed at the top).
 
+(for my own reference, this is the green elsa gladiac mx nv11)
 
---- Comment #2 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-03-04 15:26:28 PST ---
-(For my own reference, this is the blue card)
+01:00.0 0300: 10de:0110 (rev a1)
+01:00.0 VGA compatible controller: nVidia Corporation NV11 [GeForce2 MX/MX 400]
+(rev a1)
 
 
 -- 
