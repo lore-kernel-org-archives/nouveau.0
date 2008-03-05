@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14824] nv20 says unknown DCB entry with randr1.2
-Date: Tue,  4 Mar 2008 16:15:02 -0800 (PST)
-Message-ID: <20080305001502.EE1D4130090@annarchy.freedesktop.org>
+Date: Tue,  4 Mar 2008 16:44:13 -0800 (PST)
+Message-ID: <20080305004413.90271130106@annarchy.freedesktop.org>
 References: <bug-14824-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14824
 
 
+Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #1 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-03-04 16:15:01 PST ---
-Created an attachment (id=14844)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14844)
-Bios dump of the card
+
+--- Comment #2 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-03-04 16:44:13 PST ---
+Rocking.
 
 
 -- 
