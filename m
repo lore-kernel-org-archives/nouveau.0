@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14856] Black screen w/ RandR12 enabled
-Date: Thu,  6 Mar 2008 10:02:33 -0800 (PST)
-Message-ID: <20080306180233.31A73130096@annarchy.freedesktop.org>
+Date: Thu,  6 Mar 2008 10:06:32 -0800 (PST)
+Message-ID: <20080306180632.D766D1300DA@annarchy.freedesktop.org>
 References: <bug-14856-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14856
 
 
 
---- Comment #1 from Luca Ottaviano <lucaotta-whZMOeQn8C0@public.gmane.org>  2008-03-06 10:02:32 PST ---
-Created an attachment (id=14880)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14880)
-Xorg log, randr enabled, only laptop digital panel
+--- Comment #2 from Luca Ottaviano <lucaotta-whZMOeQn8C0@public.gmane.org>  2008-03-06 10:06:32 PST ---
+Created an attachment (id=14881)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14881)
+Xorg log, randr enabled, laptop digital panel + external crt monitor
 
 
 -- 
