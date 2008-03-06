@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14859] External analog monitor does not show part of
- the output ( Randr12)
-Date: Thu,  6 Mar 2008 11:58:06 -0800 (PST)
-Message-ID: <20080306195807.30DED13009A@annarchy.freedesktop.org>
-References: <bug-14859-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14857] randr12 on nv34 broken
+Date: Thu,  6 Mar 2008 12:00:26 -0800 (PST)
+Message-ID: <20080306200026.61D71130128@annarchy.freedesktop.org>
+References: <bug-14857-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14859-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14857-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14859
+http://bugs.freedesktop.org/show_bug.cgi?id=14857
 
 
 
 
 
---- Comment #1 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-06 11:58:06 PST ---
-Created an attachment (id=14886)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14886)
-Xorg.log of the X session with connection of the monitor
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-06 12:00:25 PST ---
+Could you run both randr12 and non-randr12 with NOUVEAU_MODESET_TRACE
+(nv_local.h) enabled?
 
 
 -- 
