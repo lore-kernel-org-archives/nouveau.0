@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14856] Black screen w/ RandR12 enabled
-Date: Thu,  6 Mar 2008 10:49:10 -0800 (PST)
-Message-ID: <20080306184910.99AA11300BE@annarchy.freedesktop.org>
+Date: Thu,  6 Mar 2008 10:57:48 -0800 (PST)
+Message-ID: <20080306185748.85F6213010D@annarchy.freedesktop.org>
 References: <bug-14856-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14856
 
 
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Blocks|                            |14405
 
 
-
---- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-06 10:49:10 PST ---
-Your PLL table version 0x11 is not known yet. This is causing problems.
 
 
 -- 
