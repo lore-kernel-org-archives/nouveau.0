@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14858] New: Build fix for FreeBSD
-Date: Thu,  6 Mar 2008 11:39:13 -0800 (PST)
-Message-ID: <bug-14858-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14858] Build fix for FreeBSD
+Date: Thu,  6 Mar 2008 11:39:54 -0800 (PST)
+Message-ID: <20080306193955.33816130133@annarchy.freedesktop.org>
+References: <bug-14858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=14858
 
-           Summary: Build fix for FreeBSD
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: FreeBSD
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: pawel.worach-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-nv_bios.c:26:22: error: byteswap.h: No such file or directory
 
-bswap and friends are defined in endian.h (on freebsd) which is pulled in by
-X11/Xarch.h. This should fix the build on netbsd too.
+
+--- Comment #1 from Pawel Worach <pawel.worach-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-06 11:39:54 PST ---
+Created an attachment (id=14884)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14884)
+Fix
 
 
 -- 
