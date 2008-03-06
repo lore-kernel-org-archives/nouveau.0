@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14857] randr12 on nv34 broken
-Date: Thu,  6 Mar 2008 12:00:26 -0800 (PST)
-Message-ID: <20080306200026.61D71130128@annarchy.freedesktop.org>
-References: <bug-14857-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14405] randr-1.2 bug tracker
+Date: Thu,  6 Mar 2008 12:38:30 -0800 (PST)
+Message-ID: <20080306203831.7E8F6130163@annarchy.freedesktop.org>
+References: <bug-14405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14857-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14857
+http://bugs.freedesktop.org/show_bug.cgi?id=14405
 
 
+Bug 14405 depends on bug 14567, which changed state.
 
+Bug 14567 Summary: Randr 1.2 fails on nv17 lvds in a Dell Inspiron 8100 (continued from 14491)
+http://bugs.freedesktop.org/show_bug.cgi?id=14567
 
+           What    |Old Value                   |New Value
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
---- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-06 12:00:25 PST ---
-Could you run both randr12 and non-randr12 with NOUVEAU_MODESET_TRACE
-(nv_local.h) enabled?
 
 
 -- 
