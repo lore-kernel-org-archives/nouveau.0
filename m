@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14610] corrupted nouveau screen output
-Date: Fri,  7 Mar 2008 12:44:08 -0800 (PST)
-Message-ID: <20080307204408.8B3C013015A@annarchy.freedesktop.org>
-References: <bug-14610-8800@http.bugs.freedesktop.org/>
+From: Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Current state - how to get gallium-stuff running?
+Date: Sat, 08 Mar 2008 10:27:23 +1100
+Message-ID: <1204932443.8406.21.camel@CowboyLaputopu>
+References: <200803072132.23321.hanno@hboeck.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14610-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <200803072132.23321.hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +20,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14610
-
-
-
-
-
---- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-07 12:44:07 PST ---
-The 8000/9000 series cards are problematic atm, i wouldn't expect any quick
-fixes.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gRnJpLCAyMDA4LTAzLTA3IGF0IDIxOjMyICswMTAwLCBIYW5ubyBCw7ZjayB3cm90ZToKPiBI
+aSwKPiAKPiBBcyB0aGUgbGFzdCB0aW5kYyBzYWlkIHNvbWV0aGluZyBhYm91dCAzZCByZWFsbHkg
+d29ya2luZyBvbiBudjR4LCBJIHdhbnRlZCB0byAKPiB0cnkgdGhhdCAoIG9uIGEgTlY0MykuIEJ1
+aWx0IG5vdXZlYXUvbWVzYSAtPiBnYWxsaXVtLTAuMSBicmFuY2ggb2YgbWVzYSBhbmQgCj4gZ2l0
+IGhlYWQgb2YgbGliZHJtLCBrZXJuZWwtZHJtIGFuZCB4Zjg2LXZpZGVvLW5vdXZlYXUuCj4gCkZp
+cnN0LCB0aGUgb2JsaWdhdG9yeSBkaXNjbGFpbWVyOiAicmVhbGx5IHdvcmtpbmciIGRvZXNuJ3Qg
+ZXhhY3RseQp0cmFuc2xhdGUgdG8gIldvb28hICBJIGNhbiBkcm9wIHRoYXQgYW5ub3lpbmcgYmlu
+YXJ5IGJsb2IhIi4gIFlvdSBzaG91bGQKYmUgYWJsZSB0byBnZXQgdGV4dHVyZWQgT3BlbkdMIHN1
+cHBvcnQsIGFuZCBiZSBhYmxlIHRvIHJ1biBPcGVuQXJlbmEgYXQKcmVhc29uYWJsZSBmcmFtZXJh
+dGVzIHVudGlsIGl0IGNyYXNoZXMsIHRob3VnaCA6KS4KCj4gZ2x4aW5mbyBzYXlzOgo+IG5vdXZl
+YXUgRFJJIGRyaXZlciBleHBlY3RlZCBERFggdmVyc2lvbiAxLTEuMi54IGJ1dCBnb3QgdmVyc2lv
+biAwLjAuMTAKPiAKCkkndmUgc2VlbiBvdGhlciBwZW9wbGUgcmVwb3J0aW5nIHRoaXMgZXJyb3Iu
+ICBJJ3ZlIG5ldmVyIHNlZW4gaXQgbXlzZWxmLAp3aGljaCBzdWdnZXN0cyB0byBtZSB0aGF0IGl0
+J3MgdXNlciBlcnJvciBfc29tZXdoZXJlXyA6KS4gIENhbiB5b3UKZGVzY3JpYmUgdGhlIGV4YWN0
+IHN0ZXBzIHlvdSB0b29rLCBhbmQgdGhlaXIgb3V0cHV0LgoKRm9yIHJlZmVyZW5jZSwgYWZ0ZXIg
+YnVpbGRpbmcgJiBpbnN0YWxsaW5nIGdpdCBoZWFkIG9mIGxpYmRybSAmCnhmODYtdmlkZW8tbm91
+dmVhdSwgSSBjYW4gY2xvbmUgdGhlCmdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL25vdXZl
+YXUvbWVzYSByZXBvc2l0b3J5LCBjaGVjayBvdXQgdGhlCmdhbGxpdW0tMC4xIGJyYW5jaCBhbmQg
+Im1ha2UgbGludXgtZHJpLXg4Ni02NCBEUklfRElSUz1ub3V2ZWF1IiB0bwpidWlsZC4gIFRoZW4g
+ZXhwb3J0aW5nIExEX0xJQlJBUllfUEFUSCBhbmQgTElCR0xfRFJJVkVSU19QQVRIIHRvIHBvaW50
+CnRvIHRoZSBtZXNhIGxpYi8gZGlyZWN0b3J5LCBJIGNvdWxkIHJ1biBPcGVuQXJlbmEsIGdseGdl
+YXJzLCBldGMuICBOb3QKYXMgb2YgeWVzdGVyZGF5OyBpdCB3b3VsZCBkaWUgaW4gZW1pdF9mZW5j
+ZSwgYnV0IHRoYXQncyB0aGUgcmlnaHQKcHJvY2Vzcy4KCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
