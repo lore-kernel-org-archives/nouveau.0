@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14859] External analog monitor does not show part of
  the output ( Randr12)
-Date: Fri,  7 Mar 2008 04:55:49 -0800 (PST)
-Message-ID: <20080307125549.A6BA6130153@annarchy.freedesktop.org>
+Date: Fri,  7 Mar 2008 04:57:44 -0800 (PST)
+Message-ID: <20080307125822.1D832130101@annarchy.freedesktop.org>
 References: <bug-14859-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14859
 
 
 
---- Comment #4 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-07 04:55:47 PST ---
-Created an attachment (id=14906)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14906)
-newer xrandr --verbose output with git head 
+--- Comment #5 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-07 04:57:39 PST ---
+(In reply to comment #4)
+> Created an attachment (id=14906)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14906) [details]
+> newer xrandr --verbose output with git head 
+> 
+
+Hmm, nothing has changed in regard to this bug, I still get the same behavior.
+I'm attaching again the xrandr --verbose output and the xserver log.
 
 
 -- 
