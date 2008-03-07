@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14859] External analog monitor does not show part of
  the output ( Randr12)
-Date: Fri,  7 Mar 2008 08:48:52 -0800 (PST)
-Message-ID: <20080307164852.A6011130156@annarchy.freedesktop.org>
+Date: Fri,  7 Mar 2008 08:49:29 -0800 (PST)
+Message-ID: <20080307164929.AF29D1300E0@annarchy.freedesktop.org>
 References: <bug-14859-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14859
 
 
 
---- Comment #10 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-07 08:48:52 PST ---
-Created an attachment (id=14909)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14909)
-regdump with second head connected at boot
+--- Comment #11 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-07 08:49:29 PST ---
+Created an attachment (id=14910)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14910)
+regdump with second head hotplugged while X is running
 
 
 -- 
