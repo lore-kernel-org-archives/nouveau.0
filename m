@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14856] Black screen w/ RandR12 enabled
-Date: Sat,  8 Mar 2008 03:07:12 -0800 (PST)
-Message-ID: <20080308110713.9FACC13016C@annarchy.freedesktop.org>
+Date: Sat,  8 Mar 2008 03:10:21 -0800 (PST)
+Message-ID: <20080308111031.83F8B130063@annarchy.freedesktop.org>
 References: <bug-14856-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,22 +23,24 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14856
 
 
+Luca Ottaviano <lucaotta-whZMOeQn8C0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #14879|0                           |1
+        is obsolete|                            |
+  Attachment #14880|0                           |1
+        is obsolete|                            |
+  Attachment #14881|0                           |1
+        is obsolete|                            |
 
 
 
---- Comment #5 from Luca Ottaviano <lucaotta-whZMOeQn8C0@public.gmane.org>  2008-03-08 03:07:09 PST ---
-Ok, now it works with only laptop panel attached. It's a bit slow with redraw
-operations, but I'm on xserver 1.3 (and not able to update for a bit).
 
-If I attach a crt monitor before starting X, I get only the external monitor
-working, the lvds is on and white, with coloured stripes.
-I've updated my Xorg.conf to have a virtual size of 2048x768 and tried to put
-the lvds on the right of my crt but with no luck (lvds stays white but windows
-move over the right of the crt).
-Note that I have only one Monitor section, but as far as I know that should not
-matter.
-
-BTW, VT switch is broken (I just see the white screen on my laptop).
+--- Comment #6 from Luca Ottaviano <lucaotta-whZMOeQn8C0@public.gmane.org>  2008-03-08 03:10:14 PST ---
+Created an attachment (id=14955)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14955)
+RandR on, laptop lvds + external crt, laptop screen white
 
 
 -- 
