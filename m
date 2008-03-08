@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14345] Image with width greater than 8176 pixel make
- firefox crash with X error
-Date: Sat,  8 Mar 2008 05:30:47 -0800 (PST)
-Message-ID: <20080308133049.7BBC2130139@annarchy.freedesktop.org>
-References: <bug-14345-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14859] External analog monitor does not show part of
+ the output ( Randr12)
+Date: Sat,  8 Mar 2008 05:31:29 -0800 (PST)
+Message-ID: <20080308133129.DDF0513015F@annarchy.freedesktop.org>
+References: <bug-14859-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14345-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14859-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +21,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14345
+http://bugs.freedesktop.org/show_bug.cgi?id=14859
 
 
 
 
 
---- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-08 05:30:39 PST ---
-Still an issue?
+--- Comment #18 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-08 05:31:28 PST ---
+(In reply to comment #17)
+> So, the analog isn't activated properly by offb?
+> 
+It is not. The same seems to happen during osx bootup: the analog remains white
+and flickering until the graphical login screen appears
+
+> Also, can you test the dvi?
+> 
+
+I don't have a DVI cable at hand, I'll see if I can get one in the next days
 
 
 -- 
