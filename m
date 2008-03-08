@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14856] Black screen w/ RandR12 enabled
-Date: Sat,  8 Mar 2008 03:10:21 -0800 (PST)
-Message-ID: <20080308111031.83F8B130063@annarchy.freedesktop.org>
+Date: Sat,  8 Mar 2008 03:33:22 -0800 (PST)
+Message-ID: <20080308113323.462501300B3@annarchy.freedesktop.org>
 References: <bug-14856-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,24 +23,15 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14856
 
 
-Luca Ottaviano <lucaotta-whZMOeQn8C0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #14879|0                           |1
-        is obsolete|                            |
-  Attachment #14880|0                           |1
-        is obsolete|                            |
-  Attachment #14881|0                           |1
-        is obsolete|                            |
 
 
 
+--- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-08 03:33:21 PST ---
+Created an attachment (id=14956)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=14956)
+Disable a quirk that may have adverse effects.
 
---- Comment #6 from Luca Ottaviano <lucaotta-whZMOeQn8C0@public.gmane.org>  2008-03-08 03:10:14 PST ---
-Created an attachment (id=14955)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14955)
-RandR on, laptop lvds + external crt, laptop screen white
+Please try this patch.
 
 
 -- 
