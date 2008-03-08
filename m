@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13319] YV12 and YUY2 overlay broken on PPC with NV34M
-Date: Sat,  8 Mar 2008 08:49:36 -0800 (PST)
-Message-ID: <20080308164936.D91C6130183@annarchy.freedesktop.org>
+Date: Sat,  8 Mar 2008 09:00:34 -0800 (PST)
+Message-ID: <20080308170034.74BBE130123@annarchy.freedesktop.org>
 References: <bug-13319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13319
 
 
 
---- Comment #4 from Feth AREZKI <feth-6Drk4CGzKSisTnJN9+BGXg@public.gmane.org>  2008-03-08 08:49:35 PST ---
-"Around" and not closer, sorry. I may be able to test again monday when I get
-my ppc machine back, with an old kernel (as in newer kernels the lack of a
-symbol prevents from insmoding 'nouveau'). Would it be meaningful ?
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-08 09:00:33 PST ---
+You mean the agp_flush thingie? (a workaround was added for that)
 
 
 -- 
