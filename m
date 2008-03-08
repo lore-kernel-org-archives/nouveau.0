@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13319] YV12 and YUY2 overlay broken on PPC with NV34M
-Date: Sat,  8 Mar 2008 09:00:34 -0800 (PST)
-Message-ID: <20080308170034.74BBE130123@annarchy.freedesktop.org>
-References: <bug-13319-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14856] Black screen w/ RandR12 enabled
+Date: Sat,  8 Mar 2008 11:52:39 -0800 (PST)
+Message-ID: <20080308195239.ED51A1300AE@annarchy.freedesktop.org>
+References: <bug-14856-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14856-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +20,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13319
+http://bugs.freedesktop.org/show_bug.cgi?id=14856
 
 
 
 
 
---- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-08 09:00:33 PST ---
-You mean the agp_flush thingie? (a workaround was added for that)
+--- Comment #8 from Luca Ottaviano <lucaotta-whZMOeQn8C0@public.gmane.org>  2008-03-08 11:52:39 PST ---
+Just tested with two VGA monitors, one lcd and one crt; your patch is working
+perfectly. I'm not sure which adverse effects you where thinking about, but
+I've seen none.
+
+For me it's fixed.
 
 
 -- 
