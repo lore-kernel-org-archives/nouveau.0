@@ -1,13 +1,15 @@
-From: Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: "Maarten Maathuis" <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: Current state - how to get gallium-stuff running?
-Date: Sat, 08 Mar 2008 10:27:23 +1100
-Message-ID: <1204932443.8406.21.camel@CowboyLaputopu>
+Date: Sat, 8 Mar 2008 08:33:40 +0100
+Message-ID: <6d4bc9fc0803072333h7947c5ddo3628c03a21f8144a@mail.gmail.com>
 References: <200803072132.23321.hanno@hboeck.de>
+	<1204932443.8406.21.camel@CowboyLaputopu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <200803072132.23321.hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <1204932443.8406.21.camel@CowboyLaputopu>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,32 +19,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCAyMDA4LTAzLTA3IGF0IDIxOjMyICswMTAwLCBIYW5ubyBCw7ZjayB3cm90ZToKPiBI
-aSwKPiAKPiBBcyB0aGUgbGFzdCB0aW5kYyBzYWlkIHNvbWV0aGluZyBhYm91dCAzZCByZWFsbHkg
-d29ya2luZyBvbiBudjR4LCBJIHdhbnRlZCB0byAKPiB0cnkgdGhhdCAoIG9uIGEgTlY0MykuIEJ1
-aWx0IG5vdXZlYXUvbWVzYSAtPiBnYWxsaXVtLTAuMSBicmFuY2ggb2YgbWVzYSBhbmQgCj4gZ2l0
-IGhlYWQgb2YgbGliZHJtLCBrZXJuZWwtZHJtIGFuZCB4Zjg2LXZpZGVvLW5vdXZlYXUuCj4gCkZp
-cnN0LCB0aGUgb2JsaWdhdG9yeSBkaXNjbGFpbWVyOiAicmVhbGx5IHdvcmtpbmciIGRvZXNuJ3Qg
-ZXhhY3RseQp0cmFuc2xhdGUgdG8gIldvb28hICBJIGNhbiBkcm9wIHRoYXQgYW5ub3lpbmcgYmlu
-YXJ5IGJsb2IhIi4gIFlvdSBzaG91bGQKYmUgYWJsZSB0byBnZXQgdGV4dHVyZWQgT3BlbkdMIHN1
-cHBvcnQsIGFuZCBiZSBhYmxlIHRvIHJ1biBPcGVuQXJlbmEgYXQKcmVhc29uYWJsZSBmcmFtZXJh
-dGVzIHVudGlsIGl0IGNyYXNoZXMsIHRob3VnaCA6KS4KCj4gZ2x4aW5mbyBzYXlzOgo+IG5vdXZl
-YXUgRFJJIGRyaXZlciBleHBlY3RlZCBERFggdmVyc2lvbiAxLTEuMi54IGJ1dCBnb3QgdmVyc2lv
-biAwLjAuMTAKPiAKCkkndmUgc2VlbiBvdGhlciBwZW9wbGUgcmVwb3J0aW5nIHRoaXMgZXJyb3Iu
-ICBJJ3ZlIG5ldmVyIHNlZW4gaXQgbXlzZWxmLAp3aGljaCBzdWdnZXN0cyB0byBtZSB0aGF0IGl0
-J3MgdXNlciBlcnJvciBfc29tZXdoZXJlXyA6KS4gIENhbiB5b3UKZGVzY3JpYmUgdGhlIGV4YWN0
-IHN0ZXBzIHlvdSB0b29rLCBhbmQgdGhlaXIgb3V0cHV0LgoKRm9yIHJlZmVyZW5jZSwgYWZ0ZXIg
-YnVpbGRpbmcgJiBpbnN0YWxsaW5nIGdpdCBoZWFkIG9mIGxpYmRybSAmCnhmODYtdmlkZW8tbm91
-dmVhdSwgSSBjYW4gY2xvbmUgdGhlCmdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL25vdXZl
-YXUvbWVzYSByZXBvc2l0b3J5LCBjaGVjayBvdXQgdGhlCmdhbGxpdW0tMC4xIGJyYW5jaCBhbmQg
-Im1ha2UgbGludXgtZHJpLXg4Ni02NCBEUklfRElSUz1ub3V2ZWF1IiB0bwpidWlsZC4gIFRoZW4g
-ZXhwb3J0aW5nIExEX0xJQlJBUllfUEFUSCBhbmQgTElCR0xfRFJJVkVSU19QQVRIIHRvIHBvaW50
-CnRvIHRoZSBtZXNhIGxpYi8gZGlyZWN0b3J5LCBJIGNvdWxkIHJ1biBPcGVuQXJlbmEsIGdseGdl
-YXJzLCBldGMuICBOb3QKYXMgb2YgeWVzdGVyZGF5OyBpdCB3b3VsZCBkaWUgaW4gZW1pdF9mZW5j
-ZSwgYnV0IHRoYXQncyB0aGUgcmlnaHQKcHJvY2Vzcy4KCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cg==
+On 3/8/08, Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Fri, 2008-03-07 at 21:32 +0100, Hanno B=F6ck wrote:
+>  > Hi,
+>  >
+>  > As the last tindc said something about 3d really working on nv4x, I wa=
+nted to
+>  > try that ( on a NV43). Built nouveau/mesa -> gallium-0.1 branch of mes=
+a and
+>  > git head of libdrm, kernel-drm and xf86-video-nouveau.
+>  >
+>
+> First, the obligatory disclaimer: "really working" doesn't exactly
+>  translate to "Wooo!  I can drop that annoying binary blob!".  You should
+>  be able to get textured OpenGL support, and be able to run OpenArena at
+>  reasonable framerates until it crashes, though :).
+>
+>
+>  > glxinfo says:
+>  > nouveau DRI driver expected DDX version 1-1.2.x but got version 0.0.10
+>  >
+>
+>
+> I've seen other people reporting this error.  I've never seen it myself,
+>  which suggests to me that it's user error _somewhere_ :).  Can you
+>  describe the exact steps you took, and their output.
+>
+>  For reference, after building & installing git head of libdrm &
+>  xf86-video-nouveau, I can clone the
+>  git://anongit.freedesktop.org/nouveau/mesa repository, check out the
+>  gallium-0.1 branch and "make linux-dri-x86-64 DRI_DIRS=3Dnouveau" to
+>  build.  Then exporting LD_LIBRARY_PATH and LIBGL_DRIVERS_PATH to point
+>  to the mesa lib/ directory, I could run OpenArena, glxgears, etc.  Not
+>  as of yesterday; it would die in emit_fence, but that's the right
+>  process.
+
+It may be that DRI_DIRS=3Dnouveau_winsys is needed.
+
+>
+>  _______________________________________________
+>  Nouveau mailing list
+>  Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>  http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
