@@ -1,15 +1,12 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: Current state - how to get gallium-stuff running?
-Date: Sun, 9 Mar 2008 00:00:13 +0200
-Message-ID: <20080309000013.126a89d1@daedalus.pq.iki.fi>
-References: <200803072132.23321.hanno@hboeck.de>
-	<1204932443.8406.21.camel@CowboyLaputopu>
-	<200803081504.35171.hanno@hboeck.de>
+From: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [patch] add nv50 voodoo
+Date: Sun, 9 Mar 2008 02:41:38 +0300
+Message-ID: <20080308234138.GD10221@martell.zuzino.mipt.ru>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <200803081504.35171.hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,30 +16,119 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Hanno =?ISO-8859-1?Q?B=F6ck?= <hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, 8 Mar 2008 15:04:30 +0100
-"Hanno B=F6ck" <hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org> wrote:
+Hi, this is from mmio-traces. After startx I see mouse cursor which
+moves, background split into black and garbage areas. First area
+consists of repeated pattern of something. Surrealistic picture, and
+after several seconds box locks up hard, monitor turns off.
+However much improvement against non-starting X. :-)
 
-> Using Gentoo, using the nouveau-overlay. Installing git-packages of libdr=
-m, =
+Card is 10de:0191 (GeForce 8800 GTX)
 
-> x11-drm, xf86-video-nouveau. Changed mesa-package to fetch nouveau/mesa g=
-it =
 
-> with gallium-0.1 branch. installed that.
-
-Here might be the reason, maybe the ebuild is still building the wrong
-branch. Git ebuild coding has a nasty feature, but you are safe if you set
-*both* TREE and BRANCH. And I don't remember if it requires other changes,
-too.
-
-Anyway, I'd recommend building mesa by hand, so you are sure which branch
-you build and how.
-
--- =
-
-Pekka Paalanen
-http://www.iki.fi/pq/
+diff --git a/shared-core/nv50_graph.c b/shared-core/nv50_graph.c
+index 503f45d..21bd0e5 100644
+--- a/shared-core/nv50_graph.c
++++ b/shared-core/nv50_graph.c
+@@ -83,6 +83,88 @@ nv50_graph_init_regs(struct drm_device *dev)
+ 	NV_WRITE(NV04_PGRAPH_DEBUG_3, (1<<2) /* HW_CONTEXT_SWITCH_ENABLED */);
+ }
+ 
++static uint32_t nv50_ctx_voodoo[] = {
++	0x0070008e, 0x0070009c, 0x00200020, 0x00600008, 0x0050004c,
++	0x00400e89, 0x00200000, 0x00600007, 0x00300000, 0x00c000ff,
++	0x00200000, 0x008000ff, 0x00700009, 0x0041874d, 0x00401e44,
++	0x00401e05, 0x00401e0d, 0x00416306, 0x00600005, 0x004015c5,
++	0x00600011, 0x00401c0b, 0x0090ffff, 0x0091ffff, 0x00200020,
++	0x00600008, 0x0050004c, 0x00600009, 0x00416345, 0x00417e4d,
++	0x0070009d, 0x004022cf, 0x0070009f, 0x0050009f, 0x00401fc0,
++	0x00200080, 0x00600008, 0x00401f4f, 0x00401fc0, 0x004025cc,
++	0x00700081, 0x00200000, 0x00600006, 0x00700000, 0x00111bfc,
++	0x00700083, 0x00300000, 0x00215900, 0x00600007, 0x00c00b01,
++	0x0020001c, 0x00800001, 0x005000cb, 0x00c000ff, 0x00700080,
++	0x00700083, 0x00200047, 0x00600006, 0x0011020a, 0x002005c0,
++	0x00600007, 0x00300000, 0x00c000ff, 0x00c800ff, 0x00416e07,
++	0x00202627, 0x008000ff, 0x0040458c, 0x005000cb, 0x00a0023f,
++	0x00200040, 0x00600006, 0x0070000f, 0x00170202, 0x0011020a,
++	0x00200032, 0x0010020d, 0x001b0242, 0x00120302, 0x00140402,
++	0x00180500, 0x00130509, 0x00150550, 0x00110605, 0x001e0607,
++	0x00110700, 0x00110900, 0x00110902, 0x00110a00, 0x00160b02,
++	0x00110b28, 0x00140b2b, 0x00110c01, 0x00111400, 0x00111405,
++	0x00111407, 0x00111409, 0x0011140b, 0x002000ea, 0x00101500,
++	0x00406d0f, 0x00406d4b, 0x00213700, 0x00600007, 0x00200440,
++	0x008800ff, 0x0070008f, 0x00406d8c, 0x005000cb, 0x00000000,
++	0x001118f8, 0x0020002b, 0x00101a05, 0x00131c00, 0x00111c04,
++	0x00141c20, 0x00111c25, 0x00131c40, 0x00111c44, 0x00141c60,
++	0x00111c65, 0x00131c80, 0x00111c84, 0x00141ca0, 0x00111ca5,
++	0x00131cc0, 0x00111cc4, 0x00141ce0, 0x00111ce5, 0x00131d00,
++	0x00111d04, 0x00141d20, 0x00111d25, 0x00131d40, 0x00111d44,
++	0x00141d60, 0x00111d65, 0x00131f00, 0x00191f40, 0x0040a7e0,
++	0x00200217, 0x00600006, 0x00200044, 0x00102080, 0x001120c6,
++	0x001520c9, 0x001920d0, 0x00122100, 0x00122103, 0x00162200,
++	0x00409f0f, 0x00409f4b, 0x00213700, 0x00600007, 0x00200440,
++	0x008800ff, 0x0070008f, 0x00409f8c, 0x005000cb, 0x00000000,
++	0x00122207, 0x00112280, 0x00112300, 0x00112302, 0x00122380,
++	0x0011238b, 0x00192394, 0x0040b9e1, 0x00200285, 0x00600006,
++	0x00200044, 0x00102480, 0x001124c6, 0x001524c9, 0x001924d0,
++	0x00122500, 0x00122503, 0x00162600, 0x00122607, 0x00112680,
++	0x00112700, 0x00112702, 0x00122780, 0x0011278b, 0x00192794,
++	0x0040d5e2, 0x002002f3, 0x00600006, 0x00200044, 0x00102880,
++	0x001128c6, 0x001528c9, 0x0040c90f, 0x0040c94b, 0x00213700,
++	0x00600007, 0x00200440, 0x008800ff, 0x0070008f, 0x0040c98c,
++	0x005000cb, 0x00000000, 0x001928d0, 0x00122900, 0x00122903,
++	0x00162a00, 0x00122a07, 0x00112a80, 0x00112b00, 0x00112b02,
++	0x00122b80, 0x00112b8b, 0x00192b94, 0x0040e7e3, 0x00200361,
++	0x00600006, 0x00200044, 0x00102c80, 0x00112cc6, 0x00152cc9,
++	0x00192cd0, 0x00122d00, 0x00122d03, 0x00162e00, 0x00122e07,
++	0x00112e80, 0x00112f00, 0x00112f02, 0x00122f80, 0x00112f8b,
++	0x00192f94, 0x004103e4, 0x002003cf, 0x00600006, 0x00200044,
++	0x00103080, 0x0040f50f, 0x0040f54b, 0x00213700, 0x00600007,
++	0x00200440, 0x008800ff, 0x0070008f, 0x0040f58c, 0x005000cb,
++	0x00000000, 0x001130c6, 0x001530c9, 0x001930d0, 0x00123100,
++	0x00123103, 0x00163200, 0x00123207, 0x00113280, 0x00113300,
++	0x00113302, 0x00123380, 0x0011338b, 0x00193394, 0x004115e5,
++	0x0020043d, 0x00600006, 0x00200044, 0x00103480, 0x001134c6,
++	0x001534c9, 0x001934d0, 0x00123500, 0x00123503, 0x00163600,
++	0x00123607, 0x00113680, 0x00113700, 0x00113702, 0x00123780,
++	0x0011378b, 0x00193794, 0x004131e6, 0x002004ab, 0x00600006,
++	0x00200044, 0x00103880, 0x0041230f, 0x0041234b, 0x00213700,
++	0x00600007, 0x00200440, 0x008800ff, 0x0070008f, 0x0041238c,
++	0x005000cb, 0x00000000, 0x001138c6, 0x001538c9, 0x001938d0,
++	0x00123900, 0x00123903, 0x00163a00, 0x00123a07, 0x00113a80,
++	0x00113b00, 0x00113b02, 0x00123b80, 0x00113b8b, 0x00193b94,
++	0x004143e7, 0x00200519, 0x00600006, 0x00200044, 0x00103c80,
++	0x00113cc6, 0x00153cc9, 0x00193cd0, 0x00123d00, 0x00123d03,
++	0x00163e00, 0x00123e07, 0x00113e80, 0x00113f00, 0x00113f02,
++	0x00123f80, 0x00113f8b, 0x00193f94, 0x00000000, 0x00414a0f,
++	0x005000cb, 0x00213700, 0x00600007, 0x00200440, 0x008800ff,
++	0x005000cb, 0x00414d87, 0x0060000a, 0x00000000, 0x00415c00,
++	0x007000a0, 0x00700080, 0x002005c0, 0x00600007, 0x00200004,
++	0x00c000ff, 0x008000ff, 0x005000cb, 0x00700000, 0x00200000,
++	0x00600006, 0x00111bfe, 0x00417e4d, 0x00700000, 0x00200000,
++	0x00600006, 0x00111bfe, 0x00700080, 0x0070001d, 0x0040114d,
++	0x00700081, 0x00600004, 0x0050004a, 0x00416888, 0x0060000b,
++	0x00200000, 0x00600006, 0x00700000, 0x00417e0b, 0x00111bfd,
++	0x0040374d, 0x00202627, 0x008000fd, 0x005000cb, 0x00c00002,
++	0x002005c0, 0x00600007, 0x0020015f, 0x00800002, 0x005000cb,
++	0x00c01802, 0x002024c8, 0x00800002, 0x005000cb, 0x0040434d,
++	0x0060000b, 0x00417c4d, 0x00700001, 0x00700003, 0x00418206,
++	0x00418305, 0x0060000d, 0x00700005, 0x0070000d, 0x00700006,
++	0x0070000b, 0x0070000e, 0x0070001c, 0x0060000c, ~0
++};
++
+ static uint32_t nv84_ctx_voodoo[] = {
+ 	0x0070008e, 0x0070009c, 0x00200020, 0x00600008, 0x0050004c, 0x00400e89,
+ 	0x00200000, 0x00600007, 0x00300000, 0x00c000ff, 0x00200000, 0x008000ff,
+@@ -196,6 +278,9 @@ nv50_graph_init_ctxctl(struct drm_device *dev)
+ 	DRM_DEBUG("\n");
+ 
+ 	switch (dev_priv->chipset) {
++	case 0x50:
++		voodoo = nv50_ctx_voodoo;
++		break;
+ 	case 0x84:
+ 		voodoo = nv84_ctx_voodoo;
+ 		break;
