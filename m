@@ -1,18 +1,15 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Current state - how to get gallium-stuff running?
-Date: Sun, 09 Mar 2008 14:40:57 +1100
-Message-ID: <1205034057.3703.7.camel@araqiel>
-References: <200803072132.23321.hanno@hboeck.de>
-	<1204932443.8406.21.camel@CowboyLaputopu>
-	<200803081504.35171.hanno@hboeck.de>
-	<20080309000013.126a89d1@daedalus.pq.iki.fi>
-	<1caff7430803081725l50360a1end8438c80cddac2b1@mail.gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [patch] add nv50 voodoo
+Date: Sun, 9 Mar 2008 15:56:36 +0300
+Message-ID: <20080309125635.GA5102@martell.zuzino.mipt.ru>
+References: <20080308234138.GD10221@martell.zuzino.mipt.ru>
+	<alpine.LNX.1.00.0803090055260.18975@jbgna.fhfr.qr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1caff7430803081725l50360a1end8438c80cddac2b1-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <alpine.LNX.1.00.0803090055260.18975-aORvohZ8rX8NvFgr0RP9cw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,36 +19,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: seventh guardian <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Bernhard Kaindl <bk-l3A5Bk7waGM@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CkFtIFNvbm50YWcsIGRlbiAwOS4wMy4yMDA4LCAwMToyNSArMDAwMCBzY2hyaWViIHNldmVudGgg
-Z3VhcmRpYW46Cj4gT24gU2F0LCBNYXIgOCwgMjAwOCBhdCAxMDowMCBQTSwgUGVra2EgUGFhbGFu
-ZW4gPHBxQGlraS5maT4gd3JvdGU6Cj4gPiBPbiBTYXQsIDggTWFyIDIwMDggMTU6MDQ6MzAgKzAx
-MDAKPiA+ICAiSGFubm8gQsO2Y2siIDxoYW5ub0BoYm9lY2suZGU+IHdyb3RlOgo+ID4KPiA+ICA+
-IFVzaW5nIEdlbnRvbywgdXNpbmcgdGhlIG5vdXZlYXUtb3ZlcmxheS4gSW5zdGFsbGluZyBnaXQt
-cGFja2FnZXMgb2YgbGliZHJtLAo+ID4gID4geDExLWRybSwgeGY4Ni12aWRlby1ub3V2ZWF1LiBD
-aGFuZ2VkIG1lc2EtcGFja2FnZSB0byBmZXRjaCBub3V2ZWF1L21lc2EgZ2l0Cj4gPiAgPiB3aXRo
-IGdhbGxpdW0tMC4xIGJyYW5jaC4gaW5zdGFsbGVkIHRoYXQuCj4gCj4gRGlkbid0IGtub3cgdGhh
-dCAib2ZmaWNpYWwiIGdhbGxpdW0gZGV2ZWxvcG1lbnQgbW92ZWQgZnJvbSBkYXJrdGFtYSdzCj4g
-Z2l0ICh3aGljaCBpcyBnb29kIEkgZ3Vlc3MpIDspCj4gUHJvYmFibHkgYmVlbiBhd2F5IGZvciB0
-b28gbG9uZy4uLgo+IAo+ID4gIEhlcmUgbWlnaHQgYmUgdGhlIHJlYXNvbiwgbWF5YmUgdGhlIGVi
-dWlsZCBpcyBzdGlsbCBidWlsZGluZyB0aGUgd3JvbmcKPiA+ICBicmFuY2guIEdpdCBlYnVpbGQg
-Y29kaW5nIGhhcyBhIG5hc3R5IGZlYXR1cmUsIGJ1dCB5b3UgYXJlIHNhZmUgaWYgeW91IHNldAo+
-ID4gICpib3RoKiBUUkVFIGFuZCBCUkFOQ0guIEFuZCBJIGRvbid0IHJlbWVtYmVyIGlmIGl0IHJl
-cXVpcmVzIG90aGVyIGNoYW5nZXMsCj4gPiAgdG9vLgo+ID4KPiA+ICBBbnl3YXksIEknZCByZWNv
-bW1lbmQgYnVpbGRpbmcgbWVzYSBieSBoYW5kLCBzbyB5b3UgYXJlIHN1cmUgd2hpY2ggYnJhbmNo
-Cj4gPiAgeW91IGJ1aWxkIGFuZCBob3cuCj4gCj4gTm90IHN1cmUgaWYgdGhpcyBtYXR0ZXJzLCBi
-dXQgSSd2ZSBub3RpY2VkIHRoYXQgdGhlIG5vdXZlYXVfZHJpLnNvCj4gbGlicmFyeSBpc24ndCBi
-dWlsdCB3aGVuIGRvaW5nICJtYWtlIGxpbnV4LWRyaS14ODYtNjQKPiBEUklfRElSUz1ub3V2ZWF1
-X3dpbnN5cyIuIEkgaGFkIHRvIG1hbnVhbGx5IGJ1aWxkIGl0LgpVc2UgRFJJX0RJUlM9Im5vdXZl
-YXUiIGFuZCAibWFrZSBsaW51eC1kcmkiLCBldmVuIG9uIGFtZDY0LiAgSSdtIG5vdApzdXJlIHRo
-ZSBURyBndXlzIGhhdmUgdXBkYXRlcyBsaW51eC1kcmkteDg2LTY0IGZvciB0aGUgYnVpbGQgc3lz
-dGVtCmNoYW5nZXMuCgpCZW4uCj4gCj4gQ2hlZXJzLAo+ICAgUmVuYXRvIENhbGRhcwo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWls
-aW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Sun, Mar 09, 2008 at 01:09:37AM +0100, Bernhard Kaindl wrote:
+> On Sun, 9 Mar 2008, Alexey Dobriyan wrote:
+> > 
+> > Hi, this is from mmio-traces. After startx I see mouse cursor which
+> > moves, background split into black and garbage areas. First area
+> > consists of repeated pattern of something. Surrealistic picture, and
+> > after several seconds box locks up hard, monitor turns off.
+> > However much improvement against non-starting X. :-)
+> 
+> Great stuff!
+> 
+> BTW, does this change if you first start the blob and then only
+> change Driver "nvidia" to "nouveau" in xorg.conf and start nouveau
+> without rebooting first?
+
+This doesn't help. :-(
+
+> I ask because my nv84 was in a similar shape like you got it with
+> the voodoo now (my nv84 had already a voodoo in nv50_graph.c), but
+> when I started the blob before starting nouveau, it worked then :-)
+> 
+> What fixed this then completely so that I could start nouveau fresh
+> from boot was this patch:
+> 
+> 	http://users.on.net/~darktama/nv84_ctxvals.patch
+
+I wonder, how these were extracted? I took everything from big block of
+0x2 writes upto first read from NV04_PTIMER_TIME_1 and it doesn't help.
+
+And just for fun, garbled pictures at the top of screen are actually
+Asus P5B-E full-screen logo seen at start of bootup.
