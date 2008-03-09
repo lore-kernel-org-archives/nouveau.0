@@ -1,8 +1,7 @@
 From: Pekka J Enberg <penberg-bbCR+/B0CizivPeTLB3BmA@public.gmane.org>
-Subject: [PATCH 1/4] nouveau: add nouveau_addmap_{agp, fb,
-	pci} functions
-Date: Sun, 9 Mar 2008 18:36:16 +0200 (EET)
-Message-ID: <Pine.LNX.4.64.0803091835520.29158@sbz-30.cs.Helsinki.FI>
+Subject: [PATCH 4/4] nouveau: clean up nouveau_mem_alloc function
+Date: Sun, 9 Mar 2008 18:37:12 +0200 (EET)
+Message-ID: <Pine.LNX.4.64.0803091836460.29158@sbz-30.cs.Helsinki.FI>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -21,81 +20,215 @@ List-Id: nouveau.vger.kernel.org
 
 From: Pekka Enberg <penberg-bbCR+/B0CizivPeTLB3BmA@public.gmane.org>
 
-This introduces memory type specific nouveau_addmap_{agp,fb,pci} functions as a
-preparatory step to cleaning up nouveau_mem_alloc().
+Convert the macros in nouveau_mem_alloc() to nouveau_mem_alloc_agp(),
+nouveau_mem_alloc_fb(), and nouveau_mem_alloc_pci() functions that use a new
+generic __nouveau_mem_alloc() function to allocate and map memory.
 
 Signed-off-by: Pekka Enberg <penberg-bbCR+/B0CizivPeTLB3BmA@public.gmane.org>
 ---
- shared-core/nouveau_mem.c |   50 ++++++++++++++++++++++++++++++++++------------
- 1 file changed, 37 insertions(+), 13 deletions(-)
+ shared-core/nouveau_mem.c |  174 ++++++++++++++++++++++++++++++----------------
+ 1 file changed, 117 insertions(+), 57 deletions(-)
 
 Index: drm/shared-core/nouveau_mem.c
 ===================================================================
 --- drm.orig/shared-core/nouveau_mem.c
 +++ drm/shared-core/nouveau_mem.c
-@@ -515,6 +515,39 @@ int nouveau_mem_init(struct drm_device *
- 	return 0;
+@@ -567,13 +567,91 @@ static int nouveau_addmap_agp(struct drm
+ 	return nouveau_addmap(dev, block, block->start, type);
  }
  
-+static int nouveau_addmap(struct drm_device *dev, struct mem_block *block,
-+			  unsigned long offset, enum drm_map_type type)
++static struct mem_block *
++__nouveau_mem_alloc(struct drm_device *dev, int type, struct mem_block *heap,
++		    uint64_t size, int alignment, int flags,
++		    struct drm_file *file_priv)
 +{
-+	return drm_addmap(dev, block->start, block->size, type, 0,
-+			  &block->map);
++	struct mem_block *block;
++	int err;
++
++	block = nouveau_mem_alloc_block(heap, size, alignment, file_priv);
++	if (!block)
++		return NULL;
++	block->flags = type;
++
++	/*
++	 * Does the block need mapping?
++	 */
++	if (!(flags & NOUVEAU_MEM_MAPPED))
++		return block;
++
++	switch (type) {
++		case NOUVEAU_MEM_AGP:
++			err = nouveau_addmap_agp(dev, block);
++			break;
++		case NOUVEAU_MEM_FB:
++			err = nouveau_addmap_fb(dev, block);
++			break;
++		case NOUVEAU_MEM_PCI:
++			err = nouveau_addmap_pci(dev, block);
++			break;
++		default:
++			err = -EINVAL;
++			break;
++	};
++	if (err)
++		goto error;
++
++	return block;
++error:
++	nouveau_mem_free_block(block);
++	return NULL;
 +}
 +
-+static int nouveau_addmap_pci(struct drm_device *dev, struct mem_block *block)
-+{
-+	return nouveau_addmap(dev, block, block->start, _DRM_SCATTER_GATHER);
-+}
-+
-+static int nouveau_addmap_fb(struct drm_device *dev, struct mem_block *block)
++static struct mem_block *
++nouveau_mem_alloc_pci(struct drm_device *dev, uint64_t size, int alignment,
++		      int flags, struct drm_file *file_priv)
 +{
 +	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	unsigned long offset = block->start + dev_priv->fb_phys;
 +
-+	return nouveau_addmap(dev, block, offset, _DRM_SCATTER_GATHER);
++	return __nouveau_mem_alloc(dev, NOUVEAU_MEM_PCI, dev_priv->pci_heap,
++				   size, alignment, flags, file_priv);
 +}
 +
-+static int nouveau_addmap_agp(struct drm_device *dev, struct mem_block *block)
++static struct mem_block *
++nouveau_mem_alloc_agp(struct drm_device *dev, uint64_t size, int alignment,
++		      int flags, struct drm_file *file_priv)
 +{
 +	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	enum drm_map_type type;
 +
-+	if (dev_priv->gart_info.type == NOUVEAU_GART_SGDMA)
-+		type = _DRM_SCATTER_GATHER;
-+	else
-+		type = _DRM_AGP;
++	return __nouveau_mem_alloc(dev, NOUVEAU_MEM_AGP, dev_priv->agp_heap,
++				   size, alignment, flags, file_priv);
++}
 +
-+	return nouveau_addmap(dev, block, block->start, type);
++static struct mem_block *
++nouveau_mem_alloc_fb(struct drm_device *dev, uint64_t size, int alignment,
++		     int flags, struct drm_file *file_priv)
++{
++	struct drm_nouveau_private *dev_priv = dev->dev_private;
++	struct mem_block *block;
++
++	if (!(flags & NOUVEAU_MEM_MAPPED)) {
++		block = __nouveau_mem_alloc(dev, NOUVEAU_MEM_FB,
++					    dev_priv->fb_nomap_heap, size,
++					    alignment, flags, file_priv);
++		if (block)
++			return block;
++	}
++	return __nouveau_mem_alloc(dev, NOUVEAU_MEM_FB, dev_priv->fb_heap,
++				   size, alignment, flags, file_priv);
 +}
 +
  struct mem_block* nouveau_mem_alloc(struct drm_device *dev, int alignment,
  				    uint64_t size, int flags,
  				    struct drm_file *file_priv)
-@@ -590,21 +623,12 @@ alloc_ok:
- 		int ret = 0;
- 		block->flags|=NOUVEAU_MEM_MAPPED;
+ {
+ 	struct mem_block *block;
+-	int type;
+-	struct drm_nouveau_private *dev_priv = dev->dev_private;
  
--		if (type == NOUVEAU_MEM_AGP) {
--			if (dev_priv->gart_info.type != NOUVEAU_GART_SGDMA)
--			ret = drm_addmap(dev, block->start, block->size,
--					 _DRM_AGP, 0, &block->map);
--			else
--			ret = drm_addmap(dev, block->start, block->size,
--					 _DRM_SCATTER_GATHER, 0, &block->map);
+ 	/*
+ 	 * Make things easier on ourselves: all allocations are page-aligned.
+@@ -594,67 +672,49 @@ struct mem_block* nouveau_mem_alloc(stru
+ 	if (size & (~PAGE_MASK))
+ 		size = ((size/PAGE_SIZE) + 1) * PAGE_SIZE;
+ 
++	if (flags & NOUVEAU_MEM_FB) {
++		block = nouveau_mem_alloc_fb(dev, size, alignment, flags,
++					     file_priv);
++		if (block)
++			goto out;
++	}
+ 
+-#define NOUVEAU_MEM_ALLOC_AGP {\
+-		type=NOUVEAU_MEM_AGP;\
+-                block = nouveau_mem_alloc_block(dev_priv->agp_heap, size,\
+-                                                alignment, file_priv); \
+-                if (block) goto alloc_ok;\
+-	        }
+-
+-#define NOUVEAU_MEM_ALLOC_PCI {\
+-                type = NOUVEAU_MEM_PCI;\
+-                block = nouveau_mem_alloc_block(dev_priv->pci_heap, size, \
+-						alignment, file_priv); \
+-                if ( block ) goto alloc_ok;\
+-	        }
+-
+-#define NOUVEAU_MEM_ALLOC_FB {\
+-                type=NOUVEAU_MEM_FB;\
+-                if (!(flags&NOUVEAU_MEM_MAPPED)) {\
+-                        block = nouveau_mem_alloc_block(dev_priv->fb_nomap_heap,\
+-                                                        size, alignment, \
+-							file_priv); \
+-                        if (block) goto alloc_ok;\
+-                }\
+-                block = nouveau_mem_alloc_block(dev_priv->fb_heap, size,\
+-                                                alignment, file_priv);\
+-                if (block) goto alloc_ok;\
+-	        }
+-
+-
+-	if (flags&NOUVEAU_MEM_FB) NOUVEAU_MEM_ALLOC_FB
+-	if (flags&NOUVEAU_MEM_AGP) NOUVEAU_MEM_ALLOC_AGP
+-	if (flags&NOUVEAU_MEM_PCI) NOUVEAU_MEM_ALLOC_PCI
+-	if (flags&NOUVEAU_MEM_FB_ACCEPTABLE) NOUVEAU_MEM_ALLOC_FB
+-	if (flags&NOUVEAU_MEM_AGP_ACCEPTABLE) NOUVEAU_MEM_ALLOC_AGP
+-	if (flags&NOUVEAU_MEM_PCI_ACCEPTABLE) NOUVEAU_MEM_ALLOC_PCI
+-
++	if (flags & NOUVEAU_MEM_AGP) {
++		block = nouveau_mem_alloc_agp(dev, size, alignment, flags,
++					      file_priv);
++		if (block)
++			goto out;
++	}
+ 
+-	return NULL;
++	if (flags & NOUVEAU_MEM_PCI) {
++		block = nouveau_mem_alloc_pci(dev, size, alignment, flags,
++					      file_priv);
++		if (block)
++			goto out;
++	}
+ 
+-alloc_ok:
+-	block->flags=type;
++	if (flags & NOUVEAU_MEM_FB_ACCEPTABLE) {
++		block = nouveau_mem_alloc_fb(dev, size, alignment, flags,
++					     file_priv);
++		if (block)
++			goto out;
++	}
+ 
+-	if (flags&NOUVEAU_MEM_MAPPED)
+-	{
+-		int ret = 0;
+-
+-		if (type == NOUVEAU_MEM_AGP)
+-			ret = nouveau_addmap_agp(dev, block);
+-		else if (type == NOUVEAU_MEM_FB)
+-			ret = nouveau_addmap_fb(dev, block);
+-		else if (type == NOUVEAU_MEM_PCI)
+-			ret = nouveau_addmap_pci(dev, block);
+-
+-		if (ret) {
+-			nouveau_mem_free_block(block);
+-			return NULL;
 -		}
-+		if (type == NOUVEAU_MEM_AGP)
-+			ret = nouveau_addmap_agp(dev, block);
- 		else if (type == NOUVEAU_MEM_FB)
--			ret = drm_addmap(dev, block->start + dev_priv->fb_phys,
--					 block->size, _DRM_FRAME_BUFFER,
--					 0, &block->map);
-+			ret = nouveau_addmap_fb(dev, block);
- 		else if (type == NOUVEAU_MEM_PCI)
--			ret = drm_addmap(dev, block->start, block->size,
--					 _DRM_SCATTER_GATHER, 0, &block->map);
-+			ret = nouveau_addmap_pci(dev, block);
++	if (flags & NOUVEAU_MEM_AGP_ACCEPTABLE) {
++		block = nouveau_mem_alloc_agp(dev, size, alignment, flags,
++					      file_priv);
++		if (block)
++			goto out;
+ 	}
  
- 		if (ret) {
- 			nouveau_mem_free_block(block);
+-	DRM_DEBUG("allocated %lld bytes at 0x%llx type=0x%08x\n", block->size, block->start, block->flags);
+-	return block;
++	if (flags & NOUVEAU_MEM_PCI_ACCEPTABLE)
++		block = nouveau_mem_alloc_pci(dev, size, alignment, flags,
++					      file_priv);
++out:
++	if (block)
++		DRM_DEBUG("allocated %lld bytes at 0x%llx type=0x%08x\n",
++			  block->size, block->start, block->flags);
++  	return block;
+ }
+ 
+ void nouveau_mem_free(struct drm_device* dev, struct mem_block* block)
