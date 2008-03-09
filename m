@@ -1,15 +1,11 @@
-From: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [patch] add nv50 voodoo
-Date: Sun, 9 Mar 2008 15:56:36 +0300
-Message-ID: <20080309125635.GA5102@martell.zuzino.mipt.ru>
-References: <20080308234138.GD10221@martell.zuzino.mipt.ru>
-	<alpine.LNX.1.00.0803090055260.18975@jbgna.fhfr.qr>
+From: Pekka J Enberg <penberg-bbCR+/B0CizivPeTLB3BmA@public.gmane.org>
+Subject: [PATCH 2/4] nouveau: add nouveau_map_block function
+Date: Sun, 9 Mar 2008 18:36:32 +0200 (EET)
+Message-ID: <Pine.LNX.4.64.0803091836170.29158@sbz-30.cs.Helsinki.FI>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <alpine.LNX.1.00.0803090055260.18975-aORvohZ8rX8NvFgr0RP9cw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,38 +15,65 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Bernhard Kaindl <bk-l3A5Bk7waGM@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Mar 09, 2008 at 01:09:37AM +0100, Bernhard Kaindl wrote:
-> On Sun, 9 Mar 2008, Alexey Dobriyan wrote:
-> > 
-> > Hi, this is from mmio-traces. After startx I see mouse cursor which
-> > moves, background split into black and garbage areas. First area
-> > consists of repeated pattern of something. Surrealistic picture, and
-> > after several seconds box locks up hard, monitor turns off.
-> > However much improvement against non-starting X. :-)
-> 
-> Great stuff!
-> 
-> BTW, does this change if you first start the blob and then only
-> change Driver "nvidia" to "nouveau" in xorg.conf and start nouveau
-> without rebooting first?
+From: Pekka Enberg <penberg-bbCR+/B0CizivPeTLB3BmA@public.gmane.org>
 
-This doesn't help. :-(
+This extracts the struct mem_block to struct drm_map_list entry mapping into a
+separate function.
 
-> I ask because my nv84 was in a similar shape like you got it with
-> the voodoo now (my nv84 had already a voodoo in nv50_graph.c), but
-> when I started the blob before starting nouveau, it worked then :-)
-> 
-> What fixed this then completely so that I could start nouveau fresh
-> from boot was this patch:
-> 
-> 	http://users.on.net/~darktama/nv84_ctxvals.patch
+Signed-off-by: Pekka Enberg <penberg-bbCR+/B0CizivPeTLB3BmA@public.gmane.org>
+---
+ shared-core/nouveau_mem.c |   20 +++++++++++++++-----
+ 1 file changed, 15 insertions(+), 5 deletions(-)
 
-I wonder, how these were extracted? I took everything from big block of
-0x2 writes upto first read from NV04_PTIMER_TIME_1 and it doesn't help.
-
-And just for fun, garbled pictures at the top of screen are actually
-Asus P5B-E full-screen logo seen at start of bootup.
+Index: drm/shared-core/nouveau_mem.c
+===================================================================
+--- drm.orig/shared-core/nouveau_mem.c
++++ drm/shared-core/nouveau_mem.c
+@@ -515,6 +515,20 @@ int nouveau_mem_init(struct drm_device *
+ 	return 0;
+ }
+ 
++/* Returns zero on success; otherwise returns non-zero.  */
++static int nouveau_map_block(struct drm_device *dev, struct mem_block *block)
++{
++	struct drm_map_list *entry;
++
++	entry = drm_find_matching_map(dev, block->map);
++	if (!entry)
++		return -EINVAL;
++
++	block->map_handle = entry->user_token;
++	block->flags |= NOUVEAU_MEM_MAPPED;
++	return 0;
++}
++
+ static int nouveau_addmap(struct drm_device *dev, struct mem_block *block,
+ 			  unsigned long offset, enum drm_map_type type)
+ {
+@@ -619,9 +633,7 @@ alloc_ok:
+ 
+ 	if (flags&NOUVEAU_MEM_MAPPED)
+ 	{
+-		struct drm_map_list *entry;
+ 		int ret = 0;
+-		block->flags|=NOUVEAU_MEM_MAPPED;
+ 
+ 		if (type == NOUVEAU_MEM_AGP)
+ 			ret = nouveau_addmap_agp(dev, block);
+@@ -635,12 +647,10 @@ alloc_ok:
+ 			return NULL;
+ 		}
+ 
+-		entry = drm_find_matching_map(dev, block->map);
+-		if (!entry) {
++		if (!nouveau_map_block(dev, block)) {
+ 			nouveau_mem_free_block(block);
+ 			return NULL;
+ 		}
+-		block->map_handle = entry->user_token;
+ 	}
+ 
+ 	DRM_DEBUG("allocated %lld bytes at 0x%llx type=0x%08x\n", block->size, block->start, block->flags);
