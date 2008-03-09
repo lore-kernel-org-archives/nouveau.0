@@ -1,11 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14922] New: start X with nouveau uses a lot of memory
-Date: Sun,  9 Mar 2008 14:54:09 -0700 (PDT)
-Message-ID: <bug-14922-8800@http.bugs.freedesktop.org/>
+From: Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Current state - how to get gallium-stuff running?
+Date: Mon, 10 Mar 2008 09:24:20 +1100
+Message-ID: <1205101460.18858.7.camel@CowboyLaputopu>
+References: <200803072132.23321.hanno@hboeck.de>
+	<1204932443.8406.21.camel@CowboyLaputopu>
+	<200803081504.35171.hanno@hboeck.de>
+	<20080309000013.126a89d1@daedalus.pq.iki.fi>
+	<1caff7430803081725l50360a1end8438c80cddac2b1@mail.gmail.com>
+	<1205034057.3703.7.camel@araqiel>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1205034057.3703.7.camel@araqiel>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,38 +25,33 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14922
-
-           Summary: start X with nouveau uses a lot of memory
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: oli.huber-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=14985)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=14985)
-some tests
-
-I compared memory usage between nouveau and the blob : when I start with
-nouveau, it uses ~500M more than with the other. But I can't find where this
-memory is gone. No process in the userspace seems to have used it.
- When I kill X, I get my memory back. See the attachment for some figures.
-
-videocard : 7800 GS AGP (256 Mo)
-Kernel : 2.6.24-gentoo-r2
-X: 1.4.0.90 plus some patches (I'm an gentoo user :  1.4.0.90-r3)
-libdrm, x11-drm, mesa, nouveau from git (last build : 09/03/08 in the morning)
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gU3VuLCAyMDA4LTAzLTA5IGF0IDE0OjQwICsxMTAwLCBCZW4gU2tlZ2dzIHdyb3RlOgo+IEFt
+IFNvbm50YWcsIGRlbiAwOS4wMy4yMDA4LCAwMToyNSArMDAwMCBzY2hyaWViIHNldmVudGggZ3Vh
+cmRpYW46Cj4gPiBPbiBTYXQsIE1hciA4LCAyMDA4IGF0IDEwOjAwIFBNLCBQZWtrYSBQYWFsYW5l
+biA8cHFAaWtpLmZpPiB3cm90ZToKPiA+ID4gT24gU2F0LCA4IE1hciAyMDA4IDE1OjA0OjMwICsw
+MTAwCj4gPiA+ICAiSGFubm8gQsO2Y2siIDxoYW5ub0BoYm9lY2suZGU+IHdyb3RlOgo+ID4gPgo+
+ID4gPiAgPiBVc2luZyBHZW50b28sIHVzaW5nIHRoZSBub3V2ZWF1LW92ZXJsYXkuIEluc3RhbGxp
+bmcgZ2l0LXBhY2thZ2VzIG9mIGxpYmRybSwKPiA+ID4gID4geDExLWRybSwgeGY4Ni12aWRlby1u
+b3V2ZWF1LiBDaGFuZ2VkIG1lc2EtcGFja2FnZSB0byBmZXRjaCBub3V2ZWF1L21lc2EgZ2l0Cj4g
+PiA+ICA+IHdpdGggZ2FsbGl1bS0wLjEgYnJhbmNoLiBpbnN0YWxsZWQgdGhhdC4KPiA+IAo+ID4g
+RGlkbid0IGtub3cgdGhhdCAib2ZmaWNpYWwiIGdhbGxpdW0gZGV2ZWxvcG1lbnQgbW92ZWQgZnJv
+bSBkYXJrdGFtYSdzCj4gPiBnaXQgKHdoaWNoIGlzIGdvb2QgSSBndWVzcykgOykKPiA+IFByb2Jh
+Ymx5IGJlZW4gYXdheSBmb3IgdG9vIGxvbmcuLi4KPiA+IAo+ID4gPiAgSGVyZSBtaWdodCBiZSB0
+aGUgcmVhc29uLCBtYXliZSB0aGUgZWJ1aWxkIGlzIHN0aWxsIGJ1aWxkaW5nIHRoZSB3cm9uZwo+
+ID4gPiAgYnJhbmNoLiBHaXQgZWJ1aWxkIGNvZGluZyBoYXMgYSBuYXN0eSBmZWF0dXJlLCBidXQg
+eW91IGFyZSBzYWZlIGlmIHlvdSBzZXQKPiA+ID4gICpib3RoKiBUUkVFIGFuZCBCUkFOQ0guIEFu
+ZCBJIGRvbid0IHJlbWVtYmVyIGlmIGl0IHJlcXVpcmVzIG90aGVyIGNoYW5nZXMsCj4gPiA+ICB0
+b28uCj4gPiA+Cj4gPiA+ICBBbnl3YXksIEknZCByZWNvbW1lbmQgYnVpbGRpbmcgbWVzYSBieSBo
+YW5kLCBzbyB5b3UgYXJlIHN1cmUgd2hpY2ggYnJhbmNoCj4gPiA+ICB5b3UgYnVpbGQgYW5kIGhv
+dy4KPiA+IAo+ID4gTm90IHN1cmUgaWYgdGhpcyBtYXR0ZXJzLCBidXQgSSd2ZSBub3RpY2VkIHRo
+YXQgdGhlIG5vdXZlYXVfZHJpLnNvCj4gPiBsaWJyYXJ5IGlzbid0IGJ1aWx0IHdoZW4gZG9pbmcg
+Im1ha2UgbGludXgtZHJpLXg4Ni02NAo+ID4gRFJJX0RJUlM9bm91dmVhdV93aW5zeXMiLiBJIGhh
+ZCB0byBtYW51YWxseSBidWlsZCBpdC4KPiBVc2UgRFJJX0RJUlM9Im5vdXZlYXUiIGFuZCAibWFr
+ZSBsaW51eC1kcmkiLCBldmVuIG9uIGFtZDY0LiAgSSdtIG5vdAo+IHN1cmUgdGhlIFRHIGd1eXMg
+aGF2ZSB1cGRhdGVzIGxpbnV4LWRyaS14ODYtNjQgZm9yIHRoZSBidWlsZCBzeXN0ZW0KPiBjaGFu
+Z2VzLgoKSSd2ZSBiZWVuIHVzaW5nIHRoZSBsaW51eC1kcmkteDg2LTY0IHRhcmdldCwgYW5kIGl0
+IHNlZW1zIHRvIGJlCndvcmtpbmcg77u/KE9wZW5BcmVuYSwgZ2x4Z2VhcnMpLCBtb3N0IG9mIHRo
+ZSB0aW1lIGF0IGxlYXN0ISAgSXQgY2VydGFpbmx5CmJ1aWxkcy4KCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
