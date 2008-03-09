@@ -1,17 +1,18 @@
-From: "seventh guardian" <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: Current state - how to get gallium-stuff running?
-Date: Sun, 9 Mar 2008 01:25:11 +0000
-Message-ID: <1caff7430803081725l50360a1end8438c80cddac2b1@mail.gmail.com>
+Date: Sun, 09 Mar 2008 14:40:57 +1100
+Message-ID: <1205034057.3703.7.camel@araqiel>
 References: <200803072132.23321.hanno@hboeck.de>
 	<1204932443.8406.21.camel@CowboyLaputopu>
 	<200803081504.35171.hanno@hboeck.de>
 	<20080309000013.126a89d1@daedalus.pq.iki.fi>
+	<1caff7430803081725l50360a1end8438c80cddac2b1@mail.gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20080309000013.126a89d1-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <1caff7430803081725l50360a1end8438c80cddac2b1-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +22,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: seventh guardian <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Mar 8, 2008 at 10:00 PM, Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> wrote:
-> On Sat, 8 Mar 2008 15:04:30 +0100
->  "Hanno B=F6ck" <hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org> wrote:
->
->  > Using Gentoo, using the nouveau-overlay. Installing git-packages of li=
-bdrm,
->  > x11-drm, xf86-video-nouveau. Changed mesa-package to fetch nouveau/mes=
-a git
->  > with gallium-0.1 branch. installed that.
-
-Didn't know that "official" gallium development moved from darktama's
-git (which is good I guess) ;)
-Probably been away for too long...
-
->  Here might be the reason, maybe the ebuild is still building the wrong
->  branch. Git ebuild coding has a nasty feature, but you are safe if you s=
-et
->  *both* TREE and BRANCH. And I don't remember if it requires other change=
-s,
->  too.
->
->  Anyway, I'd recommend building mesa by hand, so you are sure which branch
->  you build and how.
-
-Not sure if this matters, but I've noticed that the nouveau_dri.so
-library isn't built when doing "make linux-dri-x86-64
-DRI_DIRS=3Dnouveau_winsys". I had to manually build it.
-
-Cheers,
-  Renato Caldas
+CkFtIFNvbm50YWcsIGRlbiAwOS4wMy4yMDA4LCAwMToyNSArMDAwMCBzY2hyaWViIHNldmVudGgg
+Z3VhcmRpYW46Cj4gT24gU2F0LCBNYXIgOCwgMjAwOCBhdCAxMDowMCBQTSwgUGVra2EgUGFhbGFu
+ZW4gPHBxQGlraS5maT4gd3JvdGU6Cj4gPiBPbiBTYXQsIDggTWFyIDIwMDggMTU6MDQ6MzAgKzAx
+MDAKPiA+ICAiSGFubm8gQsO2Y2siIDxoYW5ub0BoYm9lY2suZGU+IHdyb3RlOgo+ID4KPiA+ICA+
+IFVzaW5nIEdlbnRvbywgdXNpbmcgdGhlIG5vdXZlYXUtb3ZlcmxheS4gSW5zdGFsbGluZyBnaXQt
+cGFja2FnZXMgb2YgbGliZHJtLAo+ID4gID4geDExLWRybSwgeGY4Ni12aWRlby1ub3V2ZWF1LiBD
+aGFuZ2VkIG1lc2EtcGFja2FnZSB0byBmZXRjaCBub3V2ZWF1L21lc2EgZ2l0Cj4gPiAgPiB3aXRo
+IGdhbGxpdW0tMC4xIGJyYW5jaC4gaW5zdGFsbGVkIHRoYXQuCj4gCj4gRGlkbid0IGtub3cgdGhh
+dCAib2ZmaWNpYWwiIGdhbGxpdW0gZGV2ZWxvcG1lbnQgbW92ZWQgZnJvbSBkYXJrdGFtYSdzCj4g
+Z2l0ICh3aGljaCBpcyBnb29kIEkgZ3Vlc3MpIDspCj4gUHJvYmFibHkgYmVlbiBhd2F5IGZvciB0
+b28gbG9uZy4uLgo+IAo+ID4gIEhlcmUgbWlnaHQgYmUgdGhlIHJlYXNvbiwgbWF5YmUgdGhlIGVi
+dWlsZCBpcyBzdGlsbCBidWlsZGluZyB0aGUgd3JvbmcKPiA+ICBicmFuY2guIEdpdCBlYnVpbGQg
+Y29kaW5nIGhhcyBhIG5hc3R5IGZlYXR1cmUsIGJ1dCB5b3UgYXJlIHNhZmUgaWYgeW91IHNldAo+
+ID4gICpib3RoKiBUUkVFIGFuZCBCUkFOQ0guIEFuZCBJIGRvbid0IHJlbWVtYmVyIGlmIGl0IHJl
+cXVpcmVzIG90aGVyIGNoYW5nZXMsCj4gPiAgdG9vLgo+ID4KPiA+ICBBbnl3YXksIEknZCByZWNv
+bW1lbmQgYnVpbGRpbmcgbWVzYSBieSBoYW5kLCBzbyB5b3UgYXJlIHN1cmUgd2hpY2ggYnJhbmNo
+Cj4gPiAgeW91IGJ1aWxkIGFuZCBob3cuCj4gCj4gTm90IHN1cmUgaWYgdGhpcyBtYXR0ZXJzLCBi
+dXQgSSd2ZSBub3RpY2VkIHRoYXQgdGhlIG5vdXZlYXVfZHJpLnNvCj4gbGlicmFyeSBpc24ndCBi
+dWlsdCB3aGVuIGRvaW5nICJtYWtlIGxpbnV4LWRyaS14ODYtNjQKPiBEUklfRElSUz1ub3V2ZWF1
+X3dpbnN5cyIuIEkgaGFkIHRvIG1hbnVhbGx5IGJ1aWxkIGl0LgpVc2UgRFJJX0RJUlM9Im5vdXZl
+YXUiIGFuZCAibWFrZSBsaW51eC1kcmkiLCBldmVuIG9uIGFtZDY0LiAgSSdtIG5vdApzdXJlIHRo
+ZSBURyBndXlzIGhhdmUgdXBkYXRlcyBsaW51eC1kcmkteDg2LTY0IGZvciB0aGUgYnVpbGQgc3lz
+dGVtCmNoYW5nZXMuCgpCZW4uCj4gCj4gQ2hlZXJzLAo+ICAgUmVuYXRvIENhbGRhcwo+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWls
+aW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
