@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14856] Black screen w/ RandR12 enabled
-Date: Mon, 10 Mar 2008 04:24:56 -0700 (PDT)
-Message-ID: <20080310112543.AF97113015F@annarchy.freedesktop.org>
+Date: Mon, 10 Mar 2008 04:33:21 -0700 (PDT)
+Message-ID: <20080310113321.EF88F13011F@annarchy.freedesktop.org>
 References: <bug-14856-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14856
 
 
 
---- Comment #10 from Luca Ottaviano <lucaotta-whZMOeQn8C0@public.gmane.org>  2008-03-10 04:24:52 PST ---
-Updated to master today and everything seems ok. I hope the quirk doesn't
-affect anyone else! :)
+--- Comment #11 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-10 04:33:21 PST ---
+The system is unaware that you pulled out the cable, and you will need to rerun
+xrandr --auto or some other program needs to give it a kick.
 
-On a side note: I've put lvds right-of vga; when I disconnect the cable, all
-the windows on vga don't migrate automatically to lvds (that's a problem for
-example if I have gnome menu bars on vga, so I'm blind and can't launch even a
-console). Is that intended?
+I don't think there is a pretty way to deal with this, certainly not for vga.
 
 
 -- 
