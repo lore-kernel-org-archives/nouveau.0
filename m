@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14941] New: ioremap leak in DRM
-Date: Mon, 10 Mar 2008 11:15:36 -0700 (PDT)
-Message-ID: <bug-14941-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14941] ioremap leak in DRM
+Date: Mon, 10 Mar 2008 11:26:08 -0700 (PDT)
+Message-ID: <20080310182608.95083130083@annarchy.freedesktop.org>
+References: <bug-14941-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14941-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=14941
 
-           Summary: ioremap leak in DRM
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: minor
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: pq-X3B1VOXEql0@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Nouveau is leaking one ioremap per X start. Apparently it is the kernel fifo,
-since it always mapped from the beginning of VRAM, and has size 0x8000 or 32kB.
 
-My hardware is NV20 (gf3). DRM and DDX from git around 9th March.
 
-I found this while mmiotracing nouveau. I start the trace, load drm.ko and
-nouveau.ko, start X three times in a row, unload nouveau.ko and drm.ko. Now
-when I stop mmiotracing, it reports three non-unmapped io-mappings as described
-above.
+--- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-10 11:26:07 PST ---
+Created an attachment (id=15010)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15010)
+Unmap the bushbuffer when it's no longer needed.
+
+Please try this patch.
 
 
 -- 
