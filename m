@@ -1,18 +1,13 @@
-From: Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Current state - how to get gallium-stuff running?
-Date: Mon, 10 Mar 2008 09:24:20 +1100
-Message-ID: <1205101460.18858.7.camel@CowboyLaputopu>
-References: <200803072132.23321.hanno@hboeck.de>
-	<1204932443.8406.21.camel@CowboyLaputopu>
-	<200803081504.35171.hanno@hboeck.de>
-	<20080309000013.126a89d1@daedalus.pq.iki.fi>
-	<1caff7430803081725l50360a1end8438c80cddac2b1@mail.gmail.com>
-	<1205034057.3703.7.camel@araqiel>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 13319] YV12 and YUY2 overlay broken on PPC with NV34M
+Date: Sun,  9 Mar 2008 19:42:25 -0700 (PDT)
+Message-ID: <20080310024225.B199E13016B@annarchy.freedesktop.org>
+References: <bug-13319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1205034057.3703.7.camel@araqiel>
+In-Reply-To: <bug-13319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,33 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCAyMDA4LTAzLTA5IGF0IDE0OjQwICsxMTAwLCBCZW4gU2tlZ2dzIHdyb3RlOgo+IEFt
-IFNvbm50YWcsIGRlbiAwOS4wMy4yMDA4LCAwMToyNSArMDAwMCBzY2hyaWViIHNldmVudGggZ3Vh
-cmRpYW46Cj4gPiBPbiBTYXQsIE1hciA4LCAyMDA4IGF0IDEwOjAwIFBNLCBQZWtrYSBQYWFsYW5l
-biA8cHFAaWtpLmZpPiB3cm90ZToKPiA+ID4gT24gU2F0LCA4IE1hciAyMDA4IDE1OjA0OjMwICsw
-MTAwCj4gPiA+ICAiSGFubm8gQsO2Y2siIDxoYW5ub0BoYm9lY2suZGU+IHdyb3RlOgo+ID4gPgo+
-ID4gPiAgPiBVc2luZyBHZW50b28sIHVzaW5nIHRoZSBub3V2ZWF1LW92ZXJsYXkuIEluc3RhbGxp
-bmcgZ2l0LXBhY2thZ2VzIG9mIGxpYmRybSwKPiA+ID4gID4geDExLWRybSwgeGY4Ni12aWRlby1u
-b3V2ZWF1LiBDaGFuZ2VkIG1lc2EtcGFja2FnZSB0byBmZXRjaCBub3V2ZWF1L21lc2EgZ2l0Cj4g
-PiA+ICA+IHdpdGggZ2FsbGl1bS0wLjEgYnJhbmNoLiBpbnN0YWxsZWQgdGhhdC4KPiA+IAo+ID4g
-RGlkbid0IGtub3cgdGhhdCAib2ZmaWNpYWwiIGdhbGxpdW0gZGV2ZWxvcG1lbnQgbW92ZWQgZnJv
-bSBkYXJrdGFtYSdzCj4gPiBnaXQgKHdoaWNoIGlzIGdvb2QgSSBndWVzcykgOykKPiA+IFByb2Jh
-Ymx5IGJlZW4gYXdheSBmb3IgdG9vIGxvbmcuLi4KPiA+IAo+ID4gPiAgSGVyZSBtaWdodCBiZSB0
-aGUgcmVhc29uLCBtYXliZSB0aGUgZWJ1aWxkIGlzIHN0aWxsIGJ1aWxkaW5nIHRoZSB3cm9uZwo+
-ID4gPiAgYnJhbmNoLiBHaXQgZWJ1aWxkIGNvZGluZyBoYXMgYSBuYXN0eSBmZWF0dXJlLCBidXQg
-eW91IGFyZSBzYWZlIGlmIHlvdSBzZXQKPiA+ID4gICpib3RoKiBUUkVFIGFuZCBCUkFOQ0guIEFu
-ZCBJIGRvbid0IHJlbWVtYmVyIGlmIGl0IHJlcXVpcmVzIG90aGVyIGNoYW5nZXMsCj4gPiA+ICB0
-b28uCj4gPiA+Cj4gPiA+ICBBbnl3YXksIEknZCByZWNvbW1lbmQgYnVpbGRpbmcgbWVzYSBieSBo
-YW5kLCBzbyB5b3UgYXJlIHN1cmUgd2hpY2ggYnJhbmNoCj4gPiA+ICB5b3UgYnVpbGQgYW5kIGhv
-dy4KPiA+IAo+ID4gTm90IHN1cmUgaWYgdGhpcyBtYXR0ZXJzLCBidXQgSSd2ZSBub3RpY2VkIHRo
-YXQgdGhlIG5vdXZlYXVfZHJpLnNvCj4gPiBsaWJyYXJ5IGlzbid0IGJ1aWx0IHdoZW4gZG9pbmcg
-Im1ha2UgbGludXgtZHJpLXg4Ni02NAo+ID4gRFJJX0RJUlM9bm91dmVhdV93aW5zeXMiLiBJIGhh
-ZCB0byBtYW51YWxseSBidWlsZCBpdC4KPiBVc2UgRFJJX0RJUlM9Im5vdXZlYXUiIGFuZCAibWFr
-ZSBsaW51eC1kcmkiLCBldmVuIG9uIGFtZDY0LiAgSSdtIG5vdAo+IHN1cmUgdGhlIFRHIGd1eXMg
-aGF2ZSB1cGRhdGVzIGxpbnV4LWRyaS14ODYtNjQgZm9yIHRoZSBidWlsZCBzeXN0ZW0KPiBjaGFu
-Z2VzLgoKSSd2ZSBiZWVuIHVzaW5nIHRoZSBsaW51eC1kcmkteDg2LTY0IHRhcmdldCwgYW5kIGl0
-IHNlZW1zIHRvIGJlCndvcmtpbmcg77u/KE9wZW5BcmVuYSwgZ2x4Z2VhcnMpLCBtb3N0IG9mIHRo
-ZSB0aW1lIGF0IGxlYXN0ISAgSXQgY2VydGFpbmx5CmJ1aWxkcy4KCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=13319
+
+
+
+
+
+--- Comment #7 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-03-09 19:42:24 PST ---
+you can google around for a patch that adds a ucmpdi2 wrapper to the kernel.
+
+d.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
