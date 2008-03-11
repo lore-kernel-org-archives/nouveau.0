@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14921] NV25 doesn' t work after commit
  71adbfc874517efbba8b9f7c3f90baad0d7fb707
-Date: Mon, 10 Mar 2008 17:41:00 -0700 (PDT)
-Message-ID: <20080311004100.7AC9A13013E@annarchy.freedesktop.org>
+Date: Mon, 10 Mar 2008 17:57:24 -0700 (PDT)
+Message-ID: <20080311005732.A18801300BC@annarchy.freedesktop.org>
 References: <bug-14921-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14921
 
 
 
---- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-10 17:40:59 PST ---
-Created an attachment (id=15020)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15020)
-Move AGP reset, and cycle PGRAPH
-
-Can you check it still works in this form please
+--- Comment #5 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-10 17:57:23 PST ---
+Also worth testing with the udelay replaced with a read of PMC_ENABLE
 
 
 -- 
