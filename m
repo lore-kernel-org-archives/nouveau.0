@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14953] patch for checking double scan mode on
-	correct crtc
-Date: Tue, 11 Mar 2008 05:22:28 -0700 (PDT)
-Message-ID: <20080311122229.017671300C7@annarchy.freedesktop.org>
-References: <bug-14953-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14921] NV25 doesn' t work after commit
+ 71adbfc874517efbba8b9f7c3f90baad0d7fb707
+Date: Tue, 11 Mar 2008 06:55:56 -0700 (PDT)
+Message-ID: <20080311135556.56307130152@annarchy.freedesktop.org>
+References: <bug-14921-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14953-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14921-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14953
-
-
-Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #15028|0                           |1
-        is obsolete|                            |
+http://bugs.freedesktop.org/show_bug.cgi?id=14921
 
 
 
 
---- Comment #1 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-03-11 05:22:28 PST ---
-Created an attachment (id=15031)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15031)
-updated patch
 
-obviously, the patch was wrong for the non-randr12 case. Here 's an updated
-version.
-
-d.
+--- Comment #6 from Peter Winters <peter-sWXtQFFYX8bYtjvyW6yDsg@public.gmane.org>  2008-03-11 06:55:55 PST ---
+Still works, also works without the udelay and with udelay replaced with a
+PMC_ENABLE read.
 
 
 -- 
