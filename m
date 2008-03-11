@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14941] ioremap leak/oddity in DRM
-Date: Mon, 10 Mar 2008 15:23:14 -0700 (PDT)
-Message-ID: <20080310222314.A64E91300A7@annarchy.freedesktop.org>
-References: <bug-14941-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14921] NV25 doesn' t work after commit
+ 71adbfc874517efbba8b9f7c3f90baad0d7fb707
+Date: Mon, 10 Mar 2008 17:41:00 -0700 (PDT)
+Message-ID: <20080311004100.7AC9A13013E@annarchy.freedesktop.org>
+References: <bug-14921-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14941-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14921-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14941
+http://bugs.freedesktop.org/show_bug.cgi?id=14921
 
 
 
 
 
---- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-10 15:23:14 PST ---
-Still, someone should find out what is doing this caching.
+--- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-10 17:40:59 PST ---
+Created an attachment (id=15020)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15020)
+Move AGP reset, and cycle PGRAPH
+
+Can you check it still works in this form please
 
 
 -- 
