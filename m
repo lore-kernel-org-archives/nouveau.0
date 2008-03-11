@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13319] YV12 and YUY2 overlay broken on PPC with NV34M
-Date: Tue, 11 Mar 2008 03:16:48 -0700 (PDT)
-Message-ID: <20080311101648.92B1013010B@annarchy.freedesktop.org>
-References: <bug-13319-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14953] patch for checking double scan mode on
+	correct crtc
+Date: Tue, 11 Mar 2008 05:22:28 -0700 (PDT)
+Message-ID: <20080311122229.017671300C7@annarchy.freedesktop.org>
+References: <bug-14953-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14953-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +21,31 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMzMxOQoKCgoKCi0t
-LSBDb21tZW50ICM4IGZyb20gRmV0aCBBUkVaS0kgPGZldGhAYXJlemtpLm5ldD4gIDIwMDgtMDMt
-MTEgMDM6MTY6NDcgUFNUIC0tLQooSW4gcmVwbHkgdG8gY29tbWVudCAjNykKPiB5b3UgY2FuIGdv
-b2dsZSBhcm91bmQgZm9yIGEgcGF0Y2ggdGhhdCBhZGRzIGEgdWNtcGRpMiB3cmFwcGVyIHRvIHRo
-ZSBrZXJuZWwuCj4gCj4gZC4KPiAKClZvaWzDoC4gVmFuaWxsYSBkZWJpYW4gcmVjb21waWxhdGlv
-biB0b29rIGFnZXMuLi4KSSBubyBsb25nZXIgc2VlIHRoaXMgYnVnICEKCgotLSAKQ29uZmlndXJl
-IGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1l
-bWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0t
-CllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=14953
+
+
+Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #15028|0                           |1
+        is obsolete|                            |
+
+
+
+
+--- Comment #1 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-03-11 05:22:28 PST ---
+Created an attachment (id=15031)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15031)
+updated patch
+
+obviously, the patch was wrong for the non-randr12 case. Here 's an updated
+version.
+
+d.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
