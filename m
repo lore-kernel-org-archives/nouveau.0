@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14941] ioremap leak/oddity in DRM
-Date: Wed, 12 Mar 2008 15:40:26 -0700 (PDT)
-Message-ID: <20080312224026.D0636130167@annarchy.freedesktop.org>
-References: <bug-14941-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 10547] nouveau: __ucmpdi2 unresolved on ppc32
+Date: Thu, 13 Mar 2008 01:15:38 -0700 (PDT)
+Message-ID: <20080313081538.98E41130143@annarchy.freedesktop.org>
+References: <bug-10547-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14941-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-10547-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14941
+http://bugs.freedesktop.org/show_bug.cgi?id=10547
 
 
 
 
 
---- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-12 15:40:25 PST ---
-Should i just push the first patch?
+--- Comment #11 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-03-13 01:15:37 PST ---
+I just add here a link to marcheu's patch to do this in drm instead (to make it
+easy for ppl who want to avoid rebuilding their kernel:
+
+http://icps.u-strasbg.fr/~marchesin/nvdri/ucmpdi2.diff
+
+d.
 
 
 -- 
