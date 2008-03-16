@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14703] On NV17 on laptop screen: certain resolutions
  are scrambled
-Date: Sun, 16 Mar 2008 16:24:43 -0700 (PDT)
-Message-ID: <20080316232443.B684513013B@annarchy.freedesktop.org>
+Date: Sun, 16 Mar 2008 16:44:43 -0700 (PDT)
+Message-ID: <20080316234443.CA7A61301CE@annarchy.freedesktop.org>
 References: <bug-14703-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,17 +27,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14703
 
 
 
---- Comment #15 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-16 16:24:42 PST ---
-Ok.  I tried the suggested change and it did make things better.
+--- Comment #16 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-16 16:44:41 PST ---
+Alright, bugzilla won't let me attach these images... Too big.
 
-The output of "aspect" resolutions exactly matched those of the "fullscreen"
-resolutions.  So, for every resolution, none were clipped. 
+Squiggle font @ 1024x768:
+http://www.mediafire.com/?nnb7tmxl22f
 
-This is definitely a step in the right direction.  However, since the output
-filled up the entire screen, it DIDN'T maintain the aspect ratio (like the
-mode's name implies...)   Maybe that's the best we can do...
+Squiggle font @ 800x600:
+(Notice that the screen also looks shifted to the right)
+http://www.mediafire.com/?di1t3xwtwxh
 
-BTW.  I have pictures of the "squiggle font" which I'll be uploading shortly. 
+Squiggle font @640x480:
+(The screen looks rotated here, too..)
+http://www.mediafire.com/?xui1mzwmc2f
 
 
 -- 
