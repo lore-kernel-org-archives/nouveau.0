@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14703] On NV17 on laptop screen: certain resolutions
  are scrambled
-Date: Sun, 16 Mar 2008 16:44:43 -0700 (PDT)
-Message-ID: <20080316234443.CA7A61301CE@annarchy.freedesktop.org>
+Date: Sun, 16 Mar 2008 18:45:50 -0700 (PDT)
+Message-ID: <20080317014550.8B38A13016D@annarchy.freedesktop.org>
 References: <bug-14703-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,19 +27,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14703
 
 
 
---- Comment #16 from Phillip Ezolt <phillipezolt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-16 16:44:41 PST ---
-Alright, bugzilla won't let me attach these images... Too big.
+--- Comment #17 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-16 18:45:49 PST ---
+Ok, I've merged up the noscale fix for now. Perhaps aspect is too much to hope
+for (do you have the binary blob installed -- if so, does nvidia-settings let
+you choose aspect scaling?), but fullscreen should work, since it does in
+non-randr.
 
-Squiggle font @ 1024x768:
-http://www.mediafire.com/?nnb7tmxl22f
-
-Squiggle font @ 800x600:
-(Notice that the screen also looks shifted to the right)
-http://www.mediafire.com/?di1t3xwtwxh
-
-Squiggle font @640x480:
-(The screen looks rotated here, too..)
-http://www.mediafire.com/?xui1mzwmc2f
+So:
+1) verify that non-randr scaling works at the problematic resolutions *after*
+randr12 has been used (i.e. no reboot between)
+2) add to this bug the output of "radeontool regmatch $reg", for $reg of
+0x680884, 0x682884, 0x680888, 0x682888
 
 
 -- 
