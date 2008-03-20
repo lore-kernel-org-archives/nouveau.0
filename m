@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15131] After a short period there is a lockup (fifo)
-Date: Wed, 19 Mar 2008 10:12:30 -0700 (PDT)
-Message-ID: <20080319171231.1CB4913006F@annarchy.freedesktop.org>
-References: <bug-15131-8800@http.bugs.freedesktop.org/>
+From: "Younes M" <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: GSOC '08 hardware accelerated video decoding
+Date: Thu, 20 Mar 2008 14:55:59 -0400
+Message-ID: <586c2acd0803201155o6f33112ay4ce8421f979068f7@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15131-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +19,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15131
+Hi,
 
+I'm considering submitting a project for this year's Google Summer of
+Code program that would involve making progress on hardware
+accelerated video decoding for the nouveau driver and wanted some
+feedback.
 
+I know that this isn't a big priority at the moment amongst the
+regular contributors, but I think it would make a good GSOC project
+because of it's somewhat narrow scope. I think for a lot of people 3D
+eye candy isn't a feature they're desperate for, they just care about
+a functional and efficient 2D driver, and having video acceleration
+would complement that nicely and entice them to switch from the Nvidia
+binary driver and the old nv driver long before the people who want
+the 3D features.
 
+I've read through jb17bsome's notes on XvMC and I think all the work
+he's done so far is a great head's up on what's involved. I've also
+read through the VAAPI page and I think that would also be a great
+feature to try and support given all the non-MPEG2 video content out
+there, it would probably entice even more people to use nouveau.
 
+The only thing I'm concerned about at this point is that the only
+Nvidia hardware I currently have is a GeForce FX GO 5200, so I'm not
+sure how much help I could really be given the limited features of
+that GPU.
 
---- Comment #1 from Kai <debian-c6jxCJM9TyuJnvDnx1genB2eb7JE58TQ@public.gmane.org>  2008-03-19 10:12:30 PST ---
-Created an attachment (id=15305)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15305)
-The kernel log
+If anyone has any comments or suggestions on this, or thinks that some
+other area would make a better project I would love to hear your
+comments.
 
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Thanks all.
