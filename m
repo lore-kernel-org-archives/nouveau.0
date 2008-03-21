@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15161] Unable To Get Full Resolution (exceeds panel
 	dimensions)
-Date: Fri, 21 Mar 2008 08:51:25 -0700 (PDT)
-Message-ID: <20080321155125.E497C130089@annarchy.freedesktop.org>
+Date: Fri, 21 Mar 2008 09:44:15 -0700 (PDT)
+Message-ID: <20080321164416.7B89C1300D5@annarchy.freedesktop.org>
 References: <bug-15161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,26 +24,12 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15161
 
 
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |WONTFIX
 
 
 
-
---- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-21 08:51:25 PST ---
-Our old code (which hopefully dies in the near future) path is very similar to
-nv's, it relies heavily on what the bios does, which limits your resolution to
-1280x1024.
-
-Please use (in your device section):
-
-Option "Randr12"
-
-If that has a problem, then you can open another bug.
+--- Comment #3 from Devan Goodwin <dgoodwin-eRDYlh02QjtL43Ps8y5oD9BPR1lH4CV8@public.gmane.org>  2008-03-21 09:44:15 PST ---
+Randr12 option did the trick, up and running at 1600x1200 immediately
+thereafter. Many thanks!
 
 
 -- 
