@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15161] Unable To Get Full Resolution (exceeds panel
 	dimensions)
-Date: Fri, 21 Mar 2008 08:33:37 -0700 (PDT)
-Message-ID: <20080321153337.7ECC01300F0@annarchy.freedesktop.org>
+Date: Fri, 21 Mar 2008 08:51:25 -0700 (PDT)
+Message-ID: <20080321155125.E497C130089@annarchy.freedesktop.org>
 References: <bug-15161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,26 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15161
 
 
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |WONTFIX
 
 
 
---- Comment #1 from Devan Goodwin <dgoodwin-eRDYlh02QjtL43Ps8y5oD9BPR1lH4CV8@public.gmane.org>  2008-03-21 08:33:36 PST ---
-Created an attachment (id=15380)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15380)
-Xorg.0.log, server is starting ok, just not with 1600x1200.
+
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-21 08:51:25 PST ---
+Our old code (which hopefully dies in the near future) path is very similar to
+nv's, it relies heavily on what the bios does, which limits your resolution to
+1280x1024.
+
+Please use (in your device section):
+
+Option "Randr12"
+
+If that has a problem, then you can open another bug.
 
 
 -- 
