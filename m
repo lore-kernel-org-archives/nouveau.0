@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14092] No fonts and missing Icons
-Date: Sun, 23 Mar 2008 08:10:56 -0700 (PDT)
-Message-ID: <20080323151056.7088713019B@annarchy.freedesktop.org>
+Date: Sun, 23 Mar 2008 09:24:43 -0700 (PDT)
+Message-ID: <20080323162443.92A3613011A@annarchy.freedesktop.org>
 References: <bug-14092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14092
 
 
 
---- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-23 08:10:55 PST ---
-I know it's only a workaround, but *if* anything gets committed, then i would
-prefer something better than the highest upper bound.
+--- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-23 09:24:42 PST ---
+Too large doesn't matter.  If you want to use a workaround, you may as well
+play it safe :)  The only down-side of a large block of space being reserved is
+that we'll run out of PRAMIN for contexts and limit how many channels can be
+created.  But, that is another problem that has to be solved regardless.
+
+In that light, I've committed something similar to the original workaround to
+drm git.  This bug should be "resolved" now :)
 
 
 -- 
