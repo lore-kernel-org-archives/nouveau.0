@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14092] No fonts and missing Icons
-Date: Sun, 23 Mar 2008 07:11:44 -0700 (PDT)
-Message-ID: <20080323141144.96FC11300D2@annarchy.freedesktop.org>
+Date: Sun, 23 Mar 2008 07:49:17 -0700 (PDT)
+Message-ID: <20080323144917.1386E1300BC@annarchy.freedesktop.org>
 References: <bug-14092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14092
 
 
 
---- Comment #6 from Michael Lothian <mike-4+n8WJKc9ve9FHfhHBbuYA@public.gmane.org>  2008-03-23 07:11:43 PST ---
-I've just tested it (sorry for the long delay)
-
-100x1024 doesn't work
-128x1024 does :D
-
-Would you like any others tested?
+--- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-23 07:49:16 PST ---
+Maarten, checking smaller values is of little use.  It's already well
+established what exactly accounts for the differences in the context sizes
+across chips.  As the submitter reports, adjusting to 175*1024 is a
+*workaround* until a proper fix is devised.  It's a nice safe number, as the
+0x40 NV4x chip has both a large number of vertex pipes, and is unique in that
+each per-pipe block is far larger than the other NV4x chipsets.
 
 
 -- 
