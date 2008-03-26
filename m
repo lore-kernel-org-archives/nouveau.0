@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14991] randr12 not working with nv25
-Date: Wed, 26 Mar 2008 13:47:01 -0700 (PDT)
-Message-ID: <20080326204701.83DE3130216@annarchy.freedesktop.org>
+Date: Wed, 26 Mar 2008 14:00:03 -0700 (PDT)
+Message-ID: <20080326210005.11A9613016A@annarchy.freedesktop.org>
 References: <bug-14991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,16 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14991
 
 
 
---- Comment #5 from pl4nkton-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org  2008-03-26 13:47:00 PST ---
-Created an attachment (id=15481)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15481)
-radeontool regs output - different configs
-
-dvi-d works with nv and nouveau no randr12 when the screen is connected from
-boot.
-this is the dvi-d chip on the card. I'm not sure if I2C is connected but in the
-datasheet is a description of registers.
-http://www.siliconimage.com/docs/SiI-DS-0021-E-164.pdf
+--- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-26 14:00:02 PST ---
+I think something went wrong, that log is filled mostly with zeros and some
+random stuff.
 
 
 -- 
