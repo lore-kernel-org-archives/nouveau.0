@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14991] randr12 not working with nv25
-Date: Wed, 26 Mar 2008 15:25:24 -0700 (PDT)
-Message-ID: <20080326222525.01A2E130152@annarchy.freedesktop.org>
+Date: Wed, 26 Mar 2008 15:38:18 -0700 (PDT)
+Message-ID: <20080326223818.3AA9F130129@annarchy.freedesktop.org>
 References: <bug-14991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14991
 
 
 
---- Comment #11 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-26 15:25:23 PST ---
-Created an attachment (id=15487)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15487)
-Possibility 2
+--- Comment #12 from pl4nkton-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org  2008-03-26 15:38:17 PST ---
+Created an attachment (id=15488)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15488)
+xlog randr12, regs
 
-A second option
+hack from comment 9 make it working
 
 
 -- 
