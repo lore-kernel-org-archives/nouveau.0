@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14991] randr12 not working with nv25
-Date: Wed, 26 Mar 2008 14:47:15 -0700 (PDT)
-Message-ID: <20080326214716.5559A13010E@annarchy.freedesktop.org>
+Date: Wed, 26 Mar 2008 14:56:38 -0700 (PDT)
+Message-ID: <20080326215643.2DF8513016B@annarchy.freedesktop.org>
 References: <bug-14991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,25 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14991
 
 
-pl4nkton-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #15481|0                           |1
-        is obsolete|                            |
 
 
 
+--- Comment #9 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-26 14:56:30 PST ---
+Please make the with-randr12 dump again, with the following change to
+nv_output.c:
 
---- Comment #8 from pl4nkton-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org  2008-03-26 14:47:12 PST ---
-Created an attachment (id=15482)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15482)
-radeontool regs output - different configs
+diff --git a/src/nv_output.c b/src/nv_output.c
+index 5841492..a4e1917 100644
+--- a/src/nv_output.c
++++ b/src/nv_output.c
+@@ -1113,6 +1113,7 @@ void NvSetupOutputs(ScrnInfoPtr pScrn)
+                                sprintf(outputname, "DVI-A-%d", dvia_count++);
+                        break;
+                case OUTPUT_TMDS:
++                       pNv->dcb_table.entry[i].heads = 2;
+                        sprintf(outputname, "DVI-D-%d", dvid_count++);
+                        break;
+                case OUTPUT_TV:
 
 
 -- 
