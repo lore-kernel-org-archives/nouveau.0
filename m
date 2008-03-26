@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15206] [dualhead, randr12,
 	ppc] Second head displays nothing
-Date: Wed, 26 Mar 2008 01:34:39 -0700 (PDT)
-Message-ID: <20080326083439.B3804130193@annarchy.freedesktop.org>
+Date: Wed, 26 Mar 2008 01:42:20 -0700 (PDT)
+Message-ID: <20080326084220.1E3561301E9@annarchy.freedesktop.org>
 References: <bug-15206-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15206
 
 
 
---- Comment #1 from Robin Johnson <robbat2-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>  2008-03-26 01:34:39 PST ---
-Created an attachment (id=15470)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15470)
-xrandr output
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-26 01:42:19 PST ---
+This is a known issue, the G5's have a 2nd dvi transmitter on their card. We
+currently don't know how to activate that.
 
 
 -- 
