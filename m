@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14991] randr12 not working with nv25
-Date: Wed, 26 Mar 2008 14:11:00 -0700 (PDT)
-Message-ID: <20080326211100.B8C19130137@annarchy.freedesktop.org>
+Date: Wed, 26 Mar 2008 14:47:15 -0700 (PDT)
+Message-ID: <20080326214716.5559A13010E@annarchy.freedesktop.org>
 References: <bug-14991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,26 +23,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14991
 
 
+pl4nkton-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #15481|0                           |1
+        is obsolete|                            |
 
 
 
---- Comment #7 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-26 14:11:00 PST ---
-While bringing up the SIL may be eventually interesting, we first ought to be
-able to bring up a display by not breaking the existing setup (as in the
-non-randr12 case) -- radeontool dumps should let us do this.
 
-Unfortunately the radeontool dumps you provided are broken, as you have many
-nvidia pci devices, and radeontool is somewhat stupid :)
-
-To fix this, change radeontool.c line 501 from
-radeon_cntl_mem = map_devince_memory(base,0x700000);
-
-to
-
-radeon_cntl_mem = map_devince_memory(0xe4000000,0x700000);
-
-recompile, and dump again (logfile_nouveau and log_nouv_r12 being the
-interesting ones)
+--- Comment #8 from pl4nkton-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org  2008-03-26 14:47:12 PST ---
+Created an attachment (id=15482)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15482)
+radeontool regs output - different configs
 
 
 -- 
