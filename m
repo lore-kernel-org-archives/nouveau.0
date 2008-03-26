@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14345] Image with width greater than 8176 pixel make
  firefox crash with X error
-Date: Wed, 26 Mar 2008 08:15:31 -0700 (PDT)
-Message-ID: <20080326151533.031B713014A@annarchy.freedesktop.org>
+Date: Wed, 26 Mar 2008 08:41:14 -0700 (PDT)
+Message-ID: <20080326154115.466BA13008D@annarchy.freedesktop.org>
 References: <bug-14345-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-14345-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,32 +21,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14345
-
-
-Victor Stinner <victor.stinner-XgyrR7WU8tJ8UrSeD/g0lQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |victor.stinner-XgyrR7WU8tJ8UrSeD/g0lQ@public.gmane.org
-
-
-
-
---- Comment #8 from Victor Stinner <victor.stinner-XgyrR7WU8tJ8UrSeD/g0lQ@public.gmane.org>  2008-03-26 08:15:31 PST ---
-Using Xorg 7.3 / Xserver 1.4 and today git, it still crashs with:
- The program 'firefox-bin' received an X Window System error.
- This probably reflects a bug in the program.
- The error was 'BadAlloc (insufficient resources for operation)'.
-   (Details: serial 22204 error_code 11 request_code 53 minor_code 0)
-   (Note to programmers: normally, X errors are reported asynchronously;
-    that is, you will receive the error a while after causing it.
-    To debug your program, run it with the --sync command line
-    option to change this behavior. You can then get a meaningful
-    backtrace from your debugger if you break on the gdk_x_error() function.)
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDM0NQoKCk1pY2hl
+bCBEw6RuemVyIDxtaWNoZWxAdHVuZ3N0ZW5ncmFwaGljcy5jb20+IGNoYW5nZWQ6CgogICAgICAg
+ICAgIFdoYXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLQogICAgICAgICAgICAgU3RhdHVzfE5FVyAgICAgICAgICAgICAgICAgICAgICAg
+ICB8UkVTT0xWRUQKICAgICAgICAgIENvbXBvbmVudHxEcml2ZXIvbm91dmVhdSAgICAgICAgICAg
+ICAgfEFjY2VsZXJhdGlvbi9FWEEKICAgICAgICAgUmVzb2x1dGlvbnwgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgfEZJWEVECgoKCgotLS0gQ29tbWVudCAjOSBmcm9tIE1pY2hlbCBEw6RuemVy
+IDxtaWNoZWxAdHVuZ3N0ZW5ncmFwaGljcy5jb20+ICAyMDA4LTAzLTI2IDA4OjQxOjEyIFBTVCAt
+LS0KVGhpcyBzaG91bGQgYmUgZml4ZWQgaW4geHNlcnZlciBjb21taXQKYmMyZDUxNmYxNmQ5NGM4
+MDViNGRmYThlNWI5ZWVmNDBmZjBjYmU5OCwgd2hpY2ggaXMgcGFydCBvZiB0aGUgdXBjb21pbmcg
+MS41CnJlbGVhc2UuIFBsZWFzZSByZW9wZW4gaWYgdGhhdCB0dXJucyBvdXQgbm90IHRvIGJlIHRo
+ZSBjYXNlLgoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Au
+b3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhp
+cyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcu
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
