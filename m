@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14859] External analog monitor does not show part of
  the output ( Randr12)
-Date: Sat, 29 Mar 2008 06:24:39 -0700 (PDT)
-Message-ID: <20080329132439.681FA130120@annarchy.freedesktop.org>
+Date: Sat, 29 Mar 2008 06:27:20 -0700 (PDT)
+Message-ID: <20080329132749.BC078130086@annarchy.freedesktop.org>
 References: <bug-14859-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,19 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14859
 
 
 
---- Comment #19 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-29 06:24:38 PST ---
-There has been a regression in the last two or so weeks: the secondary head is
-still missing the left third and furthermore the image is flickering, like a
-wrong frequency is set. Comparing a regdump with a previous one the culprit is
-found to be the value of NV_RAMDAC_SEL_CLK0: the driver recently sets the wrong
-value of
- 0x00040014, whereas the old one was 0x00040044. Setting it manually with
-radeontool fixes the flickering, but of course the left third stays black.
-
-I did not manage to test dvi output, but I was however able to obtain a regdump
-from OSX in the same configuration, i.e. secondary head connected and working
-in mirror mode. I used airlied's hacked osx radeontool to do so, I'm attaching
-the file in case you might find some source of inspiration in it
+--- Comment #20 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-29 06:27:14 PST ---
+Created an attachment (id=15557)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15557)
+Regdump of osx in mirror mode
 
 
 -- 
