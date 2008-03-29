@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14859] External analog monitor does not show part of
  the output ( Randr12)
-Date: Sat, 29 Mar 2008 06:27:20 -0700 (PDT)
-Message-ID: <20080329132749.BC078130086@annarchy.freedesktop.org>
+Date: Sat, 29 Mar 2008 07:35:56 -0700 (PDT)
+Message-ID: <20080329143556.B676E1300BB@annarchy.freedesktop.org>
 References: <bug-14859-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14859
 
 
 
---- Comment #20 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-29 06:27:14 PST ---
-Created an attachment (id=15557)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15557)
-Regdump of osx in mirror mode
+--- Comment #21 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-03-29 07:35:55 PST ---
+Please attach an xorg log where sel_clk setting is misbehaving.
 
 
 -- 
