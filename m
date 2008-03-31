@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15280] Wrong resolution/black screen with NV34
  [GeForce FX 5200]
-Date: Mon, 31 Mar 2008 05:01:48 -0700 (PDT)
-Message-ID: <20080331120148.CC4AC130185@annarchy.freedesktop.org>
+Date: Mon, 31 Mar 2008 05:02:16 -0700 (PDT)
+Message-ID: <20080331120216.ED1A71300D7@annarchy.freedesktop.org>
 References: <bug-15280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,7 +28,7 @@ Philipp Riegger <stoile-w9C0PPw3a8TLzl/DfgqtFQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #15582|application/octet-stream    |text/plain
+  Attachment #15583|application/octet-stream    |text/plain
           mime type|                            |
 
 
