@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15276] text rendering,
  PGRAPH_ERROR/ILLEGAL_MTHD/  PROTECTION_FAULT spam in syslog
-Date: Mon, 31 Mar 2008 04:16:05 -0700 (PDT)
-Message-ID: <20080331111605.7A9611301F9@annarchy.freedesktop.org>
+Date: Mon, 31 Mar 2008 04:31:39 -0700 (PDT)
+Message-ID: <20080331113139.8F501130072@annarchy.freedesktop.org>
 References: <bug-15276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15276
 
 
 
---- Comment #1 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-03-31 04:16:04 PST ---
-What framebuffer driver are you using here ? If it's nvidiafb, it's not
-supported (this driver stomps all over the card state to the point we can't
-really maintain it properly).
+--- Comment #2 from Paul Wise <pabs3-RVKGE0iud0ZIf6P1QZMOBw@public.gmane.org>  2008-03-31 04:31:38 PST ---
+I don't seem to have any fb driver loaded. I have it installed, but lsmod |
+grep nvidia only points out the nvidia_agp driver. lsmod | grep fb reports
+nothing.
 
 
 -- 
