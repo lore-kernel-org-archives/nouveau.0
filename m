@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15276] text rendering,
  PGRAPH_ERROR/ILLEGAL_MTHD/  PROTECTION_FAULT spam in syslog
-Date: Mon, 31 Mar 2008 04:31:39 -0700 (PDT)
-Message-ID: <20080331113139.8F501130072@annarchy.freedesktop.org>
+Date: Mon, 31 Mar 2008 04:34:55 -0700 (PDT)
+Message-ID: <20080331113455.B22D51301A9@annarchy.freedesktop.org>
 References: <bug-15276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15276
 
 
 
---- Comment #2 from Paul Wise <pabs3-RVKGE0iud0ZIf6P1QZMOBw@public.gmane.org>  2008-03-31 04:31:38 PST ---
-I don't seem to have any fb driver loaded. I have it installed, but lsmod |
-grep nvidia only points out the nvidia_agp driver. lsmod | grep fb reports
-nothing.
+--- Comment #3 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-03-31 04:34:54 PST ---
+There is this line:
+
+Mar 31 16:07:18 morrison kernel: [drm] Used old pci detect: framebuffer loaded
+
+It's either a *fb driver, or the nvidia binary driver, which is bad in any
+case.
 
 
 -- 
