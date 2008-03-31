@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15280] Wrong resolution/black screen with NV34
  [GeForce FX 5200]
-Date: Mon, 31 Mar 2008 05:02:16 -0700 (PDT)
-Message-ID: <20080331120216.ED1A71300D7@annarchy.freedesktop.org>
+Date: Mon, 31 Mar 2008 05:06:58 -0700 (PDT)
+Message-ID: <20080331120658.34A291300AD@annarchy.freedesktop.org>
 References: <bug-15280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,11 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15280
 
 
-Philipp Riegger <stoile-w9C0PPw3a8TLzl/DfgqtFQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #15583|application/octet-stream    |text/plain
-          mime type|                            |
 
 
+
+--- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-03-31 05:06:57 PST ---
+Both attemps show randr-1.2 as disabled, so please upload an appropriate log.
 
 
 -- 
