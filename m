@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15280] Wrong resolution/black screen with NV34
  [GeForce FX 5200]
-Date: Mon, 31 Mar 2008 07:12:05 -0700 (PDT)
-Message-ID: <20080331141205.4585E13021D@annarchy.freedesktop.org>
+Date: Mon, 31 Mar 2008 07:15:14 -0700 (PDT)
+Message-ID: <20080331141514.7BB1E130219@annarchy.freedesktop.org>
 References: <bug-15280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15280
 
 
-Philipp Riegger <stoile-w9C0PPw3a8TLzl/DfgqtFQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #15583|0                           |1
-        is obsolete|                            |
 
 
+
+--- Comment #4 from Philipp Riegger <stoile-w9C0PPw3a8TLzl/DfgqtFQ@public.gmane.org>  2008-03-31 07:15:13 PST ---
+Sorry, i noticed just now that the x-server died before even writing a log. I
+was not able to get any information about that, nothing on stdout or stderr,
+not using /etc/init.d/xdm start, nor using startx, also nothing with strace,
+whih is very strange. The computer freezes, there is nothing on screen and i
+cannot login using ssh.
+
+I have to redo some tests, but it took me about an hour today to get back to a
+working x configuration, so i will do further tests when i have more time.
 
 
 -- 
