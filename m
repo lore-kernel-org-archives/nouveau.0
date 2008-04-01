@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15315] New: Using randr12 rotation with shadowfb
-	broken
-Date: Tue,  1 Apr 2008 16:27:58 -0700 (PDT)
-Message-ID: <bug-15315-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14970] dma queue hang on 7800 GTX
+Date: Tue,  1 Apr 2008 16:27:56 -0700 (PDT)
+Message-ID: <20080401232756.AD7F3130139@annarchy.freedesktop.org>
+References: <bug-14970-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14970-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,27 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15315
-
-           Summary: Using randr12 rotation with shadowfb broken
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-If ShadowFB is requested in xorg.conf, and xrandr -o 1 run, screen turns off, X
-crashes (iirc). Probably due to use of exa functions in the crtc_shadow stuff.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDk3MAoKCkZyaWVk
+cmljaCBHw7ZwZWwgPHNoYWRvMjNAZ21haWwuY29tPiBjaGFuZ2VkOgoKICAgICAgICAgICBXaGF0
+ICAgIHxSZW1vdmVkICAgICAgICAgICAgICAgICAgICAgfEFkZGVkCi0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0KICAgICAgICAgICAgIFN0YXR1c3xORVcgICAgICAgICAgICAgICAgICAgICAgICAgfFJFU09M
+VkVECiAgICAgICAgIFJlc29sdXRpb258ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHxGSVhF
+RAoKCgoKLS0tIENvbW1lbnQgIzQgZnJvbSBGcmllZHJpY2ggR8O2cGVsIDxzaGFkbzIzQGdtYWls
+LmNvbT4gIDIwMDgtMDQtMDEgMTY6Mjc6NTUgUFNUIC0tLQooSW4gcmVwbHkgdG8gY29tbWVudCAj
+MykKPiBUaGlzIHByb2JsZW0gc2hvdWxkIGJlIGdvbmUgaW4gY3VycmVudCBnaXQuICBDYW4geW91
+IGNvbmZpcm0/Cj4gCgpZZXMsIGluZGVlZCwgc29ycnkgZm9yIG5vdCByZXBvcnRpbmcgdGhhdCBi
+YWNrIGVhcmxpZXIuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVz
+a3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2Vpdmlu
+ZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhl
+IGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
