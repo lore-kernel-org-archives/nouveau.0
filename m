@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15280] Wrong resolution/black screen with NV34
- [GeForce FX 5200]
-Date: Mon, 31 Mar 2008 07:15:14 -0700 (PDT)
-Message-ID: <20080331141514.7BB1E130219@annarchy.freedesktop.org>
-References: <bug-15280-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15276] text rendering,
+ PGRAPH_ERROR/ILLEGAL_MTHD/  PROTECTION_FAULT spam in syslog
+Date: Tue,  1 Apr 2008 03:04:50 -0700 (PDT)
+Message-ID: <20080401100451.26B2D1300F6@annarchy.freedesktop.org>
+References: <bug-15276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15280-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +21,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15280
+http://bugs.freedesktop.org/show_bug.cgi?id=15276
+
+
+Paul Wise <pabs3-RVKGE0iud0ZIf6P1QZMOBw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #15578|0                           |1
+        is obsolete|                            |
 
 
 
 
+--- Comment #5 from Paul Wise <pabs3-RVKGE0iud0ZIf6P1QZMOBw@public.gmane.org>  2008-04-01 03:04:49 PST ---
+Created an attachment (id=15598)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15598)
+log without vesafb
 
---- Comment #4 from Philipp Riegger <stoile-w9C0PPw3a8TLzl/DfgqtFQ@public.gmane.org>  2008-03-31 07:15:13 PST ---
-Sorry, i noticed just now that the x-server died before even writing a log. I
-was not able to get any information about that, nothing on stdout or stderr,
-not using /etc/init.d/xdm start, nor using startx, also nothing with strace,
-whih is very strange. The computer freezes, there is nothing on screen and i
-cannot login using ssh.
-
-I have to redo some tests, but it took me about an hour today to get back to a
-working x configuration, so i will do further tests when i have more time.
+New log attached without the vesafb thing. Same issues as before.
 
 
 -- 
