@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15252] X crashes on start with Geforce 7000M VGA
-Date: Tue,  1 Apr 2008 18:13:20 -0700 (PDT)
-Message-ID: <20080402011321.234F11300C5@annarchy.freedesktop.org>
-References: <bug-15252-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15315] Using randr12 rotation with shadowfb broken
+Date: Wed,  2 Apr 2008 00:31:33 -0700 (PDT)
+Message-ID: <20080402073133.3ECE613014A@annarchy.freedesktop.org>
+References: <bug-15315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15252-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15252
+http://bugs.freedesktop.org/show_bug.cgi?id=15315
 
 
 
 
 
---- Comment #3 from Nikolay Vladimirov <nikolay-CNN+Ke1O0i3Ube5+R26mEw@public.gmane.org>  2008-04-01 18:13:20 PST ---
-Created an attachment (id=15620)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15620)
-Xorg log after the problem has been fixed
+--- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-02 00:31:32 PST ---
+Shadow allocation (and thus rotation) should now fail for NoAccel, please test.
 
 
 -- 
