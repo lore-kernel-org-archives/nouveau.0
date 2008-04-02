@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15252] X crashes on start with Geforce 7000M VGA
-Date: Tue,  1 Apr 2008 18:12:39 -0700 (PDT)
-Message-ID: <20080402011240.5686413018C@annarchy.freedesktop.org>
+Date: Tue,  1 Apr 2008 18:13:20 -0700 (PDT)
+Message-ID: <20080402011321.234F11300C5@annarchy.freedesktop.org>
 References: <bug-15252-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15252
 
 
-Nikolay Vladimirov <nikolay-CNN+Ke1O0i3Ube5+R26mEw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
 
 
 
-
---- Comment #2 from Nikolay Vladimirov <nikolay-CNN+Ke1O0i3Ube5+R26mEw@public.gmane.org>  2008-04-01 18:12:35 PST ---
-I used git commit d017dfa93e7eff988339b8030af1a563347156bc(  Tue Apr 1 21:23:35
-2008 +0100) to rebuild the fedora rpm. And now Xorg starts just fine. I'll
-attach Xorg.log.working for reference. 
-
-I'll also file a bug in redhat's bugzilla to update the package.
-
+--- Comment #3 from Nikolay Vladimirov <nikolay-CNN+Ke1O0i3Ube5+R26mEw@public.gmane.org>  2008-04-01 18:13:20 PST ---
+Created an attachment (id=15620)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15620)
+Xorg log after the problem has been fixed
 
 
 -- 
