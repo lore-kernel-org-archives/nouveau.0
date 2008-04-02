@@ -1,12 +1,13 @@
-From: "Clemens Eisserer" <linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Memory use and a few other things
-Date: Wed, 2 Apr 2008 16:38:03 +0200
-Message-ID: <194f62550804020738u6c03bfb4g3d655bc232d21684@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 15315] Using randr12 rotation with shadowfb broken
+Date: Wed,  2 Apr 2008 08:47:48 -0700 (PDT)
+Message-ID: <20080402154749.3D5E61301D2@annarchy.freedesktop.org>
+References: <bug-15315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-15315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,20 +20,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
+http://bugs.freedesktop.org/show_bug.cgi?id=15315
 
-First of all thanks a lot for working on this free nvidia driver.
 
-1.) I am using Fedora9-Beta, and on my NV17/64mb (or NV18?) powered
-Laptop the nouveau driver uses about 300mb RAM. Is there any way I can
-decrease that?
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
 
-2.) Font rendering is very slow. running "x11perf --aa10text" I only
-get 40k glyphs/s.
-Is there any way I can improve text performance?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
-3.) I would like to downgrade to linux-2.6.16.60 - because a driver I
-need was broken starting arround 2.6.19. Will it still make sence to
-use nouveuau, or does it need DRI to work properly?
 
-Thanks a lot, lg Clemens
+
+
+--- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-04-02 08:47:48 PST ---
+Didn't work (xserver still does DPMS off on the screen before noticing the
+failure, and then doesn't turn it back on). Now fixed by munging the crtc
+function record.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
