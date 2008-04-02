@@ -1,14 +1,13 @@
-From: "Stephane Marchesin" <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>
-Subject: Re: Memory use and a few other things
-Date: Wed, 2 Apr 2008 20:40:22 +0200
-Message-ID: <6a89f9d50804021140w7992fbd1o79ec115e053c9411@mail.gmail.com>
-References: <194f62550804020738u6c03bfb4g3d655bc232d21684@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 15252] X crashes on start with Geforce 7000M VGA
+Date: Wed,  2 Apr 2008 12:01:28 -0700 (PDT)
+Message-ID: <20080402190128.D618413018A@annarchy.freedesktop.org>
+References: <bug-15252-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <194f62550804020738u6c03bfb4g3d655bc232d21684-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-15252-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,36 +17,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Clemens Eisserer <linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 4/2/08, Clemens Eisserer <linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> Hello,
->
->  First of all thanks a lot for working on this free nvidia driver.
->
->  1.) I am using Fedora9-Beta, and on my NV17/64mb (or NV18?) powered
->  Laptop the nouveau driver uses about 300mb RAM. Is there any way I can
->  decrease that?
->
+http://bugs.freedesktop.org/show_bug.cgi?id=15252
 
-This is AGP memory. It's (usually 256MB of) memory mapped into X.Org,
-and it's not actually used (only a small part of it for scratch
-usage). All drivers making use of AGP do that.
 
->  2.) Font rendering is very slow. running "x11perf --aa10text" I only
->  get 40k glyphs/s.
->  Is there any way I can improve text performance?
->
 
-Work on core EXA.
 
->  3.) I would like to downgrade to linux-2.6.16.60 - because a driver I
->  need was broken starting arround 2.6.19. Will it still make sence to
->  use nouveuau, or does it need DRI to work properly?
->
 
-See Pekka's Answer.
+--- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-04-02 12:01:28 PST ---
+Hi, without wishing to promote bug resurrection, it would be great if you have
+time to try enabling randr12 with this chipset (as described at
+http://nouveau.freedesktop.org/wiki/Randr12 ), since it will shortly be on by
+default (and is already in Fedora), and from looking at your log will fail
+horribly and need fixing -- if this is the case, please open a new bug.
 
-Stephane
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
