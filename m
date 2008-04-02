@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15252] X crashes on start with Geforce 7000M VGA
-Date: Wed,  2 Apr 2008 12:01:28 -0700 (PDT)
-Message-ID: <20080402190128.D618413018A@annarchy.freedesktop.org>
+Date: Wed,  2 Apr 2008 13:07:11 -0700 (PDT)
+Message-ID: <20080402200711.4858813013A@annarchy.freedesktop.org>
 References: <bug-15252-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,20 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15252
 
 
 
---- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-04-02 12:01:28 PST ---
-Hi, without wishing to promote bug resurrection, it would be great if you have
-time to try enabling randr12 with this chipset (as described at
-http://nouveau.freedesktop.org/wiki/Randr12 ), since it will shortly be on by
-default (and is already in Fedora), and from looking at your log will fail
-horribly and need fixing -- if this is the case, please open a new bug.
+--- Comment #5 from Nikolay Vladimirov <nikolay-CNN+Ke1O0i3Ube5+R26mEw@public.gmane.org>  2008-04-02 13:07:10 PST ---
+Created an attachment (id=15630)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15630)
+fedora's randr patch
+
+Not sure what to do. The rpm is built using the patch I attached and I also
+enabled Randr 1.2 in xorg.conf and everything seems to work that way.  
+The problem is when I comment HorizSync and VertRefresh according to
+http://wiki.debian.org/XStrikeForce/HowToRandR12 -   X crashes and doesn't
+start.
+Also today's update of xserver in rawhide was broken and had to revert to
+yesterdays version and these  things happen a lot in rawhide. So this maybe
+some packaging or xserver issue.  
+Maybe it's best if I report the bug to fedora? 
 
 
 -- 
