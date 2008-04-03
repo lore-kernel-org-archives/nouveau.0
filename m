@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15344] Gradual Performance Decline With Nouveau
-	Driver
-Date: Thu,  3 Apr 2008 13:55:32 -0700 (PDT)
-Message-ID: <20080403205532.BE4811300E4@annarchy.freedesktop.org>
-References: <bug-15344-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14991] randr12 not working with nv25
+Date: Thu,  3 Apr 2008 15:23:49 -0700 (PDT)
+Message-ID: <20080403222350.31C1A1301F9@annarchy.freedesktop.org>
+References: <bug-14991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14991-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +20,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15344
+http://bugs.freedesktop.org/show_bug.cgi?id=14991
 
 
 
 
 
---- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-03 13:55:32 PST ---
-My guess is ExaMarkUsed() is to blame, a run of oprofile would reveal this.
+--- Comment #13 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-04-03 15:23:46 PST ---
+If you feel like having a poke at some registers, I've a couple of candidates
+-- CR59 and 0x6808c0. What this means in practice, is running *without* the
+comment 9 hack, and trying (via ssh) all four combinations of:
 
-This is known problem, not specific to nouveau, fixed in xserver git (as of a
-few days ago).
+./radeontool regset C0:59 M        where M is 0 or 1
+and
+./radeontool regset 0x6808c0 N     where N is 0 or 0x100
 
-Otherwise i wouldn't know.
+It may not do much, but at least we can discount them afterwards :-)
 
 
 -- 
