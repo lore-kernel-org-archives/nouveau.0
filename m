@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15342] New: GeForce 4 440MX - DVI "No Signal"
-Date: Thu,  3 Apr 2008 11:12:37 -0700 (PDT)
-Message-ID: <bug-15342-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15342] GeForce 4 440MX - DVI "No Signal"
+Date: Thu,  3 Apr 2008 11:34:57 -0700 (PDT)
+Message-ID: <20080403183458.0C9A01301C5@annarchy.freedesktop.org>
+References: <bug-15342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-15342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=15342
 
-           Summary: GeForce 4 440MX - DVI "No Signal"
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: high
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-GeForce 4 440MX - LCD(1440x900) connected over DVI not working ("No Signal").
-With NV4B this LCD connected over DVI working perfect. RandR1.2 is enabled.
+
+
+--- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-03 11:34:57 PST ---
+Created an attachment (id=15660)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15660)
+Xorg.log
 
 
 -- 
