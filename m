@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15344] Gradual Performance Decline With Nouveau
 	Driver
-Date: Thu,  3 Apr 2008 13:33:45 -0700 (PDT)
-Message-ID: <20080403203345.62A03130197@annarchy.freedesktop.org>
+Date: Thu,  3 Apr 2008 13:55:32 -0700 (PDT)
+Message-ID: <20080403205532.BE4811300E4@annarchy.freedesktop.org>
 References: <bug-15344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-15344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,18 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTM0NAoKCgoKCi0t
-LSBDb21tZW50ICMyIGZyb20gRGV2YW4gR29vZHdpbiA8ZGdvb2R3aW5AZGFuZ2Vyb3VzbHlpbmMu
-Y29tPiAgMjAwOC0wNC0wMyAxMzozMzo0NCBQU1QgLS0tClNvbWUgZnVydGhlciB0ZXN0aW5nOgoK
-4oCiIFdvcmtzcGFjZSBzd2l0Y2hpbmcgbm90aWNlYWJseSBzbG93ZXIgYWZ0ZXIganVzdCAyMCBt
-aW51dGVzLgrigKIgU3dpdGNoZWQgdG8gTWV0YWNpdHkgYWZ0ZXIgc3RhcnRpbmcgdG8gbm90aWNl
-IHRoZSBsYWcsIGFwcGVhcnMgdG8gbWFrZSBubwpkaWZmZXJlbmNlLgrigKIgQWN0dWFsIHByb2Nl
-c3MgbGlzdGVkIGluIHRvcCB3aGVuIENQVSBnb2VzIHVwIGR1cmluZyBhIGxhZ2d5IHdvcmtzcGFj
-ZQpzd2l0Y2ggaXMgWG9yZy4K4oCiIFN5c3RlbSBtZW1vcnkgdXNhZ2UgZmluZSwgYmVsb3cgNTAl
-LgrigKIgTm8gc3dhcCBpbiB1c2UuCuKAoiBSZXN0YXJ0aW5nIFggbWFrZXMgdGhpbmdzIGdvIGJh
-Y2sgdG8gbm9ybWFsLgoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRl
-c2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZp
-bmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRo
-ZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
-dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=15344
+
+
+
+
+
+--- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-03 13:55:32 PST ---
+My guess is ExaMarkUsed() is to blame, a run of oprofile would reveal this.
+
+This is known problem, not specific to nouveau, fixed in xserver git (as of a
+few days ago).
+
+Otherwise i wouldn't know.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
