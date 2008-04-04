@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15344] Gradual Performance Decline With Nouveau
-	Driver
-Date: Fri,  4 Apr 2008 10:11:57 -0700 (PDT)
-Message-ID: <20080404171157.9BE351301BE@annarchy.freedesktop.org>
-References: <bug-15344-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15350] randr12: VGA-0 always reported as
+	"disconnected"
+Date: Fri,  4 Apr 2008 13:31:14 -0700 (PDT)
+Message-ID: <20080404203115.00D97130265@annarchy.freedesktop.org>
+References: <bug-15350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15344
+http://bugs.freedesktop.org/show_bug.cgi?id=15350
+
+
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org
 
 
 
 
-
---- Comment #6 from Devan Goodwin <dgoodwin-eRDYlh02QjtL43Ps8y5oD9BPR1lH4CV8@public.gmane.org>  2008-04-04 10:11:56 PST ---
-Correction, now that the lag is getting really terrible, re-tried VT switching
-and this *definitely* made a difference. After switching back the desktop
-switching isn't blazing but it's a far cry better, renders within a second
-whereas it was taking almost 4-5 before.
+--- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-04-04 13:31:10 PST ---
+If you bludgeon the ext vga into connectedness (say, by adding "return
+XF86OutputStatusConnected;" at the top of nv_analog_output_detect in
+nv_output.c), any joy? If not, a log of attempting that would be good.
 
 
 -- 
