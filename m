@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15350] randr12: VGA-0 always reported as
 	"disconnected"
-Date: Fri,  4 Apr 2008 08:39:50 -0700 (PDT)
-Message-ID: <20080404153950.5777313015B@annarchy.freedesktop.org>
+Date: Fri,  4 Apr 2008 09:05:41 -0700 (PDT)
+Message-ID: <20080404160541.D7D40130234@annarchy.freedesktop.org>
 References: <bug-15350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15350
 
 
 
---- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-04 08:39:49 PST ---
-Is your monitor DDC capable?
+--- Comment #5 from Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2008-04-04 09:05:37 PST ---
+Yes, I've tried with two separate LCD panels.
 
 
 -- 
