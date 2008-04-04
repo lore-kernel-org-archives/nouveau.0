@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15350] randr12: VGA-0 always reported as
 	"disconnected"
-Date: Fri,  4 Apr 2008 08:31:34 -0700 (PDT)
-Message-ID: <20080404153136.345BF1300DA@annarchy.freedesktop.org>
+Date: Fri,  4 Apr 2008 08:32:38 -0700 (PDT)
+Message-ID: <20080404153239.43B4013021F@annarchy.freedesktop.org>
 References: <bug-15350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15350
 
 
 
---- Comment #2 from Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2008-04-04 08:31:31 PST ---
-Created an attachment (id=15680)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15680)
-xrandr -q output
+--- Comment #3 from Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2008-04-04 08:32:37 PST ---
+I added the:
+
+        Option "Monitor-LVDS" "Laptop LCD"
+        Option "Monitor-VGA-0" "External VGA"
+
+& associated Monitor sections to xorg.conf in an attempt to force detection of
+the VGA output, but it didn't make any difference.
 
 
 -- 
