@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15344] Gradual Performance Decline With Nouveau
 	Driver
-Date: Fri,  4 Apr 2008 09:46:44 -0700 (PDT)
-Message-ID: <20080404164644.986CF130177@annarchy.freedesktop.org>
+Date: Fri,  4 Apr 2008 10:11:57 -0700 (PDT)
+Message-ID: <20080404171157.9BE351301BE@annarchy.freedesktop.org>
 References: <bug-15344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,20 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15344
 
 
 
---- Comment #5 from Devan Goodwin <dgoodwin-eRDYlh02QjtL43Ps8y5oD9BPR1lH4CV8@public.gmane.org>  2008-04-04 09:46:43 PST ---
-Tried VT switching but I can't notice any difference when switching back.
-
-Have been running without restart all morning and definitely seeing a
-progressively worse delay switching desktops, up to around 3s to switch
-currently.
-
-Was becoming worried that some of what I'm seeing may just be the difference in
-performance from the driver I'm used to. Certain operations are brutally
-chuggy, scrolling in FF3+Gmail, pressing Esc on an empty command buffer in
-vim-gnome, or rendering any app running on the network via ssh forwarding. I
-was concerned I was confusing these with a performance bug but I'm definitely
-seeing it get worse and worse as the day wears on. Not sure if it will peak
-yet.
+--- Comment #6 from Devan Goodwin <dgoodwin-eRDYlh02QjtL43Ps8y5oD9BPR1lH4CV8@public.gmane.org>  2008-04-04 10:11:56 PST ---
+Correction, now that the lag is getting really terrible, re-tried VT switching
+and this *definitely* made a difference. After switching back the desktop
+switching isn't blazing but it's a far cry better, renders within a second
+whereas it was taking almost 4-5 before.
 
 
 -- 
