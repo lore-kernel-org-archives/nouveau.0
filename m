@@ -1,11 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15458] New: X fails to start, says no modes
-Date: Fri, 11 Apr 2008 12:08:59 -0700 (PDT)
-Message-ID: <bug-15458-8800@http.bugs.freedesktop.org/>
+From: "Aaron Whitehouse" <lists-U0r1Rbd8+dlZj6j52QthyaVXKuFTiq87@public.gmane.org>
+Subject: Compiling REnouveau with Koala's script fails on Ubuntu
+	Hardy
+Date: Sat, 12 Apr 2008 16:33:30 +1200
+Message-ID: <196947f20804112133y68208107j7f5fd7a302cbb580@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,37 +20,47 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15458
+Hello,
 
-           Summary: X fails to start, says no modes
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: ambro2-3h4AHwJAgRmsTnJN9+BGXg@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+At the risk of looking like an idiot, I thought I would post because I
+can't make Koala's script work. My brother has an nVidia GEforce 8800,
+which nobody has dumped for, so I thought I would try.
 
+As I posted here:
+https://answers.launchpad.net/ubuntu/+question/29595
 
-Created an attachment (id=15840)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15840)
-X log
+I am trying to submit a REnouveau dump from my brother's computer. I
+have installed the latest Ubuntu Hardy and have followed the
+directions on:
+http://nouveau.freedesktop.org/wiki/REnouveau
 
-X fails to start with latest nouveau on my Toshiba Tecra S5 with card Quadro
-NVS 130M. It fails with "no valid modes".
+When I run the script, it runs fine and downloads the current CVS
+version. It then says:
+"Compiling renouveau failed. Choosing 'YES' will show you the log file
+of the compilation. 'NO' will abort. Please have a look at the trouble
+shoot section in our FAQ"
 
-lspci:
-01:00.0 VGA compatible controller: nVidia Corporation Unknown device 042a (rev
-a1)
+The log shows:
+-MM -g -Wall `sdl-config --cflags` re.c detection.c t
+cc -g -Wall `sdl-config --cflags` -c -o re.o re.c
+re.c: In function 'dump_shader_program':
+re.c:408: warning: format '%08x' expects type 'unsigned
+re.c: In function 'dump_fifo':
+re.c:926: warning: unused variable 'str'
 
-I'm attaching the X log.
+Or
+cc -g -Wall `sdl-config --cflags` re.o detection.o tests
+/usr/bin/ld: cannot find -lXvMCNVIDIA
+collect2: ld returned 1 exit status
+make: *** [renouveau] Error 1
 
+I am not subscribed to the list, but any help would be appreciated so
+that I can get you the dump :).
+
+Thanks,
+
+Aaron
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+FSF Associate Member: 5632
+http://www.fsf.org
