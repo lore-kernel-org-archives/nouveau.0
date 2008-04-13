@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
  7950 GT]: works but lockup for 6 min at shutdown
-Date: Sun, 13 Apr 2008 00:56:47 -0700 (PDT)
-Message-ID: <20080413075647.4FC1C130089@annarchy.freedesktop.org>
+Date: Sun, 13 Apr 2008 00:57:55 -0700 (PDT)
+Message-ID: <20080413075755.8D66C13026D@annarchy.freedesktop.org>
 References: <bug-15481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15481
 
 
 
---- Comment #2 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2008-04-13 00:56:46 PST ---
-Created an attachment (id=15872)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15872)
-Xorg.log
+--- Comment #3 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2008-04-13 00:57:54 PST ---
+Created an attachment (id=15873)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15873)
+dmesg output for drm driver
 
 
 -- 
