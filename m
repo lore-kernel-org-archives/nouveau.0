@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13864] crash on server restart
-Date: Tue, 15 Apr 2008 04:06:01 -0700 (PDT)
-Message-ID: <20080415110602.332AD1302C1@annarchy.freedesktop.org>
+Date: Tue, 15 Apr 2008 10:22:35 -0700 (PDT)
+Message-ID: <20080415172235.D1EC01300B9@annarchy.freedesktop.org>
 References: <bug-13864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13864
 
 
 
---- Comment #10 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-15 04:06:01 PST ---
-s/someone/some
+--- Comment #11 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-15 10:22:33 PST ---
+Created an attachment (id=15930)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=15930)
+This is a very crude attempt, but it may work.
+
+Please test this.
 
 
 -- 
