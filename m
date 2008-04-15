@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13864] crash on server restart
-Date: Mon, 14 Apr 2008 15:06:02 -0700 (PDT)
-Message-ID: <20080414220602.71A691301E4@annarchy.freedesktop.org>
-References: <bug-13864-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15502] Unknown LVDS configuration bits
+Date: Mon, 14 Apr 2008 21:08:01 -0700 (PDT)
+Message-ID: <20080415040801.A90061300F7@annarchy.freedesktop.org>
+References: <bug-15502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13864-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15502-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +20,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMzg2NAoKClRvbWFz
-eiBTYcWCYWNpxYRza2kgPHRzYWxhY2luc2tpQGdtYWlsLmNvbT4gY2hhbmdlZDoKCiAgICAgICAg
-ICAgV2hhdCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tCiAgICAgICAgICAgICAgICAgQ0N8ICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IHx0c2FsYWNpbnNraUBnbWFpbC5jb20KCgoKCi0tLSBDb21tZW50ICM4IGZyb20gVG9tYXN6IFNh
-xYJhY2nFhHNraSA8dHNhbGFjaW5za2lAZ21haWwuY29tPiAgMjAwOC0wNC0xNCAxNTowNjowMSBQ
-U1QgLS0tCkFuZCwgYXJyLCBteSBjYXJkOiBHZUZvcmNlIDcxMDAgR1MuIEkgaGF2ZSBHZUZvcmNl
-IDg2MDBHVCBsYXlpbmcgb24gbXkgZGVzaywKYnV0IGhhdmVuJ3QgdGVzdGVkIGl0IHlldC4KCgot
-LSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJl
-ZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNh
-dXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=15502
+
+
+Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org
+
+
+
+
+--- Comment #1 from Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org>  2008-04-14 21:08:00 PST ---
+I have the same error with a 10de:0425 GeForce 8600M GS, with the following DCB
+entry:
+Raw DCB entry 0: 01010323 00000034
+
+Skipping the mask check for unhandled bits makes X start fine.
+
+I'm on #nouveau as Anssi.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
