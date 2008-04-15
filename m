@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15502] Unknown LVDS configuration bits
-Date: Tue, 15 Apr 2008 11:30:47 -0700 (PDT)
-Message-ID: <20080415183047.6F0491301FD@annarchy.freedesktop.org>
+Date: Tue, 15 Apr 2008 13:04:26 -0700 (PDT)
+Message-ID: <20080415200427.21AB81302E2@annarchy.freedesktop.org>
 References: <bug-15502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15502
 
 
 
---- Comment #3 from Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-15 11:30:46 PST ---
-Created an attachment (id=15931)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=15931)
-Xorg.log from nv84
+--- Comment #4 from Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-15 13:04:26 PST ---
+FWIW, disabling Screen1 and Card1 in xorg.conf and mask check
+makes X starts successfully (not counting garbage on screen
+first second or so).
 
 
 -- 
