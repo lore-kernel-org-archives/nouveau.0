@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15502] Unknown LVDS configuration bits
-Date: Sat, 19 Apr 2008 00:09:31 -0700 (PDT)
-Message-ID: <20080419070933.3BE8113015C@annarchy.freedesktop.org>
-References: <bug-15502-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 10547] nouveau: __ucmpdi2 unresolved on ppc32
+Date: Sat, 19 Apr 2008 09:28:21 -0700 (PDT)
+Message-ID: <20080419162821.A47CD130262@annarchy.freedesktop.org>
+References: <bug-10547-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15502-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-10547-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +20,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15502
+http://bugs.freedesktop.org/show_bug.cgi?id=10547
+
+
+Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
+--- Comment #12 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-04-19 09:28:19 PST ---
+There is now a fix in the 2.6.25 kernel, I'll close this bug.
 
---- Comment #5 from Paul Wise <pabs3-RVKGE0iud0ZIf6P1QZMOBw@public.gmane.org>  2008-04-19 00:09:30 PST ---
-Created an attachment (id=16037)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16037)
-Xorg.log from NV50
-
-Having this issue with an NV50.
+If you encounter this on < 2.6.25, apply the patch linked above.
 
 
 -- 
