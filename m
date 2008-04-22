@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15650] Hard freeze when starting X with GeForce 6800
 	GS (NV43)
-Date: Tue, 22 Apr 2008 11:06:46 -0700 (PDT)
-Message-ID: <20080422180646.95A49130276@annarchy.freedesktop.org>
+Date: Tue, 22 Apr 2008 11:17:13 -0700 (PDT)
+Message-ID: <20080422181714.1B2E013020F@annarchy.freedesktop.org>
 References: <bug-15650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15650
 
 
 
---- Comment #3 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-22 11:06:46 PST ---
-Created an attachment (id=16102)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16102)
-/var/log/messages
-
-I just ran it again.  This time I did `insmod drm.ko debug=1`.  I'm attaching
-/var/log/messages (from boot to crash).  It doesn't look very informative, but
-it might be helpful.
+--- Comment #4 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-22 11:17:13 PST ---
+Created an attachment (id=16103)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16103)
+Xorg.0.log for most recent source.
 
 
 -- 
