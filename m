@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15650] Hard freeze when starting X with GeForce 6800
 	GS (NV43)
-Date: Tue, 22 Apr 2008 13:21:15 -0700 (PDT)
-Message-ID: <20080422202115.B10B51302A0@annarchy.freedesktop.org>
+Date: Tue, 22 Apr 2008 13:34:14 -0700 (PDT)
+Message-ID: <20080422203414.72509130107@annarchy.freedesktop.org>
 References: <bug-15650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15650
 
 
 
---- Comment #6 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-04-22 13:21:12 PST ---
-This is a bridged card (AGP). This might or might not matter.
+--- Comment #7 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-22 13:34:13 PST ---
+Created an attachment (id=16109)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16109)
+Xorg.0.log after AGP init change
+
+Replaced #if !defined(__powerpc__) && !defined(__ia64__)
+with #if 0
 
 
 -- 
