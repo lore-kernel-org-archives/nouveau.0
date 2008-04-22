@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15650] Hard freeze when starting X with GeForce 6800
 	GS (NV43)
-Date: Tue, 22 Apr 2008 07:13:02 -0700 (PDT)
-Message-ID: <20080422141302.B85561301B5@annarchy.freedesktop.org>
+Date: Tue, 22 Apr 2008 08:39:52 -0700 (PDT)
+Message-ID: <20080422153952.A3429130105@annarchy.freedesktop.org>
 References: <bug-15650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,24 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15650
 
 
+Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org
 
 
 
---- Comment #1 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-22 07:13:01 PST ---
-Created an attachment (id=16100)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16100)
-Xorg.0.log
+
+--- Comment #2 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-22 08:39:51 PST ---
+I just tried installing from source to see if it made any difference.  I
+checked out the latest sources from git (following the InstallNouveau
+instructions on the wiki).  Unfortunately, the same problem occurred.
+
+I also tried doing `startx` instead of using gdm.  It turns out that I can move
+the mouse until the first X client connects to the server, at which point the
+machine locks up.  Even a simple X client like `xterm` is enough to freeze the
+computer.
 
 
 -- 
