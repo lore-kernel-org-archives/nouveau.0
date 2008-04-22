@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15650] Hard freeze when starting X with GeForce 6800
 	GS (NV43)
-Date: Tue, 22 Apr 2008 11:17:13 -0700 (PDT)
-Message-ID: <20080422181714.1B2E013020F@annarchy.freedesktop.org>
+Date: Tue, 22 Apr 2008 12:11:49 -0700 (PDT)
+Message-ID: <20080422191149.D4F2D13010B@annarchy.freedesktop.org>
 References: <bug-15650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,23 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15650
 
 
+Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #16102|0                           |1
+        is obsolete|                            |
 
 
 
---- Comment #4 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-22 11:17:13 PST ---
-Created an attachment (id=16103)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16103)
-Xorg.0.log for most recent source.
+
+--- Comment #5 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-22 12:11:49 PST ---
+Created an attachment (id=16107)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16107)
+kernel log with better log level
+
+I was able to get a kernel log with more messages.  This new kernel log is with
+/ mounted with sync, and with the kernel booted with nosmp.
 
 
 -- 
