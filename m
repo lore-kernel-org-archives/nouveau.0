@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15666] Nouveau error: Unknown LVDS configuration bits
-Date: Tue, 22 Apr 2008 22:00:59 -0700 (PDT)
-Message-ID: <20080423050059.12159130263@annarchy.freedesktop.org>
+Date: Tue, 22 Apr 2008 22:02:35 -0700 (PDT)
+Message-ID: <20080423050235.25EE51300E7@annarchy.freedesktop.org>
 References: <bug-15666-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15666
 
 
 
---- Comment #1 from Hans Loeblich <thehans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-22 22:00:58 PST ---
-Created an attachment (id=16116)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16116)
-Xorg error log
+--- Comment #2 from Hans Loeblich <thehans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-22 22:02:34 PST ---
+Created an attachment (id=16117)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16117)
+xorg.conf which produced the error
 
 
 -- 
