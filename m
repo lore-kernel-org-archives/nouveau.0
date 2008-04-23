@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15675] Randr12: works from command-line but not in
 	xorg.conf
-Date: Wed, 23 Apr 2008 10:49:34 -0700 (PDT)
-Message-ID: <20080423174934.A2B6F1302A2@annarchy.freedesktop.org>
+Date: Wed, 23 Apr 2008 10:50:22 -0700 (PDT)
+Message-ID: <20080423175022.A78E2130192@annarchy.freedesktop.org>
 References: <bug-15675-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,21 +24,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15675
 
 
+Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #16132|0                           |1
+        is obsolete|                            |
 
 
 
---- Comment #4 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-23 10:49:34 PST ---
-Also note that the Xorg.0.log says:
 
-Output DVI-D-0 using monitor section DVI-D-0
-
-and
-
-Output VGA-0 using monitor section VGA-0
-
-even when the Option "Monitor-VGA-0" "FOO" isn't specified.
-
-Thanks.
+--- Comment #5 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-23 10:50:21 PST ---
+Created an attachment (id=16133)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16133)
+xorg.conf (fixed typo)
 
 
 -- 
