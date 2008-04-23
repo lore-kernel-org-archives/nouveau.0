@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15675] Randr12: works from command-line but not in
 	xorg.conf
-Date: Wed, 23 Apr 2008 08:29:15 -0700 (PDT)
-Message-ID: <20080423152915.7A51A1302B8@annarchy.freedesktop.org>
+Date: Wed, 23 Apr 2008 09:49:25 -0700 (PDT)
+Message-ID: <20080423164925.2A56413029E@annarchy.freedesktop.org>
 References: <bug-15675-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15675
 
 
 
---- Comment #1 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-23 08:29:06 PST ---
-Created an attachment (id=16131)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16131)
-Xorg.0.log
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-23 09:49:24 PST ---
+http://wiki.debian.org/XStrikeForce/HowToRandR12
 
-Attaching Xorg.0.log.  In this particular case, Monitor VGA-0 has Option
-"SameAs" "DVI-D-0".  I've also tried with RightOf.  In both cases, the VGA
-monitor is blank.
+Try that, i think you made a small mistake with the syntax.
+
+(eg, you need to add Option "Monitor-DVI-D-0" "foomon" to your device section
+for example)
 
 
 -- 
