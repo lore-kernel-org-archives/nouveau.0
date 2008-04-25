@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13864] crash on server restart
-Date: Fri, 25 Apr 2008 11:13:49 -0700 (PDT)
-Message-ID: <20080425181349.E2499130085@annarchy.freedesktop.org>
+Date: Fri, 25 Apr 2008 11:55:51 -0700 (PDT)
+Message-ID: <20080425185551.586EF130052@annarchy.freedesktop.org>
 References: <bug-13864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13864
 
 
 
---- Comment #12 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-25 11:13:49 PST ---
-Can someone test this?
+--- Comment #13 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-04-25 11:55:49 PST ---
+I'm afraid the patch is insufficient. I get this now:
+
+(EE) [drm] Could not set DRM device bus ID.
+(EE) NOUVEAU(0): [dri] DRIScreenInit failed.  Disabling DRI.
+
+Fatal server error:
+AddScreen/ScreenInit failed for driver 0
+
+
+I'm in #nouveau if you have a quick update for me to test.
 
 
 -- 
