@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14991] randr12 not working with nv25
-Date: Sat, 26 Apr 2008 16:56:34 -0700 (PDT)
-Message-ID: <20080426235634.68B141304FB@annarchy.freedesktop.org>
-References: <bug-14991-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14491] enabling randr-1. 2 support causes LVDS
+ unknown config bits error when starting the X server
+Date: Sat, 26 Apr 2008 17:09:15 -0700 (PDT)
+Message-ID: <20080427000915.AD8A413015E@annarchy.freedesktop.org>
+References: <bug-14491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14991-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14991
+http://bugs.freedesktop.org/show_bug.cgi?id=14491
+
+
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
-
---- Comment #15 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-04-26 16:56:33 PST ---
-Please test whether it now works with an unmodified copy of the latest code in
-git. If it does, testing whether changing between CRTC 0 and 1 with "xrandr
---output DVI-D-0 --mode something --crtc n" works would be a good additional
-test.
+--- Comment #8 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-04-26 17:09:14 PST ---
+The LVDS config bits issue in question is fixed. Open a new bug if your laptop
+still doesn't work.
 
 
 -- 
