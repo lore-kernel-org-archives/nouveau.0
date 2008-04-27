@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15736] New: Account request
-Date: Sun, 27 Apr 2008 10:45:59 -0700 (PDT)
-Message-ID: <bug-15736-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15736] Account request
+Date: Sun, 27 Apr 2008 10:47:17 -0700 (PDT)
+Message-ID: <20080427174717.B00E8130524@annarchy.freedesktop.org>
+References: <bug-15736-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-15736-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=15736
 
-           Summary: Account request
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=16206)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16206)
-GPG public key
 
-Account request for GSOC '08 project "Generic GPU-Accelerated Video
-Decoding"...
 
-Name: Younes Manton
-Email: younes.m at gmail
-Acct: ymanton
+--- Comment #1 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-27 10:47:17 PST ---
+Created an attachment (id=16207)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16207)
+SSH public key
 
 
 -- 
