@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15650] Hard freeze when starting X with GeForce 6800
 	GS (NV43)
-Date: Mon, 28 Apr 2008 12:22:19 -0700 (PDT)
-Message-ID: <20080428192219.8D08F13005A@annarchy.freedesktop.org>
+Date: Mon, 28 Apr 2008 12:24:04 -0700 (PDT)
+Message-ID: <20080428192404.7FA9313008D@annarchy.freedesktop.org>
 References: <bug-15650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,18 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15650
 
 
+Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #16129|0                           |1
+        is obsolete|                            |
 
 
-
---- Comment #11 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-04-28 12:22:18 PST ---
-It turns out that the urxvt crash happens with the nv driver as well, so I
-think it's a general xserver problem.  It's certainly not related to this bug,
-so I filed a separate bug report.
-
-The workaround for this bug (of disabling the AGP initialization) seems to work
-great.
-
-Thanks.
 
 
 -- 
