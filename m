@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15751] New: nouveau very slow with screen size > 2048
-Date: Mon, 28 Apr 2008 20:24:19 -0700 (PDT)
-Message-ID: <bug-15751-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15751] nouveau very slow with screen size > 2048
+Date: Tue, 29 Apr 2008 00:41:13 -0700 (PDT)
+Message-ID: <20080429074120.7151B130127@annarchy.freedesktop.org>
+References: <bug-15751-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-15751-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=15751
 
-           Summary: nouveau very slow with screen size > 2048
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: sturnber-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-I have two monitors side-by-side using the nouveau driver.  This setup
-previously worked fine with the nvidia driver.  In xorg.conf if I set "Virtual
-2560 1024" in the Screen section the performance is horrible.  If I set the
-width to anything greater than 2048 I have the same problem.  I can set the
-screen size to 2048x2048 and awkwardly have the monitors on top of each other
-and performance is fine.  It is unclear to me why 2048x2048 would have better
-performance than 2560x1024 or even 2304x864.  
 
-From lspci:
-VGA compatible controller: nVidia Corporation NV18 [GeForce4 MX 4000] (rev c1)
+
+--- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-29 00:41:05 PST ---
+The reason is quite simple, above 2048x2048 2d acceleration is completely
+turned off. I don't know if this limit is the right one for NV17/NV18, being a
+mixed gf2/gf4 design.
 
 
 -- 
