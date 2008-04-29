@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15751] nouveau very slow with screen size > 2048
-Date: Tue, 29 Apr 2008 00:41:13 -0700 (PDT)
-Message-ID: <20080429074120.7151B130127@annarchy.freedesktop.org>
+Date: Tue, 29 Apr 2008 00:50:58 -0700 (PDT)
+Message-ID: <20080429075104.4F0D61300DB@annarchy.freedesktop.org>
 References: <bug-15751-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15751
 
 
 
---- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-29 00:41:05 PST ---
-The reason is quite simple, above 2048x2048 2d acceleration is completely
-turned off. I don't know if this limit is the right one for NV17/NV18, being a
-mixed gf2/gf4 design.
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-29 00:50:50 PST ---
+Some more googling reveals it might be the correct limit. Even with this
+limitation it's theoretically possible to use the monitors the way you want
+(giving each crtc their own texture, which would work). There is a prototype
+called shatter (which ofcource requires driver modifications), so there is hope
+for the future.
 
 
 -- 
