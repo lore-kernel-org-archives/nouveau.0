@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15350] randr12: VGA-0 always reported as
 	"disconnected"
-Date: Tue, 29 Apr 2008 06:03:34 -0700 (PDT)
-Message-ID: <20080429130334.6BEA0130052@annarchy.freedesktop.org>
+Date: Tue, 29 Apr 2008 06:07:08 -0700 (PDT)
+Message-ID: <20080429130708.B9A68130051@annarchy.freedesktop.org>
 References: <bug-15350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15350
 
 
 
---- Comment #11 from Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2008-04-29 06:03:33 PST ---
-Created an attachment (id=16236)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16236)
-debugging diff
+--- Comment #12 from Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2008-04-29 06:07:06 PST ---
+Sorry about the delay.
+
+I've attached the diff I'm using, and the log which results, same config as
+above.  The results are the same: nothing is displayed on the monitor, but the
+monitor is not screaming "no input" any more.  (and e.g. after forcing a mode
+change with xrandr, the monitor flicked up "Auto adjust" but then carried on
+displaying nothing)
 
 
 -- 
