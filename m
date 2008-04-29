@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15751] nouveau very slow with screen size > 2048
-Date: Tue, 29 Apr 2008 00:50:58 -0700 (PDT)
-Message-ID: <20080429075104.4F0D61300DB@annarchy.freedesktop.org>
-References: <bug-15751-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15729] nouveau fails to get ddc info from screen
+Date: Tue, 29 Apr 2008 02:14:35 -0700 (PDT)
+Message-ID: <20080429091435.D0BD913008B@annarchy.freedesktop.org>
+References: <bug-15729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15751-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15751
-
-
-
-
-
---- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-29 00:50:50 PST ---
-Some more googling reveals it might be the correct limit. Even with this
-limitation it's theoretically possible to use the monitors the way you want
-(giving each crtc their own texture, which would work). There is a prototype
-called shatter (which ofcource requires driver modifications), so there is hope
-for the future.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTcyOQoKCgoKCi0t
+LSBDb21tZW50ICMyIGZyb20gUmHDumwgU29yaWFubyA8R2F0b0xva29AZ21haWwuY29tPiAgMjAw
+OC0wNC0yOSAwMjoxNDozNCBQU1QgLS0tCkkndmUgdHJ5ZWQgdGhlIHBhdGNoIGFuZCBpdCBmaXhl
+cyB0aGUgZGRjIHByb2JsZW0uCgpOb3cgbm91dmVhdSBnZXRzIHRoZSBsaXN0IG9mIG1vZGVsaW5l
+cyBhbmQgd29ya3Mgd2l0aCBpdCwgYnV0IGlnbm9yZXMgdGhlIHhvcmcKY29uZmlndXJlZCByZXNv
+bHV0aW9uICgxNDAweDEwNTApIHRoYXQgaXNuJ3QgaW4gdGhlIGRkYyBsaXN0LCBhbmQgaGFzIHdv
+cmtlZApwcmV2aW91c2x5IHdpdGggbm91dmVhdSBhbmQgbnZpZGlhIGRyaXZlcnMuCgoKLS0gCkNv
+bmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNn
+aT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTog
+LS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
