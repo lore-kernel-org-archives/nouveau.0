@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15753] [Dualhead,
- randr12] the width of the fb does not change itself
-Date: Tue, 29 Apr 2008 10:11:25 -0700 (PDT)
-Message-ID: <20080429171125.D2F15130009@annarchy.freedesktop.org>
-References: <bug-15753-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15758] New: Invisible mouse pointer on NV4E (C51)
+Date: Tue, 29 Apr 2008 11:36:09 -0700 (PDT)
+Message-ID: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15753-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +18,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15753
+http://bugs.freedesktop.org/show_bug.cgi?id=15758
+
+           Summary: Invisible mouse pointer on NV4E (C51)
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: GatoLoko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org> changed:
+Changing resolution with "xrandr -s" made the mouse pointer disappear.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |NOTABUG
+Same thing happens unloading old drm + nvidia modules and loading new drm +
+nouveau modules.
 
-
-
-
---- Comment #3 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2008-04-29 10:11:25 PST ---
-He, I guess you are right. This seems like a NOTABUG since as you said xrandr
-did what I told it to do. Then that xrandr as a screen manipulating tool can be
-becuse of that somewhat confusing, that is another story for another day.
+Soft-rebooting with kexec doesn't get it back. The only way to recover it was
+to hard reboot the system.
 
 
 -- 
