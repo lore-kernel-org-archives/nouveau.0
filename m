@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15729] nouveau fails to get ddc info from screen
-Date: Tue, 29 Apr 2008 02:14:35 -0700 (PDT)
-Message-ID: <20080429091435.D0BD913008B@annarchy.freedesktop.org>
-References: <bug-15729-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14405] randr-1.2 bug tracker
+Date: Tue, 29 Apr 2008 03:25:17 -0700 (PDT)
+Message-ID: <20080429102517.98504130052@annarchy.freedesktop.org>
+References: <bug-14405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTcyOQoKCgoKCi0t
-LSBDb21tZW50ICMyIGZyb20gUmHDumwgU29yaWFubyA8R2F0b0xva29AZ21haWwuY29tPiAgMjAw
-OC0wNC0yOSAwMjoxNDozNCBQU1QgLS0tCkkndmUgdHJ5ZWQgdGhlIHBhdGNoIGFuZCBpdCBmaXhl
-cyB0aGUgZGRjIHByb2JsZW0uCgpOb3cgbm91dmVhdSBnZXRzIHRoZSBsaXN0IG9mIG1vZGVsaW5l
-cyBhbmQgd29ya3Mgd2l0aCBpdCwgYnV0IGlnbm9yZXMgdGhlIHhvcmcKY29uZmlndXJlZCByZXNv
-bHV0aW9uICgxNDAweDEwNTApIHRoYXQgaXNuJ3QgaW4gdGhlIGRkYyBsaXN0LCBhbmQgaGFzIHdv
-cmtlZApwcmV2aW91c2x5IHdpdGggbm91dmVhdSBhbmQgbnZpZGlhIGRyaXZlcnMuCgoKLS0gCkNv
-bmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNn
-aT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTog
-LS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=14405
+
+
+Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Depends on|                            |15213
+
+
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
