@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15350] randr12: VGA-0 always reported as
 	"disconnected"
-Date: Tue, 29 Apr 2008 06:07:53 -0700 (PDT)
-Message-ID: <20080429130753.DB453130051@annarchy.freedesktop.org>
+Date: Tue, 29 Apr 2008 06:43:31 -0700 (PDT)
+Message-ID: <20080429134331.971A3130009@annarchy.freedesktop.org>
 References: <bug-15350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,23 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15350
 
 
-Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #16235|text/x-log                  |text/plain
-          mime type|                            |
 
 
+
+--- Comment #13 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-04-29 06:43:29 PST ---
+I'm beginning to suspect that something in your xorg conf is working against
+you; your initial log claims no modes exist for VGA-0, and your new log manages
+to find a 1360x768 mode, which is quite special. Maybe try without the
+additional Monitor sections, and/or add something like
+
+Modes           "1024x768" "800x600" "640x480"
+
+inside the Display subsection of your Screen section. Bug 15729 (same chipset
+as this bug) manages to use the load detection stuff correctly (although it
+obviously only uses a pool of generic modes), so that ought to work here too.
+
+That said, there's now a C51 DDC patch in the same bug which will hopefully fix
+your DDC too.
 
 
 -- 
