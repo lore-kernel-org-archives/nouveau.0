@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15213] [Xv,
- randr12] nouveau fails to show video on right screen
-Date: Tue, 29 Apr 2008 17:14:07 -0700 (PDT)
-Message-ID: <20080430001407.C749B130052@annarchy.freedesktop.org>
-References: <bug-15213-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15344] Gradual Performance Decline With Nouveau
+	Driver
+Date: Wed, 30 Apr 2008 01:37:43 -0700 (PDT)
+Message-ID: <20080430083743.92223130009@annarchy.freedesktop.org>
+References: <bug-15344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +21,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15213
+http://bugs.freedesktop.org/show_bug.cgi?id=15344
 
 
 
 
 
---- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-04-29 17:14:07 PST ---
-This is probably fixed with 78588c71 "randr12, xv: manual overlay clipping for
-randr12 (see #12825)". Please test.
+--- Comment #7 from Daniele Primon <ledebass-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-30 01:37:42 PST ---
+Created an attachment (id=16254)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16254)
+kernel and module's  log
+
+I also experienced slowdown in performance. The session has been running for
+more than a day with a remote ssh login and glxgears and xscreensaver demo's
+run twice with gallium drive. I've tried switching VTs but that results in
+screen corruption.
 
 
 -- 
