@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15344] Gradual Performance Decline With Nouveau
 	Driver
-Date: Wed, 30 Apr 2008 01:39:01 -0700 (PDT)
-Message-ID: <20080430083903.76C7E130009@annarchy.freedesktop.org>
+Date: Wed, 30 Apr 2008 02:46:41 -0700 (PDT)
+Message-ID: <20080430094641.6164A130009@annarchy.freedesktop.org>
 References: <bug-15344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-15344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,19 +21,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15344
-
-
-
-
-
---- Comment #8 from Daniele Primon <ledebass-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-30 01:38:59 PST ---
-Created an attachment (id=16255)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16255)
-Xorg's log
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTM0NAoKCgoKCi0t
+LSBDb21tZW50ICM5IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEB0dW5nc3RlbmdyYXBoaWNz
+LmNvbT4gIDIwMDgtMDQtMzAgMDI6NDY6MzkgUFNUIC0tLQpDcmVhdGVkIGFuIGF0dGFjaG1lbnQg
+KGlkPTE2MjU2KQogLS0+IChodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5j
+Z2k/aWQ9MTYyNTYpClRlc3QgcGF0Y2gKCihJbiByZXBseSB0byBjb21tZW50ICM3KQo+IFsuLi5d
+IGdseGdlYXJzIGFuZCB4c2NyZWVuc2F2ZXIgZGVtbydzIHJ1biB0d2ljZSB3aXRoIGdhbGxpdW0g
+ZHJpdmUuCgpEbyB5b3UgbWVhbiBHTCBwZXJmb3JtYW5jZSBkZWdyYWRlcz8gVGhhdCdzIHByb2Jh
+Ymx5IG5vdCBkaXJlY3RseSByZWxhdGVkIHRvCkVYQS4KCgpEb2VzIHRoaXMgcGF0Y2ggaGVscCBm
+b3IgdGhlIHByb2JsZW0gcmVwb3J0ZWQgb3JpZ2luYWxseT8gSXQgaW1wbGVtZW50cyBhCnNpbXBs
+ZSBkZWZyYWdtZW50YXRpb24gYWxnb3JpdGhtLgoKV2hldGhlciBpdCBoZWxwcyBvciBub3QsIHBs
+ZWFzZSBwcm92aWRlIHRoZSBvdXRwdXQgb2YKCmdyZXAgRGVmcmFnIC92YXIvbG9nL1hvcmcuMC5s
+b2cKCmFmdGVyIHJ1bm5pbmcgZm9yIGEgd2hpbGUgd2l0aCB0aGUgcGF0Y2ggYXBwbGllZC4gSSdt
+IHN0aWxsIGxvb2tpbmcgZm9yIGJldHRlcgpoZXVyaXN0aWNzIGZvciB3aGVuIHRvIGRvIHRoZSBk
+ZWZyYWdtZW50YXRpb24uCgpOb3RlIHRoYXQgdGhlcmUgaGF2ZSBiZWVuIHNvbWUgcmVjZW50IEVY
+QSBjaGFuZ2VzIG9ubHkgYXZhaWxhYmxlIG9uIHRoZSB4c2VydmVyCm1hc3RlciBicmFuY2ggc28g
+ZmFyIHdoaWNoIGNvdWxkIGhlbHAgZm9yIHRoaXMgYXMgd2VsbCAob3Igc2hvdWxkIGF0IGxlYXN0
+CmltcHJvdmUgdGV4dCBwZXJmb3JtYW5jZSBhIGxvdCkuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWls
+OiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0t
+LS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJl
+IHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
