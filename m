@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15344] Gradual Performance Decline With Nouveau
 	Driver
-Date: Wed, 30 Apr 2008 01:37:43 -0700 (PDT)
-Message-ID: <20080430083743.92223130009@annarchy.freedesktop.org>
+Date: Wed, 30 Apr 2008 01:39:01 -0700 (PDT)
+Message-ID: <20080430083903.76C7E130009@annarchy.freedesktop.org>
 References: <bug-15344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15344
 
 
 
---- Comment #7 from Daniele Primon <ledebass-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-30 01:37:42 PST ---
-Created an attachment (id=16254)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16254)
-kernel and module's  log
-
-I also experienced slowdown in performance. The session has been running for
-more than a day with a remote ssh login and glxgears and xscreensaver demo's
-run twice with gallium drive. I've tried switching VTs but that results in
-screen corruption.
+--- Comment #8 from Daniele Primon <ledebass-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-04-30 01:38:59 PST ---
+Created an attachment (id=16255)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16255)
+Xorg's log
 
 
 -- 
