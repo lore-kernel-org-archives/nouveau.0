@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15777] nouveau driver crash with Xen kernel
-Date: Wed, 30 Apr 2008 14:46:57 -0700 (PDT)
-Message-ID: <20080430214657.93D7D130009@annarchy.freedesktop.org>
+Date: Wed, 30 Apr 2008 14:47:23 -0700 (PDT)
+Message-ID: <20080430214723.DFB1C130009@annarchy.freedesktop.org>
 References: <bug-15777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15777
 
 
-Hubert Figuiere <hub-o3JoHyyelnrk1uMJSBkQmQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #16273|0                           |1
-        is obsolete|                            |
 
 
 
-
---- Comment #3 from Hubert Figuiere <hub-o3JoHyyelnrk1uMJSBkQmQ@public.gmane.org>  2008-04-30 14:46:56 PST ---
-(From update of attachment 16273)
-duplicate
+--- Comment #4 from Hubert Figuiere <hub-o3JoHyyelnrk1uMJSBkQmQ@public.gmane.org>  2008-04-30 14:47:23 PST ---
+Created an attachment (id=16274)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16274)
+Xorg.0.log
 
 
 -- 
