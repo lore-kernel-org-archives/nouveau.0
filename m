@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15777] nouveau driver crash with Xen kernel
-Date: Wed, 30 Apr 2008 14:45:18 -0700 (PDT)
-Message-ID: <20080430214518.DBC12130009@annarchy.freedesktop.org>
+Date: Wed, 30 Apr 2008 14:45:35 -0700 (PDT)
+Message-ID: <20080430214535.1D7BB130009@annarchy.freedesktop.org>
 References: <bug-15777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15777
 
 
 
---- Comment #1 from Hubert Figuiere <hub-o3JoHyyelnrk1uMJSBkQmQ@public.gmane.org>  2008-04-30 14:45:16 PST ---
-Created an attachment (id=16272)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16272)
-/var/log/messages
+--- Comment #2 from Hubert Figuiere <hub-o3JoHyyelnrk1uMJSBkQmQ@public.gmane.org>  2008-04-30 14:45:34 PST ---
+Created an attachment (id=16273)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16273)
+xorg.conf
 
 
 -- 
