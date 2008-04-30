@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14405] randr-1.2 bug tracker
-Date: Tue, 29 Apr 2008 16:30:07 -0700 (PDT)
-Message-ID: <20080429233007.9E972130054@annarchy.freedesktop.org>
+Date: Tue, 29 Apr 2008 17:12:48 -0700 (PDT)
+Message-ID: <20080430001248.2D979130052@annarchy.freedesktop.org>
 References: <bug-14405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=14405
 
 
-Bug 14405 depends on bug 14857, which changed state.
+Bug 14405 depends on bug 12825, which changed state.
 
-Bug 14857 Summary: randr12 on nv34 broken
-http://bugs.freedesktop.org/show_bug.cgi?id=14857
+Bug 12825 Summary: TvTime shows only the upper left corner (~ 1280x1024) in Randr1.2
+http://bugs.freedesktop.org/show_bug.cgi?id=12825
 
            What    |Old Value                   |New Value
 ----------------------------------------------------------------------------
