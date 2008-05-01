@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15350] randr12: VGA-0 always reported as
 	"disconnected"
-Date: Thu,  1 May 2008 08:12:47 -0700 (PDT)
-Message-ID: <20080501151247.BBE03130052@annarchy.freedesktop.org>
+Date: Thu,  1 May 2008 08:19:34 -0700 (PDT)
+Message-ID: <20080501151934.BA7A3130051@annarchy.freedesktop.org>
 References: <bug-15350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15350
 
 
 
---- Comment #15 from Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2008-05-01 08:12:46 PST ---
-Created an attachment (id=16301)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16301)
-current log
+--- Comment #16 from Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2008-05-01 08:19:33 PST ---
+I've applied the patch from Bug 15729 and this seems to be getting the DDC info
+correctly from the (Dell) panel - nice work! It's also not falling through to
+the debugging force-connected hack any more.
+
+I'm still not getting any output on the VGA head, though.
+
+Attached current config/log.
+
+(I've no idea why it likes 1360x768.  One of the three panels I have ever tried
+testing with uses that as a native resolution; the only one not currently in
+the same room as the laptop!)
 
 
 -- 
