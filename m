@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15350] randr12: VGA-0 always reported as
 	"disconnected"
-Date: Thu,  1 May 2008 08:19:34 -0700 (PDT)
-Message-ID: <20080501151934.BA7A3130051@annarchy.freedesktop.org>
+Date: Thu,  1 May 2008 11:16:46 -0700 (PDT)
+Message-ID: <20080501181646.C4584130009@annarchy.freedesktop.org>
 References: <bug-15350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,18 +27,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15350
 
 
 
---- Comment #16 from Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2008-05-01 08:19:33 PST ---
-I've applied the patch from Bug 15729 and this seems to be getting the DDC info
-correctly from the (Dell) panel - nice work! It's also not falling through to
-the debugging force-connected hack any more.
+--- Comment #17 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-05-01 11:16:46 PST ---
+Looking over your log, it seems you're using a checkout of the nouveau ddx
+that's around a month old. In the intervening period there have been several
+commits which could affect issues of this sort, so it's worth doing future
+testing against the code in git (the git code also has the C51 DDC patch
+applied).
 
-I'm still not getting any output on the VGA head, though.
-
-Attached current config/log.
-
-(I've no idea why it likes 1360x768.  One of the three panels I have ever tried
-testing with uses that as a native resolution; the only one not currently in
-the same room as the laptop!)
+Please also test with   Option "ModeDebug" "On"   in the Device section of your
+xorg.conf to generate a more verbose log, and when in X, see if setting some
+different modes helps: run xrandr to see a list of available resolutions for
+VGA-0, then set one using xrandr --output VGA-0 --mode 800x600 (for an 800x600
+mode).
 
 
 -- 
