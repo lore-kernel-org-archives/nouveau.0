@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15777] nouveau driver crash with Xen kernel
-Date: Wed, 30 Apr 2008 14:47:23 -0700 (PDT)
-Message-ID: <20080430214723.DFB1C130009@annarchy.freedesktop.org>
+Date: Thu,  1 May 2008 07:37:18 -0700 (PDT)
+Message-ID: <20080501143718.CCE7F130009@annarchy.freedesktop.org>
 References: <bug-15777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15777
 
 
 
---- Comment #4 from Hubert Figuiere <hub-o3JoHyyelnrk1uMJSBkQmQ@public.gmane.org>  2008-04-30 14:47:23 PST ---
-Created an attachment (id=16274)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16274)
-Xorg.0.log
+--- Comment #5 from Hubert Figuiere <hub-o3JoHyyelnrk1uMJSBkQmQ@public.gmane.org>  2008-05-01 07:37:17 PST ---
+apparently I had Gallium 3D installed. Not that it change anything.
+
+Will attach the logs I got without it.
 
 
 -- 
