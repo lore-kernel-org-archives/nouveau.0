@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15792] nv04 (TNT2) video blitter problem.
-Date: Fri,  2 May 2008 12:42:05 -0700 (PDT)
-Message-ID: <20080502194206.E1CA3130052@annarchy.freedesktop.org>
+Date: Fri,  2 May 2008 13:19:09 -0700 (PDT)
+Message-ID: <20080502201909.3DDB1130009@annarchy.freedesktop.org>
 References: <bug-15792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,36 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15792
 
 
 
---- Comment #5 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-05-02 12:42:01 PST ---
-5e1b5708d3a7e4298f80b1a1b8bb3fafae0c69bd may or may not fix this :), please try
-again.
+--- Comment #6 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2008-05-02 13:19:08 PST ---
+some testing:
+
+randr-1.2                                                                       
+EXA_get_pixmap_pitch: 5544                                                      
+EXA_get_pixmap_pitch: 5544                                                      
+EXA_get_pixmap_pitch: 5544                                                      
+
+without randr-1.2                                                               
+EXA_get_pixmap_pitch: 5568                                                      
+EXA_get_pixmap_pitch: 5568                                                      
+EXA_get_pixmap_pitch: 5568                                                      
+
+Virtual - 1024x768, randr12 enabled                                             
+EXA_get_pixmap_pitch: 5568                                                      
+EXA_get_pixmap_pitch: 5568                                                      
+EXA_get_pixmap_pitch: 5568
+
+diff --git a/src/nv04_video_blitter.c b/src/nv04_video_blitter.c
+index 8ee848f..30f4e82 100644
+--- a/src/nv04_video_blitter.c
++++ b/src/nv04_video_blitter.c
+@@ -94,6 +94,8 @@ NVPutBlitImage(ScrnInfoPtr pScrn, int src_offset, int id,
+         BEGIN_RING(NvContextSurfaces, NV04_CONTEXT_SURFACES_2D_FORMAT, 4);
+         OUT_RING  (dst_format);
+         OUT_RING  ((exaGetPixmapPitch(pPix) << 16) | exaGetPixmapPitch(pPix));
++       ErrorF("EXA_get_pixmap_pitch: %d\n", exaGetPixmapPitch(pPix));
++       
+         OUT_PIXMAPl(pPix, 0, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR);
+         OUT_PIXMAPl(pPix, 0, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR);
 
 
 -- 
