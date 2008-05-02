@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15213] [Xv,
- randr12] nouveau fails to show video on right screen
-Date: Fri,  2 May 2008 14:06:05 -0700 (PDT)
-Message-ID: <20080502210606.09C8B130009@annarchy.freedesktop.org>
-References: <bug-15213-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15233] geforce 7800gs and AGP 3.0 DBI function
+Date: Fri,  2 May 2008 16:25:56 -0700 (PDT)
+Message-ID: <20080502232556.CDCEB130009@annarchy.freedesktop.org>
+References: <bug-15233-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15233-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +20,20 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15213
-
-
-
-
-
---- Comment #2 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2008-05-02 14:06:05 PST ---
-Sorry to say, but it does not seems to be that way...
-Will not be able to try again for about three days, but rebuild of drivers and
-restart of server did not change anything in regards to this.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTIzMwoKClJvYyBW
+YWxsw6hzIERvbcOobmVjaCA8dmFsbGVzcm9jQGdtYWlsLmNvbT4gY2hhbmdlZDoKCiAgICAgICAg
+ICAgV2hhdCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tCiAgICAgICAgICAgICBTdGF0dXN8TkVXICAgICAgICAgICAgICAgICAgICAgICAg
+IHxSRVNPTFZFRAogICAgICAgICBSZXNvbHV0aW9ufCAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICB8SU5WQUxJRAoKCgoKLS0tIENvbW1lbnQgIzQgZnJvbSBSb2MgVmFsbMOocyBEb23DqG5lY2gg
+PHZhbGxlc3JvY0BnbWFpbC5jb20+ICAyMDA4LTA1LTAyIDE2OjI1OjU1IFBTVCAtLS0KRm9yZ2V0
+IGFib3V0IHRoaXMuIFRoZSBwcm9ibGVtIHdhcyBpc29sYXRlZCB0byBzb21ldGhpbmcgZWxzZSAo
+Y2hpcHNldCwgZmF1bHR5Cm1lbW9yeSBjb250cm9sbGVyLCBkdWFsIGNoYW5uZWwgLT4gdW5zdGFi
+aWxpdHksIHNpbmdsZSBjaGFubmVsIC0+IGV2ZXJ5dGhpbmcgaXMKb2theSkuCgoKLS0gCkNvbmZp
+Z3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90
+YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0t
+LS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
