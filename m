@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15792] nv04 (TNT2) video blitter problem.
-Date: Fri,  2 May 2008 04:11:15 -0700 (PDT)
-Message-ID: <20080502111116.506AF130009@annarchy.freedesktop.org>
+Date: Fri,  2 May 2008 12:42:05 -0700 (PDT)
+Message-ID: <20080502194206.E1CA3130052@annarchy.freedesktop.org>
 References: <bug-15792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15792
 
 
 
---- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2008-05-02 04:11:05 PST ---
-Created an attachment (id=16308)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16308)
-x.org log - old version
+--- Comment #5 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-05-02 12:42:01 PST ---
+5e1b5708d3a7e4298f80b1a1b8bb3fafae0c69bd may or may not fix this :), please try
+again.
 
 
 -- 
