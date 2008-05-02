@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15792] nv04 (TNT2) video blitter problem.
-Date: Fri,  2 May 2008 04:08:27 -0700 (PDT)
-Message-ID: <20080502110827.52F23130009@annarchy.freedesktop.org>
+Date: Fri,  2 May 2008 04:11:15 -0700 (PDT)
+Message-ID: <20080502111116.506AF130009@annarchy.freedesktop.org>
 References: <bug-15792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15792
 
 
 
---- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2008-05-02 04:08:26 PST ---
-(In reply to comment #2)
-> Hmm, is that related to the recent Xv commits ? Could you try a version before
-> those ?
-> 
-
-(II) NOUVEAU driver Date:   Sat Mar 15 01:36:13 2008 +0000
-
-still affected.
+--- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2008-05-02 04:11:05 PST ---
+Created an attachment (id=16308)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16308)
+x.org log - old version
 
 
 -- 
