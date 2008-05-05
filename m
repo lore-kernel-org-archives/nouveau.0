@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15502] Unknown LVDS configuration bits
-Date: Mon,  5 May 2008 09:59:35 -0700 (PDT)
-Message-ID: <20080505165935.3134E130056@annarchy.freedesktop.org>
+Date: Mon,  5 May 2008 15:13:23 -0700 (PDT)
+Message-ID: <20080505221323.3A535130051@annarchy.freedesktop.org>
 References: <bug-15502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-15502-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -20,24 +20,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15502
-
-
-
-
-
---- Comment #10 from Neal Becker <ndbecker2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-05 09:59:34 PST ---
-(In reply to comment #9)
-> For those who are eager, you can bypass the check that causes the error, don't
-> bypass the entire output creation stage. I'm not inclined to bypass it as it
-> serves as a reminder. Stuart Bennett has said he'll look at it, once he fixes
-> some of the pre-NV50 issues.
-> 
-
-How can I bypass this, please?
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTUwMgoKCgoKCi0t
+LSBDb21tZW50ICMxMSBmcm9tIEhlcnbDqSBDYXV3ZWxpZXIgPGRlYmlhbkBvdXJzb3Vycy5uZXQ+
+ICAyMDA4LTA1LTA1IDE1OjEzOjIyIFBTVCAtLS0KSSB0b29rIHRoZSBvcHBvcnR1bml0eSB0byBw
+bGF5IHdpdGggZ2l0IGJpc2VjdCBhbmQgaGVyZSBpcyB0aGUgcmVzdWx0OgoKYzUyMDM2NDdkZGYy
+NjI5NzhlN2Q2YTQ5MTI2NjFhOWNjNDQ4ZGE2NiBpcyBmaXJzdCBiYWQgY29tbWl0CmNvbW1pdCBj
+NTIwMzY0N2RkZjI2Mjk3OGU3ZDZhNDkxMjY2MWE5Y2M0NDhkYTY2CkF1dGhvcjogU3R1YXJ0IEJl
+bm5ldHQgPHNiNDc2QGNhbS5hYy51az4KRGF0ZTogICBXZWQgTWFyIDE5IDIzOjEyOjU5IDIwMDgg
+KzAwMDAKCiAgICByYW5kcjEyOiB1bmJyZWFrIExWRFMgYW5kIHByaW1hcnkgSTJDIGZvciA8IE5W
+NTAKCiAgICBOVjUwIGNoZWNrIGRpc2FsbG93ZWQgcHJlLU5WNTAgY2FyZHMgdXNpbmcgSTJDIG9u
+IGZpcnN0IGhlYWQsIGFuZCBtYWRlCmdhcmJhZ2UgZ2V0IHdyaXR0ZW4gdG8gQ1IwIG9uIExWRFMK
+CiAgICBUaGlzIHNob3VsZCB3b3JrIGZvciBib3RoIHByZS1udjUwIGFuZCBudjUwLgoKOjA0MDAw
+MCAwNDAwMDAgYmIyNmRiNzU3YzA4OGUyMGQ2ZDI2ZDYyMjdjOGQyMzU3Njk5ZTBkYwowOTQxZGVi
+MzExZDYwNWZiZmViOTBkNTRlOGFhZmQ0MjQ4YTU5ODYxIE0gICAgICBzcmMKCgpZb3UgcHJvYmFi
+bHkgYWxyZWFkeSBrbm93IHRoYXQgYnV0IHRoZSBiZW5lZml0IGZvciBtZSB3YXMgdG8gZ2V0IGJh
+Y2sgdG8gYQp1c2FibGUgc3RhdGUuCgpJIHVzZWQgdGhlIGZvbGxvd2luZyBjb25maWd1cmF0aW9u
+OiAKCiQgZ2l0IGJpc2VjdCBzdGFydCAtLSBzcmMvbnZfYmlvcy5jCiQgZ2l0IGJpc2VjdCBiYWQK
+JCBnaXQgYmlzZWN0IGdvb2QgN2MyNWQzMzhlMGM3OWEyODhmYTE5MmQ5YTJkNGFjNmViNTk5OTZj
+MQoKU28gSSBiaXNlY3RlZCBvbiBhbGwgY2hhbmdlcyBpbiBudl9iaW9zLmMuCgoKLS0gCkNvbmZp
+Z3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90
+YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0t
+LS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
