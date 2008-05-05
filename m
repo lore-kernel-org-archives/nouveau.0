@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15502] Unknown LVDS configuration bits
-Date: Mon,  5 May 2008 07:11:30 -0700 (PDT)
-Message-ID: <20080505141130.E7A89130053@annarchy.freedesktop.org>
+Date: Mon,  5 May 2008 09:45:16 -0700 (PDT)
+Message-ID: <20080505164516.9BE5C130051@annarchy.freedesktop.org>
 References: <bug-15502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,17 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15502
 
 
-Neal Becker <ndbecker2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |ndbecker2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+                 CC|                            |debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org
 
 
 
 
---- Comment #7 from Neal Becker <ndbecker2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-05 07:11:29 PST ---
-I have this issue also.  What information can I send to help?
+--- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-05 09:45:13 PST ---
+*** Bug 15833 has been marked as a duplicate of this bug. ***
 
 
 -- 
