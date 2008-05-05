@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15502] Unknown LVDS configuration bits
-Date: Mon,  5 May 2008 09:54:00 -0700 (PDT)
-Message-ID: <20080505165400.AD792130053@annarchy.freedesktop.org>
+Date: Mon,  5 May 2008 09:59:35 -0700 (PDT)
+Message-ID: <20080505165935.3134E130056@annarchy.freedesktop.org>
 References: <bug-15502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,11 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15502
 
 
 
---- Comment #9 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-05 09:53:59 PST ---
-For those who are eager, you can bypass the check that causes the error, don't
-bypass the entire output creation stage. I'm not inclined to bypass it as it
-serves as a reminder. Stuart Bennett has said he'll look at it, once he fixes
-some of the pre-NV50 issues.
+--- Comment #10 from Neal Becker <ndbecker2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-05 09:59:34 PST ---
+(In reply to comment #9)
+> For those who are eager, you can bypass the check that causes the error, don't
+> bypass the entire output creation stage. I'm not inclined to bypass it as it
+> serves as a reminder. Stuart Bennett has said he'll look at it, once he fixes
+> some of the pre-NV50 issues.
+> 
+
+How can I bypass this, please?
 
 
 -- 
