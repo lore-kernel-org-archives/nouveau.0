@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15845] X busyloops when huge image in firefox
-Date: Tue,  6 May 2008 11:28:10 -0700 (PDT)
-Message-ID: <20080506182810.9D8FC130051@annarchy.freedesktop.org>
+Date: Tue,  6 May 2008 11:29:41 -0700 (PDT)
+Message-ID: <20080506182941.5EC70130051@annarchy.freedesktop.org>
 References: <bug-15845-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15845
 
 
+Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #16391|application/octet-stream    |text/plain
+          mime type|                            |
 
 
-
---- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-05-06 11:28:10 PST ---
-Created an attachment (id=16391)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16391)
-xorg.conf
-
-MigrationHeuristic was not set in my xorg.conf. Setting it to "greedy" seems to
-make the problem go away.
 
 
 -- 
