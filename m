@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15837] xfd -fn lucidasanstypewriter-8 crashes X
-Date: Mon,  5 May 2008 15:42:07 -0700 (PDT)
-Message-ID: <20080505224207.3F88B130051@annarchy.freedesktop.org>
-References: <bug-15837-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15502] Unknown LVDS configuration bits
+Date: Tue,  6 May 2008 01:00:15 -0700 (PDT)
+Message-ID: <20080506080055.ABB97130051@annarchy.freedesktop.org>
+References: <bug-15502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15837-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15502-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15837
+http://bugs.freedesktop.org/show_bug.cgi?id=15502
 
 
-Andrew Brehaut <andrew-FUXZDh+Fk+PR7s880joybQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #16366|text/plain                  |application/x-gzip
-          mime type|                            |
 
 
+
+--- Comment #12 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-06 00:59:48 PST ---
+The issue is known, i know perfectly well what causes the error. It's in
+nv_bios.c around line 4148. Please just accept that the driver isn't end-user
+ready and for that reason i don't work around it.
 
 
 -- 
