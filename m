@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15502] Unknown LVDS configuration bits
-Date: Tue,  6 May 2008 01:00:15 -0700 (PDT)
-Message-ID: <20080506080055.ABB97130051@annarchy.freedesktop.org>
+Date: Tue,  6 May 2008 01:13:03 -0700 (PDT)
+Message-ID: <20080506081303.7D430130053@annarchy.freedesktop.org>
 References: <bug-15502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,26 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15502
 
 
 
---- Comment #12 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-06 00:59:48 PST ---
-The issue is known, i know perfectly well what causes the error. It's in
-nv_bios.c around line 4148. Please just accept that the driver isn't end-user
-ready and for that reason i don't work around it.
+--- Comment #13 from Jan Willies <jan-uD0V+UySoA6ZuzBka8ofvg@public.gmane.org>  2008-05-06 01:13:02 PST ---
+(In reply to comment #12)
+> The issue is known, i know perfectly well what causes the error. It's in
+> nv_bios.c around line 4148. Please just accept that the driver isn't end-user
+> ready and for that reason i don't work around it.
+> 
+
+/*                      if (conf & mask) {
+*                               xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
+*                                          "Unknown LVDS configuration bits,
+please report\n");
+*                               pNv->dcb_table.entries = 0;
+*                               return false;
+*                       }
+*/
+
+That's my workaround (suggestion from Maarten, thx)
+
+
+HTH
 
 
 -- 
