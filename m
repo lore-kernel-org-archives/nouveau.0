@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15845] New: X busyloops when huge image in firefox
-Date: Tue,  6 May 2008 11:03:54 -0700 (PDT)
-Message-ID: <bug-15845-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15845] X busyloops when huge image in firefox
+Date: Tue,  6 May 2008 11:04:48 -0700 (PDT)
+Message-ID: <20080506180448.772C9130051@annarchy.freedesktop.org>
+References: <bug-15845-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-15845-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=15845
 
-           Summary: X busyloops when huge image in firefox
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: pq-X3B1VOXEql0@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=16388)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16388)
-Xorg log
 
-When a huge image, e.g. 1500x3000 pixels, is shown in Firefox, any rendering
-action related to that image freezes firefox for 5-10 minutes. During that time
-X is eating all CPU, spending 30% in user space and 70% in kernel due to
-GetTimeInMillis().
 
-Xorg-server xorg-server-1.3.99.0-1538-gefa65a0
-xf86-video-nouveau ae574ec7d930d8708e4dd9d1d47558666019afe5
-DRM kernel modules drm-2.3.0-1229-g43b224f
-All of them around 5.5.2008.
-
-nouveau.ko is patched to make AGP init fail, since DFS is broken for me.
-
-To me DRM and Xorg logs show nothing out of the ordinary.
+--- Comment #1 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-05-06 11:04:47 PST ---
+Created an attachment (id=16389)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16389)
+kernel log with debug=1
 
 
 -- 
