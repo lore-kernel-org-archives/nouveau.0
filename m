@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15845] X busyloops when huge image in firefox
-Date: Wed,  7 May 2008 12:02:19 -0700 (PDT)
-Message-ID: <20080507190219.6267D130051@annarchy.freedesktop.org>
-References: <bug-15845-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15861] New: Account Request For Nouveau DDX
+Date: Wed,  7 May 2008 16:40:07 -0700 (PDT)
+Message-ID: <bug-15861-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15845-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +18,28 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15845
+http://bugs.freedesktop.org/show_bug.cgi?id=15861
+
+           Summary: Account Request For Nouveau DDX
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=16420)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16420)
+gpg key
 
-
-
---- Comment #6 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-05-07 12:02:16 PST ---
-Michel, I applied your patch, and it indeed makes the freeze period drop from 5
-minutes to just less than 1 minute. Then, adding EXAOptimizeMigration makes the
-freezing go away, I don't have to wait for it to unfreeze anymore.
-
-There were some comments on #nouveau that the braindead invocations of
-NVUploadToScreen might be a Firefox 2 feature.
+My name is Jimmy Rentz and I would a like an account for the nouveau ddx.
+My Preferred account name is jb17bsome
 
 
 -- 
