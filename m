@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15861] Account Request For Nouveau DDX
-Date: Wed,  7 May 2008 17:17:46 -0700 (PDT)
-Message-ID: <20080508001746.90DD4130053@annarchy.freedesktop.org>
+Date: Wed,  7 May 2008 17:18:13 -0700 (PDT)
+Message-ID: <20080508001813.6D146130051@annarchy.freedesktop.org>
 References: <bug-15861-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,11 @@ Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-          Component|Driver/nouveau              |New Accounts
-            Product|xorg                        |freedesktop.org
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|sitewranglers-PD4FTy7X32lzq7FAFJ/aeQ@public.gmane.org
+                   |g                           |top.org
+          QAContact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
 
 
-
-
---- Comment #2 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-05-07 17:17:44 PST ---
-Ok.
 
 
 -- 
