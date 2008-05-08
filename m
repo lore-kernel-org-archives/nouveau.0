@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15861] Account Request For Nouveau DDX
-Date: Wed,  7 May 2008 16:40:32 -0700 (PDT)
-Message-ID: <20080507234032.B151D130051@annarchy.freedesktop.org>
+Date: Wed,  7 May 2008 17:17:46 -0700 (PDT)
+Message-ID: <20080508001746.90DD4130053@annarchy.freedesktop.org>
 References: <bug-15861-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15861
 
 
+Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Driver/nouveau              |New Accounts
+            Product|xorg                        |freedesktop.org
 
 
 
---- Comment #1 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-05-07 16:40:32 PST ---
-Created an attachment (id=16421)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16421)
-ssh pkey
+
+--- Comment #2 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-05-07 17:17:44 PST ---
+Ok.
 
 
 -- 
