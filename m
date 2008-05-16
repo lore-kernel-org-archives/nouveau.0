@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
-Date: Thu, 15 May 2008 17:55:36 -0700 (PDT)
-Message-ID: <20080516005536.A77E2130052@annarchy.freedesktop.org>
+Date: Thu, 15 May 2008 17:56:45 -0700 (PDT)
+Message-ID: <20080516005645.44034130052@annarchy.freedesktop.org>
 References: <bug-15949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15949
 
 
 
---- Comment #2 from Carl van Tonder <simplyw00x-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-15 17:55:36 PST ---
-Created an attachment (id=16564)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16564)
-Top-right corner of LVDS-0
+--- Comment #3 from Carl van Tonder <simplyw00x-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-15 17:56:44 PST ---
+Created an attachment (id=16565)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16565)
+xog.conf
 
 
 -- 
