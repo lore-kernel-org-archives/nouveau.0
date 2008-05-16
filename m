@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
-Date: Thu, 15 May 2008 17:56:45 -0700 (PDT)
-Message-ID: <20080516005645.44034130052@annarchy.freedesktop.org>
+Date: Fri, 16 May 2008 15:00:59 -0700 (PDT)
+Message-ID: <20080516220101.1F0E9130052@annarchy.freedesktop.org>
 References: <bug-15949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15949
 
 
 
---- Comment #3 from Carl van Tonder <simplyw00x-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-15 17:56:44 PST ---
-Created an attachment (id=16565)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16565)
-xog.conf
+--- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-05-16 15:00:55 PST ---
+Does the problem happen when not using nvidiafb? Is this effect still visible
+when starting X (from a good initial state) without the VGA head plugged? Do
+different modes affect it (it seems to be starting in a 1024x768 mode below; is
+it setting 1280x800 that breaks it)?
 
 
 -- 
