@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16031] nv11 + KDM/KDE: No UI elements/text rendered
-Date: Mon, 19 May 2008 20:58:24 -0700 (PDT)
-Message-ID: <20080520035824.D91CF130054@annarchy.freedesktop.org>
+Date: Mon, 19 May 2008 20:59:42 -0700 (PDT)
+Message-ID: <20080520035942.25996130056@annarchy.freedesktop.org>
 References: <bug-16031-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16031
 
 
 
---- Comment #1 from silverpower-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org  2008-05-19 20:58:24 PST ---
-Created an attachment (id=16640)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16640)
-X.org log
+--- Comment #2 from silverpower-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org  2008-05-19 20:59:41 PST ---
+Created an attachment (id=16641)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16641)
+dmesg output
 
 
 -- 
