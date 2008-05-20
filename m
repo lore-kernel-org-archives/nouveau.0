@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16031] New: nv11 + KDM/KDE: No UI elements/text
-	rendered
-Date: Mon, 19 May 2008 20:56:40 -0700 (PDT)
-Message-ID: <bug-16031-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16031] nv11 + KDM/KDE: No UI elements/text rendered
+Date: Mon, 19 May 2008 20:58:24 -0700 (PDT)
+Message-ID: <20080520035824.D91CF130054@annarchy.freedesktop.org>
+References: <bug-16031-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16031-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=16031
 
-           Summary: nv11 + KDM/KDE: No UI elements/text rendered
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: silverpower-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Using RAOF's latest Ubuntu packages for 8.10, I've managed to get X11 to appear
-in a decent resolution. Which, unfortunately for me, is all that goes right.
-Almost all UI elements are left unrendered - kicker is nearly blank, konsole
-has no text, and KDM is a near-complete blank. Not to mention that the few
-elements I can visibly see are somewhat sluggish.
 
-Looking in /var/log/messages shows a whole bunch of PGRAPH_ERRORs. I've
-attached the relevant logs.
+
+--- Comment #1 from silverpower-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org  2008-05-19 20:58:24 PST ---
+Created an attachment (id=16640)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16640)
+X.org log
 
 
 -- 
