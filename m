@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
-Date: Thu, 22 May 2008 05:40:03 -0700 (PDT)
-Message-ID: <20080522124003.F3D62130054@annarchy.freedesktop.org>
-References: <bug-15949-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16077] New: X server crash DMA hang
+Date: Fri, 23 May 2008 09:32:46 -0700 (PDT)
+Message-ID: <bug-16077-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15949-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +18,38 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15949
+http://bugs.freedesktop.org/show_bug.cgi?id=16077
+
+           Summary: X server crash DMA hang
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: high
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: nick-ueoY2BOuUdHYtjvyW6yDsg@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+I occasionally get a server crash:
 
+DMA queue hang:  dmaPut=15, current=bc, status=0
 
+I first thought this was Adobe flash related, as it has never happened with GNU
+Gnash, but today it happened whilst switching workspaces in Fluxbox.  It
+appears to manifest after a two to three days Xserver uptime.
 
---- Comment #5 from Carl van Tonder <simplyw00x-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-22 05:40:02 PST ---
->> Does the problem happen when not using nvidiafb?
-AFAIK I'm not using it. It doesn't show up in lsmod, at any rate
+I run git mesa/drm/nouveau.  Using kernel 2.6.25.  Using git xorg from a few
+weeks ago.
 
->> Is this effect still visible
-when starting X (from a good initial state) without the VGA head plugged?
-If I set the laptop to a resolution at which the screen wraps, then reboot it
-with no external monitor plugged in, the problem persists.
+Any help to debug this further would be nice.
 
->> Do
-different modes affect it (it seems to be starting in a 1024x768 mode below; is
-it setting 1280x800 that breaks it)?
-12800x800 is the only ode I've been able to find that actually fills the screen
---- it's a 16:10 and resolutions like 1024x786 show up in the centre with
-vertical letterboxing.
+Thanks,
+
+Nick
 
 
 -- 
