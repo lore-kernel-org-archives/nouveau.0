@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15845] X busyloops when huge image in firefox
-Date: Sat, 24 May 2008 11:15:02 -0700 (PDT)
-Message-ID: <20080524181502.C0E96130056@annarchy.freedesktop.org>
-References: <bug-15845-8800@http.bugs.freedesktop.org/>
+From: Vincent Caron <vincent-8eMmcXuTIyTk1uMJSBkQmQ@public.gmane.org>
+Subject: Close succes en NV34M, vertical fencing problem
+Date: Fri, 23 May 2008 15:39:51 +0200
+Message-ID: <1211549991.6519.18.camel@zerolap.home>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="=-rM5FEZ4yKPERrtQtZnXV"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15845-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +17,2600 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTg0NQoKCk1pY2hl
-bCBEw6RuemVyIDxtaWNoZWxAdHVuZ3N0ZW5ncmFwaGljcy5jb20+IGNoYW5nZWQ6CgogICAgICAg
-ICAgIFdoYXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQogICAgICAgICAgICAgU3RhdHVzfE5FVyAgICAgICAgICAgICAgICAgICAgICAg
-ICB8UkVTT0xWRUQKICAgICAgICAgUmVzb2x1dGlvbnwgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgfEZJWEVECgoKCgotLS0gQ29tbWVudCAjNyBmcm9tIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxA
-dHVuZ3N0ZW5ncmFwaGljcy5jb20+ICAyMDA4LTA1LTI0IDExOjE1OjAxIFBTVCAtLS0KY29tbWl0
-IDNiYWYzYjQyZTA3OWI0ZTdiNjFjMWUyMGRmMzA1ZGIwNzI0ZDIxZjgKQXV0aG9yOiBNaWNoZWwg
-RMODwqRuemVyIDxtaWNoZWxAdHVuZ3N0ZW5ncmFwaGljcy5jb20+CkRhdGU6ICAgU2F0IE1heSAy
-NCAyMDowMToyMSAyMDA4ICswMjAwCgogICAgRVhBOiBTcGVjaWZ5IHJlZ2lvbiB1c2VkIGZvciBz
-b3VyY2UgcGl4bWFwIG1pZ3JhdGlvbiBpbiBleGFDb3B5TnRvTi4KCiAgICBBdm9pZHMgZXhjZXNz
-aXZlIG1pZ3JhdGlvbiBvdmVyaGVhZCBpbiBzb21lIHBhdGhvbG9naWNhbCBjYXNlcy4KCgotLSAK
-Q29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMu
-Y2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNl
-OiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--=-rM5FEZ4yKPERrtQtZnXV
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hello list,
+
+  I just had a first shot at the "nouveau" Xorg driver, I'm a regular
+"nv" user. It compiled and installed without a itch in a short time,
+congrats (great instructions on
+http://nouveau.freedesktop.org/wiki/InstallNouveau), ran fine... but
+with a funny vertical fencing effect: one vertical line out of two was
+black. After a few minutes, the effect would spontaneously =EF=BB=BFswitc=
+h (no
+input from me, no app activity) to white vertical lines with the same
+stripping setup (which gives a "dimming" or "enlightening" effect +
+rather crunchy text).
+
+  When reverting to the "nv" driver and simply restarting X, the fencing
+effect persisted. So "nv" seems to rely on some BIOS stuff that
+"nouveau" fiddles with. I (warm-)rebooted the whole system with the
+"nouveau" driver on in order for it to benefit from the BIOS, same
+problem. Same procedure while adding the "Option FlatPanel True", same
+problem. Then (warm-)reboot with the "nv" driver on, everything working
+fine again.
+
+  I have a NV34M on a Dell Inspiron laptop, all details follow (and both
+nouveau and nv logs attached):
+
+  - Linux vanilla 2.6.23.1 on i386
+  - Xorg 1.4.1~git20080131-4 from Debian 'testing' branch (not
+'unstable')
+  - nv 2.1.9
+  - nouveau (drm + xf86-video-nouveau) from git as 2008-05-23
+
+01:00.0 VGA compatible controller: nVidia Corporation NV34M [GeForce FX
+Go5200 64M] (rev a1)
+        Subsystem: Dell Device 019c
+        Flags: bus master, VGA palette snoop, 66MHz, medium devsel,
+latency 32, IRQ 11
+        Memory at fc000000 (32-bit, non-prefetchable) [size=3D16M]
+        Memory at d0000000 (32-bit, prefetchable) [size=3D256M]
+        Expansion ROM at fd000000 [disabled] [size=3D128K]
+        Capabilities: <access denied>
+
+  The screen is a 1920x1200 LCD (physical: 332x207mm, ~150dpi). I can't
+provide screenshots as X obviously saw perfectly sane (non-fenced)
+display buffers.
+
+  What could I do to help you fix this bug ? It looks like I'm very
+close to be able to switch to "nouveau".
+
+  Vincent
+
+
+--=-rM5FEZ4yKPERrtQtZnXV
+Content-Disposition: attachment; filename=dmesg-nouveau-fencing
+Content-Type: text/plain; name=dmesg-nouveau-fencing; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+May 23 15:02:18 zerolap kernel: [drm] Initialized drm 1.1.0 20060810
+May 23 15:02:18 zerolap kernel: ACPI: PCI Interrupt 0000:01:00.0[A] -> Link [LNKA] -> GSI 11 (level, low) -> IRQ 11
+May 23 15:02:18 zerolap kernel: [drm] Detected an NV30 generation card (0x034400b1)
+May 23 15:02:18 zerolap kernel: [drm] Initialized nouveau 0.0.10 drm-2.3.0-1246-g83996561061b99bb4 on minor 0
+May 23 15:02:20 zerolap kernel: agpgart: Found an AGP 2.0 compliant device at 0000:00:00.0.
+May 23 15:02:20 zerolap kernel: agpgart: Putting AGP V2 device at 0000:00:00.0 into 4x mode
+May 23 15:02:20 zerolap kernel: agpgart: Putting AGP V2 device at 0000:01:00.0 into 4x mode
+May 23 15:02:20 zerolap kernel: [drm] Allocating FIFO number 0
+May 23 15:02:20 zerolap kernel: [drm] nouveau_fifo_alloc: initialised FIFO 0
+May 23 15:02:20 zerolap kernel: [drm] Allocating FIFO number 1
+May 23 15:02:20 zerolap kernel: [drm] nouveau_fifo_alloc: initialised FIFO 1
+May 23 15:05:00 zerolap kernel: [drm] nouveau_fifo_free: freeing fifo 1
+May 23 15:05:00 zerolap kernel: [drm] nouveau_fifo_free: freeing fifo 0
+
+
+--=-rM5FEZ4yKPERrtQtZnXV
+Content-Disposition: attachment; filename=xorg.conf
+Content-Type: text/plain; name=xorg.conf; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+# /etc/X11/xorg.conf (xorg X Window System server configuration file)
+#
+# This file was generated by dexconf, the Debian X Configuration tool, using
+# values from the debconf database.
+#
+# Edit this file with caution, and see the /etc/X11/xorg.conf manual page.
+# (Type "man /etc/X11/xorg.conf" at the shell prompt.)
+#
+# This file is automatically updated on xserver-xorg package upgrades *only*
+# if it has not been modified since the last upgrade of the xserver-xorg
+# package.
+#
+# If you have edited this file but would like it to be automatically updated
+# again, run the following command:
+#   sudo dpkg-reconfigure -phigh xserver-xorg
+
+Section "ServerFlags"
+	Option	"BlankTime"	"0"
+	Option	"StandbyTime"	"1"
+	Option	"SuspendTime"	"0"
+	Option	"OffTime"	"0"
+	Option	"AllowDeactivateGrabs" "true"
+	Option	"AllowClosedownGrabs" "true"
+EndSection
+
+Section "Files"
+	FontPath	"/usr/share/fonts/X11/misc"
+	FontPath	"/usr/X11R6/lib/X11/fonts/misc"
+	FontPath	"/usr/share/fonts/X11/cyrillic"
+	FontPath	"/usr/X11R6/lib/X11/fonts/cyrillic"
+	FontPath	"/usr/share/fonts/X11/100dpi/:unscaled"
+	FontPath	"/usr/X11R6/lib/X11/fonts/100dpi/:unscaled"
+	FontPath	"/usr/share/fonts/X11/75dpi/:unscaled"
+	FontPath	"/usr/X11R6/lib/X11/fonts/75dpi/:unscaled"
+	FontPath	"/usr/share/fonts/X11/Type1"
+	FontPath	"/usr/X11R6/lib/X11/fonts/Type1"
+	FontPath	"/usr/share/fonts/X11/100dpi"
+	FontPath	"/usr/X11R6/lib/X11/fonts/100dpi"
+	FontPath	"/usr/share/fonts/X11/75dpi"
+	FontPath	"/usr/X11R6/lib/X11/fonts/75dpi"
+	# path to defoma fonts
+	FontPath	"/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType"
+EndSection
+
+Section "Module"
+	Load	"i2c"
+	Load	"bitmap"
+	Load	"ddc"
+	Load	"dri"
+	Load	"extmod"
+	Load	"freetype"
+	Load	"glx"
+	Load	"int10"
+	Load	"type1"
+	Load	"vbe"
+EndSection
+
+Section "InputDevice"
+	Identifier	"Generic Keyboard"
+	Driver		"kbd"
+	Option		"CoreKeyboard"
+	Option		"XkbRules"	"xorg"
+	Option		"XkbModel"	"pc105"
+	Option		"XkbLayout"	"fr"
+	Option		"XkbVariant"	"latin9"
+EndSection
+
+Section "InputDevice"
+	Identifier	"Configured Mouse"
+	Driver		"mouse"
+	Option		"CorePointer"
+	Option		"Device"		"/dev/input/mice"
+	Option		"Protocol"		"ExplorerPS/2"
+	Option		"Emulate3Buttons"	"true"
+EndSection
+
+Section "InputDevice"
+	Identifier	"Synaptics Touchpad"
+	Driver		"synaptics"
+	Option		"SendCoreEvents"	"true"
+	Option		"Device"		"/dev/psaux"
+	Option		"Protocol"		"auto-dev"
+	Option		"HorizScrollDelta"	"0"
+	Option		"SHMConfig"		"true"
+	Option		"MinSpeed"		"0.5"
+	Option		"MaxSpeed"		"0.8"
+	Option		"AccelFactor"		"0.015"
+EndSection
+
+Section "Device"
+	Identifier	"NVIDIA Corporation NV34M [GeForce FX Go5200]"
+#	Driver		"nv"
+	Driver		"nouveau"
+#	Option      "FlatPanel" "true"
+EndSection
+
+Section "Monitor"
+	Identifier	"Generic Monitor"
+	Option		"DPMS"
+	HorizSync	30-75
+	VertRefresh	30-60
+    DisplaySize 332 207
+EndSection
+
+Section "Screen"
+	Identifier	"Default Screen"
+	Device		"NVIDIA Corporation NV34M [GeForce FX Go5200]"
+	Monitor		"Generic Monitor"
+	DefaultDepth	24
+	SubSection "Display"
+		Depth		1
+		Modes		"1920x1200" "1440x900" "1024x640" "800x500"
+	EndSubSection
+	SubSection "Display"
+		Depth		4
+		Modes		"1920x1200" "1440x900" "1024x640" "800x500"
+	EndSubSection
+	SubSection "Display"
+		Depth		8
+		Modes		"1920x1200" "1440x900" "1024x640" "800x500"
+	EndSubSection
+	SubSection "Display"
+		Depth		15
+		Modes		"1920x1200" "1440x900" "1024x640" "800x500"
+	EndSubSection
+	SubSection "Display"
+		Depth		16
+		Modes		"1920x1200" "1440x900" "1024x640" "800x500"
+	EndSubSection
+	SubSection "Display"
+		Depth		24
+		Modes		"1920x1200" "1440x900" "1024x640" "800x500"
+	EndSubSection
+EndSection
+
+Section "ServerLayout"
+	Identifier	"Default Layout"
+	Screen		"Default Screen"
+	InputDevice	"Generic Keyboard"
+	InputDevice	"Configured Mouse"
+	InputDevice	"Synaptics Touchpad"
+EndSection
+
+Section "DRI"
+	Mode	0666
+EndSection
+
+--=-rM5FEZ4yKPERrtQtZnXV
+Content-Disposition: attachment; filename=xorg-nouveau-fenced.log
+Content-Type: text/x-log; name=xorg-nouveau-fenced.log; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+This is a pre-release version of the X server from The X.Org Foundation.
+It is not supported in any way.
+Bugs may be filed in the bugzilla at http://bugs.freedesktop.org/.
+Select the "xorg" product for bugs you find in this release.
+Before reporting bugs in pre-release versions please check the
+latest version in the X.Org Foundation git repository.
+See http://wiki.x.org/wiki/GitPage for git access instructions.
+
+X.Org X Server 1.4.0.90
+Release Date: 5 September 2007
+X Protocol Version 11, Revision 0
+Build Operating System: Linux Debian (xorg-server 2:1.4.1~git20080131-4)
+Current Operating System: Linux zerolap 2.6.23.1 #3 PREEMPT Wed May 21 13:19:28 CEST 2008 i686
+Build Date: 29 April 2008  08:24:00PM
+ 
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+Module Loader present
+Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: "/var/log/Xorg.0.log", Time: Fri May 23 15:02:16 2008
+(==) Using config file: "/etc/X11/xorg.conf"
+(==) ServerLayout "Default Layout"
+(**) |-->Screen "Default Screen" (0)
+(**) |   |-->Monitor "Generic Monitor"
+(**) |   |-->Device "NVIDIA Corporation NV34M [GeForce FX Go5200]"
+(**) |-->Input Device "Generic Keyboard"
+(**) |-->Input Device "Configured Mouse"
+(**) |-->Input Device "Synaptics Touchpad"
+(**) Option "BlankTime" "0"
+(**) Option "StandbyTime" "1"
+(**) Option "SuspendTime" "0"
+(**) Option "OffTime" "0"
+(**) Option "AllowDeactivateGrabs" "true"
+(**) Option "AllowClosedownGrabs" "true"
+(==) Automatically adding devices
+(==) Automatically enabling devices
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/misc".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/misc").
+(WW) The directory "/usr/share/fonts/X11/cyrillic" does not exist.
+	Entry deleted from font path.
+(WW) The directory "/usr/X11R6/lib/X11/fonts/cyrillic" does not exist.
+	Entry deleted from font path.
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/100dpi/".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/100dpi/").
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/75dpi/".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/75dpi/").
+(WW) The directory "/usr/X11R6/lib/X11/fonts/Type1" does not exist.
+	Entry deleted from font path.
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/100dpi".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/100dpi").
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/75dpi".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/75dpi").
+(==) Including the default font path /usr/share/fonts/X11/misc,/usr/share/fonts/X11/cyrillic,/usr/share/fonts/X11/100dpi/:unscaled,/usr/share/fonts/X11/75dpi/:unscaled,/usr/share/fonts/X11/Type1,/usr/share/fonts/X11/100dpi,/usr/share/fonts/X11/75dpi,/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType.
+(**) FontPath set to:
+	/usr/share/fonts/X11/misc,
+	/usr/share/fonts/X11/100dpi/:unscaled,
+	/usr/share/fonts/X11/75dpi/:unscaled,
+	/usr/share/fonts/X11/Type1,
+	/usr/share/fonts/X11/100dpi,
+	/usr/share/fonts/X11/75dpi,
+	/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType,
+	/usr/share/fonts/X11/misc,
+	/usr/share/fonts/X11/cyrillic,
+	/usr/share/fonts/X11/100dpi/:unscaled,
+	/usr/share/fonts/X11/75dpi/:unscaled,
+	/usr/share/fonts/X11/Type1,
+	/usr/share/fonts/X11/100dpi,
+	/usr/share/fonts/X11/75dpi,
+	/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType
+(==) RgbPath set to "/etc/X11/rgb"
+(==) ModulePath set to "/usr/lib/xorg/modules"
+(II) Open ACPI successful (/var/run/acpid.socket)
+(II) Loader magic: 0x81d9220
+(II) Module ABI versions:
+	X.Org ANSI C Emulation: 0.3
+	X.Org Video Driver: 2.0
+	X.Org XInput driver : 2.0
+	X.Org Server Extension : 0.3
+	X.Org Font Renderer : 0.5
+(II) Loader running on linux
+(II) LoadModule: "pcidata"
+(II) Loading /usr/lib/xorg/modules//libpcidata.so
+(II) Module pcidata: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Video Driver, version 2.0
+(++) using VT number 7
+
+(II) PCI: PCI scan (all values are in hex)
+(II) PCI: 00:00:0: chip 8086,3340 card 1028,0191 rev 03 class 06,00,00 hdr 00
+(II) PCI: 00:01:0: chip 8086,3341 card 0000,0000 rev 03 class 06,04,00 hdr 01
+(II) PCI: 00:1d:0: chip 8086,24c2 card 1028,0191 rev 01 class 0c,03,00 hdr 80
+(II) PCI: 00:1d:1: chip 8086,24c4 card 1028,0191 rev 01 class 0c,03,00 hdr 00
+(II) PCI: 00:1d:2: chip 8086,24c7 card 1028,0191 rev 01 class 0c,03,00 hdr 00
+(II) PCI: 00:1d:7: chip 8086,24cd card 1028,0191 rev 01 class 0c,03,20 hdr 00
+(II) PCI: 00:1e:0: chip 8086,2448 card 0000,0000 rev 81 class 06,04,00 hdr 01
+(II) PCI: 00:1f:0: chip 8086,24cc card 0000,0000 rev 01 class 06,01,00 hdr 80
+(II) PCI: 00:1f:1: chip 8086,24ca card 1028,0191 rev 01 class 01,01,8a hdr 00
+(II) PCI: 00:1f:5: chip 8086,24c5 card 1028,0191 rev 01 class 04,01,00 hdr 00
+(II) PCI: 00:1f:6: chip 8086,24c6 card 14e4,4d64 rev 01 class 07,03,00 hdr 00
+(II) PCI: 01:00:0: chip 10de,0324 card 1028,019c rev a1 class 03,00,00 hdr 00
+(II) PCI: 02:00:0: chip 14e4,4401 card 1028,8127 rev 01 class 02,00,00 hdr 00
+(II) PCI: 02:01:0: chip 104c,ac44 card d000,0000 rev 02 class 06,07,00 hdr 82
+(II) PCI: 02:01:1: chip 104c,8029 card 1028,0191 rev 00 class 0c,00,10 hdr 80
+(II) PCI: 02:03:0: chip 14e4,4320 card 1028,0003 rev 03 class 02,80,00 hdr 00
+(II) PCI: End of PCI scan
+(II) Intel Bridge workaround enabled
+(II) Host-to-PCI bridge:
+(II) Bus 0: bridge is at (0:0:0), (0,0,3), BCTRL: 0x0008 (VGA_EN is set)
+(II) Bus 0 I/O range:
+	[0] -1	0	0x00000000 - 0x0000ffff (0x10000) IX[B]
+(II) Bus 0 non-prefetchable memory range:
+	[0] -1	0	0x00000000 - 0xffffffff (0x0) MX[B]
+(II) Bus 0 prefetchable memory range:
+	[0] -1	0	0x00000000 - 0xffffffff (0x0) MX[B]
+(II) PCI-to-PCI bridge:
+(II) Bus 1: bridge is at (0:1:0), (0,1,1), BCTRL: 0x000c (VGA_EN is set)
+(II) Bus 1 I/O range:
+	[0] -1	0	0x0000c000 - 0x0000c0ff (0x100) IX[B]
+	[1] -1	0	0x0000c400 - 0x0000c4ff (0x100) IX[B]
+	[2] -1	0	0x0000c800 - 0x0000c8ff (0x100) IX[B]
+	[3] -1	0	0x0000cc00 - 0x0000ccff (0x100) IX[B]
+(II) Bus 1 non-prefetchable memory range:
+	[0] -1	0	0xfc000000 - 0xfdffffff (0x2000000) MX[B]
+(II) Bus 1 prefetchable memory range:
+	[0] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B]
+(II) Subtractive PCI-to-PCI bridge:
+(II) Bus 2: bridge is at (0:30:0), (0,2,6), BCTRL: 0x0004 (VGA_EN is cleared)
+(II) Bus 2 I/O range:
+	[0] -1	0	0x0000d000 - 0x0000d0ff (0x100) IX[B]
+	[1] -1	0	0x0000d400 - 0x0000d4ff (0x100) IX[B]
+	[2] -1	0	0x0000d800 - 0x0000d8ff (0x100) IX[B]
+	[3] -1	0	0x0000dc00 - 0x0000dcff (0x100) IX[B]
+	[4] -1	0	0x0000e000 - 0x0000e0ff (0x100) IX[B]
+	[5] -1	0	0x0000e400 - 0x0000e4ff (0x100) IX[B]
+	[6] -1	0	0x0000e800 - 0x0000e8ff (0x100) IX[B]
+	[7] -1	0	0x0000ec00 - 0x0000ecff (0x100) IX[B]
+(II) Bus 2 non-prefetchable memory range:
+	[0] -1	0	0xf6000000 - 0xfbffffff (0x6000000) MX[B]
+(II) Bus 2 prefetchable memory range:
+	[0] -1	0	0x50000000 - 0x53ffffff (0x4000000) MX[B]
+(II) PCI-to-ISA bridge:
+(II) Bus -1: bridge is at (0:31:0), (0,-1,-1), BCTRL: 0x0008 (VGA_EN is set)
+(II) PCI-to-CardBus bridge:
+(II) Bus 3: bridge is at (2:1:0), (2,3,6), BCTRL: 0x05c0 (VGA_EN is cleared)
+(II) Bus 3 I/O range:
+	[0] -1	0	0x0000d000 - 0x0000d0ff (0x100) IX[B]
+	[1] -1	0	0x0000d400 - 0x0000d4ff (0x100) IX[B]
+(II) Bus 3 prefetchable memory range:
+	[0] -1	0	0x50000000 - 0x53ffffff (0x4000000) MX[B]
+(--) PCI:*(1:0:0) nVidia Corporation NV34M [GeForce FX Go5200 64M] rev 161, Mem @ 0xfc000000/24, 0xd0000000/28, BIOS @ 0x80000000/17
+(II) Addressable bus resource ranges are
+	[0] -1	0	0x00000000 - 0xffffffff (0x0) MX[B]
+	[1] -1	0	0x00000000 - 0x0000ffff (0x10000) IX[B]
+(II) OS-reported resource ranges:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[5] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+(II) PCI Memory resource overlap reduced 0xe0000000 from 0xe7ffffff to 0xdfffffff
+(II) Active PCI resource ranges:
+	[0] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[1] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[2] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[3] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[4] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[5] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[6] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[7] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[8] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[9] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[10] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[11] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[12] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[13] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[14] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[15] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[16] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[17] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[18] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[19] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[20] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[21] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[22] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[23] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+(II) Active PCI resource ranges after removing overlaps:
+	[0] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[1] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[2] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[3] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[4] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[5] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[6] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[7] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[8] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[9] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[10] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[11] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[12] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[13] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[14] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[15] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[16] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[17] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[18] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[19] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[20] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[21] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[22] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[23] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+(II) OS-reported resource ranges after removing overlaps with PCI:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[5] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+(II) All system resource ranges:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[5] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[6] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[7] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[8] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[9] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[10] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[11] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[12] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[13] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[14] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[15] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[16] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[17] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[18] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[19] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[20] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[21] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[22] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[23] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[24] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[25] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[26] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[27] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[28] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[29] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+(II) "extmod" will be loaded. This was enabled by default and also specified in the config file.
+(II) "dbe" will be loaded by default.
+(II) "glx" will be loaded. This was enabled by default and also specified in the config file.
+(II) "freetype" will be loaded. This was enabled by default and also specified in the config file.
+(II) "record" will be loaded by default.
+(II) "dri" will be loaded. This was enabled by default and also specified in the config file.
+(II) LoadModule: "i2c"(II) Module "i2c" already built-in
+(II) LoadModule: "ddc"(II) Module "ddc" already built-in
+(II) LoadModule: "dri"
+(II) Loading /usr/lib/xorg/modules/extensions//libdri.so
+(II) Module dri: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension XFree86-DRI
+(II) LoadModule: "extmod"
+(II) Loading /usr/lib/xorg/modules/extensions//libextmod.so
+(II) Module extmod: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension SHAPE
+(II) Loading extension MIT-SUNDRY-NONSTANDARD
+(II) Loading extension BIG-REQUESTS
+(II) Loading extension SYNC
+(II) Loading extension MIT-SCREEN-SAVER
+(II) Loading extension XC-MISC
+(II) Loading extension XFree86-VidModeExtension
+(II) Loading extension XFree86-Misc
+(II) Loading extension XFree86-DGA
+(II) Loading extension DPMS
+(II) Loading extension TOG-CUP
+(II) Loading extension Extended-Visual-Information
+(II) Loading extension XVideo
+(II) Loading extension XVideo-MotionCompensation
+(II) Loading extension X-Resource
+(II) LoadModule: "freetype"
+(II) Loading /usr/lib/xorg/modules//fonts/libfreetype.so
+(II) Module freetype: vendor="X.Org Foundation & the After X-TT Project"
+	compiled for 1.4.0.90, module version = 2.1.0
+	Module class: X.Org Font Renderer
+	ABI class: X.Org Font Renderer, version 0.5
+(II) Loading font FreeType
+(II) LoadModule: "glx"
+(II) Loading /usr/lib/xorg/modules/extensions//libglx.so
+(II) Module glx: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Server Extension, version 0.3
+(==) AIGLX enabled
+(II) Loading extension GLX
+(II) LoadModule: "int10"
+(II) Loading /usr/lib/xorg/modules//libint10.so
+(II) Module int10: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Video Driver, version 2.0
+(II) LoadModule: "type1"
+(WW) Warning, couldn't open module type1
+(II) UnloadModule: "type1"
+(EE) Failed to load module "type1" (module does not exist, 0)
+(II) LoadModule: "vbe"
+(II) Loading /usr/lib/xorg/modules//libvbe.so
+(II) Module vbe: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.1.0
+	ABI class: X.Org Video Driver, version 2.0
+(II) LoadModule: "dbe"
+(II) Loading /usr/lib/xorg/modules/extensions//libdbe.so
+(II) Module dbe: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension DOUBLE-BUFFER
+(II) LoadModule: "record"
+(II) Loading /usr/lib/xorg/modules/extensions//librecord.so
+(II) Module record: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.13.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension RECORD
+(II) LoadModule: "nouveau"
+(II) Loading /usr/lib/xorg/modules/drivers//nouveau_drv.so
+(II) Module nouveau: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 0.0.10
+	Module class: X.Org Video Driver
+	ABI class: X.Org Video Driver, version 2.0
+(II) LoadModule: "kbd"
+(II) Loading /usr/lib/xorg/modules/input//kbd_drv.so
+(II) Module kbd: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.2.2
+	Module class: X.Org XInput Driver
+	ABI class: X.Org XInput driver, version 2.0
+(II) LoadModule: "mouse"
+(II) Loading /usr/lib/xorg/modules/input//mouse_drv.so
+(II) Module mouse: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.2.3
+	Module class: X.Org XInput Driver
+	ABI class: X.Org XInput driver, version 2.0
+(II) LoadModule: "synaptics"
+(II) Loading /usr/lib/xorg/modules/input//synaptics_drv.so
+(II) Module synaptics: vendor="X.Org Foundation"
+	compiled for 4.3.99.902, module version = 1.0.0
+	Module class: X.Org XInput Driver
+	ABI class: X.Org XInput driver, version 2.0
+(II) NOUVEAU driver Date:   Thu May 22 21:08:48 2008 +0200
+(II) NOUVEAU driver for NVIDIA chipset families :
+	RIVA TNT    (NV04)
+	RIVA TNT2   (NV05)
+	GeForce 256 (NV10)
+	GeForce 2   (NV11, NV15)
+	GeForce 4MX (NV17, NV18)
+	GeForce 3   (NV20)
+	GeForce 4Ti (NV25, NV28)
+	GeForce FX  (NV3x)
+	GeForce 6   (NV4x)
+	GeForce 7   (G7x)
+	GeForce 8   (G8x)
+(II) Primary Device is: PCI 01:00:0
+(--) Assigning device section with no busID to primary device
+(--) Chipset NVIDIA NV34 found
+(II) resource ranges after xf86ClaimFixedResources() call:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[5] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[6] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[7] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[8] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[9] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[10] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[11] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[12] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[13] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[14] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[15] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[16] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[17] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[18] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[19] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[20] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[21] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[22] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[23] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[24] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[25] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[26] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[27] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[28] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[29] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+(II) resource ranges after probing:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[5] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[6] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[7] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[8] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[9] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[10] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[11] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[12] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[13] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[14] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[15] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[16] 0	0	0x000a0000 - 0x000affff (0x10000) MS[B]
+	[17] 0	0	0x000b0000 - 0x000b7fff (0x8000) MS[B]
+	[18] 0	0	0x000b8000 - 0x000bffff (0x8000) MS[B]
+	[19] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[20] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[21] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[22] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[23] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[24] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[25] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[26] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[27] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[28] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[29] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[30] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[31] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[32] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+	[33] 0	0	0x000003b0 - 0x000003bb (0xc) IS[B]
+	[34] 0	0	0x000003c0 - 0x000003df (0x20) IS[B]
+(II) Setting vga for screen 0.
+(II) Loading sub module "int10"
+(II) LoadModule: "int10"
+(II) Reloading /usr/lib/xorg/modules//libint10.so
+(II) NOUVEAU(0): Initializing int10
+(II) NOUVEAU(0): Primary V_BIOS segment is: 0xc000
+(--) NOUVEAU(0): Chipset: "NVIDIA NV34"
+(**) NOUVEAU(0): Depth 24, (--) framebuffer bpp 32
+(==) NOUVEAU(0): RGB weight 888
+(==) NOUVEAU(0): Default visual is TrueColor
+(II) Loading sub module "vgahw"
+(II) LoadModule: "vgahw"
+(II) Loading /usr/lib/xorg/modules//libvgahw.so
+(II) Module vgahw: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 0.1.0
+	ABI class: X.Org Video Driver, version 2.0
+(**) NOUVEAU(0): Option "FlatPanel" "true"
+(==) NOUVEAU(0): Randr1.2 support enabled
+(==) NOUVEAU(0): New (experimental) restore support disabled
+(==) NOUVEAU(0): Using HW cursor
+(--) NOUVEAU(0): Linear framebuffer at 0xD0000000
+(--) NOUVEAU(0): MMIO registers at 0xFC000000
+(II) Loading sub module "dri"
+(II) LoadModule: "dri"
+(II) Reloading /usr/lib/xorg/modules/extensions//libdri.so
+(II) NOUVEAU(0): Loaded DRI module
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is -1, (No such device or address)
+drmOpenDevice: open result is -1, (No such device or address)
+drmOpenDevice: Open failed
+drmOpenByBusid: Searching for BusID pci:0000:01:00.0
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenByBusid: drmOpenMinor returns 8
+drmOpenByBusid: drmGetBusid reports pci:0000:01:00.0
+(II) NOUVEAU(0): [dri] Found DRI library version 1.3.0 and kernel module version 0.0.10
+(II) NOUVEAU(0): Initial CRTC_OWNER is 4
+(II) NOUVEAU(0): Attempting to locate BIOS image in PROM
+(II) NOUVEAU(0): ... appears to be valid
+(II) NOUVEAU(0): 	Read:  Reg: 0x00101000, Data: 0xA15FC097
+(II) NOUVEAU(0): 	Read:  Reg: 0x00100200, Data: 0x18C10011
+(II) NOUVEAU(0): 	Write: Reg: 0x00101000, Data: 0xA15FC097
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Setting owner: 0x3.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Loading NV17 power sequencing microcode
+(II) NOUVEAU(0): 	Write: Reg: 0x00001304, Data: 0x00000800
+(II) NOUVEAU(0): 	Write: Reg: 0x00001400, Data: 0xA9A81DA2
+(II) NOUVEAU(0): 	Write: Reg: 0x00001404, Data: 0x7FA00023
+(II) NOUVEAU(0): 	Write: Reg: 0x00001408, Data: 0xC9C81AC0
+(II) NOUVEAU(0): 	Write: Reg: 0x0000140C, Data: 0x7F29C216
+(II) NOUVEAU(0): 	Write: Reg: 0x00001410, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00001414, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00001418, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x0000141C, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001098, Data: 0x208A067C
+(II) NOUVEAU(0): 	Write: Reg: 0x00001098, Data: 0x208A067C
+(II) NOUVEAU(0): BMP BIOS found
+(II) NOUVEAU(0): BMP version 5.40
+(II) NOUVEAU(0): Bios version 04.34.20.42
+(II) NOUVEAU(0): 0xEDDB: Parsing init table 0
+(II) NOUVEAU(0): 0xEDDB: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xEDDB: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xEDDB: Reg: 0x0060081C, Mask: 0xFFFFFFFF, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x0060081C, Data: 0x62666655
+(II) NOUVEAU(0): 	Write: Reg: 0x0060081C, Data: 0x62666655
+(II) NOUVEAU(0): 0xEDE8: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xEDE8: Reg: 0x0060081C, Mask: 0xFFFFFFFF, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x0060081C, Data: 0x62666655
+(II) NOUVEAU(0): 	Write: Reg: 0x0060081C, Data: 0x62666655
+(II) NOUVEAU(0): 0xEDF5: [ (0x65) - INIT_RESET ]
+(II) NOUVEAU(0): 	Read:  Reg: 0x0000184C, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x0000184C, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00000200, Data: 0x03000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00000200, Data: 0x03110110
+(II) NOUVEAU(0): 	Write: Reg: 0x0000184C, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001850, Data: 0x00000001
+(II) NOUVEAU(0): 	Write: Reg: 0x00001850, Data: 0x00000000
+(II) NOUVEAU(0): 0xEE02: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xEE02: Reg: 0x00101000, Mask: 0x7E3FF03F, Data: 0x81400080
+(II) NOUVEAU(0): 	Read:  Reg: 0x00101000, Data: 0xA15FC097
+(II) NOUVEAU(0): 	Write: Reg: 0x00101000, Data: 0xA15FC097
+(II) NOUVEAU(0): 0xEE0F: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xEE0F: Reg: 0x0010100C, Mask: 0x7FFFFFEF, Data: 0x80000010
+(II) NOUVEAU(0): 	Read:  Reg: 0x0010100C, Data: 0x80000090
+(II) NOUVEAU(0): 	Write: Reg: 0x0010100C, Data: 0x80000090
+(II) NOUVEAU(0): 0xEE1C: [ (0x75) - INIT_CONDITION ]
+(II) NOUVEAU(0): 0xEE1C: Cond: 0x02, Reg: 0x00101000, Mask: 0x00000020, Cmpval: 0x00000020
+(II) NOUVEAU(0): 	Read:  Reg: 0x00101000, Data: 0xA15FC097
+(II) NOUVEAU(0): 0xEE1C: Checking if 0x00000000 equals 0x00000020
+(II) NOUVEAU(0): 0xEE1C: CONDITION IS NOT FULFILLED
+(II) NOUVEAU(0): 0xEE1C: ------ SKIPPING FOLLOWING COMMANDS  ------
+(II) NOUVEAU(0): 0xEE1E: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xEE2B: [ (0x72) - INIT_RESUME ]
+(II) NOUVEAU(0): 0xEE2B: ---- EXECUTING FOLLOWING COMMANDS ----
+(II) NOUVEAU(0): 0xEE2C: [ (0x75) - INIT_CONDITION ]
+(II) NOUVEAU(0): 0xEE2C: Cond: 0x00, Reg: 0x00101000, Mask: 0x00000040, Cmpval: 0x00000040
+(II) NOUVEAU(0): 	Read:  Reg: 0x00101000, Data: 0xA15FC097
+(II) NOUVEAU(0): 0xEE2C: Checking if 0x00000000 equals 0x00000040
+(II) NOUVEAU(0): 0xEE2C: CONDITION IS NOT FULFILLED
+(II) NOUVEAU(0): 0xEE2C: ------ SKIPPING FOLLOWING COMMANDS  ------
+(II) NOUVEAU(0): 0xEE2E: [ (0x62) - INIT_ZM_INDEX_IO ]
+(II) NOUVEAU(0): 0xEE33: [ (0x38) - INIT_NOT ]
+(II) NOUVEAU(0): 0xEE33: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xEE34: [ (0x62) - INIT_ZM_INDEX_IO ]
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xEE39: [ (0x72) - INIT_RESUME ]
+(II) NOUVEAU(0): 0xEE3A: [ (0x37) - INIT_COPY ]
+(II) NOUVEAU(0): 0xEE3A: Reg: 0x00101000, Shift: 0xFE, SrcMask: 0xF0, Port: 0x03D4, Index: 0x3C, Mask: 0x0F
+(II) NOUVEAU(0): 	Read:  Reg: 0x00101000, Data: 0xA15FC097
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xEE45: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xEE45: Reg: 0x00680500, Mask: 0xFFFFFFFF, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680500, Data: 0x00011D02
+(II) NOUVEAU(0): 	Write: Reg: 0x00680500, Data: 0x00011D02
+(II) NOUVEAU(0): 0xEE52: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00001111
+(II) NOUVEAU(0): 0xEE5B: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00003333
+(II) NOUVEAU(0): 0xEE64: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x000010C0, Data: 0x911C0801
+(II) NOUVEAU(0): 0xEE6D: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00680510, Data: 0x0000F11C
+(II) NOUVEAU(0): 0xEE76: [ (0x74) - INIT_TIME ]
+(II) NOUVEAU(0): 0xEE76: Sleeping for 0x03E8 microseconds
+(II) NOUVEAU(0): 0xEE79: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00680510, Data: 0x0000011C
+(II) NOUVEAU(0): 0xEE82: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x000010C0, Data: 0x811C0801
+(II) NOUVEAU(0): 0xEE8B: [ (0x74) - INIT_TIME ]
+(II) NOUVEAU(0): 0xEE8B: Sleeping for 0x03E8 microseconds
+(II) NOUVEAU(0): 0xEE8E: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00001111
+(II) NOUVEAU(0): 0xEE97: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xEE97: Port: 0x03D4, Index: 0x35, Mask: 0xFE, Data: 0x01
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x35, Head: 0x00, Data: 0x03
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x35, Head: 0x00, Data: 0x03
+(II) NOUVEAU(0): 0xEE9D: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xEE9D: Port: 0x03D4, Index: 0x3C, Mask: 0xF7, Data: 0x08
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xEEA3: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x000010F0, Data: 0x00007FFF
+(II) NOUVEAU(0): 0xEEAC: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00000200, Data: 0x07010111
+(II) NOUVEAU(0): 0xEEB5: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xEEB5: Port: 0x03C4, Index: 0x01, Mask: 0xFF, Data: 0x20
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03C4, Index: 0x01, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03C4, Index: 0x01, Head: 0x00, Data: 0x20
+(II) NOUVEAU(0): 0xEEBB: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0000402C, Data: 0x0F71F010
+(II) NOUVEAU(0): 0xEEC4: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00004030, Data: 0x00002626
+(II) NOUVEAU(0): 0xEECD: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00004034, Data: 0x0417E273
+(II) NOUVEAU(0): 0xEED6: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00004108, Data: 0x33003333
+(II) NOUVEAU(0): 0xEEDF: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0000410C, Data: 0x0000EEEE
+(II) NOUVEAU(0): 0xEEE8: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xEEE8: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x000010D8
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xEEE8: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x000010D8, Data: 0x00000000
+(II) NOUVEAU(0): 0xEF13: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001518, Data: 0x80010000
+(II) NOUVEAU(0): 0xEF1C: [ (0x79) - INIT_PLL ]
+(II) NOUVEAU(0): 0xEF1C: Reg: 0x00680500, Freq: 175000kHz
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680500, Data: 0x00011D02
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00000001
+(II) NOUVEAU(0): 	Write: Reg: 0x00680500, Data: 0x00010D01
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680500, Data: 0x00011D02
+(II) NOUVEAU(0): 	Write: Reg: 0x00680500, Data: 0x00010D01
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 0xEF23: [ (0x79) - INIT_PLL ]
+(II) NOUVEAU(0): 0xEF23: Reg: 0x00680504, Freq: 400000kHz
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680504, Data: 0x00001D02
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00000010
+(II) NOUVEAU(0): 	Write: Reg: 0x00680504, Data: 0x00000F01
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680504, Data: 0x00001D02
+(II) NOUVEAU(0): 	Write: Reg: 0x00680504, Data: 0x00000F01
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 0xEF2A: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00680510, Data: 0x0000011C
+(II) NOUVEAU(0): 0xEF33: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0068050C, Data: 0x00000500
+(II) NOUVEAU(0): 0xEF3C: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00000140, Data: 0x00000000
+(II) NOUVEAU(0): 0xEF45: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00000200, Data: 0x07111111
+(II) NOUVEAU(0): 0xEF4E: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00100218, Data: 0x00000000
+(II) NOUVEAU(0): 0xEF57: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0010021C, Data: 0x00000001
+(II) NOUVEAU(0): 0xEF60: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xEF60: Reg: 0x000010E0, Mask: 0xFFFFFFFF, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x000010E0, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x000010E0, Data: 0x00000000
+(II) NOUVEAU(0): 0xEF6D: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001084, Data: 0x002A5749
+(II) NOUVEAU(0): 0xEF76: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00100080, Data: 0x61020000
+(II) NOUVEAU(0): 0xEF7F: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xEF7F: Reg: 0x00001584, Mask: 0xFFF00000, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 0xEF8C: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xEF8C: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00100220
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xEF8C: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00100220, Data: 0x44480E0C
+(II) NOUVEAU(0): 0xEFB7: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xEFB7: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00100224
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xEFB7: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00100224, Data: 0x03542153
+(II) NOUVEAU(0): 0xEFE2: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xEFE2: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00100228
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xEFE2: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00100228, Data: 0x0000061F
+(II) NOUVEAU(0): 0xF00D: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF00D: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x0010022C
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF00D: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x0010022C, Data: 0x00000000
+(II) NOUVEAU(0): 0xF038: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00680608, Data: 0xF0010000
+(II) NOUVEAU(0): 0xF041: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00682608, Data: 0xF0010000
+(II) NOUVEAU(0): 0xF04A: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 0xF04B: Parsing init table 1
+(II) NOUVEAU(0): 0xF04B: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xF04B: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF04B: Port: 0x03C4, Index: 0x01, Mask: 0xFF, Data: 0x20
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03C4, Index: 0x01, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03C4, Index: 0x01, Head: 0x00, Data: 0x20
+(II) NOUVEAU(0): 0xF051: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF051: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00100210
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF051: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00100210, Data: 0x80000000
+(II) NOUVEAU(0): 0xF07C: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001220, Data: 0x00000000
+(II) NOUVEAU(0): 0xF085: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001228, Data: 0x00000000
+(II) NOUVEAU(0): 0xF08E: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF08E: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00001210
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF08E: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00001210, Data: 0x00000001
+(II) NOUVEAU(0): 0xF0B9: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF0B9: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00001214
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF0B9: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00001214, Data: 0x68686868
+(II) NOUVEAU(0): 0xF0E4: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF0E4: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00001218
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF0E4: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00001218, Data: 0xF0010101
+(II) NOUVEAU(0): 0xF10F: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF10F: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00100200
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF10F: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00100200, Data: 0x18C10011
+(II) NOUVEAU(0): 0xF13A: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF13A: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00100204
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF13A: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00100204, Data: 0x00000000
+(II) NOUVEAU(0): 0xF165: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF165: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00100210
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF165: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00100210, Data: 0x00000000
+(II) NOUVEAU(0): 0xF190: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 0xF191: Parsing init table 2
+(II) NOUVEAU(0): 0xF191: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xF191: [ (0x79) - INIT_PLL ]
+(II) NOUVEAU(0): 0xF191: Reg: 0x00680508, Freq: 36000kHz
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680508, Data: 0x00021801
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00000100
+(II) NOUVEAU(0): 	Write: Reg: 0x00680508, Data: 0x00024003
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680508, Data: 0x00021801
+(II) NOUVEAU(0): 	Write: Reg: 0x00680508, Data: 0x00044003
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 0xF198: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF198: Reg: 0x00001098, Mask: 0x00000018, Data: 0x200A0CE4
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001098, Data: 0x208A067C
+(II) NOUVEAU(0): 	Write: Reg: 0x00001098, Data: 0x200A0CFC
+(II) NOUVEAU(0): 0xF1A5: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0000108C, Data: 0x000000D1
+(II) NOUVEAU(0): 0xF1AE: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF1AE: Reg: 0x00680880, Mask: 0xFFFFFFFF, Data: 0x10000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680880, Data: 0x01101191
+(II) NOUVEAU(0): 	Write: Reg: 0x00680880, Data: 0x11101191
+(II) NOUVEAU(0): 0xF1BB: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00680610, Data: 0x00000000
+(II) NOUVEAU(0): 0xF1C4: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1C4: Port: 0x03D4, Index: 0x38, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x38, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x38, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF1CA: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1CA: Port: 0x03D4, Index: 0x1A, Mask: 0x00, Data: 0x3F
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x1A, Head: 0x00, Data: 0xBD
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x1A, Head: 0x00, Data: 0x3F
+(II) NOUVEAU(0): 0xF1D0: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1D0: Port: 0x03D4, Index: 0x28, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x28, Head: 0x00, Data: 0x80
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x28, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF1D6: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1D6: Port: 0x03D4, Index: 0x33, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x33, Head: 0x00, Data: 0x09
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x33, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF1DC: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1DC: Port: 0x03D4, Index: 0x21, Mask: 0x00, Data: 0xFA
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x21, Head: 0x00, Data: 0xFA
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x21, Head: 0x00, Data: 0xFA
+(II) NOUVEAU(0): 0xF1E2: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1E2: Port: 0x03D4, Index: 0x2B, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x2B, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x2B, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF1E8: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1E8: Port: 0x03D4, Index: 0x2C, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x2C, Head: 0x00, Data: 0x01
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x2C, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF1EE: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1EE: Port: 0x03D4, Index: 0x3A, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3A, Head: 0x00, Data: 0x03
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x3A, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF1F4: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1F4: Port: 0x03D4, Index: 0x3B, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3B, Head: 0x00, Data: 0x11
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x3B, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF1FA: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF1FA: Port: 0x03D4, Index: 0x4A, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x4A, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x4A, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF200: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF200: Port: 0x03D4, Index: 0x4B, Mask: 0x00, Data: 0x40
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x4B, Head: 0x00, Data: 0x41
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x4B, Head: 0x00, Data: 0x40
+(II) NOUVEAU(0): 0xF206: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF206: Port: 0x03D4, Index: 0x4C, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x4C, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x4C, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF20C: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF20C: Port: 0x03D4, Index: 0x57, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x57, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x57, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF212: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF212: Port: 0x03D4, Index: 0x58, Mask: 0x00, Data: 0x7F
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x58, Head: 0x00, Data: 0x01
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x58, Head: 0x00, Data: 0x7F
+(II) NOUVEAU(0): 0xF218: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF218: Port: 0x03D4, Index: 0x57, Mask: 0x00, Data: 0x02
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x57, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x57, Head: 0x00, Data: 0x02
+(II) NOUVEAU(0): 0xF21E: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF21E: Port: 0x03D4, Index: 0x58, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x58, Head: 0x00, Data: 0x01
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x58, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF224: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF224: Port: 0x03D4, Index: 0x57, Mask: 0x00, Data: 0x06
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x57, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x57, Head: 0x00, Data: 0x06
+(II) NOUVEAU(0): 0xF22A: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF22A: Port: 0x03D4, Index: 0x58, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x58, Head: 0x00, Data: 0x01
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x58, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF230: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF230: Port: 0x03D4, Index: 0x43, Mask: 0x00, Data: 0x01
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x43, Head: 0x00, Data: 0x01
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x43, Head: 0x00, Data: 0x01
+(II) NOUVEAU(0): 0xF236: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF236: Port: 0x03D4, Index: 0x44, Mask: 0x00, Data: 0x03
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x44, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x44, Head: 0x00, Data: 0x03
+(II) NOUVEAU(0): 0xF23C: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF23C: Port: 0x03D4, Index: 0x21, Mask: 0x00, Data: 0xFA
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x21, Head: 0x01, Data: 0xFA
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x21, Head: 0x01, Data: 0xFA
+(II) NOUVEAU(0): 0xF242: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF242: Port: 0x03D4, Index: 0x2B, Mask: 0x10, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x2B, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x2B, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF248: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF248: Port: 0x03D4, Index: 0x2C, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x2C, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x2C, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF24E: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF24E: Port: 0x03D4, Index: 0x3A, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3A, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x3A, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF254: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF254: Port: 0x03D4, Index: 0x3B, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3B, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x3B, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF25A: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF25A: Port: 0x03D4, Index: 0x3C, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x3C, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF260: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF260: Port: 0x03D4, Index: 0x4A, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x4A, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x4A, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF266: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF266: Port: 0x03D4, Index: 0x4B, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x4B, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x4B, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF26C: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF26C: Port: 0x03D4, Index: 0x4C, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x4C, Head: 0x01, Data: 0x10
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x4C, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF272: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF272: Port: 0x03D4, Index: 0x57, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x57, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x57, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF278: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF278: Port: 0x03D4, Index: 0x58, Mask: 0x00, Data: 0x7F
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x58, Head: 0x01, Data: 0x7F
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x58, Head: 0x01, Data: 0x7F
+(II) NOUVEAU(0): 0xF27E: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF27E: Port: 0x03D4, Index: 0x57, Mask: 0x00, Data: 0x02
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x57, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x57, Head: 0x01, Data: 0x02
+(II) NOUVEAU(0): 0xF284: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF284: Port: 0x03D4, Index: 0x58, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x58, Head: 0x01, Data: 0x7F
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x58, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 0xF28A: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF28A: Port: 0x03D4, Index: 0x43, Mask: 0x00, Data: 0x01
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x43, Head: 0x01, Data: 0x01
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x43, Head: 0x01, Data: 0x01
+(II) NOUVEAU(0): 0xF290: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF290: Port: 0x03D4, Index: 0x44, Mask: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x44, Head: 0x01, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x44, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF296: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF296: Port: 0x03D4, Index: 0x52, Mask: 0x00, Data: 0x04
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x52, Head: 0x00, Data: 0x04
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x52, Head: 0x00, Data: 0x04
+(II) NOUVEAU(0): 0xF29C: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF29C: Port: 0x03D4, Index: 0x53, Mask: 0x00, Data: 0x40
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x53, Head: 0x00, Data: 0x4A
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x53, Head: 0x00, Data: 0x40
+(II) NOUVEAU(0): 0xF2A2: [ (0x75) - INIT_CONDITION ]
+(II) NOUVEAU(0): 0xF2A2: Cond: 0x03, Reg: 0x00000000, Mask: 0x0000000F, Cmpval: 0x00000001
+(II) NOUVEAU(0): 	Read:  Reg: 0x00000000, Data: 0x034400B1
+(II) NOUVEAU(0): 0xF2A2: Checking if 0x00000001 equals 0x00000001
+(II) NOUVEAU(0): 0xF2A2: CONDITION FULFILLED - CONTINUING TO EXECUTE
+(II) NOUVEAU(0): 0xF2A4: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001580, Data: 0x30000100
+(II) NOUVEAU(0): 0xF2AD: [ (0x38) - INIT_NOT ]
+(II) NOUVEAU(0): 0xF2AD: ------ SKIPPING FOLLOWING COMMANDS  ------
+(II) NOUVEAU(0): 0xF2AE: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xF2B7: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF2C4: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF2D1: [ (0x72) - INIT_RESUME ]
+(II) NOUVEAU(0): 0xF2D1: ---- EXECUTING FOLLOWING COMMANDS ----
+(II) NOUVEAU(0): 0xF2D2: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001588, Data: 0x00000001
+(II) NOUVEAU(0): 0xF2DB: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0000158C, Data: 0x00440002
+(II) NOUVEAU(0): 0xF2E4: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00100090, Data: 0xEFFFCFE1
+(II) NOUVEAU(0): 0xF2ED: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001590, Data: 0x00000000
+(II) NOUVEAU(0): 0xF2F6: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00100210, Data: 0x80000000
+(II) NOUVEAU(0): 0xF2FF: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF2FF: Reg: 0x0068052C, Mask: 0xFFFFFEFF, Data: 0x00000001
+(II) NOUVEAU(0): 	Read:  Reg: 0x0068052C, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x0068052C, Data: 0x00000001
+(II) NOUVEAU(0): 0xF30C: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF30C: Reg: 0x0068252C, Mask: 0xFFFFFFFF, Data: 0x00000101
+(II) NOUVEAU(0): 	Read:  Reg: 0x0068252C, Data: 0x00000001
+(II) NOUVEAU(0): 	Write: Reg: 0x0068252C, Data: 0x00000101
+(II) NOUVEAU(0): 0xF319: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF319: Reg: 0x00680528, Mask: 0xFFFFFFFF, Data: 0x40000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680528, Data: 0x40000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00680528, Data: 0x40000000
+(II) NOUVEAU(0): 0xF326: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF326: Reg: 0x00680848, Mask: 0xFFFFFFFF, Data: 0x00100000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680848, Data: 0x91100100
+(II) NOUVEAU(0): 	Write: Reg: 0x00680848, Data: 0x91100100
+(II) NOUVEAU(0): 0xF333: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF333: Reg: 0x00682848, Mask: 0xFFFFFFFF, Data: 0x00100000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00682848, Data: 0x11100111
+(II) NOUVEAU(0): 	Write: Reg: 0x00682848, Data: 0x11100111
+(II) NOUVEAU(0): 0xF340: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0070FFF0, Data: 0x00000000
+(II) NOUVEAU(0): 0xF349: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 0xF34A: Parsing init table 3
+(II) NOUVEAU(0): 0xF34A: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xF34A: [ (0x34) - INIT_IO_RESTRICT_PLL ]
+(II) NOUVEAU(0): 0xF34A: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, IO Flag Condition: 0xFFFFFFFF, Count: 0x08, Reg: 0x00680500
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF34A: Reg: 0x00680500, Config: 0x05, Freq: 195000kHz
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680500, Data: 0x00011D02
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00000001
+(II) NOUVEAU(0): 	Write: Reg: 0x00680500, Data: 0x00014805
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680500, Data: 0x00011D02
+(II) NOUVEAU(0): 	Write: Reg: 0x00680500, Data: 0x00014805
+(II) NOUVEAU(0): 	Write: Reg: 0x00001584, Data: 0x00000000
+(II) NOUVEAU(0): 0xF366: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 0xF367: Parsing init table 4
+(II) NOUVEAU(0): 0xF367: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xF367: [ (0x34) - INIT_IO_RESTRICT_PLL ]
+(II) NOUVEAU(0): 0xF367: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, IO Flag Condition: 0x01, Count: 0x08, Reg: 0x00680504
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF367: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, FlagArray: 0x6EE7, FAMask: 0x03, Cmpval: 0x01
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF367: Checking if 0x01 equals 0x01
+(II) NOUVEAU(0): 0xF367: CONDITION FULFILLED - FREQ DOUBLED
+(II) NOUVEAU(0): 0xF367: Reg: 0x00680504, Config: 0x05, Freq: 390000kHz
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680504, Data: 0x00001D02
+(II) NOUVEAU(0): 0xF383: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 0xF384: Parsing init table 5
+(II) NOUVEAU(0): 0xF384: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xF384: [ (0x49) - INIT_INDEX_ADDRESS_LATCHED ]
+(II) NOUVEAU(0): 0xF384: ControlReg: 0x006808B0, DataReg: 0x006808B4, Mask: 0x00000000, Data: 0x00000000, Count: 0x01
+(II) NOUVEAU(0): 0xF384: Address: 0x2B, Data: 0x01
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000001
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000004
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x0000002B
+(II) NOUVEAU(0): 0xF398: [ (0x49) - INIT_INDEX_ADDRESS_LATCHED ]
+(II) NOUVEAU(0): 0xF398: ControlReg: 0x006828B0, DataReg: 0x006828B4, Mask: 0x00000000, Data: 0x00000000, Count: 0x01
+(II) NOUVEAU(0): 0xF398: Address: 0x2B, Data: 0x01
+(II) NOUVEAU(0): 	Write: Reg: 0x006828B4, Data: 0x00000001
+(II) NOUVEAU(0): 	Read:  Reg: 0x006828B0, Data: 0x0000002B
+(II) NOUVEAU(0): 	Write: Reg: 0x006828B0, Data: 0x0000002B
+(II) NOUVEAU(0): 0xF3AC: [ (0x49) - INIT_INDEX_ADDRESS_LATCHED ]
+(II) NOUVEAU(0): 0xF3AC: ControlReg: 0x006828B0, DataReg: 0x006828B4, Mask: 0x00000000, Data: 0x00000000, Count: 0x01
+(II) NOUVEAU(0): 0xF3AC: Address: 0x2B, Data: 0x01
+(II) NOUVEAU(0): 	Write: Reg: 0x006828B4, Data: 0x00000001
+(II) NOUVEAU(0): 	Read:  Reg: 0x006828B0, Data: 0x0000002B
+(II) NOUVEAU(0): 	Write: Reg: 0x006828B0, Data: 0x0000002B
+(II) NOUVEAU(0): 0xF3C0: [ (0x74) - INIT_TIME ]
+(II) NOUVEAU(0): 0xF3C0: Sleeping for 0x03E8 microseconds
+(II) NOUVEAU(0): 0xF3C3: [ (0x6F) - INIT_MACRO ]
+(II) NOUVEAU(0): 0xF3C3: Macro: 0x03, MacroTableIndex: 0x03, Count: 0x01
+(II) NOUVEAU(0): 	Write: Reg: 0x001002DC, Data: 0x00000001
+(II) NOUVEAU(0): 0xF3C5: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF3C5: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x00100218
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF3C5: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x00100218, Data: 0x00000001
+(II) NOUVEAU(0): 0xF3F0: [ (0x39) - INIT_IO_FLAG_CONDITION ]
+(II) NOUVEAU(0): 0xF3F0: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, FlagArray: 0x6EE7, FAMask: 0x10, Cmpval: 0x10
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF3F0: Checking if 0x00 equals 0x10
+(II) NOUVEAU(0): 0xF3F0: CONDITION IS NOT FULFILLED
+(II) NOUVEAU(0): 0xF3F0: ------ SKIPPING FOLLOWING COMMANDS  ------
+(II) NOUVEAU(0): 0xF3F2: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 0xF3FB: [ (0x72) - INIT_RESUME ]
+(II) NOUVEAU(0): 0xF3FB: ---- EXECUTING FOLLOWING COMMANDS ----
+(II) NOUVEAU(0): 0xF3FC: [ (0x6F) - INIT_MACRO ]
+(II) NOUVEAU(0): 0xF3FC: Macro: 0x00, MacroTableIndex: 0x00, Count: 0x01
+(II) NOUVEAU(0): 	Write: Reg: 0x001002D4, Data: 0x00000001
+(II) NOUVEAU(0): 0xF3FE: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF3FE: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x001002C4
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF3FE: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x001002C4, Data: 0x00000002
+(II) NOUVEAU(0): 0xF429: [ (0x32) - INIT_IO_RESTRICT_PROG ]
+(II) NOUVEAU(0): 0xF429: Port: 0x03D4, Index: 0x3C, Mask: 0x70, Shift: 0x04, Count: 0x08, Reg: 0x001002C0
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03D4, Index: 0x3C, Head: 0x00, Data: 0x58
+(II) NOUVEAU(0): 0xF429: Writing config 05
+(II) NOUVEAU(0): 	Write: Reg: 0x001002C0, Data: 0x00000131
+(II) NOUVEAU(0): 0xF454: [ (0x74) - INIT_TIME ]
+(II) NOUVEAU(0): 0xF454: Sleeping for 0x0005 microseconds
+(II) NOUVEAU(0): 0xF457: [ (0x6F) - INIT_MACRO ]
+(II) NOUVEAU(0): 0xF457: Macro: 0x00, MacroTableIndex: 0x00, Count: 0x01
+(II) NOUVEAU(0): 	Write: Reg: 0x001002D4, Data: 0x00000001
+(II) NOUVEAU(0): 0xF459: [ (0x6F) - INIT_MACRO ]
+(II) NOUVEAU(0): 0xF459: Macro: 0x02, MacroTableIndex: 0x02, Count: 0x01
+(II) NOUVEAU(0): 	Write: Reg: 0x001002D0, Data: 0x00000001
+(II) NOUVEAU(0): 0xF45B: [ (0x6F) - INIT_MACRO ]
+(II) NOUVEAU(0): 0xF45B: Macro: 0x02, MacroTableIndex: 0x02, Count: 0x01
+(II) NOUVEAU(0): 	Write: Reg: 0x001002D0, Data: 0x00000001
+(II) NOUVEAU(0): 0xF45D: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF45D: Reg: 0x001002C0, Mask: 0xFFFFFEFF, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x001002C0, Data: 0x00000031
+(II) NOUVEAU(0): 	Write: Reg: 0x001002C0, Data: 0x00000031
+(II) NOUVEAU(0): 0xF46A: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00100210, Data: 0x80000000
+(II) NOUVEAU(0): 0xF473: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0068052C, Data: 0x00000001
+(II) NOUVEAU(0): 0xF47C: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0068252C, Data: 0x00000001
+(II) NOUVEAU(0): 0xF485: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001100, Data: 0xFFFFFFFF
+(II) NOUVEAU(0): 0xF48E: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00001140, Data: 0x00000001
+(II) NOUVEAU(0): 0xF497: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00002100, Data: 0xFFFFFFFF
+(II) NOUVEAU(0): 0xF4A0: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00002140, Data: 0x00001111
+(II) NOUVEAU(0): 0xF4A9: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00003080, Data: 0x00000000
+(II) NOUVEAU(0): 0xF4B2: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00003280, Data: 0x00000000
+(II) NOUVEAU(0): 0xF4BB: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00000140, Data: 0x00000000
+(II) NOUVEAU(0): 0xF4C4: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x001002E4, Data: 0x83303A98
+(II) NOUVEAU(0): 0xF4CD: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x001002E8, Data: 0x02000180
+(II) NOUVEAU(0): 0xF4D6: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x001002C8, Data: 0x00000000
+(II) NOUVEAU(0): 0xF4DF: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x001002CC, Data: 0x001F1F1F
+(II) NOUVEAU(0): 0xF4E8: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x001002EC, Data: 0x9393909F
+(II) NOUVEAU(0): 0xF4F1: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x001002F0, Data: 0x93939F9A
+(II) NOUVEAU(0): 0xF4FA: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x001002F4, Data: 0x95959F9F
+(II) NOUVEAU(0): 0xF503: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x001002F8, Data: 0x9595959F
+(II) NOUVEAU(0): 0xF50C: [ (0x63) - INIT_COMPUTE_MEM ]
+(II) NOUVEAU(0): 	Write: Reg: 0x00100210, Data: 0x80000000
+(II) NOUVEAU(0): 	Write: Reg: 0x00100200, Data: 0x18C10011
+(II) NOUVEAU(0): 0xF50D: [ (0x78) - INIT_INDEX_IO ]
+(II) NOUVEAU(0): 0xF50D: Port: 0x03C4, Index: 0x01, Mask: 0xDF, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO read:  Port: 0x03C4, Index: 0x01, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03C4, Index: 0x01, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 0xF513: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 0xF514: Parsing init table 6
+(II) NOUVEAU(0): 0xF514: ------ EXECUTING FOLLOWING COMMANDS ------
+(II) NOUVEAU(0): 0xF514: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF514: Reg: 0x00001250, Mask: 0x00005669, Data: 0x00005669
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001250, Data: 0x00005669
+(II) NOUVEAU(0): 	Write: Reg: 0x00001250, Data: 0x00005669
+(II) NOUVEAU(0): 0xF521: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF521: Reg: 0x00004014, Mask: 0x00000020, Data: 0x00000020
+(II) NOUVEAU(0): 	Read:  Reg: 0x00004014, Data: 0x00000020
+(II) NOUVEAU(0): 	Write: Reg: 0x00004014, Data: 0x00000020
+(II) NOUVEAU(0): 0xF52E: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF52E: Reg: 0x00004100, Mask: 0xD0100000, Data: 0xD0100000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00004100, Data: 0xD0100000
+(II) NOUVEAU(0): 	Write: Reg: 0x00004100, Data: 0xD0100000
+(II) NOUVEAU(0): 0xF53B: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF53B: Reg: 0x001002E0, Mask: 0xFFFFFFFE, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x001002E0, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x001002E0, Data: 0x00000000
+(II) NOUVEAU(0): 0xF548: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xF548: Reg: 0x00001580, Mask: 0xFFFFFFFF, Data: 0x00000100
+(II) NOUVEAU(0): 	Read:  Reg: 0x00001580, Data: 0x30000100
+(II) NOUVEAU(0): 	Write: Reg: 0x00001580, Data: 0x30000100
+(II) NOUVEAU(0): 0xF555: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 	Read:  Reg: 0x00101000, Data: 0xA15FC097
+(II) NOUVEAU(0): Found LVDS manufacturer table revision 0.10
+(II) NOUVEAU(0): Found flat panel mode table revision 1.0
+(II) NOUVEAU(0): Ignoring FP table
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Setting owner: 0x3.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Display Configuration Block version 2.2 found
+Raw DCB entry 0: 01010300 000088b8
+Raw DCB entry 1: 03000323 00000004
+Raw DCB entry 2: 01120312 00000010
+Raw DCB entry 3: 02030321 00000703
+(II) NOUVEAU(0): Found 4 entries in DCB
+(II) NOUVEAU(0): Calling LVDS script 1:
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680524, Data: 0x00000054
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680524, Data: 0x00000054
+(II) NOUVEAU(0): 	Write: Reg: 0x00680524, Data: 0x00000054
+(II) NOUVEAU(0): 	Write: Reg: 0x00001588, Data: 0x00000000
+(II) NOUVEAU(0): Found EDID in BIOS
+(II) Loading sub module "i2c"
+(II) LoadModule: "i2c"(II) Module "i2c" already built-in
+(II) Loading sub module "ddc"
+(II) LoadModule: "ddc"(II) Module "ddc" already built-in
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Setting owner: 0x3.
+(--) NOUVEAU(0): DCB entry 0: type: 0, heads: 3, or: 1
+(II) NOUVEAU(0): Output VGA-0 using monitor section Generic Monitor
+(II) NOUVEAU(0): I2C bus "VGA-0" initialized.
+(--) NOUVEAU(0): DCB entry 1: type: 3, heads: 3, or: 3
+(II) NOUVEAU(0): Output LVDS-0 has no monitor section
+(II) NOUVEAU(0): I2C bus "LVDS-0" initialized.
+(--) NOUVEAU(0): DCB entry 2: type: 2, heads: 3, or: 1
+(II) NOUVEAU(0): Output DVI-D-0 has no monitor section
+(II) NOUVEAU(0): I2C bus "DVI-D-0" initialized.
+(--) NOUVEAU(0): DCB entry 3: type: 1, heads: 3, or: 2
+(II) NOUVEAU(0): nv_analog_output_detect is called.
+(II) NOUVEAU(0): I2C device "VGA-0:ddc2" registered at address 0xA0.
+(II) NOUVEAU(0): I2C device "VGA-0:ddc2" removed.
+(II) NOUVEAU(0): nv_lvds_output_detect is called.
+(II) NOUVEAU(0): I2C device "LVDS-0:ddc2" registered at address 0xA0.
+(II) NOUVEAU(0): nv_lvds_output_get_modes is called.
+(II) NOUVEAU(0): nv_output_get_ddc_modes is called.
+(II) NOUVEAU(0): nv_output_get_modes is called.
+(II) NOUVEAU(0): EDID vendor "LCD", prod id 20480
+(II) NOUVEAU(0): nv_tmds_output_detect is called.
+(II) NOUVEAU(0): I2C device "DVI-D-0:ddc2" registered at address 0xA0.
+(II) NOUVEAU(0): I2C device "DVI-D-0:ddc2" removed.
+(II) NOUVEAU(0): Output VGA-0 disconnected
+(II) NOUVEAU(0): Output LVDS-0 connected
+(II) NOUVEAU(0): Output DVI-D-0 disconnected
+(II) NOUVEAU(0): Output LVDS-0 using initial mode 1920x1200
+(--) NOUVEAU(0): VideoRAM: 65536 kBytes
+(==) NOUVEAU(0): Using gamma correction (1.0, 1.0, 1.0)
+(--) NOUVEAU(0): Virtual size is 1920x1920 (pitch 1920)
+(**) NOUVEAU(0):  Driver mode "1920x1200": 161.8 MHz (scaled from 0.0 MHz), 74.1 kHz, 60.0 Hz
+(II) NOUVEAU(0): Modeline "1920x1200"x60.0  161.75  1920 2020 2052 2184  1200 1202 1208 1235 -hsync -vsync (74.1 kHz)
+(**) NOUVEAU(0):  Default mode "1280x800": 83.5 MHz (scaled from 0.0 MHz), 49.7 kHz, 60.0 Hz
+(II) NOUVEAU(0): Modeline "1280x800"x60.0   83.46  1280 1344 1480 1680  800 801 804 828 (49.7 kHz)
+(**) NOUVEAU(0):  Default mode "1280x768": 80.1 MHz (scaled from 0.0 MHz), 47.7 kHz, 60.0 Hz
+(II) NOUVEAU(0): Modeline "1280x768"x60.0   80.14  1280 1344 1480 1680  768 769 772 795 (47.7 kHz)
+(**) NOUVEAU(0):  Default mode "1024x768": 65.0 MHz (scaled from 0.0 MHz), 48.4 kHz, 60.0 Hz
+(II) NOUVEAU(0): Modeline "1024x768"x60.0   65.00  1024 1048 1184 1344  768 771 777 806 -hsync -vsync (48.4 kHz)
+(**) NOUVEAU(0):  Default mode "800x600": 40.0 MHz (scaled from 0.0 MHz), 37.9 kHz, 60.3 Hz
+(II) NOUVEAU(0): Modeline "800x600"x60.3   40.00  800 840 968 1056  600 601 605 628 +hsync +vsync (37.9 kHz)
+(**) NOUVEAU(0):  Default mode "640x480": 25.2 MHz (scaled from 0.0 MHz), 31.5 kHz, 59.9 Hz
+(II) NOUVEAU(0): Modeline "640x480"x59.9   25.18  640 656 752 800  480 490 492 525 -hsync -vsync (31.5 kHz)
+(**) NOUVEAU(0): Display dimensions: (332, 207) mm
+(**) NOUVEAU(0): DPI set to (146, 235)
+(II) Loading sub module "fb"
+(II) LoadModule: "fb"
+(II) Loading /usr/lib/xorg/modules//libfb.so
+(II) Module fb: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org ANSI C Emulation, version 0.3
+(II) Loading sub module "exa"
+(II) LoadModule: "exa"
+(II) Loading /usr/lib/xorg/modules//libexa.so
+(II) Module exa: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 2.2.0
+	ABI class: X.Org Video Driver, version 2.0
+(II) Loading sub module "ramdac"
+(II) LoadModule: "ramdac"(II) Module "ramdac" already built-in
+(--) Depth 24 pixmap format is 32 bpp
+(II) do I need RAC?  No, I don't.
+(II) resource ranges after preInit:
+	[0] 0	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B]
+	[1] 0	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B]
+	[2] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[3] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[4] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[5] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[6] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[7] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[8] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[9] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[10] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[11] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[12] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[13] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[14] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[15] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[16] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[17] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[18] 0	0	0x000a0000 - 0x000affff (0x10000) MS[B](OprD)
+	[19] 0	0	0x000b0000 - 0x000b7fff (0x8000) MS[B](OprD)
+	[20] 0	0	0x000b8000 - 0x000bffff (0x8000) MS[B](OprD)
+	[21] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[22] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[23] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[24] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[25] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[26] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[27] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[28] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[29] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[30] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[31] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[32] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[33] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[34] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+	[35] 0	0	0x000003b0 - 0x000003bb (0xc) IS[B](OprU)
+	[36] 0	0	0x000003c0 - 0x000003df (0x20) IS[B](OprU)
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenByBusid: Searching for BusID pci:0000:01:00.0
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenByBusid: drmOpenMinor returns 8
+drmOpenByBusid: drmGetBusid reports pci:0000:01:00.0
+(II) [drm] DRM interface version 1.3
+(II) [drm] DRM open master succeeded.
+(II) NOUVEAU(0): [drm] Using the DRM lock SAREA also for drawables.
+(II) NOUVEAU(0): [drm] framebuffer handle = 0xd2000000
+(II) NOUVEAU(0): [drm] added 1 reserved context for kernel
+(II) NOUVEAU(0): X context handle = 0x1
+(II) NOUVEAU(0): [drm] installed DRM signal handler
+(II) NOUVEAU(0): Allocated 32MiB VRAM for framebuffer + offscreen pixmaps
+(II) NOUVEAU(0): AGPGART: 128MiB available
+(II) NOUVEAU(0): GART: Allocated 16MiB as a scratch buffer
+(II) NOUVEAU(0): Opened GPU channel 1
+(II) NOUVEAU(0): CRTC 0: Console mode: 640x144 depth: 4 bpp: 4 crtc_start: 0x0.
+(II) NOUVEAU(0): CRTC 1: Console mode: 640x144 depth: 4 bpp: 4 crtc_start: 0x0.
+(II) NOUVEAU(0): CRTC 0 was enabled.
+(II) NOUVEAU(0): NVEnterVT is called.
+(II) NOUVEAU(0): nv_crtc_save is called for CRTC 0.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): nv_crtc_save is called for CRTC 1.
+(II) NOUVEAU(0): Setting owner: 0x3.
+(II) NOUVEAU(0): nv_output_save is called.
+(II) NOUVEAU(0): nv_output_save is called.
+(II) NOUVEAU(0): nv_output_save is called.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Setting owner: 0x3.
+(II) NOUVEAU(0): nv_analog_output_dpms is called with mode 3.
+(II) NOUVEAU(0): nv_lvds_output_dpms is called with mode 3.
+(II) NOUVEAU(0): Calling LVDS script 6:
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680524, Data: 0x00000054
+(II) NOUVEAU(0): 0xDE71: Parsing digital output script table
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x44, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x57, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x58, Head: 0x00, Data: 0x01
+(II) NOUVEAU(0): 0xDE71: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0000130C, Data: 0x00000007
+(II) NOUVEAU(0): 0xDE7A: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680524, Data: 0x00000054
+(II) NOUVEAU(0): 	Write: Reg: 0x00680524, Data: 0x00000054
+(II) NOUVEAU(0): 	Write: Reg: 0x00001588, Data: 0x00000000
+(II) NOUVEAU(0): nv_tmds_output_dpms is called with mode 3.
+(II) NOUVEAU(0): nv_crtc_dpms is called for CRTC 0 with mode 3.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): nv_crtc_dpms is called for CRTC 1 with mode 3.
+(II) NOUVEAU(0): Setting owner: 0x3.
+(II) NOUVEAU(0): nv_output_mode_fixup is called.
+(II) NOUVEAU(0): nv_output_prepare is called.
+(II) NOUVEAU(0): nv_lvds_output_dpms is called with mode 3.
+(II) NOUVEAU(0): nv_crtc_prepare is called for CRTC 0.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): nv_crtc_dpms is called for CRTC 0 with mode 3.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): nv_crtc_mode_set is called for CRTC 0.
+(WW) NOUVEAU(0): Mode on CRTC 0
+(II) NOUVEAU(0): Modeline "1920x1200"x60.0  161.75  1920 2020 2052 2184  1200 1202 1208 1235 -hsync -vsync (74.1 kHz)
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Mode clock: 161750
+(II) NOUVEAU(0): Adjusted mode clock: 161750
+(II) NOUVEAU(0): vpll: n 24 m 1 log2p 2
+(II) NOUVEAU(0): Writing NV_RAMDAC_SEL_CLK 00000014
+(II) NOUVEAU(0): Writing NV_RAMDAC_VPLL 00021801
+(II) NOUVEAU(0): Writing NV_RAMDAC_PLL_SELECT 10000700
+(II) NOUVEAU(0): NVCrtcSetBase is called with coordinates: x: 0 y: 0
+(II) NOUVEAU(0): nv_output_mode_set is called.
+(II) NOUVEAU(0): Calling LVDS script 2:
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680524, Data: 0x00000014
+(II) NOUVEAU(0): 0xDF70: Parsing digital output script table
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x44, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x57, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x58, Head: 0x00, Data: 0x01
+(II) NOUVEAU(0): 0xDF70: [ (0x6B) - INIT_SUB ]
+(II) NOUVEAU(0): 0xDF70: EXECUTING SUB-SCRIPT 90
+(II) NOUVEAU(0): 0xDE7C: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE7C: Reg: 0x00680880, Mask: 0xDFFFFFFF, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680880, Data: 0x01101191
+(II) NOUVEAU(0): 	Write: Reg: 0x00680880, Data: 0x01101191
+(II) NOUVEAU(0): 0xDE89: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE89: Reg: 0x00680880, Mask: 0xFFFFFFFF, Data: 0x20000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680880, Data: 0x01101191
+(II) NOUVEAU(0): 	Write: Reg: 0x00680880, Data: 0x21101191
+(II) NOUVEAU(0): 0xDE96: [ (0x74) - INIT_TIME ]
+(II) NOUVEAU(0): 0xDE96: Sleeping for 0x3E80 microseconds
+(II) NOUVEAU(0): 0xDE99: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE99: Reg: 0x00680880, Mask: 0xDFFFFFFF, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680880, Data: 0x21101191
+(II) NOUVEAU(0): 	Write: Reg: 0x00680880, Data: 0x01101191
+(II) NOUVEAU(0): 0xDEA6: [ (0x49) - INIT_INDEX_ADDRESS_LATCHED ]
+(II) NOUVEAU(0): 0xDEA6: ControlReg: 0x006808B0, DataReg: 0x006808B4, Mask: 0x00000000, Data: 0x00000000, Count: 0x08
+(II) NOUVEAU(0): 0xDEA6: Address: 0x00, Data: 0x13
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000013
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000004
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x00000000
+(II) NOUVEAU(0): 0xDEA6: Address: 0x01, Data: 0x72
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000072
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000000
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x00000001
+(II) NOUVEAU(0): 0xDEA6: Address: 0x02, Data: 0x32
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000032
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000001
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x00000002
+(II) NOUVEAU(0): 0xDEA6: Address: 0x04, Data: 0x89
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000089
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000002
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x00000004
+(II) NOUVEAU(0): 0xDEA6: Address: 0x05, Data: 0x6E
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x0000006E
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000004
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x00000005
+(II) NOUVEAU(0): 0xDEA6: Address: 0x31, Data: 0x00
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000005
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x00000031
+(II) NOUVEAU(0): 0xDEA6: Address: 0x32, Data: 0x00
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000031
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x00000032
+(II) NOUVEAU(0): 0xDEA6: Address: 0x33, Data: 0x00
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000032
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x00000033
+(II) NOUVEAU(0): 0xDEC8: [ (0x49) - INIT_INDEX_ADDRESS_LATCHED ]
+(II) NOUVEAU(0): 0xDEC8: ControlReg: 0x006808B8, DataReg: 0x006808BC, Mask: 0x00000000, Data: 0x00000000, Count: 0x06
+(II) NOUVEAU(0): 0xDEC8: Address: 0x3B, Data: 0x00
+(II) NOUVEAU(0): 	Write: Reg: 0x006808BC, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B8, Data: 0x00000004
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B8, Data: 0x0000003B
+(II) NOUVEAU(0): 0xDEC8: Address: 0x3C, Data: 0x00
+(II) NOUVEAU(0): 	Write: Reg: 0x006808BC, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B8, Data: 0x0000003B
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B8, Data: 0x0000003C
+(II) NOUVEAU(0): 0xDEC8: Address: 0x3D, Data: 0x00
+(II) NOUVEAU(0): 	Write: Reg: 0x006808BC, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B8, Data: 0x0000003C
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B8, Data: 0x0000003D
+(II) NOUVEAU(0): 0xDEC8: Address: 0x3E, Data: 0x00
+(II) NOUVEAU(0): 	Write: Reg: 0x006808BC, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B8, Data: 0x0000003D
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B8, Data: 0x0000003E
+(II) NOUVEAU(0): 0xDEC8: Address: 0x3F, Data: 0x00
+(II) NOUVEAU(0): 	Write: Reg: 0x006808BC, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B8, Data: 0x0000003E
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B8, Data: 0x0000003F
+(II) NOUVEAU(0): 0xDEC8: Address: 0x3A, Data: 0x81
+(II) NOUVEAU(0): 	Write: Reg: 0x006808BC, Data: 0x00000081
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B8, Data: 0x0000003F
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B8, Data: 0x0000003A
+(II) NOUVEAU(0): 0xDEE6: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 0xDF70: END OF SUB-SCRIPT 90
+(II) NOUVEAU(0): 0xDF72: [ (0x49) - INIT_INDEX_ADDRESS_LATCHED ]
+(II) NOUVEAU(0): 0xDF72: ControlReg: 0x006808B0, DataReg: 0x006808B4, Mask: 0x00000000, Data: 0x00000000, Count: 0x03
+(II) NOUVEAU(0): 0xDF72: Address: 0x2E, Data: 0x80
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000080
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x00000033
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x0000002E
+(II) NOUVEAU(0): 0xDF72: Address: 0x2F, Data: 0x21
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x00000021
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x0000002E
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x0000002F
+(II) NOUVEAU(0): 0xDF72: Address: 0x33, Data: 0xF0
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B4, Data: 0x000000F0
+(II) NOUVEAU(0): 	Read:  Reg: 0x006808B0, Data: 0x0000002F
+(II) NOUVEAU(0): 	Write: Reg: 0x006808B0, Data: 0x00000033
+(II) NOUVEAU(0): 0xDF8A: [ (0x74) - INIT_TIME ]
+(II) NOUVEAU(0): 0xDF8A: Sleeping for 0x3E80 microseconds
+(II) NOUVEAU(0): 0xDF8D: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680524, Data: 0x00000014
+(II) NOUVEAU(0): 	Write: Reg: 0x00680524, Data: 0x00000014
+(II) NOUVEAU(0): 	Write: Reg: 0x00001588, Data: 0x00000000
+(II) NOUVEAU(0): nv_crtc_commit for CRTC 0.
+(II) NOUVEAU(0): nv_crtc_dpms is called for CRTC 0 with mode 0.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): nv_output_commit is called.
+(II) NOUVEAU(0): Output LVDS-0 is running on CRTC 0 using output A
+(II) NOUVEAU(0): nv_lvds_output_dpms is called with mode 0.
+(II) NOUVEAU(0): Calling LVDS script 5:
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680524, Data: 0x00000014
+(II) NOUVEAU(0): 0xDE5A: Parsing digital output script table
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x44, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x57, Head: 0x00, Data: 0x00
+(II) NOUVEAU(0): 	Indexed IO write: Port: 0x03D4, Index: 0x58, Head: 0x00, Data: 0x01
+(II) NOUVEAU(0): 0xDE5A: [ (0x6E) - INIT_NV_REG ]
+(II) NOUVEAU(0): 0xDE5A: Reg: 0x0060081C, Mask: 0xFFFFFFDD, Data: 0x00000000
+(II) NOUVEAU(0): 	Read:  Reg: 0x0060081C, Data: 0x62662600
+(II) NOUVEAU(0): 	Write: Reg: 0x0060081C, Data: 0x62662600
+(II) NOUVEAU(0): 0xDE67: [ (0x7A) - INIT_ZM_REG ]
+(II) NOUVEAU(0): 	Write: Reg: 0x0000130C, Data: 0x00000003
+(II) NOUVEAU(0): 0xDE70: [ (0x71) - INIT_DONE ]
+(II) NOUVEAU(0): 	Read:  Reg: 0x00680524, Data: 0x00000014
+(II) NOUVEAU(0): 	Write: Reg: 0x00680524, Data: 0x00000014
+(II) NOUVEAU(0): 	Write: Reg: 0x00001588, Data: 0x00000000
+(II) NOUVEAU(0): nv_analog_output_dpms is called with mode 3.
+(II) NOUVEAU(0): nv_tmds_output_dpms is called with mode 3.
+(II) NOUVEAU(0): nv_crtc_dpms is called for CRTC 1 with mode 3.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) EXA(0): Offscreen pixmap area of 18808832 bytes
+(II) EXA(0): Driver registered support for the following operations:
+(II)         Solid
+(II)         Copy
+(II)         Composite (RENDER acceleration)
+(II)         UploadToScreen
+(II)         DownloadFromScreen
+(==) NOUVEAU(0): Backing store disabled
+(==) NOUVEAU(0): Silken mouse enabled
+(II) NOUVEAU(0): [DRI] installation complete
+(**) Option "dpms"
+(**) NOUVEAU(0): DPMS enabled
+(II) NOUVEAU(0): RandR 1.2 enabled, ignore the following RandR disabled message.
+(II) NOUVEAU(0): Xv: Composite is enabled, enabling overlay with smart blitter fallback
+(II) NOUVEAU(0): Xv: Randr12 is enabled, using overlay with smart blitter fallback and automatic CRTC switching
+(--) RandR disabled
+(II) Initializing built-in extension MIT-SHM
+(II) Initializing built-in extension XInputExtension
+(II) Initializing built-in extension XTEST
+(II) Initializing built-in extension XKEYBOARD
+(II) Initializing built-in extension XC-APPGROUP
+(II) Initializing built-in extension XAccessControlExtension
+(II) Initializing built-in extension SECURITY
+(II) Initializing built-in extension XINERAMA
+(II) Initializing built-in extension XFIXES
+(II) Initializing built-in extension XFree86-Bigfont
+(II) Initializing built-in extension RENDER
+(II) Initializing built-in extension RANDR
+(II) Initializing built-in extension COMPOSITE
+(II) Initializing built-in extension DAMAGE
+(II) Initializing built-in extension XEVIE
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 9, (OK)
+drmOpenByBusid: Searching for BusID pci:0000:01:00.0
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 9, (OK)
+drmOpenByBusid: drmOpenMinor returns 9
+drmOpenByBusid: drmGetBusid reports pci:0000:01:00.0
+(EE) AIGLX error: dlopen of /usr/lib/dri/nouveau_dri.so failed (/usr/lib/dri/nouveau_dri.so: cannot open shared object file: No such file or directory)
+(EE) AIGLX: reverting to software rendering
+(II) Loading sub module "GLcore"
+(II) LoadModule: "GLcore"
+(II) Loading /usr/lib/xorg/modules/extensions//libGLcore.so
+(II) Module GLcore: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Server Extension, version 0.3
+(II) GLX: Initialized MESA-PROXY GL provider for screen 0
+(II) NOUVEAU(0): Setting screen physical size to 331 x 207
+(II) NOUVEAU(0): nv_xf86crtc_resize is called with 1920x1200 resolution.
+(**) Option "CoreKeyboard"
+(**) Generic Keyboard: always reports core events
+(**) Option "Protocol" "standard"
+(**) Generic Keyboard: Protocol: standard
+(**) Option "AutoRepeat" "500 30"
+(**) Option "XkbRules" "xorg"
+(**) Generic Keyboard: XkbRules: "xorg"
+(**) Option "XkbModel" "pc105"
+(**) Generic Keyboard: XkbModel: "pc105"
+(**) Option "XkbLayout" "fr"
+(**) Generic Keyboard: XkbLayout: "fr"
+(**) Option "XkbVariant" "latin9"
+(**) Generic Keyboard: XkbVariant: "latin9"
+(**) Option "CustomKeycodes" "off"
+(**) Generic Keyboard: CustomKeycodes disabled
+(**) Option "Protocol" "ExplorerPS/2"
+(**) Configured Mouse: Device: "/dev/input/mice"
+(**) Configured Mouse: Protocol: "ExplorerPS/2"
+(**) Option "CorePointer"
+(**) Configured Mouse: always reports core events
+(**) Option "Device" "/dev/input/mice"
+(**) Option "Emulate3Buttons" "true"
+(**) Configured Mouse: Emulate3Buttons, Emulate3Timeout: 50
+(**) Configured Mouse: ZAxisMapping: buttons 4 and 5
+(**) Configured Mouse: Buttons: 9
+(**) Configured Mouse: Sensitivity: 1
+(II) Synaptics touchpad driver version 0.14.6 (1406)
+(--) Synaptics Touchpad auto-dev sets device to /dev/input/event6
+(**) Option "Device" "/dev/input/event6"
+(**) Option "SHMConfig" "true"
+(**) Option "HorizScrollDelta" "0"
+(--) Synaptics Touchpad touchpad found
+(**) Option "SendCoreEvents" "true"
+(**) Synaptics Touchpad: always reports core events
+(II) evaluating device (Synaptics Touchpad)
+(II) XINPUT: Adding extended input device "Synaptics Touchpad" (type: MOUSE)
+(II) evaluating device (Configured Mouse)
+(II) XINPUT: Adding extended input device "Configured Mouse" (type: MOUSE)
+(II) evaluating device (Generic Keyboard)
+(II) XINPUT: Adding extended input device "Generic Keyboard" (type: KEYBOARD)
+(--) Synaptics Touchpad auto-dev sets device to /dev/input/event6
+(**) Option "Device" "/dev/input/event6"
+(--) Synaptics Touchpad touchpad found
+(II) Configured Mouse: ps2EnableDataReporting: succeeded
+Could not init font path element /usr/share/fonts/X11/cyrillic, removing from list!
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): NVLeaveVT is called.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Setting owner: 0x3.
+(II) NOUVEAU(0): nv_output_restore is called.
+(II) NOUVEAU(0): nv_output_restore is called.
+(II) NOUVEAU(0): nv_output_restore is called.
+(II) NOUVEAU(0): nv_crtc_restore is called for CRTC 0.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Writing NV_RAMDAC_SEL_CLK 00000054
+(II) NOUVEAU(0): Writing NV_RAMDAC_VPLL 00021801
+(II) NOUVEAU(0): Writing NV_RAMDAC_PLL_SELECT 00000700
+(II) NOUVEAU(0): nv_crtc_restore is called for CRTC 1.
+(II) NOUVEAU(0): Setting owner: 0x3.
+(II) NOUVEAU(0): Writing NV_RAMDAC_SEL_CLK 00000054
+(II) NOUVEAU(0): Writing NV_RAMDAC_VPLL2 00045405
+(II) NOUVEAU(0): Writing NV_RAMDAC_PLL_SELECT 00000700
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Setting owner: 0x3.
+(II) NOUVEAU(0): Setting owner: 0x0.
+(II) NOUVEAU(0): Restoring CRTC_OWNER to 4.
+
+--=-rM5FEZ4yKPERrtQtZnXV
+Content-Disposition: attachment; filename=xorg-nv-fenced.log
+Content-Type: text/x-log; name=xorg-nv-fenced.log; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+This is a pre-release version of the X server from The X.Org Foundation.
+It is not supported in any way.
+Bugs may be filed in the bugzilla at http://bugs.freedesktop.org/.
+Select the "xorg" product for bugs you find in this release.
+Before reporting bugs in pre-release versions please check the
+latest version in the X.Org Foundation git repository.
+See http://wiki.x.org/wiki/GitPage for git access instructions.
+
+X.Org X Server 1.4.0.90
+Release Date: 5 September 2007
+X Protocol Version 11, Revision 0
+Build Operating System: Linux Debian (xorg-server 2:1.4.1~git20080131-4)
+Current Operating System: Linux zerolap 2.6.23.1 #3 PREEMPT Wed May 21 13:19:28 CEST 2008 i686
+Build Date: 29 April 2008  08:24:00PM
+ 
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+Module Loader present
+Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: "/var/log/Xorg.0.log", Time: Fri May 23 15:05:00 2008
+(==) Using config file: "/etc/X11/xorg.conf"
+(==) ServerLayout "Default Layout"
+(**) |-->Screen "Default Screen" (0)
+(**) |   |-->Monitor "Generic Monitor"
+(**) |   |-->Device "NVIDIA Corporation NV34M [GeForce FX Go5200]"
+(**) |-->Input Device "Generic Keyboard"
+(**) |-->Input Device "Configured Mouse"
+(**) |-->Input Device "Synaptics Touchpad"
+(**) Option "BlankTime" "0"
+(**) Option "StandbyTime" "1"
+(**) Option "SuspendTime" "0"
+(**) Option "OffTime" "0"
+(**) Option "AllowDeactivateGrabs" "true"
+(**) Option "AllowClosedownGrabs" "true"
+(==) Automatically adding devices
+(==) Automatically enabling devices
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/misc".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/misc").
+(WW) The directory "/usr/share/fonts/X11/cyrillic" does not exist.
+	Entry deleted from font path.
+(WW) The directory "/usr/X11R6/lib/X11/fonts/cyrillic" does not exist.
+	Entry deleted from font path.
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/100dpi/".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/100dpi/").
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/75dpi/".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/75dpi/").
+(WW) The directory "/usr/X11R6/lib/X11/fonts/Type1" does not exist.
+	Entry deleted from font path.
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/100dpi".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/100dpi").
+(WW) `fonts.dir' not found (or not valid) in "/usr/X11R6/lib/X11/fonts/75dpi".
+	Entry deleted from font path.
+	(Run 'mkfontdir' on "/usr/X11R6/lib/X11/fonts/75dpi").
+(==) Including the default font path /usr/share/fonts/X11/misc,/usr/share/fonts/X11/cyrillic,/usr/share/fonts/X11/100dpi/:unscaled,/usr/share/fonts/X11/75dpi/:unscaled,/usr/share/fonts/X11/Type1,/usr/share/fonts/X11/100dpi,/usr/share/fonts/X11/75dpi,/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType.
+(**) FontPath set to:
+	/usr/share/fonts/X11/misc,
+	/usr/share/fonts/X11/100dpi/:unscaled,
+	/usr/share/fonts/X11/75dpi/:unscaled,
+	/usr/share/fonts/X11/Type1,
+	/usr/share/fonts/X11/100dpi,
+	/usr/share/fonts/X11/75dpi,
+	/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType,
+	/usr/share/fonts/X11/misc,
+	/usr/share/fonts/X11/cyrillic,
+	/usr/share/fonts/X11/100dpi/:unscaled,
+	/usr/share/fonts/X11/75dpi/:unscaled,
+	/usr/share/fonts/X11/Type1,
+	/usr/share/fonts/X11/100dpi,
+	/usr/share/fonts/X11/75dpi,
+	/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType
+(==) RgbPath set to "/etc/X11/rgb"
+(==) ModulePath set to "/usr/lib/xorg/modules"
+(II) Open ACPI successful (/var/run/acpid.socket)
+(II) Loader magic: 0x81d9220
+(II) Module ABI versions:
+	X.Org ANSI C Emulation: 0.3
+	X.Org Video Driver: 2.0
+	X.Org XInput driver : 2.0
+	X.Org Server Extension : 0.3
+	X.Org Font Renderer : 0.5
+(II) Loader running on linux
+(II) LoadModule: "pcidata"
+(II) Loading /usr/lib/xorg/modules//libpcidata.so
+(II) Module pcidata: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Video Driver, version 2.0
+(++) using VT number 7
+
+(II) PCI: PCI scan (all values are in hex)
+(II) PCI: 00:00:0: chip 8086,3340 card 1028,0191 rev 03 class 06,00,00 hdr 00
+(II) PCI: 00:01:0: chip 8086,3341 card 0000,0000 rev 03 class 06,04,00 hdr 01
+(II) PCI: 00:1d:0: chip 8086,24c2 card 1028,0191 rev 01 class 0c,03,00 hdr 80
+(II) PCI: 00:1d:1: chip 8086,24c4 card 1028,0191 rev 01 class 0c,03,00 hdr 00
+(II) PCI: 00:1d:2: chip 8086,24c7 card 1028,0191 rev 01 class 0c,03,00 hdr 00
+(II) PCI: 00:1d:7: chip 8086,24cd card 1028,0191 rev 01 class 0c,03,20 hdr 00
+(II) PCI: 00:1e:0: chip 8086,2448 card 0000,0000 rev 81 class 06,04,00 hdr 01
+(II) PCI: 00:1f:0: chip 8086,24cc card 0000,0000 rev 01 class 06,01,00 hdr 80
+(II) PCI: 00:1f:1: chip 8086,24ca card 1028,0191 rev 01 class 01,01,8a hdr 00
+(II) PCI: 00:1f:5: chip 8086,24c5 card 1028,0191 rev 01 class 04,01,00 hdr 00
+(II) PCI: 00:1f:6: chip 8086,24c6 card 14e4,4d64 rev 01 class 07,03,00 hdr 00
+(II) PCI: 01:00:0: chip 10de,0324 card 1028,019c rev a1 class 03,00,00 hdr 00
+(II) PCI: 02:00:0: chip 14e4,4401 card 1028,8127 rev 01 class 02,00,00 hdr 00
+(II) PCI: 02:01:0: chip 104c,ac44 card d000,0000 rev 02 class 06,07,00 hdr 82
+(II) PCI: 02:01:1: chip 104c,8029 card 1028,0191 rev 00 class 0c,00,10 hdr 80
+(II) PCI: 02:03:0: chip 14e4,4320 card 1028,0003 rev 03 class 02,80,00 hdr 00
+(II) PCI: End of PCI scan
+(II) Intel Bridge workaround enabled
+(II) Host-to-PCI bridge:
+(II) Bus 0: bridge is at (0:0:0), (0,0,3), BCTRL: 0x0008 (VGA_EN is set)
+(II) Bus 0 I/O range:
+	[0] -1	0	0x00000000 - 0x0000ffff (0x10000) IX[B]
+(II) Bus 0 non-prefetchable memory range:
+	[0] -1	0	0x00000000 - 0xffffffff (0x0) MX[B]
+(II) Bus 0 prefetchable memory range:
+	[0] -1	0	0x00000000 - 0xffffffff (0x0) MX[B]
+(II) PCI-to-PCI bridge:
+(II) Bus 1: bridge is at (0:1:0), (0,1,1), BCTRL: 0x000c (VGA_EN is set)
+(II) Bus 1 I/O range:
+	[0] -1	0	0x0000c000 - 0x0000c0ff (0x100) IX[B]
+	[1] -1	0	0x0000c400 - 0x0000c4ff (0x100) IX[B]
+	[2] -1	0	0x0000c800 - 0x0000c8ff (0x100) IX[B]
+	[3] -1	0	0x0000cc00 - 0x0000ccff (0x100) IX[B]
+(II) Bus 1 non-prefetchable memory range:
+	[0] -1	0	0xfc000000 - 0xfdffffff (0x2000000) MX[B]
+(II) Bus 1 prefetchable memory range:
+	[0] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B]
+(II) Subtractive PCI-to-PCI bridge:
+(II) Bus 2: bridge is at (0:30:0), (0,2,6), BCTRL: 0x0004 (VGA_EN is cleared)
+(II) Bus 2 I/O range:
+	[0] -1	0	0x0000d000 - 0x0000d0ff (0x100) IX[B]
+	[1] -1	0	0x0000d400 - 0x0000d4ff (0x100) IX[B]
+	[2] -1	0	0x0000d800 - 0x0000d8ff (0x100) IX[B]
+	[3] -1	0	0x0000dc00 - 0x0000dcff (0x100) IX[B]
+	[4] -1	0	0x0000e000 - 0x0000e0ff (0x100) IX[B]
+	[5] -1	0	0x0000e400 - 0x0000e4ff (0x100) IX[B]
+	[6] -1	0	0x0000e800 - 0x0000e8ff (0x100) IX[B]
+	[7] -1	0	0x0000ec00 - 0x0000ecff (0x100) IX[B]
+(II) Bus 2 non-prefetchable memory range:
+	[0] -1	0	0xf6000000 - 0xfbffffff (0x6000000) MX[B]
+(II) Bus 2 prefetchable memory range:
+	[0] -1	0	0x50000000 - 0x53ffffff (0x4000000) MX[B]
+(II) PCI-to-ISA bridge:
+(II) Bus -1: bridge is at (0:31:0), (0,-1,-1), BCTRL: 0x0008 (VGA_EN is set)
+(II) PCI-to-CardBus bridge:
+(II) Bus 3: bridge is at (2:1:0), (2,3,6), BCTRL: 0x05c0 (VGA_EN is cleared)
+(II) Bus 3 I/O range:
+	[0] -1	0	0x0000d000 - 0x0000d0ff (0x100) IX[B]
+	[1] -1	0	0x0000d400 - 0x0000d4ff (0x100) IX[B]
+(II) Bus 3 prefetchable memory range:
+	[0] -1	0	0x50000000 - 0x53ffffff (0x4000000) MX[B]
+(--) PCI:*(1:0:0) nVidia Corporation NV34M [GeForce FX Go5200 64M] rev 161, Mem @ 0xfc000000/24, 0xd0000000/28, BIOS @ 0x80000000/17
+(II) Addressable bus resource ranges are
+	[0] -1	0	0x00000000 - 0xffffffff (0x0) MX[B]
+	[1] -1	0	0x00000000 - 0x0000ffff (0x10000) IX[B]
+(II) OS-reported resource ranges:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[5] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+(II) PCI Memory resource overlap reduced 0xe0000000 from 0xe7ffffff to 0xdfffffff
+(II) Active PCI resource ranges:
+	[0] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[1] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[2] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[3] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[4] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[5] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[6] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[7] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[8] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[9] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[10] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[11] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[12] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[13] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[14] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[15] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[16] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[17] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[18] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[19] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[20] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[21] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[22] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[23] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+(II) Active PCI resource ranges after removing overlaps:
+	[0] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[1] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[2] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[3] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[4] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[5] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[6] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[7] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[8] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[9] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[10] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[11] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[12] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[13] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[14] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[15] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[16] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[17] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[18] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[19] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[20] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[21] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[22] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[23] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+(II) OS-reported resource ranges after removing overlaps with PCI:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[5] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+(II) All system resource ranges:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[5] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[6] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[7] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[8] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[9] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[10] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[11] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[12] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[13] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[14] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[15] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[16] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[17] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[18] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[19] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[20] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[21] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[22] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[23] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[24] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[25] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[26] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[27] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[28] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[29] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+(II) "extmod" will be loaded. This was enabled by default and also specified in the config file.
+(II) "dbe" will be loaded by default.
+(II) "glx" will be loaded. This was enabled by default and also specified in the config file.
+(II) "freetype" will be loaded. This was enabled by default and also specified in the config file.
+(II) "record" will be loaded by default.
+(II) "dri" will be loaded. This was enabled by default and also specified in the config file.
+(II) LoadModule: "i2c"(II) Module "i2c" already built-in
+(II) LoadModule: "ddc"(II) Module "ddc" already built-in
+(II) LoadModule: "dri"
+(II) Loading /usr/lib/xorg/modules/extensions//libdri.so
+(II) Module dri: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension XFree86-DRI
+(II) LoadModule: "extmod"
+(II) Loading /usr/lib/xorg/modules/extensions//libextmod.so
+(II) Module extmod: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension SHAPE
+(II) Loading extension MIT-SUNDRY-NONSTANDARD
+(II) Loading extension BIG-REQUESTS
+(II) Loading extension SYNC
+(II) Loading extension MIT-SCREEN-SAVER
+(II) Loading extension XC-MISC
+(II) Loading extension XFree86-VidModeExtension
+(II) Loading extension XFree86-Misc
+(II) Loading extension XFree86-DGA
+(II) Loading extension DPMS
+(II) Loading extension TOG-CUP
+(II) Loading extension Extended-Visual-Information
+(II) Loading extension XVideo
+(II) Loading extension XVideo-MotionCompensation
+(II) Loading extension X-Resource
+(II) LoadModule: "freetype"
+(II) Loading /usr/lib/xorg/modules//fonts/libfreetype.so
+(II) Module freetype: vendor="X.Org Foundation & the After X-TT Project"
+	compiled for 1.4.0.90, module version = 2.1.0
+	Module class: X.Org Font Renderer
+	ABI class: X.Org Font Renderer, version 0.5
+(II) Loading font FreeType
+(II) LoadModule: "glx"
+(II) Loading /usr/lib/xorg/modules/extensions//libglx.so
+(II) Module glx: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Server Extension, version 0.3
+(==) AIGLX enabled
+(II) Loading extension GLX
+(II) LoadModule: "int10"
+(II) Loading /usr/lib/xorg/modules//libint10.so
+(II) Module int10: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Video Driver, version 2.0
+(II) LoadModule: "type1"
+(WW) Warning, couldn't open module type1
+(II) UnloadModule: "type1"
+(EE) Failed to load module "type1" (module does not exist, 0)
+(II) LoadModule: "vbe"
+(II) Loading /usr/lib/xorg/modules//libvbe.so
+(II) Module vbe: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.1.0
+	ABI class: X.Org Video Driver, version 2.0
+(II) LoadModule: "dbe"
+(II) Loading /usr/lib/xorg/modules/extensions//libdbe.so
+(II) Module dbe: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension DOUBLE-BUFFER
+(II) LoadModule: "record"
+(II) Loading /usr/lib/xorg/modules/extensions//librecord.so
+(II) Module record: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.13.0
+	Module class: X.Org Server Extension
+	ABI class: X.Org Server Extension, version 0.3
+(II) Loading extension RECORD
+(II) LoadModule: "nv"
+(II) Loading /usr/lib/xorg/modules/drivers//nv_drv.so
+(II) Module nv: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 2.1.9
+	Module class: X.Org Video Driver
+	ABI class: X.Org Video Driver, version 2.0
+(II) LoadModule: "kbd"
+(II) Loading /usr/lib/xorg/modules/input//kbd_drv.so
+(II) Module kbd: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.2.2
+	Module class: X.Org XInput Driver
+	ABI class: X.Org XInput driver, version 2.0
+(II) LoadModule: "mouse"
+(II) Loading /usr/lib/xorg/modules/input//mouse_drv.so
+(II) Module mouse: vendor="X.Org Foundation"
+	compiled for 1.4.0, module version = 1.2.3
+	Module class: X.Org XInput Driver
+	ABI class: X.Org XInput driver, version 2.0
+(II) LoadModule: "synaptics"
+(II) Loading /usr/lib/xorg/modules/input//synaptics_drv.so
+(II) Module synaptics: vendor="X.Org Foundation"
+	compiled for 4.3.99.902, module version = 1.0.0
+	Module class: X.Org XInput Driver
+	ABI class: X.Org XInput driver, version 2.0
+(II) NV: driver for NVIDIA chipsets: RIVA 128, RIVA TNT, RIVA TNT2,
+	Unknown TNT2, Vanta, RIVA TNT2 Ultra, RIVA TNT2 Model 64,
+	Aladdin TNT2, GeForce 256, GeForce DDR, Quadro, GeForce2 MX/MX 400,
+	GeForce2 MX 100/200, GeForce2 Go, Quadro2 MXR/EX/Go,
+	GeForce2 Integrated GPU, GeForce2 GTS, GeForce2 Ti, GeForce2 Ultra,
+	Quadro2 Pro, GeForce4 MX 460, GeForce4 MX 440, GeForce4 MX 420,
+	GeForce4 MX 440-SE, GeForce4 440 Go, GeForce4 420 Go,
+	GeForce4 420 Go 32M, GeForce4 460 Go, Quadro4 550 XGL,
+	GeForce4 440 Go 64M, Quadro NVS, Quadro4 500 GoGL,
+	GeForce4 410 Go 16M, GeForce4 MX 440 with AGP8X,
+	GeForce4 MX 440SE with AGP8X, GeForce4 MX 420 with AGP8X,
+	GeForce4 MX 4000, GeForce4 448 Go, GeForce4 488 Go, Quadro4 580 XGL,
+	Quadro4 NVS 280 SD, Quadro4 380 XGL, Quadro NVS 50 PCI,
+	GeForce4 448 Go, GeForce4 MX Integrated GPU, GeForce3,
+	GeForce3 Ti 200, GeForce3 Ti 500, Quadro DCC, GeForce4 Ti 4600,
+	GeForce4 Ti 4400, GeForce4 Ti 4200, Quadro4 900 XGL, Quadro4 750 XGL,
+	Quadro4 700 XGL, GeForce4 Ti 4800, GeForce4 Ti 4200 with AGP8X,
+	GeForce4 Ti 4800 SE, GeForce4 4200 Go, Quadro4 700 GoGL,
+	Quadro4 980 XGL, Quadro4 780 XGL, GeForce FX 5800 Ultra,
+	GeForce FX 5800, Quadro FX 2000, Quadro FX 1000,
+	GeForce FX 5600 Ultra, GeForce FX 5600, GeForce FX 5600XT,
+	GeForce FX Go5600, GeForce FX Go5650, Quadro FX Go700,
+	GeForce FX 5200, GeForce FX 5200 Ultra, GeForce FX 5200,
+	GeForce FX 5200LE, GeForce FX Go5200, GeForce FX Go5250,
+	GeForce FX 5500, GeForce FX 5100, GeForce FX Go5200 32M/64M,
+	Quadro NVS 55/280 PCI, Quadro FX 500/600 PCI,
+	GeForce FX Go53xx Series, GeForce FX Go5100, GeForce FX 5900 Ultra,
+	GeForce FX 5900, GeForce FX 5900XT, GeForce FX 5950 Ultra,
+	GeForce FX 5900ZT, Quadro FX 3000, Quadro FX 700,
+	GeForce FX 5700 Ultra, GeForce FX 5700, GeForce FX 5700LE,
+	GeForce FX 5700VE, GeForce FX Go5700, GeForce FX Go5700,
+	Quadro FX Go1000, Quadro FX 1100, GeForce 6800 Ultra, GeForce 6800,
+	GeForce 6800 LE, GeForce 6800 XE, GeForce 6800 XT, GeForce 6800 GT,
+	GeForce 6800 GT, GeForce 6800 GS, GeForce 6800 XT, Quadro FX 4000,
+	GeForce 6800 GS, GeForce 6800, GeForce 6800 LE, GeForce 6800 XT,
+	GeForce Go 6800, GeForce Go 6800 Ultra, Quadro FX Go1400,
+	Quadro FX 3450/4000 SDI, Quadro FX 1400, GeForce 6600 GT,
+	GeForce 6600, GeForce 6600 LE, GeForce 6600 VE, GeForce Go 6600,
+	GeForce 6610 XL, GeForce Go 6600 TE/6200 TE, GeForce 6700 XL,
+	GeForce Go 6600, GeForce Go 6600 GT, Quadro FX 550, Quadro FX 550,
+	Quadro FX 540, GeForce 6200, GeForce 6500,
+	GeForce 6200 TurboCache(TM), GeForce 6200SE TurboCache(TM),
+	GeForce 6200 LE, GeForce Go 6200, Quadro NVS 285, GeForce Go 6400,
+	GeForce Go 6200, GeForce Go 6400, GeForce 6250, GeForce 6800,
+	GeForce 6800 LE, GeForce 6800 GT, GeForce 6800 XT, GeForce 6200,
+	GeForce 6200 A-LE, GeForce 7800 GTX, GeForce 7800 GTX,
+	GeForce 7800 GT, GeForce 7800 GS, GeForce 7800 SLI, GeForce Go 7800,
+	GeForce Go 7800 GTX, Quadro FX 4500, GeForce 7300 LE,
+	GeForce 7300 SE, GeForce Go 7200, GeForce Go 7300, GeForce Go 7400,
+	GeForce Go 7400 GS, Quadro NVS 110M, Quadro NVS 120M, Quadro FX 350M,
+	GeForce 7500 LE, Quadro FX 350, GeForce 7300 GS, GeForce 7600 GT,
+	GeForce 7600 GS, GeForce 7300 GT, GeForce 7600 LE, GeForce 7300 GT,
+	GeForce Go 7700, GeForce Go 7600, GeForce Go 7600 GT,
+	Quadro NVS 300M, GeForce Go 7900 SE, Quadro FX 550M, Quadro FX 560,
+	GeForce 7900 GTX, GeForce 7900 GT, GeForce 7900 GS,
+	GeForce Go 7900 GS, GeForce Go 7900 GTX, Quadro FX 2500M,
+	Quadro FX 1500M, Quadro FX 5500, Quadro FX 3500, Quadro FX 1500,
+	Quadro FX 4500 X2, GeForce 6150, GeForce 6150 LE, GeForce 6100,
+	GeForce Go 6150, GeForce Go 6100, GeForce 8800 GTX, GeForce 8800 GTS,
+	GeForce 8800 Ultra, Quadro FX 5600, Quadro FX 4600, GeForce 8600 GTS,
+	GeForce 8600 GT, GeForce 8600 GT, GeForce 8400 GS, GeForce 9500M GS,
+	GeForce 8600M GT, GeForce 8700M GT, Quadro FX 370, Quadro NVS 320M,
+	Quadro FX 570M, Quadro FX 1600M, Quadro FX 570, Quadro FX 1700,
+	GeForce 8400 SE, GeForce 8500 GT, GeForce 8400 GS, GeForce 8300 GS,
+	GeForce 8400 GS, GeForce 8600M GS, GeForce 8400M GT,
+	GeForce 8400M GS, GeForce 8400M G, Quadro NVS 140M, Quadro NVS 130M,
+	Quadro NVS 135M, Quadro FX 360M, Quadro NVS 290,
+	GeForce 8800 GTS 512, GeForce 8800 GT, GeForce 9800 GX2,
+	GeForce 8800 GS, GeForce 8800M GTS, GeForce 8800M GTX,
+	GeForce 8800 GS, GeForce 9600 GSO, GeForce 8800 GT, GeForce 9800 GTX,
+	Quadro FX 3700, Quadro FX 3600M, GeForce 9600 GT, GeForce 9600 GS,
+	GeForce 8400 GS
+(II) Primary Device is: PCI 01:00:0
+(--) Assigning device section with no busID to primary device
+(--) Chipset GeForce FX Go5200 found
+(II) resource ranges after xf86ClaimFixedResources() call:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[5] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[6] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[7] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[8] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[9] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[10] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[11] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[12] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[13] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[14] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[15] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[16] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[17] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[18] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[19] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[20] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[21] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[22] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[23] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[24] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[25] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[26] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[27] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[28] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[29] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+(II) resource ranges after probing:
+	[0] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[1] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[2] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[3] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[4] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[5] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[6] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[7] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[8] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[9] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[10] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[11] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[12] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[13] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[14] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[15] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[16] 0	0	0x000a0000 - 0x000affff (0x10000) MS[B]
+	[17] 0	0	0x000b0000 - 0x000b7fff (0x8000) MS[B]
+	[18] 0	0	0x000b8000 - 0x000bffff (0x8000) MS[B]
+	[19] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[20] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[21] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[22] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[23] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[24] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[25] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[26] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[27] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[28] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[29] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[30] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[31] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[32] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+	[33] 0	0	0x000003b0 - 0x000003bb (0xc) IS[B]
+	[34] 0	0	0x000003c0 - 0x000003df (0x20) IS[B]
+(II) Setting vga for screen 0.
+(II) Loading sub module "int10"
+(II) LoadModule: "int10"
+(II) Reloading /usr/lib/xorg/modules//libint10.so
+(II) NV(0): Initializing int10
+(II) NV(0): Primary V_BIOS segment is: 0xc000
+(--) NV(0): Chipset: "GeForce FX Go5200"
+(**) NV(0): Depth 24, (--) framebuffer bpp 32
+(==) NV(0): RGB weight 888
+(==) NV(0): Default visual is TrueColor
+(II) Loading sub module "vgahw"
+(II) LoadModule: "vgahw"
+(II) Loading /usr/lib/xorg/modules//libvgahw.so
+(II) Module vgahw: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 0.1.0
+	ABI class: X.Org Video Driver, version 2.0
+(==) NV(0): Using HW cursor
+(--) NV(0): Linear framebuffer at 0xD0000000
+(--) NV(0): MMIO registers at 0xFC000000
+(II) Loading sub module "i2c"
+(II) LoadModule: "i2c"(II) Module "i2c" already built-in
+(II) Loading sub module "ddc"
+(II) LoadModule: "ddc"(II) Module "ddc" already built-in
+(II) NV(0): I2C bus "DDC" initialized.
+(II) NV(0): Probing for analog device on output A...
+(--) NV(0):   ...can't find one
+(II) NV(0): Probing for analog device on output B...
+(--) NV(0):   ...can't find one
+(II) NV(0): Probing for EDID on I2C bus A...
+(II) NV(0): I2C device "DDC:ddc2" registered at address 0xA0.
+(II) NV(0): I2C device "DDC:ddc2" removed.
+(II) NV(0):   ... none found
+(II) NV(0): Probing for EDID on I2C bus B...
+(II) NV(0): I2C device "DDC:ddc2" registered at address 0xA0.
+(II) NV(0): I2C device "DDC:ddc2" removed.
+(II) NV(0):   ... none found
+(--) NV(0): CRTC 0 is currently programmed for DFP
+(II) NV(0): Using DFP on CRTC 0
+(--) NV(0): Panel size is 1920 x 1200
+(II) NV(0): Panel is LVDS
+(--) NV(0): VideoRAM: 65536 kBytes
+(==) NV(0): Using gamma correction (1.0, 1.0, 1.0)
+(II) NV(0): Generic Monitor: Using hsync range of 30.00-75.00 kHz
+(II) NV(0): Generic Monitor: Using vrefresh range of 30.00-60.00 Hz
+(II) NV(0): Clock range:  12.00 to 350.00 MHz
+(II) NV(0): Not using default mode "640x350" (vrefresh out of range)
+(II) NV(0): Not using default mode "320x175" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "640x400" (vrefresh out of range)
+(II) NV(0): Not using default mode "320x200" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "720x400" (vrefresh out of range)
+(II) NV(0): Not using default mode "360x200" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "320x240" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "640x480" (vrefresh out of range)
+(II) NV(0): Not using default mode "320x240" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "640x480" (vrefresh out of range)
+(II) NV(0): Not using default mode "320x240" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "640x480" (vrefresh out of range)
+(II) NV(0): Not using default mode "320x240" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "400x300" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "400x300" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "800x600" (vrefresh out of range)
+(II) NV(0): Not using default mode "400x300" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "800x600" (vrefresh out of range)
+(II) NV(0): Not using default mode "400x300" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "800x600" (vrefresh out of range)
+(II) NV(0): Not using default mode "400x300" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1024x768" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "512x384" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "512x384" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1024x768" (vrefresh out of range)
+(II) NV(0): Not using default mode "512x384" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1024x768" (vrefresh out of range)
+(II) NV(0): Not using default mode "512x384" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1024x768" (vrefresh out of range)
+(II) NV(0): Not using default mode "512x384" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1152x864" (vrefresh out of range)
+(II) NV(0): Not using default mode "576x432" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "640x480" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1280x960" (hsync out of range)
+(II) NV(0): Not using default mode "640x480" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "640x512" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1280x1024" (hsync out of range)
+(II) NV(0): Not using default mode "640x512" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1280x1024" (hsync out of range)
+(II) NV(0): Not using default mode "640x512" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "800x600" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1600x1200" (hsync out of range)
+(II) NV(0): Not using default mode "800x600" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1600x1200" (hsync out of range)
+(II) NV(0): Not using default mode "800x600" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1600x1200" (hsync out of range)
+(II) NV(0): Not using default mode "800x600" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1600x1200" (hsync out of range)
+(II) NV(0): Not using default mode "800x600" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1792x1344" (exceeds panel dimensions)
+(II) NV(0): Not using default mode "896x672" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1792x1344" (exceeds panel dimensions)
+(II) NV(0): Not using default mode "896x672" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1856x1392" (exceeds panel dimensions)
+(II) NV(0): Not using default mode "928x696" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1856x1392" (exceeds panel dimensions)
+(II) NV(0): Not using default mode "928x696" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1920x1440" (exceeds panel dimensions)
+(II) NV(0): Not using default mode "960x720" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1920x1440" (exceeds panel dimensions)
+(II) NV(0): Not using default mode "960x720" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "832x624" (vrefresh out of range)
+(II) NV(0): Not using default mode "416x312" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "640x384" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "640x400" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "576x384" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1152x864" (hsync out of range)
+(II) NV(0): Not using default mode "576x432" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "700x525" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1400x1050" (hsync out of range)
+(II) NV(0): Not using default mode "700x525" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1400x1050" (hsync out of range)
+(II) NV(0): Not using default mode "700x525" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1400x1050" (hsync out of range)
+(II) NV(0): Not using default mode "700x525" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "720x450" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "800x512" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "840x525" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "960x600" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1920x1200" (hsync out of range)
+(II) NV(0): Not using default mode "960x600" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1920x1440" (exceeds panel dimensions)
+(II) NV(0): Not using default mode "960x720" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "2048x1536" (exceeds panel dimensions)
+(II) NV(0): Not using default mode "1024x768" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "2048x1536" (exceeds panel dimensions)
+(II) NV(0): Not using default mode "1024x768" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "2048x1536" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using default mode "1024x768" (bad mode clock/interlace/doublescan)
+(II) NV(0): Not using mode "1024x640" (no mode of this name)
+(II) NV(0): Not using mode "800x500" (no mode of this name)
+(--) NV(0): Virtual size is 1920x1200 (pitch 1920)
+(**) NV(0): *Driver mode "1920x1200": 154.0 MHz, 74.0 kHz, 60.0 Hz
+(II) NV(0): Modeline "1920x1200"x60.0  154.00  1920 1968 2000 2080  1200 1203 1209 1235 +hsync -vsync (74.0 kHz)
+(**) NV(0): *Default mode "1440x900": 108.8 MHz, 56.9 kHz, 60.2 Hz
+(II) NV(0): Modeline "1440x900"x60.2  108.84  1440 1472 1880 1912  900 918 927 946 +hsync +vsync (56.9 kHz)
+(**) NV(0):  Default mode "1920x1200": 193.2 MHz, 74.5 kHz, 60.0 Hz
+(II) NV(0): Modeline "1920x1200"x60.0  193.16  1920 2048 2256 2592  1200 1201 1204 1242 (74.5 kHz)
+(**) NV(0):  Default mode "1600x1200": 162.0 MHz, 75.0 kHz, 60.0 Hz
+(II) NV(0): Modeline "1600x1200"x60.0  162.00  1600 1664 1856 2160  1200 1201 1204 1250 +hsync +vsync (75.0 kHz)
+(**) NV(0):  Default mode "1680x1050": 147.1 MHz, 65.2 kHz, 60.0 Hz
+(II) NV(0): Modeline "1680x1050"x60.0  147.14  1680 1784 1968 2256  1050 1051 1054 1087 (65.2 kHz)
+(**) NV(0):  Default mode "1400x1050": 122.0 MHz, 64.9 kHz, 60.0 Hz
+(II) NV(0): Modeline "1400x1050"x60.0  122.00  1400 1488 1640 1880  1050 1052 1064 1082 +hsync +vsync (64.9 kHz)
+(**) NV(0):  Default mode "1280x1024": 108.0 MHz, 64.0 kHz, 60.0 Hz
+(II) NV(0): Modeline "1280x1024"x60.0  108.00  1280 1328 1440 1688  1024 1025 1028 1066 +hsync +vsync (64.0 kHz)
+(**) NV(0):  Default mode "1280x960": 108.0 MHz, 60.0 kHz, 60.0 Hz
+(II) NV(0): Modeline "1280x960"x60.0  108.00  1280 1376 1488 1800  960 961 964 1000 +hsync +vsync (60.0 kHz)
+(**) NV(0):  Default mode "1280x800": 83.5 MHz, 49.7 kHz, 60.0 Hz
+(II) NV(0): Modeline "1280x800"x60.0   83.46  1280 1344 1480 1680  800 801 804 828 (49.7 kHz)
+(**) NV(0):  Default mode "1280x768": 80.1 MHz, 47.7 kHz, 60.0 Hz
+(II) NV(0): Modeline "1280x768"x60.0   80.14  1280 1344 1480 1680  768 769 772 795 (47.7 kHz)
+(**) NV(0):  Default mode "1152x768": 65.0 MHz, 44.2 kHz, 54.8 Hz
+(II) NV(0): Modeline "1152x768"x54.8   65.00  1152 1178 1314 1472  768 771 777 806 +hsync +vsync (44.2 kHz)
+(**) NV(0):  Default mode "1024x768": 65.0 MHz, 48.4 kHz, 60.0 Hz
+(II) NV(0): Modeline "1024x768"x60.0   65.00  1024 1048 1184 1344  768 771 777 806 -hsync -vsync (48.4 kHz)
+(**) NV(0):  Default mode "800x600": 40.0 MHz, 37.9 kHz, 60.3 Hz
+(II) NV(0): Modeline "800x600"x60.3   40.00  800 840 968 1056  600 601 605 628 +hsync +vsync (37.9 kHz)
+(**) NV(0):  Default mode "800x600": 36.0 MHz, 35.2 kHz, 56.2 Hz
+(II) NV(0): Modeline "800x600"x56.2   36.00  800 824 896 1024  600 601 603 625 +hsync +vsync (35.2 kHz)
+(**) NV(0):  Default mode "640x480": 25.2 MHz, 31.5 kHz, 59.9 Hz
+(II) NV(0): Modeline "640x480"x59.9   25.18  640 656 752 800  480 490 492 525 -hsync -vsync (31.5 kHz)
+(**) NV(0): Display dimensions: (332, 207) mm
+(**) NV(0): DPI set to (146, 147)
+(II) Loading sub module "fb"
+(II) LoadModule: "fb"
+(II) Loading /usr/lib/xorg/modules//libfb.so
+(II) Module fb: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org ANSI C Emulation, version 0.3
+(II) Loading sub module "xaa"
+(II) LoadModule: "xaa"
+(II) Loading /usr/lib/xorg/modules//libxaa.so
+(II) Module xaa: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.2.0
+	ABI class: X.Org Video Driver, version 2.0
+(II) Loading sub module "ramdac"
+(II) LoadModule: "ramdac"(II) Module "ramdac" already built-in
+(--) Depth 24 pixmap format is 32 bpp
+(II) do I need RAC?  No, I don't.
+(II) resource ranges after preInit:
+	[0] 0	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B]
+	[1] 0	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B]
+	[2] -1	0	0x00100000 - 0x3fffffff (0x3ff00000) MX[B]E(B)
+	[3] -1	0	0x000f0000 - 0x000fffff (0x10000) MX[B]
+	[4] -1	0	0x000c0000 - 0x000effff (0x30000) MX[B]
+	[5] -1	0	0x00000000 - 0x0009ffff (0xa0000) MX[B]
+	[6] -1	0	0xfaff6000 - 0xfaff7fff (0x2000) MX[B]
+	[7] -1	0	0xfaff8000 - 0xfaffbfff (0x4000) MX[B]
+	[8] -1	0	0xfaffd800 - 0xfaffdfff (0x800) MX[B]
+	[9] -1	0	0xfaffe000 - 0xfaffffff (0x2000) MX[B]
+	[10] -1	0	0xf4fff400 - 0xf4fff4ff (0x100) MX[B]
+	[11] -1	0	0xf4fff800 - 0xf4fff9ff (0x200) MX[B]
+	[12] -1	0	0x54000000 - 0x540003ff (0x400) MX[B]
+	[13] -1	0	0xf4fffc00 - 0xf4ffffff (0x400) MX[B]
+	[14] -1	0	0xe0000000 - 0xdfffffff (0x0) MX[B]O
+	[15] -1	0	0xfd000000 - 0xfd01ffff (0x20000) MX[B](B)
+	[16] -1	0	0xd0000000 - 0xdfffffff (0x10000000) MX[B](B)
+	[17] -1	0	0xfc000000 - 0xfcffffff (0x1000000) MX[B](B)
+	[18] 0	0	0x000a0000 - 0x000affff (0x10000) MS[B](OprD)
+	[19] 0	0	0x000b0000 - 0x000b7fff (0x8000) MS[B](OprD)
+	[20] 0	0	0x000b8000 - 0x000bffff (0x8000) MS[B](OprD)
+	[21] -1	0	0x0000ffff - 0x0000ffff (0x1) IX[B]
+	[22] -1	0	0x00000000 - 0x000000ff (0x100) IX[B]
+	[23] -1	0	0x0000b080 - 0x0000b0ff (0x80) IX[B]
+	[24] -1	0	0x0000b400 - 0x0000b4ff (0x100) IX[B]
+	[25] -1	0	0x0000bc40 - 0x0000bc7f (0x40) IX[B]
+	[26] -1	0	0x0000b800 - 0x0000b8ff (0x100) IX[B]
+	[27] -1	0	0x0000bfa0 - 0x0000bfaf (0x10) IX[B]
+	[28] -1	0	0x00000374 - 0x00000374 (0x1) IX[B]
+	[29] -1	0	0x00000170 - 0x00000177 (0x8) IX[B]
+	[30] -1	0	0x000003f4 - 0x000003f4 (0x1) IX[B]
+	[31] -1	0	0x000001f0 - 0x000001f7 (0x8) IX[B]
+	[32] -1	0	0x0000bf20 - 0x0000bf3f (0x20) IX[B]
+	[33] -1	0	0x0000bf40 - 0x0000bf5f (0x20) IX[B]
+	[34] -1	0	0x0000bf80 - 0x0000bf9f (0x20) IX[B]
+	[35] 0	0	0x000003b0 - 0x000003bb (0xc) IS[B](OprU)
+	[36] 0	0	0x000003c0 - 0x000003df (0x20) IS[B](OprU)
+(==) NV(0): Write-combining range (0xd0000000,0x4000000)
+(II) NV(0): Using XFree86 Acceleration Architecture (XAA)
+	Screen to screen bit blits
+	Solid filled rectangles
+	8x8 mono pattern filled rectangles
+	Indirect CPU to Screen color expansion
+	Solid Lines
+	Scanline Image Writes
+	Offscreen Pixmaps
+	Setting up tile and stipple cache:
+		32 128x128 slots
+		32 256x256 slots
+		16 512x512 slots
+(==) NV(0): Backing store disabled
+(==) NV(0): Silken mouse enabled
+(**) Option "dpms"
+(**) NV(0): DPMS enabled
+(==) RandR enabled
+(II) Initializing built-in extension MIT-SHM
+(II) Initializing built-in extension XInputExtension
+(II) Initializing built-in extension XTEST
+(II) Initializing built-in extension XKEYBOARD
+(II) Initializing built-in extension XC-APPGROUP
+(II) Initializing built-in extension XAccessControlExtension
+(II) Initializing built-in extension SECURITY
+(II) Initializing built-in extension XINERAMA
+(II) Initializing built-in extension XFIXES
+(II) Initializing built-in extension XFree86-Bigfont
+(II) Initializing built-in extension RENDER
+(II) Initializing built-in extension RANDR
+(II) Initializing built-in extension COMPOSITE
+(II) Initializing built-in extension DAMAGE
+(II) Initializing built-in extension XEVIE
+(II) AIGLX: Screen 0 is not DRI capable
+(II) Loading sub module "GLcore"
+(II) LoadModule: "GLcore"
+(II) Loading /usr/lib/xorg/modules/extensions//libGLcore.so
+(II) Module GLcore: vendor="X.Org Foundation"
+	compiled for 1.4.0.90, module version = 1.0.0
+	ABI class: X.Org Server Extension, version 0.3
+(II) GLX: Initialized MESA-PROXY GL provider for screen 0
+(**) Option "CoreKeyboard"
+(**) Generic Keyboard: always reports core events
+(**) Option "Protocol" "standard"
+(**) Generic Keyboard: Protocol: standard
+(**) Option "AutoRepeat" "500 30"
+(**) Option "XkbRules" "xorg"
+(**) Generic Keyboard: XkbRules: "xorg"
+(**) Option "XkbModel" "pc105"
+(**) Generic Keyboard: XkbModel: "pc105"
+(**) Option "XkbLayout" "fr"
+(**) Generic Keyboard: XkbLayout: "fr"
+(**) Option "XkbVariant" "latin9"
+(**) Generic Keyboard: XkbVariant: "latin9"
+(**) Option "CustomKeycodes" "off"
+(**) Generic Keyboard: CustomKeycodes disabled
+(**) Option "Protocol" "ExplorerPS/2"
+(**) Configured Mouse: Device: "/dev/input/mice"
+(**) Configured Mouse: Protocol: "ExplorerPS/2"
+(**) Option "CorePointer"
+(**) Configured Mouse: always reports core events
+(**) Option "Device" "/dev/input/mice"
+(**) Option "Emulate3Buttons" "true"
+(**) Configured Mouse: Emulate3Buttons, Emulate3Timeout: 50
+(**) Configured Mouse: ZAxisMapping: buttons 4 and 5
+(**) Configured Mouse: Buttons: 9
+(**) Configured Mouse: Sensitivity: 1
+(II) Synaptics touchpad driver version 0.14.6 (1406)
+(--) Synaptics Touchpad auto-dev sets device to /dev/input/event6
+(**) Option "Device" "/dev/input/event6"
+(**) Option "SHMConfig" "true"
+(**) Option "HorizScrollDelta" "0"
+(--) Synaptics Touchpad touchpad found
+(**) Option "SendCoreEvents" "true"
+(**) Synaptics Touchpad: always reports core events
+(II) evaluating device (Synaptics Touchpad)
+(II) XINPUT: Adding extended input device "Synaptics Touchpad" (type: MOUSE)
+(II) evaluating device (Configured Mouse)
+(II) XINPUT: Adding extended input device "Configured Mouse" (type: MOUSE)
+(II) evaluating device (Generic Keyboard)
+(II) XINPUT: Adding extended input device "Generic Keyboard" (type: KEYBOARD)
+(--) Synaptics Touchpad auto-dev sets device to /dev/input/event6
+(**) Option "Device" "/dev/input/event6"
+(--) Synaptics Touchpad touchpad found
+(II) Configured Mouse: ps2EnableDataReporting: succeeded
+Could not init font path element /usr/share/fonts/X11/cyrillic, removing from list!
+
+--=-rM5FEZ4yKPERrtQtZnXV
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--=-rM5FEZ4yKPERrtQtZnXV--
