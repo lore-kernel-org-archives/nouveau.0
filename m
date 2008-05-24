@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16077] New: X server crash DMA hang
-Date: Fri, 23 May 2008 09:32:46 -0700 (PDT)
-Message-ID: <bug-16077-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15845] X busyloops when huge image in firefox
+Date: Sat, 24 May 2008 11:15:02 -0700 (PDT)
+Message-ID: <20080524181502.C0E96130056@annarchy.freedesktop.org>
+References: <bug-15845-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-15845-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,41 +20,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16077
-
-           Summary: X server crash DMA hang
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: high
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: nick-ueoY2BOuUdHYtjvyW6yDsg@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-I occasionally get a server crash:
-
-DMA queue hang:  dmaPut=15, current=bc, status=0
-
-I first thought this was Adobe flash related, as it has never happened with GNU
-Gnash, but today it happened whilst switching workspaces in Fluxbox.  It
-appears to manifest after a two to three days Xserver uptime.
-
-I run git mesa/drm/nouveau.  Using kernel 2.6.25.  Using git xorg from a few
-weeks ago.
-
-Any help to debug this further would be nice.
-
-Thanks,
-
-Nick
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTg0NQoKCk1pY2hl
+bCBEw6RuemVyIDxtaWNoZWxAdHVuZ3N0ZW5ncmFwaGljcy5jb20+IGNoYW5nZWQ6CgogICAgICAg
+ICAgIFdoYXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLQogICAgICAgICAgICAgU3RhdHVzfE5FVyAgICAgICAgICAgICAgICAgICAgICAg
+ICB8UkVTT0xWRUQKICAgICAgICAgUmVzb2x1dGlvbnwgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgfEZJWEVECgoKCgotLS0gQ29tbWVudCAjNyBmcm9tIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxA
+dHVuZ3N0ZW5ncmFwaGljcy5jb20+ICAyMDA4LTA1LTI0IDExOjE1OjAxIFBTVCAtLS0KY29tbWl0
+IDNiYWYzYjQyZTA3OWI0ZTdiNjFjMWUyMGRmMzA1ZGIwNzI0ZDIxZjgKQXV0aG9yOiBNaWNoZWwg
+RMODwqRuemVyIDxtaWNoZWxAdHVuZ3N0ZW5ncmFwaGljcy5jb20+CkRhdGU6ICAgU2F0IE1heSAy
+NCAyMDowMToyMSAyMDA4ICswMjAwCgogICAgRVhBOiBTcGVjaWZ5IHJlZ2lvbiB1c2VkIGZvciBz
+b3VyY2UgcGl4bWFwIG1pZ3JhdGlvbiBpbiBleGFDb3B5TnRvTi4KCiAgICBBdm9pZHMgZXhjZXNz
+aXZlIG1pZ3JhdGlvbiBvdmVyaGVhZCBpbiBzb21lIHBhdGhvbG9naWNhbCBjYXNlcy4KCgotLSAK
+Q29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMu
+Y2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNl
+OiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
