@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16119] New: X crashes when playing video with xfmedia
-Date: Tue, 27 May 2008 11:15:16 -0700 (PDT)
-Message-ID: <bug-16119-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16119] X crashes when playing video with xfmedia
+Date: Tue, 27 May 2008 11:19:20 -0700 (PDT)
+Message-ID: <20080527181920.9AF93130052@annarchy.freedesktop.org>
+References: <bug-16119-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16119-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,39 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNjExOQoKICAgICAg
-ICAgICBTdW1tYXJ5OiBYIGNyYXNoZXMgd2hlbiBwbGF5aW5nIHZpZGVvIHdpdGggeGZtZWRpYQog
-ICAgICAgICAgIFByb2R1Y3Q6IHhvcmcKICAgICAgICAgICBWZXJzaW9uOiBnaXQKICAgICAgICAg
-IFBsYXRmb3JtOiB4ODYgKElBMzIpCiAgICAgICAgT1MvVmVyc2lvbjogTGludXggKEFsbCkKICAg
-ICAgICAgICAgU3RhdHVzOiBORVcKICAgICAgICAgIFNldmVyaXR5OiBjcml0aWNhbAogICAgICAg
-ICAgUHJpb3JpdHk6IG1lZGl1bQogICAgICAgICBDb21wb25lbnQ6IERyaXZlci9ub3V2ZWF1CiAg
-ICAgICAgQXNzaWduZWRUbzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKICAgICAgICBS
-ZXBvcnRlZEJ5OiBkZWxldGVzb2Z0d2FyZUB5YW5kZXgucnUKICAgICAgICAgUUFDb250YWN0OiB4
-b3JnLXRlYW1AbGlzdHMueC5vcmcKCgpDcmVhdGVkIGFuIGF0dGFjaG1lbnQgKGlkPTE2NzY5KQog
-LS0+IChodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9MTY3Njkp
-CkNyYXNoaW5nIFguT3JnIFNlcnZlciBzZXNzaW9uIGxvZy4KCklmIEkgc3RhcnQgeGZtZWRpYSB3
-aXRoIGEgdmlkZW8sIFguT3JnIHNodXRzIGRvd24gYmVjYXVzZSBvZiBhIGZhdGFsIGVycm9yIGFu
-ZApyZXN0YXJ0cy4KCkRlYmlhbiBHTlUvTGludXggbGVubnkvc2lkIGkzODYsIE5WNDMgKFhGWCBH
-ZUZvcmNlIDY2MDBMRSAxMjhNaUIpLgp4c2VydmVyLXhvcmcgICAgICAxOjcuMysxMAp4c2VydmVy
-LXhvcmctY29yZSAyOjEuMy4wLjAuZGZzZy0xMmxlbm55MgoKLS0tCkJvdGggdmlkZW9zIGFyZSBp
-biBPZ2cvVGhlb3JhK1ZvcmJpczoKCjEuIHJtc19ncGx2M19sYXVuY2hfaGlnaF9xdWFsaXR5Lm9n
-ZyAoMTAzTUIpIGZyb20gaHR0cDovL2dwbHYzLmZzZi5vcmcvClVzdWFsbHkgY3Jhc2hlcyBpbW1l
-ZGlhdGVseSBhZnRlciB0aGUgdmlkZW8gd2luZG93IGFwcGVhcnMuCgoyLiBiaWdfYnVja19idW5u
-eV83MjBfc3RlcmVvLm9nZyAoMTk3TUIpIGZyb20KaHR0cDovL3d3dy5hcmNoaXZlLm9yZy9kZXRh
-aWxzL0JpZ0J1Y2tCdW5ueTEyODB4NzIwU3RlcmVvClVzdWFsbHkgdGFrZXMgYSBjb3VwbGUgb2Yg
-c2Vjb25kcyBvciBtb3JlIHRvIGNyYXNoLgotLS0KCkkgaGF2ZSB0cmllZDoKCkRSTSB3aXRoIGxh
-c3QgY2hlY2staW4gb24gMjAwODA1MjJUMjM6Mzk6NTRaClggZHJpdmVyIHdpdGggbGFzdCBjLWkg
-b24gMjAwODA1MjJUMTk6MDg6NDhaCihEZWJpYW4gcGFja2FnZXMgY3VycmVudGx5IGF2YWlsYWJs
-ZSBhdApodHRwOi8vd3d3Lm00cjNrLm9yZy9zdG9yYWdlL25vdXZlYXUvbm91dmVhdS8yMDA4LTA1
-LTI1LyApCgphbmQgdHdvIG9sZGVyIHZlcnNpb25zLCB0aGUgb2xkZXN0IG9uZSB3YXMKRFJNIDIw
-MDgwMTE3VDIzOjUxOjU2WgpYICAgMjAwODAxMThUMTY6NTBaClRoZSBmaXJzdCB2aWRlbyBkaWRu
-4oCZdCBjcmFzaCB3aXRoIGl0LCB0aGVyZSB3YXMganVzdCBubyBwaWN0dXJlLgooaGF2ZW7igJl0
-IHRyaWVkIG9sZGVyIHRoYW4gdGhhdCkKCgpUaGUgZHJpdmVyIGluIFhmbWVkaWEgd2FzIHNldCB0
-byDigJx4duKAnSwgYnV0IHdpdGggdGhlIGxhdGVzdCBkcml2ZXIgSSBoYXZlCmFsc28gdHJpZWQg
-4oCceHNobeKAnSBhbmQg4oCcbm9uZeKAnS4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6
-Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlv
-dSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFz
-c2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=16119
+
+
+
+
+
+--- Comment #1 from Aleksej R. Serdyukov <deletesoftware-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org>  2008-05-27 11:19:19 PST ---
+Created an attachment (id=16770)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16770)
+what appears in kern.log and syslog
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
