@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16120] White or black vertical stripes/ fencing on
- whole display with NV34M
-Date: Tue, 27 May 2008 11:37:48 -0700 (PDT)
-Message-ID: <20080527183748.C8522130056@annarchy.freedesktop.org>
-References: <bug-16120-8800@http.bugs.freedesktop.org/>
+From: Vincent Caron <vincent-8eMmcXuTIyTk1uMJSBkQmQ@public.gmane.org>
+Subject: Re: Close succes en NV34M, vertical fencing problem
+Date: Tue, 27 May 2008 20:38:45 +0200
+Message-ID: <1211913525.6322.105.camel@zerolap.home>
+References: <1211549991.6519.18.camel@zerolap.home>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1211549991.6519.18.camel-9n3YtaOY/Mj9zxVx7UNMDg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16120
-
-
-
-
-
---- Comment #3 from Vincent Caron <vincent-8eMmcXuTIyTk1uMJSBkQmQ@public.gmane.org>  2008-05-27 11:37:48 PST ---
-Created an attachment (id=16775)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16775)
-Xorg log while *still* seeing the mentionned striping/fencing effect with nv
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gdmVuLCAyMDA4LTA1LTIzIGF0IDE1OjM5ICswMjAwLCBWaW5jZW50IENhcm9uIHdyb3RlOgo+
+IEhlbGxvIGxpc3QsCj4gCj4gICBJIGp1c3QgaGFkIGEgZmlyc3Qgc2hvdCBhdCB0aGUgIm5vdXZl
+YXUiIFhvcmcgZHJpdmVyLCBJJ20gYSByZWd1bGFyCj4gIm52IiB1c2VyLiBJdCBjb21waWxlZCBh
+bmQgaW5zdGFsbGVkIHdpdGhvdXQgYSBpdGNoIGluIGEgc2hvcnQgdGltZSwKPiBjb25ncmF0cyAo
+Z3JlYXQgaW5zdHJ1Y3Rpb25zIG9uCj4gaHR0cDovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3JnL3dp
+a2kvSW5zdGFsbE5vdXZlYXUpLCByYW4gZmluZS4uLiBidXQKPiB3aXRoIGEgZnVubnkgdmVydGlj
+YWwgZmVuY2luZyBlZmZlY3Q6IG9uZSB2ZXJ0aWNhbCBsaW5lIG91dCBvZiB0d28gd2FzCj4gYmxh
+Y2suIEFmdGVyIGEgZmV3IG1pbnV0ZXMsIHRoZSBlZmZlY3Qgd291bGQgc3BvbnRhbmVvdXNseSDv
+u79zd2l0Y2ggKG5vCj4gaW5wdXQgZnJvbSBtZSwgbm8gYXBwIGFjdGl2aXR5KSB0byB3aGl0ZSB2
+ZXJ0aWNhbCBsaW5lcyB3aXRoIHRoZSBzYW1lCj4gc3RyaXBwaW5nIHNldHVwICh3aGljaCBnaXZl
+cyBhICJkaW1taW5nIiBvciAiZW5saWdodGVuaW5nIiBlZmZlY3QgKwo+IHJhdGhlciBjcnVuY2h5
+IHRleHQpLgoKICBGb3IgdGhlIHJlY29yZCwgSSd2ZSBmaWxsZWQgYSBidWcgd2l0aCB0aGVzZSBp
+bmZvcm1hdGlvbnM6CgogIGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
+P2lkPTE2MTIwCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
