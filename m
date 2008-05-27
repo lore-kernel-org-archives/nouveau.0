@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16120] White or black vertical stripes/ fencing on
  whole display with NV34M
-Date: Tue, 27 May 2008 11:36:36 -0700 (PDT)
-Message-ID: <20080527183636.6F4B2130052@annarchy.freedesktop.org>
+Date: Tue, 27 May 2008 11:37:26 -0700 (PDT)
+Message-ID: <20080527183726.AD7A6130052@annarchy.freedesktop.org>
 References: <bug-16120-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16120
 
 
 
---- Comment #1 from Vincent Caron <vincent-8eMmcXuTIyTk1uMJSBkQmQ@public.gmane.org>  2008-05-27 11:36:35 PST ---
-Created an attachment (id=16773)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16773)
-Kernel log while inserting and using nouveau DRM
+--- Comment #2 from Vincent Caron <vincent-8eMmcXuTIyTk1uMJSBkQmQ@public.gmane.org>  2008-05-27 11:37:25 PST ---
+Created an attachment (id=16774)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16774)
+Xorg log while seeing the mentionned striping/fencing effect with nouveau
 
 
 -- 
