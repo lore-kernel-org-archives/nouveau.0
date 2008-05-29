@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16148] New: primary display is borked with RandR12
-	enabled
-Date: Thu, 29 May 2008 05:22:23 -0700 (PDT)
-Message-ID: <bug-16148-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16148] primary display is borked with RandR12 enabled
+Date: Thu, 29 May 2008 05:23:15 -0700 (PDT)
+Message-ID: <20080529122315.30C43130052@annarchy.freedesktop.org>
+References: <bug-16148-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16148-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +22,15 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=16148
 
-           Summary: primary display is borked with RandR12 enabled
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: khadgaray-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=16807)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=16807)
-Xorg log
 
-Primary (laptop's) display is borked, when RandR12 option is enabled.
-Additionally, when using DVI conector the secondary display also starts acting
-weird ( rainbow coloured checkboxes).
 
-Version-Release number of selected component (if applicable):
-kernel-2.6.25-14.fc9.i686
-xorg-x11-drv-nouveau-0.0.10-2.20080408git0991281.fc9.i386
+--- Comment #1 from Ritesh Khadgaray <khadgaray-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-05-29 05:23:14 PST ---
+i have reported this bug to FC9.
+https://bugzilla.redhat.com/show_bug.cgi?id=446626
 
-How reproducible:
-always
-
-Steps to Reproduce:
-1. Enable RandR12 option
-2. Enable dual-head using gnome-display-properties
-3. Display goes crazy
-
-Actual results:
-Crazy psychedelic coloured display
-
-Expected results:
-Sane boring functional display
-
-Additional info:
-xorg log attached
+This issue is reproducible when using the latest driver from git repo.
 
 
 -- 
