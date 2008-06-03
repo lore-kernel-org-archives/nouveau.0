@@ -1,11 +1,13 @@
-From: Mihai Georgian <mihai-qazKcTl6WRFWk0Htik3J/w@public.gmane.org>
-Subject: Clock speed for GeForce 6100
-Date: Sun, 01 Jun 2008 18:35:33 +0100
-Message-ID: <1212341733.27920.16.camel@meme.inline.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 14532] Crash on xvtest with NV Video Blitter of NV44
+Date: Mon,  2 Jun 2008 22:13:32 -0700 (PDT)
+Message-ID: <20080603051332.6FBF8130058@annarchy.freedesktop.org>
+References: <bug-14532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-14532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpUaGUgbm91dmVhdSBkcml2ZXIgb24gbXkgTVNJIEs5TjZHTSAoR2VGb3JjZSA2MTAwIG5G
-b3JjZSA0MDUpCm1vdGhlcmJvYXJkIGdlbmVyYXRlcyBhIGRvdCBjbG9jayBzcGVlZCB3aGljaCBp
-cyBhYm91dCA4JSBsb3dlciB0aGFuIHRoZQp2YWx1ZSBnaXZlbiBpbiB4b3JnLmNvbmYuIFRoZSBz
-YW1lIGhhcHBlbnMgd2l0aCB0aGUgbnYgZHJpdmVyLiBUaGUgc2FtZQphcHBlYXJzIHRvIGhhcHBl
-biB3aXRoIG90aGVyIG1vdGhlcmJvYXJkcyB3aXRoIEdlRm9yY2UgNjEwMCAoc2VlCkJ1Z3ppbGxh
-IOKAkyBCdWcgMTIwMDIpLgoKSSBoYXZlIHNlZW4gcmVwb3J0cyBvZiBuVmlkaWEgdXNpbmcgdGhl
-IFBDSUUgY2xvY2sgLyA0IHRvIGRyaXZlIHNvbWUgb2YKdGhlaXIgY2FyZHMgYW5kIEkgbm90aWNl
-ZCB0aGF0IDI3MDAwIC8gMjUwMDAgPSAxLjA4LiBBcHBseWluZyB0aGUKZm9sbG93aW5nIHBhdGNo
-IHJlc29sdmVkIG15IHByb2JsZW0gYW5kIG5vdyB0aGUgbm91dmVhdSBkcml2ZXIgd29ya3MKZmlu
-ZSBmb3IgbWU6CgpkaWZmIC11ciB4Zjg2LXZpZGVvLW52LTIuMS42L25vdXZlYXUtMjAwNzA5MjAv
-c3JjL252X3NldHVwLmMKeGY4Ni12aWRlby1udi0yLjEuNi5taWhhaS9ub3V2ZWF1LTIwMDcwOTIw
-L3NyYy9udl9zZXR1cC5jCi0tLSB4Zjg2LXZpZGVvLW52LTIuMS42L25vdXZlYXUtMjAwNzA5MjAv
-c3JjL252X3NldHVwLmMgMjAwNy0wOS0xOQoyMzoxNzozOS4wMDAwMDAwMDAgKzAxMDAKKysrIHhm
-ODYtdmlkZW8tbnYtMi4xLjYubWloYWkvbm91dmVhdS0yMDA3MDkyMC9zcmMvbnZfc2V0dXAuYwoy
-MDA4LTA2LTAxIDE1OjQ1OjUzLjAwMDAwMDAwMCArMDEwMApAQCAtMzMzLDcgKzMzMywxMCBAQAog
-ICAgIGlmKHBOdi0+dHdvSGVhZHMgJiYgKGltcGxlbWVudGF0aW9uICE9IENISVBTRVRfTlYxMSkp
-CiAgICAgewogICAgICAgIGlmKG52UmVhZEVYVERFVihwTnYsIDB4MDAwMCkgJiAoMSA8PCAyMikp
-Ci0gICAgICAgICAgIHBOdi0+Q3J5c3RhbEZyZXFLSHogPSAyNzAwMDsKKyAgICAgICAgICAgaWYo
-aW1wbGVtZW50YXRpb24gPT0gQ0hJUFNFVF9DNTEyKQorICAgICAgICAgICAgICAgcE52LT5Dcnlz
-dGFsRnJlcUtIeiA9IDI1MDAwOworICAgICAgICAgICBlbHNlCisgICAgICAgICAgICAgICBwTnYt
-PkNyeXN0YWxGcmVxS0h6ID0gMjcwMDA7CiAgICAgfQoKICAgICBwTnYtPkNVUlNPUiAgICAgICAg
-ICAgPSBOVUxMOyAgLyogY2FuJ3Qgc2V0IHRoaXMgaGVyZSAqLwoKQSBzaW1pbGFyIHBhdGNoIGZp
-eGVkIHRoZSBudiBkcml2ZXIuCgpUaGUgYWJvdmUgcGF0Y2ggaXMgYWdhaW5zdCB0aGUgbm91dmVh
-dSB2ZXJzaW9uIHdoaWNoIGNvbWVzIHdpdGggRmVkb3JhIDgKYnV0LCBsb29raW5nIGF0IHRoZSBj
-dXJyZW50IGdpdCwgaXQgYXBwZWFycyB0aGF0IHRoaXMgcGFydCBvZiB0aGUgY29kZQpoYXNuJ3Qg
-Y2hhbmdlZCByZWNlbnRseS4KClJlZ2FyZHMsCgpNaWhhaQoKCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=14532
+
+
+
+
+
+--- Comment #2 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-06-02 22:13:31 PST ---
+anything useful in syslog or dmesg?
+
+danny
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
