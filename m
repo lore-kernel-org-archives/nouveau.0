@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16233] [Randr12] Server crash when detecting DVI
 	output change
-Date: Wed,  4 Jun 2008 14:52:47 -0700 (PDT)
-Message-ID: <20080604215247.67173130009@annarchy.freedesktop.org>
+Date: Wed,  4 Jun 2008 14:53:41 -0700 (PDT)
+Message-ID: <20080604215341.65843130009@annarchy.freedesktop.org>
 References: <bug-16233-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16233
 
 
-Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #16917|application/octet-stream    |text/plain
-          mime type|                            |
 
 
+
+--- Comment #2 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-06-04 14:53:40 PST ---
+Created an attachment (id=16918)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16918)
+dmesg log, after crashing with 'xrandr' and X restarting.
 
 
 -- 
