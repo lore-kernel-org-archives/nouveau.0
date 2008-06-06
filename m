@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16252] nv11 and CRT SyncMaster 753DFX doesn't work
  in randr12 mode
-Date: Fri,  6 Jun 2008 02:39:55 -0700 (PDT)
-Message-ID: <20080606093957.89FE9130056@annarchy.freedesktop.org>
+Date: Fri,  6 Jun 2008 02:42:37 -0700 (PDT)
+Message-ID: <20080606094241.7DFDE130058@annarchy.freedesktop.org>
 References: <bug-16252-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16252
 
 
-Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #16959|application/octet-stream    |text/plain
-          mime type|                            |
 
 
+
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2008-06-06 02:42:31 PST ---
+Created an attachment (id=16961)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16961)
+Video BIOS (from sysfs)
+
+procedure was:
+cd into sysfs, find my card
+echo 1 > rom
+cat rom > ~/file
 
 
 -- 
