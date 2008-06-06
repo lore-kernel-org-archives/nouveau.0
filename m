@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16252] nv11 and CRT SyncMaster 753DFX doesn't work
- in randr12 mode
-Date: Fri,  6 Jun 2008 08:48:15 -0700 (PDT)
-Message-ID: <20080606154815.74D08130009@annarchy.freedesktop.org>
-References: <bug-16252-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13864] crash on server restart
+Date: Fri,  6 Jun 2008 09:22:15 -0700 (PDT)
+Message-ID: <20080606162215.C72B3130059@annarchy.freedesktop.org>
+References: <bug-13864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16252-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13864-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16252
+http://bugs.freedesktop.org/show_bug.cgi?id=13864
 
 
 
 
 
---- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2008-06-06 08:48:15 PST ---
-this card has one VGA and one S-video output
+--- Comment #16 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-06-06 09:22:14 PST ---
+It would really help if someone who actually had the issue look at it, because
+this is not easy to do blindly.
 
 
 -- 
