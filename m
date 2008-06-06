@@ -1,12 +1,14 @@
-From: "Daniele Palumbo @ CEM Industries" <dpalumbo-4l/mAhOi29/XDgm/V6EhcA@public.gmane.org>
-Subject: nouveau, Geforce 7050 and xen.
-Date: Fri, 6 Jun 2008 11:25:35 +0200
-Message-ID: <200806061125.35474.dpalumbo@cemindustries.it>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 16252] nv11 and CRT SyncMaster 753DFX doesn't work
+ in randr12 mode
+Date: Fri,  6 Jun 2008 05:08:07 -0700 (PDT)
+Message-ID: <20080606120807.0ADE5130052@annarchy.freedesktop.org>
+References: <bug-16252-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-16252-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,38 +18,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aGkuCgppcyAwMDoxMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRyb2xsZXI6IG5WaWRpYSBDb3Jwb3Jh
-dGlvbiBHZUZvcmNlIDcwNTAvbkZvcmNlIAo2MTBpIChyZXYgYTIpIHN1cHBvcnRlZD8KCmkgaGF2
-ZSBzdGFydGVkIGl0IGluIGEgZG9tMCB4ZW4ga2VybmVsLCBpIGNhbid0IHNlZSBmb250cy4KYnV0
-IGkgY2FuIHNlZSBza3lwZSBmb250cy4KCnRoZSBmYXEgZGlkIG5vdCBoZWxwICgzLjcuIEZvbnRz
-IGFyZSBnb25lKS4KCnRoYW5rcwpkLgotLSAKRGFuaWVsZSBQYWx1bWJvCiAKQ0VNIEluZHVzdHJp
-ZXMgc3JsIAogVmlhIFBpcmFubywgOCAKIDYxMDEwIFRhdnVsbGlhIChQVSkgSVRBTFkKIFRlbC46
-IDAwMzkgMDcyMSA0NzY3MzYg4oCTIDQ3Njc2NCAtIDQ3NjY2NQogRmF4OiAwMDM5IDA3MjEgOTAw
-MjI0CiB3d3cuY2VtaW5kdXN0cmllcy5pdAogCkxlIGluZm9ybWF6aW9uaSBjb250ZW51dGUgaW4g
-cXVlc3RhIG1haWwgZSBuZWdsaSBldmVudHVhbGkgYWxsZWdhdGksIHNvbm8gCnJpc2VydmF0ZSBl
-IGRlc3RpbmF0ZSBlc2NsdXNpdmFtZW50ZSBhbGxhIHBlcnNvbmEgc29wcmFpbmRpY2F0YS4gU2kg
-bm90aWZpY2EgCmEgY2hpIGxlZ2dlIGlsIHByZXNlbnRlIGF2dmlzbyAtIHNlIG5vbiDDqCBsJ2Vm
-ZmV0dGl2byBkZXN0aW5hdGFyaW8gbyBzZSBsYSAKcHJlc2VudGUgY29tdW5pY2F6aW9uZSDDqCBw
-ZXJ2ZW51dGEgcGVyIGVycm9yZSAtIGNoZSDDqCBwcm9pYml0byBsZWdnZXJlLCAKY29waWFyZSwg
-dXNhcmUgbyBkaWZmb25kZXJlIGlsIGNvbnRlbnV0byBkaSBxdWVzdGEgbWFpbCBlIGRlZ2xpIGV2
-ZW50dWFsaSAKZG9jdW1lbnRpIGFsbGVnYXRpIHNlbnphIGF1dG9yaXp6YXppb25lIGFpIHNlbnNp
-IGRlbGwnYXJ0LiA2MTYgZGVsIENvZGljZSAKUGVuYWxlIChWaW9sYXppb25lLCBzb3R0cmF6aW9u
-ZSBlIHNvcHByZXNzaW9uZSBkaSBjb3JyaXNwb25kZW56YSkgZSBhaSBzZW5zaSAKZGVsIEQuTGdz
-LiAxOTYvMjAwMy4KU2UgYXZldGUgcmljZXZ1dG8gcXVlc3RvIG1lc3NhZ2dpbyBwZXIgZXJyb3Jl
-LCBzaWV0ZSBwcmVnYXRpIGRpIHJpc3BlZGlybG8gYWwgCm1pdHRlbnRlLCBpbmZvcm1hbmRvY2kg
-aW1tZWRpYXRhbWVudGUsIGRpc3RydWdnZW5kbyBpbCBjb250ZW51dG8gZGkgcXVlc3RhIAptYWls
-IGUgZ2xpIGV2ZW50dWFsaSBkb2N1bWVudGkgYWxsZWdhdGkuClRoaXMgZS1tYWlsIGFuZCBhbnkg
-YXR0YWNobWVudCBoZXJldG8gaXMgaW50ZW5kZWQgb25seSBmb3IgdGhlIHBlcnNvbiBvciAKZW50
-aXR5IHRvIHdoaWNoIGlzIGFkZHJlc3NlZCBhbmQgbWF5IGNvbnRhaW4gaW5mb3JtYXRpb24gdGhh
-dCBpcyBwcml2aWxlZ2VkLCAKY29uZmlkZW50aWFsIG9yIG90aGVyd2lzZSBwcm90ZWN0ZWQgZnJv
-bSBkaXNjbG9zdXJlLiBDb3B5aW5nLCBkaXNzZW1pbmF0aW9uIApvciB1c2Ugb2YgdGhpcyBlLW1h
-aWwgb3IgdGhlIGluZm9ybWF0aW9uIGhlcmVpbiBieSBhbnlvbmUgb3RoZXIgdGhhbiB0aGUgCmlu
-dGVuZGVkIHJlY2lwaWVudCBpcyBwcm9oaWJpdGVkIGFjY29yZGluZyB0byBhcnQuIDYxNiBjLnAu
-IGFuZCB0byB0aGUgCmxlZ2lzbGF0aXZlIERlY3JlZSAxOTYvMjAwMy4gSWYgeW91ciBoYXZlIHJl
-Y2VpdmVkIHRoaXMgZS1tYWlsIGJ5IG1pc3Rha2UsIApwbGVhc2Ugbm90aWZ5IHVzIGltbWVkaWF0
-ZWx5IGJ5IHRlbGVwaG9uZS4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=16252
+
+
+
+
+
+--- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2008-06-06 05:08:06 PST ---
+Created an attachment (id=16962)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=16962)
+x log with randr12 enabled
+
+Nice crash at the end, in fact.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
