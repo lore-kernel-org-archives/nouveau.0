@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16285] First display corrupted when second screen
  plugged at boot
-Date: Mon,  9 Jun 2008 19:40:55 -0700 (PDT)
-Message-ID: <20080610024055.26F6B130056@annarchy.freedesktop.org>
+Date: Mon,  9 Jun 2008 21:52:56 -0700 (PDT)
+Message-ID: <20080610045256.51C5E130056@annarchy.freedesktop.org>
 References: <bug-16285-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,18 +24,36 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16285
 
 
+Benjamin Cama <benoar-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTABUG
 
 
 
---- Comment #2 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-06-09 19:40:54 PST ---
-Why do you have usefbdev in the conf? Not sure if it is causing trouble but it
-is better to remove it I think.
 
-Also, log indicates you are not using randr12, which means you probably are
-using an older copy of nouveau, in which it was not default. Without randr12
-dual screen cannot really work well, so consider updating to git.
+--- Comment #3 from Benjamin Cama <benoar-GANU6spQydw@public.gmane.org>  2008-06-09 21:52:55 PST ---
+OK, it was my fault, updating to the latest git did it work ... Sorry for not
+having tested that prior to reporting this problem. For the record, the version
+that make it work :
+drm commit 4b8aecbde8e62af5370d5401d49a8ab8d089fe8e
+DDX commit e034616ab2bbbc486f90c5f64e2bd2de194cf92e
 
-d.
+And it works really well actually : it even detected the extended resolution
+(1680x1050) of my LCD without a itch. This is really nice. Even Xv works quite
+well.
+
+The only "problem" is that since I switched to offb, I don't have any more
+console VT ... but now I am not stuck anymore because of some strange DMA
+problem it seems (I didn't extensively test that) when switching VT.
+
+Concerning UseFBDev, I didn't change anything and it's still set to true. If
+someone could explain me the meaning of this option, I'd be glad, as it never
+changed anything on all the linux boxes I touched ...
+
+Thanks for all !
 
 
 -- 
