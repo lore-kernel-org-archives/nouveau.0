@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16285] First display corrupted when second screen
  plugged at boot
-Date: Mon,  9 Jun 2008 17:21:51 -0700 (PDT)
-Message-ID: <20080610002152.001D1130059@annarchy.freedesktop.org>
+Date: Mon,  9 Jun 2008 19:40:55 -0700 (PDT)
+Message-ID: <20080610024055.26F6B130056@annarchy.freedesktop.org>
 References: <bug-16285-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16285
 
 
 
---- Comment #1 from Benjamin Cama <benoar-GANU6spQydw@public.gmane.org>  2008-06-09 17:21:48 PST ---
-Created an attachment (id=17020)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17020)
-xorg log
+--- Comment #2 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-06-09 19:40:54 PST ---
+Why do you have usefbdev in the conf? Not sure if it is causing trouble but it
+is better to remove it I think.
+
+Also, log indicates you are not using randr12, which means you probably are
+using an older copy of nouveau, in which it was not default. Without randr12
+dual screen cannot really work well, so consider updating to git.
+
+d.
 
 
 -- 
