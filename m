@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16285] First display corrupted when second screen
- plugged at boot
-Date: Mon,  9 Jun 2008 21:52:56 -0700 (PDT)
-Message-ID: <20080610045256.51C5E130056@annarchy.freedesktop.org>
-References: <bug-16285-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16269] NV47 DVI DPMS scary loop
+Date: Tue, 10 Jun 2008 01:05:54 -0700 (PDT)
+Message-ID: <20080610080556.666C0130058@annarchy.freedesktop.org>
+References: <bug-16269-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16285-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16269-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16285
-
-
-Benjamin Cama <benoar-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |NOTABUG
-
-
-
-
---- Comment #3 from Benjamin Cama <benoar-GANU6spQydw@public.gmane.org>  2008-06-09 21:52:55 PST ---
-OK, it was my fault, updating to the latest git did it work ... Sorry for not
-having tested that prior to reporting this problem. For the record, the version
-that make it work :
-drm commit 4b8aecbde8e62af5370d5401d49a8ab8d089fe8e
-DDX commit e034616ab2bbbc486f90c5f64e2bd2de194cf92e
-
-And it works really well actually : it even detected the extended resolution
-(1680x1050) of my LCD without a itch. This is really nice. Even Xv works quite
-well.
-
-The only "problem" is that since I switched to offb, I don't have any more
-console VT ... but now I am not stuck anymore because of some strange DMA
-problem it seems (I didn't extensively test that) when switching VT.
-
-Concerning UseFBDev, I didn't change anything and it's still set to true. If
-someone could explain me the meaning of this option, I'd be glad, as it never
-changed anything on all the linux boxes I touched ...
-
-Thanks for all !
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNjI2OQoKCgoKCi0t
+LSBDb21tZW50ICM0IGZyb20gUm9jIFZhbGzDqHMgRG9tw6huZWNoIDx2YWxsZXNyb2NAZ21haWwu
+Y29tPiAgMjAwOC0wNi0xMCAwMTowNTo1MCBQU1QgLS0tCkp1c3Qgc2VudCBhIHRyYWNlIHRvIHRo
+ZSBtbWlvdHJhY2VzIGFkZHJlc3MuIFN1YmplY3QgaXMgImJ1ZyAxNjI2OSIuCgpUaGUgdHJhY2Ug
+Y29udGFpbnMgWCBzdGFydHVwLCB4c2V0IGRwbXMgZm9yY2Ugb2ZmIGFuZCBvbiwgd2l0aCBtYXJr
+ZXJzCmV2ZXJ5d2hlcmUuCgpJIGhvcGUgdGhpcyBoZWxwcyBmaWd1cmUgb3V0IGhvdyB0aGUgYmxv
+YiBwcm9wZXJseSBkb2VzIHR1cm4gdGhlIFRGVCBvZmYuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWls
+OiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0t
+LS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJl
+IHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
