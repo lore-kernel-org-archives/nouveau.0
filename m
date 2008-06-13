@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16231] Xv tearing after upgrade to Fedora 9
-Date: Fri, 13 Jun 2008 14:48:27 -0700 (PDT)
-Message-ID: <20080613214827.0FA61130052@annarchy.freedesktop.org>
+Date: Fri, 13 Jun 2008 14:54:32 -0700 (PDT)
+Message-ID: <20080613215432.530E0130052@annarchy.freedesktop.org>
 References: <bug-16231-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16231
 
 
 
---- Comment #4 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-06-13 14:48:26 PST ---
-For reference, here's the diff that causes this:
-
-http://gitweb.freedesktop.org/?p=xorg/xserver.git;a=blobdiff;h=c557eebc4de017e2bd266b7fe0bb9e5d1c791038;hp=630f1042c103cc1e7525f621cce9c84367774c3c;hb=ae7f71a8b3d6756161e55d998d6eec37d2695c98;f=composite/compinit.c
-
-It causes an implicit redirect whenever backing store is enabled. So one
-"solution" is simply to disable the composite extension.
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-06-13 14:54:31 PST ---
+NVWaitVSync stalls everything, this is not useful for generic rendering. Better
+solutions involve a lot more effort (and i'm certainly not the one to judge
+what is the right way). The problem you want solved is a lot larger then you
+might think.
 
 
 -- 
