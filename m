@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16327] New: Graphical corruption with NVCrush11.
-Date: Thu, 12 Jun 2008 21:31:28 -0700 (PDT)
-Message-ID: <bug-16327-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16327] Graphical corruption with NVCrush11.
+Date: Thu, 12 Jun 2008 21:39:51 -0700 (PDT)
+Message-ID: <20080613043951.E2BF9130052@annarchy.freedesktop.org>
+References: <bug-16327-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16327-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=16327
 
-           Summary: Graphical corruption with NVCrush11.
-           Product: xorg
-           Version: 7.3
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=17091)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17091)
-xorg.conf
 
-GTK is not rendering nicely using nouveau driver, icons are missing and other
-widgets are incomplete.
 
-$ lspci | grep NV
-02:00.0 VGA compatible controller: nVidia Corporation NVCrush11 [GeForce2 MX
-Integrated Graphics] (rev b1)
-
-Debian unstable, 2.6.25.2 kernel. Xorg 7.3.
-
-Attached are:
-/etc/X11/xorg.conf
-dmesg output (with drm and nouveau modules loaded with debug=1)
-a screenshot with Firefox showing the problem
+--- Comment #1 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org>  2008-06-12 21:39:51 PST ---
+Created an attachment (id=17092)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17092)
+Snip of the dmesg (the complete log was 85MB)
 
 
 -- 
