@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16231] Xv tearing after upgrade to Fedora 9
-Date: Fri, 13 Jun 2008 13:35:48 -0700 (PDT)
-Message-ID: <20080613203548.B74DE130056@annarchy.freedesktop.org>
+Date: Fri, 13 Jun 2008 13:52:47 -0700 (PDT)
+Message-ID: <20080613205247.C9F5F130056@annarchy.freedesktop.org>
 References: <bug-16231-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,18 +26,24 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16231
 
 
 
---- Comment #2 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-06-13 13:35:46 PST ---
-After some debugging and discussion on #nouveau, it was determined that this is
-caused by mplayer creating its windows with backing store enabled. The newer
-Xorg in F9 makes these windows end up off screen, which makes nouveau ignore
-syncing (rightfully so).
+--- Comment #3 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-06-13 13:52:47 PST ---
+One solution is also to make sure things are vsync:ed when they are transferred
+on screen by the X server. I did a quick hack in NVExaCopy() that solved the
+issue:
 
-So the question is how/why this worked in the Xorg in F8 and if that behaviour
-can be moved over to the new server. It might also simply be that mplayer
-shouldn't be requesting backing store.
+        if (NVExaPixmapIsOnscreen(pDstPixmap)) {
+                uint8_t crtcs = nv_window_belongs_to_crtc(pScrn, dstX, dstY,
+width, height);
 
-Btw, the log says that backing store is disabled which I'd expect to give the
-effect that windows are always created without it.
+                FIRE_RING();
+                if (crtcs & 0x1)
+                        NVWaitVSync(pScrn, 0);
+                else if (crtcs & 0x2)
+                        NVWaitVSync(pScrn, 1);
+        }
+
+It slows down a whole bunch of operations though, so it would need to be a bit
+more clever.
 
 
 -- 
