@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16327] Graphical corruption with NVCrush11.
-Date: Thu, 12 Jun 2008 21:41:01 -0700 (PDT)
-Message-ID: <20080613044101.32DD3130056@annarchy.freedesktop.org>
+Date: Thu, 12 Jun 2008 21:41:51 -0700 (PDT)
+Message-ID: <20080613044151.D952D130052@annarchy.freedesktop.org>
 References: <bug-16327-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16327
 
 
 
---- Comment #2 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org>  2008-06-12 21:41:00 PST ---
-Created an attachment (id=17093)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17093)
-Xorg log file
+--- Comment #3 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org>  2008-06-12 21:41:51 PST ---
+Created an attachment (id=17094)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17094)
+Problem screenshot
 
 
 -- 
