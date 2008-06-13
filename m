@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16269] NV47 DVI DPMS scary loop
-Date: Tue, 10 Jun 2008 01:05:54 -0700 (PDT)
-Message-ID: <20080610080556.666C0130058@annarchy.freedesktop.org>
-References: <bug-16269-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16327] New: Graphical corruption with NVCrush11.
+Date: Thu, 12 Jun 2008 21:31:28 -0700 (PDT)
+Message-ID: <bug-16327-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16269-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +18,42 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNjI2OQoKCgoKCi0t
-LSBDb21tZW50ICM0IGZyb20gUm9jIFZhbGzDqHMgRG9tw6huZWNoIDx2YWxsZXNyb2NAZ21haWwu
-Y29tPiAgMjAwOC0wNi0xMCAwMTowNTo1MCBQU1QgLS0tCkp1c3Qgc2VudCBhIHRyYWNlIHRvIHRo
-ZSBtbWlvdHJhY2VzIGFkZHJlc3MuIFN1YmplY3QgaXMgImJ1ZyAxNjI2OSIuCgpUaGUgdHJhY2Ug
-Y29udGFpbnMgWCBzdGFydHVwLCB4c2V0IGRwbXMgZm9yY2Ugb2ZmIGFuZCBvbiwgd2l0aCBtYXJr
-ZXJzCmV2ZXJ5d2hlcmUuCgpJIGhvcGUgdGhpcyBoZWxwcyBmaWd1cmUgb3V0IGhvdyB0aGUgYmxv
-YiBwcm9wZXJseSBkb2VzIHR1cm4gdGhlIFRGVCBvZmYuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWls
-OiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0t
-LS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJl
-IHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=16327
+
+           Summary: Graphical corruption with NVCrush11.
+           Product: xorg
+           Version: 7.3
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=17091)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17091)
+xorg.conf
+
+GTK is not rendering nicely using nouveau driver, icons are missing and other
+widgets are incomplete.
+
+$ lspci | grep NV
+02:00.0 VGA compatible controller: nVidia Corporation NVCrush11 [GeForce2 MX
+Integrated Graphics] (rev b1)
+
+Debian unstable, 2.6.25.2 kernel. Xorg 7.3.
+
+Attached are:
+/etc/X11/xorg.conf
+dmesg output (with drm and nouveau modules loaded with debug=1)
+a screenshot with Firefox showing the problem
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
