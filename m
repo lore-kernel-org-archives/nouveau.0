@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16231] Xv tearing after upgrade to Fedora 9
-Date: Fri, 13 Jun 2008 13:52:47 -0700 (PDT)
-Message-ID: <20080613205247.C9F5F130056@annarchy.freedesktop.org>
+Date: Fri, 13 Jun 2008 14:48:27 -0700 (PDT)
+Message-ID: <20080613214827.0FA61130052@annarchy.freedesktop.org>
 References: <bug-16231-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,24 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16231
 
 
 
---- Comment #3 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-06-13 13:52:47 PST ---
-One solution is also to make sure things are vsync:ed when they are transferred
-on screen by the X server. I did a quick hack in NVExaCopy() that solved the
-issue:
+--- Comment #4 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-06-13 14:48:26 PST ---
+For reference, here's the diff that causes this:
 
-        if (NVExaPixmapIsOnscreen(pDstPixmap)) {
-                uint8_t crtcs = nv_window_belongs_to_crtc(pScrn, dstX, dstY,
-width, height);
+http://gitweb.freedesktop.org/?p=xorg/xserver.git;a=blobdiff;h=c557eebc4de017e2bd266b7fe0bb9e5d1c791038;hp=630f1042c103cc1e7525f621cce9c84367774c3c;hb=ae7f71a8b3d6756161e55d998d6eec37d2695c98;f=composite/compinit.c
 
-                FIRE_RING();
-                if (crtcs & 0x1)
-                        NVWaitVSync(pScrn, 0);
-                else if (crtcs & 0x2)
-                        NVWaitVSync(pScrn, 1);
-        }
-
-It slows down a whole bunch of operations though, so it would need to be a bit
-more clever.
+It causes an implicit redirect whenever backing store is enabled. So one
+"solution" is simply to disable the composite extension.
 
 
 -- 
