@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16231] Xv tearing after upgrade to Fedora 9
-Date: Fri, 13 Jun 2008 14:54:32 -0700 (PDT)
-Message-ID: <20080613215432.530E0130052@annarchy.freedesktop.org>
+Subject: [Bug 16231] Xv vsync and backing store don't mix in new
+	Xorg
+Date: Sat, 14 Jun 2008 02:38:47 -0700 (PDT)
+Message-ID: <20080614093847.45B0B130052@annarchy.freedesktop.org>
 References: <bug-16231-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +24,33 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16231
 
 
+Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |ajax-TAsg7VrFCGc@public.gmane.org
+            Summary|Xv tearing after upgrade to |Xv vsync and backing store
+                   |Fedora 9                    |don't mix in new Xorg
 
 
 
---- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-06-13 14:54:31 PST ---
-NVWaitVSync stalls everything, this is not useful for generic rendering. Better
-solutions involve a lot more effort (and i'm certainly not the one to judge
-what is the right way). The problem you want solved is a lot larger then you
-might think.
+
+--- Comment #6 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-06-14 02:38:46 PST ---
+The problem I want solved is to get mplayer to start working with vsync again.
+That doesn't have to mean that backing store gets vsync behaviour. Altough
+turning of composite works for my use case, it's probably not a good long term
+solution.
+
+I'm adding ajax as a cc here as he was the one that reimplemented the backing
+store.
+
+How did the backing store work before the rewrite? Did it track the damage of
+the framebuffer and had a backup copy? If so, was the change of behaviour in
+the new version fully realised?
+
+If the easiest route is to get applications to change, then some arguments are
+needed why this isn't a bug/regression in Xorg, but applications relying on
+something they were never supposed to have.
 
 
 -- 
