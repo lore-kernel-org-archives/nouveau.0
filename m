@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16366] New: Copyright of some source files is
-	non-free
-Date: Sun, 15 Jun 2008 18:23:40 -0700 (PDT)
-Message-ID: <bug-16366-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16375] New: Xv frame rate > refresh rate causes 100%
+	CPU usage
+Date: Mon, 16 Jun 2008 01:30:01 -0700 (PDT)
+Message-ID: <bug-16375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,11 +19,11 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16366
+http://bugs.freedesktop.org/show_bug.cgi?id=16375
 
-           Summary: Copyright of some source files is non-free
+           Summary: Xv frame rate > refresh rate causes 100% CPU usage
            Product: xorg
-           Version: unspecified
+           Version: git
           Platform: All
         OS/Version: All
             Status: NEW
@@ -31,26 +31,53 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16366
           Priority: medium
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: chris-nEBun6gpv0i26MyoF4Ad0Q@public.gmane.org
+        ReportedBy: drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Hi,
+This bug is about the issue where playing some videos causes X to eat 100% CPU
+for no apparent reason. It was known early that the cause was nouveau spinning
+on DMA notifiers, but it wasn't really known why. After an evening of
+debugging, I was able to explore the problem.
 
-The nv_cursor.c, nv_setup.c, nv_local.h, nv_hw.c, nv_exa.c, nv_dac.c and
-nv_dac.c files appear to be licensed in such a way that is not free software
-(only allows use, not redistribution or modification, etc):
+The issue occurs when PutImage() is called at a faster rate than images are
+transferred by the hardware. I.e. you get a backlog of frames you want to DMA.
+So the driver is doing exactly what it was supposed to do, it waits for a DMA
+notifier to become available.
 
-*snip*
+Now the bad assumption here was that waiting for a DMA notifier was a rare
+occurance. Unfortunately it can be provoked under quite normal circumstances:
 
-|*     NOTICE TO USER:   The source code  is copyrighted under  U.S. and     *|
-|*     international laws.  Users and possessors of this source code are     *|
-|*     hereby granted a nonexclusive,  royalty-free copyright license to     *|
-|*     use this code in individual and commercial software.
+1. Input video is a NTSC video at 30 FPS
 
-*snip*
+2. Monitor is running at 60 Hz
 
-It would be great if this could be relicensed to match the rest of Nouveau.
+3. The video is interlaced, and the deinterlacer is one that outputs an image
+each field, not each frame, effectively doubling the frame rate.
+
+4. The driver is waiting for vsync between each frame to avoid tearing.
+
+The result is a Xv stream at 60 Hz, which has very good odds of drowning the
+(vsync-locked) DMA engine.
+
+So you can't really solve the basic problem of the player wanting to output
+frames faster than is possible (again, because of the vsync restriction). What
+can be done is to make sure that waiting for a DMA notifier is done without
+hogging the CPU.
+
+For comparison, the radeon engine seems to do a blocking DRM call as its means
+of throttling. The driver uses a different design, but from what I can tell the
+throttling point is where it allocates FIFO space for the Xv image.
+
+
+
+Related to this issue is the fact that you can get incorrect frame orders on
+screen (the output tends to flicker a bit). This is an inherent effect of the
+racy design of libXv (and possibly the Xv protocol itself). When using
+XvShmPutImage(), there is no notifier that the server has had time to process
+the image. If it takes to long, your player will start overwriting the buffer
+with the next frame. With double buffring players (like mplayer), this will in
+most cases have the effect of frames getting displayed in the wrong order.
 
 
 -- 
