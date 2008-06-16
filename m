@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16375] Xv frame rate > refresh rate causes 100% CPU
 	usage
-Date: Mon, 16 Jun 2008 04:31:58 -0700 (PDT)
-Message-ID: <20080616113159.0952113005A@annarchy.freedesktop.org>
+Date: Mon, 16 Jun 2008 05:23:52 -0700 (PDT)
+Message-ID: <20080616122352.83BA6130009@annarchy.freedesktop.org>
 References: <bug-16375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,23 +27,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16375
 
 
 
---- Comment #1 from Arthur Huillet <arthur.huillet-dFvTVMYgtfk@public.gmane.org>  2008-06-16 04:31:58 PST ---
-Since this person forgot to mention it (I'm wondering why this deliberate lack
-of precision), this concerns the blitter and texture adapter. There are reasons
-to believe the overlay does not have this problem, though nothing was proven at
-this point.
+--- Comment #2 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2008-06-16 05:23:52 PST ---
+Right, sorry. I live in my own little world where I don't have any overlay
+support. :)
 
-Some design changes may be necessary to fix this, I'm leaving it to anybody
-interested because I have not investigated the issue and do not intend to.
+Sleeping is probably incorrect, yes. But a blocking DRM call might be the best
+long term solution. The kernel could use interrupts instead of polling the
+notifier.
 
-The suggestion of adding a sleep in notifier waits does not fix this problem
-but a very partly related issue (eating CPU when waiting), and has already been
-discussed in the past and considered incorrect due to insufficient precision of
-the wait (and maybe other things, I happen not to remember).
 
-Thanks for the comment at the end which - despite being only partly related
-again - explains the strange behavior all of us have observed on all adapters
-whenever the card was really too slow. Is there a possible fix here?
+As for Xv, that could always be fixed with a new protocol revision. It might be
+fixable just be modifying libXv, but looking at the protocol spec, I don't
+think that's possible.
 
 
 -- 
