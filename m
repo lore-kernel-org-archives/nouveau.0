@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16366] Copyright of some source files is non-free
-Date: Mon, 16 Jun 2008 09:32:49 -0700 (PDT)
-Message-ID: <20080616163249.7898D130059@annarchy.freedesktop.org>
-References: <bug-16366-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16342] NV15: Randr12 not usable
+Date: Tue, 17 Jun 2008 02:24:17 -0700 (PDT)
+Message-ID: <20080617092417.7EA4413005B@annarchy.freedesktop.org>
+References: <bug-16342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16366-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16366
+http://bugs.freedesktop.org/show_bug.cgi?id=16342
 
 
-Alan Coopersmith <alan.coopersmith-xsfywfwIY+M@public.gmane.org> changed:
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Keywords|                            |licence
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
+
+
+--- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-06-17 02:24:16 PST ---
+Now fixed. Since only the first unknown entry is reported, if you have
+subsequent unknown entry issues, reopen this bug and attach the file made by
+"dd if=/dev/mem of=vgabios bs=1k count=64 skip=768"
 
 
 -- 
