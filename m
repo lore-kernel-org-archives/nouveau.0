@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15206] [dualhead, randr12,
 	ppc] Second head displays nothing
-Date: Sat, 21 Jun 2008 14:40:26 -0700 (PDT)
-Message-ID: <20080621214026.5BDE3130052@annarchy.freedesktop.org>
+Date: Sat, 21 Jun 2008 16:23:01 -0700 (PDT)
+Message-ID: <20080621232301.DB2AE130056@annarchy.freedesktop.org>
 References: <bug-15206-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,16 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15206
 
 
+Robin Johnson <robbat2-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Depends on|                            |16171
 
 
 
---- Comment #14 from Robin Johnson <robbat2-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>  2008-06-21 14:40:25 PST ---
-Created an attachment (id=17284)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17284)
-New Xorg.log
 
-New Xorg.log that shows both DVI-D-{0,1} coming up on PPC64-32ul / NV43, but
-there is no actual output on DVI-D-1 yet.
+--- Comment #15 from Robin Johnson <robbat2-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>  2008-06-21 16:23:01 PST ---
+Ok, the bswap and color issue appears to be because of bug 16171 in
+xorg-server.
 
 
 -- 
