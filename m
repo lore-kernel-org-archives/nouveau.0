@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16450] New: Powerbook G4 12" (NV34M [GeForce FX
- Go5200]) freezes on X restart - Fedora 9
-Date: Fri, 20 Jun 2008 17:28:56 -0700 (PDT)
-Message-ID: <bug-16450-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16450] Powerbook G4 12" (NV34M [GeForce FX Go5200])
+ freezes on X restart - Fedora 9
+Date: Fri, 20 Jun 2008 17:29:24 -0700 (PDT)
+Message-ID: <20080621002924.8BB4B130009@annarchy.freedesktop.org>
+References: <bug-16450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16450-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=16450
 
-           Summary: Powerbook G4 12" (NV34M [GeForce FX Go5200]) freezes on
-                    X restart - Fedora 9
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=17273)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17273)
-nv X log
 
-I have tried the nouveau driver shipped with Fedora 9
-(xorg-x11-drv-nouveau-0.0.10-2.20080408git0991281.fc9.ppc) on my Powerobook G4
-12" (NV34M [GeForce FX Go5200]). X server starts up fine first time, but the
-machine locks up during a restart (or during boot when transitioning between
-rhgb and gdm). I have attached the X logs for the nv and nouveau drivers.
+
+--- Comment #1 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2008-06-20 17:29:24 PST ---
+Created an attachment (id=17274)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17274)
+nouveau X log
 
 
 -- 
