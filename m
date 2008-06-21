@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15206] [dualhead, randr12,
 	ppc] Second head displays nothing
-Date: Fri, 20 Jun 2008 19:35:38 -0700 (PDT)
-Message-ID: <20080621023539.029E7130059@annarchy.freedesktop.org>
+Date: Fri, 20 Jun 2008 19:36:00 -0700 (PDT)
+Message-ID: <20080621023600.332DC13005B@annarchy.freedesktop.org>
 References: <bug-15206-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,19 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15206
 
 
 
---- Comment #9 from Robin Johnson <robbat2-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>  2008-06-20 19:35:38 PST ---
-It's an endian problem.
-
-0x36 into the BIOS, there is a pointer to the DCB.
-On PPC, the pointer is _NOT_ swapped. If it does get swapped, then it points to
-a valid DCB structure. The definitions of le16_to_cpu/le32_to_cpu need
-changing!
-
-0000030: 0100 0000 b010 0b18 3036 2f32 342f 3035
-...
-0001810: 18cb bddc 4e85 18d8 18e4 18f0 18fe 1812
-
-See the attached hexdump of NVDA,BMP.
+--- Comment #10 from Robin Johnson <robbat2-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>  2008-06-20 19:35:59 PST ---
+Created an attachment (id=17275)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17275)
+Hexdump from /proc/device-tree/pci@0,f0000000/NVDA,Parent@0/NVDA,BMP
 
 
 -- 
