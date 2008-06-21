@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15206] [dualhead, randr12,
 	ppc] Second head displays nothing
-Date: Sat, 21 Jun 2008 14:39:35 -0700 (PDT)
-Message-ID: <20080621213935.819E8130056@annarchy.freedesktop.org>
+Date: Sat, 21 Jun 2008 14:40:26 -0700 (PDT)
+Message-ID: <20080621214026.5BDE3130052@annarchy.freedesktop.org>
 References: <bug-15206-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,19 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15206
 
 
 
---- Comment #13 from Robin Johnson <robbat2-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>  2008-06-21 14:39:34 PST ---
-Ok, I made some very significant progress now. The memory allocation issue was
-a bug in x11-drm, and was fixed by commit
-1915de2c56d71bbd04a7c085cbd35fbe8e33af9d.
+--- Comment #14 from Robin Johnson <robbat2-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>  2008-06-21 14:40:25 PST ---
+Created an attachment (id=17284)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17284)
+New Xorg.log
 
-The display does come up [1], and xrandr thinks that both outputs work.
-However, when I do "xrandr --output DVI-D-1 --right-of DVI-D-0", while the
-taskbar etc all expand, nothing goes onto the second display. The power LED
-continues it's blinking to indicate there is no signal.
-
-[1] Additionally, the bswap hack seems to have mucked up colors. White comes
-out as yellow. Magenta and cyan are reversed. Red and green are reversed.
-Attachment coming soon.
+New Xorg.log that shows both DVI-D-{0,1} coming up on PPC64-32ul / NV43, but
+there is no actual output on DVI-D-1 yet.
 
 
 -- 
