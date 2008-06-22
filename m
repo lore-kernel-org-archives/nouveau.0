@@ -1,51 +1,66 @@
-From: "Renato Caldas" <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Any Documentation Work Needed?
-Date: Sun, 22 Jun 2008 13:17:09 +0100
-Message-ID: <1caff7430806220517i42e719b4lded7791ba3810fe5@mail.gmail.com>
-References: <485D3F0C.2090407@sbcglobal.net>
+From: "Maarten Maathuis" <madman2003@gmail.com>
+Subject: Initial import of NV50/g80 kernel modesetting code.
+Date: Sun, 22 Jun 2008 16:47:30 +0200
+Message-ID: <6d4bc9fc0806220747u70cdf289u6be11d7ffa5ebfb4@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <485D3F0C.2090407-rphTv4pjVZMJGwgDXS7ZQA@public.gmane.org>
+Return-path: <dri-devel-bounces@lists.sourceforge.net>
 Content-Disposition: inline
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=dri-devel>
+List-Post: <mailto:dri-devel@lists.sourceforge.net>
+List-Help: <mailto:dri-devel-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.sourceforge.net?subject=subscribe>
+Sender: dri-devel-bounces@lists.sourceforge.net
+Errors-To: dri-devel-bounces@lists.sourceforge.net
+To: dri-devel@lists.sourceforge.net, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Jun 21, 2008 at 6:49 PM, Adam Cozzette
-<adam_cozzette-rphTv4pjVZMJGwgDXS7ZQA@public.gmane.org> wrote:
-> Hello,
+I've been talking about it for some time, but now it actually does
+something, so comitted it. I always said i wouldn't use the randr-1.2
+clone stuff and i didn't, so you can use this as an example how it
+could also be done.
 
-Hello,
+What doesn't work (for sure):
+lvds with no ddc support
+no fbcon yet
+output/connector properties
 
-> I don't have much experience but I'm looking for a way to contribute to
-> Nouveau. I'd be glad to work on documentation, edit IRC logs, make
-> cosmetic changes to code, etc. Just let me know if you have any work of
-> this sort and I'll give it a shot.
+Notes:
+the bare minimum of bios code was imported (eventually the bios code
+should be detached from the ddx)
+I took the xorg i2c design as a bit banging interface refused to work
+properly, after trying quite a few things.
 
-I've tried to start documenting the driver some time ago, in order to
-start contributing with actual code. It is a daunting task, requiring
-a lot of dedication I couldn't provide at the time. The current trend
-is that developers write code and not documentation, which is good and
-bad at the same time.
+My next goal will be to clean up the dri locking stuff in nouveau a
+bit, as that needs cleanup. This will however have to wait a bit
+(school work and such). There are minor things to fix, like the 2nd X
+startup causing the rendering engine to lockup (in the past shutting
+down X pulled everything down, which is not the case now). So if you
+are somehow interrested in testing then please rmmod before
+restarting.
 
-(Pekka's answer just arrived)
+Please note that you must explictly do "modprobe nouveau modeset=1".
+Option "KMS" has to be passed to the X driver options.
 
-I don't know your programming skills, but you should probably follow
-Pekka's advice for now. If you ever feel like it, you may try my
-suggestion, but keep in mind that it requires dedication.
+I had to export a few functions from the core modesetting stuff, but not much.
 
-Cheers,
-  Renato Caldas
+Core design:
+- A interface independent module that does al the hardware interaction.
+- A wrapper to this module (nv50_kms_wrapper.c).
 
-> Thanks,
-> Adam Cozzette
+Any comments or questions, then don't hesitate to ask.
+
+Sincerly,
+
+Maarten.
+
+-------------------------------------------------------------------------
+Check out the new SourceForge.net Marketplace.
+It's the best place to buy or sell services for
+just about anything Open Source.
+http://sourceforge.net/services/buy/index.php
+--
