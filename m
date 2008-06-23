@@ -1,9 +1,9 @@
-From: Chris Lamb <chris-nEBun6gpv0i26MyoF4Ad0Q@public.gmane.org>
-Subject: Licensing of some of source files
-Date: Mon, 23 Jun 2008 11:51:20 +0100
-Message-ID: <20080623115120.22aa0b17@sakaki.chris-lamb.co.uk>
+From: Radoslaw Szkodzinski <astralstorm-l2kB63LPSaw@public.gmane.org>
+Subject: [PATCH] Fix git Mesa (Gallium) and its ebuild
+Date: Mon, 23 Jun 2008 11:30:09 +0200
+Message-ID: <20080623113009.265552f4@gen2.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0253558406=="
+Content-Type: multipart/mixed; boundary="MP_/e33fiS1ibj1NQJbzhNrR4eL"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -12,55 +12,69 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0253558406==
-Content-Type: multipart/signed; boundary="Sig_/WfjosHfbvTLw8AyVAEe91B=";
- protocol="application/pgp-signature"; micalg=PGP-SHA1
-
---Sig_/WfjosHfbvTLw8AyVAEe91B=
+--MP_/e33fiS1ibj1NQJbzhNrR4eL
 Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Hi,
+Hello,
 
-As I reported as [0], some of the files in the Nouveau source tree are
-non-free.
+I'm attaching two trivial patches. One is against latest mesa to fix
+build of nouveau dri driver, another against mesa-9999-r1 ebuild, fixing
+dependencies.
 
-The corresponding files in the xf86-video-nv.git tree were relicensed
-recently (2fdcda8ea62...). I would be great if the same was done in the
-nouveau tree.
+Please CC me with any comments, I'm not subscribed to the list.
 
+AstralStorm
+--MP_/e33fiS1ibj1NQJbzhNrR4eL
+Content-Type: text/x-patch; name=mesa-fix-ebuild-deps.patch
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename=mesa-fix-ebuild-deps.patch
 
-Regards,
+--- mesa-9999-r1.ebuild	2008-06-23 11:27:37.654028625 +0200
++++ mesa-9999-r1.ebuild.new	2008-06-23 11:28:08.990027627 +0200
+@@ -64,7 +64,7 @@
+ 	x11-libs/libXi
+ 	x11-libs/libXmu
+ 	x11-libs/libXdamage
+-	=x11-libs/libdrm-2.3*
++	|| ( =x11-libs/libdrm-2.3* =x11-libs/libdrm-9999 )
+ 	x11-libs/libICE
+ 	motif? ( virtual/motif )
+ 	doc? ( app-doc/opengl-manpages )
+@@ -72,6 +72,7 @@
+ 	xcb? ( x11-libs/libxcb )"
+ DEPEND="${RDEPEND}
+ 	!<=x11-proto/xf86driproto-2.0.3
++	x11-proto/dri2proto
+ 	dev-util/pkgconfig
+ 	x11-misc/makedepend
+ 	x11-proto/inputproto
 
-/Lamby
+--MP_/e33fiS1ibj1NQJbzhNrR4eL
+Content-Type: text/x-patch; name=mesa-git-fix-nouveau-link.patch
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename=mesa-git-fix-nouveau-link.patch
 
-[0] https://bugs.freedesktop.org/show_bug.cgi?id=3D16366
+--- src/mesa/drivers/dri/nouveau/nouveau_screen.c	2008-06-23 05:29:45.000000000 +0200
++++ src/mesa/drivers/dri/nouveau/nouveau_screen.c.new	2008-06-23 07:58:19.956210585 +0200
+@@ -317,9 +317,3 @@
+ 	.SwapBuffersMSC  = NULL,
+ 	.CopySubBuffer   = nouveauCopySubBuffer
+ };
+-
+-const __DRIextension *__driDriverExtensions[] = {
+-    &driCoreExtension.base,
+-    &driLegacyExtension.base,
+-    NULL
+-};
 
---=20
-Chris Lamb, UK                                       chris-nEBun6gpv0i26MyoF4Ad0Q@public.gmane.org
-                                                            GPG: 0x634F9A20
-
---Sig_/WfjosHfbvTLw8AyVAEe91B=
-Content-Type: application/pgp-signature; name=signature.asc
-Content-Disposition: attachment; filename=signature.asc
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.9 (GNU/Linux)
-
-iEYEARECAAYFAkhfgCgACgkQ5/8uW2NPmiD1LgCeLzXhZahPESvJZNUEDGC9l8Xl
-dVEAnA9bHkP+a5qI1Scby7dksHVrap82
-=HM8b
------END PGP SIGNATURE-----
-
---Sig_/WfjosHfbvTLw8AyVAEe91B=--
-
---===============0253558406==
+--MP_/e33fiS1ibj1NQJbzhNrR4eL
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -71,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0253558406==--
+--MP_/e33fiS1ibj1NQJbzhNrR4eL--
