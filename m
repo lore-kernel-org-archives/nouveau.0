@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16231] Xv vsync and backing store don't mix in new
-	Xorg
-Date: Mon, 23 Jun 2008 14:36:22 -0700 (PDT)
-Message-ID: <20080623213622.A294E13005A@annarchy.freedesktop.org>
-References: <bug-16231-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16490] New: Xv overlay tearing
+Date: Mon, 23 Jun 2008 14:57:17 -0700 (PDT)
+Message-ID: <bug-16490-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16231-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +18,39 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16231
+http://bugs.freedesktop.org/show_bug.cgi?id=16490
+
+           Summary: Xv overlay tearing
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: pq-X3B1VOXEql0@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+While investigating the Xv overlay & blitter issue with the X-server backing
+store, I found the real overlay jerky and tearing.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |pq-X3B1VOXEql0@public.gmane.org
+I have to disable the Composite extension of the X-server to get the real
+overlay adapter. Otherwise, due to the backing store issue, it falls back to
+blitter (which I hear is then still drawing the colorkey when it should not,
+but that's another issue). If Composite extension is enabled, blitter and
+overlay adapters are identical with mplayer, producing a static horizontal tear
+line (bug #16231).
 
+Having Composite disabled, the blitter seems to work fine. Overlay looks jerky
+and occasionally tears at random places, it looks mostly horizontal tear lines,
+but they blink too fast to see clearly. It might also be blocky instead of just
+a line.
 
-
-
---- Comment #10 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-06-23 14:36:22 PST ---
-I have nv20, and both the overlay and blitter work the same: I have a static
-horizontal tearing line, location depending on window size.
-
-Section "Extensions"
-        Option "Composite" "off"
-EndSection
-
-With Composite disabled with the above config, blitter now works fine. Overlay
-on the other hand does not, video appears jerky and there is occasional tearing
-at random places. I'll file a separate bug report on this.
-
-I do not have a texture adapter. Xorg-server is from git.
-
-I've posted a comment to the mplayer-users list.
-http://article.gmane.org/gmane.comp.video.mplayer.user/57029
+Practically my whole graphics stack is from git, around 20th-22nd June.
+The card is nv20, a Geforce 3.
 
 
 -- 
