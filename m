@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16523] New: mesa-git not compiled
-Date: Wed, 25 Jun 2008 12:06:05 -0700 (PDT)
-Message-ID: <bug-16523-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16523] mesa-git not compiled
+Date: Wed, 25 Jun 2008 12:07:08 -0700 (PDT)
+Message-ID: <20080625190709.0944E130056@annarchy.freedesktop.org>
+References: <bug-16523-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=16523
 
-           Summary: mesa-git not compiled
-           Product: Mesa
-           Version: CVS
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: micmicsh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
-Created an attachment (id=17379)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17379)
-build.log
 
-mesa-git not compiled
+
+--- Comment #1 from mic <micmicsh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-06-25 12:07:08 PST ---
+Created an attachment (id=17380)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17380)
+environment
 
 
 -- 
