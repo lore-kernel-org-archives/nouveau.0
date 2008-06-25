@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13864] crash on server restart
-Date: Wed, 25 Jun 2008 10:54:27 -0700 (PDT)
-Message-ID: <20080625175429.1A2A413005A@annarchy.freedesktop.org>
-References: <bug-13864-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16450] Powerbook G4 12" (NV34M [GeForce FX Go5200])
+ freezes on X restart - Fedora 9
+Date: Wed, 25 Jun 2008 11:47:29 -0700 (PDT)
+Message-ID: <20080625184729.D064F130058@annarchy.freedesktop.org>
+References: <bug-16450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13864-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16450-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13864
+http://bugs.freedesktop.org/show_bug.cgi?id=16450
 
 
 
 
 
---- Comment #17 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-06-25 10:54:17 PST ---
-I committed a few changes that might help, please try again.
+--- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-06-25 11:47:29 PST ---
+Please try with newer code --
+http://nouveau.freedesktop.org/wiki/InstallNouveau describes how to acquire and
+build from git.
 
 
 -- 
