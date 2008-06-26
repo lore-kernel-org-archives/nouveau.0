@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16233] [Randr12] Server crash when detecting DVI
 	output change
-Date: Thu, 26 Jun 2008 05:10:51 -0700 (PDT)
-Message-ID: <20080626121051.77B6D13005B@annarchy.freedesktop.org>
+Date: Thu, 26 Jun 2008 06:48:07 -0700 (PDT)
+Message-ID: <20080626134807.E91E2130056@annarchy.freedesktop.org>
 References: <bug-16233-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,13 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16233
 
 
 
---- Comment #4 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-06-26 05:10:50 PST ---
-Created an attachment (id=17392)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17392)
-GDB session of X server crash upon running "xrandr"
+--- Comment #5 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-06-26 06:48:06 PST ---
+Created an attachment (id=17393)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17393)
+allow screen dimensions to change
 
-GDB backtrace, taken by starting X attached to TV, plugging in the LCD,
-attaching gdb and running "xrandr"
+Try this
 
 
 -- 
