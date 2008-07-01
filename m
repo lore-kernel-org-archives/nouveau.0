@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15232] X11 doesn't start on my mobile nvidia 8600 gt
-Date: Tue,  1 Jul 2008 09:22:06 -0700 (PDT)
-Message-ID: <20080701162206.BD7D7130059@annarchy.freedesktop.org>
+Date: Tue,  1 Jul 2008 09:22:49 -0700 (PDT)
+Message-ID: <20080701162250.E3D0D130009@annarchy.freedesktop.org>
 References: <bug-15232-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15232
 
 
 
---- Comment #1 from Greg Martyn <greg.martyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-01 09:22:05 PST ---
-Created an attachment (id=17472)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17472)
-/var/log/xorgwhatever
+--- Comment #2 from Greg Martyn <greg.martyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-01 09:22:47 PST ---
+Same problem here here. I've attached my xorg log.
 
 
 -- 
