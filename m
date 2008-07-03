@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13864] crash on server restart
-Date: Thu,  3 Jul 2008 06:26:30 -0700 (PDT)
-Message-ID: <20080703132630.D5E02130059@annarchy.freedesktop.org>
-References: <bug-13864-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16597] New: nouveau crash with 2 screens
+Date: Thu,  3 Jul 2008 07:01:56 -0700 (PDT)
+Message-ID: <bug-16597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13864-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +18,44 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=13864
+http://bugs.freedesktop.org/show_bug.cgi?id=16597
+
+           Summary: nouveau crash with 2 screens
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: przanoni-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+                CC: przanoni-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
+Hi.
 
+If I try to open X with 2 nouveau screens (two video cards), the machine will
+freeze when I open X. It doesn't even respond to ping.
 
+I have tested with drm and the nouveau driver from July 02 2008.
 
---- Comment #19 from Paulo R. Zanoni <przanoni-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-03 06:26:23 PST ---
-Created an attachment (id=17496)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17496)
-Xorg log
+The video cards:
+mt4:~# lspci | grep VGA
+01:00.0 VGA compatible controller: nVidia Corporation G72 [GeForce 7300 LE]
+(rev a1)
+02:00.0 VGA compatible controller: nVidia Corporation G72 [GeForce 7300 LE]
+(rev a1)
 
-Tested with July 02 2008 drm/nouveau
-The problem still happens with me.
+Attached are syslog, Xorg log and xorg.conf.
 
-How I reproduced the bug:
+If you need, I can test patches. I also have access to some other nvidia cards,
+in case you think I need to test patches with other cards.
 
-Open X
-DISPLAY=:0.0 xterm
-"ctrl+c" to kill xterm.
+Thanks,
+Paulo.
 
 
 -- 
