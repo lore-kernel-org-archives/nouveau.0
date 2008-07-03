@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 13864] crash on server restart
-Date: Thu,  3 Jul 2008 06:23:30 -0700 (PDT)
-Message-ID: <20080703132330.D7C85130056@annarchy.freedesktop.org>
+Date: Thu,  3 Jul 2008 06:26:30 -0700 (PDT)
+Message-ID: <20080703132630.D5E02130059@annarchy.freedesktop.org>
 References: <bug-13864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=13864
 
 
 
---- Comment #18 from Paulo R. Zanoni <przanoni-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-03 06:23:29 PST ---
-Created an attachment (id=17495)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17495)
-Syslog with "debug=1" in drm.ko
+--- Comment #19 from Paulo R. Zanoni <przanoni-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-03 06:26:23 PST ---
+Created an attachment (id=17496)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17496)
+Xorg log
 
-Tested with July 02 2008 drm/nouveau.
-Loaded drm.ko with debug=1.
+Tested with July 02 2008 drm/nouveau
+The problem still happens with me.
+
+How I reproduced the bug:
+
+Open X
+DISPLAY=:0.0 xterm
+"ctrl+c" to kill xterm.
 
 
 -- 
