@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16640] NV18/DVI bandwidth starvation issue
-Date: Tue,  8 Jul 2008 11:26:01 -0700 (PDT)
-Message-ID: <20080708182601.F215B130059@annarchy.freedesktop.org>
+Date: Tue,  8 Jul 2008 11:34:02 -0700 (PDT)
+Message-ID: <20080708183403.2D846130056@annarchy.freedesktop.org>
 References: <bug-16640-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16640
 
 
 
---- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-07-08 11:26:01 PST ---
-Please attach Xorg.log when you have added 
-
-Option "ModeDebug" "On"
-
-to the Device section of xorg.conf, and also attach your video bios ROM, which
-can be dumped using `dd if=/dev/mem of=myvga.rom bs=1k count=64 skip=768`
+--- Comment #3 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-08 11:34:00 PST ---
+Created an attachment (id=17577)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17577)
+BIOS NV18
 
 
 -- 
