@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11918] drmMap of framebuffer failed
-Date: Mon,  7 Jul 2008 06:52:18 -0700 (PDT)
-Message-ID: <20080707135220.9AF80130058@annarchy.freedesktop.org>
-References: <bug-11918-8800@http.bugs.freedesktop.org/>
+From: Chris Ball <cjb-2X9k7bc8m7Mdnm+yROfE0A@public.gmane.org>
+Subject: Current tinderbox regression (nouveau)
+Date: Tue, 08 Jul 2008 00:30:51 -0400
+Message-ID: <86ej65575w.fsf@pullcord.laptop.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11918-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +18,13 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=11918
+http://tinderbox.x.org/builds/2008-07-08-0003/
+http://tinderbox.x.org/builds/2008-07-08-0003/logs/xf86-video-nouveau/#build
 
-
-okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|                            |WORKSFORME
-
-
-
-
---- Comment #7 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-07 06:52:13 PST ---
-After lastest update libdrm and xserver-xorg-video-nouveau from Debian
-experimental repositary, working.
-
+nouveau_bo.c: In function 'nouveau_bo_new':
+nouveau_bo.c:51: error: 'NOUVEAU_MEM_TILE' undeclared (first use in this function)
+nouveau_bo.c:51: error: (Each undeclared identifier is reported only once
+nouveau_bo.c:51: error: for each function it appears in.)
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Chris Ball   <cjb-2X9k7bc8m7Mdnm+yROfE0A@public.gmane.org>
