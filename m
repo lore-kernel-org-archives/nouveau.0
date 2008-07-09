@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16640] NV18/DVI bandwidth starvation issue
-Date: Tue,  8 Jul 2008 11:38:21 -0700 (PDT)
-Message-ID: <20080708183821.DE97B130052@annarchy.freedesktop.org>
-References: <bug-16640-8800@http.bugs.freedesktop.org/>
+From: Bob Gleitsmann <rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org>
+Subject: unable to compile xf86-video-nouveau
+Date: Tue, 8 Jul 2008 22:43:11 -0400
+Message-ID: <200807082243.12120.rjgleits@bellsouth.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16640-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +19,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16640
+Greetings,
 
+After the modesetting commit, I have been unable to compile 
+xf86-video-nouveau. The git site for drm given on the wiki page does not get 
+the proper xf86drmMode.h, etc. I noted that libdrm git has over 100 branches 
+and I really don't want to try all of them. Fedora 9 has a patch of the 
+libdrm source rpm that includes an earlier version of xf86drmMode.h but it's 
+now out of date. I would like to follow along in the development of nouveau 
+as I have a GeForce 6800 GTO. 
+Your kind help would be appreciated.
 
+Best Wishes,
 
-
-
---- Comment #4 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-08 11:38:21 PST ---
-Created an attachment (id=17578)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17578)
-with Debug enabled
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Bob Gleitsmann
