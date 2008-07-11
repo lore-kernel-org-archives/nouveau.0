@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16676] New: RANDR1.2 killing Xorg
-Date: Fri, 11 Jul 2008 13:38:38 -0700 (PDT)
-Message-ID: <bug-16676-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16676] RANDR1.2 killing Xorg
+Date: Fri, 11 Jul 2008 13:39:54 -0700 (PDT)
+Message-ID: <20080711203954.4C0AA13005D@annarchy.freedesktop.org>
+References: <bug-16676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=16676
 
-           Summary: RANDR1.2 killing Xorg
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: highest
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Dualhead not working if is set in Xorg.conf. See log, xorg.conf and video[mp4
-format]. With command 'xrandr --output VGA-0 --mode 1152x864 && xrandr --output
-VGA-0 --right-of DVI-D-0' is everything ok (except plasma, than disable
-composite, but this is probably related to nouveau_dri.so)
+
+
+--- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-11 13:39:53 PST ---
+Created an attachment (id=17641)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17641)
+Xorg.conf
 
 
 -- 
