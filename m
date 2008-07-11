@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16676] RANDR1.2 killing Xorg
-Date: Fri, 11 Jul 2008 13:40:17 -0700 (PDT)
-Message-ID: <20080711204017.A916A13005D@annarchy.freedesktop.org>
+Date: Fri, 11 Jul 2008 13:44:40 -0700 (PDT)
+Message-ID: <20080711204441.234B413005D@annarchy.freedesktop.org>
 References: <bug-16676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16676
 
 
 
---- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-11 13:40:17 PST ---
-Created an attachment (id=17642)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17642)
-Xorg.0.log
+--- Comment #3 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-11 13:44:39 PST ---
+http://leteckaposta.cz/306343906 [video with problem MP4 format]
+
+I forget: NV4B[7600GS 256MB DDR3]
 
 
 -- 
