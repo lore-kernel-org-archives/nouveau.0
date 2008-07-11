@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16676] RANDR1.2 killing Xorg
-Date: Fri, 11 Jul 2008 13:39:54 -0700 (PDT)
-Message-ID: <20080711203954.4C0AA13005D@annarchy.freedesktop.org>
+Date: Fri, 11 Jul 2008 13:40:17 -0700 (PDT)
+Message-ID: <20080711204017.A916A13005D@annarchy.freedesktop.org>
 References: <bug-16676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16676
 
 
 
---- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-11 13:39:53 PST ---
-Created an attachment (id=17641)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17641)
-Xorg.conf
+--- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-11 13:40:17 PST ---
+Created an attachment (id=17642)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17642)
+Xorg.0.log
 
 
 -- 
