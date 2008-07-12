@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16682] Wv problem on NV11
-Date: Sat, 12 Jul 2008 09:18:37 -0700 (PDT)
-Message-ID: <20080712161837.181E41300A4@annarchy.freedesktop.org>
+Subject: [Bug 16682] Xv problem on NV11
+Date: Sat, 12 Jul 2008 09:18:56 -0700 (PDT)
+Message-ID: <20080712161856.89DA21300A4@annarchy.freedesktop.org>
 References: <bug-16682-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16682
 
 
+okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Wv problem on NV11          |Xv problem on NV11
 
 
-
---- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-12 09:18:36 PST ---
-Created an attachment (id=17646)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17646)
-Xorg.log
 
 
 -- 
