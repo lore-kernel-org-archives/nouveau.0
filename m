@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16765] white rectangles instead of fonts and bitmaps
  lost when switching to virtual console and back
-Date: Thu, 17 Jul 2008 16:36:58 -0700 (PDT)
-Message-ID: <20080717233658.921CD130052@annarchy.freedesktop.org>
+Date: Thu, 17 Jul 2008 16:47:14 -0700 (PDT)
+Message-ID: <20080717234715.7BE9C130059@annarchy.freedesktop.org>
 References: <bug-16765-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16765
 
 
+Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #17734|application/octet-stream    |application/text
+          mime type|                            |
 
 
-
---- Comment #1 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2008-07-17 16:36:57 PST ---
-Created an attachment (id=17734)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=17734)
-X logs
 
 
 -- 
