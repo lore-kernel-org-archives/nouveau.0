@@ -1,13 +1,14 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: noveau help/testing
-Date: Thu, 17 Jul 2008 21:14:41 +0300
-Message-ID: <20080717211441.3776a796@ct200006>
-References: <200807171549.42762.brylozketrzyn@wp.pl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 16450] Powerbook G4 12" (NV34M [GeForce FX Go5200])
+ freezes on X restart - Fedora 9
+Date: Thu, 17 Jul 2008 15:54:32 -0700 (PDT)
+Message-ID: <20080717225447.B268B130059@annarchy.freedesktop.org>
+References: <bug-16450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <200807171549.42762.brylozketrzyn-5tc4TXWwyLM@public.gmane.org>
+In-Reply-To: <bug-16450-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,24 +18,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: =?utf-8?Q?Micha=C5=82_Wi=C5=9Bniewski?= <brylozketrzyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAxNyBKdWwgMjAwOCAxNTo0OTo0MiArMDIwMApNaWNoYcWCIFdpxZtuaWV3c2tpIDxi
-cnlsb3prZXRyenluQGdtYWlsLmNvbT4gd3JvdGU6Cgo+IEhpCj4gCj4gSSdtIHdyaXRpbmcgdG8g
-eW91IGNhdXNlIEkgd2FudCB0byBoZWxwIHdpdGggbm92ZWF1LiBJIGhhdmUgR0YgNTIwMCBjYXJk
-IGFuZCBJIAo+IGNhbiBkdW1wIGFueSBkYXRhIHlvdSBuZWVkIGZyb20gaXQncyByZWdpc3RlcnMs
-IG9mIGNvdXJzZSwgYXZhbGFpYmxlIHRvIGR1bXAgCj4gd2l0aCBudmNsb2NrLiBKdXN0IHdyaXRl
-IHdoYXQgdGVzdCB5b3Ugd2FudCBtZSB0byBwZXJmb3JtIChpZiBwb3NzaWJsZSwgd2l0aCAKPiBl
-eHBsYW5hdGlvbnM7IEknbGwgc2V0IHVwIHNjcmlwdHMgb3Igb3RoZXIgdG9vbHMgZm9yIHRlc3Rp
-bmcsIHNvIGl0IHdvbid0IAo+IHdhc3RlIG15IHRpbWUgOykgKS4KClRoYW5rcyBmb3IgdGhlIG9m
-ZmVyLCBidXQgdW5mb3J0dW5hdGVseSBJJ20gbm90IHRoZSByaWdodCBwZXJzb24gdG8gYW5zd2Vy
-CmFib3V0IG52Y2xvY2ssIG5vciBhbSBJIGN1cnJlbnRseSB3b3JraW5nIG9uIE5vdXZlYXUuIFRo
-ZXJlZm9yZSBJJ20gQ0MnaW5nIHRoZSBOb3V2ZWF1IGxpc3QuCgpEaWQgeW91IGhhdmUgYW55dGhp
-bmcgc3BlY2lmaWMgaW4gbWluZD8KVGhlcmUgYXJlIHRoZSB1c3VhbCByZW5vdXZlYXUgYW5kIG1t
-aW90cmFjZSBleGNlcmNpc2VzIGluIHRoZSB3aWtpLgoKVGhhbmtzLgoKLS0gClBla2thIFBhYWxh
-bmVuCmh0dHA6Ly93d3cuaWtpLmZpL3BxLwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=16450
+
+
+
+
+
+--- Comment #4 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2008-07-17 15:54:25 PST ---
+Yeah, video=ofonly has fixed the problem. However, the old nv dirver works fine
+with nvidiafb, so I believe nouveau should as well.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
