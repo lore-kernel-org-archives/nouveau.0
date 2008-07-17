@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16450] Powerbook G4 12" (NV34M [GeForce FX Go5200])
  freezes on X restart - Fedora 9
-Date: Thu, 17 Jul 2008 15:54:32 -0700 (PDT)
-Message-ID: <20080717225447.B268B130059@annarchy.freedesktop.org>
+Date: Thu, 17 Jul 2008 15:59:23 -0700 (PDT)
+Message-ID: <20080717225923.D8BB8130058@annarchy.freedesktop.org>
 References: <bug-16450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,12 +24,24 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16450
 
 
+Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #4 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2008-07-17 15:54:25 PST ---
-Yeah, video=ofonly has fixed the problem. However, the old nv dirver works fine
-with nvidiafb, so I believe nouveau should as well.
+
+--- Comment #5 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-07-17 15:59:22 PST ---
+(In reply to comment #4)
+> Yeah, video=ofonly has fixed the problem. However, the old nv dirver works fine
+> with nvidiafb, so I believe nouveau should as well.
+> 
+
+Actually, no. We don't want to support nvidiafb because it messes too far with
+the card state. So until we have a nouveaufb replacement, please use offb.
 
 
 -- 
