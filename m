@@ -1,15 +1,11 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: noveau help/testing
-Date: Fri, 18 Jul 2008 12:01:59 +0300
-Message-ID: <20080718120159.0d370ca1@ct200006>
-References: <200807171549.42762.brylozketrzyn@wp.pl>
-	<20080717211441.3776a796@ct200006>
-	<200807172032.27347.brylozketrzyn@wp.pl>
+From: Garnet MacPhee <garnet-vVazHDhchvNCCzmm7wA0Mw@public.gmane.org>
+Subject: Cannot compile nouveau.o in drm with kernel 2.6.26
+Date: Fri, 18 Jul 2008 18:22:47 -0600
+Message-ID: <488133D7.7050808@signalpeak.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <200807172032.27347.brylozketrzyn-5tc4TXWwyLM@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,33 +15,46 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: =?utf-8?Q?Micha=C5=82_Wi=C5=9Bniewski?= <brylozketrzyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: thunderbird-8gN49S8eEoQyJ2NeL54tbti2O/JbrIOy@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAxNyBKdWwgMjAwOCAyMDozMjoyNyArMDIwMApNaWNoYcWCIFdpxZtuaWV3c2tpIDxi
-cnlsb3prZXRyenluQGdtYWlsLmNvbT4gd3JvdGU6Cgo+ID4gT24gVGh1LCAxNyBKdWwgMjAwOCAx
-NTo0OTo0MiArMDIwMAo+ID4KPiA+IE1pY2hhxYIgV2nFm25pZXdza2kgPGJyeWxvemtldHJ6eW5A
-Z21haWwuY29tPiB3cm90ZToKPiA+ID4gSGkKPiA+ID4KPiA+ID4gSSdtIHdyaXRpbmcgdG8geW91
-IGNhdXNlIEkgd2FudCB0byBoZWxwIHdpdGggbm92ZWF1LiBJIGhhdmUgR0YgNTIwMCBjYXJkCj4g
-PiA+IGFuZCBJIGNhbiBkdW1wIGFueSBkYXRhIHlvdSBuZWVkIGZyb20gaXQncyByZWdpc3RlcnMs
-IG9mIGNvdXJzZSwKPiA+ID4gYXZhbGFpYmxlIHRvIGR1bXAgd2l0aCBudmNsb2NrLiBKdXN0IHdy
-aXRlIHdoYXQgdGVzdCB5b3Ugd2FudCBtZSB0bwo+ID4gPiBwZXJmb3JtIChpZiBwb3NzaWJsZSwg
-d2l0aCBleHBsYW5hdGlvbnM7IEknbGwgc2V0IHVwIHNjcmlwdHMgb3Igb3RoZXIKPiA+ID4gdG9v
-bHMgZm9yIHRlc3RpbmcsIHNvIGl0IHdvbid0IHdhc3RlIG15IHRpbWUgOykgKS4KCj4gaSd2ZSBy
-ZWFkIGFib3V0IG5lZWQgb2YgcmVnaXN0ZXJzIGVudHJpZXMgd2hpbGUgcHV0dGluZyBHUFUgaW4g
-VFYtb3V0IG1vZGUuIE9mIAo+IGNvdXJzZSwgaWYgYW55IG90aGVyIGhlbHAgaXMgbmVlZGVkLCBJ
-IGNhbiBoZWxwIHRvbyAod2l0aG91dCBwcm9ncmFtbWluZyAKPiBtYXliZSkuIEkgbmVlZCBvbmx5
-IGV4cGxhbmF0aW9ucywgd2hpY2ggdmFsdWVzIEkgaGF2ZSB0byB0ZXN0IC0gd2lraSBzaG91bGQg
-Cj4gZXhwbGFpbiBpdCBtb3JlIGV4YWN0bHkuLi4gYW5kIHdpdGhpbiB3aGF0IHJhbmdlIDopCgpB
-aCwgdGhlIHR2LW91dCwgdGhhdCByZXF1ZXN0IHdhcyBzZXQgYnkgVGh1bmRlcmJpcmQsIHRoZSBh
-dXRob3Igb2YgbnZjbG9jay4KSSdtIENDJ2luZyBoaW0gaW4gY2FzZSBoZSBkb2Vzbid0IHJlYWQg
-dGhlIG1haWxpbmcgbGlzdCwgaG9wZSBJIGdvdCB0aGUgZW1haWwgYWRkcmVzcyByaWdodC4gUGxl
-YXNlLCBkb24ndCBkcm9wIENDJ3MgdW5sZXNzIHJlcXVlc3RlZC4KCkEgbmljZSB3YXkgdG8gY29u
-dHJpYnV0ZSBpcyB0byB1c2UgTm91dmVhdSwgdXBkYXRlIHdlZWtseSwgYW5kIHJlcG9ydCBhbnkg
-cG9zc2libGUgcmVncmVzc2lvbnMgb3IgYnVncyBpbiAyRC1mZWF0dXJlcy4gQW5kIGtlZXAgYW4g
-ZXllIG9uIHRoZSB3aWtpClJlY2VudENoYW5nZXMgaW4gY2FzZSBzb21lb25lIHB1dHMgdXAgYSBo
-ZWxwIHJlcXVlc3QuCgoKVGhhbmtzLgoKLS0gClBla2thIFBhYWxhbmVuCmh0dHA6Ly93d3cuaWtp
-LmZpL3BxLwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+I am getting the following error when trying to compile nouveau.o in drm/linux-core on linux kernel 2.6.26. Drm itself 
+compiles and installs correctly. I am using the latest drm git. I cannot access bugzilla from the nouveau page because it says 
+it has an invalid security certificate.
+
+root@default:~/drm/linux-core# make nouveau.o
+make DRM_MODULES=nouveau.o modules
+make[1]: Entering directory `/root/drm/linux-core'
+make -C /lib/modules/2.6.26/source  SUBDIRS=`pwd` DRMSRCDIR=`pwd` modules
+make[2]: Entering directory `/usr/src/linux-2.6.26'
+   CC [M]  /root/drm/linux-core/drm_auth.o
+In file included from include/linux/gfp.h:4,
+                  from include/linux/slab.h:12,
+                  from include/linux/percpu.h:5,
+                  from include/asm/local.h:4,
+                  from include/linux/module.h:19,
+                  from /root/drm/linux-core/drmP.h:44,
+                  from /root/drm/linux-core/drm_auth.c:36:
+include/linux/mmzone.h:18:26: error: linux/bounds.h: No such file or directory
+include/linux/mmzone.h:197:5: warning: "MAX_NR_ZONES" is not defined
+In file included from include/linux/gfp.h:4,
+                  from include/linux/slab.h:12,
+                  from include/linux/percpu.h:5,
+                  from include/asm/local.h:4,
+                  from include/linux/module.h:19,
+                  from /root/drm/linux-core/drmP.h:44,
+                  from /root/drm/linux-core/drm_auth.c:36:
+include/linux/mmzone.h:218: error: 'MAX_NR_ZONES' undeclared here (not in a function)
+In file included from include/asm/pci.h:4,
+                  from include/linux/pci.h:948,
+                  from /root/drm/linux-core/drmP.h:51,
+                  from /root/drm/linux-core/drm_auth.c:36:
+include/linux/mm.h:429:63: warning: "NR_PAGEFLAGS" is not defined
+include/linux/mm.h:477:62: warning: "NR_PAGEFLAGS" is not defined
+make[3]: *** [/root/drm/linux-core/drm_auth.o] Error 1
+make[2]: *** [_module_/root/drm/linux-core] Error 2
+make[2]: Leaving directory `/usr/src/linux-2.6.26'
+make[1]: *** [modules] Error 2
+make[1]: Leaving directory `/root/drm/linux-core'
+make: *** [nouveau.o] Error 2
+root@default:~/drm/linux-core#
