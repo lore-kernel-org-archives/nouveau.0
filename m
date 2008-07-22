@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14858] Build fix for FreeBSD
-Date: Mon, 21 Jul 2008 15:09:39 -0700 (PDT)
-Message-ID: <20080721220939.C12E8130052@annarchy.freedesktop.org>
-References: <bug-14858-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16782] Light graphical corruption in
+	Firefox/Iceweasel
+Date: Tue, 22 Jul 2008 01:38:24 -0700 (PDT)
+Message-ID: <20080722083834.B9613130058@annarchy.freedesktop.org>
+References: <bug-16782-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16782-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +21,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14858
-
-
-Brad Smith <brad-BUbV6I797GxWk0Htik3J/w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|FIXED                       |
+http://bugs.freedesktop.org/show_bug.cgi?id=16782
 
 
 
 
---- Comment #4 from Brad Smith <brad-BUbV6I797GxWk0Htik3J/w@public.gmane.org>  2008-07-21 15:09:39 PST ---
-Reopened. Take note of the previous comment.
+
+--- Comment #3 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-07-22 01:38:19 PST ---
+just build nouveau from git for a while?
+
+d.
 
 
 -- 
