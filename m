@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16815] losing fonts in gnome-terminal and other font
  weirdnesses
-Date: Wed, 23 Jul 2008 03:51:15 -0700 (PDT)
-Message-ID: <20080723105116.C1BE8130052@annarchy.freedesktop.org>
+Date: Wed, 23 Jul 2008 03:51:46 -0700 (PDT)
+Message-ID: <20080723105146.BB7E2130009@annarchy.freedesktop.org>
 References: <bug-16815-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16815
 
 
 
---- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-23 03:51:12 PST ---
-idle looks ok for me, but looks different than yours (i'll include a
-screenshot). What card do you have exactly?
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-23 03:51:45 PST ---
+Created an attachment (id=17836)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=17836)
+a screenshot of idle
 
 
 -- 
