@@ -1,10 +1,10 @@
-From: Hanno =?utf-8?q?B=C3=B6ck?= <hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org>
-Subject: Log says "(EE) NOUVEAU(0): Unknown LVDS configuration
-	bits, please report "
-Date: Mon, 28 Jul 2008 04:02:57 +0200
-Message-ID: <200807280403.00837.hanno@hboeck.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 16897] New: Support for multiple nvidia cards
+Date: Tue, 29 Jul 2008 19:07:50 -0700 (PDT)
+Message-ID: <bug-16897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1308453869=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -13,64 +13,48 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1308453869==
-Content-Type: multipart/signed;
-  boundary="nextPart3407230.4YtKeAtquS";
-  protocol="application/pgp-signature";
-  micalg=pgp-sha1
-Content-Transfer-Encoding: 7bit
+http://bugs.freedesktop.org/show_bug.cgi?id=16897
 
---nextPart3407230.4YtKeAtquS
-Content-Type: text/plain;
-  charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+           Summary: Support for multiple nvidia cards
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: jason-Dy99Nv/Bu4mzQB+pC5nmwQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-As my log requests me to "report", here we go:
 
-Card is:
-01:00.0 VGA compatible controller: nVidia Corporation NV17 [GeForce4 420 Go=
-=20
-32M] (rev a3)
+I have two (rather old) nvidia cards in my PC.
+ * GeForce4 MX 420
+ * RIVA TNT2
 
-This is the full log:
-http://files.hboeck.de/xorg-log-nouveau
+I used these two cards to create a multi-seat setup with Fedora 8. (I used the
+proprietary nvidia driver). It worked great.
 
-Anything else you need?
+When I upgraded to Fedora 9, I found that the proprietary driver wasn't
+supported, so I'm giving Nouveau a try. I'm finding that Nouveau can only deal
+with one card at a time, apparently. When I start X with the second card, the
+second monitor does not light up and X apparently locks up.
 
-=2D-=20
-Hanno B=C3=B6ck		Blog:		http://www.hboeck.de/
-GPG: 3DBD3B20		Jabber/Mail:	hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org
+Surprisingly, I couldn't find an existing bugzilla entry for supporting
+multiple cards, so now I'm creating one. Hope that's ok.
 
---nextPart3407230.4YtKeAtquS
-Content-Type: application/pgp-signature; name=signature.asc 
-Content-Description: This is a digitally signed message part.
+(PS- I have some time in the next few weeks, and I'm a pretty good C
+programmer. Is this a bug that one could get into the code and fix in a few
+weeks, or are we talking major rewrite of the driver?)
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.9 (GNU/Linux)
 
-iEYEABECAAYFAkiNKNQACgkQr2QksT29OyAOlACfVjca/3jzEfu9blyY6m+UB76E
-9BoAnRss1dNnQksHaTYseTg0tDBLgc63
-=kxND
------END PGP SIGNATURE-----
-
---nextPart3407230.4YtKeAtquS--
-
---===============1308453869==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1308453869==--
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
