@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16897] Support for multiple nvidia cards
-Date: Wed, 30 Jul 2008 15:51:32 -0700 (PDT)
-Message-ID: <20080730225136.33C82130052@annarchy.freedesktop.org>
-References: <bug-16897-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16911] New: xserver EXA optimization causes nv31 to
+	crash
+Date: Wed, 30 Jul 2008 16:03:46 -0700 (PDT)
+Message-ID: <bug-16911-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +19,42 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16897
+http://bugs.freedesktop.org/show_bug.cgi?id=16911
+
+           Summary: xserver EXA optimization causes nv31 to crash
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=18015)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18015)
+Kernel log
 
+Following the commit of a3afa6f2fb80489f7b6a88d12def09281d32ed94 "EXA: Optimize
+GXcopy tiled fills." to the xserver, the nouveau driver (git HEAD of both ddx
+and drm) will crash on certain webpages, with
 
+[drm] PGRAPH_ERROR - nSource: LIMIT_COLOR, nStatus: PROTECTION_FAULT
+[drm] PGRAPH_ERROR - Ch 1/6 Class 0x009f Mthd 0x0308 Data 0x00000003:0x00f304f8
 
---- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-30 15:51:23 PST ---
-As far as i know the problem is two fold (this is from hearsay and other
-impressions).
+in the kernel log and a fifo lockup in the ddx log -- both attached. A simple
+reproducible case is using Firefox (2.0.0.16) on
+http://people.freedesktop.org/~stuart/pgraph_limit_color/crash.html
+Going back to the previous xserver commit "EXA: Replace open coded CopyArea
+logic with GC op call.", the page does not cause the driver error, nor a crash.
 
-One side of the problem seems to be that somehow the 2nd ddx(xorg driver)
-doesn't associate itself appropriately with the 2nd card/drm/kernel driver.
-This is not neccesarily a huge problem to fix, just a matter of finding it.
-
-The other side is that randr-1.2 doesn't support xinerama, so you will have to
-run two completely seperate xserver's. This is something that is well beyond
-the scope of a small'ish fix.
+black.png used in the page was simply created in the GIMP using a new image and
+a bucket fill. I suspect the size of the background image is a factor, as tests
+using a 200x200 PNG did not crash.
 
 
 -- 
