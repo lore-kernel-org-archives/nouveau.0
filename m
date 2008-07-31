@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16911] xserver EXA optimization causes nv31 to crash
-Date: Wed, 30 Jul 2008 16:05:03 -0700 (PDT)
-Message-ID: <20080730230504.B705913001F@annarchy.freedesktop.org>
+Date: Wed, 30 Jul 2008 18:21:36 -0700 (PDT)
+Message-ID: <20080731012136.D5C3C13001F@annarchy.freedesktop.org>
 References: <bug-16911-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16911
 
 
 
---- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-07-30 16:05:02 PST ---
-Created an attachment (id=18016)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18016)
-Xorg log
+--- Comment #2 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-07-30 18:21:36 PST ---
+Michel, I would think the following changes are required
+
+                                                                               
+                                 -width = min(pBox[i].x2 - dstX, width * 2);   
+                                                                               
+            +width = min(pBox[i].x2 - dstX, min(width * 2, tileWidth));
+
+-height = min(pBox[i].y2 - dstY, height * 2);
++height = min(pBox[i].y2 - dstY, min(height * 2, tileHeight));
+
+That doesn't solve our issue though.
 
 
 -- 
