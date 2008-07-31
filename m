@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16911] xserver EXA optimization causes nv31 to crash
-Date: Wed, 30 Jul 2008 18:57:14 -0700 (PDT)
-Message-ID: <20080731015714.9E9C6130058@annarchy.freedesktop.org>
+Date: Wed, 30 Jul 2008 19:04:16 -0700 (PDT)
+Message-ID: <20080731020416.483CF130009@annarchy.freedesktop.org>
 References: <bug-16911-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,18 +26,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16911
 
 
 
---- Comment #4 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-07-30 18:57:14 PST ---
-So, there seems to be some issue with the first width/height computation ;
-something like this helps:
+--- Comment #5 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-07-30 19:04:15 PST ---
+Some things tried as detailed in 
+http://people.freedesktop.org/~marcheu/irclogs/nouveau-2008-07-31
 
--int width = min(pBox[i].x2 - pBox[i].x1, tileWidth);
--int height = min(pBox[i].y2 - pBox[i].y1, tileHeight);
+Last attempt replacing the width and height defintions/instantiations with:
+int width = min(pBox[i].x2 - pBox[i].x1 - tileWidth, tileWidth);
+int height = min(pBox[i].y2 - pBox[i].y1 - tileHeight, tileHeight);
 
-+int width = min(pBox[i].x2 - pBox[i].x1 - tileWidth, tileWidth);
-+int height = min(pBox[i].y2 - pBox[i].y1 - tileHeight, tileHeight);
-
-Otherwise you start the 2nd copy (first one in the while loop) with the full
-tile size, and this can be bigger than the total size.
+fixed the test case, but lead to other problems shortly after -- xorg log with
+the arguments to *pExaScr->info->Copy() printed at
+http://people.freedesktop.org/~stuart/Xorg.0.log.old-big.txt shows some huge
+negative widths and heights being passed, before an endless succession of calls
+with height=0.
 
 
 -- 
