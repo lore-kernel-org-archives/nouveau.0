@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16624] invalid pointer passed to
 	RRChangeOutputProperty
-Date: Wed, 30 Jul 2008 22:56:25 -0700 (PDT)
-Message-ID: <20080731055638.6F37E13001F@annarchy.freedesktop.org>
+Date: Wed, 30 Jul 2008 22:56:49 -0700 (PDT)
+Message-ID: <20080731055729.5DA4013005E@annarchy.freedesktop.org>
 References: <bug-16624-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,10 +24,17 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16624
 
 
+Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #1 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-07-30 22:56:08 PST ---
+
+--- Comment #2 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-07-30 22:56:41 PST ---
 Fix commited by Stuart (thanks!) in 140c36ed936f4f28842af88efdd8b824c01bb097
 
 danny
