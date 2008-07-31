@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16624] invalid pointer passed to
-	RRChangeOutputProperty
-Date: Wed, 30 Jul 2008 22:56:49 -0700 (PDT)
-Message-ID: <20080731055729.5DA4013005E@annarchy.freedesktop.org>
-References: <bug-16624-8800@http.bugs.freedesktop.org/>
+From: "Clemens Eisserer" <linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Possible composition bug - please test
+Date: Thu, 31 Jul 2008 12:42:08 +0200
+Message-ID: <194f62550807310342x1265dccax2d8b29005461cd76@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16624-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +19,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16624
+Hello,
 
+I think I've stumbled over a composition bug (doesn't happen with
+ExaNoComposite) which is also present in the Intel-Driver:
+https://bugs.freedesktop.org/show_bug.cgi?id=16913
 
-Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org> changed:
+However the latest nouveau release I tested against was 0.10 (that one
+shipped with Fedora9), and I don't have a spare system arround that I
+could use for testing.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+It would be really great if somebody running a more recent release
+could try the source attached to the intel-bug-report, compile it
+using:
+gcc -lX11 -lXrender scale_clip_artifact2.c -o scale_clip_artifact
+and just run it.
 
-
-
-
---- Comment #2 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-07-30 22:56:41 PST ---
-Fix commited by Stuart (thanks!) in 140c36ed936f4f28842af88efdd8b824c01bb097
-
-danny
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Thank you in advance and thanks for working on this really excellent
+driver, Clemens
