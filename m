@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16923] New: ClipRectangles on mask ignored if
- transformation is used
-Date: Thu, 31 Jul 2008 08:57:19 -0700 (PDT)
-Message-ID: <bug-16923-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16176] X fails to start with GeForce 9600 with
+ ``Failed to allocate memory for framebuffer! "
+Date: Thu, 31 Jul 2008 14:35:38 -0700 (PDT)
+Message-ID: <20080731213539.2C4E9130056@annarchy.freedesktop.org>
+References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,33 +21,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16923
-
-           Summary: [Nouveau] ClipRectangles on mask ignored if
-                    transformation is used
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+http://bugs.freedesktop.org/show_bug.cgi?id=16176
 
 
-When using clip-rectangles and a non-identity transformation on a mask, the
-clip-rectangles are ignored.
-Works with "ExaNoComposite".
+Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org> changed:
 
-Nouveau: 0.10 (but confirmed on the list that it still happens with the latest
-release as well)
-GeForce 6600
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #16844|0                           |1
+        is obsolete|                            |
 
-The Intel driver has the same problem, please look there for the test-case:
-https://bugs.freedesktop.org/show_bug.cgi?id=16913
+
+
+
+--- Comment #4 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-07-31 14:35:37 PST ---
+Created an attachment (id=18046)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18046)
+X log 2008 07 31
+
+Updated X log
 
 
 -- 
