@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16911] xserver EXA optimization causes nv31 to crash
-Date: Wed, 30 Jul 2008 18:27:23 -0700 (PDT)
-Message-ID: <20080731012723.EE805130009@annarchy.freedesktop.org>
+Date: Wed, 30 Jul 2008 18:57:14 -0700 (PDT)
+Message-ID: <20080731015714.9E9C6130058@annarchy.freedesktop.org>
 References: <bug-16911-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16911
 
 
 
---- Comment #3 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-07-30 18:27:23 PST ---
-Scrap my last comment, I'm too tired. Don't scrap the bug though :)
+--- Comment #4 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-07-30 18:57:14 PST ---
+So, there seems to be some issue with the first width/height computation ;
+something like this helps:
+
+-int width = min(pBox[i].x2 - pBox[i].x1, tileWidth);
+-int height = min(pBox[i].y2 - pBox[i].y1, tileHeight);
+
++int width = min(pBox[i].x2 - pBox[i].x1 - tileWidth, tileWidth);
++int height = min(pBox[i].y2 - pBox[i].y1 - tileHeight, tileHeight);
+
+Otherwise you start the 2nd copy (first one in the while loop) with the full
+tile size, and this can be bigger than the total size.
 
 
 -- 
