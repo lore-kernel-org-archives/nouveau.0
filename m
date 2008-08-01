@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16176] X fails to start with GeForce 9600 with
  ``Failed to allocate memory for framebuffer! "
-Date: Thu, 31 Jul 2008 14:39:38 -0700 (PDT)
-Message-ID: <20080731213939.32AF5130009@annarchy.freedesktop.org>
+Date: Thu, 31 Jul 2008 22:30:04 -0700 (PDT)
+Message-ID: <20080801053006.BD7FC130056@annarchy.freedesktop.org>
 References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16176
 
 
 
---- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-07-31 14:39:37 PST ---
-I think the lack of voodoo is the issue. This can be extracted from a
-mmio-trace. So the first step would be to get a mmio-trace, if you haven't
-already got one.
+--- Comment #7 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-07-31 22:30:02 PST ---
+Sending an MMIO trace now.
 
 
 -- 
