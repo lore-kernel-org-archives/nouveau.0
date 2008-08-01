@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16176] X fails to start with GeForce 9600 with
- ``Failed to allocate memory for framebuffer! "
-Date: Thu, 31 Jul 2008 22:30:04 -0700 (PDT)
-Message-ID: <20080801053006.BD7FC130056@annarchy.freedesktop.org>
-References: <bug-16176-8800@http.bugs.freedesktop.org/>
+From: SBP <vorstar-ee4meeAH724@public.gmane.org>
+Subject: GeForce 7300 donation, anyone interested?
+Date: Fri, 01 Aug 2008 01:40:19 -0500
+Message-ID: <1217572819.15145.8.camel@gabi>
+Reply-To: vorstar-ee4meeAH724@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +19,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16176
+Hi folks,
+
+I appreciate what you are doing here at the nouveau project, as I find
+myself at the mercy of NVIDIA's binary blobs to be able to run Compiz
+and play some games, so it's great that you're developing the open
+source alternative.
+
+I've decided to donate to the project my GeForce 7300 GS which I no
+longer use, and of which you can make much better use than the box in my
+closet.
+
+I'd like to know if anyone is interested, and if so how can I send it to
+you, I live in Mexico.
 
 
+Cheers.
 
 
-
---- Comment #7 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-07-31 22:30:02 PST ---
-Sending an MMIO trace now.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+SBP
