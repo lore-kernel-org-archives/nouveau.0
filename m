@@ -1,7 +1,7 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16952] New: Bad video modes
-Date: Fri,  1 Aug 2008 14:21:04 -0700 (PDT)
-Message-ID: <bug-16952-8800@http.bugs.freedesktop.org/>
+From: Jasper Bryant-Greene <jasper-XrxwZhJB1KNIJsTUW+i+0g@public.gmane.org>
+Subject: NV86 (Quadro NVS 140M) errors in dmesg
+Date: Sat, 02 Aug 2008 10:20:52 +1200
+Message-ID: <1217629252.3619.5.camel@luna.unix.geek.nz>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,74 +18,38 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16952
+In case it's any use for debugging, I get these error messages in dmesg
+on my NV86 (Quadro NVS 140M) card:
 
-           Summary: Bad video modes
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: pq-X3B1VOXEql0@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+[   21.729435] [drm] Initialized drm 1.1.0 20060810
+[   21.749414] nouveau 0000:01:00.0: power state changed by ACPI to D0
+[   21.749425] nouveau 0000:01:00.0: PCI INT A -> GSI 16 (level, low) ->
+IRQ 16
+[   21.749432] nouveau 0000:01:00.0: setting latency timer to 64
+[   21.749528] [drm] Detected an NV50 generation card (0x086900a2)
+[   21.749530] [drm] Initialized nouveau 0.0.11
+drm-2.3.0-1351-g4585787bd1a1d782b on minor 0
+[   22.586502] [drm:nouveau_graph_trapped_channel] *ERROR* AIII,
+invalid/inactive channel id 128
+[   22.586509] [drm] PGRAPH_ERROR - nSource: PROTECTION_ERROR, nStatus:
+[   22.586513] [drm] PGRAPH_ERROR - Ch -1/0 Class 0x0000 Mthd 0x0000
+Data 0x00000000:0x00000000
+[   22.586521] [drm] Allocating FIFO number 1
+[   22.593281] [drm] nouveau_fifo_alloc: initialised FIFO 1
+[   22.593918] [drm] Allocating FIFO number 2
+[   22.600736] [drm] nouveau_fifo_alloc: initialised FIFO 2
 
+I'm happy to do any further debugging if the above are real errors.
 
-Created an attachment (id=18068)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18068)
-X log
+Also, Xvideo does not work properly, with mplayer printing a large
+number of these:
 
-I'm not sure when, but I recently found that X is generating a lot of bad
-modes. This is xrandr output:
+X11 error: BadMatch (invalid parameter attributes)
 
-Screen 0: minimum 320 x 200, current 1280 x 1024, maximum 1400 x 1400
-VGA-0 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 338mm
-x 270mm
-   1280x1024      60.0*+   75.0     60.0* 
-   1400x1050      60.0  
-   1280x960       60.0  
-   1152x864       75.0  
-   1024x768       85.0     75.0     70.1     60.0  
-   832x624        74.6  
-   800x600       130.0    120.0     85.1     85.1     72.2     75.0     60.3   
- 56.2  
-   700x525       149.5    120.0  
-   640x512       150.0    120.0  
-   640x480       120.0     85.0     75.0     72.8     75.0     66.7     59.9  
-   720x400        85.0     70.1  
-   640x400        85.1  
-   576x432       150.0  
-   640x350        85.1  
-   512x384       170.0    150.1    140.1    120.0  
-   416x312       149.3  
-   400x300       170.5    144.4    150.2    120.6    112.7  
-   320x240       170.4    145.6    150.0    120.1  
-   360x200       170.1  
-   320x200       170.5  
-   320x175       170.5  
+... and the screen remaining at a corrupted view of the desktop while
+audio plays.
 
-This is a flat panel, and I'm quite sure it cannot accept modes above 85Hz,
-maybe even lower. Furthermore, according to the log, there are lots of
-doublescan modes. When anything switches to 800x600 mode, X picks a doublescan
-mode, which won't work. If I manually do 'xrandr -s 800x600 -r 60' the mode is
-good.
+Otherwise, 2D performance is great. Haven't attempted any 3D as I don't
+really have any use for 3D rendering.
 
-Additionally, the included X log contains a line like the following for every
-mode switch:
-
-(II) NOUVEAU(0): Modeline "(null)"x0.0  108.00  1280 1328 1440 1688  1024 1025
-1028 1066 +hsync +vsync (64.0 kHz)
-
-which is clearly a NULL dereference, but the gnu vsnprintf is so cool it
-doesn't crash.
-
-I'm running xorg-server and nouveau from git as of 1.8.2008.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+-jasper
