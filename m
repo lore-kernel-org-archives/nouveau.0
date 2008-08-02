@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16961] 3298249d8267c27235653f17379f8c breaks Xv
  overlay ( display corruption)
-Date: Sat,  2 Aug 2008 12:43:59 -0700 (PDT)
-Message-ID: <20080802194359.0387613001F@annarchy.freedesktop.org>
+Date: Sat,  2 Aug 2008 13:25:15 -0700 (PDT)
+Message-ID: <20080802202515.CFCE9130009@annarchy.freedesktop.org>
 References: <bug-16961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-16961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,22 +21,20 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16961
-
-
-
-
-
---- Comment #2 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-08-02 12:43:58 PST ---
-I have a very similar problem on nv20, but I bisected it to commit
-9f53b2a341a81e1bff87fee8bf5c2754cac17849 "xv: remove drawable handling from
-hw-specific PutImage.. it's common..."
-http://gitweb.freedesktop.org/?p=nouveau/xf86-video-nouveau.git;a=commit;h=9f53b2a341a81e1bff87fee8bf5c2754cac17849
-
-For me it affects only the real overlay. Blitter adapted works fine.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNjk2MQoKCk1hdGhp
+ZXUgQsOpcmFyZCA8bWF0aGlldS5iZXJhcmRAY3JhbnMub3JnPiBjaGFuZ2VkOgoKICAgICAgICAg
+ICBXaGF0ICAgIHxSZW1vdmVkICAgICAgICAgICAgICAgICAgICAgfEFkZGVkCi0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0KICAgICAgICAgICAgICAgICBDQ3wgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+fG1hdGhpZXUuYmVyYXJkQGNyYW5zLm9yZwoKCgoKLS0tIENvbW1lbnQgIzMgZnJvbSBNYXRoaWV1
+IELDqXJhcmQgPG1hdGhpZXUuYmVyYXJkQGNyYW5zLm9yZz4gIDIwMDgtMDgtMDIgMTM6MjU6MTQg
+UFNUIC0tLQpJJ3ZlIGNoZWNrZWQgYW5kIEkgY2FuIGNvbmZpcm0gdGhhdDoKMzI5ODI0OWQ4MjY3
+YzI3MjM1NjUzZjE3Mzc5ZjhjfjEgaXMgZ29vZAozMjk4MjQ5ZDgyNjdjMjcyMzU2NTNmMTczNzlm
+OGMgaGFzIGltYWdlIGNvcnJ1cHRpb24KClNvIHRoZXJlIG1pZ2h0IGJlIGFub3RoZXIgYnVnIGhl
+cmUKClRoZSBibGl0dGVyIGFkYXB0ZXIgaXMgYWxzbyB1bmFmZmVjdGVkIGhlcmUsIG9ubHkgdmlk
+ZW8gb3ZlcmxheQoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0
+b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcg
+dGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBi
+dWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
+YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
