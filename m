@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16961] 3298249d8267c27235653f17379f8c breaks Xv
- overlay ( display corruption)
-Date: Sat,  2 Aug 2008 13:25:15 -0700 (PDT)
-Message-ID: <20080802202515.CFCE9130009@annarchy.freedesktop.org>
-References: <bug-16961-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16978] New: "tile offscreen pixmaps" causing
+ graphics corruption on NV50?
+Date: Sun,  3 Aug 2008 16:18:21 -0700 (PDT)
+Message-ID: <bug-16978-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +19,68 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNjk2MQoKCk1hdGhp
-ZXUgQsOpcmFyZCA8bWF0aGlldS5iZXJhcmRAY3JhbnMub3JnPiBjaGFuZ2VkOgoKICAgICAgICAg
-ICBXaGF0ICAgIHxSZW1vdmVkICAgICAgICAgICAgICAgICAgICAgfEFkZGVkCi0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0KICAgICAgICAgICAgICAgICBDQ3wgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-fG1hdGhpZXUuYmVyYXJkQGNyYW5zLm9yZwoKCgoKLS0tIENvbW1lbnQgIzMgZnJvbSBNYXRoaWV1
-IELDqXJhcmQgPG1hdGhpZXUuYmVyYXJkQGNyYW5zLm9yZz4gIDIwMDgtMDgtMDIgMTM6MjU6MTQg
-UFNUIC0tLQpJJ3ZlIGNoZWNrZWQgYW5kIEkgY2FuIGNvbmZpcm0gdGhhdDoKMzI5ODI0OWQ4MjY3
-YzI3MjM1NjUzZjE3Mzc5ZjhjfjEgaXMgZ29vZAozMjk4MjQ5ZDgyNjdjMjcyMzU2NTNmMTczNzlm
-OGMgaGFzIGltYWdlIGNvcnJ1cHRpb24KClNvIHRoZXJlIG1pZ2h0IGJlIGFub3RoZXIgYnVnIGhl
-cmUKClRoZSBibGl0dGVyIGFkYXB0ZXIgaXMgYWxzbyB1bmFmZmVjdGVkIGhlcmUsIG9ubHkgdmlk
-ZW8gb3ZlcmxheQoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0
-b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcg
-dGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBi
-dWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=16978
+
+           Summary: "tile offscreen pixmaps" causing graphics corruption on
+                    NV50?
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: chris-nEBun6gpv0i26MyoF4Ad0Q@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+                CC: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+
+Hi,
+
+(Shamelessly Cc'ing Ben Skeggs as he authored the offending commits)
+
+Am seeing some graphics corruption on nouveau with my 8600 GT consisting of odd
+black or white speckles on some widgets.
+
+It's especially noticable on the folder list of the Claws Mail mail client, but
+also appears as white horizontal lines in a gnome-terminal window after some
+time. Please ask if a photo would be useful.
+
+I've bisected it as follows:
+
+ * Working version:
+   - drm
+       401f77a2ef1d55feaccc13cdae1e5379f4cfec7e
+       i915: official name for GM45 chipset
+       Zhenyu Wang <zhenyu.z.wang-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+   - nouveau
+       5c1deac8384413dc483238f60c366e98253c11d6
+       exa: pass window coords to m2mf-based UTS/DFS
+       Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+
+ * Broken version:
+   - drm
+       c7ed2c67916ee8058301c53b9d4690d81728fb95
+       nouveau: interface changes for nv5x 3d
+       Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+   - nouveau
+       33fad279e935a5a134ee5cc1777b8ed7510101d0
+       nv50: tile offscreen pixmaps
+       Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+
+I don't know whether it is nouveau or drm commit that is causing the issue -
+the "bad" nouveau commit requires a newer drm than its working neighbour (bumps
+NOUVEAU_DRM_HEADER_PATCHLEVEL). I would guess it was the "tile offscreen
+pixmaps" commit though.
+
+Am running Linux 2.6.25/2.6.26 on x86_64.
+
+Regards,
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
