@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16961] 3298249d8267c27235653f17379f8c breaks Xv
  overlay ( display corruption)
-Date: Tue,  5 Aug 2008 05:57:46 -0700 (PDT)
-Message-ID: <20080805125747.9FC4A13005A@annarchy.freedesktop.org>
+Date: Tue,  5 Aug 2008 14:40:44 -0700 (PDT)
+Message-ID: <20080805214044.B96D413001F@annarchy.freedesktop.org>
 References: <bug-16961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-16961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,20 +21,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16961
-
-
-
-
-
---- Comment #6 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-08-05 05:57:44 PST ---
-After darktama's fix in commit 4b24be811b839f9f836b9f8574fc808d2182dd30, "xv:
-fix thinko from when source was reformatted", the overlay now works like it
-used to before this latest total breakage. So it was
-3298249d8267c27235653f17379f8c after all.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNjk2MQoKCk1hdGhp
+ZXUgQsOpcmFyZCA8bWF0aGlldS5iZXJhcmRAY3JhbnMub3JnPiBjaGFuZ2VkOgoKICAgICAgICAg
+ICBXaGF0ICAgIHxSZW1vdmVkICAgICAgICAgICAgICAgICAgICAgfEFkZGVkCi0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0KICAgICAgICAgICAgIFN0YXR1c3xORVcgICAgICAgICAgICAgICAgICAgICAgICAg
+fFJFU09MVkVECiAgICAgICAgIFJlc29sdXRpb258ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHxGSVhFRAoKCgoKLS0tIENvbW1lbnQgIzcgZnJvbSBNYXRoaWV1IELDqXJhcmQgPG1hdGhpZXUu
+YmVyYXJkQGNyYW5zLm9yZz4gIDIwMDgtMDgtMDUgMTQ6NDA6NDMgUFNUIC0tLQpJbmRlZWQgdGhp
+cyBidWcgaXMgbm93IGZpeGVkIGluIGxhdGVzdCBnaXQuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWls
+OiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0t
+LS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJl
+IHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
