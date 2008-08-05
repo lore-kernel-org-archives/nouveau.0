@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16683] NV4 not working with nouveau
-Date: Mon,  4 Aug 2008 12:04:20 -0700 (PDT)
-Message-ID: <20080804190443.19023130052@annarchy.freedesktop.org>
-References: <bug-16683-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16961] 3298249d8267c27235653f17379f8c breaks Xv
+ overlay ( display corruption)
+Date: Tue,  5 Aug 2008 05:57:46 -0700 (PDT)
+Message-ID: <20080805125747.9FC4A13005A@annarchy.freedesktop.org>
+References: <bug-16961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16683-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +21,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16683
-
-
-okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |WORKSFORME
+http://bugs.freedesktop.org/show_bug.cgi?id=16961
 
 
 
 
---- Comment #3 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-04 12:04:07 PST ---
-Gentoo ~x86, Nouveau git. NV04 working correctly. Xv working too.
+
+--- Comment #6 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-08-05 05:57:44 PST ---
+After darktama's fix in commit 4b24be811b839f9f836b9f8574fc808d2182dd30, "xv:
+fix thinko from when source was reformatted", the overlay now works like it
+used to before this latest total breakage. So it was
+3298249d8267c27235653f17379f8c after all.
 
 
 -- 
