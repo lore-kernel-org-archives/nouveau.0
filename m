@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16682] Xv problem on NV11
-Date: Wed,  6 Aug 2008 04:10:20 -0700 (PDT)
-Message-ID: <20080806111021.609D7130009@annarchy.freedesktop.org>
+Date: Wed,  6 Aug 2008 05:05:24 -0700 (PDT)
+Message-ID: <20080806120524.CC60A130058@annarchy.freedesktop.org>
 References: <bug-16682-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,11 +26,20 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16682
 
 
 
---- Comment #4 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-06 04:10:20 PST ---
-I before never tried Xv on this card (except test this bug), but NV04 (TNT2
-32MB M64) speed looks better than NV11 (GeForce 2 MX-200, 64MB)..
+--- Comment #5 from Garnet MacPhee <garnet-vVazHDhchvNCCzmm7wA0Mw@public.gmane.org>  2008-08-06 05:05:24 PST ---
+> P.S. Exist any benchmark of Xv speed? 
+> 
 
-P.S. Exist any benchmark of Xv speed? 
+I once tried benchmarking Xv on a 5200 (NV34) and a 6200A (NV4A). I played
+exactly 1 second of Elephants_Dream_HD with 
+mplayer, trying every driver (nouveau, nv, nvidia) and every port (blitter,
+texture, etc.) I still have the results, if anyone 
+is interested. The command I used was:
+
+mplayer "/mnt/hda2/Elephants_Dream_HD.avi" -benchmark -endpos 00:01:00 -nosound
+-fs -vo xv:port=122 # NV4A texture nouveau
+
+Only the binary blob was able to play 1080p video at acceptable speed (so far).
 
 
 -- 
