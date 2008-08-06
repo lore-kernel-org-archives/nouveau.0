@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16682] Xv problem on NV11
-Date: Wed,  6 Aug 2008 00:27:25 -0700 (PDT)
-Message-ID: <20080806072725.32CBC130052@annarchy.freedesktop.org>
+Date: Wed,  6 Aug 2008 04:10:20 -0700 (PDT)
+Message-ID: <20080806111021.609D7130009@annarchy.freedesktop.org>
 References: <bug-16682-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,11 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16682
 
 
 
---- Comment #3 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-08-06 00:27:24 PST ---
-The video looks similar to a problem that was fixed 2 days ago or so.
+--- Comment #4 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-06 04:10:20 PST ---
+I before never tried Xv on this card (except test this bug), but NV04 (TNT2
+32MB M64) speed looks better than NV11 (GeForce 2 MX-200, 64MB)..
 
-okias: slower than before? If so, can you you bisect it to find the commit
-where it got slower?
+P.S. Exist any benchmark of Xv speed? 
 
 
 -- 
