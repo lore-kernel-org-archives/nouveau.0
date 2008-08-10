@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
-Date: Sat,  9 Aug 2008 21:33:48 -0700 (PDT)
-Message-ID: <20080810043348.ECF9813005B@annarchy.freedesktop.org>
+Date: Sun, 10 Aug 2008 11:01:52 -0700 (PDT)
+Message-ID: <20080810180155.70236130078@annarchy.freedesktop.org>
 References: <bug-15949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,16 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15949
 
 
-Joel <joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
-
---- Comment #6 from Joel <joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-09 21:33:48 PST ---
-I see this too on a HP Pavilion tx1000 - the screen is wraps ~10 pixels from
-the right side over to the left.  This is with the LDVS panel, I haven't tested
-VGA.
-
-Using nouveau git from 20080801, and xserver 1.4.99.906 on Ubuntu Intrepid.
-
-Logs can be found at http://verbal.mithis.com/~shenki/nouveau/
+--- Comment #7 from Carl van Tonder <simplyw00x-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-10 11:01:44 PST ---
+This bug has persisted since first report despite:
+ * Changing distro (Ubuntu -> Fedora)
+ * Updating nouveau drm and x module to git head on a weekly basis
+ * Changing kernel (whatever Ubuntu was on to 2.6.25.11-97.fc9.i686
+hence it does seem to be a genuine bug with nouveau. For me the wrapping is now
+confirmed as exactly 15px.
 
 
 -- 
