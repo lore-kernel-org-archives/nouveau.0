@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16682] Xv problem on NV11
-Date: Wed,  6 Aug 2008 05:12:28 -0700 (PDT)
-Message-ID: <20080806121229.2E275130009@annarchy.freedesktop.org>
-References: <bug-16682-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
+Date: Sat,  9 Aug 2008 21:33:48 -0700 (PDT)
+Message-ID: <20080810043348.ECF9813005B@annarchy.freedesktop.org>
+References: <bug-15949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16682-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15949-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +20,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16682
+http://bugs.freedesktop.org/show_bug.cgi?id=15949
+
+
+Joel <joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
 
+--- Comment #6 from Joel <joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-09 21:33:48 PST ---
+I see this too on a HP Pavilion tx1000 - the screen is wraps ~10 pixels from
+the right side over to the left.  This is with the LDVS panel, I haven't tested
+VGA.
 
---- Comment #6 from Garnet MacPhee <garnet-vVazHDhchvNCCzmm7wA0Mw@public.gmane.org>  2008-08-06 05:12:28 PST ---
-Garnet MacPhee wrote:
->> P.S. Exist any benchmark of Xv speed?
-> 
-> I once tried benchmarking Xv on a 5200 (NV34) and a 6200A (NV4A). I 
-> played exactly 1 second of Elephants_Dream_HD with mplayer, trying every 
-> driver (nouveau, nv, nvidia) and every port (blitter, texture, etc.) I 
-> still have the results, if anyone is interested. The command I used was:
-> 
-> mplayer "/mnt/hda2/Elephants_Dream_HD.avi" -benchmark -endpos 00:01:00 
-> -nosound -fs -vo xv:port=122 # NV4A texture nouveau
-> 
-> Only the binary blob was able to play 1080p video at acceptable speed 
-> (so far).
-> 
+Using nouveau git from 20080801, and xserver 1.4.99.906 on Ubuntu Intrepid.
 
-Oops...I meant 1 minute
+Logs can be found at http://verbal.mithis.com/~shenki/nouveau/
 
 
 -- 
