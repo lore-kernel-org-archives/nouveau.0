@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
-Date: Sun, 10 Aug 2008 11:01:52 -0700 (PDT)
-Message-ID: <20080810180155.70236130078@annarchy.freedesktop.org>
+Date: Sun, 10 Aug 2008 17:01:57 -0700 (PDT)
+Message-ID: <20080811000157.9E034130052@annarchy.freedesktop.org>
 References: <bug-15949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15949
 
 
 
---- Comment #7 from Carl van Tonder <simplyw00x-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-10 11:01:44 PST ---
-This bug has persisted since first report despite:
- * Changing distro (Ubuntu -> Fedora)
- * Updating nouveau drm and x module to git head on a weekly basis
- * Changing kernel (whatever Ubuntu was on to 2.6.25.11-97.fc9.i686
-hence it does seem to be a genuine bug with nouveau. For me the wrapping is now
-confirmed as exactly 15px.
+--- Comment #8 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-08-10 17:01:56 PST ---
+Just to be sure, can you confirm that once the wrapping has occurred, either
+returning to VT or starting X with randr12 disabled still displays the
+wrapping?
+
+Please also make register dumps while in X -- one with randr12 disabled (and no
+wrapping present), and one with the wrapping present -- as follows:
+
+git clone git://people.freedesktop.org/~airlied/radeontool
+git checkout origin/nvidia
+make (if there's problems with the asm/page.h include, comment it out)
+./radeontool regs > logfile
 
 
 -- 
