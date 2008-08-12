@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
-Date: Mon, 11 Aug 2008 19:34:34 -0700 (PDT)
-Message-ID: <20080812023435.00D4C130163@annarchy.freedesktop.org>
+Date: Tue, 12 Aug 2008 07:55:22 -0700 (PDT)
+Message-ID: <20080812145522.5722B1300E1@annarchy.freedesktop.org>
 References: <bug-15949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,36 +26,49 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15949
 
 
 
---- Comment #9 from Joel <joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-11 19:34:30 PST ---
-(In reply to comment #8)
-> Just to be sure, can you confirm that once the wrapping has occurred, either
-> returning to VT or starting X with randr12 disabled still displays the
-> wrapping?
-
-If the wrapping is present, I can switch to a vt (where wrapping is not
-present), but switching back to X still shows wrapping.
-
-I then modified xorg.conf to disable randr12, re-started X, there is no
-wrapping.
-
-
-> Please also make register dumps while in X -- one with randr12 disabled (and no
-> wrapping present), and one with the wrapping present -- as follows:
+--- Comment #10 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-08-12 07:55:20 PST ---
+(In reply to comment #9)
+> If the wrapping is present, I can switch to a vt (where wrapping is not
+> present), but switching back to X still shows wrapping.
 > 
-> git clone git://people.freedesktop.org/~airlied/radeontool
-> git checkout origin/nvidia
-> make (if there's problems with the asm/page.h include, comment it out)
-> ./radeontool regs > logfile
+> I then modified xorg.conf to disable randr12, re-started X, there is no
+> wrapping.
 
-This is all I get (amd64, ubuntu intrepid):
+Without a reboot in between, right?
 
-$ sudo ./radeontool regs
-00:00.0 RAM memory: nVidia Corporation C51 Host Bridge (rev a2)
-        Subsystem: Hewlett-Packard Company Device 30bf
-        Flags: bus master, 66MHz, fast devsel, latency 0
-        Capabilities: [44] HyperTransport: Slave or Primary Interface
-        Capabilities: [e0] HyperTransport: MSI Mapping Enable+ Fixed-
-Radeon control memory not found.
+> > git clone git://people.freedesktop.org/~airlied/radeontool
+> > git checkout origin/nvidia
+> > make (if there's problems with the asm/page.h include, comment it out)
+> > ./radeontool regs > logfile
+> 
+> This is all I get (amd64, ubuntu intrepid):
+> 
+> $ sudo ./radeontool regs
+> 00:00.0 RAM memory: nVidia Corporation C51 Host Bridge (rev a2)
+>         Subsystem: Hewlett-Packard Company Device 30bf
+>         Flags: bus master, 66MHz, fast devsel, latency 0
+>         Capabilities: [44] HyperTransport: Slave or Primary Interface
+>         Capabilities: [e0] HyperTransport: MSI Mapping Enable+ Fixed-
+> Radeon control memory not found.
+
+Bah, nvidia chipset :)
+
+Try changing line ~478, replacing "nVidia" with "VGA compatible controller":
+
+@@ -475,7 +475,7 @@ We need to look through it to find the smaller region base
+address f8fffc00.
+        if(fgets(line,sizeof(line),fp) == NULL) {  /* if end of file */
+           fatal("Radeon hardware not found in lspci output.\n");
+        }
+-       if(strstr(line,"nVidia") || strstr(line,"nVidia Corp")) {  /* if line
+contains a "radeon" string */
++       if(strstr(line,"VGA compatible controller") || strstr(line,"nVidia
+Corp")) {  /* if line contains a "radeon"
+           if(skip-- < 1) {
+              break;
+           }
+
+then re-run make and try again
 
 
 -- 
