@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
-Date: Wed, 13 Aug 2008 04:15:09 -0700 (PDT)
-Message-ID: <20080813111509.E502C130155@annarchy.freedesktop.org>
+Date: Wed, 13 Aug 2008 04:16:16 -0700 (PDT)
+Message-ID: <20080813111617.033231300CD@annarchy.freedesktop.org>
 References: <bug-15949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,35 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15949
 
 
 
---- Comment #11 from Joel <joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-13 04:15:08 PST ---
-(In reply to comment #10)
-> > I then modified xorg.conf to disable randr12, re-started X, there is no
-> > wrapping.
-> 
-> Without a reboot in between, right?
-
-Correct.
-
-> Try changing line ~478, replacing "nVidia" with "VGA compatible controller":
-> 
-> @@ -475,7 +475,7 @@ We need to look through it to find the smaller region base
-> address f8fffc00.
->         if(fgets(line,sizeof(line),fp) == NULL) {  /* if end of file */
->            fatal("Radeon hardware not found in lspci output.\n");
->         }
-> -       if(strstr(line,"nVidia") || strstr(line,"nVidia Corp")) {  /* if line
-> contains a "radeon" string */
-> +       if(strstr(line,"VGA compatible controller") || strstr(line,"nVidia
-> Corp")) {  /* if line contains a "radeon"
->            if(skip-- < 1) {
->               break;
->            }
-
-
-For those who read this later: I had to remove the strstr(line, "nVidia Corp")
-from the if too, or else it would incorrectly match on that.
-
-Attachments of the register dumps follow.
+--- Comment #12 from Joel <joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-13 04:16:16 PST ---
+Created an attachment (id=18260)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18260)
+radeontool register dump, randr12 enabled, cold boot
 
 
 -- 
