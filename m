@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
-Date: Wed, 13 Aug 2008 04:16:16 -0700 (PDT)
-Message-ID: <20080813111617.033231300CD@annarchy.freedesktop.org>
+Date: Wed, 13 Aug 2008 04:19:36 -0700 (PDT)
+Message-ID: <20080813111936.717BA130128@annarchy.freedesktop.org>
 References: <bug-15949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15949
 
 
 
---- Comment #12 from Joel <joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-13 04:16:16 PST ---
-Created an attachment (id=18260)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18260)
-radeontool register dump, randr12 enabled, cold boot
+--- Comment #13 from Joel <joel.stan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-13 04:19:35 PST ---
+Created an attachment (id=18261)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18261)
+radeontool register dump, randr12 disabled
+
+No reboot between this dump and attachment 18260, only an X server restart.
 
 
 -- 
