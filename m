@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17138] Randr12 on nv34m causes colour corruption on
  laptop panel.
-Date: Thu, 14 Aug 2008 11:32:45 -0700 (PDT)
-Message-ID: <20080814183246.D4784130632@annarchy.freedesktop.org>
+Date: Thu, 14 Aug 2008 12:02:42 -0700 (PDT)
+Message-ID: <20080814190319.32E5C130FC4@annarchy.freedesktop.org>
 References: <bug-17138-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17138
 
 
 
---- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-08-14 11:32:41 PST ---
-Xorg.0.log while using randr12 as well please
+--- Comment #2 from Murray Campbell <murray-Xhi4+0Yxd7rk1uMJSBkQmQ@public.gmane.org>  2008-08-14 12:02:38 PST ---
+Created an attachment (id=18285)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18285)
+Xorg.0.log without patch
+
+This is the Xorg.0.log with Randr12 enabled and the original nv_bios.c
 
 
 -- 
