@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17138] Randr12 on nv34m causes colour corruption on
  laptop panel.
-Date: Thu, 14 Aug 2008 12:03:18 -0700 (PDT)
-Message-ID: <20080814190324.60CA8130FC1@annarchy.freedesktop.org>
+Date: Thu, 14 Aug 2008 12:06:08 -0700 (PDT)
+Message-ID: <20080814190608.CC76A131105@annarchy.freedesktop.org>
 References: <bug-17138-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,27 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=17138
 
 
-Murray Campbell <murray-Xhi4+0Yxd7rk1uMJSBkQmQ@public.gmane.org> changed:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #18285|application/octet-stream    |text/plain
-          mime type|                            |
 
+
+--- Comment #3 from Murray Campbell <murray-Xhi4+0Yxd7rk1uMJSBkQmQ@public.gmane.org>  2008-08-14 12:06:08 PST ---
+Created an attachment (id=18286)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18286)
+Xorg.0.log with patch
+
+This is the Xorg.0.log with Randr12 enabled and nv_bios.c modified by applying
+the patch:
+
+--- nv_bios.c   2008-08-14 19:56:33.000000000 +0100
++++ nv_bios.c.altered   2008-08-14 19:56:02.000000000 +0100
+@@ -3154,6 +3154,8 @@
+                         * lvdsmanufacturerindex in this case; we don't */
+                }
+
++               lvdsmanufacturerindex=3;
++
+                headerlen = 2;
+                recordlen = bios->data[bios->fp.lvdsmanufacturerpointer + 1];
 
 
 
