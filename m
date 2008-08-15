@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17138] Randr12 on nv34m causes colour corruption on
  laptop panel.
-Date: Fri, 15 Aug 2008 11:34:16 -0700 (PDT)
-Message-ID: <20080815183424.E810E130675@annarchy.freedesktop.org>
+Date: Fri, 15 Aug 2008 14:26:04 -0700 (PDT)
+Message-ID: <20080815212604.5A1482DC816@annarchy.freedesktop.org>
 References: <bug-17138-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,13 +27,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17138
 
 
 
---- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-08-15 11:34:14 PST ---
-Created an attachment (id=18301)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18301)
-(hopefully correct) fix
+--- Comment #5 from Murray Campbell <murray-Xhi4+0Yxd7rk1uMJSBkQmQ@public.gmane.org>  2008-08-15 14:26:02 PST ---
+(In reply to comment #4)
 
-Try this. There's a lot of code motion, so I might have got something wrong
-still.
+> Try this. There's a lot of code motion, so I might have got something wrong
+> still.
+
+Well, it seems to work here. I'll let you know if anything unusual transpires.
+
+There is a white thin-ish vertical line about half the screen high that
+flickers once as X starts. This never happened before but, of course, it's not
+a problem.
+
+Thanks for looking into this so quickly.
 
 
 -- 
