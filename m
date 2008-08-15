@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17138] Randr12 on nv34m causes colour corruption on
- laptop panel.
-Date: Fri, 15 Aug 2008 16:33:20 -0700 (PDT)
-Message-ID: <20080815233320.C883B2DCEB2@annarchy.freedesktop.org>
-References: <bug-17138-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15949] LVDS-0 has wrapped screen with Randr1.2
+Date: Fri, 15 Aug 2008 16:41:55 -0700 (PDT)
+Message-ID: <20080815234156.EF2571305D1@annarchy.freedesktop.org>
+References: <bug-15949-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17138-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15949-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +20,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17138
-
-
-Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=15949
 
 
 
 
---- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-08-15 16:33:19 PST ---
-Committed to master
+
+--- Comment #16 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-08-15 16:41:53 PST ---
+Created an attachment (id=18310)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18310)
+Probable fix
+
+Could you both test this please?
 
 
 -- 
