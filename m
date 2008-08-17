@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15366] 16bit depth + firefox crashes
-Date: Sun, 17 Aug 2008 13:36:55 -0700 (PDT)
-Message-ID: <20080817203656.1A8062DC4AB@annarchy.freedesktop.org>
+Date: Sun, 17 Aug 2008 15:14:26 -0700 (PDT)
+Message-ID: <20080817221426.643A92DC999@annarchy.freedesktop.org>
 References: <bug-15366-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15366
 
 
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
-
---- Comment #3 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2008-08-17 13:36:54 PST ---
-Should be fixed, please test.
 
 
 -- 
