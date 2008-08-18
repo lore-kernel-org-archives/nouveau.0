@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16148] primary display is borked with RandR12 enabled
-Date: Mon, 18 Aug 2008 07:26:25 -0700 (PDT)
-Message-ID: <20080818142625.6115B1304CA@annarchy.freedesktop.org>
-References: <bug-16148-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 17185] Black Display when using Nouveau on 7300gt
+ with dvi to hdmi attached Sony 32W4000
+Date: Mon, 18 Aug 2008 07:26:59 -0700 (PDT)
+Message-ID: <20080818142659.C1F4C13015E@annarchy.freedesktop.org>
+References: <bug-17185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16148-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-17185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,42 +21,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16148
-
-
-
-
-
---- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-08-18 07:26:24 PST ---
-Assuming it doesn't work with updated software, can you also try:
-
-1) starting from a non-corrupted state, start nouveau with
-nv_bios.c:call_lvds_script patched out:
-
---- a/src/nv_bios.c
-+++ b/src/nv_bios.c
-@@ -2965,6 +2965,7 @@ void call_lvds_script(ScrnInfoPtr pScrn, struct dcb_entry
-*dcbent, int head, enu
-        uint32_t sel_clk_binding;
-        static int last_invoc = 0;
-
-+       return;
-        if (last_invoc == (script << 1 | head) || !lvds_ver)
-                return;
-
-and check whether the picture in X is ok, and whether the picture on returning
-to console is ok.
-
-2) Make register dumps while in X, and attach them here -- one with randr12
-disabled (and no corruption present), and one with randr12 enabled and the
-corruption present -- as follows:
-
-git clone git://people.freedesktop.org/~stuart/radeontool
-make
-./radeontool regs > logfile
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzE4NQoKCgoKCi0t
+LSBDb21tZW50ICMzIGZyb20gSGVucmlrIFPDuHJlbnNlbiA8aGVucmlrLnNvcmVuc2VuQGdtYWls
+LmNvbT4gIDIwMDgtMDgtMTggMDc6MjY6NTggUFNUIC0tLQpObywgSSBnZXQgZnVsbCB2aWRlbyBm
+cm9tIHRoZSB0aW1lIHRoZSBtYWNoaW5lIGlzIHR1cm5lZCBvbiwgYmlvcyBtZXNzYWdlcywKZ3J1
+YiBsb2FkZXIsIGtlcm5lbCBtZXNzYWdlcywgVlRzLiAodHYgc2F5cyBpdCBnZXRzIGEgMTA4MHAg
+c2lnbmFsLCBzbyB0aGUgdmdhCmJpb3MgbXVzdCBiZSB0ZWxsaW5nIHRoZSBjYXJkIHRvIHNjYWxl
+KS4gSG93ZXZlciwgb25jZSBYIHdpdGggbm91dmVhdSBvciBudgpzdGFydHMsIEkgbG9zZSBhbGwg
+dmlkZW8uIFRoZSBhcHBlYXJzIHRvIHRoaW5rIGl0J3Mgc3RpbGwgZ2V0dGluZyBhIHNpZ25hbCwg
+YnV0CnRoZSBzY3JlZW4gaXMgYmxhY2sgYm90aCBpbiBYIGFuZCB0aGUgVlRzLgoKSSBUSE9VR0hU
+IGF0IGZpcnN0LCBpdCB3YXMgY29tcGxhaW5pbmcgYWJvdXQgdW5rbm93biBkY2IgZW50cmllcy4g
+QnV0IGl0IHdhcwpqdXN0IHRoZSByYXcgZGNiIGR1bXAgcmlnaHQgYmVmb3JlIGl0IHBhbmljZWQg
+YmVjYXVzZSBvZiB0aGUgYmxvYiBnbHggYmVpbmcKZm91bmQuCgpJZiB5b3UgcnVuIG5vdXZlYXUg
+YWZ0ZXIgdGhlIGJsb2IsIHJlbWVtYmVyaW5nIHRvIHJlbW92ZSB0aGUgbnZpZGlhIGxpYmdseCwg
+dGhlCnhzZXJ2ZXIgc3RhcnRzLCBidXQgd2l0aCB0aGUgc2FtZSBiZWhhdmlvciwgbm8gaW1hZ2Uu
+CgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNl
+cnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwg
+YmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
