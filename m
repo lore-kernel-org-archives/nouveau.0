@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17185] Black Display when using Nouveau on 7300gt
  with dvi to hdmi attached Sony 32W4000
-Date: Mon, 18 Aug 2008 04:32:34 -0700 (PDT)
-Message-ID: <20080818113234.7DFD12DC6BD@annarchy.freedesktop.org>
+Date: Mon, 18 Aug 2008 06:51:25 -0700 (PDT)
+Message-ID: <20080818135132.D339B2DC37F@annarchy.freedesktop.org>
 References: <bug-17185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-17185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,14 +21,28 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzE4NQoKCgoKCi0t
-LSBDb21tZW50ICMxIGZyb20gSGVucmlrIFPDuHJlbnNlbiA8aGVucmlrLnNvcmVuc2VuQGdtYWls
-LmNvbT4gIDIwMDgtMDgtMTggMDQ6MzI6MzMgUFNUIC0tLQpDcmVhdGVkIGFuIGF0dGFjaG1lbnQg
-KGlkPTE4MzU1KQogLS0+IChodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5j
-Z2k/aWQ9MTgzNTUpClhvcmcubG9nIHdpdGggbnZpZGlhIGJsb2IKCgotLSAKQ29uZmlndXJlIGJ1
-Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFp
-bAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllv
-dSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=17185
+
+
+
+
+
+--- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-08-18 06:51:20 PST ---
+Do you mean that if you start the computer with only this display attached, the
+only way you ever see anything is when the nvidia driver loads? No BIOS screen,
+no boot messages, no console? Otherwise, I don't understand the bit about "a
+black display including the virtual terminals".
+
+In IRC you mentioned that "Nouveau did complain about unknown DCB entries when
+I started it after the blob" -- could you attach an xorg log showing these
+complaints?
+
+If you run the blob before Nouveau, what happens when you start Nouveau? Does
+it load X successfully? Does it load X, but leave the screen black? Does it
+fail to start at all?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
