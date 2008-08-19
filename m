@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17185] Black Display when using Nouveau on 7300gt
  with dvi to hdmi attached Sony 32W4000
-Date: Mon, 18 Aug 2008 08:54:25 -0700 (PDT)
-Message-ID: <20080818155425.D195F2DC630@annarchy.freedesktop.org>
+Date: Tue, 19 Aug 2008 03:39:57 -0700 (PDT)
+Message-ID: <20080819103957.C654E2DC063@annarchy.freedesktop.org>
 References: <bug-17185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-17185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,31 +21,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17185
-
-
-
-
-
---- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-08-18 08:54:24 PST ---
-If you use nv, and get a black screen, then return to VT, does the VT reappear
-on the screen, or does the screen stay black?
-
-Since randr12-less nouveau and the nv driver are pretty similar, can you see if
-nouveau works if you add 'Option "randr12" "off"' to the device section of
-xorg.conf, then run it after the blob (similar to how you say you can get nv to
-work)?
-
-If this works, keeping randr12 disabled in xorg.conf, register dumps running
-nouveau before (black screen) and after the blob (working) would help. Make
-them by doing:
-
-git clone git://people.freedesktop.org/~stuart/radeontool
-make
-./radeontool regs > logfile
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzE4NQoKCgoKCi0t
+LSBDb21tZW50ICM1IGZyb20gSGVucmlrIFPDuHJlbnNlbiA8aGVucmlrLnNvcmVuc2VuQGdtYWls
+LmNvbT4gIDIwMDgtMDgtMTkgMDM6Mzk6NTUgUFNUIC0tLQpudiBhZnRlciB0aGUgYmxvYiBkb2Vz
+IGhhdmUgd29ya2luZyBWVHMsIGRpZCBhIGJ1bmNoIHN3aXRjaGVzIGJhY2sgYW5kIGZvcnRoCmp1
+c3QgdG8gbWFrZSBzdXJlIGl0IHdvcmtlZCBwZXJmZWN0bHkuIAoKUmFuZHIxMi1sZXNzIG5vdXZl
+YXUgZ2l2ZXMgbWUgYSBibGFjayBkaXNwbGF5IHRvby4gSWYgSSBsb2FkIHRoZSBibG9iIGFmdGVy
+Cm5vdXZlYXUsIFggZ2l2ZXMgYSBwaWN0dXJlIGFzIG5vcm1hbCwgYnV0IHRoZSBWVHMgYXJlIGVp
+dGhlciBibGFjaywgb3IgaGFzCmNvcnJ1cHRpb24gKHJlZCBzcGFjZWQgYXJ0ZWZhY3RzKS4KCkkn
+bGwgZG8gYW4gbW1pb3RyYWNlIG9mIHRoZSBibG9iIHN0YXJ0aW5nIHggYW5kIHN3aXRjaGluZyBi
+YWNrIHRvIGEgVlQuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVz
+a3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2Vpdmlu
+ZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhl
+IGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
