@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16597] nouveau crash with 2 screens
-Date: Wed, 20 Aug 2008 17:08:44 -0700 (PDT)
-Message-ID: <20080821000844.375A1130223@annarchy.freedesktop.org>
+Date: Wed, 20 Aug 2008 17:10:23 -0700 (PDT)
+Message-ID: <20080821001023.A9E9D2DC17C@annarchy.freedesktop.org>
 References: <bug-16597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Jesse Barnes <jbarnes-Y1mF5jBUw70BENJcbMCuUQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Blocks|                            |16926
+             Blocks|16926                       |
 
 
 
