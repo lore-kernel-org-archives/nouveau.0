@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17185] Black Display when using Nouveau on 7300gt
- with dvi to hdmi attached Sony 32W4000
-Date: Wed, 20 Aug 2008 03:55:44 -0700 (PDT)
-Message-ID: <20080820105544.5AFA4130860@annarchy.freedesktop.org>
-References: <bug-17185-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16597] nouveau crash with 2 screens
+Date: Wed, 20 Aug 2008 17:08:44 -0700 (PDT)
+Message-ID: <20080821000844.375A1130223@annarchy.freedesktop.org>
+References: <bug-16597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzE4NQoKCgoKCi0t
-LSBDb21tZW50ICMxMyBmcm9tIEhlbnJpayBTw7hyZW5zZW4gPGhlbnJpay5zb3JlbnNlbkBnbWFp
-bC5jb20+ICAyMDA4LTA4LTIwIDAzOjU1OjQzIFBTVCAtLS0KQ3JlYXRlZCBhbiBhdHRhY2htZW50
-IChpZD0xODQwNykKIC0tPiAoaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL2F0dGFjaG1lbnQu
-Y2dpP2lkPTE4NDA3KQpyYWRlb250b29sIHJlZ3MgZHVtcCB3aXRoIHJhbmRyMTIgZGlzYWJsZWQg
-YXR0ZW1wdCAzIChwdXJlIGdpdCkgYWZ0ZXIgcnVubmluZyBhCmNodnQgNwoKCi0tIApDb25maWd1
-cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFi
-PWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0t
-LS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=16597
+
+
+Jesse Barnes <jbarnes-Y1mF5jBUw70BENJcbMCuUQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Blocks|                            |16926
+
+
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
