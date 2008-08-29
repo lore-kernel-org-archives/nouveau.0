@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17356] NV4B 10DE: 0393 Startx fails using nouveau on
  third console to Xorg context switch
-Date: Fri, 29 Aug 2008 15:21:36 -0700 (PDT)
-Message-ID: <20080829222136.A38FD1310B4@annarchy.freedesktop.org>
+Date: Fri, 29 Aug 2008 15:21:59 -0700 (PDT)
+Message-ID: <20080829222200.4445A1310CF@annarchy.freedesktop.org>
 References: <bug-17356-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=17356
 
 
+Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         OS/Version|All                         |Linux (All)
 
 
-
---- Comment #2 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-29 15:21:34 PST ---
-Created an attachment (id=18576)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18576)
-kernel log showing failed start at 09:47 and then reboot
 
 
 -- 
