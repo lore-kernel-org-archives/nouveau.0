@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17359] NV50 XV crash often
-Date: Fri, 29 Aug 2008 16:35:39 -0700 (PDT)
-Message-ID: <20080829233539.C633813038F@annarchy.freedesktop.org>
+Date: Fri, 29 Aug 2008 16:36:22 -0700 (PDT)
+Message-ID: <20080829233623.552FA131D94@annarchy.freedesktop.org>
 References: <bug-17359-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17359
 
 
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-29 16:35:39 PST ---
-Yeah I see this occasionally, well, the 2nd problem at least.  I have a theory
-on what causes it but haven't had a chance to look at it yet.
-
-I've attached something that should workaround the issue if I'm right about the
-cause.  Let me know if it helps!
-
-If it does, I'll look at backporting some of the patches from the -ng branch of
-the ddx which'll be a better fix until -ng is usable.
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-29 16:36:22 PST ---
+Created an attachment (id=18584)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18584)
+potential workaround
 
 
 -- 
