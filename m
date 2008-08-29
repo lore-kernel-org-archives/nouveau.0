@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17347] NV34M (12" powerbook G4) LVDS not supported
-Date: Thu, 28 Aug 2008 20:35:52 -0700 (PDT)
-Message-ID: <20080829033553.41E342DC1A9@annarchy.freedesktop.org>
+Date: Fri, 29 Aug 2008 13:33:34 -0700 (PDT)
+Message-ID: <20080829203337.BD96C1318F6@annarchy.freedesktop.org>
 References: <bug-17347-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=17347
 
 
+Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
 
---- Comment #1 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2008-08-28 20:35:50 PST ---
-Ok, looks like I can't attach a 4MB file.  Here it is instead:
-http://spuriousinterrupt.org/stuff/Xorg.0.log
+
+--- Comment #2 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2008-08-29 13:33:28 PST ---
+Nope, my fault.  It turned out to be an autoconf bug that built X.org with
+messed-up endianness macros.
 
 
 -- 
