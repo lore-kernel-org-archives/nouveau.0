@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17357] NV4B 10DE:0393 funny stripes in video flash
  when using nouveau
-Date: Fri, 29 Aug 2008 15:44:26 -0700 (PDT)
-Message-ID: <20080829224426.D08611326D0@annarchy.freedesktop.org>
+Date: Fri, 29 Aug 2008 16:21:02 -0700 (PDT)
+Message-ID: <20080829232106.E89ED130299@annarchy.freedesktop.org>
 References: <bug-17357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,28 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17357
 
 
 
---- Comment #5 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-29 15:44:26 PST ---
-Created an attachment (id=18582)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18582)
-/var/log/Xorg.0.log
+--- Comment #6 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-29 16:20:58 PST ---
+Additional data points;
+
+1. If I go to the website this video is from http://www.nimportequi.com/ and
+watch the original "VIDEO STAR DECATHLON - PEKIN 2008" which plays with flash
+player 9 under firefox 3.0.1 there are no stripes in the video at all.
+
+2. If I play the same file on a Windows XP SP2 machine (via samba) with Media
+Player 10 there are no stripes in the video at all.
+
+3. Similar artefacts, smaller height and more of (12 rows of), observed in
+playback of mpeg-2 streams captured from the hauppage video capture card in
+this machine (520x576).
+
+Original file is 320x240 and appers to have 2 rows of artefacts.
+
+
+Conclusion, the artefacts are not a result of the conversion from flash to
+windows media 9 format so the file is ok, it is not a problem with playback of
+the windows media 9 format as similar issue present in mpeg-2 format playback,
+flash player appears to use a different video playback mechanism to totem not
+triggering the problem.
 
 
 -- 
