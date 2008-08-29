@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17357] NV4B 10DE:0393 funny stripes in video flash
- when using nouveau
-Date: Fri, 29 Aug 2008 16:21:02 -0700 (PDT)
-Message-ID: <20080829232106.E89ED130299@annarchy.freedesktop.org>
-References: <bug-17357-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 17359] New: NV50 XV crash often
+Date: Fri, 29 Aug 2008 16:24:13 -0700 (PDT)
+Message-ID: <bug-17359-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +18,34 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17357
+http://bugs.freedesktop.org/show_bug.cgi?id=17359
+
+           Summary: NV50 XV crash often
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: GatoLoko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+After playing multiple videos, X crashes when starting a new one or swithching
+from/to fullscreen.
 
+It crashes in tow different ways.
 
+1.- X locks without stoping, don't updates screen image, uses 100% CPU, locks
+keyboard, ... and must be killed from a remote ssh conection to recover the
+system.
 
---- Comment #6 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-29 16:20:58 PST ---
-Additional data points;
+2.- X crashes and gdm restarts it.
 
-1. If I go to the website this video is from http://www.nimportequi.com/ and
-watch the original "VIDEO STAR DECATHLON - PEKIN 2008" which plays with flash
-player 9 under firefox 3.0.1 there are no stripes in the video at all.
-
-2. If I play the same file on a Windows XP SP2 machine (via samba) with Media
-Player 10 there are no stripes in the video at all.
-
-3. Similar artefacts, smaller height and more of (12 rows of), observed in
-playback of mpeg-2 streams captured from the hauppage video capture card in
-this machine (520x576).
-
-Original file is 320x240 and appers to have 2 rows of artefacts.
-
-
-Conclusion, the artefacts are not a result of the conversion from flash to
-windows media 9 format so the file is ok, it is not a problem with playback of
-the windows media 9 format as similar issue present in mpeg-2 format playback,
-flash player appears to use a different video playback mechanism to totem not
-triggering the problem.
+There are no logged messages regarding the crash.
 
 
 -- 
