@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17357] NV4B 10DE:0393 funny stripes in video flash
  when using nouveau
-Date: Fri, 29 Aug 2008 15:44:03 -0700 (PDT)
-Message-ID: <20080829224403.27BCC13146D@annarchy.freedesktop.org>
+Date: Fri, 29 Aug 2008 15:44:26 -0700 (PDT)
+Message-ID: <20080829224426.D08611326D0@annarchy.freedesktop.org>
 References: <bug-17357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17357
 
 
 
---- Comment #4 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-29 15:44:02 PST ---
-Created an attachment (id=18581)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18581)
-/var/log/messages
+--- Comment #5 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-08-29 15:44:26 PST ---
+Created an attachment (id=18582)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18582)
+/var/log/Xorg.0.log
 
 
 -- 
