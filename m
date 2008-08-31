@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17377] NV50 failure on MacBook Pro.
-Date: Sun, 31 Aug 2008 05:36:05 -0700 (PDT)
-Message-ID: <20080831123606.AFFD71323DB@annarchy.freedesktop.org>
+Date: Sun, 31 Aug 2008 06:08:23 -0700 (PDT)
+Message-ID: <20080831130823.A6B711325C7@annarchy.freedesktop.org>
 References: <bug-17377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17377
 
 
 
---- Comment #4 from David Woodhouse <dwmw2-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>  2008-08-31 05:36:04 PST ---
-Created an attachment (id=18601)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18601)
-Xorg.log with working nv driver
+--- Comment #5 from David Woodhouse <dwmw2-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>  2008-08-31 06:08:22 PST ---
+When running the current driver, I get this output from the kernel:
 
-The nv driver works; this is its log, for reference.
+[drm] Unhandled PFIFO_INTR - 0x00000010
+[drm] Allocating FIFO number 1
+[drm] Unhandled PFIFO_INTR - 0x00000010
+[drm] nouveau_fifo_alloc: initialised FIFO 1
+[drm] Allocating FIFO number 2
+[drm] nouveau_fifo_alloc: initialised FIFO 2
+[drm] Unhandled PFIFO_INTR - 0x00000010
+[drm] nouveau_fifo_free: freeing fifo 2
+[drm] nouveau_fifo_free: freeing fifo 1
+[drm] Unhandled PFIFO_INTR - 0x00000010
 
 
 -- 
