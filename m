@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17377] NV50 failure on MacBook Pro.
-Date: Sun, 31 Aug 2008 05:25:23 -0700 (PDT)
-Message-ID: <20080831122524.56D1113234E@annarchy.freedesktop.org>
+Date: Sun, 31 Aug 2008 05:26:58 -0700 (PDT)
+Message-ID: <20080831122658.F3352132358@annarchy.freedesktop.org>
 References: <bug-17377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,27 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17377
 
 
 
---- Comment #1 from David Woodhouse <dwmw2-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>  2008-08-31 05:25:21 PST ---
-Using mesa and nouveau from git as of today (commits cd7d71f1 and 6dd8ad4e
-resp.), it manages a little better, but still doesn't start up correctly.
-
-When starting manually, it initialises the screen which what looks like the
-familiar stipple pattern, except that there are about 100 almost horizontal
-black lines across the it. They're a single pixel high, and run for about 128
-pixels along before dropping down by one pixel. And then it locks up, eating
-CPU in nouveau_dma_wait():
-
-0x0000000002234c2c in nouveau_dma_wait (
-    userchan=0x263ab70, size=13) at nouveau_dma.c:99
-99                                                      get = READ_GET(chan);
-Missing separate debuginfos, use: debuginfo-install xorg-x11-server.x86_64
-(gdb) bt
-#0  0x0000000002234c2c in nouveau_dma_wait (userchan=0x263ab70, size=13) at
-nouveau_dma.c:99
-#1  0x000000000226e9fd in NV50EXACopy (pdpix=<value optimized out>, srcX=0,
-srcY=0, dstX=1764, dstY=0, width=4, height=4) at nouveau_dma.h:118
-#2  0x000000000717b4e0 in exaFillRegionTiled () from
-/usr/lib64/xorg/modules//libexa.so
+--- Comment #2 from David Woodhouse <dwmw2-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>  2008-08-31 05:26:57 PST ---
+Created an attachment (id=18599)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18599)
+Xorg.log from current git 
 
 
 -- 
