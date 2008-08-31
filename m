@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17377] NV50 failure on MacBook Pro.
-Date: Sun, 31 Aug 2008 05:26:58 -0700 (PDT)
-Message-ID: <20080831122658.F3352132358@annarchy.freedesktop.org>
+Date: Sun, 31 Aug 2008 05:30:11 -0700 (PDT)
+Message-ID: <20080831123012.0C660131C84@annarchy.freedesktop.org>
 References: <bug-17377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,20 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17377
 
 
 
---- Comment #2 from David Woodhouse <dwmw2-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>  2008-08-31 05:26:57 PST ---
-Created an attachment (id=18599)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18599)
-Xorg.log from current git 
+--- Comment #3 from David Woodhouse <dwmw2-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>  2008-08-31 05:30:11 PST ---
+Created an attachment (id=18600)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18600)
+Xorg.log with current git, started from gdm.
+
+When gdm starts the X server rather than me starting it manually, the failure
+mode is a little different -- I see the same corrupted background pattern, but
+this time I do actually see the cursor, which I didn't see before. And then it
+crashes (rather than needing me to hit ^\).
+
+It seems to notice that it's locked up this time, and includes a fifo dump in
+the log.
+
+The "potential workaround" in bug 17359 doesn't make any difference.
 
 
 -- 
