@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16148] primary display is borked with RandR12 enabled
-Date: Tue,  2 Sep 2008 06:09:38 -0700 (PDT)
-Message-ID: <20080902130938.5D630130039@annarchy.freedesktop.org>
+Date: Tue,  2 Sep 2008 06:11:21 -0700 (PDT)
+Message-ID: <20080902131124.45914130005@annarchy.freedesktop.org>
 References: <bug-16148-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,24 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16148
 
 
 
---- Comment #7 from Ritesh Khadgaray <khadgaray-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-02 06:09:37 PST ---
-> 1) starting from a non-corrupted state, start nouveau with
-> nv_bios.c:call_lvds_script patched out:
-> --- a/src/nv_bios.c
-> +++ b/src/nv_bios.c
-> ...
-> and check whether the picture in X is ok, and whether the picture on returning
-> to console is ok.
-
-Nope. All i see is blank black screen. Switching to console and back to X, i
-end up with a image of console ( translucent) on X. 
-
-The console works fine.
-
-> 2) Make register dumps while in X, and attach them here -- one with randr12
-attached.
-
--- ritz
+--- Comment #8 from Ritesh Khadgaray <khadgaray-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-02 06:11:18 PST ---
+Created an attachment (id=18639)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18639)
+logs
 
 
 -- 
