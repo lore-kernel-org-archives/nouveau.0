@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17356] NV4B 10DE: 0393 Startx fails using nouveau on
- third console to Xorg context switch
-Date: Mon,  1 Sep 2008 02:10:16 -0700 (PDT)
-Message-ID: <20080901091213.ECA3E130A79@annarchy.freedesktop.org>
-References: <bug-17356-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 17359] NV50 XV crash often
+Date: Tue,  2 Sep 2008 00:46:08 -0700 (PDT)
+Message-ID: <20080902074609.67704130043@annarchy.freedesktop.org>
+References: <bug-17359-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17356-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-17359-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,13 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17356
-
-
-Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org
-
-
-
-
---- Comment #4 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-09-01 02:09:58 PST ---
-This may well be a real bug in the drm, but all those vmware messages
-interspaced with the failure to allocate memory make me nervous. Can you try
-without vmware loaded to see if it makes a difference?
-
-danny
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzM1OQoKCgoKCi0t
+LSBDb21tZW50ICMzIGZyb20gUmHDumwgU29yaWFubyA8R2F0b0xva29AZ21haWwuY29tPiAgMjAw
+OC0wOS0wMiAwMDo0NjowNiBQU1QgLS0tCkkndmUgYXBwbGllZCB0aGUgcGF0Y2ggYW5kIGhhdmUg
+YmVlbiB1c2luZyBpdCBmb3IgMiBkYXlzIHdpdGhvdXQgYSBzaW5nbGUgY3Jhc2gKeWV0LgoKCi0t
+IApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVm
+cy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1
+c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
