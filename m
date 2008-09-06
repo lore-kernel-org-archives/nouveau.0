@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17462] XVideo Overlay adaptor is jerky on HD videos
 	(NV18 card)
-Date: Sat,  6 Sep 2008 13:44:10 -0700 (PDT)
-Message-ID: <20080906204410.BE84013243F@annarchy.freedesktop.org>
+Date: Sat,  6 Sep 2008 14:00:17 -0700 (PDT)
+Message-ID: <20080906210017.60847131C5A@annarchy.freedesktop.org>
 References: <bug-17462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,31 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17462
 
 
 
---- Comment #2 from Diogo Franco <diogomfranco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-06 13:44:09 PST ---
-Sample can be downloaded from http://www.mediafire.com/?tllaeadt5pp.
+--- Comment #3 from Diogo Franco <diogomfranco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-06 14:00:16 PST ---
+The output of "nvclock -i", as requested on #nouveau:
+
+-- General info --
+Card:           nVidia Geforce 4 MX4000
+Architecture:   NV18 C1
+PCI id:         0x185
+GPU clock:      249.750 MHz
+Bustype:        AGP
+
+-- Memory info --
+Amount:         64 MB
+Type:           128 bit DDR
+Clock:          330.750 MHz
+
+-- AGP info --
+Status:         Disabled
+Rate:           0X
+AGP rates:      1X 2X 4X
+Fast Writes:    Disabled
+SBA:            Disabled
+
+-- VideoBios information --
+Version: 04.18.20.38
+Signon message: NVIDIA Geforce4 MX 4000 VBIOS
 
 
 -- 
