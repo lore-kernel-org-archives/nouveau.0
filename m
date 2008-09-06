@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17462] XVideo Overlay adaptor is jerky on HD videos
 	(NV18 card)
-Date: Sat,  6 Sep 2008 13:31:11 -0700 (PDT)
-Message-ID: <20080906203111.282C4132363@annarchy.freedesktop.org>
+Date: Sat,  6 Sep 2008 13:44:10 -0700 (PDT)
+Message-ID: <20080906204410.BE84013243F@annarchy.freedesktop.org>
 References: <bug-17462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17462
 
 
 
---- Comment #1 from Diogo Franco <diogomfranco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-06 13:31:09 PST ---
-*** Bug 17371 has been marked as a duplicate of this bug. ***
+--- Comment #2 from Diogo Franco <diogomfranco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-06 13:44:09 PST ---
+Sample can be downloaded from http://www.mediafire.com/?tllaeadt5pp.
 
 
 -- 
