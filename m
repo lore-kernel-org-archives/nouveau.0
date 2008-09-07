@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17462] XVideo Overlay adaptor is jerky on HD videos
 	(NV18 card)
-Date: Sat,  6 Sep 2008 16:45:45 -0700 (PDT)
-Message-ID: <20080906234545.ECD3F130B0D@annarchy.freedesktop.org>
+Date: Sat,  6 Sep 2008 21:32:56 -0700 (PDT)
+Message-ID: <20080907043303.5153E2DC1F8@annarchy.freedesktop.org>
 References: <bug-17462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17462
 
 
 
---- Comment #4 from Diogo Franco <diogomfranco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-06 16:45:44 PST ---
-I tested the sample video on different players and settings, and they all
-yelded the same results: xv shows frames from the past, creating jerkiness.
+--- Comment #5 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-09-06 21:32:53 PST ---
+Just a guess, but could it be related to this:
+https://bugs.freedesktop.org/show_bug.cgi?id=16375
+?
 
-Testedo on: mplayer -vo xv, mplayer -vo sdl, ffplay, vlc and xine-ui.
+danny
 
 
 -- 
