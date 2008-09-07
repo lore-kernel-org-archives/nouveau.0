@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17462] XVideo Overlay adaptor is jerky on HD videos
 	(NV18 card)
-Date: Sat,  6 Sep 2008 21:32:56 -0700 (PDT)
-Message-ID: <20080907043303.5153E2DC1F8@annarchy.freedesktop.org>
+Date: Sun,  7 Sep 2008 02:46:11 -0700 (PDT)
+Message-ID: <20080907094611.776021322FC@annarchy.freedesktop.org>
 References: <bug-17462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17462
 
 
 
---- Comment #5 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-09-06 21:32:53 PST ---
-Just a guess, but could it be related to this:
-https://bugs.freedesktop.org/show_bug.cgi?id=16375
-?
-
-danny
+--- Comment #6 from Diogo Franco <diogomfranco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-07 02:46:10 PST ---
+Danny, I don't think it is related; that guy is having problems with the
+blitter, not with the overlay. Also, my videos doesn't have a higher fps than
+the display; they're all progressive ntsc.
 
 
 -- 
