@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17492] New: nouveau requires EDID,
- no modes with my CRT anno 1993
-Date: Mon,  8 Sep 2008 17:19:41 -0700 (PDT)
-Message-ID: <bug-17492-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 17359] NV50 XV crash often
+Date: Tue,  9 Sep 2008 19:13:48 -0700 (PDT)
+Message-ID: <20080910021348.4BF1E130D71@annarchy.freedesktop.org>
+References: <bug-17359-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-17359-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,35 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17492
-
-           Summary: nouveau requires EDID, no modes with my CRT anno 1993
-           Product: xorg
-           Version: git
-          Platform: All
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: peter-Y+HMSxxDrH8@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=18761)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18761)
-log from X -config xorg.conf.new with old CRT attached (the same without any
-monitor)
-
-AMD64 system with NV44 PCIe. (ASUS GeForce 6200LE)
-
-xf86-video-nouveau as of a few days concludes "No valid modes." if I run X
--configure with no monitor connected, and when my old CRT monitor without EDID
-is connected.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzM1OQoKClJhw7ps
+IFNvcmlhbm8gPEdhdG9Mb2tvQGdtYWlsLmNvbT4gY2hhbmdlZDoKCiAgICAgICAgICAgV2hhdCAg
+ICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+CiAgQXR0YWNobWVudCAjMTg3MDd8MCAgICAgICAgICAgICAgICAgICAgICAgICAgIHwxCiAgICAg
+ICAgaXMgb2Jzb2xldGV8ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKCgoKCi0tLSBDb21t
+ZW50ICM2IGZyb20gUmHDumwgU29yaWFubyA8R2F0b0xva29AZ21haWwuY29tPiAgMjAwOC0wOS0w
+OSAxOToxMzo0NyBQU1QgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9MTg3ODgpCiAtLT4g
+KGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9pZD0xODc4OCkKTmV3
+IGJhY2t0cmFjZSB3aXRoIGRlYnVnIHN5bWJvbHMgZm9yIHhvcmcgYW5kIG5vdXZlYXUKCgotLSAK
+Q29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMu
+Y2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNl
+OiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
