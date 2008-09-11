@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17359] NV50 XV crash often
-Date: Tue,  9 Sep 2008 19:13:48 -0700 (PDT)
-Message-ID: <20080910021348.4BF1E130D71@annarchy.freedesktop.org>
-References: <bug-17359-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15650] Hard freeze when starting X with GeForce 6800
+	GS (NV43)
+Date: Thu, 11 Sep 2008 09:41:23 -0700 (PDT)
+Message-ID: <20080911164123.38E1B130009@annarchy.freedesktop.org>
+References: <bug-15650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17359-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15650-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +21,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzM1OQoKClJhw7ps
-IFNvcmlhbm8gPEdhdG9Mb2tvQGdtYWlsLmNvbT4gY2hhbmdlZDoKCiAgICAgICAgICAgV2hhdCAg
-ICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-CiAgQXR0YWNobWVudCAjMTg3MDd8MCAgICAgICAgICAgICAgICAgICAgICAgICAgIHwxCiAgICAg
-ICAgaXMgb2Jzb2xldGV8ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKCgoKCi0tLSBDb21t
-ZW50ICM2IGZyb20gUmHDumwgU29yaWFubyA8R2F0b0xva29AZ21haWwuY29tPiAgMjAwOC0wOS0w
-OSAxOToxMzo0NyBQU1QgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9MTg3ODgpCiAtLT4g
-KGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9pZD0xODc4OCkKTmV3
-IGJhY2t0cmFjZSB3aXRoIGRlYnVnIHN5bWJvbHMgZm9yIHhvcmcgYW5kIG5vdXZlYXUKCgotLSAK
-Q29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMu
-Y2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNl
-OiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=15650
+
+
+
+
+
+--- Comment #13 from Andrew McNabb <amcnabb-2BOxfIlzoBpAfugRpC6u6w@public.gmane.org>  2008-09-11 09:41:22 PST ---
+Daniel, I think yours is actually a separate bug.  This one pertains
+specifically to bridged AGP cards.
+
+By the way, this has been open a long time.  I was just wondering whether
+anyone has had a chance to look at it?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
