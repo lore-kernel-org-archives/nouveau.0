@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17356] NV4B 10DE: 0393 Startx fails using nouveau on
  third console to Xorg context switch
-Date: Fri, 12 Sep 2008 02:30:02 -0700 (PDT)
-Message-ID: <20080912093007.21B7513000E@annarchy.freedesktop.org>
+Date: Fri, 12 Sep 2008 02:31:08 -0700 (PDT)
+Message-ID: <20080912093109.B313C13000C@annarchy.freedesktop.org>
 References: <bug-17356-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,16 +28,18 @@ Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #18575|0                           |1
+  Attachment #18576|0                           |1
+        is obsolete|                            |
+  Attachment #18580|0                           |1
         is obsolete|                            |
 
 
 
 
---- Comment #6 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-12 02:30:01 PST ---
-Created an attachment (id=18841)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=18841)
-/var/log/Xorg.0.log
+--- Comment #7 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-12 02:30:47 PST ---
+Created an attachment (id=18842)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18842)
+/var/log/messages
 
 
 -- 
