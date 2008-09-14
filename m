@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17492] nouveau requires EDID,
-	no modes with my CRT anno 1993
-Date: Sun, 14 Sep 2008 10:41:51 -0700 (PDT)
-Message-ID: <20080914174153.11A4B13000E@annarchy.freedesktop.org>
-References: <bug-17492-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16176] X fails to start with GeForce 9600 with
+ ``Failed to allocate memory for framebuffer! "
+Date: Sun, 14 Sep 2008 14:21:48 -0700 (PDT)
+Message-ID: <20080914212149.0451F13000F@annarchy.freedesktop.org>
+References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,25 +21,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17492
-
-
-
-
-
---- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-09-14 10:41:50 PST ---
-This should get picked up by the nv_load_detect function in nv_output.c
-(assuming the monitor is connected via the vga connector and not some composite
-video input thing from the tv-output). It might therefore be worth you
-instrumenting the function to make sure it's being called and also what your
-card's comparison testval is set to by the bios tables (pNv->VBIOS.dactestval).
-
-Assuming there's nothing obviously wrong, xorg logs from the nv driver and if
-possible the proprietary nvidia driver (using -logverbose 9 as an argument to
-the Xorg binary) will help show if their load detect functions can pick it up.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNjE3NgoKClZlZHJh
+biBNaWxldGnEhyA8cml2YW52eEBmYXN0bWFpbC5mbT4gY2hhbmdlZDoKCiAgICAgICAgICAgV2hh
+dCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tCiAgICAgICAgICAgICAgICAgQ0N8ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHxyaXZh
+bnZ4QGZhc3RtYWlsLmZtCgoKCgotLS0gQ29tbWVudCAjOCBmcm9tIFZlZHJhbiBNaWxldGnEhyA8
+cml2YW52eEBmYXN0bWFpbC5mbT4gIDIwMDgtMDktMTQgMTQ6MjE6NDYgUFNUIC0tLQpBbHNvIGhh
+cHBlbnMgb24gbXkgODQwMCBHUy4KCihJSSkgW2RybV0gRFJNIGludGVyZmFjZSB2ZXJzaW9uIDEu
+MwooSUkpIFtkcm1dIERSTSBvcGVuIG1hc3RlciBzdWNjZWVkZWQuCihJSSkgTk9VVkVBVSgwKTog
+W2RybV0gVXNpbmcgdGhlIERSTSBsb2NrIFNBUkVBIGFsc28gZm9yIGRyYXdhYmxlcy4KKElJKSBO
+T1VWRUFVKDApOiBbZHJtXSBmcmFtZWJ1ZmZlciBoYW5kbGUgPSAweGQwMDAwMDAwCihJSSkgTk9V
+VkVBVSgwKTogW2RybV0gYWRkZWQgMSByZXNlcnZlZCBjb250ZXh0IGZvciBrZXJuZWwKKElJKSBO
+T1VWRUFVKDApOiBYIGNvbnRleHQgaGFuZGxlID0gMHgxCihJSSkgTk9VVkVBVSgwKTogW2RybV0g
+aW5zdGFsbGVkIERSTSBzaWduYWwgaGFuZGxlcgooRUUpIE5PVVZFQVUoMCk6IEZhaWxlZCB0byBh
+bGxvY2F0ZSBtZW1vcnkgZm9yIGZyYW1lYnVmZmVyIQoKRmF0YWwgc2VydmVyIGVycm9yOgpBZGRT
+Y3JlZW4vU2NyZWVuSW5pdCBmYWlsZWQgZm9yIGRyaXZlciAwCgpDYW4gSSBoZWxwPwoKCi0tIApD
+b25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5j
+Z2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6
+IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
