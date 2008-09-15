@@ -1,14 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16176] X fails to start with GeForce 9600 with
- ``Failed to allocate memory for framebuffer! "
-Date: Sun, 14 Sep 2008 14:21:48 -0700 (PDT)
-Message-ID: <20080914212149.0451F13000F@annarchy.freedesktop.org>
-References: <bug-16176-8800@http.bugs.freedesktop.org/>
+From: Helge Hafting <helge.hafting-i5bjtSbraLbLX0NG8FE4ug@public.gmane.org>
+Subject: Re: nouveau slower than nv and vesa on quadro 135M
+Date: Mon, 15 Sep 2008 13:12:42 +0200
+Message-ID: <48CE432A.9040001@aitel.hist.no>
+References: <48CCE4B0.1030709@aitel.hist.no>	
+	<6d4bc9fc0809140419k3555a843nbb77806f3d7e44ef@mail.gmail.com>	
+	<48CD0888.6020706@aitel.hist.no>
+	<6d4bc9fc0809140629l6155dfd4xa9cd7c92defa54db@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <6d4bc9fc0809140629l6155dfd4xa9cd7c92defa54db-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,28 +20,47 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNjE3NgoKClZlZHJh
-biBNaWxldGnEhyA8cml2YW52eEBmYXN0bWFpbC5mbT4gY2hhbmdlZDoKCiAgICAgICAgICAgV2hh
-dCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tCiAgICAgICAgICAgICAgICAgQ0N8ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHxyaXZh
-bnZ4QGZhc3RtYWlsLmZtCgoKCgotLS0gQ29tbWVudCAjOCBmcm9tIFZlZHJhbiBNaWxldGnEhyA8
-cml2YW52eEBmYXN0bWFpbC5mbT4gIDIwMDgtMDktMTQgMTQ6MjE6NDYgUFNUIC0tLQpBbHNvIGhh
-cHBlbnMgb24gbXkgODQwMCBHUy4KCihJSSkgW2RybV0gRFJNIGludGVyZmFjZSB2ZXJzaW9uIDEu
-MwooSUkpIFtkcm1dIERSTSBvcGVuIG1hc3RlciBzdWNjZWVkZWQuCihJSSkgTk9VVkVBVSgwKTog
-W2RybV0gVXNpbmcgdGhlIERSTSBsb2NrIFNBUkVBIGFsc28gZm9yIGRyYXdhYmxlcy4KKElJKSBO
-T1VWRUFVKDApOiBbZHJtXSBmcmFtZWJ1ZmZlciBoYW5kbGUgPSAweGQwMDAwMDAwCihJSSkgTk9V
-VkVBVSgwKTogW2RybV0gYWRkZWQgMSByZXNlcnZlZCBjb250ZXh0IGZvciBrZXJuZWwKKElJKSBO
-T1VWRUFVKDApOiBYIGNvbnRleHQgaGFuZGxlID0gMHgxCihJSSkgTk9VVkVBVSgwKTogW2RybV0g
-aW5zdGFsbGVkIERSTSBzaWduYWwgaGFuZGxlcgooRUUpIE5PVVZFQVUoMCk6IEZhaWxlZCB0byBh
-bGxvY2F0ZSBtZW1vcnkgZm9yIGZyYW1lYnVmZmVyIQoKRmF0YWwgc2VydmVyIGVycm9yOgpBZGRT
-Y3JlZW4vU2NyZWVuSW5pdCBmYWlsZWQgZm9yIGRyaXZlciAwCgpDYW4gSSBoZWxwPwoKCi0tIApD
-b25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5j
-Z2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6
-IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+Maarten Maathuis wrote:
+
+> A profile of running this application would be useful (with nouveau
+> and xorg symbols). I have some suspicions as to the cause,
+> but some facts would be nice to have. Either oprofile or sysprof will
+> do, for oprofile we have a wiki page:
+> http://nouveau.freedesktop.org/wiki/OProfile
+> 
+That wiki page doesn't list the first necessary step,
+which is "opcontrol --init". Adding that might be useful for newbies.
+
+I profiled two apps that are too slow with this driver.
+* navit (map navigation), slowly panning the map across a city. This
+   panning redraws the map each time, which is instantaneous with the
+   vesa driver.
+
+* lyx (word processor), typing text into a table. The pc could not
+   keep up with keyboard autorepeat, giving me one to three characters
+   per second. Each keypress redraws the table lines and the text
+   in the table cell.
+
+I am not sure if I have all the symbols needed. I used nouveau compiled
+per the instructions for debian. The X server consist of packages from 
+debian unstable/experimental. Please tell if there is anything I can do 
+to improve on this.
+
+It'd be great to get this driver closer to vesa performance, for
+vesa doesn't handle dual screens. You probably have higher goals than 
+that. :-)
+
+navit profile data:
+http://www.aitel.hist.no/~helgehaf/oprofile/navit/opreport
+http://www.aitel.hist.no/~helgehaf/oprofile/navit/opreport-l
+http://www.aitel.hist.no/~helgehaf/oprofile/navit/opreport--callgraph
+
+lyx profile data:
+http://www.aitel.hist.no/~helgehaf/oprofile/lyx16/opreport
+http://www.aitel.hist.no/~helgehaf/oprofile/lyx16/opreport-1
+
+Helge Hafting
