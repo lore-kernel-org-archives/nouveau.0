@@ -1,20 +1,11 @@
-From: "Maarten Maathuis" <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nouveau slower than nv and vesa on quadro 135M
-Date: Mon, 15 Sep 2008 14:45:54 +0200
-Message-ID: <6d4bc9fc0809150545q2b58a65cr74cea5d9caf37d99@mail.gmail.com>
-References: <48CCE4B0.1030709@aitel.hist.no>
-	<6d4bc9fc0809140419k3555a843nbb77806f3d7e44ef@mail.gmail.com>
-	<48CD0888.6020706@aitel.hist.no>
-	<6d4bc9fc0809140629l6155dfd4xa9cd7c92defa54db@mail.gmail.com>
-	<48CE432A.9040001@aitel.hist.no>
-	<6d4bc9fc0809150431w1d57d228n1046fad9e437a7@mail.gmail.com>
-	<48CE4F66.6060805@aitel.hist.no>
+From: =?UTF-8?B?SGVydsOpIENhdXdlbGllcg==?= <herve.cauwelier-GANU6spQydw@public.gmane.org>
+Subject: report almost a success with Randr1.2 on NV50
+Date: Mon, 15 Sep 2008 15:13:00 +0200
+Message-ID: <48CE5F5C.8000302@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <48CE4F66.6060805-i5bjtSbraLbLX0NG8FE4ug@public.gmane.org>
-Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,100 +15,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Helge Hafting <helge.hafting-i5bjtSbraLbLX0NG8FE4ug@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Sep 15, 2008 at 2:04 PM, Helge Hafting
-<helge.hafting-i5bjtSbraLbLX0NG8FE4ug@public.gmane.org> wrote:
-> Maarten Maathuis wrote:
->>
->> On Mon, Sep 15, 2008 at 1:12 PM, Helge Hafting
->> <helge.hafting-i5bjtSbraLbLX0NG8FE4ug@public.gmane.org> wrote:
->>>
->>> Maarten Maathuis wrote:
->>>
->>>> A profile of running this application would be useful (with nouveau
->>>> and xorg symbols). I have some suspicions as to the cause,
->>>> but some facts would be nice to have. Either oprofile or sysprof will
->>>> do, for oprofile we have a wiki page:
->>>> http://nouveau.freedesktop.org/wiki/OProfile
->>>>
->>> That wiki page doesn't list the first necessary step,
->>> which is "opcontrol --init". Adding that might be useful for newbies.
->>>
->>> I profiled two apps that are too slow with this driver.
->>> * navit (map navigation), slowly panning the map across a city. This
->>>  panning redraws the map each time, which is instantaneous with the
->>>  vesa driver.
->>>
->>> * lyx (word processor), typing text into a table. The pc could not
->>>  keep up with keyboard autorepeat, giving me one to three characters
->>>  per second. Each keypress redraws the table lines and the text
->>>  in the table cell.
->>>
->>> I am not sure if I have all the symbols needed. I used nouveau compiled
->>> per the instructions for debian. The X server consist of packages from
->>> debian unstable/experimental. Please tell if there is anything I can do
->>> to
->>> improve on this.
->>>
->>> It'd be great to get this driver closer to vesa performance, for
->>> vesa doesn't handle dual screens. You probably have higher goals than
->>> that.
->>> :-)
->>>
->>> navit profile data:
->>> http://www.aitel.hist.no/~helgehaf/oprofile/navit/opreport
->>> http://www.aitel.hist.no/~helgehaf/oprofile/navit/opreport-l
->>> http://www.aitel.hist.no/~helgehaf/oprofile/navit/opreport--callgraph
->>>
->>> lyx profile data:
->>> http://www.aitel.hist.no/~helgehaf/oprofile/lyx16/opreport
->>> http://www.aitel.hist.no/~helgehaf/oprofile/lyx16/opreport-1
->>>
->>> Helge Hafting
->>>
->>
->> While the traces lack a lot of symbols (xserver's and pixman), i do
->> have a hunch as to the cause of the problem.
->>
->> Could you add to your device section:
->>
->> Option "EXAOptimizeMigration" "1"
->>
->> This option seems to default to off for 1.5 (while it's on by default
->> for post-1.5).
->>
->> If this doesn't help, then you need to get symbols for the xserver and
->> libpixman.
->
-> I added that option, and it did not help.
-> So I installed debug packages for xserver-xorg-core and libpixman. Here
-> are the new results:
->
-> navit profile data:
-> http://www.aitel.hist.no/~helgehaf/oprofile/navit2/opreport
-> http://www.aitel.hist.no/~helgehaf/oprofile/navit2/opreport
-> http://www.aitel.hist.no/~helgehaf/oprofile/navit2/opreport
->
-> LyX profile data:
-> http://www.aitel.hist.no/~helgehaf/oprofile/lyx2/opreport
-> http://www.aitel.hist.no/~helgehaf/oprofile/lyx2/opreport-l
-> (No --callgraph, error msg. about an invalid filename.)
->
-> Helge Hafting
->
-
-The 1st and the 2nd problem are different. Let's focus on the first initially.
-
-I think for a callgraph you need to specify a depth, --callgraph=5 for
-example, please experiment with that to see if you can actually see
-who is calling those pixman functions (for the navit case). Currently
-it just points to itself which is a (rather poor) way of showing that
-it doesn't know.
-
-If you could attach an xorg log, that would allow me to check if
-things are as i expect them to be.
-
-Maarten.
+SGksCgpJJ3ZlIHNlZW4gbWFueSBwYXRjaGVzIGFib3V0IHJhbmRyIHNvIEkgZGVjaWRlZCB0byBn
+aXZlIGl0IGFub3RoZXIgdHJ5LgoKSSd2ZSBob3RwbHVnZ2VkIGEgVkdBIG1vbml0b3Igb24gbXkg
+bGFwdG9wIGFuZCBpdCBkZXRlY3RlZCBhbGwKcmVzb2x1dGlvbnMgYnV0IHRoZSBuYXRpdmUgb25l
+LiBJIHdhcyBhYmxlIHRvIG1vdmUgZWl0aGVyIHNjcmVlbiBvbiB0aGUKbGVmdCBvciBvbiB0aGUg
+cmlnaHQuIEdub21lIHdhcyB0cnlpbmcgaXRzIGJlc3QgdG8gcGxhY2UgaXRzIHBhbmVscyBvbgp0
+aGUgYm90dG9tLXJpZ2h0IG1vc3QgY29ybmVycy4KClRoZSBvbmx5IHR3byBpc3N1ZXMgYXJlIHRo
+aXMgbmF0aXZlIHJlc29sdXRpb24gbm90IGRldGVjdGVkLCBhbmQgR25vbWUKbm90IHBsYWNpbmcg
+dGhlIHBhbmVscyB3aGVyZSBJIGV4cGVjdGVkLiBJIHdhcyB1c2VkIHRvIHRoZSBpbnRlbCBkcml2
+ZXIKcGxhY2luZyB0aGVtIG9uIHRoZSBtYWluIHNjcmVlbiwgYW5kIGxlYXZpbmcgdGhlIGV4dHJh
+IHNjcmVlbiBlbXB0eS4KCllldCBJIHdhcyB2ZXJ5IGhhcHB5IGFuZCBJIHdhbnRlZCB0byBzaGFy
+ZSBteSBqb3khCgpUaGlzIGlzIGEgODQwME0gR1Mgd2l0aCB0aGUgbWFzdGVyIGJyYW5jaCBvZiBu
+b3V2ZWF1IGFuZCBkcm0uCgpSZWdhcmRzLAoKSGVydsOpCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
