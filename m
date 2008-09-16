@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17357] NV4B 10DE:0393 funny stripes in video flash
  when using nouveau
-Date: Tue, 16 Sep 2008 01:24:27 -0700 (PDT)
-Message-ID: <20080916082427.F070B130005@annarchy.freedesktop.org>
+Date: Tue, 16 Sep 2008 01:25:08 -0700 (PDT)
+Message-ID: <20080916082508.7164513000E@annarchy.freedesktop.org>
 References: <bug-17357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,20 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17357
 
 
 
---- Comment #11 from Danny <obiwan-ajv+KCCKUOlAfugRpC6u6w@public.gmane.org>  2008-09-12 02:18:29 PST ---
-That's interesting. Since it happens even with the blitter, and doesn't happen
-with flashplayer I wonder if this is not a bug in mplayer (or some other
-component on your system) instead. Do you have the problem with nv or the
-binary nvidia driver?
-
-I never saw those drm errors before, maybe someone else can comment on that,
-and whether or not it can be related. 
-
-danny
-
-
---- Comment #12 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-16 01:24:27 PST ---
-When using nv no artifacts in video, will attach Xorg.0.log from nv usage
+--- Comment #13 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-16 01:25:07 PST ---
+Created an attachment (id=18914)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=18914)
+Xorg log using the nv driver
 
 
 -- 
