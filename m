@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17835] nouveau incorrectly identifies DFP size,
  option Randr12 crashes X server
-Date: Mon, 29 Sep 2008 23:53:07 -0700 (PDT)
-Message-ID: <20080930065313.5A8C41300C9@annarchy.freedesktop.org>
+Date: Mon, 29 Sep 2008 23:54:28 -0700 (PDT)
+Message-ID: <20080930065428.7B0161300AA@annarchy.freedesktop.org>
 References: <bug-17835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17835
 
 
 
---- Comment #2 from Erik Sejr <hpx-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2008-09-29 23:53:05 PST ---
-Created an attachment (id=19301)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=19301)
-NV Driver log
+--- Comment #3 from Erik Sejr <hpx-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2008-09-29 23:54:27 PST ---
+Created an attachment (id=19302)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=19302)
+Shartp LC-42D64U EDID
 
 
 -- 
