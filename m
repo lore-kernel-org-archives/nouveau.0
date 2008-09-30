@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17835] nouveau incorrectly identifies DFP size,
  option Randr12 crashes X server
-Date: Tue, 30 Sep 2008 02:19:54 -0700 (PDT)
-Message-ID: <20080930091956.5268F130093@annarchy.freedesktop.org>
+Date: Tue, 30 Sep 2008 07:51:53 -0700 (PDT)
+Message-ID: <20080930145201.D5DE41300A7@annarchy.freedesktop.org>
 References: <bug-17835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,12 +24,25 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=17835
 
 
+Erik Sejr <hpx-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
 
---- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-30 02:19:36 PST ---
-Never file bugs against older driver revisions, i suggest you at least update
-to the latest version and try again.
+
+--- Comment #5 from Erik Sejr <hpx-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2008-09-30 07:51:44 PST ---
+(In reply to comment #4)
+> Never file bugs against older driver revisions, i suggest you at least update
+> to the latest version and try again.
+> 
+
+I attempted to build the latest version and ran into compile issues with the x
+driver. I think I may know the reason though and I will build it again and
+recreate the bug report if required.
 
 
 -- 
