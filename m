@@ -1,17 +1,14 @@
-From: "Maarten Maathuis" <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: How to set a different resolution?
-Date: Sat, 4 Oct 2008 20:15:34 +0200
-Message-ID: <6d4bc9fc0810041115k4553087ayf594bb7761319252@mail.gmail.com>
-References: <48E297C8.3050803@wpkg.org> <200809301735.51849.mrgrim@gr1m.org>
-	<48E30BD3.8010505@wpkg.org>
-	<6d4bc9fc0810010606s4e80d9bcv28f051614288daba@mail.gmail.com>
-	<1223133423.1364.4.camel@trillian.PraeTOriaNdomain>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Nvidia regs (Re: need help relating your post on
+	freedesktop)
+Date: Sun, 5 Oct 2008 17:29:55 +0300
+Message-ID: <20081005172955.13083587@daedalus.pq.iki.fi>
+References: <871354732.1547461223071397198.JavaMail.root@mail6.gatech.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1223133423.1364.4.camel-8FIgwK2HfyJXBbZVIddYnfySAhryLJCQ/z7RTEddyNg@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <871354732.1547461223071397198.JavaMail.root-+uv3tkLL0AUsTUYHLfqkUA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,50 +18,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Calvin Walton <calvin.walton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: "Kolakkar, Pranay B" <pranay.kolakkar-/4noJB3qBVQ3uPMLIKxrzw@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Oct 4, 2008 at 5:16 PM, Calvin Walton <calvin.walton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Wed, 2008-10-01 at 15:06 +0200, Maarten Maathuis wrote:
->> On Wed, Oct 1, 2008 at 7:34 AM, Tomasz Chmielewski <mangoo-Nem3ZqsbT/g@public.gmane.org> wrote:
->> > Michael Kreitzer schrieb:
->> >> Tomasz,
->> >>
->> >> It sounds to me like what may be happening is the video card is doing the
->> >> scaling instead of the monitor.  This is evidenced by the fact that the
->> >> resolution does change, but the LCD still sees the native resolution coming
->> >> in. This shouldn't affect dual head, however.
->> There should be a SCALING_MODE property, which can be set to
->> "fullscreen", the default however (iirc) is "aspect" scaling which may
->> leave top or bottom bars (but not both).
->
-> To tell the graphics card not to scale, and leave it to the monitor,
-> you'll want to run the following command:
->
-> xrandr --output DVI-I-0 --set SCALING_MODE panel
->
-> (replace DVI-I-0 with your actual output name - run xrandr with no
-> options if you're not sure)
->
-> That will cause the card to output the actual resolution you requested,
-> instead of scaling it to your monitor native resolution.
->
-> I'm not sure if there is some way to set this as the default, perhaps an
-> option in the xorg.conf?
->
-> --
-> Calvin Walton <calvin.walton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+On Fri, 3 Oct 2008 18:03:17 -0400 (EDT)
+"Kolakkar, Pranay B" <pranay.kolakkar-/4noJB3qBVQ3uPMLIKxrzw@public.gmane.org> wrote:
 
-From the manpage:
+> Hi Paalanen,
+> 
+> I am a graduate student for Computer Science at Georgia tech and I came
+> across your page on freedesktop.org/~pq/rules-ng
+> 
+> It was interesting that you had listed all the registers and addresses of
+> the nvidia gpu. Please let me know as to where can I find out what does
+> each of the parameters mean.
+> 
+> Thanking you in anticipation and awaiting your response.
+> 
+> Regards,
+> Pranay.
 
-       Option "ScalingMode" "string"
-              Only for the randr-1.2 driver, this allows to set the
-DFP scaling mode.  The options are "fullscreen", "aspect",
-              "noscale" and "panel". Default: "aspect".
+Hi Pranay,
+
+I didn't create the page, I only wrote the tools that generate it,
+and the Nouveau developers have gathered the names and addresses
+from various sources and reverse engineering efforts. The list is
+not by any means complete, and likely contains some mistakes.
+
+Mind you, the page has not been updated for a while, and most of the
+"variants" information is bad on the web pages. That's due to my
+generator being a bit broken.
+
+There is no real documentation for the registers available, Nvidia
+keeps that as their secret. The best you can get is reading the
+Nouveau source code. Not even the Nouveau developers know the
+meaning of a large portion of the regs, they just observe how
+the proprietary driver pokes them, and try to guess how they should
+be used.
+
+I'm CC'ing the Nouveau mailing list, where you can ask further
+questions. Also, please take a look at the wiki
+http://nouveau.freedesktop.org/wiki/
+
+May I ask why you are interested? The Nouveau project could use
+some help, especially if you are thinking about writing code for
+Nvidia grapchis hardware ;-)
+
+According to your home page http://www.cc.gatech.edu/~kolakkar/
+you are interested in virtualization and resource monitoring
+for multicore systems and also GPUs. It would be very cool if
+Nouveau would support those. I don't think anyone has yet
+reverse engineered the performance registers. OTOH, the 3D
+support, too, is still brewing, so there probably isn't too
+much to monitor. But 2D acceleration does use the card's 3D
+engine.
+
+Do you know about Gallium3D? If not, you should definitely take
+a look: http://www.tungstengraphics.com/technologies/gallium3d.html
+And think about it on the virtualization perspective. I don't know
+how much work has already been done on that, but I bet the people
+on the Nouveau mailing list know who to contact, if you get
+interested.
+
+
+Cheers,
+pq
+
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
