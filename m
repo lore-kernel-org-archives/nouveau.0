@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17571] Nouveau and PPC64 issues
-Date: Fri, 10 Oct 2008 10:09:11 -0700 (PDT)
-Message-ID: <20081010170911.EA8811300DC@annarchy.freedesktop.org>
+Date: Fri, 10 Oct 2008 10:09:57 -0700 (PDT)
+Message-ID: <20081010170958.07D1E130142@annarchy.freedesktop.org>
 References: <bug-17571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17571
 
 
 
---- Comment #4 from r.goyet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-10-10 10:09:11 PST ---
-Created an attachment (id=19577)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=19577)
-radeontools reg, with randr12
+--- Comment #5 from r.goyet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2008-10-10 10:09:57 PST ---
+Added requested attachments.
+By the way, radeontool's output doesn't seem to change with or without randr
 
 
 -- 
