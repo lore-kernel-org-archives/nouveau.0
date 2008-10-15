@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17571] Nouveau and PPC64 issues
-Date: Mon, 13 Oct 2008 19:22:41 -0700 (PDT)
-Message-ID: <20081014022241.4F0EC13016C@annarchy.freedesktop.org>
-References: <bug-17571-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 18071] New: Interlaced DVI on NV34M doesn't work
+	properly.
+Date: Wed, 15 Oct 2008 01:32:54 -0700 (PDT)
+Message-ID: <bug-18071-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17571-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +19,39 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17571
+http://bugs.freedesktop.org/show_bug.cgi?id=18071
+
+           Summary: Interlaced DVI on NV34M doesn't work properly.
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: wouter-W3n8d9RvHYw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=19662)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=19662)
+Xorg log with 'Option "ModeDebug" "on"' in xorg.conf
 
+< malc0> Yoe: for now, I think you need to file a bug at bugs.freedesktop.org,
+product xorg, component drivers/nouveau, saying we suck at interlaced modes on
+digital, attach an xorg log, and note that simply allowing interlace doesn't
+work.
 
+When running nouveau with my laptop connected to my HD TV (Apple mini-DVI ->
+DVI -> HDMI -> TV), xrandr detects two modes: one 640x480, one 720x480. When
+using MacOS on the same configuration, it detects 1920x1080@50 (which is
+reported by the TV as '1080i/50'), 1920x1080@60, and 1344x756@60 (both reported
+as 1080i/60), though only the first (1920x1080@50) displays properly on the TV.
 
---- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-10-13 19:22:40 PST ---
-Created an attachment (id=19639)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=19639)
-Remove some reg differences shown by radeontool
-
-I'm not sure what you mean in the above comment: a diff of the two radeontool
-logs you attached shows some differences.  Please try the attached patch and
-see if it improves randr12 mode.  Note that this patch is made against current
-git, so you need to update to that to apply it; be sure to apply the "return;"
-at the start of run_tmds_table, and use offb, as before (the load_vbios_prom
-issue is now fixed upstream).
-
-If it's possible for you to test a monitor with a regular analogue vga input at
-some stage, that would also be very useful.
+I should note that the 640x480 and 720x480 modes do create an image, although
+it only uses the middle part of the TV and stretches the image vertically.
 
 
 -- 
