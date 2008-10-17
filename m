@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17999] HIgh memory and cpu use
-Date: Wed, 15 Oct 2008 23:47:30 -0700 (PDT)
-Message-ID: <20081016064731.05A7F1300E7@annarchy.freedesktop.org>
-References: <bug-17999-8800@http.bugs.freedesktop.org/>
+From: "Arann Gaspard Leon" <gaspard.leon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: corruption in firefox with nouveau
+Date: Fri, 17 Oct 2008 22:14:22 +1300
+Message-ID: <4194afb0810170214m65d8adccje2792b960524b7c5@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17999-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +19,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17999
+Some minor visual corruption is evident in firefox on Ubuntu Hardy
+when using the nouveau driver (from RAOF's PPA)
 
+Best tested by:
+- Going to the ubuntu hardy default home page ( http://start.ubuntu.com/8.04/ )
+- Reset zoom (100%) if zoomed in or out
+- Scroll down all the way (my screen is 1280x1024)
+- Scroll back up (slowly for best results) and you will see the top of
+the background corrupted.
+(also the bottom of the page slightly corrupted..)
 
-kbowring <ubuntu-rIDUbWZ4T7Pk1uMJSBkQmQ@public.gmane.org> changed:
+I've noticed it on other pages as well sometimes as a vertical line in
+the middle of the page...
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Version|unspecified                 |7.4
+As this is a mailing list I won't attach a screenshot, but I've got
+some if anyone is interested...
 
+Hardy 8.04 with proposed and backports enabled
+AGP Nvidia Geforce 5900XT w/128MB on an ABit NF7-S (NForce 2 based)
 
+Other then that, so far the driver is working well, it's outperforming
+nv and nvidia in gtkperf... and if it had suspend support, I would
+probably switch over to it permanently.
 
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Thanks,
+Gaspard Leon
