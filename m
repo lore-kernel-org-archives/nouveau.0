@@ -1,12 +1,14 @@
-From: Fred Phillips <fophillips-zpTvYTHLEOIG8FEW9MqTrA@public.gmane.org>
-Subject: Re: corruption in firefox with nouveau
-Date: Sat, 18 Oct 2008 13:30:23 +0100
-Message-ID: <20081018123023.GA7343@tarkin.lan>
-References: <4194afb0810170214m65d8adccje2792b960524b7c5@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 17462] XVideo Overlay adaptor is jerky on HD videos
+	(NV18 card)
+Date: Sun, 19 Oct 2008 09:34:08 -0700 (PDT)
+Message-ID: <20081019163420.EF38E130143@annarchy.freedesktop.org>
+References: <bug-17462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1757892050=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4194afb0810170214m65d8adccje2792b960524b7c5-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-17462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,61 +16,34 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Arann Gaspard Leon <gaspard.leon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Nouveau Mailing List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1757892050==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="BXVAT5kNtrzKuDFl"
-Content-Disposition: inline
+http://bugs.freedesktop.org/show_bug.cgi?id=17462
 
 
---BXVAT5kNtrzKuDFl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sat Oct 18 10:32:38 2008, Arann Gaspard Leon wrote:
-> Some minor visual corruption is evident in firefox on Ubuntu Hardy
-> when using the nouveau driver (from RAOF's PPA)
 
-Could it be this[1] problem?
 
-[1] http://fophillips.org/b/fixing-png-problems-in-ff3
+--- Comment #7 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-26 05:19:55 PST ---
+one or two days ago, somebody reported the overlay actually not working at all
+on nv18gl with current git. Can you confirm this?
 
---=20
-Fred O. Phillips
-http://fophillips.org
-BBC7 7572 755F 83E0 3209  504A E4F7 874F 1545 9D41
+d.
 
---BXVAT5kNtrzKuDFl
-Content-Type: application/pgp-signature
-Content-Disposition: inline
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.9 (GNU/Linux)
+--- Comment #8 from Diogo Franco <diogomfranco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-10-19 09:34:05 PST ---
+Sorry for the long delay in the answer... Yes, I get only a blue screen if I
+use the Overlay; the Blitter is fine.
 
-iEYEARECAAYFAkj51t8ACgkQ5PeHTxVFnUHCIwCfZl3O/y4Pw5eI/vfT8AJXW6BC
-SXAAnAkyG7HOEHGXcCMvXjUllRl6O7VN
-=sMiF
------END PGP SIGNATURE-----
+Btw, he jittering problem also happens on the Blitter when CPU usage is
+topping, like just after starting or unpausing a video; but returns to normal
+shortly afterwards.
 
---BXVAT5kNtrzKuDFl--
 
---===============1757892050==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1757892050==--
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
