@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17462] XVideo Overlay adaptor is jerky on HD videos
-	(NV18 card)
-Date: Sun, 19 Oct 2008 09:34:08 -0700 (PDT)
-Message-ID: <20081019163420.EF38E130143@annarchy.freedesktop.org>
-References: <bug-17462-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13864] crash on server restart
+Date: Thu, 23 Oct 2008 08:33:51 -0700 (PDT)
+Message-ID: <20081023153417.4519413006B@annarchy.freedesktop.org>
+References: <bug-13864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13864-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +20,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17462
+http://bugs.freedesktop.org/show_bug.cgi?id=13864
 
 
 
 
 
---- Comment #7 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-09-26 05:19:55 PST ---
-one or two days ago, somebody reported the overlay actually not working at all
-on nv18gl with current git. Can you confirm this?
+--- Comment #20 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-10-23 08:33:35 PST ---
+Using the repro method in comment 19, I've pushed some stuff which now lets me
+regenerate without crashing, so anyone who was hitting this, please test.
 
-d.
-
-
---- Comment #8 from Diogo Franco <diogomfranco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-10-19 09:34:05 PST ---
-Sorry for the long delay in the answer... Yes, I get only a blue screen if I
-use the Overlay; the Blitter is fine.
-
-Btw, he jittering problem also happens on the Blitter when CPU usage is
-topping, like just after starting or unpausing a video; but returns to normal
-shortly afterwards.
+The problem here is that for every mmap(2) (wrapped in the libdrm function
+drmMap), the kernel increases the refcount on the struct file associated with
+the drm file descriptor.  While we can happily call drmClose (which wraps
+close(2)), this only decreases the filp->f_count refcount by one, and the count
+needs to hit zero before the fops->release function (drm_release) is called to
+free all kernel-side resources.
+Calling the release function also means that next time the DRM is opened the
+opener becomes DRM master, which is necessary for privileged ioctls to work on
+the next xserver generation.  The solution pushed is to drmUnmap (wrapping
+munmap(2)) all mappings made on the fd (i.e. the user channel, and all buffer
+objects).
 
 
 -- 
