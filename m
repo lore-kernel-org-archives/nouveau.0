@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18250] X server crash on NV34
-Date: Mon, 27 Oct 2008 13:22:16 -0700 (PDT)
-Message-ID: <20081027202216.A99481301CA@annarchy.freedesktop.org>
+Date: Mon, 27 Oct 2008 15:03:52 -0700 (PDT)
+Message-ID: <20081027220413.63E9F1300F7@annarchy.freedesktop.org>
 References: <bug-18250-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18250
 
 
 
---- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-10-27 13:22:15 PST ---
-Is this a regression, or is your first attempt at using nouveau on this
-machine? 
+--- Comment #3 from lukenshiro-8cRKiK8W3qA@public.gmane.org  2008-10-27 15:03:48 PST ---
+I don't know if it's a regression: it's the 1st time I noticed this error,
+after using nouveau for about 20 hours.
+I've used it before (with ~3rd Oct. and ~19th Oct.-git), but it crashed in a
+few hours with "DMA queue hang", both of times, so I can't tell when did this
+one start.
 
-Also, is it reproducible? If so, using ssh to attach gdb remotely before the
-crash would help get a better back-trace (gdb /usr/bin/Xorg `pidof Xorg` , then
-"cont", and after the crash "bt"). If it's a regression, can you use git bisect
-on the ddx to point to a suspect commit?
+At the moment I don't know if it reproducible, either. As I said it's the first
+time, and btw I've not used any graphic-intensive program (except for kde 4.1
+as a desktop manager, no compiz, no 3D, no games).
+But as soon as I can, after next crash, I will send a more complete gdb 
+backtrace.
+Thank you.
 
 
 -- 
