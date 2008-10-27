@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18250] X server crash on NV34
-Date: Mon, 27 Oct 2008 13:01:28 -0700 (PDT)
-Message-ID: <20081027200130.7F9F413016D@annarchy.freedesktop.org>
+Date: Mon, 27 Oct 2008 13:22:16 -0700 (PDT)
+Message-ID: <20081027202216.A99481301CA@annarchy.freedesktop.org>
 References: <bug-18250-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18250
 
 
 
---- Comment #1 from lukenshiro-8cRKiK8W3qA@public.gmane.org  2008-10-27 13:01:26 PST ---
-Created an attachment (id=19886)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=19886)
-/var/log/dmesg with drm.ko debug=1
+--- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-10-27 13:22:15 PST ---
+Is this a regression, or is your first attempt at using nouveau on this
+machine? 
+
+Also, is it reproducible? If so, using ssh to attach gdb remotely before the
+crash would help get a better back-trace (gdb /usr/bin/Xorg `pidof Xorg` , then
+"cont", and after the crash "bt"). If it's a regression, can you use git bisect
+on the ddx to point to a suspect commit?
 
 
 -- 
