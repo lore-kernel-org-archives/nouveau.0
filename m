@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18234] c51 lvds script failure in randr12 mode. if I
  start the X server the screen is black and the framebuffer too because it
  trys to link the whole output to the monitor
-Date: Sun, 26 Oct 2008 17:19:32 -0700 (PDT)
-Message-ID: <20081027001932.3A7361300C8@annarchy.freedesktop.org>
+Date: Sun, 26 Oct 2008 17:26:04 -0700 (PDT)
+Message-ID: <20081027002604.4843E130122@annarchy.freedesktop.org>
 References: <bug-18234-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -25,18 +25,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=18234
 
 
-Thomas Schneider <maxmusterm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |maxmusterm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
+--- Comment #4 from Thomas Schneider <maxmusterm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-10-26 17:26:03 PST ---
+> Two other things to try:
+> 1) does it work if the timeout is increased: in nv_bios.c, function
+> init_condition_time(), change "BIOS_USLEEP(2000);" to "BIOS_USLEEP(20000);"
+> 2) if 1) does not work, does it work if the off script is not run: again in
+> nv_bios.c, function run_lvds_table(), just below "case LVDS_PANEL_OFF:" add
+> "return;" on a new line.
 
---- Comment #3 from Thomas Schneider <maxmusterm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-10-26 17:19:31 PST ---
-The Screen remains blank and black.
-Yes even after closing X.And yes the framebuffer is black too.
+I don't have to test the second way cause the first one works fine.
+Thank you Stuart
 
 
 -- 
