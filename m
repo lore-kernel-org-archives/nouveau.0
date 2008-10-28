@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18250] X server crash on NV34
-Date: Tue, 28 Oct 2008 15:23:32 -0700 (PDT)
-Message-ID: <20081028222335.32A7D1300DD@annarchy.freedesktop.org>
+Date: Tue, 28 Oct 2008 15:32:31 -0700 (PDT)
+Message-ID: <20081028223252.983F81301AF@annarchy.freedesktop.org>
 References: <bug-18250-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18250
 
 
 
---- Comment #4 from lukenshiro-8cRKiK8W3qA@public.gmane.org  2008-10-28 15:23:29 PST ---
-Created an attachment (id=19919)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=19919)
-gdb output with bt and bt full
+--- Comment #5 from lukenshiro-8cRKiK8W3qA@public.gmane.org  2008-10-28 15:32:26 PST ---
+Created an attachment (id=19920)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=19920)
+concerning lines in dmesg (last)
 
-This is what gdb displays.
-
-BTW I've no errors in Xorg.0.log
+Before and after the "Segmentation fault" I've got these lines in
+/var/log/dmesg
 
 
 -- 
