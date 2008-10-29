@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18250] X server crash on NV34
-Date: Wed, 29 Oct 2008 06:24:25 -0700 (PDT)
-Message-ID: <20081029133347.7AE7C1301A5@annarchy.freedesktop.org>
+Date: Wed, 29 Oct 2008 06:30:49 -0700 (PDT)
+Message-ID: <20081029133409.3BC251300B5@annarchy.freedesktop.org>
 References: <bug-18250-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,36 +23,21 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=18250
 
 
-lukenshiro-8cRKiK8W3qA@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #19885|0                           |1
-        is obsolete|                            |
 
 
 
+--- Comment #7 from lukenshiro-8cRKiK8W3qA@public.gmane.org  2008-10-29 06:30:17 PST ---
+Created an attachment (id=19934)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=19934)
+dmesg (only drm-related parts)
 
---- Comment #6 from lukenshiro-8cRKiK8W3qA@public.gmane.org  2008-10-29 06:24:22 PST ---
-Created an attachment (id=19933)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=19933)
-Xorg.0.log
+In dmesg file I see same errors as before:
+PGRAPH_ERROR - nSource: METHOD_CNT, nStatus: INVALID_STATE
+[..]
 
-I've had another crash, but of a different kind, with last git after about
-12-13 hours.
-
-Fatal server error:
-DMA queue hang: dmaPut=e0, current=ec, status=0
 preceeded by:
-II) NOUVEAU(0): Fifo dump (lockup 0x00ec,0x00e0):
-
-
-
-Before and after that, repeated messages:
-"""
-tossed event which came in late
-mieqEnequeue: out-of-order valuator event; dropping.
-"""
+[drm:nouveau_fifo_free] *ERROR* Failed to idle channel 1 before destroy.Prepare
+for strangeness..
 
 
 -- 
