@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18250] X server crash on NV34
-Date: Wed, 29 Oct 2008 06:30:49 -0700 (PDT)
-Message-ID: <20081029133409.3BC251300B5@annarchy.freedesktop.org>
+Date: Wed, 29 Oct 2008 06:34:20 -0700 (PDT)
+Message-ID: <20081029133420.B1A0C1300B0@annarchy.freedesktop.org>
 References: <bug-18250-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -38,6 +38,14 @@ PGRAPH_ERROR - nSource: METHOD_CNT, nStatus: INVALID_STATE
 preceeded by:
 [drm:nouveau_fifo_free] *ERROR* Failed to idle channel 1 before destroy.Prepare
 for strangeness..
+
+
+--- Comment #8 from lukenshiro-8cRKiK8W3qA@public.gmane.org  2008-10-29 06:34:19 PST ---
+Created an attachment (id=19935)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=19935)
+dmesg (only drm-related parts)
+
+gdb backtrace
 
 
 -- 
