@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18300] NV11 Locks Up On Xorg Initialization
-Date: Thu, 30 Oct 2008 02:11:31 -0700 (PDT)
-Message-ID: <20081030091131.A20C6130093@annarchy.freedesktop.org>
-References: <bug-18300-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 18250] X server crash on NV34
+Date: Thu, 30 Oct 2008 15:17:16 -0700 (PDT)
+Message-ID: <20081030221716.1992013015E@annarchy.freedesktop.org>
+References: <bug-18250-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-18300-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-18250-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=18300
+http://bugs.freedesktop.org/show_bug.cgi?id=18250
 
 
-Evan Goers <megatog615-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+lukenshiro-8cRKiK8W3qA@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #19956|0                           |1
-        is obsolete|                            |
+  Attachment #19935|dmesg (only drm-related     |backtrace
+        description|parts)                      |
 
 
-
-
---- Comment #10 from Evan Goers <megatog615-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-10-30 02:11:30 PST ---
-Created an attachment (id=19958)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=19958)
-Xorg.0.log
 
 
 -- 
