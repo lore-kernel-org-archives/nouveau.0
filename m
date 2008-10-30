@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18300] NV11 Locks Up On Xorg Initialization
-Date: Wed, 29 Oct 2008 23:55:20 -0700 (PDT)
-Message-ID: <20081030065520.3AD9B130061@annarchy.freedesktop.org>
+Date: Thu, 30 Oct 2008 01:23:16 -0700 (PDT)
+Message-ID: <20081030082323.1726C130135@annarchy.freedesktop.org>
 References: <bug-18300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18300
 
 
 
---- Comment #4 from Evan Goers <megatog615-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-10-29 23:55:19 PST ---
-Created an attachment (id=19951)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=19951)
-Xorg.0.log
+--- Comment #5 from Evan Goers <megatog615-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-10-30 01:23:05 PST ---
+Created an attachment (id=19953)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=19953)
+kern.log
+
+Non-gzipped reupload.
 
 
 -- 
