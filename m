@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18336] nv10 : doesn't detect connected dvi monitor
-Date: Sat,  1 Nov 2008 03:49:03 -0700 (PDT)
-Message-ID: <20081101105003.A18911300E7@annarchy.freedesktop.org>
-References: <bug-18336-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 18250] X server crash on NV34
+Date: Mon,  3 Nov 2008 08:30:42 -0800 (PST)
+Message-ID: <20081103163045.2C7E113005D@annarchy.freedesktop.org>
+References: <bug-18250-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-18336-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-18250-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=18336
+http://bugs.freedesktop.org/show_bug.cgi?id=18250
 
 
 
 
 
---- Comment #1 from Massis Sirapian <msirapian-GANU6spQydw@public.gmane.org>  2008-11-01 03:48:58 PST ---
-Created an attachment (id=19989)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=19989)
-Xorg.log
+--- Comment #9 from lukenshiro-8cRKiK8W3qA@public.gmane.org  2008-11-03 08:30:40 PST ---
+I don't know if I can be helpful (maybe no: if so, sorry!), but enabling
+Option "ShadowFB"
+in xorg.conf file I don't see any X crash / DMA queue hang (so when
+acceleration is disabled this driver seems to be stable).
 
 
 -- 
