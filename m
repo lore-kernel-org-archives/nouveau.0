@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16176] X fails to start with GeForce 9600 with
  ``Failed to allocate memory for framebuffer! "
-Date: Tue,  4 Nov 2008 15:41:24 -0800 (PST)
-Message-ID: <20081104234124.588191300E1@annarchy.freedesktop.org>
+Date: Tue,  4 Nov 2008 15:43:02 -0800 (PST)
+Message-ID: <20081104234302.E865B130175@annarchy.freedesktop.org>
 References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,18 +28,18 @@ Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #19503|0                           |1
+  Attachment #18047|0                           |1
         is obsolete|                            |
 
 
 
 
---- Comment #10 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-11-04 15:41:23 PST ---
-Created an attachment (id=20046)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=20046)
-2008 11 04 Xorg log
+--- Comment #11 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-11-04 15:43:02 PST ---
+Created an attachment (id=20047)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=20047)
+2008 11 04 Kernel Log
 
-This log seems less noisy than before. 
+Updated Kernel log
 
 
 -- 
