@@ -1,11 +1,14 @@
-From: Dax Kelson <dkelson-tjn3EnM4d99Wk0Htik3J/w@public.gmane.org>
-Subject: Hardware Donation (GeForce 6800GT)
-Date: Mon, 03 Nov 2008 13:08:31 -0700
-Message-ID: <1225742911.3417.38.camel@mentor.gurulabs.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 16176] X fails to start with GeForce 9600 with
+ ``Failed to allocate memory for framebuffer! "
+Date: Tue,  4 Nov 2008 15:41:24 -0800 (PST)
+Message-ID: <20081104234124.588191300E1@annarchy.freedesktop.org>
+References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,14 +21,28 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I have the following card:
+http://bugs.freedesktop.org/show_bug.cgi?id=16176
 
-GF 6800GT 256MB DDR3 DUAL DVI TV PCI-E
 
-I'd like to donate it to a developer that can make use of it. I'll pay
-shipping anywhere in the world, although I'm located in Utah, USA.
+Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org> changed:
 
-If you are interested, let me know.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #19503|0                           |1
+        is obsolete|                            |
 
-Dax Kelson
-Guru Labs
+
+
+
+--- Comment #10 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-11-04 15:41:23 PST ---
+Created an attachment (id=20046)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=20046)
+2008 11 04 Xorg log
+
+This log seems less noisy than before. 
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
