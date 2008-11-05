@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16176] X fails to start with GeForce 9600 with
- ``Failed to allocate memory for framebuffer! "
-Date: Tue,  4 Nov 2008 15:43:02 -0800 (PST)
-Message-ID: <20081104234302.E865B130175@annarchy.freedesktop.org>
-References: <bug-16176-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 18336] nv10 : doesn't detect connected dvi monitor
+Date: Wed,  5 Nov 2008 10:00:59 -0800 (PST)
+Message-ID: <20081105180059.CAD28130131@annarchy.freedesktop.org>
+References: <bug-18336-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-18336-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,25 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16176
-
-
-Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #18047|0                           |1
-        is obsolete|                            |
+http://bugs.freedesktop.org/show_bug.cgi?id=18336
 
 
 
 
---- Comment #11 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-11-04 15:43:02 PST ---
-Created an attachment (id=20047)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=20047)
-2008 11 04 Kernel Log
 
-Updated Kernel log
+--- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-11-05 10:00:59 PST ---
+I'm interested to hear of the nvidia log listing DCB entries. Could you attach
+a xorg.log from the nvidia driver showing this output?
 
 
 -- 
