@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
  7950 GT]: works but lockup for 6 min at shutdown
-Date: Wed,  5 Nov 2008 12:36:18 -0800 (PST)
-Message-ID: <20081105203618.63F5813005C@annarchy.freedesktop.org>
+Date: Wed,  5 Nov 2008 12:37:18 -0800 (PST)
+Message-ID: <20081105203718.473DB130166@annarchy.freedesktop.org>
 References: <bug-15481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,10 +28,14 @@ Eric Valette <eric.valette-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+             Status|RESOLVED                    |CLOSED
 
 
+
+
+--- Comment #6 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2008-11-05 12:37:17 PST ---
+I update drm and nouveau Xord driver from git yesterday and the roblem has
+vansihed.
 
 
 -- 
