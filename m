@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18336] nv10 : doesn't detect connected dvi monitor
-Date: Wed,  5 Nov 2008 10:00:59 -0800 (PST)
-Message-ID: <20081105180059.CAD28130131@annarchy.freedesktop.org>
+Date: Wed,  5 Nov 2008 11:29:14 -0800 (PST)
+Message-ID: <20081105192915.091CC1300E4@annarchy.freedesktop.org>
 References: <bug-18336-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18336
 
 
 
---- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-11-05 10:00:59 PST ---
-I'm interested to hear of the nvidia log listing DCB entries. Could you attach
-a xorg.log from the nvidia driver showing this output?
+--- Comment #3 from Massis Sirapian <msirapian-GANU6spQydw@public.gmane.org>  2008-11-05 11:29:13 PST ---
+(In reply to comment #2)
+> I'm interested to hear of the nvidia log listing DCB entries. Could you attach
+> a xorg.log from the nvidia driver showing this output?
+> 
+
+I've looked for that old xorg.conf, but I'm unable to find it (probably a
+xorg.0.log.old which has been erased now).
+
+So I've reinstalled the blob to produce a xorg.0.log with -logverbose 6.
+Doesn't show these DCB entries, but still, both monitors are detected.
+
+I attach that xorg.0.log obtained with the blob, if it helps.
 
 
 -- 
