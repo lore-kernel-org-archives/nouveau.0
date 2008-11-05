@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18336] nv10 : doesn't detect connected dvi monitor
-Date: Wed,  5 Nov 2008 11:31:12 -0800 (PST)
-Message-ID: <20081105193112.EBC4F13019B@annarchy.freedesktop.org>
-References: <bug-18336-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
+ 7950 GT]: works but lockup for 6 min at shutdown
+Date: Wed,  5 Nov 2008 12:36:18 -0800 (PST)
+Message-ID: <20081105203618.63F5813005C@annarchy.freedesktop.org>
+References: <bug-15481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-18336-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +21,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=18336
+http://bugs.freedesktop.org/show_bug.cgi?id=15481
 
 
+Eric Valette <eric.valette-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
-
---- Comment #4 from Massis Sirapian <msirapian-GANU6spQydw@public.gmane.org>  2008-11-05 11:31:12 PST ---
-Created an attachment (id=20079)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=20079)
-Xorg.log produced with latest NVIDIA driver (9643.07)
-
-xorg.0.log obtained with last blob driver + logverbose level 6.
 
 
 -- 
