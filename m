@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
- 7950 GT]: works but lockup for 6 min at shutdown
-Date: Wed,  5 Nov 2008 12:37:18 -0800 (PST)
-Message-ID: <20081105203718.473DB130166@annarchy.freedesktop.org>
-References: <bug-15481-8800@http.bugs.freedesktop.org/>
+From: "Maarten Maathuis" <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH for review] (hopefully) improve error message upon
+	incorrect pgraph irq
+Date: Fri, 7 Nov 2008 00:43:57 +0100
+Message-ID: <6d4bc9fc0811061543g7ca8eb67j85068b611f0daf56@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed;
+	boundary="----=_Part_24481_18545854.1226015037952"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +19,63 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15481
+------=_Part_24481_18545854.1226015037952
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
+My main question is, do the error messages accurately reflect the situation.
+Anything else wrong with this patch?
 
-Eric Valette <eric.valette-GANU6spQydw@public.gmane.org> changed:
+A (n)ack by darktama would be nice.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |CLOSED
+Maarten.
 
+------=_Part_24481_18545854.1226015037952
+Content-Type: application/octet-stream; name=test.patch
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_fn81nkck0
+Content-Disposition: attachment; filename=test.patch
 
+ZGlmZiAtLWdpdCBhL3NoYXJlZC1jb3JlL25vdXZlYXVfaXJxLmMgYi9zaGFyZWQtY29yZS9ub3V2
+ZWF1X2lycS5jCmluZGV4IDJhM2Q4YTAuLmI4NGFhNWUgMTAwNjQ0Ci0tLSBhL3NoYXJlZC1jb3Jl
+L25vdXZlYXVfaXJxLmMKKysrIGIvc2hhcmVkLWNvcmUvbm91dmVhdV9pcnEuYwpAQCAtMjA1LDYg
+KzIwNSwxMiBAQCBub3V2ZWF1X2dyYXBoX2NoaWRfZnJvbV9ncmN0eChzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZGV2KQogCWVsc2UKIAkJaW5zdCA9IE5WX1JFQUQoMHg0MDAzMmMpICYgMHhmZmZmZjsKIAor
+CWlmICghaW5zdCkgeworCQlEUk1fRVJST1IoIlBHUkFQSCBpbnN0YW5jZSBpcyB6ZXJvLCBwcm9i
+YWJseSBjYXVzZWQgYSBzcHVyaW91cyBpbnRlcnJ1cHQuXG4iKTsKKwkJRFJNX0VSUk9SKCJBIHNp
+bmdsZSBvY2N1cmFuY2UgYmVmb3JlIGFsbG9jYXRpbmcgdGhlIGZpcnN0IEZJRk8gaXMgbm90IGNv
+bnNpZGVyZWQgdmVyeSBoYXJtZnVsLlxuIik7CisJCXJldHVybiAtMTsKKwl9CisKIAlmb3IgKGkg
+PSAwOyBpIDwgZGV2X3ByaXYtPkVuZ2luZS5maWZvLmNoYW5uZWxzOyBpKyspIHsKIAkJc3RydWN0
+IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiA9IGRldl9wcml2LT5maWZvc1tpXTsKIApAQCAtMjIwLDYg
+KzIyNiwxMCBAQCBub3V2ZWF1X2dyYXBoX2NoaWRfZnJvbV9ncmN0eChzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZGV2KQogCQl9CiAJfQogCisJLyogTm8gY2hhbm5lbCBmb3VuZCwgcmV0dXJuIC0xIHNvIHdl
+IGRvbid0IGFjY2VzcyBtZW1vcnkgb3V0IG9mIGJvdW5kLiAqLworCWlmIChpID09IGRldl9wcml2
+LT5FbmdpbmUuZmlmby5jaGFubmVscykKKwkJcmV0dXJuIC0xOworCiAJcmV0dXJuIGk7CiB9CiAK
+QEAgLTIyNyw3ICsyMzcsNiBAQCBzdGF0aWMgaW50CiBub3V2ZWF1X2dyYXBoX3RyYXBwZWRfY2hh
+bm5lbChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBpbnQgKmNoYW5uZWxfcmV0KQogewogCXN0cnVj
+dCBkcm1fbm91dmVhdV9wcml2YXRlICpkZXZfcHJpdiA9IGRldi0+ZGV2X3ByaXZhdGU7Ci0Jc3Ry
+dWN0IG5vdXZlYXVfZW5naW5lICplbmdpbmUgPSAmZGV2X3ByaXYtPkVuZ2luZTsKIAlpbnQgY2hh
+bm5lbDsKIAogCWlmIChkZXZfcHJpdi0+Y2FyZF90eXBlIDwgTlZfMTApCkBAIC0yMzgsOCArMjQ3
+LDE0IEBAIG5vdXZlYXVfZ3JhcGhfdHJhcHBlZF9jaGFubmVsKHN0cnVjdCBkcm1fZGV2aWNlICpk
+ZXYsIGludCAqY2hhbm5lbF9yZXQpCiAJZWxzZQogCQljaGFubmVsID0gbm91dmVhdV9ncmFwaF9j
+aGlkX2Zyb21fZ3JjdHgoZGV2KTsKIAotCWlmIChjaGFubmVsID49IGVuZ2luZS0+Zmlmby5jaGFu
+bmVscyB8fCAhZGV2X3ByaXYtPmZpZm9zW2NoYW5uZWxdKSB7Ci0JCURSTV9FUlJPUigiQUlJSSwg
+aW52YWxpZC9pbmFjdGl2ZSBjaGFubmVsIGlkICVkXG4iLCBjaGFubmVsKTsKKwlpZiAoY2hhbm5l
+bCA9PSAtMSkgeworCQlEUk1fRVJST1IoIlBHUkFQSCBpbnRlcnJ1cHQgZnJvbSB1bmtub3duIGNo
+YW5uZWwuXG4iKTsKKwkJcmV0dXJuIC1FSU5WQUw7CisJfQorCisJLyogY2hhbm5lbCB3aWxsIG5l
+dmVyIGV4Y2VlZCAxMjcuICovCisJaWYgKCFkZXZfcHJpdi0+Zmlmb3NbY2hhbm5lbF0pIHsKKwkJ
+RFJNX0VSUk9SKCJQR1JBUEggaW50ZXJydXB0IGZyb20gaW5hY3RpdmUgY2hhbm5lbCBpZCAlZFxu
+IiwgY2hhbm5lbCk7CiAJCXJldHVybiAtRUlOVkFMOwogCX0KIAo=
+------=_Part_24481_18545854.1226015037952
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---- Comment #6 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2008-11-05 12:37:17 PST ---
-I update drm and nouveau Xord driver from git yesterday and the roblem has
-vansihed.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+------=_Part_24481_18545854.1226015037952--
