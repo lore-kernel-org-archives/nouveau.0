@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16176] X fails to start with GeForce 9600 with
  ``Failed to allocate memory for framebuffer! "
-Date: Sat,  8 Nov 2008 02:11:16 -0800 (PST)
-Message-ID: <20081108101116.EB84613010B@annarchy.freedesktop.org>
+Date: Sat,  8 Nov 2008 09:08:33 -0800 (PST)
+Message-ID: <20081108170833.8AE4B130198@annarchy.freedesktop.org>
 References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16176
 
 
 
---- Comment #13 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-11-08 02:11:14 PST ---
-Nov  4 18:24:16 belthazor-saved kernel: [27911.257328]
-[drm:nv50_graph_init_ctxctl] *ERROR* no ctxprog for chipset NV94
-
-This means someone needs to extract one from a mmio-trace.
+--- Comment #14 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-11-08 09:08:32 PST ---
+I've already sent one (Comment #7). What should I do to make sure this one gets
+picked up? Will just mentioning the bug report number be enough?
 
 
 -- 
