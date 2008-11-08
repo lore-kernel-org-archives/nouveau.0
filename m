@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16176] X fails to start with GeForce 9600 with
  ``Failed to allocate memory for framebuffer! "
-Date: Fri,  7 Nov 2008 18:02:29 -0800 (PST)
-Message-ID: <20081108020229.CE3141301EF@annarchy.freedesktop.org>
+Date: Sat,  8 Nov 2008 02:11:16 -0800 (PST)
+Message-ID: <20081108101116.EB84613010B@annarchy.freedesktop.org>
 References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,18 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16176
 
 
-Paul Trautrim <paultrautrim-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |paultrautrim-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
+--- Comment #13 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-11-08 02:11:14 PST ---
+Nov  4 18:24:16 belthazor-saved kernel: [27911.257328]
+[drm:nv50_graph_init_ctxctl] *ERROR* no ctxprog for chipset NV94
 
---- Comment #12 from Paul Trautrim <paultrautrim-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-11-07 18:02:21 PST ---
-I had the same problem with a 7900 GS and fixed it by removing frame buffer
-support from the kernel. Is there any chance that doing so works for you?
+This means someone needs to extract one from a mmio-trace.
 
 
 -- 
