@@ -1,9 +1,9 @@
-From: =?ISO-8859-1?Q?Jos=E9?= Fonseca <jrfonseca-CdwZJljFklH+2FeEXyspIVaTQe2KTcn/@public.gmane.org>
-Subject: Re: [Mesa3d-dev] Memory corruption on Gallium window
-	resize, diagnosed?
-Date: Wed, 12 Nov 2008 08:34:41 +0900
-Message-ID: <1226446481.18703.245.camel@localhost>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Memory corruption on Gallium window resize, diagnosed?
+Date: Wed, 12 Nov 2008 12:43:35 +1100
+Message-ID: <1226454215.8174.0.camel@araqiel>
 References: <20081112002649.4eedec4f@daedalus.pq.iki.fi>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -22,12 +22,17 @@ To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa3d-dev-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2008-11-12 at 00:26 +0200, Pekka Paalanen wrote:
+Am Mittwoch, den 12.11.2008, 00:26 +0200 schrieb Pekka Paalanen:
 > Hi,
 > 
 > I've been playing with nouveau/mesa branch gallium-0.1, trying to get
 > trivial/tri working on nv20 (with nv10 code). When ever I resize the window,
 > it ends up in an assert failure:
+Hey,
+
+I fixed nv4x recently, gallium-0.2 branch...
+
+Ben.
 > 
 > #0  0xf790744f in _debug_assert_fail (expr=0xf791908f "0", file=0xf7919050 "nv20_state_emit.c", line=139, 
 >     function=0xf7919034 "nv20_state_emit_framebuffer") at p_debug.c:335
@@ -139,20 +144,12 @@ On Wed, 2008-11-12 at 00:26 +0200, Pekka Paalanen wrote:
 > forgets to increment the reference count. Or something else.
 > 
 > What do you say, how do we fix it, is this the bug?
-
-It seems that there is a missing surface reference count increment,
-i.e., the surface pointer is copied without using the
-pipe_surface_reference function, but it is destroyed with it one time
-too many.
-
+> 
 > Note, that nouveau/mesa gallium-0.1 has been last synced to mesa/mesa
 > Sept 18th, so maybe you have already fixed it? Or not?
 > 
 > I looked at the diffs and logs, but didn't see a fix.
-
-The problem might be on the winsys. Make sure that the
-pipe_winsys::surface_* are in sync with the xlib winsys, otherwise the
-texture-view-surface vs standalone-view-surface logic in
-pipe_surface_reference and friends will break down.
-
-Jose
+> 
+> 
+> Thanks.
+> 
