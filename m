@@ -1,12 +1,11 @@
-From: "Clemens Eisserer" <linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: NV4x and A8 pictures
-Date: Mon, 17 Nov 2008 01:52:13 +0100
-Message-ID: <194f62550811161652v5f1ff1e2r503b0b2a6f888b45@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 18636] New: nouveau git does not run on NV34M
+Date: Thu, 20 Nov 2008 08:08:46 -0800 (PST)
+Message-ID: <bug-18636-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,18 +18,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+http://bugs.freedesktop.org/show_bug.cgi?id=18636
 
-Does NV4x have support for A8 destinations?
-I am doing XRenderFillRectangles to an A8 mask, and later I use this
-mask in composite operations.
-In some seldom cases I also do an A8->A8 composition operation.
+           Summary: nouveau git does not run on NV34M
+           Product: xorg
+           Version: git
+          Platform: PowerPC
+        OS/Version: All
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: wouter-W3n8d9RvHYw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I had a look at the source and for both NV3x/4x there I found a shader
-in NV40EXAHackupA8Shaders.
-What are those used for?
 
-Would it help in such cases to allocate the mask as ARGB32, draw to it
-using argb32 values?
+Created an attachment (id=20468)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=20468)
+Xorg log with 'Option "ModeDebug" "on"' in xorg.conf
 
-Thank you in advance, Clemens
+I did a 'git pull' of both last night; but after recompilation, nouveau no
+longer works, with the following error message:
+
+(EE) NOUVEAU(0): Pointer to flat panel table invalid
+
+I'm attaching an xorg log.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
