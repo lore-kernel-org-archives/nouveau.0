@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18638] Nouveau fails totally on new Macbook Unibody
  13.3" Ubuntu ( xorg.0.log included)
-Date: Fri, 21 Nov 2008 06:41:52 -0800 (PST)
-Message-ID: <20081121144153.18922130056@annarchy.freedesktop.org>
+Date: Fri, 21 Nov 2008 07:08:43 -0800 (PST)
+Message-ID: <20081121150843.70132130056@annarchy.freedesktop.org>
 References: <bug-18638-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,17 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18638
 
 
 
---- Comment #3 from William Yerazunis <yerazunis-MXLR4ItNKm8@public.gmane.org>  2008-11-21 06:41:51 PST ---
-OK, no problem.  I'm willing to do that.
-
-It does "work" to some extent with the proprietary driver (that is, I get nice
-video), but I don't get external display output (but have only really tried 
-from the GUI tool; I didn't go into the xorg.conf file).
-
-I will be on the IRC channel today; you can guide me through capturing 
-whatever info you need.
-
-   - Bill
+--- Comment #4 from William Yerazunis <yerazunis-MXLR4ItNKm8@public.gmane.org>  2008-11-21 07:08:42 PST ---
+Created an attachment (id=20493)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=20493)
+Xorg.0.log of 
 
 
 -- 
