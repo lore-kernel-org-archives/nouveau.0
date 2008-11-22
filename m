@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16793] FIFO mapping not found for 8600M GT
-Date: Fri, 21 Nov 2008 13:30:34 -0800 (PST)
-Message-ID: <20081121213034.8AB2513005A@annarchy.freedesktop.org>
-References: <bug-16793-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 18636] nouveau git does not run on NV34M
+Date: Sat, 22 Nov 2008 05:16:24 -0800 (PST)
+Message-ID: <20081122131624.891EB130056@annarchy.freedesktop.org>
+References: <bug-18636-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16793-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-18636-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16793
-
-
-lukenshiro-8cRKiK8W3qA@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |lukenshiro-8cRKiK8W3qA@public.gmane.org
+http://bugs.freedesktop.org/show_bug.cgi?id=18636
 
 
 
 
---- Comment #2 from lukenshiro-8cRKiK8W3qA@public.gmane.org  2008-11-21 13:30:33 PST ---
-The same for Geforce 8200 (integrated, 10de:0849)
+
+--- Comment #2 from Wouter Verhelst <wouter-W3n8d9RvHYw@public.gmane.org>  2008-11-22 05:16:24 PST ---
+(In reply to comment #1)
+> Please try
+> http://people.freedesktop.org/~stuart/0001-Do-not-attempt-to-parse-FP-mode-tables-for-Mac-lapto.patch
+> 
+
+Yes, that one does seem to fix it. Thanks.
 
 
 -- 
