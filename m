@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18809] X w/ nouveau driver doesn't start on G86M
  [GeForce 8400M GT] chip
-Date: Fri, 28 Nov 2008 18:10:36 -0800 (PST)
-Message-ID: <20081129021036.CECA9130058@annarchy.freedesktop.org>
+Date: Fri, 28 Nov 2008 18:19:53 -0800 (PST)
+Message-ID: <20081129021953.C452C130058@annarchy.freedesktop.org>
 References: <bug-18809-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18809
 
 
 
---- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-11-28 18:10:35 PST ---
-Provide a full xorg log at least.
+--- Comment #2 from Ingmar Vanhassel <ingmar-k5O9xmZG+kVAfugRpC6u6w@public.gmane.org>  2008-11-28 18:19:53 PST ---
+Created an attachment (id=20685)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=20685)
+Xorg.log
+
+(In reply to comment #1)
+> Provide a full xorg log at least.
+
+Oops :)
 
 
 -- 
