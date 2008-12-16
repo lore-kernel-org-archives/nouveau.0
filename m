@@ -1,14 +1,14 @@
-From: Arthur Huillet <arthur.huillet-GANU6spQydw@public.gmane.org>
-Subject: Re: Nouveau wiki translations
-Date: Sun, 14 Dec 2008 11:10:29 +0100
-Message-ID: <20081214111029.326f789f.arthur.huillet@free.fr>
-References: <20081213222111.5af4a6e6@daedalus.pq.iki.fi>
-Reply-To: arthur.huillet-GANU6spQydw@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 16176] X fails to start with GeForce 9600 with
+ ``Failed to allocate memory for framebuffer! "
+Date: Tue, 16 Dec 2008 14:00:14 -0800 (PST)
+Message-ID: <20081216220014.7D380130056@annarchy.freedesktop.org>
+References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-15"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20081213222111.5af4a6e6-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
+In-Reply-To: <bug-16176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, 13 Dec 2008 22:21:11 +0200
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> wrote:
+http://bugs.freedesktop.org/show_bug.cgi?id=16176
 
-> The fact, that we have not noticed anyone being yet mislead by the
-> outdated translations IMHO suggest that they are not really needed.
-> Are there other opinions?
 
-I did not think you would manage to spin my comment 180=B0. Congrats on thi=
-s, I must say I am
-impressed.
 
-Now since MJules agrees for his translations to be removed (removing the li=
-nk is
-equivalent to removing the translation in terms of visibility), I guess
-my objections no longer have a foundation.
 
-I think it is a bad move in terms of communication with our potential users=
-, while it brings us
-absolutely nothing to carry out this removal. Except maybe a bit of pleasur=
-e for you, so go ahead :)
 
--- =
+--- Comment #18 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-12-16 14:00:13 PST ---
+Did you send that mmio-trace to mmio.dumps-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org?
 
-Greetings, =
+Because i can't find it.
 
-A. Huillet
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
