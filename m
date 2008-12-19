@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16176] X fails to start with GeForce 9600 with
  ``Failed to allocate memory for framebuffer! "
-Date: Tue, 16 Dec 2008 20:15:22 -0800 (PST)
-Message-ID: <20081217041522.174B713005A@annarchy.freedesktop.org>
+Date: Thu, 18 Dec 2008 16:20:51 -0800 (PST)
+Message-ID: <20081219002051.327E7130058@annarchy.freedesktop.org>
 References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16176
 
 
 
---- Comment #19 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2008-12-16 20:15:21 PST ---
-I've just sent another trace, but nVidia's driver seemed to act strange while
-traced. It never displays it's splash screen, for example, but while mmiotrace
-was enabled it did (linux 2.6.27.9-custom). X also didn't last that long, once
-it came up.
+--- Comment #20 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-12-18 16:20:49 PST ---
+Created an attachment (id=21285)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=21285)
+A small change.
+
+Try this patch, maybe it helps.
 
 
 -- 
