@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19203] New: X default modes no longer added
-Date: Sat, 20 Dec 2008 07:43:27 -0800 (PST)
-Message-ID: <bug-19203-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19203] X default modes no longer added
+Date: Sat, 20 Dec 2008 09:10:27 -0800 (PST)
+Message-ID: <20081220171027.C1D99130056@annarchy.freedesktop.org>
+References: <bug-19203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-19203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +22,21 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=19203
 
-           Summary: X default modes no longer added
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Some month's ago I could switch from my laptops native resolution 1024x768 to
-800x600 or 640x480. The gpu or panel would do the scaling.
 
-Recently this is no longer possible. The edid only contains the native 1024x768
-resolution and the log no longer mentions checking the modes from the builtin
-modepool.
 
-The lower resolutions were quite useful for some games and videos.
+--- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-12-20 09:10:27 PST ---
+Have you updated the xserver recently?  I could believe
+http://cgit.freedesktop.org/xorg/xserver/commit/?id=81fd17f5f49cdd2c10d0bf3b7ddeb8b5953886a5
+"Only add default modes if EDID supports continuous-frequency" might have this
+effect.
 
-danny
+As far as nouveau ddx changes go, the scaling code was last touched on Aug
+16-17th in 8a364682fd67c10c153cb0778c914a4754e82ddd and 
+4cbbd44db614d250fdaaf648db2d70ec9bc2f6d9 if you want to try going back to a
+previous version (though admittedly there could be unintentional subsequent
+breakage)
 
 
 -- 
