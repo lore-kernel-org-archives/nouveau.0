@@ -1,8 +1,7 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Some ideas on how to mix userspace fifo's with a kernel
-	memory manager
-Date: Sat, 20 Dec 2008 13:58:41 +0100
-Message-ID: <494CEC01.9020801@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 19203] New: X default modes no longer added
+Date: Sat, 20 Dec 2008 07:43:27 -0800 (PST)
+Message-ID: <bug-19203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,27 +18,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I was thinking of the following system:
+http://bugs.freedesktop.org/show_bug.cgi?id=19203
 
-Allocate a fifo for userspace, map the fifo, map the fifo registers into 
-userspace.
-These allocations are therefore pinned, so something to avoid memory 
-fragmentation has to be done.
+           Summary: X default modes no longer added
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Userspace library fills up an entire fifo, minus a few essential things 
-i will mention later. Userspace does ioctl with all the bo's it'll need 
-for the fifo. Kernel pins all these bo's, creates several dma objects 
-that covers only a single bo (as a form of memory protection). Kernel 
-sends back a list of these object handles + a list of ref_cnt values 
-that have to inserted after the bo usage is done. Userspace fills in the 
-remaining values and fires the fifo.
 
-Later, under memory pressure for example, the memory manager checks 
-which bo's can be unpinned.
+Some month's ago I could switch from my laptops native resolution 1024x768 to
+800x600 or 640x480. The gpu or panel would do the scaling.
 
-So you'll still need an ioctl, but you do avoid a copy into kernel 
-space, which might hurt for stuff like hostdata transfers.
+Recently this is no longer possible. The edid only contains the native 1024x768
+resolution and the log no longer mentions checking the modes from the builtin
+modepool.
 
-As usual, comment is appreciated.
+The lower resolutions were quite useful for some games and videos.
 
-Maarten.
+danny
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
