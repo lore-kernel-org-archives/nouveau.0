@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19214] video mode change causes monitor to go out of
 	range
-Date: Sun, 21 Dec 2008 06:12:05 -0800 (PST)
-Message-ID: <20081221141205.9F1A3130057@annarchy.freedesktop.org>
+Date: Sun, 21 Dec 2008 12:34:59 -0800 (PST)
+Message-ID: <20081221203459.BA0A4130054@annarchy.freedesktop.org>
 References: <bug-19214-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19214
 
 
 
---- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-12-21 06:12:05 PST ---
-Please include the output of the xrandr command, and attach /var/log/Xorg.0.log
-when you have run X with the line `Option "ModeDebug" "on" in the Device
-section of /etc/X11/xorg.conf.
+--- Comment #2 from Arie Skliarouk <skliarie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-12-21 12:34:59 PST ---
+> it may be that xrandr is attempting to set a DoubleScan mode;
+> have you tried setting the refresh rate with the xrandr command
+> (something like "xrandr -s 1024x768 -r 60")?
 
-While the problem isn't immediately obvious (for one thing, the reported mode
-would seem to lie in the monitor's accepted range), it may be that xrandr is
-attempting to set a DoubleScan mode; have you tried setting the refresh rate
-with the xrandr command (something like "xrandr -s 1024x768 -r 60")?
+I tried to specify refresh rate and this time the video mode has changed
+properly.
+
+The mode setting algorithm still needs to be improved, as there are many games
+that do their own mode switching and do not specify refresh rate assuming
+(pretty logically) that the driver would take care about little details
+(including choosing of highest possible viewable frequency).
 
 
 -- 
