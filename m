@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19223] Parallel X servers do not work
-Date: Sun, 21 Dec 2008 14:19:03 -0800 (PST)
-Message-ID: <20081221221903.50FA5130057@annarchy.freedesktop.org>
-References: <bug-19223-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19214] video mode change causes monitor to go out of
+	range
+Date: Sun, 21 Dec 2008 15:47:43 -0800 (PST)
+Message-ID: <20081221234743.260F6130056@annarchy.freedesktop.org>
+References: <bug-19214-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19214-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19223
-
-
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Exit code of X-Windows      |Parallel X servers do not
-                   |restart is always failure   |work
+http://bugs.freedesktop.org/show_bug.cgi?id=19214
 
 
 
 
---- Comment #2 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-12-21 14:19:02 PST ---
-Currently Nouveau does not support multiple X servers running parallel. Nouveau
-requires DRM/DRI support, and the X server needs to get to be the DRI master
-for that. This would require multi-master support throughout the graphics
-stack, and it is still under development. This is not (yet) a Nouveau-specific
-bug, Nouveau is just the only driver that refuses to start a second X server at
-all (other drivers only miss DRI support on other X servers).
 
-Changed the summary to a little more descriptive.
+--- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-12-21 15:47:42 PST ---
+(In reply to comment #3)
+> This sounds very much like the doublescan mode brain damage. Double scan modes
+> are listed in xrandr just like normal modes except their refresh rate is
+> reported doubled.
+> 
+> Should this bug be marked as duplicate of Bug #16952 ?
+
+Probably, but I'd still like to see some xrandr output showing a 1024x768@120
+mode, or an Xorg log first to confirm it.
 
 
 -- 
