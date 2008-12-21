@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19214] New: video mode change causes monitor to go
-	out of range
-Date: Sun, 21 Dec 2008 04:02:31 -0800 (PST)
-Message-ID: <bug-19214-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19214] video mode change causes monitor to go out of
+	range
+Date: Sun, 21 Dec 2008 06:12:05 -0800 (PST)
+Message-ID: <20081221141205.9F1A3130057@annarchy.freedesktop.org>
+References: <bug-19214-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-19214-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=19214
 
-           Summary: video mode change causes monitor to go out of range
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: skliarie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-I have an LCD monitor with native resolution 1650x1050. When I try to change
-the resolution to a different one (e.g. "xrandr -s 1024x768"), the monitor goes
-dark and following message appears:
-Out of range
-  Working range
-  H: 30-96kHz
-  V: 60-75Hz
-  Max res 1680x1050
-  Current mode
-  H: 96kHz
-  V: 60Hz
 
-The nvidia driver was taken from package
-xserver-xorg-video-nouveau version 1:0.0.10~git20081124-0~ppa1 downloaded from
-http://ppa.launchpad.net/raof/ubuntu.
 
-The NVidia card used is
-01:00.0 VGA compatible controller: nVidia Corporation NV34 [GeForce FX 5200]
-(rev a1)
+--- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-12-21 06:12:05 PST ---
+Please include the output of the xrandr command, and attach /var/log/Xorg.0.log
+when you have run X with the line `Option "ModeDebug" "on" in the Device
+section of /etc/X11/xorg.conf.
+
+While the problem isn't immediately obvious (for one thing, the reported mode
+would seem to lie in the monitor's accepted range), it may be that xrandr is
+attempting to set a DoubleScan mode; have you tried setting the refresh rate
+with the xrandr command (something like "xrandr -s 1024x768 -r 60")?
 
 
 -- 
