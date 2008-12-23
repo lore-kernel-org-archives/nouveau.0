@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19261] xmms playlist does not render correctly
-Date: Tue, 23 Dec 2008 10:30:18 -0800 (PST)
-Message-ID: <20081223183018.4B68D130054@annarchy.freedesktop.org>
-References: <bug-19261-8800@http.bugs.freedesktop.org/>
+From: "Maarten Maathuis" <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: A few patches for ng
+Date: Tue, 23 Dec 2008 21:25:54 +0100
+Message-ID: <6d4bc9fc0812231225u402196c1q2cc32bd51f8cd4aa@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed;
+	boundary="----=_Part_99879_26611124.1230063954078"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19261-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +18,111 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19261
+------=_Part_99879_26611124.1230063954078
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
+The first patch (for drm) fixes a very annoying bug for nv50 gart. The
+2nd is just a few cleanups in libnouveau_drm.
 
+I also pushed a few changes to the ng ddx, and I'm at the moment
+thinking on how to deal with the issue of nv50.
 
+We are no longer garuanteed that pixmaps are really migrated upon
+mapping, so that is the first thing to do. Probably a good idea to
+begin with making the bo copy stuff in kernel functional with tiled
+memory. Then the simple start would be to copy the bo upon map and and
+copy back upon unmap, the downside of this is a syncing requirement
+(the tiled copy musn't be accessed at the same time). Another attempt
+would to be finally try that wfb stuff in xorg and get that going. And
+i have some more ideas floating around. Anyway, i'll have some more
+stuff ready once you (darktama) are done moving.
 
+Maarten.
 
---- Comment #2 from Clemens Buchacher <drizzd-Tswl7xcH0yE@public.gmane.org>  2008-12-23 10:30:17 PST ---
-Created an attachment (id=21449)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21449)
-dmesg after startx
+------=_Part_99879_26611124.1230063954078
+Content-Type: application/octet-stream;
+ name=0001-nv50-properly-handle-gart.patch
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_fp30a5vc0
+Content-Disposition: attachment;
+ filename=0001-nv50-properly-handle-gart.patch
 
+RnJvbSA4Y2FhZjBjNGEzZGM0NTc5ZTA5OTYzMTczNDM4ZDg3NmQzMzVmYmI1IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBNYWFydGVuIE1hYXRodWlzIDxtYWRtYW4yMDAzQGdtYWlsLmNv
+bT4KRGF0ZTogVHVlLCAyMyBEZWMgMjAwOCAyMToxMjoxNCArMDEwMApTdWJqZWN0OiBbUEFUQ0hd
+IG52NTA6IHByb3Blcmx5IGhhbmRsZSBnYXJ0LgoKLS0tCiBzaGFyZWQtY29yZS9ub3V2ZWF1X29i
+amVjdC5jIHwgICAgOSArKysrKysrKy0KIDEgZmlsZXMgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCsp
+LCAxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NoYXJlZC1jb3JlL25vdXZlYXVfb2JqZWN0
+LmMgYi9zaGFyZWQtY29yZS9ub3V2ZWF1X29iamVjdC5jCmluZGV4IDRjOGQzNjQuLmY3ZDkzYTgg
+MTAwNjQ0Ci0tLSBhL3NoYXJlZC1jb3JlL25vdXZlYXVfb2JqZWN0LmMKKysrIGIvc2hhcmVkLWNv
+cmUvbm91dmVhdV9vYmplY3QuYwpAQCAtOTYxLDYgKzk2MSw4IEBAIG5vdXZlYXVfZ3B1b2JqX2No
+YW5uZWxfaW5pdChzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpjaGFuLAogCiAJLyogVlJBTSBjdHhk
+bWEgKi8KIAlpZiAoZGV2X3ByaXYtPmNhcmRfdHlwZSA+PSBOVl81MCkgeworCQkvKiBWUkFNIGlz
+IG1hcHBlZCBpbnRvIDUxMi0xMDI0IE1CIGluIHRoZSBwYWdlIGRpcmVjdG9yeS4gKi8KKwkJLyog
+VGhlIHJlYXNvbiBhdmFpbGFibGUgc2l6ZSBpcyB1c2VkLCBpcyB0byBhdm9pZCBkbWEnaW5nIGlu
+dG8gUkFNSU4uICovCiAJCXJldCA9IG5vdXZlYXVfZ3B1b2JqX2RtYV9uZXcoY2hhbiwgTlZfQ0xB
+U1NfRE1BX0lOX01FTU9SWSwKIAkJCQkJICAgICAoNTEyKjEwMjQqMTAyNCksCiAJCQkJCSAgICAg
+ZGV2X3ByaXYtPmZiX2F2YWlsYWJsZV9zaXplLApAQCAtOTg2LDcgKzk4OCwxMiBAQCBub3V2ZWF1
+X2dwdW9ial9jaGFubmVsX2luaXQoc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwKIAogCS8q
+IFRUIG1lbW9yeSBjdHhkbWEgKi8KIAlpZiAoZGV2X3ByaXYtPmNhcmRfdHlwZSA+PSBOVl81MCkg
+ewotCQl0dCA9IHZyYW07CisJCS8qIEdBUlQgaXMgbWFwcGVkIGludG8gMC01MTJNQiBvZiB0aGUg
+cGFnZSBkaXJlY3RvcnkuICovCisJCXJldCA9IG5vdXZlYXVfZ3B1b2JqX2RtYV9uZXcoY2hhbiwg
+TlZfQ0xBU1NfRE1BX0lOX01FTU9SWSwKKwkJCQkJICAgICAwLAorCQkJCQkgICAgIDUxMioxMDI0
+KjEwMjQsCisJCQkJCSAgICAgTlZfRE1BX0FDQ0VTU19SVywKKwkJCQkJICAgICBOVl9ETUFfVEFS
+R0VUX0FHUCwgJnR0KTsKIAl9IGVsc2UKIAlpZiAoZGV2X3ByaXYtPmdhcnRfaW5mby50eXBlICE9
+IE5PVVZFQVVfR0FSVF9OT05FKSB7CiAJCXJldCA9IG5vdXZlYXVfZ3B1b2JqX2dhcnRfZG1hX25l
+dyhjaGFuLCAwLAotLSAKMS42LjAuNAoK
+------=_Part_99879_26611124.1230063954078
+Content-Type: application/octet-stream; name=0001-A-few-minor-fixes.patch
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_fp30aui31
+Content-Disposition: attachment; filename=0001-A-few-minor-fixes.patch
 
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+RnJvbSBhYmVkMGRkMzU4M2FjMTczZTE5NTcwYTRhMDAxMGViNTZiNDViYzBiIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBNYWFydGVuIE1hYXRodWlzIDxtYWRtYW4yMDAzQGdtYWlsLmNv
+bT4KRGF0ZTogVHVlLCAyMyBEZWMgMjAwOCAyMToxNjoxMCArMDEwMApTdWJqZWN0OiBbUEFUQ0hd
+IEEgZmV3IG1pbm9yIGZpeGVzLgoKLS0tCiBzcmMvbm91dmVhdV9iby5jIHwgICAxNyArKysrKysr
+KysrKystLS0tLQogMSBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9u
+cygtKQoKZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X2JvLmMgYi9zcmMvbm91dmVhdV9iby5jCmlu
+ZGV4IDg1MWVhZjkuLmRlNmYxNjcgMTAwNjQ0Ci0tLSBhL3NyYy9ub3V2ZWF1X2JvLmMKKysrIGIv
+c3JjL25vdXZlYXVfYm8uYwpAQCAtMzI4LDcgKzMyOCw5IEBAIG5vdXZlYXVfYm9fd2FpdChzdHJ1
+Y3Qgbm91dmVhdV9ibyAqYm8sIGludCBjcHVfd3JpdGUpCiAJCW5vdXZlYXVfcHVzaGJ1Zl9mbHVz
+aChudmJvLT5wZW5kaW5nX2NoYW5uZWwsIDApOwogCX0KIAotCW5vdXZlYXVfYm9fa21hcChudmJv
+KTsKKwlyZXQgPSBub3V2ZWF1X2JvX2ttYXAobnZibyk7CisJaWYgKHJldCkKKwkJcmV0dXJuIHJl
+dDsKIAogCXJlcS5oYW5kbGUgPSBudmJvLT5oYW5kbGU7CiAJcmV0ID0gZHJtQ29tbWFuZFdyaXRl
+KG52ZGV2LT5mZCwgRFJNX05PVVZFQVVfR0VNX0NQVV9QUkVQLApAQCAtMzUwLDggKzM1MiwxMSBA
+QCBub3V2ZWF1X2JvX21hcChzdHJ1Y3Qgbm91dmVhdV9ibyAqYm8sIHVpbnQzMl90IGZsYWdzKQog
+CQlyZXR1cm4gLUVJTlZBTDsKIAogCWlmICghbm91dmVhdV9ib19hbGxvY2F0ZWQobnZibykpIHsK
+LQkJaWYgKG52Ym8tPmZsYWdzICYgKE5PVVZFQVVfQk9fVlJBTSB8IE5PVVZFQVVfQk9fR0FSVCkp
+Ci0JCQlub3V2ZWF1X2JvX2thbGxvYyhudmJvLCBOVUxMKTsKKwkJaWYgKG52Ym8tPmZsYWdzICYg
+KE5PVVZFQVVfQk9fVlJBTSB8IE5PVVZFQVVfQk9fR0FSVCkpIHsKKwkJCXJldCA9IG5vdXZlYXVf
+Ym9fa2FsbG9jKG52Ym8sIE5VTEwpOworCQkJaWYgKHJldCkKKwkJCQlyZXR1cm4gcmV0OworCQl9
+CiAKIAkJaWYgKCFub3V2ZWF1X2JvX2FsbG9jYXRlZChudmJvKSkgewogCQkJcmV0ID0gbm91dmVh
+dV9ib191YWxsb2MobnZibyk7CkBAIC00NjgsNyArNDczLDkgQEAgbm91dmVhdV9ib19lbWl0X2J1
+ZmZlcihzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpjaGFuLCBzdHJ1Y3Qgbm91dmVhdV9ibyAqYm8p
+CiAJCXJldHVybiBudmJvLT5wZW5kaW5nOwogCiAJaWYgKCFudmJvLT5oYW5kbGUpIHsKLQkJbm91
+dmVhdV9ib19rYWxsb2MobnZibywgY2hhbik7CisJCXJldCA9IG5vdXZlYXVfYm9fa2FsbG9jKG52
+Ym8sIGNoYW4pOworCQlpZiAocmV0KQorCQkJcmV0dXJuIE5VTEw7CiAJCWlmIChudmJvLT5zeXNt
+ZW0pIHsKIAkJCXZvaWQgKnN5c21lbV90bXAgPSBudmJvLT5zeXNtZW07CiAKQEAgLTQ5NCw3ICs1
+MDEsNyBAQCBub3V2ZWF1X2JvX2VtaXRfYnVmZmVyKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNo
+YW4sIHN0cnVjdCBub3V2ZWF1X2JvICpibykKIAlwYmJvLT51c2VyX3ByaXYgPSAodWludDY0X3Qp
+KHVuc2lnbmVkIGxvbmcpcmVmOwogCXBiYm8tPmhhbmRsZSA9IG52Ym8tPmhhbmRsZTsKIAlwYmJv
+LT52YWxpZF9kb21haW5zID0gTk9VVkVBVV9HRU1fRE9NQUlOX1ZSQU0gfCBOT1VWRUFVX0dFTV9E
+T01BSU5fR0FSVDsKLQlwYmJvLT5yZWFkX2RvbWFpbnMgPQorCXBiYm8tPnJlYWRfZG9tYWlucyA9
+IDA7CiAJcGJiby0+d3JpdGVfZG9tYWlucyA9IDA7CiAJcGJiby0+cHJlc3VtZWRfZG9tYWluID0g
+bnZiby0+ZG9tYWluOwogCXBiYm8tPnByZXN1bWVkX29mZnNldCA9IG52Ym8tPm9mZnNldDsKLS0g
+CjEuNi4wLjQKCg==
+------=_Part_99879_26611124.1230063954078
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+------=_Part_99879_26611124.1230063954078--
