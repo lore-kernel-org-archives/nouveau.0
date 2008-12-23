@@ -1,8 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18638] Nouveau fails totally on new Macbook Unibody
- 13.3" Ubuntu ( xorg.0.log included)
-Date: Tue, 23 Dec 2008 03:44:08 -0800 (PST)
-Message-ID: <20081223114408.31530130056@annarchy.freedesktop.org>
+Subject: [Bug 18638] nouveau fails on macbook 5,1
+Date: Tue, 23 Dec 2008 03:44:41 -0800 (PST)
+Message-ID: <20081223114441.81C05130056@annarchy.freedesktop.org>
 References: <bug-18638-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,12 +23,15 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=18638
 
 
+Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Nouveau fails totally on new|nouveau fails on macbook 5,1
+                   |Macbook Unibody 13.3"       |
+                   |Ubuntu (xorg.0.log included)|
 
 
-
---- Comment #7 from Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org>  2008-12-23 03:44:07 PST ---
-Oh, and regarding the question about nv, it doesn't work. I can provide a log,
-but I remember that I explicitly needed to enable "vesa" to get output at all.
 
 
 -- 
