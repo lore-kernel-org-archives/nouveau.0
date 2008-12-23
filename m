@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19214] video mode change causes monitor to go out of
-	range
-Date: Sun, 21 Dec 2008 15:47:43 -0800 (PST)
-Message-ID: <20081221234743.260F6130056@annarchy.freedesktop.org>
-References: <bug-19214-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 18638] Nouveau fails totally on new Macbook Unibody
+ 13.3" Ubuntu ( xorg.0.log included)
+Date: Tue, 23 Dec 2008 03:41:59 -0800 (PST)
+Message-ID: <20081223114159.C9818130054@annarchy.freedesktop.org>
+References: <bug-18638-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19214-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-18638-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +21,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19214
+http://bugs.freedesktop.org/show_bug.cgi?id=18638
+
+
+Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org
 
 
 
 
+--- Comment #5 from Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org>  2008-12-23 03:41:59 PST ---
+Just FYI, since I just tried, the current drm git
+(b48bd3a036efa3c3aa759759a5be4f80f1c3ac72) and nouveau git
+(31c9958779d95ae84993f4772607367927a0e313) doesn't work, but for me it just
+disables the X server and nothing crashes. The kernel also printed some
+warnings, will attach complete log of both.
 
---- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2008-12-21 15:47:42 PST ---
-(In reply to comment #3)
-> This sounds very much like the doublescan mode brain damage. Double scan modes
-> are listed in xrandr just like normal modes except their refresh rate is
-> reported doubled.
-> 
-> Should this bug be marked as duplicate of Bug #16952 ?
-
-Probably, but I'd still like to see some xrandr output showing a 1024x768@120
-mode, or an Xorg log first to confirm it.
+Mind you, my memory was fragmented enough yesterday that an order-5 allocation
+failed, I didn't see a memory allocation failure here though.
 
 
 -- 
