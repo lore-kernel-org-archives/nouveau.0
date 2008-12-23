@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19261] xmms playlist does not render correctly
-Date: Tue, 23 Dec 2008 10:21:19 -0800 (PST)
-Message-ID: <20081223182119.AD4D8130054@annarchy.freedesktop.org>
+Date: Tue, 23 Dec 2008 10:30:18 -0800 (PST)
+Message-ID: <20081223183018.4B68D130054@annarchy.freedesktop.org>
 References: <bug-19261-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19261
 
 
 
---- Comment #1 from Clemens Buchacher <drizzd-Tswl7xcH0yE@public.gmane.org>  2008-12-23 10:21:19 PST ---
-Created an attachment (id=21447)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21447)
-xorg.conf
+--- Comment #2 from Clemens Buchacher <drizzd-Tswl7xcH0yE@public.gmane.org>  2008-12-23 10:30:17 PST ---
+Created an attachment (id=21449)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=21449)
+dmesg after startx
 
 
 -- 
