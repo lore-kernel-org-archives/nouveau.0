@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18638] Nouveau fails totally on new Macbook Unibody
  13.3" Ubuntu ( xorg.0.log included)
-Date: Tue, 23 Dec 2008 03:42:50 -0800 (PST)
-Message-ID: <20081223114250.1695F130057@annarchy.freedesktop.org>
+Date: Tue, 23 Dec 2008 03:44:08 -0800 (PST)
+Message-ID: <20081223114408.31530130056@annarchy.freedesktop.org>
 References: <bug-18638-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18638
 
 
 
---- Comment #6 from Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org>  2008-12-23 03:42:49 PST ---
-Created an attachment (id=21433)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21433)
-X and kernel log
+--- Comment #7 from Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org>  2008-12-23 03:44:07 PST ---
+Oh, and regarding the question about nv, it doesn't work. I can provide a log,
+but I remember that I explicitly needed to enable "vesa" to get output at all.
 
 
 -- 
