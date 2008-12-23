@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18638] Nouveau fails totally on new Macbook Unibody
  13.3" Ubuntu ( xorg.0.log included)
-Date: Tue, 23 Dec 2008 03:41:59 -0800 (PST)
-Message-ID: <20081223114159.C9818130054@annarchy.freedesktop.org>
+Date: Tue, 23 Dec 2008 03:42:50 -0800 (PST)
+Message-ID: <20081223114250.1695F130057@annarchy.freedesktop.org>
 References: <bug-18638-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,24 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=18638
 
 
-Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org
 
 
 
-
---- Comment #5 from Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org>  2008-12-23 03:41:59 PST ---
-Just FYI, since I just tried, the current drm git
-(b48bd3a036efa3c3aa759759a5be4f80f1c3ac72) and nouveau git
-(31c9958779d95ae84993f4772607367927a0e313) doesn't work, but for me it just
-disables the X server and nothing crashes. The kernel also printed some
-warnings, will attach complete log of both.
-
-Mind you, my memory was fragmented enough yesterday that an order-5 allocation
-failed, I didn't see a memory allocation failure here though.
+--- Comment #6 from Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org>  2008-12-23 03:42:49 PST ---
+Created an attachment (id=21433)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=21433)
+X and kernel log
 
 
 -- 
