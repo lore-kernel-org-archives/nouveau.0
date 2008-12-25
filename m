@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19203] X default modes no longer added
-Date: Wed, 24 Dec 2008 04:54:28 -0800 (PST)
-Message-ID: <20081224125428.B3CCC130054@annarchy.freedesktop.org>
+Date: Thu, 25 Dec 2008 04:46:33 -0800 (PST)
+Message-ID: <20081225124633.E7C75130054@annarchy.freedesktop.org>
 References: <bug-19203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,18 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19203
 
 
 
---- Comment #2 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-12-24 04:54:27 PST ---
-I saw that commit, but thought my checkout was older than that. Today i
-checked. It is not. I checked my EDID and byte 0x18 reads 0A, and thus misses
-the gtf bit.
+--- Comment #3 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2008-12-25 04:46:33 PST ---
+maybe something like this can be done for nouveau as well?
 
-I'm not sure if GTF support equals "continuous frequency", but still i would
-like a solution for this problem. Is there any other way we can check if a
-screen supports more than just the preferred mode? 
+http://www.mail-archive.com/dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org/msg36976.html
 
-Perhaps the commit is too restricting, I imagine it would fix the bugs if it
-didn't try to put screens in higher resolutions than the supported ones, but
-still left it possible to use lower resolutions.
 
 danny
 
