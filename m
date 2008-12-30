@@ -1,12 +1,14 @@
-From: Leandro Lucarella <llucax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: (EE) AIGLX error: dlopen of /usr/lib/dri/nouveau_dri.so
-	failed
-Date: Tue, 30 Dec 2008 00:51:47 -0200
-Message-ID: <20081230025146.GA28418@homero.springfield.home>
+From: "Younes Manton" <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: (EE) AIGLX error: dlopen of
+	/usr/lib/dri/nouveau_dri.so failed
+Date: Mon, 29 Dec 2008 23:26:42 -0500
+Message-ID: <586c2acd0812292026pf4c033eua3e1020bae57ffc3@mail.gmail.com>
+References: <20081230025146.GA28418@homero.springfield.home>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20081230025146.GA28418-ukiYB341y+1jWMeXa1+QZ5bDTtF7IOEM@public.gmane.org>
 Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,41 +19,44 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Leandro Lucarella <llucax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkuIEknbSB0cnlpbmcgbm91dmVhdSBhbmQgSSdtIGhhdmluZyBzb21lIHRyb3VibGVzLiBJIGZp
-bGxlZCBhIGJ1Z1sxXQphIHdoaWxlIGFnbyBhYm91dCBhIHByb2JsZW0gSSBoYWQgKGFuZCBJJ20g
-c3RpbGwgZXhwZXJpbWVudGluZyksIGJ1dApJIGZvdW5kIGFub3RoZXIgaXNzdWUgdGhhdCBJIHN1
-c3BlY3QgaXMgbm9ybWFsLiBJIGdldCB0aGlzIGluIG15IFhvcmcubG9nOgpbLi4uXQooSUkpIElu
-aXRpYWxpemluZyBidWlsdC1pbiBleHRlbnNpb24gQ09NUE9TSVRFCihJSSkgSW5pdGlhbGl6aW5n
-IGJ1aWx0LWluIGV4dGVuc2lvbiBEQU1BR0UKKElJKSBJbml0aWFsaXppbmcgYnVpbHQtaW4gZXh0
-ZW5zaW9uIFhFVklFCmRybU9wZW5EZXZpY2U6IG5vZGUgbmFtZSBpcyAvZGV2L2RyaS9jYXJkMApk
-cm1PcGVuRGV2aWNlOiBvcGVuIHJlc3VsdCBpcyAxMCwgKE9LKQpkcm1PcGVuQnlCdXNpZDogU2Vh
-cmNoaW5nIGZvciBCdXNJRCBwY2k6MDAwMDowMjowMC4wCmRybU9wZW5EZXZpY2U6IG5vZGUgbmFt
-ZSBpcyAvZGV2L2RyaS9jYXJkMApkcm1PcGVuRGV2aWNlOiBvcGVuIHJlc3VsdCBpcyAxMCwgKE9L
-KQpkcm1PcGVuQnlCdXNpZDogZHJtT3Blbk1pbm9yIHJldHVybnMgMTAKZHJtT3BlbkJ5QnVzaWQ6
-IGRybUdldEJ1c2lkIHJlcG9ydHMgcGNpOjAwMDA6MDI6MDAuMAooRUUpIEFJR0xYIGVycm9yOiBk
-bG9wZW4gb2YgL3Vzci9saWIvZHJpL25vdXZlYXVfZHJpLnNvIGZhaWxlZCAoL3Vzci9saWIvZHJp
-L25vdSB2ZWF1X2RyaS5zbzogY2Fubm90IG9wZW4gc2hhcmVkIG9iamVjdCBmaWxlOiBObyBzdWNo
-IGZpbGUgb3IgZGlyZWN0b3J5KQooRUUpIEFJR0xYOiByZXZlcnRpbmcgdG8gc29mdHdhcmUgcmVu
-ZGVyaW5nCihJSSkgTG9hZGluZyBzdWIgbW9kdWxlICJHTGNvcmUiCihJSSkgTG9hZE1vZHVsZTog
-IkdMY29yZSIKWy4uLl0KCklzIHRoaXMgZXhwZWN0ZWQgb3IgSSBoYXZlIHNvbWUgaW5zdGFsbGF0
-aW9uIHByb2JsZW1zPyBJJ20gdXNpbmcKRGViaWFuL1VidW50dSBwYWNrYWdlcyBhdCBodHRwOi8v
-cHBhLmxhdW5jaHBhZC5uZXQvcmFvZi91YnVudHUgKEkgYnVpbGQKdGhlIGtlcm5lbCBtb2R1bGUg
-dXNpbmcgZHJtLW1vZHVsZXMtc291cmNlIGFuZCBJIGluc3RhbGwKeHNlcnZlci14b3JnLXZpZGVv
-LW5vdXZlYXUgdG9vKS4KClRJQS4KClsxXSBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hv
-d19idWcuY2dpP2lkPTE2MzI3CgotLSAKTGVhbmRybyBMdWNhcmVsbGEgKGx1Y2EpIHwgQmxvZyBj
-b2xlY3Rpdm86IGh0dHA6Ly93d3cubWF6emlibG9nLmNvbS5hci9ibG9nLwotLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tCkdQRyBLZXk6IDVGNUE4RDA1IChGOENEIEY5QTcgQkYwMCA1NDMxIDQxNDUgIDEwNEMg
-OTQ5RSBCRkI2IDVGNUEgOEQwNSkKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpWYXBvcmVzbywgYWwgdmVy
-c2UgZW5mdW5kYWRvIHBvciBsYSBkZXByZXNpw7NuLCBkZWNpZGUgZGFyIGZpbiBhIHN1IHZpZGEK
-dG9tYW5kbyBDaGluYXRvIEdhcmRhIG1lemNsYWRvIGNvbiBrZXJvc2VuZSBhbCA1MCUuIEFudGUg
-ZWwgZHVybyB0cmFuY2UKcGllcmRlIGxhIG1vdmlsaWRhZCBlbiBzdXMgbWllbWJyb3MgZGVyZWNo
-b3M6IGluZmVyaW9yIHkgc3VwZXJpb3IuIEVuCmVzZSBtb21lbnRvIGVzIGNvbnNpZGVyYWRvIGNv
-bW8gZWwgaG9tYnJlIGzDrWRlciBkZWwgbW92aW1pZW50byBkZQppenF1aWVyZGEgZGUgT2NjaWRl
-bnRlLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Mon, Dec 29, 2008 at 9:51 PM, Leandro Lucarella <llucax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> Hi. I'm trying nouveau and I'm having some troubles. I filled a bug[1]
+> a while ago about a problem I had (and I'm still experimenting), but
+> I found another issue that I suspect is normal. I get this in my Xorg.log:
+> [...]
+> (II) Initializing built-in extension COMPOSITE
+> (II) Initializing built-in extension DAMAGE
+> (II) Initializing built-in extension XEVIE
+> drmOpenDevice: node name is /dev/dri/card0
+> drmOpenDevice: open result is 10, (OK)
+> drmOpenByBusid: Searching for BusID pci:0000:02:00.0
+> drmOpenDevice: node name is /dev/dri/card0
+> drmOpenDevice: open result is 10, (OK)
+> drmOpenByBusid: drmOpenMinor returns 10
+> drmOpenByBusid: drmGetBusid reports pci:0000:02:00.0
+> (EE) AIGLX error: dlopen of /usr/lib/dri/nouveau_dri.so failed (/usr/lib/dri/nou veau_dri.so: cannot open shared object file: No such file or directory)
+> (EE) AIGLX: reverting to software rendering
+> (II) Loading sub module "GLcore"
+> (II) LoadModule: "GLcore"
+> [...]
+>
+> Is this expected or I have some installation problems? I'm using
+> Debian/Ubuntu packages at http://ppa.launchpad.net/raof/ubuntu (I build
+> the kernel module using drm-modules-source and I install
+> xserver-xorg-video-nouveau too).
+>
+> TIA.
+
+Yes that's normal, it just means that the Mesa hardware driver is not
+found and AIGLX will use software rendering instead.
+
+>
+> [1] http://bugs.freedesktop.org/show_bug.cgi?id=16327
+>
+
+You should try a newer xserver (1.5 or later) if possible, that might
+help this problem.
