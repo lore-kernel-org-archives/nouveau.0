@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16327] Graphical corruption with NVCrush11.
-Date: Mon, 29 Dec 2008 18:48:20 -0800 (PST)
-Message-ID: <20081230024820.D4AB1130054@annarchy.freedesktop.org>
-References: <bug-16327-8800@http.bugs.freedesktop.org/>
+From: Leandro Lucarella <llucax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: (EE) AIGLX error: dlopen of /usr/lib/dri/nouveau_dri.so
+	failed
+Date: Tue, 30 Dec 2008 00:51:47 -0200
+Message-ID: <20081230025146.GA28418@homero.springfield.home>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16327-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +20,38 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16327
-
-
-Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         OS/Version|All                         |Linux (All)
-           Platform|Other                       |x86 (IA32)
-
-
-
-
---- Comment #4 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org>  2008-12-29 18:48:19 PST ---
-In case you find this information useful, I tested nouvea once again, and I
-still get some visual corruption. I noted the driver works a little better but
-it's still not very usable because of GTK+ problems.
-
-I'm still using Xorg 7.3. I've just upgraded to kernel 2.6.28 and I'm using
-nouveau 2.3.1+git20081028-0~ppa1~hardy, Debian source package from
-(http://ppa.launchpad.net/raof/ubuntu (I had to replace set_page_lock() with
-__set_page_lock() to make it compile against 2.6.28).
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+SGkuIEknbSB0cnlpbmcgbm91dmVhdSBhbmQgSSdtIGhhdmluZyBzb21lIHRyb3VibGVzLiBJIGZp
+bGxlZCBhIGJ1Z1sxXQphIHdoaWxlIGFnbyBhYm91dCBhIHByb2JsZW0gSSBoYWQgKGFuZCBJJ20g
+c3RpbGwgZXhwZXJpbWVudGluZyksIGJ1dApJIGZvdW5kIGFub3RoZXIgaXNzdWUgdGhhdCBJIHN1
+c3BlY3QgaXMgbm9ybWFsLiBJIGdldCB0aGlzIGluIG15IFhvcmcubG9nOgpbLi4uXQooSUkpIElu
+aXRpYWxpemluZyBidWlsdC1pbiBleHRlbnNpb24gQ09NUE9TSVRFCihJSSkgSW5pdGlhbGl6aW5n
+IGJ1aWx0LWluIGV4dGVuc2lvbiBEQU1BR0UKKElJKSBJbml0aWFsaXppbmcgYnVpbHQtaW4gZXh0
+ZW5zaW9uIFhFVklFCmRybU9wZW5EZXZpY2U6IG5vZGUgbmFtZSBpcyAvZGV2L2RyaS9jYXJkMApk
+cm1PcGVuRGV2aWNlOiBvcGVuIHJlc3VsdCBpcyAxMCwgKE9LKQpkcm1PcGVuQnlCdXNpZDogU2Vh
+cmNoaW5nIGZvciBCdXNJRCBwY2k6MDAwMDowMjowMC4wCmRybU9wZW5EZXZpY2U6IG5vZGUgbmFt
+ZSBpcyAvZGV2L2RyaS9jYXJkMApkcm1PcGVuRGV2aWNlOiBvcGVuIHJlc3VsdCBpcyAxMCwgKE9L
+KQpkcm1PcGVuQnlCdXNpZDogZHJtT3Blbk1pbm9yIHJldHVybnMgMTAKZHJtT3BlbkJ5QnVzaWQ6
+IGRybUdldEJ1c2lkIHJlcG9ydHMgcGNpOjAwMDA6MDI6MDAuMAooRUUpIEFJR0xYIGVycm9yOiBk
+bG9wZW4gb2YgL3Vzci9saWIvZHJpL25vdXZlYXVfZHJpLnNvIGZhaWxlZCAoL3Vzci9saWIvZHJp
+L25vdSB2ZWF1X2RyaS5zbzogY2Fubm90IG9wZW4gc2hhcmVkIG9iamVjdCBmaWxlOiBObyBzdWNo
+IGZpbGUgb3IgZGlyZWN0b3J5KQooRUUpIEFJR0xYOiByZXZlcnRpbmcgdG8gc29mdHdhcmUgcmVu
+ZGVyaW5nCihJSSkgTG9hZGluZyBzdWIgbW9kdWxlICJHTGNvcmUiCihJSSkgTG9hZE1vZHVsZTog
+IkdMY29yZSIKWy4uLl0KCklzIHRoaXMgZXhwZWN0ZWQgb3IgSSBoYXZlIHNvbWUgaW5zdGFsbGF0
+aW9uIHByb2JsZW1zPyBJJ20gdXNpbmcKRGViaWFuL1VidW50dSBwYWNrYWdlcyBhdCBodHRwOi8v
+cHBhLmxhdW5jaHBhZC5uZXQvcmFvZi91YnVudHUgKEkgYnVpbGQKdGhlIGtlcm5lbCBtb2R1bGUg
+dXNpbmcgZHJtLW1vZHVsZXMtc291cmNlIGFuZCBJIGluc3RhbGwKeHNlcnZlci14b3JnLXZpZGVv
+LW5vdXZlYXUgdG9vKS4KClRJQS4KClsxXSBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hv
+d19idWcuY2dpP2lkPTE2MzI3CgotLSAKTGVhbmRybyBMdWNhcmVsbGEgKGx1Y2EpIHwgQmxvZyBj
+b2xlY3Rpdm86IGh0dHA6Ly93d3cubWF6emlibG9nLmNvbS5hci9ibG9nLwotLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tCkdQRyBLZXk6IDVGNUE4RDA1IChGOENEIEY5QTcgQkYwMCA1NDMxIDQxNDUgIDEwNEMg
+OTQ5RSBCRkI2IDVGNUEgOEQwNSkKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpWYXBvcmVzbywgYWwgdmVy
+c2UgZW5mdW5kYWRvIHBvciBsYSBkZXByZXNpw7NuLCBkZWNpZGUgZGFyIGZpbiBhIHN1IHZpZGEK
+dG9tYW5kbyBDaGluYXRvIEdhcmRhIG1lemNsYWRvIGNvbiBrZXJvc2VuZSBhbCA1MCUuIEFudGUg
+ZWwgZHVybyB0cmFuY2UKcGllcmRlIGxhIG1vdmlsaWRhZCBlbiBzdXMgbWllbWJyb3MgZGVyZWNo
+b3M6IGluZmVyaW9yIHkgc3VwZXJpb3IuIEVuCmVzZSBtb21lbnRvIGVzIGNvbnNpZGVyYWRvIGNv
+bW8gZWwgaG9tYnJlIGzDrWRlciBkZWwgbW92aW1pZW50byBkZQppenF1aWVyZGEgZGUgT2NjaWRl
+bnRlLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
