@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16327] Graphical corruption with NVCrush11.
-Date: Wed, 31 Dec 2008 01:59:48 -0800 (PST)
-Message-ID: <20081231095948.97F02130057@annarchy.freedesktop.org>
+Date: Wed, 31 Dec 2008 02:01:05 -0800 (PST)
+Message-ID: <20081231100105.EB2AB130057@annarchy.freedesktop.org>
 References: <bug-16327-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,15 @@ Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #17093|application/octet-stream    |text/plain
+  Attachment #17092|application/octet-stream    |text/plain
           mime type|                            |
 
 
 
 
---- Comment #5 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-12-31 01:59:48 PST ---
-(From update of attachment 17093)
-Fixing the mime type, so that people can actually view the log.
+--- Comment #6 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-12-31 02:01:04 PST ---
+(From update of attachment 17092)
+Changing the mime type, so that people can actually view the log.
 
 
 -- 
