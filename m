@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16327] Graphical corruption with NVCrush11.
-Date: Wed, 31 Dec 2008 09:31:40 -0800 (PST)
-Message-ID: <20081231173140.0F4B7130054@annarchy.freedesktop.org>
+Date: Wed, 31 Dec 2008 09:32:21 -0800 (PST)
+Message-ID: <20081231173221.1AB50130054@annarchy.freedesktop.org>
 References: <bug-16327-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16327
 
 
+Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #21599|1                           |0
+           is patch|                            |
 
 
-
---- Comment #10 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org>  2008-12-31 09:31:39 PST ---
-Created an attachment (id=21599)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21599)
-New xorg log, booting without fb
-
-Here is the xorg log too, just in case (I'm sorry about the wrong MIME but I
-can't see the buttons because of the corruption =/)
 
 
 -- 
