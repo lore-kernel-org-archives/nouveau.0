@@ -1,16 +1,12 @@
-From: Leandro Lucarella <llucax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: (EE) AIGLX error: dlopen of
-	/usr/lib/dri/nouveau_dri.so failed
-Date: Tue, 30 Dec 2008 22:39:40 -0200
-Message-ID: <20081231003940.GB7353@homero.springfield.home>
-References: <20081230025146.GA28418@homero.springfield.home>
-	<586c2acd0812292026pf4c033eua3e1020bae57ffc3@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 19342] New: PB 12" G4: Pointer to flat panel table
+	invalid
+Date: Tue, 30 Dec 2008 22:45:14 -0800 (PST)
+Message-ID: <bug-19342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <586c2acd0812292026pf4c033eua3e1020bae57ffc3-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,25 +19,96 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Younes Manton, el 29 de diciembre a las 23:26 me escribiste:
-> Yes that's normal, it just means that the Mesa hardware driver is not
-> found and AIGLX will use software rendering instead.
+http://bugs.freedesktop.org/show_bug.cgi?id=19342
 
-Ok.
+           Summary: PB 12" G4: Pointer to flat panel table invalid
+           Product: xorg
+           Version: 7.3
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-> > [1] http://bugs.freedesktop.org/show_bug.cgi?id=16327
-> 
-> You should try a newer xserver (1.5 or later) if possible, that might
-> help this problem.
 
-I've just tried and it's worse =/
+Created an attachment (id=21579)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=21579)
+org.conf
 
-There is more corruption but I think it draws a little faster.
+I just installed Debian on my PowerBook G4 12", but my X server refuses to
+start.  I've appended my Xorg.log and xorg.conf.
+
+This is with a Debian testing system with the following (relevant) packages:
+
+   # dpkg -l '*nouveau' 'drm*' 'xserver-xorg'
+   Desired=Unknown/Install/Remove/Purge/Hold
+   |
+Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+   |/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err:
+uppercase=bad)
+   ||/ Name                          Version                               
+Description
+  
++++-===============================================================================================================================
+   un  drm-modules                   <none>                                 (no
+description available)
+   ii  drm-modules-2.6.26-1-powerpc  2.4.1+git+20081116+930c0e7-1+2.6.26-12 DRM
+rendering modules for Linux (kernel 2.6.26-1-powerpc).
+   ii  drm-modules-source            2.4.1+git+20081116+930c0e7-1          
+Source for the DRM kernel rendering modules
+   ii  xserver-xorg                  1:7.3+18                               the
+X.Org X server
+   ii  xserver-xorg-video-nouveau    1:0.0.10~git+20081028+cea05e1-1       
+X.Org X server -- Nouveau display driver (experimental)
+
+Reading this list it appears that the `nouveau' driver should work on my
+machine (tho I'm not quite sure yet whether I'll be able to use the
+composite-video output to my TV set).  So I guess I'm doing something
+stupid, but I can't seem to figure out what.  I tried with and without the
+UseFBDev option, but it makes no difference.  Any idea what I might
+be missing?
+
+
+        Stefan
+
+
+# cat /etc/X11/xorg.conf
+
+Section "InputDevice"
+        Identifier      "Generic Keyboard"
+        Driver          "kbd"
+        Option          "XkbRules"      "xorg"
+        Option          "XkbModel"      "pc104"
+        Option          "XkbLayout"     "us"
+EndSection
+
+Section "InputDevice"
+        Identifier      "Configured Mouse"
+        Driver          "mouse"
+EndSection
+
+Section "Device"
+        Identifier      "Configured Video Device"
+        BusID           "PCI:0:16:0"
+        Driver          "nouveau"
+        Option          "UseFBDev"              "true"
+EndSection
+
+Section "Monitor"
+        Identifier      "Configured Monitor"
+EndSection
+
+Section "Screen"
+        Identifier      "Default Screen"
+        Monitor         "Configured Monitor"
+EndSection
+
 
 -- 
-Leandro Lucarella (luca) | Blog colectivo: http://www.mazziblog.com.ar/blog/
-----------------------------------------------------------------------------
-GPG Key: 5F5A8D05 (F8CD F9A7 BF00 5431 4145  104C 949E BFB6 5F5A 8D05)
-----------------------------------------------------------------------------
-This is what you get,
-when you mess with us.
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
