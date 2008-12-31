@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16327] Graphical corruption with NVCrush11.
-Date: Wed, 31 Dec 2008 09:27:01 -0800 (PST)
-Message-ID: <20081231172701.2BAA1130054@annarchy.freedesktop.org>
+Date: Wed, 31 Dec 2008 09:28:01 -0800 (PST)
+Message-ID: <20081231172801.D4255130054@annarchy.freedesktop.org>
 References: <bug-16327-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16327
 
 
+Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #21598|text/x-log                  |text/plain
+          mime type|                            |
 
 
-
---- Comment #9 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org>  2008-12-31 09:27:00 PST ---
-Created an attachment (id=21598)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21598)
-New dmesg log, booting without fb
-
-The corruption is the same booting without fb.
 
 
 -- 
