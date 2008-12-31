@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16327] Graphical corruption with NVCrush11.
-Date: Wed, 31 Dec 2008 02:01:05 -0800 (PST)
-Message-ID: <20081231100105.EB2AB130057@annarchy.freedesktop.org>
+Date: Wed, 31 Dec 2008 02:08:07 -0800 (PST)
+Message-ID: <20081231100807.71CAF130057@annarchy.freedesktop.org>
 References: <bug-16327-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,16 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16327
 
 
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #17092|application/octet-stream    |text/plain
-          mime type|                            |
 
 
 
+--- Comment #7 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-12-31 02:08:06 PST ---
+The kernel log shows "[drm] Used old pci detect: framebuffer loaded". Using
+kernel fb drivers is harmful, and especially nvidiafb will break things. Try to
+reproduce without any fb drivers.
 
---- Comment #6 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2008-12-31 02:01:04 PST ---
-(From update of attachment 17092)
-Changing the mime type, so that people can actually view the log.
+Please, provide a full kernel log from the boot up to the first dozen
+PGRAPH_ERRORs, and set the bug attachment mime type correctly.
 
 
 -- 
