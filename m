@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19357] Cursors shifted
-Date: Thu,  1 Jan 2009 04:51:00 -0800 (PST)
-Message-ID: <20090101125101.14577130054@annarchy.freedesktop.org>
+Subject: [Bug 19357] Mouse cursors distorted on NV34M [GeForce FX
+	Go5200]
+Date: Thu,  1 Jan 2009 04:51:54 -0800 (PST)
+Message-ID: <20090101125154.D8E4B130054@annarchy.freedesktop.org>
 References: <bug-19357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=19357
 
 
+Markus Tacker <m@tacker.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Cursors shifted             |Mouse cursors distorted on
+                   |                            |NV34M [GeForce FX Go5200]
 
 
-
---- Comment #1 from Markus Tacker <m@tacker.org>  2009-01-01 04:51:00 PST ---
-Created an attachment (id=21614)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21614)
-Picture of mouse cursor distortion
 
 
 -- 
