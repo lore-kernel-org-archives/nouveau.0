@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16176] X fails to start with GeForce 9600 with
- ``Failed to allocate memory for framebuffer! "
-Date: Thu,  1 Jan 2009 01:49:27 -0800 (PST)
-Message-ID: <20090101094927.ABFC0130056@annarchy.freedesktop.org>
-References: <bug-16176-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19356] New: DPMS does not turn off LCD backlight on
+ NV34M [ GeForce FX Go5200]
+Date: Thu,  1 Jan 2009 04:26:30 -0800 (PST)
+Message-ID: <bug-19356-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +19,43 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16176
+http://bugs.freedesktop.org/show_bug.cgi?id=19356
+
+           Summary: DPMS does not turn off LCD backlight on NV34M [GeForce
+                    FX Go5200]
+           Product: xorg
+           Version: unspecified
+          Platform: PowerPC
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: m@tacker.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org> changed:
+Expected:
+$ xset -display :0 dpms force off
+should turn off LCD backlight
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #20801|0                           |1
-        is obsolete|                            |
+Actual Result:
+Screen is black, but LCD backlight stays on
 
+Workaround:
+Use nv driver, which handles the powersaving correctly.
 
+Extract vom Xorg.0.log:
+(II) Loading extension DPMS
+(II) NOUVEAU(0): DPMS capabilities: Off; RGB/Color Display
+(**) Option "dpms" "true"
+(**) NOUVEAU(0): DPMS enabled
+(II) NOUVEAU(0): Setting dpms mode 3 on tmds encoder (output 0)
+(II) NOUVEAU(0): Setting dpms mode 3 on CRTC 0
 
-
---- Comment #22 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2009-01-01 01:49:26 PST ---
-Created an attachment (id=21609)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21609)
-2009 01 01 Kernel log
+Using gentoo ebuilds from 
+http://svn.hboeck.de/nouveau-overlay (r60)
 
 
 -- 
