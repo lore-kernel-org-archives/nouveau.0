@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16176] X fails to start with GeForce 9600 with
  ``Failed to allocate memory for framebuffer! "
-Date: Thu,  1 Jan 2009 01:48:28 -0800 (PST)
-Message-ID: <20090101094828.8DBFA130057@annarchy.freedesktop.org>
+Date: Thu,  1 Jan 2009 01:49:27 -0800 (PST)
+Message-ID: <20090101094927.ABFC0130056@annarchy.freedesktop.org>
 References: <bug-16176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,20 +28,16 @@ Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #20800|0                           |1
+  Attachment #20801|0                           |1
         is obsolete|                            |
 
 
 
 
---- Comment #21 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2009-01-01 01:48:27 PST ---
-Created an attachment (id=21608)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21608)
-2009 01 01 Xorg log
-
-Tried your patch, X still opens up and crashes.  Nothing else but the initial
-garabage is ever drawn. It seems that the resolution appears to be the correct
-one though, as I can kind of tell from the X mouse I get.
+--- Comment #22 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2009-01-01 01:49:26 PST ---
+Created an attachment (id=21609)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=21609)
+2009 01 01 Kernel log
 
 
 -- 
