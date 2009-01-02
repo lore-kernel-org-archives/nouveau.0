@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19356] DPMS does not turn off LCD backlight on NV34M
  [ GeForce FX Go5200]
-Date: Fri,  2 Jan 2009 06:24:47 -0800 (PST)
-Message-ID: <20090102142447.A1A53130054@annarchy.freedesktop.org>
+Date: Fri,  2 Jan 2009 06:25:22 -0800 (PST)
+Message-ID: <20090102142522.BDA1C130054@annarchy.freedesktop.org>
 References: <bug-19356-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,16 +28,10 @@ Markus Tacker <m@tacker.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #21626|0                           |1
-        is obsolete|                            |
+  Attachment #21630|application/octet-stream    |text/plain
+          mime type|                            |
 
 
-
-
---- Comment #3 from Markus Tacker <m@tacker.org>  2009-01-02 06:24:46 PST ---
-Created an attachment (id=21630)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21630)
-Xorg.0.log from Xorg 1.5.3
 
 
 -- 
