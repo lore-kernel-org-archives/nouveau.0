@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19373] Xorg hangs after restart
-Date: Fri,  2 Jan 2009 20:27:55 -0800 (PST)
-Message-ID: <20090103042755.25521130057@annarchy.freedesktop.org>
+Date: Sat,  3 Jan 2009 02:17:33 -0800 (PST)
+Message-ID: <20090103101733.7E8E5130057@annarchy.freedesktop.org>
 References: <bug-19373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19373
 
 
 
---- Comment #1 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-02 20:27:54 PST ---
-anything in kernel logs?
-
-Also be sure not to have any framebuffer driver loaded.
-
-danny
+--- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-03 02:17:32 PST ---
+no framebuffer loaded :-( and dmesg is clean
 
 
 -- 
