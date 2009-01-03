@@ -1,11 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19373] New: Xorg hangs after restart
-Date: Fri,  2 Jan 2009 14:48:33 -0800 (PST)
-Message-ID: <bug-19373-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19356] DPMS does not turn off LCD backlight on NV34M
+ [ GeForce FX Go5200]
+Date: Fri,  2 Jan 2009 19:48:16 -0800 (PST)
+Message-ID: <20090103034816.A3F4A130057@annarchy.freedesktop.org>
+References: <bug-19356-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-19356-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,36 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19373
-
-           Summary: Xorg hangs after restart
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: high
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=21637)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21637)
-Xorg.log with crash
-
-Xorg start correctly, but after unloging fail. Is impossible switch to console
-or do anything (screen remaining black), only option is use power button
-(working correctly, acpid).
-
-Kernel: 2.6.28
-Xorg: 1.5.3
-VGA: FX5200, 128M RAM
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xOTM1NgoKCgoKCi0t
+LSBDb21tZW50ICM0IGZyb20gRGFubnkgPG1vb25kcmFrZUBnbWFpbC5jb20+ICAyMDA5LTAxLTAy
+IDE5OjQ4OjE2IFBTVCAtLS0KSW50ZXJlc3RpbmcuIEkgc3VzcGVjdGVkIHlvdSBoYWQgYSAxMiIg
+cG93ZXJib29rIGJlY2F1c2UgdGhvc2UgY29udGFpbiBudjM0bSwKYnV0IHlvdXIgbG9ncyBzaG93
+IHlvdSBhcmUgdXNpbmcgYSBwcDY0IGtlcm5lbCBhbmQgeW91ciBmbGF0cGFuZWwgaXMgYW4KZXh0
+ZXJuYWwgb25lLiBTbyBJIGd1ZXNzIHlvdSBhcmUgb24gYSBHNSB3aXRoIGFuIG52MzRtPyBDYW4g
+eW91IGRlc2NyaWJlIHlvdXIKc2V0dXA/44CASSB0aG91Z2h0IHRob3NlIG1hY2hpbmVzIGhhZCBu
+djR4IG9ubHkuIFNvbWUgYXNzdW1wdGlvbnMgaW4gdGhlIGRyaXZlcgptYXkgbm90IGhvbGQuIAoK
+U2luY2UgbnYgd29ya3MgY29ycmVjdGx5LCBpdCBzaG91bGQgYmUgZml4YWJsZSB0aG91Z2guIE1h
+eWJlIHdlIG5lZWQgYW5vdGhlcgpxdWlyay4gV2hhdCBpcyB5b3VyIGV4YWN0IHBjaSBpZCAobnZj
+bG9jayBjYW4gdGVsbCB5b3UpIGl0IHNlZW1zIHdpdGggdGhlCnJlY2VudCByZW1vdmFsIG9mIGFs
+bCB0aGUgZGVidWcgc3R1ZmYgZnJvbSB0aGUgbG9nZ2luZyB0aGVyZSBpcyBoYXJkbHkgYW55dGhp
+bmcKdXNlZnVsIGluIHRoZSBsb2cgbm93Li4uCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRw
+Oi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZ
+b3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBh
+c3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
