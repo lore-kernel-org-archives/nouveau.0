@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19356] DPMS does not turn off LCD backlight on NV34M
  [ GeForce FX Go5200]
-Date: Sat,  3 Jan 2009 03:28:33 -0800 (PST)
-Message-ID: <20090103112834.0CC38130054@annarchy.freedesktop.org>
+Date: Sat,  3 Jan 2009 08:45:01 -0800 (PST)
+Message-ID: <20090103164501.BBA79130057@annarchy.freedesktop.org>
 References: <bug-19356-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,23 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19356
 
 
 
---- Comment #6 from Markus Tacker <m@tacker.org>  2009-01-03 03:28:33 PST ---
-Created an attachment (id=21641)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21641)
-xorg.conf in use
+--- Comment #7 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-03 08:44:59 PST ---
+Lets first check the ppc specific hack we have now. Can you install radeontool:
+
+git clone git://people.freedesktop.org/~airlied/radeontool
+git checkout origin/nvidia
+make (if there's problems with the asm/page.h include, comment it out)
+
+then examine the contents of the following 2 regs:
+./radeontool regmatch 0x0060081c
+./radeontool regmatch 0x000010f0
+
+under both nv and nouveau, with panel off and panel on (to get the reg during
+panel off you can try an ssh connection from another machine, or maybe xset
+dpms force off;sleep 5; ./radeontool regmatch 0x000010f0
+or something like that.
+
+d.
 
 
 -- 
