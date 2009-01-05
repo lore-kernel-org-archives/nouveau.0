@@ -1,16 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: some patches and remarks for ng
-Date: Tue, 06 Jan 2009 07:57:56 +1100
-Message-ID: <1231189076.4583.5.camel@keine.ath.cx>
-References: <6d4bc9fc0901030853q7f341c16l231ebf42c4643ede@mail.gmail.com>
-	<1231115075.14351.23.camel@keine.ath.cx> <49622226.6070705@gmail.com>
-	<496226DD.5020403@gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: Stefan Monnier <monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org>
+Subject: S-video & composite output
+Date: Mon, 05 Jan 2009 17:01:33 -0500
+Message-ID: <jwvhc4dmnzf.fsf-monnier+gmane.comp.freedesktop.xorg.nouveau@gnu.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <496226DD.5020403-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,70 +15,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Am Montag, den 05.01.2009, 16:27 +0100 schrieb Maarten Maathuis:
-> On 01/05/2009 04:07 PM, Maarten Maathuis wrote:
-> > On 01/05/2009 01:24 AM, Ben Skeggs wrote:
-> >> On Sat, 2009-01-03 at 17:53 +0100, Maarten Maathuis wrote:
-> >>> 1 patch for libnouveau_drm, 4 for drm and one work in progress patch
-> >>> for the ddx.
-> >>>
-> >>> Getting nv50 to run proved to be more difficult than i thought (at
-> >>> some point i stopped because it would require significant changes), i
-> >>> just have a few remarks.
-> >>>
-> >>> - Buffer object access is not guarded by fences at all, which is a
-> >>> major issue. You worked around that by using M2MF I suppose, but this
-> >>> needs a structural fix.
-> >> I have no idea where you got that idea from...
-> >
-> > So where is buffer object mapping waiting for any pending gpu activity?
-> 
-> I should add that I originally had drm_bo_move_memcpy in mind, which 
-> just maps and memcpy's as far as i can see. Sorry if i didn't mention 
-> that I had this example in mind.
-Hmm, you might be right there, that's not what I thought you were
-talking about :)  I assumed TTM would handle idling the buffer object in
-that case - but it's possible that it doesn't.  I'll look into it.
-> 
-> >
-> >>> - Comments are scarce, please be more verbose. I know it's all very
-> >>> obvious to the people that write the code, but for others it's less
-> >>> obvious.
-> >>
-> >>> - I think buffer object untiling should happen in userspace, which
-> >>> will also allow some nice optimizations that EXA does (using damage to
-> >>> selectively copy and such).
-> >> Sure, I agree.  The drm is still going to need to know a bit more info
-> >> on the buffer layout than it currently does regardless.
-> >>
-> >>> - The WIP patch contains sysmem pixmaps, i fixed this for git xserver
-> >>> (and nominated it for 1.6), but expect older versions to blow up due
-> >>> to NULL'ing of devPrivate.ptr.
-> >>> (http://cgit.freedesktop.org/xorg/xserver/commit/?id=3534a5e5d9c5af85149c799f324257f89507fa23) 
-> >>>
-> >>>
-> >>> Consider the patches hints, and don't blindly apply them.
-> >> libnouveau_drm 0001: I'll apply it, harmless changes
-> >> drm 0001: Oops, missed that from an earlier change.  Will apply.
-> >> drm 0002: I won't apply, we'll need to do a lot more extensive cleanup
-> >> if we fail there.  What exactly is needed I'm not sure, haven't looked
-> >> into it properly yet - hence the XXX
-> >> drm 0003: NACK on the PRAMIN changes.  PRAMIN doesn't work *anything*
-> >> like previously.  The current code is fine, no channel has access to the
-> >> parts of VRAM mapped into PRAMIN.  On the VRAM size, thanks, that's
-> >> left-over from when the code was supporting both the old mm and ttm at
-> >> the same time.
-> >> drm 0004: It doesn't hurt I guess.
-> >>
-> >>> Maarten.
-> >>> _______________________________________________
-> >>> Nouveau mailing list
-> >>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> >>> http://lists.freedesktop.org/mailman/listinfo/nouveau
-> >>
-> >
-> 
+
+I finally got nouveau (from git) working on my PowerBook G4 12".
+Now, my next step is to get it to drive my TV.  I have it connected via
+Apple's "mini-DVI to Video Adapter", which comes with both an S-video
+and a composite output.
+
+When I start X, `xrandr' tells me:
+
+   % xrandr                                 
+   Screen 0: minimum 320 x 200, current 1024 x 768, maximum 1360 x 1360
+   LVDS-0 connected 1024x768+0+0 (normal left inverted right x axis y axis) 245mm x 184mm
+      1024x768       60.0*+
+      800x600        60.3  
+      640x480        59.9  
+   DVI-I-0 connected 1024x768+0+0 (normal left inverted right x axis y axis) 1mm x 257mm
+      1360x768       59.8  
+      1152x864       60.0  
+      1024x768       60.0* 
+      800x600        60.3  
+      640x480        59.9  
+      680x384       119.6    119.9  
+      576x432       120.1  
+      512x384       120.0  
+      400x300       120.6  
+      320x240       120.1  
+   % 
+
+so it appears that this video adapter is detected as a sort of DVI
+screen.  And indeed, my TV (which is connected via the `composite'
+output if it matters) does show something ;-), but not something
+meaningful :-(.  If I try to switch to some other mode e.g. with
+
+   xrandr --output DVI-I-0 --mode 640x480
+
+the meaningless output changes, but stays mostly meaningless (sometimes
+I can recognize some shapes, which indicate clearly that the "garbage" is
+actually representing the screen, just probably not with the right
+frequency/...).
+
+Does anybody have some idea if I can get it to work with the current
+code, if so how, and if not, how I can help make it work?
+
+
+        Stefan
