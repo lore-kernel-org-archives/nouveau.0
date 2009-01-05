@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19356] DPMS does not turn off LCD backlight on NV34M
  [ GeForce FX Go5200]
-Date: Sun,  4 Jan 2009 21:34:28 -0800 (PST)
-Message-ID: <20090105053428.45599130056@annarchy.freedesktop.org>
+Date: Mon,  5 Jan 2009 06:58:24 -0800 (PST)
+Message-ID: <20090105145824.448B2130057@annarchy.freedesktop.org>
 References: <bug-19356-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19356
 
 
 
---- Comment #9 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-04 21:34:27 PST ---
-thanks. This looks good, it is not working as expected. Later today I will try
-to figure out why.
+--- Comment #10 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-05 06:58:22 PST ---
+Created an attachment (id=21686)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=21686)
+mac backlight
+
+Can you try attached patch? I did it rather quickly so I am not sure it will
+work at all.
+
+If it fails, can you check the regs again with the patch applied?
 
 danny
 
