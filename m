@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19356] DPMS does not turn off LCD backlight on NV34M
- [ GeForce FX Go5200]
-Date: Tue,  6 Jan 2009 13:38:07 -0800 (PST)
-Message-ID: <20090106213807.68675130056@annarchy.freedesktop.org>
-References: <bug-19356-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19373] Xorg hangs after restart
+Date: Tue,  6 Jan 2009 13:41:17 -0800 (PST)
+Message-ID: <20090106214117.CB517130057@annarchy.freedesktop.org>
+References: <bug-19373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19356-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19356
+http://bugs.freedesktop.org/show_bug.cgi?id=19373
 
 
 
 
 
---- Comment #11 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-06 13:38:06 PST ---
-only armchair coding here, but that probably wants to lose the "static" keyword
-from the line
+--- Comment #3 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-06 13:41:16 PST ---
+was it working previously, and if so what changed to break it?
 
-+static void backlightenable(ScrnInfoPtr pScrn, int mode)
-
-and the following line added as a function prototype in nv_proto.h:
-
-void backlightenable(ScrnInfoPtr pScrn, int mode);
+also, does it start to work again if you wait at the black screen for a
+*really* long time (~2 mins)?  I saw something like this as fallout of the PAT
+stuff in 2.6.27 and worked around it with the nopat command line argument, but
+I'd hope it was fixed in .28.
 
 
 -- 
