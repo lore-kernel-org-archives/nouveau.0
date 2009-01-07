@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19450] 6600GT on G5(Dual Head) - Pointer to flat
  panel table invalid
-Date: Wed,  7 Jan 2009 14:48:58 -0800 (PST)
-Message-ID: <20090107224858.E6515130054@annarchy.freedesktop.org>
+Date: Wed,  7 Jan 2009 14:49:15 -0800 (PST)
+Message-ID: <20090107224916.51D05130054@annarchy.freedesktop.org>
 References: <bug-19450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19450
 
 
 
---- Comment #1 from Ben Kero <ben.kero-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-07 14:48:58 PST ---
-Created an attachment (id=21768)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=21768)
-xorg conf
+--- Comment #2 from Ben Kero <ben.kero-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-07 14:49:13 PST ---
+Created an attachment (id=21769)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=21769)
+xorg log
 
 
 -- 
