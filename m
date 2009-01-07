@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19373] Xorg hangs after restart
-Date: Wed,  7 Jan 2009 14:13:49 -0800 (PST)
-Message-ID: <20090107221349.3ED62130054@annarchy.freedesktop.org>
-References: <bug-19373-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19450] New: 6600GT on G5(Dual Head) - Pointer to
+ flat panel table invalid
+Date: Wed,  7 Jan 2009 14:48:11 -0800 (PST)
+Message-ID: <bug-19450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +19,32 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19373
+http://bugs.freedesktop.org/show_bug.cgi?id=19450
+
+           Summary: 6600GT on G5(Dual Head) - Pointer to flat panel table
+                    invalid
+           Product: xorg
+           Version: 7.2
+          Platform: PowerPC
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: ben.kero-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Turning on the second head via 'xrandr --output DVI-I-1 --auto --right-of
+DVI-I-0' yields the following error:
 
+(EE) NOUVEAU(0): Pointer to flat panel table invalid.
 
+I've attached my Xorg.0.log, xorg.conf, and list of relevant package versions
+for review.
 
---- Comment #4 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-07 14:13:48 PST ---
-I have already 2.6.28, but problem isn't still fixed. I will try wait few
-minutes :-)
+For packages, I am using the nouveau layman repo in Gentoo.
 
 
 -- 
