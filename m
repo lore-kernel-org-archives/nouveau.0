@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19373] Xorg hangs after restart
-Date: Tue,  6 Jan 2009 13:41:17 -0800 (PST)
-Message-ID: <20090106214117.CB517130057@annarchy.freedesktop.org>
+Date: Wed,  7 Jan 2009 14:13:49 -0800 (PST)
+Message-ID: <20090107221349.3ED62130054@annarchy.freedesktop.org>
 References: <bug-19373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19373
 
 
 
---- Comment #3 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-06 13:41:16 PST ---
-was it working previously, and if so what changed to break it?
-
-also, does it start to work again if you wait at the black screen for a
-*really* long time (~2 mins)?  I saw something like this as fallout of the PAT
-stuff in 2.6.27 and worked around it with the nopat command line argument, but
-I'd hope it was fixed in .28.
+--- Comment #4 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-07 14:13:48 PST ---
+I have already 2.6.28, but problem isn't still fixed. I will try wait few
+minutes :-)
 
 
 -- 
