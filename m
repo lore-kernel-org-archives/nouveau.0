@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19491] New: S-video & composite output
-Date: Fri,  9 Jan 2009 18:43:51 -0800 (PST)
-Message-ID: <bug-19491-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19491] S-video & composite output
+Date: Sat, 10 Jan 2009 02:01:25 -0800 (PST)
+Message-ID: <20090110100125.2A5D6130054@annarchy.freedesktop.org>
+References: <bug-19491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-19491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,66 +22,23 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=19491
 
-           Summary: S-video & composite output
-           Product: xorg
-           Version: 7.4
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-I finally got nouveau (from git) working on my PowerBook G4 12" (running Debian
-testing with unstable's X server).
-Now, my next step is to get it to drive my TV.  I have it connected via
-Apple's "mini-DVI to Video Adapter", which comes with both an S-video
-and a composite output.
-
-When I start X, `xrandr' tells me:
-
-   % xrandr                                 
-   Screen 0: minimum 320 x 200, current 1024 x 768, maximum 1360 x 1360
-   LVDS-0 connected 1024x768+0+0 (normal left inverted right x axis y axis)
-245mm x 184mm
-      1024x768       60.0*+
-      800x600        60.3  
-      640x480        59.9  
-   DVI-I-0 connected 1024x768+0+0 (normal left inverted right x axis y axis)
-1mm x 257mm
-      1360x768       59.8  
-      1152x864       60.0  
-      1024x768       60.0* 
-      800x600        60.3  
-      640x480        59.9  
-      680x384       119.6    119.9  
-      576x432       120.1  
-      512x384       120.0  
-      400x300       120.6  
-      320x240       120.1  
-   % 
-
-so it appears that this video adapter is detected as a sort of DVI
-screen.  And indeed, my TV (which is connected via the `composite'
-output if it matters) does show something ;-), but not something
-meaningful :-(.  If I try to switch to some other mode e.g. with
-
-   xrandr --output DVI-I-0 --mode 640x480
-
-the meaningless output changes, but stays mostly meaningless (sometimes
-I can recognize some shapes, which indicate clearly that the "garbage" is
-actually representing the screen, just probably not with the right
-frequency/polarity/godknowswhat/...).
-
-Does anybody have some idea if I can get it to work with the current
-code, if so how, and if not, how I can help make it work?
 
 
-        Stefan
+--- Comment #1 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-01-10 02:01:23 PST ---
+The first question is, what exactly is a "mini-DVI to Video Adapter"? Does it
+really convert DVI-A RGBVH-signal to S-video/composite, or does your graphics
+card have special hardware to explicitly generate S-video/composite signal
+(which would be normal case with PC hardware)?
+
+In the latter case there is only one thing to do: reverse-engineer and
+implement it. Nouveau still lacks any kind of real analog tv-out support. If it
+is the former case, then the bug summary should be changed, and the problem is
+just with setting the right display mode.
+
+Have you tried crafting a modeline that exactly matches your tv-standard and
+used that?
 
 
 -- 
