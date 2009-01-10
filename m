@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19203] X default modes no longer added
-Date: Sat, 10 Jan 2009 04:18:01 -0800 (PST)
-Message-ID: <20090110121802.6C796130054@annarchy.freedesktop.org>
-References: <bug-19203-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19491] S-video & composite output
+Date: Sat, 10 Jan 2009 08:50:20 -0800 (PST)
+Message-ID: <20090110165020.61EFF130054@annarchy.freedesktop.org>
+References: <bug-19491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19203
+http://bugs.freedesktop.org/show_bug.cgi?id=19491
 
 
 
 
 
---- Comment #7 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-10 04:18:01 PST ---
-OK, patch does not work because xf86OutputSetEDID has already been called once,
-and the edid got applied to the output. Calling it again will not change the
-current edid, but seems to add another one. Doing;
-        if (nv_connector->edid)
-                nv_connector->edid->features.msc |= 0x1;
-in edid_sink_connected instead (before the firstxf86OutputSetEDID) seems to
-work fine.
-
-d.
+--- Comment #2 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-10 08:50:19 PST ---
+Mini-DVI carries DVI, VGA, and S-Vid/composite signals and all an adaptor does
+is expose the right signals, so I think it's the usual no TV-out support issue.
 
 
 -- 
