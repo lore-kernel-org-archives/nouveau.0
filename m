@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16978] "tile offscreen pixmaps" causing graphics
  corruption on NV50?
-Date: Mon, 12 Jan 2009 17:13:16 -0800 (PST)
-Message-ID: <20090113011316.50150130058@annarchy.freedesktop.org>
+Date: Mon, 12 Jan 2009 17:28:42 -0800 (PST)
+Message-ID: <20090113012842.89FEA130057@annarchy.freedesktop.org>
 References: <bug-16978-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,24 +24,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16978
 
 
-Chris Lamb <chris-nEBun6gpv0i26MyoF4Ad0Q@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|FIXED                       |
 
 
 
+--- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-12 17:28:42 PST ---
+No, the Xv commit was unrelated.  Did you, by any chance, see if you were still
+effected by this bug with the patches listed at
+http://nouveau.freedesktop.org/wiki/NV50Support?
 
---- Comment #3 from Chris Lamb <chris-nEBun6gpv0i26MyoF4Ad0Q@public.gmane.org>  2009-01-12 17:13:15 PST ---
-Alas, this doesn't seem fixed for me; I'm still consistently seeing minor
-speckles on some widgets.
+An alternative to trying those patches is to use the "ng" branches of drm git,
+and xf86-video-nouveau git and see if the corruption appears there also. 
+However, this isn't an option you'll want to currently use on a day-to-day
+basis, it's very buggy still.
 
-Ben, was you recent change to nouveau_xv.c intended to close this? If so, I'm
-fairly sure this issue is different from any xv corruption.
-
-Regards,
+With either option you shouldn't see any rendering issues (though fwiw, I don't
+see any without them), if you still do, there's something else going on with
+you card that we'll need to track down.
 
 
 -- 
