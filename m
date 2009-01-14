@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16736] NVS 135M not supported
-Date: Tue, 13 Jan 2009 16:54:27 -0800 (PST)
-Message-ID: <20090114005427.D1AAF130056@annarchy.freedesktop.org>
-References: <bug-16736-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15675] Randr12: works from command-line but not in
+	xorg.conf
+Date: Tue, 13 Jan 2009 17:02:48 -0800 (PST)
+Message-ID: <20090114010248.6F849130054@annarchy.freedesktop.org>
+References: <bug-15675-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16736-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15675-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +21,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16736
+http://bugs.freedesktop.org/show_bug.cgi?id=15675
 
 
 
 
 
---- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-13 16:54:27 PST ---
-Some initial support for finding the screen setup on this model was committed
-in mid August, so it may be worth seeing if it gets any further for you now.
+--- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-13 17:02:47 PST ---
+Is this still an issue?
 
 
 -- 
