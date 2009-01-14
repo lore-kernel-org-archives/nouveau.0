@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16031] nv11 + KDM/KDE: No UI elements/text rendered
-Date: Tue, 13 Jan 2009 16:22:45 -0800 (PST)
-Message-ID: <20090114002245.1D429130054@annarchy.freedesktop.org>
+Date: Tue, 13 Jan 2009 16:24:02 -0800 (PST)
+Message-ID: <20090114002402.3DA79130054@annarchy.freedesktop.org>
 References: <bug-16031-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16031
 
 
-Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |DUPLICATE
 
 
 
+--- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-13 16:24:01 PST ---
+Whoops, typoed the bug number, sorry for the noise
 
---- Comment #5 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-13 16:22:44 PST ---
-Duplicate of other Crush11 rendering failure
-
-*** This bug has been marked as a duplicate of bug 16237 ***
+*** This bug has been marked as a duplicate of bug 16327 ***
 
 
 -- 
