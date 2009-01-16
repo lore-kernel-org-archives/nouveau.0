@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19620] At first start of X,
  secondary display doesn't come up properly  .
-Date: Fri, 16 Jan 2009 13:38:01 -0800 (PST)
-Message-ID: <20090116213801.8548E130058@annarchy.freedesktop.org>
+Date: Fri, 16 Jan 2009 13:38:53 -0800 (PST)
+Message-ID: <20090116213853.BA53B130058@annarchy.freedesktop.org>
 References: <bug-19620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19620
 
 
 
---- Comment #1 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-16 13:38:01 PST ---
-Created an attachment (id=22038)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22038)
-Xorg log at first start when second display doesn't come up properly
+--- Comment #2 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-16 13:38:53 PST ---
+Created an attachment (id=22039)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22039)
+Xorg log at second start when everything is ok
 
 
 -- 
