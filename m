@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19644] FreeBSD port of kernel-side code
-Date: Sun, 18 Jan 2009 14:20:52 -0800 (PST)
-Message-ID: <20090118222052.7E497130054@annarchy.freedesktop.org>
+Date: Sun, 18 Jan 2009 14:37:14 -0800 (PST)
+Message-ID: <20090118223714.A45C7130054@annarchy.freedesktop.org>
 References: <bug-19644-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,25 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19644
 
 
 
---- Comment #2 from Henrik Friedrichsen <h1web-WM9rSkgN7VnQT0dZR+AlfA@public.gmane.org>  2009-01-18 14:20:52 PST ---
-(In reply to comment #1)
-> There are a few buts here. None of the active Nouveau developers are working on
-> any BSD. There are few people, who are porting DRM in general and some drivers
-> to various BSDs, but it is not a small task. The Nouveau linux-specific part of
-> the code might be small, but the general linux-specific DRM infrastructure is
-> not. And things will get worse with e.g. kernel mode setting. The whole
-> graphics stack revolution is primarily on Linux, and the very few BSD devels
-> are trying their best to keep up.
-> 
-> If you want it to happen sooner than later (if ever), lend a hand, and come to
-> #nouveau and #dri-devel irc channels. The BSD devels there could tell you what
-> is needed.
-> 
+--- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-18 14:37:13 PST ---
+radeonhd was a driver born out of some corporate agreement, and there probably
+was a requirement was that it ran without a kernel module (this all imo).
 
-Ok, please excuse my lacking knowledge.
-How is 'radeonhd' able to run on so many platforms and why doesn't nouveau?
-They apparently don't rely on kernel/os specific code, but how can they achieve
-the same goal then?
+nouveau was born for very different reasons, and doing a full driver does
+require a kernel module. So to avoid all sorts of nasty special code paths
+(which are bothersome to maintain and potentially buggy) the project leader
+decided to require a kernel module. This has been the case from day 1 as far as
+i know.
 
 
 -- 
