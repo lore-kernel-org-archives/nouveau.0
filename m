@@ -1,11 +1,13 @@
-From: "Maarten Maathuis" <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: a small patch for drm-ng
-Date: Sun, 18 Jan 2009 23:08:57 +0100
-Message-ID: <6d4bc9fc0901181408s4e4cacc7j81dec092f503d098@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 19644] FreeBSD port of kernel-side code
+Date: Sun, 18 Jan 2009 14:20:52 -0800 (PST)
+Message-ID: <20090118222052.7E497130054@annarchy.freedesktop.org>
+References: <bug-19644-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed;
-	boundary="----=_Part_9935_7648554.1232316537281"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-19644-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,61 +20,34 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-------=_Part_9935_7648554.1232316537281
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+http://bugs.freedesktop.org/show_bug.cgi?id=19644
 
-A small patch to make nv50 kms a bit more robust and avoid a nasty crash.
 
-Maarten.
 
-------=_Part_9935_7648554.1232316537281
-Content-Type: application/octet-stream;
- name=0001-nv50-check-if-the-framebuffer-gem-object-is-non-NUL.patch
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_fq49byl70
-Content-Disposition: attachment;
- filename=0001-nv50-check-if-the-framebuffer-gem-object-is-non-NUL.patch
 
-RnJvbSBjMTM4MmRhMWFlZjY4MDc0ZWRlNDc3NzcyYjYzNjJiMGNjODBhM2M5IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBNYWFydGVuIE1hYXRodWlzIDxtYWRtYW4yMDAzQGdtYWlsLmNv
-bT4KRGF0ZTogU2F0LCAxNyBKYW4gMjAwOSAxODo0OTo1MiArMDEwMApTdWJqZWN0OiBbUEFUQ0hd
-IG52NTA6IGNoZWNrIGlmIHRoZSBmcmFtZWJ1ZmZlciBnZW0gb2JqZWN0IGlzIG5vbi1OVUxMCgot
-IEFsc28gYWRkIGEgYml0IG1vcmUgdmVyYm9zaXR5IHdoZW4gaXQgZmFpbHMuCi0tLQogbGludXgt
-Y29yZS9udjUwX2ttc193cmFwcGVyLmMgfCAgIDE2ICsrKysrKysrKysrKysrKysKIDEgZmlsZXMg
-Y2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKSwgMCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9s
-aW51eC1jb3JlL252NTBfa21zX3dyYXBwZXIuYyBiL2xpbnV4LWNvcmUvbnY1MF9rbXNfd3JhcHBl
-ci5jCmluZGV4IGExNTFhOTcuLjhkZjViZDggMTAwNjQ0Ci0tLSBhL2xpbnV4LWNvcmUvbnY1MF9r
-bXNfd3JhcHBlci5jCisrKyBiL2xpbnV4LWNvcmUvbnY1MF9rbXNfd3JhcHBlci5jCkBAIC0yMDks
-NiArMjA5LDEzIEBAIG52NTBfa21zX2ZyYW1lYnVmZmVyX2NyZWF0ZV9oYW5kbGUoc3RydWN0IGRy
-bV9mcmFtZWJ1ZmZlciAqZmIsCiB7CiAJc3RydWN0IG52NTBfZnJhbWVidWZmZXIgKm52NTBfZmIg
-PSBudjUwX2ZyYW1lYnVmZmVyKGZiKTsKIAorCURSTV9ERUJVRygiZ2VtOiAlcFxuIiwgbnY1MF9m
-Yi0+Z2VtKTsKKworCWlmICghbnY1MF9mYi0+Z2VtKSB7CisJCURSTV9FUlJPUigibnY1MF9mYi0+
-Z2VtIGlzIE5VTExcbiIpOworCQlyZXR1cm4gLUVJTlZBTDsKKwl9CisKIAlyZXR1cm4gZHJtX2dl
-bV9oYW5kbGVfY3JlYXRlKGZpbGVfcHJpdiwgbnY1MF9mYi0+Z2VtLCBoYW5kbGUpOwogfQogCkBA
-IC0yMjcsNiArMjM0LDggQEAgbnY1MF9mcmFtZWJ1ZmZlcl9jcmVhdGUoc3RydWN0IGRybV9kZXZp
-Y2UgKmRldiwgc3RydWN0IGRybV9nZW1fb2JqZWN0ICpnZW0sCiB7CiAJc3RydWN0IG52NTBfZnJh
-bWVidWZmZXIgKm52NTBfZmI7CiAKKwlEUk1fREVCVUcoImdlbTogJXBcbiIsIGdlbSk7CisKIAlu
-djUwX2ZiID0ga3phbGxvYyhzaXplb2Yoc3RydWN0IG52NTBfZnJhbWVidWZmZXIpLCBHRlBfS0VS
-TkVMKTsKIAlpZiAoIW52NTBfZmIpCiAJCXJldHVybiBOVUxMOwpAQCAtMjQ0LDcgKzI1MywxNCBA
-QCBudjUwX2ttc19mcmFtZWJ1ZmZlcl9jcmVhdGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3Ry
-dWN0IGRybV9maWxlICpmaWxlX3ByaXYsCiB7CiAJc3RydWN0IGRybV9nZW1fb2JqZWN0ICpnZW07
-CiAKKwlEUk1fREVCVUcoImhhbmRsZTogMHglMDhYXG4iLCBtb2RlX2NtZC0+aGFuZGxlKTsKKwog
-CWdlbSA9IGRybV9nZW1fb2JqZWN0X2xvb2t1cChkZXYsIGZpbGVfcHJpdiwgbW9kZV9jbWQtPmhh
-bmRsZSk7CisJaWYgKCFnZW0pIHsKKwkJRFJNX0VSUk9SKCJObyBnZW0gb2JqZWN0IGZvciBoYW5k
-bGUgMHglMDhYXG4iLCBtb2RlX2NtZC0+aGFuZGxlKTsKKwkJcmV0dXJuIE5VTEw7CisJfQorCiAJ
-cmV0dXJuIG52NTBfZnJhbWVidWZmZXJfY3JlYXRlKGRldiwgZ2VtLCBtb2RlX2NtZCk7CiB9CiAK
-LS0gCjEuNi4xCgo=
-------=_Part_9935_7648554.1232316537281
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+--- Comment #2 from Henrik Friedrichsen <h1web-WM9rSkgN7VnQT0dZR+AlfA@public.gmane.org>  2009-01-18 14:20:52 PST ---
+(In reply to comment #1)
+> There are a few buts here. None of the active Nouveau developers are working on
+> any BSD. There are few people, who are porting DRM in general and some drivers
+> to various BSDs, but it is not a small task. The Nouveau linux-specific part of
+> the code might be small, but the general linux-specific DRM infrastructure is
+> not. And things will get worse with e.g. kernel mode setting. The whole
+> graphics stack revolution is primarily on Linux, and the very few BSD devels
+> are trying their best to keep up.
+> 
+> If you want it to happen sooner than later (if ever), lend a hand, and come to
+> #nouveau and #dri-devel irc channels. The BSD devels there could tell you what
+> is needed.
+> 
 
-------=_Part_9935_7648554.1232316537281--
+Ok, please excuse my lacking knowledge.
+How is 'radeonhd' able to run on so many platforms and why doesn't nouveau?
+They apparently don't rely on kernel/os specific code, but how can they achieve
+the same goal then?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
