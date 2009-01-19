@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19620] At first start of X,
  secondary display doesn't come up properly  .
-Date: Mon, 19 Jan 2009 11:19:14 -0800 (PST)
-Message-ID: <20090119191914.D4394130054@annarchy.freedesktop.org>
+Date: Mon, 19 Jan 2009 11:39:35 -0800 (PST)
+Message-ID: <20090119193935.829B8130056@annarchy.freedesktop.org>
 References: <bug-19620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19620
 
 
 
---- Comment #10 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-19 11:19:14 PST ---
-Dumps were made with vga=0 (but vesafb has been compiled inside the kernel by
-my distro)
+--- Comment #11 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-19 11:39:34 PST ---
+Created an attachment (id=22101)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22101)
+debug patch
 
-Writing the registers seems to solve the problem :) the screen display fine
-after that.
-
-thx
+Hm, weird :)  Please apply this patch and attach an Xorg log showing: starting
+(broken)->switch to vt->switch to X (working)
 
 
 -- 
