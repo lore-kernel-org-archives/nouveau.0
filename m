@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19620] At first start of X,
  secondary display doesn't come up properly  .
-Date: Mon, 19 Jan 2009 10:21:34 -0800 (PST)
-Message-ID: <20090119182134.4C13C130054@annarchy.freedesktop.org>
+Date: Mon, 19 Jan 2009 11:01:48 -0800 (PST)
+Message-ID: <20090119190148.78F56130054@annarchy.freedesktop.org>
 References: <bug-19620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,18 +27,21 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19620
 
 
 
---- Comment #6 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-19 10:21:33 PST ---
-Hi,
+--- Comment #9 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-19 11:01:47 PST ---
+Try running these register writes, all together in a script and see if it fixes
+anything (in the same mode you made the dumps - I assume vesafb enabled?)
 
-thx for your answer
+./radeontool regset C1:00 0xa7
+./radeontool regset C1:01 0x7f
+./radeontool regset C1:02 0x7f
+./radeontool regset C1:03 0x8b
+./radeontool regset C1:04 0x88
+./radeontool regset C1:05 0x95
+./radeontool regset C1:06 0x27
+./radeontool regset C1:07 0xf5
 
-disabling vesafb doesn't fix the problem but it becomes different : 
-now the secondary screen doesn't come up at all at first start. It is powered
-but stays black as if it doesn't receive a signal. 
-
-As previously switch to VT and come back fix the display.
-
-Dumps attached
+If that doesn't produce anything, it might be interesting to see the reg dumps
+for the vesafb disabled case.
 
 
 -- 
