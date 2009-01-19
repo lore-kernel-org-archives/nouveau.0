@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19620] At first start of X,
  secondary display doesn't come up properly  .
-Date: Mon, 19 Jan 2009 12:24:13 -0800 (PST)
-Message-ID: <20090119202413.5EC44130054@annarchy.freedesktop.org>
+Date: Mon, 19 Jan 2009 12:25:05 -0800 (PST)
+Message-ID: <20090119202505.E4AF0130054@annarchy.freedesktop.org>
 References: <bug-19620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19620
 
 
 
---- Comment #12 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-19 12:24:13 PST ---
-Created an attachment (id=22102)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22102)
-Xorg Log with debug patch applied and VT switch
+--- Comment #13 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-19 12:25:05 PST ---
+Log attached
+
+Could the weirdness you see come from grub ? my distro is using a "graphic"
+grub.
 
 
 -- 
