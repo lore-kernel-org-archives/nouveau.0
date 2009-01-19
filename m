@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19620] At first start of X,
  secondary display doesn't come up properly  .
-Date: Mon, 19 Jan 2009 11:01:48 -0800 (PST)
-Message-ID: <20090119190148.78F56130054@annarchy.freedesktop.org>
+Date: Mon, 19 Jan 2009 11:19:14 -0800 (PST)
+Message-ID: <20090119191914.D4394130054@annarchy.freedesktop.org>
 References: <bug-19620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,21 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19620
 
 
 
---- Comment #9 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-19 11:01:47 PST ---
-Try running these register writes, all together in a script and see if it fixes
-anything (in the same mode you made the dumps - I assume vesafb enabled?)
+--- Comment #10 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-19 11:19:14 PST ---
+Dumps were made with vga=0 (but vesafb has been compiled inside the kernel by
+my distro)
 
-./radeontool regset C1:00 0xa7
-./radeontool regset C1:01 0x7f
-./radeontool regset C1:02 0x7f
-./radeontool regset C1:03 0x8b
-./radeontool regset C1:04 0x88
-./radeontool regset C1:05 0x95
-./radeontool regset C1:06 0x27
-./radeontool regset C1:07 0xf5
+Writing the registers seems to solve the problem :) the screen display fine
+after that.
 
-If that doesn't produce anything, it might be interesting to see the reg dumps
-for the vesafb disabled case.
+thx
 
 
 -- 
