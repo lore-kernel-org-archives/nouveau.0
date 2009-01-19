@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19620] At first start of X,
  secondary display doesn't come up properly  .
-Date: Mon, 19 Jan 2009 10:22:32 -0800 (PST)
-Message-ID: <20090119182232.D8DEF130054@annarchy.freedesktop.org>
+Date: Mon, 19 Jan 2009 10:23:11 -0800 (PST)
+Message-ID: <20090119182311.1B47A130054@annarchy.freedesktop.org>
 References: <bug-19620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19620
 
 
 
---- Comment #7 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-19 10:22:29 PST ---
-Created an attachment (id=22099)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22099)
-Dump of register before switch to VT (with problem)
+--- Comment #8 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-19 10:23:10 PST ---
+Created an attachment (id=22100)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22100)
+Dump of reg after the switch (everything works fine)
 
 
 -- 
