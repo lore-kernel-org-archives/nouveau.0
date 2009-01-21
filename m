@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18300] NV11 Locks Up On Xorg Initialization
-Date: Tue, 20 Jan 2009 19:29:21 -0800 (PST)
-Message-ID: <20090121032921.9CCE5130054@annarchy.freedesktop.org>
+Date: Tue, 20 Jan 2009 21:04:25 -0800 (PST)
+Message-ID: <20090121050425.934BC130058@annarchy.freedesktop.org>
 References: <bug-18300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18300
 
 
 
---- Comment #15 from Evan Goers <megatog615-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-20 19:29:21 PST ---
-Ok, after some testing, changing the virtual line to "Virtual 1024 768" or
-changing the Depth to 16 doesn't seem to work. I still get the same old black
-screen and unusable system.
+--- Comment #16 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-20 21:04:25 PST ---
+Thanks for re-testing.  If you've still got it, attaching your Xorg.0.log (or
+Xorg.0.log.old) of the attempt would help determine if it's still the memory
+issue or something else.
 
 
 -- 
