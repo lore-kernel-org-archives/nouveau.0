@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19620] At first start of X,
  secondary display doesn't come up properly  .
-Date: Tue, 20 Jan 2009 13:00:05 -0800 (PST)
-Message-ID: <20090120210005.5312C130054@annarchy.freedesktop.org>
+Date: Tue, 20 Jan 2009 17:46:03 -0800 (PST)
+Message-ID: <20090121014603.E0CCC130054@annarchy.freedesktop.org>
 References: <bug-19620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=19620
 
 
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #17 from Mjules <mjulien.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-20 13:00:04 PST ---
-Your last patch fixes the bug :), it doesn't seems to cause other problems :)
 
-thanks a lot.
+--- Comment #18 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-20 17:46:02 PST ---
+Pushed.
+
+http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=3e971f63b6b6859acc19a52a4003bb6041cc5374
 
 
 -- 
