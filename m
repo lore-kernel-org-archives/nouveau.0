@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Thu, 22 Jan 2009 04:25:43 -0800 (PST)
-Message-ID: <20090122122543.AFB35130058@annarchy.freedesktop.org>
+Date: Thu, 22 Jan 2009 15:57:53 -0800 (PST)
+Message-ID: <20090122235753.D2994130058@annarchy.freedesktop.org>
 References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,16 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15758
 
 
 
---- Comment #6 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-22 04:25:43 PST ---
-It seems like that latest git fixed my problem. I'm using HWcursor again and it
-never disappeared since I updated nouveau_drv.so from the latest git :)        
-(cf65b875) I hope that it is the same case for you.....
+--- Comment #7 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-22 15:57:51 PST ---
+(In reply to comment #6)
+> It seems like that latest git fixed my problem. I'm using HWcursor again and it
+> never disappeared since I updated nouveau_drv.so from the latest git :)        
+> (cf65b875) I hope that it is the same case for you.....
+
+Ronald, if you could reproduce it easily on earlier versions (as you say,
+changing resolution with xrandr and VT switching seems to trigger it), will you
+git bisect xf86-video-nouveau over the last month to see what change has
+affected this; there's nothing obvious in the changelog?
 
 
 -- 
