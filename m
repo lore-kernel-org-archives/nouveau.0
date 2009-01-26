@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Mon, 26 Jan 2009 11:33:29 -0800 (PST)
-Message-ID: <20090126193329.14AF713005A@annarchy.freedesktop.org>
+Date: Mon, 26 Jan 2009 11:35:12 -0800 (PST)
+Message-ID: <20090126193512.36AA2130058@annarchy.freedesktop.org>
 References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15758
 
 
 
---- Comment #9 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-26 11:33:28 PST ---
-Created an attachment (id=22251)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22251)
-fix some minor consistency issues
+--- Comment #10 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-01-26 11:35:11 PST ---
+Created an attachment (id=22252)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22252)
+use the PCRTC regs for cursor setting
 
-Here's a minor patch that could be worth a try
+and *on top of the previous patch*, this implements cursor setting more like
+the way the nvidia blob does, so could also be worth a go
 
 
 -- 
