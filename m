@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19622] 9100m G   card (for acer aspire 4350)
-Date: Mon, 26 Jan 2009 12:16:21 -0800 (PST)
-Message-ID: <20090126201621.4ACEC130057@annarchy.freedesktop.org>
+Date: Mon, 26 Jan 2009 14:18:45 -0800 (PST)
+Message-ID: <20090126221845.5AB4B13005A@annarchy.freedesktop.org>
 References: <bug-19622-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,26 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=19622
 
 
-jameson quinn <jameson.quinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |jameson.quinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
+                   |g                           |
+          Component|Driver/nouveau              |Driver/nVidia (open)
 
 
 
 
---- Comment #2 from jameson quinn <jameson.quinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-26 12:16:20 PST ---
-ummm... I guess not. I was using nv, I thought that that was the same as
-nouveau. Given that it isn't, where should I file this bug?
+--- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-26 14:18:44 PST ---
+Reassigning bug to Aaron Plattner from NVIDIA, who maintains xf86-video-nv.
+
+On the nouveau side of things though, we'll be able to support the chipset if
+you provide us with a trace of how the binary driver configures the card.  The
+instructions for doing so are at:
+http://nouveau.freedesktop.org/wiki/MmioTraceHowto
+
+Ben.
 
 
 -- 
