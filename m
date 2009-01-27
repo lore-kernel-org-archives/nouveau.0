@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19744] 9600M GT support
-Date: Tue, 27 Jan 2009 13:57:04 -0800 (PST)
-Message-ID: <20090127215704.E1CA6130057@annarchy.freedesktop.org>
+Date: Tue, 27 Jan 2009 14:32:55 -0800 (PST)
+Message-ID: <20090127223255.289D313005A@annarchy.freedesktop.org>
 References: <bug-19744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19744
 
 
 
---- Comment #5 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-27 13:57:04 PST ---
-P.S. Resulution is set correctly, but
-(--) NOUVEAU(0): VideoRAM: 262144 kBytes
-isn't correct, card have 512MB DDR3
+--- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-27 14:32:53 PST ---
+This is intentional, 256+ MB isn't easy to access. It certainly requires a good
+memory manager, which we don't have yet.
 
 
 -- 
