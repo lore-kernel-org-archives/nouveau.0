@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19744] 9600M GT support
-Date: Tue, 27 Jan 2009 07:54:07 -0800 (PST)
-Message-ID: <20090127155407.96CA7130057@annarchy.freedesktop.org>
+Date: Tue, 27 Jan 2009 13:57:04 -0800 (PST)
+Message-ID: <20090127215704.E1CA6130057@annarchy.freedesktop.org>
 References: <bug-19744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19744
 
 
 
---- Comment #4 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-27 07:54:06 PST ---
-Created an attachment (id=22278)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22278)
-Xorg.log after adding support
+--- Comment #5 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-27 13:57:04 PST ---
+P.S. Resulution is set correctly, but
+(--) NOUVEAU(0): VideoRAM: 262144 kBytes
+isn't correct, card have 512MB DDR3
 
 
 -- 
