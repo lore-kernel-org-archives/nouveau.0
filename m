@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19744] 9600M GT support
-Date: Wed, 28 Jan 2009 12:52:09 -0800 (PST)
-Message-ID: <20090128205209.D096B13005A@annarchy.freedesktop.org>
+Date: Wed, 28 Jan 2009 13:17:03 -0800 (PST)
+Message-ID: <20090128211703.AAC42130058@annarchy.freedesktop.org>
 References: <bug-19744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19744
 
 
 
---- Comment #10 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-28 12:52:09 PST ---
-Created an attachment (id=22318)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22318)
-nv96 ctxvals
-
-The ctxvals are slightly different, try this please.
+--- Comment #11 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-28 13:17:02 PST ---
+Okias told me neither of these help. I don't have anymore ideas. I do think the
+issues with the NV94 are similar to these.
 
 
 -- 
