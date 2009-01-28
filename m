@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19744] 9600M GT support
-Date: Tue, 27 Jan 2009 14:32:55 -0800 (PST)
-Message-ID: <20090127223255.289D313005A@annarchy.freedesktop.org>
+Date: Wed, 28 Jan 2009 12:10:55 -0800 (PST)
+Message-ID: <20090128201055.28541130057@annarchy.freedesktop.org>
 References: <bug-19744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19744
 
 
 
---- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-27 14:32:53 PST ---
-This is intentional, 256+ MB isn't easy to access. It certainly requires a good
-memory manager, which we don't have yet.
+--- Comment #7 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-28 12:10:54 PST ---
+Created an attachment (id=22315)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22315)
+Xorg.log with NoAccel
 
 
 -- 
