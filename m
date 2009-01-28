@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19744] 9600M GT support
-Date: Wed, 28 Jan 2009 13:17:03 -0800 (PST)
-Message-ID: <20090128211703.AAC42130058@annarchy.freedesktop.org>
+Date: Wed, 28 Jan 2009 13:58:16 -0800 (PST)
+Message-ID: <20090128215816.323CE13005A@annarchy.freedesktop.org>
 References: <bug-19744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19744
 
 
 
---- Comment #11 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-28 13:17:02 PST ---
-Okias told me neither of these help. I don't have anymore ideas. I do think the
-issues with the NV94 are similar to these.
+--- Comment #12 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-01-28 13:58:15 PST ---
+As far as I've seen, noone's reported any nv9x working in nouveau yet.  I may
+have access to one now, so hopefully I'll be able to figure out what we're
+doing wrong on them soon.
 
 
 -- 
