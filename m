@@ -1,12 +1,12 @@
-From: "Yan Seiner" <yan-6T0/PJfuvIjQT0dZR+AlfA@public.gmane.org>
+From: Yan Seiner <yan-6T0/PJfuvIjQT0dZR+AlfA@public.gmane.org>
 Subject: Re: git compile failure
-Date: Thu, 29 Jan 2009 13:34:17 -0800 (PST)
-Message-ID: <711ae0646673afc21d4bd28da34dad02.squirrel@www.datavault.us>
+Date: Fri, 30 Jan 2009 06:16:18 -0800
+Message-ID: <49830BB2.2040602@seiner.com>
 References: <141d1c48884ed68f7e91236a287d48a9.squirrel@www.datavault.us>
 	<20090129231559.302a708e@daedalus.pq.iki.fi>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <20090129231559.302a708e-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -19,85 +19,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
-On Thu, January 29, 2009 1:15 pm, Pekka Paalanen wrote:
-> On Thu, 29 Jan 2009 09:10:24 -0800 (PST)
-> "Yan Seiner" <yan-6T0/PJfuvIjQT0dZR+AlfA@public.gmane.org> wrote:
->
->> I'm trying to build nouveau form git. The compile fails with:
->>
->> gcc -DHAVE_CONFIG_H -I. -I.. -D_XOPEN_SOURCE=3D500 -I
->> -I/usr/include/pixman-1 -I/usr/include/drm -I/usr/include/X11/dri -g -O2
->> -Wall -minline-all-stringops -D_XOPEN_SOURCE=3D500 -I
->> -I/usr/include/pixman-1 -I/usr/include/drm -I/usr/include/X11/dri -MT
->> nouveau_device.lo -MD -MP -MF .deps/nouveau_device.Tpo -c
->> nouveau_device.c -fPIC -DPIC -o .libs/nouveau_device.o
->> In file included from nouveau_device.c:27:
->> nouveau_drmif.h:47: error: expected =E2=80=98=3D=E2=80=99, =E2=80=98,=E2=
-=80=99, =E2=80=98;=E2=80=99, =E2=80=98asm=E2=80=99
->> or
->> =E2=80=98__attribute__=E2=80=99 before =E2=80=98int=E2=80=99
->
-> I've no idea how that happens. It compiles fine for me, just tried.
-> You might try something like
-> $ git remote update
-> $ make distclean
-> $ git rebase origin/master
-> $ ./autogen.sh
-> $ make
-
-Thanks.
-
-I'll try this when I get access again.  For now, I've traced it to
-X11/Xfuncproto.h not being #included.  I suspect it has to do with the way
-debian packages its #includes.
-
-Anyway, the missing #define is in X11/Xfuncproto.h; now I need to figure
-out where to stick it.
-
-Anmyone out there using debian .debs for the build deps?
-
---Yan
-
->
-> ...
->> nouveau_device.c: In function =E2=80=98nouveau_device_open_existing=E2=
-=80=99:
->> nouveau_device.c:53: warning: implicit declaration of function
->> =E2=80=98nouveau_device_get_param=E2=80=99
->> make[2]: *** [nouveau_device.lo] Error 1
->> make[2]: Leaving directory `/usr/src/nouveau/xf86-video-nouveau/src'
->>
->>
->> The first offending line is here:
->>
->> NOUVEAU_PRIVATE int
->> nouveau_device_open_existing(struct nouveau_device **, int close,
->> int fd, drm_context_t ctx);
->
-> ./src/nouveau_local.h:29:#define NOUVEAU_PRIVATE _X_HIDDEN
->
-> --
-> Pekka Paalanen
-> http://www.iki.fi/pq/
->
-> !DSPAM:49821ca3160401804284693!
->
->
-
-
--- =
-
-  o__
-  ,>/'_          o__
-  (_)\(_)        ,>/'_        o__
-Yan Seiner      (_)\(_)       ,>/'_     o__
-       Personal Trainer      (_)\(_)    ,>/'_        o__
-             Professional Engineer     (_)\(_)       ,>/'_
-Who says engineers have to be pencil necked geeks?  (_)\(_)
-
-You are an adult when you realize that everyone's an idiot sometimes. You
-are wise when you include yourself.
+UGVra2EgUGFhbGFuZW4gd3JvdGU6Cj4gT24gVGh1LCAyOSBKYW4gMjAwOSAwOToxMDoyNCAtMDgw
+MCAoUFNUKQo+ICJZYW4gU2VpbmVyIiA8eWFuQHNlaW5lci5jb20+IHdyb3RlOgo+Cj4gICAKPj4g
+SSdtIHRyeWluZyB0byBidWlsZCBub3V2ZWF1IGZvcm0gZ2l0LiBUaGUgY29tcGlsZSBmYWlscyB3
+aXRoOgo+Pgo+PiBnY2MgLURIQVZFX0NPTkZJR19IIC1JLiAtSS4uIC1EX1hPUEVOX1NPVVJDRT01
+MDAgLUkKPj4gLUkvdXNyL2luY2x1ZGUvcGl4bWFuLTEgLUkvdXNyL2luY2x1ZGUvZHJtIC1JL3Vz
+ci9pbmNsdWRlL1gxMS9kcmkgLWcgLU8yCj4+IC1XYWxsIC1taW5saW5lLWFsbC1zdHJpbmdvcHMg
+LURfWE9QRU5fU09VUkNFPTUwMCAtSQo+PiAtSS91c3IvaW5jbHVkZS9waXhtYW4tMSAtSS91c3Iv
+aW5jbHVkZS9kcm0gLUkvdXNyL2luY2x1ZGUvWDExL2RyaSAtTVQKPj4gbm91dmVhdV9kZXZpY2Uu
+bG8gLU1EIC1NUCAtTUYgLmRlcHMvbm91dmVhdV9kZXZpY2UuVHBvIC1jCj4+IG5vdXZlYXVfZGV2
+aWNlLmMgLWZQSUMgLURQSUMgLW8gLmxpYnMvbm91dmVhdV9kZXZpY2Uubwo+PiBJbiBmaWxlIGlu
+Y2x1ZGVkIGZyb20gbm91dmVhdV9kZXZpY2UuYzoyNzoKPj4gbm91dmVhdV9kcm1pZi5oOjQ3OiBl
+cnJvcjogZXhwZWN0ZWQg4oCYPeKAmSwg4oCYLOKAmSwg4oCYO+KAmSwg4oCYYXNt4oCZIG9yCj4+
+IOKAmF9fYXR0cmlidXRlX1/igJkgYmVmb3JlIOKAmGludOKAmQo+PiAgICAgCj4KPiBJJ3ZlIG5v
+IGlkZWEgaG93IHRoYXQgaGFwcGVucy4gSXQgY29tcGlsZXMgZmluZSBmb3IgbWUsIGp1c3QgdHJp
+ZWQuCj4gWW91IG1pZ2h0IHRyeSBzb21ldGhpbmcgbGlrZQo+ICQgZ2l0IHJlbW90ZSB1cGRhdGUK
+PiAkIG1ha2UgZGlzdGNsZWFuCj4gJCBnaXQgcmViYXNlIG9yaWdpbi9tYXN0ZXIKPiAkIC4vYXV0
+b2dlbi5zaAo+ICQgbWFrZQo+ICAgCk9LLCBJJ3ZlIHRyaWVkIHRoYXQuLi4uICBObyBqb3kuICBU
+aGUgcHJvYmxlbSBpcyB0aGF0IHRoZSBhdXRvZ2VuIHNjcmlwdCAKZG9lc24ndCBmaW5kIGFueSBv
+ZiB0aGUgY29ycmVjdCBoZWFkZXIgZmlsZXMuICBJdCdzIGEgZGViaWFuIGRlcGVuZGVuY3kgCmlz
+c3VlLiAgRXZlbiB3aGVuIEkgZWRpdCB0aGUgc291cmNlIGJ5IGhhbmQgdG8gcHV0IGluIHRoZSBj
+b3JyZWN0IApsb2NhdGlvbnMsIGl0IHN0aWxsIGZhaWxzLiAgSSB0aGluayBJJ20gd2FzdGluZyBh
+IGxvdCBvZiB0aW1lIHRyeWluZyB0byAKcmV2ZXJzZS1lbmdpbmVlciB0aGUgZGViaWFuIGRlcHMg
+cmF0aGVyIHRoYW4gYnVpbGRpbmcgbm91dmVhdS4gIElzIHRoZXJlIAphICdnZXR0aW5nIHN0YXJ0
+ZWQnIGhvd3RvIGZvciBidWlsZGluZyBYPyAgSSBvbmx5IG5lZWQgdGhlIHZlcnkgYmFzaWNzIApm
+b3IgdGVzdGluZyBub3V2ZWF1LiAgSXMgdGhlcmUgc29tZSBiYXNpYyBiYXNpYyBzY3JpcHQgdGhh
+dCB3aWxsIHB1bGwgCmRvd24gdGhlIHRhcmJhbGxzIGFuZCBhbGxvdyBtZSB0byBpbnN0YWxsIGEg
+bWluaW1hbCB4b3JnIGZvciB0ZXN0aW5nIApub3V2ZWF1PwoKLS1ZYW4KCj4gLi4uCj4gICAKPj4g
+bm91dmVhdV9kZXZpY2UuYzogSW4gZnVuY3Rpb24g4oCYbm91dmVhdV9kZXZpY2Vfb3Blbl9leGlz
+dGluZ+KAmToKPj4gbm91dmVhdV9kZXZpY2UuYzo1Mzogd2FybmluZzogaW1wbGljaXQgZGVjbGFy
+YXRpb24gb2YgZnVuY3Rpb24KPj4g4oCYbm91dmVhdV9kZXZpY2VfZ2V0X3BhcmFt4oCZCj4+IG1h
+a2VbMl06ICoqKiBbbm91dmVhdV9kZXZpY2UubG9dIEVycm9yIDEKPj4gbWFrZVsyXTogTGVhdmlu
+ZyBkaXJlY3RvcnkgYC91c3Ivc3JjL25vdXZlYXUveGY4Ni12aWRlby1ub3V2ZWF1L3NyYycKPj4K
+Pj4KPj4gVGhlIGZpcnN0IG9mZmVuZGluZyBsaW5lIGlzIGhlcmU6Cj4+Cj4+IE5PVVZFQVVfUFJJ
+VkFURSBpbnQKPj4gbm91dmVhdV9kZXZpY2Vfb3Blbl9leGlzdGluZyhzdHJ1Y3Qgbm91dmVhdV9k
+ZXZpY2UgKiosIGludCBjbG9zZSwKPj4gaW50IGZkLCBkcm1fY29udGV4dF90IGN0eCk7Cj4+ICAg
+ICAKPgo+IC4vc3JjL25vdXZlYXVfbG9jYWwuaDoyOTojZGVmaW5lIE5PVVZFQVVfUFJJVkFURSBf
+WF9ISURERU4KPgo+ICAgCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
