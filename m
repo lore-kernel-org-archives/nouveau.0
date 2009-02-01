@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15276] text rendering,
  PGRAPH_ERROR/ILLEGAL_MTHD/  PROTECTION_FAULT spam in syslog
-Date: Sun,  1 Feb 2009 02:18:47 -0800 (PST)
-Message-ID: <20090201101847.99F52130058@annarchy.freedesktop.org>
+Date: Sun,  1 Feb 2009 02:22:37 -0800 (PST)
+Message-ID: <20090201102237.46F89130058@annarchy.freedesktop.org>
 References: <bug-15276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15276
 
 
 
---- Comment #8 from Paul Wise <pabs3-RVKGE0iud0ZIf6P1QZMOBw@public.gmane.org>  2009-02-01 02:18:46 PST ---
-Will attempt that (or pester the Debian nouveau maintainer), please let me know
-when you've pushed the changes and to where.
+--- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-01 02:22:35 PST ---
+The fix is in the 2D driver now.  If you don't want to wait for the debian
+maintainers to repackage the updates, you can install the driver yourself from
+git.
+
+If you start to follow the instructions at
+http://nouveau.freedesktop.org/wiki/InstallNouveau from step 7 you should be
+fine.
 
 
 -- 
