@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15276] text rendering,
  PGRAPH_ERROR/ILLEGAL_MTHD/  PROTECTION_FAULT spam in syslog
-Date: Sat, 31 Jan 2009 23:58:47 -0800 (PST)
-Message-ID: <20090201075847.E4056130058@annarchy.freedesktop.org>
+Date: Sun,  1 Feb 2009 00:55:58 -0800 (PST)
+Message-ID: <20090201085558.348A213005A@annarchy.freedesktop.org>
 References: <bug-15276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15276
 
 
 
---- Comment #6 from Paul Wise <pabs3-RVKGE0iud0ZIf6P1QZMOBw@public.gmane.org>  2009-01-31 23:58:47 PST ---
-When I add MigrationHeuristic greedy to xorg.conf the fonts situation is fixed.
-
-http://nouveau.freedesktop.org/wiki/MigrationHeuristic
-
-I still get the PGRAPH_ERROR syslog spam though.
-
-This is with Debian sid, Linux 2.6.26 and xserver-xorg-video-nouveau
-1:0.0.10~git+20090105+7dc567d-1.
+--- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-01 00:55:57 PST ---
+Ah, I actually noticed this bug earlier today and was planning on seeing if you
+still had the hw available.  I think I know the issue here, I'll push the fix
+to xf86-video-nouveau git.  If you're able to update afterwards, I'd love to
+know if it fixes things for you.
 
 
 -- 
