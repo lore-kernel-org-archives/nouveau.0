@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15276] text rendering,
- PGRAPH_ERROR/ILLEGAL_MTHD/  PROTECTION_FAULT spam in syslog
-Date: Sun,  1 Feb 2009 14:12:40 -0800 (PST)
-Message-ID: <20090201221240.3E39A130058@annarchy.freedesktop.org>
-References: <bug-15276-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19854] xscreensaver fails to run (regression)
+Date: Sun,  1 Feb 2009 19:35:50 -0800 (PST)
+Message-ID: <20090202033550.91FDF13005A@annarchy.freedesktop.org>
+References: <bug-19854-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15276
-
-
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=19854
 
 
 
 
---- Comment #11 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-01 14:12:36 PST ---
-Thanks for testing, I'll close this bug as fixed.  As for your other issues,
-feel free to file bugs for them so they don't get forgotten :)
+
+--- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-01 19:35:49 PST ---
+This looks like http://bugs.gentoo.org/249680 , where xscreensaver does the
+wrong thing on outputs without a crtc.  Try the patch to xscreensaver in that
+bug and if it fixes it, take it up with the xscreensaver maintainer.
 
 
 -- 
