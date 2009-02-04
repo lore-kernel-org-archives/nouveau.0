@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19854] xscreensaver fails to run (regression)
-Date: Sun,  1 Feb 2009 19:35:50 -0800 (PST)
-Message-ID: <20090202033550.91FDF13005A@annarchy.freedesktop.org>
-References: <bug-19854-8800@http.bugs.freedesktop.org/>
+From: Yan Seiner <yan-6T0/PJfuvIjQT0dZR+AlfA@public.gmane.org>
+Subject: nouveau xorg.conf documentation
+Date: Wed, 04 Feb 2009 06:42:56 -0800
+Message-ID: <4989A970.2010503@seiner.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,22 +15,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19854
+I'm trying to get started with nouveau.  I have it compiled, I have it 
+installed, but I'm having trouble working out the xorg.conf file.
 
+My system has 3 video cards; one is a single DVI out, two are dual DVI 
+out. From the messages in the xorg log files, nouveau expects config for 
+DVI-I-0 and DVI-I-1, and so on.  Going from the nvidia blob is not as 
+easy as changing nvidia to nouveau; all of the options are different and 
+the structure of the file is different.
 
+Can someone who has a working nouveau xorg.conf with multiple cards and 
+dual DVI cards please put this on on the wiki?  The wiki is really short 
+of info for casual user/developers like me.  My time and knowledge are 
+limited so any help I get is greatly appreciated.
 
+Thanks,
 
-
---- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-01 19:35:49 PST ---
-This looks like http://bugs.gentoo.org/249680 , where xscreensaver does the
-wrong thing on outputs without a crtc.  Try the patch to xscreensaver in that
-bug and if it fixes it, take it up with the xscreensaver maintainer.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+--Yan
