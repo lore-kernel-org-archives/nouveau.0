@@ -1,15 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nouveau xorg.conf documentation
-Date: Thu, 5 Feb 2009 15:38:35 +0100
-Message-ID: <6d4bc9fc0902050638x5b4e606fx76d6d5107cfddfe0@mail.gmail.com>
-References: <4989A970.2010503@seiner.com>
-	<6d4bc9fc0902040716x3a956eacwf59330f4b4bd03d4@mail.gmail.com>
-	<21d7e9970902050426y1f32b4bdi311dc0fc2dad730e@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 19967] regression in switching to virtual terminal
+Date: Thu,  5 Feb 2009 08:05:42 -0800 (PST)
+Message-ID: <20090205160542.CFC0A130057@annarchy.freedesktop.org>
+References: <bug-19967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <21d7e9970902050426y1f32b4bdi311dc0fc2dad730e-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-19967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,70 +17,17 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Feb 5, 2009 at 1:26 PM, Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Thu, Feb 5, 2009 at 1:16 AM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> On Wed, Feb 4, 2009 at 3:42 PM, Yan Seiner <yan-6T0/PJfuvIjQT0dZR+AlfA@public.gmane.org> wrote:
->>> I'm trying to get started with nouveau.  I have it compiled, I have it
->>> installed, but I'm having trouble working out the xorg.conf file.
->>>
->>> My system has 3 video cards; one is a single DVI out, two are dual DVI
->>> out. From the messages in the xorg log files, nouveau expects config for
->>> DVI-I-0 and DVI-I-1, and so on.  Going from the nvidia blob is not as
->>> easy as changing nvidia to nouveau; all of the options are different and
->>> the structure of the file is different.
->>>
->>> Can someone who has a working nouveau xorg.conf with multiple cards and
->>> dual DVI cards please put this on on the wiki?  The wiki is really short
->>> of info for casual user/developers like me.  My time and knowledge are
->>> limited so any help I get is greatly appreciated.
->>>
->>> Thanks,
->>>
->>> --Yan
->>> _______________________________________________
->>> Nouveau mailing list
->>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->>> http://lists.freedesktop.org/mailman/listinfo/nouveau
->>>
->>
->> All randr-1.2+ drivers are incapable of doing the xinerama style
->> multihead, until someone writes the needed xorg code.
->
-> Thats not true, radeon runs fine in Xinerama with other radeons, X
-> when pciaccess happened
-> lost the ability to int10 post secondary cards, however if you have a
-> driver that can post without int10
-> it should be okay.
->
-> you can disable randr have have working Xinerama Intel are just being lazy.
->
-> I'm not sure nouveau cares enough to bother implementing zaphod, but
-> single head might be possible.
->
-> Dave.
->
->>
->> If you want a protocol screen per card, then that should be possible,
->> minus possible nouveau bugs. Few people actually have a multi card
->> setup, so a standard config isn't really available.
->>
->> You can try using this howto
->> "http://wiki.debian.org/XStrikeForce/HowToRandR12" and expand it to
->> two (protocol) screens in your xorg.conf
->>
->> Maarten.
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> http://lists.freedesktop.org/mailman/listinfo/nouveau
->>
->
-
-I did say randr-1.2 drivers, which implies using randr-1.2, zaphod is
-something else altogether, which nouveau doesn't support.
-
-Maarten.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xOTk2NwoKCgoKCi0t
+LSBDb21tZW50ICMxIGZyb20gSGVydsOpIENhdXdlbGllciA8ZGViaWFuQG91cnNvdXJzLm5ldD4g
+IDIwMDktMDItMDUgMDg6MDU6NDEgUFNUIC0tLQpDcmVhdGVkIGFuIGF0dGFjaG1lbnQgKGlkPTIy
+NjEyKQogLS0+IChodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9
+MjI2MTIpCmxvZyBvZiB0aGUgcmVzcGF3bmVkIFgKCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0
+dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0t
+IFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhl
+IGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
