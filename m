@@ -1,13 +1,14 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: DRM fills logs
-Date: Fri, 6 Feb 2009 16:13:53 +0100
-Message-ID: <6d4bc9fc0902060713u56ae31bdjb8bbf4a609eda32b@mail.gmail.com>
-References: <498C529A.8060601@seiner.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 19986] Nouveau (20090116) fails to load on a PowerPC
+ Pegasos 2 (OF) using a Quaddro FX 1100 (AGP)
+Date: Fri,  6 Feb 2009 07:36:11 -0800 (PST)
+Message-ID: <20090206153611.D9E3F130057@annarchy.freedesktop.org>
+References: <bug-19986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <498C529A.8060601-6T0/PJfuvIjQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-19986-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,12 +18,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Yan Seiner <yan-6T0/PJfuvIjQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Have you tried running the cards separately first? Multi card
-situations are pretty rare, so it's better to know if they work
-individually.
+http://bugs.freedesktop.org/show_bug.cgi?id=19986
 
-Maarten.
+
+
+
+
+--- Comment #3 from Konstantinos Margaritis <markos-VYMTaqK72Q4@public.gmane.org>  2009-02-06 07:36:08 PST ---
+Created an attachment (id=22647)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22647)
+load bios correctly + find correct modes on a powerpc
+
+Using this patch (suggested by malc0), X now runs fine -and quite fast if I may
+say so :)- on the Quadro FX.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
