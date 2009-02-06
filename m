@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18809] X w/ nouveau driver doesn't start on G86M
  [GeForce 8400M GT] chip
-Date: Fri,  6 Feb 2009 04:29:26 -0800 (PST)
-Message-ID: <20090206122926.D5E9313005A@annarchy.freedesktop.org>
+Date: Fri,  6 Feb 2009 04:32:54 -0800 (PST)
+Message-ID: <20090206123254.A1BC813005A@annarchy.freedesktop.org>
 References: <bug-18809-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,21 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18809
 
 
 
---- Comment #5 from Ingmar Vanhassel <ingmar-k5O9xmZG+kVAfugRpC6u6w@public.gmane.org>  2009-02-06 04:29:26 PST ---
-Created an attachment (id=22642)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22642)
-GeForce 8400M GT BIOS
+--- Comment #6 from Ingmar Vanhassel <ingmar-k5O9xmZG+kVAfugRpC6u6w@public.gmane.org>  2009-02-06 04:32:53 PST ---
+(In reply to comment #3)
+> Please get vbtracetool (http://nouveau.freedesktop.org/wiki/DumpingVideoBios),
+> look at the QUICKSTART and get me two bios traces (normal and io) and a bios
+> dump. It's ofcource no garuantee, but i'll try to look at it. Note that the
+> bios traces should be done while in text mode.
+
+Sorry for being so incredibly slow, long story & I'll spare you the defails,
+but I finally got (new) hardware to test this on.
+
+I've attached the BIOS & IO trace. The POST trace is available at
+http://dev.exherbo.org/~ingmar/nouveau/
+
+HTH,
+Ingmar
 
 
 -- 
