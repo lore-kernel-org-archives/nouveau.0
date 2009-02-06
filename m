@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19986] Nouveau (20090116) fails to load on a PowerPC
- Pegasos 2 (OF) using a Quaddro FX 1100 (AGP)
-Date: Fri,  6 Feb 2009 07:36:11 -0800 (PST)
-Message-ID: <20090206153611.D9E3F130057@annarchy.freedesktop.org>
-References: <bug-19986-8800@http.bugs.freedesktop.org/>
+From: "Yan Seiner" <yan-6T0/PJfuvIjQT0dZR+AlfA@public.gmane.org>
+Subject: Re: DRM fills logs
+Date: Fri, 6 Feb 2009 10:49:07 -0800 (PST)
+Message-ID: <3923ba2a79e416d939d138f940f71743.squirrel@www.datavault.us>
+References: <498C529A.8060601@seiner.com>
+	<6d4bc9fc0902060713u56ae31bdjb8bbf4a609eda32b@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed;boundary="----=_20090206104906_71729"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19986-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <6d4bc9fc0902060713u56ae31bdjb8bbf4a609eda32b-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,25 +17,166 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19986
+------=_20090206104906_71729
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
 
+On Fri, February 6, 2009 7:13 am, Maarten Maathuis wrote:
+> Have you tried running the cards separately first? Multi card
+> situations are pretty rare, so it's better to know if they work
+> individually.
 
+No, not yet. I don't have a test-bed where I can do that.  :-(  I can
+build a single card system test bed but I only have a handful of the dual
+DVI cards and all are in production use.
 
+If I read the attached xorg log file correctly, though, nouveau seems to
+get confused and only sees one of the NVS 285 cards.
 
---- Comment #3 from Konstantinos Margaritis <markos-VYMTaqK72Q4@public.gmane.org>  2009-02-06 07:36:08 PST ---
-Created an attachment (id=22647)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22647)
-load bios correctly + find correct modes on a powerpc
+It seems to miss the card at 7:0:0 entirely.  Am I reading it correctly?
 
-Using this patch (suggested by malc0), X now runs fine -and quite fast if I may
-say so :)- on the Quadro FX.
+--=20
+  o__
+  ,>/'_          o__
+  (_)\(_)        ,>/'_        o__
+Yan Seiner      (_)\(_)       ,>/'_     o__
+       Personal Trainer      (_)\(_)    ,>/'_        o__
+             Professional Engineer     (_)\(_)       ,>/'_
+Who says engineers have to be pencil necked geeks?  (_)\(_)
 
+You are an adult when you realize that everyone's an idiot sometimes. You
+are wise when you include yourself.
 
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+------=_20090206104906_71729
+Content-Type: application/octet-stream; name="xorg.conf.nouveau"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="xorg.conf.nouveau"
+
+U2VjdGlvbiAiU2VydmVyTGF5b3V0IgoJSWRlbnRpZmllciAgICAgIlgub3JnIENvbmZpZ3VyZWQi
+CglTY3JlZW4gICAgICAwICAiU2NyZWVuMCIgMCAwCglTY3JlZW4gICAgICAxICAiU2NyZWVuMSIg
+UmlnaHRPZiAiU2NyZWVuMCIKCVNjcmVlbiAgICAgIDIgICJTY3JlZW4yIiBSaWdodE9mICJTY3Jl
+ZW4xIgoJSW5wdXREZXZpY2UgICAgIk1vdXNlMCIgIkNvcmVQb2ludGVyIgoJSW5wdXREZXZpY2Ug
+ICAgIktleWJvYXJkMCIgIkNvcmVLZXlib2FyZCIKRW5kU2VjdGlvbgoKU2VjdGlvbiAiRmlsZXMi
+CglSZ2JQYXRoICAgICAgIi9ldGMvWDExL3JnYiIKCU1vZHVsZVBhdGggICAiL3Vzci9saWIveG9y
+Zy9tb2R1bGVzIgoJRm9udFBhdGggICAgICIvdXNyL3NoYXJlL2ZvbnRzL1gxMS9taXNjIgoJRm9u
+dFBhdGggICAgICIvdXNyL3NoYXJlL2ZvbnRzL1gxMS9jeXJpbGxpYyIKCUZvbnRQYXRoICAgICAi
+L3Vzci9zaGFyZS9mb250cy9YMTEvMTAwZHBpLzp1bnNjYWxlZCIKCUZvbnRQYXRoICAgICAiL3Vz
+ci9zaGFyZS9mb250cy9YMTEvNzVkcGkvOnVuc2NhbGVkIgoJRm9udFBhdGggICAgICIvdXNyL3No
+YXJlL2ZvbnRzL1gxMS9UeXBlMSIKCUZvbnRQYXRoICAgICAiL3Vzci9zaGFyZS9mb250cy9YMTEv
+MTAwZHBpIgoJRm9udFBhdGggICAgICIvdXNyL3NoYXJlL2ZvbnRzL1gxMS83NWRwaSIKCUZvbnRQ
+YXRoICAgICAiL3Zhci9saWIvZGVmb21hL3gtdHRjaWRmb250LWNvbmYuZC9kaXJzL1RydWVUeXBl
+IgpFbmRTZWN0aW9uCgpTZWN0aW9uICJNb2R1bGUiCglMb2FkICAiZGJlIgoJTG9hZCAgImdseCIK
+CUxvYWQgICJyZWNvcmQiCglMb2FkICAieHRyYXAiCglMb2FkICAiZXh0bW9kIgoJTG9hZCAgImRy
+aSIKRW5kU2VjdGlvbgoKU2VjdGlvbiAiSW5wdXREZXZpY2UiCglJZGVudGlmaWVyICAiS2V5Ym9h
+cmQwIgoJRHJpdmVyICAgICAgImtiZCIKRW5kU2VjdGlvbgoKU2VjdGlvbiAiSW5wdXREZXZpY2Ui
+CglJZGVudGlmaWVyICAiTW91c2UwIgoJRHJpdmVyICAgICAgIm1vdXNlIgoJT3B0aW9uCSAgICAi
+UHJvdG9jb2wiICJhdXRvIgoJT3B0aW9uCSAgICAiRGV2aWNlIiAiL2Rldi9pbnB1dC9taWNlIgoJ
+T3B0aW9uCSAgICAiWkF4aXNNYXBwaW5nIiAiNCA1IDYgNyIKRW5kU2VjdGlvbgoKU2VjdGlvbiAi
+TW9uaXRvciIKCSNEaXNwbGF5U2l6ZQkgIDM4MCAgIDMwMAkjIG1tCglJZGVudGlmaWVyICAgIk1v
+bml0b3IwIgoJVmVuZG9yTmFtZSAgICJIU0QiCglNb2RlbE5hbWUgICAgIkNZMTk5IgogIyMjIENv
+bW1lbnQgYWxsIEhvcml6U3luYyBhbmQgVmVydFJlZnJlc2ggdmFsdWVzIHRvIHVzZSBEREM6CglI
+b3JpelN5bmMgICAgMjQuMCAtIDgwLjAKCVZlcnRSZWZyZXNoICA1Ni4wIC0gNzUuMAoJT3B0aW9u
+CSAgICAiRFBNUyIKRW5kU2VjdGlvbgoKU2VjdGlvbiAiTW9uaXRvciIKCUlkZW50aWZpZXIgICAi
+TW9uaXRvcjEiCglWZW5kb3JOYW1lICAgIk1vbml0b3IgVmVuZG9yIgoJTW9kZWxOYW1lICAgICJN
+b25pdG9yIE1vZGVsIgpFbmRTZWN0aW9uCgpTZWN0aW9uICJNb25pdG9yIgoJSWRlbnRpZmllciAg
+ICJNb25pdG9yMiIKCVZlbmRvck5hbWUgICAiTW9uaXRvciBWZW5kb3IiCglNb2RlbE5hbWUgICAg
+Ik1vbml0b3IgTW9kZWwiCkVuZFNlY3Rpb24KClNlY3Rpb24gIkRldmljZSIKICAgICAgICAjIyMg
+QXZhaWxhYmxlIERyaXZlciBvcHRpb25zIGFyZTotCiAgICAgICAgIyMjIFZhbHVlczogPGk+OiBp
+bnRlZ2VyLCA8Zj46IGZsb2F0LCA8Ym9vbD46ICJUcnVlIi8iRmFsc2UiLAogICAgICAgICMjIyA8
+c3RyaW5nPjogIlN0cmluZyIsIDxmcmVxPjogIjxmPiBIei9rSHovTUh6IgogICAgICAgICMjIyBb
+YXJnXTogYXJnIG9wdGlvbmFsCiAgICAgICAgI09wdGlvbiAgICAgIlNXY3Vyc29yIiAgICAgICAg
+ICAgCSMgWzxib29sPl0KICAgICAgICAjT3B0aW9uICAgICAiSFdjdXJzb3IiICAgICAgICAgICAJ
+IyBbPGJvb2w+XQogICAgICAgICNPcHRpb24gICAgICJOb0FjY2VsIiAgICAgICAgICAgIAkjIFs8
+Ym9vbD5dCiAgICAgICAgI09wdGlvbiAgICAgIlNoYWRvd0ZCIiAgICAgICAgICAgCSMgWzxib29s
+Pl0KICAgICAgICAjT3B0aW9uICAgICAiVXNlRkJEZXYiICAgICAgICAgICAJIyBbPGJvb2w+XQog
+ICAgICAgICNPcHRpb24gICAgICJSb3RhdGUiICAgICAgICAgICAgIAkjIFs8c3RyPl0KICAgICAg
+ICAjT3B0aW9uICAgICAiVmlkZW9LZXkiICAgICAgICAgICAJIyA8aT4KICAgICAgICAjT3B0aW9u
+ICAgICAiRmxhdFBhbmVsIiAgICAgICAgICAJIyBbPGJvb2w+XQogICAgICAgICNPcHRpb24gICAg
+ICJGUERpdGhlciIgICAgICAgICAgIAkjIFs8Ym9vbD5dCiAgICAgICAgI09wdGlvbiAgICAgIkNy
+dGNOdW1iZXIiICAgICAgICAgCSMgPGk+CiAgICAgICAgI09wdGlvbiAgICAgIkZQU2NhbGUiICAg
+ICAgICAgICAgCSMgWzxib29sPl0KICAgICAgICAjT3B0aW9uICAgICAiRlBUd2VhayIgICAgICAg
+ICAgICAJIyA8aT4KICAgICAgICAjT3B0aW9uICAgICAiRHVhbEhlYWQiICAgICAgICAgICAJIyBb
+PGJvb2w+XQoJSWRlbnRpZmllciAgIkNhcmQwIgoJRHJpdmVyICAgICAgIm5vdXZlYXUiCglWZW5k
+b3JOYW1lICAiblZpZGlhIENvcnBvcmF0aW9uIgoJQm9hcmROYW1lICAgIk5WMzRHTCBbUXVhZHJv
+IE5WUyAyODAgUENJXSIKCUJ1c0lEICAgICAgICJQQ0k6MTo3OjAiCkVuZFNlY3Rpb24KClNlY3Rp
+b24gIkRldmljZSIKICAgICAgICAjIyMgQXZhaWxhYmxlIERyaXZlciBvcHRpb25zIGFyZTotCiAg
+ICAgICAgIyMjIFZhbHVlczogPGk+OiBpbnRlZ2VyLCA8Zj46IGZsb2F0LCA8Ym9vbD46ICJUcnVl
+Ii8iRmFsc2UiLAogICAgICAgICMjIyA8c3RyaW5nPjogIlN0cmluZyIsIDxmcmVxPjogIjxmPiBI
+ei9rSHovTUh6IgogICAgICAgICMjIyBbYXJnXTogYXJnIG9wdGlvbmFsCiAgICAgICAgI09wdGlv
+biAgICAgIlNXY3Vyc29yIiAgICAgICAgICAgCSMgWzxib29sPl0KICAgICAgICAjT3B0aW9uICAg
+ICAiSFdjdXJzb3IiICAgICAgICAgICAJIyBbPGJvb2w+XQogICAgICAgICNPcHRpb24gICAgICJO
+b0FjY2VsIiAgICAgICAgICAgIAkjIFs8Ym9vbD5dCiAgICAgICAgI09wdGlvbiAgICAgIlNoYWRv
+d0ZCIiAgICAgICAgICAgCSMgWzxib29sPl0KICAgICAgICAjT3B0aW9uICAgICAiVXNlRkJEZXYi
+ICAgICAgICAgICAJIyBbPGJvb2w+XQogICAgICAgICNPcHRpb24gICAgICJSb3RhdGUiICAgICAg
+ICAgICAgIAkjIFs8c3RyPl0KICAgICAgICAjT3B0aW9uICAgICAiVmlkZW9LZXkiICAgICAgICAg
+ICAJIyA8aT4KICAgICAgICAjT3B0aW9uICAgICAiRmxhdFBhbmVsIiAgICAgICAgICAJIyBbPGJv
+b2w+XQogICAgICAgICNPcHRpb24gICAgICJGUERpdGhlciIgICAgICAgICAgIAkjIFs8Ym9vbD5d
+CiAgICAgICAgI09wdGlvbiAgICAgIkNydGNOdW1iZXIiICAgICAgICAgCSMgPGk+CiAgICAgICAg
+I09wdGlvbiAgICAgIkZQU2NhbGUiICAgICAgICAgICAgCSMgWzxib29sPl0KICAgICAgICAjT3B0
+aW9uICAgICAiRlBUd2VhayIgICAgICAgICAgICAJIyA8aT4KICAgICAgICAjT3B0aW9uICAgICAi
+RHVhbEhlYWQiICAgICAgICAgICAJIyBbPGJvb2w+XQoJSWRlbnRpZmllciAgIkNhcmQxIgoJRHJp
+dmVyICAgICAgIm5vdXZlYXUiCglWZW5kb3JOYW1lICAiblZpZGlhIENvcnBvcmF0aW9uIgoJQm9h
+cmROYW1lICAgIk5WNDQgW1F1YWRybyBOVlMgMjg1XSIKCUJ1c0lEICAgICAgICJQQ0k6MjowOjAi
+CkVuZFNlY3Rpb24KClNlY3Rpb24gIkRldmljZSIKICAgICAgICAjIyMgQXZhaWxhYmxlIERyaXZl
+ciBvcHRpb25zIGFyZTotCiAgICAgICAgIyMjIFZhbHVlczogPGk+OiBpbnRlZ2VyLCA8Zj46IGZs
+b2F0LCA8Ym9vbD46ICJUcnVlIi8iRmFsc2UiLAogICAgICAgICMjIyA8c3RyaW5nPjogIlN0cmlu
+ZyIsIDxmcmVxPjogIjxmPiBIei9rSHovTUh6IgogICAgICAgICMjIyBbYXJnXTogYXJnIG9wdGlv
+bmFsCiAgICAgICAgI09wdGlvbiAgICAgIlNXY3Vyc29yIiAgICAgICAgICAgCSMgWzxib29sPl0K
+ICAgICAgICAjT3B0aW9uICAgICAiSFdjdXJzb3IiICAgICAgICAgICAJIyBbPGJvb2w+XQogICAg
+ICAgICNPcHRpb24gICAgICJOb0FjY2VsIiAgICAgICAgICAgIAkjIFs8Ym9vbD5dCiAgICAgICAg
+I09wdGlvbiAgICAgIlNoYWRvd0ZCIiAgICAgICAgICAgCSMgWzxib29sPl0KICAgICAgICAjT3B0
+aW9uICAgICAiVXNlRkJEZXYiICAgICAgICAgICAJIyBbPGJvb2w+XQogICAgICAgICNPcHRpb24g
+ICAgICJSb3RhdGUiICAgICAgICAgICAgIAkjIFs8c3RyPl0KICAgICAgICAjT3B0aW9uICAgICAi
+VmlkZW9LZXkiICAgICAgICAgICAJIyA8aT4KICAgICAgICAjT3B0aW9uICAgICAiRmxhdFBhbmVs
+IiAgICAgICAgICAJIyBbPGJvb2w+XQogICAgICAgICNPcHRpb24gICAgICJGUERpdGhlciIgICAg
+ICAgICAgIAkjIFs8Ym9vbD5dCiAgICAgICAgI09wdGlvbiAgICAgIkNydGNOdW1iZXIiICAgICAg
+ICAgCSMgPGk+CiAgICAgICAgI09wdGlvbiAgICAgIkZQU2NhbGUiICAgICAgICAgICAgCSMgWzxi
+b29sPl0KICAgICAgICAjT3B0aW9uICAgICAiRlBUd2VhayIgICAgICAgICAgICAJIyA8aT4KICAg
+ICAgICAjT3B0aW9uICAgICAiRHVhbEhlYWQiICAgICAgICAgICAJIyBbPGJvb2w+XQoJSWRlbnRp
+ZmllciAgIkNhcmQyIgoJRHJpdmVyICAgICAgIm5vdXZlYXUiCglWZW5kb3JOYW1lICAiblZpZGlh
+IENvcnBvcmF0aW9uIgoJQm9hcmROYW1lICAgIk5WNDQgW1F1YWRybyBOVlMgMjg1XSIKCUJ1c0lE
+ICAgICAgICJQQ0k6NzowOjAiCkVuZFNlY3Rpb24KClNlY3Rpb24gIlNjcmVlbiIKCUlkZW50aWZp
+ZXIgIlNjcmVlbjAiCglEZXZpY2UgICAgICJDYXJkMCIKCU1vbml0b3IgICAgIk1vbml0b3IwIgoJ
+U3ViU2VjdGlvbiAiRGlzcGxheSIKCQlWaWV3cG9ydCAgIDAgMAoJCURlcHRoICAgICAxCglFbmRT
+dWJTZWN0aW9uCglTdWJTZWN0aW9uICJEaXNwbGF5IgoJCVZpZXdwb3J0ICAgMCAwCgkJRGVwdGgg
+ICAgIDQKCUVuZFN1YlNlY3Rpb24KCVN1YlNlY3Rpb24gIkRpc3BsYXkiCgkJVmlld3BvcnQgICAw
+IDAKCQlEZXB0aCAgICAgOAoJRW5kU3ViU2VjdGlvbgoJU3ViU2VjdGlvbiAiRGlzcGxheSIKCQlW
+aWV3cG9ydCAgIDAgMAoJCURlcHRoICAgICAxNQoJRW5kU3ViU2VjdGlvbgoJU3ViU2VjdGlvbiAi
+RGlzcGxheSIKCQlWaWV3cG9ydCAgIDAgMAoJCURlcHRoICAgICAxNgoJRW5kU3ViU2VjdGlvbgoJ
+U3ViU2VjdGlvbiAiRGlzcGxheSIKCQlWaWV3cG9ydCAgIDAgMAoJCURlcHRoICAgICAyNAoJRW5k
+U3ViU2VjdGlvbgpFbmRTZWN0aW9uCgpTZWN0aW9uICJTY3JlZW4iCglJZGVudGlmaWVyICJTY3Jl
+ZW4xIgoJRGV2aWNlICAgICAiQ2FyZDEiCglNb25pdG9yICAgICJNb25pdG9yMSIKCVN1YlNlY3Rp
+b24gIkRpc3BsYXkiCgkJVmlld3BvcnQgICAwIDAKCQlEZXB0aCAgICAgMQoJRW5kU3ViU2VjdGlv
+bgoJU3ViU2VjdGlvbiAiRGlzcGxheSIKCQlWaWV3cG9ydCAgIDAgMAoJCURlcHRoICAgICA0CglF
+bmRTdWJTZWN0aW9uCglTdWJTZWN0aW9uICJEaXNwbGF5IgoJCVZpZXdwb3J0ICAgMCAwCgkJRGVw
+dGggICAgIDgKCUVuZFN1YlNlY3Rpb24KCVN1YlNlY3Rpb24gIkRpc3BsYXkiCgkJVmlld3BvcnQg
+ICAwIDAKCQlEZXB0aCAgICAgMTUKCUVuZFN1YlNlY3Rpb24KCVN1YlNlY3Rpb24gIkRpc3BsYXki
+CgkJVmlld3BvcnQgICAwIDAKCQlEZXB0aCAgICAgMTYKCUVuZFN1YlNlY3Rpb24KCVN1YlNlY3Rp
+b24gIkRpc3BsYXkiCgkJVmlld3BvcnQgICAwIDAKCQlEZXB0aCAgICAgMjQKCUVuZFN1YlNlY3Rp
+b24KRW5kU2VjdGlvbgoKU2VjdGlvbiAiU2NyZWVuIgoJSWRlbnRpZmllciAiU2NyZWVuMiIKCURl
+dmljZSAgICAgIkNhcmQyIgoJTW9uaXRvciAgICAiTW9uaXRvcjIiCglTdWJTZWN0aW9uICJEaXNw
+bGF5IgoJCVZpZXdwb3J0ICAgMCAwCgkJRGVwdGggICAgIDEKCUVuZFN1YlNlY3Rpb24KCVN1YlNl
+Y3Rpb24gIkRpc3BsYXkiCgkJVmlld3BvcnQgICAwIDAKCQlEZXB0aCAgICAgNAoJRW5kU3ViU2Vj
+dGlvbgoJU3ViU2VjdGlvbiAiRGlzcGxheSIKCQlWaWV3cG9ydCAgIDAgMAoJCURlcHRoICAgICA4
+CglFbmRTdWJTZWN0aW9uCglTdWJTZWN0aW9uICJEaXNwbGF5IgoJCVZpZXdwb3J0ICAgMCAwCgkJ
+RGVwdGggICAgIDE1CglFbmRTdWJTZWN0aW9uCglTdWJTZWN0aW9uICJEaXNwbGF5IgoJCVZpZXdw
+b3J0ICAgMCAwCgkJRGVwdGggICAgIDE2CglFbmRTdWJTZWN0aW9uCglTdWJTZWN0aW9uICJEaXNw
+bGF5IgoJCVZpZXdwb3J0ICAgMCAwCgkJRGVwdGggICAgIDI0CglFbmRTdWJTZWN0aW9uCkVuZFNl
+Y3Rpb24KCgoKIURTUEFNOjQ5OGM1OWI2MTk3NTE4MDQyODQ2OTMhCg==
+------=_20090206104906_71729
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+------=_20090206104906_71729--
