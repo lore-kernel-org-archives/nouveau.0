@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 14859] External analog monitor does not show part of
- the output ( Randr12)
-Date: Fri,  6 Feb 2009 01:58:41 -0800 (PST)
-Message-ID: <20090206095841.E935F13005A@annarchy.freedesktop.org>
-References: <bug-14859-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19986] New: Nouveau (20090116) fails to load on a
+ PowerPC Pegasos 2 ( OF) using a Quaddro FX 1100 (AGP)
+Date: Fri,  6 Feb 2009 03:29:48 -0800 (PST)
+Message-ID: <bug-19986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-14859-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +19,47 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=14859
+http://bugs.freedesktop.org/show_bug.cgi?id=19986
+
+           Summary: Nouveau (20090116) fails to load on a PowerPC Pegasos 2
+                    (OF) using a Quaddro FX 1100 (AGP)
+           Product: xorg
+           Version: 7.4
+          Platform: PowerPC
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: markos-VYMTaqK72Q4@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=22638)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22638)
+xorg.conf
 
+Nouveau fails while loading BIOS signature and afterwards it fails to produce a
+list of valid modes:
 
+(II) NOUVEAU(0): [dri] Found DRI library version 1.3.0 and kernel module
+version 0.0.11
+(II) NOUVEAU(0): Initial CRTC_OWNER is 0
+(II) NOUVEAU(0): Attempting to load BIOS image from PRAMIN
+(!!) NOUVEAU(0): ... BIOS signature not found
+(EE) NOUVEAU(0): No valid BIOS image found
 
---- Comment #25 from Jacopo <sbriglie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-06 01:58:40 PST ---
-Coming back to this bug after a long time... The issue is still there with VGA.
-I was able to test also the DVI output and that works perfectly :)
+...
 
-As a sidenote I'd like to point out that the PB12 has just a single mini-dvi
-output, that gets used both by dvi-out and vga-out with two different adapter
-cables. Don't know if this could be somehow related though
+(WW) NOUVEAU(0): No outputs definitely connected, trying again...
+(WW) NOUVEAU(0): Unable to find initial modes
+(EE) NOUVEAU(0): 1373: No valid modes.
+
+The 'nv' driver works (no binary driver available for powerpc) on this
+box/card.
+
+Attached: xorg.conf, Xorg.log, dmesg output.
 
 
 -- 
