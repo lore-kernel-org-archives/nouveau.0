@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19986] Nouveau (20090116) fails to load on a PowerPC
  Pegasos 2 (OF) using a Quaddro FX 1100 (AGP)
-Date: Fri,  6 Feb 2009 03:30:22 -0800 (PST)
-Message-ID: <20090206113022.893A7130057@annarchy.freedesktop.org>
+Date: Fri,  6 Feb 2009 03:30:43 -0800 (PST)
+Message-ID: <20090206113046.C6FE5130057@annarchy.freedesktop.org>
 References: <bug-19986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=19986
 
 
 
---- Comment #1 from Konstantinos Margaritis <markos-VYMTaqK72Q4@public.gmane.org>  2009-02-06 03:30:21 PST ---
-Created an attachment (id=22639)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22639)
-dmesg output
+--- Comment #2 from Konstantinos Margaritis <markos-VYMTaqK72Q4@public.gmane.org>  2009-02-06 03:30:42 PST ---
+Created an attachment (id=22640)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22640)
+Xorg logs
 
 
 -- 
