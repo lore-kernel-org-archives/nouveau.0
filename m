@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Sat,  7 Feb 2009 12:32:51 -0800 (PST)
-Message-ID: <20090207203252.124AA130058@annarchy.freedesktop.org>
-References: <bug-15758-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19744] 9600M GT support
+Date: Sat,  7 Feb 2009 13:44:41 -0800 (PST)
+Message-ID: <20090207214441.7B809130057@annarchy.freedesktop.org>
+References: <bug-19744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15758
+http://bugs.freedesktop.org/show_bug.cgi?id=19744
 
 
 
 
 
---- Comment #12 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-07 12:32:43 PST ---
-FTR: The above data was *with* your patches [1] applied!
-
-[1]: fix some minor consistency issues and fix some minor consistency issues
+--- Comment #14 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-07 13:44:41 PST ---
+Created an attachment (id=22670)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22670)
+dmesg with working nouveau (7.2.2009)
 
 
 -- 
