@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Sun,  8 Feb 2009 03:10:49 -0800 (PST)
-Message-ID: <20090208111049.B1973130057@annarchy.freedesktop.org>
+Date: Sun,  8 Feb 2009 03:11:38 -0800 (PST)
+Message-ID: <20090208111138.A3A2F130057@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #1 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-08 03:10:47 PST ---
-Created an attachment (id=22681)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22681)
-drm messages
+--- Comment #2 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-08 03:11:38 PST ---
+Created an attachment (id=22682)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22682)
+xorg conf
 
 
 -- 
