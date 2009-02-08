@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19356] DPMS does not turn off LCD backlight on NV34M
- [ GeForce FX Go5200]
-Date: Sun,  8 Feb 2009 02:24:30 -0800 (PST)
-Message-ID: <20090208102430.AA5CA130057@annarchy.freedesktop.org>
-References: <bug-19356-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20006] New: powerpc64: Black screen using RandR12
+Date: Sun,  8 Feb 2009 03:10:14 -0800 (PST)
+Message-ID: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19356-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +18,43 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19356
+http://bugs.freedesktop.org/show_bug.cgi?id=20006
+
+           Summary: powerpc64: Black screen using RandR12
+           Product: xorg
+           Version: 7.4
+          Platform: PowerPC
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=22680)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22680)
+Xorg log
 
+Enabling Option RandR12 in xorg.conf results in black screen. Server starts up
+fine, seems to be usable, only screen stays black. Monitor doesn't turn off.
 
+VT switching works, albeit with picture degradation (bad resolution?) which
+isn't recovered even when killing X (also, crash on killing X, with or without
+RandR12, see messages).
 
---- Comment #16 from Markus Tacker <m@tacker.org>  2009-02-08 02:24:29 PST ---
-Hm, I managed to patch the git sources, but autogen.sh fails on Gentoo.
-Any hint on how to manually build the driver on Gentoo?
+Operating system: Gentoo Linux ppc64 with 64bit userland (problem the same on
+32bit userland).
 
+Hardware: Apple G5 with DVI-only GeForce7800GT PCI-E Apple OEM version, screen
+is a Dell 30 inch 2560x1600 display on DVI connector 1.
 
-checking for pkg-config... /usr/bin/pkg-config
-checking pkg-config is at least version 0.9.0... yes
-checking for LIBDRM_NOUVEAU... configure: error: Package requirements
-(libdrm_nouveau) were not met:
+drm commit: 97fdadee6a79f9406a55c235ee46104814321152
+xf86-video-nouveau commit: 98b8cada6c355d437925a92ef0413e96751ed567
 
-No package 'libdrm_nouveau' found
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables LIBDRM_NOUVEAU_CFLAGS
-and LIBDRM_NOUVEAU_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
+Legacy render path with RandR12 disabled works fine.
 
 
 -- 
