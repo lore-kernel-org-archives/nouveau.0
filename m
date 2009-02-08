@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Sun,  8 Feb 2009 01:18:37 -0800 (PST)
-Message-ID: <20090208091837.AF7B9130058@annarchy.freedesktop.org>
-References: <bug-15758-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19356] DPMS does not turn off LCD backlight on NV34M
+ [ GeForce FX Go5200]
+Date: Sun,  8 Feb 2009 02:24:30 -0800 (PST)
+Message-ID: <20090208102430.AA5CA130057@annarchy.freedesktop.org>
+References: <bug-19356-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19356-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,30 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15758
+http://bugs.freedesktop.org/show_bug.cgi?id=19356
 
 
 
 
 
---- Comment #14 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-08 01:18:37 PST ---
-Here we go again :)
-
-Versions:
-
-nouveau-98b8cada6c355d437925a92ef0413e96751ed567
-drm-9c8d634e687a5a5b5d314b3fd5b34cc17a217139
-
-I did some more extensive testing (kept the script running longer). It seems
-that the cursor always dssappears no matter if I patched it [1] or not.
+--- Comment #16 from Markus Tacker <m@tacker.org>  2009-02-08 02:24:29 PST ---
+Hm, I managed to patch the git sources, but autogen.sh fails on Gentoo.
+Any hint on how to manually build the driver on Gentoo?
 
 
-1: fix some minor consistency issues *and* use the PCRTC regs for cursor
-setting
- or fix some minor consistency
- or no other patches at all
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for LIBDRM_NOUVEAU... configure: error: Package requirements
+(libdrm_nouveau) were not met:
 
-Using both patches, the cursor disappears. Trying to:
+No package 'libdrm_nouveau' found
 
-- Switch VT's (ctrl + alt + f1 etc) does not restore it
-- Restart X-server does not restore it
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-However, the oops I reported seems fixed with latest git.
+Alternatively, you may set the environment variables LIBDRM_NOUVEAU_CFLAGS
+and LIBDRM_NOUVEAU_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
 
 
 -- 
