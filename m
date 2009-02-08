@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 19203] X default modes no longer added
-Date: Sun,  8 Feb 2009 06:35:18 -0800 (PST)
-Message-ID: <20090208143518.A2CD913005A@annarchy.freedesktop.org>
+Date: Sun,  8 Feb 2009 07:41:50 -0800 (PST)
+Message-ID: <20090208154150.2978F13005A@annarchy.freedesktop.org>
 References: <bug-19203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=19203
 
 
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #12 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-08 06:35:17 PST ---
-Created an attachment (id=22692)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22692)
-New patch without multiple OutputSetEDID calls
 
-Bizarre, I've no idea why the previous patch didn't work.  From the attached
-logs it even look like it did.  Here's a new patch taking a different and
-possibly better approach though.  If this one doesn't work, please make logs
-with `Option "ModeDebug" "on"' set in the xorg.conf.
+--- Comment #13 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-08 07:41:49 PST ---
+30848dd378d05917c646a24df404846e6f9b2352
 
 
 -- 
