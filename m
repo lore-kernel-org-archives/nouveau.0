@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20023] nv20: unwanted solid fills during busyloop
 	rendering
-Date: Mon,  9 Feb 2009 12:52:53 -0800 (PST)
-Message-ID: <20090209205254.7E279130058@annarchy.freedesktop.org>
+Date: Mon,  9 Feb 2009 13:16:01 -0800 (PST)
+Message-ID: <20090209211601.B1E9F130058@annarchy.freedesktop.org>
 References: <bug-20023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,30 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20023
 
 
 
---- Comment #2 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-02-09 12:52:53 PST ---
-Hypothesis: NV2X_GRCTX_SIZE too small, which leads to contexts corrupting each
-other.
+--- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-02-09 13:16:01 PST ---
+The SCF appears only, when a RAFAP application is running, and a terminal
+window draws something. The "drawing something" is most easily triggered in
+aterm by switching the focus between a RAFAP window and the aterm window. Aterm
+fills the text cursor with yellow when it receives focus, and this fill may
+"blow up".
 
-Doubled it, no change.
+The SCF seems to be drawn directly onto the framebuffer, any rendering
+whatsoever will fix it for the rendered area. Except fluxbox window borders
+while moving windows (no window content shown while moving). Switching virtual
+desktops is a good way to clear it. SCF seems to never touch the background or
+the root window.
+
+Having three trivial/tri-repeat applications running at the same time works
+fine, and it seems that the SCF happens more frequently/easily.
+
+Todo:
+- confirm it's not happening with swrast
+- try disabling all 2D rendering (fill, clear, copy) in NV20 Gallium one by one
+
+Ideas:
+- could nv2x_graph_context_init (DRM) be incorrect?
+- buggy hw ctx switching? Hope not! But nvidia did use sw ctx switching for
+some reason.
 
 
 -- 
