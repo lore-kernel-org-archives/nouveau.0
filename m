@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Mon,  9 Feb 2009 03:58:37 -0800 (PST)
-Message-ID: <20090209115837.ED435130058@annarchy.freedesktop.org>
+Date: Mon,  9 Feb 2009 04:21:43 -0800 (PST)
+Message-ID: <20090209122143.5A696130057@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,23 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #5 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-09 03:58:34 PST ---
-Maybe not then (would not hurt though).
+--- Comment #6 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-09 04:21:42 PST ---
+(In reply to comment #5)
+> Maybe not then (would not hurt though).
+> 
+> Are you sure you are not hitting bug 15206?
+> 
+> If so, I guess you should install the nouveau branch of radeontool and dump
+> registers with and without randr1.2 mode
+> 
+> d.
+> 
 
-Are you sure you are not hitting bug 15206?
+I read that bug before but it states that the second display doesn't get a
+signal. Mine does (it doesn't go into powersave), but it's black. So I figured
+I had something different going on.
 
-If so, I guess you should install the nouveau branch of radeontool and dump
-registers with and without randr1.2 mode
-
-d.
+I'll post a full log with drm debug later when I'm back at the machine, though.
 
 
 -- 
