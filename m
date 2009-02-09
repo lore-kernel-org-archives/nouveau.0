@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20023] nv20: unwanted solid fills during busyloop
 	rendering
-Date: Mon,  9 Feb 2009 12:51:52 -0800 (PST)
-Message-ID: <20090209205152.7C594130058@annarchy.freedesktop.org>
+Date: Mon,  9 Feb 2009 12:52:53 -0800 (PST)
+Message-ID: <20090209205254.7E279130058@annarchy.freedesktop.org>
 References: <bug-20023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,21 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20023
 
 
 
---- Comment #1 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-02-09 12:51:52 PST ---
-Hypothesis: Gallium hw ctx and EXA hw ctx are leaking state, incomplete context
-switching.
+--- Comment #2 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-02-09 12:52:53 PST ---
+Hypothesis: NV2X_GRCTX_SIZE too small, which leads to contexts corrupting each
+other.
 
-Test: disable all EXA acceleration.
-
-NV04EXAPrepareSolid(), NV04EXAPrepareCopy(), NV10EXACheckComposite() were
-modified to return FALSE immediately. Additionally UTS and DFS were disabled
-via xorg.conf.
-
-Result: no impact. The SCF appears as before.
-
-Even though EXA should not be using hw acceleration, the DRM and EXA hw ctxs
-still exist. However, it is unlikely for the SCF to be caused by state leaking
-from a context to another.
+Doubled it, no change.
 
 
 -- 
