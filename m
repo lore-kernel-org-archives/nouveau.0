@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Mon,  9 Feb 2009 01:07:59 -0800 (PST)
-Message-ID: <20090209090759.C57BD13005A@annarchy.freedesktop.org>
+Date: Mon,  9 Feb 2009 03:17:04 -0800 (PST)
+Message-ID: <20090209111704.B1C74130057@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,11 +26,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #3 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-09 01:07:58 PST ---
-Can you attach a full kernel log? Or more precisely, I suspect you may be using
-nvidiafb (or rivafb).
+--- Comment #4 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-09 03:17:02 PST ---
+(In reply to comment #3)
+> Can you attach a full kernel log? Or more precisely, I suspect you may be using
+> nvidiafb (or rivafb).
+> 
+> Danny
+> 
 
-Danny
+I'm using the OpenFirmware framebuffer, passing video=ofonly to the kernel.
+Nvidiafb isn't even in the kernel.
+
+Do you still need the full log?
 
 
 -- 
