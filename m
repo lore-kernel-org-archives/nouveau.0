@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Mon,  9 Feb 2009 10:14:07 -0800 (PST)
-Message-ID: <20090209181407.64146130057@annarchy.freedesktop.org>
+Date: Mon,  9 Feb 2009 12:19:34 -0800 (PST)
+Message-ID: <20090209201934.EAB9E130057@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
-bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #22681|0                           |1
-        is obsolete|                            |
 
 
 
-
---- Comment #7 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-09 10:14:06 PST ---
-Created an attachment (id=22724)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22724)
-full dmesg
-
-Full dmesg with drm debug=1. Kernel oops at the end happens on server kill, not
-on its own.
+--- Comment #8 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-09 12:19:34 PST ---
+Created an attachment (id=22726)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22726)
+non-randr12 mode register dump
 
 
 -- 
