@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Mon,  9 Feb 2009 03:17:04 -0800 (PST)
-Message-ID: <20090209111704.B1C74130057@annarchy.freedesktop.org>
+Date: Mon,  9 Feb 2009 03:58:37 -0800 (PST)
+Message-ID: <20090209115837.ED435130058@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,18 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #4 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-09 03:17:02 PST ---
-(In reply to comment #3)
-> Can you attach a full kernel log? Or more precisely, I suspect you may be using
-> nvidiafb (or rivafb).
-> 
-> Danny
-> 
+--- Comment #5 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-09 03:58:34 PST ---
+Maybe not then (would not hurt though).
 
-I'm using the OpenFirmware framebuffer, passing video=ofonly to the kernel.
-Nvidiafb isn't even in the kernel.
+Are you sure you are not hitting bug 15206?
 
-Do you still need the full log?
+If so, I guess you should install the nouveau branch of radeontool and dump
+registers with and without randr1.2 mode
+
+d.
 
 
 -- 
