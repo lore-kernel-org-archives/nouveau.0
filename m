@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20023] XDamageAdd problem (with Gallium3D)
-Date: Mon,  9 Feb 2009 14:03:40 -0800 (PST)
-Message-ID: <20090209220340.53ED2130058@annarchy.freedesktop.org>
+Date: Mon,  9 Feb 2009 14:05:34 -0800 (PST)
+Message-ID: <20090209220535.1DF0F130057@annarchy.freedesktop.org>
 References: <bug-20023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-20023-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -20,25 +20,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMDAyMwoKClBla2th
-IFBhYWxhbmVuIDxwcUBpa2kuZmk+IGNoYW5nZWQ6CgogICAgICAgICAgIFdoYXQgICAgfFJlbW92
-ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogICAgICAg
-ICAgIFNldmVyaXR5fG1pbm9yICAgICAgICAgICAgICAgICAgICAgICB8bm9ybWFsCiAgICAgICAg
-ICBDb21wb25lbnR8RHJpdmVycy9EUkkvbm91dmVhdSAgICAgICAgIHxTZXJ2ZXIvZ2VuZXJhbAog
-ICAgICAgICAgICBQcm9kdWN0fE1lc2EgICAgICAgICAgICAgICAgICAgICAgICB8eG9yZwogICAg
-ICAgICAgICBTdW1tYXJ5fG52MjA6IHVud2FudGVkIHNvbGlkIGZpbGxzICB8WERhbWFnZUFkZCBw
-cm9ibGVtICh3aXRoCiAgICAgICAgICAgICAgICAgICB8ZHVyaW5nIGJ1c3lsb29wIHJlbmRlcmlu
-ZyAgIHxHYWxsaXVtM0QpCiAgICAgICAgICAgIFZlcnNpb258Q1ZTICAgICAgICAgICAgICAgICAg
-ICAgICAgIHxnaXQKCgoKCi0tLSBDb21tZW50ICM1IGZyb20gUGVra2EgUGFhbGFuZW4gPHBxQGlr
-aS5maT4gIDIwMDktMDItMDkgMTQ6MDM6MzkgUFNUIC0tLQpUcnlpbmcgdG8gbW92ZSB0aGlzIGJ1
-ZyB0byBYb3JnLgoKQWRkZWQgSGVsbHN0csO2bSB0byBDQywgc2luY2UgaGUgbWFkZSB0aGUgbWlu
-aW1hbCBwcm9ncmFtIHRoYXQgcmVwcm9kdWNlcyB0aGlzCmlzc3VlLiBDaGFuZ2UgdGhlIHN1bW1h
-cnkgYWNjb3JkaW5nIHRvIFRob21hcycgZW1haWwuCgpDb3JyZWN0aW9uOiBJJ20gbm90IGFkZGlu
-ZyBIZWxsc3Ryw7ZtIHRvIENDLCBzaW5jZSBidWd6aWxsYSBkb2VzIG5vdCBhbGxvdyBpdC4KCgot
-LSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJl
-ZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNh
-dXNlOiAtLS0tLS0tCllvdSBhcmUgb24gdGhlIENDIGxpc3QgZm9yIHRoZSBidWcuCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=20023
+
+
+Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         AssignedTo|pq-X3B1VOXEql0@public.gmane.org                   |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+             Status|ASSIGNED                    |NEW
+          QAContact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are on the CC list for the bug.
