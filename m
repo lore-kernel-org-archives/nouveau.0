@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20065] crash when moving a window outside the screen
- (ShadowFB NoAccel )
-Date: Wed, 11 Feb 2009 10:07:46 -0800 (PST)
-Message-ID: <20090211180746.BB985130057@annarchy.freedesktop.org>
-References: <bug-20065-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20066] New: slowness in gnome-terminal
+Date: Wed, 11 Feb 2009 10:19:33 -0800 (PST)
+Message-ID: <bug-20066-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +18,50 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMDA2NQoKCkhlcnbD
-qSBDYXV3ZWxpZXIgPGRlYmlhbkBvdXJzb3Vycy5uZXQ+IGNoYW5nZWQ6CgogICAgICAgICAgIFdo
-YXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLQogICAgICAgICAgICAgU3RhdHVzfE5FVyAgICAgICAgICAgICAgICAgICAgICAgICB8UkVT
-T0xWRUQKICAgICAgICAgUmVzb2x1dGlvbnwgICAgICAgICAgICAgICAgICAgICAgICAgICAgfElO
-VkFMSUQKCgoKCi0tLSBDb21tZW50ICMzIGZyb20gSGVydsOpIENhdXdlbGllciA8ZGViaWFuQG91
-cnNvdXJzLm5ldD4gIDIwMDktMDItMTEgMTA6MDc6NDYgUFNUIC0tLQpZb3UncmUgcmlnaHQsIEkg
-d2FzIG5vdCB1c2luZyB0aGUgbm91dmVhdSBtb2R1bGUuIEkndmUgcHJvYmFibHkgdXBkYXRlZCB0
-aGUKa2VybmVsIHJlY2VudGx5IGFuZCBmb3Jnb3QgdG8gb3ZlcndyaXRlIHRoZSBkcm0gbW9kdWxl
-LgoKQ2xvc2luZyBhcyBJIHdvbid0IHRha2UgdGhlIHRpbWUgdG8gZGVidWcgd2l0aCBnZGIuCgoK
-LS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnBy
-ZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVj
-YXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=20066
+
+           Summary: slowness in gnome-terminal
+           Product: xorg
+           Version: 7.4
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Nouveau is generally fast but not when it comes to gnome-terminal.
+
+Things like opening a new tab, maximizing the window, restoring its size,
+switching to a desktop with a gnome-terminal on it... take a couple of seconds.
+
+The more the window is big, the more it's slow.
+
+But it disappears when the gnome-terminal is minimized (reduced in the
+taskbar). Switching desktops is then instantaneous.
+
+The worst is when I maximize it vertically and then open a new tab. X seems
+like frozen, thought I can still move the mouse but clicking has no effect.
+
+It doesn't happen with xterm, so I guess gnome-terminal is using rendering
+paths that are not accelerated in nouveau.
+
+The card is a 8400M GS plugged to a 1280x800 LVDS, without any external screen.
+
+As accidentally discovered with bug #20065, it doesn't happen in ShadowFB
+NoAccel mode.
+
+I'm quite puzzled about what information I could give you now. Or maybe the bug
+is know and this bug will remain open until it's fixed.
+
+Regards
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
