@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20065] New: crash when moving a window outside the
-	screen
-Date: Wed, 11 Feb 2009 08:39:22 -0800 (PST)
-Message-ID: <bug-20065-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20065] crash when moving a window outside the screen
+ (ShadowFB NoAccel )
+Date: Wed, 11 Feb 2009 09:38:12 -0800 (PST)
+Message-ID: <20090211173812.522E113005A@annarchy.freedesktop.org>
+References: <bug-20065-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-20065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=20065
 
-           Summary: crash when moving a window outside the screen
-           Product: xorg
-           Version: 7.4
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: debian-E6TheL+NHo3k1uMJSBkQmQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|crash when moving a window  |crash when moving a window
+                   |outside the screen          |outside the screen (ShadowFB
+                   |                            |NoAccel)
 
 
-Created an attachment (id=22827)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22827)
-crashing X
 
-I've tested it with heads 30848dd378d05917c646a24df404846e6f9b2352 and
-15ccf721791fa4f61784ad00449630c6d2496328.
 
-When I move a window using the Alt key (on Gnome) and the window get past the
-upper edge, X is crashing. I get back to the VT then GDM respawns.
+--- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-11 09:38:11 PST ---
+You're running in shadowfb mode, which means software acceleration.
 
-It is reproducible will all types of applications: gnome-terminal, Tk,
-Firefox...
+This is probably a result of lacking the kernel modules.
 
-I'm using a NV50 (GeForce 8400M GS).
-
-I attach the log of the crashing X.
-
-By the way, I've just noticed gnome-terminal is lighting fast now, I address a
-big thank you to the team.
+Without a proper backtrace it's hard to tell what is the problem, it may very
+well not be a nouveau problem. gdb can probably get a better backtrace.
 
 
 -- 
