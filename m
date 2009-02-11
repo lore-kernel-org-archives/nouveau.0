@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 19854] XrandR reports no CRTCs for VGA-0 output
- until the first time a display is plugged
-Date: Wed, 11 Feb 2009 10:01:22 -0800 (PST)
-Message-ID: <20090211180122.1F12413005B@annarchy.freedesktop.org>
-References: <bug-19854-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20065] crash when moving a window outside the screen
+ (ShadowFB NoAccel )
+Date: Wed, 11 Feb 2009 10:07:46 -0800 (PST)
+Message-ID: <20090211180746.BB985130057@annarchy.freedesktop.org>
+References: <bug-20065-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-19854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-20065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,20 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=19854
-
-
-
-
-
---- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-11 10:01:18 PST ---
-So, I've pushed the crash fix, but not the state resetting thing.  After
-testing it, it seems xrandr gets very upset (even just running xrandr
---verbose) with CRTCs disappearing (although this is probably valid behaviour)
-and dies with a fatal error of "cannot find crtc 0x..", so I'll stick with the
-crap lingering CRTC behaviour, rather than break xrandr whenever someone
-disconnects an output.
-
-As for bailing out at modeset time, yes, this might be possible, but it relies
-on the xserver failing gracefully, and the user app coping with a failure for
-which it can determine no good reason, which I think is a higher standard to
-expect than getting the application to query what display is connected before
-it sets out on its modesetting journey.
-
-Happy for this bug to be resolved as fixed?
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMDA2NQoKCkhlcnbD
+qSBDYXV3ZWxpZXIgPGRlYmlhbkBvdXJzb3Vycy5uZXQ+IGNoYW5nZWQ6CgogICAgICAgICAgIFdo
+YXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLQogICAgICAgICAgICAgU3RhdHVzfE5FVyAgICAgICAgICAgICAgICAgICAgICAgICB8UkVT
+T0xWRUQKICAgICAgICAgUmVzb2x1dGlvbnwgICAgICAgICAgICAgICAgICAgICAgICAgICAgfElO
+VkFMSUQKCgoKCi0tLSBDb21tZW50ICMzIGZyb20gSGVydsOpIENhdXdlbGllciA8ZGViaWFuQG91
+cnNvdXJzLm5ldD4gIDIwMDktMDItMTEgMTA6MDc6NDYgUFNUIC0tLQpZb3UncmUgcmlnaHQsIEkg
+d2FzIG5vdCB1c2luZyB0aGUgbm91dmVhdSBtb2R1bGUuIEkndmUgcHJvYmFibHkgdXBkYXRlZCB0
+aGUKa2VybmVsIHJlY2VudGx5IGFuZCBmb3Jnb3QgdG8gb3ZlcndyaXRlIHRoZSBkcm0gbW9kdWxl
+LgoKQ2xvc2luZyBhcyBJIHdvbid0IHRha2UgdGhlIHRpbWUgdG8gZGVidWcgd2l0aCBnZGIuCgoK
+LS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnBy
+ZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVj
+YXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
