@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20065] crash when moving a window outside the screen
- (ShadowFB NoAccel )
-Date: Wed, 11 Feb 2009 09:51:38 -0800 (PST)
-Message-ID: <20090211175138.D0927130057@annarchy.freedesktop.org>
-References: <bug-20065-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19854] XrandR reports no CRTCs for VGA-0 output
+ until the first time a display is plugged
+Date: Wed, 11 Feb 2009 10:01:22 -0800 (PST)
+Message-ID: <20090211180122.1F12413005B@annarchy.freedesktop.org>
+References: <bug-19854-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,30 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMDA2NQoKCgoKCi0t
-LSBDb21tZW50ICMyIGZyb20gSGVydsOpIENhdXdlbGllciA8ZGViaWFuQG91cnNvdXJzLm5ldD4g
-IDIwMDktMDItMTEgMDk6NTE6MzggUFNUIC0tLQpZb3UncmUgcmlnaHQsIHRoZSBub3V2ZWF1IG1v
-ZHVsZSBpcyBub3QgbG9hZGVkLiBJJ20gdmVyeSBzdXJwcmlzZWQsIEkgdHJhY2sKYm90aCBub3V2
-ZWF1IGFuZCBkcm0gdXNpbmcgZ2l0LgoKSSdsbCBmaXJzdCBmaXggdGhlIG1vZHVsZSBpc3N1ZSBh
-bmQgY29tZSBiYWNrLgoKU2lnaCwgSSBob3BlIHRoZSBzdWRkZW4gc3BlZWQgb2YgZ25vbWUtdGVy
-bWluYWwgaXMgbm90IHJlbGF0ZWQgdG8gdGhpcy4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0
-dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0t
-IFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhl
-IGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=19854
+
+
+
+
+
+--- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-11 10:01:18 PST ---
+So, I've pushed the crash fix, but not the state resetting thing.  After
+testing it, it seems xrandr gets very upset (even just running xrandr
+--verbose) with CRTCs disappearing (although this is probably valid behaviour)
+and dies with a fatal error of "cannot find crtc 0x..", so I'll stick with the
+crap lingering CRTC behaviour, rather than break xrandr whenever someone
+disconnects an output.
+
+As for bailing out at modeset time, yes, this might be possible, but it relies
+on the xserver failing gracefully, and the user app coping with a failure for
+which it can determine no good reason, which I think is a higher standard to
+expect than getting the application to query what display is connected before
+it sets out on its modesetting journey.
+
+Happy for this bug to be resolved as fixed?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
