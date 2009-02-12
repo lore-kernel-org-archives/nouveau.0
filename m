@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Thu, 12 Feb 2009 01:03:53 -0800 (PST)
-Message-ID: <20090212090353.73A43130057@annarchy.freedesktop.org>
+Date: Thu, 12 Feb 2009 06:42:47 -0800 (PST)
+Message-ID: <20090212144248.290CC130058@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
-bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #22729|0                           |1
-        is obsolete|                            |
 
 
 
+--- Comment #14 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-12 06:42:46 PST ---
+Created an attachment (id=22859)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22859)
+changes which are unlikely to help, but should be ruled out
 
---- Comment #13 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-12 01:03:53 PST ---
-Created an attachment (id=22852)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22852)
-randr12 register dump
+Hi, here's the first of three patches.  They apply on top of each other, but
+please test the changes individually, i.e. test 1, then 1+2, then 1+2+3.  If
+any changes in behaviour are observed please note what changed and which
+patches were applied to cause the change.  Also, please do the test with the
+monitor attached to the same port the earlier dumps were made with, or else the
+results are not very helpful :-)  If there is no change with all three patches
+applied, please make a new register dump of the "randr12 + patch 1 + patch 2 +
+patch 3" case.
 
 
 -- 
