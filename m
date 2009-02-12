@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Thu, 12 Feb 2009 01:03:16 -0800 (PST)
-Message-ID: <20090212090316.8091F130057@annarchy.freedesktop.org>
+Date: Thu, 12 Feb 2009 01:03:53 -0800 (PST)
+Message-ID: <20090212090353.73A43130057@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +27,16 @@ bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #22726|0                           |1
+  Attachment #22729|0                           |1
         is obsolete|                            |
 
 
 
 
---- Comment #12 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-12 01:03:16 PST ---
-Created an attachment (id=22851)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22851)
-non-randr12 register dump
+--- Comment #13 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-12 01:03:53 PST ---
+Created an attachment (id=22852)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22852)
+randr12 register dump
 
 
 -- 
