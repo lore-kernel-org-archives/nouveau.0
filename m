@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Thu, 12 Feb 2009 06:43:16 -0800 (PST)
-Message-ID: <20090212144317.2B060130057@annarchy.freedesktop.org>
+Date: Thu, 12 Feb 2009 06:44:17 -0800 (PST)
+Message-ID: <20090212144417.65AE613005A@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #15 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-12 06:43:15 PST ---
-Created an attachment (id=22860)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22860)
-a more interesting change
+--- Comment #16 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-12 06:44:16 PST ---
+Created an attachment (id=22861)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22861)
+disable bios output scripts
 
-2 / 3
+3/3
+
+Note all patches can be simply applied on top a clean git checkout using "git
+am $PATCHNAME"
 
 
 -- 
