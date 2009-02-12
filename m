@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Wed, 11 Feb 2009 16:42:41 -0800 (PST)
-Message-ID: <20090212004241.0F2C113005B@annarchy.freedesktop.org>
+Date: Thu, 12 Feb 2009 01:02:32 -0800 (PST)
+Message-ID: <20090212090232.7D176130057@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #10 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-11 16:42:40 PST ---
-Hi, from looking at the two dumps, it looks like either we're doing something
-very wrong (a possibility), or the two dumps were made with the monitor
-connected to different dvi connectors.  If this was the case, can you please
-re-make the dumps leaving the monitor on the same connector, otherwise it makes
-side-by-side comparison very hard?
+--- Comment #11 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-12 01:02:32 PST ---
+(In reply to comment #10)
+> Hi, from looking at the two dumps, it looks like either we're doing something
+> very wrong (a possibility), or the two dumps were made with the monitor
+> connected to different dvi connectors.  If this was the case, can you please
+> re-make the dumps leaving the monitor on the same connector, otherwise it makes
+> side-by-side comparison very hard?
+> 
+
+That would be stupid on my part, but absolutely a possibility. ;-) Now,
+re-dumped registers follow.
 
 
 -- 
