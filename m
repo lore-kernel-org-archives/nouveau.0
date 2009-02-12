@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Thu, 12 Feb 2009 01:02:32 -0800 (PST)
-Message-ID: <20090212090232.7D176130057@annarchy.freedesktop.org>
+Date: Thu, 12 Feb 2009 01:03:16 -0800 (PST)
+Message-ID: <20090212090316.8091F130057@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
+bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #22726|0                           |1
+        is obsolete|                            |
 
 
 
---- Comment #11 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-12 01:02:32 PST ---
-(In reply to comment #10)
-> Hi, from looking at the two dumps, it looks like either we're doing something
-> very wrong (a possibility), or the two dumps were made with the monitor
-> connected to different dvi connectors.  If this was the case, can you please
-> re-make the dumps leaving the monitor on the same connector, otherwise it makes
-> side-by-side comparison very hard?
-> 
 
-That would be stupid on my part, but absolutely a possibility. ;-) Now,
-re-dumped registers follow.
+--- Comment #12 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-12 01:03:16 PST ---
+Created an attachment (id=22851)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22851)
+non-randr12 register dump
 
 
 -- 
