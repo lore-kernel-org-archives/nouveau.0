@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Fri, 13 Feb 2009 10:04:51 -0800 (PST)
-Message-ID: <20090213180451.2B27F13005A@annarchy.freedesktop.org>
+Date: Fri, 13 Feb 2009 10:15:00 -0800 (PST)
+Message-ID: <20090213181500.45EF7130058@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,32 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #21 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-13 10:04:50 PST ---
-(In reply to comment #20)
-> BIG CORRECTION!!!
-> 
-> As the picture error didn't get corrected when killing the server, I didn't
-> notice that patches 1+2+3 actually give a GOOD PICTURE, until I retested after
-> a reboot.
+--- Comment #22 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-13 10:14:59 PST ---
+(In reply to comment #21)
+> No, that's fine, I've a better idea of the problem now.  I'll try to come up
+> with some more things next week.
 
-Ok, that's more like I expected (sorry, should have noted the reboot
-requirement) :-)
-
-> Your other suggestion, concerning FPScale, didn't seem to have any effect. I
-> tested:
-
-Even at 1280x800?  interesting
-
-> patches 1+2+3, FPScale on: good picture
-> patches 1+2, FPScale on: bad picture
-> patches 1+2, FPScale off: bad picture
-> no patches, FPScale on: no picture
-> no patches, FPScale off: no picture
-> 
-> Are you still interested in a photo of the screen distortion?
-
-No, that's fine, I've a better idea of the problem now.  I'll try to come up
-with some more things next week.
+That's fine, the patched version is working good so far, so no big hurry here.
+:-)
 
 
 -- 
