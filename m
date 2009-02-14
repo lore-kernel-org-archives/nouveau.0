@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16176] X fails to start with GeForce 9600 with
- ``Failed to allocate memory for framebuffer! "
-Date: Fri, 13 Feb 2009 16:01:31 -0800 (PST)
-Message-ID: <20090214000131.76CFA130057@annarchy.freedesktop.org>
-References: <bug-16176-8800@http.bugs.freedesktop.org/>
+From: aik <aik.rsdn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: running x.org on powerpc64 with nvidia6200
+Date: Sat, 14 Feb 2009 12:12:37 +0300
+Message-ID: <49968B05.4090701@gmail.com>
+References: <49959366.2000805@gmail.com>
+	<6a89f9d50902131507h23cf0b50h62c887502d028073@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <6a89f9d50902131507h23cf0b50h62c887502d028073-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,26 +18,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16176
-
-
-
-
-
---- Comment #24 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2009-02-13 16:01:30 PST ---
-Created an attachment (id=22918)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22918)
-Working Xorg log
-
-Starts up perfectly now. Switching to VT and back fails, and changing
-resolutions sort of works, but leaves artifacts and displaces the mouse. I will
-open up new bugs :-)
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Stephane Marchesin wrote:
+> How many PCI domains does that machine have ? Current libpciaccess is
+> broken, in that PCI cards only work in the first domain. So the
+> solution is to put the card in a slot from the first domain if
+> possible. You are screwed otherwise (well, you could replace the
+> hardcoded first domain in pciaccess with the right domain and it might
+> work, I don't know...)
+>
+>   
+No way. There are 6 domains and the first does not have any connector...
+But this libpciaccess - is it linux lib or nouveau lib or x.org lib?
