@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20123] MCP73 -  GeForce 7100 / nForce 620i fail
-Date: Sun, 15 Feb 2009 04:01:11 -0800 (PST)
-Message-ID: <20090215120111.77068130058@annarchy.freedesktop.org>
+Date: Sun, 15 Feb 2009 04:01:36 -0800 (PST)
+Message-ID: <20090215120136.8A8F0130057@annarchy.freedesktop.org>
 References: <bug-20123-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20123
 
 
 
---- Comment #1 from Xose Vazquez Perez <xose.vazquez-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-15 04:01:10 PST ---
-Created an attachment (id=22962)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22962)
-messages
+--- Comment #2 from Xose Vazquez Perez <xose.vazquez-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-15 04:01:34 PST ---
+Created an attachment (id=22963)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22963)
+terminal output
 
 
 -- 
