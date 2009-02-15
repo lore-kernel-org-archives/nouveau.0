@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20123] MCP73 -  GeForce 7100 / nForce 620i fail
-Date: Sun, 15 Feb 2009 04:03:23 -0800 (PST)
-Message-ID: <20090215120325.8504D130058@annarchy.freedesktop.org>
+Date: Sun, 15 Feb 2009 04:05:23 -0800 (PST)
+Message-ID: <20090215120523.C00ED130057@annarchy.freedesktop.org>
 References: <bug-20123-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,16 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20123
 
 
 
---- Comment #4 from Xose Vazquez Perez <xose.vazquez-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-15 04:03:21 PST ---
-System is Fedora 10 i686
+--- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-15 04:05:20 PST ---
+Hey!
+
+We'll need a trace of how the NVIDIA binary driver initialises your card in
+able to be able to support it.  Can you please follow the instructions at
+http://nouveau.freedesktop.org/wiki/MmioTrace, and mail the resulting dump to
+mmio.dumps-Re5JQEeQqe9fmgfxC/sS/w@public.gmane.org
+
+Thanks,
+Ben.
 
 
 -- 
