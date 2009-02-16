@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20144] 2D images broken on nv28 (EXA failure?)
-Date: Mon, 16 Feb 2009 12:32:36 -0800 (PST)
-Message-ID: <20090216203236.A385413005A@annarchy.freedesktop.org>
+Date: Mon, 16 Feb 2009 12:44:13 -0800 (PST)
+Message-ID: <20090216204413.B091E130057@annarchy.freedesktop.org>
 References: <bug-20144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,24 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20144
 
 
+Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-16 12:32:36 PST ---
-Does 7b25a3019beba6342505fa16327a5bcd43669f90 fix it?
+
+--- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-02-16 12:44:13 PST ---
+Fixed in commit:
+
+commit 7b25a3019beba6342505fa16327a5bcd43669f90
+Author: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Date:   Mon Feb 16 21:23:56 2009 +0100
+
+    nv04: unbreak copy
 
 
 -- 
