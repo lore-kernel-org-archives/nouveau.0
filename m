@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20142] New: black horizontal line on 9600M GT,
-	KMS issue
-Date: Mon, 16 Feb 2009 09:05:28 -0800 (PST)
-Message-ID: <bug-20142-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20142] black horizontal line on 9600M GT, KMS issue
+Date: Mon, 16 Feb 2009 10:30:57 -0800 (PST)
+Message-ID: <20090216183057.AB6E2130057@annarchy.freedesktop.org>
+References: <bug-20142-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-20142-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,25 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=20142
 
-           Summary: black horizontal line on 9600M GT, KMS issue
-           Product: xorg
-           Version: 7.4
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: major
-          Priority: high
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-If is loaded nouveau with modeset=1 appear on screen circa 5-7px (static,
-everytime in same position) black horizontal line. This bug is possible
-reproduce in console as well in Xorg.
 
-Probably today I append dmesg and Xorg log.
+
+--- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-16 10:30:57 PST ---
+Created an attachment (id=22990)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22990)
+Xorg.log
 
 
 -- 
