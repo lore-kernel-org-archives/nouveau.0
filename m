@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20142] black horizontal line on 9600M GT, KMS issue
-Date: Mon, 16 Feb 2009 10:30:57 -0800 (PST)
-Message-ID: <20090216183057.AB6E2130057@annarchy.freedesktop.org>
+Date: Mon, 16 Feb 2009 10:33:45 -0800 (PST)
+Message-ID: <20090216183345.C4993130057@annarchy.freedesktop.org>
 References: <bug-20142-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20142
 
 
 
---- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-16 10:30:57 PST ---
-Created an attachment (id=22990)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=22990)
-Xorg.log
+--- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-16 10:33:45 PST ---
+Created an attachment (id=22991)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=22991)
+dmesg, first part is failed load with nvidia gl part... second part is with
+black line
 
 
 -- 
