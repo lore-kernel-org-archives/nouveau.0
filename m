@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20130] GT200: nv50 chipset 0xa0 lockup
-Date: Sun, 15 Feb 2009 20:23:54 -0800 (PST)
-Message-ID: <20090216042354.F3F2C130057@annarchy.freedesktop.org>
-References: <bug-20130-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: extra PRAMIN flushiness patch
+Date: Mon, 16 Feb 2009 14:39:31 +1000
+Message-ID: <fc5b84ad0902152039s3c60f29ase687b9651d9c9a57@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=001636417685d80eaa046301c563
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20130-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,100 +17,87 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20130
+--001636417685d80eaa046301c563
+Content-Type: multipart/alternative; boundary=001636417685d80ea3046301c561
+
+--001636417685d80ea3046301c561
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 
 
+--001636417685d80ea3046301c561
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
+<br>
 
---- Comment #1 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-15 20:23:54 PST ---
-dmesg:
+--001636417685d80ea3046301c561--
 
-[drm] Initialized drm 1.1.0 20060810
-pci 0000:01:00.0: BAR 3: can't reserve mem region [0xf8000000-0xf9ffffff]
-pci 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
-pci 0000:01:00.0: setting latency timer to 64
-[drm] Detected an NV50 generation card (0x0a0100a2)
-[drm] Initialized nouveau 0.0.12 libdrm-2.4.4-31-g084e143d0c82f5bf6 on minor 0
-[drm] Used old pci detect: framebuffer loaded
-mtrr: base(0xc0000000) is not aligned on a size(0x38000000) boundary
-[drm] Allocating FIFO number 1
-[drm] nouveau_fifo_alloc: initialised FIFO 1
-[drm] Allocating FIFO number 2
-[drm] nouveau_fifo_alloc: initialised FIFO 2
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x0184 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x0188 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x018c Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x0190 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x0194 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x0198 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x019c Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01a0 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01a4 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01a8 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01ac Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01c0 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01c4 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01c8 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01cc Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01d0 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01d4 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01d8 Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x01dc Data 0x00000000:0x00000e00
-[drm] PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x1520 Data 0x00000000:0x00000000
-[drm] PGRAPH_ERROR - nSource: PROTECTION_ERROR LIMIT_COLOR, nStatus:
-[drm] PGRAPH_ERROR - Ch 2/2 Class 0x8397 Mthd 0x1520 Data 0x00000000:0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR* magic set 1:
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408900: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408904: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408908: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x0040890c: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408910: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408e08: 0x3f00f4e1
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408e0c: 0x40002177
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408e10: 0xbe7d1cda
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408e14: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408e18: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408e1c: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408e20: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00408e24: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR* magic set 2:
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409900: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409904: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409908: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x0040990c: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409910: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409e08: 0xefebeffd
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409e0c: 0x40004e50
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409e10: 0xfb7f3adf
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409e14: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409e18: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409e1c: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409e20: 0x00000000
-[drm:nv50_pgraph_irq_handler] *ERROR*   0x00409e24: 0x00000000
+--001636417685d80eaa046301c563
+Content-Type: application/octet-stream; name="pramin_more_flush.diff"
+Content-Disposition: attachment; filename="pramin_more_flush.diff"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_fr8npthb0
 
+ZGlmZiAtLWdpdCBhL3NoYXJlZC1jb3JlL25vdXZlYXVfZHJ2LmggYi9zaGFyZWQtY29yZS9ub3V2
+ZWF1X2Rydi5oCmluZGV4IDE1OGQ2ZmQuLmFlN2Y0ZDMgMTAwNjQ0Ci0tLSBhL3NoYXJlZC1jb3Jl
+L25vdXZlYXVfZHJ2LmgKKysrIGIvc2hhcmVkLWNvcmUvbm91dmVhdV9kcnYuaApAQCAtMTc5LDYg
+KzE3OSw3IEBAIHN0cnVjdCBub3V2ZWF1X2luc3RtZW1fZW5naW5lIHsKIAl2b2lkCSgqY2xlYXIp
+KHN0cnVjdCBkcm1fZGV2aWNlICosIHN0cnVjdCBub3V2ZWF1X2dwdW9iaiAqKTsKIAlpbnQJKCpi
+aW5kKShzdHJ1Y3QgZHJtX2RldmljZSAqLCBzdHJ1Y3Qgbm91dmVhdV9ncHVvYmogKik7CiAJaW50
+CSgqdW5iaW5kKShzdHJ1Y3QgZHJtX2RldmljZSAqLCBzdHJ1Y3Qgbm91dmVhdV9ncHVvYmogKik7
+CisJaW50ICAgICAoKmZsdXNoKShzdHJ1Y3QgZHJtX2RldmljZSAqKTsKIH07CiAKIHN0cnVjdCBu
+b3V2ZWF1X21jX2VuZ2luZSB7CkBAIC01NzAsNiArNTcxLDcgQEAgZXh0ZXJuIGludCAgbnY1MF9p
+bnN0bWVtX3BvcHVsYXRlKHN0cnVjdCBkcm1fZGV2aWNlICosIHN0cnVjdCBub3V2ZWF1X2dwdW9i
+aiAqLAogZXh0ZXJuIHZvaWQgbnY1MF9pbnN0bWVtX2NsZWFyKHN0cnVjdCBkcm1fZGV2aWNlICos
+IHN0cnVjdCBub3V2ZWF1X2dwdW9iaiAqKTsKIGV4dGVybiBpbnQgIG52NTBfaW5zdG1lbV9iaW5k
+KHN0cnVjdCBkcm1fZGV2aWNlICosIHN0cnVjdCBub3V2ZWF1X2dwdW9iaiAqKTsKIGV4dGVybiBp
+bnQgIG52NTBfaW5zdG1lbV91bmJpbmQoc3RydWN0IGRybV9kZXZpY2UgKiwgc3RydWN0IG5vdXZl
+YXVfZ3B1b2JqICopOworZXh0ZXJuIHZvaWQgbnY1MF9pbnN0bWVtX2ZsdXNoKHN0cnVjdCBkcm1f
+ZGV2aWNlICopOwogCiAvKiBudjA0X21jLmMgKi8KIGV4dGVybiBpbnQgIG52MDRfbWNfaW5pdChz
+dHJ1Y3QgZHJtX2RldmljZSAqKTsKZGlmZiAtLWdpdCBhL3NoYXJlZC1jb3JlL25vdXZlYXVfb2Jq
+ZWN0LmMgYi9zaGFyZWQtY29yZS9ub3V2ZWF1X29iamVjdC5jCmluZGV4IDE5MzI1ZjMuLmQ3YWRi
+MWMgMTAwNjQ0Ci0tLSBhL3NoYXJlZC1jb3JlL25vdXZlYXVfb2JqZWN0LmMKKysrIGIvc2hhcmVk
+LWNvcmUvbm91dmVhdV9vYmplY3QuYwpAQCAtNzY5LDYgKzc2OSw4IEBAIG5vdXZlYXVfZ3B1b2Jq
+X2RtYV9uZXcoc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwgaW50IGNsYXNzLAogCQlJTlNU
+QU5DRV9XUigqZ3B1b2JqLCA1LCBmbGFnczUpOwogCX0KIAorCWRldl9wcml2LT5FbmdpbmUuaW5z
+dG1lbS5mbHVzaChkZXYpOworCiAJKCpncHVvYmopLT5lbmdpbmUgPSBOVk9CSl9FTkdJTkVfU1c7
+CiAJKCpncHVvYmopLT5jbGFzcyAgPSBjbGFzczsKIAlyZXR1cm4gMDsKZGlmZiAtLWdpdCBhL3No
+YXJlZC1jb3JlL25vdXZlYXVfc3RhdGUuYyBiL3NoYXJlZC1jb3JlL25vdXZlYXVfc3RhdGUuYwpp
+bmRleCAwYjYwMDJjLi5hMTVmMTFiIDEwMDY0NAotLS0gYS9zaGFyZWQtY29yZS9ub3V2ZWF1X3N0
+YXRlLmMKKysrIGIvc2hhcmVkLWNvcmUvbm91dmVhdV9zdGF0ZS5jCkBAIC0yNTIsNiArMjUyLDcg
+QEAgc3RhdGljIGludCBub3V2ZWF1X2luaXRfZW5naW5lX3B0cnMoc3RydWN0IGRybV9kZXZpY2Ug
+KmRldikKIAkJZW5naW5lLT5pbnN0bWVtLmNsZWFyCQk9IG52NTBfaW5zdG1lbV9jbGVhcjsKIAkJ
+ZW5naW5lLT5pbnN0bWVtLmJpbmQJCT0gbnY1MF9pbnN0bWVtX2JpbmQ7CiAJCWVuZ2luZS0+aW5z
+dG1lbS51bmJpbmQJCT0gbnY1MF9pbnN0bWVtX3VuYmluZDsKKwkJZW5naW5lLT5pbnN0bWVtLmZs
+dXNoCQk9IG52NTBfaW5zdG1lbV9mbHVzaDsKIAkJZW5naW5lLT5tYy5pbml0CQk9IG52NTBfbWNf
+aW5pdDsKIAkJZW5naW5lLT5tYy50YWtlZG93bgk9IG52NTBfbWNfdGFrZWRvd247CiAJCWVuZ2lu
+ZS0+dGltZXIuaW5pdAk9IG52MDRfdGltZXJfaW5pdDsKZGlmZiAtLWdpdCBhL3NoYXJlZC1jb3Jl
+L252NTBfaW5zdG1lbS5jIGIvc2hhcmVkLWNvcmUvbnY1MF9pbnN0bWVtLmMKaW5kZXggZDc2ZWJm
+My4uODhlZTI0MSAxMDA2NDQKLS0tIGEvc2hhcmVkLWNvcmUvbnY1MF9pbnN0bWVtLmMKKysrIGIv
+c2hhcmVkLWNvcmUvbnY1MF9pbnN0bWVtLmMKQEAgLTI5Nyw4ICsyOTcsOCBAQCBudjUwX2luc3Rt
+ZW1fYmluZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3Qgbm91dmVhdV9ncHVvYmogKmdw
+dW9iaikKIAkJdnJhbSArPSBOVjUwX0lOU1RNRU1fUEFHRV9TSVpFOwogCX0KIAotCU5WX1dSSVRF
+KDB4MDcwMDAwLCAweDAwMDAwMDAxKTsKLQl3aGlsZShOVl9SRUFEKDB4MDcwMDAwKSAmIDEpOwor
+CWRldl9wcml2LT5FbmdpbmUuaW5zdG1lbS5mbHVzaChkZXYpOworCiAJTlZfV1JJVEUoMHgxMDBj
+ODAsIDB4MDAwNDAwMDEpOwogCXdoaWxlKE5WX1JFQUQoMHgxMDBjODApICYgMSk7CiAJTlZfV1JJ
+VEUoMHgxMDBjODAsIDB4MDAwNjAwMDEpOwpAQCAtMzI5LDMgKzMyOSwxMyBAQCBudjUwX2luc3Rt
+ZW1fdW5iaW5kKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBub3V2ZWF1X2dwdW9iaiAq
+Z3B1b2JqKQogCWdwdW9iai0+aW1fYm91bmQgPSAwOwogCXJldHVybiAwOwogfQorCit2b2lkCitu
+djUwX2luc3RtZW1fZmx1c2goc3RydWN0IGRybV9kZXZpY2UgKmRldikKK3sKKwlzdHJ1Y3QgZHJt
+X25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9wcml2YXRlOworCisJTlZfV1JJ
+VEUoMHgwNzAwMDAsIDB4MDAwMDAwMDEpOworCXdoaWxlKE5WX1JFQUQoMHgwNzAwMDApICYgMSk7
+Cit9CisK
+--001636417685d80eaa046301c563
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--001636417685d80eaa046301c563--
