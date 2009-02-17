@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20130] GT200: nv50 chipset 0xa0 lockup
-Date: Tue, 17 Feb 2009 15:32:26 -0800 (PST)
-Message-ID: <20090217233226.1EAF0130057@annarchy.freedesktop.org>
+Date: Tue, 17 Feb 2009 15:33:20 -0800 (PST)
+Message-ID: <20090217233320.C6F86130057@annarchy.freedesktop.org>
 References: <bug-20130-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20130
 
 
 
---- Comment #7 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 15:32:25 PST ---
-I didn't experience an OOPS since Xorg is frozen using 100% and it doesn't
-respond to Ctrl+Alt+Backspace or Ctrl+Alt+F1. All I could do is halt the
-machine through ssh. Thanks Ben.
+--- Comment #8 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 15:33:20 PST ---
+Created an attachment (id=23051)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23051)
+dmesg after applying nasty hack :P
 
 
 -- 
