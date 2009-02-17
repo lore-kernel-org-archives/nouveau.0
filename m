@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20130] GT200: nv50 chipset 0xa0 lockup
-Date: Tue, 17 Feb 2009 09:57:34 -0800 (PST)
-Message-ID: <20090217175734.4362B130057@annarchy.freedesktop.org>
+Date: Tue, 17 Feb 2009 09:59:26 -0800 (PST)
+Message-ID: <20090217175926.DB1BF130057@annarchy.freedesktop.org>
 References: <bug-20130-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20130
 
 
 
---- Comment #3 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 09:57:33 PST ---
-Created an attachment (id=23039)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23039)
-dmesg with pramin_more_flush and drm debug=1
+--- Comment #4 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 09:59:26 PST ---
+I was able to log in! But there's some form of 2D image corruption, I'm able to
+see my background - panels - open new windows - but I can't see any *text*.
 
 
 -- 
