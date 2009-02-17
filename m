@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20130] GT200: nv50 chipset 0xa0 lockup
-Date: Tue, 17 Feb 2009 14:03:44 -0800 (PST)
-Message-ID: <20090217220344.892EF130058@annarchy.freedesktop.org>
+Date: Tue, 17 Feb 2009 15:32:26 -0800 (PST)
+Message-ID: <20090217233226.1EAF0130057@annarchy.freedesktop.org>
 References: <bug-20130-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,11 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20130
 
 
 
---- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 14:03:44 PST ---
-Can you give the above patch a try.  As a warning, your kernel will OOPS when
-you exit X with this patch.  It's not a proper solution, but it'll tell us for
-sure if the issue is where I expect it is.  A proper fix will require a little
-more work :)
+--- Comment #7 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 15:32:25 PST ---
+I didn't experience an OOPS since Xorg is frozen using 100% and it doesn't
+respond to Ctrl+Alt+Backspace or Ctrl+Alt+F1. All I could do is halt the
+machine through ssh. Thanks Ben.
 
 
 -- 
