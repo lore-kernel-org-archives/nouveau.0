@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20168] nVIDIA 9600GT KMS Blank Screen
-Date: Tue, 17 Feb 2009 10:23:13 -0800 (PST)
-Message-ID: <20090217182313.3A89413005B@annarchy.freedesktop.org>
+Date: Tue, 17 Feb 2009 12:56:17 -0800 (PST)
+Message-ID: <20090217205617.64054130058@annarchy.freedesktop.org>
 References: <bug-20168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,33 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20168
 
 
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
+--- Comment #2 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 12:56:16 PST ---
+Maarten, I think those modules got loaded because I passed vga=795 option to
+the kernel. I'm using vanilla kernel and nvidia blob wasn't installed. Well I
+removed vga=795, modprobe -r nvidiafb, and I still get the blank screen. When
+ssh'ing to the machine dmesg seems to get overflowed with:
 
---- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 10:23:12 PST ---
-Kernel modules: nvidia, nvidiafb
-
-That's bad twice, you shouldn't load the blob and nvidiafb.
+[drm:nv50_dac_detect] Using bios provided load_pattern of 520
+[drm:nv50_dac_detect] Load was detected on output with or 1
+[drm:nv50_connector_hpd_detect] Hotplug detect returned negative for bus 1
+[drm:nouveau_nv50_i2c_irq_handler] NV50_PCONNECTOR_HOTPLUG_CTRL - 0x00100010
+[drm:nv50_connector_hpd_detect] Hotplug detect returned positive for bus 0
+[drm:nv50_dac_detect] Using bios provided load_pattern of 520
+[drm:nv50_dac_detect] Load was detected on output with or 1
+[drm:nv50_connector_hpd_detect] Hotplug detect returned negative for bus 1
+[drm:nouveau_nv50_i2c_irq_handler] NV50_PCONNECTOR_HOTPLUG_CTRL - 0x00100010
+[drm:nv50_connector_hpd_detect] Hotplug detect returned positive for bus 0
+[drm:nv50_dac_detect] Using bios provided load_pattern of 520
+[drm:nv50_dac_detect] Load was detected on output with or 1
+[drm:nv50_connector_hpd_detect] Hotplug detect returned negative for bus 1
+[drm:nouveau_nv50_i2c_irq_handler] NV50_PCONNECTOR_HOTPLUG_CTRL - 0x00100010
+[drm:nv50_connector_hpd_detect] Hotplug detect returned positive for bus 0
+....
+....
+....
 
 
 -- 
