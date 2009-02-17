@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20168] nVIDIA 9600GT KMS Blank Screen
-Date: Tue, 17 Feb 2009 10:21:23 -0800 (PST)
-Message-ID: <20090217182123.6E3C0130057@annarchy.freedesktop.org>
+Date: Tue, 17 Feb 2009 10:23:13 -0800 (PST)
+Message-ID: <20090217182313.3A89413005B@annarchy.freedesktop.org>
 References: <bug-20168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20168
 
 
-Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|nVIDIA 9600GT KMS Lockup    |nVIDIA 9600GT KMS Blank
-                   |                            |Screen
+                 CC|                            |madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
+
+
+--- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 10:23:12 PST ---
+Kernel modules: nvidia, nvidiafb
+
+That's bad twice, you shouldn't load the blob and nvidiafb.
 
 
 -- 
