@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20168] nVIDIA 9600GT KMS Blank Screen
-Date: Tue, 17 Feb 2009 12:56:17 -0800 (PST)
-Message-ID: <20090217205617.64054130058@annarchy.freedesktop.org>
-References: <bug-20168-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20142] black horizontal line on 9600M GT, KMS issue
+Date: Tue, 17 Feb 2009 13:08:38 -0800 (PST)
+Message-ID: <20090217210839.0C8BF13005A@annarchy.freedesktop.org>
+References: <bug-20142-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-20142-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20168
+http://bugs.freedesktop.org/show_bug.cgi?id=20142
 
 
 
 
 
---- Comment #2 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 12:56:16 PST ---
-Maarten, I think those modules got loaded because I passed vga=795 option to
-the kernel. I'm using vanilla kernel and nvidia blob wasn't installed. Well I
-removed vga=795, modprobe -r nvidiafb, and I still get the blank screen. When
-ssh'ing to the machine dmesg seems to get overflowed with:
-
-[drm:nv50_dac_detect] Using bios provided load_pattern of 520
-[drm:nv50_dac_detect] Load was detected on output with or 1
-[drm:nv50_connector_hpd_detect] Hotplug detect returned negative for bus 1
-[drm:nouveau_nv50_i2c_irq_handler] NV50_PCONNECTOR_HOTPLUG_CTRL - 0x00100010
-[drm:nv50_connector_hpd_detect] Hotplug detect returned positive for bus 0
-[drm:nv50_dac_detect] Using bios provided load_pattern of 520
-[drm:nv50_dac_detect] Load was detected on output with or 1
-[drm:nv50_connector_hpd_detect] Hotplug detect returned negative for bus 1
-[drm:nouveau_nv50_i2c_irq_handler] NV50_PCONNECTOR_HOTPLUG_CTRL - 0x00100010
-[drm:nv50_connector_hpd_detect] Hotplug detect returned positive for bus 0
-[drm:nv50_dac_detect] Using bios provided load_pattern of 520
-[drm:nv50_dac_detect] Load was detected on output with or 1
-[drm:nv50_connector_hpd_detect] Hotplug detect returned negative for bus 1
-[drm:nouveau_nv50_i2c_irq_handler] NV50_PCONNECTOR_HOTPLUG_CTRL - 0x00100010
-[drm:nv50_connector_hpd_detect] Hotplug detect returned positive for bus 0
-....
-....
-....
+--- Comment #5 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-17 13:08:35 PST ---
+Created an attachment (id=23047)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23047)
+DMESG with drm debug=1, nouveau with modeset=1,  and without Xorg loaded (black
+line exist from moment when is nouveau modeset=1 loaded)
 
 
 -- 
