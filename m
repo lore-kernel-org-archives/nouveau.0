@@ -1,14 +1,13 @@
-From: Matthew Garrett <mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org>
-Subject: Re: [PATCH] Add in-kernel backlight control support
-Date: Wed, 18 Feb 2009 13:21:26 +0000
-Message-ID: <20090218132126.GA13672@srcf.ucam.org>
-References: <20090218020825.GA5562@srcf.ucam.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 20006] powerpc64: Black screen using RandR12
+Date: Wed, 18 Feb 2009 13:44:36 -0800 (PST)
+Message-ID: <20090218214436.A2B1F13005A@annarchy.freedesktop.org>
+References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20090218020825.GA5562-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org>
+In-Reply-To: <bug-20006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,37 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Sorry, that broke compiles on <2.6.29. Here's a patch.
+http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
-diff --git a/linux-core/nouveau_backlight.c b/linux-core/nouveau_backlight.c
-index dc75c44..32bb3e5 100644
---- a/linux-core/nouveau_backlight.c
-+++ b/linux-core/nouveau_backlight.c
-@@ -60,7 +60,9 @@ static int nv40_set_intensity(struct backlight_device *bd)
- }
- 
- static struct backlight_ops nv40_bl_ops = {
-+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,29))
- 	.options = BL_CORE_SUSPENDRESUME,
-+#endif
- 	.get_brightness = nv40_get_intensity,
- 	.update_status = nv40_set_intensity,
- };
-@@ -85,7 +87,9 @@ static int nv50_set_intensity(struct backlight_device *bd)
- }
- 
- static struct backlight_ops nv50_bl_ops = {
-+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,29))
- 	.options = BL_CORE_SUSPENDRESUME,
-+#endif
- 	.get_brightness = nv50_get_intensity,
- 	.update_status = nv50_set_intensity,
- };
+
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #23015|0                           |1
+        is obsolete|                            |
+
+
+
+
+--- Comment #30 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-18 13:44:34 PST ---
+Created an attachment (id=23087)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23087)
+Partial fix
+
+Ok, here's a partial fix, the other part being something wrong with scaling
+modes which I don't presently understand.  To test the fix, apply the patch,
+and to work-around the scaling problem add `Option "ScalingMode" "panel"' to
+the device section of your xorg.conf ("noscale" should work as well as panel,
+"aspect" and "fullscreen" won't).
+
+Assuming this works and you feel like a new challenge, if booting with the
+monitor on the other dvi port gets an image with randr12 turned off (or even
+with the "nv" driver), feel free to make comparison regdumps of that and we can
+look at fixing it for randr12 :-)
+
 
 -- 
-Matthew Garrett | mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
