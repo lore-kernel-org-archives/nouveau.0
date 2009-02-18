@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Wed, 18 Feb 2009 02:41:38 -0800 (PST)
-Message-ID: <20090218104138.E750513005B@annarchy.freedesktop.org>
-References: <bug-20006-8800@http.bugs.freedesktop.org/>
+From: Matthew Garrett <mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org>
+Subject: Re: [PATCH] Add in-kernel backlight control support
+Date: Wed, 18 Feb 2009 13:21:26 +0000
+Message-ID: <20090218132126.GA13672@srcf.ucam.org>
+References: <20090218020825.GA5562@srcf.ucam.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20090218020825.GA5562-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,32 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20006
+Sorry, that broke compiles on <2.6.29. Here's a patch.
 
-
-
-
-
---- Comment #29 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-18 02:41:37 PST ---
-(In reply to comment #28)
-> Created an attachment (id=23015)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23015) [details]
-> improved workaround
-> 
-> Please test with this patch on a clean checkout.  If it works, can you also try
-> removing the line it adds to nv_crtc.c and see if the change to nv_bios.c is
-> sufficient?
-
-Patch works fine, no picture again without the change to nv_crtc.c though.
-
+diff --git a/linux-core/nouveau_backlight.c b/linux-core/nouveau_backlight.c
+index dc75c44..32bb3e5 100644
+--- a/linux-core/nouveau_backlight.c
++++ b/linux-core/nouveau_backlight.c
+@@ -60,7 +60,9 @@ static int nv40_set_intensity(struct backlight_device *bd)
+ }
+ 
+ static struct backlight_ops nv40_bl_ops = {
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,29))
+ 	.options = BL_CORE_SUSPENDRESUME,
++#endif
+ 	.get_brightness = nv40_get_intensity,
+ 	.update_status = nv40_set_intensity,
+ };
+@@ -85,7 +87,9 @@ static int nv50_set_intensity(struct backlight_device *bd)
+ }
+ 
+ static struct backlight_ops nv50_bl_ops = {
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,29))
+ 	.options = BL_CORE_SUSPENDRESUME,
++#endif
+ 	.get_brightness = nv50_get_intensity,
+ 	.update_status = nv50_set_intensity,
+ };
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Matthew Garrett | mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org
