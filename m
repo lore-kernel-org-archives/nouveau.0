@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Thu, 19 Feb 2009 13:44:39 -0800 (PST)
-Message-ID: <20090219214439.AE54D130057@annarchy.freedesktop.org>
+Date: Thu, 19 Feb 2009 15:12:33 -0800 (PST)
+Message-ID: <20090219231233.DF847130058@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,16 +26,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #33 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-19 13:44:39 PST ---
-(In reply to comment #32)
-> Huh, weird.  maybe "noscale" would work better than "panel"?  otherwise (to
-> test I've not totally misdiagnosed this), in nv_crtc.c change the line with
-> SCALE_PANEL to "if (1 || nv_encoder->scaling_mode == SCALE_PANEL ||".  If that
-> doesn't work I'm confused :-)
+--- Comment #34 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-19 15:12:32 PST ---
+Created an attachment (id=23122)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23122)
+dpms lolz
 
-I had tried both 'noscale' and 'panel', neither worked. Sorry for the
-confusion. But that's apparently really not the problem, since the '1' didn't
-fix anything either.
+ok, I think I see what I overlooked.  apply this patch on top of the previous
+"partial fix", and hopefully it should work, even without a specific scaling
+mode.
 
 
 -- 
