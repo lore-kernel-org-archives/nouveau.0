@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Thu, 19 Feb 2009 06:50:15 -0800 (PST)
-Message-ID: <20090219145015.50139130057@annarchy.freedesktop.org>
+Date: Thu, 19 Feb 2009 12:22:01 -0800 (PST)
+Message-ID: <20090219202201.CA08A130058@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,25 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #31 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-19 06:50:14 PST ---
-(In reply to comment #30)
-> Created an attachment (id=23087)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23087) [details]
-> Partial fix
-> 
-> Ok, here's a partial fix, the other part being something wrong with scaling
-> modes which I don't presently understand.  To test the fix, apply the patch,
-> and to work-around the scaling problem add `Option "ScalingMode" "panel"' to
-> the device section of your xorg.conf ("noscale" should work as well as panel,
-> "aspect" and "fullscreen" won't).
-> 
-> Assuming this works and you feel like a new challenge, if booting with the
-> monitor on the other dvi port gets an image with randr12 turned off (or even
-> with the "nv" driver), feel free to make comparison regdumps of that and we can
-> look at fixing it for randr12 :-)
+--- Comment #32 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-19 12:22:00 PST ---
+(In reply to comment #31)
+> Alright, bear with me here, fresh clone, patch applied, 'Option "ScalingMode"
+> "panel"'... black as ever. Am I missing something?
 
-Alright, bear with me here, fresh clone, patch applied, 'Option "ScalingMode"
-"panel"'... black as ever. Am I missing something?
+Huh, weird.  maybe "noscale" would work better than "panel"?  otherwise (to
+test I've not totally misdiagnosed this), in nv_crtc.c change the line with
+SCALE_PANEL to "if (1 || nv_encoder->scaling_mode == SCALE_PANEL ||".  If that
+doesn't work I'm confused :-)
 
 
 -- 
