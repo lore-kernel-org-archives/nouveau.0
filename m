@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Thu, 19 Feb 2009 12:22:01 -0800 (PST)
-Message-ID: <20090219202201.CA08A130058@annarchy.freedesktop.org>
+Date: Thu, 19 Feb 2009 13:44:39 -0800 (PST)
+Message-ID: <20090219214439.AE54D130057@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,16 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #32 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-19 12:22:00 PST ---
-(In reply to comment #31)
-> Alright, bear with me here, fresh clone, patch applied, 'Option "ScalingMode"
-> "panel"'... black as ever. Am I missing something?
+--- Comment #33 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-19 13:44:39 PST ---
+(In reply to comment #32)
+> Huh, weird.  maybe "noscale" would work better than "panel"?  otherwise (to
+> test I've not totally misdiagnosed this), in nv_crtc.c change the line with
+> SCALE_PANEL to "if (1 || nv_encoder->scaling_mode == SCALE_PANEL ||".  If that
+> doesn't work I'm confused :-)
 
-Huh, weird.  maybe "noscale" would work better than "panel"?  otherwise (to
-test I've not totally misdiagnosed this), in nv_crtc.c change the line with
-SCALE_PANEL to "if (1 || nv_encoder->scaling_mode == SCALE_PANEL ||".  If that
-doesn't work I'm confused :-)
+I had tried both 'noscale' and 'panel', neither worked. Sorry for the
+confusion. But that's apparently really not the problem, since the '1' didn't
+fix anything either.
 
 
 -- 
