@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Fri, 20 Feb 2009 06:27:21 -0800 (PST)
-Message-ID: <20090220142721.853E4130057@annarchy.freedesktop.org>
+Date: Fri, 20 Feb 2009 09:59:23 -0800 (PST)
+Message-ID: <20090220175923.A824C13005A@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #35 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-20 06:27:21 PST ---
-Yes, this works!
+--- Comment #36 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-20 09:59:23 PST ---
+Fix pushed:
+http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=e09f50e5f9126c682289b7ba790f16b93a80b876
+
+I'd be interested in fixing the other dvi port, if non-randr12-mode or nv can
+work with it, so we reach parity of functionality.  Otherwise, I think this can
+be resolved FIXED :)
 
 
 -- 
