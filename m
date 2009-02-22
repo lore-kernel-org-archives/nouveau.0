@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Sun, 22 Feb 2009 02:03:24 -0800 (PST)
-Message-ID: <20090222100324.92F8A13005B@annarchy.freedesktop.org>
+Date: Sun, 22 Feb 2009 03:52:22 -0800 (PST)
+Message-ID: <20090222115222.B6FD013005A@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #37 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-22 02:03:24 PST ---
-(In reply to comment #36)
-> I'd be interested in fixing the other dvi port, if non-randr12-mode or nv can
-> work with it, so we reach parity of functionality.  Otherwise, I think this can
-> be resolved FIXED :)
+--- Comment #38 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-22 03:52:20 PST ---
+(In reply to comment #37)
 
-Sure, what do you need? Register dumps using nv or non-randr12 nouveau, as you
-said above? Does it matter that the second port can only drive the panel at
-1920x1200?
+> Sure, what do you need? Register dumps using nv or non-randr12 nouveau, as you
+> said above? Does it matter that the second port can only drive the panel at
+> 1920x1200?
+
+So long as non-randr12/nv can get it to light up, and randr12-nouveau doesn't,
+1920x1200 is fine.  Register dumps and Xorg.0.logs would be great.
 
 
 -- 
