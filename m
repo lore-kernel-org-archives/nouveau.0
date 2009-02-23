@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Mon, 23 Feb 2009 08:46:40 -0800 (PST)
-Message-ID: <20090223164640.F1481130058@annarchy.freedesktop.org>
+Date: Mon, 23 Feb 2009 08:47:21 -0800 (PST)
+Message-ID: <20090223164721.A56B1130016@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,17 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #39 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-23 08:46:38 PST ---
-Created an attachment (id=23213)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23213)
-Xorg Log noveau without randr12
-
-Xorg log. Somewhat of a WTF moment here, DVI-I-1 apparently will drive the
-panel at 2560x1600 in non-randr12 mode. Thought this was supposed to be a
-single link DVI port...
-
-Good news: nouveau works on this port in randr12-mode, although only in
-1920x1200 (as I would have had expected). Register dump non-randr12 follows.
+--- Comment #40 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-23 08:47:20 PST ---
+Created an attachment (id=23214)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23214)
+Register dump nouveau no randr12
 
 
 -- 
