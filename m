@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Tue, 24 Feb 2009 09:20:46 -0800 (PST)
-Message-ID: <20090224172046.4B839130016@annarchy.freedesktop.org>
-References: <bug-20006-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20130] GT200: nv50 chipset 0xa0 2D corruption
+Date: Tue, 24 Feb 2009 13:00:25 -0800 (PST)
+Message-ID: <20090224210025.4FA0B130016@annarchy.freedesktop.org>
+References: <bug-20130-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-20130-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20006
+http://bugs.freedesktop.org/show_bug.cgi?id=20130
 
 
 
 
 
---- Comment #41 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-24 09:20:42 PST ---
-(In reply to comment #39)
-> Xorg log. Somewhat of a WTF moment here, DVI-I-1 apparently will drive the
-> panel at 2560x1600 in non-randr12 mode. Thought this was supposed to be a
-> single link DVI port...
-> Good news: nouveau works on this port in randr12-mode, although only in
-> 1920x1200 (as I would have had expected). Register dump non-randr12 follows.
+--- Comment #14 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-24 13:00:24 PST ---
+With modesetting-gem I get 100% Xorg utilization since dmesg get overflowed
+with:
 
-Interesting, what resolution does OSX let you have on that connector (assuming
-you've got OSX installed)?
-
-You can allow dual-link modes on that connector in nouveau by editing
-nv_output_mode_valid() in nv_output.c; a simple change being to replace the
-MODE_CLOCK_HIGH after the (mode->Clock > 165000) test with MODE_OK, but I've no
-idea whether that would work :-)
+[drm:nouveau_irq_handler] *ERROR* Unhandled PMC INTR status bits 0x00020000
+[drm:nouveau_irq_handler] *ERROR* Unhandled PMC INTR status bits 0x00020000
+[drm:nouveau_irq_handler] *ERROR* Unhandled PMC INTR status bits 0x00020000
+[drm:nouveau_irq_handler] *ERROR* Unhandled PMC INTR status bits 0x00020000
+...
 
 
 -- 
