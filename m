@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20130] GT200: nv50 chipset 0xa0 2D corruption
-Date: Mon, 23 Feb 2009 23:30:11 -0800 (PST)
-Message-ID: <20090224073011.8639D130016@annarchy.freedesktop.org>
+Date: Mon, 23 Feb 2009 23:30:34 -0800 (PST)
+Message-ID: <20090224073035.19F73130016@annarchy.freedesktop.org>
 References: <bug-20130-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20130
 
 
-Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #23051|0                           |1
-        is obsolete|                            |
 
 
 
-
---- Comment #11 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-23 23:30:10 PST ---
-Created an attachment (id=23248)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23248)
-dmesg-02.24.09-while X is running
+--- Comment #12 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-23 23:30:34 PST ---
+Created an attachment (id=23249)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23249)
+dmesg-02.24.09-after X  lougout
 
 
 -- 
