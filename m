@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20130] GT200: nv50 chipset 0xa0 2D corruption
-Date: Mon, 23 Feb 2009 23:27:10 -0800 (PST)
-Message-ID: <20090224072710.67E22130058@annarchy.freedesktop.org>
+Date: Mon, 23 Feb 2009 23:29:25 -0800 (PST)
+Message-ID: <20090224072925.162E6130016@annarchy.freedesktop.org>
 References: <bug-20130-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20130
 
 
-Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|GT200: nv50 chipset 0xa0    |GT200: nv50 chipset 0xa0 2D
-                   |lockup                      |corruption
 
 
 
-
---- Comment #9 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-23 23:27:09 PST ---
-I cannot reproduce the 100% cpu Xorg, I guess something went wrong before when
-I tried it. I logged in +10 times and only get mild 2D corruption
-http://img15.imageshack.us/img15/8486/2dcorruption.jpg, so we're almost there. 
+--- Comment #10 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-23 23:29:24 PST ---
+Created an attachment (id=23247)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23247)
+Xorg.0.log-02.24.09
 
 
 -- 
