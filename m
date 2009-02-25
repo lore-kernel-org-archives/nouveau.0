@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20309] Nouveau problem with setting screen
  resolution on a monitor connected to VGA output on Geforce 7050
-Date: Wed, 25 Feb 2009 05:04:38 -0800 (PST)
-Message-ID: <20090225130438.8DA09130016@annarchy.freedesktop.org>
+Date: Wed, 25 Feb 2009 08:20:14 -0800 (PST)
+Message-ID: <20090225162014.39530130016@annarchy.freedesktop.org>
 References: <bug-20309-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,18 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20309
 
 
-Jon Z <a1ea0d8d6cb7-bnvEqEza/tSenpxAfqdfUOcKUUyq9jGW@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         OS/Version|All                         |Linux (All)
-           Platform|Other                       |x86-64 (AMD64)
 
 
 
-
---- Comment #1 from Jon Z <a1ea0d8d6cb7-bnvEqEza/tSenpxAfqdfUOcKUUyq9jGW@public.gmane.org>  2009-02-25 05:04:36 PST ---
-The xorg log file can be found here: http://rafb.net/p/prrKfp36.html
+--- Comment #2 from Jon Z <a1ea0d8d6cb7-bnvEqEza/tSenpxAfqdfUOcKUUyq9jGW@public.gmane.org>  2009-02-25 08:20:13 PST ---
+Created an attachment (id=23285)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23285)
+Video BIOS
 
 
 -- 
