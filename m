@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20298] Nouveau doesn't allow my modeline because of
  hardcoded value
-Date: Wed, 25 Feb 2009 11:21:02 -0800 (PST)
-Message-ID: <20090225192102.E0743130016@annarchy.freedesktop.org>
+Date: Wed, 25 Feb 2009 13:00:59 -0800 (PST)
+Message-ID: <20090225210059.47923130016@annarchy.freedesktop.org>
 References: <bug-20298-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,19 +27,21 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20298
 
 
 
---- Comment #2 from Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-25 11:21:02 PST ---
-01:00.0 VGA compatible controller: nVidia Corporation NV18 [GeForce4 MX 4000]
-(rev c1)
+--- Comment #3 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-25 13:00:58 PST ---
+(In reply to comment #2)
+> 01:00.0 VGA compatible controller: nVidia Corporation NV18 [GeForce4 MX 4000]
+> (rev c1)
+> 
+> 0x680520        0x00045405 (283653)
+> 
+> The modeline does work successfully with nouveau after removing the quoted
+> sanity check or reducing the value. The output from radeontool is identical for
+> both nvidia and patched nouveau.
 
-0x680520        0x00045405 (283653)
-
-The modeline does work successfully with nouveau after removing the quoted
-sanity check or reducing the value. The output from radeontool is identical for
-both nvidia and patched nouveau.
-
-nv does not support this modeline; it also arbitrarily sets the minimum clock
-frequency to 12000
-(http://cgit.freedesktop.org/xorg/driver/xf86-video-nv/tree/src/nv_setup.c#n274)
+Hi, can I also have ./radeontool regmatch 0x101000 and ./radeontool regmatch
+0x680508 while running this mode under nvidia.  An Xorg.0.log to show what's
+getting set would also help (and if you can run Xorg with "-logverbose 9"
+that's even better).
 
 
 -- 
