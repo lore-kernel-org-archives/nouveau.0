@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20298] Nouveau doesn't allow my modeline because of
  hardcoded value
-Date: Wed, 25 Feb 2009 13:57:28 -0800 (PST)
-Message-ID: <20090225215728.25951130058@annarchy.freedesktop.org>
+Date: Wed, 25 Feb 2009 17:58:04 -0800 (PST)
+Message-ID: <20090226015805.23AE4130016@annarchy.freedesktop.org>
 References: <bug-20298-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20298
 
 
 
---- Comment #6 from Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-25 13:57:27 PST ---
-Also, 9.875 mhz is not even the lowest pixel clock somebody might want to use.
-That modeline is 16:9 - the 4:3 equivalent (384x288) would have a pixel clock
-of 7.375 mhz.
+--- Comment #7 from Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-25 17:58:03 PST ---
+radeontool outputs:
+
+0x101000        0x84ded09f (-2065772385)
+0x680508        0x0005750a (357642)
 
 
 -- 
