@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20361] nouveau - incorrect resolution on an external
  monitor attached to a laptop
-Date: Fri, 27 Feb 2009 11:07:59 -0800 (PST)
-Message-ID: <20090227190759.C3B26130016@annarchy.freedesktop.org>
+Date: Fri, 27 Feb 2009 11:08:16 -0800 (PST)
+Message-ID: <20090227190816.EB33E130016@annarchy.freedesktop.org>
 References: <bug-20361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,7 +28,7 @@ Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #23376|application/octet-stream    |text/plain
+  Attachment #23377|application/octet-stream    |text/plain
           mime type|                            |
 
 
