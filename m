@@ -1,16 +1,14 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/2] exa: do PrepareAccess for classic too,
- since we do need to map the frontbuffer.
-Date: Fri, 27 Feb 2009 14:42:17 +1000
-Message-ID: <1235709737.3423.2.camel@localhost.localdomain>
+Subject: Re: [PATCH 1/2] exa: turn WaitMarker into a NOP.
+Date: Fri, 27 Feb 2009 14:43:16 +1000
+Message-ID: <1235709796.3423.3.camel@localhost.localdomain>
 References: <1235681723-11180-1-git-send-email-madman2003@gmail.com>
-	<1235681723-11180-2-git-send-email-madman2003@gmail.com>
 Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1235681723-11180-2-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1235681723-11180-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,72 +23,26 @@ Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 On Thu, 2009-02-26 at 21:55 +0100, Maarten Maathuis wrote:
-> - I'm surprised we didn't get serious complaints about not being able to render to the frontbuffer.
-We don't get serious complaints because it's not an issue.  EXA is given
-the virtual address, and it remembers it.  The design of the mm
-guarantees the virtual address of the buffer won't change, map()/unmap()
-are there merely for synchronisation of CPU/GPU access.
-
-In the "classic" case, exaMarkSync()/exaWaitSync() do the
-synchronisation job as we don't use prepare/finish_access().
+> - map should handle this.
+It does, but we don't use prepare/finish_access() hooks to do map() on
+the buffer in the non-driver-pixmaps case.  I guess we could use
+prepare/finish_access() there too, it probably wouldn't hurt any.
 
 Ben.
-
 > ---
->  src/nouveau_exa.c |   16 ++++++++++------
->  1 files changed, 10 insertions(+), 6 deletions(-)
+>  src/nouveau_exa.c |    2 +-
+>  1 files changed, 1 insertions(+), 1 deletions(-)
 > 
 > diff --git a/src/nouveau_exa.c b/src/nouveau_exa.c
-> index 20ad380..4b21e80 100644
+> index b656ca7..20ad380 100644
 > --- a/src/nouveau_exa.c
 > +++ b/src/nouveau_exa.c
-> @@ -265,12 +265,14 @@ nouveau_exa_wait_marker(ScreenPtr pScreen, int marker)
->  static Bool
->  nouveau_exa_prepare_access(PixmapPtr ppix, int index)
->  {
-> -	ScrnInfoPtr pScrn = xf86Screens[ppix->drawable.pScreen->myNum];
-> +	ScreenPtr pScreen = ppix->drawable.pScreen;
-> +	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
->  	NVPtr pNv = NVPTR(pScrn);
->  
-> -	if (pNv->exa_driver_pixmaps) {
-> +	if (pNv->exa_driver_pixmaps || pScreen->GetScreenPixmap(pScreen) == ppix) {
->  		void *map = nouveau_exa_pixmap_map(ppix);
->  
-> +		/* Really bad if this is the frontbuffer. */
->  		if (!map)
->  			return FALSE;
->  
-> @@ -284,10 +286,11 @@ nouveau_exa_prepare_access(PixmapPtr ppix, int index)
+> @@ -259,7 +259,7 @@ nouveau_exa_mark_sync(ScreenPtr pScreen)
 >  static void
->  nouveau_exa_finish_access(PixmapPtr ppix, int index)
+>  nouveau_exa_wait_marker(ScreenPtr pScreen, int marker)
 >  {
-> -	ScrnInfoPtr pScrn = xf86Screens[ppix->drawable.pScreen->myNum];
-> +	ScreenPtr pScreen = ppix->drawable.pScreen;
-> +	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
->  	NVPtr pNv = NVPTR(pScrn);
->  
-> -	if (pNv->exa_driver_pixmaps)
-> +	if (pNv->exa_driver_pixmaps || pScreen->GetScreenPixmap(pScreen) == ppix)
->  		nouveau_exa_pixmap_unmap(ppix);
+> -	NVSync(xf86Screens[pScreen->myNum]);
+> +	return;
 >  }
 >  
-> @@ -553,8 +556,6 @@ nouveau_exa_init(ScreenPtr pScreen)
->  		exa->pixmapPitchAlign = 64;
->  
->  		exa->PixmapIsOffscreen = nouveau_exa_pixmap_is_offscreen;
-> -		exa->PrepareAccess = nouveau_exa_prepare_access;
-> -		exa->FinishAccess = nouveau_exa_finish_access;
->  		exa->CreatePixmap = nouveau_exa_create_pixmap;
->  		exa->DestroyPixmap = nouveau_exa_destroy_pixmap;
->  		exa->ModifyPixmapHeader = nouveau_exa_modify_pixmap_header;
-> @@ -604,6 +605,9 @@ nouveau_exa_init(ScreenPtr pScreen)
->  		exa->maxY = 2048;
->  	}
->  
-> +	exa->PrepareAccess = nouveau_exa_prepare_access;
-> +	exa->FinishAccess = nouveau_exa_finish_access;
-> +
->  	exa->MarkSync = nouveau_exa_mark_sync;
->  	exa->WaitMarker = nouveau_exa_wait_marker;
->  
+>  static Bool
