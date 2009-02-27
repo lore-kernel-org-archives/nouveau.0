@@ -1,14 +1,11 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] exa: do PrepareAccess for classic too,
-	since we do need to map the frontbuffer.
-Date: Thu, 26 Feb 2009 21:55:23 +0100
-Message-ID: <1235681723-11180-2-git-send-email-madman2003@gmail.com>
-References: <1235681723-11180-1-git-send-email-madman2003@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 20341] New: NV31 lockup
+Date: Thu, 26 Feb 2009 17:51:03 -0800 (PST)
+Message-ID: <bug-20341-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1235681723-11180-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,64 +18,67 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-- I'm surprised we didn't get serious complaints about not being able to render to the frontbuffer.
----
- src/nouveau_exa.c |   16 ++++++++++------
- 1 files changed, 10 insertions(+), 6 deletions(-)
+http://bugs.freedesktop.org/show_bug.cgi?id=20341
 
-diff --git a/src/nouveau_exa.c b/src/nouveau_exa.c
-index 20ad380..4b21e80 100644
---- a/src/nouveau_exa.c
-+++ b/src/nouveau_exa.c
-@@ -265,12 +265,14 @@ nouveau_exa_wait_marker(ScreenPtr pScreen, int marker)
- static Bool
- nouveau_exa_prepare_access(PixmapPtr ppix, int index)
- {
--	ScrnInfoPtr pScrn = xf86Screens[ppix->drawable.pScreen->myNum];
-+	ScreenPtr pScreen = ppix->drawable.pScreen;
-+	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
- 	NVPtr pNv = NVPTR(pScrn);
- 
--	if (pNv->exa_driver_pixmaps) {
-+	if (pNv->exa_driver_pixmaps || pScreen->GetScreenPixmap(pScreen) == ppix) {
- 		void *map = nouveau_exa_pixmap_map(ppix);
- 
-+		/* Really bad if this is the frontbuffer. */
- 		if (!map)
- 			return FALSE;
- 
-@@ -284,10 +286,11 @@ nouveau_exa_prepare_access(PixmapPtr ppix, int index)
- static void
- nouveau_exa_finish_access(PixmapPtr ppix, int index)
- {
--	ScrnInfoPtr pScrn = xf86Screens[ppix->drawable.pScreen->myNum];
-+	ScreenPtr pScreen = ppix->drawable.pScreen;
-+	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
- 	NVPtr pNv = NVPTR(pScrn);
- 
--	if (pNv->exa_driver_pixmaps)
-+	if (pNv->exa_driver_pixmaps || pScreen->GetScreenPixmap(pScreen) == ppix)
- 		nouveau_exa_pixmap_unmap(ppix);
- }
- 
-@@ -553,8 +556,6 @@ nouveau_exa_init(ScreenPtr pScreen)
- 		exa->pixmapPitchAlign = 64;
- 
- 		exa->PixmapIsOffscreen = nouveau_exa_pixmap_is_offscreen;
--		exa->PrepareAccess = nouveau_exa_prepare_access;
--		exa->FinishAccess = nouveau_exa_finish_access;
- 		exa->CreatePixmap = nouveau_exa_create_pixmap;
- 		exa->DestroyPixmap = nouveau_exa_destroy_pixmap;
- 		exa->ModifyPixmapHeader = nouveau_exa_modify_pixmap_header;
-@@ -604,6 +605,9 @@ nouveau_exa_init(ScreenPtr pScreen)
- 		exa->maxY = 2048;
- 	}
- 
-+	exa->PrepareAccess = nouveau_exa_prepare_access;
-+	exa->FinishAccess = nouveau_exa_finish_access;
-+
- 	exa->MarkSync = nouveau_exa_mark_sync;
- 	exa->WaitMarker = nouveau_exa_wait_marker;
- 
+           Summary: NV31 lockup
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=23346)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23346)
+Xorg.0.log
+
+I'm seeing a lockup when images are changed on screen.  The display will freeze
+and all mouse clicks and keyboard input is lost, including keylock toggles. 
+Curiously, the pointer will continue tracking mouse movement.  Attached X
+clients also seem to be happy remaining connected.
+
+In practice, this happens quite a bit in Opera when switching tabs or scrolling
+web pages with large images.  I've found a test case using "x11perf
+-putimage500" which triggers the same bug (I think?) after one or two seconds
+of drawing the test pattern.
+
+Connecting to the machine over the network shows X taking 100% CPU time. 
+Attaching strace shows a rapidly repeating output of:
+--- SIGALRM (Alarm clock) @ 0 (0) ---
+sigreturn()                             = ? (mask now [])
+
+I can recover to a working system with a "killall -9 X; vbetool post; startx"
+stanza, but that's really not something I enjoy doing once an hour.  ;-)
+
+
+My hardware is
+> lspci
+01:00.0 VGA compatible controller: nVidia Corporation NV31 [GeForce FX 5600
+Ultra] (rev a1) 
+> lspci -n
+01:00.0 0300: 10de:0311 (rev a1)]
+on a VIA KT133 on AGP.
+
+My software is:
+Linux 2.6.27.2 (vanilla)
+Xserver 1.6.0
+xf86-video-nouveau git master 1c4a284a80ebed9f9d1e01c47b929481801566b5
+libdrm + nouveau.ko + drm.ko git master
+e96fc62e5339e3c8c8944dfe9f5163f769bccbd8
+The system is otherwise a Slackware-current installation upgraded with just
+enough Xorg componentry to build the new X server.
+
+Thanks,
+Jason
+
+
 -- 
-1.6.1.3
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
