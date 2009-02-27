@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20361] nouveau - incorrect resolution on an external
  monitor attached to a laptop
-Date: Fri, 27 Feb 2009 11:32:53 -0800 (PST)
-Message-ID: <20090227193253.4C486130016@annarchy.freedesktop.org>
+Date: Fri, 27 Feb 2009 11:33:27 -0800 (PST)
+Message-ID: <20090227193327.5B6C8130016@annarchy.freedesktop.org>
 References: <bug-20361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20361
 
 
 
---- Comment #6 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2009-02-27 11:32:52 PST ---
-Adding virtual did not help. I'll attach the new xorg.conf in case I did it
-wrong.
+--- Comment #7 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2009-02-27 11:33:27 PST ---
+Created an attachment (id=23378)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23378)
+X configuration with virtual keyword
 
 
 -- 
