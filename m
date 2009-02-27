@@ -1,15 +1,17 @@
-From: =?UTF-8?B?SGVydsOpIENhdXdlbGllcg==?= <herve.cauwelier-GANU6spQydw@public.gmane.org>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH 2/2] exa: do PrepareAccess for classic too,
- since we do need to map the frontbuffer.
-Date: Fri, 27 Feb 2009 11:07:11 +0100
-Message-ID: <49A7BB4F.7040103@free.fr>
-References: <1235681723-11180-1-git-send-email-madman2003@gmail.com>	<1235681723-11180-2-git-send-email-madman2003@gmail.com>
+	since we do need to map the frontbuffer.
+Date: Fri, 27 Feb 2009 12:31:55 +0100
+Message-ID: <6d4bc9fc0902270331g254d6f9en8532e21ad49c9a20@mail.gmail.com>
+References: <1235681723-11180-1-git-send-email-madman2003@gmail.com>
+	<1235681723-11180-2-git-send-email-madman2003@gmail.com>
 	<1235709737.3423.2.camel@localhost.localdomain>
+	<49A7BB4F.7040103@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1235709737.3423.2.camel-bi+AKbBUZKY6gyzm1THtWbp2dZbC/Bob@public.gmane.org>
+In-Reply-To: <49A7BB4F.7040103-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,29 +21,46 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-1?Q?Herv=E9_Cauwelier?= <herve.cauwelier-GANU6spQydw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QmVuIFNrZWdncyBhIMOpY3JpdCA6Cj4gT24gVGh1LCAyMDA5LTAyLTI2IGF0IDIxOjU1ICswMTAw
-LCBNYWFydGVuIE1hYXRodWlzIHdyb3RlOgo+PiAtIEknbSBzdXJwcmlzZWQgd2UgZGlkbid0IGdl
-dCBzZXJpb3VzIGNvbXBsYWludHMgYWJvdXQgbm90IGJlaW5nIGFibGUgdG8gcmVuZGVyIHRvIHRo
-ZSBmcm9udGJ1ZmZlci4KPiBXZSBkb24ndCBnZXQgc2VyaW91cyBjb21wbGFpbnRzIGJlY2F1c2Ug
-aXQncyBub3QgYW4gaXNzdWUuICBFWEEgaXMgZ2l2ZW4KPiB0aGUgdmlydHVhbCBhZGRyZXNzLCBh
-bmQgaXQgcmVtZW1iZXJzIGl0LiAgVGhlIGRlc2lnbiBvZiB0aGUgbW0KPiBndWFyYW50ZWVzIHRo
-ZSB2aXJ0dWFsIGFkZHJlc3Mgb2YgdGhlIGJ1ZmZlciB3b24ndCBjaGFuZ2UsIG1hcCgpL3VubWFw
-KCkKPiBhcmUgdGhlcmUgbWVyZWx5IGZvciBzeW5jaHJvbmlzYXRpb24gb2YgQ1BVL0dQVSBhY2Nl
-c3MuCj4gCj4gSW4gdGhlICJjbGFzc2ljIiBjYXNlLCBleGFNYXJrU3luYygpL2V4YVdhaXRTeW5j
-KCkgZG8gdGhlCj4gc3luY2hyb25pc2F0aW9uIGpvYiBhcyB3ZSBkb24ndCB1c2UgcHJlcGFyZS9m
-aW5pc2hfYWNjZXNzKCkuCj4gCj4gQmVuLgoKSSBkaWRuJ3QgY29tcGxhaW4gYmVjYXVzZSBJIHRo
-aW5rIHlvdSBoYXZlIG1vcmUgaW1wb3J0YW50IGlzc3VlcyB0bwphZGRyZXNzLCBidXQgSSBzcGVu
-ZCBoYWxmIG9mIG15IHdvcmsgZGF5IG9uIGdub21lLXRlcm1pbmFsIGFuZCB3YWl0aW5nIGEKY291
-cGxlIG9mIHNlY29uZHMgd2hlbiBzd2l0Y2hpbmcgd2luZG93cyBvciBkZXNrdG9wcyBpcyByYXBp
-ZGx5CmFubm95aW5nLiBBbmQgbm8sIEkgY2FuJ3QgcmVwbGFjZSBpdCBiZWNhdXNlIGl0J3MgY29u
-ZmlndXJlZCBmb3IgbXkKbmVlZHMgYW5kIEkgaGVhdmlseSB1c2UgdGhlIHRhYnMuCgpJZiB0aGUg
-YnVnIGNvdWxkIGJlIGFkZHJlc3NlZCBpbiBnbm9tZS10ZXJtaW5hbCwgSSBjYW4gd29yayB3aXRo
-IHRoZW0gb24KR25vbWUncyBidWd6aWxsYSwgd2l0aCBhbnkgZGV0YWlsIHlvdSBjb3VsZCBnaXZl
-IHRvIG1lLgoKRm9yIG5vdywgSSB1c2UgYSBicmFuY2ggd2l0aCBNYWFydGVuJ3MgcGF0Y2hlcyBm
-cm9tIEZlYnJ1YXJ5IHRoZSAxMnRoLgoKSGVydsOpCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+You're confusing issues, yours is a performance issue, not a correctness is=
+sue.
+
+Maarten.
+
+On Fri, Feb 27, 2009 at 11:07 AM, Herv=E9 Cauwelier
+<herve.cauwelier-GANU6spQydw@public.gmane.org> wrote:
+> Ben Skeggs a =E9crit :
+>> On Thu, 2009-02-26 at 21:55 +0100, Maarten Maathuis wrote:
+>>> - I'm surprised we didn't get serious complaints about not being able t=
+o render to the frontbuffer.
+>> We don't get serious complaints because it's not an issue. =A0EXA is giv=
+en
+>> the virtual address, and it remembers it. =A0The design of the mm
+>> guarantees the virtual address of the buffer won't change, map()/unmap()
+>> are there merely for synchronisation of CPU/GPU access.
+>>
+>> In the "classic" case, exaMarkSync()/exaWaitSync() do the
+>> synchronisation job as we don't use prepare/finish_access().
+>>
+>> Ben.
+>
+> I didn't complain because I think you have more important issues to
+> address, but I spend half of my work day on gnome-terminal and waiting a
+> couple of seconds when switching windows or desktops is rapidly
+> annoying. And no, I can't replace it because it's configured for my
+> needs and I heavily use the tabs.
+>
+> If the bug could be addressed in gnome-terminal, I can work with them on
+> Gnome's bugzilla, with any detail you could give to me.
+>
+> For now, I use a branch with Maarten's patches from February the 12th.
+>
+> Herv=E9
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
