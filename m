@@ -1,14 +1,15 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/2] exa: turn WaitMarker into a NOP.
-Date: Fri, 27 Feb 2009 14:43:16 +1000
-Message-ID: <1235709796.3423.3.camel@localhost.localdomain>
-References: <1235681723-11180-1-git-send-email-madman2003@gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: =?UTF-8?B?SGVydsOpIENhdXdlbGllcg==?= <herve.cauwelier-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH 2/2] exa: do PrepareAccess for classic too,
+ since we do need to map the frontbuffer.
+Date: Fri, 27 Feb 2009 11:07:11 +0100
+Message-ID: <49A7BB4F.7040103@free.fr>
+References: <1235681723-11180-1-git-send-email-madman2003@gmail.com>	<1235681723-11180-2-git-send-email-madman2003@gmail.com>
+	<1235709737.3423.2.camel@localhost.localdomain>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1235681723-11180-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1235709737.3423.2.camel-bi+AKbBUZKY6gyzm1THtWbp2dZbC/Bob@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,31 +19,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 2009-02-26 at 21:55 +0100, Maarten Maathuis wrote:
-> - map should handle this.
-It does, but we don't use prepare/finish_access() hooks to do map() on
-the buffer in the non-driver-pixmaps case.  I guess we could use
-prepare/finish_access() there too, it probably wouldn't hurt any.
-
-Ben.
-> ---
->  src/nouveau_exa.c |    2 +-
->  1 files changed, 1 insertions(+), 1 deletions(-)
-> 
-> diff --git a/src/nouveau_exa.c b/src/nouveau_exa.c
-> index b656ca7..20ad380 100644
-> --- a/src/nouveau_exa.c
-> +++ b/src/nouveau_exa.c
-> @@ -259,7 +259,7 @@ nouveau_exa_mark_sync(ScreenPtr pScreen)
->  static void
->  nouveau_exa_wait_marker(ScreenPtr pScreen, int marker)
->  {
-> -	NVSync(xf86Screens[pScreen->myNum]);
-> +	return;
->  }
->  
->  static Bool
+QmVuIFNrZWdncyBhIMOpY3JpdCA6Cj4gT24gVGh1LCAyMDA5LTAyLTI2IGF0IDIxOjU1ICswMTAw
+LCBNYWFydGVuIE1hYXRodWlzIHdyb3RlOgo+PiAtIEknbSBzdXJwcmlzZWQgd2UgZGlkbid0IGdl
+dCBzZXJpb3VzIGNvbXBsYWludHMgYWJvdXQgbm90IGJlaW5nIGFibGUgdG8gcmVuZGVyIHRvIHRo
+ZSBmcm9udGJ1ZmZlci4KPiBXZSBkb24ndCBnZXQgc2VyaW91cyBjb21wbGFpbnRzIGJlY2F1c2Ug
+aXQncyBub3QgYW4gaXNzdWUuICBFWEEgaXMgZ2l2ZW4KPiB0aGUgdmlydHVhbCBhZGRyZXNzLCBh
+bmQgaXQgcmVtZW1iZXJzIGl0LiAgVGhlIGRlc2lnbiBvZiB0aGUgbW0KPiBndWFyYW50ZWVzIHRo
+ZSB2aXJ0dWFsIGFkZHJlc3Mgb2YgdGhlIGJ1ZmZlciB3b24ndCBjaGFuZ2UsIG1hcCgpL3VubWFw
+KCkKPiBhcmUgdGhlcmUgbWVyZWx5IGZvciBzeW5jaHJvbmlzYXRpb24gb2YgQ1BVL0dQVSBhY2Nl
+c3MuCj4gCj4gSW4gdGhlICJjbGFzc2ljIiBjYXNlLCBleGFNYXJrU3luYygpL2V4YVdhaXRTeW5j
+KCkgZG8gdGhlCj4gc3luY2hyb25pc2F0aW9uIGpvYiBhcyB3ZSBkb24ndCB1c2UgcHJlcGFyZS9m
+aW5pc2hfYWNjZXNzKCkuCj4gCj4gQmVuLgoKSSBkaWRuJ3QgY29tcGxhaW4gYmVjYXVzZSBJIHRo
+aW5rIHlvdSBoYXZlIG1vcmUgaW1wb3J0YW50IGlzc3VlcyB0bwphZGRyZXNzLCBidXQgSSBzcGVu
+ZCBoYWxmIG9mIG15IHdvcmsgZGF5IG9uIGdub21lLXRlcm1pbmFsIGFuZCB3YWl0aW5nIGEKY291
+cGxlIG9mIHNlY29uZHMgd2hlbiBzd2l0Y2hpbmcgd2luZG93cyBvciBkZXNrdG9wcyBpcyByYXBp
+ZGx5CmFubm95aW5nLiBBbmQgbm8sIEkgY2FuJ3QgcmVwbGFjZSBpdCBiZWNhdXNlIGl0J3MgY29u
+ZmlndXJlZCBmb3IgbXkKbmVlZHMgYW5kIEkgaGVhdmlseSB1c2UgdGhlIHRhYnMuCgpJZiB0aGUg
+YnVnIGNvdWxkIGJlIGFkZHJlc3NlZCBpbiBnbm9tZS10ZXJtaW5hbCwgSSBjYW4gd29yayB3aXRo
+IHRoZW0gb24KR25vbWUncyBidWd6aWxsYSwgd2l0aCBhbnkgZGV0YWlsIHlvdSBjb3VsZCBnaXZl
+IHRvIG1lLgoKRm9yIG5vdywgSSB1c2UgYSBicmFuY2ggd2l0aCBNYWFydGVuJ3MgcGF0Y2hlcyBm
+cm9tIEZlYnJ1YXJ5IHRoZSAxMnRoLgoKSGVydsOpCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
