@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20361] nouveau - incorrect resolution on an external
  monitor attached to a laptop
-Date: Fri, 27 Feb 2009 11:15:33 -0800 (PST)
-Message-ID: <20090227191534.0495A13005A@annarchy.freedesktop.org>
+Date: Fri, 27 Feb 2009 11:19:59 -0800 (PST)
+Message-ID: <20090227191959.D246F13005A@annarchy.freedesktop.org>
 References: <bug-20361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20361
 
 
 
---- Comment #4 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2009-02-27 11:15:33 PST ---
-Yes, it is. I'm not trying to hotplug anything yet.
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-27 11:19:59 PST ---
+My guess is that the arbitrary choice is made that your lvds size is the
+starting size. Which results in a framebuffer which cannot support larger
+resolutions.
+
+You'll have to add a virtual line (grep
+http://www.thinkwiki.org/wiki/Xorg_RandR_1.2).
 
 
 -- 
