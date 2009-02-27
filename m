@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20361] nouveau - incorrect resolution on an external
  monitor attached to a laptop
-Date: Fri, 27 Feb 2009 11:33:27 -0800 (PST)
-Message-ID: <20090227193327.5B6C8130016@annarchy.freedesktop.org>
+Date: Fri, 27 Feb 2009 11:36:05 -0800 (PST)
+Message-ID: <20090227193605.5899813005A@annarchy.freedesktop.org>
 References: <bug-20361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20361
 
 
 
---- Comment #7 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2009-02-27 11:33:27 PST ---
-Created an attachment (id=23378)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23378)
-X configuration with virtual keyword
+--- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-27 11:36:04 PST ---
+Tried manually setting the desired resolution (if it isn't doing it
+automatically in the first place it won't start magically doing something
+else)?
 
 
 -- 
