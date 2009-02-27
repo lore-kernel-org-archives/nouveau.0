@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20006] powerpc64: Black screen using RandR12
-Date: Fri, 27 Feb 2009 12:38:05 -0800 (PST)
-Message-ID: <20090227203805.D3924130058@annarchy.freedesktop.org>
+Date: Fri, 27 Feb 2009 12:39:27 -0800 (PST)
+Message-ID: <20090227203927.911AB130016@annarchy.freedesktop.org>
 References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,26 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
---- Comment #42 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-27 12:38:05 PST ---
-(In reply to comment #41)
-> Interesting, what resolution does OSX let you have on that connector (assuming
-> you've got OSX installed)?
-> 
-> You can allow dual-link modes on that connector in nouveau by editing
-> nv_output_mode_valid() in nv_output.c; a simple change being to replace the
-> MODE_CLOCK_HIGH after the (mode->Clock > 165000) test with MODE_OK, but I've no
-> idea whether that would work :-)
+--- Comment #43 from bmaass <bmaass-o02PS0xoJP/7u6qtEXMtuoQuADTiUCJX@public.gmane.org>  2009-02-27 12:39:27 PST ---
+(In reply to comment #42)
+> ...(just like nouveau in
+> non-randr12 mode)...
 
-Sorry this took so long, I needed to get hold of a copy of OSX. As anticipated,
-OSX would only drive the panel at 1920x1200 on DVI-I-1 (just like nouveau in
-non-randr12 mode).
-
-However, with the change you proposed, nouveau will do dual-link on the second
-connector without complaining.
-
-What is this? Did Apple cripple a dual-dual-link card so the could sell more
-high-end cards instead? Or might this break down if I tried to drive two
-dual-link displays simultaneously?
+I meant, "randr12-mode" of course, not "non-randr12".
 
 
 -- 
