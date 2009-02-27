@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20361] nouveau - incorrect resolution on an external
  monitor attached to a laptop
-Date: Fri, 27 Feb 2009 11:51:52 -0800 (PST)
-Message-ID: <20090227195152.B4A1D130016@annarchy.freedesktop.org>
+Date: Fri, 27 Feb 2009 11:54:39 -0800 (PST)
+Message-ID: <20090227195439.73D78130058@annarchy.freedesktop.org>
 References: <bug-20361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20361
 
 
 
---- Comment #9 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2009-02-27 11:51:52 PST ---
-Yep, works great after
-[ak@localhost SPECS]$ xrandr --output DVI-I-0 --mode 1920x1200
-
-except I'm seeing slight pixel corruption, but that'd be a separate bug.
-
-Anyway, this doesn't explain the non-sensible default choices - I'm no xrandr
-guru, but it's supposed to just work, no?
+--- Comment #10 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-27 11:54:37 PST ---
+Default choices became better at some point, not sure if xserver 1.5.3 already
+had them. Dynamic resizing of framebuffer will happen when we have a good
+memory manager.
 
 
 -- 
