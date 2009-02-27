@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20341] NV31 lockup
-Date: Thu, 26 Feb 2009 17:51:49 -0800 (PST)
-Message-ID: <20090227015149.ECE282DC001@annarchy.freedesktop.org>
+Date: Thu, 26 Feb 2009 17:59:08 -0800 (PST)
+Message-ID: <20090227015908.367E7130016@annarchy.freedesktop.org>
 References: <bug-20341-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20341
 
 
 
---- Comment #1 from Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-26 17:51:49 PST ---
-Created an attachment (id=23347)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23347)
-Verbose drm.ko output from dmesg
+--- Comment #2 from Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-26 17:59:07 PST ---
+Created an attachment (id=23348)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23348)
+xorg.conf
 
 
 -- 
