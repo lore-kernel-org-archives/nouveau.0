@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16765] nouveau - slight pixel corruption in text
-Date: Fri, 27 Feb 2009 12:08:49 -0800 (PST)
-Message-ID: <20090227200849.DAE1B130016@annarchy.freedesktop.org>
+Date: Fri, 27 Feb 2009 12:09:07 -0800 (PST)
+Message-ID: <20090227200907.81DF6130016@annarchy.freedesktop.org>
 References: <bug-16765-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,20 +27,10 @@ Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|white rectangles instead of |nouveau - slight pixel
-                   |fonts and bitmaps lost when |corruption in text
-                   |switching to virtual console|
-                   |and back                    |
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
-
-
---- Comment #3 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2009-02-27 12:08:49 PST ---
-Just updated to xorg-x11-drv-nouveau-0.0.11-1.20090106git133c1a5.fc10.ppc and
-the problem seems to be gone. 
-
-But there's a different problem now - I see slight pixel corruption in and
-around text. Will file a separate bug for that.
 
 
 -- 
