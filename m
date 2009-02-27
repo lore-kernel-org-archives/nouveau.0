@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20341] NV31 lockup
-Date: Thu, 26 Feb 2009 17:59:08 -0800 (PST)
-Message-ID: <20090227015908.367E7130016@annarchy.freedesktop.org>
-References: <bug-20341-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 2/2] exa: do PrepareAccess for classic too,
+ since we do need to map the frontbuffer.
+Date: Fri, 27 Feb 2009 14:42:17 +1000
+Message-ID: <1235709737.3423.2.camel@localhost.localdomain>
+References: <1235681723-11180-1-git-send-email-madman2003@gmail.com>
+	<1235681723-11180-2-git-send-email-madman2003@gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1235681723-11180-2-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,22 +20,77 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20341
+On Thu, 2009-02-26 at 21:55 +0100, Maarten Maathuis wrote:
+> - I'm surprised we didn't get serious complaints about not being able to render to the frontbuffer.
+We don't get serious complaints because it's not an issue.  EXA is given
+the virtual address, and it remembers it.  The design of the mm
+guarantees the virtual address of the buffer won't change, map()/unmap()
+are there merely for synchronisation of CPU/GPU access.
 
+In the "classic" case, exaMarkSync()/exaWaitSync() do the
+synchronisation job as we don't use prepare/finish_access().
 
+Ben.
 
-
-
---- Comment #2 from Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-26 17:59:07 PST ---
-Created an attachment (id=23348)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23348)
-xorg.conf
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+> ---
+>  src/nouveau_exa.c |   16 ++++++++++------
+>  1 files changed, 10 insertions(+), 6 deletions(-)
+> 
+> diff --git a/src/nouveau_exa.c b/src/nouveau_exa.c
+> index 20ad380..4b21e80 100644
+> --- a/src/nouveau_exa.c
+> +++ b/src/nouveau_exa.c
+> @@ -265,12 +265,14 @@ nouveau_exa_wait_marker(ScreenPtr pScreen, int marker)
+>  static Bool
+>  nouveau_exa_prepare_access(PixmapPtr ppix, int index)
+>  {
+> -	ScrnInfoPtr pScrn = xf86Screens[ppix->drawable.pScreen->myNum];
+> +	ScreenPtr pScreen = ppix->drawable.pScreen;
+> +	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+>  	NVPtr pNv = NVPTR(pScrn);
+>  
+> -	if (pNv->exa_driver_pixmaps) {
+> +	if (pNv->exa_driver_pixmaps || pScreen->GetScreenPixmap(pScreen) == ppix) {
+>  		void *map = nouveau_exa_pixmap_map(ppix);
+>  
+> +		/* Really bad if this is the frontbuffer. */
+>  		if (!map)
+>  			return FALSE;
+>  
+> @@ -284,10 +286,11 @@ nouveau_exa_prepare_access(PixmapPtr ppix, int index)
+>  static void
+>  nouveau_exa_finish_access(PixmapPtr ppix, int index)
+>  {
+> -	ScrnInfoPtr pScrn = xf86Screens[ppix->drawable.pScreen->myNum];
+> +	ScreenPtr pScreen = ppix->drawable.pScreen;
+> +	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+>  	NVPtr pNv = NVPTR(pScrn);
+>  
+> -	if (pNv->exa_driver_pixmaps)
+> +	if (pNv->exa_driver_pixmaps || pScreen->GetScreenPixmap(pScreen) == ppix)
+>  		nouveau_exa_pixmap_unmap(ppix);
+>  }
+>  
+> @@ -553,8 +556,6 @@ nouveau_exa_init(ScreenPtr pScreen)
+>  		exa->pixmapPitchAlign = 64;
+>  
+>  		exa->PixmapIsOffscreen = nouveau_exa_pixmap_is_offscreen;
+> -		exa->PrepareAccess = nouveau_exa_prepare_access;
+> -		exa->FinishAccess = nouveau_exa_finish_access;
+>  		exa->CreatePixmap = nouveau_exa_create_pixmap;
+>  		exa->DestroyPixmap = nouveau_exa_destroy_pixmap;
+>  		exa->ModifyPixmapHeader = nouveau_exa_modify_pixmap_header;
+> @@ -604,6 +605,9 @@ nouveau_exa_init(ScreenPtr pScreen)
+>  		exa->maxY = 2048;
+>  	}
+>  
+> +	exa->PrepareAccess = nouveau_exa_prepare_access;
+> +	exa->FinishAccess = nouveau_exa_finish_access;
+> +
+>  	exa->MarkSync = nouveau_exa_mark_sync;
+>  	exa->WaitMarker = nouveau_exa_wait_marker;
+>  
