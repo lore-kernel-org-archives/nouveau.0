@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20361] nouveau - incorrect resolution on an external
  monitor attached to a laptop
-Date: Sat, 28 Feb 2009 09:09:26 -0800 (PST)
-Message-ID: <20090228170926.2D17D130058@annarchy.freedesktop.org>
+Date: Sat, 28 Feb 2009 09:29:08 -0800 (PST)
+Message-ID: <20090228172908.2B695130016@annarchy.freedesktop.org>
 References: <bug-20361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,24 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20361
 
 
 
---- Comment #13 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-28 09:09:25 PST ---
-As far as i'm aware we don't know when a lid is open or closed, so we assume
-it's always on.
+--- Comment #14 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2009-02-28 09:29:07 PST ---
+The lid status is very easy to find out though, for example from hal:
+
+udi = '/org/freedesktop/Hal/devices/pmu_lid'
+  button.has_state = true  (bool)
+  button.state.value = true  (bool)
+  button.type = 'lid'  (string)
+  info.addons = {'hald-addon-pmu'} (string list)
+  info.capabilities = {'button'} (string list)
+  info.category = 'button'  (string)
+  info.parent = '/org/freedesktop/Hal/devices/computer'  (string)
+  info.product = 'Lid Switch'  (string)
+  info.udi = '/org/freedesktop/Hal/devices/pmu_lid'  (string)
+  linux.hotplug_type = 6  (0x6)  (int)
+  linux.pmu_path = '/proc/pmu/info'  (string)
+  linux.pmu_type = 2  (0x2)  (int)
+
+Does X track the lid in any way?
 
 
 -- 
