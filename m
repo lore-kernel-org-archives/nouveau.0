@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20361] nouveau - incorrect resolution on an external
  monitor attached to a laptop
-Date: Sat, 28 Feb 2009 07:50:18 -0800 (PST)
-Message-ID: <20090228155018.49135130016@annarchy.freedesktop.org>
+Date: Sat, 28 Feb 2009 09:09:26 -0800 (PST)
+Message-ID: <20090228170926.2D17D130058@annarchy.freedesktop.org>
 References: <bug-20361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20361
 
 
 
---- Comment #12 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2009-02-28 07:50:17 PST ---
-I didn't mention this (thought it'd be obvious) but the notebook lid is closed.
-I think it's reasonable to detect this and not take the internal screen into
-consideration at all, and just set the external screen to its native
-resolution. Could it be that the driver somehow incorrectly assumes the
-internal screen is visible/enabled?
+--- Comment #13 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-02-28 09:09:25 PST ---
+As far as i'm aware we don't know when a lid is open or closed, so we assume
+it's always on.
 
 
 -- 
