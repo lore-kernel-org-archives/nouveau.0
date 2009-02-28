@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20361] nouveau - incorrect resolution on an external
- monitor attached to a laptop
-Date: Sat, 28 Feb 2009 06:09:53 -0800 (PST)
-Message-ID: <20090228140953.1981D13005A@annarchy.freedesktop.org>
-References: <bug-20361-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20006] powerpc64: Black screen using RandR12
+Date: Sat, 28 Feb 2009 06:32:02 -0800 (PST)
+Message-ID: <20090228143202.DE4DB13005A@annarchy.freedesktop.org>
+References: <bug-20006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-20006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,46 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20361
+http://bugs.freedesktop.org/show_bug.cgi?id=20006
 
 
 
 
 
---- Comment #11 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-28 06:09:52 PST ---
-As Maarten says, this is an xserver feature.  See
-http://cgit.freedesktop.org/xorg/xserver/tree/hw/xfree86/modes/xf86Crtc.c?h=server-1.5-branch
-and search for "Using exact sizes for initial modes" as appears in your log
-just before it picks 1024x768 for both heads.
+--- Comment #44 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-02-28 06:32:01 PST ---
+(In reply to comment #42)
+> Sorry this took so long, I needed to get hold of a copy of OSX. As anticipated,
+> OSX would only drive the panel at 1920x1200 on DVI-I-1 (just like nouveau in
+> non-randr12 mode).
 
-Looking at the xf86TargetPreferred function (in the same file) that selects
-this behaviour, it tries to pick the largest preferred mode (an attribute
-specified in the screen's EDID) where the mode is available on all screens,
-hence you get 1024x768 as the laptop screen's preferred mode.  This behaviour
-appears mostly unchanged in master (
-http://cgit.freedesktop.org/xorg/xserver/tree/hw/xfree86/modes/xf86Crtc.c ), so
-if you want it fixed you'll have to file an xserver bug, but I suspect they'd
-argue it's reasonable and intended behaviour.
+Thanks for the effort, I wasn't expecting you to have to find a copy :)
 
-Alternatively, before using this method of mode selection, the xserver allows
-consideration of user-specified preferences, so you could configure it in your
-xorg.conf (see http://wiki.debian.org/XStrikeForce/HowToRandR12 for details). 
-Also any DM you use may have a control panel to set this up for you when X
-starts.
+> However, with the change you proposed, nouveau will do dual-link on the second
+> connector without complaining.
+> 
+> What is this? Did Apple cripple a dual-dual-link card so the could sell more
+> high-end cards instead? Or might this break down if I tried to drive two
+> dual-link displays simultaneously?
+
+According to http://en.wikipedia.org/wiki/Nvidia_Quadro the fx4500 (the Apple
+option for 2 x dual-link) is the same silicon as the 7800gtx, which according
+to http://www.nvidia.com/object/extreme_hd_gpu.html is only 1 x dual-link; the
+difference is normally whether the board manufacturer has connected up the
+traces for the second link pins, and it seems your board manufacturer did, but
+then crippled it in the bios image.  We can't really ignore the image though,
+as there's going to be a majority of cases where the extra link isn't wired up.
+
+As for using 2 x dual-link, I don't know :)  It's certainly possible that the
+card isn't clocked high enough for some part to have the bandwidth to drive two
+such displays, or (less likely) that the board is populated with some cheaper
+components that can't handle the additional electrical demands.  Assuming you
+don't have access to another 30" :) we're probably not going to find out.
+
+Unless you can argue a good case for it, I think I'll leave things as they are
+-- an option for "let me do 2 x dual link on a card I bought thinking it
+couldn't" seems like something with very low demand (I guess I could add a pci
+id based override for this Apple card, but that still doesn't resolve whether
+the hardware can run 2 x dual-link simultaneously).
 
 
 -- 
