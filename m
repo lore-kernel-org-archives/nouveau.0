@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20316] modesetting freeze pc
-Date: Sun,  1 Mar 2009 14:30:50 -0800 (PST)
-Message-ID: <20090301223050.9E3B3130057@annarchy.freedesktop.org>
+Date: Sun,  1 Mar 2009 14:31:32 -0800 (PST)
+Message-ID: <20090301223132.E99AD130057@annarchy.freedesktop.org>
 References: <bug-20316-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20316
 
 
 
---- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-01 14:30:50 PST ---
-Created an attachment (id=23420)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23420)
-dmesg after running Xorg.
+--- Comment #3 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-01 14:31:32 PST ---
+Created an attachment (id=23421)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23421)
+Xorg.log.old
 
 
 -- 
