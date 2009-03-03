@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18286] GeForce 8300 not supported
 	(10de:0848/C77/MCP77)
-Date: Tue,  3 Mar 2009 13:35:31 -0800 (PST)
-Message-ID: <20090303213531.90BA513005A@annarchy.freedesktop.org>
+Date: Tue,  3 Mar 2009 13:51:20 -0800 (PST)
+Message-ID: <20090303215120.555FC130058@annarchy.freedesktop.org>
 References: <bug-18286-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18286
 
 
 
---- Comment #6 from Sebastian Brandt <sbrandt-Mmb7MZpHnFY@public.gmane.org>  2009-03-03 13:35:31 PST ---
-Created an attachment (id=23485)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23485)
-dmesg of system. 
-
-drm and nouveau.ko were loaded after X crashed
+--- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-03 13:51:19 PST ---
+Please turn "NoAccel" off, retry, and file a seperate bug about "NoAccel" not
+working. Also some driver symbols would be handy usually, although in this case
+it's fairly obvious where it's coming from (one of the gamma/lut functions).
 
 
 -- 
