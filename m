@@ -1,19 +1,14 @@
-From: aik <aik.rsdn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: running x.org on powerpc64 with nvidia6200
-Date: Mon, 02 Mar 2009 17:45:40 +0300
-Message-ID: <49ABF114.1030504@gmail.com>
-References: <49959366.2000805@gmail.com>	
-	<6a89f9d50902131507h23cf0b50h62c887502d028073@mail.gmail.com>	
-	<49968B05.4090701@gmail.com>	
-	<6a89f9d50902140232h4b262deby85e7b437067fbc99@mail.gmail.com>	
-	<21d7e9970902142118u50a56366u2efa5fe0d8aadd72@mail.gmail.com>	
-	<49996AD8.2010602@gmail.com>
-	<586c2acd0902160759u535b18dfsb5554f5a2d1a3d21@mail.gmail.com>
-	<499AFA48.3070007@gmail.com> <49A3CD5A.1050905@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 18286] GeForce 8300 not supported
+	(10de:0848/C77/MCP77)
+Date: Tue,  3 Mar 2009 13:28:39 -0800 (PST)
+Message-ID: <20090303212839.1F9E1130058@annarchy.freedesktop.org>
+References: <bug-18286-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0770413442=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <49A3CD5A.1050905-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-18286-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,161 +16,54 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============0770413442==
-Content-Type: multipart/alternative;
- boundary="------------020809000701050905060607"
-
-This is a multi-part message in MIME format.
---------------020809000701050905060607
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Another try. Reconfigured DRM and xf86-video-nouveau modules with 
-"./autogen.sh CFLAGS=-m64", recompiled, copied, run:
-
-(II) Loading /usr/lib/xorg/modules/drivers//nouveau_drv.so
-dlopen: /usr/lib/xorg/modules/drivers//nouveau_drv.so: wrong ELF class: 
-ELFCLASS64
-(EE) Failed to load /usr/lib/xorg/modules/drivers//nouveau_drv.so
-(II) UnloadModule: "nouveau"
-(EE) Failed to load module "nouveau" (loader failed, 7)
-(EE) No drivers available.
-
-
-The question is - has anybody ever compiled AND run X.org + modules as 
-64bit binaries for PPC64?
-
-
-aik wrote:
-> Have made a next try.
-> The nouveau_drv.so compiles for PPC32 while I need PPC64. Is it able 
-> to be compiled for PPC64?
-> The autogen.sh output is below. When I've been trying to rebuild the 
-> kernel, sizeof(void*) was 8, but for nouveau_drv.so it is 4 bytes As 
-> my PCI BARs are behind 4GB, it is the problem.
->
-> Any clues?
->
-> [...]
->
->
-> aik wrote:
->> So, with the help of the community, I've got all the binaries 
->> compiled and ready-to-run. But it crashes in the very beginning. So 
->> the question is - what does nouveau expect from the system BIOS to 
->> get started (if it does)? I'm asking because I know for sure that the 
->> BIOS I have does support video very limited and I'm not sure that the 
->> support implemented at the moment is enough to get X.org up.
->>
->> Also, I've heard an opinion that X.org cannot work with the cards 
->> mapped behind 4GB range. My server maps all the PCI devices there 
->> (see the lspci output). Can anybody comment on that?
->>
->>
->
+http://bugs.freedesktop.org/show_bug.cgi?id=18286
 
 
 
---------------020809000701050905060607
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
-  <title></title>
-</head>
-<body bgcolor="#ffffff" text="#000000">
-<div class="moz-text-flowed"
- style="font-family: -moz-fixed; font-size: 13px;" lang="x-western">Another
-try. Reconfigured DRM and xf86-video-nouveau modules with "./autogen.sh
-CFLAGS=-m64", recompiled, copied, run:
-<br>
-<br>
-(II) Loading /usr/lib/xorg/modules/drivers//nouveau_drv.so
-<br>
-dlopen: /usr/lib/xorg/modules/drivers//nouveau_drv.so: wrong ELF class:
-ELFCLASS64
-<br>
-(EE) Failed to load /usr/lib/xorg/modules/drivers//nouveau_drv.so
-<br>
-(II) UnloadModule: "nouveau"
-<br>
-(EE) Failed to load module "nouveau" (loader failed, 7)
-<br>
-(EE) No drivers available.
-<br>
-<br>
-<br>
-The question is - has anybody ever compiled AND run X.org + modules as
-64bit binaries for PPC64?
-<br>
-<br>
-<br>
-aik wrote:
-<br>
-<blockquote type="cite">Have made a next try.
-  <br>
-The nouveau_drv.so compiles for PPC32 while I need PPC64. Is it able to
-be compiled for PPC64?
-  <br>
-The autogen.sh output is below. When I've been trying to rebuild the
-kernel, sizeof(void*) was 8, but for nouveau_drv.so it is 4 bytes As my
-PCI BARs are behind 4GB, it is the problem.
-  <br>
-  <br>
-Any clues?
-  <br>
-  <br>
+
+--- Comment #4 from Sebastian Brandt <sbrandt-Mmb7MZpHnFY@public.gmane.org>  2009-03-03 13:28:34 PST ---
+Sorry, but current git crashes ...
+short version below, more info in the attachments.
+Took some time to get that far, I still had too many versions of glx, drm,
+nouveau, etc. lying around ...
+
 [...]
-  <br>
-  <br>
-  <br>
-aik wrote:
-  <br>
-  <blockquote type="cite">So, with the help of the community, I've got
-all the binaries compiled and ready-to-run. But it crashes in the very
-beginning. So the question is - what does nouveau expect from the
-system BIOS to get started (if it does)? I'm asking because I know for
-sure that the BIOS I have does support video very limited and I'm not
-sure that the support implemented at the moment is enough to get X.org
-up.
-    <br>
-    <br>
-Also, I've heard an opinion that X.org cannot work with the cards
-mapped behind 4GB range. My server maps all the PCI devices there (see
-the lspci output). Can anybody comment on that?
-    <br>
-    <br>
-    <br>
-  </blockquote>
-  <br>
-</blockquote>
-<br>
-<br>
-</div>
-</body>
-</html>
+(II) NOUVEAU(0): RandR 1.2 enabled, ignore the following RandR disabled
+message.
+(II) NOUVEAU(0): nv50_crtc_gamma_set is called for CRTC0.
+(II) NOUVEAU(0): NV50CrtcGammaSet is called for CRTC0.
 
---------------020809000701050905060607--
+Backtrace:
+0: X(xf86SigHandler+0x65) [0x47e715]
+1: /lib64/libc.so.6 [0x7fe7331666e0]
+2: /usr/lib64/xorg/modules//drivers/nouveau_drv.so [0x7fe7302f02a7]
+3: X [0x4acdf2]
+4: /usr/lib64/xorg/modules//drivers/nouveau_drv.so [0x7fe7302d0613]
+5: X [0x485ef2]
+6: X [0x486028]
+7: X(xf86HandleColormaps+0x281) [0x487021]
+8: /usr/lib64/xorg/modules//drivers/nouveau_drv.so [0x7fe7302d00cb]
+9: X(AddScreen+0x1c9) [0x4319a9]
+10: X(InitOutput+0x241) [0x466f71]
+11: X(main+0x286) [0x432146]
+12: /lib64/libc.so.6(__libc_start_main+0xe6) [0x7fe733152586]
+13: X [0x4316f9]
 
---===============0770413442==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Fatal server error:
+Caught signal 11.  Server aborting
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+(II) NOUVEAU(0): NVLeaveVT is called.
+(II) NOUVEAU(0): NV50DispShutdown is called.
+[...]
 
---===============0770413442==--
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
