@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18300] NV11 Locks Up On Xorg Initialization
-Date: Wed,  4 Mar 2009 05:38:26 -0800 (PST)
-Message-ID: <20090304133826.BDA4D130058@annarchy.freedesktop.org>
+Date: Wed,  4 Mar 2009 05:39:01 -0800 (PST)
+Message-ID: <20090304133901.5333613005A@annarchy.freedesktop.org>
 References: <bug-18300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,11 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18300
 
 
 
---- Comment #21 from Paul Ezvan <paul-/dtJ+8xXzd4@public.gmane.org>  2009-03-04 05:38:26 PST ---
-With the patch id doesn't work either.
-However, I got some new messages in kernel.log (also I tried without starting
-kdm but with startx).
-The logfile is attached below.
+--- Comment #22 from Paul Ezvan <paul-/dtJ+8xXzd4@public.gmane.org>  2009-03-04 05:39:00 PST ---
+Created an attachment (id=23512)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23512)
+kernel.log
 
 
 -- 
