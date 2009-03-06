@@ -1,9 +1,9 @@
 From: Victor Stinner <victor.stinner-XgyrR7WU8tJ8UrSeD/g0lQ@public.gmane.org>
-Subject: [PATCH] Fix nv50_screen_create()
-Date: Fri, 06 Mar 2009 14:05:59 +0100
-Message-ID: <49B11FB7.5020902@haypocalc.com>
+Subject: [PATCH] Enable NV96 support
+Date: Fri, 06 Mar 2009 14:09:48 +0100
+Message-ID: <49B1209C.7020008@haypocalc.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="------------080408070304060707010403"
+Content-Type: multipart/mixed; boundary="------------010900030506060801060803"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,99 +18,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 This is a multi-part message in MIME format.
---------------080408070304060707010403
+--------------010900030506060801060803
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Setup screen->pipe before using it (screen->constbuf =
-screen->pipe.buffer_create(...)): just move the code.
+Add NV96 in NV9X_GRCLASS8297_CHIPSETS bitmask and remove the test
+blocking NV9x (another test is already present above).
 
-Victor
-
---------------080408070304060707010403
+--------------010900030506060801060803
 Content-Type: text/x-patch;
- name="0002-Fix-nv50_screen_create.patch"
+ name="0003-Enable-NV96-support.patch"
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline;
- filename="0002-Fix-nv50_screen_create.patch"
+ filename="0003-Enable-NV96-support.patch"
 
-From c1a140dd7eab917a913bc46ff450f9fa6553366c Mon Sep 17 00:00:00 2001
+From d6dbc4e172be2d6aa6155b5621f5e9acfa13b12d Mon Sep 17 00:00:00 2001
 From: Victor Stinner <victor.stinner-XgyrR7WU8tJ8UrSeD/g0lQ@public.gmane.org>
-Date: Fri, 6 Mar 2009 14:03:15 +0100
-Subject: [PATCH] Fix nv50_screen_create()
+Date: Fri, 6 Mar 2009 14:08:00 +0100
+Subject: [PATCH] Enable NV96 support
 
-Setup screen->pipe before using it (screen->constbuf =
-screen->pipe.buffer_create(...))
+Add NV96 in NV9X_GRCLASS8297_CHIPSETS bitmask and remove the test
+blocking NV9x (another test is already present above)
 ---
- src/gallium/drivers/nv50/nv50_screen.c |   35 ++++++++++++++++---------------
- 1 files changed, 18 insertions(+), 17 deletions(-)
+ src/gallium/drivers/nv50/nv50_screen.c |    8 +-------
+ 1 files changed, 1 insertions(+), 7 deletions(-)
 
 diff --git a/src/gallium/drivers/nv50/nv50_screen.c b/src/gallium/drivers/nv50/nv50_screen.c
-index bbfe42e..9bf5e8c 100644
+index 9bf5e8c..4130ede 100644
 --- a/src/gallium/drivers/nv50/nv50_screen.c
 +++ b/src/gallium/drivers/nv50/nv50_screen.c
-@@ -124,9 +124,9 @@ nv50_screen_get_param(struct pipe_screen *pscreen, int param)
- 		return 1;
- 	case PIPE_CAP_MAX_VERTEX_TEXTURE_UNITS:
- 		return 0;
--	case NOUVEAU_CAP_HW_VTXBUF:	
-+	case NOUVEAU_CAP_HW_VTXBUF:
- 		return 1;
--	case NOUVEAU_CAP_HW_IDXBUF:	
-+	case NOUVEAU_CAP_HW_IDXBUF:
- 		return 0;
- 	default:
- 		NOUVEAU_ERR("Unknown PIPE_CAP %d\n", param);
-@@ -234,6 +234,22 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_winsys *nvws)
- 		return NULL;
+@@ -31,7 +31,7 @@
+ 
+ #define NV5X_GRCLASS5097_CHIPSETS 0x00000001
+ #define NV8X_GRCLASS8297_CHIPSETS 0x00000050
+-#define NV9X_GRCLASS8297_CHIPSETS 0x00000014
++#define NV9X_GRCLASS8297_CHIPSETS 0x00000054
+ 
+ static boolean
+ nv50_screen_is_format_supported(struct pipe_screen *pscreen,
+@@ -190,12 +190,6 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_winsys *nvws)
  	}
  
-+        /* Setup the pipe */
-+	screen->pipe.winsys = ws;
-+
-+	screen->pipe.destroy = nv50_screen_destroy;
-+
-+	screen->pipe.get_name = nv50_screen_get_name;
-+	screen->pipe.get_vendor = nv50_screen_get_vendor;
-+	screen->pipe.get_param = nv50_screen_get_param;
-+	screen->pipe.get_paramf = nv50_screen_get_paramf;
-+
-+	screen->pipe.is_format_supported = nv50_screen_is_format_supported;
-+
-+	nv50_screen_init_miptree_functions(&screen->pipe);
-+	nv50_transfer_init_screen_functions(&screen->pipe);
-+	u_simple_screen_init(&screen->pipe);
-+
- 	/* Static M2MF init */
- 	so = so_new(32, 0);
- 	so_method(so, screen->m2mf, 0x0180, 3);
-@@ -353,21 +369,6 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_winsys *nvws)
- 	so_ref(so, &screen->static_init);
- 	nvws->push_flush(nvws, 0, NULL);
- 
--	screen->pipe.winsys = ws;
+ 	/* 3D object */
+-	if ((chipset & 0xf0) != 0x50 && (chipset & 0xf0) != 0x80) {
+-		NOUVEAU_ERR("Not a G8x chipset\n");
+-		nv50_screen_destroy(&screen->pipe);
+-		return NULL;
+-	}
 -
--	screen->pipe.destroy = nv50_screen_destroy;
--
--	screen->pipe.get_name = nv50_screen_get_name;
--	screen->pipe.get_vendor = nv50_screen_get_vendor;
--	screen->pipe.get_param = nv50_screen_get_param;
--	screen->pipe.get_paramf = nv50_screen_get_paramf;
--
--	screen->pipe.is_format_supported = nv50_screen_is_format_supported;
--
--	nv50_screen_init_miptree_functions(&screen->pipe);
--	nv50_transfer_init_screen_functions(&screen->pipe);
--	u_simple_screen_init(&screen->pipe);
--
- 	return &screen->pipe;
- }
- 
+ 	switch (chipset & 0xf0) {
+ 	case 0x50:
+ 		if (NV5X_GRCLASS5097_CHIPSETS & (1 << (chipset & 0x0f)))
 -- 
 1.5.6.3
 
 
---------------080408070304060707010403
+--------------010900030506060801060803
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +84,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---------------080408070304060707010403--
+--------------010900030506060801060803--
