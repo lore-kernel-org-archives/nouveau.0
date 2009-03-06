@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20466] No borders in Xmonad/Dwm
-Date: Fri,  6 Mar 2009 02:47:50 -0800 (PST)
-Message-ID: <20090306104750.95A8B13005A@annarchy.freedesktop.org>
+Date: Fri,  6 Mar 2009 02:48:15 -0800 (PST)
+Message-ID: <20090306104815.B73AD130058@annarchy.freedesktop.org>
 References: <bug-20466-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20466
 
 
 
---- Comment #2 from Chris Bannister <c.bannister-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-06 02:47:50 PST ---
-Created an attachment (id=23582)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23582)
-dmesg output
+--- Comment #3 from Chris Bannister <c.bannister-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-06 02:48:15 PST ---
+Created an attachment (id=23583)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23583)
+xorg.0.log
 
 
 -- 
