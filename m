@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15792] nv04 (TNT2) video blitter problem.
-Date: Fri,  6 Mar 2009 06:59:00 -0800 (PST)
-Message-ID: <20090306145900.2A57013005A@annarchy.freedesktop.org>
-References: <bug-15792-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 18300] NV11 Locks Up On Xorg Initialization
+Date: Fri,  6 Mar 2009 07:05:58 -0800 (PST)
+Message-ID: <20090306150559.0BAA2130058@annarchy.freedesktop.org>
+References: <bug-18300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-18300-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +20,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15792
+http://bugs.freedesktop.org/show_bug.cgi?id=18300
 
 
 
 
 
---- Comment #13 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-06 06:58:59 PST ---
-exaDrawableIsOffscreen() could also be used.
-
-It became public api before the symbol visibility stuff (iirc), so you can
-probably get away by defining it if it's undefined.
+--- Comment #26 from Paul Ezvan <paul-/dtJ+8xXzd4@public.gmane.org>  2009-03-06 07:05:57 PST ---
+No, it is the unpatched git version.
 
 
 -- 
