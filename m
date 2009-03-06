@@ -1,9 +1,9 @@
 From: Victor Stinner <victor.stinner-XgyrR7WU8tJ8UrSeD/g0lQ@public.gmane.org>
-Subject: [PATCH] Fix nouveau_pipe_create() / nouveau_context_init()
-Date: Fri, 06 Mar 2009 13:59:45 +0100
-Message-ID: <49B11E41.8050804@haypocalc.com>
+Subject: [PATCH] Fix nv50_screen_create()
+Date: Fri, 06 Mar 2009 14:05:59 +0100
+Message-ID: <49B11FB7.5020902@haypocalc.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="------------020306070001090004020404"
+Content-Type: multipart/mixed; boundary="------------080408070304060707010403"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,84 +18,99 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 This is a multi-part message in MIME format.
---------------020306070001090004020404
+--------------080408070304060707010403
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-My first patch to help the gallium driver :-)
-
-Fix nouveau_pipe_create() / nouveau_context_init(): raise an error if 
-the screen/pipe creation failed.
+Setup screen->pipe before using it (screen->constbuf =
+screen->pipe.buffer_create(...)): just move the code.
 
 Victor
 
---------------020306070001090004020404
+--------------080408070304060707010403
 Content-Type: text/x-patch;
- name="0001-Fix-nouveau_pipe_create-nouveau_context_init.patch"
+ name="0002-Fix-nv50_screen_create.patch"
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline;
- filename*0="0001-Fix-nouveau_pipe_create-nouveau_context_init.patch"
+ filename="0002-Fix-nv50_screen_create.patch"
 
-From 69086668a51278c0e985ef3018df14477e41416b Mon Sep 17 00:00:00 2001
+From c1a140dd7eab917a913bc46ff450f9fa6553366c Mon Sep 17 00:00:00 2001
 From: Victor Stinner <victor.stinner-XgyrR7WU8tJ8UrSeD/g0lQ@public.gmane.org>
-Date: Fri, 6 Mar 2009 13:52:19 +0100
-Subject: [PATCH] Fix nouveau_pipe_create() / nouveau_context_init(): raise an error if
- the screen/pipe creation failed
+Date: Fri, 6 Mar 2009 14:03:15 +0100
+Subject: [PATCH] Fix nv50_screen_create()
 
+Setup screen->pipe before using it (screen->constbuf =
+screen->pipe.buffer_create(...))
 ---
- .../winsys/drm/nouveau/common/nouveau_context.c    |    6 ++++--
- .../winsys/drm/nouveau/common/nouveau_winsys.c     |    7 ++++++-
- 2 files changed, 10 insertions(+), 3 deletions(-)
+ src/gallium/drivers/nv50/nv50_screen.c |   35 ++++++++++++++++---------------
+ 1 files changed, 18 insertions(+), 17 deletions(-)
 
-diff --git a/src/gallium/winsys/drm/nouveau/common/nouveau_context.c b/src/gallium/winsys/drm/nouveau/common/nouveau_context.c
-index 25c9845..d9321ea 100644
---- a/src/gallium/winsys/drm/nouveau/common/nouveau_context.c
-+++ b/src/gallium/winsys/drm/nouveau/common/nouveau_context.c
-@@ -132,8 +132,10 @@ nouveau_context_init(struct nouveau_screen *nv_screen,
- 		struct pipe_screen *pscreen;
- 
- 		pipe = nouveau_pipe_create(nv);
--		if (!pipe)
-+		if (!pipe) {
- 			NOUVEAU_ERR("Couldn't create hw pipe\n");
-+			return 1;
-+		}
- 		pscreen = nvc->pscreen;
- 
- 		nv->cap.hw_vertex_buffer =
-@@ -199,7 +201,7 @@ nouveau_context_cleanup(struct nouveau_context *nv)
- 			nv->nv_screen->nvc = NULL;
- 		}
+diff --git a/src/gallium/drivers/nv50/nv50_screen.c b/src/gallium/drivers/nv50/nv50_screen.c
+index bbfe42e..9bf5e8c 100644
+--- a/src/gallium/drivers/nv50/nv50_screen.c
++++ b/src/gallium/drivers/nv50/nv50_screen.c
+@@ -124,9 +124,9 @@ nv50_screen_get_param(struct pipe_screen *pscreen, int param)
+ 		return 1;
+ 	case PIPE_CAP_MAX_VERTEX_TEXTURE_UNITS:
+ 		return 0;
+-	case NOUVEAU_CAP_HW_VTXBUF:	
++	case NOUVEAU_CAP_HW_VTXBUF:
+ 		return 1;
+-	case NOUVEAU_CAP_HW_IDXBUF:	
++	case NOUVEAU_CAP_HW_IDXBUF:
+ 		return 0;
+ 	default:
+ 		NOUVEAU_ERR("Unknown PIPE_CAP %d\n", param);
+@@ -234,6 +234,22 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_winsys *nvws)
+ 		return NULL;
  	}
--	
+ 
++        /* Setup the pipe */
++	screen->pipe.winsys = ws;
 +
- 	/* XXX: Who cleans up the pipe? */
++	screen->pipe.destroy = nv50_screen_destroy;
++
++	screen->pipe.get_name = nv50_screen_get_name;
++	screen->pipe.get_vendor = nv50_screen_get_vendor;
++	screen->pipe.get_param = nv50_screen_get_param;
++	screen->pipe.get_paramf = nv50_screen_get_paramf;
++
++	screen->pipe.is_format_supported = nv50_screen_is_format_supported;
++
++	nv50_screen_init_miptree_functions(&screen->pipe);
++	nv50_transfer_init_screen_functions(&screen->pipe);
++	u_simple_screen_init(&screen->pipe);
++
+ 	/* Static M2MF init */
+ 	so = so_new(32, 0);
+ 	so_method(so, screen->m2mf, 0x0180, 3);
+@@ -353,21 +369,6 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_winsys *nvws)
+ 	so_ref(so, &screen->static_init);
+ 	nvws->push_flush(nvws, 0, NULL);
+ 
+-	screen->pipe.winsys = ws;
+-
+-	screen->pipe.destroy = nv50_screen_destroy;
+-
+-	screen->pipe.get_name = nv50_screen_get_name;
+-	screen->pipe.get_vendor = nv50_screen_get_vendor;
+-	screen->pipe.get_param = nv50_screen_get_param;
+-	screen->pipe.get_paramf = nv50_screen_get_paramf;
+-
+-	screen->pipe.is_format_supported = nv50_screen_is_format_supported;
+-
+-	nv50_screen_init_miptree_functions(&screen->pipe);
+-	nv50_transfer_init_screen_functions(&screen->pipe);
+-	u_simple_screen_init(&screen->pipe);
+-
+ 	return &screen->pipe;
  }
  
-diff --git a/src/gallium/winsys/drm/nouveau/common/nouveau_winsys.c b/src/gallium/winsys/drm/nouveau/common/nouveau_winsys.c
-index b6199f8..52c3b02 100644
---- a/src/gallium/winsys/drm/nouveau/common/nouveau_winsys.c
-+++ b/src/gallium/winsys/drm/nouveau/common/nouveau_winsys.c
-@@ -133,8 +133,13 @@ nouveau_pipe_create(struct nouveau_context *nv)
- 
- 	ws = nouveau_create_pipe_winsys(nv);
- 
--	if (!nvc->pscreen)
-+	if (!nvc->pscreen) {
- 		nvc->pscreen = hws_create(ws, nvws);
-+		if (!nvc->pscreen) {
-+			NOUVEAU_ERR("Couldn't create hw screen\n");
-+			return NULL;
-+		}
-+	}
- 	nvc->pctx[nv->pctx_id] = hw_create(nvc->pscreen, nv->pctx_id);
- 	return nvc->pctx[nv->pctx_id];
- }
 -- 
 1.5.6.3
 
 
---------------020306070001090004020404
+--------------080408070304060707010403
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---------------020306070001090004020404--
+--------------080408070304060707010403--
