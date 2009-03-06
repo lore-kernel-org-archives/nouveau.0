@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20466] No borders in Xmonad/Dwm
-Date: Fri,  6 Mar 2009 02:48:15 -0800 (PST)
-Message-ID: <20090306104815.B73AD130058@annarchy.freedesktop.org>
+Date: Fri,  6 Mar 2009 03:55:34 -0800 (PST)
+Message-ID: <20090306115534.436D3130058@annarchy.freedesktop.org>
 References: <bug-20466-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20466
 
 
 
---- Comment #3 from Chris Bannister <c.bannister-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-06 02:48:15 PST ---
-Created an attachment (id=23583)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=23583)
-xorg.0.log
+--- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-06 03:55:33 PST ---
+You're running in swaccel mode, haven't you got nouveau's kernel module
+installed? (then later we can try to figure out why swaccel doesn't work)
 
 
 -- 
