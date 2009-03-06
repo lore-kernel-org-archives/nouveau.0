@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18300] NV11 Locks Up On Xorg Initialization
-Date: Fri,  6 Mar 2009 06:21:16 -0800 (PST)
-Message-ID: <20090306142116.7D9332DC001@annarchy.freedesktop.org>
+Date: Fri,  6 Mar 2009 06:22:58 -0800 (PST)
+Message-ID: <20090306142258.A5B1313005A@annarchy.freedesktop.org>
 References: <bug-18300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18300
 
 
 
---- Comment #24 from Paul Ezvan <paul-/dtJ+8xXzd4@public.gmane.org>  2009-03-06 06:21:15 PST ---
-The problem has disappeared with current git version !
+--- Comment #25 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2009-03-06 06:22:57 PST ---
+Good. Do you still ahve the patch on the DDX or not ?
 
 
 -- 
