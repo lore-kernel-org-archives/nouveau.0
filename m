@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15792] nv04 (TNT2) video blitter problem.
-Date: Fri,  6 Mar 2009 06:53:34 -0800 (PST)
-Message-ID: <20090306145334.F085013005A@annarchy.freedesktop.org>
+Date: Fri,  6 Mar 2009 06:59:00 -0800 (PST)
+Message-ID: <20090306145900.2A57013005A@annarchy.freedesktop.org>
 References: <bug-15792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,24 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15792
 
 
 
---- Comment #12 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-03-06 06:53:33 PST ---
-(In reply to comment #11)
-> Ok, indeed it seems we can't catch the failing allocation itself. But still,
-> doing:
-> if (exaGetPixmapOffset(ppix) >= pNv->FB->size)
-> totally assumes that the FB is at the beggining of the EXA area. We've done
-> such asumptions before and they always break in the end. Is there no other way
-> ?
-> If all else fails, at least make it check agains FB->size and FB->offset.
+--- Comment #13 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-06 06:58:59 PST ---
+exaDrawableIsOffscreen() could also be used.
 
-As I understand it pNv->FB includes the entire EXA area, not just the visible
-fb, exaGetPixmapOffset returns an offset relative to pExaScr->info->memoryBase
-(set to pNv->FB->map in nouveau_exa.c), so to see if a pixmap is in VRAM isn't
-testing if the (unsigned) offset is bigger than pNv->FB->size [*] correct,
-regardless of the positioning of the visible fb?
-
-[*] or equivalently pNv->EXADriverPtr->memorySize which is perhaps more robust
-to changes in nouveau
+It became public api before the symbol visibility stuff (iirc), so you can
+probably get away by defining it if it's undefined.
 
 
 -- 
