@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20298] Nouveau doesn't allow my modeline because of
- hardcoded value
-Date: Sun,  8 Mar 2009 18:14:09 -0700 (PDT)
-Message-ID: <20090309011409.9F969130057@annarchy.freedesktop.org>
-References: <bug-20298-8800@http.bugs.freedesktop.org/>
+From: Jason White <jason-4rxGbHaoKybk1uMJSBkQmQ@public.gmane.org>
+Subject: System hang with Nouveau under Debian Sid
+Date: Mon, 9 Mar 2009 20:34:19 +1100
+Message-ID: <alpine.DEB.2.00.0903092017250.4906@jdc.jasonjgw.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20298-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +18,38 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20298
+First the background: Debian bug #513904 with the NV driver:
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=513904
 
+The NV driver started hanging inexplicably in nvSync(). I suspected, and still
+suspect, hardware problems with this card - an NVidia Quadro 3500 (it came
+with the machine, I didn't choose it). It was behaving well until late
+January.
 
-Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+The card however passed the diagnostic tests on the HP Insight Diagnostics CD
+even after the problem started to occur.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+In an attempt to work around this, I tried the Nouveau driver as packaged in
+Debian Sid,
+xserver-xorg-video-nouveau 1:0.0.10~git+20090205+4dfd0b1-1
+with the corresponding kernel modules compiled with module-assistant, using a
+recent Debian Sid 2.6.26 kernel.
 
+The X server and the Gnome desktop environment started successfully, but after
+a few minutes of usage, there was a kernel hang - no response even to pings
+from other machines on the network.
 
+Any suggestions as to possible causes and solutions would be gratefully
+accepted.
 
+My ability to test updated drivers is limited by the fact that I want to avoid
+unclean file system shutdowns (i.e., hangs at the kernel level) on this
+machine as much as possible.  Having said that, I'm interested in having this
+resolved, so I'm perfectly willing to help with testing as time permits.
 
---- Comment #8 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-03-08 18:14:09 PST ---
-Yeah, seems this restriction was pretty arbitrary in the old driver, so now it
-accepts all clocks (which works until the pll calculator craps out; ~6.25MHz
-for two stage plls, < 0.25MHz for single stage).
+This appears to be a relatively well known problem at least with the NV
+driver. I appreciate that it's a timing issue that might be difficult to
+isolate.
 
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=cb237a34f31f8b8c841974cb64141a2f2e36c53b
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Also, if this is the wrong forum in which to raise this issue, apologies in
+advance.
