@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20612] nouveau xv crash with BadMatch (invalid
  parameter attributes)
-Date: Wed, 11 Mar 2009 16:26:33 -0700 (PDT)
-Message-ID: <20090311232633.5AF2F130058@annarchy.freedesktop.org>
+Date: Wed, 11 Mar 2009 16:34:15 -0700 (PDT)
+Message-ID: <20090311233416.00149130057@annarchy.freedesktop.org>
 References: <bug-20612-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20612
 
 
-Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #23772|application/octet-stream    |application/text
-          mime type|                            |
 
 
+
+--- Comment #1 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-11 16:34:15 PST ---
+Created an attachment (id=23773)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23773)
+I just noticed many errors in dmesg, attaching the relevant part.
 
 
 -- 
