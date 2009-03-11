@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20168] nVIDIA 9600GT KMS Blank Screen
-Date: Wed, 11 Mar 2009 06:59:32 -0700 (PDT)
-Message-ID: <20090311135932.460B6130058@annarchy.freedesktop.org>
-References: <bug-20168-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20602] New: modesetting-gem: broken switching back
+	to Xorg
+Date: Wed, 11 Mar 2009 07:05:25 -0700 (PDT)
+Message-ID: <bug-20602-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +19,33 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20168
+http://bugs.freedesktop.org/show_bug.cgi?id=20602
+
+           Summary: modesetting-gem: broken switching back to Xorg
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+card 9600M GT,
+modprobe nouveau modeset=1 [fine]
+start X [fine]
+switching back to console [fine]
+switching back to X [X probably try initiate mode again or something like that
+and screen end as black, notebook working fine]
 
+if is Xorg ended and again loaded, then it's fine too, only switching from
+console to running Xorg is imposible
 
-
---- Comment #4 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-11 06:59:30 PST ---
-try again with lastest GIT, it solved all problems for me :-)
+Including messages with debug=1
 
 
 -- 
