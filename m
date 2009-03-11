@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20602] modesetting-gem: broken switching back to Xorg
-Date: Wed, 11 Mar 2009 07:11:24 -0700 (PDT)
-Message-ID: <20090311141124.A6729130058@annarchy.freedesktop.org>
-References: <bug-20602-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [NV50] application to confirm texture layout
+Date: Wed, 11 Mar 2009 20:07:46 +0100
+Message-ID: <6d4bc9fc0903111207w5e6486f5we77c274f9b0708bc@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=0015174989f64165110464dc95ba
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20602-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,20 +14,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20602
+--0015174989f64165110464dc95ba
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
+Here is an app to test the texture layout.
 
+No message means it's ok. Otherwise it spews a lot of errors.
 
+You have to manually set the TILE_HEIGHT, TILE_WIDTH and TILING_PARAM.
 
+TILE_WIDTH == TILE_PITCH in this case because it's 8bpp data.
 
---- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-11 07:11:24 PST ---
-http://filebin.ca/xtunh/messages_KMS
+Use this list (TILING_PARAM) TILE_WIDTHxTILE_HEIGHT:
 
+(0x00) 32x4
+(0x10) 64x8
+(0x20) 64x16
+(0x30) 64x32
+(0x40) 64x64
 
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I'm curious to know if anyone has different layouts.
+
+You may need to sudo run it.
+
+Maarten.
+
+--0015174989f64165110464dc95ba
+Content-Type: application/x-bzip2; name="nv50_test.tar.bz2"
+Content-Disposition: attachment; filename="nv50_test.tar.bz2"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_fs6du2300
+
+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
+--0015174989f64165110464dc95ba
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--0015174989f64165110464dc95ba--
