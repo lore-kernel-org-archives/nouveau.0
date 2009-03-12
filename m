@@ -1,11 +1,14 @@
-From: Stuart Bennett <stuart-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
-Subject: Re: DRM changes
-Date: Wed, 11 Mar 2009 17:15:08 +0000
-Message-ID: <49B7F19C.1080404@freedesktop.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 20612] nouveau xv crash with BadMatch (invalid
+ parameter attributes)
+Date: Thu, 12 Mar 2009 03:00:59 -0700 (PDT)
+Message-ID: <20090312100059.430A2130057@annarchy.freedesktop.org>
+References: <bug-20612-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-20612-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,69 +21,33 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Stephane Marchesin wrote:
-> Hi,
+http://bugs.freedesktop.org/show_bug.cgi?id=20612
+
+
+
+
+
+--- Comment #3 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-12 03:00:58 PST ---
+(In reply to comment #2)
+> Unfortunately this is the current expected behaviour.  If you run an XRENDER
+> base composite manager (xcompmgr is fine) Xv will work.  Hopefully we'll be
+> able to remove this limitation in the future.
 > 
-> As part of aiming at upstreaming our code, I suppose we have to
-> discuss the DRM situation a little. In order to aim for merging, I
-> think we'd better be working on a linux kernel tree layout. And
-> considering we're technically the only ones still working in drm.git,
-> it doesn't really make sense to keep doing that for the sake of
-> sharing code with other drivers.
+> The errors you mentioned are also expected, and harmless.  We're looking at
+> what's going wrong there however :)
 > 
-> As we discussed on irc, there would be multiple changes related to this:
-> - we move to a linux kernel-like tree, that should make it easier when
-> upstreaming the code.
-> - this new tree is hosted in freedekstop.org in the nouveau/ git so we
-> don't need additional accounts for everyone all around and people can
-> keep pushing things (even better, all nouveau people can push to the
-> drm, which used to require mesa rights before)
-> - we keep a(some) branch(es) in the tree for backwards compat with
-> older kernels. Either in the form of separate kernel versions
-> including nouveau, or in the form of an out-of-tree-compilable
-> drm/nouveau module.
-> 
-> So, does that plan sound sane? Do you have better plans?
-> 
-> Stephane
 
-(apologies for the crappy mailman archive->email forgery)
+I just enabled composite in xorg.conf (not enabled by default), and started
+xcompmgr -a, and xv works perfectly now, thanks!
 
-I have reservations about a full Linux kernel tree, if that's the proposal.
+However I could not find anything when searching for this issue, is it
+mentioned somewhere?
+I did not find existing bug reports, and maybe this limitation could also be
+mentioned on the main page ( http://nouveau.freedesktop.org/wiki/ ) since there
+is a decent workaround.
 
-Assuming it is a relatively important goal that people should test 
-Nouveau, then it makes sense to make it as easy as possible for them to 
-do so.  Certainly as long as Nouveau has not merged to the Linux kernel, 
-our repository is the only (non-packaged) source for those wishing to 
-test.  Post merge, some repository other than Linus' kernel is still 
-going to be the place to point people at for new development and fixes 
-which are not in a kernel.org stable release.
 
-I'd suggest that a) requiring 0.5 - 1 hour to git clone the half-gig or 
-so of our new kernel-based tree (longer if the fd.o machinery is having 
-a bad day), and b) needing people to then checkout some random branch in 
-order for it to work with their kernel ( c) would be rebuild their 
-kernel, if the out-of-tree compilable thing doesn't happen ), are all 
-barriers to testers that are not currently there.  Although my usage may 
-be atypical (or git outdated), the repository size issue also bites 
-developers; cold-cache git diff and git status on the linux kernel takes 
-a noticeable time, and gitk, even if regularly invoked, eats disk and 
-processor for ages on each execution.
-
-If the goal of these changes is to have a more Linux kernel-like layout, 
-could we not just change drm/linux-core, or make a new repo, so that it 
-mirrored everything necessary under drivers/drm?  I believe airlied 
-suggested this ages ago, and it would make moving code from Linux to 
-Nouveau or the other way round simpler.  Admittedly this doesn't work if 
-for some reason your development demands changes elsewhere in the Linux 
-tree, but in that case you may well have already failed the back-compat 
-aspect.
-
-As for branching and back-compat, I'd have thought it more useful to 
-keep compat on the main branch (again, helping testers), and split 
-specific kernel-merge-aimed branches off from that, as automating ifdef 
-removal on a branch ought to be easier than manually adding compat to a 
-bunch of branches, but I guess in some way the solutions here are all 
-equivalent, and it's just which branch you bless as being called master.
-
-Stuart
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
