@@ -1,13 +1,14 @@
-From: Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>
-Subject: Re: DRM changes
-Date: Thu, 12 Mar 2009 20:21:55 +0100
-Message-ID: <1236885714.21828.6.camel@lillen.dodi>
-References: <6a89f9d50903091449w47c8a79ak37124972b91a6fde@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 20612] nouveau xv crash with BadMatch (invalid
+ parameter attributes)
+Date: Thu, 12 Mar 2009 15:44:56 -0700 (PDT)
+Message-ID: <20090312224456.DA70D130057@annarchy.freedesktop.org>
+References: <bug-20612-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6a89f9d50903091449w47c8a79ak37124972b91a6fde-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-20612-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-bcOlbiAyMDA5LTAzLTA5IGtsb2NrYW4gMjI6NDkgKzAxMDAgc2tyZXYgU3RlcGhhbmUgTWFyY2hl
-c2luOgo+IEhpLAo+IAo+IFNvLCBkb2VzIHRoYXQgcGxhbiBzb3VuZCBzYW5lPyBEbyB5b3UgaGF2
-ZSBiZXR0ZXIgcGxhbnM/Cj4gCj4gU3RlcGhhbmUKCkkgbXVzdCBzYXkgdGhhdCBmb3IgbWUgaXQg
-ZG9lcyBub3QgZ2l2ZSB0aGF0IGJpZyBwcm9ibGVtcywgc2luY2UgSQphbHJlYWR5IGFyZSB1c2lu
-ZyBteSBvd24gaGVtLWJyZXdlZCBrZXJuZWwuIEJ1dCBJIHRoaW5rIGl0IHdpbGwgYmUKaGFyZGVy
-IGdldHRpbmcgdGVzdGVycyBpZiB0aGV5IG5lZWQgdG8gbm90IGp1c3QgY29tcGlsZSBzb20gbW9k
-dWxlcyBmb3IKdGhlaXIga2VybmVsLCBidXQgYWxzbyB0cnkgdG8gY29uZmlndXJlIHRoZSBiZWFz
-dCBvbiB0aGVpciBvd24uCgpKdXN0IG15IDItY2VudHMuCgoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=20612
+
+
+
+
+
+--- Comment #4 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2009-03-12 15:44:56 PST ---
+(In reply to comment #3)
+> However I could not find anything when searching for this issue, is it
+> mentioned somewhere?
+> I did not find existing bug reports, and maybe this limitation could also be
+> mentioned on the main page ( http://nouveau.freedesktop.org/wiki/ ) since there
+> is a decent workaround.
+> 
+
+I've updated the wiki on the two relevent pages I know about (FeatureMatrix and
+XVideoStatus) to note this issue.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
