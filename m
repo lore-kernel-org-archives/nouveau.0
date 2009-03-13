@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20612] nouveau xv crash with BadMatch (invalid
  parameter attributes)
-Date: Thu, 12 Mar 2009 15:44:56 -0700 (PDT)
-Message-ID: <20090312224456.DA70D130057@annarchy.freedesktop.org>
+Date: Thu, 12 Mar 2009 17:25:27 -0700 (PDT)
+Message-ID: <20090313002527.7A34313005A@annarchy.freedesktop.org>
 References: <bug-20612-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,17 +27,21 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20612
 
 
 
---- Comment #4 from Adam Petaccia <adam-my3ETfEBiw+B+jHODAdFcQ@public.gmane.org>  2009-03-12 15:44:56 PST ---
-(In reply to comment #3)
-> However I could not find anything when searching for this issue, is it
-> mentioned somewhere?
-> I did not find existing bug reports, and maybe this limitation could also be
-> mentioned on the main page ( http://nouveau.freedesktop.org/wiki/ ) since there
-> is a decent workaround.
+--- Comment #5 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-12 17:25:25 PST ---
+(In reply to comment #4)
+> (In reply to comment #3)
+> > However I could not find anything when searching for this issue, is it
+> > mentioned somewhere?
+> > I did not find existing bug reports, and maybe this limitation could also be
+> > mentioned on the main page ( http://nouveau.freedesktop.org/wiki/ ) since there
+> > is a decent workaround.
+> > 
+> 
+> I've updated the wiki on the two relevent pages I know about (FeatureMatrix and
+> XVideoStatus) to note this issue.
 > 
 
-I've updated the wiki on the two relevent pages I know about (FeatureMatrix and
-XVideoStatus) to note this issue.
+Looks good, thanks.
 
 
 -- 
