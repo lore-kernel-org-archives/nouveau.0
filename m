@@ -1,15 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [NV50] application to confirm texture layout
-Date: Sun, 15 Mar 2009 12:18:17 +0100
-Message-ID: <6d4bc9fc0903150418l5af43dfcx127e530fb31bdf37@mail.gmail.com>
-References: <6d4bc9fc0903111207w5e6486f5we77c274f9b0708bc@mail.gmail.com>
-	<6d4bc9fc0903111209h71135386j57dc89c00c70ed8f@mail.gmail.com>
-	<6d4bc9fc0903120542t25f3892es5c1b5cbef3439b98@mail.gmail.com>
-	<6d4bc9fc0903141036g50a76944se64fc217fc7ad1bc@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 20602] modesetting-gem: broken switching back to Xorg
+Date: Sun, 15 Mar 2009 05:59:40 -0700 (PDT)
+Message-ID: <20090315125940.4AB50130058@annarchy.freedesktop.org>
+References: <bug-20602-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=0015174beee49c64a30465267d98
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc0903141036g50a76944se64fc217fc7ad1bc-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-20602-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,75 +17,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---0015174beee49c64a30465267d98
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+http://bugs.freedesktop.org/show_bug.cgi?id=20602
 
-Small update, this time you can just set TILING_PARAM and you're good to go.
 
-Maarten.
 
---0015174beee49c64a30465267d98
-Content-Type: application/x-bzip2; name="nv50_test-3.tar.bz2"
-Content-Disposition: attachment; filename="nv50_test-3.tar.bz2"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_fsbmudc61
 
-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
---0015174beee49c64a30465267d98
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+--- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-15 05:59:39 PST ---
+Created an attachment (id=23869)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=23869)
+with debug, debug patch
 
---0015174beee49c64a30465267d98--
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
