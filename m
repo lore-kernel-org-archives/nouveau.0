@@ -1,11 +1,16 @@
-From: "Nenhum_de_Nos" <matheus-jerQ8XtSt+hHp6+AxK4YsA@public.gmane.org>
-Subject: install nouveau in FreeBSD 8-CURRENT amd64
-Date: Sun, 15 Mar 2009 16:43:43 -0300 (BRT)
-Message-ID: <312325d97d9810dfd7c4d9d7ffd6de9a.squirrel@cygnus.homeunix.com>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [NV50] application to confirm texture layout
+Date: Sun, 15 Mar 2009 23:18:57 +0100
+Message-ID: <6d4bc9fc0903151518r733fa359i44cf4685b9fdf37f@mail.gmail.com>
+References: <6d4bc9fc0903111207w5e6486f5we77c274f9b0708bc@mail.gmail.com>
+	<6d4bc9fc0903111209h71135386j57dc89c00c70ed8f@mail.gmail.com>
+	<6d4bc9fc0903120542t25f3892es5c1b5cbef3439b98@mail.gmail.com>
+	<6d4bc9fc0903141036g50a76944se64fc217fc7ad1bc@mail.gmail.com>
+	<6d4bc9fc0903150418l5af43dfcx127e530fb31bdf37@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=0015174c3f9461aede04652fb8e7
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <6d4bc9fc0903150418l5af43dfcx127e530fb31bdf37-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,46 +20,91 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-hail,
+--0015174c3f9461aede04652fb8e7
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-I'd like to try it in this OS, how to do ?
+New version, with 16bpp and 32bpp tests also. Someone with a NV9X
+needs to run the new tests, i made a guess about what is happening
+after the wfb fiasco, so hopefully it's right.
 
-I saw on http://wiki.x.org/wiki/Development/git some info, but I really
-need to rebuild all that ?
+Maarten.
 
-from my ports dir, I got error:
-nv_dri.c:263:2: error: #error nouveau_drm.h does not match expected
-patchlevel, update libdrm.
-*** Error code 1
+--0015174c3f9461aede04652fb8e7
+Content-Type: application/x-bzip2; name="nv50_test-4.tar.bz2"
+Content-Disposition: attachment; filename="nv50_test-4.tar.bz2"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_fscagiq31
 
-Stop in
-/usr/ports/x11-drivers/xf86-video-nouveau/work/xf86-video-nouveau-0.0.10.20090129/src.
-*** Error code 1
+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
+--0015174c3f9461aede04652fb8e7
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Stop in
-/usr/ports/x11-drivers/xf86-video-nouveau/work/xf86-video-nouveau-0.0.10.20090129.
-*** Error code 1
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
-Stop in
-/usr/ports/x11-drivers/xf86-video-nouveau/work/xf86-video-nouveau-0.0.10.20090129.
-*** Error code 1
-
-Stop in /usr/ports/x11-drivers/xf86-video-nouveau.
-
-
-and also that was a tar.bz2 from january.
-
-is there a easy way to have the new code to run in here ? I already got
-the latest code from git.
-
-thanks,
-
-matheus
-
-
--- 
-We will call you cygnus,
-The God of balance you shall be
+--0015174c3f9461aede04652fb8e7--
