@@ -1,17 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [NV50] application to confirm texture layout
-Date: Mon, 16 Mar 2009 11:39:37 +0100
-Message-ID: <6d4bc9fc0903160339jdc4bbb1x7067a8c4a145ca07@mail.gmail.com>
-References: <6d4bc9fc0903111207w5e6486f5we77c274f9b0708bc@mail.gmail.com>
-	<6d4bc9fc0903111209h71135386j57dc89c00c70ed8f@mail.gmail.com>
-	<6d4bc9fc0903120542t25f3892es5c1b5cbef3439b98@mail.gmail.com>
-	<6d4bc9fc0903141036g50a76944se64fc217fc7ad1bc@mail.gmail.com>
-	<6d4bc9fc0903150418l5af43dfcx127e530fb31bdf37@mail.gmail.com>
-	<6d4bc9fc0903151518r733fa359i44cf4685b9fdf37f@mail.gmail.com>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: Unknown DCB 1.4 / 1.5 entry, please report
+Date: Mon, 16 Mar 2009 18:19:11 +0200
+Message-ID: <20090316181911.24f1b57c@daedalus.pq.iki.fi>
+References: <49BD3121.3020608@gmx.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=0015174c3cca2f208704653a11a0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc0903151518r733fa359i44cf4685b9fdf37f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <49BD3121.3020608-Mmb7MZpHnFY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,108 +17,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Martin Ketzer <martin.ketzer-Mmb7MZpHnFY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---0015174c3cca2f208704653a11a0
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+On Sun, 15 Mar 2009 17:47:29 +0100
+Martin Ketzer <martin.ketzer-Mmb7MZpHnFY@public.gmane.org> wrote:
 
-I added nv9x_special, which outputs the shift of 128 bytes blocks
-relative to the normal layout, because it appears that the pattern
-changes more than once. This has to be run from outside X (needing a
-lot of memory), it will screw up your console, so be prepared to ssh
-in. I optimised the searching a bit, but expect the test to run for at
-least half an hour. You can sent the log to me personally.
-Don't change any of the parameters for that test.
+> Hallo,
+> when i am trying to use nouveau i get the errors in the attached Xorg.log. I'm using debian
+> unstable. Any suggestions?
+> 
 
-Maarten.
+On a completely unrelated note, you want to fix the following, too:
 
-On Sun, Mar 15, 2009 at 11:18 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> New version, with 16bpp and 32bpp tests also. Someone with a NV9X
-> needs to run the new tests, i made a guess about what is happening
-> after the wfb fiasco, so hopefully it's right.
->
-> Maarten.
->
+[drm] failed to load kernel module "nouveau"
+(EE) NOUVEAU(0): [dri] Failed to open the DRM
+(EE) NOUVEAU(0): DRI pre-initialisation failed.  Setting NoAccel
 
---0015174c3cca2f208704653a11a0
-Content-Type: application/x-bzip2; name="nv50_test-5.tar.bz2"
-Content-Disposition: attachment; filename="nv50_test-5.tar.bz2"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_fsd0qrfr1
+I.e. make sure you have the DRM kernel modules built and they load.
 
-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
---0015174c3cca2f208704653a11a0
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+This should not fix the DCB errors, but is otherwise essential.
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---0015174c3cca2f208704653a11a0--
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
