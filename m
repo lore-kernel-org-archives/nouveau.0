@@ -1,7 +1,7 @@
 From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [NV50] application to confirm texture layout
-Date: Tue, 17 Mar 2009 10:07:41 +0100
-Message-ID: <6d4bc9fc0903170207t1bbbd923sfc1b9350b4117c3c@mail.gmail.com>
+Date: Wed, 18 Mar 2009 00:06:23 +0100
+Message-ID: <6d4bc9fc0903171606t357f3c6dmb384067b23cc61a0@mail.gmail.com>
 References: <6d4bc9fc0903111207w5e6486f5we77c274f9b0708bc@mail.gmail.com>
 	<6d4bc9fc0903111209h71135386j57dc89c00c70ed8f@mail.gmail.com>
 	<6d4bc9fc0903120542t25f3892es5c1b5cbef3439b98@mail.gmail.com>
@@ -9,11 +9,11 @@ References: <6d4bc9fc0903111207w5e6486f5we77c274f9b0708bc@mail.gmail.com>
 	<6d4bc9fc0903150418l5af43dfcx127e530fb31bdf37@mail.gmail.com>
 	<6d4bc9fc0903151518r733fa359i44cf4685b9fdf37f@mail.gmail.com>
 	<6d4bc9fc0903160339jdc4bbb1x7067a8c4a145ca07@mail.gmail.com>
+	<6d4bc9fc0903170207t1bbbd923sfc1b9350b4117c3c@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=0015174be732aa5da00465589d92
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc0903160339jdc4bbb1x7067a8c4a145ca07-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <6d4bc9fc0903170207t1bbbd923sfc1b9350b4117c3c-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -26,8 +26,94 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-I have all the data i need for NV9X, please note that the test
-programs haven't been updated with the actual layout yet. So they will
-give errors on NV9X.
+--0015174be732aa5da00465589d92
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+Again reduced to just the 8bpp test, the special test remains to find
+any deviations from the standard layout.
+
+I added a NV84_MODE to adjust for the layout found by KoalaBR,
+hopefully it's correct (hint test it ;-)).
+
+At this point i know:
+
+Normal: NV86
+NV84: NV84
+NV9X: NV92 NV96
+
+So people, chime in and confirm (even if your card is already on the list).
 
 Maarten.
+
+--0015174be732aa5da00465589d92
+Content-Type: application/x-bzip2; name="nv50_test-5.tar.bz2"
+Content-Disposition: attachment; filename="nv50_test-5.tar.bz2"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_fsf7144i0
+
+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
+--0015174be732aa5da00465589d92
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--0015174be732aa5da00465589d92--
