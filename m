@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20341] NV31 lockup
-Date: Tue, 17 Mar 2009 21:36:11 -0700 (PDT)
-Message-ID: <20090318043612.CF4BA130016@annarchy.freedesktop.org>
-References: <bug-20341-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20602] modesetting-gem: broken switching back to Xorg
+Date: Wed, 18 Mar 2009 00:11:31 -0700 (PDT)
+Message-ID: <20090318071131.4AEF6130016@annarchy.freedesktop.org>
+References: <bug-20602-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-20602-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +20,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20341
+http://bugs.freedesktop.org/show_bug.cgi?id=20602
+
+
+okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
-
---- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-17 21:36:11 PST ---
-It's probably still some AGP braindamage causing your corruption.  That option
-just stops it being used for the command stream we send to the GPU.  Are you
-able to get me a mmio-trace of how the NVIDIA driver initialises your card?
-
-The instructions at http://nouveau.freedesktop.org/wiki/MmioTrace should help
-you with that.
-
-Thanks!
-Ben.
+--- Comment #3 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-18 00:11:30 PST ---
+Lastest git fixed this issue for me. Switching is really fast ;-)
 
 
 -- 
