@@ -1,14 +1,13 @@
-From: =?UTF-8?B?SGVydsOpIENhdXdlbGllcg==?= <herve.cauwelier-GANU6spQydw@public.gmane.org>
-Subject: Re: texture layout test
-Date: Thu, 19 Mar 2009 12:39:24 +0100
-Message-ID: <49C22EEC.9040200@free.fr>
-References: <49C183DF.4020803@free.fr>
-	<6d4bc9fc0903190420w35c5463aj883a416b53daa0b0@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 20341] NV31 lockup
+Date: Thu, 19 Mar 2009 10:05:46 -0700 (PDT)
+Message-ID: <20090319170546.2C004130016@annarchy.freedesktop.org>
+References: <bug-20341-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc0903190420w35c5463aj883a416b53daa0b0-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-20341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +20,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QXJnaCwgSSB0aG91Z2h0IGl0IHdhcyBvbmUgb3IgdGhlIG90aGVyLgoKV2l0aCBib3RoIGF0IHpl
-cm8sIHRoZSB0ZXN0IHByb2dyYW0gZG9lc24ndCBvdXRwdXQgYW55dGhpbmcgc28gSSBndWVzcwpp
-dCdzIGdvb2QgbmV3cy4KCkhlcnbDqQoKTWFhcnRlbiBNYWF0aHVpcyBhIMOpY3JpdCA6Cj4gTlY4
-NF9NT0RFIGlzIGZvciBOVjg0LCB0cnkgc2V0dGluZyBpdCB0byB6ZXJvLgo+IAo+IEkgaGF2ZSBh
-IE5WODYsIHNvIGknbSBwcmV0dHkgc3VyZSBpdCB3b3Jrcy4KPiAKPiBNYWFydGVuLgo+IAo+IDIw
-MDkvMy8xOSBIZXJ2w6kgQ2F1d2VsaWVyIDxoZXJ2ZS5jYXV3ZWxpZXJAZnJlZS5mcj46Cj4+IEkg
-Y29tZSBiYWNrIG9uIHRoaXMgbWF0dGVyIGJlY2F1c2UgSSB3YXMgYXdheSB3aGVuIHlvdSBwb3N0
-ZWQgaXQuCj4+Cj4+IEkgcmVhZCB5b3UndmUgZ290IGVub3VnaCBmZWVkYmFjayBmb3IgTlY4NiBj
-YXJkcyBidXQgbWluZSBkb2Vzbid0IHNlZW0KPj4gdG8gbWF0Y2ggeW91ciBhc3N1bXB0aW9uczoK
-Pj4KPj4gWy4uLl0KPj4geCAxOTcgeSAxNTEKPj4gb2Zmc2V0IDM4NzM0IG9mZnNldF9leHBlY3Rl
-ZCAzODQ3OAo+PiB4IDE5OCB5IDE1MQo+PiBvZmZzZXQgMzg3MzUgb2Zmc2V0X2V4cGVjdGVkIDM4
-NDc5Cj4+IFsuLi5dCj4+Cj4+IEkgZGlkbid0IHRvdWNoIHRoZSBzb3VyY2UgY29kZSwgc28gaXQn
-cyBpbiBOVjg0X01PREUuCj4+Cj4+IFRoZSBjb21wbGV0ZSBvdXRwdXQgaXMgYXZhaWxhYmxlIGF0
-IGh0dHA6Ly9wYXN0ZWJpbi5jYS8xMzY0NzU5Cj4+Cj4+IFRoZSBvdGhlciBwcm9ncmFtIG52OXhf
-c3BlY2lhbCAibWFwIGZhaWxzIiwganVzdCBmb3IgdGhlIGNvbXBsZXRlbmVzcy4KPj4KPj4gSGVy
-dsOpCj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+
-IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+
-IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4+
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=20341
+
+
+
+
+
+--- Comment #7 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-03-19 10:05:45 PST ---
+Mmiotrace recently got some important fixes that just might help you. If you
+could try the latest rc kernel (or at least 2.6.29-rc7), I would be very
+interested to hear how it behaves.
+
+If it still locks up, it would be good to investigate, but I don't know if you
+have the time or the tools (serial terminal, netconsole, or debugging via
+firewire). Please contact me personally, if you want to help in debugging
+mmiotrace.
+
+Thanks.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
