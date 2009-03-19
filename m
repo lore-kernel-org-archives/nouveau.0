@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16792] modesetting on NV86: cannot allocate
-	framebuffer
-Date: Thu, 19 Mar 2009 02:28:10 -0700 (PDT)
-Message-ID: <20090319092810.1E178130016@annarchy.freedesktop.org>
-References: <bug-16792-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: texture layout test
+Date: Thu, 19 Mar 2009 12:20:28 +0100
+Message-ID: <6d4bc9fc0903190420w35c5463aj883a416b53daa0b0@mail.gmail.com>
+References: <49C183DF.4020803@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <49C183DF.4020803-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,25 +17,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-1?Q?Herv=E9_Cauwelier?= <herve.cauwelier-GANU6spQydw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNjc5MgoKCkhlcnbD
-qSBDYXV3ZWxpZXIgPGRlYmlhbkBvdXJzb3Vycy5uZXQ+IGNoYW5nZWQ6CgogICAgICAgICAgIFdo
-YXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLQogIEF0dGFjaG1lbnQgIzI0MDE3fDAgICAgICAgICAgICAgICAgICAgICAgICAgICB8MQog
-ICAgICAgIGlzIG9ic29sZXRlfCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8CgoKCgotLS0g
-Q29tbWVudCAjMTMgZnJvbSBIZXJ2w6kgQ2F1d2VsaWVyIDxkZWJpYW5Ab3Vyc291cnMubmV0PiAg
-MjAwOS0wMy0xOSAwMjoyODowOSBQU1QgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9MjQw
-MzcpCiAtLT4gKGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9pZD0y
-NDAzNykKWCBsb2cgYWZ0ZXIgZHJtIGRlYnVnPTEKCkkndmUgdXBkYXRlZCB0byBjb21taXQgNDdj
-NjhlZTZlNGMxODBjMThiOGQ1OGM3NGYxMmM4ZjkwYWY5ZGEzZCBhbmQgdGVzdGVkIHdpdGgKZHJt
-IGRlYnVnPTEuCgpYIGJlaGF2ZSB0aGUgc2FtZSB0aGFuIHllc3RlcmRheS4KCkdyZWF0IG5ld3Mg
-dGhvdWdoIHRoYXQgdGhlIG1vZGVzZXR0aW5nIGlzIGJlaGF2aW5nIGFzIGV4cGVjdGVkLCBldmVu
-IGp1c3Qgb24KdGhlIGNvbnNvbGUuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVn
-cy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJl
-IHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25l
-ZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+NV84_MODE is for NV84, try setting it to zero.
+
+I have a NV86, so i'm pretty sure it works.
+
+Maarten.
+
+2009/3/19 Herv=E9 Cauwelier <herve.cauwelier-GANU6spQydw@public.gmane.org>:
+> I come back on this matter because I was away when you posted it.
+>
+> I read you've got enough feedback for NV86 cards but mine doesn't seem
+> to match your assumptions:
+>
+> [...]
+> x 197 y 151
+> offset 38734 offset_expected 38478
+> x 198 y 151
+> offset 38735 offset_expected 38479
+> [...]
+>
+> I didn't touch the source code, so it's in NV84_MODE.
+>
+> The complete output is available at http://pastebin.ca/1364759
+>
+> The other program nv9x_special "map fails", just for the completeness.
+>
+> Herv=E9
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
