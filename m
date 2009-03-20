@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20780] nouveau corrupts and crashes on 7800gt when
  NoAccel= false after a few drawing operations
-Date: Fri, 20 Mar 2009 15:13:57 -0700 (PDT)
-Message-ID: <20090320221357.6272413005B@annarchy.freedesktop.org>
+Date: Fri, 20 Mar 2009 15:14:55 -0700 (PDT)
+Message-ID: <20090320221456.0C68C130016@annarchy.freedesktop.org>
 References: <bug-20780-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20780
 
 
-Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #24097|Attachment described above. |Attachment described below.
-        description|                            |
 
 
+
+--- Comment #1 from Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-20 15:14:53 PST ---
+Created an attachment (id=24098)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24098)
+excerpt from tar.gz file:  annotated dmesg of failing nouveau, NoAccel=false
 
 
 -- 
