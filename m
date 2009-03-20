@@ -1,15 +1,13 @@
-From: Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>
-Subject: Re: DRM changes
-Date: Sat, 14 Mar 2009 16:03:58 +0100
-Message-ID: <1237043038.5825.11.camel@lillen.dodi>
-References: <6a89f9d50903091449w47c8a79ak37124972b91a6fde@mail.gmail.com>
-	<1236885714.21828.6.camel@lillen.dodi>
-	<1caff7430903140418k434fc82es7927d7015026cea3@mail.gmail.com>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Nouveau on sparc (Re: Mmiotrace work)
+Date: Fri, 20 Mar 2009 20:38:50 +0200
+Message-ID: <20090320203850.4473bff4@daedalus.pq.iki.fi>
+References: <6e757d380903192206p2fcbad6as20813b207f6d650f@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1caff7430903140418k434fc82es7927d7015026cea3-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <6e757d380903192206p2fcbad6as20813b207f6d650f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,42 +17,20 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-bMO2ciAyMDA5LTAzLTE0IGtsb2NrYW4gMTE6MTggKzAwMDAgc2tyZXYgUmVuYXRvIENhbGRhczoK
-PiBPbiBUaHUsIE1hciAxMiwgMjAwOSBhdCA3OjIxIFBNLCBQZXRlciBIamFsbWFyc3NvbiA8eGFr
-ZUByeW1kcmFrZXQubmV0PiB3cm90ZToKPiA+IG3DpW4gMjAwOS0wMy0wOSBrbG9ja2FuIDIyOjQ5
-ICswMTAwIHNrcmV2IFN0ZXBoYW5lIE1hcmNoZXNpbjoKPiA+PiBIaSwKPiA+Pgo+ID4+IFNvLCBk
-b2VzIHRoYXQgcGxhbiBzb3VuZCBzYW5lPyBEbyB5b3UgaGF2ZSBiZXR0ZXIgcGxhbnM/Cj4gPj4K
-PiA+PiBTdGVwaGFuZQo+ID4KPiA+IEkgbXVzdCBzYXkgdGhhdCBmb3IgbWUgaXQgZG9lcyBub3Qg
-Z2l2ZSB0aGF0IGJpZyBwcm9ibGVtcywgc2luY2UgSQo+ID4gYWxyZWFkeSBhcmUgdXNpbmcgbXkg
-b3duIGhlbS1icmV3ZWQga2VybmVsLiBCdXQgSSB0aGluayBpdCB3aWxsIGJlCj4gPiBoYXJkZXIg
-Z2V0dGluZyB0ZXN0ZXJzIGlmIHRoZXkgbmVlZCB0byBub3QganVzdCBjb21waWxlIHNvbSBtb2R1
-bGVzIGZvcgo+ID4gdGhlaXIga2VybmVsLCBidXQgYWxzbyB0cnkgdG8gY29uZmlndXJlIHRoZSBi
-ZWFzdCBvbiB0aGVpciBvd24uCj4gCj4gTGV0cyBmYWNlIGl0LCB1c2VycyB3aG8gY2FuJ3QgY29u
-ZmlndXJlIHRoZWlyIG93biBrZXJuZWwgd2lsbCBwcm9iYWJseQo+IHR1cm4gb3V0IHRvIGJlIGJh
-ZCB0ZXN0ZXJzLiBBbmQgYmVzaWRlcywgY29uZmlndXJpbmcgYSBrZXJuZWwgaXMgbm90Cj4gdGhh
-dCBoYXJkLCBhbmQgdXNlcnMgY2FuIGp1c3QgY29weSB0aGVpciBkaXN0cm8ncyBjb25maWd1cmF0
-aW9uIGFuZAo+IG9ubHkgdHdlYWsgdGhlIGRybSByZWxhdGVkIHBhcnRzLiBObyBzaG93IHN0b3Bw
-ZXJzIGhlcmUuCj4gCj4gQ2hlZXJzLAo+ICAgUmVuYXRvCgpJIGtub3cgbWFueSB3aG8gYXJlIGdv
-b2QgZW5vdWdodCB0byBiZSBnb29kIHRlc3RlcnMgYW5kIGFyZSBwcm9ncmFtbWVycwpidXQgY291
-bGQgY2FyZSBsZXNzIGFib3V0IGhhdmluZyB0byB1cGRhdGUgdGhlaXIga2VybmVsLCBwYXRjaCBp
-dCBhbmQvb3IKcmVjb25maWd1cmUgaXQgZXZlcnkgdGltZSBzb21lb25lIGZpbmRzIGEgc2VjdXJp
-dHktcmVsYXRlZCBidWcgb3IgYnJva2VuCmZlYXR1cmUgYW5kIFdBTlQgc29tZW9uZSAoaS5lLiB0
-aGUgZGlzdHJpYnV0aW9uKSB0byBkbyB0aGF0IHdvcmsgZm9yCnRoZW0uIFRoZXkganVzdCB3YW50
-IHRvIHVzZSB0aGVpciBjb21wdXRlciB0byB3aGF0IHRoZXkgd2FudDogY29kZQpwcm9ncmFtcywg
-bm90IHNwZW5kIHRpbWUgb24gdGhlaXIgY29uZmlndXJhdGlvbiBpZiB0aGV5IGRvIG5vdCBoYXZl
-IHRvLgoKRXZlbiBpZiB0aGV5IGNhbiBjb3B5IHRoZSBjb25maWd1cmF0aW9uIGZyb20gdGhlaXIg
-ZGlzdHJpYnV0aW9uLCB0aGUKcXVlc3Rpb24gaXMgaWYgdGhleSB3YW50IHRvIHNwZW5kIHRpbWUg
-b24gdHJhY2tpbmcgdGhlIGtlcm5lbCwgcGF0Y2ggaXQKYW5kIHNvIG9uIGlmIHRoZXkgaGFkIHRv
-LiAKCkkgZG8gbm90IGtub3cgaWYgSSBoYXZlIGhhZHRoZSB0aW1lIHRvIGRvIHRoYXQgaWYgaXQg
-d2FzIG5vdCBmb3IgaGF2aW5nCmEgZ29vZCB3b3JraW5nIGNvbmZpZ3VyYXRpb24gYW5kIGhhdmlu
-ZyBnZW50b28gdHJhY2tpbmcgYW5kIHBhdGNoaW5nIGl0CmZvciBtZS4gCkFuZCB3aXRoIHRoZSBj
-dXJyZW50IGRldmVsb3BtZW50LXNwZWVkIG9mIG5vdXZlYXU6IGRvIHdlIHdhbnQgdGVzdGVycwp0
-aGF0IG9ubHkgdXBkYXRlIHdoZW4gdGhleSBoYXZlIHRoYXQgYW1vdW50IG9mIHRpbWUsIGl0IHdv
-dWxkIHRha2UgbG9uZwp0aW1lIHRvIGJpc2VjdCB0aG9zZSBoaXN0b3J5cyBpZi93aGVuIHNvbWV0
-aGluZyBicmVha3MuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Fri, 20 Mar 2009 00:06:39 -0500
+Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
+> Speaking of contributing, would you like a tester for Nouveau on
+> SPARC64?  I have access to an Ultra 45 and a pair of PCI boards (TnT2,
+> GeForce 6200, both with x86 VBIOSes unfortunately).  I don't own any
+> PCI-E boards yet, but that can change if there's interest.
+
+I have no idea about non-x86/ppc support. Anyone?
+
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
