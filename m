@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20780] nouveau corrupts at start,
  then crashes after a few drawing operations. 7800gt when
  NoAccel=false
-Date: Fri, 20 Mar 2009 15:21:31 -0700 (PDT)
-Message-ID: <20090320222131.2AC5C13005A@annarchy.freedesktop.org>
+Date: Fri, 20 Mar 2009 15:31:28 -0700 (PDT)
+Message-ID: <20090320223128.D545D130058@annarchy.freedesktop.org>
 References: <bug-20780-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -29,12 +29,17 @@ Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|nouveau corrupts and crashes|nouveau corrupts at start,
-                   |on 7800gt when NoAccel=false|then crashes after a few
-                   |after a few drawing         |drawing operations.  7800gt
-                   |operations                  |when NoAccel=false
+             Status|NEW                         |ASSIGNED
 
 
+
+
+--- Comment #3 from Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-20 15:31:28 PST ---
+Also very important: I think that accelerated EXA USED TO WORK on my card about
+a few months back!  (I am not sure about this.  I never messed with a NoAccel
+parameter to my knowledge and I'm not sure of the default back then or when it
+was working.)  I do recall being able to play videos and my desktop was
+definitely not this slow.
 
 
 -- 
