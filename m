@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20780] nouveau corrupts and crashes on 7800gt when
  NoAccel= false after a few drawing operations
-Date: Fri, 20 Mar 2009 15:14:55 -0700 (PDT)
-Message-ID: <20090320221456.0C68C130016@annarchy.freedesktop.org>
+Date: Fri, 20 Mar 2009 15:16:48 -0700 (PDT)
+Message-ID: <20090320221648.3AEFD13005A@annarchy.freedesktop.org>
 References: <bug-20780-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,45 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20780
 
 
+Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
---- Comment #1 from Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-20 15:14:53 PST ---
-Created an attachment (id=24098)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24098)
-excerpt from tar.gz file:  annotated dmesg of failing nouveau, NoAccel=false
+
+--- Comment #2 from Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-20 15:16:47 PST ---
+To be clear, xorg is crashing after I do DISPLAY=:0 xterm and type a few
+commands in xterm to cause a few painting commands.
+
+It exits with this message in the Xorg log:
+
+
+Fatal server error:
+Detected GPU lockup
+
+
+Please consult the The X.Org Foundation support 
+         at http://wiki.x.org
+ for help. 
+Please also check the log file at "/var/log/Xorg.0.log" for additional
+information.
+
+[   42.661694] (II) AT Translated Set 2 keyboard: Close
+[   42.661732] (II) UnloadModule: "evdev"
+[   42.669699] (II) Macintosh mouse button emulation: Close
+[   42.669721] (II) UnloadModule: "evdev"
+[   42.677687] (II) Microsoft Microsoft Optical Mouse with Tilt Wheel: Close
+[   42.677709] (II) UnloadModule: "evdev"
+[   42.677732] (II) NOUVEAU(0): NVLeaveVT is called.
+[   44.677756] (II) NOUVEAU(0): Restoring encoders
+[   44.677771] (II) NOUVEAU(0): 0xD417: Parsing digital output script table
+[   44.678111] (II) NOUVEAU(0): 0xD467: Parsing digital output script table
+[   44.698112] (II) NOUVEAU(0): Restoring crtcs
+[   44.698534] (II) NOUVEAU(0): Restoring CRTC_OWNER to 3.
+ ddxSigGiveUp: Closing log
 
 
 -- 
