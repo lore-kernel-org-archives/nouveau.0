@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20341] NV31 lockup
-Date: Thu, 19 Mar 2009 10:05:46 -0700 (PDT)
-Message-ID: <20090319170546.2C004130016@annarchy.freedesktop.org>
+Date: Thu, 19 Mar 2009 21:54:44 -0700 (PDT)
+Message-ID: <20090320045444.23EAC130058@annarchy.freedesktop.org>
 References: <bug-20341-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,17 +26,23 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20341
 
 
 
---- Comment #7 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-03-19 10:05:45 PST ---
-Mmiotrace recently got some important fixes that just might help you. If you
-could try the latest rc kernel (or at least 2.6.29-rc7), I would be very
-interested to hear how it behaves.
+--- Comment #8 from Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-19 21:54:43 PST ---
+Another e-mail sent to mmio.dumps:
+-----
+This is a second attempt at tracing X startup.
 
-If it still locks up, it would be good to investigate, but I don't know if you
-have the time or the tools (serial terminal, netconsole, or debugging via
-firewire). Please contact me personally, if you want to help in debugging
-mmiotrace.
+> uname -a
+Linux anduril 2.6.29-rc8 #1 PREEMPT Thu Mar 19 22:19:24 CDT 2009 i686 AMD
+Athlon(tm) Processor AuthenticAMD GNU/Linux
 
-Thanks.
+I am using the same driver (173.14.18 "legacy") as before.
+
+I experienced no lockups during this trace, even with GLX enabled.  Thanks for
+the suggestion!  The only default I needed to change was increasing
+buffer_size_kb to 20000.
+
+Cheers,
+Jason
 
 
 -- 
