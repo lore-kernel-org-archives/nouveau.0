@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20780] nouveau corrupts at start,
  then crashes after a few drawing operations. 7800gt when
  NoAccel=false
-Date: Sat, 21 Mar 2009 02:19:53 -0700 (PDT)
-Message-ID: <20090321091953.B93BE130016@annarchy.freedesktop.org>
+Date: Sat, 21 Mar 2009 02:20:21 -0700 (PDT)
+Message-ID: <20090321092021.4915313005B@annarchy.freedesktop.org>
 References: <bug-20780-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,10 +28,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20780
 
 
 
---- Comment #6 from Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-21 02:19:53 PST ---
-Created an attachment (id=24113)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24113)
-~git200801xx xorg.conf
+--- Comment #7 from Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-21 02:20:20 PST ---
+Created an attachment (id=24114)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24114)
+~git200801xx dmesg
 
 
 -- 
