@@ -1,15 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20780] nouveau corrupts at start,
- then crashes after a few drawing operations. 7800gt when
- NoAccel=false
-Date: Sat, 21 Mar 2009 02:21:43 -0700 (PDT)
-Message-ID: <20090321092143.4788A130058@annarchy.freedesktop.org>
-References: <bug-20780-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Nouveau on sparc (Re: Mmiotrace work)
+Date: Sat, 21 Mar 2009 22:04:07 +1000
+Message-ID: <21d7e9970903210504o4ddec2f0l1e095360bdfd0b73@mail.gmail.com>
+References: <6e757d380903192206p2fcbad6as20813b207f6d650f@mail.gmail.com>
+	<20090320203850.4473bff4@daedalus.pq.iki.fi>
+	<6a89f9d50903201246v2f1d65a9y93d6c056ef79c097@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20780-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <6a89f9d50903201246v2f1d65a9y93d6c056ef79c097-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,27 +19,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>
+Cc: Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20780
+On Sat, Mar 21, 2009 at 5:46 AM, Stephane Marchesin
+<marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org> wrote:
+> On Fri, Mar 20, 2009 at 19:38, Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> wrote:
+>> On Fri, 20 Mar 2009 00:06:39 -0500
+>> Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>
+>>> Speaking of contributing, would you like a tester for Nouveau on
+>>> SPARC64? =A0I have access to an Ultra 45 and a pair of PCI boards (TnT2,
+>>> GeForce 6200, both with x86 VBIOSes unfortunately). =A0I don't own any
+>>> PCI-E boards yet, but that can change if there's interest.
+>>
+>> I have no idea about non-x86/ppc support. Anyone?
+>>
+>
+> It's never been tested before. There has to be a first !
+>
 
+You'll need at least a base kernel of drm-next, I'm not sure
+the drm sparc fixes have been ported back to drm.git.
 
+The first DRM radeon on sparc success was only about a month ago.
 
-
-
---- Comment #8 from Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-21 02:21:42 PST ---
-I don't know that EXA ever worked on this card, specifically actually.  I tried
-different revisions of nouveau all the way back to when they just added ctx
-voodoo for the nv47 (my card), and nothing worked right with noaccel=false. 
-With noaccel=true, the newer nouveaus work much better too.
-
-I attached error logs of a 2008-01-xx nouveau that exhibited the same symptoms
-as the most recent nouveau (corruption---->crashing later), and gave more fifo
-info.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Dave.
