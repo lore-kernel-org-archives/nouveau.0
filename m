@@ -1,9 +1,9 @@
-From: danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] backlight support powerpc
-Date: Mon, 23 Mar 2009 21:40:57 +0800
-Message-ID: <6ff156bd0903230640p1b42a09ft5bef20a3a7ffb532@mail.gmail.com>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: TV encoder GSoC project
+Date: Tue, 24 Mar 2009 03:09:25 +0100
+Message-ID: <87ocvrbrje.fsf@riseup.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=0016e6d99aaf8b48aa0465c96ae4
+Content-Type: multipart/mixed; boundary="===============1186277247=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -12,142 +12,56 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---0016e6d99aaf8b48aa0465c96ae4
-Content-Type: multipart/alternative; boundary=0016e6d99aaf8b48a20465c96ae2
+--===============1186277247==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha1; protocol="application/pgp-signature"
 
---0016e6d99aaf8b48a20465c96ae2
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-Attached patch allows the backlight to be manipulated under gnome on apple
-powerpc based <NV30 machines. It works fine on my powerbook, and should also
-work for older NV17/NV18 machines. Questions/Comments/critisism welcome (plz
-cc me).
-
-Note that older powerpc specific tools (pbbuttonsd) have some problems with
-this implementation (because the device is not yet there at the start time
-of the daemon, and the code makes incorrect assumptions about the max
-brightness values). However, IMHO these things can and should be addressed
-in the daemon.
-
-The patch also addresses the swab32 problem in master that nobody cared
-about.
-
-Danny
-
---0016e6d99aaf8b48a20465c96ae2
-Content-Type: text/html; charset=ISO-8859-1
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Attached patch allows the backlight to be manipulated under gnome on apple =
-powerpc based &lt;NV30 machines. It works fine on my powerbook, and should =
-also work for older NV17/NV18 machines. Questions/Comments/critisism welcom=
-e (plz cc me).<br>
-<br>Note that older powerpc specific tools (pbbuttonsd) have some problems =
-with this implementation (because the device is not yet there at the start =
-time of the daemon, and the code makes incorrect assumptions about the max =
-brightness values). However, IMHO these things can and should be addressed =
-in the daemon.<br>
-<br>The patch also addresses the swab32 problem in master that nobody cared=
- about.<br><br>Danny<br><br><br>
 
---0016e6d99aaf8b48a20465c96ae2--
+I was wondering if there is actually someone willing to mentor this:
 
---0016e6d99aaf8b48aa0465c96ae4
-Content-Type: text/x-diff; charset=US-ASCII; name="ppc-backlight.patch"
-Content-Disposition: attachment; filename="ppc-backlight.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_fsn79row0
+> Implement nouveau TV-out support. This will require picking up a card
+> or two and figuring out how TV encoding works on them (integrated,
+> separate chip, etc.) then how to program the chip (by reverse
+> engineering, or because the chip is documented). Then the student
+> should implement TV-out support as part of the randr 1.2/1.3
+> framework.
 
-ZGlmZiAtLWdpdCBhL2xpbnV4LWNvcmUvbm91dmVhdV9iYWNrbGlnaHQuYyBiL2xpbnV4LWNvcmUv
-bm91dmVhdV9iYWNrbGlnaHQuYwppbmRleCA1MWM3NDdhLi5iN2JmY2IxIDEwMDY0NAotLS0gYS9s
-aW51eC1jb3JlL25vdXZlYXVfYmFja2xpZ2h0LmMKKysrIGIvbGludXgtY29yZS9ub3V2ZWF1X2Jh
-Y2tsaWdodC5jCkBAIC0yNyw2ICsyNywxMSBAQAogICogQXV0aG9yczoKICAqICBNYXR0aGV3IEdh
-cnJldHQgPG1qZ0ByZWRoYXQuY29tPgogICoKKyAqIFBvd2VyUEMgc3BlY2lmaWMgc3R1ZmY6Cisg
-KiAgICAgRGFubnkgVGhvbGVuIDxtb29uZHJha2VAZ21haWwuY29tPgorICogICAgIChtYWlubHkg
-YmFzZWQgb24gaW5mbyBmcm9tIG52aWRpYWZiKQorICoKKyAqCiAgKiBSZWdpc3RlciBsb2NhdGlv
-bnMgZGVyaXZlZCBmcm9tIE5WQ2xvY2sgYnkgUm9kZXJpY2sgQ29sZW5icmFuZGVyCiAgKi8KIApA
-QCAtMzksNiArNDQsNTQgQEAKIAogI2lmZGVmIENPTkZJR19CQUNLTElHSFRfQ0xBU1NfREVWSUNF
-CiAKKyNpZmRlZiBDT05GSUdfUE1BQ19CQUNLTElHSFQKKyNpbmNsdWRlIDxhc20vYmFja2xpZ2h0
-Lmg+CisjZW5kaWYKKworc3RhdGljIGludCBwcGNfZ2V0X2ludGVuc2l0eShzdHJ1Y3QgYmFja2xp
-Z2h0X2RldmljZSAqYmQpCit7CisJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGJsX2dldF9kYXRh
-KGJkKTsKKwlzdHJ1Y3QgZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9w
-cml2YXRlOworCWludCB0bXBfcG1jICA9IE5WX1JFQUQoTlZfUEJVU19ERUJVR19EVUFMSEVBRF9D
-VEwpOworCWludCBtYXhfYnJpZ2h0bmVzcyA9IHRtcF9wbWMgJiAweDAwMDBGRkZGOworCQorCXRt
-cF9wbWMgPSAodG1wX3BtYyAgJiB+KDEgPDwgMzEpKSA+PiAxNjsKKwkKKwlyZXR1cm4gKHRtcF9w
-bWMgLSAobWF4X2JyaWdodG5lc3MgPj4gMikpOworCit9CisKK3N0YXRpYyBpbnQgcHBjX3NldF9p
-bnRlbnNpdHkoc3RydWN0IGJhY2tsaWdodF9kZXZpY2UgKmJkKQoreworCXN0cnVjdCBkcm1fZGV2
-aWNlICpkZXYgPSBibF9nZXRfZGF0YShiZCk7CisJc3RydWN0IGRybV9ub3V2ZWF1X3ByaXZhdGUg
-KmRldl9wcml2ID0gZGV2LT5kZXZfcHJpdmF0ZTsKKworCWludCB2YWwgPSBiZC0+cHJvcHMuYnJp
-Z2h0bmVzcyAtIDE7CisJaW50IHRtcF9wbWMgPSBOVl9SRUFEKE5WX1BCVVNfREVCVUdfRFVBTEhF
-QURfQ1RMKSAmIDB4MDAwMEZGRkY7CisJaW50IHRtcF9wY3J0ID0gTlZfUkVBRChOVl9DUlRDX0dQ
-SU9fRVhUKSAmIDB4RkZGRkZGRkM7CisKKwlpZiAodmFsID4gMCkgeworCQl0bXBfcGNydCB8PSAw
-eDE7CisJCXRtcF9wbWMgfD0gKHZhbCArICh0bXBfcG1jID4+IDIpKSA8PCAxNjsKKwkJdG1wX3Bt
-YyB8PSAoMSA8PCAzMSk7IC8qIGJhY2tsaWdodCBiaXQgb24gKi8KKwl9IGVsc2UKKwkJYmQtPnBy
-b3BzLmJyaWdodG5lc3MgPSB2YWwgPSAwOworCisJTlZfV1JJVEUoTlZfQ1JUQ19HUElPX0VYVCwg
-dG1wX3BjcnQpOworCU5WX1dSSVRFKE5WX1BCVVNfREVCVUdfRFVBTEhFQURfQ1RMLCB0bXBfcG1j
-KTsKKworCXJldHVybiAwOworfQorCitzdGF0aWMgc3RydWN0IGJhY2tsaWdodF9vcHMgcHBjX2Js
-X29wcyA9IHsKKyNpZiAoTElOVVhfVkVSU0lPTl9DT0RFID49IEtFUk5FTF9WRVJTSU9OKDIsNiwy
-OSkpCisJLm9wdGlvbnMgPSBCTF9DT1JFX1NVU1BFTkRSRVNVTUUsCisjZW5kaWYKKwkuZ2V0X2Jy
-aWdodG5lc3MgPSBwcGNfZ2V0X2ludGVuc2l0eSwKKwkudXBkYXRlX3N0YXR1cyA9IHBwY19zZXRf
-aW50ZW5zaXR5LAorfTsKKworCiBzdGF0aWMgaW50IG52NDBfZ2V0X2ludGVuc2l0eShzdHJ1Y3Qg
-YmFja2xpZ2h0X2RldmljZSAqYmQpCiB7CiAJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGJsX2dl
-dF9kYXRhKGJkKTsKQEAgLTk2LDYgKzE0OSw0NiBAQCBzdGF0aWMgc3RydWN0IGJhY2tsaWdodF9v
-cHMgbnY1MF9ibF9vcHMgPSB7CiAJLnVwZGF0ZV9zdGF0dXMgPSBudjUwX3NldF9pbnRlbnNpdHks
-CiB9OwogCisKK3N0YXRpYyBpbnQgbm91dmVhdV9wcGNfYmFja2xpZ2h0X2luaXQoc3RydWN0IGRy
-bV9kZXZpY2UgKmRldikKK3sKKwlzdHJ1Y3QgZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYg
-PSBkZXYtPmRldl9wcml2YXRlOworCXN0cnVjdCBiYWNrbGlnaHRfZGV2aWNlICpiZDsKKwlpbnQg
-bWF4X2JyaWdodG5lc3MgPSAwOworCisJaWYgKCFtYWNoaW5lX2lzKHBvd2VybWFjKSB8fAorCSAg
-ICAhcG1hY19oYXNfYmFja2xpZ2h0X3R5cGUoIm1uY2EiKSkKKwkJcmV0dXJuIC1FTk9ERVY7CisK
-KwkvKiAibnZfYmwwIiwgc29tZSBvbGQgcG93ZXJwYyB1c2VybGFuZCB0b29scyByZWx5IG9uIHRo
-aXMgKi8KKwliZCA9IGJhY2tsaWdodF9kZXZpY2VfcmVnaXN0ZXIoIm52X2JsMCIsICZkZXYtPnBk
-ZXYtPmRldiwgZGV2LAorCSAgICAmcHBjX2JsX29wcyk7CisJaWYgKElTX0VSUihiZCkpCisJCXJl
-dHVybiBQVFJfRVJSKGJkKTsKKworCWRldl9wcml2LT5iYWNrbGlnaHQgPSBiZDsKKworCS8qIHRo
-ZSBsZWFzdCBzaWduaWZpY2FudCAxNSBiaXRzIG9mIE5WX1BCVVNfREVCVUdfRFVBTEhFQURfQ1RM
-CisJICogc2V0IHRoZSBtYXhpbXVtIGJhY2tsaWdodCBsZXZlbCwgT0Ygc2V0cyBpdCB0byAweDUz
-NSBvbiBteQorCSAqIHBvd2VyYm9vay4gaG93ZXZlciwgcG9zdGluZyB0aGUgY2FyZCBzZXRzIHRo
-aXMgdG8gMHg3RkZGLgorCSAqIEJlbG93IDI1JSB0aGUgYmxhY2tsaWdodCB0dXJucyBvZmYuCisJ
-ICoKKwkgKiBOT1RFOiBwYmJ1dHRvbnNkIGxpbWl0cyBicmlnaHRuZXNzIHZhbHVlcyA8IDI1NSwg
-YW5kIHRodXMKKwkgKiB3aWxsIG5vdCB3b3JrIHdlbGwgd2l0aCB0aGlzLgorCSAqLworCisJLypG
-SVhNRTogZG8gd2Ugd2FudCB0byBmaXggdGhpcyByZWcgdG8gMHg1MzUgZm9yIGNvbnNpc3RlbmN5
-PyovCisJbWF4X2JyaWdodG5lc3MgPSAgTlZfUkVBRChOVl9QQlVTX0RFQlVHX0RVQUxIRUFEX0NU
-TCkgCisJCQkgICAgJiAweDAwMDBGRkZGOworCWJkLT5wcm9wcy5tYXhfYnJpZ2h0bmVzcyA9IG1h
-eF9icmlnaHRuZXNzIC0gCisJCQkJICAgIChtYXhfYnJpZ2h0bmVzcyA+PiAyKTsKKwliZC0+cHJv
-cHMucG93ZXIgPSBGQl9CTEFOS19VTkJMQU5LOworCWJkLT5wcm9wcy5icmlnaHRuZXNzID0gcHBj
-X2dldF9pbnRlbnNpdHkoYmQpOworCWJhY2tsaWdodF91cGRhdGVfc3RhdHVzKGJkKTsKKyAgICAg
-ICAgCisJcmV0dXJuIDA7Cit9CisKIHN0YXRpYyBpbnQgbm91dmVhdV9udjQwX2JhY2tsaWdodF9p
-bml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiB7CiAJc3RydWN0IGRybV9ub3V2ZWF1X3ByaXZh
-dGUgKmRldl9wcml2ID0gZGV2LT5kZXZfcHJpdmF0ZTsKQEAgLTE0Miw2ICsyMzUsMTEgQEAgaW50
-IG5vdXZlYXVfYmFja2xpZ2h0X2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIAlzdHJ1Y3Qg
-ZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9wcml2YXRlOwogCiAJc3dp
-dGNoIChkZXZfcHJpdi0+Y2FyZF90eXBlKSB7CisjaWZkZWYgQ09ORklHX1BNQUNfQkFDS0xJR0hU
-CisJY2FzZSBOVl8xNzoKKwljYXNlIE5WXzMwOgorCQlyZXR1cm4gbm91dmVhdV9wcGNfYmFja2xp
-Z2h0X2luaXQoZGV2KTsKKyNlbmRpZgogCWNhc2UgTlZfNDA6CiAJY2FzZSBOVl80NDoKIAkJcmV0
-dXJuIG5vdXZlYXVfbnY0MF9iYWNrbGlnaHRfaW5pdChkZXYpOwpkaWZmIC0tZ2l0IGEvc2hhcmVk
-LWNvcmUvbm91dmVhdV9yZWcuaCBiL3NoYXJlZC1jb3JlL25vdXZlYXVfcmVnLmgKaW5kZXggMDYw
-YWJlMC4uMzk0OTI2OCAxMDA2NDQKLS0tIGEvc2hhcmVkLWNvcmUvbm91dmVhdV9yZWcuaAorKysg
-Yi9zaGFyZWQtY29yZS9ub3V2ZWF1X3JlZy5oCkBAIC05OSw2ICs5OSw5IEBACiAgKiB0aGUgY2Fy
-ZCB3aWxsIGhhbmcgZWFybHkgb24gaW4gdGhlIFggaW5pdCBwcm9jZXNzLgogICovCiAjICAgIGRl
-ZmluZSBOVl9QTUNfRU5BQkxFX1VOSzEzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICgx
-PDwxMykKKyNkZWZpbmUgTlZfUEJVU19ERUJVR19EVUFMSEVBRF9DVEwJCQkgICAweDAwMDAxMEYw
-CisjZGVmaW5lIE5WX0NSVENfR1BJT19FWFQJCQkJICAgMHgwMDYwMDgxQworI2RlZmluZSBOVl9S
-QU1EQUNfRlBfQ09OVFJPTAkJCQkgICAweDAwNjgwODQ4CiAjZGVmaW5lIE5WNDBfUE1DX0JBQ0tM
-SUdIVAkJCQkgICAweDAwMDAxNWYwCiAjCWRlZmluZSBOVjQwX1BNQ19CQUNLTElHSFRfTUFTSwkJ
-CSAgIDB4MDAxZjAwMDAKICNkZWZpbmUgTlY0MF9QTUNfMTcwMCAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgMHgwMDAwMTcwMApkaWZmIC0tZ2l0IGEvc2hhcmVkLWNvcmUvbm91
-dmVhdV9zdGF0ZS5jIGIvc2hhcmVkLWNvcmUvbm91dmVhdV9zdGF0ZS5jCmluZGV4IGM5ZjQzMjku
-LmIyYWQ3NDcgMTAwNjQ0Ci0tLSBhL3NoYXJlZC1jb3JlL25vdXZlYXVfc3RhdGUuYworKysgYi9z
-aGFyZWQtY29yZS9ub3V2ZWF1X3N0YXRlLmMKQEAgLTQ5Niw3ICs0OTYsNyBAQCBpbnQgbm91dmVh
-dV9sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHVuc2lnbmVkIGxvbmcgZmxhZ3MpCiAJcmVn
-MSA9IHJlYWRsKHJlZ3MrTlYwM19QTUNfQk9PVF8xKTsKICNpZiBkZWZpbmVkKF9fcG93ZXJwY19f
-KQogCWlmIChyZWcxKQotCQlyZWcwPV9fX3N3YWIzMihyZWcwKTsKKwkJcmVnMD1fX3N3YWIzMihy
-ZWcwKTsKICNlbmRpZgogCiAJLyogV2UncmUgZGVhbGluZyB3aXRoID49TlYxMCAqLwo=
---0016e6d99aaf8b48aa0465c96ae4
+because I'm considering to apply for it.=20
+
+I would attempt to RE the TV encoder of some subset of NV17, NV34,
+NV35 (that's the hardware i've access to).
+
+Thanks.
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+
+iEYEARECAAYFAknIQPcACgkQ196Zy2qEI5fdgQCgwtz1l0tZQ8YBUI6KTcsNpoV4
+ESIAoKtlfJI2LtbB06TlwyZc8XRoj4nt
+=mLID
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============1186277247==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -158,4 +72,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---0016e6d99aaf8b48aa0465c96ae4--
+--===============1186277247==--
