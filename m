@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20857] Xorg hangs when starting with nouveau
-Date: Wed, 25 Mar 2009 04:15:02 -0700 (PDT)
-Message-ID: <20090325111508.13D4413005B@annarchy.freedesktop.org>
+Date: Wed, 25 Mar 2009 04:30:42 -0700 (PDT)
+Message-ID: <20090325113042.7067A130057@annarchy.freedesktop.org>
 References: <bug-20857-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20857
 
 
 
---- Comment #1 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-25 04:15:00 PST ---
-How about kernel logs? (with drm debug=1)
-
-danny
+--- Comment #2 from Martin Ketzer <martin.ketzer-Mmb7MZpHnFY@public.gmane.org>  2009-03-25 04:30:41 PST ---
+Created an attachment (id=24233)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24233)
+kernel log
 
 
 -- 
