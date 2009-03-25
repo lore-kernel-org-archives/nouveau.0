@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20860] 2D part  problems + KMS on NV96
-Date: Wed, 25 Mar 2009 07:58:46 -0700 (PDT)
-Message-ID: <20090325145846.3F150130057@annarchy.freedesktop.org>
+Date: Wed, 25 Mar 2009 08:00:37 -0700 (PDT)
+Message-ID: <20090325150037.74B12130058@annarchy.freedesktop.org>
 References: <bug-20860-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20860
 
 
 
---- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-25 07:58:45 PST ---
-Created an attachment (id=24235)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24235)
-dmesg
+--- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-25 08:00:36 PST ---
+Created an attachment (id=24236)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24236)
+Xorg.log
+
+it's when openarena crash with KMS
 
 
 -- 
