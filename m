@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20848] Nouveau crashes on rotation
-Date: Tue, 24 Mar 2009 15:09:06 -0700 (PDT)
-Message-ID: <20090324220906.AC44713005B@annarchy.freedesktop.org>
-References: <bug-20848-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14941] ioremap leak/oddity in DRM
+Date: Tue, 24 Mar 2009 20:06:09 -0700 (PDT)
+Message-ID: <20090325030609.345ED13005B@annarchy.freedesktop.org>
+References: <bug-14941-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20848-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14941-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20848
+http://bugs.freedesktop.org/show_bug.cgi?id=14941
+
+
+Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
-
---- Comment #1 from Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-24 15:09:04 PST ---
-Created an attachment (id=24215)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24215)
-Dmesg for the first case
+--- Comment #7 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-03-24 20:06:08 PST ---
+http://cgit.freedesktop.org/mesa/drm/commit/?id=c9cfeaa5542e08381a8144d0a5bd96036a19082f
+fixes the leak for me.
 
 
 -- 
