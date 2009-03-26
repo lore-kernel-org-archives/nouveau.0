@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20878] New: Xorg server does not properly autodetect
- dual nVidia graphics cards
-Date: Thu, 26 Mar 2009 05:42:53 -0700 (PDT)
-Message-ID: <bug-20878-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20848] Nouveau crashes on rotation or refrect
+Date: Thu, 26 Mar 2009 10:29:15 -0700 (PDT)
+Message-ID: <20090326172915.045C4130057@annarchy.freedesktop.org>
+References: <bug-20848-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-20848-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,64 +20,28 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20878
-
-           Summary: Xorg server does not properly autodetect dual nVidia
-                    graphics cards
-           Product: xorg
-           Version: 7.4
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Server/general
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: sgallagh-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+http://bugs.freedesktop.org/show_bug.cgi?id=20848
 
 
-Created an attachment (id=24273)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24273)
-X.org log demonstrating the error
+Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-When starting the X server, it detects that there are "More than one possible
-primary device found"
-
-(!!) More than one possible primary device found
-(--) PCI: (0@3:0:0) nVidia Corporation G94 [GeForce 9600 GT] rev 161, Mem @
-0xf4000000/16777216, 0xc0000000/268435456, 0xf2000000/33554432, I/O @
-0x0000ac00/128, BIOS @ 0x????????/524288
-(--) PCI: (0@5:0:0) nVidia Corporation G94 [GeForce 9600 GT] rev 161, Mem @
-0xf8000000/16777216, 0xd0000000/268435456, 0xf6000000/33554432, I/O @
-0x00008c00/128, BIOS @ 0x????????/524288
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Nouveau crashes on rotation |Nouveau crashes on rotation
+                   |                            |or refrect
 
 
-The X server will then attempt to invoke the VESA driver instead of the Nouveau
-driver (this is on the Fedora 11 Nouveau Test Day LiveCD)
-
-Ultimately it will fail with:
-Fatal server error:
-AddScreen/ScreenInit failed for driver 0
 
 
-However, if I manually add the following to an xorg.conf file, it loads
-correctly.
-Section "Device"
-        Identifier  "Videocard0"
-        BusID       "PCI:3:0:0"
-        Driver      "nouveau"
-EndSection
+--- Comment #2 from Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-26 10:29:14 PST ---
+Today's build news:
 
-Section "Device"
-        Identifier      "Videocard1"
-        BusID           "PCI:5:0:0"
-        Driver          "nouveau"
-EndSection
+Today I got the same behavior "rotating to left" both screens: crash and stack
+dump. The kernel freezing happens randomly and specially when I try to
+VT-switch after a crash.
 
-
-The correct behavior of the X server should be to automatically generate these
-entries for each card.
+I also reproduced this on single screen setup. This is not multihead setup
+problem. This is "--rotate any but normal" and "--reflect any" problem.
 
 
 -- 
