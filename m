@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20848] Nouveau crashes on rotation or refrect
-Date: Thu, 26 Mar 2009 19:02:06 -0700 (PDT)
-Message-ID: <20090327020206.C88A913005A@annarchy.freedesktop.org>
+Date: Fri, 27 Mar 2009 12:38:11 -0700 (PDT)
+Message-ID: <20090327193811.AD214130057@annarchy.freedesktop.org>
 References: <bug-20848-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20848
 
 
+Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-26 19:02:04 PST ---
-This should be fixed now.
+
+--- Comment #4 from Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-27 12:38:11 PST ---
+Yes, It's fixed.
+
+Thank you!
 
 
 -- 
