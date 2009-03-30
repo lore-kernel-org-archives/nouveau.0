@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20930] Memory leak, crashing applications on PPC64
-Date: Sun, 29 Mar 2009 19:44:45 -0700 (PDT)
-Message-ID: <20090330024445.17E61130058@annarchy.freedesktop.org>
-References: <bug-20930-8800@http.bugs.freedesktop.org/>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nv50: wfb patches
+Date: Sun, 29 Mar 2009 23:54:33 -0400
+Message-ID: <586c2acd0903292054r11841a3v7750ac27ea9a6963@mail.gmail.com>
+References: <6d4bc9fc0903291654r70e3e6f0pd6f56874a6c361f7@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20930-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <6d4bc9fc0903291654r70e3e6f0pd6f56874a6c361f7-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,26 +17,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20930
+2009/3/29 Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>:
+> The whole thing works fine, but XSHM is an issue
+> (http://stillunknown.livejournal.com/928.html). With it disabled most
+> apps are fine, although a few issues remain.
 
-
-
-
-
---- Comment #1 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-29 19:44:42 PST ---
-Since nobody replied yet, I think it may help to add a full kernel log with drm
-debug=1 enabled. That way people can follow memory allocation.
-
-kernel logs may be useful anyway to see what kind of hardware we are talking
-about. There was nothing useful in the Xorg log?
-
-Danny
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Just out of curiousity, why can't you alloc a pixmap you can
+accelerate and just keep it sync'd with the xshm pixmap, track dirty
+rects, etc? Also why can't you allocate a linear pixmap on software
+fallbacks, copy+untile the original to the linear, let the fallback
+complete, and copy+tile back to the original? Might be cheaper than
+having to trap and transform every pixel access.
