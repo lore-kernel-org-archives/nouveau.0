@@ -1,14 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nv50: wfb patches
-Date: Mon, 30 Mar 2009 12:20:28 +0200
-Message-ID: <6d4bc9fc0903300320t7ab80b83k499c7aaf397303ea@mail.gmail.com>
-References: <6d4bc9fc0903291654r70e3e6f0pd6f56874a6c361f7@mail.gmail.com>
-	<586c2acd0903292054r11841a3v7750ac27ea9a6963@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 20915] Refresh rate out of range, server backtrace
+Date: Mon, 30 Mar 2009 17:11:52 -0700 (PDT)
+Message-ID: <20090331001152.1BA6613005B@annarchy.freedesktop.org>
+References: <bug-20915-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <586c2acd0903292054r11841a3v7750ac27ea9a6963-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-20915-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,29 +17,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-XSHM could probably be fixed, but that would have to be done on a
-larger scope (as in for everything, not just exa). This could
-negatively impact those with no acceleration at all.
+http://bugs.freedesktop.org/show_bug.cgi?id=20915
 
-About the untiling + copy approach, this is what classic exa does, and
-you are practically forced to keep a software copy around always.
-Otherwise you get excessive copies. I know right now that reading
-memory on uncached memory isn't so great, but maybe in the future we
-could use the gart also.
 
-wfb is just a "simple" way of handling things, exa's migration
-scheme's aren't easy.
 
-From a memory waste point of view, wfb is the way to go, and the fact
-that nvidia use it says something.
 
-And imo, the things that hit really hard on software fallbacks just
-need to be fixed.
 
-Anyway you're welcome to try something else and compare.
+--- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-03-30 17:11:51 PST ---
+Created an attachment (id=24381)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24381)
+support for pll limits table 3.0
 
-Maarten.
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
