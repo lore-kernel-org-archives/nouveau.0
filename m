@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20987] New: x crashes on nv18, athlon xp, sigfpe
-Date: Tue, 31 Mar 2009 20:40:40 -0700 (PDT)
-Message-ID: <bug-20987-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20987] x crashes on nv18, athlon xp, sigfpe
+Date: Tue, 31 Mar 2009 20:41:52 -0700 (PDT)
+Message-ID: <20090401034152.2110F130016@annarchy.freedesktop.org>
+References: <bug-20987-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-20987-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=20987
 
-           Summary: x crashes on nv18, athlon xp, sigfpe
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: highest
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: yu_kalev-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-x crashes on nv18, athlon xp, sigfpe
+
+
+--- Comment #1 from yulian kalev <yu_kalev-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2009-03-31 20:41:49 PST ---
+Created an attachment (id=24421)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24421)
+xorg log
 
 
 -- 
