@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20987] x crashes on nv18, athlon xp, sigfpe
-Date: Tue, 31 Mar 2009 20:41:52 -0700 (PDT)
-Message-ID: <20090401034152.2110F130016@annarchy.freedesktop.org>
+Date: Tue, 31 Mar 2009 20:51:32 -0700 (PDT)
+Message-ID: <20090401035132.5D6DD13005B@annarchy.freedesktop.org>
 References: <bug-20987-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20987
 
 
 
---- Comment #1 from yulian kalev <yu_kalev-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2009-03-31 20:41:49 PST ---
-Created an attachment (id=24421)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24421)
-xorg log
+--- Comment #2 from yulian kalev <yu_kalev-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2009-03-31 20:51:31 PST ---
+Created an attachment (id=24422)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24422)
+bios dump
 
 
 -- 
