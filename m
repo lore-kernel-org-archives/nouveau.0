@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20990] [kms] Change to VT broken  with NV92
-Date: Wed,  1 Apr 2009 02:47:28 -0700 (PDT)
-Message-ID: <20090401094728.4A006130058@annarchy.freedesktop.org>
+Date: Wed,  1 Apr 2009 02:48:07 -0700 (PDT)
+Message-ID: <20090401094807.8F8AE13005A@annarchy.freedesktop.org>
 References: <bug-20990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20990
 
 
 
---- Comment #1 from Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-01 02:47:27 PST ---
-Created an attachment (id=24426)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24426)
-X log
+--- Comment #2 from Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-01 02:48:07 PST ---
+Created an attachment (id=24427)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24427)
+Kernel log
 
 
 -- 
