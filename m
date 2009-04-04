@@ -1,15 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau-cvs] xf86-video-nv: Branch 'master'
-Date: Fri, 3 Apr 2009 19:12:15 +0200
-Message-ID: <6d4bc9fc0904031012r19c9f90bn75c50798bb780ea6@mail.gmail.com>
-References: <20090403042615.8CCE910096@kemper.freedesktop.org>
-	<6d4bc9fc0904030143q216add58s4b2125f14fbe47c2@mail.gmail.com>
-	<1238753639.1366.8.camel@localhost.localdomain>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 21023] NV34GL: fails to properly set up DVI
+Date: Sat,  4 Apr 2009 07:46:15 -0700 (PDT)
+Message-ID: <20090404144615.6027D130063@annarchy.freedesktop.org>
+References: <bug-21023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1238753639.1366.8.camel-bi+AKbBUZKY6gyzm1THtWbp2dZbC/Bob@public.gmane.org>
+In-Reply-To: <bug-21023-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,85 +17,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: Ben Skeggs <darktama-PlYeExAEIo6UevrW7tnuMEsOKLKoXr+P@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The change was prompted by a personal email i recieved regarding a bug
-on a 9200 (which included the right ports), a mmio-trace then
-confirmed on some cards (maybe only 9xxx) that these i2c ports were
-being init'ed. So i know for fact that they are true for at least one
-card. xf86-video-nv is practically unmaintained and it's starting to
-show. On a sidenote it's also true that SOR2 init is incomplete, so
-without a bios init it won't work.
+http://bugs.freedesktop.org/show_bug.cgi?id=21023
 
-My personal guess is the i2c ports are different for 8xxx and 9xxx.
 
-Maarten.
 
-On Fri, Apr 3, 2009 at 12:13 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Fri, 2009-04-03 at 10:43 +0200, Maarten Maathuis wrote:
->> You need these ports for LVDS?
->>
->> Because i know these ports are correct for dvi and friends.
->>
->> So if you changed them for lvds, we need to seperate port 4 and 5 into
->> lvds and non-lvds.
-> Why doesn't xf86-video-nv do this? =A0There's a RH bug (492289) where the
-> ddx doesn't get any modes (on DVI), but kms (which has the old values)
-> does. =A0I didn't actually hear from the reporter yet, but seeing as nv
-> uses the old values I figured that could be a likely culprit...
->
-> Did your change actually fix anything? =A0Your commit message was a vague
-> =A0"some minor modesetting changes" seemingly without reason.
->
-> Ben.
->>
->> Maarten.
->>
->> On Fri, Apr 3, 2009 at 6:26 AM, Ben Skeggs
->> <darktama-PlYeExAEIo6UevrW7tnuMEsOKLKoXr+P@public.gmane.org> wrote:
->> > =A0src/nv50reg.h | =A0 =A04 ++--
->> > =A01 file changed, 2 insertions(+), 2 deletions(-)
->> >
->> > New commits:
->> > commit 11be9a982073d66a68cd3db2bfc611eb58d3ea81
->> > Author: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->> > Date: =A0 Fri Apr 3 12:22:04 2009 +1000
->> >
->> > =A0 =A0nv50: fix i2c port addresses
->> >
->> > diff --git a/src/nv50reg.h b/src/nv50reg.h
->> > index b3125ce..4e21220 100644
->> > --- a/src/nv50reg.h
->> > +++ b/src/nv50reg.h
->> > @@ -50,8 +50,8 @@
->> > =A0#define NV50_PCONNECTOR_I2C_PORT_1 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 0x0000e150
->> > =A0#define NV50_PCONNECTOR_I2C_PORT_2 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 0x0000e168
->> > =A0#define NV50_PCONNECTOR_I2C_PORT_3 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 0x0000e180
->> > -#define NV50_PCONNECTOR_I2C_PORT_4 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 0x0000e254
->> > -#define NV50_PCONNECTOR_I2C_PORT_5 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 0x0000e274
->> > +#define NV50_PCONNECTOR_I2C_PORT_4 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 0x0000e240
->> > +#define NV50_PCONNECTOR_I2C_PORT_5 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 0x0000e258
->> >
->> > =A0/* 0x00610024 is the state register to read, all it's bits also exi=
-st in 0x0061002C in the form of interrupt switches. */
->> > =A0#define NV50_DISPLAY_SUPERVISOR =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A00x00=
-610024
->> >
->> > ----------------------------------------------------------------------=
---------
->> > _______________________________________________
->> > Nouveau-cvs mailing list
->> > Nouveau-cvs-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
->> > https://lists.sourceforge.net/lists/listinfo/nouveau-cvs
->> >
->
->
+
+
+--- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-04 07:46:10 PST ---
+If the computer is booted with this (and only this) screen attached, does it
+work with the "nv" x driver?  Failing that, does it work with the proprietary
+"nvidia" linux driver?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
