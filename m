@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21023] NV34GL: fails to properly set up DVI
-Date: Sat,  4 Apr 2009 07:46:15 -0700 (PDT)
-Message-ID: <20090404144615.6027D130063@annarchy.freedesktop.org>
+Date: Sat,  4 Apr 2009 07:47:46 -0700 (PDT)
+Message-ID: <20090404144746.B9E87130058@annarchy.freedesktop.org>
 References: <bug-21023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21023
 
 
 
---- Comment #1 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-04 07:46:10 PST ---
-If the computer is booted with this (and only this) screen attached, does it
-work with the "nv" x driver?  Failing that, does it work with the proprietary
-"nvidia" linux driver?
+--- Comment #2 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-04 07:47:46 PST ---
+Sorry, also, if you start X with nouveau and it does this blinking thing, if
+you then close X and do startx again, does it work any better the second time
+around?
 
 
 -- 
