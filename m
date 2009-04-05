@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20857] Xorg hangs when starting with nouveau
-Date: Sun,  5 Apr 2009 15:04:17 -0700 (PDT)
-Message-ID: <20090405220418.0D462130058@annarchy.freedesktop.org>
+Date: Sun,  5 Apr 2009 15:18:08 -0700 (PDT)
+Message-ID: <20090405221808.CAA76130058@annarchy.freedesktop.org>
 References: <bug-20857-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20857
 
 
 
---- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-05 15:04:17 PST ---
-Some Makefiles changed, you need to re-run autogen.sh on your checkout or start
-over with a new checkout.
+--- Comment #7 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-05 15:18:08 PST ---
+If you have time to do a register dump while using the proprietary driver, that
+would be useful too (I'm guessing the kernel compilation for mmiotrace is the
+cause of the time problem).  Simply:
+git clone git://anongit.freedesktop.org/~stuart/radeontool; cd radeontool; make
+
+then run "./radeontool regs > dump" in an xterm while using the nvidia driver.
 
 
 -- 
