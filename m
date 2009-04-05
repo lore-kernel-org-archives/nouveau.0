@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20857] Xorg hangs when starting with nouveau
-Date: Sun,  5 Apr 2009 12:30:34 -0700 (PDT)
-Message-ID: <20090405193034.8736013005A@annarchy.freedesktop.org>
+Date: Sun,  5 Apr 2009 15:04:17 -0700 (PDT)
+Message-ID: <20090405220418.0D462130058@annarchy.freedesktop.org>
 References: <bug-20857-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,16 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=20857
 
 
 
---- Comment #5 from Martin Ketzer <martin.ketzer-Mmb7MZpHnFY@public.gmane.org>  2009-04-05 12:30:34 PST ---
-The current nouveau is claiming when trying to load drm:
-
-/usr/bin/X: symbol lookup error: /usr/lib/modules/drivers//nouveau_drv.so:
-undefined symbol: NVReadVgaCrtc
-
-which i can, btw, not find in any log but only in the error-screen when x does
-not load.
-
-it could take a while before i have time to do a mmiotrace.
+--- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-05 15:04:17 PST ---
+Some Makefiles changed, you need to re-run autogen.sh on your checkout or start
+over with a new checkout.
 
 
 -- 
