@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21023] NV34GL: fails to properly set up DVI
-Date: Mon,  6 Apr 2009 08:10:15 -0700 (PDT)
-Message-ID: <20090406151016.16D5E13005A@annarchy.freedesktop.org>
+Date: Mon,  6 Apr 2009 08:52:13 -0700 (PDT)
+Message-ID: <20090406155213.F3B86130057@annarchy.freedesktop.org>
 References: <bug-21023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21023
 
 
 
---- Comment #8 from Bill Nottingham <notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2009-04-06 08:10:15 PST ---
-Created an attachment (id=24607)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24607)
-nv register dump
+--- Comment #9 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-06 08:52:13 PST ---
+Thanks.  Two initial things to try (see if it stops the blinking):
+1) when nouveau is running, do "./radeontool regset 0x680848 0x11100110"
+2) when nouveau is running, do "./radeontool regset C0:33 0x9"
+
+if these don't help, does the blinking stop if you close X and go back to the
+terminal?  Does "nv" still work successfully following nouveau having been
+used?
 
 
 -- 
