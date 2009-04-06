@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21023] NV34GL: fails to properly set up DVI
-Date: Mon,  6 Apr 2009 08:09:41 -0700 (PDT)
-Message-ID: <20090406150941.55A6A130057@annarchy.freedesktop.org>
+Date: Mon,  6 Apr 2009 08:10:15 -0700 (PDT)
+Message-ID: <20090406151016.16D5E13005A@annarchy.freedesktop.org>
 References: <bug-21023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21023
 
 
 
---- Comment #7 from Bill Nottingham <notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2009-04-06 08:09:41 PST ---
-Created an attachment (id=24606)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24606)
-nouveau register dump
+--- Comment #8 from Bill Nottingham <notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2009-04-06 08:10:15 PST ---
+Created an attachment (id=24607)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24607)
+nv register dump
 
 
 -- 
