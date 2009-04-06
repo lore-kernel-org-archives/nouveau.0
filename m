@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21023] NV34GL: fails to properly set up DVI
-Date: Mon,  6 Apr 2009 06:58:09 -0700 (PDT)
-Message-ID: <20090406135809.7CDBF130058@annarchy.freedesktop.org>
+Date: Mon,  6 Apr 2009 07:06:10 -0700 (PDT)
+Message-ID: <20090406140610.EB12B130058@annarchy.freedesktop.org>
 References: <bug-21023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21023
 
 
 
---- Comment #3 from Bill Nottingham <notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2009-04-06 06:58:08 PST ---
-It has worked with nv in the past. I have never tried nvidia on this box.
+--- Comment #4 from Bill Nottingham <notting-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2009-04-06 07:06:10 PST ---
+Further restarts with nouveau do not help; neither does starting novueau after
+starting successfully once with nv.
 
 
 -- 
