@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21124] nouveau: fonts "chipped" on NV44
-Date: Sat, 11 Apr 2009 09:56:47 -0700 (PDT)
-Message-ID: <20090411165647.4BF8B13005B@annarchy.freedesktop.org>
+Date: Sat, 11 Apr 2009 10:09:15 -0700 (PDT)
+Message-ID: <20090411170915.B07EA13005B@annarchy.freedesktop.org>
 References: <bug-21124-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21124
 
 
 
---- Comment #1 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-11 09:56:46 PST ---
-Strange, I have a non-TC NV44 and all my fonts look fine. I'm assuming you had
-no problems previously and a recent update caused this, or is this the first
-time you've tried Nouveau?
-
-Does your kernel log have any errors?
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-11 10:09:15 PST ---
+I'd like to point out that gentoo ships a heavily patches version of
+xorg-server, 41 patches that affect exa. It's possible a mistake was made in
+the backporting somewhere. I'm not saying it is the issue, just consider it
+when searching for the answer.
 
 
 -- 
