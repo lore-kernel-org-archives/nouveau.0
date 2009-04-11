@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16165] Multi-gpu Quadro NVS 400 (NV17a x2) fails to
  initialise xserver
-Date: Sat, 11 Apr 2009 13:07:10 -0700 (PDT)
-Message-ID: <20090411200710.79D91130057@annarchy.freedesktop.org>
+Date: Sat, 11 Apr 2009 13:31:43 -0700 (PDT)
+Message-ID: <20090411203143.77ABE130058@annarchy.freedesktop.org>
 References: <bug-16165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,17 +24,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=16165
 
 
-Pete Beardmore <elbeardmorez-uAjRD0nVeow@public.gmane.org> changed:
+Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Version|7.3                         |git
+             Status|NEW                         |RESOLVED
+         Resolution|                            |DUPLICATE
 
 
 
 
---- Comment #8 from Pete Beardmore <elbeardmorez-uAjRD0nVeow@public.gmane.org>  2009-04-11 13:07:09 PST ---
-using git 'everything' as of ~ start of Apr 2009.
+--- Comment #9 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-11 13:31:42 PST ---
+Server has issues with multiple cards. There's another bug open for this.
+
+(Something to do with libpciaccess if I recall correctly?)
+
+*** This bug has been marked as a duplicate of bug 16897 ***
 
 
 -- 
