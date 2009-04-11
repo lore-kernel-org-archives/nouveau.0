@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16165] Multi-gpu Quadro NVS 400 (NV17a x2) fails to
  initialise xserver
-Date: Sat, 11 Apr 2009 12:25:02 -0700 (PDT)
-Message-ID: <20090411192502.6F35B130057@annarchy.freedesktop.org>
+Date: Sat, 11 Apr 2009 12:25:34 -0700 (PDT)
+Message-ID: <20090411192534.957D613005C@annarchy.freedesktop.org>
 References: <bug-16165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16165
 
 
 
---- Comment #2 from Pete Beardmore <elbeardmorez-uAjRD0nVeow@public.gmane.org>  2009-04-11 12:25:01 PST ---
-Created an attachment (id=24721)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24721)
-nouveau-Xorg.log-isolate-success-same-as-without-isolate
+--- Comment #3 from Pete Beardmore <elbeardmorez-uAjRD0nVeow@public.gmane.org>  2009-04-11 12:25:33 PST ---
+Created an attachment (id=24722)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24722)
+nouveau-Xorg.log-isolate-fail
 
 
 -- 
