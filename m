@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21124] nouveau: fonts "chipped" on NV44
-Date: Sat, 11 Apr 2009 10:09:15 -0700 (PDT)
-Message-ID: <20090411170915.B07EA13005B@annarchy.freedesktop.org>
-References: <bug-21124-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16168] Quadro NVS 400 (NV17a) drm PGRAPH_ERROR
+Date: Sat, 11 Apr 2009 11:48:12 -0700 (PDT)
+Message-ID: <20090411184812.B890F130057@annarchy.freedesktop.org>
+References: <bug-16168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21124-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21124
+http://bugs.freedesktop.org/show_bug.cgi?id=16168
 
 
 
 
 
---- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-11 10:09:15 PST ---
-I'd like to point out that gentoo ships a heavily patches version of
-xorg-server, 41 patches that affect exa. It's possible a mistake was made in
-the backporting somewhere. I'm not saying it is the issue, just consider it
-when searching for the answer.
+--- Comment #2 from Pete Beardmore <elbeardmorez-uAjRD0nVeow@public.gmane.org>  2009-04-11 11:48:11 PST ---
+Created an attachment (id=24716)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24716)
+error messages
 
 
 -- 
