@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 16168] Quadro NVS 400 (NV17a) drm PGRAPH_ERROR
-Date: Sat, 11 Apr 2009 11:50:42 -0700 (PDT)
-Message-ID: <20090411185043.06B7F130057@annarchy.freedesktop.org>
+Date: Sat, 11 Apr 2009 12:18:19 -0700 (PDT)
+Message-ID: <20090411191819.CE0C1130057@annarchy.freedesktop.org>
 References: <bug-16168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=16168
 
 
 
---- Comment #5 from Pete Beardmore <elbeardmorez-uAjRD0nVeow@public.gmane.org>  2009-04-11 11:50:42 PST ---
-Created an attachment (id=24719)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24719)
-nouveau.PGRAPH.gdb.where.full-dri.disabled.composite.disabled
+--- Comment #6 from Pete Beardmore <elbeardmorez-uAjRD0nVeow@public.gmane.org>  2009-04-11 12:18:18 PST ---
+Created an attachment (id=24720)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24720)
+nouveau-Xorg.log
 
 
 -- 
