@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21124] nouveau: fonts "chipped" on NV44
-Date: Sat, 11 Apr 2009 23:40:45 -0700 (PDT)
-Message-ID: <20090412064045.292A3130057@annarchy.freedesktop.org>
+Date: Sun, 12 Apr 2009 07:05:34 -0700 (PDT)
+Message-ID: <20090412140534.7E2FE13005A@annarchy.freedesktop.org>
 References: <bug-21124-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21124
 
 
 
---- Comment #3 from Marti <marti-HlJQ7cSfIDjYtjvyW6yDsg@public.gmane.org>  2009-04-11 23:40:44 PST ---
-(In reply to comment #1)
-> or is this the first time you've tried Nouveau?
-Yes.
-
-> Does your kernel log have any errors?
-None.
+--- Comment #4 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-12 07:05:33 PST ---
+Maybe you can build the server from the git overlay to see if it's a Gentoo
+patch causing it? If it's not an issue with Gentoo's xserver it might be an
+issue with TurboCache variants in the driver.
 
 
 -- 
