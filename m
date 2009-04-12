@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17377] NV50 failure on MacBook Pro.
-Date: Sun, 12 Apr 2009 10:14:31 -0700 (PDT)
-Message-ID: <20090412171433.3ED7C13005A@annarchy.freedesktop.org>
+Date: Sun, 12 Apr 2009 10:24:12 -0700 (PDT)
+Message-ID: <20090412172412.B45E0130016@annarchy.freedesktop.org>
 References: <bug-17377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,11 +26,16 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17377
 
 
 
---- Comment #7 from Parag <parag.warudkar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-12 10:14:30 PST ---
-F11 snapshot works OK (starts up with mode set, get proper resolution, no
-visible corruption) on my nVidia Macbook Pro 4,1 - tested with
-nouveau.modeset=1. The nouveau test day live CD did not work - so if you have a
-Macbook Pro it would be worthwhile to test the F11 snapshot.
+--- Comment #8 from David Woodhouse <dwmw2-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>  2009-04-12 10:24:12 PST ---
+Yeah, F-11 is working for me on the MBP4,1, with certain caveats:
+
+ 1. I must use nouveau.modeset=1; otherwise the nouveau Xorg driver fails.
+
+ 2. I must not boot from EFI, otherwise modesetting fails (and then see #1)
+
+ 3. I can use VGA or DVI external output, but cannot switch between them. If 
+    I've been displaying to VGA and want to change to DVI, or vice versa, then
+    I need to reboot before it'll work.
 
 
 -- 
