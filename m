@@ -1,14 +1,17 @@
-From: =?UTF-8?B?SGVydsOpIENhdXdlbGllcg==?= <herve.cauwelier-GANU6spQydw@public.gmane.org>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: nv50: wfb patches
-Date: Mon, 13 Apr 2009 00:25:23 +0200
-Message-ID: <49E26A53.6010004@free.fr>
-References: <6d4bc9fc0903291654r70e3e6f0pd6f56874a6c361f7@mail.gmail.com>	<586c2acd0903292054r11841a3v7750ac27ea9a6963@mail.gmail.com>	<6d4bc9fc0903300320t7ab80b83k499c7aaf397303ea@mail.gmail.com>
+Date: Mon, 13 Apr 2009 00:39:13 +0200
+Message-ID: <6d4bc9fc0904121539s60a38aafj2c695de1fa0bf16c@mail.gmail.com>
+References: <6d4bc9fc0903291654r70e3e6f0pd6f56874a6c361f7@mail.gmail.com>
+	<586c2acd0903292054r11841a3v7750ac27ea9a6963@mail.gmail.com>
+	<6d4bc9fc0903300320t7ab80b83k499c7aaf397303ea@mail.gmail.com>
 	<6d4bc9fc0904101231l4373cc92h1f32b93dec9cc8b8@mail.gmail.com>
+	<49E26A53.6010004@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc0904101231l4373cc92h1f32b93dec9cc8b8-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <49E26A53.6010004-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,39 +21,67 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: =?ISO-8859-1?Q?Herv=E9_Cauwelier?= <herve.cauwelier-GANU6spQydw@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SXMgdGhlcmUgc29tZSBvcHRpb24gdG8gcGFzcz8gSSBoYXZlIHhzZXJ2ZXIgMS42LCBkcm0gMi40
-LjkgYW5kIG5vdXZlYXUKbWFzdGVyIHdpdGggeW91ciBwYXRjaGVzLCBidXQgSSBzZWUgbm8gcHJv
-Z3Jlc3MgaW4gZ25vbWUtdGVybWluYWwKcmVmcmVzaCB3aGVuIG1heGltaXNpbmcgdGhlIHdpbmRv
-dyBvciBzd2l0Y2hpbmcgZGVza3RvcHMuIEl0IHN0aWxsIHRha2VzCmxpa2UgYSBjb3VwbGUgb2Yg
-c2Vjb25kcyB3aGVyZSB0aGUgQ1BVIGlzIGF0IDEwMCAlLgoKU29tZSByZXBvcnQgZnJvbSBkbWVz
-ZzoKCltkcm1dIEluaXRpYWxpemVkIGRybSAxLjEuMCAyMDA2MDgxMApub3V2ZWF1IDAwMDA6MDE6
-MDAuMDogUENJIElOVCBBIC0+IEdTSSAxNiAobGV2ZWwsIGxvdykgLT4gSVJRIDE2Cm5vdXZlYXUg
-MDAwMDowMTowMC4wOiBzZXR0aW5nIGxhdGVuY3kgdGltZXIgdG8gNjQKW2RybV0gRGV0ZWN0ZWQg
-YW4gTlY1MCBnZW5lcmF0aW9uIGNhcmQgKDB4MDg2NzAwYTIpCltkcm1dIEluaXRpYWxpemVkIG5v
-dXZlYXUgMC4wLjEyIGxpYmRybS0yLjQuOSBvbiBtaW5vciAwCltkcm1dIEFsbG9jYXRpbmcgRklG
-TyBudW1iZXIgMQpbZHJtXSBub3V2ZWF1X2ZpZm9fYWxsb2M6IGluaXRpYWxpc2VkIEZJRk8gMQpb
-ZHJtXSBBbGxvY2F0aW5nIEZJRk8gbnVtYmVyIDIKW2RybV0gbm91dmVhdV9maWZvX2FsbG9jOiBp
-bml0aWFsaXNlZCBGSUZPIDIKCkFuZCBYb3JnLjAubG9nOiBodHRwOi8vcGFzdGViaW4uY2EvMTM5
-MDAyOQoKUmVnYXJkcwoKTWFhcnRlbiBNYWF0aHVpcyBhIMOpY3JpdCA6Cj4gVXBkYXRlZCBwYXRj
-aGVzLCB3aXRoIG9uZSBwZXJmb3JtYW5jZSBpbXByb3ZlbWVudC4gTm90IGNoZWNraW5nIGZvcgo+
-IHRpbGVkIHBpeG1hcHMgd2hlbiBhbGwgcGVuZGluZyBwaXhtYXBzIGFyZSBsaW5lYXIuIFRoaXMg
-cmVkdWNlcyB0aGUKPiBvdmVyaGVhZCB0byB0aGUgcG9pbnQgdGhhdCB5b3UgYXJlIGRvaW5nIHNt
-YWxsIG1lbWNvcGllcyBpbnN0ZWFkIG9mIGEKPiBsYXJnZSBvbmUuCj4gCj4gSSB0aGluayBpIHNv
-bHZlZCB0aGUgWFNITSBwcm9ibGVtLCBzaW1wbHkgYnkgYWNjZWxlcmF0aW5nIGl0Cj4gKGh0dHA6
-Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy94b3JnL3hzZXJ2ZXIvY29tbWl0Lz9pZD0xYjU3NThiZWYw
-ODQwYzY2MTQyNDRlMzIxNzkwMjMxYjNjOTQ3N2M5KS4KPiAKPiBJJ2xsIGJlIGZhZGluZyB0byB0
-aGUgYmFja2dyb3VuZCBmb3IgYSBmZXcgbW9udGhzIHByZXR0eSBzb29uLCBzbwo+IHF1ZXN0aW9u
-cyB0aGF0IGludm9sdmUgYWNjZXNzIHRvIG15IG1haW4gbWFjaGluZSAocnVubmluZyBub3V2ZWF1
-LAo+IHhvcmctZ2l0LCBldGMpIHNob3VsZCBiZSBhc2tlZCBzb29uIChsZXNzIHRoYW4gYSB3ZWVr
-KS4KPiAKPiBNYWFydGVuLgo+IAo+IAo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+IAo+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxp
-c3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1CgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+Two things:
+
+- wfb is not supposed to solve that problem, it's only supposed to
+solve the problem of software access to tiled pixmaps
+- wfb+exa requires something newer than xorg-server-1.6.0
+
+The problem of getting the hw to do scanout from tiled memory still
+exists (darktama tried to replicate what the blob does without success
+as far as i know). The only workaround to it is some kind of shadow
+fb, the latter is more of a political issue.
+
+Maarten.
+
+2009/4/13 Herv=E9 Cauwelier <herve.cauwelier-GANU6spQydw@public.gmane.org>:
+> Is there some option to pass? I have xserver 1.6, drm 2.4.9 and nouveau
+> master with your patches, but I see no progress in gnome-terminal
+> refresh when maximising the window or switching desktops. It still takes
+> like a couple of seconds where the CPU is at 100 %.
+>
+> Some report from dmesg:
+>
+> [drm] Initialized drm 1.1.0 20060810
+> nouveau 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
+> nouveau 0000:01:00.0: setting latency timer to 64
+> [drm] Detected an NV50 generation card (0x086700a2)
+> [drm] Initialized nouveau 0.0.12 libdrm-2.4.9 on minor 0
+> [drm] Allocating FIFO number 1
+> [drm] nouveau_fifo_alloc: initialised FIFO 1
+> [drm] Allocating FIFO number 2
+> [drm] nouveau_fifo_alloc: initialised FIFO 2
+>
+> And Xorg.0.log: http://pastebin.ca/1390029
+>
+> Regards
+>
+> Maarten Maathuis a =E9crit :
+>> Updated patches, with one performance improvement. Not checking for
+>> tiled pixmaps when all pending pixmaps are linear. This reduces the
+>> overhead to the point that you are doing small memcopies instead of a
+>> large one.
+>>
+>> I think i solved the XSHM problem, simply by accelerating it
+>> (http://cgit.freedesktop.org/xorg/xserver/commit/?id=3D1b5758bef0840c661=
+4244e321790231b3c9477c9).
+>>
+>> I'll be fading to the background for a few months pretty soon, so
+>> questions that involve access to my main machine (running nouveau,
+>> xorg-git, etc) should be asked soon (less than a week).
+>>
+>> Maarten.
+>>
+>>
+>> ------------------------------------------------------------------------
+>>
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
+>
