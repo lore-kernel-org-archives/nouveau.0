@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21186] nouveau very slow with screen size > 1680
-Date: Tue, 14 Apr 2009 15:24:07 -0700 (PDT)
-Message-ID: <20090414222408.4029B130058@annarchy.freedesktop.org>
+Date: Tue, 14 Apr 2009 15:43:34 -0700 (PDT)
+Message-ID: <20090414224334.7D0A4130016@annarchy.freedesktop.org>
 References: <bug-21186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21186
 
 
 
---- Comment #1 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-14 15:24:07 PST ---
-Can you also provide your Xorg.0.log?
-
-If I understand you correctly the problem is with mplayer and video that is
-scaled larger than the native size? Or are most of the applications also
-slower? What happens at lower resolutions like 1024x786?
+--- Comment #2 from Gaetano Canepa <gaetano.canepa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-14 15:43:32 PST ---
+Created an attachment (id=24801)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24801)
+Xorg.0.log
 
 
 -- 
