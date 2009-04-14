@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21186] nouveau very slow with screen size > 1680
-Date: Tue, 14 Apr 2009 15:53:27 -0700 (PDT)
-Message-ID: <20090414225327.1881F130016@annarchy.freedesktop.org>
+Date: Tue, 14 Apr 2009 16:07:25 -0700 (PDT)
+Message-ID: <20090414230725.2F3C2130016@annarchy.freedesktop.org>
 References: <bug-21186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,31 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21186
 
 
 
---- Comment #3 from Gaetano Canepa <gaetano.canepa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-14 15:53:26 PST ---
-(In reply to comment #1)
-> Can you also provide your Xorg.0.log?
-> 
-> If I understand you correctly the problem is with mplayer and video that is
-> scaled larger than the native size? Or are most of the applications also
-> slower? What happens at lower resolutions like 1024x786?
-> 
+--- Comment #4 from Gaetano Canepa <gaetano.canepa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-14 16:07:24 PST ---
+I would like to add anoother thing that does not work:
 
-Thank you for the quick answer.
+I cannot switch user: after a few seconds I just get the default request to
+enter my password (like after looking the screen) rather than giving me the
+possibility to choose a different user name (I cannot use the switch user below
+the password text line). 
 
-I provided Xorg.0.log now: sorry It's my first time ;-)
-
-Speed: with NVIDIA driver (before it freezes) glxgears give something like 1900
-frame/s!
-nouveau (and nv) give approx 193 fr/s for the same window dimension.
-
-If I change the resolution to 1024x786 mplayer does not stop (when fullscreen)
-but still have some imperfections in the images.
-
-If you tell me how to check video performances in a better way I can try them.
-My impression is that it is always slow (even when it creates the desktop).
-Anyway, nv is able to run full screen video at the maximum resolution even if
-the glxgears performances are comparable with nouveau (direct pixel renering
-problems?)
+I use gnome (last release of fedora 10).
 
 
 -- 
