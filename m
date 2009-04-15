@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21186] nouveau very slow with screen size > 1680
-Date: Tue, 14 Apr 2009 16:07:25 -0700 (PDT)
-Message-ID: <20090414230725.2F3C2130016@annarchy.freedesktop.org>
+Date: Tue, 14 Apr 2009 17:04:42 -0700 (PDT)
+Message-ID: <20090415000442.F1CA213005A@annarchy.freedesktop.org>
 References: <bug-21186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21186
 
 
 
---- Comment #4 from Gaetano Canepa <gaetano.canepa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-14 16:07:24 PST ---
-I would like to add anoother thing that does not work:
+--- Comment #5 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-14 17:04:42 PST ---
+1) 3D acceleration is disabled currently, so glxgears will be much slower than
+the Nvidia driver. That is expected.
 
-I cannot switch user: after a few seconds I just get the default request to
-enter my password (like after looking the screen) rather than giving me the
-possibility to choose a different user name (I cannot use the switch user below
-the password text line). 
+2) Are you using Compiz or some other window manager with 3D effects? If so,
+please disable them because they will have the same problems as above. In Gnome
+you can usually look in the 'System->Preferences->Appearance->Effects' tab and
+change to 'None' to disable Compiz for example.
 
-I use gnome (last release of fedora 10).
+Otherwise I don't see why it should be really slow, I use a similar card and
+have no problems.
 
 
 -- 
