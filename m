@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21186] nouveau very slow with screen size > 1680
-Date: Thu, 16 Apr 2009 08:27:11 -0700 (PDT)
-Message-ID: <20090416152712.0424113005A@annarchy.freedesktop.org>
+Date: Thu, 16 Apr 2009 15:30:52 -0700 (PDT)
+Message-ID: <20090416223052.D05E2130016@annarchy.freedesktop.org>
 References: <bug-21186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,25 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21186
 
 
 
---- Comment #7 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-16 08:27:11 PST ---
-Can you use OProfile or Sysprof and get a profile from a couple of minutes of
-usage?
+--- Comment #8 from Gaetano Canepa <gaetano.canepa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-16 15:30:52 PST ---
+(In reply to comment #7)
+> Can you use OProfile or Sysprof and get a profile from a couple of minutes of
+> usage?
+> 
+> I have a similar card, but all Geforce 6 & 7 use the same rendering code. Maybe
+> that is not suitable for cards like yours.
+> 
 
-I have a similar card, but all Geforce 6 & 7 use the same rendering code. Maybe
-that is not suitable for cards like yours.
+Hi Younes,
+   Excuse me but I never used oprofile! What exactly I should do: what options
+you would like I use and what actions should I do. 
+
+The actions should probably be to start a movie, to resize the smplayer window,
+to put it full screen: do you want more? 
+
+How I run oprofile: what setup and format (and how I set them!)?
+
+I will immediately post the zipped profile files.
 
 
 -- 
