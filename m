@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21186] nouveau very slow with screen size > 1680
-Date: Fri, 17 Apr 2009 17:38:30 -0700 (PDT)
-Message-ID: <20090418003830.D3E22130016@annarchy.freedesktop.org>
-References: <bug-21186-8800@http.bugs.freedesktop.org/>
+From: jb17bsome <jedynamic-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org>
+Subject: NV40 Cubic Texture HW Mip Map Generation
+Date: Fri, 17 Apr 2009 01:59:04 -0400
+Message-ID: <20090417015904.6c4b9d20@amd64linuxmsi.rentzhouse.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21186-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +18,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21186
+Hello,
+	I have been looking at cubic texture mapping for a bit, and I
+	have found that hw mipmap generation doesn't work at all or
+	the textures are all messed up (normal 2d work fine). This is
+	with linear textures.  Also of note is that software mipmap
+	generation works fine.
 
+	I have done sanity checks for the miptree pitches, offsets, etc
+	and everything seems to match up fine for both the hw and sw
+	paths.  
 
+	Any thoughts on what could be wrong?
 
-
-
---- Comment #13 from Gaetano Canepa <gaetano.canepa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-17 17:38:30 PST ---
-Created an attachment (id=24907)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24907)
-oprofile without opengl
-
-As soon as you sent the first message I realized my ingenuity.
-I installed:
-xorg-x11-drv-nouveau-debuginfo.x86_64                               
-xorg-x11-drv-nv-debuginfo.x86_64                                              
-xorg-x11-server-debuginfo.x86_64                                         
-xorg-x11-server-utils-debuginfo.x86_64 
-
-And I re-runned oprofile (no opengl): any hint in the attached file?
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+jb17bsome	   
