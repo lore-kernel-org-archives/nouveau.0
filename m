@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21186] nouveau very slow with screen size > 1680
-Date: Fri, 17 Apr 2009 10:09:47 -0700 (PDT)
-Message-ID: <20090417170947.E23CF130058@annarchy.freedesktop.org>
-References: <bug-21186-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21257] New: Qt applications strange behavior
+Date: Fri, 17 Apr 2009 11:22:06 -0700 (PDT)
+Message-ID: <bug-21257-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21186-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +18,50 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21186
+http://bugs.freedesktop.org/show_bug.cgi?id=21257
+
+           Summary: Qt applications strange behavior
+           Product: xorg
+           Version: 7.4
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Hello,
 
+I'm having a problem with Qt applications and nouveau. I filled a bug in kde
+(4.2.2) for some drawing problems. However, as it occurs also with virtualbox,
+I think this might be related to nouveau with Qt.
 
+I use updated nouveau git + drm git without 3d. Alfter some time, plasma and
+virtualbox, independently, stops to draw some parts randomly. For example, when
+I pass the mouse over icons, they disapear and reapear (maybe reapers using
+cache image).
 
---- Comment #9 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-17 10:09:46 PST ---
-1) Install the OProfile package for your distro.
+If I kill plasma or vbox and open it again, it works for some time before the
+same problem reocurs. This happens also with other kde aplications like
+kterminal.
 
-2) Run this command: sudo opcontrol --separate=lib --no-vmlinux --start-daemon
-&& sudo opcontrol --reset && sudo opcontrol --start
+I also tested with nv without being able to reproduce the problem.
 
-3) Do some stuff that appears slow with nouveau for 2-3 minutes.
+For plasma I got a lot of this error:
 
-4) Run this command: sudo opcontrol --stop && sudo opcontrol --shutdown &&
-opreport -l >nouveau-profile.txt
+QPainter::begin: Paint device returned engine == 0, type: 3                     
+QPainter::setCompositionMode: Painter not active    
+QPainter::end: Painter not active, aborted                                      
 
-5) Attach the file "nouveau-profile.txt" to this bug.
+I also reported this in:
+https://bugs.kde.org/show_bug.cgi?id=189059
+
+PS: I'm not attaching the kernel log as it has only the normal startup info.
+Do I need to attach "drm+debug" ?
 
 
 -- 
