@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21186] nouveau very slow with screen size > 1680
-Date: Fri, 17 Apr 2009 15:55:43 -0700 (PDT)
-Message-ID: <20090417225543.B5CA1130016@annarchy.freedesktop.org>
+Date: Fri, 17 Apr 2009 16:50:04 -0700 (PDT)
+Message-ID: <20090417235004.21B2A13005A@annarchy.freedesktop.org>
 References: <bug-21186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,23 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21186
 
 
 
---- Comment #10 from Gaetano Canepa <gaetano.canepa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-17 15:55:43 PST ---
-Created an attachment (id=24906)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24906)
-produced with Oprofile
+--- Comment #11 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-17 16:50:02 PST ---
+You are using something that uses a lot of OpenGL rendering, I'm guessing it's
+your desktop. Find a way to disable it and I'm sure the problem will go away.
 
-Thank you for the instruction: I attach here the nouveau-profile.txt.gz.
-This is what I did:
-1) I started smplayer (ultra-slow) at the native movie dimension and I enalrged
-the window until the movie stopped. The movie stopped also during resize but I
-could restart it.
-2) Then I just moved a window quick around the desktop (it left a long tail and
-it was slow also)
-3) Then I tried to switch user but it was not possible and I had to log in
-again
-4) Finally I take a fast trip in google earth 
-
-Tell me if You need something more.
+Like I said earlier, 3D acceleration is disabled in the driver, so if you
+attempt to use a 3D app it will be rendered in software, and be very very slow.
 
 
 -- 
