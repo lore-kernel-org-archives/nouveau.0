@@ -1,11 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Away for the next three months
-Date: Sat, 18 Apr 2009 00:06:40 +0200
-Message-ID: <6d4bc9fc0904171506k69507c74q90928c597bd6c23e@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 21186] nouveau very slow with screen size > 1680
+Date: Fri, 17 Apr 2009 15:55:43 -0700 (PDT)
+Message-ID: <20090417225543.B5CA1130016@annarchy.freedesktop.org>
+References: <bug-21186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-21186-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,13 +17,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Some of you may already know it, but i will be "away" for the next
-three months. That means if you have important questions you will have
-to email me. I won't have access to my development machine, so don't
-expect anything useful in that area. Anyway, good luck and hopefully
-i'll come back to a better nouveau in three months.
+http://bugs.freedesktop.org/show_bug.cgi?id=21186
 
-Maarten.
+
+
+
+
+--- Comment #10 from Gaetano Canepa <gaetano.canepa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-17 15:55:43 PST ---
+Created an attachment (id=24906)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24906)
+produced with Oprofile
+
+Thank you for the instruction: I attach here the nouveau-profile.txt.gz.
+This is what I did:
+1) I started smplayer (ultra-slow) at the native movie dimension and I enalrged
+the window until the movie stopped. The movie stopped also during resize but I
+could restart it.
+2) Then I just moved a window quick around the desktop (it left a long tail and
+it was slow also)
+3) Then I tried to switch user but it was not possible and I had to log in
+again
+4) Finally I take a fast trip in google earth 
+
+Tell me if You need something more.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
