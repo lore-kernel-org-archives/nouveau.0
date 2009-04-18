@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sat, 18 Apr 2009 15:52:13 -0700 (PDT)
-Message-ID: <20090418225213.3677A130016@annarchy.freedesktop.org>
+Date: Sat, 18 Apr 2009 16:16:47 -0700 (PDT)
+Message-ID: <20090418231647.380BA130016@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #5 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-04-18 15:52:12 PST ---
-Created an attachment (id=24929)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24929)
-Open Firmware file NVDA,BMP
+--- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-18 16:16:46 PST ---
+(In reply to comment #5)
+> Created an attachment (id=24929)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24929) [details]
+> Open Firmware file NVDA,BMP
+
+Thanks.  Sadly the information we need is missing from that.  Can you try
+dumping the whole PCI rom as well, something like:
+cd /sys/bus/pci/devices/0000:00:10.0
+echo 1 > rom
+cat rom > romfile
+echo 0 > rom
 
 
 -- 
