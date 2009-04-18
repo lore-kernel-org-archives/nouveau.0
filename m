@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sat, 18 Apr 2009 15:31:14 -0700 (PDT)
-Message-ID: <20090418223114.7DE18130016@annarchy.freedesktop.org>
+Date: Sat, 18 Apr 2009 15:52:13 -0700 (PDT)
+Message-ID: <20090418225213.3677A130016@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #4 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-18 15:31:14 PST ---
-1) nvidiafb won't work with nouveau, use "video=ofonly" on your kernel boot
-command
-2) there's some failure to find the video outputs, please attach file the Open
-Firmware file NVDA,BMP which is somewhere in /proc/device-tree
+--- Comment #5 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-04-18 15:52:12 PST ---
+Created an attachment (id=24929)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24929)
+Open Firmware file NVDA,BMP
 
 
 -- 
