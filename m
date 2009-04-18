@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21186] nouveau very slow with screen size > 1680
-Date: Fri, 17 Apr 2009 16:50:04 -0700 (PDT)
-Message-ID: <20090417235004.21B2A13005A@annarchy.freedesktop.org>
+Date: Fri, 17 Apr 2009 17:04:50 -0700 (PDT)
+Message-ID: <20090418000450.C2CF1130058@annarchy.freedesktop.org>
 References: <bug-21186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21186
 
 
 
---- Comment #11 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-17 16:50:02 PST ---
-You are using something that uses a lot of OpenGL rendering, I'm guessing it's
-your desktop. Find a way to disable it and I'm sure the problem will go away.
-
-Like I said earlier, 3D acceleration is disabled in the driver, so if you
-attempt to use a 3D app it will be rendered in software, and be very very slow.
+--- Comment #12 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-17 17:04:50 PST ---
+Actually, can you install the debuginfo packages for Xorg and Nouveau and
+repeat the process *without* using Google Earth, or any other program that you
+know does 3D rendering? We already know why 3D programs are slow, we need to
+figure out why the rest of your desktop is slow. Please don't run anything that
+you know uses OpenGL so the profile will be more accurate.
 
 
 -- 
