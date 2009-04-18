@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20547] nouveau drm doesn't build
-Date: Sat, 18 Apr 2009 14:44:50 -0700 (PDT)
-Message-ID: <20090418214450.7EF3413005A@annarchy.freedesktop.org>
-References: <bug-20547-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12805] error dma
+Date: Sat, 18 Apr 2009 14:55:58 -0700 (PDT)
+Message-ID: <20090418215558.4B41A13005A@annarchy.freedesktop.org>
+References: <bug-12805-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20547-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12805-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=20547
+http://bugs.freedesktop.org/show_bug.cgi?id=12805
 
 
 
 
 
---- Comment #1 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-04-18 14:44:49 PST ---
-Created an attachment (id=24923)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24923)
-Change ___swab32 to __swab32 and fix build on powerpc
+--- Comment #3 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-04-18 14:55:57 PST ---
+Created an attachment (id=24924)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=24924)
+Log of drm in kernel log.
 
-I had same problem on powerpc(Debian) with kernel 2.6.29.1. I made as David did
-and it build. 
+It looks, I have similar hardware and looks like current code of drm works on
+my card. I don't sure, because driver doesn't work for me.
 
 
 -- 
