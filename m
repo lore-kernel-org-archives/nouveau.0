@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sat, 18 Apr 2009 15:03:06 -0700 (PDT)
-Message-ID: <20090418220306.BD006130016@annarchy.freedesktop.org>
+Date: Sat, 18 Apr 2009 15:03:37 -0700 (PDT)
+Message-ID: <20090418220337.AC83A130016@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
+Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #24925|xord.conf                   |xorg.conf
+        description|                            |
 
 
-
---- Comment #1 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-04-18 15:03:06 PST ---
-Created an attachment (id=24926)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24926)
-xorg.log
 
 
 -- 
