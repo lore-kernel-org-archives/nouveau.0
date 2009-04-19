@@ -1,13 +1,14 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: jb17bsome <jedynamic-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org>
 Subject: Re: NV40 Cubic Texture HW Mip Map Generation
-Date: Sat, 18 Apr 2009 21:13:23 -0400
-Message-ID: <586c2acd0904181813s6703409eibbf19abe0b994842@mail.gmail.com>
+Date: Sat, 18 Apr 2009 21:29:27 -0400
+Message-ID: <20090418212927.7a922c29@amd64linuxmsi.rentzhouse.lan>
 References: <20090417015904.6c4b9d20@amd64linuxmsi.rentzhouse.lan>
+	<586c2acd0904181813s6703409eibbf19abe0b994842@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20090417015904.6c4b9d20-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
+In-Reply-To: <586c2acd0904181813s6703409eibbf19abe0b994842-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,34 +18,46 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: jb17bsome <jedynamic-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Apr 17, 2009 at 1:59 AM, jb17bsome <jedynamic-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org> wrote:
-> Hello,
-> =A0 =A0 =A0 =A0I have been looking at cubic texture mapping for a bit, an=
-d I
-> =A0 =A0 =A0 =A0have found that hw mipmap generation doesn't work at all or
-> =A0 =A0 =A0 =A0the textures are all messed up (normal 2d work fine). This=
- is
-> =A0 =A0 =A0 =A0with linear textures. =A0Also of note is that software mip=
-map
-> =A0 =A0 =A0 =A0generation works fine.
->
-> =A0 =A0 =A0 =A0I have done sanity checks for the miptree pitches, offsets=
-, etc
-> =A0 =A0 =A0 =A0and everything seems to match up fine for both the hw and =
-sw
-> =A0 =A0 =A0 =A0paths.
->
-> =A0 =A0 =A0 =A0Any thoughts on what could be wrong?
->
-> jb17bsome
-
-I was going to take a look, but apparently we don't have the cube_map
-extensions hooked up, and I'm not sure how to do that with Mesa and
-Gallium, and also there are no cube map tests in progs. Do you have a
-patch and some test code? I don't know why it wouldn't work, cube maps
-should work with the auto mipmap generation method they're using in
-Mesa currently.
+T24gU2F0LCAxOCBBcHIgMjAwOSAyMToxMzoyMyAtMDQwMApZb3VuZXMgTWFudG9uIDx5b3VuZXMu
+bUBnbWFpbC5jb20+IHdyb3RlOgoKPiBPbiBGcmksIEFwciAxNywgMjAwOSBhdCAxOjU5IEFNLCBq
+YjE3YnNvbWUgPGplZHluYW1pY0BiZWxsc291dGgubmV0Pgo+IHdyb3RlOgo+ID4gSGVsbG8sCj4g
+PiDCoCDCoCDCoCDCoEkgaGF2ZSBiZWVuIGxvb2tpbmcgYXQgY3ViaWMgdGV4dHVyZSBtYXBwaW5n
+IGZvciBhIGJpdCwgYW5kIEkKPiA+IMKgIMKgIMKgIMKgaGF2ZSBmb3VuZCB0aGF0IGh3IG1pcG1h
+cCBnZW5lcmF0aW9uIGRvZXNuJ3Qgd29yayBhdCBhbGwgb3IKPiA+IMKgIMKgIMKgIMKgdGhlIHRl
+eHR1cmVzIGFyZSBhbGwgbWVzc2VkIHVwIChub3JtYWwgMmQgd29yayBmaW5lKS4gVGhpcyBpcwo+
+ID4gwqAgwqAgwqAgwqB3aXRoIGxpbmVhciB0ZXh0dXJlcy4gwqBBbHNvIG9mIG5vdGUgaXMgdGhh
+dCBzb2Z0d2FyZSBtaXBtYXAKPiA+IMKgIMKgIMKgIMKgZ2VuZXJhdGlvbiB3b3JrcyBmaW5lLgo+
+ID4KPiA+IMKgIMKgIMKgIMKgSSBoYXZlIGRvbmUgc2FuaXR5IGNoZWNrcyBmb3IgdGhlIG1pcHRy
+ZWUgcGl0Y2hlcywgb2Zmc2V0cywKPiA+IGV0YyBhbmQgZXZlcnl0aGluZyBzZWVtcyB0byBtYXRj
+aCB1cCBmaW5lIGZvciBib3RoIHRoZSBodyBhbmQgc3cKPiA+IMKgIMKgIMKgIMKgcGF0aHMuCj4g
+Pgo+ID4gwqAgwqAgwqAgwqBBbnkgdGhvdWdodHMgb24gd2hhdCBjb3VsZCBiZSB3cm9uZz8KPiA+
+Cj4gPiBqYjE3YnNvbWUKPiAKPiBJIHdhcyBnb2luZyB0byB0YWtlIGEgbG9vaywgYnV0IGFwcGFy
+ZW50bHkgd2UgZG9uJ3QgaGF2ZSB0aGUgY3ViZV9tYXAKPiBleHRlbnNpb25zIGhvb2tlZCB1cCwg
+YW5kIEknbSBub3Qgc3VyZSBob3cgdG8gZG8gdGhhdCB3aXRoIE1lc2EgYW5kCj4gR2FsbGl1bSwg
+YW5kIGFsc28gdGhlcmUgYXJlIG5vIGN1YmUgbWFwIHRlc3RzIGluIHByb2dzLiBEbyB5b3UgaGF2
+ZSBhCj4gcGF0Y2ggYW5kIHNvbWUgdGVzdCBjb2RlPyBJIGRvbid0IGtub3cgd2h5IGl0IHdvdWxk
+bid0IHdvcmssIGN1YmUgbWFwcwo+IHNob3VsZCB3b3JrIHdpdGggdGhlIGF1dG8gbWlwbWFwIGdl
+bmVyYXRpb24gbWV0aG9kIHRoZXkncmUgdXNpbmcgaW4KPiBNZXNhIGN1cnJlbnRseS4KPiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFp
+bGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoKVHJ5IHByb2dzL2RlbW9z
+L2N1YmVtYXAuYy4gIFlvdSBqdXN0IGhhdmUgdG8gZW5hYmxlIGh3IGdlbiBvZgptaXBtYXBzOiAK
+LS0tIGEvcHJvZ3MvZGVtb3MvY3ViZW1hcC5jCisrKyBiL3Byb2dzL2RlbW9zL2N1YmVtYXAuYwpA
+QCAtNTAsNyArNTAsNyBAQCBzdGF0aWMgR0xib29sZWFuIHVzZV92ZXJ0ZXhfYXJyYXlzID0gR0xf
+RkFMU0U7CiBzdGF0aWMgR0xib29sZWFuIGFuaW0gPSBHTF9UUlVFOwogc3RhdGljIEdMYm9vbGVh
+biBOb0NsZWFyID0gR0xfRkFMU0U7CiBzdGF0aWMgR0xpbnQgRnJhbWVQYXJpdHkgPSAwOwotc3Rh
+dGljIEdMZW51bSBGaWx0ZXJJbmRleCA9IDA7CitzdGF0aWMgR0xlbnVtIEZpbHRlckluZGV4ID0g
+MTE7CiBzdGF0aWMgR0xpbnQgQ2xhbXBJbmRleCA9IDA7CgoKQEAgLTQ3Nyw3ICs0NzcsOSBAQCBz
+dGF0aWMgdm9pZCBsb2FkKEdMZW51bSB0YXJnZXQsIGNvbnN0IGNoYXIgKmZpbGVuYW1lLAogICAg
+ICAgfQogICAgfQoKLSAgIGdsdUJ1aWxkMkRNaXBtYXBzKHRhcmdldCwgR0xfUkdCLCB3LCBoLCBm
+b3JtYXQsIEdMX1VOU0lHTkVEX0JZVEUsIGltZyk7CisgICAvL2dsdUJ1aWxkMkRNaXBtYXBzKHRh
+cmdldCwgR0xfUkdCLCB3LCBoLCBmb3JtYXQsIEdMX1VOU0lHTkVEX0JZVEUsIGltZyk7CisgICBn
+bFRleEltYWdlMkQodGFyZ2V0LCAwLCBHTF9SR0IsIHcsIGgsIDAsIGZvcm1hdCwgR0xfVU5TSUdO
+RURfQllURSwgaW1nKTsKKyAgIGdsR2VuZXJhdGVNaXBtYXBFWFQoR0xfVEVYVFVSRV9DVUJFX01B
+UF9BUkIpOyAKICAgIGZyZWUoaW1nKTsKIH0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
