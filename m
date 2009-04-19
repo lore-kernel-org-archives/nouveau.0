@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] Driver can't detect video output and xserver
- doesn't start
-Date: Sat, 18 Apr 2009 16:16:47 -0700 (PDT)
-Message-ID: <20090418231647.380BA130016@annarchy.freedesktop.org>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: NV40 Cubic Texture HW Mip Map Generation
+Date: Sat, 18 Apr 2009 21:13:23 -0400
+Message-ID: <586c2acd0904181813s6703409eibbf19abe0b994842@mail.gmail.com>
+References: <20090417015904.6c4b9d20@amd64linuxmsi.rentzhouse.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20090417015904.6c4b9d20-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,30 +17,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: jb17bsome <jedynamic-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21273
+On Fri, Apr 17, 2009 at 1:59 AM, jb17bsome <jedynamic-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org> wrote:
+> Hello,
+> =A0 =A0 =A0 =A0I have been looking at cubic texture mapping for a bit, an=
+d I
+> =A0 =A0 =A0 =A0have found that hw mipmap generation doesn't work at all or
+> =A0 =A0 =A0 =A0the textures are all messed up (normal 2d work fine). This=
+ is
+> =A0 =A0 =A0 =A0with linear textures. =A0Also of note is that software mip=
+map
+> =A0 =A0 =A0 =A0generation works fine.
+>
+> =A0 =A0 =A0 =A0I have done sanity checks for the miptree pitches, offsets=
+, etc
+> =A0 =A0 =A0 =A0and everything seems to match up fine for both the hw and =
+sw
+> =A0 =A0 =A0 =A0paths.
+>
+> =A0 =A0 =A0 =A0Any thoughts on what could be wrong?
+>
+> jb17bsome
 
-
-
-
-
---- Comment #6 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-18 16:16:46 PST ---
-(In reply to comment #5)
-> Created an attachment (id=24929)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=24929) [details]
-> Open Firmware file NVDA,BMP
-
-Thanks.  Sadly the information we need is missing from that.  Can you try
-dumping the whole PCI rom as well, something like:
-cd /sys/bus/pci/devices/0000:00:10.0
-echo 1 > rom
-cat rom > romfile
-echo 0 > rom
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I was going to take a look, but apparently we don't have the cube_map
+extensions hooked up, and I'm not sure how to do that with Mesa and
+Gallium, and also there are no cube map tests in progs. Do you have a
+patch and some test code? I don't know why it wouldn't work, cube maps
+should work with the auto mipmap generation method they're using in
+Mesa currently.
