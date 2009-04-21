@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Tue, 21 Apr 2009 07:50:44 -0700 (PDT)
-Message-ID: <20090421145044.63BB8130057@annarchy.freedesktop.org>
+Date: Tue, 21 Apr 2009 10:58:40 -0700 (PDT)
+Message-ID: <20090421175840.5BBFA2DC001@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #12 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-21 07:50:42 PST ---
-(In reply to comment #11)
-> I'll collect information in /proc/device-tree at night. Could I update rom
-> without MACOS? I don't have installed one.
+--- Comment #13 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-04-21 10:58:36 PST ---
+Created an attachment (id=25003)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=25003)
+/proc/device-tree
 
-Thanks.  Don't worry about a rom update at the moment; it would be good to fix
-this without needing an update, and the rom update here wouldn't fix anything
-anyway.
+Archive of /proc/device-tree.
 
 
 -- 
