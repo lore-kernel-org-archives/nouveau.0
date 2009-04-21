@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Tue, 21 Apr 2009 11:27:42 -0700 (PDT)
-Message-ID: <20090421182742.EA5B7130057@annarchy.freedesktop.org>
+Date: Tue, 21 Apr 2009 11:53:50 -0700 (PDT)
+Message-ID: <20090421185350.34428130057@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #14 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-21 11:27:42 PST ---
-What output connectors does this computer have (VGA, DVI, TV, etc)?  Am I
-correct to assume it's some sort of PowerMac G4?
+--- Comment #15 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-04-21 11:53:49 PST ---
+Created an attachment (id=25009)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=25009)
+Back side of videocard
+
+Yes, it is mac G4. Threre is a DVI and the some Apple's stuff. 
 
 
 -- 
