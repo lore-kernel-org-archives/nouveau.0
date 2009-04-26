@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21257] Qt applications strange behavior
-Date: Sat, 25 Apr 2009 14:14:53 -0700 (PDT)
-Message-ID: <20090425211453.7F446130057@annarchy.freedesktop.org>
+Date: Sat, 25 Apr 2009 17:05:47 -0700 (PDT)
+Message-ID: <20090426000547.5F1D713005A@annarchy.freedesktop.org>
 References: <bug-21257-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21257
 
 
 
---- Comment #3 from Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-25 14:14:52 PST ---
-From my KDE bug report about this problem:
+--- Comment #4 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-25 17:05:46 PST ---
+Probably means ARGB visuals.
 
-"According to the Plasma developers both Plasma and Konsole have something in
- common: ARGV visuals. So this is probably a graphics driver issue."
-
-Sorry for my ignorance but I just know ARGV from "int main(argc,argv)" ;)
-
-You guys might know what is it. I hope that this is useful.
+You said it started happening a few weeks ago, what did you update to cause it?
+Are you compiling the driver yourself and can you bisect it? I can't run Plasma
+or Konsole at the moment so I can't really look at it.
 
 
 -- 
