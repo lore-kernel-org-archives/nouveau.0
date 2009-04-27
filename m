@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21257] Qt applications strange behavior
-Date: Sat, 25 Apr 2009 17:05:47 -0700 (PDT)
-Message-ID: <20090426000547.5F1D713005A@annarchy.freedesktop.org>
+Date: Sun, 26 Apr 2009 17:41:22 -0700 (PDT)
+Message-ID: <20090427004122.4E55C130057@annarchy.freedesktop.org>
 References: <bug-21257-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21257
 
 
 
---- Comment #4 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-25 17:05:46 PST ---
-Probably means ARGB visuals.
+--- Comment #5 from Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-26 17:41:21 PST ---
+For some time, I was compiling but installing 64 bits libs in /usr/lib/
+(nouveau default dir even on x86_64) and not /usr/lib64/. Sometime in the past,
+I fixed this forcing this in configure script. This brought another bug
+(already fixed) and so, I can't say which came first: my compilation fix or
+this bug in git.
 
-You said it started happening a few weeks ago, what did you update to cause it?
-Are you compiling the driver yourself and can you bisect it? I can't run Plasma
-or Konsole at the moment so I can't really look at it.
+If this bug could be rapidly reproduced, I could try something like "git
+bisect"
+
+Is there any other way I can help?
 
 
 -- 
