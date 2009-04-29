@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21257] Qt applications strange behavior
-Date: Wed, 29 Apr 2009 10:59:32 -0700 (PDT)
-Message-ID: <20090429175932.64AFC130057@annarchy.freedesktop.org>
+Date: Wed, 29 Apr 2009 13:07:57 -0700 (PDT)
+Message-ID: <20090429200757.5687513005A@annarchy.freedesktop.org>
 References: <bug-21257-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21257
 
 
 
---- Comment #6 from Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-29 10:59:31 PST ---
-Some more news:
-
-I cannot reproduce this on a single screen setup. I removed my second monitor
-and the problem seems to vanish. When I readded it, it came back.
-
-I have an unsual setup with a 21' lcd and a 15' lcd rotated to right and left
-of the first screen. The main reason to use nouveau is the randr1.2 support.
+--- Comment #7 from Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-04-29 13:07:56 PST ---
+Can you try without rotation?
 
 
 -- 
