@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18336] nv10 : doesn't detect connected dvi monitor
-Date: Thu, 30 Apr 2009 06:23:59 -0700 (PDT)
-Message-ID: <20090430132359.6BE10130057@annarchy.freedesktop.org>
-References: <bug-18336-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] Driver can't detect video output and xserver
+ doesn't start
+Date: Thu, 30 Apr 2009 13:28:39 -0700 (PDT)
+Message-ID: <20090430202839.8C29F130057@annarchy.freedesktop.org>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-18336-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=18336
+http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
 
 
---- Comment #5 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-30 06:23:59 PST ---
-DVI now works on my NV11 card, so you might like to try testing again.
+--- Comment #16 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-30 13:28:39 PST ---
+Hi, could you dump some registers for me?  You need to:
+
+git clone git://anongit.freedesktop.org/~stuart/radeontool; cd radeontool; make
+
+then, for all possible options of outputs you can test (DVI (DVI-D) and VGA
+over DVI (DVI-A) would be good), do a fresh boot of linux (using video=ofonly
+as mentioned in comment 4), and run "./radeontool unlock; ./radeontool owner 0;
+./radeontool regs > regs-OUTPUT_TYPE.log"
+
+once you've got the dump files, attach them to this bug report.
 
 
 -- 
