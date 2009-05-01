@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] Driver can't detect video output and xserver
- doesn't start
-Date: Thu, 30 Apr 2009 13:28:39 -0700 (PDT)
-Message-ID: <20090430202839.8C29F130057@annarchy.freedesktop.org>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+From: <Michael_E_Brown-DYMqY+WieiM@public.gmane.org>
+Subject: hardware available for donation
+Date: Fri, 1 May 2009 15:38:29 -0500
+Message-ID: <23FB5629F59DB0438C772CCC7352E5B953552F@ausx3mpc138.aus.amer.dell.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-class: urn:content-classes:message
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +19,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21273
+To any interested developers:
 
+Dell Linux OS dev team is doing a lab cleanup and has several Nvidia cards available for donation. Please email me privately if you are interested (I'm not subscribed to the list).
 
+Available:
 
+various Nivdia cards. various generations, mostly quadro fx cards. We have 10-20 cards available. None of them are the super-high-end cards (that I know of).
 
+Note that there is no guarantee, warranty or anything like that. They have mostly been sitting in a cardboard box for a few months. :)
 
---- Comment #16 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-04-30 13:28:39 PST ---
-Hi, could you dump some registers for me?  You need to:
+Active Nouveau developers only, please. These are not meant to be ebay-ed.
 
-git clone git://anongit.freedesktop.org/~stuart/radeontool; cd radeontool; make
-
-then, for all possible options of outputs you can test (DVI (DVI-D) and VGA
-over DVI (DVI-A) would be good), do a fresh boot of linux (using video=ofonly
-as mentioned in comment 4), and run "./radeontool unlock; ./radeontool owner 0;
-./radeontool regs > regs-OUTPUT_TYPE.log"
-
-once you've got the dump files, attach them to this bug report.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+--
+Michael Brown
+Dell Linux OS Development
