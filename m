@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21536] Accelerated 2D Does Not Work On HP tx2000z
- (Geforce 6150 Go)
-Date: Thu,  7 May 2009 14:09:51 -0700 (PDT)
-Message-ID: <20090507210951.2BD54130057@annarchy.freedesktop.org>
-References: <bug-21536-8800@http.bugs.freedesktop.org/>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Subject: [PATCH] gallium/nv50: fix multi-texturing
+Date: Fri, 08 May 2009 19:13:59 +0200
+Message-ID: <4A046857.7020405@student.tuwien.ac.at>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21536-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +18,67 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21536
+This one maps textures to sampler units (or textures to texture units
+or whatever it's called), which wasn't done before. It should make the
+mesa demo "multiarb" work, at least with the shader patches I sent
+earlier. Of course, with this functionality one probably wouldn't have
+to setup the textures in NV50_TIC anew every time, but that can be
+optimized later.
 
+-----------------------------
+commit bced24ac0c6ac6f3d3b7c2627595b09c20d419ca
+Author: chr <chr@LAPTOP.(none)>
+Date:   Fri May 8 18:48:45 2009 +0200
 
+    nv50: Fix multi-texturing.
+    We need to bind textures to sampler units.
 
+diff --git a/src/gallium/drivers/nv50/nv50_context.h b/src/gallium/drivers/nv50/nv50_context.h
+index 7b67a75..d6a7c76 100644
+--- a/src/gallium/drivers/nv50/nv50_context.h
++++ b/src/gallium/drivers/nv50/nv50_context.h
+@@ -151,6 +151,7 @@ struct nv50_context {
+ 	unsigned sampler_nr;
+ 	struct nv50_miptree *miptree[PIPE_MAX_SAMPLERS];
+ 	unsigned miptree_nr;
++	unsigned texbind_nr;
+ };
 
+ static INLINE struct nv50_context *
+diff --git a/src/gallium/drivers/nv50/nv50_tex.c b/src/gallium/drivers/nv50/nv50_tex.c
+index 223c8a3..e7e1521 100644
+--- a/src/gallium/drivers/nv50/nv50_tex.c
++++ b/src/gallium/drivers/nv50/nv50_tex.c
+@@ -136,8 +136,12 @@ nv50_tex_validate(struct nv50_context *nv50)
+ 	struct nouveau_grobj *tesla = nv50->screen->tesla;
+ 	struct nouveau_stateobj *so;
+ 	int unit;
++	unsigned push_nr;
 
---- Comment #3 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2009-05-07 14:09:50 PST ---
-Reading around, something stuck out about having more 2GB of memory in a system
-being problematic.  So, I had a few minutes last night to power down my laptop,
-remove one 2GB DIMM, and start back up.  EXA works in this configuration. 
-Turning on desktop effects with Xrender under KDE is PAINFULLY slow--slower
-than running the nouveau driver with shadowfb--but I no longer get the error
-messages or screen corruption I previously reported.
+-	so = so_new(nv50->miptree_nr * 8 + 3, nv50->miptree_nr * 2);
++	push_nr = MAX2(nv50->miptree_nr, nv50->texbind_nr) * 2;
++	push_nr += nv50->miptree_nr * 8 + 3;
++
++	so = so_new(push_nr, nv50->miptree_nr * 2);
+ 	so_method(so, tesla, 0x0f00, 1);
+ 	so_data  (so, NV50_CB_TIC);
+ 	so_method(so, tesla, 0x40000f04, nv50->miptree_nr * 8);
+@@ -151,6 +155,16 @@ nv50_tex_validate(struct nv50_context *nv50)
+ 		}
+ 	}
 
-Is this behavior likely to change? I reinstalled the second DIMM and let the
-memtest application run all night.  The memory checks out just fine. 
-Obviously, the built-in video adapter does not have dedicated VRAM, but why
-would having 4GB of system memory cause the accelerated driver to fail?
++	for (unit = 0; unit < nv50->miptree_nr; unit++) {
++		so_method(so, tesla, 0x1458, 1);
++		so_data  (so, (unit << 9) | (unit << 1) | 1);
++	}
++	for (; unit < nv50->texbind_nr; unit++) {
++		so_method(so, tesla, 0x1458, 1);
++		so_data  (so, (unit << 1) | 0);
++	}
++	nv50->texbind_nr = nv50->miptree_nr;
++
+ 	so_ref(so, &nv50->state.tic_upload);
+ 	so_ref(NULL, &so);
+ }
 
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+-------------------------------------
