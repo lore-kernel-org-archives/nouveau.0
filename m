@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21257] Qt applications strange behavior
-Date: Thu, 14 May 2009 15:08:18 -0700 (PDT)
-Message-ID: <20090514220818.D8A45130011@annarchy.freedesktop.org>
+Date: Thu, 14 May 2009 15:08:54 -0700 (PDT)
+Message-ID: <20090514220854.6F9FB130011@annarchy.freedesktop.org>
 References: <bug-21257-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=21257
 
 
+Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #25873|Yast on startip (normal)    |Yast on startup (normal)
+        description|                            |
 
 
-
---- Comment #10 from Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-05-14 15:08:18 PST ---
-Created an attachment (id=25874)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=25874)
-Yast after some hours
-
-Here, the icons are gone.
 
 
 -- 
