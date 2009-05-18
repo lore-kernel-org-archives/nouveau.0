@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21804] Account Request (gallium/nouveau and
 	xf86-video-nouveau)
-Date: Mon, 18 May 2009 13:31:56 -0700 (PDT)
-Message-ID: <20090518203156.F02A1130058@annarchy.freedesktop.org>
+Date: Mon, 18 May 2009 13:48:13 -0700 (PDT)
+Message-ID: <20090518204813.C324A130058@annarchy.freedesktop.org>
 References: <bug-21804-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=21804
 
 
+Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|sitewranglers-PD4FTy7X32lzq7FAFJ/aeQ@public.gmane.org
+                   |g                           |top.org
+          Component|Drivers/DRI/nouveau         |New Accounts
+            Product|Mesa                        |freedesktop.org
 
 
 
---- Comment #1 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>  2009-05-18 13:31:56 PST ---
-Created an attachment (id=25979)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=25979)
-GPG public key
+
+--- Comment #2 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2009-05-18 13:48:13 PST ---
+Ack the nouveau side.
 
 
 -- 
