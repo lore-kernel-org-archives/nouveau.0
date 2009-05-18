@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
  7950 GT]: works but lockup for 6 min at shutdown
-Date: Mon, 18 May 2009 14:39:56 -0700 (PDT)
-Message-ID: <20090518213956.4BB73130016@annarchy.freedesktop.org>
+Date: Mon, 18 May 2009 14:44:22 -0700 (PDT)
+Message-ID: <20090518214422.D3DDE130016@annarchy.freedesktop.org>
 References: <bug-15481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,15 +28,16 @@ Eric Valette <eric.valette-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|CLOSED                      |REOPENED
-         Resolution|FIXED                       |
+  Attachment #15870|0                           |1
+        is obsolete|                            |
 
 
 
 
---- Comment #7 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-18 14:39:55 PST ---
-The hang when shuting down is back and solid. The system hangs again for 5 min
-a shutdown.
+--- Comment #8 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-18 14:44:22 PST ---
+Created an attachment (id=25980)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=25980)
+Updated glxinfo
 
 
 -- 
