@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
  7950 GT]: works but lockup for 6 min at shutdown
-Date: Tue, 19 May 2009 05:20:05 -0700 (PDT)
-Message-ID: <20090519122006.05A5E130016@annarchy.freedesktop.org>
+Date: Tue, 19 May 2009 05:32:40 -0700 (PDT)
+Message-ID: <20090519123240.B531D130016@annarchy.freedesktop.org>
 References: <bug-15481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15481
 
 
 
---- Comment #11 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-05-19 05:20:05 PST ---
-Tried ssh+gdb to figure what exactly it's blocking on? And perhaps modprobe drm
-debug=1 to get some more verbosity on that side. I'm away from my dev machine
-so i can't really help, just wanted to give some hints.
+--- Comment #12 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-19 05:32:40 PST ---
+Not even sure I still have network. The keyboard is frozen even if I'm back to
+fb console. The last thing is see is a message about destroying fifo 0.
+
+Even the caps lock led does not work. Will see if network is still up when the
+lock occur (hang is during shutdown but I guess it is before the network stop
+script).
+
+Will try to see if I can still log into the machine and report.
 
 
 -- 
