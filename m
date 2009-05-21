@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
  7950 GT]: works but lockup for 6 min at shutdown
-Date: Thu, 21 May 2009 13:53:27 -0700 (PDT)
-Message-ID: <20090521205328.19AD8130016@annarchy.freedesktop.org>
+Date: Thu, 21 May 2009 14:14:15 -0700 (PDT)
+Message-ID: <20090521211415.6B963130016@annarchy.freedesktop.org>
 References: <bug-15481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15481
 
 
 
---- Comment #14 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-21 13:53:27 PST ---
-Created an attachment (id=26079)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26079)
-dmesg containing eveidence of the hang and a strange "DMA Get Lockup"
+--- Comment #15 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-21 14:14:14 PST ---
+./drivers/video/nvidia/nv_accel.c:137:                                        
+printk("DMA Get lockup\n");
 
-If only there was a real in kernle debugger...
+ in function NVDmaWait()
+
+So apparently nouveau and the in kernel nv frame buffer are doing incompatible
+things with video registers.
 
 
 -- 
