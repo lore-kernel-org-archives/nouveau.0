@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
  7950 GT]: works but lockup for 6 min at shutdown
-Date: Thu, 21 May 2009 14:14:15 -0700 (PDT)
-Message-ID: <20090521211415.6B963130016@annarchy.freedesktop.org>
+Date: Thu, 21 May 2009 15:04:08 -0700 (PDT)
+Message-ID: <20090521220408.570E0130016@annarchy.freedesktop.org>
 References: <bug-15481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15481
 
 
 
---- Comment #15 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-21 14:14:14 PST ---
-./drivers/video/nvidia/nv_accel.c:137:                                        
-printk("DMA Get lockup\n");
-
- in function NVDmaWait()
-
-So apparently nouveau and the in kernel nv frame buffer are doing incompatible
-things with video registers.
+--- Comment #16 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-05-21 15:04:07 PST ---
+Disable nvidiafb and retry.  Nouveau and nvidiafb can *not* work together.
 
 
 -- 
