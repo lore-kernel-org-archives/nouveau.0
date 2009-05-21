@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
  7950 GT]: works but lockup for 6 min at shutdown
-Date: Tue, 19 May 2009 05:32:40 -0700 (PDT)
-Message-ID: <20090519123240.B531D130016@annarchy.freedesktop.org>
+Date: Thu, 21 May 2009 13:51:49 -0700 (PDT)
+Message-ID: <20090521205150.0EF45130016@annarchy.freedesktop.org>
 References: <bug-15481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15481
 
 
 
---- Comment #12 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-19 05:32:40 PST ---
-Not even sure I still have network. The keyboard is frozen even if I'm back to
-fb console. The last thing is see is a message about destroying fifo 0.
+--- Comment #13 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-21 13:51:49 PST ---
+I did a ssh session before ending a kde4 session. Ending the kde4 session
+itself worked. I been back to kdm prompt. Then I did login to tty console from
+kdm mennu and I got the hang. I have been able to do some ps and some command
+for a while (< 1mn) and then the ssh was stuck. Ping did continue to work.
 
-Even the caps lock led does not work. Will see if network is still up when the
-lock occur (hang is during shutdown but I guess it is before the network stop
-script).
-
-Will try to see if I can still log into the machine and report.
+Part of dmesg after hang is added. NB: the console get back after the 6 mins
+but the charcater displayed are totally garbled. If I restart kdm, then I got a
+normal screen.
 
 
 -- 
