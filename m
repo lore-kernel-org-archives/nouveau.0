@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21869] New: Chroma mismatch using XV
-Date: Fri, 22 May 2009 04:54:20 -0700 (PDT)
-Message-ID: <bug-21869-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21869] Chroma mismatch using XV
+Date: Fri, 22 May 2009 04:58:39 -0700 (PDT)
+Message-ID: <20090522115839.E51F7130016@annarchy.freedesktop.org>
+References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-21869-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,52 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
-           Summary: Chroma mismatch using XV
-           Product: xorg
-           Version: 7.4
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-I recently found out that the nouveau driver (and especially its XV
-implementation) causes the following chroma-issue with my NV34M. At every
-second frame I can see that the chroma is reused from the last frame and not
-updated for the current frame. The luminance is always correct.
 
-I checked on another machine with a radeon card to verify that it is not a
-problem caused by some other things. XV rendering itself is very fast and I
-don't have other problems here.
 
-I have extracted an interesting portion of an encoded video to show what I
-mean. I would really like to be able to provide a screenshot of a frame but I
-don't know how to get those rendered frames out of the video memory.
+--- Comment #1 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 04:58:39 PST ---
+Created an attachment (id=26099)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26099)
+Test video (3 seconds)
 
-If anyone comes by this issue with another hardware than mine please check if
-you get the same issue there.
-
-The command I used to verify the problem in mplayer was:
-
-mplayer xv-chroma-mismatch.avi -fps 1 -vo x11
-
-In addition mplayer output is just fine.
-
-Machine infos:
-
-Dell Inspiron 8600
-- nVidia GeForce FX Go5200 64M (rev a1, NV34M)
-- Kubuntu Jaunty (9.04)
-
-$ dpkg -l | grep nouveau
-ii  libdrm-nouveau1                 2.4.7-0~8.10~ppa3
-ii  nouveau-kernel-source           0.0.11+git20090404-0ubuntu1
-ii  xserver-xorg-video-nouveau      1:0.0.10~git+20090404+11be9a9-0ubuntu1
+This test video contains fast movement to better visualize the issue. The
+chroma mismatch doesn't appear e.g. with using 'x11' instead of 'xv'.
 
 
 -- 
