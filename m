@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
  7950 GT]: works but lockup for 6 min at shutdown
-Date: Thu, 21 May 2009 15:04:08 -0700 (PDT)
-Message-ID: <20090521220408.570E0130016@annarchy.freedesktop.org>
+Date: Fri, 22 May 2009 00:23:25 -0700 (PDT)
+Message-ID: <20090522072325.4347A130016@annarchy.freedesktop.org>
 References: <bug-15481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15481
 
 
 
---- Comment #16 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-05-21 15:04:07 PST ---
-Disable nvidiafb and retry.  Nouveau and nvidiafb can *not* work together.
+--- Comment #17 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-22 00:23:23 PST ---
+Why the hell? If I use nouveau I cannot use a framebuffer. What is supposed to
+happend when KMS will be generalized?
+
+Will do the test but still...
 
 
 -- 
