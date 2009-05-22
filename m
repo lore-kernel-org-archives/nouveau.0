@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21869] Chroma mismatch using XV
-Date: Fri, 22 May 2009 04:58:39 -0700 (PDT)
-Message-ID: <20090522115839.E51F7130016@annarchy.freedesktop.org>
+Date: Fri, 22 May 2009 05:03:24 -0700 (PDT)
+Message-ID: <20090522120324.3FAA7130016@annarchy.freedesktop.org>
 References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
 
 
---- Comment #1 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 04:58:39 PST ---
-Created an attachment (id=26099)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26099)
-Test video (3 seconds)
-
-This test video contains fast movement to better visualize the issue. The
-chroma mismatch doesn't appear e.g. with using 'x11' instead of 'xv'.
+--- Comment #2 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 05:03:23 PST ---
+Created an attachment (id=26100)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26100)
+NV34M xvinfo
 
 
 -- 
