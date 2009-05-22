@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21869] Chroma mismatch using XV
-Date: Fri, 22 May 2009 05:04:57 -0700 (PDT)
-Message-ID: <20090522120458.08108130016@annarchy.freedesktop.org>
+Date: Fri, 22 May 2009 05:05:25 -0700 (PDT)
+Message-ID: <20090522120525.8D890130058@annarchy.freedesktop.org>
 References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
 
 
---- Comment #6 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 05:04:57 PST ---
-Created an attachment (id=26104)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26104)
-NV34M xorg.conf
+--- Comment #7 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2009-05-22 05:05:25 PST ---
+What xv port are you using? Also, what happens when using different xv ports
+(texture, overlay, blitter) ?
 
 
 -- 
