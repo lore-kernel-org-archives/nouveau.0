@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
- 7950 GT]: works but lockup for 6 min at shutdown
-Date: Fri, 22 May 2009 10:38:30 -0700 (PDT)
-Message-ID: <20090522173830.91BC8130016@annarchy.freedesktop.org>
-References: <bug-15481-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 17492] nouveau requires EDID,
+	no modes with my CRT anno 1993
+Date: Fri, 22 May 2009 11:34:53 -0700 (PDT)
+Message-ID: <20090522183453.54164130058@annarchy.freedesktop.org>
+References: <bug-17492-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-17492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +21,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15481
-
-
-
-
-
---- Comment #19 from Eric Valette <eric.valette-GANU6spQydw@public.gmane.org>  2009-05-22 10:38:30 PST ---
-I say that because it basically works. I can switch from X11 to vt back and
-forth without problem. I only hangs when I exit X.
-
-As soon as nouveau use KMS, and provide a framebuffer console, I would be
-happy.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzQ5MgoKCgoKCi0t
+LSBDb21tZW50ICM0IGZyb20gVG9tYXN6IFNhxYJhY2nFhHNraSA8dHNhbGFjaW5za2lAZ21haWwu
+Y29tPiAgMjAwOS0wNS0yMiAxMTozNDo1MiBQU1QgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAo
+aWQ9MjYxMjIpCiAtLT4gKGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNn
+aT9pZD0yNjEyMikKWG9yZy4wLmxvZwoKVGhpcyBpcyBteSBYb3JnLjAubG9nLiBJIGFtIHVzaW5n
+IHRoZSBzYW1lIHhvcmcuY29uZiB0aGF0IHdvcmtlZCBmaW5lIHdpdGgKbnZpZGlhIGJsb2IuIE5v
+dGljZSB0aGF0IHRoZSBsb2cgZmlsZSBkb2Vzbid0IGV2ZW4gbWVudGlvbiAxNjgweDEwNTAgbW9k
+ZWxpbmUuCgpJbiBjYXNlIGl0J3MgY2FzZSBzZW5zaXRpdmUsIEkndmUgdHJpZWQgdG8gc2V0IHRo
+ZSBvcHRpb24gbGlrZQoKTW9kZUxpbmUKTW9kZWxpbmUKbW9kZWxpbmUKCkJ1dCBkaWRuJ3QgaGVs
+cC4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91
+c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFp
+bCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
