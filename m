@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21869] Chroma mismatch using XV
-Date: Fri, 22 May 2009 05:05:50 -0700 (PDT)
-Message-ID: <20090522120550.AFB0E130016@annarchy.freedesktop.org>
+Date: Fri, 22 May 2009 05:16:54 -0700 (PDT)
+Message-ID: <20090522121655.05ABC130016@annarchy.freedesktop.org>
 References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
 
 
---- Comment #8 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 05:05:50 PST ---
-Created an attachment (id=26105)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26105)
-NV34M Xorg.0.log
+--- Comment #9 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 05:16:54 PST ---
+(In reply to comment #7)
+> What xv port are you using? Also, what happens when using different xv ports
+> (texture, overlay, blitter) ?
+> 
+
+I didn't specify a port manually but I just checked and found out that
+according to 'xvinfo' the chroma mismatch only appears when mplayer uses the
+"NV Video Overlay with Composite" at port 57. The other three adaptors "NV30
+texture adapter", "NV30 high quality adapter" and "NV Video Blitter" don't
+produce such an issue. They render all as expected and totally correct.
 
 
 -- 
