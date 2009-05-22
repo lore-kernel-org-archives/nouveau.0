@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21869] Chroma mismatch using XV
-Date: Fri, 22 May 2009 05:16:54 -0700 (PDT)
-Message-ID: <20090522121655.05ABC130016@annarchy.freedesktop.org>
-References: <bug-21869-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 17492] nouveau requires EDID,
+	no modes with my CRT anno 1993
+Date: Fri, 22 May 2009 05:19:00 -0700 (PDT)
+Message-ID: <20090522121900.6D76613005A@annarchy.freedesktop.org>
+References: <bug-17492-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21869-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-17492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21869
-
-
-
-
-
---- Comment #9 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 05:16:54 PST ---
-(In reply to comment #7)
-> What xv port are you using? Also, what happens when using different xv ports
-> (texture, overlay, blitter) ?
-> 
-
-I didn't specify a port manually but I just checked and found out that
-according to 'xvinfo' the chroma mismatch only appears when mplayer uses the
-"NV Video Overlay with Composite" at port 57. The other three adaptors "NV30
-texture adapter", "NV30 high quality adapter" and "NV Video Blitter" don't
-produce such an issue. They render all as expected and totally correct.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzQ5MgoKClRvbWFz
+eiBTYcWCYWNpxYRza2kgPHRzYWxhY2luc2tpQGdtYWlsLmNvbT4gY2hhbmdlZDoKCiAgICAgICAg
+ICAgV2hhdCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tCiAgICAgICAgICAgICAgICAgQ0N8ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHx0c2FsYWNpbnNraUBnbWFpbC5jb20KCgoKCi0tLSBDb21tZW50ICMyIGZyb20gVG9tYXN6IFNh
+xYJhY2nFhHNraSA8dHNhbGFjaW5za2lAZ21haWwuY29tPiAgMjAwOS0wNS0yMiAwNToxODo1OSBQ
+U1QgLS0tCkNvbmZpcm1pbmcgd2l0aCBxdWl0ZSBuZXcgU2Ftc3VuZyAyMjZCVyAyMiIgcGFuZWwu
+IFRoaXMgbW9uaXRvciBkb2Vzbid0IHNlbmQKY29ycmVjdCBFRElEIChyZXF1aXJlcyBkcml2ZXJz
+IHVuZGVyIFdpbmRvd3MsIGRvZXNuJ3QgZGV0ZWN0IG1vZGVzCmF1dG9tYXRpY2FsbHkgZnJvbSBu
+dmlkaWEgYmxvYiBvciBldmVuIFdpbmRvd3MpLCBhbmQgd2l0aCBOb3V2ZWF1IGlnbm9yaW5nCm1v
+ZGVsaW5lIHNldHRpbmdzIEkgYW0gYWJsZSB0byB1c2Ugb25seSAxMDI0eDc2OCBtb2RlIChtb25p
+dG9yJ3MgbmF0aXZlIG1vZGUgaXMKMTY4MHgxMDUwKS4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6
+IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0t
+LS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUg
+dGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
