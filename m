@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21869] Chroma mismatch using XV
-Date: Fri, 22 May 2009 05:03:45 -0700 (PDT)
-Message-ID: <20090522120345.BB4AB130016@annarchy.freedesktop.org>
+Date: Fri, 22 May 2009 05:04:12 -0700 (PDT)
+Message-ID: <20090522120413.37EA9130016@annarchy.freedesktop.org>
 References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
 
 
---- Comment #3 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 05:03:45 PST ---
-Created an attachment (id=26101)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26101)
-NV34M xdpyinfo
+--- Comment #4 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 05:04:11 PST ---
+Created an attachment (id=26102)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26102)
+NV34M glxinfo
 
 
 -- 
