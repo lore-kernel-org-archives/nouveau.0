@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21869] Chroma mismatch using XV
-Date: Fri, 22 May 2009 06:02:38 -0700 (PDT)
-Message-ID: <20090522130238.BF6E613005A@annarchy.freedesktop.org>
+Date: Fri, 22 May 2009 10:14:44 -0700 (PDT)
+Message-ID: <20090522171444.410E82DC002@annarchy.freedesktop.org>
 References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,17 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
 
 
---- Comment #10 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2009-05-22 06:02:38 PST ---
-Can you try editing nv10_xv_ovl.c from the DDX, and change :
-        /* Those are important only for planar formats (NV12) */
-        if (uvoffset) {
-
-into  
-
-        /* Those are important only for planar formats (NV12) */
-        {
-
-around line 120.
+--- Comment #11 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-22 10:14:43 PST ---
+That didn't change anything. Sorry.
 
 
 -- 
