@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17492] nouveau requires EDID,
-	no modes with my CRT anno 1993
-Date: Fri, 22 May 2009 11:35:08 -0700 (PDT)
-Message-ID: <20090522183508.2141313005A@annarchy.freedesktop.org>
-References: <bug-17492-8800@http.bugs.freedesktop.org/>
+From: Luo Jinghua <sunmoon1997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: pre-nv50 KMS
+Date: Sat, 23 May 2009 16:49:25 +0800
+Message-ID: <beb59a440905230149m2edc3f6ak3c61a45820a66c5f@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +18,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzQ5MgoKCgoKCi0t
-LSBDb21tZW50ICM1IGZyb20gVG9tYXN6IFNhxYJhY2nFhHNraSA8dHNhbGFjaW5za2lAZ21haWwu
-Y29tPiAgMjAwOS0wNS0yMiAxMTozNTowNyBQU1QgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAo
-aWQ9MjYxMjMpCiAtLT4gKGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNn
-aT9pZD0yNjEyMykKeG9yZy5jb25mCgpBbmQgdGhpcyBpcyBteSB4b3JnLmNvbmYgZmlsZS4KCgot
-LSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJl
-ZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNh
-dXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+Hi, all
+
+I'm trying to implement kms for pre-nv50 in last cuples of days. My
+current work[1] is based on the code of nv50 kms & ddx. Basicly,  I
+just blindly port the code to kernel land :). I think I'm getting very
+close to working state, but it still doesn't work.
+
+Current state:
+1) vbios parser is synced with ddx
+2) i2c works
+3)  Something shows on internel LVDS panel and external DVI flat
+panel, but the image is distorted. If I connect the monitor with my
+latop via the VGA port and resolution is higher then 1028x1024, it
+will say no signal. At lower resultion it shows distorted image. My
+monitor native resolution is 1920x1080. You get some idea and know
+what is going wrong. I did check the mode_state of ddx and kms, the
+are almostly the same except the fb_start and cursor_offset are
+different as expected.
+
+[1] git://anongit.freedesktop.org/~jinghua/drm modesetting-gem branch
+-- 
+Luo Jinghua
