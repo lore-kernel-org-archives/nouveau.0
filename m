@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21869] Chroma mismatch using XV
-Date: Sat, 23 May 2009 05:32:50 -0700 (PDT)
-Message-ID: <20090523123250.5593C130058@annarchy.freedesktop.org>
+Date: Sat, 23 May 2009 05:36:24 -0700 (PDT)
+Message-ID: <20090523123624.833EE130016@annarchy.freedesktop.org>
 References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,24 +26,16 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
 
 
---- Comment #13 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-23 05:32:49 PST ---
-(In reply to comment #12)
-> What should i be looking at exactly? Is it that the buttons are visible
-> transparently through the hand?
-> 
-> In that case, i see it as well (nv34M@ppc). Only with the overlay. Now I do
-> admit that I have for a long time suspected some of the changes darktama made
-> to the overlay code a few months ago reduced the image quality, but I could
-> never really pinpoint it. Perhaps it is this. I will try to see if i can bisect
-> it with this testcase.
-> 
-> Danny
-> 
+--- Comment #14 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-23 05:36:21 PST ---
+Created an attachment (id=26143)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26143)
+Chroma not updated to current frame
 
-Yes, exactly. In addition as soon as I move the video window around the screen
-it gets updated and this seems to bring the chroma back in line.
+This is a reproduction of the issue using gimp, the nice RGB to YUV plugin and
+frames number 58 (the chroma) and frame 59 (luminance) from the test video
+file.
 
-I've just reproduced the issue in a picture.
+This is exactly what I see in the video at frame 59.
 
 
 -- 
