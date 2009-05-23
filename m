@@ -1,13 +1,13 @@
-From: Luo Jinghua <sunmoon1997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: pre-nv50 KMS
-Date: Sat, 23 May 2009 17:10:12 +0800
-Message-ID: <beb59a440905230210n4ffdde54sa9feb291e57cb6ec@mail.gmail.com>
-References: <beb59a440905230149m2edc3f6ak3c61a45820a66c5f@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 21869] Chroma mismatch using XV
+Date: Sat, 23 May 2009 02:52:33 -0700 (PDT)
+Message-ID: <20090523095234.063ED130058@annarchy.freedesktop.org>
+References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <beb59a440905230149m2edc3f6ak3c61a45820a66c5f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-21869-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +20,32 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBNYXkgMjMsIDIwMDkgYXQgNDo0OSBQTSwgTHVvIEppbmdodWEgPHN1bm1vb24xOTk3
-QGdtYWlsLmNvbT4gd3JvdGU6Cj4gSGksIGFsbAo+Cj4gSSdtIHRyeWluZyB0byBpbXBsZW1lbnQg
-a21zIGZvciBwcmUtbnY1MCBpbiBsYXN0IGN1cGxlcyBvZiBkYXlzLiBNeQo+IGN1cnJlbnQgd29y
-a1sxXSBpcyBiYXNlZCBvbiB0aGUgY29kZSBvZiBudjUwIGttcyAmIGRkeC4gQmFzaWNseSwgwqBJ
-Cj4ganVzdCBibGluZGx5IHBvcnQgdGhlIGNvZGUgdG8ga2VybmVsIGxhbmQgOikuIEkgdGhpbmsg
-SSdtIGdldHRpbmcgdmVyeQo+IGNsb3NlIHRvIHdvcmtpbmcgc3RhdGUsIGJ1dCBpdCBzdGlsbCBk
-b2Vzbid0IHdvcmsuCj4KPiBDdXJyZW50IHN0YXRlOgo+IDEpIHZiaW9zIHBhcnNlciBpcyBzeW5j
-ZWQgd2l0aCBkZHgKPiAyKSBpMmMgd29ya3MKPiAzKSDCoFNvbWV0aGluZyBzaG93cyBvbiBpbnRl
-cm5lbCBMVkRTIHBhbmVsIGFuZCBleHRlcm5hbCBEVkkgZmxhdAo+IHBhbmVsLCBidXQgdGhlIGlt
-YWdlIGlzIGRpc3RvcnRlZC4gSWYgSSBjb25uZWN0IHRoZSBtb25pdG9yIHdpdGggbXkKPiBsYXRv
-cCB2aWEgdGhlIFZHQSBwb3J0IGFuZCByZXNvbHV0aW9uIGlzIGhpZ2hlciB0aGVuIDEwMjh4MTAy
-NCwgaXQKPiB3aWxsIHNheSBubyBzaWduYWwuIEF0IGxvd2VyIHJlc3VsdGlvbiBpdCBzaG93cyBk
-aXN0b3J0ZWQgaW1hZ2UuIE15Cj4gbW9uaXRvciBuYXRpdmUgcmVzb2x1dGlvbiBpcyAxOTIweDEw
-ODAuIFlvdSBnZXQgc29tZSBpZGVhIGFuZCBrbm93Cj4gd2hhdCBpcyBnb2luZyB3cm9uZy4gSSBk
-aWQgY2hlY2sgdGhlIG1vZGVfc3RhdGUgb2YgZGR4IGFuZCBrbXMsIHRoZQo+IGFyZSBhbG1vc3Rs
-eSB0aGUgc2FtZSBleGNlcHQgdGhlIGZiX3N0YXJ0IGFuZCBjdXJzb3Jfb2Zmc2V0IGFyZQo+IGRp
-ZmZlcmVudCBhcyBleHBlY3RlZC4KClRoZSBWR0EgdGVzdCBpcyBkb25lIHdpdGggQzUxKEdlRm9y
-Y2UgNjEwMCwgMTBkZTowMjQyKSBub3QgbXkgbGFwdG9wLgpMVkRTICYgRFZJIHRlc3QgaXMgZG9u
-ZSB3aXRoIEdlRm9yY2UgR28gNzMwMC4KCgotLSAKTHVvIEppbmdodWEKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=21869
+
+
+Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+
+
+
+--- Comment #12 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-05-23 02:52:33 PST ---
+What should i be looking at exactly? Is it that the buttons are visible
+transparently through the hand?
+
+In that case, i see it as well (nv34M@ppc). Only with the overlay. Now I do
+admit that I have for a long time suspected some of the changes darktama made
+to the overlay code a few months ago reduced the image quality, but I could
+never really pinpoint it. Perhaps it is this. I will try to see if i can bisect
+it with this testcase.
+
+Danny
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
