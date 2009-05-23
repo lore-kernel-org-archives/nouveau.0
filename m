@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
- 7950 GT]: works but lockup for 6 min at shutdown
-Date: Sat, 23 May 2009 06:21:03 -0700 (PDT)
-Message-ID: <20090523132103.48241130016@annarchy.freedesktop.org>
-References: <bug-15481-8800@http.bugs.freedesktop.org/>
+From: Luo Jinghua <sunmoon1997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: pre-nv50 KMS
+Date: Sun, 24 May 2009 00:00:16 +0800
+Message-ID: <beb59a440905230900x302478aoc3e9377c45d32b78@mail.gmail.com>
+References: <beb59a440905230149m2edc3f6ak3c61a45820a66c5f@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <beb59a440905230149m2edc3f6ak3c61a45820a66c5f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +20,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15481
-
-
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|                            |NOTABUG
-
-
-
-
---- Comment #21 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-05-23 06:21:02 PST ---
-There's vesafb if you really must have a framebuffer console.  Until KMS
-(probably soon, it'll be there once the nouveau kernel tree is sorted out, the
-code's basically written), that's your only option.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gU2F0LCBNYXkgMjMsIDIwMDkgYXQgNDo0OSBQTSwgTHVvIEppbmdodWEgPHN1bm1vb24xOTk3
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4gSGksIGFsbAo+Cj4gSSdtIHRyeWluZyB0byBpbXBsZW1lbnQg
+a21zIGZvciBwcmUtbnY1MCBpbiBsYXN0IGN1cGxlcyBvZiBkYXlzLiBNeQo+IGN1cnJlbnQgd29y
+a1sxXSBpcyBiYXNlZCBvbiB0aGUgY29kZSBvZiBudjUwIGttcyAmIGRkeC4gQmFzaWNseSwgwqBJ
+Cj4ganVzdCBibGluZGx5IHBvcnQgdGhlIGNvZGUgdG8ga2VybmVsIGxhbmQgOikuIEkgdGhpbmsg
+SSdtIGdldHRpbmcgdmVyeQo+IGNsb3NlIHRvIHdvcmtpbmcgc3RhdGUsIGJ1dCBpdCBzdGlsbCBk
+b2Vzbid0IHdvcmsuCj4KPiBDdXJyZW50IHN0YXRlOgo+IDEpIHZiaW9zIHBhcnNlciBpcyBzeW5j
+ZWQgd2l0aCBkZHgKPiAyKSBpMmMgd29ya3MKPiAzKSDCoFNvbWV0aGluZyBzaG93cyBvbiBpbnRl
+cm5lbCBMVkRTIHBhbmVsIGFuZCBleHRlcm5hbCBEVkkgZmxhdAo+IHBhbmVsLCBidXQgdGhlIGlt
+YWdlIGlzIGRpc3RvcnRlZC4gSWYgSSBjb25uZWN0IHRoZSBtb25pdG9yIHdpdGggbXkKPiBsYXRv
+cCB2aWEgdGhlIFZHQSBwb3J0IGFuZCByZXNvbHV0aW9uIGlzIGhpZ2hlciB0aGVuIDEwMjh4MTAy
+NCwgaXQKPiB3aWxsIHNheSBubyBzaWduYWwuIEF0IGxvd2VyIHJlc3VsdGlvbiBpdCBzaG93cyBk
+aXN0b3J0ZWQgaW1hZ2UuIE15Cj4gbW9uaXRvciBuYXRpdmUgcmVzb2x1dGlvbiBpcyAxOTIweDEw
+ODAuIFlvdSBnZXQgc29tZSBpZGVhIGFuZCBrbm93Cj4gd2hhdCBpcyBnb2luZyB3cm9uZy4gSSBk
+aWQgY2hlY2sgdGhlIG1vZGVfc3RhdGUgb2YgZGR4IGFuZCBrbXMsIHRoZQo+IGFyZSBhbG1vc3Rs
+eSB0aGUgc2FtZSBleGNlcHQgdGhlIGZiX3N0YXJ0IGFuZCBjdXJzb3Jfb2Zmc2V0IGFyZQo+IGRp
+ZmZlcmVudCBhcyBleHBlY3RlZC4KPgoKSSBnZXQga21zIHdvcmtpbmcgb24gbXkgQzUxICYgR28g
+NzMwMCBub3cuCgpSZW1haW4gaXNzdWVzOgoxKSAgTFZEUycgcmVzb2x1dGlvbiBpcyBzdHVjayBh
+dCA2NDB4NDgwCjIpIEN1cnNvciBkb2Vzbid0IHdvcmsgb24gQzUxCgotLSAKTHVvIEppbmdodWEK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
