@@ -1,11 +1,13 @@
 From: Luo Jinghua <sunmoon1997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: pre-nv50 KMS
-Date: Sat, 23 May 2009 16:49:25 +0800
-Message-ID: <beb59a440905230149m2edc3f6ak3c61a45820a66c5f@mail.gmail.com>
+Subject: Re: pre-nv50 KMS
+Date: Sat, 23 May 2009 17:10:12 +0800
+Message-ID: <beb59a440905230210n4ffdde54sa9feb291e57cb6ec@mail.gmail.com>
+References: <beb59a440905230149m2edc3f6ak3c61a45820a66c5f@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <beb59a440905230149m2edc3f6ak3c61a45820a66c5f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,25 +20,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi, all
-
-I'm trying to implement kms for pre-nv50 in last cuples of days. My
-current work[1] is based on the code of nv50 kms & ddx. Basicly,  I
-just blindly port the code to kernel land :). I think I'm getting very
-close to working state, but it still doesn't work.
-
-Current state:
-1) vbios parser is synced with ddx
-2) i2c works
-3)  Something shows on internel LVDS panel and external DVI flat
-panel, but the image is distorted. If I connect the monitor with my
-latop via the VGA port and resolution is higher then 1028x1024, it
-will say no signal. At lower resultion it shows distorted image. My
-monitor native resolution is 1920x1080. You get some idea and know
-what is going wrong. I did check the mode_state of ddx and kms, the
-are almostly the same except the fb_start and cursor_offset are
-different as expected.
-
-[1] git://anongit.freedesktop.org/~jinghua/drm modesetting-gem branch
--- 
-Luo Jinghua
+T24gU2F0LCBNYXkgMjMsIDIwMDkgYXQgNDo0OSBQTSwgTHVvIEppbmdodWEgPHN1bm1vb24xOTk3
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4gSGksIGFsbAo+Cj4gSSdtIHRyeWluZyB0byBpbXBsZW1lbnQg
+a21zIGZvciBwcmUtbnY1MCBpbiBsYXN0IGN1cGxlcyBvZiBkYXlzLiBNeQo+IGN1cnJlbnQgd29y
+a1sxXSBpcyBiYXNlZCBvbiB0aGUgY29kZSBvZiBudjUwIGttcyAmIGRkeC4gQmFzaWNseSwgwqBJ
+Cj4ganVzdCBibGluZGx5IHBvcnQgdGhlIGNvZGUgdG8ga2VybmVsIGxhbmQgOikuIEkgdGhpbmsg
+SSdtIGdldHRpbmcgdmVyeQo+IGNsb3NlIHRvIHdvcmtpbmcgc3RhdGUsIGJ1dCBpdCBzdGlsbCBk
+b2Vzbid0IHdvcmsuCj4KPiBDdXJyZW50IHN0YXRlOgo+IDEpIHZiaW9zIHBhcnNlciBpcyBzeW5j
+ZWQgd2l0aCBkZHgKPiAyKSBpMmMgd29ya3MKPiAzKSDCoFNvbWV0aGluZyBzaG93cyBvbiBpbnRl
+cm5lbCBMVkRTIHBhbmVsIGFuZCBleHRlcm5hbCBEVkkgZmxhdAo+IHBhbmVsLCBidXQgdGhlIGlt
+YWdlIGlzIGRpc3RvcnRlZC4gSWYgSSBjb25uZWN0IHRoZSBtb25pdG9yIHdpdGggbXkKPiBsYXRv
+cCB2aWEgdGhlIFZHQSBwb3J0IGFuZCByZXNvbHV0aW9uIGlzIGhpZ2hlciB0aGVuIDEwMjh4MTAy
+NCwgaXQKPiB3aWxsIHNheSBubyBzaWduYWwuIEF0IGxvd2VyIHJlc3VsdGlvbiBpdCBzaG93cyBk
+aXN0b3J0ZWQgaW1hZ2UuIE15Cj4gbW9uaXRvciBuYXRpdmUgcmVzb2x1dGlvbiBpcyAxOTIweDEw
+ODAuIFlvdSBnZXQgc29tZSBpZGVhIGFuZCBrbm93Cj4gd2hhdCBpcyBnb2luZyB3cm9uZy4gSSBk
+aWQgY2hlY2sgdGhlIG1vZGVfc3RhdGUgb2YgZGR4IGFuZCBrbXMsIHRoZQo+IGFyZSBhbG1vc3Rs
+eSB0aGUgc2FtZSBleGNlcHQgdGhlIGZiX3N0YXJ0IGFuZCBjdXJzb3Jfb2Zmc2V0IGFyZQo+IGRp
+ZmZlcmVudCBhcyBleHBlY3RlZC4KClRoZSBWR0EgdGVzdCBpcyBkb25lIHdpdGggQzUxKEdlRm9y
+Y2UgNjEwMCwgMTBkZTowMjQyKSBub3QgbXkgbGFwdG9wLgpMVkRTICYgRFZJIHRlc3QgaXMgZG9u
+ZSB3aXRoIEdlRm9yY2UgR28gNzMwMC4KCgotLSAKTHVvIEppbmdodWEKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
