@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21869] Chroma mismatch using XV
-Date: Sat, 23 May 2009 05:36:24 -0700 (PDT)
-Message-ID: <20090523123624.833EE130016@annarchy.freedesktop.org>
+Date: Sat, 23 May 2009 05:40:27 -0700 (PDT)
+Message-ID: <20090523124027.55B1B13005A@annarchy.freedesktop.org>
 References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,16 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
 
 
---- Comment #14 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-23 05:36:21 PST ---
-Created an attachment (id=26143)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26143)
-Chroma not updated to current frame
-
-This is a reproduction of the issue using gimp, the nice RGB to YUV plugin and
-frames number 58 (the chroma) and frame 59 (luminance) from the test video
-file.
-
-This is exactly what I see in the video at frame 59.
+--- Comment #15 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-05-23 05:40:26 PST ---
+Also it not determined if the chroma issue appears at odd or even frames.
 
 
 -- 
