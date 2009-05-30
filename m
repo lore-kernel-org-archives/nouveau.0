@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21869] Chroma mismatch using XV
-Date: Sat, 30 May 2009 05:11:09 -0700 (PDT)
-Message-ID: <20090530121109.29812130016@annarchy.freedesktop.org>
-References: <bug-21869-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] Driver can't detect video output and xserver
+ doesn't start
+Date: Sat, 30 May 2009 16:31:26 -0700 (PDT)
+Message-ID: <20090530233126.6C59D130016@annarchy.freedesktop.org>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21869-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +21,20 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21869
+http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
 
 
---- Comment #16 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-05-30 05:11:07 PST ---
-I confirm this problem with nv28. Xv port "NV Video Overlay" suffers it, "NV
-Video Blitter" is fine.
+--- Comment #20 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-05-30 16:31:26 PST ---
+Created an attachment (id=26312)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26312)
+test patch A
 
-I've been watching TV with gxine and some time in the past it started to look
-like there was something lagging with colors, especially certain red and blue
-hues. I didn't pinpoint it then, but this bug is the problem.
-
-My Nouveau installation is still quite old, March 27th.
-
-Thanks for the test case! For instance, when the red buttons light up in the
-beginning, they start white and turn red on the next frame. Without the bug
-they become red from the beginning. Later, when the red hands move, the chroma
-and luma are clearly "out of sync" every other frame: pale hands have a red
-"shadow".
+Please try this patch, *and* the following one, and report if either (or both)
+work.  You will have to remove this patch ("git reset --hard origin") to apply
+the second one.
 
 
 -- 
