@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sat, 30 May 2009 16:31:26 -0700 (PDT)
-Message-ID: <20090530233126.6C59D130016@annarchy.freedesktop.org>
+Date: Sat, 30 May 2009 16:32:30 -0700 (PDT)
+Message-ID: <20090530233230.6465D2DC002@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #20 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-05-30 16:31:26 PST ---
-Created an attachment (id=26312)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26312)
-test patch A
-
-Please try this patch, *and* the following one, and report if either (or both)
-work.  You will have to remove this patch ("git reset --hard origin") to apply
-the second one.
+--- Comment #21 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-05-30 16:32:27 PST ---
+Created an attachment (id=26313)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26313)
+patch B (2nd of two test patches)
 
 
 -- 
