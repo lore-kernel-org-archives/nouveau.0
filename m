@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Tue,  2 Jun 2009 15:08:17 -0700 (PDT)
-Message-ID: <20090602220817.46EFD2DC002@annarchy.freedesktop.org>
+Date: Tue,  2 Jun 2009 15:09:56 -0700 (PDT)
+Message-ID: <20090602220956.E74C7130016@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #22 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-06-02 15:08:16 PST ---
-I checked both patches. Both are working, but with first patch, there is a
-problem with font. See: http://img20.imageshack.us/img20/7747/bugfong.png
-As I understand,I need a Gallium3D branch for getting dri.
-I attach logs. 
+--- Comment #23 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-06-02 15:09:56 PST ---
+Created an attachment (id=26360)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26360)
+Log of xorg with patch A
 
 
 -- 
