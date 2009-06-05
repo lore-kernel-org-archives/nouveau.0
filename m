@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Fri,  5 Jun 2009 14:58:04 -0700 (PDT)
-Message-ID: <20090605215804.77A19130016@annarchy.freedesktop.org>
+Date: Fri,  5 Jun 2009 15:25:17 -0700 (PDT)
+Message-ID: <20090605222517.ACD2D130016@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,13 +27,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #29 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-06-05 14:58:04 PST ---
-Created an attachment (id=26478)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26478)
-Log of register with patchA and corrupted fonts
+--- Comment #30 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-06-05 15:25:17 PST ---
+(In reply to comment #29)
+> Created an attachment (id=26478)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26478) [details]
+> Log of register with patchA and corrupted fonts
+> 
+> I reproduced it, after some restarting session, fonts became bad. Logout
+> repaired fonts.
 
-I reproduced it, after some restarting session, fonts became bad. Logout
-repaired fonts.
+So are you saying that sometimes the fonts are ok when using patch A?
+
+Also, have you ever got corrupted fonts with patch B?
 
 
 -- 
