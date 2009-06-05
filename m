@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Fri,  5 Jun 2009 14:42:52 -0700 (PDT)
-Message-ID: <20090605214252.46A1F130016@annarchy.freedesktop.org>
+Date: Fri,  5 Jun 2009 14:58:04 -0700 (PDT)
+Message-ID: <20090605215804.77A19130016@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,19 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #28 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-06-05 14:42:51 PST ---
-Created an attachment (id=26477)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26477)
-Diff of registers beetween patch A and B.
+--- Comment #29 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-06-05 14:58:04 PST ---
+Created an attachment (id=26478)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26478)
+Log of register with patchA and corrupted fonts
 
-You are right, bug with font is unstable. I try to reproduce it, but while
-there is the difference of registers with patch A and B. I tested patch B first
-and my Xserver hung. I found in syslog:
-Jun  6 00:55:08 power-debian gdm[3244]: WARNING: gdm_slave_xioerror_handler:
-Fatal error X - Restart :0
-It tried to restart, but all system hung. I couldn't switch to console, but
-magic keys worked. 
-2D is enough for me, but It would be good have AGP acceleration.
+I reproduced it, after some restarting session, fonts became bad. Logout
+repaired fonts.
 
 
 -- 
