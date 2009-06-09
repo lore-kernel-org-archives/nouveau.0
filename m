@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22179] [KMS] Black screen with KMS enabled
-Date: Tue,  9 Jun 2009 11:55:31 -0700 (PDT)
-Message-ID: <20090609185531.42E33130016@annarchy.freedesktop.org>
+Date: Tue,  9 Jun 2009 11:58:13 -0700 (PDT)
+Message-ID: <20090609185814.12637130016@annarchy.freedesktop.org>
 References: <bug-22179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22179
 
 
 
---- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2009-06-09 11:55:30 PST ---
-Created an attachment (id=26596)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26596)
-/var/log/syslog
+--- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2009-06-09 11:58:12 PST ---
+Connecting monitor (CRT Samsung SyncMaster 550b) to DVI-A-0 (VGA-to-DVI
+adapter) changes nothing (still black screen, even after blind startx). But DRM
+and X prints correct connector in use.
 
 
 -- 
