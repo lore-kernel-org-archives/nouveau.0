@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22179] [KMS] Black screen with KMS enabled, nv44
-Date: Tue,  9 Jun 2009 12:05:03 -0700 (PDT)
-Message-ID: <20090609190503.C99AD130016@annarchy.freedesktop.org>
+Date: Tue,  9 Jun 2009 12:10:13 -0700 (PDT)
+Message-ID: <20090609191013.22617130016@annarchy.freedesktop.org>
 References: <bug-22179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22179
 
 
 
---- Comment #7 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2009-06-09 12:05:02 PST ---
-Created an attachment (id=26598)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26598)
-xorg.conf
+--- Comment #8 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2009-06-09 12:10:12 PST ---
+in my first post (between 59a3759d0fe8d969888c741bb33f4946e4d3750d and       
+c05c0840514599d229e6719d42a2f4e6e0e8ea1e) "comments" = "commits" (sorry)
 
 
 -- 
