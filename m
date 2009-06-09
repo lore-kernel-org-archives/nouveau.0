@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22179] [KMS] Black screen with KMS enabled
-Date: Tue,  9 Jun 2009 11:53:47 -0700 (PDT)
-Message-ID: <20090609185347.65F91130016@annarchy.freedesktop.org>
+Date: Tue,  9 Jun 2009 11:54:50 -0700 (PDT)
+Message-ID: <20090609185450.50E542DC002@annarchy.freedesktop.org>
 References: <bug-22179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22179
 
 
 
---- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2009-06-09 11:53:46 PST ---
-Created an attachment (id=26594)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26594)
-/var/log/debug
+--- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2009-06-09 11:54:49 PST ---
+Created an attachment (id=26595)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26595)
+/var/log/messages
 
 
 -- 
