@@ -1,16 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau-cvs] xf86-video-nv: Branch 'master' - 2
-	commits
-Date: Wed, 10 Jun 2009 20:53:48 +1000
-Message-ID: <1244631228.5714.3.camel@localhost.localdomain>
-References: <20090610020503.174E510051@kemper.freedesktop.org>
-	<6d4bc9fc0906100300o16c8ac53rce3c6702028ca9e0@mail.gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: Pierre Pronchery <khorben-tmMSDyayuCodnm+yROfE0A@public.gmane.org>
+Subject: Compilation error in nouveau_exa.c
+Date: Wed, 10 Jun 2009 14:11:55 +0200
+Message-ID: <4A2FA30B.5080902@defora.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc0906100300o16c8ac53rce3c6702028ca9e0-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +15,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Ben Skeggs <darktama-PlYeExAEIo6UevrW7tnuMEsOKLKoXr+P@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2009-06-10 at 12:00 +0200, Maarten Maathuis wrote:
-> I just realised that this mode of tiling is quite different from the
-> one i observed, this one is linear inside the tile, not recursively
-> tiled.
-Ah right, yeah, I should've mentioned that earlier.  The GPU deals with
-all the weirdness, and it becomes regular old tiling from the CPU's
-point of view.
+			Dear nouveau team,
 
-> 
-> Also, one optimisation that you can do without fixing the xserver
-> (which should be done anyway), is to set pread and pwrite to the
-> linear passthrough functions if none of the currently prepared pixmaps
-> are tiled.
-Yup, that thought occurred to me, didn't get around to it yet though.  I
-took a bit of a look at what's required to fix things server-side too,
-and it's not going to be even remotely straight-forward.  There's even
-cases where the accessors get called on buffers that haven't had
-setupWrap called on them etc.. It looks like quite a rewrite of the fb
-layer (and I'm not even sure pixman's quite up to the task, but didn't
-spend too much time looking there yet) would be in order..
+compilation of the Nouveau driver is currently failing for me with the 
+following error:
 
-Ben.
-> 
-> Maarten.
+>  gcc -DHAVE_CONFIG_H -I. -I.. -I/usr/local/include/xorg -I/usr/local/include -I/usr/local/include/drm -I/usr/pkg/include/pixman-1 -I/usr/pkg/include -I/usr/pkg/include/X11/dri -I/usr/local/include -I/usr/local/include/drm -I/usr/local/include/nouveau -g -O2 -Wall -minline-all-stringops -I/usr/local/include/xorg -I/usr/local/include -I/usr/local/include/drm -I/usr/pkg/include/pixman-1 -I/usr/pkg/include -I/usr/pkg/include/X11/dri -MT nouveau_exa.lo -MD -MP -MF .deps/nouveau_exa.Tpo -c nouveau_exa.c  -fPIC -DPIC -o .libs/nouveau_exa.o
+> In file included from nv_include.h:72,
+>                  from nouveau_exa.c:23:
+> nouveau_hw.h: In function 'NVRead':
+> nouveau_hw.h:43: warning: value computed is not used
+> nouveau_exa.c: In function 'NVAccelDownloadM2MF':
+> nouveau_exa.c:92: error: 'struct nouveau_bo' has no member named 'tile_mode'
+> nouveau_exa.c: In function 'NVAccelUploadM2MF':
+> nouveau_exa.c:213: error: 'struct nouveau_bo' has no member named 'tile_mode'
+> nouveau_exa.c: In function 'nouveau_exa_mph_broken_should_die':
+> nouveau_exa.c:441: warning: implicit declaration of function 'nouveau_bo_new_tile'
+> nouveau_exa.c: In function 'nouveau_exa_pixmap_is_tiled':
+> nouveau_exa.c:475: error: 'struct nouveau_bo' has no member named 'tile_flags'
+> nouveau_exa.c: In function 'nouveau_exa_pixmap_map':
+> nouveau_exa.c:493: error: 'struct nouveau_bo' has no member named 'tile_flags'
+> nouveau_exa.c: In function 'nouveau_exa_pixmap_unmap':
+> nouveau_exa.c:521: error: 'struct nouveau_bo' has no member named 'tile_flags'
+> *** Error code 1
+
+It used to compile without any problems. I am using:
+- NetBSD 5.0 stable
+- xorg-server 1.5.3
+- libX11 1.1.5
+- libxcb 1.1
+- Mesa 7.4
+- libdrm 2.4.7
+
+Hints?
+-- 
+khorben
