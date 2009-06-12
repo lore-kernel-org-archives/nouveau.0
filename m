@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] Driver can't detect video output and xserver
- doesn't start
-Date: Thu, 11 Jun 2009 13:16:32 -0700 (PDT)
-Message-ID: <20090611201632.6DE56130016@annarchy.freedesktop.org>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 22253] New: KMS Nouveau - wfb crash
+Date: Fri, 12 Jun 2009 04:49:35 -0700 (PDT)
+Message-ID: <bug-22253-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +18,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21273
+http://bugs.freedesktop.org/show_bug.cgi?id=22253
+
+           Summary: KMS Nouveau - wfb crash
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+If is runned Xorg server with EXAPixmaps, then is activated too wfb, which
+cause X hang, when I try (for example) run Konsole. DMESG is clear, appearing
+Xorg.
 
-
-
---- Comment #33 from Stuart Bennett <sb476-KWPb1pKIrIJaa/9Udqfwiw@public.gmane.org>  2009-06-11 13:16:31 PST ---
-Ok, I've pushed the dvi-analogue patch in
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=b7e3306ddc3693699f6f9de7b22913ee22ed31ed
-I can't fix the dvi-digital or apple connectors without some register dumps
-with those in use.
-
-I'd suggest making a new separate bug for your font problem, and leave this one
-for the remaining connectors.
+HW: 9600M GT
 
 
 -- 
