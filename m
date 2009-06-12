@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22253] New: KMS Nouveau - wfb crash
-Date: Fri, 12 Jun 2009 04:49:35 -0700 (PDT)
-Message-ID: <bug-22253-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 22253] KMS Nouveau - wfb crash
+Date: Fri, 12 Jun 2009 04:50:12 -0700 (PDT)
+Message-ID: <20090612115012.A902E130016@annarchy.freedesktop.org>
+References: <bug-22253-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-22253-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=22253
 
-           Summary: KMS Nouveau - wfb crash
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-If is runned Xorg server with EXAPixmaps, then is activated too wfb, which
-cause X hang, when I try (for example) run Konsole. DMESG is clear, appearing
-Xorg.
 
-HW: 9600M GT
+
+--- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-12 04:50:11 PST ---
+Created an attachment (id=26713)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26713)
+Xorg.log
 
 
 -- 
