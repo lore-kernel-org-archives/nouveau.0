@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22253] KMS Nouveau - wfb crash
-Date: Fri, 12 Jun 2009 04:50:12 -0700 (PDT)
-Message-ID: <20090612115012.A902E130016@annarchy.freedesktop.org>
-References: <bug-22253-8800@http.bugs.freedesktop.org/>
+From: Andreas Radke <a.radke-KvP5wT2u2U0@public.gmane.org>
+Subject: Re: Compilation error in nouveau_exa.c
+Date: Sat, 13 Jun 2009 00:01:57 +0200
+Message-ID: <20090613000157.524d8440@laptop64.home>
+References: <4A2FA30B.5080902@defora.org>
+	<20090610164512.2259da49@daedalus.pq.iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-22253-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20090610164512.2259da49-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +21,36 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=22253
+Am Wed, 10 Jun 2009 16:45:12 +0300
+schrieb Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>:
 
+> On Wed, 10 Jun 2009 14:11:55 +0200
+> Pierre Pronchery <khorben-tmMSDyayuCodnm+yROfE0A@public.gmane.org> wrote:
+> 
+> > 			Dear nouveau team,
+> > 
+> > compilation of the Nouveau driver is currently failing for me with
+> > the following error:
+> > 
+> <snip>
+> > 
+> > It used to compile without any problems. I am using:
+> > - NetBSD 5.0 stable
+> > - xorg-server 1.5.3
+> > - libX11 1.1.5
+> > - libxcb 1.1
+> > - Mesa 7.4
+> > - libdrm 2.4.7
+> > 
+> > Hints?
+> 
+> Yes. Use libdrm and DRM kernel modules from drm.git master, the
+> latest revision.
+> 
 
+Same error here. ArchLinux kernel 2.6.30, libdrm 2.4.11 release, git drm
+module and current git nouveau shot.
 
+I've seen commits nv50 related to "tile" stuff. May this be the breaker?
 
-
---- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-12 04:50:11 PST ---
-Created an attachment (id=26713)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26713)
-Xorg.log
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+-Andy
