@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sun, 14 Jun 2009 09:13:41 -0700 (PDT)
-Message-ID: <20090614161341.9C0EC130016@annarchy.freedesktop.org>
+Date: Sun, 14 Jun 2009 09:16:02 -0700 (PDT)
+Message-ID: <20090614161602.546A7130016@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #34 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-06-14 09:13:41 PST ---
-Created an attachment (id=26770)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26770)
-Registers with dvi monitor
+--- Comment #35 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org>  2009-06-14 09:16:01 PST ---
+Created an attachment (id=26771)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26771)
+Try of using dvi output
+
+I tried to use dvi monitor. Driver is initialized, but monitor went to suspend
+mode. May be this log will be useful.
 
 
 -- 
