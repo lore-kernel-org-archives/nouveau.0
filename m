@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22317] Interlace does not work with Geforce 6200 /
 	NV44a
-Date: Tue, 16 Jun 2009 09:00:12 -0700 (PDT)
-Message-ID: <20090616160012.8AFB8130016@annarchy.freedesktop.org>
+Date: Tue, 16 Jun 2009 09:07:13 -0700 (PDT)
+Message-ID: <20090616160713.35721130016@annarchy.freedesktop.org>
 References: <bug-22317-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22317
 
 
 
---- Comment #1 from Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-16 09:00:12 PST ---
-Created an attachment (id=26857)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=26857)
-Double height patch
-
-Doing this caused interlace mode to work correctly, including xv.
+--- Comment #2 from Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-16 09:07:12 PST ---
+Now, I know that NV17/NV18 cards do not currently support interlace, but when I
+removed the checks to force interlace on a MX 4000 / NV18 card, I got a very
+similar result as with the 6200. Doubling the display height caused interlace
+mode to work. The only difference was that xv did not work correctly in this
+case. I assume that is because of overlay vs texture mode for xv.
 
 
 -- 
