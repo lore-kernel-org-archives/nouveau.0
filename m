@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22317] Interlace does not work with Geforce 6200 /
 	NV44a
-Date: Thu, 18 Jun 2009 09:46:58 -0700 (PDT)
-Message-ID: <20090618164658.A39C0130016@annarchy.freedesktop.org>
+Date: Thu, 18 Jun 2009 10:09:29 -0700 (PDT)
+Message-ID: <20090618170929.6E906130016@annarchy.freedesktop.org>
 References: <bug-22317-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22317
 
 
 
---- Comment #4 from Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-18 09:46:57 PST ---
-Searching around, I found this seemingly identical regression with ATI cards:
+--- Comment #5 from Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-18 10:09:23 PST ---
+Created an attachment (id=26928)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26928)
+Fix for interlace modes
 
-https://bugs.freedesktop.org/show_bug.cgi?id=12626
-
-This comment seems relevant to this bug too, as it discusses a change in the
-way Xorg core uses INTERLACE_HALVE_V:
-
-https://bugs.freedesktop.org/show_bug.cgi?id=12626#c70
+This patch is based on Ramon van der Stelt's patch to the Radeon driver as
+linked in above comment. The only difference is I had to recalculate mode, not
+adjusted_mode, to see the correct result.
 
 
 -- 
