@@ -1,9 +1,9 @@
-From: Andriy Bakay <andriy-Ru+gAU1lvYpWk0Htik3J/w@public.gmane.org>
-Subject: External monitor is blank with nouveau driver
-Date: Sat, 20 Jun 2009 13:10:07 -0400
-Message-ID: <4A3D17EF.3090003@irbisnet.com>
+From: Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
+Subject: drm copyright
+Date: Sat, 20 Jun 2009 18:08:39 -0500
+Message-ID: <1245539319.1724.37.camel@balrog.2hip.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="------------010002010908000200090207"
+Content-Type: multipart/mixed; boundary="===============0805629313=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -12,141 +12,60 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---------------010002010908000200090207
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-Hi Nouveau Team,
-
-I have the following hardware/software spec:
-
-ThinkPad T61
-FreeBSD 7.1-RELEASE-p5 amd64
-NVIDIA Quadro NVS 140M
-X driver nouveau
-External monitor NEC MultiSync 90GX2
-
-I am connecting external monitor through VGA interface. I was able to
-detect it using command 'xrandr -q' and even turn it on:
-
-$ xrandr --output VGA-0 --auto --below LVDS-0
-
-the geometry of my desktop changed, but monitor remain blank.
-
-Please, advise.
-
-Thanks,
-Andriy
+--===============0805629313==
+Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature"; boundary="=-tl9f2ZqOUtvTcTVdWoAL"
 
 
+--=-tl9f2ZqOUtvTcTVdWoAL
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+
+I'm planning to ship nouveau drm in FreeBSD 8.0.  In order to do that, I
+need to get copyright/license headers on a few files.  The license I
+think is pretty straight forward, since I'll be using the usual MIT drm
+license.  The following files don't seem to have headers at the moment
+and I would like to get this resolved soon, since we are approaching
+code freeze in a few days.
+
+=3D=3D> nouveau_sgdma.c <=3D=3D
+=3D=3D> nv04_fb.c <=3D=3D
+=3D=3D> nv04_instmem.c <=3D=3D
+=3D=3D> nv04_timer.c <=3D=3D
+=3D=3D> nv10_fb.c <=3D=3D
+=3D=3D> nv20_graph.c <=3D=3D
+=3D=3D> nv40_fb.c <=3D=3D
+=3D=3D> nv40_mc.c <=3D=3D
+=3D=3D> nv50_grctx.h <=3D=3D
+
+robert.
+
+--=20
+Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
+2Hip Networks
+
+--=-tl9f2ZqOUtvTcTVdWoAL
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.11 (FreeBSD)
+
+iEYEABECAAYFAko9a/cACgkQM4TrQ4qfROO4NQCdFtdqM4odIpqWcjmeSftQ0xI8
+hqoAn1H+M7AvfEPsElUhfS14sEwsA+mZ
+=XpF/
+-----END PGP SIGNATURE-----
+
+--=-tl9f2ZqOUtvTcTVdWoAL--
 
 
---------------010002010908000200090207
-Content-Type: text/plain;
- name="xorg.conf"
-Content-Transfer-Encoding: base64
-Content-Disposition: inline;
- filename="xorg.conf"
-
-U2VjdGlvbiAiU2VydmVyTGF5b3V0IgoJSWRlbnRpZmllciAgICAgIlgub3JnIENvbmZpZ3Vy
-ZWQiCglTY3JlZW4gICAgICAwICAiU2NyZWVuMCIgMCAwCglJbnB1dERldmljZSAgICAiU3lu
-YXB0aWNzX1RvdWNocGFkIiAiQ29yZVBvaW50ZXIiCglJbnB1dERldmljZSAgICAiS2V5Ym9h
-cmQwIiAiQ29yZUtleWJvYXJkIgoJT3B0aW9uICAgICAgICAgIkRvbnRaYXAiICJPZmYiCglP
-cHRpb24gICAgICAgICAiQUlHTFgiICJ0cnVlIgpFbmRTZWN0aW9uCgpTZWN0aW9uICJFeHRl
-bnNpb25zIgoJT3B0aW9uICAgICAgICJDb21wb3NpdGUiICJFbmFibGUiCglPcHRpb24gICAg
-ICAgIlhWaWRlbyIgIkVuYWJsZSIKRW5kU2VjdGlvbgoKU2VjdGlvbiAiRmlsZXMiCglNb2R1
-bGVQYXRoICAgIi91c3IvbG9jYWwvbGliL3hvcmcvbW9kdWxlcyIKCUZvbnRQYXRoICAgICAi
-L3Vzci9sb2NhbC9saWIvWDExL2ZvbnRzL21pc2MvIgoJRm9udFBhdGggICAgICIvdXNyL2xv
-Y2FsL2xpYi9YMTEvZm9udHMvVFRGLyIKCUZvbnRQYXRoICAgICAiL3Vzci9sb2NhbC9saWIv
-WDExL2ZvbnRzL09URiIKCUZvbnRQYXRoICAgICAiL3Vzci9sb2NhbC9saWIvWDExL2ZvbnRz
-L1R5cGUxLyIKCUZvbnRQYXRoICAgICAiL3Vzci9sb2NhbC9saWIvWDExL2ZvbnRzLzEwMGRw
-aS8iCglGb250UGF0aCAgICAgIi91c3IvbG9jYWwvbGliL1gxMS9mb250cy83NWRwaS8iCglG
-b250UGF0aCAgICAgIi91c3IvbG9jYWwvbGliL1gxMS9mb250cy9VUlcvIgoJRm9udFBhdGgg
-ICAgICIvdXNyL2xvY2FsL2xpYi9YMTEvZm9udHMvZnJlZWZvbnQvIgoJRm9udFBhdGggICAg
-ICIvdXNyL2xvY2FsL2xpYi9YMTEvZm9udHMvVHJ1ZVR5cGUvIgoJRm9udFBhdGggICAgICIv
-dXNyL2xvY2FsL2xpYi9YMTEvZm9udHMvYml0c3RyZWFtLXZlcmEvIgoJRm9udFBhdGggICAg
-ICIvdXNyL2xvY2FsL2xpYi9YMTEvZm9udHMvY3lyaWxsaWMvIgoJRm9udFBhdGggICAgICIv
-dXNyL2xvY2FsL2xpYi9YMTEvZm9udHMvZGVqYXZ1LyIKRW5kU2VjdGlvbgoKU2VjdGlvbiAi
-TW9kdWxlIgoJTG9hZCAgImV4dG1vZCIKCUxvYWQgICJyZWNvcmQiCglMb2FkICAiZGJlIgoJ
-TG9hZCAgImdseCIKCUxvYWQgICJkcmkiCglMb2FkICAiZHJpMiIKCUxvYWQgICJzeW5hcHRp
-Y3MiCkVuZFNlY3Rpb24KClNlY3Rpb24gIklucHV0RGV2aWNlIgoJSWRlbnRpZmllciAgIktl
-eWJvYXJkMCIKCURyaXZlciAgICAgICJrYmQiCkVuZFNlY3Rpb24KCiNTZWN0aW9uICJJbnB1
-dERldmljZSIKIwlJZGVudGlmaWVyICAiTW91c2UwIgojCURyaXZlciAgICAgICJtb3VzZSIK
-IwlPcHRpb24JICAgICJQcm90b2NvbCIgImF1dG8iCiMJT3B0aW9uCSAgICAiRGV2aWNlIiAi
-L2Rldi9zeXNtb3VzZSIKIwlPcHRpb24JICAgICJaQXhpc01hcHBpbmciICI0IDUgNiA3Igoj
-RW5kU2VjdGlvbgoKU2VjdGlvbiAiSW5wdXREZXZpY2UiCglJZGVudGlmaWVyICAiU3luYXB0
-aWNzX1RvdWNocGFkIgoJRHJpdmVyICAgICAgInN5bmFwdGljcyIKCglPcHRpb24gICAgICAi
-RGV2aWNlIiAgICAgICAgICAgICAgICAiL2Rldi9wc20wIgoJT3B0aW9uICAgICAgIlByb3Rv
-Y29sIiAgICAgICAgICAgICAgInBzbSIKCglPcHRpb24gICAgICAiTGVmdEVkZ2UiICAgICAg
-ICAgICAgICAiMTQwMCIKCU9wdGlvbiAgICAgICJSaWdodEVkZ2UiICAgICAgICAgICAgICI1
-NjAwIgoJT3B0aW9uICAgICAgIlRvcEVkZ2UiICAgICAgICAgICAgICAgIjE0MDAiCglPcHRp
-b24gICAgICAiQm90dG9tRWRnZSIgICAgICAgICAgICAiNDcwMCIKCglPcHRpb24gICAgICAi
-RmluZ2VyTG93IiAgICAgICAgICAgICAiMjUiCglPcHRpb24gICAgICAiRmluZ2VySGlnaCIg
-ICAgICAgICAgICAiMzAiCgoJT3B0aW9uICAgICAgIk1heFRhcFRpbWUiICAgICAgICAgICAg
-IjE4MCIKCU9wdGlvbiAgICAgICJNYXhUYXBNb3ZlIiAgICAgICAgICAgICIyMjAiCgoJT3B0
-aW9uICAgICAgIlZlcnRTY3JvbGxEZWx0YSIgICAgICAgIjEwMCIKCU9wdGlvbiAgICAgICJI
-b3JpelNjcm9sbERlbHRhIiAgICAgICIxMDAiCgoJT3B0aW9uICAgICAgIk1pblNwZWVkIiAg
-ICAgICAgICAgICAgIjAuMjUiCglPcHRpb24gICAgICAiTWF4U3BlZWQiICAgICAgICAgICAg
-ICAiMC41IgoJT3B0aW9uICAgICAgIkFjY2VsRmFjdG9yIiAgICAgICAgICAgIjAuMDAxMCIK
-CU9wdGlvbiAgICAgICJGYXN0VGFwcyIgICAgICAgICAgICAgICJvZmYiCgoJT3B0aW9uICAg
-ICAgIlNjcm9sbEJ1dHRvblJlcGVhdCIgICAgIjEwMCIKCU9wdGlvbiAgICAgICJVcERvd25T
-Y3JvbGxpbmciICAgICAgICJvbiIKCU9wdGlvbiAgICAgICJVcERvd25SZXBlYXQiICAgICAg
-ICAgICJvbiIKCU9wdGlvbiAgICAgICJMZWZ0UmlnaHRTY3JvbGxpbmciICAgICJvbiIKCU9w
-dGlvbiAgICAgICJMZWZ0UmlnaHRSZXBlYXQiICAgICAgICJvbiIKCglPcHRpb24gICAgICAi
-VGFwQnV0dG9uMSIgICAgICAgICAgICAiMCIKCU9wdGlvbiAgICAgICJUYXBCdXR0b24yIiAg
-ICAgICAgICAgICIwIgoJT3B0aW9uICAgICAgIlRhcEJ1dHRvbjMiICAgICAgICAgICAgIjAi
-CgoJIyAiU0hNQ29uZmlnIG9uIiBzZWVtcyBnb29kIHdvcmtzIHdpdGggc3luY2xpZW50KDEp
-LiAgQnV0IHRoaXMKCSMgb3B0aW9ucyBpcyBpbnNlY3VyZS4gIEkgcmVjb21tZW5kZWQgIm9m
-ZiIgYXMgZGVmYXVsdC4KCU9wdGlvbiAgICAgICJTSE1Db25maWciICAgICAgICAgICAgICJv
-biIKCgkjIElmIHlvdSB1c2UgY2lyY3VsYXIgdG91Y2hwYWQsIHVuY29tbWVudCB0aGVtLgoJ
-I09wdGlvbiAgICAgICAgICAiQ2lyY3VsYXJQYWQiICAgICAgICAgICAib24iCgkjT3B0aW9u
-ICAgICAgICAgICJDaXJjdWxhclNjcm9sbGluZyIgICAgICJvbiIKCSNPcHRpb24gICAgICAg
-ICAgIkNpcmNTY3JvbGxEZWx0YSIgICAgICAgIjAuNSIKRW5kU2VjdGlvbgoKU2VjdGlvbiAi
-TW9uaXRvciIKCUlkZW50aWZpZXIgICAiTFZEUy0wIgoJT3B0aW9uICAgICAgICJEUE1TIgpF
-bmRTZWN0aW9uCgpTZWN0aW9uICJNb25pdG9yIgoJSWRlbnRpZmllciAgICJWR0EtMCIKCU9w
-dGlvbiAgICAgICAiRFBNUyIKRW5kU2VjdGlvbgoKU2VjdGlvbiAiRGV2aWNlIgogICAgICAg
-ICMjIyBBdmFpbGFibGUgRHJpdmVyIG9wdGlvbnMgYXJlOi0KICAgICAgICAjIyMgVmFsdWVz
-OiA8aT46IGludGVnZXIsIDxmPjogZmxvYXQsIDxib29sPjogIlRydWUiLyJGYWxzZSIsCiAg
-ICAgICAgIyMjIDxzdHJpbmc+OiAiU3RyaW5nIiwgPGZyZXE+OiAiPGY+IEh6L2tIei9NSHoi
-CiAgICAgICAgIyMjIFthcmddOiBhcmcgb3B0aW9uYWwKICAgICAgICAjT3B0aW9uICAgICAi
-U1djdXJzb3IiICAgICAgICAgICAJIyBbPGJvb2w+XQogICAgICAgICNPcHRpb24gICAgICJI
-V2N1cnNvciIgICAgICAgICAgIAkjIFs8Ym9vbD5dCiAgICAgICAgI09wdGlvbiAgICAgIk5v
-QWNjZWwiICAgICAgICAgICAgCSMgWzxib29sPl0KICAgICAgICAjT3B0aW9uICAgICAiU2hh
-ZG93RkIiICAgICAgICAgICAJIyBbPGJvb2w+XQogICAgICAgICNPcHRpb24gICAgICJVc2VG
-QkRldiIgICAgICAgICAgIAkjIFs8Ym9vbD5dCiAgICAgICAgI09wdGlvbiAgICAgIlJvdGF0
-ZSIgICAgICAgICAgICAgCSMgWzxzdHI+XQogICAgICAgICNPcHRpb24gICAgICJWaWRlb0tl
-eSIgICAgICAgICAgIAkjIDxpPgogICAgICAgICNPcHRpb24gICAgICJGbGF0UGFuZWwiICAg
-ICAgICAgIAkjIFs8Ym9vbD5dCiAgICAgICAgI09wdGlvbiAgICAgIkZQRGl0aGVyIiAgICAg
-ICAgICAgCSMgWzxib29sPl0KICAgICAgICAjT3B0aW9uICAgICAiQ3J0Y051bWJlciIgICAg
-ICAgICAJIyA8aT4KICAgICAgICAjT3B0aW9uICAgICAiRlBTY2FsZSIgICAgICAgICAgICAJ
-IyBbPGJvb2w+XQogICAgICAgICNPcHRpb24gICAgICJGUFR3ZWFrIiAgICAgICAgICAgIAkj
-IDxpPgogICAgICAgICNPcHRpb24gICAgICJEdWFsSGVhZCIgICAgICAgICAgIAkjIFs8Ym9v
-bD5dCglPcHRpb24gICAgICAiVXNlRWRpZERwaSIgImZhbHNlIgoJT3B0aW9uICAgICAgIkRQ
-SSIgIjk2IHggOTYiCglJZGVudGlmaWVyICAiQ2FyZDAiCglEcml2ZXIgICAgICAibm91dmVh
-dSIKCVZlbmRvck5hbWUgICJuVmlkaWEgQ29ycG9yYXRpb24iCglCb2FyZE5hbWUgICAiUXVh
-ZHJvIE5WUyAxNDBNIgoJQnVzSUQgICAgICAgIlBDSToxOjA6MCIKCU9wdGlvbiAgICAgICJB
-Y2NlbE1ldGhvZCIgIkVYQSIKCU9wdGlvbiAgICAgICJFWEFOb0NvbXBvc2l0ZSIgImZhbHNl
-IgoJT3B0aW9uICAgICAgIkZCVGV4UGVyY2VudCIgIjUwIgoJT3B0aW9uICAgICAgIk1pZ3Jh
-dGlvbkhldXJpc3RpYyIgImdyZWVkeSIKCU9wdGlvbiAgICAgICJEUkkiICJ0cnVlCglPcHRp
-b24gICAgICAiTW9uaXRvci1MVkRTIiAiTFZEUy0wIgoJT3B0aW9uICAgICAgIk1vbml0b3It
-VkdBIiAiVkdBLTAiCkVuZFNlY3Rpb24KClNlY3Rpb24gIkRSSSIKCU1vZGUgMDY2NgpFbmRT
-ZWN0aW9uCgpTZWN0aW9uICJTY3JlZW4iCglJZGVudGlmaWVyICJTY3JlZW4wIgoJRGV2aWNl
-ICAgICAiQ2FyZDAiCglTdWJTZWN0aW9uICJEaXNwbGF5IgoJCVZpZXdwb3J0ICAgMCAwCgkJ
-RGVwdGggICAgIDEKCUVuZFN1YlNlY3Rpb24KCVN1YlNlY3Rpb24gIkRpc3BsYXkiCgkJVmll
-d3BvcnQgICAwIDAKCQlEZXB0aCAgICAgNAoJRW5kU3ViU2VjdGlvbgoJU3ViU2VjdGlvbiAi
-RGlzcGxheSIKCQlWaWV3cG9ydCAgIDAgMAoJCURlcHRoICAgICA4CglFbmRTdWJTZWN0aW9u
-CglTdWJTZWN0aW9uICJEaXNwbGF5IgoJCVZpZXdwb3J0ICAgMCAwCgkJRGVwdGggICAgIDE1
-CglFbmRTdWJTZWN0aW9uCglTdWJTZWN0aW9uICJEaXNwbGF5IgoJCVZpZXdwb3J0ICAgMCAw
-CgkJRGVwdGggICAgIDE2CglFbmRTdWJTZWN0aW9uCglTdWJTZWN0aW9uICJEaXNwbGF5IgoJ
-CVZpZXdwb3J0ICAgMCAwCgkJRGVwdGggICAgIDI0CgkJTW9kZXMgICAgICIxNDQweDkwMCIK
-CQlWaXJ0dWFsICAgMjA0OCAyMDQ4CglFbmRTdWJTZWN0aW9uCkVuZFNlY3Rpb24KCg==
---------------010002010908000200090207
+--===============0805629313==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -157,4 +76,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---------------010002010908000200090207--
+--===============0805629313==--
