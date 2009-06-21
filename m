@@ -1,10 +1,14 @@
-From: Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
-Subject: drm copyright
-Date: Sat, 20 Jun 2009 18:08:39 -0500
-Message-ID: <1245539319.1724.37.camel@balrog.2hip.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 22317] Interlace does not work with Geforce 6200 /
+	NV44a
+Date: Sun, 21 Jun 2009 04:22:32 -0700 (PDT)
+Message-ID: <20090621112232.67340130016@annarchy.freedesktop.org>
+References: <bug-22317-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0805629313=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-22317-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -12,68 +16,36 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0805629313==
-Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature"; boundary="=-tl9f2ZqOUtvTcTVdWoAL"
+http://bugs.freedesktop.org/show_bug.cgi?id=22317
 
 
---=-tl9f2ZqOUtvTcTVdWoAL
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
-
-I'm planning to ship nouveau drm in FreeBSD 8.0.  In order to do that, I
-need to get copyright/license headers on a few files.  The license I
-think is pretty straight forward, since I'll be using the usual MIT drm
-license.  The following files don't seem to have headers at the moment
-and I would like to get this resolved soon, since we are approaching
-code freeze in a few days.
-
-=3D=3D> nouveau_sgdma.c <=3D=3D
-=3D=3D> nv04_fb.c <=3D=3D
-=3D=3D> nv04_instmem.c <=3D=3D
-=3D=3D> nv04_timer.c <=3D=3D
-=3D=3D> nv10_fb.c <=3D=3D
-=3D=3D> nv20_graph.c <=3D=3D
-=3D=3D> nv40_fb.c <=3D=3D
-=3D=3D> nv40_mc.c <=3D=3D
-=3D=3D> nv50_grctx.h <=3D=3D
-
-robert.
-
---=20
-Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
-2Hip Networks
-
---=-tl9f2ZqOUtvTcTVdWoAL
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.11 (FreeBSD)
-
-iEYEABECAAYFAko9a/cACgkQM4TrQ4qfROO4NQCdFtdqM4odIpqWcjmeSftQ0xI8
-hqoAn1H+M7AvfEPsElUhfS14sEwsA+mZ
-=XpF/
------END PGP SIGNATURE-----
-
---=-tl9f2ZqOUtvTcTVdWoAL--
 
 
---===============0805629313==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+--- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-06-21 04:22:31 PST ---
+Created an attachment (id=26994)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=26994)
+nv17_interlace.patch
 
---===============0805629313==--
+Here on nv17, the attached patch seems necessary in addition to your patch for
+interlaced modes to work.
+
+Without clearing NV_PCRTC_CONFIG_START_ADDRESS_HSYNC I get a meaningful image
+but only the odd fields (or the even ones, I don't know for sure ;-) are
+displayed. The blob seems to set NV_CIO_CRE_43 to 0x1 on all the hardware i've
+got around (nv34, nv35, nv40) but on this nv17 when an interlaced mode is being
+used, not doing it causes some weird diagonal lines to be displayed.
+
+I don't know what the problem is with interlaced modes on nv2x, these patches
+might also fix them but I don't have any at hand.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
