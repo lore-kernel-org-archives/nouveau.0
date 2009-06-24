@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22253] KMS Nouveau - wfb crash
-Date: Wed, 24 Jun 2009 04:01:37 -0700 (PDT)
-Message-ID: <20090624110137.F0609130016@annarchy.freedesktop.org>
+Date: Wed, 24 Jun 2009 04:25:52 -0700 (PDT)
+Message-ID: <20090624112552.164D013005A@annarchy.freedesktop.org>
 References: <bug-22253-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22253
 
 
 
---- Comment #4 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 04:01:37 PST ---
-Question is how, x.org wiki didn't help, cause everytime when I try assign gdb
-to X process, Xorg stop, until gdb ends... nothing worked for me. #nouveau,
-okias
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 04:25:51 PST ---
+After attaching you need to "continue", this can only be done if you are
+running gdb over ssh.
 
 
 -- 
