@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22253] KMS Nouveau - wfb crash
-Date: Tue, 23 Jun 2009 14:05:45 -0700 (PDT)
-Message-ID: <20090623210547.5F3F6130058@annarchy.freedesktop.org>
+Date: Tue, 23 Jun 2009 18:44:48 -0700 (PDT)
+Message-ID: <20090624014448.64E0213005A@annarchy.freedesktop.org>
 References: <bug-22253-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22253
 
 
 
---- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-23 14:05:45 PST ---
-Created an attachment (id=27058)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27058)
-Xorg.log from lastest Xorg with debug
+--- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-23 18:44:47 PST ---
+gdb is your friend, because this log isn't saying much.
 
 
 -- 
