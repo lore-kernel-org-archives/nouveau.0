@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22253] KMS Nouveau - wfb crash
-Date: Wed, 24 Jun 2009 05:12:29 -0700 (PDT)
-Message-ID: <20090624121229.AA8EA13005A@annarchy.freedesktop.org>
+Date: Wed, 24 Jun 2009 05:23:47 -0700 (PDT)
+Message-ID: <20090624122347.AE68F130016@annarchy.freedesktop.org>
 References: <bug-22253-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22253
 
 
 
---- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 05:12:29 PST ---
-So if you break it again (ctrl-c), and backtrace, where is it stuck?
+--- Comment #8 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 05:23:47 PST ---
+1) I start X server, log in.
+2) do gdb /usr/bin/X [pid]
+3) server freeze
+4) do in gdb: quit and 'y'
+5) server is back unfroozen
 
 
 -- 
