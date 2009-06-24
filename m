@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22253] KMS Nouveau - wfb crash
-Date: Wed, 24 Jun 2009 07:38:55 -0700 (PDT)
-Message-ID: <20090624143855.34A4A2DC002@annarchy.freedesktop.org>
+Date: Wed, 24 Jun 2009 07:42:00 -0700 (PDT)
+Message-ID: <20090624144200.5373D13005A@annarchy.freedesktop.org>
 References: <bug-22253-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22253
 
 
 
---- Comment #12 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 07:38:54 PST ---
-Moment, I forgot backtrace :-D sorry
+--- Comment #13 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 07:41:59 PST ---
+nouveau_wfb_finish_wrap is broken
+
+It ignores index:
+
+struct wfb_pixmap *wfb = &wfb_pixmap[0];
+
+Later it loops over all 6, but still uses 0.
+
+Eventually you pollute all 6 of your wfb entries and boom.
+
+I'll let Ben fix it :-)
 
 
 -- 
