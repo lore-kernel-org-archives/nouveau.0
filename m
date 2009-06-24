@@ -1,9 +1,10 @@
-From: okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: wfb: fix nouveau_wfb_finish_wrap
-Date: Wed, 24 Jun 2009 22:04:17 +0200
-Message-ID: <c2673ca60906241304w2f814530ge1c2ad0c720337d6@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 22460] New: Demos crash with NV40 driver
+Date: Wed, 24 Jun 2009 15:49:32 -0700 (PDT)
+Message-ID: <bug-22460-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=0016363ba65cb88783046d1d9cd8
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,43 +18,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---0016363ba65cb88783046d1d9cd8
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-Here is patch, which fixing bug 22253.
-
--- 
-Jabber/XMPP: okias-O1n184kmSCviB9QmIjCX8w@public.gmane.org
-SIP VoIP: sip:17474537254-rne+wJe3e/u3Jhga2bR/9VaTQe2KTcn/@public.gmane.org
-
---0016363ba65cb88783046d1d9cd8
-Content-Type: application/octet-stream; name="WFB_FIX.patch"
-Content-Disposition: attachment; filename="WFB_FIX.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_fwch3z2m0
-
-ZGlmZiAtcnVwTiBhL25vdXZlYXVfd2ZiLmMgYi9ub3V2ZWF1X3dmYi5jCi0tLSBhL25vdXZlYXVf
-d2ZiLmMJMjAwOS0wNi0yNCAyMTo1ODo0Mi41ODM0MDM2MzQgKzAyMDAKKysrIGIvbm91dmVhdV93
-ZmIuYwkyMDA5LTA2LTI0IDIxOjU5OjAzLjIxMzA5NzQ4MyArMDIwMApAQCAtMTc1LDIwICsxNzUs
-MjEgQEAgbm91dmVhdV93ZmJfc2V0dXBfd3JhcChSZWFkTWVtb3J5UHJvY1B0cgogdm9pZAogbm91
-dmVhdV93ZmJfZmluaXNoX3dyYXAoRHJhd2FibGVQdHIgcERyYXcpCiB7Ci0Jc3RydWN0IHdmYl9w
-aXhtYXAgKndmYiA9ICZ3ZmJfcGl4bWFwWzBdOworCXN0cnVjdCB3ZmJfcGl4bWFwICp3ZmI7CiAJ
-UGl4bWFwUHRyIHBwaXg7Ci0JaW50IGk7CisJaW50IGksd3JhcDsKIAogCXBwaXggPSBOVkdldERy
-YXdhYmxlUGl4bWFwKHBEcmF3KTsKIAlpZiAoIXBwaXgpCiAJCXJldHVybjsKIAotCWZvciAoaSA9
-IDA7IGkgPCA2OyBpKyspIHsKLQkJaWYgKHdmYi0+cHBpeCAhPSBwcGl4KQotCQkJY29udGludWU7
-CisJd2ZiID0gJndmYl9waXhtYXBbMF07CiAKKwl3cmFwID0gMDsKKwl3aGlsZSh3ZmJfcGl4bWFw
-W3dyYXBdLnBwaXgpIHsKKwkJd2ZiID0gJndmYl9waXhtYXBbd3JhcF07CiAJCXdmYi0+cHBpeCA9
-IE5VTEw7Ci0JCWJyZWFrOworCQl3cmFwKys7CiAJfQogfQogCg==
---0016363ba65cb88783046d1d9cd8
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---0016363ba65cb88783046d1d9cd8--
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMjQ2MAoKICAgICAg
+ICAgICBTdW1tYXJ5OiBEZW1vcyBjcmFzaCB3aXRoIE5WNDAgZHJpdmVyCiAgICAgICAgICAgUHJv
+ZHVjdDogTWVzYQogICAgICAgICAgIFZlcnNpb246IENWUwogICAgICAgICAgUGxhdGZvcm06IHg4
+Ni02NCAoQU1ENjQpCiAgICAgICAgT1MvVmVyc2lvbjogQWxsCiAgICAgICAgICAgIFN0YXR1czog
+TkVXCiAgICAgICAgICBTZXZlcml0eTogbm9ybWFsCiAgICAgICAgICBQcmlvcml0eTogbWVkaXVt
+CiAgICAgICAgIENvbXBvbmVudDogRHJpdmVycy9EUkkvbm91dmVhdQogICAgICAgIEFzc2lnbmVk
+VG86IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCiAgICAgICAgUmVwb3J0ZWRCeTogcmpn
+bGVpdHNAYmVsbHNvdXRoLm5ldAoKCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9MjcwOTcpCiAt
+LT4gKGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9pZD0yNzA5NykK
+UGF0Y2ggdG8gZml4IHByb2JsZW0gYWJvdmUKCk1vc3QgwqBkZW1vIHByb2dyYW1zIGluY2x1ZGVk
+IGluIE1lc2EgdHJlZSBjcmFzaCB3aXRoIHNlZ21lbnQgdmlvbGF0aW9uIHdoZW4KdXNpbmcgbm91
+dmVhdSBkcml2ZXIgd2l0aCBOVjQwIGNhcmRzLiBUaGUgcGF0Y2ggZml4ZXMgbW9zdCBvZiB0aGUg
+cHJvYmxlbXMuIFRoZQpkcml2ZXJzIGZvciB0aGUgdGhlIHJlc3Qgb2YgdGhlIG52aWRpYSBmYW1p
+bHkgc2VlbSB0byBoYXZlIHRoaXMgY29ycmVjdCBJIGhvcGUKdGhpcyBpcyB0aGUgcmlnaHQgcGxh
+Y2UgYW5kIHRoZSByaWdodCBmb3JtYXQgZm9yIHRoZSBwYXRjaC4KCkJlc3QgV2lzaGVzLAoKQm9i
+IEdsZWl0c21hbm4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNr
+dG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5n
+IHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUg
+YnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
