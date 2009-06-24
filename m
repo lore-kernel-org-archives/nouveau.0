@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22253] KMS Nouveau - wfb crash
-Date: Wed, 24 Jun 2009 05:00:15 -0700 (PDT)
-Message-ID: <20090624120015.204DA130016@annarchy.freedesktop.org>
+Date: Wed, 24 Jun 2009 05:12:29 -0700 (PDT)
+Message-ID: <20090624121229.AA8EA13005A@annarchy.freedesktop.org>
 References: <bug-22253-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22253
 
 
 
---- Comment #6 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 05:00:14 PST ---
-That's already this case... even with ssh it stop work, until I quit gdb :-(
+--- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 05:12:29 PST ---
+So if you break it again (ctrl-c), and backtrace, where is it stuck?
 
 
 -- 
