@@ -1,15 +1,10 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: External monitor is blank with nouveau driver
-Date: Tue, 23 Jun 2009 22:17:13 -0400
-Message-ID: <586c2acd0906231917v58911ad3j11eeff7a2a08af15@mail.gmail.com>
-References: <4A3D0D7A.2040105@irbisnet.com>
-	<586c2acd0906210856v4af3e719na6ac9f669c7bc47c@mail.gmail.com>
-	<4A418844.20900@irbisnet.com>
+From: Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Out of tree nouveau.ko build.
+Date: Wed, 24 Jun 2009 20:32:11 +1000
+Message-ID: <1245839531.5592.12.camel@Ed.Bebop.cooperteam.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1332027531=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4A418844.20900-Ru+gAU1lvYpWk0Htik3J/w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,52 +12,78 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Andriy Bakay <andriy-Ru+gAU1lvYpWk0Htik3J/w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jun 23, 2009 at 9:58 PM, Andriy Bakay<andriy-Ru+gAU1lvYpWk0Htik3J/w@public.gmane.org> wrote:
-> Sorry, I am sending configuration and log files.
->
-> Younes Manton wrote:
->>
->> On Sat, Jun 20, 2009 at 12:25 PM, Andriy Bakay<andriy-Ru+gAU1lvYpWk0Htik3J/w@public.gmane.org> wrote:
->>>
->>> Hi Nouveau Team,
->>>
->>> I have the following hardware/software spec:
->>>
->>> ThinkPad T61
->>> FreeBSD 7.1-RELEASE-p5 amd64
->>> NVIDIA Quadro NVS 140M
->>> X driver nouveau
->>> External monitor NEC MultiSync 90GX2
->>>
->>> I am connecting external monitor through VGA interface. I was able to
->>> detect it using command 'xrandr -q' and even turn it on:
->>>
->>> $ xrandr --output VGA-0 --auto --below LVDS-0
->>>
->>> the geometry of my desktop changed, but monitor remain blank.
->>>
->>> Please, advise.
 
-1) Is that log from an instance where you tried to enable the 2nd
-monitor? I don't see anything in there about attempting to output to
-the VGA port.
+--===============1332027531==
+Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature"; boundary="=-MLpLgKIoRATqFp/OtkFL"
 
-2) Can you try a minimal xorg.conf file? You don't need a lot of those
-options for the display portion. Try something like this and let the
-driver do the rest:
 
-Section "Device"
-        Identifier      "card0"
-        Driver          "nouveau"
-EndSection
+--=-MLpLgKIoRATqFp/OtkFL
+Content-Type: multipart/mixed; boundary="=-eYLya9czus8/ug/xTykw"
 
-Section "Screen"
-        Identifier      "screen0"
-        Device         "card0"
-EndSection
+
+--=-eYLya9czus8/ug/xTykw
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+
+As a part of updating Ubuntu's nouveau package, I've been figuring
+exactly how to build nouveau.ko from
+cgit.freedesktop.org/nouveau/linux-2.6
+
+A first and trivial pass at this is attached.  It doesn't do any
+interesting kernel configuration checking; it just sets the right
+include paths and calls out to make.
+
+--=-eYLya9czus8/ug/xTykw
+Content-Disposition: attachment; filename="Makefile"
+Content-Type: text/x-makefile; name="Makefile"; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+aWZuZGVmIExJTlVYRElSDQpSVU5OSU5HX1JFTCA6PSAkKHNoZWxsIHVuYW1lIC1yKQ0KDQpMSU5V
+WERJUiA6PSAkKHNoZWxsIGlmIFsgLWUgL2xpYi9tb2R1bGVzLyQoUlVOTklOR19SRUwpL3NvdXJj
+ZSBdOyB0aGVuIFwNCgkJIGVjaG8gL2xpYi9tb2R1bGVzLyQoUlVOTklOR19SRUwpL3NvdXJjZTsg
+XA0KCQkgZWxzZSBlY2hvIC9saWIvbW9kdWxlcy8kKFJVTk5JTkdfUkVMKS9idWlsZDsgZmkpDQpl
+bmRpZg0KDQphbGw6IG1vZHVsZXMNCg0KbW9kdWxlczoNCgltYWtlIC1DICQoTElOVVhESVIpIEND
+PSIkKENDKSAtSSQoQ1VSRElSKS9pbmNsdWRlL2RybSIgU1VCRElSUz1gL2Jpbi9wd2RgL2RyaXZl
+cnMvZ3B1L2RybSBDT05GSUdfRFJNX05PVVZFQVU9bSBDT05GSUdfRFJNX1RUTT1tIG1vZHVsZXMN
+Cg0KaW5zdGFsbDoNCgltYWtlIC1DICQoTElOVVhESVIpIENDPSIkKENDKSAtSSQoQ1VSRElSKS9p
+bmNsdWRlL2RybSIgU1VCRElSUz1gL2Jpbi9wd2RgL2RyaXZlcnMvZ3B1L2RybSBDT05GSUdfRFJN
+X05PVVZFQVU9bSBDT05GSUdfRFJNX1RUTT1tIG1vZHVsZXNfaW5zdGFsbA0KDQpjbGVhbjoNCglt
+YWtlIC1DICQoTElOVVhESVIpIFNVQkRJUlM9YC9iaW4vcHdkYC9kcml2ZXJzL2dwdS9kcm0gQ09O
+RklHX0RSTV9OT1VWRUFVPW0gQ09ORklHX0RSTV9UVE09bSBjbGVhbg0K
+
+
+--=-eYLya9czus8/ug/xTykw--
+
+--=-MLpLgKIoRATqFp/OtkFL
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+
+iEYEABECAAYFAkpCAKAACgkQ+cDq7ALkfBahDACgvZwQ/RXOWBlUgM1mLKXiWjkv
+AKIAn2N7fbobohns9HzLx/R+bukOqtW8
+=IzUm
+-----END PGP SIGNATURE-----
+
+--=-MLpLgKIoRATqFp/OtkFL--
+
+
+--===============1332027531==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1332027531==--
