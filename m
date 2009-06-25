@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22460] New: Demos crash with NV40 driver
-Date: Wed, 24 Jun 2009 15:49:32 -0700 (PDT)
-Message-ID: <bug-22460-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 22461] New: [KMS] X fails to start with just a blank
+ screen on nv4B
+Date: Wed, 24 Jun 2009 18:28:38 -0700 (PDT)
+Message-ID: <bug-22461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,24 +19,37 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMjQ2MAoKICAgICAg
-ICAgICBTdW1tYXJ5OiBEZW1vcyBjcmFzaCB3aXRoIE5WNDAgZHJpdmVyCiAgICAgICAgICAgUHJv
-ZHVjdDogTWVzYQogICAgICAgICAgIFZlcnNpb246IENWUwogICAgICAgICAgUGxhdGZvcm06IHg4
-Ni02NCAoQU1ENjQpCiAgICAgICAgT1MvVmVyc2lvbjogQWxsCiAgICAgICAgICAgIFN0YXR1czog
-TkVXCiAgICAgICAgICBTZXZlcml0eTogbm9ybWFsCiAgICAgICAgICBQcmlvcml0eTogbWVkaXVt
-CiAgICAgICAgIENvbXBvbmVudDogRHJpdmVycy9EUkkvbm91dmVhdQogICAgICAgIEFzc2lnbmVk
-VG86IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCiAgICAgICAgUmVwb3J0ZWRCeTogcmpn
-bGVpdHNAYmVsbHNvdXRoLm5ldAoKCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9MjcwOTcpCiAt
-LT4gKGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9pZD0yNzA5NykK
-UGF0Y2ggdG8gZml4IHByb2JsZW0gYWJvdmUKCk1vc3QgwqBkZW1vIHByb2dyYW1zIGluY2x1ZGVk
-IGluIE1lc2EgdHJlZSBjcmFzaCB3aXRoIHNlZ21lbnQgdmlvbGF0aW9uIHdoZW4KdXNpbmcgbm91
-dmVhdSBkcml2ZXIgd2l0aCBOVjQwIGNhcmRzLiBUaGUgcGF0Y2ggZml4ZXMgbW9zdCBvZiB0aGUg
-cHJvYmxlbXMuIFRoZQpkcml2ZXJzIGZvciB0aGUgdGhlIHJlc3Qgb2YgdGhlIG52aWRpYSBmYW1p
-bHkgc2VlbSB0byBoYXZlIHRoaXMgY29ycmVjdCBJIGhvcGUKdGhpcyBpcyB0aGUgcmlnaHQgcGxh
-Y2UgYW5kIHRoZSByaWdodCBmb3JtYXQgZm9yIHRoZSBwYXRjaC4KCkJlc3QgV2lzaGVzLAoKQm9i
-IEdsZWl0c21hbm4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNr
-dG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5n
-IHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUg
-YnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=22461
+
+           Summary: [KMS] X fails to start with just a blank screen on nv4B
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=27104)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=27104)
+Xorg log when the kernel doesn't panic
+
+Using the nouveau.ko, drm.ko, and ttm.ko from nouveau/linux-2.6.  KMS sets a
+nice console framebuffer, but when it comes to starting X it dies with just a
+black screen.  
+
+There might actually be multiple bugs here:
+1) Sometimes, there's a pointer visible, sometimes there isn't
+2) Sometimes the kernel panics and everything dies, sometimes (particularly
+with drm loaded with debug=1 it seems) sshing in will work
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
