@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22461] [KMS] X fails to start with just a blank
 	screen on nv4B
-Date: Wed, 24 Jun 2009 18:30:37 -0700 (PDT)
-Message-ID: <20090625013039.7D766130058@annarchy.freedesktop.org>
+Date: Wed, 24 Jun 2009 18:31:02 -0700 (PDT)
+Message-ID: <20090625013102.57047130016@annarchy.freedesktop.org>
 References: <bug-22461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,7 +28,7 @@ Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #27104|application/octet-stream    |text/plain
+  Attachment #27105|application/octet-stream    |text/plain
           mime type|                            |
 
 
