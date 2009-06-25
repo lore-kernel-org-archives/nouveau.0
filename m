@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22461] [KMS] X fails to start with just a blank
 	screen on nv4B
-Date: Wed, 24 Jun 2009 18:29:11 -0700 (PDT)
-Message-ID: <20090625012911.92301130016@annarchy.freedesktop.org>
+Date: Wed, 24 Jun 2009 18:29:44 -0700 (PDT)
+Message-ID: <20090625012944.55444130016@annarchy.freedesktop.org>
 References: <bug-22461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22461
 
 
 
---- Comment #1 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 18:29:11 PST ---
-Created an attachment (id=27105)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27105)
-dmesg log when the kernel doesn't panic
+--- Comment #2 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 18:29:43 PST ---
+Created an attachment (id=27106)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=27106)
+dmesg log with kernel panic
 
 
 -- 
