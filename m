@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22461] New: [KMS] X fails to start with just a blank
- screen on nv4B
-Date: Wed, 24 Jun 2009 18:28:38 -0700 (PDT)
-Message-ID: <bug-22461-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 22461] [KMS] X fails to start with just a blank
+	screen on nv4B
+Date: Wed, 24 Jun 2009 18:29:11 -0700 (PDT)
+Message-ID: <20090625012911.92301130016@annarchy.freedesktop.org>
+References: <bug-22461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-22461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=22461
 
-           Summary: [KMS] X fails to start with just a blank screen on nv4B
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=27104)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27104)
-Xorg log when the kernel doesn't panic
 
-Using the nouveau.ko, drm.ko, and ttm.ko from nouveau/linux-2.6.  KMS sets a
-nice console framebuffer, but when it comes to starting X it dies with just a
-black screen.  
 
-There might actually be multiple bugs here:
-1) Sometimes, there's a pointer visible, sometimes there isn't
-2) Sometimes the kernel panics and everything dies, sometimes (particularly
-with drm loaded with debug=1 it seems) sshing in will work
+--- Comment #1 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-24 18:29:11 PST ---
+Created an attachment (id=27105)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=27105)
+dmesg log when the kernel doesn't panic
 
 
 -- 
