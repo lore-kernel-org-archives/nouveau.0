@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22317] Interlace does not work with Geforce 6200 /
 	NV44a
-Date: Fri, 26 Jun 2009 09:10:13 -0700 (PDT)
-Message-ID: <20090626161013.614CB130016@annarchy.freedesktop.org>
+Date: Fri, 26 Jun 2009 10:04:27 -0700 (PDT)
+Message-ID: <20090626170427.E1A76130016@annarchy.freedesktop.org>
 References: <bug-22317-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,13 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22317
 
 
 
---- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-06-26 09:10:12 PST ---
-Created an attachment (id=27172)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27172)
-0001-Fix-video-overlay-on-interlaced-modes.patch
+--- Comment #8 from Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-26 10:04:26 PST ---
+That overlay patch does not work properly. The video image gets scaled down to
+half the screen height, and then stretched again to the correct size. Result is
+that interlaced fields are lost (blended together.)
 
-The attached patch solves for me the video overlay problem with interlaced
-modes.
+You can clearly see it with this test video which is PAL:
+
+http://www.kingcot.eclipse.co.uk/unichrome/tvoutTest.html
 
 
 -- 
