@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22509] New: KMS stopped work on NV96
-Date: Sat, 27 Jun 2009 03:33:15 -0700 (PDT)
-Message-ID: <bug-22509-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 22509] KMS stopped work on NV96
+Date: Sat, 27 Jun 2009 10:53:45 -0700 (PDT)
+Message-ID: <20090627175345.AFA0A13005A@annarchy.freedesktop.org>
+References: <bug-22509-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-22509-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=22509
 
-           Summary: KMS stopped work on NV96
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=27188)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27188)
-drm.debug=1
 
-Model: 9600M GT
 
-According messages with drm.debug=1, nouveau.modeset=1.
-
-With nouveau.modeset=0 everything work fine
+--- Comment #1 from Maxime Coste <frrrwww-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-27 10:53:45 PST ---
+Created an attachment (id=27190)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=27190)
+same problem on a 9800M GTS (drm.debug=0)
 
 
 -- 
