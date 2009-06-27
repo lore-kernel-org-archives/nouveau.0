@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22509] KMS stopped work on NV96
-Date: Sat, 27 Jun 2009 10:53:45 -0700 (PDT)
-Message-ID: <20090627175345.AFA0A13005A@annarchy.freedesktop.org>
+Date: Sat, 27 Jun 2009 10:55:31 -0700 (PDT)
+Message-ID: <20090627175531.31AEF13005A@annarchy.freedesktop.org>
 References: <bug-22509-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22509
 
 
 
---- Comment #1 from Maxime Coste <frrrwww-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-27 10:53:45 PST ---
-Created an attachment (id=27190)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27190)
-same problem on a 9800M GTS (drm.debug=0)
+--- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-27 10:55:29 PST ---
+If this is a regression, then it helps to at least tell what the last working
+version was.
 
 
 -- 
