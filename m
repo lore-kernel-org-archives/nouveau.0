@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18286] GeForce 8300 not supported
-	(10de:0848/C77/MCP77)
-Date: Mon, 29 Jun 2009 00:07:17 -0700 (PDT)
-Message-ID: <20090629070718.059E4130058@annarchy.freedesktop.org>
-References: <bug-18286-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: DRM and the Nouveau kernel tree
+Date: Mon, 29 Jun 2009 23:14:36 +0300
+Message-ID: <20090629231436.3eebdfa0@daedalus.pq.iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-18286-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +18,49 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=18286
+Hi,
 
+I think it is safe to say, that the drm.git Nouveau kernel modules are
+now abandoned. The build has been broken for several days. The replacement
+is the Nouveau kernel tree. I have been updating the instructions in the
+wiki, so you should get all the information there.
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+The InstallDRM guide should now be complete, there are even *small* daily
+snapshots for people who fear 'git clone' ;-)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
+I updated InstallNouveau, but I have not touched any of the special
+guides for various distributions. I hope the authors or users of those
+guides will update them as needed.
 
+Currently the kernel tree has three branches:
+- master
+- newttm-devel
+- newttm-devel-compat
 
+There should also be a master-compat, that comes when someone has the
+time to create it.
 
+Master branch is currently "recommended", but it won't build against
+anything before 2.6.31-rc1, and that -rc1 was (so I hear) quite buggy.
+Waiting for -rc2 might be good.
 
---- Comment #14 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-29 00:07:17 PST ---
-Can you follow the instructions at
-http://nouveau.freedesktop.org/wiki/InstallDRM to install the latest DRM
-(though, make sure you build the "master" branch and not "newttm-devel" as
-instructed there).
+Newttm-devel is an older experiment with a kernel tree, but it should
+still work with 2.6.30. If you have an earlier kernel, you may have
+to use the newttm-devel-compat branch, which contains compatibility
+patches to build against 2.6.28 - 2.6.30. These won't build with
+2.6.31-rc1 or later.
 
-When you load the nouveau module, ensure you enable KMS by "modprobe nouveau
-modeset=1".  There's some changes recently which may help with this chipset.
+Newttm-devel branches are being phased out, and in the future
+master branch is *the* branch. Or master-compat, if you have an
+older kernel and need a compatibility patched version.
 
-If you have any troubles, please stop by #nouveau on freenode!
+Is Nouveau going into mainline soon?
+Not soon, but I can only guess. Most likely Nouveau will go into
+staging first, which means it doesn't have to have a completely
+frozen user ABI, but there has to be "a plan to get out of staging".
 
+Thanks to Ben (darktama) for the Nouveau kernel tree.
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Pekka Paalanen
+http://www.iki.fi/pq/
