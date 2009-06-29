@@ -1,13 +1,13 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: Out of tree nouveau.ko build.
-Date: Sat, 27 Jun 2009 23:16:44 +0300
-Message-ID: <20090627231644.0ffed94f@daedalus.pq.iki.fi>
-References: <1245839531.5592.12.camel@Ed.Bebop.cooperteam.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 18881] Nouveau doesn't work with nvidia 8200
+Date: Mon, 29 Jun 2009 00:05:25 -0700 (PDT)
+Message-ID: <20090629070525.284F6130016@annarchy.freedesktop.org>
+References: <bug-18881-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1245839531.5592.12.camel-Ej038JCHlWh3+r/3hE3pHy1QWVtxyuQw@public.gmane.org>
+In-Reply-To: <bug-18881-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +20,31 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 24 Jun 2009 20:32:11 +1000
-Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+http://bugs.freedesktop.org/show_bug.cgi?id=18881
 
-> As a part of updating Ubuntu's nouveau package, I've been figuring
-> exactly how to build nouveau.ko from
-> cgit.freedesktop.org/nouveau/linux-2.6
-> 
-> A first and trivial pass at this is attached.  It doesn't do any
-> interesting kernel configuration checking; it just sets the right
-> include paths and calls out to make.
 
-I took the Makefile and improved it, it can be found in
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-http://cgit.freedesktop.org/nouveau/linux-2.6/tree/nouveau?h=newttm-devel-compat
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
 
-along with important information on the kernel dependencies. The kernel
-config is not any way checked AFAIK, so you need to take care of it
-yourself. The Makefile should be good for any Nouveau kernel branch.
+
+
+
+--- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-06-29 00:05:24 PST ---
+Can you follow the instructions at
+http://nouveau.freedesktop.org/wiki/InstallDRM to install the latest DRM
+(though, make sure you build the "master" branch and not "newttm-devel" as
+instructed there).
+
+When you load the nouveau module, ensure you enable KMS by "modprobe nouveau
+modeset=1".  There's some changes recently which may help with this chipset.
+
+If you have any troubles, please stop by #nouveau on freenode!
+
 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
