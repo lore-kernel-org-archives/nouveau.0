@@ -1,11 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22607] New: Please add NVac voodoo to the driver
-Date: Fri,  3 Jul 2009 10:07:52 -0700 (PDT)
-Message-ID: <bug-22607-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: DRM and the Nouveau kernel tree
+Date: Sat, 4 Jul 2009 11:39:53 +0300
+Message-ID: <20090704113953.2e293f4e@daedalus.pq.iki.fi>
+References: <20090629231436.3eebdfa0@daedalus.pq.iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20090629231436.3eebdfa0-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,31 +20,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=22607
+On Mon, 29 Jun 2009 23:14:36 +0300
+Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> wrote:
 
-           Summary: Please add NVac voodoo to the driver
-           Product: xorg
-           Version: git
-          Platform: All
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: carlos-5Pg6muQpQzmeh9uJi0VByw@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+> Currently the kernel tree has three branches:
+> - master
+> - newttm-devel
+> - newttm-devel-compat
+> 
+> There should also be a master-compat, that comes when someone has the
+> time to create it.
 
-
-Hello,
-
- I've just sent the MMIO trace of X starting up on my NVac (9400M) to the gmail
-address. I tried adding the voodoo in myself, but there is either something
-missing or extra, because my GPU locked up, and I'm really out of practice with
-nouveau.
-
+The master-compat branch has been created, and I'm running it right now
+with 2.6.28. I don't think there is any reason to use the newttm-devel
+branches anymore.
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Pekka Paalanen
+http://www.iki.fi/pq/
