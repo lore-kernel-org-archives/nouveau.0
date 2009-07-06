@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22607] Please add NVac voodoo to the driver
-Date: Mon,  6 Jul 2009 04:08:34 -0700 (PDT)
-Message-ID: <20090706110835.0D518130058@annarchy.freedesktop.org>
-References: <bug-22607-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 22179] [KMS] Black screen with KMS enabled, nv44
+Date: Mon,  6 Jul 2009 05:36:41 -0700 (PDT)
+Message-ID: <20090706123641.6E1DD13005B@annarchy.freedesktop.org>
+References: <bug-22179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-22607-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-22179-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +20,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMjYwNwoKCkNhcmxv
-cyBNYXJ0w61uIE5pZXRvIDxjYXJsb3NAY21hcnRpbi50az4gY2hhbmdlZDoKCiAgICAgICAgICAg
-V2hhdCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tCiAgQXR0YWNobWVudCAjMjczNzh8MCAgICAgICAgICAgICAgICAgICAgICAgICAgIHwx
-CiAgICAgICAgaXMgb2Jzb2xldGV8ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKCgoKCi0t
-LSBDb21tZW50ICM0IGZyb20gQ2FybG9zIE1hcnTDrW4gTmlldG8gPGNhcmxvc0BjbWFydGluLnRr
-PiAgMjAwOS0wNy0wNiAwNDowODozNCBQU1QgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9
-Mjc0MTEpCiAtLT4gKGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9p
-ZD0yNzQxMSkKRGVidWcgZG1lc2cKCkJsYW5rIHNjcmVlbiB3YXMgZml4ZWQgaW4gbm91dmVhdV9i
-aW9zLmMgYnV0IEkgc3RpbGwgZ2V0IGEgbG9ja3VwIGFmdGVyCmV4ZWN1dGluZyBjbG9jayBzY3Jp
-cHQgMAoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3Jn
-L3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBt
-YWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=22179
+
+
+Sergei Trofimovich <slyfox-aPYA7nAdAYY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |slyfox-aPYA7nAdAYY@public.gmane.org
+
+
+
+
+--- Comment #9 from Sergei Trofimovich <slyfox-aPYA7nAdAYY@public.gmane.org>  2009-07-06 05:36:40 PST ---
+>        Kernel driver in use: nouveau
+>        Kernel modules: nvidiafb
+
+Do you have both nvidiafb and nouveau drivers built? It would worth to try to
+disable all FB drivers (nvidiafb, rivafb etc.).
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
