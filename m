@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Tue,  7 Jul 2009 09:24:06 -0700 (PDT)
-Message-ID: <20090707162406.30076130058@annarchy.freedesktop.org>
+Date: Tue,  7 Jul 2009 09:25:04 -0700 (PDT)
+Message-ID: <20090707162504.D2AB0130058@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #38 from Martin Decky <martin-Jk0gIJtyDDQ@public.gmane.org>  2009-07-07 09:24:05 PST ---
-Created an attachment (id=27466)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27466)
-Output of nvclock on GeForce4 440 Go
+--- Comment #39 from Martin Decky <martin-Jk0gIJtyDDQ@public.gmane.org>  2009-07-07 09:25:04 PST ---
+Created an attachment (id=27467)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=27467)
+X log for tweaked Nouveau driver on GeForce4 440 Go
 
-Output of nvclock on GeForce4 440 Go
+X log for tweaked Nouveau driver on GeForce4 440 Go
 
 
 -- 
