@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Tue,  7 Jul 2009 09:25:04 -0700 (PDT)
-Message-ID: <20090707162504.D2AB0130058@annarchy.freedesktop.org>
+Date: Tue,  7 Jul 2009 09:26:11 -0700 (PDT)
+Message-ID: <20090707162612.129DB130058@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,32 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
---- Comment #39 from Martin Decky <martin-Jk0gIJtyDDQ@public.gmane.org>  2009-07-07 09:25:04 PST ---
-Created an attachment (id=27467)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27467)
-X log for tweaked Nouveau driver on GeForce4 440 Go
+--- Comment #40 from Martin Decky <martin-Jk0gIJtyDDQ@public.gmane.org>  2009-07-07 09:26:11 PST ---
+Comment to the previous three attachments:
 
-X log for tweaked Nouveau driver on GeForce4 440 Go
+I have a very similar problem with my iMac G4 (Flat Panel model, GeForce4 440
+Go). The machine has an integrated flat panel and a mini-VGA external
+connector. The BIOS also lacks the DCB table.
+
+With the patch provided here (tweaking it trivially to take the "Working around
+missing output tables" code path in my case) I get correct output on the
+external monitor connected via mini-VGA, but the integrated flat panel is not
+detected (but it glows with funny green bars).
+
+I'm not an expert on nVidia, thus I was just randomly tweaking the patch
+somehow and the "best" I was able to achieve was a correct detection of both
+the flat panel and the external monitor over mini-VGA (see attached X.log), but
+the flat panel still just glows with funny color bars. The combination of the
+fabricated outputs in this case is as follows:
+
+fabricate_vga_output(dcb, LEGACY_I2C_CRT, 0x1, 0);
+fabricate_vga_output(dcb, LEGACY_I2C_PANEL, 0x3, 2);
+
+(Again, please excuse my total ignorance, this is just a random guess.)
+
+I have also attached the output of radeontool and nvclock (with ofonly console,
+both outputs are on and show kernel output properly). Thanks for any help with
+configuring both outputs.
 
 
 -- 
