@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18286] GeForce 8300 not supported
-	(10de:0848/C77/MCP77)
-Date: Tue,  7 Jul 2009 04:37:09 -0700 (PDT)
-Message-ID: <20090707113709.EF2B113005A@annarchy.freedesktop.org>
-References: <bug-18286-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] Driver can't detect video output and xserver
+ doesn't start
+Date: Tue,  7 Jul 2009 09:23:34 -0700 (PDT)
+Message-ID: <20090707162334.9F110130058@annarchy.freedesktop.org>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-18286-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=18286
+http://bugs.freedesktop.org/show_bug.cgi?id=21273
 
 
 
 
 
---- Comment #19 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-07 04:37:09 PST ---
-I implemented the missing handler for opcode 0x96 in a script we run to setup
-your outputs, hopefully you'll have more luck getting a display up and running
-if you update your drm.  If not, can you please repost your kernel log with
-nouveau.modeset=1 and drm.debug=1.
+--- Comment #37 from Martin Decky <martin-Jk0gIJtyDDQ@public.gmane.org>  2009-07-07 09:23:34 PST ---
+Created an attachment (id=27465)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=27465)
+Output of radeontool on GeForce4 440 Go
 
-Once we have a display up and running for the console we'll worry about getting
-X up :)
+Output of radeontool on GeForce4 440 Go
 
 
 -- 
