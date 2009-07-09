@@ -1,15 +1,17 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: SLI support for 8800 GTX?
-Date: Thu, 9 Jul 2009 20:24:45 +0300
-Message-ID: <20090709202445.1c185e0f@daedalus.pq.iki.fi>
-References: <c5221b990906221315q4ecaa681s71342e5f4f63b17e@mail.gmail.com>
-	<20090622233546.1af414e8@daedalus.pq.iki.fi>
-	<20090708174351.GA3295@x200.localdomain>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: When will nouveau kernel tree be merged into master
+Date: Thu, 9 Jul 2009 19:46:13 +0200
+Message-ID: <6d4bc9fc0907091046i666b527at894d7c0839e42729@mail.gmail.com>
+References: <4A55DBDD.6030703@Free.fr>
+	<6d4bc9fc0907090806h6b0f7de3i9f7ec673e2cc0e7d@mail.gmail.com>
+	<4A560B8C.7070809@Free.fr>
+	<6d4bc9fc0907090831n64ca31d1pf6d025ef290b3614@mail.gmail.com>
+	<20090709193853.3dcff28c@daedalus.pq.iki.fi> <4A5627BF.10807@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20090708174351.GA3295-2ev+ksY9ol182hYKe6nXyg@public.gmane.org>
+In-Reply-To: <4A5627BF.10807-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,45 +21,15 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: eric.valette-GANU6spQydw@public.gmane.org
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 8 Jul 2009 21:43:51 +0400
-Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+Noone has ever claimed working opengl, the only parts that are
+supported, in the sense that you can file a bug about it, are the ddx
+(2d) driver and the kernel module. Getting a useable memory manager in
+place was a prerequisite, once that and the rest of the new kernel
+code stabilizes i'm sure focus will shift. Until then, you are welcome
+to help speed up the proces.
 
-> On Mon, Jun 22, 2009 at 11:35:46PM +0300, Pekka Paalanen wrote:
-> > To get SLI support, we would need to have a developer with SLI hardware.
-> > I do not think there is a developer even with any two cards, since the bug
-> > https://bugs.freedesktop.org/show_bug.cgi?id=16897
-> > is still open. Someone with interest in multicard or SLI support should
-> > join the project and write the code.
-> > 
-> > The current status is "not implemented" and as you found out, multicard
-> > really does not work at all. SLI is another story after multicard
-> > support.
-> 
-> What can be a first first "milestone" for multicard setup?
-
-I got some comments on what's needed in irc:
-- POSTing cards (i.e. cold boot without executing the x86 BIOS code)
-- maybe not VGA arbiter, maybe yes...
-
-< airlied> the only thing nouveau needs t oworry about vgaarb is if
-           you can't disable VGA decodes
-< airlied> or can't discover how to disable them
-< airlied> in that case you need to provide a callback to disable IRQs or
-           have a very resilient IRQ handler
-< airlied> that can deal with memory/io space disappearing
-
-< darktama_> the BIOS parser can cope with earlier cards apparently,
-             I started looking at making G8x work today
-< marcheu> yeah it works for resume, which is virtually the same
-< marcheu> but since we have other bugs, we can't have multi-card support ATM :)
-
-Since I'm not familiar with this topic, I leave the interpretation for you.
-You can poke these guys on irc :-)
-
--- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Maarten.
