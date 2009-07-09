@@ -1,17 +1,15 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 Subject: Re: When will nouveau kernel tree be merged into master
-Date: Thu, 9 Jul 2009 19:46:13 +0200
-Message-ID: <6d4bc9fc0907091046i666b527at894d7c0839e42729@mail.gmail.com>
+Date: Thu, 9 Jul 2009 20:51:54 +0300
+Message-ID: <20090709205154.4f613cc5@daedalus.pq.iki.fi>
 References: <4A55DBDD.6030703@Free.fr>
-	<6d4bc9fc0907090806h6b0f7de3i9f7ec673e2cc0e7d@mail.gmail.com>
-	<4A560B8C.7070809@Free.fr>
-	<6d4bc9fc0907090831n64ca31d1pf6d025ef290b3614@mail.gmail.com>
-	<20090709193853.3dcff28c@daedalus.pq.iki.fi> <4A5627BF.10807@free.fr>
+	<20090709193053.5a5d6430@daedalus.pq.iki.fi>
+	<4A5626F6.4090607@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4A5627BF.10807-GANU6spQydw@public.gmane.org>
+In-Reply-To: <4A5626F6.4090607-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,14 +20,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: eric.valette-GANU6spQydw@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Noone has ever claimed working opengl, the only parts that are
-supported, in the sense that you can file a bug about it, are the ddx
-(2d) driver and the kernel module. Getting a useable memory manager in
-place was a prerequisite, once that and the rest of the new kernel
-code stabilizes i'm sure focus will shift. Until then, you are welcome
-to help speed up the proces.
+Sorry for causing that much trouble.
 
-Maarten.
+On Thu, 09 Jul 2009 19:20:54 +0200
+Eric Valette <eric.valette-GANU6spQydw@public.gmane.org> wrote:
+
+> Well I would suggest you to look at GALLIUM3D because using gi to clone
+> mesa master is not even working and even if you get a git snapshot it
+> does not build.
+
+http://nouveau.freedesktop.org/wiki/GalliumHowto
+Is there something unclear here?
+
+The same applies to the following, since Gallium3D is the one providing OpenGL.
+
+> kde4 kwin not running using openGL as composing type is maybe my
+> favorite bug!
+> 
+> Then comes messa git nouveau being out of sync with the rest of nouveau code
+
+This is an open project with too few developers. If you want faster progress,
+you should join. You already know the issues you want to tackle.
+
+Also, I'd recommend studying git, you only ever have to 'clone' once.
+Receiving updates is a lot faster. InstallDRM has the instructions, since
+the kernel tree is so big, but there are more than one way to pull updates.
+
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
