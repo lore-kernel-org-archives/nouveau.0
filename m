@@ -1,7 +1,7 @@
 From: Eric Valette <Eric.Valette-rC/V9kRXU7Q@public.gmane.org>
 Subject: Re: When will nouveau kernel tree be merged into master
-Date: Fri, 10 Jul 2009 10:10:33 +0200
-Message-ID: <4A56F779.2090303@Free.fr>
+Date: Fri, 10 Jul 2009 11:18:52 +0200
+Message-ID: <4A57077C.5000502@Free.fr>
 References: <4A55DBDD.6030703@Free.fr>	<20090709193053.5a5d6430@daedalus.pq.iki.fi>	<4A5626F6.4090607@free.fr>	<20090709205154.4f613cc5@daedalus.pq.iki.fi>	<4A564A3B.1050905@free.fr>
 	<BLU0-SMTP5459C57EAE328F89E4E6B5AE270@phx.gbl>
 Reply-To: Eric.Valette-rC/V9kRXU7Q@public.gmane.org
@@ -19,7 +19,7 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Sean Estabrooks <seanlkml-rieW9WUcm8FFJ04o6PK0Fg@public.gmane.org>, Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+To: Sean Estabrooks <seanlkml-rieW9WUcm8FFJ04o6PK0Fg@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
@@ -36,35 +36,7 @@ Sean Estabrooks wrote:
 >> a socket).
 >>
 >>     
->>> Also, I'd recommend studying git, you only ever have to 'clone' once.
->>>       
->> If the full clone requires a day on 1Mbit sped, I guess you will have
->> few volunteers.
->>     
->
-> Eric,
->
-> Tried the clone of Mesa just now here and it took a little over 5 minutes
-> to complete.  So, something is wrong for you locally or a server problem
-> has been fixed since you last tried the clone.  
-If it a local problem, I dunno why because I access nearly all other git
-tree on the planet including one located on the same IP address drm git
-versus mesa git (git://anongit.freedesktop.org/mesa/mesa vs
-git://anongit.freedesktop.org/mesa/mesa/drm)
->  Either way, this isn't
-> a fundamental problem with Git.
->   
-Good. Will try today again.
-
-BTW: I managed to build a mixed kernel (master 2.6.31-rc2-git4 + 2 DRM
-directory from nouveau kernel git). It compiled and worked as long as I
-relaunched the X kernel to use again the nouveau driver instead of nv
-(and access the nouveau module). I then got a sync out of range on the
-monitor. Removing the KMS mode fixed this but I'm not sure if it is not
-due to the left over vesa framebuffer option or wrong computation of
-monitor capabilities and bad video mode settings.
-
-I need to remove the vesa framebuffer, put the KMS option gain and
-report. It was just too late last night to try this.
+BTW: looking at http://cgit.freedesktop.org/mesa/mesa/, the lats commit
+date look rather strange (-481 min). Negative time!
 
 -- eric
