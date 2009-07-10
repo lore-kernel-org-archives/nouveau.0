@@ -1,71 +1,58 @@
-From: Kyle K <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: small typo in nouveau_dri2_init() ~ xf86-video-nouveau
-Date: Thu, 9 Jul 2009 22:48:20 -0700
-Message-ID: <aa85b9420907092248q15b690f3v68989c8fda28ba46@mail.gmail.com>
+From: Sean Estabrooks <seanlkml@sympatico.ca>
+Subject: Re: [Nouveau] When will nouveau kernel tree be merged into master
+Date: Fri, 10 Jul 2009 00:39:40 -0700
+Message-ID: <BLU0-SMTP5459C57EAE328F89E4E6B5AE270@phx.gbl>
+References: <4A55DBDD.6030703@Free.fr>
+	<20090709193053.5a5d6430@daedalus.pq.iki.fi>
+	<4A5626F6.4090607@free.fr>
+	<20090709205154.4f613cc5@daedalus.pq.iki.fi>
+	<4A564A3B.1050905@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=0003255762d615560a046e5385f8
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.sourceforge.net>
+In-Reply-To: <4A564A3B.1050905@free.fr>
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=dri-devel>
+List-Post: <mailto:dri-devel@lists.sourceforge.net>
+List-Help: <mailto:dri-devel-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.sourceforge.net?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.sourceforge.net
+To: eric.valette@free.fr
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.sourceforge.net
 List-Id: nouveau.vger.kernel.org
 
---0003255762d615560a046e5385f8
-Content-Type: multipart/alternative; boundary=0003255762d61555ff046e5385f6
+On Thu, 09 Jul 2009 21:51:23 +0200
+Eric Valette <eric.valette@free.fr> wrote:
 
---0003255762d61555ff046e5385f6
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+> The command
+> git clone git://anongit.freedesktop.org/git/mesa/mesa
+> 
+> Does not work for me while others do. It hangs indefinitely (I let it
+> run once half a day, doing strace to see that I was waiting to a read on
+> a socket).
+> 
+> > Also, I'd recommend studying git, you only ever have to 'clone' once.
+> 
+> If the full clone requires a day on 1Mbit sped, I guess you will have
+> few volunteers.
 
-There seems to be a small change in dri2.h that prevented me from compiling
-the xf86-video-nouveau :(
+Eric,
 
---0003255762d61555ff046e5385f6
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Tried the clone of Mesa just now here and it took a little over 5 minutes
+to complete.  So, something is wrong for you locally or a server problem
+has been fixed since you last tried the clone.   Either way, this isn't
+a fundamental problem with Git.
 
-There seems to be a small change in dri2.h that prevented me from compiling the xf86-video-nouveau :(<br>
+Cheers,
+Sean
 
---0003255762d61555ff046e5385f6--
-
---0003255762d615560a046e5385f8
-Content-Type: application/octet-stream;
-	name="fix-typo-in-nouveau_dri2_init.patch"
-Content-Disposition: attachment;
-	filename="fix-typo-in-nouveau_dri2_init.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_fwylwajn0
-
-Y29tbWl0IGYwZGRmM2Y0ZWM4OWU2MjdkODdlNWE2OWYzZGUzZmI5Mzg2YzdkNWMKQXV0aG9yOiBL
-YW1pbCBLYW1pbnNraSA8a2FtaWxrc3NAZ21haWwuY29tPgpEYXRlOiAgIEZyaSBKdWwgMTAgMDA6
-Mzg6NDAgMjAwOSAtMDcwMAoKICAgIGZpeCBhIHR5cG8gaW4gbm91dmVhdV9kcmkyX2luaXQoKQoK
-ZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X2RyaTIuYyBiL3NyYy9ub3V2ZWF1X2RyaTIuYwppbmRl
-eCAyZWQ0NTU3Li42YmE4NGNmIDEwMDY0NAotLS0gYS9zcmMvbm91dmVhdV9kcmkyLmMKKysrIGIv
-c3JjL25vdXZlYXVfZHJpMi5jCkBAIC0xOTksOCArMTk5LDggQEAgbm91dmVhdV9kcmkyX2luaXQo
-U2NyZWVuUHRyIHBTY3JlZW4pCiAJZHJpMi5mZCA9IG5vdXZlYXVfZGV2aWNlKHBOdi0+ZGV2KS0+
-ZmQ7CiAJZHJpMi5kcml2ZXJOYW1lID0gIm5vdXZlYXUiOwogCWRyaTIuZGV2aWNlTmFtZSA9IHBO
-di0+ZHJtX2RldmljZV9uYW1lOwotCWRyaTIuQ3JlYXRlQnVmZmVycyA9IG5vdXZlYXVfZHJpMl9j
-cmVhdGVfYnVmZmVyczsKLQlkcmkyLkRlc3Ryb3lCdWZmZXJzID0gbm91dmVhdV9kcmkyX2Rlc3Ry
-b3lfYnVmZmVyczsKKwlkcmkyLkNyZWF0ZUJ1ZmZlciA9IG5vdXZlYXVfZHJpMl9jcmVhdGVfYnVm
-ZmVyczsKKwlkcmkyLkRlc3Ryb3lCdWZmZXIgPSBub3V2ZWF1X2RyaTJfZGVzdHJveV9idWZmZXJz
-OwogCWRyaTIuQ29weVJlZ2lvbiA9IG5vdXZlYXVfZHJpMl9jb3B5X3JlZ2lvbjsKIAogCXJldHVy
-biBEUkkyU2NyZWVuSW5pdChwU2NyZWVuLCAmZHJpMik7Cg==
---0003255762d615560a046e5385f8
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---0003255762d615560a046e5385f8--
+------------------------------------------------------------------------------
+Enter the BlackBerry Developer Challenge  
+This is your chance to win up to $100,000 in prizes! For a limited time, 
+vendors submitting new applications to BlackBerry App World(TM) will have
+the opportunity to enter the BlackBerry Developer Challenge. See full prize  
+details at: http://p.sf.net/sfu/Challenge
+--
