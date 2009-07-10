@@ -1,58 +1,70 @@
-From: Sean Estabrooks <seanlkml@sympatico.ca>
-Subject: Re: [Nouveau] When will nouveau kernel tree be merged into master
-Date: Fri, 10 Jul 2009 00:39:40 -0700
-Message-ID: <BLU0-SMTP5459C57EAE328F89E4E6B5AE270@phx.gbl>
-References: <4A55DBDD.6030703@Free.fr>
-	<20090709193053.5a5d6430@daedalus.pq.iki.fi>
-	<4A5626F6.4090607@free.fr>
-	<20090709205154.4f613cc5@daedalus.pq.iki.fi>
-	<4A564A3B.1050905@free.fr>
+From: Eric Valette <Eric.Valette-rC/V9kRXU7Q@public.gmane.org>
+Subject: Re: When will nouveau kernel tree be merged into master
+Date: Fri, 10 Jul 2009 10:10:33 +0200
+Message-ID: <4A56F779.2090303@Free.fr>
+References: <4A55DBDD.6030703@Free.fr>	<20090709193053.5a5d6430@daedalus.pq.iki.fi>	<4A5626F6.4090607@free.fr>	<20090709205154.4f613cc5@daedalus.pq.iki.fi>	<4A564A3B.1050905@free.fr>
+	<BLU0-SMTP5459C57EAE328F89E4E6B5AE270@phx.gbl>
+Reply-To: Eric.Valette-rC/V9kRXU7Q@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.sourceforge.net>
-In-Reply-To: <4A564A3B.1050905@free.fr>
-List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.sourceforge.net?subject=unsubscribe>
-List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=dri-devel>
-List-Post: <mailto:dri-devel@lists.sourceforge.net>
-List-Help: <mailto:dri-devel-request@lists.sourceforge.net?subject=help>
-List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.sourceforge.net?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.sourceforge.net
-To: eric.valette@free.fr
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.sourceforge.net
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <BLU0-SMTP5459C57EAE328F89E4E6B5AE270-MsuGFMq8XAE@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Sean Estabrooks <seanlkml-rieW9WUcm8FFJ04o6PK0Fg@public.gmane.org>, Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 09 Jul 2009 21:51:23 +0200
-Eric Valette <eric.valette@free.fr> wrote:
+Sean Estabrooks wrote:
+> On Thu, 09 Jul 2009 21:51:23 +0200
+> Eric Valette <eric.valette-GANU6spQydw@public.gmane.org> wrote:
+>
+>   
+>> The command
+>> git clone git://anongit.freedesktop.org/git/mesa/mesa
+>>
+>> Does not work for me while others do. It hangs indefinitely (I let it
+>> run once half a day, doing strace to see that I was waiting to a read on
+>> a socket).
+>>
+>>     
+>>> Also, I'd recommend studying git, you only ever have to 'clone' once.
+>>>       
+>> If the full clone requires a day on 1Mbit sped, I guess you will have
+>> few volunteers.
+>>     
+>
+> Eric,
+>
+> Tried the clone of Mesa just now here and it took a little over 5 minutes
+> to complete.  So, something is wrong for you locally or a server problem
+> has been fixed since you last tried the clone.  
+If it a local problem, I dunno why because I access nearly all other git
+tree on the planet including one located on the same IP address drm git
+versus mesa git (git://anongit.freedesktop.org/mesa/mesa vs
+git://anongit.freedesktop.org/mesa/mesa/drm)
+>  Either way, this isn't
+> a fundamental problem with Git.
+>   
+Good. Will try today again.
 
-> The command
-> git clone git://anongit.freedesktop.org/git/mesa/mesa
-> 
-> Does not work for me while others do. It hangs indefinitely (I let it
-> run once half a day, doing strace to see that I was waiting to a read on
-> a socket).
-> 
-> > Also, I'd recommend studying git, you only ever have to 'clone' once.
-> 
-> If the full clone requires a day on 1Mbit sped, I guess you will have
-> few volunteers.
+BTW: I managed to build a mixed kernel (master 2.6.31-rc2-git4 + 2 DRM
+directory from nouveau kernel git). It compiled and worked as long as I
+relaunched the X kernel to use again the nouveau driver instead of nv
+(and access the nouveau module). I then got a sync out of range on the
+monitor. Removing the KMS mode fixed this but I'm not sure if it is not
+due to the left over vesa framebuffer option or wrong computation of
+monitor capabilities and bad video mode settings.
 
-Eric,
+I need to remove the vesa framebuffer, put the KMS option gain and
+report. It was just too late last night to try this.
 
-Tried the clone of Mesa just now here and it took a little over 5 minutes
-to complete.  So, something is wrong for you locally or a server problem
-has been fixed since you last tried the clone.   Either way, this isn't
-a fundamental problem with Git.
-
-Cheers,
-Sean
-
-------------------------------------------------------------------------------
-Enter the BlackBerry Developer Challenge  
-This is your chance to win up to $100,000 in prizes! For a limited time, 
-vendors submitting new applications to BlackBerry App World(TM) will have
-the opportunity to enter the BlackBerry Developer Challenge. See full prize  
-details at: http://p.sf.net/sfu/Challenge
---
+-- eric
