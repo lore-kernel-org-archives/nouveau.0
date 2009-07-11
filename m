@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22179] [KMS] Black screen with KMS enabled, nv44
-Date: Sat, 11 Jul 2009 10:35:59 -0700 (PDT)
-Message-ID: <20090711173559.6F74613005A@annarchy.freedesktop.org>
+Date: Sat, 11 Jul 2009 10:40:29 -0700 (PDT)
+Message-ID: <20090711174029.84DA413005C@annarchy.freedesktop.org>
 References: <bug-22179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,26 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=22179
 
 
-Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
-
---- Comment #11 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-11 10:35:58 PST ---
-same here.
-On my laptop, backlight is on but screen is completely black.
-
-So I connected a 17'' Philips external monitor via VGA, [booted with
-drm.debug=1]
-now laptop panel displays the correct output and KMS works fine. 
-External monitor displays a cloned screen but actual image is a black screen
-with oblique dashed lines and cursor.
-
-VT switching froze laptop panel output that slowly turns white.
+--- Comment #12 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-11 10:40:28 PST ---
+Created an attachment (id=27598)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=27598)
+nouveau xorg 
 
 
 -- 
