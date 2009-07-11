@@ -1,11 +1,13 @@
 From: =?iso-8859-2?Q?Jarom=EDr=20C=E1p=EDk?= <tavvva-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
-Subject: Can't build xf86-video-nouveau
-Date: Fri, 10 Jul 2009 18:48:34 +0200 (CEST)
-Message-ID: <1676.4193-23451-824338294-1247244514@seznam.cz>
+Subject: Re: Can't build xf86-video-nouveau
+Date: Sat, 11 Jul 2009 10:07:36 +0200 (CEST)
+Message-ID: <1676.4193-3052-1930720128-1247299656@seznam.cz>
+References: <6d4bc9fc0907101149v3c552b04vd74d6d3f8a7bde47@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <6d4bc9fc0907101149v3c552b04vd74d6d3f8a7bde47-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,49 +17,67 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?us-ascii?Q?Maarten=20Maathuis?= <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8gZm9sa3MuCgpJIHdvdWxkIGxpa2UgdG8gYXNrIFlvdSBmb3IgaGVscCB3aXRoIHRoZSBm
-b2xsb3dpbmcgcHJvYmxlbS4KQW0gSSBtaXNzaW5nIGFueXRoaW5nIGltcG9ydGFudD8KVGhhbmtz
-LgoKCm1ha2UgIGFsbC1yZWN1cnNpdmUKbWFrZVsxXTogRW50ZXJpbmcgZGlyZWN0b3J5IGAvaG9t
-ZS90YXZ2dmEvSW5zdGFsbC9ub3V2ZWF1L3hmODYtdmlkZW8tbm91dmVhdScKTWFraW5nIGFsbCBp
-biBzcmMKbWFrZVsyXTogRW50ZXJpbmcgZGlyZWN0b3J5IGAvaG9tZS90YXZ2dmEvSW5zdGFsbC9u
-b3V2ZWF1L3hmODYtdmlkZW8tbm91dmVhdS9zcmMnCi9iaW4vc2ggLi4vbGlidG9vbCAtLXRhZz1D
-QyAgIC0tbW9kZT1jb21waWxlIGdjYyAtREhBVkVfQ09ORklHX0ggLUkuIC1JLi4gICAgLUkvdXNy
-L2luY2x1ZGUveG9yZyAtSS91c3IvaW5jbHVkZS9waXhtYW4tMSAtSS91c3IvaW5jbHVkZS9kcm0g
-LUkvdXNyL2luY2x1ZGUvWDExL2RyaSAgIC1JL3Vzci9pbmNsdWRlL2RybSAtSS91c3IvaW5jbHVk
-ZS9ub3V2ZWF1ICAgLWcgLU8yIC1XYWxsIC1taW5saW5lLWFsbC1zdHJpbmdvcHMgLUkvdXNyL2lu
-Y2x1ZGUveG9yZyAtSS91c3IvaW5jbHVkZS9waXhtYW4tMSAtSS91c3IvaW5jbHVkZS9kcm0gLUkv
-dXNyL2luY2x1ZGUvWDExL2RyaSAgIC1NVCBub3V2ZWF1X2V4YS5sbyAtTUQgLU1QIC1NRiAuZGVw
-cy9ub3V2ZWF1X2V4YS5UcG8gLWMgLW8gbm91dmVhdV9leGEubG8gbm91dmVhdV9leGEuYwpsaWJ0
-b29sOiBjb21waWxlOiAgZ2NjIC1ESEFWRV9DT05GSUdfSCAtSS4gLUkuLiAtSS91c3IvaW5jbHVk
-ZS94b3JnIC1JL3Vzci9pbmNsdWRlL3BpeG1hbi0xIC1JL3Vzci9pbmNsdWRlL2RybSAtSS91c3Iv
-aW5jbHVkZS9YMTEvZHJpIC1JL3Vzci9pbmNsdWRlL2RybSAtSS91c3IvaW5jbHVkZS9ub3V2ZWF1
-IC1nIC1PMiAtV2FsbCAtbWlubGluZS1hbGwtc3RyaW5nb3BzIC1JL3Vzci9pbmNsdWRlL3hvcmcg
-LUkvdXNyL2luY2x1ZGUvcGl4bWFuLTEgLUkvdXNyL2luY2x1ZGUvZHJtIC1JL3Vzci9pbmNsdWRl
-L1gxMS9kcmkgLU1UIG5vdXZlYXVfZXhhLmxvIC1NRCAtTVAgLU1GIC5kZXBzL25vdXZlYXVfZXhh
-LlRwbyAtYyBub3V2ZWF1X2V4YS5jICAtZlBJQyAtRFBJQyAtbyAubGlicy9ub3V2ZWF1X2V4YS5v
-Cm5vdXZlYXVfZXhhLmM6IEluIGZ1bmN0aW9uIOKAmE5WQWNjZWxEb3dubG9hZE0yTUbigJk6Cm5v
-dXZlYXVfZXhhLmM6OTI6IGVycm9yOiDigJhzdHJ1Y3Qgbm91dmVhdV9ib+KAmSBoYXMgbm8gbWVt
-YmVyIG5hbWVkIOKAmHRpbGVfbW9kZeKAmQpub3V2ZWF1X2V4YS5jOiBJbiBmdW5jdGlvbiDigJhO
-VkFjY2VsVXBsb2FkTTJNRuKAmToKbm91dmVhdV9leGEuYzoyMTM6IGVycm9yOiDigJhzdHJ1Y3Qg
-bm91dmVhdV9ib+KAmSBoYXMgbm8gbWVtYmVyIG5hbWVkIOKAmHRpbGVfbW9kZeKAmQpub3V2ZWF1
-X2V4YS5jOiBJbiBmdW5jdGlvbiDigJhub3V2ZWF1X2V4YV9tcGhfYnJva2VuX3Nob3VsZF9kaWXi
-gJk6Cm5vdXZlYXVfZXhhLmM6NDQxOiB3YXJuaW5nOiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBvZiBm
-dW5jdGlvbiDigJhub3V2ZWF1X2JvX25ld190aWxl4oCZCm5vdXZlYXVfZXhhLmM6IEluIGZ1bmN0
-aW9uIOKAmG5vdXZlYXVfZXhhX3BpeG1hcF9pc190aWxlZOKAmToKbm91dmVhdV9leGEuYzo0NzU6
-IGVycm9yOiDigJhzdHJ1Y3Qgbm91dmVhdV9ib+KAmSBoYXMgbm8gbWVtYmVyIG5hbWVkIOKAmHRp
-bGVfZmxhZ3PigJkKbm91dmVhdV9leGEuYzogSW4gZnVuY3Rpb24g4oCYbm91dmVhdV9leGFfcGl4
-bWFwX21hcOKAmToKbm91dmVhdV9leGEuYzo0OTM6IGVycm9yOiDigJhzdHJ1Y3Qgbm91dmVhdV9i
-b+KAmSBoYXMgbm8gbWVtYmVyIG5hbWVkIOKAmHRpbGVfZmxhZ3PigJkKbm91dmVhdV9leGEuYzog
-SW4gZnVuY3Rpb24g4oCYbm91dmVhdV9leGFfcGl4bWFwX3VubWFw4oCZOgpub3V2ZWF1X2V4YS5j
-OjUyMTogZXJyb3I6IOKAmHN0cnVjdCBub3V2ZWF1X2Jv4oCZIGhhcyBubyBtZW1iZXIgbmFtZWQg
-4oCYdGlsZV9mbGFnc+KAmQptYWtlWzJdOiAqKiogW25vdXZlYXVfZXhhLmxvXSBFcnJvciAxCm1h
-a2VbMl06IExlYXZpbmcgZGlyZWN0b3J5IGAvaG9tZS90YXZ2dmEvSW5zdGFsbC9ub3V2ZWF1L3hm
-ODYtdmlkZW8tbm91dmVhdS9zcmMnCm1ha2VbMV06ICoqKiBbYWxsLXJlY3Vyc2l2ZV0gRXJyb3Ig
-MQptYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSBgL2hvbWUvdGF2dnZhL0luc3RhbGwvbm91dmVh
-dS94Zjg2LXZpZGVvLW5vdXZlYXUnCm1ha2U6ICoqKiBbYWxsXSBFcnJvciAyCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+Hi Maarten, Pekka ... =
+
+
+I tried to download the latest one 2.4.11 .... =
+
+the same result with lib64drm from the distro repository ...
+
+lib64drm2-2.4.11-1mdv2010.0.x86_64
+lib64drm_intel1-2.4.11-1mdv2010.0.x86_64
+lib64drm_nouveau1-2.4.11-1mdv2010.0.x86_64
+lib64drm_radeon1-2.4.11-1mdv2010.0.x86_64
+
+I am still getting the same error:
+
+   (EE) NOUVEAU(0): [drm] wrong version, expecting 0.0.12
+
+
+I downloaded the stuff from these locations:
+http://people.freedesktop.org/~pq/nouveau-drm/master-compat.tar.gz
+git://anongit.freedesktop.org/git/nouveau/xf86-video-nouveau =
+
+git://anongit.freedesktop.org/git/mesa/drm =
+
+
+Any idea?
+I am slowly getting angry :D =
+
+Since it is my first try to build the nouveau driver
+I am out of ideas ... =
+
+
+I already solved some problems with directories
+(like copying the modules and libs from /usr/local/lib to /usr/lib64)
+but as I unfortunately have no overview about this project =
+
+it's hard for me to do any troubleshooting in this area ... =
+
+
+I would really appreciate Your help ....
+
+Thanks in advance ...
+
+Regards,
+Jaromir.
+
+
+> ------------ P=F9vodn=ED zpr=E1va ------------
+> Od: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> P=F8edm=ECt: Re: [Nouveau] Can't build xf86-video-nouveau
+> Datum: 10.7.2009 20:49:01
+> ----------------------------------------
+> Probably an older version of libdrm floating around?
+> =
+
+> Maarten.
+> =
+
+> =
+
+> =
