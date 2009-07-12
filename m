@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22179] [KMS] Black screen with KMS enabled, nv44
-Date: Sun, 12 Jul 2009 00:21:11 -0700 (PDT)
-Message-ID: <20090712072111.CCEE513005C@annarchy.freedesktop.org>
+Date: Sun, 12 Jul 2009 02:45:42 -0700 (PDT)
+Message-ID: <20090712094545.1432213005A@annarchy.freedesktop.org>
 References: <bug-22179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22179
 
 
 
---- Comment #14 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-12 00:21:10 PST ---
-Created an attachment (id=27605)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27605)
-xorg configuration file
+--- Comment #15 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-12 02:45:32 PST ---
+(In reply to comment #11)
+> 
+> VT switching froze laptop panel output that slowly turns white.
+> 
+
+modprobe fbcon fixed vt switching.
+ps. my card is identified as NV46.
 
 
 -- 
