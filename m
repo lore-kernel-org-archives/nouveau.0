@@ -1,14 +1,10 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: DRM from git not building properly
-Date: Sun, 12 Jul 2009 22:37:31 +0300
-Message-ID: <20090712223731.767bbc28@daedalus.pq.iki.fi>
-References: <bug-22525-502@http.bugs.freedesktop.org/>
-	<20090712184315.1931313005B@annarchy.freedesktop.org>
+From: Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [Patch] Add shave support
+Date: Mon, 13 Jul 2009 18:33:19 +0200
+Message-ID: <1247502799.29492.3.camel@darwin.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="=-AfGF24ZJf/1zdxZGM8I1"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20090712184315.1931313005B-4GnqB8vgsbnwRzGw0Gvu8Q/tdpCO6/zZ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,52 +14,328 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 12 Jul 2009 11:43:15 -0700 (PDT)
-bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org wrote:
 
-> http://bugs.freedesktop.org/show_bug.cgi?id=22525
-> 
-> --- Comment #5 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2009-07-12 11:43:13 PST ---
-> Hi there,
->         I am sorry about that,I shouldn't have added this new problem to this
-> bug report.I have had some success in the past to get the all three pieces of
-> source code"working"(all thanks to the developers advice and doing a lot of
-> browsing and forum posting)I'm getting the impression that the A.T.I and
-> Nouveau code seems to be "forking"(i.e,going their separate ways)and I think
-> that it is a shame .I can pull out my current Nvidia card and replace it with
-> my very old A.T.I 9,200(Rv 280?) and use that instead,but that maybe more
-> hassle than it could be worth.
-> 
-> I wish I knew about C++ and the inner workings of the stack,but I think that
-> would be too much of a steep learning curve.
-> 
-> I'd like to thank you very much for your help anyway.
+--=-AfGF24ZJf/1zdxZGM8I1
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-What do you mean by "forking" in this case? How are we separating?
+Patch to add shave support for cleaner output. Defaults to disabled.
 
-All "major" drivers (intel, radeon, nouveau) have their separate places for
-DRM development, and merge in Airlied's kernel tree for sending upstream to
-Linus. Well, not yet Nouveau, but in the future.
+// Peter
 
-Recently Nouveau development has been concentrating on 2D and DRM kernel
-modules, aiming eventually for the inclusion of Nouveau DRM in the mainline
-kernel. It also happens that 3D support has got less attention. I'm sure
-attention will shift to 3D once Nouveau is in mainline as a mature driver
-(the DRM part).
+--=-AfGF24ZJf/1zdxZGM8I1
+Content-Disposition: attachment; filename="0001-Add-shave-support.patch"
+Content-Type: text/x-patch; name="0001-Add-shave-support.patch"; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
-Nouveau 3D has never yet been said to be supported. 2D on the other hand is,
-it should work, and we would like to hear about any problems with the three
-components: the DRM modules, libdrm and libdrm_nouveau, and the DDX.
+From b5ebca697ca25c7bc13a55be218c12120e8a145e Mon Sep 17 00:00:00 2001
+From: Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Date: Mon, 13 Jul 2009 18:13:27 +0200
+Subject: [PATCH] Add shave support
 
-Btw. you want C, C++ is not too useful ;-)
+Defaults to disabled
+---
+ .gitignore       |    2 +
+ acinclude.m4     |   77 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ configure.ac     |    4 +++
+ shave-libtool.in |   69 +++++++++++++++++++++++++++++++++++++++++++++++
+ shave.in         |   79 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 231 insertions(+), 0 deletions(-)
+ create mode 100644 acinclude.m4
+ create mode 100644 shave-libtool.in
+ create mode 100644 shave.in
 
-
-Thanks.
-
+diff --git a/.gitignore b/.gitignore
+index 4ff1108..7580e8e 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -20,3 +20,5 @@ ltmain.sh
+ missing
+ stamp-h1
+ ChangeLog
++shave
++shave-libtool
+diff --git a/acinclude.m4 b/acinclude.m4
+new file mode 100644
+index 0000000..0a3509e
+--- /dev/null
++++ b/acinclude.m4
+@@ -0,0 +1,77 @@
++dnl Make automake/libtool output more friendly to humans
++dnl  Damien Lespiau <damien.lespiau-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
++dnl
++dnl SHAVE_INIT([shavedir],[default_mode])
++dnl
++dnl shavedir: the directory where the shave scripts are, it defaults to
++dnl           $(top_builddir)
++dnl default_mode: (enable|disable) default shave mode.  This parameter
++dnl               controls shave's behaviour when no option has been
++dnl               given to configure.  It defaults to disable.
++dnl
++dnl * SHAVE_INIT should be called late in your configure.(ac|in) file (just
++dnl   before AC_CONFIG_FILE/AC_OUTPUT is perfect.  This macro rewrites CC and
++dnl   LIBTOOL, you don't want the configure tests to have these variables
++dnl   re-defined.
++dnl * This macro requires GNU make's -s option.
++
++AC_DEFUN([_SHAVE_ARG_ENABLE],
++[
++  AC_ARG_ENABLE([shave],
++    AS_HELP_STRING(
++      [--enable-shave],
++      [use shave to make the build pretty [[default=$1]]]),,
++      [enable_shave=$1]
++    )
++])
++
++AC_DEFUN([SHAVE_INIT],
++[
++  dnl you can tweak the default value of enable_shave
++  m4_if([$2], [enable], [_SHAVE_ARG_ENABLE(yes)], [_SHAVE_ARG_ENABLE(no)])
++
++  if test x"$enable_shave" = xyes; then
++    dnl where can we find the shave scripts?
++    m4_if([$1],,
++      [shavedir="$ac_pwd"],
++      [shavedir="$ac_pwd/$1"])
++    AC_SUBST(shavedir)
++
++    dnl make is now quiet
++    AC_SUBST([MAKEFLAGS], [-s])
++    AC_SUBST([AM_MAKEFLAGS], ['`test -z $V && echo -s`'])
++
++    dnl we need sed
++    AC_CHECK_PROG(SED,sed,sed,false)
++
++    dnl substitute libtool
++    SHAVE_SAVED_LIBTOOL=$LIBTOOL
++    LIBTOOL="${SHELL} ${shavedir}/shave-libtool '${SHAVE_SAVED_LIBTOOL}'"
++    AC_SUBST(LIBTOOL)
++
++    dnl substitute cc/cxx
++    SHAVE_SAVED_CC=$CC
++    SHAVE_SAVED_CXX=$CXX
++    SHAVE_SAVED_FC=$FC
++    SHAVE_SAVED_F77=$F77
++    SHAVE_SAVED_OBJC=$OBJC
++    CC="${SHELL} ${shavedir}/shave cc ${SHAVE_SAVED_CC}"
++    CXX="${SHELL} ${shavedir}/shave cxx ${SHAVE_SAVED_CXX}"
++    FC="${SHELL} ${shavedir}/shave fc ${SHAVE_SAVED_FC}"
++    F77="${SHELL} ${shavedir}/shave f77 ${SHAVE_SAVED_F77}"
++    OBJC="${SHELL} ${shavedir}/shave objc ${SHAVE_SAVED_OBJC}"
++    AC_SUBST(CC)
++    AC_SUBST(CXX)
++    AC_SUBST(FC)
++    AC_SUBST(F77)
++    AC_SUBST(OBJC)
++
++    V=@
++  else
++    V=1
++  fi
++  Q='$(V:1=)'
++  AC_SUBST(V)
++  AC_SUBST(Q)
++])
++
+diff --git a/configure.ac b/configure.ac
+index 0e9b319..c0a9135 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -45,6 +45,8 @@ AC_CONFIG_AUX_DIR(.)
+ 
+ AM_INIT_AUTOMAKE([dist-bzip2])
+ 
++AC_CONFIG_FILES([shave shave-libtool])
++
+ # Checks for programs.
+ AC_DISABLE_STATIC
+ AC_PROG_LIBTOOL
+@@ -118,6 +120,8 @@ AC_SUBST([DRIVER_NAME])
+ XORG_MANPAGE_SECTIONS
+ XORG_RELEASE_VERSION
+ 
++SHAVE_INIT(.,disable)
++
+ AC_OUTPUT([
+ 	Makefile
+ 	src/Makefile
+diff --git a/shave-libtool.in b/shave-libtool.in
+new file mode 100644
+index 0000000..1f3a720
+--- /dev/null
++++ b/shave-libtool.in
+@@ -0,0 +1,69 @@
++#!/bin/sh
++
++# we need sed
++SED=@SED@
++if test -z "$SED" ; then
++SED=sed
++fi
++
++lt_unmangle ()
++{
++   last_result=`echo $1 | $SED -e 's#.libs/##' -e 's#[0-9a-zA-Z_\-\.]*_la-##'`
++}
++
++# the real libtool to use
++LIBTOOL="$1"
++shift
++
++# if 1, don't print anything, the underlaying wrapper will do it
++pass_though=0
++
++# scan the arguments, keep the right ones for libtool, and discover the mode
++preserved_args=
++while test "$#" -gt 0; do
++    opt="$1"
++    shift
++
++    case $opt in
++    --mode=*)
++        mode=`echo $opt | $SED -e 's/[-_a-zA-Z0-9]*=//'`
++        preserved_args="$preserved_args $opt"
++        ;;
++    -o)
++        lt_output="$1"
++        preserved_args="$preserved_args $opt"
++	;;
++    *)
++        preserved_args="$preserved_args $opt"
++        ;;
++      esac
++done
++
++case "$mode" in
++compile)
++    # shave will be called and print the actual CC/CXX/LINK line
++    preserved_args="$preserved_args --shave-mode=$mode"
++    pass_though=1
++    ;;
++link)
++    preserved_args="$preserved_args --shave-mode=$mode"
++    Q="  LINK  "
++    ;;
++*)
++    # let's u
++    # echo "*** libtool: Unimplemented mode: $mode, fill a bug report"
++    ;;
++esac
++
++lt_unmangle "$lt_output"
++output=$last_result
++
++if test -z $V; then
++    if test $pass_though -eq 0; then
++        echo "$Q$output"
++    fi
++    $LIBTOOL --silent $preserved_args
++else
++    echo $LIBTOOL $preserved_args
++    $LIBTOOL $preserved_args
++fi
+diff --git a/shave.in b/shave.in
+new file mode 100644
+index 0000000..5c16f27
+--- /dev/null
++++ b/shave.in
+@@ -0,0 +1,79 @@
++#!/bin/sh
++
++# we need sed
++SED=@SED@
++if test -z "$SED" ; then
++SED=sed
++fi
++
++lt_unmangle ()
++{
++   last_result=`echo $1 | $SED -e 's#.libs/##' -e 's#[0-9a-zA-Z_\-\.]*_la-##'`
++}
++
++# the tool to wrap (cc, cxx, ar, ranlib, ..)
++tool="$1"
++shift
++
++# the reel tool (to call)
++REEL_TOOL="$1"
++shift
++
++pass_through=0
++preserved_args=
++while test "$#" -gt 0; do
++    opt="$1"
++    shift
++
++    case $opt in
++    --shave-mode=*)
++        mode=`echo $opt | $SED -e 's/[-_a-zA-Z0-9]*=//'`
++	;;
++    -o)
++        lt_output="$1"
++        preserved_args="$preserved_args $opt"
++	;;
++    *)
++        preserved_args="$preserved_args $opt"
++        ;;
++      esac
++done
++
++# mode=link is handled in the libtool wrapper
++case "$mode,$tool" in
++link,*)
++    pass_through=1
++    ;;
++*,cxx)
++    Q="  CXX   "
++    ;;
++*,cc)
++    Q="  CC    "
++    ;;
++*,fc)
++    Q="  FC    "
++    ;;
++*,f77)
++    Q="  F77   "
++    ;;
++*,objc)
++    Q="  OBJC   "
++    ;;
++*,*)
++    # should not happen
++    Q="  CC    "
++    ;;
++esac
++
++lt_unmangle "$lt_output"
++output=$last_result
++
++if test -z $V; then
++    if test $pass_through -eq 0; then
++        echo "$Q$output"
++    fi
++    $REEL_TOOL $preserved_args
++else
++    echo $REEL_TOOL $preserved_args
++    $REEL_TOOL $preserved_args
++fi
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+1.6.3.3
+
+
+--=-AfGF24ZJf/1zdxZGM8I1
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--=-AfGF24ZJf/1zdxZGM8I1--
