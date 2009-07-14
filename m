@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22763] suspend doesn't works
-Date: Tue, 14 Jul 2009 04:44:56 -0700 (PDT)
-Message-ID: <20090714114456.82D0413005A@annarchy.freedesktop.org>
+Date: Tue, 14 Jul 2009 05:21:57 -0700 (PDT)
+Message-ID: <20090714122157.BF13F13005A@annarchy.freedesktop.org>
 References: <bug-22763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,31 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22763
 
 
 
---- Comment #4 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-14 04:44:56 PST ---
-Created an attachment (id=27678)
+--- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-14 05:21:57 PST ---
+On Tue, 2009-07-14 at 04:44 -0700, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+wrote:
+> http://bugs.freedesktop.org/show_bug.cgi?id=22763
+This is the intended behaviour currently, suspend will fail (and that
+patch *definitely* will since you're using KMS) so I made the nouveau
+module refuse to suspend.
+
+I've been working on this a bit this week, and have code that *may* work
+on your system.  It'll hit git later this week perhaps, there's still a
+couple of issues to iron out.
+
+Ben.
+> 
+> 
+> 
+> 
+> 
+> --- Comment #4 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-14 04:44:56 PST ---
+> Created an attachment (id=27678)
  --> (http://bugs.freedesktop.org/attachment.cgi?id=27678)
-pm-powersave
+>  --> (http://bugs.freedesktop.org/attachment.cgi?id=27678)
+> pm-powersave
+> 
+> 
 
 
 -- 
