@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22765] Nouveau KMS makes framebuffer consoles
 	unusable on 9800M
-Date: Tue, 14 Jul 2009 09:58:54 -0700 (PDT)
-Message-ID: <20090714165854.ADCC8130058@annarchy.freedesktop.org>
+Date: Tue, 14 Jul 2009 10:15:03 -0700 (PDT)
+Message-ID: <20090714171503.4AECF130058@annarchy.freedesktop.org>
 References: <bug-22765-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22765
 
 
 
---- Comment #2 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-14 09:58:54 PST ---
-Nope, my kernel is compiled with CONFIG_FRAMEBUFFER_CONSOLE=y.
+--- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-07-14 10:15:02 PST ---
+The standard procedure: please provide kernel and X logs.
 
 
 -- 
