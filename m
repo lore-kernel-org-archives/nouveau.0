@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22763] suspend doesn't works
-Date: Tue, 14 Jul 2009 04:33:25 -0700 (PDT)
-Message-ID: <20090714113325.5D567130058@annarchy.freedesktop.org>
+Date: Tue, 14 Jul 2009 04:44:19 -0700 (PDT)
+Message-ID: <20090714114419.11359130058@annarchy.freedesktop.org>
 References: <bug-22763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,16 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22763
 
 
 
---- Comment #2 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-14 04:33:24 PST ---
-Created an attachment (id=27677)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27677)
-Xorg log
+--- Comment #3 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-14 04:44:18 PST ---
+(In reply to comment #0)
+> xf86-video-nouveau, libdrm and kernel modules from git.
+> 
+> DDX driver is patched with: 
+> http://people.freedesktop.org/~stuart/nv0x-nv4x_suspend/0001-merge-nv40fp.patch
+> 
+
+System prepare itself for suspend, hard disk spin down, screen go black, then
+wake up again and screen saver ask password to login.
 
 
 -- 
