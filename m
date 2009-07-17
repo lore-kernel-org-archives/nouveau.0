@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22756] nouveau_fence.c kernel BUG and recursive
 	faults
-Date: Thu, 16 Jul 2009 04:09:17 -0700 (PDT)
-Message-ID: <20090716110917.AC90C130058@annarchy.freedesktop.org>
+Date: Fri, 17 Jul 2009 03:08:39 -0700 (PDT)
+Message-ID: <20090717100839.EC749130058@annarchy.freedesktop.org>
 References: <bug-22756-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,20 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22756
 
 
 
---- Comment #2 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-16 04:09:17 PST ---
-Created an attachment (id=27759)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27759)
-kernel log
+--- Comment #3 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-17 03:08:38 PST ---
 
+It already works well, I think it's because:
 
-The same happens with NV18.
+drm/nouveau: fix BUG_ON() on UP systems, spin_is_locked() always returns 0
+commit:         f248e95a848d3e70be395862fdf512ffdfcecd51
 
-Removing the patch:
-
-drm/nouveau: protect fence pending list with Spinlock
-commit: ed6cc42c377ed125e6b95e0808883a8a47f137c2
-
-this works.
+thanks 
 
 
 -- 
