@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22828] Nouveau EXA bug
-Date: Fri, 17 Jul 2009 16:02:08 -0700 (PDT)
-Message-ID: <20090717230208.2C21713005B@annarchy.freedesktop.org>
+Date: Sat, 18 Jul 2009 11:11:50 -0700 (PDT)
+Message-ID: <20090718181150.AF07E13005B@annarchy.freedesktop.org>
 References: <bug-22828-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=22828
 
 
-Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
 
 
---- Comment #1 from Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-17 16:02:07 PST ---
-I have been getting this message since a couple of weeks now. Mostly while
-using firefox. Also with nouveau even though I don't think nouveau is to blame.
-I would assume it is a dupe of bug #20212 (
-https://bugs.freedesktop.org/show_bug.cgi?id=20212 )
-
-It has not crashed the server for me. Are you sure it is the reason for your
-crash? drm log and a server backtrace could be useful.
+--- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-18 11:11:50 PST ---
+Okey, it was some compilation problem, after Xorg recompile it works fine...
 
 
 -- 
