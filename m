@@ -1,14 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22756] nouveau_fence.c kernel BUG and recursive
-	faults
-Date: Sun, 19 Jul 2009 08:58:45 -0700 (PDT)
-Message-ID: <20090719155845.28D97130058@annarchy.freedesktop.org>
-References: <bug-22756-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [nv04-nv40/kms] possible fix for transparent cursor issue
+Date: Mon, 20 Jul 2009 21:52:54 +0200
+Message-ID: <6d4bc9fc0907201252t30ad340dm16e235bc3f2f4784@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=001636c5b2f0e23ac6046f287bd0
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-22756-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +17,121 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=22756
+--001636c5b2f0e23ac6046f287bd0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
+ThibG from irc reported an issue with transparent cursors, i noticed
+the ddx had a workaround, which wasn't in the kms code.
 
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+ThibG (whoever you are), please test. The patch is untested.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+Maarten.
 
+--001636c5b2f0e23ac6046f287bd0
+Content-Type: text/x-patch; charset=US-ASCII;
+	name="0001-nv04-import-hw-workaround-for-partially-transparent-.patch"
+Content-Disposition: attachment;
+	filename="0001-nv04-import-hw-workaround-for-partially-transparent-.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_fxdm5itw0
 
+RnJvbSA3Y2U5MGIzMjk3NzgyZTVlY2FkYTZlNGU5MTdiZTdhOWMzMTZkMDgyIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBNYWFydGVuIE1hYXRodWlzIDxtYWRtYW4yMDAzQGdtYWlsLmNv
+bT4KRGF0ZTogTW9uLCAyMCBKdWwgMjAwOSAyMTo0NjowOCArMDIwMApTdWJqZWN0OiBbUEFUQ0hd
+IG52MDQ6IGltcG9ydCBodyB3b3JrYXJvdW5kIGZvciBwYXJ0aWFsbHkgdHJhbnNwYXJlbnQgcGl4
+ZWxzIGZyb20gdGhlIGRkeAoKLSBVbnRlc3RlZCwgVGhpYkcgZnJvbSBJUkMgc2hvdWxkIHRlc3Qg
+dGhpcyBhdCBsZWFzdC4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2NydGMu
+aCB8ICAgIDMgLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnYwNF9jcnRjLmMgICAgfCAgIDkw
+ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udjUwX2NydGMuYyAgICB8ICAgIDIgKy0KIDMgZmlsZXMgY2hhbmdlZCwgOTAgaW5zZXJ0aW9u
+cygrKSwgNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2NydGMuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY3J0Yy5o
+CmluZGV4IGQ4ZjE4ZjkuLmI5YjRjOGEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfY3J0Yy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+Y3J0Yy5oCkBAIC03Niw5ICs3Niw2IEBAIHN0cnVjdCBub3V2ZWF1X2NydGMgewogaW50IG52NTBf
+Y3J0Y19jcmVhdGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgaW50IGluZGV4KTsKIGludCBudjUw
+X2N1cnNvcl9pbml0KHN0cnVjdCBub3V2ZWF1X2NydGMgKik7CiB2b2lkIG52NTBfY3Vyc29yX2Zp
+bmkoc3RydWN0IG5vdXZlYXVfY3J0YyAqKTsKLWludCBudjUwX2NydGNfY3Vyc29yX3NldChzdHJ1
+Y3QgZHJtX2NydGMgKmRybV9jcnRjLCBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGVfcHJpdiwKLQkJCSB1
+aW50MzJfdCBidWZmZXJfaGFuZGxlLCB1aW50MzJfdCB3aWR0aCwKLQkJCSB1aW50MzJfdCBoZWln
+aHQpOwogaW50IG52NTBfY3J0Y19jdXJzb3JfbW92ZShzdHJ1Y3QgZHJtX2NydGMgKmRybV9jcnRj
+LCBpbnQgeCwgaW50IHkpOwogCiBpbnQgbnYwNF9jdXJzb3JfaW5pdChzdHJ1Y3Qgbm91dmVhdV9j
+cnRjICopOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnYwNF9jcnRjLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjA0X2NydGMuYwppbmRleCBmMjdmNmZlLi4wMmVk
+YjVmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjA0X2NydGMuYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjA0X2NydGMuYwpAQCAtODU3LDYgKzg1Nyw5NCBA
+QCBzdGF0aWMgdm9pZCBudl9jcnRjX2Rlc3Ryb3koc3RydWN0IGRybV9jcnRjICpjcnRjKQogewog
+fQogCitpbnQKK252MDRfY3J0Y19jdXJzb3Jfc2V0KHN0cnVjdCBkcm1fY3J0YyAqZHJtX2NydGMs
+IHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LAorCQkgICAgIHVpbnQzMl90IGJ1ZmZlcl9oYW5k
+bGUsIHVpbnQzMl90IHdpZHRoLCB1aW50MzJfdCBoZWlnaHQpCit7CisJc3RydWN0IGRybV9kZXZp
+Y2UgKmRldiA9IGRybV9jcnRjLT5kZXY7CisJc3RydWN0IG5vdXZlYXVfY3J0YyAqY3J0YyA9IHRv
+X25vdXZlYXVfY3J0Yyhkcm1fY3J0Yyk7CisJaW50IHJldCA9IDA7CisKKwlpZiAod2lkdGggIT0g
+NjQgfHwgaGVpZ2h0ICE9IDY0KQorCQlyZXR1cm4gLUVJTlZBTDsKKworCWlmIChjcnRjLT5jdXJz
+b3IubnZibykgeworCQlub3V2ZWF1X2JvX3VucGluKGNydGMtPmN1cnNvci5udmJvKTsKKwkJbm91
+dmVhdV9ib19yZWYoTlVMTCwgJmNydGMtPmN1cnNvci5udmJvKTsKKwl9CisKKwlpZiAoYnVmZmVy
+X2hhbmRsZSkgeworCQlzdHJ1Y3QgZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYt
+PmRldl9wcml2YXRlOworCQlzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKmdlbTsKKwkJc3RydWN0IG5v
+dXZlYXVfYm8gKm52Ym87CisJCXVpbnQzMl90IGFscGhhOworCQl1aW50MzJfdCAqcGl4ZWw7CisJ
+CWludCBpOworCisJCWdlbSA9IGRybV9nZW1fb2JqZWN0X2xvb2t1cChkZXYsIGZpbGVfcHJpdiwg
+YnVmZmVyX2hhbmRsZSk7CisJCWlmICghZ2VtKQorCQkJcmV0dXJuIC1FSU5WQUw7CisJCW52Ym8g
+PSBub3V2ZWF1X2dlbV9vYmplY3QoZ2VtKTsKKworCQlub3V2ZWF1X2JvX3JlZihudmJvLCAmY3J0
+Yy0+Y3Vyc29yLm52Ym8pOworCQltdXRleF9sb2NrKCZkZXYtPnN0cnVjdF9tdXRleCk7CisJCWRy
+bV9nZW1fb2JqZWN0X3VucmVmZXJlbmNlKGdlbSk7CisJCW11dGV4X3VubG9jaygmZGV2LT5zdHJ1
+Y3RfbXV0ZXgpOworCisJCXJldCA9IG5vdXZlYXVfYm9fcGluKG52Ym8sIFRUTV9QTF9GTEFHX1ZS
+QU0pOworCQlpZiAocmV0KSB7CisJCQlub3V2ZWF1X2JvX3JlZihOVUxMLCAmY3J0Yy0+Y3Vyc29y
+Lm52Ym8pOworCQkJcmV0dXJuIHJldDsKKwkJfQorCisJCXJldCA9IG5vdXZlYXVfYm9fbWFwKG52
+Ym8pOworCQlpZiAocmV0KSB7CisJCQlub3V2ZWF1X2JvX3JlZihOVUxMLCAmY3J0Yy0+Y3Vyc29y
+Lm52Ym8pOworCQkJcmV0dXJuIHJldDsKKwkJfQorCisJCS8qIG52MTErIHN1cHBvcnRzIHByZW11
+bHRpcGxpZWQgKFBNKSwgb3Igbm9uLXByZW11bHRpcGxpZWQgKE5QTSkgCisJCSAqIGFscGhhIGN1
+cnNvcnMgKHRob3VnaCBOUE0gaW4gY29tYmluYXRpb24gd2l0aCBmcCBkaXRoZXJpbmcgCisJCSAq
+IG1heSBub3Qgd29yayBvbiBudjExLCBmcm9tICJudiIgZHJpdmVyIGhpc3RvcnkpLgorCQkgKiBO
+UE0gbW9kZSBuZWVkcyBOVl9QQ1JUQ19DVVJTT1JfQ09ORklHX0FMUEhBX0JMRU5EIAorCQkgKiBz
+ZXQgYW5kIGlzIHdoYXQgdGhlIGJsb2IgdXNlcywgaG93ZXZlciB3ZSBnZXQgZ2l2ZW4gUE0gY3Vy
+c29ycyAKKwkJICogc28gd2UgdXNlIFBNIG1vZGUuCisJCSAqLworCisJCXBpeGVsID0gbnZiby0+
+a21hcC52aXJ0dWFsOworCisJCWZvciAoaSA9IDA7IGkgPCA2NCo2NDsgaSsrKSB7CisJCQkvKiBo
+dyBnZXRzIHVuaGFwcHkgaWYgYWxwaGEgPD0gcmdiIHZhbHVlcy4gIGZvciBhIFBNIGltYWdlIAor
+CQkJICogImxlc3MgdGhhbiIgc2hvdWxkbid0IGhhcHBlbjsgZml4ICJlcXVhbCB0byIgY2FzZSBi
+eSBhZGRpbmcgCisJCQkgKiBvbmUgdG8gYWxwaGEgY2hhbm5lbCAoc2xpZ2h0bHkgaW5hY2N1cmF0
+ZSwgYnV0IHNvIGlzIAorCQkJICogYXR0ZW1wdGluZyB0byBnZXQgYmFjayB0byBOUE0gaW1hZ2Vz
+LCBkdWUgdG8gbGltaXRzIG9mIAorCQkJICogaW50ZWdlciBwcmVjaXNpb24pLgorCQkJICovCisK
+KwkJCWFscGhhID0gcGl4ZWxbaV0gPj4gMjQ7CisJCQkvKiBmdWxseSB0cmFuc3BhcmVudCBhbmQg
+c29saWQgY29sb3JzIGFyZSBmaW5lICovCisJCQlpZiAoYWxwaGEgPiAwICYmIGFscGhhIDwgMjU1
+KQorCQkJCXBpeGVsW2ldID0gKChhbHBoYSArIDEpIDw8IDI0KSB8IChwaXhlbFtpXSAmIDB4RkZG
+RkZGKTsKKworI2lmZGVmIF9fQklHX0VORElBTgorCQkJaWYgKGRldl9wcml2LT5jaGlwc2V0ID09
+IDB4MTEpCisJCQkJcGl4ZWxbaV0gPSBsc3dhcGwocGl4ZWxbaV0pOworI2VuZGlmCisJCX0KKwor
+CQlub3V2ZWF1X2JvX3VubWFwKG52Ym8pOworCisJCWNydGMtPmN1cnNvci5vZmZzZXQgPSBudmJv
+LT5iby5vZmZzZXQgLQorCQkJCSAgICAgIGRldl9wcml2LT52bV92cmFtX2Jhc2U7CisJCWNydGMt
+PmN1cnNvci5zZXRfb2Zmc2V0KGNydGMsIGNydGMtPmN1cnNvci5vZmZzZXQpOworCQljcnRjLT5j
+dXJzb3Iuc2hvdyhjcnRjLCB0cnVlKTsKKwl9IGVsc2UgeworCQljcnRjLT5jdXJzb3IuaGlkZShj
+cnRjLCB0cnVlKTsKKwl9CisKKwlyZXR1cm4gcmV0OworfQorCiAjZGVmaW5lIERFUFRIX1NISUZU
+KHZhbCwgdykgKCh2YWwgPDwgKDggLSB3KSkgfCAodmFsID4+ICgodyA8PCAxKSAtIDgpKSkKIHN0
+YXRpYyB2b2lkCiBudl9jcnRjX2dhbW1hX2xvYWQoc3RydWN0IG5vdXZlYXVfY3J0YyAqbnZfY3J0
+YykKQEAgLTk3Miw3ICsxMDYwLDcgQEAgbnYwNF9jcnRjX21vZGVfc2V0X2Jhc2Uoc3RydWN0IGRy
+bV9jcnRjICpjcnRjLCBpbnQgeCwgaW50IHksCiBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9jcnRj
+X2Z1bmNzIG52MDRfY3J0Y19mdW5jcyA9IHsKIAkuc2F2ZSA9IG52X2NydGNfc2F2ZSwKIAkucmVz
+dG9yZSA9IG52X2NydGNfcmVzdG9yZSwKLQkuY3Vyc29yX3NldCA9IG52NTBfY3J0Y19jdXJzb3Jf
+c2V0LAorCS5jdXJzb3Jfc2V0ID0gbnYwNF9jcnRjX2N1cnNvcl9zZXQsCiAJLmN1cnNvcl9tb3Zl
+ID0gbnY1MF9jcnRjX2N1cnNvcl9tb3ZlLAogCS5nYW1tYV9zZXQgPSBudl9jcnRjX2dhbW1hX3Nl
+dCwKIAkuc2V0X2NvbmZpZyA9IGRybV9jcnRjX2hlbHBlcl9zZXRfY29uZmlnLApkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9jcnRjLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udjUwX2NydGMuYwppbmRleCBiMTM1MWU0Li5lNjc3MmFjIDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2NydGMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udjUwX2NydGMuYwpAQCAtMzY3LDcgKzM2Nyw3IEBAIHN0YXRpYyB2b2lkIG52NTBf
+Y3J0Y19kZXN0cm95KHN0cnVjdCBkcm1fY3J0YyAqZHJtX2NydGMpCiAJa2ZyZWUoY3J0Yyk7CiB9
+CiAKLWludAorc3RhdGljIGludAogbnY1MF9jcnRjX2N1cnNvcl9zZXQoc3RydWN0IGRybV9jcnRj
+ICpkcm1fY3J0Yywgc3RydWN0IGRybV9maWxlICpmaWxlX3ByaXYsCiAJCSAgICAgdWludDMyX3Qg
+YnVmZmVyX2hhbmRsZSwgdWludDMyX3Qgd2lkdGgsIHVpbnQzMl90IGhlaWdodCkKIHsKLS0gCjEu
+Ni4zLjMKCg==
+--001636c5b2f0e23ac6046f287bd0
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---- Comment #4 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-07-19 08:58:44 PST ---
-(In reply to comment #3)
-> It already works well, I think it's because:
-> 
-> drm/nouveau: fix BUG_ON() on UP systems, spin_is_locked() always returns 0
-> commit:         f248e95a848d3e70be395862fdf512ffdfcecd51
-> 
-> thanks 
-> 
-
-Yup, confirmed here, too. Latest DRM works just fine.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+--001636c5b2f0e23ac6046f287bd0--
