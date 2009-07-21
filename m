@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22867] [KMS] black screen on nouveau.ko module load
-Date: Tue, 21 Jul 2009 01:41:40 -0700 (PDT)
-Message-ID: <20090721084141.0584D130058@annarchy.freedesktop.org>
+Date: Tue, 21 Jul 2009 01:42:13 -0700 (PDT)
+Message-ID: <20090721084213.55FF2130058@annarchy.freedesktop.org>
 References: <bug-22867-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22867
 
 
 
---- Comment #1 from Sergei Trofimovich <slyfox-aPYA7nAdAYY@public.gmane.org>  2009-07-21 01:41:40 PST ---
-Created an attachment (id=27871)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=27871)
-Xorg.0.log in KMS
+--- Comment #2 from Sergei Trofimovich <slyfox-aPYA7nAdAYY@public.gmane.org>  2009-07-21 01:42:12 PST ---
+Created an attachment (id=27872)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=27872)
+nouveau_dmesg_after_xorg
 
 
 -- 
