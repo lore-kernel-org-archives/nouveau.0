@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22763] suspend doesn't works
-Date: Wed, 22 Jul 2009 00:09:51 -0700 (PDT)
-Message-ID: <20090722070952.2DA1E130058@annarchy.freedesktop.org>
+Date: Wed, 22 Jul 2009 00:10:41 -0700 (PDT)
+Message-ID: <20090722071042.5E8AF130058@annarchy.freedesktop.org>
 References: <bug-22763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22763
 
 
 
---- Comment #6 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-22 00:09:49 PST ---
-compiled a custom kernel and updated DDX driver,
-after wake up, the cursor is a transparent square block filled with some
-colored pixels. screen is shifted up by ~25 pixel and switching screen
-resolution via gnome-display-properties gives me back an usable cursor and
-screen.
-
-thank you.
--fm
+--- Comment #7 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-22 00:10:39 PST ---
+Created an attachment (id=27899)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=27899)
+Xorg log
 
 
 -- 
