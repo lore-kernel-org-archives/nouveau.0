@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22763] suspend doesn't works
-Date: Wed, 22 Jul 2009 00:40:50 -0700 (PDT)
-Message-ID: <20090722074050.996A6130058@annarchy.freedesktop.org>
+Date: Wed, 22 Jul 2009 04:12:30 -0700 (PDT)
+Message-ID: <20090722111230.BD3C4130058@annarchy.freedesktop.org>
 References: <bug-22763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,25 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22763
 
 
 
---- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-22 00:40:49 PST ---
-I'm surprised you survived suspend at all actually, only G80 is working
-properly still at the moment.  Working on it!
+--- Comment #10 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-22 04:12:29 PST ---
+Actual state on 9600M GT.
+Console testing (KMS enabled, nouveau/linux-2.6 master, rc3, kernel+ddx today
+updated):
+hibernate-ram: working fine! Circa 10 seconds is console extremly slow, but
+after 10s console working fast
+
+hibernate: it hibernate to hdd, it shudown self, but if is machine power on,
+LCD is black and system not working. Removing battery and AC power helps. After
+that system successfully resume from hdd to previous state.
+
+X testing (KMS enabled, no EXAPixmaps)
+hibernate-ram: switch to console, suspend, after pressing power try to
+continue, switch to fbcon, try to switch back X and then screen goes into state
+from console hibernate (same problem)
+
+X testing (KMS enabled, EXAPixmaps)
+can't test, cause now EXAPixmaps rendering one bold line(vertical block on
+screen circa 3 seconds and it's terrible slow
 
 
 -- 
