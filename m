@@ -1,20 +1,11 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH 4/4] drm/nouveau: change FB map to simple
- ioremap
-Date: Sun, 26 Jul 2009 14:58:45 +0300
-Message-ID: <20090726145845.7fee2ea6@daedalus.pq.iki.fi>
-References: <1248524947-4550-1-git-send-email-pq@iki.fi>
-	<1248524947-4550-2-git-send-email-pq@iki.fi>
-	<1248524947-4550-3-git-send-email-pq@iki.fi>
-	<1248524947-4550-4-git-send-email-pq@iki.fi>
-	<1248524947-4550-5-git-send-email-pq@iki.fi>
-	<21d7e9970907260403k68294124xcd10802e6d7cd220@mail.gmail.com>
-	<21d7e9970907260408w17d05e43p4954b8553f574dee@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 22956] New: nv50: kms, random screen blinkage
+Date: Sun, 26 Jul 2009 20:32:54 -0700 (PDT)
+Message-ID: <bug-22956-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <21d7e9970907260408w17d05e43p4954b8553f574dee-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,32 +15,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 26 Jul 2009 21:08:09 +1000
-Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+http://bugs.freedesktop.org/show_bug.cgi?id=22956
 
-> On Sun, Jul 26, 2009 at 9:03 PM, Dave Airlie<airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > On Sat, Jul 25, 2009 at 10:29 PM, Pekka Paalanen<pq-X3B1VOXEql0@public.gmane.org> wrote:
-> >> Remove the use of drm_local_map for the FB mapping and replace it with
-> >> the equivalent ioremap.
-> >
-> > I don't think FBs are ioremapped normally with addmap, unless nouveau
-> > does something different here. Generally ioremapping the whole framebuffer
-> > is considered a bad idea as ioremap on 32-bit x86 is limited.
-> >
-> 
-> /me reads patch properly ;-)
-> 
-> Notice DRM_REGISTERS. oops. looks fine then.
+           Summary: nv50: kms, random screen blinkage
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Yeah, the name '->fb' could be better, but at least there's a comment in
-the code that it's not really the whole FB :-P
 
-Thanks for the review.
+Created an attachment (id=28020)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28020)
+dmesg
+
+when kms is off everything is fine, but with kms on screen seems to blink
+randomly from time time whether I'm in shell~tty1 or when X is running. it
+almost seems like a crtc timing issue. along with the screen blink there's one
+horizontal bar/artifact at the same level as the cursor, both true for
+shell~tty1 and xorg~gui. also upon entering xorg~gui I noticed fuzzy fonts as
+if vert refresh rate was off but it was at 60Hz which happens to the max of my
+lcd.
+
 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
