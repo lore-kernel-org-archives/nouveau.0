@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22956] nv50: kms, random screen blinkage
-Date: Sun, 26 Jul 2009 20:39:44 -0700 (PDT)
-Message-ID: <20090727033944.162BF130058@annarchy.freedesktop.org>
+Date: Sun, 26 Jul 2009 20:44:27 -0700 (PDT)
+Message-ID: <20090727034428.0CFF3130058@annarchy.freedesktop.org>
 References: <bug-22956-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=22956
 
 
+Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #28020|application/octet-stream    |text/plain
+          mime type|                            |
 
 
-
---- Comment #3 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-26 20:39:43 PST ---
-Created an attachment (id=28023)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28023)
-kernel log with xorg and ddx up, beware~7.4MB
 
 
 -- 
