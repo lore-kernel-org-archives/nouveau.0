@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22956] nv50: kms, random screen blinkage
-Date: Wed, 29 Jul 2009 02:50:58 -0700 (PDT)
-Message-ID: <20090729095058.4B86313005A@annarchy.freedesktop.org>
+Date: Wed, 29 Jul 2009 04:27:27 -0700 (PDT)
+Message-ID: <20090729112727.F2723130058@annarchy.freedesktop.org>
 References: <bug-22956-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,16 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22956
 
 
 
---- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-29 02:50:57 PST ---
-Are you 100% certain that's the commit?  Unless you're resuming from suspend,
-that code should have no effect, unless simply reading from one of the regs in
-your VBIOS scripts causes it..
-
-
-I'd be curious for logs of "modprobe drm debug=1; modprobe nouveau modeset=1"
-both with and without that commit.
-
-Thanks!
+--- Comment #8 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-29 04:27:27 PST ---
+Created an attachment (id=28153)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28153)
+good,
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=7992783bc72309bf4e1323097078406c4588adec
 
 
 -- 
