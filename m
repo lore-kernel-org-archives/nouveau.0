@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22763] suspend doesn't works
-Date: Wed, 29 Jul 2009 09:26:42 -0700 (PDT)
-Message-ID: <20090729162642.D0D3E130058@annarchy.freedesktop.org>
+Date: Wed, 29 Jul 2009 09:27:12 -0700 (PDT)
+Message-ID: <20090729162712.5C9F4130058@annarchy.freedesktop.org>
 References: <bug-22763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +27,16 @@ Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ch
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #27899|0                           |1
+  Attachment #27900|0                           |1
         is obsolete|                            |
 
 
 
 
---- Comment #11 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-29 09:26:42 PST ---
-Created an attachment (id=28165)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28165)
-xorg log
+--- Comment #12 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-29 09:27:11 PST ---
+Created an attachment (id=28166)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28166)
+kernel log
 
 
 -- 
