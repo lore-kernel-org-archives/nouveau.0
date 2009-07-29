@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22956] nv50: kms, random screen blinkage
-Date: Wed, 29 Jul 2009 04:28:05 -0700 (PDT)
-Message-ID: <20090729112805.4C09D130058@annarchy.freedesktop.org>
+Date: Wed, 29 Jul 2009 04:30:33 -0700 (PDT)
+Message-ID: <20090729113034.F1BD7130058@annarchy.freedesktop.org>
 References: <bug-22956-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,11 +26,16 @@ http://bugs.freedesktop.org/show_bug.cgi?id=22956
 
 
 
---- Comment #9 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-29 04:28:04 PST ---
-Created an attachment (id=28154)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28154)
-bad,
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=66125505c3ac0e201e8286c777be46f3b415ff53
+--- Comment #10 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-29 04:30:31 PST ---
+"drm/nouveau: implement init table opcode 0x97"
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=7992783bc72309bf4e1323097078406c4588adec
+is the newest commit that works
+
+starting from "drm/nouveau: allow entire 0x0002xxxx range in VBIOS parser on
+>=nv50" I get blinking screen, I confirmed it with "drm/nv50: fix bogus warning
+when running analog output scripts" which happens to be a one liner.
+
+For each module I did a cold-boot.
 
 
 -- 
