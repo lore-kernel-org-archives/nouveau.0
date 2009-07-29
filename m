@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22763] suspend doesn't works
-Date: Wed, 29 Jul 2009 09:27:12 -0700 (PDT)
-Message-ID: <20090729162712.5C9F4130058@annarchy.freedesktop.org>
-References: <bug-22763-8800@http.bugs.freedesktop.org/>
+From: schmirrwurst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
+Subject: Re: backlight support
+Date: Wed, 29 Jul 2009 18:23:19 +0200
+Message-ID: <200907291823.19909.schmirrwurst@googlemail.com>
+References: <200907232122.28084.schmirrwurst@googlemail.com>
+	<200907271846.36982.schmirrwurst@googlemail.com>
+	<20090727200046.4e0d3b6b@daedalus.pq.iki.fi>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-22763-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20090727200046.4e0d3b6b-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +22,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=22763
+I've tried with the ppa version that is git+20090724+094e4e0
+but still no backlight information on /proc/acpi/video and =
 
+/sys/class/backlight...
 
-Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #27900|0                           |1
-        is obsolete|                            |
-
-
-
-
---- Comment #12 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-29 09:27:11 PST ---
-Created an attachment (id=28166)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28166)
-kernel log
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Le Monday 27 July 2009 19:00:46, Pekka Paalanen a =E9crit :
+> On Mon, 27 Jul 2009 18:46:36 +0200
+>
+> sebastien.brennion-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org wrote:
+> > I use karmic, with the already packaged 0.0.14+git20090715-0ubuntu1 from
+> > nouveau...
+>
+> Does that build have backlight support enabled?
+> It was made configurable a day before that package date in
+> http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=3D4df79d74cf77ca=
+d4c2
+>7348b3299fb6e046883105
+>
+> > I can't see any backlight information in /sys/class/backlight
+> > Could you tell me how it is supposed to work with nouveau ? I though the
+> > driver would provide backlight information there??
+> >
+> > I don't think to have a old hw, but I don't know what is old for devs...
+> > nVidia Corporation G86 [GeForce 8400M GT]
+>
+> That is considered quite new.
