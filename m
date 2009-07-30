@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17377] NV50 failure on MacBook Pro.
-Date: Thu, 30 Jul 2009 10:37:20 -0700 (PDT)
-Message-ID: <20090730173720.4F2722DC002@annarchy.freedesktop.org>
+Date: Thu, 30 Jul 2009 10:38:53 -0700 (PDT)
+Message-ID: <20090730173853.591C0130058@annarchy.freedesktop.org>
 References: <bug-17377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17377
 
 
 
---- Comment #11 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-07-30 10:37:19 PST ---
-Created an attachment (id=28201)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28201)
-corresponding xorg.log
+--- Comment #12 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-07-30 10:38:52 PST ---
+Even if I don't know for what it is ;), I also tried to pass nouveau.modeset=1
+to the kernel, but then the screen remains black, like off, no pointer,
+nothing... I guess no backlight at all...
 
 
 -- 
