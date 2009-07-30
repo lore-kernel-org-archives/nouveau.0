@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17377] NV50 failure on MacBook Pro.
-Date: Thu, 30 Jul 2009 10:32:40 -0700 (PDT)
-Message-ID: <20090730173240.25F7D130058@annarchy.freedesktop.org>
+Date: Thu, 30 Jul 2009 10:34:23 -0700 (PDT)
+Message-ID: <20090730173424.07A7313005B@annarchy.freedesktop.org>
 References: <bug-17377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17377
 
 
 
---- Comment #9 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-07-30 10:32:39 PST ---
-I'm experiencing the same problem with git version from today and sony fz21e 
-
-When kdm is starting, only the pointer is visible, harddisk is working pretty
-much... and after very long time, I can log in, but as soon as I open a window,
-the xserver is crashing
-
-In the logs, I have a Unhandled PFIFO_INTR see attachment
+--- Comment #10 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-07-30 10:34:23 PST ---
+Created an attachment (id=28200)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28200)
+dmesg with nouveau git 20090730 on sony vaio fz21e
 
 
 -- 
