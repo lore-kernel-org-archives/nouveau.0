@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22763] suspend doesn't works
-Date: Wed, 29 Jul 2009 09:33:43 -0700 (PDT)
-Message-ID: <20090729163343.EBA692DC002@annarchy.freedesktop.org>
-References: <bug-22763-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23023] no backlight support  in /sys or /proc ;
+ xbacklight not working
+Date: Wed, 29 Jul 2009 23:11:59 -0700 (PDT)
+Message-ID: <20090730061159.E58F913005C@annarchy.freedesktop.org>
+References: <bug-23023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-22763-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23023-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +21,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=22763
+http://bugs.freedesktop.org/show_bug.cgi?id=23023
 
 
+Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         AssignedTo|aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org        |nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org
+                   |                            |g
+          Component|Driver/nVidia (open)        |Driver/nouveau
 
 
-
---- Comment #13 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-29 09:33:43 PST ---
-drm, kernel, ddx from git 
-after suspend > resume > vt switch:
-
-[...]
-nouveau 0000:01:00.0: PGRAPH_ERROR - nSource: ILLEGAL_MTHD, nStatus:
-PROTECTION_FAULT
-nouveau 0000:01:00.0: PGRAPH_ERROR - Ch 0/2 Class 0x57d0 Mthd 0x0c34 Data
-0x00000000:0x00000000
-[...]
 
 
 -- 
