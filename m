@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 22956] nv50: kms, random screen blinkage
-Date: Thu, 30 Jul 2009 14:13:00 -0700 (PDT)
-Message-ID: <20090730211300.A0EB7130058@annarchy.freedesktop.org>
+Date: Thu, 30 Jul 2009 18:21:18 -0700 (PDT)
+Message-ID: <20090731012118.2BFA62DC002@annarchy.freedesktop.org>
 References: <bug-22956-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,29 +23,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=22956
 
 
+Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #11 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-30 14:12:58 PST ---
-I noticed something interesting with 0x00020074 register, if you look at the
-logs, when this register is omitted/tagged as unknown everything works fine.
-Currently with git code this is what's happening:
 
-nouveau 0000:01:00.0:   Write: Reg: 0x00020074, Data: 0x80000000
-
-while the mmiotrace from 190.18 blob shows this:
-
-R 4 222.638450 3 0xfa020074 0x90000000 0x0 0
-W 4 222.638466 3 0xfa020074 0x90010000 0x0 0
-...
-R 4 222.638579 3 0xfa020074 0x90010000 0x0 0
-W 4 222.638594 3 0xfa020074 0x90010000 0x0 0
-
-notice that blob writes 0x90010000 to that registers, do we know what this
-register does?
-
-
-
+--- Comment #12 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-07-30 18:21:17 PST ---
+fixed! thanks darktama
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=9709e636a5ca3d3116da3ab279d5420e2700cad8
 
 
 -- 
