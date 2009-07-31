@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23056] New: trouble with KMS on MBP w/ 8600M GT
-Date: Fri, 31 Jul 2009 03:41:13 -0700 (PDT)
-Message-ID: <bug-23056-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23057] New: Nouveau/DRM from unamed reposiory
+	failing to build
+Date: Fri, 31 Jul 2009 03:41:55 -0700 (PDT)
+Message-ID: <bug-23057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,39 +19,55 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23056
-
-           Summary: trouble with KMS on MBP w/ 8600M GT
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: thaytan-tNEf+aOKuzigY/GUsVfh5AC/G2K4zDHf@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=28218)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28218)
-kernel log
-
-Recent fedora rawhide kernels fail to boot for me - they just end up in a blank
-screen. Turning off modesetting with nouveau.modeset=0 on the kernel cmdline
-helps
-
-Attaching a log from modprobing nouveau with drm debug=1
-
-I filed a bug at redhat bugzilla too:
-https://bugzilla.redhat.com/show_bug.cgi?id=514313
-
-anything else I can provide to help fix this?
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzA1NwoKICAgICAg
+ICAgICBTdW1tYXJ5OiBOb3V2ZWF1L0RSTSBmcm9tIHVuYW1lZCByZXBvc2lvcnkgZmFpbGluZyB0
+byBidWlsZAogICAgICAgICAgIFByb2R1Y3Q6IHhvcmcKICAgICAgICAgICBWZXJzaW9uOiBnaXQK
+ICAgICAgICAgIFBsYXRmb3JtOiBPdGhlcgogICAgICAgIE9TL1ZlcnNpb246IEFsbAogICAgICAg
+ICAgICBTdGF0dXM6IE5FVwogICAgICAgICAgU2V2ZXJpdHk6IG1ham9yCiAgICAgICAgICBQcmlv
+cml0eTogbWVkaXVtCiAgICAgICAgIENvbXBvbmVudDogRHJpdmVyL25vdXZlYXUKICAgICAgICBB
+c3NpZ25lZFRvOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwogICAgICAgIFJlcG9ydGVk
+Qnk6IFNURVZFTldBUkQ2NjZAaG90bWFpbC5jb20KICAgICAgICAgUUFDb250YWN0OiB4b3JnLXRl
+YW1AbGlzdHMueC5vcmcKCgpIaSB0byBhbGwsCiAgICAgICAgIEknbSBjdXJyZW50bHkgcnVubmlu
+ZyBmZWRvcmEgUmF3aGlkZS5JJ3ZlIGp1c3QgaGFkIGEgTUFTU0lWRSBsb2FkIG9mCnVwZGF0ZXMg
+dXNpbmcgeXVtIGFuZCBteSBsYXRlc3Qga2VybmVsIGlzIG5vdyAyLjYuMzEuMTA3LnJjNC4KCkkg
+c2xhbyBjb21waWxlIEQuUi5NLE1lc2EsdGhlIE5vdXZlYXUvRC5SLk0gbW9kdWxlcyBmcm9tIHRo
+ZSB1bm5hbWVkCnJlcG9zaXRvcnksYW5kIHRoZSB4Zjg2LXZpZGVvLW5vdXZlYXUgZHJpdmVyIGZy
+b20gdGhlIGdpdCByZXBvc2l0b3JpZXMuCgpJIHJlLWJvb3RlZCBpbnRvIHRoZSBsYXRlc3Qga2Vy
+bmVsIGFuZCBnaXQgcHVsbGVkIG9uIG1lc2EgYW5kIHRoZSB1bm5hbWVkCnJlcG9zaXRvcnkuSSB0
+aGVuIHdlbnQgaW50byB0aGUgL2xpbnV4LTIuNi9ub3V2YXUgZm9sZGVyIHVzaW5nIEtvbnNvbGUg
+dG8KcmUtYnVpbGQgdGhlIG1vZHVsZXMgZm9yIHRoZSBrZXJuZWwuCgpBcyBpdCB3YXMgZG9pbmcg
+dGhhdCxJIGNhbWUgdXAgd2l0aCB0aGlzIGVycm9yOgoKcm9vdEBtZXJuaXZpYSBub3V2ZWF1XSMg
+bWFrZQptYWtlIC1DIC9saWIvbW9kdWxlcy8yLjYuMzEtMC4xMDcucmM0LmdpdDMuZmMxMi5pNjg2
+LlBBRS9zb3VyY2UKS0NQUEZMQUdTPSItSS9vcHQvbGludXgtMi42L2luY2x1ZGUvZHJtIgpTVUJE
+SVJTPSIvb3B0L2xpbnV4LTIuNi9kcml2ZXJzL2dwdS9kcm0iIENPTkZJR19EUk09bSBDT05GSUdf
+RFJNX1RUTT1tCkNPTkZJR19EUk1fTk9VVkVBVT1tIENPTkZJR19EUk1fTk9VVkVBVV9LTVM9bQon
+RVhUUkFfQ0ZMQUdTPS1EIkdJVF9SRVZJU0lPTj1cIjI5YWY1N2M2NTkwNGRlY2VkXCIiJyBtb2R1
+bGVzCm1ha2VbMV06IEVudGVyaW5nIGRpcmVjdG9yeQpgL3Vzci9zcmMva2VybmVscy8yLjYuMzEt
+MC4xMDcucmM0LmdpdDMuZmMxMi5pNjg2LlBBRScKTWFrZWZpbGU6NTgwOiAiV0FSTklORzogQXBw
+ZW5kaW5nICRLQ1BQRkxBR1MgKC1JL29wdC9saW51eC0yLjYvaW5jbHVkZS9kcm0pCmZyb20gY29t
+bWFuZCBsaW5lIHRvIGtlcm5lbCAkQ1BQRkxBR1MiCiAgQ0MgW01dICAvb3B0L2xpbnV4LTIuNi9k
+cml2ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b21iaW9zX2NydGMubwovb3B0L2xpbnV4LTIuNi9kcml2
+ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b21iaW9zX2NydGMuYzogSW4gZnVuY3Rpb24K4oCYYXRvbWJp
+b3NfY3J0Y19zZXRfYmFzZeKAmToKL29wdC9saW51eC0yLjYvZHJpdmVycy9ncHUvZHJtL3JhZGVv
+bi9hdG9tYmlvc19jcnRjLmM6NDk1OiBlcnJvcjoK4oCYUkFERU9OX1RJTElOR19NQUNST+KAmSB1
+bmRlY2xhcmVkIChmaXJzdCB1c2UgaW4gdGhpcyBmdW5jdGlvbikKL29wdC9saW51eC0yLjYvZHJp
+dmVycy9ncHUvZHJtL3JhZGVvbi9hdG9tYmlvc19jcnRjLmM6NDk1OiBlcnJvcjogKEVhY2gKdW5k
+ZWNsYXJlZCBpZGVudGlmaWVyIGlzIHJlcG9ydGVkIG9ubHkgb25jZQovb3B0L2xpbnV4LTIuNi9k
+cml2ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b21iaW9zX2NydGMuYzo0OTU6IGVycm9yOiBmb3IgZWFj
+aApmdW5jdGlvbiBpdCBhcHBlYXJzIGluLikKL29wdC9saW51eC0yLjYvZHJpdmVycy9ncHUvZHJt
+L3JhZGVvbi9hdG9tYmlvc19jcnRjLmM6NDk4OiBlcnJvcjoK4oCYUkFERU9OX1RJTElOR19NSUNS
+T+KAmSB1bmRlY2xhcmVkIChmaXJzdCB1c2UgaW4gdGhpcyBmdW5jdGlvbikKbWFrZVszXTogKioq
+IFsvb3B0L2xpbnV4LTIuNi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b21iaW9zX2NydGMub10g
+RXJyb3IgMQptYWtlWzJdOiAqKiogWy9vcHQvbGludXgtMi42L2RyaXZlcnMvZ3B1L2RybS9yYWRl
+b25dIEVycm9yIDIKbWFrZVsxXTogKioqIFtfbW9kdWxlXy9vcHQvbGludXgtMi42L2RyaXZlcnMv
+Z3B1L2RybV0gRXJyb3IgMgptYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeQpgL3Vzci9zcmMva2Vy
+bmVscy8yLjYuMzEtMC4xMDcucmM0LmdpdDMuZmMxMi5pNjg2LlBBRScKbWFrZTogKioqIFttb2R1
+bGVzXSBFcnJvciAyCgpJIGhvcGUgaXQgY2FuIGJlIGZpeGVkLkkgaGF2ZSBzb21lIG90aGVyIGlu
+Zm8gb24gYW5vdGhlciBtYXR0ZXIgd2l0aCBub3V2ZWF1CndoaWNoIEknbGwgcG9zdCBpbiBhbm90
+aGVyIHRocmVhZC4KClJlZ2FyZHMsCiAgICAgICBTVEVWRTU1NQoKCi0tIApDb25maWd1cmUgYnVn
+bWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWls
+Ci0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91
+IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
