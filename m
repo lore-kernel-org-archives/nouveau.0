@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23092] Syslog flooded with "nouveau 0000:01:00.0:
  Unhandled PFIFO_INTR - 0x00000010"
-Date: Sun,  2 Aug 2009 12:20:08 -0700 (PDT)
-Message-ID: <20090802192008.3B98F130058@annarchy.freedesktop.org>
+Date: Sun,  2 Aug 2009 12:32:09 -0700 (PDT)
+Message-ID: <20090802193210.07644130058@annarchy.freedesktop.org>
 References: <bug-23092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,13 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23092
 
 
 
---- Comment #1 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2009-08-02 12:20:07 PST ---
-There are some info missing I think.
-
-It would help if you could dmesg > file.log and attach file.log, attach your
-/var/log/Xorg.log. Also tell us if you are trying to use the mesa gallium3d
-nouveau driver which because of its incomplete (and unsupported) state are know
-to generate this kind of messages.
+--- Comment #2 from Julien Ozog <julien.ozog+freedesktop-1155aFL98BxeoWH0uzbU5w@public.gmane.org>  2009-08-02 12:32:09 PST ---
+Created an attachment (id=28268)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28268)
+dmesg
 
 
 -- 
