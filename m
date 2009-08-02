@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23092] Syslog flooded with "nouveau 0000:01:00.0:
- Unhandled PFIFO_INTR - 0x00000010"
-Date: Sun,  2 Aug 2009 12:35:25 -0700 (PDT)
-Message-ID: <20090802193525.88A3B130058@annarchy.freedesktop.org>
-References: <bug-23092-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23086] TNT2 doesn't start with current nouveau
+Date: Sun,  2 Aug 2009 12:56:53 -0700 (PDT)
+Message-ID: <20090802195653.AF3E8130058@annarchy.freedesktop.org>
+References: <bug-23086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23092-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23086-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23092
+http://bugs.freedesktop.org/show_bug.cgi?id=23086
 
 
 
 
 
---- Comment #4 from Julien Ozog <julien.ozog+freedesktop-1155aFL98BxeoWH0uzbU5w@public.gmane.org>  2009-08-02 12:35:25 PST ---
-I have attached the requested log files. I don't use Mesa / Gallium3D.
+--- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2009-08-02 12:56:52 PST ---
+Yes, i recompiled evdev and bug still here. Once i even run eterm sucessfully,
+but it segfaults very fast afterwards.
+
+i'll add drm debug log tonight.
 
 
 -- 
