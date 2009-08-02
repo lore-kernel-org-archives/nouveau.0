@@ -1,7 +1,8 @@
-From: okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Remove deprecated file
-Date: Sun, 2 Aug 2009 19:30:41 +0200
-Message-ID: <c2673ca60908021030j7c5c8ef9x842876217f0e61d3@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23092] New: Syslog flooded with "nouveau
+ 0000:01:00.0: Unhandled PFIFO_INTR - 0x00000010"
+Date: Sun,  2 Aug 2009 11:04:57 -0700 (PDT)
+Message-ID: <bug-23092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,53 +19,48 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This file is 13 years old and NV01/03 isn't even supported by Nouveau.
-This patch remove README.NV1.
+http://bugs.freedesktop.org/show_bug.cgi?id=23092
 
---- a/README.NV1	2009-08-02 18:19:25.000000000 +0200
-+++ b/README.NV1	1970-01-01 01:00:00.000000000 +0100
-@@ -1,42 +0,0 @@
--           Information for NVidia NV1 / SGS-Thomson STG2000 Users
--
--                                 David McKay
--
--                               20th March 1997
--
--1.  XFree driver for NVidia NV1 / SGS-Thomson STG2000 v1.0
--
--This driver now accelerates bitblits and filled rectangles. It also support a
--hardware cursor.  More graphic acceleration is planned. There is no plan to
--support the audio functionality of the chip.
--
--1.1  Notes
--
--   o THE DRIVER DOES NOT SUPPORT THE VIRTUAL DESKTOP FEATURES OF XFREE86 This
--     is because the NV1 does not have the necessary hardware to support this
--     feature. If you want to change resolutions, you will have to modify your
--     config file. Comment out all but the mode you wish to use.
--
--   o The generic VGA16 server will not work with the NV1.  For this reason
--     XF86Setup cannot be used to configure the server.  Use xf86config
--     instead.  Select `Diamond Edge 3D' as your board, and select only ONE
--     mode for each of 8bpp and 16bpp.  Do not select a virtual desktop.
--     Also, make sure you don't select a RAMDAC or clock chip.
--
--   o The NV1 only supports a 555 RGB Weight in 16 bpp, the hardware does not
--     do 565. You must put a Weight 555 in the Display section.
--
--   o 24/32 bpp mode is not yet supported.
--
--1.2  Known Bugs
--
--   o The driver should force Weight 555 in 16 bpp mode
--
--   o The hardware cursor doesn't work if an doublescan mode is selected.
--
--   o Screen blanking doesn't work, nor does DPMS.
--
--     Generated from XFree86:
-xc/programs/Xserver/hw/xfree86/doc/sgml/NV1.sgml,v 3.3 1997/03/22
-09:35:30 hohndel Exp $
--
--
--$XFree86$
+           Summary: Syslog flooded with "nouveau 0000:01:00.0: Unhandled
+                    PFIFO_INTR - 0x00000010"
+           Product: xorg
+           Version: 7.4
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: julien.ozog+freedesktop-1155aFL98BxeoWH0uzbU5w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Hi, I try to use Nouveau for the first time today. Everything seems to work
+fine, except that my syslog is flooded with this message :
+"kernel: nouveau 0000:01:00.0: Unhandled PFIFO_INTR - 0x00000010"
+
+In the previous 3 hours, this message has been logged ~25000 times.
+
+It seems related with my activity, with an empty desktop and doing nothing, the
+message still print but much less often. As soon as I began typing or opening a
+menu, the message is logged as much as 50 times per second.
+
+I use DDX, libdrm and DRM snapshots from today. DRM comes from the
+master-compat branch (commit         4ea84bc8aeaccc57958b8fb2847965d52b6bda72).
+I don't use KMS.
+Composite is enabled and used with metacity.
+
+X.Org X Server 1.6.3
+Linux 2.6.30.3
+
+My card is :
+PCI:*(0:1:0:0) 10de:0407:14c0:0025 nVidia Corporation G84 [GeForce 8600M GT]
+rev 161, Mem @ 0xc6000000/16777216, 0xd0000000/268435456, 0xc4000000/33554432,
+I/O @ 0x00002000/128
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
