@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17377] NV50 failure on MacBook Pro.
-Date: Mon,  3 Aug 2009 04:51:18 -0700 (PDT)
-Message-ID: <20090803115118.4C5A72DC001@annarchy.freedesktop.org>
+Subject: [Bug 17377] NV50 failure : Unhandled PFIFO_INTR -
+	0x00000010
+Date: Mon,  3 Aug 2009 14:00:50 -0700 (PDT)
+Message-ID: <20090803210050.1BD6C130058@annarchy.freedesktop.org>
 References: <bug-17377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +28,15 @@ schmirrwurst-GANU6spQydw@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #28201|0                           |1
-        is obsolete|                            |
+            Summary|NV50 failure on MacBook Pro.|NV50 failure : Unhandled
+                   |                            |PFIFO_INTR - 0x00000010
 
 
 
 
---- Comment #15 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-08-03 04:51:17 PST ---
-Created an attachment (id=28295)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28295)
-xorg log 03-08-2009
+--- Comment #16 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-08-03 14:00:49 PST ---
+I've forgott to say that as the screen is with grey and black lines, the
+pointer is displayed normally...
 
 
 -- 
