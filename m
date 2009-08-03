@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23092] Syslog flooded with "nouveau 0000:01:00.0:
  Unhandled PFIFO_INTR - 0x00000010"
-Date: Sun,  2 Aug 2009 20:49:42 -0700 (PDT)
-Message-ID: <20090803034942.474EB130058@annarchy.freedesktop.org>
+Date: Sun,  2 Aug 2009 23:56:59 -0700 (PDT)
+Message-ID: <20090803065700.53F0A130058@annarchy.freedesktop.org>
 References: <bug-23092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,23 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23092
 
 
 
---- Comment #5 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2009-08-02 20:49:41 PST ---
-From Xorg.log
+--- Comment #6 from Julien Ozog <julien.ozog+freedesktop-1155aFL98BxeoWH0uzbU5w@public.gmane.org>  2009-08-02 23:56:59 PST ---
+Created an attachment (id=28279)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28279)
+Xorg.log with correct libglx
 
-(II) Module glx: vendor="NVIDIA Corporation"
-        compiled for 4.0.2, module version = 1.0.0
-        Module class: X.Org Server Extension
-(II) NVIDIA GLX Module  185.18.14  Wed May 27 03:09:07 PDT 2009
-
-(EE) NOUVEAU(0): [dri] GlxSetVisualConfigs not found.
-(EE) NOUVEAU(0):       NVIDIA's glx present, or glx not loaded.
-
-(EE) Failed to initialize GLX extension (Compatible NVIDIA X driver not found)
-
-
-This means there are residues left after a earlier install of nvidias binary
-blob. You may have to remove those files and reinstall the package providing
-glx and dri for your distribution as these can and does interfere with nouveau.
+Oops, sorry, I didn't see that. Same problem with the correct libglx, here is
+the new Xorg.log.
 
 
 -- 
