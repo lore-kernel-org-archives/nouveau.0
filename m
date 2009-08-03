@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17377] NV50 failure : Unhandled PFIFO_INTR -
 	0x00000010
-Date: Mon,  3 Aug 2009 14:00:50 -0700 (PDT)
-Message-ID: <20090803210050.1BD6C130058@annarchy.freedesktop.org>
+Date: Mon,  3 Aug 2009 14:02:26 -0700 (PDT)
+Message-ID: <20090803210226.859F2130058@annarchy.freedesktop.org>
 References: <bug-17377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,15 +28,16 @@ schmirrwurst-GANU6spQydw@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|NV50 failure on MacBook Pro.|NV50 failure : Unhandled
-                   |                            |PFIFO_INTR - 0x00000010
+  Attachment #28200|0                           |1
+        is obsolete|                            |
 
 
 
 
---- Comment #16 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-08-03 14:00:49 PST ---
-I've forgott to say that as the screen is with grey and black lines, the
-pointer is displayed normally...
+--- Comment #17 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-08-03 14:02:26 PST ---
+Created an attachment (id=28322)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28322)
+dmesg 03/08/2009 sony vaio fz21e
 
 
 -- 
