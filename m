@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23086] TNT2 doesn't start with current nouveau
-Date: Mon,  3 Aug 2009 00:42:02 -0700 (PDT)
-Message-ID: <20090803074202.B2F06130058@annarchy.freedesktop.org>
+Date: Mon,  3 Aug 2009 00:42:58 -0700 (PDT)
+Message-ID: <20090803074258.B9633130058@annarchy.freedesktop.org>
 References: <bug-23086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23086
 
 
-Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #28254|0                           |1
-        is obsolete|                            |
 
 
 
-
---- Comment #6 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2009-08-03 00:42:01 PST ---
-Created an attachment (id=28283)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28283)
-newer X log
+--- Comment #7 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2009-08-03 00:42:58 PST ---
+Created an attachment (id=28284)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28284)
+last 4000 lines from /var/log/debug
 
 
 -- 
