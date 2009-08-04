@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17377] NV50 failure : Unhandled PFIFO_INTR -
-	0x00000010
-Date: Mon,  3 Aug 2009 14:02:26 -0700 (PDT)
-Message-ID: <20090803210226.859F2130058@annarchy.freedesktop.org>
-References: <bug-17377-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: [PATCH 1/6] drm/nouveau: bo read/write wrappers for
+	nv04_crtc.c
+Date: Tue,  4 Aug 2009 21:22:41 +0300
+Message-ID: <1249410166-4566-1-git-send-email-pq@iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17377-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +19,110 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=17377
+Introduce accessors for TTM buffer object memory that has been mapped
+into the kernel virtual address space or as IO memory. IO memory needs
+to be accessed via special accessor functions, not by dereferencing the
+iomem cookie. The wrappers hide the details of 32-bit access and honour
+the TTM map type.
 
+nv04_crtc_cursor_set() is changed to use the new wrappers. 'cursor' is
+received from user space, which means we cannot assume that it is or is
+not iomem. 'nv_crtc->cursor.nvbo' should always be iomem, and as such
+the access is relatively slow. Therefore using the wrappers for it, too,
+should not cost much.
 
-schmirrwurst-GANU6spQydw@public.gmane.org changed:
+Signed-off-by: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c  |   23 +++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_drv.h |    2 ++
+ drivers/gpu/drm/nouveau/nv04_crtc.c   |    7 ++-----
+ 3 files changed, 27 insertions(+), 5 deletions(-)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #28200|0                           |1
-        is obsolete|                            |
-
-
-
-
---- Comment #17 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-08-03 14:02:26 PST ---
-Created an attachment (id=28322)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28322)
-dmesg 03/08/2009 sony vaio fz21e
-
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index d59ffc4..442bab7 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -172,6 +172,29 @@ nouveau_bo_unmap(struct nouveau_bo *nvbo)
+ 	ttm_bo_kunmap(&nvbo->kmap);
+ }
+ 
++u32
++nouveau_bo_rd32(struct nouveau_bo *nvbo, unsigned index)
++{
++	bool is_iomem;
++	u32 *mem = ttm_kmap_obj_virtual(&nvbo->kmap, &is_iomem);
++	mem = &mem[index];
++	if (is_iomem)
++		return ioread32_native((void __force __iomem *)mem);
++	else
++		return *mem;
++}
++
++void
++nouveau_bo_wr32(struct nouveau_bo *nvbo, unsigned index, u32 val)
++{
++	bool is_iomem;
++	u32 *mem = ttm_kmap_obj_virtual(&nvbo->kmap, &is_iomem);
++	mem = &mem[index];
++	if (is_iomem)
++		iowrite32_native(val, (void __force __iomem *)mem);
++	else
++		*mem = val;
++}
+ static struct ttm_backend *
+ nouveau_bo_create_ttm_backend_entry(struct ttm_bo_device *bdev)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index c6143b8..44a7ab5 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -926,6 +926,8 @@ extern int nouveau_bo_pin(struct nouveau_bo *, uint32_t flags);
+ extern int nouveau_bo_unpin(struct nouveau_bo *);
+ extern int nouveau_bo_map(struct nouveau_bo *);
+ extern void nouveau_bo_unmap(struct nouveau_bo *);
++extern u32 nouveau_bo_rd32(struct nouveau_bo *nvbo, unsigned index);
++extern void nouveau_bo_wr32(struct nouveau_bo *nvbo, unsigned index, u32 val);
+ 
+ /* nouveau_fence.c */
+ struct nouveau_fence;
+diff --git a/drivers/gpu/drm/nouveau/nv04_crtc.c b/drivers/gpu/drm/nouveau/nv04_crtc.c
+index 103e28c..f4fc5b7 100644
+--- a/drivers/gpu/drm/nouveau/nv04_crtc.c
++++ b/drivers/gpu/drm/nouveau/nv04_crtc.c
+@@ -1005,7 +1005,6 @@ nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
+ 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+ 	struct nouveau_bo *cursor = NULL;
+ 	struct drm_gem_object *gem;
+-	uint32_t *src, *dst, pixel;
+ 	int ret = 0, alpha, i;
+ 
+ 	if (width != 64 || height != 64)
+@@ -1024,8 +1023,6 @@ nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
+ 	ret = nouveau_bo_map(cursor);
+ 	if (ret)
+ 		goto out;
+-	src = cursor->kmap.virtual;
+-	dst = nv_crtc->cursor.nvbo->kmap.virtual;
+ 
+ 	/* nv11+ supports premultiplied (PM), or non-premultiplied (NPM) alpha
+ 	 * cursors (though NPM in combination with fp dithering may not work on
+@@ -1034,7 +1031,7 @@ nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
+ 	 * blob uses, however we get given PM cursors so we use PM mode
+ 	 */
+ 	for (i = 0; i < 64 * 64; i++) {
+-		pixel = *src++;
++		uint32_t pixel = nouveau_bo_rd32(cursor, i);
+ 
+ 		/* hw gets unhappy if alpha <= rgb values.  for a PM image "less
+ 		 * than" shouldn't happen; fix "equal to" case by adding one to
+@@ -1054,7 +1051,7 @@ nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
+ 		}
+ #endif
+ 
+-		*dst++ = pixel;
++		nouveau_bo_wr32(nv_crtc->cursor.nvbo, i, pixel);
+ 	}
+ 
+ 	nouveau_bo_unmap(cursor);
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.6.3.3
