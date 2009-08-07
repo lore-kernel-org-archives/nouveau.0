@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23197] New: nv50/NVS135M: laptop runs hot
-Date: Fri,  7 Aug 2009 06:41:14 -0700 (PDT)
-Message-ID: <bug-23197-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23198] New: nv50/NVS135M: video hangs/flickers when
+	fullscreen
+Date: Fri,  7 Aug 2009 06:43:10 -0700 (PDT)
+Message-ID: <bug-23198-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,9 +19,9 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23197
+http://bugs.freedesktop.org/show_bug.cgi?id=23198
 
-           Summary: nv50/NVS135M: laptop runs hot
+           Summary: nv50/NVS135M: video hangs/flickers when fullscreen
            Product: xorg
            Version: 7.3
           Platform: Other
@@ -34,11 +35,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23197
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-When working under Linux I lately experience the laptop runs quite hot
-(resulting in high fan-action, ...). This doesn't seem to be the case under
-Windows or so. Also there seems to be no load on the CPU (powertop reports it's
-quite idle, top shows nothing suspicious except Xorg taking approx 6% cpu) etc.
-So I suspect it might be GPU-related.
+Video played back through e.g. Miro, kaffeine or others works fine if run at a
+"reasonable" size. But running near fullscreen or switching to complete
+fullscreen-mode it soon after starts to hang/flicker.
 
 
 -- 
