@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23199] New: nv50/NVS135M: missing TV-out-support
-Date: Fri,  7 Aug 2009 06:45:25 -0700 (PDT)
-Message-ID: <bug-23199-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23200] New: nv50/NVS135M: no working suspend yet
+Date: Fri,  7 Aug 2009 06:46:54 -0700 (PDT)
+Message-ID: <bug-23200-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,9 +18,9 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23199
+http://bugs.freedesktop.org/show_bug.cgi?id=23200
 
-           Summary: nv50/NVS135M: missing TV-out-support
+           Summary: nv50/NVS135M: no working suspend yet
            Product: xorg
            Version: 7.3
           Platform: Other
@@ -34,13 +34,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23199
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-I know this is WIP or not really even started. Tried working out things with
-somebody from the nouveau-project lately, but it seems that the TV-out-support
-for e.g. nv40 can't really help to code similar for nv50, that seems quite
-different.
+As discussed on IRC there is no real working support for suspend (even suspend
+to RAM or the like) for nv50 yet. Would be great to get this working, maybe by
+the help of using KMS or so?
 
-If I can somehow help test code etc. I'm willing to. Looking forward to "get
-the ball rolling" on this.
+I'm willing to help test things if possible.
 
 
 -- 
