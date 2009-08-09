@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15350] randr12: VGA-0 always reported as
 	"disconnected"
-Date: Sun,  9 Aug 2009 01:36:09 -0700 (PDT)
-Message-ID: <20090809083609.4D04213005B@annarchy.freedesktop.org>
+Date: Sun,  9 Aug 2009 01:44:06 -0700 (PDT)
+Message-ID: <20090809084406.BA97C13005A@annarchy.freedesktop.org>
 References: <bug-15350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,12 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15350
 
 
+Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |WORKSFORME
 
 
 
---- Comment #19 from Joe Orton <jorton-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>  2009-08-09 01:36:08 PST ---
-Sorry, the laptop on which I saw this bug joined the bit bucket in the sky a
-while back.  Feel free to close out if you think appropriate.
+
+--- Comment #20 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-08-09 01:44:06 PST ---
+Okay, thanks. Closing.
 
 
 -- 
