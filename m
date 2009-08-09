@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 17484] lots of PGRAPH_ERROR/PROTECTION_ERROR
-Date: Sun,  9 Aug 2009 06:17:12 -0700 (PDT)
-Message-ID: <20090809131712.EBD9913005A@annarchy.freedesktop.org>
+Date: Sun,  9 Aug 2009 06:32:42 -0700 (PDT)
+Message-ID: <20090809133243.2D02E13005B@annarchy.freedesktop.org>
 References: <bug-17484-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=17484
 
 
 
---- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-08-09 06:17:11 PST ---
-Pierre, do you have problems still?
-I have a NVS 140M in a laptop and Nouveau is running just fine.
+--- Comment #4 from Pierre Ossman <drzeus-bugzilla-p3sGCRWkH8CeZLLa646FqQ@public.gmane.org>  2009-08-09 06:32:37 PST ---
+It is working fine these days, so you can close this bug.
 
 
 -- 
