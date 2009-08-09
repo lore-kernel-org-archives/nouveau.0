@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23223] Regression: Nvidia Geforce 7300 (NV4B) fails
 	to suspend
-Date: Sun,  9 Aug 2009 01:26:36 -0700 (PDT)
-Message-ID: <20090809082636.5E6CA130058@annarchy.freedesktop.org>
+Date: Sun,  9 Aug 2009 01:27:13 -0700 (PDT)
+Message-ID: <20090809082714.0E778130058@annarchy.freedesktop.org>
 References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23223
 
 
 
---- Comment #2 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-09 01:26:36 PST ---
-Created an attachment (id=28446)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28446)
-lspci -s 01:00.0 -v -v -v > lspci
+--- Comment #3 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-09 01:27:13 PST ---
+Created an attachment (id=28447)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28447)
+The log of the running Xorg server when I'm trying to suspend (I don't see
+anything)
 
 
 -- 
