@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15350] randr12: VGA-0 always reported as
-	"disconnected"
-Date: Sun,  9 Aug 2009 00:45:01 -0700 (PDT)
-Message-ID: <20090809074501.E342013005B@annarchy.freedesktop.org>
-References: <bug-15350-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 14703] On NV17 on laptop screen: certain resolutions
+ are scrambled
+Date: Sun,  9 Aug 2009 01:13:51 -0700 (PDT)
+Message-ID: <20090809081351.27E17130058@annarchy.freedesktop.org>
+References: <bug-14703-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-14703-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +21,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15350
+http://bugs.freedesktop.org/show_bug.cgi?id=14703
 
 
 
 
 
---- Comment #18 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-08-09 00:45:01 PST ---
-Joe, any news on this issue?
+--- Comment #18 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-08-09 01:13:50 PST ---
+Randr 1.2 is now mandatory. Any news on this bug? How about KMS?
 
 
 -- 
