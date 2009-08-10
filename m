@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23231] Nouveau driver from git fails to build
-Date: Mon, 10 Aug 2009 03:51:31 -0700 (PDT)
-Message-ID: <20090810105132.1343F130058@annarchy.freedesktop.org>
+Date: Mon, 10 Aug 2009 04:01:32 -0700 (PDT)
+Message-ID: <20090810110132.CB8332DC001@annarchy.freedesktop.org>
 References: <bug-23231-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-23231-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -20,19 +20,20 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzIzMQoKCk1pY2hl
-bCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5uZXQ+IGNoYW5nZWQ6CgogICAgICAgICAgIFdoYXQg
-ICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LQogICAgICAgICAgICAgU3RhdHVzfFJFU09MVkVEICAgICAgICAgICAgICAgICAgICB8UkVPUEVO
-RUQKICAgICAgICAgUmVzb2x1dGlvbnxOT1RBQlVHICAgICAgICAgICAgICAgICAgICAgfAoKCgoK
-LS0tIENvbW1lbnQgIzIgZnJvbSBNaWNoZWwgRMOkbnplciA8bWljaGVsQGRhZW56ZXIubmV0PiAg
-MjAwOS0wOC0xMCAwMzo1MTozMSBQU1QgLS0tClRoZSBkcml2ZXIgbmVlZHMgdG8gY2hlY2sgdGhh
-dCBFWEFfTUlYRURfUElYTUFQUyBpcyBkZWZpbmVkIGJlZm9yZSB1c2luZyBpdC4KVGhlIHJhZGVv
-biBkcml2ZXIganVzdCBndWFyZHMgdGhhdCBjb2RlIGJ5ICNpZmRlZiBFWEFfTUlYRURfUElYTUFQ
-Uy4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91
-c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFp
-bCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=23231
+
+
+
+
+
+--- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-10 04:01:31 PST ---
+Michel:  While it would be easy enough to do that, sure, I have no intentions
+of attempting to preserve compatibility between pre-release servers.  We
+currently check for >= EXA 2.5 before assuming mixed pixmaps are available,
+that seems sufficient no?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
