@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23231] Nouveau driver from git fails to build
-Date: Mon, 10 Aug 2009 04:21:41 -0700 (PDT)
-Message-ID: <20090810112141.38D8B13005A@annarchy.freedesktop.org>
+Date: Mon, 10 Aug 2009 04:28:13 -0700 (PDT)
+Message-ID: <20090810112813.1926E13005B@annarchy.freedesktop.org>
 References: <bug-23231-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-23231-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -20,25 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23231
-
-
-
-
-
---- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-10 04:21:40 PST ---
-The reporter is using non-released software, it shouldn't be unexpected that
-things break.  Why bother with compatibility for something that's never going
-to make it into a release?  Are we going to do the same when CreatePixmap2()
-gets modified again before the release?  In which case we have #ifdefs for 3
-different APIs...
-
-It's no real trouble to allow use of both, I just didn't see the point.  Not to
-mention that before mixed pixmaps, driver pixmaps were essentially unusably
-slow on some chipsets.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzIzMQoKCgoKCi0t
+LSBDb21tZW50ICM2IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4gIDIw
+MDktMDgtMTAgMDQ6Mjg6MTIgUFNUIC0tLQooSW4gcmVwbHkgdG8gY29tbWVudCAjNSkKPiBBcmUg
+d2UgZ29pbmcgdG8gZG8gdGhlIHNhbWUgd2hlbiBDcmVhdGVQaXhtYXAyKCkgZ2V0cyBtb2RpZmll
+ZCBhZ2FpbiBiZWZvcmUgdGhlCj4gcmVsZWFzZT8KCkhvdyB3b3VsZCB5b3UgaGFuZGxlIHRoYXQg
+d2l0aCAjaWZkZWZzPyBJdCdzIGdvbm5hIG5lZWQgYW4gRVhBIHZlcnNpb24gY2hhbmdlCihtaW5v
+ciBidW1wLCBwcm9iYWJseSkuCgo+IEl0J3Mgbm8gcmVhbCB0cm91YmxlIHRvIGFsbG93IHVzZSBv
+ZiBib3RoLCBJIGp1c3QgZGlkbid0IHNlZSB0aGUgcG9pbnQuCgpCaXNlY3RhYmlsaXR5LCBlLmcu
+PwoKQW55d2F5LCBJIHRoaW5rIEkndmUgcHJlc2VudGVkIG15IGFyZ3VtZW50cyBhbmQgYW0gZ29p
+bmcgdG8gc3RvcCBub3cuIERvIGFzIHlvdQpzZWUgZml0LgoKCi0tIApDb25maWd1cmUgYnVnbWFp
+bDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0t
+LS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFy
+ZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
