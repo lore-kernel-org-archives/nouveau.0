@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23231] New: Nouveau driver from git fails to build
-Date: Mon, 10 Aug 2009 01:28:15 -0700 (PDT)
-Message-ID: <bug-23231-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23231] Nouveau driver from git fails to build
+Date: Mon, 10 Aug 2009 03:29:57 -0700 (PDT)
+Message-ID: <20090810102957.3C5EE13005A@annarchy.freedesktop.org>
+References: <bug-23231-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-23231-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,52 +20,31 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23231
-
-           Summary: Nouveau driver from git fails to build
-           Product: xorg
-           Version: 6.99.99.904 (7.0 RC4)
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: high
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Hi to all,
-         I'm currently using Fedora Rawhide 12 Constantine.
-I also complile D.R.M the unamed git repository for the nouveau kernel
-moudules,Mesa and the Nouveau driver form git.My graphics card is an nvidia
-geforce 6,800 G.T with 256Mb of memory,my monitor is a A.D.I Microscan G1000.
-
-I've been building the former source code from git ok,but I'm having trouble
-building the Nouveau driver.I update the commits from the nouveau git
-repository regulary.
-
-The problem is after ./configure and then run make.I'll try and type the error
-I'm getting as accurately as possible:
-
-Make all-recursive
-make[1]: Entering directory '/opt/xf86-video-nouvuea'
-Making all in src
-make[2]: entering directory '/opt/xf86-video-nouveau/src'
-CC nouveau_exa.lo
-nouveau_exa.c: In function 'nouveau_exa_init'
-nouveau_exa.c:576:error:'EXA_MIXED_PIXMAPS'undelclared(first use in this
-function
-nouveau_exa.c:576:error:for each function declared in)
-make[2]:*** [nouveau_exa.lo] Error1
-
-I hope anybody can solve this problem.
-Regards,
-       STEVE555
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzIzMQoKClBla2th
+IFBhYWxhbmVuIDxwcUBpa2kuZmk+IGNoYW5nZWQ6CgogICAgICAgICAgIFdoYXQgICAgfFJlbW92
+ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogICAgICAg
+ICAgICAgU3RhdHVzfE5FVyAgICAgICAgICAgICAgICAgICAgICAgICB8UkVTT0xWRUQKICAgICAg
+ICAgUmVzb2x1dGlvbnwgICAgICAgICAgICAgICAgICAgICAgICAgICAgfE5PVEFCVUcKCgoKCi0t
+LSBDb21tZW50ICMxIGZyb20gUGVra2EgUGFhbGFuZW4gPHBxQGlraS5maT4gIDIwMDktMDgtMTAg
+MDM6Mjk6NTYgUFNUIC0tLQpFeGNlcnB0IGZyb20gI25vdXZlYXU6CjEwOjE0OjQxIDwgb2tpYXM+
+IEhlbGxvLCBoYXZlIGFueW9uZSBpZGVhIHdoeSBpIGNhbid0IGNvbXBpbGUgZGR4PwpodHRwOi8v
+cGFzdGViaW4uY2EvMTUyMzY2MQoxMDoxNToyNSA8IGRhcmt0YW1hPiBva2lhczogeW91ciB4c2Vy
+dmVyIGlzbid0IG5ldyBlbm91Z2gKCndoZXJlIHRoZSByZWZlcnJlZCBwYXN0ZSBjb250YWlucyB0
+aGUgc2FtZSBidWcgYXMgeW91Ogpub3V2ZWF1X2V4YS5jOjU3NjogZXJyb3I6IOKAmEVYQV9NSVhF
+RF9QSVhNQVBT4oCZIHVuZGVjbGFyZWQgKGZpcnN0IHVzZSBpbiB0aGlzCmZ1bmN0aW9uKQoKSXQg
+d2FzIGludHJvZHVjZWQgaW4gdGhlIEREWCBjb21taXQgY29tbWl0CjMwZGRkMDhiYjI3Mzk1MTRl
+ZGY2ZDZlMTM3ZjUzM2IzNGE0MzY5ZDIsICJleGE6IHR1cm4gb24gbmV3IGV4YSBtaWdyYXRpb24g
+bW9kZQpmb3IgZHJpdmVyIHBpeG1hcHMiLgoKVGhlICJmaXgiIGlzIGluIHhvcmctc2VydmVyIGNv
+bW1pdCAKaHR0cDovL2NnaXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcveHNlcnZlci9jb21taXQvP2lk
+PTAzZWNiMTY0ZjI1OTJjOTU0YWE0MDhiZjEyMWUwYzY3YjYwNGQ4NTQKImV4YTogQSBzaW1wbGUg
+M3JkIGJhY2tlbmQgaW1wbGVtZW50YXRpb24uIiwgc28gdGhlIHNvbHV0aW9uIGlzIHRvIHVwZGF0
+ZSB5b3VyCnhvcmctc2VydmVyIGZyb20gZ2l0LgoKQW4gYWx0ZXJuYXRpdmUgc29sdXRpb24gaXMg
+dG8gZG93bmdyYWRlIHhvcmctc2VydmVyIHRvIGEgdmVyc2lvbiBwcmlvciBFWEEgMi41LgpUb2Rh
+eSB0aGF0IG1lYW5zIGFueSB4b3JnLXNlcnZlciB2ZXJzaW9uIG9mZmljaWFsbHkgcmVsZWFzZWQu
+CgpDbG9zaW5nIGFzIG5vdCBhIGJ1Zy4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9i
+dWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBh
+cmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2ln
+bmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
