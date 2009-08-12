@@ -1,8 +1,8 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 03/12] drm/nouveau: Fix a lock up at NVSetOwner
-	with nv11.
-Date: Wed, 12 Aug 2009 02:14:59 +0200
-Message-ID: <1250036108-28655-4-git-send-email-currojerez@riseup.net>
+Subject: [PATCH 04/12] drm/nouveau: Fix fbcon with multiple
+	outputs connected.
+Date: Wed, 12 Aug 2009 02:15:00 +0200
+Message-ID: <1250036108-28655-5-git-send-email-currojerez@riseup.net>
 References: <1250036108-28655-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,36 +21,72 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-It seems it was only locking up in the context of
-nouveau_hw_save_vga_fonts, when it actually did something (because
-the console wasn't already in graphics mode).
+vgacon attempts to restore the CRTC base on deinit so it messes up the
+second head scanout address. Call crtc->helper_funcs->mode_set_base
+directly from nouveau_fbcon_pan_display to ensure it's written out
+even if the coordinates haven't changed. Modify nouveau_fbcon_set_par
+so that it always calls crtc->funcs->set_config.
 
 Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_hw.c |    9 +++++++++
- 1 files changed, 9 insertions(+), 0 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c |   18 +++++++++---------
+ 1 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_hw.c b/drivers/gpu/drm/nouveau/nouveau_hw.c
-index 6f55f55..d270d6f 100644
---- a/drivers/gpu/drm/nouveau/nouveau_hw.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_hw.c
-@@ -87,8 +87,17 @@ NVSetOwner(struct drm_device *dev, int owner)
- 	if (owner == 1)
- 		owner *= 3;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index 0e6ebaa..645b087 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@ -282,7 +282,7 @@ static int nouveau_fbcon_set_par(struct fb_info *info)
+ 		int ret;
  
-+	if (dev_priv->chipset == 0x11) {
-+		/* This might seem stupid, but the blob does it and
-+		 * omitting it often locks the system up.
-+		 */
-+		NVReadVgaCrtc(dev, 0, NV_CIO_SR_LOCK_INDEX);
-+		NVReadVgaCrtc(dev, 1, NV_CIO_SR_LOCK_INDEX);
-+	}
+ 		list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+-			struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
++			struct drm_mode_set *modeset = &nouveau_crtc(crtc)->mode_set;
+ 
+ 			for (i = 0; i < par->crtc_count; i++)
+ 				if (crtc->base.id == par->crtc_ids[i])
+@@ -291,9 +291,9 @@ static int nouveau_fbcon_set_par(struct fb_info *info)
+ 			if (i == par->crtc_count)
+ 				continue;
+ 
+-			if (crtc->fb == nv_crtc->mode_set.fb) {
++			if (modeset->num_connectors) {
+ 				mutex_lock(&dev->mode_config.mutex);
+-				ret = crtc->funcs->set_config(&nv_crtc->mode_set);
++				ret = crtc->funcs->set_config(modeset);
+ 				mutex_unlock(&dev->mode_config.mutex);
+ 				if (ret)
+ 					return ret;
+@@ -310,7 +310,7 @@ static int nouveau_fbcon_pan_display(struct fb_var_screeninfo *var,
+ 	struct drm_device *dev = par->dev;
+ 	struct drm_mode_set *modeset;
+ 	struct drm_crtc *crtc;
+-	struct nouveau_crtc *nv_crtc;
++	struct drm_crtc_helper_funcs *helper_funcs;
+ 	int ret = 0;
+ 	int i;
+ 
+@@ -322,16 +322,16 @@ static int nouveau_fbcon_pan_display(struct fb_var_screeninfo *var,
+ 		if (i == par->crtc_count)
+ 			continue;
+ 
+-		nv_crtc = nouveau_crtc(crtc);
+-		modeset = &nv_crtc->mode_set;
++		helper_funcs = crtc->helper_private;
++		modeset = &nouveau_crtc(crtc)->mode_set;
+ 
+ 		modeset->x = var->xoffset;
+ 		modeset->y = var->yoffset;
+ 
+ 		if (modeset->num_connectors) {
+-			mutex_lock(&dev->mode_config.mutex);
+-			ret = crtc->funcs->set_config(modeset);
+-			mutex_unlock(&dev->mode_config.mutex);
++			ret = helper_funcs->mode_set_base(crtc,
++				modeset->x, modeset->y, modeset->fb);
 +
- 	/* CR44 is always changed on CRTC0 */
- 	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_44, owner);
-+
- 	if (dev_priv->chipset == 0x11) {	/* set me harder */
- 		NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_2E, owner);
- 		NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_2E, owner);
+ 			if (!ret) {
+ 				info->var.xoffset = var->xoffset;
+ 				info->var.yoffset = var->yoffset;
 -- 
 1.6.3.3
