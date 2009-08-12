@@ -1,7 +1,8 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 02/12] drm: Add more standard TV properties.
-Date: Wed, 12 Aug 2009 02:14:58 +0200
-Message-ID: <1250036108-28655-3-git-send-email-currojerez@riseup.net>
+Subject: [PATCH 03/12] drm/nouveau: Fix a lock up at NVSetOwner
+	with nv11.
+Date: Wed, 12 Aug 2009 02:14:59 +0200
+Message-ID: <1250036108-28655-4-git-send-email-currojerez@riseup.net>
 References: <1250036108-28655-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,57 +21,36 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Overscan, saturation, hue. Used in the nouveau driver for GPUs with
-integrated TV encoders.
+It seems it was only locking up in the context of
+nouveau_hw_save_vga_fonts, when it actually did something (because
+the console wasn't already in graphics mode).
 
 Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/drm_crtc.c |   18 ++++++++++++++++++
- include/drm/drm_crtc.h     |    3 +++
- 2 files changed, 21 insertions(+), 0 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_hw.c |    9 +++++++++
+ 1 files changed, 9 insertions(+), 0 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-index a8c8311..362a538 100644
---- a/drivers/gpu/drm/drm_crtc.c
-+++ b/drivers/gpu/drm/drm_crtc.c
-@@ -736,6 +736,24 @@ int drm_mode_create_tv_properties(struct drm_device *dev, int num_modes,
- 	dev->mode_config.tv_flicker_reduction_property->values[0] = 0;
- 	dev->mode_config.tv_flicker_reduction_property->values[1] = 100;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_hw.c b/drivers/gpu/drm/nouveau/nouveau_hw.c
+index 6f55f55..d270d6f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_hw.c
++++ b/drivers/gpu/drm/nouveau/nouveau_hw.c
+@@ -87,8 +87,17 @@ NVSetOwner(struct drm_device *dev, int owner)
+ 	if (owner == 1)
+ 		owner *= 3;
  
-+	dev->mode_config.tv_overscan_property =
-+		drm_property_create(dev, DRM_MODE_PROP_RANGE,
-+				    "overscan", 2);
-+	dev->mode_config.tv_overscan_property->values[0] = 0;
-+	dev->mode_config.tv_overscan_property->values[1] = 100;
++	if (dev_priv->chipset == 0x11) {
++		/* This might seem stupid, but the blob does it and
++		 * omitting it often locks the system up.
++		 */
++		NVReadVgaCrtc(dev, 0, NV_CIO_SR_LOCK_INDEX);
++		NVReadVgaCrtc(dev, 1, NV_CIO_SR_LOCK_INDEX);
++	}
 +
-+	dev->mode_config.tv_saturation_property =
-+		drm_property_create(dev, DRM_MODE_PROP_RANGE,
-+				    "saturation", 2);
-+	dev->mode_config.tv_saturation_property->values[0] = 0;
-+	dev->mode_config.tv_saturation_property->values[1] = 100;
+ 	/* CR44 is always changed on CRTC0 */
+ 	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_44, owner);
 +
-+	dev->mode_config.tv_hue_property =
-+		drm_property_create(dev, DRM_MODE_PROP_RANGE,
-+				    "hue", 2);
-+	dev->mode_config.tv_hue_property->values[0] = 0;
-+	dev->mode_config.tv_hue_property->values[1] = 100;
-+
- 	return 0;
- }
- EXPORT_SYMBOL(drm_mode_create_tv_properties);
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-index 5f2cc0c..db92a83 100644
---- a/include/drm/drm_crtc.h
-+++ b/include/drm/drm_crtc.h
-@@ -575,6 +575,9 @@ struct drm_mode_config {
- 	struct drm_property *tv_brightness_property;
- 	struct drm_property *tv_contrast_property;
- 	struct drm_property *tv_flicker_reduction_property;
-+	struct drm_property *tv_overscan_property;
-+	struct drm_property *tv_saturation_property;
-+	struct drm_property *tv_hue_property;
- 
- 	/* Optional properties */
- 	struct drm_property *scaling_mode_property;
+ 	if (dev_priv->chipset == 0x11) {	/* set me harder */
+ 		NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_2E, owner);
+ 		NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_2E, owner);
 -- 
 1.6.3.3
