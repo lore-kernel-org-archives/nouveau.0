@@ -1,8 +1,7 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 2/3] kms: Implement output->get_property when
-	RandR1.3 is available.
-Date: Wed, 12 Aug 2009 02:18:27 +0200
-Message-ID: <1250036308-28736-3-git-send-email-currojerez@riseup.net>
+Subject: [PATCH 3/3] kms: Add TV-out support
+Date: Wed, 12 Aug 2009 02:18:28 +0200
+Message-ID: <1250036308-28736-4-git-send-email-currojerez@riseup.net>
 References: <1250036308-28736-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,82 +20,139 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This allows getting updated values when the kernel is modifying them
-behind our back.
 ---
- src/drmmode_display.c |   53 +++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 53 insertions(+), 0 deletions(-)
+ src/drmmode_display.c |   75 ++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 files changed, 71 insertions(+), 4 deletions(-)
 
 diff --git a/src/drmmode_display.c b/src/drmmode_display.c
-index 805dc5b..9b61da8 100644
+index 9b61da8..daa3f53 100644
 --- a/src/drmmode_display.c
 +++ b/src/drmmode_display.c
-@@ -836,6 +836,56 @@ drmmode_output_set_property(xf86OutputPtr output, Atom property,
+@@ -571,8 +571,16 @@ drmmode_output_detect(xf86OutputPtr output)
+ }
+ 
+ static Bool
+-drmmode_output_mode_valid(xf86OutputPtr output, DisplayModePtr pModes)
++drmmode_output_mode_valid(xf86OutputPtr output, DisplayModePtr mode)
+ {
++	drmmode_output_private_ptr drmmode_output = output->driver_private;
++	drmModeConnectorPtr koutput = drmmode_output->mode_output;
++
++	if (koutput->connector_type == DRM_MODE_CONNECTOR_TV
++	    && mode->type & M_T_DEFAULT)
++		/* Default modes are harmful here. */
++		return MODE_BAD;
++
+ 	return MODE_OK;
+ }
+ 
+@@ -778,8 +786,10 @@ static Bool
+ drmmode_output_set_property(xf86OutputPtr output, Atom property,
+ 			    RRPropertyValuePtr value)
+ {
++	ScrnInfoPtr pScrn = output->scrn;
+ 	drmmode_output_private_ptr drmmode_output = output->driver_private;
+ 	drmmode_ptr drmmode = drmmode_output->drmmode;
++	const char* property_name = NameForAtom(property);
+ 	int i, ret;
+ 
+ 	for (i = 0; i < drmmode_output->num_props; i++) {
+@@ -802,7 +812,7 @@ drmmode_output_set_property(xf86OutputPtr output, Atom property,
+ 			if (ret)
+ 				return FALSE;
+ 
+-			return TRUE;
++			goto out;
+ 
+ 		} else if (p->mode_prop->flags & DRM_MODE_PROP_ENUM) {
+ 			Atom	atom;
+@@ -825,7 +835,7 @@ drmmode_output_set_property(xf86OutputPtr output, Atom property,
+ 					if (ret)
+ 						return FALSE;
+ 
+-					return TRUE;
++					goto out;
+ 				}
+ 			}
+ 
+@@ -833,6 +843,62 @@ drmmode_output_set_property(xf86OutputPtr output, Atom property,
+ 		}
+ 	}
+ 
++out:
++	/* The following properties are evil because they often
++	 * render the current CRTC mode invalid.
++	 */
++
++	if (!strcmp(property_name, "mode")
++	    || !strcmp(property_name, "scale")) {
++		xf86CrtcPtr crtc = output->crtc;
++		drmmode_crtc_private_ptr drmmode_crtc;
++		DisplayModePtr mode,
++			mode_same = NULL,
++			mode_preferred = NULL;
++
++		drmModeFreeConnector(drmmode_output->mode_output);
++		drmmode_output->mode_output = drmModeGetConnector(drmmode->fd,
++			drmmode_output->output_id);
++
++		if (!drmmode_output->mode_output || !pScrn->vtSema
++		    || !crtc || !crtc->enabled)
++			return TRUE;
++
++		drmmode_crtc = crtc->driver_private;
++
++		xf86ProbeOutputModes(pScrn, 0, 0);
++		xf86SetScrnInfoModes(pScrn);
++
++		/* Look for a mode with the same dimensions, otherwise
++		 * use the preferred one. */
++
++		for (mode = output->probed_modes; mode;
++		     mode = mode->next) {
++			if (crtc->mode.HDisplay == mode->HDisplay
++			    && crtc->mode.VDisplay == mode->VDisplay)
++				mode_same = mode;
++
++			if (mode->type & M_T_PREFERRED)
++				mode_preferred = mode;
++		}
++
++		if (mode_same)
++			mode = mode_same;
++		else if (mode_preferred)
++			mode = mode_preferred;
++
++		/* Disable the CRTC first to ensure a full modeset is performed. */
++		drmModeSetCrtc(drmmode->fd, drmmode_crtc->mode_crtc->crtc_id,
++			       0, 0, 0, NULL, 0, NULL);
++
++		if(mode)
++			drmmode_set_mode_major(crtc, mode, crtc->rotation, crtc->x, crtc->y);
++
++		if (output->randr_output->modes)
++			xf86RandR12TellChanged(pScrn->pScreen);
++
++	}
++
  	return TRUE;
  }
  
-+#ifdef RANDR_13_INTERFACE
-+static Bool
-+drmmode_output_get_property(xf86OutputPtr output, Atom property)
-+{
-+
-+	drmmode_output_private_ptr drmmode_output = output->driver_private;
-+	drmmode_ptr drmmode = drmmode_output->drmmode;
-+	uint32_t value;
-+	int err, i;
-+
-+	drmModeFreeConnector(drmmode_output->mode_output);
-+
-+	drmmode_output->mode_output =
-+		drmModeGetConnector(drmmode->fd, drmmode_output->output_id);
-+
-+	for (i = 0; i < drmmode_output->num_props; i++) {
-+		drmmode_prop_ptr p = &drmmode_output->props[i];
-+		if (p->atoms[0] != property)
-+			continue;
-+
-+		value = drmmode_output->mode_output->prop_values[p->index];
-+
-+		if (p->mode_prop->flags & DRM_MODE_PROP_RANGE) {
-+			err = RRChangeOutputProperty(output->randr_output,
-+						     property, XA_INTEGER, 32,
-+						     PropModeReplace, 1, &value,
-+						     FALSE, FALSE);
-+
-+			return !err;
-+		} else if (p->mode_prop->flags & DRM_MODE_PROP_ENUM) {
-+			int		j;
-+
-+			/* search for matching name string, then set its value down */
-+			for (j = 0; j < p->mode_prop->count_enums; j++) {
-+				if (p->mode_prop->enums[j].value == value)
-+					break;
-+			}
-+
-+			err = RRChangeOutputProperty(output->randr_output, property,
-+						     XA_ATOM, 32, PropModeReplace, 1,
-+						     &p->atoms[j+1], FALSE, FALSE);
-+
-+			return !err;
-+		}
-+	}
-+
-+	return FALSE;
-+}
-+#endif
-+
- static const xf86OutputFuncsRec drmmode_output_funcs = {
- 	.create_resources = drmmode_output_create_resources,
- 	.dpms = drmmode_output_dpms,
-@@ -853,6 +903,9 @@ static const xf86OutputFuncsRec drmmode_output_funcs = {
- 
- 	.get_modes = drmmode_output_get_modes,
- 	.set_property = drmmode_output_set_property,
-+#ifdef RANDR_13_INTERFACE
-+	.get_property = drmmode_output_get_property,
-+#endif
- 	.destroy = drmmode_output_destroy
+@@ -922,13 +988,14 @@ const char *output_names[] = { "None",
+ 			       "DVI-D",
+ 			       "DVI-A",
+ 			       "Composite",
+-			       "TV",
++			       "SVIDEO",
+ 			       "LVDS",
+ 			       "CTV",
+ 			       "DIN",
+ 			       "DP",
+ 			       "HDMI",
+ 			       "HDMI",
++			       "TV",
  };
+ 
  
 -- 
 1.6.3.3
