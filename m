@@ -1,15 +1,13 @@
 From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH 06/12] drm/nouveau: Prepare the connector code
- for TV-out.
-Date: Wed, 12 Aug 2009 10:36:40 +0300
-Message-ID: <20090812103640.17c1fc17@daedalus.pq.iki.fi>
+Subject: Re: [PATCH 00/12] TV-out modesetting kernel patches.
+Date: Wed, 12 Aug 2009 11:04:05 +0300
+Message-ID: <20090812110405.642f1d44@daedalus.pq.iki.fi>
 References: <1250036108-28655-1-git-send-email-currojerez@riseup.net>
-	<1250036108-28655-7-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1250036108-28655-7-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <1250036108-28655-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,35 +21,99 @@ To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 12 Aug 2009 02:15:02 +0200
+Impressive work!
+
+
+On Wed, 12 Aug 2009 02:14:56 +0200
 Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> wrote:
 
+> This patch series adds TV-out modesetting support to the KMS
+> implementation. 
 > 
-> Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_connector.c |  198 +++++++++++++--------------
->  drivers/gpu/drm/nouveau/nv50_sor.c          |   14 --
->  2 files changed, 97 insertions(+), 115 deletions(-)
+> I've tried to test it on all the hardware I've got at hand (that is
+> nv11, nv17, nv34, nv35, nv40, nv4b) with every possible output
+> combination; I believe it has reached a mergeable state, however it
+> depends on some commits from drm-next that haven't got into Linus'
+> tree yet, if you agree to merge this they could be cherry-picked, they
+> are:
 > 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index 54d5e58..d49282e 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -34,8 +34,10 @@
->  #include "nouveau_connector.h"
->  #include "nouveau_hw.h"
->  
-> +#define get_slave_funcs(nv_encoder) (to_encoder_slave(to_drm_encoder(nv_encoder))->slave_funcs)
+> d782c3f95c9263dc0b98e7115f75f1e18b9600b3 drm/mode: add the CVT algorithm in kernel space
+> 2066facca4c7dfe9f5068ece0200a4dbf10f49e1 drm/kms: slave encoder interface.
+> 74bd3c26b90f39b9dcc05c471333da8998572b5d drm: Define DRM_MODE_CONNECTOR_TV
+> aeaa1ad3ff32be833680e484d99ec29d892da1ff drm: Define DRM_MODE_SUBCONNECTOR_SCART
+> b6b7902e54c7e8abbc213d8bdc290350c00ccfe5 drm: Define some new standard TV properties.
+> 
+> OTOH, I think merging drm-next would do no harm.
 
-Again, add type safety, please. It works also as documentation.
+That's probably not a good idea. Airlied?
 
-> +
->  static struct nouveau_encoder *
-> -nouveau_connector_encoder_get(struct drm_connector *connector, int type)
-> +find_encoder_by_type(struct drm_connector *connector, int type)
->  {
->  	struct drm_device *dev = connector->dev;
->  	struct nouveau_encoder *nv_encoder;
+We could cherry-pick the individual patches if we absolutely have to,
+but I'd like to wait until those patches come via Linus'. In the mean
+time, if you want testing, we could abuse the nouveau/linux-2.6
+master-compat branch, and push the patches there. Or start a feature
+branch.
+
+> PATCH1-2 haven't been
+> pushed there yet, I will forward them to dri-devel@ shortly. 
+
+Airlied, do you have an estimate, when all those patches might reach
+Linus? Are they -rc candidates or for the next merge window?
+
+> So, this should make TV-out work on all the pre-nv50 GPUs with an
+> integrated encoder (that is, nv17-nv4x, nv2x excluded). Only Chrontel
+> ch7006 and similar external encoders will work for now, implementing
+> more should be straightforward as they seem to be all documented.
+> 
+> Another patchset follows with some DDX modifications needed to make
+> use of this.
+> 
+> [PATCH 01/12] drm: Fix drm_cvt_mode() for interlaced modes.
+> [PATCH 02/12] drm: Add more standard TV properties.
+> [PATCH 03/12] drm/nouveau: Fix a lock up at NVSetOwner with nv11.
+> [PATCH 04/12] drm/nouveau: Fix fbcon with multiple outputs connected.
+> [PATCH 05/12] drm/nouveau: Use drm_encoder_slave instead of drm_encoder.
+> [PATCH 06/12] drm/nouveau: Prepare the connector code for TV-out.
+> [PATCH 07/12] drm/nouveau: Restructure the nv04 modesetting code.
+> [PATCH 08/12] drm/nouveau: Parse some more BIOS parameters needed for TV-out.
+> [PATCH 09/12] drm/nouveau: Add some new register defines needed for TV-out.
+> [PATCH 10/12] drm: Import driver for the ch7006 I2C TV encoder chip.
+> [PATCH 11/12] drm/nouveau: Import <nv17 TV-out support.
+> [PATCH 12/12] drm/nouveau: Import >=nv17 TV-out support.
+> 
+>  drivers/gpu/drm/Kconfig                     |   14 +
+>  drivers/gpu/drm/Makefile                    |    1 +
+>  drivers/gpu/drm/drm_crtc.c                  |   18 +
+>  drivers/gpu/drm/drm_modes.c                 |    2 +-
+>  drivers/gpu/drm/i2c/Makefile                |    3 +
+>  drivers/gpu/drm/i2c/ch7006_drv.c            |  479 ++++++++++++++++
+>  drivers/gpu/drm/i2c/ch7006_mode.c           |  470 ++++++++++++++++
+>  drivers/gpu/drm/i2c/ch7006_priv.h           |  332 +++++++++++
+>  drivers/gpu/drm/nouveau/Makefile            |    4 +-
+>  drivers/gpu/drm/nouveau/nouveau_bios.c      |   80 ++-
+>  drivers/gpu/drm/nouveau/nouveau_bios.h      |    4 +
+>  drivers/gpu/drm/nouveau/nouveau_connector.c |  200 ++++----
+>  drivers/gpu/drm/nouveau/nouveau_drv.h       |   52 ++-
+>  drivers/gpu/drm/nouveau/nouveau_encoder.h   |   11 +-
+>  drivers/gpu/drm/nouveau/nouveau_fbcon.c     |   18 +-
+>  drivers/gpu/drm/nouveau/nouveau_hw.c        |   73 +++-
+>  drivers/gpu/drm/nouveau/nouveau_i2c.c       |    6 +-
+>  drivers/gpu/drm/nouveau/nouveau_i2c.h       |    1 +
+>  drivers/gpu/drm/nouveau/nv04_crtc.c         |  266 ++-------
+>  drivers/gpu/drm/nouveau/nv04_dac.c          |  525 ++++++++++++++++++
+>  drivers/gpu/drm/nouveau/nv04_dfp.c          |  611 ++++++++++++++++++++
+>  drivers/gpu/drm/nouveau/nv04_display.c      |   35 +-
+>  drivers/gpu/drm/nouveau/nv04_output.c       |  797 ---------------------------
+>  drivers/gpu/drm/nouveau/nv04_tv.c           |  306 ++++++++++
+>  drivers/gpu/drm/nouveau/nv17_tv.c           |  623 +++++++++++++++++++++
+>  drivers/gpu/drm/nouveau/nv17_tv.h           |  151 +++++
+>  drivers/gpu/drm/nouveau/nv17_tv_modes.c     |  580 +++++++++++++++++++
+>  drivers/gpu/drm/nouveau/nv50_crtc.c         |    2 +-
+>  drivers/gpu/drm/nouveau/nv50_dac.c          |   18 +-
+>  drivers/gpu/drm/nouveau/nv50_sor.c          |   28 +-
+>  drivers/gpu/drm/nouveau/nvreg.h             |   38 ++-
+>  include/drm/drm_crtc.h                      |    3 +
+>  include/drm/i2c/ch7006.h                    |   86 +++
+>  33 files changed, 4627 insertions(+), 1210 deletions(-)
 
 -- 
 Pekka Paalanen
