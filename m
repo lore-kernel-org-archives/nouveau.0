@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23295] New: nouveau KMS: null pointer dereference if
+Subject: [Bug 23295] nouveau KMS: null pointer dereference if
  native mode is not found
-Date: Thu, 13 Aug 2009 14:53:00 -0700 (PDT)
-Message-ID: <bug-23295-8800@http.bugs.freedesktop.org/>
+Date: Thu, 13 Aug 2009 14:54:13 -0700 (PDT)
+Message-ID: <20090813215414.00906130058@annarchy.freedesktop.org>
+References: <bug-23295-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-23295-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=23295
 
-           Summary: nouveau KMS: null pointer dereference if native mode is
-                    not found
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-When native mode is not found by KMS, at least with NV40, there is a null
-pointer dereference of native_mode in nv_output_mode_fixup() when starting X.
 
-Kernel log attached.
 
-(In this case native mode is not found because of "Output script table version
-0x11 unknown"; I'll open a separate bug for that with proper info if none is
-already open)
+--- Comment #1 from Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org>  2009-08-13 14:54:13 PST ---
+Created an attachment (id=28607)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28607)
+kernel log of native_mode null pointer dereference
 
 
 -- 
