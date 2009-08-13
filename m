@@ -1,8 +1,8 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCHv2 05/10] drm/nouveau: Restructure the nv04
-	modesetting code.
-Date: Thu, 13 Aug 2009 14:01:32 +0200
-Message-ID: <1250164897-7871-5-git-send-email-currojerez@riseup.net>
+Subject: [PATCHv2 08/10] drm: Import driver for the ch7006 I2C TV
+	encoder chip.
+Date: Thu, 13 Aug 2009 14:01:35 +0200
+Message-ID: <1250164897-7871-8-git-send-email-currojerez@riseup.net>
 References: <1250164897-7871-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,2583 +21,1453 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-* Delay the hardware state synchronization to crtc->commit(). This way
-  the encoder-specific code can adjust the CRTC regs on mode_set()
-  before they're written out.
-
-* Don't abuse adjusted_mode to mean the output side mode, this makes
-  impossible for the encoder code to fix up the actual CRTC mode.
-
-* Split the digital from the analog stuff, as they have almost no
-  common code and IMHO this will substantially improve consistency
-  once the TVDAC implementation is imported.
 
 Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/Makefile       |    4 +-
- drivers/gpu/drm/nouveau/nouveau_bios.c |   26 +-
- drivers/gpu/drm/nouveau/nouveau_drv.h  |   33 ++-
- drivers/gpu/drm/nouveau/nouveau_hw.c   |   10 +
- drivers/gpu/drm/nouveau/nv04_crtc.c    |  262 ++---------
- drivers/gpu/drm/nouveau/nv04_dac.c     |  497 ++++++++++++++++++++
- drivers/gpu/drm/nouveau/nv04_dfp.c     |  611 ++++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nv04_display.c |   29 +-
- drivers/gpu/drm/nouveau/nv04_output.c  |  797 --------------------------------
- drivers/gpu/drm/nouveau/nvreg.h        |   14 +-
- 10 files changed, 1235 insertions(+), 1048 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/nv04_dac.c
- create mode 100644 drivers/gpu/drm/nouveau/nv04_dfp.c
- delete mode 100644 drivers/gpu/drm/nouveau/nv04_output.c
+ drivers/gpu/drm/Kconfig           |   14 +
+ drivers/gpu/drm/Makefile          |    1 +
+ drivers/gpu/drm/i2c/Makefile      |    4 +
+ drivers/gpu/drm/i2c/ch7006_drv.c  |  477 +++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i2c/ch7006_mode.c |  470 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i2c/ch7006_priv.h |  333 ++++++++++++++++++++++++++
+ include/drm/i2c/ch7006.h          |   86 +++++++
+ 7 files changed, 1385 insertions(+), 0 deletions(-)
+ create mode 100644 drivers/gpu/drm/i2c/Makefile
+ create mode 100644 drivers/gpu/drm/i2c/ch7006_drv.c
+ create mode 100644 drivers/gpu/drm/i2c/ch7006_mode.c
+ create mode 100644 drivers/gpu/drm/i2c/ch7006_priv.h
+ create mode 100644 include/drm/i2c/ch7006.h
 
-diff --git a/drivers/gpu/drm/nouveau/Makefile b/drivers/gpu/drm/nouveau/Makefile
-index 2ba1e45..4965e00 100644
---- a/drivers/gpu/drm/nouveau/Makefile
-+++ b/drivers/gpu/drm/nouveau/Makefile
-@@ -18,8 +18,8 @@ nouveau-y := nouveau_drv.o nouveau_state.o nouveau_channel.o nouveau_mem.o \
-              nv04_instmem.o nv50_instmem.o \
-              nv50_crtc.o nv50_dac.o nv50_sor.o \
-              nv50_cursor.o nv50_display.o nv50_fbcon.o \
--             nv04_display.o nv04_output.o nv04_crtc.o nv04_cursor.o \
--             nv04_fbcon.o
-+             nv04_crtc.o nv04_display.o nv04_cursor.o nv04_fbcon.o \
-+             nv04_dac.o nv04_dfp.o
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 5ea10e5..49b21cc 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -173,3 +173,17 @@ config DRM_NOUVEAU_BACKLIGHT
+ 	  Say Y here if you want to control the backlight of your display
+ 	  (e.g. a laptop panel).
  
- nouveau-$(CONFIG_COMPAT) += nouveau_ioc32.o
- nouveau-$(CONFIG_DRM_NOUVEAU_BACKLIGHT) += nouveau_backlight.o
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-index db52f25..e9e1e8f 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-@@ -2698,30 +2698,6 @@ static void parse_init_tables(struct drm_device *dev, struct nvbios *bios)
- 	}
- }
- 
--static void link_head_and_output(struct drm_device *dev, struct dcb_entry *dcbent, int head, bool dl)
--{
--	/* The BIOS scripts don't do this for us, sadly
--	 * Luckily we do know the values ;-)
--	 *
--	 * head < 0 indicates we wish to force a setting with the overrideval
--	 * (for VT restore etc.)
--	 */
--
--	int ramdac = (dcbent->or & OUTPUT_C) >> 2;
--	uint8_t tmds04 = 0x80;
--
--	if (head != ramdac)
--		tmds04 = 0x88;
--
--	if (dcbent->type == OUTPUT_LVDS)
--		tmds04 |= 0x01;
--
--	nv_write_tmds(dev, dcbent->or, 0, 0x04, tmds04);
--
--	if (dl)	/* dual link */
--		nv_write_tmds(dev, dcbent->or, 1, 0x04, tmds04 ^ 0x08);
--}
--
- static uint16_t clkcmptable(struct nvbios *bios, uint16_t clktable, int pxclk)
- {
- 	int compare_record_len, i = 0;
-@@ -2762,7 +2738,7 @@ static void run_digital_op_script(struct drm_device *dev, uint16_t scriptptr, st
- 	NVWriteVgaCrtc5758(dev, head, 0, dcbent->index);
- 	parse_init_table(dev, bios, scriptptr, &iexec);
- 
--	link_head_and_output(dev, dcbent, head, dl);
-+	nv04_dfp_bind_head(dev, dcbent, head, dl);
- }
- 
- static int call_lvds_manufacturer_script(struct drm_device *dev, struct dcb_entry *dcbent, int head, enum LVDS_script script)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 1197c68..22d08bc 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -331,6 +331,16 @@ struct nouveau_pll_vals {
- 	int refclk;
- };
- 
-+enum nv04_fp_display_regs {
-+	FP_DISPLAY_END,
-+	FP_TOTAL,
-+	FP_CRTC,
-+	FP_SYNC_START,
-+	FP_SYNC_END,
-+	FP_VALID_START,
-+	FP_VALID_END
-+};
++menu "I2C encoder or helper chips"
++     depends on DRM
 +
- struct nv04_crtc_reg {
- 	unsigned char MiscOutReg;     /* */
- 	uint8_t CRTC[0x9f];
-@@ -364,6 +374,8 @@ struct nv04_crtc_reg {
- 	uint32_t fp_debug_0;
- 	uint32_t fp_debug_1;
- 	uint32_t fp_debug_2;
-+	uint32_t fp_margin_color;
-+	uint32_t ramdac_8c0;
- 	uint32_t ramdac_a20;
- 	uint32_t ramdac_a24;
- 	uint32_t ramdac_a34;
-@@ -525,6 +537,7 @@ struct drm_nouveau_private {
- 	struct nv04_mode_state saved_reg;
- 	uint32_t saved_vga_font[4][16384];
- 	uint32_t crtc_owner;
-+	uint32_t dac_users[4];
- 
- 	struct nouveau_suspend_resume {
- 		uint32_t fifo_mode;
-@@ -893,16 +906,26 @@ extern void nv04_timer_takedown(struct drm_device *);
- extern long nouveau_compat_ioctl(struct file *file, unsigned int cmd,
- 				 unsigned long arg);
- 
-+/* nv04_dac.c */
-+extern int nv04_dac_create(struct drm_device *dev, struct dcb_entry *entry);
-+extern enum drm_connector_status nv17_dac_detect(struct drm_encoder *encoder,
-+						 struct drm_connector *connector);
-+extern int nv04_dac_output_offset(struct drm_encoder *encoder);
-+extern void nv04_dac_update_dacclk(struct drm_encoder *encoder, bool enable);
++config DRM_I2C_CH7006
++	tristate "Chrontel ch7006 TV encoder"
++	default m if DRM_NOUVEAU
++	help
++	  Support for Chrontel ch7006 and similar TV encoders, found
++	  on some nVidia video cards.
 +
-+/* nv04_dfp.c */
-+extern int nv04_dfp_create(struct drm_device *dev, struct dcb_entry *entry);
-+extern int nv04_dfp_get_bound_head(struct drm_device *dev, struct dcb_entry *dcbent);
-+extern void nv04_dfp_bind_head(struct drm_device *dev, struct dcb_entry *dcbent,
-+			       int head, bool dl);
-+extern void nv04_dfp_disable(struct drm_device *dev, int head);
-+extern void nv04_dfp_update_fp_control(struct drm_encoder *encoder, int mode);
++	  This driver is currently only useful if you're also using
++	  the nouveau driver.
 +
- /* nv04_display.c */
- extern int nv04_display_create(struct drm_device *);
- extern void nv04_display_destroy(struct drm_device *);
- extern void nv04_display_restore(struct drm_device *);
- 
--/* nv04_output.c */
--extern int nv04_encoder_create(struct drm_device *, struct dcb_entry *);
--extern int nv04_connector_create(struct drm_device *, int i2c_index,
--				 uint16_t encoders, int type);
--
- /* nv04_crtc.c */
- extern int nv04_crtc_create(struct drm_device *, int index);
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_hw.c b/drivers/gpu/drm/nouveau/nouveau_hw.c
-index d270d6f..5f49aed 100644
---- a/drivers/gpu/drm/nouveau/nouveau_hw.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_hw.c
-@@ -698,6 +698,11 @@ nv_save_state_ramdac(struct drm_device *dev, int head,
- 	regp->fp_debug_1 = NVReadRAMDAC(dev, head, NV_PRAMDAC_FP_DEBUG_1);
- 	regp->fp_debug_2 = NVReadRAMDAC(dev, head, NV_PRAMDAC_FP_DEBUG_2);
- 
-+	regp->fp_margin_color = NVReadRAMDAC(dev, head, NV_PRAMDAC_FP_MARGIN_COLOR);
-+
-+	if (nv_arch(dev) >= NV_30)
-+		regp->ramdac_8c0 = NVReadRAMDAC(dev, head, NV_PRAMDAC_8C0);
-+
- 	if (nv_arch(dev) == NV_40) {
- 		regp->ramdac_a20 = NVReadRAMDAC(dev, head, NV_PRAMDAC_A20);
- 		regp->ramdac_a24 = NVReadRAMDAC(dev, head, NV_PRAMDAC_A24);
-@@ -751,6 +756,11 @@ nv_load_state_ramdac(struct drm_device *dev, int head,
- 	NVWriteRAMDAC(dev, head, NV_PRAMDAC_FP_DEBUG_1, regp->fp_debug_1);
- 	NVWriteRAMDAC(dev, head, NV_PRAMDAC_FP_DEBUG_2, regp->fp_debug_2);
- 
-+	NVWriteRAMDAC(dev, head, NV_PRAMDAC_FP_MARGIN_COLOR, regp->fp_margin_color);
-+
-+	if (nv_arch(dev) >= NV_30)
-+		NVWriteRAMDAC(dev, head, NV_PRAMDAC_8C0, regp->ramdac_8c0);
-+
- 	if (nv_arch(dev) == NV_40) {
- 		NVWriteRAMDAC(dev, head, NV_PRAMDAC_A20, regp->ramdac_a20);
- 		NVWriteRAMDAC(dev, head, NV_PRAMDAC_A24, regp->ramdac_a24);
-diff --git a/drivers/gpu/drm/nouveau/nv04_crtc.c b/drivers/gpu/drm/nouveau/nv04_crtc.c
-index 103e28c..802b290 100644
---- a/drivers/gpu/drm/nouveau/nv04_crtc.c
-+++ b/drivers/gpu/drm/nouveau/nv04_crtc.c
-@@ -74,6 +74,18 @@ static void nv_crtc_set_image_sharpening(struct drm_crtc *crtc, int level)
- 	NVWriteRAMDAC(crtc->dev, nv_crtc->index, NV_PRAMDAC_634, regp->ramdac_634);
- }
- 
-+#define PLLSEL_VPLL1_MASK				\
-+	(NV_PRAMDAC_PLL_COEFF_SELECT_SOURCE_PROG_VPLL	\
-+	 | NV_PRAMDAC_PLL_COEFF_SELECT_VCLK_RATIO_DB2)
-+#define PLLSEL_VPLL2_MASK				\
-+	(NV_PRAMDAC_PLL_COEFF_SELECT_PLL_SOURCE_VPLL2		\
-+	 | NV_PRAMDAC_PLL_COEFF_SELECT_VCLK2_RATIO_DB2)
-+#define PLLSEL_TV_MASK					\
-+	(NV_PRAMDAC_PLL_COEFF_SELECT_TV_VSCLK1		\
-+	 | NV_PRAMDAC_PLL_COEFF_SELECT_TV_PCLK1		\
-+	 | NV_PRAMDAC_PLL_COEFF_SELECT_TV_VSCLK2	\
-+	 | NV_PRAMDAC_PLL_COEFF_SELECT_TV_PCLK2)
-+
- /* NV4x 0x40.. pll notes:
-  * gpu pll: 0x4000 + 0x4004
-  * ?gpu? pll: 0x4008 + 0x400c
-@@ -122,17 +134,16 @@ static void nv_crtc_calc_state_ext(struct drm_crtc *crtc, struct drm_display_mod
- 	if (!(vclk = nouveau_calc_pll_mnp(dev, &pll_lim, dot_clock, pv)))
- 		return;
- 
-+	state->pllsel &= PLLSEL_VPLL1_MASK | PLLSEL_VPLL2_MASK | PLLSEL_TV_MASK;
-+
- 	/* The blob uses this always, so let's do the same */
- 	if (nv_arch(dev) == NV_40)
--		state->pllsel |= NV_RAMDAC_PLL_SELECT_USE_VPLL2_TRUE;
-+		state->pllsel |= NV_PRAMDAC_PLL_COEFF_SELECT_USE_VPLL2_TRUE;
- 	/* again nv40 and some nv43 act more like nv3x as described above */
- 	if (dev_priv->chipset < 0x41)
- 		state->pllsel |= NV_PRAMDAC_PLL_COEFF_SELECT_SOURCE_PROG_MPLL |
- 				 NV_PRAMDAC_PLL_COEFF_SELECT_SOURCE_PROG_NVPLL;
--	state->pllsel |= (nv_crtc->index ? NV_RAMDAC_PLL_SELECT_PLL_SOURCE_VPLL2 |
--					  NV_RAMDAC_PLL_SELECT_VCLK2_RATIO_DB2 :
--					  NV_PRAMDAC_PLL_COEFF_SELECT_SOURCE_PROG_VPLL |
--					  NV_PRAMDAC_PLL_COEFF_SELECT_VCLK_RATIO_DB2);
-+	state->pllsel |= nv_crtc->index ? PLLSEL_VPLL2_MASK : PLLSEL_VPLL1_MASK;
- 
- 	if (pv->NM2)
- 		NV_TRACE(dev, "vpll: n1 %d n2 %d m1 %d m2 %d log2p %d\n",
-@@ -218,8 +229,7 @@ nv_crtc_mode_fixup(struct drm_crtc *crtc, struct drm_display_mode * mode,
- }
- 
- static void
--nv_crtc_mode_set_vga(struct drm_crtc *crtc, struct drm_display_mode *mode,
--		     struct drm_display_mode *adjusted_mode)
-+nv_crtc_mode_set_vga(struct drm_crtc *crtc, struct drm_display_mode *mode)
- {
- 	struct drm_device *dev = crtc->dev;
- 	struct drm_nouveau_private *dev_priv = dev->dev_private;
-@@ -449,7 +459,8 @@ nv_crtc_mode_set_regs(struct drm_crtc *crtc, struct drm_display_mode * mode)
- 	struct nv04_crtc_reg *regp = &dev_priv->mode_reg.crtc_reg[nv_crtc->index];
- 	struct nv04_crtc_reg *savep = &dev_priv->saved_reg.crtc_reg[nv_crtc->index];
- 	struct drm_encoder *encoder;
--	bool lvds_output = false, tmds_output = false, off_chip_digital = false;
-+	bool lvds_output = false, tmds_output = false, tv_output = false,
-+		off_chip_digital = false;
- 
- 	list_for_each_entry(encoder, &dev->mode_config.encoder_list, head) {
- 		struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-@@ -460,6 +471,8 @@ nv_crtc_mode_set_regs(struct drm_crtc *crtc, struct drm_display_mode * mode)
- 
- 		if (nv_encoder->dcb->type == OUTPUT_LVDS)
- 			digital = lvds_output = true;
-+		if (nv_encoder->dcb->type == OUTPUT_TV)
-+			tv_output = true;
- 		if (nv_encoder->dcb->type == OUTPUT_TMDS)
- 			digital = tmds_output = true;
- 		if (nv_encoder->dcb->location != DCB_LOC_ON_CHIP && digital)
-@@ -550,7 +563,7 @@ nv_crtc_mode_set_regs(struct drm_crtc *crtc, struct drm_display_mode * mode)
- 
- 	regp->CRTC[NV_CIO_CRE_PIXEL_INDEX] = (crtc->fb->depth + 1) / 8;
- 	/* Enable slaved mode (called MODE_TV in nv4ref.h) */
--	if (lvds_output || tmds_output)
-+	if (lvds_output || tmds_output || tv_output)
- 		regp->CRTC[NV_CIO_CRE_PIXEL_INDEX] |= (1 << 7);
- 
- 	/* Generic PRAMDAC regs */
-@@ -572,187 +585,12 @@ nv_crtc_mode_set_regs(struct drm_crtc *crtc, struct drm_display_mode * mode)
- 	nv_crtc_set_image_sharpening(crtc, nv_crtc->sharpness);
- 
- 	/* Some values the blob sets */
-+	regp->ramdac_8c0 = 0x100;
- 	regp->ramdac_a20 = 0x0;
- 	regp->ramdac_a24 = 0xfffff;
- 	regp->ramdac_a34 = 0x1;
- }
- 
--enum fp_display_regs {
--	FP_DISPLAY_END,
--	FP_TOTAL,
--	FP_CRTC,
--	FP_SYNC_START,
--	FP_SYNC_END,
--	FP_VALID_START,
--	FP_VALID_END
--};
--
--/* this could be set in nv_output, but would require some rework of load/save */
--static void
--nv_crtc_mode_set_fp_regs(struct drm_crtc *crtc, struct drm_display_mode *mode,
--			 struct drm_display_mode * adjusted_mode)
--{
--	struct drm_device *dev = crtc->dev;
--	struct drm_nouveau_private *dev_priv = dev->dev_private;
--	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
--	struct nv04_crtc_reg *regp = &dev_priv->mode_reg.crtc_reg[nv_crtc->index];
--	struct nv04_crtc_reg *savep = &dev_priv->saved_reg.crtc_reg[nv_crtc->index];
--	struct nouveau_connector *nv_connector = nouveau_crtc_connector_get(nv_crtc);
--	struct nouveau_encoder *nv_encoder = NULL;
--	struct drm_encoder *encoder;
--	uint32_t mode_ratio, panel_ratio;
--
--	list_for_each_entry(encoder, &dev->mode_config.encoder_list, head) {
--		/* assuming one fp output per crtc seems ok */
--		if (encoder->crtc != crtc)
--			continue;
--		nv_encoder = nouveau_encoder(encoder);
--
--		if (nv_encoder->dcb->type == OUTPUT_LVDS ||
--		    nv_encoder->dcb->type == OUTPUT_TMDS)
--			break;
--		nv_encoder = NULL;
--	}
--
--	if (!nv_encoder)
--		return;
--
--	regp->fp_horiz_regs[FP_DISPLAY_END] = adjusted_mode->hdisplay - 1;
--	regp->fp_horiz_regs[FP_TOTAL] = adjusted_mode->htotal - 1;
--	if (!nv_gf4_disp_arch(dev) ||
--	    (adjusted_mode->hsync_start - adjusted_mode->hdisplay) >=
--					dev_priv->vbios->digital_min_front_porch)
--		regp->fp_horiz_regs[FP_CRTC] = adjusted_mode->hdisplay;
--	else
--		regp->fp_horiz_regs[FP_CRTC] = adjusted_mode->hsync_start - dev_priv->vbios->digital_min_front_porch - 1;
--	regp->fp_horiz_regs[FP_SYNC_START] = adjusted_mode->hsync_start - 1;
--	regp->fp_horiz_regs[FP_SYNC_END] = adjusted_mode->hsync_end - 1;
--	regp->fp_horiz_regs[FP_VALID_START] = adjusted_mode->hskew;
--	regp->fp_horiz_regs[FP_VALID_END] = adjusted_mode->hdisplay - 1;
--
--	regp->fp_vert_regs[FP_DISPLAY_END] = adjusted_mode->vdisplay - 1;
--	regp->fp_vert_regs[FP_TOTAL] = adjusted_mode->vtotal - 1;
--	regp->fp_vert_regs[FP_CRTC] = adjusted_mode->vtotal - 5 - 1;
--	regp->fp_vert_regs[FP_SYNC_START] = adjusted_mode->vsync_start - 1;
--	regp->fp_vert_regs[FP_SYNC_END] = adjusted_mode->vsync_end - 1;
--	regp->fp_vert_regs[FP_VALID_START] = 0;
--	regp->fp_vert_regs[FP_VALID_END] = adjusted_mode->vdisplay - 1;
--
--	/* bit26: a bit seen on some g7x, no as yet discernable purpose */
--	regp->fp_control = NV_PRAMDAC_FP_TG_CONTROL_DISPEN_POS |
--			   (savep->fp_control & (1 << 26 | NV_PRAMDAC_FP_TG_CONTROL_READ_PROG));
--	/* Deal with vsync/hsync polarity */
--	/* LVDS screens do set this, but modes with +ve syncs are very rare */
--	if (adjusted_mode->flags & DRM_MODE_FLAG_PVSYNC)
--		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_VSYNC_POS;
--	if (adjusted_mode->flags & DRM_MODE_FLAG_PHSYNC)
--		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_HSYNC_POS;
--	/* panel scaling first, as native would get set otherwise */
--	if (nv_connector->scaling_mode == DRM_MODE_SCALE_NON_GPU ||
--	    nv_connector->scaling_mode == DRM_MODE_SCALE_NO_SCALE)	/* panel handles it */
--		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_MODE_CENTER;
--	else if (mode->hdisplay == adjusted_mode->hdisplay &&
--		 mode->vdisplay == adjusted_mode->vdisplay) /* native mode */
--		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_MODE_NATIVE;
--	else /* gpu needs to scale */
--		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_MODE_SCALE;
--	if (nvReadEXTDEV(dev, NV_PEXTDEV_BOOT_0) & NV_PEXTDEV_BOOT_0_STRAP_FP_IFACE_12BIT)
--		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_WIDTH_12;
--	if (nv_encoder->dcb->location != DCB_LOC_ON_CHIP &&
--	    nv_connector->native_mode->clock > 165000)
--		regp->fp_control |= (2 << 24);
--	if (nv_encoder->dcb->type == OUTPUT_LVDS) {
--		bool duallink, dummy;
--
--		nouveau_bios_parse_lvds_table(dev, nv_connector->native_mode->
--					      clock, &duallink, &dummy);
--		if (duallink)
--			regp->fp_control |= (8 << 28);
--	} else
--	if (nv_connector->native_mode->clock > 165000)
--		regp->fp_control |= (8 << 28);
--
--	regp->fp_debug_0 = NV_PRAMDAC_FP_DEBUG_0_YWEIGHT_ROUND |
--			   NV_PRAMDAC_FP_DEBUG_0_XWEIGHT_ROUND |
--			   NV_PRAMDAC_FP_DEBUG_0_YINTERP_BILINEAR |
--			   NV_PRAMDAC_FP_DEBUG_0_XINTERP_BILINEAR |
--			   NV_RAMDAC_FP_DEBUG_0_TMDS_ENABLED |
--			   NV_PRAMDAC_FP_DEBUG_0_YSCALE_ENABLE |
--			   NV_PRAMDAC_FP_DEBUG_0_XSCALE_ENABLE;
--
--	/* We want automatic scaling */
--	regp->fp_debug_1 = 0;
--	/* This can override HTOTAL and VTOTAL */
--	regp->fp_debug_2 = 0;
--
--	/* Use 20.12 fixed point format to avoid floats */
--	mode_ratio = (1 << 12) * mode->hdisplay / mode->vdisplay;
--	panel_ratio = (1 << 12) * adjusted_mode->hdisplay / adjusted_mode->vdisplay;
--	/* if ratios are equal, SCALE_ASPECT will automatically (and correctly)
--	 * get treated the same as SCALE_FULLSCREEN */
--	if (nv_connector->scaling_mode == DRM_MODE_SCALE_ASPECT &&
--	    mode_ratio != panel_ratio) {
--		uint32_t diff, scale;
--		bool divide_by_2 = nv_gf4_disp_arch(dev);
--
--		if (mode_ratio < panel_ratio) {
--			/* vertical needs to expand to glass size (automatic)
--			 * horizontal needs to be scaled at vertical scale factor
--			 * to maintain aspect */
--
--			scale = (1 << 12) * mode->vdisplay / adjusted_mode->vdisplay;
--			regp->fp_debug_1 = NV_PRAMDAC_FP_DEBUG_1_XSCALE_TESTMODE_ENABLE |
--					   XLATE(scale, divide_by_2, NV_PRAMDAC_FP_DEBUG_1_XSCALE_VALUE);
--
--			/* restrict area of screen used, horizontally */
--			diff = adjusted_mode->hdisplay -
--			       adjusted_mode->vdisplay * mode_ratio / (1 << 12);
--			regp->fp_horiz_regs[FP_VALID_START] += diff / 2;
--			regp->fp_horiz_regs[FP_VALID_END] -= diff / 2;
--		}
--
--		if (mode_ratio > panel_ratio) {
--			/* horizontal needs to expand to glass size (automatic)
--			 * vertical needs to be scaled at horizontal scale factor
--			 * to maintain aspect */
--
--			scale = (1 << 12) * mode->hdisplay / adjusted_mode->hdisplay;
--			regp->fp_debug_1 = NV_PRAMDAC_FP_DEBUG_1_YSCALE_TESTMODE_ENABLE |
--					   XLATE(scale, divide_by_2, NV_PRAMDAC_FP_DEBUG_1_YSCALE_VALUE);
--
--			/* restrict area of screen used, vertically */
--			diff = adjusted_mode->vdisplay -
--			       (1 << 12) * adjusted_mode->hdisplay / mode_ratio;
--			regp->fp_vert_regs[FP_VALID_START] += diff / 2;
--			regp->fp_vert_regs[FP_VALID_END] -= diff / 2;
--		}
--	}
--
--	/* Output property. */
--	if (nv_connector && nv_connector->use_dithering) {
--		if (dev_priv->chipset == 0x11)
--			regp->dither = savep->dither | 0x00010000;
--		else {
--			int i;
--			regp->dither = savep->dither | 0x00000001;
--			for (i = 0; i < 3; i++) {
--				regp->dither_regs[i] = 0xe4e4e4e4;
--				regp->dither_regs[i + 3] = 0x44444444;
--			}
--		}
--	} else {
--		if (dev_priv->chipset != 0x11) {
--			/* reset them */
--			int i;
--			for (i = 0; i < 3; i++) {
--				regp->dither_regs[i] = savep->dither_regs[i];
--				regp->dither_regs[i + 3] = savep->dither_regs[i + 3];
--			}
--		}
--		regp->dither = savep->dither;
--	}
--}
--
- /**
-  * Sets up registers for the given mode/adjusted_mode pair.
-  *
-@@ -770,35 +608,18 @@ nv_crtc_mode_set(struct drm_crtc *crtc, struct drm_display_mode *mode,
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
- 	struct drm_nouveau_private *dev_priv = dev->dev_private;
- 
--	NV_TRACE(dev, "CTRC mode on CRTC %d:\n", nv_crtc->index);
--	drm_mode_debug_printmodeline(mode);
--	NV_TRACE(dev, "Output mode on CRTC %d:\n", nv_crtc->index);
--	drm_mode_debug_printmodeline(mode);
-+	NV_DEBUG(dev, "CTRC mode on CRTC %d:\n", nv_crtc->index);
-+	drm_mode_debug_printmodeline(adjusted_mode);
- 
- 	/* unlock must come after turning off FP_TG_CONTROL in output_prepare */
- 	nv_lock_vga_crtc_shadow(dev, nv_crtc->index, -1);
- 
--	nv_crtc_mode_set_vga(crtc, mode, adjusted_mode);
--	/* calculated in output_prepare, nv40 needs it written before calculating PLLs */
-+	nv_crtc_mode_set_vga(crtc, adjusted_mode);
-+	/* calculated in nv04_dfp_prepare, nv40 needs it written before calculating PLLs */
- 	if (nv_arch(dev) == NV_40)
- 		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_SEL_CLK, dev_priv->mode_reg.sel_clk);
--	nv_crtc_mode_set_regs(crtc, mode);
--	nv_crtc_mode_set_fp_regs(crtc, mode, adjusted_mode);
-+	nv_crtc_mode_set_regs(crtc, adjusted_mode);
- 	nv_crtc_calc_state_ext(crtc, mode, adjusted_mode->clock);
--
--	nouveau_hw_load_state(dev, nv_crtc->index, &dev_priv->mode_reg);
--
--	nv04_crtc_mode_set_base(crtc, x, y, NULL);
--
--#ifdef __BIG_ENDIAN
--	/* turn on LFB swapping */
--	{
--		uint8_t tmp = NVReadVgaCrtc(dev, nv_crtc->index, NV_CIO_CRE_RCR);
--		tmp |= MASK(NV_CIO_CRE_RCR_ENDIAN_BIG);
--		NVWriteVgaCrtc(dev, nv_crtc->index, NV_CIO_CRE_RCR, tmp);
--	}
--#endif
--
- 	return 0;
- }
- 
-@@ -806,15 +627,21 @@ static void nv_crtc_save(struct drm_crtc *crtc)
- {
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
- 	struct drm_nouveau_private *dev_priv = crtc->dev->dev_private;
-+	struct nv04_mode_state *state = &dev_priv->mode_reg;
-+	struct nv04_crtc_reg *crtc_state = &state->crtc_reg[nv_crtc->index];
-+	struct nv04_mode_state *saved = &dev_priv->saved_reg;
-+	struct nv04_crtc_reg *crtc_saved = &saved->crtc_reg[nv_crtc->index];
- 
- 	if (nv_two_heads(crtc->dev))
- 		NVSetOwner(crtc->dev, nv_crtc->index);
- 
--	nouveau_hw_save_state(crtc->dev, nv_crtc->index, &dev_priv->saved_reg);
-+	nouveau_hw_save_state(crtc->dev, nv_crtc->index, saved);
- 
- 	/* init some state to saved value */
--	dev_priv->mode_reg.sel_clk = dev_priv->saved_reg.sel_clk & ~(0x5 << 16);
--	dev_priv->mode_reg.crtc_reg[nv_crtc->index].CRTC[NV_CIO_CRE_LCD__INDEX] = dev_priv->saved_reg.crtc_reg[nv_crtc->index].CRTC[NV_CIO_CRE_LCD__INDEX];
-+	state->sel_clk = saved->sel_clk & ~(0x5 << 16);
-+	crtc_state->CRTC[NV_CIO_CRE_LCD__INDEX] = crtc_saved->CRTC[NV_CIO_CRE_LCD__INDEX];
-+	state->pllsel = saved->pllsel & ~(PLLSEL_VPLL1_MASK | PLLSEL_VPLL2_MASK | PLLSEL_TV_MASK);
-+	crtc_state->gpio_ext = crtc_saved->gpio_ext;
- }
- 
- static void nv_crtc_restore(struct drm_crtc *crtc)
-@@ -856,7 +683,22 @@ static void nv_crtc_prepare(struct drm_crtc *crtc)
- 
- static void nv_crtc_commit(struct drm_crtc *crtc)
- {
-+	struct drm_device *dev = crtc->dev;
- 	struct drm_crtc_helper_funcs *funcs = crtc->helper_private;
-+	struct drm_nouveau_private *dev_priv = crtc->dev->dev_private;
-+	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
-+
-+	nouveau_hw_load_state(dev, nv_crtc->index, &dev_priv->mode_reg);
-+	nv04_crtc_mode_set_base(crtc, crtc->x, crtc->y, NULL);
-+
-+#ifdef __BIG_ENDIAN
-+	/* turn on LFB swapping */
-+	{
-+		uint8_t tmp = NVReadVgaCrtc(dev, nv_crtc->index, NV_CIO_CRE_RCR);
-+		tmp |= MASK(NV_CIO_CRE_RCR_ENDIAN_BIG);
-+		NVWriteVgaCrtc(dev, nv_crtc->index, NV_CIO_CRE_RCR, tmp);
-+	}
-+#endif
- 
- 	funcs->dpms(crtc, DRM_MODE_DPMS_ON);
- }
-diff --git a/drivers/gpu/drm/nouveau/nv04_dac.c b/drivers/gpu/drm/nouveau/nv04_dac.c
++endmenu
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index eeb20aa..f0ef455 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -28,3 +28,4 @@ obj-$(CONFIG_DRM_SIS)   += sis/
+ obj-$(CONFIG_DRM_SAVAGE)+= savage/
+ obj-$(CONFIG_DRM_VIA)	+=via/
+ obj-$(CONFIG_DRM_NOUVEAU) +=nouveau/
++obj-y			+= i2c/
+diff --git a/drivers/gpu/drm/i2c/Makefile b/drivers/gpu/drm/i2c/Makefile
 new file mode 100644
-index 0000000..05fc393
+index 0000000..6d2abaf
 --- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nv04_dac.c
-@@ -0,0 +1,497 @@
++++ b/drivers/gpu/drm/i2c/Makefile
+@@ -0,0 +1,4 @@
++ccflags-y := -Iinclude/drm
++
++ch7006-y := ch7006_drv.o ch7006_mode.o
++obj-$(CONFIG_DRM_I2C_CH7006) += ch7006.o
+diff --git a/drivers/gpu/drm/i2c/ch7006_drv.c b/drivers/gpu/drm/i2c/ch7006_drv.c
+new file mode 100644
+index 0000000..c2594a1
+--- /dev/null
++++ b/drivers/gpu/drm/i2c/ch7006_drv.c
+@@ -0,0 +1,477 @@
 +/*
-+ * Copyright 2003 NVIDIA, Corporation
-+ * Copyright 2006 Dave Airlie
-+ * Copyright 2007 Maarten Maathuis
-+ * Copyright 2007-2009 Stuart Bennett
++ * Copyright (C) 2009 Francisco Jerez.
++ * All Rights Reserved.
 + *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
 + *
-+ * The above copyright notice and this permission notice (including the next
-+ * paragraph) shall be included in all copies or substantial portions of the
-+ * Software.
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
 + *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-+ * DEALINGS IN THE SOFTWARE.
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
++ * IN NO EVENT SHALL THE COPYRIGHT OWNER(S) AND/OR ITS SUPPLIERS BE
++ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
++ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
++ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++ *
 + */
 +
-+#include "drmP.h"
-+#include "drm_crtc_helper.h"
++#include "ch7006_priv.h"
 +
-+#include "nouveau_drv.h"
-+#include "nouveau_encoder.h"
-+#include "nouveau_connector.h"
-+#include "nouveau_crtc.h"
-+#include "nouveau_hw.h"
-+#include "nvreg.h"
++/* DRM encoder functions */
 +
-+int nv04_dac_output_offset(struct drm_encoder *encoder)
++static void ch7006_encoder_set_config(struct drm_encoder *encoder,
++				      void *params)
 +{
-+	struct dcb_entry *dcb = nouveau_encoder(encoder)->dcb;
-+	int offset = 0;
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
 +
-+	if (dcb->or & (8 | OUTPUT_C))
-+		offset += 0x68;
-+	if (dcb->or & (8 | OUTPUT_B))
-+		offset += 0x2000;
-+
-+	return offset;
++	priv->params = params;
 +}
 +
-+/*
-+ * arbitrary limit to number of sense oscillations tolerated in one sample
-+ * period (observed to be at least 13 in "nvidia")
-+ */
-+#define MAX_HBLANK_OSC 20
-+
-+/*
-+ * arbitrary limit to number of conflicting sample pairs to tolerate at a
-+ * voltage step (observed to be at least 5 in "nvidia")
-+ */
-+#define MAX_SAMPLE_PAIRS 10
-+
-+static int sample_load_twice(struct drm_device *dev, bool sense[2])
++static void ch7006_encoder_destroy(struct drm_encoder *encoder)
 +{
-+	int i;
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
 +
-+	for (i = 0; i < 2; i++) {
-+		bool sense_a, sense_b, sense_b_prime;
-+		int j = 0;
++	drm_property_destroy(encoder->dev, priv->scale_property);
 +
-+		/*
-+		 * wait for bit 0 clear -- out of hblank -- (say reg value 0x4),
-+		 * then wait for transition 0x4->0x5->0x4: enter hblank, leave
-+		 * hblank again
-+		 * use a 10ms timeout (guards against crtc being inactive, in
-+		 * which case blank state would never change)
-+		 */
-+		if (!nouveau_wait_until(dev, 10000000, NV_PRMCIO_INP0__COLOR,
-+					0x00000001, 0x00000000))
-+			return -EBUSY;
-+		if (!nouveau_wait_until(dev, 10000000, NV_PRMCIO_INP0__COLOR,
-+					0x00000001, 0x00000001))
-+			return -EBUSY;
-+		if (!nouveau_wait_until(dev, 10000000, NV_PRMCIO_INP0__COLOR,
-+					0x00000001, 0x00000000))
-+			return -EBUSY;
++	kfree(priv);
++	to_encoder_slave(encoder)->slave_priv = NULL;
 +
-+		udelay(100);
-+		/* when level triggers, sense is _LO_ */
-+		sense_a = nv_rd08(dev, NV_PRMCIO_INP0) & 0x10;
++	drm_i2c_encoder_destroy(encoder);
++}
 +
-+		/* take another reading until it agrees with sense_a... */
-+		do {
-+			udelay(100);
-+			sense_b = nv_rd08(dev, NV_PRMCIO_INP0) & 0x10;
-+			if (sense_a != sense_b) {
-+				sense_b_prime =
-+					nv_rd08(dev, NV_PRMCIO_INP0) & 0x10;
-+				if (sense_b == sense_b_prime) {
-+					/* ... unless two consecutive subsequent
-+					 * samples agree; sense_a is replaced */
-+					sense_a = sense_b;
-+					/* force mis-match so we loop */
-+					sense_b = !sense_a;
-+				}
-+			}
-+		} while ((sense_a != sense_b) && ++j < MAX_HBLANK_OSC);
++static void  ch7006_encoder_dpms(struct drm_encoder *encoder, int mode)
++{
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	struct ch7006_state *state = &priv->state;
 +
-+		if (j == MAX_HBLANK_OSC)
-+			/* with so much oscillation, default to sense:LO */
-+			sense[i] = false;
-+		else
-+			sense[i] = sense_a;
++	ch7006_dbg(client, "\n");
++
++	if (mode == priv->last_dpms)
++		return;
++	priv->last_dpms = mode;
++
++	ch7006_setup_power_state(encoder);
++
++	ch7006_load_reg(client, state, CH7006_POWER);
++}
++
++static void ch7006_encoder_save(struct drm_encoder *encoder)
++{
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++
++	ch7006_dbg(client, "\n");
++
++	ch7006_state_save(client, &priv->saved_state);
++}
++
++static void ch7006_encoder_restore(struct drm_encoder *encoder)
++{
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++
++	ch7006_dbg(client, "\n");
++
++	ch7006_state_load(client, &priv->saved_state);
++}
++
++static bool ch7006_encoder_mode_fixup(struct drm_encoder *encoder,
++				      struct drm_display_mode *mode,
++				      struct drm_display_mode *adjusted_mode)
++{
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++
++	/* The ch7006 is painfully picky with the input timings so no
++	 * custom modes for now... */
++
++	priv->mode = ch7006_lookup_mode(encoder, mode);
++
++	return !!priv->mode;
++}
++
++static int ch7006_encoder_mode_valid(struct drm_encoder *encoder,
++				     struct drm_display_mode *mode)
++{
++	if (ch7006_lookup_mode(encoder, mode))
++		return MODE_OK;
++	else
++		return MODE_BAD;
++}
++
++static void ch7006_encoder_mode_set(struct drm_encoder *encoder,
++				     struct drm_display_mode *drm_mode,
++				     struct drm_display_mode *adjusted_mode)
++{
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	struct ch7006_encoder_params *params = priv->params;
++	struct ch7006_state *state = &priv->state;
++	uint8_t *regs = state->regs;
++	struct ch7006_mode *mode = priv->mode;
++	struct ch7006_tv_norm_info *norm = &ch7006_tv_norms[priv->norm];
++	int start_active;
++
++	ch7006_dbg(client, "\n");
++
++	regs[CH7006_DISPMODE] = norm->dispmode | mode->dispmode;
++	regs[CH7006_BWIDTH] = 0;
++	regs[CH7006_INPUT_FORMAT] = bitf(CH7006_INPUT_FORMAT_FORMAT,
++					 params->input_format);
++
++	regs[CH7006_CLKMODE] = CH7006_CLKMODE_SUBC_LOCK
++		| bitf(CH7006_CLKMODE_XCM, params->xcm)
++		| bitf(CH7006_CLKMODE_PCM, params->pcm);
++	if (params->clock_mode)
++		regs[CH7006_CLKMODE] |= CH7006_CLKMODE_MASTER;
++	if (params->clock_edge)
++		regs[CH7006_CLKMODE] |= CH7006_CLKMODE_POS_EDGE;
++
++	start_active = (drm_mode->htotal & ~0x7) - (drm_mode->hsync_start & ~0x7);
++	regs[CH7006_POV] = bitf(CH7006_POV_START_ACTIVE_8, start_active);
++	regs[CH7006_START_ACTIVE] = bitf(CH7006_START_ACTIVE_0, start_active);
++
++	regs[CH7006_INPUT_SYNC] = 0;
++	if (params->sync_direction)
++		regs[CH7006_INPUT_SYNC] |= CH7006_INPUT_SYNC_OUTPUT;
++	if (params->sync_encoding)
++		regs[CH7006_INPUT_SYNC] |= CH7006_INPUT_SYNC_EMBEDDED;
++	if (drm_mode->flags & DRM_MODE_FLAG_PVSYNC)
++		regs[CH7006_INPUT_SYNC] |= CH7006_INPUT_SYNC_PVSYNC;
++	if (drm_mode->flags & DRM_MODE_FLAG_PHSYNC)
++		regs[CH7006_INPUT_SYNC] |= CH7006_INPUT_SYNC_PHSYNC;
++
++	regs[CH7006_DETECT] = 0;
++	regs[CH7006_BCLKOUT] = 0;
++
++	regs[CH7006_SUBC_INC3] = 0;
++	if (params->pout_level)
++		regs[CH7006_SUBC_INC3] |= CH7006_SUBC_INC3_POUT_3_3V;
++
++	regs[CH7006_SUBC_INC4] = 0;
++	if (params->active_detect)
++		regs[CH7006_SUBC_INC4] |= CH7006_SUBC_INC4_DS_INPUT;
++
++	regs[CH7006_PLL_CONTROL] = priv->saved_state.regs[CH7006_PLL_CONTROL];
++
++	ch7006_setup_levels(encoder);
++	ch7006_setup_subcarrier(encoder);
++	ch7006_setup_pll(encoder);
++	ch7006_setup_power_state(encoder);
++	ch7006_setup_properties(encoder);
++
++	ch7006_state_load(client, state);
++}
++
++static enum drm_connector_status ch7006_encoder_detect(struct drm_encoder *encoder,
++						       struct drm_connector *connector)
++{
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	struct ch7006_state *state = &priv->state;
++	int det;
++
++	ch7006_dbg(client, "\n");
++
++	ch7006_save_reg(client, state, CH7006_DETECT);
++	ch7006_save_reg(client, state, CH7006_POWER);
++	ch7006_save_reg(client, state, CH7006_CLKMODE);
++
++	ch7006_write(client, CH7006_POWER, CH7006_POWER_RESET |
++					   bitfs(CH7006_POWER_LEVEL, NORMAL));
++	ch7006_write(client, CH7006_CLKMODE, CH7006_CLKMODE_MASTER);
++
++	ch7006_write(client, CH7006_DETECT, CH7006_DETECT_SENSE);
++
++	ch7006_write(client, CH7006_DETECT, 0);
++
++	det = ch7006_read(client, CH7006_DETECT);
++
++	ch7006_load_reg(client, state, CH7006_CLKMODE);
++	ch7006_load_reg(client, state, CH7006_POWER);
++	ch7006_load_reg(client, state, CH7006_DETECT);
++
++	if ((det & (CH7006_DETECT_SVIDEO_Y_TEST|
++		    CH7006_DETECT_SVIDEO_C_TEST|
++		    CH7006_DETECT_CVBS_TEST)) == 0)
++		priv->subconnector = DRM_MODE_SUBCONNECTOR_SCART;
++	else if ((det & (CH7006_DETECT_SVIDEO_Y_TEST|
++			 CH7006_DETECT_SVIDEO_C_TEST)) == 0)
++		priv->subconnector = DRM_MODE_SUBCONNECTOR_SVIDEO;
++	else if ((det & CH7006_DETECT_CVBS_TEST) == 0)
++		priv->subconnector = DRM_MODE_SUBCONNECTOR_Composite;
++	else
++		priv->subconnector = DRM_MODE_SUBCONNECTOR_Unknown;
++
++	drm_connector_property_set_value(connector,
++					 encoder->dev->mode_config.tv_subconnector_property,
++					 priv->subconnector);
++
++	return priv->subconnector?
++		connector_status_connected
++		: connector_status_disconnected;
++}
++
++static int ch7006_encoder_get_modes(struct drm_encoder *encoder,
++				    struct drm_connector *connector)
++{
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	struct ch7006_mode *mode;
++	int n = 0;
++
++	for (mode = ch7006_modes; mode->mode.clock; mode++) {
++		if (~mode->valid_scales & 1<<priv->scale ||
++		    ~mode->valid_norms & 1<<priv->norm)
++			continue;
++
++		drm_mode_probed_add(connector,
++				    drm_mode_duplicate(encoder->dev, &mode->mode));
++
++		n++;
 +	}
++
++	return n;
++}
++
++static int ch7006_encoder_create_resources(struct drm_encoder *encoder,
++					   struct drm_connector *connector)
++{
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	struct drm_device *dev = encoder->dev;
++	struct drm_mode_config *conf = &dev->mode_config;
++
++	drm_mode_create_tv_properties(dev, NUM_TV_NORMS, ch7006_tv_norm_names);
++
++	priv->scale_property = drm_property_create(dev, DRM_MODE_PROP_RANGE,
++						   "scale", 2);
++	priv->scale_property->values[0] = 0;
++	priv->scale_property->values[1] = 2;
++
++	drm_connector_attach_property(connector, conf->tv_select_subconnector_property,
++				      priv->select_subconnector);
++	drm_connector_attach_property(connector, conf->tv_subconnector_property,
++				      priv->subconnector);
++	drm_connector_attach_property(connector, conf->tv_left_margin_property,
++				      priv->hmargin);
++	drm_connector_attach_property(connector, conf->tv_bottom_margin_property,
++				      priv->vmargin);
++	drm_connector_attach_property(connector, conf->tv_mode_property,
++				      priv->norm);
++	drm_connector_attach_property(connector, conf->tv_brightness_property,
++				      priv->brightness);
++	drm_connector_attach_property(connector, conf->tv_contrast_property,
++				      priv->contrast);
++	drm_connector_attach_property(connector, conf->tv_flicker_reduction_property,
++				      priv->flicker);
++	drm_connector_attach_property(connector, priv->scale_property,
++				      priv->scale);
 +
 +	return 0;
 +}
 +
-+static enum drm_connector_status nv04_dac_detect(struct drm_encoder *encoder,
-+						 struct drm_connector *connector)
++static int ch7006_encoder_set_property(struct drm_encoder *encoder,
++				       struct drm_connector *connector,
++				       struct drm_property *property,
++				       uint64_t val)
 +{
-+	struct drm_device *dev = encoder->dev;
-+	uint8_t saved_seq1, saved_pi, saved_rpc1;
-+	uint8_t saved_palette0[3], saved_palette_mask;
-+	uint32_t saved_rtest_ctrl, saved_rgen_ctrl;
-+	int i;
-+	uint8_t blue;
-+	bool sense = true;
-+
-+	/*
-+	 * for this detection to work, there needs to be a mode set up on the
-+	 * CRTC.  this is presumed to be the case
-+	 */
-+
-+	if (nv_two_heads(dev))
-+		/* only implemented for head A for now */
-+		NVSetOwner(dev, 0);
-+
-+	saved_seq1 = NVReadVgaSeq(dev, 0, NV_VIO_SR_CLOCK_INDEX);
-+	NVWriteVgaSeq(dev, 0, NV_VIO_SR_CLOCK_INDEX, saved_seq1 & ~0x20);
-+
-+	saved_rtest_ctrl = NVReadRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL);
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL,
-+		      saved_rtest_ctrl & ~NV_PRAMDAC_TEST_CONTROL_PWRDWN_DAC_OFF);
-+
-+	msleep(10);
-+
-+	saved_pi = NVReadVgaCrtc(dev, 0, NV_CIO_CRE_PIXEL_INDEX);
-+	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_PIXEL_INDEX,
-+		       saved_pi & ~(0x80 | MASK(NV_CIO_CRE_PIXEL_FORMAT)));
-+	saved_rpc1 = NVReadVgaCrtc(dev, 0, NV_CIO_CRE_RPC1_INDEX);
-+	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_RPC1_INDEX, saved_rpc1 & ~0xc0);
-+
-+	nv_wr08(dev, NV_PRMDIO_READ_MODE_ADDRESS, 0x0);
-+	for (i = 0; i < 3; i++)
-+		saved_palette0[i] = nv_rd08(dev, NV_PRMDIO_PALETTE_DATA);
-+	saved_palette_mask = nv_rd08(dev, NV_PRMDIO_PIXEL_MASK);
-+	nv_wr08(dev, NV_PRMDIO_PIXEL_MASK, 0);
-+
-+	saved_rgen_ctrl = NVReadRAMDAC(dev, 0, NV_PRAMDAC_GENERAL_CONTROL);
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_GENERAL_CONTROL,
-+		      (saved_rgen_ctrl & ~(NV_PRAMDAC_GENERAL_CONTROL_BPC_8BITS |
-+					   NV_PRAMDAC_GENERAL_CONTROL_TERMINATION_75OHM)) |
-+		      NV_PRAMDAC_GENERAL_CONTROL_PIXMIX_ON);
-+
-+	blue = 8;	/* start of test range */
-+
-+	do {
-+		bool sense_pair[2];
-+
-+		nv_wr08(dev, NV_PRMDIO_WRITE_MODE_ADDRESS, 0);
-+		nv_wr08(dev, NV_PRMDIO_PALETTE_DATA, 0);
-+		nv_wr08(dev, NV_PRMDIO_PALETTE_DATA, 0);
-+		/* testing blue won't find monochrome monitors.  I don't care */
-+		nv_wr08(dev, NV_PRMDIO_PALETTE_DATA, blue);
-+
-+		i = 0;
-+		/* take sample pairs until both samples in the pair agree */
-+		do {
-+			if (sample_load_twice(dev, sense_pair))
-+				goto out;
-+		} while ((sense_pair[0] != sense_pair[1]) &&
-+							++i < MAX_SAMPLE_PAIRS);
-+
-+		if (i == MAX_SAMPLE_PAIRS)
-+			/* too much oscillation defaults to LO */
-+			sense = false;
-+		else
-+			sense = sense_pair[0];
-+
-+	/*
-+	 * if sense goes LO before blue ramps to 0x18, monitor is not connected.
-+	 * ergo, if blue gets to 0x18, monitor must be connected
-+	 */
-+	} while (++blue < 0x18 && sense);
-+
-+out:
-+	nv_wr08(dev, NV_PRMDIO_PIXEL_MASK, saved_palette_mask);
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_GENERAL_CONTROL, saved_rgen_ctrl);
-+	nv_wr08(dev, NV_PRMDIO_WRITE_MODE_ADDRESS, 0);
-+	for (i = 0; i < 3; i++)
-+		nv_wr08(dev, NV_PRMDIO_PALETTE_DATA, saved_palette0[i]);
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL, saved_rtest_ctrl);
-+	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_PIXEL_INDEX, saved_pi);
-+	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_RPC1_INDEX, saved_rpc1);
-+	NVWriteVgaSeq(dev, 0, NV_VIO_SR_CLOCK_INDEX, saved_seq1);
-+
-+	if (blue == 0x18) {
-+		NV_TRACE(dev, "Load detected on head A\n");
-+		return connector_status_connected;
-+	}
-+
-+	return connector_status_disconnected;
-+}
-+
-+enum drm_connector_status nv17_dac_detect(struct drm_encoder *encoder,
-+					  struct drm_connector *connector)
-+{
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct dcb_entry *dcb = nouveau_encoder(encoder)->dcb;
-+	uint32_t testval, regoffset = nv04_dac_output_offset(encoder);
-+	uint32_t saved_powerctrl_2 = 0, saved_powerctrl_4 = 0, saved_routput,
-+		saved_rtest_ctrl, temp, routput;
-+	int head, present = 0;
-+
-+#define RGB_TEST_DATA(r,g,b) (r << 0 | g << 10 | b << 20)
-+	testval = RGB_TEST_DATA(0x140, 0x140, 0x140); /* 0x94050140 */
-+
-+	if (dev_priv->vbios->dactestval)
-+		testval = dev_priv->vbios->dactestval;
-+
-+	saved_rtest_ctrl = NVReadRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + regoffset);
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + regoffset,
-+		      saved_rtest_ctrl & ~NV_PRAMDAC_TEST_CONTROL_PWRDWN_DAC_OFF);
-+
-+	saved_powerctrl_2 = nvReadMC(dev, NV_PBUS_POWERCTRL_2);
-+
-+	nvWriteMC(dev, NV_PBUS_POWERCTRL_2, saved_powerctrl_2 & 0xd7ffffff);
-+	if (regoffset == 0x68) {
-+		saved_powerctrl_4 = nvReadMC(dev, NV_PBUS_POWERCTRL_4);
-+		nvWriteMC(dev, NV_PBUS_POWERCTRL_4, saved_powerctrl_4 & 0xffffffcf);
-+	}
-+
-+	msleep(4);
-+
-+	saved_routput = NVReadRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset);
-+	head = (saved_routput & 0x100) >> 8;
-+#if 0
-+	/* if there's a spare crtc, using it will minimise flicker for the case
-+	 * where the in-use crtc is in use by an off-chip tmds encoder */
-+	if (xf86_config->crtc[head]->enabled && !xf86_config->crtc[head ^ 1]->enabled)
-+		head ^= 1;
-+#endif
-+	/* nv driver and nv31 use 0xfffffeee, nv34 and 6600 use 0xfffffece */
-+	routput = (saved_routput & 0xfffffece) | head << 8;
-+
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset, routput);
-+	msleep(1);
-+
-+	temp = NVReadRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset);
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset, temp | 1);
-+
-+	NVWriteRAMDAC(dev, head, NV_PRAMDAC_TESTPOINT_DATA,
-+		      NV_PRAMDAC_TESTPOINT_DATA_NOTBLANK | testval);
-+	temp = NVReadRAMDAC(dev, head, NV_PRAMDAC_TEST_CONTROL);
-+	NVWriteRAMDAC(dev, head, NV_PRAMDAC_TEST_CONTROL,
-+		      temp | NV_PRAMDAC_TEST_CONTROL_TP_INS_EN_ASSERTED);
-+	msleep(5);
-+
-+	temp = NVReadRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + regoffset);
-+
-+	present = temp & NV_PRAMDAC_TEST_CONTROL_SENSEB_ALLHI;
-+
-+	temp = NVReadRAMDAC(dev, head, NV_PRAMDAC_TEST_CONTROL);
-+	NVWriteRAMDAC(dev, head, NV_PRAMDAC_TEST_CONTROL,
-+		      temp & ~NV_PRAMDAC_TEST_CONTROL_TP_INS_EN_ASSERTED);
-+	NVWriteRAMDAC(dev, head, NV_PRAMDAC_TESTPOINT_DATA, 0);
-+
-+	/* bios does something more complex for restoring, but I think this is good enough */
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset, saved_routput);
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + regoffset, saved_rtest_ctrl);
-+	if (regoffset == 0x68)
-+		nvWriteMC(dev, NV_PBUS_POWERCTRL_4, saved_powerctrl_4);
-+	nvWriteMC(dev, NV_PBUS_POWERCTRL_2, saved_powerctrl_2);
-+
-+	if (present) {
-+		NV_INFO(dev, "Load detected on output %c\n", '@' + ffs(dcb->or));
-+		return connector_status_connected;
-+	}
-+
-+	return connector_status_disconnected;
-+}
-+
-+
-+static bool nv04_dac_mode_fixup(struct drm_encoder *encoder,
-+				struct drm_display_mode *mode,
-+				struct drm_display_mode *adjusted_mode)
-+{
-+	return true;
-+}
-+
-+static void nv04_dac_prepare(struct drm_encoder *encoder)
-+{
-+	struct drm_encoder_helper_funcs *helper = encoder->helper_private;
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	int head = nouveau_crtc(encoder->crtc)->index;
-+	struct nv04_crtc_reg *crtcstate = dev_priv->mode_reg.crtc_reg;
-+
-+	helper->dpms(encoder, DRM_MODE_DPMS_OFF);
-+
-+	nv04_dfp_disable(dev, head);
-+
-+	/* Some NV4x have unknown values (0x3f, 0x50, 0x54, 0x6b, 0x79, 0x7f)
-+	 * at LCD__INDEX which we don't alter
-+	 */
-+	if (!(crtcstate[head].CRTC[NV_CIO_CRE_LCD__INDEX] & 0x44))
-+		crtcstate[head].CRTC[NV_CIO_CRE_LCD__INDEX] = 0;
-+}
-+
-+
-+static void nv04_dac_mode_set(struct drm_encoder *encoder,
-+			      struct drm_display_mode *mode,
-+			      struct drm_display_mode *adjusted_mode)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	int head = nouveau_crtc(encoder->crtc)->index;
-+
-+	NV_TRACE(dev, "%s called for encoder %d\n", __func__,
-+		      nv_encoder->dcb->index);
-+
-+	if (nv_gf4_disp_arch(dev)) {
-+		struct drm_encoder *rebind;
-+		uint32_t dac_offset = nv04_dac_output_offset(encoder);
-+		uint32_t otherdac;
-+
-+		/* bit 16-19 are bits that are set on some G70 cards,
-+		 * but don't seem to have much effect */
-+		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + dac_offset,
-+			      head << 8 | NV_PRAMDAC_DACCLK_SEL_DACCLK);
-+		/* force any other vga encoders to bind to the other crtc */
-+		list_for_each_entry(rebind, &dev->mode_config.encoder_list, head) {
-+			if (rebind == encoder
-+			    || nouveau_encoder(rebind)->dcb->type != OUTPUT_ANALOG)
-+				continue;
-+
-+			dac_offset = nv04_dac_output_offset(rebind);
-+			otherdac = NVReadRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + dac_offset);
-+			NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + dac_offset,
-+				      (otherdac & ~0x0100) | (head ^ 1) << 8);
-+		}
-+	}
-+
-+	/* This could use refinement for flatpanels, but it should work this way */
-+	if (dev_priv->chipset < 0x44)
-+		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + nv04_dac_output_offset(encoder), 0xf0000000);
-+	else
-+		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + nv04_dac_output_offset(encoder), 0x00100000);
-+}
-+
-+static void nv04_dac_commit(struct drm_encoder *encoder)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct drm_device *dev = encoder->dev;
-+	struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-+	struct drm_encoder_helper_funcs *helper = encoder->helper_private;
-+
-+	helper->dpms(encoder, DRM_MODE_DPMS_ON);
-+
-+	NV_INFO(dev, "Output %s is running on CRTC %d using output %c\n",
-+		drm_get_connector_name(&nouveau_encoder_connector_get(nv_encoder)->base),
-+		nv_crtc->index, '@' + ffs(nv_encoder->dcb->or));
-+}
-+
-+void nv04_dac_update_dacclk(struct drm_encoder *encoder, bool enable)
-+{
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct dcb_entry *dcb = nouveau_encoder(encoder)->dcb;
-+
-+	if (nv_gf4_disp_arch(dev)) {
-+		uint32_t *dac_users = &dev_priv->dac_users[ffs(dcb->or) - 1];
-+		int dacclk_off = NV_PRAMDAC_DACCLK + nv04_dac_output_offset(encoder);
-+		uint32_t dacclk = NVReadRAMDAC(dev, 0, dacclk_off);
-+
-+		if (enable) {
-+			*dac_users |= 1 << dcb->index;
-+			NVWriteRAMDAC(dev, 0, dacclk_off, dacclk | NV_PRAMDAC_DACCLK_SEL_DACCLK);
-+
-+		} else if (!(*dac_users &= ~(1 << dcb->index)))
-+			NVWriteRAMDAC(dev, 0, dacclk_off, dacclk & ~NV_PRAMDAC_DACCLK_SEL_DACCLK);
-+	}
-+}
-+
-+static void nv04_dac_dpms(struct drm_encoder *encoder, int mode)
-+{
-+	struct drm_device *dev = encoder->dev;
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+
-+	if (nv_encoder->last_dpms == mode)
-+		return;
-+	nv_encoder->last_dpms = mode;
-+
-+	NV_INFO(dev, "Setting dpms mode %d on vga encoder (output %d)\n",
-+		     mode, nv_encoder->dcb->index);
-+
-+	nv04_dac_update_dacclk(encoder, mode == DRM_MODE_DPMS_ON);
-+}
-+
-+static void nv04_dac_save(struct drm_encoder *encoder)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct drm_device *dev = encoder->dev;
-+
-+	if (nv_gf4_disp_arch(dev))
-+		nv_encoder->restore.output = NVReadRAMDAC(dev, 0, NV_PRAMDAC_DACCLK +
-+							  nv04_dac_output_offset(encoder));
-+}
-+
-+static void nv04_dac_restore(struct drm_encoder *encoder)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct drm_device *dev = encoder->dev;
-+
-+	if (nv_gf4_disp_arch(dev))
-+		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + nv04_dac_output_offset(encoder),
-+			      nv_encoder->restore.output);
-+
-+	nv_encoder->last_dpms = NV_DPMS_CLEARED;
-+}
-+
-+static void nv04_dac_destroy(struct drm_encoder *encoder)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+
-+	NV_DEBUG(encoder->dev, "\n");
-+
-+	drm_encoder_cleanup(encoder);
-+	kfree(nv_encoder);
-+}
-+
-+static const struct drm_encoder_helper_funcs nv04_dac_helper_funcs = {
-+	.dpms = nv04_dac_dpms,
-+	.save = nv04_dac_save,
-+	.restore = nv04_dac_restore,
-+	.mode_fixup = nv04_dac_mode_fixup,
-+	.prepare = nv04_dac_prepare,
-+	.commit = nv04_dac_commit,
-+	.mode_set = nv04_dac_mode_set,
-+	.detect = nv04_dac_detect
-+};
-+
-+static const struct drm_encoder_helper_funcs nv17_dac_helper_funcs = {
-+	.dpms = nv04_dac_dpms,
-+	.save = nv04_dac_save,
-+	.restore = nv04_dac_restore,
-+	.mode_fixup = nv04_dac_mode_fixup,
-+	.prepare = nv04_dac_prepare,
-+	.commit = nv04_dac_commit,
-+	.mode_set = nv04_dac_mode_set,
-+	.detect = nv17_dac_detect
-+};
-+
-+static const struct drm_encoder_funcs nv04_dac_funcs = {
-+	.destroy = nv04_dac_destroy,
-+};
-+
-+int nv04_dac_create(struct drm_device *dev, struct dcb_entry *entry)
-+{
-+	const struct drm_encoder_helper_funcs *helper;
-+	struct drm_encoder *encoder;
-+	struct nouveau_encoder *nv_encoder = NULL;
-+
-+	nv_encoder = kzalloc(sizeof(*nv_encoder), GFP_KERNEL);
-+	if (!nv_encoder)
-+		return -ENOMEM;
-+
-+	encoder = to_drm_encoder(nv_encoder);
-+
-+	nv_encoder->dcb = entry;
-+	nv_encoder->or = ffs(entry->or) - 1;
-+
-+	if (nv_gf4_disp_arch(dev))
-+		helper = &nv17_dac_helper_funcs;
-+	else
-+		helper = &nv04_dac_helper_funcs;
-+
-+	drm_encoder_init(dev, encoder, &nv04_dac_funcs, DRM_MODE_ENCODER_DAC);
-+	drm_encoder_helper_add(encoder, helper);
-+
-+	encoder->possible_crtcs = entry->heads;
-+	encoder->possible_clones = 0;
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/nouveau/nv04_dfp.c b/drivers/gpu/drm/nouveau/nv04_dfp.c
-new file mode 100644
-index 0000000..7913e5f
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nv04_dfp.c
-@@ -0,0 +1,611 @@
-+/*
-+ * Copyright 2003 NVIDIA, Corporation
-+ * Copyright 2006 Dave Airlie
-+ * Copyright 2007 Maarten Maathuis
-+ * Copyright 2007-2009 Stuart Bennett
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice (including the next
-+ * paragraph) shall be included in all copies or substantial portions of the
-+ * Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-+ * DEALINGS IN THE SOFTWARE.
-+ */
-+
-+#include "drmP.h"
-+#include "drm_crtc_helper.h"
-+
-+#include "nouveau_drv.h"
-+#include "nouveau_encoder.h"
-+#include "nouveau_connector.h"
-+#include "nouveau_crtc.h"
-+#include "nouveau_hw.h"
-+#include "nvreg.h"
-+
-+#define FP_TG_CONTROL_ON  (NV_PRAMDAC_FP_TG_CONTROL_DISPEN_POS |	\
-+			   NV_PRAMDAC_FP_TG_CONTROL_HSYNC_POS |		\
-+			   NV_PRAMDAC_FP_TG_CONTROL_VSYNC_POS)
-+#define FP_TG_CONTROL_OFF (NV_PRAMDAC_FP_TG_CONTROL_DISPEN_DISABLE |	\
-+			   NV_PRAMDAC_FP_TG_CONTROL_HSYNC_DISABLE |	\
-+			   NV_PRAMDAC_FP_TG_CONTROL_VSYNC_DISABLE)
-+
-+static inline bool is_fpc_off(uint32_t fpc)
-+{
-+	return ((fpc & (FP_TG_CONTROL_ON | FP_TG_CONTROL_OFF)) ==
-+			FP_TG_CONTROL_OFF);
-+}
-+
-+int nv04_dfp_get_bound_head(struct drm_device *dev, struct dcb_entry *dcbent)
-+{
-+	/* special case of nv_read_tmds to find crtc associated with an output.
-+	 * this does not give a correct answer for off-chip dvi, but there's no
-+	 * use for such an answer anyway
-+	 */
-+	int ramdac = (dcbent->or & OUTPUT_C) >> 2;
-+
-+	NVWriteRAMDAC(dev, ramdac, NV_PRAMDAC_FP_TMDS_CONTROL,
-+	NV_PRAMDAC_FP_TMDS_CONTROL_WRITE_DISABLE | 0x4);
-+	return ((NVReadRAMDAC(dev, ramdac, NV_PRAMDAC_FP_TMDS_DATA) & 0x8) >> 3) ^ ramdac;
-+}
-+
-+void nv04_dfp_bind_head(struct drm_device *dev, struct dcb_entry *dcbent,
-+			int head, bool dl)
-+{
-+	/* The BIOS scripts don't do this for us, sadly
-+	 * Luckily we do know the values ;-)
-+	 *
-+	 * head < 0 indicates we wish to force a setting with the overrideval
-+	 * (for VT restore etc.)
-+	 */
-+
-+	int ramdac = (dcbent->or & OUTPUT_C) >> 2;
-+	uint8_t tmds04 = 0x80;
-+
-+	if (head != ramdac)
-+		tmds04 = 0x88;
-+
-+	if (dcbent->type == OUTPUT_LVDS)
-+		tmds04 |= 0x01;
-+
-+	nv_write_tmds(dev, dcbent->or, 0, 0x04, tmds04);
-+
-+	if (dl)	/* dual link */
-+		nv_write_tmds(dev, dcbent->or, 1, 0x04, tmds04 ^ 0x08);
-+}
-+
-+void nv04_dfp_disable(struct drm_device *dev, int head)
-+{
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct nv04_crtc_reg *crtcstate = dev_priv->mode_reg.crtc_reg;
-+
-+	if (NVReadRAMDAC(dev, head, NV_PRAMDAC_FP_TG_CONTROL) &
-+	    FP_TG_CONTROL_ON) {
-+		/* digital remnants must be cleaned before new crtc
-+		 * values programmed.  delay is time for the vga stuff
-+		 * to realise it's in control again
-+		 */
-+		NVWriteRAMDAC(dev, head, NV_PRAMDAC_FP_TG_CONTROL,
-+			      FP_TG_CONTROL_OFF);
-+		msleep(50);
-+	}
-+	/* don't inadvertently turn it on when state written later */
-+	crtcstate[head].fp_control = FP_TG_CONTROL_OFF;
-+}
-+
-+void nv04_dfp_update_fp_control(struct drm_encoder *encoder, int mode)
-+{
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct drm_crtc *crtc;
-+	struct nouveau_crtc *nv_crtc;
-+	uint32_t *fpc;
-+
-+	if (mode == DRM_MODE_DPMS_ON) {
-+		nv_crtc = nouveau_crtc(encoder->crtc);
-+		fpc = &dev_priv->mode_reg.crtc_reg[nv_crtc->index].fp_control;
-+
-+		if (is_fpc_off(*fpc)) {
-+			/* using saved value is ok, as (is_digital && dpms_on &&
-+			 * fp_control==OFF) is (at present) *only* true when
-+			 * fpc's most recent change was by below "off" code
-+			 */
-+			*fpc = nv_crtc->dpms_saved_fp_control;
-+		}
-+
-+		nv_crtc->fp_users |= 1 << nouveau_encoder(encoder)->dcb->index;
-+		NVWriteRAMDAC(dev, nv_crtc->index, NV_PRAMDAC_FP_TG_CONTROL, *fpc);
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	struct ch7006_state *state = &priv->state;
++	struct drm_mode_config *conf = &encoder->dev->mode_config;
++
++	ch7006_dbg(client, "\n");
++
++	if (property == conf->tv_select_subconnector_property) {
++		priv->select_subconnector = val;
++
++		ch7006_setup_power_state(encoder);
++
++		ch7006_load_reg(client, state, CH7006_POWER);
++
++	} else if (property == conf->tv_left_margin_property) {
++		priv->hmargin = val;
++
++		ch7006_setup_properties(encoder);
++
++		ch7006_load_reg(client, state, CH7006_POV);
++		ch7006_load_reg(client, state, CH7006_HPOS);
++
++	} else if (property == conf->tv_bottom_margin_property) {
++		priv->vmargin = val;
++
++		ch7006_setup_properties(encoder);
++
++		ch7006_load_reg(client, state, CH7006_POV);
++		ch7006_load_reg(client, state, CH7006_VPOS);
++
++	} else if (property == conf->tv_mode_property) {
++		priv->norm = val;
++
++		drm_helper_probe_single_connector_modes(connector, 0, 0);
++
++	} else if (property == conf->tv_brightness_property) {
++		priv->brightness = val;
++
++		ch7006_setup_levels(encoder);
++
++		ch7006_load_reg(client, state, CH7006_BLACK_LEVEL);
++
++	} else if (property == conf->tv_contrast_property) {
++		priv->contrast = val;
++
++		ch7006_setup_properties(encoder);
++
++		ch7006_load_reg(client, state, CH7006_CONTRAST);
++
++	} else if (property == conf->tv_flicker_reduction_property) {
++		priv->flicker = val;
++
++		ch7006_setup_properties(encoder);
++
++		ch7006_load_reg(client, state, CH7006_FFILTER);
++
++	} else if (property == priv->scale_property) {
++		priv->scale = val;
++
++		drm_helper_probe_single_connector_modes(connector, 0, 0);
++
 +	} else {
-+		list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
-+			nv_crtc = nouveau_crtc(crtc);
-+			fpc = &dev_priv->mode_reg.crtc_reg[nv_crtc->index].fp_control;
-+
-+			nv_crtc->fp_users &= ~(1 << nouveau_encoder(encoder)->dcb->index);
-+			if (!is_fpc_off(*fpc) && !nv_crtc->fp_users) {
-+				nv_crtc->dpms_saved_fp_control = *fpc;
-+				/* cut the FP output */
-+				*fpc &= ~FP_TG_CONTROL_ON;
-+				*fpc |= FP_TG_CONTROL_OFF;
-+				NVWriteRAMDAC(dev, nv_crtc->index,
-+					      NV_PRAMDAC_FP_TG_CONTROL, *fpc);
-+			}
-+		}
-+	}
-+}
-+
-+static bool nv04_dfp_mode_fixup(struct drm_encoder *encoder,
-+				struct drm_display_mode *mode,
-+				struct drm_display_mode *adjusted_mode)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct nouveau_connector *nv_connector = nouveau_encoder_connector_get(nv_encoder);
-+
-+	/* For internal panels and gpu scaling on DVI we need the native mode */
-+	if (nv_connector->scaling_mode != DRM_MODE_SCALE_NON_GPU) {
-+		nv_encoder->mode = *nv_connector->native_mode;
-+		adjusted_mode->clock = nv_connector->native_mode->clock;
-+	} else {
-+		nv_encoder->mode = *adjusted_mode;
-+	}
-+
-+	return true;
-+}
-+
-+static void nv04_dfp_prepare_sel_clk(struct drm_device *dev,
-+				     struct nouveau_encoder *nv_encoder, int head)
-+{
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct nv04_mode_state *state = &dev_priv->mode_reg;
-+	uint32_t bits1618 = nv_encoder->dcb->or & OUTPUT_A ? 0x10000 : 0x40000;
-+
-+	if (nv_encoder->dcb->location != DCB_LOC_ON_CHIP)
-+		return;
-+
-+	/* SEL_CLK is only used on the primary ramdac
-+	 * It toggles spread spectrum PLL output and sets the bindings of PLLs
-+	 * to heads on digital outputs
-+	 */
-+	if (head)
-+		state->sel_clk |= bits1618;
-+	else
-+		state->sel_clk &= ~bits1618;
-+
-+	/* nv30:
-+	 *	bit 0		NVClk spread spectrum on/off
-+	 *	bit 2		MemClk spread spectrum on/off
-+	 * 	bit 4		PixClk1 spread spectrum on/off toggle
-+	 * 	bit 6		PixClk2 spread spectrum on/off toggle
-+	 *
-+	 * nv40 (observations from bios behaviour and mmio traces):
-+	 * 	bits 4&6	as for nv30
-+	 * 	bits 5&7	head dependent as for bits 4&6, but do not appear with 4&6;
-+	 * 			maybe a different spread mode
-+	 * 	bits 8&10	seen on dual-link dvi outputs, purpose unknown (set by POST scripts)
-+	 * 	The logic behind turning spread spectrum on/off in the first place,
-+	 * 	and which bit-pair to use, is unclear on nv40 (for earlier cards, the fp table
-+	 * 	entry has the necessary info)
-+	 */
-+	if (nv_encoder->dcb->type == OUTPUT_LVDS && dev_priv->saved_reg.sel_clk & 0xf0) {
-+		int shift = (dev_priv->saved_reg.sel_clk & 0x50) ? 0 : 1;
-+
-+		state->sel_clk &= ~0xf0;
-+		state->sel_clk |= (head ? 0x40 : 0x10) << shift;
-+	}
-+}
-+
-+static void nv04_dfp_prepare(struct drm_encoder *encoder)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct drm_encoder_helper_funcs *helper = encoder->helper_private;
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	int head = nouveau_crtc(encoder->crtc)->index;
-+	struct nv04_crtc_reg *crtcstate = dev_priv->mode_reg.crtc_reg;
-+	uint8_t *cr_lcd = &crtcstate[head].CRTC[NV_CIO_CRE_LCD__INDEX];
-+	uint8_t *cr_lcd_oth = &crtcstate[head ^ 1].CRTC[NV_CIO_CRE_LCD__INDEX];
-+
-+	helper->dpms(encoder, DRM_MODE_DPMS_OFF);
-+
-+	nv04_dfp_prepare_sel_clk(dev, nv_encoder, head);
-+
-+	/* Some NV4x have unknown values (0x3f, 0x50, 0x54, 0x6b, 0x79, 0x7f)
-+	 * at LCD__INDEX which we don't alter
-+	 */
-+	if (!(*cr_lcd & 0x44)) {
-+		*cr_lcd = 0x3;
-+
-+		if (nv_two_heads(dev)) {
-+			if (nv_encoder->dcb->location == DCB_LOC_ON_CHIP)
-+				*cr_lcd |= head ? 0x0 : 0x8;
-+			else {
-+				*cr_lcd |= (nv_encoder->dcb->or << 4) & 0x30;
-+				if (nv_encoder->dcb->type == OUTPUT_LVDS)
-+					*cr_lcd |= 0x30;
-+				if ((*cr_lcd & 0x30) == (*cr_lcd_oth & 0x30)) {
-+					/* avoid being connected to both crtcs */
-+					*cr_lcd_oth &= ~0x30;
-+					NVWriteVgaCrtc(dev, head ^ 1,
-+						       NV_CIO_CRE_LCD__INDEX,
-+						       *cr_lcd_oth);
-+				}
-+			}
-+		}
-+	}
-+}
-+
-+
-+static void nv04_dfp_mode_set(struct drm_encoder *encoder,
-+			      struct drm_display_mode *mode,
-+			      struct drm_display_mode *adjusted_mode)
-+{
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-+	struct nv04_crtc_reg *regp = &dev_priv->mode_reg.crtc_reg[nv_crtc->index];
-+	struct nv04_crtc_reg *savep = &dev_priv->saved_reg.crtc_reg[nv_crtc->index];
-+	struct nouveau_connector *nv_connector = nouveau_crtc_connector_get(nv_crtc);
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct drm_display_mode *output_mode = &nv_encoder->mode;
-+	uint32_t mode_ratio, panel_ratio;
-+
-+	NV_DEBUG(dev, "Output mode on CRTC %d:\n", nv_crtc->index);
-+	drm_mode_debug_printmodeline(output_mode);
-+
-+	/* Initialize the FP registers in this CRTC. */
-+	regp->fp_horiz_regs[FP_DISPLAY_END] = output_mode->hdisplay - 1;
-+	regp->fp_horiz_regs[FP_TOTAL] = output_mode->htotal - 1;
-+	if (!nv_gf4_disp_arch(dev) ||
-+	    (output_mode->hsync_start - output_mode->hdisplay) >=
-+					dev_priv->vbios->digital_min_front_porch)
-+		regp->fp_horiz_regs[FP_CRTC] = output_mode->hdisplay;
-+	else
-+		regp->fp_horiz_regs[FP_CRTC] = output_mode->hsync_start - dev_priv->vbios->digital_min_front_porch - 1;
-+	regp->fp_horiz_regs[FP_SYNC_START] = output_mode->hsync_start - 1;
-+	regp->fp_horiz_regs[FP_SYNC_END] = output_mode->hsync_end - 1;
-+	regp->fp_horiz_regs[FP_VALID_START] = output_mode->hskew;
-+	regp->fp_horiz_regs[FP_VALID_END] = output_mode->hdisplay - 1;
-+
-+	regp->fp_vert_regs[FP_DISPLAY_END] = output_mode->vdisplay - 1;
-+	regp->fp_vert_regs[FP_TOTAL] = output_mode->vtotal - 1;
-+	regp->fp_vert_regs[FP_CRTC] = output_mode->vtotal - 5 - 1;
-+	regp->fp_vert_regs[FP_SYNC_START] = output_mode->vsync_start - 1;
-+	regp->fp_vert_regs[FP_SYNC_END] = output_mode->vsync_end - 1;
-+	regp->fp_vert_regs[FP_VALID_START] = 0;
-+	regp->fp_vert_regs[FP_VALID_END] = output_mode->vdisplay - 1;
-+
-+	/* bit26: a bit seen on some g7x, no as yet discernable purpose */
-+	regp->fp_control = NV_PRAMDAC_FP_TG_CONTROL_DISPEN_POS |
-+			   (savep->fp_control & (1 << 26 | NV_PRAMDAC_FP_TG_CONTROL_READ_PROG));
-+	/* Deal with vsync/hsync polarity */
-+	/* LVDS screens do set this, but modes with +ve syncs are very rare */
-+	if (output_mode->flags & DRM_MODE_FLAG_PVSYNC)
-+		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_VSYNC_POS;
-+	if (output_mode->flags & DRM_MODE_FLAG_PHSYNC)
-+		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_HSYNC_POS;
-+	/* panel scaling first, as native would get set otherwise */
-+	if (nv_connector->scaling_mode == DRM_MODE_SCALE_NON_GPU ||
-+	    nv_connector->scaling_mode == DRM_MODE_SCALE_NO_SCALE)	/* panel handles it */
-+		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_MODE_CENTER;
-+	else if (adjusted_mode->hdisplay == output_mode->hdisplay &&
-+		 adjusted_mode->vdisplay == output_mode->vdisplay) /* native mode */
-+		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_MODE_NATIVE;
-+	else /* gpu needs to scale */
-+		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_MODE_SCALE;
-+	if (nvReadEXTDEV(dev, NV_PEXTDEV_BOOT_0) & NV_PEXTDEV_BOOT_0_STRAP_FP_IFACE_12BIT)
-+		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_WIDTH_12;
-+	if (nv_encoder->dcb->location != DCB_LOC_ON_CHIP &&
-+	    nv_connector->native_mode->clock > 165000)
-+		regp->fp_control |= (2 << 24);
-+	if (nv_encoder->dcb->type == OUTPUT_LVDS) {
-+		bool duallink, dummy;
-+
-+		nouveau_bios_parse_lvds_table(dev, nv_connector->native_mode->
-+					      clock, &duallink, &dummy);
-+		if (duallink)
-+			regp->fp_control |= (8 << 28);
-+	} else
-+	if (nv_connector->native_mode->clock > 165000)
-+		regp->fp_control |= (8 << 28);
-+
-+	regp->fp_debug_0 = NV_PRAMDAC_FP_DEBUG_0_YWEIGHT_ROUND |
-+			   NV_PRAMDAC_FP_DEBUG_0_XWEIGHT_ROUND |
-+			   NV_PRAMDAC_FP_DEBUG_0_YINTERP_BILINEAR |
-+			   NV_PRAMDAC_FP_DEBUG_0_XINTERP_BILINEAR |
-+			   NV_RAMDAC_FP_DEBUG_0_TMDS_ENABLED |
-+			   NV_PRAMDAC_FP_DEBUG_0_YSCALE_ENABLE |
-+			   NV_PRAMDAC_FP_DEBUG_0_XSCALE_ENABLE;
-+
-+	/* We want automatic scaling */
-+	regp->fp_debug_1 = 0;
-+	/* This can override HTOTAL and VTOTAL */
-+	regp->fp_debug_2 = 0;
-+
-+	/* Use 20.12 fixed point format to avoid floats */
-+	mode_ratio = (1 << 12) * adjusted_mode->hdisplay / adjusted_mode->vdisplay;
-+	panel_ratio = (1 << 12) * output_mode->hdisplay / output_mode->vdisplay;
-+	/* if ratios are equal, SCALE_ASPECT will automatically (and correctly)
-+	 * get treated the same as SCALE_FULLSCREEN */
-+	if (nv_connector->scaling_mode == DRM_MODE_SCALE_ASPECT &&
-+	    mode_ratio != panel_ratio) {
-+		uint32_t diff, scale;
-+		bool divide_by_2 = nv_gf4_disp_arch(dev);
-+
-+		if (mode_ratio < panel_ratio) {
-+			/* vertical needs to expand to glass size (automatic)
-+			 * horizontal needs to be scaled at vertical scale factor
-+			 * to maintain aspect */
-+
-+			scale = (1 << 12) * adjusted_mode->vdisplay / output_mode->vdisplay;
-+			regp->fp_debug_1 = NV_PRAMDAC_FP_DEBUG_1_XSCALE_TESTMODE_ENABLE |
-+					   XLATE(scale, divide_by_2, NV_PRAMDAC_FP_DEBUG_1_XSCALE_VALUE);
-+
-+			/* restrict area of screen used, horizontally */
-+			diff = output_mode->hdisplay -
-+			       output_mode->vdisplay * mode_ratio / (1 << 12);
-+			regp->fp_horiz_regs[FP_VALID_START] += diff / 2;
-+			regp->fp_horiz_regs[FP_VALID_END] -= diff / 2;
-+		}
-+
-+		if (mode_ratio > panel_ratio) {
-+			/* horizontal needs to expand to glass size (automatic)
-+			 * vertical needs to be scaled at horizontal scale factor
-+			 * to maintain aspect */
-+
-+			scale = (1 << 12) * adjusted_mode->hdisplay / output_mode->hdisplay;
-+			regp->fp_debug_1 = NV_PRAMDAC_FP_DEBUG_1_YSCALE_TESTMODE_ENABLE |
-+					   XLATE(scale, divide_by_2, NV_PRAMDAC_FP_DEBUG_1_YSCALE_VALUE);
-+
-+			/* restrict area of screen used, vertically */
-+			diff = output_mode->vdisplay -
-+			       (1 << 12) * output_mode->hdisplay / mode_ratio;
-+			regp->fp_vert_regs[FP_VALID_START] += diff / 2;
-+			regp->fp_vert_regs[FP_VALID_END] -= diff / 2;
-+		}
-+	}
-+
-+	/* Output property. */
-+	if (nv_connector->use_dithering) {
-+		if (dev_priv->chipset == 0x11)
-+			regp->dither = savep->dither | 0x00010000;
-+		else {
-+			int i;
-+			regp->dither = savep->dither | 0x00000001;
-+			for (i = 0; i < 3; i++) {
-+				regp->dither_regs[i] = 0xe4e4e4e4;
-+				regp->dither_regs[i + 3] = 0x44444444;
-+			}
-+		}
-+	} else {
-+		if (dev_priv->chipset != 0x11) {
-+			/* reset them */
-+			int i;
-+			for (i = 0; i < 3; i++) {
-+				regp->dither_regs[i] = savep->dither_regs[i];
-+				regp->dither_regs[i + 3] = savep->dither_regs[i + 3];
-+			}
-+		}
-+		regp->dither = savep->dither;
-+	}
-+
-+	regp->fp_margin_color = 0;
-+}
-+
-+static void nv04_dfp_commit(struct drm_encoder *encoder)
-+{
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct drm_encoder_helper_funcs *helper = encoder->helper_private;
-+	struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct dcb_entry *dcbe = nv_encoder->dcb;
-+	int head = nouveau_crtc(encoder->crtc)->index;
-+
-+	NV_TRACE(dev, "%s called for encoder %d\n", __func__, nv_encoder->dcb->index);
-+
-+	if (dcbe->type == OUTPUT_TMDS)
-+		run_tmds_table(dev, dcbe, head, nv_encoder->mode.clock);
-+	else if (dcbe->type == OUTPUT_LVDS)
-+		call_lvds_script(dev, dcbe, head, LVDS_RESET, nv_encoder->mode.clock);
-+
-+	/* update fp_control state for any changes made by scripts,
-+	 * so correct value is written at DPMS on */
-+	dev_priv->mode_reg.crtc_reg[head].fp_control =
-+		NVReadRAMDAC(dev, head, NV_PRAMDAC_FP_TG_CONTROL);
-+
-+	/* This could use refinement for flatpanels, but it should work this way */
-+	if (dev_priv->chipset < 0x44)
-+		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + nv04_dac_output_offset(encoder), 0xf0000000);
-+	else
-+		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + nv04_dac_output_offset(encoder), 0x00100000);
-+
-+	helper->dpms(encoder, DRM_MODE_DPMS_ON);
-+
-+	NV_INFO(dev, "Output %s is running on CRTC %d using output %c\n",
-+		drm_get_connector_name(&nouveau_encoder_connector_get(nv_encoder)->base),
-+		nv_crtc->index, '@' + ffs(nv_encoder->dcb->or));
-+}
-+
-+static inline bool is_powersaving_dpms(int mode)
-+{
-+	return (mode != DRM_MODE_DPMS_ON);
-+}
-+
-+static void nv04_lvds_dpms(struct drm_encoder *encoder, int mode)
-+{
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_crtc *crtc = encoder->crtc;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	bool was_powersaving = is_powersaving_dpms(nv_encoder->last_dpms);
-+
-+	if (nv_encoder->last_dpms == mode)
-+		return;
-+	nv_encoder->last_dpms = mode;
-+
-+	NV_INFO(dev, "Setting dpms mode %d on lvds encoder (output %d)\n",
-+		     mode, nv_encoder->dcb->index);
-+
-+	if (was_powersaving && is_powersaving_dpms(mode))
-+		return;
-+
-+	if (nv_encoder->dcb->lvdsconf.use_power_scripts) {
-+		struct nouveau_connector *nv_connector = nouveau_encoder_connector_get(nv_encoder);
-+
-+		/* when removing an output, crtc may not be set, but PANEL_OFF
-+		 * must still be run
-+		 */
-+		int head = crtc ? nouveau_crtc(crtc)->index :
-+			   nv04_dfp_get_bound_head(dev, nv_encoder->dcb);
-+
-+		if (mode == DRM_MODE_DPMS_ON)
-+			call_lvds_script(dev, nv_encoder->dcb, head,
-+					 LVDS_PANEL_ON, nv_connector->native_mode->clock);
-+		else
-+			/* pxclk of 0 is fine for PANEL_OFF, and for a
-+			 * disconnected LVDS encoder there is no native_mode
-+			 */
-+			call_lvds_script(dev, nv_encoder->dcb, head,
-+					 LVDS_PANEL_OFF, 0);
-+	}
-+
-+	nv04_dfp_update_fp_control(encoder, mode);
-+
-+	if (mode == DRM_MODE_DPMS_ON)
-+		nv04_dfp_prepare_sel_clk(dev, nv_encoder, nouveau_crtc(crtc)->index);
-+	else {
-+		dev_priv->mode_reg.sel_clk = NVReadRAMDAC(dev, 0, NV_PRAMDAC_SEL_CLK);
-+		dev_priv->mode_reg.sel_clk &= ~0xf0;
-+	}
-+	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_SEL_CLK, dev_priv->mode_reg.sel_clk);
-+}
-+
-+static void nv04_tmds_dpms(struct drm_encoder *encoder, int mode)
-+{
-+	struct drm_device *dev = encoder->dev;
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+
-+	if (nv_encoder->last_dpms == mode)
-+		return;
-+	nv_encoder->last_dpms = mode;
-+
-+	NV_INFO(dev, "Setting dpms mode %d on tmds encoder (output %d)\n",
-+		     mode, nv_encoder->dcb->index);
-+
-+	nv04_dfp_update_fp_control(encoder, mode);
-+}
-+
-+static void nv04_dfp_save(struct drm_encoder *encoder)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct drm_device *dev = encoder->dev;
-+
-+	if (nv_two_heads(dev))
-+		nv_encoder->restore.head =
-+			nv04_dfp_get_bound_head(dev, nv_encoder->dcb);
-+}
-+
-+static void nv04_dfp_restore(struct drm_encoder *encoder)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+	struct drm_device *dev = encoder->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	int head = nv_encoder->restore.head;
-+
-+	if (nv_encoder->dcb->type == OUTPUT_LVDS) {
-+		call_lvds_script(dev, nv_encoder->dcb, head, LVDS_PANEL_ON,
-+				 nouveau_encoder_connector_get(nv_encoder)->native_mode->clock);
-+
-+	} else if (nv_encoder->dcb->type == OUTPUT_TMDS) {
-+		int clock = nouveau_hw_pllvals_to_clk
-+					(&dev_priv->saved_reg.crtc_reg[head].pllvals);
-+
-+		run_tmds_table(dev, nv_encoder->dcb, head, clock);
-+	}
-+
-+	nv_encoder->last_dpms = NV_DPMS_CLEARED;
-+}
-+
-+static void nv04_dfp_destroy(struct drm_encoder *encoder)
-+{
-+	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
-+
-+	NV_DEBUG(encoder->dev, "\n");
-+
-+	drm_encoder_cleanup(encoder);
-+	kfree(nv_encoder);
-+}
-+
-+static const struct drm_encoder_helper_funcs nv04_lvds_helper_funcs = {
-+	.dpms = nv04_lvds_dpms,
-+	.save = nv04_dfp_save,
-+	.restore = nv04_dfp_restore,
-+	.mode_fixup = nv04_dfp_mode_fixup,
-+	.prepare = nv04_dfp_prepare,
-+	.commit = nv04_dfp_commit,
-+	.mode_set = nv04_dfp_mode_set,
-+	.detect = NULL,
-+};
-+
-+static const struct drm_encoder_helper_funcs nv04_tmds_helper_funcs = {
-+	.dpms = nv04_tmds_dpms,
-+	.save = nv04_dfp_save,
-+	.restore = nv04_dfp_restore,
-+	.mode_fixup = nv04_dfp_mode_fixup,
-+	.prepare = nv04_dfp_prepare,
-+	.commit = nv04_dfp_commit,
-+	.mode_set = nv04_dfp_mode_set,
-+	.detect = NULL,
-+};
-+
-+static const struct drm_encoder_funcs nv04_dfp_funcs = {
-+	.destroy = nv04_dfp_destroy,
-+};
-+
-+int nv04_dfp_create(struct drm_device *dev, struct dcb_entry *entry)
-+{
-+	const struct drm_encoder_helper_funcs *helper;
-+	struct drm_encoder *encoder;
-+	struct nouveau_encoder *nv_encoder = NULL;
-+	int type;
-+
-+	switch (entry->type) {
-+	case OUTPUT_TMDS:
-+		type = DRM_MODE_ENCODER_TMDS;
-+		helper = &nv04_tmds_helper_funcs;
-+		break;
-+	case OUTPUT_LVDS:
-+		type = DRM_MODE_ENCODER_LVDS;
-+		helper = &nv04_lvds_helper_funcs;
-+		break;
-+	default:
 +		return -EINVAL;
 +	}
 +
-+	nv_encoder = kzalloc(sizeof(*nv_encoder), GFP_KERNEL);
-+	if (!nv_encoder)
-+		return -ENOMEM;
++	return 0;
++}
 +
-+	encoder = to_drm_encoder(nv_encoder);
++struct drm_encoder_slave_funcs ch7006_encoder_funcs = {
++	.set_config = ch7006_encoder_set_config,
++	.destroy = ch7006_encoder_destroy,
++	.dpms = ch7006_encoder_dpms,
++	.save = ch7006_encoder_save,
++	.restore = ch7006_encoder_restore,
++	.mode_fixup = ch7006_encoder_mode_fixup,
++	.mode_valid = ch7006_encoder_mode_valid,
++	.mode_set = ch7006_encoder_mode_set,
++	.detect = ch7006_encoder_detect,
++	.get_modes = ch7006_encoder_get_modes,
++	.create_resources = ch7006_encoder_create_resources,
++	.set_property = ch7006_encoder_set_property,
++};
 +
-+	nv_encoder->dcb = entry;
-+	nv_encoder->or = ffs(entry->or) - 1;
 +
-+	drm_encoder_init(dev, encoder, &nv04_dfp_funcs, type);
-+	drm_encoder_helper_add(encoder, helper);
++/* I2C driver functions */
 +
-+	encoder->possible_crtcs = entry->heads;
-+	encoder->possible_clones = 0;
++static int ch7006_probe(struct i2c_client *client, const struct i2c_device_id *id)
++{
++	uint8_t addr = CH7006_VERSION_ID;
++	uint8_t val;
++	int ret;
++
++	ch7006_dbg(client, "\n");
++
++	ret = i2c_master_send(client, &addr, sizeof(addr));
++	if (ret < 0)
++		goto fail;
++
++	ret = i2c_master_recv(client, &val, sizeof(val));
++	if (ret < 0)
++		goto fail;
++
++	ch7006_info(client, "Detected version ID: %x\n", val);
++
++	return 0;
++
++fail:
++	ch7006_err(client, "Error %d reading version ID\n", ret);
++
++	return -ENODEV;
++}
++
++static int ch7006_remove(struct i2c_client *client)
++{
++	ch7006_dbg(client, "\n");
 +
 +	return 0;
 +}
-diff --git a/drivers/gpu/drm/nouveau/nv04_display.c b/drivers/gpu/drm/nouveau/nv04_display.c
-index ee50e34..4826e13 100644
---- a/drivers/gpu/drm/nouveau/nv04_display.c
-+++ b/drivers/gpu/drm/nouveau/nv04_display.c
-@@ -96,7 +96,7 @@ nv04_display_create(struct drm_device *dev)
- 	struct drm_encoder *encoder;
- 	struct drm_crtc *crtc;
- 	uint16_t connectors[16] = { 0 };
--	int i;
-+	int i, ret;
- 
- 	NV_DEBUG(dev, "\n");
- 
-@@ -130,16 +130,25 @@ nv04_display_create(struct drm_device *dev)
- 	for (i = 0; i < dcb->entries; i++) {
- 		struct dcb_entry *dcbent = &dcb->entry[i];
- 
--		if (dcbent->type == OUTPUT_TV)
-+		switch (dcbent->type) {
-+		case OUTPUT_ANALOG:
-+			ret = nv04_dac_create(dev, dcbent);
-+			break;
-+		case OUTPUT_LVDS:
-+		case OUTPUT_TMDS:
-+			ret = nv04_dfp_create(dev, dcbent);
-+			break;
-+		case OUTPUT_TV:
- 			continue;
--		if (dcbent->type > 3) {
-+		default:
- 			NV_WARN(dev, "DCB type %d not known\n", dcbent->type);
- 			continue;
- 		}
- 
--		connectors[dcbent->i2c_index] |= 1 << i;
-+		if (ret)
++
++static int ch7006_encoder_init(struct i2c_client *client,
++			       struct drm_device *dev,
++			       struct drm_encoder_slave *encoder)
++{
++	struct ch7006_priv *priv;
++
++	ch7006_dbg(client, "\n");
++
++	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	encoder->slave_priv = priv;
++	encoder->slave_funcs = &ch7006_encoder_funcs;
++
++	priv->norm = TV_NORM_PAL;
++	priv->select_subconnector = DRM_MODE_SUBCONNECTOR_Automatic;
++	priv->subconnector = DRM_MODE_SUBCONNECTOR_Unknown;
++	priv->scale = 1;
++	priv->contrast = 50;
++	priv->brightness = 50;
++	priv->flicker = 50;
++	priv->hmargin = 50;
++	priv->vmargin = 50;
++	priv->last_dpms = -1;
++
++	return 0;
++}
++
++static struct i2c_device_id ch7006_ids[] = {
++	{ "ch7006", 0 },
++	{ }
++};
++MODULE_DEVICE_TABLE(i2c, ch7006_ids);
++
++static struct drm_i2c_encoder_driver ch7006_driver = {
++	.i2c_driver = {
++		.probe = ch7006_probe,
++		.remove = ch7006_remove,
++
++		.driver = {
++			.name = "ch7006",
++		},
++
++		.id_table = ch7006_ids,
++	},
++
++	.encoder_init = ch7006_encoder_init,
++};
++
++
++/* Module initialization */
++
++static int __init ch7006_init(void)
++{
++	return drm_i2c_encoder_register(THIS_MODULE, &ch7006_driver);
++}
++
++static void __exit ch7006_exit(void)
++{
++	drm_i2c_encoder_unregister(&ch7006_driver);
++}
++
++int ch7006_debug = 0;
++module_param_named(debug, ch7006_debug, int, 0600);
++MODULE_PARM_DESC(debug, "Enable debug output.");
++
++MODULE_AUTHOR("Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>");
++MODULE_DESCRIPTION("Chrontel ch7006 TV encoder driver");
++MODULE_LICENSE("GPL and additional rights");
++
++module_init(ch7006_init);
++module_exit(ch7006_exit);
+diff --git a/drivers/gpu/drm/i2c/ch7006_mode.c b/drivers/gpu/drm/i2c/ch7006_mode.c
+new file mode 100644
+index 0000000..a4c2798
+--- /dev/null
++++ b/drivers/gpu/drm/i2c/ch7006_mode.c
+@@ -0,0 +1,470 @@
++/*
++ * Copyright (C) 2009 Francisco Jerez.
++ * All Rights Reserved.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
++ * IN NO EVENT SHALL THE COPYRIGHT OWNER(S) AND/OR ITS SUPPLIERS BE
++ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
++ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
++ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
++#include "ch7006_priv.h"
++
++char *ch7006_tv_norm_names[] = {
++	[TV_NORM_PAL] = "PAL",
++	[TV_NORM_PAL_M] = "PAL-M",
++	[TV_NORM_PAL_N] = "PAL-N",
++	[TV_NORM_PAL_NC] = "PAL-Nc",
++	[TV_NORM_PAL_60] = "PAL-60",
++	[TV_NORM_NTSC_M] = "NTSC-M",
++	[TV_NORM_NTSC_J] = "NTSC-J",
++};
++
++#define NTSC_LIKE_TIMINGS .vrefresh = 60 * fixed1/1.001,		\
++		.vdisplay = 480,					\
++		.vtotal = 525,						\
++		.hvirtual = 660
++
++#define PAL_LIKE_TIMINGS .vrefresh = 50 * fixed1,		\
++		.vdisplay = 576,				\
++		.vtotal = 625,					\
++		.hvirtual = 810
++
++struct ch7006_tv_norm_info ch7006_tv_norms[] = {
++	[TV_NORM_NTSC_M] = {
++		NTSC_LIKE_TIMINGS,
++		.black_level = 0.339 * fixed1,
++		.subc_freq = 3579545 * fixed1,
++		.dispmode = bitfs(CH7006_DISPMODE_OUTPUT_STD, NTSC),
++		.voffset = 0,
++	},
++	[TV_NORM_NTSC_J] = {
++		NTSC_LIKE_TIMINGS,
++		.black_level = 0.286 * fixed1,
++		.subc_freq = 3579545 * fixed1,
++		.dispmode = bitfs(CH7006_DISPMODE_OUTPUT_STD, NTSC_J),
++		.voffset = 0,
++	},
++	[TV_NORM_PAL] = {
++		PAL_LIKE_TIMINGS,
++		.black_level = 0.3 * fixed1,
++		.subc_freq = 4433618.75 * fixed1,
++		.dispmode = bitfs(CH7006_DISPMODE_OUTPUT_STD, PAL),
++		.voffset = 0,
++	},
++	[TV_NORM_PAL_M] = {
++		NTSC_LIKE_TIMINGS,
++		.black_level = 0.339 * fixed1,
++		.subc_freq = 3575611.433 * fixed1,
++		.dispmode = bitfs(CH7006_DISPMODE_OUTPUT_STD, PAL_M),
++		.voffset = 16,
++	},
++
++	/* The following modes seem to work right but they're
++	 * undocumented */
++
++	[TV_NORM_PAL_N] = {
++		PAL_LIKE_TIMINGS,
++		.black_level = 0.339 * fixed1,
++		.subc_freq = 4433618.75 * fixed1,
++		.dispmode = bitfs(CH7006_DISPMODE_OUTPUT_STD, PAL),
++		.voffset = 0,
++	},
++	[TV_NORM_PAL_NC] = {
++		PAL_LIKE_TIMINGS,
++		.black_level = 0.3 * fixed1,
++		.subc_freq = 3582056.25 * fixed1,
++		.dispmode = bitfs(CH7006_DISPMODE_OUTPUT_STD, PAL),
++		.voffset = 0,
++	},
++	[TV_NORM_PAL_60] = {
++		NTSC_LIKE_TIMINGS,
++		.black_level = 0.3 * fixed1,
++		.subc_freq = 4433618.75 * fixed1,
++		.dispmode = bitfs(CH7006_DISPMODE_OUTPUT_STD, PAL_M),
++		.voffset = 16,
++	},
++};
++
++#define __MODE(f, hd, vd, ht, vt, hsynp, vsynp,				\
++	       subc, scale, scale_mask, norm_mask, e_hd, e_vd) {	\
++		.mode = {						\
++			.name = #hd "x" #vd,				\
++			.status = 0,					\
++			.type = DRM_MODE_TYPE_DRIVER,			\
++			.clock = f,					\
++			.hdisplay = hd,					\
++			.hsync_start = e_hd + 16,			\
++			.hsync_end = e_hd + 80,				\
++			.htotal = ht,					\
++			.hskew = 0,					\
++			.vdisplay = vd,					\
++			.vsync_start = vd + 10,				\
++			.vsync_end = vd + 26,				\
++			.vtotal = vt,					\
++			.vscan = 0,					\
++			.flags = DRM_MODE_FLAG_##hsynp##HSYNC |		\
++				DRM_MODE_FLAG_##vsynp##VSYNC,		\
++			.vrefresh = 0,					\
++		},							\
++		.enc_hdisp = e_hd,					\
++		.enc_vdisp = e_vd,					\
++		.subc_coeff = subc * fixed1,				\
++		.dispmode = bitfs(CH7006_DISPMODE_SCALING_RATIO, scale) | \
++			    bitfs(CH7006_DISPMODE_INPUT_RES, e_hd##x##e_vd), \
++		.valid_scales = scale_mask,				\
++		.valid_norms = norm_mask				\
++	 }
++
++#define MODE(f, hd, vd, ht, vt, hsynp, vsynp,				\
++	     subc, scale, scale_mask, norm_mask)			\
++	__MODE(f, hd, vd, ht, vt, hsynp, vsynp, subc, scale,		\
++	       scale_mask, norm_mask, hd, vd)
++
++#define NTSC_LIKE (1 << TV_NORM_NTSC_M | 1 << TV_NORM_NTSC_J |		\
++		   1 << TV_NORM_PAL_M | 1 << TV_NORM_PAL_60)
++
++#define PAL_LIKE (1 << TV_NORM_PAL | 1 << TV_NORM_PAL_N | 1 << TV_NORM_PAL_NC)
++
++struct ch7006_mode ch7006_modes[] = {
++	MODE(21000, 512, 384, 840, 500, N, N, 181.797557582, 5_4, 0x6, PAL_LIKE),
++	MODE(26250, 512, 384, 840, 625, N, N, 145.438046066, 1_1, 0x1, PAL_LIKE),
++	MODE(20140, 512, 384, 800, 420, N, N, 213.257083791, 5_4, 0x4, NTSC_LIKE),
++	MODE(24671, 512, 384, 784, 525, N, N, 174.0874153, 1_1, 0x3, NTSC_LIKE),
++	MODE(28125, 720, 400, 1125, 500, N, N, 135.742176298, 5_4, 0x6, PAL_LIKE),
++	MODE(34875, 720, 400, 1116, 625, N, N, 109.469496898, 1_1, 0x1, PAL_LIKE),
++	MODE(23790, 720, 400, 945, 420, N, N, 160.475642016, 5_4, 0x4, NTSC_LIKE),
++	MODE(29455, 720, 400, 936, 525, N, N, 129.614941843, 1_1, 0x3, NTSC_LIKE),
++	MODE(25000, 640, 400, 1000, 500, N, N, 152.709948279, 5_4, 0x6, PAL_LIKE),
++	MODE(31500, 640, 400, 1008, 625, N, N, 121.198371646, 1_1, 0x1, PAL_LIKE),
++	MODE(21147, 640, 400, 840, 420, N, N, 180.535097338, 5_4, 0x4, NTSC_LIKE),
++	MODE(26434, 640, 400, 840, 525, N, N, 144.42807787, 1_1, 0x2, NTSC_LIKE),
++	MODE(30210, 640, 400, 840, 600, N, N, 126.374568276, 7_8, 0x1, NTSC_LIKE),
++	MODE(21000, 640, 480, 840, 500, N, N, 181.797557582, 5_4, 0x4, PAL_LIKE),
++	MODE(26250, 640, 480, 840, 625, N, N, 145.438046066, 1_1, 0x2, PAL_LIKE),
++	MODE(31500, 640, 480, 840, 750, N, N, 121.198371646, 5_6, 0x1, PAL_LIKE),
++	MODE(24671, 640, 480, 784, 525, N, N, 174.0874153, 1_1, 0x4, NTSC_LIKE),
++	MODE(28196, 640, 480, 784, 600, N, N, 152.326488422, 7_8, 0x2, NTSC_LIKE),
++	MODE(30210, 640, 480, 800, 630, N, N, 142.171389101, 5_6, 0x1, NTSC_LIKE),
++	__MODE(29500, 720, 576, 944, 625, P, P, 145.592111636, 1_1, 0x7, PAL_LIKE, 800, 600),
++	MODE(36000, 800, 600, 960, 750, P, P, 119.304647022, 5_6, 0x6, PAL_LIKE),
++	MODE(39000, 800, 600, 936, 836, P, P, 110.127366499, 3_4, 0x1, PAL_LIKE),
++	MODE(39273, 800, 600, 1040, 630, P, P, 145.816809399, 5_6, 0x4, NTSC_LIKE),
++	MODE(43636, 800, 600, 1040, 700, P, P, 131.235128487, 3_4, 0x2, NTSC_LIKE),
++	MODE(47832, 800, 600, 1064, 750, P, P, 119.723275165, 7_10, 0x1, NTSC_LIKE),
++	{}
++};
++
++struct ch7006_mode *ch7006_lookup_mode(struct drm_encoder *encoder,
++				       struct drm_display_mode *drm_mode)
++{
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	struct ch7006_mode *mode;
++
++	for (mode = ch7006_modes; mode->mode.clock; mode++) {
++
++		if (~mode->valid_norms & 1<<priv->norm)
 +			continue;
- 
--		nv04_encoder_create(dev, dcbent);
-+		connectors[dcbent->i2c_index] |= 1 << i;
- 	}
- 
- 	for (i = 0; i < dcb->entries; i++) {
-@@ -171,13 +180,21 @@ nv04_display_create(struct drm_device *dev)
- 			    dev_priv->vbios->fp_no_ddc)
- 				i2c_index = 0xf;
- 			break;
-+		case OUTPUT_TV:
-+			type = DRM_MODE_CONNECTOR_TV;
++
++		if (mode->mode.hdisplay != drm_mode->hdisplay ||
++		    mode->mode.vdisplay != drm_mode->vdisplay ||
++		    mode->mode.vtotal != drm_mode->vtotal ||
++		    mode->mode.htotal != drm_mode->htotal ||
++		    mode->mode.clock != drm_mode->clock)
++			continue;
++
++		return mode;
++	}
++
++	return NULL;
++}
++
++/* Some common HW state calculation code */
++
++void ch7006_setup_levels(struct drm_encoder *encoder)
++{
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	uint8_t *regs = priv->state.regs;
++	struct ch7006_tv_norm_info *norm = &ch7006_tv_norms[priv->norm];
++	fixed gain;
++	int black_level;
++
++	/* Set DAC_GAIN if the voltage drop between white and black is
++	 * high enough. */
++	if (norm->black_level < 0.339 * fixed1) {
++		gain = 76*fixed1/71;
++
++		regs[CH7006_INPUT_FORMAT] |= CH7006_INPUT_FORMAT_DAC_GAIN;
++	} else {
++		gain = fixed1;
++
++		regs[CH7006_INPUT_FORMAT] &= ~CH7006_INPUT_FORMAT_DAC_GAIN;
++	}
++
++	black_level = norm->black_level*375/gain;
++
++	/* Correct it with the specified brightness. */
++	black_level = interpolate(90, black_level, 208, priv->brightness);
++
++	regs[CH7006_BLACK_LEVEL] = bitf(CH7006_BLACK_LEVEL_0, black_level);
++
++	ch7006_dbg(client, "black level: %d\n", black_level);
++}
++
++void ch7006_setup_subcarrier(struct drm_encoder *encoder)
++{
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	struct ch7006_state *state = &priv->state;
++	struct ch7006_tv_norm_info *norm = &ch7006_tv_norms[priv->norm];
++	struct ch7006_mode *mode = priv->mode;
++	uint32_t subc_inc;
++
++	subc_inc = ((mode->subc_coeff >> 8)
++		    * (norm->subc_freq >> 24) + 0.5 * fixed1) / fixed1;
++
++	setbitf(state, CH7006_SUBC_INC0, 28, subc_inc);
++	setbitf(state, CH7006_SUBC_INC1, 24, subc_inc);
++	setbitf(state, CH7006_SUBC_INC2, 20, subc_inc);
++	setbitf(state, CH7006_SUBC_INC3, 16, subc_inc);
++	setbitf(state, CH7006_SUBC_INC4, 12, subc_inc);
++	setbitf(state, CH7006_SUBC_INC5, 8, subc_inc);
++	setbitf(state, CH7006_SUBC_INC6, 4, subc_inc);
++	setbitf(state, CH7006_SUBC_INC7, 0, subc_inc);
++
++	ch7006_dbg(client, "subcarrier inc: %u\n", subc_inc);
++}
++
++void ch7006_setup_pll(struct drm_encoder *encoder)
++{
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	uint8_t *regs = priv->state.regs;
++	struct ch7006_mode *mode = priv->mode;
++	int n, best_n = 0;
++	int m, best_m = 0;
++	int freq, best_freq = 0;
++
++	for (n = 0; n < CH7006_MAXN; n++) {
++		for (m = 0; m < CH7006_MAXM; m++) {
++			freq = CH7006_FREQ0*(n+2)/(m+2);
++
++			if (abs(freq - mode->mode.clock) <
++			    abs(best_freq - mode->mode.clock)) {
++				best_freq = freq;
++				best_n = n;
++				best_m = m;
++			}
++		}
++	}
++
++	regs[CH7006_PLLOV] = bitf(CH7006_PLLOV_N_8, best_n) |
++		bitf(CH7006_PLLOV_M_8, best_m);
++
++	regs[CH7006_PLLM] = bitf(CH7006_PLLM_0, best_m);
++	regs[CH7006_PLLN] = bitf(CH7006_PLLN_0, best_n);
++
++	if (best_n < 108)
++		regs[CH7006_PLL_CONTROL] |= CH7006_PLL_CONTROL_CAPACITOR;
++	else
++		regs[CH7006_PLL_CONTROL] &= ~CH7006_PLL_CONTROL_CAPACITOR;
++
++	ch7006_dbg(client, "n=%d m=%d f=%d c=%d\n",
++		   best_n, best_m, best_freq, best_n < 108);
++}
++
++void ch7006_setup_power_state(struct drm_encoder *encoder)
++{
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	uint8_t *power = &priv->state.regs[CH7006_POWER];
++	int subconnector;
++
++	subconnector = priv->select_subconnector?
++		priv->select_subconnector : priv->subconnector;
++
++	*power = CH7006_POWER_RESET;
++
++	if (priv->last_dpms == DRM_MODE_DPMS_ON) {
++		switch (subconnector) {
++		case DRM_MODE_SUBCONNECTOR_SVIDEO:
++			*power |= bitfs(CH7006_POWER_LEVEL, CVBS_OFF);
 +			break;
- 		default:
- 			type = DRM_MODE_CONNECTOR_Unknown;
- 			continue;
- 		}
- 
-+		if (i2c_index == 0xf)
-+			encoders = 1 << dcbent->index; /* allow multiple connectors with the
-+							  same dummy i2c index */
-+		else
-+			connectors[i2c_index] = 0; /* avoid connectors being added multiply */
++		case DRM_MODE_SUBCONNECTOR_Composite:
++			*power |= bitfs(CH7006_POWER_LEVEL, SVIDEO_OFF);
++			break;
++		case DRM_MODE_SUBCONNECTOR_SCART:
++			*power |= bitfs(CH7006_POWER_LEVEL, NORMAL) |
++				CH7006_POWER_SCART;
++			break;
++		}
 +
- 		nouveau_connector_create(dev, i2c_index, type);
--		connectors[i2c_index] = 0; /* avoid connectors being added multiply */
- 	}
- 
- 	/* Save previous state */
-diff --git a/drivers/gpu/drm/nouveau/nv04_output.c b/drivers/gpu/drm/nouveau/nv04_output.c
-deleted file mode 100644
-index ba57dcf..0000000
---- a/drivers/gpu/drm/nouveau/nv04_output.c
-+++ /dev/null
-@@ -1,797 +0,0 @@
--/*
-- * Copyright 2003 NVIDIA, Corporation
-- * Copyright 2006 Dave Airlie
-- * Copyright 2007 Maarten Maathuis
-- * Copyright 2007-2009 Stuart Bennett
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice (including the next
-- * paragraph) shall be included in all copies or substantial portions of the
-- * Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-- * DEALINGS IN THE SOFTWARE.
-- */
--
--#include "drmP.h"
--#include "drm_crtc_helper.h"
--
--#include "nouveau_drv.h"
--#include "nouveau_encoder.h"
--#include "nouveau_connector.h"
--#include "nouveau_crtc.h"
--#include "nouveau_hw.h"
--#include "nvreg.h"
--
--static int
--nv_output_ramdac_offset(struct nouveau_encoder *nv_encoder)
--{
--	int offset = 0;
--
--	if (nv_encoder->dcb->or & (8 | OUTPUT_C))
--		offset += 0x68;
--	if (nv_encoder->dcb->or & (8 | OUTPUT_B))
--		offset += 0x2000;
--
--	return offset;
--}
--
--static int
--nv_get_digital_bound_head(struct drm_device *dev, int or)
--{
--	/* special case of nv_read_tmds to find crtc associated with an output.
--	 * this does not give a correct answer for off-chip dvi, but there's no
--	 * use for such an answer anyway
--	 */
--	int ramdac = (or & OUTPUT_C) >> 2;
--
--	NVWriteRAMDAC(dev, ramdac, NV_PRAMDAC_FP_TMDS_CONTROL,
--	NV_PRAMDAC_FP_TMDS_CONTROL_WRITE_DISABLE | 0x4);
--	return (((NVReadRAMDAC(dev, ramdac, NV_PRAMDAC_FP_TMDS_DATA) & 0x8) >> 3) ^ ramdac);
--}
--
--/*
-- * arbitrary limit to number of sense oscillations tolerated in one sample
-- * period (observed to be at least 13 in "nvidia")
-- */
--#define MAX_HBLANK_OSC 20
--
--/*
-- * arbitrary limit to number of conflicting sample pairs to tolerate at a
-- * voltage step (observed to be at least 5 in "nvidia")
-- */
--#define MAX_SAMPLE_PAIRS 10
--
--static int sample_load_twice(struct drm_device *dev, bool sense[2])
--{
--	int i;
--
--	for (i = 0; i < 2; i++) {
--		bool sense_a, sense_b, sense_b_prime;
--		int j = 0;
--
--		/*
--		 * wait for bit 0 clear -- out of hblank -- (say reg value 0x4),
--		 * then wait for transition 0x4->0x5->0x4: enter hblank, leave
--		 * hblank again
--		 * use a 10ms timeout (guards against crtc being inactive, in
--		 * which case blank state would never change)
--		 */
--		if (!nouveau_wait_until(dev, 10000000, NV_PRMCIO_INP0__COLOR,
--					0x00000001, 0x00000000))
--			return -EBUSY;
--		if (!nouveau_wait_until(dev, 10000000, NV_PRMCIO_INP0__COLOR,
--					0x00000001, 0x00000001))
--			return -EBUSY;
--		if (!nouveau_wait_until(dev, 10000000, NV_PRMCIO_INP0__COLOR,
--					0x00000001, 0x00000000))
--			return -EBUSY;
--
--		udelay(100);
--		/* when level triggers, sense is _LO_ */
--		sense_a = nv_rd08(dev, NV_PRMCIO_INP0) & 0x10;
--
--		/* take another reading until it agrees with sense_a... */
--		do {
--			udelay(100);
--			sense_b = nv_rd08(dev, NV_PRMCIO_INP0) & 0x10;
--			if (sense_a != sense_b) {
--				sense_b_prime =
--					nv_rd08(dev, NV_PRMCIO_INP0) & 0x10;
--				if (sense_b == sense_b_prime) {
--					/* ... unless two consecutive subsequent
--					 * samples agree; sense_a is replaced */
--					sense_a = sense_b;
--					/* force mis-match so we loop */
--					sense_b = !sense_a;
--				}
--			}
--		} while ((sense_a != sense_b) && ++j < MAX_HBLANK_OSC);
--
--		if (j == MAX_HBLANK_OSC)
--			/* with so much oscillation, default to sense:LO */
--			sense[i] = false;
--		else
--			sense[i] = sense_a;
--	}
--
--	return 0;
--}
--
--static enum drm_connector_status
--nv04_dac_load_detect(struct drm_encoder *encoder,
--		     struct drm_connector *connector)
--{
--	struct drm_device *dev = encoder->dev;
--	uint8_t saved_seq1, saved_pi, saved_rpc1;
--	uint8_t saved_palette0[3], saved_palette_mask;
--	uint32_t saved_rtest_ctrl, saved_rgen_ctrl;
--	int i;
--	uint8_t blue;
--	bool sense = true;
--
--	/*
--	 * for this detection to work, there needs to be a mode set up on the
--	 * CRTC.  this is presumed to be the case
--	 */
--
--	if (nv_two_heads(dev))
--		/* only implemented for head A for now */
--		NVSetOwner(dev, 0);
--
--	saved_seq1 = NVReadVgaSeq(dev, 0, NV_VIO_SR_CLOCK_INDEX);
--	NVWriteVgaSeq(dev, 0, NV_VIO_SR_CLOCK_INDEX, saved_seq1 & ~0x20);
--
--	saved_rtest_ctrl = NVReadRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL);
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL,
--		      saved_rtest_ctrl & ~NV_PRAMDAC_TEST_CONTROL_PWRDWN_DAC_OFF);
--
--	msleep(10);
--
--	saved_pi = NVReadVgaCrtc(dev, 0, NV_CIO_CRE_PIXEL_INDEX);
--	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_PIXEL_INDEX,
--		       saved_pi & ~(0x80 | MASK(NV_CIO_CRE_PIXEL_FORMAT)));
--	saved_rpc1 = NVReadVgaCrtc(dev, 0, NV_CIO_CRE_RPC1_INDEX);
--	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_RPC1_INDEX, saved_rpc1 & ~0xc0);
--
--	nv_wr08(dev, NV_PRMDIO_READ_MODE_ADDRESS, 0x0);
--	for (i = 0; i < 3; i++)
--		saved_palette0[i] = nv_rd08(dev, NV_PRMDIO_PALETTE_DATA);
--	saved_palette_mask = nv_rd08(dev, NV_PRMDIO_PIXEL_MASK);
--	nv_wr08(dev, NV_PRMDIO_PIXEL_MASK, 0);
--
--	saved_rgen_ctrl = NVReadRAMDAC(dev, 0, NV_PRAMDAC_GENERAL_CONTROL);
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_GENERAL_CONTROL,
--		      (saved_rgen_ctrl & ~(NV_PRAMDAC_GENERAL_CONTROL_BPC_8BITS |
--					   NV_PRAMDAC_GENERAL_CONTROL_TERMINATION_75OHM)) |
--		      NV_PRAMDAC_GENERAL_CONTROL_PIXMIX_ON);
--
--	blue = 8;	/* start of test range */
--
--	do {
--		bool sense_pair[2];
--
--		nv_wr08(dev, NV_PRMDIO_WRITE_MODE_ADDRESS, 0);
--		nv_wr08(dev, NV_PRMDIO_PALETTE_DATA, 0);
--		nv_wr08(dev, NV_PRMDIO_PALETTE_DATA, 0);
--		/* testing blue won't find monochrome monitors.  I don't care */
--		nv_wr08(dev, NV_PRMDIO_PALETTE_DATA, blue);
--
--		i = 0;
--		/* take sample pairs until both samples in the pair agree */
--		do {
--			if (sample_load_twice(dev, sense_pair))
--				goto out;
--		} while ((sense_pair[0] != sense_pair[1]) &&
--							++i < MAX_SAMPLE_PAIRS);
--
--		if (i == MAX_SAMPLE_PAIRS)
--			/* too much oscillation defaults to LO */
--			sense = false;
--		else
--			sense = sense_pair[0];
--
--	/*
--	 * if sense goes LO before blue ramps to 0x18, monitor is not connected.
--	 * ergo, if blue gets to 0x18, monitor must be connected
--	 */
--	} while (++blue < 0x18 && sense);
--
--out:
--	nv_wr08(dev, NV_PRMDIO_PIXEL_MASK, saved_palette_mask);
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_GENERAL_CONTROL, saved_rgen_ctrl);
--	nv_wr08(dev, NV_PRMDIO_WRITE_MODE_ADDRESS, 0);
--	for (i = 0; i < 3; i++)
--		nv_wr08(dev, NV_PRMDIO_PALETTE_DATA, saved_palette0[i]);
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL, saved_rtest_ctrl);
--	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_PIXEL_INDEX, saved_pi);
--	NVWriteVgaCrtc(dev, 0, NV_CIO_CRE_RPC1_INDEX, saved_rpc1);
--	NVWriteVgaSeq(dev, 0, NV_VIO_SR_CLOCK_INDEX, saved_seq1);
--
--	if (blue == 0x18) {
--		NV_TRACE(dev, "Load detected on head A\n");
--		return connector_status_connected;
--	}
--
--	return connector_status_disconnected;
--}
--
--static enum drm_connector_status
--nv17_dac_load_detect(struct drm_encoder *encoder,
--		     struct drm_connector *connector)
--{
--	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--	struct drm_device *dev = encoder->dev;
--	struct drm_nouveau_private *dev_priv = dev->dev_private;
--	uint32_t testval, regoffset = nv_output_ramdac_offset(nv_encoder);
--	uint32_t saved_powerctrl_2 = 0, saved_powerctrl_4 = 0, saved_routput, saved_rtest_ctrl, temp;
--	int head, present = 0;
--
--#define RGB_TEST_DATA(r,g,b) (r << 0 | g << 10 | b << 20)
--	testval = RGB_TEST_DATA(0x140, 0x140, 0x140); /* 0x94050140 */
--	if (dev_priv->vbios->dactestval)
--		testval = dev_priv->vbios->dactestval;
--
--	saved_rtest_ctrl = NVReadRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + regoffset);
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + regoffset,
--		      saved_rtest_ctrl & ~NV_PRAMDAC_TEST_CONTROL_PWRDWN_DAC_OFF);
--
--	saved_powerctrl_2 = nvReadMC(dev, NV_PBUS_POWERCTRL_2);
--
--	nvWriteMC(dev, NV_PBUS_POWERCTRL_2, saved_powerctrl_2 & 0xd7ffffff);
--	if (regoffset == 0x68) {
--		saved_powerctrl_4 = nvReadMC(dev, NV_PBUS_POWERCTRL_4);
--		nvWriteMC(dev, NV_PBUS_POWERCTRL_4, saved_powerctrl_4 & 0xffffffcf);
--	}
--
--	msleep(4);
--
--	saved_routput = NVReadRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset);
--	head = (saved_routput & 0x100) >> 8;
--#if 0
--	/* if there's a spare crtc, using it will minimise flicker for the case
--	 * where the in-use crtc is in use by an off-chip tmds encoder */
--	if (xf86_config->crtc[head]->enabled && !xf86_config->crtc[head ^ 1]->enabled)
--		head ^= 1;
--#endif
--	/* nv driver and nv31 use 0xfffffeee, nv34 and 6600 use 0xfffffece */
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset,
--		      (saved_routput & 0xfffffece) | head << 8);
--	msleep(1);
--
--	temp = NVReadRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset);
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset, temp | 1);
--
--	NVWriteRAMDAC(dev, head, NV_PRAMDAC_TESTPOINT_DATA,
--		      NV_PRAMDAC_TESTPOINT_DATA_NOTBLANK | testval);
--	temp = NVReadRAMDAC(dev, head, NV_PRAMDAC_TEST_CONTROL);
--	NVWriteRAMDAC(dev, head, NV_PRAMDAC_TEST_CONTROL,
--		      temp | NV_PRAMDAC_TEST_CONTROL_TP_INS_EN_ASSERTED);
--	msleep(1);
--
--	present = NVReadRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + regoffset) &
--			NV_PRAMDAC_TEST_CONTROL_SENSEB_ALLHI;
--
--	temp = NVReadRAMDAC(dev, head, NV_PRAMDAC_TEST_CONTROL);
--	NVWriteRAMDAC(dev, head, NV_PRAMDAC_TEST_CONTROL,
--		      temp & ~NV_PRAMDAC_TEST_CONTROL_TP_INS_EN_ASSERTED);
--	NVWriteRAMDAC(dev, head, NV_PRAMDAC_TESTPOINT_DATA, 0);
--
--	/* bios does something more complex for restoring, but I think this is good enough */
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + regoffset, saved_routput);
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + regoffset, saved_rtest_ctrl);
--	if (regoffset == 0x68)
--		nvWriteMC(dev, NV_PBUS_POWERCTRL_4, saved_powerctrl_4);
--	nvWriteMC(dev, NV_PBUS_POWERCTRL_2, saved_powerctrl_2);
--
--	if (present) {
--		NV_INFO(dev, "Load detected on output %c\n",
--			     '@' + ffs(nv_encoder->dcb->or));
--		return connector_status_connected;
--	}
--
--	return connector_status_disconnected;
--}
--
--static bool
--nv_output_mode_fixup(struct drm_encoder *encoder, struct drm_display_mode *mode,
--		     struct drm_display_mode *adjusted_mode)
--{
--	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--	struct nouveau_connector *nv_connector;
--
--	nv_connector = nouveau_encoder_connector_get(nv_encoder);
--	if (!nv_connector)
--		return false;
--
--	/* For internal panels and gpu scaling on DVI we need the native mode */
--	if (nv_encoder->dcb->type == OUTPUT_LVDS ||
--	    (nv_encoder->dcb->type == OUTPUT_TMDS && nv_connector->scaling_mode != DRM_MODE_SCALE_NON_GPU)) {
--		int id = adjusted_mode->base.id;
--		*adjusted_mode = *nv_connector->native_mode;
--		adjusted_mode->base.id = id;
--	}
--
--	return true;
--}
--
--static void
--nv_digital_output_prepare_sel_clk(struct drm_device *dev,
--				  struct nouveau_encoder *nv_encoder, int head)
--{
--	struct drm_nouveau_private *dev_priv = dev->dev_private;
--	struct nv04_mode_state *state = &dev_priv->mode_reg;
--	uint32_t bits1618 = nv_encoder->dcb->or & OUTPUT_A ? 0x10000 : 0x40000;
--
--	if (nv_encoder->dcb->location != DCB_LOC_ON_CHIP)
--		return;
--
--	/* SEL_CLK is only used on the primary ramdac
--	 * It toggles spread spectrum PLL output and sets the bindings of PLLs
--	 * to heads on digital outputs
--	 */
--	if (head)
--		state->sel_clk |= bits1618;
--	else
--		state->sel_clk &= ~bits1618;
--
--	/* nv30:
--	 *	bit 0		NVClk spread spectrum on/off
--	 *	bit 2		MemClk spread spectrum on/off
--	 * 	bit 4		PixClk1 spread spectrum on/off toggle
--	 * 	bit 6		PixClk2 spread spectrum on/off toggle
--	 *
--	 * nv40 (observations from bios behaviour and mmio traces):
--	 * 	bits 4&6	as for nv30
--	 * 	bits 5&7	head dependent as for bits 4&6, but do not appear with 4&6;
--	 * 			maybe a different spread mode
--	 * 	bits 8&10	seen on dual-link dvi outputs, purpose unknown (set by POST scripts)
--	 * 	The logic behind turning spread spectrum on/off in the first place,
--	 * 	and which bit-pair to use, is unclear on nv40 (for earlier cards, the fp table
--	 * 	entry has the necessary info)
--	 */
--	if (nv_encoder->dcb->type == OUTPUT_LVDS && dev_priv->saved_reg.sel_clk & 0xf0) {
--		int shift = (dev_priv->saved_reg.sel_clk & 0x50) ? 0 : 1;
--
--		state->sel_clk &= ~0xf0;
--		state->sel_clk |= (head ? 0x40 : 0x10) << shift;
--	}
--}
--
--#define FP_TG_CONTROL_ON  (NV_PRAMDAC_FP_TG_CONTROL_DISPEN_POS |	\
--			   NV_PRAMDAC_FP_TG_CONTROL_HSYNC_POS |		\
--			   NV_PRAMDAC_FP_TG_CONTROL_VSYNC_POS)
--#define FP_TG_CONTROL_OFF (NV_PRAMDAC_FP_TG_CONTROL_DISPEN_DISABLE |	\
--			   NV_PRAMDAC_FP_TG_CONTROL_HSYNC_DISABLE |	\
--			   NV_PRAMDAC_FP_TG_CONTROL_VSYNC_DISABLE)
--
--static inline bool is_fpc_off(uint32_t fpc)
--{
--	return ((fpc & (FP_TG_CONTROL_ON | FP_TG_CONTROL_OFF)) ==
--			FP_TG_CONTROL_OFF);
--}
--
--static void
--nv_output_prepare(struct drm_encoder *encoder)
--{
--	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--	struct drm_encoder_helper_funcs *helper = encoder->helper_private;
--	struct drm_device *dev = encoder->dev;
--	struct drm_nouveau_private *dev_priv = dev->dev_private;
--	int head = nouveau_crtc(encoder->crtc)->index;
--	struct nv04_crtc_reg *crtcstate = dev_priv->mode_reg.crtc_reg;
--	uint8_t *cr_lcd = &crtcstate[head].CRTC[NV_CIO_CRE_LCD__INDEX];
--	uint8_t *cr_lcd_oth = &crtcstate[head ^ 1].CRTC[NV_CIO_CRE_LCD__INDEX];
--	bool digital_op = nv_encoder->dcb->type == OUTPUT_LVDS ||
--			  nv_encoder->dcb->type == OUTPUT_TMDS;
--
--	helper->dpms(encoder, DRM_MODE_DPMS_OFF);
--
--	if (nv_encoder->dcb->type == OUTPUT_ANALOG) {
--		if (NVReadRAMDAC(dev, head, NV_PRAMDAC_FP_TG_CONTROL) &
--							FP_TG_CONTROL_ON) {
--			/* digital remnants must be cleaned before new crtc
--			 * values programmed.  delay is time for the vga stuff
--			 * to realise it's in control again
--			 */
--			NVWriteRAMDAC(dev, head, NV_PRAMDAC_FP_TG_CONTROL,
--				      FP_TG_CONTROL_OFF);
--			msleep(50);
--		}
--		/* don't inadvertently turn it on when state written later */
--		crtcstate[head].fp_control = FP_TG_CONTROL_OFF;
--	}
--
--	/* calculate some output specific CRTC regs now, so that they can be
--	 * written in nv_crtc_set_mode
--	 */
--
--	if (digital_op)
--		nv_digital_output_prepare_sel_clk(dev, nv_encoder, head);
--
--	/* Some NV4x have unknown values (0x3f, 0x50, 0x54, 0x6b, 0x79, 0x7f)
--	 * at LCD__INDEX which we don't alter
--	 */
--	if (!(*cr_lcd & 0x44)) {
--		*cr_lcd = digital_op ? 0x3 : 0x0;
--		if (digital_op && nv_two_heads(dev)) {
--			if (nv_encoder->dcb->location == DCB_LOC_ON_CHIP)
--				*cr_lcd |= head ? 0x0 : 0x8;
--			else {
--				*cr_lcd |= (nv_encoder->dcb->or << 4) & 0x30;
--				if (nv_encoder->dcb->type == OUTPUT_LVDS)
--					*cr_lcd |= 0x30;
--				if ((*cr_lcd & 0x30) == (*cr_lcd_oth & 0x30)) {
--					/* avoid being connected to both crtcs */
--					*cr_lcd_oth &= ~0x30;
--					NVWriteVgaCrtc(dev, head ^ 1,
--						       NV_CIO_CRE_LCD__INDEX,
--						       *cr_lcd_oth);
--				}
--			}
--		}
--	}
--}
--
--static void
--nv_output_mode_set(struct drm_encoder *encoder, struct drm_display_mode *mode,
--		   struct drm_display_mode *adjusted_mode)
--{
--	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--	struct drm_device *dev = encoder->dev;
--	struct drm_nouveau_private *dev_priv = dev->dev_private;
--	struct dcb_entry *dcbe = nv_encoder->dcb;
--	int head = nouveau_crtc(encoder->crtc)->index;
--
--	NV_TRACE(dev, "%s called for encoder %d\n", __func__,
--		      nv_encoder->dcb->index);
--
--	if (nv_gf4_disp_arch(dev) && dcbe->type == OUTPUT_ANALOG) {
--		struct drm_encoder *rebind;
--		uint32_t dac_offset = nv_output_ramdac_offset(nv_encoder);
--		uint32_t otherdac;
--
--		/* bit 16-19 are bits that are set on some G70 cards,
--		 * but don't seem to have much effect */
--		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + dac_offset,
--			      head << 8 | NV_PRAMDAC_DACCLK_SEL_DACCLK);
--		/* force any other vga encoders to bind to the other crtc */
--		list_for_each_entry(rebind, &dev->mode_config.encoder_list, head) {
--			struct nouveau_encoder *nv_rebind = nouveau_encoder(rebind);
--
--			if (nv_rebind == nv_encoder || nv_rebind->dcb->type != OUTPUT_ANALOG)
--				continue;
--
--			dac_offset = nv_output_ramdac_offset(nv_rebind);
--			otherdac = NVReadRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + dac_offset);
--			NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + dac_offset,
--				      (otherdac & ~0x0100) | (head ^ 1) << 8);
--		}
--	}
--	if (dcbe->type == OUTPUT_TMDS)
--		run_tmds_table(dev, dcbe, head, adjusted_mode->clock);
--	else if (dcbe->type == OUTPUT_LVDS)
--		call_lvds_script(dev, dcbe, head, LVDS_RESET, adjusted_mode->clock);
--	if (dcbe->type == OUTPUT_LVDS || dcbe->type == OUTPUT_TMDS)
--		/* update fp_control state for any changes made by scripts,
--		 * so correct value is written at DPMS on */
--		dev_priv->mode_reg.crtc_reg[head].fp_control =
--			NVReadRAMDAC(dev, head, NV_PRAMDAC_FP_TG_CONTROL);
--
--	/* This could use refinement for flatpanels, but it should work this way */
--	if (dev_priv->chipset < 0x44)
--		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + nv_output_ramdac_offset(nv_encoder), 0xf0000000);
--	else
--		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + nv_output_ramdac_offset(nv_encoder), 0x00100000);
--}
--
--static void
--nv_output_commit(struct drm_encoder *encoder)
--{
--	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--	struct drm_device *dev = encoder->dev;
--	struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
--	struct drm_encoder_helper_funcs *helper = encoder->helper_private;
--
--	helper->dpms(encoder, DRM_MODE_DPMS_ON);
--
--	NV_INFO(dev, "Output %s is running on CRTC %d using output %c\n",
--		      drm_get_connector_name(&nouveau_encoder_connector_get(nv_encoder)->base), nv_crtc->index,
--		      '@' + ffs(nv_encoder->dcb->or));
--}
--
--static void
--dpms_update_fp_control(struct drm_device *dev,
--		       struct nouveau_encoder *nv_encoder, struct drm_crtc * crtc,
--		       int mode)
--{
--	struct drm_nouveau_private *dev_priv = dev->dev_private;
--	struct nouveau_crtc *nv_crtc;
--	uint32_t *fpc;
--
--	if (mode == DRM_MODE_DPMS_ON) {
--		nv_crtc = nouveau_crtc(crtc);
--		fpc = &dev_priv->mode_reg.crtc_reg[nv_crtc->index].fp_control;
--
--		if (is_fpc_off(*fpc)) {
--			/* using saved value is ok, as (is_digital && dpms_on &&
--			 * fp_control==OFF) is (at present) *only* true when
--			 * fpc's most recent change was by below "off" code
--			 */
--			*fpc = nv_crtc->dpms_saved_fp_control;
--		}
--
--		nv_crtc->fp_users |= 1 << nv_encoder->dcb->index;
--		NVWriteRAMDAC(dev, nv_crtc->index, NV_PRAMDAC_FP_TG_CONTROL, *fpc);
--	} else {
--		list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
--			nv_crtc = nouveau_crtc(crtc);
--			fpc = &dev_priv->mode_reg.crtc_reg[nv_crtc->index].fp_control;
--
--			nv_crtc->fp_users &= ~(1 << nv_encoder->dcb->index);
--			if (!is_fpc_off(*fpc) && !nv_crtc->fp_users) {
--				nv_crtc->dpms_saved_fp_control = *fpc;
--				/* cut the FP output */
--				*fpc &= ~FP_TG_CONTROL_ON;
--				*fpc |= FP_TG_CONTROL_OFF;
--				NVWriteRAMDAC(dev, nv_crtc->index,
--					      NV_PRAMDAC_FP_TG_CONTROL, *fpc);
--			}
--		}
--	}
--}
--
--static inline bool is_powersaving_dpms(int mode)
--{
--	return (mode != DRM_MODE_DPMS_ON);
--}
--
--static void
--lvds_encoder_dpms(struct drm_device *dev, struct nouveau_encoder *nv_encoder,
--		  struct drm_crtc * crtc, int mode)
--{
--	struct drm_nouveau_private *dev_priv = dev->dev_private;
--	bool was_powersaving = is_powersaving_dpms(nv_encoder->last_dpms);
--
--	if (nv_encoder->last_dpms == mode)
--		return;
--	nv_encoder->last_dpms = mode;
--
--	NV_INFO(dev, "Setting dpms mode %d on lvds encoder (output %d)\n",
--		     mode, nv_encoder->dcb->index);
--
--	if (was_powersaving && is_powersaving_dpms(mode))
--		return;
--
--	if (nv_encoder->dcb->lvdsconf.use_power_scripts) {
--		struct nouveau_connector *nv_connector = nouveau_encoder_connector_get(nv_encoder);
--
--		/* when removing an output, crtc may not be set, but PANEL_OFF
--		 * must still be run
--		 */
--		int head = crtc ? nouveau_crtc(crtc)->index :
--			   nv_get_digital_bound_head(dev, nv_encoder->dcb->or);
--
--		if (mode == DRM_MODE_DPMS_ON)
--			call_lvds_script(dev, nv_encoder->dcb, head,
--					 LVDS_PANEL_ON, nv_connector->native_mode->clock);
--		else
--			/* pxclk of 0 is fine for PANEL_OFF, and for a
--			 * disconnected LVDS encoder there is no native_mode
--			 */
--			call_lvds_script(dev, nv_encoder->dcb, head,
--					 LVDS_PANEL_OFF, 0);
--	}
--
--	dpms_update_fp_control(dev, nv_encoder, crtc, mode);
--
--	if (mode == DRM_MODE_DPMS_ON)
--		nv_digital_output_prepare_sel_clk(dev, nv_encoder, nouveau_crtc(crtc)->index);
--	else {
--		dev_priv->mode_reg.sel_clk = NVReadRAMDAC(dev, 0, NV_PRAMDAC_SEL_CLK);
--		dev_priv->mode_reg.sel_clk &= ~0xf0;
--	}
--	NVWriteRAMDAC(dev, 0, NV_PRAMDAC_SEL_CLK, dev_priv->mode_reg.sel_clk);
--}
--
--static void
--vga_encoder_dpms(struct drm_device *dev, struct nouveau_encoder *nv_encoder,
--		 struct drm_crtc * crtc, int mode)
--{
--	if (nv_encoder->last_dpms == mode)
--		return;
--	nv_encoder->last_dpms = mode;
--
--	NV_INFO(dev, "Setting dpms mode %d on vga encoder (output %d)\n",
--		     mode, nv_encoder->dcb->index);
--
--	if (nv_gf4_disp_arch(dev)) {
--		uint32_t outputval = NVReadRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + nv_output_ramdac_offset(nv_encoder));
--
--		if (mode == DRM_MODE_DPMS_OFF)
--			NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + nv_output_ramdac_offset(nv_encoder),
--				      outputval & ~NV_PRAMDAC_DACCLK_SEL_DACCLK);
--		else if (mode == DRM_MODE_DPMS_ON)
--			NVWriteRAMDAC(dev, 0, NV_PRAMDAC_DACCLK + nv_output_ramdac_offset(nv_encoder),
--				      outputval | NV_PRAMDAC_DACCLK_SEL_DACCLK);
--	}
--}
--
--static void
--tmds_encoder_dpms(struct drm_device *dev, struct nouveau_encoder *nv_encoder,
--		  struct drm_crtc * crtc, int mode)
--{
--	if (nv_encoder->last_dpms == mode)
--		return;
--	nv_encoder->last_dpms = mode;
--
--	NV_INFO(dev, "Setting dpms mode %d on tmds encoder (output %d)\n",
--		     mode, nv_encoder->dcb->index);
--
--	dpms_update_fp_control(dev, nv_encoder, crtc, mode);
--}
--
--static void
--nv_output_dpms(struct drm_encoder *encoder, int mode)
--{
--	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--	struct drm_device *dev = encoder->dev;
--	struct drm_crtc *crtc = encoder->crtc;
--	void (* const encoder_dpms[4])(struct drm_device *, struct nouveau_encoder *, struct drm_crtc *, int) =
--		/* index matches DCB type */
--		{ vga_encoder_dpms, NULL, tmds_encoder_dpms, lvds_encoder_dpms };
--
--	encoder_dpms[nv_encoder->dcb->type](dev, nv_encoder, crtc, mode);
--}
--
--static void
--nv04_encoder_save(struct drm_encoder *encoder)
--{
--	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--	struct drm_device *dev = encoder->dev;
--
--	if (!nv_encoder->dcb)	/* uninitialised encoder */
--		return;
--
--	if (nv_gf4_disp_arch(dev) && nv_encoder->dcb->type == OUTPUT_ANALOG)
--		nv_encoder->restore.output =
--			NVReadRAMDAC(dev, 0, NV_PRAMDAC_DACCLK +
--				nv_output_ramdac_offset(nv_encoder));
--	if (nv_two_heads(dev) && (nv_encoder->dcb->type == OUTPUT_LVDS ||
--			      nv_encoder->dcb->type == OUTPUT_TMDS))
--		nv_encoder->restore.head =
--			nv_get_digital_bound_head(dev, nv_encoder->dcb->or);
--}
--
--static void
--nv04_encoder_restore(struct drm_encoder *encoder)
--{
--	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--	struct drm_device *dev = encoder->dev;
--	struct drm_nouveau_private *dev_priv = dev->dev_private;
--	int head = nv_encoder->restore.head;
--
--	if (!nv_encoder->dcb)	/* uninitialised encoder */
--		return;
--
--	if (nv_gf4_disp_arch(dev) && nv_encoder->dcb->type == OUTPUT_ANALOG)
--		NVWriteRAMDAC(dev, 0,
--			      NV_PRAMDAC_DACCLK + nv_output_ramdac_offset(nv_encoder),
--			      nv_encoder->restore.output);
--	if (nv_encoder->dcb->type == OUTPUT_LVDS)
--		call_lvds_script(dev, nv_encoder->dcb, head, LVDS_PANEL_ON,
--				 nouveau_encoder_connector_get(nv_encoder)->native_mode->clock);
--	if (nv_encoder->dcb->type == OUTPUT_TMDS) {
--		int clock = nouveau_hw_pllvals_to_clk
--					(&dev_priv->saved_reg.crtc_reg[head].pllvals);
--
--		run_tmds_table(dev, nv_encoder->dcb, head, clock);
--	}
--
--	nv_encoder->last_dpms = NV_DPMS_CLEARED;
--}
--
--static const struct drm_encoder_helper_funcs nv04_dac_helper_funcs = {
--	.dpms = nv_output_dpms,
--	.save = nv04_encoder_save,
--	.restore = nv04_encoder_restore,
--	.mode_fixup = nv_output_mode_fixup,
--	.prepare = nv_output_prepare,
--	.commit = nv_output_commit,
--	.mode_set = nv_output_mode_set,
--	.detect = nv04_dac_load_detect
--};
--
--static const struct drm_encoder_helper_funcs nv17_dac_helper_funcs = {
--	.dpms = nv_output_dpms,
--	.save = nv04_encoder_save,
--	.restore = nv04_encoder_restore,
--	.mode_fixup = nv_output_mode_fixup,
--	.prepare = nv_output_prepare,
--	.commit = nv_output_commit,
--	.mode_set = nv_output_mode_set,
--	.detect = nv17_dac_load_detect
--};
--
--static const struct drm_encoder_helper_funcs nv04_encoder_helper_funcs = {
--	.dpms = nv_output_dpms,
--	.save = nv04_encoder_save,
--	.restore = nv04_encoder_restore,
--	.mode_fixup = nv_output_mode_fixup,
--	.prepare = nv_output_prepare,
--	.commit = nv_output_commit,
--	.mode_set = nv_output_mode_set,
--	.detect = NULL
--};
--
--static void
--nv04_encoder_destroy(struct drm_encoder *encoder)
--{
--	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--
--	NV_DEBUG(encoder->dev, "\n");
--
--	drm_encoder_cleanup(encoder);
--	kfree(nv_encoder);
--}
--
--static const struct drm_encoder_funcs nv04_encoder_funcs = {
--	.destroy = nv04_encoder_destroy,
--};
--
--int
--nv04_encoder_create(struct drm_device *dev, struct dcb_entry *entry)
--{
--	const struct drm_encoder_helper_funcs *helper;
--	struct nouveau_encoder *nv_encoder = NULL;
--	int type;
--
--	switch (entry->type) {
--	case OUTPUT_TMDS:
--		type = DRM_MODE_ENCODER_TMDS;
--		break;
--	case OUTPUT_LVDS:
--		type = DRM_MODE_ENCODER_LVDS;
--		break;
--	case OUTPUT_ANALOG:
--		type = DRM_MODE_ENCODER_DAC;
--		break;
--	default:
--		return -EINVAL;
--	}
--
--	nv_encoder = kzalloc(sizeof(*nv_encoder), GFP_KERNEL);
--	if (!nv_encoder)
--		return -ENOMEM;
--
--	nv_encoder->dcb = entry;
--	nv_encoder->or = ffs(entry->or) - 1;
--
--	if (entry->type == OUTPUT_ANALOG) {
--		if (nv_gf4_disp_arch(dev))
--			helper = &nv17_dac_helper_funcs;
--		else
--			helper = &nv04_dac_helper_funcs;
--	} else
--		helper = &nv04_encoder_helper_funcs;
--
--	drm_encoder_init(dev, to_drm_encoder(nv_encoder), &nv04_encoder_funcs, type);
--	drm_encoder_helper_add(to_drm_encoder(nv_encoder), helper);
--
--	to_drm_encoder(nv_encoder)->possible_crtcs = entry->heads;
--	to_drm_encoder(nv_encoder)->possible_clones = 0;
--
--	return 0;
--}
--
-diff --git a/drivers/gpu/drm/nouveau/nvreg.h b/drivers/gpu/drm/nouveau/nvreg.h
-index 90623b0..bc960b9 100644
---- a/drivers/gpu/drm/nouveau/nvreg.h
-+++ b/drivers/gpu/drm/nouveau/nvreg.h
-@@ -316,13 +316,18 @@
- #	define NV30_RAMDAC_ENABLE_VCO2				(8 << 4)
- 
- #define NV_PRAMDAC_PLL_COEFF_SELECT			0x0068050c
--#	define NV_RAMDAC_PLL_SELECT_USE_VPLL2_TRUE		(4 << 0)
-+#	define NV_PRAMDAC_PLL_COEFF_SELECT_USE_VPLL2_TRUE	(4 << 0)
- #	define NV_PRAMDAC_PLL_COEFF_SELECT_SOURCE_PROG_MPLL	(1 << 8)
- #	define NV_PRAMDAC_PLL_COEFF_SELECT_SOURCE_PROG_VPLL	(2 << 8)
- #	define NV_PRAMDAC_PLL_COEFF_SELECT_SOURCE_PROG_NVPLL	(4 << 8)
--#	define NV_RAMDAC_PLL_SELECT_PLL_SOURCE_VPLL2		(8 << 8)
-+#	define NV_PRAMDAC_PLL_COEFF_SELECT_PLL_SOURCE_VPLL2	(8 << 8)
-+#	define NV_PRAMDAC_PLL_COEFF_SELECT_TV_VSCLK1		(1 << 16)
-+#	define NV_PRAMDAC_PLL_COEFF_SELECT_TV_PCLK1		(2 << 16)
-+#	define NV_PRAMDAC_PLL_COEFF_SELECT_TV_VSCLK2		(4 << 16)
-+#	define NV_PRAMDAC_PLL_COEFF_SELECT_TV_PCLK2		(8 << 16)
-+#	define NV_PRAMDAC_PLL_COEFF_SELECT_TV_CLK_SOURCE_VIP	(1 << 20)
- #	define NV_PRAMDAC_PLL_COEFF_SELECT_VCLK_RATIO_DB2	(1 << 28)
--#	define NV_RAMDAC_PLL_SELECT_VCLK2_RATIO_DB2		(2 << 28)
-+#	define NV_PRAMDAC_PLL_COEFF_SELECT_VCLK2_RATIO_DB2	(2 << 28)
- 
- #define NV_PRAMDAC_PLL_SETUP_CONTROL			0x00680510
- #define NV_RAMDAC_VPLL2					0x00680520
-@@ -384,6 +389,7 @@
- #	define NV_PRAMDAC_FP_TG_CONTROL_WIDTH_12		(1 << 24)
- #	define NV_PRAMDAC_FP_TG_CONTROL_DISPEN_POS		(1 << 28)
- #	define NV_PRAMDAC_FP_TG_CONTROL_DISPEN_DISABLE		(2 << 28)
-+#define NV_PRAMDAC_FP_MARGIN_COLOR			0x0068084c
- #define NV_PRAMDAC_850					0x00680850
- #define NV_PRAMDAC_85C					0x0068085c
- #define NV_PRAMDAC_FP_DEBUG_0				0x00680880
-@@ -409,6 +415,8 @@
- #	define NV_PRAMDAC_FP_TMDS_CONTROL_WRITE_DISABLE		(1 << 16)
- #define NV_PRAMDAC_FP_TMDS_DATA				0x006808b4
- 
-+#define NV_PRAMDAC_8C0                                  0x006808c0
++	} else {
++		*power |= bitfs(CH7006_POWER_LEVEL, FULL_POWER_OFF);
++	}
++}
 +
- /* Some kind of switch */
- #define NV_PRAMDAC_900					0x00680900
- #define NV_PRAMDAC_A20					0x00680A20
++void ch7006_setup_properties(struct drm_encoder *encoder)
++{
++	struct i2c_client *client = drm_i2c_encoder_get_client(encoder);
++	struct ch7006_priv *priv = to_ch7006_priv(encoder);
++	struct ch7006_state *state = &priv->state;
++	struct ch7006_tv_norm_info *norm = &ch7006_tv_norms[priv->norm];
++	struct ch7006_mode *ch_mode = priv->mode;
++	struct drm_display_mode *mode = &ch_mode->mode;
++	uint8_t *regs = state->regs;
++	int flicker, contrast, hpos, vpos;
++	fixed scale, aspect;
++
++	flicker = interpolate(0, 2, 3, priv->flicker);
++	regs[CH7006_FFILTER] = bitf(CH7006_FFILTER_TEXT, flicker) |
++		bitf(CH7006_FFILTER_LUMA, flicker) |
++		bitf(CH7006_FFILTER_CHROMA, 1);
++
++	contrast = interpolate(0, 5, 7, priv->contrast);
++	regs[CH7006_CONTRAST] = bitf(CH7006_CONTRAST_0, contrast);
++
++	scale = norm->vtotal*fixed1/mode->vtotal;
++	aspect = ch_mode->enc_hdisp*fixed1/ch_mode->enc_vdisp;
++
++	hpos = (norm->hvirtual*aspect - mode->hdisplay*scale)
++		* priv->hmargin / scale / 100 / 4;
++
++	setbitf(state, CH7006_POV, HPOS_8, hpos);
++	setbitf(state, CH7006_HPOS, 0, hpos);
++
++	vpos = max(0LL, norm->vdisplay - mode->vdisplay*scale/fixed1
++		   + norm->voffset) * priv->vmargin / 100 / 2;
++
++	setbitf(state, CH7006_POV, VPOS_8, vpos);
++	setbitf(state, CH7006_VPOS, 0, vpos);
++
++	ch7006_dbg(client, "hpos: %d, vpos: %d\n", hpos, vpos);
++}
++
++/* HW access functions */
++
++void ch7006_write(struct i2c_client *client, uint8_t addr, uint8_t val)
++{
++	uint8_t buf[] = {addr, val};
++	int ret;
++
++	ret = i2c_master_send(client, buf, ARRAY_SIZE(buf));
++	if (ret < 0)
++		ch7006_err(client, "Error %d writing to subaddress 0x%x\n",
++			   ret, addr);
++}
++
++uint8_t ch7006_read(struct i2c_client *client, uint8_t addr)
++{
++	uint8_t val;
++	int ret;
++
++	ret = i2c_master_send(client, &addr, sizeof(addr));
++	if (ret < 0)
++		goto fail;
++
++	ret = i2c_master_recv(client, &val, sizeof(val));
++	if (ret < 0)
++		goto fail;
++
++	return val;
++
++fail:
++	ch7006_err(client, "Error %d reading from subaddress 0x%x\n",
++		   ret, addr);
++	return 0;
++}
++
++void ch7006_state_load(struct i2c_client *client,
++		       struct ch7006_state *state)
++{
++	ch7006_load_reg(client, state, CH7006_POWER);
++
++	ch7006_load_reg(client, state, CH7006_DISPMODE);
++	ch7006_load_reg(client, state, CH7006_FFILTER);
++	ch7006_load_reg(client, state, CH7006_BWIDTH);
++	ch7006_load_reg(client, state, CH7006_INPUT_FORMAT);
++	ch7006_load_reg(client, state, CH7006_CLKMODE);
++	ch7006_load_reg(client, state, CH7006_START_ACTIVE);
++	ch7006_load_reg(client, state, CH7006_POV);
++	ch7006_load_reg(client, state, CH7006_BLACK_LEVEL);
++	ch7006_load_reg(client, state, CH7006_HPOS);
++	ch7006_load_reg(client, state, CH7006_VPOS);
++	ch7006_load_reg(client, state, CH7006_INPUT_SYNC);
++	ch7006_load_reg(client, state, CH7006_DETECT);
++	ch7006_load_reg(client, state, CH7006_CONTRAST);
++	ch7006_load_reg(client, state, CH7006_PLLOV);
++	ch7006_load_reg(client, state, CH7006_PLLM);
++	ch7006_load_reg(client, state, CH7006_PLLN);
++	ch7006_load_reg(client, state, CH7006_BCLKOUT);
++	ch7006_load_reg(client, state, CH7006_SUBC_INC0);
++	ch7006_load_reg(client, state, CH7006_SUBC_INC1);
++	ch7006_load_reg(client, state, CH7006_SUBC_INC2);
++	ch7006_load_reg(client, state, CH7006_SUBC_INC3);
++	ch7006_load_reg(client, state, CH7006_SUBC_INC4);
++	ch7006_load_reg(client, state, CH7006_SUBC_INC5);
++	ch7006_load_reg(client, state, CH7006_SUBC_INC6);
++	ch7006_load_reg(client, state, CH7006_SUBC_INC7);
++	ch7006_load_reg(client, state, CH7006_PLL_CONTROL);
++	ch7006_load_reg(client, state, CH7006_CALC_SUBC_INC0);
++
++	/* I don't know what this is for, but otherwise I get no
++	 * signal.
++	 */
++	ch7006_write(client, 0x3d, 0x0);
++}
++
++void ch7006_state_save(struct i2c_client *client,
++		       struct ch7006_state *state)
++{
++	ch7006_save_reg(client, state, CH7006_POWER);
++
++	ch7006_save_reg(client, state, CH7006_DISPMODE);
++	ch7006_save_reg(client, state, CH7006_FFILTER);
++	ch7006_save_reg(client, state, CH7006_BWIDTH);
++	ch7006_save_reg(client, state, CH7006_INPUT_FORMAT);
++	ch7006_save_reg(client, state, CH7006_CLKMODE);
++	ch7006_save_reg(client, state, CH7006_START_ACTIVE);
++	ch7006_save_reg(client, state, CH7006_POV);
++	ch7006_save_reg(client, state, CH7006_BLACK_LEVEL);
++	ch7006_save_reg(client, state, CH7006_HPOS);
++	ch7006_save_reg(client, state, CH7006_VPOS);
++	ch7006_save_reg(client, state, CH7006_INPUT_SYNC);
++	ch7006_save_reg(client, state, CH7006_DETECT);
++	ch7006_save_reg(client, state, CH7006_CONTRAST);
++	ch7006_save_reg(client, state, CH7006_PLLOV);
++	ch7006_save_reg(client, state, CH7006_PLLM);
++	ch7006_save_reg(client, state, CH7006_PLLN);
++	ch7006_save_reg(client, state, CH7006_BCLKOUT);
++	ch7006_save_reg(client, state, CH7006_SUBC_INC0);
++	ch7006_save_reg(client, state, CH7006_SUBC_INC1);
++	ch7006_save_reg(client, state, CH7006_SUBC_INC2);
++	ch7006_save_reg(client, state, CH7006_SUBC_INC3);
++	ch7006_save_reg(client, state, CH7006_SUBC_INC4);
++	ch7006_save_reg(client, state, CH7006_SUBC_INC5);
++	ch7006_save_reg(client, state, CH7006_SUBC_INC6);
++	ch7006_save_reg(client, state, CH7006_SUBC_INC7);
++	ch7006_save_reg(client, state, CH7006_PLL_CONTROL);
++	ch7006_save_reg(client, state, CH7006_CALC_SUBC_INC0);
++
++	state->regs[CH7006_FFILTER] = (state->regs[CH7006_FFILTER] & 0xf0) |
++		(state->regs[CH7006_FFILTER] & 0x0c) >> 2 |
++		(state->regs[CH7006_FFILTER] & 0x03) << 2;
++}
+diff --git a/drivers/gpu/drm/i2c/ch7006_priv.h b/drivers/gpu/drm/i2c/ch7006_priv.h
+new file mode 100644
+index 0000000..59945eb
+--- /dev/null
++++ b/drivers/gpu/drm/i2c/ch7006_priv.h
+@@ -0,0 +1,333 @@
++/*
++ * Copyright (C) 2009 Francisco Jerez.
++ * All Rights Reserved.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
++ * IN NO EVENT SHALL THE COPYRIGHT OWNER(S) AND/OR ITS SUPPLIERS BE
++ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
++ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
++ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
++#ifndef __DRM_I2C_CH7006_PRIV_H__
++#define __DRM_I2C_CH7006_PRIV_H__
++
++#include "drmP.h"
++#include "drm_crtc_helper.h"
++#include "drm_encoder_slave.h"
++#include "i2c/ch7006.h"
++
++typedef int64_t fixed;
++#define fixed1 (1LL << 32)
++
++enum ch7006_tv_norm {
++	TV_NORM_PAL,
++	TV_NORM_PAL_M,
++	TV_NORM_PAL_N,
++	TV_NORM_PAL_NC,
++	TV_NORM_PAL_60,
++	TV_NORM_NTSC_M,
++	TV_NORM_NTSC_J,
++	NUM_TV_NORMS
++};
++
++struct ch7006_tv_norm_info {
++	fixed vrefresh;
++	int vdisplay;
++	int vtotal;
++	int hvirtual;
++
++	fixed subc_freq;
++	fixed black_level;
++
++	uint32_t dispmode;
++	int voffset;
++};
++
++struct ch7006_mode {
++	struct drm_display_mode mode;
++
++	int enc_hdisp;
++	int enc_vdisp;
++
++	fixed subc_coeff;
++	uint32_t dispmode;
++
++	uint32_t valid_scales;
++	uint32_t valid_norms;
++};
++
++struct ch7006_state {
++	uint8_t regs[0x26];
++};
++
++struct ch7006_priv {
++	struct ch7006_encoder_params *params;
++	struct ch7006_mode *mode;
++
++	struct ch7006_state state;
++	struct ch7006_state saved_state;
++
++	struct drm_property *scale_property;
++
++	int select_subconnector;
++	int subconnector;
++	int hmargin;
++	int vmargin;
++	enum ch7006_tv_norm norm;
++	int brightness;
++	int contrast;
++	int flicker;
++	int scale;
++
++	int last_dpms;
++};
++
++#define to_ch7006_priv(x) ((struct ch7006_priv *)to_encoder_slave(x)->slave_priv)
++
++extern int ch7006_debug;
++
++extern char *ch7006_tv_norm_names[];
++extern struct ch7006_tv_norm_info ch7006_tv_norms[];
++extern struct ch7006_mode ch7006_modes[];
++
++struct ch7006_mode *ch7006_lookup_mode(struct drm_encoder *encoder,
++				       struct drm_display_mode *drm_mode);
++
++void ch7006_setup_levels(struct drm_encoder *encoder);
++void ch7006_setup_subcarrier(struct drm_encoder *encoder);
++void ch7006_setup_pll(struct drm_encoder *encoder);
++void ch7006_setup_power_state(struct drm_encoder *encoder);
++void ch7006_setup_properties(struct drm_encoder *encoder);
++
++void ch7006_write(struct i2c_client *client, uint8_t addr, uint8_t val);
++uint8_t ch7006_read(struct i2c_client *client, uint8_t addr);
++
++void ch7006_state_load(struct i2c_client *client,
++		       struct ch7006_state *state);
++void ch7006_state_save(struct i2c_client *client,
++		       struct ch7006_state *state);
++
++/* Some helper macros */
++
++#define ch7006_dbg(client, format, ...) do {				\
++		if (ch7006_debug)					\
++			dev_printk(KERN_DEBUG, &client->dev,		\
++				   "%s: " format, __func__, ## __VA_ARGS__); \
++	} while (0)
++#define ch7006_info(client, format, ...) dev_info(&client->dev, format, __VA_ARGS__)
++#define ch7006_err(client, format, ...) dev_err(&client->dev, format, __VA_ARGS__)
++
++#define __mask(src, bitfield) (((2 << (1?bitfield)) - 1) & ~((1 << (0?bitfield)) - 1))
++#define mask(bitfield) __mask(bitfield)
++
++#define __bitf(src, bitfield, x) (((x) >> (src) << (0?bitfield)) &	\
++				  __mask(src, bitfield))
++#define bitf(bitfield, x) __bitf(bitfield, x)
++#define bitfs(bitfield, s) __bitf(bitfield, bitfield##_##s)
++#define setbitf(state, reg, bitfield, x)				\
++	state->regs[reg] = (state->regs[reg] &				\
++			    (typeof(*state->regs)) ~mask(reg##_##bitfield)) | \
++			    bitf(reg##_##bitfield, x)
++
++#define __unbitf(src, bitfield, x) ((x & __mask(src, bitfield)) \
++				    >> (0?bitfield) << (src))
++#define unbitf(bitfield, x) __unbitf(bitfield, x)
++
++#define interpolate(y0, y1, y2, x) ((y1) +				\
++				    ((x) < 50 ? (y1) - (y0) : (y2) - (y1)) \
++				    * ((x) - 50) / 50)
++
++#define ch7006_load_reg(client, state, reg) ch7006_write(client, reg, state->regs[reg])
++#define ch7006_save_reg(client, state, reg) state->regs[reg] = ch7006_read(client, reg)
++
++/* Fixed hardware specs */
++
++#define CH7006_FREQ0				14318
++#define CH7006_MAXN				650
++#define CH7006_MAXM				315
++
++/* Register definitions */
++
++#define CH7006_DISPMODE				0x00
++#define CH7006_DISPMODE_INPUT_RES		0, 7:5
++#define CH7006_DISPMODE_INPUT_RES_512x384	0x0
++#define CH7006_DISPMODE_INPUT_RES_720x400	0x1
++#define CH7006_DISPMODE_INPUT_RES_640x400	0x2
++#define CH7006_DISPMODE_INPUT_RES_640x480	0x3
++#define CH7006_DISPMODE_INPUT_RES_800x600	0x4
++#define CH7006_DISPMODE_INPUT_RES_NATIVE	0x5
++#define CH7006_DISPMODE_OUTPUT_STD		0, 4:3
++#define CH7006_DISPMODE_OUTPUT_STD_PAL		0x0
++#define CH7006_DISPMODE_OUTPUT_STD_NTSC		0x1
++#define CH7006_DISPMODE_OUTPUT_STD_PAL_M	0x2
++#define CH7006_DISPMODE_OUTPUT_STD_NTSC_J	0x3
++#define CH7006_DISPMODE_SCALING_RATIO		0, 2:0
++#define CH7006_DISPMODE_SCALING_RATIO_5_4	0x0
++#define CH7006_DISPMODE_SCALING_RATIO_1_1	0x1
++#define CH7006_DISPMODE_SCALING_RATIO_7_8	0x2
++#define CH7006_DISPMODE_SCALING_RATIO_5_6	0x3
++#define CH7006_DISPMODE_SCALING_RATIO_3_4	0x4
++#define CH7006_DISPMODE_SCALING_RATIO_7_10	0x5
++
++#define CH7006_FFILTER				0x01
++#define CH7006_FFILTER_TEXT			0, 5:4
++#define CH7006_FFILTER_LUMA			0, 3:2
++#define CH7006_FFILTER_CHROMA			0, 1:0
++#define CH7006_FFILTER_CHROMA_NO_DCRAWL		0x3
++
++#define CH7006_BWIDTH				0x03
++#define CH7006_BWIDTH_5L_FFILER			(1 << 7)
++#define CH7006_BWIDTH_CVBS_NO_CHROMA		(1 << 6)
++#define CH7006_BWIDTH_CHROMA			0, 5:4
++#define CH7006_BWIDTH_SVIDEO_YPEAK		(1 << 3)
++#define CH7006_BWIDTH_SVIDEO_LUMA		0, 2:1
++#define CH7006_BWIDTH_CVBS_LUMA			0, 0:0
++
++#define CH7006_INPUT_FORMAT			0x04
++#define CH7006_INPUT_FORMAT_DAC_GAIN		(1 << 6)
++#define CH7006_INPUT_FORMAT_RGB_PASS_THROUGH	(1 << 5)
++#define CH7006_INPUT_FORMAT_FORMAT		0, 3:0
++#define CH7006_INPUT_FORMAT_FORMAT_RGB16	0x0
++#define CH7006_INPUT_FORMAT_FORMAT_YCrCb24m16	0x1
++#define CH7006_INPUT_FORMAT_FORMAT_RGB24m16	0x2
++#define CH7006_INPUT_FORMAT_FORMAT_RGB15	0x3
++#define CH7006_INPUT_FORMAT_FORMAT_RGB24m12C	0x4
++#define CH7006_INPUT_FORMAT_FORMAT_RGB24m12I	0x5
++#define CH7006_INPUT_FORMAT_FORMAT_RGB24m8	0x6
++#define CH7006_INPUT_FORMAT_FORMAT_RGB16m8	0x7
++#define CH7006_INPUT_FORMAT_FORMAT_RGB15m8	0x8
++#define CH7006_INPUT_FORMAT_FORMAT_YCrCb24m8	0x9
++
++#define CH7006_CLKMODE				0x06
++#define CH7006_CLKMODE_SUBC_LOCK		(1 << 7)
++#define CH7006_CLKMODE_MASTER			(1 << 6)
++#define CH7006_CLKMODE_POS_EDGE			(1 << 4)
++#define CH7006_CLKMODE_XCM			0, 3:2
++#define CH7006_CLKMODE_PCM			0, 1:0
++
++#define CH7006_START_ACTIVE			0x07
++#define CH7006_START_ACTIVE_0			0, 7:0
++
++#define CH7006_POV				0x08
++#define CH7006_POV_START_ACTIVE_8		8, 2:2
++#define CH7006_POV_HPOS_8			8, 1:1
++#define CH7006_POV_VPOS_8			8, 0:0
++
++#define CH7006_BLACK_LEVEL			0x09
++#define CH7006_BLACK_LEVEL_0			0, 7:0
++
++#define CH7006_HPOS				0x0a
++#define CH7006_HPOS_0				0, 7:0
++
++#define CH7006_VPOS				0x0b
++#define CH7006_VPOS_0				0, 7:0
++
++#define CH7006_INPUT_SYNC			0x0d
++#define CH7006_INPUT_SYNC_EMBEDDED		(1 << 3)
++#define CH7006_INPUT_SYNC_OUTPUT		(1 << 2)
++#define CH7006_INPUT_SYNC_PVSYNC		(1 << 1)
++#define CH7006_INPUT_SYNC_PHSYNC		(1 << 0)
++
++#define CH7006_POWER				0x0e
++#define CH7006_POWER_SCART			(1 << 4)
++#define CH7006_POWER_RESET			(1 << 3)
++#define CH7006_POWER_LEVEL			0, 2:0
++#define CH7006_POWER_LEVEL_CVBS_OFF		0x0
++#define CH7006_POWER_LEVEL_POWER_OFF		0x1
++#define CH7006_POWER_LEVEL_SVIDEO_OFF		0x2
++#define CH7006_POWER_LEVEL_NORMAL		0x3
++#define CH7006_POWER_LEVEL_FULL_POWER_OFF	0x4
++
++#define CH7006_DETECT				0x10
++#define CH7006_DETECT_SVIDEO_Y_TEST		(1 << 3)
++#define CH7006_DETECT_SVIDEO_C_TEST		(1 << 2)
++#define CH7006_DETECT_CVBS_TEST			(1 << 1)
++#define CH7006_DETECT_SENSE			(1 << 0)
++
++#define CH7006_CONTRAST				0x11
++#define CH7006_CONTRAST_0			0, 2:0
++
++#define CH7006_PLLOV	 			0x13
++#define CH7006_PLLOV_N_8	 		8, 2:1
++#define CH7006_PLLOV_M_8	 		8, 0:0
++
++#define CH7006_PLLM	 			0x14
++#define CH7006_PLLM_0	 			0, 7:0
++
++#define CH7006_PLLN	 			0x15
++#define CH7006_PLLN_0	 			0, 7:0
++
++#define CH7006_BCLKOUT	 			0x17
++
++#define CH7006_SUBC_INC0			0x18
++#define CH7006_SUBC_INC0_28			28, 3:0
++
++#define CH7006_SUBC_INC1			0x19
++#define CH7006_SUBC_INC1_24			24, 3:0
++
++#define CH7006_SUBC_INC2			0x1a
++#define CH7006_SUBC_INC2_20			20, 3:0
++
++#define CH7006_SUBC_INC3			0x1b
++#define CH7006_SUBC_INC3_GPIO1_VAL		(1 << 7)
++#define CH7006_SUBC_INC3_GPIO0_VAL		(1 << 6)
++#define CH7006_SUBC_INC3_POUT_3_3V		(1 << 5)
++#define CH7006_SUBC_INC3_POUT_INV		(1 << 4)
++#define CH7006_SUBC_INC3_16			16, 3:0
++
++#define CH7006_SUBC_INC4			0x1c
++#define CH7006_SUBC_INC4_GPIO1_IN		(1 << 7)
++#define CH7006_SUBC_INC4_GPIO0_IN		(1 << 6)
++#define CH7006_SUBC_INC4_DS_INPUT		(1 << 4)
++#define CH7006_SUBC_INC4_12			12, 3:0
++
++#define CH7006_SUBC_INC5			0x1d
++#define CH7006_SUBC_INC5_8			8, 3:0
++
++#define CH7006_SUBC_INC6			0x1e
++#define CH7006_SUBC_INC6_4			4, 3:0
++
++#define CH7006_SUBC_INC7			0x1f
++#define CH7006_SUBC_INC7_0			0, 3:0
++
++#define CH7006_PLL_CONTROL			0x20
++#define CH7006_PLL_CONTROL_CPI			(1 << 5)
++#define CH7006_PLL_CONTROL_CAPACITOR		(1 << 4)
++#define CH7006_PLL_CONTROL_7STAGES		(1 << 3)
++#define CH7006_PLL_CONTROL_DIGITAL_5V		(1 << 2)
++#define CH7006_PLL_CONTROL_ANALOG_5V		(1 << 1)
++#define CH7006_PLL_CONTROL_MEMORY_5V		(1 << 0)
++
++#define CH7006_CALC_SUBC_INC0			0x21
++#define CH7006_CALC_SUBC_INC0_24		24, 4:3
++#define CH7006_CALC_SUBC_INC0_HYST		0, 2:1
++#define CH7006_CALC_SUBC_INC0_AUTO		(1 << 0)
++
++#define CH7006_CALC_SUBC_INC1			0x22
++#define CH7006_CALC_SUBC_INC1_16		16, 7:0
++
++#define CH7006_CALC_SUBC_INC2			0x23
++#define CH7006_CALC_SUBC_INC2_8			8, 7:0
++
++#define CH7006_CALC_SUBC_INC3			0x24
++#define CH7006_CALC_SUBC_INC3_0			0, 7:0
++
++#define CH7006_VERSION_ID			0x25
++
++#endif
+diff --git a/include/drm/i2c/ch7006.h b/include/drm/i2c/ch7006.h
+new file mode 100644
+index 0000000..8390b43
+--- /dev/null
++++ b/include/drm/i2c/ch7006.h
+@@ -0,0 +1,86 @@
++/*
++ * Copyright (C) 2009 Francisco Jerez.
++ * All Rights Reserved.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
++ * IN NO EVENT SHALL THE COPYRIGHT OWNER(S) AND/OR ITS SUPPLIERS BE
++ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
++ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
++ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
++#ifndef __DRM_I2C_CH7006_H__
++#define __DRM_I2C_CH7006_H__
++
++/**
++ * struct ch7006_encoder_params
++ *
++ * Describes how the ch7006 is wired up with the GPU. It should be
++ * used as the @params parameter of its @set_config method.
++ *
++ * See "http://www.chrontel.com/pdf/7006.pdf" for their precise
++ * meaning.
++ */
++struct ch7006_encoder_params {
++	enum {
++		CH7006_FORMAT_RGB16 = 0,
++		CH7006_FORMAT_YCrCb24m16,
++		CH7006_FORMAT_RGB24m16,
++		CH7006_FORMAT_RGB15,
++		CH7006_FORMAT_RGB24m12C,
++		CH7006_FORMAT_RGB24m12I,
++		CH7006_FORMAT_RGB24m8,
++		CH7006_FORMAT_RGB16m8,
++		CH7006_FORMAT_RGB15m8,
++		CH7006_FORMAT_YCrCb24m8,
++	} input_format;
++
++	enum {
++		CH7006_CLOCK_SLAVE = 0,
++		CH7006_CLOCK_MASTER,
++	} clock_mode;
++
++	enum {
++		CH7006_CLOCK_EDGE_NEG = 0,
++		CH7006_CLOCK_EDGE_POS,
++	} clock_edge;
++
++	int xcm, pcm;
++
++	enum {
++		CH7006_SYNC_SLAVE = 0,
++		CH7006_SYNC_MASTER,
++	} sync_direction;
++
++	enum {
++		CH7006_SYNC_SEPARATED = 0,
++		CH7006_SYNC_EMBEDDED,
++	} sync_encoding;
++
++	enum {
++		CH7006_POUT_1_8V = 0,
++		CH7006_POUT_3_3V,
++	} pout_level;
++
++	enum {
++		CH7006_ACTIVE_HSYNC = 0,
++		CH7006_ACTIVE_DSTART,
++	} active_detect;
++};
++
++#endif
 -- 
 1.6.3.3
