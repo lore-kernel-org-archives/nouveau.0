@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23291] New: A slight problem in the NV50 nouveau
-	driver in Mesa
-Date: Thu, 13 Aug 2009 13:12:34 -0700 (PDT)
-Message-ID: <bug-23291-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23295] New: nouveau KMS: null pointer dereference if
+ native mode is not found
+Date: Thu, 13 Aug 2009 14:53:00 -0700 (PDT)
+Message-ID: <bug-23295-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,42 +19,34 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzI5MQoKICAgICAg
-ICAgICBTdW1tYXJ5OiBBIHNsaWdodCBwcm9ibGVtIGluIHRoZSBOVjUwIG5vdXZlYXUgZHJpdmVy
-IGluIE1lc2EKICAgICAgICAgICBQcm9kdWN0OiBNZXNhCiAgICAgICAgICAgVmVyc2lvbjogdW5z
-cGVjaWZpZWQKICAgICAgICAgIFBsYXRmb3JtOiBPdGhlcgogICAgICAgIE9TL1ZlcnNpb246IEFs
-bAogICAgICAgICAgICBTdGF0dXM6IE5FVwogICAgICAgICAgU2V2ZXJpdHk6IG1pbm9yCiAgICAg
-ICAgICBQcmlvcml0eTogbWVkaXVtCiAgICAgICAgIENvbXBvbmVudDogRHJpdmVycy9EUkkvbm91
-dmVhdQogICAgICAgIEFzc2lnbmVkVG86IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCiAg
-ICAgICAgUmVwb3J0ZWRCeTogU1RFVkVOV0FSRDY2NkBob3RtYWlsLmNvbQoKCkhpIGFsbCwKICAg
-ICAgSSd2ZSBiZWVuIGNvbXBpbGluZyBNZXNhIGZvciBzb21lIHRpbWUgbm93IGZyb20gZ2l0LgpJ
-IGRvbid0IGtub3cgaWYgYW55b25lIGlzIGF3YXJlIG9mIHRoaXMgYnVpbGQgZXJyb3IsYnV0IGFm
-dGVyIHRvZGF5cyBjb21taXRzIHRvCnRoZSBnaXQgcmVwb3NpdG9yeSxJIGNvbWUgdXAgd2l0aCBi
-dWlsZCBlcnJvciB3aGVuIEkgcnVuIG1ha2U6CgpnY2MgLWMgLUkuIC1JLi4vLi4vLi4vLi4vc3Jj
-L2dhbGxpdW0vaW5jbHVkZQotSS4uLy4uLy4uLy4uL3NyYy9nYWxsaXVtL2F1eGlsaWFyeSAtSS4u
-Ly4uLy4uLy4uL3NyYy9nYWxsaXVtL2RyaXZlcnMKLUkvc3JjL2dhbGxpdW0vaW5jbHVkZSAtSS9z
-cmMvZ2FsbGl1bS9hdXhpbGlhcnkgLUkvc3JjL2dhbGxpdW0vZHJpdmVycyAgLWcgLU8yCi1XYWxs
-IC1XbWlzc2luZy1wcm90b3R5cGVzIC1zdGQ9Yzk5IC1mZmFzdC1tYXRoIC1mbm8tc3RyaWN0LWFs
-aWFzaW5nIC1tMzIgCi1mUElDICAtRFVTRV9YODZfQVNNIC1EVVNFX01NWF9BU00gLURVU0VfM0RO
-T1dfQVNNIC1EVVNFX1NTRV9BU00gLURfR05VX1NPVVJDRQotRFBUSFJFQURTIC1ESEFWRV9QT1NJ
-WF9NRU1BTElHTiAtRFVTRV9YQ0IgLURVU0VfRVhURVJOQUxfRFhUTl9MSUI9MQotRElOX0RSSV9E
-UklWRVIgLURHTFhfRElSRUNUX1JFTkRFUklORyAtREdMWF9JTkRJUkVDVF9SRU5ERVJJTkcgLURI
-QVZFX0FMSUFTIApudjUwX3Byb2dyYW0uYyAtbyBudjUwX3Byb2dyYW0ubwpudjUwX3Byb2dyYW0u
-YzogSW4gZnVuY3Rpb24g4oCYY3Rvcl9pbW1k4oCZOgpudjUwX3Byb2dyYW0uYzoyOTk6IGVycm9y
-OiDigJhy4oCZIHVuZGVjbGFyZWQgKGZpcnN0IHVzZSBpbiB0aGlzIGZ1bmN0aW9uKQpudjUwX3By
-b2dyYW0uYzoyOTk6IGVycm9yOiAoRWFjaCB1bmRlY2xhcmVkIGlkZW50aWZpZXIgaXMgcmVwb3J0
-ZWQgb25seSBvbmNlCm52NTBfcHJvZ3JhbS5jOjI5OTogZXJyb3I6IGZvciBlYWNoIGZ1bmN0aW9u
-IGl0IGFwcGVhcnMgaW4uKQpnbWFrZVs0XTogKioqIFtudjUwX3Byb2dyYW0ub10gRXJyb3IgMQpn
-bWFrZVs0XTogTGVhdmluZyBkaXJlY3RvcnkgYC9vcHQvbWVzYS9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L252NTAnCmdtYWtlWzNdOiAqKiogW2RlZmF1bHRdIEVycm9yIDEKZ21ha2VbM106IExlYXZpbmcg
-ZGlyZWN0b3J5IGAvb3B0L21lc2Evc3JjL2dhbGxpdW0vZHJpdmVycycKZ21ha2VbMl06ICoqKiBb
-ZGVmYXVsdF0gRXJyb3IgMQpnbWFrZVsyXTogTGVhdmluZyBkaXJlY3RvcnkgYC9vcHQvbWVzYS9z
-cmMvZ2FsbGl1bScKbWFrZVsxXTogKioqIFtzdWJkaXJzXSBFcnJvciAxCm1ha2VbMV06IExlYXZp
-bmcgZGlyZWN0b3J5IGAvb3B0L21lc2Evc3JjJwptYWtlOiAqKiogW2RlZmF1bHRdIEVycm9yIDEK
-ClJlZ2FyZHMsCiAgICAgICBTVEVWRTU1NQoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDov
-L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91
-IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNz
-aWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=23295
+
+           Summary: nouveau KMS: null pointer dereference if native mode is
+                    not found
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+When native mode is not found by KMS, at least with NV40, there is a null
+pointer dereference of native_mode in nv_output_mode_fixup() when starting X.
+
+Kernel log attached.
+
+(In this case native mode is not found because of "Output script table version
+0x11 unknown"; I'll open a separate bug for that with proper info if none is
+already open)
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
