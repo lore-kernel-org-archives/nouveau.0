@@ -1,8 +1,8 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCHv2 04/10] drm/nouveau: Prepare the connector code
-	for TV-out.
-Date: Thu, 13 Aug 2009 14:01:31 +0200
-Message-ID: <1250164897-7871-4-git-send-email-currojerez@riseup.net>
+Subject: [PATCHv2 03/10] drm/nouveau: Use drm_encoder_slave
+	instead of drm_encoder.
+Date: Thu, 13 Aug 2009 14:01:30 +0200
+Message-ID: <1250164897-7871-3-git-send-email-currojerez@riseup.net>
 References: <1250164897-7871-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,373 +24,239 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c |  202 +++++++++++++-------------
- drivers/gpu/drm/nouveau/nv50_sor.c          |   14 --
- 2 files changed, 101 insertions(+), 115 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_connector.c |    8 ++++----
+ drivers/gpu/drm/nouveau/nouveau_encoder.h   |   13 +++++++++++--
+ drivers/gpu/drm/nouveau/nv04_output.c       |    8 ++++----
+ drivers/gpu/drm/nouveau/nv50_crtc.c         |    2 +-
+ drivers/gpu/drm/nouveau/nv50_dac.c          |   18 +++++++++---------
+ drivers/gpu/drm/nouveau/nv50_sor.c          |   18 +++++++++---------
+ 6 files changed, 38 insertions(+), 29 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 54d5e58..34870d7 100644
+index c89bef7..54d5e58 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -34,8 +34,14 @@
- #include "nouveau_connector.h"
- #include "nouveau_hw.h"
+@@ -221,14 +221,14 @@ nouveau_connector_detect(struct drm_connector *connector)
  
-+static inline struct drm_encoder_slave_funcs *
-+get_slave_funcs(struct nouveau_encoder *enc)
-+{
-+	return to_encoder_slave(to_drm_encoder(enc))->slave_funcs;
-+}
-+
- static struct nouveau_encoder *
--nouveau_connector_encoder_get(struct drm_connector *connector, int type)
-+find_encoder_by_type(struct drm_connector *connector, int type)
- {
- 	struct drm_device *dev = connector->dev;
- 	struct nouveau_encoder *nv_encoder;
-@@ -59,6 +65,21 @@ nouveau_connector_encoder_get(struct drm_connector *connector, int type)
+ 	nv_encoder = nouveau_connector_encoder_get(connector, OUTPUT_ANALOG);
+ 	if (!nouveau_connector_ddc_detect(connector)) {
+-		if (!nv_encoder || !nv_encoder->base.helper_private)
++		if (!nv_encoder || !to_drm_encoder(nv_encoder)->helper_private)
+ 			return connector_status_disconnected;
+ 
+-		helper = nv_encoder->base.helper_private;
++		helper = to_drm_encoder(nv_encoder)->helper_private;
+ 		if (!helper || !helper->detect)
+ 			return connector_status_disconnected;
+ 
+-		if (helper->detect(&nv_encoder->base, connector) ==
++		if (helper->detect(to_drm_encoder(nv_encoder), connector) ==
+ 				connector_status_connected) {
+ 			nouveau_connector_set_encoder(connector, nv_encoder);
+ 			return connector_status_connected;
+@@ -447,7 +447,7 @@ nouveau_connector_best_encoder(struct drm_connector *connector)
+ 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
+ 
+ 	if (nv_connector->detected_encoder)
+-		return &nv_connector->detected_encoder->base;
++		return to_drm_encoder(nv_connector->detected_encoder);
+ 
  	return NULL;
  }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+index 3344e6c..8a7369c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
++++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+@@ -27,16 +27,18 @@
+ #ifndef __NOUVEAU_OUTPUT_H__
+ #define __NOUVEAU_OUTPUT_H__
  
-+struct nouveau_connector *
-+nouveau_encoder_connector_get(struct nouveau_encoder *encoder)
-+{
-+	struct drm_device *dev = to_drm_encoder(encoder)->dev;
-+	struct drm_connector *drm_connector;
++#include "drm_encoder_slave.h"
+ #include "nouveau_drv.h"
+ 
+ #define NV_DPMS_CLEARED 0x80
+ 
+ struct nouveau_encoder {
+-	struct drm_encoder base;
++	struct drm_encoder_slave base;
+ 
+ 	struct dcb_entry *dcb;
+ 	int or;
+ 
++	struct drm_display_mode mode;
+ 	int last_dpms;
+ 
+ 	struct nv04_output_reg restore;
+@@ -44,7 +46,14 @@ struct nouveau_encoder {
+ 
+ static inline struct nouveau_encoder *nouveau_encoder(struct drm_encoder *enc)
+ {
+-	return container_of(enc, struct nouveau_encoder, base);
++	struct drm_encoder_slave *slave = to_encoder_slave(enc);
 +
-+	list_for_each_entry(drm_connector, &dev->mode_config.connector_list, head) {
-+		if (drm_connector->encoder == to_drm_encoder(encoder))
-+			return nouveau_connector(drm_connector);
-+	}
-+
-+	return NULL;
++	return container_of(slave, struct nouveau_encoder, base);
 +}
 +
-+
- static void
- nouveau_connector_destroy(struct drm_connector *drm_connector)
- {
-@@ -173,95 +194,63 @@ nouveau_connector_set_encoder(struct drm_connector *connector,
++static inline struct drm_encoder *to_drm_encoder(struct nouveau_encoder *enc)
++{
++	return &enc->base.base;
  }
  
- static enum drm_connector_status
--nouveau_connector_lvds_detect(struct drm_connector *connector)
--{
--	struct nouveau_connector *nv_connector = nouveau_connector(connector);
--	struct nouveau_encoder *nv_encoder;
--	struct drm_device *dev = connector->dev;
--	int flags;
--
--	nv_encoder = nouveau_connector_encoder_get(connector, OUTPUT_LVDS);
--	if (!nv_encoder) {
--		NV_ERROR(dev, "LVDS but no encoder!\n");
--		return connector_status_disconnected;
--	}
--
--	if (nv_connector->native_mode) {
--		nouveau_connector_set_encoder(connector, nv_encoder);
--		return connector_status_connected;
--	}
--
--	nouveau_connector_ddc_prepare(connector, &flags);
--	nv_connector->edid =
--		drm_get_edid(connector, &nv_connector->i2c_chan->adapter);
--	nouveau_connector_ddc_finish(connector, flags);
--	drm_mode_connector_update_edid_property(connector, nv_connector->edid);
--	if (!nv_connector->edid) {
--		NV_ERROR(dev, "LVDS but no modes!\n");
--		return connector_status_disconnected;
--	}
--
--	nouveau_connector_set_encoder(connector, nv_encoder);
--	return connector_status_connected;
--}
--
--static enum drm_connector_status
- nouveau_connector_detect(struct drm_connector *connector)
- {
- 	struct drm_device *dev = connector->dev;
- 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
--	struct drm_encoder_helper_funcs *helper = NULL;
- 	struct nouveau_encoder *nv_encoder = NULL;
- 	int type, flags;
+ int nv50_sor_create(struct drm_device *dev, struct dcb_entry *entry);
+diff --git a/drivers/gpu/drm/nouveau/nv04_output.c b/drivers/gpu/drm/nouveau/nv04_output.c
+index 9bfeba4..ba57dcf 100644
+--- a/drivers/gpu/drm/nouveau/nv04_output.c
++++ b/drivers/gpu/drm/nouveau/nv04_output.c
+@@ -786,11 +786,11 @@ nv04_encoder_create(struct drm_device *dev, struct dcb_entry *entry)
+ 	} else
+ 		helper = &nv04_encoder_helper_funcs;
  
--	nv_connector->detected_encoder = NULL;
-+	if ((nv_encoder = find_encoder_by_type(connector, OUTPUT_LVDS))
-+	    && nv_connector->native_mode) {
+-	drm_encoder_init(dev, &nv_encoder->base, &nv04_encoder_funcs, type);
+-	drm_encoder_helper_add(&nv_encoder->base, helper);
++	drm_encoder_init(dev, to_drm_encoder(nv_encoder), &nv04_encoder_funcs, type);
++	drm_encoder_helper_add(to_drm_encoder(nv_encoder), helper);
  
--	if (connector->connector_type == DRM_MODE_CONNECTOR_LVDS)
--		return nouveau_connector_lvds_detect(connector);
-+		nouveau_connector_set_encoder(connector, nv_encoder);
-+		return connector_status_connected;
-+	}
+-	nv_encoder->base.possible_crtcs = entry->heads;
+-	nv_encoder->base.possible_clones = 0;
++	to_drm_encoder(nv_encoder)->possible_crtcs = entry->heads;
++	to_drm_encoder(nv_encoder)->possible_clones = 0;
  
--	nv_encoder = nouveau_connector_encoder_get(connector, OUTPUT_ANALOG);
--	if (!nouveau_connector_ddc_detect(connector)) {
--		if (!nv_encoder || !to_drm_encoder(nv_encoder)->helper_private)
-+	if (nouveau_connector_ddc_detect(connector)) {
-+		nouveau_connector_ddc_prepare(connector, &flags);
-+		nv_connector->edid =
-+			drm_get_edid(connector, &nv_connector->i2c_chan->adapter);
-+		nouveau_connector_ddc_finish(connector, flags);
-+		drm_mode_connector_update_edid_property(connector, nv_connector->edid);
-+		if (!nv_connector->edid) {
-+			NV_ERROR(dev, "DDC responded, but no EDID for %s\n",
-+				 drm_get_connector_name(connector));
- 			return connector_status_disconnected;
-+		}
- 
--		helper = to_drm_encoder(nv_encoder)->helper_private;
--		if (!helper || !helper->detect)
--			return connector_status_disconnected;
-+		if (connector->connector_type == DRM_MODE_CONNECTOR_LVDS)
-+			type = OUTPUT_LVDS;
-+		else if (nv_connector->edid->input & DRM_EDID_INPUT_DIGITAL)
-+			type = OUTPUT_TMDS;
-+		else
-+			type = OUTPUT_ANALOG;
- 
--		if (helper->detect(to_drm_encoder(nv_encoder), connector) ==
--				connector_status_connected) {
--			nouveau_connector_set_encoder(connector, nv_encoder);
--			return connector_status_connected;
-+		nv_encoder = find_encoder_by_type(connector, type);
-+		if (!nv_encoder) {
-+			NV_ERROR(dev, "Detected %d encoder on %s, but no object!\n",
-+				 type, drm_get_connector_name(connector));
-+			return connector_status_disconnected;
- 		}
- 
--		return connector_status_disconnected;
-+		nouveau_connector_set_encoder(connector, nv_encoder);
-+		return connector_status_connected;
- 	}
- 
--	nouveau_connector_ddc_prepare(connector, &flags);
--	nv_connector->edid =
--		drm_get_edid(connector, &nv_connector->i2c_chan->adapter);
--	nouveau_connector_ddc_finish(connector, flags);
--	drm_mode_connector_update_edid_property(connector, nv_connector->edid);
--	if (!nv_connector->edid) {
--		NV_ERROR(dev, "DDC responded, but no EDID for %s\n",
--			      drm_get_connector_name(connector));
--		return connector_status_disconnected;
--	}
-+	if ((nv_encoder = find_encoder_by_type(connector, OUTPUT_ANALOG)) ||
-+	    (nv_encoder = find_encoder_by_type(connector, OUTPUT_TV))) {
-+		struct drm_encoder *encoder = to_drm_encoder(nv_encoder);
-+		struct drm_encoder_helper_funcs *helper = encoder->helper_private;
- 
--	if (nv_connector->edid->input & DRM_EDID_INPUT_DIGITAL)
--		type = OUTPUT_TMDS;
--	else
--		type = OUTPUT_ANALOG;
-+		if (helper->detect(encoder, connector) == connector_status_connected) {
-+			nouveau_connector_set_encoder(connector, nv_encoder);
-+			return connector_status_connected;
-+		}
- 
--	nv_encoder = nouveau_connector_encoder_get(connector, type);
--	if (!nv_encoder) {
--		NV_ERROR(dev, "Detected %d encoder on %s, but no object!\n",
--			      type, drm_get_connector_name(connector));
--		return connector_status_disconnected;
- 	}
- 
--	nouveau_connector_set_encoder(connector, nv_encoder);
--	return connector_status_connected;
-+	return connector_status_disconnected;
+ 	return 0;
  }
- 
- static int
-@@ -269,6 +258,7 @@ nouveau_connector_set_property(struct drm_connector *connector,
- 			       struct drm_property *property, uint64_t value)
- {
- 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
-+	struct nouveau_encoder *nv_encoder = nv_connector->detected_encoder;
- 	struct drm_device *dev = connector->dev;
- 	int ret;
- 
-@@ -310,8 +300,8 @@ nouveau_connector_set_property(struct drm_connector *connector,
- 							&nv_crtc->base.mode,
- 							nv_crtc->base.x,
- 							nv_crtc->base.y, NULL);
--			if (ret)
--				return ret;
-+			if (!ret)
-+				return -EINVAL;
- 		} else {
- 			ret = nv_crtc->set_scale(nv_crtc, value, true);
- 			if (ret)
-@@ -340,6 +330,11 @@ nouveau_connector_set_property(struct drm_connector *connector,
- 					   true);
- 	}
- 
-+
-+	if (nv_encoder && nv_encoder->dcb->type == OUTPUT_TV)
-+		return get_slave_funcs(nv_encoder)->
-+			set_property(to_drm_encoder(nv_encoder), connector, property, value);
-+
- 	return -EINVAL;
- }
- 
-@@ -348,8 +343,9 @@ nouveau_connector_native_mode(struct nouveau_connector *connector)
- {
- 	struct drm_device *dev = connector->base.dev;
- 	struct drm_display_mode *mode;
-+	uint8_t type = connector->detected_encoder->dcb->type;
- 
--	if (connector->detected_encoder->dcb->type == OUTPUT_ANALOG)
-+	if (type != OUTPUT_LVDS && type != OUTPUT_TMDS)
+diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
+index 99f24a3..d319a73 100644
+--- a/drivers/gpu/drm/nouveau/nv50_crtc.c
++++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
+@@ -217,7 +217,7 @@ nouveau_crtc_connector_get(struct nouveau_crtc *crtc)
  		return NULL;
  
- 	list_for_each_entry(mode, &connector->base.probed_modes, head) {
-@@ -363,8 +359,9 @@ nouveau_connector_native_mode(struct nouveau_connector *connector)
- static int
- nouveau_connector_get_modes(struct drm_connector *connector)
+ 	list_for_each_entry(drm_connector, &dev->mode_config.connector_list, head) {
+-		if (drm_connector->encoder == &encoder->base)
++		if (drm_connector->encoder == to_drm_encoder(encoder))
+ 			return nouveau_connector(drm_connector);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nv50_dac.c b/drivers/gpu/drm/nouveau/nv50_dac.c
+index f07b92a..67b1457 100644
+--- a/drivers/gpu/drm/nouveau/nv50_dac.c
++++ b/drivers/gpu/drm/nouveau/nv50_dac.c
+@@ -36,7 +36,7 @@
+ static void
+ nv50_dac_disconnect(struct nouveau_encoder *encoder)
  {
--	struct nouveau_connector *nv_connector = nouveau_connector(connector);
- 	struct drm_device *dev = connector->dev;
-+	struct nouveau_connector *nv_connector = nouveau_connector(connector);
-+	struct nouveau_encoder *nv_encoder = nv_connector->detected_encoder;
- 	int ret = 0;
+-	struct drm_device *dev = encoder->base.dev;
++	struct drm_device *dev = to_drm_encoder(encoder)->dev;
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+ 	struct nouveau_channel *evo = dev_priv->evo;
+ 	int ret;
+@@ -57,7 +57,7 @@ nv50_dac_detect(struct drm_encoder *drm_encoder,
+ 		struct drm_connector *drm_connector)
+ {
+ 	struct nouveau_encoder *encoder = nouveau_encoder(drm_encoder);
+-	struct drm_device *dev = encoder->base.dev;
++	struct drm_device *dev = to_drm_encoder(encoder)->dev;
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+ 	enum drm_connector_status status = connector_status_disconnected;
+ 	uint32_t dpms_state, load_pattern, load_state;
+@@ -207,10 +207,10 @@ static void nv50_dac_mode_set(struct drm_encoder *drm_encoder,
+ 		mode_ctl |= NV50_EVO_DAC_MODE_CTRL_CRTC0;
  
- 	/* If we're not LVDS, destroy the previous native mode, the attached
-@@ -394,6 +391,10 @@ nouveau_connector_get_modes(struct drm_connector *connector)
- 		ret = 1;
+ 	/* Lacking a working tv-out, this is not a 100% sure. */
+-	if (encoder->base.encoder_type == DRM_MODE_ENCODER_DAC) {
++	if (to_drm_encoder(encoder)->encoder_type == DRM_MODE_ENCODER_DAC) {
+ 		mode_ctl |= 0x40;
+ 	} else
+-	if (encoder->base.encoder_type == DRM_MODE_ENCODER_TVDAC) {
++	if (to_drm_encoder(encoder)->encoder_type == DRM_MODE_ENCODER_TVDAC) {
+ 		mode_ctl |= 0x100;
  	}
  
-+	if (nv_encoder->dcb->type == OUTPUT_TV)
-+		ret = get_slave_funcs(nv_encoder)->
-+			get_modes(to_drm_encoder(nv_encoder), connector);
-+
- 	return ret;
+@@ -250,7 +250,7 @@ static void nv50_dac_destroy(struct drm_encoder *drm_encoder)
+ 	if (!drm_encoder)
+ 		return;
+ 
+-	drm_encoder_cleanup(&encoder->base);
++	drm_encoder_cleanup(to_drm_encoder(encoder));
+ 
+ 	kfree(encoder);
  }
+@@ -273,12 +273,12 @@ int nv50_dac_create(struct drm_device *dev, struct dcb_entry *entry)
+ 	encoder->dcb = entry;
+ 	encoder->or = ffs(entry->or) - 1;
  
-@@ -404,9 +405,7 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
- 	struct drm_nouveau_private *dev_priv = connector->dev->dev_private;
- 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
- 	struct nouveau_encoder *nv_encoder = nv_connector->detected_encoder;
--	unsigned min_clock, max_clock;
--
--	min_clock = 25000;
-+	unsigned min_clock = 25000, max_clock = min_clock;
+-	drm_encoder_init(dev, &encoder->base, &nv50_dac_encoder_funcs,
++	drm_encoder_init(dev, to_drm_encoder(encoder), &nv50_dac_encoder_funcs,
+ 			 DRM_MODE_ENCODER_DAC);
+-	drm_encoder_helper_add(&encoder->base, &nv50_dac_helper_funcs);
++	drm_encoder_helper_add(to_drm_encoder(encoder), &nv50_dac_helper_funcs);
  
- 	switch (nv_encoder->dcb->type) {
- 	case OUTPUT_LVDS:
-@@ -425,11 +424,15 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
- 		else
- 			max_clock = 330000;
- 		break;
--	default:
-+	case OUTPUT_ANALOG:
- 		max_clock = nv_encoder->dcb->crtconf.maxfreq;
- 		if (!max_clock)
- 			max_clock = 350000;
- 		break;
-+	case OUTPUT_TV:
-+		return get_slave_funcs(nv_encoder)->
-+			mode_valid(to_drm_encoder(nv_encoder), mode);
-+
- 	}
- 
- 	if (mode->clock < min_clock)
-@@ -523,7 +526,7 @@ nouveau_connector_create(struct drm_device *dev, int i2c_index, int type)
- 			return ret;
- 		}
- 		break;
--	case DRM_MODE_CONNECTOR_SVIDEO:
-+	case DRM_MODE_CONNECTOR_TV:
- 		NV_INFO(dev, "Detected a TV connector\n");
- 		break;
- 	default:
-@@ -531,21 +534,6 @@ nouveau_connector_create(struct drm_device *dev, int i2c_index, int type)
- 		break;
- 	}
- 
--	/* some reasonable defaults */
--	switch (type) {
--	case DRM_MODE_CONNECTOR_DVII:
--	case DRM_MODE_CONNECTOR_DVID:
--	case DRM_MODE_CONNECTOR_LVDS:
--		nv_connector->scaling_mode = DRM_MODE_SCALE_FULLSCREEN;
--		break;
--	default:
--		nv_connector->scaling_mode = DRM_MODE_SCALE_NON_GPU;
--		break;
--	}
--
--	if (type != DRM_MODE_CONNECTOR_LVDS)
--		nv_connector->use_dithering = false;
--
- 	/* defaults, will get overridden in detect() */
- 	connector->interlace_allowed = false;
- 	connector->doublescan_allowed = false;
-@@ -569,14 +557,23 @@ nouveau_connector_create(struct drm_device *dev, int i2c_index, int type)
- 		drm_connector_attach_property(connector, dev->mode_config.dvi_i_select_subconnector_property, 0);
- 	}
- 
--	/* If supported in the future, it will have to use the scalers
--	 * internally and not expose them.
--	 */
--	if (type != DRM_MODE_CONNECTOR_SVIDEO) {
--		drm_connector_attach_property(connector, dev->mode_config.scaling_mode_property, nv_connector->scaling_mode);
--	}
-+	if (type != DRM_MODE_CONNECTOR_LVDS)
-+		nv_connector->use_dithering = false;
-+
-+	if (type == DRM_MODE_CONNECTOR_DVID ||
-+	    type == DRM_MODE_CONNECTOR_DVII ||
-+	    type == DRM_MODE_CONNECTOR_LVDS) {
-+		nv_connector->scaling_mode = DRM_MODE_SCALE_FULLSCREEN;
- 
--	drm_connector_attach_property(connector, dev->mode_config.dithering_mode_property, nv_connector->use_dithering ? DRM_MODE_DITHERING_ON : DRM_MODE_DITHERING_OFF);
-+		drm_connector_attach_property(connector, dev->mode_config.scaling_mode_property,
-+					      nv_connector->scaling_mode);
-+		drm_connector_attach_property(connector, dev->mode_config.dithering_mode_property,
-+					      nv_connector->use_dithering ? DRM_MODE_DITHERING_ON
-+					      : DRM_MODE_DITHERING_OFF);
-+
-+	} else {
-+		nv_connector->scaling_mode = DRM_MODE_SCALE_NON_GPU;
-+	}
- 
- 	/* attach encoders */
- 	list_for_each_entry(encoder, &dev->mode_config.encoder_list, head) {
-@@ -585,6 +582,9 @@ nouveau_connector_create(struct drm_device *dev, int i2c_index, int type)
- 		if (nv_encoder->dcb->i2c_index != i2c_index)
- 			continue;
- 
-+		if (get_slave_funcs(nv_encoder))
-+			get_slave_funcs(nv_encoder)->create_resources(encoder, connector);
-+
- 		drm_mode_connector_attach_encoder(connector, encoder);
- 	}
+-	encoder->base.possible_crtcs = entry->heads;
+-	encoder->base.possible_clones = 0;
++	to_drm_encoder(encoder)->possible_crtcs = entry->heads;
++	to_drm_encoder(encoder)->possible_clones = 0;
+ 	return 0;
+ }
  
 diff --git a/drivers/gpu/drm/nouveau/nv50_sor.c b/drivers/gpu/drm/nouveau/nv50_sor.c
-index 60fe995..fb973fa 100644
+index af66324..60fe995 100644
 --- a/drivers/gpu/drm/nouveau/nv50_sor.c
 +++ b/drivers/gpu/drm/nouveau/nv50_sor.c
-@@ -103,20 +103,6 @@ static void nv50_sor_restore(struct drm_encoder *drm_encoder)
- 	NV_ERROR(drm_encoder->dev, "!!\n");
- }
+@@ -37,7 +37,7 @@
+ static void
+ nv50_sor_disconnect(struct nouveau_encoder *encoder)
+ {
+-	struct drm_device *dev = encoder->base.dev;
++	struct drm_device *dev = to_drm_encoder(encoder)->dev;
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+ 	struct nouveau_channel *evo = dev_priv->evo;
+ 	int ret;
+@@ -106,11 +106,11 @@ static void nv50_sor_restore(struct drm_encoder *drm_encoder)
+ struct nouveau_connector *
+ nouveau_encoder_connector_get(struct nouveau_encoder *encoder)
+ {
+-	struct drm_device *dev = encoder->base.dev;
++	struct drm_device *dev = to_drm_encoder(encoder)->dev;
+ 	struct drm_connector *drm_connector;
  
--struct nouveau_connector *
--nouveau_encoder_connector_get(struct nouveau_encoder *encoder)
--{
--	struct drm_device *dev = to_drm_encoder(encoder)->dev;
--	struct drm_connector *drm_connector;
--
--	list_for_each_entry(drm_connector, &dev->mode_config.connector_list, head) {
--		if (drm_connector->encoder == to_drm_encoder(encoder))
--			return nouveau_connector(drm_connector);
--	}
--
--	return NULL;
--}
--
- static bool nv50_sor_mode_fixup(struct drm_encoder *drm_encoder,
- 				struct drm_display_mode *mode,
- 				struct drm_display_mode *adjusted_mode)
+ 	list_for_each_entry(drm_connector, &dev->mode_config.connector_list, head) {
+-		if (drm_connector->encoder == &encoder->base)
++		if (drm_connector->encoder == to_drm_encoder(encoder))
+ 			return nouveau_connector(drm_connector);
+ 	}
+ 
+@@ -166,7 +166,7 @@ static void nv50_sor_mode_set(struct drm_encoder *drm_encoder,
+ 	nv50_sor_dpms(drm_encoder, DRM_MODE_DPMS_ON);
+ 	dev_priv->in_modeset = ret;
+ 
+-	if (encoder->base.encoder_type != DRM_MODE_ENCODER_LVDS) {
++	if (to_drm_encoder(encoder)->encoder_type != DRM_MODE_ENCODER_LVDS) {
+ 		mode_ctl |= NV50_EVO_SOR_MODE_CTRL_TMDS;
+ 		if (adjusted_mode->clock > 165000)
+ 			mode_ctl |= NV50_EVO_SOR_MODE_CTRL_TMDS_DUAL_LINK;
+@@ -212,7 +212,7 @@ static void nv50_sor_destroy(struct drm_encoder *drm_encoder)
+ 	if (!drm_encoder)
+ 		return;
+ 
+-	drm_encoder_cleanup(&encoder->base);
++	drm_encoder_cleanup(to_drm_encoder(encoder));
+ 
+ 	kfree(encoder);
+ }
+@@ -254,11 +254,11 @@ int nv50_sor_create(struct drm_device *dev, struct dcb_entry *entry)
+ 	encoder->dcb = entry;
+ 	encoder->or = ffs(entry->or) - 1;
+ 
+-	drm_encoder_init(dev, &encoder->base, &nv50_sor_encoder_funcs, type);
+-	drm_encoder_helper_add(&encoder->base, &nv50_sor_helper_funcs);
++	drm_encoder_init(dev, to_drm_encoder(encoder), &nv50_sor_encoder_funcs, type);
++	drm_encoder_helper_add(to_drm_encoder(encoder), &nv50_sor_helper_funcs);
+ 
+-	encoder->base.possible_crtcs = entry->heads;
+-	encoder->base.possible_clones = 0;
++	to_drm_encoder(encoder)->possible_crtcs = entry->heads;
++	to_drm_encoder(encoder)->possible_clones = 0;
+ 
+ 	return 0;
+ }
 -- 
 1.6.3.3
