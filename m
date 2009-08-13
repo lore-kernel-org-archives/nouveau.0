@@ -1,8 +1,8 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCHv2 03/10] drm/nouveau: Use drm_encoder_slave
-	instead of drm_encoder.
-Date: Thu, 13 Aug 2009 14:01:30 +0200
-Message-ID: <1250164897-7871-3-git-send-email-currojerez@riseup.net>
+Subject: [PATCHv2 06/10] drm/nouveau: Parse some more BIOS
+	parameters needed for TV-out.
+Date: Thu, 13 Aug 2009 14:01:33 +0200
+Message-ID: <1250164897-7871-6-git-send-email-currojerez@riseup.net>
 References: <1250164897-7871-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,239 +24,98 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c |    8 ++++----
- drivers/gpu/drm/nouveau/nouveau_encoder.h   |   13 +++++++++++--
- drivers/gpu/drm/nouveau/nv04_output.c       |    8 ++++----
- drivers/gpu/drm/nouveau/nv50_crtc.c         |    2 +-
- drivers/gpu/drm/nouveau/nv50_dac.c          |   18 +++++++++---------
- drivers/gpu/drm/nouveau/nv50_sor.c          |   18 +++++++++---------
- 6 files changed, 38 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_bios.c |   21 +++++++++++++++++++--
+ drivers/gpu/drm/nouveau/nouveau_bios.h |    4 ++++
+ 2 files changed, 23 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index c89bef7..54d5e58 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -221,14 +221,14 @@ nouveau_connector_detect(struct drm_connector *connector)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+index e9e1e8f..ec0614f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bios.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+@@ -33,6 +33,7 @@
+ #define FEATURE_MOBILE 0x10	/* also FEATURE_QUADRO for BMP */
+ #define LEGACY_I2C_CRT 0x80
+ #define LEGACY_I2C_PANEL 0x81
++#define LEGACY_I2C_TV 0x82
  
- 	nv_encoder = nouveau_connector_encoder_get(connector, OUTPUT_ANALOG);
- 	if (!nouveau_connector_ddc_detect(connector)) {
--		if (!nv_encoder || !nv_encoder->base.helper_private)
-+		if (!nv_encoder || !to_drm_encoder(nv_encoder)->helper_private)
- 			return connector_status_disconnected;
+ #define EDID1_LEN 128
  
--		helper = nv_encoder->base.helper_private;
-+		helper = to_drm_encoder(nv_encoder)->helper_private;
- 		if (!helper || !helper->detect)
- 			return connector_status_disconnected;
+@@ -3960,8 +3961,8 @@ static int parse_bit_i_tbl_entry(struct drm_device *dev, struct nvbios *bios, st
+ 	if (!daccmpoffset)
+ 		return 0;
  
--		if (helper->detect(&nv_encoder->base, connector) ==
-+		if (helper->detect(to_drm_encoder(nv_encoder), connector) ==
- 				connector_status_connected) {
- 			nouveau_connector_set_encoder(connector, nv_encoder);
- 			return connector_status_connected;
-@@ -447,7 +447,7 @@ nouveau_connector_best_encoder(struct drm_connector *connector)
- 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
+-	/* The first value in the table, following the header, is the comparison value
+-	 * Purpose of subsequent values unknown -- TV load detection?
++	/* The first value in the table, following the header, is the comparison value,
++	 * the second entry is a comparison value for TV load detection.
+ 	 */
  
- 	if (nv_connector->detected_encoder)
--		return &nv_connector->detected_encoder->base;
-+		return to_drm_encoder(nv_connector->detected_encoder);
+ 	dacver = bios->data[daccmpoffset];
+@@ -3974,6 +3975,7 @@ static int parse_bit_i_tbl_entry(struct drm_device *dev, struct nvbios *bios, st
+ 	}
  
- 	return NULL;
+ 	bios->pub.dactestval = ROM32(bios->data[daccmpoffset + dacheaderlen]);
++	bios->pub.tvdactestval = ROM32(bios->data[daccmpoffset + dacheaderlen + 4]);
+ 
+ 	return 0;
  }
-diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/nouveau/nouveau_encoder.h
-index 3344e6c..8a7369c 100644
---- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
-@@ -27,16 +27,18 @@
- #ifndef __NOUVEAU_OUTPUT_H__
- #define __NOUVEAU_OUTPUT_H__
- 
-+#include "drm_encoder_slave.h"
- #include "nouveau_drv.h"
- 
- #define NV_DPMS_CLEARED 0x80
- 
- struct nouveau_encoder {
--	struct drm_encoder base;
-+	struct drm_encoder_slave base;
- 
- 	struct dcb_entry *dcb;
- 	int or;
- 
-+	struct drm_display_mode mode;
- 	int last_dpms;
- 
- 	struct nv04_output_reg restore;
-@@ -44,7 +46,14 @@ struct nouveau_encoder {
- 
- static inline struct nouveau_encoder *nouveau_encoder(struct drm_encoder *enc)
- {
--	return container_of(enc, struct nouveau_encoder, base);
-+	struct drm_encoder_slave *slave = to_encoder_slave(enc);
+@@ -4561,6 +4563,15 @@ parse_dcb20_entry(struct drm_device *dev, struct bios_parsed_dcb *bdcb,
+ 		}
+ 		break;
+ 		}
++	case OUTPUT_TV:
++	{
++		if (bdcb->version >= 0x30)
++			entry->tvconf.has_component_output = conf & (0x8 << 4);
++		else
++			entry->tvconf.has_component_output = false;
 +
-+	return container_of(slave, struct nouveau_encoder, base);
-+}
-+
-+static inline struct drm_encoder *to_drm_encoder(struct nouveau_encoder *enc)
-+{
-+	return &enc->base.base;
- }
- 
- int nv50_sor_create(struct drm_device *dev, struct dcb_entry *entry);
-diff --git a/drivers/gpu/drm/nouveau/nv04_output.c b/drivers/gpu/drm/nouveau/nv04_output.c
-index 9bfeba4..ba57dcf 100644
---- a/drivers/gpu/drm/nouveau/nv04_output.c
-+++ b/drivers/gpu/drm/nouveau/nv04_output.c
-@@ -786,11 +786,11 @@ nv04_encoder_create(struct drm_device *dev, struct dcb_entry *entry)
- 	} else
- 		helper = &nv04_encoder_helper_funcs;
- 
--	drm_encoder_init(dev, &nv_encoder->base, &nv04_encoder_funcs, type);
--	drm_encoder_helper_add(&nv_encoder->base, helper);
-+	drm_encoder_init(dev, to_drm_encoder(nv_encoder), &nv04_encoder_funcs, type);
-+	drm_encoder_helper_add(to_drm_encoder(nv_encoder), helper);
- 
--	nv_encoder->base.possible_crtcs = entry->heads;
--	nv_encoder->base.possible_clones = 0;
-+	to_drm_encoder(nv_encoder)->possible_crtcs = entry->heads;
-+	to_drm_encoder(nv_encoder)->possible_clones = 0;
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
-index 99f24a3..d319a73 100644
---- a/drivers/gpu/drm/nouveau/nv50_crtc.c
-+++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
-@@ -217,7 +217,7 @@ nouveau_crtc_connector_get(struct nouveau_crtc *crtc)
- 		return NULL;
- 
- 	list_for_each_entry(drm_connector, &dev->mode_config.connector_list, head) {
--		if (drm_connector->encoder == &encoder->base)
-+		if (drm_connector->encoder == to_drm_encoder(encoder))
- 			return nouveau_connector(drm_connector);
++		break;
++	}
+ 	case 0xe:
+ 		/* weird g80 mobile type that "nv" treats as a terminator */
+ 		bdcb->dcb.entries--;
+@@ -4626,6 +4637,10 @@ parse_dcb15_entry(struct drm_device *dev, struct parsed_dcb *dcb,
+ 		/* invent a DVI-A output, by copying the fields of the DVI-D
+ 		 * output; reported to work by math_b on an NV20(!) */
+ 		fabricate_vga_output(dcb, entry->i2c_index, entry->heads);
++		break;
++	case OUTPUT_TV:
++		entry->tvconf.has_component_output = false;
++		break;
  	}
  
-diff --git a/drivers/gpu/drm/nouveau/nv50_dac.c b/drivers/gpu/drm/nouveau/nv50_dac.c
-index f07b92a..67b1457 100644
---- a/drivers/gpu/drm/nouveau/nv50_dac.c
-+++ b/drivers/gpu/drm/nouveau/nv50_dac.c
-@@ -36,7 +36,7 @@
- static void
- nv50_dac_disconnect(struct nouveau_encoder *encoder)
- {
--	struct drm_device *dev = encoder->base.dev;
-+	struct drm_device *dev = to_drm_encoder(encoder)->dev;
- 	struct drm_nouveau_private *dev_priv = dev->dev_private;
- 	struct nouveau_channel *evo = dev_priv->evo;
- 	int ret;
-@@ -57,7 +57,7 @@ nv50_dac_detect(struct drm_encoder *drm_encoder,
- 		struct drm_connector *drm_connector)
- {
- 	struct nouveau_encoder *encoder = nouveau_encoder(drm_encoder);
--	struct drm_device *dev = encoder->base.dev;
-+	struct drm_device *dev = to_drm_encoder(encoder)->dev;
- 	struct drm_nouveau_private *dev_priv = dev->dev_private;
- 	enum drm_connector_status status = connector_status_disconnected;
- 	uint32_t dpms_state, load_pattern, load_state;
-@@ -207,10 +207,10 @@ static void nv50_dac_mode_set(struct drm_encoder *drm_encoder,
- 		mode_ctl |= NV50_EVO_DAC_MODE_CTRL_CRTC0;
- 
- 	/* Lacking a working tv-out, this is not a 100% sure. */
--	if (encoder->base.encoder_type == DRM_MODE_ENCODER_DAC) {
-+	if (to_drm_encoder(encoder)->encoder_type == DRM_MODE_ENCODER_DAC) {
- 		mode_ctl |= 0x40;
- 	} else
--	if (encoder->base.encoder_type == DRM_MODE_ENCODER_TVDAC) {
-+	if (to_drm_encoder(encoder)->encoder_type == DRM_MODE_ENCODER_TVDAC) {
- 		mode_ctl |= 0x100;
+ 	return true;
+@@ -4835,6 +4850,8 @@ static void fixup_legacy_i2c(struct nvbios *bios)
+ 			dcb->entry[i].i2c_index = bios->legacy.i2c_indices.crt;
+ 		if (dcb->entry[i].i2c_index == LEGACY_I2C_PANEL)
+ 			dcb->entry[i].i2c_index = bios->legacy.i2c_indices.panel;
++		if (dcb->entry[i].i2c_index == LEGACY_I2C_TV)
++			dcb->entry[i].i2c_index = bios->legacy.i2c_indices.tv;
  	}
- 
-@@ -250,7 +250,7 @@ static void nv50_dac_destroy(struct drm_encoder *drm_encoder)
- 	if (!drm_encoder)
- 		return;
- 
--	drm_encoder_cleanup(&encoder->base);
-+	drm_encoder_cleanup(to_drm_encoder(encoder));
- 
- 	kfree(encoder);
- }
-@@ -273,12 +273,12 @@ int nv50_dac_create(struct drm_device *dev, struct dcb_entry *entry)
- 	encoder->dcb = entry;
- 	encoder->or = ffs(entry->or) - 1;
- 
--	drm_encoder_init(dev, &encoder->base, &nv50_dac_encoder_funcs,
-+	drm_encoder_init(dev, to_drm_encoder(encoder), &nv50_dac_encoder_funcs,
- 			 DRM_MODE_ENCODER_DAC);
--	drm_encoder_helper_add(&encoder->base, &nv50_dac_helper_funcs);
-+	drm_encoder_helper_add(to_drm_encoder(encoder), &nv50_dac_helper_funcs);
- 
--	encoder->base.possible_crtcs = entry->heads;
--	encoder->base.possible_clones = 0;
-+	to_drm_encoder(encoder)->possible_crtcs = entry->heads;
-+	to_drm_encoder(encoder)->possible_clones = 0;
- 	return 0;
  }
  
-diff --git a/drivers/gpu/drm/nouveau/nv50_sor.c b/drivers/gpu/drm/nouveau/nv50_sor.c
-index af66324..60fe995 100644
---- a/drivers/gpu/drm/nouveau/nv50_sor.c
-+++ b/drivers/gpu/drm/nouveau/nv50_sor.c
-@@ -37,7 +37,7 @@
- static void
- nv50_sor_disconnect(struct nouveau_encoder *encoder)
- {
--	struct drm_device *dev = encoder->base.dev;
-+	struct drm_device *dev = to_drm_encoder(encoder)->dev;
- 	struct drm_nouveau_private *dev_priv = dev->dev_private;
- 	struct nouveau_channel *evo = dev_priv->evo;
- 	int ret;
-@@ -106,11 +106,11 @@ static void nv50_sor_restore(struct drm_encoder *drm_encoder)
- struct nouveau_connector *
- nouveau_encoder_connector_get(struct nouveau_encoder *encoder)
- {
--	struct drm_device *dev = encoder->base.dev;
-+	struct drm_device *dev = to_drm_encoder(encoder)->dev;
- 	struct drm_connector *drm_connector;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.h b/drivers/gpu/drm/nouveau/nouveau_bios.h
+index 24fc305..e187ba6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bios.h
++++ b/drivers/gpu/drm/nouveau/nouveau_bios.h
+@@ -50,6 +50,9 @@ struct dcb_entry {
+ 			bool use_straps_for_mode;
+ 			bool use_power_scripts;
+ 		} lvdsconf;
++		struct {
++			bool has_component_output;
++		} tvconf;
+ 	};
+ 	bool i2c_upper_default;
+ };
+@@ -145,6 +148,7 @@ struct nouveau_bios_info {
+ 	uint8_t chip_version;
  
- 	list_for_each_entry(drm_connector, &dev->mode_config.connector_list, head) {
--		if (drm_connector->encoder == &encoder->base)
-+		if (drm_connector->encoder == to_drm_encoder(encoder))
- 			return nouveau_connector(drm_connector);
- 	}
- 
-@@ -166,7 +166,7 @@ static void nv50_sor_mode_set(struct drm_encoder *drm_encoder,
- 	nv50_sor_dpms(drm_encoder, DRM_MODE_DPMS_ON);
- 	dev_priv->in_modeset = ret;
- 
--	if (encoder->base.encoder_type != DRM_MODE_ENCODER_LVDS) {
-+	if (to_drm_encoder(encoder)->encoder_type != DRM_MODE_ENCODER_LVDS) {
- 		mode_ctl |= NV50_EVO_SOR_MODE_CTRL_TMDS;
- 		if (adjusted_mode->clock > 165000)
- 			mode_ctl |= NV50_EVO_SOR_MODE_CTRL_TMDS_DUAL_LINK;
-@@ -212,7 +212,7 @@ static void nv50_sor_destroy(struct drm_encoder *drm_encoder)
- 	if (!drm_encoder)
- 		return;
- 
--	drm_encoder_cleanup(&encoder->base);
-+	drm_encoder_cleanup(to_drm_encoder(encoder));
- 
- 	kfree(encoder);
- }
-@@ -254,11 +254,11 @@ int nv50_sor_create(struct drm_device *dev, struct dcb_entry *entry)
- 	encoder->dcb = entry;
- 	encoder->or = ffs(entry->or) - 1;
- 
--	drm_encoder_init(dev, &encoder->base, &nv50_sor_encoder_funcs, type);
--	drm_encoder_helper_add(&encoder->base, &nv50_sor_helper_funcs);
-+	drm_encoder_init(dev, to_drm_encoder(encoder), &nv50_sor_encoder_funcs, type);
-+	drm_encoder_helper_add(to_drm_encoder(encoder), &nv50_sor_helper_funcs);
- 
--	encoder->base.possible_crtcs = entry->heads;
--	encoder->base.possible_clones = 0;
-+	to_drm_encoder(encoder)->possible_crtcs = entry->heads;
-+	to_drm_encoder(encoder)->possible_clones = 0;
- 
- 	return 0;
- }
+ 	uint32_t dactestval;
++	uint32_t tvdactestval;
+ 	uint8_t digital_min_front_porch;
+ 	bool fp_no_ddc;
+ };
 -- 
 1.6.3.3
