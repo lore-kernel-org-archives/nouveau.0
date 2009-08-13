@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23295] nouveau KMS: null pointer dereference if
  native mode is not found
-Date: Thu, 13 Aug 2009 14:54:13 -0700 (PDT)
-Message-ID: <20090813215414.00906130058@annarchy.freedesktop.org>
+Date: Thu, 13 Aug 2009 15:14:14 -0700 (PDT)
+Message-ID: <20090813221414.E638F13005A@annarchy.freedesktop.org>
 References: <bug-23295-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23295
 
 
 
---- Comment #1 from Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org>  2009-08-13 14:54:13 PST ---
-Created an attachment (id=28607)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28607)
-kernel log of native_mode null pointer dereference
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-13 15:14:14 PST ---
+The output script table messages are harmless, and not the cause of your issue.
 
 
 -- 
