@@ -1,15 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: =?utf-8?q?=5BBug_23291=5D_nv50=5Fprogram=2Ec=3A__In_fun?=
- =?utf-8?b?Y3Rpb24g4oCYY3Rvcl9pbW1k4oCZICwgIOKAmHLigJkgdW5kZWNsYXJlZCAo?=
- =?utf-8?q?first_use_in_this_function=29_=5BPATCH=5D?=
-Date: Fri, 14 Aug 2009 08:03:10 -0700 (PDT)
-Message-ID: <20090814150310.1CA2F130058@annarchy.freedesktop.org>
-References: <bug-23291-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23295] nouveau KMS: null pointer dereference if
+ native mode is not found
+Date: Fri, 14 Aug 2009 09:22:13 -0700 (PDT)
+Message-ID: <20090814162213.3B9AD13005A@annarchy.freedesktop.org>
+References: <bug-23295-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23291-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23295-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,17 +21,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23291
+http://bugs.freedesktop.org/show_bug.cgi?id=23295
 
 
 
 
 
---- Comment #7 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-14 08:03:09 PST ---
-(In reply to comment #6)
-> Thanks; I would've put your name under it but I had committed the fix in the
-> same instant I marked that bug invalid.
-No problem, it was really trivial :)
+--- Comment #4 from Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org>  2009-08-14 09:22:11 PST ---
+drm_edid.c ignores detailed timings on EDID < 1.3, and this LVDS has 1.2,
+causing no modes found, triggering this issue.
+I'll report the EDID parsing one separately elsewhere, as it is a non-nouveau
+issue.
 
 
 -- 
