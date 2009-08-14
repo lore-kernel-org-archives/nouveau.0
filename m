@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: =?utf-8?q?=5BBug_23291=5D_nv50=5Fprogram=2Ec=3A__In_fun?=
  =?utf-8?b?Y3Rpb24g4oCYY3Rvcl9pbW1k4oCZICwgIOKAmHLigJkgdW5kZWNsYXJlZCAo?=
  =?utf-8?q?first_use_in_this_function=29?=
-Date: Fri, 14 Aug 2009 06:11:14 -0700 (PDT)
-Message-ID: <20090814131114.6FD03130058@annarchy.freedesktop.org>
+Date: Fri, 14 Aug 2009 06:36:42 -0700 (PDT)
+Message-ID: <20090814133642.E2F76130058@annarchy.freedesktop.org>
 References: <bug-23291-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -25,38 +25,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23291
 
 
+Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
 
---- Comment #2 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2009-08-14 06:11:13 PST ---
-Hi there,
-        I'm sorry about that,here is some more detail.I'm currently using
-Fedora 12 Rawhide Alpha.My Graphics Card is a Nividia Geforce 6,800 G.T,my
-Monitor is a A.D.I Microscan G1,000.I compile D.R.M,The Nouveau Kernel Modules
-from the nouveaulinux-2.6 repository,Mesa and the Nouveau Driver.All from their
-respective git repositories.
 
-The one I'm having trouble with(hence the error report for it),is from the Mesa
-code.
-The ./configure options are:
-./configure --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin
---sbindir=/usr/sbin --datadir=/usr/share --sysconfdir=/etc
---includedir=/usr/include --libdir=/usr/lib --libexecdir=/usr/libexec
---localstatedir=/var --mandir=/usr/share/man --docdir=/usr/share/doc
---x-libraries=/usr/lib --enable-32-bit --enable-xcb --enable-gallium-nouveau
---with-x --with-dri-driverdir=/usr/lib/dri
---with-xorg-driver-dir=/usr/lib/xorg/modules/drivers
---with-state-trackers=dri,egl,xorg,glx,vega,g3dvl --enable-motif
---enable-gl-osmesa --with-osmesa-bits=32 --disable-gallium-intel
---disable-gallium-radeon --with-expat=/usr/lib
---with-demos=xdemos,demos,trivial,tests --with-dri-drivers=swrast,ffb 
-
-I then run make,and that's where the Mesa code stops when I compile it.
-
-If you need any other information,please let me know.
-
-Regards,
-       STEVE555
+--- Comment #3 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>  2009-08-14 06:36:42 PST ---
+Don't submit bug reports for nouveau gallium yet please if you don't have a
+patch to go with it. Thanks.
 
 
 -- 
