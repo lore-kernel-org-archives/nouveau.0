@@ -1,12 +1,15 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nv50: avoid a NULL-ptr dereference when the pipe
-	context changes
-Date: Fri, 14 Aug 2009 22:29:35 +0200
-Message-ID: <1250281775-13994-1-git-send-email-madman2003@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: =?utf-8?q?=5BBug_23291=5D_nv50=5Fprogram=2Ec=3A__In_fun?=
+ =?utf-8?b?Y3Rpb24g4oCYY3Rvcl9pbW1k4oCZICwgIOKAmHLigJkgdW5kZWNsYXJlZCAo?=
+ =?utf-8?q?first_use_in_this_function=29_=5BPATCH=5D?=
+Date: Fri, 14 Aug 2009 14:16:55 -0700 (PDT)
+Message-ID: <20090814211655.ABC7E130058@annarchy.freedesktop.org>
+References: <bug-23291-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-23291-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,48 +22,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-- We cannot assume all state objects are present when the pipe context changes.
----
- src/gallium/drivers/nv50/nv50_state_validate.c |   27 +++++++++++++++++++++++-
- 1 files changed, 26 insertions(+), 1 deletions(-)
+http://bugs.freedesktop.org/show_bug.cgi?id=23291
 
-diff --git a/src/gallium/drivers/nv50/nv50_state_validate.c b/src/gallium/drivers/nv50/nv50_state_validate.c
-index 42ecf05..633be78 100644
---- a/src/gallium/drivers/nv50/nv50_state_validate.c
-+++ b/src/gallium/drivers/nv50/nv50_state_validate.c
-@@ -148,7 +148,32 @@ nv50_state_emit(struct nv50_context *nv50)
- 	struct nouveau_channel *chan = screen->base.channel;
- 
- 	if (nv50->pctx_id != screen->cur_pctx) {
--		nv50->state.dirty |= 0xffffffff;
-+		if (nv50->state.fb)
-+			nv50->state.dirty |= NV50_NEW_FRAMEBUFFER;
-+		if (nv50->state.blend)
-+			nv50->state.dirty |= NV50_NEW_BLEND;
-+		if (nv50->state.zsa)
-+			nv50->state.dirty |= NV50_NEW_ZSA;
-+		if (nv50->state.vertprog)
-+			nv50->state.dirty |= NV50_NEW_VERTPROG;
-+		if (nv50->state.fragprog)
-+			nv50->state.dirty |= NV50_NEW_FRAGPROG;
-+		if (nv50->state.rast)
-+			nv50->state.dirty |= NV50_NEW_RASTERIZER;
-+		if (nv50->state.blend_colour)
-+			nv50->state.dirty |= NV50_NEW_BLEND_COLOUR;
-+		if (nv50->state.stipple)
-+			nv50->state.dirty |= NV50_NEW_STIPPLE;
-+		if (nv50->state.scissor)
-+			nv50->state.dirty |= NV50_NEW_SCISSOR;
-+		if (nv50->state.viewport)
-+			nv50->state.dirty |= NV50_NEW_VIEWPORT;
-+		if (nv50->state.tsc_upload)
-+			nv50->state.dirty |= NV50_NEW_SAMPLER;
-+		if (nv50->state.tic_upload)
-+			nv50->state.dirty |= NV50_NEW_TEXTURE;
-+		if (nv50->state.vtxfmt && nv50->state.vtxbuf)
-+			nv50->state.dirty |= NV50_NEW_ARRAYS;
- 		screen->cur_pctx = nv50->pctx_id;
- 	}
- 
+
+
+
+
+--- Comment #8 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2009-08-14 14:16:55 PST ---
+(In reply to comment #7)
+> (In reply to comment #6)
+> > Thanks; I would've put your name under it but I had committed the fix in the
+> > same instant I marked that bug invalid.
+> No problem, it was really trivial :)
+> 
+
+Hi there,
+        I am sorry about that,I am aware the code is still in a state of flux.
+I just wanted to notify that the whole code was stopping at that error,when I
+compile.I should've waited a bit longer,but oh well.I wish I could submit
+patches,but I don't know anything about C code and I can just about get my head
+round the actual tree itself.Though I do find it interesting watching the
+changes.
+
+I like to thank you very much for your help.
+
+Regards,
+       STVE555
+
+
 -- 
-1.6.4
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
