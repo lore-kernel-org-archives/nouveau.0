@@ -1,14 +1,14 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/4] nv50: fix thinko in nv50_vbo_validate
-Date: Sun, 16 Aug 2009 04:16:43 +0200
-Message-ID: <6d4bc9fc0908151916q563b4b0v96ab83167cd388d0@mail.gmail.com>
-References: <1250388860-11109-1-git-send-email-madman2003@gmail.com>
-	<1250388860-11109-2-git-send-email-madman2003@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 22786] NV30: X hangs with KMS enabled in certain
+	cases
+Date: Sun, 16 Aug 2009 05:11:38 -0700 (PDT)
+Message-ID: <20090816121138.B8F14130058@annarchy.freedesktop.org>
+References: <bug-22786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1250388860-11109-2-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-22786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,4 +21,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The thinko is mine, ignore this patch.
+http://bugs.freedesktop.org/show_bug.cgi?id=22786
+
+
+Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+
+
+
+--- Comment #2 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-16 05:11:38 PST ---
+Enabling Option "EXAPixmaps" "on" in xorg.conf does not hang X anymore. So I
+suppose it is fixed (or else it is disabled for hardware that may cause
+problems?).
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
