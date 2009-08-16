@@ -1,14 +1,13 @@
-From: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
-Subject: [PATCH r2] drm/nv04: fix null pointer dereferences of
-	native_mode
-Date: Sun, 16 Aug 2009 22:42:40 +0300
-Message-ID: <4A886130.5020005@iki.fi>
-References: <4A8840D7.5000409@iki.fi>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: [PATCH] drm/nouveau: OUT_RINGp - optimize OUT_RING loops
+Date: Mon, 17 Aug 2009 01:20:47 +0300
+Message-ID: <1250461247-19108-1-git-send-email-pq@iki.fi>
+References: <1249410166-4566-3-git-send-email-pq@iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4A8840D7.5000409-X3B1VOXEql0@public.gmane.org>
+In-Reply-To: <1249410166-4566-3-git-send-email-pq-X3B1VOXEql0@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,108 +20,130 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-nv_connector->native_mode is not set when no modes were found for the
-connector, so its existence can't be assumed.
+The introduction of nouveau_bo_wr32() in commit "drm/nouveau: use bo
+accessors for push buffers" to OUT_RING() made it considerably slower.
 
-In nv04_dfp_mode_fixup, reject the mode if GPU scaling is enabled but
-native mode is not known.
+'x11perf -aa10text' benchmark hits the OUT_RING hard, since user
+pushbuffers are first copied from user to kernel, and then from kernel
+to the real pushbuffer bo using OUT_RING. The speed
+- before nouveau_bo_wr32(): 677k/sec
+- after: 475k/sec
 
-In nv04_dfp_mode_set, use clock value from output_mode (nv_encoder->mode)
-instead of nv_connector->native_mode. If panel scaling is enabled on a
-TMDS display and the display did not have a valid EDID, native_mode is
-NULL.
+This patch implements OUT_RINGp() for copying an arbitrary number of
+dwords from an array to the pushbuffer bo. All OUT_RING copy loops are
+replaced with calls to OUT_RINGp(). This brings aa10text speed to
+785k/sec.
 
-In nv04_lvds_dpms and nv04_dfp_restore, refuse to turn on an LVDS panel
-if native mode is not known. While clock is not always required for
-turning panel on, having an LVDS without native mode means something went
-wrong already, so trying to turn panel on only in cases where clock is
-required would yield no added benefit.
+The tests have been run on nv28, Athlon64 3000+ (x86_64) and oprofile
+running.
 
-Signed-off-by: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
-
+Signed-off-by: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 ---
+ drivers/gpu/drm/nouveau/nouveau_dma.c |   13 +++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_dma.h |    3 +++
+ drivers/gpu/drm/nouveau/nouveau_gem.c |    3 +--
+ drivers/gpu/drm/nouveau/nv04_fbcon.c  |   14 ++++++++------
+ drivers/gpu/drm/nouveau/nv50_fbcon.c  |    4 ++--
+ 5 files changed, 27 insertions(+), 10 deletions(-)
 
-Rev2: Use output_mode (&nv_encoder->mode) in nv04_dfp_mode_set; that shortcut
-was just added by Francisco Jerez so it didn't make it into my initial patch
-
-Please review especially the changes in nv04_dfp_mode_fixup. Previously
-(2 << 24) | (8 << 28) was set in regp->fp_control with dual link TMDS
-panel, even if we were using a single link mode with panel scaling. As I
-didn't know what it is for, I assumed it was a mistake and made it depend
-on the actual output mode (i.e. native_mode with GPU scaling only) instead.
-Someone who knows this stuff should confirm this or fix it in another
-way :)
-
-This fixes up http://bugs.freedesktop.org/show_bug.cgi?id=23295
-
- nv04_dfp.c |   22 ++++++++++++++++------
- 1 file changed, 16 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nv04_dfp.c b/drivers/gpu/drm/nouveau/nv04_dfp.c
-index 7913e5f..9dd4a98 100644
---- a/drivers/gpu/drm/nouveau/nv04_dfp.c
-+++ b/drivers/gpu/drm/nouveau/nv04_dfp.c
-@@ -153,6 +153,8 @@ static bool nv04_dfp_mode_fixup(struct drm_encoder *encoder,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.c b/drivers/gpu/drm/nouveau/nouveau_dma.c
+index 183a7d5..0025c3d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dma.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dma.c
+@@ -90,6 +90,19 @@ nouveau_dma_init(struct nouveau_channel *chan)
+ 	return 0;
+ }
  
- 	/* For internal panels and gpu scaling on DVI we need the native mode */
- 	if (nv_connector->scaling_mode != DRM_MODE_SCALE_NON_GPU) {
-+		if (!nv_connector->native_mode)
-+			return false;
- 		nv_encoder->mode = *nv_connector->native_mode;
- 		adjusted_mode->clock = nv_connector->native_mode->clock;
- 	} else {
-@@ -305,7 +307,7 @@ static void nv04_dfp_mode_set(struct drm_encoder *encoder,
- 	if (nvReadEXTDEV(dev, NV_PEXTDEV_BOOT_0) & NV_PEXTDEV_BOOT_0_STRAP_FP_IFACE_12BIT)
- 		regp->fp_control |= NV_PRAMDAC_FP_TG_CONTROL_WIDTH_12;
- 	if (nv_encoder->dcb->location != DCB_LOC_ON_CHIP &&
--	    nv_connector->native_mode->clock > 165000)
-+	    output_mode->clock > 165000)
- 		regp->fp_control |= (2 << 24);
- 	if (nv_encoder->dcb->type == OUTPUT_LVDS) {
- 		bool duallink, dummy;
-@@ -315,7 +317,7 @@ static void nv04_dfp_mode_set(struct drm_encoder *encoder,
- 		if (duallink)
- 			regp->fp_control |= (8 << 28);
- 	} else
--	if (nv_connector->native_mode->clock > 165000)
-+	if (output_mode->clock > 165000)
- 		regp->fp_control |= (8 << 28);
++void
++OUT_RINGp(struct nouveau_channel *chan, const void *data, unsigned nr_dwords)
++{
++	bool is_iomem;
++	u32 *mem = ttm_kmap_obj_virtual(&chan->pushbuf_bo->kmap, &is_iomem);
++	mem = &mem[chan->dma.cur];
++	if (is_iomem)
++		memcpy_toio((void __force __iomem *)mem, data, nr_dwords * 4);
++	else
++		memcpy(mem, data, nr_dwords * 4);
++	chan->dma.cur += nr_dwords;
++}
++
+ static inline bool
+ READ_GET(struct nouveau_channel *chan, uint32_t *get)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.h b/drivers/gpu/drm/nouveau/nouveau_dma.h
+index 072d9b9..cdaa37d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dma.h
++++ b/drivers/gpu/drm/nouveau/nouveau_dma.h
+@@ -109,6 +109,9 @@ OUT_RING(struct nouveau_channel *chan, int data)
+ 	nouveau_bo_wr32(chan->pushbuf_bo, chan->dma.cur++, data);
+ }
  
- 	regp->fp_debug_0 = NV_PRAMDAC_FP_DEBUG_0_YWEIGHT_ROUND |
-@@ -468,10 +470,14 @@ static void nv04_lvds_dpms(struct drm_encoder *encoder, int mode)
- 		int head = crtc ? nouveau_crtc(crtc)->index :
- 			   nv04_dfp_get_bound_head(dev, nv_encoder->dcb);
++extern void
++OUT_RINGp(struct nouveau_channel *chan, const void *data, unsigned nr_dwords);
++
+ static inline void
+ BEGIN_RING(struct nouveau_channel *chan, int subc, int mthd, int size)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 4516058..8b2c9e6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -528,8 +528,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
+ 	if (ret)
+ 		goto out;
  
--		if (mode == DRM_MODE_DPMS_ON)
-+		if (mode == DRM_MODE_DPMS_ON) {
-+			if (!nv_connector->native_mode) {
-+				NV_ERROR(dev, "Not turning on LVDS without native mode\n");
-+				return;
-+			}
- 			call_lvds_script(dev, nv_encoder->dcb, head,
- 					 LVDS_PANEL_ON, nv_connector->native_mode->clock);
--		else
-+		} else
- 			/* pxclk of 0 is fine for PANEL_OFF, and for a
- 			 * disconnected LVDS encoder there is no native_mode
- 			 */
-@@ -523,8 +529,12 @@ static void nv04_dfp_restore(struct drm_encoder *encoder)
- 	int head = nv_encoder->restore.head;
+-	for (i = 0; i < req->nr_dwords; i++)
+-		OUT_RING (chan, pushbuf[i]);
++	OUT_RINGp(chan, pushbuf, req->nr_dwords);
  
- 	if (nv_encoder->dcb->type == OUTPUT_LVDS) {
--		call_lvds_script(dev, nv_encoder->dcb, head, LVDS_PANEL_ON,
--				 nouveau_encoder_connector_get(nv_encoder)->native_mode->clock);
-+		struct drm_display_mode *native_mode = nouveau_encoder_connector_get(nv_encoder)->native_mode;
-+		if (native_mode)
-+			call_lvds_script(dev, nv_encoder->dcb, head, LVDS_PANEL_ON,
-+					 native_mode->clock);
-+		else
-+			NV_ERROR(dev, "Not restoring LVDS without native mode\n");
+ 	ret = nouveau_fence_emit(fence);
+ 	if (ret) {
+diff --git a/drivers/gpu/drm/nouveau/nv04_fbcon.c b/drivers/gpu/drm/nouveau/nv04_fbcon.c
+index 648b435..14fc87f 100644
+--- a/drivers/gpu/drm/nouveau/nv04_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nv04_fbcon.c
+@@ -94,9 +94,12 @@ nv04_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
+ 	struct drm_device *dev = par->dev;
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+ 	struct nouveau_channel *chan = dev_priv->channel;
+-	uint32_t fg, bg, mask = ~(~0 >> (32 - info->var.bits_per_pixel));
+-	uint32_t dsize, width, *data = (uint32_t *) image->data;
+-	int j, k = 0;
++	uint32_t fg;
++	uint32_t bg;
++	uint32_t mask = ~(~0 >> (32 - info->var.bits_per_pixel));
++	uint32_t dsize;
++	uint32_t width;
++	uint32_t *data = (uint32_t *)image->data;
  
- 	} else if (nv_encoder->dcb->type == OUTPUT_TMDS) {
- 		int clock = nouveau_hw_pllvals_to_clk
-
-
-
+ 	if (info->state != FBINFO_STATE_RUNNING)
+ 		return;
+@@ -140,9 +143,8 @@ nv04_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
+ 		}
+ 
+ 		BEGIN_RING(chan, NvSubGdiRect, 0x0c00, iter_len);
+-		for (j = iter_len; j--;)
+-			OUT_RING(chan, data[k++]);
+-
++		OUT_RINGp(chan, data, iter_len);
++		data += iter_len;
+ 		dsize -= iter_len;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nv50_fbcon.c b/drivers/gpu/drm/nouveau/nv50_fbcon.c
+index d7af9ed..d3807e3 100644
+--- a/drivers/gpu/drm/nouveau/nv50_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nv50_fbcon.c
+@@ -139,8 +139,8 @@ nv50_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
+ 		dwords -= push;
+ 
+ 		BEGIN_RING(chan, NvSub2D, 0x40000860, push);
+-		while (push--)
+-			OUT_RING(chan, *data++);
++		OUT_RINGp(chan, data, push);
++		data += push;
+ 	}
+ 
+ 	FIRE_RING (chan);
 -- 
-Anssi Hannula
+1.6.3.3
