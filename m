@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 22786] NV30: X hangs with KMS enabled in certain
-	cases
-Date: Sun, 16 Aug 2009 05:11:38 -0700 (PDT)
-Message-ID: <20090816121138.B8F14130058@annarchy.freedesktop.org>
-References: <bug-22786-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23339] New: NV50 KMS: GPU lockup during KMS
+	initialization
+Date: Sun, 16 Aug 2009 06:10:10 -0700 (PDT)
+Message-ID: <bug-23339-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-22786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +19,34 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=22786
+http://bugs.freedesktop.org/show_bug.cgi?id=23339
+
+           Summary: NV50 KMS: GPU lockup during KMS initialization
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: kai.bugs.freedesktop.org-pRuQC+10xW7Pw1Vld6UZv03ROdm4KHy8@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Created an attachment (id=28665)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28665)
+Kernel log
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+I am using the nouveau kernel tree which I updated this morning, but I have the
+issue since the very first time when switching to the nouveau kernel tree. By
+then about three weeks ago it was tagged 2.6.31-rc3.
 
+Parsing the VBIOS hangs at a certain point and later, the driver switches to
+software framebuffer console.
 
-
-
---- Comment #2 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-16 05:11:38 PST ---
-Enabling Option "EXAPixmaps" "on" in xorg.conf does not hang X anymore. So I
-suppose it is fixed (or else it is disabled for hardware that may cause
-problems?).
+I have attached the kernel log.
 
 
 -- 
