@@ -1,14 +1,14 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 6/6] drm/i2c/ch7006: Reject TV norm changes when
-	there is a mode set.
-Date: Mon, 17 Aug 2009 16:58:54 +0200
-Message-ID: <1250521134-17768-6-git-send-email-currojerez@riseup.net>
-References: <1250521134-17768-1-git-send-email-currojerez@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23023] no backlight support  in /sys or /proc ;
+ xbacklight not working
+Date: Mon, 17 Aug 2009 08:15:01 -0700 (PDT)
+Message-ID: <20090817151501.576D0130058@annarchy.freedesktop.org>
+References: <bug-23023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1250521134-17768-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <bug-23023-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,69 +21,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
----
- drivers/gpu/drm/i2c/ch7006_drv.c |   26 ++++++++++++++++++++++++--
- 1 files changed, 24 insertions(+), 2 deletions(-)
+http://bugs.freedesktop.org/show_bug.cgi?id=23023
 
-diff --git a/drivers/gpu/drm/i2c/ch7006_drv.c b/drivers/gpu/drm/i2c/ch7006_drv.c
-index 7df4b86..a890652 100644
---- a/drivers/gpu/drm/i2c/ch7006_drv.c
-+++ b/drivers/gpu/drm/i2c/ch7006_drv.c
-@@ -287,6 +287,8 @@ static int ch7006_encoder_set_property(struct drm_encoder *encoder,
- 	struct ch7006_priv *priv = to_ch7006_priv(encoder);
- 	struct ch7006_state *state = &priv->state;
- 	struct drm_mode_config *conf = &encoder->dev->mode_config;
-+	struct drm_crtc *crtc = encoder->crtc;
-+	bool modes_changed = false;
- 
- 	ch7006_dbg(client, "\n");
- 
-@@ -314,9 +316,12 @@ static int ch7006_encoder_set_property(struct drm_encoder *encoder,
- 		ch7006_load_reg(client, state, CH7006_VPOS);
- 
- 	} else if (property == conf->tv_mode_property) {
-+		if (connector->dpms != DRM_MODE_DPMS_OFF)
-+			return -EINVAL;
-+
- 		priv->norm = val;
- 
--		drm_helper_probe_single_connector_modes(connector, 0, 0);
-+		modes_changed = true;
- 
- 	} else if (property == conf->tv_brightness_property) {
- 		priv->brightness = val;
-@@ -340,14 +345,31 @@ static int ch7006_encoder_set_property(struct drm_encoder *encoder,
- 		ch7006_load_reg(client, state, CH7006_FFILTER);
- 
- 	} else if (property == priv->scale_property) {
-+		if (connector->dpms != DRM_MODE_DPMS_OFF)
-+			return -EINVAL;
-+
- 		priv->scale = val;
- 
--		drm_helper_probe_single_connector_modes(connector, 0, 0);
-+		modes_changed = true;
- 
- 	} else {
- 		return -EINVAL;
- 	}
- 
-+	if (modes_changed) {
-+		drm_helper_probe_single_connector_modes(connector, 0, 0);
-+
-+		/* Disable the crtc to ensure a full modeset is
-+		 * performed whenever it's turned on again. */
-+		if (crtc) {
-+			struct drm_mode_set modeset = {
-+				.crtc = crtc,
-+			};
-+
-+			crtc->funcs->set_config(&modeset);
-+		}
-+	}
-+
- 	return 0;
- }
- 
+
+schmirrwurst-GANU6spQydw@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+
+
+
+--- Comment #2 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-08-17 08:15:00 PST ---
+It was working properly with the latest git version... closing...
+
+
 -- 
-1.6.3.3
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
