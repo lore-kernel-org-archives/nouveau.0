@@ -1,8 +1,8 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 4/6] drm/nouveau: Fix some bandwidth problems on
-	nv11 with TV and VGA enabled.
-Date: Mon, 17 Aug 2009 16:58:52 +0200
-Message-ID: <1250521134-17768-4-git-send-email-currojerez@riseup.net>
+Subject: [PATCH 3/6] drm/nouveau: Don't initialize two CRTCs on
+	single head cards.
+Date: Mon, 17 Aug 2009 16:58:51 +0200
+Message-ID: <1250521134-17768-3-git-send-email-currojerez@riseup.net>
 References: <1250521134-17768-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,39 +21,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The VGA output was showing some flashing pixels when TV was enabled
-and the pixel clock was high enough.
 ---
- drivers/gpu/drm/nouveau/nouveau_calc.c |   10 +++++++---
- 1 files changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nv04_display.c |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_calc.c b/drivers/gpu/drm/nouveau/nouveau_calc.c
-index e2b78d2..3f80db8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_calc.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_calc.c
-@@ -174,7 +174,7 @@ nv10CalcArbitration(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
- 	int us_m, us_m_min, us_n, us_p, crtc_drain_rate;
- 	int vus_m;
- 	int vpm_us, us_video, cpm_us, us_crt, clwm;
--	int clwm_rnd_down;
-+	int clwm_rnd_down, min_clwm;
- 	int m2us, us_pipe_min, p1clk, p2;
- 	int min_mclk_extra;
- 	int us_min_mclk_extra;
-@@ -323,8 +323,12 @@ nv10CalcArbitration(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
- 				min_mclk_extra--;
- 		}
+diff --git a/drivers/gpu/drm/nouveau/nv04_display.c b/drivers/gpu/drm/nouveau/nv04_display.c
+index ed16e8d..b20ab01 100644
+--- a/drivers/gpu/drm/nouveau/nv04_display.c
++++ b/drivers/gpu/drm/nouveau/nv04_display.c
+@@ -125,8 +125,9 @@ nv04_display_create(struct drm_device *dev)
  
--		if (clwm < (1024 - cbs + 8))
--			clwm = 1024 - cbs + 8;
-+		/* This correction works around a slight snow effect
-+		 * when the TV and VGA outputs are enabled simultaneously. */
-+		min_clwm = 1024 - cbs + 128 * pclk_freq / 100000;
-+		if (clwm < min_clwm)
-+			clwm = min_clwm;
-+
- 		/*  printf("CRT LWM: prog: 0x%x, bs: 256\n", clwm); */
- 		fifo->graphics_lwm = clwm;
- 		fifo->graphics_burst_size = cbs;
+ 	dev->mode_config.fb_base = dev_priv->fb_phys;
+ 
+-	for (i = 0; i < 2; i++)
+-		nv04_crtc_create(dev, i);
++	nv04_crtc_create(dev, 0);
++	if (nv_two_heads(dev))
++		nv04_crtc_create(dev, 1);
+ 
+ 	for (i = 0; i < dcb->entries; i++) {
+ 		struct dcb_entry *dcbent = &dcb->entry[i];
 -- 
 1.6.3.3
