@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23023] no backlight support  in /sys or /proc ;
- xbacklight not working
-Date: Mon, 17 Aug 2009 08:15:01 -0700 (PDT)
-Message-ID: <20090817151501.576D0130058@annarchy.freedesktop.org>
-References: <bug-23023-8800@http.bugs.freedesktop.org/>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: [PATCHv2 2/6] drm/nouveau: Fix some sparse warnings in
+	the TV-out code.
+Date: Mon, 17 Aug 2009 17:24:19 +0200
+Message-ID: <1250522663-18672-2-git-send-email-currojerez@riseup.net>
+References: <1250522663-18672-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23023-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1250522663-18672-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +21,36 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23023
 
+Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nv17_tv_modes.c |    9 ++++-----
+ 1 files changed, 4 insertions(+), 5 deletions(-)
 
-schmirrwurst-GANU6spQydw@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
-
-
-
---- Comment #2 from schmirrwurst-GANU6spQydw@public.gmane.org  2009-08-17 08:15:00 PST ---
-It was working properly with the latest git version... closing...
-
-
+diff --git a/drivers/gpu/drm/nouveau/nv17_tv_modes.c b/drivers/gpu/drm/nouveau/nv17_tv_modes.c
+index 17adb8d..85f55b3 100644
+--- a/drivers/gpu/drm/nouveau/nv17_tv_modes.c
++++ b/drivers/gpu/drm/nouveau/nv17_tv_modes.c
+@@ -322,16 +322,15 @@ static void tv_setup_filter(struct drm_encoder *encoder)
+ 				       &tv_enc->state.vfilter};
+ 	int i, j, k;
+ 	int32_t overscan = calc_overscan(tv_enc->overscan);
+-	int64_t flicker = (tv_enc->flicker - 50) * id3;
+-	int64_t rs[] = {mode->hdisplay * id3,
+-			mode->vdisplay * id3};
++	int64_t flicker = (tv_enc->flicker - 50) * (id3 / 100);
++	uint64_t rs[] = {mode->hdisplay * id3,
++			 mode->vdisplay * id3};
+ 
+-	do_div(flicker, 100);
+ 	do_div(rs[0], overscan * tv_norm->tv_enc_mode.hdisplay);
+ 	do_div(rs[1], overscan * tv_norm->tv_enc_mode.vdisplay);
+ 
+ 	for (k = 0; k < 2; k++) {
+-		rs[k] = max(rs[k], id2);
++		rs[k] = max((int64_t)rs[k], id2);
+ 
+ 		for (j = 0; j < 4; j++) {
+ 			struct filter_params *p = &fparams[k][j];
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.6.3.3
