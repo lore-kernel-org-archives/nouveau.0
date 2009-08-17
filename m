@@ -1,13 +1,12 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Implement <nv11 hardware cursor.
-Date: Mon, 17 Aug 2009 20:09:47 +0200
-Message-ID: <1250532587-17796-1-git-send-email-currojerez@riseup.net>
-References: <1250532507-11732-1-git-send-email-currojerez@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23373] New: X goes to 100% cpu on start with GeForce
+ 9400 (0x086a, C79)
+Date: Mon, 17 Aug 2009 11:43:28 -0700 (PDT)
+Message-ID: <bug-23373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1250532507-11732-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,157 +19,41 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+http://bugs.freedesktop.org/show_bug.cgi?id=23373
 
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_hw.h |   10 ++++
- drivers/gpu/drm/nouveau/nv04_crtc.c  |   96 +++++++++++++++++++++++-----------
- 2 files changed, 75 insertions(+), 31 deletions(-)
+           Summary: X goes to 100% cpu on start with GeForce 9400 (0x086a,
+                    C79)
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_hw.h b/drivers/gpu/drm/nouveau/nouveau_hw.h
-index 9d86461..129345e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_hw.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_hw.h
-@@ -379,6 +379,16 @@ NVLockVgaCrtcs(struct drm_device *dev, bool lock)
- 	return waslocked;
- }
- 
-+/* nv04 cursor max dimensions of 32x32 (A1R5G5B5) */
-+#define NV04_CURSOR_SIZE 32
-+/* limit nv10 cursors to 64x64 (ARGB8) (we could go to 64x255) */
-+#define NV10_CURSOR_SIZE 64
-+
-+static inline int nv_cursor_width(struct drm_device *dev)
-+{
-+	return nv_arch(dev) >= NV_10 ? NV10_CURSOR_SIZE : NV04_CURSOR_SIZE;
-+}
-+
- static inline void
- nv_fix_nv40_hw_cursor(struct drm_device *dev, int head)
- {
-diff --git a/drivers/gpu/drm/nouveau/nv04_crtc.c b/drivers/gpu/drm/nouveau/nv04_crtc.c
-index dfe9003..e4910ea 100644
---- a/drivers/gpu/drm/nouveau/nv04_crtc.c
-+++ b/drivers/gpu/drm/nouveau/nv04_crtc.c
-@@ -839,6 +839,64 @@ nv04_crtc_mode_set_base(struct drm_crtc *crtc, int x, int y,
- 	return 0;
- }
- 
-+static void nv04_cursor_upload(struct drm_device *dev, uint32_t *src, uint16_t *dst)
-+{
-+	int width = nv_cursor_width(dev);
-+	uint32_t pixel;
-+	int i, j;
-+
-+	for (i = 0; i < width; i++) {
-+		for (j = 0; j < width; j++) {
-+			pixel = src[i*64 + j];
-+
-+			dst[i*width + j] = (pixel & 0x80000000) >> 16
-+				| (pixel & 0xf80000) >> 9
-+				| (pixel & 0xf800) >> 6
-+				| (pixel & 0xf8) >> 3;
-+		}
-+	}
-+}
-+
-+static void nv11_cursor_upload(struct drm_device *dev, uint32_t *src, uint32_t *dst)
-+{
-+	uint32_t pixel;
-+	int alpha, i;
-+
-+	/* nv11+ supports premultiplied (PM), or non-premultiplied (NPM) alpha
-+	 * cursors (though NPM in combination with fp dithering may not work on
-+	 * nv11, from "nv" driver history)
-+	 * NPM mode needs NV_PCRTC_CURSOR_CONFIG_ALPHA_BLEND set and is what the
-+	 * blob uses, however we get given PM cursors so we use PM mode
-+	 */
-+	for (i = 0; i < 64 * 64; i++) {
-+		pixel = *src++;
-+
-+		/* hw gets unhappy if alpha <= rgb values.  for a PM image "less
-+		 * than" shouldn't happen; fix "equal to" case by adding one to
-+		 * alpha channel (slightly inaccurate, but so is attempting to
-+		 * get back to NPM images, due to limits of integer precision)
-+		 */
-+		alpha = pixel >> 24;
-+		if (alpha > 0 && alpha < 255)
-+			pixel = (pixel & 0x00ffffff) | ((alpha + 1) << 24);
-+
-+#ifdef __BIG_ENDIAN
-+		{
-+			struct drm_nouveau_private *dev_priv = dev->dev_private;
-+
-+			if (dev_priv->chipset == 0x11) {
-+				pixel = ((pixel & 0x000000ff) << 24) |
-+					((pixel & 0x0000ff00) << 8) |
-+					((pixel & 0x00ff0000) >> 8) |
-+					((pixel & 0xff000000) >> 24);
-+			}
-+		}
-+#endif
-+
-+		*dst++ = pixel;
-+	}
-+}
-+
- static int
- nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
- 		     uint32_t buffer_handle, uint32_t width, uint32_t height)
-@@ -848,8 +906,8 @@ nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
- 	struct nouveau_bo *cursor = NULL;
- 	struct drm_gem_object *gem;
--	uint32_t *src, *dst, pixel;
--	int ret = 0, alpha, i;
-+	void *src, *dst;
-+	int ret = 0;
- 
- 	if (width != 64 || height != 64)
- 		return -EINVAL;
-@@ -867,38 +925,14 @@ nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
- 	ret = nouveau_bo_map(cursor);
- 	if (ret)
- 		goto out;
-+
- 	src = cursor->kmap.virtual;
- 	dst = nv_crtc->cursor.nvbo->kmap.virtual;
- 
--	/* nv11+ supports premultiplied (PM), or non-premultiplied (NPM) alpha
--	 * cursors (though NPM in combination with fp dithering may not work on
--	 * nv11, from "nv" driver history)
--	 * NPM mode needs NV_PCRTC_CURSOR_CONFIG_ALPHA_BLEND set and is what the
--	 * blob uses, however we get given PM cursors so we use PM mode
--	 */
--	for (i = 0; i < 64 * 64; i++) {
--		pixel = *src++;
--
--		/* hw gets unhappy if alpha <= rgb values.  for a PM image "less
--		 * than" shouldn't happen; fix "equal to" case by adding one to
--		 * alpha channel (slightly inaccurate, but so is attempting to
--		 * get back to NPM images, due to limits of integer precision)
--		 */
--		alpha = pixel >> 24;
--		if (alpha > 0 && alpha < 255)
--			pixel = (pixel & 0x00ffffff) | ((alpha + 1) << 24);
--
--#ifdef __BIG_ENDIAN
--		if (dev_priv->chipset == 0x11) {
--			pixel = ((pixel & 0x000000ff) << 24) |
--				((pixel & 0x0000ff00) << 8) |
--				((pixel & 0x00ff0000) >> 8) |
--				((pixel & 0xff000000) >> 24);
--		}
--#endif
--
--		*dst++ = pixel;
--	}
-+	if (dev_priv->chipset >= 0x11)
-+		nv11_cursor_upload(dev, src, dst);
-+	else
-+		nv04_cursor_upload(dev, src, dst);
- 
- 	nouveau_bo_unmap(cursor);
- 	nv_crtc->cursor.offset = nv_crtc->cursor.nvbo->bo.offset;
+
+Created an attachment (id=28710)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28710)
+GF9400: dmesg
+
+When starting X.org server on GeForce 9400 (0x086a, C79, x86_64, DVI monitor
+with 1360x768 resolution), the screen is completely white (except for mouse
+cursor) and X starts running on 100% cpu (this is SMP system, so it doesn't
+render the machine unusable). X seems to be locked up (e.g. numlock doesn't
+work), but mouse cursor continues moving.
+
+This happens both with and without KMS. DRM from 20090816 and DDX from
+20090815. KMS console works correctly (though I do see "GPU lockup - switching
+to software fbcon").
+
+Attached dmesg and X.org log, with KMS enabled.
+
+
 -- 
-1.6.3.3
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
