@@ -1,8 +1,8 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 5/6] drm/nouveau: Reject TV norm changes when
-	there is a mode set.
-Date: Mon, 17 Aug 2009 16:58:53 +0200
-Message-ID: <1250521134-17768-5-git-send-email-currojerez@riseup.net>
+Subject: [PATCH 4/6] drm/nouveau: Fix some bandwidth problems on
+	nv11 with TV and VGA enabled.
+Date: Mon, 17 Aug 2009 16:58:52 +0200
+Message-ID: <1250521134-17768-4-git-send-email-currojerez@riseup.net>
 References: <1250521134-17768-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,59 +21,39 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+The VGA output was showing some flashing pixels when TV was enabled
+and the pixel clock was high enough.
 ---
- drivers/gpu/drm/nouveau/nv17_tv.c |   22 +++++++++++++++++++++-
- 1 files changed, 21 insertions(+), 1 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_calc.c |   10 +++++++---
+ 1 files changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv17_tv.c b/drivers/gpu/drm/nouveau/nv17_tv.c
-index fdc28b1..9d8e678 100644
---- a/drivers/gpu/drm/nouveau/nv17_tv.c
-+++ b/drivers/gpu/drm/nouveau/nv17_tv.c
-@@ -508,8 +508,10 @@ static int nv17_tv_set_property(struct drm_encoder *encoder,
- 				uint64_t val)
- {
- 	struct drm_mode_config *conf = &encoder->dev->mode_config;
-+	struct drm_crtc *crtc = encoder->crtc;
- 	struct nv17_tv_encoder *tv_enc = to_tv_enc(encoder);
- 	struct nv17_tv_norm_params *tv_norm = get_tv_norm(encoder);
-+	bool modes_changed = false;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_calc.c b/drivers/gpu/drm/nouveau/nouveau_calc.c
+index e2b78d2..3f80db8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_calc.c
++++ b/drivers/gpu/drm/nouveau/nouveau_calc.c
+@@ -174,7 +174,7 @@ nv10CalcArbitration(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
+ 	int us_m, us_m_min, us_n, us_p, crtc_drain_rate;
+ 	int vus_m;
+ 	int vpm_us, us_video, cpm_us, us_crt, clwm;
+-	int clwm_rnd_down;
++	int clwm_rnd_down, min_clwm;
+ 	int m2us, us_pipe_min, p1clk, p2;
+ 	int min_mclk_extra;
+ 	int us_min_mclk_extra;
+@@ -323,8 +323,12 @@ nv10CalcArbitration(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
+ 				min_mclk_extra--;
+ 		}
  
- 	if (property == conf->tv_overscan_property) {
- 		tv_enc->overscan = val;
-@@ -543,8 +545,12 @@ static int nv17_tv_set_property(struct drm_encoder *encoder,
- 			nv17_tv_update_rescaler(encoder);
- 
- 	} else if (property == conf->tv_mode_property) {
-+		if (connector->dpms != DRM_MODE_DPMS_OFF)
-+			return -EINVAL;
+-		if (clwm < (1024 - cbs + 8))
+-			clwm = 1024 - cbs + 8;
++		/* This correction works around a slight snow effect
++		 * when the TV and VGA outputs are enabled simultaneously. */
++		min_clwm = 1024 - cbs + 128 * pclk_freq / 100000;
++		if (clwm < min_clwm)
++			clwm = min_clwm;
 +
- 		tv_enc->tv_norm = val;
--		drm_helper_probe_single_connector_modes(connector, 0, 0);
-+
-+		modes_changed = true;
- 
- 	} else if (property == conf->tv_select_subconnector_property) {
- 		if (tv_norm->kind != TV_ENC_MODE)
-@@ -557,6 +563,20 @@ static int nv17_tv_set_property(struct drm_encoder *encoder,
- 		return -EINVAL;
- 	}
- 
-+	if (modes_changed) {
-+		drm_helper_probe_single_connector_modes(connector, 0, 0);
-+
-+		/* Disable the crtc to ensure a full modeset is
-+		 * performed whenever it's turned on again. */
-+		if (crtc) {
-+			struct drm_mode_set modeset = {
-+				.crtc = crtc,
-+			};
-+
-+			crtc->funcs->set_config(&modeset);
-+		}
-+	}
-+
- 	return 0;
- }
- 
+ 		/*  printf("CRT LWM: prog: 0x%x, bs: 256\n", clwm); */
+ 		fifo->graphics_lwm = clwm;
+ 		fifo->graphics_burst_size = cbs;
 -- 
 1.6.3.3
