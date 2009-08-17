@@ -1,8 +1,8 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCHv2 4/6] drm/nouveau: Fix some bandwidth problems on
-	nv11 with TV and VGA enabled.
-Date: Mon, 17 Aug 2009 17:24:21 +0200
-Message-ID: <1250522663-18672-4-git-send-email-currojerez@riseup.net>
+Subject: [PATCHv2 6/6] drm/i2c/ch7006: Reject TV norm changes when
+	there is a mode set.
+Date: Mon, 17 Aug 2009 17:24:23 +0200
+Message-ID: <1250522663-18672-6-git-send-email-currojerez@riseup.net>
 References: <1250522663-18672-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,41 +21,71 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The VGA output was showing some flashing pixels when TV was enabled
-and the pixel clock was high enough.
 
 Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_calc.c |   10 +++++++---
- 1 files changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i2c/ch7006_drv.c |   26 ++++++++++++++++++++++++--
+ 1 files changed, 24 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_calc.c b/drivers/gpu/drm/nouveau/nouveau_calc.c
-index e2b78d2..3f80db8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_calc.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_calc.c
-@@ -174,7 +174,7 @@ nv10CalcArbitration(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
- 	int us_m, us_m_min, us_n, us_p, crtc_drain_rate;
- 	int vus_m;
- 	int vpm_us, us_video, cpm_us, us_crt, clwm;
--	int clwm_rnd_down;
-+	int clwm_rnd_down, min_clwm;
- 	int m2us, us_pipe_min, p1clk, p2;
- 	int min_mclk_extra;
- 	int us_min_mclk_extra;
-@@ -323,8 +323,12 @@ nv10CalcArbitration(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
- 				min_mclk_extra--;
- 		}
+diff --git a/drivers/gpu/drm/i2c/ch7006_drv.c b/drivers/gpu/drm/i2c/ch7006_drv.c
+index 7df4b86..a890652 100644
+--- a/drivers/gpu/drm/i2c/ch7006_drv.c
++++ b/drivers/gpu/drm/i2c/ch7006_drv.c
+@@ -287,6 +287,8 @@ static int ch7006_encoder_set_property(struct drm_encoder *encoder,
+ 	struct ch7006_priv *priv = to_ch7006_priv(encoder);
+ 	struct ch7006_state *state = &priv->state;
+ 	struct drm_mode_config *conf = &encoder->dev->mode_config;
++	struct drm_crtc *crtc = encoder->crtc;
++	bool modes_changed = false;
  
--		if (clwm < (1024 - cbs + 8))
--			clwm = 1024 - cbs + 8;
-+		/* This correction works around a slight snow effect
-+		 * when the TV and VGA outputs are enabled simultaneously. */
-+		min_clwm = 1024 - cbs + 128 * pclk_freq / 100000;
-+		if (clwm < min_clwm)
-+			clwm = min_clwm;
+ 	ch7006_dbg(client, "\n");
+ 
+@@ -314,9 +316,12 @@ static int ch7006_encoder_set_property(struct drm_encoder *encoder,
+ 		ch7006_load_reg(client, state, CH7006_VPOS);
+ 
+ 	} else if (property == conf->tv_mode_property) {
++		if (connector->dpms != DRM_MODE_DPMS_OFF)
++			return -EINVAL;
 +
- 		/*  printf("CRT LWM: prog: 0x%x, bs: 256\n", clwm); */
- 		fifo->graphics_lwm = clwm;
- 		fifo->graphics_burst_size = cbs;
+ 		priv->norm = val;
+ 
+-		drm_helper_probe_single_connector_modes(connector, 0, 0);
++		modes_changed = true;
+ 
+ 	} else if (property == conf->tv_brightness_property) {
+ 		priv->brightness = val;
+@@ -340,14 +345,31 @@ static int ch7006_encoder_set_property(struct drm_encoder *encoder,
+ 		ch7006_load_reg(client, state, CH7006_FFILTER);
+ 
+ 	} else if (property == priv->scale_property) {
++		if (connector->dpms != DRM_MODE_DPMS_OFF)
++			return -EINVAL;
++
+ 		priv->scale = val;
+ 
+-		drm_helper_probe_single_connector_modes(connector, 0, 0);
++		modes_changed = true;
+ 
+ 	} else {
+ 		return -EINVAL;
+ 	}
+ 
++	if (modes_changed) {
++		drm_helper_probe_single_connector_modes(connector, 0, 0);
++
++		/* Disable the crtc to ensure a full modeset is
++		 * performed whenever it's turned on again. */
++		if (crtc) {
++			struct drm_mode_set modeset = {
++				.crtc = crtc,
++			};
++
++			crtc->funcs->set_config(&modeset);
++		}
++	}
++
+ 	return 0;
+ }
+ 
 -- 
 1.6.3.3
