@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23373] X goes to 100% cpu on start with GeForce 9400
  (0x086a, C79)
-Date: Mon, 17 Aug 2009 11:44:20 -0700 (PDT)
-Message-ID: <20090817184420.2DC3B13005B@annarchy.freedesktop.org>
+Date: Mon, 17 Aug 2009 15:20:06 -0700 (PDT)
+Message-ID: <20090817222006.ACE9713005B@annarchy.freedesktop.org>
 References: <bug-23373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,21 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23373
 
 
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
 
 
 
---- Comment #1 from Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org>  2009-08-17 11:44:19 PST ---
-Created an attachment (id=28711)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=28711)
-GF9400: X.org log
+
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-17 15:20:05 PST ---
+Could I get you to grab a mmio-trace of the NVIDIA binary driver initialising
+your card please?  There's detailed instructions at
+http://nouveau.freedesktop.org/wiki/MmioTrace
+
+Thanks!
 
 
 -- 
