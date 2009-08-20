@@ -1,13 +1,13 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: Delays in DRM nouveau_bios.c
-Date: Thu, 20 Aug 2009 14:57:55 +0300
-Message-ID: <20090820145755.4cc63063@daedalus.pq.iki.fi>
-References: <20090820144024.08c5facc@daedalus.pq.iki.fi>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: [PATCHv3] kms: Fix <nv11 hardware cursor.
+Date: Thu, 20 Aug 2009 18:43:58 +0200
+Message-ID: <1250786638-29682-1-git-send-email-currojerez@riseup.net>
+References: <1250618938-5739-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20090820144024.08c5facc-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
+In-Reply-To: <1250618938-5739-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,138 +17,282 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Stuart Bennett <stuart-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 20 Aug 2009 14:40:24 +0300
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> wrote:
 
-> Hi,
-> 
-> questions will follow.
+Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+---
+Rebased over the latest DDX changes.
 
-This patch builds, but I have not tried to run it.
-I'm hoping Stuart or someone could comment on it.
+ src/drmmode_display.c |   40 +++++++++++++++++++++----
+ src/nouveau_hw.h      |   17 ++++++++++
+ src/nv_cursor.c       |   79 ++++++++++++++++++++++++++-----------------------
+ src/nv_proto.h        |    2 +
+ 4 files changed, 95 insertions(+), 43 deletions(-)
 
-> ---
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-> index 99f7bd4..13b3fb1 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-> @@ -40,8 +40,6 @@
->  #define BIOSLOG(sip, fmt, arg...) NV_DEBUG(sip->dev, fmt, ##arg)
->  #define LOG_OLD_VALUE(x) //x
->  
-> -#define BIOS_USLEEP(n) mdelay((n)/1000)
-> -
->  #define ROM16(x) le16_to_cpu(*(uint16_t *)&(x))
->  #define ROM32(x) le32_to_cpu(*(uint32_t *)&(x))
->  
-> @@ -50,6 +48,15 @@ struct init_exec {
->  	bool repeat;
->  };
->  
-> +static inline void bios_usleep(unsigned usecs)
-> +{
-> +	might_sleep();
-> +	if (usecs < 1000 * MAX_UDELAY_MS)
-> +		udelay(usecs);
-> +	else
-> +		msleep(usecs / 1000 + 1);
-> +}
-
-This function is to replace the BIOS_USLEEP() macro with something,
-that works both for short and long delays. BIOS_USLEEP would truncate
-all sleeps to milliseconds, meaning delays less than 1000 us would
-be zero. Also, mdelay() is a busyloop delay burning CPU cycles for
-nothing. msleep() is not, it will reschedule until the delay has
-passed. The change raises two questions:
-
-- Is the bios code ever called in a situation, where scheduling
-is not allowed (interrupt context, pre-emption disabled, inside
-spinlocks, etc.)?
-
-- Is the delay accuracy on the msleep path critical?
-
->  static bool nv_cksum(const uint8_t *data, unsigned int length)
->  {
->  	/* there's a few checksums in the BIOS, so here's a generic checking function */
-> @@ -262,7 +269,7 @@ static int parse_init_table(struct nvbios *, unsigned int, struct init_exec *);
->  static void still_alive(void)
->  {
->  //	sync();
-> -//	BIOS_USLEEP(2000);
-> +//	bios_usleep(2000);
->  }
->  
->  static uint32_t
-> @@ -1608,17 +1615,18 @@ init_condition_time(struct nvbios *bios, uint16_t offset,
->  
->  	for (; retries > 0; retries--)
->  		if (bios_condition_met(bios, offset, cond)) {
-> -			BIOSLOG(bios, "0x%04X: Condition met, continuing\n", offset);
-> +			BIOSLOG(bios, "0x%04X: Condition met, continuing\n",
-> +								offset);
->  			break;
->  		} else {
->  			BIOSLOG(bios, "0x%04X: Condition not met, sleeping for 20ms\n", offset);
-> -			BIOS_USLEEP(20000);
-> +			bios_usleep(20000);
-
-It so happens, that 20000 was the maximum allowed udelay() constant time
-for x86. Did the number come from that?
-
->  		}
->  
->  	if (!bios_condition_met(bios, offset, cond)) {
->  		NV_WARN(bios->dev,
->  			"0x%04X: Condition still not met after %dms, "
-> -			"skiping following opcodes\n", offset, 20 * retries);
-> +			"skipping following opcodes\n", offset, 20 * retries);
->  		iexec->execute = false;
->  	}
->  
-> @@ -1851,7 +1859,7 @@ init_reset(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
->  	bios_wr32(bios, NV_PBUS_PCI_NV_19, 0);
->  	bios_wr32(bios, reg, value1);
->  
-> -	BIOS_USLEEP(10);
-> +	bios_usleep(10);
-
-With the old BIOS_USLEEP, this delay would vanish.
-
->  
->  	bios_wr32(bios, reg, value2);
->  	bios_wr32(bios, NV_PBUS_PCI_NV_19, pci_nv_19);
-> @@ -2233,8 +2241,7 @@ init_time(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
->  	BIOSLOG(bios, "0x%04X: Sleeping for 0x%04X microseconds\n",
->  		offset, time);
->  
-> -	BIOS_USLEEP(time);
-> -
-> +	bios_usleep(time);
-
-Can here be delay accuracy issues? How much are we allowed to exceed the
-specified delay?
-
->  	return true;
->  }
->  
-> @@ -2872,9 +2879,11 @@ static int call_lvds_manufacturer_script(struct drm_device *dev, struct dcb_entr
->  
->  	run_digital_op_script(dev, scriptofs, dcbent, head, bios->fp.dual_link);
->  
-> -	if (script == LVDS_PANEL_OFF)
-> +	if (script == LVDS_PANEL_OFF) {
->  		/* off-on delay in ms */
-> -		BIOS_USLEEP(ROM16(bios->data[bios->fp.xlated_entry + 7]));
-> +		bios_usleep(ROM16(bios->data[bios->fp.xlated_entry + 7]));
-> +	}
-
-The comment and code disagree here. Is it microseconds or milliseconds?
-
+diff --git a/src/drmmode_display.c b/src/drmmode_display.c
+index 4b9aecf..9231d93 100644
+--- a/src/drmmode_display.c
++++ b/src/drmmode_display.c
+@@ -340,9 +340,28 @@ done:
+ }
+ 
+ static void
+-drmmode_set_cursor_colors (xf86CrtcPtr crtc, int bg, int fg)
++drmmode_reload_cursor_image(xf86CrtcPtr crtc)
+ {
++	NVPtr pNv = NVPTR(crtc->scrn);
++	xf86CrtcConfigPtr config = XF86_CRTC_CONFIG_PTR(crtc->scrn);
++	drmmode_crtc_private_ptr drmmode_crtc = crtc->driver_private;
++	struct nouveau_bo *bo = drmmode_crtc->cursor;
++	drmmode_ptr drmmode = drmmode_crtc->drmmode;
++
++	nouveau_bo_map(bo, NOUVEAU_BO_WR);
++	nv_cursor_convert_cursor(pNv->curImage, bo->map, nv_cursor_width(pNv),
++				 64, 32, config->cursor_fg | (0xff << 24),
++				 config->cursor_bg | (0xff << 24));
++	nouveau_bo_unmap(bo);
+ 
++	drmModeSetCursor(drmmode->fd, drmmode_crtc->mode_crtc->crtc_id,
++			bo->handle, 64, 64);
++}
++
++static void
++drmmode_set_cursor_colors (xf86CrtcPtr crtc, int bg, int fg)
++{
++	drmmode_reload_cursor_image(crtc);
+ }
+ 
+ static void
+@@ -355,6 +374,17 @@ drmmode_set_cursor_position (xf86CrtcPtr crtc, int x, int y)
+ }
+ 
+ static void
++drmmode_load_cursor_image (xf86CrtcPtr crtc, CARD8 *image)
++{
++	NVPtr pNv = NVPTR(crtc->scrn);
++
++	/* save copy of image for colour changes */
++	memcpy(pNv->curImage, image, nv_cursor_pixels(pNv)/4);
++
++	drmmode_reload_cursor_image(crtc);
++}
++
++static void
+ drmmode_load_cursor_argb (xf86CrtcPtr crtc, CARD32 *image)
+ {
+ 	drmmode_crtc_private_ptr drmmode_crtc = crtc->driver_private;
+@@ -366,7 +396,7 @@ drmmode_load_cursor_argb (xf86CrtcPtr crtc, CARD32 *image)
+ 	nouveau_bo_unmap(cursor);
+ 
+ 	drmModeSetCursor(drmmode->fd, drmmode_crtc->mode_crtc->crtc_id,
+-			drmmode_crtc->cursor->handle, 64, 64);
++			cursor->handle, 64, 64);
+ }
+ 
+ 
+@@ -518,14 +548,12 @@ static const xf86CrtcFuncsRec drmmode_crtc_funcs = {
+ 	.set_cursor_position = drmmode_set_cursor_position,
+ 	.show_cursor = drmmode_show_cursor,
+ 	.hide_cursor = drmmode_hide_cursor,
++	.load_cursor_image = drmmode_load_cursor_image,
+ 	.load_cursor_argb = drmmode_load_cursor_argb,
+ 	.shadow_create = drmmode_crtc_shadow_create,
+ 	.shadow_allocate = drmmode_crtc_shadow_allocate,
+ 	.shadow_destroy = drmmode_crtc_shadow_destroy,
+ 	.gamma_set = drmmode_gamma_set,
+-#if 0
+-	.set_cursor_colors = drmmode_crtc_set_cursor_colors,
+-#endif
+ 	.destroy = NULL, /* XXX */
+ };
+ 
+@@ -1205,7 +1233,7 @@ int
+ drmmode_cursor_init(ScreenPtr pScreen)
+ {
+ 	NVPtr pNv = NVPTR(xf86Screens[pScreen->myNum]);
+-	int size = pNv->NVArch >= 0x10 ? 64 : 32;
++	int size = nv_cursor_width(pNv);
+ 	int flags = HARDWARE_CURSOR_TRUECOLOR_AT_8BPP |
+ 		    HARDWARE_CURSOR_SOURCE_MASK_INTERLEAVE_32 |
+ 		    (pNv->alphaCursor ? HARDWARE_CURSOR_ARGB : 0) |
+diff --git a/src/nouveau_hw.h b/src/nouveau_hw.h
+index a548a4c..aa2a3b4 100644
+--- a/src/nouveau_hw.h
++++ b/src/nouveau_hw.h
+@@ -287,6 +287,23 @@ static inline bool NVLockVgaCrtcs(NVPtr pNv, bool lock)
+ 	return waslocked;
+ }
+ 
++/* nv04 cursor max dimensions of 32x32 (A1R5G5B5) */
++#define NV04_CURSOR_SIZE 32
++/* limit nv10 cursors to 64x64 (ARGB8) (we could go to 64x255) */
++#define NV10_CURSOR_SIZE 64
++
++static inline int nv_cursor_width(NVPtr pNv)
++{
++	return pNv->NVArch >= 0x10 ? NV10_CURSOR_SIZE : NV04_CURSOR_SIZE;
++}
++
++static inline int nv_cursor_pixels(NVPtr pNv)
++{
++	int width = nv_cursor_width(pNv);
++
++	return width * width;
++}
++
+ static inline void nv_fix_nv40_hw_cursor(NVPtr pNv, int head)
+ {
+ 	/* on some nv40 (such as the "true" (in the NV_PFB_BOOT_0 sense) nv40,
+diff --git a/src/nv_cursor.c b/src/nv_cursor.c
+index 22db9e6..3df1539 100644
+--- a/src/nv_cursor.c
++++ b/src/nv_cursor.c
+@@ -30,44 +30,48 @@
+ 			((c & 0xf8) >> 3 ))		/* Blue     */
+ #define TO_ARGB8888(c) (0xff000000 | c)
+ 
+-/* nv04 cursor max dimensions of 32x32 (A1R5G5B5) */
+-#define NV04_CURSOR_SIZE 32
+-#define NV04_CURSOR_PIXELS (NV04_CURSOR_SIZE * NV04_CURSOR_SIZE)
+-
+-/* limit nv10 cursors to 64x64 (ARGB8) (we could go to 64x255) */
+-#define NV10_CURSOR_SIZE 64
+-#define NV10_CURSOR_PIXELS (NV10_CURSOR_SIZE * NV10_CURSOR_SIZE)
+-
+ #define SOURCE_MASK_INTERLEAVE 32
+ #define TRANSPARENT_PIXEL   0
+ 
+-static void
+-nv_cursor_convert_cursor(int px, uint32_t *src, uint16_t *dst, int bpp, uint32_t fg, uint32_t bg)
++/*
++ * Convert a source/mask bitmap cursor to an ARGB cursor, clipping or
++ * padding as necessary. source/mask are assumed to be alternated each
++ * SOURCE_MASK_INTERLEAVE bits.
++ */
++void
++nv_cursor_convert_cursor(uint32_t *src, void *dst, int src_stride, int dst_stride,
++			 int bpp, uint32_t fg, uint32_t bg)
+ {
++	int width = min(src_stride, dst_stride);
+ 	uint32_t b, m, pxval;
+-	int i, j;
++	int i, j, k;
++
++	for (i = 0; i < width; i++) {
++		for (j = 0; j < width / SOURCE_MASK_INTERLEAVE; j++) {
++			int src_off = i*src_stride/SOURCE_MASK_INTERLEAVE + j;
++			int dst_off = i*dst_stride + j*SOURCE_MASK_INTERLEAVE;
++
++			b = src[2*src_off];
++			m = src[2*src_off + 1];
+ 
+-	for (i = 0; i < px / SOURCE_MASK_INTERLEAVE; i++) {
+-		b = *src++;
+-		m = *src++;
+-		for (j = 0; j < SOURCE_MASK_INTERLEAVE; j++) {
+-			pxval = TRANSPARENT_PIXEL;
++			for (k = 0; k < SOURCE_MASK_INTERLEAVE; k++) {
++				pxval = TRANSPARENT_PIXEL;
+ #if X_BYTE_ORDER == X_BIG_ENDIAN
+-			if (m & 0x80000000)
+-				pxval = (b & 0x80000000) ? fg : bg;
+-			b <<= 1;
+-			m <<= 1;
++				if (m & 0x80000000)
++					pxval = (b & 0x80000000) ? fg : bg;
++				b <<= 1;
++				m <<= 1;
+ #else
+-			if (m & 1)
+-				pxval = (b & 1) ? fg : bg;
+-			b >>= 1;
+-			m >>= 1;
++				if (m & 1)
++					pxval = (b & 1) ? fg : bg;
++				b >>= 1;
++				m >>= 1;
+ #endif
+-			if (bpp == 32) {
+-				*(uint32_t *)dst = pxval;
+-				dst += 2;
+-			} else
+-				*dst++ = pxval;
++				if (bpp == 32)
++					((uint32_t *)dst)[dst_off + k] = pxval;
++				else
++					((uint16_t *)dst)[dst_off + k] = pxval;
++			}
+ 		}
+ 	}
+ }
+@@ -76,14 +80,16 @@ static void nv_cursor_transform_cursor(NVPtr pNv, struct nouveau_crtc *nv_crtc)
+ {
+ 	uint16_t *tmp;
+ 	struct nouveau_bo *cursor = NULL;
+-	int px = pNv->NVArch >= 0x10 ? NV10_CURSOR_PIXELS : NV04_CURSOR_PIXELS;
++	int px = nv_cursor_pixels(pNv);
++	int width = nv_cursor_width(pNv);
+ 
+ 	if (!(tmp = xcalloc(px, 4)))
+ 		return;
+ 
+ 	/* convert to colour cursor */
+-	nv_cursor_convert_cursor(px, pNv->curImage, tmp, pNv->alphaCursor ? 32 : 16,
+-				 nv_crtc->cursor_fg, nv_crtc->cursor_bg);
++	nv_cursor_convert_cursor(pNv->curImage, tmp, width, width,
++				 pNv->alphaCursor ? 32 : 16, nv_crtc->cursor_fg,
++				 nv_crtc->cursor_bg);
+ 
+ 	nouveau_bo_ref(nv_crtc->head ? pNv->Cursor2 : pNv->Cursor, &cursor);
+ 	nouveau_bo_map(cursor, NOUVEAU_BO_WR);
+@@ -126,10 +132,9 @@ void nv_crtc_set_cursor_colors(xf86CrtcPtr crtc, int bg, int fg)
+ void nv_crtc_load_cursor_image(xf86CrtcPtr crtc, CARD8 *image)
+ {
+ 	NVPtr pNv = NVPTR(crtc->scrn);
+-	int sz = (pNv->NVArch >= 0x10 ? NV10_CURSOR_PIXELS : NV04_CURSOR_PIXELS) / 4;
+ 
+ 	/* save copy of image for colour changes */
+-	memcpy(pNv->curImage, image, sz);
++	memcpy(pNv->curImage, image, nv_cursor_pixels(pNv) / 4);
+ 
+ 	nv_cursor_transform_cursor(pNv, to_nouveau_crtc(crtc));
+ }
+@@ -151,7 +156,7 @@ void nv_crtc_load_cursor_argb(xf86CrtcPtr crtc, CARD32 *image)
+ 	 * NPM mode needs NV_PCRTC_CURSOR_CONFIG_ALPHA_BLEND set and is what the
+ 	 * blob uses, however we get given PM cursors so we use PM mode
+ 	 */
+-	for (i = 0; i < NV10_CURSOR_PIXELS; i++) {
++	for (i = 0; i < nv_cursor_pixels(pNv); i++) {
+ 		/* hw gets unhappy if alpha <= rgb values.  for a PM image "less
+ 		 * than" shouldn't happen; fix "equal to" case by adding one to
+ 		 * alpha channel (slightly inaccurate, but so is attempting to
+@@ -202,10 +207,10 @@ void nv_crtc_set_cursor_position(xf86CrtcPtr crtc, int x, int y)
+ Bool NVCursorInitRandr12(ScreenPtr pScreen)
+ {
+ 	NVPtr pNv = NVPTR(xf86Screens[pScreen->myNum]);
+-	int size = pNv->NVArch >= 0x10 ? NV10_CURSOR_SIZE : NV04_CURSOR_SIZE;
++	int width = nv_cursor_width(pNv);
+ 	int flags = HARDWARE_CURSOR_TRUECOLOR_AT_8BPP |
+ 		    HARDWARE_CURSOR_SOURCE_MASK_INTERLEAVE_32 |
+ 		    (pNv->alphaCursor ? HARDWARE_CURSOR_ARGB : 0);
+ 
+-	return xf86_cursors_init(pScreen, size, size, flags);
++	return xf86_cursors_init(pScreen, width, width, flags);
+ }
+diff --git a/src/nv_proto.h b/src/nv_proto.h
+index 979f5bf..53dce3e 100644
+--- a/src/nv_proto.h
++++ b/src/nv_proto.h
+@@ -49,6 +49,8 @@ void nv_crtc_set_cursor_position(xf86CrtcPtr crtc, int x, int y);
+ void nv_crtc_set_cursor_colors(xf86CrtcPtr crtc, int bg, int fg);
+ void nv_crtc_load_cursor_image(xf86CrtcPtr crtc, CARD8 *image);
+ void nv_crtc_load_cursor_argb(xf86CrtcPtr crtc, CARD32 *image);
++void nv_cursor_convert_cursor(uint32_t *src, void *dst, int src_stride,
++			      int dst_stride, int bpp, uint32_t fg, uint32_t bg);
+ 
+ /* in nv_dma.c */
+ void  NVSync(ScrnInfoPtr pScrn);
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+1.6.3.3
