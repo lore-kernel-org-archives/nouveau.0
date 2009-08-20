@@ -1,14 +1,11 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCHv2] drm/nouveau: Add a MM for mappable VRAM that
-	isn't usable as scanout.
-Date: Wed, 19 Aug 2009 21:13:04 +0200
-Message-ID: <1250709184-11667-1-git-send-email-currojerez@riseup.net>
-References: <1250701427-5686-1-git-send-email-currojerez@riseup.net>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Delays in DRM nouveau_bios.c
+Date: Thu, 20 Aug 2009 14:40:24 +0300
+Message-ID: <20090820144024.08c5facc@daedalus.pq.iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1250701427-5686-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,197 +15,106 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Stuart Bennett <stuart-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Dynamically resizing the framebuffer on nv04 was like playing Russian
-roulette (and it often happened gratuitously) because it seems unable
-to scan out from buffers above 16MB. This patch splits the mappable
-VRAM into two chunks when that's the case, and makes the higher one to
-be used as well when applicable.
+Hi,
 
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+questions will follow.
+
 ---
-Rather don't allow userspace pinned buffers in PRIV1, even if it's
-sometimes safe.
 
- drivers/gpu/drm/nouveau/nouveau_bo.c  |   24 ++++++++++++++++++++++--
- drivers/gpu/drm/nouveau/nouveau_drv.c |    2 ++
- drivers/gpu/drm/nouveau/nouveau_gem.c |   13 +++++++++----
- drivers/gpu/drm/nouveau/nouveau_mem.c |   26 +++++++++++++++++++++++++-
- 4 files changed, 58 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 358a9aa..9f175ce 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -68,8 +68,11 @@ nouveau_bo_new(struct drm_device *dev, struct nouveau_channel *chan,
- 	nvbo->tile_mode = tile_mode;
- 	nvbo->tile_flags = tile_flags;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+index 99f7bd4..13b3fb1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bios.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+@@ -40,8 +40,6 @@
+ #define BIOSLOG(sip, fmt, arg...) NV_DEBUG(sip->dev, fmt, ##arg)
+ #define LOG_OLD_VALUE(x) //x
  
--	if (!nvbo->mappable && (flags & TTM_PL_FLAG_VRAM))
--		flags |= TTM_PL_FLAG_PRIV0;
-+	if (flags & TTM_PL_FLAG_VRAM) {
-+		flags |= TTM_PL_FLAG_PRIV1;
-+		if (!nvbo->mappable)
-+			flags |= TTM_PL_FLAG_PRIV0;
-+	}
+-#define BIOS_USLEEP(n) mdelay((n)/1000)
+-
+ #define ROM16(x) le16_to_cpu(*(uint16_t *)&(x))
+ #define ROM32(x) le32_to_cpu(*(uint32_t *)&(x))
  
- 	/* Some of the tile_flags have a periodic structure of 24*4096 bytes, 
- 	 * align to to that as well as the page size. Overallocate memory to 
-@@ -296,6 +299,21 @@ nouveau_bo_init_mem_type(struct ttm_bo_device *bdev, uint32_t type,
- 		man->available_caching =
- 		man->default_caching = 0;
- 		break;
-+	case TTM_PL_PRIV1: /* Mappable but unusable as scanout. */
-+	{
-+		man->flags = TTM_MEMTYPE_FLAG_FIXED |
-+			     TTM_MEMTYPE_FLAG_MAPPABLE |
-+			     TTM_MEMTYPE_FLAG_NEEDS_IOREMAP;
-+		man->available_caching = TTM_PL_FLAG_UNCACHED |
-+					 TTM_PL_FLAG_WC;
-+		man->default_caching = TTM_PL_FLAG_WC;
-+
-+		man->io_addr = NULL;
-+		man->io_offset = drm_get_resource_start(dev, 1);
-+		man->io_size = drm_get_resource_len(dev, 1);
-+		man->gpu_offset = dev_priv->vm_vram_base;
-+		break;
-+	}
- 	case TTM_PL_TT:
- 		switch (dev_priv->gart_info.type) {
- 		case NOUVEAU_GART_AGP:
-@@ -589,6 +607,7 @@ nouveau_bo_verify_access(struct ttm_buffer_object *bo, struct file *filp)
- 
- static uint32_t nouveau_mem_prios[]  = {
- 	TTM_PL_PRIV0,
-+	TTM_PL_PRIV1,
- 	TTM_PL_VRAM,
- 	TTM_PL_TT,
- 	TTM_PL_SYSTEM
-@@ -596,6 +615,7 @@ static uint32_t nouveau_mem_prios[]  = {
- static uint32_t nouveau_busy_prios[] = {
- 	TTM_PL_TT,
- 	TTM_PL_PRIV0,
-+	TTM_PL_PRIV1,
- 	TTM_PL_VRAM,
- 	TTM_PL_SYSTEM
+@@ -50,6 +48,15 @@ struct init_exec {
+ 	bool repeat;
  };
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
-index 65d884e..7d2a032 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
-@@ -114,6 +114,8 @@ nouveau_pci_suspend(struct pci_dev *pdev, pm_message_t pm_state)
  
- 	NV_INFO(dev, "Evicting buffers...\n");
- 	ttm_bo_evict_mm(&dev_priv->ttm.bdev, TTM_PL_VRAM);
-+	if (dev_priv->ttm.bdev.man[TTM_PL_PRIV1].has_type)
-+		ttm_bo_evict_mm(&dev_priv->ttm.bdev, TTM_PL_PRIV1);
- 
- 	NV_INFO(dev, "Idling channels...\n");
- 	for (i = 0; i < engine->fifo.channels; i++) {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 1c06801..cbb174a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -206,7 +206,8 @@ nouveau_gem_set_domain(struct drm_gem_object *gem, uint32_t read_domains,
- 		if ((valid_domains & NOUVEAU_GEM_DOMAIN_VRAM) &&
- 		    (read_domains & NOUVEAU_GEM_DOMAIN_VRAM) &&
- 		    (bo->mem.mem_type == TTM_PL_VRAM ||
--		     bo->mem.mem_type == TTM_PL_PRIV0))
-+		     bo->mem.mem_type == TTM_PL_PRIV0 ||
-+		     bo->mem.mem_type == TTM_PL_PRIV1))
- 			flags = TTM_PL_FLAG_VRAM;
- 		else
- 		if ((valid_domains & NOUVEAU_GEM_DOMAIN_GART) &&
-@@ -221,8 +222,11 @@ nouveau_gem_set_domain(struct drm_gem_object *gem, uint32_t read_domains,
- 			flags = TTM_PL_FLAG_TT;
- 	}
- 
--	if ((flags & TTM_PL_FLAG_VRAM) && !nvbo->mappable)
--		flags |= TTM_PL_FLAG_PRIV0;
-+	if (flags & TTM_PL_FLAG_VRAM) {
-+		flags |= TTM_PL_FLAG_PRIV1;
-+		if (!nvbo->mappable)
-+			flags |= TTM_PL_FLAG_PRIV0;
-+	}
- 
- 	bo->proposed_placement &= ~TTM_PL_MASK_MEM;
- 	bo->proposed_placement |= flags;
-@@ -352,7 +356,8 @@ retry:
- 
- 		if (nvbo->bo.offset == b->presumed_offset &&
- 		    (((nvbo->bo.mem.mem_type == TTM_PL_VRAM ||
--		       nvbo->bo.mem.mem_type == TTM_PL_PRIV0) &&
-+		       nvbo->bo.mem.mem_type == TTM_PL_PRIV0 ||
-+		       nvbo->bo.mem.mem_type == TTM_PL_PRIV1) &&
- 		      b->presumed_domain & NOUVEAU_GEM_DOMAIN_VRAM) ||
- 		     (nvbo->bo.mem.mem_type == TTM_PL_TT &&
- 		      b->presumed_domain & NOUVEAU_GEM_DOMAIN_GART))) {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_mem.c b/drivers/gpu/drm/nouveau/nouveau_mem.c
-index 01160fe..61336a2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_mem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_mem.c
-@@ -299,6 +299,8 @@ void nouveau_mem_close(struct drm_device *dev)
- 
- 	if (dev_priv->ttm.bdev.man[TTM_PL_PRIV0].has_type)
- 		ttm_bo_clean_mm(&dev_priv->ttm.bdev, TTM_PL_PRIV0);
-+	if (dev_priv->ttm.bdev.man[TTM_PL_PRIV1].has_type)
-+		ttm_bo_clean_mm(&dev_priv->ttm.bdev, TTM_PL_PRIV1);
- 	ttm_bo_clean_mm(&dev_priv->ttm.bdev, TTM_PL_VRAM);
- 
- 	ttm_bo_device_release(&dev_priv->ttm.bdev);
-@@ -410,6 +412,17 @@ uint64_t nouveau_mem_fb_amount(struct drm_device *dev)
- 	return 0;
- }
- 
-+static uint64_t nouveau_mem_scanout_limit(struct drm_device *dev)
++static inline void bios_usleep(unsigned usecs)
 +{
-+	struct drm_nouveau_private *dev_priv=dev->dev_private;
-+	uint64_t vram_size = dev_priv->fb_available_size;
-+
-+	if (dev_priv->card_type == NV_04)
-+		return min(16ull*1024*1024, vram_size);
-+
-+	return vram_size;
++	might_sleep();
++	if (usecs < 1000 * MAX_UDELAY_MS)
++		udelay(usecs);
++	else
++		msleep(usecs / 1000 + 1);
 +}
 +
- static void nouveau_mem_reset_agp(struct drm_device *dev)
+ static bool nv_cksum(const uint8_t *data, unsigned int length)
  {
- 	uint32_t saved_pci_nv_1, saved_pci_nv_19, pmc_enable;
-@@ -482,7 +495,7 @@ nouveau_mem_init(struct drm_device *dev)
+ 	/* there's a few checksums in the BIOS, so here's a generic checking function */
+@@ -262,7 +269,7 @@ static int parse_init_table(struct nvbios *, unsigned int, struct init_exec *);
+ static void still_alive(void)
  {
- 	struct drm_nouveau_private *dev_priv = dev->dev_private;
- 	struct ttm_bo_device *bdev = &dev_priv->ttm.bdev;
--	uint32_t vram_size, bar1_size, text_size;
-+	uint32_t vram_size, bar1_size, text_size, scanout_size;
- 	int ret, dma_bits = 32;
+ //	sync();
+-//	BIOS_USLEEP(2000);
++//	bios_usleep(2000);
+ }
  
- 	dev_priv->fb_phys = drm_get_resource_start(dev, 1);
-@@ -517,6 +530,7 @@ nouveau_mem_init(struct drm_device *dev)
- 	/* non-mappable vram */
- 	dev_priv->fb_available_size = nouveau_mem_fb_amount(dev);
- 	dev_priv->fb_available_size -= dev_priv->ramin_rsvd_vram;
-+	scanout_size = nouveau_mem_scanout_limit(dev) >> PAGE_SHIFT;
- 	vram_size = dev_priv->fb_available_size >> PAGE_SHIFT;
- 	bar1_size = drm_get_resource_len(dev, 1) >> PAGE_SHIFT;
- 	text_size = (256 * 1024) >> PAGE_SHIFT;
-@@ -530,6 +544,16 @@ nouveau_mem_init(struct drm_device *dev)
- 		vram_size = bar1_size;
+ static uint32_t
+@@ -1608,17 +1615,18 @@ init_condition_time(struct nvbios *bios, uint16_t offset,
+ 
+ 	for (; retries > 0; retries--)
+ 		if (bios_condition_met(bios, offset, cond)) {
+-			BIOSLOG(bios, "0x%04X: Condition met, continuing\n", offset);
++			BIOSLOG(bios, "0x%04X: Condition met, continuing\n",
++								offset);
+ 			break;
+ 		} else {
+ 			BIOSLOG(bios, "0x%04X: Condition not met, sleeping for 20ms\n", offset);
+-			BIOS_USLEEP(20000);
++			bios_usleep(20000);
+ 		}
+ 
+ 	if (!bios_condition_met(bios, offset, cond)) {
+ 		NV_WARN(bios->dev,
+ 			"0x%04X: Condition still not met after %dms, "
+-			"skiping following opcodes\n", offset, 20 * retries);
++			"skipping following opcodes\n", offset, 20 * retries);
+ 		iexec->execute = false;
  	}
  
-+	/* mappable vram that's unusable as scanout. */
-+	if (scanout_size < vram_size) {
-+		if ((ret = ttm_bo_init_mm(bdev, TTM_PL_PRIV1, scanout_size,
-+					  vram_size - scanout_size))) {
-+			NV_ERROR(dev, "Failed PRIV1 mm init: %d\n", ret);
-+			return ret;
-+		}
-+		vram_size = scanout_size;
+@@ -1851,7 +1859,7 @@ init_reset(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
+ 	bios_wr32(bios, NV_PBUS_PCI_NV_19, 0);
+ 	bios_wr32(bios, reg, value1);
+ 
+-	BIOS_USLEEP(10);
++	bios_usleep(10);
+ 
+ 	bios_wr32(bios, reg, value2);
+ 	bios_wr32(bios, NV_PBUS_PCI_NV_19, pci_nv_19);
+@@ -2233,8 +2241,7 @@ init_time(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
+ 	BIOSLOG(bios, "0x%04X: Sleeping for 0x%04X microseconds\n",
+ 		offset, time);
+ 
+-	BIOS_USLEEP(time);
+-
++	bios_usleep(time);
+ 	return true;
+ }
+ 
+@@ -2872,9 +2879,11 @@ static int call_lvds_manufacturer_script(struct drm_device *dev, struct dcb_entr
+ 
+ 	run_digital_op_script(dev, scriptofs, dcbent, head, bios->fp.dual_link);
+ 
+-	if (script == LVDS_PANEL_OFF)
++	if (script == LVDS_PANEL_OFF) {
+ 		/* off-on delay in ms */
+-		BIOS_USLEEP(ROM16(bios->data[bios->fp.xlated_entry + 7]));
++		bios_usleep(ROM16(bios->data[bios->fp.xlated_entry + 7]));
 +	}
 +
- 	/* mappable vram */
- 	if ((ret = ttm_bo_init_mm(bdev, TTM_PL_VRAM, text_size,
- 				  vram_size - text_size))) {
--- 
-1.6.3.3
+ #ifdef __powerpc__
+ 	/* Powerbook specific quirks */
+ 	if (script == LVDS_RESET && ((dev->pci_device & 0xffff) == 0x0179 || (dev->pci_device & 0xffff) == 0x0329))
