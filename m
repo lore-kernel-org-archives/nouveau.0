@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23445] NV46: GPU lockup on VT switch
-Date: Fri, 21 Aug 2009 16:08:15 -0700 (PDT)
-Message-ID: <20090821230815.DD16F130058@annarchy.freedesktop.org>
+Date: Fri, 21 Aug 2009 16:14:25 -0700 (PDT)
+Message-ID: <20090821231425.A15F4130058@annarchy.freedesktop.org>
 References: <bug-23445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23445
 
 
 
---- Comment #3 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-21 16:08:15 PST ---
-(In reply to comment #2)
-> (In reply to comment #1)
-> > I've made the git switch before rebooting, so I've never tested this kernel
-> I meant this particular commit. I've been using the nouveau git kernel for
-> quite some time, and updated it yesterday.
-.. not considering today's update. I need to sleep...
+--- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-21 16:14:24 PST ---
+Why do you have 4 channels, normally you have channel 0 for the kernel and
+channel 1 for xorg. Have you installed the (unsupported) nv40 gallium driver?
 
 
 -- 
