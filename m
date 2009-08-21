@@ -1,15 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: rewrite nouveau_dma_wait()
-Date: Sat, 22 Aug 2009 01:42:52 +0200
-Message-ID: <6d4bc9fc0908211642q3c1d2544n52e1cf4d12147aa4@mail.gmail.com>
-References: <1250848611-21642-1-git-send-email-skeggsb@gmail.com>
-	<6d4bc9fc0908211230l7f63207fm673559e3b4f656bb@mail.gmail.com>
-	<1250897199.20095.1.camel@keine.ath.cx>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23445] NV46: GPU lockup on VT switch
+Date: Fri, 21 Aug 2009 16:53:48 -0700 (PDT)
+Message-ID: <20090821235348.849E5130058@annarchy.freedesktop.org>
+References: <bug-23445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1250897199.20095.1.camel-oFTkVezJ1HzzwxVw7NwMvg@public.gmane.org>
+In-Reply-To: <bug-23445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,22 +17,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Aug 22, 2009 at 1:26 AM, Ben Skeggs<skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Fri, 2009-08-21 at 21:30 +0200, Maarten Maathuis wrote:
->> The timeout is too short, the gallium driver will easily trigger an asse=
-rt.
-> Oops, that was a typo. =A0Thanks, fixed.
->
-> Any other comments?
+http://bugs.freedesktop.org/show_bug.cgi?id=23445
 
-Not really, it's been running fine apart from the mentioned issue.
 
->>
->> Maarten.
->
->
->
+
+
+
+--- Comment #5 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-21 16:53:47 PST ---
+(In reply to comment #4)
+> Why do you have 4 channels, normally you have channel 0 for the kernel and
+> channel 1 for xorg. Have you installed the (unsupported) nv40 gallium driver?
+Not anymore, but the problem seems to remain, except a bit different:
+
+Aug 22 00:47:44 pinguinus login[5527]: pam_unix(login:session): session opened
+for user root by LOGIN(uid=0)
+Aug 22 00:47:44 pinguinus login[5569]: ROOT LOGIN  on '/dev/tty2'
+Aug 22 00:47:48 pinguinus [   40.444285] nouveau 0000:01:00.0: Unhandled
+PFIFO_INTR - 0x00010000
+Aug 22 00:47:48 pinguinus [   40.444292] nouveau 0000:01:00.0: Unhandled
+PFIFO_INTR - 0x00010000
+Aug 22 00:47:48 pinguinus [   40.444298] nouveau 0000:01:00.0: Unhandled
+PFIFO_INTR - 0x00010000
+
+(...)
+
+Aug 22 00:47:48 pinguinus [   40.445339] nouveau 0000:01:00.0: Unhandled
+PFIFO_INTR - 0x00010000
+Aug 22 00:47:48 pinguinus [   40.445344] nouveau 0000:01:00.0: Unhandled
+PFIFO_INTR - 0x00010000
+Aug 22 00:47:48 pinguinus [   40.685178] nouveau 0000:01:00.0: GPU lockup -
+switching to software fbcon
+Aug 22 00:48:04 pinguinus [   56.864228] SysRq : Emergency Sync
+Aug 22 00:48:04 pinguinus [   56.866521] Emergency Sync complete
+Aug 22 00:48:16 pinguinus [   68.854374] SysRq : Emergency Sync
+Aug 22 00:48:16 pinguinus [   68.854854] Emergency Sync complete
+Aug 22 00:48:59 pinguinus syslog-ng[5235]: syslog-ng starting up;
+version='2.1.4'
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
