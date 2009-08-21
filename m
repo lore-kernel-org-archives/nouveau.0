@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23445] NV46: GPU lockup on VT switch
-Date: Fri, 21 Aug 2009 16:04:34 -0700 (PDT)
-Message-ID: <20090821230434.BD593130058@annarchy.freedesktop.org>
+Date: Fri, 21 Aug 2009 16:06:04 -0700 (PDT)
+Message-ID: <20090821230604.C19BA130058@annarchy.freedesktop.org>
 References: <bug-23445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23445
 
 
 
---- Comment #1 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-21 16:04:34 PST ---
-Oh, I'm using the nouveau git kernel:
-
-$ uname -r
-2.6.31-rc6-g8fa1abd
-
-I've made the git switch before rebooting, so I've never tested this kernel
-with the stable Xorg versions... My mistake. I can switch it to a previous
-commit and test, if this bug is not obvious to you.
+--- Comment #2 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-21 16:06:04 PST ---
+(In reply to comment #1)
+> I've made the git switch before rebooting, so I've never tested this kernel
+I meant this particular commit. I've been using the nouveau git kernel for
+quite some time, and updated it yesterday.
 
 
 -- 
