@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23445] NV46: GPU lockup with gdm prompt AND logged
 	in fbcon
-Date: Sat, 22 Aug 2009 10:27:24 -0700 (PDT)
-Message-ID: <20090822172724.1D5A62DC002@annarchy.freedesktop.org>
+Date: Sat, 22 Aug 2009 10:32:54 -0700 (PDT)
+Message-ID: <20090822173254.397E3130058@annarchy.freedesktop.org>
 References: <bug-23445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23445
 
 
 
---- Comment #11 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-22 10:27:23 PST ---
-The interrupt handler isn't uninstalled, we just don't know every interrupt and
-this is one of them.
+--- Comment #12 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-22 10:32:53 PST ---
+(In reply to comment #11)
+> So this is purely a problem that occurs at/around VT switching?
 
-So this is purely a problem that occurs at/around VT switching?
+Yes.
+
+I've also been experiencing lockups with xrandr rotation, but I don't know if
+they're related. I'll check the logs to see if it's the same thing. Brb.
 
 
 -- 
