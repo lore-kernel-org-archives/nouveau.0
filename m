@@ -1,8 +1,8 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 2/3] drm/i2c/ch7006: Add module parameters to set
-	the default TV norm and scale.
-Date: Sat, 22 Aug 2009 02:11:27 +0200
-Message-ID: <1250899888-7945-2-git-send-email-currojerez@riseup.net>
+Subject: [PATCH 3/3] drm/nouveau: Add a module parameter to set
+	the default TV norm.
+Date: Sat, 22 Aug 2009 02:11:28 +0200
+Message-ID: <1250899888-7945-3-git-send-email-currojerez@riseup.net>
 References: <1250899888-7945-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,77 +24,69 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/i2c/ch7006_drv.c  |   30 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/i2c/ch7006_priv.h |    2 ++
- 2 files changed, 32 insertions(+), 0 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drv.c |    4 ++++
+ drivers/gpu/drm/nouveau/nouveau_drv.h |    1 +
+ drivers/gpu/drm/nouveau/nv17_tv.c     |   20 +++++++++++++++++---
+ 3 files changed, 22 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i2c/ch7006_drv.c b/drivers/gpu/drm/i2c/ch7006_drv.c
-index a890652..47421ba 100644
---- a/drivers/gpu/drm/i2c/ch7006_drv.c
-+++ b/drivers/gpu/drm/i2c/ch7006_drv.c
-@@ -429,6 +429,7 @@ static int ch7006_encoder_init(struct i2c_client *client,
- 			       struct drm_encoder_slave *encoder)
- {
- 	struct ch7006_priv *priv;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
+index 7d2a032..a39a70b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
+@@ -57,6 +57,10 @@ MODULE_PARM_DESC(uscript_tmds, "TMDS output script table ID (>=GeForce 8)");
+ int nouveau_uscript_tmds = -1;
+ module_param_named(uscript_tmds, nouveau_uscript_tmds, int, 0400);
+ 
++MODULE_PARM_DESC(tv_norm, "Default TV norm");
++char *nouveau_tv_norm = NULL;
++module_param_named(tv_norm, nouveau_tv_norm, charp, 0400);
++
+ int nouveau_fbpercrtc = 0;
+ #if 0
+ module_param_named(fbpercrtc, nouveau_fbpercrtc, int, 0400);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index 73c80de..2fa379a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -621,6 +621,7 @@ extern int nouveau_uscript_lvds;
+ extern int nouveau_uscript_tmds;
+ extern int nouveau_vram_pushbuf;
+ extern int nouveau_fbpercrtc;
++extern char *nouveau_tv_norm;
+ 
+ /* nouveau_state.c */
+ extern void nouveau_preclose(struct drm_device *dev, struct drm_file *);
+diff --git a/drivers/gpu/drm/nouveau/nv17_tv.c b/drivers/gpu/drm/nouveau/nv17_tv.c
+index 9d8e678..631a4cf 100644
+--- a/drivers/gpu/drm/nouveau/nv17_tv.c
++++ b/drivers/gpu/drm/nouveau/nv17_tv.c
+@@ -479,10 +479,24 @@ static int nv17_tv_create_resources(struct drm_encoder *encoder,
+ 	struct drm_mode_config *conf = &dev->mode_config;
+ 	struct nv17_tv_encoder *tv_enc = to_tv_enc(encoder);
+ 	struct dcb_entry *dcb = nouveau_encoder(encoder)->dcb;
++	int num_tv_norms = dcb->tvconf.has_component_output? NUM_TV_NORMS
++		: NUM_LD_TV_NORMS;
 +	int i;
- 
- 	ch7006_dbg(client, "\n");
- 
-@@ -450,6 +451,27 @@ static int ch7006_encoder_init(struct i2c_client *client,
- 	priv->vmargin = 50;
- 	priv->last_dpms = -1;
- 
-+	if (ch7006_tv_norm) {
-+		for (i = 0; i < NUM_TV_NORMS; i++) {
-+			if (!strcmp(ch7006_tv_norm_names[i], ch7006_tv_norm)) {
-+				priv->norm = i;
++
++	if (nouveau_tv_norm) {
++		for (i = 0; i < num_tv_norms; i++) {
++			if (!strcmp(nv17_tv_norm_names[i], nouveau_tv_norm)) {
++				tv_enc->tv_norm = i;
 +				break;
 +			}
 +		}
 +
-+		if (i == NUM_TV_NORMS)
-+			ch7006_err(client, "Invalid TV norm setting \"%s\".\n",
-+				   ch7006_tv_norm);
++		if (i == num_tv_norms)
++			NV_WARN(dev, "Invalid TV norm setting \"%s\"\n",
++				nouveau_tv_norm);
 +	}
-+
-+	if (ch7006_scale) {
-+		if (ch7006_scale >= 0 && ch7006_scale <= 2)
-+			priv->scale = ch7006_scale;
-+		else
-+			ch7006_err(client, "Invalid scale setting \"%d\".\n",
-+				   ch7006_scale);
-+	}
-+
- 	return 0;
- }
  
-@@ -491,6 +513,14 @@ int ch7006_debug = 0;
- module_param_named(debug, ch7006_debug, int, 0600);
- MODULE_PARM_DESC(debug, "Enable debug output.");
+-	drm_mode_create_tv_properties(dev,
+-				      dcb->tvconf.has_component_output? NUM_TV_NORMS
+-				      : NUM_LD_TV_NORMS, nv17_tv_norm_names);
++	drm_mode_create_tv_properties(dev, num_tv_norms, nv17_tv_norm_names);
  
-+char *ch7006_tv_norm = NULL;
-+module_param_named(tv_norm, ch7006_tv_norm, charp, 0600);
-+MODULE_PARM_DESC(tv_norm, "Default TV norm.");
-+
-+int ch7006_scale = 0;
-+module_param_named(scale, ch7006_scale, int, 0600);
-+MODULE_PARM_DESC(scale, "Default scale.");
-+
- MODULE_AUTHOR("Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>");
- MODULE_DESCRIPTION("Chrontel ch7006 TV encoder driver");
- MODULE_LICENSE("GPL and additional rights");
-diff --git a/drivers/gpu/drm/i2c/ch7006_priv.h b/drivers/gpu/drm/i2c/ch7006_priv.h
-index 7ebb073..576bbea 100644
---- a/drivers/gpu/drm/i2c/ch7006_priv.h
-+++ b/drivers/gpu/drm/i2c/ch7006_priv.h
-@@ -101,6 +101,8 @@ struct ch7006_priv {
- #define to_ch7006_priv(x) ((struct ch7006_priv *)to_encoder_slave(x)->slave_priv)
- 
- extern int ch7006_debug;
-+extern char *ch7006_tv_norm;
-+extern int ch7006_scale;
- 
- extern char *ch7006_tv_norm_names[];
- extern struct ch7006_tv_norm_info ch7006_tv_norms[];
+ 	drm_connector_attach_property(connector, conf->tv_select_subconnector_property,
+ 				      tv_enc->select_subconnector);
 -- 
 1.6.3.3
