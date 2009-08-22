@@ -1,8 +1,7 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Fix up the pixel clocks for some HD
-	TV modes.
-Date: Sat, 22 Aug 2009 20:00:05 +0200
-Message-ID: <1250964005-12958-1-git-send-email-currojerez@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23466] New: xrandr --rotate normal crashes system
+Date: Sat, 22 Aug 2009 11:18:33 -0700 (PDT)
+Message-ID: <bug-23466-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,51 +18,43 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+http://bugs.freedesktop.org/show_bug.cgi?id=23466
 
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nv17_tv_modes.c |    8 ++++----
- 1 files changed, 4 insertions(+), 4 deletions(-)
+           Summary: xrandr --rotate normal crashes system
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-diff --git a/drivers/gpu/drm/nouveau/nv17_tv_modes.c b/drivers/gpu/drm/nouveau/nv17_tv_modes.c
-index 85f55b3..2d1e232 100644
---- a/drivers/gpu/drm/nouveau/nv17_tv_modes.c
-+++ b/drivers/gpu/drm/nouveau/nv17_tv_modes.c
-@@ -149,7 +149,7 @@ struct nv17_tv_norm_params nv17_tv_norms[NUM_TV_NORMS] = {
- 
- 	[TV_NORM_HD480P] = { CTV_ENC_MODE, {
- 			.ctv_enc_mode = {
--				.mode = { DRM_MODE("720x480", DRM_MODE_TYPE_DRIVER, 25312,
-+				.mode = { DRM_MODE("720x480", DRM_MODE_TYPE_DRIVER, 27000,
- 						   720, 735, 743, 858, 0, 480, 490, 494, 525, 0,
- 						   DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC) },
- 				.ctv_regs = { 0x3540000, 0x0, 0x0, 0x314,
-@@ -165,7 +165,7 @@ struct nv17_tv_norm_params nv17_tv_norms[NUM_TV_NORMS] = {
- 
- 	[TV_NORM_HD576P] = { CTV_ENC_MODE, {
- 			.ctv_enc_mode = {
--				.mode = { DRM_MODE("720x576", DRM_MODE_TYPE_DRIVER, 25312,
-+				.mode = { DRM_MODE("720x576", DRM_MODE_TYPE_DRIVER, 27000,
- 						   720, 730, 738, 864, 0, 576, 581, 585, 625, 0,
- 						   DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC) },
- 				.ctv_regs = { 0x3540000, 0x0, 0x0, 0x314,
-@@ -181,7 +181,7 @@ struct nv17_tv_norm_params nv17_tv_norms[NUM_TV_NORMS] = {
- 
- 	[TV_NORM_HD720P] = { CTV_ENC_MODE, {
- 			.ctv_enc_mode = {
--				.mode = { DRM_MODE("1280x720", DRM_MODE_TYPE_DRIVER, 70875,
-+				.mode = { DRM_MODE("1280x720", DRM_MODE_TYPE_DRIVER, 74250,
- 						   1280, 1349, 1357, 1650, 0, 720, 725, 730, 750, 0,
- 						   DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC) },
- 				.ctv_regs = { 0x1260394, 0x0, 0x0, 0x622,
-@@ -197,7 +197,7 @@ struct nv17_tv_norm_params nv17_tv_norms[NUM_TV_NORMS] = {
- 
- 	[TV_NORM_HD1080I] = { CTV_ENC_MODE, {
- 			.ctv_enc_mode = {
--				.mode = { DRM_MODE("1920x1080", DRM_MODE_TYPE_DRIVER, 70875,
-+				.mode = { DRM_MODE("1920x1080", DRM_MODE_TYPE_DRIVER, 74250,
- 						   1920, 1961, 2049, 2200, 0, 1080, 1084, 1088, 1125, 0,
- 						   DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC
- 						   | DRM_MODE_FLAG_INTERLACE) },
+
+Created an attachment (id=28853)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28853)
+The Xorg.0.log with ModeDebug on
+
+I'm running all-git versions of X components. I can xrandr --rotate left,right
+and inverted. The problem is when rotating back to normal.
+
+If the display is rotated "inverted", issuing "xrandr --output LVDS-0 --rotate
+normal" leads to a black screen or a console (VT1 for instance) painted screen.
+Moving the mouse around paints the X display contents where it passes. If I
+change VT to a console and then back, everythings goes back to normal.
+
+If the display is rotated either "left" or "right", issuing "xrandr --output
+LVDS-0 --rotate normal" seems to crash the system. I get no more log entries,
+not even when SysRq sync'ing. But I can SysRq reboot.
+
+I've made some tests with Option "ModeDebug" "on". I'll attach both the
+Xorg.0.log and the relevant part of the system log.
+
+
 -- 
-1.6.3.3
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
