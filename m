@@ -1,11 +1,14 @@
-From: schmirrwurst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
-Subject: Put acpi/backlight code into kernel
-Date: Sat, 22 Aug 2009 20:34:28 +0200
-Message-ID: <200908222034.28782.schmirrwurst@googlemail.com>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: [PATCH 1/3] drm/nv04: Turn every CRTC off before
+ restoring the hardware state.
+Date: Sat, 22 Aug 2009 21:57:44 +0300
+Message-ID: <20090822215744.30f54240@daedalus.pq.iki.fi>
+References: <1250899888-7945-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1250899888-7945-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,22 +18,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi, 
+On Sat, 22 Aug 2009 02:11:26 +0200
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> wrote:
 
-I'm trying to bring devs to support for backlight on nv50 cards for above 1 
-year, without any success
-A lot of laptop (from mac, hp, samsung) doesn't have laptop_panel in hal, and 
-therefore no support for acpi/backlight..., and no entry in /proc/acpi/video 
-nor /sys/class/backlight
+> 5ef5f72febfea420ce58f670bad83830a5e5e3de broke VGA console restore
+> because it makes drm_framebuffer_cleanup() turn off every CRTC with an
+> associated framebuffer: do it by ourselves before the original
+> hardware state is written out.
+> 
+> Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nv04_display.c |    9 +++++++++
+>  1 files changed, 9 insertions(+), 0 deletions(-)
 
-Kernel team is not reacting, hal team won't fix, devicekit need standardise 
-i/o...
+These three patches pushed.
 
-I've tried nouveau, the acpi/backlight support works pretty well, but the 
-driver itself is unusable for lambda users, it needs some times...
-So I'm asking if someone could put the backlight code in a kernel module, or 
-in the kernel itself, for people to have backlight support even when using 
-nvidia driver or nv, or vesa... ???
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
