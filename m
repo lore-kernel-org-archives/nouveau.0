@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23445] NV46: GPU lockup with gdm prompt AND logged
 	in fbcon
-Date: Sat, 22 Aug 2009 08:28:35 -0700 (PDT)
-Message-ID: <20090822152835.61C6C130058@annarchy.freedesktop.org>
+Date: Sat, 22 Aug 2009 10:20:13 -0700 (PDT)
+Message-ID: <20090822172013.8DEBF130058@annarchy.freedesktop.org>
 References: <bug-23445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,23 +27,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23445
 
 
 
---- Comment #9 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-22 08:28:34 PST ---
-(In reply to comment #8)
-> Can you reproduce the "GPU lockup" message completely without X?
+--- Comment #10 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-22 10:20:13 PST ---
+Further testing proves that it may be gfx-workload related:
 
-It's not reproducible without X.. I've ran things like "dmesg && dmesg && dmesg
-&& dmesg && dmesg", played a hi-res movie in mplayer using "-vo fbdev" and "-vo
-caca". Nothing.
+I've started a firefox-only session via startx, and then switched VT and issued
+dmesg a couple of times. It only crashed while the switching was done in the
+middle of a big page render, namely Gmail. Whenever the switching was done when
+the page was fully loaded, no lockup.
 
-I've tried with a "gtkterm" session, and the problem didn't occur. Then I tried
-starting a firefox session, and changed VT while firefox was starting up: full
-lock up, SysRq wouldn't even work (I was root, not sure if it matters).
-
-Then I tested a gnome-session as a regular user, and the problem didn't show
-up.
-
-So it seems to be related with changing VT in some circumstances. It seems that
-its not possible to rule out X after all...
+BTW, what are these PFIFO_INTR for? Who handles them? Could it be that the
+handler is uninstalled when switching VT, and the lockups occur when the
+interrupt is fired outside of X?
 
 
 -- 
