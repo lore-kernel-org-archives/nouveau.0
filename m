@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23445] NV46: GPU lockup with gdm prompt AND logged
 	in fbcon
-Date: Sat, 22 Aug 2009 06:13:48 -0700 (PDT)
-Message-ID: <20090822131348.6563D130058@annarchy.freedesktop.org>
+Date: Sat, 22 Aug 2009 06:38:50 -0700 (PDT)
+Message-ID: <20090822133850.5AF7C130058@annarchy.freedesktop.org>
 References: <bug-23445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,29 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23445
 
 
-Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|NV46: GPU lockup when       |NV46: GPU lockup with gdm
-                   |logging into fbcon          |prompt AND logged in fbcon
 
 
 
+--- Comment #8 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-08-22 06:38:49 PST ---
+Can you reproduce the "GPU lockup" message completely without X?
 
---- Comment #7 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-22 06:13:47 PST ---
-Strangest thing: I can only reproduce this when X is showing the GDM prompt,
-not after I'm logged in to X.
-
-So to sum up:
-  -> Start X system-wide, and leave it in the GDM prompt
-  -> Change VT to a console.
-
-  -> Log in
-  OR if already logged in,
-  -> run dmesg
-
-Problem shows up.
+Log in, run some commands that print lots of text, and see if it appears in
+dmesg. It would be nice to rule out interference with X.
 
 
 -- 
