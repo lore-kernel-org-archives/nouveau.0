@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23445] NV46: GPU lockup with gdm prompt AND logged
 	in fbcon
-Date: Sat, 22 Aug 2009 10:32:54 -0700 (PDT)
-Message-ID: <20090822173254.397E3130058@annarchy.freedesktop.org>
+Date: Sat, 22 Aug 2009 10:39:20 -0700 (PDT)
+Message-ID: <20090822173920.1A2EF130058@annarchy.freedesktop.org>
 References: <bug-23445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23445
 
 
 
---- Comment #12 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-22 10:32:53 PST ---
-(In reply to comment #11)
-> So this is purely a problem that occurs at/around VT switching?
+--- Comment #13 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-22 10:39:19 PST ---
+No, it's not related. There is no actual lockup or similar messages on the
+logs, just a black display. I'll submit another report for it.
 
-Yes.
-
-I've also been experiencing lockups with xrandr rotation, but I don't know if
-they're related. I'll check the logs to see if it's the same thing. Brb.
+So it is just VT switching related.
 
 
 -- 
