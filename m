@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23200] nv50/NVS135M: no working suspend yet
-Date: Sat, 22 Aug 2009 06:54:43 -0700 (PDT)
-Message-ID: <20090822135443.9E5902DC001@annarchy.freedesktop.org>
-References: <bug-23200-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23461] New: X crashes with some GTK apps
+Date: Sat, 22 Aug 2009 07:41:40 -0700 (PDT)
+Message-ID: <bug-23461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23200-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +18,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23200
+http://bugs.freedesktop.org/show_bug.cgi?id=23461
+
+           Summary: X crashes with some GTK apps
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: carlos-5Pg6muQpQzmeh9uJi0VByw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=28850)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=28850)
+Log of X crashing
 
+I have seen X crash if I start epiphany-webkit, or if I try to change the
+references in monodevelop, the border of the window gets drawn, but when the
+app tries to paint the inside of the window, X crashes.
 
+ This doesn't happen with epiphany-gecko, gnome-console, skype, pidgin or
+almost any other app.
 
---- Comment #2 from Stefan Neufeind <freedesktop.org-Rkx4Xfb3x/xKcvNr4i3U6IQuADTiUCJX@public.gmane.org>  2009-08-22 06:54:42 PST ---
-Got some problems using KMS, but that's another issue I guess. Basic startup
-works though. I can login and see a KDE-desktop.
-
-With KMS:
-When trying to Suspend to RAM the system seems to flush diskcache etc. and
-screen goes blank. However the machine doesn't suspend. Moving the mouse I get
-the password-prompt of the screensaver and can login again.
-After that login various graphics-errors occur (horizontal stripes, looks like
-maybe charsets are a bit messed up etc.). However if you know where in the
-menue e.g. "Restart" is you're at least able to find that.
-
-Without KMS:
-I can suspend-to-RAM fine. When powering on the machine again the
-laptop-screen-backlight also goes on but the screen stays black. It looks like
-you're able to control the system (pressing the power-button it e.g. seems to
-go to suspend again) etc., but no output on the screen whatsoever.
+ This is with the Debian/unstable version and noveau from git from yesterday.
+Might running git X help?
 
 
 -- 
