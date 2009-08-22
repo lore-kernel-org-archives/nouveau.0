@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23445] NV46: GPU lockup with gdm prompt AND logged
 	in fbcon
-Date: Sat, 22 Aug 2009 10:20:13 -0700 (PDT)
-Message-ID: <20090822172013.8DEBF130058@annarchy.freedesktop.org>
+Date: Sat, 22 Aug 2009 10:27:24 -0700 (PDT)
+Message-ID: <20090822172724.1D5A62DC002@annarchy.freedesktop.org>
 References: <bug-23445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,17 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23445
 
 
 
---- Comment #10 from Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-22 10:20:13 PST ---
-Further testing proves that it may be gfx-workload related:
+--- Comment #11 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-22 10:27:23 PST ---
+The interrupt handler isn't uninstalled, we just don't know every interrupt and
+this is one of them.
 
-I've started a firefox-only session via startx, and then switched VT and issued
-dmesg a couple of times. It only crashed while the switching was done in the
-middle of a big page render, namely Gmail. Whenever the switching was done when
-the page was fully loaded, no lockup.
-
-BTW, what are these PFIFO_INTR for? Who handles them? Could it be that the
-handler is uninstalled when switching VT, and the lockups occur when the
-interrupt is fired outside of X?
+So this is purely a problem that occurs at/around VT switching?
 
 
 -- 
