@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16523] mesa-git not compiled
-Date: Mon, 24 Aug 2009 12:30:31 -0700 (PDT)
-Message-ID: <20090824193031.A36F613005E@annarchy.freedesktop.org>
-References: <bug-16523-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 22460] Demos crash with NV40 driver
+Date: Mon, 24 Aug 2009 12:32:34 -0700 (PDT)
+Message-ID: <20090824193234.1A31513005A@annarchy.freedesktop.org>
+References: <bug-22460-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-22460-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,7 +20,7 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16523
+http://bugs.freedesktop.org/show_bug.cgi?id=22460
 
 
 ajax at nwnk dot net <ajax-TAsg7VrFCGc@public.gmane.org> changed:
@@ -32,7 +32,7 @@ ajax at nwnk dot net <ajax-TAsg7VrFCGc@public.gmane.org> changed:
 
 
 
---- Comment #3 from ajax at nwnk dot net <ajax-TAsg7VrFCGc@public.gmane.org>  2009-08-24 12:30:31 PST ---
+--- Comment #3 from ajax at nwnk dot net <ajax-TAsg7VrFCGc@public.gmane.org>  2009-08-24 12:32:33 PST ---
 Mass version move, cvs -> git
 
 
