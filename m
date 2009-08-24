@@ -1,14 +1,15 @@
-From: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH 1/2] drm/i2c/ch7006: Make some
- parameter	descriptions more useful.
-Date: Tue, 25 Aug 2009 01:15:09 +0300
-Message-ID: <4A9310ED.9020401@iki.fi>
-References: <1251122527-17900-1-git-send-email-currojerez@riseup.net>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/2] man page: Fix the supported fb depths.
+Date: Tue, 25 Aug 2009 08:54:09 +1000
+Message-ID: <1251154451.2486.0.camel@keine.ath.cx>
+References: <1251122638-17936-1-git-send-email-currojerez@riseup.net>
+	<6d4bc9fc0908240707p40f1af97xcc60971b63ae2af@mail.gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1251122527-17900-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <6d4bc9fc0908240707p40f1af97xcc60971b63ae2af-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,45 +19,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Francisco Jerez wrote:
-> Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-> ---
->  drivers/gpu/drm/i2c/ch7006_drv.c |    4 ++--
->  1 files changed, 2 insertions(+), 2 deletions(-)
+On Mon, 2009-08-24 at 16:07 +0200, Maarten Maathuis wrote:
+> On Mon, Aug 24, 2009 at 4:03 PM, Francisco Jerez<currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> wrote:
+> > Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+> > ---
+> >  man/nouveau.man |    7 ++++---
+> >  1 files changed, 4 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/man/nouveau.man b/man/nouveau.man
+> > index 87f645a..5c4e4ae 100644
+> > --- a/man/nouveau.man
+> > +++ b/man/nouveau.man
+> > @@ -13,9 +13,10 @@ nouveau \- NVIDIA video driver
+> >  .fi
+> >  .SH DESCRIPTION
+> >  .B nouveau
+> > -is an __xservername__ driver for NVIDIA video cards.  The driver supports 2D
+> > -acceleration and provides support for the following framebuffer depths:
+> > -(15,) 16  and 24.  TrueColor visuals are supported for these depths.
+> > +is an __xservername__ driver for NVIDIA video cards.  The driver
+> > +supports 2D acceleration and provides support for the following
+> > +framebuffer depths: 16, 24 and 30.  TrueColor visuals are supported
 > 
-> diff --git a/drivers/gpu/drm/i2c/ch7006_drv.c b/drivers/gpu/drm/i2c/ch7006_drv.c
-> index 47421ba..ff0369c 100644
-> --- a/drivers/gpu/drm/i2c/ch7006_drv.c
-> +++ b/drivers/gpu/drm/i2c/ch7006_drv.c
-> @@ -515,11 +515,11 @@ MODULE_PARM_DESC(debug, "Enable debug output.");
->  
->  char *ch7006_tv_norm = NULL;
->  module_param_named(tv_norm, ch7006_tv_norm, charp, 0600);
-> -MODULE_PARM_DESC(tv_norm, "Default TV norm.");
-> +MODULE_PARM_DESC(tv_norm, "Default TV norm (one of: PAL, PAL-M, PAL-N, PAL-Nc, PAL-60, NTSC-M, NTSC-J).");
+> 30 is only supported for nv50 iirc.
+Yes, and only supported while KMS is enabled also.
 
-I think this should also mention the default value.
-
-BTW, somehow I'd think this should be handled in a more generic place,
-like in the drm module. But that's another issue.
-
->  int ch7006_scale = 0;
->  module_param_named(scale, ch7006_scale, int, 0600);
-> -MODULE_PARM_DESC(scale, "Default scale.");
-> +MODULE_PARM_DESC(scale, "Default scale (integer between 0 and 2).");
-
-Default value would be useful here as well. And I think the description
-should be a little more verbose here, as I don't immediately see how
-"scale" is related to tv-out. Does it mean the amount of overscan? Or
-does it change default scaling method?
-
->  MODULE_AUTHOR("Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>");
->  MODULE_DESCRIPTION("Chrontel ch7006 TV encoder driver");
-
-
--- 
-Anssi Hannula
+Ben.
+> 
+> > +for these depths.
+> >
+> >  .SH SUPPORTED HARDWARE
+> >  The
+> > --
+> > 1.6.3.3
+> >
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > http://lists.freedesktop.org/mailman/listinfo/nouveau
+> >
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
