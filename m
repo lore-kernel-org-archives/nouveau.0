@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23495] nouveau KMS produces no output on a Dell
 	3008WFP monitor
-Date: Mon, 24 Aug 2009 20:35:20 -0700 (PDT)
-Message-ID: <20090825033520.4548013005B@annarchy.freedesktop.org>
+Date: Mon, 24 Aug 2009 23:27:59 -0700 (PDT)
+Message-ID: <20090825062800.9DBD6130058@annarchy.freedesktop.org>
 References: <bug-23495-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,32 +24,23 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23495
 
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
 
 
 
+--- Comment #3 from Wil <wil.reichert-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-24 23:27:54 PST ---
+Loading the nouveau module with duallink=0 allowed me to boot into a 1920x1200
+framebuffer console.  I reconfigured my system to use the nvidia binary driver
+& get an mmiotrace.  Steps I followed:
 
---- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-24 20:35:19 PST ---
-Ok, this looks like a failure to setup dual-link TMDS which the larger monitor
-would require to run at its native resolution.  To solve the immediate problem,
-load the nouveau kernel module with "modprobe nouveau duallink=0" to reject
-modes that require more bandwidth than is available on single-link TMDS.  You
-won't be running at your monitor's native mode, but you should have an image.
+rmmod'd the nvidia kernel
+disabled all but 1 core
+echo'd mmiotrace to current_tracer
+started the cat on trace_pipe
+ran startx & loaded openbox @ 2560x1600
+echo'd "X is up" to trace_marker
+echo'd nop into current_tracer
 
-Now, we don't know exactly how to program dual-link as of yet so if you're
-willing to do some experimentation that'd be *really* good.  Also, grabbing
-traces of the NVIDIA binary driver initialising it would help a lot.  See
-http://nouveau.freedesktop.org/wiki/MmioTrace for details on how to do this.
-
-For some random testing that may help, try playing with the uscript_tmds module
-option.  Valid values for most cards are 0x0001 0x0002 and 0x0105.  0x0001 is
-the default, to try the others use "modprobe nouveau uscript_tmds=0x0105" etc.
-
-Thanks!
+trace emailed to mmio dot dumps mentioned on the MmioTraceHowto page
 
 
 -- 
