@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23495] nouveau KMS produces no output on a Dell
 	3008WFP monitor
-Date: Mon, 24 Aug 2009 23:56:48 -0700 (PDT)
-Message-ID: <20090825065648.9263413005A@annarchy.freedesktop.org>
+Date: Tue, 25 Aug 2009 00:17:49 -0700 (PDT)
+Message-ID: <20090825071755.BAD6D13005A@annarchy.freedesktop.org>
 References: <bug-23495-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,15 +27,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23495
 
 
 
---- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-24 23:56:47 PST ---
-Thank you!  Are you able to get me one additional trace by any chance?  Just
-after a trace of the binary driver programming a single-link mode too, I have a
-theory but want to confirm it first.
+--- Comment #5 from Wil <wil.reichert-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-08-25 00:17:44 PST ---
+rmmod'd the nvidia kernel
+disabled all but 1 core
+echo'd mmiotrace to current_tracer
+started the cat on trace_pipe
+ran startx & loaded openbox @ 2560x1600
+echo'd "X is up" to trace_marker
+changed resolution: xrandr --output default --mode 1920x1200
+echo'd "resolution changed to 1920x1200" to trace_marker
+echo'd nop into current_tracer
 
-Just repeating what you did before, and switching to a lower resolution should
-do the trick.
-
-Thanks!
+Additionally I tried adding uscript_tmds=0x0002 and uscript_tmds=0x0105
+parameters to the nouveau modules, both resulted in a blank screen.
 
 
 -- 
