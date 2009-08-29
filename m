@@ -1,7 +1,7 @@
 From: Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
-Subject: Debugging help needed
-Date: Sat, 29 Aug 2009 16:08:13 +0200
-Message-ID: <20090829140813.E0D3833C2A5@tippex.mynet.homeunix.org>
+Subject: Re: Debugging help needed
+Date: Sat, 29 Aug 2009 16:12:32 +0200
+Message-ID: <20090829141233.24A6F33C2A5@tippex.mynet.homeunix.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,27 +19,15 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
-Hi,
+I wrote:
+> I once had nouveau working and stable back whem 2.6.29 was released.
+> Nowadays, it hangs within less tahn an hours work. The symptom is that
+> the mouse moves, but no other updates to the screen. The machine is
+> otherwise working mostly ok so I can ssh to it. The "issue" I have is
+> that there is nothing interesting (afaict) in any log. Nothing in
+> Xog.0.log, nothing in dmesg.
 
-I once had nouveau working and stable back whem 2.6.29 was released.
-Nowadays, it hangs within less tahn an hours work. The symptom is that 
-the mouse moves, but no other updates to the screen. The machine is
-otherwise working mostly ok so I can ssh to it. The "issue" I have is 
-that there is nothing interesting (afaict) in any log. Nothing in 
-Xog.0.log, nothing in dmesg.
-
-The one intersting thing I've noticed is that with drm debuging on I get 
-a ton of these on dmesg:
-
-host [drm:drm_ioctl], pid=2391, cmd=0x40086485, nr=0x85, dev 0xe200, auth=1
-
-And at, or around the hang, there seem to be a an increase of:
-
-host [drm:drm_ioctl], ret = fffffff5
-
-Not particilarly enlighening to the uninitiated.
-
-Any ideas how to debug these hangs? Are ther any tools around to e.g. 
-reset the GPU?
+I forgot to mention that I have an NV5 card:
+nVidia Corporation NV5 [RIVA TNT2/TNT2 Pro] (rev 15)
 
 /Anders
