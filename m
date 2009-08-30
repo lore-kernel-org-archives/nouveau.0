@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23593] nouveau hangs after a few minutes
-Date: Sun, 30 Aug 2009 07:17:10 -0700 (PDT)
-Message-ID: <20090830141710.64894130058@annarchy.freedesktop.org>
+Date: Sun, 30 Aug 2009 11:46:37 -0700 (PDT)
+Message-ID: <20090830184637.5AFF813005B@annarchy.freedesktop.org>
 References: <bug-23593-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23593
 
 
 
---- Comment #2 from aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org  2009-08-30 07:17:09 PST ---
-Created an attachment (id=29025)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29025)
-log from boot to hang (powered off)
+--- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-08-30 11:46:32 PST ---
+From your log:
 
-And here is the log
+Aug 30 12:10:02 tippex nvidiafb: EDID found from BUS1
+Aug 30 12:10:02 tippex nvidiafb: Using CRT on CRTC 0
+Aug 30 12:10:02 tippex nvidiafb: MTRR set to ON
+Aug 30 12:10:02 tippex nvidiafb: PCI nVidia NV2 framebuffer (16MB @ 0xE2000000)
+
+nvidiafb is bound to give problems. You must get rid of it.
+Reference: http://nouveau.freedesktop.org/wiki/FAQ  Troubleshooting
+See also the KMS troubleshooting related items if you try KMS.
 
 
 -- 
