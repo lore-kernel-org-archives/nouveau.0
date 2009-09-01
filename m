@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23593] nouveau hangs after a few minutes
-Date: Tue,  1 Sep 2009 11:21:29 -0700 (PDT)
-Message-ID: <20090901182129.BB382130058@annarchy.freedesktop.org>
+Date: Tue,  1 Sep 2009 11:53:53 -0700 (PDT)
+Message-ID: <20090901185353.878D313005A@annarchy.freedesktop.org>
 References: <bug-23593-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,40 +23,35 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23593
 
 
-aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org
 
 
 
+--- Comment #5 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-01 11:53:52 PST ---
+(In reply to comment #4)
+> Douh. Sorry about that. Removing the nvidiafb modules does make it better (and
+> I get kms!!).
 
---- Comment #4 from aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org  2009-09-01 11:21:29 PST ---
-Douh. Sorry about that. Removing the nvidiafb modules does make it better (and
-I get kms!!).
+Cool.
 
-However, leaving the machine for the night locks the screensaver. Wiggling the
-mouse/kbd doesn't light up the screen. The machine continues to route packets
-though.
+> However, leaving the machine for the night locks the screensaver. Wiggling the
+> mouse/kbd doesn't light up the screen. The machine continues to route packets
+> though.
 
-I get a bunch of these in the log:
+Which screensaver is that, does it run an animation?
 
-Sep  1 19:11:13 tippex [drm:drm_ioctl], pid=2376, cmd=0x40086485, nr=0x85, dev
-0xe200, auth=1
-Sep  1 19:11:13 tippex [drm:drm_ioctl], ret = fffffff5
-Sep  1 19:11:13 tippex [drm:drm_ioctl], pid=2376, cmd=0x40086485, nr=0x85, dev
-0xe200, auth=1
-Sep  1 19:11:13 tippex [drm:drm_ioctl], ret = fffffff5
-Sep  1 19:11:13 tippex [drm:drm_ioctl], pid=2376, cmd=0x40086485, nr=0x85, dev
-0xe200, auth=1
-Sep  1 19:11:13 tippex [drm:drm_ioctl], ret = fffffff5
-Sep  1 19:11:13 tippex [drm:drm_ioctl], pid=2376, cmd=0x40086485, nr=0x85, dev
-0xe200, auth=1
-Sep  1 19:11:13 tippex [drm:drm_ioctl], ret = fffffff5
+> I get a bunch of these in the log:
+> 
+> Sep  1 19:11:13 tippex [drm:drm_ioctl], pid=2376, cmd=0x40086485, nr=0x85, dev
+> 0xe200, auth=1
+> Sep  1 19:11:13 tippex [drm:drm_ioctl], ret = fffffff5
 
+This is still DRM_NOUVEAU_GEM_CPU_PREP returning EAGAIN. This is a sort of a
+soft lockup, where the graphics memory manager gets stuck. Well, assuming it
+gets stuck here, a bunch of those might appear even without a bug, I guess.
 
-Do you want the entire log from boot?
+> Do you want the entire log from boot?
+
+That would be nice, yes.
 
 
 -- 
