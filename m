@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23593] nouveau hangs after a few minutes
-Date: Wed,  2 Sep 2009 14:15:05 -0700 (PDT)
-Message-ID: <20090902211505.7907A130058@annarchy.freedesktop.org>
+Date: Wed,  2 Sep 2009 14:15:39 -0700 (PDT)
+Message-ID: <20090902211539.EC1F9130058@annarchy.freedesktop.org>
 References: <bug-23593-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23593
 
 
 
---- Comment #9 from aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org  2009-09-02 14:15:04 PST ---
-Created an attachment (id=29122)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29122)
-part3
+--- Comment #10 from aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org  2009-09-02 14:15:39 PST ---
+Created an attachment (id=29123)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29123)
+part4/4
 
 
 -- 
