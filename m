@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23672] Nouveau KMS fails with error: Failed to fence
 	channel 0
-Date: Thu,  3 Sep 2009 05:09:39 -0700 (PDT)
-Message-ID: <20090903120939.AE01F13005A@annarchy.freedesktop.org>
+Date: Thu,  3 Sep 2009 05:20:43 -0700 (PDT)
+Message-ID: <20090903122043.7180A13005A@annarchy.freedesktop.org>
 References: <bug-23672-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23672
 
 
 
---- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-03 05:09:39 PST ---
-Problem 1: we don't recognize if the card is posted or not for your 7800, so it
-doesn't even attempt to post it.
-
-Not quite sure how to solve this.
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-03 05:20:42 PST ---
+I looked at kmmio traces, it looks like NVIDIA detect it the same way as on G8x
+for NV4x.  I'll check the earlier cards too and detect this correctly for
+earlier chips, but this detection will cause the drm to fail to initialise for
+those chips, we can't currently POST them from scratch.
 
 
 -- 
