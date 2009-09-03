@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23672] Nouveau KMS fails with error: Failed to fence
 	channel 0
-Date: Wed,  2 Sep 2009 23:40:27 -0700 (PDT)
-Message-ID: <20090903064027.8C228130058@annarchy.freedesktop.org>
+Date: Thu,  3 Sep 2009 05:09:39 -0700 (PDT)
+Message-ID: <20090903120939.AE01F13005A@annarchy.freedesktop.org>
 References: <bug-23672-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23672
 
 
-Brandon Ehle <azverkan-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #29162|application/octet-stream    |text/plain
-          mime type|                            |
 
 
+
+--- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-03 05:09:39 PST ---
+Problem 1: we don't recognize if the card is posted or not for your 7800, so it
+doesn't even attempt to post it.
+
+Not quite sure how to solve this.
 
 
 -- 
