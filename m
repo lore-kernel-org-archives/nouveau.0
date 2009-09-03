@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23461] X crashes with some GTK apps
-Date: Thu,  3 Sep 2009 13:03:04 -0700 (PDT)
-Message-ID: <20090903200304.47855130058@annarchy.freedesktop.org>
+Date: Thu,  3 Sep 2009 13:04:45 -0700 (PDT)
+Message-ID: <20090903200445.B0500130058@annarchy.freedesktop.org>
 References: <bug-23461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23461
 
 
-Thibaut GIRKA <thib-QrglDn8ccD4xJeROf7iEAA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |thib-QrglDn8ccD4xJeROf7iEAA@public.gmane.org
 
 
 
-
---- Comment #1 from Thibaut GIRKA <thib-QrglDn8ccD4xJeROf7iEAA@public.gmane.org>  2009-09-03 13:03:03 PST ---
-I have the same problem, with for instance rhythmbox, gnome's universal
-clock/calendar, or xchat.
-I'm running debian testing, with the X and linux packages from unstable.
-I use the latest git for xf86-nouveau, libdrm, as well as the latest
-master-compat modules.
+--- Comment #2 from Thibaut GIRKA <thib-QrglDn8ccD4xJeROf7iEAA@public.gmane.org>  2009-09-03 13:04:45 PST ---
+Created an attachment (id=29189)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29189)
+Xorg backtrace
 
 
 -- 
