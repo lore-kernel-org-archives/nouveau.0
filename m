@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18286] GeForce 8200 and 8300 not supported
  (10de:0848/0849/C77/MCP77/MCP78S)
-Date: Sat,  5 Sep 2009 15:56:22 -0700 (PDT)
-Message-ID: <20090905225622.446602DC001@annarchy.freedesktop.org>
+Date: Sat,  5 Sep 2009 15:58:50 -0700 (PDT)
+Message-ID: <20090905225850.BFE4013005A@annarchy.freedesktop.org>
 References: <bug-18286-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-18286-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,20 +21,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xODI4NgoKClZlZHJh
-biBNaWxldGnEhyA8cml2YW52eEBmYXN0bWFpbC5mbT4gY2hhbmdlZDoKCiAgICAgICAgICAgV2hh
-dCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tCiAgICAgICAgICAgIFN1bW1hcnl8R2VGb3JjZSA4MzAwIG5vdCBzdXBwb3J0ZWQgIHxHZUZv
-cmNlIDgyMDAgYW5kIDgzMDAgbm90CiAgICAgICAgICAgICAgICAgICB8KDEwZGU6MDg0OC9DNzcv
-TUNQNzcpICAgICAgIHxzdXBwb3J0ZWQKICAgICAgICAgICAgICAgICAgIHwgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgfCgxMGRlOjA4NDgvMDg0OS9DNzcvTUNQNzcvTUMKICAgICAgICAgICAg
-ICAgICAgIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgfFA3OFMpCgoKCgotLS0gQ29tbWVu
-dCAjMjQgZnJvbSBWZWRyYW4gTWlsZXRpxIcgPHJpdmFudnhAZmFzdG1haWwuZm0+ICAyMDA5LTA5
-LTA1IDE1OjU2OjIxIFBTVCAtLS0KQ2FuIHdlIGRvIGFueSBtb3JlIHRlc3RpbmcgdG8gaGVscCBk
-ZXZlbG9wZXJzIHJlc29sdmUgdGhpcz8KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9i
-dWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBh
-cmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2ln
-bmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=18286
+
+
+
+
+
+--- Comment #25 from Chi-Thanh Christopher Nguyen <chithanh-CFLBMwTPW48UNGrzBIF7/Q@public.gmane.org>  2009-09-05 15:58:50 PST ---
+I think bug 17526 and bug 18092 are not duplicates of this bug. They are filed
+against the xf86-video-nv driver and not nouveau.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
