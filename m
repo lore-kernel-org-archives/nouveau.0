@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23730] x11-base/nouveau-drm fails on drm_fb_helper.c
  with 'EINVAL' undeclared
-Date: Sun,  6 Sep 2009 00:42:57 -0700 (PDT)
-Message-ID: <20090906074257.1DD7F130058@annarchy.freedesktop.org>
+Date: Sun,  6 Sep 2009 00:45:25 -0700 (PDT)
+Message-ID: <20090906074525.A0A8D130058@annarchy.freedesktop.org>
 References: <bug-23730-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,34 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23730
 
 
+Maxim Britov <maxim.britov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
 
---- Comment #2 from Maxim Britov <maxim.britov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-06 00:42:56 PST ---
-linux-2.6.30-gentoo-r6
 
-Seems kernel issue:
-http://mirror.celinuxforum.org/gitstat/commit-detail.php?commit=82e3310ace59794ecf0f531eca94647b2863dfda
+--- Comment #3 from Maxim Britov <maxim.britov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-06 00:45:24 PST ---
+Fixed in kernel 2.6.31-rc2-git1
+
+http://www.kernel.org/pub/linux/kernel/v2.6/snapshots/patch-2.6.31-rc2-git1.log
+commit 82e3310ace59794ecf0f531eca94647b2863dfda
+Author: Tobias Doerffel <tobias.doerffel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Date:   Sun Jul 5 12:08:23 2009 -0700
+
+    linux/sysrq.h needs linux/errno.h
+
+    In include/linux/sysrq.h the constant EINVAL is being used but is undefined
+    if include/linux/errno.h is not included before.
+
+    Fix this by adding #include <linux/errno.h> at the beginning.
+
+    Signed-off-by: Tobias Doerffel <tobias.doerffel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+    Signed-off-by: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+    Signed-off-by: Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
 
 
 -- 
