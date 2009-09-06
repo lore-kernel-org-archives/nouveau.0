@@ -1,14 +1,16 @@
 From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: [PATCH 3/4] drm/nouveau: remove NVRead and NVWrite
-Date: Sun,  6 Sep 2009 21:16:02 +0300
-Message-ID: <1252260963-5163-3-git-send-email-pq@iki.fi>
+Subject: [PATCH 4/4] drm/nouveau: fix signedness in
+	nouveau_gpuobj_new()
+Date: Sun,  6 Sep 2009 21:16:03 +0300
+Message-ID: <1252260963-5163-4-git-send-email-pq@iki.fi>
 References: <1252260963-5163-1-git-send-email-pq@iki.fi>
 	<1252260963-5163-2-git-send-email-pq@iki.fi>
+	<1252260963-5163-3-git-send-email-pq@iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1252260963-5163-2-git-send-email-pq-X3B1VOXEql0@public.gmane.org>
+In-Reply-To: <1252260963-5163-3-git-send-email-pq-X3B1VOXEql0@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,79 +23,110 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-These functions were effectively nv_rd32 and nv_wr32 with a debug print,
-and they were never used. Remove them.
+The size parameter is usually unsigned, but here it was signed. Change
+'int' to 'uint32_t' and propagate the signedness fixes to all callers.
+
+Fixes the sparse warning: nouveau_object.c:254:61: warning: incorrect
+type in argument 3 (different signedness).
 
 Signed-off-by: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_drv.c |    7 ++++---
- drivers/gpu/drm/nouveau/nouveau_drv.h |   11 +++++------
- drivers/gpu/drm/nouveau/nouveau_hw.h  |   13 -------------
- 3 files changed, 9 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drv.h    |    4 ++--
+ drivers/gpu/drm/nouveau/nouveau_object.c |   14 ++++++++------
+ drivers/gpu/drm/nouveau/nv50_graph.c     |    6 ++++--
+ 3 files changed, 14 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
-index d17b16c..684c296 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
-@@ -66,9 +66,10 @@ MODULE_PARM_DESC(tv_norm, "Default TV norm.\n"
- char *nouveau_tv_norm = NULL;
- module_param_named(tv_norm, nouveau_tv_norm, charp, 0400);
- 
--MODULE_PARM_DESC(reg_debug, "Reg debug bitmask: 0x1 mc, 0x2 video, 0x4 fb, 0x8 extdev,\n"
--		"\t\t0x10 misc regs, 0x20 crtc, 0x40 ramdac, 0x80 vgacrtc,\n"
--		"\t\t0x100 rmvio, 0x200 vgaattr.\n");
-+MODULE_PARM_DESC(reg_debug, "Register access debug bitmask:\n"
-+		"\t\t0x1 mc, 0x2 video, 0x4 fb, 0x8 extdev,\n"
-+		"\t\t0x10 crtc, 0x20 ramdac, 0x40 vgacrtc, 0x80 rmvio,\n"
-+		"\t\t0x100 vgaattr. ");
- int nouveau_reg_debug;
- module_param_named(reg_debug, nouveau_reg_debug, int, 0600);
- 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index aed773e..b717c1c 100644
+index b717c1c..1581935 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
 +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -1118,12 +1118,11 @@ enum {
- 	NOUVEAU_REG_DEBUG_VIDEO          = 0x2,
- 	NOUVEAU_REG_DEBUG_FB             = 0x4,
- 	NOUVEAU_REG_DEBUG_EXTDEV         = 0x8,
--	NOUVEAU_REG_DEBUG_REG            = 0x10,
--	NOUVEAU_REG_DEBUG_CRTC           = 0x20,
--	NOUVEAU_REG_DEBUG_RAMDAC         = 0x40,
--	NOUVEAU_REG_DEBUG_VGACRTC        = 0x80,
--	NOUVEAU_REG_DEBUG_RMVIO          = 0x100,
--	NOUVEAU_REG_DEBUG_VGAATTR        = 0x200,
-+	NOUVEAU_REG_DEBUG_CRTC           = 0x10,
-+	NOUVEAU_REG_DEBUG_RAMDAC         = 0x20,
-+	NOUVEAU_REG_DEBUG_VGACRTC        = 0x40,
-+	NOUVEAU_REG_DEBUG_RMVIO          = 0x80,
-+	NOUVEAU_REG_DEBUG_VGAATTR        = 0x100,
- };
+@@ -698,7 +698,7 @@ extern int nouveau_gpuobj_channel_init(struct nouveau_channel *,
+ 				       uint32_t vram_h, uint32_t tt_h);
+ extern void nouveau_gpuobj_channel_takedown(struct nouveau_channel *);
+ extern int nouveau_gpuobj_new(struct drm_device *, struct nouveau_channel *,
+-			      int size, int align, uint32_t flags,
++			      uint32_t size, int align, uint32_t flags,
+ 			      struct nouveau_gpuobj **);
+ extern int nouveau_gpuobj_del(struct drm_device *, struct nouveau_gpuobj **);
+ extern int nouveau_gpuobj_ref_add(struct drm_device *, struct nouveau_channel *,
+@@ -711,7 +711,7 @@ extern int nouveau_gpuobj_ref_find(struct nouveau_channel *, uint32_t handle,
+ extern int nouveau_gpuobj_new_ref(struct drm_device *,
+ 				  struct nouveau_channel *alloc_chan,
+ 				  struct nouveau_channel *ref_chan,
+-				  uint32_t handle, int size, int align,
++				  uint32_t handle, uint32_t size, int align,
+ 				  uint32_t flags, struct nouveau_gpuobj_ref **);
+ extern int nouveau_gpuobj_new_fake(struct drm_device *,
+ 				   uint32_t p_offset, uint32_t b_offset,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_object.c b/drivers/gpu/drm/nouveau/nouveau_object.c
+index efcce79..66ab939 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_object.c
++++ b/drivers/gpu/drm/nouveau/nouveau_object.c
+@@ -203,7 +203,7 @@ nouveau_ramht_remove(struct drm_device *dev, struct nouveau_gpuobj_ref *ref)
  
- #define NV_REG_DEBUG(type, dev, fmt, arg...) do { \
-diff --git a/drivers/gpu/drm/nouveau/nouveau_hw.h b/drivers/gpu/drm/nouveau/nouveau_hw.h
-index a27e0d0..d24fad0 100644
---- a/drivers/gpu/drm/nouveau/nouveau_hw.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_hw.h
-@@ -115,19 +115,6 @@ nvWriteEXTDEV(struct drm_device *dev, uint32_t reg, uint32_t val)
- 	nv_wr32(dev, reg, val);
+ int
+ nouveau_gpuobj_new(struct drm_device *dev, struct nouveau_channel *chan,
+-		   int size, int align, uint32_t flags,
++		   uint32_t size, int align, uint32_t flags,
+ 		   struct nouveau_gpuobj **gpuobj_ret)
+ {
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+@@ -212,7 +212,7 @@ nouveau_gpuobj_new(struct drm_device *dev, struct nouveau_channel *chan,
+ 	struct mem_block *pramin = NULL;
+ 	int ret;
+ 
+-	NV_DEBUG(dev, "ch%d size=%d align=%d flags=0x%08x\n",
++	NV_DEBUG(dev, "ch%d size=%u align=%d flags=0x%08x\n",
+ 		 chan ? chan->id : -1, size, align, flags);
+ 
+ 	if (!dev_priv || !gpuobj_ret || *gpuobj_ret != NULL)
+@@ -520,8 +520,8 @@ int nouveau_gpuobj_ref_del(struct drm_device *dev, struct nouveau_gpuobj_ref **p
+ int
+ nouveau_gpuobj_new_ref(struct drm_device *dev,
+ 		       struct nouveau_channel *oc, struct nouveau_channel *rc,
+-		       uint32_t handle, int size, int align, uint32_t flags,
+-		       struct nouveau_gpuobj_ref **ref)
++		       uint32_t handle, uint32_t size, int align,
++		       uint32_t flags, struct nouveau_gpuobj_ref **ref)
+ {
+ 	struct nouveau_gpuobj *gpuobj = NULL;
+ 	int ret;
+@@ -616,7 +616,7 @@ nouveau_gpuobj_new_fake(struct drm_device *dev, uint32_t p_offset,
  }
  
--static inline uint32_t NVRead(struct drm_device *dev, uint32_t reg)
--{
--	uint32_t val = nv_rd32(dev, reg);
--	NV_REG_DEBUG(REG, dev, "reg %08x val %08x\n", reg, val);
--	return val;
--}
--
--static inline void NVWrite(struct drm_device *dev, uint32_t reg, uint32_t val)
--{
--	NV_REG_DEBUG(REG, dev, "reg %08x val %08x\n", reg, val);
--	nv_wr32(dev, reg, val);
--}
--
- static inline uint32_t NVReadCRTC(struct drm_device *dev,
- 					int head, uint32_t reg)
+ 
+-static int
++static uint32_t
+ nouveau_gpuobj_class_instmem_size(struct drm_device *dev, int class)
  {
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+@@ -899,7 +899,9 @@ nouveau_gpuobj_channel_init_pramin(struct nouveau_channel *chan)
+ 	struct drm_device *dev = chan->dev;
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+ 	struct nouveau_gpuobj *pramin = NULL;
+-	int size, base, ret;
++	uint32_t size;
++	uint32_t base;
++	int ret;
+ 
+ 	NV_DEBUG(dev, "ch%d\n", chan->id);
+ 
+diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
+index 72db3cf..108f672 100644
+--- a/drivers/gpu/drm/nouveau/nv50_graph.c
++++ b/drivers/gpu/drm/nouveau/nv50_graph.c
+@@ -182,8 +182,10 @@ nv50_graph_create_context(struct nouveau_channel *chan)
+ 	struct nouveau_gpuobj *ramin = chan->ramin->gpuobj;
+ 	struct nouveau_gpuobj *ctx;
+ 	uint32_t *ctxvals = NULL;
+-	int grctx_size = 0x70000, hdr;
+-	int ret, pos;
++	uint32_t grctx_size = 0x70000;
++	int hdr;
++	int ret;
++	int pos;
+ 
+ 	NV_DEBUG(dev, "ch%d\n", chan->id);
+ 
 -- 
 1.6.3.3
