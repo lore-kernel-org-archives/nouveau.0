@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23730] x11-base/nouveau-drm fails on drm_fb_helper.c
  with 'EINVAL' undeclared
-Date: Sun,  6 Sep 2009 00:20:18 -0700 (PDT)
-Message-ID: <20090906072018.3FCED130058@annarchy.freedesktop.org>
+Date: Sun,  6 Sep 2009 00:42:57 -0700 (PDT)
+Message-ID: <20090906074257.1DD7F130058@annarchy.freedesktop.org>
 References: <bug-23730-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,19 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23730
 
 
 
---- Comment #1 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-06 00:20:16 PST ---
-Odd, no-one else has hit this. For me it works with both out-of-tree against
-2.6.28 and nouveau/linux-2.6 git kernel. Compile failures are usually found
-fast.
+--- Comment #2 from Maxim Britov <maxim.britov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-06 00:42:56 PST ---
+linux-2.6.30-gentoo-r6
 
-What kernel and arch do you use?
-
-btw. that is not Nouveau code but DRM generic, so to fix it, you'd have to
-reproduce it with Linus' kernel tree or Airlied's drm-next, and send the patch
-to dri-devel mailing list.
-
-Or is this a packaging problem in the x11 overlay? (Doesn't sounds like one,
-but...)
+Seems kernel issue:
+http://mirror.celinuxforum.org/gitstat/commit-detail.php?commit=82e3310ace59794ecf0f531eca94647b2863dfda
 
 
 -- 
