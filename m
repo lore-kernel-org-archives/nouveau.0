@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23741] Driver pixmaps cause pushbuf validation
  failure on mode change (nv28, KMS)
-Date: Sun,  6 Sep 2009 04:24:48 -0700 (PDT)
-Message-ID: <20090906112448.E267E130058@annarchy.freedesktop.org>
+Date: Sun,  6 Sep 2009 04:28:54 -0700 (PDT)
+Message-ID: <20090906112854.41E4F2DC001@annarchy.freedesktop.org>
 References: <bug-23741-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23741
 
 
 
---- Comment #1 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-06 04:24:48 PST ---
-Created an attachment (id=29265)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29265)
-X log of mode change failing
+--- Comment #2 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-06 04:28:53 PST ---
+Created an attachment (id=29266)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29266)
+kernel log
+
+The kernel log from boot, with lots of experimenting in between, and the
+reported failure at timestamp 16400.079421.
 
 
 -- 
