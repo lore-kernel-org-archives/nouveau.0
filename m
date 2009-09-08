@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23792] New: Getting inverted colors after having
- launched Virtualbox with Nouveau driver
-Date: Tue,  8 Sep 2009 03:51:07 -0700 (PDT)
-Message-ID: <bug-23792-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23461] X crashes with some GTK apps
+Date: Tue,  8 Sep 2009 06:33:01 -0700 (PDT)
+Message-ID: <20090908133301.AD86913005B@annarchy.freedesktop.org>
+References: <bug-23461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-23461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,54 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23792
-
-           Summary: Getting inverted colors after having launched Virtualbox
-                    with Nouveau driver
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: thomas.pegeot-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Hello,
-
-Lauching Virtualbox on my computer makes the screen get inverted/negative
-colors when i open new qt/kde applications. If i focus on an older windows
-(launched before Virtualbox), the screen goes back to normal colors, and vice
-versa. When the colors are inverted, my screen looks like this :
-http://bbs.archlinux.org/viewtopic.php?id=77040 (it's not my thread). 
-Restarting X solves the problem. ;)
-
-The kernel (master branch), mesa, libdrm, xf86-video-nouveau were compiled this
-morming from the git repos. ;)
-
-I got this problem for the first time about 1 month ago but I didn't really
-know whether this problem was related to nouveau or not...
-
-I use KDE with compositing (via Xrender) and toggling off compositing doesn't
-solve the problem. 
-
-This morning i tried the NV driver, and this problem didn't occur. 
-
-My graphic card : 05:00.0 VGA compatible controller: nVidia Corporation NV41.1
-[GeForce 6800] (rev a2)
-
-Feel free to ask if you have any further questions. 
-
-Regards
-
-Thank you in advance!
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzQ2MQoKCk1pY2hl
+bCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5uZXQ+IGNoYW5nZWQ6CgogICAgICAgICAgIFdoYXQg
+ICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LQogICAgICAgICAgICAgU3RhdHVzfE5FVyAgICAgICAgICAgICAgICAgICAgICAgICB8UkVTT0xW
+RUQKICAgICAgICAgIENvbXBvbmVudHxEcml2ZXIvbm91dmVhdSAgICAgICAgICAgICAgfEFjY2Vs
+ZXJhdGlvbi9FWEEKICAgICAgICAgUmVzb2x1dGlvbnwgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgfEZJWEVECgoKCgotLS0gQ29tbWVudCAjNSBmcm9tIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxA
+ZGFlbnplci5uZXQ+ICAyMDA5LTA5LTA4IDA2OjMzOjAxIFBTVCAtLS0KRml4IHB1c2hlZCB0byBt
+YXN0ZXIgYW5kIG5vbWluYXRlZCBvbiBodHRwOi8vd2lraS54Lm9yZy93aWtpL1NlcnZlcjE2QnJh
+bmNoLAp0aGFua3MgZm9yIHRlc3RpbmcuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8v
+YnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3Ug
+YXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3Np
+Z25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
