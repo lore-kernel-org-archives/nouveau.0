@@ -1,14 +1,12 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix ref leak in
- nouveau_gem_pushbuf_validate()
-Date: Tue, 8 Sep 2009 00:19:10 +0300
-Message-ID: <20090908001910.1164e8f1@daedalus.pq.iki.fi>
-References: <1252354165-5109-1-git-send-email-pq@iki.fi>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23792] New: Getting inverted colors after having
+ launched Virtualbox with Nouveau driver
+Date: Tue,  8 Sep 2009 03:51:07 -0700 (PDT)
+Message-ID: <bug-23792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1252354165-5109-1-git-send-email-pq-X3B1VOXEql0@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,62 +16,57 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From ee49e66551a28550b69a1a0fc7f45ec2ab24c295 Mon Sep 17 00:00:00 2001
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Date: Tue, 8 Sep 2009 00:05:24 +0300
-Subject: [PATCH] drm/nouveau: do not call ttm_bo_wait_unreserved()
+http://bugs.freedesktop.org/show_bug.cgi?id=23792
 
-In nouveau_gem_puhsbuf_validate() path, ttm_bo_reserve() already calls
-ttm_bo_wait_unreserved() internally. Calling it again is not only racy
-and needless, but it makes the X process hang in uninterruptible sleep.
+           Summary: Getting inverted colors after having launched Virtualbox
+                    with Nouveau driver
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: thomas.pegeot-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Remove the call to ttm_bo_wait_unreserved() from
-nouveau_gem_pushbuf_validate().
 
-Signed-off-by: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
----
+Hello,
 
-NOTE!
+Lauching Virtualbox on my computer makes the screen get inverted/negative
+colors when i open new qt/kde applications. If i focus on an older windows
+(launched before Virtualbox), the screen goes back to normal colors, and vice
+versa. When the colors are inverted, my screen looks like this :
+http://bbs.archlinux.org/viewtopic.php?id=77040 (it's not my thread). 
+Restarting X solves the problem. ;)
 
-This is a tentative patch, I didn't even have the time to compile-test it.
-On top of the previous.
+The kernel (master branch), mesa, libdrm, xf86-video-nouveau were compiled this
+morming from the git repos. ;)
 
- drivers/gpu/drm/nouveau/nouveau_gem.c |   17 ++++++-----------
- 1 files changed, 6 insertions(+), 11 deletions(-)
+I got this problem for the first time about 1 month ago but I didn't really
+know whether this problem was related to nouveau or not...
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 55e7988..b339de2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -286,19 +286,14 @@ nouveau_gem_pushbuf_lookup_and_reserve(struct nouveau_channel *chan,
- 
- 	ret = ttm_bo_reserve(&nvbo->bo, false, false, true,
- 			     chan->fence.sequence);
--	switch (ret) {
--	case 0:
--		*bop = nvbo;
--		return 0;
--	case -EAGAIN:
--		ret = ttm_bo_wait_unreserved(&nvbo->bo, false);
--		if (ret == 0)
--			ret = -EAGAIN;
--		/* fall through */
--	default:
-+
-+	if (ret) {
- 		drm_gem_object_unreference(gem);
-+		return ret;
- 	}
--	return ret;
-+
-+	*bop = nvbo;
-+	return 0;
- }
- 
- static int
+I use KDE with compositing (via Xrender) and toggling off compositing doesn't
+solve the problem. 
+
+This morning i tried the NV driver, and this problem didn't occur. 
+
+My graphic card : 05:00.0 VGA compatible controller: nVidia Corporation NV41.1
+[GeForce 6800] (rev a2)
+
+Feel free to ask if you have any further questions. 
+
+Regards
+
+Thank you in advance!
+
+
 -- 
-1.6.3.3
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
