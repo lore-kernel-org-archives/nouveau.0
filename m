@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23813] New: [KMS] Dual-Head not working on NV50
-Date: Wed,  9 Sep 2009 08:13:08 -0700 (PDT)
-Message-ID: <bug-23813-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23817] New: x11-drm build fails - struct agp_memory
+ has no member named memory
+Date: Wed,  9 Sep 2009 10:39:46 -0700 (PDT)
+Message-ID: <bug-23817-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,49 +19,66 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23813
+http://bugs.freedesktop.org/show_bug.cgi?id=23817
 
-           Summary: [KMS] Dual-Head not working on NV50
+           Summary: x11-drm build fails - struct agp_memory has no member
+                    named memory
            Product: xorg
-           Version: 7.4
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
             Status: NEW
-          Severity: blocker
+          Severity: normal
           Priority: medium
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: me-OOeHgxleHsGsTnJN9+BGXg@public.gmane.org
+        ReportedBy: fourstar10_2000-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-                CC: me-OOeHgxleHsGsTnJN9+BGXg@public.gmane.org
 
 
-Created an attachment (id=29351)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29351)
-lspci --vvs 01:00.0
+emerging x11-drm fails with new kernel....
 
-Dual-Head is not working on my NV50.
+kernel = linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31
 
-If hot-plugging the second display and xrandr-enabling it, both screens do not
-get any signal. switching (or trying to switch) to another vt does not work
-(still does not display anything). Keyboard LEDS still work, but no keystroke
-does anything. XRandR shows correct information for both displays though.
 
-If cold-plugging, there it does not display anything either (in plymouth,
-then).
-
-In either case the System is still responding to ssh and can be shutdown
-gracefully. There is no error in dmesg and Xorg.0.log.
-
-I might test this with an uptodate nouveau-drm and x11-drv-nouveau next week,
-but I cannot promise I will have the time.
-
-Some details:
-. both displays connected with DVI-I (e.g. DVI-I-0 and DVI-I-1)
-. using Fedora 11, uptodate on 9th september 09, with packages
-xorg-x11-drv-nouveau-0.0.12-40.20090528git0c17b87.fc11.x86_64
-xorg-x11-server-Xorg-1.6.1.901-1.fc11.x86_64
-kernel-2.6.30.5-43.fc11.x86_64
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_vm.c: In
+function 'drm_do_vm_fault':
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_vm.c:153:
+error: 'struct agp_memory' has no member named 'memory'
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_vm.c:157:
+error: 'struct agp_memory' has no member named 'memory'
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_vm.c: In
+function 'drm_vm_shm_close':
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_vm.c:252:
+warning: enumeration value '_DRM_GEM' not handled in switch
+make[2]: ***
+[/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_vm.o] Error
+1
+make[2]: *** Waiting for unfinished jobs....
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_memory.c: In
+function 'agp_remap':
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_memory.c:286:
+error: 'struct agp_memory' has no member named 'memory'
+make[2]: ***
+[/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_memory.o]
+Error 1
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_agpsupport.c:
+In function 'drm_agp_bind_pages':
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_agpsupport.c:486:
+error: 'struct agp_memory' has no member named 'memory'
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_agpsupport.c:
+In function 'drm_agp_populate':
+/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_agpsupport.c:547:
+error: 'struct agp_memory' has no member named 'memory'
+make[2]: ***
+[/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core/drm_agpsupport.o]
+Error 1
+make[1]: ***
+[_module_/var/tmp/portage/x11-base/x11-drm-20090320/work/drm/linux-core] Error
+2
+make[1]: Leaving directory
+`/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31'
+make: *** [modules] Error 2
 
 
 -- 
