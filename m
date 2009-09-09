@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23817] x11-drm build fails - struct agp_memory has
- no member named memory
-Date: Wed,  9 Sep 2009 10:52:02 -0700 (PDT)
-Message-ID: <20090909175202.6C527130058@annarchy.freedesktop.org>
-References: <bug-23817-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Dropping compat from master-compat
+Date: Wed, 9 Sep 2009 20:51:36 +0300
+Message-ID: <20090909205136.76d6d351@daedalus.pq.iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23817-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,31 +15,46 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.orgnouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23817
+Hi,
 
+the master-compat branch in nouveau/linux-2.6 kernel tree has got a
+little bit out of hand. Distributions are packaging that, and I
+cannot know if they warn their users well enough about the hazards
+of using backported DRM (see:
+http://nouveau.freedesktop.org/wiki/UpstreamKernelIssues ).
 
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+I originally intended master-compat as an easy way of installing
+the Nouveau flavour of DRM modules even on older kernels, because
+I felt I should share my helper scripts and patches. However, I
+never intended to do real kernel bug tracking, that was the users'
+responsiblity. I didn't bring that fact forward well enough and
+I'm sorry about that. Now I know why no-one else has done this
+for any of the other drivers. It's drm.git all over again.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |INVALID
+Also, running the Nouveau DRM with an older kernel is of questionable
+value when it comes to testing. Why support something you do not
+really support?
 
+Therefore, I will drop compatibility code from master-compat branch,
+and I will add a compile time check for the kernel version. The
+master-compat branch will be just like the master branch, except it
+contains the out-of-tree build scripts. This will force users to
+follow very closely the official RC and release kernels.
 
+If you want to use the latest Nouveau DRM with an older kernel,
+you get to do the backporting and kernel bug tracking yourself.
+This is the distributions' responsibility in general.
 
+Couple of things to remember:
+- there still are no releases of any Nouveau code
+- the recommended way to build Nouveau DRM is to build the
+whole kernel from the same tree.
 
---- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-09 10:52:01 PST ---
-mesa/drm is only maintained for libdrm these days. linux-core should not be
-used.
-
-Kernel module development happens here
-http://cgit.freedesktop.org/nouveau/linux-2.6/
-
+Sorry for the trouble, but we need to look forward.
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Pekka Paalanen
+http://www.iki.fi/pq/
