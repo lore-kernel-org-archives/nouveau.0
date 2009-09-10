@@ -1,13 +1,13 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: Dropping compat from master-compat
-Date: Thu, 10 Sep 2009 21:43:10 +0300
-Message-ID: <20090910214310.35761697@daedalus.pq.iki.fi>
-References: <20090909205136.76d6d351@daedalus.pq.iki.fi>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23847] kernel BUG when using nouveau
+Date: Thu, 10 Sep 2009 13:22:46 -0700 (PDT)
+Message-ID: <20090910202246.B32EA2DC002@annarchy.freedesktop.org>
+References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20090909205136.76d6d351-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
+In-Reply-To: <bug-23847-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,29 +17,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 9 Sep 2009 20:51:36 +0300
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> wrote:
+http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
-> Therefore, I will drop compatibility code from master-compat branch,
-> and I will add a compile time check for the kernel version. The
-> master-compat branch will be just like the master branch, except it
-> contains the out-of-tree build scripts. This will force users to
-> follow very closely the official RC and release kernels.
 
-It is done. The snapshot is updated.
 
-I did not put any deliberate kernel version checks in place yet.
-That may follow later.
 
-$ git diff --stat master..master-compat
- README-nouveau   |   17 +++++++++
- nouveau/DEPENDS  |   25 +++++++++++++
- nouveau/Makefile |  100 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 142 insertions(+), 0 deletions(-)
+
+--- Comment #4 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-10 13:22:46 PST ---
+After a git bisect and 10 reboot, I found the offending commit :
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=9d8ae0c84726807c43b7230b8e6c2d079c33b81d
+
+reverting that line works perfectly here :)
+
+I just regret I first tried nouveau-git right after that commit went in. If I
+had tried just before, it would have been easy to find the regression.
+
 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
