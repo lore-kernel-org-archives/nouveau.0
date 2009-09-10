@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23832] extended display not working
-Date: Thu, 10 Sep 2009 01:05:42 -0700 (PDT)
-Message-ID: <20090910080542.8E212130058@annarchy.freedesktop.org>
+Date: Thu, 10 Sep 2009 01:06:28 -0700 (PDT)
+Message-ID: <20090910080628.C1735130058@annarchy.freedesktop.org>
 References: <bug-23832-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23832
 
 
 
---- Comment #2 from Ritesh Raj Sarraf <rrs-7WuBAv+fczCJ8c2fQYRYNw@public.gmane.org>  2009-09-10 01:05:42 PST ---
-Created an attachment (id=29365)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29365)
-xorg.conf
+--- Comment #3 from Ritesh Raj Sarraf <rrs-7WuBAv+fczCJ8c2fQYRYNw@public.gmane.org>  2009-09-10 01:06:26 PST ---
+Created an attachment (id=29366)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29366)
+dmesg
 
 
 -- 
