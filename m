@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Thu, 10 Sep 2009 10:49:09 -0700 (PDT)
-Message-ID: <20090910174909.350CE130058@annarchy.freedesktop.org>
+Date: Thu, 10 Sep 2009 10:49:31 -0700 (PDT)
+Message-ID: <20090910174932.01B4A130058@annarchy.freedesktop.org>
 References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
 
---- Comment #1 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-10 10:49:08 PST ---
-Created an attachment (id=29389)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29389)
-xorg log
+--- Comment #2 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-10 10:49:31 PST ---
+Created an attachment (id=29390)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29390)
+kernel dmesg
 
 
 -- 
