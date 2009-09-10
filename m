@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23822] New: Blank Screen during nouveau/xen boot
-Date: Wed,  9 Sep 2009 17:54:18 -0700 (PDT)
-Message-ID: <bug-23822-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23830] New: nouvea modules on 2.6.31-rc6 failed
+Date: Wed,  9 Sep 2009 21:10:12 -0700 (PDT)
+Message-ID: <bug-23830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,9 +18,9 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23822
+http://bugs.freedesktop.org/show_bug.cgi?id=23830
 
-           Summary: Blank Screen during nouveau/xen boot
+           Summary: nouvea modules on 2.6.31-rc6 failed
            Product: xorg
            Version: unspecified
           Platform: Other
@@ -34,63 +34,219 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23822
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-After a trying many kernel versions and distributions to get xen running
+Compile Error when nouveau linked to current kernel version 2.6.31-rc6
+Otherwise kernel version 2.6.31-rc6 does boot and give me a command prompt. The
+only version that gets this far on my machine.
 
-linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31 = 2.6.31-rc6
-
-is the only one that i could get get to the command line prompt, all the others
-gave me 
-a blank screen before the command line console started.
-
-using nouveau git checkout tree... brings me back to the blank screen problem.
-bummer
-
-
-lspci:::
-00:00.0 RAM memory: nVidia Corporation MCP78S [GeForce 8200] Memory Controller
-(rev a2)
-00:01.0 ISA bridge: nVidia Corporation MCP78S [GeForce 8200] LPC Bridge (rev
-a2)
-00:01.1 SMBus: nVidia Corporation MCP78S [GeForce 8200] SMBus (rev a1)
-00:01.2 RAM memory: nVidia Corporation MCP78S [GeForce 8200] Memory Controller
-(rev a1)
-00:01.3 Co-processor: nVidia Corporation MCP78S [GeForce 8200] Co-Processor
-(rev a2)
-00:01.4 RAM memory: nVidia Corporation MCP78S [GeForce 8200] Memory Controller
-(rev a1)
-00:02.0 USB Controller: nVidia Corporation MCP78S [GeForce 8200] OHCI USB 1.1
-Controller (rev a1)
-00:02.1 USB Controller: nVidia Corporation MCP78S [GeForce 8200] EHCI USB 2.0
-Controller (rev a1)
-00:04.0 USB Controller: nVidia Corporation MCP78S [GeForce 8200] OHCI USB 1.1
-Controller (rev a1)
-00:04.1 USB Controller: nVidia Corporation MCP78S [GeForce 8200] EHCI USB 2.0
-Controller (rev a1)
-00:06.0 IDE interface: nVidia Corporation MCP78S [GeForce 8200] IDE (rev a1)
-00:07.0 Audio device: nVidia Corporation Device 0774 (rev a1)
-00:08.0 PCI bridge: nVidia Corporation MCP78S [GeForce 8200] PCI Bridge (rev
-a1)
-00:09.0 IDE interface: nVidia Corporation Device 0ad0 (rev a2)
-00:0a.0 Ethernet controller: nVidia Corporation MCP78S [GeForce 8200] Ethernet
-(rev a2)
-00:0b.0 PCI bridge: nVidia Corporation MCP78S [GeForce 8200] PCI Express Bridge
-(rev a1)
-00:10.0 PCI bridge: nVidia Corporation MCP78S [GeForce 8200] PCI Express Bridge
-(rev a1)
-00:12.0 PCI bridge: nVidia Corporation MCP78S [GeForce 8200] PCI Express Bridge
-(rev a1)
-00:18.0 Host bridge: Advanced Micro Devices [AMD] Family 10h [Opteron,
-Athlon64, Sempron] HyperTransport Configuration
-00:18.1 Host bridge: Advanced Micro Devices [AMD] Family 10h [Opteron,
-Athlon64, Sempron] Address Map
-00:18.2 Host bridge: Advanced Micro Devices [AMD] Family 10h [Opteron,
-Athlon64, Sempron] DRAM Controller
-00:18.3 Host bridge: Advanced Micro Devices [AMD] Family 10h [Opteron,
-Athlon64, Sempron] Miscellaneous Control
-00:18.4 Host bridge: Advanced Micro Devices [AMD] Family 10h [Opteron,
-Athlon64, Sempron] Link Control
-02:00.0 VGA compatible controller: nVidia Corporation GeForce 8100 / nForce
-720a (rev a2)
+  CHK     include/linux/version.h
+  CHK     include/linux/utsrelease.h
+  SYMLINK include/asm -> include/asm-x86
+  CALL    scripts/checksyscalls.sh
+  CHK     include/linux/compile.h
+  CC      drivers/gpu/drm/ttm/ttm_agp_backend.o
+In file included from
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/agp.h:4,
+                 from drivers/gpu/drm/ttm/ttm_agp_backend.c:39:
+include/linux/swiotlb.h:48: warning: 'enum dma_data_direction' declared inside
+parameter list
+include/linux/swiotlb.h:48: warning: its scope is only this definition or
+declaration, which is probably not what you want
+include/linux/swiotlb.h:51: warning: 'enum dma_data_direction' declared inside
+parameter list
+include/linux/swiotlb.h:63: warning: 'enum dma_data_direction' declared inside
+parameter list
+include/linux/swiotlb.h:68: warning: 'enum dma_data_direction' declared inside
+parameter list
+include/linux/swiotlb.h:72: warning: 'enum dma_data_direction' declared inside
+parameter list
+include/linux/swiotlb.h:76: warning: 'enum dma_data_direction' declared inside
+parameter list
+include/linux/swiotlb.h:80: warning: 'enum dma_data_direction' declared inside
+parameter list
+include/linux/swiotlb.h:84: warning: 'enum dma_data_direction' declared inside
+parameter list
+include/linux/swiotlb.h:89: warning: 'enum dma_data_direction' declared inside
+parameter list
+include/linux/swiotlb.h:94: warning: 'enum dma_data_direction' declared inside
+parameter list
+In file included from
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/agp.h:8,
+                 from drivers/gpu/drm/ttm/ttm_agp_backend.c:39:
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:
+In function 'get_dma_ops':
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:29:
+error: dereferencing pointer to incomplete type
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:32:
+error: dereferencing pointer to incomplete type
+In file included from
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:36,
+                 from
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/agp.h:8,
+                 from drivers/gpu/drm/ttm/ttm_agp_backend.c:39:
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:12: warning: 'enum dma_data_direction'
+declared inside parameter list
+include/asm-generic/dma-mapping-common.h:11: error: parameter 4 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function 'dma_map_single_attrs':
+include/asm-generic/dma-mapping-common.h:18: error: implicit declaration of
+function 'valid_dma_direction'
+include/asm-generic/dma-mapping-common.h:19: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:31: warning: 'enum dma_data_direction'
+declared inside parameter list
+include/asm-generic/dma-mapping-common.h:30: error: parameter 4 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function 'dma_unmap_single_attrs':
+include/asm-generic/dma-mapping-common.h:36: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:37: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:43: warning: 'enum dma_data_direction'
+declared inside parameter list
+include/asm-generic/dma-mapping-common.h:42: error: parameter 4 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function 'dma_map_sg_attrs':
+include/asm-generic/dma-mapping-common.h:52: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:60: warning: 'enum dma_data_direction'
+declared inside parameter list
+include/asm-generic/dma-mapping-common.h:59: error: parameter 4 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function 'dma_unmap_sg_attrs':
+include/asm-generic/dma-mapping-common.h:66: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:67: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:72: warning: 'enum dma_data_direction'
+declared inside parameter list
+include/asm-generic/dma-mapping-common.h:72: error: parameter 5 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function 'dma_map_page':
+include/asm-generic/dma-mapping-common.h:79: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:86: warning: 'enum dma_data_direction'
+declared inside parameter list
+include/asm-generic/dma-mapping-common.h:86: error: parameter 4 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function 'dma_unmap_page':
+include/asm-generic/dma-mapping-common.h:91: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:92: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:98: warning: 'enum dma_data_direction'
+declared inside parameter list
+include/asm-generic/dma-mapping-common.h:98: error: parameter 4 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function
+'dma_sync_single_for_cpu':
+include/asm-generic/dma-mapping-common.h:103: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:104: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:111: warning: 'enum
+dma_data_direction' declared inside parameter list
+include/asm-generic/dma-mapping-common.h:111: error: parameter 4 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function
+'dma_sync_single_for_device':
+include/asm-generic/dma-mapping-common.h:116: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:117: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:126: warning: 'enum
+dma_data_direction' declared inside parameter list
+include/asm-generic/dma-mapping-common.h:126: error: parameter 5 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function
+'dma_sync_single_range_for_cpu':
+include/asm-generic/dma-mapping-common.h:131: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:132: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:137: error: type of formal parameter 4
+is incomplete
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:144: warning: 'enum
+dma_data_direction' declared inside parameter list
+include/asm-generic/dma-mapping-common.h:144: error: parameter 5 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function
+'dma_sync_single_range_for_device':
+include/asm-generic/dma-mapping-common.h:149: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:150: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:155: error: type of formal parameter 4
+is incomplete
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:160: warning: 'enum
+dma_data_direction' declared inside parameter list
+include/asm-generic/dma-mapping-common.h:160: error: parameter 4 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function 'dma_sync_sg_for_cpu':
+include/asm-generic/dma-mapping-common.h:165: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:166: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h: At top level:
+include/asm-generic/dma-mapping-common.h:173: warning: 'enum
+dma_data_direction' declared inside parameter list
+include/asm-generic/dma-mapping-common.h:173: error: parameter 4 ('dir') has
+incomplete type
+include/asm-generic/dma-mapping-common.h: In function 'dma_sync_sg_for_device':
+include/asm-generic/dma-mapping-common.h:178: error: dereferencing pointer to
+incomplete type
+include/asm-generic/dma-mapping-common.h:179: error: dereferencing pointer to
+incomplete type
+In file included from
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/agp.h:8,
+                 from drivers/gpu/drm/ttm/ttm_agp_backend.c:39:
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:
+In function 'dma_mapping_error':
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:42:
+error: dereferencing pointer to incomplete type
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:43:
+error: dereferencing pointer to incomplete type
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:
+At top level:
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:60:
+warning: 'enum dma_data_direction' declared inside parameter list
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:60:
+error: parameter 4 ('dir') has incomplete type
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:
+In function 'dma_alloc_coherent_mask':
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:77:
+error: dereferencing pointer to incomplete type
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:79:
+error: implicit declaration of function 'DMA_BIT_MASK'
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:
+In function 'dma_alloc_coherent':
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:114:
+error: implicit declaration of function 'is_device_dma_capable'
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:117:
+error: dereferencing pointer to incomplete type
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:120:
+error: dereferencing pointer to incomplete type
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:
+In function 'dma_free_coherent':
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:138:
+error: dereferencing pointer to incomplete type
+/usr/src/linux-2.6.31_pvops-xen-rebase.master.tree-2009-08-31/arch/x86/include/asm/dma-mapping.h:139:
+error: dereferencing pointer to incomplete type
+make[4]: *** [drivers/gpu/drm/ttm/ttm_agp_backend.o] Error 1
+make[3]: *** [drivers/gpu/drm/ttm] Error 2
+make[2]: *** [drivers/gpu/drm] Error 2
+make[1]: *** [drivers/gpu] Error 2
+make: *** [drivers] Error 2
 
 
 thanks
