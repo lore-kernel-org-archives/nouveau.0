@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Thu, 10 Sep 2009 13:22:46 -0700 (PDT)
-Message-ID: <20090910202246.B32EA2DC002@annarchy.freedesktop.org>
+Date: Thu, 10 Sep 2009 13:45:44 -0700 (PDT)
+Message-ID: <20090910204544.3808F130058@annarchy.freedesktop.org>
 References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
 
---- Comment #4 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-10 13:22:46 PST ---
-After a git bisect and 10 reboot, I found the offending commit :
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=9d8ae0c84726807c43b7230b8e6c2d079c33b81d
-
-reverting that line works perfectly here :)
-
-I just regret I first tried nouveau-git right after that commit went in. If I
-had tried just before, it would have been easy to find the regression.
+--- Comment #5 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-10 13:45:43 PST ---
+sorry, disregard the last information.
+The problem is that there is some randomness involved. The kernel booted fine
+twice in a row, and then everything worked fine. But rebooting another time
+triggered the same failure again.
 
 
 -- 
