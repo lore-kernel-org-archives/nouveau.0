@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Thu, 10 Sep 2009 13:45:44 -0700 (PDT)
-Message-ID: <20090910204544.3808F130058@annarchy.freedesktop.org>
+Date: Fri, 11 Sep 2009 09:01:29 -0700 (PDT)
+Message-ID: <20090911160129.C04D3130058@annarchy.freedesktop.org>
 References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,26 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
+a.radke-KvP5wT2u2U0@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |a.radke-KvP5wT2u2U0@public.gmane.org
 
 
 
---- Comment #5 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-10 13:45:43 PST ---
-sorry, disregard the last information.
-The problem is that there is some randomness involved. The kernel booted fine
-twice in a row, and then everything worked fine. But rebooting another time
-triggered the same failure again.
+
+--- Comment #6 from a.radke-KvP5wT2u2U0@public.gmane.org  2009-09-11 09:01:29 PST ---
+Same here. Same distribution. Different card. I have a gf6200TC. It happens to
+me only when I enable KMS. Then it took me 8 boots to get it up. 7times it
+crashed similar.
+
+With KMS disabled this never happened and Xorg starts fine. Then there are
+problems shutting down Xorg process but that's probably something different.
+
+How can we help to track this down?
+
+stable kernel 2.6.31, nouveau from master daily snapshot 20090909. gcc4.4.1
 
 
 -- 
