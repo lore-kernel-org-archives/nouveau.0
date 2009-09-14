@@ -1,13 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] nv50: avoid excessive FIRE_RING
-Date: Mon, 14 Sep 2009 20:29:22 +0200
-Message-ID: <1252952962-5765-2-git-send-email-madman2003@gmail.com>
-References: <1252952962-5765-1-git-send-email-madman2003@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23847] kernel BUG when using nouveau
+Date: Mon, 14 Sep 2009 11:48:02 -0700 (PDT)
+Message-ID: <20090914184802.3F69013005C@annarchy.freedesktop.org>
+References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1252952962-5765-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-23847-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +20,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
----
- src/gallium/drivers/nv50/nv50_context.c |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
-diff --git a/src/gallium/drivers/nv50/nv50_context.c b/src/gallium/drivers/nv50/nv50_context.c
-index 935de8a..6b31da4 100644
---- a/src/gallium/drivers/nv50/nv50_context.c
-+++ b/src/gallium/drivers/nv50/nv50_context.c
-@@ -41,7 +41,8 @@ nv50_flush(struct pipe_context *pipe, unsigned flags,
- 	BEGIN_RING(chan, eng2d, 0x0110, 1);
- 	OUT_RING  (chan, 0);
- 
--	FIRE_RING(chan);
-+	if (flags & (PIPE_FLUSH_SWAPBUFFERS | PIPE_FLUSH_FRAME))
-+		FIRE_RING(chan);
- }
- 
- static void
+
+
+
+
+--- Comment #7 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-14 11:48:01 PST ---
+From what has been reported here, this looks like a race in a completely
+irrelevant (to nouveau) part of the kernel. It happens randomly, more often
+when nouveau.ko KMS is loaded early, and less often when nouveau.ko loads
+later. AFAIK no-one has yet managed to hit it completely without Nouveau, which
+is somewhat concerning. My guess is that nouveau alters the kernel code
+execution timings and makes a race elsewhere a lot more failure prone.
+
+Some suggestions:
+- search kernel mailing lists for CFQ bug reports (since it seems to happen in
+CFQ code)
+- try to reproduce it without nouveau, e.g., try an old FB driver
+- try enabling heavy debugging features in the kernel config, like kmemcheck or
+kmemleak
+
+I'm trying to steer this away from Nouveau first, because it looks very
+difficult to debug.
+
+In the future, please provide full kernel logs from boot, and set attachment
+type to text/plain.
+
+
 -- 
-1.6.4.2
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
