@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Mon, 14 Sep 2009 11:13:27 -0700 (PDT)
-Message-ID: <20090914181327.7443713005A@annarchy.freedesktop.org>
+Date: Mon, 14 Sep 2009 11:13:57 -0700 (PDT)
+Message-ID: <20090914181357.C4ED113005A@annarchy.freedesktop.org>
 References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #29389|application/octet-stream    |text/plain
+  Attachment #29390|application/octet-stream    |text/plain
           mime type|                            |
 
 
