@@ -1,16 +1,13 @@
-From: Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Put acpi/backlight code into kernel
-Date: Mon, 14 Sep 2009 14:09:57 +0100
-Message-ID: <1caff7430909140609t2c4160b9q4728dc28db41a9a2@mail.gmail.com>
-References: <200908222034.28782.schmirrwurst@googlemail.com>
-	<6d4bc9fc0909140202q60a587c3pb22e3c2eb2ff2ff2@mail.gmail.com>
-	<1caff7430909140300o775276ch890ff41b75181e50@mail.gmail.com>
-	<200909141440.32260.schmirrwurst@googlemail.com>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: [Nouveau-cvs] xf86-video-nv: Branch 'master'
+Date: Mon, 14 Sep 2009 20:26:51 +0300
+Message-ID: <20090914202651.2223b5ff@daedalus.pq.iki.fi>
+References: <20090914030659.B24CD10051@kemper.freedesktop.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <200909141440.32260.schmirrwurst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20090914030659.B24CD10051-PlYeExAEIo6UevrW7tnuMEsOKLKoXr+P@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,55 +17,58 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: schmirrwurst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
-Cc: Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <darktama-PlYeExAEIo6UevrW7tnuMEsOKLKoXr+P@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Sep 14, 2009 at 1:40 PM,  <schmirrwurst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> wrote:
-> Thank you for your answer,
->
-> You said this kind of code doesn't belong in the nouveau driver, but back=
-light
-> support have already been added in it, and it works well ...
+On Sun, 13 Sep 2009 20:06:59 -0700 (PDT)
+darktama-PlYeExAEIo6UevrW7tnuMEsOKLKoXr+P@public.gmane.org (Ben Skeggs) wrote:
 
-You need to be aware that people aren't comfortable in including every
-possible non-standard feature in the kernel. That would be
-unmaintainable, and it's the reason for the negative answers you've
-received so far, it's not that people are unwilling to help.
+>  src/drmmode_display.c |    6 ++++++
+>  src/nv_driver.c       |    2 ++
+>  2 files changed, 8 insertions(+)
+> 
+> New commits:
+> commit 6c045fc44783454180d7b3d00b5f25436bd5544e
+> Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> Date:   Mon Sep 14 13:04:12 2009 +1000
+> 
+>     kms: wait for fbcon to be copied before continuing
+> 
+> diff --git a/src/drmmode_display.c b/src/drmmode_display.c
+> index 3010396..e152e7f 100644
+> --- a/src/drmmode_display.c
+> +++ b/src/drmmode_display.c
+> @@ -215,6 +215,12 @@ drmmode_fbcon_copy(ScrnInfoPtr pScrn)
+>  	exa->DoneCopy(pdpix);
+>  	FIRE_RING (pNv->chan);
+>  
+> +	/* wait for completion before continuing, avoids seeing a momentary
+> +	 * flash of "corruption" on occasion
+> +	 */
+> +	nouveau_bo_map(pNv->scanout, NOUVEAU_BO_RDWR);
+> +	nouveau_bo_unmap(pNv->scanout);
+> +
+>  	pScreen->DestroyPixmap(pdpix);
+>  	pScreen->DestroyPixmap(pspix);
+>  }
+> diff --git a/src/nv_driver.c b/src/nv_driver.c
+> index 9317b5e..645895d 100644
+> --- a/src/nv_driver.c
+> +++ b/src/nv_driver.c
+> @@ -741,6 +741,8 @@ NVPreInitDRM(ScrnInfoPtr pScrn)
+>  	 */
+>  #ifdef XF86DRM_MODE
+>  	pNv->kms_enable = !drmCheckModesettingSupported(bus_id);
+> +	if (pNv->kms_enable)
+> +	    pScrn->canDoBGNoneRoot = 1;
+>  #endif
+>  	xf86DrvMsg(pScrn->scrnIndex, X_PROBED,
+>  		   "[drm] kernel modesetting %s\n", pNv->kms_enable ?
 
-> So I need to find the person in charge of the sony platform driver, and a=
-sk him
-> to take the nouveau backlight code.. would that work ?
-Possibly. IMHO that's the best place to put that kind of code.
+What does this latter hunk do?
+It just seems completely irrelevant wrt. the commit message.
 
-> Where are the platform driver hosted, who do I need to ask then ?
-That I have no idea. You can try to google for the project or check
-the kernel logs..
-
-Cheers,
-  Renato
->
-> Thanks
-> Sebastien
->
-> Le lundi 14 septembre 2009 12:00:59, Renato Caldas a =E9crit :
->> On Mon, Sep 14, 2009 at 10:02 AM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> wrote:
->> > Find someone who wants to create and maintain it.
->>
->> This kind of code doesn't belong in the nouveau driver, as you
->> probably already know.
->>
->> But there are things called "platform drivers" that support all those
->> non-standard features you may find on laptops, like radio switches,
->> leds, ... and backlight. There is one such driver for my Asus laptop,
->> which is called "asus-laptop".
->>
->> So what you want is a platform driver for your hardware. Now you need
->> to either find someone who can code it, or do it yourself. It
->> shouldn't be that difficult if working code is already available.
->>
->> Cheers,
->> =A0 Renato
->>
->
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
