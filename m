@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Tue, 15 Sep 2009 14:13:40 -0700 (PDT)
-Message-ID: <20090915211340.ABCE613005A@annarchy.freedesktop.org>
+Date: Tue, 15 Sep 2009 14:15:33 -0700 (PDT)
+Message-ID: <20090915211533.3C990130058@annarchy.freedesktop.org>
 References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,19 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
 
---- Comment #8 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-15 14:13:39 PST ---
-Some new information :
-* CONFIG_DEBUG_SPINLOCK (spinlock and rw lock debugging : basic checks) works
-around the problem (it leads to very stable nouveau kms)
-* maxcpus=1 does not workaround the problem
-* traces are not always in cfq code
-* traces only happen when nouveau is loaded
-* other framebuffer drivers work fine (vesafb, uvesafb, nvidiafb)
-* crash are (almost?) always with kms on
-* crash can happen both at boot or when reloading module
-* crash seem more frequent when nouveau is loaded by udev or in early boot,
-rather than loaded with X
-* happen both with 2.6.31-rc8 (nouveau-git) and 2.6.31 stable
+--- Comment #9 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-15 14:15:31 PST ---
+Created an attachment (id=29577)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29577)
+crash when reloading the module (2.6.31 stable / master-compat 20090909)
 
 
 -- 
