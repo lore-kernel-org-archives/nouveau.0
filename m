@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Tue, 15 Sep 2009 14:15:33 -0700 (PDT)
-Message-ID: <20090915211533.3C990130058@annarchy.freedesktop.org>
+Date: Tue, 15 Sep 2009 14:16:19 -0700 (PDT)
+Message-ID: <20090915211619.AA76B13005A@annarchy.freedesktop.org>
 References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
 
---- Comment #9 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-15 14:15:31 PST ---
-Created an attachment (id=29577)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29577)
-crash when reloading the module (2.6.31 stable / master-compat 20090909)
+--- Comment #10 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-15 14:16:18 PST ---
+Created an attachment (id=29578)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29578)
+crash when reloading the module (nouveau-git kernel from today - 2.6.31-rc8)
 
 
 -- 
