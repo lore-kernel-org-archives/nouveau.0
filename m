@@ -1,8 +1,8 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Fix a race condition in
-	nouveau_fence_emit.
-Date: Wed, 16 Sep 2009 14:36:49 +0200
-Message-ID: <1253104609-24162-1-git-send-email-currojerez@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23972] New: Nouveau KMS - kernel crash when loading
+ drm on G86 [GeForce 8400M GS]
+Date: Wed, 16 Sep 2009 06:40:21 -0700 (PDT)
+Message-ID: <bug-23972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,39 +19,39 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On early cards relying on synthetic methods for fence signalling
-(nv0x) the IRQ was sometimes raised before the fence had been appended
-to the pending list. In that case it remained unsignalled and it
-caused trouble (bug 23593).
+http://bugs.freedesktop.org/show_bug.cgi?id=23972
 
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_fence.c |    9 +++++----
- 1 files changed, 5 insertions(+), 4 deletions(-)
+           Summary: Nouveau KMS - kernel crash when loading drm on G86
+                    [GeForce 8400M GS]
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: high
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: matthias-XiZCIHpZ/pwb1SvskN2V4Q@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-index 32b4bb9..ad98e9b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-@@ -137,14 +137,15 @@ nouveau_fence_emit(struct nouveau_fence *fence)
- 
- 	fence->sequence = ++chan->fence.sequence;
- 
--	BEGIN_RING(chan, NvSubM2MF, USE_REFCNT ? 0x0050 : 0x0150, 1);
--	OUT_RING  (chan, fence->sequence);
--	FIRE_RING (chan);
--
- 	kref_get(&fence->refcount);
- 	spin_lock_irqsave(&chan->fence.lock, flags);
- 	list_add_tail(&fence->entry, &chan->fence.pending);
- 	spin_unlock_irqrestore(&chan->fence.lock, flags);
-+
-+	BEGIN_RING(chan, NvSubM2MF, USE_REFCNT ? 0x0050 : 0x0150, 1);
-+	OUT_RING  (chan, fence->sequence);
-+	FIRE_RING (chan);
-+
- 	return 0;
- }
- 
+
+Created an attachment (id=29593)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29593)
+kern.log
+
+When I load the nouveau drm module with modeset=1 on my G86 [GeForce 8400M GS],
+the kernel crashes. Backtrace attached.
+
+Workarounds:
+
+1. With modeset=0, nouveau works
+2. If I start Xorg with the nv driver, stop it, and then load nouveau with
+modeset=1, KMS works without problems. I can start Xorg with the nouveau driver
+after that.
+
+
 -- 
-1.6.3.3
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
