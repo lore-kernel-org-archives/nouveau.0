@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23593] nouveau hangs after a few minutes
-Date: Tue, 15 Sep 2009 23:43:16 -0700 (PDT)
-Message-ID: <20090916064316.75F67130058@annarchy.freedesktop.org>
+Date: Wed, 16 Sep 2009 05:30:58 -0700 (PDT)
+Message-ID: <20090916123058.C548A13005A@annarchy.freedesktop.org>
 References: <bug-23593-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,51 +26,50 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23593
 
 
 
---- Comment #22 from aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org  2009-09-15 23:43:15 PST ---
-(In reply to comment #21)
-> Created an attachment (id=29519)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29519) [details]
-> fence_emit_race.patch
+--- Comment #23 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-09-16 05:30:57 PST ---
+(In reply to comment #22)
+> I applied the patch and let it sit in X overnight. The machine was still up
+> when I checked it this morning. This is definetly a good sign. I'll keep you
+> posted.
 > 
-> I think I've finally reproduced your problem (for some reason it seldom happens
-> here, I guess you either have a faster card or a slower CPU). Does the attached
-> patch help?
+> Machine details:
+> processor       : 0
+> vendor_id       : GenuineIntel
+> cpu family      : 6
+> model           : 3
+> model name      : Pentium II (Klamath)
+> stepping        : 4
+> cpu MHz         : 300.664
+> cache size      : 512 KB
+> fdiv_bug        : no
+> hlt_bug         : no
+> f00f_bug        : no
+> coma_bug        : no
+> fpu             : yes
+> fpu_exception   : yes
+> cpuid level     : 2
+> wp              : yes
+> flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov
+> mmx
+> bogomips        : 601.32
+> clflush size    : 32
+> power management:
+> 
+Ok, so that's it.
+
+> 
+> 01:00.0 VGA compatible controller: nVidia Corporation NV5 [RIVA TNT2/TNT2 Pro]
+> (rev 15)
+> 
+> Definetly a slow machine by today's standards, but maybe the gpu is even
+> slower??
 > 
 
-I applied the patch and let it sit in X overnight. The machine was still up
-when I checked it this morning. This is definetly a good sign. I'll keep you
-posted.
+Another annoying thing I realized:
+> (II) NOUVEAU(0): Allocated 1MiB VRAM for offscreen pixmaps
 
-Machine details:
-processor       : 0
-vendor_id       : GenuineIntel
-cpu family      : 6
-model           : 3
-model name      : Pentium II (Klamath)
-stepping        : 4
-cpu MHz         : 300.664
-cache size      : 512 KB
-fdiv_bug        : no
-hlt_bug         : no
-f00f_bug        : no
-coma_bug        : no
-fpu             : yes
-fpu_exception   : yes
-cpuid level     : 2
-wp              : yes
-flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov
-mmx
-bogomips        : 601.32
-clflush size    : 32
-power management:
-
-
-
-01:00.0 VGA compatible controller: nVidia Corporation NV5 [RIVA TNT2/TNT2 Pro]
-(rev 15)
-
-Definetly a slow machine by today's standards, but maybe the gpu is even
-slower??
+FWIW you can just enable driver pixmaps if you want take advantage of the whole
+VRAM.
 
 
 -- 
