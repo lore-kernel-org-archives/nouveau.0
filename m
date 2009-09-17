@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23741] Driver pixmaps cause pushbuf validation
- failure on mode change (nv28, KMS)
-Date: Thu, 17 Sep 2009 12:35:33 -0700 (PDT)
-Message-ID: <20090917193533.3A791130058@annarchy.freedesktop.org>
-References: <bug-23741-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24002] New: PFIFO_CACHE_ERROR PGRAPH_ERROR
+Date: Thu, 17 Sep 2009 13:02:46 -0700 (PDT)
+Message-ID: <bug-24002-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23741-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +18,55 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23741
+http://bugs.freedesktop.org/show_bug.cgi?id=24002
+
+           Summary: PFIFO_CACHE_ERROR PGRAPH_ERROR
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: Martijn.Ras-38QdudLKEwwAvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+Heya Folks,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+Since updating to Fedora 11 I run into a problem with nouveau.
 
+When I've been away, on returning there's no response to either keyboard or
+mouse input, so I can't get out of the xscreensaver. Sometimes this happens
+while I'm working, in which case the screen gets garbled, in those cases the
+mouse still works, but the keyboard doesn't.
 
+In both cases I need to restart the machine remotely.
 
+Today I finally got something that might be helpful in /var/log/messages:
 
---- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-17 12:35:32 PST ---
-The original issue seems to be fixed.
+Sep 17 08:03:26 localhost kernel: usb 2-2: USB disconnect, address 7
+Sep 17 17:25:08 localhost kernel: nouveau 0000:05:00.0: PFIFO_CACHE_ERROR - Ch
+1/7 Mthd 0x0184 Data 0xd8000002
+Sep 17 17:25:08 localhost kernel: nouveau 0000:05:00.0: PFIFO_CACHE_ERROR - Ch
+1/7 Mthd 0x0188 Data 0xd8000001
+Sep 17 17:25:08 localhost kernel: nouveau 0000:05:00.0: PGRAPH_ERROR - nSource:
+DMA_W_PROTECTION, nStatus: PROTECTION_FAULT
+Sep 17 17:25:08 localhost kernel: nouveau 0000:05:00.0: PGRAPH_ERROR - Ch 1/7
+Class 0x0039 Mthd 0x0328 Data 0x0454d26c:0x00000000
 
-First worked around by DRM commit 18895876371e616db9f04652460c1d72174909c3
-"drm/nouveau: bail out if validation fails repeatedly"
+The first message is from this morning when I unplugged my PDA.
+The remainder are when I powered on my monitor upon my return.
 
-The proper handling of the effect of the bug, DRM commit
-e6c757cc15b32f995f3aed9a4997ed710b740758
-"drm/nouveau: protect against validating the same buffer twice"
+$ lspci | grep nVidia
+05:00.0 VGA compatible controller: nVidia Corporation NV36.2 [GeForce FX 5700]
+(rev a1)
 
-And the fix to the bug itself in DDX, commit
-806eaf6b0b36cb05ca9d883ff4572629812a1d48
-"kms: rework fbcon transition"
+Mazzel,
 
-However, changing mode with xrandr while watching TV (cable-tv-card, gxine,
-with Xv most likely) results in X spinning in kernel and giving up in few
-minutes. But that's another bug for another day. It too results in monitor
-switching off.
+Martijn.
 
 
 -- 
