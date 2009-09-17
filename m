@@ -1,12 +1,14 @@
 From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: [PATCH 1/3] drm/nouveau: change channel regs mapping to
-	ioremap
-Date: Thu, 17 Sep 2009 22:08:48 +0300
-Message-ID: <1253214530-4502-1-git-send-email-pq@iki.fi>
+Subject: [PATCH 2/3] drm/nouveau: channel user reg accessors into
+	functions
+Date: Thu, 17 Sep 2009 22:08:49 +0300
+Message-ID: <1253214530-4502-2-git-send-email-pq@iki.fi>
+References: <1253214530-4502-1-git-send-email-pq@iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1253214530-4502-1-git-send-email-pq-X3B1VOXEql0@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,108 +21,111 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Use ioremap() for mapping the channel user regs (that are never exposed
-to user space) instead of drm_addmap().
-
-This removes the last use cases of drm_addmap/drm_rmmap from Nouveau.
+Change the channel user reg accessor macros into functions. This also
+gets rid of the implicit macro argument 'chan', which now has to be
+given explicitly.
 
 Signed-off-by: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_channel.c |   13 ++++++-------
- drivers/gpu/drm/nouveau/nouveau_drv.h     |    9 +++------
- drivers/gpu/drm/nouveau/nv50_display.c    |   13 ++++++-------
- 3 files changed, 15 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_channel.c |    4 ++--
+ drivers/gpu/drm/nouveau/nouveau_dma.c     |    2 +-
+ drivers/gpu/drm/nouveau/nouveau_dma.h     |    2 +-
+ drivers/gpu/drm/nouveau/nouveau_drv.c     |    4 ++--
+ drivers/gpu/drm/nouveau/nouveau_drv.h     |   12 ++++++++++--
+ drivers/gpu/drm/nouveau/nouveau_fence.c   |    2 +-
+ 6 files changed, 17 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_channel.c b/drivers/gpu/drm/nouveau/nouveau_channel.c
-index 65810d4..8661b68 100644
+index 8661b68..75353d9 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_channel.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_channel.c
-@@ -167,13 +167,12 @@ nouveau_channel_alloc(struct drm_device *dev, struct nouveau_channel **chan_ret,
- 	else
- 		user = NV50_USER(channel);
+@@ -239,8 +239,8 @@ nouveau_channel_alloc(struct drm_device *dev, struct nouveau_channel **chan_ret,
+ 	    dev_priv->fifo_alloc_count == 1) {
+ 		/* setup channel's default get/put values
+ 		 */
+-		nvchan_wr32(chan->user_get, chan->pushbuf_base);
+-		nvchan_wr32(chan->user_put, chan->pushbuf_base);
++		nvchan_wr32(chan, chan->user_get, chan->pushbuf_base);
++		nvchan_wr32(chan, chan->user_put, chan->pushbuf_base);
  
--	ret = drm_addmap(dev, drm_get_resource_start(dev, 0) + user,
--			 PAGE_SIZE, _DRM_REGISTERS, _DRM_DRIVER |
--			 _DRM_READ_ONLY, &chan->user);
--	if (ret) {
--		NV_ERROR(dev, "regs %d\n", ret);
-+	chan->user = ioremap(pci_resource_start(dev->pdev, 0) + user,
-+								PAGE_SIZE);
-+	if (!chan->user) {
-+		NV_ERROR(dev, "ioremap of regs failed.\n");
- 		nouveau_channel_free(chan);
--		return ret;
-+		return -ENOMEM;
- 	}
- 	chan->user_put = 0x40;
- 	chan->user_get = 0x44;
-@@ -412,7 +411,7 @@ nouveau_channel_free(struct nouveau_channel *chan)
- 	nouveau_notifier_takedown_channel(chan);
+ 		ret = engine->fifo.load_context(chan);
+ 		if (ret) {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.c b/drivers/gpu/drm/nouveau/nouveau_dma.c
+index 2e4ef62..6ab6f5f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dma.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dma.c
+@@ -111,7 +111,7 @@ READ_GET(struct nouveau_channel *chan, uint32_t *get)
+ {
+ 	uint32_t val;
  
- 	if (chan->user)
--		drm_rmmap(dev, chan->user);
-+		iounmap(chan->user);
+-	val = nvchan_rd32(chan->user_get);
++	val = nvchan_rd32(chan, chan->user_get);
+ 	if (val < chan->pushbuf_base ||
+ 	    val >= chan->pushbuf_base + chan->pushbuf_bo->bo.mem.size) {
+ 		/* meaningless to dma_wait() except to know whether the
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.h b/drivers/gpu/drm/nouveau/nouveau_dma.h
+index 9e439a0..a8a6ea1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dma.h
++++ b/drivers/gpu/drm/nouveau/nouveau_dma.h
+@@ -121,7 +121,7 @@ BEGIN_RING(struct nouveau_channel *chan, int subc, int mthd, int size)
+ #define WRITE_PUT(val) do {                                                    \
+ 	DRM_MEMORYBARRIER();                                                   \
+ 	nouveau_bo_rd32(chan->pushbuf_bo, 0);                                  \
+-	nvchan_wr32(chan->user_put, ((val) << 2) + chan->pushbuf_base);        \
++	nvchan_wr32(chan, chan->user_put, ((val) << 2) + chan->pushbuf_base);  \
+ } while (0)
  
- 	dev_priv->fifos[chan->id] = NULL;
- 	dev_priv->fifo_alloc_count--;
+ static inline void
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
+index c854bbc..94dea9f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
+@@ -290,8 +290,8 @@ nouveau_pci_resume(struct pci_dev *pdev)
+ 		struct nouveau_channel *chan = dev_priv->channel;
+ 		int ptr = chan->pushbuf_base + (chan->dma.cur << 2);
+ 
+-		nvchan_wr32(chan->user_get, ptr);
+-		nvchan_wr32(chan->user_put, ptr);
++		nvchan_wr32(chan, chan->user_get, ptr);
++		nvchan_wr32(chan, chan->user_put, ptr);
+ 
+ 		engine->fifo.load_context(chan);
+ 		engine->graph.load_context(chan);
 diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 429c109..63cf483 100644
+index 63cf483..f1c7ac1 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
 +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -169,7 +169,7 @@ struct nouveau_channel {
- 	struct drm_local_map *map;
- 
- 	/* mapping of the regs controling the fifo */
--	struct drm_local_map *user;
-+	void __iomem *user;
- 	uint32_t user_get;
- 	uint32_t user_put;
- 
-@@ -1047,11 +1047,8 @@ extern int nouveau_gem_ioctl_info(struct drm_device *, void *,
+@@ -1047,8 +1047,16 @@ extern int nouveau_gem_ioctl_info(struct drm_device *, void *,
  #endif /* !ioread32_native */
  
  /* channel control reg access */
--#define nvchan_wr32(reg, val) \
--	iowrite32_native((val), \
--			(void __force __iomem *)chan->user->handle + (reg))
--#define nvchan_rd32(reg) \
--	ioread32_native((void __force __iomem *)chan->user->handle + (reg))
-+#define nvchan_wr32(reg, val) iowrite32_native((val), chan->user + (reg))
-+#define nvchan_rd32(reg) ioread32_native(chan->user + (reg))
+-#define nvchan_wr32(reg, val) iowrite32_native((val), chan->user + (reg))
+-#define nvchan_rd32(reg) ioread32_native(chan->user + (reg))
++static inline u32 nvchan_rd32(struct nouveau_channel *chan, unsigned reg)
++{
++	return ioread32_native(chan->user + reg);
++}
++
++static inline void nvchan_wr32(struct nouveau_channel *chan,
++							unsigned reg, u32 val)
++{
++	iowrite32_native(val, chan->user + reg);
++}
  
  /* register access */
  static inline u32 nv_rd32(struct drm_device *dev, unsigned reg)
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index 69bfd21..0cf9953 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -44,7 +44,7 @@ nv50_evo_channel_del(struct nouveau_channel **pchan)
- 	nouveau_bo_ref(NULL, &chan->pushbuf_bo);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index ad98e9b..6e7d44e 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -65,7 +65,7 @@ nouveau_fence_update(struct nouveau_channel *chan)
+ 	uint32_t sequence;
  
- 	if (chan->user)
--		drm_rmmap(chan->dev, chan->user);
-+		iounmap(chan->user);
+ 	if (USE_REFCNT)
+-		sequence = nvchan_rd32(0x48);
++		sequence = nvchan_rd32(chan, 0x48);
+ 	else
+ 		sequence = chan->fence.last_sequence_irq;
  
- 	kfree(chan);
- }
-@@ -166,13 +166,12 @@ nv50_evo_channel_new(struct drm_device *dev, struct nouveau_channel **pchan)
- 		return ret;
- 	}
- 
--	ret = drm_addmap(dev, drm_get_resource_start(dev, 0) +
--			 NV50_PDISPLAY_USER(0), PAGE_SIZE, _DRM_REGISTERS,
--			 _DRM_DRIVER | _DRM_READ_ONLY, &chan->user);
--	if (ret) {
--		NV_ERROR(dev, "Error mapping EVO control regs: %d\n", ret);
-+	chan->user = ioremap(pci_resource_start(dev->pdev, 0) +
-+					NV50_PDISPLAY_USER(0), PAGE_SIZE);
-+	if (!chan->user) {
-+		NV_ERROR(dev, "Error mapping EVO control regs.\n");
- 		nv50_evo_channel_del(pchan);
--		return ret;
-+		return -ENOMEM;
- 	}
- 
- 	return 0;
 -- 
 1.6.3.3
