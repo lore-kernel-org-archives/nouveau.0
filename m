@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23712] NVA0 KMS: kernel NULL pointer dereference
-Date: Thu, 17 Sep 2009 11:35:22 -0700 (PDT)
-Message-ID: <20090917183522.CAE80130058@annarchy.freedesktop.org>
+Date: Thu, 17 Sep 2009 11:36:45 -0700 (PDT)
+Message-ID: <20090917183645.CB601130058@annarchy.freedesktop.org>
 References: <bug-23712-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23712
 
 
 
---- Comment #2 from Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-17 11:35:22 PST ---
-Created an attachment (id=29647)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29647)
-kernel log with highmem disabled
+--- Comment #3 from Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-17 11:36:45 PST ---
+Created an attachment (id=29648)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29648)
+kernel config
 
 
 -- 
