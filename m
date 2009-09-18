@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24014] [KMS, NVA0] Init table command not found: 0x87
-Date: Fri, 18 Sep 2009 02:50:05 -0700 (PDT)
-Message-ID: <20090918095005.8DF72130058@annarchy.freedesktop.org>
+Date: Fri, 18 Sep 2009 03:04:49 -0700 (PDT)
+Message-ID: <20090918100449.850AC2DC001@annarchy.freedesktop.org>
 References: <bug-24014-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24014
 
 
 
---- Comment #1 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2009-09-18 02:50:04 PST ---
-Created an attachment (id=29658)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29658)
-vbios dumped as vbtracetool QUICKSTART tells you to
+--- Comment #2 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2009-09-18 03:04:49 PST ---
+Forgot to mention: this is with nouveau kernel and the following commit
+
+commit 399d7c879e382a739e95684352a5b91ef6ab4397
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Fri Sep 18 14:38:16 2009 +1000
 
 
 -- 
