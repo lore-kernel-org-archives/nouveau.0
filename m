@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23792] Getting inverted colors after having launched
  Virtualbox with Nouveau driver
-Date: Fri, 18 Sep 2009 05:01:38 -0700 (PDT)
-Message-ID: <20090918120138.C558A130058@annarchy.freedesktop.org>
+Date: Fri, 18 Sep 2009 05:04:54 -0700 (PDT)
+Message-ID: <20090918120454.58E6F130058@annarchy.freedesktop.org>
 References: <bug-23792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,21 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23792
 
 
 
---- Comment #5 from Thomas PEGEOT <thomas.pegeot-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-18 05:01:38 PST ---
-Created an attachment (id=29665)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29665)
-Xorg log before launching Virtualbox
+--- Comment #6 from Thomas PEGEOT <thomas.pegeot-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-18 05:04:53 PST ---
+Here are the different logs you ask for. ;)
+
+After having launched Virtualbox, the following lines are added to the kern.log
+: 
+gentoo thomas # diff kern.log /var/log/kern.log
+8936a8937,8940
+> Sep 18 13:57:16 gentoo kernel: [  349.772788] warning: `VirtualBox' uses 32-bit capabilities (legacy support in use)
+> Sep 18 13:57:18 gentoo kernel: [  351.947281] nouveau 0000:05:00.0: Allocating FIFO number 2
+> Sep 18 13:57:18 gentoo kernel: [  351.948771] nouveau 0000:05:00.0: nouveau_channel_alloc: initialised FIFO 2
+> Sep 18 13:57:18 gentoo kernel: [  352.103528] nouveau 0000:05:00.0: nouveau_channel_free: freeing fifo 2
+
+Thank you in advance! ;)
+
+Regards.
 
 
 -- 
