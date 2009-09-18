@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24014] [KMS, NVA0] Init table command not found: 0x87
-Date: Fri, 18 Sep 2009 04:00:23 -0700 (PDT)
-Message-ID: <20090918110023.D59DA130058@annarchy.freedesktop.org>
-References: <bug-24014-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23792] Getting inverted colors after having launched
+ Virtualbox with Nouveau driver
+Date: Fri, 18 Sep 2009 04:59:49 -0700 (PDT)
+Message-ID: <20090918115949.A323D130058@annarchy.freedesktop.org>
+References: <bug-23792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24014-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24014
+http://bugs.freedesktop.org/show_bug.cgi?id=23792
 
 
 
 
 
---- Comment #4 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2009-09-18 04:00:23 PST ---
-Well, the problems I have seems to be unrelated to this (thanks for confirming
-it), and since I never suspend/resume this computer this is not a problem for
-me (GTX285) but if you have stuff to try out, just ask.
+--- Comment #3 from Thomas PEGEOT <thomas.pegeot-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-18 04:59:49 PST ---
+Created an attachment (id=29663)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29663)
+Dmesg before launching Virtualbox
 
 
 -- 
