@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23792] Getting inverted colors after having launched
  Virtualbox with Nouveau driver
-Date: Fri, 18 Sep 2009 05:00:38 -0700 (PDT)
-Message-ID: <20090918120038.21B76130058@annarchy.freedesktop.org>
+Date: Fri, 18 Sep 2009 05:01:38 -0700 (PDT)
+Message-ID: <20090918120138.C558A130058@annarchy.freedesktop.org>
 References: <bug-23792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23792
 
 
 
---- Comment #4 from Thomas PEGEOT <thomas.pegeot-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-18 05:00:36 PST ---
-Created an attachment (id=29664)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29664)
-Kernel log before launching Virtualbox
+--- Comment #5 from Thomas PEGEOT <thomas.pegeot-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-18 05:01:38 PST ---
+Created an attachment (id=29665)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29665)
+Xorg log before launching Virtualbox
 
 
 -- 
