@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24092] X with nouveau hangs in nouveau_bo_map_range
  when doing anything
-Date: Tue, 22 Sep 2009 12:39:50 -0700 (PDT)
-Message-ID: <20090922193950.16412130058@annarchy.freedesktop.org>
+Date: Tue, 22 Sep 2009 12:40:59 -0700 (PDT)
+Message-ID: <20090922194059.AF8CE130058@annarchy.freedesktop.org>
 References: <bug-24092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,18 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=24092
 
 
+Aleksi Torhamo <alexerion-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #29771|application/octet-stream    |text/plain
+          mime type|                            |
 
 
-
---- Comment #2 from Aleksi Torhamo <alexerion-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-22 12:39:49 PST ---
-Created an attachment (id=29771)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29771)
-dmesg output
-
-Contains markers added afterwards so it can be seen at which point the messages
-occur.
-For example "[*  91.26    ] *** Notice: after startx ***" means that startx has
-been run before that point
 
 
 -- 
