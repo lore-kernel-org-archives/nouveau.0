@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24092] X with nouveau hangs in nouveau_bo_map_range
  when doing anything
-Date: Tue, 22 Sep 2009 12:44:59 -0700 (PDT)
-Message-ID: <20090922194459.EE22E130058@annarchy.freedesktop.org>
+Date: Tue, 22 Sep 2009 12:46:50 -0700 (PDT)
+Message-ID: <20090922194650.49C43130058@annarchy.freedesktop.org>
 References: <bug-24092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24092
 
 
 
---- Comment #3 from Aleksi Torhamo <alexerion-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-22 12:44:59 PST ---
-Created an attachment (id=29772)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29772)
-Xorg log
+--- Comment #4 from Aleksi Torhamo <alexerion-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-22 12:46:49 PST ---
+Created an attachment (id=29773)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29773)
+log of gdb session
 
-The log file stopped changing before the hang happened
+Probably not much use, but attaching for completeness :)
+Contains backtrace and register values during the stepping
 
 
 -- 
