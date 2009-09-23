@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16119] X crashes when playing video with xfmedia
- (DMA queue hang with NV40TCL_COLOR0_PITCH and _OFFSET)
-Date: Wed, 23 Sep 2009 10:26:59 -0700 (PDT)
-Message-ID: <20090923172659.71DC013005B@annarchy.freedesktop.org>
-References: <bug-16119-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20990] [kms] Change to VT broken  with NV92
+Date: Wed, 23 Sep 2009 11:13:47 -0700 (PDT)
+Message-ID: <20090923181347.6B38E130058@annarchy.freedesktop.org>
+References: <bug-20990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16119-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-20990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,10 +20,10 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16119
+http://bugs.freedesktop.org/show_bug.cgi?id=20990
 
 
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
@@ -34,9 +33,10 @@ Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
 
 
 
---- Comment #5 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-23 10:26:58 PST ---
-Okay, thanks for letting us know.
-Marking this as fixed, since most likely it is.
+--- Comment #4 from Peter Henriksson <peter.henriksson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-23 11:13:46 PST ---
+Closing this as fixed. It probably has been for some time now.
+Tested with the NV92 today to make sure and everything seems to work as it's
+supposed to.
 
 
 -- 
