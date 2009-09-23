@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 14393] Card detected as NV20 (endian issue?) With nv
  driver run first, fifo lockup on nv11ppc machine
-Date: Wed, 23 Sep 2009 05:16:57 -0700 (PDT)
-Message-ID: <20090923121657.B6FD813005B@annarchy.freedesktop.org>
+Date: Wed, 23 Sep 2009 05:27:20 -0700 (PDT)
+Message-ID: <20090923122720.C7D932DC003@annarchy.freedesktop.org>
 References: <bug-14393-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=14393
 
 
 
---- Comment #8 from Chi-Thanh Christopher Nguyen <chithanh-CFLBMwTPW48UNGrzBIF7/Q@public.gmane.org>  2009-09-23 05:16:57 PST ---
-Reports in IRC suggest that the issue still exists.
+--- Comment #9 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2009-09-23 05:27:20 PST ---
+(In reply to comment #8)
+> Reports in IRC suggest that the issue still exists.
+> 
+> It might be a good idea to ask the committer of
+> 30353c8efcc026ee8940f3eadab084c42a3acd4e what was the reasoning behind the
+> change.
+> 
 
-It might be a good idea to ask the committer of
-30353c8efcc026ee8940f3eadab084c42a3acd4e what was the reasoning behind the
-change.
+That change was motivated by the fact that it fixed at least one system.
+
+If you (PPC guys) can come up with a patch that pleases everyone with a PPC, I
+think we're more than happy to merge it...
 
 
 -- 
