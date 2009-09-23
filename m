@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15131] After a short period there is a lockup (fifo)
-Date: Wed, 23 Sep 2009 02:43:16 -0700 (PDT)
-Message-ID: <20090923094316.23CC713005A@annarchy.freedesktop.org>
-References: <bug-15131-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 12300] DMA queue hang (Quadro FX 4500)
+Date: Wed, 23 Sep 2009 02:50:23 -0700 (PDT)
+Message-ID: <20090923095023.3DE1513005A@annarchy.freedesktop.org>
+References: <bug-12300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15131-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-12300-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +20,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15131
+http://bugs.freedesktop.org/show_bug.cgi?id=12300
+
+
+Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|REOPENED                    |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
-
---- Comment #2 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-23 02:43:15 PST ---
-Do you still have a problem with the card and Nouveau, or shall we close this
-bug?
+--- Comment #11 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-23 02:50:22 PST ---
+No reply for well over a year, assuming FIXED.
 
 
 -- 
