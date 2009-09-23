@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16782] Light graphical corruption in
-	Firefox/Iceweasel
-Date: Wed, 23 Sep 2009 05:06:49 -0700 (PDT)
-Message-ID: <20090923120649.3010E13005A@annarchy.freedesktop.org>
-References: <bug-16782-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16033] [Randr12] DPI calculation ludicrously
+	incorrect
+Date: Wed, 23 Sep 2009 05:12:15 -0700 (PDT)
+Message-ID: <20090923121215.404EB130058@annarchy.freedesktop.org>
+References: <bug-16033-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16782-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16033-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +21,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16782
+http://bugs.freedesktop.org/show_bug.cgi?id=16033
 
 
 
 
 
---- Comment #4 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-23 05:06:48 PST ---
-How is it today?
+--- Comment #2 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-23 05:12:14 PST ---
+Does this problem still occur with the latest released xorg-server?
 
-I'm not sure how old the Dedian packaging is, so testing with all Nouveau
-components from git is recommended with either the latest released xorg-server
-or git head.
+If it does, maybe this bug should be re-targeted to xorg-server?
 
 
 -- 
