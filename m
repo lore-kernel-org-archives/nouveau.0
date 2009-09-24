@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16782] Light graphical corruption in
-	Firefox/Iceweasel
-Date: Wed, 23 Sep 2009 19:47:38 -0700 (PDT)
-Message-ID: <20090924024738.756FA13005A@annarchy.freedesktop.org>
-References: <bug-16782-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24130] New: get "Detected GPU lockup" on ppc-64
+Date: Thu, 24 Sep 2009 02:04:43 -0700 (PDT)
+Message-ID: <bug-24130-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16782-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +18,41 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=16782
+http://bugs.freedesktop.org/show_bug.cgi?id=24130
+
+           Summary: get "Detected GPU lockup" on ppc-64
+           Product: xorg
+           Version: unspecified
+          Platform: PowerPC
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: marty.rosenberg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=29823)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29823)
+the log from x.org followed by the kernel log.
 
+system is actually ppc-64
+kernel is from nouveau-git repository
+2.6.31-rc8nouveau-g6fe0435
+the last commit to xf86-video-nouveau was:
+commit df94ebdbcd89c1678ac243217e7f5b20cbbe857c
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Mon Sep 21 08:37:27 2009 +1000
 
+the list commit to libdrm was:
 
---- Comment #5 from Tim Allen <screwtape-L9NkjsXw7LUAvxtiuMwx3w@public.gmane.org>  2009-09-23 19:47:37 PST ---
-It's been a while since I owned the computer I was using when I filed this bug,
-so I'm afraid I can't test it anymore.
+commit ac71f0849928f4b2fbb69c01304ac6f9df8916a1
+Author: Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>
+Date:   Mon Sep 21 15:29:58 2009 -0700
 
-My recollection is that there was some kind of bug in the X server pixmap
-rendering that libcairo was tickling; Mozilla hacked up their internal copy of
-libcairo to work around the bug, but the Debian folks built Iceweasel against
-the official libcairo release.
-
-A reference to the problem on the Debian Iceweasel maintainer's blog:
-
-    http://glandium.org/blog/?p=209
-
-The Mozilla bug in which they hack up their libcairo source:
-
-    https://bugzilla.mozilla.org/show_bug.cgi?id=413583#c3
-
-So although I don't know the current state of the actual underlying bugs, it
-does seem to have workarounds in place, and it doesn't seem to be nouveau's
-fault.
+    Bump to 2.4.14 for release.
 
 
 -- 
