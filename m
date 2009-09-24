@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24130] get "Detected GPU lockup" on ppc-64
-Date: Thu, 24 Sep 2009 09:48:51 -0700 (PDT)
-Message-ID: <20090924164851.CC1D813005C@annarchy.freedesktop.org>
-References: <bug-24130-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23847] kernel BUG when using nouveau
+Date: Thu, 24 Sep 2009 14:02:59 -0700 (PDT)
+Message-ID: <20090924210259.DA47813005A@annarchy.freedesktop.org>
+References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24130-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23847-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24130
+http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #29823|application/octet-stream    |text/plain
-          mime type|                            |
 
 
+
+--- Comment #12 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-24 14:02:58 PST ---
+Disabling PAT on latest nouveau git kernel does not help.
+2.6.31.1 kernel (+ master-compat snapshopt from today) does not help.
 
 
 -- 
