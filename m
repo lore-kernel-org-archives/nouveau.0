@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23792] Getting inverted colors after having launched
  Virtualbox with Nouveau driver
-Date: Sat, 26 Sep 2009 04:55:34 -0700 (PDT)
-Message-ID: <20090926115534.DCCCA2DC001@annarchy.freedesktop.org>
+Date: Sat, 26 Sep 2009 07:04:13 -0700 (PDT)
+Message-ID: <20090926140413.7CA0113005B@annarchy.freedesktop.org>
 References: <bug-23792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23792
 
 
 
---- Comment #7 from Thomas PEGEOT <thomas.pegeot-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-26 04:55:34 PST ---
-Disabling opengl in Virtualbox solved the problem. ;) I even didn't know that
-it was enabled ... :( 
+--- Comment #8 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-26 07:04:12 PST ---
+(In reply to comment #7)
+> Disabling opengl in Virtualbox solved the problem. ;) I even didn't know that
+> it was enabled ... :( 
+
+Were you using the Nouveau Gallium/DRI driver or swrast?
+
+The description sounds like VirtualBox sets up a window palette, a feature from
+the dark ages. X desktop was 256-color so it used a palette. If an application
+set up its own palette, all other windows would draw with "bad" colors while
+the application had focus. IIRC.
+Is you X in 256-color paletted mode? I don't know if we even support that, so
+all this is unlikely.
 
 
 -- 
