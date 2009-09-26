@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15344] Gradual Performance Decline With Nouveau
 	Driver
-Date: Sat, 26 Sep 2009 08:38:30 -0700 (PDT)
-Message-ID: <20090926153830.77ABD130058@annarchy.freedesktop.org>
+Date: Sat, 26 Sep 2009 08:43:31 -0700 (PDT)
+Message-ID: <20090926154331.F2261130058@annarchy.freedesktop.org>
 References: <bug-15344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,11 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=15344
 
 
+Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #11 from Devan Goodwin <dgoodwin-eRDYlh02QjtL43Ps8y5oD9BPR1lH4CV8@public.gmane.org>  2009-09-26 08:38:29 PST ---
-Sorry I cannot test Nouveau behavior today, upgraded hardware no longer Nvidia.
+
+--- Comment #12 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-26 08:43:30 PST ---
+Okay, thanks. Closing as fixed.
 
 
 -- 
