@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15344] Gradual Performance Decline With Nouveau
-	Driver
-Date: Sat, 26 Sep 2009 08:43:31 -0700 (PDT)
-Message-ID: <20090926154331.F2261130058@annarchy.freedesktop.org>
-References: <bug-15344-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 22763] suspend doesn't work
+Date: Sun, 27 Sep 2009 00:42:55 -0700 (PDT)
+Message-ID: <20090927074255.97C6E130058@annarchy.freedesktop.org>
+References: <bug-22763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-22763-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +20,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15344
+http://bugs.freedesktop.org/show_bug.cgi?id=22763
 
 
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
          Resolution|                            |FIXED
+            Summary|suspend doesn't works       |suspend doesn't work
 
 
 
 
---- Comment #12 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-26 08:43:30 PST ---
-Okay, thanks. Closing as fixed.
+--- Comment #14 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-27 00:42:55 PST ---
+NV46: X doesn't crash anymore after resume, no more PGRAPH_ERROR messages in
+kern.log. kernel modules from git (99da349)
+
+Thanks.
 
 
 -- 
