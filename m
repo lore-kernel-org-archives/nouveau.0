@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23792] Getting inverted colors after having launched
  Virtualbox with Nouveau driver
-Date: Sun, 27 Sep 2009 04:47:15 -0700 (PDT)
-Message-ID: <20090927114715.CE779130058@annarchy.freedesktop.org>
+Date: Sun, 27 Sep 2009 05:13:38 -0700 (PDT)
+Message-ID: <20090927121338.BDC4513005B@annarchy.freedesktop.org>
 References: <bug-23792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,20 +24,38 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=23792
 
 
+Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
 
---- Comment #9 from Thomas PEGEOT <thomas.pegeot-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-27 04:47:15 PST ---
-> Were you using the Nouveau Gallium/DRI driver or swrast?
-Actually, I've been using the Mesa ebuild from the X11 overlay for a while with
-gallium support enabled, as well as Nouveau (VIDEO_CARDS="nouveau)". 
-What is swrast? 
 
-> Is you X in 256-color paletted mode? I don't know if we even support that, so
-all this is unlikely.
-According to xdpyinfo, the default number of colormap cells is 256. Is that
-what you want to know ? If i'm wrong, just tell me where i can find this and
-i'll tell you. ;)
+--- Comment #10 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-27 05:13:38 PST ---
+(In reply to comment #9)
+> Actually, I've been using the Mesa ebuild from the X11 overlay for a while with
+> gallium support enabled, as well as Nouveau (VIDEO_CARDS="nouveau)". 
+
+Okay, that is enough to make this report invalid. We do not take Gallium3D bugs
+yet.
+
+> What is swrast? 
+
+The Mesa software rasterizer, the only supported OpenGL renderer for Nouveau at
+this time. glxinfo would say:
+OpenGL vendor string: Mesa Project
+OpenGL renderer string: Software Rasterizer
+
+> According to xdpyinfo, the default number of colormap cells is 256. Is that
+> what you want to know ? If i'm wrong, just tell me where i can find this and
+> i'll tell you. ;)
+
+"Depth of root window". I bet you would know if you were in 256-color mode.
+Ever looked at 256-color gifs? Not to mention that anything OpenGL would
+probably refuse to work.
 
 
 -- 
