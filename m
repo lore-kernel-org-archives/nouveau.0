@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Mon, 28 Sep 2009 13:22:18 -0700 (PDT)
-Message-ID: <20090928202218.88EBE13005B@annarchy.freedesktop.org>
+Date: Mon, 28 Sep 2009 13:23:30 -0700 (PDT)
+Message-ID: <20090928202330.E05D613005B@annarchy.freedesktop.org>
 References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,20 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
 
---- Comment #13 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-28 13:22:17 PST ---
-So still using nouveau kernel (2.6.31-rc9 now).
-
-When nouveau is loaded during boot, it seems to crash 100% of the times, with a
-trace similar to the one here :
-https://bugs.freedesktop.org/attachment.cgi?id=29578
-
-That is :
-BUG: unable to handle kernel NULL pointer dereference at 00000003
-IP: [<c027e452>] kmem_cache_alloc+0x62/0xda
-
-When I boot with noacpi, the first initialization does not crash for some
-reasons... But as soon as I reload the module, it crashes, in random places of
-the code. I will attach two dmesg showing that.
+--- Comment #14 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-28 13:23:29 PST ---
+Created an attachment (id=29924)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29924)
+crash when reloading the module (nouveau-git 2.6.31-rc9 booted with noacpi)
 
 
 -- 
