@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15131] After a short period there is a lockup (fifo)
-Date: Sun, 27 Sep 2009 14:12:26 -0700 (PDT)
-Message-ID: <20090927211226.CCC1513005B@annarchy.freedesktop.org>
-References: <bug-15131-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23847] kernel BUG when using nouveau
+Date: Mon, 28 Sep 2009 13:22:18 -0700 (PDT)
+Message-ID: <20090928202218.88EBE13005B@annarchy.freedesktop.org>
+References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15131-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23847-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +20,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15131
-
-
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
 
 
---- Comment #4 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-27 14:12:26 PST ---
-Thanks, let's hope it is fixed by now.
+
+--- Comment #13 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-28 13:22:17 PST ---
+So still using nouveau kernel (2.6.31-rc9 now).
+
+When nouveau is loaded during boot, it seems to crash 100% of the times, with a
+trace similar to the one here :
+https://bugs.freedesktop.org/attachment.cgi?id=29578
+
+That is :
+BUG: unable to handle kernel NULL pointer dereference at 00000003
+IP: [<c027e452>] kmem_cache_alloc+0x62/0xda
+
+When I boot with noacpi, the first initialization does not crash for some
+reasons... But as soon as I reload the module, it crashes, in random places of
+the code. I will attach two dmesg showing that.
 
 
 -- 
