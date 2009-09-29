@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Tue, 29 Sep 2009 10:07:48 -0700 (PDT)
-Message-ID: <20090929170748.4D60413005B@annarchy.freedesktop.org>
+Date: Tue, 29 Sep 2009 10:30:50 -0700 (PDT)
+Message-ID: <20090929173051.07A442DC002@annarchy.freedesktop.org>
 References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
 
---- Comment #16 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-09-29 10:07:47 PST ---
-Created an attachment (id=29949)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29949)
-replacement for DEBUG_SPINLOCK?
-
-Could you try if this patch has the same effect as enabling DEBUG_SPINLOCK?
-If it does, could you try to reduce the patch to a minimal set of changes that
-does the same.
+--- Comment #17 from a.radke-KvP5wT2u2U0@public.gmane.org  2009-09-29 10:30:50 PST ---
+Created an attachment (id=29950)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29950)
+ttm trace log
 
 
 -- 
