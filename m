@@ -1,60 +1,112 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Tue, 29 Sep 2009 10:32:26 -0700 (PDT)
-Message-ID: <20090929173226.C8D04130058@annarchy.freedesktop.org>
-References: <bug-23847-8800@http.bugs.freedesktop.org/>
+From: Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org>
+Subject: fd.o services outage, annarchy $HOME lost
+Date: Wed, 30 Sep 2009 15:34:47 -0700
+Message-ID: <20090930223447.GA2488@tempa.pdx.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23847-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0754845049=="
+Return-path: <xorg-devel-bounces-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+List-Unsubscribe: <http://lists.x.org/mailman/listinfo/xorg-devel>,
+	<mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.x.org/archives/xorg-devel>
+List-Post: <mailto:xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+List-Help: <mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.x.org/mailman/listinfo/xorg-devel>,
+	<mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
+Mime-version: 1.0
+Sender: xorg-devel-bounces-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Errors-To: xorg-devel-bounces-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+To: xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Cc: geoclue-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dbus-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, poppler-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, xdg-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, devkit-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, xorg-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, telepathy-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, packagekit-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23847
+
+--===============0754845049==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="ZGiS0Q5IWpPtfppv"
+Content-Disposition: inline
 
 
+--ZGiS0Q5IWpPtfppv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hi all,
+Cutting and pasting from my blog entry[0] because I'm lazy:
 
+> As ajax quite elegantly summed up[1], due to a series of catastrophic
+> power failures at PSU, where fd.o is hosted, we were down for a good
+> chunk of yesterday. Despite the machines having redundant power
+> supplies, being connected to separate power rails in the rack, which
+> were hooked up to independent, UPS-backed, power supplies, we still
+> (like a good chunk of Portland, and certainly everyone in the PSU
+> machine room) lost our power.
+>=20
+> As far as we can tell, when annarchy.fd.o (websites, people.fd.o, cgit,
+> anongit, et al) came back up, power was again interrupted while the
+> ext3 journal was being replayed. When it came up the n'th time, fsck
+> dumped almost the entire filesystem in lost+found, then started saying
+> increasingly unhappy things about the state of the filesystem on its
+> second pass. In the end, we just went with mkfs, and now we have a
+> brand new and shiny filesystem.
+>=20
+> It's worth pointing out that even if this was another filesystem, such
+> as /srv, which hosts all project data, we would've been fine, as
+> they're all backed up. But, unfortunately for some, we made a decision
+> a while ago to not back /home up, and didn't advertise that as widely as
+> we should have. So, if you had stuff in annarchy:/home, it's now gone,
+> and I hope you have backups.
+>=20
+> Sorry about that. On the upside, I got to see PSU's new and really very
+> nice machine room this morning, thanks to XDC being about 250m away
+> from the PSU machine room, and fd.o is otherwise running fine. We've
+> been talking this week about replacing our ageing hardware, which would
+> also allow for more redundancy as well as better performance from those
+> machines. But we still have no plans to back up /home, so if you put
+> stuff there, please, please keep your own backups (or make sure the
+> Wayback Machine knows about it).=20
 
---- Comment #18 from a.radke-KvP5wT2u2U0@public.gmane.org  2009-09-29 10:32:25 PST ---
-I have a x86_64 system and enabled DEBUG_SPINLOCK but it didn't solve anything
-for me.
+Again, please accept our apologies.  The decision was made a long time
+ago to not back up $HOME, and it was mentioned a few times, but
+certainly not documented nearly as widely as it should've been (i.e.
+shouted from the rooftops), given that a few people have lost data and
+been upset about it.
 
-I enabled the debug option for the drm module and when udev starts it shows 
+The plan for when we get new hardware is to run the old hardware as
+redundant backups, with regular rsyncs, so we can fail over and have
+less downtime, as well as have a backup (of sorts) of $HOME.
 
-Sep 29 16:59:20 workstation64 kernel: BUG: unable to handle kernel NULL pointer
-dereference at 00000000000000cc
-Sep 29 16:59:20 workstation64 kernel: IP: [<ffffffff811f726b>]
-_raw_spin_lock+0x2b/0x190
-Sep 29 16:59:20 workstation64 kernel: PGD 22e59f067 PUD 22e60a067 PMD 0 
-Sep 29 16:59:20 workstation64 kernel: Oops: 0000 [#1] PREEMPT SMP 
-Sep 29 16:59:20 workstation64 kernel: last sysfs file:
-/sys/module/evdev/initstate
-Sep 29 16:59:20 workstation64 kernel: CPU 3 
-Sep 29 16:59:20 workstation64 kernel: Modules linked in: ttm(+) serio_raw
-drm_kms_helper thermal sg mii pcspkr soundcore snd_page_alloc evdev ehci_hcd(+)
-drm i2c_i801 button iTCO_wdt i2c_algo_bit iTCO_vendor_su
-pport i2c_core processor usbcore intel_agp rtc_cmos rtc_core rtc_lib ext4
-mbcache jbd2 crc16 sd_mod ahci libata scsi_mod
-Sep 29 16:59:20 workstation64 kernel: Pid: 601, comm: modprobe Not tainted
-2.6.31-ARCH #1 OEM
-Sep 29 16:59:20 workstation64 kernel: RIP: 0010:[<ffffffff811f726b>] 
-[<ffffffff811f726b>] _raw_spin_lock+0x2b/0x190
+Hopefully this doesn't put you guys out too much, and thanks for your
+understanding.
 
-more in the log
+Cheers,
+Daniel
 
+[1]: http://ajaxxx.livejournal.com/62015.html
 
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+--ZGiS0Q5IWpPtfppv
+Content-Type: application/pgp-signature
+Content-Disposition: inline
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+
+iEYEARECAAYFAkrD3QcACgkQUVYB1rKAgJQ0lQCfaHS2i2NSrbbxHN03QMf6+c2Q
+2swAnRIlzhG64kn7sGyYd5iD25ZTwAXh
+=hMch
+-----END PGP SIGNATURE-----
+
+--ZGiS0Q5IWpPtfppv--
+
+--===============0754845049==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+xorg-devel mailing list
+xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+http://lists.x.org/mailman/listinfo/xorg-devel
+
+--===============0754845049==--
