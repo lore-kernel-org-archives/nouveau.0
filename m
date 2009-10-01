@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23847] kernel BUG when using nouveau
-Date: Wed, 30 Sep 2009 16:45:56 -0700 (PDT)
-Message-ID: <20090930234556.0EB7813005D@annarchy.freedesktop.org>
+Date: Wed, 30 Sep 2009 20:51:40 -0700 (PDT)
+Message-ID: <20091001035140.54E4B13005B@annarchy.freedesktop.org>
 References: <bug-23847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23847
 
 
 
---- Comment #19 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-09-30 16:45:55 PST ---
-Created an attachment (id=29962)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=29962)
-[PATCH] drm/nouveau: fix missized allocation for ttm_bo_global struct
-
-This patch from
-http://0x04.net/~mwk/0001-drm-nouveau-fix-missized-allocation-for-ttm_bo_glob.patch
-fixes it, right?
+--- Comment #20 from a.radke-KvP5wT2u2U0@public.gmane.org  2009-09-30 20:51:39 PST ---
+Yes, it fixes it for Xavier (i686) and me (x86_64).
 
 
 -- 
