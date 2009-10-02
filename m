@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24271] PGRAPH_ERROR , often after suspend/resume
-Date: Fri,  2 Oct 2009 01:24:52 -0700 (PDT)
-Message-ID: <20091002082452.1032713005C@annarchy.freedesktop.org>
+Date: Fri,  2 Oct 2009 01:32:21 -0700 (PDT)
+Message-ID: <20091002083221.6C4D12DC101@annarchy.freedesktop.org>
 References: <bug-24271-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,20 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=24271
 
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
 
 
+
+--- Comment #3 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-02 01:32:20 PST ---
+In my situation, it indeed looks totally harmless. Though pgraph errors seemed
+to be often associated with more severe problems in the past (as I found in irc
+log or in the bugtracker), so I was a bit unsure. Good to know I can safely
+ignore it :)
+
+For some reasons, it seems more likely to trigger after suspend/resume than on
+a fresh boot. I saw it many times after suspend/resume and only once after a
+cold boot. But well that probably does not help.
+
+Anyway, everything works fine, no big deal !
 
 
 -- 
