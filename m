@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23212] oops on rmmod nouveau with nv31m
-Date: Thu,  1 Oct 2009 12:59:13 -0700 (PDT)
-Message-ID: <20091001195913.7FCDF13005C@annarchy.freedesktop.org>
+Date: Thu,  1 Oct 2009 20:48:00 -0700 (PDT)
+Message-ID: <20091002034801.0537113005C@annarchy.freedesktop.org>
 References: <bug-23212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-23212-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -20,18 +20,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzIxMgoKCgoKCi0t
-LSBDb21tZW50ICMxIGZyb20gTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0
-PiAgMjAwOS0xMC0wMSAxMjo1OToxMiBQU1QgLS0tCllvdSBzZWVtIHRvIGJlIHVzaW5nIG9sZCBr
-ZXJuZWwgd2l0aCBzZXJpb3VzIGJ1Z3MsIHNlZQpodHRwOi8vbm91dmVhdS5mcmVlZGVza3RvcC5v
-cmcvd2lraS9VcHN0cmVhbUtlcm5lbElzc3VlcyBmb3IgbW9yZSBkZXRhaWxzLiBZb3UKc2hvdWxk
-IHRyeSBidWlsZGluZyB0aGUgd2hvbGUga2VybmVsIGZyb20gbm91dmVhdS9saW51eC0yLjYgcmVw
-b3NpdG9yeSBpZgpwb3NzaWJsZSwgb3RoZXJ3aXNlIHVwZ3JhZGUgdG8gMi42LjMxLgoKQWxzbywg
-YSBtZW1vcnkgY29ycnVwdGlvbiBidWcgd2FzIHNxdWFzaGVkIHJlY2VudGx5IGluIG5vdXZlYXUg
-ZHJtLCBjYW4geW91CnZlcmlmeSB0aGlzIGlzc3VlIHN0aWxsIGhhcHBlbnMgd2l0aCBjdXJyZW50
-IGdpdD8KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9y
-Zy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMg
-bWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=23212
+
+
+
+
+
+--- Comment #2 from prg-uDMUqRiVvSc@public.gmane.org  2009-10-01 20:48:00 PST ---
+Created an attachment (id=29990)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=29990)
+dmesg on 2.6.31 after modprobe without modeset=1
+
+Using 2.6.31 now, rebuilt everything from the x11 overlay, but when I do
+modprobe nouveau modeset=1 the screen turns off and the system freezes (sysrq
+doesn't work anymore), nothing in the log about that after reboot.
+
+Attached the dmesg without modeset=1, but I guess it won't help much.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
