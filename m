@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23212] oops on rmmod nouveau with nv31m
-Date: Fri,  2 Oct 2009 11:38:49 -0700 (PDT)
-Message-ID: <20091002183849.B48B913005C@annarchy.freedesktop.org>
+Date: Sat,  3 Oct 2009 08:06:33 -0700 (PDT)
+Message-ID: <20091003150633.B87DC13005C@annarchy.freedesktop.org>
 References: <bug-23212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23212
 
 
 
---- Comment #5 from prg-uDMUqRiVvSc@public.gmane.org  2009-10-02 11:38:47 PST ---
-66960bf357b134b46044f46f5e80ed4d8ed86220 is first bad commit
-drm/nouveau: Import >=nv17 TV-out support.
+--- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-10-03 08:06:33 PST ---
+Created an attachment (id=30013)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30013)
+patch0.diff
 
-With the commit before that (b07297c4d302c8b1bb476cf8f4b67171dd1b6d38) I get
-the old behaviour.
+Your bios tables seem a little bit misleading, does the attached patch change
+anything? (please attach some logs if it works around the hard lockup).
 
 
 -- 
