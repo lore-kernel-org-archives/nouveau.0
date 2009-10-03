@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23212] oops on rmmod nouveau with nv31m
-Date: Sat,  3 Oct 2009 13:30:49 -0700 (PDT)
-Message-ID: <20091003203049.DF5BD13005C@annarchy.freedesktop.org>
+Date: Sat,  3 Oct 2009 15:42:21 -0700 (PDT)
+Message-ID: <20091003224221.2D48E13005C@annarchy.freedesktop.org>
 References: <bug-23212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23212
 
 
 
---- Comment #7 from prg-uDMUqRiVvSc@public.gmane.org  2009-10-03 13:30:49 PST ---
-The patch didn't help.
+--- Comment #8 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-10-03 15:42:20 PST ---
+Created an attachment (id=30026)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30026)
+patch1.diff
+
+I'm attaching a couple of patches more that would be interesting to try...
 
 
 -- 
