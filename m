@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23212] oops on rmmod nouveau with nv31m
-Date: Sat,  3 Oct 2009 17:10:32 -0700 (PDT)
-Message-ID: <20091004001032.4ECC113005C@annarchy.freedesktop.org>
+Date: Sat,  3 Oct 2009 17:33:28 -0700 (PDT)
+Message-ID: <20091004003328.8C0702DC101@annarchy.freedesktop.org>
 References: <bug-23212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23212
 
 
 
---- Comment #10 from prg-uDMUqRiVvSc@public.gmane.org  2009-10-03 17:10:31 PST ---
-Created an attachment (id=30029)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30029)
-dmesg with patch1
+--- Comment #11 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-10-03 17:33:27 PST ---
+(In reply to comment #10)
+> Created an attachment (id=30029)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30029) [details]
+> dmesg with patch1
+> 
+> KMS seems to be working fine with patch1.
+> With patch2 I still get the freeze.
+> 
 
-KMS seems to be working fine with patch1.
-With patch2 I still get the freeze.
+So your card probably needs something to be done differently for TV-out load
+detection... An mmiotrace is likely to be very useful (see
+http://nouveau.freedesktop.org/wiki/MmioTraceHowto).
 
 
 -- 
