@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23212] oops on rmmod nouveau with nv31m
-Date: Sun,  4 Oct 2009 11:24:44 -0700 (PDT)
-Message-ID: <20091004182445.0AF5F13005C@annarchy.freedesktop.org>
+Date: Sun,  4 Oct 2009 11:37:04 -0700 (PDT)
+Message-ID: <20091004183704.90B9B13005C@annarchy.freedesktop.org>
 References: <bug-23212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23212
 
 
 
---- Comment #12 from prg-uDMUqRiVvSc@public.gmane.org  2009-10-04 11:24:44 PST ---
-I got a trace of modprobing nvidia, starting and exiting X, it's about 1.1MB
-lzma compressed, should I attach it here or send to that gmail adress?
+--- Comment #13 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-10-04 11:37:04 PST ---
+(In reply to comment #12)
+> I got a trace of modprobing nvidia, starting and exiting X, it's about 1.1MB
+> lzma compressed, should I attach it here or send to that gmail adress?
+> 
+
+Yeah, you'd better send it to mmio.dumps at gmail.com.
 
 
 -- 
