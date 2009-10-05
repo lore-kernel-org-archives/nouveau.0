@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23212] oops on rmmod nouveau with nv31m
-Date: Sun,  4 Oct 2009 17:43:21 -0700 (PDT)
-Message-ID: <20091005004321.BDFEF13005C@annarchy.freedesktop.org>
+Date: Sun,  4 Oct 2009 18:24:48 -0700 (PDT)
+Message-ID: <20091005012448.CE44013005C@annarchy.freedesktop.org>
 References: <bug-23212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23212
 
 
 
---- Comment #17 from prg-uDMUqRiVvSc@public.gmane.org  2009-10-04 17:43:20 PST ---
-Created an attachment (id=30057)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30057)
-Xorg.0.log with KMS and a TV connected
+--- Comment #18 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-10-04 18:24:48 PST ---
+Created an attachment (id=30058)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30058)
+patch4.diff
+
+Hm, that seems to be because of some recent DRM changes... the attached patch
+should fix it.
 
 
 -- 
