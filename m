@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23212] oops on rmmod nouveau with nv31m
-Date: Sun,  4 Oct 2009 13:10:35 -0700 (PDT)
-Message-ID: <20091004201035.E566313005C@annarchy.freedesktop.org>
+Date: Sun,  4 Oct 2009 17:42:52 -0700 (PDT)
+Message-ID: <20091005004252.665D513005C@annarchy.freedesktop.org>
 References: <bug-23212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23212
 
 
 
---- Comment #15 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-10-04 13:10:33 PST ---
-Created an attachment (id=30042)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30042)
-patch3.diff
+--- Comment #16 from prg-uDMUqRiVvSc@public.gmane.org  2009-10-04 17:42:51 PST ---
+Created an attachment (id=30056)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30056)
+dmesg with KMS and a TV connected
 
-The attached patch should do the trick, nv31 TV load detection seems to be more
-like nv17 than other newer nv3x. I probably did some other untested assumptions
-about nv31 TV-out, so it would be nice if you tried it (Note that you'll surely
-need patch2 for it to work), but don't worry too much about it :-)
+KMS is working with patch2+3. Not sure how to enable TV out though. Running
+xrandr just returns "Output TV-0 is not disconnected but has no modes", no
+matter what I pass to xrandr. TV out is working fine if I set it up with the
+blob and nvidia-settings.
 
 
 -- 
