@@ -1,11 +1,15 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH] nv10/exa: Allow component-alpha masks.
-Date: Mon,  5 Oct 2009 06:47:44 +0200
-Message-ID: <1254718064-25016-1-git-send-email-currojerez@riseup.net>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/3] drm/nouveau: Ignore DCB I2C indices for
+ on-chip TV-out.
+Date: Mon, 05 Oct 2009 17:44:10 +1000
+Message-ID: <1254728651.13952.0.camel@keine.ath.cx>
+References: <1254710226-26139-1-git-send-email-currojerez@riseup.net>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1254710226-26139-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,57 +19,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On Mon, 2009-10-05 at 04:37 +0200, Francisco Jerez wrote:
+> The nv31m in bug 23212 claims its TV-out and LVDS are in the same
+> connector. Ignore it completely as it's otherwise useless.
+ACK for all three.
 
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
----
- src/nv10_exa.c |   18 ++++++++----------
- 1 files changed, 8 insertions(+), 10 deletions(-)
-
-diff --git a/src/nv10_exa.c b/src/nv10_exa.c
-index 71184b1..62cc9aa 100644
---- a/src/nv10_exa.c
-+++ b/src/nv10_exa.c
-@@ -97,8 +97,6 @@ static Bool NV10CheckTexture(PicturePtr Picture)
- 		return FALSE;
- 	if (Picture->filter != PictFilterNearest && Picture->filter != PictFilterBilinear)
- 		return FALSE;
--	if (Picture->componentAlpha)
--		return FALSE;
- 	/* we cannot repeat on NV10 because NPOT textures do not support this. unfortunately. */
- 	if (Picture->repeat != RepeatNone)
- 		/* we can repeat 1x1 textures */
-@@ -114,8 +112,6 @@ static Bool NV10CheckBuffer(PicturePtr Picture)
- 
- 	if ((w > 4096) || (h > 4096))
- 		return FALSE;
--	if (Picture->componentAlpha)
--		return FALSE;
- 	if (!NV10DstFormat(Picture->format))
- 		return FALSE;
- 	return TRUE;
-@@ -513,12 +509,14 @@ unsigned int color0 = 0, color1 = 0;
- 
- 	if ( ! mask )
- 		rc0_in_rgb |= B_RGB_ONE;
--	else 
--		if (  mask->format == PICT_x8r8g8b8 )  /*no alpha? ignore it*/
--			rc0_in_rgb |= B_RGB_ONE;
--		else
--			rc0_in_rgb |= 0x00190000; /*B = a_1*/
--		
-+	else if (mask->componentAlpha && PICT_FORMAT_RGB(mask->format))
-+		rc0_in_rgb |= 0x00090000; /*B = rgb_1*/
-+	else if (PICT_FORMAT_A(mask->format))
-+		rc0_in_rgb |= 0x00190000; /*B = a_1*/
-+	else /*no alpha? ignore it*/
-+		rc0_in_rgb |= B_RGB_ONE;
-+
-+
- 	BEGIN_RING(chan, celcius, NV10TCL_RC_IN_ALPHA(0), 6);
- 	OUT_RING  (chan, rc0_in_alpha);
- 	OUT_RING  (chan, rc1_in_alpha);
--- 
-1.6.3.3
+> 
+> Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_bios.c |   11 +++++++++++
+>  1 files changed, 11 insertions(+), 0 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+> index 195ecb3..01ef97e 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_bios.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+> @@ -5259,6 +5259,17 @@ fixup_legacy_connector(struct nvbios *bios)
+>  		if (dcb->entry[i].i2c_index == 0xf)
+>  			continue;
+>  
+> +		/*
+> +		 * Ignore the I2C index for on-chip TV-out, as there
+> +		 * are cards with bogus values (nv31m in bug 23212),
+> +		 * and it's otherwise useless.
+> +		 */
+> +		if (dcb->entry[i].type == OUTPUT_TV &&
+> +		    dcb->entry[i].location == DCB_LOC_ON_CHIP) {
+> +			dcb->entry[i].i2c_index = 0xf;
+> +			continue;
+> +		}
+> +
+>  		dcb->entry[i].connector = dcb->entry[i].i2c_index;
+>  		if (dcb->entry[i].connector > high)
+>  			high = dcb->entry[i].connector;
