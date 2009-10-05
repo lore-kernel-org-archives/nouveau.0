@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23212] oops on rmmod nouveau with nv31m
-Date: Sun,  4 Oct 2009 17:42:52 -0700 (PDT)
-Message-ID: <20091005004252.665D513005C@annarchy.freedesktop.org>
+Date: Sun,  4 Oct 2009 17:43:21 -0700 (PDT)
+Message-ID: <20091005004321.BDFEF13005C@annarchy.freedesktop.org>
 References: <bug-23212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23212
 
 
 
---- Comment #16 from prg-uDMUqRiVvSc@public.gmane.org  2009-10-04 17:42:51 PST ---
-Created an attachment (id=30056)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30056)
-dmesg with KMS and a TV connected
-
-KMS is working with patch2+3. Not sure how to enable TV out though. Running
-xrandr just returns "Output TV-0 is not disconnected but has no modes", no
-matter what I pass to xrandr. TV out is working fine if I set it up with the
-blob and nvidia-settings.
+--- Comment #17 from prg-uDMUqRiVvSc@public.gmane.org  2009-10-04 17:43:20 PST ---
+Created an attachment (id=30057)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30057)
+Xorg.0.log with KMS and a TV connected
 
 
 -- 
