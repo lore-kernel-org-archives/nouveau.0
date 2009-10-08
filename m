@@ -1,8 +1,7 @@
-From: Matt Parnell <mparnell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] Add an option for Nouveau debugfs output that
-	depends on DEBUG_FS and update help entry for Nouveau KMS
-Date: Thu,  8 Oct 2009 15:58:30 -0500
-Message-ID: <1255035510-5681-1-git-send-email-mparnell@gmail.com>
+From: Matt Parnell <parwok-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Add DRM_NOUVEAU_DEBUG option
+Date: Thu,  8 Oct 2009 16:26:51 -0500
+Message-ID: <1255037211-5992-1-git-send-email-parwok@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -17,25 +16,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Matt Parnell <parwok-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Matt Parnell <mparnell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Matt Parnell <parwok-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-
-drm/nouveau: Add DRM_NOUVEAU_DEBUG option
+From: Matt Parnell <mparnell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 
 Sometimes we have DEBUG_FS enabled, but don't want output from certain modules.
-Most modules make this an option, so I figured that Nouveau needed it too. I also
-made it exlicit that CONSOLE_FRAMEBUFFER is needed for textmode use with KMS.
+Most modules make this an option, so I figured that Nouveau needed it too.
 
-Signed-off-by: Matt Parnell <parwok-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Signed-off-by: Matt Parnell <mparnell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
  drivers/gpu/drm/Kconfig                   |   11 +++++++++++
- drivers/gpu/drm/nouveau/Makefile          |    3 ++-
+ drivers/gpu/drm/nouveau/Makefile          |    2 +-
  drivers/gpu/drm/nouveau/nouveau_debugfs.c |    2 --
  drivers/gpu/drm/nouveau/nouveau_drv.c     |    2 +-
  drivers/gpu/drm/nouveau/nouveau_drv.h     |    2 +-
- 5 files changed, 15 insertions(+), 5 deletions(-)
+ 5 files changed, 14 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
 index 7fe8a4c..62dd13c 100644
@@ -67,7 +63,7 @@ index 7fe8a4c..62dd13c 100644
       depends on DRM
  
 diff --git a/drivers/gpu/drm/nouveau/Makefile b/drivers/gpu/drm/nouveau/Makefile
-index ab46e3a..343d1da 100644
+index ab46e3a..e12b4ff 100644
 --- a/drivers/gpu/drm/nouveau/Makefile
 +++ b/drivers/gpu/drm/nouveau/Makefile
 @@ -9,7 +9,6 @@ nouveau-y := nouveau_drv.o nouveau_state.o nouveau_channel.o nouveau_mem.o \
@@ -78,11 +74,10 @@ index ab46e3a..343d1da 100644
               nv04_timer.o \
               nv04_mc.o nv40_mc.o nv50_mc.o \
               nv04_fb.o nv10_fb.o nv40_fb.o \
-@@ -22,6 +21,8 @@ nouveau-y := nouveau_drv.o nouveau_state.o nouveau_channel.o nouveau_mem.o \
+@@ -22,6 +21,7 @@ nouveau-y := nouveau_drv.o nouveau_state.o nouveau_channel.o nouveau_mem.o \
               nv04_dac.o nv04_dfp.o nv04_tv.o nv17_tv.o nv17_tv_modes.o \
               nv04_crtc.o nv04_display.o nv04_cursor.o nv04_fbcon.o
  
-+# Give users a choice on building debugfs support or not
 +nouveau-$(CONFIG_DRM_NOUVEAU_DEBUG) += nouveau_debugfs.o
  nouveau-$(CONFIG_COMPAT) += nouveau_ioc32.o
  nouveau-$(CONFIG_DRM_NOUVEAU_BACKLIGHT) += nouveau_backlight.o
