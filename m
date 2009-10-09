@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24421] New: Commit
+Subject: [Bug 24421] Commit
  6c8d3e39b72abe897b08d9e90cae85e121863d2c causes colour corruption on 9800M
-Date: Fri,  9 Oct 2009 08:25:32 -0700 (PDT)
-Message-ID: <bug-24421-8800@http.bugs.freedesktop.org/>
+Date: Fri,  9 Oct 2009 11:53:15 -0700 (PDT)
+Message-ID: <20091009185315.584FD13005C@annarchy.freedesktop.org>
+References: <bug-24421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-24421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +23,22 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=24421
 
-           Summary: Commit 6c8d3e39b72abe897b08d9e90cae85e121863d2c causes
-                    colour corruption on 9800M
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+John Keeping <john.keeping-ez+xnXmNv0XR7s880joybQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |john.keeping-ez+xnXmNv0XR7s880joybQ@public.gmane.org
 
 
-Created an attachment (id=30223)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30223)
-Photograph of KDM exhibiting symptom
 
-A recent update of xf86-video-nouveau caused colour corruption for me on an
-nVidia 9800M.  I've attached an image of KDM showing the effect quite well.  I
-bisected the problem down to commit 6c8d3e39b72abe897b08d9e90cae85e121863d2c. 
-My mode settings are 1920x1200x60, 24-bit depth, and KMS is enabled. 
-xorg-server 1.6.3.901, GIT nouveau DRM.
+
+--- Comment #1 from John Keeping <john.keeping-ez+xnXmNv0XR7s880joybQ@public.gmane.org>  2009-10-09 11:53:13 PST ---
+I'm seeing the same sort of corruption on a Quadro FX 2500M (G71), also
+1920x1200x60, 24-bit and KMS. xorg-server-1.6.4 with mesa and libdrm from git.
+I left xf86-video-nouveau as git master and bisected the nouveau-drm modules.
+Commit c3a2669eeceda30e16573cdd807bdfed6dc51daf caused the problem for me,
+regardless of the xf86-video-nouveau in use.
 
 
 -- 
