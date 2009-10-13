@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24370] nouveau and xorg-server-1.7 does not work
  without NoAccel
-Date: Tue, 13 Oct 2009 01:11:29 -0700 (PDT)
-Message-ID: <20091013081129.B9DD12DC101@annarchy.freedesktop.org>
+Date: Tue, 13 Oct 2009 01:11:56 -0700 (PDT)
+Message-ID: <20091013081156.0C0F213005D@annarchy.freedesktop.org>
 References: <bug-24370-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,15 +28,15 @@ Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #30137|0                           |1
+  Attachment #30138|0                           |1
         is obsolete|                            |
 
 
 
 
---- Comment #5 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2009-10-13 01:11:28 PST ---
-(From update of attachment 30137)
-obsoleted by http://xake.rymdraket.net/nouveau/kern.log
+--- Comment #6 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2009-10-13 01:11:55 PST ---
+(From update of attachment 30138)
+obsoleted by http://xake.rymdraket.net/nouveau/Xorg.0.log
 
 
 -- 
