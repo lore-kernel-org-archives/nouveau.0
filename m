@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18638] nouveau fails on GeForce 9400M
-Date: Thu, 15 Oct 2009 12:24:42 -0700 (PDT)
-Message-ID: <20091015192442.C3351130061@annarchy.freedesktop.org>
-References: <bug-18638-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24595] New: [nv15] screen corruption (color) with
+	latest git
+Date: Sat, 17 Oct 2009 15:09:19 -0700 (PDT)
+Message-ID: <bug-24595-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-18638-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +19,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=18638
+http://bugs.freedesktop.org/show_bug.cgi?id=24595
+
+           Summary: [nv15] screen corruption (color) with latest git
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |high
-            Summary|nouveau fails on GeForce    |nouveau fails on GeForce
-                   |9400M (Apple Macbook 5.1)   |9400M
+Hardware: Geforce 2 GTS
+Installed software: Mesa, nouveau driver and kernel driver -> all git
+(20091016)
 
 
+I think two pictures are worth a thousands words...
+
+nv-driver (good):
+http://www.freeimagehosting.net/uploads/2665af90b8.jpg
 
 
---- Comment #9 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-15 12:24:41 PST ---
-I provide a mmiotrace for 9400M and via HDMI->HDMI connected LCD:
-
-http://www.file-upload.net/download-1947951/9400M-HDMI-mmiotrace.tar.gz.html (~
-12 MiB)
-
-I know it is not for a Macbook but it should also help; it could also be
-helpful for bug #23373...
-
-Because it seems that there are currently problems with this chipset on all
-systems I am truncating the bug to "nouveau fails on GeForce 9400M" and
-changing priority to "high"...
-
-If you need more mmiotraces I can provide them also for DVI->HDMI, DVI->VGA and
-VGA->VGA (via specific cables...).
+nouveau-driver (bad):
+http://www.freeimagehosting.net/uploads/9cc2e6a842.jpg
 
 
 -- 
