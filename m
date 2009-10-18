@@ -1,11 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24607] New: Suspend fails with kernel hang
-Date: Sun, 18 Oct 2009 11:43:47 -0700 (PDT)
-Message-ID: <bug-24607-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24603] LVDS-0 off after resume,
+	PGRAPH_ERROR in kern.log
+Date: Sun, 18 Oct 2009 15:40:10 -0700 (PDT)
+Message-ID: <20091018224011.01594130060@annarchy.freedesktop.org>
+References: <bug-24603-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-24603-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,36 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yNDYwNwoKICAgICAg
-ICAgICBTdW1tYXJ5OiBTdXNwZW5kIGZhaWxzIHdpdGgga2VybmVsIGhhbmcKICAgICAgICAgICBQ
-cm9kdWN0OiB4b3JnCiAgICAgICAgICAgVmVyc2lvbjogdW5zcGVjaWZpZWQKICAgICAgICAgIFBs
-YXRmb3JtOiB4ODYgKElBMzIpCiAgICAgICAgT1MvVmVyc2lvbjogTGludXggKEFsbCkKICAgICAg
-ICAgICAgU3RhdHVzOiBORVcKICAgICAgICAgIFNldmVyaXR5OiBub3JtYWwKICAgICAgICAgIFBy
-aW9yaXR5OiBtZWRpdW0KICAgICAgICAgQ29tcG9uZW50OiBEcml2ZXIvbm91dmVhdQogICAgICAg
-IEFzc2lnbmVkVG86IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCiAgICAgICAgUmVwb3J0
-ZWRCeTogdGhpYkBzaXRlZGV0aGliLmNvbQogICAgICAgICBRQUNvbnRhY3Q6IHhvcmctdGVhbUBs
-aXN0cy54Lm9yZwoKCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9MzA1NDApCiAtLT4gKGh0dHA6
-Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9pZD0zMDU0MCkKZG1lc2cgb3V0
-cHV0IG9uIHRoaXMgbWFjaGluZSwgYmVmb3JlIHN1c3BlbmQKCkhpLCBJJ20gdXNpbmcgbm91dmVh
-dSAoa2VybmVsIGJ1aWx0IHRvZGF5IGZyb20gZ2l0LCB4Zjg2LWRyaXZlciBhbmQgbGliZHJtIGZy
-b20KYXQgbW9zdCB5ZXN0ZXJkYXksIGFuZCB0aGUgcmVzdCBvZiB0aGUgWCBzdGFjayBmcm9tIGRl
-YmlhbiB1bnN0YWJsZSkgb24gbXkgQVNVUwpsYXB0b3AuCgpXaGVuIGdvaW5nIHRvIHN1c3BlbmQg
-bW9kZSwgc2NyZWVucyB3aWxsIHR1cm4gYmxhY2ssIGFuZCB0aGUga2VybmVsIHdpbGwganVzdApo
-YW5nLgoKVXNpbmcgbm9fY29uc29sZV9zdXNwZW5kIGFsdG9nZXRoZXIgd2l0aCBuZXRjb25zb2xl
-IGFuZCBkbWVzZyAtbjgsIEkgY2FuIGdldMKgOgpbICAzODQuMzcyNTk1XSBQTTogU3luY2luZyBm
-aWxlc3lzdGVtcyAuLi4gZG9uZS4KWyAgMzg0LjQyNTI5MV0gRnJlZXppbmcgdXNlciBzcGFjZSBw
-cm9jZXNzZXMgLi4uIChlbGFwc2VkIDAuMDAgc2Vjb25kcykgZG9uZS4KWyAgMzg0LjQyNjMxN10g
-RnJlZXppbmcgcmVtYWluaW5nIGZyZWV6YWJsZSB0YXNrcyAuLi4gKGVsYXBzZWQgMC4wMCBzZWNv
-bmRzKQpkb25lLgpbICAzODYuMDI5MDgzXSBzZGhjaS1wY2kgMDAwMDowNjowMC4xOiBQTUUjIGRp
-c2FibGVkClsgIDM4Ni4wMjkxMThdIHNkaGNpLXBjaSAwMDAwOjA2OjAwLjE6IFBDSSBJTlQgQiBk
-aXNhYmxlZAoKVGhlbiwgSSBnZXQgbG90IG9mIFRUTSBvdXRwdXQsIHNvbWV0aGluZyBsaWtlICJC
-dWZmZXIgZXZpY3Rpb24gZmFpbGVkIiwgYnV0IGl0Cmlzbid0IHNlbnQgdG8gdGhlIG5ldGNvbnNv
-bGUuCgpIZXJlIGFyZSBpbmZvIGFib3V0IG15IGNhcmQ6CjAxOjAwLjAgVkdBIGNvbXBhdGlibGUg
-Y29udHJvbGxlcjogblZpZGlhIENvcnBvcmF0aW9uIEc3MyBbR2VGb3JjZSBHbyA3NjAwXQoocmV2
-IGExKQowMTowMC4wIDAzMDA6IDEwZGU6MDM5OCAocmV2IGExKQoKCi0tIApDb25maWd1cmUgYnVn
-bWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWls
-Ci0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91
-IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=24603
+
+
+
+
+
+--- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-18 15:40:09 PST ---
+Hm, I don't see any suspend/resume cycles with nouveau loaded in your log
+files.  There's a couple of suspends with the NVIDIA binary driver, but that's
+it.
+
+That particular PGRAPH error is "normal", and not related to LVDS not coming
+back.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
