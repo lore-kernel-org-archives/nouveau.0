@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24595] [nv15] screen corruption (color) with latest
 	git
-Date: Sun, 18 Oct 2009 02:06:04 -0700 (PDT)
-Message-ID: <20091018090604.21654130060@annarchy.freedesktop.org>
+Date: Sun, 18 Oct 2009 02:05:20 -0700 (PDT)
+Message-ID: <20091018090520.81F6B13005D@annarchy.freedesktop.org>
 References: <bug-24595-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24595
 
 
 
---- Comment #3 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-18 02:06:03 PST ---
-Created an attachment (id=30516)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30516)
-dmesg.txt
+--- Comment #2 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-18 02:05:19 PST ---
+Created an attachment (id=30515)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30515)
+Xorg.0.log
 
 
 -- 
