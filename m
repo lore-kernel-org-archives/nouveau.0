@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18638] nouveau fails on GeForce 9400M
-Date: Tue, 20 Oct 2009 01:23:44 -0700 (PDT)
-Message-ID: <20091020082344.D045613005E@annarchy.freedesktop.org>
+Date: Tue, 20 Oct 2009 09:12:06 -0700 (PDT)
+Message-ID: <20091020161206.D83DE2DC101@annarchy.freedesktop.org>
 References: <bug-18638-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,26 +23,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=18638
 
 
-Matthew <mister.wardrop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |mister.wardrop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
+--- Comment #11 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-10-20 09:12:04 PST ---
+(In reply to comment #10)
+> 
+> echo mmiotrace > /sys/kernel/debug/tracing/current_tracer
+> bash: echo: write error: Invalid argument
 
---- Comment #10 from Matthew <mister.wardrop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-20 01:23:43 PST ---
-Hello all! I have a Macbook 5,1 ; and I would love to see nouveau working on
-it. I am willing to put some effort into getting an mmiotrace if it will be
-helpful. Currently when I run: 
-
-echo mmiotrace > /sys/kernel/debug/tracing/current_tracer
-bash: echo: write error: Invalid argument
-
-it fails; as you can see. This command is run in a `sudo -s` shell.
-
-Let me know if you can help/if I should persevere.
+This should mean that mmiotrace support has not been compiled into the kernel.
+Check that CONFIG_MMIOTRACE is enabled: Kernel hacking -> Tracers [*] -> Memory
+mapped IO tracing.
 
 
 -- 
