@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24662] New: [DRM] ramin ioremap fails (no vmalloc
-	space)
-Date: Wed, 21 Oct 2009 13:20:05 -0700 (PDT)
-Message-ID: <bug-24662-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24662] [DRM] ramin ioremap fails (no vmalloc space)
+Date: Wed, 21 Oct 2009 13:39:17 -0700 (PDT)
+Message-ID: <20091021203917.1D286130071@annarchy.freedesktop.org>
+References: <bug-24662-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-24662-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=24662
 
-           Summary: [DRM] ramin ioremap fails (no vmalloc space)
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-"shining" on irc reported an issue after reloading the nouveau module.
 
-Oct 21 21:09:07 xps-m1530 kernel: [38358.282213] vmap allocation for size
-33558528 failed: use vmalloc=<size> to increase size.
-Oct 21 21:09:07 xps-m1530 kernel: [38358.282220] [drm] nouveau 0000:01:00.0:
-Failed to init RAMIN mapping, limited instance memory available
 
-It appears we are not gracefully handling the lack of ramin mapping. Is it
-viable to move around the 1MB mapping in the mmio bar or maybe we should fail
-altogether.
+--- Comment #1 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-21 13:39:16 PST ---
+Created an attachment (id=30604)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30604)
+kernel log
 
-I haven't looked into it deeply, just want to avoid loosing the information.
+I had to run "uniq -f 6" on the log to remove 40k lines of PFIFO_INTR lines.
 
 
 -- 
