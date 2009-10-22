@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24668] KMS does not work with nva8
-Date: Thu, 22 Oct 2009 06:56:42 -0700 (PDT)
-Message-ID: <20091022135642.B879513006A@annarchy.freedesktop.org>
+Date: Thu, 22 Oct 2009 06:57:50 -0700 (PDT)
+Message-ID: <20091022135750.75C4613006A@annarchy.freedesktop.org>
 References: <bug-24668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24668
 
 
 
---- Comment #6 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2009-10-22 06:56:41 PST ---
-Created an attachment (id=30623)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30623)
-dmesg
+--- Comment #7 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2009-10-22 06:57:48 PST ---
+I tried but still no go.  
+I did have a minor complier error (should be limit_match instead of reg it
+seems).
 
 
 -- 
