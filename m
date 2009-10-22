@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24668] KMS does not work with nva8
-Date: Wed, 21 Oct 2009 18:26:05 -0700 (PDT)
-Message-ID: <20091022012605.6B84F13007C@annarchy.freedesktop.org>
+Date: Wed, 21 Oct 2009 18:45:55 -0700 (PDT)
+Message-ID: <20091022014555.B1493130083@annarchy.freedesktop.org>
 References: <bug-24668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,23 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=24668
 
 
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
 
 
 
---- Comment #1 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2009-10-21 18:26:05 PST ---
-Created an attachment (id=30607)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30607)
-dmesg
+
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-21 18:45:54 PST ---
+Awesome, I've been wondering when one of these'd appear :)
+
+Can I get a VBIOS image from your card too please.  Just grab
+git://people.freedesktop.org/~stuart/vbtracetool, compile, then run
+"./vbtracetool -w 2>vbios.rom"
+
+Thanks!
 
 
 -- 
