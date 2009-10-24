@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18638] nouveau fails on GeForce 9400M
-Date: Fri, 23 Oct 2009 17:14:52 -0700 (PDT)
-Message-ID: <20091024001452.E4D621300C9@annarchy.freedesktop.org>
+Date: Fri, 23 Oct 2009 17:18:55 -0700 (PDT)
+Message-ID: <20091024001855.48BDD1300CA@annarchy.freedesktop.org>
 References: <bug-18638-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,25 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18638
 
 
 
---- Comment #13 from Matthew <mister.wardrop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-23 17:14:50 PST ---
-Okay... that was bound to fail.
+--- Comment #14 from Matthew <mister.wardrop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-23 17:18:54 PST ---
+I ought also to add that I had an external monitor plugged into the
+mini-displayport connector; but that it was disabled.
 
-Please find the trace file at;
-
-http://www.matthewwardrop.co.cc/tracing.txt.tar.bz2
-
-Note: this trace was run on Ubuntu using a custom kernel based on settings from
-the default 2.6.31-14 kernel in Karmic (i.e. 2.6.31.4). It traces the starting
-of an empty X session using the proprietary nVidia drivers 185.18.36 as
-packaged in Ubuntu. The hardware being used is the MacBook 5,1 ; with nVidia
-9400m.
-
-I also uploaded the GDM trace:
-http://www.matthewwardrop.co.cc/tracing-gdm.txt.tar.bz2
-The details are the same as above, but instead of starting an empty session, I
-started GDM/GNOME with compiz enabled, etc.
-
-I do hope this helps; for I'd love to run nouveau on my MacBook.
+Kind Regards,
+Matthew
 
 
 -- 
