@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24710] nouveau KMS fails on NV11 - screen displays
 	last input
-Date: Sat, 24 Oct 2009 03:31:17 -0700 (PDT)
-Message-ID: <20091024103117.E8A501300CB@annarchy.freedesktop.org>
+Date: Sat, 24 Oct 2009 03:32:40 -0700 (PDT)
+Message-ID: <20091024103240.3368B1300CB@annarchy.freedesktop.org>
 References: <bug-24710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,8 +28,8 @@ Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         OS/Version|All                         |Linux (All)
-           Platform|Other                       |x86 (IA32)
+  Attachment #30652|dmesg output after loading  |dmesg output after loading
+        description|kms with KMS enabled        |nouveau with KMS enabled
 
 
 
