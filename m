@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24710] nouveau KMS fails on NV11 - screen displays
 	last input
-Date: Sat, 24 Oct 2009 03:32:40 -0700 (PDT)
-Message-ID: <20091024103240.3368B1300CB@annarchy.freedesktop.org>
+Date: Sat, 24 Oct 2009 04:02:10 -0700 (PDT)
+Message-ID: <20091024110210.73D561300CD@annarchy.freedesktop.org>
 References: <bug-24710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,14 +24,11 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=24710
 
 
-Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #30652|dmesg output after loading  |dmesg output after loading
-        description|kms with KMS enabled        |nouveau with KMS enabled
 
 
+
+--- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-24 04:02:09 PST ---
+Is fbcon builtin or loaded (if it's a module)?
 
 
 -- 
