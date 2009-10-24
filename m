@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24710] New: nouveau KMS fails on NV11 - screen
- displays last input
-Date: Sat, 24 Oct 2009 03:30:33 -0700 (PDT)
-Message-ID: <bug-24710-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24710] nouveau KMS fails on NV11 - screen displays
+	last input
+Date: Sat, 24 Oct 2009 03:31:17 -0700 (PDT)
+Message-ID: <20091024103117.E8A501300CB@annarchy.freedesktop.org>
+References: <bug-24710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-24710-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=24710
 
-           Summary: nouveau KMS fails on NV11 - screen displays last input
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: jb.faq-Mmb7MZpHnFY@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         OS/Version|All                         |Linux (All)
+           Platform|Other                       |x86 (IA32)
 
 
-Created an attachment (id=30652)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30652)
-dmesg output after loading kms with KMS enabled
-
-I build the nouveau-kernel as recommended here: 
-http://nouveau.freedesktop.org/wiki/InstallDRM
-(Tried both master and master-compat)
-
-Steps to reproduce
-(I'm on gentoo)
-1) I boot this kernel and login as root (VT)
-2) modprobe -r nouveau
-3) modprobe nouveau modeset=1
-4) See a black screen shortly, then see the old VT, but now you cannot see new
-inputs
-
-Login with ssh still works or you can use the VT blindly
 
 
 -- 
