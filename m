@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21869] Chroma mismatch using XV
-Date: Sun, 25 Oct 2009 07:35:57 -0700 (PDT)
-Message-ID: <20091025143557.6B8341300D0@annarchy.freedesktop.org>
+Date: Sun, 25 Oct 2009 07:51:40 -0700 (PDT)
+Message-ID: <20091025145140.5E3221300D0@annarchy.freedesktop.org>
 References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,30 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
 
-Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org
 
 
 
-
---- Comment #18 from Ancoron <ancoron-gfoo8dC7XAXddJNmlsFzeA@public.gmane.org>  2009-10-25 07:35:56 PST ---
-(In reply to comment #12)
-> What should i be looking at exactly? Is it that the buttons are visible
-> transparently through the hand?
-> 
-> In that case, i see it as well (nv34M@ppc). Only with the overlay. Now I do
-> admit that I have for a long time suspected some of the changes darktama made
-> to the overlay code a few months ago reduced the image quality, but I could
-> never really pinpoint it. Perhaps it is this. I will try to see if i can bisect
-> it with this testcase.
-> 
-> Danny
-> 
-
-How's the progress on this issue?
+--- Comment #19 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-10-25 07:51:38 PST ---
+Since video overlays are not supported with KMS, I doubt there is any point in
+trying to fix this. Other types of Xv adaptors do not exhibit this bug, do
+they?
 
 
 -- 
