@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21869] Chroma mismatch using XV
-Date: Sun, 25 Oct 2009 07:51:40 -0700 (PDT)
-Message-ID: <20091025145140.5E3221300D0@annarchy.freedesktop.org>
+Date: Sun, 25 Oct 2009 11:59:43 -0700 (PDT)
+Message-ID: <20091025185943.290A51300D6@annarchy.freedesktop.org>
 References: <bug-21869-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=21869
 
 
 
---- Comment #19 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-10-25 07:51:38 PST ---
-Since video overlays are not supported with KMS, I doubt there is any point in
-trying to fix this. Other types of Xv adaptors do not exhibit this bug, do
-they?
+--- Comment #20 from Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>  2009-10-25 11:59:42 PST ---
+(In reply to comment #19)
+> Since video overlays are not supported with KMS, I doubt there is any point in
+> trying to fix this. Other types of Xv adaptors do not exhibit this bug, do
+> they?
+> 
+
+I disagree here, it's feasible to have overlay + KMS, we just need to put
+together an ioctl to program the overlay through KMS and things will work.
 
 
 -- 
