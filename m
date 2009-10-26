@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18638] nouveau fails on GeForce 9400M
-Date: Mon, 26 Oct 2009 13:35:53 -0700 (PDT)
-Message-ID: <20091026203554.B20A61300E4@annarchy.freedesktop.org>
+Date: Mon, 26 Oct 2009 15:51:56 -0700 (PDT)
+Message-ID: <20091026225156.D768E1300F1@annarchy.freedesktop.org>
 References: <bug-18638-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,27 +23,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=18638
 
 
-Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |johannesobermayr-Mmb7MZpHnFY@public.gmane.org
 
 
 
+--- Comment #19 from Matthew <mister.wardrop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-26 15:51:55 PST ---
+Setting modeset=1 and nouveau.modeset=1 does not help the driver to run
+properly on MacBook 5,1; although it appeared to detect my external monitor
+automatically (artifacts displayed on both screens).
 
---- Comment #18 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-26 13:35:52 PST ---
-KMS and X work if I set nouveau.modeset=1 as boot parameter.
+=(
 
-dmesg then:
-[    0.000000] Unknown boot option `nouveau.modeset=1': ignoring
-
-If I leave it blank or set modeset=1 KMS/X does not work...
-
-On my Laptop with ATI/AMD Radeon 9000 (M9) KMS is working if I set modeset=1,
-radeon.modeset=1 or leave it blank.
-
-It is stupid and annoying if you do not know this...
+Kind Regards,
+Matthew
 
 
 -- 
