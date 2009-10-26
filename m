@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18638] nouveau fails on GeForce 9400M
-Date: Mon, 26 Oct 2009 08:19:01 -0700 (PDT)
-Message-ID: <20091026151901.C4DA71300E3@annarchy.freedesktop.org>
-References: <bug-18638-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24710] nouveau KMS fails on NV11 - screen displays
+	last input
+Date: Mon, 26 Oct 2009 09:02:36 -0700 (PDT)
+Message-ID: <20091026160236.DA8DB1300E4@annarchy.freedesktop.org>
+References: <bug-24710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-18638-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-24710-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +21,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=18638
+http://bugs.freedesktop.org/show_bug.cgi?id=24710
 
 
 
 
 
---- Comment #16 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-26 08:18:58 PST ---
-Created an attachment (id=30699)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30699)
-dmesg
+--- Comment #3 from Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org>  2009-10-26 09:02:34 PST ---
+Now I compiled fbcon as module, git today, branch master.
+I booted the new kernel, unload nouveau, modprobe fbcon, modprobe nouveau
+modeset=1
 
-Current dmesg output - git20091024
+The problem still holds.
+
+More precisely I see my frozen VT, but today I recognized the Cursor is
+blinking (this is not a different to fbcon builtin, I just recognized it
+today). But I don't know if this makes any differences.
+
+greetings
 
 
 -- 
