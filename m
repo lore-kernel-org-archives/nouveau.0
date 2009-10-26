@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18638] nouveau fails on GeForce 9400M
-Date: Mon, 26 Oct 2009 08:18:09 -0700 (PDT)
-Message-ID: <20091026151809.7A0141300E3@annarchy.freedesktop.org>
+Date: Mon, 26 Oct 2009 08:19:01 -0700 (PDT)
+Message-ID: <20091026151901.C4DA71300E3@annarchy.freedesktop.org>
 References: <bug-18638-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,26 +23,15 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=18638
 
 
-Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #20470|0                           |1
-        is obsolete|                            |
-  Attachment #20493|0                           |1
-        is obsolete|                            |
-  Attachment #21433|0                           |1
-        is obsolete|                            |
 
 
 
+--- Comment #16 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-26 08:18:58 PST ---
+Created an attachment (id=30699)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30699)
+dmesg
 
---- Comment #15 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-26 08:18:05 PST ---
-Created an attachment (id=30698)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30698)
-Xorg.0.log
-
-Current Xorg.0.log - git20091024
+Current dmesg output - git20091024
 
 
 -- 
