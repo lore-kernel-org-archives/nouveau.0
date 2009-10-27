@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24668] KMS does not work with nva8
-Date: Mon, 26 Oct 2009 18:14:38 -0700 (PDT)
-Message-ID: <20091027011438.C303B1300BA@annarchy.freedesktop.org>
+Date: Mon, 26 Oct 2009 18:15:39 -0700 (PDT)
+Message-ID: <20091027011539.197641300BA@annarchy.freedesktop.org>
 References: <bug-24668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24668
 
 
 
---- Comment #9 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2009-10-26 18:14:37 PST ---
-Created an attachment (id=30711)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30711)
-dmesg_monitor_at_init_no_load
+--- Comment #10 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2009-10-26 18:15:38 PST ---
+Created an attachment (id=30712)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30712)
+dmesg_no_monitor_at_init_load
 
-Monitor turned on and I see no signal at console init.
-I found that the console works if the monitor is off at init.  I include a
-dmesg for that in the next attach.
+The monitor isn't on and the console shows up once I power it on.
 
 
 -- 
