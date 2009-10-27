@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24668] KMS does not work with nva8
-Date: Mon, 26 Oct 2009 17:34:00 -0700 (PDT)
-Message-ID: <20091027003401.001571300D7@annarchy.freedesktop.org>
+Date: Mon, 26 Oct 2009 18:14:38 -0700 (PDT)
+Message-ID: <20091027011438.C303B1300BA@annarchy.freedesktop.org>
 References: <bug-24668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24668
 
 
 
---- Comment #8 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-26 17:34:00 PST ---
-Sorry about the compile issue, I just hacked it together very quickly!!  Hmm,
-that's all the dmesg output you see?  Any chance of getting another log with
-"modprobe drm debug=15; modprobe nouveau modeset=1;"
+--- Comment #9 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2009-10-26 18:14:37 PST ---
+Created an attachment (id=30711)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30711)
+dmesg_monitor_at_init_no_load
 
-Thanks
+Monitor turned on and I see no signal at console init.
+I found that the console works if the monitor is off at init.  I include a
+dmesg for that in the next attach.
 
 
 -- 
