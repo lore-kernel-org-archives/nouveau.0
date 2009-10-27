@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 18638] nouveau fails on GeForce 9400M
-Date: Mon, 26 Oct 2009 15:51:56 -0700 (PDT)
-Message-ID: <20091026225156.D768E1300F1@annarchy.freedesktop.org>
-References: <bug-18638-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24668] KMS does not work with nva8
+Date: Mon, 26 Oct 2009 17:34:00 -0700 (PDT)
+Message-ID: <20091027003401.001571300D7@annarchy.freedesktop.org>
+References: <bug-24668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-18638-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-24668-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +20,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=18638
+http://bugs.freedesktop.org/show_bug.cgi?id=24668
 
 
 
 
 
---- Comment #19 from Matthew <mister.wardrop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-26 15:51:55 PST ---
-Setting modeset=1 and nouveau.modeset=1 does not help the driver to run
-properly on MacBook 5,1; although it appeared to detect my external monitor
-automatically (artifacts displayed on both screens).
+--- Comment #8 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-26 17:34:00 PST ---
+Sorry about the compile issue, I just hacked it together very quickly!!  Hmm,
+that's all the dmesg output you see?  Any chance of getting another log with
+"modprobe drm debug=15; modprobe nouveau modeset=1;"
 
-=(
-
-Kind Regards,
-Matthew
+Thanks
 
 
 -- 
