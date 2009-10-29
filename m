@@ -1,10 +1,9 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24780] New: 2 second delay during boot using nouveau
-Date: Wed, 28 Oct 2009 16:43:32 -0700 (PDT)
-Message-ID: <bug-24780-8800@http.bugs.freedesktop.org/>
+From: okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: x8r8g8b8 fix after texformat-rework
+Date: Thu, 29 Oct 2009 15:49:37 +0100
+Message-ID: <c2673ca60910290749s50abeeddy8f8a0c526a7e8baf@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=0015174760aa39a34704771405ac
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,96 +17,85 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24780
+--0015174760aa39a34704771405ac
+Content-Type: text/plain; charset=UTF-8
 
-           Summary: 2 second delay during boot using nouveau
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+This allow glxinfo to work without assert.
 
+This patch add forgot XRGB8888 <> X8R8G8B8 conversion.
 
-There is 2 seconds od delay while booting kernel with nouveau driver.
-Here is the revelant part of dmesg:
+Signed-off-by: David Heidelberger <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 
-[    0.166495] Linux agpgart interface v0.103
-[    0.166686] input: Power Button as
-/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input0
-[    0.166692] ACPI: Power Button [PWRB]
-[    0.166754] input: Power Button as
-/devices/LNXSYSTM:00/LNXPWRBN:00/input/input1
-[    0.166757] ACPI: Power Button [PWRF]
-[    0.167216] ACPI: SSDT 000000007ff8e0d0 00214 (v01    AMI   CPU1PM 00000001
-INTL 20060113)
-[    0.167504] processor LNXCPU:00: registered as cooling_device0
-[    0.167799] ACPI: SSDT 000000007ff8e2f0 00143 (v01    AMI   CPU2PM 00000001
-INTL 20060113)
-[    0.168073] processor LNXCPU:01: registered as cooling_device1
-[    0.168205] [drm] Initialized drm 1.1.0 20060810
-[    0.168252] nouveau 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
-[    0.168257] nouveau 0000:01:00.0: setting latency timer to 64
-[    0.170706] [drm] nouveau 0000:01:00.0: Detected an NV50 generation card
-(0x086100a2)
-[    0.170970] [drm] nouveau 0000:01:00.0: Attempting to load BIOS image from
-PRAMIN
-[    0.219181] [drm] nouveau 0000:01:00.0: ... appears to be valid
-[    0.219184] [drm] nouveau 0000:01:00.0: BIT BIOS found
-[    0.219187] [drm] nouveau 0000:01:00.0: Bios version 60.86.34.00
-[    0.219191] [drm] nouveau 0000:01:00.0: TMDS table revision 2.0 not
-currently supported
-[    0.219194] [drm] nouveau 0000:01:00.0: Found Display Configuration Block
-version 4.0
-[    0.219196] [drm] nouveau 0000:01:00.0: Raw DCB entry 0: 02000300 00000028
-[    0.219199] [drm] nouveau 0000:01:00.0: Raw DCB entry 1: 01000302 00100030
-[    0.219201] [drm] nouveau 0000:01:00.0: Raw DCB entry 2: 04011320 00000028
-[    0.219203] [drm] nouveau 0000:01:00.0: Raw DCB entry 3: 010223f1 00c0c080
-[    0.219211] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 0 at offset
-0xBC41
-[    0.244973] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 1 at offset
-0xBF5C
-[    0.264062] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 2 at offset
-0xCB9E
-[    0.264072] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 3 at offset
-0xCC90
-[    0.266150] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 4 at offset
-0xCE73
-[    0.266154] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table at offset
-0xCED8
-[    2.366021] [drm] nouveau 0000:01:00.0: 0xCED8: Condition still not met
-after 2000ms, skipping following opcodes
-[    2.366031] [drm] nouveau 0000:01:00.0: 0xAED4: parsing output script 0
-[    2.366035] [drm] nouveau 0000:01:00.0: 0xA564: parsing output script 0
-[    2.439777] [TTM] Zone  kernel: Available graphics memory: 1028254 kiB.
-[    2.439786] [drm] nouveau 0000:01:00.0: 256 MiB VRAM
-[    2.460797] [drm] nouveau 0000:01:00.0: 512 MiB GART (aperture)
-[    2.461613] [drm] nouveau 0000:01:00.0: Allocating FIFO number 1
-[    2.470273] [drm] nouveau 0000:01:00.0: nouveau_channel_alloc: initialised
-FIFO 1
-[    2.470744] [drm] nouveau 0000:01:00.0: Detected a DAC output
-[    2.470746] [drm] nouveau 0000:01:00.0: Detected a TMDS output
-[    2.470748] [drm] nouveau 0000:01:00.0: Detected a DAC output
-[    2.470750] [drm] nouveau 0000:01:00.0: DCB encoder 1 unknown
-[    2.470753] [drm] nouveau 0000:01:00.0: Detected a DVI-I connector
-[    2.470858] [drm] nouveau 0000:01:00.0: Detected a VGA connector
-[    2.646392] [drm] nouveau 0000:01:00.0: allocated 1600x1200 fb: 0x40250000,
-bo ffff88007fa3a000
-[    2.647332] [drm] DAC-7: set mode 1600x1200 29
-[    2.647766] [drm] nouveau 0000:01:00.0: 0x0FAF: parsing clock script 0
-[    2.650949] Console: switching to colour frame buffer device 200x75
-[    2.653054] fb0: nouveaufb frame buffer device
-[    2.653056] registered panic notifier
-[    2.653060] [drm] Initialized nouveau 0.0.15 20090420 for 0000:01:00.0 on
-minor 0
+--- a/st_format.c	2009-10-29 15:39:21.778200092 +0100
++++ b/st_format.c	2009-10-29 15:33:08.150963668 +0100
+@@ -218,6 +218,8 @@
+    case MESA_FORMAT_ARGB8888_REV:
+    case MESA_FORMAT_ARGB8888:
+       return PIPE_FORMAT_A8R8G8B8_UNORM;
++   case MESA_FORMAT_XRGB8888:
++      return PIPE_FORMAT_X8R8G8B8_UNORM;
+    case MESA_FORMAT_ARGB1555:
+       return PIPE_FORMAT_A1R5G5B5_UNORM;
+    case MESA_FORMAT_ARGB4444:
+@@ -287,6 +289,8 @@
+    switch (pipeFormat) {
+    case PIPE_FORMAT_A8R8G8B8_UNORM:
+       return MESA_FORMAT_ARGB8888;
++   case PIPE_FORMAT_X8R8G8B8_UNORM:
++      return MESA_FORMAT_XRGB8888;
+    case PIPE_FORMAT_A1R5G5B5_UNORM:
+       return MESA_FORMAT_ARGB1555;
+    case PIPE_FORMAT_A4R4G4B4_UNORM:
+@@ -698,6 +702,8 @@
+    switch (format) {
+    case PIPE_FORMAT_A8R8G8B8_UNORM:
+       return MESA_FORMAT_ARGB8888;
++   case PIPE_FORMAT_X8R8G8B8_UNORM:
++      return MESA_FORMAT_XRGB8888;
+    case PIPE_FORMAT_A1R5G5B5_UNORM:
+       return MESA_FORMAT_ARGB1555;
+    case PIPE_FORMAT_A4R4G4B4_UNORM:
 
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Jabber/XMPP: okias-O1n184kmSCviB9QmIjCX8w@public.gmane.org
+SIP VoIP: sip:17474537254-rne+wJe3e/u3Jhga2bR/9VaTQe2KTcn/@public.gmane.org
+
+--0015174760aa39a34704771405ac
+Content-Type: text/plain; charset=US-ASCII; name="add_X8R8G8B8.diff"
+Content-Disposition: attachment; filename="add_X8R8G8B8.diff"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_g1dms0lz0
+
+VGhpcyBwYXRjaCBhZGQgZm9yZ290IFhSR0I4ODg4IDw+IFg4UjhHOEI4IGNvbnZlcnNpb24uCgpT
+aWduZWQtb2ZmLWJ5OiBEYXZpZCBIZWlkZWxiZXJnZXIgPGQub2tpYXNAZ21haWwuY29tPgoKLS0t
+IGEvc3RfZm9ybWF0LmMJMjAwOS0xMC0yOSAxNTozOToyMS43NzgyMDAwOTIgKzAxMDAKKysrIGIv
+c3RfZm9ybWF0LmMJMjAwOS0xMC0yOSAxNTozMzowOC4xNTA5NjM2NjggKzAxMDAKQEAgLTIxOCw2
+ICsyMTgsOCBAQAogICAgY2FzZSBNRVNBX0ZPUk1BVF9BUkdCODg4OF9SRVY6CiAgICBjYXNlIE1F
+U0FfRk9STUFUX0FSR0I4ODg4OgogICAgICAgcmV0dXJuIFBJUEVfRk9STUFUX0E4UjhHOEI4X1VO
+T1JNOworICAgY2FzZSBNRVNBX0ZPUk1BVF9YUkdCODg4ODoKKyAgICAgIHJldHVybiBQSVBFX0ZP
+Uk1BVF9YOFI4RzhCOF9VTk9STTsKICAgIGNhc2UgTUVTQV9GT1JNQVRfQVJHQjE1NTU6CiAgICAg
+ICByZXR1cm4gUElQRV9GT1JNQVRfQTFSNUc1QjVfVU5PUk07CiAgICBjYXNlIE1FU0FfRk9STUFU
+X0FSR0I0NDQ0OgpAQCAtMjg3LDYgKzI4OSw4IEBACiAgICBzd2l0Y2ggKHBpcGVGb3JtYXQpIHsK
+ICAgIGNhc2UgUElQRV9GT1JNQVRfQThSOEc4QjhfVU5PUk06CiAgICAgICByZXR1cm4gTUVTQV9G
+T1JNQVRfQVJHQjg4ODg7CisgICBjYXNlIFBJUEVfRk9STUFUX1g4UjhHOEI4X1VOT1JNOgorICAg
+ICAgcmV0dXJuIE1FU0FfRk9STUFUX1hSR0I4ODg4OwogICAgY2FzZSBQSVBFX0ZPUk1BVF9BMVI1
+RzVCNV9VTk9STToKICAgICAgIHJldHVybiBNRVNBX0ZPUk1BVF9BUkdCMTU1NTsKICAgIGNhc2Ug
+UElQRV9GT1JNQVRfQTRSNEc0QjRfVU5PUk06CkBAIC02OTgsNiArNzAyLDggQEAKICAgIHN3aXRj
+aCAoZm9ybWF0KSB7CiAgICBjYXNlIFBJUEVfRk9STUFUX0E4UjhHOEI4X1VOT1JNOgogICAgICAg
+cmV0dXJuIE1FU0FfRk9STUFUX0FSR0I4ODg4OworICAgY2FzZSBQSVBFX0ZPUk1BVF9YOFI4RzhC
+OF9VTk9STToKKyAgICAgIHJldHVybiBNRVNBX0ZPUk1BVF9YUkdCODg4ODsKICAgIGNhc2UgUElQ
+RV9GT1JNQVRfQTFSNUc1QjVfVU5PUk06CiAgICAgICByZXR1cm4gTUVTQV9GT1JNQVRfQVJHQjE1
+NTU7CiAgICBjYXNlIFBJUEVfRk9STUFUX0E0UjRHNEI0X1VOT1JNOgo=
+--0015174760aa39a34704771405ac
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--0015174760aa39a34704771405ac--
