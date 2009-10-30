@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24820] New: [nv15] Vertical screen corruption in X
- when KMS is enabled
-Date: Fri, 30 Oct 2009 13:32:38 -0700 (PDT)
-Message-ID: <bug-24820-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
+ KMS is enabled
+Date: Fri, 30 Oct 2009 13:33:18 -0700 (PDT)
+Message-ID: <20091030203318.76AC41300C2@annarchy.freedesktop.org>
+References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
-           Summary: [nv15] Vertical screen corruption in X when KMS is
-                    enabled
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Hardware: Geforce2 GTS
-Drivers, Mesa, kernel modules: git20091029
 
-If I boot with nouveau.modeset=1 X/KDE4 looks like this:
 
-http://www.freeimagehosting.net/uploads/ea8ad8c8cc.jpg
-
-Console (init 3) looks fine.
-
-dmesg and Xorg.0.log follow...
+--- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-30 13:33:14 PST ---
+Created an attachment (id=30847)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30847)
+dmesg
 
 
 -- 
