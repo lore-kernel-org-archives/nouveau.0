@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24830] Some characters are not drawn well,
  missing vertical lines with NVIDIA NV18
-Date: Sat, 31 Oct 2009 12:08:10 -0700 (PDT)
-Message-ID: <20091031190810.9DD4813009F@annarchy.freedesktop.org>
+Date: Sat, 31 Oct 2009 12:08:59 -0700 (PDT)
+Message-ID: <20091031190859.D58D313009F@annarchy.freedesktop.org>
 References: <bug-24830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24830
 
 
 
---- Comment #9 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-31 12:08:10 PST ---
-Created an attachment (id=30870)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30870)
-image_patch0
+--- Comment #10 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-31 12:08:59 PST ---
+Created an attachment (id=30871)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30871)
+image_patch1
 
 
 -- 
