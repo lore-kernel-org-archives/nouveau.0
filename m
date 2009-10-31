@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17357] NV4B 10DE:0393 funny stripes in video flash
- when using nouveau
-Date: Sat, 31 Oct 2009 02:42:14 -0700 (PDT)
-Message-ID: <20091031094214.42ED8130118@annarchy.freedesktop.org>
-References: <bug-17357-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24830] New: Some characters are not drawn well,
+ missing vertical lines with NVIDIA NV18
+Date: Sat, 31 Oct 2009 09:11:44 -0700 (PDT)
+Message-ID: <bug-24830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +19,31 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzM1NwoKCk1hcmsg
-Q2FyZXkgPG1hcmsuY2FyZXlAZ21haWwuY29tPiBjaGFuZ2VkOgoKICAgICAgICAgICBXaGF0ICAg
-IHxSZW1vdmVkICAgICAgICAgICAgICAgICAgICAgfEFkZGVkCi0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0K
-ICAgICAgICAgICAgIFN0YXR1c3xORVcgICAgICAgICAgICAgICAgICAgICAgICAgfFJFU09MVkVE
-CiAgICAgICAgIFJlc29sdXRpb258ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHxOT1RPVVJC
-VUcKCgoKCi0tLSBDb21tZW50ICMxNiBmcm9tIE1hcmsgQ2FyZXkgPG1hcmsuY2FyZXlAZ21haWwu
-Y29tPiAgMjAwOS0xMC0zMSAwMjo0MjoxMCBQU1QgLS0tCkhhdmUgdXBncmFkZWQgdG8gVWJ1bnR1
-IDkuMTAgYW5kIHRyaWVkIHRoZSBOdmlkaWEgMTg1IGJpbmFyeSBkcml2ZXIsIHRoZSBOdmlkaWEK
-ZHJpdmVyIGRpc3BsYXlzIHRoZSBzYW1lIHN0cmlwZXMgSSBzZWUgd2l0aCBub3V2ZWF1LCBjbG9z
-aW5nIGFzIG5vdXZlYXUgaXMKUkXCtGVkIGZyb20gdGhlIGJpbmFyeSBkcml2ZXIgc28gbm91dmVh
-dSBpcyBub3QgZ29pbmcgdG8gYmUgYWJsZSB0byBmaXguICAgTWF5CmFsc28gYmUgYSBoYXJkd2Fy
-ZSBpc3N1ZSAuLi4uLiBjbG9zaW5nCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVn
-cy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJl
-IHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25l
-ZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=24830
+
+           Summary: Some characters are not drawn well, missing vertical
+                    lines with NVIDIA NV18
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+The commit f0a3d9f59817ebf2b9606097785f0ad1ae45da12 of xf86-video-nouveau on
+some characters are not drawn well missing vertical lines. I have a NVIDIA NV18
+
+Post xorg log, image with the problem, patch works, but you have to check it, I
+do not know why it works.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
