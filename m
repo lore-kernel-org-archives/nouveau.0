@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
  KMS is enabled
-Date: Fri, 30 Oct 2009 15:44:23 -0700 (PDT)
-Message-ID: <20091030224423.218031300A7@annarchy.freedesktop.org>
+Date: Fri, 30 Oct 2009 17:22:39 -0700 (PDT)
+Message-ID: <20091031002239.293351300BD@annarchy.freedesktop.org>
 References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
 
 
---- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-10-30 15:44:22 PST ---
-Just in case, could you reproduce this without nouveau_dri.so?
-Thanks.
+--- Comment #4 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-30 17:22:38 PST ---
+Created an attachment (id=30860)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30860)
+Xorg.0.log.diff
 
-I'm actually surprised X does not die a horrible death instantly.
+Yes, same behavior without nouveau_dri.so.
+
+I attach a diff for Xorg.0.log.
 
 
 -- 
