@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
- KMS is enabled
-Date: Fri, 30 Oct 2009 17:22:39 -0700 (PDT)
-Message-ID: <20091031002239.293351300BD@annarchy.freedesktop.org>
-References: <bug-24820-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 17357] NV4B 10DE:0393 funny stripes in video flash
+ when using nouveau
+Date: Sat, 31 Oct 2009 02:42:14 -0700 (PDT)
+Message-ID: <20091031094214.42ED8130118@annarchy.freedesktop.org>
+References: <bug-17357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-17357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +21,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24820
-
-
-
-
-
---- Comment #4 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-10-30 17:22:38 PST ---
-Created an attachment (id=30860)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30860)
-Xorg.0.log.diff
-
-Yes, same behavior without nouveau_dri.so.
-
-I attach a diff for Xorg.0.log.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNzM1NwoKCk1hcmsg
+Q2FyZXkgPG1hcmsuY2FyZXlAZ21haWwuY29tPiBjaGFuZ2VkOgoKICAgICAgICAgICBXaGF0ICAg
+IHxSZW1vdmVkICAgICAgICAgICAgICAgICAgICAgfEFkZGVkCi0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0K
+ICAgICAgICAgICAgIFN0YXR1c3xORVcgICAgICAgICAgICAgICAgICAgICAgICAgfFJFU09MVkVE
+CiAgICAgICAgIFJlc29sdXRpb258ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHxOT1RPVVJC
+VUcKCgoKCi0tLSBDb21tZW50ICMxNiBmcm9tIE1hcmsgQ2FyZXkgPG1hcmsuY2FyZXlAZ21haWwu
+Y29tPiAgMjAwOS0xMC0zMSAwMjo0MjoxMCBQU1QgLS0tCkhhdmUgdXBncmFkZWQgdG8gVWJ1bnR1
+IDkuMTAgYW5kIHRyaWVkIHRoZSBOdmlkaWEgMTg1IGJpbmFyeSBkcml2ZXIsIHRoZSBOdmlkaWEK
+ZHJpdmVyIGRpc3BsYXlzIHRoZSBzYW1lIHN0cmlwZXMgSSBzZWUgd2l0aCBub3V2ZWF1LCBjbG9z
+aW5nIGFzIG5vdXZlYXUgaXMKUkXCtGVkIGZyb20gdGhlIGJpbmFyeSBkcml2ZXIgc28gbm91dmVh
+dSBpcyBub3QgZ29pbmcgdG8gYmUgYWJsZSB0byBmaXguICAgTWF5CmFsc28gYmUgYSBoYXJkd2Fy
+ZSBpc3N1ZSAuLi4uLiBjbG9zaW5nCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVn
+cy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJl
+IHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25l
+ZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
