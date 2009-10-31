@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24830] Some characters are not drawn well,
  missing vertical lines with NVIDIA NV18
-Date: Sat, 31 Oct 2009 11:54:56 -0700 (PDT)
-Message-ID: <20091031185456.A359413009F@annarchy.freedesktop.org>
+Date: Sat, 31 Oct 2009 12:06:41 -0700 (PDT)
+Message-ID: <20091031190641.A8A812DC105@annarchy.freedesktop.org>
 References: <bug-24830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24830
 
 
 
---- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-10-31 11:54:56 PST ---
-(In reply to comment #6)
-> The patch1 works well, I have not tried Patch0. I try the Patch0?
-> 
-Please do, patch1.diff just prevents A8+A8 from being accelerated.
+--- Comment #8 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-31 12:06:41 PST ---
 
-> Thank you.
-> 
+With much improved path0.
+I only noticed a flaw in a letter across the desk.
+You can see in image_patch0. (font size giant to view)
+
+With patch1 is perfect. You can see in image_patch1
 
 
 -- 
