@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24830] Some characters are not drawn well,
- missing vertical lines with NVIDIA NV18
-Date: Sat, 31 Oct 2009 09:15:40 -0700 (PDT)
-Message-ID: <20091031161540.EAA4F130085@annarchy.freedesktop.org>
-References: <bug-24830-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24831] New: XRandR multihead fails on NV50
+Date: Sat, 31 Oct 2009 09:47:32 -0700 (PDT)
+Message-ID: <bug-24831-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +18,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24830
+http://bugs.freedesktop.org/show_bug.cgi?id=24831
+
+           Summary: XRandR multihead fails on NV50
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: keaneyw-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=30866)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=30866)
+Xorg log
 
+When attempting to use xrandr to configure a multihead display, X crashes.
+I am using an nVidia QuadroFX 570M discrete graphics card.
 
+xorg version: 1.6.5
+nouveau kernel module: built from the nouveau git kernel, 2.6.31-rc9-g59e32bc
+xf86-video-nouveau: 0.0.20091011
 
---- Comment #3 from David <david.hernando.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-10-31 09:15:40 PST ---
-Created an attachment (id=30865)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30865)
-patch
+I am attaching the Xorg.0.log and xorg.conf from the crash.  There were no
+relevant kernel errors logged during this time.
 
 
 -- 
