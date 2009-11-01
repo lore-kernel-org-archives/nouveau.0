@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24710] nouveau KMS fails on NV11 - screen displays
 	last input
-Date: Sun,  1 Nov 2009 01:34:51 -0800 (PST)
-Message-ID: <20091101093451.C0AD41300C5@annarchy.freedesktop.org>
+Date: Sun,  1 Nov 2009 01:38:53 -0800 (PST)
+Message-ID: <20091101093853.4F44B13007C@annarchy.freedesktop.org>
 References: <bug-24710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,29 +24,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=24710
 
 
+Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|NOTOURBUG                   |
 
 
 
---- Comment #5 from Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org>  2009-11-01 01:34:48 PST ---
-Created an attachment (id=30875)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=30875)
-forced kernel command line option
 
-> Doesn't sound like nouveau's fault, your monitor probably reports a broken
-> EDID. To workaround it you can manually set the framebuffer resolution in the
-> kernel command line, like:
-> > video=VGA-1:1024x768e
-> (The trailing "e" forces the output to be enabled)
-
-Tried this, but the problem still exists!
-
-But the message
-
-> > [drm:edid_is_valid] *ERROR* EDID checksum is invalid, remainder is 141
-
-disappear (see new dmesg log)
-
-New ideas?
+--- Comment #6 from Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org>  2009-11-01 01:38:51 PST ---
+Reopen because forcing the video output is not a solution. And thus the wrong
+EDID is not the problem (?)
 
 
 -- 
