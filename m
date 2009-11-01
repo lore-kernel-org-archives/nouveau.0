@@ -1,8 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24710] nouveau KMS fails on NV11 - screen displays
-	last input
-Date: Sun,  1 Nov 2009 01:38:53 -0800 (PST)
-Message-ID: <20091101093853.4F44B13007C@annarchy.freedesktop.org>
+Subject: [Bug 24710] nouveau KMS fails on NV11 - screen freeze
+Date: Sun,  1 Nov 2009 01:39:46 -0800 (PST)
+Message-ID: <20091101093946.9480813007C@annarchy.freedesktop.org>
 References: <bug-24710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,15 +27,10 @@ Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|NOTOURBUG                   |
+            Summary|nouveau KMS fails on NV11 - |nouveau KMS fails on NV11 -
+                   |screen displays last input  |screen freeze
 
 
-
-
---- Comment #6 from Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org>  2009-11-01 01:38:51 PST ---
-Reopen because forcing the video output is not a solution. And thus the wrong
-EDID is not the problem (?)
 
 
 -- 
