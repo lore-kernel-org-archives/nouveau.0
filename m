@@ -1,14 +1,15 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCHv2] nv10/exa: Rename VIEWPORT_SCALE to
-	VIEWPORT_TRANSLATE.
-Date: Thu,  5 Nov 2009 19:40:09 +0100
-Message-ID: <1257446409-14388-1-git-send-email-currojerez@riseup.net>
-References: <1257444384-22158-1-git-send-email-currojerez@riseup.net>
+From: Jerome Glisse <glisse-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
+Subject: Re: RFC: TTM extra bo space
+Date: Thu, 05 Nov 2009 22:17:59 +0100
+Message-ID: <1257455879.3546.3.camel@localhost>
+References: <1257350332.2829.8.camel@localhost>
+	<53E09666-8D2D-4DFD-AE06-DCDD963B6114@vmware.com>
+	<20091105200436.47e28b79@daedalus.pq.iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1257444384-22158-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <20091105200436.47e28b79-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,30 +19,62 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Jakob Bornecrantz <jakob-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "dri-devel-TtF/mJH4Jtrk1uMJSBkQmQ@public.gmane.org" <dri-devel-TtF/mJH4Jtrk1uMJSBkQmQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
----
-v2: Backport the changes to e1c2efd7e7703f5860e5fe99e0413e3be10576d4,
-    v1 doesn't apply cleanly without "nv10/exa: Spring-cleaning", not 
-    yet commited.
+On Thu, 2009-11-05 at 20:04 +0200, Pekka Paalanen wrote:
+> On Wed, 4 Nov 2009 17:42:26 +0000
+> Jakob Bornecrantz <jakob-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> wrote:
+> 
+> > Hi Jerome
+> > 
+> > On 4 nov 2009, at 15.58, Jerome Glisse wrote:
+> > >
+> > > Note: For reference my issue is with cursor on old radeon hw,
+> > > cursor must be in the next 128M from the crtc scanout buffer. We
+> > > got issue when someone start to resize their screen at which
+> > > point the scanout buffer can endup after the cursor in vram.
+> > > Other solution would be to add multiple bo adjacent validation
+> > > function to ttm (likely less ttm change).
+> > 
+> > Can you solve your problem by being able to place the buffer at  
+> > certain location? We had the same need but managed to work around
+> > it with a quick and dirty hack.
+> > 
+> > Implementing that would mostly be about changing drm_mm.c to
+> > handle placing buffers at certain locations. And in TTM core
+> > being able to evict buffers that are in that place.
+> 
+> That sounds like something that could solve an issue in Nouveau
+> with nv04 card family. The following is hearsay, but I try to
+> describe it.
+> 
+> Of 32 MB of VRAM, the scanout buffer must reside within the
+> first 16 MB. Any(?) other buffers do not have this limitation
+> e.g. textures. Setting up separate memory spaces for these
+> halves, say, TTM VRAM and TTM PRIV1, would be inconvenient,
+> because buffers could not be laid accross the boundary.
+> 
+> Does this make sense?
+> Nouveau people, did I get this right?
+> 
 
- src/nv10_exa.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+Here is the API i was thinking of:
 
-diff --git a/src/nv10_exa.c b/src/nv10_exa.c
-index fe86fd7..5bbd1b7 100644
---- a/src/nv10_exa.c
-+++ b/src/nv10_exa.c
-@@ -466,7 +466,7 @@ static Bool NV10SetBuffer(NVPtr pNv, PicturePtr Pict, PixmapPtr pixmap)
- #else
- 	OUT_RINGf (chan, 65536.0);
- #endif
--	BEGIN_RING(chan, celsius, NV10TCL_VIEWPORT_SCALE_X, 4);
-+	BEGIN_RING(chan, celsius, NV10TCL_VIEWPORT_TRANSLATE_X, 4);
- 	OUT_RINGf (chan, -2048.0);
- 	OUT_RINGf (chan, -2048.0);
- 	OUT_RINGf (chan, 0);
--- 
-1.6.4.4
+ttm_bo_validate_in_range(usualvalidateparameter,
+			 unsigned long minoffset,
+                         unsigned long maxoffset)
+
+This function will try to validate the buffer at an offset
+btw min & max. Will either fail of succeed and could return
+-EINVAL if max-min < bo->size.
+
+I think it's flexible enough and should full feel nouveau,
+radeon & poulsbo needs.
+
+Cheers,
+Jerome
+
+I am bit busy with bugs right now but i will look into doing
+the actual code soon (one my bug need this).
