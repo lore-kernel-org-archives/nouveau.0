@@ -1,10 +1,14 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Some cosmetic NV10TCL method changes.
-Date: Thu, 05 Nov 2009 19:01:26 +0100
-Message-ID: <87y6mkrguh.fsf@riseup.net>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: RFC: TTM extra bo space
+Date: Thu, 5 Nov 2009 20:04:36 +0200
+Message-ID: <20091105200436.47e28b79@daedalus.pq.iki.fi>
+References: <1257350332.2829.8.camel@localhost>
+	<53E09666-8D2D-4DFD-AE06-DCDD963B6114@vmware.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1673021231=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <53E09666-8D2D-4DFD-AE06-DCDD963B6114-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -12,111 +16,47 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jakob Bornecrantz <jakob-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "dri-devel-TtF/mJH4Jtrk1uMJSBkQmQ@public.gmane.org" <dri-devel-TtF/mJH4Jtrk1uMJSBkQmQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1673021231==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha1; protocol="application/pgp-signature"
+On Wed, 4 Nov 2009 17:42:26 +0000
+Jakob Bornecrantz <jakob-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> wrote:
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+> Hi Jerome
+> 
+> On 4 nov 2009, at 15.58, Jerome Glisse wrote:
+> >
+> > Note: For reference my issue is with cursor on old radeon hw,
+> > cursor must be in the next 128M from the crtc scanout buffer. We
+> > got issue when someone start to resize their screen at which
+> > point the scanout buffer can endup after the cursor in vram.
+> > Other solution would be to add multiple bo adjacent validation
+> > function to ttm (likely less ttm change).
+> 
+> Can you solve your problem by being able to place the buffer at  
+> certain location? We had the same need but managed to work around
+> it with a quick and dirty hack.
+> 
+> Implementing that would mostly be about changing drm_mm.c to
+> handle placing buffers at certain locations. And in TTM core
+> being able to evict buffers that are in that place.
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+That sounds like something that could solve an issue in Nouveau
+with nv04 card family. The following is hearsay, but I try to
+describe it.
 
-The attached patch does the cosmetic renouveau.xml changes I
-proposed. I'm about to reply myself with some other patches to update
-libdrm and then fix the API break up.
+Of 32 MB of VRAM, the scanout buffer must reside within the
+first 16 MB. Any(?) other buffers do not have this limitation
+e.g. textures. Setting up separate memory spaces for these
+halves, say, TTM VRAM and TTM PRIV1, would be inconvenient,
+because buffers could not be laid accross the boundary.
 
+Does this make sense?
+Nouveau people, did I get this right?
 
---=-=-=
-Content-Type: text/x-diff
-Content-Disposition: attachment; filename=rename_some_nv10tcl_methods.patch
-Content-Transfer-Encoding: quoted-printable
-
-=2D-- renouveau.xml	3 Nov 2009 22:13:56 -0000	1.280
-+++ renouveau.xml	5 Nov 2009 17:49:20 -0000
-@@ -376,6 +376,12 @@
-       <item value=3D"0x0007" name=3D"X8R8G8B8"/>
-     </list>
-=20
-+    <list name=3D"nv10_vtxfmt_type">
-+      <item value=3D"0x0000" name=3D"UBYTE"/>
-+      <item value=3D"0x0001" name=3D"USHORT"/>
-+      <item value=3D"0x0002" name=3D"FLOAT"/>
-+    </list>
-+
-     <list name=3D"nv10_tx_format">
-       <item value=3D"0x0000" name=3D"L8"/>
-       <item value=3D"0x0001" name=3D"A8"/>
-@@ -2219,10 +2225,10 @@
-     <reg32 offset=3D"0x06c4" name=3D"LIGHT_MODEL_FRONT_SIDE_PRODUCT_AMBIEN=
-T_PLUS_EMISSION_R" type=3D"float"/>
-     <reg32 offset=3D"0x06c8" name=3D"LIGHT_MODEL_FRONT_SIDE_PRODUCT_AMBIEN=
-T_PLUS_EMISSION_G" type=3D"float"/>
-     <reg32 offset=3D"0x06cc" name=3D"LIGHT_MODEL_FRONT_SIDE_PRODUCT_AMBIEN=
-T_PLUS_EMISSION_B" type=3D"float"/>
-=2D    <reg32 offset=3D"0x06e8" name=3D"VIEWPORT_SCALE_X" type=3D"float"/>
-=2D    <reg32 offset=3D"0x06ec" name=3D"VIEWPORT_SCALE_Y" type=3D"float"/>
-=2D    <reg32 offset=3D"0x06f0" name=3D"VIEWPORT_SCALE_Z" type=3D"float"/>
-=2D    <reg32 offset=3D"0x06f4" name=3D"VIEWPORT_SCALE_W" type=3D"float"/>
-+    <reg32 offset=3D"0x06e8" name=3D"VIEWPORT_TRANSLATE_X" type=3D"float"/>
-+    <reg32 offset=3D"0x06ec" name=3D"VIEWPORT_TRANSLATE_Y" type=3D"float"/>
-+    <reg32 offset=3D"0x06f0" name=3D"VIEWPORT_TRANSLATE_Z" type=3D"float"/>
-+    <reg32 offset=3D"0x06f4" name=3D"VIEWPORT_TRANSLATE_W" type=3D"float"/>
-     <reg32 offset=3D"0x06f8" name=3D"POINT_PARAMETER" size=3D"8" type=3D"f=
-loat"/>
-     <reg32 offset=3D"0x0800" name=3D"LIGHT_FRONT_SIDE_PRODUCT_AMBIENT_R" s=
-ize=3D"8" stride=3D"128" type=3D"float"/>
-     <reg32 offset=3D"0x0804" name=3D"LIGHT_FRONT_SIDE_PRODUCT_AMBIENT_G" s=
-ize=3D"8" stride=3D"128" type=3D"float"/>
-@@ -2330,9 +2336,9 @@
-     <reg32 offset=3D"0x0ce4" name=3D"VERTEX_WGH_1F" type=3D"float"/>
-     <reg32 offset=3D"0x0cec" name=3D"EDGEFLAG_ENABLE" type=3D"boolean"/>
-     <reg32 offset=3D"0x0cf0" name=3D"VERTEX_ARRAY_VALIDATE"/>
-=2D    <reg32 offset=3D"0x0d00" name=3D"VERTEX_ARRAY_ATTRIB_OFFSET" size=3D=
-"8" stride=3D"8" type=3D"hexa"/>
-=2D    <reg32 offset=3D"0x0d04" name=3D"VERTEX_ARRAY_ATTRIB_FORMAT" size=3D=
-"8" stride=3D"8" type=3D"bitfield">
-=2D      <bitfield name=3D"TYPE" high=3D"3" low=3D"0" type=3D"int"/>
-+    <reg32 offset=3D"0x0d00" name=3D"VTXBUF_ADDRESS" size=3D"8" stride=3D"=
-8" type=3D"hexa"/>
-+    <reg32 offset=3D"0x0d04" name=3D"VTXFMT" size=3D"8" stride=3D"8" type=
-=3D"bitfield">
-+      <bitfield name=3D"TYPE" high=3D"3" low=3D"0" type=3D"enum" enum_name=
-=3D"nv10_vtxfmt_type"/>
-       <bitfield name=3D"FIELDS" high=3D"7" low=3D"4" type=3D"int"/>
-       <bitfield name=3D"STRIDE" high=3D"15" low=3D"8" type=3D"int"/>
-     </reg32>
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.9 (GNU/Linux)
-
-iEYEARECAAYFAkrzEvYACgkQ196Zy2qEI5ftVQCff2ej1OX3eJ+oDT+zfYXPtgGb
-oQcAoOuPG9mwrGh/nAodljBJs9trJ0t4
-=LphN
------END PGP SIGNATURE-----
---==-=-=--
-
---===============1673021231==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1673021231==--
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
