@@ -1,15 +1,12 @@
-From: Jerome Glisse <glisse-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
-Subject: Re: RFC: TTM extra bo space
-Date: Thu, 05 Nov 2009 22:17:59 +0100
-Message-ID: <1257455879.3546.3.camel@localhost>
-References: <1257350332.2829.8.camel@localhost>
-	<53E09666-8D2D-4DFD-AE06-DCDD963B6114@vmware.com>
-	<20091105200436.47e28b79@daedalus.pq.iki.fi>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: [PATCH 1/2] drm/nv10: Keep the lower bits of
+	PGRAPH_CTX_USER during context switches.
+Date: Fri,  6 Nov 2009 16:11:53 +0100
+Message-ID: <1257520314-16605-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20091105200436.47e28b79-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,62 +16,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Jakob Bornecrantz <jakob-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "dri-devel-TtF/mJH4Jtrk1uMJSBkQmQ@public.gmane.org" <dri-devel-TtF/mJH4Jtrk1uMJSBkQmQ@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 2009-11-05 at 20:04 +0200, Pekka Paalanen wrote:
-> On Wed, 4 Nov 2009 17:42:26 +0000
-> Jakob Bornecrantz <jakob-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> wrote:
-> 
-> > Hi Jerome
-> > 
-> > On 4 nov 2009, at 15.58, Jerome Glisse wrote:
-> > >
-> > > Note: For reference my issue is with cursor on old radeon hw,
-> > > cursor must be in the next 128M from the crtc scanout buffer. We
-> > > got issue when someone start to resize their screen at which
-> > > point the scanout buffer can endup after the cursor in vram.
-> > > Other solution would be to add multiple bo adjacent validation
-> > > function to ttm (likely less ttm change).
-> > 
-> > Can you solve your problem by being able to place the buffer at  
-> > certain location? We had the same need but managed to work around
-> > it with a quick and dirty hack.
-> > 
-> > Implementing that would mostly be about changing drm_mm.c to
-> > handle placing buffers at certain locations. And in TTM core
-> > being able to evict buffers that are in that place.
-> 
-> That sounds like something that could solve an issue in Nouveau
-> with nv04 card family. The following is hearsay, but I try to
-> describe it.
-> 
-> Of 32 MB of VRAM, the scanout buffer must reside within the
-> first 16 MB. Any(?) other buffers do not have this limitation
-> e.g. textures. Setting up separate memory spaces for these
-> halves, say, TTM VRAM and TTM PRIV1, would be inconvenient,
-> because buffers could not be laid accross the boundary.
-> 
-> Does this make sense?
-> Nouveau people, did I get this right?
-> 
+Before this patch they were being reset to zero on every context
+switch instead of leaving the saved value, causing some context
+switching weirdness (the most serious symptom was the memory manager
+corrupting the BOs it migrated because of a malfunctioning M2MF).
 
-Here is the API i was thinking of:
+Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nv10_graph.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
 
-ttm_bo_validate_in_range(usualvalidateparameter,
-			 unsigned long minoffset,
-                         unsigned long maxoffset)
-
-This function will try to validate the buffer at an offset
-btw min & max. Will either fail of succeed and could return
--EINVAL if max-min < bo->size.
-
-I think it's flexible enough and should full feel nouveau,
-radeon & poulsbo needs.
-
-Cheers,
-Jerome
-
-I am bit busy with bugs right now but i will look into doing
-the actual code soon (one my bug need this).
+diff --git a/drivers/gpu/drm/nouveau/nv10_graph.c b/drivers/gpu/drm/nouveau/nv10_graph.c
+index cf5c9c4..6bf6804 100644
+--- a/drivers/gpu/drm/nouveau/nv10_graph.c
++++ b/drivers/gpu/drm/nouveau/nv10_graph.c
+@@ -673,7 +673,8 @@ int nv10_graph_load_context(struct nouveau_channel *chan)
+ 	nv10_graph_load_pipe(chan);
+ 
+ 	nv_wr32(dev, NV10_PGRAPH_CTX_CONTROL, 0x10010100);
+-	nv_wr32(dev, NV10_PGRAPH_CTX_USER, chan->id << 24);
++	tmp = nv_rd32(dev, NV10_PGRAPH_CTX_USER);
++	nv_wr32(dev, NV10_PGRAPH_CTX_USER, (tmp & 0xffffff) | chan->id << 24);
+ 	tmp = nv_rd32(dev, NV10_PGRAPH_FFINTFC_ST2);
+ 	nv_wr32(dev, NV10_PGRAPH_FFINTFC_ST2, tmp & 0xcfffffff);
+ 	return 0;
+-- 
+1.6.4.4
