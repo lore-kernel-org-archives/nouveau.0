@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24710] nouveau KMS fails on NV11 - screen freeze
-Date: Fri,  6 Nov 2009 10:37:45 -0800 (PST)
-Message-ID: <20091106183745.DEF56130100@annarchy.freedesktop.org>
+Date: Fri,  6 Nov 2009 12:56:11 -0800 (PST)
+Message-ID: <20091106205611.67F31130101@annarchy.freedesktop.org>
 References: <bug-24710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,16 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24710
 
 
 
---- Comment #10 from Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org>  2009-11-06 10:37:45 PST ---
-Created an attachment (id=31016)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31016)
-forced 1024x768 but drm debug=4
+--- Comment #11 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-06 12:56:10 PST ---
+Created an attachment (id=31018)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31018)
+set_crtc_info_for_cmdline_modes.patch
 
-New dmesg with command line option video=VGA-1:1024x768e
-but first 
-modprobe -r nouveau, 
-modprobe drm debug=4, 
-then modprobe nouveau modeset=1
+Does the attached patch help?
 
 
 -- 
