@@ -1,12 +1,14 @@
 From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 1/2] drm/nv10: Keep the lower bits of
-	PGRAPH_CTX_USER during context switches.
-Date: Fri,  6 Nov 2009 16:11:53 +0100
-Message-ID: <1257520314-16605-1-git-send-email-currojerez@riseup.net>
+Subject: [PATCH 2/2] drm/nv04-nv10: Don't jump back to our PUT
+	offset on PUSHBUF_CALL.
+Date: Fri,  6 Nov 2009 16:11:54 +0100
+Message-ID: <1257520314-16605-2-git-send-email-currojerez@riseup.net>
+References: <1257520314-16605-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1257520314-16605-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,29 +21,56 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Before this patch they were being reset to zero on every context
-switch instead of leaving the saved value, causing some context
-switching weirdness (the most serious symptom was the memory manager
-corrupting the BOs it migrated because of a malfunctioning M2MF).
+It causes occasional DMA_PUSHER errors.
 
 Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nv10_graph.c |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_gem.c |   12 ++++++++----
+ 1 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv10_graph.c b/drivers/gpu/drm/nouveau/nv10_graph.c
-index cf5c9c4..6bf6804 100644
---- a/drivers/gpu/drm/nouveau/nv10_graph.c
-+++ b/drivers/gpu/drm/nouveau/nv10_graph.c
-@@ -673,7 +673,8 @@ int nv10_graph_load_context(struct nouveau_channel *chan)
- 	nv10_graph_load_pipe(chan);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index a95b8f7..b8c3664 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -604,7 +604,7 @@ nouveau_gem_ioctl_pushbuf_call(struct drm_device *dev, void *data,
+ 	struct drm_gem_object *gem;
+ 	struct nouveau_bo *pbbo;
+ 	struct list_head list;
+-	int ret = 0, do_reloc = 0;
++	int i, ret = 0, do_reloc = 0;
  
- 	nv_wr32(dev, NV10_PGRAPH_CTX_CONTROL, 0x10010100);
--	nv_wr32(dev, NV10_PGRAPH_CTX_USER, chan->id << 24);
-+	tmp = nv_rd32(dev, NV10_PGRAPH_CTX_USER);
-+	nv_wr32(dev, NV10_PGRAPH_CTX_USER, (tmp & 0xffffff) | chan->id << 24);
- 	tmp = nv_rd32(dev, NV10_PGRAPH_FFINTFC_ST2);
- 	nv_wr32(dev, NV10_PGRAPH_FFINTFC_ST2, tmp & 0xcfffffff);
- 	return 0;
+ 	NOUVEAU_CHECK_INITIALISED_WITH_RETURN;
+ 	NOUVEAU_GET_USER_CHANNEL_WITH_RETURN(req->channel, file_priv, chan);
+@@ -680,8 +680,8 @@ nouveau_gem_ioctl_pushbuf_call(struct drm_device *dev, void *data,
+ 	if (!PUSHBUF_CAL) {
+ 		uint32_t retaddy;
+ 
+-		if (chan->dma.free < 4) {
+-			ret = nouveau_dma_wait(chan, 4);
++		if (chan->dma.free < 4 + NOUVEAU_DMA_SKIPS) {
++			ret = nouveau_dma_wait(chan, 4 + NOUVEAU_DMA_SKIPS);
+ 			if (ret) {
+ 				NV_ERROR(dev, "jmp_space: %d\n", ret);
+ 				goto out;
+@@ -738,7 +738,7 @@ nouveau_gem_ioctl_pushbuf_call(struct drm_device *dev, void *data,
+ 				  req->offset) | 2);
+ 		OUT_RING(chan, 0);
+ 	} else {
+-		ret = RING_SPACE(chan, 2);
++		ret = RING_SPACE(chan, 2 + NOUVEAU_DMA_SKIPS);
+ 		if (ret) {
+ 			NV_ERROR(dev, "jmp_space: %d\n", ret);
+ 			goto out;
+@@ -746,6 +746,10 @@ nouveau_gem_ioctl_pushbuf_call(struct drm_device *dev, void *data,
+ 		OUT_RING(chan, ((pbbo->bo.mem.mm_node->start << PAGE_SHIFT) +
+ 				  req->offset) | 0x20000000);
+ 		OUT_RING(chan, 0);
++
++		/* Space the jumps apart with NOPs. */
++		for (i = 0; i < NOUVEAU_DMA_SKIPS; i++)
++			OUT_RING(chan, 0);
+ 	}
+ 
+ 	ret = nouveau_fence_emit(fence);
 -- 
 1.6.4.4
