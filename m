@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
  KMS is enabled
-Date: Fri,  6 Nov 2009 19:46:32 -0800 (PST)
-Message-ID: <20091107034632.1BA0E1300C1@annarchy.freedesktop.org>
+Date: Sat,  7 Nov 2009 02:43:08 -0800 (PST)
+Message-ID: <20091107104308.BB45E1300BB@annarchy.freedesktop.org>
 References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,24 +27,34 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
 
 
---- Comment #5 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-06 19:46:31 PST ---
-(In reply to comment #0)
-> Hardware: Geforce2 GTS
-> Drivers, Mesa, kernel modules: git20091029
-> 
-> If I boot with nouveau.modeset=1 X/KDE4 looks like this:
-> 
-> http://www.freeimagehosting.net/uploads/ea8ad8c8cc.jpg
-> 
-Do you get the same effect with smaller resolutions/clocks? (e.g.
-1024x768@60Hz).
+--- Comment #6 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-07 02:43:08 PST ---
+(In reply to comment #5)
+> > 
+> Do you get the same effect with smaller resolutions/clocks? (e.g.
+> 1024x768@60Hz).
 
-> Console (init 3) looks fine.
-> 
-You mean it looks fine before loading nouveau.ko, right?
+Yes, it is with all resolutions.
+800x600   -> 2 corrupted bars
+1024x768  -> 3 corrupted bars
+1280x720  -> 4 corrupted bars
+1920x1080 -> 6 corrupted bars
 
-> dmesg and Xorg.0.log follow...
-> 
+> > Console (init 3) looks fine.
+> > 
+> You mean it looks fine before loading nouveau.ko, right?
+
+No, I boot with "nouveau.modeset=1 3" and can work on a KMS enabled console
+without any problems...
+
+I tried it with "1...2...3...3...4...5...6...7" to see whether something is
+moved to another position (as in X/KDE) -> but all is on right place...
+
+Btw. I use git20091105
+
+Btw2. if I use my TNT2 M64 KMS works also fine but X/kdm login manager displays
+only a black background and a white (login) box...
+
+If you want pictures/logs I will provide them...
 
 
 -- 
