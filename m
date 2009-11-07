@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24710] nouveau KMS fails on NV11 - screen freeze
-Date: Sat,  7 Nov 2009 04:36:40 -0800 (PST)
-Message-ID: <20091107123640.8D6CE1300C2@annarchy.freedesktop.org>
-References: <bug-24710-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
+ KMS is enabled
+Date: Sat,  7 Nov 2009 06:40:42 -0800 (PST)
+Message-ID: <20091107144042.0E7F41300C2@annarchy.freedesktop.org>
+References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24710-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +21,48 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24710
+http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
 
 
 
 
---- Comment #12 from Jan Buecken <jb.faq-Mmb7MZpHnFY@public.gmane.org>  2009-11-07 04:36:39 PST ---
-(In reply to comment #11)
-> Created an attachment (id=31018)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31018) [details]
-> set_crtc_info_for_cmdline_modes.patch
+--- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-07 06:40:39 PST ---
+(In reply to comment #6)
+> (In reply to comment #5)
+> > > 
+> > Do you get the same effect with smaller resolutions/clocks? (e.g.
+> > 1024x768@60Hz).
 > 
-> Does the attached patch help?
+> Yes, it is with all resolutions.
+> 800x600   -> 2 corrupted bars
+> 1024x768  -> 3 corrupted bars
+> 1280x720  -> 4 corrupted bars
+> 1920x1080 -> 6 corrupted bars
 > 
 
-Yes, this patch works! (I only test the situation with the command line
-video=VGA-1:1024x768e )
+Which clock frequencies were you using exactly? It would also be interesting to
+know if it works at 24 bit depth or with kernel modesetting disabled.
 
-Thanks.
+> > > Console (init 3) looks fine.
+> > > 
+> > You mean it looks fine before loading nouveau.ko, right?
+> 
+> No, I boot with "nouveau.modeset=1 3" and can work on a KMS enabled console
+> without any problems...
+> 
+> I tried it with "1...2...3...3...4...5...6...7" to see whether something is
+> moved to another position (as in X/KDE) -> but all is on right place...
+> 
+> Btw. I use git20091105
+> 
+> Btw2. if I use my TNT2 M64 KMS works also fine but X/kdm login manager displays
+> only a black background and a white (login) box...
+> 
+Logs and config files might be helpful, but probably an unrelated bug.
+
+> If you want pictures/logs I will provide them...
+> 
 
 
 -- 
