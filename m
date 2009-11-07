@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
  KMS is enabled
-Date: Sat,  7 Nov 2009 06:40:42 -0800 (PST)
-Message-ID: <20091107144042.0E7F41300C2@annarchy.freedesktop.org>
+Date: Sat,  7 Nov 2009 07:59:04 -0800 (PST)
+Message-ID: <20091107155904.8CCEB130070@annarchy.freedesktop.org>
 References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,42 +27,30 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
 
 
---- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-07 06:40:39 PST ---
-(In reply to comment #6)
-> (In reply to comment #5)
-> > > 
-> > Do you get the same effect with smaller resolutions/clocks? (e.g.
-> > 1024x768@60Hz).
-> 
-> Yes, it is with all resolutions.
-> 800x600   -> 2 corrupted bars
-> 1024x768  -> 3 corrupted bars
-> 1280x720  -> 4 corrupted bars
-> 1920x1080 -> 6 corrupted bars
-> 
+--- Comment #8 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-07 07:59:04 PST ---
+(In reply to comment #7)
+> Which clock frequencies were you using exactly? It would also be interesting to
+> know if it works at 24 bit depth or with kernel modesetting disabled.
 
-Which clock frequencies were you using exactly? It would also be interesting to
-know if it works at 24 bit depth or with kernel modesetting disabled.
+It works with KMS disabled (16 / 24 bit depth).
 
-> > > Console (init 3) looks fine.
-> > > 
-> > You mean it looks fine before loading nouveau.ko, right?
-> 
-> No, I boot with "nouveau.modeset=1 3" and can work on a KMS enabled console
-> without any problems...
-> 
-> I tried it with "1...2...3...3...4...5...6...7" to see whether something is
-> moved to another position (as in X/KDE) -> but all is on right place...
-> 
-> Btw. I use git20091105
-> 
-> Btw2. if I use my TNT2 M64 KMS works also fine but X/kdm login manager displays
-> only a black background and a white (login) box...
-> 
-Logs and config files might be helpful, but probably an unrelated bug.
+It also works with 24 bit depth and KMS enabled.
 
-> If you want pictures/logs I will provide them...
-> 
+Only with 16 bit and KMS enabled it does not work all time...
+
+Tested resolutions (all 3 cases above):
+800x600   @ 76 / 75 / 70.7 / 74.9 / 65.3 / 60.3 / 60 Hz
+1024x768  @ 76 / 75.1 / 70.7 / 74.8 / 65.3 / 60 Hz
+1280x720  @ 76 / 70.7 / 65.3 / 74.9 / 60 Hz
+1920x1080 @ 60 / 59 Hz
+
+> > Btw2. if I use my TNT2 M64 KMS works also fine but X/kdm login manager displays
+> > only a black background and a white (login) box...
+> > 
+> Logs and config files might be helpful, but probably an unrelated bug.
+
+I will try it soon. If it is not also "fixed" with 24 bit depth I will post
+log/config files.
 
 
 -- 
