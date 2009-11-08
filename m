@@ -1,15 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/2] drm/nv10: Keep the lower bits of
- PGRAPH_CTX_USER during context switches.
-Date: Mon, 09 Nov 2009 08:19:54 +1000
-Message-ID: <1257718794.2216.2.camel@nisroch>
-References: <1257520314-16605-1-git-send-email-currojerez@riseup.net>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
+ KMS is enabled
+Date: Sun,  8 Nov 2009 14:37:53 -0800 (PST)
+Message-ID: <20091108223753.2B6DD13007C@annarchy.freedesktop.org>
+References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1257520314-16605-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,34 +18,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2009-11-06 at 16:11 +0100, Francisco Jerez wrote:
-> Before this patch they were being reset to zero on every context
-> switch instead of leaving the saved value, causing some context
-> switching weirdness (the most serious symptom was the memory manager
-> corrupting the BOs it migrated because of a malfunctioning M2MF).
-> 
-> Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Reviewed-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
-> ---
->  drivers/gpu/drm/nouveau/nv10_graph.c |    3 ++-
->  1 files changed, 2 insertions(+), 1 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nv10_graph.c b/drivers/gpu/drm/nouveau/nv10_graph.c
-> index cf5c9c4..6bf6804 100644
-> --- a/drivers/gpu/drm/nouveau/nv10_graph.c
-> +++ b/drivers/gpu/drm/nouveau/nv10_graph.c
-> @@ -673,7 +673,8 @@ int nv10_graph_load_context(struct nouveau_channel *chan)
->  	nv10_graph_load_pipe(chan);
->  
->  	nv_wr32(dev, NV10_PGRAPH_CTX_CONTROL, 0x10010100);
-> -	nv_wr32(dev, NV10_PGRAPH_CTX_USER, chan->id << 24);
-> +	tmp = nv_rd32(dev, NV10_PGRAPH_CTX_USER);
-> +	nv_wr32(dev, NV10_PGRAPH_CTX_USER, (tmp & 0xffffff) | chan->id << 24);
->  	tmp = nv_rd32(dev, NV10_PGRAPH_FFINTFC_ST2);
->  	nv_wr32(dev, NV10_PGRAPH_FFINTFC_ST2, tmp & 0xcfffffff);
->  	return 0;
+
+
+
+
+--- Comment #13 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-08 14:37:51 PST ---
+I did not have much time to do your requests at home today and I will going on
+with compiling and testing on friday.
+
+All I can say is that 83 is without bars and 86 has bars with 1280x720 and 16
+bit depth (I have reduced resolution for more speed...).
+
+So I have to try it with 84 and 85...
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
