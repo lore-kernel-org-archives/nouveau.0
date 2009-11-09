@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24996] New: Wrong display resolution in X,
+Subject: [Bug 24996] Wrong display resolution in X,
  "windowed" console. FX 5600 XT
-Date: Mon,  9 Nov 2009 03:37:51 -0800 (PST)
-Message-ID: <bug-24996-8800@http.bugs.freedesktop.org/>
+Date: Mon,  9 Nov 2009 03:38:34 -0800 (PST)
+Message-ID: <20091109113834.AC907130070@annarchy.freedesktop.org>
+References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-24996-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
-           Summary: Wrong display resolution in X, "windowed" console. FX
-                    5600 XT
-           Product: xorg
-           Version: 7.5
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: kampsuniahv-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=31062)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31062)
-Dmesg
 
-I'm getting 1024x768 display resolution in X, even though my monitors native is
-1248x1024. When using console, it doesn't fill the whole screen it is
-"windowed" in corner.
-I'm using ArchLinux with latest git build of xf86-video-nouveau and this
-http://www.archlinux.org/packages/extra/i686/nouveau-drm/ nouveau-drm package.
-Using or not using fix_resolution_detection.patch doesn't change anything
-(superficially). I have enabled kms. Without it i had artifacts in different
-programs.
-I'll add dmesg and xorg.log.
+
+--- Comment #1 from Hendrik <kampsuniahv-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-09 03:38:34 PST ---
+Created an attachment (id=31063)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31063)
+xorg.0.log
 
 
 -- 
