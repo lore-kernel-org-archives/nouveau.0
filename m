@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24996] Wrong display resolution in X,
  "windowed" console. FX 5600 XT
-Date: Mon,  9 Nov 2009 03:38:34 -0800 (PST)
-Message-ID: <20091109113834.AC907130070@annarchy.freedesktop.org>
+Date: Mon,  9 Nov 2009 05:46:10 -0800 (PST)
+Message-ID: <20091109134610.70710130079@annarchy.freedesktop.org>
 References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
 
 
---- Comment #1 from Hendrik <kampsuniahv-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-09 03:38:34 PST ---
-Created an attachment (id=31063)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31063)
-xorg.0.log
+--- Comment #2 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-09 05:46:09 PST ---
+Created an attachment (id=31065)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31065)
+nv31_tvdac_load.patch
+
+Does the attached patch help?
 
 
 -- 
