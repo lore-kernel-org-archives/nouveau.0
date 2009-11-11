@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24996] Wrong display resolution in X,
  "windowed" console. FX 5600 XT
-Date: Wed, 11 Nov 2009 12:18:02 -0800 (PST)
-Message-ID: <20091111201802.4FF4F1300DF@annarchy.freedesktop.org>
+Date: Wed, 11 Nov 2009 12:38:18 -0800 (PST)
+Message-ID: <20091111203818.3F7361300E2@annarchy.freedesktop.org>
 References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,28 +27,20 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
 
 
---- Comment #5 from Simon Siemonsma <simon-ox55uKOtYtiZyCGURLKNQw@public.gmane.org>  2009-11-11 12:18:01 PST ---
-(In reply to comment #0)
-> Created an attachment (id=31062)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31062) [details]
-> Dmesg
-> 
-> I'm getting 1024x768 display resolution in X, even though my monitors native is
-> 1248x1024. When using console, it doesn't fill the whole screen it is
-> "windowed" in corner.
-> I'm using ArchLinux with latest git build of xf86-video-nouveau and this
-> http://www.archlinux.org/packages/extra/i686/nouveau-drm/ nouveau-drm package.
-> Using or not using fix_resolution_detection.patch doesn't change anything
-> (superficially). I have enabled kms. Without it i had artifacts in different
-> programs.
-> I'll add dmesg and xorg.log.
+--- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-11 12:38:17 PST ---
+Created an attachment (id=31117)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31117)
+nv43_tvdac_load.patch
+
+(In reply to comment #5)
+> I have exactly the same problem. Only I have a NV43 video chip.
+> I'm using Gentoo amd64. Nouveau is compiled into the kernel.
+> without KMS set everything looks fine.
+> With KMS set as described by the original poster.
+> No other differences in the kernel configuration.
 > 
 
-I have exactly the same problem. Only I have a NV43 video chip.
-I'm using Gentoo amd64. Nouveau is compiled into the kernel.
-without KMS set everything looks fine.
-With KMS set as described by the original poster.
-No other differences in the kernel configuration.
+Does the attached patch fix it for you?
 
 
 -- 
