@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25036] New: KMS + multihead leaves ghost mouse
-	pointer
-Date: Wed, 11 Nov 2009 07:57:22 -0800 (PST)
-Message-ID: <bug-25036-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24996] Wrong display resolution in X,
+ "windowed" console. FX 5600 XT
+Date: Wed, 11 Nov 2009 12:18:02 -0800 (PST)
+Message-ID: <20091111201802.4FF4F1300DF@annarchy.freedesktop.org>
+References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-24996-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,48 +21,34 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25036
-
-           Summary: KMS + multihead leaves ghost mouse pointer
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-               URL: http://bbs.archlinux.org/viewtopic.php?id=83925
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: ataraxia937-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
 
-I'm running a November 1st snapshot build of both the DDX and DRM modules, as
-provided by Arch Linux. Hardware is a GeForce 9400 GT. There are two monitors
-attached, configured via RandR. I don't have any options set in xorg.conf other
-than the RandR setup.
 
-When I move my mouse from one screen to the other, a "ghost pointer" is left
-behind in the last place on the now-inactive screen that the pointer was drawn.
-It remains there until I enter that screen again. While it is there, the cursor
-glyph updates in sync with the "real" pointer on the active screen.
 
-If I move the mouse slowly enough that the cursor visually reaches the edge of
-the screen before I cross to the other screen, the ghost won't appear until the
-glyph changes, at which point the ghost suddenly appears, mapped on the
-edgemost column of the screen. It then remains there and behaves just as in the
-previous case.
 
-There are no interesting log messages from either the DDX or the DRM.
+--- Comment #5 from Simon Siemonsma <simon-ox55uKOtYtiZyCGURLKNQw@public.gmane.org>  2009-11-11 12:18:01 PST ---
+(In reply to comment #0)
+> Created an attachment (id=31062)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31062) [details]
+> Dmesg
+> 
+> I'm getting 1024x768 display resolution in X, even though my monitors native is
+> 1248x1024. When using console, it doesn't fill the whole screen it is
+> "windowed" in corner.
+> I'm using ArchLinux with latest git build of xf86-video-nouveau and this
+> http://www.archlinux.org/packages/extra/i686/nouveau-drm/ nouveau-drm package.
+> Using or not using fix_resolution_detection.patch doesn't change anything
+> (superficially). I have enabled kms. Without it i had artifacts in different
+> programs.
+> I'll add dmesg and xorg.log.
+> 
 
-This bug only occurs with KMS enabled.
-
-This resembles bug 12471, except that there, the ghost is always in the
-top-left corner.
-
-The URL attached to this bug is to a thread on the Arch Forums describing this
-bug.
+I have exactly the same problem. Only I have a NV43 video chip.
+I'm using Gentoo amd64. Nouveau is compiled into the kernel.
+without KMS set everything looks fine.
+With KMS set as described by the original poster.
+No other differences in the kernel configuration.
 
 
 -- 
