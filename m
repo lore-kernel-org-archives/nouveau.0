@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24996] Wrong display resolution in X,
  "windowed" console. FX 5600 XT
-Date: Fri, 13 Nov 2009 06:58:02 -0800 (PST)
-Message-ID: <20091113145802.0F7C01300F4@annarchy.freedesktop.org>
+Date: Fri, 13 Nov 2009 07:23:15 -0800 (PST)
+Message-ID: <20091113152315.5805A1300F2@annarchy.freedesktop.org>
 References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,20 +27,20 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
 
 
---- Comment #8 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-13 06:58:01 PST ---
-(In reply to comment #7)
-> I didn't manage to apply the patch.
-> I copied your patch in the directory ../drivers/gpu/drm/nouveau
-<snip>
-> What is the right way to apply the patch?
+--- Comment #9 from Simon Siemonsma <simon-ox55uKOtYtiZyCGURLKNQw@public.gmane.org>  2009-11-13 07:23:14 PST ---
+(In reply to comment #6)
+> Created an attachment (id=31117)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31117) [details]
+> nv43_tvdac_load.patch
 > 
-> Simon
->
+> > 
+> 
+> Does the attached patch fix it for you?
+> 
 
-1. copy/move the patch to your base directory (in your case .. directory from
-../drivers/gpu/drm/nouveau)
-2. then apply the patch with command "patch -p1 <nv43_tvdac_load.patch"
-3. and last compile and install it...
+The patch doesn't help.
+Please let me now if you would like to receive more information or if can do
+some more tests.
 
 
 -- 
