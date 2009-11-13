@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25072] New: KMS Gf 6200 - wrong fb and X resolution
-Date: Fri, 13 Nov 2009 07:40:47 -0800 (PST)
-Message-ID: <bug-25072-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25072] KMS Gf 6200 - wrong fb and X resolution
+Date: Fri, 13 Nov 2009 07:41:14 -0800 (PST)
+Message-ID: <20091113154114.120F01300F2@annarchy.freedesktop.org>
+References: <bug-25072-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-25072-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=25072
 
-           Summary: KMS Gf 6200 - wrong fb and X resolution
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=31171)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31171)
-dmesg
 
-With same LCD work fine on NV17
+
+--- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-13 07:41:13 PST ---
+Created an attachment (id=31172)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31172)
+Xorg.log
 
 
 -- 
