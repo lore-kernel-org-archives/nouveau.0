@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25072] KMS Gf 6200 - wrong fb and X resolution
-Date: Fri, 13 Nov 2009 07:41:44 -0800 (PST)
-Message-ID: <20091113154144.07B401300F2@annarchy.freedesktop.org>
+Date: Fri, 13 Nov 2009 07:44:41 -0800 (PST)
+Message-ID: <20091113154441.659161300F2@annarchy.freedesktop.org>
 References: <bug-25072-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25072
 
 
 
---- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-13 07:41:43 PST ---
-Created an attachment (id=31173)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31173)
-lspci -vvv
+--- Comment #3 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-13 07:44:40 PST ---
+Created an attachment (id=31174)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31174)
+console_photo
+
+As you can see, only circa 1/4 screen is used. When I switch to Xorg,
+fullscreen is used...
 
 
 -- 
