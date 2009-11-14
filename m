@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25084] New: [PATCH] [drm_pciids] Note NVidia Quadro
- NVS 295 as supported
-Date: Fri, 13 Nov 2009 20:18:33 -0800 (PST)
-Message-ID: <bug-25084-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25084] [PATCH] [drm_pciids] Note NVidia Quadro NVS
+ 295 as supported
+Date: Sat, 14 Nov 2009 02:07:05 -0800 (PST)
+Message-ID: <20091114100705.70B031300ED@annarchy.freedesktop.org>
+References: <bug-25084-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-25084-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +23,22 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=25084
 
-           Summary: [PATCH] [drm_pciids] Note NVidia Quadro NVS 295 as
-                    supported
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: walters-gPq2gbYjIk8dnm+yROfE0A@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
-Created an attachment (id=31191)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31191)
-[PATCH] [drm_pciids] Note NVidia Quadro NVS 295 as supported
 
-Hopefully this is the right place; there weren't any git commits to the file
-this year which makes me think it's wrong.
+
+--- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-14 02:07:04 PST ---
+1. This tree is no longer used (see
+http://nouveau.freedesktop.org/wiki/InstallNouveau for the right way).
+
+2. We haven't relied on pci-id's in ages, hence no updates to that file.
 
 
 -- 
