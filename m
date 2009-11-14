@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25088] New: Nouveau and KMS doesn't support dual
-	monitors
-Date: Sat, 14 Nov 2009 10:21:33 -0800 (PST)
-Message-ID: <bug-25088-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24996] Wrong display resolution in X,
+ "windowed" console. FX 5600 XT
+Date: Sat, 14 Nov 2009 12:50:26 -0800 (PST)
+Message-ID: <20091114205026.7AFDA13009C@annarchy.freedesktop.org>
+References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-24996-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,72 +21,102 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25088
-
-           Summary: Nouveau and KMS doesn't support dual monitors
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: fredthejonester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
 
-Created an attachment (id=31201)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31201)
-Files
 
-I have a  G98 [GeForce 9300 GS] and I run Arch Linux. Xorg is 1.7. I have 2
-monitors and with nvidia, they worked. With nouvea without KMS they also
-worked, but if I turn KMS on, then I get this:
 
-[f@localhost ~]$ xrandr
-Screen 0: minimum 320 x 200, current 1024 x 768, maximum 8192 x 8192
-DVI-I-0 connected 1024x768+0+0 (normal left inverted right x axis y axis) 310mm
-x 230mm
-   1024x768       85.0*+   85.0     75.1     70.1     60.0  
-   1280x1024      60.0  
-   800x600        85.1     72.2     75.0     60.3     56.2  
-   640x480        72.8     75.0     60.0  
-   720x400        70.1  
+
+--- Comment #10 from Simon Siemonsma <simon-ox55uKOtYtiZyCGURLKNQw@public.gmane.org>  2009-11-14 12:50:25 PST ---
+(In reply to comment #9)
+> (In reply to comment #6)
+> > Created an attachment (id=31117)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31117) [details] [details]
+> > nv43_tvdac_load.patch
+> > 
+> > > 
+> > 
+> > Does the attached patch fix it for you?
+> > 
+> 
+> The patch doesn't help.
+> Please let me now if you would like to receive more information or if can do
+> some more tests.
+> 
+
+I did some more test.
+The console uses the right resolution: 1280x1024. Only the upper left is used
+to display the characters.
+When running X the monitor is in the right resolution: 1280x1024. Only
+xrandr(In reply to comment #9)
+> (In reply to comment #6)
+> > Created an attachment (id=31117)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31117) [details] [details]
+> > nv43_tvdac_load.patch
+> > 
+> > > 
+> > 
+> > Does the attached patch fix it for you?
+> > 
+> 
+> The patch doesn't help.
+> Please let me now if you would like to receive more information or if can do
+> some more tests.
+> 
+
+(In reply to comment #9)
+> (In reply to comment #6)
+> > Created an attachment (id=31117)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31117) [details] [details]
+> > nv43_tvdac_load.patch
+> > 
+> > > 
+> > 
+> > Does the attached patch fix it for you?
+> > 
+> 
+> The patch doesn't help.
+> Please let me now if you would like to receive more information or if can do
+> some more tests.
+> 
+
+I did some test:
+Pressing the menu button of my screen shows the resolution it is running at.
+This is 1280x1024 which is as it should be.
+In console only the upper left part of the screen is used for the framebuffer
+console.
+In X the output of xrandr is:
+Screen 0: minimum 320 x 200, current 1024 x 768, maximum 4096 x 4096
 VGA-0 disconnected (normal left inverted right x axis y axis)
-[f@localhost ~]$ grep MODULES= /etc/mkinitcpio.conf
-#     MODULES="piix ide_disk reiserfs"
-MODULES="nouveau"
+DVI-I-0 connected 1024x768+0+0 (normal left inverted right x axis y axis) 376mm
+x 301mm
+   1280x1024      60.0 +
+   1024x768       75.1*    70.1     60.0
+   832x624        74.6
+   800x600        72.2     75.0     60.3     56.2
+   640x480        72.8     75.0     66.7     60.0
+   720x400        70.1
+TV-0 connected 1024x768+0+0 (normal left inverted right x axis y axis) 0mm x
+0mm
+   720x576        50.0 +
+   1024x768       50.0*
+   800x600        50.0
+   720x480        50.0
+   640x480        50.0
+   400x300       100.0
+   320x240       100.0
+   320x200       100.0
 
-I put 
+I definitively have no TV attached to my system.
+It seems xrandr is trying to run my monitor and non excistend tv at the same
+resolution.
 
-nouveau.modeset=1
-
-in my kernel line in grub.lst to turn KMS on. With it off, two monitors work,
-but it's buggy:
-
-1. I also have a bug with nouveau that sometimes colors change at random in FF
-and Thunderbird. What happens it that half the text on a page on FF suddenly
-goes white, for no known reason. I must restart FF and then it's OK. 
-
-2. The whole system is very slow. When I launch an app or save a spreadsheet,
-it takes literally a few seconds. Should be fast on a dual core 2G CPU with 2 G
-RAM.
-
-I attached what I hope are the relevant files. I run use Xfce 4.6.1. Sorry they
-are zipped, but the files are not small. It's dmesg ouput and Xorg.0.log.
-
-I am using nouveau-drm : 20091111 which I got via this:
-
-ftp://ftp.rez-gif.supelec.fr/Linux/archlinux/testing/os/i686/nouveau-drm-0.0.15_20091111-1-i686.pkg.tar.gz
-
-I tried with stable nouvea and it was the same, so I tried this version. Both
-are the same.
-
-I hope this is the relevant information.
-
-Thanks.
+My understanding is:
+1. nouveau detects a tv which is not there.
+2. the framebuffer doesn't use all screen real estate for some reason.
+3. xrandr sets all available screens to the same resolution. There is already a
+bugreport about this.
+4. as things are now I have to manually change the resolution of my screen.
 
 
 -- 
