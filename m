@@ -1,13 +1,14 @@
-From: Calvin Walton <calvin.walton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: undefined symbol for DRI
-Date: Sat, 14 Nov 2009 10:08:58 -0500
-Message-ID: <1258211338.5688.7.camel@ayu>
-References: <8b96e3d20911121102u3e0ab108v6a5c8c432fc90bd@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
+ KMS is enabled
+Date: Sat, 14 Nov 2009 08:10:26 -0800 (PST)
+Message-ID: <20091114161026.6FDF31300E6@annarchy.freedesktop.org>
+References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <8b96e3d20911121102u3e0ab108v6a5c8c432fc90bd-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,36 +18,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
-On Thu, 2009-11-12 at 17:02 -0200, Luiz Angelo Daros de Luca wrote:
-> Hello guys,
-> 
-> Quick question. I use libdrm, kernel drm, mesa and nouveau from git.
-> However, I got this error:
-> 
-> (EE) AIGLX error: dlopen of /usr/lib64/dri/nouveau_dri.so failed
-> (/usr/lib64/dri/nouveau_dri.so: undefined symbol: _glapi_tls_Context)
 
-This looks like your mesa was built with TLS support, but your X server
-does not have TLS support.
 
-> Does it means I need an updated xorg? I'm using 1.6.5
 
-That shouldn't be needed, you just have to disable TLS when compiling
-mesa.
 
-(This is disabled by default in the ./configure script and in the sample
-configurations, did you manually enable it?)
+--- Comment #14 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-14 08:10:25 PST ---
+Created an attachment (id=31195)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31195)
+dmesg
 
-Alternately, you can try to find Xorg packages with TLS enabled, or
-rebuild it yourself.
+(In reply to comment #11 an #12)
 
-Hope that helps!
+Your requested dmesg with a multiplier of 31.
+
+I noticed:
+A lower resolution needs a lower multiplier and
+a lower frequency within a resolution needs also a lower multiplier.
+
+With 640x480@60 I can go up to a multiplier of 31 without seeing bars.
+
+Shall I detect multipliers of other resolutions/frequencies, too?
+
 
 -- 
-Calvin Walton <calvin.walton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
