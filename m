@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24996] Wrong display resolution in X,
- "windowed" console. FX 5600 XT
-Date: Tue, 17 Nov 2009 04:37:29 -0800 (PST)
-Message-ID: <20091117123729.100E6130091@annarchy.freedesktop.org>
-References: <bug-24996-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25148] New: random crashes on NV4B, PGRAPH_ERROR
+Date: Tue, 17 Nov 2009 10:45:31 -0800 (PST)
+Message-ID: <bug-25148-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24996-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +18,42 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24996
+http://bugs.freedesktop.org/show_bug.cgi?id=25148
+
+           Summary: random crashes on NV4B, PGRAPH_ERROR
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Keywords: regression
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: andi.mundt-S0/GAf8tV78@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=31278)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31278)
+relevant part of syslog
 
+Hi, 
 
+X crashes (a few times per day), mostly when switching virtual desktops on NV4B
+nouveau. I run debian testing  with nouveau git kernel and git
+xf86-video-nouveau from the latest git. Most times the screen freezes and there
+is no respondence from mouse-clicks or keyboard, but I can move the mouse.
+Sysrq works. Sometimes X just crashes and restarts.
 
---- Comment #11 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-17 04:37:28 PST ---
-Created an attachment (id=31253)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31253)
-dcb_gpio_tvdac_switching.patch
+I did not observe this in October, so some early November commits
+(unfortunately I did not check which one) must be the responsible.
 
-(In reply to comment #9)
-> (In reply to comment #6)
-> > Created an attachment (id=31117)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31117) [details] [details]
-> > nv43_tvdac_load.patch
-> > 
-> > > 
-> > 
-> > Does the attached patch fix it for you?
-> > 
-> 
-> The patch doesn't help.
-> Please let me now if you would like to receive more information or if can do
-> some more tests.
-> 
+I attach syslog and Xorg.log, if more is needed or testing required please let
+me know. Thanks for your great work, cheers
 
-Please, try again with this one.
+Andi
 
 
 -- 
