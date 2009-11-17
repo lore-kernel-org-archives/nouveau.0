@@ -1,13 +1,11 @@
-From: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
-Subject: Re: [PATCH] Add missing include
-Date: Tue, 17 Nov 2009 20:36:18 +0100
-Message-ID: <20091117203618.89d4fd55.mandin.patrice@orange.fr>
-References: <1257890400-31344-1-git-send-email-xake@rymdraket.net>
+From: Matthew Garrett <mjg-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] nouveau: Set i2c adapter parent device
+Date: Tue, 17 Nov 2009 17:56:41 -0500
+Message-ID: <1258498601-2474-1-git-send-email-mjg@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1257890400-31344-1-git-send-email-xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,39 +15,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, Matthew Garrett <mjg-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Le Tue, 10 Nov 2009 23:00:00 +0100
-"Peter Hjalmarsson" <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org> a =E9crit:
+The parent device of the i2c adapter should be set to the appropriate PCI
+device in order for it to show up properly in sysfs.
 
-> fixes the following warning:
-> nv30_fragprog.c:710: warning: implicit declaration of function 'tgsi_dump'
-> ---
->  src/gallium/drivers/nv30/nv30_fragprog.c |    1 +
->  1 files changed, 1 insertions(+), 0 deletions(-)
-> =
+Signed-off-by: Matthew Garrett <mjg-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_i2c.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
 
-> diff --git a/src/gallium/drivers/nv30/nv30_fragprog.c b/src/gallium/drive=
-rs/nv30/nv30_fragprog.c
-> index cc03854..b42a7be 100644
-> --- a/src/gallium/drivers/nv30/nv30_fragprog.c
-> +++ b/src/gallium/drivers/nv30/nv30_fragprog.c
-> @@ -4,6 +4,7 @@
->  #include "pipe/p_inlines.h"
->  =
-
->  #include "pipe/p_shader_tokens.h"
-> +#include "tgsi/tgsi_dump.h"
->  #include "tgsi/tgsi_parse.h"
->  #include "tgsi/tgsi_util.h"
-
-Applied. Thanks.
-
--- =
-
-Patrice Mandin
-WWW: http://pmandin.atari.org/
-Programmeur Linux, Atari
-Sp=E9cialit=E9: D=E9veloppement, jeux
+diff --git a/drivers/gpu/drm/nouveau/nouveau_i2c.c b/drivers/gpu/drm/nouveau/nouveau_i2c.c
+index 3f219dd..cca2b6c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_i2c.c
++++ b/drivers/gpu/drm/nouveau/nouveau_i2c.c
+@@ -176,6 +176,7 @@ nouveau_i2c_init(struct drm_device *dev, struct dcb_i2c_entry *entry, int index)
+ 		 "nouveau-%s-%d", pci_name(dev->pdev), index);
+ 	i2c->adapter.owner = THIS_MODULE;
+ 	i2c->adapter.algo_data = &i2c->algo;
++	i2c->adapter.dev.parent = &dev->pdev->dev;
+ 	i2c->dev = dev;
+ 
+ 	switch (entry->port_type) {
+-- 
+1.6.5.2
