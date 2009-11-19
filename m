@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24996] Wrong display resolution in X,
  "windowed" console. FX 5600 XT
-Date: Thu, 19 Nov 2009 06:37:01 -0800 (PST)
-Message-ID: <20091119143701.592BD1300C3@annarchy.freedesktop.org>
+Date: Thu, 19 Nov 2009 06:38:25 -0800 (PST)
+Message-ID: <20091119143825.976CF1300FB@annarchy.freedesktop.org>
 References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-24996-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,20 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yNDk5NgoKClRob21h
-cyBIb2VybmVzIDx0aG9tYXMuaG9lcm5lc0BnbXguYXQ+IGNoYW5nZWQ6CgogICAgICAgICAgIFdo
-YXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLQogIEF0dGFjaG1lbnQgIzMxMzA3fDAgICAgICAgICAgICAgICAgICAgICAgICAgICB8MQog
-ICAgICAgIGlzIG9ic29sZXRlfCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8CgoKCgotLS0g
-Q29tbWVudCAjMTcgZnJvbSBUaG9tYXMgSG9lcm5lcyA8dGhvbWFzLmhvZXJuZXNAZ214LmF0PiAg
-MjAwOS0xMS0xOSAwNjozNzowMCBQU1QgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9MzEz
-MDgpCiAtLT4gKGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9pZD0z
-MTMwOCkKZG1lc2cKClNvcnJ5IGZvciBkb3VibGUgcG9zdCEgScK0dmUgdHJpZWQgZGNiX2dwaW9f
-dHZkYWNfc3dpdGNoaW5nMy5wYXRjaCB3aXRoCnRvZGF5wrRzIHNuYXBzaG90LiBFcnJvciBzdGls
-bCBvY2N1cnMuCgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3Rv
-cC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0
-aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1
-Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
-dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=24996
+
+
+Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #31307|application/octet-stream    |text/plain
+          mime type|                            |
+  Attachment #31307|1                           |0
+        is obsolete|                            |
+
+
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
