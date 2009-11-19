@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12805] error dma
-Date: Thu, 19 Nov 2009 13:21:44 -0800 (PST)
-Message-ID: <20091119212144.5F9AF13006E@annarchy.freedesktop.org>
-References: <bug-12805-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 13689] nouveau is much slower than nv with flash
+	player
+Date: Thu, 19 Nov 2009 13:25:01 -0800 (PST)
+Message-ID: <20091119212501.6BA9A13006E@annarchy.freedesktop.org>
+References: <bug-13689-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12805-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-13689-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,7 +21,7 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=12805
+http://bugs.freedesktop.org/show_bug.cgi?id=13689
 
 
 Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
@@ -33,11 +34,8 @@ Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
 
 
 
---- Comment #4 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-11-19 13:21:43 PST ---
-This bug is long obsolete. I am assuming it is fixed.
-
-Andrey, if you still have problems, please open a new bug with *full* kernel
-and X logs.
+--- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-11-19 13:24:59 PST ---
+Apparently it is fixed, eh?
 
 
 -- 
