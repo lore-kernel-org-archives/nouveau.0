@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24996] Wrong display resolution in X,
  "windowed" console. FX 5600 XT
-Date: Wed, 18 Nov 2009 17:32:36 -0800 (PST)
-Message-ID: <20091119013236.763341300F4@annarchy.freedesktop.org>
+Date: Thu, 19 Nov 2009 06:31:37 -0800 (PST)
+Message-ID: <20091119143137.53D7F1300C7@annarchy.freedesktop.org>
 References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,20 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
 
 
---- Comment #15 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-18 17:32:34 PST ---
-(In reply to comment #12)
-> Created an attachment (id=31286)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31286) [details]
-> dcb_gpio_tvdac_switching2.patch
-> 
-> The last patch is known not to work on some nv4x, could you try this one
-> instead?
-> 
-
-This guy with a nv43 has tried that patch apparently without success :
-http://bbs.archlinux.org/viewtopic.php?pid=658015#p658015
-
-I will ask him to post here directly, it would be easier :)
+--- Comment #16 from Thomas Hoernes <thomas.hoernes-RbZlAiThDcE@public.gmane.org>  2009-11-19 06:31:27 PST ---
+Created an attachment (id=31307)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31307)
+dmesg
 
 
 -- 
