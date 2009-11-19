@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24996] Wrong display resolution in X,
  "windowed" console. FX 5600 XT
-Date: Thu, 19 Nov 2009 06:38:25 -0800 (PST)
-Message-ID: <20091119143825.976CF1300FB@annarchy.freedesktop.org>
+Date: Thu, 19 Nov 2009 09:50:32 -0800 (PST)
+Message-ID: <20091119175032.ADDAD130108@annarchy.freedesktop.org>
 References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,16 +24,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
 
-Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #31307|application/octet-stream    |text/plain
-          mime type|                            |
-  Attachment #31307|1                           |0
-        is obsolete|                            |
 
 
+
+--- Comment #18 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-19 09:50:31 PST ---
+Some mmiotraces from the cards TV load detection still fails may be useful.
+There are some instructions in the wiki pages [1], besides the docs in the
+kernel source tree.
+
+The best would be to trace the blob with the TV output connected and any other
+outputs disconnected, no need to do anything special, just load nvidia.ko and
+start X up.
+
+As it's going to be a very large file, I'd send it compressed to mmio.dumps at
+gmail.com instead of attaching it to the bug report.
+
+[1] http://nouveau.freedesktop.org/wiki/MmioTrace
 
 
 -- 
