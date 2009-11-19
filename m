@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24996] Wrong display resolution in X,
  "windowed" console. FX 5600 XT
-Date: Wed, 18 Nov 2009 11:37:19 -0800 (PST)
-Message-ID: <20091118193719.1B8241300D3@annarchy.freedesktop.org>
+Date: Wed, 18 Nov 2009 17:32:36 -0800 (PST)
+Message-ID: <20091119013236.763341300F4@annarchy.freedesktop.org>
 References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,89 +27,20 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
 
 
---- Comment #14 from Simon Siemonsma <simon-ox55uKOtYtiZyCGURLKNQw@public.gmane.org>  2009-11-18 11:37:18 PST ---
-(In reply to comment #13)
-> Created an attachment (id=31294)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31294) [details]
-> dcb_gpio_tvdac_switching3.patch
+--- Comment #15 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-18 17:32:34 PST ---
+(In reply to comment #12)
+> Created an attachment (id=31286)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31286) [details]
+> dcb_gpio_tvdac_switching2.patch
 > 
-> (In reply to comment #9)
-> > (In reply to comment #6)
-> > > Created an attachment (id=31117)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31117) [details] [details] [details]
-> > > nv43_tvdac_load.patch
-> > > 
-> > > > 
-> > > 
-> > > Does the attached patch fix it for you?
-> > > 
-> > 
-> > The patch doesn't help.
-> > Please let me now if you would like to receive more information or if can do
-> > some more tests.
-> > 
-> 
-> dcb_gpio_tvdac_switching2.patch no longer applies cleanly over master. Please
-> use the one I'm attaching now if you have updated your tree recently enough.
+> The last patch is known not to work on some nv4x, could you try this one
+> instead?
 > 
 
-(In reply to comment #13)
-> Created an attachment (id=31294)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31294) [details]
-> dcb_gpio_tvdac_switching3.patch
-> 
-> (In reply to comment #9)
-> > (In reply to comment #6)
-> > > Created an attachment (id=31117)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31117) [details] [details] [details]
-> > > nv43_tvdac_load.patch
-> > > 
-> > > > 
-> > > 
-> > > Does the attached patch fix it for you?
-> > > 
-> > 
-> > The patch doesn't help.
-> > Please let me now if you would like to receive more information or if can do
-> > some more tests.
-> > 
-> 
-> dcb_gpio_tvdac_switching2.patch no longer applies cleanly over master. Please
-> use the one I'm attaching now if you have updated your tree recently enough.
-> 
+This guy with a nv43 has tried that patch apparently without success :
+http://bbs.archlinux.org/viewtopic.php?pid=658015#p658015
 
-(In reply to comment #13)
-> Created an attachment (id=31294)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31294) [details]
-> dcb_gpio_tvdac_switching3.patch
-> 
-> (In reply to comment #9)
-> > (In reply to comment #6)
-> > > Created an attachment (id=31117)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31117) [details] [details] [details]
-> > > nv43_tvdac_load.patch
-> > > 
-> > > > 
-> > > 
-> > > Does the attached patch fix it for you?
-> > > 
-> > 
-> > The patch doesn't help.
-> > Please let me now if you would like to receive more information or if can do
-> > some more tests.
-> > 
-> 
-> dcb_gpio_tvdac_switching2.patch no longer applies cleanly over master. Please
-> use the one I'm attaching now if you have updated your tree recently enough.
-> 
-
-Given your comments about ubdating my tree recently enough I downloaded the
-latest drm snapshot from http://people.freedesktop.org/~pq/nouveau-drm/
-
-When applying the patch Chunk 1 & 2 didn't apply.
-Before applying the patch the kernel did compile.
-After applying the patch (except chunk 1 & 2 of course) the kernel didn't
-compile.
+I will ask him to post here directly, it would be easier :)
 
 
 -- 
