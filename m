@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24668] KMS does not work with nva8
-Date: Thu, 19 Nov 2009 18:27:08 -0800 (PST)
-Message-ID: <20091120022709.152EB130112@annarchy.freedesktop.org>
-References: <bug-24668-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
+ KMS is enabled
+Date: Fri, 20 Nov 2009 08:06:33 -0800 (PST)
+Message-ID: <20091120160633.D58EE13011F@annarchy.freedesktop.org>
+References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24668-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +21,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24668
+http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
 
 
 
 
---- Comment #12 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2009-11-19 18:27:08 PST ---
-No go. 
-Did you want another log?
+--- Comment #17 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-20 08:06:33 PST ---
+Created an attachment (id=31345)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31345)
+dmesg with arb_debug2.patch
+
+It is weekend and I am at home again...
+
+Here is your requested dmesg (1280x720x16bpp@76Hz).
+
+With arb_debug2.patch KMS enabled console looks also corrupted.
 
 
 -- 
