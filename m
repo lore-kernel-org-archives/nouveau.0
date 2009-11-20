@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24668] KMS does not work with nva8
-Date: Thu, 19 Nov 2009 16:36:29 -0800 (PST)
-Message-ID: <20091120003629.1F7681300FD@annarchy.freedesktop.org>
+Date: Thu, 19 Nov 2009 18:27:08 -0800 (PST)
+Message-ID: <20091120022709.152EB130112@annarchy.freedesktop.org>
 References: <bug-24668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24668
 
 
 
---- Comment #11 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-19 16:36:28 PST ---
-Created an attachment (id=31326)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31326)
-Parse PLL limits table v4.0, adjust PLL calculations for new PLL type
-
-Are you able to apply the attached patch to current git master and see if
-anything improves, thanks!
+--- Comment #12 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2009-11-19 18:27:08 PST ---
+No go. 
+Did you want another log?
 
 
 -- 
