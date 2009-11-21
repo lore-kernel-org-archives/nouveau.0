@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
  KMS is enabled
-Date: Sat, 21 Nov 2009 09:59:06 -0800 (PST)
-Message-ID: <20091121175906.7207F130128@annarchy.freedesktop.org>
+Date: Sat, 21 Nov 2009 13:35:28 -0800 (PST)
+Message-ID: <20091121213528.C7CDD130117@annarchy.freedesktop.org>
 References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,24 +24,21 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
 
-Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #31041|0                           |1
-        is obsolete|                            |
 
 
 
-
---- Comment #18 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-21 09:59:05 PST ---
-Created an attachment (id=31374)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31374)
-nv15_arbitration2.patch
-
-This fix is hopefully more correct, it would be interesting to know if you
-still see any kind of corruption or flashing pixels at whatever
-resolution/depth/refresh rate.
+--- Comment #20 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-21 13:35:28 PST ---
+(In reply to comment #19)
+> (In reply to comment #18)
+> Some other corrupted pixels continue to be visible:
+> 
+> http://www.freeimagehosting.net/uploads/fda04aaf3c.jpg
+> 
+> :s below headline
+> .s within "white" space between selection dialog and green box  
+>
+That doesn't seem to be a scanout effect, can you still see the artifacts when
+you look at a screenshot?
 
 
 -- 
