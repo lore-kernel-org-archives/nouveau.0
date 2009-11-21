@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
  KMS is enabled
-Date: Sat, 21 Nov 2009 12:03:54 -0800 (PST)
-Message-ID: <20091121200354.5A9E413011A@annarchy.freedesktop.org>
+Date: Sat, 21 Nov 2009 09:59:06 -0800 (PST)
+Message-ID: <20091121175906.7207F130128@annarchy.freedesktop.org>
 References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,35 +24,24 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
 
-Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |ingo_brunberg-S0/GAf8tV78@public.gmane.org
+  Attachment #31041|0                           |1
+        is obsolete|                            |
 
 
 
 
---- Comment #19 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-21 12:03:53 PST ---
-(In reply to comment #18)
+--- Comment #18 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-21 09:59:05 PST ---
+Created an attachment (id=31374)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31374)
+nv15_arbitration2.patch
 
-With nv15_arbitration2.patch I can use all resolutions/frequencies without
-flickering bars...
-
-Some other corrupted pixels continue to be visible:
-
-http://www.freeimagehosting.net/uploads/fda04aaf3c.jpg
-
-:s below headline
-.s within "white" space between selection dialog and green box  
-
-But it was/is also without KMS enabled...
-I may open a new bug for that...
-
-I add Ingo Brunberg to CC (Bug #24800).
-He may tests nv15_arbitration2.patch and posts his "experience" with it.
-
-From my side many thanks to Francisco for his great work.
+This fix is hopefully more correct, it would be interesting to know if you
+still see any kind of corruption or flashing pixels at whatever
+resolution/depth/refresh rate.
 
 
 -- 
