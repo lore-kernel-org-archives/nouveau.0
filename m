@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
  KMS is enabled
-Date: Sat, 21 Nov 2009 13:35:28 -0800 (PST)
-Message-ID: <20091121213528.C7CDD130117@annarchy.freedesktop.org>
+Date: Sat, 21 Nov 2009 14:11:57 -0800 (PST)
+Message-ID: <20091121221157.CEF3613010D@annarchy.freedesktop.org>
 References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,18 +27,29 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
 
 
---- Comment #20 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-21 13:35:28 PST ---
-(In reply to comment #19)
-> (In reply to comment #18)
-> Some other corrupted pixels continue to be visible:
+--- Comment #21 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-21 14:11:57 PST ---
+(In reply to comment #20)
+> (In reply to comment #19)
+> > (In reply to comment #18)
+> > Some other corrupted pixels continue to be visible:
+> > 
+> > http://www.freeimagehosting.net/uploads/fda04aaf3c.jpg
+> > 
+> > :s below headline
+
+are mostly visible (also in other KDE apps)
+
+> > .s within "white" space between selection dialog and green box  
+
+are only sometimes visible
+
+> >
+> That doesn't seem to be a scanout effect, can you still see the artifacts when
+> you look at a screenshot?
 > 
-> http://www.freeimagehosting.net/uploads/fda04aaf3c.jpg
-> 
-> :s below headline
-> .s within "white" space between selection dialog and green box  
->
-That doesn't seem to be a scanout effect, can you still see the artifacts when
-you look at a screenshot?
+
+With a Snapshot via KSnapshot I can see the artifacts, too. (If visible on
+"normal" screen at time when "KSnapshotting").
 
 
 -- 
