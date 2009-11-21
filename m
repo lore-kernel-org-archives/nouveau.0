@@ -1,16 +1,13 @@
-From: Stephane Marchesin <marchesin-YynmYXH4S6491FlJP1ih0VAUjnlXr6A1@public.gmane.org>
-Subject: Re: [RFC] nouveau: Add basic i2c sensor chip support
-Date: Fri, 20 Nov 2009 21:04:31 +0100
-Message-ID: <6a89f9d50911201204n157c2f4eg7f4449c9741bb72f@mail.gmail.com>
-References: <1258671589-2079-1-git-send-email-mjg@redhat.com>
-	<20091120184325.GA29058@srcf.ucam.org>
-	<1258747177.31202.5.camel@balrog.2hip.net>
-	<20091120200256.GA30470@srcf.ucam.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 24710] nouveau KMS fails on NV11 - screen freeze
+Date: Fri, 20 Nov 2009 17:37:00 -0800 (PST)
+Message-ID: <20091121013700.8A69C1300CB@annarchy.freedesktop.org>
+References: <bug-24710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20091120200256.GA30470-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org>
+In-Reply-To: <bug-24710-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +17,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Matthew Garrett <mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Nov 20, 2009 at 21:02, Matthew Garrett <mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org> wrote:
-> On Fri, Nov 20, 2009 at 01:59:37PM -0600, Robert Noland wrote:
->> On Fri, 2009-11-20 at 18:43 +0000, Matthew Garrett wrote:
->> > This one works better, including some amount of support for the intern=
-al
->> > GPU sensor. It seems to give reasonable results on all the cards I have
->> > here.
->>
->> So, I obviously have concerns/objections to allowing GPL code into drm.
->> Especially, since this code doesn't do anything interesting or
->> innovative that I can see. =A0It just reads registers via i2c... I mean
->> how else would you do it?
->
-> It contains code cut and paste from nvclock (a GPLed codebase) and uses
-> functions that are specific to the Linux kernel. I don't have the legal
-> expertise to be able to claim it's not a derived work.
->
+http://bugs.freedesktop.org/show_bug.cgi?id=24710
 
-An alternative would be to ask Roderick if he's ok to relicense the
-bits from nvclock. Doesn't look like a lot from what I can see.
 
-Stephane
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|REOPENED                    |RESOLVED
+         Resolution|                            |FIXED
+
+
+
+
+--- Comment #13 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-20 17:36:59 PST ---
+The patch is already in Linus' kernel tree and it will eventually flow back to
+nouveau, so I'm marking this bug as closed.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
