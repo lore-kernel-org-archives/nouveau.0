@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25223] LVDS detected, but disabled on GeForce Go 7300
-Date: Sun, 22 Nov 2009 05:30:39 -0800 (PST)
-Message-ID: <20091122133039.62959130100@annarchy.freedesktop.org>
+Date: Sun, 22 Nov 2009 14:03:38 -0800 (PST)
+Message-ID: <20091122220338.D34D81300B6@annarchy.freedesktop.org>
 References: <bug-25223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,12 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25223
 
 
-Martin Holec <martix.cz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|LVDS detected, but disabled |LVDS detected, but disabled
-                   |                            |on GeForce Go 7300
 
 
+
+--- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-22 14:03:38 PST ---
+Does the display work with nouveau.modeset=0?  And, what resolution does your
+panel have?
 
 
 -- 
