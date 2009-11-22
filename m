@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
- KMS is enabled
-Date: Sat, 21 Nov 2009 14:11:57 -0800 (PST)
-Message-ID: <20091121221157.CEF3613010D@annarchy.freedesktop.org>
-References: <bug-24820-8800@http.bugs.freedesktop.org/>
+From: Steve Conklin <steve.conklin-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: Introduction and discussion - Nouveau for Ubuntu Lucid
+Date: Sat, 21 Nov 2009 21:33:33 -0600
+Message-ID: <4B08B10D.7020409@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +18,41 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24820
+Hi,
 
+  I've been following the list for a short while and scanned the archive.
+Apologies for missing any answers that were in the archive.
 
+  I'm the Ubuntu kernel team member focusing on graphics during the Ubuntu
+Lucid Lynx (10.4) cycle. At the Ubuntu developer summit last week, we made
+the decision to include Nouveau in the Lucid kernel.  I'd like to open a few
+topics for discussion with the Nouveau community:
 
+First, I want to make sure we're pulling from the repo you prefer for delivery
+with the distro. I've seen the information here -
+http://nouveau.freedesktop.org/wiki/FrontPage#Source and here -
+http://lists.freedesktop.org/archives/nouveau/2009-March/002765.html
 
+and I haven't been able to find a tree that's indicated for release to upstream
+or distros. Is the master branch on the freedesktop repo the best place to
+pull from?
 
---- Comment #21 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-21 14:11:57 PST ---
-(In reply to comment #20)
-> (In reply to comment #19)
-> > (In reply to comment #18)
-> > Some other corrupted pixels continue to be visible:
-> > 
-> > http://www.freeimagehosting.net/uploads/fda04aaf3c.jpg
-> > 
-> > :s below headline
+Second, I expect that we'll have one or two calls for testing. I welcome discussions
+about any particular functionality or hardware that the Nouveau community would
+like testing coverage on, and any preferred tools for testing. Ubuntu testing
+results and bugs are open, and there are some tagging and processing tools
+that I can use to help get these back to the Nouveau community in ways that will
+be helpful.
 
-are mostly visible (also in other KDE apps)
+Third, we have a good facility to capture logs and useful information after oopses,
+crashes, and when bugs are filed. If there's any information that's useful to
+the Nouveau developers that's not part of the normal kernel logs, I'll make
+sure we gather them - just let me know what you need.
 
-> > .s within "white" space between selection dialog and green box  
+Last, what else have I missed that I should know about?
 
-are only sometimes visible
+Thanks,
 
-> >
-> That doesn't seem to be a scanout effect, can you still see the artifacts when
-> you look at a screenshot?
-> 
-
-With a Snapshot via KSnapshot I can see the artifacts, too. (If visible on
-"normal" screen at time when "KSnapshotting").
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Steve Conklin
+steve.conklin-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org
+irc: sconklin
