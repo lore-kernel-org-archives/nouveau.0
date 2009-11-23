@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25148] random crashes on NV4B, PGRAPH_ERROR
-Date: Mon, 23 Nov 2009 07:59:15 -0800 (PST)
-Message-ID: <20091123155915.A0BD41300A1@annarchy.freedesktop.org>
+Date: Mon, 23 Nov 2009 08:18:12 -0800 (PST)
+Message-ID: <20091123161812.D901F13009F@annarchy.freedesktop.org>
 References: <bug-25148-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,37 +26,19 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25148
 
 
 
---- Comment #2 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-23 07:59:14 PST ---
-(In reply to comment #0)
-> Created an attachment (id=31278)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31278) [details]
-> relevant part of syslog
-> 
-> Hi, 
-> 
-> X crashes (a few times per day), mostly when switching virtual desktops on NV4B
-> nouveau. I run debian testing  with nouveau git kernel and git
-> xf86-video-nouveau from the latest git. Most times the screen freezes and there
-> is no respondence from mouse-clicks or keyboard, but I can move the mouse.
-> Sysrq works. Sometimes X just crashes and restarts.
-> 
-> I did not observe this in October, so some early November commits
-> (unfortunately I did not check which one) must be the responsible.
-> 
+--- Comment #3 from Andreas B. Mundt <andi.mundt-S0/GAf8tV78@public.gmane.org>  2009-11-23 08:18:12 PST ---
+Created an attachment (id=31413)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31413)
+dmesg (no crash so far) 
 
-It would be helpful if you tried git-bisect to find out which commit broke it
-exactly.
+Hi,
 
-> I attach syslog and Xorg.log, if more is needed or testing required please let
-> me know. Thanks for your great work, cheers
-> 
+here is dmesg without crash so far. I'll try to bisec git as soon as time
+allows (earliest next week...).
 
-Could you attach the full output from dmesg instead of a snippet? (It's fine if
-it doesn't show the crash, just make sure it hasn't wrapped around since last
-boot).
+Thanks,
 
-> Andi
-> 
+Andi
 
 
 -- 
