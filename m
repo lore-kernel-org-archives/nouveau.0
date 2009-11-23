@@ -1,14 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
- KMS is enabled
-Date: Mon, 23 Nov 2009 06:14:16 -0800 (PST)
-Message-ID: <20091123141416.D86B41300A1@annarchy.freedesktop.org>
-References: <bug-24820-8800@http.bugs.freedesktop.org/>
+From: Bruce Drake <bmdrake919-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
+Subject: X freezes with nouveau/G70
+Date: Mon, 23 Nov 2009 06:05:34 -0800 (PST)
+Message-ID: <201016.4404.qm@web55603.mail.re4.yahoo.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1455921028=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,48 +12,55 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24820
+--===============1455921028==
+Content-Type: multipart/alternative; boundary="0-194054829-1258985134=:4404"
+
+--0-194054829-1258985134=:4404
+Content-Type: text/plain; charset=us-ascii
+
+Greetings,
+
+Ever since the nouveau driver arrived in the Fedora distribution, I have not been able to use (or boot) my system without booting in run level 3 and loading nVidia's proprietary drivers first.  With the shipped drivers in Fedora 10 and 11, regardless of how I start X, I get the animated cursor first, then random data spews across the screen and I lose the keyboard (but mouse still moves), requiring a hard reset to recover.
+
+Now, with the release of Fedora 12, the proprietary driver won't work now (according to RedHat).  However, the only option that leaves me is to boot up with no graphics or just the vesa driver.
+
+I have a G70 [GeForce 7800 GT] (rev a1) card that works fine (actually 2 cards that work fine).  Is there something I can do to make this card work, or otherwise assist in making it work?  Is there something odd about this card that requires special handling?  Let me know what I can provide to you to help.
+
+Thank you in advance for your assistance,
+Bruce
 
 
 
+      
+--0-194054829-1258985134=:4404
+Content-Type: text/html; charset=us-ascii
+
+<html><head><style type="text/css"><!-- DIV {margin:0px;} --></style></head><body><div style="font-family:times new roman,new york,times,serif;font-size:12pt"><div>Greetings,<br><br>Ever since the nouveau driver arrived in the Fedora distribution, I have not been able to use (or boot) my system without booting in run level 3 and loading nVidia's proprietary drivers first.&nbsp; With the shipped drivers in Fedora 10 and 11, regardless of how I start X, I get the animated cursor first, then random data spews across the screen and I lose the keyboard (but mouse still moves), requiring a hard reset to recover.<br><br>Now, with the release of Fedora 12, the proprietary driver won't work now (according to RedHat).&nbsp; However, the only option that leaves me is to boot up with no graphics or ju
+ st the vesa driver.<br><br>I have a G70 [GeForce 7800 GT] (rev a1) card that works fine (actually 2 cards that work fine).&nbsp; Is there something I can do to make
+ this card work, or otherwise assist in making it work?&nbsp; Is there something odd about this card that requires special handling?&nbsp; Let me know what I can provide to you to help.<br><br>Thank you in advance for your assistance,<br>Bruce<br></div>
+<!-- cg30.c2.mail.ac4.yahoo.com compressed/chunked Mon Nov 23 05:49:47 PST 2009 -->
+</div><br>
 
 
---- Comment #24 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-23 06:14:15 PST ---
-(In reply to comment #21)
-> (In reply to comment #20)
-> > (In reply to comment #19)
-> > > (In reply to comment #18)
-> > > Some other corrupted pixels continue to be visible:
-> > > 
-> > > http://www.freeimagehosting.net/uploads/fda04aaf3c.jpg
-> > > 
-> > > :s below headline
-> 
-> are mostly visible (also in other KDE apps)
-> 
-> > > .s within "white" space between selection dialog and green box  
-> 
-> are only sometimes visible
-> 
-> > >
-> > That doesn't seem to be a scanout effect, can you still see the artifacts when
-> > you look at a screenshot?
-> > 
-> 
-> With a Snapshot via KSnapshot I can see the artifacts, too. (If visible on
-> "normal" screen at time when "KSnapshotting").
-> 
 
-Does it go away if you set this Section "Device" option in your xorg.conf?
-> Option "EXANoComposite" "on"
+      </body></html>
+--0-194054829-1258985134=:4404--
 
+--===============1455921028==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1455921028==--
