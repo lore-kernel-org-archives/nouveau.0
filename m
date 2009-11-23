@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25223] LVDS detected, but disabled on GeForce Go 7300
-Date: Mon, 23 Nov 2009 15:23:09 -0800 (PST)
-Message-ID: <20091123232309.D638F13009C@annarchy.freedesktop.org>
+Date: Mon, 23 Nov 2009 15:24:07 -0800 (PST)
+Message-ID: <20091123232407.8C5D013009C@annarchy.freedesktop.org>
 References: <bug-25223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25223
 
 
 
---- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-23 15:23:09 PST ---
-Created an attachment (id=31425)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31425)
-Forcibly try DDC on LVDS if i2c table index valid
+--- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-23 15:24:06 PST ---
+Created an attachment (id=31426)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31426)
+Force the use of strap-based FP mode if present, and fp_no_ddc is true
 
 
 -- 
