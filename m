@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24996] Wrong display resolution in X,
- "windowed" console. FX 5600 XT
-Date: Mon, 23 Nov 2009 12:25:44 -0800 (PST)
-Message-ID: <20091123202544.9EEA313007A@annarchy.freedesktop.org>
-References: <bug-24996-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25246] New: NV17 on ppc and Apple Cinema Display
+ fails to set mode
+Date: Mon, 23 Nov 2009 13:42:34 -0800 (PST)
+Message-ID: <bug-25246-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24996-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +19,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24996
+http://bugs.freedesktop.org/show_bug.cgi?id=25246
+
+           Summary: NV17 on ppc and Apple Cinema Display fails to set mode
+           Product: xorg
+           Version: 7.4
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: junlingm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=31421)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31421)
+X logs and kernel logs with and without modeset=1
 
-
-
---- Comment #19 from Simon Siemonsma <simon-ox55uKOtYtiZyCGURLKNQw@public.gmane.org>  2009-11-23 12:25:43 PST ---
-(In reply to comment #18)
-> Some mmiotraces from the cards TV load detection still fails may be useful.
-> There are some instructions in the wiki pages [1], besides the docs in the
-> kernel source tree.
-> 
-> The best would be to trace the blob with the TV output connected and any other
-> outputs disconnected, no need to do anything special, just load nvidia.ko and
-> start X up.
-> 
-> As it's going to be a very large file, I'd send it compressed to mmio.dumps at
-> gmail.com instead of attaching it to the bug report.
-> 
-> [1] http://nouveau.freedesktop.org/wiki/MmioTrace
-> 
-mmio dump send.
-It is without a tv attached ad with a monitor attached however.
-I hope it is still usefull.
+With modeset=1, the kernel segfaults, the X server segfault. With modeset=0,
+the kernel works fine, the X server does not complain, but the screen is black.
+I can switch VT and go to text mode. But X is always black.
 
 
 -- 
