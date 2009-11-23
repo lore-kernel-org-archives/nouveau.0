@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25246] NV17 on ppc and Apple Cinema Display fails to
 	set mode
-Date: Mon, 23 Nov 2009 15:34:48 -0800 (PST)
-Message-ID: <20091123233448.9415313009C@annarchy.freedesktop.org>
+Date: Mon, 23 Nov 2009 15:35:26 -0800 (PST)
+Message-ID: <20091123233526.E490A13009C@annarchy.freedesktop.org>
 References: <bug-25246-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25246
 
 
 
---- Comment #2 from Junling Ma <junlingm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-23 15:34:48 PST ---
-Created an attachment (id=31427)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31427)
-The X server log after applying the patch
+--- Comment #3 from Junling Ma <junlingm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-23 15:35:26 PST ---
+Created an attachment (id=31428)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31428)
+The kernel log with the patch and kernel modesetting
 
 
 -- 
