@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
  KMS is enabled
-Date: Mon, 23 Nov 2009 03:57:38 -0800 (PST)
-Message-ID: <20091123115738.5265A1300B3@annarchy.freedesktop.org>
+Date: Mon, 23 Nov 2009 05:09:50 -0800 (PST)
+Message-ID: <20091123130950.BE1D51300A3@annarchy.freedesktop.org>
 References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,20 +28,19 @@ Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #31374|0                           |1
+  Attachment #31409|0                           |1
         is obsolete|                            |
 
 
 
 
---- Comment #22 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-23 03:57:37 PST ---
-Created an attachment (id=31409)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31409)
-arb_rewrite.patch
+--- Comment #23 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-23 05:09:50 PST ---
+Created an attachment (id=31412)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31412)
+arb_rewrite2.patch
 
-I think I'll go with a rewrite of the involved code like the patch I'm
-attaching instead of trying to fix the old code (It's nv legacy and it had some
-issues besides the one you hit). Maybe you want to give it a try?
+I suspect nv15 has a shorter CRTC FIFO, you may get a distorted output with the
+last patch but this one should fix it.
 
 
 -- 
