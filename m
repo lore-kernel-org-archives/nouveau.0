@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25071] GPU lockup G80 8800
-Date: Tue, 24 Nov 2009 15:49:15 -0800 (PST)
-Message-ID: <20091124234915.25158130073@annarchy.freedesktop.org>
+Date: Tue, 24 Nov 2009 15:51:31 -0800 (PST)
+Message-ID: <20091124235131.6B0BA130073@annarchy.freedesktop.org>
 References: <bug-25071-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25071
 
 
 
---- Comment #2 from Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-24 15:49:13 PST ---
-Created an attachment (id=31453)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31453)
-GPU lockup: PFIFO_DMA_PUSHER - Ch 1
+--- Comment #3 from Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-24 15:51:30 PST ---
+Created an attachment (id=31454)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31454)
+lspci GeForce 8800 GTX
 
 
 -- 
