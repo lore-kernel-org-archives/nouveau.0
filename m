@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25258] New: [9400M] KMS and X do not use monitor's
- native resolution
-Date: Tue, 24 Nov 2009 06:16:04 -0800 (PST)
-Message-ID: <bug-25258-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25258] [9400M] KMS and X do not use monitor's native
+	resolution
+Date: Tue, 24 Nov 2009 06:16:37 -0800 (PST)
+Message-ID: <20091124141637.A311A1300BC@annarchy.freedesktop.org>
+References: <bug-25258-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-25258-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=25258
 
-           Summary: [9400M] KMS and X do not use monitor's native resolution
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Graphic card: Zotac IONITX (9400M)
-Monitor: Hisense LCD2233EU -> HEC LCD2233EU?, native Resolution 1680x1050
-Software: git20091123
 
-KMS and X recognise my monitor with a native resolution of 1280x720. If I try
-setting resolution to 1680x1050 in X it switches to 1280x1024.
-My monitor cannot handle a resolution of 1280x720 -> some parts are "outside"
-monitor's viewable area. 
 
-Maybe https://bugs.freedesktop.org/show_bug.cgi?id=24861 is useful, too. I link
-provided logs here:
-dmesg:      https://bugs.freedesktop.org/attachment.cgi?id=30933
-Xorg.0.log: https://bugs.freedesktop.org/attachment.cgi?id=30934
-xorg.conf:  https://bugs.freedesktop.org/attachment.cgi?id=30935
-
-The problem described there with VGA->VGA connection exists with this
-mainboard, too.
-Only HDMI->HDMI or DVI->HDMI connections work on console but with the described
-wrong native resolution...
-
-Logs for DVI->HDMI connection follow...
+--- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-24 06:16:36 PST ---
+Created an attachment (id=31442)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31442)
+dmesg
 
 
 -- 
