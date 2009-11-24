@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25246] NV17 on ppc and Apple Cinema Display fails to
 	set mode
-Date: Mon, 23 Nov 2009 15:37:52 -0800 (PST)
-Message-ID: <20091123233752.F164513009C@annarchy.freedesktop.org>
+Date: Mon, 23 Nov 2009 16:28:50 -0800 (PST)
+Message-ID: <20091124002850.EA75713008D@annarchy.freedesktop.org>
 References: <bug-25246-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25246
 
 
 
---- Comment #4 from Junling Ma <junlingm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-23 15:37:52 PST ---
-With the patch the kernel modesetting works before starting X. The nouveaufb
-works too. After starting X, the screen is completely black, switching VT does
-not work. I need to ssh in and kill the X process. But that still does not
-bring back the VT.
+--- Comment #5 from Junling Ma <junlingm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-23 16:28:50 PST ---
+Created an attachment (id=31429)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31429)
+detailed kernel log with kms
 
 
 -- 
