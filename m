@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25258] [9400M] KMS and X do not use monitor's native
 	resolution
-Date: Tue, 24 Nov 2009 06:16:37 -0800 (PST)
-Message-ID: <20091124141637.A311A1300BC@annarchy.freedesktop.org>
+Date: Tue, 24 Nov 2009 06:17:19 -0800 (PST)
+Message-ID: <20091124141721.C8E201300BC@annarchy.freedesktop.org>
 References: <bug-25258-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25258
 
 
 
---- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-24 06:16:36 PST ---
-Created an attachment (id=31442)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31442)
-dmesg
+--- Comment #2 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-24 06:17:16 PST ---
+Created an attachment (id=31443)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31443)
+Xorg.0.log
 
 
 -- 
