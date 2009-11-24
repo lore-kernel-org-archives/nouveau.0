@@ -1,7 +1,7 @@
-From: Michael Breuer <mbreuer-P//MSfjsEjDQT0dZR+AlfA@public.gmane.org>
-Subject: nouveau current git/2.6.32rc8 git dma/iommu errors?
-Date: Tue, 24 Nov 2009 16:37:12 -0500
-Message-ID: <4B0C5208.60601@majjas.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25265] New: NV30, resume from suspend2ram fails
+Date: Tue, 24 Nov 2009 14:41:22 -0800 (PST)
+Message-ID: <bug-25265-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,31 +18,43 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+http://bugs.freedesktop.org/show_bug.cgi?id=25265
 
-Newbie to this list. I've been using 2.6.32 & nouveau on F12. Things 
-seem stable (although 3D performance is not great).
+           Summary: NV30, resume from suspend2ram fails
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I do see kernel error messages whenever I change window focus. The 
-specific fault numbers vary, however the sequence is always:
 
-Nov 24 16:32:05 mail kernel: DRHD: handling fault status reg 702
-Nov 24 16:32:05 mail kernel: DMAR:[DMA Read] Request device [02:00.0] 
-fault addr 0
-Nov 24 16:32:05 mail kernel: DMAR:[fault reason 06] PTE Read access is 
-not set
+Created an attachment (id=31450)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31450)
+Kernel.log
 
-The fault status reg cycles from from 2 to 702 by 100 with each set of 
-messages.
+Hello
 
-I'm guessing this is a nouveau error as 2:00:0 is my Nvidia card (8800gts).
+First try with suspend2ram with nouveau and kms on my nv30 (Quadro FX 1000). It
+fails to restore video modes on resume. The monitor stays off (no signal).
+Kernel from nouveau/linux-2.6 git repo, commit
+7659293cd9b074f2cf06d68f2d2dd507155162eb (2009-11-24 15:56)
 
-I'm also guessing that this is deeply intertwined with intel_iommu. I do 
-have vt-d enabled.
+Suspend was done with this, from a text console:
+echo mem > /sys/power/state
 
-I can enter this as a bug report, but wanted to see if anyone had 
-suggestions first for resolving this (aside from disabling iommu).
+The kernel log does not show any problem.
 
-Thanks,
+However I tried previously from X (KDE 4 has suspend2ram menu item), and on
+resume I got a GPU lockup message in kernel log.
 
-Mike
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
