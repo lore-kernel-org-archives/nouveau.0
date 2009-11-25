@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25267] nv84 (GeForce 8600GT M) doesn't suspend with
  2 cards but with 1
-Date: Tue, 24 Nov 2009 16:15:20 -0800 (PST)
-Message-ID: <20091125001521.07EDC13007A@annarchy.freedesktop.org>
+Date: Tue, 24 Nov 2009 16:17:59 -0800 (PST)
+Message-ID: <20091125001759.CAF1413007B@annarchy.freedesktop.org>
 References: <bug-25267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,19 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25267
 
 
+Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
---- Comment #2 from Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-24 16:15:20 PST ---
-Created an attachment (id=31456)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31456)
-lspci nv84 (GeForce 8600GT M) x 2
+
+--- Comment #3 from Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-24 16:17:59 PST ---
+For the record kernel is nouveau/master based
+HEAD= commit 7659293cd9b ... (drm/nouveau: Fix a sparse warning in
+parse_dcb_gpio_table()
 
 
 -- 
