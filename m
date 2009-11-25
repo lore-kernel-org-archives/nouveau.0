@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25275] [NV30] Graphical artefacts on PPC64
-Date: Wed, 25 Nov 2009 04:42:18 -0800 (PST)
-Message-ID: <20091125124218.E4FF4130083@annarchy.freedesktop.org>
+Date: Wed, 25 Nov 2009 04:42:44 -0800 (PST)
+Message-ID: <20091125124244.5960E130083@annarchy.freedesktop.org>
 References: <bug-25275-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25275
 
 
 
---- Comment #1 from Francesco Biscani <bluescarni-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-25 04:42:17 PST ---
-Created an attachment (id=31465)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31465)
-Graphical glitch in Firefox's preference button.
+--- Comment #2 from Francesco Biscani <bluescarni-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-25 04:42:43 PST ---
+Created an attachment (id=31466)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31466)
+Graphical glitch in KDE's taskbar.
 
 
 -- 
