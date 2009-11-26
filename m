@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25275] [NV30] Graphical artefacts on PPC64
-Date: Wed, 25 Nov 2009 04:42:44 -0800 (PST)
-Message-ID: <20091125124244.5960E130083@annarchy.freedesktop.org>
-References: <bug-25275-8800@http.bugs.freedesktop.org/>
+From: ROUBACH Philippe <philippe.roubach-GANU6spQydw@public.gmane.org>
+Subject: mandriva 2010.1 cooker test report
+Date: Thu, 26 Nov 2009 15:33:09 +0100
+Message-ID: <200911261533.09315.philippe.roubach@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25275-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +19,37 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25275
+hello
 
+now nouveau is supplied with Mandriva 2010.1
 
+to install it, just use the mandriva tool as usual but select "GeForce...
+(nouveau...)"
 
+my conf :
+Asus 8600 GT
+Philips ldc 17 " 170C
+1024x768 24 bit
 
+Mandriva 2010.1 cooker
+kde 4.3.75
+kernel mode setting : on
 
---- Comment #2 from Francesco Biscani <bluescarni-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-25 04:42:43 PST ---
-Created an attachment (id=31466)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31466)
-Graphical glitch in KDE's taskbar.
+- video sd (video dvd,dragon player) : ok 
+- video hd (tv, vlc) : ok 
+- video .mov : ok 
+- photo jpg : ok 
+- flashplayer sd hd : ok 
+- full screen with flashplayer or dragon player : ok 
+- screen 
+ . suspend, any level : failed
+
+- suspend to ram : ok 
+- sees my two dvi heads : i made no test with 2 screens
+
+many thanks for your work
+great job
 
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Philippe ROUBACH
