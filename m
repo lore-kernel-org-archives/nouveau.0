@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25319] KSnapshot in allocation mode crashes X
-Date: Fri, 27 Nov 2009 11:30:23 -0800 (PST)
-Message-ID: <20091127193023.72A871300D8@annarchy.freedesktop.org>
-References: <bug-25319-8800@http.bugs.freedesktop.org/>
+From: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] nouveau: add ratelimit to
+	nouveau_graph_dump_trap_info
+Date: Fri, 27 Nov 2009 22:36:34 +0100
+Message-ID: <1259357794-6972-1-git-send-email-shiningxc@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +19,48 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25319
+Often when things get stuck spinning, nouveau_pgraph_intr_error and
+nouveau_graph_dump_trap_info gets called many times, flooding logs with
+PGRAPH_ERROR and filling up the disk.
 
+Pekka Paalanen pointed me to ratelimit, so I went ahead and added some
+ratelimit support. It is much better now :)
 
+I am completely new to the kernel world though so I hope I did not do
+something terribly wrong.
 
+Signed-off-by: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_irq.c |   10 +++++++++-
+ 1 files changed, 9 insertions(+), 1 deletions(-)
 
-
---- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-27 11:30:22 PST ---
-I cannot reproduce it with openSUSE 11.2, KDE 4.3.3 and GeForce 2 GTS.
-
-You may help developers if you post Xorg.0.log, Xorg.0.log.old and dmesg output
-after crash.
-
-Also information about your graphic card are useful.
-
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_irq.c b/drivers/gpu/drm/nouveau/nouveau_irq.c
+index 597007a..0aae8c2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_irq.c
++++ b/drivers/gpu/drm/nouveau/nouveau_irq.c
+@@ -462,6 +462,14 @@ nouveau_pgraph_intr_notify(struct drm_device *dev, uint32_t nsource)
+ 		nouveau_graph_dump_trap_info(dev, "PGRAPH_NOTIFY", &trap);
+ }
+ 
++DEFINE_RATELIMIT_STATE(nouveau_ratelimit_state, 3 * HZ, 20);
++
++int nouveau_ratelimit(void)
++{
++	        return __ratelimit(&nouveau_ratelimit_state);
++}
++
++
+ static inline void
+ nouveau_pgraph_intr_error(struct drm_device *dev, uint32_t nsource)
+ {
+@@ -478,7 +486,7 @@ nouveau_pgraph_intr_error(struct drm_device *dev, uint32_t nsource)
+ 		unhandled = 1;
+ 	}
+ 
+-	if (unhandled)
++	if (unhandled && nouveau_ratelimit())
+ 		nouveau_graph_dump_trap_info(dev, "PGRAPH_ERROR", &trap);
+ }
+ 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.6.5.3
