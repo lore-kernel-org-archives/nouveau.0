@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25319] KSnapshot in allocation mode crashes X
-Date: Fri, 27 Nov 2009 10:58:27 -0800 (PST)
-Message-ID: <20091127185827.478E41300D6@annarchy.freedesktop.org>
+Date: Fri, 27 Nov 2009 11:30:23 -0800 (PST)
+Message-ID: <20091127193023.72A871300D8@annarchy.freedesktop.org>
 References: <bug-25319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,16 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25319
 
 
-Fouchko Mikhail <cpp.fou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         OS/Version|All                         |Linux (All)
-           Platform|Other                       |x86 (IA32)
 
 
+
+--- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-27 11:30:22 PST ---
+I cannot reproduce it with openSUSE 11.2, KDE 4.3.3 and GeForce 2 GTS.
+
+You may help developers if you post Xorg.0.log, Xorg.0.log.old and dmesg output
+after crash.
+
+Also information about your graphic card are useful.
 
 
 -- 
