@@ -1,12 +1,14 @@
 From: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: [PATCH] nouveau: add ratelimit to
 	nouveau_graph_dump_trap_info
-Date: Fri, 27 Nov 2009 22:36:34 +0100
-Message-ID: <1259357794-6972-1-git-send-email-shiningxc@gmail.com>
+Date: Fri, 27 Nov 2009 23:31:13 +0100
+Message-ID: <1259361073-24931-1-git-send-email-shiningxc@gmail.com>
+References: <1259357794-6972-1-git-send-email-shiningxc@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1259357794-6972-1-git-send-email-shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -31,22 +33,27 @@ something terribly wrong.
 
 Signed-off-by: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
+
+Addressed a few comments from pq (or is it PP ? :D)
+* make the function and global variable static
+* fix whitespace damage
+
  drivers/gpu/drm/nouveau/nouveau_irq.c |   10 +++++++++-
  1 files changed, 9 insertions(+), 1 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_irq.c b/drivers/gpu/drm/nouveau/nouveau_irq.c
-index 597007a..0aae8c2 100644
+index 597007a..fa3b5d1 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_irq.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_irq.c
 @@ -462,6 +462,14 @@ nouveau_pgraph_intr_notify(struct drm_device *dev, uint32_t nsource)
  		nouveau_graph_dump_trap_info(dev, "PGRAPH_NOTIFY", &trap);
  }
  
-+DEFINE_RATELIMIT_STATE(nouveau_ratelimit_state, 3 * HZ, 20);
++static DEFINE_RATELIMIT_STATE(nouveau_ratelimit_state, 3 * HZ, 20);
 +
-+int nouveau_ratelimit(void)
++static int nouveau_ratelimit(void)
 +{
-+	        return __ratelimit(&nouveau_ratelimit_state);
++	return __ratelimit(&nouveau_ratelimit_state);
 +}
 +
 +
