@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
- KMS is enabled
-Date: Sat, 28 Nov 2009 07:54:08 -0800 (PST)
-Message-ID: <20091128155408.B67041300D9@annarchy.freedesktop.org>
-References: <bug-24820-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 11993] Native YV12 overlay bandwidth problems
+Date: Sat, 28 Nov 2009 08:02:54 -0800 (PST)
+Message-ID: <20091128160254.E3DF91300D1@annarchy.freedesktop.org>
+References: <bug-11993-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-11993-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24820
+http://bugs.freedesktop.org/show_bug.cgi?id=11993
 
 
 
 
 
---- Comment #28 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-28 07:54:07 PST ---
-(In reply to comment #27)
-> (In reply to comment #26)
-> > It seems your FIFOs are underflowing because of some unknown source of latency.
-> > If you have applied the patch series I sent to the mailing list,
-> > nouveau_calc.c:191 will read:
-> > 
-> > >         fifo->lwm = min_lwm + 5 * (max_lwm - min_lwm) / 100; /* Empirical. */
-> > 
-> > That "5" is enough for all the cards I have, but you'll need a higher value,
-> > probably something within [5,40] (don't bother to find a very accurate lower
-> > bound, a +/-5 estimate would be fine).
-> > 
-> 
-> "10" works for me...
-> 
-> Thanks again for your work and patience...
-> 
-
-Pushed, thanks!
+--- Comment #4 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-28 08:02:50 PST ---
+This bug will probably go away if the overlay is ported to KMS, forcing from
+userspace the CRTC arbitration parameters the kernel sets after 2d809ca83bb
+makes the corruption on the right end of the screen disappear when playing a
+1920x1080 YV12 video (at least on my nv11).
 
 
 -- 
