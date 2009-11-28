@@ -1,14 +1,14 @@
-From: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nouveau: add ratelimit to
-	nouveau_graph_dump_trap_info
-Date: Fri, 27 Nov 2009 23:31:13 +0100
-Message-ID: <1259361073-24931-1-git-send-email-shiningxc@gmail.com>
-References: <1259357794-6972-1-git-send-email-shiningxc@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
+ KMS is enabled
+Date: Sat, 28 Nov 2009 06:16:35 -0800 (PST)
+Message-ID: <20091128141635.7C1D41300A7@annarchy.freedesktop.org>
+References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1259357794-6972-1-git-send-email-shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-24820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,53 +21,67 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Often when things get stuck spinning, nouveau_pgraph_intr_error and
-nouveau_graph_dump_trap_info gets called many times, flooding logs with
-PGRAPH_ERROR and filling up the disk.
+http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
-Pekka Paalanen pointed me to ratelimit, so I went ahead and added some
-ratelimit support. It is much better now :)
 
-I am completely new to the kernel world though so I hope I did not do
-something terribly wrong.
 
-Signed-off-by: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
 
-Addressed a few comments from pq (or is it PP ? :D)
-* make the function and global variable static
-* fix whitespace damage
 
- drivers/gpu/drm/nouveau/nouveau_irq.c |   10 +++++++++-
- 1 files changed, 9 insertions(+), 1 deletions(-)
+--- Comment #26 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-28 06:16:34 PST ---
+(In reply to comment #25)
+> A new friday - a new status report:
+> 
+> (In reply to comment #23)
+> > last patch but this one should fix it.
+> > 
+> 
+> I tried it with arb_rewrite2.patch and also with
+> 
+> [PATCH 1/3] drm/nouveau: Update the CRTC arbitration parameters on FB depth
+> switch
+> [PATCH 2/3] drm/nouveau: Clean up the arbitration parameters calculation code.
+> [PATCHv2 3/3] drm/nv10-nv20: CRTC arbitration code rewrite.
+> 
+> X works but console has flickering artifacts with both.
+> (see http://www.freeimagehosting.net/uploads/0f34a8e515.jpg)
+> 
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_irq.c b/drivers/gpu/drm/nouveau/nouveau_irq.c
-index 597007a..fa3b5d1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_irq.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_irq.c
-@@ -462,6 +462,14 @@ nouveau_pgraph_intr_notify(struct drm_device *dev, uint32_t nsource)
- 		nouveau_graph_dump_trap_info(dev, "PGRAPH_NOTIFY", &trap);
- }
- 
-+static DEFINE_RATELIMIT_STATE(nouveau_ratelimit_state, 3 * HZ, 20);
-+
-+static int nouveau_ratelimit(void)
-+{
-+	return __ratelimit(&nouveau_ratelimit_state);
-+}
-+
-+
- static inline void
- nouveau_pgraph_intr_error(struct drm_device *dev, uint32_t nsource)
- {
-@@ -478,7 +486,7 @@ nouveau_pgraph_intr_error(struct drm_device *dev, uint32_t nsource)
- 		unhandled = 1;
- 	}
- 
--	if (unhandled)
-+	if (unhandled && nouveau_ratelimit())
- 		nouveau_graph_dump_trap_info(dev, "PGRAPH_ERROR", &trap);
- }
- 
+It seems your FIFOs are underflowing because of some unknown source of latency.
+If you have applied the patch series I sent to the mailing list,
+nouveau_calc.c:191 will read:
+
+>         fifo->lwm = min_lwm + 5 * (max_lwm - min_lwm) / 100; /* Empirical. */
+
+That "5" is enough for all the cards I have, but you'll need a higher value,
+probably something within [5,40] (don't bother to find a very accurate lower
+bound, a +/-5 estimate would be fine).
+
+> (In reply to comment #24)
+> >> With a Snapshot via KSnapshot I can see the artifacts, too. (If visible on
+> >> "normal" screen at time when "KSnapshotting").
+> >> 
+> >
+> >Does it go away if you set this Section "Device" option in your xorg.conf?
+> >> Option "EXANoComposite" "on"
+> 
+> Yes, but there are other artifacts: E. g. bottom left and bottom right
+> "Position" line or "Gamma" with corrupted last "a" and "Mehrere Monitore" with
+> corrupted last "e". 
+> (see http://www.freeimagehosting.net/uploads/d94750f7aa.png)
+> 
+
+The recent changes in the acceleration code your card uses may be the cause of
+this. You could try going back to the DDX commit 5587f40, keeping
+EXANoComposite set (note that you'll also have to downgrade libdrm, I think
+83a35b6 is old enough).
+
+> Do you need a current dmesg?
+> 
+
+No, unless you've seen something suspicious (e.g. PGRAPH errors).
+
+
 -- 
-1.6.5.3
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
