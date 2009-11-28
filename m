@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24820] [nv15] Vertical screen corruption in X when
  KMS is enabled
-Date: Sat, 28 Nov 2009 06:16:35 -0800 (PST)
-Message-ID: <20091128141635.7C1D41300A7@annarchy.freedesktop.org>
+Date: Sat, 28 Nov 2009 07:11:20 -0800 (PST)
+Message-ID: <20091128151120.311CB1300D2@annarchy.freedesktop.org>
 References: <bug-24820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,58 +27,22 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24820
 
 
 
---- Comment #26 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-11-28 06:16:34 PST ---
-(In reply to comment #25)
-> A new friday - a new status report:
+--- Comment #27 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-11-28 07:11:18 PST ---
+(In reply to comment #26)
+> It seems your FIFOs are underflowing because of some unknown source of latency.
+> If you have applied the patch series I sent to the mailing list,
+> nouveau_calc.c:191 will read:
 > 
-> (In reply to comment #23)
-> > last patch but this one should fix it.
-> > 
+> >         fifo->lwm = min_lwm + 5 * (max_lwm - min_lwm) / 100; /* Empirical. */
 > 
-> I tried it with arb_rewrite2.patch and also with
-> 
-> [PATCH 1/3] drm/nouveau: Update the CRTC arbitration parameters on FB depth
-> switch
-> [PATCH 2/3] drm/nouveau: Clean up the arbitration parameters calculation code.
-> [PATCHv2 3/3] drm/nv10-nv20: CRTC arbitration code rewrite.
-> 
-> X works but console has flickering artifacts with both.
-> (see http://www.freeimagehosting.net/uploads/0f34a8e515.jpg)
+> That "5" is enough for all the cards I have, but you'll need a higher value,
+> probably something within [5,40] (don't bother to find a very accurate lower
+> bound, a +/-5 estimate would be fine).
 > 
 
-It seems your FIFOs are underflowing because of some unknown source of latency.
-If you have applied the patch series I sent to the mailing list,
-nouveau_calc.c:191 will read:
+"10" works for me...
 
->         fifo->lwm = min_lwm + 5 * (max_lwm - min_lwm) / 100; /* Empirical. */
-
-That "5" is enough for all the cards I have, but you'll need a higher value,
-probably something within [5,40] (don't bother to find a very accurate lower
-bound, a +/-5 estimate would be fine).
-
-> (In reply to comment #24)
-> >> With a Snapshot via KSnapshot I can see the artifacts, too. (If visible on
-> >> "normal" screen at time when "KSnapshotting").
-> >> 
-> >
-> >Does it go away if you set this Section "Device" option in your xorg.conf?
-> >> Option "EXANoComposite" "on"
-> 
-> Yes, but there are other artifacts: E. g. bottom left and bottom right
-> "Position" line or "Gamma" with corrupted last "a" and "Mehrere Monitore" with
-> corrupted last "e". 
-> (see http://www.freeimagehosting.net/uploads/d94750f7aa.png)
-> 
-
-The recent changes in the acceleration code your card uses may be the cause of
-this. You could try going back to the DDX commit 5587f40, keeping
-EXANoComposite set (note that you'll also have to downgrade libdrm, I think
-83a35b6 is old enough).
-
-> Do you need a current dmesg?
-> 
-
-No, unless you've seen something suspicious (e.g. PGRAPH errors).
+Thanks again for your work and patience...
 
 
 -- 
