@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25275] [NV30] Graphical artefacts on PPC64
-Date: Sat, 28 Nov 2009 16:34:44 -0800 (PST)
-Message-ID: <20091129003444.B7AF91300AC@annarchy.freedesktop.org>
-References: <bug-25275-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25148] random crashes on NV4B, PGRAPH_ERROR
+Date: Sun, 29 Nov 2009 05:55:09 -0800 (PST)
+Message-ID: <20091129135509.6FDBC13009D@annarchy.freedesktop.org>
+References: <bug-25148-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25275-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25148-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +20,31 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25275
+http://bugs.freedesktop.org/show_bug.cgi?id=25148
+
+
+Andreas B. Mundt <andi.mundt-S0/GAf8tV78@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
 
 
+--- Comment #4 from Andreas B. Mundt <andi.mundt-S0/GAf8tV78@public.gmane.org>  2009-11-29 05:55:07 PST ---
+Hi,
 
---- Comment #4 from Francesco Biscani <bluescarni-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-11-28 16:34:44 PST ---
-Marcin: not sure it is the same bug you were experiencing. I'm running
-xorg-server 1.7.1 and I get artefacts (also) with KDE4/Qt4 apps.
+I found a bug in my script preparing the kernel package. This bug resulted in
+not installing the latest nouveau git kernel. So I ran an older kernel with a
+new xf86-video-nouveau git and drm git tree.
+After I fixed that, anything seems to work as perfect as before, it never
+crashed since three days now. 
+So probably this bug can be closed. Sorry for the noise and the false alarm.
+Thanks again for your effort. 
+
+Andi
 
 
 -- 
