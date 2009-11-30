@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25366] PGRAPH_ERROR with Quadro NVS 280 SD (NV17 or
 	NV18)
-Date: Mon, 30 Nov 2009 09:05:58 -0800 (PST)
-Message-ID: <20091130170558.B8CC4130089@annarchy.freedesktop.org>
+Date: Mon, 30 Nov 2009 09:06:22 -0800 (PST)
+Message-ID: <20091130170622.2A7C5130089@annarchy.freedesktop.org>
 References: <bug-25366-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25366
 
 
 
---- Comment #1 from Pawel Moll <pawel-/pY6U1YSWahqsvmp/umkrQ@public.gmane.org>  2009-11-30 09:05:57 PST ---
-Created an attachment (id=31600)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31600)
-That's how my desktop looks like after 10-15 minutes...
+--- Comment #2 from Pawel Moll <pawel-/pY6U1YSWahqsvmp/umkrQ@public.gmane.org>  2009-11-30 09:06:21 PST ---
+Created an attachment (id=31601)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31601)
+Kernel log from init to first errors...
 
 
 -- 
