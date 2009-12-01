@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18286] [nouveau] GeForce 8200 and 8300 not supported
  (10de:0848/0849/C77/MCP77/MCP78S)
-Date: Tue,  1 Dec 2009 10:53:31 -0800 (PST)
-Message-ID: <20091201185331.E03D21300D9@annarchy.freedesktop.org>
+Date: Tue,  1 Dec 2009 11:20:39 -0800 (PST)
+Message-ID: <20091201192039.EC2741300D9@annarchy.freedesktop.org>
 References: <bug-18286-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18286
 
 
 
---- Comment #27 from Josh Saddler <nightmorph-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>  2009-12-01 10:53:30 PST ---
-I have a motherboard with a built-in 8200 chip, MCP78S. What output do you need
-for this bug, so's it can be properly supported in Nouveau? Right now even the
-binary nVidia driver doesn't work with it. Terrible performance; can't even
-move the mouse around. I'd love to help this bug out and get my chip supported.
+--- Comment #28 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-01 11:20:37 PST ---
+Can someone actually confirm it doesn't work with the current version (with KMS
+enabled)?
 
 
 -- 
