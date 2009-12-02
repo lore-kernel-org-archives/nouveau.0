@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25393] Repeated "EDID checksum is invalid" erros
  with varying remainders on NV43
-Date: Wed,  2 Dec 2009 05:10:25 -0800 (PST)
-Message-ID: <20091202131025.63177130110@annarchy.freedesktop.org>
+Date: Wed,  2 Dec 2009 05:11:49 -0800 (PST)
+Message-ID: <20091202131150.08CDC130110@annarchy.freedesktop.org>
 References: <bug-25393-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25393
 
 
 
---- Comment #1 from Tomas M <TomasMiljenovic-Ah+7SPImtolBDgjK7y7TUQ@public.gmane.org>  2009-12-02 05:10:24 PST ---
-Created an attachment (id=31655)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31655)
-Xorg log
+--- Comment #2 from Tomas M <TomasMiljenovic-Ah+7SPImtolBDgjK7y7TUQ@public.gmane.org>  2009-12-02 05:11:49 PST ---
+Created an attachment (id=31656)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31656)
+xorg.conf
 
 
 -- 
