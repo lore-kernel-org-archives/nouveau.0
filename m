@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24014] [KMS, NVA0] Init table command not found: 0x87
-Date: Thu,  3 Dec 2009 04:14:18 -0800 (PST)
-Message-ID: <20091203121419.031CB130132@annarchy.freedesktop.org>
-References: <bug-24014-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24607] Suspend fails with kernel hang
+Date: Thu,  3 Dec 2009 04:21:37 -0800 (PST)
+Message-ID: <20091203122138.100D7130133@annarchy.freedesktop.org>
+References: <bug-24607-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24014-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-24607-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +20,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24014
-
-
-Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|ASSIGNED                    |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=24607
 
 
 
 
---- Comment #6 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org>  2009-12-03 04:14:17 PST ---
-(In reply to comment #5)
-> This bug is technically fixed now, 0x87 is implemented.  What were the issues
-> you mentioned seeing?
-> 
 
-Oh, those are just graphical issues I have when using nouveau/linux-2.6 git
-tree (both clean and merged on top of linus tree) together with
-xserver-1.7.[01] (have not had time trying with newer versions of xserver).
-Those glitches that has "workaround hacks" in the fedora patchset.
+--- Comment #3 from Thibaut GIRKA <thib-QrglDn8ccD4xJeROf7iEAA@public.gmane.org>  2009-12-03 04:21:37 PST ---
+Yeah, same thing: a lot of TTM Buffer eviction failed
 
 
 -- 
