@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25410] New: Screen Turns Off On Resume (Geforce GT
-	230M)
-Date: Wed,  2 Dec 2009 21:47:54 -0800 (PST)
-Message-ID: <bug-25410-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25410] Screen Turns Off On Resume (Geforce GT 230M)
+Date: Wed,  2 Dec 2009 21:48:40 -0800 (PST)
+Message-ID: <20091203054840.C29FC130082@annarchy.freedesktop.org>
+References: <bug-25410-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-25410-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=25410
 
-           Summary: Screen Turns Off On Resume (Geforce GT 230M)
-           Product: xorg
-           Version: 7.4
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: manuel.gwolff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=31697)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31697)
-Xorg.0.log
 
-When resuming from hibernate (with or without tuxonice), my laptop's screen
-stays turned off. 
-This happens regardless of the hibernate command being executed from X or from
-the console.
-The laptop still reacts to input through the keyboard and I can open a ssh
-session and reboot it.
-I have attached the output of dmesg after resuming, and the Xorg.0.log, after
-running "startx" with the screen turned off.
-If you need any other information, please let me know and I will happily
-provide it. 
 
-Thanks,
-
-Manuel
+--- Comment #1 from Manuel Garcia <manuel.gwolff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-02 21:48:40 PST ---
+Created an attachment (id=31698)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31698)
+dmesg output
 
 
 -- 
