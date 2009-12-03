@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25410] Screen Turns Off On Resume (Geforce GT 230M)
-Date: Wed,  2 Dec 2009 22:03:30 -0800 (PST)
-Message-ID: <20091203060331.00CD0130129@annarchy.freedesktop.org>
-References: <bug-25410-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24668] KMS does not work with nva8
+Date: Wed,  2 Dec 2009 22:04:53 -0800 (PST)
+Message-ID: <20091203060453.B3BFE13012A@annarchy.freedesktop.org>
+References: <bug-24668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25410-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-24668-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25410
+http://bugs.freedesktop.org/show_bug.cgi?id=24668
 
 
 
 
 
---- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-02 22:03:30 PST ---
-If you update to 6169057b2992862565c513ca432b35c4df33288a and retry, hopefully
-you'll have a bit more luck :)
+--- Comment #13 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-02 22:04:53 PST ---
+It appears I missed a couple of bits in the patch I attached.  If you update to
+6169057b2992862565c513ca432b35c4df33288a, the support is in there now.  It
+appears to work fine on my NVA8, hopefully it will for you too :)
 
 
 -- 
