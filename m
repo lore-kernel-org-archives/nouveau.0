@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25410] Screen Turns Off On Resume (Geforce GT 230M)
-Date: Wed,  2 Dec 2009 21:53:37 -0800 (PST)
-Message-ID: <20091203055337.60606130085@annarchy.freedesktop.org>
+Date: Wed,  2 Dec 2009 22:03:30 -0800 (PST)
+Message-ID: <20091203060331.00CD0130129@annarchy.freedesktop.org>
 References: <bug-25410-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25410
 
 
 
---- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-02 21:53:36 PST ---
-This is expected at the moment.  I've just fixed a number of issues on my G210,
-they'll appear in git shortly, and will likely help here too.
+--- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-02 22:03:30 PST ---
+If you update to 6169057b2992862565c513ca432b35c4df33288a and retry, hopefully
+you'll have a bit more luck :)
 
 
 -- 
