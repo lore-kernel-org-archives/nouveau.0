@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25258] [9400M] KMS and X do not use monitor's native
-	resolution
-Date: Thu,  3 Dec 2009 05:08:17 -0800 (PST)
-Message-ID: <20091203130817.E10BC130131@annarchy.freedesktop.org>
-References: <bug-25258-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: strange change in commit
+	38c34b28f04518fec8ec474a6530d0fb37002cf5
+Date: Thu, 3 Dec 2009 22:57:57 +0100
+Message-ID: <6d4bc9fc0912031357w323cfe58v5dbe26fbc4a4aeca@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25258-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,25 +17,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25258
+diff --git a/drivers/gpu/drm/nouveau/nv10_fifo.c
+b/drivers/gpu/drm/nouveau/nv10_fifo.c
+index 877f00e..ed7f466 100644
+--- a/drivers/gpu/drm/nouveau/nv10_fifo.c
++++ b/drivers/gpu/drm/nouveau/nv10_fifo.c
+@@ -216,7 +216,7 @@ nv10_fifo_init_ramxx(struct drm_device *dev)
+ 				       (dev_priv->ramht_offset >> 8));
+ 	nv_wr32(dev, NV03_PFIFO_RAMRO, dev_priv->ramro_offset>>8);
+
+-	if (dev_priv->card_type > NV_11) {
++	if (dev_priv->chipset < 0x17) {
+ 		nv_wr32(dev, NV03_PFIFO_RAMFC, (dev_priv->ramfc_offset >> 8) |
+ 					       (1 << 16) /* 64 Bytes entry*/);
+ 		/* XXX nvidia blob set bit 18, 21,23 for nv20 & nv30 */
 
 
 
+That strikes me as somewhat odd.
 
-
---- Comment #8 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-12-03 05:08:17 PST ---
-Created an attachment (id=31707)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31707)
-Xorg.0.log
-
-(In reply to comment #7)
-It does not change appearance on console/in X. Newly created Xorg.0.log after
-KDE's start is attached.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Maarten.
