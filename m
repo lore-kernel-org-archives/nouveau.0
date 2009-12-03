@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25258] [9400M] KMS and X do not use monitor's native
 	resolution
-Date: Thu,  3 Dec 2009 04:41:11 -0800 (PST)
-Message-ID: <20091203124111.43AC4130133@annarchy.freedesktop.org>
+Date: Thu,  3 Dec 2009 05:08:17 -0800 (PST)
+Message-ID: <20091203130817.E10BC130131@annarchy.freedesktop.org>
 References: <bug-25258-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25258
 
 
 
---- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-03 04:41:10 PST ---
-It's likely this that's screwing things up, can you get rid of the DisplaySize,
-HorizSync and VertRefresh lines from the monitor section of xorg.conf and
-retry.
+--- Comment #8 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2009-12-03 05:08:17 PST ---
+Created an attachment (id=31707)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31707)
+Xorg.0.log
+
+(In reply to comment #7)
+It does not change appearance on console/in X. Newly created Xorg.0.log after
+KDE's start is attached.
 
 
 -- 
