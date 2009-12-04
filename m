@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24668] KMS does not work with nva8
-Date: Thu,  3 Dec 2009 17:43:53 -0800 (PST)
-Message-ID: <20091204014353.BDF98130156@annarchy.freedesktop.org>
+Date: Thu,  3 Dec 2009 17:54:26 -0800 (PST)
+Message-ID: <20091204015426.3E869130158@annarchy.freedesktop.org>
 References: <bug-24668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-24668-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -20,17 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24668
-
-
-
-
-
---- Comment #14 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2009-12-03 17:43:53 PST ---
-All good now.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yNDY2OAoKCk1hcmNp
+biBLb8WbY2llbG5pY2tpIDxrb3JpYWtpbkAweDA0Lm5ldD4gY2hhbmdlZDoKCiAgICAgICAgICAg
+V2hhdCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tCiAgICAgICAgICAgICBTdGF0dXN8QVNTSUdORUQgICAgICAgICAgICAgICAgICAgIHxS
+RVNPTFZFRAogICAgICAgICBSZXNvbHV0aW9ufCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8
+RklYRUQKCgoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Au
+b3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhp
+cyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcu
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
