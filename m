@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25410] Screen Turns Off On Resume (Geforce GT 230M)
-Date: Fri,  4 Dec 2009 09:04:37 -0800 (PST)
-Message-ID: <20091204170437.258F02DC104@annarchy.freedesktop.org>
+Date: Fri,  4 Dec 2009 09:12:10 -0800 (PST)
+Message-ID: <20091204171210.AB9F7130155@annarchy.freedesktop.org>
 References: <bug-25410-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25410
 
 
+Manuel Garcia <manuel.gwolff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #31747|Free log                    |Freeze log
+        description|                            |
 
 
-
---- Comment #6 from Manuel Garcia <manuel.gwolff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-04 09:04:36 PST ---
-Instead, now my system freezes. I am not able able to reproduce it
-consistently: sometimes it happens after 30 minutes of use and sometimes after
-four or more hours of working with the laptop (using Firefox, SSH, skype, etc).
-Audio keeps playing but it does not react to any keyboard input. The only thing
-I can do is SYSRQ B.
-I have attached the system log, although no errors are reported.
-
-Reverting back to the old release solves the problem. 
-
-I know this is work in progress, just wanted to let you know that there might
-be a problem with the current releases.
-
-Regards,
-
-Manuel
 
 
 -- 
