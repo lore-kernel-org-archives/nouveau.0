@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25410] Screen Turns Off On Resume (Geforce GT 230M)
-Date: Fri,  4 Dec 2009 15:03:05 -0800 (PST)
-Message-ID: <20091204230306.075CF1300CC@annarchy.freedesktop.org>
-References: <bug-25410-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nouveau: avoid running out of relocs
+Date: Sat, 5 Dec 2009 00:35:28 +0100
+Message-ID: <6d4bc9fc0912041535j44a0792bvb13395d683537466@mail.gmail.com>
+References: <1259963980-6698-1-git-send-email-madman2003@gmail.com>
+	<1259969574.2897.1.camel@nisroch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25410-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1259969574.2897.1.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,23 +18,60 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25410
+So the so_emit flush that was there was busted to begin with?
 
-
-
-
-
---- Comment #9 from Manuel Garcia <manuel.gwolff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-04 15:03:05 PST ---
-Thanks for the link. I knew B and S (also used that one when my laptop froze, 
-forgot to mention it) but I did not know the other ones.
-I will try the new drivers again and try to get some more info when my system
-freezes.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+On Sat, Dec 5, 2009 at 12:32 AM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> NACK. =A0You'll want to do this once, at the start of nv50_state_emit(),
+> if we run out *during* state_emit() something's gone very wrong, and
+> we'd need to fallback to software as the DDX does.
+>
+> Having the flush occur mid-frame will cause other issues.
+>
+> Ben.
+>
+> On Fri, 2009-12-04 at 22:59 +0100, Maarten Maathuis wrote:
+>> Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>> ---
+>> =A0src/gallium/drivers/nouveau/nouveau_stateobj.h | =A0 12 ++++++++----
+>> =A01 files changed, 8 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/src/gallium/drivers/nouveau/nouveau_stateobj.h b/src/galliu=
+m/drivers/nouveau/nouveau_stateobj.h
+>> index b595405..28f483f 100644
+>> --- a/src/gallium/drivers/nouveau/nouveau_stateobj.h
+>> +++ b/src/gallium/drivers/nouveau/nouveau_stateobj.h
+>> @@ -113,8 +113,10 @@ so_emit(struct nouveau_channel *chan, struct nouvea=
+u_stateobj *so)
+>> =A0 =A0 =A0 unsigned nr, i;
+>>
+>> =A0 =A0 =A0 nr =3D so->cur - so->push;
+>> - =A0 =A0 if (pb->remaining < nr)
+>> - =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pushbuf_flush(chan, nr);
+>> + =A0 =A0 /* This will flush if we need space.
+>> + =A0 =A0 =A0* We don't actually need the marker.
+>> + =A0 =A0 =A0*/
+>> + =A0 =A0 nouveau_pushbuf_marker_emit(chan, nr, so->cur_reloc);
+>> =A0 =A0 =A0 pb->remaining -=3D nr;
+>>
+>> =A0 =A0 =A0 memcpy(pb->cur, so->push, nr * 4);
+>> @@ -138,8 +140,10 @@ so_emit_reloc_markers(struct nouveau_channel *chan,=
+ struct nouveau_stateobj *so)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 return;
+>>
+>> =A0 =A0 =A0 i =3D so->cur_reloc << 1;
+>> - =A0 =A0 if (pb->remaining < i)
+>> - =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pushbuf_flush(chan, i);
+>> + =A0 =A0 /* This will flush if we need space.
+>> + =A0 =A0 =A0* We don't actually need the marker.
+>> + =A0 =A0 =A0*/
+>> + =A0 =A0 nouveau_pushbuf_marker_emit(chan, i, i);
+>> =A0 =A0 =A0 pb->remaining -=3D i;
+>>
+>> =A0 =A0 =A0 for (i =3D 0; i < so->cur_reloc; i++) {
+>
+>
+>
