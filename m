@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24668] KMS does not work with nva8
-Date: Thu,  3 Dec 2009 17:54:26 -0800 (PST)
-Message-ID: <20091204015426.3E869130158@annarchy.freedesktop.org>
-References: <bug-24668-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25410] Screen Turns Off On Resume (Geforce GT 230M)
+Date: Thu,  3 Dec 2009 18:56:58 -0800 (PST)
+Message-ID: <20091204025658.598A8130152@annarchy.freedesktop.org>
+References: <bug-25410-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24668-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25410-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +20,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yNDY2OAoKCk1hcmNp
-biBLb8WbY2llbG5pY2tpIDxrb3JpYWtpbkAweDA0Lm5ldD4gY2hhbmdlZDoKCiAgICAgICAgICAg
-V2hhdCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tCiAgICAgICAgICAgICBTdGF0dXN8QVNTSUdORUQgICAgICAgICAgICAgICAgICAgIHxS
-RVNPTFZFRAogICAgICAgICBSZXNvbHV0aW9ufCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8
-RklYRUQKCgoKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Au
-b3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhp
-cyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcu
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=25410
+
+
+
+
+
+--- Comment #4 from Manuel Garcia <manuel.gwolff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-03 18:56:56 PST ---
+I updated to 6169057b2992862565c513ca432b35c4df33288a but sadly this did not
+solve the problem. 
+Still no picture but laptop reacts to keyboard input etc.
+
+Regards,
+
+Manuel
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
