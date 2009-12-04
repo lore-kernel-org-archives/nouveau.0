@@ -1,7 +1,7 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25451] New: Nouveau fails to resume on NV50 board
-Date: Fri,  4 Dec 2009 09:46:04 -0800 (PST)
-Message-ID: <bug-25451-8800@http.bugs.freedesktop.org/>
+From: Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>
+Subject: Merge 'drm-next' into 'nouveau/linux-2.6'
+Date: Fri, 4 Dec 2009 21:30:29 +0100
+Message-ID: <200912042130.30486.johannesobermayr@gmx.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,37 +18,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25451
+Hi,
 
-           Summary: Nouveau fails to resume on NV50 board
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: wrzoski-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Dave Airlie "updated" his 'drm-next' tree to kernel 2.6.32.
 
+He also decided that he introduces a new way with his git branches.[1]
 
-Created an attachment (id=31748)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31748)
-Kernel log from boot until resume
+Is it planned that 'drm-next' gets merged into 'nouveau/linux-2.6' in near future and then follow his new way?
 
-Running fedora 12 system with
-Kernel kernel-PAE-2.6.31.6-145.fc12.i686
+Thanks.
+Johannes
 
-Compiled nouveau from git dated on 03.12.2009.
-
-Resuming from suspend results in unusable screen: usually black. I can switch
-to console, and run i.e midnight commander, so the screen turns in to blue, but
-still no fonts etc.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+[1] http://marc.info/?l=dri-devel&m=125972706517919&w=2
