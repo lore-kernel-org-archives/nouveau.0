@@ -1,15 +1,11 @@
 From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH] nouveau: add ratelimit to
- nouveau_graph_dump_trap_info
-Date: Sat, 5 Dec 2009 18:49:33 +0200
-Message-ID: <20091205184933.0193575d@daedalus.pq.iki.fi>
-References: <1259357794-6972-1-git-send-email-shiningxc@gmail.com>
-	<1259361073-24931-1-git-send-email-shiningxc@gmail.com>
+Subject: [PATCH] drm/nouveau: fix array overflow
+Date: Sat,  5 Dec 2009 18:42:11 +0200
+Message-ID: <1260031331-8373-1-git-send-email-pq@iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1259361073-24931-1-git-send-email-shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,28 +15,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 27 Nov 2009 23:31:13 +0100
-Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+Noticed by sparse: in nouveau_dp_link_train(), the array 'status' was
+defined as 2 bytes, yet it was accessed for 3 bytes.
 
-> Often when things get stuck spinning, nouveau_pgraph_intr_error
-> and nouveau_graph_dump_trap_info gets called many times, flooding
-> logs with PGRAPH_ERROR and filling up the disk.
-> 
-> Pekka Paalanen pointed me to ratelimit, so I went ahead and added
-> some ratelimit support. It is much better now :)
-> 
-> I am completely new to the kernel world though so I hope I did
-> not do something terribly wrong.
-> 
-> Signed-off-by: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Fix it by making the array size 3.
 
-Pushed, finally, with a little message trimming.
-Sorry for the delay.
+Signed-off-by: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_dp.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index a334f17..c2d6eff 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -271,7 +271,8 @@ nouveau_dp_link_train(struct drm_encoder *encoder)
+ {
+ 	struct drm_device *dev = encoder->dev;
+ 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
+-	uint8_t config[4], status[2];
++	uint8_t config[4];
++	uint8_t status[3];
+ 	bool cr_done, cr_max_vs, eq_done;
+ 	int ret = 0, i, tries, voltage;
+ 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+1.6.4.4
