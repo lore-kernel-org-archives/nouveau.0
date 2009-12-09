@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25527] The console doesn't work with Nouveau and KMS
 	on a 9400M
-Date: Tue,  8 Dec 2009 17:28:39 -0800 (PST)
-Message-ID: <20091209012839.67E361300AA@annarchy.freedesktop.org>
+Date: Tue,  8 Dec 2009 17:29:05 -0800 (PST)
+Message-ID: <20091209012906.127011300A1@annarchy.freedesktop.org>
 References: <bug-25527-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25527
 
 
 
---- Comment #2 from Corrado Primier <ilbardo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-08 17:28:37 PST ---
-Created an attachment (id=31856)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=31856)
-dmesg
+--- Comment #3 from Corrado Primier <ilbardo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-08 17:29:04 PST ---
+Created an attachment (id=31857)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31857)
+Kernel configuration
 
 
 -- 
