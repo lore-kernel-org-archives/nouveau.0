@@ -1,7 +1,8 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Nouveau wiki translations
-Date: Mon, 7 Dec 2009 20:35:19 +0200
-Message-ID: <20091207203519.05257e4a@daedalus.pq.iki.fi>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25527] New: The console doesn't work with Nouveau
+ and KMS on a 9400M
+Date: Tue,  8 Dec 2009 17:24:49 -0800 (PST)
+Message-ID: <bug-25527-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -16,84 +17,47 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: mjules-GANU6spQydw@public.gmane.org, aissi.dylan-GANU6spQydw@public.gmane.org, maximi89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, pachi-BqcjmLna2IdBDgjK7y7TUQ@public.gmane.org, ogldelphi-JGs/UdohzUI@public.gmane.org, alias_gman-qzwEzaZVsEQAvxtiuMwx3w@public.gmane.org, tuxxx-QFKgK+z4sOrR7s880joybQ@public.gmane.org, fpoulain-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, pinguozz-B2aCaCA9eTITvJdVw9/FMWGXanvQGlWp@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi guys,
+http://bugs.freedesktop.org/show_bug.cgi?id=25527
 
-it's been a year since my last call (below) for updating translations.
-
-Unless anyone objects, I propose, that all translation pages are
-eligible for removal if they have not been properly updated within
-two weeks since the original page was updated.
-
-TiNDCs are an exception, they are not live content, and they should
-be up-to-date anyway, by definition.
-
-mwk already did some good job on removing outdated pages.
-
-The most recent translation update is for the FrontPage more than a
-month ago for Spanish, and the page is syntactically broken.
-
-Notice, that all translations of FrontPage would be in danger
-right now.
-
-Pages I propose for removal right now:
-http://nouveau.freedesktop.org/wiki/UbuntuPackages-es
-http://nouveau.freedesktop.org/wiki/GentooEbuilds-es
-http://nouveau.freedesktop.org/wiki/InstallNouveau-es
-http://nouveau.freedesktop.org/wiki/FeatureMatrix-fr
-http://nouveau.freedesktop.org/wiki/REnouveauDumps-de
-http://nouveau.freedesktop.org/wiki/CodeNames-fr
-http://nouveau.freedesktop.org/wiki/InThePress-fr
-
-There are others, but those are the ones I found easily.
-
-This may sound harsh, but is it any good to have a translation,
-which has a disclaimer "check the English page first to see if this
-is outdated"? Or in most cases, does not have the disclaimer and
-is badly out of date.
+           Summary: The console doesn't work with Nouveau and KMS on a 9400M
+           Product: xorg
+           Version: 7.5
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: ilbardo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-On Sat, 13 Dec 2008 22:21:11 +0200
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> wrote:
+Created an attachment (id=31854)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=31854)
+Xorg log
 
-> Hi all,
-> 
-> it seems that the translations in the Nouveau wiki have been
-> rotting for some time. Many translated pages even have a note
-> saying they are not up to date, which makes me think they are not
-> going to be updated anymore at all.
-> 
-> I am planning to remove all translation links from FrontPage and
-> FAQ. I will not remove the pages themselves. If someone wants to
-> come back and actually maintain a translation, please do so. You
-> can then add the proper links back.
-> 
-> For MmioTrace I have already done this.
-> 
-> I may do this for more pages, when I find them, unless the
-> translation appears maintained.
-> 
-> Let me know of any objections. The CC's contain the addresses
-> from the Translation_Team page.
-> 
-> The latest updates to *any* translated pages are:
-> - FeatureMatrix-fr, 3 months ago
-> - FrontPage-ru, MmioTraceHowto-ru, 5 months ago
-> - IrcChatLogs-fr, 5 months ago
-> - FrontPage-fr 6 months ago
-> 
-> The fact, that we have not noticed anyone being yet mislead by the
-> outdated translations IMHO suggest that they are not really
-> needed. Are there other opinions?
-> 
-> Translators, please subscribe to the pages you translate from, so
-> you are notified about changes.
-> 
-> 
-> Thanks.
+Hardware: MacBook Unibody (5,1) with nVidia 9400M
+
+Software: Arch Linux x86_64 fully up-to-date with a custom built 2.6.32 kernel,
+xorg-server 1.7.3, xf86-video-nouveau 0.0.10 (git 20091207), nouveau-drm 0.0.15
+(git 20091206)
+
+Symptoms: as soon as the nouveau module is lodaded (in early or late mode) the
+screen's backlight goes off. The console is fully functional even though it
+isn't shown. As soon as X starts the light come back on and everything works,
+even though some artifacts are shown on the top before the login manager
+appears. Going back to a console with ctrl+alt+fn makes the cursor disappear,
+but the image doesn't change, and pressing ctrl+alt+f7 makes the cursor
+reappear and X refreshes again.
+
+Possibly related: resume doesn't work, even with s3-bios, s3-mode and vbe-post
+quirks.
+
 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
