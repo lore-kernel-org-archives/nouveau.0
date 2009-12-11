@@ -1,14 +1,16 @@
 From: Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
 Subject: Re: When will KMS be the default?
-Date: Fri, 11 Dec 2009 13:23:25 +0100
-Message-ID: <20091211122326.4E4B233C44E@tippex.mynet.homeunix.org>
+Date: Fri, 11 Dec 2009 14:24:00 +0100
+Message-ID: <20091211132401.25D7433C44F@tippex.mynet.homeunix.org>
 References: <6d4bc9fc0912101157i60ddeb58s5e1810530293771d@mail.gmail.com>
 	<1260483689.30293.2.camel@nisroch>
+	<20091211122326.4E4B233C44E@tippex.mynet.homeunix.org>
+	<1260534656.4730.1.camel@nisroch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-reply-to: <1260483689.30293.2.camel@nisroch>
+In-reply-to: <1260534656.4730.1.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,17 +21,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 
 skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org said:
-> It'd be useful to know of any cases out there where UMS is being used because
-> KMS is failing, there's a couple of cases on RH bugzilla, but I don't recall
-> the details right now. 
+> s not a solution by any means, but try:
+>   Option "EXAPixmaps" "false"
+> In your xorg.conf.  
 
-Try this one.
+That does seem to do the trick! Thanks.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=24810
 
-It used to work, but something changed which forced me back to UMS.
+> There'll be more work done to help the situation on
+> low-mem cards. 
+
+Anything I should look out for and test? I seem to be the only one around
+running museum class hw... :-)
+
+-Anders
