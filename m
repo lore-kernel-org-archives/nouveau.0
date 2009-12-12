@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25608] [PATCH] nouveau_exa.c: Move upper-limit
- calculations outside while-loop
-Date: Sat, 12 Dec 2009 05:32:43 -0800 (PST)
-Message-ID: <20091212133243.D350E1300E6@annarchy.freedesktop.org>
-References: <bug-25608-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: low memory
+Date: Sat, 12 Dec 2009 22:50:11 +0100
+Message-ID: <6d4bc9fc0912121350x54cde8b5yf72552c2d89ca2ab@mail.gmail.com>
+References: <91752840912111111q222602f8g87b1727c24bd06ba@mail.gmail.com>
+	<6d4bc9fc0912111604oca0be3dm7f001bb05e85084@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25608-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <6d4bc9fc0912111604oca0be3dm7f001bb05e85084-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,24 +18,77 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25608
+On Sat, Dec 12, 2009 at 1:04 AM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wr=
+ote:
+> On Fri, Dec 11, 2009 at 8:11 PM, Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> On Fri, Dec 11, 2009 at 1:30 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>> On Fri, 2009-12-11 at 13:23 +0100, Anders Eriksson wrote:
+>>>> skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org said:
+>>>> > It'd be useful to know of any cases out there where UMS is being use=
+d because
+>>>> > KMS is failing, there's a couple of cases on RH bugzilla, but I don'=
+t recall
+>>>> > the details right now.
+>>>>
+>>>> Try this one.
+>>>>
+>>>> https://bugs.freedesktop.org/show_bug.cgi?id=3D24810
+>>>>
+>>>> It used to work, but something changed which forced me back to UMS.
+>>> It's not a solution by any means, but try:
+>>>
+>>> =A0Option "EXAPixmaps" "false"
+>>>
+>>> In your xorg.conf. =A0There'll be more work done to help the situation =
+on
+>>> low-mem cards.
+>>>
+>>
+>> Ah that is interesting, so this can workaround the problem on my nv25
+>> that cannot render too big pictures in firefox. (my test case is a
+>> single picture : 3782x2592 resized to 550x368)
+>>
+>> So about that, I must mention the different behavior I got, in
+>> chronological order :
+>> 1) old ddx (10/01) : X instant crash
+>> 2) newer ddx, after all the "handle reloc failures" patches : picture
+>> is not displayed, just a black area instead. *much* better :)
+>> 3) after upgrading kernel/drm from 12/08 - 2.6.32-rc6 to 12/11 -
+>> 2.6.32 : X locks up.
+>> I don't even see the usual message in dmesg ([TTM] Out of aperture
+>> space or DRM memory quota.)
+>> The gpu or at least nouveau drm is in a bad state and I must reboot to c=
+over.
+>>
+>> Any clues about that last behavior ? I am not sure how
+>> practical/possible regression testing will be since it seems to have
+>> been caused by the last merge. I will open a bug report thats better.
+>>
+>> Finally I am curious about what work will be done to help :)
+>> If I got it right (and I probably did not) :
+>> exapixmaps true -> always use videoram for pixmaps
+>> exapixmaps false -> never use videoram for pixmaps
+>
+> It switches between a classic exa implementation which is used to
+> working with a fixed amount of vram, but will never cooperate with
+> dri2. The default is a "mixed" exa implementation that does work with
+> dri2. Both are accelerated for 2d purposes.
+>
+>> And so the solution would be something in between, like dynamically
+>> choose whether to use vram or not, depending on the pixmap size and
+>> the free vram ?
+>> And how hard is that ?
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>>
+>
 
+Can you retry with the latest ddx?
 
-Roy <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[PATCH] Move upper-limit    |[PATCH] nouveau_exa.c: Move
-                   |calculations outside while- |upper-limit calculations
-                   |loop                        |outside while-loop
-
-
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Maarten.
