@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25608] New: [PATCH] Move upper-limit calculations
- outside while-loop
-Date: Sat, 12 Dec 2009 04:33:59 -0800 (PST)
-Message-ID: <bug-25608-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: provide ctxprog/ctxvals in ihex
+ format
+Date: Sat, 12 Dec 2009 15:31:46 +0200
+Message-ID: <20091212153146.18d47534@daedalus.pq.iki.fi>
+References: <4B226AFB.604@iki.fi>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <4B226AFB.604-X3B1VOXEql0@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,36 +18,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25608
+On Fri, 11 Dec 2009 17:53:31 +0200
+Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org> wrote:
 
-           Summary: [PATCH] Move upper-limit calculations outside while-loop
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: enhancement
-          Priority: low
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+> Firmware files in firmware/ directory are not expected to be in
+> binary format. The nouveau files are in binary format, and are
+> therefore removed when running e.g. make clean.
+> 
+> Fix that by converting them to ihex format instead.
+> 
+> The patch is really big as it contains the ctxprogs stuff, so I'll
+> provide a link instead:
+> http://stuff.onse.fi/0001-drm-nouveau-provide-ctxprog-ctxvals-in-ihex-format.patch
 
-
-Created an attachment (id=32020)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32020)
-Slight improvement in handling upper-boundary for DMA routines.
-
-Attached is a small patch that moves the "line_count" upper limit calculation
-outside the while loop in NVAccelUploadM2MF and NVAccelDownloadM2MF. Benefits
-are (marginally) faster loops (less instructions, less branch-misses) and
-slightly cleaner code (imho).
-
+Pushed, thanks.
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Pekka Paalanen
+http://www.iki.fi/pq/
