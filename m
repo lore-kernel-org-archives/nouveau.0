@@ -1,14 +1,14 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: provide ctxprog/ctxvals in ihex
- format
-Date: Sat, 12 Dec 2009 15:31:46 +0200
-Message-ID: <20091212153146.18d47534@daedalus.pq.iki.fi>
-References: <4B226AFB.604@iki.fi>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25608] [PATCH] nouveau_exa.c: Move upper-limit
+ calculations outside while-loop
+Date: Sat, 12 Dec 2009 05:32:43 -0800 (PST)
+Message-ID: <20091212133243.D350E1300E6@annarchy.freedesktop.org>
+References: <bug-25608-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4B226AFB.604-X3B1VOXEql0@public.gmane.org>
+In-Reply-To: <bug-25608-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,25 +18,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 11 Dec 2009 17:53:31 +0200
-Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org> wrote:
+http://bugs.freedesktop.org/show_bug.cgi?id=25608
 
-> Firmware files in firmware/ directory are not expected to be in
-> binary format. The nouveau files are in binary format, and are
-> therefore removed when running e.g. make clean.
-> 
-> Fix that by converting them to ihex format instead.
-> 
-> The patch is really big as it contains the ctxprogs stuff, so I'll
-> provide a link instead:
-> http://stuff.onse.fi/0001-drm-nouveau-provide-ctxprog-ctxvals-in-ihex-format.patch
 
-Pushed, thanks.
+Roy <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[PATCH] Move upper-limit    |[PATCH] nouveau_exa.c: Move
+                   |calculations outside while- |upper-limit calculations
+                   |loop                        |outside while-loop
+
+
+
 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
