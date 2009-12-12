@@ -1,15 +1,13 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: [PATCH 1/3] drm/nouveau: Pre-G80 tiling support.
-Date: Fri, 11 Dec 2009 22:28:07 +0100
-Message-ID: <87iqcdnqu0.fsf@riseup.net>
-References: <1260556404-13389-1-git-send-email-currojerez@riseup.net>
-	<20091211151820.4f90ba2f@amd64linuxmsi.rentzhouse.lan>
-	<87tyvxnrtp.fsf@riseup.net>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: low memory
+Date: Sat, 12 Dec 2009 01:04:53 +0100
+Message-ID: <6d4bc9fc0912111604oca0be3dm7f001bb05e85084@mail.gmail.com>
+References: <91752840912111111q222602f8g87b1727c24bd06ba@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0246729457=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <87tyvxnrtp.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> (Francisco Jerez's message of "Fri,
-	11 Dec 2009 22:06:42 +0100")
+In-Reply-To: <91752840912111111q222602f8g87b1727c24bd06ba-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,73 +15,71 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0246729457==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha1; protocol="application/pgp-signature"
-
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
-
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> writes:
-
-> Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
->
->> On Fri, 11 Dec 2009 19:33:22 +0100
+On Fri, Dec 11, 2009 at 8:11 PM, Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Fri, Dec 11, 2009 at 1:30 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> On Fri, 2009-12-11 at 13:23 +0100, Anders Eriksson wrote:
+>>> skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org said:
+>>> > It'd be useful to know of any cases out there where UMS is being used=
+ because
+>>> > KMS is failing, there's a couple of cases on RH bugzilla, but I don't=
+ recall
+>>> > the details right now.
+>>>
+>>> Try this one.
+>>>
+>>> https://bugs.freedesktop.org/show_bug.cgi?id=3D24810
+>>>
+>>> It used to work, but something changed which forced me back to UMS.
+>> It's not a solution by any means, but try:
 >>
->> Have you looked at 0xB000, 0xB004, 0xB008 by chance?
->> I noticed that nv uses these tiling regs (what looks like) on nv4a/nv4e =
-(NV44 core) cards but not any others at startup.  I thought is was because =
-0x406900 regs are missing.=20
->
-> Yeah, I've seen the blob use those regs in some nv4a mmiotraces, but it
-> seemed to work without them and they're outside PGRAPH/PFB or anything
-> we currently exercise so I decided to leave them out.
->
+>> =A0Option "EXAPixmaps" "false"
 >>
->> +#define NV40_PFB_TILE2(i)                                  (0x0000B000 =
-+ (i*12))
->> +#define NV40_PFB_TILE__SIZE_2                              12
->> +#define NV40_PFB_TLIMIT2(i)                                (0x0000B004 =
-+ (i*12))
->> +#define NV40_PFB_TSIZE2(i)                                 (0x0000B008 =
-+ (i*12))
+>> In your xorg.conf. =A0There'll be more work done to help the situation on
+>> low-mem cards.
+>>
+>
+> Ah that is interesting, so this can workaround the problem on my nv25
+> that cannot render too big pictures in firefox. (my test case is a
+> single picture : 3782x2592 resized to 550x368)
+>
+> So about that, I must mention the different behavior I got, in
+> chronological order :
+> 1) old ddx (10/01) : X instant crash
+> 2) newer ddx, after all the "handle reloc failures" patches : picture
+> is not displayed, just a black area instead. *much* better :)
+> 3) after upgrading kernel/drm from 12/08 - 2.6.32-rc6 to 12/11 -
+> 2.6.32 : X locks up.
+> I don't even see the usual message in dmesg ([TTM] Out of aperture
+> space or DRM memory quota.)
+> The gpu or at least nouveau drm is in a bad state and I must reboot to co=
+ver.
+>
+> Any clues about that last behavior ? I am not sure how
+> practical/possible regression testing will be since it seems to have
+> been caused by the last merge. I will open a bug report thats better.
+>
+> Finally I am curious about what work will be done to help :)
+> If I got it right (and I probably did not) :
+> exapixmaps true -> always use videoram for pixmaps
+> exapixmaps false -> never use videoram for pixmaps
 
-Sorry for not replying-to-all the first time...
+It switches between a classic exa implementation which is used to
+working with a fixed amount of vram, but will never cooperate with
+dri2. The default is a "mixed" exa implementation that does work with
+dri2. Both are accelerated for 2d purposes.
 
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.9 (GNU/Linux)
-
-iEYEARECAAYFAksiuWcACgkQ196Zy2qEI5cwzwCffeV1L7GXQyzdpXR0OTH7Sdjp
-n1MAoOEOgQoLFhNAPTPtfEdIyBhThdLa
-=CNKH
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0246729457==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0246729457==--
+> And so the solution would be something in between, like dynamically
+> choose whether to use vram or not, depending on the pixmap size and
+> the free vram ?
+> And how hard is that ?
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
