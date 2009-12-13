@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25623] Xorg segfaults when using
 	nouveau.tv_norm=1080i on NV4B
-Date: Sun, 13 Dec 2009 12:57:37 -0800 (PST)
-Message-ID: <20091213205737.CB0B1130098@annarchy.freedesktop.org>
+Date: Sun, 13 Dec 2009 12:59:18 -0800 (PST)
+Message-ID: <20091213205918.97336130098@annarchy.freedesktop.org>
 References: <bug-25623-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25623
 
 
 
---- Comment #1 from Richie <richie-PaBhPTzf2BNg9hUCZPvPmw@public.gmane.org>  2009-12-13 12:57:37 PST ---
-Created an attachment (id=32046)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32046)
-Dmesg
+--- Comment #2 from Richie <richie-PaBhPTzf2BNg9hUCZPvPmw@public.gmane.org>  2009-12-13 12:59:18 PST ---
+Created an attachment (id=32047)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32047)
+Xorg - DRM Error
+
+On a very rare occasion, Xorg will just give me a DRM error instead
 
 
 -- 
