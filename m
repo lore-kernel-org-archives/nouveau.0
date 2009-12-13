@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25619] nouveau fails to detect connected monitor on
  nforce1 (nv1a)
-Date: Sun, 13 Dec 2009 05:57:58 -0800 (PST)
-Message-ID: <20091213135758.CEDA81300B6@annarchy.freedesktop.org>
+Date: Sun, 13 Dec 2009 06:55:23 -0800 (PST)
+Message-ID: <20091213145523.3E42D1300B6@annarchy.freedesktop.org>
 References: <bug-25619-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25619
 
 
 
---- Comment #1 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org>  2009-12-13 05:57:58 PST ---
-Created an attachment (id=32038)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32038)
-VBIOS extracted with dd if=/dev/mem of=vbios.rom bs=1k skip=768 count=64
+--- Comment #2 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org>  2009-12-13 06:55:22 PST ---
+Created an attachment (id=32040)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32040)
+additional kernel log with drm.debug=4 (set via sysfs) and modprobing nouveau
 
 
 -- 
