@@ -1,8 +1,8 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25639] New: NV43 (6600GT): Monitor goes blank during
-	boot
-Date: Mon, 14 Dec 2009 09:27:34 -0800 (PST)
-Message-ID: <bug-25639-8800@http.bugs.freedesktop.org/>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: [PATCH] nouveau: Update some nv1x/nv2x tcl
+	nouveau_class.h definitions.
+Date: Mon, 14 Dec 2009 19:14:19 +0100
+Message-ID: <1260814459-12560-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,63 +19,61 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25639
+Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+---
+ nouveau/nouveau_class.h |   16 ++++++++++++++--
+ 1 files changed, 14 insertions(+), 2 deletions(-)
 
-           Summary: NV43 (6600GT): Monitor goes blank during boot
-           Product: xorg
-           Version: 7.5
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: pantherchen-t/9kahPp1Zsb1SvskN2V4Q@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=32069)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32069)
-output of dmesg
-
-Using the latest git kernel tree (commit
-91ed558e422465df7ea8f857785881a74528bb32), my CRT monitor loses the signal
-during the boot (right after the firmware request). The system seems to boot
-fine, though.
-
-If I'm interpreting this right, the card switches to TV-out, but there is
-nothing connected to the card's TV-out connector:
-
-...
-[    3.595456] [drm:edid_is_valid] *ERROR* Raw EDID:
-...
-[    3.697841] [drm:edid_is_valid] *ERROR* Raw EDID:
-...
-[    3.796737] [drm:edid_is_valid] *ERROR* Raw EDID:
-...
-[    3.894956] [drm:edid_is_valid] *ERROR* Raw EDID:
-...
-[    3.895062] nouveau 0000:05:00.0: VGA-1: EDID invalid.
-[    3.895112] [drm] nouveau 0000:05:00.0: DDC responded, but no EDID for VGA-1
-[    3.956043] [drm] nouveau 0000:05:00.0: Load detected on output B
-[    3.956154] [drm] nouveau 0000:05:00.0: allocated 720x576 fb: 0x9000, bo
-f6afc600
-[    3.957190] [drm] nouveau 0000:05:00.0: Setting dpms mode 3 on CRTC 0
-[    3.957200] [drm] nouveau 0000:05:00.0: vpll: n 20 m 3 log2p 1
-[    3.957203] [drm] TV-10: set mode 720x576 26
-[    3.957438] [drm] nouveau 0000:05:00.0: Setting dpms mode 0 on CRTC 0
-[    3.967428] [drm] nouveau 0000:05:00.0: Setting dpms mode 0 on TV encoder
-(output 3)
-[    3.967439] [drm] nouveau 0000:05:00.0: Output TV-1 is running on CRTC 0
-using output B
-[    3.967570] [drm] nouveau 0000:05:00.0: Setting dpms mode 3 on CRTC 1
-...
-
-Full log attached.
-
-
+diff --git a/nouveau/nouveau_class.h b/nouveau/nouveau_class.h
+index 0b8a6f0..c5fe5d7 100644
+--- a/nouveau/nouveau_class.h
++++ b/nouveau/nouveau_class.h
+@@ -1845,6 +1845,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define    NV10TCL_TX_FORMAT_WRAP_T_CLAMP						0x50000000
+ #define  NV10TCL_TX_ENABLE(x)								(0x00000228+((x)*4))
+ #define  NV10TCL_TX_ENABLE__SIZE							0x00000002
++#define   NV10TCL_TX_ENABLE_CULL_SHIFT							0
++#define   NV10TCL_TX_ENABLE_CULL_MASK							0x0000000f
++#define    NV10TCL_TX_ENABLE_CULL_DISABLED						0x00000000
++#define    NV10TCL_TX_ENABLE_CULL_TEST_ALL						0x00000003
++#define    NV10TCL_TX_ENABLE_CULL_TEST_ALPHA						0x00000004
+ #define   NV10TCL_TX_ENABLE_ANISOTROPY_SHIFT						4
+ #define   NV10TCL_TX_ENABLE_ANISOTROPY_MASK						0x00000030
+ #define   NV10TCL_TX_ENABLE_MIPMAP_MAX_LOD_SHIFT					14
+@@ -2896,11 +2901,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define  NV10TCL_VTXBUF_ADDRESS__SIZE							0x00000008
+ #define  NV10TCL_VTXFMT(x)								(0x00000d04+((x)*8))
+ #define  NV10TCL_VTXFMT__SIZE								0x00000008
++#define   NV10TCL_VTXFMT_POS_HOMOGENEOUS						(1 << 24)
+ #define   NV10TCL_VTXFMT_TYPE_SHIFT							0
+ #define   NV10TCL_VTXFMT_TYPE_MASK							0x0000000f
+-#define    NV10TCL_VTXFMT_TYPE_UBYTE							0x00000000
+-#define    NV10TCL_VTXFMT_TYPE_USHORT							0x00000001
++#define    NV10TCL_VTXFMT_TYPE_BYTE_BGRA						0x00000000
++#define    NV10TCL_VTXFMT_TYPE_SHORT							0x00000001
+ #define    NV10TCL_VTXFMT_TYPE_FLOAT							0x00000002
++#define    NV10TCL_VTXFMT_TYPE_BYTE_RGBA						0x00000004
+ #define   NV10TCL_VTXFMT_FIELDS_SHIFT							4
+ #define   NV10TCL_VTXFMT_FIELDS_MASK							0x000000f0
+ #define   NV10TCL_VTXFMT_STRIDE_SHIFT							8
+@@ -4501,6 +4508,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define   NV20TCL_VB_ELEMENT_U16_I0_MASK						0x0000ffff
+ #define   NV20TCL_VB_ELEMENT_U16_I1_SHIFT						16
+ #define   NV20TCL_VB_ELEMENT_U16_I1_MASK						0xffff0000
++#define  NV20TCL_VB_ELEMENT_U32								0x00001808
+ #define  NV20TCL_VB_VERTEX_BATCH							0x00001810
+ #define   NV20TCL_VB_VERTEX_BATCH_OFFSET_SHIFT						0
+ #define   NV20TCL_VB_VERTEX_BATCH_OFFSET_MASK						0x00ffffff
+@@ -4846,6 +4854,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define  NV17TCL_LMA_DEPTH_BUFFER_OFFSET						0x00000d60
+ #define  NV17TCL_LMA_DEPTH_FILL_VALUE							0x00000d68
+ #define  NV17TCL_LMA_DEPTH_BUFFER_CLEAR							0x00000d6c
++#define  NV17TCL_LMA_DEPTH_WINDOW_X							0x00001638
++#define  NV17TCL_LMA_DEPTH_WINDOW_Y							0x0000163c
++#define  NV17TCL_LMA_DEPTH_WINDOW_Z							0x00001640
++#define  NV17TCL_LMA_DEPTH_WINDOW_W							0x00001644
+ #define  NV17TCL_LMA_DEPTH_ENABLE							0x00001658
+ 
+ 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.6.4.4
