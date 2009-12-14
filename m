@@ -1,15 +1,14 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
 Subject: Re: [PATCH] nouveau: avoid running out of relocs (attempt
-	5)
-Date: Mon, 14 Dec 2009 15:48:28 +0100
-Message-ID: <6d4bc9fc0912140648h7453eb1agb4b3d96e95ac2378@mail.gmail.com>
+ 5)
+Date: Mon, 14 Dec 2009 17:51:28 +0100
+Message-ID: <4B266D10.8070703@student.tuwien.ac.at>
 References: <1260716857-6599-1-git-send-email-madman2003@gmail.com>
-	<20091213210603.9d0926f3.mandin.patrice@orange.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20091213210603.9d0926f3.mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
+In-Reply-To: <1260716857-6599-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,43 +18,51 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
+To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Dec 13, 2009 at 9:06 PM, Patrice Mandin
-<mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org> wrote:
-> Le Sun, 13 Dec 2009 16:07:37 +0100
-> Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> a =E9crit:
+On 13.12.2009 16:07, Maarten Maathuis wrote:
+> - Added flush notify functions for NV30 and NV40.
+> - NV30 and NV40 need testing (check for regressions).
+> ---
 >
->> - Added flush notify functions for NV30 and NV40.
->> - NV30 and NV40 need testing (check for regressions).
->
-> Just tested for NV30, no visible regression, just a minor performance
-> penalty. So it's OK for me.
->
-> Timedemo with ioquake3:
->
-> mesa git head:
-> 1260 frames 31.5 seconds 40.0 fps 9.0/25.0/50.0/8.0 ms
-> 1260 frames 31.4 seconds 40.1 fps 9.0/24.9/50.0/7.9 ms
->
-> with your patch, outofreloc.diff:
-> 1260 frames 32.7 seconds 38.5 fps 9.0/26.0/52.0/8.2 ms
-> 1260 frames 32.6 seconds 38.7 fps 9.0/25.8/51.0/8.1 ms
+> @@ -112,19 +112,29 @@ so_emit(struct nouveau_channel *chan, struct nouveau_stateobj *so)
+>  {
+>  	struct nouveau_pushbuf *pb = chan->pushbuf;
+>  	unsigned nr, i;
+> +	int ret = 0;
+>  
+>  	nr = so->cur - so->push;
+> -	if (pb->remaining < nr)
+> -		nouveau_pushbuf_flush(chan, nr);
+> +	/* This will flush if we need space.
+> +	 * We don't actually need the marker.
+> +	 */
+> +	if ((ret = nouveau_pushbuf_marker_emit(chan, nr, so->cur_reloc))) {
+> +		debug_printf("so_emit failed marker emit with error %d\n", ret);
+> +		return;
+> +	}
+>  	pb->remaining -= nr;
+>  
+>   
+I'm not sure why flushing mid-frame would be bad as Ben said.
+After all, if there's lots of stuff done during a frame, we will
+inevitably flush at some point ...
+> -		nouveau_pushbuf_emit_reloc(chan, pb->cur++, r->bo, r->data, 0,
+> +					   NOUVEAU_BO_DUMMY, 0, 0))) {
+> +			debug_printf("so_emit_reloc_markers failed reloc \
+> +						with error %d\n", ret);
+>   
+Now these debug_printf "will probably give you unwanted"
+                                          "extra space the way they are"
 
-That means (i guess) that you were flushing more than state emit was
-happening, since it's the same chunk of code just called after a flush
-and not a state emit (which is not correct anyway). So as long as
-rendering is still ok, i'm not worried.
+As for the interesting part, the too many relocs I got
+in vegastrike (and which would need a LOT of NOPs)
+are gone and nothing else seems to be broken.
 
->
-> --
-> Patrice Mandin
-> WWW: http://pmandin.atari.org/
-> Programmeur Linux, Atari
-> Sp=E9cialit=E9: D=E9veloppement, jeux
->
->
->
->
+At some point we'll probably want to know if buffer relocation
+succeeded or not I guess, and fallback to software on failure.
+But that still doesn't have a high priority for me personally.
+
+Christoph
