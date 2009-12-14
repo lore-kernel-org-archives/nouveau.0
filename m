@@ -1,44 +1,82 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25623] Xorg segfaults when using
-	nouveau.tv_norm=1080i on NV4B
-Date: Sun, 13 Dec 2009 19:20:33 -0800 (PST)
-Message-ID: <20091214032034.116A4130099@annarchy.freedesktop.org>
-References: <bug-25623-8800@http.bugs.freedesktop.org/>
+From: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Subject: [PATCH] nouveau: Fix endianness with new context program loader
+Date: Mon, 14 Dec 2009 14:31:40 +1100
+Message-ID: <1260761500.2217.10.camel@pasglop>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25623-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <linuxppc-dev-bounces+glppd-linuxppc64-dev=m.gmane.org@lists.ozlabs.org>
+List-Unsubscribe: <https://lists.ozlabs.org/options/linuxppc-dev>,
+	<mailto:linuxppc-dev-request@lists.ozlabs.org?subject=unsubscribe>
+List-Archive: <http://lists.ozlabs.org/pipermail/linuxppc-dev>
+List-Post: <mailto:linuxppc-dev@lists.ozlabs.org>
+List-Help: <mailto:linuxppc-dev-request@lists.ozlabs.org?subject=help>
+List-Subscribe: <https://lists.ozlabs.org/listinfo/linuxppc-dev>,
+	<mailto:linuxppc-dev-request@lists.ozlabs.org?subject=subscribe>
+Sender: linuxppc-dev-bounces+glppd-linuxppc64-dev=m.gmane.org@lists.ozlabs.org
+Errors-To: linuxppc-dev-bounces+glppd-linuxppc64-dev=m.gmane.org@lists.ozlabs.org
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: nouveau@lists.freedesktop.org, Dave Airlie <airlied@gmail.com>, linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25623
+When switching to request_firmware() to load the context programs,
+some endian fixes need to be applied. This makes it work again on
+my quad g5 nvidia 6600.
 
+Signed-off-by: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+---
+ drivers/gpu/drm/nouveau/nv40_graph.c |   20 ++++++++++++--------
+ 1 files changed, 12 insertions(+), 8 deletions(-)
 
-Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
-
-
-
---- Comment #5 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-12-13 19:20:33 PST ---
-This should be fixed now in master, so i'm closing the bug.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+diff --git a/drivers/gpu/drm/nouveau/nv40_graph.c b/drivers/gpu/drm/nouveau/nv40_graph.c
+index d3e0a2a..7e8547c 100644
+--- a/drivers/gpu/drm/nouveau/nv40_graph.c
++++ b/drivers/gpu/drm/nouveau/nv40_graph.c
+@@ -252,8 +252,9 @@ nv40_grctx_init(struct drm_device *dev)
+ 		memcpy(pgraph->ctxprog, fw->data, fw->size);
+ 
+ 		cp = pgraph->ctxprog;
+-		if (cp->signature != 0x5043564e || cp->version != 0 ||
+-		    cp->length != ((fw->size - 7) / 4)) {
++		if (le32_to_cpu(cp->signature) != 0x5043564e ||
++		    cp->version != 0 ||
++		    le16_to_cpu(cp->length) != ((fw->size - 7) / 4)) {
+ 			NV_ERROR(dev, "ctxprog invalid\n");
+ 			release_firmware(fw);
+ 			nv40_grctx_fini(dev);
+@@ -281,8 +282,9 @@ nv40_grctx_init(struct drm_device *dev)
+ 		memcpy(pgraph->ctxvals, fw->data, fw->size);
+ 
+ 		cv = (void *)pgraph->ctxvals;
+-		if (cv->signature != 0x5643564e || cv->version != 0 ||
+-		    cv->length != ((fw->size - 9) / 8)) {
++		if (le32_to_cpu(cv->signature) != 0x5643564e ||
++		    cv->version != 0 ||
++		    le32_to_cpu(cv->length) != ((fw->size - 9) / 8)) {
+ 			NV_ERROR(dev, "ctxvals invalid\n");
+ 			release_firmware(fw);
+ 			nv40_grctx_fini(dev);
+@@ -294,8 +296,9 @@ nv40_grctx_init(struct drm_device *dev)
+ 	cp = pgraph->ctxprog;
+ 
+ 	nv_wr32(dev, NV40_PGRAPH_CTXCTL_UCODE_INDEX, 0);
+-	for (i = 0; i < cp->length; i++)
+-		nv_wr32(dev, NV40_PGRAPH_CTXCTL_UCODE_DATA, cp->data[i]);
++	for (i = 0; i < le16_to_cpu(cp->length); i++)
++		nv_wr32(dev, NV40_PGRAPH_CTXCTL_UCODE_DATA,
++			le32_to_cpu(cp->data[i]));
+ 
+ 	pgraph->accel_blocked = false;
+ 	return 0;
+@@ -329,8 +332,9 @@ nv40_grctx_vals_load(struct drm_device *dev, struct nouveau_gpuobj *ctx)
+ 	if (!cv)
+ 		return;
+ 
+-	for (i = 0; i < cv->length; i++)
+-		nv_wo32(dev, ctx, cv->data[i].offset, cv->data[i].value);
++	for (i = 0; i < le32_to_cpu(cv->length); i++)
++		nv_wo32(dev, ctx, le32_to_cpu(cv->data[i].offset),
++			le32_to_cpu(cv->data[i].value));
+ }
+ 
+ /*
