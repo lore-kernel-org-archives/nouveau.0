@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25623] Xorg segfaults when using
 	nouveau.tv_norm=1080i on NV4B
-Date: Sun, 13 Dec 2009 15:45:21 -0800 (PST)
-Message-ID: <20091213234521.C284E13009D@annarchy.freedesktop.org>
+Date: Sun, 13 Dec 2009 16:05:07 -0800 (PST)
+Message-ID: <20091214000507.D15CE13009F@annarchy.freedesktop.org>
 References: <bug-25623-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25623
 
 
 
---- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-12-13 15:45:21 PST ---
-Created an attachment (id=32050)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32050)
-kms_interlace.patch
-
-Does the attached patch help?
+--- Comment #4 from Richie <richie-PaBhPTzf2BNg9hUCZPvPmw@public.gmane.org>  2009-12-13 16:05:07 PST ---
+All seems to work fine after applying the patch
 
 
 -- 
