@@ -1,14 +1,12 @@
-From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Subject: Re: [PATCH] nouveau: avoid running out of relocs (attempt
- 5)
-Date: Mon, 14 Dec 2009 17:51:28 +0100
-Message-ID: <4B266D10.8070703@student.tuwien.ac.at>
-References: <1260716857-6599-1-git-send-email-madman2003@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25639] New: NV43 (6600GT): Monitor goes blank during
+	boot
+Date: Mon, 14 Dec 2009 09:27:34 -0800 (PST)
+Message-ID: <bug-25639-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1260716857-6599-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,51 +16,66 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 13.12.2009 16:07, Maarten Maathuis wrote:
-> - Added flush notify functions for NV30 and NV40.
-> - NV30 and NV40 need testing (check for regressions).
-> ---
->
-> @@ -112,19 +112,29 @@ so_emit(struct nouveau_channel *chan, struct nouveau_stateobj *so)
->  {
->  	struct nouveau_pushbuf *pb = chan->pushbuf;
->  	unsigned nr, i;
-> +	int ret = 0;
->  
->  	nr = so->cur - so->push;
-> -	if (pb->remaining < nr)
-> -		nouveau_pushbuf_flush(chan, nr);
-> +	/* This will flush if we need space.
-> +	 * We don't actually need the marker.
-> +	 */
-> +	if ((ret = nouveau_pushbuf_marker_emit(chan, nr, so->cur_reloc))) {
-> +		debug_printf("so_emit failed marker emit with error %d\n", ret);
-> +		return;
-> +	}
->  	pb->remaining -= nr;
->  
->   
-I'm not sure why flushing mid-frame would be bad as Ben said.
-After all, if there's lots of stuff done during a frame, we will
-inevitably flush at some point ...
-> -		nouveau_pushbuf_emit_reloc(chan, pb->cur++, r->bo, r->data, 0,
-> +					   NOUVEAU_BO_DUMMY, 0, 0))) {
-> +			debug_printf("so_emit_reloc_markers failed reloc \
-> +						with error %d\n", ret);
->   
-Now these debug_printf "will probably give you unwanted"
-                                          "extra space the way they are"
+http://bugs.freedesktop.org/show_bug.cgi?id=25639
 
-As for the interesting part, the too many relocs I got
-in vegastrike (and which would need a LOT of NOPs)
-are gone and nothing else seems to be broken.
+           Summary: NV43 (6600GT): Monitor goes blank during boot
+           Product: xorg
+           Version: 7.5
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: pantherchen-t/9kahPp1Zsb1SvskN2V4Q@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-At some point we'll probably want to know if buffer relocation
-succeeded or not I guess, and fallback to software on failure.
-But that still doesn't have a high priority for me personally.
 
-Christoph
+Created an attachment (id=32069)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32069)
+output of dmesg
+
+Using the latest git kernel tree (commit
+91ed558e422465df7ea8f857785881a74528bb32), my CRT monitor loses the signal
+during the boot (right after the firmware request). The system seems to boot
+fine, though.
+
+If I'm interpreting this right, the card switches to TV-out, but there is
+nothing connected to the card's TV-out connector:
+
+...
+[    3.595456] [drm:edid_is_valid] *ERROR* Raw EDID:
+...
+[    3.697841] [drm:edid_is_valid] *ERROR* Raw EDID:
+...
+[    3.796737] [drm:edid_is_valid] *ERROR* Raw EDID:
+...
+[    3.894956] [drm:edid_is_valid] *ERROR* Raw EDID:
+...
+[    3.895062] nouveau 0000:05:00.0: VGA-1: EDID invalid.
+[    3.895112] [drm] nouveau 0000:05:00.0: DDC responded, but no EDID for VGA-1
+[    3.956043] [drm] nouveau 0000:05:00.0: Load detected on output B
+[    3.956154] [drm] nouveau 0000:05:00.0: allocated 720x576 fb: 0x9000, bo
+f6afc600
+[    3.957190] [drm] nouveau 0000:05:00.0: Setting dpms mode 3 on CRTC 0
+[    3.957200] [drm] nouveau 0000:05:00.0: vpll: n 20 m 3 log2p 1
+[    3.957203] [drm] TV-10: set mode 720x576 26
+[    3.957438] [drm] nouveau 0000:05:00.0: Setting dpms mode 0 on CRTC 0
+[    3.967428] [drm] nouveau 0000:05:00.0: Setting dpms mode 0 on TV encoder
+(output 3)
+[    3.967439] [drm] nouveau 0000:05:00.0: Output TV-1 is running on CRTC 0
+using output B
+[    3.967570] [drm] nouveau 0000:05:00.0: Setting dpms mode 3 on CRTC 1
+...
+
+Full log attached.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
