@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25658] New: Move to loadable firmware breaks suspend
- on nVidia 9800M
-Date: Tue, 15 Dec 2009 11:25:55 -0800 (PST)
-Message-ID: <bug-25658-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25658] Move to loadable firmware breaks suspend on
+	nVidia 9800M
+Date: Tue, 15 Dec 2009 11:27:43 -0800 (PST)
+Message-ID: <20091215192743.CA7121300DE@annarchy.freedesktop.org>
+References: <bug-25658-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-25658-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=25658
 
-           Summary: Move to loadable firmware breaks suspend on nVidia 9800M
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Since the move to loadable firmware ctx voodoo, suspend is broken on my nVidia
-9800M (NV92).  Upon running pm-suspend, or hitting the keyboard shortcut, I get
-a flashing cursor on a black screen, but it sits there forever instead of
-suspending.  There's no response to magic SysRq or ssh -- I have to hard-reset
-it.  To be sure, I bisected it down to the commits starting with
-6303a1a6ab13da61b0352101e7a974ca446d6a36 (use fw loader interface for
-ctxprog/ctxvals).  Anything before that seems to work; anything after
-c2f85058e99c542a82cfc893fbe5ebd2b86c666e (add back the ctxprog/ctxvals we have
-as loadable firmware) is broken.
+
+
+--- Comment #1 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 11:27:43 PST ---
+I guess I should add that I'm using KMS and X.  Suspend without starting X does
+still work.
 
 
 -- 
