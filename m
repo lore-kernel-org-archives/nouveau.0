@@ -1,14 +1,11 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH 2/2] drm/nouveau: Kill global state in BIOS script
-	interpreter
-Date: Tue, 15 Dec 2009 00:37:31 +0000
-Message-ID: <1260837451-2060-2-git-send-email-koriakin@0x04.net>
-References: <1260837451-2060-1-git-send-email-koriakin@0x04.net>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [TEST REQUEST] nv40 "firmware" replacement
+Date: Tue, 15 Dec 2009 17:14:10 +1000
+Message-ID: <1260861250.5529.8.camel@nisroch>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="=-qvoSVJN2txArtjUvYb0m"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1260837451-2060-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,1604 +18,678 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
----
- drivers/gpu/drm/nouveau/nouveau_bios.c |  562 ++++++++++++++++----------------
- drivers/gpu/drm/nouveau/nouveau_bios.h |    1 +
- 2 files changed, 276 insertions(+), 287 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-index 04ac564..49aa83b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-@@ -256,10 +256,7 @@ static bool NVShadowVBIOS(struct drm_device *dev, uint8_t *data)
- struct init_tbl_entry {
- 	char *name;
- 	uint8_t id;
--	int length;
--	int length_offset;
--	int length_multiplier;
--	bool (*handler)(struct nvbios *, uint16_t, struct init_exec *);
-+	int (*handler)(struct nvbios *, uint16_t, struct init_exec *);
- };
- 
- struct bit_entry {
-@@ -815,7 +812,7 @@ static uint32_t get_tmds_index_reg(struct drm_device *dev, uint8_t mlv)
- 	}
- }
- 
--static bool
-+static int
- init_io_restrict_prog(struct nvbios *bios, uint16_t offset,
- 		      struct init_exec *iexec)
- {
-@@ -847,9 +844,10 @@ init_io_restrict_prog(struct nvbios *bios, uint16_t offset,
- 	uint32_t reg = ROM32(bios->data[offset + 7]);
- 	uint8_t config;
- 	uint32_t configval;
-+	int len = 11 + count * 4;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: Port: 0x%04X, Index: 0x%02X, Mask: 0x%02X, "
- 		      "Shift: 0x%02X, Count: 0x%02X, Reg: 0x%08X\n",
-@@ -860,7 +858,7 @@ init_io_restrict_prog(struct nvbios *bios, uint16_t offset,
- 		NV_ERROR(bios->dev,
- 			 "0x%04X: Config 0x%02X exceeds maximal bound 0x%02X\n",
- 			 offset, config, count);
--		return false;
-+		return 0;
- 	}
- 
- 	configval = ROM32(bios->data[offset + 11 + config * 4]);
-@@ -869,10 +867,10 @@ init_io_restrict_prog(struct nvbios *bios, uint16_t offset,
- 
- 	bios_wr32(bios, reg, configval);
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_repeat(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -907,10 +905,10 @@ init_repeat(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 
- 	iexec->repeat = false;
- 
--	return true;
-+	return 2;
- }
- 
--static bool
-+static int
- init_io_restrict_pll(struct nvbios *bios, uint16_t offset,
- 		     struct init_exec *iexec)
- {
-@@ -946,9 +944,10 @@ init_io_restrict_pll(struct nvbios *bios, uint16_t offset,
- 	uint32_t reg = ROM32(bios->data[offset + 8]);
- 	uint8_t config;
- 	uint16_t freq;
-+	int len = 12 + count * 2;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: Port: 0x%04X, Index: 0x%02X, Mask: 0x%02X, "
- 		      "Shift: 0x%02X, IO Flag Condition: 0x%02X, "
-@@ -961,7 +960,7 @@ init_io_restrict_pll(struct nvbios *bios, uint16_t offset,
- 		NV_ERROR(bios->dev,
- 			 "0x%04X: Config 0x%02X exceeds maximal bound 0x%02X\n",
- 			 offset, config, count);
--		return false;
-+		return 0;
- 	}
- 
- 	freq = ROM16(bios->data[offset + 12 + config * 2]);
-@@ -981,10 +980,10 @@ init_io_restrict_pll(struct nvbios *bios, uint16_t offset,
- 
- 	setPLL(bios, reg, freq * 10);
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_end_repeat(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1002,12 +1001,12 @@ init_end_repeat(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	 * we're not in repeat mode
- 	 */
- 	if (iexec->repeat)
--		return false;
-+		return 0;
- 
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_copy(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1036,7 +1035,7 @@ init_copy(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t crtcdata;
- 
- 	if (!iexec->execute)
--		return true;
-+		return 11;
- 
- 	BIOSLOG(bios, "0x%04X: Reg: 0x%08X, Shift: 0x%02X, SrcMask: 0x%02X, "
- 		      "Port: 0x%04X, Index: 0x%02X, Mask: 0x%02X\n",
-@@ -1055,10 +1054,10 @@ init_copy(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	crtcdata |= (uint8_t)data;
- 	bios_idxprt_wr(bios, crtcport, crtcindex, crtcdata);
- 
--	return true;
-+	return 11;
- }
- 
--static bool
-+static int
- init_not(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1074,10 +1073,10 @@ init_not(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 		BIOSLOG(bios, "0x%04X: ------ Executing following commands ------\n", offset);
- 
- 	iexec->execute = !iexec->execute;
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_io_flag_condition(struct nvbios *bios, uint16_t offset,
- 		       struct init_exec *iexec)
- {
-@@ -1095,7 +1094,7 @@ init_io_flag_condition(struct nvbios *bios, uint16_t offset,
- 	uint8_t cond = bios->data[offset + 1];
- 
- 	if (!iexec->execute)
--		return true;
-+		return 2;
- 
- 	if (io_flag_condition_met(bios, offset, cond))
- 		BIOSLOG(bios, "0x%04X: Condition fulfilled -- continuing to execute\n", offset);
-@@ -1104,10 +1103,10 @@ init_io_flag_condition(struct nvbios *bios, uint16_t offset,
- 		iexec->execute = false;
- 	}
- 
--	return true;
-+	return 2;
- }
- 
--static bool
-+static int
- init_idx_addr_latched(struct nvbios *bios, uint16_t offset,
- 		      struct init_exec *iexec)
- {
-@@ -1135,11 +1134,12 @@ init_idx_addr_latched(struct nvbios *bios, uint16_t offset,
- 	uint32_t mask = ROM32(bios->data[offset + 9]);
- 	uint32_t data = ROM32(bios->data[offset + 13]);
- 	uint8_t count = bios->data[offset + 17];
-+	int len = 18 + count * 2;
- 	uint32_t value;
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: ControlReg: 0x%08X, DataReg: 0x%08X, "
- 		      "Mask: 0x%08X, Data: 0x%08X, Count: 0x%02X\n",
-@@ -1159,10 +1159,10 @@ init_idx_addr_latched(struct nvbios *bios, uint16_t offset,
- 		bios_wr32(bios, controlreg, value);
- 	}
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_io_restrict_pll2(struct nvbios *bios, uint16_t offset,
- 		      struct init_exec *iexec)
- {
-@@ -1191,25 +1191,26 @@ init_io_restrict_pll2(struct nvbios *bios, uint16_t offset,
- 	uint8_t shift = bios->data[offset + 5];
- 	uint8_t count = bios->data[offset + 6];
- 	uint32_t reg = ROM32(bios->data[offset + 7]);
-+	int len = 11 + count * 4;
- 	uint8_t config;
- 	uint32_t freq;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: Port: 0x%04X, Index: 0x%02X, Mask: 0x%02X, "
- 		      "Shift: 0x%02X, Count: 0x%02X, Reg: 0x%08X\n",
- 		offset, crtcport, crtcindex, mask, shift, count, reg);
- 
- 	if (!reg)
--		return true;
-+		return len;
- 
- 	config = (bios_idxprt_rd(bios, crtcport, crtcindex) & mask) >> shift;
- 	if (config > count) {
- 		NV_ERROR(bios->dev,
- 			 "0x%04X: Config 0x%02X exceeds maximal bound 0x%02X\n",
- 			 offset, config, count);
--		return false;
-+		return 0;
- 	}
- 
- 	freq = ROM32(bios->data[offset + 11 + config * 4]);
-@@ -1219,10 +1220,10 @@ init_io_restrict_pll2(struct nvbios *bios, uint16_t offset,
- 
- 	setPLL(bios, reg, freq);
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_pll2(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1239,16 +1240,16 @@ init_pll2(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint32_t freq = ROM32(bios->data[offset + 5]);
- 
- 	if (!iexec->execute)
--		return true;
-+		return 9;
- 
- 	BIOSLOG(bios, "0x%04X: Reg: 0x%04X, Freq: %dkHz\n",
- 		offset, reg, freq);
- 
- 	setPLL(bios, reg, freq);
--	return true;
-+	return 9;
- }
- 
--static bool
-+static int
- init_i2c_byte(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1272,12 +1273,13 @@ init_i2c_byte(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t i2c_index = bios->data[offset + 1];
- 	uint8_t i2c_address = bios->data[offset + 2];
- 	uint8_t count = bios->data[offset + 3];
-+	int len = 4 + count * 3;
- 	struct nouveau_i2c_chan *chan;
- 	struct i2c_msg msg;
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: DCBI2CIndex: 0x%02X, I2CAddress: 0x%02X, "
- 		      "Count: 0x%02X\n",
-@@ -1285,7 +1287,7 @@ init_i2c_byte(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 
- 	chan = init_i2c_device_find(bios->dev, i2c_index);
- 	if (!chan)
--		return false;
-+		return 0;
- 
- 	for (i = 0; i < count; i++) {
- 		uint8_t i2c_reg = bios->data[offset + 4 + i * 3];
-@@ -1298,7 +1300,7 @@ init_i2c_byte(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 		msg.len = 1;
- 		msg.buf = &value;
- 		if (i2c_transfer(&chan->adapter, &msg, 1) != 1)
--			return false;
-+			return 0;
- 
- 		BIOSLOG(bios, "0x%04X: I2CReg: 0x%02X, Value: 0x%02X, "
- 			      "Mask: 0x%02X, Data: 0x%02X\n",
-@@ -1312,14 +1314,14 @@ init_i2c_byte(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 			msg.len = 1;
- 			msg.buf = &value;
- 			if (i2c_transfer(&chan->adapter, &msg, 1) != 1)
--				return false;
-+				return 0;
- 		}
- 	}
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_zm_i2c_byte(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1341,12 +1343,13 @@ init_zm_i2c_byte(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t i2c_index = bios->data[offset + 1];
- 	uint8_t i2c_address = bios->data[offset + 2];
- 	uint8_t count = bios->data[offset + 3];
-+	int len = 4 + count * 2;
- 	struct nouveau_i2c_chan *chan;
- 	struct i2c_msg msg;
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: DCBI2CIndex: 0x%02X, I2CAddress: 0x%02X, "
- 		      "Count: 0x%02X\n",
-@@ -1354,7 +1357,7 @@ init_zm_i2c_byte(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 
- 	chan = init_i2c_device_find(bios->dev, i2c_index);
- 	if (!chan)
--		return false;
-+		return 0;
- 
- 	for (i = 0; i < count; i++) {
- 		uint8_t i2c_reg = bios->data[offset + 4 + i * 2];
-@@ -1369,14 +1372,14 @@ init_zm_i2c_byte(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 			msg.len = 1;
- 			msg.buf = &data;
- 			if (i2c_transfer(&chan->adapter, &msg, 1) != 1)
--				return false;
-+				return 0;
- 		}
- 	}
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_zm_i2c(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1396,13 +1399,14 @@ init_zm_i2c(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t i2c_index = bios->data[offset + 1];
- 	uint8_t i2c_address = bios->data[offset + 2];
- 	uint8_t count = bios->data[offset + 3];
-+	int len = 4 + count;
- 	struct nouveau_i2c_chan *chan;
- 	struct i2c_msg msg;
- 	uint8_t data[256];
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: DCBI2CIndex: 0x%02X, I2CAddress: 0x%02X, "
- 		      "Count: 0x%02X\n",
-@@ -1410,7 +1414,7 @@ init_zm_i2c(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 
- 	chan = init_i2c_device_find(bios->dev, i2c_index);
- 	if (!chan)
--		return false;
-+		return 0;
- 
- 	for (i = 0; i < count; i++) {
- 		data[i] = bios->data[offset + 4 + i];
-@@ -1424,13 +1428,13 @@ init_zm_i2c(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 		msg.len = count;
- 		msg.buf = data;
- 		if (i2c_transfer(&chan->adapter, &msg, 1) != 1)
--			return false;
-+			return 0;
- 	}
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_tmds(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1455,7 +1459,7 @@ init_tmds(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint32_t reg, value;
- 
- 	if (!iexec->execute)
--		return true;
-+		return 5;
- 
- 	BIOSLOG(bios, "0x%04X: MagicLookupValue: 0x%02X, TMDSAddr: 0x%02X, "
- 		      "Mask: 0x%02X, Data: 0x%02X\n",
-@@ -1463,7 +1467,7 @@ init_tmds(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 
- 	reg = get_tmds_index_reg(bios->dev, mlv);
- 	if (!reg)
--		return false;
-+		return 0;
- 
- 	bios_wr32(bios, reg,
- 		  tmdsaddr | NV_PRAMDAC_FP_TMDS_CONTROL_WRITE_DISABLE);
-@@ -1471,10 +1475,10 @@ init_tmds(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	bios_wr32(bios, reg + 4, value);
- 	bios_wr32(bios, reg, tmdsaddr);
- 
--	return true;
-+	return 5;
- }
- 
--static bool
-+static int
- init_zm_tmds_group(struct nvbios *bios, uint16_t offset,
- 		   struct init_exec *iexec)
- {
-@@ -1495,18 +1499,19 @@ init_zm_tmds_group(struct nvbios *bios, uint16_t offset,
- 
- 	uint8_t mlv = bios->data[offset + 1];
- 	uint8_t count = bios->data[offset + 2];
-+	int len = 3 + count * 2;
- 	uint32_t reg;
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: MagicLookupValue: 0x%02X, Count: 0x%02X\n",
- 		offset, mlv, count);
- 
- 	reg = get_tmds_index_reg(bios->dev, mlv);
- 	if (!reg)
--		return false;
-+		return 0;
- 
- 	for (i = 0; i < count; i++) {
- 		uint8_t tmdsaddr = bios->data[offset + 3 + i * 2];
-@@ -1516,10 +1521,10 @@ init_zm_tmds_group(struct nvbios *bios, uint16_t offset,
- 		bios_wr32(bios, reg, tmdsaddr);
- 	}
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_cr_idx_adr_latch(struct nvbios *bios, uint16_t offset,
- 		      struct init_exec *iexec)
- {
-@@ -1542,11 +1547,12 @@ init_cr_idx_adr_latch(struct nvbios *bios, uint16_t offset,
- 	uint8_t crtcindex2 = bios->data[offset + 2];
- 	uint8_t baseaddr = bios->data[offset + 3];
- 	uint8_t count = bios->data[offset + 4];
-+	int len = 5 + count;
- 	uint8_t oldaddr, data;
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: Index1: 0x%02X, Index2: 0x%02X, "
- 		      "BaseAddr: 0x%02X, Count: 0x%02X\n",
-@@ -1563,10 +1569,10 @@ init_cr_idx_adr_latch(struct nvbios *bios, uint16_t offset,
- 
- 	bios_idxprt_wr(bios, NV_CIO_CRX__COLOR, crtcindex1, oldaddr);
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_cr(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1587,7 +1593,7 @@ init_cr(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t value;
- 
- 	if (!iexec->execute)
--		return true;
-+		return 4;
- 
- 	BIOSLOG(bios, "0x%04X: Index: 0x%02X, Mask: 0x%02X, Data: 0x%02X\n",
- 		offset, crtcindex, mask, data);
-@@ -1596,10 +1602,10 @@ init_cr(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	value |= data;
- 	bios_idxprt_wr(bios, NV_CIO_CRX__COLOR, crtcindex, value);
- 
--	return true;
-+	return 4;
- }
- 
--static bool
-+static int
- init_zm_cr(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1616,14 +1622,14 @@ init_zm_cr(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t data = bios->data[offset + 2];
- 
- 	if (!iexec->execute)
--		return true;
-+		return 3;
- 
- 	bios_idxprt_wr(bios, NV_CIO_CRX__COLOR, crtcindex, data);
- 
--	return true;
-+	return 3;
- }
- 
--static bool
-+static int
- init_zm_cr_group(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1640,18 +1646,19 @@ init_zm_cr_group(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	 */
- 
- 	uint8_t count = bios->data[offset + 1];
-+	int len = 2 + count * 2;
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	for (i = 0; i < count; i++)
- 		init_zm_cr(bios, offset + 2 + 2 * i - 1, iexec);
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_condition_time(struct nvbios *bios, uint16_t offset,
- 		    struct init_exec *iexec)
- {
-@@ -1675,7 +1682,7 @@ init_condition_time(struct nvbios *bios, uint16_t offset,
- 	unsigned cnt;
- 
- 	if (!iexec->execute)
--		return true;
-+		return 3;
- 
- 	if (retries > 100)
- 		retries = 100;
-@@ -1706,10 +1713,10 @@ init_condition_time(struct nvbios *bios, uint16_t offset,
- 		iexec->execute = false;
- 	}
- 
--	return true;
-+	return 3;
- }
- 
--static bool
-+static int
- init_zm_reg_sequence(struct nvbios *bios, uint16_t offset,
- 		     struct init_exec *iexec)
- {
-@@ -1729,10 +1736,11 @@ init_zm_reg_sequence(struct nvbios *bios, uint16_t offset,
- 
- 	uint32_t basereg = ROM32(bios->data[offset + 1]);
- 	uint32_t count = bios->data[offset + 5];
-+	int len = 6 + count * 4;
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	BIOSLOG(bios, "0x%04X: BaseReg: 0x%08X, Count: 0x%02X\n",
- 		offset, basereg, count);
-@@ -1744,10 +1752,10 @@ init_zm_reg_sequence(struct nvbios *bios, uint16_t offset,
- 		bios_wr32(bios, reg, data);
- 	}
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_sub_direct(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1763,7 +1771,7 @@ init_sub_direct(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint16_t sub_offset = ROM16(bios->data[offset + 1]);
- 
- 	if (!iexec->execute)
--		return true;
-+		return 3;
- 
- 	BIOSLOG(bios, "0x%04X: Executing subroutine at 0x%04X\n",
- 		offset, sub_offset);
-@@ -1772,10 +1780,10 @@ init_sub_direct(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 
- 	BIOSLOG(bios, "0x%04X: End of 0x%04X subroutine\n", offset, sub_offset);
- 
--	return true;
-+	return 3;
- }
- 
--static bool
-+static int
- init_copy_nv_reg(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1803,7 +1811,7 @@ init_copy_nv_reg(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint32_t srcvalue, dstvalue;
- 
- 	if (!iexec->execute)
--		return true;
-+		return 22;
- 
- 	BIOSLOG(bios, "0x%04X: SrcReg: 0x%08X, Shift: 0x%02X, SrcMask: 0x%08X, "
- 		      "Xor: 0x%08X, DstReg: 0x%08X, DstMask: 0x%08X\n",
-@@ -1822,10 +1830,10 @@ init_copy_nv_reg(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 
- 	bios_wr32(bios, dstreg, dstvalue | srcvalue);
- 
--	return true;
-+	return 22;
- }
- 
--static bool
-+static int
- init_zm_index_io(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1843,14 +1851,14 @@ init_zm_index_io(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t data = bios->data[offset + 4];
- 
- 	if (!iexec->execute)
--		return true;
-+		return 5;
- 
- 	bios_idxprt_wr(bios, crtcport, crtcindex, data);
- 
--	return true;
-+	return 5;
- }
- 
--static bool
-+static int
- init_compute_mem(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1899,7 +1907,7 @@ init_compute_mem(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	struct drm_nouveau_private *dev_priv = bios->dev->dev_private;
- 
- 	if (dev_priv->card_type >= NV_50)
--		return true;
-+		return 1;
- 
- 	/*
- 	 * On every card I've seen, this step gets done for us earlier in
-@@ -1917,10 +1925,10 @@ init_compute_mem(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	/* write back the saved configuration value */
- 	bios_wr32(bios, NV_PFB_CFG0, bios->state.saved_nv_pfb_cfg0);
- 
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_reset(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -1954,10 +1962,10 @@ init_reset(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	pci_nv_20 &= ~NV_PBUS_PCI_NV_20_ROM_SHADOW_ENABLED;	/* 0xfffffffe */
- 	bios_wr32(bios, NV_PBUS_PCI_NV_20, pci_nv_20);
- 
--	return true;
-+	return 13;
- }
- 
--static bool
-+static int
- init_configure_mem(struct nvbios *bios, uint16_t offset,
- 		   struct init_exec *iexec)
- {
-@@ -1978,7 +1986,7 @@ init_configure_mem(struct nvbios *bios, uint16_t offset,
- 	uint32_t reg, data;
- 
- 	if (bios->major_version > 2)
--		return false;
-+		return 0;
- 
- 	bios_idxprt_wr(bios, NV_VIO_SRX, NV_VIO_SR_CLOCK_INDEX, bios_idxprt_rd(
- 		       bios, NV_VIO_SRX, NV_VIO_SR_CLOCK_INDEX) | 0x20);
-@@ -2010,10 +2018,10 @@ init_configure_mem(struct nvbios *bios, uint16_t offset,
- 		bios_wr32(bios, reg, data);
- 	}
- 
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_configure_clk(struct nvbios *bios, uint16_t offset,
- 		   struct init_exec *iexec)
- {
-@@ -2033,7 +2041,7 @@ init_configure_clk(struct nvbios *bios, uint16_t offset,
- 	int clock;
- 
- 	if (bios->major_version > 2)
--		return false;
-+		return 0;
- 
- 	clock = ROM16(bios->data[meminitoffs + 4]) * 10;
- 	setPLL(bios, NV_PRAMDAC_NVPLL_COEFF, clock);
-@@ -2043,10 +2051,10 @@ init_configure_clk(struct nvbios *bios, uint16_t offset,
- 		clock *= 2;
- 	setPLL(bios, NV_PRAMDAC_MPLL_COEFF, clock);
- 
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_configure_preinit(struct nvbios *bios, uint16_t offset,
- 		       struct init_exec *iexec)
- {
-@@ -2066,15 +2074,15 @@ init_configure_preinit(struct nvbios *bios, uint16_t offset,
- 	uint8_t cr3c = ((straps << 2) & 0xf0) | (straps & (1 << 6));
- 
- 	if (bios->major_version > 2)
--		return false;
-+		return 0;
- 
- 	bios_idxprt_wr(bios, NV_CIO_CRX__COLOR,
- 			     NV_CIO_CRE_SCRATCH4__INDEX, cr3c);
- 
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_io(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2094,7 +2102,7 @@ init_io(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t data = bios->data[offset + 4];
- 
- 	if (!iexec->execute)
--		return true;
-+		return 5;
- 
- 	BIOSLOG(bios, "0x%04X: Port: 0x%04X, Mask: 0x%02X, Data: 0x%02X\n",
- 		offset, crtcport, mask, data);
-@@ -2153,15 +2161,15 @@ init_io(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 		for (i = 0; i < 2; i++)
- 			bios_wr32(bios, 0x614108 + (i*0x800), bios_rd32(
- 				  bios, 0x614108 + (i*0x800)) & 0x0fffffff);
--		return true;
-+		return 5;
- 	}
- 
- 	bios_port_wr(bios, crtcport, (bios_port_rd(bios, crtcport) & mask) |
- 									data);
--	return true;
-+	return 5;
- }
- 
--static bool
-+static int
- init_sub(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2176,7 +2184,7 @@ init_sub(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t sub = bios->data[offset + 1];
- 
- 	if (!iexec->execute)
--		return true;
-+		return 2;
- 
- 	BIOSLOG(bios, "0x%04X: Calling script %d\n", offset, sub);
- 
-@@ -2186,10 +2194,10 @@ init_sub(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 
- 	BIOSLOG(bios, "0x%04X: End of script %d\n", offset, sub);
- 
--	return true;
-+	return 2;
- }
- 
--static bool
-+static int
- init_ram_condition(struct nvbios *bios, uint16_t offset,
- 		   struct init_exec *iexec)
- {
-@@ -2210,7 +2218,7 @@ init_ram_condition(struct nvbios *bios, uint16_t offset,
- 	uint8_t data;
- 
- 	if (!iexec->execute)
--		return true;
-+		return 3;
- 
- 	data = bios_rd32(bios, NV_PFB_BOOT_0) & mask;
- 
-@@ -2224,10 +2232,10 @@ init_ram_condition(struct nvbios *bios, uint16_t offset,
- 		iexec->execute = false;
- 	}
- 
--	return true;
-+	return 3;
- }
- 
--static bool
-+static int
- init_nv_reg(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2246,17 +2254,17 @@ init_nv_reg(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint32_t data = ROM32(bios->data[offset + 9]);
- 
- 	if (!iexec->execute)
--		return true;
-+		return 13;
- 
- 	BIOSLOG(bios, "0x%04X: Reg: 0x%08X, Mask: 0x%08X, Data: 0x%08X\n",
- 		offset, reg, mask, data);
- 
- 	bios_wr32(bios, reg, (bios_rd32(bios, reg) & mask) | data);
- 
--	return true;
-+	return 13;
- }
- 
--static bool
-+static int
- init_macro(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2280,7 +2288,7 @@ init_macro(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return 2;
- 
- 	BIOSLOG(bios, "0x%04X: Macro: 0x%02X, MacroTableIndex: 0x%02X, "
- 		      "Count: 0x%02X\n",
-@@ -2295,10 +2303,10 @@ init_macro(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 		bios_wr32(bios, reg, data);
- 	}
- 
--	return true;
-+	return 2;
- }
- 
--static bool
-+static int
- init_done(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2310,10 +2318,10 @@ init_done(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	 */
- 
- 	/* mild retval abuse to stop parsing this table */
--	return false;
-+	return 0;
- }
- 
--static bool
-+static int
- init_resume(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2325,15 +2333,15 @@ init_resume(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	 */
- 
- 	if (iexec->execute)
--		return true;
-+		return 1;
- 
- 	iexec->execute = true;
- 	BIOSLOG(bios, "0x%04X: ---- Executing following commands ----\n", offset);
- 
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_time(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2348,7 +2356,7 @@ init_time(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	unsigned time = ROM16(bios->data[offset + 1]);
- 
- 	if (!iexec->execute)
--		return true;
-+		return 3;
- 
- 	BIOSLOG(bios, "0x%04X: Sleeping for 0x%04X microseconds\n",
- 		offset, time);
-@@ -2358,10 +2366,10 @@ init_time(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	else
- 		msleep((time + 900) / 1000);
- 
--	return true;
-+	return 3;
- }
- 
--static bool
-+static int
- init_condition(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2378,7 +2386,7 @@ init_condition(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t cond = bios->data[offset + 1];
- 
- 	if (!iexec->execute)
--		return true;
-+		return 2;
- 
- 	BIOSLOG(bios, "0x%04X: Condition: 0x%02X\n", offset, cond);
- 
-@@ -2389,10 +2397,10 @@ init_condition(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 		iexec->execute = false;
- 	}
- 
--	return true;
-+	return 2;
- }
- 
--static bool
-+static int
- init_io_condition(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2409,7 +2417,7 @@ init_io_condition(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t cond = bios->data[offset + 1];
- 
- 	if (!iexec->execute)
--		return true;
-+		return 2;
- 
- 	BIOSLOG(bios, "0x%04X: IO condition: 0x%02X\n", offset, cond);
- 
-@@ -2420,10 +2428,10 @@ init_io_condition(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 		iexec->execute = false;
- 	}
- 
--	return true;
-+	return 2;
- }
- 
--static bool
-+static int
- init_index_io(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2446,7 +2454,7 @@ init_index_io(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint8_t value;
- 
- 	if (!iexec->execute)
--		return true;
-+		return 6;
- 
- 	BIOSLOG(bios, "0x%04X: Port: 0x%04X, Index: 0x%02X, Mask: 0x%02X, "
- 		      "Data: 0x%02X\n",
-@@ -2455,10 +2463,10 @@ init_index_io(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	value = (bios_idxprt_rd(bios, crtcport, crtcindex) & mask) | data;
- 	bios_idxprt_wr(bios, crtcport, crtcindex, value);
- 
--	return true;
-+	return 6;
- }
- 
--static bool
-+static int
- init_pll(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2476,16 +2484,16 @@ init_pll(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint16_t freq = ROM16(bios->data[offset + 5]);
- 
- 	if (!iexec->execute)
--		return true;
-+		return 7;
- 
- 	BIOSLOG(bios, "0x%04X: Reg: 0x%08X, Freq: %d0kHz\n", offset, reg, freq);
- 
- 	setPLL(bios, reg, freq * 10);
- 
--	return true;
-+	return 7;
- }
- 
--static bool
-+static int
- init_zm_reg(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2502,17 +2510,17 @@ init_zm_reg(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint32_t value = ROM32(bios->data[offset + 5]);
- 
- 	if (!iexec->execute)
--		return true;
-+		return 9;
- 
- 	if (reg == 0x000200)
- 		value |= 1;
- 
- 	bios_wr32(bios, reg, value);
- 
--	return true;
-+	return 9;
- }
- 
--static bool
-+static int
- init_ram_restrict_pll(struct nvbios *bios, uint16_t offset,
- 		      struct init_exec *iexec)
- {
-@@ -2538,14 +2546,15 @@ init_ram_restrict_pll(struct nvbios *bios, uint16_t offset,
- 	uint8_t type = bios->data[offset + 1];
- 	uint32_t freq = ROM32(bios->data[offset + 2 + (index * 4)]);
- 	uint8_t *pll_limits = &bios->data[bios->pll_limit_tbl_ptr], *entry;
-+	int len = 2 + bios->ram_restrict_group_count * 4;
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	if (!bios->pll_limit_tbl_ptr || (pll_limits[0] & 0xf0) != 0x30) {
- 		NV_ERROR(dev, "PLL limits table not version 3.x\n");
--		return true; /* deliberate, allow default clocks to remain */
-+		return len; /* deliberate, allow default clocks to remain */
- 	}
- 
- 	entry = pll_limits + pll_limits[1];
-@@ -2558,15 +2567,15 @@ init_ram_restrict_pll(struct nvbios *bios, uint16_t offset,
- 				offset, type, reg, freq);
- 
- 			setPLL(bios, reg, freq);
--			return true;
-+			return len;
- 		}
- 	}
- 
- 	NV_ERROR(dev, "PLL type 0x%02x not found in PLL limits table", type);
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_8c(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2576,10 +2585,10 @@ init_8c(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	 *
- 	 */
- 
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_8d(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2589,10 +2598,10 @@ init_8d(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	 *
- 	 */
- 
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_gpio(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2610,14 +2619,17 @@ init_gpio(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	const uint8_t *gpio_entry;
- 	int i;
- 
-+	if (!iexec->execute)
-+		return 1;
-+
- 	if (bios->bdcb.version != 0x40) {
- 		NV_ERROR(bios->dev, "DCB table not version 4.0\n");
--		return false;
-+		return 0;
- 	}
- 
- 	if (!bios->bdcb.gpio_table_ptr) {
- 		NV_WARN(bios->dev, "Invalid pointer to INIT_8E table\n");
--		return false;
-+		return 0;
- 	}
- 
- 	gpio_entry = gpio_table + gpio_table[1];
-@@ -2655,13 +2667,10 @@ init_gpio(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 		bios_wr32(bios, r, v);
- 	}
- 
--	return true;
-+	return 1;
- }
- 
--/* hack to avoid moving the itbl_entry array before this function */
--int init_ram_restrict_zm_reg_group_blocklen;
--
--static bool
-+static int
- init_ram_restrict_zm_reg_group(struct nvbios *bios, uint16_t offset,
- 			       struct init_exec *iexec)
- {
-@@ -2687,21 +2696,21 @@ init_ram_restrict_zm_reg_group(struct nvbios *bios, uint16_t offset,
- 	uint8_t regincrement = bios->data[offset + 5];
- 	uint8_t count = bios->data[offset + 6];
- 	uint32_t strap_ramcfg, data;
--	uint16_t blocklen;
-+	/* previously set by 'M' BIT table */
-+	uint16_t blocklen = bios->ram_restrict_group_count * 4;
-+	int len = 7 + count * blocklen;
- 	uint8_t index;
- 	int i;
- 
--	/* previously set by 'M' BIT table */
--	blocklen = init_ram_restrict_zm_reg_group_blocklen;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	if (!blocklen) {
- 		NV_ERROR(bios->dev,
- 			 "0x%04X: Zero block length - has the M table "
- 			 "been parsed?\n", offset);
--		return false;
-+		return 0;
- 	}
- 
- 	strap_ramcfg = (bios_rd32(bios, NV_PEXTDEV_BOOT_0) >> 2) & 0xf;
-@@ -2719,10 +2728,10 @@ init_ram_restrict_zm_reg_group(struct nvbios *bios, uint16_t offset,
- 		reg += regincrement;
- 	}
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_copy_zm_reg(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2739,14 +2748,14 @@ init_copy_zm_reg(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	uint32_t dstreg = ROM32(bios->data[offset + 5]);
- 
- 	if (!iexec->execute)
--		return true;
-+		return 9;
- 
- 	bios_wr32(bios, dstreg, bios_rd32(bios, srcreg));
- 
--	return true;
-+	return 9;
- }
- 
--static bool
-+static int
- init_zm_reg_group_addr_latched(struct nvbios *bios, uint16_t offset,
- 			       struct init_exec *iexec)
- {
-@@ -2764,20 +2773,21 @@ init_zm_reg_group_addr_latched(struct nvbios *bios, uint16_t offset,
- 
- 	uint32_t reg = ROM32(bios->data[offset + 1]);
- 	uint8_t count = bios->data[offset + 5];
-+	int len = 6 + count * 4;
- 	int i;
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	for (i = 0; i < count; i++) {
- 		uint32_t data = ROM32(bios->data[offset + 6 + 4 * i]);
- 		bios_wr32(bios, reg, data);
- 	}
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_reserved(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2788,10 +2798,10 @@ init_reserved(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	 * Seemingly does nothing
- 	 */
- 
--	return true;
-+	return 1;
- }
- 
--static bool
-+static int
- init_96(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2824,13 +2834,13 @@ init_96(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	val <<= bios->data[offset + 16];
- 
- 	if (!iexec->execute)
--		return true;
-+		return 17;
- 
- 	bios_wr32(bios, reg, (bios_rd32(bios, reg) & mask) | val);
--	return true;
-+	return 17;
- }
- 
--static bool
-+static int
- init_97(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2854,13 +2864,13 @@ init_97(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	val = (val & mask) | ((val + add) & ~mask);
- 
- 	if (!iexec->execute)
--		return true;
-+		return 13;
- 
- 	bios_wr32(bios, reg, val);
--	return true;
-+	return 13;
- }
- 
--static bool
-+static int
- init_auxch(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2878,32 +2888,33 @@ init_auxch(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	struct drm_device *dev = bios->dev;
- 	struct nouveau_i2c_chan *auxch;
- 	uint32_t addr = ROM32(bios->data[offset + 1]);
--	uint8_t len = bios->data[offset + 5];
-+	uint8_t count = bios->data[offset + 5];
-+	int len = 6 + count * 2;
- 	int ret, i;
- 
- 	if (!bios->display.output) {
- 		NV_ERROR(dev, "INIT_AUXCH: no active output\n");
--		return false;
-+		return 0;
- 	}
- 
- 	auxch = init_i2c_device_find(dev, bios->display.output->i2c_index);
- 	if (!auxch) {
- 		NV_ERROR(dev, "INIT_AUXCH: couldn't get auxch %d\n",
- 			 bios->display.output->i2c_index);
--		return false;
-+		return 0;
- 	}
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	offset += 6;
--	for (i = 0; i < len; i++, offset += 2) {
-+	for (i = 0; i < count; i++, offset += 2) {
- 		uint8_t data;
- 
- 		ret = nouveau_dp_auxch(auxch, 9, addr, &data, 1);
- 		if (ret) {
- 			NV_ERROR(dev, "INIT_AUXCH: rd auxch fail %d\n", ret);
--			return false;
-+			return 0;
- 		}
- 
- 		data &= bios->data[offset + 0];
-@@ -2912,14 +2923,14 @@ init_auxch(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 		ret = nouveau_dp_auxch(auxch, 8, addr, &data, 1);
- 		if (ret) {
- 			NV_ERROR(dev, "INIT_AUXCH: wr auxch fail %d\n", ret);
--			return false;
-+			return 0;
- 		}
- 	}
- 
--	return true;
-+	return len;
- }
- 
--static bool
-+static int
- init_zm_auxch(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- {
- 	/*
-@@ -2936,106 +2947,99 @@ init_zm_auxch(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	struct drm_device *dev = bios->dev;
- 	struct nouveau_i2c_chan *auxch;
- 	uint32_t addr = ROM32(bios->data[offset + 1]);
--	uint8_t len = bios->data[offset + 5];
-+	uint8_t count = bios->data[offset + 5];
-+	int len = 6 + count;
- 	int ret, i;
- 
- 	if (!bios->display.output) {
- 		NV_ERROR(dev, "INIT_ZM_AUXCH: no active output\n");
--		return false;
-+		return 0;
- 	}
- 
- 	auxch = init_i2c_device_find(dev, bios->display.output->i2c_index);
- 	if (!auxch) {
- 		NV_ERROR(dev, "INIT_ZM_AUXCH: couldn't get auxch %d\n",
- 			 bios->display.output->i2c_index);
--		return false;
-+		return 0;
- 	}
- 
- 	if (!iexec->execute)
--		return true;
-+		return len;
- 
- 	offset += 6;
--	for (i = 0; i < len; i++, offset++) {
-+	for (i = 0; i < count; i++, offset++) {
- 		ret = nouveau_dp_auxch(auxch, 8, addr, &bios->data[offset], 1);
- 		if (ret) {
- 			NV_ERROR(dev, "INIT_ZM_AUXCH: wr auxch fail %d\n", ret);
--			return false;
-+			return 0;
- 		}
- 	}
- 
--	return true;
-+	return len;
- }
- 
- static struct init_tbl_entry itbl_entry[] = {
- 	/* command name                       , id  , length  , offset  , mult    , command handler                 */
- 	/* INIT_PROG (0x31, 15, 10, 4) removed due to no example of use */
--	{ "INIT_IO_RESTRICT_PROG"             , 0x32, 11      , 6       , 4       , init_io_restrict_prog           },
--	{ "INIT_REPEAT"                       , 0x33, 2       , 0       , 0       , init_repeat                     },
--	{ "INIT_IO_RESTRICT_PLL"              , 0x34, 12      , 7       , 2       , init_io_restrict_pll            },
--	{ "INIT_END_REPEAT"                   , 0x36, 1       , 0       , 0       , init_end_repeat                 },
--	{ "INIT_COPY"                         , 0x37, 11      , 0       , 0       , init_copy                       },
--	{ "INIT_NOT"                          , 0x38, 1       , 0       , 0       , init_not                        },
--	{ "INIT_IO_FLAG_CONDITION"            , 0x39, 2       , 0       , 0       , init_io_flag_condition          },
--	{ "INIT_INDEX_ADDRESS_LATCHED"        , 0x49, 18      , 17      , 2       , init_idx_addr_latched           },
--	{ "INIT_IO_RESTRICT_PLL2"             , 0x4A, 11      , 6       , 4       , init_io_restrict_pll2           },
--	{ "INIT_PLL2"                         , 0x4B, 9       , 0       , 0       , init_pll2                       },
--	{ "INIT_I2C_BYTE"                     , 0x4C, 4       , 3       , 3       , init_i2c_byte                   },
--	{ "INIT_ZM_I2C_BYTE"                  , 0x4D, 4       , 3       , 2       , init_zm_i2c_byte                },
--	{ "INIT_ZM_I2C"                       , 0x4E, 4       , 3       , 1       , init_zm_i2c                     },
--	{ "INIT_TMDS"                         , 0x4F, 5       , 0       , 0       , init_tmds                       },
--	{ "INIT_ZM_TMDS_GROUP"                , 0x50, 3       , 2       , 2       , init_zm_tmds_group              },
--	{ "INIT_CR_INDEX_ADDRESS_LATCHED"     , 0x51, 5       , 4       , 1       , init_cr_idx_adr_latch           },
--	{ "INIT_CR"                           , 0x52, 4       , 0       , 0       , init_cr                         },
--	{ "INIT_ZM_CR"                        , 0x53, 3       , 0       , 0       , init_zm_cr                      },
--	{ "INIT_ZM_CR_GROUP"                  , 0x54, 2       , 1       , 2       , init_zm_cr_group                },
--	{ "INIT_CONDITION_TIME"               , 0x56, 3       , 0       , 0       , init_condition_time             },
--	{ "INIT_ZM_REG_SEQUENCE"              , 0x58, 6       , 5       , 4       , init_zm_reg_sequence            },
-+	{ "INIT_IO_RESTRICT_PROG"             , 0x32, init_io_restrict_prog           },
-+	{ "INIT_REPEAT"                       , 0x33, init_repeat                     },
-+	{ "INIT_IO_RESTRICT_PLL"              , 0x34, init_io_restrict_pll            },
-+	{ "INIT_END_REPEAT"                   , 0x36, init_end_repeat                 },
-+	{ "INIT_COPY"                         , 0x37, init_copy                       },
-+	{ "INIT_NOT"                          , 0x38, init_not                        },
-+	{ "INIT_IO_FLAG_CONDITION"            , 0x39, init_io_flag_condition          },
-+	{ "INIT_INDEX_ADDRESS_LATCHED"        , 0x49, init_idx_addr_latched           },
-+	{ "INIT_IO_RESTRICT_PLL2"             , 0x4A, init_io_restrict_pll2           },
-+	{ "INIT_PLL2"                         , 0x4B, init_pll2                       },
-+	{ "INIT_I2C_BYTE"                     , 0x4C, init_i2c_byte                   },
-+	{ "INIT_ZM_I2C_BYTE"                  , 0x4D, init_zm_i2c_byte                },
-+	{ "INIT_ZM_I2C"                       , 0x4E, init_zm_i2c                     },
-+	{ "INIT_TMDS"                         , 0x4F, init_tmds                       },
-+	{ "INIT_ZM_TMDS_GROUP"                , 0x50, init_zm_tmds_group              },
-+	{ "INIT_CR_INDEX_ADDRESS_LATCHED"     , 0x51, init_cr_idx_adr_latch           },
-+	{ "INIT_CR"                           , 0x52, init_cr                         },
-+	{ "INIT_ZM_CR"                        , 0x53, init_zm_cr                      },
-+	{ "INIT_ZM_CR_GROUP"                  , 0x54, init_zm_cr_group                },
-+	{ "INIT_CONDITION_TIME"               , 0x56, init_condition_time             },
-+	{ "INIT_ZM_REG_SEQUENCE"              , 0x58, init_zm_reg_sequence            },
- 	/* INIT_INDIRECT_REG (0x5A, 7, 0, 0) removed due to no example of use */
--	{ "INIT_SUB_DIRECT"                   , 0x5B, 3       , 0       , 0       , init_sub_direct                 },
--	{ "INIT_COPY_NV_REG"                  , 0x5F, 22      , 0       , 0       , init_copy_nv_reg                },
--	{ "INIT_ZM_INDEX_IO"                  , 0x62, 5       , 0       , 0       , init_zm_index_io                },
--	{ "INIT_COMPUTE_MEM"                  , 0x63, 1       , 0       , 0       , init_compute_mem                },
--	{ "INIT_RESET"                        , 0x65, 13      , 0       , 0       , init_reset                      },
--	{ "INIT_CONFIGURE_MEM"                , 0x66, 1       , 0       , 0       , init_configure_mem              },
--	{ "INIT_CONFIGURE_CLK"                , 0x67, 1       , 0       , 0       , init_configure_clk              },
--	{ "INIT_CONFIGURE_PREINIT"            , 0x68, 1       , 0       , 0       , init_configure_preinit          },
--	{ "INIT_IO"                           , 0x69, 5       , 0       , 0       , init_io                         },
--	{ "INIT_SUB"                          , 0x6B, 2       , 0       , 0       , init_sub                        },
--	{ "INIT_RAM_CONDITION"                , 0x6D, 3       , 0       , 0       , init_ram_condition              },
--	{ "INIT_NV_REG"                       , 0x6E, 13      , 0       , 0       , init_nv_reg                     },
--	{ "INIT_MACRO"                        , 0x6F, 2       , 0       , 0       , init_macro                      },
--	{ "INIT_DONE"                         , 0x71, 1       , 0       , 0       , init_done                       },
--	{ "INIT_RESUME"                       , 0x72, 1       , 0       , 0       , init_resume                     },
-+	{ "INIT_SUB_DIRECT"                   , 0x5B, init_sub_direct                 },
-+	{ "INIT_COPY_NV_REG"                  , 0x5F, init_copy_nv_reg                },
-+	{ "INIT_ZM_INDEX_IO"                  , 0x62, init_zm_index_io                },
-+	{ "INIT_COMPUTE_MEM"                  , 0x63, init_compute_mem                },
-+	{ "INIT_RESET"                        , 0x65, init_reset                      },
-+	{ "INIT_CONFIGURE_MEM"                , 0x66, init_configure_mem              },
-+	{ "INIT_CONFIGURE_CLK"                , 0x67, init_configure_clk              },
-+	{ "INIT_CONFIGURE_PREINIT"            , 0x68, init_configure_preinit          },
-+	{ "INIT_IO"                           , 0x69, init_io                         },
-+	{ "INIT_SUB"                          , 0x6B, init_sub                        },
-+	{ "INIT_RAM_CONDITION"                , 0x6D, init_ram_condition              },
-+	{ "INIT_NV_REG"                       , 0x6E, init_nv_reg                     },
-+	{ "INIT_MACRO"                        , 0x6F, init_macro                      },
-+	{ "INIT_DONE"                         , 0x71, init_done                       },
-+	{ "INIT_RESUME"                       , 0x72, init_resume                     },
- 	/* INIT_RAM_CONDITION2 (0x73, 9, 0, 0) removed due to no example of use */
--	{ "INIT_TIME"                         , 0x74, 3       , 0       , 0       , init_time                       },
--	{ "INIT_CONDITION"                    , 0x75, 2       , 0       , 0       , init_condition                  },
--	{ "INIT_IO_CONDITION"                 , 0x76, 2       , 0       , 0       , init_io_condition               },
--	{ "INIT_INDEX_IO"                     , 0x78, 6       , 0       , 0       , init_index_io                   },
--	{ "INIT_PLL"                          , 0x79, 7       , 0       , 0       , init_pll                        },
--	{ "INIT_ZM_REG"                       , 0x7A, 9       , 0       , 0       , init_zm_reg                     },
--	/* INIT_RAM_RESTRICT_PLL's length is adjusted by the BIT M table */
--	{ "INIT_RAM_RESTRICT_PLL"             , 0x87, 2       , 0       , 0       , init_ram_restrict_pll           },
--	{ "INIT_8C"                           , 0x8C, 1       , 0       , 0       , init_8c                         },
--	{ "INIT_8D"                           , 0x8D, 1       , 0       , 0       , init_8d                         },
--	{ "INIT_GPIO"                         , 0x8E, 1       , 0       , 0       , init_gpio                       },
--	/* INIT_RAM_RESTRICT_ZM_REG_GROUP's mult is loaded by M table in BIT */
--	{ "INIT_RAM_RESTRICT_ZM_REG_GROUP"    , 0x8F, 7       , 6       , 0       , init_ram_restrict_zm_reg_group  },
--	{ "INIT_COPY_ZM_REG"                  , 0x90, 9       , 0       , 0       , init_copy_zm_reg                },
--	{ "INIT_ZM_REG_GROUP_ADDRESS_LATCHED" , 0x91, 6       , 5       , 4       , init_zm_reg_group_addr_latched  },
--	{ "INIT_RESERVED"                     , 0x92, 1       , 0       , 0       , init_reserved                   },
--	{ "INIT_96"                           , 0x96, 17      , 0       , 0       , init_96                         },
--	{ "INIT_97"                           , 0x97, 13      , 0       , 0       , init_97                         },
--	{ "INIT_AUXCH"                        , 0x98, 6       , 5       , 2       , init_auxch                      },
--	{ "INIT_ZM_AUXCH"                     , 0x99, 6       , 5       , 1       , init_zm_auxch                   },
--	{ NULL                                , 0   , 0       , 0       , 0       , NULL                            }
-+	{ "INIT_TIME"                         , 0x74, init_time                       },
-+	{ "INIT_CONDITION"                    , 0x75, init_condition                  },
-+	{ "INIT_IO_CONDITION"                 , 0x76, init_io_condition               },
-+	{ "INIT_INDEX_IO"                     , 0x78, init_index_io                   },
-+	{ "INIT_PLL"                          , 0x79, init_pll                        },
-+	{ "INIT_ZM_REG"                       , 0x7A, init_zm_reg                     },
-+	{ "INIT_RAM_RESTRICT_PLL"             , 0x87, init_ram_restrict_pll           },
-+	{ "INIT_8C"                           , 0x8C, init_8c                         },
-+	{ "INIT_8D"                           , 0x8D, init_8d                         },
-+	{ "INIT_GPIO"                         , 0x8E, init_gpio                       },
-+	{ "INIT_RAM_RESTRICT_ZM_REG_GROUP"    , 0x8F, init_ram_restrict_zm_reg_group  },
-+	{ "INIT_COPY_ZM_REG"                  , 0x90, init_copy_zm_reg                },
-+	{ "INIT_ZM_REG_GROUP_ADDRESS_LATCHED" , 0x91, init_zm_reg_group_addr_latched  },
-+	{ "INIT_RESERVED"                     , 0x92, init_reserved                   },
-+	{ "INIT_96"                           , 0x96, init_96                         },
-+	{ "INIT_97"                           , 0x97, init_97                         },
-+	{ "INIT_AUXCH"                        , 0x98, init_auxch                      },
-+	{ "INIT_ZM_AUXCH"                     , 0x99, init_zm_auxch                   },
-+	{ NULL                                , 0   , NULL                            }
- };
- 
--static unsigned int get_init_table_entry_length(struct nvbios *bios, unsigned int offset, int i)
--{
--	/* Calculates the length of a given init table entry. */
--	return itbl_entry[i].length + bios->data[offset + itbl_entry[i].length_offset]*itbl_entry[i].length_multiplier;
--}
--
- #define MAX_TABLE_OPS 1000
- 
- static int
-@@ -3051,7 +3055,7 @@ parse_init_table(struct nvbios *bios, unsigned int offset,
- 	 * is changed back to EXECUTE.
- 	 */
- 
--	int count = 0, i;
-+	int count = 0, i, res;
- 	uint8_t id;
- 
- 	/*
-@@ -3071,22 +3075,21 @@ parse_init_table(struct nvbios *bios, unsigned int offset,
- 				offset, itbl_entry[i].id, itbl_entry[i].name);
- 
- 			/* execute eventual command handler */
--			if (itbl_entry[i].handler)
--				if (!(*itbl_entry[i].handler)(bios, offset, iexec))
--					break;
-+			res = (*itbl_entry[i].handler)(bios, offset, iexec);
-+			if (!res)
-+				break;
-+			/*
-+			 * Add the offset of the current command including all data
-+			 * of that command. The offset will then be pointing on the
-+			 * next op code.
-+			 */
-+			offset += res;
- 		} else {
- 			NV_ERROR(bios->dev,
- 				 "0x%04X: Init table command not found: "
- 				 "0x%02X\n", offset, id);
- 			return -ENOENT;
- 		}
--
--		/*
--		 * Add the offset of the current command including all data
--		 * of that command. The offset will then be pointing on the
--		 * next op code.
--		 */
--		offset += get_init_table_entry_length(bios, offset, i);
- 	}
- 
- 	if (offset >= bios->length)
-@@ -4601,10 +4604,6 @@ parse_bit_M_tbl_entry(struct drm_device *dev, struct nvbios *bios,
- 	 * stuff that we don't use - their use currently unknown
- 	 */
- 
--	uint16_t rr_strap_xlat;
--	uint8_t rr_group_count;
--	int i;
--
- 	/*
- 	 * Older bios versions don't have a sufficiently long table for
- 	 * what we want
-@@ -4613,24 +4612,13 @@ parse_bit_M_tbl_entry(struct drm_device *dev, struct nvbios *bios,
- 		return 0;
- 
- 	if (bitentry->id[1] < 2) {
--		rr_group_count = bios->data[bitentry->offset + 2];
--		rr_strap_xlat = ROM16(bios->data[bitentry->offset + 3]);
-+		bios->ram_restrict_group_count = bios->data[bitentry->offset + 2];
-+		bios->ram_restrict_tbl_ptr = ROM16(bios->data[bitentry->offset + 3]);
- 	} else {
--		rr_group_count = bios->data[bitentry->offset + 0];
--		rr_strap_xlat = ROM16(bios->data[bitentry->offset + 1]);
-+		bios->ram_restrict_group_count = bios->data[bitentry->offset + 0];
-+		bios->ram_restrict_tbl_ptr = ROM16(bios->data[bitentry->offset + 1]);
- 	}
- 
--	/* adjust length of INIT_87 */
--	for (i = 0; itbl_entry[i].name && (itbl_entry[i].id != 0x87); i++);
--	itbl_entry[i].length += rr_group_count * 4;
--
--	/* set up multiplier for INIT_RAM_RESTRICT_ZM_REG_GROUP */
--	for (; itbl_entry[i].name && (itbl_entry[i].id != 0x8f); i++);
--	itbl_entry[i].length_multiplier = rr_group_count * 4;
--
--	init_ram_restrict_zm_reg_group_blocklen = itbl_entry[i].length_multiplier;
--	bios->ram_restrict_tbl_ptr = rr_strap_xlat;
--
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.h b/drivers/gpu/drm/nouveau/nouveau_bios.h
-index 1d5f10b..058e98c 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bios.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.h
-@@ -227,6 +227,7 @@ struct nvbios {
- 
- 	uint16_t pll_limit_tbl_ptr;
- 	uint16_t ram_restrict_tbl_ptr;
-+	uint8_t ram_restrict_group_count;
- 
- 	uint16_t some_script_ptr; /* BIT I + 14 */
- 	uint16_t init96_tbl_ptr; /* BIT I + 16 */
--- 
-1.6.5.6
+--=-qvoSVJN2txArtjUvYb0m
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+So, I've spent the last few days messing around with replacing our use
+of NVIDIA's context programs on GeForce 6/7 hardware and have something
+that works on the 4 (2xNV44, NV46, NV4B) cards I have.
+
+The context programs are *much* less complex than NVIDIA's and don't
+handle nearly everything NVIDIA's do, however they do work for our
+needs, and it's as good a starting point as any.
+
+I've attached the currently generated "firmware" in the same binary
+format we packages NVIDIA's in.  If people with the relevant hardware
+could install them, and report success/failure and the chipset they
+tested on (the whole "Detected an NVxx generation card" line from
+nouveau's dmesg output would be perfect), that'd be great!
+
+I'm now working on moving the code that generated the firmware in the
+below tarball to the DRM, and after some testing before I do!
+
+Ben.
+
+--=-qvoSVJN2txArtjUvYb0m
+Content-Type: application/x-bzip-compressed-tar; name="nv40ctx.tar.bz2"
+Content-Disposition: attachment; filename="nv40ctx.tar.bz2"
+Content-Transfer-Encoding: base64
+
+QlpoOTFBWSZTWSXy+2YBiJH/////////////////////////////////////////////4KceeAAA
+AAAAAAAAvlAAAAXvXwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAPAAAAD6AAC+w0FAbYAABUigG2x8xdzPreyMyFTYQC9s42w0NADQbDA2wDaYBIUFA0CgUCgUaa1
+apkk32aOthQVoKChoUNCIRNGLbNmWsktjbFG2DawSFAUFABQKhgBZbL6OirhtxuFgG0FBQXYRNW1
+G426KzLhooM7sNBiElFGgUWlpy9ZTb3NGjRSGCNq2SbDA0Uos22qYGyUClANAMENRhAAAAAAAAAA
+AAAAHwkqVSjU9TamTTyZPSnqY1T2gyR6aniJ4p4AhPJoyZG9U8Q0GmmgbSTDI09D8Keom/VADQGk
+NGxDzSPVTeoQwMU0BMGTflQaHoI2kwjJoA03v1VVVBKSqSmmg0NA21NE00YAGmpo0Y0eknoehMDJ
+/sSVHlNGFGaeSPRoNR+o/flFNVJ6ofp6qAAA00AyYINDQNDQAADQABoAAAaCUqqqmgAABv9+SUYi
+VAA/2JtR+2SSpUMf7wZmkhiSqKPb20n4SaUp/7FVSZpTygBoH6oBoGg9QAAGgAAAAAAAaaGQAAaA
+bVVNiJKn7xTZBj20mpSqZD9EnqNtSPUDINAAAAAAAAAAAAABo0aAAAAAAAAAAAAAAAAAIlSlNBpN
+T8UZTTZMEN6mjRoJtU8mp7TfqjTQTAE9o1Joman6TTJkwaJiepsp6htQhpqQ9lJ4xoAUz0k3qmND
+Uz1Hk/KmmgTRtMIaqfqZhJmpiekb1GM9VUCkpJESaGhU9o0ak/TQUaePVGiaeUej9SmyepPUMm0j
+2psnlU/1TSGn6mSbFD0mTR4bJTzVTymZ6nqKe02qMyk/VNNk2k1DamJ6mh+qNqep6jRoD0QNNonq
+NoyDU2Boj2qkGgIRCAA/O7t0R4dljPkNGCOQPmlqVTRnHYXlMXjM3wmm0/0vp+F4fInEBxOH556H
+IuT+a2Txj0r1jdvXn1HYOQC2OpMHxtPG5rjfk++v5N+F3UvKcfSj0/zct5AwPWT2g93IPNjxTUoU
+KF4i3Nt+QmZmZnWlMyRzKSeBiSSSSSStSlSpUrdMzMzMzMzrSmZIkngYEkkkkl7rnV1dXV1vve97
+3ve9731pTJEk9hgSSSSSTqTTTTXQ22222m9YmyzH2GAxjGMZqTTTTXQ222223rE2WY+xYDGMYxmp
+NNNNdDbabbbb1ibLMePYsRjGMYzUmmmmuhtttttvWLkyzHjgMYxjGeNKlSpUrdMzMzMzMzv2CtJE
+k4mBJJJJJJrlSpUqVumZmZmZmZ37BWmJJxOGJJJJJJJs51KlSpXh773ve973ve9+nYKO+qmiupaT
+Eoooooo20qVKlS2rpqqqqqqqq6dgopVNFdS0nJZFFFFFFHe51SpUqW1LxurPPPPPPPPPPPPq2Cea
+zvmZ9aWkxMzMzMzMzNuazWazWa2pdNVVVVVVVXTsFFKporqS0mJSooooo20qVKlS2pdNVVVVVVVX
+TsFFKporqS0mJhSooooo20qVKlS7yXTVVVVVVVVmtgpzWdZmfUlpMTCiiiii69IVKldbEt173ve9
+73ve+sVpUuSelLSYmBJJJJJKaa7E1sS3NtvnbbbuvJbRRdXm5frNJiYHmdFFFFFKlS5KltW+qqq5
+6qqqtYrSpck9K0mJgMYxjGmmuxNbFubbfO223rFyacczHkYmglSSSSSSpUrsUrc229TbiO6LjCi0
+EZGBoLFixYsWVlZdSsui1rWtqtbba1tYuFlaxyxLGgsWVjYWLKysupWXRa1uWnly2cuXLui7OS5e
+FY5ZFjQWO/Cg7xBChQuxQt8R5FvU3tbesXFptkZDNAxwbSCFChdahboiIjVEbYiNYuEKIgtkQaCC
+CDaQQoULrULdEREaojbERrFwhRFoI0mBoIIGzvDGmmuxNb223qbW1t6xcWm2RkM0DGQbSCFChdah
+boiIjVEbYiNYuEK1jliWNBYsNQbSCFChdahbohREaojbERrFxgiC2JBoIILGwsWVlZdSsui1rWtq
+tbba1tYuFi1jliWNBYsWNisWVlZdSsui1rWtqtbba1tYuFi1jliWNBYsWO/tUEKFC61C3RERGqI2
+xEaxcYIgtiQaCCCCIO1NNda80TW5tt87bbesXJjZGIzQMYxjIULwLrULoiIiNURERGsXGCItiQaC
+CCCDbBChQutQt0RERqiNsRGsXGCPETjIZoGMYxjTTXYmtzbb1Ntt9/YLlJMqXkSaCSSSToUkqVK4
+KVvmZmdUztmZ1i4sbTjIZoGMYxjTTXYmtzbb1Ntt6xcWNpxWkkwJJJJJJUqVwUrfMzM6pmZmdYuM
+kypjIZoGMYxjTTXYmtzbb1Ntt6xcWNpxK0kmBJJJJJKlSuClb5mZnVMzMzrFxkmVMZDNAxjGMaaa
+7E1ubbepttvWLjzJjacaRrQMYxjGmmuxNbm23qcREd0XCCIUWyMYWBBBBBBChQutQt0RERq8Vtt6
+xcmWacZGOgggggghQoXWoUWtbK1rWtawuFjjZWtkYmgsWLFixZWVl1qy8j4G29TbbbFyZZpvIxL4
+EkkkkkqVK7FKmZmZ1TMzMyK0kSpeRiaBjGMY0011ppttvU222zkyzTeRiSsCSSSSSU145dilTMzM
+6vHXve977Fci47q8+HpMjAuXLly5deSVLirrZvve9788zMzOtTJaVL6ZMjAlSSSSSpUrgpWzx/Te
+9737l73ve+tK/godKr9dGRgeLmszMzMzNZrNclmtvVVVVc9VVVWtKqodKem5iYF5JJJOdSpUrgpW
+W+ZmZ55mZmdi2JTMkSPVJiYEkkkknOpUqVwUrLfMzM88zMzOxbEpmJHJPPkYmBJe5cuXO4l4lKlS
+5Klp6qqqrnqqqq2Jb9qVVRNF+ejEwKLly5c50tt1dXXFXWnpve978973ve+xLftSve47k89zEwLl
+KiiijuJd6lSpclS6qqqrVVVVVvS3m1Kqomi9GBoKLly5c2pbS6urrirrpve976r3ve996W82pXvc
+dy5oLly5dXLm1LaXV1dcVddN73vfVe973vvS3m1K97jueCjAooo8GazMzoS6DNZrNWWa6888889W
+eeeeee9bzalnn4O0v2nb2mB2nadp25mZ0LoM1ms1ZZrrzzzzz1Z5555571vNqWedDoqjAoooooo7
+y7xSpUuSpdVVVVqqqqq3LYlVUOiqMCiiijtzMzvKlSpclS6qqqrVVVVdC1pXvci5e5gXLly5JJcR
+52JCSXniPcRH/KP+lgl5b5f5jy/mEfNo8x3Y94PejsBo74e/8GD/YAnZKMHi4OEgkgE0X7t1ddPr
+5fWS4d36n9ol+267LDwtwIB4lLxLku1zWi3Ig4sv7b5OXvjsB74e/H5Y80PNDlR+ZyaMD4iMQUgO
+aRooOJWUmjJUe1lqDS0lX9On4jiDtYUzUo//uXE5X9pyqcsrqWLPhnY/JPyk/LX5h+afCPzj88/t
+n9w+WPjT40+GerEnqzFRmVWpYW9bcUMsKccHEHOTgpmQcYq2Qvu7q5Umsg6vpunUU9dTUSfcSyd1
+pFaaqVrKo6sQ5cvnf2LspOnLgHbwu50KdMqjwy073tHJV2sFWsobJRjBVsoZio2UmZB1LVJ7H2Ps
+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
+vSwZnMmZOQd0fnPXOsOtOs0hPVNKWD1tKesaY028NOWDrtOeqag1G7LosG8ujeHdnd8Q7wZxe8OK
+fpP08Q/UM4v6jinene58/WM4v6zimaM1wzvhnE744h353/CPAGcPwDhk4nSk8Zwp5wigUJCiMlok
+pmzN8EpDJKRIZwznrmdGcHOnBPBPB4Bnhnr549chId+Z8ZwNAcA6Bot+b8ZwNKb86Jp2b8ZwNSb8
+6Zq2b8ZwLM351Twmb8ZwNeb8yjxmb8ZwLU35lmxZvxnA9JC7tC14en/UhZdA8AD0AH0SAEIIQiwg
+wiHi8H4Xg7GwW4z/mW4y49kfvHtD91luMuOCXBwS4ZcDLiUuCUuGXAy44ZcHDLhlwMuOKXBxS4Zc
+Hvy3vC3Lwt2W5yC445cHHLhlwMuK5cFcuGXAy4vi4L4uGXAy4wC4MAuGXAy45RcHKLhlwMjsEZYI
+2RjI+WRnLI2RjI8QjMQjZGMjxiM5hGyMZHjkYyNmeGR5JGMjZGMj6JGMjZGMj6hGMjZGMjyiMZGy
+MZHMRjKovfj7dXt8M0swZlbbSmY2RAMiZEew9iVBlRkRWItoRDImRDImRDImRDImRDImRDImRDIm
+RDIme+GRMiGRecRDImRDImRDImRDImRDImRDImRDImRDImRDImRDIuKRDImRDImRDImRDImRDImR
+DImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDIm+A98+dl+JL7ofcC8yZbFr
+LZNZbCTLcZbst2W57Iqs/fGVWVRlVlUZVZVGVWVRlVlUZVZVGVWVRlVlUZVZbjLf+0qjKrKoyqyq
+MqsqjKrKoyqyqMqsqjKrKoyqyqMqsqjKrKoz7TKoyqyqMqsqjKrKoyqyqMqsqjKrKoyqyqMqsqjK
+rKoyqyqMqsqjKrKoyqyqMqsqjKrKoyqyqMqsqjKrKoyr/yS9+PgVPurRrFrRrRrU1iygEQKAqsqj
+P2yqMqs9kMqsqjKrKoyqyqMqsqjKrKoyqyqMqsqjKrKoyqyqe+ImRDImRDImRDImRDImRDImRDIm
+RDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRDImRGfKjKgyoyoM
+qMqDKjKgyoyoMqMqDKjKh6T7n0n3L0nvz34/hSvbsjMjMsxnw/kf+P+X3Pk/xe423Y+22ntI2f9S
+4PZsuBn8LIxkbIxkbIxkbIxkbIxkbIxkbIxkbIxkbIxkbPijI2RjI2RjI2RjI2RjI2RjI2RjI2Rj
+I2RjI2RjI2RjI2RjI2RjI2RjI2RjI2RjI2RjI2RjI2RjI2RjI2RjI2RjI2RlwxkYzVFwMZcDNaW4
+xluM8IqjGVRmvIhjIn2nwB75P9XUzK2bUZpZoZqY8VeL4mV4Vn1NXq9V0ulqlqdStR0F0NQrKyWn
+yVk6dab3C0uQsjSrSaRaPmrm6NaLRLQ4yxtCtBoFn8RYmfUMKz3LXLzy8HwVnbCsZ1ZzOKlylyqS
+zebVHAWBRVCgp98r6ep05eBXVfwF3/frvuOuP3yzWaV4v1L9K4a7/vF3akdQ6d9J0rpH0Gs1yb83
+5XNMaM05vzfnlG/Nrpib835pTytMfl655f5D8mUXWZMz1je/jPx9U3f4T8PUNz98+/0zyvvH3uke
+R90+70TbfcPudArfaPtc88ftTtckuPrn1+cVe0O0yCp2R2WObPknZcw2XJOyxTY8k7PDP938N5P4
+j+D89fsB7+HoTLZNZbJrGwM5K+sewXJPYrAMBfWO0WAdoX5aH1i/L49h2ZfHal6dmXpXOyN6euVD
+1z1i2PWPVOjPVN4Zo3huzMm7N0Zg3RuTLm5PUMseoSn0iUkPokhwT/M4JkH+R65jn0DgHNP8TfnM
+PnnrHzjO/4UvmUfncCtwNrwNpwOHA4hQzJFjFIwGMEjAYwWtGte76HFXTIzBmWZZr3XwT5h3x8s7
+w+Ueqcibw5A3Zx5unjnCAYNHCRCEQNtraMxbNkZiz3l5V7u9rfZ3z9/tXs77FzL3DmHt3Lv0nLPb
+OVe0co69yb2Tkm+eib1yLrnIN25B1rkHVuQdU5BunIOncg1EeXA3Lh1TDpBkEjBkBQKAUEAJ9PwL
+3pzr7pz7/p0MDp0eT083yqS9quSqKwFQV+p6vVOXIU5cdTleKcuGpykU5cBTl6qnr0lPXoKevNU9
+b5UFdqitO3zvnsXfPZO+ezd80gcqg4qEIhGAxgMYJGIRikdajQhQwp1/4d92n4t92vk77tvJ330f
+J330vJ3309103u+o951Xves7nKd113d5b8uZ755nM5nM5nM5nM5nM5nM5nM5nM5nM/LXzU1vU1vE
+1vE1vFMt6stXKy1dLKV2uqvLXTW+XRVJc9eaucvOX8Hy3aO0do7R2jtHaO0do7R2jtHaO0cMAdyw
+hIRIyB5zQjoVoaEdEjtq5Cf1ML9nKOHUeFR1AEFV+3a/2aWlxkvvpazBxkZhP0R+iP2xBP2MRP2L
+H9vxxxxxxxxxxxxxxxxxxxxxxxxxx8ccccccbq65a6urq6urrlxrtdrvNtdrtdrtdrtdrtdrtdrt
+drtdrtdrtdrtdrtdyjXa7Xa7Xa7Xa7Xa7Xa7Xa7mzDMeThmlmH6tbNXGVttXLVtAoKKBKCs0Odaz
+WazWazWazWazWazWazWazWazo2s1ms1ms1ms1ms1ms1ms1ms1ms1ms1ms1nlFTDJBkBjBkEjBkF2
+QbJ2TsnZOye2dk1lWWjVZVlWVZVlWVZVlWVZVlWVZVlWVZVlWVZVlWVZbJ2TsnZOyDZBsg2QbINk
+GGbgYIcvBIwGMTWjWprFrJrPcH3//U9ye5PcnuT3IUgpB6GcC2mPBDbbEhDY+1M+Ho7E0IbGY0YT
+bI0od3MaYJtmWQbPcGpCamasKcxrQmpmuCnMeGE1Q14VJjxgmiLQIpi2CaqbIKsxTCa3Igt5i3Cb
+bEYXkxtAm4xtQ40xtwm455IceY3ATcg3QciY3gTVy5CvMXYTXr74/C+G+/Ph/0X+m+nY/ZYmZGZG
+ZZiAgmPQD837QX96fsC9xj0wxr49UL7FN+GNfnrhfzEgPAOEGAziBP5JxQnsvA91yjjBPZxwn4Jy
+AnsrhPsF6E9l8E/CL8J7MAJ/LOSE9nKCfhmCE9lgJ+IYQT2csJ+KYYT2YgT8YxQnsxgn8w5gT2c0
+J/VMcJ7MgJ/WOcE9mSE/KOeE9nQCf1zohPZ0gn5Z0wns6h5nw3wjzPqVfQ6MytmwZpZoZpEBAC6q
+/Ceac47g3xkHbl2Y59wuTmn2TeHMPrm6MY7NbhfubZ8h/a5l+8/8OWf9X9jk37j7jkX7b7bjnYvt
+No/ZfZaXxn9b8hbJYC+KrZX6+Gr5Wl8fDWWdYLTZHWC0yzKC0mOuFpMZYWjJgtJhkBaWBlrhH0i0
+sDLXCPqFrYGFthH1QtbAwtsI7ILWwMLbCPrBa2BhbfYwiBWtgatsI+2rWwNW2EfdVrYGrbCO4VrY
+GrbCPwq1sDVthHcq1sDVthH5Fa2Bq2wj8ytbA1bYR3atbA1bYR+pWtgatsIzStbA1bYR4CtbA1ap
+W0FiQZBIwZBIwJADr32XRnAda/qd+/pV8uuvYxRflii7qKL8cX14vwRRfeii1CssMssMa1GIfyqy
+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
+ah3wu/7AEQEAggIBBAQCgIAgIhji9hTpm3HTpjHTpnlDp0xjp0zcjp0xjp0zeDp0xjp0y6HTpjH/
+X743w6dMY6dM84dOmMdOmfsHTpjHTpjHTpjHTpjHTpjHTpjHTpjHTpjHTpjHTpjHTpjHTpjHTpjH
+TpjHTpjHTpjHTpjHTpjHTpjHTpjHTpjHTpjHTpjHTplgseN4xYLHjeMWCx43h92+Hri8CgJEIRWQ
+kVhEKAgQEBAkQE37//W39lFFEM9kMdWqMdWqMdvbjHb24x29uMdvbjHb24x29uMdvbjHb24xxxjH
+HGMccYxxxjHHGMccYxxxjHHGMccYxxxjHHGMccYxxxjHHGMccYxxxjHHGMccYxxxjHHGMccYxxxj
+HHGMccYxxxjHHGMccYxxzeOMjtBkcZMXGxJi3tasAlAiAUEAoCAggGeCNDCLQwJBaGEIDgvHbLwf
+f2He/0+v9b/zufq+9/j3GPpNF7XQ6Fc3QrP81Z/PrGz6z2Ms9nliZ5Z3EWdzq5edVLlqlSVikqNh
+Ub59m+b32W9vX9V6679Trtc+xrm79hu7t3t263eut1r62tdX6zq9W7zVuq3jqtU7rVN1um6un1Lp
+0/qOn076enfTdI6R/Q6J817lH0Tb6I35t9ufCeZpDUm22x8B5enPgPL8s98r6k98r1z+pW1Z/UrV
+j+hqzWG1NUflNOfjOsPxGhPIOpMMdQfcOlPHKp9ktjxTMHhGUO/Mid6Wr7V9k9J/7PSfEF8vfacl
+rUq+PNC5qLDMZsbVZpawMysyjMmaXLKo41NiswthZpbEctUuaJsI2qM0NkmamwOccK4yic0MxWyb
+VZlbJbJmq5ZJOMWyjMm1LMpmTlqXNVNlRmFtUzS2IzK2Vy1JcwWtLYjWLalmFtU5ZCc1TMrYWyZp
+bK2i5apzSgQcS4l3Dwbz7+l51519J5x5x9F5p5o7gmEMICO7LB9cZrhmuGa4Zri+LMmNWZZqDrmm
+Mo0Z1jQHVM8dQzh0yidInHRO+Ogd6c87wyT85zjmmQYqF3SFzEL3Bxuz5C9yjf2XieEWT4r40OEs
+uETheF4YwB8RHGo/eR9jCmdOHjxFlgTHc+P1Gp+BL8WXFdMjMX6dZmcZDIBdh2BAjsEJZBAbkxz9
+8xzdnNN4c03pzC5MU3hhnYn8ZuTCNwYJ5JyTbl+bUvTaHIIzjFucUiOIUzhGyJD1z1zfnyVPHM/K
+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
+WTWEzIzIzLMZ/GS/Ty6o6wzVZoZqsyM1M95wff6jqZbLWWxaxtE1o1k1i1hrFrSzRrQZkZkZjMod
+pecneWd5yV58y8+XefKvORvOQvOPvOOvOO12s4tHi4hCKyEgBCCSEiBCAw67K6vkOtyeqyWp6K64
+fUZDT4/TY7S2uktestdHa6K16u10NroLXqrXP2vU2t5d3mGUeQSDIJGDIDGDIRGnTxdPF08XTxdP
+F08XTxdPF08XTxtPr9PsNPe6e+08fT3+nY07Onkadz5zzoHLsXj2jWprHtJYcsmtTWTYkSgJRKIj
+0HI6Ph9HT0ef0eh0cuj4/ovo26N8ssssssssssssssssvM8zzPM8zzPM8eS+osK/Rv3EuK4yEBmC
+QgEJy4P7kBoBGL9/mebcBfPN3z82+ecvnEXz6T46PSOPmXHzTj0rj03UR6Zx6dx1flY6tx6hx6lx
+vnHWOPVOPm3HWuPVuPWOPWuN+465x17jsHHrnHYuOycdm47Rx2rjtnHAccFx2982181L5t75uET3
+XuKE8lGK9qjG0gEIrJIrCIySCEIJDpXN1de1de1de1de1de1de1de45xjnGOceQzjHOMc4xzjHOM
+c4xzjHOMc4xzjHOMc4xzjHOMc4xzjHOMc4xzjHOMc4xzjHOMc4xzjHOMc4xzjHOMc4x868n5+POC
+WF/KL64uL9VMti1lsGMGQG4v2/bi/bi/bi/bi/bi/bi/bi/bi/bi/bi/at+1b9q37Vv2rftW/at+
+1b9q37Vv2rftW/at+1b9q37Vv2rftW/at+1b9q37Vv2rftW/at+1b9q37Vv2rftW/at+2wGJiNRg
+kYDGAxixikYjIJGFt2LU7FqWidonaJ2idonaJ2idonaJ72PI2jC0YWjC0YWjC0YWjC0YWjC0YWjC
+0YWjC0YWjC0YWjC0YWjC0YWjC0YWjC0YWjC0YWjC0YWjC0YWiZEdf7sAgjeRAeqJEEiRASJEESCQ
+SLkMrRxRxRxRxRx49xRxRxRxRx07ijijjvauKuKuKuKuKuKuKuKuKuKuKuKuKuKuKuKuKuKuKuKu
+KuKuKuKuK+jKMoykx9Zq+awzVZofzJccqzBmpkiKXLlLlLlLlLlLlLlLlLlLlLlblblblblblblb
+lblblblblblblblblblblblblblblblblblblblblblblblbmAQfYe03gf4yDGCXVy+zOPkpa7Za
+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
+f/i7kinChIEvl9sw
+
+
+--=-qvoSVJN2txArtjUvYb0m
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--=-qvoSVJN2txArtjUvYb0m--
