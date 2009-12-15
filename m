@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25658] Move to loadable firmware breaks suspend on
-	nVidia 9800M
-Date: Tue, 15 Dec 2009 11:27:43 -0800 (PST)
-Message-ID: <20091215192743.CA7121300DE@annarchy.freedesktop.org>
-References: <bug-25658-8800@http.bugs.freedesktop.org/>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH 1/2] drm/nv04: Fix NV04 set_operation software
+	method.
+Date: Tue, 15 Dec 2009 20:50:07 +0000
+Message-ID: <1260910208-8196-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25658-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +19,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25658
-
-
-
-
-
---- Comment #1 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 11:27:43 PST ---
-I guess I should add that I'm using KMS and X.  Suspend without starting X does
-still work.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+U2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0Pgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MDRfZ3JhcGguYyB8ICAgIDIgKy0KIDEgZmls
+ZXMgY2hhbmdlZCwgMSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MDRfZ3JhcGguYyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252MDRfZ3JhcGguYwppbmRleCAzOTZlZTkyLi5kNTYxZDc3IDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjA0X2dyYXBoLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnYwNF9ncmFwaC5jCkBAIC01NDMsNyArNTQzLDcgQEAgbnYwNF9ncmFwaF9tdGhk
+X3NldF9vcGVyYXRpb24oc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwgaW50IGdyY2xhc3Ms
+CiAKIAludl93aTMyKGRldiwgaW5zdGFuY2UsIHRtcCk7CiAJbnZfd3IzMihkZXYsIE5WMDRfUEdS
+QVBIX0NUWF9TV0lUQ0gxLCB0bXApOwotCW52X3dyMzIoZGV2LCBOVjA0X1BHUkFQSF9DVFhfQ0FD
+SEUxICsgc3ViYywgdG1wKTsKKwludl93cjMyKGRldiwgTlYwNF9QR1JBUEhfQ1RYX0NBQ0hFMSAr
+IChzdWJjPDwyKSwgdG1wKTsKIAlyZXR1cm4gMDsKIH0KIAotLSAKMS42LjUuNgoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
