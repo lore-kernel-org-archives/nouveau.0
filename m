@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25658] Move to loadable firmware breaks suspend on
 	nVidia 9800M
-Date: Tue, 15 Dec 2009 23:09:52 -0800 (PST)
-Message-ID: <20091216070953.539691300AB@annarchy.freedesktop.org>
+Date: Tue, 15 Dec 2009 23:55:00 -0800 (PST)
+Message-ID: <20091216075500.B71031300AB@annarchy.freedesktop.org>
 References: <bug-25658-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,11 +24,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25658
 
 
+Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 23:09:50 PST ---
-Latest nouveau git should fix the issues mentioned here.
+
+--- Comment #7 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 23:54:59 PST ---
+(In reply to comment #6)
+> Latest nouveau git should fix the issues mentioned here.
+
+Indeed it does, thanks.  I noticed the slew of new commits right after my last
+comment.
 
 
 -- 
