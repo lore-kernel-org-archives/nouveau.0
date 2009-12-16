@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25658] Move to loadable firmware breaks suspend on
-	nVidia 9800M
-Date: Tue, 15 Dec 2009 16:21:29 -0800 (PST)
-Message-ID: <20091216002129.A2C311300CB@annarchy.freedesktop.org>
-References: <bug-25658-8800@http.bugs.freedesktop.org/>
+From: Jimmy Rentz <jedynamic-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org>
+Subject: Re: [TEST REQUEST] nv40 "firmware" replacement
+Date: Tue, 15 Dec 2009 21:54:45 -0500
+Message-ID: <20091215215445.51b514c4@amd64linuxmsi.rentzhouse.lan>
+References: <1260861250.5529.8.camel@nisroch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25658-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1260861250.5529.8.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,51 +20,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25658
+On Tue, 15 Dec 2009 17:14:10 +1000
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 
+> So, I've spent the last few days messing around with replacing our use
+> of NVIDIA's context programs on GeForce 6/7 hardware and have
+> something that works on the 4 (2xNV44, NV46, NV4B) cards I have.
+> 
+> The context programs are *much* less complex than NVIDIA's and don't
+> handle nearly everything NVIDIA's do, however they do work for our
+> needs, and it's as good a starting point as any.
+> 
+> I've attached the currently generated "firmware" in the same binary
+> format we packages NVIDIA's in.  If people with the relevant hardware
+> could install them, and report success/failure and the chipset they
+> tested on (the whole "Detected an NVxx generation card" line from
+> nouveau's dmesg output would be perfect), that'd be great!
+> 
+> I'm now working on moving the code that generated the firmware in the
+> below tarball to the DRM, and after some testing before I do!
+> 
+> Ben.
 
-
-
-
---- Comment #4 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 16:21:29 PST ---
-I also suspected loadable firmware initially, but then I quickly moved to
-suspecting all the ttm changes.
-It's the last merge that broke it for me :
-commit 12b59e64a4df9f4298a2abb8b331074adea113ed
-
-curro pointed me to the following fix on dri-devel by airlied :
-http://www.mail-archive.com/dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org/msg45533.html
-
-It seems that fixed suspend for me. But I still have troubles resuming, I get
-pixmap corruption problem in X. After reloading X, it is fine.
-
-However, there is also a known bug in nouveau code, fixed by curro :
-http://lists.freedesktop.org/archives/nouveau/2009-December/004266.html
-
-This last patch seems to correct a very obvious bug/overlook. But it causes
-other problems for me when resuming :
-Dec 15 18:50:06 xps-m1530 kernel: [   42.706924] [drm] nouveau 0000:01:00.0:
-Reinitialising engines...
-Dec 15 18:50:06 xps-m1530 kernel: [   42.709976] [drm] nouveau 0000:01:00.0:
-Restoring GPU objects...
-Dec 15 18:50:06 xps-m1530 kernel: [   42.742509] [drm] nouveau 0000:01:00.0:
-Restoring mode...
-Dec 15 18:50:06 xps-m1530 kernel: [   42.742513] [drm] nouveau 0000:01:00.0: bo
-ffff88011d2b1400 pinned elsewhere: 0x00000002 vs 0x00000004
-Dec 15 18:50:06 xps-m1530 kernel: [   42.746882] [drm] nouveau 0000:01:00.0: bo
-ffff88011d2b1400 pinned elsewhere: 0x00000002 vs 0x00000004
-Dec 15 18:50:06 xps-m1530 kernel: [   42.746885]
-[drm:drm_helper_resume_force_mode] *ERROR* failed to set mode on crtc
-ffff88011c51c000
-
-The screen stays black. Reloading nouveau blindly fixes it though.
-Some other times, resuming caused hardlock, but I suspect it's related to this
-same bo/ttm problem.
-
-Just give me another year and I might find something :)
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I tested this on an nv4e and nv49 and kms+X works fine.
