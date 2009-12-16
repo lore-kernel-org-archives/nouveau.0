@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25658] Move to loadable firmware breaks suspend on
 	nVidia 9800M
-Date: Tue, 15 Dec 2009 16:01:21 -0800 (PST)
-Message-ID: <20091216000121.A29DF2DC105@annarchy.freedesktop.org>
+Date: Tue, 15 Dec 2009 16:21:29 -0800 (PST)
+Message-ID: <20091216002129.A2C311300CB@annarchy.freedesktop.org>
 References: <bug-25658-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,20 +27,42 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25658
 
 
 
---- Comment #3 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 16:01:21 PST ---
-(In reply to comment #2)
-> What disk partition does nouveau leave firmware on or is it built into initrd?
-> 
-> If the partition containing firmware isnt mounted when nouveau tries
-> to reload on resume wont there be problems?
-> 
+--- Comment #4 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 16:21:29 PST ---
+I also suspected loadable firmware initially, but then I quickly moved to
+suspecting all the ttm changes.
+It's the last merge that broke it for me :
+commit 12b59e64a4df9f4298a2abb8b331074adea113ed
 
-The firmware is in /lib/firmware/nouveau on both my root partition and the
-initrd.  But I don't think that's the issue anyway, since it never suspends in
-the first place; it just sits there blinking.  I'm wondering if there was a
-mistake in extracting the firmware from the C source, or if there's something
-broken about the firmware interface and suspend.  Does it work with other
-(non-NV92) cards?
+curro pointed me to the following fix on dri-devel by airlied :
+http://www.mail-archive.com/dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org/msg45533.html
+
+It seems that fixed suspend for me. But I still have troubles resuming, I get
+pixmap corruption problem in X. After reloading X, it is fine.
+
+However, there is also a known bug in nouveau code, fixed by curro :
+http://lists.freedesktop.org/archives/nouveau/2009-December/004266.html
+
+This last patch seems to correct a very obvious bug/overlook. But it causes
+other problems for me when resuming :
+Dec 15 18:50:06 xps-m1530 kernel: [   42.706924] [drm] nouveau 0000:01:00.0:
+Reinitialising engines...
+Dec 15 18:50:06 xps-m1530 kernel: [   42.709976] [drm] nouveau 0000:01:00.0:
+Restoring GPU objects...
+Dec 15 18:50:06 xps-m1530 kernel: [   42.742509] [drm] nouveau 0000:01:00.0:
+Restoring mode...
+Dec 15 18:50:06 xps-m1530 kernel: [   42.742513] [drm] nouveau 0000:01:00.0: bo
+ffff88011d2b1400 pinned elsewhere: 0x00000002 vs 0x00000004
+Dec 15 18:50:06 xps-m1530 kernel: [   42.746882] [drm] nouveau 0000:01:00.0: bo
+ffff88011d2b1400 pinned elsewhere: 0x00000002 vs 0x00000004
+Dec 15 18:50:06 xps-m1530 kernel: [   42.746885]
+[drm:drm_helper_resume_force_mode] *ERROR* failed to set mode on crtc
+ffff88011c51c000
+
+The screen stays black. Reloading nouveau blindly fixes it though.
+Some other times, resuming caused hardlock, but I suspect it's related to this
+same bo/ttm problem.
+
+Just give me another year and I might find something :)
 
 
 -- 
