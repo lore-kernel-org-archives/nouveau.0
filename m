@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25658] Move to loadable firmware breaks suspend on
 	nVidia 9800M
-Date: Tue, 15 Dec 2009 22:44:53 -0800 (PST)
-Message-ID: <20091216064453.813421300C6@annarchy.freedesktop.org>
+Date: Tue, 15 Dec 2009 23:09:52 -0800 (PST)
+Message-ID: <20091216070953.539691300AB@annarchy.freedesktop.org>
 References: <bug-25658-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,55 +27,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25658
 
 
 
---- Comment #5 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 22:44:52 PST ---
-(In reply to comment #4)
-> I also suspected loadable firmware initially, but then I quickly moved to
-> suspecting all the ttm changes.
-
-That occurred to me too actually, but for some reason there's no nouveau module
-when you check out the commits that got merged, so I couldn't properly bisect
-it.  I guess I could just add the nouveau code back myself and then compile.
-
-> It's the last merge that broke it for me :
-> commit 12b59e64a4df9f4298a2abb8b331074adea113ed
-> 
-> curro pointed me to the following fix on dri-devel by airlied :
-> http://www.mail-archive.com/dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org/msg45533.html
-> 
-> It seems that fixed suspend for me. But I still have troubles resuming, I get
-> pixmap corruption problem in X. After reloading X, it is fine.
-> 
-> However, there is also a known bug in nouveau code, fixed by curro :
-> http://lists.freedesktop.org/archives/nouveau/2009-December/004266.html
-> 
-> This last patch seems to correct a very obvious bug/overlook. But it causes
-> other problems for me when resuming :
-> Dec 15 18:50:06 xps-m1530 kernel: [   42.706924] [drm] nouveau 0000:01:00.0:
-> Reinitialising engines...
-> Dec 15 18:50:06 xps-m1530 kernel: [   42.709976] [drm] nouveau 0000:01:00.0:
-> Restoring GPU objects...
-> Dec 15 18:50:06 xps-m1530 kernel: [   42.742509] [drm] nouveau 0000:01:00.0:
-> Restoring mode...
-> Dec 15 18:50:06 xps-m1530 kernel: [   42.742513] [drm] nouveau 0000:01:00.0: bo
-> ffff88011d2b1400 pinned elsewhere: 0x00000002 vs 0x00000004
-> Dec 15 18:50:06 xps-m1530 kernel: [   42.746882] [drm] nouveau 0000:01:00.0: bo
-> ffff88011d2b1400 pinned elsewhere: 0x00000002 vs 0x00000004
-> Dec 15 18:50:06 xps-m1530 kernel: [   42.746885]
-> [drm:drm_helper_resume_force_mode] *ERROR* failed to set mode on crtc
-> ffff88011c51c000
-> 
-> The screen stays black. Reloading nouveau blindly fixes it though.
-> Some other times, resuming caused hardlock, but I suspect it's related to this
-> same bo/ttm problem.
-
-Similarly for me, except I get a BUG on resume.  No black screen though; I
-could see the BUG perfectly.  I can reproduce it and write down what it said if
-it's important.  I'll try with the dri-devel patch next.
-
-> Just give me another year and I might find something :)
-
-Haha.  Yeah, to me that nouveau bug you mentioned was about the least obvious
-"obvious" bug I've ever seen.  I really should read up on driver programming.
+--- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 23:09:50 PST ---
+Latest nouveau git should fix the issues mentioned here.
 
 
 -- 
