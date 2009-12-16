@@ -1,14 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25658] Move to loadable firmware breaks suspend on
-	nVidia 9800M
-Date: Tue, 15 Dec 2009 23:55:00 -0800 (PST)
-Message-ID: <20091216075500.B71031300AB@annarchy.freedesktop.org>
-References: <bug-25658-8800@http.bugs.freedesktop.org/>
+From: Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
+Subject: Re: When will KMS be the default?
+Date: Wed, 16 Dec 2009 09:05:40 +0100
+Message-ID: <20091216080540.68D7633C458@tippex.mynet.homeunix.org>
+References: <6d4bc9fc0912101157i60ddeb58s5e1810530293771d@mail.gmail.com>
+	<1260483689.30293.2.camel@nisroch>
+	<20091211122326.4E4B233C44E@tippex.mynet.homeunix.org>
+	<1260534656.4730.1.camel@nisroch>
+	<20091211132401.25D7433C44F@tippex.mynet.homeunix.org>
+	<1260539241.4730.4.camel@nisroch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25658-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-reply-to: <1260539241.4730.4.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,31 +22,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25658
 
+skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org said:
+> skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org said:
+> > > s not a solution by any means, but try:
+> > >   Option "EXAPixmaps" "false"
+> > > In your xorg.conf.  
+> >
+> > That does seem to do the trick! Thanks. 
+> Cool :) 
 
-Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+FYI. I just did a update of the kernel and ddx to latest git versions (seeing 
+the traffic on fixing low mem situations). Now I can run with EXAPixmas 
+enabled and scrolling is fast again! :-)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
-
-
-
---- Comment #7 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 23:54:59 PST ---
-(In reply to comment #6)
-> Latest nouveau git should fix the issues mentioned here.
-
-Indeed it does, thanks.  I noticed the slew of new commits right after my last
-comment.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Thanks guys!
