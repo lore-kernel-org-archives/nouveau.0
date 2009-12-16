@@ -1,8 +1,7 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 1/3] drm/nouveau: Fix "general protection fault"
-	in the flipd/flips eviction path.
-Date: Wed, 16 Dec 2009 19:15:35 +0100
-Message-ID: <1260987337-8674-1-git-send-email-currojerez@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25677] New: Rotation is broken on 2009-12-15 build
+Date: Wed, 16 Dec 2009 11:00:28 -0800 (PST)
+Message-ID: <bug-25677-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,32 +18,51 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_bo.c |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+http://bugs.freedesktop.org/show_bug.cgi?id=25677
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index e81e575..ad0f9b6 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -584,7 +584,7 @@ nouveau_bo_move_flipd(struct ttm_buffer_object *bo, bool evict, bool intr,
- 
- 	placement.fpfn = placement.lpfn = 0;
- 	placement.num_placement = placement.num_busy_placement = 1;
--	placement.placement = &placement_memtype;
-+	placement.placement = placement.busy_placement = &placement_memtype;
- 
- 	tmp_mem = *new_mem;
- 	tmp_mem.mm_node = NULL;
-@@ -622,7 +622,7 @@ nouveau_bo_move_flips(struct ttm_buffer_object *bo, bool evict, bool intr,
- 
- 	placement.fpfn = placement.lpfn = 0;
- 	placement.num_placement = placement.num_busy_placement = 1;
--	placement.placement = &placement_memtype;
-+	placement.placement = placement.busy_placement = &placement_memtype;
- 
- 	tmp_mem = *new_mem;
- 	tmp_mem.mm_node = NULL;
+           Summary: Rotation is broken on 2009-12-15 build
+           Product: xorg
+           Version: 7.4
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Hello,
+
+I used to build from git but now I'm using openSuse Build Service binaries
+from:
+http://download.opensuse.org/repositories/home:/jobermayr/openSUSE_11.2/
+
+Packages: 
+
+Mesa-nouveau3d-32bit-7.7.99_20091215-1.1.x86_64
+xorg-x11-driver-video-nouveau-0.0.10_20091214-1.1.x86_64
+xorg-x11-driver-video-nouveau-debuginfo-0.0.10_20091214-1.1.x86_64
+xorg-x11-driver-video-nouveau-32bit-0.0.10_20091214-1.1.x86_64
+Mesa-nouveau3d-7.7.99_20091215-1.1.x86_64
+
+With the 20091214 build, my xorg begin to crash on rotation. This is BT:
+
+...
+2: /lib64/libc.so.6 [0x7ff692720560]
+3: /usr/lib64/xorg/modules//libexa.so(exaGetPixmapDriverPrivate+0x17)
+[0x7ff68ee4e807]
+4: /usr/lib64/xorg/modules//drivers/nouveau_drv.so [0x7ff6908f50c3]
+5: /usr/lib64/xorg/modules//drivers/nouveau_drv.so [0x7ff6908f514f]
+...
+
+My Xorg.log is attached. I installed xorg-x11-driver-video-nouveau-debuginfo
+but it didn't help with stack info.
+
+
 -- 
-1.6.4.4
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
