@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25658] Move to loadable firmware breaks suspend on
 	nVidia 9800M
-Date: Tue, 15 Dec 2009 15:47:50 -0800 (PST)
-Message-ID: <20091215234750.501181300C6@annarchy.freedesktop.org>
+Date: Tue, 15 Dec 2009 16:01:21 -0800 (PST)
+Message-ID: <20091216000121.A29DF2DC105@annarchy.freedesktop.org>
 References: <bug-25658-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-25658-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -21,26 +21,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yNTY1OAoKCgoKCi0t
-LSBDb21tZW50ICMyIGZyb20gTWFyayBDYXJleSA8bWFyay5jYXJleUBnbWFpbC5jb20+ICAyMDA5
-LTEyLTE1IDE1OjQ3OjQ5IFBTVCAtLS0KV2hhdCBkaXNrIHBhcnRpdGlvbiBkb2VzIG5vdXZlYXUg
-bGVhdmUgZmlybXdhcmUgb24gb3IgaXMgaXQgYnVpbHQgaW50byBpbml0cmQ/CgpJZiB0aGUgcGFy
-dGl0aW9uIGNvbnRhaW5pbmcgZmlybXdhcmUgaXNudCBtb3VudGVkIHdoZW4gbm91dmVhdSB0cmll
-cwp0byByZWxvYWQgb24gcmVzdW1lIHdvbnQgdGhlcmUgYmUgcHJvYmxlbXM/CgpPbiBXZWQsIERl
-YyAxNiwgMjAwOSBhdCA4OjI3IEFNLCAgPGJ1Z3ppbGxhLWRhZW1vbkBmcmVlZGVza3RvcC5vcmc+
-IHdyb3RlOgo+IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjU2
-NTgKPgo+Cj4KPgo+Cj4gLS0tIENvbW1lbnQgIzEgZnJvbSBUYXZpYW4gQmFybmVzIDx0YXZpYW5h
-dG9yQGdtYWlsLmNvbT4gwqAyMDA5LTEyLTE1IDExOjI3OjQzIFBTVCAtLS0KPiBJIGd1ZXNzIEkg
-c2hvdWxkIGFkZCB0aGF0IEknbSB1c2luZyBLTVMgYW5kIFguIMKgU3VzcGVuZCB3aXRob3V0IHN0
-YXJ0aW5nIFggZG9lcwo+IHN0aWxsIHdvcmsuCj4KPgo+IC0tCj4gQ29uZmlndXJlIGJ1Z21haWw6
-IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAo+IC0t
-LS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KPiBZb3Ug
-YXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo+CgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwOi8vYnVn
-cy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJl
-IHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25l
-ZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=25658
+
+
+
+
+
+--- Comment #3 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-15 16:01:21 PST ---
+(In reply to comment #2)
+> What disk partition does nouveau leave firmware on or is it built into initrd?
+> 
+> If the partition containing firmware isnt mounted when nouveau tries
+> to reload on resume wont there be problems?
+> 
+
+The firmware is in /lib/firmware/nouveau on both my root partition and the
+initrd.  But I don't think that's the issue anyway, since it never suspends in
+the first place; it just sits there blinking.  I'm wondering if there was a
+mistake in extracting the firmware from the C source, or if there's something
+broken about the firmware interface and suspend.  Does it work with other
+(non-NV92) cards?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
