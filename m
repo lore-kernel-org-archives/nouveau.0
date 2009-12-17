@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25685] Write access request to the mesa project.
-Date: Thu, 17 Dec 2009 04:17:16 -0800 (PST)
-Message-ID: <20091217121716.7951D130078@annarchy.freedesktop.org>
+Date: Thu, 17 Dec 2009 04:40:07 -0800 (PST)
+Message-ID: <20091217124007.61A1E130078@annarchy.freedesktop.org>
 References: <bug-25685-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,17 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25685
 
 
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp9/EVdHwE84te@public.gmane.org|sitewranglers-PD4FTy7X32lzq7FAFJ/aeQ@public.gmane.org
+                   |g                           |top.org
+          Component|Drivers/DRI/nouveau         |Account Modification
+                   |                            |Requests
+            Product|Mesa                        |freedesktop.org
 
 
-
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-17 04:17:16 PST ---
-ACK!
 
 
 -- 
