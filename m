@@ -1,11 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: we don't synchronize in our buffer object move driver hook
-Date: Sat, 19 Dec 2009 01:07:00 +0100
-Message-ID: <6d4bc9fc0912181607s3e1b4e57qf0d9125a14556da8@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25260] Screen corruption in top left corner on NV50
+Date: Sat, 19 Dec 2009 10:58:18 -0800 (PST)
+Message-ID: <20091219185818.467691300F9@annarchy.freedesktop.org>
+References: <bug-25260-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-25260-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,13 +18,27 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-ttm_bo_validate() calls ttm_bo_move_buffer() which calls
-ttm_bo_handle_move_mem() which calls bdev->driver->move() which calls
-nouveau_bo_move_m2mf(), which doesn't ensure synchronization (nowait
-== false) if the bo is moved on another channel (which is common for
-nv50). I suspect this to be the source of some corruption problems.
+http://bugs.freedesktop.org/show_bug.cgi?id=25260
 
-Maarten.
+
+Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|REOPENED                    |RESOLVED
+         Resolution|                            |FIXED
+
+
+
+
+--- Comment #3 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-19 10:58:17 PST ---
+Looks like this is fixed in the latest GIT, probably by all the changes that
+got merged in recently.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
