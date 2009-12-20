@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24996] Wrong display resolution in X,
  "windowed" console. FX 5600 XT
-Date: Sun, 20 Dec 2009 06:15:57 -0800 (PST)
-Message-ID: <20091220141557.B6C0D1300B7@annarchy.freedesktop.org>
+Date: Sun, 20 Dec 2009 06:17:50 -0800 (PST)
+Message-ID: <20091220141750.A7C431300F5@annarchy.freedesktop.org>
 References: <bug-24996-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=24996
 
 
 
---- Comment #25 from ashtophet <galiza.ceive-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-20 06:15:56 PST ---
-Created an attachment (id=32207)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32207)
-dmesg excerpt after sucessful run!
+--- Comment #26 from ashtophet <galiza.ceive-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-20 06:17:50 PST ---
+Booted fine, with no issues. Correct output detection, KMS working fine.
+
+Thanks!!
 
 
 -- 
