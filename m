@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24996] Wrong display resolution in X,
- "windowed" console. FX 5600 XT
-Date: Sun, 20 Dec 2009 14:48:11 -0800 (PST)
-Message-ID: <20091220224811.30D9B1300BC@annarchy.freedesktop.org>
-References: <bug-24996-8800@http.bugs.freedesktop.org/>
+From: Krzysztof Smiechowicz <deadwood-5tc4TXWwyLM@public.gmane.org>
+Subject: Clean up of nv40_context->state.hw and nv40_screen->state
+Date: Mon, 21 Dec 2009 08:34:51 +0100
+Message-ID: <4B2F251B.5070807@wp.pl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24996-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +18,59 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=24996
-
-
-Fabienne Ducroquet <fabiduc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |fabiduc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
-
-
-
---- Comment #27 from Fabienne Ducroquet <fabiduc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-20 14:48:10 PST ---
 Hi,
-I had the same issue with a NV42 chipset (Quadro FX Go1400), I applied the last
-patch (nv43_tvdac_load_2.patch) with "if (dev_priv->chipset == 0x42)" instead
-of "if (dev_priv->chipset == 0x43)" and that fixed it.
+
+I'm trying to find a place where objects held in 
+nv40_context->state.hw[] and nv40_screen->state[] are being unreferenced 
+during pipe_context destruction.
+
+Currently I'm observing that these objects are not unreferenced and 
+since they hold reference to buffer objects, the buffer objects 
+themselves are not unreferenced as well (for example color buffer or z 
+buffer).
+
+In order to clean those references I applied the following changes:
+
+Index: nv40_screen.c
+===================================================================
+--- nv40_screen.c	(wersja 32083)
++++ nv40_screen.c	(kopia robocza)
+@@ -140,7 +140,13 @@
+  nv40_screen_destroy(struct pipe_screen *pscreen)
+  {
+  	struct nv40_screen *screen = nv40_screen(pscreen);
++    unsigned i;
+
++    for (i = 0; i < NV40_STATE_MAX; i++) {
++        if (screen->state[i])
++            so_ref(NULL, &screen->state[i]);
++    }
++
+  	nouveau_resource_free(&screen->vp_exec_heap);
+  	nouveau_resource_free(&screen->vp_data_heap);
+  	nouveau_resource_free(&screen->query_heap);
+Index: nv40_context.c
+===================================================================
+--- nv40_context.c	(wersja 32083)
++++ nv40_context.c	(kopia robocza)
+@@ -25,7 +25,13 @@
+  nv40_destroy(struct pipe_context *pipe)
+  {
+  	struct nv40_context *nv40 = nv40_context(pipe);
++    unsigned i;
+
++    for (i = 0; i < NV40_STATE_MAX; i++) {
++        if (nv40->state.hw[i])
++            so_ref(NULL, &nv40->state.hw[i]);
++    }
++
+  	if (nv40->draw)
+  		draw_destroy(nv40->draw);
+  	FREE(nv40);
 
 
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Is this the correct approach or did I miss where those objects are 
+unreferenced?
+
+Best regards,
+Krzysztof
