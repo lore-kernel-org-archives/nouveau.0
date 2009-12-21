@@ -1,14 +1,12 @@
-From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Subject: Re: [PATCH] nv50: remove vtxbuf stateobject after
- a	referenced vtxbuf is mapped
-Date: Mon, 21 Dec 2009 11:25:08 +0100
-Message-ID: <4B2F4D04.1000101@student.tuwien.ac.at>
-References: <1261323978-5330-1-git-send-email-madman2003@gmail.com>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: always do buffer object moves on
+	bo->channel
+Date: Mon, 21 Dec 2009 14:39:02 +0100
+Message-ID: <1261402742-7992-1-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1261323978-5330-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,126 +16,251 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 12/20/2009 04:46 PM, Maarten Maathuis wrote:
-> - This avoids problematic "reloc'ed while mapped" messages and
-> some associated corruption as well.
-> - Also add one nouveau_bo_unmap() in the vbo code that wasn't present.
-I didn't think nouveau_bo_unmap was necessary if the map failed.
-As far as I can see, map will be NULL, and unmap will do nothing.
-I don't know what our API doc says about that though ...
-But the DDX seems to not unmap after failure.
-> 
-> Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  src/gallium/drivers/nouveau/nouveau_screen.c   |   21 +++++++++++++++++++++
->  src/gallium/drivers/nouveau/nouveau_screen.h   |    3 +++
->  src/gallium/drivers/nouveau/nouveau_stateobj.h |   13 +++++++++++++
->  src/gallium/drivers/nv50/nv50_screen.c         |   23 +++++++++++++++++++++++
->  src/gallium/drivers/nv50/nv50_screen.h         |    2 ++
->  src/gallium/drivers/nv50/nv50_state_validate.c |    2 ++
->  src/gallium/drivers/nv50/nv50_vbo.c            |    4 +++-
->  7 files changed, 67 insertions(+), 1 deletions(-)
-> 
-> diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c b/src/gallium/drivers/nouveau/nouveau_screen.c
-> index e4cf91c..c85057a 100644
-> --- a/src/gallium/drivers/nouveau/nouveau_screen.c
-> +++ b/src/gallium/drivers/nouveau/nouveau_screen.c
-> @@ -127,8 +127,18 @@ nouveau_screen_bo_map(struct pipe_screen *pscreen, struct pipe_buffer *pb,
->  		      unsigned usage)
-...
-> +static int
-> +nv50_pre_pipebuffer_map(struct pipe_screen *pscreen, struct pipe_buffer *pb,
-> +	unsigned usage)
-> +{
-> +	struct nv50_screen *screen = nv50_screen(pscreen);
-> +	struct nv50_context *ctx = screen->cur_ctx;
-> +
-> +	if (!(pb->usage & PIPE_BUFFER_USAGE_VERTEX))
-> +		return 0;
-> +
-> +	/* Our vtxbuf got mapped, it can no longer be considered part of current
-> +	 * state, remove it to avoid emitting reloc markers.
-> +	 */
-> +	if (ctx && ctx->state.vtxbuf && so_bo_is_reloc(ctx->state.vtxbuf,
-> +			nouveau_bo(pb))) {
-> +		so_ref(NULL, &ctx->state.vtxbuf);
-> +		ctx->state.dirty |= NV50_NEW_ARRAYS;
-Hm ... I know I suggested it but I'm not completely sure it works now.
-ctx->state.dirty will be checked in nv50_state_emit as far as I
-can see, and then state stateobj better not be NULL.
-(at least if I do this regardless of so_bo_is_reloc, I get a segfault)
+- Use the "direct" objects that previously only the kernel fifo had.
+- This avoids corruption on some buffer moves.
+- Prevent dma access to ramin, we never use dma there anyway and it's an
+exploit waiting to happen.
 
-Since we're operating on the current context here, we should probably
-set ctx->(no state.)dirty which is used in nv50_state_validate (no
-segfault on emit then).
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  struct pipe_screen *
->  nv50_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
->  {
-> @@ -201,6 +223,7 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
->  	pscreen->get_param = nv50_screen_get_param;
->  	pscreen->get_paramf = nv50_screen_get_paramf;
->  	pscreen->is_format_supported = nv50_screen_is_format_supported;
-> +	screen->base.pre_pipebuffer_map_callback = nv50_pre_pipebuffer_map;
->  
->  	nv50_screen_init_miptree_functions(pscreen);
->  	nv50_transfer_init_screen_functions(pscreen);
-> diff --git a/src/gallium/drivers/nv50/nv50_screen.h b/src/gallium/drivers/nv50/nv50_screen.h
-> index 61e24a5..a038a4e 100644
-> --- a/src/gallium/drivers/nv50/nv50_screen.h
-> +++ b/src/gallium/drivers/nv50/nv50_screen.h
-> @@ -2,6 +2,7 @@
->  #define __NV50_SCREEN_H__
->  
->  #include "nouveau/nouveau_screen.h"
-> +#include "nv50_context.h"
->  
->  struct nv50_screen {
->  	struct nouveau_screen base;
-> @@ -9,6 +10,7 @@ struct nv50_screen {
->  	struct nouveau_winsys *nvws;
->  
->  	unsigned cur_pctx;
-> +	struct nv50_context *cur_ctx;
->  
-Using struct pipe_context **nouveau_winsys::pcxt would work too ...
+Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c     |   27 ++++-----------------
+ drivers/gpu/drm/nouveau/nouveau_mem.c    |    7 ++++-
+ drivers/gpu/drm/nouveau/nouveau_object.c |   36 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_state.c  |   38 +-----------------------------
+ drivers/gpu/drm/nouveau/nv50_display.c   |    6 ++--
+ drivers/gpu/drm/nouveau/nv50_instmem.c   |    4 ++-
+ 6 files changed, 53 insertions(+), 65 deletions(-)
 
->  	struct nouveau_grobj *tesla;
->  	struct nouveau_grobj *eng2d;
-> diff --git a/src/gallium/drivers/nv50/nv50_state_validate.c b/src/gallium/drivers/nv50/nv50_state_validate.c
-> index 871e809..8cf4ff4 100644
-> --- a/src/gallium/drivers/nv50/nv50_state_validate.c
-> +++ b/src/gallium/drivers/nv50/nv50_state_validate.c
-> @@ -185,6 +185,8 @@ nv50_state_emit(struct nv50_context *nv50)
->  	struct nv50_screen *screen = nv50->screen;
->  	struct nouveau_channel *chan = screen->base.channel;
->  
-> +	screen->cur_ctx = nv50;
-> +
->  	if (nv50->pctx_id != screen->cur_pctx) {
->  		if (nv50->state.fb)
->  			nv50->state.dirty |= NV50_NEW_FRAMEBUFFER;
-> diff --git a/src/gallium/drivers/nv50/nv50_vbo.c b/src/gallium/drivers/nv50/nv50_vbo.c
-> index db54380..ce6e4eb 100644
-> --- a/src/gallium/drivers/nv50/nv50_vbo.c
-> +++ b/src/gallium/drivers/nv50/nv50_vbo.c
-> @@ -325,8 +325,10 @@ nv50_vbo_static_attrib(struct nv50_context *nv50, unsigned attrib,
->  		return FALSE;
->  
->  	ret = nouveau_bo_map(bo, NOUVEAU_BO_RD);
-> -	if (ret)
-> +	if (ret) {
-> +		nouveau_bo_unmap(bo);
->  		return FALSE;
-> +	}
->  	v = (float *)(bo->map + (vb->buffer_offset + ve->src_offset));
->  
->  	so = *pso;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index e18d7fc..89c17d4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -389,8 +389,8 @@ nouveau_bo_init_mem_type(struct ttm_bo_device *bdev, uint32_t type,
+ 		man->io_addr = NULL;
+ 		man->io_offset = drm_get_resource_start(dev, 1);
+ 		man->io_size = drm_get_resource_len(dev, 1);
+-		if (man->io_size > nouveau_mem_fb_amount(dev))
+-			man->io_size = nouveau_mem_fb_amount(dev);
++		if (man->io_size > dev_priv->fb_available_size)
++			man->io_size = dev_priv->fb_available_size;
+ 
+ 		man->gpu_offset = dev_priv->vm_vram_base;
+ 		break;
+@@ -471,15 +471,9 @@ static inline uint32_t
+ nouveau_bo_mem_ctxdma(struct nouveau_bo *nvbo, struct nouveau_channel *chan,
+ 		      struct ttm_mem_reg *mem)
+ {
+-	if (chan == nouveau_bdev(nvbo->bo.bdev)->channel) {
+-		if (mem->mem_type == TTM_PL_TT)
+-			return NvDmaGART;
+-		return NvDmaVRAM;
+-	}
+-
+ 	if (mem->mem_type == TTM_PL_TT)
+-		return chan->gart_handle;
+-	return chan->vram_handle;
++		return NvDmaGART;
++	return NvDmaVRAM;
+ }
+ 
+ static int
+@@ -495,22 +489,11 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
+ 	int ret;
+ 
+ 	chan = nvbo->channel;
+-	if (!chan || nvbo->tile_flags || nvbo->no_vm)
++	if (!chan)
+ 		chan = dev_priv->channel;
+ 
+ 	src_offset = old_mem->mm_node->start << PAGE_SHIFT;
+ 	dst_offset = new_mem->mm_node->start << PAGE_SHIFT;
+-	if (chan != dev_priv->channel) {
+-		if (old_mem->mem_type == TTM_PL_TT)
+-			src_offset += dev_priv->vm_gart_base;
+-		else
+-			src_offset += dev_priv->vm_vram_base;
+-
+-		if (new_mem->mem_type == TTM_PL_TT)
+-			dst_offset += dev_priv->vm_gart_base;
+-		else
+-			dst_offset += dev_priv->vm_vram_base;
+-	}
+ 
+ 	ret = RING_SPACE(chan, 3);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_mem.c b/drivers/gpu/drm/nouveau/nouveau_mem.c
+index fb9bdd6..f5c6ef5 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_mem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_mem.c
+@@ -610,8 +610,11 @@ nouveau_mem_init(struct drm_device *dev)
+ 
+ 	NV_INFO(dev, "%d MiB VRAM\n", (int)(dev_priv->fb_available_size >> 20));
+ 
+-	/* remove reserved space at end of vram from available amount */
+-	dev_priv->fb_available_size -= dev_priv->ramin_rsvd_vram;
++	/* Normal users have no reason to be anywhere near the ramin memory.
++	 * This also includes the smaller reserved ramin for special purposes.
++	 * We don't do dma transfers with ramin memory.
++	 */
++	dev_priv->fb_available_size -= dev_priv->ramin_size;
+ 	dev_priv->fb_aper_free = dev_priv->fb_available_size;
+ 
+ 	/* mappable vram */
+diff --git a/drivers/gpu/drm/nouveau/nouveau_object.c b/drivers/gpu/drm/nouveau/nouveau_object.c
+index 93379bb..d18c95c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_object.c
++++ b/drivers/gpu/drm/nouveau/nouveau_object.c
+@@ -33,6 +33,7 @@
+ #include "drmP.h"
+ #include "drm.h"
+ #include "nouveau_drv.h"
++#include "nouveau_dma.h"
+ #include "nouveau_drm.h"
+ 
+ /* NVidia uses context objects to drive drawing operations.
+@@ -1099,6 +1100,41 @@ nouveau_gpuobj_channel_init(struct nouveau_channel *chan,
+ 		return ret;
+ 	}
+ 
++	/* Two objects for kernel consumption, on nv50 they allow direct access
++	 * to vram. This is needed because we don't know the tiling layout.
++	 */
++	vram = NULL;
++	ret = nouveau_gpuobj_dma_new(chan, NV_CLASS_DMA_IN_MEMORY,
++				0, dev_priv->fb_available_size,
++				NV_DMA_ACCESS_RW, NV_DMA_TARGET_VIDMEM,
++				&vram);
++	if (ret) {
++		NV_ERROR(dev, "Error creating direct VRAM ctxdma: %d\n", ret);
++		return ret;
++	}
++
++	ret = nouveau_gpuobj_ref_add(dev, chan, NvDmaVRAM, vram, NULL);
++	if (ret) {
++		NV_ERROR(dev, "Error referencing direct VRAM ctxdma:" \
++			" %d\n", ret);
++		return ret;
++	}
++
++	tt = NULL;
++	ret = nouveau_gpuobj_gart_dma_new(chan, 0,
++						  dev_priv->gart_info.aper_size,
++						  NV_DMA_ACCESS_RW, &tt, NULL);
++	if (ret) {
++		NV_ERROR(dev, "Error creating GART ctxdma: %d\n", ret);
++		return ret;
++	}
++
++	ret = nouveau_gpuobj_ref_add(dev, chan, NvDmaGART, tt, NULL);
++	if (ret) {
++		NV_ERROR(dev, "Error referencing GART ctxdma: %d\n", ret);
++		return ret;
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c b/drivers/gpu/drm/nouveau/nouveau_state.c
+index 6a45913..c9757f2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_state.c
++++ b/drivers/gpu/drm/nouveau/nouveau_state.c
+@@ -321,46 +321,10 @@ static int
+ nouveau_card_init_channel(struct drm_device *dev)
+ {
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+-	struct nouveau_gpuobj *gpuobj;
+-	int ret;
+ 
+-	ret = nouveau_channel_alloc(dev, &dev_priv->channel,
++	return nouveau_channel_alloc(dev, &dev_priv->channel,
+ 				    (struct drm_file *)-2,
+ 				    NvDmaFB, NvDmaTT);
+-	if (ret)
+-		return ret;
+-
+-	gpuobj = NULL;
+-	ret = nouveau_gpuobj_dma_new(dev_priv->channel, NV_CLASS_DMA_IN_MEMORY,
+-				     0, nouveau_mem_fb_amount(dev),
+-				     NV_DMA_ACCESS_RW, NV_DMA_TARGET_VIDMEM,
+-				     &gpuobj);
+-	if (ret)
+-		goto out_err;
+-
+-	ret = nouveau_gpuobj_ref_add(dev, dev_priv->channel, NvDmaVRAM,
+-				     gpuobj, NULL);
+-	if (ret)
+-		goto out_err;
+-
+-	gpuobj = NULL;
+-	ret = nouveau_gpuobj_gart_dma_new(dev_priv->channel, 0,
+-					  dev_priv->gart_info.aper_size,
+-					  NV_DMA_ACCESS_RW, &gpuobj, NULL);
+-	if (ret)
+-		goto out_err;
+-
+-	ret = nouveau_gpuobj_ref_add(dev, dev_priv->channel, NvDmaGART,
+-				     gpuobj, NULL);
+-	if (ret)
+-		goto out_err;
+-
+-	return 0;
+-out_err:
+-	nouveau_gpuobj_del(dev, &gpuobj);
+-	nouveau_channel_free(dev_priv->channel);
+-	dev_priv->channel = NULL;
+-	return ret;
+ }
+ 
+ int
+diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+index a9263d9..6e5a4ff 100644
+--- a/drivers/gpu/drm/nouveau/nv50_display.c
++++ b/drivers/gpu/drm/nouveau/nv50_display.c
+@@ -127,7 +127,7 @@ nv50_evo_channel_new(struct drm_device *dev, struct nouveau_channel **pchan)
+ 
+ 	if (dev_priv->chipset != 0x50) {
+ 		ret = nv50_evo_dmaobj_new(chan, 0x3d, NvEvoFB16, 0x70, 0x19,
+-					  0, 0xffffffff);
++					  0, dev_priv->fb_available_size);
+ 		if (ret) {
+ 			nv50_evo_channel_del(pchan);
+ 			return ret;
+@@ -135,7 +135,7 @@ nv50_evo_channel_new(struct drm_device *dev, struct nouveau_channel **pchan)
+ 
+ 
+ 		ret = nv50_evo_dmaobj_new(chan, 0x3d, NvEvoFB32, 0x7a, 0x19,
+-					  0, 0xffffffff);
++					  0, dev_priv->fb_available_size);
+ 		if (ret) {
+ 			nv50_evo_channel_del(pchan);
+ 			return ret;
+@@ -143,7 +143,7 @@ nv50_evo_channel_new(struct drm_device *dev, struct nouveau_channel **pchan)
+ 	}
+ 
+ 	ret = nv50_evo_dmaobj_new(chan, 0x3d, NvEvoVRAM, 0, 0x19,
+-				  0, nouveau_mem_fb_amount(dev));
++				  0, dev_priv->fb_available_size);
+ 	if (ret) {
+ 		nv50_evo_channel_del(pchan);
+ 		return ret;
+diff --git a/drivers/gpu/drm/nouveau/nv50_instmem.c b/drivers/gpu/drm/nouveau/nv50_instmem.c
+index 94400f7..9667276 100644
+--- a/drivers/gpu/drm/nouveau/nv50_instmem.c
++++ b/drivers/gpu/drm/nouveau/nv50_instmem.c
+@@ -101,7 +101,9 @@ nv50_instmem_init(struct drm_device *dev)
+ 	dev_priv->vm_gart_size = NV50_VM_BLOCK;
+ 
+ 	dev_priv->vm_vram_base = dev_priv->vm_gart_base + dev_priv->vm_gart_size;
+-	dev_priv->vm_vram_size = nouveau_mem_fb_amount(dev);
++	/* fb_available_size is not yet set. */
++	dev_priv->vm_vram_size = nouveau_mem_fb_amount(dev) -
++						dev_priv->ramin_size;
+ 	if (dev_priv->vm_vram_size > NV50_VM_MAX_VRAM)
+ 		dev_priv->vm_vram_size = NV50_VM_MAX_VRAM;
+ 	dev_priv->vm_vram_size = roundup(dev_priv->vm_vram_size, NV50_VM_BLOCK);
+-- 
+1.6.5.4
