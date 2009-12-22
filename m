@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23223] Regression: Nvidia Geforce 7300 (NV4B) fails
-	to suspend
-Date: Tue, 22 Dec 2009 09:03:36 -0800 (PST)
-Message-ID: <20091222170336.D3B0C1300A5@annarchy.freedesktop.org>
-References: <bug-23223-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25762] New: Quadro NVS 140M doesn't wake up anymore
+Date: Tue, 22 Dec 2009 12:21:32 -0800 (PST)
+Message-ID: <bug-25762-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +18,43 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=23223
+http://bugs.freedesktop.org/show_bug.cgi?id=25762
+
+           Summary: Quadro NVS 140M doesn't wake up anymore
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Hi,
 
+My laptop (featuring a Quadro NVS 140M) doesn't wake up after a suspend to ram.
+This used to work two months ago but hasn't been working for the last month.
 
+Today, I decided to track the problem a bit and this is what I got when
+resuming :
 
---- Comment #6 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-22 09:03:36 PST ---
-Nope, still does not work. Same effect as initial report, the thing hangs on
-the exact same sentence. Any data needed?
+[drm] nouveau 0000:01:00.0: PFIFO_INTR 0x00000010 - Ch 0
+[drm] nouveau 0000:01:00.0: PFIFO_INTR 0x00000010 - Ch 0
+[drm] nouveau 0000:01:00.0: PFIFO_INTR 0x00000010 - Ch 0
+[drm] nouveau 0000:01:00.0: PFIFO_INTR 0x00000010 - Ch 0
+....
+My dmesg is full of this message and then shows
+....
+[drm] nouveau 0000:01:00.0: PFIFO still angry after 101 spins, halt
+
+This happens with drm-next or with a stock kernel 2.6.32 with drm from
+http://people.freedesktop.org/~pq/nouveau-drm/master.tar.gz.
+
+Do you guys have any idea on what's going on ?
 
 
 -- 
