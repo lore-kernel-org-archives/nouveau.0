@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25777] Blank Screen on Gt230M
-Date: Wed, 23 Dec 2009 08:49:26 -0800 (PST)
-Message-ID: <20091223164926.51EF91300A6@annarchy.freedesktop.org>
+Date: Wed, 23 Dec 2009 09:05:55 -0800 (PST)
+Message-ID: <20091223170555.1288C1300B3@annarchy.freedesktop.org>
 References: <bug-25777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25777
 
 
 
---- Comment #4 from Patrick Schwalm <patrick.schwalm-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2009-12-23 08:49:25 PST ---
-Created an attachment (id=32265)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32265)
-Kernel log
+--- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-23 09:05:54 PST ---
+The problem is known.  For whatever reason the manufacturer has decided to not
+provide any direct way to access the display's EDID and we need to ask the
+SBIOS to retrieve it for us.
 
-Thx for your attention, heres (little shortened) kernel.log
+Work to correct this is being done at
+https://bugzilla.redhat.com/show_bug.cgi?id=536923.  Once fixes have been
+confirmed, the patches will get upstreamed.
 
 
 -- 
