@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25677] Rotation is broken on 2009-12-15 build
-Date: Wed, 23 Dec 2009 10:05:38 -0800 (PST)
-Message-ID: <20091223180538.8EBEE1300B3@annarchy.freedesktop.org>
-References: <bug-25677-8800@http.bugs.freedesktop.org/>
+From: Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [TEST REQUEST] NV50/NV8x/NV9x ctxprog and ctxvals
+	generator
+Date: Wed, 23 Dec 2009 21:30:26 +0100
+Message-ID: <91752840912231230q1856c53bs8d607052eff06438@mail.gmail.com>
+References: <200912220531.14405.koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25677-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <200912220531.14405.koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,27 +18,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-2?Q?Marcin_Ko=B6cielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25677
-
-
-Philipp Woelfel <woelfel-hi6Y0CQ0nG0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |woelfel-hi6Y0CQ0nG0@public.gmane.org
-
-
-
-
---- Comment #2 from Philipp Woelfel <woelfel-hi6Y0CQ0nG0@public.gmane.org>  2009-12-23 10:05:38 PST ---
-I get exactly the same error with the current builds from that repository. How
-did you fix it?
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+MjAwOS8xMi8yMiBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29yaWFraW5AMHgwNC5uZXQ+Ogo+IFNv
+LCBJIHdyb3RlIGEgZ2VuZXJhdG9yIGZvciBjdHhwcm9ncyBvbiBOVjUwLCBOVjg0LCBOVjg2LCBO
+VjkyLCBOVjk0LCBOVjk2LAo+IE5WOTguIEF0bSBpdCdzIG9ubHkgdGVzdGVkIHdpdGggTlY4NiBh
+bmQgSSdkIGxpa2UgdG8gc2VlIGlmIGl0IHdvcmtzIGZvciBhbGwKPiB0aGUgb3RoZXIgY2FyZHMs
+IGVzcGVjaWFsbHkgTlY1MC4gTlZBeCBzdXBwb3J0IGlzIHN0aWxsIG1pc3NpbmcgZHVlIHRvIHNv
+bWUKPiBkaWZmZXJlbmNlcywgYnV0IHNob3VsZCBiZSBjb21pbmcgc29vbi4gQWRkcmVzcyBpcwo+
+IGh0dHA6Ly8weDA0Lm5ldC9+bXdrL2dlbi5kaWZmICwgcGxlYXNlIHRlc3QgaXQgd2l0aCBhbGwg
+bWVudGlvbmVkIGNhcmRzLCBhbmQKPiBpbnZvbHZlIGFzIG11Y2ggZ2FsbGl1bSBhcyBwb3NzaWJs
+ZS4gQW55dGhpbmcgdGhhdCB3b3JrcyB3aXRoIG52aWRpYSBjdHhwcm9ncywKPiBidXQgbm90IHdp
+dGggdGhlIGdlbmVyYXRvciBjb3VudHMgYXMgYSBidWcuIFJlcG9ydCBiYWNrIHRvIG15IG1haWwg
+YWRkcmVzcywgb3IKPiB0byBtd2sgb24gSVJDLgo+CgpUZXN0ZWQgb24gbnY4NCAoRzg0IFtHZUZv
+cmNlIDg2MDBNIEdUXSkuIE5vIG9idmlvdXMgcmVncmVzc2lvbnMuCkFsbCBteSBnYW1lcyBzdGls
+bCB3b3JrIGZpbmUgd2l0aCBnYWxsaXVtLiBzdXNwZW5kL3Jlc3VtaW5nIHdoaWxlCmdhbGxpdW0g
+aXMgcnVubmluZyBkb2VzIG5vdCBzZWVtIHdvcnNlIHRoYW4gYmVmb3JlIChJIGFscmVhZHkgaGF2
+ZQptYW55IHN1c3BlbmQvcmVzdW1pbmcgcHJvYmxlbXMgd2l0aCBwcm9wcmlldGFyeSBjdHhwcm9n
+ICwgd2l0aCBvcgp3aXRob3V0IDNkIHJ1bm5pbmcpLgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
