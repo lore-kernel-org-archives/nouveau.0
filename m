@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25762] New: Quadro NVS 140M doesn't wake up anymore
-Date: Tue, 22 Dec 2009 12:21:32 -0800 (PST)
-Message-ID: <bug-25762-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25777] New: Blank Screen on Gt230M
+Date: Wed, 23 Dec 2009 03:53:20 -0800 (PST)
+Message-ID: <bug-25777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,43 +18,32 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25762
+http://bugs.freedesktop.org/show_bug.cgi?id=25777
 
-           Summary: Quadro NVS 140M doesn't wake up anymore
+           Summary: Blank Screen on Gt230M
            Product: xorg
            Version: git
-          Platform: x86 (IA32)
+          Platform: x86-64 (AMD64)
         OS/Version: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org
+        ReportedBy: patrick.schwalm-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Hi,
+Hi there,
 
-My laptop (featuring a Quadro NVS 140M) doesn't wake up after a suspend to ram.
-This used to work two months ago but hasn't been working for the last month.
+i am just getting a blank screen with gt230m graphics on a sony vaio vpccw1s1e
+Notebook.
 
-Today, I decided to track the problem a bit and this is what I got when
-resuming :
+Same bug is on nvidia, related to wrong detection of EDID...
 
-[drm] nouveau 0000:01:00.0: PFIFO_INTR 0x00000010 - Ch 0
-[drm] nouveau 0000:01:00.0: PFIFO_INTR 0x00000010 - Ch 0
-[drm] nouveau 0000:01:00.0: PFIFO_INTR 0x00000010 - Ch 0
-[drm] nouveau 0000:01:00.0: PFIFO_INTR 0x00000010 - Ch 0
-....
-My dmesg is full of this message and then shows
-....
-[drm] nouveau 0000:01:00.0: PFIFO still angry after 101 spins, halt
+heres the related forums post on the nvidia pages:
 
-This happens with drm-next or with a stock kernel 2.6.32 with drm from
-http://people.freedesktop.org/~pq/nouveau-drm/master.tar.gz.
-
-Do you guys have any idea on what's going on ?
+http://www.nvnews.net/vbulletin/showthread.php?p=2118873
 
 
 -- 
