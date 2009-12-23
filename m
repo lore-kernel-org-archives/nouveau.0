@@ -1,12 +1,14 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] kms: Remove the one-off offset of connector names
-	compared to the kernel.
-Date: Wed, 23 Dec 2009 21:55:29 +0100
-Message-ID: <1261601729-12539-1-git-send-email-madman2003@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23373] X goes to 100% cpu on start with GeForce 9400
+ (0x086a, C79)
+Date: Wed, 23 Dec 2009 13:30:50 -0800 (PST)
+Message-ID: <20091223213050.1FF071300B2@annarchy.freedesktop.org>
+References: <bug-23373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-23373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,26 +21,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-- Seeing DVI-I-0 in xrandr and DVI-I-1 in the kernel logs can be a source of
-confusion.
+http://bugs.freedesktop.org/show_bug.cgi?id=23373
 
-Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- src/drmmode_display.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/src/drmmode_display.c b/src/drmmode_display.c
-index 759cdb8..e37e7c1 100644
---- a/src/drmmode_display.c
-+++ b/src/drmmode_display.c
-@@ -1019,7 +1019,7 @@ drmmode_output_init(ScrnInfoPtr pScrn, drmmode_ptr drmmode, int num)
- 	}
- 
- 	snprintf(name, 32, "%s-%d", output_names[koutput->connector_type],
--		 koutput->connector_type_id - 1);
-+		 koutput->connector_type_id);
- 
- 	output = xf86OutputCreate (pScrn, &drmmode_output_funcs, name);
- 	if (!output) {
+Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|ASSIGNED                    |RESOLVED
+         Resolution|                            |FIXED
+
+
+
+
+--- Comment #5 from Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org>  2009-12-23 13:30:49 PST ---
+Seems to be working with current git.
+
+
 -- 
-1.6.5.4
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
