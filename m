@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25777] Blank Screen on Gt230M
-Date: Wed, 23 Dec 2009 05:10:08 -0800 (PST)
-Message-ID: <20091223131008.E9A3D130092@annarchy.freedesktop.org>
+Date: Wed, 23 Dec 2009 05:58:46 -0800 (PST)
+Message-ID: <20091223135847.05D0A130062@annarchy.freedesktop.org>
 References: <bug-25777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25777
 
 
 
---- Comment #2 from Patrick Schwalm <patrick.schwalm-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2009-12-23 05:10:08 PST ---
-I really would like, but its not that easy with a copmlete blank screen...
-
-Any recommendations how I could get one?
-
-I can't get even to a tty, screen gets blank before...
+--- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-23 05:58:46 PST ---
+ssh if it lives long enough, otherwise netconsole.
 
 
 -- 
