@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25786] KMS turns off monitor on Asus A7N266-VM
  motherboard with onboard NVCrush11 [GeForce2 MX Integrated Graphics]
-Date: Wed, 23 Dec 2009 18:38:55 -0800 (PST)
-Message-ID: <20091224023855.CEE7713009F@annarchy.freedesktop.org>
+Date: Wed, 23 Dec 2009 18:50:45 -0800 (PST)
+Message-ID: <20091224025045.2453D13009F@annarchy.freedesktop.org>
 References: <bug-25786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,15 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25786
 
 
+Rajeev V. Pillai <rajeevvp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         OS/Version|All                         |Linux (All)
+           Platform|Other                       |x86 (IA32)
 
 
-
---- Comment #4 from Rajeev V. Pillai <rajeevvp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-23 18:38:55 PST ---
-Created an attachment (id=32272)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32272)
-/proc/mtrr details
-
-MTRR details
 
 
 -- 
