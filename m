@@ -1,15 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nouveau: when nouveau_bo_map fails you expect
-	it to not be mapped
-Date: Fri, 25 Dec 2009 15:51:04 +0100
-Message-ID: <6d4bc9fc0912250651k27ba3630h9279a96f8185e628@mail.gmail.com>
-References: <1261679626-24552-1-git-send-email-madman2003@gmail.com>
-	<21d7e9970912250243t72014a51g3d92469bfe1eb3de@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25223] LVDS detected, but disabled on GeForce Go 7300
+Date: Fri, 25 Dec 2009 07:00:20 -0800 (PST)
+Message-ID: <20091225150020.D140E1300A5@annarchy.freedesktop.org>
+References: <bug-25223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <21d7e9970912250243t72014a51g3d92469bfe1eb3de-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-25223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,22 +17,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Dec 25, 2009 at 11:43 AM, Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Fri, Dec 25, 2009 at 4:33 AM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> - This includes unmapping on failure to sync for cpu access.
->> - Double mapping will also be punished, so that people fix their code.
->
-> Not sure that'll work too well for sw fallbacks, you can same src/dst
-> pixmap or same
-> texture/colorbuffer and the mapping code should just work.
+http://bugs.freedesktop.org/show_bug.cgi?id=25223
 
-At least exa these days handles this properly (eg no double mapping),
-i don't know about the gallium drivers.
 
->
-> Dave.
->
+Philipp Kerling <k.philipp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |k.philipp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+
+
+
+--- Comment #9 from Philipp Kerling <k.philipp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-25 07:00:20 PST ---
+(In reply to comment #8)
+> Any update?  This should be fixed in latest git too..
+I have a similar, if not the same problem. Your second patch already seems to
+be in git, and I also tried applying your first patch, but nothing changes. I
+have tried with both modeset=0 and modeset=1, Xorg.0.log and dmesg attached
+respectively.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
