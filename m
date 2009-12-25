@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25223] LVDS detected, but disabled on GeForce Go 7300
-Date: Fri, 25 Dec 2009 07:00:20 -0800 (PST)
-Message-ID: <20091225150020.D140E1300A5@annarchy.freedesktop.org>
+Date: Fri, 25 Dec 2009 07:08:47 -0800 (PST)
+Message-ID: <20091225150847.5F5521300A5@annarchy.freedesktop.org>
 References: <bug-25223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,22 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25223
 
 
-Philipp Kerling <k.philipp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |k.philipp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
-
---- Comment #9 from Philipp Kerling <k.philipp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-25 07:00:20 PST ---
-(In reply to comment #8)
-> Any update?  This should be fixed in latest git too..
-I have a similar, if not the same problem. Your second patch already seems to
-be in git, and I also tried applying your first patch, but nothing changes. I
-have tried with both modeset=0 and modeset=1, Xorg.0.log and dmesg attached
-respectively.
+--- Comment #10 from Philipp Kerling <k.philipp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-25 07:08:46 PST ---
+Created an attachment (id=32292)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32292)
+log with modeset=0
 
 
 -- 
