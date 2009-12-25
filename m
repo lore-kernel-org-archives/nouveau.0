@@ -1,7 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [DDX PATCH 2/5] update after nouveau_class.h update
-Date: Fri, 25 Dec 2009 22:38:09 +0100
-Message-ID: <20091225213809.GB15610@joi.lan>
+Subject: [DDX PATCH 3/5] nv50/exa: add support for more color
+	formats
+Date: Fri, 25 Dec 2009 22:38:50 +0100
+Message-ID: <20091225213850.GC15610@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -21,85 +22,245 @@ List-Id: nouveau.vger.kernel.org
 
 
 ---
- src/nv50_accel.c |   18 +++++++++---------
- src/nv50_exa.c   |    2 +-
- src/nv50_xv.c    |    6 +++---
- 3 files changed, 13 insertions(+), 13 deletions(-)
+ src/nv50_exa.c |  155 ++++++++++++++++++++++++++++++++++++--------------------
+ 1 files changed, 100 insertions(+), 55 deletions(-)
 
-diff --git a/src/nv50_accel.c b/src/nv50_accel.c
-index b3b1584..ad290ea 100644
---- a/src/nv50_accel.c
-+++ b/src/nv50_accel.c
-@@ -97,11 +97,11 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
- 	OUT_RING  (chan, 1);
- 	BEGIN_RING(chan, tesla, NV50TCL_DMA_NOTIFY, 1);
- 	OUT_RING  (chan, chan->nullobj->handle);
--	BEGIN_RING(chan, tesla, NV50TCL_DMA_UNK0(0), NV50TCL_DMA_UNK0__SIZE);
--	for (i = 0; i < NV50TCL_DMA_UNK0__SIZE; i++)
-+	BEGIN_RING(chan, tesla, NV50TCL_DMA_ZETA, 11);
-+	for (i = 0; i < 11; i++)
- 		OUT_RING  (chan, pNv->chan->vram->handle);
--	BEGIN_RING(chan, tesla, NV50TCL_DMA_UNK1(0), NV50TCL_DMA_UNK1__SIZE);
--	for (i = 0; i < NV50TCL_DMA_UNK1__SIZE; i++)
-+	BEGIN_RING(chan, tesla, NV50TCL_DMA_COLOR(0), NV50TCL_DMA_COLOR__SIZE);
-+	for (i = 0; i < NV50TCL_DMA_COLOR__SIZE; i++)
- 		OUT_RING  (chan, pNv->chan->vram->handle);
- 	BEGIN_RING(chan, tesla, 0x121c, 1);
- 	OUT_RING  (chan, 1);
-@@ -368,19 +368,19 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
- 	OUT_RING  (chan, 0x08040404);
- 	OUT_RING  (chan, 0x00000008); /* NV50TCL_FP_REG_ALLOC_TEMP */
- 
--	BEGIN_RING(chan, tesla, NV50TCL_SCISSOR_ENABLE, 1);
-+	BEGIN_RING(chan, tesla, NV50TCL_SCISSOR_ENABLE(0), 1);
- 	OUT_RING  (chan, 1);
- 
--	BEGIN_RING(chan, tesla, NV50TCL_VIEWPORT_HORIZ, 2);
-+	BEGIN_RING(chan, tesla, NV50TCL_VIEWPORT_HORIZ(0), 2);
- 	OUT_RING  (chan, 8192 << NV50TCL_VIEWPORT_HORIZ_W_SHIFT);
- 	OUT_RING  (chan, 8192 << NV50TCL_VIEWPORT_VERT_H_SHIFT);
- 	/* NV50TCL_SCISSOR_VERT_T_SHIFT is wrong, because it was deducted with
- 	 * origin lying at the bottom left. This will be changed to _MIN_ and _MAX_
- 	 * later, because it is origin dependent.
- 	 */
--	BEGIN_RING(chan, tesla, NV50TCL_SCISSOR_HORIZ, 2);
--	OUT_RING  (chan, 8192 << NV50TCL_SCISSOR_HORIZ_R_SHIFT);
--	OUT_RING  (chan, 8192 << NV50TCL_SCISSOR_VERT_T_SHIFT);
-+	BEGIN_RING(chan, tesla, NV50TCL_SCISSOR_HORIZ(0), 2);
-+	OUT_RING  (chan, 8192 << NV50TCL_SCISSOR_HORIZ_MAX_SHIFT);
-+	OUT_RING  (chan, 8192 << NV50TCL_SCISSOR_VERT_MAX_SHIFT);
- 	BEGIN_RING(chan, tesla, NV50TCL_SCREEN_SCISSOR_HORIZ, 2);
- 	OUT_RING  (chan, 8192 << NV50TCL_SCREEN_SCISSOR_HORIZ_W_SHIFT);
- 	OUT_RING  (chan, 8192 << NV50TCL_SCREEN_SCISSOR_VERT_H_SHIFT);
 diff --git a/src/nv50_exa.c b/src/nv50_exa.c
-index c7609b3..8839510 100644
+index 8839510..d56c567 100644
 --- a/src/nv50_exa.c
 +++ b/src/nv50_exa.c
-@@ -906,7 +906,7 @@ NV50EXAComposite(PixmapPtr pdpix, int sx, int sy, int mx, int my,
- 	float sX0, sX1, sX2, sY0, sY1, sY2;
+@@ -79,15 +79,16 @@ NV50EXA2DSurfaceFormat(PixmapPtr ppix, uint32_t *fmt)
  
- 	WAIT_RING (chan, 64);
--	BEGIN_RING(chan, tesla, NV50TCL_SCISSOR_HORIZ, 2);
-+	BEGIN_RING(chan, tesla, NV50TCL_SCISSOR_HORIZ(0), 2);
- 	OUT_RING  (chan, (dx + w) << 16 | dx);
- 	OUT_RING  (chan, (dy + h) << 16 | dy);
- 	BEGIN_RING(chan, tesla, NV50TCL_VERTEX_BEGIN, 1);
-diff --git a/src/nv50_xv.c b/src/nv50_xv.c
-index daf1a41..fd339f9 100644
---- a/src/nv50_xv.c
-+++ b/src/nv50_xv.c
-@@ -342,9 +342,9 @@ nv50_xv_image_put(ScrnInfoPtr pScrn,
- 		* origin lying at the bottom left. This will be changed to _MIN_ and _MAX_
- 		* later, because it is origin dependent.
- 		*/
--		BEGIN_RING(chan, tesla, NV50TCL_SCISSOR_HORIZ, 2);
--		OUT_RING  (chan, sx2 << NV50TCL_SCISSOR_HORIZ_R_SHIFT | sx1);
--		OUT_RING  (chan, sy2 << NV50TCL_SCISSOR_VERT_T_SHIFT | sy1 );
-+		BEGIN_RING(chan, tesla, NV50TCL_SCISSOR_HORIZ(0), 2);
-+		OUT_RING  (chan, sx2 << NV50TCL_SCISSOR_HORIZ_MAX_SHIFT | sx1);
-+		OUT_RING  (chan, sy2 << NV50TCL_SCISSOR_VERT_MAX_SHIFT | sy1 );
+ 	switch (ppix->drawable.depth) {
+ 	case 8 : *fmt = NV50_2D_SRC_FORMAT_R8_UNORM; break;
+-	case 15: *fmt = NV50_2D_SRC_FORMAT_X1B5G5R5_UNORM; break;
+-	case 16: *fmt = NV50_2D_SRC_FORMAT_R5G6B5_UNORM; break;
++	case 15:
++	case 16:
++		*fmt = NV50_2D_SRC_FORMAT_R5G6B5_UNORM;
++		break;
+ 	case 24: *fmt = NV50_2D_SRC_FORMAT_X8R8G8B8_UNORM; break;
+ 	case 30: *fmt = NV50_2D_SRC_FORMAT_A2B10G10R10_UNORM; break;
+ 	case 32: *fmt = NV50_2D_SRC_FORMAT_A8R8G8B8_UNORM; break;
+ 	default:
+ 		 NOUVEAU_FALLBACK("Unknown surface format for bpp=%d\n",
+ 				  ppix->drawable.depth);
+-		 return FALSE;
+ 	}
  
- 		BEGIN_RING(chan, tesla, NV50TCL_VERTEX_BEGIN, 1);
- 		OUT_RING  (chan, NV50TCL_VERTEX_BEGIN_TRIANGLES);
+ 	return TRUE;
+@@ -442,12 +443,17 @@ NV50EXACheckRenderTarget(PicturePtr ppict)
+ 				 ppict->pDrawable->height);
+ 
+ 	switch (ppict->format) {
+-	case PICT_FORMAT(32, PICT_TYPE_ABGR, 2, 10, 10, 10):
+-	case PICT_FORMAT(32, PICT_TYPE_ABGR, 0, 10, 10, 10):
+ 	case PICT_a8r8g8b8:
+ 	case PICT_x8r8g8b8:
+ 	case PICT_r5g6b5:
+ 	case PICT_a8:
++	case PICT_x1r5g5b5:
++	case PICT_a1r5g5b5:
++	case PICT_x8b8g8r8:
++	case PICT_a2b10g10r10:
++	case PICT_x2b10g10r10:
++	case PICT_a2r10g10b10:
++	case PICT_x2r10g10b10:
+ 		break;
+ 	default:
+ 		NOUVEAU_FALLBACK("picture format 0x%08x\n", ppict->format);
+@@ -469,14 +475,23 @@ NV50EXARenderTarget(PixmapPtr ppix, PicturePtr ppict)
+ 		NOUVEAU_FALLBACK("pixmap is scanout buffer\n");
+ 
+ 	switch (ppict->format) {
+-	case PICT_FORMAT(32, PICT_TYPE_ABGR, 2, 10, 10, 10):
+-	case PICT_FORMAT(32, PICT_TYPE_ABGR, 0, 10, 10, 10):
+-		format = NV50TCL_RT_FORMAT_A2B10G10R10_UNORM;
+-		break;
+ 	case PICT_a8r8g8b8: format = NV50TCL_RT_FORMAT_A8R8G8B8_UNORM; break;
+ 	case PICT_x8r8g8b8: format = NV50TCL_RT_FORMAT_X8R8G8B8_UNORM; break;
+ 	case PICT_r5g6b5  : format = NV50TCL_RT_FORMAT_R5G6B5_UNORM; break;
+ 	case PICT_a8      : format = NV50TCL_RT_FORMAT_A8_UNORM; break;
++	case PICT_x1r5g5b5:
++	case PICT_a1r5g5b5:
++		format = NV50TCL_RT_FORMAT_A1R5G5B5_UNORM;
++		break;
++	case PICT_x8b8g8r8: format = NV50TCL_RT_FORMAT_X8B8G8R8_UNORM; break;
++	case PICT_a2b10g10r10:
++	case PICT_x2b10g10r10:
++		format = NV50TCL_RT_FORMAT_A2B10G10R10_UNORM;
++		break;
++	case PICT_a2r10g10b10: 
++	case PICT_x2r10g10b10:
++		format = NV50TCL_RT_FORMAT_A2R10G10B10_UNORM;
++		break;
+ 	default:
+ 		NOUVEAU_FALLBACK("invalid picture format\n");
+ 	}
+@@ -510,14 +525,27 @@ NV50EXACheckTexture(PicturePtr ppict, PicturePtr pdpict, int op)
+ 				 ppict->pDrawable->height);
+ 
+ 	switch (ppict->format) {
+-	case PICT_FORMAT(32, PICT_TYPE_ABGR, 2, 10, 10, 10):
+-	case PICT_FORMAT(32, PICT_TYPE_ABGR, 0, 10, 10, 10):
+ 	case PICT_a8r8g8b8:
+ 	case PICT_a8b8g8r8:
+ 	case PICT_x8r8g8b8:
+ 	case PICT_x8b8g8r8:
+ 	case PICT_r5g6b5:
+ 	case PICT_a8:
++	case PICT_x1r5g5b5:
++	case PICT_x1b5g5r5:
++	case PICT_a1r5g5b5:
++	case PICT_a1b5g5r5:
++	case PICT_b5g6r5:
++	case PICT_b8g8r8a8:
++	case PICT_b8g8r8x8:
++	case PICT_a2b10g10r10:
++	case PICT_x2b10g10r10:
++	case PICT_x2r10g10b10:
++	case PICT_a2r10g10b10:
++	case PICT_x4r4g4b4:
++	case PICT_x4b4g4r4:
++	case PICT_a4r4g4b4:
++	case PICT_a4b4g4r4:
+ 		break;
+ 	default:
+ 		NOUVEAU_FALLBACK("picture format 0x%08x\n", ppict->format);
+@@ -544,6 +572,13 @@ NV50EXACheckTexture(PicturePtr ppict, PicturePtr pdpict, int op)
+ 	return TRUE;
+ }
+ 
++#define NV50TIC_0_0_FMT_1_5_5_5                                     0x00000014
++#define NV50TIC_0_0_FMT_4_4_4_4                                     0x00000012
++
++#define _(X1,X2,X3,X4,FMT) (NV50TIC_0_0_TYPER_UNORM | NV50TIC_0_0_TYPEG_UNORM | NV50TIC_0_0_TYPEB_UNORM | NV50TIC_0_0_TYPEA_UNORM | \
++			    NV50TIC_0_0_MAP##X1 | NV50TIC_0_0_MAP##X2 | NV50TIC_0_0_MAP##X3 | NV50TIC_0_0_MAP##X4 | \
++			    NV50TIC_0_0_FMT_##FMT)
++
+ static Bool
+ NV50EXATexture(PixmapPtr ppix, PicturePtr ppict, unsigned unit)
+ {
+@@ -569,66 +604,76 @@ NV50EXATexture(PixmapPtr ppix, PicturePtr ppict, unsigned unit)
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_ADDR, 1);
+ 	OUT_RING  (chan, CB_TIC | ((unit * 8) << NV50TCL_CB_ADDR_ID_SHIFT));
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DATA(0) | 0x40000000, 8);
++
+ 	switch (ppict->format) {
+-	case PICT_FORMAT(32, PICT_TYPE_ABGR, 2, 10, 10, 10):
+-		OUT_RING  (chan, NV50TIC_0_0_MAPA_C3 | NV50TIC_0_0_TYPEA_UNORM |
+-			 NV50TIC_0_0_MAPR_C2 | NV50TIC_0_0_TYPER_UNORM |
+-			 NV50TIC_0_0_MAPG_C1 | NV50TIC_0_0_TYPEB_UNORM |
+-			 NV50TIC_0_0_MAPB_C0 | NV50TIC_0_0_TYPEG_UNORM |
+-			 NV50TIC_0_0_FMT_2_10_10_10);
+-		break;
+-	case PICT_FORMAT(32, PICT_TYPE_ABGR, 0, 10, 10, 10):
+-		OUT_RING  (chan, NV50TIC_0_0_MAPA_ONE | NV50TIC_0_0_TYPEA_UNORM |
+-			 NV50TIC_0_0_MAPR_C2 | NV50TIC_0_0_TYPER_UNORM |
+-			 NV50TIC_0_0_MAPG_C1 | NV50TIC_0_0_TYPEB_UNORM |
+-			 NV50TIC_0_0_MAPB_C0 | NV50TIC_0_0_TYPEG_UNORM |
+-			 NV50TIC_0_0_FMT_2_10_10_10);
+-		break;
+ 	case PICT_a8r8g8b8:
+-		OUT_RING  (chan, NV50TIC_0_0_MAPA_C3 | NV50TIC_0_0_TYPEA_UNORM |
+-			 NV50TIC_0_0_MAPR_C0 | NV50TIC_0_0_TYPER_UNORM |
+-			 NV50TIC_0_0_MAPG_C1 | NV50TIC_0_0_TYPEB_UNORM |
+-			 NV50TIC_0_0_MAPB_C2 | NV50TIC_0_0_TYPEG_UNORM |
+-			 NV50TIC_0_0_FMT_8_8_8_8);
++		OUT_RING(chan, _(R_C0, G_C1, B_C2, A_C3, 8_8_8_8));
+ 		break;
+ 	case PICT_a8b8g8r8:
+-		OUT_RING  (chan, NV50TIC_0_0_MAPA_C3 | NV50TIC_0_0_TYPEA_UNORM |
+-			 NV50TIC_0_0_MAPR_C2 | NV50TIC_0_0_TYPER_UNORM |
+-			 NV50TIC_0_0_MAPG_C1 | NV50TIC_0_0_TYPEB_UNORM |
+-			 NV50TIC_0_0_MAPB_C0 | NV50TIC_0_0_TYPEG_UNORM |
+-			 NV50TIC_0_0_FMT_8_8_8_8);
++		OUT_RING(chan, _(B_C0, G_C1, R_C2, A_C3, 8_8_8_8));
+ 		break;
+ 	case PICT_x8r8g8b8:
+-		OUT_RING  (chan, NV50TIC_0_0_MAPA_ONE | NV50TIC_0_0_TYPEA_UNORM |
+-			 NV50TIC_0_0_MAPR_C0 | NV50TIC_0_0_TYPER_UNORM |
+-			 NV50TIC_0_0_MAPG_C1 | NV50TIC_0_0_TYPEB_UNORM |
+-			 NV50TIC_0_0_MAPB_C2 | NV50TIC_0_0_TYPEG_UNORM |
+-			 NV50TIC_0_0_FMT_8_8_8_8);
++		OUT_RING(chan, _(R_C0, G_C1, B_C2, A_ONE, 8_8_8_8));
+ 		break;
+ 	case PICT_x8b8g8r8:
+-		OUT_RING  (chan, NV50TIC_0_0_MAPA_ONE | NV50TIC_0_0_TYPEA_UNORM |
+-			 NV50TIC_0_0_MAPR_C2 | NV50TIC_0_0_TYPER_UNORM |
+-			 NV50TIC_0_0_MAPG_C1 | NV50TIC_0_0_TYPEB_UNORM |
+-			 NV50TIC_0_0_MAPB_C0 | NV50TIC_0_0_TYPEG_UNORM |
+-			 NV50TIC_0_0_FMT_8_8_8_8);
++		OUT_RING(chan, _(B_C0, G_C1, R_C2, A_ONE, 8_8_8_8));
+ 		break;
+ 	case PICT_r5g6b5:
+-		OUT_RING  (chan, NV50TIC_0_0_MAPA_ONE | NV50TIC_0_0_TYPEA_UNORM |
+-			 NV50TIC_0_0_MAPR_C0 | NV50TIC_0_0_TYPER_UNORM |
+-			 NV50TIC_0_0_MAPG_C1 | NV50TIC_0_0_TYPEB_UNORM |
+-			 NV50TIC_0_0_MAPB_C2 | NV50TIC_0_0_TYPEG_UNORM |
+-			 NV50TIC_0_0_FMT_5_6_5);
++		OUT_RING(chan, _(R_C0, G_C1, B_C2, A_ONE, 5_6_5));
+ 		break;
+ 	case PICT_a8:
+-		OUT_RING  (chan, NV50TIC_0_0_MAPA_C0 | NV50TIC_0_0_TYPEA_UNORM |
+-			 NV50TIC_0_0_MAPR_ZERO | NV50TIC_0_0_TYPER_UNORM |
+-			 NV50TIC_0_0_MAPG_ZERO | NV50TIC_0_0_TYPEB_UNORM |
+-			 NV50TIC_0_0_MAPB_ZERO | NV50TIC_0_0_TYPEG_UNORM |
+-			 NV50TIC_0_0_FMT_8);
++		OUT_RING(chan, _(A_C0, R_ZERO, G_ZERO, B_ZERO, 8));
++		break;
++	case PICT_x1r5g5b5:
++		OUT_RING(chan, _(R_C0, G_C1, B_C2, A_ONE, 1_5_5_5));
++		break;
++	case PICT_x1b5g5r5:
++		OUT_RING(chan, _(B_C0, G_C1, R_C2, A_ONE, 1_5_5_5));
++		break;
++	case PICT_a1r5g5b5:
++		OUT_RING(chan, _(R_C0, G_C1, B_C2, A_C3, 1_5_5_5));
++		break;
++	case PICT_a1b5g5r5:
++		OUT_RING(chan, _(B_C0, G_C1, R_C2, A_C3, 1_5_5_5));
++		break;
++	case PICT_b5g6r5:
++		OUT_RING(chan, _(B_C0, G_C1, R_C2, A_ONE, 5_6_5));
++		break;
++	case PICT_b8g8r8x8:
++		OUT_RING(chan, _(A_ONE, B_C1, G_C2, R_C3, 8_8_8_8));
++		break;
++	case PICT_b8g8r8a8:
++		OUT_RING(chan, _(A_C0, B_C1, G_C2, R_C3, 8_8_8_8));
++		break;
++	case PICT_a2b10g10r10:
++		OUT_RING(chan, _(B_C0, G_C1, R_C2, A_C3, 2_10_10_10));
++		break;
++	case PICT_x2b10g10r10:
++		OUT_RING(chan, _(B_C0, G_C1, R_C2, A_ONE, 2_10_10_10));
++		break;
++	case PICT_x2r10g10b10:
++		OUT_RING(chan, _(R_C0, G_C1, B_C2, A_ONE, 2_10_10_10));
++		break;
++	case PICT_a2r10g10b10:
++		OUT_RING(chan, _(R_C0, G_C1, B_C2, A_C3, 2_10_10_10));
++		break;
++	case PICT_x4r4g4b4:
++		OUT_RING(chan, _(R_C0, G_C1, B_C2, A_ONE, 4_4_4_4));
++		break;
++	case PICT_x4b4g4r4:
++		OUT_RING(chan, _(B_C0, G_C1, R_C2, A_ONE, 4_4_4_4));
++		break;
++	case PICT_a4r4g4b4:
++		OUT_RING(chan, _(R_C0, G_C1, B_C2, A_C3, 4_4_4_4));
++		break;
++	case PICT_a4b4g4r4:
++		OUT_RING(chan, _(B_C0, G_C1, R_C2, A_C3, 4_4_4_4));
+ 		break;
+ 	default:
+ 		NOUVEAU_FALLBACK("invalid picture format, this SHOULD NOT HAPPEN. Expect trouble.\n");
+ 	}
++#undef _
++
+ 	if (OUT_RELOCl(chan, bo, delta, NOUVEAU_BO_VRAM | NOUVEAU_BO_RD))
+ 		return FALSE;
+ 	OUT_RING  (chan, 0xd0005000 | (bo->tile_mode << 22));
 -- 
 1.6.6.rc3
