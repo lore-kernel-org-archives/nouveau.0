@@ -1,14 +1,15 @@
-From: okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nv50: synchronize user channel after
-	buffer object move on kernel channel
-Date: Fri, 25 Dec 2009 14:07:16 +0100
-Message-ID: <c2673ca60912250507r2184c631he8c1c67c58481573@mail.gmail.com>
-References: <1261743737-3794-1-git-send-email-madman2003@gmail.com>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nouveau: when nouveau_bo_map fails you expect
+	it to not be mapped
+Date: Fri, 25 Dec 2009 15:51:04 +0100
+Message-ID: <6d4bc9fc0912250651k27ba3630h9279a96f8185e628@mail.gmail.com>
+References: <1261679626-24552-1-git-send-email-madman2003@gmail.com>
+	<21d7e9970912250243t72014a51g3d92469bfe1eb3de@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1261743737-3794-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <21d7e9970912250243t72014a51g3d92469bfe1eb3de-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,7 +19,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Work well under nv96, pictures are fine, no more artefacts.
+On Fri, Dec 25, 2009 at 11:43 AM, Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Fri, Dec 25, 2009 at 4:33 AM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> - This includes unmapping on failure to sync for cpu access.
+>> - Double mapping will also be punished, so that people fix their code.
+>
+> Not sure that'll work too well for sw fallbacks, you can same src/dst
+> pixmap or same
+> texture/colorbuffer and the mapping code should just work.
+
+At least exa these days handles this properly (eg no double mapping),
+i don't know about the gallium drivers.
+
+>
+> Dave.
+>
