@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25223] LVDS detected, but disabled on GeForce Go 7300
-Date: Fri, 25 Dec 2009 07:08:47 -0800 (PST)
-Message-ID: <20091225150847.5F5521300A5@annarchy.freedesktop.org>
+Date: Fri, 25 Dec 2009 07:09:36 -0800 (PST)
+Message-ID: <20091225150936.61AE41300A5@annarchy.freedesktop.org>
 References: <bug-25223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25223
 
 
 
---- Comment #10 from Philipp Kerling <k.philipp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-25 07:08:46 PST ---
-Created an attachment (id=32292)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32292)
-log with modeset=0
+--- Comment #11 from Philipp Kerling <k.philipp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-25 07:09:35 PST ---
+Created an attachment (id=32293)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32293)
+log with modeset=1
 
 
 -- 
