@@ -1,14 +1,14 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] drm/nv50: synchronize user channel after
-	buffer object move on kernel channel
-Date: Sun, 27 Dec 2009 12:41:04 +0100
-Message-ID: <1261914064-3535-2-git-send-email-madman2003@gmail.com>
-References: <1261914064-3535-1-git-send-email-madman2003@gmail.com>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: [PATCH 3/3] nouveau: Drop some meaningless _NV and _ARB
+	suffixes from nouveau_class.h.
+Date: Sat, 26 Dec 2009 15:49:27 +0100
+Message-ID: <1261838967-26352-3-git-send-email-currojerez@riseup.net>
+References: <1261838967-26352-1-git-send-email-currojerez@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1261914064-3535-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1261838967-26352-1-git-send-email-currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,330 +21,2871 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-- This is not yet a generic implementation that will work everywhere, but it's
-a start.
-- This will fix the corruption surrounding pixmap/texture bo moves on nv50.
-
-Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c      |    7 ++
- drivers/gpu/drm/nouveau/nouveau_channel.c |    9 ++-
- drivers/gpu/drm/nouveau/nouveau_dma.c     |   26 +++++++
- drivers/gpu/drm/nouveau/nouveau_dma.h     |   11 ++-
- drivers/gpu/drm/nouveau/nouveau_drv.h     |   11 +++
- drivers/gpu/drm/nouveau/nouveau_fence.c   |  103 +++++++++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_object.c  |    2 +-
- drivers/gpu/drm/nouveau/nv50_graph.c      |   16 +++++
- 8 files changed, 179 insertions(+), 6 deletions(-)
+ nouveau/nouveau_class.h | 2280 +++++++++++++++++++++++-----------------------
+ 1 files changed, 1140 insertions(+), 1140 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 9fc4bd6..66f83a1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -466,6 +466,13 @@ nouveau_bo_move_accel_cleanup(struct nouveau_channel *chan,
- 	if (ret)
- 		return ret;
- 
-+	/* Make the user channel wait for the kernel channel to be done. */
-+	if (nvbo->channel && chan != nvbo->channel) {
-+		ret = nouveau_fence_sync(nvbo->channel, fence);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	ret = ttm_bo_move_accel_cleanup(&nvbo->bo, fence, NULL,
- 					evict, no_wait, new_mem);
- 	nouveau_fence_unref((void *)&fence);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_channel.c b/drivers/gpu/drm/nouveau/nouveau_channel.c
-index 9aaa972..c1ac34b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_channel.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_channel.c
-@@ -414,7 +414,14 @@ nouveau_ioctl_fifo_alloc(struct drm_device *dev, void *data,
- 		init->subchan[0].grclass = 0x0039;
- 	else
- 		init->subchan[0].grclass = 0x5039;
--	init->nr_subchan = 1;
-+	if (dev_priv->card_type >= NV_50) {
-+		init->subchan[1].handle = NvSw;
-+		init->subchan[1].grclass = NV50_NVSW;
-+	}
-+	if (dev_priv->card_type < NV_50)
-+		init->nr_subchan = 1;
-+	else
-+		init->nr_subchan = 2;
- 
- 	/* Named memory object area */
- 	ret = drm_gem_handle_create(file_priv, chan->notifier_bo->gem,
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.c b/drivers/gpu/drm/nouveau/nouveau_dma.c
-index 7035536..7e66cc8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dma.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dma.c
-@@ -52,6 +52,23 @@ nouveau_dma_init(struct nouveau_channel *chan)
- 	if (ret)
- 		return ret;
- 
-+	/* Allocate what we need for (simple) cross channel synchronisation. */
-+	if (dev_priv->card_type >= NV_50) {
-+		struct nouveau_gpuobj *nvsw = NULL;
-+
-+		ret = nouveau_gpuobj_sw_new(chan, NV50_NVSW, &nvsw);
-+		if (ret)
-+			return ret;
-+
-+		ret = nouveau_gpuobj_ref_add(dev, chan, NvSw, nvsw, NULL);
-+		if (ret)
-+			return ret;
-+
-+		ret = nouveau_notifier_alloc(chan, NvNotify1, 32, &chan->sync_ntfy);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	/* Map push buffer */
- 	ret = nouveau_bo_map(chan->pushbuf_bo);
- 	if (ret)
-@@ -87,6 +104,15 @@ nouveau_dma_init(struct nouveau_channel *chan)
- 	BEGIN_RING(chan, NvSubM2MF, NV_MEMORY_TO_MEMORY_FORMAT_DMA_NOTIFY, 1);
- 	OUT_RING(chan, NvNotify0);
- 
-+	/* Bind NvSw to channel. */
-+	if (dev_priv->card_type >= NV_50) {
-+		ret = RING_SPACE(chan, 2);
-+		if (ret)
-+			return ret;
-+		BEGIN_RING(chan, NvSubSw, 0, 1);
-+		OUT_RING(chan, NvSw);
-+	}
-+
- 	/* Sit back and pray the channel works.. */
- 	FIRE_RING(chan);
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.h b/drivers/gpu/drm/nouveau/nouveau_dma.h
-index 04e85d8..3c74902 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dma.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_dma.h
-@@ -46,10 +46,11 @@
- /* Hardcoded object assignments to subchannels (subchannel id). */
- enum {
- 	NvSubM2MF	= 0,
--	NvSub2D		= 1,
--	NvSubCtxSurf2D  = 1,
--	NvSubGdiRect    = 2,
--	NvSubImageBlit  = 3
-+	NvSubSw            = 1,
-+	NvSub2D		= 2,
-+	NvSubCtxSurf2D  = 2,
-+	NvSubGdiRect    = 3,
-+	NvSubImageBlit  = 4
- };
- 
- /* Object handles. */
-@@ -67,6 +68,8 @@ enum {
- 	NvClipRect	= 0x8000000b,
- 	NvGdiRect	= 0x8000000c,
- 	NvImageBlit	= 0x8000000d,
-+	NvSw		= 0x8000000e,
-+	NvNotify1		= 0x8000000f,
- 
- 	/* G80+ display objects */
- 	NvEvoVRAM	= 0x01000000,
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 7da88a9..75b2454 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -228,6 +228,7 @@ struct nouveau_channel {
- 
- 	/* GPU object info for stuff used in-kernel (mm_enabled) */
- 	uint32_t m2mf_ntfy;
-+	uint32_t sync_ntfy;
- 	uint32_t vram_handle;
- 	uint32_t gart_handle;
- 	bool accel_done;
-@@ -788,6 +789,8 @@ extern int nouveau_gpuobj_gart_dma_new(struct nouveau_channel *,
- 				       uint32_t *o_ret);
- extern int nouveau_gpuobj_gr_new(struct nouveau_channel *, int class,
- 				 struct nouveau_gpuobj **);
-+extern int nouveau_gpuobj_sw_new(struct nouveau_channel *, int class,
-+				 struct nouveau_gpuobj **);
- extern int nouveau_ioctl_grobj_alloc(struct drm_device *, void *data,
- 				     struct drm_file *);
- extern int nouveau_ioctl_gpuobj_free(struct drm_device *, void *data,
-@@ -1132,6 +1135,12 @@ extern int nouveau_fence_flush(void *obj, void *arg);
- extern void nouveau_fence_unref(void **obj);
- extern void *nouveau_fence_ref(void *obj);
- extern void nouveau_fence_handler(struct drm_device *dev, int channel);
-+extern int nouveau_fence_sync(struct nouveau_channel *chan,
-+				struct nouveau_fence *fence);
-+extern int nouveau_fence_semaphore_pre_acquire(struct nouveau_channel *chan,
-+				int sequence);
-+extern int nouveau_fence_semaphore_flush(struct nouveau_channel *chan,
-+				int channel);
- 
- /* nouveau_gem.c */
- extern int nouveau_gem_new(struct drm_device *, struct nouveau_channel *,
-@@ -1339,5 +1348,7 @@ nv_two_reg_pll(struct drm_device *dev)
- #define NV50_NVSW_VBLSEM_OFFSET                                      0x00000400
- #define NV50_NVSW_VBLSEM_RELEASE_VALUE                               0x00000404
- #define NV50_NVSW_VBLSEM_RELEASE                                     0x00000408
-+#define NV50_NVSW_SEMAPHORE_PRE_ACQUIRE                       0x00000500
-+#define NV50_NVSW_SEMAPHORE_FLUSH                                  0x00000504
- 
- #endif /* __NOUVEAU_DRV_H__ */
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-index dacac9a..dddf089 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-@@ -260,3 +260,106 @@ nouveau_fence_fini(struct nouveau_channel *chan)
- 	}
- }
- 
-+/* This mechanism relies on having a single notifier for synchronisation between
-+ * 2 channels, in this case the kernel channel and one user channel.
-+ */
-+int
-+nouveau_fence_sync(struct nouveau_channel *chan, struct nouveau_fence *fence)
-+{
-+	int ret;
-+
-+	if (!chan || !fence)
-+		return -EINVAL;
-+
-+	if (!fence->sequence)
-+		nouveau_fence_emit(fence);
-+
-+	ret = RING_SPACE(chan, 9);
-+	if (ret)
-+		return ret;
-+
-+	ret = RING_SPACE(fence->channel, 2);
-+	if (ret)
-+		return ret;
-+
-+	/* Setup semaphore. */
-+	BEGIN_RING(chan, NvSubSw, NV50_NVSW_DMA_SEMAPHORE, 2);
-+	OUT_RING(chan, NvNotify1);
-+	OUT_RING(chan, 0);
-+	/* Set initial value. */
-+	BEGIN_RING(chan, NvSubSw, NV50_NVSW_SEMAPHORE_RELEASE, 1);
-+	OUT_RING(chan, 0x22222222);
-+	/* Set end value if fence has already passed. */
-+	BEGIN_RING(chan, NvSubSw, NV50_NVSW_SEMAPHORE_PRE_ACQUIRE, 1);
-+	OUT_RING(chan, fence->sequence);
-+	/* Wait for condition to become true. */
-+	BEGIN_RING(chan, NvSubSw, NV50_NVSW_SEMAPHORE_ACQUIRE, 1);
-+	OUT_RING(chan, 0x11111111);
-+
-+	/* Write to user semaphore notifier. */
-+	BEGIN_RING(fence->channel, NvSubSw, NV50_NVSW_SEMAPHORE_FLUSH, 1);
-+	OUT_RING(fence->channel, chan->id);
-+	FIRE_RING(fence->channel);
-+
-+	return 0;
-+}
-+
-+int
-+nouveau_fence_semaphore_pre_acquire(struct nouveau_channel *chan, int sequence)
-+{
-+	struct drm_device *dev = chan->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct nouveau_channel *kchan = dev_priv->channel;
-+	struct nouveau_gpuobj_ref *ref = NULL;
-+	uint32_t offset = 0;
-+
-+	spin_lock_irq(&kchan->fence.lock);
-+	nouveau_fence_update(kchan);
-+	spin_unlock_irq(&kchan->fence.lock);
-+
-+	if (nouveau_gpuobj_ref_find(chan, NvNotify1, &ref))
-+		return -ENOENT;
-+
-+	if (nouveau_notifier_offset(ref->gpuobj, &offset))
-+		return -EINVAL;
-+
-+	if (sequence > kchan->fence.sequence_ack) /* not done */
-+		nouveau_bo_wr32(chan->notifier_bo, offset >> 2, 0x22222222);
-+	else /* done */
-+		nouveau_bo_wr32(chan->notifier_bo, offset >> 2, 0x11111111);
-+
-+	return 0;
-+}
-+
-+int
-+nouveau_fence_semaphore_flush(struct nouveau_channel *chan, int channel)
-+{
-+	struct drm_device *dev = chan->dev;
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct nouveau_channel *uchan = NULL;
-+	struct nouveau_gpuobj_ref *ref = NULL;
-+	struct nouveau_fifo_engine *pfifo = &dev_priv->engine.fifo;
-+	uint32_t offset = 0;
-+
-+	if (channel < 0 || channel >= pfifo->channels)
-+		return -EINVAL;
-+
-+	uchan = dev_priv->fifos[channel];
-+
-+	if (nouveau_gpuobj_ref_find(uchan, NvNotify1, &ref))
-+		return -ENOENT;
-+
-+	if (nouveau_notifier_offset(ref->gpuobj, &offset))
-+		return -EINVAL;
-+
-+	/* Possible race conditions:
-+	 * This sync is from earlier than the channel is waiting for ->
-+	 * impossible, since it would be waiting still for the old one.
-+	 * This sync is from the future, no problem the value is already
-+	 * 0x11111111, and we don't care anyway.
-+	 */
-+
-+	nouveau_bo_wr32(uchan->notifier_bo, offset >> 2, 0x11111111);
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_object.c b/drivers/gpu/drm/nouveau/nouveau_object.c
-index 93379bb..6c2cf81 100644
---- a/drivers/gpu/drm/nouveau/nouveau_object.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_object.c
-@@ -881,7 +881,7 @@ nouveau_gpuobj_gr_new(struct nouveau_channel *chan, int class,
- 	return 0;
- }
- 
--static int
-+int
- nouveau_gpuobj_sw_new(struct nouveau_channel *chan, int class,
- 		      struct nouveau_gpuobj **gpuobj_ret)
- {
-diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
-index ca79f32..9585537 100644
---- a/drivers/gpu/drm/nouveau/nv50_graph.c
-+++ b/drivers/gpu/drm/nouveau/nv50_graph.c
-@@ -367,11 +367,27 @@ nv50_graph_nvsw_vblsem_release(struct nouveau_channel *chan, int grclass,
- 	return 0;
- }
- 
-+static int
-+nv50_graph_semaphore_pre_acquire(struct nouveau_channel *chan, int grclass,
-+			       int mthd, uint32_t data)
-+{
-+	return nouveau_fence_semaphore_pre_acquire(chan, data);
-+}
-+
-+static int
-+nv50_graph_semaphore_flush(struct nouveau_channel *chan, int grclass,
-+			       int mthd, uint32_t data)
-+{
-+	return nouveau_fence_semaphore_flush(chan, data);
-+}
-+
- static struct nouveau_pgraph_object_method nv50_graph_nvsw_methods[] = {
- 	{ 0x018c, nv50_graph_nvsw_dma_vblsem },
- 	{ 0x0400, nv50_graph_nvsw_vblsem_offset },
- 	{ 0x0404, nv50_graph_nvsw_vblsem_release_val },
- 	{ 0x0408, nv50_graph_nvsw_vblsem_release },
-+	{ 0x0500, nv50_graph_semaphore_pre_acquire },
-+	{ 0x0504, nv50_graph_semaphore_flush },
- 	{}
- };
- 
+diff --git a/nouveau/nouveau_class.h b/nouveau/nouveau_class.h
+index 00b8e13..9d860cd 100644
+--- a/nouveau/nouveau_class.h
++++ b/nouveau/nouveau_class.h
+@@ -1911,237 +1911,237 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define   NV10TCL_RC_IN_ALPHA_D_INPUT_SHIFT						0
+ #define   NV10TCL_RC_IN_ALPHA_D_INPUT_MASK						0x0000000f
+ #define    NV10TCL_RC_IN_ALPHA_D_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR0_NV				0x00000001
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR1_NV				0x00000002
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR0					0x00000001
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV10TCL_RC_IN_ALPHA_D_INPUT_FOG						0x00000003
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_PRIMARY_COLOR_NV					0x00000004
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_SECONDARY_COLOR_NV				0x00000005
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_TEXTURE0_ARB					0x00000008
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_TEXTURE1_ARB					0x00000009
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_SPARE0_NV					0x0000000c
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_SPARE1_NV					0x0000000d
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV10TCL_RC_IN_ALPHA_D_INPUT_TEXTURE3_ARB					0x0000000b
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_PRIMARY_COLOR					0x00000004
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_SECONDARY_COLOR					0x00000005
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_TEXTURE0						0x00000008
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_TEXTURE1						0x00000009
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_SPARE0						0x0000000c
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_SPARE1						0x0000000d
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_E_TIMES_F					0x0000000f
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_TEXTURE2						0x0000000a
++#define    NV10TCL_RC_IN_ALPHA_D_INPUT_TEXTURE3						0x0000000b
+ #define   NV10TCL_RC_IN_ALPHA_D_COMPONENT_USAGE						(1 <<  4)
+ #define    NV10TCL_RC_IN_ALPHA_D_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV10TCL_RC_IN_ALPHA_D_COMPONENT_USAGE_ALPHA					0x00000010
+ #define   NV10TCL_RC_IN_ALPHA_D_MAPPING_SHIFT						5
+ #define   NV10TCL_RC_IN_ALPHA_D_MAPPING_MASK						0x000000e0
+-#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_INVERT_NV				0x00000020
+-#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NORMAL_NV				0x00000040
+-#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NEGATE_NV				0x00000060
+-#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NORMAL_NV				0x00000080
+-#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NEGATE_NV				0x000000a0
+-#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_IDENTITY_NV				0x000000c0
+-#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_NEGATE_NV				0x000000e0
++#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_INVERT				0x00000020
++#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NORMAL					0x00000040
++#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NEGATE					0x00000060
++#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NORMAL				0x00000080
++#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NEGATE				0x000000a0
++#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_IDENTITY				0x000000c0
++#define    NV10TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_NEGATE					0x000000e0
+ #define   NV10TCL_RC_IN_ALPHA_C_INPUT_SHIFT						8
+ #define   NV10TCL_RC_IN_ALPHA_C_INPUT_MASK						0x00000f00
+ #define    NV10TCL_RC_IN_ALPHA_C_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR0_NV				0x00000100
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR1_NV				0x00000200
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV10TCL_RC_IN_ALPHA_C_INPUT_FOG						0x00000300
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_SECONDARY_COLOR_NV				0x00000500
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_SPARE0_NV					0x00000c00
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_SPARE1_NV					0x00000d00
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV10TCL_RC_IN_ALPHA_C_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_TEXTURE0						0x00000800
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_TEXTURE1						0x00000900
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_SPARE0						0x00000c00
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_SPARE1						0x00000d00
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_E_TIMES_F					0x00000f00
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_TEXTURE2						0x00000a00
++#define    NV10TCL_RC_IN_ALPHA_C_INPUT_TEXTURE3						0x00000b00
+ #define   NV10TCL_RC_IN_ALPHA_C_COMPONENT_USAGE						(1 << 12)
+ #define    NV10TCL_RC_IN_ALPHA_C_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV10TCL_RC_IN_ALPHA_C_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV10TCL_RC_IN_ALPHA_C_MAPPING_SHIFT						13
+ #define   NV10TCL_RC_IN_ALPHA_C_MAPPING_MASK						0x0000e000
+-#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NORMAL_NV				0x00004000
+-#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NEGATE_NV				0x00006000
+-#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_NEGATE_NV				0x0000e000
++#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_INVERT				0x00002000
++#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NORMAL				0x00008000
++#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NEGATE				0x0000a000
++#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_IDENTITY				0x0000c000
++#define    NV10TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV10TCL_RC_IN_ALPHA_B_INPUT_SHIFT						16
+ #define   NV10TCL_RC_IN_ALPHA_B_INPUT_MASK						0x000f0000
+ #define    NV10TCL_RC_IN_ALPHA_B_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR0_NV				0x00010000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR1_NV				0x00020000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV10TCL_RC_IN_ALPHA_B_INPUT_FOG						0x00030000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_SECONDARY_COLOR_NV				0x00050000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_SPARE0_NV					0x000c0000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_SPARE1_NV					0x000d0000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV10TCL_RC_IN_ALPHA_B_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_TEXTURE0						0x00080000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_TEXTURE1						0x00090000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_SPARE0						0x000c0000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_SPARE1						0x000d0000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_E_TIMES_F					0x000f0000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_TEXTURE2						0x000a0000
++#define    NV10TCL_RC_IN_ALPHA_B_INPUT_TEXTURE3						0x000b0000
+ #define   NV10TCL_RC_IN_ALPHA_B_COMPONENT_USAGE						(1 << 20)
+ #define    NV10TCL_RC_IN_ALPHA_B_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV10TCL_RC_IN_ALPHA_B_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV10TCL_RC_IN_ALPHA_B_MAPPING_SHIFT						21
+ #define   NV10TCL_RC_IN_ALPHA_B_MAPPING_MASK						0x00e00000
+-#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NORMAL_NV				0x00400000
+-#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NEGATE_NV				0x00600000
+-#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_NEGATE_NV				0x00e00000
++#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_INVERT				0x00200000
++#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NORMAL				0x00800000
++#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NEGATE				0x00a00000
++#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_IDENTITY				0x00c00000
++#define    NV10TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV10TCL_RC_IN_ALPHA_A_INPUT_SHIFT						24
+ #define   NV10TCL_RC_IN_ALPHA_A_INPUT_MASK						0x0f000000
+ #define    NV10TCL_RC_IN_ALPHA_A_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR0_NV				0x01000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR1_NV				0x02000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV10TCL_RC_IN_ALPHA_A_INPUT_FOG						0x03000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_SECONDARY_COLOR_NV				0x05000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_SPARE0_NV					0x0c000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_SPARE1_NV					0x0d000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV10TCL_RC_IN_ALPHA_A_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_TEXTURE0						0x08000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_TEXTURE1						0x09000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_SPARE0						0x0c000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_SPARE1						0x0d000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_E_TIMES_F					0x0f000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_TEXTURE2						0x0a000000
++#define    NV10TCL_RC_IN_ALPHA_A_INPUT_TEXTURE3						0x0b000000
+ #define   NV10TCL_RC_IN_ALPHA_A_COMPONENT_USAGE						(1 << 28)
+ #define    NV10TCL_RC_IN_ALPHA_A_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV10TCL_RC_IN_ALPHA_A_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV10TCL_RC_IN_ALPHA_A_MAPPING_SHIFT						29
+ #define   NV10TCL_RC_IN_ALPHA_A_MAPPING_MASK						0xe0000000
+-#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NORMAL_NV				0x40000000
+-#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NEGATE_NV				0x60000000
+-#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_NEGATE_NV				0xe0000000
++#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_INVERT				0x20000000
++#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NORMAL				0x80000000
++#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NEGATE				0xa0000000
++#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_IDENTITY				0xc0000000
++#define    NV10TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV10TCL_RC_IN_RGB(x)								(0x00000268+((x)*4))
+ #define  NV10TCL_RC_IN_RGB__SIZE							0x00000002
+ #define   NV10TCL_RC_IN_RGB_D_INPUT_SHIFT						0
+ #define   NV10TCL_RC_IN_RGB_D_INPUT_MASK						0x0000000f
+ #define    NV10TCL_RC_IN_RGB_D_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR0_NV					0x00000001
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR1_NV					0x00000002
++#define    NV10TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR0					0x00000001
++#define    NV10TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV10TCL_RC_IN_RGB_D_INPUT_FOG						0x00000003
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_PRIMARY_COLOR_NV					0x00000004
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_SECONDARY_COLOR_NV					0x00000005
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_TEXTURE0_ARB					0x00000008
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_TEXTURE1_ARB					0x00000009
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_SPARE0_NV						0x0000000c
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_SPARE1_NV						0x0000000d
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV10TCL_RC_IN_RGB_D_INPUT_TEXTURE3_ARB					0x0000000b
++#define    NV10TCL_RC_IN_RGB_D_INPUT_PRIMARY_COLOR					0x00000004
++#define    NV10TCL_RC_IN_RGB_D_INPUT_SECONDARY_COLOR					0x00000005
++#define    NV10TCL_RC_IN_RGB_D_INPUT_TEXTURE0						0x00000008
++#define    NV10TCL_RC_IN_RGB_D_INPUT_TEXTURE1						0x00000009
++#define    NV10TCL_RC_IN_RGB_D_INPUT_SPARE0						0x0000000c
++#define    NV10TCL_RC_IN_RGB_D_INPUT_SPARE1						0x0000000d
++#define    NV10TCL_RC_IN_RGB_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV10TCL_RC_IN_RGB_D_INPUT_E_TIMES_F						0x0000000f
++#define    NV10TCL_RC_IN_RGB_D_INPUT_TEXTURE2						0x0000000a
++#define    NV10TCL_RC_IN_RGB_D_INPUT_TEXTURE3						0x0000000b
+ #define   NV10TCL_RC_IN_RGB_D_COMPONENT_USAGE						(1 <<  4)
+ #define    NV10TCL_RC_IN_RGB_D_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_IN_RGB_D_COMPONENT_USAGE_ALPHA					0x00000010
+ #define   NV10TCL_RC_IN_RGB_D_MAPPING_SHIFT						5
+ #define   NV10TCL_RC_IN_RGB_D_MAPPING_MASK						0x000000e0
+-#define    NV10TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_INVERT_NV				0x00000020
+-#define    NV10TCL_RC_IN_RGB_D_MAPPING_EXPAND_NORMAL_NV					0x00000040
+-#define    NV10TCL_RC_IN_RGB_D_MAPPING_EXPAND_NEGATE_NV					0x00000060
+-#define    NV10TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NORMAL_NV				0x00000080
+-#define    NV10TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NEGATE_NV				0x000000a0
+-#define    NV10TCL_RC_IN_RGB_D_MAPPING_SIGNED_IDENTITY_NV				0x000000c0
+-#define    NV10TCL_RC_IN_RGB_D_MAPPING_SIGNED_NEGATE_NV					0x000000e0
++#define    NV10TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_INVERT					0x00000020
++#define    NV10TCL_RC_IN_RGB_D_MAPPING_EXPAND_NORMAL					0x00000040
++#define    NV10TCL_RC_IN_RGB_D_MAPPING_EXPAND_NEGATE					0x00000060
++#define    NV10TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NORMAL					0x00000080
++#define    NV10TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NEGATE					0x000000a0
++#define    NV10TCL_RC_IN_RGB_D_MAPPING_SIGNED_IDENTITY					0x000000c0
++#define    NV10TCL_RC_IN_RGB_D_MAPPING_SIGNED_NEGATE					0x000000e0
+ #define   NV10TCL_RC_IN_RGB_C_INPUT_SHIFT						8
+ #define   NV10TCL_RC_IN_RGB_C_INPUT_MASK						0x00000f00
+ #define    NV10TCL_RC_IN_RGB_C_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR0_NV					0x00000100
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR1_NV					0x00000200
++#define    NV10TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV10TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV10TCL_RC_IN_RGB_C_INPUT_FOG						0x00000300
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_SECONDARY_COLOR_NV					0x00000500
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_SPARE0_NV						0x00000c00
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_SPARE1_NV						0x00000d00
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV10TCL_RC_IN_RGB_C_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV10TCL_RC_IN_RGB_C_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV10TCL_RC_IN_RGB_C_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV10TCL_RC_IN_RGB_C_INPUT_TEXTURE0						0x00000800
++#define    NV10TCL_RC_IN_RGB_C_INPUT_TEXTURE1						0x00000900
++#define    NV10TCL_RC_IN_RGB_C_INPUT_SPARE0						0x00000c00
++#define    NV10TCL_RC_IN_RGB_C_INPUT_SPARE1						0x00000d00
++#define    NV10TCL_RC_IN_RGB_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV10TCL_RC_IN_RGB_C_INPUT_E_TIMES_F						0x00000f00
++#define    NV10TCL_RC_IN_RGB_C_INPUT_TEXTURE2						0x00000a00
++#define    NV10TCL_RC_IN_RGB_C_INPUT_TEXTURE3						0x00000b00
+ #define   NV10TCL_RC_IN_RGB_C_COMPONENT_USAGE						(1 << 12)
+ #define    NV10TCL_RC_IN_RGB_C_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_IN_RGB_C_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV10TCL_RC_IN_RGB_C_MAPPING_SHIFT						13
+ #define   NV10TCL_RC_IN_RGB_C_MAPPING_MASK						0x0000e000
+-#define    NV10TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV10TCL_RC_IN_RGB_C_MAPPING_EXPAND_NORMAL_NV					0x00004000
+-#define    NV10TCL_RC_IN_RGB_C_MAPPING_EXPAND_NEGATE_NV					0x00006000
+-#define    NV10TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV10TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV10TCL_RC_IN_RGB_C_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV10TCL_RC_IN_RGB_C_MAPPING_SIGNED_NEGATE_NV					0x0000e000
++#define    NV10TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_INVERT					0x00002000
++#define    NV10TCL_RC_IN_RGB_C_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV10TCL_RC_IN_RGB_C_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV10TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NORMAL					0x00008000
++#define    NV10TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NEGATE					0x0000a000
++#define    NV10TCL_RC_IN_RGB_C_MAPPING_SIGNED_IDENTITY					0x0000c000
++#define    NV10TCL_RC_IN_RGB_C_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV10TCL_RC_IN_RGB_B_INPUT_SHIFT						16
+ #define   NV10TCL_RC_IN_RGB_B_INPUT_MASK						0x000f0000
+ #define    NV10TCL_RC_IN_RGB_B_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR0_NV					0x00010000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR1_NV					0x00020000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV10TCL_RC_IN_RGB_B_INPUT_FOG						0x00030000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_SECONDARY_COLOR_NV					0x00050000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_SPARE0_NV						0x000c0000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_SPARE1_NV						0x000d0000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV10TCL_RC_IN_RGB_B_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_TEXTURE0						0x00080000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_TEXTURE1						0x00090000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_SPARE0						0x000c0000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_SPARE1						0x000d0000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_E_TIMES_F						0x000f0000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_TEXTURE2						0x000a0000
++#define    NV10TCL_RC_IN_RGB_B_INPUT_TEXTURE3						0x000b0000
+ #define   NV10TCL_RC_IN_RGB_B_COMPONENT_USAGE						(1 << 20)
+ #define    NV10TCL_RC_IN_RGB_B_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_IN_RGB_B_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV10TCL_RC_IN_RGB_B_MAPPING_SHIFT						21
+ #define   NV10TCL_RC_IN_RGB_B_MAPPING_MASK						0x00e00000
+-#define    NV10TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV10TCL_RC_IN_RGB_B_MAPPING_EXPAND_NORMAL_NV					0x00400000
+-#define    NV10TCL_RC_IN_RGB_B_MAPPING_EXPAND_NEGATE_NV					0x00600000
+-#define    NV10TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV10TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV10TCL_RC_IN_RGB_B_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV10TCL_RC_IN_RGB_B_MAPPING_SIGNED_NEGATE_NV					0x00e00000
++#define    NV10TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_INVERT					0x00200000
++#define    NV10TCL_RC_IN_RGB_B_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV10TCL_RC_IN_RGB_B_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV10TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NORMAL					0x00800000
++#define    NV10TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NEGATE					0x00a00000
++#define    NV10TCL_RC_IN_RGB_B_MAPPING_SIGNED_IDENTITY					0x00c00000
++#define    NV10TCL_RC_IN_RGB_B_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV10TCL_RC_IN_RGB_A_INPUT_SHIFT						24
+ #define   NV10TCL_RC_IN_RGB_A_INPUT_MASK						0x0f000000
+ #define    NV10TCL_RC_IN_RGB_A_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR0_NV					0x01000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR1_NV					0x02000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV10TCL_RC_IN_RGB_A_INPUT_FOG						0x03000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_SECONDARY_COLOR_NV					0x05000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_SPARE0_NV						0x0c000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_SPARE1_NV						0x0d000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV10TCL_RC_IN_RGB_A_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_TEXTURE0						0x08000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_TEXTURE1						0x09000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_SPARE0						0x0c000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_SPARE1						0x0d000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_E_TIMES_F						0x0f000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_TEXTURE2						0x0a000000
++#define    NV10TCL_RC_IN_RGB_A_INPUT_TEXTURE3						0x0b000000
+ #define   NV10TCL_RC_IN_RGB_A_COMPONENT_USAGE						(1 << 28)
+ #define    NV10TCL_RC_IN_RGB_A_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_IN_RGB_A_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV10TCL_RC_IN_RGB_A_MAPPING_SHIFT						29
+ #define   NV10TCL_RC_IN_RGB_A_MAPPING_MASK						0xe0000000
+-#define    NV10TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV10TCL_RC_IN_RGB_A_MAPPING_EXPAND_NORMAL_NV					0x40000000
+-#define    NV10TCL_RC_IN_RGB_A_MAPPING_EXPAND_NEGATE_NV					0x60000000
+-#define    NV10TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV10TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV10TCL_RC_IN_RGB_A_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV10TCL_RC_IN_RGB_A_MAPPING_SIGNED_NEGATE_NV					0xe0000000
++#define    NV10TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_INVERT					0x20000000
++#define    NV10TCL_RC_IN_RGB_A_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV10TCL_RC_IN_RGB_A_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV10TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NORMAL					0x80000000
++#define    NV10TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NEGATE					0xa0000000
++#define    NV10TCL_RC_IN_RGB_A_MAPPING_SIGNED_IDENTITY					0xc0000000
++#define    NV10TCL_RC_IN_RGB_A_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV10TCL_RC_COLOR(x)								(0x00000270+((x)*4))
+ #define  NV10TCL_RC_COLOR__SIZE								0x00000002
+ #define   NV10TCL_RC_COLOR_B_SHIFT							0
+@@ -2157,333 +2157,333 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define   NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_SHIFT						0
+ #define   NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_MASK						0x0000000f
+ #define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR0_NV				0x00000001
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR1_NV				0x00000002
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR0				0x00000001
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR1				0x00000002
+ #define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_FOG						0x00000003
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_PRIMARY_COLOR_NV				0x00000004
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_SECONDARY_COLOR_NV				0x00000005
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE0_ARB					0x00000008
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE1_ARB					0x00000009
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0_NV					0x0000000c
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE1_NV					0x0000000d
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV		0x0000000e
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE3_ARB					0x0000000b
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_PRIMARY_COLOR					0x00000004
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_SECONDARY_COLOR				0x00000005
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE0					0x00000008
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE1					0x00000009
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0					0x0000000c
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE1					0x0000000d
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_E_TIMES_F					0x0000000f
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE2					0x0000000a
++#define    NV10TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE3					0x0000000b
+ #define   NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_SHIFT						4
+ #define   NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_MASK						0x000000f0
+ #define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR0_NV				0x00000010
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR1_NV				0x00000020
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR0				0x00000010
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR1				0x00000020
+ #define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_FOG						0x00000030
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_PRIMARY_COLOR_NV				0x00000040
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_SECONDARY_COLOR_NV				0x00000050
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE0_ARB					0x00000080
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE1_ARB					0x00000090
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0_NV					0x000000c0
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE1_NV					0x000000d0
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV		0x000000e0
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_E_TIMES_F_NV					0x000000f0
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE2_ARB					0x000000a0
+-#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE3_ARB					0x000000b0
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_PRIMARY_COLOR					0x00000040
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_SECONDARY_COLOR				0x00000050
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE0					0x00000080
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE1					0x00000090
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0					0x000000c0
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE1					0x000000d0
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000000e0
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_E_TIMES_F					0x000000f0
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE2					0x000000a0
++#define    NV10TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE3					0x000000b0
+ #define   NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_SHIFT						8
+ #define   NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_MASK						0x00000f00
+ #define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR0_NV				0x00000100
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR1_NV				0x00000200
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR0				0x00000100
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR1				0x00000200
+ #define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_FOG						0x00000300
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_PRIMARY_COLOR_NV				0x00000400
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_SECONDARY_COLOR_NV				0x00000500
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE0_ARB					0x00000800
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE1_ARB					0x00000900
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0_NV					0x00000c00
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE1_NV					0x00000d00
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV		0x00000e00
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE3_ARB					0x00000b00
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_PRIMARY_COLOR				0x00000400
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_SECONDARY_COLOR				0x00000500
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE0					0x00000800
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE1					0x00000900
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0					0x00000c00
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE1					0x00000d00
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_E_TIMES_F					0x00000f00
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE2					0x00000a00
++#define    NV10TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE3					0x00000b00
+ #define   NV10TCL_RC_OUT_ALPHA_CD_DOT_PRODUCT						(1 << 12)
+ #define   NV10TCL_RC_OUT_ALPHA_AB_DOT_PRODUCT						(1 << 13)
+ #define   NV10TCL_RC_OUT_ALPHA_MUX_SUM							(1 << 14)
+ #define   NV10TCL_RC_OUT_ALPHA_BIAS							(1 << 15)
+ #define    NV10TCL_RC_OUT_ALPHA_BIAS_NONE						0x00000000
+-#define    NV10TCL_RC_OUT_ALPHA_BIAS_BIAS_BY_NEGATIVE_ONE_HALF_NV			0x00008000
++#define    NV10TCL_RC_OUT_ALPHA_BIAS_BIAS_BY_NEGATIVE_ONE_HALF				0x00008000
+ #define   NV10TCL_RC_OUT_ALPHA_SCALE_SHIFT						17
+ #define   NV10TCL_RC_OUT_ALPHA_SCALE_MASK						0x00000000
+ #define    NV10TCL_RC_OUT_ALPHA_SCALE_NONE						0x00000000
+-#define    NV10TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_TWO_NV					0x00020000
+-#define    NV10TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_FOUR_NV					0x00040000
+-#define    NV10TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_ONE_HALF_NV				0x00060000
++#define    NV10TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_TWO					0x00020000
++#define    NV10TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_FOUR					0x00040000
++#define    NV10TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_ONE_HALF					0x00060000
+ #define  NV10TCL_RC_OUT_RGB(x)								(0x00000280+((x)*4))
+ #define  NV10TCL_RC_OUT_RGB__SIZE							0x00000002
+ #define   NV10TCL_RC_OUT_RGB_CD_OUTPUT_SHIFT						0
+ #define   NV10TCL_RC_OUT_RGB_CD_OUTPUT_MASK						0x0000000f
+ #define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR0_NV				0x00000001
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR1_NV				0x00000002
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR0					0x00000001
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_FOG						0x00000003
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_PRIMARY_COLOR_NV				0x00000004
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_SECONDARY_COLOR_NV				0x00000005
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE0_ARB					0x00000008
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE1_ARB					0x00000009
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0_NV					0x0000000c
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_SPARE1_NV					0x0000000d
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE3_ARB					0x0000000b
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_PRIMARY_COLOR					0x00000004
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_SECONDARY_COLOR					0x00000005
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE0					0x00000008
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE1					0x00000009
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0						0x0000000c
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_SPARE1						0x0000000d
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_E_TIMES_F					0x0000000f
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE2					0x0000000a
++#define    NV10TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE3					0x0000000b
+ #define   NV10TCL_RC_OUT_RGB_AB_OUTPUT_SHIFT						4
+ #define   NV10TCL_RC_OUT_RGB_AB_OUTPUT_MASK						0x000000f0
+ #define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR0_NV				0x00000010
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR1_NV				0x00000020
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR0					0x00000010
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR1					0x00000020
+ #define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_FOG						0x00000030
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_PRIMARY_COLOR_NV				0x00000040
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_SECONDARY_COLOR_NV				0x00000050
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE0_ARB					0x00000080
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE1_ARB					0x00000090
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0_NV					0x000000c0
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_SPARE1_NV					0x000000d0
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000000e0
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_E_TIMES_F_NV					0x000000f0
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE2_ARB					0x000000a0
+-#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE3_ARB					0x000000b0
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_PRIMARY_COLOR					0x00000040
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_SECONDARY_COLOR					0x00000050
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE0					0x00000080
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE1					0x00000090
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0						0x000000c0
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_SPARE1						0x000000d0
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000000e0
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_E_TIMES_F					0x000000f0
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE2					0x000000a0
++#define    NV10TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE3					0x000000b0
+ #define   NV10TCL_RC_OUT_RGB_SUM_OUTPUT_SHIFT						8
+ #define   NV10TCL_RC_OUT_RGB_SUM_OUTPUT_MASK						0x00000f00
+ #define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR0_NV				0x00000100
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR1_NV				0x00000200
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR0				0x00000100
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR1				0x00000200
+ #define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_FOG						0x00000300
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_PRIMARY_COLOR_NV				0x00000400
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_SECONDARY_COLOR_NV				0x00000500
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE0_ARB					0x00000800
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE1_ARB					0x00000900
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0_NV					0x00000c00
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE1_NV					0x00000d00
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE3_ARB					0x00000b00
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_PRIMARY_COLOR					0x00000400
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_SECONDARY_COLOR				0x00000500
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE0					0x00000800
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE1					0x00000900
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0						0x00000c00
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE1						0x00000d00
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_E_TIMES_F					0x00000f00
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE2					0x00000a00
++#define    NV10TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE3					0x00000b00
+ #define   NV10TCL_RC_OUT_RGB_CD_DOT_PRODUCT						(1 << 12)
+ #define   NV10TCL_RC_OUT_RGB_AB_DOT_PRODUCT						(1 << 13)
+ #define   NV10TCL_RC_OUT_RGB_MUX_SUM							(1 << 14)
+ #define   NV10TCL_RC_OUT_RGB_BIAS							(1 << 15)
+ #define    NV10TCL_RC_OUT_RGB_BIAS_NONE							0x00000000
+-#define    NV10TCL_RC_OUT_RGB_BIAS_BIAS_BY_NEGATIVE_ONE_HALF_NV				0x00008000
++#define    NV10TCL_RC_OUT_RGB_BIAS_BIAS_BY_NEGATIVE_ONE_HALF				0x00008000
+ #define   NV10TCL_RC_OUT_RGB_SCALE_SHIFT						17
+ #define   NV10TCL_RC_OUT_RGB_SCALE_MASK							0x00000000
+ #define    NV10TCL_RC_OUT_RGB_SCALE_NONE						0x00000000
+-#define    NV10TCL_RC_OUT_RGB_SCALE_SCALE_BY_TWO_NV					0x00020000
+-#define    NV10TCL_RC_OUT_RGB_SCALE_SCALE_BY_FOUR_NV					0x00040000
+-#define    NV10TCL_RC_OUT_RGB_SCALE_SCALE_BY_ONE_HALF_NV				0x00060000
++#define    NV10TCL_RC_OUT_RGB_SCALE_SCALE_BY_TWO					0x00020000
++#define    NV10TCL_RC_OUT_RGB_SCALE_SCALE_BY_FOUR					0x00040000
++#define    NV10TCL_RC_OUT_RGB_SCALE_SCALE_BY_ONE_HALF					0x00060000
+ #define   NV10TCL_RC_OUT_RGB_OPERATION_SHIFT						27
+ #define   NV10TCL_RC_OUT_RGB_OPERATION_MASK						0x38000000
+ #define  NV10TCL_RC_FINAL0								0x00000288
+ #define   NV10TCL_RC_FINAL0_D_INPUT_SHIFT						0
+ #define   NV10TCL_RC_FINAL0_D_INPUT_MASK						0x0000000f
+ #define    NV10TCL_RC_FINAL0_D_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR0_NV					0x00000001
+-#define    NV10TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR1_NV					0x00000002
++#define    NV10TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR0					0x00000001
++#define    NV10TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV10TCL_RC_FINAL0_D_INPUT_FOG						0x00000003
+-#define    NV10TCL_RC_FINAL0_D_INPUT_PRIMARY_COLOR_NV					0x00000004
+-#define    NV10TCL_RC_FINAL0_D_INPUT_SECONDARY_COLOR_NV					0x00000005
+-#define    NV10TCL_RC_FINAL0_D_INPUT_TEXTURE0_ARB					0x00000008
+-#define    NV10TCL_RC_FINAL0_D_INPUT_TEXTURE1_ARB					0x00000009
+-#define    NV10TCL_RC_FINAL0_D_INPUT_SPARE0_NV						0x0000000c
+-#define    NV10TCL_RC_FINAL0_D_INPUT_SPARE1_NV						0x0000000d
+-#define    NV10TCL_RC_FINAL0_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV10TCL_RC_FINAL0_D_INPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV10TCL_RC_FINAL0_D_INPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV10TCL_RC_FINAL0_D_INPUT_TEXTURE3_ARB					0x0000000b
++#define    NV10TCL_RC_FINAL0_D_INPUT_PRIMARY_COLOR					0x00000004
++#define    NV10TCL_RC_FINAL0_D_INPUT_SECONDARY_COLOR					0x00000005
++#define    NV10TCL_RC_FINAL0_D_INPUT_TEXTURE0						0x00000008
++#define    NV10TCL_RC_FINAL0_D_INPUT_TEXTURE1						0x00000009
++#define    NV10TCL_RC_FINAL0_D_INPUT_SPARE0						0x0000000c
++#define    NV10TCL_RC_FINAL0_D_INPUT_SPARE1						0x0000000d
++#define    NV10TCL_RC_FINAL0_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV10TCL_RC_FINAL0_D_INPUT_E_TIMES_F						0x0000000f
++#define    NV10TCL_RC_FINAL0_D_INPUT_TEXTURE2						0x0000000a
++#define    NV10TCL_RC_FINAL0_D_INPUT_TEXTURE3						0x0000000b
+ #define   NV10TCL_RC_FINAL0_D_COMPONENT_USAGE						(1 <<  4)
+ #define    NV10TCL_RC_FINAL0_D_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_FINAL0_D_COMPONENT_USAGE_ALPHA					0x00000010
+ #define   NV10TCL_RC_FINAL0_D_MAPPING_SHIFT						5
+ #define   NV10TCL_RC_FINAL0_D_MAPPING_MASK						0x000000e0
+-#define    NV10TCL_RC_FINAL0_D_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_FINAL0_D_MAPPING_UNSIGNED_INVERT_NV				0x00000020
+-#define    NV10TCL_RC_FINAL0_D_MAPPING_EXPAND_NORMAL_NV					0x00000040
+-#define    NV10TCL_RC_FINAL0_D_MAPPING_EXPAND_NEGATE_NV					0x00000060
+-#define    NV10TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NORMAL_NV				0x00000080
+-#define    NV10TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NEGATE_NV				0x000000a0
+-#define    NV10TCL_RC_FINAL0_D_MAPPING_SIGNED_IDENTITY_NV				0x000000c0
+-#define    NV10TCL_RC_FINAL0_D_MAPPING_SIGNED_NEGATE_NV					0x000000e0
++#define    NV10TCL_RC_FINAL0_D_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_FINAL0_D_MAPPING_UNSIGNED_INVERT					0x00000020
++#define    NV10TCL_RC_FINAL0_D_MAPPING_EXPAND_NORMAL					0x00000040
++#define    NV10TCL_RC_FINAL0_D_MAPPING_EXPAND_NEGATE					0x00000060
++#define    NV10TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NORMAL					0x00000080
++#define    NV10TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NEGATE					0x000000a0
++#define    NV10TCL_RC_FINAL0_D_MAPPING_SIGNED_IDENTITY					0x000000c0
++#define    NV10TCL_RC_FINAL0_D_MAPPING_SIGNED_NEGATE					0x000000e0
+ #define   NV10TCL_RC_FINAL0_C_INPUT_SHIFT						8
+ #define   NV10TCL_RC_FINAL0_C_INPUT_MASK						0x00000f00
+ #define    NV10TCL_RC_FINAL0_C_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR0_NV					0x00000100
+-#define    NV10TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR1_NV					0x00000200
++#define    NV10TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV10TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV10TCL_RC_FINAL0_C_INPUT_FOG						0x00000300
+-#define    NV10TCL_RC_FINAL0_C_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV10TCL_RC_FINAL0_C_INPUT_SECONDARY_COLOR_NV					0x00000500
+-#define    NV10TCL_RC_FINAL0_C_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV10TCL_RC_FINAL0_C_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV10TCL_RC_FINAL0_C_INPUT_SPARE0_NV						0x00000c00
+-#define    NV10TCL_RC_FINAL0_C_INPUT_SPARE1_NV						0x00000d00
+-#define    NV10TCL_RC_FINAL0_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV10TCL_RC_FINAL0_C_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV10TCL_RC_FINAL0_C_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV10TCL_RC_FINAL0_C_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV10TCL_RC_FINAL0_C_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV10TCL_RC_FINAL0_C_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV10TCL_RC_FINAL0_C_INPUT_TEXTURE0						0x00000800
++#define    NV10TCL_RC_FINAL0_C_INPUT_TEXTURE1						0x00000900
++#define    NV10TCL_RC_FINAL0_C_INPUT_SPARE0						0x00000c00
++#define    NV10TCL_RC_FINAL0_C_INPUT_SPARE1						0x00000d00
++#define    NV10TCL_RC_FINAL0_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV10TCL_RC_FINAL0_C_INPUT_E_TIMES_F						0x00000f00
++#define    NV10TCL_RC_FINAL0_C_INPUT_TEXTURE2						0x00000a00
++#define    NV10TCL_RC_FINAL0_C_INPUT_TEXTURE3						0x00000b00
+ #define   NV10TCL_RC_FINAL0_C_COMPONENT_USAGE						(1 << 12)
+ #define    NV10TCL_RC_FINAL0_C_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_FINAL0_C_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV10TCL_RC_FINAL0_C_MAPPING_SHIFT						13
+ #define   NV10TCL_RC_FINAL0_C_MAPPING_MASK						0x0000e000
+-#define    NV10TCL_RC_FINAL0_C_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_FINAL0_C_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV10TCL_RC_FINAL0_C_MAPPING_EXPAND_NORMAL_NV					0x00004000
+-#define    NV10TCL_RC_FINAL0_C_MAPPING_EXPAND_NEGATE_NV					0x00006000
+-#define    NV10TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV10TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV10TCL_RC_FINAL0_C_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV10TCL_RC_FINAL0_C_MAPPING_SIGNED_NEGATE_NV					0x0000e000
++#define    NV10TCL_RC_FINAL0_C_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_FINAL0_C_MAPPING_UNSIGNED_INVERT					0x00002000
++#define    NV10TCL_RC_FINAL0_C_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV10TCL_RC_FINAL0_C_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV10TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NORMAL					0x00008000
++#define    NV10TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NEGATE					0x0000a000
++#define    NV10TCL_RC_FINAL0_C_MAPPING_SIGNED_IDENTITY					0x0000c000
++#define    NV10TCL_RC_FINAL0_C_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV10TCL_RC_FINAL0_B_INPUT_SHIFT						16
+ #define   NV10TCL_RC_FINAL0_B_INPUT_MASK						0x000f0000
+ #define    NV10TCL_RC_FINAL0_B_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR0_NV					0x00010000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR1_NV					0x00020000
++#define    NV10TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV10TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV10TCL_RC_FINAL0_B_INPUT_FOG						0x00030000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_SECONDARY_COLOR_NV					0x00050000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_SPARE0_NV						0x000c0000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_SPARE1_NV						0x000d0000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV10TCL_RC_FINAL0_B_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV10TCL_RC_FINAL0_B_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV10TCL_RC_FINAL0_B_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV10TCL_RC_FINAL0_B_INPUT_TEXTURE0						0x00080000
++#define    NV10TCL_RC_FINAL0_B_INPUT_TEXTURE1						0x00090000
++#define    NV10TCL_RC_FINAL0_B_INPUT_SPARE0						0x000c0000
++#define    NV10TCL_RC_FINAL0_B_INPUT_SPARE1						0x000d0000
++#define    NV10TCL_RC_FINAL0_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV10TCL_RC_FINAL0_B_INPUT_E_TIMES_F						0x000f0000
++#define    NV10TCL_RC_FINAL0_B_INPUT_TEXTURE2						0x000a0000
++#define    NV10TCL_RC_FINAL0_B_INPUT_TEXTURE3						0x000b0000
+ #define   NV10TCL_RC_FINAL0_B_COMPONENT_USAGE						(1 << 20)
+ #define    NV10TCL_RC_FINAL0_B_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_FINAL0_B_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV10TCL_RC_FINAL0_B_MAPPING_SHIFT						21
+ #define   NV10TCL_RC_FINAL0_B_MAPPING_MASK						0x00e00000
+-#define    NV10TCL_RC_FINAL0_B_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_FINAL0_B_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV10TCL_RC_FINAL0_B_MAPPING_EXPAND_NORMAL_NV					0x00400000
+-#define    NV10TCL_RC_FINAL0_B_MAPPING_EXPAND_NEGATE_NV					0x00600000
+-#define    NV10TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV10TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV10TCL_RC_FINAL0_B_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV10TCL_RC_FINAL0_B_MAPPING_SIGNED_NEGATE_NV					0x00e00000
++#define    NV10TCL_RC_FINAL0_B_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_FINAL0_B_MAPPING_UNSIGNED_INVERT					0x00200000
++#define    NV10TCL_RC_FINAL0_B_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV10TCL_RC_FINAL0_B_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV10TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NORMAL					0x00800000
++#define    NV10TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NEGATE					0x00a00000
++#define    NV10TCL_RC_FINAL0_B_MAPPING_SIGNED_IDENTITY					0x00c00000
++#define    NV10TCL_RC_FINAL0_B_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV10TCL_RC_FINAL0_A_INPUT_SHIFT						24
+ #define   NV10TCL_RC_FINAL0_A_INPUT_MASK						0x0f000000
+ #define    NV10TCL_RC_FINAL0_A_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR0_NV					0x01000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR1_NV					0x02000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV10TCL_RC_FINAL0_A_INPUT_FOG						0x03000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_SECONDARY_COLOR_NV					0x05000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_SPARE0_NV						0x0c000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_SPARE1_NV						0x0d000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV10TCL_RC_FINAL0_A_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_TEXTURE0						0x08000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_TEXTURE1						0x09000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_SPARE0						0x0c000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_SPARE1						0x0d000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_E_TIMES_F						0x0f000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_TEXTURE2						0x0a000000
++#define    NV10TCL_RC_FINAL0_A_INPUT_TEXTURE3						0x0b000000
+ #define   NV10TCL_RC_FINAL0_A_COMPONENT_USAGE						(1 << 28)
+ #define    NV10TCL_RC_FINAL0_A_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_FINAL0_A_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV10TCL_RC_FINAL0_A_MAPPING_SHIFT						29
+ #define   NV10TCL_RC_FINAL0_A_MAPPING_MASK						0xe0000000
+-#define    NV10TCL_RC_FINAL0_A_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_FINAL0_A_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV10TCL_RC_FINAL0_A_MAPPING_EXPAND_NORMAL_NV					0x40000000
+-#define    NV10TCL_RC_FINAL0_A_MAPPING_EXPAND_NEGATE_NV					0x60000000
+-#define    NV10TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV10TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV10TCL_RC_FINAL0_A_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV10TCL_RC_FINAL0_A_MAPPING_SIGNED_NEGATE_NV					0xe0000000
++#define    NV10TCL_RC_FINAL0_A_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_FINAL0_A_MAPPING_UNSIGNED_INVERT					0x20000000
++#define    NV10TCL_RC_FINAL0_A_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV10TCL_RC_FINAL0_A_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV10TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NORMAL					0x80000000
++#define    NV10TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NEGATE					0xa0000000
++#define    NV10TCL_RC_FINAL0_A_MAPPING_SIGNED_IDENTITY					0xc0000000
++#define    NV10TCL_RC_FINAL0_A_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV10TCL_RC_FINAL1								0x0000028c
+ #define   NV10TCL_RC_FINAL1_COLOR_SUM_CLAMP						(1 <<  7)
+ #define   NV10TCL_RC_FINAL1_G_INPUT_SHIFT						8
+ #define   NV10TCL_RC_FINAL1_G_INPUT_MASK						0x00000f00
+ #define    NV10TCL_RC_FINAL1_G_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR0_NV					0x00000100
+-#define    NV10TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR1_NV					0x00000200
++#define    NV10TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV10TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV10TCL_RC_FINAL1_G_INPUT_FOG						0x00000300
+-#define    NV10TCL_RC_FINAL1_G_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV10TCL_RC_FINAL1_G_INPUT_SECONDARY_COLOR_NV					0x00000500
+-#define    NV10TCL_RC_FINAL1_G_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV10TCL_RC_FINAL1_G_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV10TCL_RC_FINAL1_G_INPUT_SPARE0_NV						0x00000c00
+-#define    NV10TCL_RC_FINAL1_G_INPUT_SPARE1_NV						0x00000d00
+-#define    NV10TCL_RC_FINAL1_G_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV10TCL_RC_FINAL1_G_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV10TCL_RC_FINAL1_G_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV10TCL_RC_FINAL1_G_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV10TCL_RC_FINAL1_G_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV10TCL_RC_FINAL1_G_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV10TCL_RC_FINAL1_G_INPUT_TEXTURE0						0x00000800
++#define    NV10TCL_RC_FINAL1_G_INPUT_TEXTURE1						0x00000900
++#define    NV10TCL_RC_FINAL1_G_INPUT_SPARE0						0x00000c00
++#define    NV10TCL_RC_FINAL1_G_INPUT_SPARE1						0x00000d00
++#define    NV10TCL_RC_FINAL1_G_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV10TCL_RC_FINAL1_G_INPUT_E_TIMES_F						0x00000f00
++#define    NV10TCL_RC_FINAL1_G_INPUT_TEXTURE2						0x00000a00
++#define    NV10TCL_RC_FINAL1_G_INPUT_TEXTURE3						0x00000b00
+ #define   NV10TCL_RC_FINAL1_G_COMPONENT_USAGE						(1 << 12)
+ #define    NV10TCL_RC_FINAL1_G_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_FINAL1_G_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV10TCL_RC_FINAL1_G_MAPPING_SHIFT						13
+ #define   NV10TCL_RC_FINAL1_G_MAPPING_MASK						0x0000e000
+-#define    NV10TCL_RC_FINAL1_G_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_FINAL1_G_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV10TCL_RC_FINAL1_G_MAPPING_EXPAND_NORMAL_NV					0x00004000
+-#define    NV10TCL_RC_FINAL1_G_MAPPING_EXPAND_NEGATE_NV					0x00006000
+-#define    NV10TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV10TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV10TCL_RC_FINAL1_G_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV10TCL_RC_FINAL1_G_MAPPING_SIGNED_NEGATE_NV					0x0000e000
++#define    NV10TCL_RC_FINAL1_G_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_FINAL1_G_MAPPING_UNSIGNED_INVERT					0x00002000
++#define    NV10TCL_RC_FINAL1_G_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV10TCL_RC_FINAL1_G_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV10TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NORMAL					0x00008000
++#define    NV10TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NEGATE					0x0000a000
++#define    NV10TCL_RC_FINAL1_G_MAPPING_SIGNED_IDENTITY					0x0000c000
++#define    NV10TCL_RC_FINAL1_G_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV10TCL_RC_FINAL1_F_INPUT_SHIFT						16
+ #define   NV10TCL_RC_FINAL1_F_INPUT_MASK						0x000f0000
+ #define    NV10TCL_RC_FINAL1_F_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR0_NV					0x00010000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR1_NV					0x00020000
++#define    NV10TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV10TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV10TCL_RC_FINAL1_F_INPUT_FOG						0x00030000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_SECONDARY_COLOR_NV					0x00050000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_SPARE0_NV						0x000c0000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_SPARE1_NV						0x000d0000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV10TCL_RC_FINAL1_F_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV10TCL_RC_FINAL1_F_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV10TCL_RC_FINAL1_F_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV10TCL_RC_FINAL1_F_INPUT_TEXTURE0						0x00080000
++#define    NV10TCL_RC_FINAL1_F_INPUT_TEXTURE1						0x00090000
++#define    NV10TCL_RC_FINAL1_F_INPUT_SPARE0						0x000c0000
++#define    NV10TCL_RC_FINAL1_F_INPUT_SPARE1						0x000d0000
++#define    NV10TCL_RC_FINAL1_F_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV10TCL_RC_FINAL1_F_INPUT_E_TIMES_F						0x000f0000
++#define    NV10TCL_RC_FINAL1_F_INPUT_TEXTURE2						0x000a0000
++#define    NV10TCL_RC_FINAL1_F_INPUT_TEXTURE3						0x000b0000
+ #define   NV10TCL_RC_FINAL1_F_COMPONENT_USAGE						(1 << 20)
+ #define    NV10TCL_RC_FINAL1_F_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_FINAL1_F_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV10TCL_RC_FINAL1_F_MAPPING_SHIFT						21
+ #define   NV10TCL_RC_FINAL1_F_MAPPING_MASK						0x00e00000
+-#define    NV10TCL_RC_FINAL1_F_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_FINAL1_F_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV10TCL_RC_FINAL1_F_MAPPING_EXPAND_NORMAL_NV					0x00400000
+-#define    NV10TCL_RC_FINAL1_F_MAPPING_EXPAND_NEGATE_NV					0x00600000
+-#define    NV10TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV10TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV10TCL_RC_FINAL1_F_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV10TCL_RC_FINAL1_F_MAPPING_SIGNED_NEGATE_NV					0x00e00000
++#define    NV10TCL_RC_FINAL1_F_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_FINAL1_F_MAPPING_UNSIGNED_INVERT					0x00200000
++#define    NV10TCL_RC_FINAL1_F_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV10TCL_RC_FINAL1_F_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV10TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NORMAL					0x00800000
++#define    NV10TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NEGATE					0x00a00000
++#define    NV10TCL_RC_FINAL1_F_MAPPING_SIGNED_IDENTITY					0x00c00000
++#define    NV10TCL_RC_FINAL1_F_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV10TCL_RC_FINAL1_E_INPUT_SHIFT						24
+ #define   NV10TCL_RC_FINAL1_E_INPUT_MASK						0x0f000000
+ #define    NV10TCL_RC_FINAL1_E_INPUT_ZERO						0x00000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR0_NV					0x01000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR1_NV					0x02000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV10TCL_RC_FINAL1_E_INPUT_FOG						0x03000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_SECONDARY_COLOR_NV					0x05000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_SPARE0_NV						0x0c000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_SPARE1_NV						0x0d000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV10TCL_RC_FINAL1_E_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_TEXTURE0						0x08000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_TEXTURE1						0x09000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_SPARE0						0x0c000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_SPARE1						0x0d000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_E_TIMES_F						0x0f000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_TEXTURE2						0x0a000000
++#define    NV10TCL_RC_FINAL1_E_INPUT_TEXTURE3						0x0b000000
+ #define   NV10TCL_RC_FINAL1_E_COMPONENT_USAGE						(1 << 28)
+ #define    NV10TCL_RC_FINAL1_E_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV10TCL_RC_FINAL1_E_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV10TCL_RC_FINAL1_E_MAPPING_SHIFT						29
+ #define   NV10TCL_RC_FINAL1_E_MAPPING_MASK						0xe0000000
+-#define    NV10TCL_RC_FINAL1_E_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV10TCL_RC_FINAL1_E_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV10TCL_RC_FINAL1_E_MAPPING_EXPAND_NORMAL_NV					0x40000000
+-#define    NV10TCL_RC_FINAL1_E_MAPPING_EXPAND_NEGATE_NV					0x60000000
+-#define    NV10TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV10TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV10TCL_RC_FINAL1_E_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV10TCL_RC_FINAL1_E_MAPPING_SIGNED_NEGATE_NV					0xe0000000
++#define    NV10TCL_RC_FINAL1_E_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV10TCL_RC_FINAL1_E_MAPPING_UNSIGNED_INVERT					0x20000000
++#define    NV10TCL_RC_FINAL1_E_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV10TCL_RC_FINAL1_E_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV10TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NORMAL					0x80000000
++#define    NV10TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NEGATE					0xa0000000
++#define    NV10TCL_RC_FINAL1_E_MAPPING_SIGNED_IDENTITY					0xc0000000
++#define    NV10TCL_RC_FINAL1_E_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV10TCL_LIGHT_MODEL								0x00000294
+ #define   NV10TCL_LIGHT_MODEL_COLOR_CONTROL						(1 <<  1)
+ #define   NV10TCL_LIGHT_MODEL_LOCAL_VIEWER						(1 << 16)
+@@ -3411,325 +3411,325 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define   NV20TCL_RC_IN_ALPHA_D_INPUT_SHIFT						0
+ #define   NV20TCL_RC_IN_ALPHA_D_INPUT_MASK						0x0000000f
+ #define    NV20TCL_RC_IN_ALPHA_D_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR0_NV				0x00000001
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR1_NV				0x00000002
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR0					0x00000001
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV20TCL_RC_IN_ALPHA_D_INPUT_FOG						0x00000003
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_PRIMARY_COLOR_NV					0x00000004
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_SECONDARY_COLOR_NV				0x00000005
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_TEXTURE0_ARB					0x00000008
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_TEXTURE1_ARB					0x00000009
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_SPARE0_NV					0x0000000c
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_SPARE1_NV					0x0000000d
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV20TCL_RC_IN_ALPHA_D_INPUT_TEXTURE3_ARB					0x0000000b
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_PRIMARY_COLOR					0x00000004
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_SECONDARY_COLOR					0x00000005
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_TEXTURE0						0x00000008
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_TEXTURE1						0x00000009
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_SPARE0						0x0000000c
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_SPARE1						0x0000000d
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_E_TIMES_F					0x0000000f
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_TEXTURE2						0x0000000a
++#define    NV20TCL_RC_IN_ALPHA_D_INPUT_TEXTURE3						0x0000000b
+ #define   NV20TCL_RC_IN_ALPHA_D_COMPONENT_USAGE						(1 <<  4)
+ #define    NV20TCL_RC_IN_ALPHA_D_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV20TCL_RC_IN_ALPHA_D_COMPONENT_USAGE_ALPHA					0x00000010
+ #define   NV20TCL_RC_IN_ALPHA_D_MAPPING_SHIFT						5
+ #define   NV20TCL_RC_IN_ALPHA_D_MAPPING_MASK						0x000000e0
+-#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_INVERT_NV				0x00000020
+-#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NORMAL_NV				0x00000040
+-#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NEGATE_NV				0x00000060
+-#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NORMAL_NV				0x00000080
+-#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NEGATE_NV				0x000000a0
+-#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_IDENTITY_NV				0x000000c0
+-#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_NEGATE_NV				0x000000e0
++#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_INVERT				0x00000020
++#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NORMAL					0x00000040
++#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NEGATE					0x00000060
++#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NORMAL				0x00000080
++#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NEGATE				0x000000a0
++#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_IDENTITY				0x000000c0
++#define    NV20TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_NEGATE					0x000000e0
+ #define   NV20TCL_RC_IN_ALPHA_C_INPUT_SHIFT						8
+ #define   NV20TCL_RC_IN_ALPHA_C_INPUT_MASK						0x00000f00
+ #define    NV20TCL_RC_IN_ALPHA_C_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR0_NV				0x00000100
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR1_NV				0x00000200
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV20TCL_RC_IN_ALPHA_C_INPUT_FOG						0x00000300
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_SECONDARY_COLOR_NV				0x00000500
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_SPARE0_NV					0x00000c00
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_SPARE1_NV					0x00000d00
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV20TCL_RC_IN_ALPHA_C_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_TEXTURE0						0x00000800
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_TEXTURE1						0x00000900
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_SPARE0						0x00000c00
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_SPARE1						0x00000d00
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_E_TIMES_F					0x00000f00
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_TEXTURE2						0x00000a00
++#define    NV20TCL_RC_IN_ALPHA_C_INPUT_TEXTURE3						0x00000b00
+ #define   NV20TCL_RC_IN_ALPHA_C_COMPONENT_USAGE						(1 << 12)
+ #define    NV20TCL_RC_IN_ALPHA_C_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV20TCL_RC_IN_ALPHA_C_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV20TCL_RC_IN_ALPHA_C_MAPPING_SHIFT						13
+ #define   NV20TCL_RC_IN_ALPHA_C_MAPPING_MASK						0x0000e000
+-#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NORMAL_NV				0x00004000
+-#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NEGATE_NV				0x00006000
+-#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_NEGATE_NV				0x0000e000
++#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_INVERT				0x00002000
++#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NORMAL				0x00008000
++#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NEGATE				0x0000a000
++#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_IDENTITY				0x0000c000
++#define    NV20TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV20TCL_RC_IN_ALPHA_B_INPUT_SHIFT						16
+ #define   NV20TCL_RC_IN_ALPHA_B_INPUT_MASK						0x000f0000
+ #define    NV20TCL_RC_IN_ALPHA_B_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR0_NV				0x00010000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR1_NV				0x00020000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV20TCL_RC_IN_ALPHA_B_INPUT_FOG						0x00030000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_SECONDARY_COLOR_NV				0x00050000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_SPARE0_NV					0x000c0000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_SPARE1_NV					0x000d0000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV20TCL_RC_IN_ALPHA_B_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_TEXTURE0						0x00080000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_TEXTURE1						0x00090000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_SPARE0						0x000c0000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_SPARE1						0x000d0000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_E_TIMES_F					0x000f0000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_TEXTURE2						0x000a0000
++#define    NV20TCL_RC_IN_ALPHA_B_INPUT_TEXTURE3						0x000b0000
+ #define   NV20TCL_RC_IN_ALPHA_B_COMPONENT_USAGE						(1 << 20)
+ #define    NV20TCL_RC_IN_ALPHA_B_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV20TCL_RC_IN_ALPHA_B_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV20TCL_RC_IN_ALPHA_B_MAPPING_SHIFT						21
+ #define   NV20TCL_RC_IN_ALPHA_B_MAPPING_MASK						0x00e00000
+-#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NORMAL_NV				0x00400000
+-#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NEGATE_NV				0x00600000
+-#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_NEGATE_NV				0x00e00000
++#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_INVERT				0x00200000
++#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NORMAL				0x00800000
++#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NEGATE				0x00a00000
++#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_IDENTITY				0x00c00000
++#define    NV20TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV20TCL_RC_IN_ALPHA_A_INPUT_SHIFT						24
+ #define   NV20TCL_RC_IN_ALPHA_A_INPUT_MASK						0x0f000000
+ #define    NV20TCL_RC_IN_ALPHA_A_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR0_NV				0x01000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR1_NV				0x02000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV20TCL_RC_IN_ALPHA_A_INPUT_FOG						0x03000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_SECONDARY_COLOR_NV				0x05000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_SPARE0_NV					0x0c000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_SPARE1_NV					0x0d000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV20TCL_RC_IN_ALPHA_A_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_TEXTURE0						0x08000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_TEXTURE1						0x09000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_SPARE0						0x0c000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_SPARE1						0x0d000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_E_TIMES_F					0x0f000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_TEXTURE2						0x0a000000
++#define    NV20TCL_RC_IN_ALPHA_A_INPUT_TEXTURE3						0x0b000000
+ #define   NV20TCL_RC_IN_ALPHA_A_COMPONENT_USAGE						(1 << 28)
+ #define    NV20TCL_RC_IN_ALPHA_A_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV20TCL_RC_IN_ALPHA_A_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV20TCL_RC_IN_ALPHA_A_MAPPING_SHIFT						29
+ #define   NV20TCL_RC_IN_ALPHA_A_MAPPING_MASK						0xe0000000
+-#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NORMAL_NV				0x40000000
+-#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NEGATE_NV				0x60000000
+-#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_NEGATE_NV				0xe0000000
++#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_INVERT				0x20000000
++#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NORMAL				0x80000000
++#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NEGATE				0xa0000000
++#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_IDENTITY				0xc0000000
++#define    NV20TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV20TCL_RC_FINAL0								0x00000288
+ #define   NV20TCL_RC_FINAL0_D_INPUT_SHIFT						0
+ #define   NV20TCL_RC_FINAL0_D_INPUT_MASK						0x0000000f
+ #define    NV20TCL_RC_FINAL0_D_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR0_NV					0x00000001
+-#define    NV20TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR1_NV					0x00000002
++#define    NV20TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR0					0x00000001
++#define    NV20TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV20TCL_RC_FINAL0_D_INPUT_FOG						0x00000003
+-#define    NV20TCL_RC_FINAL0_D_INPUT_PRIMARY_COLOR_NV					0x00000004
+-#define    NV20TCL_RC_FINAL0_D_INPUT_SECONDARY_COLOR_NV					0x00000005
+-#define    NV20TCL_RC_FINAL0_D_INPUT_TEXTURE0_ARB					0x00000008
+-#define    NV20TCL_RC_FINAL0_D_INPUT_TEXTURE1_ARB					0x00000009
+-#define    NV20TCL_RC_FINAL0_D_INPUT_SPARE0_NV						0x0000000c
+-#define    NV20TCL_RC_FINAL0_D_INPUT_SPARE1_NV						0x0000000d
+-#define    NV20TCL_RC_FINAL0_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV20TCL_RC_FINAL0_D_INPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV20TCL_RC_FINAL0_D_INPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV20TCL_RC_FINAL0_D_INPUT_TEXTURE3_ARB					0x0000000b
++#define    NV20TCL_RC_FINAL0_D_INPUT_PRIMARY_COLOR					0x00000004
++#define    NV20TCL_RC_FINAL0_D_INPUT_SECONDARY_COLOR					0x00000005
++#define    NV20TCL_RC_FINAL0_D_INPUT_TEXTURE0						0x00000008
++#define    NV20TCL_RC_FINAL0_D_INPUT_TEXTURE1						0x00000009
++#define    NV20TCL_RC_FINAL0_D_INPUT_SPARE0						0x0000000c
++#define    NV20TCL_RC_FINAL0_D_INPUT_SPARE1						0x0000000d
++#define    NV20TCL_RC_FINAL0_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV20TCL_RC_FINAL0_D_INPUT_E_TIMES_F						0x0000000f
++#define    NV20TCL_RC_FINAL0_D_INPUT_TEXTURE2						0x0000000a
++#define    NV20TCL_RC_FINAL0_D_INPUT_TEXTURE3						0x0000000b
+ #define   NV20TCL_RC_FINAL0_D_COMPONENT_USAGE						(1 <<  4)
+ #define    NV20TCL_RC_FINAL0_D_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_FINAL0_D_COMPONENT_USAGE_ALPHA					0x00000010
+ #define   NV20TCL_RC_FINAL0_D_MAPPING_SHIFT						5
+ #define   NV20TCL_RC_FINAL0_D_MAPPING_MASK						0x000000e0
+-#define    NV20TCL_RC_FINAL0_D_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_FINAL0_D_MAPPING_UNSIGNED_INVERT_NV				0x00000020
+-#define    NV20TCL_RC_FINAL0_D_MAPPING_EXPAND_NORMAL_NV					0x00000040
+-#define    NV20TCL_RC_FINAL0_D_MAPPING_EXPAND_NEGATE_NV					0x00000060
+-#define    NV20TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NORMAL_NV				0x00000080
+-#define    NV20TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NEGATE_NV				0x000000a0
+-#define    NV20TCL_RC_FINAL0_D_MAPPING_SIGNED_IDENTITY_NV				0x000000c0
+-#define    NV20TCL_RC_FINAL0_D_MAPPING_SIGNED_NEGATE_NV					0x000000e0
++#define    NV20TCL_RC_FINAL0_D_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_FINAL0_D_MAPPING_UNSIGNED_INVERT					0x00000020
++#define    NV20TCL_RC_FINAL0_D_MAPPING_EXPAND_NORMAL					0x00000040
++#define    NV20TCL_RC_FINAL0_D_MAPPING_EXPAND_NEGATE					0x00000060
++#define    NV20TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NORMAL					0x00000080
++#define    NV20TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NEGATE					0x000000a0
++#define    NV20TCL_RC_FINAL0_D_MAPPING_SIGNED_IDENTITY					0x000000c0
++#define    NV20TCL_RC_FINAL0_D_MAPPING_SIGNED_NEGATE					0x000000e0
+ #define   NV20TCL_RC_FINAL0_C_INPUT_SHIFT						8
+ #define   NV20TCL_RC_FINAL0_C_INPUT_MASK						0x00000f00
+ #define    NV20TCL_RC_FINAL0_C_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR0_NV					0x00000100
+-#define    NV20TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR1_NV					0x00000200
++#define    NV20TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV20TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV20TCL_RC_FINAL0_C_INPUT_FOG						0x00000300
+-#define    NV20TCL_RC_FINAL0_C_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV20TCL_RC_FINAL0_C_INPUT_SECONDARY_COLOR_NV					0x00000500
+-#define    NV20TCL_RC_FINAL0_C_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV20TCL_RC_FINAL0_C_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV20TCL_RC_FINAL0_C_INPUT_SPARE0_NV						0x00000c00
+-#define    NV20TCL_RC_FINAL0_C_INPUT_SPARE1_NV						0x00000d00
+-#define    NV20TCL_RC_FINAL0_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV20TCL_RC_FINAL0_C_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV20TCL_RC_FINAL0_C_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV20TCL_RC_FINAL0_C_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV20TCL_RC_FINAL0_C_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV20TCL_RC_FINAL0_C_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV20TCL_RC_FINAL0_C_INPUT_TEXTURE0						0x00000800
++#define    NV20TCL_RC_FINAL0_C_INPUT_TEXTURE1						0x00000900
++#define    NV20TCL_RC_FINAL0_C_INPUT_SPARE0						0x00000c00
++#define    NV20TCL_RC_FINAL0_C_INPUT_SPARE1						0x00000d00
++#define    NV20TCL_RC_FINAL0_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV20TCL_RC_FINAL0_C_INPUT_E_TIMES_F						0x00000f00
++#define    NV20TCL_RC_FINAL0_C_INPUT_TEXTURE2						0x00000a00
++#define    NV20TCL_RC_FINAL0_C_INPUT_TEXTURE3						0x00000b00
+ #define   NV20TCL_RC_FINAL0_C_COMPONENT_USAGE						(1 << 12)
+ #define    NV20TCL_RC_FINAL0_C_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_FINAL0_C_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV20TCL_RC_FINAL0_C_MAPPING_SHIFT						13
+ #define   NV20TCL_RC_FINAL0_C_MAPPING_MASK						0x0000e000
+-#define    NV20TCL_RC_FINAL0_C_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_FINAL0_C_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV20TCL_RC_FINAL0_C_MAPPING_EXPAND_NORMAL_NV					0x00004000
+-#define    NV20TCL_RC_FINAL0_C_MAPPING_EXPAND_NEGATE_NV					0x00006000
+-#define    NV20TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV20TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV20TCL_RC_FINAL0_C_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV20TCL_RC_FINAL0_C_MAPPING_SIGNED_NEGATE_NV					0x0000e000
++#define    NV20TCL_RC_FINAL0_C_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_FINAL0_C_MAPPING_UNSIGNED_INVERT					0x00002000
++#define    NV20TCL_RC_FINAL0_C_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV20TCL_RC_FINAL0_C_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV20TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NORMAL					0x00008000
++#define    NV20TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NEGATE					0x0000a000
++#define    NV20TCL_RC_FINAL0_C_MAPPING_SIGNED_IDENTITY					0x0000c000
++#define    NV20TCL_RC_FINAL0_C_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV20TCL_RC_FINAL0_B_INPUT_SHIFT						16
+ #define   NV20TCL_RC_FINAL0_B_INPUT_MASK						0x000f0000
+ #define    NV20TCL_RC_FINAL0_B_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR0_NV					0x00010000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR1_NV					0x00020000
++#define    NV20TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV20TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV20TCL_RC_FINAL0_B_INPUT_FOG						0x00030000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_SECONDARY_COLOR_NV					0x00050000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_SPARE0_NV						0x000c0000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_SPARE1_NV						0x000d0000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV20TCL_RC_FINAL0_B_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV20TCL_RC_FINAL0_B_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV20TCL_RC_FINAL0_B_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV20TCL_RC_FINAL0_B_INPUT_TEXTURE0						0x00080000
++#define    NV20TCL_RC_FINAL0_B_INPUT_TEXTURE1						0x00090000
++#define    NV20TCL_RC_FINAL0_B_INPUT_SPARE0						0x000c0000
++#define    NV20TCL_RC_FINAL0_B_INPUT_SPARE1						0x000d0000
++#define    NV20TCL_RC_FINAL0_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV20TCL_RC_FINAL0_B_INPUT_E_TIMES_F						0x000f0000
++#define    NV20TCL_RC_FINAL0_B_INPUT_TEXTURE2						0x000a0000
++#define    NV20TCL_RC_FINAL0_B_INPUT_TEXTURE3						0x000b0000
+ #define   NV20TCL_RC_FINAL0_B_COMPONENT_USAGE						(1 << 20)
+ #define    NV20TCL_RC_FINAL0_B_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_FINAL0_B_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV20TCL_RC_FINAL0_B_MAPPING_SHIFT						21
+ #define   NV20TCL_RC_FINAL0_B_MAPPING_MASK						0x00e00000
+-#define    NV20TCL_RC_FINAL0_B_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_FINAL0_B_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV20TCL_RC_FINAL0_B_MAPPING_EXPAND_NORMAL_NV					0x00400000
+-#define    NV20TCL_RC_FINAL0_B_MAPPING_EXPAND_NEGATE_NV					0x00600000
+-#define    NV20TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV20TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV20TCL_RC_FINAL0_B_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV20TCL_RC_FINAL0_B_MAPPING_SIGNED_NEGATE_NV					0x00e00000
++#define    NV20TCL_RC_FINAL0_B_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_FINAL0_B_MAPPING_UNSIGNED_INVERT					0x00200000
++#define    NV20TCL_RC_FINAL0_B_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV20TCL_RC_FINAL0_B_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV20TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NORMAL					0x00800000
++#define    NV20TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NEGATE					0x00a00000
++#define    NV20TCL_RC_FINAL0_B_MAPPING_SIGNED_IDENTITY					0x00c00000
++#define    NV20TCL_RC_FINAL0_B_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV20TCL_RC_FINAL0_A_INPUT_SHIFT						24
+ #define   NV20TCL_RC_FINAL0_A_INPUT_MASK						0x0f000000
+ #define    NV20TCL_RC_FINAL0_A_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR0_NV					0x01000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR1_NV					0x02000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV20TCL_RC_FINAL0_A_INPUT_FOG						0x03000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_SECONDARY_COLOR_NV					0x05000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_SPARE0_NV						0x0c000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_SPARE1_NV						0x0d000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV20TCL_RC_FINAL0_A_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_TEXTURE0						0x08000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_TEXTURE1						0x09000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_SPARE0						0x0c000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_SPARE1						0x0d000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_E_TIMES_F						0x0f000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_TEXTURE2						0x0a000000
++#define    NV20TCL_RC_FINAL0_A_INPUT_TEXTURE3						0x0b000000
+ #define   NV20TCL_RC_FINAL0_A_COMPONENT_USAGE						(1 << 28)
+ #define    NV20TCL_RC_FINAL0_A_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_FINAL0_A_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV20TCL_RC_FINAL0_A_MAPPING_SHIFT						29
+ #define   NV20TCL_RC_FINAL0_A_MAPPING_MASK						0xe0000000
+-#define    NV20TCL_RC_FINAL0_A_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_FINAL0_A_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV20TCL_RC_FINAL0_A_MAPPING_EXPAND_NORMAL_NV					0x40000000
+-#define    NV20TCL_RC_FINAL0_A_MAPPING_EXPAND_NEGATE_NV					0x60000000
+-#define    NV20TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV20TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV20TCL_RC_FINAL0_A_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV20TCL_RC_FINAL0_A_MAPPING_SIGNED_NEGATE_NV					0xe0000000
++#define    NV20TCL_RC_FINAL0_A_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_FINAL0_A_MAPPING_UNSIGNED_INVERT					0x20000000
++#define    NV20TCL_RC_FINAL0_A_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV20TCL_RC_FINAL0_A_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV20TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NORMAL					0x80000000
++#define    NV20TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NEGATE					0xa0000000
++#define    NV20TCL_RC_FINAL0_A_MAPPING_SIGNED_IDENTITY					0xc0000000
++#define    NV20TCL_RC_FINAL0_A_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV20TCL_RC_FINAL1								0x0000028c
+ #define   NV20TCL_RC_FINAL1_COLOR_SUM_CLAMP						(1 <<  7)
+ #define   NV20TCL_RC_FINAL1_G_INPUT_SHIFT						8
+ #define   NV20TCL_RC_FINAL1_G_INPUT_MASK						0x00000f00
+ #define    NV20TCL_RC_FINAL1_G_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR0_NV					0x00000100
+-#define    NV20TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR1_NV					0x00000200
++#define    NV20TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV20TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV20TCL_RC_FINAL1_G_INPUT_FOG						0x00000300
+-#define    NV20TCL_RC_FINAL1_G_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV20TCL_RC_FINAL1_G_INPUT_SECONDARY_COLOR_NV					0x00000500
+-#define    NV20TCL_RC_FINAL1_G_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV20TCL_RC_FINAL1_G_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV20TCL_RC_FINAL1_G_INPUT_SPARE0_NV						0x00000c00
+-#define    NV20TCL_RC_FINAL1_G_INPUT_SPARE1_NV						0x00000d00
+-#define    NV20TCL_RC_FINAL1_G_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV20TCL_RC_FINAL1_G_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV20TCL_RC_FINAL1_G_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV20TCL_RC_FINAL1_G_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV20TCL_RC_FINAL1_G_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV20TCL_RC_FINAL1_G_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV20TCL_RC_FINAL1_G_INPUT_TEXTURE0						0x00000800
++#define    NV20TCL_RC_FINAL1_G_INPUT_TEXTURE1						0x00000900
++#define    NV20TCL_RC_FINAL1_G_INPUT_SPARE0						0x00000c00
++#define    NV20TCL_RC_FINAL1_G_INPUT_SPARE1						0x00000d00
++#define    NV20TCL_RC_FINAL1_G_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV20TCL_RC_FINAL1_G_INPUT_E_TIMES_F						0x00000f00
++#define    NV20TCL_RC_FINAL1_G_INPUT_TEXTURE2						0x00000a00
++#define    NV20TCL_RC_FINAL1_G_INPUT_TEXTURE3						0x00000b00
+ #define   NV20TCL_RC_FINAL1_G_COMPONENT_USAGE						(1 << 12)
+ #define    NV20TCL_RC_FINAL1_G_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_FINAL1_G_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV20TCL_RC_FINAL1_G_MAPPING_SHIFT						13
+ #define   NV20TCL_RC_FINAL1_G_MAPPING_MASK						0x0000e000
+-#define    NV20TCL_RC_FINAL1_G_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_FINAL1_G_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV20TCL_RC_FINAL1_G_MAPPING_EXPAND_NORMAL_NV					0x00004000
+-#define    NV20TCL_RC_FINAL1_G_MAPPING_EXPAND_NEGATE_NV					0x00006000
+-#define    NV20TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV20TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV20TCL_RC_FINAL1_G_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV20TCL_RC_FINAL1_G_MAPPING_SIGNED_NEGATE_NV					0x0000e000
++#define    NV20TCL_RC_FINAL1_G_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_FINAL1_G_MAPPING_UNSIGNED_INVERT					0x00002000
++#define    NV20TCL_RC_FINAL1_G_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV20TCL_RC_FINAL1_G_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV20TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NORMAL					0x00008000
++#define    NV20TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NEGATE					0x0000a000
++#define    NV20TCL_RC_FINAL1_G_MAPPING_SIGNED_IDENTITY					0x0000c000
++#define    NV20TCL_RC_FINAL1_G_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV20TCL_RC_FINAL1_F_INPUT_SHIFT						16
+ #define   NV20TCL_RC_FINAL1_F_INPUT_MASK						0x000f0000
+ #define    NV20TCL_RC_FINAL1_F_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR0_NV					0x00010000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR1_NV					0x00020000
++#define    NV20TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV20TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV20TCL_RC_FINAL1_F_INPUT_FOG						0x00030000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_SECONDARY_COLOR_NV					0x00050000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_SPARE0_NV						0x000c0000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_SPARE1_NV						0x000d0000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV20TCL_RC_FINAL1_F_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV20TCL_RC_FINAL1_F_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV20TCL_RC_FINAL1_F_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV20TCL_RC_FINAL1_F_INPUT_TEXTURE0						0x00080000
++#define    NV20TCL_RC_FINAL1_F_INPUT_TEXTURE1						0x00090000
++#define    NV20TCL_RC_FINAL1_F_INPUT_SPARE0						0x000c0000
++#define    NV20TCL_RC_FINAL1_F_INPUT_SPARE1						0x000d0000
++#define    NV20TCL_RC_FINAL1_F_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV20TCL_RC_FINAL1_F_INPUT_E_TIMES_F						0x000f0000
++#define    NV20TCL_RC_FINAL1_F_INPUT_TEXTURE2						0x000a0000
++#define    NV20TCL_RC_FINAL1_F_INPUT_TEXTURE3						0x000b0000
+ #define   NV20TCL_RC_FINAL1_F_COMPONENT_USAGE						(1 << 20)
+ #define    NV20TCL_RC_FINAL1_F_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_FINAL1_F_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV20TCL_RC_FINAL1_F_MAPPING_SHIFT						21
+ #define   NV20TCL_RC_FINAL1_F_MAPPING_MASK						0x00e00000
+-#define    NV20TCL_RC_FINAL1_F_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_FINAL1_F_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV20TCL_RC_FINAL1_F_MAPPING_EXPAND_NORMAL_NV					0x00400000
+-#define    NV20TCL_RC_FINAL1_F_MAPPING_EXPAND_NEGATE_NV					0x00600000
+-#define    NV20TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV20TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV20TCL_RC_FINAL1_F_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV20TCL_RC_FINAL1_F_MAPPING_SIGNED_NEGATE_NV					0x00e00000
++#define    NV20TCL_RC_FINAL1_F_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_FINAL1_F_MAPPING_UNSIGNED_INVERT					0x00200000
++#define    NV20TCL_RC_FINAL1_F_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV20TCL_RC_FINAL1_F_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV20TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NORMAL					0x00800000
++#define    NV20TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NEGATE					0x00a00000
++#define    NV20TCL_RC_FINAL1_F_MAPPING_SIGNED_IDENTITY					0x00c00000
++#define    NV20TCL_RC_FINAL1_F_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV20TCL_RC_FINAL1_E_INPUT_SHIFT						24
+ #define   NV20TCL_RC_FINAL1_E_INPUT_MASK						0x0f000000
+ #define    NV20TCL_RC_FINAL1_E_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR0_NV					0x01000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR1_NV					0x02000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV20TCL_RC_FINAL1_E_INPUT_FOG						0x03000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_SECONDARY_COLOR_NV					0x05000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_SPARE0_NV						0x0c000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_SPARE1_NV						0x0d000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV20TCL_RC_FINAL1_E_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_TEXTURE0						0x08000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_TEXTURE1						0x09000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_SPARE0						0x0c000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_SPARE1						0x0d000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_E_TIMES_F						0x0f000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_TEXTURE2						0x0a000000
++#define    NV20TCL_RC_FINAL1_E_INPUT_TEXTURE3						0x0b000000
+ #define   NV20TCL_RC_FINAL1_E_COMPONENT_USAGE						(1 << 28)
+ #define    NV20TCL_RC_FINAL1_E_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_FINAL1_E_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV20TCL_RC_FINAL1_E_MAPPING_SHIFT						29
+ #define   NV20TCL_RC_FINAL1_E_MAPPING_MASK						0xe0000000
+-#define    NV20TCL_RC_FINAL1_E_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_FINAL1_E_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV20TCL_RC_FINAL1_E_MAPPING_EXPAND_NORMAL_NV					0x40000000
+-#define    NV20TCL_RC_FINAL1_E_MAPPING_EXPAND_NEGATE_NV					0x60000000
+-#define    NV20TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV20TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV20TCL_RC_FINAL1_E_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV20TCL_RC_FINAL1_E_MAPPING_SIGNED_NEGATE_NV					0xe0000000
++#define    NV20TCL_RC_FINAL1_E_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_FINAL1_E_MAPPING_UNSIGNED_INVERT					0x20000000
++#define    NV20TCL_RC_FINAL1_E_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV20TCL_RC_FINAL1_E_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV20TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NORMAL					0x80000000
++#define    NV20TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NEGATE					0xa0000000
++#define    NV20TCL_RC_FINAL1_E_MAPPING_SIGNED_IDENTITY					0xc0000000
++#define    NV20TCL_RC_FINAL1_E_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV20TCL_LIGHT_CONTROL								0x00000294
+ #define  NV20TCL_FOG_MODE								0x0000029c
+ #define   NV20TCL_FOG_MODE_EXP								0x00000800
+@@ -4047,181 +4047,181 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define   NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_SHIFT						0
+ #define   NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_MASK						0x0000000f
+ #define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR0_NV				0x00000001
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR1_NV				0x00000002
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR0				0x00000001
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR1				0x00000002
+ #define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_FOG						0x00000003
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_PRIMARY_COLOR_NV				0x00000004
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_SECONDARY_COLOR_NV				0x00000005
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE0_ARB					0x00000008
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE1_ARB					0x00000009
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0_NV					0x0000000c
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE1_NV					0x0000000d
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV		0x0000000e
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE3_ARB					0x0000000b
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_PRIMARY_COLOR					0x00000004
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_SECONDARY_COLOR				0x00000005
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE0					0x00000008
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE1					0x00000009
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0					0x0000000c
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE1					0x0000000d
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_E_TIMES_F					0x0000000f
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE2					0x0000000a
++#define    NV20TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE3					0x0000000b
+ #define   NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_SHIFT						4
+ #define   NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_MASK						0x000000f0
+ #define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR0_NV				0x00000010
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR1_NV				0x00000020
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR0				0x00000010
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR1				0x00000020
+ #define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_FOG						0x00000030
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_PRIMARY_COLOR_NV				0x00000040
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_SECONDARY_COLOR_NV				0x00000050
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE0_ARB					0x00000080
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE1_ARB					0x00000090
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0_NV					0x000000c0
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE1_NV					0x000000d0
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV		0x000000e0
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_E_TIMES_F_NV					0x000000f0
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE2_ARB					0x000000a0
+-#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE3_ARB					0x000000b0
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_PRIMARY_COLOR					0x00000040
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_SECONDARY_COLOR				0x00000050
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE0					0x00000080
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE1					0x00000090
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0					0x000000c0
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE1					0x000000d0
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000000e0
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_E_TIMES_F					0x000000f0
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE2					0x000000a0
++#define    NV20TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE3					0x000000b0
+ #define   NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_SHIFT						8
+ #define   NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_MASK						0x00000f00
+ #define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR0_NV				0x00000100
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR1_NV				0x00000200
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR0				0x00000100
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR1				0x00000200
+ #define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_FOG						0x00000300
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_PRIMARY_COLOR_NV				0x00000400
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_SECONDARY_COLOR_NV				0x00000500
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE0_ARB					0x00000800
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE1_ARB					0x00000900
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0_NV					0x00000c00
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE1_NV					0x00000d00
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV		0x00000e00
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE3_ARB					0x00000b00
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_PRIMARY_COLOR				0x00000400
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_SECONDARY_COLOR				0x00000500
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE0					0x00000800
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE1					0x00000900
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0					0x00000c00
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE1					0x00000d00
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_E_TIMES_F					0x00000f00
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE2					0x00000a00
++#define    NV20TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE3					0x00000b00
+ #define   NV20TCL_RC_OUT_ALPHA_CD_DOT_PRODUCT						(1 << 12)
+ #define   NV20TCL_RC_OUT_ALPHA_AB_DOT_PRODUCT						(1 << 13)
+ #define   NV20TCL_RC_OUT_ALPHA_MUX_SUM							(1 << 14)
+ #define   NV20TCL_RC_OUT_ALPHA_BIAS							(1 << 15)
+ #define    NV20TCL_RC_OUT_ALPHA_BIAS_NONE						0x00000000
+-#define    NV20TCL_RC_OUT_ALPHA_BIAS_BIAS_BY_NEGATIVE_ONE_HALF_NV			0x00008000
++#define    NV20TCL_RC_OUT_ALPHA_BIAS_BIAS_BY_NEGATIVE_ONE_HALF				0x00008000
+ #define   NV20TCL_RC_OUT_ALPHA_SCALE_SHIFT						17
+ #define   NV20TCL_RC_OUT_ALPHA_SCALE_MASK						0x00000000
+ #define    NV20TCL_RC_OUT_ALPHA_SCALE_NONE						0x00000000
+-#define    NV20TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_TWO_NV					0x00020000
+-#define    NV20TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_FOUR_NV					0x00040000
+-#define    NV20TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_ONE_HALF_NV				0x00060000
++#define    NV20TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_TWO					0x00020000
++#define    NV20TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_FOUR					0x00040000
++#define    NV20TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_ONE_HALF					0x00060000
+ #define  NV20TCL_RC_IN_RGB(x)								(0x00000ac0+((x)*4))
+ #define  NV20TCL_RC_IN_RGB__SIZE							0x00000008
+ #define   NV20TCL_RC_IN_RGB_D_INPUT_SHIFT						0
+ #define   NV20TCL_RC_IN_RGB_D_INPUT_MASK						0x0000000f
+ #define    NV20TCL_RC_IN_RGB_D_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR0_NV					0x00000001
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR1_NV					0x00000002
++#define    NV20TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR0					0x00000001
++#define    NV20TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV20TCL_RC_IN_RGB_D_INPUT_FOG						0x00000003
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_PRIMARY_COLOR_NV					0x00000004
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_SECONDARY_COLOR_NV					0x00000005
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_TEXTURE0_ARB					0x00000008
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_TEXTURE1_ARB					0x00000009
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_SPARE0_NV						0x0000000c
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_SPARE1_NV						0x0000000d
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV20TCL_RC_IN_RGB_D_INPUT_TEXTURE3_ARB					0x0000000b
++#define    NV20TCL_RC_IN_RGB_D_INPUT_PRIMARY_COLOR					0x00000004
++#define    NV20TCL_RC_IN_RGB_D_INPUT_SECONDARY_COLOR					0x00000005
++#define    NV20TCL_RC_IN_RGB_D_INPUT_TEXTURE0						0x00000008
++#define    NV20TCL_RC_IN_RGB_D_INPUT_TEXTURE1						0x00000009
++#define    NV20TCL_RC_IN_RGB_D_INPUT_SPARE0						0x0000000c
++#define    NV20TCL_RC_IN_RGB_D_INPUT_SPARE1						0x0000000d
++#define    NV20TCL_RC_IN_RGB_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV20TCL_RC_IN_RGB_D_INPUT_E_TIMES_F						0x0000000f
++#define    NV20TCL_RC_IN_RGB_D_INPUT_TEXTURE2						0x0000000a
++#define    NV20TCL_RC_IN_RGB_D_INPUT_TEXTURE3						0x0000000b
+ #define   NV20TCL_RC_IN_RGB_D_COMPONENT_USAGE						(1 <<  4)
+ #define    NV20TCL_RC_IN_RGB_D_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_IN_RGB_D_COMPONENT_USAGE_ALPHA					0x00000010
+ #define   NV20TCL_RC_IN_RGB_D_MAPPING_SHIFT						5
+ #define   NV20TCL_RC_IN_RGB_D_MAPPING_MASK						0x000000e0
+-#define    NV20TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_INVERT_NV				0x00000020
+-#define    NV20TCL_RC_IN_RGB_D_MAPPING_EXPAND_NORMAL_NV					0x00000040
+-#define    NV20TCL_RC_IN_RGB_D_MAPPING_EXPAND_NEGATE_NV					0x00000060
+-#define    NV20TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NORMAL_NV				0x00000080
+-#define    NV20TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NEGATE_NV				0x000000a0
+-#define    NV20TCL_RC_IN_RGB_D_MAPPING_SIGNED_IDENTITY_NV				0x000000c0
+-#define    NV20TCL_RC_IN_RGB_D_MAPPING_SIGNED_NEGATE_NV					0x000000e0
++#define    NV20TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_INVERT					0x00000020
++#define    NV20TCL_RC_IN_RGB_D_MAPPING_EXPAND_NORMAL					0x00000040
++#define    NV20TCL_RC_IN_RGB_D_MAPPING_EXPAND_NEGATE					0x00000060
++#define    NV20TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NORMAL					0x00000080
++#define    NV20TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NEGATE					0x000000a0
++#define    NV20TCL_RC_IN_RGB_D_MAPPING_SIGNED_IDENTITY					0x000000c0
++#define    NV20TCL_RC_IN_RGB_D_MAPPING_SIGNED_NEGATE					0x000000e0
+ #define   NV20TCL_RC_IN_RGB_C_INPUT_SHIFT						8
+ #define   NV20TCL_RC_IN_RGB_C_INPUT_MASK						0x00000f00
+ #define    NV20TCL_RC_IN_RGB_C_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR0_NV					0x00000100
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR1_NV					0x00000200
++#define    NV20TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV20TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV20TCL_RC_IN_RGB_C_INPUT_FOG						0x00000300
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_SECONDARY_COLOR_NV					0x00000500
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_SPARE0_NV						0x00000c00
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_SPARE1_NV						0x00000d00
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV20TCL_RC_IN_RGB_C_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV20TCL_RC_IN_RGB_C_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV20TCL_RC_IN_RGB_C_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV20TCL_RC_IN_RGB_C_INPUT_TEXTURE0						0x00000800
++#define    NV20TCL_RC_IN_RGB_C_INPUT_TEXTURE1						0x00000900
++#define    NV20TCL_RC_IN_RGB_C_INPUT_SPARE0						0x00000c00
++#define    NV20TCL_RC_IN_RGB_C_INPUT_SPARE1						0x00000d00
++#define    NV20TCL_RC_IN_RGB_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV20TCL_RC_IN_RGB_C_INPUT_E_TIMES_F						0x00000f00
++#define    NV20TCL_RC_IN_RGB_C_INPUT_TEXTURE2						0x00000a00
++#define    NV20TCL_RC_IN_RGB_C_INPUT_TEXTURE3						0x00000b00
+ #define   NV20TCL_RC_IN_RGB_C_COMPONENT_USAGE						(1 << 12)
+ #define    NV20TCL_RC_IN_RGB_C_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_IN_RGB_C_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV20TCL_RC_IN_RGB_C_MAPPING_SHIFT						13
+ #define   NV20TCL_RC_IN_RGB_C_MAPPING_MASK						0x0000e000
+-#define    NV20TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV20TCL_RC_IN_RGB_C_MAPPING_EXPAND_NORMAL_NV					0x00004000
+-#define    NV20TCL_RC_IN_RGB_C_MAPPING_EXPAND_NEGATE_NV					0x00006000
+-#define    NV20TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV20TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV20TCL_RC_IN_RGB_C_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV20TCL_RC_IN_RGB_C_MAPPING_SIGNED_NEGATE_NV					0x0000e000
++#define    NV20TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_INVERT					0x00002000
++#define    NV20TCL_RC_IN_RGB_C_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV20TCL_RC_IN_RGB_C_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV20TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NORMAL					0x00008000
++#define    NV20TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NEGATE					0x0000a000
++#define    NV20TCL_RC_IN_RGB_C_MAPPING_SIGNED_IDENTITY					0x0000c000
++#define    NV20TCL_RC_IN_RGB_C_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV20TCL_RC_IN_RGB_B_INPUT_SHIFT						16
+ #define   NV20TCL_RC_IN_RGB_B_INPUT_MASK						0x000f0000
+ #define    NV20TCL_RC_IN_RGB_B_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR0_NV					0x00010000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR1_NV					0x00020000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV20TCL_RC_IN_RGB_B_INPUT_FOG						0x00030000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_SECONDARY_COLOR_NV					0x00050000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_SPARE0_NV						0x000c0000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_SPARE1_NV						0x000d0000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV20TCL_RC_IN_RGB_B_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_TEXTURE0						0x00080000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_TEXTURE1						0x00090000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_SPARE0						0x000c0000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_SPARE1						0x000d0000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_E_TIMES_F						0x000f0000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_TEXTURE2						0x000a0000
++#define    NV20TCL_RC_IN_RGB_B_INPUT_TEXTURE3						0x000b0000
+ #define   NV20TCL_RC_IN_RGB_B_COMPONENT_USAGE						(1 << 20)
+ #define    NV20TCL_RC_IN_RGB_B_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_IN_RGB_B_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV20TCL_RC_IN_RGB_B_MAPPING_SHIFT						21
+ #define   NV20TCL_RC_IN_RGB_B_MAPPING_MASK						0x00e00000
+-#define    NV20TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV20TCL_RC_IN_RGB_B_MAPPING_EXPAND_NORMAL_NV					0x00400000
+-#define    NV20TCL_RC_IN_RGB_B_MAPPING_EXPAND_NEGATE_NV					0x00600000
+-#define    NV20TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV20TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV20TCL_RC_IN_RGB_B_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV20TCL_RC_IN_RGB_B_MAPPING_SIGNED_NEGATE_NV					0x00e00000
++#define    NV20TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_INVERT					0x00200000
++#define    NV20TCL_RC_IN_RGB_B_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV20TCL_RC_IN_RGB_B_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV20TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NORMAL					0x00800000
++#define    NV20TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NEGATE					0x00a00000
++#define    NV20TCL_RC_IN_RGB_B_MAPPING_SIGNED_IDENTITY					0x00c00000
++#define    NV20TCL_RC_IN_RGB_B_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV20TCL_RC_IN_RGB_A_INPUT_SHIFT						24
+ #define   NV20TCL_RC_IN_RGB_A_INPUT_MASK						0x0f000000
+ #define    NV20TCL_RC_IN_RGB_A_INPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR0_NV					0x01000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR1_NV					0x02000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV20TCL_RC_IN_RGB_A_INPUT_FOG						0x03000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_SECONDARY_COLOR_NV					0x05000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_SPARE0_NV						0x0c000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_SPARE1_NV						0x0d000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV20TCL_RC_IN_RGB_A_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_TEXTURE0						0x08000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_TEXTURE1						0x09000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_SPARE0						0x0c000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_SPARE1						0x0d000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_E_TIMES_F						0x0f000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_TEXTURE2						0x0a000000
++#define    NV20TCL_RC_IN_RGB_A_INPUT_TEXTURE3						0x0b000000
+ #define   NV20TCL_RC_IN_RGB_A_COMPONENT_USAGE						(1 << 28)
+ #define    NV20TCL_RC_IN_RGB_A_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV20TCL_RC_IN_RGB_A_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV20TCL_RC_IN_RGB_A_MAPPING_SHIFT						29
+ #define   NV20TCL_RC_IN_RGB_A_MAPPING_MASK						0xe0000000
+-#define    NV20TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV20TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV20TCL_RC_IN_RGB_A_MAPPING_EXPAND_NORMAL_NV					0x40000000
+-#define    NV20TCL_RC_IN_RGB_A_MAPPING_EXPAND_NEGATE_NV					0x60000000
+-#define    NV20TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV20TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV20TCL_RC_IN_RGB_A_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV20TCL_RC_IN_RGB_A_MAPPING_SIGNED_NEGATE_NV					0xe0000000
++#define    NV20TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV20TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_INVERT					0x20000000
++#define    NV20TCL_RC_IN_RGB_A_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV20TCL_RC_IN_RGB_A_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV20TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NORMAL					0x80000000
++#define    NV20TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NEGATE					0xa0000000
++#define    NV20TCL_RC_IN_RGB_A_MAPPING_SIGNED_IDENTITY					0xc0000000
++#define    NV20TCL_RC_IN_RGB_A_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV20TCL_VIEWPORT_SCALE_X							0x00000af0
+ #define  NV20TCL_VIEWPORT_SCALE_Y							0x00000af4
+ #define  NV20TCL_VIEWPORT_SCALE_Z							0x00000af8
+@@ -4722,63 +4722,63 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define   NV20TCL_RC_OUT_RGB_CD_OUTPUT_SHIFT						0
+ #define   NV20TCL_RC_OUT_RGB_CD_OUTPUT_MASK						0x0000000f
+ #define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR0_NV				0x00000001
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR1_NV				0x00000002
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR0					0x00000001
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_FOG						0x00000003
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_PRIMARY_COLOR_NV				0x00000004
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_SECONDARY_COLOR_NV				0x00000005
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE0_ARB					0x00000008
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE1_ARB					0x00000009
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0_NV					0x0000000c
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_SPARE1_NV					0x0000000d
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE3_ARB					0x0000000b
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_PRIMARY_COLOR					0x00000004
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_SECONDARY_COLOR					0x00000005
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE0					0x00000008
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE1					0x00000009
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0						0x0000000c
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_SPARE1						0x0000000d
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_E_TIMES_F					0x0000000f
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE2					0x0000000a
++#define    NV20TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE3					0x0000000b
+ #define   NV20TCL_RC_OUT_RGB_AB_OUTPUT_SHIFT						4
+ #define   NV20TCL_RC_OUT_RGB_AB_OUTPUT_MASK						0x000000f0
+ #define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR0_NV				0x00000010
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR1_NV				0x00000020
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR0					0x00000010
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR1					0x00000020
+ #define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_FOG						0x00000030
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_PRIMARY_COLOR_NV				0x00000040
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_SECONDARY_COLOR_NV				0x00000050
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE0_ARB					0x00000080
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE1_ARB					0x00000090
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0_NV					0x000000c0
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_SPARE1_NV					0x000000d0
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000000e0
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_E_TIMES_F_NV					0x000000f0
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE2_ARB					0x000000a0
+-#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE3_ARB					0x000000b0
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_PRIMARY_COLOR					0x00000040
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_SECONDARY_COLOR					0x00000050
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE0					0x00000080
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE1					0x00000090
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0						0x000000c0
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_SPARE1						0x000000d0
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000000e0
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_E_TIMES_F					0x000000f0
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE2					0x000000a0
++#define    NV20TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE3					0x000000b0
+ #define   NV20TCL_RC_OUT_RGB_SUM_OUTPUT_SHIFT						8
+ #define   NV20TCL_RC_OUT_RGB_SUM_OUTPUT_MASK						0x00000f00
+ #define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_ZERO						0x00000000
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR0_NV				0x00000100
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR1_NV				0x00000200
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR0				0x00000100
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR1				0x00000200
+ #define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_FOG						0x00000300
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_PRIMARY_COLOR_NV				0x00000400
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_SECONDARY_COLOR_NV				0x00000500
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE0_ARB					0x00000800
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE1_ARB					0x00000900
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0_NV					0x00000c00
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE1_NV					0x00000d00
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE3_ARB					0x00000b00
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_PRIMARY_COLOR					0x00000400
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_SECONDARY_COLOR				0x00000500
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE0					0x00000800
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE1					0x00000900
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0						0x00000c00
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE1						0x00000d00
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_E_TIMES_F					0x00000f00
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE2					0x00000a00
++#define    NV20TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE3					0x00000b00
+ #define   NV20TCL_RC_OUT_RGB_CD_DOT_PRODUCT						(1 << 12)
+ #define   NV20TCL_RC_OUT_RGB_AB_DOT_PRODUCT						(1 << 13)
+ #define   NV20TCL_RC_OUT_RGB_MUX_SUM							(1 << 14)
+ #define   NV20TCL_RC_OUT_RGB_BIAS							(1 << 15)
+ #define    NV20TCL_RC_OUT_RGB_BIAS_NONE							0x00000000
+-#define    NV20TCL_RC_OUT_RGB_BIAS_BIAS_BY_NEGATIVE_ONE_HALF_NV				0x00008000
++#define    NV20TCL_RC_OUT_RGB_BIAS_BIAS_BY_NEGATIVE_ONE_HALF				0x00008000
+ #define   NV20TCL_RC_OUT_RGB_SCALE_SHIFT						17
+ #define   NV20TCL_RC_OUT_RGB_SCALE_MASK							0x00000000
+ #define    NV20TCL_RC_OUT_RGB_SCALE_NONE						0x00000000
+-#define    NV20TCL_RC_OUT_RGB_SCALE_SCALE_BY_TWO_NV					0x00020000
+-#define    NV20TCL_RC_OUT_RGB_SCALE_SCALE_BY_FOUR_NV					0x00040000
+-#define    NV20TCL_RC_OUT_RGB_SCALE_SCALE_BY_ONE_HALF_NV				0x00060000
++#define    NV20TCL_RC_OUT_RGB_SCALE_SCALE_BY_TWO					0x00020000
++#define    NV20TCL_RC_OUT_RGB_SCALE_SCALE_BY_FOUR					0x00040000
++#define    NV20TCL_RC_OUT_RGB_SCALE_SCALE_BY_ONE_HALF					0x00060000
+ #define  NV20TCL_RC_ENABLE								0x00001e60
+ #define   NV20TCL_RC_ENABLE_NUM_COMBINERS_SHIFT						0
+ #define   NV20TCL_RC_ENABLE_NUM_COMBINERS_MASK						0x0000000f
+@@ -5366,208 +5366,208 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define   NV34TCL_RC_FINAL0_D_INPUT_SHIFT						0
+ #define   NV34TCL_RC_FINAL0_D_INPUT_MASK						0x0000000f
+ #define    NV34TCL_RC_FINAL0_D_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR0_NV					0x00000001
+-#define    NV34TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR1_NV					0x00000002
++#define    NV34TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR0					0x00000001
++#define    NV34TCL_RC_FINAL0_D_INPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV34TCL_RC_FINAL0_D_INPUT_FOG						0x00000003
+-#define    NV34TCL_RC_FINAL0_D_INPUT_PRIMARY_COLOR_NV					0x00000004
+-#define    NV34TCL_RC_FINAL0_D_INPUT_SECONDARY_COLOR_NV					0x00000005
+-#define    NV34TCL_RC_FINAL0_D_INPUT_TEXTURE0_ARB					0x00000008
+-#define    NV34TCL_RC_FINAL0_D_INPUT_TEXTURE1_ARB					0x00000009
+-#define    NV34TCL_RC_FINAL0_D_INPUT_SPARE0_NV						0x0000000c
+-#define    NV34TCL_RC_FINAL0_D_INPUT_SPARE1_NV						0x0000000d
+-#define    NV34TCL_RC_FINAL0_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV34TCL_RC_FINAL0_D_INPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV34TCL_RC_FINAL0_D_INPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV34TCL_RC_FINAL0_D_INPUT_TEXTURE3_ARB					0x0000000b
++#define    NV34TCL_RC_FINAL0_D_INPUT_PRIMARY_COLOR					0x00000004
++#define    NV34TCL_RC_FINAL0_D_INPUT_SECONDARY_COLOR					0x00000005
++#define    NV34TCL_RC_FINAL0_D_INPUT_TEXTURE0						0x00000008
++#define    NV34TCL_RC_FINAL0_D_INPUT_TEXTURE1						0x00000009
++#define    NV34TCL_RC_FINAL0_D_INPUT_SPARE0						0x0000000c
++#define    NV34TCL_RC_FINAL0_D_INPUT_SPARE1						0x0000000d
++#define    NV34TCL_RC_FINAL0_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV34TCL_RC_FINAL0_D_INPUT_E_TIMES_F						0x0000000f
++#define    NV34TCL_RC_FINAL0_D_INPUT_TEXTURE2						0x0000000a
++#define    NV34TCL_RC_FINAL0_D_INPUT_TEXTURE3						0x0000000b
+ #define   NV34TCL_RC_FINAL0_D_COMPONENT_USAGE						(1 <<  4)
+ #define    NV34TCL_RC_FINAL0_D_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_FINAL0_D_COMPONENT_USAGE_ALPHA					0x00000010
+ #define   NV34TCL_RC_FINAL0_D_MAPPING_SHIFT						5
+ #define   NV34TCL_RC_FINAL0_D_MAPPING_MASK						0x000000e0
+-#define    NV34TCL_RC_FINAL0_D_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_FINAL0_D_MAPPING_UNSIGNED_INVERT_NV				0x00000020
+-#define    NV34TCL_RC_FINAL0_D_MAPPING_EXPAND_NORMAL_NV					0x00000040
+-#define    NV34TCL_RC_FINAL0_D_MAPPING_EXPAND_NEGATE_NV					0x00000060
+-#define    NV34TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NORMAL_NV				0x00000080
+-#define    NV34TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NEGATE_NV				0x000000a0
+-#define    NV34TCL_RC_FINAL0_D_MAPPING_SIGNED_IDENTITY_NV				0x000000c0
+-#define    NV34TCL_RC_FINAL0_D_MAPPING_SIGNED_NEGATE_NV					0x000000e0
++#define    NV34TCL_RC_FINAL0_D_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_FINAL0_D_MAPPING_UNSIGNED_INVERT					0x00000020
++#define    NV34TCL_RC_FINAL0_D_MAPPING_EXPAND_NORMAL					0x00000040
++#define    NV34TCL_RC_FINAL0_D_MAPPING_EXPAND_NEGATE					0x00000060
++#define    NV34TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NORMAL					0x00000080
++#define    NV34TCL_RC_FINAL0_D_MAPPING_HALF_BIAS_NEGATE					0x000000a0
++#define    NV34TCL_RC_FINAL0_D_MAPPING_SIGNED_IDENTITY					0x000000c0
++#define    NV34TCL_RC_FINAL0_D_MAPPING_SIGNED_NEGATE					0x000000e0
+ #define   NV34TCL_RC_FINAL0_C_INPUT_SHIFT						8
+ #define   NV34TCL_RC_FINAL0_C_INPUT_MASK						0x00000f00
+ #define    NV34TCL_RC_FINAL0_C_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR0_NV					0x00000100
+-#define    NV34TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR1_NV					0x00000200
++#define    NV34TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV34TCL_RC_FINAL0_C_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV34TCL_RC_FINAL0_C_INPUT_FOG						0x00000300
+-#define    NV34TCL_RC_FINAL0_C_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV34TCL_RC_FINAL0_C_INPUT_SECONDARY_COLOR_NV					0x00000500
+-#define    NV34TCL_RC_FINAL0_C_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV34TCL_RC_FINAL0_C_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV34TCL_RC_FINAL0_C_INPUT_SPARE0_NV						0x00000c00
+-#define    NV34TCL_RC_FINAL0_C_INPUT_SPARE1_NV						0x00000d00
+-#define    NV34TCL_RC_FINAL0_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV34TCL_RC_FINAL0_C_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV34TCL_RC_FINAL0_C_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV34TCL_RC_FINAL0_C_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV34TCL_RC_FINAL0_C_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV34TCL_RC_FINAL0_C_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV34TCL_RC_FINAL0_C_INPUT_TEXTURE0						0x00000800
++#define    NV34TCL_RC_FINAL0_C_INPUT_TEXTURE1						0x00000900
++#define    NV34TCL_RC_FINAL0_C_INPUT_SPARE0						0x00000c00
++#define    NV34TCL_RC_FINAL0_C_INPUT_SPARE1						0x00000d00
++#define    NV34TCL_RC_FINAL0_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV34TCL_RC_FINAL0_C_INPUT_E_TIMES_F						0x00000f00
++#define    NV34TCL_RC_FINAL0_C_INPUT_TEXTURE2						0x00000a00
++#define    NV34TCL_RC_FINAL0_C_INPUT_TEXTURE3						0x00000b00
+ #define   NV34TCL_RC_FINAL0_C_COMPONENT_USAGE						(1 << 12)
+ #define    NV34TCL_RC_FINAL0_C_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_FINAL0_C_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV34TCL_RC_FINAL0_C_MAPPING_SHIFT						13
+ #define   NV34TCL_RC_FINAL0_C_MAPPING_MASK						0x0000e000
+-#define    NV34TCL_RC_FINAL0_C_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_FINAL0_C_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV34TCL_RC_FINAL0_C_MAPPING_EXPAND_NORMAL_NV					0x00004000
+-#define    NV34TCL_RC_FINAL0_C_MAPPING_EXPAND_NEGATE_NV					0x00006000
+-#define    NV34TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV34TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV34TCL_RC_FINAL0_C_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV34TCL_RC_FINAL0_C_MAPPING_SIGNED_NEGATE_NV					0x0000e000
++#define    NV34TCL_RC_FINAL0_C_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_FINAL0_C_MAPPING_UNSIGNED_INVERT					0x00002000
++#define    NV34TCL_RC_FINAL0_C_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV34TCL_RC_FINAL0_C_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV34TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NORMAL					0x00008000
++#define    NV34TCL_RC_FINAL0_C_MAPPING_HALF_BIAS_NEGATE					0x0000a000
++#define    NV34TCL_RC_FINAL0_C_MAPPING_SIGNED_IDENTITY					0x0000c000
++#define    NV34TCL_RC_FINAL0_C_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV34TCL_RC_FINAL0_B_INPUT_SHIFT						16
+ #define   NV34TCL_RC_FINAL0_B_INPUT_MASK						0x000f0000
+ #define    NV34TCL_RC_FINAL0_B_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR0_NV					0x00010000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR1_NV					0x00020000
++#define    NV34TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV34TCL_RC_FINAL0_B_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV34TCL_RC_FINAL0_B_INPUT_FOG						0x00030000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_SECONDARY_COLOR_NV					0x00050000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_SPARE0_NV						0x000c0000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_SPARE1_NV						0x000d0000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV34TCL_RC_FINAL0_B_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV34TCL_RC_FINAL0_B_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV34TCL_RC_FINAL0_B_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV34TCL_RC_FINAL0_B_INPUT_TEXTURE0						0x00080000
++#define    NV34TCL_RC_FINAL0_B_INPUT_TEXTURE1						0x00090000
++#define    NV34TCL_RC_FINAL0_B_INPUT_SPARE0						0x000c0000
++#define    NV34TCL_RC_FINAL0_B_INPUT_SPARE1						0x000d0000
++#define    NV34TCL_RC_FINAL0_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV34TCL_RC_FINAL0_B_INPUT_E_TIMES_F						0x000f0000
++#define    NV34TCL_RC_FINAL0_B_INPUT_TEXTURE2						0x000a0000
++#define    NV34TCL_RC_FINAL0_B_INPUT_TEXTURE3						0x000b0000
+ #define   NV34TCL_RC_FINAL0_B_COMPONENT_USAGE						(1 << 20)
+ #define    NV34TCL_RC_FINAL0_B_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_FINAL0_B_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV34TCL_RC_FINAL0_B_MAPPING_SHIFT						21
+ #define   NV34TCL_RC_FINAL0_B_MAPPING_MASK						0x00e00000
+-#define    NV34TCL_RC_FINAL0_B_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_FINAL0_B_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV34TCL_RC_FINAL0_B_MAPPING_EXPAND_NORMAL_NV					0x00400000
+-#define    NV34TCL_RC_FINAL0_B_MAPPING_EXPAND_NEGATE_NV					0x00600000
+-#define    NV34TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV34TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV34TCL_RC_FINAL0_B_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV34TCL_RC_FINAL0_B_MAPPING_SIGNED_NEGATE_NV					0x00e00000
++#define    NV34TCL_RC_FINAL0_B_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_FINAL0_B_MAPPING_UNSIGNED_INVERT					0x00200000
++#define    NV34TCL_RC_FINAL0_B_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV34TCL_RC_FINAL0_B_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV34TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NORMAL					0x00800000
++#define    NV34TCL_RC_FINAL0_B_MAPPING_HALF_BIAS_NEGATE					0x00a00000
++#define    NV34TCL_RC_FINAL0_B_MAPPING_SIGNED_IDENTITY					0x00c00000
++#define    NV34TCL_RC_FINAL0_B_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV34TCL_RC_FINAL0_A_INPUT_SHIFT						24
+ #define   NV34TCL_RC_FINAL0_A_INPUT_MASK						0x0f000000
+ #define    NV34TCL_RC_FINAL0_A_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR0_NV					0x01000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR1_NV					0x02000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV34TCL_RC_FINAL0_A_INPUT_FOG						0x03000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_SECONDARY_COLOR_NV					0x05000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_SPARE0_NV						0x0c000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_SPARE1_NV						0x0d000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV34TCL_RC_FINAL0_A_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_TEXTURE0						0x08000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_TEXTURE1						0x09000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_SPARE0						0x0c000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_SPARE1						0x0d000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_E_TIMES_F						0x0f000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_TEXTURE2						0x0a000000
++#define    NV34TCL_RC_FINAL0_A_INPUT_TEXTURE3						0x0b000000
+ #define   NV34TCL_RC_FINAL0_A_COMPONENT_USAGE						(1 << 28)
+ #define    NV34TCL_RC_FINAL0_A_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_FINAL0_A_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV34TCL_RC_FINAL0_A_MAPPING_SHIFT						29
+ #define   NV34TCL_RC_FINAL0_A_MAPPING_MASK						0xe0000000
+-#define    NV34TCL_RC_FINAL0_A_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_FINAL0_A_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV34TCL_RC_FINAL0_A_MAPPING_EXPAND_NORMAL_NV					0x40000000
+-#define    NV34TCL_RC_FINAL0_A_MAPPING_EXPAND_NEGATE_NV					0x60000000
+-#define    NV34TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV34TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV34TCL_RC_FINAL0_A_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV34TCL_RC_FINAL0_A_MAPPING_SIGNED_NEGATE_NV					0xe0000000
++#define    NV34TCL_RC_FINAL0_A_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_FINAL0_A_MAPPING_UNSIGNED_INVERT					0x20000000
++#define    NV34TCL_RC_FINAL0_A_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV34TCL_RC_FINAL0_A_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV34TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NORMAL					0x80000000
++#define    NV34TCL_RC_FINAL0_A_MAPPING_HALF_BIAS_NEGATE					0xa0000000
++#define    NV34TCL_RC_FINAL0_A_MAPPING_SIGNED_IDENTITY					0xc0000000
++#define    NV34TCL_RC_FINAL0_A_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV34TCL_RC_FINAL1								0x000008f8
+ #define   NV34TCL_RC_FINAL1_COLOR_SUM_CLAMP						(1 <<  7)
+ #define   NV34TCL_RC_FINAL1_G_INPUT_SHIFT						8
+ #define   NV34TCL_RC_FINAL1_G_INPUT_MASK						0x00000f00
+ #define    NV34TCL_RC_FINAL1_G_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR0_NV					0x00000100
+-#define    NV34TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR1_NV					0x00000200
++#define    NV34TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV34TCL_RC_FINAL1_G_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV34TCL_RC_FINAL1_G_INPUT_FOG						0x00000300
+-#define    NV34TCL_RC_FINAL1_G_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV34TCL_RC_FINAL1_G_INPUT_SECONDARY_COLOR_NV					0x00000500
+-#define    NV34TCL_RC_FINAL1_G_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV34TCL_RC_FINAL1_G_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV34TCL_RC_FINAL1_G_INPUT_SPARE0_NV						0x00000c00
+-#define    NV34TCL_RC_FINAL1_G_INPUT_SPARE1_NV						0x00000d00
+-#define    NV34TCL_RC_FINAL1_G_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV34TCL_RC_FINAL1_G_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV34TCL_RC_FINAL1_G_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV34TCL_RC_FINAL1_G_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV34TCL_RC_FINAL1_G_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV34TCL_RC_FINAL1_G_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV34TCL_RC_FINAL1_G_INPUT_TEXTURE0						0x00000800
++#define    NV34TCL_RC_FINAL1_G_INPUT_TEXTURE1						0x00000900
++#define    NV34TCL_RC_FINAL1_G_INPUT_SPARE0						0x00000c00
++#define    NV34TCL_RC_FINAL1_G_INPUT_SPARE1						0x00000d00
++#define    NV34TCL_RC_FINAL1_G_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV34TCL_RC_FINAL1_G_INPUT_E_TIMES_F						0x00000f00
++#define    NV34TCL_RC_FINAL1_G_INPUT_TEXTURE2						0x00000a00
++#define    NV34TCL_RC_FINAL1_G_INPUT_TEXTURE3						0x00000b00
+ #define   NV34TCL_RC_FINAL1_G_COMPONENT_USAGE						(1 << 12)
+ #define    NV34TCL_RC_FINAL1_G_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_FINAL1_G_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV34TCL_RC_FINAL1_G_MAPPING_SHIFT						13
+ #define   NV34TCL_RC_FINAL1_G_MAPPING_MASK						0x0000e000
+-#define    NV34TCL_RC_FINAL1_G_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_FINAL1_G_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV34TCL_RC_FINAL1_G_MAPPING_EXPAND_NORMAL_NV					0x00004000
+-#define    NV34TCL_RC_FINAL1_G_MAPPING_EXPAND_NEGATE_NV					0x00006000
+-#define    NV34TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV34TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV34TCL_RC_FINAL1_G_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV34TCL_RC_FINAL1_G_MAPPING_SIGNED_NEGATE_NV					0x0000e000
++#define    NV34TCL_RC_FINAL1_G_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_FINAL1_G_MAPPING_UNSIGNED_INVERT					0x00002000
++#define    NV34TCL_RC_FINAL1_G_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV34TCL_RC_FINAL1_G_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV34TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NORMAL					0x00008000
++#define    NV34TCL_RC_FINAL1_G_MAPPING_HALF_BIAS_NEGATE					0x0000a000
++#define    NV34TCL_RC_FINAL1_G_MAPPING_SIGNED_IDENTITY					0x0000c000
++#define    NV34TCL_RC_FINAL1_G_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV34TCL_RC_FINAL1_F_INPUT_SHIFT						16
+ #define   NV34TCL_RC_FINAL1_F_INPUT_MASK						0x000f0000
+ #define    NV34TCL_RC_FINAL1_F_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR0_NV					0x00010000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR1_NV					0x00020000
++#define    NV34TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV34TCL_RC_FINAL1_F_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV34TCL_RC_FINAL1_F_INPUT_FOG						0x00030000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_SECONDARY_COLOR_NV					0x00050000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_SPARE0_NV						0x000c0000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_SPARE1_NV						0x000d0000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV34TCL_RC_FINAL1_F_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV34TCL_RC_FINAL1_F_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV34TCL_RC_FINAL1_F_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV34TCL_RC_FINAL1_F_INPUT_TEXTURE0						0x00080000
++#define    NV34TCL_RC_FINAL1_F_INPUT_TEXTURE1						0x00090000
++#define    NV34TCL_RC_FINAL1_F_INPUT_SPARE0						0x000c0000
++#define    NV34TCL_RC_FINAL1_F_INPUT_SPARE1						0x000d0000
++#define    NV34TCL_RC_FINAL1_F_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV34TCL_RC_FINAL1_F_INPUT_E_TIMES_F						0x000f0000
++#define    NV34TCL_RC_FINAL1_F_INPUT_TEXTURE2						0x000a0000
++#define    NV34TCL_RC_FINAL1_F_INPUT_TEXTURE3						0x000b0000
+ #define   NV34TCL_RC_FINAL1_F_COMPONENT_USAGE						(1 << 20)
+ #define    NV34TCL_RC_FINAL1_F_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_FINAL1_F_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV34TCL_RC_FINAL1_F_MAPPING_SHIFT						21
+ #define   NV34TCL_RC_FINAL1_F_MAPPING_MASK						0x00e00000
+-#define    NV34TCL_RC_FINAL1_F_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_FINAL1_F_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV34TCL_RC_FINAL1_F_MAPPING_EXPAND_NORMAL_NV					0x00400000
+-#define    NV34TCL_RC_FINAL1_F_MAPPING_EXPAND_NEGATE_NV					0x00600000
+-#define    NV34TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV34TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV34TCL_RC_FINAL1_F_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV34TCL_RC_FINAL1_F_MAPPING_SIGNED_NEGATE_NV					0x00e00000
++#define    NV34TCL_RC_FINAL1_F_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_FINAL1_F_MAPPING_UNSIGNED_INVERT					0x00200000
++#define    NV34TCL_RC_FINAL1_F_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV34TCL_RC_FINAL1_F_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV34TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NORMAL					0x00800000
++#define    NV34TCL_RC_FINAL1_F_MAPPING_HALF_BIAS_NEGATE					0x00a00000
++#define    NV34TCL_RC_FINAL1_F_MAPPING_SIGNED_IDENTITY					0x00c00000
++#define    NV34TCL_RC_FINAL1_F_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV34TCL_RC_FINAL1_E_INPUT_SHIFT						24
+ #define   NV34TCL_RC_FINAL1_E_INPUT_MASK						0x0f000000
+ #define    NV34TCL_RC_FINAL1_E_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR0_NV					0x01000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR1_NV					0x02000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV34TCL_RC_FINAL1_E_INPUT_FOG						0x03000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_SECONDARY_COLOR_NV					0x05000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_SPARE0_NV						0x0c000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_SPARE1_NV						0x0d000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV34TCL_RC_FINAL1_E_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_TEXTURE0						0x08000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_TEXTURE1						0x09000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_SPARE0						0x0c000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_SPARE1						0x0d000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_E_TIMES_F						0x0f000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_TEXTURE2						0x0a000000
++#define    NV34TCL_RC_FINAL1_E_INPUT_TEXTURE3						0x0b000000
+ #define   NV34TCL_RC_FINAL1_E_COMPONENT_USAGE						(1 << 28)
+ #define    NV34TCL_RC_FINAL1_E_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_FINAL1_E_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV34TCL_RC_FINAL1_E_MAPPING_SHIFT						29
+ #define   NV34TCL_RC_FINAL1_E_MAPPING_MASK						0xe0000000
+-#define    NV34TCL_RC_FINAL1_E_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_FINAL1_E_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV34TCL_RC_FINAL1_E_MAPPING_EXPAND_NORMAL_NV					0x40000000
+-#define    NV34TCL_RC_FINAL1_E_MAPPING_EXPAND_NEGATE_NV					0x60000000
+-#define    NV34TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV34TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV34TCL_RC_FINAL1_E_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV34TCL_RC_FINAL1_E_MAPPING_SIGNED_NEGATE_NV					0xe0000000
++#define    NV34TCL_RC_FINAL1_E_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_FINAL1_E_MAPPING_UNSIGNED_INVERT					0x20000000
++#define    NV34TCL_RC_FINAL1_E_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV34TCL_RC_FINAL1_E_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV34TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NORMAL					0x80000000
++#define    NV34TCL_RC_FINAL1_E_MAPPING_HALF_BIAS_NEGATE					0xa0000000
++#define    NV34TCL_RC_FINAL1_E_MAPPING_SIGNED_IDENTITY					0xc0000000
++#define    NV34TCL_RC_FINAL1_E_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV34TCL_RC_ENABLE								0x000008fc
+ #define   NV34TCL_RC_ENABLE_NUM_COMBINERS_SHIFT						0
+ #define   NV34TCL_RC_ENABLE_NUM_COMBINERS_MASK						0x0000000f
+@@ -5580,237 +5580,237 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define   NV34TCL_RC_IN_ALPHA_D_INPUT_SHIFT						0
+ #define   NV34TCL_RC_IN_ALPHA_D_INPUT_MASK						0x0000000f
+ #define    NV34TCL_RC_IN_ALPHA_D_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR0_NV				0x00000001
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR1_NV				0x00000002
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR0					0x00000001
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV34TCL_RC_IN_ALPHA_D_INPUT_FOG						0x00000003
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_PRIMARY_COLOR_NV					0x00000004
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_SECONDARY_COLOR_NV				0x00000005
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_TEXTURE0_ARB					0x00000008
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_TEXTURE1_ARB					0x00000009
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_SPARE0_NV					0x0000000c
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_SPARE1_NV					0x0000000d
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV34TCL_RC_IN_ALPHA_D_INPUT_TEXTURE3_ARB					0x0000000b
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_PRIMARY_COLOR					0x00000004
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_SECONDARY_COLOR					0x00000005
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_TEXTURE0						0x00000008
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_TEXTURE1						0x00000009
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_SPARE0						0x0000000c
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_SPARE1						0x0000000d
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_E_TIMES_F					0x0000000f
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_TEXTURE2						0x0000000a
++#define    NV34TCL_RC_IN_ALPHA_D_INPUT_TEXTURE3						0x0000000b
+ #define   NV34TCL_RC_IN_ALPHA_D_COMPONENT_USAGE						(1 <<  4)
+ #define    NV34TCL_RC_IN_ALPHA_D_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV34TCL_RC_IN_ALPHA_D_COMPONENT_USAGE_ALPHA					0x00000010
+ #define   NV34TCL_RC_IN_ALPHA_D_MAPPING_SHIFT						5
+ #define   NV34TCL_RC_IN_ALPHA_D_MAPPING_MASK						0x000000e0
+-#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_INVERT_NV				0x00000020
+-#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NORMAL_NV				0x00000040
+-#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NEGATE_NV				0x00000060
+-#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NORMAL_NV				0x00000080
+-#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NEGATE_NV				0x000000a0
+-#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_IDENTITY_NV				0x000000c0
+-#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_NEGATE_NV				0x000000e0
++#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_UNSIGNED_INVERT				0x00000020
++#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NORMAL					0x00000040
++#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_EXPAND_NEGATE					0x00000060
++#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NORMAL				0x00000080
++#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_HALF_BIAS_NEGATE				0x000000a0
++#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_IDENTITY				0x000000c0
++#define    NV34TCL_RC_IN_ALPHA_D_MAPPING_SIGNED_NEGATE					0x000000e0
+ #define   NV34TCL_RC_IN_ALPHA_C_INPUT_SHIFT						8
+ #define   NV34TCL_RC_IN_ALPHA_C_INPUT_MASK						0x00000f00
+ #define    NV34TCL_RC_IN_ALPHA_C_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR0_NV				0x00000100
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR1_NV				0x00000200
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV34TCL_RC_IN_ALPHA_C_INPUT_FOG						0x00000300
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_SECONDARY_COLOR_NV				0x00000500
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_SPARE0_NV					0x00000c00
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_SPARE1_NV					0x00000d00
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV34TCL_RC_IN_ALPHA_C_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_TEXTURE0						0x00000800
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_TEXTURE1						0x00000900
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_SPARE0						0x00000c00
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_SPARE1						0x00000d00
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_E_TIMES_F					0x00000f00
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_TEXTURE2						0x00000a00
++#define    NV34TCL_RC_IN_ALPHA_C_INPUT_TEXTURE3						0x00000b00
+ #define   NV34TCL_RC_IN_ALPHA_C_COMPONENT_USAGE						(1 << 12)
+ #define    NV34TCL_RC_IN_ALPHA_C_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV34TCL_RC_IN_ALPHA_C_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV34TCL_RC_IN_ALPHA_C_MAPPING_SHIFT						13
+ #define   NV34TCL_RC_IN_ALPHA_C_MAPPING_MASK						0x0000e000
+-#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NORMAL_NV				0x00004000
+-#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NEGATE_NV				0x00006000
+-#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_NEGATE_NV				0x0000e000
++#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_UNSIGNED_INVERT				0x00002000
++#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NORMAL				0x00008000
++#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_HALF_BIAS_NEGATE				0x0000a000
++#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_IDENTITY				0x0000c000
++#define    NV34TCL_RC_IN_ALPHA_C_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV34TCL_RC_IN_ALPHA_B_INPUT_SHIFT						16
+ #define   NV34TCL_RC_IN_ALPHA_B_INPUT_MASK						0x000f0000
+ #define    NV34TCL_RC_IN_ALPHA_B_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR0_NV				0x00010000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR1_NV				0x00020000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV34TCL_RC_IN_ALPHA_B_INPUT_FOG						0x00030000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_SECONDARY_COLOR_NV				0x00050000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_SPARE0_NV					0x000c0000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_SPARE1_NV					0x000d0000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV34TCL_RC_IN_ALPHA_B_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_TEXTURE0						0x00080000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_TEXTURE1						0x00090000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_SPARE0						0x000c0000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_SPARE1						0x000d0000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_E_TIMES_F					0x000f0000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_TEXTURE2						0x000a0000
++#define    NV34TCL_RC_IN_ALPHA_B_INPUT_TEXTURE3						0x000b0000
+ #define   NV34TCL_RC_IN_ALPHA_B_COMPONENT_USAGE						(1 << 20)
+ #define    NV34TCL_RC_IN_ALPHA_B_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV34TCL_RC_IN_ALPHA_B_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV34TCL_RC_IN_ALPHA_B_MAPPING_SHIFT						21
+ #define   NV34TCL_RC_IN_ALPHA_B_MAPPING_MASK						0x00e00000
+-#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NORMAL_NV				0x00400000
+-#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NEGATE_NV				0x00600000
+-#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_NEGATE_NV				0x00e00000
++#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_UNSIGNED_INVERT				0x00200000
++#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NORMAL				0x00800000
++#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_HALF_BIAS_NEGATE				0x00a00000
++#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_IDENTITY				0x00c00000
++#define    NV34TCL_RC_IN_ALPHA_B_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV34TCL_RC_IN_ALPHA_A_INPUT_SHIFT						24
+ #define   NV34TCL_RC_IN_ALPHA_A_INPUT_MASK						0x0f000000
+ #define    NV34TCL_RC_IN_ALPHA_A_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR0_NV				0x01000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR1_NV				0x02000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV34TCL_RC_IN_ALPHA_A_INPUT_FOG						0x03000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_SECONDARY_COLOR_NV				0x05000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_SPARE0_NV					0x0c000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_SPARE1_NV					0x0d000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV34TCL_RC_IN_ALPHA_A_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_TEXTURE0						0x08000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_TEXTURE1						0x09000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_SPARE0						0x0c000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_SPARE1						0x0d000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_E_TIMES_F					0x0f000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_TEXTURE2						0x0a000000
++#define    NV34TCL_RC_IN_ALPHA_A_INPUT_TEXTURE3						0x0b000000
+ #define   NV34TCL_RC_IN_ALPHA_A_COMPONENT_USAGE						(1 << 28)
+ #define    NV34TCL_RC_IN_ALPHA_A_COMPONENT_USAGE_BLUE					0x00000000
+ #define    NV34TCL_RC_IN_ALPHA_A_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV34TCL_RC_IN_ALPHA_A_MAPPING_SHIFT						29
+ #define   NV34TCL_RC_IN_ALPHA_A_MAPPING_MASK						0xe0000000
+-#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NORMAL_NV				0x40000000
+-#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NEGATE_NV				0x60000000
+-#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_NEGATE_NV				0xe0000000
++#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_UNSIGNED_INVERT				0x20000000
++#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NORMAL				0x80000000
++#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_HALF_BIAS_NEGATE				0xa0000000
++#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_IDENTITY				0xc0000000
++#define    NV34TCL_RC_IN_ALPHA_A_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV34TCL_RC_IN_RGB(x)								(0x00000904+((x)*32))
+ #define  NV34TCL_RC_IN_RGB__SIZE							0x00000008
+ #define   NV34TCL_RC_IN_RGB_D_INPUT_SHIFT						0
+ #define   NV34TCL_RC_IN_RGB_D_INPUT_MASK						0x0000000f
+ #define    NV34TCL_RC_IN_RGB_D_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR0_NV					0x00000001
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR1_NV					0x00000002
++#define    NV34TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR0					0x00000001
++#define    NV34TCL_RC_IN_RGB_D_INPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV34TCL_RC_IN_RGB_D_INPUT_FOG						0x00000003
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_PRIMARY_COLOR_NV					0x00000004
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_SECONDARY_COLOR_NV					0x00000005
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_TEXTURE0_ARB					0x00000008
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_TEXTURE1_ARB					0x00000009
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_SPARE0_NV						0x0000000c
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_SPARE1_NV						0x0000000d
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV34TCL_RC_IN_RGB_D_INPUT_TEXTURE3_ARB					0x0000000b
++#define    NV34TCL_RC_IN_RGB_D_INPUT_PRIMARY_COLOR					0x00000004
++#define    NV34TCL_RC_IN_RGB_D_INPUT_SECONDARY_COLOR					0x00000005
++#define    NV34TCL_RC_IN_RGB_D_INPUT_TEXTURE0						0x00000008
++#define    NV34TCL_RC_IN_RGB_D_INPUT_TEXTURE1						0x00000009
++#define    NV34TCL_RC_IN_RGB_D_INPUT_SPARE0						0x0000000c
++#define    NV34TCL_RC_IN_RGB_D_INPUT_SPARE1						0x0000000d
++#define    NV34TCL_RC_IN_RGB_D_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV34TCL_RC_IN_RGB_D_INPUT_E_TIMES_F						0x0000000f
++#define    NV34TCL_RC_IN_RGB_D_INPUT_TEXTURE2						0x0000000a
++#define    NV34TCL_RC_IN_RGB_D_INPUT_TEXTURE3						0x0000000b
+ #define   NV34TCL_RC_IN_RGB_D_COMPONENT_USAGE						(1 <<  4)
+ #define    NV34TCL_RC_IN_RGB_D_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_IN_RGB_D_COMPONENT_USAGE_ALPHA					0x00000010
+ #define   NV34TCL_RC_IN_RGB_D_MAPPING_SHIFT						5
+ #define   NV34TCL_RC_IN_RGB_D_MAPPING_MASK						0x000000e0
+-#define    NV34TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_INVERT_NV				0x00000020
+-#define    NV34TCL_RC_IN_RGB_D_MAPPING_EXPAND_NORMAL_NV					0x00000040
+-#define    NV34TCL_RC_IN_RGB_D_MAPPING_EXPAND_NEGATE_NV					0x00000060
+-#define    NV34TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NORMAL_NV				0x00000080
+-#define    NV34TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NEGATE_NV				0x000000a0
+-#define    NV34TCL_RC_IN_RGB_D_MAPPING_SIGNED_IDENTITY_NV				0x000000c0
+-#define    NV34TCL_RC_IN_RGB_D_MAPPING_SIGNED_NEGATE_NV					0x000000e0
++#define    NV34TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_IN_RGB_D_MAPPING_UNSIGNED_INVERT					0x00000020
++#define    NV34TCL_RC_IN_RGB_D_MAPPING_EXPAND_NORMAL					0x00000040
++#define    NV34TCL_RC_IN_RGB_D_MAPPING_EXPAND_NEGATE					0x00000060
++#define    NV34TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NORMAL					0x00000080
++#define    NV34TCL_RC_IN_RGB_D_MAPPING_HALF_BIAS_NEGATE					0x000000a0
++#define    NV34TCL_RC_IN_RGB_D_MAPPING_SIGNED_IDENTITY					0x000000c0
++#define    NV34TCL_RC_IN_RGB_D_MAPPING_SIGNED_NEGATE					0x000000e0
+ #define   NV34TCL_RC_IN_RGB_C_INPUT_SHIFT						8
+ #define   NV34TCL_RC_IN_RGB_C_INPUT_MASK						0x00000f00
+ #define    NV34TCL_RC_IN_RGB_C_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR0_NV					0x00000100
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR1_NV					0x00000200
++#define    NV34TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR0					0x00000100
++#define    NV34TCL_RC_IN_RGB_C_INPUT_CONSTANT_COLOR1					0x00000200
+ #define    NV34TCL_RC_IN_RGB_C_INPUT_FOG						0x00000300
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_PRIMARY_COLOR_NV					0x00000400
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_SECONDARY_COLOR_NV					0x00000500
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_TEXTURE0_ARB					0x00000800
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_TEXTURE1_ARB					0x00000900
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_SPARE0_NV						0x00000c00
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_SPARE1_NV						0x00000d00
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV34TCL_RC_IN_RGB_C_INPUT_TEXTURE3_ARB					0x00000b00
++#define    NV34TCL_RC_IN_RGB_C_INPUT_PRIMARY_COLOR					0x00000400
++#define    NV34TCL_RC_IN_RGB_C_INPUT_SECONDARY_COLOR					0x00000500
++#define    NV34TCL_RC_IN_RGB_C_INPUT_TEXTURE0						0x00000800
++#define    NV34TCL_RC_IN_RGB_C_INPUT_TEXTURE1						0x00000900
++#define    NV34TCL_RC_IN_RGB_C_INPUT_SPARE0						0x00000c00
++#define    NV34TCL_RC_IN_RGB_C_INPUT_SPARE1						0x00000d00
++#define    NV34TCL_RC_IN_RGB_C_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV34TCL_RC_IN_RGB_C_INPUT_E_TIMES_F						0x00000f00
++#define    NV34TCL_RC_IN_RGB_C_INPUT_TEXTURE2						0x00000a00
++#define    NV34TCL_RC_IN_RGB_C_INPUT_TEXTURE3						0x00000b00
+ #define   NV34TCL_RC_IN_RGB_C_COMPONENT_USAGE						(1 << 12)
+ #define    NV34TCL_RC_IN_RGB_C_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_IN_RGB_C_COMPONENT_USAGE_ALPHA					0x00001000
+ #define   NV34TCL_RC_IN_RGB_C_MAPPING_SHIFT						13
+ #define   NV34TCL_RC_IN_RGB_C_MAPPING_MASK						0x0000e000
+-#define    NV34TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_INVERT_NV				0x00002000
+-#define    NV34TCL_RC_IN_RGB_C_MAPPING_EXPAND_NORMAL_NV					0x00004000
+-#define    NV34TCL_RC_IN_RGB_C_MAPPING_EXPAND_NEGATE_NV					0x00006000
+-#define    NV34TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NORMAL_NV				0x00008000
+-#define    NV34TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NEGATE_NV				0x0000a000
+-#define    NV34TCL_RC_IN_RGB_C_MAPPING_SIGNED_IDENTITY_NV				0x0000c000
+-#define    NV34TCL_RC_IN_RGB_C_MAPPING_SIGNED_NEGATE_NV					0x0000e000
++#define    NV34TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_IN_RGB_C_MAPPING_UNSIGNED_INVERT					0x00002000
++#define    NV34TCL_RC_IN_RGB_C_MAPPING_EXPAND_NORMAL					0x00004000
++#define    NV34TCL_RC_IN_RGB_C_MAPPING_EXPAND_NEGATE					0x00006000
++#define    NV34TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NORMAL					0x00008000
++#define    NV34TCL_RC_IN_RGB_C_MAPPING_HALF_BIAS_NEGATE					0x0000a000
++#define    NV34TCL_RC_IN_RGB_C_MAPPING_SIGNED_IDENTITY					0x0000c000
++#define    NV34TCL_RC_IN_RGB_C_MAPPING_SIGNED_NEGATE					0x0000e000
+ #define   NV34TCL_RC_IN_RGB_B_INPUT_SHIFT						16
+ #define   NV34TCL_RC_IN_RGB_B_INPUT_MASK						0x000f0000
+ #define    NV34TCL_RC_IN_RGB_B_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR0_NV					0x00010000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR1_NV					0x00020000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR0					0x00010000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_CONSTANT_COLOR1					0x00020000
+ #define    NV34TCL_RC_IN_RGB_B_INPUT_FOG						0x00030000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_PRIMARY_COLOR_NV					0x00040000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_SECONDARY_COLOR_NV					0x00050000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_TEXTURE0_ARB					0x00080000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_TEXTURE1_ARB					0x00090000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_SPARE0_NV						0x000c0000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_SPARE1_NV						0x000d0000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000e0000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_E_TIMES_F_NV					0x000f0000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_TEXTURE2_ARB					0x000a0000
+-#define    NV34TCL_RC_IN_RGB_B_INPUT_TEXTURE3_ARB					0x000b0000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_PRIMARY_COLOR					0x00040000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_SECONDARY_COLOR					0x00050000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_TEXTURE0						0x00080000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_TEXTURE1						0x00090000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_SPARE0						0x000c0000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_SPARE1						0x000d0000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000e0000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_E_TIMES_F						0x000f0000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_TEXTURE2						0x000a0000
++#define    NV34TCL_RC_IN_RGB_B_INPUT_TEXTURE3						0x000b0000
+ #define   NV34TCL_RC_IN_RGB_B_COMPONENT_USAGE						(1 << 20)
+ #define    NV34TCL_RC_IN_RGB_B_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_IN_RGB_B_COMPONENT_USAGE_ALPHA					0x00100000
+ #define   NV34TCL_RC_IN_RGB_B_MAPPING_SHIFT						21
+ #define   NV34TCL_RC_IN_RGB_B_MAPPING_MASK						0x00e00000
+-#define    NV34TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_INVERT_NV				0x00200000
+-#define    NV34TCL_RC_IN_RGB_B_MAPPING_EXPAND_NORMAL_NV					0x00400000
+-#define    NV34TCL_RC_IN_RGB_B_MAPPING_EXPAND_NEGATE_NV					0x00600000
+-#define    NV34TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NORMAL_NV				0x00800000
+-#define    NV34TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NEGATE_NV				0x00a00000
+-#define    NV34TCL_RC_IN_RGB_B_MAPPING_SIGNED_IDENTITY_NV				0x00c00000
+-#define    NV34TCL_RC_IN_RGB_B_MAPPING_SIGNED_NEGATE_NV					0x00e00000
++#define    NV34TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_IN_RGB_B_MAPPING_UNSIGNED_INVERT					0x00200000
++#define    NV34TCL_RC_IN_RGB_B_MAPPING_EXPAND_NORMAL					0x00400000
++#define    NV34TCL_RC_IN_RGB_B_MAPPING_EXPAND_NEGATE					0x00600000
++#define    NV34TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NORMAL					0x00800000
++#define    NV34TCL_RC_IN_RGB_B_MAPPING_HALF_BIAS_NEGATE					0x00a00000
++#define    NV34TCL_RC_IN_RGB_B_MAPPING_SIGNED_IDENTITY					0x00c00000
++#define    NV34TCL_RC_IN_RGB_B_MAPPING_SIGNED_NEGATE					0x00e00000
+ #define   NV34TCL_RC_IN_RGB_A_INPUT_SHIFT						24
+ #define   NV34TCL_RC_IN_RGB_A_INPUT_MASK						0x0f000000
+ #define    NV34TCL_RC_IN_RGB_A_INPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR0_NV					0x01000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR1_NV					0x02000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR0					0x01000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_CONSTANT_COLOR1					0x02000000
+ #define    NV34TCL_RC_IN_RGB_A_INPUT_FOG						0x03000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_PRIMARY_COLOR_NV					0x04000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_SECONDARY_COLOR_NV					0x05000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_TEXTURE0_ARB					0x08000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_TEXTURE1_ARB					0x09000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_SPARE0_NV						0x0c000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_SPARE1_NV						0x0d000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0e000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_E_TIMES_F_NV					0x0f000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_TEXTURE2_ARB					0x0a000000
+-#define    NV34TCL_RC_IN_RGB_A_INPUT_TEXTURE3_ARB					0x0b000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_PRIMARY_COLOR					0x04000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_SECONDARY_COLOR					0x05000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_TEXTURE0						0x08000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_TEXTURE1						0x09000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_SPARE0						0x0c000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_SPARE1						0x0d000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0e000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_E_TIMES_F						0x0f000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_TEXTURE2						0x0a000000
++#define    NV34TCL_RC_IN_RGB_A_INPUT_TEXTURE3						0x0b000000
+ #define   NV34TCL_RC_IN_RGB_A_COMPONENT_USAGE						(1 << 28)
+ #define    NV34TCL_RC_IN_RGB_A_COMPONENT_USAGE_RGB					0x00000000
+ #define    NV34TCL_RC_IN_RGB_A_COMPONENT_USAGE_ALPHA					0x10000000
+ #define   NV34TCL_RC_IN_RGB_A_MAPPING_SHIFT						29
+ #define   NV34TCL_RC_IN_RGB_A_MAPPING_MASK						0xe0000000
+-#define    NV34TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_IDENTITY_NV				0x00000000
+-#define    NV34TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_INVERT_NV				0x20000000
+-#define    NV34TCL_RC_IN_RGB_A_MAPPING_EXPAND_NORMAL_NV					0x40000000
+-#define    NV34TCL_RC_IN_RGB_A_MAPPING_EXPAND_NEGATE_NV					0x60000000
+-#define    NV34TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NORMAL_NV				0x80000000
+-#define    NV34TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NEGATE_NV				0xa0000000
+-#define    NV34TCL_RC_IN_RGB_A_MAPPING_SIGNED_IDENTITY_NV				0xc0000000
+-#define    NV34TCL_RC_IN_RGB_A_MAPPING_SIGNED_NEGATE_NV					0xe0000000
++#define    NV34TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_IDENTITY				0x00000000
++#define    NV34TCL_RC_IN_RGB_A_MAPPING_UNSIGNED_INVERT					0x20000000
++#define    NV34TCL_RC_IN_RGB_A_MAPPING_EXPAND_NORMAL					0x40000000
++#define    NV34TCL_RC_IN_RGB_A_MAPPING_EXPAND_NEGATE					0x60000000
++#define    NV34TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NORMAL					0x80000000
++#define    NV34TCL_RC_IN_RGB_A_MAPPING_HALF_BIAS_NEGATE					0xa0000000
++#define    NV34TCL_RC_IN_RGB_A_MAPPING_SIGNED_IDENTITY					0xc0000000
++#define    NV34TCL_RC_IN_RGB_A_MAPPING_SIGNED_NEGATE					0xe0000000
+ #define  NV34TCL_RC_CONSTANT_COLOR0(x)							(0x00000908+((x)*32))
+ #define  NV34TCL_RC_CONSTANT_COLOR0__SIZE						0x00000008
+ #define   NV34TCL_RC_CONSTANT_COLOR0_B_SHIFT						0
+@@ -5836,125 +5836,125 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #define   NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_SHIFT						0
+ #define   NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_MASK						0x0000000f
+ #define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR0_NV				0x00000001
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR1_NV				0x00000002
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR0				0x00000001
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_CONSTANT_COLOR1				0x00000002
+ #define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_FOG						0x00000003
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_PRIMARY_COLOR_NV				0x00000004
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_SECONDARY_COLOR_NV				0x00000005
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE0_ARB					0x00000008
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE1_ARB					0x00000009
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0_NV					0x0000000c
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE1_NV					0x0000000d
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV		0x0000000e
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE3_ARB					0x0000000b
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_PRIMARY_COLOR					0x00000004
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_SECONDARY_COLOR				0x00000005
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE0					0x00000008
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE1					0x00000009
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0					0x0000000c
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE1					0x0000000d
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_E_TIMES_F					0x0000000f
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE2					0x0000000a
++#define    NV34TCL_RC_OUT_ALPHA_CD_OUTPUT_TEXTURE3					0x0000000b
+ #define   NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_SHIFT						4
+ #define   NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_MASK						0x000000f0
+ #define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR0_NV				0x00000010
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR1_NV				0x00000020
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR0				0x00000010
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_CONSTANT_COLOR1				0x00000020
+ #define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_FOG						0x00000030
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_PRIMARY_COLOR_NV				0x00000040
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_SECONDARY_COLOR_NV				0x00000050
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE0_ARB					0x00000080
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE1_ARB					0x00000090
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0_NV					0x000000c0
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE1_NV					0x000000d0
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV		0x000000e0
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_E_TIMES_F_NV					0x000000f0
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE2_ARB					0x000000a0
+-#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE3_ARB					0x000000b0
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_PRIMARY_COLOR					0x00000040
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_SECONDARY_COLOR				0x00000050
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE0					0x00000080
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE1					0x00000090
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0					0x000000c0
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE1					0x000000d0
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000000e0
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_E_TIMES_F					0x000000f0
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE2					0x000000a0
++#define    NV34TCL_RC_OUT_ALPHA_AB_OUTPUT_TEXTURE3					0x000000b0
+ #define   NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_SHIFT						8
+ #define   NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_MASK						0x00000f00
+ #define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR0_NV				0x00000100
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR1_NV				0x00000200
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR0				0x00000100
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_CONSTANT_COLOR1				0x00000200
+ #define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_FOG						0x00000300
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_PRIMARY_COLOR_NV				0x00000400
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_SECONDARY_COLOR_NV				0x00000500
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE0_ARB					0x00000800
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE1_ARB					0x00000900
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0_NV					0x00000c00
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE1_NV					0x00000d00
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV		0x00000e00
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE3_ARB					0x00000b00
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_PRIMARY_COLOR				0x00000400
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_SECONDARY_COLOR				0x00000500
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE0					0x00000800
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE1					0x00000900
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0					0x00000c00
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE1					0x00000d00
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_E_TIMES_F					0x00000f00
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE2					0x00000a00
++#define    NV34TCL_RC_OUT_ALPHA_SUM_OUTPUT_TEXTURE3					0x00000b00
+ #define   NV34TCL_RC_OUT_ALPHA_CD_DOT_PRODUCT						(1 << 12)
+ #define   NV34TCL_RC_OUT_ALPHA_AB_DOT_PRODUCT						(1 << 13)
+ #define   NV34TCL_RC_OUT_ALPHA_MUX_SUM							(1 << 14)
+ #define   NV34TCL_RC_OUT_ALPHA_BIAS							(1 << 15)
+ #define    NV34TCL_RC_OUT_ALPHA_BIAS_NONE						0x00000000
+-#define    NV34TCL_RC_OUT_ALPHA_BIAS_BIAS_BY_NEGATIVE_ONE_HALF_NV			0x00008000
++#define    NV34TCL_RC_OUT_ALPHA_BIAS_BIAS_BY_NEGATIVE_ONE_HALF				0x00008000
+ #define   NV34TCL_RC_OUT_ALPHA_SCALE_SHIFT						17
+ #define   NV34TCL_RC_OUT_ALPHA_SCALE_MASK						0x00000000
+ #define    NV34TCL_RC_OUT_ALPHA_SCALE_NONE						0x00000000
+-#define    NV34TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_TWO_NV					0x00020000
+-#define    NV34TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_FOUR_NV					0x00040000
+-#define    NV34TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_ONE_HALF_NV				0x00060000
++#define    NV34TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_TWO					0x00020000
++#define    NV34TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_FOUR					0x00040000
++#define    NV34TCL_RC_OUT_ALPHA_SCALE_SCALE_BY_ONE_HALF					0x00060000
+ #define  NV34TCL_RC_OUT_RGB(x)								(0x00000914+((x)*32))
+ #define  NV34TCL_RC_OUT_RGB__SIZE							0x00000008
+ #define   NV34TCL_RC_OUT_RGB_CD_OUTPUT_SHIFT						0
+ #define   NV34TCL_RC_OUT_RGB_CD_OUTPUT_MASK						0x0000000f
+ #define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR0_NV				0x00000001
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR1_NV				0x00000002
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR0					0x00000001
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_CONSTANT_COLOR1					0x00000002
+ #define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_FOG						0x00000003
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_PRIMARY_COLOR_NV				0x00000004
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_SECONDARY_COLOR_NV				0x00000005
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE0_ARB					0x00000008
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE1_ARB					0x00000009
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0_NV					0x0000000c
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_SPARE1_NV					0x0000000d
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x0000000e
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_E_TIMES_F_NV					0x0000000f
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE2_ARB					0x0000000a
+-#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE3_ARB					0x0000000b
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_PRIMARY_COLOR					0x00000004
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_SECONDARY_COLOR					0x00000005
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE0					0x00000008
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE1					0x00000009
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0						0x0000000c
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_SPARE1						0x0000000d
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x0000000e
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_E_TIMES_F					0x0000000f
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE2					0x0000000a
++#define    NV34TCL_RC_OUT_RGB_CD_OUTPUT_TEXTURE3					0x0000000b
+ #define   NV34TCL_RC_OUT_RGB_AB_OUTPUT_SHIFT						4
+ #define   NV34TCL_RC_OUT_RGB_AB_OUTPUT_MASK						0x000000f0
+ #define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR0_NV				0x00000010
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR1_NV				0x00000020
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR0					0x00000010
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_CONSTANT_COLOR1					0x00000020
+ #define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_FOG						0x00000030
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_PRIMARY_COLOR_NV				0x00000040
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_SECONDARY_COLOR_NV				0x00000050
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE0_ARB					0x00000080
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE1_ARB					0x00000090
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0_NV					0x000000c0
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_SPARE1_NV					0x000000d0
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x000000e0
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_E_TIMES_F_NV					0x000000f0
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE2_ARB					0x000000a0
+-#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE3_ARB					0x000000b0
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_PRIMARY_COLOR					0x00000040
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_SECONDARY_COLOR					0x00000050
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE0					0x00000080
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE1					0x00000090
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0						0x000000c0
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_SPARE1						0x000000d0
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x000000e0
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_E_TIMES_F					0x000000f0
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE2					0x000000a0
++#define    NV34TCL_RC_OUT_RGB_AB_OUTPUT_TEXTURE3					0x000000b0
+ #define   NV34TCL_RC_OUT_RGB_SUM_OUTPUT_SHIFT						8
+ #define   NV34TCL_RC_OUT_RGB_SUM_OUTPUT_MASK						0x00000f00
+ #define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_ZERO						0x00000000
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR0_NV				0x00000100
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR1_NV				0x00000200
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR0				0x00000100
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_CONSTANT_COLOR1				0x00000200
+ #define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_FOG						0x00000300
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_PRIMARY_COLOR_NV				0x00000400
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_SECONDARY_COLOR_NV				0x00000500
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE0_ARB					0x00000800
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE1_ARB					0x00000900
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0_NV					0x00000c00
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE1_NV					0x00000d00
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR_NV			0x00000e00
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_E_TIMES_F_NV					0x00000f00
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE2_ARB					0x00000a00
+-#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE3_ARB					0x00000b00
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_PRIMARY_COLOR					0x00000400
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_SECONDARY_COLOR				0x00000500
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE0					0x00000800
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE1					0x00000900
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0						0x00000c00
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE1						0x00000d00
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_SPARE0_PLUS_SECONDARY_COLOR			0x00000e00
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_E_TIMES_F					0x00000f00
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE2					0x00000a00
++#define    NV34TCL_RC_OUT_RGB_SUM_OUTPUT_TEXTURE3					0x00000b00
+ #define   NV34TCL_RC_OUT_RGB_CD_DOT_PRODUCT						(1 << 12)
+ #define   NV34TCL_RC_OUT_RGB_AB_DOT_PRODUCT						(1 << 13)
+ #define   NV34TCL_RC_OUT_RGB_MUX_SUM							(1 << 14)
+ #define   NV34TCL_RC_OUT_RGB_BIAS							(1 << 15)
+ #define    NV34TCL_RC_OUT_RGB_BIAS_NONE							0x00000000
+-#define    NV34TCL_RC_OUT_RGB_BIAS_BIAS_BY_NEGATIVE_ONE_HALF_NV				0x00008000
++#define    NV34TCL_RC_OUT_RGB_BIAS_BIAS_BY_NEGATIVE_ONE_HALF				0x00008000
+ #define   NV34TCL_RC_OUT_RGB_SCALE_SHIFT						17
+ #define   NV34TCL_RC_OUT_RGB_SCALE_MASK							0x00000000
+ #define    NV34TCL_RC_OUT_RGB_SCALE_NONE						0x00000000
+-#define    NV34TCL_RC_OUT_RGB_SCALE_SCALE_BY_TWO_NV					0x00020000
+-#define    NV34TCL_RC_OUT_RGB_SCALE_SCALE_BY_FOUR_NV					0x00040000
+-#define    NV34TCL_RC_OUT_RGB_SCALE_SCALE_BY_ONE_HALF_NV				0x00060000
++#define    NV34TCL_RC_OUT_RGB_SCALE_SCALE_BY_TWO					0x00020000
++#define    NV34TCL_RC_OUT_RGB_SCALE_SCALE_BY_FOUR					0x00040000
++#define    NV34TCL_RC_OUT_RGB_SCALE_SCALE_BY_ONE_HALF					0x00060000
+ #define  NV34TCL_VIEWPORT_HORIZ								0x00000a00
+ #define   NV34TCL_VIEWPORT_HORIZ_X_SHIFT						0
+ #define   NV34TCL_VIEWPORT_HORIZ_X_MASK							0x0000ffff
 -- 
-1.6.6.rc4
+1.6.4.4
