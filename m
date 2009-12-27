@@ -1,8 +1,8 @@
-From: Krzysztof Smiechowicz <deadwood-5tc4TXWwyLM@public.gmane.org>
-Subject: [PATCH 2/2] libdrm: Unreference pushbuf objects
-	on	channel destruction
-Date: Sun, 27 Dec 2009 11:02:44 +0100
-Message-ID: <4B3730C4.6000903@wp.pl>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/2] drm/nv50: align size of buffer object to the
+	right boundaries.
+Date: Sun, 27 Dec 2009 12:41:03 +0100
+Message-ID: <1261914064-3535-1-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,52 +19,52 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-(resending as git patch)
+- Depth and stencil buffers are supposed to be large enough in general.
 
-- unreference pushbuf objects on channel destruction
+Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c |    9 ++++-----
+ 1 files changed, 4 insertions(+), 5 deletions(-)
 
-
-diff --git a/nouveau/nouveau_channel.c b/nouveau/nouveau_channel.c
-index 674c5c3..6f71f89 100644
---- a/nouveau/nouveau_channel.c
-+++ b/nouveau/nouveau_channel.c
-@@ -111,6 +111,8 @@ nouveau_channel_free(struct nouveau_channel **chan)
-
-  	FIRE_RING(&nvchan->base);
-
-+	nouveau_pushbuf_fini(&nvchan->base);
-+
-  	nouveau_bo_unmap(nvchan->notifier_bo);
-  	nouveau_bo_ref(NULL, &nvchan->notifier_bo);
-
-diff --git a/nouveau/nouveau_private.h b/nouveau/nouveau_private.h
-index 784afc9..de21a6b 100644
---- a/nouveau/nouveau_private.h
-+++ b/nouveau/nouveau_private.h
-@@ -65,6 +65,9 @@ struct nouveau_pushbuf_priv {
-  int
-  nouveau_pushbuf_init(struct nouveau_channel *);
-
-+void
-+nouveau_pushbuf_fini(struct nouveau_channel *);
-+
-  struct nouveau_channel_priv {
-  	struct nouveau_channel base;
-
-diff --git a/nouveau/nouveau_pushbuf.c b/nouveau/nouveau_pushbuf.c
-index b90e923..c4053ed 100644
---- a/nouveau/nouveau_pushbuf.c
-+++ b/nouveau/nouveau_pushbuf.c
-@@ -170,6 +170,12 @@ nouveau_pushbuf_init(struct nouveau_channel *chan)
-  	return 0;
-  }
-
-+void
-+nouveau_pushbuf_fini(struct nouveau_channel *chan)
-+{
-+	nouveau_pushbuf_fini_call(chan);
-+}
-+
-  int
-  nouveau_pushbuf_flush(struct nouveau_channel *chan, unsigned min)
-  {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index e342a41..9fc4bd6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -65,8 +65,9 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+ 
+ 	/*
+ 	 * Some of the tile_flags have a periodic structure of N*4096 bytes,
+-	 * align to to that as well as the page size. Overallocate memory to
+-	 * avoid corruption of other buffer objects.
++	 * align to to that as well as the page size. Align the size to the
++	 * appropriate boundaries. This does imply that sizes are rounded up
++	 * 3-7 pages, so make sure your "special" buffer sizes are large enough.
+ 	 */
+ 	if (dev_priv->card_type == NV_50) {
+ 		uint32_t block_size = nouveau_mem_fb_amount(dev) >> 15;
+@@ -77,22 +78,20 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+ 		case 0x2800:
+ 		case 0x4800:
+ 		case 0x7a00:
+-			*size = roundup(*size, block_size);
+ 			if (is_power_of_2(block_size)) {
+-				*size += 3 * block_size;
+ 				for (i = 1; i < 10; i++) {
+ 					*align = 12 * i * block_size;
+ 					if (!(*align % 65536))
+ 						break;
+ 				}
+ 			} else {
+-				*size += 6 * block_size;
+ 				for (i = 1; i < 10; i++) {
+ 					*align = 8 * i * block_size;
+ 					if (!(*align % 65536))
+ 						break;
+ 				}
+ 			}
++			*size = roundup(*size, *align);
+ 			break;
+ 		default:
+ 			break;
+-- 
+1.6.6.rc4
