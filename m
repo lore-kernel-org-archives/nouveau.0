@@ -1,12 +1,13 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: Re: Fix swizzling for copies to rectangular textures
-Date: Sun, 27 Dec 2009 04:07:09 +0100
-Message-ID: <ff13bc9a0912261907q269a00bdw3aff6d5032550821@mail.gmail.com>
-References: <ff13bc9a0912252235x6b3917d1w26fbff6df6eaf96b@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25802] nouveau driver crashes in exa
+Date: Sat, 26 Dec 2009 19:35:10 -0800 (PST)
+Message-ID: <20091227033510.549FA130079@annarchy.freedesktop.org>
+References: <bug-25802-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=0023545bd658ac71e6047bad153c
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <ff13bc9a0912252235x6b3917d1w26fbff6df6eaf96b-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-25802-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,60 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---0023545bd658ac71e6047bad153c
-Content-Type: text/plain; charset=ISO-8859-1
+http://bugs.freedesktop.org/show_bug.cgi?id=25802
 
-Patch was mangled, resent attached.
 
---0023545bd658ac71e6047bad153c
-Content-Type: text/x-diff; charset=US-ASCII; name="swizzle_rect.patch"
-Content-Disposition: attachment; filename="swizzle_rect.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_g3p8nt260
 
-ZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnYwNC9udjA0X3N1cmZhY2VfMmQuYyBi
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbnYwNC9udjA0X3N1cmZhY2VfMmQuYwppbmRleCAxMmRmN2Zk
-Li40MGI1MzhmIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL252MDQvbnYwNF9zdXJm
-YWNlXzJkLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9udjA0L252MDRfc3VyZmFjZV8yZC5j
-CkBAIC03Nyw3ICs3Nyw3IEBAIG52MDRfc2NhbGVkX2ltYWdlX2Zvcm1hdChlbnVtIHBpcGVfZm9y
-bWF0IGZvcm1hdCkKIH0KIAogc3RhdGljIElOTElORSB1bnNpZ25lZAotbnYwNF9zd2l6emxlX2Jp
-dHModW5zaWduZWQgeCwgdW5zaWduZWQgeSkKK252MDRfc3dpenpsZV9iaXRzX3NxdWFyZSh1bnNp
-Z25lZCB4LCB1bnNpZ25lZCB5KQogewogCXVuc2lnbmVkIHUgPSAoeCAmIDB4MDAxKSA8PCAwIHwK
-IAkgICAgICAgICAgICAgKHggJiAweDAwMikgPDwgMSB8CkBAIC0xMDcsNiArMTA3LDE1IEBAIG52
-MDRfc3dpenpsZV9iaXRzKHVuc2lnbmVkIHgsIHVuc2lnbmVkIHkpCiAJcmV0dXJuIHYgfCB1Owog
-fQogCisvKiByZWN0YW5ndWxhciBzd2l6emxlZCB0ZXh0dXJlcyBhcmUgbGluZWFyIGNvbmNhdGVu
-YXRpb25zIG9mIHN3aXp6bGVkIHNxdWFyZSB0aWxlcyAqLworc3RhdGljIElOTElORSB1bnNpZ25l
-ZAorbnYwNF9zd2l6emxlX2JpdHModW5zaWduZWQgeCwgdW5zaWduZWQgeSwgdW5zaWduZWQgdywg
-dW5zaWduZWQgaCkKK3sKKwl1bnNpZ25lZCBzID0gTUlOMih3LCBoKTsKKwl1bnNpZ25lZCBtID0g
-cyAtIDE7CisJcmV0dXJuICgoKHggfCB5KSAmIH5tKSAqIHMpIHwgbnYwNF9zd2l6emxlX2JpdHNf
-c3F1YXJlKHggJiBtLCB5ICYgbSk7Cit9CisKIHN0YXRpYyBpbnQKIG52MDRfc3VyZmFjZV9jb3B5
-X3N3aXp6bGUoc3RydWN0IG52MDRfc3VyZmFjZV8yZCAqY3R4LAogCQkJICBzdHJ1Y3QgcGlwZV9z
-dXJmYWNlICpkc3QsIGludCBkeCwgaW50IGR5LApAQCAtMTU5LDEwICsxNjgsMTAgQEAgbnYwNF9z
-dXJmYWNlX2NvcHlfc3dpenpsZShzdHJ1Y3QgbnYwNF9zdXJmYWNlXzJkICpjdHgsCiAJICAgIHN1
-Yl93ID0gTUlOMihzdWJfdywgdyAtIHgpOwogCiAJICAgIC8qIE11c3QgYmUgNjQtYnl0ZSBhbGln
-bmVkICovCi0JICAgIGFzc2VydCghKChkc3QtPm9mZnNldCArIG52MDRfc3dpenpsZV9iaXRzKGR4
-K3gsIGR5K3kpICogdXRpbF9mb3JtYXRfZ2V0X2Jsb2Nrc2l6ZShkc3QtPnRleHR1cmUtPmZvcm1h
-dCkpICYgNjMpKTsKKwkgICAgYXNzZXJ0KCEoKGRzdC0+b2Zmc2V0ICsgbnYwNF9zd2l6emxlX2Jp
-dHMoZHgreCwgZHkreSwgdywgaCkgKiB1dGlsX2Zvcm1hdF9nZXRfYmxvY2tzaXplKGRzdC0+dGV4
-dHVyZS0+Zm9ybWF0KSkgJiA2MykpOwogCiAJICAgIEJFR0lOX1JJTkcoY2hhbiwgc3d6c3VyZiwg
-TlYwNF9TV0laWkxFRF9TVVJGQUNFX09GRlNFVCwgMSk7Ci0JICAgIE9VVF9SRUxPQ2woY2hhbiwg
-ZHN0X2JvLCBkc3QtPm9mZnNldCArIG52MDRfc3dpenpsZV9iaXRzKGR4K3gsIGR5K3kpICogdXRp
-bF9mb3JtYXRfZ2V0X2Jsb2Nrc2l6ZShkc3QtPnRleHR1cmUtPmZvcm1hdCksCisJICAgIE9VVF9S
-RUxPQ2woY2hhbiwgZHN0X2JvLCBkc3QtPm9mZnNldCArIG52MDRfc3dpenpsZV9iaXRzKGR4K3gs
-IGR5K3ksIHcsIGgpICogdXRpbF9mb3JtYXRfZ2V0X2Jsb2Nrc2l6ZShkc3QtPnRleHR1cmUtPmZv
-cm1hdCksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE5PVVZFQVVfQk9fR0FSVCB8IE5P
-VVZFQVVfQk9fVlJBTSB8IE5PVVZFQVVfQk9fV1IpOwogCiAJICAgIEJFR0lOX1JJTkcoY2hhbiwg
-c2lmbSwgTlYwNF9TQ0FMRURfSU1BR0VfRlJPTV9NRU1PUllfQ09MT1JfQ09OVkVSU0lPTiwgOSk7
-Cgo=
---0023545bd658ac71e6047bad153c
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---0023545bd658ac71e6047bad153c--
+--- Comment #1 from cowhead-hi6Y0CQ0nG0@public.gmane.org  2009-12-26 19:35:09 PST ---
+Created an attachment (id=32311)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32311)
+Xorg log of the crash
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
