@@ -1,11 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25802] New: nouveau driver crashes in exa
-Date: Sat, 26 Dec 2009 14:24:20 -0800 (PST)
-Message-ID: <bug-25802-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/5] drm/nouveau: better alignment of bo sizes
+	and use roundup instead of ALIGN
+Date: Sun, 27 Dec 2009 01:21:40 +0100
+Message-ID: <6d4bc9fc0912261621v46be0bb6mfa614deae69c0154@mail.gmail.com>
+References: <1261863788-8318-1-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1261863788-8318-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,50 +21,96 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25802
+pushed 1 to 4
 
-           Summary: nouveau driver crashes in exa
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: cowhead-hi6Y0CQ0nG0@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=32305)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32305)
-output of dmesg| grep nouveau
-
-The nouveau driver crashes somwhere while doing EXA stuff ( I can reproduce it
-by opening the noscript menu in firefox or using thunderbird for some time..)
-gdb gave me this output:
-
-Program received signal SIGSEGV, Segmentation fault.
-0xb730ae4e in NVAccelUploadM2MF ()
-   from /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(gdb) bt
-#0  0xb730ae4e in NVAccelUploadM2MF ()
-   from /usr/lib/xorg/modules/drivers/nouveau_drv.so
-#1  0xb730b46e in nouveau_exa_upload_to_screen ()
-   from /usr/lib/xorg/modules/drivers/nouveau_drv.so
-#2  0xb60fe1ae in exaHWCopyNtoN () from /usr/lib/xorg/modules/libexa.so
-#3  0xb60fe6d8 in exaCopyNtoN () from /usr/lib/xorg/modules/libexa.so
-#4  0x081b677a in miCopyRegion ()
-#5  0x081b6d25 in miDoCopy ()
-#6  0xb60fcae6 in exaCopyArea () from /usr/lib/xorg/modules/libexa.so
-#7  0x08108a3f in damageCopyArea ()
-#8  0x08089a4c in ProcCopyArea ()
-#9  0x0808bd87 in Dispatch ()
-#10 0x080638ab in main ()
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+On Sat, Dec 26, 2009 at 10:43 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> w=
+rote:
+> - Aligning to block size should ensure that the extra size is enough.
+> - Using roundup, because not all sizes are powers of two.
+>
+> Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+> =A0drivers/gpu/drm/nouveau/nouveau_bo.c =A0 =A0| =A0 =A08 ++++++--
+> =A0drivers/gpu/drm/nouveau/nouveau_fbcon.c | =A0 =A04 ++--
+> =A02 files changed, 8 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouve=
+au/nouveau_bo.c
+> index 98c46bd..fd767e7 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> @@ -73,6 +73,7 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0case 0x4800:
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0case 0x7a00:
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0if (dev_priv->chipset >=3D=
+ 0xA0) {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *size =3D r=
+oundup(*size, 28672);
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0/* This is=
+ based on high end cards with 448 bits
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 * memory =
+bus, could be different elsewhere.*/
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0*size +=3D=
+ 6 * 28672;
+> @@ -80,9 +81,11 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 * but we =
+must also align to page size. */
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0*align =3D=
+ 2 * 8 * 28672;
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0} else if (dev_priv->chips=
+et >=3D 0x90) {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *size =3D r=
+oundup(*size, 16384);
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0*size +=3D=
+ 3 * 16384;
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0*align =3D=
+ 12 * 16834;
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0} else {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *size =3D r=
+oundup(*size, 8192);
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0*size +=3D=
+ 3 * 8192;
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0/* 12 * 81=
+92 is the actual alignment requirement
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 * but we =
+must also align to page size. */
+> @@ -110,10 +113,11 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0}
+> =A0 =A0 =A0 =A0}
+>
+> - =A0 =A0 =A0 *size =3D ALIGN(*size, PAGE_SIZE);
+> + =A0 =A0 =A0 /* ALIGN works only on powers of two. */
+> + =A0 =A0 =A0 *size =3D roundup(*size, PAGE_SIZE);
+>
+> =A0 =A0 =A0 =A0if (dev_priv->card_type =3D=3D NV_50) {
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 *size =3D ALIGN(*size, 65536);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 *size =3D roundup(*size, 65536);
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0*align =3D max(65536, *align);
+> =A0 =A0 =A0 =A0}
+> =A0}
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/no=
+uveau/nouveau_fbcon.c
+> index 84af25c..44cbbee 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> @@ -212,11 +212,11 @@ nouveau_fbcon_create(struct drm_device *dev, uint32=
+_t fb_width,
+>
+> =A0 =A0 =A0 =A0mode_cmd.bpp =3D surface_bpp;
+> =A0 =A0 =A0 =A0mode_cmd.pitch =3D mode_cmd.width * (mode_cmd.bpp >> 3);
+> - =A0 =A0 =A0 mode_cmd.pitch =3D ALIGN(mode_cmd.pitch, 256);
+> + =A0 =A0 =A0 mode_cmd.pitch =3D roundup(mode_cmd.pitch, 256);
+> =A0 =A0 =A0 =A0mode_cmd.depth =3D surface_depth;
+>
+> =A0 =A0 =A0 =A0size =3D mode_cmd.pitch * mode_cmd.height;
+> - =A0 =A0 =A0 size =3D ALIGN(size, PAGE_SIZE);
+> + =A0 =A0 =A0 size =3D roundup(size, PAGE_SIZE);
+>
+> =A0 =A0 =A0 =A0ret =3D nouveau_gem_new(dev, dev_priv->channel, size, 0, T=
+TM_PL_FLAG_VRAM,
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A00, 0x0000, fal=
+se, true, &nvbo);
+> --
+> 1.6.6.rc4
+>
+>
