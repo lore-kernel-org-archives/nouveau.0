@@ -1,99 +1,257 @@
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Subject: Lockdep spew with nouveau on 2.6.33-rc2
-Date: Sun, 27 Dec 2009 01:57:20 -0800
-Message-ID: <20091227095720.GA14655@core.coreip.homeip.net>
+From: Krzysztof Smiechowicz <deadwood-5tc4TXWwyLM@public.gmane.org>
+Subject: [PATCH 1/2] Unreference state/buffer objects
+	on	context/screen destruction
+Date: Sun, 27 Dec 2009 11:02:35 +0100
+Message-ID: <4B3730BB.8090804@wp.pl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner+glk-linux-kernel-3=40m.gmane.org-S1751570AbZL0J51@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: LKML <linux-kernel@vger.kernel.org>, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+(resending as git patch)
 
-Every time I boot my laptop (Fedora 12) I get the following complint from
-lockdep:
+- unreference state objects so that buffer objects are unreferenced and
+eventually destroyed
+- free channel at screen's destruction
 
-[  703.936365] =======================================================
-[  703.936369] [ INFO: possible circular locking dependency detected ]
-[  703.936372] 2.6.33-rc2 #154
-[  703.936374] -------------------------------------------------------
-[  703.936376] X/1365 is trying to acquire lock:
-[  703.936379]  (&mm->mmap_sem){++++++}, at: [<ffffffff810f9672>] might_fault+0x72/0xd0
-[  703.936388]
-[  703.936389] but task is already holding lock:
-[  703.936397]  (&dev->struct_mutex){+.+.+.}, at: [<ffffffffa003202d>] nouveau_gem_ioctl_pushbuf_call+0xfd/0x7d0 [nouveau]
-[  703.936412]
-[  703.936413] which lock already depends on the new lock.
-[  703.936413]
-[  703.936415]
-[  703.936416] the existing dependency chain (in reverse order) is:
-[  703.936418]
-[  703.936418] -> #1 (&dev->struct_mutex){+.+.+.}:
-[  703.936423]        [<ffffffff81081262>] check_prev_add+0x242/0x570
-[  703.936428]        [<ffffffff81081be9>] validate_chain+0x659/0x750
-[  703.936432]        [<ffffffff81081ff7>] __lock_acquire+0x317/0x4b0
-[  703.936436]        [<ffffffff81082229>] lock_acquire+0x99/0x140
-[  703.936440]        [<ffffffff8149c9c5>] __mutex_lock_common+0x65/0x4a0
-[  703.936445]        [<ffffffff8149cede>] mutex_lock_nested+0x3e/0x50
-[  703.936448]        [<ffffffff8130d67a>] drm_mmap+0x3a/0x70
-[  703.936453]        [<ffffffffa0032d33>] nouveau_ttm_mmap+0x63/0xa0 [nouveau]
-[  703.936461]        [<ffffffff81102954>] mmap_region+0x404/0x5a0
-[  703.936466]        [<ffffffff81102e3c>] do_mmap_pgoff+0x34c/0x3a0
-[  703.936470]        [<ffffffff810f496f>] sys_mmap_pgoff+0x1cf/0x2a0
-[  703.936474]        [<ffffffff810079e9>] sys_mmap+0x29/0x30
-[  703.936479]        [<ffffffff81002f6b>] system_call_fastpath+0x16/0x1b
-[  703.936483]
-[  703.936484] -> #0 (&mm->mmap_sem){++++++}:
-[  703.936488]        [<ffffffff8108155e>] check_prev_add+0x53e/0x570
-[  703.936492]        [<ffffffff81081be9>] validate_chain+0x659/0x750
-[  703.936496]        [<ffffffff81081ff7>] __lock_acquire+0x317/0x4b0
-[  703.936500]        [<ffffffff81082229>] lock_acquire+0x99/0x140
-[  703.936503]        [<ffffffff810f969f>] might_fault+0x9f/0xd0
-[  703.936507]        [<ffffffffa0030ebe>] validate_list+0x1be/0x290 [nouveau]
-[  703.936515]        [<ffffffffa003171f>] nouveau_gem_pushbuf_validate+0xbf/0x150 [nouveau]
-[  703.936524]        [<ffffffffa0032051>] nouveau_gem_ioctl_pushbuf_call+0x121/0x7d0 [nouveau]
-[  703.936532]        [<ffffffffa0032726>] nouveau_gem_ioctl_pushbuf_call2+0x26/0x30 [nouveau]
-[  703.936541]        [<ffffffff81306b25>] drm_ioctl+0x1c5/0x490
-[  703.936549]        [<ffffffff811315c8>] vfs_ioctl+0x38/0xe0
-[  703.936553]        [<ffffffff81131c65>] do_vfs_ioctl+0x75/0x370
-[  703.936557]        [<ffffffff81131fe1>] sys_ioctl+0x81/0xa0
-[  703.936560]        [<ffffffff81002f6b>] system_call_fastpath+0x16/0x1b
-[  703.936564]
-[  703.936565] other info that might help us debug this:
-[  703.936565]
-[  703.936568] 1 lock held by X/1365:
-[  703.936569]  #0:  (&dev->struct_mutex){+.+.+.}, at: [<ffffffffa003202d>] nouveau_gem_ioctl_pushbuf_call+0xfd/0x7d0 [nouveau]
-[  703.936581]
-[  703.936581] stack backtrace:
-[  703.936584] Pid: 1365, comm: X Not tainted 2.6.33-rc2 #154
-[  703.936587] Call Trace:
-[  703.936591]  [<ffffffff8107f8c9>] print_circular_bug+0xe9/0xf0
-[  703.936595]  [<ffffffff8108155e>] check_prev_add+0x53e/0x570
-[  703.936599]  [<ffffffff81081be9>] validate_chain+0x659/0x750
-[  703.936603]  [<ffffffff81081ff7>] __lock_acquire+0x317/0x4b0
-[  703.936607]  [<ffffffff81082229>] lock_acquire+0x99/0x140
-[  703.936610]  [<ffffffff810f9672>] ? might_fault+0x72/0xd0
-[  703.936613]  [<ffffffff810f969f>] might_fault+0x9f/0xd0
-[  703.936617]  [<ffffffff810f9672>] ? might_fault+0x72/0xd0
-[  703.936624]  [<ffffffffa001253f>] ? ttm_bo_validate+0x6f/0xf0 [ttm]
-[  703.936632]  [<ffffffffa0030ebe>] validate_list+0x1be/0x290 [nouveau]
-[  703.936641]  [<ffffffffa003171f>] nouveau_gem_pushbuf_validate+0xbf/0x150 [nouveau]
-[  703.936650]  [<ffffffffa0032051>] nouveau_gem_ioctl_pushbuf_call+0x121/0x7d0 [nouveau]
-[  703.936653]  [<ffffffff810f9672>] ? might_fault+0x72/0xd0
-[  703.936662]  [<ffffffffa0032726>] nouveau_gem_ioctl_pushbuf_call2+0x26/0x30 [nouveau]
-[  703.936666]  [<ffffffff81306b25>] drm_ioctl+0x1c5/0x490
-[  703.936670]  [<ffffffff81214dbd>] ? inode_has_perm+0x3d/0x70
-[  703.936679]  [<ffffffffa0032700>] ? nouveau_gem_ioctl_pushbuf_call2+0x0/0x30 [nouveau]
-[  703.936684]  [<ffffffff81214f41>] ? file_has_perm+0xb1/0xc0
-[  703.936687]  [<ffffffff811315c8>] vfs_ioctl+0x38/0xe0
-[  703.936690]  [<ffffffff81131c65>] do_vfs_ioctl+0x75/0x370
-[  703.936693]  [<ffffffff81131fe1>] sys_ioctl+0x81/0xa0
-[  703.936697]  [<ffffffff81002f6b>] system_call_fastpath+0x16/0x1b
+diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c 
+b/src/gallium/drivers/nouveau/nouveau_screen.c
+index e4cf91c..be7735b 100644
+--- a/src/gallium/drivers/nouveau/nouveau_screen.c
++++ b/src/gallium/drivers/nouveau/nouveau_screen.c
+@@ -239,5 +239,6 @@ nouveau_screen_init(struct nouveau_screen *screen, 
+struct nouveau_device *dev)
+  void
+  nouveau_screen_fini(struct nouveau_screen *screen)
+  {
++    nouveau_channel_free(&screen->channel);
+  }
 
-Thanks.
+diff --git a/src/gallium/drivers/nv10/nv10_screen.c 
+b/src/gallium/drivers/nv10/nv10_screen.c
+index ee5901e..8d4d7d7 100644
+--- a/src/gallium/drivers/nv10/nv10_screen.c
++++ b/src/gallium/drivers/nv10/nv10_screen.c
+@@ -116,6 +116,8 @@ nv10_screen_destroy(struct pipe_screen *pscreen)
+  	nouveau_notifier_free(&screen->sync);
+  	nouveau_grobj_free(&screen->celsius);
 
--- 
-Dmitry
++	nouveau_screen_fini(&screen->base);
++
+  	FREE(pscreen);
+  }
+
+diff --git a/src/gallium/drivers/nv20/nv20_screen.c 
+b/src/gallium/drivers/nv20/nv20_screen.c
+index 4eeacd1..7187f52 100644
+--- a/src/gallium/drivers/nv20/nv20_screen.c
++++ b/src/gallium/drivers/nv20/nv20_screen.c
+@@ -116,6 +116,8 @@ nv20_screen_destroy(struct pipe_screen *pscreen)
+  	nouveau_notifier_free(&screen->sync);
+  	nouveau_grobj_free(&screen->kelvin);
+
++	nouveau_screen_fini(&screen->base);
++
+  	FREE(pscreen);
+  }
+
+diff --git a/src/gallium/drivers/nv30/nv30_context.c 
+b/src/gallium/drivers/nv30/nv30_context.c
+index 46a821a..4bf4d81 100644
+--- a/src/gallium/drivers/nv30/nv30_context.c
++++ b/src/gallium/drivers/nv30/nv30_context.c
+@@ -25,6 +25,12 @@ static void
+  nv30_destroy(struct pipe_context *pipe)
+  {
+  	struct nv30_context *nv30 = nv30_context(pipe);
++    unsigned i;
++
++    for (i = 0; i < NV30_STATE_MAX; i++) {
++        if (nv30->state.hw[i])
++            so_ref(NULL, &nv30->state.hw[i]);
++    }
+
+  	if (nv30->draw)
+  		draw_destroy(nv30->draw);
+diff --git a/src/gallium/drivers/nv30/nv30_fragprog.c 
+b/src/gallium/drivers/nv30/nv30_fragprog.c
+index 40965a9..bf1c314 100644
+--- a/src/gallium/drivers/nv30/nv30_fragprog.c
++++ b/src/gallium/drivers/nv30/nv30_fragprog.c
+@@ -870,6 +870,12 @@ void
+  nv30_fragprog_destroy(struct nv30_context *nv30,
+  		      struct nv30_fragment_program *fp)
+  {
++    if (fp->buffer)
++        pipe_buffer_reference(&fp->buffer, NULL);
++
++    if (fp->so)
++        so_ref(NULL, &fp->so);
++
+  	if (fp->insn_len)
+  		FREE(fp->insn);
+  }
+diff --git a/src/gallium/drivers/nv30/nv30_screen.c 
+b/src/gallium/drivers/nv30/nv30_screen.c
+index 7cd3690..e17e1ab 100644
+--- a/src/gallium/drivers/nv30/nv30_screen.c
++++ b/src/gallium/drivers/nv30/nv30_screen.c
+@@ -156,6 +156,12 @@ static void
+  nv30_screen_destroy(struct pipe_screen *pscreen)
+  {
+  	struct nv30_screen *screen = nv30_screen(pscreen);
++    unsigned i;
++
++    for (i = 0; i < NV30_STATE_MAX; i++) {
++        if (screen->state[i])
++            so_ref(NULL, &screen->state[i]);
++    }
+
+  	nouveau_resource_free(&screen->vp_exec_heap);
+  	nouveau_resource_free(&screen->vp_data_heap);
+@@ -164,6 +170,8 @@ nv30_screen_destroy(struct pipe_screen *pscreen)
+  	nouveau_notifier_free(&screen->sync);
+  	nouveau_grobj_free(&screen->rankine);
+
++	nouveau_screen_fini(&screen->base);
++	
+  	FREE(pscreen);
+  }
+
+diff --git a/src/gallium/drivers/nv40/nv40_context.c 
+b/src/gallium/drivers/nv40/nv40_context.c
+index eb9cce4..d668f31 100644
+--- a/src/gallium/drivers/nv40/nv40_context.c
++++ b/src/gallium/drivers/nv40/nv40_context.c
+@@ -25,6 +25,12 @@ static void
+  nv40_destroy(struct pipe_context *pipe)
+  {
+  	struct nv40_context *nv40 = nv40_context(pipe);
++    unsigned i;
++
++    for (i = 0; i < NV40_STATE_MAX; i++) {
++        if (nv40->state.hw[i])
++            so_ref(NULL, &nv40->state.hw[i]);
++    }
+
+  	if (nv40->draw)
+  		draw_destroy(nv40->draw);
+diff --git a/src/gallium/drivers/nv40/nv40_fragprog.c 
+b/src/gallium/drivers/nv40/nv40_fragprog.c
+index 1bf1672..52ba888 100644
+--- a/src/gallium/drivers/nv40/nv40_fragprog.c
++++ b/src/gallium/drivers/nv40/nv40_fragprog.c
+@@ -948,6 +948,12 @@ void
+  nv40_fragprog_destroy(struct nv40_context *nv40,
+  		      struct nv40_fragment_program *fp)
+  {
++    if (fp->buffer)
++        pipe_buffer_reference(&fp->buffer, NULL);
++
++    if (fp->so)
++        so_ref(NULL, &fp->so);
++
+  	if (fp->insn_len)
+  		FREE(fp->insn);
+  }
+diff --git a/src/gallium/drivers/nv40/nv40_screen.c 
+b/src/gallium/drivers/nv40/nv40_screen.c
+index bd13dfd..bbe7509 100644
+--- a/src/gallium/drivers/nv40/nv40_screen.c
++++ b/src/gallium/drivers/nv40/nv40_screen.c
+@@ -140,6 +140,12 @@ static void
+  nv40_screen_destroy(struct pipe_screen *pscreen)
+  {
+  	struct nv40_screen *screen = nv40_screen(pscreen);
++    unsigned i;
++
++    for (i = 0; i < NV40_STATE_MAX; i++) {
++        if (screen->state[i])
++            so_ref(NULL, &screen->state[i]);
++    }
+
+  	nouveau_resource_free(&screen->vp_exec_heap);
+  	nouveau_resource_free(&screen->vp_data_heap);
+diff --git a/src/gallium/drivers/nv50/nv50_context.c 
+b/src/gallium/drivers/nv50/nv50_context.c
+index d21b80e..1739a4c 100644
+--- a/src/gallium/drivers/nv50/nv50_context.c
++++ b/src/gallium/drivers/nv50/nv50_context.c
+@@ -43,6 +43,39 @@ nv50_destroy(struct pipe_context *pipe)
+  {
+  	struct nv50_context *nv50 = nv50_context(pipe);
+
++	if (nv50->state.fb)
++	    so_ref(NULL, &nv50->state.fb);
++	if (nv50->state.blend)
++	    so_ref(NULL, &nv50->state.blend);
++	if (nv50->state.blend_colour)
++	    so_ref(NULL, &nv50->state.blend_colour);
++	if (nv50->state.zsa)
++	    so_ref(NULL, &nv50->state.zsa);
++	if (nv50->state.rast)
++	    so_ref(NULL, &nv50->state.rast);
++	if (nv50->state.stipple)
++	    so_ref(NULL, &nv50->state.stipple);
++	if (nv50->state.scissor)
++	    so_ref(NULL, &nv50->state.scissor);
++	if (nv50->state.viewport)
++	    so_ref(NULL, &nv50->state.viewport);
++	if (nv50->state.tsc_upload)
++	    so_ref(NULL, &nv50->state.tsc_upload);
++	if (nv50->state.tic_upload)
++	    so_ref(NULL, &nv50->state.tic_upload);
++	if (nv50->state.vertprog)
++	    so_ref(NULL, &nv50->state.vertprog);
++	if (nv50->state.fragprog)
++	    so_ref(NULL, &nv50->state.fragprog);
++	if (nv50->state.programs)
++	    so_ref(NULL, &nv50->state.programs);
++	if (nv50->state.vtxfmt)
++	    so_ref(NULL, &nv50->state.vtxfmt);
++	if (nv50->state.vtxbuf)
++	    so_ref(NULL, &nv50->state.vtxbuf);
++	if (nv50->state.vtxattr)
++	    so_ref(NULL, &nv50->state.vtxattr);
++
+  	draw_destroy(nv50->draw);
+  	FREE(nv50);
+  }
+diff --git a/src/gallium/drivers/nv50/nv50_screen.c 
+b/src/gallium/drivers/nv50/nv50_screen.c
+index 5a1efd3..9a74025 100644
+--- a/src/gallium/drivers/nv50/nv50_screen.c
++++ b/src/gallium/drivers/nv50/nv50_screen.c
+@@ -165,6 +165,21 @@ static void
+  nv50_screen_destroy(struct pipe_screen *pscreen)
+  {
+  	struct nv50_screen *screen = nv50_screen(pscreen);
++    unsigned i;
++
++    for (i = 0; i < 2; i++) {
++        if (screen->constbuf_parm[i])
++            nouveau_bo_ref(NULL, &screen->constbuf_parm[i]);
++    }
++
++    if (screen->constbuf_misc[0])
++        nouveau_bo_ref(NULL, &screen->constbuf_misc[0]);
++    if (screen->tic)
++        nouveau_bo_ref(NULL, &screen->tic);
++    if (screen->tsc)
++        nouveau_bo_ref(NULL, &screen->tsc);
++    if (screen->static_init)
++        so_ref(NULL, &screen->static_init);
+
+  	nouveau_notifier_free(&screen->sync);
+  	nouveau_grobj_free(&screen->tesla);
