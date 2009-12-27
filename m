@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25806] NV40 vertex corruption (kernel BO deletion
 	too early?)
-Date: Sun, 27 Dec 2009 14:13:14 -0800 (PST)
-Message-ID: <20091227221314.7B033130085@annarchy.freedesktop.org>
+Date: Sun, 27 Dec 2009 14:25:30 -0800 (PST)
+Message-ID: <20091227222530.CB0B5130083@annarchy.freedesktop.org>
 References: <bug-25806-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,23 +24,41 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25806
 
 
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 
 
---- Comment #1 from Luca Barbieri <luca.barbieri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2009-12-27 14:13:14 PST ---
-Upon further examination, the kernel does seem to have the required logic:
-sending a pushbuffer creates a fence, which is put in bo->sync_obj, which is
-then checked on deletion and if non-null, the buffer is put on a delayed
-destroy list.
 
-However, it seems to be somehow not working.
+--- Comment #2 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2009-12-27 14:25:30 PST ---
+(In reply to comment #1)
+> Upon further examination, the kernel does seem to have the required logic:
+> sending a pushbuffer creates a fence, which is put in bo->sync_obj, which is
+> then checked on deletion and if non-null, the buffer is put on a delayed
+> destroy list.
+> 
+> However, it seems to be somehow not working.
+> 
+> Maybe fencing is broken on my card? (i.e. the kernel thinks fences are signaled
+> when they aren't)
+> Or possibly fences are being signaled before the vertex shader is finished
+> running?
 
-Maybe fencing is broken on my card? (i.e. the kernel thinks fences are signaled
-when they aren't)
-Or possibly fences are being signaled before the vertex shader is finished
-running?
+That would be almost unprecedented... it's more likely that some caches in the
+GPU aren't being flushed often enough (or maybe the ones in the CPU... a bug in
+the kernel PAT code also used to cause the same symptoms, but that's hopefully
+already fixed).
 
-How can I test that fencing is working correctly?
+I'm marking this as invalid because that's the current policy, unfortunately
+we're already aware of too many gallium bugs.
+
+> 
+> How can I test that fencing is working correctly?
+> 
 
 
 -- 
