@@ -1,19 +1,12 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [MESA PATCH] Fix nv40_miptree_layout pitch
-Date: Mon, 28 Dec 2009 18:09:06 -0500
-Message-ID: <586c2acd0912281509h76710fa8n55264ff35e5943c@mail.gmail.com>
-References: <ff13bc9a0912251659v27b69ea5he53c912cf86939b7@mail.gmail.com>
-	<586c2acd0912251833x1665b258ica2a55ccfff629f6@mail.gmail.com>
-	<ff13bc9a0912251937i3c32e044kc84f0c70ff1e9547@mail.gmail.com>
-	<586c2acd0912252032t69dc63cej51472ecacc17d05f@mail.gmail.com>
-	<ff13bc9a0912252222t7ed30b00q3b5081a8ee6586c4@mail.gmail.com>
-	<586c2acd0912261725sd8f48c9n5b0191319b505382@mail.gmail.com>
-	<ff13bc9a0912261904x1ccc4ce9y3f6bb5c9283376bf@mail.gmail.com>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/2] drm/nv50: align size of buffer object to the
+	right boundaries.
+Date: Tue, 29 Dec 2009 00:49:40 +0100
+Message-ID: <1262044181-6269-1-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <ff13bc9a0912261904x1ccc4ce9y3f6bb5c9283376bf-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,34 +16,56 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Dec 26, 2009 at 10:04 PM, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> wrote:
-> On Sun, Dec 27, 2009 at 2:25 AM, Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> On Sat, Dec 26, 2009 at 1:22 AM, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> wrote:
->>> I just coded a patch that does this and seems to work fine. It must be
->>> fixed since it breaks OpenGL (or the state tracker can be changed, but
->>> it seems better to do it in the driver).
->>>
->>> The patch also fixes NV20 and NV30 in the same way. They compile but
->>> are untested.
->>>
->>> I would guess that using the 3D engine is faster for the larger
->>> levels, but the 2D engine is faster for the smaller ones (and lacks
->>> this issue).
->>
->> Hi, this patch and the other swizzle related one seem to have been
->> mangled, they're wrapped with hard line breaks so I can't apply them.
->> Can you resend? The cmp/scs one applied fine.
->>
->
-> Sorry, I hoped gmail wouldn't mangle it, but apparently was wrong.
->
-> Attached the patch, will test once I get the message back.
->
-> I'll post the other patch in reply to the other message.
->
+- Depth and stencil buffers are supposed to be large enough in general.
 
-Pushed. Thanks.
+Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index e342a41..5b1c0ae 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -65,8 +65,10 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+ 
+ 	/*
+ 	 * Some of the tile_flags have a periodic structure of N*4096 bytes,
+-	 * align to to that as well as the page size. Overallocate memory to
+-	 * avoid corruption of other buffer objects.
++	 * align to to that as well as the page size. Align the size to the
++	 * appropriate boundaries. This does imply that sizes are rounded up
++	 * 3-7 pages, so be aware of this and do not waste memory by allocating
++	 * many small buffers.
+ 	 */
+ 	if (dev_priv->card_type == NV_50) {
+ 		uint32_t block_size = nouveau_mem_fb_amount(dev) >> 15;
+@@ -77,22 +79,20 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+ 		case 0x2800:
+ 		case 0x4800:
+ 		case 0x7a00:
+-			*size = roundup(*size, block_size);
+ 			if (is_power_of_2(block_size)) {
+-				*size += 3 * block_size;
+ 				for (i = 1; i < 10; i++) {
+ 					*align = 12 * i * block_size;
+ 					if (!(*align % 65536))
+ 						break;
+ 				}
+ 			} else {
+-				*size += 6 * block_size;
+ 				for (i = 1; i < 10; i++) {
+ 					*align = 8 * i * block_size;
+ 					if (!(*align % 65536))
+ 						break;
+ 				}
+ 			}
++			*size = roundup(*size, *align);
+ 			break;
+ 		default:
+ 			break;
+-- 
+1.6.6.rc4
