@@ -1,14 +1,19 @@
 From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/2] libdrm: Unreference pushbuf objects on
-	channel destruction
-Date: Mon, 28 Dec 2009 18:08:41 -0500
-Message-ID: <586c2acd0912281508n18bba995r4d214c34db5e7dbf@mail.gmail.com>
-References: <4B3730C4.6000903@wp.pl>
+Subject: Re: [MESA PATCH] Fix nv40_miptree_layout pitch
+Date: Mon, 28 Dec 2009 18:09:06 -0500
+Message-ID: <586c2acd0912281509h76710fa8n55264ff35e5943c@mail.gmail.com>
+References: <ff13bc9a0912251659v27b69ea5he53c912cf86939b7@mail.gmail.com>
+	<586c2acd0912251833x1665b258ica2a55ccfff629f6@mail.gmail.com>
+	<ff13bc9a0912251937i3c32e044kc84f0c70ff1e9547@mail.gmail.com>
+	<586c2acd0912252032t69dc63cej51472ecacc17d05f@mail.gmail.com>
+	<ff13bc9a0912252222t7ed30b00q3b5081a8ee6586c4@mail.gmail.com>
+	<586c2acd0912261725sd8f48c9n5b0191319b505382@mail.gmail.com>
+	<ff13bc9a0912261904x1ccc4ce9y3f6bb5c9283376bf@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4B3730C4.6000903-5tc4TXWwyLM@public.gmane.org>
+In-Reply-To: <ff13bc9a0912261904x1ccc4ce9y3f6bb5c9283376bf-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,62 +23,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Krzysztof Smiechowicz <deadwood-5tc4TXWwyLM@public.gmane.org>
+To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Dec 27, 2009 at 5:02 AM, Krzysztof Smiechowicz <deadwood-5tc4TXWwyLM@public.gmane.org> wro=
-te:
-> (resending as git patch)
+On Sat, Dec 26, 2009 at 10:04 PM, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> wrote:
+> On Sun, Dec 27, 2009 at 2:25 AM, Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> On Sat, Dec 26, 2009 at 1:22 AM, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> wrote:
+>>> I just coded a patch that does this and seems to work fine. It must be
+>>> fixed since it breaks OpenGL (or the state tracker can be changed, but
+>>> it seems better to do it in the driver).
+>>>
+>>> The patch also fixes NV20 and NV30 in the same way. They compile but
+>>> are untested.
+>>>
+>>> I would guess that using the 3D engine is faster for the larger
+>>> levels, but the 2D engine is faster for the smaller ones (and lacks
+>>> this issue).
+>>
+>> Hi, this patch and the other swizzle related one seem to have been
+>> mangled, they're wrapped with hard line breaks so I can't apply them.
+>> Can you resend? The cmp/scs one applied fine.
+>>
 >
-> - unreference pushbuf objects on channel destruction
+> Sorry, I hoped gmail wouldn't mangle it, but apparently was wrong.
 >
+> Attached the patch, will test once I get the message back.
 >
-> diff --git a/nouveau/nouveau_channel.c b/nouveau/nouveau_channel.c
-> index 674c5c3..6f71f89 100644
-> --- a/nouveau/nouveau_channel.c
-> +++ b/nouveau/nouveau_channel.c
-> @@ -111,6 +111,8 @@ nouveau_channel_free(struct nouveau_channel **chan)
+> I'll post the other patch in reply to the other message.
 >
-> =A0 =A0 =A0 =A0FIRE_RING(&nvchan->base);
->
-> + =A0 =A0 =A0 nouveau_pushbuf_fini(&nvchan->base);
-> +
-> =A0 =A0 =A0 =A0nouveau_bo_unmap(nvchan->notifier_bo);
-> =A0 =A0 =A0 =A0nouveau_bo_ref(NULL, &nvchan->notifier_bo);
->
-> diff --git a/nouveau/nouveau_private.h b/nouveau/nouveau_private.h
-> index 784afc9..de21a6b 100644
-> --- a/nouveau/nouveau_private.h
-> +++ b/nouveau/nouveau_private.h
-> @@ -65,6 +65,9 @@ struct nouveau_pushbuf_priv {
-> =A0int
-> =A0nouveau_pushbuf_init(struct nouveau_channel *);
->
-> +void
-> +nouveau_pushbuf_fini(struct nouveau_channel *);
-> +
-> =A0struct nouveau_channel_priv {
-> =A0 =A0 =A0 =A0struct nouveau_channel base;
->
-> diff --git a/nouveau/nouveau_pushbuf.c b/nouveau/nouveau_pushbuf.c
-> index b90e923..c4053ed 100644
-> --- a/nouveau/nouveau_pushbuf.c
-> +++ b/nouveau/nouveau_pushbuf.c
-> @@ -170,6 +170,12 @@ nouveau_pushbuf_init(struct nouveau_channel *chan)
-> =A0 =A0 =A0 =A0return 0;
-> =A0}
->
-> +void
-> +nouveau_pushbuf_fini(struct nouveau_channel *chan)
-> +{
-> + =A0 =A0 =A0 nouveau_pushbuf_fini_call(chan);
-> +}
-> +
-> =A0int
-> =A0nouveau_pushbuf_flush(struct nouveau_channel *chan, unsigned min)
-> =A0{
 
-Pushed both. I had to apply them by hand along with a few minor
-additions since they would still not apply cleanly. They probably
-needed a rebase. Thanks.
+Pushed. Thanks.
