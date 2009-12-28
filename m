@@ -1,15 +1,13 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Krzysztof Smiechowicz <deadwood-5tc4TXWwyLM@public.gmane.org>
 Subject: Re: Synchronization mostly missing?
-Date: Mon, 28 Dec 2009 02:15:51 -0500
-Message-ID: <586c2acd0912272315o4e2858b5gffd76b24ad741ee9@mail.gmail.com>
+Date: Mon, 28 Dec 2009 08:27:17 +0100
+Message-ID: <4B385DD5.90008@wp.pl>
 References: <ff13bc9a0912271941s5d465634te43213ea9df1d14f@mail.gmail.com>
-	<87d41zn20v.fsf@riseup.net>
-	<ff13bc9a0912272255n13e3ab3wf1c126b0341045e2@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <ff13bc9a0912272255n13e3ab3wf1c126b0341045e2-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <ff13bc9a0912271941s5d465634te43213ea9df1d14f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,77 +21,53 @@ To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Dec 28, 2009 at 1:55 AM, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> wrote:
->> Can you reproduce this with your vertex buffers in VRAM instead of GART?
->> (to rule out that it's a fencing issue).
->
-> Putting the vertex buffers in VRAM makes things almost perfect, but
-> still with rare artifacts.
-> In particular, the yellow arrow in dinoshade sometimes becames a
-> yellow polygon on the floor, which happens almost every frame if I
-> move the window around.
-> It does fix demos/engine, blender and etracer is almost perfect.
->
-> Using my sync patch fixes demos/engine and demos/dinoshade, but still
-> leaves artifacts in blender when moving the rectangle and artifacts in
-> etracer.
->
-> Putting the vertex buffers in VRAM _AND_ adding my sync patch makes
-> things perfect on my system.
->
-> Using sync + a delay loop before drawing makes things better but still
-> problematic.
->
-> Also note that both adding wbinvd in the kernel at the start of push
-> buffer submission, running with "nopat" and synchronizing with the
-> current fence in the kernel had no effect on demos/engine artifacts.
->
-> Preventing loading of intel_agp did not seem to have any effect either
-> (but strangely, it still listed the aperture size, not sure what's up
-> there).
->
-> The last test I tried was, all together:
-> 1. My nv40_sync patch
-> 2. 3 wbinvd followed by spinning 10000 times in the kernel at the
-> start of pushbuffer validation
-> 3. Adding
-> BEGIN_RING(curie, NV40TCL_VTX_CACHE_INVALIDATE, 1);
-> OUT_RING(0);
-> before and after draw_elements and draw_arrays
-> 4. Removing intel_agp
->
-> The logo on etracer's splash screen still, on some frames, flickered.
-> Only putting vertex buffers in VRAM fixed that.
->
-> I'm not really sure what is happening there.
->
-> It seems that there is the lack of synchronization plus some other problem.
->
-> Maybe there is indeed an on-GPU cache for AGP/PCI memory which isn't
-> getting flushed.
-> Maybe NV40TCL_VTX_CACHE_INVALIDATE should be used but not in the way I did.
-> I couldn't find it in renouveau traces, who did reverse engineer that?
-> What does that do?
->
-> Also, what happens when I remove intel_agp? Does it use PCI DMA?
->
-> BTW, it seems to me that adding the fencing mechanism I described is
-> necessary even if the vertices are read before the FIFO continues,
-> since rendering is not completed and currently I don't see anything
-> preventing TTM from, for instance, evicting the render buffer while it
-> is being rendered to.
+Luca Barbieri pisze:
 
-It's my understanding that once the FIFO get reg is past a certain
-point all previous commands are guaranteed to be finished, which is
-what our fencing is based on. I think we would all have corruption
-issues if this wasn't the case. You can see that the FIFO get ptr
-stops advancing after long running draw commands are submitted, and
-the video decoder FIFO works similarly as well when the HW is lagging.
+> I'm not sure why this hasn't been noticed before though.
+> Is everyone getting randomly misrendered OpenGL or is my machine
+> somehow more prone to reusing buffers?
 
-Anyhow, another person with a GF7 had the same problem and putting
-vertex buffers in VRAM also improved things for him, so it could be a
-hardware bug/quirk for some/all GF7s. We don't do it in general
-because it's slower, but as a temporary workaround we can do that for
-GF7 NV40s I guess. It likely also doesn't happen with immediate mode
-vertex submission, which will be implemented sooner or later. I can't
-reproduce it on my GF6 and I don't think anyone else has either.
+I reported a similar problem about 2 weeks ago. It first became apparent 
+with NV40 but I also confirmed it with NV30 - in both cases it was 
+visible in morph3d demo. As long as nothing changes in memory 
+allocation, everything is fine. If I even move a window(which causes 
+some allocations in the system) vertexes become damaged.
+
+
+Some information from that previous emails:
+
+""
+
+I see this problem on morph3d demo. What it does is: for each frame 
+create a call list and then call it 4 times.
+
+ADDR    VRAM OFFSET
+A    X
+B    Y
+C    X
+
+A,B,C is the memory offset of 32kb buffer created for vertex buffer when 
+call lists are compiled. X,Y is the VRAM OFFSET (bo.mem.mm_node.start)
+
+First buffer is created (X,A). When it gets full (after around 3 frames) 
+second buffer is created (Y,B). Then first one is freed. When second 
+buffer is full, third is created (X,C) - here the problem start:
+according to my observations, the card seems to read vertexes not from 
+address C but from address A as if it somehow remembered the initial 
+address binding.
+
+Other observations:
+- the data during execution of gl commands actually seems to be put into 
+location C - when I switch to software path, I could track down that it 
+reads data from location C - rendering is done correctly in software path
+- when I comment out freeing of memory manager node (bo.mem.mm_node), so 
+that the third buffer is Z,C (paired with not yet used offset of VRAM) 
+then hardware rendering behaves correctly - but this will make card "run 
+out" of memory as no memory manager nodes will be deallocated
+- when I switch the calls of glCallList into actual rendering code and 
+disable invocation of glNewList/glEndList the hardware rendering also 
+behaves correctly
+""
+
+Best regards,
+Krzysztof
