@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21536] Accelerated 2D Does Not Work On HP tx2000z
  (Geforce 6150 Go)
-Date: Tue, 29 Dec 2009 11:28:59 -0800 (PST)
-Message-ID: <20091229192859.E9B382DC102@annarchy.freedesktop.org>
+Date: Tue, 29 Dec 2009 11:29:45 -0800 (PST)
+Message-ID: <20091229192945.829841300DF@annarchy.freedesktop.org>
 References: <bug-21536-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,16 +28,16 @@ Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #32347|0                           |1
+  Attachment #32348|0                           |1
         is obsolete|                            |
 
 
 
 
---- Comment #9 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2009-12-29 11:28:59 PST ---
-Created an attachment (id=32359)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32359)
-New Xorg log
+--- Comment #10 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2009-12-29 11:29:44 PST ---
+Created an attachment (id=32360)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32360)
+dmesg from boot of 2.6.32.2
 
 
 -- 
