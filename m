@@ -1,14 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21536] Accelerated 2D Does Not Work On HP tx2000z
- (Geforce 6150 Go)
-Date: Tue, 29 Dec 2009 11:37:20 -0800 (PST)
-Message-ID: <20091229193720.73B671300DF@annarchy.freedesktop.org>
-References: <bug-21536-8800@http.bugs.freedesktop.org/>
+From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Subject: [PATCH] Correct swizzled surfaces patch
+Date: Tue, 29 Dec 2009 23:23:54 +0100
+Message-ID: <ff13bc9a0912291423v2a5a9dacw4c66cac09632aeb6@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=00151747830833fdb4047be57ac3
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21536-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,48 +14,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21536
+--00151747830833fdb4047be57ac3
+Content-Type: text/plain; charset=ISO-8859-1
 
+My swizzling fix incorrectly used the dimensions of the copy rectangle
+instead of that of the destination surface. This patch fixes that.
 
+--00151747830833fdb4047be57ac3
+Content-Type: text/x-diff; charset=US-ASCII; name="fix-swizzle-wh.patch"
+Content-Disposition: attachment; filename="fix-swizzle-wh.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_g3t8u0wb0
 
+ZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnYwNC9udjA0X3N1cmZhY2VfMmQuYyBi
+L3NyYy9nYWxsaXVtL2RyaXZlcnMvbnYwNC9udjA0X3N1cmZhY2VfMmQuYwppbmRleCBjYTBjNDMz
+Li40ODEzMTVlIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL252MDQvbnYwNF9zdXJm
+YWNlXzJkLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9udjA0L252MDRfc3VyZmFjZV8yZC5j
+CkBAIC0xNjgsMTAgKzE2OCwxMCBAQCBudjA0X3N1cmZhY2VfY29weV9zd2l6emxlKHN0cnVjdCBu
+djA0X3N1cmZhY2VfMmQgKmN0eCwKIAkgICAgc3ViX3cgPSBNSU4yKHN1Yl93LCB3IC0geCk7CiAK
+IAkgICAgLyogTXVzdCBiZSA2NC1ieXRlIGFsaWduZWQgKi8KLQkgICAgYXNzZXJ0KCEoKGRzdC0+
+b2Zmc2V0ICsgbnYwNF9zd2l6emxlX2JpdHMoZHgreCwgZHkreSwgdywgaCkgKiB1dGlsX2Zvcm1h
+dF9nZXRfYmxvY2tzaXplKGRzdC0+dGV4dHVyZS0+Zm9ybWF0KSkgJiA2MykpOworCSAgICBhc3Nl
+cnQoISgoZHN0LT5vZmZzZXQgKyBudjA0X3N3aXp6bGVfYml0cyhkeCt4LCBkeSt5LCBkc3QtPndp
+ZHRoLCBkc3QtPmhlaWdodCkgKiB1dGlsX2Zvcm1hdF9nZXRfYmxvY2tzaXplKGRzdC0+dGV4dHVy
+ZS0+Zm9ybWF0KSkgJiA2MykpOwogCiAJICAgIEJFR0lOX1JJTkcoY2hhbiwgc3d6c3VyZiwgTlYw
+NF9TV0laWkxFRF9TVVJGQUNFX09GRlNFVCwgMSk7Ci0JICAgIE9VVF9SRUxPQ2woY2hhbiwgZHN0
+X2JvLCBkc3QtPm9mZnNldCArIG52MDRfc3dpenpsZV9iaXRzKGR4K3gsIGR5K3ksIHcsIGgpICog
+dXRpbF9mb3JtYXRfZ2V0X2Jsb2Nrc2l6ZShkc3QtPnRleHR1cmUtPmZvcm1hdCksCisJICAgIE9V
+VF9SRUxPQ2woY2hhbiwgZHN0X2JvLCBkc3QtPm9mZnNldCArIG52MDRfc3dpenpsZV9iaXRzKGR4
+K3gsIGR5K3ksIGRzdC0+d2lkdGgsIGRzdC0+aGVpZ2h0KSAqIHV0aWxfZm9ybWF0X2dldF9ibG9j
+a3NpemUoZHN0LT50ZXh0dXJlLT5mb3JtYXQpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBOT1VWRUFVX0JPX0dBUlQgfCBOT1VWRUFVX0JPX1ZSQU0gfCBOT1VWRUFVX0JPX1dSKTsKIAog
+CSAgICBCRUdJTl9SSU5HKGNoYW4sIHNpZm0sIE5WMDRfU0NBTEVEX0lNQUdFX0ZST01fTUVNT1JZ
+X0NPTE9SX0NPTlZFUlNJT04sIDkpOwo=
+--00151747830833fdb4047be57ac3
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---- Comment #12 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2009-12-29 11:37:19 PST ---
-Hi Pekka,
-
-Thanks so much for responding.  I've done as you asked:
-
-1) Booted with kernel 2.6.32.2
-2) replaced xorg.conf with the minimal version you referenced
-3) checked out and compiled libdrm from git
-4) downloaded nightly nouveau drm mods and compiled
-5) checked out and compiled the nouveau ddx from git
-
-At first, I got some nasty results (the first three new attachments) but that's
-because I forgot to actually -install- the kernel nouveau drm mods...
-
-After fixing that, I produced the latest three logfiles.  With KMS enabled,
-everything works perfectly--for one X login. With KDM running, logging out gets
-you a blank screen and there doesn't seem to be a way to restore the local
-display.  Restarting from ssh, and trying again gets the same result, a single
-good login and then a blank screen.
-
-If I disable KMS, however with nomodeset, (and for now, just trying things from
-init 3), I can start and stop X as many times as I like.  I do notice that on
-line 636 of the dmesg from a KMS-enabled boot, we have this message:
-
-[drm] nouveau 0000:00:05.0: GPU lockup - switching to software fbcon
-
-Suggestions on where to go from here would be welcome!
-
-Thanks again,
-Jeremy
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+--00151747830833fdb4047be57ac3--
