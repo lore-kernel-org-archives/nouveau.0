@@ -1,9 +1,10 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH] Correct swizzled surfaces patch
-Date: Tue, 29 Dec 2009 23:23:54 +0100
-Message-ID: <ff13bc9a0912291423v2a5a9dacw4c66cac09632aeb6@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25823] New: Not possible to create second X session
+Date: Tue, 29 Dec 2009 14:28:56 -0800 (PST)
+Message-ID: <bug-25823-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=00151747830833fdb4047be57ac3
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -14,52 +15,155 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---00151747830833fdb4047be57ac3
-Content-Type: text/plain; charset=ISO-8859-1
+http://bugs.freedesktop.org/show_bug.cgi?id=25823
 
-My swizzling fix incorrectly used the dimensions of the copy rectangle
-instead of that of the destination surface. This patch fixes that.
+           Summary: Not possible to create second X session
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: achim_schaefer-Mmb7MZpHnFY@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
---00151747830833fdb4047be57ac3
-Content-Type: text/x-diff; charset=US-ASCII; name="fix-swizzle-wh.patch"
-Content-Disposition: attachment; filename="fix-swizzle-wh.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_g3t8u0wb0
 
-ZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnYwNC9udjA0X3N1cmZhY2VfMmQuYyBi
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbnYwNC9udjA0X3N1cmZhY2VfMmQuYwppbmRleCBjYTBjNDMz
-Li40ODEzMTVlIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL252MDQvbnYwNF9zdXJm
-YWNlXzJkLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9udjA0L252MDRfc3VyZmFjZV8yZC5j
-CkBAIC0xNjgsMTAgKzE2OCwxMCBAQCBudjA0X3N1cmZhY2VfY29weV9zd2l6emxlKHN0cnVjdCBu
-djA0X3N1cmZhY2VfMmQgKmN0eCwKIAkgICAgc3ViX3cgPSBNSU4yKHN1Yl93LCB3IC0geCk7CiAK
-IAkgICAgLyogTXVzdCBiZSA2NC1ieXRlIGFsaWduZWQgKi8KLQkgICAgYXNzZXJ0KCEoKGRzdC0+
-b2Zmc2V0ICsgbnYwNF9zd2l6emxlX2JpdHMoZHgreCwgZHkreSwgdywgaCkgKiB1dGlsX2Zvcm1h
-dF9nZXRfYmxvY2tzaXplKGRzdC0+dGV4dHVyZS0+Zm9ybWF0KSkgJiA2MykpOworCSAgICBhc3Nl
-cnQoISgoZHN0LT5vZmZzZXQgKyBudjA0X3N3aXp6bGVfYml0cyhkeCt4LCBkeSt5LCBkc3QtPndp
-ZHRoLCBkc3QtPmhlaWdodCkgKiB1dGlsX2Zvcm1hdF9nZXRfYmxvY2tzaXplKGRzdC0+dGV4dHVy
-ZS0+Zm9ybWF0KSkgJiA2MykpOwogCiAJICAgIEJFR0lOX1JJTkcoY2hhbiwgc3d6c3VyZiwgTlYw
-NF9TV0laWkxFRF9TVVJGQUNFX09GRlNFVCwgMSk7Ci0JICAgIE9VVF9SRUxPQ2woY2hhbiwgZHN0
-X2JvLCBkc3QtPm9mZnNldCArIG52MDRfc3dpenpsZV9iaXRzKGR4K3gsIGR5K3ksIHcsIGgpICog
-dXRpbF9mb3JtYXRfZ2V0X2Jsb2Nrc2l6ZShkc3QtPnRleHR1cmUtPmZvcm1hdCksCisJICAgIE9V
-VF9SRUxPQ2woY2hhbiwgZHN0X2JvLCBkc3QtPm9mZnNldCArIG52MDRfc3dpenpsZV9iaXRzKGR4
-K3gsIGR5K3ksIGRzdC0+d2lkdGgsIGRzdC0+aGVpZ2h0KSAqIHV0aWxfZm9ybWF0X2dldF9ibG9j
-a3NpemUoZHN0LT50ZXh0dXJlLT5mb3JtYXQpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBOT1VWRUFVX0JPX0dBUlQgfCBOT1VWRUFVX0JPX1ZSQU0gfCBOT1VWRUFVX0JPX1dSKTsKIAog
-CSAgICBCRUdJTl9SSU5HKGNoYW4sIHNpZm0sIE5WMDRfU0NBTEVEX0lNQUdFX0ZST01fTUVNT1JZ
-X0NPTE9SX0NPTlZFUlNJT04sIDkpOwo=
---00151747830833fdb4047be57ac3
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Created an attachment (id=32365)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32365)
+Successfull start of vt 7
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+I'm using kernel 2.6.33-rc2 and compiled the drm and Xdriver myself from the
+latest git repos. I have a 5200 with two monitors attached one 1280X1024 the
+other 1024x768)
+Now starting the Xserver and using it works fine. (much better than the version
+which is currently in debian experimental).
 
---00151747830833fdb4047be57ac3--
+But as soon as I start create another Xsession (on vt 8) via kde(4.3.4) change
+user I only get black screens.
+
+it is quite hard to get back to a working console, I don't know how I got it,
+but I got one back.
+With dmesg I see this:
+[  228.513498] [drm] nouveau 0000:01:00.0: Allocating FIFO number 1             
+[  228.514510] [drm] nouveau 0000:01:00.0: nouveau_channel_alloc: initialised
+FIFO 1                                                                          
+[  228.587351] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 0)                                                                      
+[  228.597304] [drm] DAC-7: set mode 1280x1024_75.00 3e                         
+[  228.607513] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 0)                                                                      
+[  228.607519] [drm] nouveau 0000:01:00.0: Output VGA-1 is running on CRTC 0
+using output A                                                                  
+[  228.607847] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 1)                                                                      
+[  228.617793] [drm] DAC-8: set mode 1024x768_60.00 41                          
+[  228.628011] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 1)                                                                      
+[  228.628016] [drm] nouveau 0000:01:00.0: Output DVI-I-1 is running on CRTC 1
+using output B                                                                  
+[  321.832750] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 0)                                                                      
+[  321.842694] [drm] DAC-7: set mode 1280x1024 3f                               
+[  321.852911] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 0)                                                                      
+[  321.852916] [drm] nouveau 0000:01:00.0: Output VGA-1 is running on CRTC 0
+using output A                                                                  
+[  321.876044] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 1)
+[  321.885990] [drm] DAC-8: set mode 1024x768 40
+[  321.896203] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 1)
+[  321.896208] [drm] nouveau 0000:01:00.0: Output DVI-I-1 is running on CRTC 1
+using output B
+[  357.277251] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 0)
+[  357.287199] [drm] DAC-7: set mode   42
+[  357.297411] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 0)
+[  357.297417] [drm] nouveau 0000:01:00.0: Output VGA-1 is running on CRTC 0
+using output A
+[  357.332261] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 1)
+[  357.342208] [drm] DAC-8: set mode 07[         43
+[  357.352423] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 1)
+[  357.352429] [drm] nouveau 0000:01:00.0: Output DVI-I-1 is running on CRTC 1
+using output B
+[  368.376179] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 0)
+[  368.386123] [drm] DAC-7: set mode 1280x1024 3f
+[  368.396336] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 0)
+[  368.396341] [drm] nouveau 0000:01:00.0: Output VGA-1 is running on CRTC 0
+using output A
+[  368.396353] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 1)
+[  368.406290] [drm] DAC-8: set mode 1024x768 40
+[  368.416502] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 1)
+[  368.416506] [drm] nouveau 0000:01:00.0: Output DVI-I-1 is running on CRTC 1
+using output B
+[  369.402816] [drm] nouveau 0000:01:00.0: Allocating FIFO number 2
+[  369.403829] [drm] nouveau 0000:01:00.0: nouveau_channel_alloc: initialised
+FIFO 2
+[  382.999385] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 0)
+[  383.009337] [drm] DAC-7: set mode 1280x1024_75.00 45
+[  383.019546] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 0)
+[  383.019551] [drm] nouveau 0000:01:00.0: Output VGA-1 is running on CRTC 0
+using output A
+[  383.020275] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 1)
+[  383.030221] [drm] DAC-8: set mode 1024x768_60.00 46
+[  383.040433] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 1)
+[  383.040438] [drm] nouveau 0000:01:00.0: Output DVI-I-1 is running on CRTC 1
+using output B
+[  383.202592] [drm] nouveau 0000:01:00.0: nouveau_channel_free: freeing fifo 2
+[  383.206524] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 0)
+[  383.216475] [drm] DAC-7: set mode 1280x1024 3f
+[  383.226683] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 0)
+[  383.226688] [drm] nouveau 0000:01:00.0: Output VGA-1 is running on CRTC 0
+using output A
+[  383.229987] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 1)
+[  383.239933] [drm] DAC-8: set mode 1024x768 40
+[  383.250149] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 1)
+[  383.250154] [drm] nouveau 0000:01:00.0: Output DVI-I-1 is running on CRTC 1
+using output B
+[  383.252283] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 0)
+[  383.262229] [drm] DAC-7: set mode   47
+[  383.272442] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 0)
+[  383.272448] [drm] nouveau 0000:01:00.0: Output VGA-1 is running on CRTC 0
+using output A
+[  383.304902] [drm] nouveau 0000:01:00.0: Setting dpms mode 3 on vga encoder
+(output 1)
+[  383.314849] [drm] DAC-8: set mode 07[         44
+[  383.325065] [drm] nouveau 0000:01:00.0: Setting dpms mode 0 on vga encoder
+(output 1)
+[  383.325070] [drm] nouveau 0000:01:00.0: Output DVI-I-1 is running on CRTC 1
+using output B
+
+I think at 228 I started the first X session and at 321 I switched back to the
+console (VT1). 
+This would mean at 357 I started the second X Session.
+
+I'll attach both Xorg.*.log files (0 for the first X session, 1 for teh other)
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
