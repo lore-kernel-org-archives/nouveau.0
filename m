@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21536] Accelerated 2D Does Not Work On HP tx2000z
  (Geforce 6150 Go)
-Date: Tue, 29 Dec 2009 11:30:38 -0800 (PST)
-Message-ID: <20091229193038.6B1291300E1@annarchy.freedesktop.org>
+Date: Tue, 29 Dec 2009 11:37:20 -0800 (PST)
+Message-ID: <20091229193720.73B671300DF@annarchy.freedesktop.org>
 References: <bug-21536-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,20 +24,39 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=21536
 
 
-Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #32349|0                           |1
-        is obsolete|                            |
 
 
 
+--- Comment #12 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2009-12-29 11:37:19 PST ---
+Hi Pekka,
 
---- Comment #11 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2009-12-29 11:30:38 PST ---
-Created an attachment (id=32361)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32361)
-/var/log/messages
+Thanks so much for responding.  I've done as you asked:
+
+1) Booted with kernel 2.6.32.2
+2) replaced xorg.conf with the minimal version you referenced
+3) checked out and compiled libdrm from git
+4) downloaded nightly nouveau drm mods and compiled
+5) checked out and compiled the nouveau ddx from git
+
+At first, I got some nasty results (the first three new attachments) but that's
+because I forgot to actually -install- the kernel nouveau drm mods...
+
+After fixing that, I produced the latest three logfiles.  With KMS enabled,
+everything works perfectly--for one X login. With KDM running, logging out gets
+you a blank screen and there doesn't seem to be a way to restore the local
+display.  Restarting from ssh, and trying again gets the same result, a single
+good login and then a blank screen.
+
+If I disable KMS, however with nomodeset, (and for now, just trying things from
+init 3), I can start and stop X as many times as I like.  I do notice that on
+line 636 of the dmesg from a KMS-enabled boot, we have this message:
+
+[drm] nouveau 0000:00:05.0: GPU lockup - switching to software fbcon
+
+Suggestions on where to go from here would be welcome!
+
+Thanks again,
+Jeremy
 
 
 -- 
