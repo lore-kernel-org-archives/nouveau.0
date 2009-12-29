@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21536] Accelerated 2D Does Not Work On HP tx2000z
  (Geforce 6150 Go)
-Date: Tue, 29 Dec 2009 10:15:36 -0800 (PST)
-Message-ID: <20091229181536.B47E4130093@annarchy.freedesktop.org>
+Date: Tue, 29 Dec 2009 10:16:15 -0800 (PST)
+Message-ID: <20091229181615.6EF43130093@annarchy.freedesktop.org>
 References: <bug-21536-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,24 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=21536
 
 
-Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #25407|0                           |1
-        is obsolete|                            |
-  Attachment #25408|0                           |1
-        is obsolete|                            |
-  Attachment #32337|0                           |1
-        is obsolete|                            |
 
 
 
-
---- Comment #6 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2009-12-29 10:15:36 PST ---
-Created an attachment (id=32347)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32347)
-Xorg.0.log - EQ overflowing message
+--- Comment #7 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2009-12-29 10:16:14 PST ---
+Created an attachment (id=32348)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32348)
+dmesg from boot of 2.6.32.2
 
 
 -- 
