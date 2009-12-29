@@ -1,14 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21536] Accelerated 2D Does Not Work On HP tx2000z
- (Geforce 6150 Go)
-Date: Tue, 29 Dec 2009 01:34:07 -0800 (PST)
-Message-ID: <20091229093408.07E101300C3@annarchy.freedesktop.org>
-References: <bug-21536-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [rebased PATCH 1/2] nv50/exa: add support for more
+ color formats
+Date: Tue, 29 Dec 2009 18:06:34 +0100
+Message-ID: <20091229170634.GA2879@joi.lan>
+References: <20091228173717.GA10639@joi.lan>
+	<6d4bc9fc0912280955h348381der3ebae761e412ba5c@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21536-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <6d4bc9fc0912280955h348381der3ebae761e412ba5c-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,35 +20,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21536
-
-
-
-
-
---- Comment #5 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-12-29 01:34:06 PST ---
-I believe it would be beneficial to
-1. install the latest git version of DRM modules, libdrm and DDX (the X driver)
-2. use the minimalistic xorg.conf from
-http://nouveau.freedesktop.org/wiki/InstallNouveau
-3. Use KMS (enabled by default nowadays)
-4. provide a full kernel log from boot up to the GPU lockup, and X log
-
-Step 1 probably requires you to upgrade your kernel to at least 2.6.32 for the
-DRM modules to build.
-
-It seems you have two nvidia devices, according to your X log. The kernel log
-should give more information if that is a problem. Related to this, IIRC the
-latest DRM code contains changes in multi-device support, although it is not
-complete.
-
-If this is too much, you should at least provide the kernel log.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gTW9uLCBEZWMgMjgsIDIwMDkgYXQgMDY6NTU6MjNQTSArMDEwMCwgTWFhcnRlbiBNYWF0aHVp
+cyB3cm90ZToKPiBPbiBNb24sIERlYyAyOCwgMjAwOSBhdCA2OjM3IFBNLCBNYXJjaW4gU2x1c2Fy
+ego+IDxtYXJjaW4uc2x1c2FyekBnbWFpbC5jb20+IHdyb3RlOgo+ID4KPiA+IC0tLQo+ID4gwqBz
+cmMvbnY1MF9leGEuYyB8IMKgMTU1ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+Ky0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gPiDCoDEgZmlsZXMgY2hhbmdlZCwgMTAwIGluc2VydGlv
+bnMoKyksIDU1IGRlbGV0aW9ucygtKQo+ID4KPiA+IGRpZmYgLS1naXQgYS9zcmMvbnY1MF9leGEu
+YyBiL3NyYy9udjUwX2V4YS5jCj4gPiBpbmRleCAxZjVhNGFjLi41NDk2OGU4IDEwMDY0NAo+ID4g
+LS0tIGEvc3JjL252NTBfZXhhLmMKPiA+ICsrKyBiL3NyYy9udjUwX2V4YS5jCj4gPiBAQCAtNzks
+MTUgKzc5LDE2IEBAIE5WNTBFWEEyRFN1cmZhY2VGb3JtYXQoUGl4bWFwUHRyIHBwaXgsIHVpbnQz
+Ml90ICpmbXQpCj4gPgo+ID4gwqAgwqAgwqAgwqBzd2l0Y2ggKHBwaXgtPmRyYXdhYmxlLmRlcHRo
+KSB7Cj4gPiDCoCDCoCDCoCDCoGNhc2UgOCA6ICpmbXQgPSBOVjUwXzJEX1NSQ19GT1JNQVRfUjhf
+VU5PUk07IGJyZWFrOwo+ID4gLSDCoCDCoCDCoCBjYXNlIDE1OiAqZm10ID0gTlY1MF8yRF9TUkNf
+Rk9STUFUX1gxUjVHNUI1X1VOT1JNOyBicmVhazsKPiA+IC0gwqAgwqAgwqAgY2FzZSAxNjogKmZt
+dCA9IE5WNTBfMkRfU1JDX0ZPUk1BVF9SNUc2QjVfVU5PUk07IGJyZWFrOwo+ID4gKyDCoCDCoCDC
+oCBjYXNlIDE1Ogo+ID4gKyDCoCDCoCDCoCBjYXNlIDE2Ogo+ID4gKyDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCAqZm10ID0gTlY1MF8yRF9TUkNfRk9STUFUX1I1RzZCNV9VTk9STTsKPiA+ICsgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgYnJlYWs7Cj4gCj4gZGVwdGggMTUgaXMgUjVHNUI1LCB3aHkgdGhpcyBj
+aGFuZ2U/CgppdCdzIHRoZSBvbmx5IHZhbHVlIHdoaWNoIHBhc3NlcyByZW5kZXJjaGVjayB0ZXN0
+cwoocmVuZGVyY2hlY2sgLXQgYmxlbmQgLW8gU3JjIC1mIHgxcjVnNWI1LHI1ZzViNSkKCj4gPiDC
+oCDCoCDCoCDCoGNhc2UgMjQ6ICpmbXQgPSBOVjUwXzJEX1NSQ19GT1JNQVRfWDhSOEc4QjhfVU5P
+Uk07IGJyZWFrOwo+ID4gwqAgwqAgwqAgwqBjYXNlIDMwOiAqZm10ID0gTlY1MF8yRF9TUkNfRk9S
+TUFUX0EyQjEwRzEwUjEwX1VOT1JNOyBicmVhazsKPiA+IMKgIMKgIMKgIMKgY2FzZSAzMjogKmZt
+dCA9IE5WNTBfMkRfU1JDX0ZPUk1BVF9BOFI4RzhCOF9VTk9STTsgYnJlYWs7Cj4gPiDCoCDCoCDC
+oCDCoGRlZmF1bHQ6Cj4gPiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBOT1VWRUFVX0ZBTExCQUNL
+KCJVbmtub3duIHN1cmZhY2UgZm9ybWF0IGZvciBicHA9JWRcbiIsCj4gPiDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoHBwaXgtPmRyYXdhYmxlLmRlcHRo
+KTsKPiA+IC0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqByZXR1cm4gRkFMU0U7Cj4gCj4gV2h5IGRp
+ZCB5b3UgcmVtb3ZlIHRoaXM/CgpiZWNhdXNlIGl0J3MgdW5yZWFjaGFibGUsIE5PVVZFQVVfRkFM
+TEJBQ0sgcmV0dXJucyBGQUxTRQogCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
