@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25824] KMS, Dualhead: Strange bigger console
-Date: Wed, 30 Dec 2009 02:17:07 -0800 (PST)
-Message-ID: <20091230101707.155EF1300CC@annarchy.freedesktop.org>
+Date: Wed, 30 Dec 2009 02:26:30 -0800 (PST)
+Message-ID: <20091230102631.C6EB41300A3@annarchy.freedesktop.org>
 References: <bug-25824-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,17 +26,34 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25824
 
 
 
---- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-12-30 02:17:05 PST ---
-Achim, this is more of a user preference to choose one over the other:
-1. use the best mode on each output
-2. use the largest common mode on all outputs
+--- Comment #4 from Achim Schaefer <achim_schaefer-Mmb7MZpHnFY@public.gmane.org>  2009-12-30 02:26:29 PST ---
+(In reply to comment #3)
+> Case 2 you should be able to achieve with the "video" kernel command line
+> parameter, forcing the small mode on the big monitor. I hope it is documented
+> in the kernel Documentation, since I do not recall the correct syntax.
+That depends if nouveau driver uses modedb or not.
 
-Case 1 is what X does, and one goal of KMS is flickerless boot, so it fits and
-is the default policy in general.
+from Documentation/fb/modedb.txt
+  Drivers that support modedb boot options
+123     Boot Name     Cards Supported
+124
+125     amifb       - Amiga chipset frame buffer
+126     aty128fb    - ATI Rage128 / Pro frame buffer
+127     atyfb       - ATI Mach64 frame buffer
+128     pm2fb       - Permedia 2/2V frame buffer
+129     pm3fb       - Permedia 3 frame buffer
+130     sstfb       - Voodoo 1/2 (SST1) chipset frame buffer
+131     tdfxfb      - 3D Fx frame buffer
+132     tridentfb   - Trident (Cyber)blade chipset frame buffer
+133     vt8623fb    - VIA 8623 frame buffer
 
-Case 2 you should be able to achieve with the "video" kernel command line
-parameter, forcing the small mode on the big monitor. I hope it is documented
-in the kernel Documentation, since I do not recall the correct syntax.
+But here you can not find nouveau.
+
+So either a new doc gets created with the options to handle this, or this doc
+gets updated  including nouveau.
+I hope with staging drivers you are allowed to change the existing docs-)
+
+=> I assume I'll close this bug, and open a documentation bug?
 
 
 -- 
