@@ -1,12 +1,13 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: Add NOUVEAU_VTXIDX_IN_VRAM variable to put vertex/index
- buffers in VRAM
-Date: Wed, 30 Dec 2009 18:14:03 +0100
-Message-ID: <1262193243.3768.15.camel@localhost>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Subject: ddx/nv50: use drawable.bitsPerPixel to decide format
+Date: Wed, 30 Dec 2009 18:37:29 +0100
+Message-ID: <4B3B8FD9.4070605@student.tuwien.ac.at>
+References: <20091228173717.GA10639@joi.lan>	<6d4bc9fc0912280955h348381der3ebae761e412ba5c@mail.gmail.com>
+	<20091229170634.GA2879@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="------------010501060201030906090507"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20091229170634.GA2879-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,126 +17,164 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On some systems, putting vertex and index buffers in VRAM instead of
-GART memory eliminates massive graphics corruption which is otherwise
-present, due to unclear causes.
+This is a multi-part message in MIME format.
+--------------010501060201030906090507
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-This patch adds an environment variable that does that, along with
-helpful messages, prompting the user the report his configuration if we
-got the default setting wrong.
+On 12/29/2009 06:06 PM, Marcin Slusarz wrote:
+> On Mon, Dec 28, 2009 at 06:55:23PM +0100, Maarten Maathuis wrote:
+>> On Mon, Dec 28, 2009 at 6:37 PM, Marcin Slusarz
+>> <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>>
+>>> ---
+>>>  src/nv50_exa.c |  155 ++++++++++++++++++++++++++++++++++++--------------------
+>>>  1 files changed, 100 insertions(+), 55 deletions(-)
+>>>
+>>> diff --git a/src/nv50_exa.c b/src/nv50_exa.c
+>>> index 1f5a4ac..54968e8 100644
+>>> --- a/src/nv50_exa.c
+>>> +++ b/src/nv50_exa.c
+>>> @@ -79,15 +79,16 @@ NV50EXA2DSurfaceFormat(PixmapPtr ppix, uint32_t *fmt)
+>>>
+>>>        switch (ppix->drawable.depth) {
+>>>        case 8 : *fmt = NV50_2D_SRC_FORMAT_R8_UNORM; break;
+>>> -       case 15: *fmt = NV50_2D_SRC_FORMAT_X1R5G5B5_UNORM; break;
+>>> -       case 16: *fmt = NV50_2D_SRC_FORMAT_R5G6B5_UNORM; break;
+>>> +       case 15:
+>>> +       case 16:
+>>> +               *fmt = NV50_2D_SRC_FORMAT_R5G6B5_UNORM;
+>>> +               break;
+>>
+>> depth 15 is R5G5B5, why this change?
+> 
+> it's the only value which passes rendercheck tests
+> (rendercheck -t blend -o Src -f x1r5g5b5,r5g5b5)
+> 
+This is as far as I can tell because x1r5g5b5 (XRender direct format as
+queries by rendercheck) has depth set to 16, and therefore uses case 16
+here.
+If you use the same for depth 15, the rendercheck test check succeeds,
+but doing this is wrong.
+If you check bitsPerPixel instead, this will be 15 for both x1r5g5b5
+and r5g5b5, and all looks fine then.
 
-It turns it on by default on NV49, as it is what I am seeing corruption
-on.
-This needs investigation and user reports to find out which cards are
-susceptible.
+See the attached patch. I'm not sure if I should have changed the xv
+stuff also.
+>>>        case 24: *fmt = NV50_2D_SRC_FORMAT_X8R8G8B8_UNORM; break;
+>>>        case 30: *fmt = NV50_2D_SRC_FORMAT_A2B10G10R10_UNORM; break;
+>>>        case 32: *fmt = NV50_2D_SRC_FORMAT_A8R8G8B8_UNORM; break;
+>>>        default:
+>>>                 NOUVEAU_FALLBACK("Unknown surface format for bpp=%d\n",
+>>>                                  ppix->drawable.depth);
+>>> -                return FALSE;
+>>
+>> Why did you remove this?
+> 
+> because it's unreachable, NOUVEAU_FALLBACK returns FALSE
+>  
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+
+--------------010501060201030906090507
+Content-Type: text/plain;
+ name="0001-nv50-check-drawable.bitsPerPixel-instead-of-depth-to.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename*0="0001-nv50-check-drawable.bitsPerPixel-instead-of-depth-to.pa";
+ filename*1="tch"
+
+From c1de285273004f90937e909187db654d789617b7 Mon Sep 17 00:00:00 2001
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Date: Wed, 30 Dec 2009 18:28:25 +0100
+Subject: [PATCH] nv50: check drawable.bitsPerPixel instead of depth to get format
+
 ---
- src/gallium/drivers/nouveau/nouveau_screen.c |   57 +++++++++++++++++++++++--
- src/gallium/drivers/nouveau/nouveau_screen.h |    2 +
- 2 files changed, 54 insertions(+), 5 deletions(-)
+ src/nv50_exa.c |    6 +++---
+ src/nv50_xv.c  |    6 ++++--
+ 2 files changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c b/src/gallium/drivers/nouveau/nouveau_screen.c
-index 0437af3..a30c9c6 100644
---- a/src/gallium/drivers/nouveau/nouveau_screen.c
-+++ b/src/gallium/drivers/nouveau/nouveau_screen.c
-@@ -47,11 +47,54 @@ nouveau_screen_bo_skel(struct pipe_screen *pscreen, struct nouveau_bo *bo,
- 	return pb;
- }
- 
-+static void
-+nouveau_screen_bo_init(struct nouveau_screen* screen)
-+{
-+	screen->vertex_buffer_flags = 0;
-+	screen->index_buffer_flags = 0;
-+	if(screen->base.get_param(&screen->base, NOUVEAU_CAP_HW_VTXBUF) || screen->base.get_param(&screen->base, NOUVEAU_CAP_HW_IDXBUF))
-+	{
-+		int vram_hack_default = 0;
-+		int vram_hack;
-+		// TODO: add other cards that may need this hack.
-+		// It may also depend on the specific card, CPU or AGP/PCIe chipset.
-+		if(screen->device->chipset == 0x49)
-+			vram_hack_default = 1;
-+		vram_hack = debug_get_bool_option("NOUVEAU_VTXIDX_IN_VRAM", vram_hack_default);
-+
-+		if(!vram_hack)
-+		{
-+			printf(
-+				"Some systems may experience graphics corruption due to randomly misplaced vertices.\n"
-+				"If this is happening, export NOUVEAU_VTXIDX_IN_VRAM=1 may reduce or eliminate the problem\n");
-+			if(vram_hack == vram_hack_default)
-+				printf("If it helps, please describe your hardware configuration and software versions to nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org\n");
-+			else
-+				printf("If you are not experiencing any corruption in complex 3D applications, please describe your hardware configuration and software versions to nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org\n");
-+		}
-+		else
-+		{
-+			printf(
-+				"A performance reducing hack is being used to help avoid graphics corruption.\n"
-+				"You can try export NOUVEAU_VTXIDX_IN_VRAM=0 to disable it.\n");
-+			if(vram_hack == vram_hack_default)
-+				printf("If it doesn't make things worse, please describe your hardware configuration and software versions to nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org\n");
-+		}
-+
-+		if (screen->base.get_param(&screen->base, NOUVEAU_CAP_HW_VTXBUF))
-+			screen->vertex_buffer_flags |= vram_hack ? NOUVEAU_BO_VRAM : NOUVEAU_BO_GART;
-+
-+		if (screen->base.get_param(&screen->base, NOUVEAU_CAP_HW_IDXBUF))
-+			screen->index_buffer_flags |= vram_hack ? NOUVEAU_BO_VRAM : NOUVEAU_BO_GART;
-+	}
-+}
-+
- static struct pipe_buffer *
- nouveau_screen_bo_new(struct pipe_screen *pscreen, unsigned alignment,
- 		      unsigned usage, unsigned size)
+diff --git a/src/nv50_exa.c b/src/nv50_exa.c
+index 1f5a4ac..bddc463 100644
+--- a/src/nv50_exa.c
++++ b/src/nv50_exa.c
+@@ -77,7 +77,7 @@ NV50EXA2DSurfaceFormat(PixmapPtr ppix, uint32_t *fmt)
  {
--	struct nouveau_device *dev = nouveau_screen(pscreen)->device;
-+	struct nouveau_screen* screen = nouveau_screen(pscreen);
-+	struct nouveau_device *dev = screen->device;
- 	struct nouveau_bo *bo = NULL;
- 	uint32_t flags = NOUVEAU_BO_MAP;
- 	int ret;
-@@ -60,12 +103,14 @@ nouveau_screen_bo_new(struct pipe_screen *pscreen, unsigned alignment,
- 		flags |= NOUVEAU_BO_GART;
- 	else
- 	if (usage & PIPE_BUFFER_USAGE_VERTEX) {
--		if (pscreen->get_param(pscreen, NOUVEAU_CAP_HW_VTXBUF))
--			flags |= NOUVEAU_BO_GART;
-+		if(screen->vertex_buffer_flags < 0)
-+			nouveau_screen_bo_init(screen);
-+		flags |= screen->vertex_buffer_flags;
- 	} else
- 	if (usage & PIPE_BUFFER_USAGE_INDEX) {
--		if (pscreen->get_param(pscreen, NOUVEAU_CAP_HW_IDXBUF))
--			flags |= NOUVEAU_BO_GART;
-+		if(screen->index_buffer_flags < 0)
-+			nouveau_screen_bo_init(screen);
-+		flags |= screen->index_buffer_flags;
+ 	NV50EXA_LOCALS(ppix);
+ 
+-	switch (ppix->drawable.depth) {
++	switch (ppix->drawable.bitsPerPixel) {
+ 	case 8 : *fmt = NV50_2D_SRC_FORMAT_R8_UNORM; break;
+ 	case 15: *fmt = NV50_2D_SRC_FORMAT_X1R5G5B5_UNORM; break;
+ 	case 16: *fmt = NV50_2D_SRC_FORMAT_R5G6B5_UNORM; break;
+@@ -86,7 +86,7 @@ NV50EXA2DSurfaceFormat(PixmapPtr ppix, uint32_t *fmt)
+ 	case 32: *fmt = NV50_2D_SRC_FORMAT_A8R8G8B8_UNORM; break;
+ 	default:
+ 		 NOUVEAU_FALLBACK("Unknown surface format for bpp=%d\n",
+-				  ppix->drawable.depth);
++				  ppix->drawable.bitsPerPixel);
+ 		 return FALSE;
  	}
  
- 	if (usage & PIPE_BUFFER_USAGE_PIXEL) {
-@@ -233,6 +278,8 @@ nouveau_screen_init(struct nouveau_screen *screen, struct nouveau_device *dev)
- 	pscreen->fence_signalled = nouveau_screen_fence_signalled;
- 	pscreen->fence_finish = nouveau_screen_fence_finish;
+@@ -179,7 +179,7 @@ NV50EXASetROP(PixmapPtr pdpix, int alu, Pixel planemask)
+ 	}
  
-+	screen->vertex_buffer_flags = -1;
-+	screen->index_buffer_flags = -1;
- 	return 0;
- }
- 
-diff --git a/src/gallium/drivers/nouveau/nouveau_screen.h b/src/gallium/drivers/nouveau/nouveau_screen.h
-index ebfc67a..ed32b35 100644
---- a/src/gallium/drivers/nouveau/nouveau_screen.h
-+++ b/src/gallium/drivers/nouveau/nouveau_screen.h
-@@ -5,6 +5,8 @@ struct nouveau_screen {
- 	struct pipe_screen base;
- 	struct nouveau_device *device;
- 	struct nouveau_channel *channel;
-+	int vertex_buffer_flags;
-+	int index_buffer_flags;
- };
- 
- static inline struct nouveau_screen *
+ 	BEGIN_RING(chan, eng2d, NV50_2D_PATTERN_FORMAT, 2);
+-	switch (pdpix->drawable.depth) {
++	switch (pdpix->drawable.bitsPerPixel) {
+ 		case  8: OUT_RING  (chan, 3); break;
+ 		case 15: OUT_RING  (chan, 1); break;
+ 		case 16: OUT_RING  (chan, 0); break;
+diff --git a/src/nv50_xv.c b/src/nv50_xv.c
+index b0eccfd..bb9bb43 100644
+--- a/src/nv50_xv.c
++++ b/src/nv50_xv.c
+@@ -41,10 +41,11 @@ extern Atom xvSyncToVBlank, xvSetDefaults;
+ static Bool
+ nv50_xv_check_image_put(PixmapPtr ppix)
+ {
+-	switch (ppix->drawable.depth) {
++	switch (ppix->drawable.bitsPerPixel) {
+ 	case 32:
+ 	case 24:
+ 	case 16:
++	case 15:
+ 		break;
+ 	default:
+ 		return FALSE;
+@@ -78,10 +79,11 @@ nv50_xv_state_emit(PixmapPtr ppix, int id, struct nouveau_bo *src,
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+-	switch (ppix->drawable.depth) {
++	switch (ppix->drawable.bitsPerPixel) {
+ 	case 32: OUT_RING  (chan, NV50TCL_RT_FORMAT_A8R8G8B8_UNORM); break;
+ 	case 24: OUT_RING  (chan, NV50TCL_RT_FORMAT_X8R8G8B8_UNORM); break;
+ 	case 16: OUT_RING  (chan, NV50TCL_RT_FORMAT_R5G6B5_UNORM); break;
++	case 15: OUT_RING  (chan, NV50TCL_RT_FORMAT_X1R5G5B5_UNORM); break;
+ 	}
+ 	OUT_RING  (chan, bo->tile_mode << 4);
+ 	OUT_RING  (chan, 0);
 -- 
-1.6.3.3
+1.6.4.4
+
+
+--------------010501060201030906090507
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--------------010501060201030906090507--
