@@ -1,7 +1,8 @@
 From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH] Two-sided vertex color support for NV20-NV40
-Date: Wed, 30 Dec 2009 17:01:13 +0100
-Message-ID: <1262188873.3768.4.camel@localhost>
+Subject: Add NOUVEAU_VTXIDX_IN_VRAM variable to put vertex/index
+ buffers in VRAM
+Date: Wed, 30 Dec 2009 18:14:03 +0100
+Message-ID: <1262193243.3768.15.camel@localhost>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,120 +16,126 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This patch adds support for two-sided vertex color to NV20, NV30 and NV40.
-When set, the COLOR0/1 fs inputs on back faces will be wired to vs outputs BCOLOR0/1.
-This makes OpenGL two sided lighting work, which can be tested with progs/demos/projtex.
+On some systems, putting vertex and index buffers in VRAM instead of
+GART memory eliminates massive graphics corruption which is otherwise
+present, due to unclear causes.
 
-This is already supported on NV50 and seems to be unsupported on NV04 and NV10.
+This patch adds an environment variable that does that, along with
+helpful messages, prompting the user the report his configuration if we
+got the default setting wrong.
 
-The following defines need to be added to nouveau_class.h and renouveau.xml:
-
-Tested on NV40 only.
-
+It turns it on by default on NV49, as it is what I am seeing corruption
+on.
+This needs investigation and user reports to find out which cards are
+susceptible.
 ---
- src/gallium/drivers/nv20/nv20_state.c      |    3 ++-
- src/gallium/drivers/nv20/nv20_state.h      |    2 ++
- src/gallium/drivers/nv20/nv20_state_emit.c |    3 +++
- src/gallium/drivers/nv30/nv30_state.c      |    4 +++-
- src/gallium/drivers/nv40/nv40_state.c      |    6 +++++-
- 5 files changed, 15 insertions(+), 3 deletions(-)
+ src/gallium/drivers/nouveau/nouveau_screen.c |   57 +++++++++++++++++++++++--
+ src/gallium/drivers/nouveau/nouveau_screen.h |    2 +
+ 2 files changed, 54 insertions(+), 5 deletions(-)
 
-diff --git a/src/gallium/drivers/nv20/nv20_state.c b/src/gallium/drivers/nv20/nv20_state.c
-index 3a82e63..a8a33b2 100644
---- a/src/gallium/drivers/nv20/nv20_state.c
-+++ b/src/gallium/drivers/nv20/nv20_state.c
-@@ -234,7 +234,6 @@ nv20_rasterizer_state_create(struct pipe_context *pipe,
- 	int i;
- 
- 	/*XXX: ignored:
--	 * 	light_twoside
- 	 * 	offset_cw/ccw -nohw
- 	 * 	scissor
- 	 * 	point_smooth -nohw
-@@ -301,6 +300,8 @@ nv20_rasterizer_state_create(struct pipe_context *pipe,
- 	} else {
- 		rs->point_sprite = 0;
- 	}
-+	
-+	rs->light_twoside = cso->light_twoside;
- 
- 	return (void *)rs;
- }
-diff --git a/src/gallium/drivers/nv20/nv20_state.h b/src/gallium/drivers/nv20/nv20_state.h
-index dde4106..b8b0366 100644
---- a/src/gallium/drivers/nv20/nv20_state.h
-+++ b/src/gallium/drivers/nv20/nv20_state.h
-@@ -39,6 +39,8 @@ struct nv20_rasterizer_state {
- 	uint32_t cull_face_en;
- 
- 	uint32_t point_sprite;
-+	
-+	uint32_t light_twoside;
- 
- 	const struct pipe_rasterizer_state *templ;
- };
-diff --git a/src/gallium/drivers/nv20/nv20_state_emit.c b/src/gallium/drivers/nv20/nv20_state_emit.c
-index 63cba1f..616bcf7 100644
---- a/src/gallium/drivers/nv20/nv20_state_emit.c
-+++ b/src/gallium/drivers/nv20/nv20_state_emit.c
-@@ -58,6 +58,9 @@ static void nv20_state_emit_rast(struct nv20_context* nv20)
- 
- 	BEGIN_RING(kelvin, NV20TCL_CULL_FACE_ENABLE, 1);
- 	OUT_RING  (r->cull_face_en);
-+	
-+	BEGIN_RING(kelvin, NV20TCL_LIGHT_MODEL_TWO_SIDE_ENABLE, 1);
-+	OUT_RING  (r->light_twoside);
+diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c b/src/gallium/drivers/nouveau/nouveau_screen.c
+index 0437af3..a30c9c6 100644
+--- a/src/gallium/drivers/nouveau/nouveau_screen.c
++++ b/src/gallium/drivers/nouveau/nouveau_screen.c
+@@ -47,11 +47,54 @@ nouveau_screen_bo_skel(struct pipe_screen *pscreen, struct nouveau_bo *bo,
+ 	return pb;
  }
  
- static void nv20_state_emit_dsa(struct nv20_context* nv20)
-diff --git a/src/gallium/drivers/nv30/nv30_state.c b/src/gallium/drivers/nv30/nv30_state.c
-index e6321b4..9b40736 100644
---- a/src/gallium/drivers/nv30/nv30_state.c
-+++ b/src/gallium/drivers/nv30/nv30_state.c
-@@ -304,7 +304,6 @@ nv30_rasterizer_state_create(struct pipe_context *pipe,
- 	struct nouveau_grobj *rankine = nv30->screen->rankine;
- 
- 	/*XXX: ignored:
--	 * 	light_twoside
- 	 * 	point_smooth -nohw
- 	 * 	multisample
- 	 */
-@@ -313,6 +312,9 @@ nv30_rasterizer_state_create(struct pipe_context *pipe,
- 	so_data  (so, cso->flatshade ? NV34TCL_SHADE_MODEL_FLAT :
- 				       NV34TCL_SHADE_MODEL_SMOOTH);
- 
-+        so_method(so, rankine, NV34TCL_VERTEX_TWO_SIDE_ENABLE, 1);
-+        so_data  (so, cso->light_twoside);
-+        
- 	so_method(so, rankine, NV34TCL_LINE_WIDTH, 2);
- 	so_data  (so, (unsigned char)(cso->line_width * 8.0) & 0xff);
- 	so_data  (so, cso->line_smooth ? 1 : 0);
-diff --git a/src/gallium/drivers/nv40/nv40_state.c b/src/gallium/drivers/nv40/nv40_state.c
-index ed55d29..0a76ee2 100644
---- a/src/gallium/drivers/nv40/nv40_state.c
-+++ b/src/gallium/drivers/nv40/nv40_state.c
-@@ -314,7 +314,6 @@ nv40_rasterizer_state_create(struct pipe_context *pipe,
- 	struct nouveau_grobj *curie = nv40->screen->curie;
- 
- 	/*XXX: ignored:
--	 * 	light_twoside
- 	 * 	point_smooth -nohw
- 	 * 	multisample
- 	 */
-@@ -323,6 +322,11 @@ nv40_rasterizer_state_create(struct pipe_context *pipe,
- 	so_data  (so, cso->flatshade ? NV40TCL_SHADE_MODEL_FLAT :
- 				       NV40TCL_SHADE_MODEL_SMOOTH);
- 
-+        /* the blob also sets 0x1428 to 0 in the same block.
-+	    Its purpose is unclear and it does not seem to have any discernible effects. */
-+        so_method(so, curie, NV40TCL_VERTEX_TWO_SIDE_ENABLE, 1);
-+        so_data  (so, cso->light_twoside);
++static void
++nouveau_screen_bo_init(struct nouveau_screen* screen)
++{
++	screen->vertex_buffer_flags = 0;
++	screen->index_buffer_flags = 0;
++	if(screen->base.get_param(&screen->base, NOUVEAU_CAP_HW_VTXBUF) || screen->base.get_param(&screen->base, NOUVEAU_CAP_HW_IDXBUF))
++	{
++		int vram_hack_default = 0;
++		int vram_hack;
++		// TODO: add other cards that may need this hack.
++		// It may also depend on the specific card, CPU or AGP/PCIe chipset.
++		if(screen->device->chipset == 0x49)
++			vram_hack_default = 1;
++		vram_hack = debug_get_bool_option("NOUVEAU_VTXIDX_IN_VRAM", vram_hack_default);
 +
- 	so_method(so, curie, NV40TCL_LINE_WIDTH, 2);
- 	so_data  (so, (unsigned char)(cso->line_width * 8.0) & 0xff);
- 	so_data  (so, cso->line_smooth ? 1 : 0);
++		if(!vram_hack)
++		{
++			printf(
++				"Some systems may experience graphics corruption due to randomly misplaced vertices.\n"
++				"If this is happening, export NOUVEAU_VTXIDX_IN_VRAM=1 may reduce or eliminate the problem\n");
++			if(vram_hack == vram_hack_default)
++				printf("If it helps, please describe your hardware configuration and software versions to nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org\n");
++			else
++				printf("If you are not experiencing any corruption in complex 3D applications, please describe your hardware configuration and software versions to nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org\n");
++		}
++		else
++		{
++			printf(
++				"A performance reducing hack is being used to help avoid graphics corruption.\n"
++				"You can try export NOUVEAU_VTXIDX_IN_VRAM=0 to disable it.\n");
++			if(vram_hack == vram_hack_default)
++				printf("If it doesn't make things worse, please describe your hardware configuration and software versions to nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org\n");
++		}
++
++		if (screen->base.get_param(&screen->base, NOUVEAU_CAP_HW_VTXBUF))
++			screen->vertex_buffer_flags |= vram_hack ? NOUVEAU_BO_VRAM : NOUVEAU_BO_GART;
++
++		if (screen->base.get_param(&screen->base, NOUVEAU_CAP_HW_IDXBUF))
++			screen->index_buffer_flags |= vram_hack ? NOUVEAU_BO_VRAM : NOUVEAU_BO_GART;
++	}
++}
++
+ static struct pipe_buffer *
+ nouveau_screen_bo_new(struct pipe_screen *pscreen, unsigned alignment,
+ 		      unsigned usage, unsigned size)
+ {
+-	struct nouveau_device *dev = nouveau_screen(pscreen)->device;
++	struct nouveau_screen* screen = nouveau_screen(pscreen);
++	struct nouveau_device *dev = screen->device;
+ 	struct nouveau_bo *bo = NULL;
+ 	uint32_t flags = NOUVEAU_BO_MAP;
+ 	int ret;
+@@ -60,12 +103,14 @@ nouveau_screen_bo_new(struct pipe_screen *pscreen, unsigned alignment,
+ 		flags |= NOUVEAU_BO_GART;
+ 	else
+ 	if (usage & PIPE_BUFFER_USAGE_VERTEX) {
+-		if (pscreen->get_param(pscreen, NOUVEAU_CAP_HW_VTXBUF))
+-			flags |= NOUVEAU_BO_GART;
++		if(screen->vertex_buffer_flags < 0)
++			nouveau_screen_bo_init(screen);
++		flags |= screen->vertex_buffer_flags;
+ 	} else
+ 	if (usage & PIPE_BUFFER_USAGE_INDEX) {
+-		if (pscreen->get_param(pscreen, NOUVEAU_CAP_HW_IDXBUF))
+-			flags |= NOUVEAU_BO_GART;
++		if(screen->index_buffer_flags < 0)
++			nouveau_screen_bo_init(screen);
++		flags |= screen->index_buffer_flags;
+ 	}
+ 
+ 	if (usage & PIPE_BUFFER_USAGE_PIXEL) {
+@@ -233,6 +278,8 @@ nouveau_screen_init(struct nouveau_screen *screen, struct nouveau_device *dev)
+ 	pscreen->fence_signalled = nouveau_screen_fence_signalled;
+ 	pscreen->fence_finish = nouveau_screen_fence_finish;
+ 
++	screen->vertex_buffer_flags = -1;
++	screen->index_buffer_flags = -1;
+ 	return 0;
+ }
+ 
+diff --git a/src/gallium/drivers/nouveau/nouveau_screen.h b/src/gallium/drivers/nouveau/nouveau_screen.h
+index ebfc67a..ed32b35 100644
+--- a/src/gallium/drivers/nouveau/nouveau_screen.h
++++ b/src/gallium/drivers/nouveau/nouveau_screen.h
+@@ -5,6 +5,8 @@ struct nouveau_screen {
+ 	struct pipe_screen base;
+ 	struct nouveau_device *device;
+ 	struct nouveau_channel *channel;
++	int vertex_buffer_flags;
++	int index_buffer_flags;
+ };
+ 
+ static inline struct nouveau_screen *
 -- 
 1.6.3.3
