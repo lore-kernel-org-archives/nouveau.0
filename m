@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25824] KMS, Dualhead: Strange bigger console
-Date: Wed, 30 Dec 2009 00:09:11 -0800 (PST)
-Message-ID: <20091230080911.CAE431300C8@annarchy.freedesktop.org>
+Date: Wed, 30 Dec 2009 02:17:07 -0800 (PST)
+Message-ID: <20091230101707.155EF1300CC@annarchy.freedesktop.org>
 References: <bug-25824-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25824
 
 
 
---- Comment #2 from Achim Schaefer <achim_schaefer-Mmb7MZpHnFY@public.gmane.org>  2009-12-30 00:09:10 PST ---
-I know handling of this situation is not very easy. 
-But the current situation is 
-Would it be possible to use in both screens the lower resolution, so in my case
-in both 1024x768? (In general the highest res all active screens support)
-At least this would avoid some trouble.
-Switching to X would than cause a mode change on the bigger screen, but I think
-that is less problematic compared to the usage of a small part of a bigger
-screen.
+--- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2009-12-30 02:17:05 PST ---
+Achim, this is more of a user preference to choose one over the other:
+1. use the best mode on each output
+2. use the largest common mode on all outputs
+
+Case 1 is what X does, and one goal of KMS is flickerless boot, so it fits and
+is the default policy in general.
+
+Case 2 you should be able to achieve with the "video" kernel command line
+parameter, forcing the small mode on the big monitor. I hope it is documented
+in the kernel Documentation, since I do not recall the correct syntax.
 
 
 -- 
