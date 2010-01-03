@@ -1,13 +1,15 @@
-From: Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: missing text and icons with NV25
-Date: Sun, 3 Jan 2010 16:34:57 +0100
-Message-ID: <91752841001030734l5ae68781qf4ca5281bc38d3a1@mail.gmail.com>
-References: <1262204506.8519.0@ffortso4> <1262275256.24950.0@ffortso4>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v2 1/2] drm/nouveau: create function for "dealing"
+ with gpu lockup
+Date: Sun, 3 Jan 2010 18:38:39 +0100
+Message-ID: <20100103173839.GA2863@joi.lan>
+References: <20091227215009.GA14612@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1262275256.24950.0@ffortso4>
+Content-Disposition: inline
+In-Reply-To: <20091227215009.GA14612-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,73 +19,183 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Jack <ostroffjh-rphTv4pjVZMJGwgDXS7ZQA@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Dec 31, 2009 at 5:00 PM, Jack <ostroffjh-rphTv4pjVZMJGwgDXS7ZQA@public.gmane.org> wrote:
-> On 2009.12.30 15:21, Jack wrote:
->>
->> On 2009.12.24 04:12, Xavier wrote:
->>>
->>> On Thu, Dec 24, 2009 at 12:29 AM, Jack <ostroffjh-rphTv4pjVZMJGwgDXS7ZQA@public.gmane.org> wrote:
->
-> .....
->>
->> It looks like some updates just hit arch, so I now have xf86-video-nouve=
-au
->> 0.0.10_git20091221-1 and nouveau-drm 0.0.15_20091220-1 with kernel26
->> 2.6.32.2-2 and xorg-server 1.7.3.902-1. =A0Missing icons and fonts, and =
-some
->> apparent screen corruption as I'm exiting X.
->>
->> I still have to enable getting newer packages from testing, but these
->> still give the same problem. =A0I suppose I could also set up to compile=
- from
->> git, if necessary to test bleeding edge or specific patches.
->>
->>>> X starts (with no apparent errors) but it's essentially unusable, since
->>>> it's missing all the icons on all the panels and toolbars, and no text=
- shows
->>>> up at all. =A0For example, I can start an xterm, since I know where th=
-e icon
->>>> is on the panel, and I can type commands, which by the cursor movement=
- seem
->>>> to be working correctly, but there is no visible text in the term. =A0=
-Popups
->>>> (such as right-clicking on the main window) have some clutter/video no=
-ise -
->>>> but no text or icons. =A0I see no obvious error messages in the log or=
- dmesg.
->>
->> >> ....
->
-> I've attached dmesg and Xorg.log. =A0However, I just noticed these two li=
-nes
-> in dmesg:
-> =A0 X:1411 conflicting memory types d8000000-d8010000
-> uncached-minus<->write-combining
-> =A0 reserve_memtype failed 0xd8000000-0xd8010000, track uncached-minus, r=
-eq
-> uncached-minus
-> and I see this error was mentioned in posts here on 11 and 13 December. =
-=A0I
-> don't know if it's relevant, but I point it out to save time, just in cas=
-e.
->
-> xorg.conf is just
-> =A0Section "Device"
-> =A0 =A0 =A0 =A0Identifier =A0"nvidia"
-> =A0 =A0 =A0 =A0Driver =A0 =A0 =A0"nouveau"
-> =A0EndSection
->
-> I'll be glad to file as a new bug, but I want to be sure first that I'm n=
-ot
-> simply missing something obvious.
->
+New version, without file/line markers in nouveau_gpu_lockup (they were useless...).
 
-There are many people who know much more than me here, but I do not
-see anything suspicious in your logs, and I don't think I heard of
-similar issues before.
-It might be better to report a new bug, it probably has less chances
-to be forgotten than just a mail.
+--
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v2 1/2] drm/nouveau: create function for "dealing" with gpu lockup
+
+It's mostly a cleanup, but in nv50_fbcon_accel_init gpu lockup
+message was printed, but HWACCEL_DISBALED flag was not set.
+
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c |   15 +++++++++++----
+ drivers/gpu/drm/nouveau/nouveau_fbcon.h |    1 +
+ drivers/gpu/drm/nouveau/nv04_fbcon.c    |   15 +++++----------
+ drivers/gpu/drm/nouveau/nv50_fbcon.c    |   17 +++++------------
+ 4 files changed, 22 insertions(+), 26 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index 44cbbee..eb48488 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@ -64,8 +64,7 @@ nouveau_fbcon_sync(struct fb_info *info)
+ 		return 0;
+ 
+ 	if (RING_SPACE(chan, 4)) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-		info->flags |= FBINFO_HWACCEL_DISABLED;
++		nouveau_gpu_lockup(info);
+ 		return 0;
+ 	}
+ 
+@@ -86,8 +85,7 @@ nouveau_fbcon_sync(struct fb_info *info)
+ 	}
+ 
+ 	if (ret) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-		info->flags |= FBINFO_HWACCEL_DISABLED;
++		nouveau_gpu_lockup(info);
+ 		return 0;
+ 	}
+ 
+@@ -380,3 +378,12 @@ nouveau_fbcon_remove(struct drm_device *dev, struct drm_framebuffer *fb)
+ 
+ 	return 0;
+ }
++
++void nouveau_gpu_lockup(struct fb_info *info)
++{
++	struct nouveau_fbcon_par *par = info->par;
++	struct drm_device *dev = par->dev;
++
++	NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
++	info->flags |= FBINFO_HWACCEL_DISABLED;
++}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.h b/drivers/gpu/drm/nouveau/nouveau_fbcon.h
+index 8531140..6c095c2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.h
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.h
+@@ -43,5 +43,6 @@ void nouveau_fbcon_zfill(struct drm_device *dev);
+ int nv04_fbcon_accel_init(struct fb_info *info);
+ int nv50_fbcon_accel_init(struct fb_info *info);
+ 
++void nouveau_gpu_lockup(struct fb_info *info);
+ #endif /* __NV50_FBCON_H__ */
+ 
+diff --git a/drivers/gpu/drm/nouveau/nv04_fbcon.c b/drivers/gpu/drm/nouveau/nv04_fbcon.c
+index d2d7f08..feb7219 100644
+--- a/drivers/gpu/drm/nouveau/nv04_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nv04_fbcon.c
+@@ -39,8 +39,7 @@ nv04_fbcon_copyarea(struct fb_info *info, const struct fb_copyarea *region)
+ 		return;
+ 
+ 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 4)) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-		info->flags |= FBINFO_HWACCEL_DISABLED;
++		nouveau_gpu_lockup(info);
+ 	}
+ 
+ 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
+@@ -68,8 +67,7 @@ nv04_fbcon_fillrect(struct fb_info *info, const struct fb_fillrect *rect)
+ 		return;
+ 
+ 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 7)) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-		info->flags |= FBINFO_HWACCEL_DISABLED;
++		nouveau_gpu_lockup(info);
+ 	}
+ 
+ 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
+@@ -109,8 +107,7 @@ nv04_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
+ 	}
+ 
+ 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 8)) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-		info->flags |= FBINFO_HWACCEL_DISABLED;
++		nouveau_gpu_lockup(info);
+ 	}
+ 
+ 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
+@@ -144,8 +141,7 @@ nv04_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
+ 		int iter_len = dsize > 128 ? 128 : dsize;
+ 
+ 		if (RING_SPACE(chan, iter_len + 1)) {
+-			NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-			info->flags |= FBINFO_HWACCEL_DISABLED;
++			nouveau_gpu_lockup(info);
+ 			cfb_imageblit(info, image);
+ 			return;
+ 		}
+@@ -243,8 +239,7 @@ nv04_fbcon_accel_init(struct fb_info *info)
+ 		return ret;
+ 
+ 	if (RING_SPACE(chan, 49)) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-		info->flags |= FBINFO_HWACCEL_DISABLED;
++		nouveau_gpu_lockup(info);
+ 		return 0;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nv50_fbcon.c b/drivers/gpu/drm/nouveau/nv50_fbcon.c
+index c966ef8..7e25d49 100644
+--- a/drivers/gpu/drm/nouveau/nv50_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nv50_fbcon.c
+@@ -17,9 +17,7 @@ nv50_fbcon_fillrect(struct fb_info *info, const struct fb_fillrect *rect)
+ 
+ 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) &&
+ 	     RING_SPACE(chan, rect->rop == ROP_COPY ? 7 : 11)) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-
+-		info->flags |= FBINFO_HWACCEL_DISABLED;
++		nouveau_gpu_lockup(info);
+ 	}
+ 
+ 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
+@@ -57,9 +55,7 @@ nv50_fbcon_copyarea(struct fb_info *info, const struct fb_copyarea *region)
+ 		return;
+ 
+ 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 12)) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-
+-		info->flags |= FBINFO_HWACCEL_DISABLED;
++		nouveau_gpu_lockup(info);
+ 	}
+ 
+ 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
+@@ -102,8 +98,7 @@ nv50_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
+ 	}
+ 
+ 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 11)) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
+-		info->flags |= FBINFO_HWACCEL_DISABLED;
++		nouveau_gpu_lockup(info);
+ 	}
+ 
+ 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
+@@ -136,9 +131,7 @@ nv50_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
+ 		int push = dwords > 2047 ? 2047 : dwords;
+ 
+ 		if (RING_SPACE(chan, push + 1)) {
+-			NV_ERROR(dev,
+-				 "GPU lockup - switching to software fbcon\n");
+-			info->flags |= FBINFO_HWACCEL_DISABLED;
++			nouveau_gpu_lockup(info);
+ 			cfb_imageblit(info, image);
+ 			return;
+ 		}
+@@ -200,7 +193,7 @@ nv50_fbcon_accel_init(struct fb_info *info)
+ 
+ 	ret = RING_SPACE(chan, 59);
+ 	if (ret) {
+-		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
++		nouveau_gpu_lockup(info);
+ 		return ret;
+ 	}
+ 
+-- 
+1.6.6.rc3
