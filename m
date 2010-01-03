@@ -1,16 +1,12 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH/TESTING(all hw)/DISCUSSION] FIFO (minor)
-	create and (major) destroy instabilities on nv50+
-Date: Sun, 3 Jan 2010 03:45:04 +0100
-Message-ID: <6d4bc9fc1001021845t30610015j809b19c024ee6b0b@mail.gmail.com>
-References: <6d4bc9fc1001020736r4b17971ftb5e7c718433df181@mail.gmail.com>
-	<6d4bc9fc1001020739y57ad5e81u19df23fd127350bb@mail.gmail.com>
-	<201001030137.19767.johannesobermayr@gmx.de>
+From: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] nouveau: nv50: fix ->pseudo_palette usage
+Date: Sun, 3 Jan 2010 11:17:42 +0200
+Message-ID: <20100103091742.GA11518@x200>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <201001030137.19767.johannesobermayr-Mmb7MZpHnFY@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,63 +16,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I hope you did add a note for your victims :-)
+Sometimes struct fb_fillrect::color is color, sometimes palette index.
 
-On Sun, Jan 3, 2010 at 1:37 AM, Johannes Obermayr
-<johannesobermayr-Mmb7MZpHnFY@public.gmane.org> wrote:
-> Am Samstag, 2. Januar 2010 16:39:55 schrieb Maarten Maathuis:
->> Please do report your successes, and not only failures.
->
-> Hi,
->
-> I included it in my openSUSE Build Service project. I think some people will update und try it...
->
-> Johannes
->
->>
->> On Sat, Jan 2, 2010 at 4:36 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> > Many people using nv50+ hardware are aware of gpu lockups when a fifo
->> > closes under certain conditions. Based on a mmio-trace and some trail
->> > and error testing i've come up with a patch that improves the
->> > situation on my NV96.
->> >
->> > This patch needs testing on NV50+ hardware and regression testing on
->> > older hardware, since i did change some of the common codepaths. This
->> > is very much a work in progress, and if you have anything to
->> > add/correct, please share it.
->> >
->> > I've also attached a 2 test apps, once is bitscan-fail from mwk, use
->> > it like ./bitscan-fail 0x200 to trigger PGRAPH errors. A modified
->> > version only emits NOPs (method 0x100) and represents the no error
->> > situation.
->> >
->> > For me, i can run the NOP program in loops of 10000 iterations with no
->> > problems (i've done so several times), the bitscan-fail survives 10000
->> > iterations sometimes, but can also fail after a few thousand. In
->> > comparison, a single run of bitscan-fail could cause a gpu lockup for
->> > me in the past.
->> >
->> > Please try the gallium driver, the test apps, suspend to ram. Suspend
->> > to ram isn't 100% reliable yet for me (this was always the case after
->> > strange experiments/hammering/etc), but should not regress. This goes
->> > for older hw as well, whatever worked should still work, but i
->> > wouldn't expect serious improvements there.
->> >
->> > As always, feedback is appreciated, especially since this is a touchy subject.
->> >
->> > Maarten.
->> >
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> http://lists.freedesktop.org/mailman/listinfo/nouveau
->>
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+Steps to reproduce:
+
+	make menuconfig
+
+Blue background will have quite random black color.
+
+Signed-off-by: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+
+ drivers/gpu/drm/nouveau/nv50_fbcon.c |    8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+--- a/drivers/gpu/drm/nouveau/nv50_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nv50_fbcon.c
+@@ -10,6 +10,7 @@ nv50_fbcon_fillrect(struct fb_info *info, const struct fb_fillrect *rect)
+ 	struct drm_device *dev = par->dev;
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+ 	struct nouveau_channel *chan = dev_priv->channel;
++	uint32_t color;
+ 
+ 	if (info->state != FBINFO_STATE_RUNNING)
+ 		return;
+@@ -31,7 +32,12 @@ nv50_fbcon_fillrect(struct fb_info *info, const struct fb_fillrect *rect)
+ 		OUT_RING(chan, 1);
+ 	}
+ 	BEGIN_RING(chan, NvSub2D, 0x0588, 1);
+-	OUT_RING(chan, rect->color);
++	if (info->fix.visual == FB_VISUAL_TRUECOLOR ||
++	    info->fix.visual == FB_VISUAL_DIRECTCOLOR) {
++		color = ((uint32_t *)info->pseudo_palette)[rect->color];
++	} else
++		color = rect->color;
++	OUT_RING(chan, color);
+ 	BEGIN_RING(chan, NvSub2D, 0x0600, 4);
+ 	OUT_RING(chan, rect->dx);
+ 	OUT_RING(chan, rect->dy);
