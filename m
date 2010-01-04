@@ -1,13 +1,11 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH/TESTING(all hw)/DISCUSSION] FIFO (minor)
-	create and (major) destroy instabilities on nv50+
-Date: Mon, 4 Jan 2010 20:29:47 +0100
-Message-ID: <6d4bc9fc1001041129t5ac01715oe64f3e827c01340b@mail.gmail.com>
-References: <6d4bc9fc1001020736r4b17971ftb5e7c718433df181@mail.gmail.com>
+From: Krzysztof Smiechowicz <deadwood-5tc4TXWwyLM@public.gmane.org>
+Subject: NV_PFIFO_INTR_DMA_PUSHER
+Date: Mon, 04 Jan 2010 21:46:51 +0100
+Message-ID: <4B4253BB.2000704@wp.pl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=001636426679933d1e047c5bbebf
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc1001020736r4b17971ftb5e7c718433df181-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,144 +18,75 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---001636426679933d1e047c5bbebf
-Content-Type: text/plain; charset=ISO-8859-1
+Hello,
 
-I've narrowed it down further, the "pgraph->fifo_access" bit is still
-cleanup (register 0x400500 represents pgraph fifo access), the rest
-appears needed for the desired effect. The reordering of pfifo and
-pgraph destroy is needed. As usual, feedback is appreciated.
+Could someone briefly describe (or point me to the documentation) what 
+can be a reason for getting NV_PFIFO_INTR_DMA_PUSHER status 
+(nouveau_fifo_irq_handler).
 
-Maarten.
+This started happening immediately after I set the nouveau_vram_pushbuf 
+flag to TRUE ,it's 100% repetitive and causes fences not to be signaled.
 
-On Sat, Jan 2, 2010 at 4:36 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> Many people using nv50+ hardware are aware of gpu lockups when a fifo
-> closes under certain conditions. Based on a mmio-trace and some trail
-> and error testing i've come up with a patch that improves the
-> situation on my NV96.
->
-> This patch needs testing on NV50+ hardware and regression testing on
-> older hardware, since i did change some of the common codepaths. This
-> is very much a work in progress, and if you have anything to
-> add/correct, please share it.
->
-> I've also attached a 2 test apps, once is bitscan-fail from mwk, use
-> it like ./bitscan-fail 0x200 to trigger PGRAPH errors. A modified
-> version only emits NOPs (method 0x100) and represents the no error
-> situation.
->
-> For me, i can run the NOP program in loops of 10000 iterations with no
-> problems (i've done so several times), the bitscan-fail survives 10000
-> iterations sometimes, but can also fail after a few thousand. In
-> comparison, a single run of bitscan-fail could cause a gpu lockup for
-> me in the past.
->
-> Please try the gallium driver, the test apps, suspend to ram. Suspend
-> to ram isn't 100% reliable yet for me (this was always the case after
-> strange experiments/hammering/etc), but should not regress. This goes
-> for older hw as well, whatever worked should still work, but i
-> wouldn't expect serious improvements there.
->
-> As always, feedback is appreciated, especially since this is a touchy subject.
->
-> Maarten.
->
+Below is the debug log from moment of creation of fifo 1 to some point 
+in time where fences should already be signaled:
 
---001636426679933d1e047c5bbebf
-Content-Type: text/x-patch; charset=US-ASCII; name="test_better_context_handling_v5.patch"
-Content-Disposition: attachment;
-	filename="test_better_context_handling_v5.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_g41n8x3n4
+[drm] nouveau _redefined_nouveau_channel_alloc: initialised FIFO 1
+[drm] nouveau Ch0/0x000000d0: 0x00080184
+[drm] nouveau Ch0/0x000000d4: 0x80000005
+[drm] nouveau Ch0/0x000000d8: 0x80000004
+[drm] nouveau Ch0/0x000000dc: 0x0020030c
+[drm] nouveau Ch0/0x000000e0: 0x00004000
+[drm] nouveau Ch0/0x000000e4: 0x0080b000
+[drm] nouveau Ch0/0x000000e8: 0x00001000
+[drm] nouveau Ch0/0x000000ec: 0x00001000
+[drm] nouveau Ch0/0x000000f0: 0x00001000
+[drm] nouveau Ch0/0x000000f4: 0x00000004
+[drm] nouveau Ch0/0x000000f8: 0x00000101
+[drm] nouveau Ch0/0x000000fc: 0x00000000
+[drm] nouveau Ch0/0x00000100: 0x00040100
+[drm] nouveau Ch0/0x00000104: 0x00000000
+EMIT: Ch0 -> 2
+[drm] nouveau Ch0/0x00000108: 0x00040050
+[drm] nouveau Ch0/0x0000010c: 0x00000002
+[drm] nouveau Ch0/0x00000110: PUSH!
+SIGNALLED: Ch0 -> 2
+[drm] nouveau Ch1/0x00000090: 0x0080b002
+[drm] nouveau Ch1/0x00000094: 0x00000000
+EMIT: Ch1 -> 1
+[drm] nouveau Ch1/0x00000098: 0x00040050
+[drm] nouveau Ch1/0x0000009c: 0x00000001
+[drm] nouveau Ch1/0x000000a0: PUSH!
+[drm] nouveau Ch1/0x000000a0: PUSH!
+[drm] nouveau Ch1/0x000000a0: 0x0080b122
+[drm] nouveau Ch1/0x000000a4: 0x00000000
+EMIT: Ch1 -> 2
+[drm] nouveau Ch1/0x000000a8: 0x00040050
+[drm] nouveau Ch1/0x000000ac: 0x00000002
+[drm] nouveau Ch1/0x000000b0: PUSH!
+[drm] nouveau Ch1/0x000000b0: PUSH!
+[drm] nouveau PFIFO_DMA_PUSHER - Ch 1
+SIGNALLED: Ch1 -> 1
+[drm] nouveau Ch1/0x000000b0: 0x0080b482
+[drm] nouveau Ch1/0x000000b4: 0x00000000
+EMIT: Ch1 -> 3
+[drm] nouveau Ch1/0x000000b8: 0x00040050
+[drm] nouveau Ch1/0x000000bc: 0x00000003
+[drm] nouveau Ch1/0x000000c0: PUSH!
+[drm] nouveau Ch1/0x000000c0: PUSH!
+[drm] nouveau Ch1/0x000000c0: 0x0080b542
+[drm] nouveau Ch1/0x000000c4: 0x00000000
+EMIT: Ch1 -> 4
+[drm] nouveau Ch1/0x000000c8: 0x00040050
+[drm] nouveau Ch1/0x000000cc: 0x00000004
+[drm] nouveau Ch1/0x000000d0: PUSH!
+[drm] nouveau Ch1/0x000000d0: PUSH!
+[drm] nouveau Ch1/0x000000d0: 0x0080b602
+[drm] nouveau Ch1/0x000000d4: 0x00000000
+EMIT: Ch1 -> 5
+[drm] nouveau Ch1/0x000000d8: 0x00040050
+[drm] nouveau Ch1/0x000000dc: 0x00000005
+[drm] nouveau Ch1/0x000000e0: PUSH!
+[drm] nouveau Ch1/0x000000e0: PUSH!
 
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY2hhbm5lbC5jIGIv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMKaW5kZXggZDFjN2Y4Yy4u
-NzRkNzNmYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFu
-bmVsLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMKQEAg
-LTI3NiwxMyArMjc2LDYgQEAgbm91dmVhdV9jaGFubmVsX2ZyZWUoc3RydWN0IG5vdXZlYXVfY2hh
-bm5lbCAqY2hhbikKIAkvKiBFbnN1cmUgdGhlIGNoYW5uZWwgaXMgbm8gbG9uZ2VyIGFjdGl2ZSBv
-biB0aGUgR1BVICovCiAJcGZpZm8tPnJlYXNzaWduKGRldiwgZmFsc2UpOwogCi0JaWYgKHBncmFw
-aC0+Y2hhbm5lbChkZXYpID09IGNoYW4pIHsKLQkJcGdyYXBoLT5maWZvX2FjY2VzcyhkZXYsIGZh
-bHNlKTsKLQkJcGdyYXBoLT51bmxvYWRfY29udGV4dChkZXYpOwotCQlwZ3JhcGgtPmZpZm9fYWNj
-ZXNzKGRldiwgdHJ1ZSk7Ci0JfQotCXBncmFwaC0+ZGVzdHJveV9jb250ZXh0KGNoYW4pOwotCiAJ
-aWYgKHBmaWZvLT5jaGFubmVsX2lkKGRldikgPT0gY2hhbi0+aWQpIHsKIAkJcGZpZm8tPmRpc2Fi
-bGUoZGV2KTsKIAkJcGZpZm8tPnVubG9hZF9jb250ZXh0KGRldik7CkBAIC0yOTAsNiArMjgzLDEz
-IEBAIG5vdXZlYXVfY2hhbm5lbF9mcmVlKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4pCiAJ
-fQogCXBmaWZvLT5kZXN0cm95X2NvbnRleHQoY2hhbik7CiAKKwlpZiAocGdyYXBoLT5jaGFubmVs
-KGRldikgPT0gY2hhbikgeworCQlwZ3JhcGgtPmZpZm9fYWNjZXNzKGRldiwgZmFsc2UpOworCQlw
-Z3JhcGgtPnVubG9hZF9jb250ZXh0KGRldik7CisJCXBncmFwaC0+Zmlmb19hY2Nlc3MoZGV2LCB0
-cnVlKTsKKwl9CisJcGdyYXBoLT5kZXN0cm95X2NvbnRleHQoY2hhbik7CisKIAlwZmlmby0+cmVh
-c3NpZ24oZGV2LCB0cnVlKTsKIAogCS8qIFJlbGVhc2UgdGhlIGNoYW5uZWwncyByZXNvdXJjZXMg
-Ki8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5jCmluZGV4IDU4YzcxNzIuLmJkYjll
-M2IgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuYwpAQCAtMTg1LDYgKzE4NSwx
-MCBAQCBub3V2ZWF1X3BjaV9zdXNwZW5kKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBwbV9tZXNzYWdl
-X3QgcG1fc3RhdGUpCiAJcGZpZm8tPmRpc2FibGUoZGV2KTsKIAlwZmlmby0+dW5sb2FkX2NvbnRl
-eHQoZGV2KTsKIAlwZ3JhcGgtPnVubG9hZF9jb250ZXh0KGRldik7CisJLyogVGhpcyBtYXkgc2Vl
-bSBvZGQsIGJ1dCB3aXRob3V0IGl0IG52NTAgZG9lc24ndCByZXN1bWUgYWdhaW4uCisJICogSXQn
-cyBzcGVjaWZpY2FsbHkgYml0IDAgZnJvbSByZWdpc3RlciAweDAwNDAwNTAwIHRoYXQgbmVlZHMg
-dG8gYmUgc2V0LgorCSAqLworCXBncmFwaC0+Zmlmb19hY2Nlc3MoZGV2LCB0cnVlKTsKIAogCU5W
-X0lORk8oZGV2LCAiU3VzcGVuZGluZyBHUFUgb2JqZWN0cy4uLlxuIik7CiAJcmV0ID0gbm91dmVh
-dV9ncHVvYmpfc3VzcGVuZChkZXYpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnY1MF9maWZvLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2ZpZm8uYwppbmRl
-eCBiNzI4MjI4Li40Mjc5ZjlkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-djUwX2ZpZm8uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2ZpZm8uYwpAQCAt
-ODksMTggKzg5LDMyIEBAIHN0YXRpYyB2b2lkCiBudjUwX2ZpZm9fY2hhbm5lbF9kaXNhYmxlKHN0
-cnVjdCBkcm1fZGV2aWNlICpkZXYsIGludCBjaGFubmVsLCBib29sIG50KQogewogCXN0cnVjdCBk
-cm1fbm91dmVhdV9wcml2YXRlICpkZXZfcHJpdiA9IGRldi0+ZGV2X3ByaXZhdGU7CisJc3RydWN0
-IG5vdXZlYXVfcGdyYXBoX2VuZ2luZSAqcGdyYXBoID0gJmRldl9wcml2LT5lbmdpbmUuZ3JhcGg7
-CiAJdWludDMyX3QgaW5zdDsKIAogCU5WX0RFQlVHKGRldiwgImNoJWQsIG50PSVkXG4iLCBjaGFu
-bmVsLCBudCk7CiAKKwlpZiAoIW50KSB7CisJCW52NTBfZmlmb19pbml0X3RoaW5nbyhkZXYpOwor
-CisJCS8qIFRoaXMgaXMgUEdSQVBILCBidXQgdGhlIGJsb2IgZG9lcyBpdCAiaGVyZSIuCisJCSAq
-IEkndmUgc2VlbiBib3RoIGNhc2VzIHdoZXJlIHRoZSBibG9iIG9ubHkgcmVhZHMgYW5kIHdoZXJl
-CisJCSAqIGl0IGFsc28gd3JpdGVzLiBJIGNhbiBvbmx5IGFzc3VtZSBpdCdzIHJlbGF0ZWQgdG8g
-dGhlIHBncmFwaAorCQkgKiBjaGFubmVsLiBJdCdzIGRvbmUgaW4gcGdyYXBoIHVubG9hZCBjb250
-ZXh0IGlmIGl0IGRvZXNuJ3QKKwkJICogaGFwcGVuIGhlcmUuCisJCSAqLworCQlpZiAocGdyYXBo
-LT5jaGFubmVsKGRldikgPT0gZGV2X3ByaXYtPmZpZm9zW2NoYW5uZWxdKSB7CisJCQlpbnN0ID0g
-bnZfcmQzMihkZXYsIE5WNTBfUEdSQVBIX0NUWENUTF9DVVIpCisJCQkJCSYgTlY1MF9QR1JBUEhf
-Q1RYQ1RMX0NVUl9JTlNUQU5DRTsKKwkJCW52X3dyMzIoZGV2LCBOVjUwX1BHUkFQSF9DVFhDVExf
-Q1VSLCBpbnN0KTsKKwkJfQorCX0KKwogCWlmIChJU19HODApCiAJCWluc3QgPSBOVjUwX1BGSUZP
-X0NUWF9UQUJMRV9JTlNUQU5DRV9NQVNLX0c4MDsKIAllbHNlCiAJCWluc3QgPSBOVjUwX1BGSUZP
-X0NUWF9UQUJMRV9JTlNUQU5DRV9NQVNLX0c4NDsKIAludl93cjMyKGRldiwgTlY1MF9QRklGT19D
-VFhfVEFCTEUoY2hhbm5lbCksIGluc3QpOwotCi0JaWYgKCFudCkKLQkJbnY1MF9maWZvX2luaXRf
-dGhpbmdvKGRldik7CiB9CiAKIHN0YXRpYyB2b2lkCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udjUwX2dyYXBoLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dy
-YXBoLmMKaW5kZXggNDQ0YTQ2Yi4uZGU4ZDVjNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbnY1MF9ncmFwaC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBf
-Z3JhcGguYwpAQCAtMjc1LDIxICsyNzUsMjggQEAgbnY1MF9ncmFwaF9sb2FkX2NvbnRleHQoc3Ry
-dWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbikKIGludAogbnY1MF9ncmFwaF91bmxvYWRfY29udGV4
-dChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogewotCXVpbnQzMl90IGluc3QsIGZpZm8gPSBudl9y
-ZDMyKGRldiwgMHg0MDA1MDApOworCXN0cnVjdCBkcm1fbm91dmVhdV9wcml2YXRlICpkZXZfcHJp
-diA9IGRldi0+ZGV2X3ByaXZhdGU7CisJc3RydWN0IG5vdXZlYXVfcGdyYXBoX2VuZ2luZSAqcGdy
-YXBoID0gJmRldl9wcml2LT5lbmdpbmUuZ3JhcGg7CisJc3RydWN0IG5vdXZlYXVfZmlmb19lbmdp
-bmUgKnBmaWZvID0gJmRldl9wcml2LT5lbmdpbmUuZmlmbzsKKwl1aW50MzJfdCBpbnN0OwogCi0J
-aW5zdCAgPSBudl9yZDMyKGRldiwgTlY1MF9QR1JBUEhfQ1RYQ1RMX0NVUik7Ci0JaWYgKCEoaW5z
-dCAmIE5WNTBfUEdSQVBIX0NUWENUTF9DVVJfTE9BREVEKSkKLQkJcmV0dXJuIDA7Ci0JaW5zdCAm
-PSBOVjUwX1BHUkFQSF9DVFhDVExfQ1VSX0lOU1RBTkNFOworCWluc3QgPSBudl9yZDMyKGRldiwg
-TlY1MF9QR1JBUEhfQ1RYQ1RMX0NVUikKKwkJCQkmIE5WNTBfUEdSQVBIX0NUWENUTF9DVVJfSU5T
-VEFOQ0U7CiAKLQludl93cjMyKGRldiwgMHg0MDA1MDAsIGZpZm8gJiB+MSk7CisJLyogVGhlIGJs
-b2IgY2xlYXJseSBwdXRzIHRoaXMgaW4gdGhlICJtaWRkbGUiIG9mIHBmaWZvIGNvbnRleHQgdW5s
-b2FkLAorCSAqIGJ1dCBkbyBpdCBoZXJlIGluIGNhc2UgaXQgZGlkbid0IGhhcHBlbiBpbiBwZmlm
-byB1bmxvYWQgY29udGV4dC4KKwkgKi8KKwlpZiAocGZpZm8tPmNoYW5uZWxfaWQoZGV2KSAhPSBw
-Z3JhcGgtPmNoYW5uZWwoZGV2KS0+aWQpCisJCW52X3dyMzIoZGV2LCBOVjUwX1BHUkFQSF9DVFhD
-VExfQ1VSLCBpbnN0KTsKKworCS8qIFRoZXNlIDMgcmVnaXN0ZXJzIGFyZSBpbXBvcnRhbnQgZm9y
-IHN1c3BlbmQuCisJICogVGhleSBkb24ndCBzZWVtIHRvIGJlIG5lZWRlZCBmb3Igbm9ybWFsIHJ1
-bm5pbmcuCisJICovCiAJbnZfd3IzMihkZXYsIDB4NDAwNzg0LCBpbnN0KTsKIAludl93cjMyKGRl
-diwgMHg0MDA4MjQsIG52X3JkMzIoZGV2LCAweDQwMDgyNCkgfCAweDIwKTsKIAludl93cjMyKGRl
-diwgMHg0MDAzMDQsIG52X3JkMzIoZGV2LCAweDQwMDMwNCkgfCAweDAxKTsKIAlub3V2ZWF1X3dh
-aXRfZm9yX2lkbGUoZGV2KTsKLQludl93cjMyKGRldiwgMHg0MDA1MDAsIGZpZm8pOwogCi0JbnZf
-d3IzMihkZXYsIE5WNTBfUEdSQVBIX0NUWENUTF9DVVIsIGluc3QpOwogCXJldHVybiAwOwogfQog
-Cg==
---001636426679933d1e047c5bbebf
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---001636426679933d1e047c5bbebf--
+Best regards,
+Krzysztof
