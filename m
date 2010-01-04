@@ -1,16 +1,13 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2 1/2] drm/nouveau: create function for
- "dealing" with gpu lockup
-Date: Mon, 4 Jan 2010 19:25:09 +0100
-Message-ID: <20100104182509.GA2927@joi.lan>
-References: <20091227215009.GA14612@joi.lan> <20100103173839.GA2863@joi.lan>
-	<1262557174.18387.7.camel@nisroch>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH/TESTING(all hw)/DISCUSSION] FIFO (minor)
+	create and (major) destroy instabilities on nv50+
+Date: Mon, 4 Jan 2010 20:29:47 +0100
+Message-ID: <6d4bc9fc1001041129t5ac01715oe64f3e827c01340b@mail.gmail.com>
+References: <6d4bc9fc1001020736r4b17971ftb5e7c718433df181@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=001636426679933d1e047c5bbebf
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1262557174.18387.7.camel@nisroch>
+In-Reply-To: <6d4bc9fc1001020736r4b17971ftb5e7c718433df181-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,190 +17,147 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jan 04, 2010 at 08:19:34AM +1000, Ben Skeggs wrote:
-> On Sun, 2010-01-03 at 18:38 +0100, Marcin Slusarz wrote:
-> > New version, without file/line markers in nouveau_gpu_lockup (they were useless...).
-> Looks mostly good to me, can you rename to nouveau_fbcon_gpu_lockup()
-> instead however, as the function only deals with fbcon and not a more
-> general handling.
+--001636426679933d1e047c5bbebf
+Content-Type: text/plain; charset=ISO-8859-1
 
-done
----
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v3 1/2] drm/nouveau: create function for "dealing" with gpu lockup
+I've narrowed it down further, the "pgraph->fifo_access" bit is still
+cleanup (register 0x400500 represents pgraph fifo access), the rest
+appears needed for the desired effect. The reordering of pfifo and
+pgraph destroy is needed. As usual, feedback is appreciated.
 
-It's mostly a cleanup, but in nv50_fbcon_accel_init gpu lockup
-message was printed, but HWACCEL_DISBALED flag was not set.
+Maarten.
 
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_fbcon.c |   15 +++++++++++----
- drivers/gpu/drm/nouveau/nouveau_fbcon.h |    1 +
- drivers/gpu/drm/nouveau/nv04_fbcon.c    |   15 +++++----------
- drivers/gpu/drm/nouveau/nv50_fbcon.c    |   17 +++++------------
- 4 files changed, 22 insertions(+), 26 deletions(-)
+On Sat, Jan 2, 2010 at 4:36 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> Many people using nv50+ hardware are aware of gpu lockups when a fifo
+> closes under certain conditions. Based on a mmio-trace and some trail
+> and error testing i've come up with a patch that improves the
+> situation on my NV96.
+>
+> This patch needs testing on NV50+ hardware and regression testing on
+> older hardware, since i did change some of the common codepaths. This
+> is very much a work in progress, and if you have anything to
+> add/correct, please share it.
+>
+> I've also attached a 2 test apps, once is bitscan-fail from mwk, use
+> it like ./bitscan-fail 0x200 to trigger PGRAPH errors. A modified
+> version only emits NOPs (method 0x100) and represents the no error
+> situation.
+>
+> For me, i can run the NOP program in loops of 10000 iterations with no
+> problems (i've done so several times), the bitscan-fail survives 10000
+> iterations sometimes, but can also fail after a few thousand. In
+> comparison, a single run of bitscan-fail could cause a gpu lockup for
+> me in the past.
+>
+> Please try the gallium driver, the test apps, suspend to ram. Suspend
+> to ram isn't 100% reliable yet for me (this was always the case after
+> strange experiments/hammering/etc), but should not regress. This goes
+> for older hw as well, whatever worked should still work, but i
+> wouldn't expect serious improvements there.
+>
+> As always, feedback is appreciated, especially since this is a touchy subject.
+>
+> Maarten.
+>
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-index 44cbbee..eb48488 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-@@ -64,8 +64,7 @@ nouveau_fbcon_sync(struct fb_info *info)
- 		return 0;
- 
- 	if (RING_SPACE(chan, 4)) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--		info->flags |= FBINFO_HWACCEL_DISABLED;
-+		nouveau_fbcon_gpu_lockup(info);
- 		return 0;
- 	}
- 
-@@ -86,8 +85,7 @@ nouveau_fbcon_sync(struct fb_info *info)
- 	}
- 
- 	if (ret) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--		info->flags |= FBINFO_HWACCEL_DISABLED;
-+		nouveau_fbcon_gpu_lockup(info);
- 		return 0;
- 	}
- 
-@@ -380,3 +378,12 @@ nouveau_fbcon_remove(struct drm_device *dev, struct drm_framebuffer *fb)
- 
- 	return 0;
- }
-+
-+void nouveau_fbcon_gpu_lockup(struct fb_info *info)
-+{
-+	struct nouveau_fbcon_par *par = info->par;
-+	struct drm_device *dev = par->dev;
-+
-+	NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
-+	info->flags |= FBINFO_HWACCEL_DISABLED;
-+}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.h b/drivers/gpu/drm/nouveau/nouveau_fbcon.h
-index 8531140..6c095c2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.h
-@@ -43,5 +43,6 @@ void nouveau_fbcon_zfill(struct drm_device *dev);
- int nv04_fbcon_accel_init(struct fb_info *info);
- int nv50_fbcon_accel_init(struct fb_info *info);
- 
-+void nouveau_fbcon_gpu_lockup(struct fb_info *info);
- #endif /* __NV50_FBCON_H__ */
- 
-diff --git a/drivers/gpu/drm/nouveau/nv04_fbcon.c b/drivers/gpu/drm/nouveau/nv04_fbcon.c
-index d2d7f08..feb7219 100644
---- a/drivers/gpu/drm/nouveau/nv04_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nv04_fbcon.c
-@@ -39,8 +39,7 @@ nv04_fbcon_copyarea(struct fb_info *info, const struct fb_copyarea *region)
- 		return;
- 
- 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 4)) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--		info->flags |= FBINFO_HWACCEL_DISABLED;
-+		nouveau_fbcon_gpu_lockup(info);
- 	}
- 
- 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
-@@ -68,8 +67,7 @@ nv04_fbcon_fillrect(struct fb_info *info, const struct fb_fillrect *rect)
- 		return;
- 
- 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 7)) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--		info->flags |= FBINFO_HWACCEL_DISABLED;
-+		nouveau_fbcon_gpu_lockup(info);
- 	}
- 
- 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
-@@ -109,8 +107,7 @@ nv04_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
- 	}
- 
- 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 8)) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--		info->flags |= FBINFO_HWACCEL_DISABLED;
-+		nouveau_fbcon_gpu_lockup(info);
- 	}
- 
- 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
-@@ -144,8 +141,7 @@ nv04_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
- 		int iter_len = dsize > 128 ? 128 : dsize;
- 
- 		if (RING_SPACE(chan, iter_len + 1)) {
--			NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--			info->flags |= FBINFO_HWACCEL_DISABLED;
-+			nouveau_fbcon_gpu_lockup(info);
- 			cfb_imageblit(info, image);
- 			return;
- 		}
-@@ -243,8 +239,7 @@ nv04_fbcon_accel_init(struct fb_info *info)
- 		return ret;
- 
- 	if (RING_SPACE(chan, 49)) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--		info->flags |= FBINFO_HWACCEL_DISABLED;
-+		nouveau_fbcon_gpu_lockup(info);
- 		return 0;
- 	}
- 
-diff --git a/drivers/gpu/drm/nouveau/nv50_fbcon.c b/drivers/gpu/drm/nouveau/nv50_fbcon.c
-index c966ef8..7e25d49 100644
---- a/drivers/gpu/drm/nouveau/nv50_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nv50_fbcon.c
-@@ -17,9 +17,7 @@ nv50_fbcon_fillrect(struct fb_info *info, const struct fb_fillrect *rect)
- 
- 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) &&
- 	     RING_SPACE(chan, rect->rop == ROP_COPY ? 7 : 11)) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--
--		info->flags |= FBINFO_HWACCEL_DISABLED;
-+		nouveau_fbcon_gpu_lockup(info);
- 	}
- 
- 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
-@@ -57,9 +55,7 @@ nv50_fbcon_copyarea(struct fb_info *info, const struct fb_copyarea *region)
- 		return;
- 
- 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 12)) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--
--		info->flags |= FBINFO_HWACCEL_DISABLED;
-+		nouveau_fbcon_gpu_lockup(info);
- 	}
- 
- 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
-@@ -102,8 +98,7 @@ nv50_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
- 	}
- 
- 	if (!(info->flags & FBINFO_HWACCEL_DISABLED) && RING_SPACE(chan, 11)) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
--		info->flags |= FBINFO_HWACCEL_DISABLED;
-+		nouveau_fbcon_gpu_lockup(info);
- 	}
- 
- 	if (info->flags & FBINFO_HWACCEL_DISABLED) {
-@@ -136,9 +131,7 @@ nv50_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
- 		int push = dwords > 2047 ? 2047 : dwords;
- 
- 		if (RING_SPACE(chan, push + 1)) {
--			NV_ERROR(dev,
--				 "GPU lockup - switching to software fbcon\n");
--			info->flags |= FBINFO_HWACCEL_DISABLED;
-+			nouveau_fbcon_gpu_lockup(info);
- 			cfb_imageblit(info, image);
- 			return;
- 		}
-@@ -200,7 +193,7 @@ nv50_fbcon_accel_init(struct fb_info *info)
- 
- 	ret = RING_SPACE(chan, 59);
- 	if (ret) {
--		NV_ERROR(dev, "GPU lockup - switching to software fbcon\n");
-+		nouveau_fbcon_gpu_lockup(info);
- 		return ret;
- 	}
- 
--- 
-1.6.6.rc3
+--001636426679933d1e047c5bbebf
+Content-Type: text/x-patch; charset=US-ASCII; name="test_better_context_handling_v5.patch"
+Content-Disposition: attachment;
+	filename="test_better_context_handling_v5.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_g41n8x3n4
+
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY2hhbm5lbC5jIGIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMKaW5kZXggZDFjN2Y4Yy4u
+NzRkNzNmYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFu
+bmVsLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMKQEAg
+LTI3NiwxMyArMjc2LDYgQEAgbm91dmVhdV9jaGFubmVsX2ZyZWUoc3RydWN0IG5vdXZlYXVfY2hh
+bm5lbCAqY2hhbikKIAkvKiBFbnN1cmUgdGhlIGNoYW5uZWwgaXMgbm8gbG9uZ2VyIGFjdGl2ZSBv
+biB0aGUgR1BVICovCiAJcGZpZm8tPnJlYXNzaWduKGRldiwgZmFsc2UpOwogCi0JaWYgKHBncmFw
+aC0+Y2hhbm5lbChkZXYpID09IGNoYW4pIHsKLQkJcGdyYXBoLT5maWZvX2FjY2VzcyhkZXYsIGZh
+bHNlKTsKLQkJcGdyYXBoLT51bmxvYWRfY29udGV4dChkZXYpOwotCQlwZ3JhcGgtPmZpZm9fYWNj
+ZXNzKGRldiwgdHJ1ZSk7Ci0JfQotCXBncmFwaC0+ZGVzdHJveV9jb250ZXh0KGNoYW4pOwotCiAJ
+aWYgKHBmaWZvLT5jaGFubmVsX2lkKGRldikgPT0gY2hhbi0+aWQpIHsKIAkJcGZpZm8tPmRpc2Fi
+bGUoZGV2KTsKIAkJcGZpZm8tPnVubG9hZF9jb250ZXh0KGRldik7CkBAIC0yOTAsNiArMjgzLDEz
+IEBAIG5vdXZlYXVfY2hhbm5lbF9mcmVlKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4pCiAJ
+fQogCXBmaWZvLT5kZXN0cm95X2NvbnRleHQoY2hhbik7CiAKKwlpZiAocGdyYXBoLT5jaGFubmVs
+KGRldikgPT0gY2hhbikgeworCQlwZ3JhcGgtPmZpZm9fYWNjZXNzKGRldiwgZmFsc2UpOworCQlw
+Z3JhcGgtPnVubG9hZF9jb250ZXh0KGRldik7CisJCXBncmFwaC0+Zmlmb19hY2Nlc3MoZGV2LCB0
+cnVlKTsKKwl9CisJcGdyYXBoLT5kZXN0cm95X2NvbnRleHQoY2hhbik7CisKIAlwZmlmby0+cmVh
+c3NpZ24oZGV2LCB0cnVlKTsKIAogCS8qIFJlbGVhc2UgdGhlIGNoYW5uZWwncyByZXNvdXJjZXMg
+Ki8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMgYi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5jCmluZGV4IDU4YzcxNzIuLmJkYjll
+M2IgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMKKysr
+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuYwpAQCAtMTg1LDYgKzE4NSwx
+MCBAQCBub3V2ZWF1X3BjaV9zdXNwZW5kKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBwbV9tZXNzYWdl
+X3QgcG1fc3RhdGUpCiAJcGZpZm8tPmRpc2FibGUoZGV2KTsKIAlwZmlmby0+dW5sb2FkX2NvbnRl
+eHQoZGV2KTsKIAlwZ3JhcGgtPnVubG9hZF9jb250ZXh0KGRldik7CisJLyogVGhpcyBtYXkgc2Vl
+bSBvZGQsIGJ1dCB3aXRob3V0IGl0IG52NTAgZG9lc24ndCByZXN1bWUgYWdhaW4uCisJICogSXQn
+cyBzcGVjaWZpY2FsbHkgYml0IDAgZnJvbSByZWdpc3RlciAweDAwNDAwNTAwIHRoYXQgbmVlZHMg
+dG8gYmUgc2V0LgorCSAqLworCXBncmFwaC0+Zmlmb19hY2Nlc3MoZGV2LCB0cnVlKTsKIAogCU5W
+X0lORk8oZGV2LCAiU3VzcGVuZGluZyBHUFUgb2JqZWN0cy4uLlxuIik7CiAJcmV0ID0gbm91dmVh
+dV9ncHVvYmpfc3VzcGVuZChkZXYpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbnY1MF9maWZvLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2ZpZm8uYwppbmRl
+eCBiNzI4MjI4Li40Mjc5ZjlkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+djUwX2ZpZm8uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2ZpZm8uYwpAQCAt
+ODksMTggKzg5LDMyIEBAIHN0YXRpYyB2b2lkCiBudjUwX2ZpZm9fY2hhbm5lbF9kaXNhYmxlKHN0
+cnVjdCBkcm1fZGV2aWNlICpkZXYsIGludCBjaGFubmVsLCBib29sIG50KQogewogCXN0cnVjdCBk
+cm1fbm91dmVhdV9wcml2YXRlICpkZXZfcHJpdiA9IGRldi0+ZGV2X3ByaXZhdGU7CisJc3RydWN0
+IG5vdXZlYXVfcGdyYXBoX2VuZ2luZSAqcGdyYXBoID0gJmRldl9wcml2LT5lbmdpbmUuZ3JhcGg7
+CiAJdWludDMyX3QgaW5zdDsKIAogCU5WX0RFQlVHKGRldiwgImNoJWQsIG50PSVkXG4iLCBjaGFu
+bmVsLCBudCk7CiAKKwlpZiAoIW50KSB7CisJCW52NTBfZmlmb19pbml0X3RoaW5nbyhkZXYpOwor
+CisJCS8qIFRoaXMgaXMgUEdSQVBILCBidXQgdGhlIGJsb2IgZG9lcyBpdCAiaGVyZSIuCisJCSAq
+IEkndmUgc2VlbiBib3RoIGNhc2VzIHdoZXJlIHRoZSBibG9iIG9ubHkgcmVhZHMgYW5kIHdoZXJl
+CisJCSAqIGl0IGFsc28gd3JpdGVzLiBJIGNhbiBvbmx5IGFzc3VtZSBpdCdzIHJlbGF0ZWQgdG8g
+dGhlIHBncmFwaAorCQkgKiBjaGFubmVsLiBJdCdzIGRvbmUgaW4gcGdyYXBoIHVubG9hZCBjb250
+ZXh0IGlmIGl0IGRvZXNuJ3QKKwkJICogaGFwcGVuIGhlcmUuCisJCSAqLworCQlpZiAocGdyYXBo
+LT5jaGFubmVsKGRldikgPT0gZGV2X3ByaXYtPmZpZm9zW2NoYW5uZWxdKSB7CisJCQlpbnN0ID0g
+bnZfcmQzMihkZXYsIE5WNTBfUEdSQVBIX0NUWENUTF9DVVIpCisJCQkJCSYgTlY1MF9QR1JBUEhf
+Q1RYQ1RMX0NVUl9JTlNUQU5DRTsKKwkJCW52X3dyMzIoZGV2LCBOVjUwX1BHUkFQSF9DVFhDVExf
+Q1VSLCBpbnN0KTsKKwkJfQorCX0KKwogCWlmIChJU19HODApCiAJCWluc3QgPSBOVjUwX1BGSUZP
+X0NUWF9UQUJMRV9JTlNUQU5DRV9NQVNLX0c4MDsKIAllbHNlCiAJCWluc3QgPSBOVjUwX1BGSUZP
+X0NUWF9UQUJMRV9JTlNUQU5DRV9NQVNLX0c4NDsKIAludl93cjMyKGRldiwgTlY1MF9QRklGT19D
+VFhfVEFCTEUoY2hhbm5lbCksIGluc3QpOwotCi0JaWYgKCFudCkKLQkJbnY1MF9maWZvX2luaXRf
+dGhpbmdvKGRldik7CiB9CiAKIHN0YXRpYyB2b2lkCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udjUwX2dyYXBoLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dy
+YXBoLmMKaW5kZXggNDQ0YTQ2Yi4uZGU4ZDVjNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnY1MF9ncmFwaC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBf
+Z3JhcGguYwpAQCAtMjc1LDIxICsyNzUsMjggQEAgbnY1MF9ncmFwaF9sb2FkX2NvbnRleHQoc3Ry
+dWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbikKIGludAogbnY1MF9ncmFwaF91bmxvYWRfY29udGV4
+dChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogewotCXVpbnQzMl90IGluc3QsIGZpZm8gPSBudl9y
+ZDMyKGRldiwgMHg0MDA1MDApOworCXN0cnVjdCBkcm1fbm91dmVhdV9wcml2YXRlICpkZXZfcHJp
+diA9IGRldi0+ZGV2X3ByaXZhdGU7CisJc3RydWN0IG5vdXZlYXVfcGdyYXBoX2VuZ2luZSAqcGdy
+YXBoID0gJmRldl9wcml2LT5lbmdpbmUuZ3JhcGg7CisJc3RydWN0IG5vdXZlYXVfZmlmb19lbmdp
+bmUgKnBmaWZvID0gJmRldl9wcml2LT5lbmdpbmUuZmlmbzsKKwl1aW50MzJfdCBpbnN0OwogCi0J
+aW5zdCAgPSBudl9yZDMyKGRldiwgTlY1MF9QR1JBUEhfQ1RYQ1RMX0NVUik7Ci0JaWYgKCEoaW5z
+dCAmIE5WNTBfUEdSQVBIX0NUWENUTF9DVVJfTE9BREVEKSkKLQkJcmV0dXJuIDA7Ci0JaW5zdCAm
+PSBOVjUwX1BHUkFQSF9DVFhDVExfQ1VSX0lOU1RBTkNFOworCWluc3QgPSBudl9yZDMyKGRldiwg
+TlY1MF9QR1JBUEhfQ1RYQ1RMX0NVUikKKwkJCQkmIE5WNTBfUEdSQVBIX0NUWENUTF9DVVJfSU5T
+VEFOQ0U7CiAKLQludl93cjMyKGRldiwgMHg0MDA1MDAsIGZpZm8gJiB+MSk7CisJLyogVGhlIGJs
+b2IgY2xlYXJseSBwdXRzIHRoaXMgaW4gdGhlICJtaWRkbGUiIG9mIHBmaWZvIGNvbnRleHQgdW5s
+b2FkLAorCSAqIGJ1dCBkbyBpdCBoZXJlIGluIGNhc2UgaXQgZGlkbid0IGhhcHBlbiBpbiBwZmlm
+byB1bmxvYWQgY29udGV4dC4KKwkgKi8KKwlpZiAocGZpZm8tPmNoYW5uZWxfaWQoZGV2KSAhPSBw
+Z3JhcGgtPmNoYW5uZWwoZGV2KS0+aWQpCisJCW52X3dyMzIoZGV2LCBOVjUwX1BHUkFQSF9DVFhD
+VExfQ1VSLCBpbnN0KTsKKworCS8qIFRoZXNlIDMgcmVnaXN0ZXJzIGFyZSBpbXBvcnRhbnQgZm9y
+IHN1c3BlbmQuCisJICogVGhleSBkb24ndCBzZWVtIHRvIGJlIG5lZWRlZCBmb3Igbm9ybWFsIHJ1
+bm5pbmcuCisJICovCiAJbnZfd3IzMihkZXYsIDB4NDAwNzg0LCBpbnN0KTsKIAludl93cjMyKGRl
+diwgMHg0MDA4MjQsIG52X3JkMzIoZGV2LCAweDQwMDgyNCkgfCAweDIwKTsKIAludl93cjMyKGRl
+diwgMHg0MDAzMDQsIG52X3JkMzIoZGV2LCAweDQwMDMwNCkgfCAweDAxKTsKIAlub3V2ZWF1X3dh
+aXRfZm9yX2lkbGUoZGV2KTsKLQludl93cjMyKGRldiwgMHg0MDA1MDAsIGZpZm8pOwogCi0JbnZf
+d3IzMihkZXYsIE5WNTBfUEdSQVBIX0NUWENUTF9DVVIsIGluc3QpOwogCXJldHVybiAwOwogfQog
+Cg==
+--001636426679933d1e047c5bbebf
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--001636426679933d1e047c5bbebf--
