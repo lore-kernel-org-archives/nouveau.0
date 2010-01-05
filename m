@@ -1,8 +1,8 @@
 From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH/TESTING(all hw)/DISCUSSION] FIFO (minor)
 	create and (major) destroy instabilities on nv50+
-Date: Tue, 5 Jan 2010 22:21:20 +0100
-Message-ID: <6d4bc9fc1001051321g7662005draa22f6fd283cc8ad@mail.gmail.com>
+Date: Tue, 5 Jan 2010 23:55:48 +0100
+Message-ID: <6d4bc9fc1001051455y301526cwaa935e8dd1956231@mail.gmail.com>
 References: <6d4bc9fc1001020736r4b17971ftb5e7c718433df181@mail.gmail.com>
 	<6d4bc9fc1001041129t5ac01715oe64f3e827c01340b@mail.gmail.com>
 	<1262644766.2457.4.camel@nisroch>
@@ -131,9 +131,6 @@ uchy subject.
 > I've isolated a small part of a mmiotrace, which is one of the few
 > cases where bit28 of 0x40032c is unset. The end is most interesting,
 > the beginning is just to be sure everything is there. Maybe it helps.
-
-I meant to say bit31.
-
 >
 > W 4 543.049438 3 0xc6100c80 0x50001 0x0 0
 > R 4 543.049496 3 0xc6100c80 0x50000 0x0 0
@@ -218,3 +215,28 @@ I meant to say bit31.
 > W 4 543.054823 3 0xc6070000 0x1 0x0 0
 > R 4 543.054921 3 0xc6070000 0x0 0x0 0
 >
+
+This chunk comes after it, very similar to the one before it. But i
+forgot to add it.
+
+W 4 543.055001 3 0xc6100c80 0x50001 0x0 0
+R 4 543.055059 3 0xc6100c80 0x50000 0x0 0
+R 4 543.055111 3 0xc6400500 0x10010001 0x0 0
+R 4 543.055159 3 0xc6400500 0x10010001 0x0 0
+W 4 543.055207 3 0xc6400500 0x10010000 0x0 0
+R 4 543.055256 3 0xc6400700 0x0 0x0 0
+R 4 543.055304 3 0xc6400380 0x0 0x0 0
+R 4 543.055352 3 0xc6400384 0x0 0x0 0
+R 4 543.055400 3 0xc6400388 0x0 0x0 0
+W 4 543.055454 3 0xc6100c80 0x1 0x0 0
+R 4 543.055511 3 0xc6100c80 0x0 0x0 0
+W 4 543.055562 3 0xc6400500 0x10010001 0x0 0
+W 4 543.055657 3 0xc600260c 0x1ff680 0x0 0
+W 4 543.055745 3 0xc6000140 0x1 0x0 0
+W 4 543.055954 3 0xc6000140 0x0 0x0 0
+W 4 543.055996 10 0xc43cdd48 0x0 0x0 0
+W 4 543.056019 10 0xc43cdd4c 0x0 0x0 0
+W 4 543.056041 10 0xc43cdd50 0x0 0x0 0
+W 4 543.056064 10 0xc43cdd54 0x0 0x0 0
+W 4 543.056167 3 0xc6070000 0x1 0x0 0
+R 4 543.056246 3 0xc6070000 0x0 0x0 0
