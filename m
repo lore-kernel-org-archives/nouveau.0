@@ -1,13 +1,15 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: Removal of Non-KMS support
-Date: Thu, 7 Jan 2010 00:58:27 +0200
-Message-ID: <20100107005827.466c968e@daedalus.pq.iki.fi>
+Date: Thu, 07 Jan 2010 09:21:59 +1000
+Message-ID: <1262820119.13444.3.camel@nisroch>
 References: <1262755950.2346.5.camel@araqiel>
+	<20100107005827.466c968e@daedalus.pq.iki.fi>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1262755950.2346.5.camel@araqiel>
+In-Reply-To: <20100107005827.466c968e-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,33 +19,37 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 06 Jan 2010 15:32:30 +1000
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-
-> I did a very quick pass at removing all the non-KMS support from
-> the DDX.  It's tested on G80 but nowhere else currently, I
-> thought some discussion would be a good idea rather than just
-> ripping it out :)
+On Thu, 2010-01-07 at 00:58 +0200, Pekka Paalanen wrote:
+> On Wed, 06 Jan 2010 15:32:30 +1000
+> Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 > 
-> The non-KMS paths are messy, and lets face it, rotting badly.
-> IMO the KMS code is stable enough now that we can continue
-> without the UMS crutch, and indeed, the KMS code supports a lot
-> more chipsets (particularly on GF8 and up) than the UMS code ever
-> will.
+> > I did a very quick pass at removing all the non-KMS support from
+> > the DDX.  It's tested on G80 but nowhere else currently, I
+> > thought some discussion would be a good idea rather than just
+> > ripping it out :)
+> > 
+> > The non-KMS paths are messy, and lets face it, rotting badly.
+> > IMO the KMS code is stable enough now that we can continue
+> > without the UMS crutch, and indeed, the KMS code supports a lot
+> > more chipsets (particularly on GF8 and up) than the UMS code ever
+> > will.
+> 
+> Considering that any BSD will not have KMS for quite some time
+> (do they?), this sounds very cruel. Is it really such a big
+> pain to keep the code around?
+It's inconvenient in a lot of ways to keep around, especially if it
+means you have to try and keep it working across changes.  If they want
+to ship it, they can branch off before it's removed and pull fixes
+across if they need it.  As it is the current DDX won't work for them
+anyway, so I guess they've already done this...
 
-Considering that any BSD will not have KMS for quite some time
-(do they?), this sounds very cruel. Is it really such a big
-pain to keep the code around?
-
-OTOH, BSDs are stuck with pre-TTM Nouveau until they port GEM
-and TTM to BSDs. How much more will it cost to BSDs to add KMS
-to the list of mandatory kernel features... rnoland and others,
-any comments?
-
--- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+> 
+> OTOH, BSDs are stuck with pre-TTM Nouveau until they port GEM
+> and TTM to BSDs. How much more will it cost to BSDs to add KMS
+> to the list of mandatory kernel features... rnoland and others,
+> any comments?
+> 
