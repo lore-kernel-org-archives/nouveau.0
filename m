@@ -1,10 +1,9 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
 Subject: Re: Removal of Non-KMS support
-Date: Thu, 07 Jan 2010 09:21:59 +1000
-Message-ID: <1262820119.13444.3.camel@nisroch>
+Date: Wed, 06 Jan 2010 19:59:47 -0600
+Message-ID: <1262829587.2486.42.camel@balrog.2hip.net>
 References: <1262755950.2346.5.camel@araqiel>
 	<20100107005827.466c968e@daedalus.pq.iki.fi>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -41,15 +40,33 @@ On Thu, 2010-01-07 at 00:58 +0200, Pekka Paalanen wrote:
 > Considering that any BSD will not have KMS for quite some time
 > (do they?), this sounds very cruel. Is it really such a big
 > pain to keep the code around?
-It's inconvenient in a lot of ways to keep around, especially if it
-means you have to try and keep it working across changes.  If they want
-to ship it, they can branch off before it's removed and pull fixes
-across if they need it.  As it is the current DDX won't work for them
-anyway, so I guess they've already done this...
-
 > 
 > OTOH, BSDs are stuck with pre-TTM Nouveau until they port GEM
 > and TTM to BSDs. How much more will it cost to BSDs to add KMS
 > to the list of mandatory kernel features... rnoland and others,
 > any comments?
-> 
+
+Well, I would prefer that this not get ripped out, honestly.  My current
+big project queue is GEM, TTM and finally KMS.  I think that I finally
+have a handle on how I'm going to finish implementing GEM now.  TTM, I
+have started on, but mostly what I have now is stubs, so until I'm
+deeper into porting/re-writing the code I don't have a clear plan.  I
+think that it will likely be handled in much the same way as GEM, but
+I'm sure there will be new things to sort out.
+
+I've looked at KMS less than any of the other stuff so far really, but
+the API is designed around linux and while much of the code to interact
+with the hardware should be fairly easy to port I think, I'm really not
+clear how the current API can/will tie into our (BSD) console code.  So,
+basically what I'm saying here is that I don't currently have a plan for
+how I'm going to deal with KMS, where I do at least have fairly clear
+plans for GEM and hopefully TTM.
+
+Unfortunately, the amount of time that I have available to work on stuff
+has just been dramatically reduced, at least for the time being.
+
+robert.
+
+-- 
+Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
+2Hip Networks
