@@ -1,7 +1,7 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25966] New: nv25 : rxvt scrolling is very slow
-Date: Sat,  9 Jan 2010 09:36:44 -0800 (PST)
-Message-ID: <bug-25966-8800@http.bugs.freedesktop.org/>
+From: r.spliet-+WoPDYjVzZevezkx17PYy4RWq/SkRNHw@public.gmane.org
+Subject: [Discussion] User controls for PowerManagement
+Date: Thu,  7 Jan 2010 22:44:24 +0100
+Message-ID: <1262900664.4b4655b8c25cc@netmail.leidenuniv.nl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,48 +18,43 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25966
+With some progress in PowerManagement support (there's a patch nearly done for
+reading the P-tables, written mostly by xexaxo, derived from thunderbirds
+nvclock, with 0x40 adjustments from myself) in my opinion it's time to think
+about the user aspect of this.
+My personal idea for GPU scaling was similar to that of CPU scaling in
+appearance eventually. When you look at the cpufreq-applet for Gnome, you see
+the choice between every supported CPU speed, and an option for Automatic
+scaling. To make an application like this possible nouveau needs to communicate
+with users.
+I was thinking a procfs or sysfs node for outputting a readable table with
+possible modes like:
 
-           Summary: nv25 : rxvt scrolling is very slow
-           Product: xorg
-           Version: 7.5
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: castet.matthieu-GANU6spQydw@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+03: CPU=135MHz,Shdr=135MHz,Mem=135MHz,Vlt=0.8V,Fan=80%;
+...
 
+the node name would be something like pm_supported. Another node named
+pm_current could output the current mode (for instance 03), and be writable to
+set the desired mode. Mode numbers will be the identifier given by
+pm_supported, found in the powermode table. A third node would then be required
+to set auto scaling on or off (called pm_auto ?). All those nodes could
+eventually be placed in a separate subdirectory (pm?)
 
-Hi,
+1. joi pointed out that procfs is deprecated, and I should use sysfs instead.
+There are two reasons to use procfs:
+- DRM has a pointer to the right DRM subfolder (/proc/drm/<card number>) which
+can be obtained by drm_device.control->proc_root. Ofcourse, if there's
+something similar for sysfs available, then there's no problem. Otherwise
+procfs simply saves a lot of hassle as long as DRM still promotes procfs to the
+device drivers.
+- sysfs was designed for "one value per node". The output of the pm_supported
+node would be an entire table. Is this on par with the design of sysfs?
+So: procfs or sysfs?
 
-using rxvt 2.7.10 (from debian sid) has some issue with nouveau :
-- opening a new terminal, 
-- filling it with data (dmesg for example), 
-- and then scrolling with the mouse is :
-  - slow (we can see a latency)
-  - Xorg eat 100% of cpu
+2. It sounds sensible to me to have one scaling algorithm (whatever that may
+become... first things first). When you can scale you can have the maximum
+performance as soon as you need it... so the aim should be maximum powersaving
+at all time, without sacrificing on performance. Agreed, or should there be
+several "auto" modes for different situations?
 
-There no such problem with nvidia blob (and nv driver IRRC).
-
-
-Oprofile give me :
-
-    62336 51.8948 libpixman-1.so.0.16.4
-    22927 19.0867 libfb.so
-    16548 13.7762 no-vmlinux
-     6297  5.2423 Xorg
-
-unfortunately I don't have debug symbol.
-
-
-May be it is related to https://bugzilla.redhat.com/show_bug.cgi?id=538467 ?
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+RSpliet
