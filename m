@@ -1,13 +1,15 @@
-From: Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: Removal of Non-KMS support
-Date: Thu, 7 Jan 2010 20:49:21 +0100
-Message-ID: <91752841001071149u155f3e22veb91b07167f60f36@mail.gmail.com>
+Date: Fri, 08 Jan 2010 08:09:11 +1000
+Message-ID: <1262902151.7007.0.camel@araqiel>
 References: <1262755950.2346.5.camel@araqiel>
+	<91752841001071149u155f3e22veb91b07167f60f36@mail.gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1262755950.2346.5.camel@araqiel>
+In-Reply-To: <91752841001071149u155f3e22veb91b07167f60f36-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,236 +19,216 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+To: Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jan 6, 2010 at 6:32 AM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> I did a very quick pass at removing all the non-KMS support from the
-> DDX. =A0It's tested on G80 but nowhere else currently, I thought some
-> discussion would be a good idea rather than just ripping it out :)
->
-> The non-KMS paths are messy, and lets face it, rotting badly. =A0IMO the
-> KMS code is stable enough now that we can continue without the UMS
-> crutch, and indeed, the KMS code supports a lot more chipsets
-> (particularly on GF8 and up) than the UMS code ever will.
->
-> I've left the Xv overlay code intact, but ifdef'd out. =A0I want to bring
-> support back with KMS enabled (thinking of older chipsets where the
-> blitter sucks), so it made sense to leave the old code there for now.
->
-> So, who has some Signed-off-by's :)
->
-
-That broke exapixmaps=3Dno for me.
-I tried to disable exapixmaps temporarily to workaround some
-dri2/window resize problems, as suggested by calim.
-After reverting "Removal of Non-KMS support", exapixmaps=3Dno worked fine.
-
-Jan  7 17:44:13 xps-m1530 init: Switching to runlevel: 5
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.449485] integrated sync not suppor=
-ted
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.555266] integrated sync not suppor=
-ted
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.664571] [drm] nouveau
-0000:01:00.0: Allocating FIFO number 2
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.673371] [drm] nouveau
-0000:01:00.0: nouveau_channel_alloc: initialised FIFO 2
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.674075] [TTM] Page number
-range to small Need 4503599627369472 pages, range is [0, 65536]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.678391] [drm] nouveau
-0000:01:00.0: nouveau_channel_free: freeing fifo 2
-Jan  7 17:44:13 xps-m1530 gdm-binary[8150]: WARNING: GdmDisplay:
-display lasted 0.309705 seconds
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.723902] integrated sync not suppor=
-ted
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.829683] integrated sync not suppor=
-ted
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.937500] [drm] nouveau
-0000:01:00.0: Allocating FIFO number 2
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.945901] [drm] nouveau
-0000:01:00.0: nouveau_channel_alloc: initialised FIFO 2
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946061]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946064] BUG kmalloc-512:
-Poison overwritten
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946066]
----------------------------------------------------------------------------=
---
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946067]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946070] INFO:
-0xffff8801183a6d18-0xffff8801183a6d1f. First byte 0x0 instead of 0x6b
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946081] INFO: Allocated in
-nouveau_bo_new+0x5b/0x470 [nouveau] age=3D272 cpu=3D1 pid=3D8156
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946088] INFO: Freed in
-nouveau_bo_del_ttm+0x9f/0xd0 [nouveau] age=3D272 cpu=3D1 pid=3D8156
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946091] INFO: Slab
-0xffffea0003d4cc50 objects=3D14 used=3D11 fp=3D0xffff8801183a6b68
-flags=3D0x80000000000040c3
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946094] INFO: Object
-0xffff8801183a6b68 @offset=3D2920 fp=3D0xffff8801183a7918
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946095]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946097] Bytes b4
-0xffff8801183a6b58:  75 73 49 00 01 00 00 00 5a 5a 5a 5a 5a 5a 5a 5a
-usI.....ZZZZZZZZ
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946107]   Object
-0xffff8801183a6b68:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946117]   Object
-0xffff8801183a6b78:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946126]   Object
-0xffff8801183a6b88:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946136]   Object
-0xffff8801183a6b98:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946145]   Object
-0xffff8801183a6ba8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946155]   Object
-0xffff8801183a6bb8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946170]   Object
-0xffff8801183a6bc8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946179]   Object
-0xffff8801183a6bd8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946187]   Object
-0xffff8801183a6be8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946204]   Object
-0xffff8801183a6bf8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946214]   Object
-0xffff8801183a6c08:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946223]   Object
-0xffff8801183a6c18:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946233]   Object
-0xffff8801183a6c28:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946243]   Object
-0xffff8801183a6c38:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946252]   Object
-0xffff8801183a6c48:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6c58:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6c68:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6c78:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6c88:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6c98:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6ca8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6cb8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6cc8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6cd8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6ce8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6cf8:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6d08:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6d18:  00 00 00 00 00 00 00 00 6b 6b 6b 6b 6b 6b 6b 6b
-........kkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6d28:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6d38:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6d48:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b
-kkkkkkkkkkkkkkkk
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]   Object
-0xffff8801183a6d58:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b a5
-kkkkkkkkkkkkkkk=A5
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  Redzone
-0xffff8801183a6d68:  bb bb bb bb bb bb bb bb
-=BB=BB=BB=BB=BB=BB=BB=BB
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  Padding
-0xffff8801183a6da8:  5a 5a 5a 5a 5a 5a 5a 5a
-ZZZZZZZZ
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255] Pid: 8160, comm: Xorg
-Not tainted 2.6.32-nouveau #30
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255] Call Trace:
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff810f5fc1>]
-print_trailer+0x101/0x170
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff810f66e2>]
-check_bytes_and_report+0xf2/0x120
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff810f691e>]
-check_object+0x20e/0x260
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff810f892e>]
-__slab_alloc+0x59e/0x7c0
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff812cd5cc>]
-? security_inode_alloc+0x1c/0x20
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff81117526>]
-? inode_init_always+0x116/0x1c0
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffffa015b4ab>]
-? nouveau_bo_new+0x5b/0x470 [nouveau]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff810f8dd7>]
-kmem_cache_alloc+0xb7/0x140
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffffa015b4ab>]
-nouveau_bo_new+0x5b/0x470 [nouveau]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffffa015dccf>]
-nouveau_gem_new+0x3f/0xd0 [nouveau]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffffa015de99>]
-nouveau_gem_ioctl_new+0x139/0x320 [nouveau]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffffa00ec6ed>]
-drm_ioctl+0x17d/0x3a0 [drm]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffffa015dd60>]
-? nouveau_gem_ioctl_new+0x0/0x320 [nouveau]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff810e6238>]
-? mmap_region+0x1f8/0x500
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff8110fc6c>]
-vfs_ioctl+0x7c/0xa0
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff8110fda0>]
-do_vfs_ioctl+0x80/0x560
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff81303e75>]
-? __up_write+0xe5/0x150
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff81110301>]
-sys_ioctl+0x81/0xa0
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]  [<ffffffff8100bf2b>]
-system_call_fastpath+0x16/0x1b
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255] FIX kmalloc-512:
-Restoring 0xffff8801183a6d18-0xffff8801183a6d1f=3D0x6b
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.946255] FIX kmalloc-512:
-Marking all objects used
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.947018] [TTM] Page number
-range to small Need 4503599627369472 pages, range is [0, 65536]
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.950986] [drm] nouveau
-0000:01:00.0: nouveau_channel_free: freeing fifo 2
-Jan  7 17:44:13 xps-m1530 gdm-binary[8150]: WARNING: GdmDisplay:
-display lasted 0.270496 seconds
-Jan  7 17:44:13 xps-m1530 kernel: [ 5113.987276] integrated sync not suppor=
-ted
-Jan  7 17:44:13 xps-m1530 kernel: [ 5114.092992] integrated sync not suppor=
-ted
+T24gVGh1LCAyMDEwLTAxLTA3IGF0IDIwOjQ5ICswMTAwLCBYYXZpZXIgd3JvdGU6Cj4gT24gV2Vk
+LCBKYW4gNiwgMjAxMCBhdCA2OjMyIEFNLCBCZW4gU2tlZ2dzIDxza2VnZ3NiQGdtYWlsLmNvbT4g
+d3JvdGU6Cj4gPiBJIGRpZCBhIHZlcnkgcXVpY2sgcGFzcyBhdCByZW1vdmluZyBhbGwgdGhlIG5v
+bi1LTVMgc3VwcG9ydCBmcm9tIHRoZQo+ID4gRERYLiAgSXQncyB0ZXN0ZWQgb24gRzgwIGJ1dCBu
+b3doZXJlIGVsc2UgY3VycmVudGx5LCBJIHRob3VnaHQgc29tZQo+ID4gZGlzY3Vzc2lvbiB3b3Vs
+ZCBiZSBhIGdvb2QgaWRlYSByYXRoZXIgdGhhbiBqdXN0IHJpcHBpbmcgaXQgb3V0IDopCj4gPgo+
+ID4gVGhlIG5vbi1LTVMgcGF0aHMgYXJlIG1lc3N5LCBhbmQgbGV0cyBmYWNlIGl0LCByb3R0aW5n
+IGJhZGx5LiAgSU1PIHRoZQo+ID4gS01TIGNvZGUgaXMgc3RhYmxlIGVub3VnaCBub3cgdGhhdCB3
+ZSBjYW4gY29udGludWUgd2l0aG91dCB0aGUgVU1TCj4gPiBjcnV0Y2gsIGFuZCBpbmRlZWQsIHRo
+ZSBLTVMgY29kZSBzdXBwb3J0cyBhIGxvdCBtb3JlIGNoaXBzZXRzCj4gPiAocGFydGljdWxhcmx5
+IG9uIEdGOCBhbmQgdXApIHRoYW4gdGhlIFVNUyBjb2RlIGV2ZXIgd2lsbC4KPiA+Cj4gPiBJJ3Zl
+IGxlZnQgdGhlIFh2IG92ZXJsYXkgY29kZSBpbnRhY3QsIGJ1dCBpZmRlZidkIG91dC4gIEkgd2Fu
+dCB0byBicmluZwo+ID4gc3VwcG9ydCBiYWNrIHdpdGggS01TIGVuYWJsZWQgKHRoaW5raW5nIG9m
+IG9sZGVyIGNoaXBzZXRzIHdoZXJlIHRoZQo+ID4gYmxpdHRlciBzdWNrcyksIHNvIGl0IG1hZGUg
+c2Vuc2UgdG8gbGVhdmUgdGhlIG9sZCBjb2RlIHRoZXJlIGZvciBub3cuCj4gPgo+ID4gU28sIHdo
+byBoYXMgc29tZSBTaWduZWQtb2ZmLWJ5J3MgOikKPiA+Cj4gCj4gVGhhdCBicm9rZSBleGFwaXht
+YXBzPW5vIGZvciBtZS4KPiBJIHRyaWVkIHRvIGRpc2FibGUgZXhhcGl4bWFwcyB0ZW1wb3Jhcmls
+eSB0byB3b3JrYXJvdW5kIHNvbWUKPiBkcmkyL3dpbmRvdyByZXNpemUgcHJvYmxlbXMsIGFzIHN1
+Z2dlc3RlZCBieSBjYWxpbS4KPiBBZnRlciByZXZlcnRpbmcgIlJlbW92YWwgb2YgTm9uLUtNUyBz
+dXBwb3J0IiwgZXhhcGl4bWFwcz1ubyB3b3JrZWQgZmluZS4KQWggdGhhbmtzLCBJIGRpZG4ndCBl
+dmVuIHRoaW5rIHRvIHRlc3QgaXQgc3RpbGwgd29ya2VkLiAgSSdsbCBmaXggdGhhdAp0b2RheSwg
+YnV0LCB0aGF0J3MgYWxzbyBzb21ldGhpbmcgdGhhdCBzaG91bGQgYmUgb24gdGhlIGxpc3Qgb2Yg
+dGhpbmdzCnRvIGN1bGwgZnJvbSB0aGUgRERYIHNvb24uCgpCZW4uCj4gCj4gSmFuICA3IDE3OjQ0
+OjEzIHhwcy1tMTUzMCBpbml0OiBTd2l0Y2hpbmcgdG8gcnVubGV2ZWw6IDUKPiBKYW4gIDcgMTc6
+NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjQ0OTQ4NV0gaW50ZWdyYXRlZCBzeW5jIG5v
+dCBzdXBwb3J0ZWQKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjU1
+NTI2Nl0gaW50ZWdyYXRlZCBzeW5jIG5vdCBzdXBwb3J0ZWQKPiBKYW4gIDcgMTc6NDQ6MTMgeHBz
+LW0xNTMwIGtlcm5lbDogWyA1MTEzLjY2NDU3MV0gW2RybV0gbm91dmVhdQo+IDAwMDA6MDE6MDAu
+MDogQWxsb2NhdGluZyBGSUZPIG51bWJlciAyCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBr
+ZXJuZWw6IFsgNTExMy42NzMzNzFdIFtkcm1dIG5vdXZlYXUKPiAwMDAwOjAxOjAwLjA6IG5vdXZl
+YXVfY2hhbm5lbF9hbGxvYzogaW5pdGlhbGlzZWQgRklGTyAyCj4gSmFuICA3IDE3OjQ0OjEzIHhw
+cy1tMTUzMCBrZXJuZWw6IFsgNTExMy42NzQwNzVdIFtUVE1dIFBhZ2UgbnVtYmVyCj4gcmFuZ2Ug
+dG8gc21hbGwgTmVlZCA0NTAzNTk5NjI3MzY5NDcyIHBhZ2VzLCByYW5nZSBpcyBbMCwgNjU1MzZd
+Cj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy42NzgzOTFdIFtkcm1d
+IG5vdXZlYXUKPiAwMDAwOjAxOjAwLjA6IG5vdXZlYXVfY2hhbm5lbF9mcmVlOiBmcmVlaW5nIGZp
+Zm8gMgo+IEphbiAgNyAxNzo0NDoxMyB4cHMtbTE1MzAgZ2RtLWJpbmFyeVs4MTUwXTogV0FSTklO
+RzogR2RtRGlzcGxheToKPiBkaXNwbGF5IGxhc3RlZCAwLjMwOTcwNSBzZWNvbmRzCj4gSmFuICA3
+IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy43MjM5MDJdIGludGVncmF0ZWQgc3lu
+YyBub3Qgc3VwcG9ydGVkCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTEx
+My44Mjk2ODNdIGludGVncmF0ZWQgc3luYyBub3Qgc3VwcG9ydGVkCj4gSmFuICA3IDE3OjQ0OjEz
+IHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45Mzc1MDBdIFtkcm1dIG5vdXZlYXUKPiAwMDAwOjAx
+OjAwLjA6IEFsbG9jYXRpbmcgRklGTyBudW1iZXIgMgo+IEphbiAgNyAxNzo0NDoxMyB4cHMtbTE1
+MzAga2VybmVsOiBbIDUxMTMuOTQ1OTAxXSBbZHJtXSBub3V2ZWF1Cj4gMDAwMDowMTowMC4wOiBu
+b3V2ZWF1X2NoYW5uZWxfYWxsb2M6IGluaXRpYWxpc2VkIEZJRk8gMgo+IEphbiAgNyAxNzo0NDox
+MyB4cHMtbTE1MzAga2VybmVsOiBbIDUxMTMuOTQ2MDYxXQo+ID09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+Cj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45NDYwNjRdIEJVRyBr
+bWFsbG9jLTUxMjoKPiBQb2lzb24gb3ZlcndyaXR0ZW4KPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0x
+NTMwIGtlcm5lbDogWyA1MTEzLjk0NjA2Nl0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+IEphbiAg
+NyAxNzo0NDoxMyB4cHMtbTE1MzAga2VybmVsOiBbIDUxMTMuOTQ2MDY3XQo+IEphbiAgNyAxNzo0
+NDoxMyB4cHMtbTE1MzAga2VybmVsOiBbIDUxMTMuOTQ2MDcwXSBJTkZPOgo+IDB4ZmZmZjg4MDEx
+ODNhNmQxOC0weGZmZmY4ODAxMTgzYTZkMWYuIEZpcnN0IGJ5dGUgMHgwIGluc3RlYWQgb2YgMHg2
+Ygo+IEphbiAgNyAxNzo0NDoxMyB4cHMtbTE1MzAga2VybmVsOiBbIDUxMTMuOTQ2MDgxXSBJTkZP
+OiBBbGxvY2F0ZWQgaW4KPiBub3V2ZWF1X2JvX25ldysweDViLzB4NDcwIFtub3V2ZWF1XSBhZ2U9
+MjcyIGNwdT0xIHBpZD04MTU2Cj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsg
+NTExMy45NDYwODhdIElORk86IEZyZWVkIGluCj4gbm91dmVhdV9ib19kZWxfdHRtKzB4OWYvMHhk
+MCBbbm91dmVhdV0gYWdlPTI3MiBjcHU9MSBwaWQ9ODE1Ngo+IEphbiAgNyAxNzo0NDoxMyB4cHMt
+bTE1MzAga2VybmVsOiBbIDUxMTMuOTQ2MDkxXSBJTkZPOiBTbGFiCj4gMHhmZmZmZWEwMDAzZDRj
+YzUwIG9iamVjdHM9MTQgdXNlZD0xMSBmcD0weGZmZmY4ODAxMTgzYTZiNjgKPiBmbGFncz0weDgw
+MDAwMDAwMDAwMDQwYzMKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEz
+Ljk0NjA5NF0gSU5GTzogT2JqZWN0Cj4gMHhmZmZmODgwMTE4M2E2YjY4IEBvZmZzZXQ9MjkyMCBm
+cD0weGZmZmY4ODAxMTgzYTc5MTgKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDog
+WyA1MTEzLjk0NjA5NV0KPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEz
+Ljk0NjA5N10gQnl0ZXMgYjQKPiAweGZmZmY4ODAxMTgzYTZiNTg6ICA3NSA3MyA0OSAwMCAwMSAw
+MCAwMCAwMCA1YSA1YSA1YSA1YSA1YSA1YSA1YSA1YQo+IHVzSS4uLi4uWlpaWlpaWloKPiBKYW4g
+IDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjEwN10gICBPYmplY3QKPiAw
+eGZmZmY4ODAxMTgzYTZiNjg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMw
+IGtlcm5lbDogWyA1MTEzLjk0NjExN10gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZiNzg6ICA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tr
+a2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjEy
+Nl0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZiODg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6
+NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjEzNl0gICBPYmplY3QKPiAweGZmZmY4
+ODAxMTgzYTZiOTg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5l
+bDogWyA1MTEzLjk0NjE0NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZiYTg6ICA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tr
+a2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjE1NV0gICBP
+YmplY3QKPiAweGZmZmY4ODAxMTgzYTZiYjg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMg
+eHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjE3MF0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgz
+YTZiYzg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+
+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1
+MTEzLjk0NjE3OV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZiZDg6ICA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBK
+YW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjE4N10gICBPYmplY3QK
+PiAweGZmZmY4ODAxMTgzYTZiZTg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0x
+NTMwIGtlcm5lbDogWyA1MTEzLjk0NjIwNF0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZiZjg6
+ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tr
+a2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0
+NjIxNF0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZjMDg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcg
+MTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjIyM10gICBPYmplY3QKPiAweGZm
+ZmY4ODAxMTgzYTZjMTg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtl
+cm5lbDogWyA1MTEzLjk0NjIzM10gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZjMjg6ICA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tr
+a2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI0M10g
+ICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZjMzg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6
+MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1Ml0gICBPYmplY3QKPiAweGZmZmY4ODAx
+MTgzYTZjNDg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDog
+WyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZjNTg6ICA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sK
+PiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmpl
+Y3QKPiAweGZmZmY4ODAxMTgzYTZjNjg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBz
+LW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZj
+Nzg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtr
+a2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEz
+Ljk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZjODg6ICA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4g
+IDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAw
+eGZmZmY4ODAxMTgzYTZjOTg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMw
+IGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZjYTg6ICA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tr
+a2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1
+NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZjYjg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6
+NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4
+ODAxMTgzYTZjYzg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5l
+bDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZjZDg6ICA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tr
+a2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBP
+YmplY3QKPiAweGZmZmY4ODAxMTgzYTZjZTg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMg
+eHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgz
+YTZjZjg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+
+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1
+MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZkMDg6ICA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBK
+YW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QK
+PiAweGZmZmY4ODAxMTgzYTZkMTg6ICAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2Ygo+IC4uLi4uLi4ua2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0x
+NTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZkMjg6
+ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tr
+a2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0
+NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZkMzg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcg
+MTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZm
+ZmY4ODAxMTgzYTZkNDg6ICA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2
+YiA2YiA2Ygo+IGtra2tra2tra2tra2tra2sKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtl
+cm5lbDogWyA1MTEzLjk0NjI1NV0gICBPYmplY3QKPiAweGZmZmY4ODAxMTgzYTZkNTg6ICA2YiA2
+YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiA2YiBhNQo+IGtra2tra2tra2tr
+a2tra8KlCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45NDYyNTVd
+ICBSZWR6b25lCj4gMHhmZmZmODgwMTE4M2E2ZDY4OiAgYmIgYmIgYmIgYmIgYmIgYmIgYmIgYmIK
+PiDCu8K7wrvCu8K7wrvCu8K7Cj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsg
+NTExMy45NDYyNTVdICBQYWRkaW5nCj4gMHhmZmZmODgwMTE4M2E2ZGE4OiAgNWEgNWEgNWEgNWEg
+NWEgNWEgNWEgNWEKPiBaWlpaWlpaWgo+IEphbiAgNyAxNzo0NDoxMyB4cHMtbTE1MzAga2VybmVs
+OiBbIDUxMTMuOTQ2MjU1XSBQaWQ6IDgxNjAsIGNvbW06IFhvcmcKPiBOb3QgdGFpbnRlZCAyLjYu
+MzItbm91dmVhdSAjMzAKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEz
+Ljk0NjI1NV0gQ2FsbCBUcmFjZToKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDog
+WyA1MTEzLjk0NjI1NV0gIFs8ZmZmZmZmZmY4MTBmNWZjMT5dCj4gcHJpbnRfdHJhaWxlcisweDEw
+MS8weDE3MAo+IEphbiAgNyAxNzo0NDoxMyB4cHMtbTE1MzAga2VybmVsOiBbIDUxMTMuOTQ2MjU1
+XSAgWzxmZmZmZmZmZjgxMGY2NmUyPl0KPiBjaGVja19ieXRlc19hbmRfcmVwb3J0KzB4ZjIvMHgx
+MjAKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gIFs8
+ZmZmZmZmZmY4MTBmNjkxZT5dCj4gY2hlY2tfb2JqZWN0KzB4MjBlLzB4MjYwCj4gSmFuICA3IDE3
+OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45NDYyNTVdICBbPGZmZmZmZmZmODEwZjg5
+MmU+XQo+IF9fc2xhYl9hbGxvYysweDU5ZS8weDdjMAo+IEphbiAgNyAxNzo0NDoxMyB4cHMtbTE1
+MzAga2VybmVsOiBbIDUxMTMuOTQ2MjU1XSAgWzxmZmZmZmZmZjgxMmNkNWNjPl0KPiA/IHNlY3Vy
+aXR5X2lub2RlX2FsbG9jKzB4MWMvMHgyMAo+IEphbiAgNyAxNzo0NDoxMyB4cHMtbTE1MzAga2Vy
+bmVsOiBbIDUxMTMuOTQ2MjU1XSAgWzxmZmZmZmZmZjgxMTE3NTI2Pl0KPiA/IGlub2RlX2luaXRf
+YWx3YXlzKzB4MTE2LzB4MWMwCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsg
+NTExMy45NDYyNTVdICBbPGZmZmZmZmZmYTAxNWI0YWI+XQo+ID8gbm91dmVhdV9ib19uZXcrMHg1
+Yi8weDQ3MCBbbm91dmVhdV0KPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1
+MTEzLjk0NjI1NV0gIFs8ZmZmZmZmZmY4MTBmOGRkNz5dCj4ga21lbV9jYWNoZV9hbGxvYysweGI3
+LzB4MTQwCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45NDYyNTVd
+ICBbPGZmZmZmZmZmYTAxNWI0YWI+XQo+IG5vdXZlYXVfYm9fbmV3KzB4NWIvMHg0NzAgW25vdXZl
+YXVdCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45NDYyNTVdICBb
+PGZmZmZmZmZmYTAxNWRjY2Y+XQo+IG5vdXZlYXVfZ2VtX25ldysweDNmLzB4ZDAgW25vdXZlYXVd
+Cj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45NDYyNTVdICBbPGZm
+ZmZmZmZmYTAxNWRlOTk+XQo+IG5vdXZlYXVfZ2VtX2lvY3RsX25ldysweDEzOS8weDMyMCBbbm91
+dmVhdV0KPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0g
+IFs8ZmZmZmZmZmZhMDBlYzZlZD5dCj4gZHJtX2lvY3RsKzB4MTdkLzB4M2EwIFtkcm1dCj4gSmFu
+ICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45NDYyNTVdICBbPGZmZmZmZmZm
+YTAxNWRkNjA+XQo+ID8gbm91dmVhdV9nZW1faW9jdGxfbmV3KzB4MC8weDMyMCBbbm91dmVhdV0K
+PiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gIFs8ZmZm
+ZmZmZmY4MTBlNjIzOD5dCj4gPyBtbWFwX3JlZ2lvbisweDFmOC8weDUwMAo+IEphbiAgNyAxNzo0
+NDoxMyB4cHMtbTE1MzAga2VybmVsOiBbIDUxMTMuOTQ2MjU1XSAgWzxmZmZmZmZmZjgxMTBmYzZj
+Pl0KPiB2ZnNfaW9jdGwrMHg3Yy8weGEwCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJu
+ZWw6IFsgNTExMy45NDYyNTVdICBbPGZmZmZmZmZmODExMGZkYTA+XQo+IGRvX3Zmc19pb2N0bCsw
+eDgwLzB4NTYwCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45NDYy
+NTVdICBbPGZmZmZmZmZmODEzMDNlNzU+XQo+ID8gX191cF93cml0ZSsweGU1LzB4MTUwCj4gSmFu
+ICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJuZWw6IFsgNTExMy45NDYyNTVdICBbPGZmZmZmZmZm
+ODExMTAzMDE+XQo+IHN5c19pb2N0bCsweDgxLzB4YTAKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0x
+NTMwIGtlcm5lbDogWyA1MTEzLjk0NjI1NV0gIFs8ZmZmZmZmZmY4MTAwYmYyYj5dCj4gc3lzdGVt
+X2NhbGxfZmFzdHBhdGgrMHgxNi8weDFiCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBrZXJu
+ZWw6IFsgNTExMy45NDYyNTVdIEZJWCBrbWFsbG9jLTUxMjoKPiBSZXN0b3JpbmcgMHhmZmZmODgw
+MTE4M2E2ZDE4LTB4ZmZmZjg4MDExODNhNmQxZj0weDZiCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1t
+MTUzMCBrZXJuZWw6IFsgNTExMy45NDYyNTVdCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1tMTUzMCBr
+ZXJuZWw6IFsgNTExMy45NDYyNTVdIEZJWCBrbWFsbG9jLTUxMjoKPiBNYXJraW5nIGFsbCBvYmpl
+Y3RzIHVzZWQKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTEzLjk0NzAx
+OF0gW1RUTV0gUGFnZSBudW1iZXIKPiByYW5nZSB0byBzbWFsbCBOZWVkIDQ1MDM1OTk2MjczNjk0
+NzIgcGFnZXMsIHJhbmdlIGlzIFswLCA2NTUzNl0KPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMw
+IGtlcm5lbDogWyA1MTEzLjk1MDk4Nl0gW2RybV0gbm91dmVhdQo+IDAwMDA6MDE6MDAuMDogbm91
+dmVhdV9jaGFubmVsX2ZyZWU6IGZyZWVpbmcgZmlmbyAyCj4gSmFuICA3IDE3OjQ0OjEzIHhwcy1t
+MTUzMCBnZG0tYmluYXJ5WzgxNTBdOiBXQVJOSU5HOiBHZG1EaXNwbGF5Ogo+IGRpc3BsYXkgbGFz
+dGVkIDAuMjcwNDk2IHNlY29uZHMKPiBKYW4gIDcgMTc6NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDog
+WyA1MTEzLjk4NzI3Nl0gaW50ZWdyYXRlZCBzeW5jIG5vdCBzdXBwb3J0ZWQKPiBKYW4gIDcgMTc6
+NDQ6MTMgeHBzLW0xNTMwIGtlcm5lbDogWyA1MTE0LjA5Mjk5Ml0gaW50ZWdyYXRlZCBzeW5jIG5v
+dCBzdXBwb3J0ZWQKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
