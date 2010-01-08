@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25947] nv11 crashed X with some gtk apps.
-Date: Fri,  8 Jan 2010 11:20:03 -0800 (PST)
-Message-ID: <20100108192003.889BD130191@annarchy.freedesktop.org>
+Date: Fri,  8 Jan 2010 11:52:57 -0800 (PST)
+Message-ID: <20100108195257.EBB1313018F@annarchy.freedesktop.org>
 References: <bug-25947-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-25947-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -20,26 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25947
-
-
-
-
-
---- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-01-08 11:20:02 PST ---
-(In reply to comment #0)
-> Created an attachment (id=32519)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32519) [details]
-> gdb.txt
-> 
-> xsane and gimp usually can trigger this bug.
-> 
-
-Gimp seems to work ok here on another nv11, are you doing anything special to
-trigger the crash?
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yNTk0NwoKCgoKCi0t
+LSBDb21tZW50ICM0IGZyb20gQW5kcmV3IFJhbmRyaWFuYXN1bHUgPHJhbmRyaWtAbWFpbC5ydT4g
+IDIwMTAtMDEtMDggMTE6NTI6NTYgUFNUIC0tLQpDcmVhdGVkIGFuIGF0dGFjaG1lbnQgKGlkPTMy
+NTMyKQogLS0+IChodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9
+MzI1MzIpCk9wZW5pbmcgdGhpcyBmaWxlIGluIGdpbXAgY3Jhc2ggWCBmb3IgbWUKCmdpbXAgLS12
+ZXJzaW9uCkdOVSBJbWFnZSBNYW5pcHVsYXRpb24gUHJvZ3JhbSDDosOlw7DDscOow6ggMi40LjcK
+CgpndGsrMi0yLjE0LjctaTQ4Ni0yIC0gaSdtIG9uIFNsYWNrd2FyZSAuLi4uCgpUcnkgb3BlbiBp
+dCwgY2xvc2UgR0lNUC4gT3BlbiBpdCBhZ2Fpbi4KCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0
+dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0t
+IFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhl
+IGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
