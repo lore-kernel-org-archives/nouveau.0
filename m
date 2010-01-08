@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25947] nv11 crashed X with some gtk apps.
-Date: Fri,  8 Jan 2010 02:31:49 -0800 (PST)
-Message-ID: <20100108103150.9A71C130183@annarchy.freedesktop.org>
-References: <bug-25947-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25948] New: X don't start first time,
+ and dies on logout from kde
+Date: Fri,  8 Jan 2010 03:21:49 -0800 (PST)
+Message-ID: <bug-25948-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25947-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +19,39 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25947
+http://bugs.freedesktop.org/show_bug.cgi?id=25948
+
+           Summary: X don't start first time, and dies on logout from kde
+           Product: xorg
+           Version: 7.4
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=32522)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32522)
+Xorg.log
 
+Hi every one.
 
+I'm using kernel 2.6.33-rc3 from kernel.org with KMS, in Debian sid(unstable)
+environment, I installed nouveau driver as described here:
+http://ubuntuforums.org/archive/index.php/t-1046504.html
 
---- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-01-08 02:31:48 PST ---
-Created an attachment (id=32521)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32521)
-xorg.conf
+When system is loading X starts good (actually kdm starts good :)), then when I
+enter password and press logic X dies, in kde kwin effects work through
+XRender.
 
-Similar crash observed also on nv05 (TNT2) card few days ago.
+After restarting kdm from virtual console - X works fine then.
+
+The same happens when I logout from kde.
 
 
 -- 
