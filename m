@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25947] nv11 crashed X with some gtk apps.
-Date: Fri,  8 Jan 2010 02:30:52 -0800 (PST)
-Message-ID: <20100108103052.901F8130183@annarchy.freedesktop.org>
+Date: Fri,  8 Jan 2010 02:31:49 -0800 (PST)
+Message-ID: <20100108103150.9A71C130183@annarchy.freedesktop.org>
 References: <bug-25947-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25947
 
 
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-01-08 02:30:52 PST ---
-Created an attachment (id=32520)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32520)
-X log
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-01-08 02:31:48 PST ---
+Created an attachment (id=32521)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32521)
+xorg.conf
+
+Similar crash observed also on nv05 (TNT2) card few days ago.
 
 
 -- 
