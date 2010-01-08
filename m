@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25952] GeForce 9800 GTX - nouveau_init takes ~ 1
  minute to complete
-Date: Fri,  8 Jan 2010 12:32:08 -0800 (PST)
-Message-ID: <20100108203208.660CB130191@annarchy.freedesktop.org>
+Date: Fri,  8 Jan 2010 12:32:55 -0800 (PST)
+Message-ID: <20100108203255.84E2F130192@annarchy.freedesktop.org>
 References: <bug-25952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,19 +24,16 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25952
 
 
+bugs.freedesktop.org-pbuv2Qasjt8Gk0GAwe0YXA@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #32534|application/octet-stream    |text/plain
+          mime type|                            |
+  Attachment #32534|boot_log-                   |boot_log
+           filename|                            |
 
 
-
---- Comment #3 from bugs.freedesktop.org-pbuv2Qasjt8Gk0GAwe0YXA@public.gmane.org  2010-01-08 12:32:08 PST ---
-Thanks for the very quick reply. I have installed the package (nouveau-firmware
-20091212-2) you mention and rebuild my initcpio; but unfortunately it does not
-fix the problem. The line you mention is still in the log:
-
-nouveau 0000:01:00.0: firmware: requesting nouveau/nv92.ctxprog
-[drm] nouveau 0000:01:00.0: No ctxprog for NV92
-
-Is there any way I can help debugging this? I have attached a new boot-log but
-I assume there is nothing new in there
 
 
 -- 
