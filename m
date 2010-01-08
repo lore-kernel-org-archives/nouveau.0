@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25947] nv11 crashed X with some gtk apps.
-Date: Fri,  8 Jan 2010 13:10:05 -0800 (PST)
-Message-ID: <20100108211005.4AC961300D3@annarchy.freedesktop.org>
-References: <bug-25947-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25952] GeForce 9800 GTX - nouveau_init takes ~ 1
+ minute to complete
+Date: Fri,  8 Jan 2010 13:23:12 -0800 (PST)
+Message-ID: <20100108212312.4B73B130192@annarchy.freedesktop.org>
+References: <bug-25952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25947-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +21,20 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25947
-
-
-Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #32519|0                           |1
-        is obsolete|                            |
+http://bugs.freedesktop.org/show_bug.cgi?id=25952
 
 
 
 
---- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-01-08 13:10:04 PST ---
-Created an attachment (id=32535)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32535)
-Another gdb.txt
 
-X + nouveau 2d driver were compiled with "-O0 -g"
+--- Comment #4 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-08 13:23:11 PST ---
+I already warned about using initcpio here :
+http://wiki.archlinux.org/index.php/Nouveau#Early_start
+
+Either don't use it, or make sure the firmware is included there too.
+But if I understood correctly, radeon arch users have problems even when the
+firmware is included in the initrd. So if you have the same problem with
+nouveau, just don't use an initrd. I am very happy with the late start ;)
 
 
 -- 
