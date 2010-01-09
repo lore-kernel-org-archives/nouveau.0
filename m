@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25952] GeForce 9800 GTX - nouveau_init takes ~ 1
  minute to complete
-Date: Sat,  9 Jan 2010 03:09:51 -0800 (PST)
-Message-ID: <20100109110951.3D679130083@annarchy.freedesktop.org>
+Date: Sat,  9 Jan 2010 03:22:20 -0800 (PST)
+Message-ID: <20100109112220.D9406130086@annarchy.freedesktop.org>
 References: <bug-25952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,21 +24,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25952
 
 
-Dmitriy Lock <gigzbyte-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
 
 
 
-
---- Comment #5 from Dmitriy Lock <gigzbyte-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-09 03:09:50 PST ---
-Hi all!
-I'm using Archlinux too, and I can confirm this. But it's Arch' problem - all
-NV firmware files installs in /lib/firmware, not /lib/firmware/nouveau, as it
-expected by nouveau kernel module. So, u can copy all nv* files from
-/lib/firmware to /lib/firmware/nouveau, and it must work.
+--- Comment #6 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-09 03:22:19 PST ---
+I was not aware of that problem, but it has been fixed 10 days ago :
+http://repos.archlinux.org/wsvn/packages/nouveau-firmware/repos/extra-any/PKGBUILD?op=diff&rev=0
+You need revision 2 (20091212-2)
 
 
 -- 
