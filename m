@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25952] GeForce 9800 GTX - nouveau_init takes ~ 1
  minute to complete
-Date: Sat,  9 Jan 2010 05:03:15 -0800 (PST)
-Message-ID: <20100109130315.4142E1300C7@annarchy.freedesktop.org>
+Date: Sat,  9 Jan 2010 05:05:45 -0800 (PST)
+Message-ID: <20100109130545.7BDE21300C3@annarchy.freedesktop.org>
 References: <bug-25952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,20 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25952
 
 
+bugs.freedesktop.org-pbuv2Qasjt8Gk0GAwe0YXA@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|ASSIGNED                    |RESOLVED
+         Resolution|                            |NOTOURBUG
 
 
 
---- Comment #8 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-09 05:03:14 PST ---
-(In reply to comment #7)
-> So why does the module not find it? And if the problem really is caused by
-> this, maybe the bug should be moved to the archlinux tracker?
-> 
 
-It is indeed a archlinux bug. As I already said many times, just don't use
-initrd to workaround it for now.
-
-btw you should always check out archlinux news, the issue is mentioned there :
-http://www.archlinux.org/news/477/
+--- Comment #9 from bugs.freedesktop.org-pbuv2Qasjt8Gk0GAwe0YXA@public.gmane.org  2010-01-09 05:05:45 PST ---
+okay, thanks
 
 
 -- 
