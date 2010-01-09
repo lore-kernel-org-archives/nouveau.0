@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25824] KMS, Dualhead: Strange bigger console
-Date: Fri,  8 Jan 2010 14:07:21 -0800 (PST)
-Message-ID: <20100108220721.810E513007E@annarchy.freedesktop.org>
-References: <bug-25824-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25952] GeForce 9800 GTX - nouveau_init takes ~ 1
+ minute to complete
+Date: Sat,  9 Jan 2010 03:09:51 -0800 (PST)
+Message-ID: <20100109110951.3D679130083@annarchy.freedesktop.org>
+References: <bug-25952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25824-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +21,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25824
+http://bugs.freedesktop.org/show_bug.cgi?id=25952
 
 
-Achim Schaefer <achim_schaefer-Mmb7MZpHnFY@public.gmane.org> changed:
+Dmitriy Lock <gigzbyte-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |achim_schaefer-Mmb7MZpHnFY@public.gmane.org
-             Status|RESOLVED                    |CLOSED
+             Status|NEW                         |ASSIGNED
 
 
 
 
---- Comment #6 from Achim Schaefer <achim_schaefer-Mmb7MZpHnFY@public.gmane.org>  2010-01-08 14:07:20 PST ---
-the specified parameters work as expected.
-
-Thanks
+--- Comment #5 from Dmitriy Lock <gigzbyte-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-09 03:09:50 PST ---
+Hi all!
+I'm using Archlinux too, and I can confirm this. But it's Arch' problem - all
+NV firmware files installs in /lib/firmware, not /lib/firmware/nouveau, as it
+expected by nouveau kernel module. So, u can copy all nv* files from
+/lib/firmware to /lib/firmware/nouveau, and it must work.
 
 
 -- 
