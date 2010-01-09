@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25952] GeForce 9800 GTX - nouveau_init takes ~ 1
  minute to complete
-Date: Sat,  9 Jan 2010 04:10:57 -0800 (PST)
-Message-ID: <20100109121057.31A7A130085@annarchy.freedesktop.org>
+Date: Sat,  9 Jan 2010 05:03:15 -0800 (PST)
+Message-ID: <20100109130315.4142E1300C7@annarchy.freedesktop.org>
 References: <bug-25952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,41 +27,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25952
 
 
 
---- Comment #7 from bugs.freedesktop.org-pbuv2Qasjt8Gk0GAwe0YXA@public.gmane.org  2010-01-09 04:10:56 PST ---
-nv92.ctx{prog,val} exist in /lib/firmware/nouveau/; which is also included in
-my initcpio:
+--- Comment #8 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-09 05:03:14 PST ---
+(In reply to comment #7)
+> So why does the module not find it? And if the problem really is caused by
+> this, maybe the bug should be moved to the archlinux tracker?
+> 
 
-cat /boot/kernel26.img | gunzip | cpio -t | grep nouveau
+It is indeed a archlinux bug. As I already said many times, just don't use
+initrd to workaround it for now.
 
-/lib/firmware/nouveau
-/lib/firmware/nouveau/nvac.ctxvals
-/lib/firmware/nouveau/nvac.ctxprog
-/lib/firmware/nouveau/nvaa.ctxvals
-/lib/firmware/nouveau/nvaa.ctxprog
-/lib/firmware/nouveau/nva8.ctxvals
-/lib/firmware/nouveau/nva8.ctxprog
-/lib/firmware/nouveau/nva5.ctxvals
-/lib/firmware/nouveau/nva5.ctxprog
-/lib/firmware/nouveau/nva0.ctxvals
-/lib/firmware/nouveau/nva0.ctxprog
-/lib/firmware/nouveau/nv98.ctxvals
-/lib/firmware/nouveau/nv98.ctxprog
-/lib/firmware/nouveau/nv96.ctxvals
-/lib/firmware/nouveau/nv96.ctxprog
-/lib/firmware/nouveau/nv94.ctxvals
-/lib/firmware/nouveau/nv94.ctxprog
-/lib/firmware/nouveau/nv92.ctxvals
-/lib/firmware/nouveau/nv92.ctxprog
-/lib/firmware/nouveau/nv86.ctxvals
-/lib/firmware/nouveau/nv86.ctxprog
-/lib/firmware/nouveau/nv84.ctxvals
-/lib/firmware/nouveau/nv84.ctxprog
-/lib/firmware/nouveau/nv50.ctxvals
-/lib/firmware/nouveau/nv50.ctxprog
-/lib/modules/2.6.32-ARCH/kernel/drivers/video/nouveau.ko
-
-So why does the module not find it? And if the problem really is caused by
-this, maybe the bug should be moved to the archlinux tracker?
+btw you should always check out archlinux news, the issue is mentioned there :
+http://www.archlinux.org/news/477/
 
 
 -- 
