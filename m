@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25974] Mesa won't compile. Undeclared constants at
- nv20_context.c.
-Date: Sat,  9 Jan 2010 16:43:45 -0800 (PST)
-Message-ID: <20100110004345.BC2C52DC101@annarchy.freedesktop.org>
-References: <bug-25974-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: [Discussion] User controls for PowerManagement
+Date: Sun, 10 Jan 2010 12:33:40 +0200
+Message-ID: <20100110123340.7840da75@daedalus.pq.iki.fi>
+References: <1262900664.4b4655b8c25cc@netmail.leidenuniv.nl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25974-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1262900664.4b4655b8c25cc-pgG6AW4N3dxm8DR3ycg935PKb1KSXcyV@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,15 +17,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: r.spliet-+WoPDYjVzZevezkx17PYy4RWq/SkRNHw@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yNTk3NAoKCgoKCi0t
-LSBDb21tZW50ICMxIGZyb20gQW5kcsOpIFYuIDxhbmRyZWZ2QGdtYWlsLmNvbT4gIDIwMTAtMDEt
-MDkgMTY6NDM6NDUgUFNUIC0tLQpTaG91bGQgYmUgc29sdmVkIGJ5IHVwZGF0aW5nIGxpYmRybS4K
-CgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2Vy
-cHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBi
-ZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+Adding dri-devel@ to CC.
+
+On Thu,  7 Jan 2010 22:44:24 +0100
+r.spliet-+WoPDYjVzZevezkx17PYy4RWq/SkRNHw@public.gmane.org wrote:
+
+> With some progress in PowerManagement support (there's a patch
+> nearly done for reading the P-tables, written mostly by xexaxo,
+> derived from thunderbirds nvclock, with 0x40 adjustments from
+> myself) in my opinion it's time to think about the user aspect of
+> this. My personal idea for GPU scaling was similar to that of CPU
+> scaling in appearance eventually. When you look at the
+> cpufreq-applet for Gnome, you see the choice between every
+> supported CPU speed, and an option for Automatic scaling. To make
+> an application like this possible nouveau needs to communicate
+> with users. I was thinking a procfs or sysfs node for outputting
+> a readable table with possible modes like:
+> 
+> 03: CPU=135MHz,Shdr=135MHz,Mem=135MHz,Vlt=0.8V,Fan=80%;
+> ...
+> 
+> the node name would be something like pm_supported. Another node
+> named pm_current could output the current mode (for instance 03),
+> and be writable to set the desired mode. Mode numbers will be the
+> identifier given by pm_supported, found in the powermode table. A
+> third node would then be required to set auto scaling on or off
+> (called pm_auto ?). All those nodes could eventually be placed in
+> a separate subdirectory (pm?)
+> 
+> 1. joi pointed out that procfs is deprecated, and I should use
+> sysfs instead. There are two reasons to use procfs:
+> - DRM has a pointer to the right DRM subfolder (/proc/drm/<card
+> number>) which can be obtained by drm_device.control->proc_root.
+> number>Ofcourse, if there's
+> something similar for sysfs available, then there's no problem.
+> Otherwise procfs simply saves a lot of hassle as long as DRM
+> still promotes procfs to the device drivers.
+> - sysfs was designed for "one value per node". The output of the
+> pm_supported node would be an entire table. Is this on par with
+> the design of sysfs? So: procfs or sysfs?
+> 
+> 2. It sounds sensible to me to have one scaling algorithm
+> (whatever that may become... first things first). When you can
+> scale you can have the maximum performance as soon as you need
+> it... so the aim should be maximum powersaving at all time,
+> without sacrificing on performance. Agreed, or should there be
+> several "auto" modes for different situations?
+
+I recall someone (you?) saying this is only for testing for
+now, and the proper user interface can be done later. In
+any case, I'd like to suggest discussing it on dri-devel@,
+since there are other drivers wanting to expose similar
+features.
+
+Hopefully people working on power management interfaces
+on intel and radeon can comment on this, like is there
+an agreed user interface design yet.
+
+btw. I think max powersaving and no performance loss are
+mutually exclusive, since changing power modes is not
+free nor instantenous. Or is it? How much of the card
+you need to stop to change clocks and volts? Do you
+need to sync to vblank to prevent visual glitches?
+
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
