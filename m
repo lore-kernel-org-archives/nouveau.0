@@ -1,14 +1,11 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH] drm/ttm: Avoid conflicting reserve_memtype during
-	ttm_tt_set_page_caching.
-Date: Tue, 12 Jan 2010 18:49:43 +0100
-Message-ID: <1263318583-11392-1-git-send-email-currojerez@riseup.net>
-References: <91752841001111610q78af5515g73725e3c4aa56e67@mail.gmail.com>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH] drm/nv50: Fix typo in PGRAPH initialisation.
+Date: Tue, 12 Jan 2010 18:21:56 +0000
+Message-ID: <1263320516-27382-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <91752841001111610q78af5515g73725e3c4aa56e67-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,57 +15,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes errors like:
-> reserve_ram_pages_type failed 0x15b7a000-0x15b7b000, track 0x8, req 0x10
-when a BO is moved between WC and UC areas.
-
-Reported-by: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
----
- drivers/gpu/drm/ttm/ttm_tt.c |   23 ++++++++++++++++-------
- 1 files changed, 16 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
-index 9c2b1cc..e2123af 100644
---- a/drivers/gpu/drm/ttm/ttm_tt.c
-+++ b/drivers/gpu/drm/ttm/ttm_tt.c
-@@ -198,17 +198,26 @@ EXPORT_SYMBOL(ttm_tt_populate);
- static inline int ttm_tt_set_page_caching(struct page *p,
- 					  enum ttm_caching_state c_state)
- {
-+	int ret = 0;
-+
- 	if (PageHighMem(p))
- 		return 0;
- 
--	switch (c_state) {
--	case tt_cached:
--		return set_pages_wb(p, 1);
--	case tt_wc:
--	    return set_memory_wc((unsigned long) page_address(p), 1);
--	default:
--		return set_pages_uc(p, 1);
-+	if (get_page_memtype(p) != -1) {
-+		/* p isn't in the default caching state, set it to
-+		 * writeback first to free its current memtype. */
-+
-+		ret = set_pages_wb(p, 1);
-+		if (ret)
-+			return ret;
- 	}
-+
-+	if (c_state == tt_wc)
-+		ret = set_memory_wc((unsigned long) page_address(p), 1);
-+	else if (c_state == tt_uncached)
-+		ret = set_pages_uc(p, 1);
-+
-+	return ret;
- }
- #else /* CONFIG_X86 */
- static inline int ttm_tt_set_page_caching(struct page *p,
--- 
-1.6.4.4
+VGhpcyBlbmFibGVzIHN0cmVhbW91dCBmdW5jdGlvbmFsaXR5LgoKU2lnbmVkLW9mZi1ieTogTWFy
+Y2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0PgotLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252NTBfZ3JhcGguYyB8ICAgIDIgKy0KIDEgZmlsZXMgY2hhbmdlZCwgMSBpbnNl
+cnRpb25zKCspLCAxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252NTBfZ3JhcGguYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JhcGgu
+YwppbmRleCA4MDU5NzQwLi4zMTcxYzJlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9udjUwX2dyYXBoLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmFw
+aC5jCkBAIC03Miw3ICs3Miw3IEBAIG52NTBfZ3JhcGhfaW5pdF9yZWdzX19udihzdHJ1Y3QgZHJt
+X2RldmljZSAqZGV2KQogCW52X3dyMzIoZGV2LCAweDQwMDgwNCwgMHhjMDAwMDAwMCk7CiAJbnZf
+d3IzMihkZXYsIDB4NDA2ODAwLCAweGMwMDAwMDAwKTsKIAludl93cjMyKGRldiwgMHg0MDBjMDQs
+IDB4YzAwMDAwMDApOwotCW52X3dyMzIoZGV2LCAweDQwMTgwNCwgMHhjMDAwMDAwMCk7CisJbnZf
+d3IzMihkZXYsIDB4NDAxODAwLCAweGMwMDAwMDAwKTsKIAludl93cjMyKGRldiwgMHg0MDUwMTgs
+IDB4YzAwMDAwMDApOwogCW52X3dyMzIoZGV2LCAweDQwMjAwMCwgMHhjMDAwMDAwMCk7CiAKLS0g
+CjEuNi40LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
