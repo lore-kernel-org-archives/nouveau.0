@@ -1,11 +1,15 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH] drm/nv50: Fix typo in PGRAPH initialisation.
-Date: Tue, 12 Jan 2010 18:21:56 +0000
-Message-ID: <1263320516-27382-1-git-send-email-koriakin@0x04.net>
+From: Matthew Garrett <mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org>
+Subject: Re: [Discussion] User controls for PowerManagement
+Date: Tue, 12 Jan 2010 20:59:27 +0000
+Message-ID: <20100112205927.GA4431@srcf.ucam.org>
+References: <1262900664.4b4655b8c25cc@netmail.leidenuniv.nl>
+	<20100110123340.7840da75@daedalus.pq.iki.fi>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20100110123340.7840da75-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,22 +19,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Cc: r.spliet-+WoPDYjVzZevezkx17PYy4RWq/SkRNHw@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBlbmFibGVzIHN0cmVhbW91dCBmdW5jdGlvbmFsaXR5LgoKU2lnbmVkLW9mZi1ieTogTWFy
-Y2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0PgotLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L252NTBfZ3JhcGguYyB8ICAgIDIgKy0KIDEgZmlsZXMgY2hhbmdlZCwgMSBpbnNl
-cnRpb25zKCspLCAxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252NTBfZ3JhcGguYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JhcGgu
-YwppbmRleCA4MDU5NzQwLi4zMTcxYzJlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9udjUwX2dyYXBoLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmFw
-aC5jCkBAIC03Miw3ICs3Miw3IEBAIG52NTBfZ3JhcGhfaW5pdF9yZWdzX19udihzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2KQogCW52X3dyMzIoZGV2LCAweDQwMDgwNCwgMHhjMDAwMDAwMCk7CiAJbnZf
-d3IzMihkZXYsIDB4NDA2ODAwLCAweGMwMDAwMDAwKTsKIAludl93cjMyKGRldiwgMHg0MDBjMDQs
-IDB4YzAwMDAwMDApOwotCW52X3dyMzIoZGV2LCAweDQwMTgwNCwgMHhjMDAwMDAwMCk7CisJbnZf
-d3IzMihkZXYsIDB4NDAxODAwLCAweGMwMDAwMDAwKTsKIAludl93cjMyKGRldiwgMHg0MDUwMTgs
-IDB4YzAwMDAwMDApOwogCW52X3dyMzIoZGV2LCAweDQwMjAwMCwgMHhjMDAwMDAwMCk7CiAKLS0g
-CjEuNi40LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+The real question is what you want to be controlling. The two factors 
+that we can actually influence are voltage and frequency - and on some 
+cards we're limited to frequency. Everything else is then constrained by 
+that choice. So the only thing that it makes sense to expose to 
+userspace here is the frequency. As others have suggested, policy is 
+probably best described in terms of either performance (fixed maximum 
+frequency) or powersave (ondemand frequency shifting).
+
+That's not to say that there aren't other constraints people may want to 
+impose, but they're orthogonal. A user may want to stop their GPU from 
+running at more than a certain temperature. That can be achieved by 
+leaving this interface as is, but hooking it into the kernel thermal 
+zone code. The user can then set a temperature limit and the kernel will 
+automatically slow the chip down whenever it gets near that temperature. 
+Since this is effectively a proxy for fan speed, that also gets catered 
+for.
+
+So I think a general policy knob (like scaling_cur_governor in cpufreq) 
+ought to be sufficient here, possibly along with an indication of the 
+instantaneous frequency because some people seem to like that kind of 
+thing. Anything else sounds like overengineering.
+
+-- 
+Matthew Garrett | mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org
