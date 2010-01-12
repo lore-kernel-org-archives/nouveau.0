@@ -1,7 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [mesa PATCH] nv50: fix memory leak on nv50_pc free
-Date: Tue, 12 Jan 2010 15:42:27 +0100
-Message-ID: <20100112144227.GF2984@joi.lan>
+Subject: [mesa PATCH] nv50: fix 2 off by one memory leaks
+ (nv50_miptree_level->image_offset)
+Date: Tue, 12 Jan 2010 15:43:03 +0100
+Message-ID: <20100112144303.GG2984@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -20,24 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [mesa PATCH] nv50: fix memory leak on nv50_pc free
+Subject: [mesa PATCH] nv50: fix 2 off by one memory leaks (nv50_miptree_level->image_offset)
 
 ---
- src/gallium/drivers/nv50/nv50_program.c |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+ src/gallium/drivers/nv50/nv50_miptree.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/src/gallium/drivers/nv50/nv50_program.c b/src/gallium/drivers/nv50/nv50_program.c
-index e16fa47..069f815 100644
---- a/src/gallium/drivers/nv50/nv50_program.c
-+++ b/src/gallium/drivers/nv50/nv50_program.c
-@@ -3622,6 +3622,8 @@ free_nv50_pc(struct nv50_pc *pc)
- 		FREE(pc->attr);
- 	if (pc->temp)
- 		FREE(pc->temp);
-+	if (pc->insn_pos)
-+		FREE(pc->insn_pos);
+diff --git a/src/gallium/drivers/nv50/nv50_miptree.c b/src/gallium/drivers/nv50/nv50_miptree.c
+index 3f1edf0..cecb1ef 100644
+--- a/src/gallium/drivers/nv50/nv50_miptree.c
++++ b/src/gallium/drivers/nv50/nv50_miptree.c
+@@ -145,7 +145,7 @@ nv50_miptree_create(struct pipe_screen *pscreen, const struct pipe_texture *tmp)
+ 				  mt->level[0].tile_mode, tile_flags,
+ 				  &mt->base.bo);
+ 	if (ret) {
+-		for (l = 0; l < pt->last_level; ++l)
++		for (l = 0; l <= pt->last_level; ++l)
+ 			FREE(mt->level[l].image_offset);
+ 		FREE(mt);
+ 		return NULL;
+@@ -188,7 +188,7 @@ nv50_miptree_destroy(struct pipe_texture *pt)
+ 	struct nv50_miptree *mt = nv50_miptree(pt);
+ 	unsigned l;
  
- 	FREE(pc);
- }
+-	for (l = 0; l < pt->last_level; ++l)
++	for (l = 0; l <= pt->last_level; ++l)
+ 		FREE(mt->level[l].image_offset);
+ 
+ 	nouveau_bo_ref(NULL, &mt->base.bo);
 -- 
 1.6.6.rc3
