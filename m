@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
-Date: Wed, 13 Jan 2010 11:51:01 -0800 (PST)
-Message-ID: <20100113195101.A26261300B8@annarchy.freedesktop.org>
+Date: Wed, 13 Jan 2010 12:34:40 -0800 (PST)
+Message-ID: <20100113203440.779331300B8@annarchy.freedesktop.org>
 References: <bug-25966-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,29 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25966
 
 
 
---- Comment #5 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2010-01-13 11:50:59 PST ---
-(In reply to comment #2)
-> Created an attachment (id=32615)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32615) [details]
-> kernel log
-> 
-> Note that :
-> - nouveaufb from vesafb doesn't work
-> - I use a 2.6.31-1-686 kernel with out-of-tree build
-
-nouveaufb binds into fb1 instead of fb0, so the hand-over is not working. I
-guess you have too old kernel to have the vesafb hand-over fixes. It was
-vesafb, that needed fixing.
-
-Also, no need to test the non-KMS mode anymore. The only way is KMS now.
-
-Furthermore, you seem to have proprietary remnants in the system:
-(II) Loading /usr/lib/xorg/modules/extensions/libglx.so
-(II) Module glx: vendor="NVIDIA Corporation"
-...
-(EE) Failed to initialize GLX extension (Compatible NVIDIA X driver not found)
-
-I wonder if that triggers noaccel mode... maybe not.
+--- Comment #6 from Matthieu CASTET <castet.matthieu-GANU6spQydw@public.gmane.org>  2010-01-13 12:34:38 PST ---
+just in case I will redo test, with a new version and with the correct libglx
 
 
 -- 
