@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25948] X don't start first time,
-	and dies on logout from kde
-Date: Wed, 13 Jan 2010 02:00:04 -0800 (PST)
-Message-ID: <20100113100004.C72681300E6@annarchy.freedesktop.org>
-References: <bug-25948-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25938] black screen on the iMac powerpc using nouveau
+Date: Wed, 13 Jan 2010 02:45:20 -0800 (PST)
+Message-ID: <20100113104520.E147E1300B1@annarchy.freedesktop.org>
+References: <bug-25938-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25948-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25938-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +20,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25948
-
-
-Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=25938
 
 
 
 
---- Comment #1 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-13 02:00:03 PST ---
-After upgrading to xserver 1.7.4 with xorg 7.5 from debian unstable repository
-and latest linux kernel 2.6.33-rc4, libdrm from git and nouveau from git -
-login works fine.
+
+--- Comment #1 from Andrea Tacconi <tacconet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org>  2010-01-13 02:45:19 PST ---
+Created an attachment (id=32608)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32608)
+dmesg TV-1 on
+
+dmesg TV-1 on.
+Wrong load detection and framebuffer console resolution switch to 720x576
 
 
 -- 
