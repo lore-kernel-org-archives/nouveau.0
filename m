@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
-Date: Wed, 13 Jan 2010 09:30:32 -0800 (PST)
-Message-ID: <20100113173032.44A161300B1@annarchy.freedesktop.org>
+Date: Wed, 13 Jan 2010 09:32:12 -0800 (PST)
+Message-ID: <20100113173212.9E09F1300B1@annarchy.freedesktop.org>
 References: <bug-25966-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25966
 
 
 
---- Comment #2 from Matthieu CASTET <castet.matthieu-GANU6spQydw@public.gmane.org>  2010-01-13 09:30:26 PST ---
-Created an attachment (id=32615)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32615)
-kernel log
-
-Note that :
-- nouveaufb from vesafb doesn't work
-- I use a 2.6.31-1-686 kernel with out-of-tree build
-- I don't got interrupt while in X (I may have some at startup)
+--- Comment #3 from Matthieu CASTET <castet.matthieu-GANU6spQydw@public.gmane.org>  2010-01-13 09:32:12 PST ---
+Created an attachment (id=32616)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32616)
+x log
 
 
 -- 
