@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25823] Not possible to create second X session
-Date: Wed, 13 Jan 2010 14:24:23 -0800 (PST)
-Message-ID: <20100113222423.47AD91300D1@annarchy.freedesktop.org>
+Date: Wed, 13 Jan 2010 14:25:34 -0800 (PST)
+Message-ID: <20100113222534.A967E1300D1@annarchy.freedesktop.org>
 References: <bug-25823-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,19 +27,13 @@ Achim Schaefer <achim_schaefer-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |achim_schaefer-Mmb7MZpHnFY@public.gmane.org
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+             Status|RESOLVED                    |CLOSED
 
 
 
 
---- Comment #2 from Achim Schaefer <achim_schaefer-Mmb7MZpHnFY@public.gmane.org>  2010-01-13 14:24:22 PST ---
-I just upgraded to the latest Xserver from debian and linux 2.6.33-rc4 as well
-drm and vouveau driver from git.
-=> now it works.
-Don't konw which software caused the trouble, but with this configuration
-everything is fine (and fast!)
+--- Comment #3 from Achim Schaefer <achim_schaefer-Mmb7MZpHnFY@public.gmane.org>  2010-01-13 14:25:33 PST ---
+resolved by mzself, so close it as well
 
 
 -- 
