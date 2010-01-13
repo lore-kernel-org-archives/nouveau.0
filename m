@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25938] black screen on the iMac powerpc using nouveau
-Date: Wed, 13 Jan 2010 02:45:20 -0800 (PST)
-Message-ID: <20100113104520.E147E1300B1@annarchy.freedesktop.org>
+Date: Wed, 13 Jan 2010 02:46:50 -0800 (PST)
+Message-ID: <20100113104650.AA4B72DC105@annarchy.freedesktop.org>
 References: <bug-25938-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,31 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25938
 
 
 
---- Comment #1 from Andrea Tacconi <tacconet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org>  2010-01-13 02:45:19 PST ---
-Created an attachment (id=32608)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32608)
-dmesg TV-1 on
+--- Comment #2 from Andrea Tacconi <tacconet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org>  2010-01-13 02:46:49 PST ---
+the problem of black screen seems to be resolved adding the following patch:
+Adding nv18 card identifier to Powerbook specific quirks
+in nouveau kernel module:
+diff nouveau_bios.c.old nouveau_bios.c
+3199c3199
+<       if (script == LVDS_RESET && ((dev->pci_device & 0xffff) == 0x0179 ||
+(dev->pci_device & 0xffff) == 0x0329))
+---
+> 	if (script == LVDS_RESET && ((dev->pci_device & 0xffff) == 0x0179 ||(dev->pci_device & 0xffff) == 0x0189 || (dev->pci_device & 0xffff) == 0x0329))
 
-dmesg TV-1 on.
-Wrong load detection and framebuffer console resolution switch to 720x576
+same as in xorg driver:
+
+diff nv_bios.c.old nv_bios.c
+2592c2592
+<       if (script == LVDS_RESET && ((pNv->Chipset & 0xffff) == 0x0179 ||
+(pNv->Chipset & 0xffff) == 0x0329))
+---
+> 	if (script == LVDS_RESET && ((pNv->Chipset & 0xffff) == 0x0179 ||(pNv->Chipset & 0xffff) == 0x0189 || (pNv->Chipset & 0xffff) == 0x0329))
+
+Now both framebuffer console and Xorg work.
+
+But there is another problem with TV-out:
+When turned on the TV output is in contrast with the LVDS output and set the
+screen resolution of 720x576 on the console framebuffer.
 
 
 -- 
