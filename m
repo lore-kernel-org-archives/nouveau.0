@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25938] black screen on the iMac powerpc using nouveau
-Date: Wed, 13 Jan 2010 06:50:32 -0800 (PST)
-Message-ID: <20100113145032.2BACC1300EB@annarchy.freedesktop.org>
-References: <bug-25938-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26028] New: Display corruption at startup
+Date: Wed, 13 Jan 2010 08:32:01 -0800 (PST)
+Message-ID: <bug-26028-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25938-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,53 +18,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25938
+http://bugs.freedesktop.org/show_bug.cgi?id=26028
+
+           Summary: Display corruption at startup
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: northfuse-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-
-
-
---- Comment #5 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-01-13 06:50:31 PST ---
-(In reply to comment #2)
-> the problem of black screen seems to be resolved adding the following patch:
-> Adding nv18 card identifier to Powerbook specific quirks
-> in nouveau kernel module:
-> diff nouveau_bios.c.old nouveau_bios.c
-> 3199c3199
-> <       if (script == LVDS_RESET && ((dev->pci_device & 0xffff) == 0x0179 ||
-> (dev->pci_device & 0xffff) == 0x0329))
-> ---
-> >       if (script == LVDS_RESET && ((dev->pci_device & 0xffff) == 0x0179 ||(dev->pci_device & 0xffff) == 0x0189 || (dev->pci_device & 0xffff) == 0x0329))
-> 
-
-Would you mind sending a properly formatted, Signed-off-by patch with this to
-the ML? (You might want to read Documentation/SubmittingPatches in the kernel
-tree first).
-
-> same as in xorg driver:
-> 
-> diff nv_bios.c.old nv_bios.c
-> 2592c2592
-> <       if (script == LVDS_RESET && ((pNv->Chipset & 0xffff) == 0x0179 ||
-> (pNv->Chipset & 0xffff) == 0x0329))
-> ---
-> >       if (script == LVDS_RESET && ((pNv->Chipset & 0xffff) == 0x0179 ||(pNv->Chipset & 0xffff) == 0x0189 || (pNv->Chipset & 0xffff) == 0x0329))
-> 
-
-No need to do this anymore, this code has just been nuked.
-
-> Now both framebuffer console and Xorg work.
-> 
-> But there is another problem with TV-out:
-> When turned on the TV output is in contrast with the LVDS output and set the
-> screen resolution of 720x576 on the console framebuffer.
-> 
-
-These integrated apple connectors aren't really supported yet, an mmiotrace
-from the blob would be useful (See [1] or the docs in the kernel tree for
-instructions).
-
-[1] http://nouveau.freedesktop.org/wiki/MmioTrace
+I have a dual boot system - windows and linux.  When I reboot from windows and
+enter into linux, when the video card starts up, it shows the last (corrupted)
+display from my windows system.  I've never seen this before with any drivers.
 
 
 -- 
