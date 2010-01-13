@@ -1,11 +1,14 @@
-From: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nv40 mpeg2 video decode
-Date: Tue, 12 Jan 2010 22:02:56 -0500
-Message-ID: <20100112220256.18149b3e@amd64linuxmsi.rentzhouse.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25948] X don't start first time,
+	and dies on logout from kde
+Date: Wed, 13 Jan 2010 02:00:04 -0800 (PST)
+Message-ID: <20100113100004.C72681300E6@annarchy.freedesktop.org>
+References: <bug-25948-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-25948-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,17 +21,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
+http://bugs.freedesktop.org/show_bug.cgi?id=25948
 
-I have been working on a kernel and a user layer for the nv40 mpeg2 video decoding hardware:
-* The decode hw accepts commands written to a fifo along with a set of registers for firing (put) and queries (get).
-* The fifo can be mapped in vram or agp (though, agp isn't working right now).
-* The fifo does not support dma jumps and such like the 3d fifo.
 
-Well, I have some questions about how to implement this in nouveau:
+Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-* Mapping decode fifo in user-space versus kernel-space - My current version has the fifo being mapped from the kernel (I copied the 3d fifo simple version pretty much).  I could do this in the kernel or userspace but it would probably be faster in the kernel.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
-* Fencing - Each decode cmd sequence can emit a fence in a similar fashion to the 3d fifo.  So, you set the fence sequence number after a set of cmds.  You then check a register to see when the hw is done with a set of cmds.  I just don't see an easy of implementing this since the current fence mechanism only works for the 3d fifo.    
 
-Jimmy Rentz
+
+
+--- Comment #1 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-13 02:00:03 PST ---
+After upgrading to xserver 1.7.4 with xorg 7.5 from debian unstable repository
+and latest linux kernel 2.6.33-rc4, libdrm from git and nouveau from git -
+login works fine.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
