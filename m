@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25938] black screen on the iMac powerpc using nouveau
-Date: Thu, 14 Jan 2010 01:51:42 -0800 (PST)
-Message-ID: <20100114095142.E64571300C9@annarchy.freedesktop.org>
+Date: Thu, 14 Jan 2010 06:13:11 -0800 (PST)
+Message-ID: <20100114141311.C3EDD13006F@annarchy.freedesktop.org>
 References: <bug-25938-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,34 +26,39 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25938
 
 
 
---- Comment #6 from Andrea Tacconi <tacconet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org>  2010-01-14 01:51:42 PST ---
-From: Andrea Tacconi <tacconet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org>
+--- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-01-14 06:13:11 PST ---
+(In reply to comment #6)
+> From: Andrea Tacconi <tacconet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org>
+> 
+> Subject: [PATCH] drm/nouveau: add NV18 device id to
+> call_lvds_manufacturer_script 
+> 
+> This fixes imac black screen (NV18 card)  
+> 
+> Signed-off-by: Andrea Tacconi <tacconet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org>
+> ---
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c
+> b/drivers/gpu/drm/nouveau/nouveau_bios.c
+> index ba14397..e24f2a8 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_bios.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+> @@ -3196,7 +3196,7 @@ static int call_lvds_manufacturer_script(struct
+> drm_device *dev, struct dcb_entr
+>         }
+>  #ifdef __powerpc__
+>         /* Powerbook specific quirks */
+> -       if (script == LVDS_RESET && ((dev->pci_device & 0xffff) == 0x0179 ||
+> (dev->pci_device & 0xffff) == 0x0329))
+> +       if (script == LVDS_RESET && ((dev->pci_device & 0xffff) == 0x0179 ||
+> (dev->pci_device & 0xffff) == 0x0189 || (dev->pci_device & 0xffff) == 0x0329))
+>                 nv_write_tmds(dev, dcbent->or, 0, 0x02, 0x72);
+>         if ((dev->pci_device & 0xffff) == 0x0179 || (dev->pci_device & 0xffff)
+> == 0x0189 || (dev->pci_device & 0xffff) == 0x0329) {
+>                 if (script == LVDS_PANEL_ON) {
+> 
 
-Subject: [PATCH] drm/nouveau: add NV18 device id to
-call_lvds_manufacturer_script 
-
-This fixes imac black screen (NV18 card)  
-
-Signed-off-by: Andrea Tacconi <tacconet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org>
----
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c
-b/drivers/gpu/drm/nouveau/nouveau_bios.c
-index ba14397..e24f2a8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-@@ -3196,7 +3196,7 @@ static int call_lvds_manufacturer_script(struct
-drm_device *dev, struct dcb_entr
-        }
- #ifdef __powerpc__
-        /* Powerbook specific quirks */
--       if (script == LVDS_RESET && ((dev->pci_device & 0xffff) == 0x0179 ||
-(dev->pci_device & 0xffff) == 0x0329))
-+       if (script == LVDS_RESET && ((dev->pci_device & 0xffff) == 0x0179 ||
-(dev->pci_device & 0xffff) == 0x0189 || (dev->pci_device & 0xffff) == 0x0329))
-                nv_write_tmds(dev, dcbent->or, 0, 0x02, 0x72);
-        if ((dev->pci_device & 0xffff) == 0x0179 || (dev->pci_device & 0xffff)
-== 0x0189 || (dev->pci_device & 0xffff) == 0x0329) {
-                if (script == LVDS_PANEL_ON) {
+Thanks, pushed, but please, next time you send a patch use the mailing list,
+bugzilla adds some gratuitous line breaks and I had to do it manually.
 
 
 -- 
