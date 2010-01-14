@@ -1,7 +1,7 @@
 From: Martin Wolters <sirdzstic-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
-Subject: xf86-video-nouveau compile error and fix
-Date: Thu, 14 Jan 2010 06:27:28 +0100
-Message-ID: <4B4EAB40.3050700@gmail.com>
+Subject: Fwd: xf86-video-nouveau compile error and fix
+Date: Thu, 14 Jan 2010 06:34:15 +0100
+Message-ID: <4B4EACD7.6000606@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
