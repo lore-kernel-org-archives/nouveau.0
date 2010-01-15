@@ -1,10 +1,13 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: More on GART vertex buffer corruption
-Date: Fri, 15 Jan 2010 05:48:56 +0100
-Message-ID: <ff13bc9a1001142048wa3219c3v2ee1c6a123ce301d@mail.gmail.com>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nv40 mpeg2 video decode
+Date: Fri, 15 Jan 2010 00:11:24 -0500
+Message-ID: <586c2acd1001142111g136f01cbtea9bd268a46526f4@mail.gmail.com>
+References: <20100112220256.18149b3e@amd64linuxmsi.rentzhouse.lan>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=00151747373aa8a129047d2cb8e1
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20100112220256.18149b3e-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,153 +17,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---00151747373aa8a129047d2cb8e1
-Content-Type: text/plain; charset=ISO-8859-1
+On Tue, Jan 12, 2010 at 10:02 PM, Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> Hello,
+>
+> I have been working on a kernel and a user layer for the nv40 mpeg2 video=
+ decoding hardware:
+> * The decode hw accepts commands written to a fifo along with a set of re=
+gisters for firing (put) and queries (get).
+> * The fifo can be mapped in vram or agp (though, agp isn't working right =
+now).
+> * The fifo does not support dma jumps and such like the 3d fifo.
+>
+> Well, I have some questions about how to implement this in nouveau:
+>
+> * Mapping decode fifo in user-space versus kernel-space - My current vers=
+ion has the fifo being mapped from the kernel (I copied the 3d fifo simple =
+version pretty much). =A0I could do this in the kernel or userspace but it =
+would probably be faster in the kernel.
 
-I looked a bit more into the problem of vertex corruption with GART
-vertex buffers that disappears putting the buffers in VRAM that I'm
-experiencing on my card.
-The system I'm seeing this on is a Dell Inspiron 9400 notebook with a
-GeForce Go 7900 GS on a PCI Express Intel i945 chipset.
+If it's faster in kernel that would probably be best.
 
-First, I've looked into the behavior of the nVidia driver:
-1. On all NV3x and NV4x traces, and my system, vertex buffers are
-always put in VRAM (renouveau uses GL_STATIC_DRAW)
-2. On my system all vertex object usage flags still cause the vertex
-buffer to be put in VRAM
-3. On my system GL_NV_vertex_range causes the use of a GART vertex
-buffer, and seems the only way to do so
+> * Fencing - Each decode cmd sequence can emit a fence in a similar fashio=
+n to the 3d fifo. =A0So, you set the fence sequence number after a set of c=
+mds. =A0You then check a register to see when the hw is done with a set of =
+cmds. =A0I just don't see an easy of implementing this since the current fe=
+nce mechanism only works for the 3d fifo.
 
-Note that statement 2 may not be true for all NV3x/NV4x cards.
-It would be interesting to see the output of the attached renouveau
-tests on other cards.
-
-glFlushVertexArrayRangeNV does the following:
-# 14 NOPs
-00043710  size 1, subchannel 1 (0xbeef3097),offset 0x1710,increment
-00000000    NV40TCL[0x1710/4]
-00043d6c  size 1, subchannel 1 (0xbeef3097),offset 0x1d6c,increment
-00000580    NV40TCL[0x1d6c/4]
-00043d70  size 1, subchannel 1 (0xbeef3097),offset 0x1d70,increment
-0000000b    NV40TCL[0x1d70/4]
-00042104  size 1, subchannel 1 (0xbeef3097),offset 0x0104,increment
-00000000    NV40TCL.NOTIFY
-00042100  size 1, subchannel 1 (0xbeef3097),offset 0x0100,increment
-00000000    NV40TCL.NOP
-And probably waits for the fence afterwards.
-
-0x1710 does something relating to vertex buffer caching.
-0x1d6c and 0x1d70 are a 3D engine fence emission.
-
-Adding 0x1710 and waiting for our usual fences both before and after
-draw_elements did not fix the problem.
-I haven't tried using the 3D fencing mechanism.
-
-It seems we might be better off always putting vertex buffers in VRAM,
-since the blob does so and while writing to them might be a bit
-slower, the required synchronization may be even worse.
-
-I attached a renouveau test for GL_NV_vertex_array_range and one for
-all the glBufferData flags. The quality of the code is quite low but
-it should do the job.
-
---00151747373aa8a129047d2cb8e1
-Content-Type: text/x-csrc; charset=US-ASCII; name="renouveau-tests.c"
-Content-Disposition: attachment; filename="renouveau-tests.c"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_g4ghmt680
-
-dm9pZCB0ZXN0X252X3ZlcnRleF9hcnJheV9yYW5nZSh2b2lkKQp7CiNpZm5kZWYgR0xfTlZfdmVy
-dGV4X2FycmF5X3JhbmdlCglwcmludGYoIiMgU29ycnksIG5vIEdMX05WX3ZlcnRleF9hcnJheV9y
-YW5nZVxuIik7CiNlbHNlCgljb25zdCBjaGFyICpleHRlbnNpb25zID0gKGNvbnN0IGNoYXIgKily
-ZWdsLkdldFN0cmluZyhHTF9FWFRFTlNJT05TKTsKCWlmICghc3Ryc3RyKGV4dGVuc2lvbnMsICJH
-TF9OVl92ZXJ0ZXhfYXJyYXlfcmFuZ2UiKSkgewoJCWZwcmludGYoc3RkZXJyLCJObyBHTF9OVl92
-ZXJ0ZXhfYXJyYXlfcmFuZ2UgZXh0ZW5zaW9uLlxuIik7CgkJcmV0dXJuOwoJfQoKCXZvaWQgKiAo
-ICogZ2xYQWxsb2NhdGVNZW1vcnlOVikgKEdMc2l6ZWkgc2l6ZSwgR0xmbG9hdCByZWFkZnJlcSwg
-R0xmbG9hdCB3cml0ZWZyZXEsIEdMZmxvYXQgcHJpb3JpdHkpID0gU0RMX0dMX0dldFByb2NBZGRy
-ZXNzKCJnbFhBbGxvY2F0ZU1lbW9yeU5WIik7CglHTGZsb2F0KiBtZW1vcnkgPSBnbFhBbGxvY2F0
-ZU1lbW9yeU5WKDY1NTM2LCAwLCAwLCAwLjVmKTsKCWlmKCFtZW1vcnkpCgl7CgkJZnByaW50Zihz
-dGRlcnIsImdsWEFsbG9jYXRlTWVtb3J5TlYgZmFpbGVkLlxuIik7CgkJcmV0dXJuOwoJfQoJCglU
-RVNUX1BST0xPR1VFOwoJcHJpbnRmKCIjIFRlc3RpbmcgR0xfTlZfdmVydGV4X2FycmF5X3Jhbmdl
-XG4iKTsKCiNkZWZpbmUgTlVNX1BSSU1JVElWRVMgIDgKI2RlZmluZSBOVU1fVkVSVElDRVMgICAg
-KDQqTlVNX1BSSU1JVElWRVMpCiNkZWZpbmUgTlVNX0NMSUVOVFNUQVRFIDYKCUdMZmxvYXQgdnR4
-ZGF0YVtOVU1fVkVSVElDRVMqTlVNX0NMSUVOVFNUQVRFXTsKCQoJZ2xWZXJ0ZXhBcnJheVJhbmdl
-TlYoc2l6ZW9mKHZ0eGRhdGEpLCBtZW1vcnkpOwoJbWVtY3B5KG1lbW9yeSwgdnR4ZGF0YSwgc2l6
-ZW9mKHZ0eGRhdGEpKTsKCglkdW1wX2JlZm9yZSgpOwoKCXJlZ2wuRW5hYmxlQ2xpZW50U3RhdGUo
-R0xfVkVSVEVYX0FSUkFZX1JBTkdFX05WKTsKCXJlZ2wuRW5hYmxlQ2xpZW50U3RhdGUoR0xfVkVS
-VEVYX0FSUkFZKTsKCXJlZ2wuRW5hYmxlQ2xpZW50U3RhdGUoR0xfQ09MT1JfQVJSQVkpOwoJLy9y
-ZWdsLkVuYWJsZUNsaWVudFN0YXRlKEdMX1NFQ09OREFSWV9DT0xPUl9BUlJBWSk7CgkvL3JlZ2wu
-RW5hYmxlQ2xpZW50U3RhdGUoR0xfVEVYVFVSRV9DT09SRF9BUlJBWSk7CgkvL3JlZ2wuRW5hYmxl
-Q2xpZW50U3RhdGUoR0xfTk9STUFMX0FSUkFZKTsKCS8vcmVnbC5FbmFibGVDbGllbnRTdGF0ZShH
-TF9GT0dfQ09PUkRfQVJSQVkpOwoKCXJlZ2wuVmVydGV4UG9pbnRlcigzLCBHTF9GTE9BVCwgMCwg
-TlVMTCk7CglyZWdsLkNvbG9yUG9pbnRlciAoMywgR0xfRkxPQVQsIDAsIE5VTEwpOwoJLy9yZWds
-LlNlY29uZGFyeUNvbG9yUG9pbnRlciAoMywgR0xfRkxPQVQsIDAsIE5VTEwpOwoJLy9yZWdsLlRl
-eENvb3JkUG9pbnRlciAoNCwgR0xfRkxPQVQsIDAsIE5VTEwpOwoJLy9yZWdsLk5vcm1hbFBvaW50
-ZXIgKEdMX0ZMT0FULCAwLCBOVUxMKTsKCS8vcmVnbC5Gb2dDb29yZFBvaW50ZXIgKEdMX0ZMT0FU
-LCAwLCBOVUxMKTsKCWR1bXBfYWZ0ZXIoMCk7CgppbnQgaTsKZm9yKGkgPSAwOyBpIDwgMzsgKytp
-KQp7CglwcmludGYoIiMgRHJhd2luZ1xuIik7CglkdW1wX2JlZm9yZSgpOwoKCXJlZ2wuRHJhd0Fy
-cmF5cyhHTF9UUklBTkdMRVMsIDAsIE5VTV9WRVJUSUNFUyk7CgoJZHVtcF9hZnRlcigwKTsKCglw
-cmludGYoIiMgZ2xGbHVzaFZlcnRleEFycmF5UmFuZ2VOVlxuIik7CgkKCWR1bXBfYmVmb3JlKDAp
-OwoJZ2xGbHVzaFZlcnRleEFycmF5UmFuZ2VOVigpOwoJZHVtcF9hZnRlcigwKTsKfQoJCglyZWds
-LkRpc2FibGVDbGllbnRTdGF0ZShHTF9WRVJURVhfQVJSQVkpOwoJcmVnbC5EaXNhYmxlQ2xpZW50
-U3RhdGUoR0xfQ09MT1JfQVJSQVkpOwoJcmVnbC5EaXNhYmxlQ2xpZW50U3RhdGUoR0xfVkVSVEVY
-X0FSUkFZX1JBTkdFX05WKTsKCS8vcmVnbC5EaXNhYmxlQ2xpZW50U3RhdGUoR0xfU0VDT05EQVJZ
-X0NPTE9SX0FSUkFZKTsKCS8vcmVnbC5EaXNhYmxlQ2xpZW50U3RhdGUoR0xfVEVYVFVSRV9DT09S
-RF9BUlJBWSk7CgkvL3JlZ2wuRGlzYWJsZUNsaWVudFN0YXRlKEdMX05PUk1BTF9BUlJBWSk7Cgkv
-L3JlZ2wuRGlzYWJsZUNsaWVudFN0YXRlKEdMX0ZPR19DT09SRF9BUlJBWSk7CgoJZ2xWZXJ0ZXhB
-cnJheVJhbmdlTlYoMCwgMCk7CglURVNUX0VQSUxPR1VFOwojZW5kaWYKfQoKdm9pZCB0ZXN0X2Fy
-Yl92ZXJ0ZXhfYnVmZmVyX29iamVjdF9pbmRleGVkKHZvaWQpCnsKI2lmbmRlZiBHTF9BUkJfdmVy
-dGV4X2J1ZmZlcl9vYmplY3QKCXByaW50ZigiIyBTb3JyeSwgbm8gR0xfQVJCX3ZlcnRleF9idWZm
-ZXJfb2JqZWN0XG4iKTsKI2Vsc2UKCWNvbnN0IGNoYXIgKmV4dGVuc2lvbnMgPSAoY29uc3QgY2hh
-ciAqKXJlZ2wuR2V0U3RyaW5nKEdMX0VYVEVOU0lPTlMpOwoJaWYgKCFzdHJzdHIoZXh0ZW5zaW9u
-cywgIkdMX0FSQl92ZXJ0ZXhfYnVmZmVyX29iamVjdCIpKSB7CgkJZnByaW50ZihzdGRlcnIsIk5v
-IEdMX0FSQl92ZXJ0ZXhfYnVmZmVyX29iamVjdCBleHRlbnNpb24uXG4iKTsKCQlyZXR1cm47Cgl9
-CgoJVEVTVF9QUk9MT0dVRTsKY29uc3QgY2hhciogZnJlcXNbXSA9IHsiU1RSRUFNIiwgIlNUQVRJ
-QyIsICJEWU5BTUlDIiwgMH07CmNvbnN0IGNoYXIqIG5hdHNbXSA9IHsiRFJBVyIsICJSRUFEIiwg
-IkNPUFkiLCAwfTsKaW50IGZyZXEsIG5hdDsKZm9yKGZyZXEgPSAwOyBmcmVxIDwgMzsgKytmcmVx
-KQp7CmZvcihuYXQgPSAwOyBuYXQgPCAzOyArK25hdCkKewppbnQgdXNhZ2UgPSAweDg4RTAgKyA0
-ICogZnJlcSArIG5hdDsKCXByaW50ZigiIyBUZXN0aW5nIEFSQl92ZXJ0ZXhfYnVmZmVyX29iamVj
-dCB3aXRoIEdMXyVzXyVzXG4iLCBmcmVxc1tmcmVxXSwgbmF0c1tuYXRdKTsKCiNkZWZpbmUgTlVN
-X1RSSUFOR0xFUyAgIDQwMDAKI2RlZmluZSBOVU1fVkVSVElDRVMgICAgKDQqTlVNX1BSSU1JVElW
-RVMpCgkKCXVpbnQxNl90IHZ0eGRhdGFbTlVNX1ZFUlRJQ0VTKjRdOwoJdWludDE2X3QgaW5kZGF0
-YVtOVU1fVFJJQU5HTEVTKjNdID0geyAwIH07CglHTHVpbnQgIGJ1ZmlkOwoJR0x1aW50ICBpbmRp
-ZDsKCQoKCWR1bXBfYmVmb3JlKCk7CgoJcmVnbC5HZW5CdWZmZXJzQVJCKDEsICZidWZpZCk7Cgly
-ZWdsLkdlbkJ1ZmZlcnNBUkIoMSwgJmluZGlkKTsKCQoJcmVnbC5CaW5kQnVmZmVyQVJCKEdMX0FS
-UkFZX0JVRkZFUl9BUkIsIGJ1ZmlkKTsKCXJlZ2wuQnVmZmVyRGF0YUFSQihHTF9BUlJBWV9CVUZG
-RVJfQVJCLCBzaXplb2YodnR4ZGF0YSksIHZ0eGRhdGEsIHVzYWdlKTsKCQoJcmVnbC5CaW5kQnVm
-ZmVyQVJCKEdMX0VMRU1FTlRfQVJSQVlfQlVGRkVSX0FSQiwgaW5kaWQpOwoJcmVnbC5CdWZmZXJE
-YXRhQVJCKEdMX0VMRU1FTlRfQVJSQVlfQlVGRkVSX0FSQiwgc2l6ZW9mKGluZGRhdGEpLCBpbmRk
-YXRhLCB1c2FnZSk7CgkKCXJlZ2wuRW5hYmxlQ2xpZW50U3RhdGUoR0xfVkVSVEVYX0FSUkFZKTsK
-CS8vcmVnbC5FbmFibGVDbGllbnRTdGF0ZShHTF9DT0xPUl9BUlJBWSk7CgkvL3JlZ2wuRW5hYmxl
-Q2xpZW50U3RhdGUoR0xfU0VDT05EQVJZX0NPTE9SX0FSUkFZKTsKCS8vcmVnbC5FbmFibGVDbGll
-bnRTdGF0ZShHTF9URVhUVVJFX0NPT1JEX0FSUkFZKTsKCS8vcmVnbC5FbmFibGVDbGllbnRTdGF0
-ZShHTF9OT1JNQUxfQVJSQVkpOwoJLy9yZWdsLkVuYWJsZUNsaWVudFN0YXRlKEdMX0ZPR19DT09S
-RF9BUlJBWSk7CgoJcmVnbC5WZXJ0ZXhQb2ludGVyKDQsIEdMX1NIT1JULCAwLCBOVUxMKTsKCS8v
-cmVnbC5Db2xvclBvaW50ZXIgKDMsIEdMX0ZMT0FULCAwLCBOVUxMKTsKCS8vcmVnbC5TZWNvbmRh
-cnlDb2xvclBvaW50ZXIgKDMsIEdMX0ZMT0FULCAwLCBOVUxMKTsKCS8vcmVnbC5UZXhDb29yZFBv
-aW50ZXIgKDQsIEdMX0ZMT0FULCAwLCBOVUxMKTsKCS8vcmVnbC5Ob3JtYWxQb2ludGVyIChHTF9G
-TE9BVCwgMCwgTlVMTCk7CgkvL3JlZ2wuRm9nQ29vcmRQb2ludGVyIChHTF9GTE9BVCwgMCwgTlVM
-TCk7CgoJcmVnbC5EcmF3RWxlbWVudHMoR0xfVFJJQU5HTEVTLCBOVU1fVFJJQU5HTEVTICogMywg
-R0xfVU5TSUdORURfU0hPUlQsIDApOwoKCWR1bXBfYWZ0ZXIoMCk7CgoJcmVnbC5EaXNhYmxlQ2xp
-ZW50U3RhdGUoR0xfVkVSVEVYX0FSUkFZKTsKCXJlZ2wuRGlzYWJsZUNsaWVudFN0YXRlKEdMX0NP
-TE9SX0FSUkFZKTsKCS8vcmVnbC5EaXNhYmxlQ2xpZW50U3RhdGUoR0xfU0VDT05EQVJZX0NPTE9S
-X0FSUkFZKTsKCS8vcmVnbC5EaXNhYmxlQ2xpZW50U3RhdGUoR0xfVEVYVFVSRV9DT09SRF9BUlJB
-WSk7CgkvL3JlZ2wuRGlzYWJsZUNsaWVudFN0YXRlKEdMX05PUk1BTF9BUlJBWSk7CgkvL3JlZ2wu
-RGlzYWJsZUNsaWVudFN0YXRlKEdMX0ZPR19DT09SRF9BUlJBWSk7CgoJcmVnbC5EZWxldGVCdWZm
-ZXJzKDEsICZidWZpZCk7CglyZWdsLkRlbGV0ZUJ1ZmZlcnMoMSwgJmluZGlkKTsKfQp9CglURVNU
-X0VQSUxPR1VFOwojZW5kaWYKfQoK
---00151747373aa8a129047d2cb8e1
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---00151747373aa8a129047d2cb8e1--
+We don't do anything for userspace fencing anymore so whatever you do
+in the kernel doesn't need to reach gallium yet. It can always be
+cleaned up later. Although I forgot to ask, how does the blob handle
+XvMCPutSurface? If it uses pfifo/pgraph to do CSC we would need the
+fencing to be accessible in gallium to coordinate that.
