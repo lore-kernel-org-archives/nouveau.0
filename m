@@ -1,7 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [mesa PATCH] nv50: fix nv50_program->immd memory leak
-Date: Sun, 17 Jan 2010 23:50:16 +0100
-Message-ID: <20100117225016.GD14113@joi.lan>
+Subject: [mesa PATCH] nouveau: fix winsys object leak
+Date: Sun, 17 Jan 2010 23:50:50 +0100
+Message-ID: <20100117225050.GE14113@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -21,20 +21,49 @@ List-Id: nouveau.vger.kernel.org
 
 
 ---
- src/gallium/drivers/nv50/nv50_program.c |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+ src/gallium/drivers/nouveau/nouveau_screen.c       |    2 ++
+ .../winsys/drm/nouveau/drm/nouveau_drm_api.c       |    9 +++++++++
+ 2 files changed, 11 insertions(+), 0 deletions(-)
 
-diff --git a/src/gallium/drivers/nv50/nv50_program.c b/src/gallium/drivers/nv50/nv50_program.c
-index 4111d21..cfe8b48 100644
---- a/src/gallium/drivers/nv50/nv50_program.c
-+++ b/src/gallium/drivers/nv50/nv50_program.c
-@@ -4656,6 +4656,7 @@ nv50_program_destroy(struct nv50_context *nv50, struct nv50_program *p)
+diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c b/src/gallium/drivers/nouveau/nouveau_screen.c
+index 7ebc94e..1ad539d 100644
+--- a/src/gallium/drivers/nouveau/nouveau_screen.c
++++ b/src/gallium/drivers/nouveau/nouveau_screen.c
+@@ -260,6 +260,8 @@ nouveau_screen_init(struct nouveau_screen *screen, struct nouveau_device *dev)
+ void
+ nouveau_screen_fini(struct nouveau_screen *screen)
+ {
++	struct pipe_winsys *ws = screen->base.winsys;
+ 	nouveau_channel_free(&screen->channel);
++	ws->destroy(ws);
+ }
+ 
+diff --git a/src/gallium/winsys/drm/nouveau/drm/nouveau_drm_api.c b/src/gallium/winsys/drm/nouveau/drm/nouveau_drm_api.c
+index 4b2c6a1..39b985c 100644
+--- a/src/gallium/winsys/drm/nouveau/drm/nouveau_drm_api.c
++++ b/src/gallium/winsys/drm/nouveau/drm/nouveau_drm_api.c
+@@ -54,6 +54,14 @@ static struct dri1_api nouveau_dri1_api = {
+ 	nouveau_dri1_front_surface,
+ };
+ 
++static void
++nouveau_drm_destroy_winsys(struct pipe_winsys *s)
++{
++	struct nouveau_winsys *nv_winsys = nouveau_winsys(s);
++	FREE(nv_winsys->pctx);
++	FREE(nv_winsys);
++}
++
+ static struct pipe_screen *
+ nouveau_drm_create_screen(struct drm_api *api, int fd,
+ 			  struct drm_create_screen_arg *arg)
+@@ -105,6 +113,7 @@ nouveau_drm_create_screen(struct drm_api *api, int fd,
+ 		return NULL;
  	}
- 	p->exec_tail = NULL;
- 	p->exec_size = 0;
-+	FREE(p->immd);
+ 	ws = &nvws->base;
++	ws->destroy = nouveau_drm_destroy_winsys;
  
- 	nouveau_bo_ref(NULL, &p->bo);
- 
+ 	nvws->pscreen = init(ws, dev);
+ 	if (!nvws->pscreen) {
 -- 
 1.6.6
