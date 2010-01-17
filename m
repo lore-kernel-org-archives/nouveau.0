@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18286] [nouveau] GeForce 8200 and 8300 not supported
  (10de:0848/0849/C77/MCP77/MCP78S)
-Date: Sat, 16 Jan 2010 21:03:40 -0800 (PST)
-Message-ID: <20100117050340.53C682DC101@annarchy.freedesktop.org>
+Date: Sat, 16 Jan 2010 21:04:43 -0800 (PST)
+Message-ID: <20100117050443.5BF431300D4@annarchy.freedesktop.org>
 References: <bug-18286-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=18286
 
 
 
---- Comment #29 from Stanislav K. <stas_main-JGs/UdohzUI@public.gmane.org>  2010-01-16 21:03:39 PST ---
-Created an attachment (id=32668)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32668)
-Xorg.0.log, nvidia 8200m g
+--- Comment #30 from Stanislav K. <stas_main-JGs/UdohzUI@public.gmane.org>  2010-01-16 21:04:42 PST ---
+Created an attachment (id=32669)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32669)
+nvidia 8200m g bios dump
 
 
 -- 
