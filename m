@@ -1,11 +1,13 @@
 From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH 1/2] nv40: don't crash on empty fragment program
-Date: Sun, 17 Jan 2010 22:35:59 +0100
-Message-ID: <1263764160-8891-1-git-send-email-luca@luca-barbieri.com>
+Subject: [PATCH 2/2] st: don't assert on empty fragment program
+Date: Sun, 17 Jan 2010 22:36:00 +0100
+Message-ID: <1263764160-8891-2-git-send-email-luca@luca-barbieri.com>
+References: <1263764160-8891-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1263764160-8891-1-git-send-email-luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,23 +21,23 @@ To: mesa3d-dev-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Sauerbraten triggers this assert.
 ---
- src/gallium/drivers/nv40/nv40_fragprog.c |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+ src/mesa/state_tracker/st_atom_shader.c |    2 --
+ 1 files changed, 0 insertions(+), 2 deletions(-)
 
-diff --git a/src/gallium/drivers/nv40/nv40_fragprog.c b/src/gallium/drivers/nv40/nv40_fragprog.c
-index 1237066..209d211 100644
---- a/src/gallium/drivers/nv40/nv40_fragprog.c
-+++ b/src/gallium/drivers/nv40/nv40_fragprog.c
-@@ -843,7 +843,8 @@ nv40_fragprog_translate(struct nv40_context *nv40,
- 	fp->fp_control |= fpc->num_regs << NV40TCL_FP_CONTROL_TEMP_COUNT_SHIFT;
+diff --git a/src/mesa/state_tracker/st_atom_shader.c b/src/mesa/state_tracker/st_atom_shader.c
+index 176f3ea..fce533a 100644
+--- a/src/mesa/state_tracker/st_atom_shader.c
++++ b/src/mesa/state_tracker/st_atom_shader.c
+@@ -79,8 +79,6 @@ translate_fp(struct st_context *st,
  
- 	/* Terminate final instruction */
--	fp->insn[fpc->inst_offset] |= 0x00000001;
-+	if(fp->insn)
-+                fp->insn[fpc->inst_offset] |= 0x00000001;
+       stfp->num_input_slots = numIn;
  
- 	/* Append NOP + END instruction, may or may not be necessary. */
- 	fpc->inst_offset = fp->insn_len;
+-      assert(stfp->Base.Base.NumInstructions > 1);
+-
+       st_translate_fragment_program(st, stfp, stfp->input_to_slot);
+    }
+ }
 -- 
 1.6.3.3
