@@ -1,14 +1,14 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: Re: [PATCH] drm/ttm: Fix race condition in
-	ttm_bo_delayed_delete
-Date: Mon, 18 Jan 2010 23:33:35 +0100
-Message-ID: <ff13bc9a1001181433v1694e681l9f7ce9d880132dc3@mail.gmail.com>
-References: <1263840434-9113-1-git-send-email-luca@luca-barbieri.com>
-	<4B54B949.9010906@vmware.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: DDX patch: Remove deprecated NV1 readme
+Date: Tue, 19 Jan 2010 08:37:51 +1000
+Message-ID: <1263854271.5798.0.camel@nisroch>
+References: <c2673ca61001180250w5bad538en1321f27c91ede63a@mail.gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=00151747c0aea6bdce047d77f1f1
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4B54B949.9010906-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <c2673ca61001180250w5bad538en1321f27c91ede63a-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,112 +18,15 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
-Cc: "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org" <dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>
+To: okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---00151747c0aea6bdce047d77f1f1
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+On Mon, 2010-01-18 at 11:50 +0100, okias wrote:
 
-> Would =A0nentry=3Dlist_first_entry(&entry->ddestroy, ....) work?
-Yes, it seems a bit less intuitive, but if that's the accepted
-practice, let's do that instead.
+Thanks, pushed.
 
-> Here nentry may have been removed from the list by another process, which
-> would trigger the unnecessary call, mentioned above.
-You are right.
-
-I attached a revised patch.
-It's only compile tested, but the changes are small and it should
-hopefully work.
-
-Note that in principle we could remove the special-case code for the
-list head but that would require pretending the list head is actually
-inside a ttm_buffer_object and adding a flag to not do the
-unlock/cleanup/put/lock on it, which seems bad.
-
-The whole function seems more complicated than needed, but I can't
-find a way to do it with less code. If we could keep glob->lru_lock
-while calling ttm_bo_cleanup_refs things would be much simpler, but
-that would require intrusive changes and may not be possible.
-
---00151747c0aea6bdce047d77f1f1
-Content-Type: text/x-diff; charset=US-ASCII;
-	name="0001-drm-ttm-Fix-race-condition-in-ttm_bo_delayed_delete-.patch"
-Content-Disposition: attachment;
-	filename="0001-drm-ttm-Fix-race-condition-in-ttm_bo_delayed_delete-.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_g4ltzfxo1
-
-RnJvbSA2ODk3MmMyMjBhYmUzY2UxOWViMDQ2ZDcyZmEyMTg2NDYxNjhhZGM3IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBMdWNhIEJhcmJpZXJpIDxsdWNhQGx1Y2EtYmFyYmllcmkuY29t
-PgpEYXRlOiBNb24sIDE4IEphbiAyMDEwIDE5OjM0OjUzICswMTAwClN1YmplY3Q6IFtQQVRDSF0g
-ZHJtL3R0bTogRml4IHJhY2UgY29uZGl0aW9uIGluIHR0bV9ib19kZWxheWVkX2RlbGV0ZSAodjIp
-Cgp0dG1fYm9fZGVsYXllZF9kZWxldGUgaGFzIGEgcmFjZSBjb25kaXRpb24sIGJlY2F1c2UgYWZ0
-ZXIgd2UgZG86CmtyZWZfcHV0KCZuZW50cnktPmxpc3Rfa3JlZiwgdHRtX2JvX3JlbGVhc2VfbGlz
-dCk7Cgp3ZSBhcmUgbm90IGhvbGRpbmcgdGhlIGxpc3QgbG9jayBhbmQgbm90IGhvbGRpbmcgYW55
-IHJlZmVyZW5jZSB0bwpvYmplY3RzLCBhbmQgdGh1cyBldmVyeSBibyBpbiB0aGUgbGlzdCBjYW4g
-YmUgcmVtb3ZlZCBhbmQgZnJlZWQgYXQKdGhpcyBwb2ludC4KCkhvd2V2ZXIsIHdlIHRoZW4gdXNl
-IHRoZSBuZXh0IHBvaW50ZXIgd2Ugc3RvcmVkLCB3aGljaCBpcyBub3QgZ3VhcmFudGVlZAp0byBi
-ZSB2YWxpZC4KClRoaXMgd2FzIGFwcGFyZW50bHkgdGhlIGNhdXNlIG9mIHNvbWUgTm91dmVhdSBv
-b3BzZXMgSSBleHBlcmllbmNlZC4KClRoaXMgcGF0Y2ggcmV3cml0ZXMgdGhlIGZ1bmN0aW9uIHNv
-IHRoYXQgaXQga2VlcHMgdGhlIHJlZmVyZW5jZSB0byBuZW50cnkKdW50aWwgbmVudHJ5IGl0c2Vs
-ZiBpcyBmcmVlZCBhbmQgd2UgYWxyZWFkeSBnb3QgYSByZWZlcmVuY2UgdG8gbmVudHJ5LT5uZXh0
-LgoKSXQgc2hvdWxkIG5vdyBiZSBjb3JyZWN0IGFuZCBmcmVlIG9mIHJhY2VzLCBidXQgcGxlYXNl
-IGRvdWJsZSBjaGVjayB0aGlzLgoKVXBkYXRlZCBhY2NvcmRpbmcgdG8gVGhvbWFzIEhlbGxzdHJv
-bSdzIGZlZWRiYWNrLgoKU2lnbmVkLW9mZi1ieTogTHVjYSBCYXJiaWVyaSA8bHVjYUBsdWNhLWJh
-cmJpZXJpLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jIHwgICA1OCArKysr
-KysrKysrKysrKysrKystLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogMSBmaWxlcyBjaGFuZ2VkLCAy
-NiBpbnNlcnRpb25zKCspLCAzMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vdHRtL3R0bV9iby5jIGIvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYwppbmRleCAy
-OTIwZjlhLi41ZGZhNDFmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMKQEAgLTUyMyw1MiArNTIzLDQ2IEBA
-IHN0YXRpYyBpbnQgdHRtX2JvX2NsZWFudXBfcmVmcyhzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3Qg
-KmJvLCBib29sIHJlbW92ZV9hbGwpCiBzdGF0aWMgaW50IHR0bV9ib19kZWxheWVkX2RlbGV0ZShz
-dHJ1Y3QgdHRtX2JvX2RldmljZSAqYmRldiwgYm9vbCByZW1vdmVfYWxsKQogewogCXN0cnVjdCB0
-dG1fYm9fZ2xvYmFsICpnbG9iID0gYmRldi0+Z2xvYjsKLQlzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmpl
-Y3QgKmVudHJ5LCAqbmVudHJ5OwotCXN0cnVjdCBsaXN0X2hlYWQgKmxpc3QsICpuZXh0OwotCWlu
-dCByZXQ7CisJc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICplbnRyeTsKKwlpbnQgcmV0ID0gMDsK
-IAogCXNwaW5fbG9jaygmZ2xvYi0+bHJ1X2xvY2spOwotCWxpc3RfZm9yX2VhY2hfc2FmZShsaXN0
-LCBuZXh0LCAmYmRldi0+ZGRlc3Ryb3kpIHsKLQkJZW50cnkgPSBsaXN0X2VudHJ5KGxpc3QsIHN0
-cnVjdCB0dG1fYnVmZmVyX29iamVjdCwgZGRlc3Ryb3kpOwotCQluZW50cnkgPSBOVUxMOworCWlm
-IChsaXN0X2VtcHR5KCZiZGV2LT5kZGVzdHJveSkpIHsKKwkJc3Bpbl91bmxvY2soJmdsb2ItPmxy
-dV9sb2NrKTsKKwkJcmV0dXJuIDA7CisJfQogCi0JCS8qCi0JCSAqIFByb3RlY3QgdGhlIG5leHQg
-bGlzdCBlbnRyeSBmcm9tIGRlc3RydWN0aW9uIHdoaWxlIHdlCi0JCSAqIHVubG9jayB0aGUgbHJ1
-X2xvY2suCi0JCSAqLworCWVudHJ5ID0gbGlzdF9maXJzdF9lbnRyeSgmYmRldi0+ZGRlc3Ryb3ks
-CisJCXN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCwgZGRlc3Ryb3kpOworCWtyZWZfZ2V0KCZlbnRy
-eS0+bGlzdF9rcmVmKTsKKworCWZvciAoOzspIHsKKwkJc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0
-ICpuZW50cnkgPSBOVUxMOwogCi0JCWlmIChuZXh0ICE9ICZiZGV2LT5kZGVzdHJveSkgewotCQkJ
-bmVudHJ5ID0gbGlzdF9lbnRyeShuZXh0LCBzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QsCi0JCQkJ
-CSAgICBkZGVzdHJveSk7CisJCWlmIChlbnRyeS0+ZGRlc3Ryb3kubmV4dCAhPSAmYmRldi0+ZGRl
-c3Ryb3kpIHsKKwkJCW5lbnRyeSA9IGxpc3RfZmlyc3RfZW50cnkoJmVudHJ5LT5kZGVzdHJveSwK
-KwkJCQlzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QsIGRkZXN0cm95KTsKIAkJCWtyZWZfZ2V0KCZu
-ZW50cnktPmxpc3Rfa3JlZik7CiAJCX0KLQkJa3JlZl9nZXQoJmVudHJ5LT5saXN0X2tyZWYpOwog
-CiAJCXNwaW5fdW5sb2NrKCZnbG9iLT5scnVfbG9jayk7CiAJCXJldCA9IHR0bV9ib19jbGVhbnVw
-X3JlZnMoZW50cnksIHJlbW92ZV9hbGwpOwogCQlrcmVmX3B1dCgmZW50cnktPmxpc3Rfa3JlZiwg
-dHRtX2JvX3JlbGVhc2VfbGlzdCk7CisJCWVudHJ5ID0gbmVudHJ5OworCisJCWlmIChyZXQgfHwg
-IWVudHJ5KQorCQkJYnJlYWs7CiAKIAkJc3Bpbl9sb2NrKCZnbG9iLT5scnVfbG9jayk7Ci0JCWlm
-IChuZW50cnkpIHsKLQkJCWJvb2wgbmV4dF9vbmxpc3QgPSAhbGlzdF9lbXB0eShuZXh0KTsKKwkJ
-CisJCWlmIChsaXN0X2VtcHR5KCZlbnRyeS0+ZGRlc3Ryb3kpKSB7CiAJCQlzcGluX3VubG9jaygm
-Z2xvYi0+bHJ1X2xvY2spOwotCQkJa3JlZl9wdXQoJm5lbnRyeS0+bGlzdF9rcmVmLCB0dG1fYm9f
-cmVsZWFzZV9saXN0KTsKLQkJCXNwaW5fbG9jaygmZ2xvYi0+bHJ1X2xvY2spOwotCQkJLyoKLQkJ
-CSAqIFNvbWVvbmUgbWlnaHQgaGF2ZSByYWNlZCB1cyBhbmQgcmVtb3ZlZCB0aGUKLQkJCSAqIG5l
-eHQgZW50cnkgZnJvbSB0aGUgbGlzdC4gV2UgZG9uJ3QgYm90aGVyIHJlc3RhcnRpbmcKLQkJCSAq
-IGxpc3QgdHJhdmVyc2FsLgotCQkJICovCi0KLQkJCWlmICghbmV4dF9vbmxpc3QpCi0JCQkJYnJl
-YWs7Ci0JCX0KLQkJaWYgKHJldCkKIAkJCWJyZWFrOworCQl9CiAJfQotCXJldCA9ICFsaXN0X2Vt
-cHR5KCZiZGV2LT5kZGVzdHJveSk7Ci0Jc3Bpbl91bmxvY2soJmdsb2ItPmxydV9sb2NrKTsKIAor
-CWlmIChlbnRyeSkKKwkJa3JlZl9wdXQoJmVudHJ5LT5saXN0X2tyZWYsIHR0bV9ib19yZWxlYXNl
-X2xpc3QpOwogCXJldHVybiByZXQ7CiB9CiAKLS0gCjEuNi4zLjMKCg==
---00151747c0aea6bdce047d77f1f1
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---00151747c0aea6bdce047d77f1f1--
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
