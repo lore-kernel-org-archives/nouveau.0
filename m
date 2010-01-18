@@ -1,46 +1,78 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Gallium - remove DRI1 support
-Date: Mon, 18 Jan 2010 14:58:52 -0500
-Message-ID: <586c2acd1001181158t3b8495crd3d6d80771158911@mail.gmail.com>
-References: <c2673ca61001180214q3d94bb87j5e38fa730139a562@mail.gmail.com>
-	<586c2acd1001180743t178044d3ga73d0136a527c532@mail.gmail.com>
-	<c2673ca61001181036k207b1371jc7d15a75406634@mail.gmail.com>
+From: Thomas Hellstrom <thellstrom@vmware.com>
+Subject: Re: [PATCH] drm/ttm: Fix race condition in ttm_bo_delayed_delete
+Date: Mon, 18 Jan 2010 20:40:57 +0100
+Message-ID: <4B54B949.9010906@vmware.com>
+References: <1263840434-9113-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <c2673ca61001181036k207b1371jc7d15a75406634-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces@lists.sourceforge.net>
+In-Reply-To: <1263840434-9113-1-git-send-email-luca@luca-barbieri.com>
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=dri-devel>
+List-Post: <mailto:dri-devel@lists.sourceforge.net>
+List-Help: <mailto:dri-devel-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.sourceforge.net?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.sourceforge.net
+To: Luca Barbieri <luca@luca-barbieri.com>
+Cc: "airlied@linux.ie" <airlied@linux.ie>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.sourceforge.net" <dri-devel@lists.sourceforge.net>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jan 18, 2010 at 1:36 PM, okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> I read on Nouveau Wiki page, "Nouveau drops UMS support, huge clean-up in DDX.
-> Roughly 15k lines were deleted from the DDX when the user
-> mode-setting, DRI1 support (DRI2 is still there), ..."
-> so I just thought it's leftover.
->
-> David
->
-> 2010/1/18 Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>:
->> On Mon, Jan 18, 2010 at 5:14 AM, okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->>> Compilation tested.
->>>
->>> --
->>
->> I still use DRI1 :) Any reason to remove it if it still works and
->> doesn't require much maintenance?
->>
+Luca,
 
-I didn't realize DRI1 went away with UMS as well in the DDX. I have no
-problem with it then, I'll just keep those paths around in my private
-tree until I move to a newer xserver.
+Good catch.
+Some comments inline:
+
+
+
+Luca Barbieri wrote:
+> +	entry = list_first_entry(&bdev->ddestroy,
+> +		struct ttm_buffer_object, ddestroy);
+> +	kref_get(&entry->list_kref);
+>  
+> -		if (next != &bdev->ddestroy) {
+> -			nentry = list_entry(next, struct ttm_buffer_object,
+> -					    ddestroy);
+> +	for (;;) {
+> +		struct ttm_buffer_object *nentry = NULL;
+> +
+> +		if (!list_empty(&entry->ddestroy)
+> +			&& entry->ddestroy.next != &bdev->ddestroy) {
+> +			nentry = list_entry(entry->ddestroy.next,
+> +				struct ttm_buffer_object, ddestroy);
+>   
+
+I'm not sure it's considered ok to access the list_head members directly 
+in new code.
+Would  nentry=list_first_entry(&entry->ddestroy, ....) work?
+
+>  			kref_get(&nentry->list_kref);
+>  		}
+>   
+
+else unlock and break? That would save an unnecessary call to 
+ttm_bo_cleanup_refs.
+
+> -		kref_get(&entry->list_kref);
+>  
+>  		spin_unlock(&glob->lru_lock);
+>  		ret = ttm_bo_cleanup_refs(entry, remove_all);
+>  		kref_put(&entry->list_kref, ttm_bo_release_list);
+> +		entry = nentry;
+>   
+
+Here nentry may have been removed from the list by another process, 
+which would trigger the unnecessary call, mentioned above.
+
+/Thomas
+
+
+------------------------------------------------------------------------------
+Throughout its 18-year history, RSA Conference consistently attracts the
+world's best and brightest in the field, creating opportunities for Conference
+attendees to learn about information security's most important issues through
+interactions with peers, luminaries and emerging and established companies.
+http://p.sf.net/sfu/rsaconf-dev2dev
+--
