@@ -1,12 +1,13 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH] drm/ttm: Fix race condition in
-	ttm_bo_delayed_delete
-Date: Mon, 18 Jan 2010 19:47:14 +0100
-Message-ID: <1263840434-9113-1-git-send-email-luca@luca-barbieri.com>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Subject: Re: [mesa PATCH] nv50: fix nv50_program->immd memory leak
+Date: Mon, 18 Jan 2010 19:56:23 +0100
+Message-ID: <4B54AED7.3030605@student.tuwien.ac.at>
+References: <20100117225016.GD14113@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20100117225016.GD14113-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,110 +17,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: airlied-cv59FeDIM0c@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-ttm_bo_delayed_delete has a race condition, because after we do:
-kref_put(&nentry->list_kref, ttm_bo_release_list);
-
-we are not holding the list lock and not holding any reference to
-objects, and thus every bo in the list can be removed and freed at
-this point.
-
-However, we then use the next pointer we stored, which is not guaranteed
-to be valid.
-
-This was apparently the cause of some Nouveau oopses I experienced.
-
-This patch rewrites the function so that it keeps the reference to nentry
-until nentry itself is freed and we already got a reference to nentry->next.
-
-It should now be correct and free of races, but please double check this.
-
-Signed-off-by: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
----
- drivers/gpu/drm/ttm/ttm_bo.c |   58 +++++++++++++++++------------------------
- 1 files changed, 24 insertions(+), 34 deletions(-)
-
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 2920f9a..1daa2f1 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -523,52 +523,42 @@ static int ttm_bo_cleanup_refs(struct ttm_buffer_object *bo, bool remove_all)
- static int ttm_bo_delayed_delete(struct ttm_bo_device *bdev, bool remove_all)
- {
- 	struct ttm_bo_global *glob = bdev->glob;
--	struct ttm_buffer_object *entry, *nentry;
--	struct list_head *list, *next;
--	int ret;
-+	struct ttm_buffer_object *entry;
-+	int ret = 0;
- 
- 	spin_lock(&glob->lru_lock);
--	list_for_each_safe(list, next, &bdev->ddestroy) {
--		entry = list_entry(list, struct ttm_buffer_object, ddestroy);
--		nentry = NULL;
-+	if (list_empty(&bdev->ddestroy)) {
-+		spin_unlock(&glob->lru_lock);
-+		return 0;
-+	}
- 
--		/*
--		 * Protect the next list entry from destruction while we
--		 * unlock the lru_lock.
--		 */
-+	entry = list_first_entry(&bdev->ddestroy,
-+		struct ttm_buffer_object, ddestroy);
-+	kref_get(&entry->list_kref);
- 
--		if (next != &bdev->ddestroy) {
--			nentry = list_entry(next, struct ttm_buffer_object,
--					    ddestroy);
-+	for (;;) {
-+		struct ttm_buffer_object *nentry = NULL;
-+
-+		if (!list_empty(&entry->ddestroy)
-+			&& entry->ddestroy.next != &bdev->ddestroy) {
-+			nentry = list_entry(entry->ddestroy.next,
-+				struct ttm_buffer_object, ddestroy);
- 			kref_get(&nentry->list_kref);
- 		}
--		kref_get(&entry->list_kref);
- 
- 		spin_unlock(&glob->lru_lock);
- 		ret = ttm_bo_cleanup_refs(entry, remove_all);
- 		kref_put(&entry->list_kref, ttm_bo_release_list);
-+		entry = nentry;
- 
--		spin_lock(&glob->lru_lock);
--		if (nentry) {
--			bool next_onlist = !list_empty(next);
--			spin_unlock(&glob->lru_lock);
--			kref_put(&nentry->list_kref, ttm_bo_release_list);
--			spin_lock(&glob->lru_lock);
--			/*
--			 * Someone might have raced us and removed the
--			 * next entry from the list. We don't bother restarting
--			 * list traversal.
--			 */
--
--			if (!next_onlist)
--				break;
--		}
--		if (ret)
-+		if (ret || !entry)
- 			break;
-+
-+		spin_lock(&glob->lru_lock);
- 	}
--	ret = !list_empty(&bdev->ddestroy);
--	spin_unlock(&glob->lru_lock);
- 
-+	if (entry)
-+		kref_put(&entry->list_kref, ttm_bo_release_list);
- 	return ret;
- }
- 
--- 
-1.6.3.3
+On 17.01.2010 23:50, Marcin Slusarz wrote:
+> ---
+>  src/gallium/drivers/nv50/nv50_program.c |    1 +
+>  1 files changed, 1 insertions(+), 0 deletions(-)
+>
+> diff --git a/src/gallium/drivers/nv50/nv50_program.c b/src/gallium/drivers/nv50/nv50_program.c
+> index 4111d21..cfe8b48 100644
+> --- a/src/gallium/drivers/nv50/nv50_program.c
+> +++ b/src/gallium/drivers/nv50/nv50_program.c
+> @@ -4656,6 +4656,7 @@ nv50_program_destroy(struct nv50_context *nv50, struct nv50_program *p)
+>  	}
+>  	p->exec_tail = NULL;
+>  	p->exec_size = 0;
+> +	FREE(p->immd);
+>  
+>  	nouveau_bo_ref(NULL, &p->bo);
+>  
+>   
+Pushed.
