@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26102] Rotating one monitor of a dual-head setup
  causes cursor problems
-Date: Mon, 18 Jan 2010 10:24:33 -0800 (PST)
-Message-ID: <20100118182433.A5F0413009A@annarchy.freedesktop.org>
+Date: Mon, 18 Jan 2010 10:25:06 -0800 (PST)
+Message-ID: <20100118182506.96BB013009A@annarchy.freedesktop.org>
 References: <bug-26102-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26102
 
 
 
---- Comment #1 from Drew Frank <drewfrank-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-18 10:24:33 PST ---
-Created an attachment (id=32697)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32697)
-My Xorg.0.log after rotating a screen left and then back to normal.
+--- Comment #2 from Drew Frank <drewfrank-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-18 10:25:06 PST ---
+Created an attachment (id=32698)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32698)
+My xorg.conf
 
 
 -- 
