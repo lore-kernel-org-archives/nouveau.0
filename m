@@ -1,9 +1,11 @@
-From: okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm: remove UMS leftover
-Date: Mon, 18 Jan 2010 13:39:30 +0100
-Message-ID: <c2673ca61001180439q2562a5fdoa6d79a211a978e26@mail.gmail.com>
+From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Subject: [PATCH 1/2] nv30-nv40: Rewrite primitive splitting and
+	emission
+Date: Mon, 18 Jan 2010 15:43:58 +0100
+Message-ID: <1263825839-16277-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=0016e65b5b0405ae35047d6fa5d4
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,196 +17,1004 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---0016e65b5b0405ae35047d6fa5d4
-Content-Type: text/plain; charset=UTF-8
+The current code for primitive splitting and emission on pre-nv50 is
+severely broken.
 
-Compiled, tested. Look ok.
+In particular:
+1. Quads and lines are totally broken because "&= 3" should be "&= ~3"
+and similar for lines
+2. Triangle fans and polygons are broken because the first vertex
+must be repeated for each split chunk
+3. Line loops are broken because the must be converted to a line strip,
+reemitting the first vertex at the end to close the loop
+4. Quad strips are broken because 2 vertices must be repeated, and not 3
 
+This patch rewrites the splitting code to work correctly for all
+primitives, including those with adjacency.
+
+It also rewrites the nv30/nv40 code to make use of the the new splitting
+code and simplifies it by making more code common between the different
+emission strategies (vbo, u8/u16/u32 indices, index buffer).
+
+Note that the splitting helper is now independent of nouveau and could
+be moved into gallium/auxiliary.
+---
+ src/gallium/drivers/nouveau/nouveau_util.h |  107 ++++++++---
+ src/gallium/drivers/nv30/nv30_vbo.c        |  287 ++++++++++++++++------------
+ src/gallium/drivers/nv40/nv40_vbo.c        |  280 +++++++++++++++------------
+ 3 files changed, 403 insertions(+), 271 deletions(-)
+
+diff --git a/src/gallium/drivers/nouveau/nouveau_util.h b/src/gallium/drivers/nouveau/nouveau_util.h
+index a10114b..a74d75d 100644
+--- a/src/gallium/drivers/nouveau/nouveau_util.h
++++ b/src/gallium/drivers/nouveau/nouveau_util.h
+@@ -1,63 +1,124 @@
+ #ifndef __NOUVEAU_UTIL_H__
+ #define __NOUVEAU_UTIL_H__
+ 
+-/* Determine how many vertices can be pushed into the command stream.
+- * Where the remaining space isn't large enough to represent all verices,
+- * split the buffer at primitive boundaries.
++// output v[global_start] before the chunk
++#define SPLIT_BEGIN_WITH_FIRST 1
++
++// output v[global_start] before the chunk, with edgeflag off
++#define SPLIT_BEGIN_WITH_FIRST_EDGEFLAG_OFF 2
++
++// output v[global_start] after the chunk
++#define SPLIT_END_WITH_FIRST 4
++
++// output v[chunk_start - 4], v[chunk_start - 6], v[chunk_start - 2] before the chunk
++// output v[chunk_end + 1] after the chunk
++#define SPLIT_TRIANGLE_STRIP_ADJACENCY 8
++
++/* private flags for nouveau_vbuf_split to keep state */
++#define SPLIT_CLOSE_LOOP 0x40000000
++
++/* If 0 is returned, you must flush and retry
+  *
+- * Returns a count of vertices that can be rendered, and an index to
+- * restart drawing at after a flush.
++ * Otherwise:
++ * 1. Output special vertices at the beginning if the _old_ value of flags specifies that
++ * 2. Output the returned amount of vertices
++ * 3. Output special vertices at the end if the _new_ value of flags specifies that
++ * 3. Set start to *restart. If *restart == end, you are done
+  */
+ static INLINE unsigned
+-nouveau_vbuf_split(unsigned remaining, unsigned overhead, unsigned vpp,
+-		   unsigned mode, unsigned start, unsigned count,
+-		   unsigned *restart)
++util_split_primitive(int max, unsigned* pmode, unsigned* pstart, unsigned end, unsigned* flags)
+ {
+-	int max, adj = 0;
++	unsigned mode = *pmode;
++	unsigned start = *pstart;
++	unsigned count = end - start;
++	int adj = 0;
+ 
+-	max  = remaining - overhead;
+ 	if (max < 0)
+ 		return 0;
+ 
+-	max *= vpp;
+ 	if (max >= count)
++	{
++		if(*flags & SPLIT_CLOSE_LOOP)
++			*flags |= SPLIT_END_WITH_FIRST;
++
++		*flags &= ~SPLIT_TRIANGLE_STRIP_ADJACENCY;
++		*pstart = end;
++
+ 		return count;
++	}
+ 
+ 	switch (mode) {
+ 	case PIPE_PRIM_POINTS:
+ 		break;
+ 	case PIPE_PRIM_LINES:
+-		max = max & 1;
+-		break;
+-	case PIPE_PRIM_TRIANGLES:
+-		max = max - (max % 3);
+-		break;
+-	case PIPE_PRIM_QUADS:
+-		max = max & 3;
++		max &= ~1;
+ 		break;
+ 	case PIPE_PRIM_LINE_LOOP:
++		if (max < 2)
++			return 0;
++		adj = 1;
++		*pmode = PIPE_PRIM_LINE_STRIP;
++		*flags |= SPLIT_CLOSE_LOOP;
++		break;
+ 	case PIPE_PRIM_LINE_STRIP:
+ 		if (max < 2)
+-			max = 0;
++			return 0;
+ 		adj = 1;
+ 		break;
+-	case PIPE_PRIM_POLYGON:
++	case PIPE_PRIM_TRIANGLES:
++		max = max - (max % 3);
++		break;
+ 	case PIPE_PRIM_TRIANGLE_STRIP:
+-	case PIPE_PRIM_TRIANGLE_FAN:
+ 		if (max < 3)
+ 			max = 0;
+ 		adj = 2;
+ 		break;
++	case PIPE_PRIM_TRIANGLE_FAN:
++		if(max < 3)
++			return 0;
++		adj = 1;
++		*flags |= SPLIT_BEGIN_WITH_FIRST;
++		break;
++	case PIPE_PRIM_QUADS:
++		max &= ~3;
++		break;
+ 	case PIPE_PRIM_QUAD_STRIP:
++		max &= ~1;
+ 		if (max < 4)
+-			max = 0;
++			return 0;
++		adj = 2;
++		break;
++	case PIPE_PRIM_POLYGON:
++		if(max < 3)
++			return 0;
++		adj = 1;
++		*flags |= SPLIT_BEGIN_WITH_FIRST | SPLIT_BEGIN_WITH_FIRST_EDGEFLAG_OFF;
++		break;
++	case PIPE_PRIM_LINES_ADJACENCY:
++		max &= ~3;
++		break;
++	case PIPE_PRIM_LINE_STRIP_ADJACENCY:
++		if (max < 4)
++			return 0;
+ 		adj = 3;
+ 		break;
++	case PIPE_PRIM_TRIANGLES_ADJACENCY:
++		max = max - (max % 6);
++		break;
++	case PIPE_PRIM_TRIANGLE_STRIP_ADJACENCY:
++		max &= ~3;
++		if(!max)
++			return 0;
++		--max;
++		*flags |= SPLIT_TRIANGLE_STRIP_ADJACENCY;
+ 	default:
+ 		assert(0);
+ 	}
+ 
+-	*restart = start + max - adj;
++	assert(max > 0);
++	assert(adj < max);
++	assert(max < count);
++	*pstart = start + max - adj;
+ 	return max;
+ }
+ 
+diff --git a/src/gallium/drivers/nv30/nv30_vbo.c b/src/gallium/drivers/nv30/nv30_vbo.c
+index 1c5db03..b89ef5d 100644
+--- a/src/gallium/drivers/nv30/nv30_vbo.c
++++ b/src/gallium/drivers/nv30/nv30_vbo.c
+@@ -163,6 +163,121 @@ nv30_vbo_static_attrib(struct nv30_context *nv30, struct nouveau_stateobj *so,
+ 	return TRUE;
+ }
+ 
++// TODO: share this with NV40 instead of duplicating
++struct nv30_primitive
++{
++	struct nv30_context *nv30;
++	unsigned mode;
++	unsigned start;
++	unsigned end;
++	unsigned vpp;
++	unsigned flags;
++	unsigned startv;
++	int chunk;
++};
++
++static inline void
++nv30_primitive_init(struct nv30_primitive* prim, struct nv30_context *nv30,
++		 unsigned mode, unsigned start, unsigned count, unsigned vpp, unsigned startv)
++{
++	prim->nv30 = nv30;
++	prim->start = start;
++	prim->end = start + count;
++	prim->mode = mode;
++	prim->flags = 0;
++	prim->startv = startv;
++	prim->chunk = -1;
++	prim->vpp = vpp;
++
++	nv30_state_emit(nv30);
++}
++
++#define START_INDEX 0x80000000
++
++static inline void
++nv30_primitive_start_vertex(struct nv30_primitive* prim)
++{
++	struct nv30_screen *screen = prim->nv30->screen;
++	struct nouveau_channel *chan = screen->base.channel;
++	struct nouveau_grobj *rankine = screen->rankine;
++
++	if(prim->startv & START_INDEX)
++	{
++		BEGIN_RING(chan, rankine, NV34TCL_VB_INDEX_BATCH, 1);
++		OUT_RING  (chan, (prim->startv & ~START_INDEX));
++	}
++	else
++	{
++		BEGIN_RING(chan, rankine, NV34TCL_VB_ELEMENT_U32, 1);
++		OUT_RING  (chan, prim->startv);
++	}
++}
++
++static inline unsigned
++nv30_primitive_begin(struct nv30_primitive* prim, unsigned* pstart)
++{
++	struct nv30_screen *screen = prim->nv30->screen;
++	struct nouveau_channel *chan = screen->base.channel;
++	struct nouveau_grobj *rankine = screen->rankine;
++	unsigned vc;
++	unsigned oldflags = prim->flags;
++	unsigned avail;
++
++	*pstart = prim->start;
++
++	if(prim->start == prim->end)
++		return 0;
++
++retry:
++	avail = chan->pushbuf->remaining;
++	avail -= 10 + 1 + (chan->pushbuf->remaining >> 11); /* for the BEGIN_RING_NIs */
++	avail *= prim->vpp;
++	vc = util_split_primitive(avail, &prim->mode, &prim->start, prim->end, &prim->flags);
++	if(!vc)
++	{
++		FIRE_RING(chan);
++		goto retry;
++	}
++
++	BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
++	OUT_RING  (chan, nvgl_primitive(prim->mode));
++
++	if(oldflags & SPLIT_BEGIN_WITH_FIRST)
++		nv30_primitive_start_vertex(prim);
++
++	++prim->chunk;
++	return vc;
++}
++
++static inline void
++nv30_primitive_end(struct nv30_primitive* prim)
++{
++	struct nv30_screen *screen = prim->nv30->screen;
++	struct nouveau_channel *chan = screen->base.channel;
++	struct nouveau_grobj *rankine = screen->rankine;
++
++	if(prim->flags & SPLIT_END_WITH_FIRST)
++		nv30_primitive_start_vertex(prim);
++
++	BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
++	OUT_RING  (chan, 0);
++}
++
++static inline unsigned
++nv30_primitive_chunk(struct nv30_primitive* prim, unsigned* pstart)
++{
++	if(prim->chunk >= 0)
++		nv30_primitive_end(prim);
++
++	unsigned vc = nv30_primitive_begin(prim, pstart);
++	if(!vc)
++	{
++		prim->nv30->pipe.flush(&prim->nv30->pipe, 0, NULL);
++		return 0;
++	}
++	return vc;
++}
++
+ void
+ nv30_draw_arrays(struct pipe_context *pipe,
+ 		 unsigned mode, unsigned start, unsigned count)
+@@ -171,59 +286,41 @@ nv30_draw_arrays(struct pipe_context *pipe,
+ 	struct nv30_screen *screen = nv30->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *rankine = screen->rankine;
+-	unsigned restart = 0;
++	struct nv30_primitive prim;
++	unsigned vc;
+ 
+ 	nv30_vbo_set_idxbuf(nv30, NULL, 0);
+ 	if (FORCE_SWTNL || !nv30_state_validate(nv30)) {
+-		/*return nv30_draw_elements_swtnl(pipe, NULL, 0,
+-						mode, start, count);*/
+-		return;
++		/*nv30_draw_elements_swtnl(pipe, NULL, 0,
++                                         mode, start, count);*/
++                return;
+ 	}
+ 
+-	while (count) {
+-		unsigned vc, nr;
+-
+-		nv30_state_emit(nv30);
++	nv30_primitive_init(&prim, nv30, mode, start, count, 256, start);
+ 
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 6, 256,
+-					mode, start, count, &restart);
+-		if (!vc) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
+-
+-		nr = (vc & 0xff);
++	while ((vc = nv30_primitive_chunk(&prim, &start)))
++	{
++		assert(start < (nv30->vtxbuf[0].buffer->size >> 2));
++		unsigned nr = (vc & 0xff);
+ 		if (nr) {
+ 			BEGIN_RING(chan, rankine, NV34TCL_VB_VERTEX_BATCH, 1);
+ 			OUT_RING  (chan, ((nr - 1) << 24) | start);
+ 			start += nr;
+ 		}
+ 
+-		nr = vc >> 8;
+-		while (nr) {
+-			unsigned push = nr > 2047 ? 2047 : nr;
+-
+-			nr -= push;
++		vc >>= 8;
++		while (vc) {
++			unsigned push = vc > 2047 ? 2047 : vc;
++			vc -= push;
+ 
+ 			BEGIN_RING_NI(chan, rankine, NV34TCL_VB_VERTEX_BATCH, push);
+ 			while (push--) {
++				assert(start < (nv30->vtxbuf[0].buffer->size >> 2));
+ 				OUT_RING(chan, ((0x100 - 1) << 24) | start);
+ 				start += 0x100;
+ 			}
+ 		}
+-
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		count -= vc;
+-		start = restart;
+ 	}
+-
+-	pipe->flush(pipe, 0, NULL);
+-	return TRUE;
+ }
+ 
+ static INLINE void
+@@ -233,24 +330,14 @@ nv30_draw_elements_u08(struct nv30_context *nv30, void *ib,
+ 	struct nv30_screen *screen = nv30->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *rankine = screen->rankine;
++	struct nv30_primitive prim;
++	unsigned vc;
+ 
+-	while (count) {
+-		uint8_t *elts = (uint8_t *)ib + start;
+-		unsigned vc, push, restart = 0;
+-
+-		nv30_state_emit(nv30);
+-
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 6, 2,
+-					mode, start, count, &restart);
+-		if (vc == 0) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-		count -= vc;
+-
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
++	nv30_primitive_init(&prim, nv30, mode, start, count, 2, ((uint8_t*)ib)[start]);
+ 
++	while ((vc = nv30_primitive_chunk(&prim, &start)))
++	{
++		uint8_t* elts = (uint8_t*)ib + start;
+ 		if (vc & 1) {
+ 			BEGIN_RING(chan, rankine, NV34TCL_VB_ELEMENT_U32, 1);
+ 			OUT_RING  (chan, elts[0]);
+@@ -259,8 +346,7 @@ nv30_draw_elements_u08(struct nv30_context *nv30, void *ib,
+ 
+ 		while (vc) {
+ 			unsigned i;
+-
+-			push = MIN2(vc, 2047 * 2);
++			unsigned push = MIN2(vc, 2047 * 2);
+ 
+ 			BEGIN_RING_NI(chan, rankine, NV34TCL_VB_ELEMENT_U16, push >> 1);
+ 			for (i = 0; i < push; i+=2)
+@@ -269,11 +355,6 @@ nv30_draw_elements_u08(struct nv30_context *nv30, void *ib,
+ 			vc -= push;
+ 			elts += push;
+ 		}
+-
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		start = restart;
+ 	}
+ }
+ 
+@@ -284,23 +365,14 @@ nv30_draw_elements_u16(struct nv30_context *nv30, void *ib,
+ 	struct nv30_screen *screen = nv30->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *rankine = screen->rankine;
++	struct nv30_primitive prim;
++	unsigned vc;
+ 
+-	while (count) {
+-		uint16_t *elts = (uint16_t *)ib + start;
+-		unsigned vc, push, restart = 0;
+-
+-		nv30_state_emit(nv30);
+-
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 6, 2,
+-					mode, start, count, &restart);
+-		if (vc == 0) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-		count -= vc;
++	nv30_primitive_init(&prim, nv30, mode, start, count, 2, ((uint16_t*)ib)[start]);
+ 
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
++	while ((vc = nv30_primitive_chunk(&prim, &start)))
++	{
++		uint16_t *elts = (uint16_t *)ib + start;
+ 
+ 		if (vc & 1) {
+ 			BEGIN_RING(chan, rankine, NV34TCL_VB_ELEMENT_U32, 1);
+@@ -310,8 +382,7 @@ nv30_draw_elements_u16(struct nv30_context *nv30, void *ib,
+ 
+ 		while (vc) {
+ 			unsigned i;
+-
+-			push = MIN2(vc, 2047 * 2);
++			unsigned push = MIN2(vc, 2047 * 2);
+ 
+ 			BEGIN_RING_NI(chan, rankine, NV34TCL_VB_ELEMENT_U16, push >> 1);
+ 			for (i = 0; i < push; i+=2)
+@@ -320,11 +391,6 @@ nv30_draw_elements_u16(struct nv30_context *nv30, void *ib,
+ 			vc -= push;
+ 			elts += push;
+ 		}
+-
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		start = restart;
+ 	}
+ }
+ 
+@@ -335,26 +401,17 @@ nv30_draw_elements_u32(struct nv30_context *nv30, void *ib,
+ 	struct nv30_screen *screen = nv30->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *rankine = screen->rankine;
++	struct nv30_primitive prim;
++	unsigned vc;
+ 
+-	while (count) {
+-		uint32_t *elts = (uint32_t *)ib + start;
+-		unsigned vc, push, restart = 0;
+-
+-		nv30_state_emit(nv30);
+-
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 5, 1,
+-					mode, start, count, &restart);
+-		if (vc == 0) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-		count -= vc;
++	nv30_primitive_init(&prim, nv30, mode, start, count, 1, ((uint32_t*)ib)[start]);
+ 
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
++	while ((vc = nv30_primitive_chunk(&prim, &start)))
++	{
++		uint32_t *elts = (uint32_t *)ib + start;
+ 
+ 		while (vc) {
+-			push = MIN2(vc, 2047);
++			unsigned push = MIN2(vc, 2047);
+ 
+ 			BEGIN_RING_NI(chan, rankine, NV34TCL_VB_ELEMENT_U32, push);
+ 			OUT_RINGp    (chan, elts, push);
+@@ -362,11 +419,6 @@ nv30_draw_elements_u32(struct nv30_context *nv30, void *ib,
+ 			vc -= push;
+ 			elts += push;
+ 		}
+-
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		start = restart;
+ 	}
+ }
+ 
+@@ -411,35 +463,24 @@ nv30_draw_elements_vbo(struct pipe_context *pipe,
+ 	struct nv30_screen *screen = nv30->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *rankine = screen->rankine;
+-	unsigned restart = 0;
+-
+-	while (count) {
+-		unsigned nr, vc;
++	struct nv30_primitive prim;
++	unsigned vc;
+ 
+-		nv30_state_emit(nv30);
++	nv30_primitive_init(&prim, nv30, mode, start, count, 256, START_INDEX | start);
+ 
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 6, 256,
+-					mode, start, count, &restart);
+-		if (!vc) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-		
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
+-
+-		nr = (vc & 0xff);
++	while ((vc = nv30_primitive_chunk(&prim, &start)))
++	{
++		unsigned nr = (vc & 0xff);
+ 		if (nr) {
+ 			BEGIN_RING(chan, rankine, NV34TCL_VB_INDEX_BATCH, 1);
+ 			OUT_RING  (chan, ((nr - 1) << 24) | start);
+ 			start += nr;
+ 		}
+ 
+-		nr = vc >> 8;
+-		while (nr) {
+-			unsigned push = nr > 2047 ? 2047 : nr;
+-
+-			nr -= push;
++		vc >>= 8;
++		while (vc) {
++			unsigned push = vc > 2047 ? 2047 : vc;
++			vc -= push;
+ 
+ 			BEGIN_RING_NI(chan, rankine, NV34TCL_VB_INDEX_BATCH, push);
+ 			while (push--) {
+@@ -447,12 +488,6 @@ nv30_draw_elements_vbo(struct pipe_context *pipe,
+ 				start += 0x100;
+ 			}
+ 		}
+-
+-		BEGIN_RING(chan, rankine, NV34TCL_VERTEX_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		count -= vc;
+-		start = restart;
+ 	}
+ }
+ 
+diff --git a/src/gallium/drivers/nv40/nv40_vbo.c b/src/gallium/drivers/nv40/nv40_vbo.c
+index a777898..1182fc4 100644
+--- a/src/gallium/drivers/nv40/nv40_vbo.c
++++ b/src/gallium/drivers/nv40/nv40_vbo.c
+@@ -164,6 +164,121 @@ nv40_vbo_static_attrib(struct nv40_context *nv40, struct nouveau_stateobj *so,
+ 	return TRUE;
+ }
+ 
++// TODO: share this with NV30
++struct nv40_primitive
++{
++	struct nv40_context *nv40;
++	unsigned mode;
++	unsigned start;
++	unsigned end;
++	unsigned vpp;
++	unsigned flags;
++	unsigned startv;
++	int chunk;
++};
++
++static inline void
++nv40_primitive_init(struct nv40_primitive* prim, struct nv40_context *nv40,
++		 unsigned mode, unsigned start, unsigned count, unsigned vpp, unsigned startv)
++{
++	prim->nv40 = nv40;
++	prim->start = start;
++	prim->end = start + count;
++	prim->mode = mode;
++	prim->flags = 0;
++	prim->startv = startv;
++	prim->chunk = -1;
++	prim->vpp = vpp;
++
++	nv40_state_emit(nv40);
++}
++
++#define START_INDEX 0x80000000
++
++static inline void
++nv40_primitive_start_vertex(struct nv40_primitive* prim)
++{
++	struct nv40_screen *screen = prim->nv40->screen;
++	struct nouveau_channel *chan = screen->base.channel;
++	struct nouveau_grobj *curie = screen->curie;
++
++	if(prim->startv & START_INDEX)
++	{
++		BEGIN_RING(chan, curie, NV40TCL_VB_INDEX_BATCH, 1);
++		OUT_RING  (chan, (prim->startv & ~START_INDEX));
++	}
++	else
++	{
++		BEGIN_RING(chan, curie, NV40TCL_VB_ELEMENT_U32, 1);
++		OUT_RING  (chan, prim->startv);
++	}
++}
++
++static inline unsigned
++nv40_primitive_begin(struct nv40_primitive* prim, unsigned* pstart)
++{
++	struct nv40_screen *screen = prim->nv40->screen;
++	struct nouveau_channel *chan = screen->base.channel;
++	struct nouveau_grobj *curie = screen->curie;
++	unsigned vc;
++	unsigned oldflags = prim->flags;
++	unsigned avail;
++
++	*pstart = prim->start;
++
++	if(prim->start == prim->end)
++		return 0;
++
++retry:
++	avail = chan->pushbuf->remaining;
++	avail -= 10 + 1 + (chan->pushbuf->remaining >> 11); /* for the BEGIN_RING_NIs */
++	avail *= prim->vpp;
++	vc = util_split_primitive(avail, &prim->mode, &prim->start, prim->end, &prim->flags);
++	if(!vc)
++	{
++		FIRE_RING(chan);
++		goto retry;
++	}
++
++	BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
++	OUT_RING  (chan, nvgl_primitive(prim->mode));
++
++	if(oldflags & SPLIT_BEGIN_WITH_FIRST)
++		nv40_primitive_start_vertex(prim);
++
++	++prim->chunk;
++	return vc;
++}
++
++static inline void
++nv40_primitive_end(struct nv40_primitive* prim)
++{
++	struct nv40_screen *screen = prim->nv40->screen;
++	struct nouveau_channel *chan = screen->base.channel;
++	struct nouveau_grobj *curie = screen->curie;
++
++	if(prim->flags & SPLIT_END_WITH_FIRST)
++		nv40_primitive_start_vertex(prim);
++
++	BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
++	OUT_RING  (chan, 0);
++}
++
++static inline unsigned
++nv40_primitive_chunk(struct nv40_primitive* prim, unsigned* pstart)
++{
++	if(prim->chunk >= 0)
++		nv40_primitive_end(prim);
++
++	unsigned vc = nv40_primitive_begin(prim, pstart);
++	if(!vc)
++	{
++		prim->nv40->pipe.flush(&prim->nv40->pipe, 0, NULL);
++		return 0;
++	}
++	return vc;
++}
++
+ void
+ nv40_draw_arrays(struct pipe_context *pipe,
+ 		 unsigned mode, unsigned start, unsigned count)
+@@ -172,7 +287,8 @@ nv40_draw_arrays(struct pipe_context *pipe,
+ 	struct nv40_screen *screen = nv40->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *curie = screen->curie;
+-	unsigned restart;
++	struct nv40_primitive prim;
++	unsigned vc;
+ 
+ 	nv40_vbo_set_idxbuf(nv40, NULL, 0);
+ 	if (FORCE_SWTNL || !nv40_state_validate(nv40)) {
+@@ -181,49 +297,31 @@ nv40_draw_arrays(struct pipe_context *pipe,
+                 return;
+ 	}
+ 
+-	while (count) {
+-		unsigned vc, nr;
++	nv40_primitive_init(&prim, nv40, mode, start, count, 256, start);
+ 
+-		nv40_state_emit(nv40);
+-
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 6, 256,
+-					mode, start, count, &restart);
+-		if (!vc) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
+-
+-		nr = (vc & 0xff);
++	while ((vc = nv40_primitive_chunk(&prim, &start)))
++	{
++		assert(start < (nv40->vtxbuf[0].buffer->size >> 2));
++		unsigned nr = (vc & 0xff);
+ 		if (nr) {
+ 			BEGIN_RING(chan, curie, NV40TCL_VB_VERTEX_BATCH, 1);
+ 			OUT_RING  (chan, ((nr - 1) << 24) | start);
+ 			start += nr;
+ 		}
+ 
+-		nr = vc >> 8;
+-		while (nr) {
+-			unsigned push = nr > 2047 ? 2047 : nr;
+-
+-			nr -= push;
++		vc >>= 8;
++		while (vc) {
++			unsigned push = vc > 2047 ? 2047 : vc;
++			vc -= push;
+ 
+ 			BEGIN_RING_NI(chan, curie, NV40TCL_VB_VERTEX_BATCH, push);
+ 			while (push--) {
++				assert(start < (nv40->vtxbuf[0].buffer->size >> 2));
+ 				OUT_RING(chan, ((0x100 - 1) << 24) | start);
+ 				start += 0x100;
+ 			}
+ 		}
+-
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		count -= vc;
+-		start = restart;
+ 	}
+-
+-	pipe->flush(pipe, 0, NULL);
+ }
+ 
+ static INLINE void
+@@ -233,24 +331,14 @@ nv40_draw_elements_u08(struct nv40_context *nv40, void *ib,
+ 	struct nv40_screen *screen = nv40->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *curie = screen->curie;
++	struct nv40_primitive prim;
++	unsigned vc;
+ 
+-	while (count) {
+-		uint8_t *elts = (uint8_t *)ib + start;
+-		unsigned vc, push, restart;
+-
+-		nv40_state_emit(nv40);
+-
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 6, 2,
+-					mode, start, count, &restart);
+-		if (vc == 0) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-		count -= vc;
+-
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
++	nv40_primitive_init(&prim, nv40, mode, start, count, 2, ((uint8_t*)ib)[start]);
+ 
++	while ((vc = nv40_primitive_chunk(&prim, &start)))
++	{
++		uint8_t* elts = (uint8_t*)ib + start;
+ 		if (vc & 1) {
+ 			BEGIN_RING(chan, curie, NV40TCL_VB_ELEMENT_U32, 1);
+ 			OUT_RING  (chan, elts[0]);
+@@ -259,8 +347,7 @@ nv40_draw_elements_u08(struct nv40_context *nv40, void *ib,
+ 
+ 		while (vc) {
+ 			unsigned i;
+-
+-			push = MIN2(vc, 2047 * 2);
++			unsigned push = MIN2(vc, 2047 * 2);
+ 
+ 			BEGIN_RING_NI(chan, curie, NV40TCL_VB_ELEMENT_U16, push >> 1);
+ 			for (i = 0; i < push; i+=2)
+@@ -269,11 +356,6 @@ nv40_draw_elements_u08(struct nv40_context *nv40, void *ib,
+ 			vc -= push;
+ 			elts += push;
+ 		}
+-
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		start = restart;
+ 	}
+ }
+ 
+@@ -284,23 +366,14 @@ nv40_draw_elements_u16(struct nv40_context *nv40, void *ib,
+ 	struct nv40_screen *screen = nv40->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *curie = screen->curie;
++	struct nv40_primitive prim;
++	unsigned vc;
+ 
+-	while (count) {
+-		uint16_t *elts = (uint16_t *)ib + start;
+-		unsigned vc, push, restart;
+-
+-		nv40_state_emit(nv40);
+-
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 6, 2,
+-					mode, start, count, &restart);
+-		if (vc == 0) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-		count -= vc;
++	nv40_primitive_init(&prim, nv40, mode, start, count, 2, ((uint16_t*)ib)[start]);
+ 
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
++	while ((vc = nv40_primitive_chunk(&prim, &start)))
++	{
++		uint16_t *elts = (uint16_t *)ib + start;
+ 
+ 		if (vc & 1) {
+ 			BEGIN_RING(chan, curie, NV40TCL_VB_ELEMENT_U32, 1);
+@@ -310,8 +383,7 @@ nv40_draw_elements_u16(struct nv40_context *nv40, void *ib,
+ 
+ 		while (vc) {
+ 			unsigned i;
+-
+-			push = MIN2(vc, 2047 * 2);
++			unsigned push = MIN2(vc, 2047 * 2);
+ 
+ 			BEGIN_RING_NI(chan, curie, NV40TCL_VB_ELEMENT_U16, push >> 1);
+ 			for (i = 0; i < push; i+=2)
+@@ -320,11 +392,6 @@ nv40_draw_elements_u16(struct nv40_context *nv40, void *ib,
+ 			vc -= push;
+ 			elts += push;
+ 		}
+-
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		start = restart;
+ 	}
+ }
+ 
+@@ -335,26 +402,17 @@ nv40_draw_elements_u32(struct nv40_context *nv40, void *ib,
+ 	struct nv40_screen *screen = nv40->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *curie = screen->curie;
++	struct nv40_primitive prim;
++	unsigned vc;
+ 
+-	while (count) {
+-		uint32_t *elts = (uint32_t *)ib + start;
+-		unsigned vc, push, restart;
++	nv40_primitive_init(&prim, nv40, mode, start, count, 1, ((uint32_t*)ib)[start]);
+ 
+-		nv40_state_emit(nv40);
+-
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 5, 1,
+-					mode, start, count, &restart);
+-		if (vc == 0) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-		count -= vc;
+-
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
++	while ((vc = nv40_primitive_chunk(&prim, &start)))
++	{
++		uint32_t *elts = (uint32_t *)ib + start;
+ 
+ 		while (vc) {
+-			push = MIN2(vc, 2047);
++			unsigned push = MIN2(vc, 2047);
+ 
+ 			BEGIN_RING_NI(chan, curie, NV40TCL_VB_ELEMENT_U32, push);
+ 			OUT_RINGp    (chan, elts, push);
+@@ -362,11 +420,6 @@ nv40_draw_elements_u32(struct nv40_context *nv40, void *ib,
+ 			vc -= push;
+ 			elts += push;
+ 		}
+-
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		start = restart;
+ 	}
+ }
+ 
+@@ -411,35 +464,24 @@ nv40_draw_elements_vbo(struct pipe_context *pipe,
+ 	struct nv40_screen *screen = nv40->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *curie = screen->curie;
+-	unsigned restart;
+-
+-	while (count) {
+-		unsigned nr, vc;
++	struct nv40_primitive prim;
++	unsigned vc;
+ 
+-		nv40_state_emit(nv40);
++	nv40_primitive_init(&prim, nv40, mode, start, count, 256, START_INDEX | start);
+ 
+-		vc = nouveau_vbuf_split(chan->pushbuf->remaining, 6, 256,
+-					mode, start, count, &restart);
+-		if (!vc) {
+-			FIRE_RING(chan);
+-			continue;
+-		}
+-		
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, nvgl_primitive(mode));
+-
+-		nr = (vc & 0xff);
++	while ((vc = nv40_primitive_chunk(&prim, &start)))
++	{
++		unsigned nr = (vc & 0xff);
+ 		if (nr) {
+ 			BEGIN_RING(chan, curie, NV40TCL_VB_INDEX_BATCH, 1);
+ 			OUT_RING  (chan, ((nr - 1) << 24) | start);
+ 			start += nr;
+ 		}
+ 
+-		nr = vc >> 8;
+-		while (nr) {
+-			unsigned push = nr > 2047 ? 2047 : nr;
+-
+-			nr -= push;
++		vc >>= 8;
++		while (vc) {
++			unsigned push = vc > 2047 ? 2047 : vc;
++			vc -= push;
+ 
+ 			BEGIN_RING_NI(chan, curie, NV40TCL_VB_INDEX_BATCH, push);
+ 			while (push--) {
+@@ -447,12 +489,6 @@ nv40_draw_elements_vbo(struct pipe_context *pipe,
+ 				start += 0x100;
+ 			}
+ 		}
+-
+-		BEGIN_RING(chan, curie, NV40TCL_BEGIN_END, 1);
+-		OUT_RING  (chan, 0);
+-
+-		count -= vc;
+-		start = restart;
+ 	}
+ }
+ 
 -- 
-Jabber/XMPP: okias-O1n184kmSCviB9QmIjCX8w@public.gmane.org
-SIP VoIP: sip:17474537254-rne+wJe3e/u3Jhga2bR/9VaTQe2KTcn/@public.gmane.org
-
---0016e65b5b0405ae35047d6fa5d4
-Content-Type: text/plain; charset=US-ASCII; name="drm-remove_ums_leftover_v2.diff"
-Content-Disposition: attachment; filename="drm-remove_ums_leftover_v2.diff"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_g4l8so2o0
-
-VGhpcyBwYXRjaCByZW1vdmUgbGVmdG92ZXIgZnJvbSBVTVMuCgpTaWduZWQtb2ZmLWJ5OiBEYXZp
-ZCBIZWlkZWxiZXJnZXIgPGQub2tpYXNAZ21haWwuY29tPgotLS0KZGlmZiAtTmF1ciBhL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1hLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2RtYS5jCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1h
-LmMJMjAxMC0wMS0xOCAxMjo0ODowOS4xOTM4NzI3NzMgKzAxMDAKKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9kbWEuYwkyMDEwLTAxLTE4IDEyOjUwOjAxLjYzOTg3NDUxOSAr
-MDEwMApAQCAtNzcsMTEgKzc3LDkgQEAKIAkJcmV0dXJuIHJldDsKIAogCS8qIE1hcCBNMk1GIG5v
-dGlmaWVyIG9iamVjdCAtIGZiY29uLiAqLwotCWlmIChkcm1fY29yZV9jaGVja19mZWF0dXJlKGRl
-diwgRFJJVkVSX01PREVTRVQpKSB7Ci0JCXJldCA9IG5vdXZlYXVfYm9fbWFwKGNoYW4tPm5vdGlm
-aWVyX2JvKTsKLQkJaWYgKHJldCkKLQkJCXJldHVybiByZXQ7Ci0JfQorCXJldCA9IG5vdXZlYXVf
-Ym9fbWFwKGNoYW4tPm5vdGlmaWVyX2JvKTsKKwlpZiAocmV0KQorCQlyZXR1cm4gcmV0OwogCiAJ
-LyogSW5zZXJ0IE5PUFMgZm9yIE5PVVZFQVVfRE1BX1NLSVBTICovCiAJcmV0ID0gUklOR19TUEFD
-RShjaGFuLCBOT1VWRUFVX0RNQV9TS0lQUyk7CmRpZmYgLU5hdXIgYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-cnYuYwotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5jCTIwMTAtMDEt
-MTggMTI6NDI6MTQuMzk2ODcyNzAzICswMTAwCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfZHJ2LmMJMjAxMC0wMS0xOCAxMzowMDo1Ny4wNDQ4Nzk3NTUgKzAxMDAKQEAgLTQz
-LDEwICs0Myw2IEBACiBpbnQgbm91dmVhdV9ub2FncDsKIG1vZHVsZV9wYXJhbV9uYW1lZChub2Fn
-cCwgbm91dmVhdV9ub2FncCwgaW50LCAwNDAwKTsKIAotTU9EVUxFX1BBUk1fREVTQyhtb2Rlc2V0
-LCAiRW5hYmxlIGtlcm5lbCBtb2Rlc2V0dGluZyIpOwotc3RhdGljIGludCBub3V2ZWF1X21vZGVz
-ZXQgPSAtMTsgLyoga21zICovCi1tb2R1bGVfcGFyYW1fbmFtZWQobW9kZXNldCwgbm91dmVhdV9t
-b2Rlc2V0LCBpbnQsIDA0MDApOwotCiBNT0RVTEVfUEFSTV9ERVNDKHZiaW9zLCAiT3ZlcnJpZGUg
-ZGVmYXVsdCBWQklPUyBsb2NhdGlvbiIpOwogY2hhciAqbm91dmVhdV92YmlvczsKIG1vZHVsZV9w
-YXJhbV9uYW1lZCh2Ymlvcywgbm91dmVhdV92YmlvcywgY2hhcnAsIDA0MDApOwpAQCAtMTM2LDkg
-KzEzMiw2IEBACiAJdWludDMyX3QgZmJkZXZfZmxhZ3M7CiAJaW50IHJldCwgaTsKIAotCWlmICgh
-ZHJtX2NvcmVfY2hlY2tfZmVhdHVyZShkZXYsIERSSVZFUl9NT0RFU0VUKSkKLQkJcmV0dXJuIC1F
-Tk9ERVY7Ci0KIAlpZiAocG1fc3RhdGUuZXZlbnQgPT0gUE1fRVZFTlRfUFJFVEhBVykKIAkJcmV0
-dXJuIDA7CiAKQEAgLTIzMSw5ICsyMjQsNiBAQAogCXVpbnQzMl90IGZiZGV2X2ZsYWdzOwogCWlu
-dCByZXQsIGk7CiAKLQlpZiAoIWRybV9jb3JlX2NoZWNrX2ZlYXR1cmUoZGV2LCBEUklWRVJfTU9E
-RVNFVCkpCi0JCXJldHVybiAtRU5PREVWOwotCiAJZmJkZXZfZmxhZ3MgPSBkZXZfcHJpdi0+ZmJk
-ZXZfaW5mby0+ZmxhZ3M7CiAJZGV2X3ByaXYtPmZiZGV2X2luZm8tPmZsYWdzIHw9IEZCSU5GT19I
-V0FDQ0VMX0RJU0FCTEVEOwogCkBAIC0zMjMsMTAgKzMxMywxMCBAQAogc3RhdGljIHN0cnVjdCBk
-cm1fZHJpdmVyIGRyaXZlciA9IHsKIAkuZHJpdmVyX2ZlYXR1cmVzID0KIAkJRFJJVkVSX1VTRV9B
-R1AgfCBEUklWRVJfUENJX0RNQSB8IERSSVZFUl9TRyB8Ci0JCURSSVZFUl9IQVZFX0lSUSB8IERS
-SVZFUl9JUlFfU0hBUkVEIHwgRFJJVkVSX0dFTSwKKwkJRFJJVkVSX0hBVkVfSVJRIHwgRFJJVkVS
-X0lSUV9TSEFSRUQgfCBEUklWRVJfR0VNIHwKKwkJRFJJVkVSX01PREVTRVQsCiAJLmxvYWQgPSBu
-b3V2ZWF1X2xvYWQsCiAJLmZpcnN0b3BlbiA9IG5vdXZlYXVfZmlyc3RvcGVuLAotCS5sYXN0Y2xv
-c2UgPSBub3V2ZWF1X2xhc3RjbG9zZSwKIAkudW5sb2FkID0gbm91dmVhdV91bmxvYWQsCiAJLnBy
-ZWNsb3NlID0gbm91dmVhdV9wcmVjbG9zZSwKICNpZiBkZWZpbmVkKENPTkZJR19EUk1fTk9VVkVB
-VV9ERUJVRykKQEAgLTM4MSwxOCArMzcxLDYgQEAKIHsKIAlkcml2ZXIubnVtX2lvY3RscyA9IG5v
-dXZlYXVfbWF4X2lvY3RsOwogCi0JaWYgKG5vdXZlYXVfbW9kZXNldCA9PSAtMSkgewotI2lmZGVm
-IENPTkZJR19WR0FfQ09OU09MRQotCQlpZiAodmdhY29uX3RleHRfZm9yY2UoKSkKLQkJCW5vdXZl
-YXVfbW9kZXNldCA9IDA7Ci0JCWVsc2UKLSNlbmRpZgotCQkJbm91dmVhdV9tb2Rlc2V0ID0gMTsK
-LQl9Ci0KLQlpZiAobm91dmVhdV9tb2Rlc2V0ID09IDEpCi0JCWRyaXZlci5kcml2ZXJfZmVhdHVy
-ZXMgfD0gRFJJVkVSX01PREVTRVQ7Ci0KIAlyZXR1cm4gZHJtX2luaXQoJmRyaXZlcik7CiB9CiAK
-ZGlmZiAtTmF1ciBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmggYi9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfZHJ2LmgJMjAxMC0wMS0xOCAxMzoyNzo0Ni4xMzU4NzgwMTEgKzAxMDAK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaAkyMDEwLTAxLTE4IDEz
-OjI5OjU0LjI2Mjg4MzEwOSArMDEwMApAQCAtMTE1MSwxMCArMTE1MSw2IEBACiAJCQkJCSAgc3Ry
-dWN0IGRybV9maWxlICopOwogZXh0ZXJuIGludCBub3V2ZWF1X2dlbV9pb2N0bF9wdXNoYnVmX2Nh
-bGwyKHN0cnVjdCBkcm1fZGV2aWNlICosIHZvaWQgKiwKIAkJCQkJICAgc3RydWN0IGRybV9maWxl
-ICopOwotZXh0ZXJuIGludCBub3V2ZWF1X2dlbV9pb2N0bF9waW4oc3RydWN0IGRybV9kZXZpY2Ug
-Kiwgdm9pZCAqLAotCQkJCSBzdHJ1Y3QgZHJtX2ZpbGUgKik7Ci1leHRlcm4gaW50IG5vdXZlYXVf
-Z2VtX2lvY3RsX3VucGluKHN0cnVjdCBkcm1fZGV2aWNlICosIHZvaWQgKiwKLQkJCQkgICBzdHJ1
-Y3QgZHJtX2ZpbGUgKik7CiBleHRlcm4gaW50IG5vdXZlYXVfZ2VtX2lvY3RsX3RpbGUoc3RydWN0
-IGRybV9kZXZpY2UgKiwgdm9pZCAqLAogCQkJCSAgc3RydWN0IGRybV9maWxlICopOwogZXh0ZXJu
-IGludCBub3V2ZWF1X2dlbV9pb2N0bF9jcHVfcHJlcChzdHJ1Y3QgZHJtX2RldmljZSAqLCB2b2lk
-ICosCmRpZmYgLU5hdXIgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uYwotLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jCTIwMTAtMDEtMTggMTI6NDg6NTIuNTkyODczNTM5ICsw
-MTAwCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmMJMjAxMC0wMS0x
-OCAxMjo1MzowMi4xMzYxMjkzMDEgKzAxMDAKQEAgLTgxNyw3NCArODE3LDYgQEAKIH0KIAogaW50
-Ci1ub3V2ZWF1X2dlbV9pb2N0bF9waW4oc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0
-YSwKLQkJICAgICAgc3RydWN0IGRybV9maWxlICpmaWxlX3ByaXYpCi17Ci0Jc3RydWN0IGRybV9u
-b3V2ZWF1X2dlbV9waW4gKnJlcSA9IGRhdGE7Ci0Jc3RydWN0IGRybV9nZW1fb2JqZWN0ICpnZW07
-Ci0Jc3RydWN0IG5vdXZlYXVfYm8gKm52Ym87Ci0JaW50IHJldCA9IDA7Ci0KLQlOT1VWRUFVX0NI
-RUNLX0lOSVRJQUxJU0VEX1dJVEhfUkVUVVJOOwotCi0JaWYgKGRybV9jb3JlX2NoZWNrX2ZlYXR1
-cmUoZGV2LCBEUklWRVJfTU9ERVNFVCkpIHsKLQkJTlZfRVJST1IoZGV2LCAicGluIG9ubHkgYWxs
-b3dlZCB3aXRob3V0IGtlcm5lbCBtb2Rlc2V0dGluZ1xuIik7Ci0JCXJldHVybiAtRUlOVkFMOwot
-CX0KLQotCWlmICghRFJNX1NVU0VSKERSTV9DVVJQUk9DKSkKLQkJcmV0dXJuIC1FUEVSTTsKLQot
-CWdlbSA9IGRybV9nZW1fb2JqZWN0X2xvb2t1cChkZXYsIGZpbGVfcHJpdiwgcmVxLT5oYW5kbGUp
-OwotCWlmICghZ2VtKQotCQlyZXR1cm4gLUVJTlZBTDsKLQludmJvID0gbm91dmVhdV9nZW1fb2Jq
-ZWN0KGdlbSk7Ci0KLQlyZXQgPSBub3V2ZWF1X2JvX3BpbihudmJvLCBkb21haW5fdG9fdHRtKG52
-Ym8sIHJlcS0+ZG9tYWluKSk7Ci0JaWYgKHJldCkKLQkJZ290byBvdXQ7Ci0KLQlyZXEtPm9mZnNl
-dCA9IG52Ym8tPmJvLm9mZnNldDsKLQlpZiAobnZiby0+Ym8ubWVtLm1lbV90eXBlID09IFRUTV9Q
-TF9UVCkKLQkJcmVxLT5kb21haW4gPSBOT1VWRUFVX0dFTV9ET01BSU5fR0FSVDsKLQllbHNlCi0J
-CXJlcS0+ZG9tYWluID0gTk9VVkVBVV9HRU1fRE9NQUlOX1ZSQU07Ci0KLW91dDoKLQltdXRleF9s
-b2NrKCZkZXYtPnN0cnVjdF9tdXRleCk7Ci0JZHJtX2dlbV9vYmplY3RfdW5yZWZlcmVuY2UoZ2Vt
-KTsKLQltdXRleF91bmxvY2soJmRldi0+c3RydWN0X211dGV4KTsKLQotCXJldHVybiByZXQ7Ci19
-Ci0KLWludAotbm91dmVhdV9nZW1faW9jdGxfdW5waW4oc3RydWN0IGRybV9kZXZpY2UgKmRldiwg
-dm9pZCAqZGF0YSwKLQkJCXN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2KQotewotCXN0cnVjdCBk
-cm1fbm91dmVhdV9nZW1fcGluICpyZXEgPSBkYXRhOwotCXN0cnVjdCBkcm1fZ2VtX29iamVjdCAq
-Z2VtOwotCWludCByZXQ7Ci0KLQlOT1VWRUFVX0NIRUNLX0lOSVRJQUxJU0VEX1dJVEhfUkVUVVJO
-OwotCi0JaWYgKGRybV9jb3JlX2NoZWNrX2ZlYXR1cmUoZGV2LCBEUklWRVJfTU9ERVNFVCkpCi0J
-CXJldHVybiAtRUlOVkFMOwotCi0JZ2VtID0gZHJtX2dlbV9vYmplY3RfbG9va3VwKGRldiwgZmls
-ZV9wcml2LCByZXEtPmhhbmRsZSk7Ci0JaWYgKCFnZW0pCi0JCXJldHVybiAtRUlOVkFMOwotCi0J
-cmV0ID0gbm91dmVhdV9ib191bnBpbihub3V2ZWF1X2dlbV9vYmplY3QoZ2VtKSk7Ci0KLQltdXRl
-eF9sb2NrKCZkZXYtPnN0cnVjdF9tdXRleCk7Ci0JZHJtX2dlbV9vYmplY3RfdW5yZWZlcmVuY2Uo
-Z2VtKTsKLQltdXRleF91bmxvY2soJmRldi0+c3RydWN0X211dGV4KTsKLQotCXJldHVybiByZXQ7
-Ci19Ci0KLWludAogbm91dmVhdV9nZW1faW9jdGxfY3B1X3ByZXAoc3RydWN0IGRybV9kZXZpY2Ug
-KmRldiwgdm9pZCAqZGF0YSwKIAkJCSAgIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2KQogewpk
-aWZmIC1OYXVyIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2NoYW5uZWwuYwotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2NoYW5uZWwuYwkyMDEwLTAxLTE4IDEzOjI3OjM1LjcwMjg3
-NzU5MSArMDEwMAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2NoYW5uZWwu
-YwkyMDEwLTAxLTE4IDEzOjMwOjM1LjAwMjg3NzkzOSArMDEwMApAQCAtNDIwLDggKzQyMCw2IEBA
-CiAJRFJNX0lPQ1RMX0RFRihEUk1fTk9VVkVBVV9HRU1fTkVXLCBub3V2ZWF1X2dlbV9pb2N0bF9u
-ZXcsIERSTV9BVVRIKSwKIAlEUk1fSU9DVExfREVGKERSTV9OT1VWRUFVX0dFTV9QVVNIQlVGLCBu
-b3V2ZWF1X2dlbV9pb2N0bF9wdXNoYnVmLCBEUk1fQVVUSCksCiAJRFJNX0lPQ1RMX0RFRihEUk1f
-Tk9VVkVBVV9HRU1fUFVTSEJVRl9DQUxMLCBub3V2ZWF1X2dlbV9pb2N0bF9wdXNoYnVmX2NhbGws
-IERSTV9BVVRIKSwKLQlEUk1fSU9DVExfREVGKERSTV9OT1VWRUFVX0dFTV9QSU4sIG5vdXZlYXVf
-Z2VtX2lvY3RsX3BpbiwgRFJNX0FVVEgpLAotCURSTV9JT0NUTF9ERUYoRFJNX05PVVZFQVVfR0VN
-X1VOUElOLCBub3V2ZWF1X2dlbV9pb2N0bF91bnBpbiwgRFJNX0FVVEgpLAogCURSTV9JT0NUTF9E
-RUYoRFJNX05PVVZFQVVfR0VNX0NQVV9QUkVQLCBub3V2ZWF1X2dlbV9pb2N0bF9jcHVfcHJlcCwg
-RFJNX0FVVEgpLAogCURSTV9JT0NUTF9ERUYoRFJNX05PVVZFQVVfR0VNX0NQVV9GSU5JLCBub3V2
-ZWF1X2dlbV9pb2N0bF9jcHVfZmluaSwgRFJNX0FVVEgpLAogCURSTV9JT0NUTF9ERUYoRFJNX05P
-VVZFQVVfR0VNX0lORk8sIG5vdXZlYXVfZ2VtX2lvY3RsX2luZm8sIERSTV9BVVRIKSwKZGlmZiAt
-TmF1ciBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfbWVtLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X21lbS5jCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfbWVtLmMJMjAxMC0wMS0xOCAxMjo0ODo1OS41MjIxMjI4NzYgKzAxMDAKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9tZW0uYwkyMDEwLTAxLTE4IDEyOjUzOjM2
-LjczMDg4ODYyNyArMDEwMApAQCAtMzkxLDggKzM5MSw3IEBACiAKIAlub3V2ZWF1X3R0bV9nbG9i
-YWxfcmVsZWFzZShkZXZfcHJpdik7CiAKLQlpZiAoZHJtX2NvcmVfaGFzX0FHUChkZXYpICYmIGRl
-di0+YWdwICYmCi0JICAgIGRybV9jb3JlX2NoZWNrX2ZlYXR1cmUoZGV2LCBEUklWRVJfTU9ERVNF
-VCkpIHsKKwlpZiAoZHJtX2NvcmVfaGFzX0FHUChkZXYpICYmIGRldi0+YWdwKSB7CiAJCXN0cnVj
-dCBkcm1fYWdwX21lbSAqZW50cnksICp0ZW1wZTsKIAogCQkvKiBSZW1vdmUgQUdQIHJlc291cmNl
-cywgYnV0IGxlYXZlIGRldi0+YWdwCmRpZmYgLU5hdXIgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X3N0YXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRl
-LmMKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5jCTIwMTAtMDEt
-MTggMTI6NDk6MDYuODI1ODcyOTEyICswMTAwCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfc3RhdGUuYwkyMDEwLTAxLTE4IDEzOjAwOjM0LjAzOTg3OTQ3NiArMDEwMApAQCAt
-Mzg1LDExICszODUsOSBAQAogCWRldl9wcml2LT5pbml0X3N0YXRlID0gTk9VVkVBVV9DQVJEX0lO
-SVRfRkFJTEVEOwogCiAJLyogUGFyc2UgQklPUyB0YWJsZXMgLyBSdW4gaW5pdCB0YWJsZXMgaWYg
-Y2FyZCBub3QgUE9TVGVkICovCi0JaWYgKGRybV9jb3JlX2NoZWNrX2ZlYXR1cmUoZGV2LCBEUklW
-RVJfTU9ERVNFVCkpIHsKLQkJcmV0ID0gbm91dmVhdV9iaW9zX2luaXQoZGV2KTsKLQkJaWYgKHJl
-dCkKLQkJCWdvdG8gb3V0OwotCX0KKwlyZXQgPSBub3V2ZWF1X2Jpb3NfaW5pdChkZXYpOworCWlm
-IChyZXQpCisJCWdvdG8gb3V0OwogCiAJcmV0ID0gbm91dmVhdV9ncHVvYmpfZWFybHlfaW5pdChk
-ZXYpOwogCWlmIChyZXQpCkBAIC00NTYsMTQgKzQ1NCwxMiBAQAogCQkJZ290byBvdXRfaXJxOwog
-CX0KIAotCWlmIChkcm1fY29yZV9jaGVja19mZWF0dXJlKGRldiwgRFJJVkVSX01PREVTRVQpKSB7
-Ci0JCWlmIChkZXZfcHJpdi0+Y2FyZF90eXBlID49IE5WXzUwKQotCQkJcmV0ID0gbnY1MF9kaXNw
-bGF5X2NyZWF0ZShkZXYpOwotCQllbHNlCi0JCQlyZXQgPSBudjA0X2Rpc3BsYXlfY3JlYXRlKGRl
-dik7Ci0JCWlmIChyZXQpCi0JCQlnb3RvIG91dF9pcnE7Ci0JfQorCWlmIChkZXZfcHJpdi0+Y2Fy
-ZF90eXBlID49IE5WXzUwKQorCQlyZXQgPSBudjUwX2Rpc3BsYXlfY3JlYXRlKGRldik7CisJZWxz
-ZQorCQlyZXQgPSBudjA0X2Rpc3BsYXlfY3JlYXRlKGRldik7CisJaWYgKHJldCkKKwkJZ290byBv
-dXRfaXJxOwogCiAJcmV0ID0gbm91dmVhdV9iYWNrbGlnaHRfaW5pdChkZXYpOwogCWlmIChyZXQp
-CkBAIC00NzEsOCArNDY3LDcgQEAKIAogCWRldl9wcml2LT5pbml0X3N0YXRlID0gTk9VVkVBVV9D
-QVJEX0lOSVRfRE9ORTsKIAotCWlmIChkcm1fY29yZV9jaGVja19mZWF0dXJlKGRldiwgRFJJVkVS
-X01PREVTRVQpKQotCQlkcm1faGVscGVyX2luaXRpYWxfY29uZmlnKGRldik7CisJZHJtX2hlbHBl
-cl9pbml0aWFsX2NvbmZpZyhkZXYpOwogCiAJcmV0dXJuIDA7CiAKQEAgLTUzMyw4ICs1MjgsNyBA
-QAogCQlub3V2ZWF1X21lbV9jbG9zZShkZXYpOwogCQllbmdpbmUtPmluc3RtZW0udGFrZWRvd24o
-ZGV2KTsKIAotCQlpZiAoZHJtX2NvcmVfY2hlY2tfZmVhdHVyZShkZXYsIERSSVZFUl9NT0RFU0VU
-KSkKLQkJCWRybV9pcnFfdW5pbnN0YWxsKGRldik7CisJCWRybV9pcnFfdW5pbnN0YWxsKGRldik7
-CiAKIAkJbm91dmVhdV9ncHVvYmpfbGF0ZV90YWtlZG93bihkZXYpOwogCQlub3V2ZWF1X2Jpb3Nf
-dGFrZWRvd24oZGV2KTsKQEAgLTcxMiwxMSArNzA2LDkgQEAKIAkJZGV2X3ByaXYtPmZsYWdzIHw9
-IE5WX05GT1JDRTI7CiAKIAkvKiBGb3Iga2VybmVsIG1vZGVzZXR0aW5nLCBpbml0IGNhcmQgbm93
-IGFuZCBicmluZyB1cCBmYmNvbiAqLwotCWlmIChkcm1fY29yZV9jaGVja19mZWF0dXJlKGRldiwg
-RFJJVkVSX01PREVTRVQpKSB7Ci0JCWludCByZXQgPSBub3V2ZWF1X2NhcmRfaW5pdChkZXYpOwot
-CQlpZiAocmV0KQotCQkJcmV0dXJuIHJldDsKLQl9CisJaW50IHJldCA9IG5vdXZlYXVfY2FyZF9p
-bml0KGRldik7CisJaWYgKHJldCkKKwkJcmV0dXJuIHJldDsKIAogCXJldHVybiAwOwogfQpAQCAt
-NzMwLDI2ICs3MjIsMTYgQEAKIAkJbm91dmVhdV9jYXJkX3Rha2Vkb3duKGRldik7CiB9CiAKLS8q
-IEtNUzogd2UgbmVlZCBtbWlvIGF0IGxvYWQgdGltZSwgbm90IHdoZW4gdGhlIGZpcnN0IGRybSBj
-bGllbnQgb3BlbnMuICovCi12b2lkIG5vdXZlYXVfbGFzdGNsb3NlKHN0cnVjdCBkcm1fZGV2aWNl
-ICpkZXYpCi17Ci0JaWYgKGRybV9jb3JlX2NoZWNrX2ZlYXR1cmUoZGV2LCBEUklWRVJfTU9ERVNF
-VCkpCi0JCXJldHVybjsKLQotCW5vdXZlYXVfY2xvc2UoZGV2KTsKLX0KIAogaW50IG5vdXZlYXVf
-dW5sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiB7CiAJc3RydWN0IGRybV9ub3V2ZWF1X3By
-aXZhdGUgKmRldl9wcml2ID0gZGV2LT5kZXZfcHJpdmF0ZTsKIAotCWlmIChkcm1fY29yZV9jaGVj
-a19mZWF0dXJlKGRldiwgRFJJVkVSX01PREVTRVQpKSB7Ci0JCWlmIChkZXZfcHJpdi0+Y2FyZF90
-eXBlID49IE5WXzUwKQotCQkJbnY1MF9kaXNwbGF5X2Rlc3Ryb3koZGV2KTsKLQkJZWxzZQotCQkJ
-bnYwNF9kaXNwbGF5X2Rlc3Ryb3koZGV2KTsKLQkJbm91dmVhdV9jbG9zZShkZXYpOwotCX0KKwlp
-ZiAoZGV2X3ByaXYtPmNhcmRfdHlwZSA+PSBOVl81MCkKKwkJbnY1MF9kaXNwbGF5X2Rlc3Ryb3ko
-ZGV2KTsKKwllbHNlCisJCW52MDRfZGlzcGxheV9kZXN0cm95KGRldik7CisJbm91dmVhdV9jbG9z
-ZShkZXYpOwogCiAJaW91bm1hcChkZXZfcHJpdi0+bW1pbyk7CiAJaW91bm1hcChkZXZfcHJpdi0+
-cmFtaW4pOwo=
---0016e65b5b0405ae35047d6fa5d4
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---0016e65b5b0405ae35047d6fa5d4--
+1.6.3.3
