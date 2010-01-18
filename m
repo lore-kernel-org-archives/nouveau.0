@@ -1,13 +1,10 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH 2/2] nv30/nv40: allocate a bigger block for queries
-Date: Mon, 18 Jan 2010 01:18:04 +0100
-Message-ID: <1263773884-21961-2-git-send-email-luca@luca-barbieri.com>
-References: <1263773884-21961-1-git-send-email-luca@luca-barbieri.com>
+From: okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Gallium - remove DRI1 support
+Date: Mon, 18 Jan 2010 11:14:34 +0100
+Message-ID: <c2673ca61001180214q3d94bb87j5e38fa730139a562@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=0016e65b62a6b98ef9047d6d9e16
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1263773884-21961-1-git-send-email-luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,94 +15,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This patch allocates a bigger chunk of memory to store queries in,
-increasing the (hidden) outstanding query limit from 32 to 125.
+--0016e65b62a6b98ef9047d6d9e16
+Content-Type: text/plain; charset=UTF-8
 
-It also tries to make use of a 16KB notifier block if the kernel
-supports that.
+Compilation tested.
 
-The blob supports 1024 queries due to their 16KB query block and
-16-byte rather than 32-byte sized queries.
----
- src/gallium/drivers/nv30/nv30_screen.c |   13 +++++++++----
- src/gallium/drivers/nv40/nv40_screen.c |   13 ++++++++++---
- 2 files changed, 19 insertions(+), 7 deletions(-)
-
-diff --git a/src/gallium/drivers/nv30/nv30_screen.c b/src/gallium/drivers/nv30/nv30_screen.c
-index 2cd5d12..0f26d39 100644
---- a/src/gallium/drivers/nv30/nv30_screen.c
-+++ b/src/gallium/drivers/nv30/nv30_screen.c
-@@ -238,22 +238,27 @@ nv30_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
- 	}
- 
- 	/* Query objects */
--	ret = nouveau_notifier_alloc(chan, 0xbeef0302, 32, &screen->query);
-+	unsigned query_sizes[] = {(16384 - 3 * 32) / 32, 15 * 1024 / 32, (4096 - 32 * 3) / 32, 3 * 1024 / 32, 2 * 1024 / 32, 1024 / 32};
-+	for(i = 0; i < sizeof(query_sizes) / sizeof(query_sizes[0]); ++i)
-+	{
-+		ret = nouveau_notifier_alloc(chan, 0xbeef0302, query_sizes[i], &screen->query);
-+		if(!ret)
-+			break;
-+	}
-+
- 	if (ret) {
- 		NOUVEAU_ERR("Error initialising query objects: %d\n", ret);
- 		nv30_screen_destroy(pscreen);
- 		return NULL;
- 	}
- 
--	ret = nouveau_resource_init(&screen->query_heap, 0, 32);
-+	nouveau_resource_init(&screen->query_heap, 0, query_sizes[i]);
- 	if (ret) {
- 		NOUVEAU_ERR("Error initialising query object heap: %d\n", ret);
- 		nv30_screen_destroy(pscreen);
- 		return NULL;
- 	}
- 
--	LIST_INITHEAD(&screen->query_list);
--
- 	/* Vtxprog resources */
- 	if (nouveau_resource_init(&screen->vp_exec_heap, 0, 256) ||
- 	    nouveau_resource_init(&screen->vp_data_heap, 0, 256)) {
-diff --git a/src/gallium/drivers/nv40/nv40_screen.c b/src/gallium/drivers/nv40/nv40_screen.c
-index a8c14f9..4264d18 100644
---- a/src/gallium/drivers/nv40/nv40_screen.c
-+++ b/src/gallium/drivers/nv40/nv40_screen.c
-@@ -161,7 +161,7 @@ nv40_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
- 	struct pipe_screen *pscreen;
- 	struct nouveau_stateobj *so;
- 	unsigned curie_class = 0;
--	int ret;
-+	int ret, i;
- 
- 	if (!screen)
- 		return NULL;
-@@ -223,14 +223,21 @@ nv40_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
- 	}
- 
- 	/* Query objects */
--	ret = nouveau_notifier_alloc(chan, 0xbeef0302, 32, &screen->query);
-+	unsigned query_sizes[] = {(16384 - 3 * 32) / 32, 15 * 1024 / 32, (4096 - 32 * 3) / 32, 3 * 1024 / 32, 2 * 1024 / 32, 1024 / 32};
-+	for(i = 0; i < sizeof(query_sizes) / sizeof(query_sizes[0]); ++i)
-+	{
-+		ret = nouveau_notifier_alloc(chan, 0xbeef0302, query_sizes[i], &screen->query);
-+		if(!ret)
-+			break;
-+	}
-+
- 	if (ret) {
- 		NOUVEAU_ERR("Error initialising query objects: %d\n", ret);
- 		nv40_screen_destroy(pscreen);
- 		return NULL;
- 	}
- 
--	nouveau_resource_init(&screen->query_heap, 0, 32);
-+	nouveau_resource_init(&screen->query_heap, 0, query_sizes[i]);
- 	if (ret) {
- 		NOUVEAU_ERR("Error initialising query object heap: %d\n", ret);
- 		nv40_screen_destroy(pscreen);
 -- 
-1.6.3.3
+Jabber/XMPP: okias-O1n184kmSCviB9QmIjCX8w@public.gmane.org
+SIP VoIP: sip:17474537254-rne+wJe3e/u3Jhga2bR/9VaTQe2KTcn/@public.gmane.org
+
+--0016e65b62a6b98ef9047d6d9e16
+Content-Type: application/octet-stream;
+	name="0001-nouveau-remove-dri1-support.patch"
+Content-Disposition: attachment;
+	filename="0001-nouveau-remove-dri1-support.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_g4l3mowt0
+
+RnJvbSA2MWEzNjY4ZTZhOWFmN2M4OTUyYjNmYWI5NTQzMjNhNzhlNDMzMDQ5IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBEYXZpZCBIZWlkZWxiZXJnZXIgPGQub2tpYXNAZ21haWwuY29t
+PgpEYXRlOiBNb24sIDE4IEphbiAyMDEwIDExOjA3OjQ5ICswMTAwClN1YmplY3Q6IFtQQVRDSF0g
+W25vdXZlYXVdIHJlbW92ZSBkcmkxIHN1cHBvcnQKCi0tLQogLi4uL3dpbnN5cy9kcm0vbm91dmVh
+dS9kcm0vbm91dmVhdV9kcm1fYXBpLmMgICAgICAgfCAgIDM2IC0tLS0tLS0tLS0tLS0tLS0tLS0t
+CiAuLi4vd2luc3lzL2RybS9ub3V2ZWF1L2RybS9ub3V2ZWF1X2RybV9hcGkuaCAgICAgICB8ICAg
+IDEgLQogMiBmaWxlcyBjaGFuZ2VkLCAwIGluc2VydGlvbnMoKyksIDM3IGRlbGV0aW9ucygtKQoK
+ZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL3dpbnN5cy9kcm0vbm91dmVhdS9kcm0vbm91dmVhdV9k
+cm1fYXBpLmMgYi9zcmMvZ2FsbGl1bS93aW5zeXMvZHJtL25vdXZlYXUvZHJtL25vdXZlYXVfZHJt
+X2FwaS5jCmluZGV4IDRiMmM2YTEuLjEzNTkxNzcgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL3dp
+bnN5cy9kcm0vbm91dmVhdS9kcm0vbm91dmVhdV9kcm1fYXBpLmMKKysrIGIvc3JjL2dhbGxpdW0v
+d2luc3lzL2RybS9ub3V2ZWF1L2RybS9ub3V2ZWF1X2RybV9hcGkuYwpAQCAtNDQsMjEgKzQ0LDEw
+IEBAIGRyaV9zdXJmYWNlX2Zyb21faGFuZGxlKHN0cnVjdCBkcm1fYXBpICphcGksIHN0cnVjdCBw
+aXBlX3NjcmVlbiAqcHNjcmVlbiwKIAlyZXR1cm4gcHM7CiB9CiAKLXN0YXRpYyBzdHJ1Y3QgcGlw
+ZV9zdXJmYWNlICoKLW5vdXZlYXVfZHJpMV9mcm9udF9zdXJmYWNlKHN0cnVjdCBwaXBlX2NvbnRl
+eHQgKnBpcGUpCi17Ci0JcmV0dXJuIG5vdXZlYXVfd2luc3lzX3NjcmVlbihwaXBlLT5zY3JlZW4p
+LT5mcm9udDsKLX0KLQotc3RhdGljIHN0cnVjdCBkcmkxX2FwaSBub3V2ZWF1X2RyaTFfYXBpID0g
+ewotCW5vdXZlYXVfZHJpMV9mcm9udF9zdXJmYWNlLAotfTsKLQogc3RhdGljIHN0cnVjdCBwaXBl
+X3NjcmVlbiAqCiBub3V2ZWF1X2RybV9jcmVhdGVfc2NyZWVuKHN0cnVjdCBkcm1fYXBpICphcGks
+IGludCBmZCwKIAkJCSAgc3RydWN0IGRybV9jcmVhdGVfc2NyZWVuX2FyZyAqYXJnKQogewotCXN0
+cnVjdCBkcmkxX2NyZWF0ZV9zY3JlZW5fYXJnICpkcmkxID0gKHZvaWQgKilhcmc7CiAJc3RydWN0
+IG5vdXZlYXVfd2luc3lzICpudndzOwogCXN0cnVjdCBwaXBlX3dpbnN5cyAqd3M7CiAJc3RydWN0
+IG5vdXZlYXVfZGV2aWNlICpkZXYgPSBOVUxMOwpAQCAtMTEyLDMxICsxMDEsNiBAQCBub3V2ZWF1
+X2RybV9jcmVhdGVfc2NyZWVuKHN0cnVjdCBkcm1fYXBpICphcGksIGludCBmZCwKIAkJcmV0dXJu
+IE5VTEw7CiAJfQogCi0JaWYgKGFyZyAmJiBhcmctPm1vZGUgPT0gRFJNX0NSRUFURV9EUkkxKSB7
+Ci0JCXN0cnVjdCBub3V2ZWF1X2RyaSAqbnZkcmkgPSBkcmkxLT5kZHhfaW5mbzsKLQkJZW51bSBw
+aXBlX2Zvcm1hdCBmb3JtYXQ7Ci0KLQkJaWYgKG52ZHJpLT5icHAgPT0gMTYpCi0JCQlmb3JtYXQg
+PSBQSVBFX0ZPUk1BVF9SNUc2QjVfVU5PUk07Ci0JCWVsc2UKLQkJCWZvcm1hdCA9IFBJUEVfRk9S
+TUFUX0E4UjhHOEI4X1VOT1JNOwotCi0JCW52d3MtPmZyb250ID0gZHJpX3N1cmZhY2VfZnJvbV9o
+YW5kbGUoYXBpLCBudndzLT5wc2NyZWVuLAotCQkJCQkJICAgICAgbnZkcmktPmZyb250X29mZnNl
+dCwKLQkJCQkJCSAgICAgIGZvcm1hdCwgbnZkcmktPndpZHRoLAotCQkJCQkJICAgICAgbnZkcmkt
+PmhlaWdodCwKLQkJCQkJCSAgICAgIG52ZHJpLT5mcm9udF9waXRjaCAqCi0JCQkJCQkgICAgICAo
+bnZkcmktPmJwcCAvIDgpKTsKLQkJaWYgKCFudndzLT5mcm9udCkgewotCQkJZGVidWdfcHJpbnRm
+KCIlczogZXJyb3IgcmVmZXJlbmNpbmcgZnJvbnQgYnVmZmVyXG4iLAotCQkJCSAgICAgX19mdW5j
+X18pOwotCQkJd3MtPmRlc3Ryb3kod3MpOwotCQkJcmV0dXJuIE5VTEw7Ci0JCX0KLQotCQlkcmkx
+LT5hcGkgPSAmbm91dmVhdV9kcmkxX2FwaTsKLQl9Ci0KIAlyZXR1cm4gbnZ3cy0+cHNjcmVlbjsK
+IH0KIApkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vd2luc3lzL2RybS9ub3V2ZWF1L2RybS9ub3V2
+ZWF1X2RybV9hcGkuaCBiL3NyYy9nYWxsaXVtL3dpbnN5cy9kcm0vbm91dmVhdS9kcm0vbm91dmVh
+dV9kcm1fYXBpLmgKaW5kZXggZTYxZTBlMC4uZGViZTYxOCAxMDA2NDQKLS0tIGEvc3JjL2dhbGxp
+dW0vd2luc3lzL2RybS9ub3V2ZWF1L2RybS9ub3V2ZWF1X2RybV9hcGkuaAorKysgYi9zcmMvZ2Fs
+bGl1bS93aW5zeXMvZHJtL25vdXZlYXUvZHJtL25vdXZlYXVfZHJtX2FwaS5oCkBAIC0yLDcgKzIs
+NiBAQAogI2RlZmluZSBfX05PVVZFQVVfRFJNX0FQSV9IX18KIAogI2luY2x1ZGUgInN0YXRlX3Ry
+YWNrZXIvZHJtX2FwaS5oIgotI2luY2x1ZGUgInN0YXRlX3RyYWNrZXIvZHJpMV9hcGkuaCIKIAog
+I2luY2x1ZGUgInBpcGUvaW50ZXJuYWwvcF93aW5zeXNfc2NyZWVuLmgiCiAKLS0gCjEuNi42Cgo=
+--0016e65b62a6b98ef9047d6d9e16
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--0016e65b62a6b98ef9047d6d9e16--
