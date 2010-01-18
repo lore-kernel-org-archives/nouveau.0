@@ -1,57 +1,273 @@
-From: Brian Paul <brianp@vmware.com>
-Subject: Re: [PATCH 2/2] st: don't assert on empty fragment
-	program
-Date: Mon, 18 Jan 2010 11:01:44 -0700
-Message-ID: <4B54A208.10803@vmware.com>
-References: <1263764160-8891-1-git-send-email-luca@luca-barbieri.com>
-	<1263764160-8891-2-git-send-email-luca@luca-barbieri.com>
+From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Subject: [PATCH] nv30-nv40: support unlimited queries (v2)
+Date: Mon, 18 Jan 2010 19:05:56 +0100
+Message-ID: <1263837956-7845-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa3d-dev-bounces@lists.sourceforge.net>
-In-Reply-To: <1263764160-8891-2-git-send-email-luca@luca-barbieri.com>
-List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
-	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=unsubscribe>
-List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=mesa3d-dev>
-List-Post: <mailto:mesa3d-dev@lists.sourceforge.net>
-List-Help: <mailto:mesa3d-dev-request@lists.sourceforge.net?subject=help>
-List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
-	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=subscribe>
-Errors-To: mesa3d-dev-bounces@lists.sourceforge.net
-To: Luca Barbieri <luca@luca-barbieri.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa3d-dev@lists.sourceforge.net" <mesa3d-dev@lists.sourceforge.net>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Luca Barbieri wrote:
-> Sauerbraten triggers this assert.
-> ---
->  src/mesa/state_tracker/st_atom_shader.c |    2 --
->  1 files changed, 0 insertions(+), 2 deletions(-)
-> 
-> diff --git a/src/mesa/state_tracker/st_atom_shader.c b/src/mesa/state_tracker/st_atom_shader.c
-> index 176f3ea..fce533a 100644
-> --- a/src/mesa/state_tracker/st_atom_shader.c
-> +++ b/src/mesa/state_tracker/st_atom_shader.c
-> @@ -79,8 +79,6 @@ translate_fp(struct st_context *st,
->  
->        stfp->num_input_slots = numIn;
->  
-> -      assert(stfp->Base.Base.NumInstructions > 1);
-> -
->        st_translate_fragment_program(st, stfp, stfp->input_to_slot);
->     }
->  }
+Currently on NV30/NV40 an assert will be triggered once 32 queries are
+outstanding.
 
-How do we end up with a shader that has only one instruction (or 
-none)?  Is it an END instruction?  I'd like to learn more about what's 
-happening before committing this.
+This violates the OpenGL/Gallium interface, which requires support for
+an unlimited number of fences.
 
--Brian
+This patch fixes the problem by putting queries in a linked list and
+waiting on the oldest one if allocation fails.
 
+nVidia seems to use a similar strategy, but with 1024 instead of 32 fences.
+The next patch will improve this.
 
-------------------------------------------------------------------------------
-Throughout its 18-year history, RSA Conference consistently attracts the
-world's best and brightest in the field, creating opportunities for Conference
-attendees to learn about information security's most important issues through
-interactions with peers, luminaries and emerging and established companies.
-http://p.sf.net/sfu/rsaconf-dev2dev
+Fixed indentation and added header for query_list.
+---
+ src/gallium/drivers/nv30/nv30_query.c  |   26 ++++++++++++++++++--------
+ src/gallium/drivers/nv30/nv30_screen.c |    2 ++
+ src/gallium/drivers/nv30/nv30_screen.h |    2 ++
+ src/gallium/drivers/nv40/nv40_query.c  |   26 ++++++++++++++++++--------
+ src/gallium/drivers/nv40/nv40_screen.c |    2 ++
+ src/gallium/drivers/nv40/nv40_screen.h |    2 ++
+ 6 files changed, 44 insertions(+), 16 deletions(-)
+
+diff --git a/src/gallium/drivers/nv30/nv30_query.c b/src/gallium/drivers/nv30/nv30_query.c
+index e27e9cc..eeab223 100644
+--- a/src/gallium/drivers/nv30/nv30_query.c
++++ b/src/gallium/drivers/nv30/nv30_query.c
+@@ -3,6 +3,7 @@
+ #include "nv30_context.h"
+ 
+ struct nv30_query {
++	struct list_head list;
+ 	struct nouveau_resource *object;
+ 	unsigned type;
+ 	boolean ready;
+@@ -23,6 +24,8 @@ nv30_query_create(struct pipe_context *pipe, unsigned query_type)
+ 	q = CALLOC(1, sizeof(struct nv30_query));
+ 	q->type = query_type;
+ 
++	assert(q->type == PIPE_QUERY_OCCLUSION_COUNTER);
++
+ 	return (struct pipe_query *)q;
+ }
+ 
+@@ -32,7 +35,10 @@ nv30_query_destroy(struct pipe_context *pipe, struct pipe_query *pq)
+ 	struct nv30_query *q = nv30_query(pq);
+ 
+ 	if (q->object)
++	{
+ 		nouveau_resource_free(&q->object);
++		LIST_DEL(&q->list);
++	}
+ 	FREE(q);
+ }
+ 
+@@ -44,20 +50,25 @@ nv30_query_begin(struct pipe_context *pipe, struct pipe_query *pq)
+ 	struct nv30_screen *screen = nv30->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *rankine = screen->rankine;
+-
+-	assert(q->type == PIPE_QUERY_OCCLUSION_COUNTER);
++	uint64_t tmp;
+ 
+ 	/* Happens when end_query() is called, then another begin_query()
+ 	 * without querying the result in-between.  For now we'll wait for
+ 	 * the existing query to notify completion, but it could be better.
+ 	 */
+-	if (q->object) {
+-		uint64_t tmp;
++	if (q->object)
+ 		pipe->get_query_result(pipe, pq, 1, &tmp);
++
++	while (nouveau_resource_alloc(nv30->screen->query_heap, 1, NULL, &q->object))
++	{
++		struct nv30_query* oldestq;
++		assert(!LIST_IS_EMPTY(&nv30->screen->query_list));
++		oldestq = LIST_ENTRY(struct nv30_query, nv30->screen->query_list.next, list);
++		pipe->get_query_result(pipe, (struct pipe_query*)oldestq, 1, &tmp);
+ 	}
+ 
+-	if (nouveau_resource_alloc(nv30->screen->query_heap, 1, NULL, &q->object))
+-		assert(0);
++	LIST_ADDTAIL(&q->list, &nv30->screen->query_list);
++
+ 	nouveau_notifier_reset(nv30->screen->query, q->object->start);
+ 
+ 	BEGIN_RING(chan, rankine, NV34TCL_QUERY_RESET, 1);
+@@ -90,8 +101,6 @@ nv30_query_result(struct pipe_context *pipe, struct pipe_query *pq,
+ 	struct nv30_context *nv30 = nv30_context(pipe);
+ 	struct nv30_query *q = nv30_query(pq);
+ 
+-	assert(q->object && q->type == PIPE_QUERY_OCCLUSION_COUNTER);
+-
+ 	if (!q->ready) {
+ 		unsigned status;
+ 
+@@ -110,6 +119,7 @@ nv30_query_result(struct pipe_context *pipe, struct pipe_query *pq,
+ 							q->object->start);
+ 		q->ready = TRUE;
+ 		nouveau_resource_free(&q->object);
++		LIST_DEL(&q->list);
+ 	}
+ 
+ 	*result = q->result;
+diff --git a/src/gallium/drivers/nv30/nv30_screen.c b/src/gallium/drivers/nv30/nv30_screen.c
+index 9ed4817..755db43 100644
+--- a/src/gallium/drivers/nv30/nv30_screen.c
++++ b/src/gallium/drivers/nv30/nv30_screen.c
+@@ -261,6 +261,8 @@ nv30_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
+ 		return NULL;
+ 	}
+ 
++	LIST_INITHEAD(&screen->query_list);
++
+ 	/* Vtxprog resources */
+ 	if (nouveau_resource_init(&screen->vp_exec_heap, 0, 256) ||
+ 	    nouveau_resource_init(&screen->vp_data_heap, 0, 256)) {
+diff --git a/src/gallium/drivers/nv30/nv30_screen.h b/src/gallium/drivers/nv30/nv30_screen.h
+index 5fbd998..4e8b55c 100644
+--- a/src/gallium/drivers/nv30/nv30_screen.h
++++ b/src/gallium/drivers/nv30/nv30_screen.h
+@@ -1,6 +1,7 @@
+ #ifndef __NV30_SCREEN_H__
+ #define __NV30_SCREEN_H__
+ 
++#include <util/u_double_list.h>
+ #include "nouveau/nouveau_screen.h"
+ 
+ #include "nv04/nv04_surface_2d.h"
+@@ -20,6 +21,7 @@ struct nv30_screen {
+ 	/* Query object resources */
+ 	struct nouveau_notifier *query;
+ 	struct nouveau_resource *query_heap;
++	struct list_head query_list;
+ 
+ 	/* Vtxprog resources */
+ 	struct nouveau_resource *vp_exec_heap;
+diff --git a/src/gallium/drivers/nv40/nv40_query.c b/src/gallium/drivers/nv40/nv40_query.c
+index 8ed4a67..7cea56c 100644
+--- a/src/gallium/drivers/nv40/nv40_query.c
++++ b/src/gallium/drivers/nv40/nv40_query.c
+@@ -3,6 +3,7 @@
+ #include "nv40_context.h"
+ 
+ struct nv40_query {
++	struct list_head list;
+ 	struct nouveau_resource *object;
+ 	unsigned type;
+ 	boolean ready;
+@@ -23,6 +24,8 @@ nv40_query_create(struct pipe_context *pipe, unsigned query_type)
+ 	q = CALLOC(1, sizeof(struct nv40_query));
+ 	q->type = query_type;
+ 
++	assert(q->type == PIPE_QUERY_OCCLUSION_COUNTER);
++
+ 	return (struct pipe_query *)q;
+ }
+ 
+@@ -32,7 +35,10 @@ nv40_query_destroy(struct pipe_context *pipe, struct pipe_query *pq)
+ 	struct nv40_query *q = nv40_query(pq);
+ 
+ 	if (q->object)
++	{
+ 		nouveau_resource_free(&q->object);
++		LIST_DEL(&q->list);
++	}
+ 	FREE(q);
+ }
+ 
+@@ -44,20 +50,25 @@ nv40_query_begin(struct pipe_context *pipe, struct pipe_query *pq)
+ 	struct nv40_screen *screen = nv40->screen;
+ 	struct nouveau_channel *chan = screen->base.channel;
+ 	struct nouveau_grobj *curie = screen->curie;
+-
+-	assert(q->type == PIPE_QUERY_OCCLUSION_COUNTER);
++	uint64_t tmp;
+ 
+ 	/* Happens when end_query() is called, then another begin_query()
+ 	 * without querying the result in-between.  For now we'll wait for
+ 	 * the existing query to notify completion, but it could be better.
+ 	 */
+-	if (q->object) {
+-		uint64_t tmp;
++	if (q->object)
+ 		pipe->get_query_result(pipe, pq, 1, &tmp);
++
++	while (nouveau_resource_alloc(nv40->screen->query_heap, 1, NULL, &q->object))
++	{
++		struct nv40_query* oldestq;
++		assert(!LIST_IS_EMPTY(&nv40->screen->query_list));
++		oldestq = LIST_ENTRY(struct nv40_query, nv40->screen->query_list.next, list);
++		pipe->get_query_result(pipe, (struct pipe_query*)oldestq, 1, &tmp);
+ 	}
+ 
+-	if (nouveau_resource_alloc(nv40->screen->query_heap, 1, NULL, &q->object))
+-		assert(0);
++	LIST_ADDTAIL(&q->list, &nv40->screen->query_list);
++
+ 	nouveau_notifier_reset(nv40->screen->query, q->object->start);
+ 
+ 	BEGIN_RING(chan, curie, NV40TCL_QUERY_RESET, 1);
+@@ -90,8 +101,6 @@ nv40_query_result(struct pipe_context *pipe, struct pipe_query *pq,
+ 	struct nv40_context *nv40 = nv40_context(pipe);
+ 	struct nv40_query *q = nv40_query(pq);
+ 
+-	assert(q->object && q->type == PIPE_QUERY_OCCLUSION_COUNTER);
+-
+ 	if (!q->ready) {
+ 		unsigned status;
+ 
+@@ -110,6 +119,7 @@ nv40_query_result(struct pipe_context *pipe, struct pipe_query *pq,
+ 							q->object->start);
+ 		q->ready = TRUE;
+ 		nouveau_resource_free(&q->object);
++		LIST_DEL(&q->list);
+ 	}
+ 
+ 	*result = q->result;
+diff --git a/src/gallium/drivers/nv40/nv40_screen.c b/src/gallium/drivers/nv40/nv40_screen.c
+index 9e55e5a..0fd50f6 100644
+--- a/src/gallium/drivers/nv40/nv40_screen.c
++++ b/src/gallium/drivers/nv40/nv40_screen.c
+@@ -243,6 +243,8 @@ nv40_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
+ 		return NULL;
+ 	}
+ 
++	LIST_INITHEAD(&screen->query_list);
++
+ 	/* Vtxprog resources */
+ 	if (nouveau_resource_init(&screen->vp_exec_heap, 0, 512) ||
+ 	    nouveau_resource_init(&screen->vp_data_heap, 0, 256)) {
+diff --git a/src/gallium/drivers/nv40/nv40_screen.h b/src/gallium/drivers/nv40/nv40_screen.h
+index 57b4c8f..50b7573 100644
+--- a/src/gallium/drivers/nv40/nv40_screen.h
++++ b/src/gallium/drivers/nv40/nv40_screen.h
+@@ -1,6 +1,7 @@
+ #ifndef __NV40_SCREEN_H__
+ #define __NV40_SCREEN_H__
+ 
++#include <util/u_double_list.h>
+ #include "nouveau/nouveau_screen.h"
+ #include "nv04/nv04_surface_2d.h"
+ 
+@@ -19,6 +20,7 @@ struct nv40_screen {
+ 	/* Query object resources */
+ 	struct nouveau_notifier *query;
+ 	struct nouveau_resource *query_heap;
++	struct list_head query_list;
+ 
+ 	/* Vtxprog resources */
+ 	struct nouveau_resource *vp_exec_heap;
+-- 
+1.6.3.3
