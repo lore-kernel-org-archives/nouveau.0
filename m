@@ -1,10 +1,13 @@
-From: Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: OpenSUSE packages
-Date: Tue, 19 Jan 2010 14:14:46 -0200
-Message-ID: <8b96e3d21001190814h63283407ne7cec8694f2d1a86@mail.gmail.com>
+From: Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: OpenSUSE packages
+Date: Tue, 19 Jan 2010 20:45:33 +0100
+Message-ID: <201001192045.34421.johannesobermayr@gmx.de>
+References: <8b96e3d21001190814h63283407ne7cec8694f2d1a86@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0905105297=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <8b96e3d21001190814h63283407ne7cec8694f2d1a86-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -12,58 +15,50 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0905105297==
-Content-Type: multipart/alternative; boundary=00032555a356f1827e047d86c57a
+Am Dienstag, 19. Januar 2010 17:14:46 schrieb Luiz Angelo Daros de Luca:
+> Hello guys,
+> 
+> Nouveau's OpenSUSE Build packages have broken dependences. It seems that now
+> it demands xorg>=7.5 but the avaiable in opensuse 11.2 (current version) is
+> 7.4. As there is no xorg-7.5 compiled for 11.2, I'm running vesa driver by
+> now.
+> 
+> I guess that a hint on download page could be useful.
+> 
+> Cheers,
+> 
+> ---
+>     Luiz Angelo Daros de Luca, Me.
+>            luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+> 
+Hi Luiz,
 
---00032555a356f1827e047d86c57a
-Content-Type: text/plain; charset=ISO-8859-1
+sorry for answerring so late (I was at work ...).
 
-Hello guys,
+You have to include additional repository:
 
-Nouveau's OpenSUSE Build packages have broken dependences. It seems that now
-it demands xorg>=7.5 but the avaiable in opensuse 11.2 (current version) is
-7.4. As there is no xorg-7.5 compiled for 11.2, I'm running vesa driver by
-now.
+http://download.opensuse.org/repositories/X11:/XOrg/openSUSE_11.2/
 
-I guess that a hint on download page could be useful.
+Then it should work again ...
 
-Cheers,
 
----
-    Luiz Angelo Daros de Luca, Me.
-           luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+I updated:
 
---00032555a356f1827e047d86c57a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+- http://de.opensuse.org/Nouveau
+- http://nouveau.freedesktop.org/wiki/openSUSEPackages
+- https://features.opensuse.org/307588
 
-Hello guys,<br><br>Nouveau&#39;s OpenSUSE Build packages have broken depend=
-ences. It seems that now it demands xorg&gt;=3D7.5 but the avaiable in open=
-suse 11.2 (current version) is 7.4. As there is no xorg-7.5 compiled for 11=
-.2, I&#39;m running vesa driver by now.<br>
 
-<br>I guess that a hint on download page could be useful.<br><br>Cheers,<br=
-><br clear=3D"all">---<br> =A0 =A0 Luiz Angelo Daros de Luca, Me.<br> =A0 =
-=A0 =A0 =A0 =A0 =A0<a href=3D"mailto:luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org=
-</a><br>
+It is not wanted that I integrate the packages direct in my repository:
+http://lists.opensuse.org/opensuse-buildservice/2009-09/msg00114.html
 
---00032555a356f1827e047d86c57a--
 
---===============0905105297==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+@News/wiki specialists: Can you please announce the change in news feed? I do not know how to do this ...
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0905105297==--
+Thanks
+Johannes
