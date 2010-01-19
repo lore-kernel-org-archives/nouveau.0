@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25036] KMS + multihead leaves ghost mouse pointer
-Date: Tue, 19 Jan 2010 02:09:43 -0800 (PST)
-Message-ID: <20100119100943.234A1130071@annarchy.freedesktop.org>
-References: <bug-25036-8800@http.bugs.freedesktop.org/>
+From: Luiz Angelo Daros de Luca <luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: OpenSUSE packages
+Date: Tue, 19 Jan 2010 14:14:46 -0200
+Message-ID: <8b96e3d21001190814h63283407ne7cec8694f2d1a86@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0905105297=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25036-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,30 +12,58 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25036
+--===============0905105297==
+Content-Type: multipart/alternative; boundary=00032555a356f1827e047d86c57a
 
+--00032555a356f1827e047d86c57a
+Content-Type: text/plain; charset=ISO-8859-1
 
+Hello guys,
 
+Nouveau's OpenSUSE Build packages have broken dependences. It seems that now
+it demands xorg>=7.5 but the avaiable in opensuse 11.2 (current version) is
+7.4. As there is no xorg-7.5 compiled for 11.2, I'm running vesa driver by
+now.
 
+I guess that a hint on download page could be useful.
 
---- Comment #2 from Francis Galiegue <fgaliegue-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-19 02:09:42 PST ---
-I should also comment that the bug only appears when there's some sort of
-cursor state change, which happens pretty much every time you change widget in
-a window.
+Cheers,
 
-That is, it will not appear if you have no window displayed and just move the
-cursor between the different desktops.
+---
+    Luiz Angelo Daros de Luca, Me.
+           luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-The kernel messages I mentioned above appear pretty much every time I cross
-window borders, enter/exit a text editing area, etc etc.
+--00032555a356f1827e047d86c57a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+Hello guys,<br><br>Nouveau&#39;s OpenSUSE Build packages have broken depend=
+ences. It seems that now it demands xorg&gt;=3D7.5 but the avaiable in open=
+suse 11.2 (current version) is 7.4. As there is no xorg-7.5 compiled for 11=
+.2, I&#39;m running vesa driver by now.<br>
 
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+<br>I guess that a hint on download page could be useful.<br><br>Cheers,<br=
+><br clear=3D"all">---<br> =A0 =A0 Luiz Angelo Daros de Luca, Me.<br> =A0 =
+=A0 =A0 =A0 =A0 =A0<a href=3D"mailto:luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">luizluca-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org=
+</a><br>
+
+--00032555a356f1827e047d86c57a--
+
+--===============0905105297==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0905105297==--
