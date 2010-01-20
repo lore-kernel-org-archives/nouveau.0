@@ -1,12 +1,18 @@
 From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH] drm/ttm: Fix race condition in
-	ttm_bo_delayed_delete (v3, final)
-Date: Wed, 20 Jan 2010 20:01:30 +0100
-Message-ID: <1264014090-18814-1-git-send-email-luca@luca-barbieri.com>
+Subject: Re: [PATCH] drm/ttm: Fix race condition in
+	ttm_bo_delayed_delete
+Date: Wed, 20 Jan 2010 20:22:11 +0100
+Message-ID: <ff13bc9a1001201122y110fb003k704bc6d05d2aea07@mail.gmail.com>
+References: <1263840434-9113-1-git-send-email-luca@luca-barbieri.com>
+	<4B54B949.9010906@vmware.com>
+	<ff13bc9a1001181433v1694e681l9f7ce9d880132dc3@mail.gmail.com>
+	<4B56E8EE.8090706@shipmail.org> <4B56F308.5090603@shipmail.org>
+	<4B56F401.8070700@vmware.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <4B56F401.8070700-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,118 +22,62 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: airlied-cv59FeDIM0c@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+To: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+Cc: "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org" <dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>, Thomas Hellstrom <thomas-4+hqylr40dJg9hUCZPvPmw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Resending this with Thomas Hellstrom's signoff for merging into 2.6.33
+Yes it's fine. I sent your patch to Dave with an expanded commit
+comment for merging.
 
-ttm_bo_delayed_delete has a race condition, because after we do:
-kref_put(&nentry->list_kref, ttm_bo_release_list);
+Here is a possible redesign of the mechanism inspired by this issue.
+It seems that what we are racing against is buffer eviction, due to
+delayed deletion buffers being still kept on the LRU list.
 
-we are not holding the list lock and not holding any reference to
-objects, and thus every bo in the list can be removed and freed at
-this point.
+I'm wondering if the delayed deletion design could be changed as follows:
+1. Remove to-be-deleted buffers from the LRU list before putting them
+on delayed delete
+2. Change buffer eviction to first do a delayed deletion pass. This
+should be cheap (and cheaper than the current code) because delayed
+deletion stops at the first unsignaled fence.
+3. Add a new "delayed deletion" lock/semaphore. Then, have
+ttm_bo_delayed_delete take it for reading and keep it across the
+function.
+4. Inside the delayed deletion lock, grab the LRU lock, copy the
+delayed delete list head to a local variable, set it to empty and
+release the lock.
+5. Iterate on the privately held list with list_for_each_safe
+6. At the end of ttm_bo_delayed_delete, retake the LRU lock and readd
+the remaining part of our private list at the head of the global list
 
-However, we then use the next pointer we stored, which is not guaranteed
-to be valid.
+This would prevent uselessly trying to evict delayed-delete buffers
+(which should be processed in fence order and not LRU order), and also
+prevent concurrent delayed deletions, which should be more harmful
+than useful.
 
-This was apparently the cause of some Nouveau oopses I experienced.
+Furthermore, it should be possible to get rid of list locking in the
+following way:
+1. BOs to be delayed-deleted are added to the head of the initial
+delayed deletion single linked list, using atomic cmpxchg
+2. ttm_bo_delayed_delete takes the delayed deletion lock and grabs the
+list with an atomic xchg of the head with zero
+3. It reverses the list in place, processes the entries and puts them
+at the end of a second single linked list, the recurring delayed
+deletion list
+4. It processes the recurring delayed deletion list, cleaning up the BOs
+5. Finally, the delayed deletion lock is released
 
-This patch rewrites the function so that it keeps the reference to nentry
-until nentry itself is freed and we already got a reference to nentry->next.
+This makes adding to the delayed deletion list lockless.
 
-v2 updated by me according to Thomas Hellstrom's feedback.
-v3 proposed by Thomas Hellstrom. Commit comment updated by me.
+The LRU list instead inherently needs to be doubly linked, so only RCU
+could make it lockless, and it seems that may require using an
+external list node structure (so readers don't suddenly jump to the
+most recent node), and that would not be a win (except with *lots* of
+CPUs).
+Besides, most DRM drivers (except vmware) are taking the BKL around
+all ioctls and (except nouveau) use a single pushbuffer, so this is a
+bit moot anyway.
 
-Both updates fixed minor efficiency/style issues only and all three versions
-should be correct.
+What do you think?
 
-Signed-off-by: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Signed-off-by: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
----
- drivers/gpu/drm/ttm/ttm_bo.c |   58 ++++++++++++++++++------------------------
- 1 files changed, 25 insertions(+), 33 deletions(-)
-
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index c7733c3..1a3e909 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -524,52 +524,44 @@ static int ttm_bo_cleanup_refs(struct ttm_buffer_object *bo, bool remove_all)
- static int ttm_bo_delayed_delete(struct ttm_bo_device *bdev, bool remove_all)
- {
- 	struct ttm_bo_global *glob = bdev->glob;
--	struct ttm_buffer_object *entry, *nentry;
--	struct list_head *list, *next;
--	int ret;
-+	struct ttm_buffer_object *entry = NULL;
-+	int ret = 0;
- 
- 	spin_lock(&glob->lru_lock);
--	list_for_each_safe(list, next, &bdev->ddestroy) {
--		entry = list_entry(list, struct ttm_buffer_object, ddestroy);
--		nentry = NULL;
-+	if (list_empty(&bdev->ddestroy))
-+		goto out_unlock;
- 
--		/*
--		 * Protect the next list entry from destruction while we
--		 * unlock the lru_lock.
--		 */
-+	entry = list_first_entry(&bdev->ddestroy,
-+		struct ttm_buffer_object, ddestroy);
-+	kref_get(&entry->list_kref);
-+
-+	for (;;) {
-+		struct ttm_buffer_object *nentry = NULL;
- 
--		if (next != &bdev->ddestroy) {
--			nentry = list_entry(next, struct ttm_buffer_object,
--					    ddestroy);
-+		if (entry->ddestroy.next != &bdev->ddestroy) {
-+			nentry = list_first_entry(&entry->ddestroy,
-+				struct ttm_buffer_object, ddestroy);
- 			kref_get(&nentry->list_kref);
- 		}
--		kref_get(&entry->list_kref);
- 
- 		spin_unlock(&glob->lru_lock);
- 		ret = ttm_bo_cleanup_refs(entry, remove_all);
- 		kref_put(&entry->list_kref, ttm_bo_release_list);
-+		entry = nentry;
-+
-+		if (ret || !entry)
-+			goto out;
- 
- 		spin_lock(&glob->lru_lock);
--		if (nentry) {
--			bool next_onlist = !list_empty(next);
--			spin_unlock(&glob->lru_lock);
--			kref_put(&nentry->list_kref, ttm_bo_release_list);
--			spin_lock(&glob->lru_lock);
--			/*
--			 * Someone might have raced us and removed the
--			 * next entry from the list. We don't bother restarting
--			 * list traversal.
--			 */
--
--			if (!next_onlist)
--				break;
--		}
--		if (ret)
-+		if (list_empty(&entry->ddestroy))
- 			break;
- 	}
--	ret = !list_empty(&bdev->ddestroy);
--	spin_unlock(&glob->lru_lock);
- 
-+out_unlock:
-+	spin_unlock(&glob->lru_lock);
-+out:
-+	if (entry)
-+		kref_put(&entry->list_kref, ttm_bo_release_list);
- 	return ret;
- }
- 
--- 
-1.6.2.5
+Anyway, this, if done, would be for the next merge window, or later,
+while the current fix ought to be merged now.
