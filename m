@@ -1,8 +1,8 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH] drm/ttm: Fix race condition in
 	ttm_bo_delayed_delete
-Date: Thu, 21 Jan 2010 16:36:00 +0100
-Message-ID: <ff13bc9a1001210736k71740417r7b129c70374fece3@mail.gmail.com>
+Date: Thu, 21 Jan 2010 16:39:24 +0100
+Message-ID: <6d4bc9fc1001210739r2bb8b4c4i18590376a1628d82@mail.gmail.com>
 References: <1263840434-9113-1-git-send-email-luca@luca-barbieri.com>
 	<4B5764BA.7080801@vmware.com>
 	<ff13bc9a1001201245g6ee25219q851b7989968f4c7b@mail.gmail.com>
@@ -28,9 +28,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org" <dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>, Thomas Hellstrom <thomas-4+hqylr40dJg9hUCZPvPmw@public.gmane.org>
+Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>, Thomas Hellstrom <thomas-4+hqylr40dJg9hUCZPvPmw@public.gmane.org>, "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org" <dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Jan 21, 2010 at 3:44 PM, Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> wrote:
+> Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> writes:
+>
+>>> Nvidia cards have a synchronization primitive that could be used to
+>>> synchronize several FIFOs in hardware (AKA semaphores, see [1] for an
+>>> example).
+>>
+>> Does this operate wholly on the GPU on all nVidia cards?
+>>
+>> It seems that at least on some GPUs this will trigger "software
+>> methods" that are basically a way for the GPU to trigger an interrupt
+>> and stop the FIFO until the CPU handles the interrupt and restarts it.
+>>
+
+Yes this triggers a few software methods, nvidia hardware is a bit
+lacking in this area.
+
+> Yes, it could be handled without software methods, Maarten (CC'ed) was
+> looking into this, IIRC.
+
+Doing it without software methods means you need to have a semaphore
+that "exists" in the cpu domain and therefore cannot be used again
+until the cpu is sure it's done. So that will probably require a
+rotating queue of several semaphores and a fallback to cpu waiting. It
+should not be that hard to prototype in kernel, although we currently
+assume notifiers (little chunks of memory that amongst other things
+are used by semaphore) to be in channel private memory, so while in
+kernel it's probably doable, there will need to be api changes for the
+userspace side of it. Since the respective chunk of memory needs to
+have a dma object on more than one channel. This should probably be
+dealt with in combination with calims desire to be able to have dma
+objects for random buffer objects for use with gpu queries. It doesn't
+seem impossible, but it won't exactly be trivial either. The sanest
+model would probably involve an ioctl that takes two channels and does
+whatever is needed to make it synchronised. But given the recent
+discussion/noise about doubts regarding our mixed userspace/kernel
+model, we should consider this carefully. That said, i doubt it would
+be sanely possible with a full userspace model like the one nvidia
+uses.
+
+>
+>> Also, is there a way on nVidia cards to get interrupts on fences, but
+>> only where the fence sequence number is higher than a dynamically set
+>> value? (so that one could sleep for fence X without getting an
+>> interrupt for every single fence before that)
+>>
 >> If not, it could possibly be hacked around by reading from a DMA
 >> object at the address of the fence sequence number and then resizing
 >> the DMA object so that addresses from a certain point on would trigger
@@ -40,27 +86,4 @@ List-Id: nouveau.vger.kernel.org
 > card completely, but i think you could use e.g. PGRAPH NOTIFY interrupts
 > and disable them by flipping a bit in PGRAPH when you stop caring about
 > them.
-
-The problem is that one needs to disable them *before* the one he cares about.
-
-Suppose the card is at fence 0 and we are interested in fence 1000 expiring.
-
-If we just enable interrupts, then we are going to be interrupted
-uselessly 1000 times.
-Instead, we would like to tell the card "send me interrupts for
-fences, but only for fence number 1000 (or higher)".
-
-This way one could for instance render a whole scene, and then
-desiring to read it into the CPU, just ask for an interrupt once
-rendering is done (i.e. wait for the framebuffer fence) and get a
-single interrupt, while we cleanly sleep undisturbed in the meantime.
-
-Basically, it would just need some way of *conditionally* causing interrupts.
-If there is none, then maybe we could insert a call to a "fence
-mini-pushbuffer" filled with NOPs that could be overwritten with an
-interrupt request on demand?
-Or alternatively, construct such a pushbuffer with the 2D or 3D
-engines, starting from our "1000" input and the fence value generated
-by the 3D engine? (this is likely to be slow though).
-Or some hack like the DMA object resizing? (would it crash the GPU? or
-just not work due to it caching the previous size?)
+>
