@@ -1,15 +1,12 @@
-From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Subject: Re: [libdrm PATCH 1/4] nouveau: add
-	nouveau_resource_destroy
-Date: Fri, 22 Jan 2010 11:10:58 +0100
-Message-ID: <4B5979B2.2030908@student.tuwien.ac.at>
-References: <20100112143128.GA2984@joi.lan>	<6d4bc9fc1001141502l78f40a00n1074cdd4bf00a815@mail.gmail.com>
-	<20100121213306.GA2879@joi.lan>
+From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Subject: [PATCH] drm/nouveau: call ttm_bo_wait with the bo lock
+	held to prevent hang
+Date: Fri, 22 Jan 2010 23:06:13 +0100
+Message-ID: <1264197973-23043-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100121213306.GA2879-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,37 +16,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 21.01.2010 22:33, Marcin Slusarz wrote:
-> On Fri, Jan 15, 2010 at 12:02:25AM +0100, Maarten Maathuis wrote:
->   
->> Is everyone ok with this api addition (naming ok?)?
->>     
-> I guess they are...
->
-> ... Or is there any issue with this patch I'm not aware of?
->
-> Marcin
->
->   
-In principle I guess we could also make nouveau_resource_free
-FREE the resource if (!next && !prev && !in_use), but I prefer
-the extra function.
+nouveau_gem_ioctl_cpu_prep calls ttm_bo_wait without the bo lock held.
+ttm_bo_wait unlocks that lock, and so must be called with it held.
 
-Also, resource_destroy could iterate through all resources still linked
-with it and FREE them too, but that would probably not be necessary
-since all alloc'd ones should already have been released (but would
-produce a deserved segfault otherwise, if they're still used).
+Currently this bug causes libdrm nouveau_bo_busy() to hang the machine.
 
-If no one speaks in favour of changing anything though, let's push
-this as is (?) ...
+Signed-off-by: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_gem.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
-Christoph
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->   
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index eab55f8..c00a91f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -925,7 +925,9 @@ nouveau_gem_ioctl_cpu_prep(struct drm_device *dev, void *data,
+ 	}
+ 
+ 	if (req->flags & NOUVEAU_GEM_CPU_PREP_NOBLOCK) {
++		spin_lock(&nvbo->bo.lock);
+ 		ret = ttm_bo_wait(&nvbo->bo, false, false, no_wait);
++		spin_unlock(&nvbo->bo.lock);
+ 	} else {
+ 		ret = ttm_bo_synccpu_write_grab(&nvbo->bo, no_wait);
+ 		if (ret == 0)
+-- 
+1.6.3.3
