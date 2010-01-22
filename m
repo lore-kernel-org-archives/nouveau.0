@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25762] Quadro NVS 140M doesn't wake up anymore
-Date: Fri, 22 Jan 2010 00:12:34 -0800 (PST)
-Message-ID: <20100122081234.491D81300CF@annarchy.freedesktop.org>
-References: <bug-25762-8800@http.bugs.freedesktop.org/>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Subject: Re: [libdrm PATCH 1/4] nouveau: add
+	nouveau_resource_destroy
+Date: Fri, 22 Jan 2010 11:10:58 +0100
+Message-ID: <4B5979B2.2030908@student.tuwien.ac.at>
+References: <20100112143128.GA2984@joi.lan>	<6d4bc9fc1001141502l78f40a00n1074cdd4bf00a815@mail.gmail.com>
+	<20100121213306.GA2879@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25762-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20100121213306.GA2879-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,27 +19,37 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25762
+On 21.01.2010 22:33, Marcin Slusarz wrote:
+> On Fri, Jan 15, 2010 at 12:02:25AM +0100, Maarten Maathuis wrote:
+>   
+>> Is everyone ok with this api addition (naming ok?)?
+>>     
+> I guess they are...
+>
+> ... Or is there any issue with this patch I'm not aware of?
+>
+> Marcin
+>
+>   
+In principle I guess we could also make nouveau_resource_free
+FREE the resource if (!next && !prev && !in_use), but I prefer
+the extra function.
 
+Also, resource_destroy could iterate through all resources still linked
+with it and FREE them too, but that would probably not be necessary
+since all alloc'd ones should already have been released (but would
+produce a deserved segfault otherwise, if they're still used).
 
-Martin PERES <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
+If no one speaks in favour of changing anything though, let's push
+this as is (?) ...
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
-
-
-
---- Comment #1 from Martin PERES <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>  2010-01-22 00:12:33 PST ---
-It has been fixed upstream.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Christoph
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>   
