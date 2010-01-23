@@ -1,16 +1,13 @@
-From: Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
-Subject: Re: Porting nouveau/ttm/drm to FreeBSD/OpenSolaris
-Date: Sat, 23 Jan 2010 10:15:54 -0600
-Message-ID: <1264263354.2226.49.camel@balrog.2hip.net>
-References: <1262755950.2346.5.camel@araqiel>
-	<20100107005827.466c968e@daedalus.pq.iki.fi>
-	<1262829587.2486.42.camel@balrog.2hip.net>
-	<4B5ACE8C.40907@pathscale.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
+Date: Sat, 23 Jan 2010 09:32:12 -0800 (PST)
+Message-ID: <20100123173212.BCD0E13010B@annarchy.freedesktop.org>
+References: <bug-25966-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4B5ACE8C.40907-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
+In-Reply-To: <bug-25966-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,79 +17,68 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "\"C. =?ISO-8859-1?Q?Bergstr=F6m=22?=" <cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, 2010-01-23 at 13:25 +0300, "C. Bergstr=F6m" wrote:
-> Hi all,
-> =
+http://bugs.freedesktop.org/show_bug.cgi?id=25966
 
-> One of our (PathScale) engineers is planning to port nouveau and all =
 
-> dependencies to OpenSolaris.  We have two routes we can take and would =
 
-> like some feedback from the community.
-> =
 
-> 1) There's an existing drm without ttm that was done by the FreeBSD =
 
-> developers.  Would anyone from the fbsd team like to go over some of the =
+--- Comment #12 from Matthieu CASTET <castet.matthieu-GANU6spQydw@public.gmane.org>  2010-01-23 09:32:11 PST ---
+Thanks, here is the diff. There are not many difference. You are only faster
+for (aa, rgb) core line.
+My cpu is a athlon XP1800+. What is your cpu ?
 
-> trouble they've had in porting ttm?
+I will install some debugging symbol to get a better profilling info.
 
-That would be me.  The primary issue for me has been that I didn't have
-sufficient knowledge of our VM system to interact appropriately.  I
-think that I am over that hurdle now, but there is still a lack of any
-real documentation on the API, which means deciphering the Linux VM
-interactions at least well enough to understand what the intention of
-any given function is.
 
-> 2) The engineer doing the work is much more familiar with Intel GEM and =
+1: nouveau-perf2-kms
+2: /tmp/x11perf.txt
 
-> has said the following (which I don't honestly know if it's true or not)
->     a. Intel GEM surely will continue to be supported
->     b. It's already available on OpenSolaris
->     c. More portable than ttm
->     d. GEM doesn't have support for nvidia cards and is missing some =
+    1              2           Operation
+--------   -----------------   -----------------
+816000.0   759000.0 (  0.93)   Char in 80-char line (6x13) 
+809000.0   678000.0 (  0.84)   Char in 70-char line (8x13) 
+677000.0   593000.0 (  0.88)   Char in 60-char line (9x15) 
+238000.0   167000.0 (  0.70)   Char16 in 40-char line (k14) 
+107000.0    64600.0 (  0.60)   Char16 in 23-char line (k24) 
+964000.0   890000.0 (  0.92)   Char in 80-char line (TR 10) 
+322000.0   246000.0 (  0.76)   Char in 30-char line (TR 24) 
+782000.0   771000.0 (  0.99)   Char in 20/40/20 line (6x13, TR 10) 
+136000.0    89600.0 (  0.66)   Char16 in 7/14/7 line (k14, k24) 
+349000.0   183000.0 (  0.52)   Char in 80-char image line (6x13) 
+292000.0   143000.0 (  0.49)   Char in 70-char image line (8x13) 
+231000.0   113000.0 (  0.49)   Char in 60-char image line (9x15) 
+120000.0    60900.0 (  0.51)   Char16 in 40-char image line (k14) 
+ 46700.0    21800.0 (  0.47)   Char16 in 23-char image line (k24) 
+421000.0   223000.0 (  0.53)   Char in 80-char image line (TR 10) 
+100000.0    47100.0 (  0.47)   Char in 30-char image line (TR 24) 
+504000.0   780000.0 (  1.55)   Char in 80-char aa line (Charter 10) 
+233000.0   448000.0 (  1.92)   Char in 30-char aa line (Charter 24) 
+503000.0   781000.0 (  1.55)   Char in 80-char aa line (Courier 12) 
+498000.0   785000.0 (  1.58)   Char in 80-char a line (Charter 10) 
+301000.0   449000.0 (  1.49)   Char in 30-char a line (Charter 24) 
+498000.0   786000.0 (  1.58)   Char in 80-char a line (Courier 12) 
+502000.0   786000.0 (  1.57)   Char in 80-char rgb line (Charter 10) 
+233000.0   448000.0 (  1.92)   Char in 30-char rgb line (Charter 24) 
+505000.0   780000.0 (  1.54)   Char in 80-char rgb line (Courier 12) 
+ 59700.0   452000.0 (  7.57)   Char in 80-char aa core line (Charter 10) 
+ 10800.0   165000.0 ( 15.28)   Char in 30-char aa core line (Charter 24) 
+ 47100.0   381000.0 (  8.09)   Char in 80-char aa core line (Courier 12) 
+314000.0   450000.0 (  1.43)   Char in 80-char a core line (Charter 10) 
+114000.0   165000.0 (  1.45)   Char in 30-char a core line (Charter 24) 
+312000.0   381000.0 (  1.22)   Char in 80-char a core line (Courier 12) 
+ 59900.0   450000.0 (  7.51)   Char in 80-char rgb core line (Charter 10) 
+ 10800.0   165000.0 ( 15.28)   Char in 30-char rgb core line (Charter 24) 
+ 47000.0   382000.0 (  8.13)   Char in 80-char rgb core line (Courier 12) 
+222000.0   427000.0 (  1.92)   Scroll 10x10 pixels 
+ 59100.0    63600.0 (  1.08)   Scroll 100x100 pixels 
+  2980.0     3060.0 (  1.03)   Scroll 500x500 pixels
 
-> important features.  (For OpenSolaris he says those can be added and is =
 
-> less effort than porting ttm)
-
-GEM really only deals with system memory, where TTM deals with pools of
-memory from either system or device, along with different attributes.
-Unfortunately, my time is very limited at the moment, so I'm unsure when
-I'll actually get to work on any of this now.
-
-robert.
-
->     e. Is probably better performance compared to ttm
-> =
-
-> As some of you may know our interest is currently only in executing =
-
-> cuda-like kernels.  If it doesn't add a substantial amount of effort we =
-
-> would like our efforts to also benefit others.  (Specifically fbsd and =
-
-> the graphics contexts)
-> =
-
-> nouveau itself should be relatively easy to port, but what information =
-
-> do others have with regards to the surrounding dependencies.
-> =
-
-> Thanks!
-> =
-
-> ./Christopher
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
--- =
-
-Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
-2Hip Networks
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
