@@ -1,14 +1,16 @@
-From: Marcin =?utf-8?q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: Re: 2.6.33 vs. NVIDIA GForce GT 220
-Date: Sat, 23 Jan 2010 18:28:00 +0000
-Message-ID: <201001231828.00557.koriakin@0x04.net>
-References: <20100112134335.GA21783@atrey.karlin.mff.cuni.cz>
-	<20100123181817.GA2909@joi.lan>
+From: Stephane Marchesin <stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Porting nouveau/ttm/drm to FreeBSD/OpenSolaris
+Date: Sat, 23 Jan 2010 12:43:05 -0800
+Message-ID: <6a89f9d51001231243o1cc0899aw4338c121e4af59b1@mail.gmail.com>
+References: <1262755950.2346.5.camel@araqiel>
+	<20100107005827.466c968e@daedalus.pq.iki.fi>
+	<1262829587.2486.42.camel@balrog.2hip.net>
+	<4B5ACE8C.40907@pathscale.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100123181817.GA2909-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <4B5ACE8C.40907-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,29 +20,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pavel Machek <pavel-+ZI9xUNit7I@public.gmane.org>
+To: =?ISO-8859-1?B?Qy4gQmVyZ3N0cvZt?= <cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-PiBPbiBUdWUsIEphbiAxMiwgMjAxMCBhdCAwMjo0MzozNVBNICswMTAwLCBQYXZlbCBNYWNoZWsg
-d3JvdGU6Cj4gPiBIaSEKPiA+Cj4gPiBJIHRyaWVkIGVuYWJsaW5nIHN0YWdpbmcgbnZpZGlhIGRy
-aXZlciBvbiBHVDIyMCwgYnV0IGFwcGFyZW50bHkgZHJpdmVyCj4gPiBkb2VzIG5vdCBrbm93IGFi
-b3V0IGl0LiBVbmZvcnR1bmF0ZWx5LCBJIGhhdmUgb25lIG9mIHRob3NlIGNhcmRzIGhlcmUuCj4g
-Pgo+ID4gKEkgd29uZGVyLi4uIGlzIHRoZXJlIGJldHRlciBtYWlsaW5nIGxpc3Q/IE1BSU5UQUlO
-RVJTIG9ubHkgbGlzdHMKPiA+IGxpbnV4LWZiZGV2Li4uLikKClRoZSBsaXN0IGlzIG5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnLiBBbmQgZHJpdmVyIGtub3dzIGFib3V0IEdUMjIwIGp1c3Qg
-CmZpbmUsIEkndmUgYmVlbiB1c2luZyBpdCBmb3IgYSBtb250aCBvciB0d28gb24gR1QyMjAgYWxy
-ZWFkeS4gRG9uJ3QgYm90aGVyIAphYm91dCB0aGUgInN1cHBvcnRlZCBjYXJkcyIgbGlzdHMgaW4g
-eGY4Ni12aWRlby1ub3V2ZWF1IG9yIHdoZXJldmVyIGVsc2UsIHRoZSAKZHJpdmVyIHdpbGwgaGFw
-cGlseSBiaW5kIHRvIGFueSBudmlkaWEgdmlkZW8gY2FyZCB3aXRoIGtub3duIGdlbmVyYXRpb24s
-IGV2ZW4gCmlmIG5vYm9keSBoYXMgc2VlbiB0aGF0IHByZWNpc2UgbW9kZWwgYmVmb3JlLgoKT25l
-IHRoaW5nIHRoYXQgY291bGQgaGFwcGVuLCBob3dldmVyLCBpcyBtaXNzaW5nIGN0eHByb2cgZm9y
-IHlvdXIgY2hpcHNldC4gSW4gCnRoaXMgY2FzZSwgeW91J2xsIGJlIHN0dWNrIHdpdGggbm9uLWFj
-Y2VsZXJhdGVkIG5vdXZlYXUgdW50aWwgc29tZWJvZHkgCmV4dHJhY3RzIHRoZSBjdHhwcm9nIGZy
-b20gYmxvYiBtbWlvdHJhY2Ugb24geW91ciBjYXJkIC0tIGNvbWUgdG8gZnJlZW5vZGUubmV0IApJ
-UkMgY2hhbm5lbCAjbm91dmVhdSBpZiB5b3UgbmVlZCBoZWxwIHdpdGggdGhhdC4gSG93ZXZlciwg
-dGhhdCBzaG91bGRuJ3QgCmhhcHBlbiwgc2luY2UgdGhlIEdUMjIwIGNoaXBzZXQgaXMgYWxyZWFk
-eSBzdXBwb3J0ZWQuCgpNYXJjaW4gS2/Fm2NpZWxuaWNraQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+2010/1/23 "C. Bergstr=F6m" <cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>:
+> Hi all,
+>
+> One of our (PathScale) engineers is planning to port nouveau and all
+> dependencies to OpenSolaris. =A0We have two routes we can take and would
+> like some feedback from the community.
+>
+> 1) There's an existing drm without ttm that was done by the FreeBSD
+> developers. =A0Would anyone from the fbsd team like to go over some of the
+> trouble they've had in porting ttm?
+>
+> 2) The engineer doing the work is much more familiar with Intel GEM and
+> has said the following (which I don't honestly know if it's true or not)
+> =A0 =A0a. Intel GEM surely will continue to be supported
+> =A0 =A0b. It's already available on OpenSolaris
+> =A0 =A0c. More portable than ttm
+> =A0 =A0d. GEM doesn't have support for nvidia cards and is missing some
+> important features. =A0(For OpenSolaris he says those can be added and is
+> less effort than porting ttm)
+> =A0 =A0e. Is probably better performance compared to ttm
+>
+
+How do you plan to handle "real" video memory in GEM? Will you add
+support for it in the GEM common code?
+
+Stephane
