@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
-Date: Sat, 23 Jan 2010 03:04:42 -0800 (PST)
-Message-ID: <20100123110442.B0D0E2DC106@annarchy.freedesktop.org>
+Date: Sat, 23 Jan 2010 05:10:15 -0800 (PST)
+Message-ID: <20100123131015.516201300C1@annarchy.freedesktop.org>
 References: <bug-25966-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25966
 
 
 
---- Comment #10 from Matthieu CASTET <castet.matthieu-GANU6spQydw@public.gmane.org>  2010-01-23 03:04:41 PST ---
-x11perf -range ftext,scroll500 would be nice
+--- Comment #11 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2010-01-23 05:10:14 PST ---
+Created an attachment (id=32782)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32782)
+nv28 x11perf results
+
+Here are my results on nv28, Nouveau drm, libdrm and ddx from git just now.
 
 
 -- 
