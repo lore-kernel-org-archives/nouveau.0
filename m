@@ -1,14 +1,14 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Marcin =?utf-8?q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
 Subject: Re: 2.6.33 vs. NVIDIA GForce GT 220
-Date: Sat, 23 Jan 2010 19:18:17 +0100
-Message-ID: <20100123181817.GA2909@joi.lan>
+Date: Sat, 23 Jan 2010 18:28:00 +0000
+Message-ID: <201001231828.00557.koriakin@0x04.net>
 References: <20100112134335.GA21783@atrey.karlin.mff.cuni.cz>
+	<20100123181817.GA2909@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20100112134335.GA21783-jyMamyUUXNJG4ohzP4jBZS1Fcj925eT/@public.gmane.org>
+In-Reply-To: <20100123181817.GA2909-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,16 +19,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: Pavel Machek <pavel-+ZI9xUNit7I@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-fbdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, kernel list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jan 12, 2010 at 02:43:35PM +0100, Pavel Machek wrote:
-> Hi!
-> 
-> I tried enabling staging nvidia driver on GT220, but apparently driver
-> does not know about it. Unfortunately, I have one of those cards here.
-> 
-> (I wonder... is there better mailing list? MAINTAINERS only lists
-> linux-fbdev....)
-
-CC'ing proper mailing list
+PiBPbiBUdWUsIEphbiAxMiwgMjAxMCBhdCAwMjo0MzozNVBNICswMTAwLCBQYXZlbCBNYWNoZWsg
+d3JvdGU6Cj4gPiBIaSEKPiA+Cj4gPiBJIHRyaWVkIGVuYWJsaW5nIHN0YWdpbmcgbnZpZGlhIGRy
+aXZlciBvbiBHVDIyMCwgYnV0IGFwcGFyZW50bHkgZHJpdmVyCj4gPiBkb2VzIG5vdCBrbm93IGFi
+b3V0IGl0LiBVbmZvcnR1bmF0ZWx5LCBJIGhhdmUgb25lIG9mIHRob3NlIGNhcmRzIGhlcmUuCj4g
+Pgo+ID4gKEkgd29uZGVyLi4uIGlzIHRoZXJlIGJldHRlciBtYWlsaW5nIGxpc3Q/IE1BSU5UQUlO
+RVJTIG9ubHkgbGlzdHMKPiA+IGxpbnV4LWZiZGV2Li4uLikKClRoZSBsaXN0IGlzIG5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnLiBBbmQgZHJpdmVyIGtub3dzIGFib3V0IEdUMjIwIGp1c3Qg
+CmZpbmUsIEkndmUgYmVlbiB1c2luZyBpdCBmb3IgYSBtb250aCBvciB0d28gb24gR1QyMjAgYWxy
+ZWFkeS4gRG9uJ3QgYm90aGVyIAphYm91dCB0aGUgInN1cHBvcnRlZCBjYXJkcyIgbGlzdHMgaW4g
+eGY4Ni12aWRlby1ub3V2ZWF1IG9yIHdoZXJldmVyIGVsc2UsIHRoZSAKZHJpdmVyIHdpbGwgaGFw
+cGlseSBiaW5kIHRvIGFueSBudmlkaWEgdmlkZW8gY2FyZCB3aXRoIGtub3duIGdlbmVyYXRpb24s
+IGV2ZW4gCmlmIG5vYm9keSBoYXMgc2VlbiB0aGF0IHByZWNpc2UgbW9kZWwgYmVmb3JlLgoKT25l
+IHRoaW5nIHRoYXQgY291bGQgaGFwcGVuLCBob3dldmVyLCBpcyBtaXNzaW5nIGN0eHByb2cgZm9y
+IHlvdXIgY2hpcHNldC4gSW4gCnRoaXMgY2FzZSwgeW91J2xsIGJlIHN0dWNrIHdpdGggbm9uLWFj
+Y2VsZXJhdGVkIG5vdXZlYXUgdW50aWwgc29tZWJvZHkgCmV4dHJhY3RzIHRoZSBjdHhwcm9nIGZy
+b20gYmxvYiBtbWlvdHJhY2Ugb24geW91ciBjYXJkIC0tIGNvbWUgdG8gZnJlZW5vZGUubmV0IApJ
+UkMgY2hhbm5lbCAjbm91dmVhdSBpZiB5b3UgbmVlZCBoZWxwIHdpdGggdGhhdC4gSG93ZXZlciwg
+dGhhdCBzaG91bGRuJ3QgCmhhcHBlbiwgc2luY2UgdGhlIEdUMjIwIGNoaXBzZXQgaXMgYWxyZWFk
+eSBzdXBwb3J0ZWQuCgpNYXJjaW4gS2/Fm2NpZWxuaWNraQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
