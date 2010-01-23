@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25725] Nouveau crash, when running konqueror
-Date: Sat, 23 Jan 2010 00:47:08 -0800 (PST)
-Message-ID: <20100123084709.0A9AA130103@annarchy.freedesktop.org>
-References: <bug-25725-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
+Date: Sat, 23 Jan 2010 02:07:59 -0800 (PST)
+Message-ID: <20100123100759.8DE8E130104@annarchy.freedesktop.org>
+References: <bug-25966-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25966-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +20,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25725
-
-
-okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=25966
 
 
 
 
---- Comment #2 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-23 00:47:08 PST ---
-work fine with 2.6.33-rc4. So probably fixed.
+
+--- Comment #9 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2010-01-23 02:07:58 PST ---
+(In reply to comment #7)
+> What result do you get with x11perf ?
+
+What tests would you like? Or all? I could provide an x11perf log with nv28.
 
 
 -- 
