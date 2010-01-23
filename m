@@ -1,14 +1,16 @@
-From: =?ISO-8859-1?Q?=22C=2E_Bergstr=F6m=22?= <cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
+From: Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
 Subject: Re: Porting nouveau/ttm/drm to FreeBSD/OpenSolaris
-Date: Sat, 23 Jan 2010 17:46:00 +0300
-Message-ID: <4B5B0BA8.9040303@pathscale.com>
-References: <1262755950.2346.5.camel@araqiel>	<20100107005827.466c968e@daedalus.pq.iki.fi>	<1262829587.2486.42.camel@balrog.2hip.net>
-	<4B5ACE8C.40907@pathscale.com> <4B5B05BE.3080606@wp.pl>
+Date: Sat, 23 Jan 2010 10:15:54 -0600
+Message-ID: <1264263354.2226.49.camel@balrog.2hip.net>
+References: <1262755950.2346.5.camel@araqiel>
+	<20100107005827.466c968e@daedalus.pq.iki.fi>
+	<1262829587.2486.42.camel@balrog.2hip.net>
+	<4B5ACE8C.40907@pathscale.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4B5B05BE.3080606-5tc4TXWwyLM@public.gmane.org>
+In-Reply-To: <4B5ACE8C.40907-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,83 +20,79 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Krzysztof Smiechowicz <deadwood-5tc4TXWwyLM@public.gmane.org>
+To: "\"C. =?ISO-8859-1?Q?Bergstr=F6m=22?=" <cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Krzysztof Smiechowicz wrote:
-> C. Bergstr=F6m pisze:
->> Hi all,
->>
->
-> Hi Christopher
->
->> nouveau itself should be relatively easy to port, but what =
+On Sat, 2010-01-23 at 13:25 +0300, "C. Bergstr=F6m" wrote:
+> Hi all,
+> =
 
->> information do others have with regards to the surrounding dependencies.
->
-> I can give you some information my work porting the nouveau/drm/ttm to =
+> One of our (PathScale) engineers is planning to port nouveau and all =
 
-> AROS (http://www.aros.org/). AROS is AmigaOS clone and it's very very =
+> dependencies to OpenSolaris.  We have two routes we can take and would =
 
-> very far in terms of API and concepts from Linux kernel so I think =
+> like some feedback from the community.
+> =
 
-> it's a good example to talk about portability.
->
-> Currently my work is only focused on 3D part, not touching the 2D part =
+> 1) There's an existing drm without ttm that was done by the FreeBSD =
 
-> at all. Generally it took me about 1,5 months of evenings to port the =
+> developers.  Would anyone from the fbsd team like to go over some of the =
 
-> current (sources from December 2009) nouvea/drm/ttm/libdrm/nouvea =
+> trouble they've had in porting ttm?
 
-> gallium driver to AROS (I would call it alpha version of the port =
+That would be me.  The primary issue for me has been that I didn't have
+sufficient knowledge of our VM system to interact appropriately.  I
+think that I am over that hurdle now, but there is still a lack of any
+real documentation on the API, which means deciphering the Linux VM
+interactions at least well enough to understand what the intention of
+any given function is.
 
-> though) however I have never been working with graphics or graphics =
+> 2) The engineer doing the work is much more familiar with Intel GEM and =
 
-> drivers before.
->
-> In terms of portability I would rate the modules in following order =
+> has said the following (which I don't honestly know if it's true or not)
+>     a. Intel GEM surely will continue to be supported
+>     b. It's already available on OpenSolaris
+>     c. More portable than ttm
+>     d. GEM doesn't have support for nvidia cards and is missing some =
 
-> (starting from most portable)
->
-> nouveau gallium 3D drivers
-> nouveau NV0X-NV40 drm drivers
-> libdrm
-> nouveau "common code" (files named nouveau_XXX)
-> drm "common code" (files named drm_XXX)
-> nouveau NV50 drm driver
-> ttm
->
-> Basically the only module that does not seem to be specially written =
+> important features.  (For OpenSolaris he says those can be added and is =
 
-> with portability in mind and has a lot of Linux dependencies it ttm. I =
+> less effort than porting ttm)
 
-> implemented some of those dependencies in my AROS port (reference =
+GEM really only deals with system memory, where TTM deals with pools of
+memory from either system or device, along with different attributes.
+Unfortunately, my time is very limited at the moment, so I'm unsure when
+I'll actually get to work on any of this now.
 
-> counting, atomics, spin locks) and disabled some others (swapping =
+robert.
 
-> support, work queues)
->
-> If you are interested in any specific topic, please let me know :)
-1.5 months seems to be pretty fast work, but I think disabling some of =
+>     e. Is probably better performance compared to ttm
+> =
 
-those portions of the code probably helped.  For us we will be focusing =
+> As some of you may know our interest is currently only in executing =
 
-only on libdrm, drm "common code" nouveau NV50 drm driver and a memory =
+> cuda-like kernels.  If it doesn't add a substantial amount of effort we =
 
-manager.  There also already an older port of drm to OpenSolaris so =
+> would like our efforts to also benefit others.  (Specifically fbsd and =
 
-that's mostly a forward port.  I've heard others complain about ttm =
+> the graphics contexts)
+> =
 
-repeatedly and thought maybe we can rethink the problem and solve two =
+> nouveau itself should be relatively easy to port, but what information =
 
-things at once.  I'll have one of our engineers email you directly about =
+> do others have with regards to the surrounding dependencies.
+> =
 
-ttm if we have specific questions.
+> Thanks!
+> =
 
-Thanks
+> ./Christopher
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+-- =
 
-./C
-
-
-twitter : CTOPathScale
+Robert Noland <rnoland-4LXSwLOGEL8@public.gmane.org>
+2Hip Networks
