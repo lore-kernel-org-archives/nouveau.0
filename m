@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
-Date: Sun, 24 Jan 2010 06:10:28 -0800 (PST)
-Message-ID: <20100124141028.8071E1300B6@annarchy.freedesktop.org>
+Date: Sun, 24 Jan 2010 06:10:51 -0800 (PST)
+Message-ID: <20100124141051.AED791300B6@annarchy.freedesktop.org>
 References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
-Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         OS/Version|All                         |Linux (All)
-           Platform|Other                       |x86-64 (AMD64)
 
 
+
+--- Comment #1 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-24 06:10:51 PST ---
+Created an attachment (id=32793)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32793)
+nouveau-related dmesg output 
 
 
 -- 
