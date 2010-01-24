@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26194] nouveau reports DPI correctly in Xorg.0.log,
- but value reported by X incorrect
-Date: Sun, 24 Jan 2010 14:56:52 -0800 (PST)
-Message-ID: <20100124225652.12FEB1300D9@annarchy.freedesktop.org>
-References: <bug-26194-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
+Date: Sun, 24 Jan 2010 15:44:06 -0800 (PST)
+Message-ID: <20100124234406.7CA801300D9@annarchy.freedesktop.org>
+References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26194-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26193-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +20,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26194
+http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
 
 
 
---- Comment #2 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-24 14:56:51 PST ---
-(In reply to comment #1)
-> 
-> *** This bug has been marked as a duplicate of bug 23705 ***
+--- Comment #5 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-24 15:44:05 PST ---
+Maarten: Is there any more information or help I can provide?  Or any hardware
+I can donate?  Unfortunately donating a $1500 Mac laptop isn't something I'm
+comfortable doing, but if someone could find a cheap (<= $450?) laptop with the
+same or similar NVAC chipset, I might be able to justify buying one for Ben to
+test on.  If he thinks remote testing will do, I'd be happy to hang out in
+#nouveau on the weekend and help (unfortunately during the week isn't possible
+for me).
 
-Are you sure this is a dupe?  That bug seems to refer to a general problem with
-xorg-server 1.7.  When I use 'nvidia' instead of 'nouveau', my DPI is reported
-correctly.  So it sounds like this is something that the video driver does
-indeed have control over.
-
-(If it's not *appropriate* for the video driver to 'unbreak' this, then of
-course I understand.)
+Ted: interesting... are you running a 64bit system?  If so, does that mean TTM
+is trying to use > 32bit DMA?  Perhaps something in the hardware doesn't
+support > 32bit DMA, and that fact isn't being detected properly.
 
 
 -- 
