@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26194] nouveau reports DPI correctly in Xorg.0.log,
- but value reported by X incorrect
-Date: Sun, 24 Jan 2010 06:37:30 -0800 (PST)
-Message-ID: <20100124143730.91F3C2DC101@annarchy.freedesktop.org>
-References: <bug-26194-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [mesa PATCH] nouveau: fix winsys object leak
+Date: Sun, 24 Jan 2010 19:22:26 +0100
+Message-ID: <20100124182226.GA2908@joi.lan>
+References: <20100117225050.GE14113@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26194-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20100117225050.GE14113-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,8 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26194
+On Sun, Jan 17, 2010 at 11:50:50PM +0100, Marcin Slusarz wrote:
+> 
+> (...)
 
-
-Julien Cristau <jcristau-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |DUPLICATE
-
-
-
-
---- Comment #1 from Julien Cristau <jcristau-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org>  2010-01-24 06:37:29 PST ---
-
-
-*** This bug has been marked as a duplicate of bug 23705 ***
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+ping
