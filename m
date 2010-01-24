@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
-Date: Sun, 24 Jan 2010 06:12:04 -0800 (PST)
-Message-ID: <20100124141204.9F8AF1300B6@annarchy.freedesktop.org>
+Date: Sun, 24 Jan 2010 06:17:19 -0800 (PST)
+Message-ID: <20100124141719.3DB081300B6@annarchy.freedesktop.org>
 References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
 
---- Comment #2 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-24 06:12:04 PST ---
-Created an attachment (id=32794)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32794)
-pretty minimal xorg.conf
+--- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-24 06:17:18 PST ---
+It's known, the problem is these cards are all onboard. So that makes it harder
+to test. The same problem applies to 8200 and 8300 and g102m (the last one is
+iirc). They are either NVAA or NVAC. Ben Skeggs is probably the person with the
+biggest chance of getting this running, but he doesn't have one.
 
 
 -- 
