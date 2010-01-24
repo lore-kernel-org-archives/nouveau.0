@@ -1,13 +1,13 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [mesa PATCH] nv50: fix uninitialized variable in
- nv50_revdep_reorder
-Date: Sun, 24 Jan 2010 19:27:59 +0100
-Message-ID: <20100124182759.GD2908@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25762] Quadro NVS 140M doesn't wake up anymore
+Date: Sun, 24 Jan 2010 13:00:17 -0800 (PST)
+Message-ID: <20100124210018.040511300DD@annarchy.freedesktop.org>
+References: <bug-25762-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-25762-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +20,35 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-"unsafe" is never initialized, but used
-(found by valgrind)
----
- src/gallium/drivers/nv50/nv50_program.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+http://bugs.freedesktop.org/show_bug.cgi?id=25762
 
-diff --git a/src/gallium/drivers/nv50/nv50_program.c b/src/gallium/drivers/nv50/nv50_program.c
-index cfe8b48..6d9ac14 100644
---- a/src/gallium/drivers/nv50/nv50_program.c
-+++ b/src/gallium/drivers/nv50/nv50_program.c
-@@ -3275,7 +3275,7 @@ prep_inspect_insn(struct nv50_pc *pc, const struct tgsi_full_instruction *insn)
- static unsigned
- nv50_revdep_reorder(unsigned m[4], unsigned rdep[4])
- {
--	unsigned i, c, x, unsafe;
-+	unsigned i, c, x, unsafe = 0;
- 
- 	for (c = 0; c < 4; c++)
- 		m[c] = c;
+
+xuan--2010--bugs.freedesktop.org-IBzAk7fUI6RAfugRpC6u6w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |xuan--2010--
+                   |                            |bugs.freedesktop.org@baldauf
+                   |                            |.org
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |
+
+
+
+
+--- Comment #2 from xuan--2010--bugs.freedesktop.org-IBzAk7fUI6RAfugRpC6u6w@public.gmane.org  2010-01-24 13:00:17 PST ---
+What exactly do you mean with "upstream"?
+
+
+I see this problem happening on my Quadro FX 1500M (G71) (NV40) with the
+nouveau-tree as of
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=eeec3a1ecd703d3a32fe223274d2a77686030d78
+("zcat master.tar.gz | git get-tar-commit-id" yields
+"eeec3a1ecd703d3a32fe223274d2a77686030d78"), which seems to be the most recent
+nouveau-kernel.
+
+
 -- 
-1.6.6
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
