@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26188] [regression] Some strange things with latest
 	git on NV31
-Date: Sun, 24 Jan 2010 04:01:55 -0800 (PST)
-Message-ID: <20100124120155.731DC1300BA@annarchy.freedesktop.org>
+Date: Sun, 24 Jan 2010 04:04:26 -0800 (PST)
+Message-ID: <20100124120427.028A51300BA@annarchy.freedesktop.org>
 References: <bug-26188-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,31 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=26188
 
 
+Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #32791|text/x-log                  |text/plain
+          mime type|                            |
 
 
-
---- Comment #2 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2010-01-24 04:01:53 PST ---
-Created an attachment (id=32791)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32791)
-Xorg.0.log with 3D
-
-(In reply to comment #1)
-> Are you sure you are using Mesa's libGL and not nvidia's one ?
-> 
-
-Yes, I am really sure that I am using Mesa's libGL.
-(As nouveau packager for openSUSE I can say it...)
-
-Here is an example how Kubrick looks like when 3D is enabled :
-
-http://www.freeimagehosting.net/uploads/1d696cbd62.png
-
-(There should be at least 1 cube with a black background -> shown is the window
-which was previously "above" it [Konqueror]...)
-
-A Xorg.0.log with 3D enabled is attached...
-
-Shall we assign this bug to Mesa?
 
 
 -- 
