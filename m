@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25762] Quadro NVS 140M doesn't wake up anymore
-Date: Sun, 24 Jan 2010 13:00:17 -0800 (PST)
-Message-ID: <20100124210018.040511300DD@annarchy.freedesktop.org>
+Date: Sun, 24 Jan 2010 14:54:30 -0800 (PST)
+Message-ID: <20100124225430.B8A502DC012@annarchy.freedesktop.org>
 References: <bug-25762-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,29 +23,27 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25762
 
 
-xuan--2010--bugs.freedesktop.org-IBzAk7fUI6RAfugRpC6u6w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |xuan--2010--
-                   |                            |bugs.freedesktop.org@baldauf
-                   |                            |.org
-             Status|RESOLVED                    |REOPENED
-         Resolution|FIXED                       |
 
 
 
+--- Comment #3 from Martin PERES <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>  2010-01-24 14:54:29 PST ---
+(In reply to comment #2)
+> What exactly do you mean with "upstream"?
+> 
+> 
+> I see this problem happening on my Quadro FX 1500M (G71) (NV40) with the
+> nouveau-tree as of
+> http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=eeec3a1ecd703d3a32fe223274d2a77686030d78
+> ("zcat master.tar.gz | git get-tar-commit-id" yields
+> "eeec3a1ecd703d3a32fe223274d2a77686030d78"), which seems to be the most recent
+> nouveau-kernel.
+> 
 
---- Comment #2 from xuan--2010--bugs.freedesktop.org-IBzAk7fUI6RAfugRpC6u6w@public.gmane.org  2010-01-24 13:00:17 PST ---
-What exactly do you mean with "upstream"?
+Well, by "upstream" I meant, I couldn't reproduce this issue using the latest
+versions of the nouveau drm. Don't know if the problem is back again, I haven't
+compiled the kernel for a week.
 
-
-I see this problem happening on my Quadro FX 1500M (G71) (NV40) with the
-nouveau-tree as of
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=eeec3a1ecd703d3a32fe223274d2a77686030d78
-("zcat master.tar.gz | git get-tar-commit-id" yields
-"eeec3a1ecd703d3a32fe223274d2a77686030d78"), which seems to be the most recent
-nouveau-kernel.
+I'll do so asap.
 
 
 -- 
