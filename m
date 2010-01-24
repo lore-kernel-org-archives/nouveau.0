@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
-Date: Sun, 24 Jan 2010 15:44:06 -0800 (PST)
-Message-ID: <20100124234406.7CA801300D9@annarchy.freedesktop.org>
-References: <bug-26193-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [mesa PATCH] nv50: fix uninitialized variable in
+ nv50_revdep_reorder
+Date: Mon, 25 Jan 2010 09:48:37 +1000
+Message-ID: <1264376917.2460.0.camel@nisroch>
+References: <20100124182759.GD2908@joi.lan>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26193-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20100124182759.GD2908-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,30 +19,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26193
+On Sun, 2010-01-24 at 19:27 +0100, Marcin Slusarz wrote:
+> "unsafe" is never initialized, but used
+> (found by valgrind)
+Pushed, plus the other three patches you pinged on.
 
-
-
-
-
---- Comment #5 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-24 15:44:05 PST ---
-Maarten: Is there any more information or help I can provide?  Or any hardware
-I can donate?  Unfortunately donating a $1500 Mac laptop isn't something I'm
-comfortable doing, but if someone could find a cheap (<= $450?) laptop with the
-same or similar NVAC chipset, I might be able to justify buying one for Ben to
-test on.  If he thinks remote testing will do, I'd be happy to hang out in
-#nouveau on the weekend and help (unfortunately during the week isn't possible
-for me).
-
-Ted: interesting... are you running a 64bit system?  If so, does that mean TTM
-is trying to use > 32bit DMA?  Perhaps something in the hardware doesn't
-support > 32bit DMA, and that fact isn't being detected properly.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Ben.
+> ---
+>  src/gallium/drivers/nv50/nv50_program.c |    2 +-
+>  1 files changed, 1 insertions(+), 1 deletions(-)
+> 
+> diff --git a/src/gallium/drivers/nv50/nv50_program.c b/src/gallium/drivers/nv50/nv50_program.c
+> index cfe8b48..6d9ac14 100644
+> --- a/src/gallium/drivers/nv50/nv50_program.c
+> +++ b/src/gallium/drivers/nv50/nv50_program.c
+> @@ -3275,7 +3275,7 @@ prep_inspect_insn(struct nv50_pc *pc, const struct tgsi_full_instruction *insn)
+>  static unsigned
+>  nv50_revdep_reorder(unsigned m[4], unsigned rdep[4])
+>  {
+> -	unsigned i, c, x, unsafe;
+> +	unsigned i, c, x, unsafe = 0;
+>  
+>  	for (c = 0; c < 4; c++)
+>  		m[c] = c;
