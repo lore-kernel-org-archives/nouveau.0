@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26188] [regression] Some strange things with latest
 	git on NV31
-Date: Mon, 25 Jan 2010 12:22:09 -0800 (PST)
-Message-ID: <20100125202209.EC9E9130123@annarchy.freedesktop.org>
+Date: Mon, 25 Jan 2010 12:29:26 -0800 (PST)
+Message-ID: <20100125202926.5E27D130122@annarchy.freedesktop.org>
 References: <bug-26188-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26188
 
 
 
---- Comment #3 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2010-01-25 12:22:07 PST ---
-Created an attachment (id=32809)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32809)
-glxinfo with 3D (without xorg.conf)
-
-It is fixed when I remove /etc/X11/xorg.conf.
-
-Is it with Xserver 1.7.4 not longer allowed to configure X with xorg.conf?
-
-Kubrick is also fixed then...
+--- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-25 12:29:25 PST ---
+You can still use xorg.conf, it would be stupid if that wasn't allowed. You can
+attach it if you still have it.
 
 
 -- 
