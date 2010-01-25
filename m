@@ -1,8 +1,8 @@
 From: Jerome Glisse <glisse-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
 Subject: Re: [PATCH] drm/ttm: Fix race condition in
 	ttm_bo_delayed_delete
-Date: Mon, 25 Jan 2010 09:14:44 +0100
-Message-ID: <20100125081444.GA23124@localhost.localdomain>
+Date: Mon, 25 Jan 2010 09:20:01 +0100
+Message-ID: <20100125082001.GB23124@localhost.localdomain>
 References: <4B56E8EE.8090706@shipmail.org> <4B56F308.5090603@shipmail.org>
 	<4B56F401.8070700@vmware.com>
 	<ff13bc9a1001201122y110fb003k704bc6d05d2aea07@mail.gmail.com>
@@ -11,13 +11,13 @@ References: <4B56E8EE.8090706@shipmail.org> <4B56F308.5090603@shipmail.org>
 	<4B576FF5.9040907@shipmail.org>
 	<ff13bc9a1001201949l4691f202v2a2874b9cef86f37@mail.gmail.com>
 	<20100121122920.GB3837@localhost.localdomain>
-	<4B584FAE.8040801@shipmail.org>
+	<ff13bc9a1001210714m34c3976etc7680f056cb55453@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <4B584FAE.8040801-4+hqylr40dJg9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <ff13bc9a1001210714m34c3976etc7680f056cb55453-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -27,166 +27,210 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Thomas Hellstrom <thomas-4+hqylr40dJg9hUCZPvPmw@public.gmane.org>
-Cc: "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>, "dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org" <dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Cc: "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org" <dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>, Thomas Hellstrom <thomas-4+hqylr40dJg9hUCZPvPmw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jan 21, 2010 at 01:59:26PM +0100, Thomas Hellstrom wrote:
-> Jerome Glisse wrote:
-> >On Thu, Jan 21, 2010 at 04:49:39AM +0100, Luca Barbieri wrote:
-> >>>We had to do a similar thing in the
-> >>>Poulsbo driver and it turned out that we could save a significant amount of
-> >>>CPU by using a delayed workqueue, collecting objects and destroying them
-> >>>periodically.
-> >>Yes, indeed, we don't really care about a fence expiring unless we
-> >>want to use that buffer or we are out of memory.
-> >>Processing each fence, especially if there is an interrupt per fence,
-> >>seems unnecessary, since you can just do that work in the cases
-> >>mentioned above.
-> >>
-> >>So, here is a new proposal that should have the best features of all
-> >>previously considered methods.
-> >>Assume first that there is a single FIFO channel.
-> >>
-> >>We introduce a list of fence nodes, each containing:
-> >>- A list of buffers NOT to be destroyed having the fence as their sync
-> >>object (or possibly one for each memory type)
-> >>- A delayed-destroy list of buffers having the fence as their sync object
-> >>
-> >>Fence nodes are added at the end upon emission.
-> >>They are removed and freed when the buffer count drops to 0 (meaning
-> >>all buffers have been moved to later fences).
-> >>Thus, the number of fence nodes does not grow without bounds, but is
-> >>bounded by the number of buffers.
-> >>.
-> >>The LRU lists are changed to only contain unfenced buffers and buffers
-> >>are initially put on it.
-> >>When a buffer is fenced, it is removed from the LRU list or its
-> >>current fence list, and added to the new fence (possibly destroying
-> >>the old fence node in the process).
-> >>The reference count of buffer objects is only increased when they are
-> >>put in a delayed destruction list.
-> >>
-> >>Upon deletion, they are destroyed immediately if they are on the LRU
-> >>list and moved to the corresponding delayed-delete list if they are in
-> >>the fenced list.
-> >>
-> >>ttm_bo_delayed_delete is no longer called by any workqueue, but only
-> >>on when we run out of memory, before we try eviction.
-> >>It processes the list until the first unsignalled fence, destroying
-> >>all buffers it finds and freeing all the fence nodes.
-> >>All the buffers in the alive lists are put in the LRU list, in the
-> >>correct order.
-> >>We may either keep an alive list per memory type, or sort the buffers
-> >>by memory type (so they are put in the memory type LRU list) at this
-> >>point
-> >>
-> >>Thus, after ttm_bo_delayed_delete, there is the following scenario:
-> >>1. Inactive buffers with no references are destroyed
-> >>2. Inactive buffers with references are in the LRU list
-> >>3. Fenced buffers with no references are in the delayed-destroy list
-> >>attached to their fence
-> >>4. Fenced buffers with references are in the alive list attached to their fence
-> >>
-> >>This should have about the same CPU and memory usage of the current
-> >>code, but the following advantages:
-> >>1. Delayed deletion does not run periodically, but exactly when needed
-> >>(at allocation time, before eviction)
-> >>2. Delayed deletion always deletes all buffers that can be deleted,
-> >>since it processes them in fence order
-> >>3. The LRU list at eviction time contains exactly all evictable buffers
-> >>4. Each buffer is always on an LRU _or_ on a delayed destroy list, so
-> >>only one node is necessary
-> >>5. Once buffer deletion determines a fence is signalled, it can
-> >>destroyed all its to-be-destroyed buffers without any more checking
-> >>6. Some fence logic (such as signalling of all fences on channel
-> >>forced closing) can be moved  from drivers to TTM
-> >>7. Some channel logic can be moved from drivers to TTM
-> >>8. The code should be simpler and more elegant
-> >>
-> >>Note that using a buffer with the CPU doesn't change its position in
-> >>the LRU list.
-> >>This is good, because evicting a buffer used by the CPU is actually a
-> >>good thing, since it will move to a region of memory slower for the
-> >>GPU but possibly faster for the CPU.
-> >>However, for buffers in system memory, if the LRU list is used for
-> >>swapping, CPU access should move the buffer to the front of list
-> >>(using the LRU list for this is probably a bad idea though, since
-> >>system memory swapping should be at page granularity).
-> >>
-> >>For multiple channels, things are slightly more complex.
-> >>First, we need to built the fence data structure for each channel.
-> >>Also, we need the fence/buffer nodes to be separate
-> >>Delayed destruction continues to work, but the reference count needs
-> >>to be set to the number of channels fencing the buffer on destruction.
-> >>Putting buffers in the LRU list can be done by doing n-way merging
-> >>between the channel fence lists, assigning each fence a global
-> >>sequence number, and using that to merge and put back buffers in the
-> >>LRU.
-> >>n-way merging can be done with a small heap on the stack on current
-> >>hardware where channels are limited.
-> >>Furthermore, we need to keep a reference count, so that buffers are
-> >>put in the LRU (or destroyed) only after they are off all the
-> >>channels.
-> >>
-> >>The LRU list semantics are relaxed. If a buffer has both its fence
-> >>emitted before another buffer, and also signaled before it, then it
-> >>will be considered as "less recently" used, and the opposite thing
-> >>happens if both are after. Otherwise, the order is undetermined.
-> >>
-> >>This should still guarantee good eviction behavior, and allows to have
-> >>the LRU list only contain evictable buffers, while not requiring to
-> >>use a dynamic priority queue.
-> >>Otherwise, a red-black tree (or an indirect heap with back references)
-> >>indexed by the global fence sequence number can guarantee strict
-> >>emission-time LRU semantics. This seems unnecessary though.
-> >>
-> >>Thoughts? Opinions?
-> >>Any possible improvement?
-> >>
-> >
-> >I love the first solution but solution to multi fifo side
-> >looks overkilling. So i am wondering if we aren't tackling
-> >the issue from the wrong side. Below is slightly different
-> >approach to the issue.
-> >
-> >Idea is that memory management is about having bo in place
-> >for the GPU. So instead of looking at the problem from the
-> >bo side, look at it from the GPU address space side.
-> >
-> >For simplicity here i am using only one space VRAM (but GTT
-> >or others can be deal the sameway). So now we split the
-> >problem to look at it as a transaction any time the driver
-> >want to do somethings it ask to ttm to create new transaction
-> >each transaction is associated to a fence and list of buffer
-> >with their possible placement (i will explain how it can
-> >fit multi fifo gpu well too and how it also allow easy support
-> >to GPU with virtual address space which is somethings slowly
-> >becoming a reality i think).
-> >
-> >TTM receive a transaction it takes a transaction lock and give
-> >transaction number to this new transaction. Then it goes over
-> >the BO list and try to come up with the best placement for
-> >each of them.
-> Jerome, This seems to have a fundamental flaw of not allowing
-> simultaneous command submission.
+On Thu, Jan 21, 2010 at 04:14:39PM +0100, Luca Barbieri wrote:
+> I'm not sure I understand your proposal correctly.
+> It seems your proposoal is similar to mine, replacing the term "fence
+> nodes" with "ttm transactions", but I'm not sure if I understand it
+> correctly
 > 
-> With the current code, A process blocked trying to validate its
-> buffers will not block other processes from validating, and we
-> should keep it that way.
+> Here is some pseudocode for a improved, simplified version of my proposal.
+> It is modified so that there are no longer distinct alive/destroy
+> lists, but buffers are destroyed if their ref count is zero.
 > 
-> /Thomas
+> list_head ram_lru_list; /* list of bos */
+> list_head vram_unfenced_lru_list; /* list of bos */
+> list_head gart_unfenced_lru_list; /* list of bos */
+> 
+> atomic uint64_t next_seq_num;
+> 
+> // if read_list and write_list are empty, the buffer is unfenced and
+> MUST be in an unfenced lru list
+> // otherwise, it is fenced and MUST be, if not zombie, on some
+> read_list/write_list, or if zombie, on some unfenced_list
+> struct ttm_buffer_object
+> {
+>    kref_t ref;
+>    list_head read_list; /* list of bo_fence_nodes */
+>    list_head write_list; /* list of bo_fence_nodes */
+>    list_head unfenced_list; /* list entry in
+> [ram|[gart|vram]_unfenced]_lru_list */
+>    [...]
+> };
+> 
+> // TODO: we could embed just the first two members in the
+> ttm_buffer_object, and steal the lowest bit on the fence pointer to
+> signify that
+> // this would optimize for the very common single-fence case
+> struct ttm_bo_fence_node
+> {
+>     list_head bo_list; /* list entry in bo.[read|write]_list */
+>     struct ttm_fence_node* fence;
+> 
+>     struct ttm_buffer_object* bo;
+>     list_head fence_list; /* list entry in fence.[vram|gart|destroy]_list */
+> };
+> 
+> struct ttm_fence
+> {
+>     void* sync_object; /* may also turned into an object containing a
+> ttm_fence at the start */
+>     uint64_t seq_num; /* unique value in order of kmalloc of this ttm_fence */
+>     list_head bo_list; /* list of bo_fence_nodes */
+> };
+> 
+> struct ttm_channel
+> {
+>     list_head fence_list; /* list of ttm_fence_node */
+> };
+> 
+> ttm_flush_fences()
+> {
+>     list_head vram_list[MAX_CHANNELS];
+>     list_head gart_list[MAX_CHANNELS];
+>     foreach channel
+>     {
+>         foreach fence in channel
+>         {
+>              if(not driver->fence_expired(fence->sync_object))
+>                  break;
+>              foreach bo_fence_node in fence.bo_list
+>              {
+>                  remove bo_fence_node
+>                  if bo.read_list and bo.write_list are both empty
+>                  {
+>                      if bo.refcount is zero
+>                          destroy
+>                      else
+>                      {
+>                          append to [vram|gart]_list[channel]
+>                      }
+>                  }
+>              }
+>         }
+>     }
+> 
+>     // this is the n-way merge of vram_list[]s into the lru list
+>     while(vram_list[]s are not all empty)
+>     {
+>         // this can use either a simple scan, or an heap
+>         find channel such that
+> first_entry(vram_list[channel]).fence.seq_num is smallest
+> 
+>         remove first_entry(vram_list[channel]) and put the bo at the
+> recent end of vram_unfenced_lru_list
+>     }
+> 
+>     same thing for gart;
+> }
+> 
+> // assume buffer is reserved, use current mechanism or mutex for that
+> // channel may be null for CPU waits
+> ttm_bo_wait(bo, channel, wait_for_write)
+> {
+>      foreach fence_node in bo.write_list
+>      {
+>          if(fence_node.channel != channel)
+>              driver->wait_fence(fence_node.fence.sync_object);
+>      }
+> 
+>      if(!wait_for_write)
+>           return;
+> 
+>      foreach fence_node in bo.read_list
+>      {
+>          if(fence_node.channel != channel)
+>               driver->wait_fence(fence_node.fence.sync_object);
+>      }
+> }
+> 
+> ttm_out_of_memory() takes memory_alloc_mutex
+> {
+> retry:
+>     ttm_flush_fences();
+>     if(we have enough space now)
+>         return;
+>     foreach in [vram|gart]_unfenced_lru_list
+>     {
+>         evict that buffer if it's big enough, no need to check fences
+>         this uses the current "ghost" mechanism for accelerated moves
+>         emit evicted_buffer_fence for after emission
+>     }
+>     if we didn't find a big enough buffer, evict the biggest buffer
+> (also consider empty space around it in size)
+>     if(we have enough space now)
+>         return;
+>     if(burn_cpu_time_but_have_lowest_latencies)
+>     {
+>         while(!driver->fence_expired(evicted_bo->sync_object) and we
+> don't have enough space)
+>         {
+>             driver->wait_for_any_fence_to_expire();
+>             ttm_flush_fences();
+>         }
+>     }
+>     else
+>         ttm_bo_wait(evicted_bo 0)
+>     goto retry;
+> }
+> 
+> // assume the buffer has already been put in the desired memory space
+> // also assume we already waited for the buffer fences
+> ttm_add_buffer_to_fence(fence, bo)
+> {
+>     remove bo from unfenced lru list if it's on it
+>     for the none or single bo_fence_node in bo.read_list or
+> bo.write_list with bo_fence_node.fence.channel == fence.channel
+>     {
+>         remove bo_fence_node from bo_fence_node.fence.[gart|vram]_list
+>         if(bo_fence_node.fence has all lists empty)
+>             remove from channel and free the fence bo_fence_node.fence
+>         remove bo_fence_node from bo.[read|list]_list
+>     }
+> 
+>     create a new bo_fence node and use it to add the bo to the fence
+> }
+> 
+> ttm_bo_refcount_drops_to_zero(bo)
+> {
+>     if(bo.read_list is empty and bo.write_list is empty)
+>         free(bo);
+>    // otherwise ttm_flush_fences takes care of this, no need to do anything here
+> }
+> 
+> linux_get_free_page_is_out_of_memory
+> {
+>     ttm_flush_fences(); // destroy any buffers we can destroy
+> }
+> 
+> use_buffer_with_cpu(bo)
+> {
+>    if(bo is in vram)
+>        return; // CPU access should not prevent eviction of VRAM buffers
+>    if(bo is unfenced and thus on an lru_list)
+>        move to recent end of lru_list it is on
+> }
+> 
+> This code does not itself handle inter-channel synchronization, which
+> is can be done by driver in accelerated moves and before calling
+> ttm_add_buffer_to_fence(fence, bo)
+> Drivers without on-GPU synchronization can just do ttm_bo_wait(bo,
+> channel), others can use whatever scheme they think is best.
+> 
+> Actually we may not need to add any "sync domain" concept to TTM, as
+> it seems possible to do synchronization in the driver, at least in
+> this scheme.
 > 
 
-Idea is who comes first is first to be serve :) and it can deal
-with multiple command submission if the hw can deal with it
-(sync stuff i am briefly describing in multi fifo part). But
-yes if process A is first in the kernel and process B could
-have been executed right away, A will win and have right to
-evict others, i don't think it will hurt perf, i think most
-of the usecase we will have enough memory and better userspace
-driver that the eviction from vram should become rare enough
-to be noticeable.
+My proposal is a more radical change in which we leave the BO POV
+managing to go for a GPU memory space managing. It's more like doing
+a transactional view of GPU in which for each transaction you ask
+a placement for the BO. Idea is that GPU with enough hw capacity can
+easily queue BO moves and forget about them and it should also allow
+simplier code for sync. But this was just an idea.
 
 Cheers,
 Jerome
