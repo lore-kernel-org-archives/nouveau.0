@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
-Date: Wed, 27 Jan 2010 08:26:14 -0800 (PST)
-Message-ID: <20100127162614.6B94F130092@annarchy.freedesktop.org>
-References: <bug-25966-8800@http.bugs.freedesktop.org/>
+From: SL <sl_4_ever-/E1597aS9LRv1O+Z8WTAqQ@public.gmane.org>
+Subject: garbage charactor with KMS+fbcon+fontwidth!=8
+Date: Mon, 25 Jan 2010 22:33:51 +0800 (CST)
+Message-ID: <663089.53537.qm@web15805.mail.cnb.yahoo.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25966-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +18,29 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25966
-
-
-
-
-
---- Comment #16 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2010-01-27 08:26:13 PST ---
-(In reply to comment #14)
-> Created an attachment (id=32833)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32833) [details]
-> oprofile with debug symbol
-> 
-> So your cpu got sse2 ?
-
-It does.
-
-I installed rxvt 2.7.10, but there is no rxvt-xpm that appears in your profile,
-and scrolling it furiously while full of text still leaves me with at least 70%
-of CPU idle.
-
-What else should we try to reproduce this? Is it an rxvt-clone of some sort, or
-some extra features enabled? Perhaps you have a different font configuration?
-
-Did you search the bugzilla? I recall this is not the first report of rxvt
-slowness, but I cannot remember where I read about it, nor what was the
-resolution, if any.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Zm9sbG93aW5nIHBhdGNoIHNvbHZlIG15IHByb2JsZW0uCmFjY29yZGluZyB0byBub3V2ZWF1X2Ns
+YXNzLmg6CgojZGVmaW5lICBOVjUwXzJEX1NJRkNfQklUTUFQX0xJTkVfUEFDS19NT0RFICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDgxMCNkZWZpbmUg
+ICBOVjUwXzJEX1NJRkNfQklUTUFQX0xJTkVfUEFDS19NT0RFX1BBQ0tFRCAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAweDAwMDAwMDAwCiNkZWZpbmUgICBOVjUwXzJEX1NJRkNf
+QklUTUFQX0xJTkVfUEFDS19NT0RFX0FMSUdOX0JZVEUgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAweDAwMDAwMDAxCiNkZWZpbmUgICBOVjUwXzJEX1NJRkNfQklUTUFQX0xJTkVfUEFD
+S19NT0RFX0FMSUdOX1dPUkQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDAw
+MDAyCgoKTlY1MF8yRF9TSUZDX0JJVE1BUF9MSU5FX1BBQ0tfTU9ERSBzaG91bGQgYmUgYnl0ZSBh
+bGlnbmVkIGluc3RlYWQgcGFja2VkLgoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252NTBfZmJjb24uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZmJjb24uYwpp
+bmRleCBlNGYyNzllLi5iODIzMTVjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udjUwX2ZiY29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9mYmNvbi5j
+CkBAIC0yMzMsNyArMjMzLDcgQEAgbnY1MF9mYmNvbl9hY2NlbF9pbml0KHN0cnVjdCBmYl9pbmZv
+ICppbmZvKQrCoMKgwqDCoMKgwqDCoCBCRUdJTl9SSU5HKGNoYW4sIE52U3ViMkQsIDB4MDgwOCwg
+Myk7CsKgwqDCoMKgwqDCoMKgIE9VVF9SSU5HKGNoYW4sIDApOwrCoMKgwqDCoMKgwqDCoCBPVVRf
+UklORyhjaGFuLCAwKTsKLcKgwqDCoMKgwqDCoCBPVVRfUklORyhjaGFuLCAwKTsKK8KgwqDCoMKg
+wqDCoCBPVVRfUklORyhjaGFuLCAxKTsKwqDCoMKgwqDCoMKgwqAgQkVHSU5fUklORyhjaGFuLCBO
+dlN1YjJELCAweDA4MWMsIDEpOwrCoMKgwqDCoMKgwqDCoCBPVVRfUklORyhjaGFuLCAxKTsKwqDC
+oMKgwqDCoMKgwqAgQkVHSU5fUklORyhjaGFuLCBOdlN1YjJELCAweDA4NDAsIDQpOwoKCgoKICAg
+ICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18gCiAg5aW9546p6LS65Y2h562J5L2g5Y+R77yM6YKu566x6LS65Y2h5YWo5paw5LiK57q/
+77yBIApodHRwOi8vY2FyZC5tYWlsLmNuLnlhaG9vLmNvbS8KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
