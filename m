@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
-Date: Mon, 25 Jan 2010 00:48:25 -0800 (PST)
-Message-ID: <20100125084825.F32761300B3@annarchy.freedesktop.org>
+Date: Mon, 25 Jan 2010 00:49:24 -0800 (PST)
+Message-ID: <20100125084924.54E021300AE@annarchy.freedesktop.org>
 References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,15 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
 
---- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-25 00:48:24 PST ---
-4GB of RAM means you go over 32 bits memory space (your gpu and other hardware
-also needs memory space). Why it breaks in this strange way i do not know.
-
-Brian Tarricone: I think the cheapest would be to dig up a NVAA/NVAC based
-motherboard (they seem to exist in socket AM2+ variety only), combined with an
-AMD Athlon II X2, some ram, a case, small harddrive and a dvd writer/player.
-But it might be worthwhile to find out what is keeping Ben Skeggs from having
-such hardware, i will add him to the CC list.
+--- Comment #9 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-25 00:49:22 PST ---
+Ted Phelps: you should open a seperate bug report
 
 
 -- 
