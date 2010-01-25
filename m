@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26201] Some screen garbage,
  NoAccel and GPU lockup reported with NV4E
-Date: Mon, 25 Jan 2010 08:56:10 -0800 (PST)
-Message-ID: <20100125165610.79DD313011C@annarchy.freedesktop.org>
+Date: Mon, 25 Jan 2010 08:56:34 -0800 (PST)
+Message-ID: <20100125165634.1984613011B@annarchy.freedesktop.org>
 References: <bug-26201-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,7 +28,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #32800|application/octet-stream    |text/plain
+  Attachment #32801|application/octet-stream    |text/plain
           mime type|                            |
 
 
