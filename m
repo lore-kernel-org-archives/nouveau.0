@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
-Date: Tue, 26 Jan 2010 08:33:07 -0800 (PST)
-Message-ID: <20100126163307.C19DC1300A6@annarchy.freedesktop.org>
+Date: Tue, 26 Jan 2010 09:23:57 -0800 (PST)
+Message-ID: <20100126172357.8EDC41300BD@annarchy.freedesktop.org>
 References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,12 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
-Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org
 
 
 
-
---- Comment #12 from Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org>  2010-01-26 08:33:06 PST ---
-(In reply to comment #8)
-> Brian Tarricone: I think the cheapest would be to dig up a NVAA/NVAC based
-> motherboard (they seem to exist in socket AM2+ variety only), combined with an
-> AMD Athlon II X2, some ram, a case, small harddrive and a dvd writer/player.
-
-I have an NVAC on a Socket 755 Gigabyte GA-E7AUM-DS2H, x86_64. After reading
-this I made a quick test and confirmed that it is hit by this bug as well.
-There is one used one for sell at amazon.com (out of stock for new ones):
-http://www.amazon.com/gp/offer-listing/B001RUI3P6/ref=dp_olp_used?ie=UTF8&condition=used
+--- Comment #13 from Ingmar Vanhassel <ingmar-k5O9xmZG+kVAfugRpC6u6w@public.gmane.org>  2010-01-26 09:23:56 PST ---
+For those not on #nouveau @ freenode: Ben Skeggs got access to this hardware
+over ssh, and found the bug, so a patch may appear soon.
 
 
 -- 
