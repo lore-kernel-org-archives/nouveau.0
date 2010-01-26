@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21536] Accelerated 2D Does Not Work On HP tx2000z
- (Geforce 6150 Go)
-Date: Mon, 25 Jan 2010 19:30:13 -0800 (PST)
-Message-ID: <20100126033013.CC5D91300AF@annarchy.freedesktop.org>
-References: <bug-21536-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
+Date: Tue, 26 Jan 2010 00:34:20 -0800 (PST)
+Message-ID: <20100126083420.A236D1300BD@annarchy.freedesktop.org>
+References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21536-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26193-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,32 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=21536
+http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
 
 
 
---- Comment #14 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2010-01-25 19:30:09 PST ---
-An update for anyone interested... probably my last on this ticket, but I seem
-to have things mostly working.
+--- Comment #11 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-26 00:34:19 PST ---
+Ok, I did some printf()ing, and found out at least part of what's failing. 
+Hopefully this is useful.  Call stack looks something like this (with some of
+the actual args passed:
 
-The snapshots I loaded on from 2009-12-29 may have been ok, but I don't think I
-had the drm modules loading properly from the init ram disk.
+libdrm.so:drmCommandWrite(fd, DRM_NOUVEAU_GEM_CPU_PREP, ...)
+libdrm_nouveau.so:nouveau_bo_wait(bo, 0x8, 0, 0)
+libdrm_nouveau.so:nouveau_bo_map_range(bo, 0, 65536, 0x0c)
+libdrm_nouveau.so:nouveau_bo_map()
+libdrm_nouveau.so:nouveau_channel_alloc()
+nouveau_drv.so:NVInitDma()
+[etc.]
 
-So, I tried again with the drm mod snapshot from 15 January and also compiled
-the mesa libdrm and xorg nouveau drivers from about that time.  I've been
-running with them since then and things seem generally stable on my laptop. 
-The only trouble I have seen so far is when I try to turn on Xrender in KDE,
-but I'll save that for debugging later.
+And drmCommandWrite() returns -EBUSY.
 
-As of now, however, I can report that kms, exa, and xvideo seem to be working
-generally ok on my hp tx2000.
-
-So, should anyone be tracking things on this almost year-old bug still marked
-as "NEW," please close it out if you wish. If I have new bugs to report, I'll
-open a new one.
+I poked around in the drm kernel module, but that's where things get a little
+weird.  I found nouveau_gem_ioctl_cpu_prep(), and added a printk() at the top,
+but I never see any output in dmesg.  So then I added some in
+drm_drv.c:drm_ioctl(), but even *that* doesn't seem to be called.  Not sure
+what's going on there.  I'm probably misunderstanding something.
 
 
 -- 
