@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25072] KMS Gf 6200 - wrong fb and X resolution
-Date: Tue, 26 Jan 2010 11:31:56 -0800 (PST)
-Message-ID: <20100126193156.62D9B1300AD@annarchy.freedesktop.org>
-References: <bug-25072-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
+Date: Tue, 26 Jan 2010 13:48:14 -0800 (PST)
+Message-ID: <20100126214815.0A41D1300A4@annarchy.freedesktop.org>
+References: <bug-25966-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25072-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25966-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +20,20 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25072
-
-
-okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=25966
 
 
 
 
---- Comment #6 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-26 11:31:56 PST ---
-Fixed. Tested with 2.6.33-git.
+
+--- Comment #14 from Matthieu CASTET <castet.matthieu-GANU6spQydw@public.gmane.org>  2010-01-26 13:48:14 PST ---
+Created an attachment (id=32833)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32833)
+oprofile with debug symbol
+
+So your cpu got sse2 ?
+
+libpixman spend lot's of time in pixman_fill_mmx. I wonder why...
 
 
 -- 
