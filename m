@@ -1,8 +1,8 @@
 From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
 Subject: [PATCH] drm/nouveau: Fix noaccel/nofbaccel option
 	descriptions.
-Date: Wed, 27 Jan 2010 15:57:16 +0000
-Message-ID: <1264607836-9183-1-git-send-email-koriakin@0x04.net>
+Date: Wed, 27 Jan 2010 16:02:39 +0000
+Message-ID: <1264608159-9271-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
