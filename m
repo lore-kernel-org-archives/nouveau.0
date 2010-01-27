@@ -1,14 +1,12 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Add module options to disable
- acceleration.
-Date: Wed, 27 Jan 2010 17:31:16 +0200
-Message-ID: <20100127173116.0583f3b7@daedalus.pq.iki.fi>
-References: <1264514442-1388-1-git-send-email-koriakin@0x04.net>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Fix noaccel/nofbaccel option
+	descriptions.
+Date: Wed, 27 Jan 2010 15:57:16 +0000
+Message-ID: <1264607836-9183-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1264514442-1388-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +19,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCAyNiBKYW4gMjAxMCAxNDowMDo0MiArMDAwMApNYXJjaW4gS2/Fm2NpZWxuaWNraSA8
-a29yaWFraW5AMHgwNC5uZXQ+IHdyb3RlOgoKPiBub2FjY2VsPTEgZGlzYWJsZXMgYWxsIGFjY2Vs
-ZXJhdGlvbiBhbmQgZG9lc24ndCBldmVuIGF0dGVtcHQKPiBpbml0aWFsaXNpbmcgUEdSQVBIK1BG
-SUZPLCBub2ZiYWNjZWw9MSBvbmx5IG1ha2VzIGZiY29uCj4gdW5hY2NlbGVyYXRlZC4KPiAKPiBT
-aWduZWQtb2ZmLWJ5OiBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29yaWFraW5AMHgwNC5uZXQ+Cj4g
-LS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMgICB8ICAgIDggKysr
-KysrKwo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oICAgfCAgICAyICsK
-PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jIHwgICAxMCArKysrKyst
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMgfCAgIDMyCj4gKysr
-KysrKysrKysrKysrKysrKy0tLS0tLS0tLS0tIDQgZmlsZXMgY2hhbmdlZCwgMzcgaW5zZXJ0aW9u
-cygrKSwKPiAxNSBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9kcnYuYwo+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9kcnYuYyBpbmRleCAzNDNhYjdmLi5hNDRjM2Y5Cj4gMTAwNjQ0IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2Rydi5jCj4gQEAgLTc1LDYgKzc1LDE0IEBAIE1PRFVMRV9QQVJNX0RFU0MoaWdu
-b3JlbGlkLCAiSWdub3JlIEFDUEkgbGlkIHN0YXR1cyIpOwo+IGludCBub3V2ZWF1X2lnbm9yZWxp
-ZCA9IDA7Cj4gIG1vZHVsZV9wYXJhbV9uYW1lZChpZ25vcmVsaWQsIG5vdXZlYXVfaWdub3JlbGlk
-LCBpbnQsIDA0MDApOwo+ICAKPiArTU9EVUxFX1BBUk1fREVTQyhub2FncCwgIkRpc2FibGUgYWxs
-IGFjY2VsZXJhdGlvbiIpOwo+ICtpbnQgbm91dmVhdV9ub2FjY2VsID0gMDsKPiArbW9kdWxlX3Bh
-cmFtX25hbWVkKG5vYWNjZWwsIG5vdXZlYXVfbm9hY2NlbCwgaW50LCAwNDAwKTsKPiArCj4gK01P
-RFVMRV9QQVJNX0RFU0Mobm9hZ3AsICJEaXNhYmxlIGZiY29uIGFjY2VsZXJhdGlvbiIpOwo+ICtp
-bnQgbm91dmVhdV9ub2ZiYWNjZWwgPSAwOwoKR2xvYmFscyBzaG91bGQgbm90IGJlIGluaXRpYWxp
-emVkIHRvIHplcm8sIHNpbmNlIHRoZXkgZGVmYXVsdCB0bwp6ZXJvLiBjaGVja3BhdGNoLnBsIGNv
-bXBsYWluczoKRVJST1I6IGRvIG5vdCBpbml0aWFsaXNlIGV4dGVybmFscyB0byAwIG9yIE5VTEwK
-Ci0tIApQZWtrYSBQYWFsYW5lbgpodHRwOi8vd3d3LmlraS5maS9wcS8KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+---
+ drivers/gpu/drm/nouveau/nouveau_drv.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
+index da3b93b..874adf5 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
+@@ -75,11 +75,11 @@ MODULE_PARM_DESC(ignorelid, "Ignore ACPI lid status");
+ int nouveau_ignorelid = 0;
+ module_param_named(ignorelid, nouveau_ignorelid, int, 0400);
+ 
+-MODULE_PARM_DESC(noagp, "Disable all acceleration");
++MODULE_PARM_DESC(noaccel, "Disable all acceleration");
+ int nouveau_noaccel = 0;
+ module_param_named(noaccel, nouveau_noaccel, int, 0400);
+ 
+-MODULE_PARM_DESC(noagp, "Disable fbcon acceleration");
++MODULE_PARM_DESC(nofbaccel, "Disable fbcon acceleration");
+ int nouveau_nofbaccel = 0;
+ module_param_named(nofbaccel, nouveau_nofbaccel, int, 0400);
+ 
+-- 
+1.6.4.1
