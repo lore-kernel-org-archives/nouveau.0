@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
-Date: Wed, 27 Jan 2010 00:10:05 -0800 (PST)
-Message-ID: <20100127081005.EC4301300E0@annarchy.freedesktop.org>
+Date: Wed, 27 Jan 2010 03:29:57 -0800 (PST)
+Message-ID: <20100127112957.C4C7713009B@annarchy.freedesktop.org>
 References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
 
---- Comment #15 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-27 00:10:04 PST ---
-Actually now that I think about it, I doubt it's hard-locked -- otherwise I
-doubt Xorg.0.log would have made it to disk after the lockup.  Kernel's
-probably still alive, to some extent.
+--- Comment #16 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-27 03:29:56 PST ---
+Verified with a bisect that 1ac45d0f945734fe9dcd6f006b0c626da6d7334f causes the
+lockup.
+
+I also tried setting the module param vram_notify=1 and vram_notify=0, but
+still the same problem either way.
 
 
 -- 
