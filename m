@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
-Date: Wed, 27 Jan 2010 00:08:54 -0800 (PST)
-Message-ID: <20100127080854.CF7881300DF@annarchy.freedesktop.org>
+Date: Wed, 27 Jan 2010 00:10:05 -0800 (PST)
+Message-ID: <20100127081005.EC4301300E0@annarchy.freedesktop.org>
 References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
 
---- Comment #14 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-27 00:08:53 PST ---
-Ok, with today's commits (presumably 1ac45d0f945734fe9dcd6f006b0c626da6d7334f
-is the one that matters, since the other two seem unrelated), EXA setup is
-"fixed," but X comes up with a mostly black screen with random red, blue, and
-green pixels every now and then, and big white bands and partial-bands across
-the screen.  Machine appears hard-locked (forgot to ssh-test, though, so might
-have just been input-locked).
+--- Comment #15 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org>  2010-01-27 00:10:04 PST ---
+Actually now that I think about it, I doubt it's hard-locked -- otherwise I
+doubt Xorg.0.log would have made it to disk after the lockup.  Kernel's
+probably still alive, to some extent.
 
 
 -- 
