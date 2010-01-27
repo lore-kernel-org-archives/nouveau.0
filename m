@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
-Date: Wed, 27 Jan 2010 08:10:03 -0800 (PST)
-Message-ID: <20100127161004.07B61130092@annarchy.freedesktop.org>
+Date: Wed, 27 Jan 2010 08:26:14 -0800 (PST)
+Message-ID: <20100127162614.6B94F130092@annarchy.freedesktop.org>
 References: <bug-25966-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,26 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25966
 
 
 
---- Comment #15 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-27 08:10:02 PST ---
-you seem to to have some bogus options in xorg.conf
-please retest with minimal config:
+--- Comment #16 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>  2010-01-27 08:26:13 PST ---
+(In reply to comment #14)
+> Created an attachment (id=32833)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32833) [details]
+> oprofile with debug symbol
+> 
+> So your cpu got sse2 ?
 
-Section "Device"
-Identifier "n"
-Driver "nouveau"
-EndSection
+It does.
+
+I installed rxvt 2.7.10, but there is no rxvt-xpm that appears in your profile,
+and scrolling it furiously while full of text still leaves me with at least 70%
+of CPU idle.
+
+What else should we try to reproduce this? Is it an rxvt-clone of some sort, or
+some extra features enabled? Perhaps you have a different font configuration?
+
+Did you search the bugzilla? I recall this is not the first report of rxvt
+slowness, but I cannot remember where I read about it, nor what was the
+resolution, if any.
 
 
 -- 
