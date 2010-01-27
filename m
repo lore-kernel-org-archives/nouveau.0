@@ -1,12 +1,13 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Fix noaccel/nofbaccel option
-	descriptions.
-Date: Wed, 27 Jan 2010 16:04:57 +0000
-Message-ID: <1264608297-9361-1-git-send-email-koriakin@0x04.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
+Date: Wed, 27 Jan 2010 08:10:03 -0800 (PST)
+Message-ID: <20100127161004.07B61130092@annarchy.freedesktop.org>
+References: <bug-25966-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-25966-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,23 +20,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0Pgot
-LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMgfCAgICA0ICsrLS0KIDEg
-ZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5jCmluZGV4IGRhM2I5M2IuLjg3NGFkZjUgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMKKysrIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuYwpAQCAtNzUsMTEgKzc1LDExIEBAIE1PRFVMRV9Q
-QVJNX0RFU0MoaWdub3JlbGlkLCAiSWdub3JlIEFDUEkgbGlkIHN0YXR1cyIpOwogaW50IG5vdXZl
-YXVfaWdub3JlbGlkID0gMDsKIG1vZHVsZV9wYXJhbV9uYW1lZChpZ25vcmVsaWQsIG5vdXZlYXVf
-aWdub3JlbGlkLCBpbnQsIDA0MDApOwogCi1NT0RVTEVfUEFSTV9ERVNDKG5vYWdwLCAiRGlzYWJs
-ZSBhbGwgYWNjZWxlcmF0aW9uIik7CitNT0RVTEVfUEFSTV9ERVNDKG5vYWNjZWwsICJEaXNhYmxl
-IGFsbCBhY2NlbGVyYXRpb24iKTsKIGludCBub3V2ZWF1X25vYWNjZWwgPSAwOwogbW9kdWxlX3Bh
-cmFtX25hbWVkKG5vYWNjZWwsIG5vdXZlYXVfbm9hY2NlbCwgaW50LCAwNDAwKTsKIAotTU9EVUxF
-X1BBUk1fREVTQyhub2FncCwgIkRpc2FibGUgZmJjb24gYWNjZWxlcmF0aW9uIik7CitNT0RVTEVf
-UEFSTV9ERVNDKG5vZmJhY2NlbCwgIkRpc2FibGUgZmJjb24gYWNjZWxlcmF0aW9uIik7CiBpbnQg
-bm91dmVhdV9ub2ZiYWNjZWwgPSAwOwogbW9kdWxlX3BhcmFtX25hbWVkKG5vZmJhY2NlbCwgbm91
-dmVhdV9ub2ZiYWNjZWwsIGludCwgMDQwMCk7CiAKLS0gCjEuNi40LjEKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=25966
+
+
+
+
+
+--- Comment #15 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-27 08:10:02 PST ---
+you seem to to have some bogus options in xorg.conf
+please retest with minimal config:
+
+Section "Device"
+Identifier "n"
+Driver "nouveau"
+EndSection
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
