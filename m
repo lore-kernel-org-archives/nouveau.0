@@ -1,14 +1,17 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: call ttm_bo_wait with the bo
-	lock held to prevent hang
-Date: Thu, 28 Jan 2010 17:28:57 +0100
-Message-ID: <ff13bc9a1001280828k344446d1qca2a333bbdcb8bd9@mail.gmail.com>
-References: <1264197973-23043-1-git-send-email-luca@luca-barbieri.com>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: 2.6.33 vs. NVIDIA GForce GT 220
+Date: Thu, 28 Jan 2010 18:38:01 +0200
+Message-ID: <20100128183801.2182c6f2@daedalus.pq.iki.fi>
+References: <20100112134335.GA21783@atrey.karlin.mff.cuni.cz>
+	<20100123181817.GA2909@joi.lan>
+	<201001231828.00557.koriakin@0x04.net>
+	<20100126094740.GC10858@atrey.karlin.mff.cuni.cz>
+	<6a89f9d51001271828t54a28002k21ec96692af196b9@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1264197973-23043-1-git-send-email-luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+In-Reply-To: <6a89f9d51001271828t54a28002k21ec96692af196b9-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,10 +21,65 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+To: Pavel Machek <pavel-+ZI9xUNit7I@public.gmane.org>
+Cc: linux-fbdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, kernel list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Please apply or state objections to this patch.
+On Wed, 27 Jan 2010 18:28:06 -0800
+Stephane Marchesin <stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
+> On Tue, Jan 26, 2010 at 01:47, Pavel Machek <pavel-+ZI9xUNit7I@public.gmane.org> wrote:
+> > Hi!
+> >
+> >> > > I tried enabling staging nvidia driver on GT220, but
+> >> > > apparently driver does not know about it. Unfortunately, I
+> >> > > have one of those cards here.
+> >> > >
+> >> > > (I wonder... is there better mailing list? MAINTAINERS
+> >> > > only lists linux-fbdev....)
+> >>
+> >> The list is nouveau-PD4FTy7X32lNgt0PjOBp9xlNPtJONSTn@public.gmane.org And driver knows
+> >> about GT220 just fine, I've been using it for a month or two
+> >> on GT220 already. Don't bother
+> >
+> > Perhaps nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org should be added to
+> > MAINTAINERS?
+> >
+> >> about the "supported cards" lists in xf86-video-nouveau or
+> >> wherever else, the driver will happily bind to any nvidia
+> >> video card with known generation, even if nobody has seen that
+> >> precise model before.
+> >
+> > Unfortunately, the driver does not seem happy:
+> >
+> > Jan 18 12:56:38 pma kernel: [ =A0 =A00.491073] nvidiafb
+> > 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
+> > Jan 18 12:56:38 pma kernel: [ =A0 =A00.491507] nvidiafb: Device ID:
+> > 10de0a20
+> > Jan 18 12:56:38 pma kernel: [ =A0 =A00.491546] Chipset is 10de0a20
+> > Jan 18 12:56:38 pma kernel: [ =A0 =A00.491584] nvidiafb: unknown
+> > NV_ARCH Jan 18 12:56:38 pma kernel: [ =A0 =A00.492119] vga16fb:
+> > initializing
+> >
+> =
+
+> Hmm, but this is not nouveau, this is nvidiafb...
+
+And both nvidiafb and vga16fb are known make Nouveau misbehave:
+nvidiafb because it messes up the card state, and vga16fb because it
+does not do the fb driver hand-over, AFAIK.
+
+Relevant or not, I'd like to advertise our new troubleshooting page:
+http://nouveau.freedesktop.org/wiki/TroubleShooting
+
+I'm also adding the CCs that were dropped earlier.
+
+Was the original question in this thread about nvidiafb or Nouveau?
+
 
 Thanks.
+
+-- =
+
+Pekka Paalanen
+http://www.iki.fi/pq/
