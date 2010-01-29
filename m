@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
-Date: Fri, 29 Jan 2010 09:58:09 -0800 (PST)
-Message-ID: <20100129175809.1C1C21300BC@annarchy.freedesktop.org>
+Date: Fri, 29 Jan 2010 10:02:04 -0800 (PST)
+Message-ID: <20100129180204.80E061300A1@annarchy.freedesktop.org>
 References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,18 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
 
---- Comment #17 from Kamil Kaminski <kamilkss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-29 09:58:08 PST ---
-No worry I'm getting the same thing with ION, looks like X dies somewhere
-along:
-
-X: nouveau_pushbuf.c:271: nouveau_pushbuf_flush: Assertion
-`!nouveau_pushbuf_space(chan, min)' failed.
-
-So it looks like more vram magic is needed. I guess we will need to catch
-darktama once again and let him ssh into the machine :P
-
-see ya,
-#nouveau irc nick: hax0r1
+--- Comment #18 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-01-29 10:02:02 PST ---
+I don't think he has even attempted to fix it yet. He said it wasn't trivial.
+He's on vacation for the next week, so be patient.
 
 
 -- 
