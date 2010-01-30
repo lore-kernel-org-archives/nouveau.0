@@ -1,16 +1,15 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 Subject: Re: [PATCH] drm/nouveau: call ttm_bo_wait with the bo
 	lock held to prevent hang
-Date: Sat, 30 Jan 2010 23:05:51 +0100
-Message-ID: <6d4bc9fc1001301405s7d92425k43b07d25e6b2fe6e@mail.gmail.com>
+Date: Sat, 30 Jan 2010 23:21:47 +0100
+Message-ID: <87zl3vxmh0.fsf@riseup.net>
 References: <1264197973-23043-1-git-send-email-luca@luca-barbieri.com>
 	<ff13bc9a1001280828k344446d1qca2a333bbdcb8bd9@mail.gmail.com>
-	<6d4bc9fc1001281333ndf6065j8e1c6db6a87b0395@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0960151100=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc1001281333ndf6065j8e1c6db6a87b0395-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <ff13bc9a1001280828k344446d1qca2a333bbdcb8bd9-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+	(Luca Barbieri's message of "Thu, 28 Jan 2010 17:28:57 +0100")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,25 +17,60 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Acked-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+--===============0960151100==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha1; protocol="application/pgp-signature"
 
-On Thu, Jan 28, 2010 at 10:33 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> Looks sane to me, it would be nice if someone else also agreed, before
-> committing.
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
+
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+
+Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> writes:
+
+> Please apply or state objections to this patch.
 >
-> On Thu, Jan 28, 2010 at 5:28 PM, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> wrote:
->> Please apply or state objections to this patch.
->>
->> Thanks.
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> http://lists.freedesktop.org/mailman/listinfo/nouveau
->>
->
+> Thanks.
+
+Thanks, pushed.
+
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iEYEARECAAYFAktksPwACgkQ196Zy2qEI5dQBQCguOhmQjK//7/hgjIyP/VkcUeE
+5c8AoJTOJjhXPe8FfXxBXJrLdsx22D4V
+=OHTS
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============0960151100==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0960151100==--
