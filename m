@@ -1,14 +1,11 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nouveau: move dereferences after null checks
-Date: Sat, 30 Jan 2010 15:41:00 +0100
-Message-ID: <20100130144100.GA2902@joi.lan>
-References: <20100129090049.GA5547@bicker>
+From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Subject: [PATCH] drm/nouveau: dehexify nv50_fifo.c
+Date: Sat, 30 Jan 2010 15:55:17 +0100
+Message-ID: <1264863317-9044-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20100129090049.GA5547@bicker>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,128 +15,156 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Dan Carpenter <error27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Jan 29, 2010 at 12:00:49PM +0300, Dan Carpenter wrote:
-> These bugs are when code dereferences a variable and then checks that it is not null.
-> The new thing is that I wrote a shell script to try remove the false positives caused
-> by macros.  There are still some false positives because smatch is bad at handling 
-> loops and knowing when a container got redefined.
-> 
-> Sometimes the fixes are not obvious.
-> 
-> This is the output of: /path/to/smatch_scripts/filter_kernel_deref_check.sh warns.txt
-> 
-> regards,
-> dan carpenter
-> 
-> (...)
-> drivers/gpu/drm/nouveau/nouveau_object.c +891 'chan': if (!chan || !gpuobj_ret || *gpuobj_ret != NULL)
-> drivers/gpu/drm/nouveau/nouveau_sgdma.c +61 'nvbe': if (nvbe && nvbe->pages) {
-> drivers/gpu/drm/nouveau/nouveau_connector.c +91 'connector': if (!connector)
-> drivers/gpu/drm/nouveau/nv50_crtc.c +306 'crtc': if (!crtc)
-> (...)
-
 ---
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nouveau: move dereferences after null checks
+ drivers/gpu/drm/nouveau/nv50_fifo.c |   68 +++++++++++++++++-----------------
+ 1 files changed, 34 insertions(+), 34 deletions(-)
 
-Reported-by: Dan Carpenter <error27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c |    7 ++++---
- drivers/gpu/drm/nouveau/nouveau_object.c    |    3 ++-
- drivers/gpu/drm/nouveau/nouveau_sgdma.c     |    7 ++++---
- drivers/gpu/drm/nouveau/nv50_crtc.c         |   11 +++++++----
- 4 files changed, 17 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 7e6d673..d2f6335 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -88,13 +88,14 @@ nouveau_connector_destroy(struct drm_connector *drm_connector)
+diff --git a/drivers/gpu/drm/nouveau/nv50_fifo.c b/drivers/gpu/drm/nouveau/nv50_fifo.c
+index 32b244b..f0cba1e 100644
+--- a/drivers/gpu/drm/nouveau/nv50_fifo.c
++++ b/drivers/gpu/drm/nouveau/nv50_fifo.c
+@@ -58,7 +58,7 @@ nv50_fifo_init_thingo(struct drm_device *dev)
+ 
+ 	nv_wr32(dev, 0x32f4, cur->instance >> 12);
+ 	nv_wr32(dev, 0x32ec, nr);
+-	nv_wr32(dev, 0x2500, 0x101);
++	nv_wr32(dev, NV03_PFIFO_CACHES, 0x101);
+ }
+ 
+ static int
+@@ -146,7 +146,7 @@ nv50_fifo_init_regs__nv(struct drm_device *dev)
  {
- 	struct nouveau_connector *nv_connector =
- 		nouveau_connector(drm_connector);
--	struct drm_device *dev = nv_connector->base.dev;
--
--	NV_DEBUG_KMS(dev, "\n");
-+	struct drm_device *dev;
+ 	NV_DEBUG(dev, "\n");
  
- 	if (!nv_connector)
- 		return;
+-	nv_wr32(dev, 0x250c, 0x6f3cfc34);
++	nv_wr32(dev, NV04_PFIFO_SIZE, 0x6f3cfc34);
+ }
  
-+	dev = nv_connector->base.dev;
-+	NV_DEBUG_KMS(dev, "\n");
-+
- 	kfree(nv_connector->edid);
- 	drm_sysfs_connector_remove(drm_connector);
- 	drm_connector_cleanup(drm_connector);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_object.c b/drivers/gpu/drm/nouveau/nouveau_object.c
-index 6c2cf81..e7c100b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_object.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_object.c
-@@ -885,11 +885,12 @@ int
- nouveau_gpuobj_sw_new(struct nouveau_channel *chan, int class,
- 		      struct nouveau_gpuobj **gpuobj_ret)
- {
--	struct drm_nouveau_private *dev_priv = chan->dev->dev_private;
-+	struct drm_nouveau_private *dev_priv;
- 	struct nouveau_gpuobj *gpuobj;
- 
- 	if (!chan || !gpuobj_ret || *gpuobj_ret != NULL)
- 		return -EINVAL;
-+	dev_priv = chan->dev->dev_private;
- 
- 	gpuobj = kzalloc(sizeof(*gpuobj), GFP_KERNEL);
- 	if (!gpuobj)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-index 4c7f1e4..ed15905 100644
---- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-@@ -54,11 +54,12 @@ static void
- nouveau_sgdma_clear(struct ttm_backend *be)
- {
- 	struct nouveau_sgdma_be *nvbe = (struct nouveau_sgdma_be *)be;
--	struct drm_device *dev = nvbe->dev;
--
--	NV_DEBUG(nvbe->dev, "\n");
-+	struct drm_device *dev;
- 
- 	if (nvbe && nvbe->pages) {
-+		dev = nvbe->dev;
-+		NV_DEBUG(dev, "\n");
-+
- 		if (nvbe->bound)
- 			be->func->unbind(be);
- 
-diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
-index 40b7360..d1a651e 100644
---- a/drivers/gpu/drm/nouveau/nv50_crtc.c
-+++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
-@@ -298,14 +298,17 @@ nv50_crtc_set_clock(struct drm_device *dev, int head, int pclk)
  static void
- nv50_crtc_destroy(struct drm_crtc *crtc)
+@@ -154,12 +154,12 @@ nv50_fifo_init_regs(struct drm_device *dev)
  {
--	struct drm_device *dev = crtc->dev;
--	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
--
--	NV_DEBUG_KMS(dev, "\n");
-+	struct drm_device *dev;
-+	struct nouveau_crtc *nv_crtc;
+ 	NV_DEBUG(dev, "\n");
  
- 	if (!crtc)
- 		return;
+-	nv_wr32(dev, 0x2500, 0);
+-	nv_wr32(dev, 0x3250, 0);
+-	nv_wr32(dev, 0x3220, 0);
+-	nv_wr32(dev, 0x3204, 0);
+-	nv_wr32(dev, 0x3210, 0);
+-	nv_wr32(dev, 0x3270, 0);
++	nv_wr32(dev, NV03_PFIFO_CACHES, 0);
++	nv_wr32(dev, NV04_PFIFO_CACHE1_PULL0, 0);
++	nv_wr32(dev, NV04_PFIFO_CACHE1_DMA_PUSH, 0);
++	nv_wr32(dev, NV03_PFIFO_CACHE1_PUSH1, 0);
++	nv_wr32(dev, NV03_PFIFO_CACHE1_PUT, 0);
++	nv_wr32(dev, NV03_PFIFO_CACHE1_GET, 0);
  
-+	dev = crtc->dev;
-+	nv_crtc = nouveau_crtc(crtc);
-+
-+	NV_DEBUG_KMS(dev, "\n");
-+
- 	drm_crtc_cleanup(&nv_crtc->base);
+ 	/* Enable dummy channels setup by nv50_instmem.c */
+ 	nv50_fifo_channel_enable(dev, 0, true);
+@@ -345,9 +345,9 @@ nv50_fifo_load_context(struct nouveau_channel *chan)
  
- 	nv50_cursor_fini(nv_crtc);
+ 	nv_wr32(dev, 0x3330, nv_ro32(dev, ramfc, 0x00/4));
+ 	nv_wr32(dev, 0x3334, nv_ro32(dev, ramfc, 0x04/4));
+-	nv_wr32(dev, 0x3240, nv_ro32(dev, ramfc, 0x08/4));
++	nv_wr32(dev, NV04_PFIFO_CACHE1_DMA_PUT, nv_ro32(dev, ramfc, 0x08/4));
+ 	nv_wr32(dev, 0x3320, nv_ro32(dev, ramfc, 0x0c/4));
+-	nv_wr32(dev, 0x3244, nv_ro32(dev, ramfc, 0x10/4));
++	nv_wr32(dev, NV04_PFIFO_CACHE1_DMA_GET, nv_ro32(dev, ramfc, 0x10/4));
+ 	nv_wr32(dev, 0x3328, nv_ro32(dev, ramfc, 0x14/4));
+ 	nv_wr32(dev, 0x3368, nv_ro32(dev, ramfc, 0x18/4));
+ 	nv_wr32(dev, 0x336c, nv_ro32(dev, ramfc, 0x1c/4));
+@@ -355,27 +355,27 @@ nv50_fifo_load_context(struct nouveau_channel *chan)
+ 	nv_wr32(dev, 0x3374, nv_ro32(dev, ramfc, 0x24/4));
+ 	nv_wr32(dev, 0x3378, nv_ro32(dev, ramfc, 0x28/4));
+ 	nv_wr32(dev, 0x337c, nv_ro32(dev, ramfc, 0x2c/4));
+-	nv_wr32(dev, 0x3228, nv_ro32(dev, ramfc, 0x30/4));
++	nv_wr32(dev, NV04_PFIFO_CACHE1_DMA_STATE, nv_ro32(dev, ramfc, 0x30/4));
+ 	nv_wr32(dev, 0x3364, nv_ro32(dev, ramfc, 0x34/4));
+ 	nv_wr32(dev, 0x32a0, nv_ro32(dev, ramfc, 0x38/4));
+-	nv_wr32(dev, 0x3224, nv_ro32(dev, ramfc, 0x3c/4));
++	nv_wr32(dev, NV04_PFIFO_CACHE1_DMA_FETCH, nv_ro32(dev, ramfc, 0x3c/4));
+ 	nv_wr32(dev, 0x324c, nv_ro32(dev, ramfc, 0x40/4));
+-	nv_wr32(dev, 0x2044, nv_ro32(dev, ramfc, 0x44/4));
+-	nv_wr32(dev, 0x322c, nv_ro32(dev, ramfc, 0x48/4));
++	nv_wr32(dev, NV04_PFIFO_DMA_TIMESLICE, nv_ro32(dev, ramfc, 0x44/4));
++	nv_wr32(dev, NV04_PFIFO_CACHE1_DMA_INSTANCE, nv_ro32(dev, ramfc, 0x48/4));
+ 	nv_wr32(dev, 0x3234, nv_ro32(dev, ramfc, 0x4c/4));
+ 	nv_wr32(dev, 0x3340, nv_ro32(dev, ramfc, 0x50/4));
+ 	nv_wr32(dev, 0x3344, nv_ro32(dev, ramfc, 0x54/4));
+-	nv_wr32(dev, 0x3280, nv_ro32(dev, ramfc, 0x58/4));
+-	nv_wr32(dev, 0x3254, nv_ro32(dev, ramfc, 0x5c/4));
+-	nv_wr32(dev, 0x3260, nv_ro32(dev, ramfc, 0x60/4));
+-	nv_wr32(dev, 0x3264, nv_ro32(dev, ramfc, 0x64/4));
+-	nv_wr32(dev, 0x3268, nv_ro32(dev, ramfc, 0x68/4));
++	nv_wr32(dev, NV04_PFIFO_CACHE1_ENGINE, nv_ro32(dev, ramfc, 0x58/4));
++	nv_wr32(dev, NV04_PFIFO_CACHE1_PULL1, nv_ro32(dev, ramfc, 0x5c/4));
++	nv_wr32(dev, NV10_PFIFO_CACHE1_ACQUIRE_TIMEOUT, nv_ro32(dev, ramfc, 0x60/4));
++	nv_wr32(dev, NV10_PFIFO_CACHE1_ACQUIRE_TIMESTAMP, nv_ro32(dev, ramfc, 0x64/4));
++	nv_wr32(dev, NV10_PFIFO_CACHE1_ACQUIRE_VALUE, nv_ro32(dev, ramfc, 0x68/4));
+ 	nv_wr32(dev, 0x326c, nv_ro32(dev, ramfc, 0x6c/4));
+ 	nv_wr32(dev, 0x32e4, nv_ro32(dev, ramfc, 0x70/4));
+-	nv_wr32(dev, 0x3248, nv_ro32(dev, ramfc, 0x74/4));
++	nv_wr32(dev, NV10_PFIFO_CACHE1_REF_CNT, nv_ro32(dev, ramfc, 0x74/4));
+ 	nv_wr32(dev, 0x2088, nv_ro32(dev, ramfc, 0x78/4));
+ 	nv_wr32(dev, 0x2058, nv_ro32(dev, ramfc, 0x7c/4));
+-	nv_wr32(dev, 0x2210, nv_ro32(dev, ramfc, 0x80/4));
++	nv_wr32(dev, NV03_PFIFO_RAMHT, nv_ro32(dev, ramfc, 0x80/4));
+ 
+ 	cnt = nv_ro32(dev, ramfc, 0x84/4);
+ 	for (ptr = 0; ptr < cnt; ptr++) {
+@@ -430,9 +430,9 @@ nv50_fifo_unload_context(struct drm_device *dev)
+ 
+ 	nv_wo32(dev, ramfc, 0x00/4, nv_rd32(dev, 0x3330));
+ 	nv_wo32(dev, ramfc, 0x04/4, nv_rd32(dev, 0x3334));
+-	nv_wo32(dev, ramfc, 0x08/4, nv_rd32(dev, 0x3240));
++	nv_wo32(dev, ramfc, 0x08/4, nv_rd32(dev, NV04_PFIFO_CACHE1_DMA_PUT));
+ 	nv_wo32(dev, ramfc, 0x0c/4, nv_rd32(dev, 0x3320));
+-	nv_wo32(dev, ramfc, 0x10/4, nv_rd32(dev, 0x3244));
++	nv_wo32(dev, ramfc, 0x10/4, nv_rd32(dev, NV04_PFIFO_CACHE1_DMA_GET));
+ 	nv_wo32(dev, ramfc, 0x14/4, nv_rd32(dev, 0x3328));
+ 	nv_wo32(dev, ramfc, 0x18/4, nv_rd32(dev, 0x3368));
+ 	nv_wo32(dev, ramfc, 0x1c/4, nv_rd32(dev, 0x336c));
+@@ -440,27 +440,27 @@ nv50_fifo_unload_context(struct drm_device *dev)
+ 	nv_wo32(dev, ramfc, 0x24/4, nv_rd32(dev, 0x3374));
+ 	nv_wo32(dev, ramfc, 0x28/4, nv_rd32(dev, 0x3378));
+ 	nv_wo32(dev, ramfc, 0x2c/4, nv_rd32(dev, 0x337c));
+-	nv_wo32(dev, ramfc, 0x30/4, nv_rd32(dev, 0x3228));
++	nv_wo32(dev, ramfc, 0x30/4, nv_rd32(dev, NV04_PFIFO_CACHE1_DMA_STATE));
+ 	nv_wo32(dev, ramfc, 0x34/4, nv_rd32(dev, 0x3364));
+ 	nv_wo32(dev, ramfc, 0x38/4, nv_rd32(dev, 0x32a0));
+-	nv_wo32(dev, ramfc, 0x3c/4, nv_rd32(dev, 0x3224));
++	nv_wo32(dev, ramfc, 0x3c/4, nv_rd32(dev, NV04_PFIFO_CACHE1_DMA_FETCH));
+ 	nv_wo32(dev, ramfc, 0x40/4, nv_rd32(dev, 0x324c));
+-	nv_wo32(dev, ramfc, 0x44/4, nv_rd32(dev, 0x2044));
+-	nv_wo32(dev, ramfc, 0x48/4, nv_rd32(dev, 0x322c));
++	nv_wo32(dev, ramfc, 0x44/4, nv_rd32(dev, NV04_PFIFO_DMA_TIMESLICE));
++	nv_wo32(dev, ramfc, 0x48/4, nv_rd32(dev, NV04_PFIFO_CACHE1_DMA_INSTANCE));
+ 	nv_wo32(dev, ramfc, 0x4c/4, nv_rd32(dev, 0x3234));
+ 	nv_wo32(dev, ramfc, 0x50/4, nv_rd32(dev, 0x3340));
+ 	nv_wo32(dev, ramfc, 0x54/4, nv_rd32(dev, 0x3344));
+-	nv_wo32(dev, ramfc, 0x58/4, nv_rd32(dev, 0x3280));
+-	nv_wo32(dev, ramfc, 0x5c/4, nv_rd32(dev, 0x3254));
+-	nv_wo32(dev, ramfc, 0x60/4, nv_rd32(dev, 0x3260));
+-	nv_wo32(dev, ramfc, 0x64/4, nv_rd32(dev, 0x3264));
+-	nv_wo32(dev, ramfc, 0x68/4, nv_rd32(dev, 0x3268));
++	nv_wo32(dev, ramfc, 0x58/4, nv_rd32(dev, NV04_PFIFO_CACHE1_ENGINE));
++	nv_wo32(dev, ramfc, 0x5c/4, nv_rd32(dev, NV04_PFIFO_CACHE1_PULL1));
++	nv_wo32(dev, ramfc, 0x60/4, nv_rd32(dev, NV10_PFIFO_CACHE1_ACQUIRE_TIMEOUT));
++	nv_wo32(dev, ramfc, 0x64/4, nv_rd32(dev, NV10_PFIFO_CACHE1_ACQUIRE_TIMESTAMP));
++	nv_wo32(dev, ramfc, 0x68/4, nv_rd32(dev, NV10_PFIFO_CACHE1_ACQUIRE_VALUE));
+ 	nv_wo32(dev, ramfc, 0x6c/4, nv_rd32(dev, 0x326c));
+ 	nv_wo32(dev, ramfc, 0x70/4, nv_rd32(dev, 0x32e4));
+-	nv_wo32(dev, ramfc, 0x74/4, nv_rd32(dev, 0x3248));
++	nv_wo32(dev, ramfc, 0x74/4, nv_rd32(dev, NV10_PFIFO_CACHE1_REF_CNT));
+ 	nv_wo32(dev, ramfc, 0x78/4, nv_rd32(dev, 0x2088));
+ 	nv_wo32(dev, ramfc, 0x7c/4, nv_rd32(dev, 0x2058));
+-	nv_wo32(dev, ramfc, 0x80/4, nv_rd32(dev, 0x2210));
++	nv_wo32(dev, ramfc, 0x80/4, nv_rd32(dev, NV03_PFIFO_RAMHT));
+ 
+ 	put = (nv_rd32(dev, NV03_PFIFO_CACHE1_PUT) & 0x7ff) >> 2;
+ 	get = (nv_rd32(dev, NV03_PFIFO_CACHE1_GET) & 0x7ff) >> 2;
 -- 
-1.6.6
+1.6.6.1.476.g01ddb
