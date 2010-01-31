@@ -1,15 +1,12 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: call ttm_bo_wait with the bo
-	lock held to prevent hang
-Date: Sat, 30 Jan 2010 23:21:47 +0100
-Message-ID: <87zl3vxmh0.fsf@riseup.net>
-References: <1264197973-23043-1-git-send-email-luca@luca-barbieri.com>
-	<ff13bc9a1001280828k344446d1qca2a333bbdcb8bd9@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26349] New: nouveau_hybrid_setup: disables a
+ discrete NVS 3100m on ThinkPad T410
+Date: Sun, 31 Jan 2010 07:53:47 -0800 (PST)
+Message-ID: <bug-26349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0960151100=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <ff13bc9a1001280828k344446d1qca2a333bbdcb8bd9-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-	(Luca Barbieri's message of "Thu, 28 Jan 2010 17:28:57 +0100")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,60 +14,69 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0960151100==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha1; protocol="application/pgp-signature"
+http://bugs.freedesktop.org/show_bug.cgi?id=26349
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+           Summary: nouveau_hybrid_setup: disables a discrete NVS 3100m on
+                    ThinkPad T410
+           Product: xorg
+           Version: git
+          Platform: All
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 
-Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> writes:
+steps to reproduce:
+ load the nouveau module (e.g. start fedora install, or so)
 
-> Please apply or state objections to this patch.
->
-> Thanks.
+result:
+ black screen & garbage in lspci
 
-Thanks, pushed.
+expected result:
+ kms init + hi-res cnsole
 
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+explanation:
 
---=-=-=--
+the module fails with the message
+  [drm] nouveau 0000:01:00.0: _DSM hardware status gave 0x30040e3
+  [drm] nouveau 0000:01:00.0: Unsupported chipset 0xffffffff
 
---==-=-=
-Content-Type: application/pgp-signature
+after a failed probe of the card, that disables the card:
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
+01:00.0 VGA compatible controller: nVidia Corporation Device 0a6c (rev a2)
+(prog-if 00 [VGA controller])
+        Subsystem: Lenovo Device 2142
+        Flags: bus master, fast devsel, latency 0, IRQ 11
+        Memory at cc000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=256M]
+        Memory at ce000000 (64-bit, prefetchable) [size=32M]
+        I/O ports at 2000 [size=128]
+        [virtual] Expansion ROM at cd000000 [disabled] [size=512K]
+        ...
 
-iEYEARECAAYFAktksPwACgkQ196Zy2qEI5dQBQCguOhmQjK//7/hgjIyP/VkcUeE
-5c8AoJTOJjhXPe8FfXxBXJrLdsx22D4V
-=OHTS
------END PGP SIGNATURE-----
---==-=-=--
 
---===============0960151100==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+turns into 
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+01:00.0 VGA compatible controller: nVidia Corporation Device 0a6c (rev ff)
+(prog-if ff)
+        !!! Unknown header type 7f
 
---===============0960151100==--
+
+After changing  (result & 0x1) to (!(result & 0x1)) in nouveau_hybrid_setup
+everything works as expected.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
