@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23198] nv50/NVS135M: video hangs/flickers when
-	fullscreen
-Date: Sun, 31 Jan 2010 14:39:47 -0800 (PST)
-Message-ID: <20100131223947.6750D13009D@annarchy.freedesktop.org>
-References: <bug-23198-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26349] nouveau_hybrid_setup: disables a discrete NVS
+ 3100m on ThinkPad T410
+Date: Sun, 31 Jan 2010 15:26:04 -0800 (PST)
+Message-ID: <20100131232604.EB94513009B@annarchy.freedesktop.org>
+References: <bug-26349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23198-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +21,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzE5OAoKCgoKCi0t
-LSBDb21tZW50ICM0IGZyb20gTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0
-PiAgMjAxMC0wMS0zMSAxNDozOTo0NiBQU1QgLS0tClRyeSBhcHBseWluZyBodHRwOi8vMHgwNC5u
-ZXQvfm13ay9nZW4uZGlmZgoKVGhpcyBpcyBrbm93biBpc3N1ZS4uLiB0aGUgY2FyZCBpcyB1c2lu
-ZyBvbmx5IDEvOCBvZiBpdHMgZXhlY3V0aW9uIHJlc291cmNlcwpiZWNhdXNlIG9mIG1pc2V4dHJh
-Y3RlZCBpbml0aWFsaXphdGlvbiB2YWx1ZXMgb24gRzg2LiBJdCdsbCBiZSBmaXhlZCBmb3IgZ29v
-ZAp3aGVuIHRoZSBjdHhwcm9nL2N0eHZhbHMgZ2VuZXJhdG9yIFthYm92ZV0gaXMgZmluaXNoZWQg
-Zm9yIGFsbCBjYXJkcy4KCklmIHRoZSBnZW5lcmF0b3IgZG9lc24ndCB3b3JrIGZvciB5b3UsIGFk
-ZCB0aGUgZm9sbG93aW5nIGxpbmVzIHRvCnNyYy9udjUwX2FjY2VsLmMgaW4gRERYIGFmdGVyICJP
-VVRfUklORyAgKGNoYW4sIE5WNTBUQ0xfQ09ORF9NT0RFX0FMV0FZUyk7IjoKCkJFR0lOX1JJTkco
-Y2hhbiwgdGVzbGEsIE5WNTBUQ0xfV0FSUF9IQUxWRVMsIDEpOwpPVVRfUklORyhjaGFuLCAyKTsK
-QkVHSU5fUklORyhjaGFuLCB0ZXNsYSwgMHgxNDAwLCAxKTsKT1VUX1JJTkcoY2hhbiwgMHhmKTsK
-CkVpdGhlciB3YXksIHBsZWFzZSByZXBvcnQgd2hpY2ggb2YgdGhlc2Ugd29yayBmb3IgeW91LgoK
-Ci0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJw
-cmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJl
-Y2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+http://bugs.freedesktop.org/show_bug.cgi?id=26349
+
+
+Matthew Garrett <mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
+
+
+
+
+--- Comment #1 from Matthew Garrett <mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org>  2010-01-31 15:26:04 PST ---
+Is this a hybrid graphics system?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
