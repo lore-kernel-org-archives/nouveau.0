@@ -1,8 +1,8 @@
 From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH 2/3] drm/nouveau: add lockless dynamic semaphore
-	allocator
-Date: Mon,  1 Feb 2010 10:50:09 +0100
-Message-ID: <1265017810-13354-2-git-send-email-luca@luca-barbieri.com>
+Subject: [PATCH 3/3] drm/nouveau: use semaphores for fully on-GPU
+	interchannel synchronization
+Date: Mon,  1 Feb 2010 10:51:07 +0100
+Message-ID: <1265017867-13411-1-git-send-email-luca@luca-barbieri.com>
 References: <1265017810-13354-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,370 +22,254 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This patch adds code to allocate semaphores in a dynamic way using
-an algorithm with a lockless fast path.
+This patch implements the nouveau_fence_sync interface introduced
+in the first patch using dynamically allocated semaphores,
+introduced in the second patch.
 
-1. Semaphore BOs
+This is tested on NV40, but should work on NV17-NV50 (previous cards
+will just fallback to CPU waiting).
+Make sure you are using the latest Nouveau git, as it contains critical
+semaphore support.
 
-Semaphore BOs are BOs containing semaphores. Each is 4KB large and
-contains 1024 4-byte semaphores. They are pinned.
+Unlike a previously posted patch, this patch does not make any use of
+software methods and is designed to do all the work on the GPU, and be
+as fast as possible.
 
-Semaphore BOs are allocated on-demand and freed at device takedown.
-Those that are not fully allocated are kept on a free list.
+To perform inter-channel synchronization, commands are emitted on
+both channels involved.
 
-Each is assigned an handle. DMA objects and references are created
-on demand for each channel that needs to use a semaphore BO.
-Those objects and references are automatically destroyed at channel
-destruction time.
+First, a semaphore is allocated, and a valid handle for it is inserted
+in the channel hash table if necessary.
 
-Typically only a single semaphore BO will be needed.
+DMA_SEMAPHORE is set only if different from the last used one. This
+is usually not the case, and thus SEMAPHORE interrupts only happen
+once per channel usually.
 
-2. Semaphore allocation
+After that, SEMAPHORE_OFFSET is set if changed and then either ACQUIRE
+or RELEASE is used.
 
-Each semaphore BO contains a bitmask of free semaphores within the BO.
-Allocation is done in a lockless fashion using a count of free
-semaphores and the bitmask.
+On the waiting channel, a fence is also emitted. Once that fence
+expires, the semaphore is released and can be reused for any purpose.
 
-Semaphores are released once the fence on the waiting side passed.
-This is done by adding fields to nouveau_fence.
-
-Semaphore values are zeroed when the semaphore BO is allocated, and
-are afterwards only modified by the GPU.
-
-This is performed by storing a bitmask that allows to alternate
-between using the values 0 and 1 for a given semaphore.
+This results in synchronization taking place fully on the GPU, with
+no CPU waiting necessary at all.
 
 Signed-off-by: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_dma.h   |    1 +
- drivers/gpu/drm/nouveau/nouveau_drv.h   |    7 +
- drivers/gpu/drm/nouveau/nouveau_fence.c |  243 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_state.c |    4 +
- 4 files changed, 255 insertions(+), 0 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drv.h   |    5 +
+ drivers/gpu/drm/nouveau/nouveau_fence.c |  135 +++++++++++++++++++++++++++++--
+ 2 files changed, 133 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.h b/drivers/gpu/drm/nouveau/nouveau_dma.h
-index dabfd65..0658979 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dma.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_dma.h
-@@ -69,6 +69,7 @@ enum {
- 	NvGdiRect	= 0x8000000c,
- 	NvImageBlit	= 0x8000000d,
- 	NvSw		= 0x8000000e,
-+	NvSem		= 0x81000000, /* range of 16M handles */
- 
- 	/* G80+ display objects */
- 	NvEvoVRAM	= 0x01000000,
 diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 2b78ee6..0a7abc7 100644
+index 0a7abc7..c4d6502 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
 +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -620,6 +620,11 @@ struct drm_nouveau_private {
- 	struct {
- 		struct dentry *channel_root;
+@@ -195,6 +195,8 @@ struct nouveau_channel {
+ 		uint32_t sequence;
+ 		uint32_t sequence_ack;
+ 		uint32_t last_sequence_irq;
++		atomic_t sem_count;
++		unsigned sem_threshold;
+ 	} fence;
+ 
+ 	/* DMA push buffer */
+@@ -255,6 +257,9 @@ struct nouveau_channel {
+ 		char name[32];
+ 		struct drm_info_list info;
  	} debugfs;
 +
-+	spinlock_t sem_bo_free_list_lock;
-+	struct nouveau_sem_bo *sem_bo_free_list;
-+	atomic_t sem_handles;
-+	uint32_t sem_max_handles;
++	unsigned sem_handle;
++	unsigned sem_num;
  };
  
- static inline struct drm_nouveau_private *
-@@ -1141,6 +1146,8 @@ extern int nouveau_fence_flush(void *obj, void *arg);
- extern void nouveau_fence_unref(void **obj);
- extern void *nouveau_fence_ref(void *obj);
- extern void nouveau_fence_handler(struct drm_device *dev, int channel);
-+extern void nouveau_fence_device_init(struct drm_device *dev);
-+extern void nouveau_fence_device_takedown(struct drm_device *dev);
- 
- /* nouveau_gem.c */
- extern int nouveau_gem_new(struct drm_device *, struct nouveau_channel *,
+ struct nouveau_instmem_engine {
 diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-index 9b1c2c3..01152f3 100644
+index 01152f3..ec33bd3 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-@@ -32,6 +32,13 @@
+@@ -46,6 +46,9 @@ struct nouveau_fence {
  
- #define USE_REFCNT (dev_priv->card_type >= NV_10)
+ 	uint32_t sequence;
+ 	bool signalled;
++
++	struct nouveau_sem_bo *sem_bo;
++	int sem_num;
+ };
  
-+#define NOUVEAU_SEM_BO_SIZE PAGE_SIZE
-+
-+/* reading fences can be very expensive
-+ * use a threshold that would only use up half a single sem_bo
-+ */
-+#define NOUVEAU_SEM_MIN_THRESHOLD (NOUVEAU_SEM_BO_SIZE / (NOUVEAU_MAX_CHANNEL_NR * 2))
-+
- struct nouveau_fence {
- 	struct nouveau_channel *channel;
- 	struct kref refcount;
-@@ -47,6 +54,218 @@ nouveau_fence(void *sync_obj)
- 	return (struct nouveau_fence *)sync_obj;
+ static inline struct nouveau_fence *
+@@ -275,10 +278,122 @@ nouveau_fence_del(struct kref *ref)
+ 	kfree(fence);
  }
  
-+struct nouveau_sem_bo {
-+	struct nouveau_sem_bo *next;
-+	struct nouveau_bo *bo;
-+	uint32_t handle;
-+
-+	/* >= 0: num_free + 1 slots are free, sem_bo is or is about to be on free_list
-+	    -1: all allocated, sem_bo is NOT on free_list
-+	*/
-+	atomic_t num_free;
-+
-+	DECLARE_BITMAP(free_slots, NOUVEAU_SEM_BO_SIZE / sizeof(uint32_t));
-+	DECLARE_BITMAP(values, NOUVEAU_SEM_BO_SIZE / sizeof(uint32_t));
-+	DECLARE_BITMAP(channels, NOUVEAU_MAX_CHANNEL_NR);
-+};
-+
-+struct nouveau_sem {
-+	struct nouveau_sem_bo *sem_bo;
-+	unsigned num;
-+	uint32_t value;
-+};
-+
-+struct nouveau_sem_bo*
-+nouveau_sem_bo_alloc(struct drm_device *dev)
-+{
-+	struct nouveau_sem_bo *sem_bo = kmalloc(sizeof(*sem_bo), GFP_KERNEL);
-+	struct nouveau_bo *bo;
-+	int flags = TTM_PL_FLAG_VRAM;
-+	int ret;
-+	bool is_iomem;
-+	void *mem;
-+
-+	sem_bo = kmalloc(sizeof(*sem_bo), GFP_KERNEL);
-+
-+	if (!sem_bo)
-+		return 0;
-+
-+	ret = nouveau_bo_new(dev, NULL, NOUVEAU_SEM_BO_SIZE, 0, flags,
-+			0, 0x0000, true, true, &bo);
-+	if (ret)
-+		goto out_free;
-+
-+	sem_bo->bo = bo;
-+
-+	ret = nouveau_bo_pin(bo, flags);
-+	if (ret)
-+		goto out_bo;
-+
-+	ret = nouveau_bo_map(bo);
-+	if (ret)
-+		goto out_unpin;
-+
-+	mem = ttm_kmap_obj_virtual(&bo->kmap, &is_iomem);
-+	if (is_iomem)
-+		memset_io(mem, 0, NOUVEAU_SEM_BO_SIZE);
-+	else
-+		memset(mem, 0, NOUVEAU_SEM_BO_SIZE);
-+
-+	nouveau_bo_unmap(bo);
-+
-+	memset((void *)sem_bo->free_slots, 0xff, sizeof(sem_bo->free_slots));
-+	memset((void *)sem_bo->values, 0xff, sizeof(sem_bo->values));
-+	atomic_set(&sem_bo->num_free, sizeof(sem_bo->free_slots) * 8 - 1);
-+
-+	memset((void *)sem_bo->channels, 0, sizeof(sem_bo->channels));
-+
-+	return sem_bo;
-+
-+out_unpin:
-+	nouveau_bo_unpin(sem_bo->bo);
-+out_bo:
-+	nouveau_bo_ref(0, &sem_bo->bo);
-+out_free:
-+	kfree(sem_bo);
-+	return 0;
-+}
-+
-+static void
-+nouveau_sem_bo_channel_dtor(struct drm_device *dev,
-+			     struct nouveau_gpuobj *gpuobj) {
-+	if (gpuobj->priv) {
-+		struct nouveau_sem_bo *sem_bo;
-+		struct nouveau_channel *chan = gpuobj->im_channel;
-+		sem_bo = (struct nouveau_sem_bo *)gpuobj->priv;
-+
-+		clear_bit(chan->id, sem_bo->channels);
-+		smp_wmb();
-+	}
-+}
-+
-+int
-+nouveau_sem_bo_channel_init(struct nouveau_sem_bo *sem_bo, struct nouveau_channel *chan)
-+{
-+	struct drm_device *dev = chan->dev;
-+	struct nouveau_gpuobj *obj = NULL;
-+	int ret;
-+
-+	if (test_bit(chan->id, sem_bo->channels))
-+		return 0;
-+
-+	BUG_ON(sem_bo->bo->bo.mem.mem_type != TTM_PL_VRAM);
-+
-+	ret = nouveau_gpuobj_dma_new(chan, NV_CLASS_DMA_IN_MEMORY,
-+		sem_bo->bo->bo.mem.mm_node->start, NOUVEAU_SEM_BO_SIZE,
-+		NV_DMA_ACCESS_RW, NV_DMA_TARGET_VIDMEM, &obj);
-+	if (ret)
-+		return ret;
-+
-+	obj->dtor = nouveau_sem_bo_channel_dtor;
-+	obj->priv = sem_bo;
-+
-+	ret = nouveau_gpuobj_ref_add(dev, chan, sem_bo->handle, obj, NULL);
-+	if (ret) {
-+		nouveau_gpuobj_del(dev, &obj);
-+		return ret;
-+	}
-+
-+	set_bit(chan->id, sem_bo->channels);
-+	smp_wmb();
-+
-+	return 0;
-+}
-+
-+void
-+nouveau_sem_bo_free(struct nouveau_sem_bo *sem_bo)
-+{
-+	nouveau_bo_unpin(sem_bo->bo);
-+	nouveau_bo_ref(0, &sem_bo->bo);
-+	kfree(sem_bo);
-+}
-+
 +static inline void
-+nouveau_sem_bo_enqueue(struct drm_device *dev, struct nouveau_sem_bo *sem_bo)
++nouveau_sem_emit(struct nouveau_channel *chan, struct nouveau_sem *sem, unsigned op)
 +{
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+
-+	spin_lock(&dev_priv->sem_bo_free_list_lock);
-+	sem_bo->next = dev_priv->sem_bo_free_list;
-+	dev_priv->sem_bo_free_list = sem_bo;
-+	spin_unlock(&dev_priv->sem_bo_free_list_lock);
++	uint32_t handle = sem->sem_bo->handle;
++	if (chan->sem_handle != handle) {
++		BEGIN_RING(chan, NvSubSw, NV_SW_DMA_SEMAPHORE, 1);
++		OUT_RING(chan, handle);
++		chan->sem_handle = handle;
++	}
++	if (chan->sem_num != sem->num) {
++		BEGIN_RING(chan, NvSubSw, NV_SW_SEMAPHORE_OFFSET, 1);
++		OUT_RING(chan, sem->num << 2);
++		chan->sem_num = sem->num;
++	}
++	BEGIN_RING(chan, NvSubSw, op, 1);
++	OUT_RING(chan, sem->value);
 +}
 +
-+int
-+nouveau_sem_alloc(struct drm_device *dev, struct nouveau_sem *sem)
-+{
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct nouveau_sem_bo *sem_bo = 0;
-+	int v;
++/* Currently this ignores waited_fence->sequence and syncs the last fence on waited_fence->channel
++ * If a better GPU synchronization mechanism is discovered, then the actual fence may be used.
++ * Note that sem_fence is a fence on the *waiting *channel, used to free the semaphore.
++ */
+ struct nouveau_fence*
+ nouveau_fence_sync(struct nouveau_fence *waited_fence, struct nouveau_channel *chan)
+ {
+-	return ERR_PTR(-ENOSYS);
++	struct nouveau_channel *waited_chan;
++	struct drm_device *dev;
++	struct drm_nouveau_private *dev_priv;
++	struct nouveau_sem sem;
++	uint32_t handle;
++	int ret;
++	struct nouveau_fence *sem_fence;
++	unsigned long flags;
 +
-+retry:
-+	sem_bo = dev_priv->sem_bo_free_list;
-+	if (!sem_bo) {
-+		unsigned handle;
++	dev = chan->dev;
++	dev_priv = chan->dev->dev_private;
 +
-+		if (atomic_read(&dev_priv->sem_handles) >= dev_priv->sem_max_handles)
-+			return -ENOMEM;
++	if (dev_priv->chipset < 0x17)
++		return ERR_PTR(-ENOSYS);
 +
-+		/* this works because sem_handles <= sem_max_handles + NR_CPUS */
-+		handle = atomic_add_return(1, &dev_priv->sem_handles) - 1;
++	waited_chan = waited_fence->channel;
 +
-+		if (handle >= dev_priv->sem_max_handles)
-+			return -ENOMEM;
++	ret = RING_SPACE(chan, 6 + 2);
++	if (ret)
++		return ERR_PTR(ret);
 +
-+		sem_bo = nouveau_sem_bo_alloc(dev);
-+		if (!sem_bo)
-+			return -ENOMEM;
++	ret = RING_SPACE(waited_chan, 6);
++	if (ret)
++		return ERR_PTR(ret);
 +
-+		sem_bo->handle = NvSem + handle;
++	/* try to reclaim semaphores when we hit the threshold
++	   this helps keeping a low number of active semaphores
 +
-+		atomic_dec(&sem_bo->num_free);
-+		nouveau_sem_bo_enqueue(dev, sem_bo);
-+	} else {
-+		if (unlikely(!atomic_add_unless(&sem_bo->num_free, -1, 0))) {
-+			spin_lock(&dev_priv->sem_bo_free_list_lock);
-+			if (unlikely(sem_bo != dev_priv->sem_bo_free_list)) {
-+				spin_unlock(&dev_priv->sem_bo_free_list_lock);
-+				goto retry;
-+			}
++	   Note that in the DRI2 case this is never triggered
++	   since we wait for fences on both channels.
 +
-+			dev_priv->sem_bo_free_list = sem_bo->next;
-+			if (atomic_dec_return(&sem_bo->num_free) >= 0)
-+				dev_priv->sem_bo_free_list = sem_bo;
-+
-+			spin_unlock(&dev_priv->sem_bo_free_list_lock);
-+		}
++	   However, if buffers were all different, this could be
++	   necessary.
++	*/
++	if (atomic_read(&chan->fence.sem_count) >= chan->fence.sem_threshold) {
++		spin_lock_irqsave(&chan->fence.lock, flags);
++		if (atomic_read(&chan->fence.sem_count) >= chan->fence.sem_threshold)
++			nouveau_fence_update(chan);
++		spin_unlock_irqrestore(&chan->fence.lock, flags);
 +	}
 +
-+retry_bit:
-+	v = find_first_bit(sem_bo->free_slots, sizeof(sem_bo->free_slots) * 8);
++	ret = nouveau_fence_new(chan, &sem_fence, 0);
++	if (ret)
++		return ERR_PTR(ret);
 +
-+	/* we reserved our bit by decrementing num_free
-+	   however, the first available bit may have been taken */
-+	BUG_ON(v >= sizeof(sem_bo->free_slots) * 8);
++	ret = nouveau_sem_alloc(chan->dev, &sem);
++	if (ret) {
++		kfree(sem_fence);
++		return ERR_PTR(ret);
++	}
 +
-+	if (unlikely(!test_and_clear_bit(v, sem_bo->free_slots)))
-+		goto retry_bit;
++	BUG_ON(!sem.sem_bo);
 +
-+	sem->sem_bo = sem_bo;
-+	sem->value = test_and_change_bit(v, sem_bo->values);
-+	sem->num = v;
++	ret = nouveau_sem_bo_channel_init(sem.sem_bo, chan);
++	if (!ret)
++		ret = nouveau_sem_bo_channel_init(sem.sem_bo, waited_chan);
++	if (ret) {
++		nouveau_sem_release(dev, sem.sem_bo, sem.num);
++		kfree(sem_fence);
++		return ERR_PTR(ret);
++	}
 +
-+	return 0;
++	handle = sem.sem_bo->handle;
++
++/*	NV_DEBUG(dev, "sync %i <- %i with %x:%i (sem %i/%i)\n", chan->id, waited_chan->id, sem.sem_bo->handle, sem.num, atomic_read(&chan->fence.sem_count), chan->fence.sem_threshold); */
++
++	sem_fence->sem_bo = sem.sem_bo;
++	sem_fence->sem_num = sem.num;
++
++	atomic_inc(&chan->fence.sem_count);
++
++/* TODO: this should take the channel locks when they are added */
++	nouveau_sem_emit(chan, &sem, NV_SW_SEMAPHORE_ACQUIRE);
++
++	nouveau_fence_emit(sem_fence);
++
++	nouveau_sem_emit(waited_chan, &sem, NV_SW_SEMAPHORE_RELEASE);
++	FIRE_RING(waited_chan);
++	return sem_fence;
 +}
 +
-+void
-+nouveau_sem_release(struct drm_device *dev, struct nouveau_sem_bo *sem_bo, int i)
++void nouveau_fence_complete(struct nouveau_fence *fence)
 +{
-+	set_bit(i, sem_bo->free_slots);
++	if (fence->sem_bo) {
++		nouveau_sem_release(fence->channel->dev, fence->sem_bo, fence->sem_num);
++		atomic_dec(&fence->channel->fence.sem_count);
++	}
 +
-+	if (atomic_inc_and_test(&sem_bo->num_free))
-+		nouveau_sem_bo_enqueue(dev, sem_bo);
-+}
++	fence->signalled = true;
++	list_del(&fence->entry);
++	kref_put(&fence->refcount, nouveau_fence_del);
+ }
+ 
+ void
+@@ -288,6 +403,7 @@ nouveau_fence_update(struct nouveau_channel *chan)
+ 	struct list_head *entry, *tmp;
+ 	struct nouveau_fence *fence;
+ 	uint32_t sequence;
++	unsigned sem_threshold;
+ 
+ 	if (USE_REFCNT)
+ 		sequence = nvchan_rd32(chan, 0x48);
+@@ -302,13 +418,16 @@ nouveau_fence_update(struct nouveau_channel *chan)
+ 		fence = list_entry(entry, struct nouveau_fence, entry);
+ 
+ 		sequence = fence->sequence;
+-		fence->signalled = true;
+-		list_del(&fence->entry);
+-		kref_put(&fence->refcount, nouveau_fence_del);
++		nouveau_fence_complete(fence);
+ 
+ 		if (sequence == chan->fence.sequence_ack)
+ 			break;
+ 	}
 +
- static void
- nouveau_fence_del(struct kref *ref)
++	sem_threshold = atomic_read(&chan->fence.sem_count) * 2;
++	if (sem_threshold < NOUVEAU_SEM_MIN_THRESHOLD)
++		sem_threshold = NOUVEAU_SEM_MIN_THRESHOLD;
++	chan->fence.sem_threshold = sem_threshold;
+ }
+ 
+ int
+@@ -467,6 +586,10 @@ nouveau_fence_init(struct nouveau_channel *chan)
  {
-@@ -266,3 +485,27 @@ nouveau_fence_fini(struct nouveau_channel *chan)
+ 	INIT_LIST_HEAD(&chan->fence.pending);
+ 	spin_lock_init(&chan->fence.lock);
++	atomic_set(&chan->fence.sem_count, 0);
++	chan->fence.sem_threshold = NOUVEAU_SEM_MIN_THRESHOLD;
++	chan->sem_handle = 0;
++	chan->sem_num = ~0;
+ 	return 0;
+ }
+ 
+@@ -479,9 +602,7 @@ nouveau_fence_fini(struct nouveau_channel *chan)
+ 	list_for_each_safe(entry, tmp, &chan->fence.pending) {
+ 		fence = list_entry(entry, struct nouveau_fence, entry);
+ 
+-		fence->signalled = true;
+-		list_del(&fence->entry);
+-		kref_put(&fence->refcount, nouveau_fence_del);
++		nouveau_fence_complete(fence);
  	}
  }
  
-+void
-+nouveau_fence_device_init(struct drm_device *dev)
-+{
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	spin_lock_init(&dev_priv->sem_bo_free_list_lock);
-+	dev_priv->sem_bo_free_list = 0;
-+	atomic_set(&dev_priv->sem_handles, 0);
-+	/* these are each pinned and 4KB, providing 1024 semaphores each
-+	   we should need only one in normal circumstances */
-+	dev_priv->sem_max_handles = 16;
-+}
-+
-+void
-+nouveau_fence_device_takedown(struct drm_device *dev)
-+{
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct nouveau_sem_bo *sem_bo, *next;
-+	/* all the sem_bos allocated must be in the free list since all channels
-+	* and thus fences have already been terminated */
-+	for (sem_bo = dev_priv->sem_bo_free_list; sem_bo; sem_bo = next) {
-+		next = sem_bo->next;
-+		nouveau_sem_bo_free(sem_bo);
-+	}
-+}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c b/drivers/gpu/drm/nouveau/nouveau_state.c
-index fcd7610..7161981 100644
---- a/drivers/gpu/drm/nouveau/nouveau_state.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_state.c
-@@ -412,6 +412,8 @@ nouveau_card_init(struct drm_device *dev)
- 	if (ret)
- 		goto out_mem;
- 
-+	nouveau_fence_device_init(dev);
-+
- 	/* PMC */
- 	ret = engine->mc.init(dev);
- 	if (ret)
-@@ -532,6 +534,8 @@ static void nouveau_card_takedown(struct drm_device *dev)
- 		engine->timer.takedown(dev);
- 		engine->mc.takedown(dev);
- 
-+		nouveau_fence_device_takedown(dev);
-+
- 		mutex_lock(&dev->struct_mutex);
- 		ttm_bo_clean_mm(&dev_priv->ttm.bdev, TTM_PL_VRAM);
- 		ttm_bo_clean_mm(&dev_priv->ttm.bdev, TTM_PL_TT);
 -- 
 1.6.6.1.476.g01ddb
