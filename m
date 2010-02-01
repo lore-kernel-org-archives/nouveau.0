@@ -1,13 +1,13 @@
 From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 3/4] drm/nv50: avoid unloading pgraph context when
-	ctxprog is running
-Date: Mon,  1 Feb 2010 19:34:34 +0100
-Message-ID: <1265049275-7680-3-git-send-email-madman2003@gmail.com>
+Subject: Re: [PATCH 2/4] drm/nv50: make the pgraph irq handler
+	loop like the pre-nv50 version
+Date: Mon, 1 Feb 2010 23:26:56 +0100
+Message-ID: <6d4bc9fc1002011426n6910667bn7d13837caad275d6@mail.gmail.com>
 References: <1265049275-7680-1-git-send-email-madman2003@gmail.com>
 	<1265049275-7680-2-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <1265049275-7680-2-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
@@ -22,76 +22,251 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-- We need to disable pgraph fifo access before checking the current channel,
-otherwise we could still hit a running ctxprog.
-- The writes to 0x400500 are already handled by pgraph->fifo_access and are
-therefore redundant, moreover pgraph fifo access should not be reenabled before
-current context is set as invalid. So remove them altogether.
+I'm wondering if the write to 0x400824 should be outside the loop,
+since it's a flag blocking a ctxprog from continuing.
+Anyone know why this one wasn't looping but the pre-nv50 one is?
 
-Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_channel.c |    7 +++----
- drivers/gpu/drm/nouveau/nv50_graph.c      |   10 +++++++---
- 2 files changed, 10 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_channel.c b/drivers/gpu/drm/nouveau/nouveau_channel.c
-index 343d718..2281f99 100644
---- a/drivers/gpu/drm/nouveau/nouveau_channel.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_channel.c
-@@ -278,12 +278,11 @@ nouveau_channel_free(struct nouveau_channel *chan)
- 	/* Ensure the channel is no longer active on the GPU */
- 	pfifo->reassign(dev, false);
- 
--	if (pgraph->channel(dev) == chan) {
--		pgraph->fifo_access(dev, false);
-+	pgraph->fifo_access(dev, false);
-+	if (pgraph->channel(dev) == chan)
- 		pgraph->unload_context(dev);
--		pgraph->fifo_access(dev, true);
--	}
- 	pgraph->destroy_context(chan);
-+	pgraph->fifo_access(dev, true);
- 
- 	if (pfifo->channel_id(dev) == chan->id) {
- 		pfifo->disable(dev);
-diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
-index 20319e5..6d50480 100644
---- a/drivers/gpu/drm/nouveau/nv50_graph.c
-+++ b/drivers/gpu/drm/nouveau/nv50_graph.c
-@@ -165,6 +165,12 @@ nv50_graph_channel(struct drm_device *dev)
- 	uint32_t inst;
- 	int i;
- 
-+	/* Be sure we're not in the middle of a context switch or bad things
-+	 * will happen, such as unloading the wrong pgraph context.
-+	 */
-+	if (!nv_wait(0x400300, 0x00000001, 0x00000000))
-+		NV_ERROR(dev, "Ctxprog is still running\n");
-+
- 	inst = nv_rd32(dev, NV50_PGRAPH_CTXCTL_CUR);
- 	if (!(inst & NV50_PGRAPH_CTXCTL_CUR_LOADED))
- 		return NULL;
-@@ -275,7 +281,7 @@ nv50_graph_load_context(struct nouveau_channel *chan)
- int
- nv50_graph_unload_context(struct drm_device *dev)
- {
--	uint32_t inst, fifo = nv_rd32(dev, 0x400500);
-+	uint32_t inst;
- 
- 	inst  = nv_rd32(dev, NV50_PGRAPH_CTXCTL_CUR);
- 	if (!(inst & NV50_PGRAPH_CTXCTL_CUR_LOADED))
-@@ -283,12 +289,10 @@ nv50_graph_unload_context(struct drm_device *dev)
- 	inst &= NV50_PGRAPH_CTXCTL_CUR_INSTANCE;
- 
- 	nouveau_wait_for_idle(dev);
--	nv_wr32(dev, 0x400500, fifo & ~1);
- 	nv_wr32(dev, 0x400784, inst);
- 	nv_wr32(dev, 0x400824, nv_rd32(dev, 0x400824) | 0x20);
- 	nv_wr32(dev, 0x400304, nv_rd32(dev, 0x400304) | 0x01);
- 	nouveau_wait_for_idle(dev);
--	nv_wr32(dev, 0x400500, fifo);
- 
- 	nv_wr32(dev, NV50_PGRAPH_CTXCTL_CUR, inst);
- 	return 0;
--- 
-1.6.6.1
+On Mon, Feb 1, 2010 at 7:34 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wro=
+te:
+> Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+> =A0drivers/gpu/drm/nouveau/nouveau_irq.c | =A0140 ++++++++++++++++++-----=
+----------
+> =A01 files changed, 76 insertions(+), 64 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_irq.c b/drivers/gpu/drm/nouv=
+eau/nouveau_irq.c
+> index baa9b3e..475d0f2 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_irq.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_irq.c
+> @@ -580,83 +580,95 @@ nouveau_pgraph_irq_handler(struct drm_device *dev)
+> =A0static void
+> =A0nv50_pgraph_irq_handler(struct drm_device *dev)
+> =A0{
+> - =A0 =A0 =A0 uint32_t status, nsource;
+> + =A0 =A0 =A0 uint32_t status;
+>
+> - =A0 =A0 =A0 status =3D nv_rd32(dev, NV03_PGRAPH_INTR);
+> - =A0 =A0 =A0 nsource =3D nv_rd32(dev, NV03_PGRAPH_NSOURCE);
+> + =A0 =A0 =A0 while ((status =3D nv_rd32(dev, NV03_PGRAPH_INTR))) {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 uint32_t nsource =3D nv_rd32(dev, NV03_PGRA=
+PH_NSOURCE);
+>
+> - =A0 =A0 =A0 if (status & 0x00000001) {
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pgraph_intr_notify(dev, nsource);
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~0x00000001;
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_INTR, 0x00000001);
+> - =A0 =A0 =A0 }
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 if (status & 0x00000001) {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pgraph_intr_notify(=
+dev, nsource);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~0x00000001;
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_IN=
+TR, 0x00000001);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 }
+>
+> - =A0 =A0 =A0 if (status & 0x00000010) {
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pgraph_intr_error(dev, nsource |
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 NV03_PGRAPH_NSOURCE_ILLEGAL_MTHD);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 if (status & 0x00000010) {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pgraph_intr_error(d=
+ev, nsource |
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 NV03_PGRAPH_NSOURCE_ILLEGAL_MTHD);
+>
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~0x00000010;
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_INTR, 0x00000010);
+> - =A0 =A0 =A0 }
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~0x00000010;
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_IN=
+TR, 0x00000010);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 }
+>
+> - =A0 =A0 =A0 if (status & 0x00001000) {
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x400500, 0x00000000);
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_INTR, NV_PGRAPH_IN=
+TR_CONTEXT_SWITCH);
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV40_PGRAPH_INTR_EN, nv_rd32(d=
+ev,
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV40_PGRAPH_INTR_EN) & ~NV_=
+PGRAPH_INTR_CONTEXT_SWITCH);
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x400500, 0x00010001);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 if (status & 0x00001000) {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x400500, 0x00=
+000000);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_IN=
+TR, NV_PGRAPH_INTR_CONTEXT_SWITCH);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV40_PGRAPH_IN=
+TR_EN, nv_rd32(dev,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV40_PGRAPH=
+_INTR_EN) & ~NV_PGRAPH_INTR_CONTEXT_SWITCH);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x400500, 0x00=
+010001);
+>
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv50_graph_context_switch(dev);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv50_graph_context_switch(d=
+ev);
+>
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~NV_PGRAPH_INTR_CONTEXT_SWITCH;
+> - =A0 =A0 =A0 }
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~NV_PGRAPH_INTR=
+_CONTEXT_SWITCH;
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 }
+>
+> - =A0 =A0 =A0 if (status & 0x00100000) {
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pgraph_intr_error(dev, nsource |
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 NV03_PGRAPH_NSOURCE_DATA_ERROR);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 if (status & 0x00100000) {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pgraph_intr_error(d=
+ev, nsource |
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 NV03_PGRAPH_NSOURCE_DATA_ERROR);
+>
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~0x00100000;
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_INTR, 0x00100000);
+> - =A0 =A0 =A0 }
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~0x00100000;
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_IN=
+TR, 0x00100000);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 }
+>
+> - =A0 =A0 =A0 if (status & 0x00200000) {
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 int r;
+> -
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pgraph_intr_error(dev, nsource |
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 NV03_PGRAPH_NSOURCE_PROTECTION_ERROR);
+> -
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(dev, "magic set 1:\n");
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 for (r =3D 0x408900; r <=3D 0x408910; r +=
+=3D 4)
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(dev, "\t0x%08x: 0x=
+%08x\n", r, nv_rd32(dev, r));
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x408900, nv_rd32(dev, 0x40890=
+4) | 0xc0000000);
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 for (r =3D 0x408e08; r <=3D 0x408e24; r +=
+=3D 4)
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(dev, "\t0x%08x: 0x=
+%08x\n", r, nv_rd32(dev, r));
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x408e08, nv_rd32(dev, 0x408e0=
+8) | 0xc0000000);
+> -
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(dev, "magic set 2:\n");
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 for (r =3D 0x409900; r <=3D 0x409910; r +=
+=3D 4)
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(dev, "\t0x%08x: 0x=
+%08x\n", r, nv_rd32(dev, r));
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x409900, nv_rd32(dev, 0x40990=
+4) | 0xc0000000);
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 for (r =3D 0x409e08; r <=3D 0x409e24; r +=
+=3D 4)
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(dev, "\t0x%08x: 0x=
+%08x\n", r, nv_rd32(dev, r));
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x409e08, nv_rd32(dev, 0x409e0=
+8) | 0xc0000000);
+> -
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~0x00200000;
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_NSOURCE, nsource);
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_INTR, 0x00200000);
+> - =A0 =A0 =A0 }
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 if (status & 0x00200000) {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 int r;
+> +
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nouveau_pgraph_intr_error(d=
+ev, nsource |
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 NV03_PGRAPH_NSOURCE_PROTECTION_ERROR);
+> +
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(dev, "magic set 1:=
+\n");
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 for (r =3D 0x408900; r <=3D=
+ 0x408910; r +=3D 4)
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(de=
+v, "\t0x%08x: 0x%08x\n", r,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 nv_rd32(dev, r));
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x408900,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_rd32(dev=
+, 0x408904) | 0xc0000000);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 for (r =3D 0x408e08; r <=3D=
+ 0x408e24; r +=3D 4)
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(de=
+v, "\t0x%08x: 0x%08x\n", r,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_rd32(dev, r));
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x408e08,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_rd32(dev=
+, 0x408e08) | 0xc0000000);
+> +
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(dev, "magic set 2:=
+\n");
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 for (r =3D 0x409900; r <=3D=
+ 0x409910; r +=3D 4)
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(de=
+v, "\t0x%08x: 0x%08x\n", r,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 nv_rd32(dev, r));
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x409900,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_rd32(dev=
+, 0x409904) | 0xc0000000);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 for (r =3D 0x409e08; r <=3D=
+ 0x409e24; r +=3D 4)
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_ERROR(de=
+v, "\t0x%08x: 0x%08x\n", r,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 nv_rd32(dev, r));
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x409e08,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_rd32(dev=
+, 0x409e08) | 0xc0000000);
+> +
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 status &=3D ~0x00200000;
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_NS=
+OURCE, nsource);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_IN=
+TR, 0x00200000);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 }
+>
+> - =A0 =A0 =A0 if (status) {
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_INFO(dev, "Unhandled PGRAPH_INTR - 0x%08=
+x\n", status);
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_INTR, status);
+> - =A0 =A0 =A0 }
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 if (status) {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 NV_INFO(dev, "Unhandled PGR=
+APH_INTR - 0x%08x\n",
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 status);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, NV03_PGRAPH_IN=
+TR, status);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 }
+>
+> - =A0 =A0 =A0 {
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 const int isb =3D (1 << 16) | (1 << 0);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 {
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 const int isb =3D (1 << 16)=
+ | (1 << 0);
+>
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 if ((nv_rd32(dev, 0x400500) & isb) !=3D isb)
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x400500, nv_r=
+d32(dev, 0x400500) | isb);
+> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x400824, nv_rd32(dev, 0x40082=
+4) & ~(1 << 31));
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 if ((nv_rd32(dev, 0x400500)=
+ & isb) !=3D isb)
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev=
+, 0x400500,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 nv_rd32(dev, 0x400500) | isb);
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_wr32(dev, 0x400824,
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 nv_rd32(dev=
+, 0x400824) & ~(1 << 31));
+> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 }
+> =A0 =A0 =A0 =A0}
+>
+> =A0 =A0 =A0 =A0nv_wr32(dev, NV03_PMC_INTR_0, NV_PMC_INTR_0_PGRAPH_PENDING=
+);
+> --
+> 1.6.6.1
+>
+>
