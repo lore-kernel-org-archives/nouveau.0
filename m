@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26349] nouveau_hybrid_setup: disables a discrete NVS
  3100m on ThinkPad T410
-Date: Mon,  1 Feb 2010 05:28:25 -0800 (PST)
-Message-ID: <20100201132825.34BF91300A0@annarchy.freedesktop.org>
+Date: Mon,  1 Feb 2010 05:30:27 -0800 (PST)
+Message-ID: <20100201133027.3BE4D2DC10B@annarchy.freedesktop.org>
 References: <bug-26349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26349
 
 
 
---- Comment #4 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>  2010-02-01 05:28:22 PST ---
-Created an attachment (id=32966)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32966)
-acpidump
+--- Comment #5 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>  2010-02-01 05:30:26 PST ---
+Created an attachment (id=32967)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=32967)
+lspci before loading nouveau
 
 
 -- 
