@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26349] nouveau_hybrid_setup: disables a discrete NVS
  3100m on ThinkPad T410
-Date: Mon,  1 Feb 2010 06:03:56 -0800 (PST)
-Message-ID: <20100201140356.BC71C2DC102@annarchy.freedesktop.org>
+Date: Mon,  1 Feb 2010 06:04:37 -0800 (PST)
+Message-ID: <20100201140437.A99B91300A0@annarchy.freedesktop.org>
 References: <bug-26349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,16 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=26349
 
 
+Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #32966|0                           |1
+        is obsolete|                            |
 
 
-
---- Comment #6 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>  2010-02-01 06:03:55 PST ---
-Created an attachment (id=32969)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32969)
-acpidump
-
-I screwed my BIOS configuration with VT-d (and did no notice it), so the fist
-dump was probably no the right one...
 
 
 -- 
