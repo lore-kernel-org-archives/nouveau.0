@@ -1,12 +1,16 @@
 From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/4] drm/nv50: align size of buffer object to the
-	right boundaries.
-Date: Mon,  1 Feb 2010 19:34:32 +0100
-Message-ID: <1265049275-7680-1-git-send-email-madman2003@gmail.com>
+Subject: [PATCH 4/4] drm/nv50: delete ramfc object after disabling
+	fifo, not before
+Date: Mon,  1 Feb 2010 19:34:35 +0100
+Message-ID: <1265049275-7680-4-git-send-email-madman2003@gmail.com>
+References: <1265049275-7680-1-git-send-email-madman2003@gmail.com>
+	<1265049275-7680-2-git-send-email-madman2003@gmail.com>
+	<1265049275-7680-3-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1265049275-7680-3-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,53 +23,41 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-- Depth and stencil buffers are supposed to be large enough in general.
+- ramfc is zero'ed upon destruction, so it's safer to do things in the right
+order.
 
 Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c |   10 +++++-----
- 1 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/nv50_fifo.c |    9 ++++++---
+ 1 files changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index db0ed4c..028719f 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -65,8 +65,10 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+diff --git a/drivers/gpu/drm/nouveau/nv50_fifo.c b/drivers/gpu/drm/nouveau/nv50_fifo.c
+index 32b244b..204a79f 100644
+--- a/drivers/gpu/drm/nouveau/nv50_fifo.c
++++ b/drivers/gpu/drm/nouveau/nv50_fifo.c
+@@ -317,17 +317,20 @@ void
+ nv50_fifo_destroy_context(struct nouveau_channel *chan)
+ {
+ 	struct drm_device *dev = chan->dev;
++	struct nouveau_gpuobj_ref *ramfc = chan->ramfc;
  
- 	/*
- 	 * Some of the tile_flags have a periodic structure of N*4096 bytes,
--	 * align to to that as well as the page size. Overallocate memory to
--	 * avoid corruption of other buffer objects.
-+	 * align to to that as well as the page size. Align the size to the
-+	 * appropriate boundaries. This does imply that sizes are rounded up
-+	 * 3-7 pages, so be aware of this and do not waste memory by allocating
-+	 * many small buffers.
- 	 */
- 	if (dev_priv->card_type == NV_50) {
- 		uint32_t block_size = nouveau_mem_fb_amount(dev) >> 15;
-@@ -77,22 +79,20 @@ nouveau_bo_fixup_align(struct drm_device *dev,
- 		case 0x2800:
- 		case 0x4800:
- 		case 0x7a00:
--			*size = roundup(*size, block_size);
- 			if (is_power_of_2(block_size)) {
--				*size += 3 * block_size;
- 				for (i = 1; i < 10; i++) {
- 					*align = 12 * i * block_size;
- 					if (!(*align % 65536))
- 						break;
- 				}
- 			} else {
--				*size += 6 * block_size;
- 				for (i = 1; i < 10; i++) {
- 					*align = 8 * i * block_size;
- 					if (!(*align % 65536))
- 						break;
- 				}
- 			}
-+			*size = roundup(*size, *align);
- 			break;
- 		default:
- 			break;
+ 	NV_DEBUG(dev, "ch%d\n", chan->id);
+ 
+-	nouveau_gpuobj_ref_del(dev, &chan->ramfc);
+-	nouveau_gpuobj_ref_del(dev, &chan->cache);
+-
++	/* This will ensure the channel is seen as disabled. */
++	chan->ramfc = NULL;
+ 	nv50_fifo_channel_disable(dev, chan->id, false);
+ 
+ 	/* Dummy channel, also used on ch 127 */
+ 	if (chan->id == 0)
+ 		nv50_fifo_channel_disable(dev, 127, false);
++
++	nouveau_gpuobj_ref_del(dev, &ramfc);
++	nouveau_gpuobj_ref_del(dev, &chan->cache);
+ }
+ 
+ int
 -- 
 1.6.6.1
