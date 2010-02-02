@@ -1,55 +1,35 @@
-From: Keith Whitwell <keithw@vmware.com>
-Subject: Re: [RFC] Merge of a reincarnation of the nouveau
- classic mesa driver.
-Date: Tue, 02 Feb 2010 13:39:06 +0000
-Message-ID: <1265117946.19378.5.camel@toffee>
-References: <87k4uvvr3r.fsf@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23198] nv50/NVS135M: video hangs/flickers when
+	fullscreen
+Date: Tue,  2 Feb 2010 08:45:00 -0800 (PST)
+Message-ID: <20100202164500.806D21300A6@annarchy.freedesktop.org>
+References: <bug-23198-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa3d-dev-bounces@lists.sourceforge.net>
-In-Reply-To: <87k4uvvr3r.fsf@riseup.net>
-List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
-	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=unsubscribe>
-List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=mesa3d-dev>
-List-Post: <mailto:mesa3d-dev@lists.sourceforge.net>
-List-Help: <mailto:mesa3d-dev-request@lists.sourceforge.net?subject=help>
-List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
-	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=subscribe>
-Errors-To: mesa3d-dev-bounces@lists.sourceforge.net
-To: Francisco Jerez <currojerez@riseup.net>
-Cc: nouveau <nouveau@lists.freedesktop.org>, mesa3d-dev <mesa3d-dev@lists.sf.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-23198-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 2010-02-02 at 03:01 -0800, Francisco Jerez wrote:
-> For a long time the gallium pipe drivers for nvidia fixed function cards
-> (nv0x, nv1x and, to some extent, nv2x) have remained unmaintained and
-> godforsaken -- especially nv0x and nv1x had seen almost no progress
-> since their creation.
-> 
-> They've recently grown a classic mesa driver which implements many new
-> features: texturing, hardware-accelerated tnl. However the killer
-> feature is "it actually draws stuff" (and if you're lucky even some
-> simple games at reasonable FPS) so I don't like to consider this a step
-> back.
-> 
-> Right now it is located in a git repo here [1], "mesa-next" is the
-> branch I'm proposing to merge. I'll reply myself with the patches
-> affecting core mesa it depends on, to give them more visibility. Of
-> course driver-related comments are welcome too.
-> 
-> [1] http://cgit.freedesktop.org/~currojerez/mesa/
-
-This looks like an appropriate path forward for this hardware.  Gallium
-hides the things they need to be operating on, and Mesa's driver
-interface is much closer to the requirements of this era of hardware.
-
-Keith
-
-
-------------------------------------------------------------------------------
-The Planet: dedicated and managed hosting, cloud storage, colocation
-Stay online with enterprise data centers and the best network in the business
-Choose flexible plans and management services without long-term contracts
-Personal 24x7 support from experience hosting pros just a phone call away.
-http://p.sf.net/sfu/theplanet-com
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzE5OAoKCgoKCi0t
+LSBDb21tZW50ICM2IGZyb20gTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0
+PiAgMjAxMC0wMi0wMiAwODo0NTowMCBQU1QgLS0tClVtbW0uLi4gdGhlIGZpcnN0IHBhdGNoIHJl
+YWxseSBzaG91bGQgbWFrZSBzb21lIGRpZmZlcmVuY2UuLi4uIEl0IHNob3VsZCBlaXRoZXIKc3Bl
+ZWQgdXAgWHYsIG9yIGNyYXNoIGFuZCBidXJuIGhvcnJpYmx5LgoKQ291bGQgeW91IGF0dGFjaCBh
+IGtlcm5lbCBib290IGxvZyB3aXRoIGdlbi5kaWZmIGFwcGxpZWQ/CgoKLS0gCkNvbmZpZ3VyZSBi
+dWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1h
+aWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZ
+b3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
