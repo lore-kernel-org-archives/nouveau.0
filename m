@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23198] nv50/NVS135M: video hangs/flickers when
-	fullscreen
-Date: Tue,  2 Feb 2010 08:45:00 -0800 (PST)
-Message-ID: <20100202164500.806D21300A6@annarchy.freedesktop.org>
-References: <bug-23198-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/6] drm/nv50: align size of buffer object to the
+	right boundaries.
+Date: Tue,  2 Feb 2010 22:36:00 +0100
+Message-ID: <1265146565-6048-1-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23198-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +19,58 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yMzE5OAoKCgoKCi0t
-LSBDb21tZW50ICM2IGZyb20gTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0
-PiAgMjAxMC0wMi0wMiAwODo0NTowMCBQU1QgLS0tClVtbW0uLi4gdGhlIGZpcnN0IHBhdGNoIHJl
-YWxseSBzaG91bGQgbWFrZSBzb21lIGRpZmZlcmVuY2UuLi4uIEl0IHNob3VsZCBlaXRoZXIKc3Bl
-ZWQgdXAgWHYsIG9yIGNyYXNoIGFuZCBidXJuIGhvcnJpYmx5LgoKQ291bGQgeW91IGF0dGFjaCBh
-IGtlcm5lbCBib290IGxvZyB3aXRoIGdlbi5kaWZmIGFwcGxpZWQ/CgoKLS0gCkNvbmZpZ3VyZSBi
-dWdtYWlsOiBodHRwOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1h
-aWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZ
-b3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+- In the current situation the padding that is added is dangerous to write to,
+userspace could potentially overwrite parts of another bo.
+- Depth and stencil buffers are supposed to be large enough in general so the
+waste of memory should be acceptable.
+- Alternatives are hiding the padding from users or splitting vram into 2
+zones.
+
+Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index db0ed4c..028719f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -65,8 +65,10 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+ 
+ 	/*
+ 	 * Some of the tile_flags have a periodic structure of N*4096 bytes,
+-	 * align to to that as well as the page size. Overallocate memory to
+-	 * avoid corruption of other buffer objects.
++	 * align to to that as well as the page size. Align the size to the
++	 * appropriate boundaries. This does imply that sizes are rounded up
++	 * 3-7 pages, so be aware of this and do not waste memory by allocating
++	 * many small buffers.
+ 	 */
+ 	if (dev_priv->card_type == NV_50) {
+ 		uint32_t block_size = nouveau_mem_fb_amount(dev) >> 15;
+@@ -77,22 +79,20 @@ nouveau_bo_fixup_align(struct drm_device *dev,
+ 		case 0x2800:
+ 		case 0x4800:
+ 		case 0x7a00:
+-			*size = roundup(*size, block_size);
+ 			if (is_power_of_2(block_size)) {
+-				*size += 3 * block_size;
+ 				for (i = 1; i < 10; i++) {
+ 					*align = 12 * i * block_size;
+ 					if (!(*align % 65536))
+ 						break;
+ 				}
+ 			} else {
+-				*size += 6 * block_size;
+ 				for (i = 1; i < 10; i++) {
+ 					*align = 8 * i * block_size;
+ 					if (!(*align % 65536))
+ 						break;
+ 				}
+ 			}
++			*size = roundup(*size, *align);
+ 			break;
+ 		default:
+ 			break;
+-- 
+1.6.6.1
