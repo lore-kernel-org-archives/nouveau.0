@@ -1,18 +1,14 @@
 From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 6/6] drm/nouveau: give pgraph a chance to idle
-	before spinlock
-Date: Tue,  2 Feb 2010 22:36:05 +0100
-Message-ID: <1265146565-6048-6-git-send-email-madman2003@gmail.com>
+Subject: [PATCH 2/6] drm/nv50: avoid unloading pgraph context when
+	ctxprog is running
+Date: Tue,  2 Feb 2010 22:36:01 +0100
+Message-ID: <1265146565-6048-2-git-send-email-madman2003@gmail.com>
 References: <1265146565-6048-1-git-send-email-madman2003@gmail.com>
-	<1265146565-6048-2-git-send-email-madman2003@gmail.com>
-	<1265146565-6048-3-git-send-email-madman2003@gmail.com>
-	<1265146565-6048-4-git-send-email-madman2003@gmail.com>
-	<1265146565-6048-5-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1265146565-6048-5-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1265146565-6048-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,40 +21,76 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-- Under some rare conditions i've managed to get pgraph errors after the
-  channel is closed, which has very undesirable effects.
-- This is the only reason i can think off.
+- We need to disable pgraph fifo access before checking the current channel,
+otherwise we could still hit a running ctxprog.
+- The writes to 0x400500 are already handled by pgraph->fifo_access and are
+therefore redundant, moreover pgraph fifo access should not be reenabled before
+current context is set as invalid. So remove them altogether.
 
 Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_channel.c |   13 ++++++++++---
- 1 files changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_channel.c |    7 +++----
+ drivers/gpu/drm/nouveau/nv50_graph.c      |   10 +++++++---
+ 2 files changed, 10 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_channel.c b/drivers/gpu/drm/nouveau/nouveau_channel.c
-index 86399f6..d25ed61 100644
+index 343d718..2281f99 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_channel.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_channel.c
-@@ -280,11 +280,18 @@ nouveau_channel_free(struct nouveau_channel *chan)
- 	 */
- 	nouveau_fence_fini(chan);
- 
--	spin_lock_irqsave(&dev_priv->engine.lock, flags);
--
--	/* Ensure the channel is no longer active on the GPU */
-+	/* This will prevent pfifo from switching channels. */
+@@ -278,12 +278,11 @@ nouveau_channel_free(struct nouveau_channel *chan)
+ 	/* Ensure the channel is no longer active on the GPU */
  	pfifo->reassign(dev, false);
  
-+	/* We want to give pgraph a chance to idle and get rid of all potential
-+	 * errors. We need to do this before the lock, otherwise the irq handler
-+	 * is unable to process them.
-+	 */
+-	if (pgraph->channel(dev) == chan) {
+-		pgraph->fifo_access(dev, false);
++	pgraph->fifo_access(dev, false);
 +	if (pgraph->channel(dev) == chan)
-+		nouveau_wait_for_idle(dev);
-+
-+	spin_lock_irqsave(&dev_priv->engine.lock, flags);
-+
- 	pgraph->fifo_access(dev, false);
- 	if (pgraph->channel(dev) == chan)
  		pgraph->unload_context(dev);
+-		pgraph->fifo_access(dev, true);
+-	}
+ 	pgraph->destroy_context(chan);
++	pgraph->fifo_access(dev, true);
+ 
+ 	if (pfifo->channel_id(dev) == chan->id) {
+ 		pfifo->disable(dev);
+diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
+index 20319e5..6d50480 100644
+--- a/drivers/gpu/drm/nouveau/nv50_graph.c
++++ b/drivers/gpu/drm/nouveau/nv50_graph.c
+@@ -165,6 +165,12 @@ nv50_graph_channel(struct drm_device *dev)
+ 	uint32_t inst;
+ 	int i;
+ 
++	/* Be sure we're not in the middle of a context switch or bad things
++	 * will happen, such as unloading the wrong pgraph context.
++	 */
++	if (!nv_wait(0x400300, 0x00000001, 0x00000000))
++		NV_ERROR(dev, "Ctxprog is still running\n");
++
+ 	inst = nv_rd32(dev, NV50_PGRAPH_CTXCTL_CUR);
+ 	if (!(inst & NV50_PGRAPH_CTXCTL_CUR_LOADED))
+ 		return NULL;
+@@ -275,7 +281,7 @@ nv50_graph_load_context(struct nouveau_channel *chan)
+ int
+ nv50_graph_unload_context(struct drm_device *dev)
+ {
+-	uint32_t inst, fifo = nv_rd32(dev, 0x400500);
++	uint32_t inst;
+ 
+ 	inst  = nv_rd32(dev, NV50_PGRAPH_CTXCTL_CUR);
+ 	if (!(inst & NV50_PGRAPH_CTXCTL_CUR_LOADED))
+@@ -283,12 +289,10 @@ nv50_graph_unload_context(struct drm_device *dev)
+ 	inst &= NV50_PGRAPH_CTXCTL_CUR_INSTANCE;
+ 
+ 	nouveau_wait_for_idle(dev);
+-	nv_wr32(dev, 0x400500, fifo & ~1);
+ 	nv_wr32(dev, 0x400784, inst);
+ 	nv_wr32(dev, 0x400824, nv_rd32(dev, 0x400824) | 0x20);
+ 	nv_wr32(dev, 0x400304, nv_rd32(dev, 0x400304) | 0x01);
+ 	nouveau_wait_for_idle(dev);
+-	nv_wr32(dev, 0x400500, fifo);
+ 
+ 	nv_wr32(dev, NV50_PGRAPH_CTXCTL_CUR, inst);
+ 	return 0;
 -- 
 1.6.6.1
