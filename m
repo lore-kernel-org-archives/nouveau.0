@@ -1,78 +1,78 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nouveau interrupts firewire ISO streaming
-Date: Thu, 4 Feb 2010 13:49:45 +0100
-Message-ID: <6d4bc9fc1002040449t7533d032gcbbff6ebf9f2f07a@mail.gmail.com>
-References: <20100202131549.GI9700@ltw.loris.tv>
-	<6d4bc9fc1002020535m37223f74o60d081a85990586e@mail.gmail.com>
-	<20100204105839.GV9700@ltw.loris.tv>
-	<6d4bc9fc1002040319y6edccf50tfc9be6c30e8df0c6@mail.gmail.com>
-	<20100204123833.GY9700@ltw.loris.tv>
+From: Keith Whitwell <keith.whitwell@googlemail.com>
+Subject: Re: [Nouveau] [RFC] Merge of a reincarnation of the
+	nouveau classic mesa driver.
+Date: Thu, 4 Feb 2010 18:39:14 +0000
+Message-ID: <c524168e1002041039y36d0c4c4j64ce52e3d66f150a@mail.gmail.com>
+References: <87k4uvvr3r.fsf@riseup.net>
+	<b67489df1002021453w3239cbf3t1b946ea816d3e1d9@mail.gmail.com>
+	<4B68B91D.8080009@vmware.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100204123833.GY9700-hmr3i4qI1nLZbNGZteT6vg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Adrian Knoth <adi-5gjw4BGRu82yAo/rNOIehoJPQCENF9+z@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <mesa3d-dev-bounces@lists.sourceforge.net>
+In-Reply-To: <4B68B91D.8080009@vmware.com>
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
+	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=mesa3d-dev>
+List-Post: <mailto:mesa3d-dev@lists.sourceforge.net>
+List-Help: <mailto:mesa3d-dev-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
+	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=subscribe>
+Errors-To: mesa3d-dev-bounces@lists.sourceforge.net
+To: Brian Paul <brianp@vmware.com>
+Cc: nouveau <nouveau@lists.freedesktop.org>, mesa3d-dev <mesa3d-dev@lists.sf.net>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Feb 4, 2010 at 1:38 PM, Adrian Knoth <adi-5gjw4BGRu82yAo/rNOIehoJPQCENF9+z@public.gmane.org> wr=
-ote:
-> On Thu, Feb 04, 2010 at 12:19:14PM +0100, Maarten Maathuis wrote:
+On Tue, Feb 2, 2010 at 11:45 PM, Brian Paul <brianp@vmware.com> wrote:
+> Xavier Chantry wrote:
+>> On Tue, Feb 2, 2010 at 12:01 PM, Francisco Jerez <currojerez@riseup.net>=
+ wrote:
+>>> For a long time the gallium pipe drivers for nvidia fixed function cards
+>>> (nv0x, nv1x and, to some extent, nv2x) have remained unmaintained and
+>>> godforsaken -- especially nv0x and nv1x had seen almost no progress
+>>> since their creation.
+>>>
+>>> They've recently grown a classic mesa driver which implements many new
+>>> features: texturing, hardware-accelerated tnl. However the killer
+>>> feature is "it actually draws stuff" (and if you're lucky even some
+>>> simple games at reasonable FPS) so I don't like to consider this a step
+>>> back.
+>>>
+>>> Right now it is located in a git repo here [1], "mesa-next" is the
+>>> branch I'm proposing to merge. I'll reply myself with the patches
+>>> affecting core mesa it depends on, to give them more visibility. Of
+>>> course driver-related comments are welcome too.
+>>>
+>>> [1] http://cgit.freedesktop.org/~currojerez/mesa/
+>>>
+>>
+>> I did some testing of a few opengl games, just for fun and by curiosity.
+>> Card is nv25 (64mb vram).
+>>
+>> - works perfectly
+>> openarena tremulous xmoto frozen-bubble hedgewars neverball supertux2
+>>
+>> - works with some problems
+>> * teeworlds : perfect after a hack to workaround this issue :
+>> =A0 =A0 =A0 =A0nv04_surface.c:246: nv04_surface_copy_swizzle: Assertion
+>> `!(dst->offset & 63)' failed.
+>>
+>> * foobillard : works but this error shows up :
+>> =A0 =A0 =A0 Mesa: User error: GL_STACK_OVERFLOW in glPushMatrix(mode=3DG=
+L_TEXTURE, unit=3D0)
 >
-> Hi!
->
->> >> > When the X pointer changes from arrow to the vertical text selection
->> >> > bar, firewire streaming is interrupted. Same with scrolling in fire=
-fox
->> >> > or hovering over a link, thus changing the pointer to "hand".
->
->> It's mostly cpu copying the cursor. Now that i think of it, we keep a
->> copy of the cursor inside the kernel, so no need to make the userspace
->> side vram too. As a quick test you could try changing VRAM to GART
->> here http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/tree/src/drm=
-mode_display.c#n641.
->
-> Changing to GART fixes the cursor issue. Hovering over a link now no
-> longer stalls my audio streams.
->
-> Is there something similar I could try to fix scrolling or even raising
-> a window, thus changing the colour of the title bar? Both still
-> interrupt audio.
+> That's a bug in foobillard. =A0I remember looking into it years ago. =A0I
+> guess nobody fixed it yet.
 
-Sounds like your situation is sensitive to accessing gpu memory
-somehow, but this is just a guess. The cursor was a very special
-isolated case, this is a more generic problem.
+I'm happy to pull this anytime.  Is it ready to go?
 
-Change this to "if 1" to get some information of when cpu rendering
-happens. http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/tree/src/no=
-uveau_local.h#n33
+Keith
 
-You could also add some verbosity to
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/tree/src/nouveau_exa=
-.c#n291
-and http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/tree/src/nouveau=
-_exa.c#n302,
-which would capture everything.
-
->
->> Assuming you don't have an agp system, otherwise you will still be
->
-> PCIe.
->
->
-> Cheerio
->
-> --
-> mail: adi-KgVc3FjDepk@public.gmane.org =A0 =A0 =A0 http://adi.thur.de =A0 =A0 =A0PGP/GPG: key =
-via keyserver
->
+---------------------------------------------------------------------------=
+---
+The Planet: dedicated and managed hosting, cloud storage, colocation
+Stay online with enterprise data centers and the best network in the busine=
+ss
+Choose flexible plans and management services without long-term contracts
+Personal 24x7 support from experience hosting pros just a phone call away.
+http://p.sf.net/sfu/theplanet-com
