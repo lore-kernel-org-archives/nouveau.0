@@ -1,15 +1,14 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nouveau interrupts firewire ISO streaming
-Date: Thu, 4 Feb 2010 12:19:14 +0100
-Message-ID: <6d4bc9fc1002040319y6edccf50tfc9be6c30e8df0c6@mail.gmail.com>
-References: <20100202131549.GI9700@ltw.loris.tv>
-	<6d4bc9fc1002020535m37223f74o60d081a85990586e@mail.gmail.com>
-	<20100204105839.GV9700@ltw.loris.tv>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: enlarge GART aperture
+Date: Thu, 04 Feb 2010 21:41:09 +1000
+Message-ID: <1265283669.2975.1.camel@nisroch>
+References: <1264703119-6482-1-git-send-email-luca@luca-barbieri.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100204105839.GV9700-hmr3i4qI1nLZbNGZteT6vg@public.gmane.org>
+In-Reply-To: <1264703119-6482-1-git-send-email-luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,65 +18,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Adrian Knoth <adi-5gjw4BGRu82yAo/rNOIehoJPQCENF9+z@public.gmane.org>
+To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Feb 4, 2010 at 11:58 AM, Adrian Knoth <adi-5gjw4BGRu82yAo/rNOIehoJPQCENF9+z@public.gmane.org> w=
-rote:
-> On Tue, Feb 02, 2010 at 02:35:04PM +0100, Maarten Maathuis wrote:
->
-> Hi!
->
->> > When the X pointer changes from arrow to the vertical text selection
->> > bar, firewire streaming is interrupted. Same with scrolling in firefox
->> > or hovering over a link, thus changing the pointer to "hand".
->> >
->> > Looks like nouveau is disabling interrupts now and then, which leads to
->> > stalled firewire ISO streaming. I don't know what nouveau's actually
->> > doing, I'm just guessing. ;)
->> I don't think interrupts are disabled for uploading a cursor, more
->> likely is that your firewire driver depends on the big kernel lock.
->
-> No, the firewire subsystem doesn't use BKL:
->
-> adi@hex:/usr/src/linux-2.6.33-rc6/drivers/firewire$ grep lock_kernel *
-> adi@hex:/usr/src/linux-2.6.33-rc6/drivers/firewire$ echo $?
-> 1
->
-> But I don't know what happens to a BKL-free subsystem when another
-> subsystem calls lock_kernel.
->
->> At the moment we still hold that.
->
-> I only found lock_kernel() in drm_drv.c and drm_fops.c, so I guess it's
-> drm_ioctl, given that BKL is the culprit.
->
->
-> I just removed the BKL around the func call, surprisingly, my system
-> still worked with some minor image corruption, but it's exactly the same
-> issue wrt firewire. So it might not be the BKL.
->
->
-> What about DMA or PFIFO interrupts? I only read "interrupt" here, I
-> don't know if they are local to the GPU or also reach other parts of the
-> system. And uploading a cursor couldn't cause long DMA transfers, at
-> least I guess.
+On Thu, 2010-01-28 at 19:25 +0100, Luca Barbieri wrote:
+> This patch enlarges the PCI GART aperture to 512 MB.
+> 
+> The current 64MB aperture is too small and should be enlarged.
+> The optimal amound may be card/system-dependent, so a more sophisticated
+> approach may be preferable.
+> In particular, if RAMIN is less than 1MB, a 512MB aperture won't fit.
+This is something I've been meaning to do for a while, it keeps slipping
+my mind however.
 
-It's mostly cpu copying the cursor. Now that i think of it, we keep a
-copy of the cursor inside the kernel, so no need to make the userspace
-side vram too. As a quick test you could try changing VRAM to GART
-here http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/tree/src/drmmod=
-e_display.c#n641.
-Assuming you don't have an agp system, otherwise you will still be
-reading from uncached memory anyway. libdrm doesn't seem prepared yet
-to allocate system bo's (the kernel seems to be).
+A NACK on the patch as it currently is from me though, I believe it may
+break on some really early cards (not 100% sure, but we should be before
+doing it).  If it does break them, the patch should be adjusted for
+that..
 
->
->
-> Cheerio
->
-> --
-> mail: adi-KgVc3FjDepk@public.gmane.org =A0 =A0 =A0 http://adi.thur.de =A0 =A0 =A0PGP/GPG: key =
-via keyserver
->
+Ben.
+
+> 
+> Signed-off-by: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_sgdma.c |    2 +-
+>  1 files changed, 1 insertions(+), 1 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+> index 4c7f1e4..2ca44cc 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+> @@ -227,7 +227,7 @@ nouveau_sgdma_init(struct drm_device *dev)
+>  	int i, ret;
+>  
+>  	if (dev_priv->card_type < NV_50) {
+> -		aper_size = (64 * 1024 * 1024);
+> +		aper_size = (512 * 1024 * 1024);
+>  		obj_size  = (aper_size >> NV_CTXDMA_PAGE_SHIFT) * 4;
+>  		obj_size += 8; /* ctxdma header */
+>  	} else {
