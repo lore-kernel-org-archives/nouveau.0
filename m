@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26349] nouveau_hybrid_setup: disables a discrete NVS
  3100m on ThinkPad T410
-Date: Thu,  4 Feb 2010 14:26:48 -0800 (PST)
-Message-ID: <20100204222648.9B95113010D@annarchy.freedesktop.org>
+Date: Thu,  4 Feb 2010 14:29:01 -0800 (PST)
+Message-ID: <20100204222901.D4A1513010B@annarchy.freedesktop.org>
 References: <bug-26349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,17 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26349
 
 
 
---- Comment #8 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>  2010-02-04 14:26:48 PST ---
-(In reply to comment #7)
-> Created an attachment (id=32984)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=32984) [details]
-> Fix nouveau state detection
-> 
-> Can you try this patch?
-> 
-
-I tested it on 2.6.33-rc6 and it worked for me, thanks!
-(should I test it on git too?)
+--- Comment #9 from Matthew Garrett <mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org>  2010-02-04 14:29:01 PST ---
+No, that should be fine. I'll test it on the machine I have here and then send
+it upstream.
 
 
 -- 
