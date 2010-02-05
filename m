@@ -1,11 +1,13 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH] nv50/accel: Fix mangled A8+A8 shader.
-Date: Fri,  5 Feb 2010 17:01:09 +0000
-Message-ID: <1265389269-9520-1-git-send-email-koriakin@0x04.net>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Subject: Re: [PATCH] nv50/accel: Fix mangled A8+A8 shader.
+Date: Fri, 05 Feb 2010 18:14:55 +0100
+Message-ID: <4B6C520F.4040405@student.tuwien.ac.at>
+References: <1265389269-9520-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1265389269-9520-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,38 +17,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Turns out we used a misaligned long instruction near the end, and the
-shader was getting killed after writing R, A components. This has gone
-unnoticed since the remaining G, B outputs aren't actually used.
----
- src/nv50_accel.c |    5 +++--
- 1 files changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/src/nv50_accel.c b/src/nv50_accel.c
-index 5fa539c..1218e18 100644
---- a/src/nv50_accel.c
-+++ b/src/nv50_accel.c
-@@ -291,7 +291,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
- 	OUT_RING  (chan, (0 << NV50TCL_CB_DEF_SET_BUFFER_SHIFT) | 0x4000);
- 	BEGIN_RING(chan, tesla, NV50TCL_CB_ADDR, 1);
- 	OUT_RING  (chan, 0);
--	BEGIN_RING_NI(chan, tesla, NV50TCL_CB_DATA(0), 15);
-+	BEGIN_RING_NI(chan, tesla, NV50TCL_CB_DATA(0), 16);
- 	OUT_RING  (chan, 0x80000000);
- 	OUT_RING  (chan, 0x90000004);
- 	OUT_RING  (chan, 0x82030208);
-@@ -302,7 +302,8 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
- 	OUT_RING  (chan, 0x00008784);
- 	OUT_RING  (chan, 0xf0400209);
- 	OUT_RING  (chan, 0x00008784);
--	OUT_RING  (chan, 0xc002000c);
-+	OUT_RING  (chan, 0xc002000d);
-+	OUT_RING  (chan, 0x00000780);
- 	OUT_RING  (chan, 0x10008600);
- 	OUT_RING  (chan, 0x10008604);
- 	OUT_RING  (chan, 0x10000609);
--- 
-1.6.4.1
+T24gMDIvMDUvMjAxMCAwNjowMSBQTSwgTWFyY2luIEtvxZtjaWVsbmlja2kgd3JvdGU6Cj4gVHVy
+bnMgb3V0IHdlIHVzZWQgYSBtaXNhbGlnbmVkIGxvbmcgaW5zdHJ1Y3Rpb24gbmVhciB0aGUgZW5k
+LCBhbmQgdGhlCj4gc2hhZGVyIHdhcyBnZXR0aW5nIGtpbGxlZCBhZnRlciB3cml0aW5nIFIsIEEg
+Y29tcG9uZW50cy4gVGhpcyBoYXMgZ29uZQo+IHVubm90aWNlZCBzaW5jZSB0aGUgcmVtYWluaW5n
+IEcsIEIgb3V0cHV0cyBhcmVuJ3QgYWN0dWFsbHkgdXNlZC4KClRoYW5rIHlvdSwgcHVzaGVkLgoK
+PiAtLS0KPiAgc3JjL252NTBfYWNjZWwuYyB8ICAgIDUgKysrLS0KPiAgMSBmaWxlcyBjaGFuZ2Vk
+LCAzIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL3NyYy9u
+djUwX2FjY2VsLmMgYi9zcmMvbnY1MF9hY2NlbC5jCj4gaW5kZXggNWZhNTM5Yy4uMTIxOGUxOCAx
+MDA2NDQKPiAtLS0gYS9zcmMvbnY1MF9hY2NlbC5jCj4gKysrIGIvc3JjL252NTBfYWNjZWwuYwo+
+IEBAIC0yOTEsNyArMjkxLDcgQEAgTlZBY2NlbEluaXROVjUwVENMKFNjcm5JbmZvUHRyIHBTY3Ju
+KQo+ICAJT1VUX1JJTkcgIChjaGFuLCAoMCA8PCBOVjUwVENMX0NCX0RFRl9TRVRfQlVGRkVSX1NI
+SUZUKSB8IDB4NDAwMCk7Cj4gIAlCRUdJTl9SSU5HKGNoYW4sIHRlc2xhLCBOVjUwVENMX0NCX0FE
+RFIsIDEpOwo+ICAJT1VUX1JJTkcgIChjaGFuLCAwKTsKPiAtCUJFR0lOX1JJTkdfTkkoY2hhbiwg
+dGVzbGEsIE5WNTBUQ0xfQ0JfREFUQSgwKSwgMTUpOwo+ICsJQkVHSU5fUklOR19OSShjaGFuLCB0
+ZXNsYSwgTlY1MFRDTF9DQl9EQVRBKDApLCAxNik7Cj4gIAlPVVRfUklORyAgKGNoYW4sIDB4ODAw
+MDAwMDApOwo+ICAJT1VUX1JJTkcgIChjaGFuLCAweDkwMDAwMDA0KTsKPiAgCU9VVF9SSU5HICAo
+Y2hhbiwgMHg4MjAzMDIwOCk7Cj4gQEAgLTMwMiw3ICszMDIsOCBAQCBOVkFjY2VsSW5pdE5WNTBU
+Q0woU2NybkluZm9QdHIgcFNjcm4pCj4gIAlPVVRfUklORyAgKGNoYW4sIDB4MDAwMDg3ODQpOwo+
+ICAJT1VUX1JJTkcgIChjaGFuLCAweGYwNDAwMjA5KTsKPiAgCU9VVF9SSU5HICAoY2hhbiwgMHgw
+MDAwODc4NCk7Cj4gLQlPVVRfUklORyAgKGNoYW4sIDB4YzAwMjAwMGMpOwo+ICsJT1VUX1JJTkcg
+IChjaGFuLCAweGMwMDIwMDBkKTsKPiArCU9VVF9SSU5HICAoY2hhbiwgMHgwMDAwMDc4MCk7Cj4g
+IAlPVVRfUklORyAgKGNoYW4sIDB4MTAwMDg2MDApOwo+ICAJT1VUX1JJTkcgIChjaGFuLCAweDEw
+MDA4NjA0KTsKPiAgCU9VVF9SSU5HICAoY2hhbiwgMHgxMDAwMDYwOSk7CgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
