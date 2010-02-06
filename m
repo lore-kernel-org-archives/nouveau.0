@@ -1,13 +1,11 @@
-From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Subject: Re: [PATCH] nv50/accel: Fix mangled A8+A8 shader.
-Date: Fri, 05 Feb 2010 18:14:55 +0100
-Message-ID: <4B6C520F.4040405@student.tuwien.ac.at>
-References: <1265389269-9520-1-git-send-email-koriakin@0x04.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26453] New: hard lock up with GeForce 9500 GT
+Date: Sat,  6 Feb 2010 01:39:52 -0800 (PST)
+Message-ID: <bug-26453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1265389269-9520-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,33 +15,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDIvMDUvMjAxMCAwNjowMSBQTSwgTWFyY2luIEtvxZtjaWVsbmlja2kgd3JvdGU6Cj4gVHVy
-bnMgb3V0IHdlIHVzZWQgYSBtaXNhbGlnbmVkIGxvbmcgaW5zdHJ1Y3Rpb24gbmVhciB0aGUgZW5k
-LCBhbmQgdGhlCj4gc2hhZGVyIHdhcyBnZXR0aW5nIGtpbGxlZCBhZnRlciB3cml0aW5nIFIsIEEg
-Y29tcG9uZW50cy4gVGhpcyBoYXMgZ29uZQo+IHVubm90aWNlZCBzaW5jZSB0aGUgcmVtYWluaW5n
-IEcsIEIgb3V0cHV0cyBhcmVuJ3QgYWN0dWFsbHkgdXNlZC4KClRoYW5rIHlvdSwgcHVzaGVkLgoK
-PiAtLS0KPiAgc3JjL252NTBfYWNjZWwuYyB8ICAgIDUgKysrLS0KPiAgMSBmaWxlcyBjaGFuZ2Vk
-LCAzIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL3NyYy9u
-djUwX2FjY2VsLmMgYi9zcmMvbnY1MF9hY2NlbC5jCj4gaW5kZXggNWZhNTM5Yy4uMTIxOGUxOCAx
-MDA2NDQKPiAtLS0gYS9zcmMvbnY1MF9hY2NlbC5jCj4gKysrIGIvc3JjL252NTBfYWNjZWwuYwo+
-IEBAIC0yOTEsNyArMjkxLDcgQEAgTlZBY2NlbEluaXROVjUwVENMKFNjcm5JbmZvUHRyIHBTY3Ju
-KQo+ICAJT1VUX1JJTkcgIChjaGFuLCAoMCA8PCBOVjUwVENMX0NCX0RFRl9TRVRfQlVGRkVSX1NI
-SUZUKSB8IDB4NDAwMCk7Cj4gIAlCRUdJTl9SSU5HKGNoYW4sIHRlc2xhLCBOVjUwVENMX0NCX0FE
-RFIsIDEpOwo+ICAJT1VUX1JJTkcgIChjaGFuLCAwKTsKPiAtCUJFR0lOX1JJTkdfTkkoY2hhbiwg
-dGVzbGEsIE5WNTBUQ0xfQ0JfREFUQSgwKSwgMTUpOwo+ICsJQkVHSU5fUklOR19OSShjaGFuLCB0
-ZXNsYSwgTlY1MFRDTF9DQl9EQVRBKDApLCAxNik7Cj4gIAlPVVRfUklORyAgKGNoYW4sIDB4ODAw
-MDAwMDApOwo+ICAJT1VUX1JJTkcgIChjaGFuLCAweDkwMDAwMDA0KTsKPiAgCU9VVF9SSU5HICAo
-Y2hhbiwgMHg4MjAzMDIwOCk7Cj4gQEAgLTMwMiw3ICszMDIsOCBAQCBOVkFjY2VsSW5pdE5WNTBU
-Q0woU2NybkluZm9QdHIgcFNjcm4pCj4gIAlPVVRfUklORyAgKGNoYW4sIDB4MDAwMDg3ODQpOwo+
-ICAJT1VUX1JJTkcgIChjaGFuLCAweGYwNDAwMjA5KTsKPiAgCU9VVF9SSU5HICAoY2hhbiwgMHgw
-MDAwODc4NCk7Cj4gLQlPVVRfUklORyAgKGNoYW4sIDB4YzAwMjAwMGMpOwo+ICsJT1VUX1JJTkcg
-IChjaGFuLCAweGMwMDIwMDBkKTsKPiArCU9VVF9SSU5HICAoY2hhbiwgMHgwMDAwMDc4MCk7Cj4g
-IAlPVVRfUklORyAgKGNoYW4sIDB4MTAwMDg2MDApOwo+ICAJT1VUX1JJTkcgIChjaGFuLCAweDEw
-MDA4NjA0KTsKPiAgCU9VVF9SSU5HICAoY2hhbiwgMHgxMDAwMDYwOSk7CgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=26453
+
+           Summary: hard lock up with GeForce 9500 GT
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: maps4711-Mmb7MZpHnFY@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Using a recent nouveau driver locks up my computer. It even won't recover if I
+press the reset button; the video BIOS seems to fail to initialize the video
+card.
+
+Let me know if you need bios dumps / mmio traces / whatever
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
