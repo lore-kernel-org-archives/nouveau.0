@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20363] nouveau - slight pixel corruption in text
-Date: Sat,  6 Feb 2010 08:30:50 -0800 (PST)
-Message-ID: <20100206163051.1374D13013A@annarchy.freedesktop.org>
+Date: Sat,  6 Feb 2010 09:27:40 -0800 (PST)
+Message-ID: <20100206172740.76CFE13013A@annarchy.freedesktop.org>
 References: <bug-20363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,24 +23,12 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=20363
 
 
-Felipe <amadinho10-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |amadinho10-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
-
---- Comment #1 from Felipe <amadinho10-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-06 08:30:50 PST ---
-Same problem here.
-Ubuntu 9.10, up-to-date
-GeForce 7300 LE
-Intel(R) Core(TM)2 CPU          4300  @ 1.80GHz
-kernel 2.6.31-19-generic
-
-I installed the Ubuntu package. Nv driver runs well but Nouveau has that
-problem.
+--- Comment #2 from Alex Kanavin <ak-JO4PoW1CgFLYtjvyW6yDsg@public.gmane.org>  2010-02-06 09:27:39 PST ---
+On Fedora 12 the problem has gone away though, so maybe you just need an
+updated version of the driver. Ubuntu tends to lag behind here.
 
 
 -- 
