@@ -1,15 +1,15 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: don't hold spin lock while
- calling kzalloc with GFP_KERNEL
-Date: Sun, 7 Feb 2010 10:54:04 +0100
-Message-ID: <20100207095404.GA2870@joi.lan>
-References: <1265505080-7099-1-git-send-email-madman2003@gmail.com>
+Subject: Re: [PATCH] nouveau: move dereferences after null checks
+Date: Sun, 7 Feb 2010 21:46:35 +0100
+Message-ID: <20100207204635.GA3339@joi.lan>
+References: <20100129090049.GA5547@bicker>
+ <20100130144100.GA2902@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1265505080-7099-1-git-send-email-madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <20100130144100.GA2902-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,22 +19,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Feb 07, 2010 at 02:11:20AM +0100, Maarten Maathuis wrote:
-> - 'joi' on irc pointed out that this triggers a BUG_ON, because kzalloc could
-> sleep.
-> - The irq handler should restore the value NV03_PFIFO_CACHES, but still it's
-> better if this stuff doesn't happen in the middle of fifo create context. I see
-> no reason in spin locking pgraph create context, it isn't activated at that
-> stage.
-> - Move and rename the lock after some discussion with 'joi', even better naming
-> suggestions are appreciated.
+On Sat, Jan 30, 2010 at 03:41:00PM +0100, Marcin Slusarz wrote:
+> On Fri, Jan 29, 2010 at 12:00:49PM +0300, Dan Carpenter wrote:
+> > These bugs are when code dereferences a variable and then checks that it is not null.
+> > The new thing is that I wrote a shell script to try remove the false positives caused
+> > by macros.  There are still some false positives because smatch is bad at handling 
+> > loops and knowing when a container got redefined.
+> > 
+> > Sometimes the fixes are not obvious.
+> > 
+> > This is the output of: /path/to/smatch_scripts/filter_kernel_deref_check.sh warns.txt
+> > 
+> > regards,
+> > dan carpenter
+> > 
+> > (...)
+> > drivers/gpu/drm/nouveau/nouveau_object.c +891 'chan': if (!chan || !gpuobj_ret || *gpuobj_ret != NULL)
+> > drivers/gpu/drm/nouveau/nouveau_sgdma.c +61 'nvbe': if (nvbe && nvbe->pages) {
+> > drivers/gpu/drm/nouveau/nouveau_connector.c +91 'connector': if (!connector)
+> > drivers/gpu/drm/nouveau/nv50_crtc.c +306 'crtc': if (!crtc)
+> > (...)
 > 
-> Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+> From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Subject: [PATCH] nouveau: move dereferences after null checks
+> 
+> Reported-by: Dan Carpenter <error27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
 
-(joi==/me)
-
-Tested-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+ping
