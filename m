@@ -1,16 +1,14 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: don't hold spin lock while
- calling kzalloc with GFP_KERNEL
-Date: Mon, 8 Feb 2010 13:45:38 +0200
-Message-ID: <20100208134538.2443b176@daedalus.pq.iki.fi>
-References: <1265505080-7099-1-git-send-email-madman2003@gmail.com>
-	<20100208123059.7e8154bf@daedalus.pq.iki.fi>
-	<6d4bc9fc1002080302v2f6d6010i2880fc4a8d1523a8@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26102] Rotating one monitor of a dual-head setup
+ causes cursor problems
+Date: Mon,  8 Feb 2010 07:34:19 -0800 (PST)
+Message-ID: <20100208153419.716D11300BC@annarchy.freedesktop.org>
+References: <bug-26102-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc1002080302v2f6d6010i2880fc4a8d1523a8-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-26102-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +18,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, 8 Feb 2010 12:02:01 +0100
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-
-> Thanks for pointing that out, is it preferred to use goto style
-> failure or just stick the spin unlock everywhere where you return?
-
-In this particular case, just add the unlock where it is needed.
-But, keep in mind what might happen, if something else accesses
-the things protected by the lock just between you releasing it and
-the cleanup function acquiring it.
-
-I believe the goto-style is the preferred way of doing it, but
-that would mean rewriting a lot of code, since IMO the calls to
-nouveau_channel_free() in the case of nouveau_channel_alloc()
-are already non-goto-style. And the functions are very long to
-begin with, this would only make them even longer.
-
-Not worth to rewrite it all, unless you find yourself contemplating on
-adding parameters like 'bool is_already_locked' to cleanup functions.
+http://bugs.freedesktop.org/show_bug.cgi?id=26102
 
 
-Cheers.
+B Jonnh <anarkogaia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |anarkogaia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+
+
+
+--- Comment #3 from B Jonnh <anarkogaia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-08 07:34:18 PST ---
+Same problem here. Can send all the files you want.
+
 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
