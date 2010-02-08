@@ -1,15 +1,11 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nouveau: move dereferences after null checks
-Date: Sun, 7 Feb 2010 21:46:35 +0100
-Message-ID: <20100207204635.GA3339@joi.lan>
-References: <20100129090049.GA5547@bicker>
- <20100130144100.GA2902@joi.lan>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Add proper vgaarb support.
+Date: Mon,  8 Feb 2010 00:20:17 +0000
+Message-ID: <1265588417-23494-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20100130144100.GA2902-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,33 +18,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Jan 30, 2010 at 03:41:00PM +0100, Marcin Slusarz wrote:
-> On Fri, Jan 29, 2010 at 12:00:49PM +0300, Dan Carpenter wrote:
-> > These bugs are when code dereferences a variable and then checks that it is not null.
-> > The new thing is that I wrote a shell script to try remove the false positives caused
-> > by macros.  There are still some false positives because smatch is bad at handling 
-> > loops and knowing when a container got redefined.
-> > 
-> > Sometimes the fixes are not obvious.
-> > 
-> > This is the output of: /path/to/smatch_scripts/filter_kernel_deref_check.sh warns.txt
-> > 
-> > regards,
-> > dan carpenter
-> > 
-> > (...)
-> > drivers/gpu/drm/nouveau/nouveau_object.c +891 'chan': if (!chan || !gpuobj_ret || *gpuobj_ret != NULL)
-> > drivers/gpu/drm/nouveau/nouveau_sgdma.c +61 'nvbe': if (nvbe && nvbe->pages) {
-> > drivers/gpu/drm/nouveau/nouveau_connector.c +91 'connector': if (!connector)
-> > drivers/gpu/drm/nouveau/nv50_crtc.c +306 'crtc': if (!crtc)
-> > (...)
-> 
-> ---
-> From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Subject: [PATCH] nouveau: move dereferences after null checks
-> 
-> Reported-by: Dan Carpenter <error27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
-
-ping
+U2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0Pgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3RhdGUuYyB8ICAgIDcgKysrKysr
+KwogMSBmaWxlcyBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDAgZGVsZXRpb25zKC0pCgpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5jIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5jCmluZGV4IGZjZDc2MTAuLmM1MzhlZWUg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3RhdGUuYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMKQEAgLTMxMCw2ICszMTAs
+MTMgQEAgc3RhdGljIGludCBub3V2ZWF1X2luaXRfZW5naW5lX3B0cnMoc3RydWN0IGRybV9kZXZp
+Y2UgKmRldikKIHN0YXRpYyB1bnNpZ25lZCBpbnQKIG5vdXZlYXVfdmdhX3NldF9kZWNvZGUodm9p
+ZCAqcHJpdiwgYm9vbCBzdGF0ZSkKIHsKKwlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gcHJpdjsK
+KwlzdHJ1Y3QgZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9wcml2YXRl
+OworCWlmIChkZXZfcHJpdi0+Y2hpcHNldCA+PSAweDQwKSB7CisJCW52X3dyMzIoZGV2LCAweDg4
+MDU0LCBzdGF0ZSk7CisJfSBlbHNlIHsKKwkJbnZfd3IzMihkZXYsIDB4MTg1NCwgc3RhdGUpOwor
+CX0KIAlpZiAoc3RhdGUpCiAJCXJldHVybiBWR0FfUlNSQ19MRUdBQ1lfSU8gfCBWR0FfUlNSQ19M
+RUdBQ1lfTUVNIHwKIAkJICAgICAgIFZHQV9SU1JDX05PUk1BTF9JTyB8IFZHQV9SU1JDX05PUk1B
+TF9NRU07Ci0tIAoxLjYuNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
