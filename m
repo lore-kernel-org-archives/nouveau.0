@@ -1,7 +1,8 @@
 From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH] drm/nouveau: enlarge GART aperture (v2)
-Date: Tue,  9 Feb 2010 06:59:36 +0100
-Message-ID: <1265695176-24383-1-git-send-email-luca@luca-barbieri.com>
+Subject: [PATCH 1/3] Introduce nouveau_bo_wait for waiting on a BO
+	with a GPU channel (v2)
+Date: Tue,  9 Feb 2010 10:00:34 +0100
+Message-ID: <1265706036-7452-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,54 +16,188 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 Changes in v2:
-- Compute size based on ramin_rsvd_size
+- Addressed review comments
 
-This patch enlarges the PCI GART aperture to 512 MB, or the space
-covered by a DMA object filling half RAMIN.
+nouveau_bo_wait will make the GPU channel wait for fence if possible,
+otherwise falling back to waiting with the CPU using ttm_bo_wait.
 
-The current 64MB aperture is too small and should be enlarged.
-The optimal amound may be card/system-dependent, so a more sophisticated
-approach may be preferable.
-
-Could anyone with an nv04 test whether this doesn't break there?
+The nouveau_fence_sync function currently returns -ENOSYS, and is
+the focus of the next patch.
 
 Signed-off-by: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_sgdma.c |   14 ++++++++++++--
- 1 files changed, 12 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_bo.c    |   68 ++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/nouveau/nouveau_drv.h   |    2 +
+ drivers/gpu/drm/nouveau/nouveau_fence.c |    6 +++
+ drivers/gpu/drm/nouveau/nouveau_gem.c   |   20 +++++----
+ 4 files changed, 86 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-index 4c7f1e4..5a52006 100644
---- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-@@ -227,11 +227,21 @@ nouveau_sgdma_init(struct drm_device *dev)
- 	int i, ret;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 028719f..2da6acf 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -35,6 +35,70 @@
  
- 	if (dev_priv->card_type < NV_50) {
--		aper_size = (64 * 1024 * 1024);
-+		/* TODO: can we safely raise this to 1GB, 2GB or 4GB? */
-+		unsigned limit = 512 * 1024;
+ #include <linux/log2.h>
+ 
++int
++nouveau_bo_wait(struct ttm_buffer_object *bo, struct nouveau_channel *chan)
++{
++	int ret = 0;
 +
-+		/* use up half ramin for the GART ctxdma object */
-+		aper_size = dev_priv->ramin_rsvd_vram >> 1;
-+		if(aper_size > limit)
-+			aper_size = limit;
-+		aper_size <<= 10; /* each 4KB page needs a 4 byte entry */
++	if (likely(!bo->sync_obj))
++		return 0;
 +
- 		obj_size  = (aper_size >> NV_CTXDMA_PAGE_SHIFT) * 4;
- 		obj_size += 8; /* ctxdma header */
- 	} else {
--		/* 1 entire VM page table */
-+		/* 1 entire VM page table
-+		 * TODO: can we raise this so that it can potentially cover all system memory?
-+		 */
- 		aper_size = (512 * 1024 * 1024);
- 		obj_size  = (aper_size >> NV_CTXDMA_PAGE_SHIFT) * 8;
- 	}
++	spin_lock(&bo->lock);
++	if (chan) {
++		struct nouveau_fence *new_fence;
++		struct nouveau_channel *waited_chan;
++
++		do {
++			struct nouveau_fence *prev_fence;
++			prev_fence = bo->sync_obj;
++
++			waited_chan = nouveau_fence_channel(prev_fence);
++			if (likely(!waited_chan || waited_chan == chan))
++				break;
++
++			nouveau_fence_ref(prev_fence);
++
++			ret = ttm_bo_wait(bo, false, false, true);
++			if (!ret)
++				goto unref_break;
++
++			if (unlikely(prev_fence != bo->sync_obj))
++				goto unref_continue;
++
++			spin_unlock(&bo->lock);
++			new_fence = nouveau_fence_sync(prev_fence, chan);
++			spin_lock(&bo->lock);
++
++			if (likely(!IS_ERR(new_fence))) {
++				if (likely(bo->sync_obj)) {
++					if (unlikely(bo->sync_obj != prev_fence)) {
++						nouveau_fence_unref((void **)&new_fence);
++						continue;
++					}
++					nouveau_fence_unref((void **)&bo->sync_obj);
++				}
++				bo->sync_obj = new_fence;
++				ret = 0;
++unref_break:
++				nouveau_fence_unref((void **)&prev_fence);
++				break;
++			}
++
++			if (unlikely(prev_fence != bo->sync_obj)) {
++unref_continue:
++				nouveau_fence_unref((void **)&prev_fence);
++				continue;
++			}
++
++			nouveau_fence_unref((void **)&prev_fence);
++			ret = ttm_bo_wait(bo, false, false, false);
++		} while (0);
++	} else
++		ret = ttm_bo_wait(bo, false, false, false);
++	spin_unlock(&bo->lock);
++	return ret;
++}
++
+ static void
+ nouveau_bo_del_ttm(struct ttm_buffer_object *bo)
+ {
+@@ -469,8 +533,10 @@ nouveau_bo_move_accel_cleanup(struct nouveau_channel *chan,
+ 
+ 	ret = ttm_bo_move_accel_cleanup(&nvbo->bo, fence, NULL,
+ 					evict, no_wait, new_mem);
++
++	/* TODO: this should be redundant, since we do the check in validate */
+ 	if (nvbo->channel && nvbo->channel != chan)
+-		ret = nouveau_fence_wait(fence, NULL, false, false);
++		ret = nouveau_bo_wait(&nvbo->bo, nvbo->channel);
+ 	nouveau_fence_unref((void *)&fence);
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index 64987a9..bb9024c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -1111,6 +1111,7 @@ extern int nv04_crtc_create(struct drm_device *, int index);
+ 
+ /* nouveau_bo.c */
+ extern struct ttm_bo_driver nouveau_bo_driver;
++extern int nouveau_bo_wait(struct ttm_buffer_object *bo, struct nouveau_channel *chan);
+ extern int nouveau_bo_new(struct drm_device *, struct nouveau_channel *,
+ 			  int size, int align, uint32_t flags,
+ 			  uint32_t tile_mode, uint32_t tile_flags,
+@@ -1136,6 +1137,7 @@ extern int nouveau_fence_emit(struct nouveau_fence *);
+ struct nouveau_channel *nouveau_fence_channel(struct nouveau_fence *);
+ extern bool nouveau_fence_signalled(void *obj, void *arg);
+ extern int nouveau_fence_wait(void *obj, void *arg, bool lazy, bool intr);
++extern struct nouveau_fence *nouveau_fence_sync(struct nouveau_fence *, struct nouveau_channel *);
+ extern int nouveau_fence_flush(void *obj, void *arg);
+ extern void nouveau_fence_unref(void **obj);
+ extern void *nouveau_fence_ref(void *obj);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index faddf53..9b1c2c3 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -56,6 +56,12 @@ nouveau_fence_del(struct kref *ref)
+ 	kfree(fence);
+ }
+ 
++struct nouveau_fence*
++nouveau_fence_sync(struct nouveau_fence *waited_fence, struct nouveau_channel *chan)
++{
++	return ERR_PTR(-ENOSYS);
++}
++
+ void
+ nouveau_fence_update(struct nouveau_channel *chan)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 34063c5..f73ac83 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -354,15 +354,6 @@ validate_list(struct nouveau_channel *chan, struct list_head *list,
+ 
+ 	list_for_each_entry(nvbo, list, entry) {
+ 		struct drm_nouveau_gem_pushbuf_bo *b = &pbbo[nvbo->pbbo_index];
+-		struct nouveau_fence *prev_fence = nvbo->bo.sync_obj;
+-
+-		if (prev_fence && nouveau_fence_channel(prev_fence) != chan) {
+-			spin_lock(&nvbo->bo.lock);
+-			ret = ttm_bo_wait(&nvbo->bo, false, false, false);
+-			spin_unlock(&nvbo->bo.lock);
+-			if (unlikely(ret))
+-				return ret;
+-		}
+ 
+ 		ret = nouveau_gem_set_domain(nvbo->gem, b->read_domains,
+ 					     b->write_domains,
+@@ -377,6 +368,17 @@ validate_list(struct nouveau_channel *chan, struct list_head *list,
+ 		if (unlikely(ret))
+ 			return ret;
+ 
++		/* we must wait *after* validation, since we do the move
++		   with the kernel channel.
++
++		    Note that this may spin/sleep on a fence
++		    TODO: is this a good idea, or should we bail and retry?
++		  */
++		ret = nouveau_bo_wait(&nvbo->bo, chan);
++		if (unlikely(ret))
++			return ret;
++
++
+ 		if (nvbo->bo.offset == b->presumed_offset &&
+ 		    ((nvbo->bo.mem.mem_type == TTM_PL_VRAM &&
+ 		      b->presumed_domain & NOUVEAU_GEM_DOMAIN_VRAM) ||
 -- 
 1.6.6.1.476.g01ddb
