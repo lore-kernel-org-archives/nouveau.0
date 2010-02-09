@@ -1,15 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Add proper vgaarb support.
-Date: Tue, 09 Feb 2010 14:54:07 +1000
-Message-ID: <1265691247.2497.0.camel@araqiel>
-References: <1265588417-23494-1-git-send-email-koriakin@0x04.net>
-	<6d4bc9fc1002080944r6c8751beqdb2e51a5806cd28e@mail.gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Subject: [PATCH] drm/nouveau: enlarge GART aperture (v2)
+Date: Tue,  9 Feb 2010 06:59:36 +0100
+Message-ID: <1265695176-24383-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc1002080944r6c8751beqdb2e51a5806cd28e-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,40 +15,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyMDEwLTAyLTA4IGF0IDE4OjQ0ICswMTAwLCBNYWFydGVuIE1hYXRodWlzIHdyb3Rl
-Ogo+IDIwMTAvMi84IE1hcmNpbiBLb8WbY2llbG5pY2tpIDxrb3JpYWtpbkAweDA0Lm5ldD46Cj4g
-PiBTaWduZWQtb2ZmLWJ5OiBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29yaWFraW5AMHgwNC5uZXQ+
-Cj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMgfCAg
-ICA3ICsrKysrKysKPiA+ICAxIGZpbGVzIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwgMCBkZWxl
-dGlvbnMoLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9zdGF0ZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5jCj4g
-PiBpbmRleCBmY2Q3NjEwLi5jNTM4ZWVlIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9zdGF0ZS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X3N0YXRlLmMKPiA+IEBAIC0zMTAsNiArMzEwLDEzIEBAIHN0YXRpYyBpbnQgbm91
-dmVhdV9pbml0X2VuZ2luZV9wdHJzKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gPiAgc3RhdGlj
-IHVuc2lnbmVkIGludAo+ID4gIG5vdXZlYXVfdmdhX3NldF9kZWNvZGUodm9pZCAqcHJpdiwgYm9v
-bCBzdGF0ZSkKPiA+ICB7Cj4gPiArICAgICAgIHN0cnVjdCBkcm1fZGV2aWNlICpkZXYgPSBwcml2
-Owo+ID4gKyAgICAgICBzdHJ1Y3QgZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYt
-PmRldl9wcml2YXRlOwo+ID4gKyAgICAgICBpZiAoZGV2X3ByaXYtPmNoaXBzZXQgPj0gMHg0MCkg
-ewo+ID4gKyAgICAgICAgICAgICAgIG52X3dyMzIoZGV2LCAweDg4MDU0LCBzdGF0ZSk7Cj4gPiAr
-ICAgICAgIH0gZWxzZSB7Cj4gPiArICAgICAgICAgICAgICAgbnZfd3IzMihkZXYsIDB4MTg1NCwg
-c3RhdGUpOwo+ID4gKyAgICAgICB9Cj4gPiAgICAgICAgaWYgKHN0YXRlKQo+ID4gICAgICAgICAg
-ICAgICAgcmV0dXJuIFZHQV9SU1JDX0xFR0FDWV9JTyB8IFZHQV9SU1JDX0xFR0FDWV9NRU0gfAo+
-ID4gICAgICAgICAgICAgICAgICAgICAgIFZHQV9SU1JDX05PUk1BTF9JTyB8IFZHQV9SU1JDX05P
-Uk1BTF9NRU07Cj4gPiAtLQo+ID4gMS42LjQuMQo+ID4KPiA+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+ID4g
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4gPgo+IAo+IElmIG5vb25lIGNvbXBsYWlu
-cyBieSB0b21vcnJvdywgaSB3aWxsIHBpY2sgdGhpcyB1cC4KSSBwdXNoZWQgdGhpcyBhbHJlYWR5
-IHRvZGF5IGFsb25nIHdpdGggc29tZSBvdGhlciBmaXhlcywgaGFkIGl0IHF1ZXVlZAp1cCBzaW5j
-ZSB5ZXN0ZXJkYXkuCgpCZW4uCj4gCj4gTWFhcnRlbi4KPiBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+Changes in v2:
+- Compute size based on ramin_rsvd_size
+
+This patch enlarges the PCI GART aperture to 512 MB, or the space
+covered by a DMA object filling half RAMIN.
+
+The current 64MB aperture is too small and should be enlarged.
+The optimal amound may be card/system-dependent, so a more sophisticated
+approach may be preferable.
+
+Could anyone with an nv04 test whether this doesn't break there?
+
+Signed-off-by: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_sgdma.c |   14 ++++++++++++--
+ 1 files changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+index 4c7f1e4..5a52006 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
++++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+@@ -227,11 +227,21 @@ nouveau_sgdma_init(struct drm_device *dev)
+ 	int i, ret;
+ 
+ 	if (dev_priv->card_type < NV_50) {
+-		aper_size = (64 * 1024 * 1024);
++		/* TODO: can we safely raise this to 1GB, 2GB or 4GB? */
++		unsigned limit = 512 * 1024;
++
++		/* use up half ramin for the GART ctxdma object */
++		aper_size = dev_priv->ramin_rsvd_vram >> 1;
++		if(aper_size > limit)
++			aper_size = limit;
++		aper_size <<= 10; /* each 4KB page needs a 4 byte entry */
++
+ 		obj_size  = (aper_size >> NV_CTXDMA_PAGE_SHIFT) * 4;
+ 		obj_size += 8; /* ctxdma header */
+ 	} else {
+-		/* 1 entire VM page table */
++		/* 1 entire VM page table
++		 * TODO: can we raise this so that it can potentially cover all system memory?
++		 */
+ 		aper_size = (512 * 1024 * 1024);
+ 		obj_size  = (aper_size >> NV_CTXDMA_PAGE_SHIFT) * 8;
+ 	}
+-- 
+1.6.6.1.476.g01ddb
