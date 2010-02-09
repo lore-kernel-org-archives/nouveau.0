@@ -1,21 +1,15 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Syncing to vblank for interlaced video modes
-Date: Tue, 9 Feb 2010 13:21:44 -0500
-Message-ID: <586c2acd1002091021s4cfcc1b3h55d27459ee6d43a@mail.gmail.com>
-References: <20090614183442.GA13749@feanor>
-	<3d374d00906141158h28a7d688re1133b656dcdb6c5@mail.gmail.com>
-	<3d374d00906141556y44d5d493j330cc1ebf79e5968@mail.gmail.com>
-	<20090615070356.GA4197@feanor>
-	<3d374d00906150044h7ea2a845y189e070026ee9fc8@mail.gmail.com>
-	<20090615104352.GA5974@feanor>
-	<3d374d00906150601t5ddd1592i47b1323e0956967b@mail.gmail.com>
-	<20090616001405.b4242c25.hutts@internode.on.net>
-	<3d374d01002090950k45d60933k9aac481b87b62d4f@mail.gmail.com>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: don't hold spin lock while
+	calling kzalloc with GFP_KERNEL
+Date: Tue, 9 Feb 2010 19:54:08 +0100
+Message-ID: <6d4bc9fc1002091054j6a8ec5daue6f048905349f09c@mail.gmail.com>
+References: <1265650698-4773-1-git-send-email-madman2003@gmail.com>
+	<6d4bc9fc1002080939r2f3066b8k2e4541391628acc9@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <3d374d01002090950k45d60933k9aac481b87b62d4f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <6d4bc9fc1002080939r2f3066b8k2e4541391628acc9-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,58 +19,280 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Feb 9, 2010 at 12:50 PM, Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On 15 June 2009 14:14, Jamie Smith <hutts-CkBdp7X+a1oIQCUVoCVjmQ@public.gmane.org> wrote:
->> Hi Again,
->>
->> It seems I've triggered off much more discussion than I originally thought I would provoke.  I forgot to actually state what I was proposing to do, but it appears that people have worked it out.
->>
->>> >> > On Sun, Jun 14, 2009 at 11:56:45PM +0100, Alistair Buxton wrote:
->>> >> >> Stupid question: Given the presence of a register which indicates the
->>> >> >> current field, why can't NVWaitVSync simply wait until the end of the
->>> >> >> second field, by doing whatever it does twice iff it is called during
->>> >> >> the first field?
->>
->> Yes, this is what I'm proposing.  A server option that modifies the behaviour of the sync code so that if a) the option is set and b) the current video mode is interlaced, then wait until after the second field has been drawn before flipping pages/updating buffers etc.
->
-> [snip debate about whether this is a good idea]
->
-> I have been thinking about this problem recently and I have come to
-> the conclusion that it isn't necessary to change the vblank interrupt
-> frequency or add any special hooks to let the player know which field
-> is being shown. No drivers changes should be needed at all. It only
-> requires that players are more smart about how they display interlaced
-> content to the screen.
->
-> At the moment, every player I know of, when interlacing is disabled,
-> just does simple weaving. This is bad as when you display it on an
-> interlaced screen there is no way to know which field will get
-> displayed first. But there is a better way. If, each time the player
-> receives a vblank interrupt, it draws the next field into the display
-> (ie updating every other line on the framebuffer, and leaving the
-> other lines alone) then each field is in the framebuffer for 1 whole
-> frame, and no matter which framebuffer field is currently shown, the
-> next one will always contain the correct next field.
->
-> Effectively it is weaving, but instead of weaving each frame's field
-> pair, the frame rate is doubled by weaving every sequential field pair
-> even if they belong to different frames. So, assuming lower-field
-> first, it would produce frames composed like:
-> (1L,nothing),(1L,1U),(2L,1U),(2L,2U),(3L,2U),(3L,3U)...
->
-> Why it works is kind of hard to explain without a diagram so I have made one:
->
-> http://al.robotfuzz.com/~al/nouveau/path7109.png
->
-> Anyway, since no driver changes are needed, this is now offtopic. But
-> does anyone know a player that can do what I am describing? Or maybe
-> this method of playback has a special name I am not aware of?
+Pushed as announced.
 
-The problem with that is that the player is typically not copying to
-the actual frame buffer, or even the same buffer that was copied to in
-previous frames. It's copying to some buffer that's not guaranteed to
-contain anything specific, let alone the previously copied content.
+On Mon, Feb 8, 2010 at 6:39 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wro=
+te:
+> Added the "Tested-by", added Marcin's real name. And added a spin
+> unlock in the nv50 fifo failure path.
+>
+> Will push in a day if there are no further comments.
+>
+> Maarten.
+>
+> On Mon, Feb 8, 2010 at 6:38 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> w=
+rote:
+>> - Marcin Slusarz pointed out that this triggers a BUG_ON, because kzallo=
+c could
+>> sleep.
+>> - The irq handler should restore the value NV03_PFIFO_CACHES, but still =
+it's
+>> better if this stuff doesn't happen in the middle of fifo create context=
+. I see
+>> no reason in spin locking pgraph create context, it isn't activated at t=
+hat
+>> stage.
+>> - Move and rename the lock after some discussion with Marcin, even better
+>> naming suggestions are appreciated.
+>>
+>> Tested-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>> Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>> ---
+>> =A0drivers/gpu/drm/nouveau/nouveau_channel.c | =A0 =A09 ++-------
+>> =A0drivers/gpu/drm/nouveau/nouveau_drv.h =A0 =A0 | =A0 =A04 +++-
+>> =A0drivers/gpu/drm/nouveau/nouveau_irq.c =A0 =A0 | =A0 =A04 ++--
+>> =A0drivers/gpu/drm/nouveau/nouveau_state.c =A0 | =A0 =A02 +-
+>> =A0drivers/gpu/drm/nouveau/nv04_fifo.c =A0 =A0 =A0 | =A0 =A05 +++++
+>> =A0drivers/gpu/drm/nouveau/nv40_fifo.c =A0 =A0 =A0 | =A0 =A05 +++++
+>> =A0drivers/gpu/drm/nouveau/nv50_fifo.c =A0 =A0 =A0 | =A0 =A05 +++++
+>> =A07 files changed, 23 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/nouveau_channel.c b/drivers/gpu/drm=
+/nouveau/nouveau_channel.c
+>> index d25ed61..f7ca950 100644
+>> --- a/drivers/gpu/drm/nouveau/nouveau_channel.c
+>> +++ b/drivers/gpu/drm/nouveau/nouveau_channel.c
+>> @@ -113,7 +113,6 @@ nouveau_channel_alloc(struct drm_device *dev, struct=
+ nouveau_channel **chan_ret,
+>> =A0 =A0 =A0 =A0struct nouveau_pgraph_engine *pgraph =3D &dev_priv->engin=
+e.graph;
+>> =A0 =A0 =A0 =A0struct nouveau_fifo_engine *pfifo =3D &dev_priv->engine.f=
+ifo;
+>> =A0 =A0 =A0 =A0struct nouveau_channel *chan;
+>> - =A0 =A0 =A0 unsigned long flags;
+>> =A0 =A0 =A0 =A0int channel, user;
+>> =A0 =A0 =A0 =A0int ret;
+>>
+>> @@ -204,8 +203,6 @@ nouveau_channel_alloc(struct drm_device *dev, struct=
+ nouveau_channel **chan_ret,
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0return ret;
+>> =A0 =A0 =A0 =A0}
+>>
+>> - =A0 =A0 =A0 spin_lock_irqsave(&dev_priv->engine.lock, flags);
+>> -
+>> =A0 =A0 =A0 =A0/* disable the fifo caches */
+>> =A0 =A0 =A0 =A0pfifo->reassign(dev, false);
+>>
+>> @@ -225,8 +222,6 @@ nouveau_channel_alloc(struct drm_device *dev, struct=
+ nouveau_channel **chan_ret,
+>>
+>> =A0 =A0 =A0 =A0pfifo->reassign(dev, true);
+>>
+>> - =A0 =A0 =A0 spin_unlock_irqrestore(&dev_priv->engine.lock, flags);
+>> -
+>> =A0 =A0 =A0 =A0ret =3D nouveau_dma_init(chan);
+>> =A0 =A0 =A0 =A0if (!ret)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0ret =3D nouveau_fence_init(chan);
+>> @@ -290,7 +285,7 @@ nouveau_channel_free(struct nouveau_channel *chan)
+>> =A0 =A0 =A0 =A0if (pgraph->channel(dev) =3D=3D chan)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0nouveau_wait_for_idle(dev);
+>>
+>> - =A0 =A0 =A0 spin_lock_irqsave(&dev_priv->engine.lock, flags);
+>> + =A0 =A0 =A0 spin_lock_irqsave(&dev_priv->context_switch_lock, flags);
+>>
+>> =A0 =A0 =A0 =A0pgraph->fifo_access(dev, false);
+>> =A0 =A0 =A0 =A0if (pgraph->channel(dev) =3D=3D chan)
+>> @@ -307,7 +302,7 @@ nouveau_channel_free(struct nouveau_channel *chan)
+>>
+>> =A0 =A0 =A0 =A0pfifo->reassign(dev, true);
+>>
+>> - =A0 =A0 =A0 spin_unlock_irqrestore(&dev_priv->engine.lock, flags);
+>> + =A0 =A0 =A0 spin_unlock_irqrestore(&dev_priv->context_switch_lock, fla=
+gs);
+>>
+>> =A0 =A0 =A0 =A0/* Release the channel's resources */
+>> =A0 =A0 =A0 =A0nouveau_gpuobj_ref_del(dev, &chan->pushbuf);
+>> diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nou=
+veau/nouveau_drv.h
+>> index 64987a9..ea55a41 100644
+>> --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
+>> +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+>> @@ -358,7 +358,6 @@ struct nouveau_engine {
+>> =A0 =A0 =A0 =A0struct nouveau_fb_engine =A0 =A0 =A0fb;
+>> =A0 =A0 =A0 =A0struct nouveau_pgraph_engine =A0graph;
+>> =A0 =A0 =A0 =A0struct nouveau_fifo_engine =A0 =A0fifo;
+>> - =A0 =A0 =A0 spinlock_t lock;
+>> =A0};
+>>
+>> =A0struct nouveau_pll_vals {
+>> @@ -534,6 +533,9 @@ struct drm_nouveau_private {
+>> =A0 =A0 =A0 =A0struct nouveau_engine engine;
+>> =A0 =A0 =A0 =A0struct nouveau_channel *channel;
+>>
+>> + =A0 =A0 =A0 /* For PFIFO and PGRAPH. */
+>> + =A0 =A0 =A0 spinlock_t context_switch_lock;
+>> +
+>> =A0 =A0 =A0 =A0/* RAMIN configuration, RAMFC, RAMHT and RAMRO offsets */
+>> =A0 =A0 =A0 =A0struct nouveau_gpuobj *ramht;
+>> =A0 =A0 =A0 =A0uint32_t ramin_rsvd_vram;
+>> diff --git a/drivers/gpu/drm/nouveau/nouveau_irq.c b/drivers/gpu/drm/nou=
+veau/nouveau_irq.c
+>> index cffc9bc..95220dd 100644
+>> --- a/drivers/gpu/drm/nouveau/nouveau_irq.c
+>> +++ b/drivers/gpu/drm/nouveau/nouveau_irq.c
+>> @@ -697,7 +697,7 @@ nouveau_irq_handler(DRM_IRQ_ARGS)
+>> =A0 =A0 =A0 =A0if (!status)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0return IRQ_NONE;
+>>
+>> - =A0 =A0 =A0 spin_lock_irqsave(&dev_priv->engine.lock, flags);
+>> + =A0 =A0 =A0 spin_lock_irqsave(&dev_priv->context_switch_lock, flags);
+>>
+>> =A0 =A0 =A0 =A0if (dev_priv->fbdev_info) {
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0fbdev_flags =3D dev_priv->fbdev_info->fla=
+gs;
+>> @@ -736,7 +736,7 @@ nouveau_irq_handler(DRM_IRQ_ARGS)
+>> =A0 =A0 =A0 =A0if (dev_priv->fbdev_info)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0dev_priv->fbdev_info->flags =3D fbdev_fla=
+gs;
+>>
+>> - =A0 =A0 =A0 spin_unlock_irqrestore(&dev_priv->engine.lock, flags);
+>> + =A0 =A0 =A0 spin_unlock_irqrestore(&dev_priv->context_switch_lock, fla=
+gs);
+>>
+>> =A0 =A0 =A0 =A0return IRQ_HANDLED;
+>> =A0}
+>> diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c b/drivers/gpu/drm/n=
+ouveau/nouveau_state.c
+>> index 3586667..0a2a437 100644
+>> --- a/drivers/gpu/drm/nouveau/nouveau_state.c
+>> +++ b/drivers/gpu/drm/nouveau/nouveau_state.c
+>> @@ -383,7 +383,7 @@ nouveau_card_init(struct drm_device *dev)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0goto out;
+>> =A0 =A0 =A0 =A0engine =3D &dev_priv->engine;
+>> =A0 =A0 =A0 =A0dev_priv->init_state =3D NOUVEAU_CARD_INIT_FAILED;
+>> - =A0 =A0 =A0 spin_lock_init(&dev_priv->engine.lock);
+>> + =A0 =A0 =A0 spin_lock_init(&dev_priv->context_switch_lock);
+>>
+>> =A0 =A0 =A0 =A0/* Parse BIOS tables / Run init tables if card not POSTed=
+ */
+>> =A0 =A0 =A0 =A0if (drm_core_check_feature(dev, DRIVER_MODESET)) {
+>> diff --git a/drivers/gpu/drm/nouveau/nv04_fifo.c b/drivers/gpu/drm/nouve=
+au/nv04_fifo.c
+>> index f31347b..66fe559 100644
+>> --- a/drivers/gpu/drm/nouveau/nv04_fifo.c
+>> +++ b/drivers/gpu/drm/nouveau/nv04_fifo.c
+>> @@ -117,6 +117,7 @@ nv04_fifo_create_context(struct nouveau_channel *cha=
+n)
+>> =A0{
+>> =A0 =A0 =A0 =A0struct drm_device *dev =3D chan->dev;
+>> =A0 =A0 =A0 =A0struct drm_nouveau_private *dev_priv =3D dev->dev_private;
+>> + =A0 =A0 =A0 unsigned long flags;
+>> =A0 =A0 =A0 =A0int ret;
+>>
+>> =A0 =A0 =A0 =A0ret =3D nouveau_gpuobj_new_fake(dev, NV04_RAMFC(chan->id)=
+, ~0,
+>> @@ -127,6 +128,8 @@ nv04_fifo_create_context(struct nouveau_channel *cha=
+n)
+>> =A0 =A0 =A0 =A0if (ret)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0return ret;
+>>
+>> + =A0 =A0 =A0 spin_lock_irqsave(&dev_priv->context_switch_lock, flags);
+>> +
+>> =A0 =A0 =A0 =A0/* Setup initial state */
+>> =A0 =A0 =A0 =A0dev_priv->engine.instmem.prepare_access(dev, true);
+>> =A0 =A0 =A0 =A0RAMFC_WR(DMA_PUT, chan->pushbuf_base);
+>> @@ -144,6 +147,8 @@ nv04_fifo_create_context(struct nouveau_channel *cha=
+n)
+>> =A0 =A0 =A0 =A0/* enable the fifo dma operation */
+>> =A0 =A0 =A0 =A0nv_wr32(dev, NV04_PFIFO_MODE,
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0nv_rd32(dev, NV04_PFIFO_MODE) | (1 << cha=
+n->id));
+>> +
+>> + =A0 =A0 =A0 spin_unlock_irqrestore(&dev_priv->context_switch_lock, fla=
+gs);
+>> =A0 =A0 =A0 =A0return 0;
+>> =A0}
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/nv40_fifo.c b/drivers/gpu/drm/nouve=
+au/nv40_fifo.c
+>> index b4f19cc..6b2ef4a 100644
+>> --- a/drivers/gpu/drm/nouveau/nv40_fifo.c
+>> +++ b/drivers/gpu/drm/nouveau/nv40_fifo.c
+>> @@ -37,6 +37,7 @@ nv40_fifo_create_context(struct nouveau_channel *chan)
+>> =A0 =A0 =A0 =A0struct drm_device *dev =3D chan->dev;
+>> =A0 =A0 =A0 =A0struct drm_nouveau_private *dev_priv =3D dev->dev_private;
+>> =A0 =A0 =A0 =A0uint32_t fc =3D NV40_RAMFC(chan->id);
+>> + =A0 =A0 =A0 unsigned long flags;
+>> =A0 =A0 =A0 =A0int ret;
+>>
+>> =A0 =A0 =A0 =A0ret =3D nouveau_gpuobj_new_fake(dev, NV40_RAMFC(chan->id)=
+, ~0,
+>> @@ -45,6 +46,8 @@ nv40_fifo_create_context(struct nouveau_channel *chan)
+>> =A0 =A0 =A0 =A0if (ret)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0return ret;
+>>
+>> + =A0 =A0 =A0 spin_lock_irqsave(&dev_priv->context_switch_lock, flags);
+>> +
+>> =A0 =A0 =A0 =A0dev_priv->engine.instmem.prepare_access(dev, true);
+>> =A0 =A0 =A0 =A0nv_wi32(dev, fc + =A00, chan->pushbuf_base);
+>> =A0 =A0 =A0 =A0nv_wi32(dev, fc + =A04, chan->pushbuf_base);
+>> @@ -63,6 +66,8 @@ nv40_fifo_create_context(struct nouveau_channel *chan)
+>> =A0 =A0 =A0 =A0/* enable the fifo dma operation */
+>> =A0 =A0 =A0 =A0nv_wr32(dev, NV04_PFIFO_MODE,
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0nv_rd32(dev, NV04_PFIFO_MODE) | (1 << cha=
+n->id));
+>> +
+>> + =A0 =A0 =A0 spin_unlock_irqrestore(&dev_priv->context_switch_lock, fla=
+gs);
+>> =A0 =A0 =A0 =A0return 0;
+>> =A0}
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/nv50_fifo.c b/drivers/gpu/drm/nouve=
+au/nv50_fifo.c
+>> index 204a79f..369ecb4 100644
+>> --- a/drivers/gpu/drm/nouveau/nv50_fifo.c
+>> +++ b/drivers/gpu/drm/nouveau/nv50_fifo.c
+>> @@ -243,6 +243,7 @@ nv50_fifo_create_context(struct nouveau_channel *cha=
+n)
+>> =A0 =A0 =A0 =A0struct drm_device *dev =3D chan->dev;
+>> =A0 =A0 =A0 =A0struct drm_nouveau_private *dev_priv =3D dev->dev_private;
+>> =A0 =A0 =A0 =A0struct nouveau_gpuobj *ramfc =3D NULL;
+>> + =A0 =A0 =A0 unsigned long flags;
+>> =A0 =A0 =A0 =A0int ret;
+>>
+>> =A0 =A0 =A0 =A0NV_DEBUG(dev, "ch%d\n", chan->id);
+>> @@ -278,6 +279,8 @@ nv50_fifo_create_context(struct nouveau_channel *cha=
+n)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0return ret;
+>> =A0 =A0 =A0 =A0}
+>>
+>> + =A0 =A0 =A0 spin_lock_irqsave(&dev_priv->context_switch_lock, flags);
+>> +
+>> =A0 =A0 =A0 =A0dev_priv->engine.instmem.prepare_access(dev, true);
+>>
+>> =A0 =A0 =A0 =A0nv_wo32(dev, ramfc, 0x08/4, chan->pushbuf_base);
+>> @@ -306,10 +309,12 @@ nv50_fifo_create_context(struct nouveau_channel *c=
+han)
+>> =A0 =A0 =A0 =A0ret =3D nv50_fifo_channel_enable(dev, chan->id, false);
+>> =A0 =A0 =A0 =A0if (ret) {
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0NV_ERROR(dev, "error enabling ch%d: %d\n"=
+, chan->id, ret);
+>> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 spin_unlock_irqrestore(&dev_priv->context_=
+switch_lock, flags);
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0nouveau_gpuobj_ref_del(dev, &chan->ramfc);
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0return ret;
+>> =A0 =A0 =A0 =A0}
+>>
+>> + =A0 =A0 =A0 spin_unlock_irqrestore(&dev_priv->context_switch_lock, fla=
+gs);
+>> =A0 =A0 =A0 =A0return 0;
+>> =A0}
+>>
+>> --
+>> 1.6.6.1
+>>
+>>
+>
