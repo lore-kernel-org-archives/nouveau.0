@@ -1,7 +1,7 @@
-From: Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: Syncing to vblank for interlaced video modes
-Date: Tue, 9 Feb 2010 17:50:37 +0000
-Message-ID: <3d374d01002090950k45d60933k9aac481b87b62d4f@mail.gmail.com>
+Date: Tue, 9 Feb 2010 13:21:44 -0500
+Message-ID: <586c2acd1002091021s4cfcc1b3h55d27459ee6d43a@mail.gmail.com>
 References: <20090614183442.GA13749@feanor>
 	<3d374d00906141158h28a7d688re1133b656dcdb6c5@mail.gmail.com>
 	<3d374d00906141556y44d5d493j330cc1ebf79e5968@mail.gmail.com>
@@ -10,11 +10,12 @@ References: <20090614183442.GA13749@feanor>
 	<20090615104352.GA5974@feanor>
 	<3d374d00906150601t5ddd1592i47b1323e0956967b@mail.gmail.com>
 	<20090616001405.b4242c25.hutts@internode.on.net>
+	<3d374d01002090950k45d60933k9aac481b87b62d4f@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20090616001405.b4242c25.hutts-CkBdp7X+a1oIQCUVoCVjmQ@public.gmane.org>
+In-Reply-To: <3d374d01002090950k45d60933k9aac481b87b62d4f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,56 +25,58 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Jamie Smith <hutts-CkBdp7X+a1oIQCUVoCVjmQ@public.gmane.org>
+To: Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTUgSnVuZSAyMDA5IDE0OjE0LCBKYW1pZSBTbWl0aCA8aHV0dHNAaW50ZXJub2RlLm9uLm5l
-dD4gd3JvdGU6Cj4gSGkgQWdhaW4sCj4KPiBJdCBzZWVtcyBJJ3ZlIHRyaWdnZXJlZCBvZmYgbXVj
-aCBtb3JlIGRpc2N1c3Npb24gdGhhbiBJIG9yaWdpbmFsbHkgdGhvdWdodCBJIHdvdWxkIHByb3Zv
-a2UuIMKgSSBmb3Jnb3QgdG8gYWN0dWFsbHkgc3RhdGUgd2hhdCBJIHdhcyBwcm9wb3NpbmcgdG8g
-ZG8sIGJ1dCBpdCBhcHBlYXJzIHRoYXQgcGVvcGxlIGhhdmUgd29ya2VkIGl0IG91dC4KPgo+PiA+
-PiA+IE9uIFN1biwgSnVuIDE0LCAyMDA5IGF0IDExOjU2OjQ1UE0gKzAxMDAsIEFsaXN0YWlyIEJ1
-eHRvbiB3cm90ZToKPj4gPj4gPj4gU3R1cGlkIHF1ZXN0aW9uOiBHaXZlbiB0aGUgcHJlc2VuY2Ug
-b2YgYSByZWdpc3RlciB3aGljaCBpbmRpY2F0ZXMgdGhlCj4+ID4+ID4+IGN1cnJlbnQgZmllbGQs
-IHdoeSBjYW4ndCBOVldhaXRWU3luYyBzaW1wbHkgd2FpdCB1bnRpbCB0aGUgZW5kIG9mIHRoZQo+
-PiA+PiA+PiBzZWNvbmQgZmllbGQsIGJ5IGRvaW5nIHdoYXRldmVyIGl0IGRvZXMgdHdpY2UgaWZm
-IGl0IGlzIGNhbGxlZCBkdXJpbmcKPj4gPj4gPj4gdGhlIGZpcnN0IGZpZWxkPwo+Cj4gWWVzLCB0
-aGlzIGlzIHdoYXQgSSdtIHByb3Bvc2luZy4gwqBBIHNlcnZlciBvcHRpb24gdGhhdCBtb2RpZmll
-cyB0aGUgYmVoYXZpb3VyIG9mIHRoZSBzeW5jIGNvZGUgc28gdGhhdCBpZiBhKSB0aGUgb3B0aW9u
-IGlzIHNldCBhbmQgYikgdGhlIGN1cnJlbnQgdmlkZW8gbW9kZSBpcyBpbnRlcmxhY2VkLCB0aGVu
-IHdhaXQgdW50aWwgYWZ0ZXIgdGhlIHNlY29uZCBmaWVsZCBoYXMgYmVlbiBkcmF3biBiZWZvcmUg
-ZmxpcHBpbmcgcGFnZXMvdXBkYXRpbmcgYnVmZmVycyBldGMuCgpbc25pcCBkZWJhdGUgYWJvdXQg
-d2hldGhlciB0aGlzIGlzIGEgZ29vZCBpZGVhXQoKSSBoYXZlIGJlZW4gdGhpbmtpbmcgYWJvdXQg
-dGhpcyBwcm9ibGVtIHJlY2VudGx5IGFuZCBJIGhhdmUgY29tZSB0bwp0aGUgY29uY2x1c2lvbiB0
-aGF0IGl0IGlzbid0IG5lY2Vzc2FyeSB0byBjaGFuZ2UgdGhlIHZibGFuayBpbnRlcnJ1cHQKZnJl
-cXVlbmN5IG9yIGFkZCBhbnkgc3BlY2lhbCBob29rcyB0byBsZXQgdGhlIHBsYXllciBrbm93IHdo
-aWNoIGZpZWxkCmlzIGJlaW5nIHNob3duLiBObyBkcml2ZXJzIGNoYW5nZXMgc2hvdWxkIGJlIG5l
-ZWRlZCBhdCBhbGwuIEl0IG9ubHkKcmVxdWlyZXMgdGhhdCBwbGF5ZXJzIGFyZSBtb3JlIHNtYXJ0
-IGFib3V0IGhvdyB0aGV5IGRpc3BsYXkgaW50ZXJsYWNlZApjb250ZW50IHRvIHRoZSBzY3JlZW4u
-CgpBdCB0aGUgbW9tZW50LCBldmVyeSBwbGF5ZXIgSSBrbm93IG9mLCB3aGVuIGludGVybGFjaW5n
-IGlzIGRpc2FibGVkLApqdXN0IGRvZXMgc2ltcGxlIHdlYXZpbmcuIFRoaXMgaXMgYmFkIGFzIHdo
-ZW4geW91IGRpc3BsYXkgaXQgb24gYW4KaW50ZXJsYWNlZCBzY3JlZW4gdGhlcmUgaXMgbm8gd2F5
-IHRvIGtub3cgd2hpY2ggZmllbGQgd2lsbCBnZXQKZGlzcGxheWVkIGZpcnN0LiBCdXQgdGhlcmUg
-aXMgYSBiZXR0ZXIgd2F5LiBJZiwgZWFjaCB0aW1lIHRoZSBwbGF5ZXIKcmVjZWl2ZXMgYSB2Ymxh
-bmsgaW50ZXJydXB0LCBpdCBkcmF3cyB0aGUgbmV4dCBmaWVsZCBpbnRvIHRoZSBkaXNwbGF5Cihp
-ZSB1cGRhdGluZyBldmVyeSBvdGhlciBsaW5lIG9uIHRoZSBmcmFtZWJ1ZmZlciwgYW5kIGxlYXZp
-bmcgdGhlCm90aGVyIGxpbmVzIGFsb25lKSB0aGVuIGVhY2ggZmllbGQgaXMgaW4gdGhlIGZyYW1l
-YnVmZmVyIGZvciAxIHdob2xlCmZyYW1lLCBhbmQgbm8gbWF0dGVyIHdoaWNoIGZyYW1lYnVmZmVy
-IGZpZWxkIGlzIGN1cnJlbnRseSBzaG93biwgdGhlCm5leHQgb25lIHdpbGwgYWx3YXlzIGNvbnRh
-aW4gdGhlIGNvcnJlY3QgbmV4dCBmaWVsZC4KCkVmZmVjdGl2ZWx5IGl0IGlzIHdlYXZpbmcsIGJ1
-dCBpbnN0ZWFkIG9mIHdlYXZpbmcgZWFjaCBmcmFtZSdzIGZpZWxkCnBhaXIsIHRoZSBmcmFtZSBy
-YXRlIGlzIGRvdWJsZWQgYnkgd2VhdmluZyBldmVyeSBzZXF1ZW50aWFsIGZpZWxkIHBhaXIKZXZl
-biBpZiB0aGV5IGJlbG9uZyB0byBkaWZmZXJlbnQgZnJhbWVzLiBTbywgYXNzdW1pbmcgbG93ZXIt
-ZmllbGQKZmlyc3QsIGl0IHdvdWxkIHByb2R1Y2UgZnJhbWVzIGNvbXBvc2VkIGxpa2U6CigxTCxu
-b3RoaW5nKSwoMUwsMVUpLCgyTCwxVSksKDJMLDJVKSwoM0wsMlUpLCgzTCwzVSkuLi4KCldoeSBp
-dCB3b3JrcyBpcyBraW5kIG9mIGhhcmQgdG8gZXhwbGFpbiB3aXRob3V0IGEgZGlhZ3JhbSBzbyBJ
-IGhhdmUgbWFkZSBvbmU6CgpodHRwOi8vYWwucm9ib3RmdXp6LmNvbS9+YWwvbm91dmVhdS9wYXRo
-NzEwOS5wbmcKCkFueXdheSwgc2luY2Ugbm8gZHJpdmVyIGNoYW5nZXMgYXJlIG5lZWRlZCwgdGhp
-cyBpcyBub3cgb2ZmdG9waWMuIEJ1dApkb2VzIGFueW9uZSBrbm93IGEgcGxheWVyIHRoYXQgY2Fu
-IGRvIHdoYXQgSSBhbSBkZXNjcmliaW5nPyBPciBtYXliZQp0aGlzIG1ldGhvZCBvZiBwbGF5YmFj
-ayBoYXMgYSBzcGVjaWFsIG5hbWUgSSBhbSBub3QgYXdhcmUgb2Y/CgotLSAKQWxpc3RhaXIgQnV4
-dG9uCmEuai5idXh0b25AZ21haWwuY29tCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+On Tue, Feb 9, 2010 at 12:50 PM, Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On 15 June 2009 14:14, Jamie Smith <hutts-CkBdp7X+a1oIQCUVoCVjmQ@public.gmane.org> wrote:
+>> Hi Again,
+>>
+>> It seems I've triggered off much more discussion than I originally thought I would provoke.  I forgot to actually state what I was proposing to do, but it appears that people have worked it out.
+>>
+>>> >> > On Sun, Jun 14, 2009 at 11:56:45PM +0100, Alistair Buxton wrote:
+>>> >> >> Stupid question: Given the presence of a register which indicates the
+>>> >> >> current field, why can't NVWaitVSync simply wait until the end of the
+>>> >> >> second field, by doing whatever it does twice iff it is called during
+>>> >> >> the first field?
+>>
+>> Yes, this is what I'm proposing.  A server option that modifies the behaviour of the sync code so that if a) the option is set and b) the current video mode is interlaced, then wait until after the second field has been drawn before flipping pages/updating buffers etc.
+>
+> [snip debate about whether this is a good idea]
+>
+> I have been thinking about this problem recently and I have come to
+> the conclusion that it isn't necessary to change the vblank interrupt
+> frequency or add any special hooks to let the player know which field
+> is being shown. No drivers changes should be needed at all. It only
+> requires that players are more smart about how they display interlaced
+> content to the screen.
+>
+> At the moment, every player I know of, when interlacing is disabled,
+> just does simple weaving. This is bad as when you display it on an
+> interlaced screen there is no way to know which field will get
+> displayed first. But there is a better way. If, each time the player
+> receives a vblank interrupt, it draws the next field into the display
+> (ie updating every other line on the framebuffer, and leaving the
+> other lines alone) then each field is in the framebuffer for 1 whole
+> frame, and no matter which framebuffer field is currently shown, the
+> next one will always contain the correct next field.
+>
+> Effectively it is weaving, but instead of weaving each frame's field
+> pair, the frame rate is doubled by weaving every sequential field pair
+> even if they belong to different frames. So, assuming lower-field
+> first, it would produce frames composed like:
+> (1L,nothing),(1L,1U),(2L,1U),(2L,2U),(3L,2U),(3L,3U)...
+>
+> Why it works is kind of hard to explain without a diagram so I have made one:
+>
+> http://al.robotfuzz.com/~al/nouveau/path7109.png
+>
+> Anyway, since no driver changes are needed, this is now offtopic. But
+> does anyone know a player that can do what I am describing? Or maybe
+> this method of playback has a special name I am not aware of?
+
+The problem with that is that the player is typically not copying to
+the actual frame buffer, or even the same buffer that was copied to in
+previous frames. It's copying to some buffer that's not guaranteed to
+contain anything specific, let alone the previously copied content.
