@@ -1,14 +1,20 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26349] nouveau_hybrid_setup: disables a discrete NVS
- 3100m on ThinkPad T410
-Date: Tue,  9 Feb 2010 01:57:25 -0800 (PST)
-Message-ID: <20100209095725.2C75D1300E2@annarchy.freedesktop.org>
-References: <bug-26349-8800@http.bugs.freedesktop.org/>
+From: Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Syncing to vblank for interlaced video modes
+Date: Tue, 9 Feb 2010 17:50:37 +0000
+Message-ID: <3d374d01002090950k45d60933k9aac481b87b62d4f@mail.gmail.com>
+References: <20090614183442.GA13749@feanor>
+	<3d374d00906141158h28a7d688re1133b656dcdb6c5@mail.gmail.com>
+	<3d374d00906141556y44d5d493j330cc1ebf79e5968@mail.gmail.com>
+	<20090615070356.GA4197@feanor>
+	<3d374d00906150044h7ea2a845y189e070026ee9fc8@mail.gmail.com>
+	<20090615104352.GA5974@feanor>
+	<3d374d00906150601t5ddd1592i47b1323e0956967b@mail.gmail.com>
+	<20090616001405.b4242c25.hutts@internode.on.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20090616001405.b4242c25.hutts-CkBdp7X+a1oIQCUVoCVjmQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,28 +24,56 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jamie Smith <hutts-CkBdp7X+a1oIQCUVoCVjmQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26349
-
-
-
-
-
---- Comment #10 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>  2010-02-09 01:57:24 PST ---
-(In reply to comment #9)
-> No, that should be fine. I'll test it on the machine I have here and then send
-> it upstream.
-> 
-
-I have some news, which prove some assumptions about T410:
-although there is that Intel GPU on the CPU, it is not activated, and cannot be
-used in any way (AFAIK it is not connected to the mainboard so it cannot output
-anything). This means that this Thinkpad does not have hybrid graphics.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gMTUgSnVuZSAyMDA5IDE0OjE0LCBKYW1pZSBTbWl0aCA8aHV0dHNAaW50ZXJub2RlLm9uLm5l
+dD4gd3JvdGU6Cj4gSGkgQWdhaW4sCj4KPiBJdCBzZWVtcyBJJ3ZlIHRyaWdnZXJlZCBvZmYgbXVj
+aCBtb3JlIGRpc2N1c3Npb24gdGhhbiBJIG9yaWdpbmFsbHkgdGhvdWdodCBJIHdvdWxkIHByb3Zv
+a2UuIMKgSSBmb3Jnb3QgdG8gYWN0dWFsbHkgc3RhdGUgd2hhdCBJIHdhcyBwcm9wb3NpbmcgdG8g
+ZG8sIGJ1dCBpdCBhcHBlYXJzIHRoYXQgcGVvcGxlIGhhdmUgd29ya2VkIGl0IG91dC4KPgo+PiA+
+PiA+IE9uIFN1biwgSnVuIDE0LCAyMDA5IGF0IDExOjU2OjQ1UE0gKzAxMDAsIEFsaXN0YWlyIEJ1
+eHRvbiB3cm90ZToKPj4gPj4gPj4gU3R1cGlkIHF1ZXN0aW9uOiBHaXZlbiB0aGUgcHJlc2VuY2Ug
+b2YgYSByZWdpc3RlciB3aGljaCBpbmRpY2F0ZXMgdGhlCj4+ID4+ID4+IGN1cnJlbnQgZmllbGQs
+IHdoeSBjYW4ndCBOVldhaXRWU3luYyBzaW1wbHkgd2FpdCB1bnRpbCB0aGUgZW5kIG9mIHRoZQo+
+PiA+PiA+PiBzZWNvbmQgZmllbGQsIGJ5IGRvaW5nIHdoYXRldmVyIGl0IGRvZXMgdHdpY2UgaWZm
+IGl0IGlzIGNhbGxlZCBkdXJpbmcKPj4gPj4gPj4gdGhlIGZpcnN0IGZpZWxkPwo+Cj4gWWVzLCB0
+aGlzIGlzIHdoYXQgSSdtIHByb3Bvc2luZy4gwqBBIHNlcnZlciBvcHRpb24gdGhhdCBtb2RpZmll
+cyB0aGUgYmVoYXZpb3VyIG9mIHRoZSBzeW5jIGNvZGUgc28gdGhhdCBpZiBhKSB0aGUgb3B0aW9u
+IGlzIHNldCBhbmQgYikgdGhlIGN1cnJlbnQgdmlkZW8gbW9kZSBpcyBpbnRlcmxhY2VkLCB0aGVu
+IHdhaXQgdW50aWwgYWZ0ZXIgdGhlIHNlY29uZCBmaWVsZCBoYXMgYmVlbiBkcmF3biBiZWZvcmUg
+ZmxpcHBpbmcgcGFnZXMvdXBkYXRpbmcgYnVmZmVycyBldGMuCgpbc25pcCBkZWJhdGUgYWJvdXQg
+d2hldGhlciB0aGlzIGlzIGEgZ29vZCBpZGVhXQoKSSBoYXZlIGJlZW4gdGhpbmtpbmcgYWJvdXQg
+dGhpcyBwcm9ibGVtIHJlY2VudGx5IGFuZCBJIGhhdmUgY29tZSB0bwp0aGUgY29uY2x1c2lvbiB0
+aGF0IGl0IGlzbid0IG5lY2Vzc2FyeSB0byBjaGFuZ2UgdGhlIHZibGFuayBpbnRlcnJ1cHQKZnJl
+cXVlbmN5IG9yIGFkZCBhbnkgc3BlY2lhbCBob29rcyB0byBsZXQgdGhlIHBsYXllciBrbm93IHdo
+aWNoIGZpZWxkCmlzIGJlaW5nIHNob3duLiBObyBkcml2ZXJzIGNoYW5nZXMgc2hvdWxkIGJlIG5l
+ZWRlZCBhdCBhbGwuIEl0IG9ubHkKcmVxdWlyZXMgdGhhdCBwbGF5ZXJzIGFyZSBtb3JlIHNtYXJ0
+IGFib3V0IGhvdyB0aGV5IGRpc3BsYXkgaW50ZXJsYWNlZApjb250ZW50IHRvIHRoZSBzY3JlZW4u
+CgpBdCB0aGUgbW9tZW50LCBldmVyeSBwbGF5ZXIgSSBrbm93IG9mLCB3aGVuIGludGVybGFjaW5n
+IGlzIGRpc2FibGVkLApqdXN0IGRvZXMgc2ltcGxlIHdlYXZpbmcuIFRoaXMgaXMgYmFkIGFzIHdo
+ZW4geW91IGRpc3BsYXkgaXQgb24gYW4KaW50ZXJsYWNlZCBzY3JlZW4gdGhlcmUgaXMgbm8gd2F5
+IHRvIGtub3cgd2hpY2ggZmllbGQgd2lsbCBnZXQKZGlzcGxheWVkIGZpcnN0LiBCdXQgdGhlcmUg
+aXMgYSBiZXR0ZXIgd2F5LiBJZiwgZWFjaCB0aW1lIHRoZSBwbGF5ZXIKcmVjZWl2ZXMgYSB2Ymxh
+bmsgaW50ZXJydXB0LCBpdCBkcmF3cyB0aGUgbmV4dCBmaWVsZCBpbnRvIHRoZSBkaXNwbGF5Cihp
+ZSB1cGRhdGluZyBldmVyeSBvdGhlciBsaW5lIG9uIHRoZSBmcmFtZWJ1ZmZlciwgYW5kIGxlYXZp
+bmcgdGhlCm90aGVyIGxpbmVzIGFsb25lKSB0aGVuIGVhY2ggZmllbGQgaXMgaW4gdGhlIGZyYW1l
+YnVmZmVyIGZvciAxIHdob2xlCmZyYW1lLCBhbmQgbm8gbWF0dGVyIHdoaWNoIGZyYW1lYnVmZmVy
+IGZpZWxkIGlzIGN1cnJlbnRseSBzaG93biwgdGhlCm5leHQgb25lIHdpbGwgYWx3YXlzIGNvbnRh
+aW4gdGhlIGNvcnJlY3QgbmV4dCBmaWVsZC4KCkVmZmVjdGl2ZWx5IGl0IGlzIHdlYXZpbmcsIGJ1
+dCBpbnN0ZWFkIG9mIHdlYXZpbmcgZWFjaCBmcmFtZSdzIGZpZWxkCnBhaXIsIHRoZSBmcmFtZSBy
+YXRlIGlzIGRvdWJsZWQgYnkgd2VhdmluZyBldmVyeSBzZXF1ZW50aWFsIGZpZWxkIHBhaXIKZXZl
+biBpZiB0aGV5IGJlbG9uZyB0byBkaWZmZXJlbnQgZnJhbWVzLiBTbywgYXNzdW1pbmcgbG93ZXIt
+ZmllbGQKZmlyc3QsIGl0IHdvdWxkIHByb2R1Y2UgZnJhbWVzIGNvbXBvc2VkIGxpa2U6CigxTCxu
+b3RoaW5nKSwoMUwsMVUpLCgyTCwxVSksKDJMLDJVKSwoM0wsMlUpLCgzTCwzVSkuLi4KCldoeSBp
+dCB3b3JrcyBpcyBraW5kIG9mIGhhcmQgdG8gZXhwbGFpbiB3aXRob3V0IGEgZGlhZ3JhbSBzbyBJ
+IGhhdmUgbWFkZSBvbmU6CgpodHRwOi8vYWwucm9ib3RmdXp6LmNvbS9+YWwvbm91dmVhdS9wYXRo
+NzEwOS5wbmcKCkFueXdheSwgc2luY2Ugbm8gZHJpdmVyIGNoYW5nZXMgYXJlIG5lZWRlZCwgdGhp
+cyBpcyBub3cgb2ZmdG9waWMuIEJ1dApkb2VzIGFueW9uZSBrbm93IGEgcGxheWVyIHRoYXQgY2Fu
+IGRvIHdoYXQgSSBhbSBkZXNjcmliaW5nPyBPciBtYXliZQp0aGlzIG1ldGhvZCBvZiBwbGF5YmFj
+ayBoYXMgYSBzcGVjaWFsIG5hbWUgSSBhbSBub3QgYXdhcmUgb2Y/CgotLSAKQWxpc3RhaXIgQnV4
+dG9uCmEuai5idXh0b25AZ21haWwuY29tCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
