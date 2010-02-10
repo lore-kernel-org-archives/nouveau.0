@@ -1,22 +1,11 @@
-From: Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Syncing to vblank for interlaced video modes
-Date: Wed, 10 Feb 2010 01:16:37 +0000
-Message-ID: <3d374d01002091716s2e4fe4es39929f48a2c01f54@mail.gmail.com>
-References: <20090614183442.GA13749@feanor>
-	<3d374d00906141158h28a7d688re1133b656dcdb6c5@mail.gmail.com>
-	<3d374d00906141556y44d5d493j330cc1ebf79e5968@mail.gmail.com>
-	<20090615070356.GA4197@feanor>
-	<3d374d00906150044h7ea2a845y189e070026ee9fc8@mail.gmail.com>
-	<20090615104352.GA5974@feanor>
-	<3d374d00906150601t5ddd1592i47b1323e0956967b@mail.gmail.com>
-	<20090616001405.b4242c25.hutts@internode.on.net>
-	<3d374d01002090950k45d60933k9aac481b87b62d4f@mail.gmail.com>
-	<586c2acd1002091021s4cfcc1b3h55d27459ee6d43a@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26499] New: nouveau driver fails to load
+Date: Tue,  9 Feb 2010 18:04:47 -0800 (PST)
+Message-ID: <bug-26499-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <586c2acd1002091021s4cfcc1b3h55d27459ee6d43a-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -26,81 +15,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gOSBGZWJydWFyeSAyMDEwIDE4OjIxLCBZb3VuZXMgTWFudG9uIDx5b3VuZXMubUBnbWFpbC5j
-b20+IHdyb3RlOgo+IE9uIFR1ZSwgRmViIDksIDIwMTAgYXQgMTI6NTAgUE0sIEFsaXN0YWlyIEJ1
-eHRvbiA8YS5qLmJ1eHRvbkBnbWFpbC5jb20+IHdyb3RlOgo+PiBPbiAxNSBKdW5lIDIwMDkgMTQ6
-MTQsIEphbWllIFNtaXRoIDxodXR0c0BpbnRlcm5vZGUub24ubmV0PiB3cm90ZToKPj4+IEhpIEFn
-YWluLAo+Pj4KPj4+IEl0IHNlZW1zIEkndmUgdHJpZ2dlcmVkIG9mZiBtdWNoIG1vcmUgZGlzY3Vz
-c2lvbiB0aGFuIEkgb3JpZ2luYWxseSB0aG91Z2h0IEkgd291bGQgcHJvdm9rZS4gwqBJIGZvcmdv
-dCB0byBhY3R1YWxseSBzdGF0ZSB3aGF0IEkgd2FzIHByb3Bvc2luZyB0byBkbywgYnV0IGl0IGFw
-cGVhcnMgdGhhdCBwZW9wbGUgaGF2ZSB3b3JrZWQgaXQgb3V0Lgo+Pj4KPj4+PiA+PiA+IE9uIFN1
-biwgSnVuIDE0LCAyMDA5IGF0IDExOjU2OjQ1UE0gKzAxMDAsIEFsaXN0YWlyIEJ1eHRvbiB3cm90
-ZToKPj4+PiA+PiA+PiBTdHVwaWQgcXVlc3Rpb246IEdpdmVuIHRoZSBwcmVzZW5jZSBvZiBhIHJl
-Z2lzdGVyIHdoaWNoIGluZGljYXRlcyB0aGUKPj4+PiA+PiA+PiBjdXJyZW50IGZpZWxkLCB3aHkg
-Y2FuJ3QgTlZXYWl0VlN5bmMgc2ltcGx5IHdhaXQgdW50aWwgdGhlIGVuZCBvZiB0aGUKPj4+PiA+
-PiA+PiBzZWNvbmQgZmllbGQsIGJ5IGRvaW5nIHdoYXRldmVyIGl0IGRvZXMgdHdpY2UgaWZmIGl0
-IGlzIGNhbGxlZCBkdXJpbmcKPj4+PiA+PiA+PiB0aGUgZmlyc3QgZmllbGQ/Cj4+Pgo+Pj4gWWVz
-LCB0aGlzIGlzIHdoYXQgSSdtIHByb3Bvc2luZy4gwqBBIHNlcnZlciBvcHRpb24gdGhhdCBtb2Rp
-ZmllcyB0aGUgYmVoYXZpb3VyIG9mIHRoZSBzeW5jIGNvZGUgc28gdGhhdCBpZiBhKSB0aGUgb3B0
-aW9uIGlzIHNldCBhbmQgYikgdGhlIGN1cnJlbnQgdmlkZW8gbW9kZSBpcyBpbnRlcmxhY2VkLCB0
-aGVuIHdhaXQgdW50aWwgYWZ0ZXIgdGhlIHNlY29uZCBmaWVsZCBoYXMgYmVlbiBkcmF3biBiZWZv
-cmUgZmxpcHBpbmcgcGFnZXMvdXBkYXRpbmcgYnVmZmVycyBldGMuCj4+Cj4+IFtzbmlwIGRlYmF0
-ZSBhYm91dCB3aGV0aGVyIHRoaXMgaXMgYSBnb29kIGlkZWFdCj4+Cj4+IEkgaGF2ZSBiZWVuIHRo
-aW5raW5nIGFib3V0IHRoaXMgcHJvYmxlbSByZWNlbnRseSBhbmQgSSBoYXZlIGNvbWUgdG8KPj4g
-dGhlIGNvbmNsdXNpb24gdGhhdCBpdCBpc24ndCBuZWNlc3NhcnkgdG8gY2hhbmdlIHRoZSB2Ymxh
-bmsgaW50ZXJydXB0Cj4+IGZyZXF1ZW5jeSBvciBhZGQgYW55IHNwZWNpYWwgaG9va3MgdG8gbGV0
-IHRoZSBwbGF5ZXIga25vdyB3aGljaCBmaWVsZAo+PiBpcyBiZWluZyBzaG93bi4gTm8gZHJpdmVy
-cyBjaGFuZ2VzIHNob3VsZCBiZSBuZWVkZWQgYXQgYWxsLiBJdCBvbmx5Cj4+IHJlcXVpcmVzIHRo
-YXQgcGxheWVycyBhcmUgbW9yZSBzbWFydCBhYm91dCBob3cgdGhleSBkaXNwbGF5IGludGVybGFj
-ZWQKPj4gY29udGVudCB0byB0aGUgc2NyZWVuLgo+Pgo+PiBBdCB0aGUgbW9tZW50LCBldmVyeSBw
-bGF5ZXIgSSBrbm93IG9mLCB3aGVuIGludGVybGFjaW5nIGlzIGRpc2FibGVkLAo+PiBqdXN0IGRv
-ZXMgc2ltcGxlIHdlYXZpbmcuIFRoaXMgaXMgYmFkIGFzIHdoZW4geW91IGRpc3BsYXkgaXQgb24g
-YW4KPj4gaW50ZXJsYWNlZCBzY3JlZW4gdGhlcmUgaXMgbm8gd2F5IHRvIGtub3cgd2hpY2ggZmll
-bGQgd2lsbCBnZXQKPj4gZGlzcGxheWVkIGZpcnN0LiBCdXQgdGhlcmUgaXMgYSBiZXR0ZXIgd2F5
-LiBJZiwgZWFjaCB0aW1lIHRoZSBwbGF5ZXIKPj4gcmVjZWl2ZXMgYSB2YmxhbmsgaW50ZXJydXB0
-LCBpdCBkcmF3cyB0aGUgbmV4dCBmaWVsZCBpbnRvIHRoZSBkaXNwbGF5Cj4+IChpZSB1cGRhdGlu
-ZyBldmVyeSBvdGhlciBsaW5lIG9uIHRoZSBmcmFtZWJ1ZmZlciwgYW5kIGxlYXZpbmcgdGhlCj4+
-IG90aGVyIGxpbmVzIGFsb25lKSB0aGVuIGVhY2ggZmllbGQgaXMgaW4gdGhlIGZyYW1lYnVmZmVy
-IGZvciAxIHdob2xlCj4+IGZyYW1lLCBhbmQgbm8gbWF0dGVyIHdoaWNoIGZyYW1lYnVmZmVyIGZp
-ZWxkIGlzIGN1cnJlbnRseSBzaG93biwgdGhlCj4+IG5leHQgb25lIHdpbGwgYWx3YXlzIGNvbnRh
-aW4gdGhlIGNvcnJlY3QgbmV4dCBmaWVsZC4KPj4KPj4gRWZmZWN0aXZlbHkgaXQgaXMgd2Vhdmlu
-ZywgYnV0IGluc3RlYWQgb2Ygd2VhdmluZyBlYWNoIGZyYW1lJ3MgZmllbGQKPj4gcGFpciwgdGhl
-IGZyYW1lIHJhdGUgaXMgZG91YmxlZCBieSB3ZWF2aW5nIGV2ZXJ5IHNlcXVlbnRpYWwgZmllbGQg
-cGFpcgo+PiBldmVuIGlmIHRoZXkgYmVsb25nIHRvIGRpZmZlcmVudCBmcmFtZXMuIFNvLCBhc3N1
-bWluZyBsb3dlci1maWVsZAo+PiBmaXJzdCwgaXQgd291bGQgcHJvZHVjZSBmcmFtZXMgY29tcG9z
-ZWQgbGlrZToKPj4gKDFMLG5vdGhpbmcpLCgxTCwxVSksKDJMLDFVKSwoMkwsMlUpLCgzTCwyVSks
-KDNMLDNVKS4uLgo+Pgo+PiBXaHkgaXQgd29ya3MgaXMga2luZCBvZiBoYXJkIHRvIGV4cGxhaW4g
-d2l0aG91dCBhIGRpYWdyYW0gc28gSSBoYXZlIG1hZGUgb25lOgo+Pgo+PiBodHRwOi8vYWwucm9i
-b3RmdXp6LmNvbS9+YWwvbm91dmVhdS9wYXRoNzEwOS5wbmcKPj4KPj4gQW55d2F5LCBzaW5jZSBu
-byBkcml2ZXIgY2hhbmdlcyBhcmUgbmVlZGVkLCB0aGlzIGlzIG5vdyBvZmZ0b3BpYy4gQnV0Cj4+
-IGRvZXMgYW55b25lIGtub3cgYSBwbGF5ZXIgdGhhdCBjYW4gZG8gd2hhdCBJIGFtIGRlc2NyaWJp
-bmc/IE9yIG1heWJlCj4+IHRoaXMgbWV0aG9kIG9mIHBsYXliYWNrIGhhcyBhIHNwZWNpYWwgbmFt
-ZSBJIGFtIG5vdCBhd2FyZSBvZj8KPgo+IFRoZSBwcm9ibGVtIHdpdGggdGhhdCBpcyB0aGF0IHRo
-ZSBwbGF5ZXIgaXMgdHlwaWNhbGx5IG5vdCBjb3B5aW5nIHRvCj4gdGhlIGFjdHVhbCBmcmFtZSBi
-dWZmZXIsIG9yIGV2ZW4gdGhlIHNhbWUgYnVmZmVyIHRoYXQgd2FzIGNvcGllZCB0byBpbgo+IHBy
-ZXZpb3VzIGZyYW1lcy4gSXQncyBjb3B5aW5nIHRvIHNvbWUgYnVmZmVyIHRoYXQncyBub3QgZ3Vh
-cmFudGVlZCB0bwo+IGNvbnRhaW4gYW55dGhpbmcgc3BlY2lmaWMsIGxldCBhbG9uZSB0aGUgcHJl
-dmlvdXNseSBjb3BpZWQgY29udGVudC4KPgoKSSB3YXMgdGFsa2luZyBhYm91dCBhIGh5cG90aGV0
-aWNhbCBsb2dpY2FsIGZyYW1lYnVmZmVyIGluc2lkZSB0aGUKcGxheWVyLCBub3QgdGhlIHJlYWwg
-aGFyZHdhcmUuCgpUaGUgb3BlcmF0aW9uIEkgZGVzY3JpYmVkIGlzIHNvbWV0aW1lcyBjYWxsZWQg
-ImRvdWJsZSB3ZWF2ZSI6CgpodHRwOi8vYXZpc3ludGgub3JnL21lZGlhd2lraS9Eb3VibGVXZWF2
-ZQoKSXQgaXMgdmVyeSBjbG9zZSB0byB3aGF0IG1wbGF5ZXIncyAidGZpZWxkcyIgZmlsdGVyIGRv
-ZXMgaW4gbW9kZSAxLgpDbG9zZSBlbm91Z2ggdGhhdCBJIHdhcyBhYmxlIHRvIGltcGxlbWVudCBp
-dCBhbmQgdGVzdCBpdCwgYW5kIHRoZQpyZXN1bHRzIGFyZSB2ZXJ5IGdvb2QuIE5vIG1vcmUganVk
-ZGVyaW5nIC8gb3V0IG9mIG9yZGVyIGZpZWxkcyBhbmQgbm8KZGVpbnRlcmxhY2luZyBhcnRpZmFj
-dHMuIEl0IHdhcyBvbmx5IG5lY2Vzc2FyeSB0byBkdXBsaWNhdGUgdGhlIG1vZGUgMQpmdW5jdGlv
-bmFsaXR5IGFuZCBjb21tZW50IHRoZSBkZWludCgpIGNhbGxzLiBJdCBzaG91bGQgYmUgZWFzeSBl
-bm91Z2gKdG8gaW1wbGVtZW50IHRoaXMgaW4gYW55IG90aGVyIHBsYXllci4KCkhlcmUgaXMgbXkg
-cGF0Y2ggYWdhaW5zdCB0aGUgbXBsYXllciBwYWNrYWdlIGZyb20gdWJ1bnR1OgoKaHR0cDovL2Fs
-LnJvYm90ZnV6ei5jb20vfmFsL25vdXZlYXUvOTktZG91YmxlLXdlYXZlLnBhdGNoCgpJdCBhZGRz
-IGEgbmV3IG1vZGUgdG8gdGZpZWxkcy4gVXNlIGl0IGxpa2U6ICJtcGxheWVyIC12ZiB0ZmllbGRz
-PTUgeW91cmZpbGUubXBnIgoKU28sIGluIGNvbmNsdXNpb24sIG5vIHZibGFuayBoYWNrcyBvciBv
-dGhlciBkcml2ZXIgY2hhbmdlcyBhcmUgbmVlZGVkCnRvIHN1cHBvcnQgaW50ZXJsYWNlLW9uLWlu
-dGVybGFjZS4KCi0tIApBbGlzdGFpciBCdXh0b24KYS5qLmJ1eHRvbkBnbWFpbC5jb20KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=26499
+
+           Summary: nouveau driver fails to load
+           Product: xorg
+           Version: 7.4
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: info-96uw9CIjR0PWwRiSwr8iaA@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Below you find the dmesg. Using Fedora 12 2.6.32.7-37.fc12.i686.PAE
+
+Cannot replicate. Is my video card dying or so?
+
+[drm] Initialized drm 1.1.0 20060810
+nouveau 0000:01:00.0: power state changed by ACPI to D0
+nouveau 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
+nouveau 0000:01:00.0: setting latency timer to 64
+[drm] nouveau 0000:01:00.0: failed to evaluate _DSM: 5
+[drm] nouveau 0000:01:00.0: Detected an NV50 generation card (0x086500a2)
+[drm] nouveau 0000:01:00.0: Attempting to load BIOS image from PRAMIN
+[drm] nouveau 0000:01:00.0: ... BIOS checksum invalid
+[drm] nouveau 0000:01:00.0: Attempting to load BIOS image from PROM
+[drm] nouveau 0000:01:00.0: ... BIOS signature not found
+[drm] nouveau 0000:01:00.0: Attempting to load BIOS image from PCIROM
+[drm] nouveau 0000:01:00.0: ... appears to be valid
+[drm] nouveau 0000:01:00.0: BIT BIOS found
+[drm] nouveau 0000:01:00.0: Bios version 60.86.4f.00
+[drm] nouveau 0000:01:00.0: TMDS table revision 2.0 not currently supported
+[drm] nouveau 0000:01:00.0: BIT table 'd' not found
+[drm] nouveau 0000:01:00.0: Found Display Configuration Block version 4.0
+[drm] nouveau 0000:01:00.0: DCB connector table: VHER 0x40 5 14 2
+[drm] nouveau 0000:01:00.0:   0: 0x00000040: type 0x40 idx 0 tag 0xff
+[drm] nouveau 0000:01:00.0:   1: 0x00000100: type 0x00 idx 1 tag 0xff
+[drm] nouveau 0000:01:00.0:   2: 0x00001261: type 0x61 idx 2 tag 0x07
+[drm] nouveau 0000:01:00.0:   3: 0x00000310: type 0x10 idx 3 tag 0xff
+[drm] nouveau 0000:01:00.0:   4: 0x00000311: type 0x11 idx 3 tag 0xff
+[drm] nouveau 0000:01:00.0:   5: 0x00000313: type 0x13 idx 3 tag 0xff
+[drm] nouveau 0000:01:00.0: Raw DCB entry 0: 01000323 00000034
+[drm] nouveau 0000:01:00.0: Raw DCB entry 1: 02011300 00000028
+[drm] nouveau 0000:01:00.0: Raw DCB entry 2: 02022312 00020010
+[drm] nouveau 0000:01:00.0: Raw DCB entry 3: 010333f1 00c0c080
+[drm] nouveau 0000:01:00.0: Raw DCB entry 4: 0000000e 00000000
+[drm] nouveau 0000:01:00.0: Parsing VBIOS init table 0 at offset 0xC581
+[drm] nouveau 0000:01:00.0: 0xC581: Init table command not found: 0x00
+[drm] nouveau 0000:01:00.0: Parsing VBIOS init table 1 at offset 0xC8D1
+[drm] nouveau 0000:01:00.0: 0xC8D1: Init table command not found: 0x00
+[drm] nouveau 0000:01:00.0: Parsing VBIOS init table 2 at offset 0xD512
+[drm] nouveau 0000:01:00.0: Parsing VBIOS init table 3 at offset 0xD604
+[drm] nouveau 0000:01:00.0: 0xD617: Init table command not found: 0x6A
+[drm] nouveau 0000:01:00.0: Parsing VBIOS init table 4 at offset 0xD7FE
+[drm] nouveau 0000:01:00.0: Parsing VBIOS init table at offset 0xD863
+[drm] nouveau 0000:01:00.0: 0x0000: Init table command not found: 0x55
+[drm] nouveau 0000:01:00.0: 0xD86A: Init table command not found: 0x61
+[drm] nouveau 0000:01:00.0: 0xB5E2: parsing output script 0
+[drm] nouveau 0000:01:00.0: 0xB758: parsing output script 0
+[drm] nouveau 0000:01:00.0: 0xADC8: parsing output script 0
+[drm] nouveau 0000:01:00.0: Error reading back PRAMIN at 0x000004d0
+[drm] nouveau 0000:01:00.0: gpuobj dbb3fc00 still exists at takedown, refs=1
+[drm] nouveau 0000:01:00.0: gpuobj dbb3fa80 still exists at takedown, refs=1
+[drm] nouveau 0000:01:00.0: gpuobj dbb3f940 still exists at takedown, refs=0
+[drm] nouveau 0000:01:00.0: gpuobj dbb3f8c0 still exists at takedown, refs=1
+[drm] nouveau 0000:01:00.0: gpuobj dbb3fc80 still exists at takedown, refs=1
+[drm] nouveau 0000:01:00.0: gpuobj dbb3f980 still exists at takedown, refs=1
+[drm] nouveau 0000:01:00.0: gpuobj dbb3f780 still exists at takedown, refs=1
+nouveau 0000:01:00.0: PCI INT A disabled
+nouveau: probe of 0000:01:00.0 failed with error -22
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
