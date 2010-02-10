@@ -1,11 +1,22 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH] Remove some UMS leftovers.
-Date: Tue,  9 Feb 2010 20:51:17 +0000
-Message-ID: <1265748677-31650-1-git-send-email-koriakin@0x04.net>
+From: Alistair Buxton <a.j.buxton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Syncing to vblank for interlaced video modes
+Date: Wed, 10 Feb 2010 01:16:37 +0000
+Message-ID: <3d374d01002091716s2e4fe4es39929f48a2c01f54@mail.gmail.com>
+References: <20090614183442.GA13749@feanor>
+	<3d374d00906141158h28a7d688re1133b656dcdb6c5@mail.gmail.com>
+	<3d374d00906141556y44d5d493j330cc1ebf79e5968@mail.gmail.com>
+	<20090615070356.GA4197@feanor>
+	<3d374d00906150044h7ea2a845y189e070026ee9fc8@mail.gmail.com>
+	<20090615104352.GA5974@feanor>
+	<3d374d00906150601t5ddd1592i47b1323e0956967b@mail.gmail.com>
+	<20090616001405.b4242c25.hutts@internode.on.net>
+	<3d374d01002090950k45d60933k9aac481b87b62d4f@mail.gmail.com>
+	<586c2acd1002091021s4cfcc1b3h55d27459ee6d43a@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <586c2acd1002091021s4cfcc1b3h55d27459ee6d43a-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,90 +26,81 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
----
- src/nv_driver.c |   32 +-------------------------------
- 1 files changed, 1 insertions(+), 31 deletions(-)
-
-diff --git a/src/nv_driver.c b/src/nv_driver.c
-index 248a151..9606d97 100644
---- a/src/nv_driver.c
-+++ b/src/nv_driver.c
-@@ -315,8 +315,6 @@ NVAdjustFrame(int scrnIndex, int x, int y, int flags)
- /*
-  * This is called when VT switching back to the X server.  Its job is
-  * to reinitialise the video mode.
-- *
-- * We may wish to unmap video/MMIO memory too.
-  */
- 
- /* Mandatory */
-@@ -333,9 +331,6 @@ NVEnterVT(int scrnIndex, int flags)
- 	if (ret)
- 		ErrorF("Unable to get master: %d\n", ret);
- 
--	if (!pNv->NoAccel)
--		NVAccelCommonInit(pScrn);
--
- 	pNv->allow_dpms = FALSE;
- 	if (!xf86SetDesiredModes(pScrn))
- 		return FALSE;
-@@ -350,8 +345,6 @@ NVEnterVT(int scrnIndex, int flags)
- /*
-  * This is called when VT switching away from the X server.  Its job is
-  * to restore the previous (text) mode.
-- *
-- * We may wish to remap video/MMIO memory too.
-  */
- 
- /* Mandatory */
-@@ -586,24 +579,6 @@ NVPreInit(ScrnInfoPtr pScrn, int flags)
- 	MessageType from;
- 	int ret, i;
- 
--	if (flags & PROBE_DETECT) {
--		EntityInfoPtr pEnt = xf86GetEntityInfo(pScrn->entityList[0]);
--
--		if (!pEnt)
--			return FALSE;
--
--		i = pEnt->index;
--		xfree(pEnt);
--
--		if (xf86LoadSubModule(pScrn, "vbe")) {
--			vbeInfoPtr pVbe = VBEInit(NULL, i);
--			ConfiguredMonitor = vbeDoEDID(pVbe, NULL);
--			vbeFree(pVbe);
--		}
--
--		return TRUE;
--	}
--
- 	/*
- 	 * Note: This function is only called once at server startup, and
- 	 * not at the start of each server generation.  This means that
-@@ -733,11 +708,6 @@ NVPreInit(ScrnInfoPtr pScrn, int flags)
- 			      xf86GetVisualName(pScrn->defaultVisual), pScrn->depth);
- 	}
- 
--	/* The vgahw module should be loaded here when needed */
--	if (!xf86LoadSubModule(pScrn, "vgahw")) {
--		NVPreInitFail("\n");
--	}
--
- 	/* We use a programmable clock */
- 	pScrn->progClock = TRUE;
- 
-@@ -905,7 +875,7 @@ NVMapMem(ScrnInfoPtr pScrn)
- }
- 
- /*
-- * Unmap the framebuffer and MMIO memory.
-+ * Unmap the framebuffer and offscreen memory.
-  */
- 
- static Bool
--- 
-1.6.4.1
+T24gOSBGZWJydWFyeSAyMDEwIDE4OjIxLCBZb3VuZXMgTWFudG9uIDx5b3VuZXMubUBnbWFpbC5j
+b20+IHdyb3RlOgo+IE9uIFR1ZSwgRmViIDksIDIwMTAgYXQgMTI6NTAgUE0sIEFsaXN0YWlyIEJ1
+eHRvbiA8YS5qLmJ1eHRvbkBnbWFpbC5jb20+IHdyb3RlOgo+PiBPbiAxNSBKdW5lIDIwMDkgMTQ6
+MTQsIEphbWllIFNtaXRoIDxodXR0c0BpbnRlcm5vZGUub24ubmV0PiB3cm90ZToKPj4+IEhpIEFn
+YWluLAo+Pj4KPj4+IEl0IHNlZW1zIEkndmUgdHJpZ2dlcmVkIG9mZiBtdWNoIG1vcmUgZGlzY3Vz
+c2lvbiB0aGFuIEkgb3JpZ2luYWxseSB0aG91Z2h0IEkgd291bGQgcHJvdm9rZS4gwqBJIGZvcmdv
+dCB0byBhY3R1YWxseSBzdGF0ZSB3aGF0IEkgd2FzIHByb3Bvc2luZyB0byBkbywgYnV0IGl0IGFw
+cGVhcnMgdGhhdCBwZW9wbGUgaGF2ZSB3b3JrZWQgaXQgb3V0Lgo+Pj4KPj4+PiA+PiA+IE9uIFN1
+biwgSnVuIDE0LCAyMDA5IGF0IDExOjU2OjQ1UE0gKzAxMDAsIEFsaXN0YWlyIEJ1eHRvbiB3cm90
+ZToKPj4+PiA+PiA+PiBTdHVwaWQgcXVlc3Rpb246IEdpdmVuIHRoZSBwcmVzZW5jZSBvZiBhIHJl
+Z2lzdGVyIHdoaWNoIGluZGljYXRlcyB0aGUKPj4+PiA+PiA+PiBjdXJyZW50IGZpZWxkLCB3aHkg
+Y2FuJ3QgTlZXYWl0VlN5bmMgc2ltcGx5IHdhaXQgdW50aWwgdGhlIGVuZCBvZiB0aGUKPj4+PiA+
+PiA+PiBzZWNvbmQgZmllbGQsIGJ5IGRvaW5nIHdoYXRldmVyIGl0IGRvZXMgdHdpY2UgaWZmIGl0
+IGlzIGNhbGxlZCBkdXJpbmcKPj4+PiA+PiA+PiB0aGUgZmlyc3QgZmllbGQ/Cj4+Pgo+Pj4gWWVz
+LCB0aGlzIGlzIHdoYXQgSSdtIHByb3Bvc2luZy4gwqBBIHNlcnZlciBvcHRpb24gdGhhdCBtb2Rp
+ZmllcyB0aGUgYmVoYXZpb3VyIG9mIHRoZSBzeW5jIGNvZGUgc28gdGhhdCBpZiBhKSB0aGUgb3B0
+aW9uIGlzIHNldCBhbmQgYikgdGhlIGN1cnJlbnQgdmlkZW8gbW9kZSBpcyBpbnRlcmxhY2VkLCB0
+aGVuIHdhaXQgdW50aWwgYWZ0ZXIgdGhlIHNlY29uZCBmaWVsZCBoYXMgYmVlbiBkcmF3biBiZWZv
+cmUgZmxpcHBpbmcgcGFnZXMvdXBkYXRpbmcgYnVmZmVycyBldGMuCj4+Cj4+IFtzbmlwIGRlYmF0
+ZSBhYm91dCB3aGV0aGVyIHRoaXMgaXMgYSBnb29kIGlkZWFdCj4+Cj4+IEkgaGF2ZSBiZWVuIHRo
+aW5raW5nIGFib3V0IHRoaXMgcHJvYmxlbSByZWNlbnRseSBhbmQgSSBoYXZlIGNvbWUgdG8KPj4g
+dGhlIGNvbmNsdXNpb24gdGhhdCBpdCBpc24ndCBuZWNlc3NhcnkgdG8gY2hhbmdlIHRoZSB2Ymxh
+bmsgaW50ZXJydXB0Cj4+IGZyZXF1ZW5jeSBvciBhZGQgYW55IHNwZWNpYWwgaG9va3MgdG8gbGV0
+IHRoZSBwbGF5ZXIga25vdyB3aGljaCBmaWVsZAo+PiBpcyBiZWluZyBzaG93bi4gTm8gZHJpdmVy
+cyBjaGFuZ2VzIHNob3VsZCBiZSBuZWVkZWQgYXQgYWxsLiBJdCBvbmx5Cj4+IHJlcXVpcmVzIHRo
+YXQgcGxheWVycyBhcmUgbW9yZSBzbWFydCBhYm91dCBob3cgdGhleSBkaXNwbGF5IGludGVybGFj
+ZWQKPj4gY29udGVudCB0byB0aGUgc2NyZWVuLgo+Pgo+PiBBdCB0aGUgbW9tZW50LCBldmVyeSBw
+bGF5ZXIgSSBrbm93IG9mLCB3aGVuIGludGVybGFjaW5nIGlzIGRpc2FibGVkLAo+PiBqdXN0IGRv
+ZXMgc2ltcGxlIHdlYXZpbmcuIFRoaXMgaXMgYmFkIGFzIHdoZW4geW91IGRpc3BsYXkgaXQgb24g
+YW4KPj4gaW50ZXJsYWNlZCBzY3JlZW4gdGhlcmUgaXMgbm8gd2F5IHRvIGtub3cgd2hpY2ggZmll
+bGQgd2lsbCBnZXQKPj4gZGlzcGxheWVkIGZpcnN0LiBCdXQgdGhlcmUgaXMgYSBiZXR0ZXIgd2F5
+LiBJZiwgZWFjaCB0aW1lIHRoZSBwbGF5ZXIKPj4gcmVjZWl2ZXMgYSB2YmxhbmsgaW50ZXJydXB0
+LCBpdCBkcmF3cyB0aGUgbmV4dCBmaWVsZCBpbnRvIHRoZSBkaXNwbGF5Cj4+IChpZSB1cGRhdGlu
+ZyBldmVyeSBvdGhlciBsaW5lIG9uIHRoZSBmcmFtZWJ1ZmZlciwgYW5kIGxlYXZpbmcgdGhlCj4+
+IG90aGVyIGxpbmVzIGFsb25lKSB0aGVuIGVhY2ggZmllbGQgaXMgaW4gdGhlIGZyYW1lYnVmZmVy
+IGZvciAxIHdob2xlCj4+IGZyYW1lLCBhbmQgbm8gbWF0dGVyIHdoaWNoIGZyYW1lYnVmZmVyIGZp
+ZWxkIGlzIGN1cnJlbnRseSBzaG93biwgdGhlCj4+IG5leHQgb25lIHdpbGwgYWx3YXlzIGNvbnRh
+aW4gdGhlIGNvcnJlY3QgbmV4dCBmaWVsZC4KPj4KPj4gRWZmZWN0aXZlbHkgaXQgaXMgd2Vhdmlu
+ZywgYnV0IGluc3RlYWQgb2Ygd2VhdmluZyBlYWNoIGZyYW1lJ3MgZmllbGQKPj4gcGFpciwgdGhl
+IGZyYW1lIHJhdGUgaXMgZG91YmxlZCBieSB3ZWF2aW5nIGV2ZXJ5IHNlcXVlbnRpYWwgZmllbGQg
+cGFpcgo+PiBldmVuIGlmIHRoZXkgYmVsb25nIHRvIGRpZmZlcmVudCBmcmFtZXMuIFNvLCBhc3N1
+bWluZyBsb3dlci1maWVsZAo+PiBmaXJzdCwgaXQgd291bGQgcHJvZHVjZSBmcmFtZXMgY29tcG9z
+ZWQgbGlrZToKPj4gKDFMLG5vdGhpbmcpLCgxTCwxVSksKDJMLDFVKSwoMkwsMlUpLCgzTCwyVSks
+KDNMLDNVKS4uLgo+Pgo+PiBXaHkgaXQgd29ya3MgaXMga2luZCBvZiBoYXJkIHRvIGV4cGxhaW4g
+d2l0aG91dCBhIGRpYWdyYW0gc28gSSBoYXZlIG1hZGUgb25lOgo+Pgo+PiBodHRwOi8vYWwucm9i
+b3RmdXp6LmNvbS9+YWwvbm91dmVhdS9wYXRoNzEwOS5wbmcKPj4KPj4gQW55d2F5LCBzaW5jZSBu
+byBkcml2ZXIgY2hhbmdlcyBhcmUgbmVlZGVkLCB0aGlzIGlzIG5vdyBvZmZ0b3BpYy4gQnV0Cj4+
+IGRvZXMgYW55b25lIGtub3cgYSBwbGF5ZXIgdGhhdCBjYW4gZG8gd2hhdCBJIGFtIGRlc2NyaWJp
+bmc/IE9yIG1heWJlCj4+IHRoaXMgbWV0aG9kIG9mIHBsYXliYWNrIGhhcyBhIHNwZWNpYWwgbmFt
+ZSBJIGFtIG5vdCBhd2FyZSBvZj8KPgo+IFRoZSBwcm9ibGVtIHdpdGggdGhhdCBpcyB0aGF0IHRo
+ZSBwbGF5ZXIgaXMgdHlwaWNhbGx5IG5vdCBjb3B5aW5nIHRvCj4gdGhlIGFjdHVhbCBmcmFtZSBi
+dWZmZXIsIG9yIGV2ZW4gdGhlIHNhbWUgYnVmZmVyIHRoYXQgd2FzIGNvcGllZCB0byBpbgo+IHBy
+ZXZpb3VzIGZyYW1lcy4gSXQncyBjb3B5aW5nIHRvIHNvbWUgYnVmZmVyIHRoYXQncyBub3QgZ3Vh
+cmFudGVlZCB0bwo+IGNvbnRhaW4gYW55dGhpbmcgc3BlY2lmaWMsIGxldCBhbG9uZSB0aGUgcHJl
+dmlvdXNseSBjb3BpZWQgY29udGVudC4KPgoKSSB3YXMgdGFsa2luZyBhYm91dCBhIGh5cG90aGV0
+aWNhbCBsb2dpY2FsIGZyYW1lYnVmZmVyIGluc2lkZSB0aGUKcGxheWVyLCBub3QgdGhlIHJlYWwg
+aGFyZHdhcmUuCgpUaGUgb3BlcmF0aW9uIEkgZGVzY3JpYmVkIGlzIHNvbWV0aW1lcyBjYWxsZWQg
+ImRvdWJsZSB3ZWF2ZSI6CgpodHRwOi8vYXZpc3ludGgub3JnL21lZGlhd2lraS9Eb3VibGVXZWF2
+ZQoKSXQgaXMgdmVyeSBjbG9zZSB0byB3aGF0IG1wbGF5ZXIncyAidGZpZWxkcyIgZmlsdGVyIGRv
+ZXMgaW4gbW9kZSAxLgpDbG9zZSBlbm91Z2ggdGhhdCBJIHdhcyBhYmxlIHRvIGltcGxlbWVudCBp
+dCBhbmQgdGVzdCBpdCwgYW5kIHRoZQpyZXN1bHRzIGFyZSB2ZXJ5IGdvb2QuIE5vIG1vcmUganVk
+ZGVyaW5nIC8gb3V0IG9mIG9yZGVyIGZpZWxkcyBhbmQgbm8KZGVpbnRlcmxhY2luZyBhcnRpZmFj
+dHMuIEl0IHdhcyBvbmx5IG5lY2Vzc2FyeSB0byBkdXBsaWNhdGUgdGhlIG1vZGUgMQpmdW5jdGlv
+bmFsaXR5IGFuZCBjb21tZW50IHRoZSBkZWludCgpIGNhbGxzLiBJdCBzaG91bGQgYmUgZWFzeSBl
+bm91Z2gKdG8gaW1wbGVtZW50IHRoaXMgaW4gYW55IG90aGVyIHBsYXllci4KCkhlcmUgaXMgbXkg
+cGF0Y2ggYWdhaW5zdCB0aGUgbXBsYXllciBwYWNrYWdlIGZyb20gdWJ1bnR1OgoKaHR0cDovL2Fs
+LnJvYm90ZnV6ei5jb20vfmFsL25vdXZlYXUvOTktZG91YmxlLXdlYXZlLnBhdGNoCgpJdCBhZGRz
+IGEgbmV3IG1vZGUgdG8gdGZpZWxkcy4gVXNlIGl0IGxpa2U6ICJtcGxheWVyIC12ZiB0ZmllbGRz
+PTUgeW91cmZpbGUubXBnIgoKU28sIGluIGNvbmNsdXNpb24sIG5vIHZibGFuayBoYWNrcyBvciBv
+dGhlciBkcml2ZXIgY2hhbmdlcyBhcmUgbmVlZGVkCnRvIHN1cHBvcnQgaW50ZXJsYWNlLW9uLWlu
+dGVybGFjZS4KCi0tIApBbGlzdGFpciBCdXh0b24KYS5qLmJ1eHRvbkBnbWFpbC5jb20KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
