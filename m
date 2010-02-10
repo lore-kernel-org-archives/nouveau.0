@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26521] Bug in kernel module - ttm_bo_pci_offset
-Date: Wed, 10 Feb 2010 12:53:49 -0800 (PST)
-Message-ID: <20100210205349.D68781300A0@annarchy.freedesktop.org>
+Date: Wed, 10 Feb 2010 13:00:27 -0800 (PST)
+Message-ID: <20100210210027.BFAF81300E1@annarchy.freedesktop.org>
 References: <bug-26521-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=26521
 
 
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #33225|application/octet-stream    |text/plain
+          mime type|                            |
 
 
-
---- Comment #1 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-10 12:53:49 PST ---
-Forgot to mention more information you can find on
-http://bugzilla.kernel.org/show_bug.cgi?id=15120
 
 
 -- 
