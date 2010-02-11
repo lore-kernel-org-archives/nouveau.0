@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25948] X don't start first time,
 	and dies on logout from kde
-Date: Thu, 11 Feb 2010 05:15:18 -0800 (PST)
-Message-ID: <20100211131518.726841300EF@annarchy.freedesktop.org>
+Date: Thu, 11 Feb 2010 05:53:38 -0800 (PST)
+Message-ID: <20100211135338.39B641300E6@annarchy.freedesktop.org>
 References: <bug-25948-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,34 +24,22 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=25948
 
 
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|REOPENED                    |RESOLVED
+         Resolution|                            |FIXED
 
 
 
---- Comment #4 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-11 05:15:18 PST ---
-Yeah, with latest git it works fine, thx
 
-On Thu, Feb 11, 2010 at 1:25 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+--- Comment #5 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-02-11 05:53:37 PST ---
+(In reply to comment #4)
+> Yeah, with latest git it works fine, thx
+> 
 
-> http://bugs.freedesktop.org/show_bug.cgi?id=25948
->
->
->
->
->
-> --- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-02-11
-> 03:25:17 PST ---
-> (In reply to comment #2)
-> > X still crashes on logging of from kde
-> >
->
-> Any luck with latest git?
->
->
-> --
-> Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-> ------- You are receiving this mail because: -------
-> You reported the bug.
->
+Thanks, marking as fixed.
 
 
 -- 
