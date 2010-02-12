@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
-Date: Fri, 12 Feb 2010 11:18:26 -0800 (PST)
-Message-ID: <20100212191826.823881300FD@annarchy.freedesktop.org>
-References: <bug-25966-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26534] nouveau does not fetch edid from connected
+ monitor on nforce1 (nv1a)
+Date: Fri, 12 Feb 2010 14:47:23 -0800 (PST)
+Message-ID: <20100212224723.4476A1300FA@annarchy.freedesktop.org>
+References: <bug-26534-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25966-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26534-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +21,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25966
+http://bugs.freedesktop.org/show_bug.cgi?id=26534
 
 
 
 
 
---- Comment #20 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-02-12 11:18:24 PST ---
-(In reply to comment #19)
-> And for the record in nouveau_exa_download_from_screen, that memcpy [1] (line
-> 140) that take 90% of time.
-> 
-DFS is most likely being triggered by X11 GetImage requests. A comparison of
-"x11perf -getimage500" results would be interesting. 
+--- Comment #2 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org>  2010-02-12 14:47:22 PST ---
+Created an attachment (id=33261)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33261)
+kernel log with reg_debug=0x70
 
-> [1] 
->     45dd:       f3 a5                   rep movsl %ds:(%esi),%es:(%edi)
-> 
+(In reply to comment #1)
+> It would be interesting if you grabbed some logs having loaded nouveau with
+> the "reg_debug=0x70" module parameter.
+
+Here it is, though some parts seem to be missing because of kernel buffer
+overflow with syslog getting no opportunity to capture it all (even though it's
+already pretty large, shift 18)
 
 
 -- 
