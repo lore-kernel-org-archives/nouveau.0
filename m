@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25966] nv25 : rxvt scrolling is very slow
-Date: Fri, 12 Feb 2010 10:35:31 -0800 (PST)
-Message-ID: <20100212183531.AE9FC1300F9@annarchy.freedesktop.org>
+Date: Fri, 12 Feb 2010 10:48:05 -0800 (PST)
+Message-ID: <20100212184805.833501300F9@annarchy.freedesktop.org>
 References: <bug-25966-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,12 @@ http://bugs.freedesktop.org/show_bug.cgi?id=25966
 
 
 
---- Comment #18 from Matthieu CASTET <castet.matthieu-GANU6spQydw@public.gmane.org>  2010-02-12 10:35:31 PST ---
-ok, that make sense.
+--- Comment #19 from Matthieu CASTET <castet.matthieu-GANU6spQydw@public.gmane.org>  2010-02-12 10:48:05 PST ---
+And for the record in nouveau_exa_download_from_screen, that memcpy [1] (line
+140) that take 90% of time.
 
-But I saw that other stuff is slow. For example tabs switch in firefox is more
-slower. Doing a profiling show that nouveau_exa_download_from_screen take lot's
-of cpu (more than 25%), but I believe this is for another bug report ?
+[1] 
+    45dd:       f3 a5                   rep movsl %ds:(%esi),%es:(%edi)
 
 
 -- 
