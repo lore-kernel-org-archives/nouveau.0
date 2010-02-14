@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26534] nouveau does not fetch edid from connected
  monitor on nforce1 (nv1a)
-Date: Sun, 14 Feb 2010 04:49:00 -0800 (PST)
-Message-ID: <20100214124900.82877130089@annarchy.freedesktop.org>
+Date: Sun, 14 Feb 2010 05:33:15 -0800 (PST)
+Message-ID: <20100214133315.5D608130089@annarchy.freedesktop.org>
 References: <bug-26534-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,18 +27,20 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26534
 
 
 
---- Comment #4 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org>  2010-02-14 04:48:59 PST ---
+--- Comment #5 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org>  2010-02-14 05:33:14 PST ---
 (In reply to comment #3)
-> Is "nv" able to fetch an EDID?
-> Probably not but it's worth a try. If it doesn't then an mmiotrace from the
-> blob would be useful (see [1] and the docs in the kernel tree).
+> If it doesn't then an mmiotrace from the blob would be useful
 
-nvidiafb seems unable to read EDID, none of the 3 i2c channels it registers
-return an EDID.
+MMIO trace, captured with not so recent 2.6.30.4 kernel and 96.43.14 blob can
+be found at below URL (attachments being limited to 1MB):
+  http://homepage.internet.lu/BrunoP/nvidia.tbz2
 
-Xorg with nv driver 2.1.6 isn't able to get an EDID either.
+The kernel log shows first loading blob 96.43.11, then later on 96.43.14. This
+is due to Xorg that got updated recently and older userspace blob complaining
+about dependencies, so I had to update the blob as well.
 
-Will now have look at the blob to get the mmio trace (with 2.6.30.4 kernel).
+The Xorg server crashes shortly after loading but has already read EDID by that
+time so I guess no need to care about that :)
 
 
 -- 
