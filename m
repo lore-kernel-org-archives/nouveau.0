@@ -1,38 +1,37 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26577] [regression] Black screen with X on NV15 and
-	NV31
-Date: Mon, 15 Feb 2010 12:03:42 -0800 (PST)
-Message-ID: <20100215200342.D90E71300A1@annarchy.freedesktop.org>
-References: <bug-26577-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: Re: [git pull] drm
+Date: Mon, 15 Feb 2010 21:12:01 +0100
+Message-ID: <20100215201201.GA3332@joi.lan>
+References: <alpine.DEB.2.00.1002110417200.516@skynet.skynet.ie>
+ <201002151053.48681.borntraeger@de.ibm.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26577-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <201002151053.48681.borntraeger@de.ibm.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christian Borntraeger <borntraeger@de.ibm.com>
+Cc: Dave Airlie <airlied@linux.ie>, torvalds@linux-foundation.org, dri-devel@lists.sf.net, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, Maarten Maathuis <madman2003@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26577
+On Mon, Feb 15, 2010 at 10:53:48AM +0100, Christian Borntraeger wrote:
+> Am Donnerstag 11 Februar 2010 05:20:07 schrieb Dave Airlie:
+> 
+> Dave,
+> 
+> I just updated from to rc8 and got the a scheduling while atomic warning in
+> nouveau. (see below).
 
+Linus' tree is missing two fixes:
 
+drm/nouveau: don't hold spin lock while calling kzalloc with GFP_KERNEL
+drm/nouveau: spin_lock_init after memset'ing the bios struct
 
+The first one fixes your bug.
 
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=ed64797d153ecf0da79b8b849642d7a109fd97fd
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=9da76700072a00c39e21553df0998c7b3b620d88
 
---- Comment #6 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2010-02-15 12:03:42 PST ---
-$ nm -D /usr/lib/libdrm.so | grep DeviceNameFromFd
-00002b50 T drmGetDeviceNameFromFd
+If they won't go into 2.6.33, they are perfect candidates for -stable.
 
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Marcin
