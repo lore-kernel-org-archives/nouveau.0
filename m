@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26577] [regression] Black screen with X on NV11 and
 	NV31
-Date: Mon, 15 Feb 2010 09:42:54 -0800 (PST)
-Message-ID: <20100215174254.5E8C01300B3@annarchy.freedesktop.org>
+Date: Mon, 15 Feb 2010 10:02:14 -0800 (PST)
+Message-ID: <20100215180214.7138C1300AF@annarchy.freedesktop.org>
 References: <bug-26577-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,15 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26577
 
 
 
---- Comment #1 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-02-15 09:42:53 PST ---
-Are you using the latest libdrm from git?
+--- Comment #2 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2010-02-15 10:02:13 PST ---
+libdrm:
+
+commit 4a17be4a86cde1065908576e44f3710f6d9d68af
+Author: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Date:   Wed Feb 10 19:39:46 2010 -0500
+drm: a some new connector types from the kernel
+
+It is the latest ...
 
 
 -- 
