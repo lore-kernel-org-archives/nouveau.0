@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 18286] [nouveau] GeForce 8200 and 8300 not supported
  (10de:0848/0849/C77/MCP77/MCP78S)
-Date: Mon, 15 Feb 2010 02:05:43 -0800 (PST)
-Message-ID: <20100215100543.EECBD130085@annarchy.freedesktop.org>
+Date: Mon, 15 Feb 2010 02:14:31 -0800 (PST)
+Message-ID: <20100215101431.C4B08130087@annarchy.freedesktop.org>
 References: <bug-18286-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,20 +24,33 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=18286
 
 
-Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
 
+--- Comment #34 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-15 02:14:29 PST ---
+(In reply to comment #32)
+> 
+> I will say that there is no documentation at all for which specific nVidia GPU
+> family my chipset belongs to -- only that it's "at least" nv50. The 8200 is
+> just a downclocked 8300, and the interwebs indicate that the 8300 (GS) is an
+> nv86 chip. So that's what I put in my kernel for the extra firmware:
+> nv86.ctxprog/ctxvals. Maybe this is screwing things up?
+> 
 
---- Comment #33 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-15 02:05:43 PST ---
-Both the 8200 and 8300 are NVAA chips, they are not NV86. As far as i know
-darktama is aware of what is causing the problem, but he hasn't gotten around
-to implementing it for nouveau. DRI2 doesn't work, because acceleration isn't
-working.
+Just look at Stanislav last dmesg :
+[drm] nouveau 0000:02:00.0: Detected an NV50 generation card (0x0aa280a2)
+[drm] nouveau 0000:02:00.0: Attempting to load BIOS image from PRAMIN
+...
+[drm] nouveau 0000:02:00.0: 256 MiB VRAM
+[drm] nouveau 0000:02:00.0: 512 MiB GART (aperture)
+nouveau 0000:02:00.0: firmware: requesting nouveau/nvaa.ctxprog
+nouveau 0000:02:00.0: firmware: requesting nouveau/nvaa.ctxvals
+
+You can see its a nvaa card (0x0aa...) and that the two nvaa firmwares are
+correctly loaded. So that's not the problem.
+The problem is indeed the EE in xorg log :
+(EE) NOUVEAU(0): Error creating GPU channel: -16
+(EE) NOUVEAU(0): Error initialising acceleration.  Falling back to NoAccel
 
 
 -- 
