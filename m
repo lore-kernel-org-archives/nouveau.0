@@ -1,17 +1,14 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [git pull] drm
-Date: Mon, 15 Feb 2010 23:13:32 +0100
-Message-ID: <20100215221332.GB3332@joi.lan>
-References: <alpine.DEB.2.00.1002110417200.516@skynet.skynet.ie>
-	<201002151053.48681.borntraeger@de.ibm.com>
-	<20100215201201.GA3332@joi.lan>
-	<6d4bc9fc1002151239x2b994ea9l7f868d9bb8f789e9@mail.gmail.com>
+Subject: [PATCH] drm/nouveau: fix pramdac_table range checking
+Date: Mon, 15 Feb 2010 23:20:41 +0100
+Message-ID: <20100215222041.GA2823@joi.lan>
+References: <20100215124046.GB18821@bicker>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <6d4bc9fc1002151239x2b994ea9l7f868d9bb8f789e9-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20100215124046.GB18821@bicker>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +18,80 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christian Borntraeger <borntraeger-tA70FqPdS9bQT0dZR+AlfA@public.gmane.org>, dri-devel-TtF/mJH4Jtrk1uMJSBkQmQ@public.gmane.org, torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Dan Carpenter <error27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Feb 15, 2010 at 09:39:00PM +0100, Maarten Maathuis wrote:
-> The channel/context switch lock related patches (to the best of
-> knowledge) haven't even gone outside the nouveau tree, so the initial
-> damage isn't even there. At least not for the first path. As for the
-> 2nd patch, that one was squished into the original patch for this pull
-> iirc.
+On Mon, Feb 15, 2010 at 03:40:56PM +0300, Dan Carpenter wrote:
+> This is the results from:
+>     make C=1 CHECK="/path/to/smatch -p=kernel" bzImage modules | tee warns.txt
+>     grep -w overflow warns.txt | uniq -f 3 | tee err-list
+> 
+> I hacked on the buffer overflow check last weekend and these are the 
+> results.  It has way more false positives than the other bug lists 
+> I've posted, but it's still kinda neat.
+> 
+> It works like this:
+> 
+> lib/zlib_inflate/inftrees.c
+>    112      for (min = 1; min <= MAXBITS; min++)
+>    113          if (count[min] != 0) break;
+>    114      if (root < min) root = min;
+> smatch thinks "min" can be MAXBITS here.
+> 
+> One bad thing is that if you have code like:
+>         if (foo == 42)
+> 		frob();
+> Smatch thinks that "foo" can be 43 after the if statement.
+> 
+> The format is:
+> file.c +<line> function(<lines into function>) warning 'array_name' <array size> <= <offset>
+> 
+> regards,
+> dan carpenter
+> 
+> Previous bug lists:
+> * Putting too much data on the stack
+>   http://lkml.indiana.edu/hypermail/linux/kernel/1002.1/01252.html
+> 
+> * Assigning negative values to unsigned variables
+>   http://lkml.indiana.edu/hypermail/linux/kernel/1001.3/01222.html
+> 
+> * Doing dma on the stack
+>   http://lkml.indiana.edu/hypermail/linux/kernel/1001.3/01231.html
+> 
+> * Dereferencing variables before verifying they are not null
+>   http://lkml.indiana.edu/hypermail/linux/kernel/1001.3/01980.html
+> 
+> (...)
+> drivers/gpu/drm/nouveau/nouveau_bios.c +770 get_tmds_index_reg(36) error: buffer overflow 'pramdac_table' 4 <= 4
+> (...)
 
-Ouch, you are right.
-Sorry for the noise.
+---
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: fix pramdac_table range checking
 
-Marcin
+get_tmds_index_reg reads some value from stack when mlv happens
+to be equal to size of pramdac_table array. Fix it.
+
+Reported-by: Dan Carpenter <error27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_bios.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+index 2cd0fad..e7be506 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bios.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+@@ -762,7 +762,7 @@ static uint32_t get_tmds_index_reg(struct drm_device *dev, uint8_t mlv)
+ 			dacoffset ^= 8;
+ 		return 0x6808b0 + dacoffset;
+ 	} else {
+-		if (mlv > ARRAY_SIZE(pramdac_table)) {
++		if (mlv >= ARRAY_SIZE(pramdac_table)) {
+ 			NV_ERROR(dev, "Magic Lookup Value too big (%02X)\n",
+ 									mlv);
+ 			return 0;
+-- 
+1.6.6.1
