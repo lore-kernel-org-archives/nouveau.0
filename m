@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26577] [regression] Black screen with X on NV15 and
 	NV31
-Date: Mon, 15 Feb 2010 11:59:10 -0800 (PST)
-Message-ID: <20100215195910.4CCD01300AD@annarchy.freedesktop.org>
+Date: Mon, 15 Feb 2010 12:03:42 -0800 (PST)
+Message-ID: <20100215200342.D90E71300A1@annarchy.freedesktop.org>
 References: <bug-26577-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,16 +27,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26577
 
 
 
---- Comment #5 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-02-15 11:59:09 PST ---
-(In reply to comment #4)
-> I built it on openSUSE Build Service ("git pull" on 20100210) and installed it
-> on my system (with -debuginfo and -debugsource packages).
-> 
-> /usr/lib # nm /usr/lib/libdrm.so
-> nm: /usr/lib/libdrm.so: no symbols
-> 
-
-Right, it's stripped, have you tried "nm -D"?
+--- Comment #6 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2010-02-15 12:03:42 PST ---
+$ nm -D /usr/lib/libdrm.so | grep DeviceNameFromFd
+00002b50 T drmGetDeviceNameFromFd
 
 
 -- 
