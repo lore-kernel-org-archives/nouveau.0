@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26577] [regression] Black screen with X on NV15 and
 	NV31
-Date: Mon, 15 Feb 2010 13:28:34 -0800 (PST)
-Message-ID: <20100215212834.28F641300A1@annarchy.freedesktop.org>
+Date: Mon, 15 Feb 2010 13:51:15 -0800 (PST)
+Message-ID: <20100215215115.890AA1300B5@annarchy.freedesktop.org>
 References: <bug-26577-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,14 +27,24 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26577
 
 
 
---- Comment #8 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2010-02-15 13:28:33 PST ---
-Created an attachment (id=33324)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33324)
-kdm.log
+--- Comment #9 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-02-15 13:51:14 PST ---
+(In reply to comment #8)
+> Created an attachment (id=33324)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33324) [details]
+> kdm.log
+> 
+> "startx -- -verbose 6 -logverbose 6 2> startx.log" generates an empty file.
+> 
+> But I found attached log in "kdm.log" with "broken" commit.
+> 
+> [...]
+> /usr/bin/Xorg: symbol lookup error:
+> /usr/lib/xorg/modules/drivers/nouveau_drv.so: undefined symbol:
+> drmGetDeviceNameFromFd
+>
 
-"startx -- -verbose 6 -logverbose 6 2> startx.log" generates an empty file.
-
-But I found attached log in "kdm.log" with "broken" commit.
+Then /usr/lib/libdrm.so isn't what the linker is pulling in. Are you sure you
+don't have another libdrm installed somewhere else?
 
 
 -- 
