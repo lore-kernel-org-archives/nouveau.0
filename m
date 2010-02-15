@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26568] Xv Corruption and X Lockup w/ Nouveau on C51
  (Geforce 6150 Go)
-Date: Sun, 14 Feb 2010 16:00:34 -0800 (PST)
-Message-ID: <20100215000034.3CD2813009A@annarchy.freedesktop.org>
+Date: Sun, 14 Feb 2010 16:02:25 -0800 (PST)
+Message-ID: <20100215000225.BD28F13009A@annarchy.freedesktop.org>
 References: <bug-26568-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26568
 
 
 
---- Comment #1 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2010-02-14 16:00:33 PST ---
-Created an attachment (id=33299)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33299)
-/var/log/messages
+--- Comment #2 from Jeremy Uchitel <circular-AMv+oqoGJ4vR7s880joybQ@public.gmane.org>  2010-02-14 16:02:25 PST ---
+Created an attachment (id=33300)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33300)
+Xorg.0.log
 
 
 -- 
