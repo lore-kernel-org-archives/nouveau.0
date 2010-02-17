@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26521] Bug in kernel module - ttm_bo_pci_offset
-Date: Wed, 17 Feb 2010 01:17:24 -0800 (PST)
-Message-ID: <20100217091724.DA05013009E@annarchy.freedesktop.org>
+Date: Wed, 17 Feb 2010 01:39:08 -0800 (PST)
+Message-ID: <20100217093908.795CE13009E@annarchy.freedesktop.org>
 References: <bug-26521-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,28 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26521
 
 
 
---- Comment #3 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-17 01:17:23 PST ---
-Created an attachment (id=33354)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33354)
-kernel log
+--- Comment #4 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-17 01:39:07 PST ---
+About full debugging kernel in last post, I compiled kernel with:
+- Compile the kernel with debug info
+- Compile the kernel with frame pointers
+from "Kernel hacking" section in menuconfig.
 
-That is kernel log of bug reproduced today on 2.6.33-rc8 kernel compiled with
-full debug
+Before 2.6.33-rcX I used nvidia blob and it always works good with suspend to
+ram and never resume from suspend to disk. I didn't use nouveau before
+2.6.33-rcX so I can't say worked it or not for me earlier.
+
+Starting from 2.6.33-rcX I'm using nouveau included in kernel. And I have some
+troubles with suspending and resuming (with both to ram and to disk). 
+
+About suspend to disk - I tested it as described in kernel documentation
+immediately after system start without X and with it, with different debug
+option and all worked just well. Then I worked for an hour and tried to to
+suspend to disk and laptop hanged up. I'm using KDE with effects through
+XRender may be this can affect.
+
+About suspend to ram - I don't know how to reproduce this bug, it appears
+randomly, ones ten, and actually that is all I can say about it the rest in
+kernel log :)
 
 
 -- 
