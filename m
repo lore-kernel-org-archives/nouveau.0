@@ -1,11 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26626] New: nouveau/gt240m - screen trembling
-Date: Thu, 18 Feb 2010 05:59:30 -0800 (PST)
-Message-ID: <bug-26626-8800@http.bugs.freedesktop.org/>
+From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nouveau: [drm] failed to open device
+Date: Thu, 18 Feb 2010 15:42:52 +0100
+Message-ID: <b67489df1002180642n53d35b54lba403904f5cfa0f@mail.gmail.com>
+References: <20100218093834.GE29559@buzzloop.caiaq.de>
+	<b67489df1002180337m274aa72dueb33b7038d541c31@mail.gmail.com>
+	<20100218115524.GO9007@buzzloop.caiaq.de>
+	<b67489df1002180401o4629435bj71c764a85e06a54@mail.gmail.com>
+	<20100218130505.GP28972@buzzloop.caiaq.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20100218130505.GP28972-ahpEBR4enfnCULTFXS99ULNAH6kLmebB@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,44 +21,27 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Daniel Mack <daniel-rDUAYElUppE@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26626
+On Thu, Feb 18, 2010 at 2:05 PM, Daniel Mack <daniel-rDUAYElUppE@public.gmane.org> wrote:
+>>
+>> Which libdrm version are you using ?
+>
+> 2.4.0, built from the git sources yesterday.
+>
 
-           Summary: nouveau/gt240m - screen trembling
-           Product: xorg
-           Version: git
-          Platform: All
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+"Bump of the userspace interface to 0.0.16.
+libdrm and nouveau drm have to be updated together for nouveau to keep
+working. The kernel.org version will not work with the current git
+user space for some time. See the kernel commit log for more
+information. "
 
+This means kernel.org tree does not work with libdrm git.
+(so you can either use older git userspace or a newer nouveau drm module/kernel)
 
-Notebook: Acer Aspire 5739G
-VGA: GT240M DDR3
+If this is not clear enough, do you have a suggestion for rephrasing
+the paragraph on the frontpage ?
 
-History:
-1) when was used old nvidia driver, this issue showed up after logout or
-console switch (and continue into X)
-2) lastest nvidia driver doesn't act like this, but after switching back to X
-freeze.
-
-Nouveau:
-
-System init is ok, after nouveau load screen is stable for 2 second, after that
-blink and start trembling until shutdown/reboot.
-
-dmesg is located at http://pastebin.ca/1801344 , I don't have it locally. I
-will attach it soon to bug report.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I suppose we could also add an entry in either Faq or Troubleshooting.
