@@ -1,15 +1,12 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nouveau: fix undefined reference to
-	acpi_lid_open
-Date: Wed, 17 Feb 2010 23:04:01 +0100
-Message-ID: <20100217220401.GA3258@joi.lan>
-References: <1266399763-28911-1-git-send-email-daniel@caiaq.de>
+From: Daniel Mack <daniel-rDUAYElUppE@public.gmane.org>
+Subject: nouveau: [drm] failed to open device
+Date: Thu, 18 Feb 2010 10:38:34 +0100
+Message-ID: <20100218093834.GE29559@buzzloop.caiaq.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1266399763-28911-1-git-send-email-daniel-rDUAYElUppE@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,47 +16,61 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Daniel Mack <daniel-rDUAYElUppE@public.gmane.org>
-Cc: dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Feb 17, 2010 at 10:42:43AM +0100, Daniel Mack wrote:
-> Fix the following compile time error:
-> 
-> drivers/built-in.o: In function `nouveau_connector_detect':
-> /home/daniel/src/linux/jup/linux-2.6/drivers/gpu/drm/nouveau/nouveau_connector.c:243: undefined reference to `acpi_lid_open'
-> 
-> Signed-off-by: Daniel Mack <daniel-rDUAYElUppE@public.gmane.org>
-> Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
-> Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Cc: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-> Cc: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: Xavier Chantry <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
-> ---
->  drivers/gpu/drm/nouveau/nouveau_connector.c |    2 +-
->  1 files changed, 1 insertions(+), 1 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index d2f6335..c74d45d 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -239,7 +239,7 @@ nouveau_connector_detect(struct drm_connector *connector)
->  	if (connector->connector_type == DRM_MODE_CONNECTOR_LVDS)
->  		nv_encoder = find_encoder_by_type(connector, OUTPUT_LVDS);
->  	if (nv_encoder && nv_connector->native_mode) {
-> -#ifdef CONFIG_ACPI
-> +#ifdef CONFIG_ACPI_BUTTON
->  		if (!nouveau_ignorelid && !acpi_lid_open())
->  			return connector_status_disconnected;
->  #endif
-> -- 
+Hi,
 
-You are fixing CONFIG_ACPI_BUTTON=m vs CONFIG_DRM_NOUVEAU=y compilation,
-but breaking runtime behaviour of CONFIG_ACPI_BUTTON=m + CONFIG_DRM_NOUVEAU=m.
+I'm trying to get the new nouveau kernel driver (2.6.33-rc8) to work
+with X.Org 1.7.4 (Debian/unstable, all relevant packages updated). The
+modules load just fine, and the kernel spits out the following upon
+probe:
 
-I think this code should be compiled when:
-#if defined(CONFIG_ACPI_BUTTON) || (defined(CONFIG_ACPI_BUTTON_MODULE) && defined(CONFIG_DRM_NOUVEAU_MODULE))
+[    8.304602] nouveau 0000:06:00.0: PCI INT A -> Link[LNEB] -> GSI 18 (level, low) -> IRQ 18
+[    8.304779] nouveau 0000:06:00.0: setting latency timer to 64
+[    8.313364] [drm] nouveau 0000:06:00.0: Detected an NV40 generation card (0x044300a2)
+[    8.313812] [drm] nouveau 0000:06:00.0: Attempting to load BIOS image from PROM
+[    8.521142] [drm] nouveau 0000:06:00.0: ... appears to be valid
+[    8.521148] [drm] nouveau 0000:06:00.0: BIT BIOS found
+[    8.521151] [drm] nouveau 0000:06:00.0: Bios version 05.44.02.62
+[    8.521156] [drm] nouveau 0000:06:00.0: BIT table 'd' not found
+[    8.521159] [drm] nouveau 0000:06:00.0: Found Display Configuration Block version 3.0
+...
 
-Marcin
+
+However, when starting X.Org (installed from the Debian package), I get
+this:
+
+
+X.Org X Server 1.7.4
+Release Date: 2010-01-08
+X Protocol Version 11, Revision 0
+Build Operating System: Linux 2.6.32-trunk-686 i686 Debian
+Current Operating System: Linux jup 2.6.33-rc8 #20 SMP PREEMPT Wed Feb 17 11:26:28 CET 2010 i686
+Kernel command line: BOOT_IMAGE=/vmlinuz-2.6.git root=/dev/sda3 ro quiet
+Build Date: 20 January 2010  10:52:55PM
+xorg-server 2:1.7.4-2 (bgoglin-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org) 
+Current version of pixman: 0.16.4
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: "/var/log/Xorg.0.log", Time: Wed Feb 17 17:00:25 2010
+(==) Using config file: "/etc/X11/xorg.conf"
+(EE) [drm] failed to open device
+(EE) No devices detected.
+
+
+From the strace output (http://pastebin.com/m12d5b19a) I cannot see what
+the problem could possibly be, and searching the FAQs and archives
+didn't help me either. I can't see any errors or warning anywhere
+except for the one above.
+
+The full X log is here: http://pastebin.com/m731c3561
+And my xorg.conf is here: http://pastebin.com/m5f143408
+
+Any pointers appreciated - I got the evil feeling to overlook the
+obvious ;)
+
+Daniel
