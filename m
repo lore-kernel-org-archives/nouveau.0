@@ -1,19 +1,14 @@
-From: Daniel Mack <daniel-rDUAYElUppE@public.gmane.org>
-Subject: Re: nouveau: [drm] failed to open device
-Date: Thu, 18 Feb 2010 16:04:11 +0100
-Message-ID: <20100218150411.GX28972@buzzloop.caiaq.de>
-References: <20100218093834.GE29559@buzzloop.caiaq.de>
-	<b67489df1002180337m274aa72dueb33b7038d541c31@mail.gmail.com>
-	<20100218115524.GO9007@buzzloop.caiaq.de>
-	<b67489df1002180401o4629435bj71c764a85e06a54@mail.gmail.com>
-	<20100218130505.GP28972@buzzloop.caiaq.de>
-	<b67489df1002180642n53d35b54lba403904f5cfa0f@mail.gmail.com>
+From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Mouse cursor rotated on all screens when rotating a
+	single screen.
+Date: Thu, 18 Feb 2010 21:10:23 +0100
+Message-ID: <b67489df1002181210g231640fv7513f1fde82dc1b3@mail.gmail.com>
+References: <20100218132710.127a3260@schinken.fritz.box>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <b67489df1002180642n53d35b54lba403904f5cfa0f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20100218132710.127a3260-5XCyKlKZwvAXU02nzanrWNbf9cGiqdzd@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,36 +18,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Hans Wurst <bon3fire-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, craig-26hVlxoXjdmZFXHMiJVqBHS5uNuOjpZe@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Feb 18, 2010 at 03:42:52PM +0100, Xavier Chantry wrote:
-> On Thu, Feb 18, 2010 at 2:05 PM, Daniel Mack <daniel-rDUAYElUppE@public.gmane.org> wrote:
-> >>
-> >> Which libdrm version are you using ?
-> >
-> > 2.4.0, built from the git sources yesterday.
-> >
-> 
-> "Bump of the userspace interface to 0.0.16.
-> libdrm and nouveau drm have to be updated together for nouveau to keep
-> working. The kernel.org version will not work with the current git
-> user space for some time. See the kernel commit log for more
-> information. "
-> 
-> This means kernel.org tree does not work with libdrm git.
-> (so you can either use older git userspace or a newer nouveau drm module/kernel)
-> 
-> If this is not clear enough, do you have a suggestion for rephrasing
-> the paragraph on the frontpage ?
+On Thu, Feb 18, 2010 at 1:27 PM, Hans Wurst <bon3fire-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> I have two monitors, one landscape and the other portrait. When I
+>> rotate the portrait monitor using xrandr (or the xorg.conf option)
+>> the mouse cursor on the landscape monitor is also rotated and the
+>> "click point" is no longer below the cursor (this makes the mouse
+>> practically unusable). The cursor is correct on the rotated monitor.
+>> Setting NoAccel "False" and HWCursor "False" in xorg.conf results in
+>> a corrupted screen and lockup.
+>
+>> I am running an up-to-date i686 Arch Linux with the latest git version
+>> of xf86-video-nouveau (I used the AUR package). xorg-server is from
+>> the arch core repositories. My card is the GeForce9500GT (two DVI
+>> ports on the card).
+>
+> I've got the exact same problem. So: *BUMP*
+>
 
-I am deeply sorry, really. This one line of text right above the the
-actual headline was indeed the information I overlooked. I scanned the
-FAQ and TroubleShooting sections, but missed this, grr.
-
-> I suppose we could also add an entry in either Faq or Troubleshooting.
-
-Yes, I think adding it there would help. Not only me ;)
-
-Daniel
+See https://bugs.freedesktop.org/show_bug.cgi?id=26102
