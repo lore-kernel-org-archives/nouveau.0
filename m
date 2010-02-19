@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15777] nouveau driver crash with Xen kernel
-Date: Fri, 19 Feb 2010 06:19:43 -0800 (PST)
-Message-ID: <20100219141943.9AB421300FF@annarchy.freedesktop.org>
+Date: Fri, 19 Feb 2010 06:21:04 -0800 (PST)
+Message-ID: <20100219142104.59D4F1300FE@annarchy.freedesktop.org>
 References: <bug-15777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,17 @@ http://bugs.freedesktop.org/show_bug.cgi?id=15777
 
 
 
---- Comment #9 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2010-02-19 06:19:42 PST ---
-Please try it with repositories/packages listed here:
+--- Comment #10 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2010-02-19 06:21:03 PST ---
+(In reply to comment #9)
+> Please try it with repositories/packages listed here:
+> 
+> http://nouveau.freedesktop.org/wiki/openSUSEPackages
+> 
+> openSUSE is not supported at the moment - I have problems with compiling libdrm
+> for it.
+> 
 
-http://nouveau.freedesktop.org/wiki/openSUSEPackages
-
-openSUSE is not supported at the moment - I have problems with compiling libdrm
-for it.
+Oh sorry, I meant only openSUSE 11.1 is not supported ATM...
 
 
 -- 
