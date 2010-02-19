@@ -1,11 +1,13 @@
-From: Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
-Subject: nouveau kms causing hibernation problems
-Date: Fri, 19 Feb 2010 11:25:49 +0100
-Message-ID: <20100219102550.5D39C33C7EC@tippex.mynet.homeunix.org>
+From: Marcin =?utf-8?q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: Re: nouveau kms causing hibernation problems
+Date: Fri, 19 Feb 2010 12:23:58 +0000
+Message-ID: <201002191223.58921.koriakin@0x04.net>
+References: <20100219102550.5D39C33C7EC@tippex.mynet.homeunix.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20100219102550.5D39C33C7EC-ZOnKU5P2/IUVO05zmlNvLXEk6Bp1+KyB2LY78lusg7I@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,20 +17,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
-I have an old machine with working hibernation (pm-hibernate). I replaced the 
-graphics card with an NV05 one and now it fails to hibernate when using 
-modesetting. nouveau.modeset=0 works fine.
-
-What happens is that very early in the process the display looses signal, and 
-the expected disk activity never happens (no led flashing). Then the machine 
-just hangs. I suspect that the progress information shown on the VGA console 
-in modeset=0 has issues with the framebuffer, and it crashes there.
-
-On the other hand, googling for this gives me nothing, so I guess others have 
-this working fine.
-
-Any ideas how to debug this? 
+PiBJIGhhdmUgYW4gb2xkIG1hY2hpbmUgd2l0aCB3b3JraW5nIGhpYmVybmF0aW9uIChwbS1oaWJl
+cm5hdGUpLiBJIHJlcGxhY2VkCj4gdGhlIGdyYXBoaWNzIGNhcmQgd2l0aCBhbiBOVjA1IG9uZSBh
+bmQgbm93IGl0IGZhaWxzIHRvIGhpYmVybmF0ZSB3aGVuIHVzaW5nCj4gbW9kZXNldHRpbmcuIG5v
+dXZlYXUubW9kZXNldD0wIHdvcmtzIGZpbmUuCj4KPiBXaGF0IGhhcHBlbnMgaXMgdGhhdCB2ZXJ5
+IGVhcmx5IGluIHRoZSBwcm9jZXNzIHRoZSBkaXNwbGF5IGxvb3NlcyBzaWduYWwsCj4gYW5kIHRo
+ZSBleHBlY3RlZCBkaXNrIGFjdGl2aXR5IG5ldmVyIGhhcHBlbnMgKG5vIGxlZCBmbGFzaGluZyku
+IFRoZW4gdGhlCj4gbWFjaGluZSBqdXN0IGhhbmdzLiBJIHN1c3BlY3QgdGhhdCB0aGUgcHJvZ3Jl
+c3MgaW5mb3JtYXRpb24gc2hvd24gb24gdGhlCj4gVkdBIGNvbnNvbGUgaW4gbW9kZXNldD0wIGhh
+cyBpc3N1ZXMgd2l0aCB0aGUgZnJhbWVidWZmZXIsIGFuZCBpdCBjcmFzaGVzCj4gdGhlcmUuCj4K
+PiBPbiB0aGUgb3RoZXIgaGFuZCwgZ29vZ2xpbmcgZm9yIHRoaXMgZ2l2ZXMgbWUgbm90aGluZywg
+c28gSSBndWVzcyBvdGhlcnMKPiBoYXZlIHRoaXMgd29ya2luZyBmaW5lLgoKVGhlcmUgYXJlIG5v
+dCB0aGF0IG1hbnkgdXNlcnMgb2YgTlYwNC9OVjA1Li4uLgoKPiBBbnkgaWRlYXMgaG93IHRvIGRl
+YnVnIHRoaXM/CgpUaGlzIG1heSBiZSBhIHJlc3VsdCBvZiBhIGtub3duIGJ1ZyBpbiBvdXIgQklP
+UyBzY3JpcHQgaW50ZXJwcmV0ZXIuIEdvIHRvIHlvdXIgCmtlcm5lbCB0cmVlLCBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Jpb3MuYywgZ28gdG8gaW5pdF9jb21wdXRlX21lbSAKZnVu
+Y3Rpb24sIGFuZCB0cnkgY29tbWVudGluZyBvdXQgdGhlICJiaW9zX3dyMzIoYmlvcywgTlZfUEZC
+X1JFRkNUUkwsIApOVl9QRkJfUkVGQ1RSTF9WQUxJRF8xKTsiIGxpbmUuCgpUaGlzIGJ1ZyBpcyBz
+dXJlIHRvIGJyZWFrIHN1c3BlbmQgb24gYWxsIE5WNCBhbmQgTlY1LCBpdCBwcm9iYWJseSBhZmZl
+Y3RzIApoaWJlcm5hdGUgdG9vLgoKUGxlYXNlIHJlcG9ydCBpZiByZW1vdmluZyB0aGlzIGxpbmUg
+Y2hhbmdlcyB0aGluZ3MgZm9yIHlvdS4KCk1hcmNpbiBLb8WbY2llbG5pY2tpCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
