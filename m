@@ -1,9 +1,10 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH 2/2] drm/nouveau: Don't reuse the same variable in
-	a nested loop.
-Date: Fri, 19 Feb 2010 04:59:10 +0100
-Message-ID: <1266551950-5766-2-git-send-email-currojerez@riseup.net>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/2] drm/nouveau: Unmap pushbuf BOs when we're
+ done with them.
+Date: Fri, 19 Feb 2010 15:05:45 +1000
+Message-ID: <1266555945.27450.0.camel@araqiel>
 References: <1266551950-5766-1-git-send-email-currojerez@riseup.net>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,36 +19,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_gem.c |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+On Fri, 2010-02-19 at 04:59 +0100, Francisco Jerez wrote:
+> If you're especially unlucky BOs would move around and their kmaps
+> would end up pointing to something else in GART, then ioctl_pushbuf()
+> would use the kmaps again corrupting textures or other pushbufs (the
+> most noticeable symptom was a PFIFO_DMA_PUSHER from time to time).
+Oops, I actually was doing that at some point.  Not sure where it
+disappeared to :)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index ec6da5c..173d5e2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -578,7 +578,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
- 	struct nouveau_channel *chan;
- 	struct validate_op op;
- 	struct nouveau_fence *fence = 0;
--	int i, ret = 0, do_reloc = 0;
-+	int i, j, ret = 0, do_reloc = 0;
- 
- 	NOUVEAU_CHECK_INITIALISED_WITH_RETURN;
- 	NOUVEAU_GET_USER_CHANNEL_WITH_RETURN(req->channel, file_priv, chan);
-@@ -700,7 +700,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
- 			OUT_RING(chan, ((mem->start << PAGE_SHIFT) +
- 					push[i].offset) | 0x20000000);
- 			OUT_RING(chan, 0);
--			for (i = 0; i < NOUVEAU_DMA_SKIPS; i++)
-+			for (j = 0; j < NOUVEAU_DMA_SKIPS; j++)
- 				OUT_RING(chan, 0);
- 		}
- 	}
--- 
-1.6.4.4
+Thanks, pushed along with 2/2.
+Ben.
+> 
+> Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_gem.c |    2 ++
+>  1 files changed, 2 insertions(+), 0 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+> index fb6d87b..ec6da5c 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+> @@ -243,6 +243,8 @@ validate_fini_list(struct list_head *list, struct nouveau_fence *fence)
+>  			nouveau_fence_unref((void *)&prev_fence);
+>  		}
+>  
+> +		ttm_bo_kunmap(&nvbo->kmap);
+> +
+>  		list_del(&nvbo->entry);
+>  		nvbo->reserved_by = NULL;
+>  		ttm_bo_unreserve(&nvbo->bo);
