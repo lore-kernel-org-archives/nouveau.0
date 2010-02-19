@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25036] KMS + multihead leaves ghost mouse pointer
-Date: Fri, 19 Feb 2010 01:33:04 -0800 (PST)
-Message-ID: <20100219093304.08D461300FD@annarchy.freedesktop.org>
-References: <bug-25036-8800@http.bugs.freedesktop.org/>
+From: Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
+Subject: nouveau kms causing hibernation problems
+Date: Fri, 19 Feb 2010 11:25:49 +0100
+Message-ID: <20100219102550.5D39C33C7EC@tippex.mynet.homeunix.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25036-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +18,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25036
 
+I have an old machine with working hibernation (pm-hibernate). I replaced the 
+graphics card with an NV05 one and now it fails to hibernate when using 
+modesetting. nouveau.modeset=0 works fine.
 
+What happens is that very early in the process the display looses signal, and 
+the expected disk activity never happens (no led flashing). Then the machine 
+just hangs. I suspect that the progress information shown on the VGA console 
+in modeset=0 has issues with the framebuffer, and it crashes there.
 
+On the other hand, googling for this gives me nothing, so I guess others have 
+this working fine.
 
-
---- Comment #4 from a.radke-KvP5wT2u2U0@public.gmane.org  2010-02-19 01:33:03 PST ---
-what change/update fixed it for you? I'm still having the cursor hanging on the
-screen border. mostly when I move the mouse quickly. it doesn't happen when I
-move the mouse slowly.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Any ideas how to debug this? 
