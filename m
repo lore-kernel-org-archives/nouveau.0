@@ -1,14 +1,13 @@
-From: Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
-Subject: Re: nouveau kms causing hibernation problems
-Date: Fri, 19 Feb 2010 14:23:17 +0100
-Message-ID: <20100219132317.172EA33C794@tippex.mynet.homeunix.org>
-References: <20100219102550.5D39C33C7EC@tippex.mynet.homeunix.org>
-	<201002191223.58921.koriakin@0x04.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25036] KMS + multihead leaves ghost mouse pointer
+Date: Fri, 19 Feb 2010 06:06:45 -0800 (PST)
+Message-ID: <20100219140645.440431300FE@annarchy.freedesktop.org>
+References: <bug-25036-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-reply-to: <201002191223.58921.koriakin-mP9o5jsk0RY@public.gmane.org>
+In-Reply-To: <bug-25036-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,24 +17,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin =?utf-8?q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Anders Eriksson <aeriksson-97jfqw80gc6171pxa8y+qA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+http://bugs.freedesktop.org/show_bug.cgi?id=25036
 
-koriakin-mP9o5jsk0RY@public.gmane.org said:
-> There are not that many users of NV04/NV05.... 
 
-I'm starting to feel unique. Have to keep the museum running...
 
-> This may be a result of a known bug in our BIOS script interpreter. Go to
-> your  kernel tree, drivers/gpu/drm/nouveau/nouveau_bios.c, go to
-> init_compute_mem  function, and try commenting out the "bios_wr32(bios,
-> NV_PFB_REFCTRL,  NV_PFB_REFCTRL_VALID_1);" line.
 
-Removing that line sure changed things. The monitor still looses signal early,
-but the HD led flashes on and eventually it hibernates ok.
 
-Upon resume, I get to the reloading-from-suspend progress bar in fbcon, but
-after that the screen goes black and the thing freezes. The keyboard's leads
-are dead too.
+--- Comment #5 from ataraxia937-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2010-02-19 06:06:44 PST ---
+I don't know what change fixed it, as I haven't been tracking it, and haven't
+done a bisect either. I've been using your [extra] packages until now. Not
+surprisingly, moving libdrm 2.4.18-2 and reverting to your nouveau packages
+makes the bug show again. I'm content to wait for the next [extra] update
+(which I expect will be after kernel 2.6.33).
+
+(Upstream folks, sorry about the Arch-specific spam here...)
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
