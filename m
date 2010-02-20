@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25036] KMS + multihead leaves ghost mouse pointer
-Date: Fri, 19 Feb 2010 06:49:42 -0800 (PST)
-Message-ID: <20100219144942.71F681300FF@annarchy.freedesktop.org>
-References: <bug-25036-8800@http.bugs.freedesktop.org/>
+From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Subject: [PATCH] drm/nouveau: fix missing spin_unlock in failure
+	path
+Date: Sat, 20 Feb 2010 11:08:56 +0100
+Message-ID: <1266660536-10688-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25036-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,23 +16,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25036
+Found by sparse.
 
+Signed-off-by: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_gem.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-
-
-
---- Comment #6 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-19 06:49:41 PST ---
-16:10 < shining> iirc curro_ said the pointer/cursor bugs would be fixed by
-this :
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=0917665d1f2f1e76b6a0e7a4c027512f9f45f41b
-16:15 < curro_> yeah that fixed it
-
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 03d8935..d7ace31 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -557,11 +557,11 @@ nouveau_gem_pushbuf_reloc_apply(struct drm_device *dev,
+ 
+ 		spin_lock(&nvbo->bo.lock);
+ 		ret = ttm_bo_wait(&nvbo->bo, false, false, false);
++		spin_unlock(&nvbo->bo.lock);
+ 		if (ret) {
+ 			NV_ERROR(dev, "reloc wait_idle failed: %d\n", ret);
+ 			break;
+ 		}
+-		spin_unlock(&nvbo->bo.lock);
+ 
+ 		nouveau_bo_wr32(nvbo, r->reloc_bo_offset >> 2, data);
+ 	}
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.6.6.1.476.g01ddb
