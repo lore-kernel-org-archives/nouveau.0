@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26534] nouveau does not fetch edid from connected
  monitor on nforce1 (nv1a)
-Date: Sat, 20 Feb 2010 09:43:22 -0800 (PST)
-Message-ID: <20100220174322.CECB313008D@annarchy.freedesktop.org>
+Date: Sat, 20 Feb 2010 10:15:21 -0800 (PST)
+Message-ID: <20100220181521.736C813008D@annarchy.freedesktop.org>
 References: <bug-26534-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26534
 
 
 
---- Comment #13 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-02-20 09:43:22 PST ---
-Created an attachment (id=33455)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33455)
-nv1a_ddc_3.patch
-
-Could you try again with this one?
+--- Comment #15 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org>  2010-02-20 10:15:20 PST ---
+Created an attachment (id=33459)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33459)
+lspci -vvv, /proc/ioports, /proc/iomem
 
 
 -- 
