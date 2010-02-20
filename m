@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26534] nouveau does not fetch edid from connected
  monitor on nforce1 (nv1a)
-Date: Sat, 20 Feb 2010 08:57:29 -0800 (PST)
-Message-ID: <20100220165729.79CB9130087@annarchy.freedesktop.org>
+Date: Sat, 20 Feb 2010 08:35:43 -0800 (PST)
+Message-ID: <20100220163543.D2B3E130087@annarchy.freedesktop.org>
 References: <bug-26534-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,21 +27,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26534
 
 
 
---- Comment #11 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org>  2010-02-20 08:57:29 PST ---
-(In reply to comment #10)
-> An i/o trace of your BIOS posting the card might be useful, to do it you would
-> have to download [1], compile it and run (as root and in text mode, i.e.
-> neither X nor fb drivers running):
-> # ./vbtracetool -p -l 2>nv1a_post.log
-> 
-> [1] git://people.freedesktop.org/~stuart/vbtracetool
-> 
+--- Comment #10 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-02-20 08:35:43 PST ---
+An i/o trace of your BIOS posting the card might be useful, to do it you would
+have to download [1], compile it and run (as root and in text mode, i.e.
+neither X nor fb drivers running):
+# ./vbtracetool -p -l 2>nv1a_post.log
 
-What am I missing, it just returns the following on me, running it as root:
-
-./vbtracetool -p -l
-mmap /dev/zero: Operation not permitted
-Failed to initialise LRMI (Linux Real-Mode Interface).
+[1] git://people.freedesktop.org/~stuart/vbtracetool
 
 
 -- 
