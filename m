@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26321] [9400M] GPU lockup and X does not start
-Date: Sun, 21 Feb 2010 21:20:05 -0800 (PST)
-Message-ID: <20100222052005.5DD6B1300A0@annarchy.freedesktop.org>
-References: <bug-26321-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26193] nouveau falls back to NoAccel on 9400M
+Date: Sun, 21 Feb 2010 21:16:54 -0800 (PST)
+Message-ID: <20100222051654.831D71300A0@annarchy.freedesktop.org>
+References: <bug-26193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26321-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26193-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +20,15 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26321
+http://bugs.freedesktop.org/show_bug.cgi?id=26193
 
 
 
 
 
---- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-21 21:20:03 PST ---
-Please retry with the current nouveau kernel git, this should be fixed.
+--- Comment #19 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-21 21:16:53 PST ---
+NVAC should be fixed in latest nouveau git.  It worked on the macbook I got
+access to at least :)
 
 
 -- 
