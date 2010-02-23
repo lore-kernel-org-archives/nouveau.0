@@ -1,112 +1,136 @@
-From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: makedepend in Mesa
-Date: Tue, 23 Feb 2010 22:29:06 +0100
-Message-ID: <b67489df1002231329v1e4411a5ncaa61eb630670f5e@mail.gmail.com>
+From: Dan Nicholson <dbn.lists@gmail.com>
+Subject: Re: makedepend in Mesa
+Date: Tue, 23 Feb 2010 14:14:15 -0800
+Message-ID: <91705d081002231414q3a0bef51tcf260f9f4ec4c87f@mail.gmail.com>
+References: <b67489df1002231329v1e4411a5ncaa61eb630670f5e@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: mesa3d-dev <mesa3d-dev-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>, nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa3d-dev-bounces@lists.sourceforge.net>
+In-Reply-To: <b67489df1002231329v1e4411a5ncaa61eb630670f5e@mail.gmail.com>
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
+	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=mesa3d-dev>
+List-Post: <mailto:mesa3d-dev@lists.sourceforge.net>
+List-Help: <mailto:mesa3d-dev-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
+	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=subscribe>
+Errors-To: mesa3d-dev-bounces@lists.sourceforge.net
+To: Xavier Chantry <chantry.xavier@gmail.com>
+Cc: nouveau <Nouveau@lists.freedesktop.org>, mesa3d-dev <mesa3d-dev@lists.sourceforge.net>
 List-Id: nouveau.vger.kernel.org
 
-While keeping up-to-date the nouveau mesa driver (either classic or
-gallium), or doing regression testing, the big majority of my rebuilds
-resulted in segfaults.
-I am not talking about autogen or configure detection. I believe this
-also works automatically in other projects and doesn't with mesa, but
-forgetting to do this usually causes a build failure. Then
-autogen/configure can be run and make can resume the build.
-What is more problematic is when an apparently successful build does
-not work. The reply I used to get is just to make clean or
-distclean/realclean. clean is usually works, but rebuilding everything
-takes time. And regression testing needs a lot of rebuilding :)
-Anyway I found this IRC discussion yesterday quite interesting :
-
-20:30  * jbarnes curses the mesa build system
-20:31 < jbarnes> change intel_fbo.h, nothing rebuilds
-20:32 < Dr_Jakob> makedepend installed?
-20:33 < jbarnes> yeah but it looks like we don't symlink intel_fbo.h
-into i915 and include it in the makefile
-20:33 < jbarnes> so I guess the deps don't get picked up
-20:34 < Dr_Jakob> Hmm
-20:34 < jbarnes> oh no I guess I don't have makedepend
-20:34 -!- jsgf [~jeremy-ZcXrCSuhvlktFdR4KeJ2yPcEJKo2Qz8o1NOjf9nqTsILN5Mb03AwvQ@public.gmane.org] has
-joined #dri-devel
-20:34  * jbarnes tries again with that installed
-20:35 < jbarnes> don't most projects just use gcc's dep tracking?
-20:35 < Dr_Jakob> yes
-20:36 < Dr_Jakob> I tried to add that but it mostly turned into fail.
-20:37 < jbarnes> Dr_Jakob: you guys mostly build with scons these days right?
-20:37 < jbarnes> and that has a separate set of files for tracking sources?
-20:37 < Dr_Jakob> For windows yes, but I use make for linux.
-20:37 < Dr_Jakob> Then again I'm pretty good at installing makedepend ;-)
-20:37 < jbarnes> heh
-20:39 < Dr_Jakob> I don't often have to do a make clean.
-20:40 < suokko> I guess there is something broken in radeon makefiles
-because make clean is required quite often
-20:40 < suokko> Luckily ccache is very fast
-20:40 < MostAwesomeDude> Yeah, ccache is a much better friend than makedepend.
-
-
-21:48 < shining> still not very clear to me, should everyone have
-makedepend installed for building mesa ?
-21:49 < Dr_Jakob> it is higly recommended yes.
-21:51 < shining> does it help with mesa build failures ? I have seen
-many many times in #nouveau weird mesa behavior
-                 because of build failure, and a make
-distclean/realclean fixed it
-21:51 < shining> sorry its not build failure
-21:51 < Dr_Jakob> yes
-21:51 < shining> it *seems* to build fun but it doesnt work correctly,
-most of the time it simply segfaults
-21:52 < shining> huh
-21:52 < shining> s/fun/fine
-21:54 < suokko> shining: Problem without makedepend is that in rebuild
-make doesn't build all files that should be
-                rebuild because it doesn't know about included files.
-So if you link old and new object files and
-                some memory layout changed you will get segfaults
-
-22:49 < shining> then I would workaround it by requiring makedepend
-22:51 < zackr> we don't have a configure step so you'll need to most
-likely rewrite the build system to do that
-
-
-I probably should look into ccache (and I probably will), but if
-makedepend improves the rebuild situation, I believe it should be
-better advertised.
-And unless I am mistaken, mesa does have a configure step, I even
-believed most people use that.
-So my simple suggestion would be to simply print a warning if
-makedepend is not detected.
-
-I saw a report saying make clean was still needed with makedepend
-installed, but maybe not every parts of mesa uses makedepend
-correctly, like the nouveau driver ?
-
-diff --git a/configure.ac b/configure.ac
-index 485836a..ba5f267 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -1441,6 +1441,11 @@ echo "        CFLAGS:          $cflags"
- echo "        CXXFLAGS:        $cxxflags"
- echo "        Macros:          $defines"
-
-+if test "x$MKDEP" = x; then
-+       echo ""
-+       echo "        warning: makedepend is not installed, so it is
-recommended to make distclean after any code change."
-+fi
-+
- echo ""
- echo "        Run '${MAKE-make}' to build Mesa"
- echo ""
+T24gVHVlLCBGZWIgMjMsIDIwMTAgYXQgMToyOSBQTSwgWGF2aWVyIENoYW50cnkKPGNoYW50cnku
+eGF2aWVyQGdtYWlsLmNvbT4gd3JvdGU6Cj4gV2hpbGUga2VlcGluZyB1cC10by1kYXRlIHRoZSBu
+b3V2ZWF1IG1lc2EgZHJpdmVyIChlaXRoZXIgY2xhc3NpYyBvcgo+IGdhbGxpdW0pLCBvciBkb2lu
+ZyByZWdyZXNzaW9uIHRlc3RpbmcsIHRoZSBiaWcgbWFqb3JpdHkgb2YgbXkgcmVidWlsZHMKPiBy
+ZXN1bHRlZCBpbiBzZWdmYXVsdHMuCj4gSSBhbSBub3QgdGFsa2luZyBhYm91dCBhdXRvZ2VuIG9y
+IGNvbmZpZ3VyZSBkZXRlY3Rpb24uIEkgYmVsaWV2ZSB0aGlzCj4gYWxzbyB3b3JrcyBhdXRvbWF0
+aWNhbGx5IGluIG90aGVyIHByb2plY3RzIGFuZCBkb2Vzbid0IHdpdGggbWVzYSwgYnV0Cj4gZm9y
+Z2V0dGluZyB0byBkbyB0aGlzIHVzdWFsbHkgY2F1c2VzIGEgYnVpbGQgZmFpbHVyZS4gVGhlbgo+
+IGF1dG9nZW4vY29uZmlndXJlIGNhbiBiZSBydW4gYW5kIG1ha2UgY2FuIHJlc3VtZSB0aGUgYnVp
+bGQuCj4gV2hhdCBpcyBtb3JlIHByb2JsZW1hdGljIGlzIHdoZW4gYW4gYXBwYXJlbnRseSBzdWNj
+ZXNzZnVsIGJ1aWxkIGRvZXMKPiBub3Qgd29yay4gVGhlIHJlcGx5IEkgdXNlZCB0byBnZXQgaXMg
+anVzdCB0byBtYWtlIGNsZWFuIG9yCj4gZGlzdGNsZWFuL3JlYWxjbGVhbi4gY2xlYW4gaXMgdXN1
+YWxseSB3b3JrcywgYnV0IHJlYnVpbGRpbmcgZXZlcnl0aGluZwo+IHRha2VzIHRpbWUuIEFuZCBy
+ZWdyZXNzaW9uIHRlc3RpbmcgbmVlZHMgYSBsb3Qgb2YgcmVidWlsZGluZyA6KQo+IEFueXdheSBJ
+IGZvdW5kIHRoaXMgSVJDIGRpc2N1c3Npb24geWVzdGVyZGF5IHF1aXRlIGludGVyZXN0aW5nIDoK
+Pgo+IDIwOjMwIMKgKiBqYmFybmVzIGN1cnNlcyB0aGUgbWVzYSBidWlsZCBzeXN0ZW0KPiAyMDoz
+MSA8IGpiYXJuZXM+IGNoYW5nZSBpbnRlbF9mYm8uaCwgbm90aGluZyByZWJ1aWxkcwo+IDIwOjMy
+IDwgRHJfSmFrb2I+IG1ha2VkZXBlbmQgaW5zdGFsbGVkPwo+IDIwOjMzIDwgamJhcm5lcz4geWVh
+aCBidXQgaXQgbG9va3MgbGlrZSB3ZSBkb24ndCBzeW1saW5rIGludGVsX2Ziby5oCj4gaW50byBp
+OTE1IGFuZCBpbmNsdWRlIGl0IGluIHRoZSBtYWtlZmlsZQo+IDIwOjMzIDwgamJhcm5lcz4gc28g
+SSBndWVzcyB0aGUgZGVwcyBkb24ndCBnZXQgcGlja2VkIHVwCj4gMjA6MzQgPCBEcl9KYWtvYj4g
+SG1tCj4gMjA6MzQgPCBqYmFybmVzPiBvaCBubyBJIGd1ZXNzIEkgZG9uJ3QgaGF2ZSBtYWtlZGVw
+ZW5kCj4gMjA6MzQgLSEtIGpzZ2YgW35qZXJlbXlAYWRzbC02OS0xMDctODEtNTQuZHNsLnBsdG4x
+My5wYWNiZWxsLm5ldF0gaGFzCj4gam9pbmVkICNkcmktZGV2ZWwKPiAyMDozNCDCoCogamJhcm5l
+cyB0cmllcyBhZ2FpbiB3aXRoIHRoYXQgaW5zdGFsbGVkCj4gMjA6MzUgPCBqYmFybmVzPiBkb24n
+dCBtb3N0IHByb2plY3RzIGp1c3QgdXNlIGdjYydzIGRlcCB0cmFja2luZz8KPiAyMDozNSA8IERy
+X0pha29iPiB5ZXMKPiAyMDozNiA8IERyX0pha29iPiBJIHRyaWVkIHRvIGFkZCB0aGF0IGJ1dCBp
+dCBtb3N0bHkgdHVybmVkIGludG8gZmFpbC4KCldlIGNvdWxkIHVzZSBnY2MgZGlyZWN0bHkgZm9y
+IGRlcGVuZHMgKEkgaGF2ZSBhIHBhdGNoIHRvIGRvIGl0KSwgYnV0OgoKMS4gSSBkb24ndCB0aGlu
+ayBpdCB3b3VsZCBhY3R1YWxseSBoZWxwIG11Y2ggaW4gdGVybXMgb2YgcmVidWlsZHMKc2luY2Ug
+bWFrZWRlcGVuZCBzZWVtcyB0byBkbyBhIHBlcmZlY3RseSBhZGVxdWF0ZSBqb2Igb2YgZmluZGlu
+ZyB0aGUKbmVlZGVkIGhlYWRlcnMuCgoyLiBnY2MgZXhwZWN0cyB0byBvdXRwdXQgYSBzaW5nbGUg
+bWFrZSB0YXJnZXQgZm9yIGEgc2luZ2xlIHNvdXJjZQpmaWxlLiBtZXNhIGp1c3QgdG9zc2VzIGFs
+bCB0aGUgc291cmNlIGZpbGVzIGF0IG1ha2VkZXBlbmQgd2hpY2gKZ2VuZXJhdGVzIGEgZGVwZW5k
+IGZpbGUgd2l0aCBhIGJ1bmNoIG9mIHRhcmdldHMuIGdjYyBpcyBwaGVub21lbmFsbHkKc2xvdyBk
+b2luZyB0aGUgc2FtZS4gQ2hhbmdpbmcgdGhlIGJ1aWxkIHRvIGluY2x1ZGUgb25lIGRlcCBmaWxl
+IHBlcgpzb3VyY2UgZmlsZSB3b3VsZCBiZSBhIHRvbiBvZiBjaHVybi4KCjMuIFRoZSBmYXN0IHdh
+eSBhdXRvbWFrZSBkb2VzIGdjYyBkZXAgdHJhY2tpbmcgaXMgdG8gZG8gaXQgYXMgYSBzdGVwCmR1
+cmluZyB0aGUgY29tcGlsZS4gU2luY2UgZ2NjIGZ1bGx5IHByZXByb2Nlc3NlcyB0aGUgc291cmNl
+IGZpbGUKYmVmb3JlIGdlbmVyYXRpbmcgdGhlIG1ha2UgdGFyZ2V0LCB5b3UgY2FuIGdldCBpdCBm
+b3IgZnJlZSBkdXJpbmcgdGhlCmNvbXBpbGUuIERvaW5nIGFzIGEgc2VwYXJhdGUgc3RlcCBsaWtl
+IG1lc2EgbWVhbnMgeW91J3JlIHRocm93aW5nIGF3YXkKdGhlIHByZXByb2Nlc3NpbmcgYW5kIHRo
+ZW4gZG9pbmcgaXQgYWdhaW4gaW1tZWRpYXRlbHkgYWZ0ZXJ3YXJkLiBUaGUKdGltZSBhZGRzIHVw
+LgoKSSBndWVzcyB3aGF0IEknbSBzYXlpbmcgaXMgdGhhdCBJIHdvdWxkbid0IGJvdGhlciB3aXRo
+IGdjYyBkZXAKdHJhY2tpbmcgdW5sZXNzIGl0J3MgY29taW5nIGFzIHBhcnQgb2YgYXV0b21ha2Uu
+Cgo+IDIwOjM3IDwgamJhcm5lcz4gRHJfSmFrb2I6IHlvdSBndXlzIG1vc3RseSBidWlsZCB3aXRo
+IHNjb25zIHRoZXNlIGRheXMgcmlnaHQ/Cj4gMjA6MzcgPCBqYmFybmVzPiBhbmQgdGhhdCBoYXMg
+YSBzZXBhcmF0ZSBzZXQgb2YgZmlsZXMgZm9yIHRyYWNraW5nIHNvdXJjZXM/Cj4gMjA6MzcgPCBE
+cl9KYWtvYj4gRm9yIHdpbmRvd3MgeWVzLCBidXQgSSB1c2UgbWFrZSBmb3IgbGludXguCj4gMjA6
+MzcgPCBEcl9KYWtvYj4gVGhlbiBhZ2FpbiBJJ20gcHJldHR5IGdvb2QgYXQgaW5zdGFsbGluZyBt
+YWtlZGVwZW5kIDstKQo+IDIwOjM3IDwgamJhcm5lcz4gaGVoCj4gMjA6MzkgPCBEcl9KYWtvYj4g
+SSBkb24ndCBvZnRlbiBoYXZlIHRvIGRvIGEgbWFrZSBjbGVhbi4KPiAyMDo0MCA8IHN1b2trbz4g
+SSBndWVzcyB0aGVyZSBpcyBzb21ldGhpbmcgYnJva2VuIGluIHJhZGVvbiBtYWtlZmlsZXMKPiBi
+ZWNhdXNlIG1ha2UgY2xlYW4gaXMgcmVxdWlyZWQgcXVpdGUgb2Z0ZW4KPiAyMDo0MCA8IHN1b2tr
+bz4gTHVja2lseSBjY2FjaGUgaXMgdmVyeSBmYXN0Cj4gMjA6NDAgPCBNb3N0QXdlc29tZUR1ZGU+
+IFllYWgsIGNjYWNoZSBpcyBhIG11Y2ggYmV0dGVyIGZyaWVuZCB0aGFuIG1ha2VkZXBlbmQuCj4K
+Pgo+IDIxOjQ4IDwgc2hpbmluZz4gc3RpbGwgbm90IHZlcnkgY2xlYXIgdG8gbWUsIHNob3VsZCBl
+dmVyeW9uZSBoYXZlCj4gbWFrZWRlcGVuZCBpbnN0YWxsZWQgZm9yIGJ1aWxkaW5nIG1lc2EgPwo+
+IDIxOjQ5IDwgRHJfSmFrb2I+IGl0IGlzIGhpZ2x5IHJlY29tbWVuZGVkIHllcy4KPiAyMTo1MSA8
+IHNoaW5pbmc+IGRvZXMgaXQgaGVscCB3aXRoIG1lc2EgYnVpbGQgZmFpbHVyZXMgPyBJIGhhdmUg
+c2Vlbgo+IG1hbnkgbWFueSB0aW1lcyBpbiAjbm91dmVhdSB3ZWlyZCBtZXNhIGJlaGF2aW9yCj4g
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgYmVjYXVzZSBvZiBidWlsZCBmYWlsdXJlLCBhbmQgYSBt
+YWtlCj4gZGlzdGNsZWFuL3JlYWxjbGVhbiBmaXhlZCBpdAo+IDIxOjUxIDwgc2hpbmluZz4gc29y
+cnkgaXRzIG5vdCBidWlsZCBmYWlsdXJlCj4gMjE6NTEgPCBEcl9KYWtvYj4geWVzCj4gMjE6NTEg
+PCBzaGluaW5nPiBpdCAqc2VlbXMqIHRvIGJ1aWxkIGZ1biBidXQgaXQgZG9lc250IHdvcmsgY29y
+cmVjdGx5LAo+IG1vc3Qgb2YgdGhlIHRpbWUgaXQgc2ltcGx5IHNlZ2ZhdWx0cwo+IDIxOjUyIDwg
+c2hpbmluZz4gaHVoCj4gMjE6NTIgPCBzaGluaW5nPiBzL2Z1bi9maW5lCj4gMjE6NTQgPCBzdW9r
+a28+IHNoaW5pbmc6IFByb2JsZW0gd2l0aG91dCBtYWtlZGVwZW5kIGlzIHRoYXQgaW4gcmVidWls
+ZAo+IG1ha2UgZG9lc24ndCBidWlsZCBhbGwgZmlsZXMgdGhhdCBzaG91bGQgYmUKPiDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoHJlYnVpbGQgYmVjYXVzZSBpdCBkb2Vzbid0IGtub3cgYWJvdXQgaW5j
+bHVkZWQgZmlsZXMuCj4gU28gaWYgeW91IGxpbmsgb2xkIGFuZCBuZXcgb2JqZWN0IGZpbGVzIGFu
+ZAo+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgc29tZSBtZW1vcnkgbGF5b3V0IGNoYW5nZWQgeW91
+IHdpbGwgZ2V0IHNlZ2ZhdWx0cwo+Cj4gMjI6NDkgPCBzaGluaW5nPiB0aGVuIEkgd291bGQgd29y
+a2Fyb3VuZCBpdCBieSByZXF1aXJpbmcgbWFrZWRlcGVuZAo+IDIyOjUxIDwgemFja3I+IHdlIGRv
+bid0IGhhdmUgYSBjb25maWd1cmUgc3RlcCBzbyB5b3UnbGwgbmVlZCB0byBtb3N0Cj4gbGlrZWx5
+IHJld3JpdGUgdGhlIGJ1aWxkIHN5c3RlbSB0byBkbyB0aGF0Cj4KPgo+IEkgcHJvYmFibHkgc2hv
+dWxkIGxvb2sgaW50byBjY2FjaGUgKGFuZCBJIHByb2JhYmx5IHdpbGwpLCBidXQgaWYKPiBtYWtl
+ZGVwZW5kIGltcHJvdmVzIHRoZSByZWJ1aWxkIHNpdHVhdGlvbiwgSSBiZWxpZXZlIGl0IHNob3Vs
+ZCBiZQo+IGJldHRlciBhZHZlcnRpc2VkLgo+IEFuZCB1bmxlc3MgSSBhbSBtaXN0YWtlbiwgbWVz
+YSBkb2VzIGhhdmUgYSBjb25maWd1cmUgc3RlcCwgSSBldmVuCj4gYmVsaWV2ZWQgbW9zdCBwZW9w
+bGUgdXNlIHRoYXQuCj4gU28gbXkgc2ltcGxlIHN1Z2dlc3Rpb24gd291bGQgYmUgdG8gc2ltcGx5
+IHByaW50IGEgd2FybmluZyBpZgo+IG1ha2VkZXBlbmQgaXMgbm90IGRldGVjdGVkLgoKY29uZmln
+dXJlIGNoZWNrcyBmb3IgbWFrZWRlcGVuZCwgYnV0IGRvZXNuJ3QgZXJyb3IgaWYgaXQncyBub3Qg
+Zm91bmQuCkl0IHByb2JhYmx5IHNob3VsZC4gTGlrZXdpc2UsIHRoZSBjb21tYW5kcyBydW5uaW5n
+IG1ha2VkZXBlbmQgc2hvdWxkCnByb2JhYmx5IG5vdCBiZSBzaWxlbmNlZCB3aXRoIHN0ZGVyciBy
+ZWRpcmVjdGVkIHRvIC9kZXYvbnVsbC4gVGhhdAp3b3VsZCBicmVhayBidWlsZHMgZm9yIHBlb3Bs
+ZSB1c2luZyB0aGUgc3RhdGljIGNvbmZpZ3Mgd2l0aG91dAptYWtlZGVwZW5kLgoKPiBJIHNhdyBh
+IHJlcG9ydCBzYXlpbmcgbWFrZSBjbGVhbiB3YXMgc3RpbGwgbmVlZGVkIHdpdGggbWFrZWRlcGVu
+ZAo+IGluc3RhbGxlZCwgYnV0IG1heWJlIG5vdCBldmVyeSBwYXJ0cyBvZiBtZXNhIHVzZXMgbWFr
+ZWRlcGVuZAo+IGNvcnJlY3RseSwgbGlrZSB0aGUgbm91dmVhdSBkcml2ZXIgPwoKSSB0aGluayB0
+aGUgcHJvYmxlbSBpcyBtb3JlIHRoYXQgaXQncyBub3QgdXNlZCBjb25zaXN0ZW50bHkgc2luY2Ug
+aXQKaGFzIHRvIGJlIHNldHVwIG1hbnVhbGx5IGluIHRoZSBNYWtlZmlsZSB2cy4gYXV0b21hdGlj
+YWxseSBsaWtlCmF1dG9tYWtlLgoKPiBkaWZmIC0tZ2l0IGEvY29uZmlndXJlLmFjIGIvY29uZmln
+dXJlLmFjCj4gaW5kZXggNDg1ODM2YS4uYmE1ZjI2NyAxMDA2NDQKPiAtLS0gYS9jb25maWd1cmUu
+YWMKPiArKysgYi9jb25maWd1cmUuYWMKPiBAQCAtMTQ0MSw2ICsxNDQxLDExIEBAIGVjaG8gIiDC
+oCDCoCDCoCDCoENGTEFHUzogwqAgwqAgwqAgwqAgwqAkY2ZsYWdzIgo+IMKgZWNobyAiIMKgIMKg
+IMKgIMKgQ1hYRkxBR1M6IMKgIMKgIMKgIMKgJGN4eGZsYWdzIgo+IMKgZWNobyAiIMKgIMKgIMKg
+IMKgTWFjcm9zOiDCoCDCoCDCoCDCoCDCoCRkZWZpbmVzIgo+Cj4gK2lmIHRlc3QgIngkTUtERVAi
+ID0geDsgdGhlbgo+ICsgwqAgwqAgwqAgZWNobyAiIgo+ICsgwqAgwqAgwqAgZWNobyAiIMKgIMKg
+IMKgIMKgd2FybmluZzogbWFrZWRlcGVuZCBpcyBub3QgaW5zdGFsbGVkLCBzbyBpdCBpcwo+IHJl
+Y29tbWVuZGVkIHRvIG1ha2UgZGlzdGNsZWFuIGFmdGVyIGFueSBjb2RlIGNoYW5nZS4iCj4gK2Zp
+Cj4gKwoKSSdkIGJlIGNvbWZvcnRhYmxlIGhhdmluZyBtYWtlZGVwZW5kIGJlIGEgaGFyZCByZXF1
+aXJlbWVudCBpbgpjb25maWd1cmUuIE90aGVyd2lzZSwgSSdkIHJhdGhlciBoYXZlIHRoaXMgYmUg
+QUNfTVNHX1dBUk4oW3lvdXIKbWVzc2FnZV0pIHJpZ2h0IGFmdGVyIHRoZSBBQ19QQVRIX1BST0cg
+Zm9yIG1ha2VkZXBlbmQuCgotLQpEYW4KCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpEb3dubG9hZCBJ
+bnRlbCYjMTc0OyBQYXJhbGxlbCBTdHVkaW8gRXZhbApUcnkgdGhlIG5ldyBzb2Z0d2FyZSB0b29s
+cyBmb3IgeW91cnNlbGYuIFNwZWVkIGNvbXBpbGluZywgZmluZCBidWdzCnByb2FjdGl2ZWx5LCBh
+bmQgZmluZS10dW5lIGFwcGxpY2F0aW9ucyBmb3IgcGFyYWxsZWwgcGVyZm9ybWFuY2UuClNlZSB3
+aHkgSW50ZWwgUGFyYWxsZWwgU3R1ZGlvIGdvdCBoaWdoIG1hcmtzIGR1cmluZyBiZXRhLgpodHRw
+Oi8vcC5zZi5uZXQvc2Z1L2ludGVsLXN3LWRldgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpNZXNhM2QtZGV2IG1haWxpbmcgbGlzdApNZXNhM2QtZGV2QGxp
+c3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9s
+aXN0aW5mby9tZXNhM2QtZGV2Cg==
