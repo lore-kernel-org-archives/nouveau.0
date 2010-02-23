@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26521] Bug in kernel module - ttm_bo_pci_offset
-Date: Tue, 23 Feb 2010 09:42:25 -0800 (PST)
-Message-ID: <20100223174225.C68691300CD@annarchy.freedesktop.org>
+Date: Tue, 23 Feb 2010 10:00:46 -0800 (PST)
+Message-ID: <20100223180046.E4D5A1300D2@annarchy.freedesktop.org>
 References: <bug-26521-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26521
 
 
 
---- Comment #5 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-23 09:42:25 PST ---
-So, any fixes ideas? May be I should provide more information?
+--- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-23 10:00:46 PST ---
+It would help to know the specific code that is causing it. gdb 'info line' is
+your friend, you will need the ttm.ko module or the vmlinux kernel image (if
+it's built in). A short code snippet to avoid confusion would be nice too (all
+development happens against a special kernel tree).
 
 
 -- 
