@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Tue, 23 Feb 2010 21:12:30 -0800 (PST)
-Message-ID: <20100224051230.7F54A1300D9@annarchy.freedesktop.org>
+Date: Tue, 23 Feb 2010 22:50:37 -0800 (PST)
+Message-ID: <20100224065037.696EE1300E0@annarchy.freedesktop.org>
 References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=15758
-
-
-Steven Bularca <steve-CXsZ7cYqW4uuOtvtkYNheg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |steve-CXsZ7cYqW4uuOtvtkYNheg@public.gmane.org
-
-
-
-
---- Comment #20 from Steven Bularca <steve-CXsZ7cYqW4uuOtvtkYNheg@public.gmane.org>  2010-02-23 21:12:29 PST ---
-Hi,
-
-I would like to confirm this bug still exists almost a year later on:
-
-kernel-2.6.31.12-174.2.22.fc12.i686.PAE
-
-It only happens on my laptop's external VGA display, never on the LVDS.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTc1OAoKCgoKCi0t
+LSBDb21tZW50ICMyMSBmcm9tIFJvbmFsZCA8cm9uYWxkNjQ1QGdtYWlsLmNvbT4gIDIwMTAtMDIt
+MjMgMjI6NTA6MzYgUFNUIC0tLQooSW4gcmVwbHkgdG8gY29tbWVudCAjMjApCj4gSGksCj4gCj4g
+SSB3b3VsZCBsaWtlIHRvIGNvbmZpcm0gdGhpcyBidWcgc3RpbGwgZXhpc3RzIGFsbW9zdCBhIHll
+YXIgbGF0ZXIgb246Cj4gCj4ga2VybmVsLTIuNi4zMS4xMi0xNzQuMi4yMi5mYzEyLmk2ODYuUEFF
+Cj4gCj4gSXQgb25seSBoYXBwZW5zIG9uIG15IGxhcHRvcCdzIGV4dGVybmFsIFZHQSBkaXNwbGF5
+LCBuZXZlciBvbiB0aGUgTFZEUy4KPiAKCkkgaGFkIHRoZSBjdXJzb3IgZGlzYXBwZWFyaW5nIGZy
+b20gdGhlIExWRFMgc2NyZWVuLiBJIHRoaW5rIHRoYXQgaXMgYSBzZXBlcmF0ZQpidWc/CgoKSG93
+ZXZlciwgYWZ0ZXIgYSBzaG9ydCAndmFjYXRpb24nIHRvIFVidW50dSAoZ290IGZlZCB1cCB3aXRo
+IEdlbnRvbywgYnV0CnNvbWVob3cgSSB3ZW50IGJhY2suLi4pIEkgd2VudCBiYWNrIHRvIEdlbnRv
+byBhbmQgcmXDr25zdGFsbGVkIHRoZSBtb3N0IHJlY2VudApub3V2ZWF1L25vdXZlYXUtZHJtL2xp
+YmRybSBzdHVmZiB5b3UgY2FuIGdldCB3aXRoIGdlbnRvbyB4b3JnLXNlcnZlci0xLjYuNSBhbmQK
+SSBuZXZlciBoYWQgdGhlIHByb2JsZW0uIEhvd2V2ZXIsIEknbSBzdGlsbCBub3Qgc3VyZS4uLi4K
+CgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHA6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2Vy
+cHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBi
+ZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
