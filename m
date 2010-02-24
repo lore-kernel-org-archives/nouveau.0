@@ -1,13 +1,11 @@
-From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: no start with latest modules from git
-Date: Wed, 24 Feb 2010 12:41:59 +0100
-Message-ID: <b67489df1002240341p7498486cu93704ae7bff7c3c7@mail.gmail.com>
-References: <919223.18542.qm@web57008.mail.re3.yahoo.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26733] New: Full-screen XV causes graphics lockup
+Date: Wed, 24 Feb 2010 07:56:08 -0800 (PST)
+Message-ID: <bug-26733-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <919223.18542.qm-fMceGm5vvXiB9c0Qi4KiSs0jms80CZx+QQ4Iyu8u01E@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,23 +15,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Feb 24, 2010 at 11:02 AM, Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
-> Hello,
->
-> Using code from git a week is since I cannot start Xorg with nouveau on a Quatro NVS 290.
->
-> Commits from git.freedesktop.org:
->
-> xorg-server - db4f676f25c6d8e58263d5151942be730592d444
-> xf86-video-nouveau - 70d0a48b6c3f1a817bf850acd3bae48d063e56b9
-> libdrm - 3130f94c6ee32668cb9f0b96b6c8e308a7bb3b11
-> mesa - e16f0c14f353cc04ad6cbcf99e3b95ccb1d2c06b
->
+http://bugs.freedesktop.org/show_bug.cgi?id=26733
 
-And where is the kernel / nouveau drm ? This is probably even more
-important than the rest :)
-So upgrade it too with http://cgit.freedesktop.org/nouveau/linux-2.6/
+           Summary: Full-screen XV causes graphics lockup
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Since updating libdrm, xf86-video-nouveau, and the DRM module to the latest GIT
+(as of today), any time I make a video full-screen in VLC (with XVideo output)
+on my nv92, the screen freezes.  Through ssh I found this in dmesg at the time
+of the crash, which I'm told is bad:
+
+[drm] nouveau 0000:04:00.0: PFIFO_DMA_PUSHER - Ch 2
+[drm] nouveau 0000:04:00.0: PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
+[drm] nouveau 0000:04:00.0: PGRAPH_ERROR - Ch 2/2 Class 0x502d Mthd 0x0844 Data
+0x00104218:0x00104218
+[drm] nouveau 0000:04:00.0: PGRAPH_ERROR - nSource: DATA_ERROR, nStatus:
+[drm] nouveau 0000:04:00.0: PGRAPH_ERROR - Ch 2/2 Class 0x502d Mthd 0x0854 Data
+0x4d6a0000:0x4d6a0000
+[drm] nouveau 0000:04:00.0: nouveau_channel_free: freeing fifo 2
+[drm] nouveau 0000:04:00.0: Failed to idle channel 2.
+[drm] nouveau 0000:04:00.0: PFIFO_DMA_PUSHER - Ch 127
+[drm] nouveau 0000:04:00.0: Allocating FIFO number 2
+[drm] nouveau 0000:04:00.0: nouveau_channel_alloc: initialised FIFO 2
+[drm] nouveau 0000:04:00.0: nouveau_channel_free: freeing fifo 2
+[drm] nouveau 0000:04:00.0: Failed to idle channel 2.
+[drm] nouveau 0000:04:00.0: nouveau_channel_free: freeing fifo 1
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
