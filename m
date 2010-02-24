@@ -1,8 +1,8 @@
-From: Programmeur fou <programmeur.fou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Martin Peres <programmeur.fou-GANU6spQydw@public.gmane.org>
 Subject: Re: [TEST REQUEST] NV50/NV8x/NV9x/NVAx ctxprog and
  ctxvals generator
-Date: Wed, 24 Feb 2010 14:20:13 +0100
-Message-ID: <4B85278D.7080709@gmail.com>
+Date: Wed, 24 Feb 2010 14:22:00 +0100
+Message-ID: <4B8527F8.7040500@free.fr>
 References: <4B84D750.5070604@free.fr> <201002240822.38449.koriakin@0x04.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"; Format="flowed"
@@ -30,10 +30,10 @@ IGdlbmVyYXRvcjogcGxlYXNlIGluY2x1ZGUKPiB5b3VyIGNoaXBzZXQgY29kZSBudW1iZXIgW05W
 NTAsIE5WOTYsIE5WQTUsIGV0Yy5dLiBJZiB5b3UgZG9uJ3Qga25vdyB3aGF0IGl0Cj4gaXMsIGp1
 c3QgcmVwb3J0IHRoZSBoZXggbnVtYmVyIGluICJEZXRlY3RlZCBhbiBOVjUwIGdlbmVyYXRpb24g
 Y2FyZAo+ICgweDA4NjkwMGEyKSIgbGluZQo+Cj4gU29ycnkgZm9yIHRoYXQgc2NyZXd1cC4uLi4K
-Pgo+IE1hcmNpbiBLb8WbY2llbG5pY2tpCj4KPiAgICAKWWVhaCAhLCBpdCdzIHF1aXRlIGJldHRl
-ciBub3cgOykKCkkgY2FuIG1hbmFnZSB0byBoYXZlIGZvbnQgY29ycnVwdGlvbiB1c2luZyBjb21w
-aXosIGJ1dCBJIHRoaW5rIHRoaXMgYnVnIAppcyBub3QgcmVsYXRlZCBJJ2xsIGZpbGwgYSBidWcg
-cmVwb3J0IHdoZW4geW91J2xsIHN1cHBvcnQgZ2FsbGl1bS4KCkNoZWVycywKTWFydGluCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+Pgo+IE1hcmNpbiBLb8WbY2llbG5pY2tpCj4gICAgClllYWggISwgaXQncyBxdWl0ZSBiZXR0ZXIg
+bm93IDspCgpJIGNhbiBtYW5hZ2UgdG8gZW5jb3VudGVyIGZvbnQgY29ycnVwdGlvbiB1c2luZyBj
+b21waXosIGJ1dCBJIHRoaW5rIHRoaXMgCmJ1ZyBpcyBub3QgcmVsYXRlZCBJJ2xsIGZpbGwgYSBi
+dWcgcmVwb3J0IHdoZW4geW91J2xsIHN1cHBvcnQgZ2FsbGl1bS4KCkNoZWVycywKTWFydGluCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
