@@ -1,14 +1,11 @@
-From: Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>
-Subject: Re: [TEST REQUEST] NV50/NV8x/NV9x/NVAx ctxprog and
-	ctxvals generator
-Date: Wed, 24 Feb 2010 19:35:38 +0100
-Message-ID: <201002241935.38890.johannesobermayr@gmx.de>
-References: <201002240245.26070.koriakin@0x04.net>
+From: Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Why report LVDS as disconnected when lid is closed?
+Date: Wed, 24 Feb 2010 18:51:56 -0500
+Message-ID: <add883141002241551v66e19bdfp754e7f9e62f45e67@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <201002240245.26070.koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +18,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gTWl0dHdvY2gsIDI0LiBGZWJydWFyIDIwMTAgMDM6NDU6MjUgc2NocmllYiBNYXJjaW4gS2/F
-m2NpZWxuaWNraToKPiBodHRwOi8vMHgwNC5uZXQvfm13ay8wMDAxLWRybS1udjUwLUltcGxlbWVu
-dC1jdHhwcm9nLXN0YXRlLWdlbmVyYXRpb24ucGF0Y2gKPiAKPiBUaGlzIHBhdGNoIG1ha2VzIG5v
-dXZlYXUgZ2VuZXJhdGUgaXRzIG93biBjdHhwcm9ncyBvdXQgb2YgdGhpbiBhaXIgb24gTlY1MCAK
-PiBmYW1pbHkgY2FyZHMgYW5kIGFsbG93cyB1cyB0byBnZXQgcmlkIG9mIG52aWRpYSdzIGZpcm13
-YXJlLgo+IAo+IEl0IGRpZmZlcnMgcXVpdGUgYSBiaXQgZnJvbSBudmlkaWEgcHJvZ3MgYW5kIG5l
-ZWRzIHRob3JvdWdoIHRlc3Rpbmcgb24gYXMgbWFueSAKPiBjaGlwc2V0cyBhbmQgYXBwbGljYXRp
-b25zIGFzIHBvc3NpYmxlLCBpbmNsdWRpbmcgZ2FsbGl1bTNkLiBBbnl0aGluZyB0aGF0IAo+IHdv
-cmtzIHdpdGggbnZpZGlhIGZpcm13YXJlLCBidXQgbm90IHdpdGggdGhpcyBnZW5lcmF0b3IsIGNv
-dW50cyBhcyBhIGJ1ZyBbeWVzLCAKPiBldmVuIGlmIGl0IGludm9sdmVzIGdhbGxpdW1dLiBQbGVh
-c2UgcmVwb3J0IGJhY2sgdG8gbXkgbWFpbCBhZGRyZXNzLCBvciB0byBtd2sgCj4gb24gSVJDLgo+
-IAo+IE1hcmNpbiBLb8WbY2llbG5pY2tpCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUKPiAKCkkgYXBwbGllZCB5b3VyIGxhdGVzdCBwYXRjaCAoZG93bmxvYWRl
-ZCB+MTAgbWluIGFnbykgdG8gb3BlblNVU0UgcGFja2FnZXMuCgpZb3UgY2FuIHJlYWQgbXkgYW5u
-b3VuY2VtZW50IGhlcmU6Cmh0dHBzOi8vZmVhdHVyZXMub3BlbnN1c2Uub3JnLzMwNzU4OAoKSm9o
-YW5uZXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+What's the motivation behind commit 60821e0 (drm/nouveau: report LVDS
+as disconnected if lid closed)?  The only noticeable effect I can see
+from it is that if I turn on my laptop and then close the lid, X fails
+to start as it can't find any screens.  In fact, if I close the lid
+before nouveau initialises, I don't even get a framebuffer console.
+
+I know I can just use the ignorelid module param, but what's the
+benefit without it?
+
+-- 
+Tavian Barnes
