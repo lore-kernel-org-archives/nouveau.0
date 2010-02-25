@@ -1,11 +1,10 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH] drm/nv50: Remove redundant/incorrect ctxvals
-	initialisation.
-Date: Thu, 25 Feb 2010 18:53:37 +0000
-Message-ID: <1267124017-5207-1-git-send-email-koriakin@0x04.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26755] New: Corrupted webcam image with nouveau
+Date: Thu, 25 Feb 2010 11:05:15 -0800 (PST)
+Message-ID: <bug-26755-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,23 +18,38 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MTFjLzAwNCBvZmZzZXQgY29ycmVzcG9uZHMgdG8gUEdSQVBIIHJlZyAweDQwMDgyOCwgYW5kIGlz
-IGluaXRpYWxpc2VkCmVhcmxpZXIgYW55d2F5IGJ5IGJvdGggb3VyIGN0eHByb2cgZ2VuZXJhdG9y
-IGFuZCBibG9iIGN0eHZhbHMuIEl0J3MKYWN0dWFsbHkgaW5jb3JyZWN0IHdpdGggdGhlIGdlbmVy
-YXRvciwgc2luY2Ugd2UgdXNlIGRpZmZlcmVudCBsYXlvdXQKb24gcHJlLU5WQTAuCgpTaWduZWQt
-b2ZmLWJ5OiBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29yaWFraW5AMHgwNC5uZXQ+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmFwaC5jIHwgICAgNCAtLS0tCiAxIGZpbGVzIGNo
-YW5nZWQsIDAgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dyYXBoLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9udjUwX2dyYXBoLmMKaW5kZXggODU3YTA5Ni4uMDhkODdiNyAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmFwaC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252NTBfZ3JhcGguYwpAQCAtMjI5LDEwICsyMjksNiBAQCBudjUwX2dyYXBoX2NyZWF0ZV9j
-b250ZXh0KHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4pCiAJCW5vdXZlYXVfZ3JjdHhfdmFs
-c19sb2FkKGRldiwgY3R4KTsKIAl9CiAJbnZfd28zMihkZXYsIGN0eCwgMHgwMDAwMC80LCBjaGFu
-LT5yYW1pbi0+aW5zdGFuY2UgPj4gMTIpOwotCWlmICgoZGV2X3ByaXYtPmNoaXBzZXQgJiAweGYw
-KSA9PSAweGEwKQotCQludl93bzMyKGRldiwgY3R4LCAweDAwMDA0LzQsIDB4MDAwMDAwMDApOwot
-CWVsc2UKLQkJbnZfd28zMihkZXYsIGN0eCwgMHgwMDExYy80LCAweDAwMDAwMDAwKTsKIAlkZXZf
-cHJpdi0+ZW5naW5lLmluc3RtZW0uZmluaXNoX2FjY2VzcyhkZXYpOwogCiAJcmV0dXJuIDA7Ci0t
-IAoxLjYuNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+http://bugs.freedesktop.org/show_bug.cgi?id=26755
+
+           Summary: Corrupted webcam image with nouveau
+           Product: xorg
+           Version: 7.5
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: freedesktop-bugs-LMSbVK6jyRDwq8DG3r++wQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=33568)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33568)
+Cheese with corrupted webcam image
+
+Under nouveau, the image from my webcam gets corrupted when I view it in Cheese
+or Skype - the top 5% is shown correctly, but the rest is solid green (see
+screenshot).
+
+When running Cheese, I get lots of errors like "libv4lconvert: Error
+decompressing JPEG: fill_nbits error: need 6 more bits", but no errors from the
+kernel.
+
+The webcam works fine when I use the blob. My card is an 8400M GS.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
