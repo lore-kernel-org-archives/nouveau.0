@@ -1,11 +1,14 @@
-From: Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Why report LVDS as disconnected when lid is closed?
-Date: Wed, 24 Feb 2010 18:51:56 -0500
-Message-ID: <add883141002241551v66e19bdfp754e7f9e62f45e67@mail.gmail.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Why report LVDS as disconnected when lid is closed?
+Date: Thu, 25 Feb 2010 10:01:55 +1000
+Message-ID: <1267056115.2695.6.camel@nisroch>
+References: <add883141002241551v66e19bdfp754e7f9e62f45e67@mail.gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <add883141002241551v66e19bdfp754e7f9e62f45e67-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,17 +18,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-What's the motivation behind commit 60821e0 (drm/nouveau: report LVDS
-as disconnected if lid closed)?  The only noticeable effect I can see
-from it is that if I turn on my laptop and then close the lid, X fails
-to start as it can't find any screens.  In fact, if I close the lid
-before nouveau initialises, I don't even get a framebuffer console.
+On Wed, 2010-02-24 at 18:51 -0500, Tavian Barnes wrote:
+> What's the motivation behind commit 60821e0 (drm/nouveau: report LVDS
+> as disconnected if lid closed)?  The only noticeable effect I can see
+> from it is that if I turn on my laptop and then close the lid, X fails
+> to start as it can't find any screens.  In fact, if I close the lid
+> before nouveau initialises, I don't even get a framebuffer console.
+> 
+> I know I can just use the ignorelid module param, but what's the
+> benefit without it?
+The benefit is people on laptops with docking stations can close the
+lid, and have two external outputs light up.  Otherwise, LVDS (which
+isn't visible because the lid is closed) will likely be programmed and
+only one external display.
 
-I know I can just use the ignorelid module param, but what's the
-benefit without it?
-
--- 
-Tavian Barnes
+Ben.
+> 
