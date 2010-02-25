@@ -1,10 +1,11 @@
-From: Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
-Subject: Re: no start with latest modules from git
-Date: Thu, 25 Feb 2010 01:37:57 -0800 (PST)
-Message-ID: <907240.44996.qm@web57007.mail.re3.yahoo.com>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH] drm/nv50: Remove redundant/incorrect ctxvals
+	initialisation.
+Date: Thu, 25 Feb 2010 18:53:37 +0000
+Message-ID: <1267124017-5207-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,26 +16,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-ok, thanks, but in this way only kernel 2.6.32 was available.
-s.
-
-On Wed, Feb 24, 2010 at 11:02 AM, Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
-> Hello,
->
-> Using code from git a week is since I cannot start Xorg with nouveau on a Quatro NVS 290.
->
-> Commits from git.freedesktop.org:
->
-> xorg-server - db4f676f25c6d8e58263d5151942be730592d444
-> xf86-video-nouveau - 70d0a48b6c3f1a817bf850acd3bae48d063e56b9
-> libdrm - 3130f94c6ee32668cb9f0b96b6c8e308a7bb3b11
-> mesa - e16f0c14f353cc04ad6cbcf99e3b95ccb1d2c06b
->
-
-And where is the kernel / nouveau drm ? This is probably even more
-important than the rest :)
-So upgrade it too with http://cgit.freedesktop.org/nouveau/linux-2.6/
+MTFjLzAwNCBvZmZzZXQgY29ycmVzcG9uZHMgdG8gUEdSQVBIIHJlZyAweDQwMDgyOCwgYW5kIGlz
+IGluaXRpYWxpc2VkCmVhcmxpZXIgYW55d2F5IGJ5IGJvdGggb3VyIGN0eHByb2cgZ2VuZXJhdG9y
+IGFuZCBibG9iIGN0eHZhbHMuIEl0J3MKYWN0dWFsbHkgaW5jb3JyZWN0IHdpdGggdGhlIGdlbmVy
+YXRvciwgc2luY2Ugd2UgdXNlIGRpZmZlcmVudCBsYXlvdXQKb24gcHJlLU5WQTAuCgpTaWduZWQt
+b2ZmLWJ5OiBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29yaWFraW5AMHgwNC5uZXQ+Ci0tLQogZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmFwaC5jIHwgICAgNCAtLS0tCiAxIGZpbGVzIGNo
+YW5nZWQsIDAgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dyYXBoLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udjUwX2dyYXBoLmMKaW5kZXggODU3YTA5Ni4uMDhkODdiNyAxMDA2NDQKLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmFwaC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252NTBfZ3JhcGguYwpAQCAtMjI5LDEwICsyMjksNiBAQCBudjUwX2dyYXBoX2NyZWF0ZV9j
+b250ZXh0KHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4pCiAJCW5vdXZlYXVfZ3JjdHhfdmFs
+c19sb2FkKGRldiwgY3R4KTsKIAl9CiAJbnZfd28zMihkZXYsIGN0eCwgMHgwMDAwMC80LCBjaGFu
+LT5yYW1pbi0+aW5zdGFuY2UgPj4gMTIpOwotCWlmICgoZGV2X3ByaXYtPmNoaXBzZXQgJiAweGYw
+KSA9PSAweGEwKQotCQludl93bzMyKGRldiwgY3R4LCAweDAwMDA0LzQsIDB4MDAwMDAwMDApOwot
+CWVsc2UKLQkJbnZfd28zMihkZXYsIGN0eCwgMHgwMDExYy80LCAweDAwMDAwMDAwKTsKIAlkZXZf
+cHJpdi0+ZW5naW5lLmluc3RtZW0uZmluaXNoX2FjY2VzcyhkZXYpOwogCiAJcmV0dXJuIDA7Ci0t
+IAoxLjYuNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
