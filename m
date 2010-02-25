@@ -1,14 +1,15 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Why report LVDS as disconnected when lid is closed?
-Date: Thu, 25 Feb 2010 10:01:55 +1000
-Message-ID: <1267056115.2695.6.camel@nisroch>
-References: <add883141002241551v66e19bdfp754e7f9e62f45e67@mail.gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH 3/3] drm/nouveau: Fix noaccel/nofbaccel option
+	descriptions.
+Date: Thu, 25 Feb 2010 00:54:04 +0000
+Message-ID: <1267059244-1322-3-git-send-email-koriakin@0x04.net>
+References: <1267059244-1322-1-git-send-email-koriakin@0x04.net>
+	<1267059244-1322-2-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <add883141002241551v66e19bdfp754e7f9e62f45e67-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <1267059244-1322-2-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,23 +19,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2010-02-24 at 18:51 -0500, Tavian Barnes wrote:
-> What's the motivation behind commit 60821e0 (drm/nouveau: report LVDS
-> as disconnected if lid closed)?  The only noticeable effect I can see
-> from it is that if I turn on my laptop and then close the lid, X fails
-> to start as it can't find any screens.  In fact, if I close the lid
-> before nouveau initialises, I don't even get a framebuffer console.
-> 
-> I know I can just use the ignorelid module param, but what's the
-> benefit without it?
-The benefit is people on laptops with docking stations can close the
-lid, and have two external outputs light up.  Otherwise, LVDS (which
-isn't visible because the lid is closed) will likely be programmed and
-only one external display.
-
-Ben.
-> 
+U2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0Pgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMgfCAgICA0ICsrLS0KIDEg
+ZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5jCmluZGV4IGRhM2I5M2IuLjg3NGFkZjUgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMKKysrIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuYwpAQCAtNzUsMTEgKzc1LDExIEBAIE1PRFVMRV9Q
+QVJNX0RFU0MoaWdub3JlbGlkLCAiSWdub3JlIEFDUEkgbGlkIHN0YXR1cyIpOwogaW50IG5vdXZl
+YXVfaWdub3JlbGlkID0gMDsKIG1vZHVsZV9wYXJhbV9uYW1lZChpZ25vcmVsaWQsIG5vdXZlYXVf
+aWdub3JlbGlkLCBpbnQsIDA0MDApOwogCi1NT0RVTEVfUEFSTV9ERVNDKG5vYWdwLCAiRGlzYWJs
+ZSBhbGwgYWNjZWxlcmF0aW9uIik7CitNT0RVTEVfUEFSTV9ERVNDKG5vYWNjZWwsICJEaXNhYmxl
+IGFsbCBhY2NlbGVyYXRpb24iKTsKIGludCBub3V2ZWF1X25vYWNjZWwgPSAwOwogbW9kdWxlX3Bh
+cmFtX25hbWVkKG5vYWNjZWwsIG5vdXZlYXVfbm9hY2NlbCwgaW50LCAwNDAwKTsKIAotTU9EVUxF
+X1BBUk1fREVTQyhub2FncCwgIkRpc2FibGUgZmJjb24gYWNjZWxlcmF0aW9uIik7CitNT0RVTEVf
+UEFSTV9ERVNDKG5vZmJhY2NlbCwgIkRpc2FibGUgZmJjb24gYWNjZWxlcmF0aW9uIik7CiBpbnQg
+bm91dmVhdV9ub2ZiYWNjZWwgPSAwOwogbW9kdWxlX3BhcmFtX25hbWVkKG5vZmJhY2NlbCwgbm91
+dmVhdV9ub2ZiYWNjZWwsIGludCwgMDQwMCk7CiAKLS0gCjEuNi40LjEKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
