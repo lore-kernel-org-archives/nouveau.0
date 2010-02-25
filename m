@@ -1,8 +1,7 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH] renouveau/nv10: remove duplicate vertex buffer
-	registers
-Date: Fri, 26 Feb 2010 20:12:54 +0100
-Message-ID: <1267211574-2443-1-git-send-email-luca@luca-barbieri.com>
+From: Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: use ALIGN instead of open coding it
+Date: Wed, 24 Feb 2010 23:27:10 -0500
+Message-ID: <1267072030-23176-1-git-send-email-mattst88@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -17,81 +16,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Cc: Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-NV10TCL defines the vertex buffer registers both as arrays and as
-individual named registers.
-
-This causes duplicate register definitions and the individual registers
-are not used either by the DDX or by the Mesa driver.
-
-Francisco Jerez said to remove them all.
-
-Signed-off-by: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+CC: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- renouveau.xml |   49 -------------------------------------------------
- 1 files changed, 0 insertions(+), 49 deletions(-)
+ drivers/gpu/drm/nouveau/nv04_fbcon.c   |    2 +-
+ drivers/gpu/drm/nouveau/nv50_fbcon.c   |    2 +-
+ drivers/gpu/drm/nouveau/nv50_instmem.c |    2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/renouveau.xml b/renouveau.xml
-index 8fb35a5..3fb9d9a 100644
---- a/renouveau.xml
-+++ b/renouveau.xml
-@@ -2498,55 +2498,6 @@
-       <bitfield name="STRIDE" high="15" low="8" type="int"/>
-       <bitfield name="POS_HOMOGENEOUS" high="24" low="24" type="boolean"/>
-     </reg32>
--
--    <reg32 offset="0x0d00" name="VERTEX_ARRAY_OFFSET_POS" type="hexa"/>
--    <reg32 offset="0x0d04" name="VERTEX_ARRAY_FORMAT_POS" type="bitfield">
--      <bitfield name="TYPE" high="3" low="0" type="int"/>
--      <bitfield name="FIELDS" high="7" low="4" type="int"/>
--      <bitfield name="STRIDE" high="15" low="8" type="int"/>
--    </reg32>
--    <reg32 offset="0x0d08" name="VERTEX_ARRAY_OFFSET_COL" type="hexa"/>
--    <reg32 offset="0x0d0c" name="VERTEX_ARRAY_FORMAT_COL" type="bitfield">
--      <bitfield name="TYPE" high="3" low="0" type="int"/>
--      <bitfield name="FIELDS" high="7" low="4" type="int"/>
--      <bitfield name="STRIDE" high="15" low="8" type="int"/>
--    </reg32>
--    <reg32 offset="0x0d10" name="VERTEX_ARRAY_OFFSET_COL2" type="hexa"/>
--    <reg32 offset="0x0d14" name="VERTEX_ARRAY_FORMAT_COL2" type="bitfield">
--      <bitfield name="TYPE" high="3" low="0" type="int"/>
--      <bitfield name="FIELDS" high="7" low="4" type="int"/>
--      <bitfield name="STRIDE" high="15" low="8" type="int"/>
--    </reg32>
--    <reg32 offset="0x0d18" name="VERTEX_ARRAY_OFFSET_TX0" type="hexa"/>
--    <reg32 offset="0x0d1c" name="VERTEX_ARRAY_FORMAT_TX0" type="bitfield">
--      <bitfield name="TYPE" high="3" low="0" type="int"/>
--      <bitfield name="FIELDS" high="7" low="4" type="int"/>
--      <bitfield name="STRIDE" high="15" low="8" type="int"/>
--    </reg32>
--    <reg32 offset="0x0d20" name="VERTEX_ARRAY_OFFSET_TX1" type="hexa"/>
--    <reg32 offset="0x0d24" name="VERTEX_ARRAY_FORMAT_TX1" type="bitfield">
--      <bitfield name="TYPE" high="3" low="0" type="int"/>
--      <bitfield name="FIELDS" high="7" low="4" type="int"/>
--      <bitfield name="STRIDE" high="15" low="8" type="int"/>
--    </reg32>
--    <reg32 offset="0x0d28" name="VERTEX_ARRAY_OFFSET_NOR" type="hexa"/>
--    <reg32 offset="0x0d2c" name="VERTEX_ARRAY_FORMAT_NOR" type="bitfield">
--      <bitfield name="TYPE" high="3" low="0" type="int"/>
--      <bitfield name="FIELDS" high="7" low="4" type="int"/>
--      <bitfield name="STRIDE" high="15" low="8" type="int"/>
--    </reg32>
--    <reg32 offset="0x0d30" name="VERTEX_ARRAY_OFFSET_WGH" type="hexa"/>
--    <reg32 offset="0x0d34" name="VERTEX_ARRAY_FORMAT_WGH" type="bitfield">
--      <bitfield name="TYPE" high="3" low="0" type="int"/>
--      <bitfield name="FIELDS" high="7" low="4" type="int"/>
--      <bitfield name="STRIDE" high="15" low="8" type="int"/>
--    </reg32>
--    <reg32 offset="0x0d38" name="VERTEX_ARRAY_OFFSET_FOG" type="hexa"/>
--    <reg32 offset="0x0d3c" name="VERTEX_ARRAY_FORMAT_FOG" type="bitfield">
--      <bitfield name="TYPE" high="3" low="0" type="int"/>
--      <bitfield name="FIELDS" high="7" low="4" type="int"/>
--      <bitfield name="STRIDE" high="15" low="8" type="int"/>
--    </reg32>
-     <reg32 offset="0x0dfc" name="VERTEX_BEGIN_END" type="enum" enum_name="nv10_begin_end"/>
-     <reg32 offset="0x0e00" name="VB_ELEMENT_U16" type="bitfield">
-       <bitfield name="I0" high="15" low="0" type="int"/>
+diff --git a/drivers/gpu/drm/nouveau/nv04_fbcon.c b/drivers/gpu/drm/nouveau/nv04_fbcon.c
+index fd01caa..3da90c2 100644
+--- a/drivers/gpu/drm/nouveau/nv04_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nv04_fbcon.c
+@@ -118,7 +118,7 @@ nv04_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
+ 		return;
+ 	}
+ 
+-	width = (image->width + 31) & ~31;
++	width = ALIGN(image->width, 32);
+ 	dsize = (width * image->height) >> 5;
+ 
+ 	if (info->fix.visual == FB_VISUAL_TRUECOLOR ||
+diff --git a/drivers/gpu/drm/nouveau/nv50_fbcon.c b/drivers/gpu/drm/nouveau/nv50_fbcon.c
+index 0f57cdf..993c712 100644
+--- a/drivers/gpu/drm/nouveau/nv50_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nv50_fbcon.c
+@@ -109,7 +109,7 @@ nv50_fbcon_imageblit(struct fb_info *info, const struct fb_image *image)
+ 		return;
+ 	}
+ 
+-	width = (image->width + 31) & ~31;
++	width = ALIGN(image->width, 32);
+ 	dwords = (width * image->height) >> 5;
+ 
+ 	BEGIN_RING(chan, NvSub2D, 0x0814, 2);
+diff --git a/drivers/gpu/drm/nouveau/nv50_instmem.c b/drivers/gpu/drm/nouveau/nv50_instmem.c
+index 94400f7..a8a639e 100644
+--- a/drivers/gpu/drm/nouveau/nv50_instmem.c
++++ b/drivers/gpu/drm/nouveau/nv50_instmem.c
+@@ -373,7 +373,7 @@ nv50_instmem_populate(struct drm_device *dev, struct nouveau_gpuobj *gpuobj,
+ 	if (gpuobj->im_backing)
+ 		return -EINVAL;
+ 
+-	*sz = (*sz + (NV50_INSTMEM_PAGE_SIZE-1)) & ~(NV50_INSTMEM_PAGE_SIZE-1);
++	*sz = ALIGN(*sz, NV50_INSTMEM_PAGE_SIZE);
+ 	if (*sz == 0)
+ 		return -EINVAL;
+ 
 -- 
-1.6.6.1.476.g01ddb
+1.6.4.4
