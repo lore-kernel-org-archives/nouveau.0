@@ -1,11 +1,14 @@
 From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH 0/5] renouveau: nv30/nv40 unification
-Date: Fri, 26 Feb 2010 14:38:19 +0100
-Message-ID: <1267191504-24575-1-git-send-email-luca@luca-barbieri.com>
+Subject: [PATCH 2/5] renouveau/nv40: describe CLEAR_VALUE_COLOR
+	bitfields
+Date: Fri, 26 Feb 2010 14:38:21 +0100
+Message-ID: <1267191504-24575-3-git-send-email-luca@luca-barbieri.com>
+References: <1267191504-24575-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1267191504-24575-1-git-send-email-luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,57 +22,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This patchset applies some minor fixes to renouveau.xml and then unifies
-the nv30 and nv40 register definitions.
+---
+ renouveau.xml |    7 ++++++-
+ 1 files changed, 6 insertions(+), 1 deletions(-)
 
-nv30 and nv40 are very similar and have the same offsets for the registers
-they share.
-
-The major differences are:
-1. Texture setup is different due to full NPOT support on nv40
-2. More advanced blending/render targets on nv40
-3. NV30 has fixed function registers, which NV40 lacks
-
-The vertex shader instruction format also differs, but this does not
-affect renouveau.xml.
-
-This is in preparation for unifying the Gallium drivers.
-
-Unification is carried out by creating a new artificial "NVFXTCL" object.
-
-This results in most of the old NV34TCL_ and NV40TCL_ definitions being
-replaced by NVFXTCL_. A sed script is provided to fix the Gallium driver
-and DDX.
-
-This provides the following advantages:
-1. Registers are defined only once in renouveau.xml
-2. grep NV34TCL_ yields all usages of NV30-only functionality
-3. grep NV40TCL_ yields all usages of NV40-only functionality
-
-The "FX" name comes from CineFX, which nVidia uses to refers to, and
-only to, nv30 and nv40 hardware.
-There are some mentions on the web of CineFX referring to nv50 too, but
-I could not find any official uses of it from nVidia.
-
-This approach has been criticized due to the fact that other registers are
-either named for the first card having them, or duplicated for every card.
-
-However, I believe the additional clarity of the NVFXTCL_ approach is
-worthwhile.
-
-If consensus develops against this notion, it is easy to change the Python
-script that generated the unification patch and rerun it.
-
-Luca Barbieri (5):
-  renouveau: completely describe POINT_SPRITE on nv30 and nv40
-  renouveau/nv40: describe CLEAR_VALUE_COLOR bitfields
-  renouveau/nv40: set NV40TCL_LINE_STIPPLE_PATTERN to hexa like nv30
-  renouveau/nv30: remove clip planes #6 and #7
-  renouveau: unify nv30 and nv40 as NVFXTCL
-
- nvfx.py       |  207 +++++++++++++
- nvfx.sed      |  340 ++++++++++++++++++++++
- renouveau.xml |  891 ++++++++++++++++++++++-----------------------------------
- 3 files changed, 889 insertions(+), 549 deletions(-)
- create mode 100755 nvfx.py
- create mode 100644 nvfx.sed
+diff --git a/renouveau.xml b/renouveau.xml
+index 2bfa1d0..2b6e8d7 100644
+--- a/renouveau.xml
++++ b/renouveau.xml
+@@ -4253,7 +4253,12 @@
+     <reg32 offset="0x1d84"/>
+     <reg32 offset="0x1d88"/>
+     <reg32 offset="0x1d8c" name="CLEAR_VALUE_DEPTH"/>
+-    <reg32 offset="0x1d90" name="CLEAR_VALUE_COLOR"/>
++    <reg32 offset="0x1d90" name="CLEAR_VALUE_COLOR" type="bitfield">
++      <bitfield name="B" high="7" low="0" type="int" />
++      <bitfield name="G" high="15" low="8" type="int" />
++      <bitfield name="R" high="23" low="16" type="int" />
++      <bitfield name="A" high="31" low="24" type="int" />
++    </reg32>
+     <reg32 offset="0x1d94" name="CLEAR_BUFFERS" type="bitfield">
+       <bitfield name="COLOR_A" high="7" low="7" type="boolean"/>
+       <bitfield name="COLOR_B" high="6" low="6" type="boolean"/>
+-- 
+1.6.6.1.476.g01ddb
