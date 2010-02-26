@@ -1,8 +1,8 @@
 From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH 2/5] renouveau/nv40: describe CLEAR_VALUE_COLOR
-	bitfields
-Date: Fri, 26 Feb 2010 14:38:21 +0100
-Message-ID: <1267191504-24575-3-git-send-email-luca@luca-barbieri.com>
+Subject: [PATCH 3/5] renouveau/nv40: set
+	NV40TCL_LINE_STIPPLE_PATTERN to hexa like nv30
+Date: Fri, 26 Feb 2010 14:38:22 +0100
+Message-ID: <1267191504-24575-4-git-send-email-luca@luca-barbieri.com>
 References: <1267191504-24575-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,26 +23,21 @@ Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 ---
- renouveau.xml |    7 ++++++-
- 1 files changed, 6 insertions(+), 1 deletions(-)
+ renouveau.xml |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
 diff --git a/renouveau.xml b/renouveau.xml
-index 2bfa1d0..2b6e8d7 100644
+index 2b6e8d7..d305a8e 100644
 --- a/renouveau.xml
 +++ b/renouveau.xml
-@@ -4253,7 +4253,12 @@
-     <reg32 offset="0x1d84"/>
-     <reg32 offset="0x1d88"/>
-     <reg32 offset="0x1d8c" name="CLEAR_VALUE_DEPTH"/>
--    <reg32 offset="0x1d90" name="CLEAR_VALUE_COLOR"/>
-+    <reg32 offset="0x1d90" name="CLEAR_VALUE_COLOR" type="bitfield">
-+      <bitfield name="B" high="7" low="0" type="int" />
-+      <bitfield name="G" high="15" low="8" type="int" />
-+      <bitfield name="R" high="23" low="16" type="int" />
-+      <bitfield name="A" high="31" low="24" type="int" />
-+    </reg32>
-     <reg32 offset="0x1d94" name="CLEAR_BUFFERS" type="bitfield">
-       <bitfield name="COLOR_A" high="7" low="7" type="boolean"/>
-       <bitfield name="COLOR_B" high="6" low="6" type="boolean"/>
+@@ -4271,7 +4271,7 @@
+     <reg32 offset="0x1db4" name="LINE_STIPPLE_ENABLE" type="boolean"/>
+     <reg32 offset="0x1db8" name="LINE_STIPPLE_PATTERN" type="bitfield">
+       <bitfield name="FACTOR" high="15" low="0" type="int"/>
+-      <bitfield name="PATTERN" high="31" low="16" type="int"/>
++      <bitfield name="PATTERN" high="31" low="16" type="hexa"/>
+     </reg32>
+     <reg32 offset="0x1e40" name="VTX_ATTR_1F" size="16" type="float"/>
+     <reg32 offset="0x1e94"/>
 -- 
 1.6.6.1.476.g01ddb
