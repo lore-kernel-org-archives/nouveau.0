@@ -1,14 +1,11 @@
 From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH 1/5] renouveau: completely describe POINT_SPRITE
-	on nv30 and nv40
-Date: Fri, 26 Feb 2010 14:38:20 +0100
-Message-ID: <1267191504-24575-2-git-send-email-luca@luca-barbieri.com>
-References: <1267191504-24575-1-git-send-email-luca@luca-barbieri.com>
+Subject: [PATCH 0/5] renouveau: nv30/nv40 unification
+Date: Fri, 26 Feb 2010 14:38:19 +0100
+Message-ID: <1267191504-24575-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1267191504-24575-1-git-send-email-luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,58 +19,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This matches the behavior of the Gallium drivers.
+This patchset applies some minor fixes to renouveau.xml and then unifies
+the nv30 and nv40 register definitions.
 
-On nv20, only texture unit 3 is accelerated (according to the
-NV_point_sprite spec, and that is probably why only bitfield 11 was
-defined on nv30).
----
- renouveau.xml |   26 ++++++++++++++++++++++----
- 1 files changed, 22 insertions(+), 4 deletions(-)
+nv30 and nv40 are very similar and have the same offsets for the registers
+they share.
 
-diff --git a/renouveau.xml b/renouveau.xml
-index 81e996b..2bfa1d0 100644
---- a/renouveau.xml
-+++ b/renouveau.xml
-@@ -3884,9 +3884,16 @@
-     <reg32 offset="0x1ee0" name="POINT_SIZE" type="float"/>
-     <reg32 offset="0x1ee4" name="POINT_PARAMETERS_ENABLE" type="boolean"/>
-     <reg32 offset="0x1ee8" name="POINT_SPRITE" type="bitfield">
--      <bitfield name="ENABLE" high="0" low="0" type="boolean"/>
--      <bitfield name="R_MODE" high="2" low="1" type="enum" enum_name="nv20_point_sprite_r_mode"/>
--      <bitfield name="COORD_REPLACE" high="11" low="11" type="boolean"/>
-+      <bitfield high="0" low="0" name="ENABLE" type="boolean" />
-+      <bitfield enum_name="nv20_point_sprite_r_mode" high="2" low="1" name="R_MODE" type="enum" />
-+      <bitfield high="8" low="8" name="COORD_REPLACE_0" type="boolean" />
-+      <bitfield high="9" low="9" name="COORD_REPLACE_1" type="boolean" />
-+      <bitfield high="10" low="10" name="COORD_REPLACE_2" type="boolean" />
-+      <bitfield high="11" low="11" name="COORD_REPLACE_3" type="boolean" />
-+      <bitfield high="12" low="12" name="COORD_REPLACE_4" type="boolean" />
-+      <bitfield high="13" low="13" name="COORD_REPLACE_5" type="boolean" />
-+      <bitfield high="14" low="14" name="COORD_REPLACE_6" type="boolean" />
-+      <bitfield high="15" low="15" name="COORD_REPLACE_7" type="boolean" />
-     </reg32>
-     <reg32 offset="0x1efc" name="VP_UPLOAD_CONST_ID" type="hexa"/>
-     <reg32 offset="0x1f00" name="VP_UPLOAD_CONST_X" size="4" stride="16" type="float"/>
-@@ -4270,7 +4277,18 @@
-     <reg32 offset="0x1ea8"/>
-     <reg32 offset="0x1eac"/>
-     <reg32 offset="0x1ee0" name="POINT_SIZE" type="float"/>
--    <reg32 offset="0x1ee8" name="POINT_SPRITE"/>
-+    <reg32 offset="0x1ee8" name="POINT_SPRITE" type="bitfield">
-+      <bitfield high="0" low="0" name="ENABLE" type="boolean" />
-+      <bitfield enum_name="nv20_point_sprite_r_mode" high="2" low="1" name="R_MODE" type="enum" />
-+      <bitfield high="8" low="8" name="COORD_REPLACE_0" type="boolean" />
-+      <bitfield high="9" low="9" name="COORD_REPLACE_1" type="boolean" />
-+      <bitfield high="10" low="10" name="COORD_REPLACE_2" type="boolean" />
-+      <bitfield high="11" low="11" name="COORD_REPLACE_3" type="boolean" />
-+      <bitfield high="12" low="12" name="COORD_REPLACE_4" type="boolean" />
-+      <bitfield high="13" low="13" name="COORD_REPLACE_5" type="boolean" />
-+      <bitfield high="14" low="14" name="COORD_REPLACE_6" type="boolean" />
-+      <bitfield high="15" low="15" name="COORD_REPLACE_7" type="boolean" />
-+    </reg32>
-     <reg32 offset="0x1ef8"/>
-     <reg32 offset="0x1efc" name="VP_UPLOAD_CONST_ID" type="hexa"/>
-     <reg32 offset="0x1f00" name="VP_UPLOAD_CONST_X" size="4" stride="16" type="float"/>
--- 
-1.6.6.1.476.g01ddb
+The major differences are:
+1. Texture setup is different due to full NPOT support on nv40
+2. More advanced blending/render targets on nv40
+3. NV30 has fixed function registers, which NV40 lacks
+
+The vertex shader instruction format also differs, but this does not
+affect renouveau.xml.
+
+This is in preparation for unifying the Gallium drivers.
+
+Unification is carried out by creating a new artificial "NVFXTCL" object.
+
+This results in most of the old NV34TCL_ and NV40TCL_ definitions being
+replaced by NVFXTCL_. A sed script is provided to fix the Gallium driver
+and DDX.
+
+This provides the following advantages:
+1. Registers are defined only once in renouveau.xml
+2. grep NV34TCL_ yields all usages of NV30-only functionality
+3. grep NV40TCL_ yields all usages of NV40-only functionality
+
+The "FX" name comes from CineFX, which nVidia uses to refers to, and
+only to, nv30 and nv40 hardware.
+There are some mentions on the web of CineFX referring to nv50 too, but
+I could not find any official uses of it from nVidia.
+
+This approach has been criticized due to the fact that other registers are
+either named for the first card having them, or duplicated for every card.
+
+However, I believe the additional clarity of the NVFXTCL_ approach is
+worthwhile.
+
+If consensus develops against this notion, it is easy to change the Python
+script that generated the unification patch and rerun it.
+
+Luca Barbieri (5):
+  renouveau: completely describe POINT_SPRITE on nv30 and nv40
+  renouveau/nv40: describe CLEAR_VALUE_COLOR bitfields
+  renouveau/nv40: set NV40TCL_LINE_STIPPLE_PATTERN to hexa like nv30
+  renouveau/nv30: remove clip planes #6 and #7
+  renouveau: unify nv30 and nv40 as NVFXTCL
+
+ nvfx.py       |  207 +++++++++++++
+ nvfx.sed      |  340 ++++++++++++++++++++++
+ renouveau.xml |  891 ++++++++++++++++++++++-----------------------------------
+ 3 files changed, 889 insertions(+), 549 deletions(-)
+ create mode 100755 nvfx.py
+ create mode 100644 nvfx.sed
