@@ -1,14 +1,12 @@
-From: soulpatch <soulpa7ch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: module parameter description fix
-Date: Thu, 25 Feb 2010 22:31:16 -0700
-Message-ID: <1267162276.9424.7.camel@Tachyon>
-References: <1267159017.7524.17.camel@Tachyon>
-	<add883141002252123l424a4095x79f9551726dc5266@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26767] New: kmemleak complain about possible memory
+	leak
+Date: Fri, 26 Feb 2010 01:56:58 -0800 (PST)
+Message-ID: <bug-26767-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <add883141002252123l424a4095x79f9551726dc5266-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,50 +16,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2010-02-26 at 00:23 -0500, Tavian Barnes wrote:
-> On 25 February 2010 23:36, soulpatch <l337_sp33k-FFYn/CNdgSA@public.gmane.org> wrote:
-> > I found a bug in the nouveau kernel module. It looks like a cut and
-> > paste error on the definitions of some module parameters in
-> > nouveau_drv.c. The bug exhibits when displaying module parameter
-> > information with the modinfo utility. Here's a patch:
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
-> > index da3b93b..874adf5 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_drv.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
-> > @@ -75,11 +75,11 @@ MODULE_PARM_DESC(ignorelid, "Ignore ACPI lid status");
-> >  int nouveau_ignorelid = 0;
-> >  module_param_named(ignorelid, nouveau_ignorelid, int, 0400);
-> >
-> > -MODULE_PARM_DESC(noagp, "Disable all acceleration");
-> > +MODULE_PARM_DESC(noaccel, "Disable all acceleration");
-> >  int nouveau_noaccel = 0;
-> >  module_param_named(noaccel, nouveau_noaccel, int, 0400);
-> >
-> > -MODULE_PARM_DESC(noagp, "Disable fbcon acceleration");
-> > +MODULE_PARM_DESC(nofbaccel, "Disable fbcon acceleration");
-> >  int nouveau_nofbaccel = 0;
-> >  module_param_named(nofbaccel, nouveau_nofbaccel, int, 0400);
-> >
-> >
-> > Cheers,
-> >        soulpatch
-> >
-> >
-> > _______________________________________________
-> > Nouveau mailing list
-> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > http://lists.freedesktop.org/mailman/listinfo/nouveau
-> >
-> 
-> Looks like 933236b4a6ae9cb917f80ef1effe964323d7f25a just fixed this yesterday.
-> 
+http://bugs.freedesktop.org/show_bug.cgi?id=26767
 
-Yeah, I fixed it yesterday too. I guess I should have done another pull
-before generating the diff today. Glad it got fixed though.
+           Summary: kmemleak complain about possible memory leak
+           Product: xorg
+           Version: 7.5
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: me-uiRdBs8odbtmTBlB0Cgj/Q@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-soulpatch
+
+When running kernel with kmemleak enabled, we keep seeing on dmesg suspects of
+new memory leaks, looking at /sys/kernel/debug/kmemleak says that nouveau might
+be the one to be blamed:
+
+unreferenced object 0xf6175390 (size 148):
+  comm "X", pid 8910, jiffies 4294890281 (age 6196.003s)
+  hex dump (first 32 bytes):
+    06 82 00 00 00 00 00 00 e0 84 a8 f3 80 81 a8 f3  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c1433abb>] kmemleak_alloc+0x2a/0x47
+    [<c10b5faa>] kmem_cache_alloc+0xa8/0xf6
+    [<c11a11b5>] idr_pre_get+0x27/0x60
+    [<f8144ca2>] drm_gem_handle_create+0x25/0x6f [drm]
+    [<f81f6780>] nouveau_gem_ioctl_new+0x201/0x262 [nouveau]
+    [<f81436a1>] drm_ioctl+0x268/0x310 [drm]
+    [<c10c6238>] vfs_ioctl+0x27/0x8c
+    [<c10c67b4>] do_vfs_ioctl+0x46e/0x4a8
+    [<c10c6833>] sys_ioctl+0x45/0x5f
+    [<c100290c>] sysenter_do_call+0x12/0x22
+    [<ffffffff>] 0xffffffff
+
+As an extra detail, I'm using current linux-2.6 head
+(baac35c4155a8aa826c70acee6553368ca5243a2) plus x11 overlay on gentoo
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
