@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26790] NV40 - Not center screen
-Date: Sat, 27 Feb 2010 14:39:50 -0800 (PST)
-Message-ID: <20100227223950.25F7F1300AB@annarchy.freedesktop.org>
+Date: Sat, 27 Feb 2010 15:53:16 -0800 (PST)
+Message-ID: <20100227235316.D53E21300A3@annarchy.freedesktop.org>
 References: <bug-26790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,43 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26790
 
 
 
---- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-02-27 14:39:49 PST ---
-(In reply to comment #2)
-> (In reply to comment #1)
-> > Your monitor is connected through a VGA cable, right?
-> 
-> Yes, See:
-> http://traepaca.files.wordpress.com/2008/08/vga-plug.jpg
-> 
-> > Doesn't it have h/v
-> > position controls?
-> 
-> Yes, have position controls.
-> 
-> Problem:
-> 
-> == Use Case ==
-> 1) Start Ubuntu with driver nouveau and click button adjust automatic
-> possition.
-> 2) Reboot
-> 3) Start Windows and click button adjust automatic possition
-> 4) Reboot
-> 5) Start Ubuntu with driver nouveau and click button adjust automatic
-> possition.
-> 6) Reboot
-> 
-> Problem change manuality poss
-> 
-> Driver Private work fine with Ubuntu and Windows, not necesary press button
-> adjust automatic possition.
-> 
-
-Most likely the blob defaults to a mode different from ours, could you attach
-Xorg logs from both nouveau and nvidia?
-
-IIRC the blob usually doesn't print out any timings, so you'll have to run your
-X server with some high verbosity level, like:
-# Xorg -logverbose 7
+--- Comment #4 from Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-27 15:53:16 PST ---
+Created an attachment (id=33632)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33632)
+DriverPropietary-Xorg.0.log
 
 
 -- 
