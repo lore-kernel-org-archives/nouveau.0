@@ -1,13 +1,13 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: no start with latest modules from git
-Date: Sat, 27 Feb 2010 16:49:52 +0200
-Message-ID: <20100227164952.2f4008f6@daedalus.pq.iki.fi>
-References: <907240.44996.qm@web57007.mail.re3.yahoo.com>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: Re: GeForce 6150SE: DVI-connector not detected
+Date: Sat, 27 Feb 2010 16:50:21 +0100
+Message-ID: <87hbp2ptj6.fsf@riseup.net>
+References: <4B88FC7A.6010403@googlemail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0491003959=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <907240.44996.qm-9geta01lMReB9c0Qi4KiSs0jms80CZx+QQ4Iyu8u01E@public.gmane.org>
+In-Reply-To: <4B88FC7A.6010403-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> (Frank Schaefer's message of
+	"Sat, 27 Feb 2010 12:05:30 +0100")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,41 +15,75 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
+To: Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 25 Feb 2010 01:37:57 -0800 (PST)
-Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
+--===============0491003959==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha1; protocol="application/pgp-signature"
 
-> ok, thanks, but in this way only kernel 2.6.32 was available.
-> s.
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-So you do the out-of-tree build and use 2.6.33 if you wish.
-Just get the DRM modules from nouveau/linux-2.6.
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-> On Wed, Feb 24, 2010 at 11:02 AM, Sebastian Glita
-> <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
-> > Hello,
-> >
-> > Using code from git a week is since I cannot start Xorg with
-> > nouveau on a Quatro NVS 290.
-> >
-> > Commits from git.freedesktop.org:
-> >
-> > xorg-server - db4f676f25c6d8e58263d5151942be730592d444
-> > xf86-video-nouveau - 70d0a48b6c3f1a817bf850acd3bae48d063e56b9
-> > libdrm - 3130f94c6ee32668cb9f0b96b6c8e308a7bb3b11
-> > mesa - e16f0c14f353cc04ad6cbcf99e3b95ccb1d2c06b
-> >
-> 
-> And where is the kernel / nouveau drm ? This is probably even more
-> important than the rest :)
-> So upgrade it too with
-> http://cgit.freedesktop.org/nouveau/linux-2.6/
+Hi,
 
--- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> writes:
+
+> Hi,
+>
+> today I tested kernel 2.6.33 and it seems that nouveau doesn't detect
+> the DVI-connector of my GeForce 6150SE (Asus M2N-VM DH).
+> The screen turns black during boot-process immediately after the "[drm]
+> nouveau ..." messages appeared.
+>
+It looks like your IGP uses some sort of weird-ass external TMDS
+encoder, an mmiotrace from the blob enabling DVI on this card might be
+useful, see [1] and the mmiotrace docs in the linux kernel tree for the
+details.
+
+[1] http://nouveau.freedesktop.org/wiki/MmioTrace
+
+> The board has two connectors (DVI + VGA) and I'm using the DVI-connector
+> only. Everything is fine when I use a VGA-cable instead.
+>
+> See boot.msg in the attachment. Please tell me if you need further
+> informations. I can also test patches.
+>
+> Regards,
+> Frank Schaefer
+>
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iEYEARECAAYFAkuJPz0ACgkQ196Zy2qEI5fPAQCgxEBQq9nLTqd68Zcf5M9FGONn
+WAcAnA5760o685j8RtcI7Ugk1GMwmDpU
+=FiEm
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============0491003959==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0491003959==--
