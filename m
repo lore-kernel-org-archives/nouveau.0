@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26790] NV40 - Not center screen
-Date: Sat, 27 Feb 2010 13:09:28 -0800 (PST)
-Message-ID: <20100227210928.0D79D1300AB@annarchy.freedesktop.org>
-References: <bug-26790-8800@http.bugs.freedesktop.org/>
+From: Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
+Subject: Re: no start with latest modules from git
+Date: Sat, 27 Feb 2010 13:54:32 -0800 (PST)
+Message-ID: <586335.88328.qm@web57004.mail.re3.yahoo.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,46 +15,47 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26790
+Hi,
+
+ok. i'l keep an eye which one, 2.6.32 - nouveau-git or 2.6.33 + nouveau-drm is working. or just wait for nouveau-git to become 2.6.32 than greater.
+
+thanks,
+s.
 
 
+On Thu, 25 Feb 2010 01:37:57 -0800 (PST)
+Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
 
+> ok, thanks, but in this way only kernel 2.6.32 was available.
+> s.
 
+So you do the out-of-tree build and use 2.6.33 if you wish.
+Just get the DRM modules from nouveau/linux-2.6.
 
---- Comment #2 from Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-27 13:09:27 PST ---
-(In reply to comment #1)
-> Your monitor is connected through a VGA cable, right?
-
-Yes, See:
-http://traepaca.files.wordpress.com/2008/08/vga-plug.jpg
-
-> Doesn't it have h/v
-> position controls?
-
-Yes, have position controls.
-
-Problem:
-
-== Use Case ==
-1) Start Ubuntu with driver nouveau and click button adjust automatic
-possition.
-2) Reboot
-3) Start Windows and click button adjust automatic possition
-4) Reboot
-5) Start Ubuntu with driver nouveau and click button adjust automatic
-possition.
-6) Reboot
-
-Problem change manuality poss
-
-Driver Private work fine with Ubuntu and Windows, not necesary press button
-adjust automatic possition.
-
+> On Wed, Feb 24, 2010 at 11:02 AM, Sebastian Glita
+> <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
+> > Hello,
+> >
+> > Using code from git a week is since I cannot start Xorg with
+> > nouveau on a Quatro NVS 290.
+> >
+> > Commits from git.freedesktop.org:
+> >
+> > xorg-server - db4f676f25c6d8e58263d5151942be730592d444
+> > xf86-video-nouveau - 70d0a48b6c3f1a817bf850acd3bae48d063e56b9
+> > libdrm - 3130f94c6ee32668cb9f0b96b6c8e308a7bb3b11
+> > mesa - e16f0c14f353cc04ad6cbcf99e3b95ccb1d2c06b
+> >
+> 
+> And where is the kernel / nouveau drm ? This is probably even more
+> important than the rest :)
+> So upgrade it too with
+> http://cgit.freedesktop.org/nouveau/linux-2.6/
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Pekka Paalanen
+http://www.iki.fi/pq/
