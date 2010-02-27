@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26790] New: Not center screen
-Date: Sat, 27 Feb 2010 10:54:04 -0800 (PST)
-Message-ID: <bug-26790-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26790] NV40 - Not center screen
+Date: Sat, 27 Feb 2010 11:47:08 -0800 (PST)
+Message-ID: <20100227194708.3D8241300A8@annarchy.freedesktop.org>
+References: <bug-26790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=26790
 
-           Summary: Not center screen
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-               URL: https://bugs.edge.launchpad.net/ubuntu/+source/xserver-
-                    xorg-video-nouveau/+bug/529130
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Not center screen           |NV40 - Not center screen
 
 
-Open bug in Launchpad:
-https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/529130
-
-==Not center screen==
-
-Photo example:
-https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/529130/comments/1
-
-Hardware:
-01:00.0 VGA compatible controller [0300]: nVidia Corporation G72 [GeForce 7300
-LE] [10de:01d1] (rev a1)
-
-Thanks,
-Cristian
 
 
 -- 
