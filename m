@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26790] NV40 - Not center screen
-Date: Sat, 27 Feb 2010 15:53:16 -0800 (PST)
-Message-ID: <20100227235316.D53E21300A3@annarchy.freedesktop.org>
+Date: Sat, 27 Feb 2010 15:54:41 -0800 (PST)
+Message-ID: <20100227235441.4E06D1300A3@annarchy.freedesktop.org>
 References: <bug-26790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26790
 
 
 
---- Comment #4 from Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-27 15:53:16 PST ---
-Created an attachment (id=33632)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33632)
-DriverPropietary-Xorg.0.log
+--- Comment #5 from Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-27 15:54:40 PST ---
+Created an attachment (id=33633)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33633)
+DriverNouveau-Xorg.0.log
 
 
 -- 
