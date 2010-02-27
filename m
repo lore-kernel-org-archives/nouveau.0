@@ -1,13 +1,12 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: GeForce 6150SE: DVI-connector not detected
-Date: Sat, 27 Feb 2010 16:50:21 +0100
-Message-ID: <87hbp2ptj6.fsf@riseup.net>
-References: <4B88FC7A.6010403@googlemail.com>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Fix fbcon corruption with font width
+	not divisible by 8
+Date: Sat, 27 Feb 2010 18:13:35 +0000
+Message-ID: <1267294415-23303-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0491003959=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4B88FC7A.6010403-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> (Frank Schaefer's message of
-	"Sat, 27 Feb 2010 12:05:30 +0100")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,75 +14,43 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0491003959==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha1; protocol="application/pgp-signature"
-
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
-
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-
-Hi,
-
-Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> writes:
-
-> Hi,
->
-> today I tested kernel 2.6.33 and it seems that nouveau doesn't detect
-> the DVI-connector of my GeForce 6150SE (Asus M2N-VM DH).
-> The screen turns black during boot-process immediately after the "[drm]
-> nouveau ..." messages appeared.
->
-It looks like your IGP uses some sort of weird-ass external TMDS
-encoder, an mmiotrace from the blob enabling DVI on this card might be
-useful, see [1] and the mmiotrace docs in the linux kernel tree for the
-details.
-
-[1] http://nouveau.freedesktop.org/wiki/MmioTrace
-
-> The board has two connectors (DVI + VGA) and I'm using the DVI-connector
-> only. Everything is fine when I use a VGA-cable instead.
->
-> See boot.msg in the attachment. Please tell me if you need further
-> informations. I can also test patches.
->
-> Regards,
-> Frank Schaefer
->
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-
-iEYEARECAAYFAkuJPz0ACgkQ196Zy2qEI5fPAQCgxEBQq9nLTqd68Zcf5M9FGONn
-WAcAnA5760o685j8RtcI7Ugk1GMwmDpU
-=FiEm
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0491003959==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0491003959==--
+TlY1MCBpcyBuaWNlIGFuZCBoYXMgYSBzd2l0Y2ggdGhhdCBhdXRvYWxpZ25zIHN0dWZmIGZvciB1
+cy4gUHJlLU5WNTAsCndlIG5lZWQgdG8gYWxpZ24gaW5wdXQgYml0bWFwIHdpZHRoIG1hbnVhbGx5
+LgoKU2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0
+PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MDRfZmJjb24uYyB8ICAgIDYgKysrLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2ZiY29uLmMgfCAgICAyICstCiAyIGZpbGVz
+IGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjA0X2ZiY29uLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9udjA0X2ZiY29uLmMKaW5kZXggM2RhOTBjMi4uODEzYjI1YyAxMDA2NDQKLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbnYwNF9mYmNvbi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252MDRfZmJjb24uYwpAQCAtMTE4LDggKzExOCw4IEBAIG52MDRfZmJjb25faW1hZ2Vi
+bGl0KHN0cnVjdCBmYl9pbmZvICppbmZvLCBjb25zdCBzdHJ1Y3QgZmJfaW1hZ2UgKmltYWdlKQog
+CQlyZXR1cm47CiAJfQogCi0Jd2lkdGggPSBBTElHTihpbWFnZS0+d2lkdGgsIDMyKTsKLQlkc2l6
+ZSA9ICh3aWR0aCAqIGltYWdlLT5oZWlnaHQpID4+IDU7CisJd2lkdGggPSBBTElHTihpbWFnZS0+
+d2lkdGgsIDgpOworCWRzaXplID0gQUxJR04od2lkdGggKiBpbWFnZS0+aGVpZ2h0LCAzMikgPj4g
+NTsKIAogCWlmIChpbmZvLT5maXgudmlzdWFsID09IEZCX1ZJU1VBTF9UUlVFQ09MT1IgfHwKIAkg
+ICAgaW5mby0+Zml4LnZpc3VhbCA9PSBGQl9WSVNVQUxfRElSRUNUQ09MT1IpIHsKQEAgLTEzNiw4
+ICsxMzYsOCBAQCBudjA0X2ZiY29uX2ltYWdlYmxpdChzdHJ1Y3QgZmJfaW5mbyAqaW5mbywgY29u
+c3Qgc3RydWN0IGZiX2ltYWdlICppbWFnZSkKIAkJCSAoKGltYWdlLT5keCArIGltYWdlLT53aWR0
+aCkgJiAweGZmZmYpKTsKIAlPVVRfUklORyhjaGFuLCBiZyk7CiAJT1VUX1JJTkcoY2hhbiwgZmcp
+OwotCU9VVF9SSU5HKGNoYW4sIChpbWFnZS0+aGVpZ2h0IDw8IDE2KSB8IGltYWdlLT53aWR0aCk7
+CiAJT1VUX1JJTkcoY2hhbiwgKGltYWdlLT5oZWlnaHQgPDwgMTYpIHwgd2lkdGgpOworCU9VVF9S
+SU5HKGNoYW4sIChpbWFnZS0+aGVpZ2h0IDw8IDE2KSB8IGltYWdlLT53aWR0aCk7CiAJT1VUX1JJ
+TkcoY2hhbiwgKGltYWdlLT5keSA8PCAxNikgfCAoaW1hZ2UtPmR4ICYgMHhmZmZmKSk7CiAKIAl3
+aGlsZSAoZHNpemUpIHsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBf
+ZmJjb24uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZmJjb24uYwppbmRleCA5OTNj
+NzEyLi4yNWEzY2Q4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Zi
+Y29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9mYmNvbi5jCkBAIC0yMzMs
+NyArMjMzLDcgQEAgbnY1MF9mYmNvbl9hY2NlbF9pbml0KHN0cnVjdCBmYl9pbmZvICppbmZvKQog
+CUJFR0lOX1JJTkcoY2hhbiwgTnZTdWIyRCwgMHgwODA4LCAzKTsKIAlPVVRfUklORyhjaGFuLCAw
+KTsKIAlPVVRfUklORyhjaGFuLCAwKTsKLQlPVVRfUklORyhjaGFuLCAwKTsKKwlPVVRfUklORyhj
+aGFuLCAxKTsKIAlCRUdJTl9SSU5HKGNoYW4sIE52U3ViMkQsIDB4MDgxYywgMSk7CiAJT1VUX1JJ
+TkcoY2hhbiwgMSk7CiAJQkVHSU5fUklORyhjaGFuLCBOdlN1YjJELCAweDA4NDAsIDQpOwotLSAK
+MS42LjQuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
