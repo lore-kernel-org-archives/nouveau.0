@@ -1,11 +1,10 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Fix fbcon corruption with font width
-	not divisible by 8
-Date: Sat, 27 Feb 2010 18:13:35 +0000
-Message-ID: <1267294415-23303-1-git-send-email-koriakin@0x04.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26790] New: Not center screen
+Date: Sat, 27 Feb 2010 10:54:04 -0800 (PST)
+Message-ID: <bug-26790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,38 +18,41 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-TlY1MCBpcyBuaWNlIGFuZCBoYXMgYSBzd2l0Y2ggdGhhdCBhdXRvYWxpZ25zIHN0dWZmIGZvciB1
-cy4gUHJlLU5WNTAsCndlIG5lZWQgdG8gYWxpZ24gaW5wdXQgYml0bWFwIHdpZHRoIG1hbnVhbGx5
-LgoKU2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0
-PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MDRfZmJjb24uYyB8ICAgIDYgKysrLS0t
-CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2ZiY29uLmMgfCAgICAyICstCiAyIGZpbGVz
-IGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjA0X2ZiY29uLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9udjA0X2ZiY29uLmMKaW5kZXggM2RhOTBjMi4uODEzYjI1YyAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnYwNF9mYmNvbi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252MDRfZmJjb24uYwpAQCAtMTE4LDggKzExOCw4IEBAIG52MDRfZmJjb25faW1hZ2Vi
-bGl0KHN0cnVjdCBmYl9pbmZvICppbmZvLCBjb25zdCBzdHJ1Y3QgZmJfaW1hZ2UgKmltYWdlKQog
-CQlyZXR1cm47CiAJfQogCi0Jd2lkdGggPSBBTElHTihpbWFnZS0+d2lkdGgsIDMyKTsKLQlkc2l6
-ZSA9ICh3aWR0aCAqIGltYWdlLT5oZWlnaHQpID4+IDU7CisJd2lkdGggPSBBTElHTihpbWFnZS0+
-d2lkdGgsIDgpOworCWRzaXplID0gQUxJR04od2lkdGggKiBpbWFnZS0+aGVpZ2h0LCAzMikgPj4g
-NTsKIAogCWlmIChpbmZvLT5maXgudmlzdWFsID09IEZCX1ZJU1VBTF9UUlVFQ09MT1IgfHwKIAkg
-ICAgaW5mby0+Zml4LnZpc3VhbCA9PSBGQl9WSVNVQUxfRElSRUNUQ09MT1IpIHsKQEAgLTEzNiw4
-ICsxMzYsOCBAQCBudjA0X2ZiY29uX2ltYWdlYmxpdChzdHJ1Y3QgZmJfaW5mbyAqaW5mbywgY29u
-c3Qgc3RydWN0IGZiX2ltYWdlICppbWFnZSkKIAkJCSAoKGltYWdlLT5keCArIGltYWdlLT53aWR0
-aCkgJiAweGZmZmYpKTsKIAlPVVRfUklORyhjaGFuLCBiZyk7CiAJT1VUX1JJTkcoY2hhbiwgZmcp
-OwotCU9VVF9SSU5HKGNoYW4sIChpbWFnZS0+aGVpZ2h0IDw8IDE2KSB8IGltYWdlLT53aWR0aCk7
-CiAJT1VUX1JJTkcoY2hhbiwgKGltYWdlLT5oZWlnaHQgPDwgMTYpIHwgd2lkdGgpOworCU9VVF9S
-SU5HKGNoYW4sIChpbWFnZS0+aGVpZ2h0IDw8IDE2KSB8IGltYWdlLT53aWR0aCk7CiAJT1VUX1JJ
-TkcoY2hhbiwgKGltYWdlLT5keSA8PCAxNikgfCAoaW1hZ2UtPmR4ICYgMHhmZmZmKSk7CiAKIAl3
-aGlsZSAoZHNpemUpIHsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBf
-ZmJjb24uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZmJjb24uYwppbmRleCA5OTNj
-NzEyLi4yNWEzY2Q4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Zi
-Y29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9mYmNvbi5jCkBAIC0yMzMs
-NyArMjMzLDcgQEAgbnY1MF9mYmNvbl9hY2NlbF9pbml0KHN0cnVjdCBmYl9pbmZvICppbmZvKQog
-CUJFR0lOX1JJTkcoY2hhbiwgTnZTdWIyRCwgMHgwODA4LCAzKTsKIAlPVVRfUklORyhjaGFuLCAw
-KTsKIAlPVVRfUklORyhjaGFuLCAwKTsKLQlPVVRfUklORyhjaGFuLCAwKTsKKwlPVVRfUklORyhj
-aGFuLCAxKTsKIAlCRUdJTl9SSU5HKGNoYW4sIE52U3ViMkQsIDB4MDgxYywgMSk7CiAJT1VUX1JJ
-TkcoY2hhbiwgMSk7CiAJQkVHSU5fUklORyhjaGFuLCBOdlN1YjJELCAweDA4NDAsIDQpOwotLSAK
-MS42LjQuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=26790
+
+           Summary: Not center screen
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+               URL: https://bugs.edge.launchpad.net/ubuntu/+source/xserver-
+                    xorg-video-nouveau/+bug/529130
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Open bug in Launchpad:
+https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/529130
+
+==Not center screen==
+
+Photo example:
+https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/529130/comments/1
+
+Hardware:
+01:00.0 VGA compatible controller [0300]: nVidia Corporation G72 [GeForce 7300
+LE] [10de:01d1] (rev a1)
+
+Thanks,
+Cristian
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
