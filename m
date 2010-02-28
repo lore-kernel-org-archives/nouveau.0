@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26790] NV40 - Not center screen
-Date: Sat, 27 Feb 2010 15:54:41 -0800 (PST)
-Message-ID: <20100227235441.4E06D1300A3@annarchy.freedesktop.org>
-References: <bug-26790-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26796] New: Circular locking dependency error on NV43
+Date: Sun, 28 Feb 2010 01:07:03 -0800 (PST)
+Message-ID: <bug-26796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +18,34 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26790
+http://bugs.freedesktop.org/show_bug.cgi?id=26796
+
+           Summary: Circular locking dependency error on NV43
+           Product: xorg
+           Version: 7.5
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: TomasMiljenovic-Ah+7SPImtolBDgjK7y7TUQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=33635)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33635)
+dmesg output
 
+While
+- starting or running an X session
+- using DirectFB to e.g. play movies in vlc or mplayer from a console login
+circular locking dependency warnings appear in dmesg.
 
-
---- Comment #5 from Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-02-27 15:54:40 PST ---
-Created an attachment (id=33633)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33633)
-DriverNouveau-Xorg.0.log
+Afterwards, X can hang or crash outright but at other times does not appear
+affected.  Video output in framebuffer is always highly corrupted (not sure if
+this is a separate bug).
 
 
 -- 
