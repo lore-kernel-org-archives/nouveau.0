@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26790] NV40 - Not center screen
-Date: Sun, 28 Feb 2010 12:40:02 -0800 (PST)
-Message-ID: <20100228204003.179B1130094@annarchy.freedesktop.org>
+Date: Sun, 28 Feb 2010 12:40:12 -0800 (PST)
+Message-ID: <20100228204012.B626C130093@annarchy.freedesktop.org>
 References: <bug-26790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #33632|text/x-log                  |text/plain
+  Attachment #33633|text/x-log                  |text/plain
           mime type|                            |
 
 
