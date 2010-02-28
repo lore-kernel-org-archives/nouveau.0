@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26796] Circular locking dependency error on NV43
-Date: Sun, 28 Feb 2010 01:57:58 -0800 (PST)
-Message-ID: <20100228095758.CEFDC13009F@annarchy.freedesktop.org>
+Date: Sun, 28 Feb 2010 01:59:43 -0800 (PST)
+Message-ID: <20100228095943.71B1313009F@annarchy.freedesktop.org>
 References: <bug-26796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,13 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=26796
 
 
-Tomas M <TomasMiljenovic-Ah+7SPImtolBDgjK7y7TUQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #33635|dmesg output                |dmesg output after starting
-        description|                            |X session
 
 
+
+--- Comment #1 from Tomas M <TomasMiljenovic-Ah+7SPImtolBDgjK7y7TUQ@public.gmane.org>  2010-02-28 01:59:43 PST ---
+Created an attachment (id=33636)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33636)
+dmesg output - running mplayer in fb
 
 
 -- 
