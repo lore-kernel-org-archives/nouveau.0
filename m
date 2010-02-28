@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26800] New: Nouveau TV-out incorrectly detecting load
-Date: Sun, 28 Feb 2010 11:00:47 -0800 (PST)
-Message-ID: <bug-26800-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
+Date: Sun, 28 Feb 2010 11:14:55 -0800 (PST)
+Message-ID: <20100228191455.497EB130096@annarchy.freedesktop.org>
+References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=26800
 
-           Summary: Nouveau TV-out incorrectly detecting load
-           Product: xorg
-           Version: 7.5
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=33647)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33647)
-Nouveau dmesg log
 
-Nouveau is detecting and enabling TV-out, even though nothing is plugged in to
-it.
 
-This causes KMS and X to default to lower, non-native resolutions.
-
-Possibly causes v-sync issues? I'll file another report on that...
-
-My PC is an Acer 5520-5155 Laptop. lspci refers to the display as:
-
-00:12.0 VGA compatible controller: nVidia Corporation C67 [GeForce 7000M /
-nForce 610M] (rev a2)
-
-I'm currently running Kubuntu Lucid Lynx, w/ 2.6.33 kernel.
-
-Dmesg output is attached.
+--- Comment #1 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-02-28 11:14:54 PST ---
+I might try recompiling the kernel without TV-out support for nouveau, see if
+that makes a difference... I'll keep this kernel package handy though in case
+someone wants me to try something.
 
 -Andy Rink
 
