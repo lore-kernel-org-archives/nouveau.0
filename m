@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
-Date: Sun, 28 Feb 2010 03:28:56 -0800 (PST)
-Message-ID: <20100228112856.A90D113009F@annarchy.freedesktop.org>
+Date: Sun, 28 Feb 2010 04:46:38 -0800 (PST)
+Message-ID: <20100228124638.EED1A13009F@annarchy.freedesktop.org>
 References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=26797
 
 
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #33637|application/octet-stream    |text/plain
+          mime type|                            |
 
 
-
---- Comment #2 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2010-02-28 03:28:56 PST ---
-I've sent the requested mmio-trace.
 
 
 -- 
