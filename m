@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26799] New: (EE) AIGLX error: dlopen of
+Subject: [Bug 26799] (EE) AIGLX error: dlopen of
  /usr/lib/dri/nouveau_dri.so failed
-Date: Sun, 28 Feb 2010 10:49:20 -0800 (PST)
-Message-ID: <bug-26799-8800@http.bugs.freedesktop.org/>
+Date: Sun, 28 Feb 2010 10:58:08 -0800 (PST)
+Message-ID: <20100228185808.95FC713009B@annarchy.freedesktop.org>
+References: <bug-26799-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26799-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,42 +21,19 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26799
-
-           Summary: (EE) AIGLX error: dlopen of /usr/lib/dri/nouveau_dri.so
-                    failed
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-               URL: https://bugs.edge.launchpad.net/ubuntu/+source/xserver-
-                    xorg-video-nouveau/+bug/529590
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=33646)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33646)
-EE_AIGLX_nouveau-dri.so_failed-DriverNouveau_Xorg.0.log
-
-Open bug in Laundhpad.net:
-https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/529590
-
-
-Not load AIGLX:
-
-(EE) AIGLX error: dlopen of /usr/lib/dri/nouveau_dri.so failed
-(/usr/lib/dri/nouveau_dri.so: cannot open shared object file: No such file or
-directory)
-(EE) AIGLX: reverting to software rendering
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0yNjc5OQoKCk1hcmNp
+biBLb8WbY2llbG5pY2tpIDxrb3JpYWtpbkAweDA0Lm5ldD4gY2hhbmdlZDoKCiAgICAgICAgICAg
+V2hhdCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tCiAgICAgICAgICAgICBTdGF0dXN8TkVXICAgICAgICAgICAgICAgICAgICAgICAgIHxS
+RVNPTFZFRAogICAgICAgICBSZXNvbHV0aW9ufCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8
+SU5WQUxJRAoKCgoKLS0tIENvbW1lbnQgIzEgZnJvbSBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29y
+aWFraW5AMHgwNC5uZXQ+ICAyMDEwLTAyLTI4IDEwOjU4OjA3IFBTVCAtLS0KaHR0cDovL25vdXZl
+YXUuZnJlZWRlc2t0b3Aub3JnL3dpa2kvVHJvdWJsZVNob290aW5nIHNlY3Rpb24gOS4KCkFuZCBp
+ZiB5b3UgcmVhbGx5IHdhbnQgM2QgYWNjZWxlcmF0aW9uLCBpbnN0YWxsIGl0LgoKCi0tIApDb25m
+aWd1cmUgYnVnbWFpbDogaHR0cDovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/
+dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0t
+LS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
