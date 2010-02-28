@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26790] NV40 - Not center screen
-Date: Sun, 28 Feb 2010 12:40:12 -0800 (PST)
-Message-ID: <20100228204012.B626C130093@annarchy.freedesktop.org>
-References: <bug-26790-8800@http.bugs.freedesktop.org/>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH 1/2] drm/nv50: Make ctxprog wait until interrupt
+	handler is done.
+Date: Sun, 28 Feb 2010 23:45:38 +0000
+Message-ID: <1267400739-528-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +19,26 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26790
-
-
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #33633|text/x-log                  |text/plain
-          mime type|                            |
-
-
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+VGhpcyB3aWxsIGZpeCByYWNlcyBiZXR3ZWVuIGdlbmVyYXRlZCBjdHhwcm9ncyBhbmQgaW50ZXJy
+dXB0IGhhbmRsZXIuCgpTaWduZWQtb2ZmLWJ5OiBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29yaWFr
+aW5AMHgwNC5uZXQ+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmN0eC5jIHwg
+ICAgNSArKysrKwogMSBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDAgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmN0eC5jIGIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmN0eC5jCmluZGV4IGQxMDVmY2QuLjlmOTA5
+YWIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JjdHguYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dyY3R4LmMKQEAgLTY0LDYgKzY0LDkgQEAK
+ICNkZWZpbmUgQ1BfRkxBR19BTFdBWVMgICAgICAgICAgICAgICAgKCgyICogMzIpICsgMTMpCiAj
+ZGVmaW5lIENQX0ZMQUdfQUxXQVlTX0ZBTFNFICAgICAgICAgIDAKICNkZWZpbmUgQ1BfRkxBR19B
+TFdBWVNfVFJVRSAgICAgICAgICAgMQorI2RlZmluZSBDUF9GTEFHX0lOVFIgICAgICAgICAgICAg
+ICAgICAoKDIgKiAzMikgKyAxNSkKKyNkZWZpbmUgQ1BfRkxBR19JTlRSX05PVF9QRU5ESU5HICAg
+ICAgMAorI2RlZmluZSBDUF9GTEFHX0lOVFJfUEVORElORyAgICAgICAgICAxCiAKICNkZWZpbmUg
+Q1BfQ1RYICAgICAgICAgICAgICAgICAgIDB4MDAxMDAwMDAKICNkZWZpbmUgQ1BfQ1RYX0NPVU5U
+ICAgICAgICAgICAgIDB4MDAwZjAwMDAKQEAgLTIxNCw2ICsyMTcsOCBAQCBudjUwX2dyY3R4X2lu
+aXQoc3RydWN0IG5vdXZlYXVfZ3JjdHggKmN0eCkKIAljcF9uYW1lKGN0eCwgY3Bfc2V0dXBfc2F2
+ZSk7CiAJY3Bfc2V0IChjdHgsIFVOSzFELCBTRVQpOwogCWNwX3dhaXQoY3R4LCBTVEFUVVMsIEJV
+U1kpOworCWNwX3dhaXQoY3R4LCBJTlRSLCBQRU5ESU5HKTsKKwljcF9icmEgKGN0eCwgU1RBVFVT
+LCBCVVNZLCBjcF9zZXR1cF9zYXZlKTsKIAljcF9zZXQgKGN0eCwgVU5LMDEsIFNFVCk7CiAJY3Bf
+c2V0IChjdHgsIFNXQVBfRElSRUNUSU9OLCBTQVZFKTsKIAotLSAKMS42LjQuMQoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
