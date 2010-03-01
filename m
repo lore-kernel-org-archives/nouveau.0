@@ -1,11 +1,14 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH] gallium/nouveau: fix st/xorg build
-Date: Mon,  1 Mar 2010 15:58:05 +0000
-Message-ID: <1267459085-3708-1-git-send-email-koriakin@0x04.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26812] NV40 - [lbm-drm:drm_mode_getfb] *ERROR*
+ invalid framebuffer id
+Date: Mon,  1 Mar 2010 09:23:06 -0800 (PST)
+Message-ID: <20100301172306.8AEF71300C7@annarchy.freedesktop.org>
+References: <bug-26812-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26812-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,22 +21,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
----
- src/gallium/winsys/drm/nouveau/xorg/Makefile |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+http://bugs.freedesktop.org/show_bug.cgi?id=26812
 
-diff --git a/src/gallium/winsys/drm/nouveau/xorg/Makefile b/src/gallium/winsys/drm/nouveau/xorg/Makefile
-index 179b502..71f389d 100644
---- a/src/gallium/winsys/drm/nouveau/xorg/Makefile
-+++ b/src/gallium/winsys/drm/nouveau/xorg/Makefile
-@@ -36,7 +36,7 @@ all default: $(TARGET)
- 
- $(TARGET): $(OBJECTS) Makefile $(TOP)/src/gallium/state_trackers/xorg/libxorgtracker.a $(LIBS)
- 	$(TOP)/bin/mklib -noprefix -o $@ \
--	$(OBJECTS) $(LIBS) $(shell pkg-config --libs libdrm) -ldrm_nouveau
-+	$(OBJECTS) $(LIBS) $(shell pkg-config --libs libdrm) -ldrm_nouveau -lkms
- 
- clean:
- 	rm -rf $(OBJECTS) $(TARGET)
+
+Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+
+
+
+--- Comment #1 from Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-01 09:23:06 PST ---
+Sorry, not message in BootDmesg,txt. Message in CurrentDmesg.txt
+https://bugs.edge.launchpad.net/nouveau/+bug/529842/comments/17
+
+
 -- 
-1.6.4.1
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
