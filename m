@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26812] New: [lbm-drm:drm_mode_getfb] *ERROR* invalid
- framebuffer id
-Date: Sun, 28 Feb 2010 20:16:22 -0800 (PST)
-Message-ID: <bug-26812-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26812] NV40 - [lbm-drm:drm_mode_getfb] *ERROR*
+ invalid framebuffer id
+Date: Sun, 28 Feb 2010 20:17:03 -0800 (PST)
+Message-ID: <20100301041703.7EB0613009B@annarchy.freedesktop.org>
+References: <bug-26812-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26812-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=26812
 
-           Summary: [lbm-drm:drm_mode_getfb] *ERROR* invalid framebuffer id
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-               URL: https://bugs.edge.launchpad.net/ubuntu/+source/xserver-
-                    xorg-video-nouveau/+bug/529842
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[lbm-drm:drm_mode_getfb]    |NV40 - [lbm-
+                   |*ERROR* invalid framebuffer |drm:drm_mode_getfb] *ERROR*
+                   |id                          |invalid framebuffer id
 
 
-Open bug in Launchpad.net:
-https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/529842
-
-
-Message in dmesg:
-[   32.361654] [lbm-drm] nouveau 0000:01:00.0: Allocating FIFO number 1
-[   32.362167] [lbm-drm] nouveau 0000:01:00.0: nouveau_channel_alloc:
-initialised FIFO 1
-[   32.365173] [lbm-drm:drm_mode_getfb] *ERROR* invalid framebuffer id
-BootDmesg:
-https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/529842/comments/3
-
-
-01:00.0 VGA compatible controller [0300]: nVidia Corporation G72 [GeForce 7300
-LE] [10de:01d1] (rev a1)
-Lspci:
-https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/529842/comments/9
 
 
 -- 
