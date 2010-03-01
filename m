@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26813] Nouveau ioremap WARNING with current Linus'
 	git tree
-Date: Mon,  1 Mar 2010 01:03:26 -0800 (PST)
-Message-ID: <20100301090326.E6A2F1300A1@annarchy.freedesktop.org>
+Date: Mon,  1 Mar 2010 01:14:50 -0800 (PST)
+Message-ID: <20100301091450.2F39513008E@annarchy.freedesktop.org>
 References: <bug-26813-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26813
 
 
 
---- Comment #1 from Felipe Balbi <me-uiRdBs8odbtmTBlB0Cgj/Q@public.gmane.org>  2010-03-01 01:03:26 PST ---
-Created an attachment (id=33659)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33659)
-my .config
+--- Comment #2 from Felipe Balbi <me-uiRdBs8odbtmTBlB0Cgj/Q@public.gmane.org>  2010-03-01 01:14:49 PST ---
+problem seems to be related to the use of the generic page_is_ram() introduced
+by commit 13ca0fcaa33f6b1984c4111b6ec5df42689fea6f.
 
-.config for a thinkpad t61p laptop
+will revert and comment more soon.
 
 
 -- 
