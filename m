@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26813] Nouveau ioremap WARNING with current Linus'
-	git tree
-Date: Mon,  1 Mar 2010 10:00:14 -0800 (PST)
-Message-ID: <20100301180014.88B161300C7@annarchy.freedesktop.org>
-References: <bug-26813-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/2] drm/nouveau: print a message very early
+	during suspend
+Date: Mon,  1 Mar 2010 19:33:14 +0100
+Message-ID: <1267468395-3390-1-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26813-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +19,28 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26813
+- In case of suspend lockups it's nice to know it happened in nouveau.
 
+Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_drv.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
-
-
-
---- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-01 10:00:13 PST ---
-http://lkml.org/lkml/2010/2/28/132 sounds related
-can you recheck on newer git (fix was applied after
-30ff056c42c665b9ea535d8515890857ae382540)?
-
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
+index 874adf5..ec8452f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
+@@ -154,9 +154,11 @@ nouveau_pci_suspend(struct pci_dev *pdev, pm_message_t pm_state)
+ 	if (pm_state.event == PM_EVENT_PRETHAW)
+ 		return 0;
+ 
++	NV_INFO(dev, "Disabling fbcon acceleration...\n");
+ 	fbdev_flags = dev_priv->fbdev_info->flags;
+ 	dev_priv->fbdev_info->flags |= FBINFO_HWACCEL_DISABLED;
+ 
++	NV_INFO(dev, "Unpinning framebuffer(s)...\n");
+ 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+ 		struct nouveau_framebuffer *nouveau_fb;
+ 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.0
