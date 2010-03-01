@@ -1,16 +1,11 @@
-From: Marcin =?utf-8?q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: Re: [PATCH 2/2] drm/nv50: Improve PGRAPH interrupt
-	handling.
-Date: Mon, 1 Mar 2010 14:04:50 +0000
-Message-ID: <201003011404.50326.koriakin@0x04.net>
-References: <1267400739-528-1-git-send-email-koriakin@0x04.net>
-	<1267400739-528-2-git-send-email-koriakin@0x04.net>
-	<ff13bc9a1003010526t7b33e893ma4d6a774b49c5085@mail.gmail.com>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH] gallium/nouveau: fix st/xorg build
+Date: Mon,  1 Mar 2010 15:58:05 +0000
+Message-ID: <1267459085-3708-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <ff13bc9a1003010526t7b33e893ma4d6a774b49c5085-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,51 +15,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Luca Barbieri <luca.barbieri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-PiBSZWdpc3RlciAweDQwMjAwMCBpcyB1c2VkIGJ5IG52NDAgdG8gYWNrbm93bGVkZ2UgRE1BX1ZU
-WF9QUk9URUNUSU9OCj4gKHNlZSBjb2RlKSwgd2hpY2ggaXMgY2F1c2VkIGJ5IG91dC1vZi1ib3Vu
-ZHMgaW5kaWNlcyBpbiBpbmRleCBidWZmZXJzCj4gKGFuZCBwZXJoYXBzIG90aGVyIHZlcnRleC1y
-ZWxhdGVkIHN0dWZmKTogbWF5YmUgaXQgZG9lcyBzb21ldGhpbmcKPiBzaW1pbGFyIG9uIG52NTAu
-CgpOby4gUHJlLU5WNTAgdHJhcHMgYXJlIHRvdGFsbHkgZGlmZmVyZW50IHRoYW4gTlY1MC4gVHJh
-cCByZWdpc3RlcnMgbGlrZSA0MDAyMDAgCnRha2UgMHhjMDAwMDAwMCB0byBBQ0ssIG5vdCB3cml0
-aW5nIGJhY2sgdGhlIHNhbWUgdmFsdWUuIEFsc28sIHZlcnRleCBmZXRjaGVzIApjYXVzZSB0cmFw
-IGF0IDB4NDAwYzA0IHdoaWNoIHdlIGFscmVhZHkgaGFuZGxlLCBhbmQgaW5kZXggYnVmZmVycyBh
-cmUgaGFuZGxlZCAKYnkgUEZJRk8gW2JldHRlciBQRklGTyBlcnJvciBoYW5kbGluZyB3b3VsZCBi
-ZSBtdWNoIGFwcHJlY2lhdGVkLCBidXQgdGhhdCdzIApiZXN0IGxlZnQgZm9yIGFub3RoZXIgcGF0
-Y2hdLgoKMHg0MDIwMDAgaXMgcHJldHR5IG11Y2ggY2VydGFpbiB0byB3b3JrIGp1c3QgbGlrZSAw
-eDQwMGMwNCwgMHg0MDE4MDAsIAoweDQwNTAxOCwgMHg0MDY4MDAgcmVnaXN0ZXJzLCBqdXN0IGFw
-cGx5IHRvIGEgZGlmZmVyZW50IHN1YnVuaXQgb2YgUEdSQVBIIAphY2Nlc3NpbmcgbWVtb3J5LiBT
-aW5jZSBETUEgc2xvdHMgbW9zdGx5IGhhdmUgYSBtYW55LXRvLW9uZSByZWxhdGlvbnNoaXAgdG8g
-CnRoZSB0cmFwLXJlcG9ydGluZyBQR1JBUEggc3VidW5pdHMgW3dpdGggZXhjZXB0aW9uIG9mIG0y
-bWYncyBETUFfTk9USUZZIHdoaWNoIAppcyBhY2Nlc3NlZCBieSBib3RoIERJU1BBVENIIGZvciBu
-b3JtYWwgbm90aWZpZXMgYW5kIE0yTUYgZm9yIGJ1ZmZlciAKbm90aWZpZXNdLCBpdCdzIGxpa2Vs
-eSB0aGF0IGl0IGNvcnJlc3BvbmRzIHRvIHRoYXQgbGFzdCB1bmtub3duIERNQSBzbG90IG9uIApO
-VjUwVENMIFthcyBJIG1lbnRpb25lZCBpbiBjb2RlXS4gU28gdG8gUkUgaXQsIHlvdSdkIGZpcnN0
-IG5lZWQgdG8gZmlndXJlIG91dCAKdGhlIE5WNTBUQ0wgYml0cy4uLiBkb2VzIGFueW9uZSBrbm93
-IG9mIGFueSB0eXBlIG9mIG1lbW9yeSBidWZmZXIgdGhhdCBHUFVzIAp1c2UgYW5kIGlzbid0IHll
-dCBjb3ZlcmVkIGJ5IHdoYXQncyBpbiByZW5vdXZlYXUueG1sPwoKPiBBbHNvLCB3b3VsZG4ndCBz
-b21lIG9mIHRoaXMgYXBwbHkgdG8gcHJlLW52NTAgdG9vPyBPciBpcyB0aGF0IGFscmVhZHkKPiBp
-bXBsZW1lbnRlZD8KCk1vc3RseSBubywgc2luY2UgdGhlIGludGVycnVwdHMgYXJlIG11Y2ggZGlm
-ZmVyZW50Li4uIHRoZSBtYWpvciBmYXVsdCBvZiAKcHJldmlvdXMgY29kZSB3YXMgYXNzdW1pbmcg
-dGhhdCBudjUwIGlzIGp1c3QgYSBiaWdnZXIgbnY0MCBhbmQgdHJ5aW5nIHRvIGZpdCAKc3R1ZmYg
-Zm9yY2VmdWxseSBieSBmYWtpbmcgbnNvdXJjZS9uc3RhdHVzLiBBbHNvLCBwcmUtTlY1MCBESVNQ
-QVRDSCB1bml0IAplaXRoZXIgZG9lc24ndCBleGlzdCwgb3IgaXMgdmVyeSBkaWZmZXJlbnQuCgpU
-d28gdGhpbmdzIHRoYXQgcHJlLU5WNTAgY291bGQgZ2V0IHRoYXQgSSBrbm93IG9mIGFyZSBNSVNT
-SU5HX0hXIGludGVycnVwdCAKWzB4MTAsIGhhcHBlbnMgZm9yIHNvbWUgbWV0aG9kcyBpbiAweDIw
-MC0weDIwYyByYW5nZSBvbiBzb21lIG9iamVjdHNdIGFuZCAKU0lOR0xFX1NURVAgaW50ZXJydXB0
-IFtub3QgdGhhdCBpbXBvcnRhbnQsIHNpbmNlIG5vdXZlYXUgZ2l2ZXMgeW91IG5vIHdheSB5ZXQg
-CnRvIGVuYWJsZSBzaW5nbGUgc3RlcHBpbmcgc2FucyBtYW51YWxseSBwb2tpbmcgUEdSQVBIX0RF
-QlVHXzNdLgoKSSBmZWFyIHRoYXQgcHJlLU5WNTAgc2ltcGx5IG5lZWRzIGl0cyBvd24gbG9uZyBS
-RSBzZXNzaW9uIHRvIG1ha2Ugbm91dmVhdSAKZGVjb2RlIGludGVycnVwdHMgaW4gYXMgbXVjaCBk
-ZXRhaWwgYXMgTlY1MC4gSSdkIHJlY29tbWVuZCB0YWtpbmcgYSBsb29rIGF0IApydWxlcy54bWws
-IGl0IHNob3VsZCBiZSB2ZXJ5IHJlbGV2YW50IGF0IGxlYXN0IGZvciBOVjEwLU5WMzAsIGlmIG5v
-dCBhbHNvIApOVjQwLgoKT2gsIGFuZCBhIG5pY2UgdGhpbmcgdG8gZG8gd291bGQgYmUgZGVjb2Rp
-bmcgMHg0MDA3MDAgYml0cyBhbmQgZGlzcGxheWluZyB0aGVtIAphbG9uZyB3aXRoIHRoZSBlcnJv
-ci4gTWF5YmUgc29tZXRoaW5nIHVzZWZ1bCBpbmZvcm1hdGlvbiBjb3VsZCBjb21lIG91dCBvZiBp
-dC4KCk1hcmNpbiBLb8WbY2llbG5pY2tpCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+---
+ src/gallium/winsys/drm/nouveau/xorg/Makefile |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/src/gallium/winsys/drm/nouveau/xorg/Makefile b/src/gallium/winsys/drm/nouveau/xorg/Makefile
+index 179b502..71f389d 100644
+--- a/src/gallium/winsys/drm/nouveau/xorg/Makefile
++++ b/src/gallium/winsys/drm/nouveau/xorg/Makefile
+@@ -36,7 +36,7 @@ all default: $(TARGET)
+ 
+ $(TARGET): $(OBJECTS) Makefile $(TOP)/src/gallium/state_trackers/xorg/libxorgtracker.a $(LIBS)
+ 	$(TOP)/bin/mklib -noprefix -o $@ \
+-	$(OBJECTS) $(LIBS) $(shell pkg-config --libs libdrm) -ldrm_nouveau
++	$(OBJECTS) $(LIBS) $(shell pkg-config --libs libdrm) -ldrm_nouveau -lkms
+ 
+ clean:
+ 	rm -rf $(OBJECTS) $(TARGET)
+-- 
+1.6.4.1
