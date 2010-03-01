@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26813] Nouveau ioremap WARNING with current Linus'
 	git tree
-Date: Mon,  1 Mar 2010 12:47:31 -0800 (PST)
-Message-ID: <20100301204731.58C291300BA@annarchy.freedesktop.org>
+Date: Mon,  1 Mar 2010 13:02:59 -0800 (PST)
+Message-ID: <20100301210259.DD6431300BE@annarchy.freedesktop.org>
 References: <bug-26813-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,16 +24,14 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=26813
 
 
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTOURBUG
 
 
-
---- Comment #5 from Felipe Balbi <me-uiRdBs8odbtmTBlB0Cgj/Q@public.gmane.org>  2010-03-01 12:47:30 PST ---
-(In reply to comment #4)
-> http://lkml.org/lkml/2010/2/28/132 sounds related
-> can you recheck on newer git (fix was applied after
-> 30ff056c42c665b9ea535d8515890857ae382540)?
-
-works for me :-)
 
 
 -- 
