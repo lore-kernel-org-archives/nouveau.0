@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
-Date: Thu,  4 Mar 2010 07:52:25 -0800 (PST)
-Message-ID: <20100304155225.40AEB1300D4@annarchy.freedesktop.org>
+Date: Thu,  4 Mar 2010 11:04:42 -0800 (PST)
+Message-ID: <20100304190442.F32E7130102@annarchy.freedesktop.org>
 References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,25 +26,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26797
 
 
 
---- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-04 07:52:24 PST ---
-Created an attachment (id=33758)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33758)
-dcb_type_4_hack.patch
+--- Comment #4 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2010-03-04 11:04:42 PST ---
+The patch didn't work. :(
 
-Bad news... The TMDS tables in your BIOS are stale and do *not* describe how to
-set up this external TMDS encoder (instead they describe an integrated encoder
-that doesn't really exist in your card). 
-
-It could still be that the modesetting process is encoded somewhere else using
-a different bytecode format but I seriously doubt it, the output from this
-command might give us a clearer answer:
-# ./vbtracetool -l -d -s 317 2>trace.log
-
-You can get vbtracetool here [1]. If you're very lucky the patch I'm attaching
-will improve things, but probably not: most likely your encoder chip will need
-its own stand-alone driver.
-
-[1] http://cgit.freedesktop.org/~stuart/vbtracetool/
+Are you sure the suggested vbtracetool command is right ?
+Screen turns black immediately and I get a log of ~2GB !!??
 
 
 -- 
