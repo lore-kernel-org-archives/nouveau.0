@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26790] NV40 - Not center screen
-Date: Fri,  5 Mar 2010 06:51:46 -0800 (PST)
-Message-ID: <20100305145146.644A613012C@annarchy.freedesktop.org>
-References: <bug-26790-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26812] NV40 - [lbm-drm:drm_mode_getfb] *ERROR*
+ invalid framebuffer id
+Date: Fri,  5 Mar 2010 06:53:41 -0800 (PST)
+Message-ID: <20100305145341.1D29813012C@annarchy.freedesktop.org>
+References: <bug-26812-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26812-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,7 +21,7 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26790
+http://bugs.freedesktop.org/show_bug.cgi?id=26812
 
 
 Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
@@ -33,8 +34,9 @@ Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
 
 
---- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-05 06:51:45 PST ---
-This should be fixed on latest git.
+--- Comment #2 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-05 06:53:40 PST ---
+That error is harmless, but anyways it shouldn't happen again with the latest
+DDX.
 
 
 -- 
