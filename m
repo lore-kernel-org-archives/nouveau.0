@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
-Date: Fri,  5 Mar 2010 06:01:33 -0800 (PST)
-Message-ID: <20100305140133.DBFB3130127@annarchy.freedesktop.org>
+Date: Fri,  5 Mar 2010 06:14:41 -0800 (PST)
+Message-ID: <20100305141441.24E0C130127@annarchy.freedesktop.org>
 References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,9 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26797
 
 
 
---- Comment #7 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2010-03-05 06:01:33 PST ---
-LZMA compresses the whole 2 GB to 14.1 MB (!).
-So I could send it, too.
+--- Comment #8 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-05 06:14:40 PST ---
+(In reply to comment #7)
+> LZMA compresses the whole 2 GB to 14.1 MB (!).
+> So I could send it, too.
+> 
+
+It would be interesting as well. Thanks.
 
 
 -- 
