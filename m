@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26906] Nouveau should detect wether to enable
- dithering on flat panels
-Date: Fri,  5 Mar 2010 05:11:14 -0800 (PST)
-Message-ID: <20100305131114.24E4B130120@annarchy.freedesktop.org>
-References: <bug-26906-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
+Date: Fri,  5 Mar 2010 05:56:07 -0800 (PST)
+Message-ID: <20100305135607.92AB9130124@annarchy.freedesktop.org>
+References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26906-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +20,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26906
+http://bugs.freedesktop.org/show_bug.cgi?id=26797
 
 
 
 
 
---- Comment #1 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-05 05:11:13 PST ---
-(In reply to comment #0)
-> By default, I get 6-bit color depth on my laptop. To get full 8-bit color depth
-> on, I have to run the following command to manually enable dithering.
-> 
-> xrandr --output HDMI-1  --set dithering On
-> 
-> It would be great if Nouveau was able to turn on this parameter by itself when
-> needed.
-> 
-
-Could you provide full kernel logs?
+--- Comment #6 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2010-03-05 05:56:07 PST ---
+Created an attachment (id=33788)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33788)
+First 100MB of the vb-trace
 
 
 -- 
