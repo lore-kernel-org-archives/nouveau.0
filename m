@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26790] NV40 - Not center screen
-Date: Sat,  6 Mar 2010 13:19:08 -0800 (PST)
-Message-ID: <20100306211908.BED8A1300A7@annarchy.freedesktop.org>
-References: <bug-26790-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26906] Nouveau should detect wether to enable
+ dithering on flat panels
+Date: Sat,  6 Mar 2010 11:03:39 -0800 (PST)
+Message-ID: <20100306190339.DA00D1300A5@annarchy.freedesktop.org>
+References: <bug-26906-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26906-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +21,16 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26790
+http://bugs.freedesktop.org/show_bug.cgi?id=26906
 
 
 
 
 
---- Comment #8 from Cristian Aravena Romero <caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-06 13:19:08 PST ---
-(In reply to comment #7)
-> This should be fixed on latest git.
-
-Thanks Francisco Jerez, commit in git?
+--- Comment #3 from mickael.chazaux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org  2010-03-06 11:03:39 PST ---
+Created an attachment (id=33819)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33819)
+Xorg log
 
 
 -- 
