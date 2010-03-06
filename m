@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
-Date: Sat,  6 Mar 2010 10:04:22 -0800 (PST)
-Message-ID: <20100306180422.571871300A3@annarchy.freedesktop.org>
-References: <bug-26797-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25258] [9400M] KMS and X do not use monitor's native
+	resolution
+Date: Sat,  6 Mar 2010 11:29:54 -0800 (PST)
+Message-ID: <20100306192954.CB6A81300A7@annarchy.freedesktop.org>
+References: <bug-25258-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25258-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +21,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26797
+http://bugs.freedesktop.org/show_bug.cgi?id=25258
 
 
 
 
 
---- Comment #11 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-06 10:04:21 PST ---
-(In reply to comment #7)
-> LZMA compresses the whole 2 GB to 14.1 MB (!).
-> So I could send it, too.
-> 
+--- Comment #11 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org>  2010-03-06 11:29:54 PST ---
+Created an attachment (id=33820)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33820)
+Xorg.0.log with nv
 
-Thanks, that's been useful, but sadly your BIOS does it with a bunch of ad-hoc
-x86 code, as in the old days.
+ION is also working with nv driver now.
 
-The blob used to let out the names of any external encoders when you gave it a
-high enough verbosity level. They often have register-level specs available so
-implementing a driver for it would possibly involve little RE-ing, but still a
-good deal of work.
+Attached is output with nv driver (for EDID) which is also 1280x720 but it fits
+to my monitor.
+
+Nouveau's (invalid) EDID which "produces" output out of monitor's area:
+
+00FFFFFFFFFFFF0020A337320100000026100103804627780A0DC9A05747982712484CBFCF0001010101010101010101010101010101011D007251D01A206E2855007E884200001A011D00BC52D01E20B8285540C48E21000018000000FC004C43443232333345550A202020000000FD0032500F440F000A202020202020015E
+
+I hope it is useful.
 
 
 -- 
