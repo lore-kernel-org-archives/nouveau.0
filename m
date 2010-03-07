@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
-Date: Sun,  7 Mar 2010 10:40:07 -0800 (PST)
-Message-ID: <20100307184007.A4D2B13009D@annarchy.freedesktop.org>
-References: <bug-26800-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
+Date: Sun,  7 Mar 2010 12:46:43 -0800 (PST)
+Message-ID: <20100307204643.A8C9613009C@annarchy.freedesktop.org>
+References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,46 +20,27 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26800
+http://bugs.freedesktop.org/show_bug.cgi?id=26797
 
 
 
 
 
---- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-07 10:40:07 PST ---
-(In reply to comment #5)
-> (In reply to comment #4)
-> > 
-> > 'Option "UseDisplayDevice" "TV"' in 'Section "Device"' should do it.
-> > 
+--- Comment #13 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-07 12:46:43 PST ---
+(In reply to comment #12)
+> (In reply to comment #11)
+> > The blob used to let out the names of any external encoders when you gave it a
+> > high enough verbosity level. 
 > 
-> If I understand the mmiotrace thing correctly, I will need to:
-> 
-> 1.) stop X
-> 
-> 2.) unload the nouveau modules
-> 
-> 3.) plug in the TV
-> 
-> 4.) start the trace
-> 
-> 5.) load the nouveau modules
-> 
-I forgot to mention that we need an mmiotrace from the blob (AKA the nvidia
-proprietary driver), so it would actually be:
+> Is there a way to increase the verbosity level ?
 
-5.) Start X with the nvidia driver.
+I'd try "Xorg -logverbose 8".
 
-> 6.) end the trace, compress the results and send them to "mmio dot dumps at
-> gmail dot com"
+> Anything else I can do ?
 > 
-> So correct me if I'm wrong, but xorg.conf shouldn't really come in to play
-> here?
-> 
-> The problem does exhibit itself without even loading X.
-> 
-> -Andy
-> 
+
+I'm not sure, making this work will probably involve too much new code to be
+carried out remotely and not go mad at the same time. :)
 
 
 -- 
