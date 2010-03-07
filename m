@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
-Date: Sun,  7 Mar 2010 10:24:33 -0800 (PST)
-Message-ID: <20100307182433.7248E13009D@annarchy.freedesktop.org>
+Date: Sun,  7 Mar 2010 10:40:07 -0800 (PST)
+Message-ID: <20100307184007.A4D2B13009D@annarchy.freedesktop.org>
 References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,33 +26,40 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26800
 
 
 
---- Comment #5 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-07 10:24:32 PST ---
-(In reply to comment #4)
+--- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-07 10:40:07 PST ---
+(In reply to comment #5)
+> (In reply to comment #4)
+> > 
+> > 'Option "UseDisplayDevice" "TV"' in 'Section "Device"' should do it.
+> > 
 > 
-> 'Option "UseDisplayDevice" "TV"' in 'Section "Device"' should do it.
+> If I understand the mmiotrace thing correctly, I will need to:
 > 
+> 1.) stop X
+> 
+> 2.) unload the nouveau modules
+> 
+> 3.) plug in the TV
+> 
+> 4.) start the trace
+> 
+> 5.) load the nouveau modules
+> 
+I forgot to mention that we need an mmiotrace from the blob (AKA the nvidia
+proprietary driver), so it would actually be:
 
-If I understand the mmiotrace thing correctly, I will need to:
+5.) Start X with the nvidia driver.
 
-1.) stop X
-
-2.) unload the nouveau modules
-
-3.) plug in the TV
-
-4.) start the trace
-
-5.) load the nouveau modules
-
-6.) end the trace, compress the results and send them to "mmio dot dumps at
-gmail dot com"
-
-So correct me if I'm wrong, but xorg.conf shouldn't really come in to play
-here?
-
-The problem does exhibit itself without even loading X.
-
--Andy
+> 6.) end the trace, compress the results and send them to "mmio dot dumps at
+> gmail dot com"
+> 
+> So correct me if I'm wrong, but xorg.conf shouldn't really come in to play
+> here?
+> 
+> The problem does exhibit itself without even loading X.
+> 
+> -Andy
+> 
 
 
 -- 
