@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
-Date: Mon,  8 Mar 2010 05:32:05 -0800 (PST)
-Message-ID: <20100308133205.E2C9A13009A@annarchy.freedesktop.org>
-References: <bug-26797-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
+Date: Mon,  8 Mar 2010 11:13:39 -0800 (PST)
+Message-ID: <20100308191339.5D5971300B1@annarchy.freedesktop.org>
+References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +20,30 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26797
+http://bugs.freedesktop.org/show_bug.cgi?id=26800
 
 
 
 
 
---- Comment #17 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-08 05:32:05 PST ---
-(In reply to comment #16)
-> The TDMS is a
-> 
-> Silicon Image
-> TMDS PanelLink
-> Sil1364ACTU
-> Q6?844.1-1 (? is D/O/0)
-> 0611
-> AD??KD2 (? is D/O/0)
-> 
-> 
-> Can't find a datasheet, maybe you have more luck / better connections ;)
-> 
-> For reference: the MB is a ASUS M2N-VM DH
-> 
+--- Comment #7 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-08 11:13:39 PST ---
+Ok, there were some issues, could be normal, I've no idea.
 
-That's interesting, it's an sDVO TMDS transmitter, the intel driver has code
-[1] for a similar piece of hardware.
+Without mmiotrace running, the TV out displayed X properly. 
 
-[1]
-http://cgit.freedesktop.org/nouveau/linux-2.6/tree/drivers/gpu/drm/i915/dvo_sil164.c
+With mmiotrace running, it never quite initialized X over TV-out... Just a
+blank screen.
+
+I tried several times and had the same results.
+
+It seems to have dumped quite a bit of info (>40MB) so hopefully this will be
+of help.
+
+I'll compress and send.
+
+Thanks for your help and patience.
+
+-Andy
 
 
 -- 
