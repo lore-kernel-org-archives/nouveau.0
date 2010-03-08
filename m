@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
-Date: Mon,  8 Mar 2010 04:05:36 -0800 (PST)
-Message-ID: <20100308120536.F23B71300C4@annarchy.freedesktop.org>
+Date: Mon,  8 Mar 2010 04:08:17 -0800 (PST)
+Message-ID: <20100308120817.CECB91300C4@annarchy.freedesktop.org>
 References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,18 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26797
 
 
 
---- Comment #14 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2010-03-08 04:05:33 PST ---
-(In reply to comment #13)
-> > Anything else I can do ?
-> 
-> I'm not sure, making this work will probably involve too much new code to be
-> carried out remotely and not go mad at the same time. :)
-
-Well, I can checkout remote repositories/branches for testing ;)
-
-The sh.. is, that this GPU is blacklisted by the nv-driver (screen corruption),
-so people are stuck with VESA when the blob is declared as "legacy" one day
-(soon ?)...
+--- Comment #15 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2010-03-08 04:08:17 PST ---
+Created an attachment (id=33861)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33861)
+Xorg.0.log with "-logverbose 8" (Nvida driver 195.36.08)
 
 
 -- 
