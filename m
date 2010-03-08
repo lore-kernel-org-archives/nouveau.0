@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
-Date: Sun,  7 Mar 2010 12:46:43 -0800 (PST)
-Message-ID: <20100307204643.A8C9613009C@annarchy.freedesktop.org>
+Date: Mon,  8 Mar 2010 04:05:36 -0800 (PST)
+Message-ID: <20100308120536.F23B71300C4@annarchy.freedesktop.org>
 References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,21 +26,18 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26797
 
 
 
---- Comment #13 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-07 12:46:43 PST ---
-(In reply to comment #12)
-> (In reply to comment #11)
-> > The blob used to let out the names of any external encoders when you gave it a
-> > high enough verbosity level. 
+--- Comment #14 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2010-03-08 04:05:33 PST ---
+(In reply to comment #13)
+> > Anything else I can do ?
 > 
-> Is there a way to increase the verbosity level ?
+> I'm not sure, making this work will probably involve too much new code to be
+> carried out remotely and not go mad at the same time. :)
 
-I'd try "Xorg -logverbose 8".
+Well, I can checkout remote repositories/branches for testing ;)
 
-> Anything else I can do ?
-> 
-
-I'm not sure, making this work will probably involve too much new code to be
-carried out remotely and not go mad at the same time. :)
+The sh.. is, that this GPU is blacklisted by the nv-driver (screen corruption),
+so people are stuck with VESA when the blob is declared as "legacy" one day
+(soon ?)...
 
 
 -- 
