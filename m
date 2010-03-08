@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
-Date: Mon,  8 Mar 2010 04:13:37 -0800 (PST)
-Message-ID: <20100308121337.8DA0F130085@annarchy.freedesktop.org>
+Date: Mon,  8 Mar 2010 05:32:05 -0800 (PST)
+Message-ID: <20100308133205.E2C9A13009A@annarchy.freedesktop.org>
 References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,20 +26,28 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26797
 
 
 
---- Comment #16 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2010-03-08 04:13:37 PST ---
-The TDMS is a
+--- Comment #17 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-08 05:32:05 PST ---
+(In reply to comment #16)
+> The TDMS is a
+> 
+> Silicon Image
+> TMDS PanelLink
+> Sil1364ACTU
+> Q6?844.1-1 (? is D/O/0)
+> 0611
+> AD??KD2 (? is D/O/0)
+> 
+> 
+> Can't find a datasheet, maybe you have more luck / better connections ;)
+> 
+> For reference: the MB is a ASUS M2N-VM DH
+> 
 
-Silicon Image
-TMDS PanelLink
-Sil1364ACTU
-Q6?844.1-1 (? is D/O/0)
-0611
-AD??KD2 (? is D/O/0)
+That's interesting, it's an sDVO TMDS transmitter, the intel driver has code
+[1] for a similar piece of hardware.
 
-
-Can't find a datasheet, maybe you have more luck / better connections ;)
-
-For reference: the MB is a ASUS M2N-VM DH
+[1]
+http://cgit.freedesktop.org/nouveau/linux-2.6/tree/drivers/gpu/drm/i915/dvo_sil164.c
 
 
 -- 
