@@ -1,16 +1,13 @@
-From: "Lev A. Melnikovsky" <melnikovsky-JGs/UdohzUI@public.gmane.org>
-Subject: Re: Nouveau [vanilla 2.6.33] + GeForce FX 5200 = blank
- screen
-Date: Tue, 9 Mar 2010 01:35:43 +0300 (MSK)
-Message-ID: <alpine.LFD.2.00.1003090126230.934@nev.ubzr>
-References: <alpine.LFD.2.00.1002281835050.32108@nev.ubzr>
-	<alpine.LFD.2.00.1003090001530.934@nev.ubzr>
-	<6d4bc9fc1003081312r753698bfr55619e887530932a@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
+Date: Tue,  9 Mar 2010 05:24:59 -0800 (PST)
+Message-ID: <20100309132459.EDB7B1300E4@annarchy.freedesktop.org>
+References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d4bc9fc1003081312r753698bfr55619e887530932a-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-26797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,13 +20,23 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+http://bugs.freedesktop.org/show_bug.cgi?id=26797
 
-  On Tue, 9 Mar 2010 at 12:12am, Maarten Maathuis wrote:
 
-MM> The first thing to check is if the monitor works when connected as vga, not dvi.
-I'll try a VGA cable tomorrow (don't have one at hand). But, just in case 
-I was not clear enough - the hardware does (more or less) work: right now 
-I am typing this message in front of this monitor...
 
-Thanks
--L
+
+
+--- Comment #18 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>  2010-03-09 05:24:59 PST ---
+According to [1]+[2], sDVO is used by
+
+nForce430 + Geforce 6150SE
+nForce430 + Geforce 6100
+
+[1] http://www.nvidia.de/page/legacy_gpu_mobo_tech_specs.html
+[2] http://www.nvidia.de/page/gpu_mobo_tech_specs.html
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
