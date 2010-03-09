@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] GT230M/nouveau: X server hangs spontaneously
-Date: Tue,  9 Mar 2010 08:51:12 -0800 (PST)
-Message-ID: <20100309165112.BCB5B1300D7@annarchy.freedesktop.org>
+Date: Tue,  9 Mar 2010 08:51:50 -0800 (PST)
+Message-ID: <20100309165150.B81171300D7@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26980
 
 
 
---- Comment #1 from Victor Vengerov <vvv-mK/T7fl7eHLILq5++fvS8w@public.gmane.org>  2010-03-09 08:51:11 PST ---
-Created an attachment (id=33898)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33898)
-dmesg output
+--- Comment #2 from Victor Vengerov <vvv-mK/T7fl7eHLILq5++fvS8w@public.gmane.org>  2010-03-09 08:51:50 PST ---
+Created an attachment (id=33899)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33899)
+lspci output
 
 
 -- 
