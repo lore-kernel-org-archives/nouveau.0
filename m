@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26986] New: TNT2 crashed on startup with 2.6.34-rc1
-Date: Tue,  9 Mar 2010 18:57:28 -0800 (PST)
-Message-ID: <bug-26986-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26986] TNT2 crashed on startup with 2.6.34-rc1
+Date: Tue,  9 Mar 2010 21:21:59 -0800 (PST)
+Message-ID: <20100310052159.E2E2E1300DA@annarchy.freedesktop.org>
+References: <bug-26986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26986-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,43 +22,30 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=26986
 
-           Summary: TNT2 crashed on startup with 2.6.34-rc1
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: randrik-JGs/UdohzUI@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Well, i have nouveau_vieux_dri.so in my system.
 
-But thing is ... exactly this setup works with 2.6.32-based nouveau kernel
-tree.
 
-Trees used:
-mesa: commit e5923a1240d8b32f5af080b0b4191d3b9299a630 (Merge branch '7.8')
-drm: commit 04fd3872ee8bd8d5e2c27740508c67c2d51dbc11 (nouveau: Small lighting
-related addition to nouveau_class.h.)
+--- Comment #6 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-03-09 21:21:59 PST ---
+Created an attachment (id=33909)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33909)
+X log
 
-kernel (good): commit 4b52473c354f7238afe0c78f50a6c84c40aa3478 ( drm/nv50: add
-a memory barrier to pushbuf submission)
+Upgrading X (to latest master + Francisco's  dri2 patches, due to new dri2proto
+installed), Mesa, DDX doesn't help. Nor removing dri driver ....
 
-kernel (bad): commit 57d54889cd00db2752994b389ba714138652e60c ( Linux
-2.6.34-rc1)
+I found this  a bit weird:
 
-xf86-video-nouveau: commit 29647021044463768cbfa3eead1416ef1cf27fa1 ( remove
-drm patchlevel check, libdrm checks this for us )
+[100.725] (II) NOUVEAU(0): GART: 32MiB available
+[   100.725] (EE) NOUVEAU(0): Unable to allocate GART memory
 
-xserver: commit db4f676f25c6d8e58263d5151942be730592d444  ( xselinux: Bump
-extension minor version.)
+....
 
-usual logs follow ....
+[   100.775] (WW) NOUVEAU(0): Failed to retrieve fbcon fb: id 25
+[   100.775] (II) NOUVEAU(0): NVEnterVT is called.
+[   100.775] Unable to get master: -1
+
+May be some changes in gart drivers in new kernel caused this bug to surface?
 
 
 -- 
