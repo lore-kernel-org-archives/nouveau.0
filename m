@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26986] TNT2 crashed on startup with 2.6.34-rc1
-Date: Tue,  9 Mar 2010 21:21:59 -0800 (PST)
-Message-ID: <20100310052159.E2E2E1300DA@annarchy.freedesktop.org>
+Date: Tue,  9 Mar 2010 19:05:32 -0800 (PST)
+Message-ID: <20100310030533.C9CEC1300DA@annarchy.freedesktop.org>
 References: <bug-26986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,26 +26,8 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26986
 
 
 
---- Comment #6 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-03-09 21:21:59 PST ---
-Created an attachment (id=33909)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33909)
-X log
-
-Upgrading X (to latest master + Francisco's  dri2 patches, due to new dri2proto
-installed), Mesa, DDX doesn't help. Nor removing dri driver ....
-
-I found this  a bit weird:
-
-[100.725] (II) NOUVEAU(0): GART: 32MiB available
-[   100.725] (EE) NOUVEAU(0): Unable to allocate GART memory
-
-....
-
-[   100.775] (WW) NOUVEAU(0): Failed to retrieve fbcon fb: id 25
-[   100.775] (II) NOUVEAU(0): NVEnterVT is called.
-[   100.775] Unable to get master: -1
-
-May be some changes in gart drivers in new kernel caused this bug to surface?
+--- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-03-09 19:05:31 PST ---
+This crash is unfortunate, because i has hope to improve nv04 DRI driver a bit. 
 
 
 -- 
