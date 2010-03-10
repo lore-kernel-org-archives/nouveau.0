@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26986] TNT2 crashed on startup with 2.6.34-rc1
-Date: Tue,  9 Mar 2010 19:01:47 -0800 (PST)
-Message-ID: <20100310030147.BB5FF1300DA@annarchy.freedesktop.org>
+Date: Tue,  9 Mar 2010 18:58:05 -0800 (PST)
+Message-ID: <20100310025805.3C8331300DA@annarchy.freedesktop.org>
 References: <bug-26986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26986
 
 
 
---- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-03-09 19:01:47 PST ---
-Created an attachment (id=33904)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33904)
-/var/log/messages
+--- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-03-09 18:58:04 PST ---
+Created an attachment (id=33902)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33902)
+X log
 
 
 -- 
