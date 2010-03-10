@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26992] Systemsettings crashes when I try to open
  desktop settings
-Date: Wed, 10 Mar 2010 05:38:36 -0800 (PST)
-Message-ID: <20100310133836.46E0B1300DC@annarchy.freedesktop.org>
+Date: Wed, 10 Mar 2010 05:54:22 -0800 (PST)
+Message-ID: <20100310135422.4FE151300DC@annarchy.freedesktop.org>
 References: <bug-26992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,11 +24,18 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=26992
 
 
+Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTABUG
 
 
 
---- Comment #1 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-10 05:38:35 PST ---
-Also glxgears and glxinfo crashes with segfault
+
+--- Comment #2 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-10 05:54:21 PST ---
+That was buggy nouveau_dri.so my bad so resolving
 
 
 -- 
