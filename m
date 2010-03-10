@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26986] TNT2 crashed on startup with 2.6.34-rc1
-Date: Tue,  9 Mar 2010 19:01:05 -0800 (PST)
-Message-ID: <20100310030106.0818C1300DA@annarchy.freedesktop.org>
+Date: Tue,  9 Mar 2010 19:02:13 -0800 (PST)
+Message-ID: <20100310030213.C6AA51300DA@annarchy.freedesktop.org>
 References: <bug-26986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,14 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26986
 
 
 
---- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-03-09 19:01:05 PST ---
-Created an attachment (id=33903)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=33903)
-/var/log/debug
-
-manually echoed "15" into drm module parameter in /sys after kms init. KMS
-console was OK. Only X start caused strange splash effect and then X
-segfaulted/killed.
+--- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-03-09 19:02:12 PST ---
+Created an attachment (id=33905)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=33905)
+/var/log/syslog
 
 
 -- 
