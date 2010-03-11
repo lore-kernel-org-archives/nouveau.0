@@ -1,11 +1,13 @@
-From: Brian DeRocher <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
-Subject: nv50 mouse cursor disappears hourly
-Date: Thu, 11 Mar 2010 15:30:01 -0500
-Message-ID: <201003111530.01357.brian@derocher.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
+Date: Thu, 11 Mar 2010 14:03:54 -0800 (PST)
+Message-ID: <20100311220354.773471300EB@annarchy.freedesktop.org>
+References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,70 +20,91 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSBjb21waWxlZCBsaW51eC0yLjYgZnJvbSBnaXQuICBJIHRoaW5rIG15IGxhc3QgcHVsbC9tZXJn
-ZT8gaXMgdGhpcyBvbmUgKGdpdCBzaG93KQoKY29tbWl0IGQwM2FiMmQ3OGI2YWI2MmU5NGY5OTU4
-ZGE1MGI0NDE5YzI3ZTBmNjAKQXV0aG9yOiBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29yaWFraW5A
-MHgwNC5uZXQ+CkRhdGU6ICAgTW9uIE1hciAxIDAwOjE4OjM5IDIwMTAgKzAwMDAKCiAgICBkcm0v
-bnY1MDogSW1wcm92ZSBQR1JBUEggaW50ZXJydXB0IGhhbmRsaW5nLgoKSSBhbHNvIGNvbXBpbGVk
-IG5vdXZlYXUtZHJtXzIuNC4xOC0xX2FtZDY0LmRlYiBhbmQgbm91dmVhdV9kcnYuc28gdGhhdCBk
-YXkgYW5kIGluc3RhbGxlZCB0aGVtIHRvIGEgRGViaWFuIHN5c3RlbS4KCkknbSB1c2luZyBLREUg
-NC4zLiAgVGhlIG1vdXNlIGN1cnNvciBkaXNhcHBlYXJzLCBidXQgbWVudSBpdGVtcyB0aGF0IGds
-b3cgd2hlbiB0aGUgbW91c2UgaXMgb3ZlciB0aGVtIHdpbGwgc3RpbGwgZ2xvdyB3aGVuIHRoZSBt
-b3VzZSBpcyBvdmVyIHRoZW0uICBJIGNhbiBjbGljayBvbiBzdHVmZiBhbmQgbWVudXMgcG9wIHVw
-IG9yIGFjdGlvbnMgb2NjdXIgYXMgbm9ybWFsLiAgSSBjYW4gbG9nb3V0LCBidXQgaSBhbSBub3Qg
-cmV0dXJuZWQgdG8gdGhlIEtETSBtZW51LiAgSSBjYW4ndCBzd2l0Y2ggdG8gYSB2aXJ0dWFsIHRl
-cm1pbmFsLiAgSSBtdXN0IGRvIGEgaGFyZCByZWJvb3QuICBJIGhhdmVuJ3QgdHJpZWQgdGhhdCBT
-eXNSZXEgdGhpbmcuCgpOZXh0IHRpbWUgaXQgaGFwcGVucywgaSdsbCBjaGVjayAvdmFyL2xvZy8K
-CkkgaGF2ZSBjb21wb3NpdGluZyB0dXJuZWQgb2ZmIGFjY29yZGluZyB0byBLREUgc3lzdGVtLXNl
-dHRpbmdzIC8gRGVza3RvcC4gIEluIGZhY3QgYWxsIGRlc2t0b3AgZWZmZWN0cyBhcmUgZGlzYWJs
-ZWQuCgpIZXJlJ3MgbXkgeG9yZy5jb25mCgpTZWN0aW9uICJJbnB1dERldmljZSIKICAgICAgICBJ
-ZGVudGlmaWVyICAgICAgIkdlbmVyaWMgS2V5Ym9hcmQiCiAgICAgICAgRHJpdmVyICAgICAgICAg
-ICJrYmQiCiAgICAgICAgT3B0aW9uICAgICAgICAgICJYa2JSdWxlcyIgICAgICAieG9yZyIKICAg
-ICAgICBPcHRpb24gICAgICAgICAgIlhrYk1vZGVsIiAgICAgICJwYzEwNCIKICAgICAgICBPcHRp
-b24gICAgICAgICAgIlhrYkxheW91dCIgICAgICJ1cyIKRW5kU2VjdGlvbgoKU2VjdGlvbiAiSW5w
-dXREZXZpY2UiCiAgICAgICAgSWRlbnRpZmllciAgICAgICJDb25maWd1cmVkIE1vdXNlIgogICAg
-ICAgIERyaXZlciAgICAgICAgICAibW91c2UiCkVuZFNlY3Rpb24KClNlY3Rpb24gIk1vbml0b3Ii
-CiAgICAgICAgSWRlbnRpZmllciAgICAgICJJbnRlZ3JhdGVkIExDRCIKCiAgICAgICAgIyAxOTIw
-eDEyMDAgQCA2MC4wMCBIeiAoR1RGKSBoc3luYzogNzQuNTIga0h6OyBwY2xrOiAxOTMuMTYgTUh6
-CiAgICAgICAgTW9kZWxpbmUgIjE5MjB4MTIwMF82MC4wMCIgIDE5My4xNiAgMTkyMCAyMDQ4IDIy
-NTYgMjU5MiAgMTIwMCAxMjAxIDEyMDQgMTI0MiAgLUhTeW5jICtWc3luYwoKICAgICAgICBPcHRp
-b24gIlByZWZlcnJlZE1vZGUiICIxOTIweDEyMDBfNjAuMDAiCkVuZFNlY3Rpb24KCiMgZGlzYWJs
-ZSBWR0EgYnkgZGVmYXVsdApTZWN0aW9uICJNb25pdG9yIgogICAgICAgIElkZW50aWZpZXIgICAg
-ICAiVkdBLTAiCiAgICAgICAgT3B0aW9uICJJZ25vcmUiICJ0cnVlIgpFbmRTZWN0aW9uCgpTZWN0
-aW9uICJEZXZpY2UiCiAgICAgICAgSWRlbnRpZmllciAgICAgICJDb25maWd1cmVkIFZpZGVvIERl
-dmljZSIKICAgICAgICBEcml2ZXIgICAgICAgICAgIm5vdXZlYXUiCiAgICAgICAgT3B0aW9uICAg
-ICAgICAgICJNb25pdG9yLUxWRFMtMSIgICJJbnRlZ3JhdGVkIExDRCIKRW5kU2VjdGlvbgoKU2Vj
-dGlvbiAiU2NyZWVuIgogICAgICAgIElkZW50aWZpZXIgICAgICAiRGVmYXVsdCBTY3JlZW4iCiAg
-ICAgICAgTW9uaXRvciAgICAgICAgICJJbnRlZ3JhdGVkIExDRCIKIyAgICAgICBNb25pdG9yICAg
-ICAgICAgIkV4dGVybmFsIERWSSIKICAgICAgICBEZWZhdWx0RGVwdGggMjQKICAgICAgICBTdWJT
-ZWN0aW9uICJEaXNwbGF5IgogICAgICAgICAgICAgICAgRGVwdGggMjQKICAgICAgICAgICAgICAg
-IFZpcnR1YWwgMzg0MCAyNDAwCiAgICAgICAgRW5kU3ViU2VjdGlvbgpFbmRTZWN0aW9uCgpTZWN0
-aW9uICJFeHRlbnNpb25zIgogICAgICAgIE9wdGlvbiAiQ29tcG9zaXRlIiAiRW5hYmxlIgpFbmRT
-ZWN0aW9uCgpUaGUgaGFyZHdhcmUgaXMgb24gYSBEZWxsIExhdGl0dWRlIEU2NTAwLgoKMDE6MDAu
-MCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyOiBuVmlkaWEgQ29ycG9yYXRpb24gRzk4TSBbUXVh
-ZHJvIE5WUyAxNjBNXSAocmV2IGExKSAocHJvZy1pZiAwMCBbVkdBIGNvbnRyb2xsZXJdKQogICAg
-ICAgIFN1YnN5c3RlbTogRGVsbCBEZXZpY2UgMDI0ZiAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAg
-ICAgICAgRmxhZ3M6IGJ1cyBtYXN0ZXIsIGZhc3QgZGV2c2VsLCBsYXRlbmN5IDAsIElSUSAxNiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAK
-ICAgICAgICBNZW1vcnkgYXQgZjUwMDAwMDAgKDMyLWJpdCwgbm9uLXByZWZldGNoYWJsZSkgW3Np
-emU9MTZNXSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IAogICAgICAgIE1lbW9yeSBhdCBlMDAwMDAwMCAoNjQtYml0LCBwcmVmZXRjaGFibGUpIFtzaXpl
-PTI1Nk1dICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgCiAgICAgICAgTWVtb3J5IGF0IGYyMDAwMDAwICg2NC1iaXQsIG5vbi1wcmVmZXRjaGFibGUp
-IFtzaXplPTMyTV0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAKICAgICAgICBJL08gcG9ydHMgYXQgZGYwMCBbc2l6ZT0xMjhdICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIAogICAgICAgIFt2aXJ0dWFsXSBFeHBhbnNpb24gUk9NIGF0IGY0MDAwMDAwIFtkaXNh
-YmxlZF0gW3NpemU9MTI4S10KICAgICAgICBDYXBhYmlsaXRpZXM6IFs2MF0gUG93ZXIgTWFuYWdl
-bWVudCB2ZXJzaW9uIDMKICAgICAgICBDYXBhYmlsaXRpZXM6IFs2OF0gTVNJOiBFbmFibGUtIENv
-dW50PTEvMSBNYXNrYWJsZS0gNjRiaXQrCiAgICAgICAgQ2FwYWJpbGl0aWVzOiBbNzhdIEV4cHJl
-c3MgRW5kcG9pbnQsIE1TSSAwMAogICAgICAgIENhcGFiaWxpdGllczogWzEwMF0gVmlydHVhbCBD
-aGFubmVsCiAgICAgICAgQ2FwYWJpbGl0aWVzOiBbMTI4XSBQb3dlciBCdWRnZXRpbmcgPD8+CiAg
-ICAgICAgQ2FwYWJpbGl0aWVzOiBbNjAwXSBWZW5kb3IgU3BlY2lmaWMgSW5mb3JtYXRpb246IElE
-PTAwMDEgUmV2PTEgTGVuPTAyNCA8Pz4KICAgICAgICBLZXJuZWwgZHJpdmVyIGluIHVzZTogbm91
-dmVhdQoKSSdsbCBiZSBnbGFkIHRvIHNwZWNpZnkgbW9yZSBpbmZvLiAgUGxlYXNlIHRlbGwgbWUg
-d2hhdCB5b3UgbmVlZC4KCnRoYW5rcywKQnJpYW4KCi0tCmh0dHA6Ly9icmlhbi5kZXJvY2hlci5v
-cmcKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
-dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+http://bugs.freedesktop.org/show_bug.cgi?id=26800
+
+
+
+
+
+--- Comment #11 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-11 14:03:53 PST ---
+(In reply to comment #10)
+> (In reply to comment #9)
+> > Excellent work my man. :)
+> > 
+> > Both KMS and X are defaulting to the correct resolution now, and I no longer
+> > get messages about a load being detected on the TV out.
+> > 
+> 
+> Is the TV detected properly when it's plugged in? In particular 'xrandr --prop
+> |grep subconnector' should tell you the right connector type after you've
+> plugged it in (Composite I guess).
+> 
+
+It looks like it. Booting with the TV hooked in, it chooses the lower default
+resolution it was using before your patch. The output from 'xrandr --prop |
+grep subconnector' was:
+
+        subconnector:   SCART
+        select subconnector:    Automatic
+
+Without the grep line, I get the following:
+
+Screen 0: minimum 320 x 200, current 1024 x 768, maximum 4096 x 4096
+LVDS-1 connected 1024x768+0+0 (normal left inverted right x axis y axis) 331mm
+x 207mm
+        EDID:
+                00ffffffffffff0006af748100000000
+                01100103802115780a1cf59758508e27
+                27505400000001010101010101010101
+                010101010101c71b00a0502017303020
+                36004bcf100000180000000f00000000
+                00000000000000000020000000fe0041
+                554f0a202020202020202020000000fe
+                004231353445573038205631200a0043
+        dithering:      Off
+                supported: Off          On          
+        scaling mode:   Full
+                supported: None         Full         Center       Full aspect 
+   1280x800       60.0 +
+   1024x768       59.9* 
+   800x600        59.9  
+   640x480        59.4  
+   720x400        59.6  
+   640x400        60.0  
+   640x350        59.8  
+VGA-1 disconnected (normal left inverted right x axis y axis)
+TV-1 connected 1024x768+0+0 (normal left inverted right x axis y axis) 0mm x
+0mm
+        overscan: 50 (0x00000032)       range:  (0,100)
+        hue: 0 (0x00000000)     range:  (0,100)
+        saturation: 50 (0x00000032)     range:  (0,100)
+        flicker reduction: 50 (0x00000032)      range:  (0,100)
+        mode:   PAL
+                supported: PAL          PAL-M        PAL-N        PAL-Nc      
+                           NTSC-M       NTSC-J      
+        subconnector:   SCART
+                supported: Unknown      Composite    SVIDEO       Component   
+                           SCART       
+        select subconnector:    Automatic
+                supported: Automatic    Composite    SVIDEO       Component   
+                           SCART       
+   720x576        50.0 +
+   1024x768       50.0* 
+   800x600        50.0  
+   720x480        50.0  
+   640x480        50.0  
+   400x300       100.0  
+   320x240       100.0  
+   320x200       100.0  
+
+
+The TV-out doesn't actually show anything, but I imagine that is to be expected
+according to the status matrix.
+
+-Andy
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
