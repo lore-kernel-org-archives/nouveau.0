@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
-Date: Thu, 11 Mar 2010 12:21:34 -0800 (PST)
-Message-ID: <20100311202134.6A7D61300DF@annarchy.freedesktop.org>
-References: <bug-26800-8800@http.bugs.freedesktop.org/>
+From: Brian DeRocher <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
+Subject: nv50 mouse cursor disappears hourly
+Date: Thu, 11 Mar 2010 15:30:01 -0500
+Message-ID: <201003111530.01357.brian@derocher.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,59 +18,70 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26800
-
-
-
-
-
---- Comment #10 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-11 12:21:33 PST ---
-(In reply to comment #9)
-> Excellent work my man. :)
-> 
-> Both KMS and X are defaulting to the correct resolution now, and I no longer
-> get messages about a load being detected on the TV out.
-> 
-
-Is the TV detected properly when it's plugged in? In particular 'xrandr --prop
-|grep subconnector' should tell you the right connector type after you've
-plugged it in (Composite I guess).
-
-> As far as vsync goes, I've done some testing with smplayer:
-> 
-> Using "xv (2 - NV Video Blitter)" I get decent vsync, as I did before. Not
-> perfect, but decent.
-> 
-> Using "xv (1 - NV40 high quality adapter)" I get decent vsync, which I did NOT
-> get before.
-> 
-> However if I use default xv, which I believe uses "xv (0 - NV40 texture
-> adapter)" I still experience vsync issues.
-> 
-> This is problematic, because any player besides smplayer doesn't allow me to
-> choose between xv outputs, and defaults to the xv output with vsync issues.
-> 
-> If I recall correctly, my 8800GTS didn't exhibit any vsync issues, and had
-> seemingly perfect vsync.
-> 
-> If you'd like, I could submit another bug report about that, let me know.
-> 
-Yeah, that one deserves its own bug.
-
-> Also, I couldn't help but notice you have a riseup e-mail address. I actually
-> run what I describe as "a modern, rationalist, humanist, libertarian-socialist
-> anarchist" site: http://anarchismtoday.org/ Just thought you might be
-> interested. :)
-> 
-Heh, I'll check it out :)
-
-> Thanks again for your help!
-> 
-> -Andy
-> 
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+SSBjb21waWxlZCBsaW51eC0yLjYgZnJvbSBnaXQuICBJIHRoaW5rIG15IGxhc3QgcHVsbC9tZXJn
+ZT8gaXMgdGhpcyBvbmUgKGdpdCBzaG93KQoKY29tbWl0IGQwM2FiMmQ3OGI2YWI2MmU5NGY5OTU4
+ZGE1MGI0NDE5YzI3ZTBmNjAKQXV0aG9yOiBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29yaWFraW5A
+MHgwNC5uZXQ+CkRhdGU6ICAgTW9uIE1hciAxIDAwOjE4OjM5IDIwMTAgKzAwMDAKCiAgICBkcm0v
+bnY1MDogSW1wcm92ZSBQR1JBUEggaW50ZXJydXB0IGhhbmRsaW5nLgoKSSBhbHNvIGNvbXBpbGVk
+IG5vdXZlYXUtZHJtXzIuNC4xOC0xX2FtZDY0LmRlYiBhbmQgbm91dmVhdV9kcnYuc28gdGhhdCBk
+YXkgYW5kIGluc3RhbGxlZCB0aGVtIHRvIGEgRGViaWFuIHN5c3RlbS4KCkknbSB1c2luZyBLREUg
+NC4zLiAgVGhlIG1vdXNlIGN1cnNvciBkaXNhcHBlYXJzLCBidXQgbWVudSBpdGVtcyB0aGF0IGds
+b3cgd2hlbiB0aGUgbW91c2UgaXMgb3ZlciB0aGVtIHdpbGwgc3RpbGwgZ2xvdyB3aGVuIHRoZSBt
+b3VzZSBpcyBvdmVyIHRoZW0uICBJIGNhbiBjbGljayBvbiBzdHVmZiBhbmQgbWVudXMgcG9wIHVw
+IG9yIGFjdGlvbnMgb2NjdXIgYXMgbm9ybWFsLiAgSSBjYW4gbG9nb3V0LCBidXQgaSBhbSBub3Qg
+cmV0dXJuZWQgdG8gdGhlIEtETSBtZW51LiAgSSBjYW4ndCBzd2l0Y2ggdG8gYSB2aXJ0dWFsIHRl
+cm1pbmFsLiAgSSBtdXN0IGRvIGEgaGFyZCByZWJvb3QuICBJIGhhdmVuJ3QgdHJpZWQgdGhhdCBT
+eXNSZXEgdGhpbmcuCgpOZXh0IHRpbWUgaXQgaGFwcGVucywgaSdsbCBjaGVjayAvdmFyL2xvZy8K
+CkkgaGF2ZSBjb21wb3NpdGluZyB0dXJuZWQgb2ZmIGFjY29yZGluZyB0byBLREUgc3lzdGVtLXNl
+dHRpbmdzIC8gRGVza3RvcC4gIEluIGZhY3QgYWxsIGRlc2t0b3AgZWZmZWN0cyBhcmUgZGlzYWJs
+ZWQuCgpIZXJlJ3MgbXkgeG9yZy5jb25mCgpTZWN0aW9uICJJbnB1dERldmljZSIKICAgICAgICBJ
+ZGVudGlmaWVyICAgICAgIkdlbmVyaWMgS2V5Ym9hcmQiCiAgICAgICAgRHJpdmVyICAgICAgICAg
+ICJrYmQiCiAgICAgICAgT3B0aW9uICAgICAgICAgICJYa2JSdWxlcyIgICAgICAieG9yZyIKICAg
+ICAgICBPcHRpb24gICAgICAgICAgIlhrYk1vZGVsIiAgICAgICJwYzEwNCIKICAgICAgICBPcHRp
+b24gICAgICAgICAgIlhrYkxheW91dCIgICAgICJ1cyIKRW5kU2VjdGlvbgoKU2VjdGlvbiAiSW5w
+dXREZXZpY2UiCiAgICAgICAgSWRlbnRpZmllciAgICAgICJDb25maWd1cmVkIE1vdXNlIgogICAg
+ICAgIERyaXZlciAgICAgICAgICAibW91c2UiCkVuZFNlY3Rpb24KClNlY3Rpb24gIk1vbml0b3Ii
+CiAgICAgICAgSWRlbnRpZmllciAgICAgICJJbnRlZ3JhdGVkIExDRCIKCiAgICAgICAgIyAxOTIw
+eDEyMDAgQCA2MC4wMCBIeiAoR1RGKSBoc3luYzogNzQuNTIga0h6OyBwY2xrOiAxOTMuMTYgTUh6
+CiAgICAgICAgTW9kZWxpbmUgIjE5MjB4MTIwMF82MC4wMCIgIDE5My4xNiAgMTkyMCAyMDQ4IDIy
+NTYgMjU5MiAgMTIwMCAxMjAxIDEyMDQgMTI0MiAgLUhTeW5jICtWc3luYwoKICAgICAgICBPcHRp
+b24gIlByZWZlcnJlZE1vZGUiICIxOTIweDEyMDBfNjAuMDAiCkVuZFNlY3Rpb24KCiMgZGlzYWJs
+ZSBWR0EgYnkgZGVmYXVsdApTZWN0aW9uICJNb25pdG9yIgogICAgICAgIElkZW50aWZpZXIgICAg
+ICAiVkdBLTAiCiAgICAgICAgT3B0aW9uICJJZ25vcmUiICJ0cnVlIgpFbmRTZWN0aW9uCgpTZWN0
+aW9uICJEZXZpY2UiCiAgICAgICAgSWRlbnRpZmllciAgICAgICJDb25maWd1cmVkIFZpZGVvIERl
+dmljZSIKICAgICAgICBEcml2ZXIgICAgICAgICAgIm5vdXZlYXUiCiAgICAgICAgT3B0aW9uICAg
+ICAgICAgICJNb25pdG9yLUxWRFMtMSIgICJJbnRlZ3JhdGVkIExDRCIKRW5kU2VjdGlvbgoKU2Vj
+dGlvbiAiU2NyZWVuIgogICAgICAgIElkZW50aWZpZXIgICAgICAiRGVmYXVsdCBTY3JlZW4iCiAg
+ICAgICAgTW9uaXRvciAgICAgICAgICJJbnRlZ3JhdGVkIExDRCIKIyAgICAgICBNb25pdG9yICAg
+ICAgICAgIkV4dGVybmFsIERWSSIKICAgICAgICBEZWZhdWx0RGVwdGggMjQKICAgICAgICBTdWJT
+ZWN0aW9uICJEaXNwbGF5IgogICAgICAgICAgICAgICAgRGVwdGggMjQKICAgICAgICAgICAgICAg
+IFZpcnR1YWwgMzg0MCAyNDAwCiAgICAgICAgRW5kU3ViU2VjdGlvbgpFbmRTZWN0aW9uCgpTZWN0
+aW9uICJFeHRlbnNpb25zIgogICAgICAgIE9wdGlvbiAiQ29tcG9zaXRlIiAiRW5hYmxlIgpFbmRT
+ZWN0aW9uCgpUaGUgaGFyZHdhcmUgaXMgb24gYSBEZWxsIExhdGl0dWRlIEU2NTAwLgoKMDE6MDAu
+MCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyOiBuVmlkaWEgQ29ycG9yYXRpb24gRzk4TSBbUXVh
+ZHJvIE5WUyAxNjBNXSAocmV2IGExKSAocHJvZy1pZiAwMCBbVkdBIGNvbnRyb2xsZXJdKQogICAg
+ICAgIFN1YnN5c3RlbTogRGVsbCBEZXZpY2UgMDI0ZiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAg
+ICAgICAgRmxhZ3M6IGJ1cyBtYXN0ZXIsIGZhc3QgZGV2c2VsLCBsYXRlbmN5IDAsIElSUSAxNiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAK
+ICAgICAgICBNZW1vcnkgYXQgZjUwMDAwMDAgKDMyLWJpdCwgbm9uLXByZWZldGNoYWJsZSkgW3Np
+emU9MTZNXSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IAogICAgICAgIE1lbW9yeSBhdCBlMDAwMDAwMCAoNjQtYml0LCBwcmVmZXRjaGFibGUpIFtzaXpl
+PTI1Nk1dICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgCiAgICAgICAgTWVtb3J5IGF0IGYyMDAwMDAwICg2NC1iaXQsIG5vbi1wcmVmZXRjaGFibGUp
+IFtzaXplPTMyTV0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAKICAgICAgICBJL08gcG9ydHMgYXQgZGYwMCBbc2l6ZT0xMjhdICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIAogICAgICAgIFt2aXJ0dWFsXSBFeHBhbnNpb24gUk9NIGF0IGY0MDAwMDAwIFtkaXNh
+YmxlZF0gW3NpemU9MTI4S10KICAgICAgICBDYXBhYmlsaXRpZXM6IFs2MF0gUG93ZXIgTWFuYWdl
+bWVudCB2ZXJzaW9uIDMKICAgICAgICBDYXBhYmlsaXRpZXM6IFs2OF0gTVNJOiBFbmFibGUtIENv
+dW50PTEvMSBNYXNrYWJsZS0gNjRiaXQrCiAgICAgICAgQ2FwYWJpbGl0aWVzOiBbNzhdIEV4cHJl
+c3MgRW5kcG9pbnQsIE1TSSAwMAogICAgICAgIENhcGFiaWxpdGllczogWzEwMF0gVmlydHVhbCBD
+aGFubmVsCiAgICAgICAgQ2FwYWJpbGl0aWVzOiBbMTI4XSBQb3dlciBCdWRnZXRpbmcgPD8+CiAg
+ICAgICAgQ2FwYWJpbGl0aWVzOiBbNjAwXSBWZW5kb3IgU3BlY2lmaWMgSW5mb3JtYXRpb246IElE
+PTAwMDEgUmV2PTEgTGVuPTAyNCA8Pz4KICAgICAgICBLZXJuZWwgZHJpdmVyIGluIHVzZTogbm91
+dmVhdQoKSSdsbCBiZSBnbGFkIHRvIHNwZWNpZnkgbW9yZSBpbmZvLiAgUGxlYXNlIHRlbGwgbWUg
+d2hhdCB5b3UgbmVlZC4KCnRoYW5rcywKQnJpYW4KCi0tCmh0dHA6Ly9icmlhbi5kZXJvY2hlci5v
+cmcKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
