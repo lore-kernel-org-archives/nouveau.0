@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26986] TNT2 crashed on startup with 2.6.34-rc1
-Date: Wed, 10 Mar 2010 10:46:57 -0800 (PST)
-Message-ID: <20100310184657.617111300E0@annarchy.freedesktop.org>
-References: <bug-26986-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: [Patch RFC] ttm: nouveau accelerated on Xen pv-ops
+	kernel
+Date: Thu, 11 Mar 2010 13:02:58 +0200
+Message-ID: <20100311130258.49dc04bd@farn>
+References: <d799c4761003100521h663c82eepda85f3f0309828c2@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26986-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <d799c4761003100521h663c82eepda85f3f0309828c2-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,38 +18,75 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.orgdri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, xen-devel-GuqFBffKawuULHF6PoxzQEEOCMrvLtNR@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26986
+I'm adding dri-devel@ to CC, since this suggested patch touches
+TTM code, and none of the Nouveau code. TTM patches go via
+dri-devel@.
+
+Thanks.
 
 
+On Wed, 10 Mar 2010 18:51:21 +0530
+Arvind R <arvino55-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 
-
-
---- Comment #7 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org>  2010-03-10 10:46:56 PST ---
-Ok, setting AGP aperture size in BIOS down to 4mb helped!
-
-
-
-guest@slax:~$ dmesg | grep gart 
-Linux agpgart interface v0.103
-agpgart: Detected VIA KT266/KY266x/KT333 chipset
-agpgart-via 0000:00:00.0: AGP aperture is 4M @ 0xe0000000
-agpgart-via 0000:00:00.0: AGP 2.0 bridge
-agpgart-via 0000:00:00.0: putting AGP V2 device into 4x mode
-
-guest@slax:~$ dmesg | grep apert
-agpgart-via 0000:00:00.0: AGP aperture is 4M @ 0xe0000000
-[drm] nouveau 0000:01:00.0: 4 MiB GART (aperture)
-
-
-guest@slax:~$ cat /usr/X11/var/log/Xorg.0.log | grep GART
-[    58.010] (II) NOUVEAU(0): GART: 4MiB available
-[    58.099] (II) NOUVEAU(0): GART: Allocated 3MiB as a scratch buffer
-
+> Hi,
+> Following is a simple patch that is needed in nouveau to get
+> accelerated X on a Xen dom0 pv_ops kernel. The kernel is jeremy's
+> 2.6.31.6 as of 20100222. The whole gpu tree of nouveau (which is
+> almost the mainline merge), was substituted into the kernel-tree.
+> All components of X (mesa, Xorg-server-7.5, xf86-nouveau, libdrm)
+> used of the same day.
+> 
+> Patch:
+> diff -Naur nouveau-kernel.orig/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> nouveau-kernel.new/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> --- nouveau-kernel.orig/drivers/gpu/drm/ttm/ttm_bo_vm.c 2010-01-27
+> 10:19:28.000000000 +0530
+> +++ nouveau-kernel.new/drivers/gpu/drm/ttm/ttm_bo_vm.c  2010-03-10
+> 17:28:59.000000000 +0530
+> @@ -271,7 +271,10 @@
+>          */
+> 
+>         vma->vm_private_data = bo;
+> -       vma->vm_flags |= VM_RESERVED | VM_IO | VM_MIXEDMAP |
+> VM_DONTEXPAND;
+> +       vma->vm_flags |= VM_RESERVED | VM_MIXEDMAP |
+> VM_DONTEXPAND;
+> +       if (!((bo->mem.placement & TTM_PL_MASK_MEM) &
+> TTM_PL_FLAG_TT))
+> +               vma->vm_flags |= VM_IO;
+> +       vma->vm_page_prot = vma_get_vm_prot(vma->vm_flags);
+>         return 0;
+>  out_unref:
+>         ttm_bo_unref(&bo);
+> 
+> This patch is necessary because, in Xen, PFN of a page is
+> virtualised. So physical addresses
+> for DMA programming needs to use the MFN. Xen transparently does
+> the correct translation
+> using the _PAGE_IOMEM prot-bit in the PTE. If the bit is set,
+> then Xen assumes that the backing
+> memory is in the IOMEM space, and PFN equals MFN. If not set,
+> page_to_pfn() returns MFN.
+> 
+> The patch enables the ttm_bo_vm_fault() handler to behave
+> correctly under Xen, and has no
+> side-effects on normal (not under Xen) operations. The use of
+> TTM_PL_FLAG_TT in the
+> check assumes that all other placements are backed by device
+> memory or IO. If there are
+> any other placements that use system memory, that flag has to be
+> OR'ed into the check.
+> 
+> The above patch has no implications on a normal kernel or a Xen
+> pv_ops kernel booted without
+> the Xen hypervisor. My testing is on a debian-lenny environment
+> on a Core2 processor with
+> nVidia GeForce 9400 GT.
 
 -- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Pekka Paalanen
+http://www.iki.fi/pq/
