@@ -1,13 +1,13 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Gallium driver and compatibility issues
-Date: Thu, 11 Mar 2010 13:23:24 -0500
-Message-ID: <586c2acd1003111023y72ca711at32b69b88252673f3@mail.gmail.com>
-References: <1268329369.2107.14.camel@brian.bconsult.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
+Date: Thu, 11 Mar 2010 10:56:10 -0800 (PST)
+Message-ID: <20100311185610.26F7C1300EB@annarchy.freedesktop.org>
+References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1268329369.2107.14.camel-nwZTc+tSiniYW16jBriTx7NAH6kLmebB@public.gmane.org>
+In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,40 +17,51 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Mar 11, 2010 at 12:42 PM, Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org> wrote:
-> Hi,
->
-> I use two nv34 cards and I would like to test / try out / use the
-> Gallium driver without drawbacks.
->
-> Unfortunately this has not been working since I decided to install /
-> compile nouveau drivers.
->
-> My system is Debian Squeeze, my kernel is 2.6.34-rc1.
->
-> The problem is:
->
-> Every time I load nouveau_dri.so into RAM existing applications are
-> broken / unusable (Example: gnome-games).
->
-> It does not matter if I overwrite existing versions of libglut*,
-> libGLw*, libGLU*, libGL*, libEGL* or not - that does not make any
-> difference.
-> The center of the problem is nouveau_dri.so and nothing else.
->
-> Could it please be possible to modify this driver file so that it does
-> NOT continue to break existing applications??
->
-> Would be a pleasure!
->
-> Cheers
->
-> Uwe
+http://bugs.freedesktop.org/show_bug.cgi?id=26800
 
-Don't install nouveau_dri.so globally. When you want to try it with a
-specific application set LIBGL_DRIVERS_PATH=/path/to/nouveau_dri.so in
-your env.
+
+
+
+
+--- Comment #9 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-11 10:56:09 PST ---
+Excellent work my man. :)
+
+Both KMS and X are defaulting to the correct resolution now, and I no longer
+get messages about a load being detected on the TV out.
+
+As far as vsync goes, I've done some testing with smplayer:
+
+Using "xv (2 - NV Video Blitter)" I get decent vsync, as I did before. Not
+perfect, but decent.
+
+Using "xv (1 - NV40 high quality adapter)" I get decent vsync, which I did NOT
+get before.
+
+However if I use default xv, which I believe uses "xv (0 - NV40 texture
+adapter)" I still experience vsync issues.
+
+This is problematic, because any player besides smplayer doesn't allow me to
+choose between xv outputs, and defaults to the xv output with vsync issues.
+
+If I recall correctly, my 8800GTS didn't exhibit any vsync issues, and had
+seemingly perfect vsync.
+
+If you'd like, I could submit another bug report about that, let me know.
+
+Also, I couldn't help but notice you have a riseup e-mail address. I actually
+run what I describe as "a modern, rationalist, humanist, libertarian-socialist
+anarchist" site: http://anarchismtoday.org/ Just thought you might be
+interested. :)
+
+Thanks again for your help!
+
+-Andy
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
