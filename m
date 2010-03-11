@@ -1,14 +1,15 @@
-From: Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: Gallium driver and compatibility issues
-Date: Thu, 11 Mar 2010 20:40:34 +0100
-Message-ID: <1268336434.2397.3.camel@brian.bconsult.de>
+Date: Thu, 11 Mar 2010 14:57:18 -0500
+Message-ID: <586c2acd1003111157g301cefe0yc5b2acc73b6e1216@mail.gmail.com>
 References: <1268329369.2107.14.camel@brian.bconsult.de>
 	<586c2acd1003111023y72ca711at32b69b88252673f3@mail.gmail.com>
+	<1268336434.2397.3.camel@brian.bconsult.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <586c2acd1003111023y72ca711at32b69b88252673f3-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <1268336434.2397.3.camel-nwZTc+tSiniYW16jBriTx7NAH6kLmebB@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,50 +19,57 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Am Donnerstag, den 11.03.2010, 13:23 -0500 schrieb Younes Manton:
-> On Thu, Mar 11, 2010 at 12:42 PM, Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org> wrote:
-> > Hi,
-> >
-> > I use two nv34 cards and I would like to test / try out / use the
-> > Gallium driver without drawbacks.
-> >
-> > Unfortunately this has not been working since I decided to install /
-> > compile nouveau drivers.
-> >
-> > My system is Debian Squeeze, my kernel is 2.6.34-rc1.
-> >
-> > The problem is:
-> >
-> > Every time I load nouveau_dri.so into RAM existing applications are
-> > broken / unusable (Example: gnome-games).
-> >
-> > It does not matter if I overwrite existing versions of libglut*,
-> > libGLw*, libGLU*, libGL*, libEGL* or not - that does not make any
-> > difference.
-> > The center of the problem is nouveau_dri.so and nothing else.
-> >
-> > Could it please be possible to modify this driver file so that it does
-> > NOT continue to break existing applications??
-> >
-> > Would be a pleasure!
-> >
-> > Cheers
-> >
-> > Uwe
-> 
-> Don't install nouveau_dri.so globally. When you want to try it with a
-> specific application set LIBGL_DRIVERS_PATH=/path/to/nouveau_dri.so in
-> your env.
+On Thu, Mar 11, 2010 at 2:40 PM, Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org> wrote:
+> Am Donnerstag, den 11.03.2010, 13:23 -0500 schrieb Younes Manton:
+>> On Thu, Mar 11, 2010 at 12:42 PM, Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org> wrote:
+>> > Hi,
+>> >
+>> > I use two nv34 cards and I would like to test / try out / use the
+>> > Gallium driver without drawbacks.
+>> >
+>> > Unfortunately this has not been working since I decided to install /
+>> > compile nouveau drivers.
+>> >
+>> > My system is Debian Squeeze, my kernel is 2.6.34-rc1.
+>> >
+>> > The problem is:
+>> >
+>> > Every time I load nouveau_dri.so into RAM existing applications are
+>> > broken / unusable (Example: gnome-games).
+>> >
+>> > It does not matter if I overwrite existing versions of libglut*,
+>> > libGLw*, libGLU*, libGL*, libEGL* or not - that does not make any
+>> > difference.
+>> > The center of the problem is nouveau_dri.so and nothing else.
+>> >
+>> > Could it please be possible to modify this driver file so that it does
+>> > NOT continue to break existing applications??
+>> >
+>> > Would be a pleasure!
+>> >
+>> > Cheers
+>> >
+>> > Uwe
+>>
+>> Don't install nouveau_dri.so globally. When you want to try it with a
+>> specific application set LIBGL_DRIVERS_PATH=/path/to/nouveau_dri.so in
+>> your env.
+>
+> Thanks. Sounds plausible.
+>
+> But:
+> 1. Udev decides which driver is being loaded into memory at boot time.
+> 2. I was asking for a _long term_ solution, not for a quick short term
+> workaround without changing the driver itself.
+>
+> Cheers
 
-Thanks. Sounds plausible.
-
-But:
-1. Udev decides which driver is being loaded into memory at boot time.
-2. I was asking for a _long term_ solution, not for a quick short term
-workaround without changing the driver itself.
-
-Cheers
+I don't understand. What does udev have to do with nouveau_dri.so? If
+you don't install nouveau_dri.so globally it won't be used for either
+direct or indirect rendering by default. When you want to try it make
+sure libGL can find it by pointing the driver path to it and it should
+be used in that instance and that instance only.
