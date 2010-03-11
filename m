@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26980] GT230M/nouveau: X server hangs spontaneously
-Date: Thu, 11 Mar 2010 05:49:25 -0800 (PST)
-Message-ID: <20100311134925.F2E4F1300F3@annarchy.freedesktop.org>
-References: <bug-26980-8800@http.bugs.freedesktop.org/>
+From: Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
+Subject: Gallium driver and compatibility issues
+Date: Thu, 11 Mar 2010 18:42:49 +0100
+Message-ID: <1268329369.2107.14.camel@brian.bconsult.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +18,31 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26980
+Hi,
 
+I use two nv34 cards and I would like to test / try out / use the
+Gallium driver without drawbacks.
 
+Unfortunately this has not been working since I decided to install /
+compile nouveau drivers.
 
+My system is Debian Squeeze, my kernel is 2.6.34-rc1.
 
+The problem is:
 
---- Comment #6 from Victor Vengerov <vvv-mK/T7fl7eHLILq5++fvS8w@public.gmane.org>  2010-03-11 05:49:25 PST ---
-Thanks. I called ./peek 0x400700 when X hangs another time, its output was:
-00400700: 001e0001
+Every time I load nouveau_dri.so into RAM existing applications are
+broken / unusable (Example: gnome-games).
 
-Just in case if it helps somehow:
-- when X hangs, mouse cursor still running
-- since update to 2.6.32.9, it appears X hangs more often than before, and
-usually system can not be restored by killing X (X restarts, but screen remains
-the same as in moment when hang occurs)
+It does not matter if I overwrite existing versions of libglut*,
+libGLw*, libGLU*, libGL*, libEGL* or not - that does not make any
+difference.
+The center of the problem is nouveau_dri.so and nothing else.
 
+Could it please be possible to modify this driver file so that it does
+NOT continue to break existing applications??
 
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Would be a pleasure!
+
+Cheers
+
+Uwe
