@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
-Date: Fri, 12 Mar 2010 14:35:44 -0800 (PST)
-Message-ID: <20100312223544.5041D130111@annarchy.freedesktop.org>
+Date: Fri, 12 Mar 2010 15:28:00 -0800 (PST)
+Message-ID: <20100312232801.001F81300AC@annarchy.freedesktop.org>
 References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,13 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26800
 
 
 
---- Comment #15 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-12 14:35:43 PST ---
-I tried to get a full mmiotrace with the blob again, and no luck. I let it
-attempt to boot X for about 20 minutes. The LVDS blinked once or twice, but
-that was it, nothing on the TV. The hard drive light wasn't blinking or
-anything. :/
+--- Comment #16 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-12 15:27:59 PST ---
+With patch 2 I get:
 
-I'll try out that other patch and post back.
+        subconnector:   Composite
+        select subconnector:    Automatic
+
+Other than that, seems to work the same as patch 1.
 
 
 -- 
