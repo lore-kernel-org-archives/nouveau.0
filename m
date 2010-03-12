@@ -1,7 +1,7 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: Lost R300/NV40 development work you may have
-Date: Fri, 12 Mar 2010 03:34:36 +0100
-Message-ID: <ff13bc9a1003111834w3b66d800x7bccac27f6ba34d0@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27036] New: kernel panic on resume on 9400M (NVAC)
+Date: Fri, 12 Mar 2010 00:22:02 -0800 (PST)
+Message-ID: <bug-27036-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,23 +15,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: eruditehermit-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On the Radeon IRC channel
-(http://www.radeonhd.org/?page=archive_display&c=radeon&m=1&y=2009&d=2009-1-26),
-you expressed interest in Corbin Simpson's R300 LLVM work, at
-git://anongit.freedesktop.org/~csimpson/llvm, which was based on
-Stephane Marchesin's earlier NV40 work.
+http://bugs.freedesktop.org/show_bug.cgi?id=27036
 
-Both these projects have since been lost due to an hard drive crash.
-If you happened to still have that git tree on your hard drive, it
-would be extremely appreciated if you could provide it in the form you
-prefer (for instance a "reply to all" to this mail with a .tar.gz
-attached).
+           Summary: kernel panic on resume on 9400M (NVAC)
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Thanks a lot for you attention.
 
-Best regards,
-Luca Barbieri
+Got a kernel panic on resuming from suspend.  Running nouveau drm kernel module
+4b52473c354f7238afe0c78f50a6c84c40aa3478 and xf86-video-nouveau
+6b8b15731b7610c9d8fb3625861797a0c9fd9546.
+
+See attached photo of kernel dump.  The kernel taint is due to the binary
+Broadcom WLAN driver... hopefully that isn't affecting things.
+
+If there's any more info I can provide, please let me know.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
