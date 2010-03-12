@@ -1,16 +1,13 @@
-From: Dan Nicholson <dbn.lists-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Intel-gfx] [PATCH 3/3] libdrm: Move all noninstalled
-	headers to noinst_HEADERS.
-Date: Fri, 12 Mar 2010 06:47:33 -0800
-Message-ID: <91705d081003120647q7c88818bo9d8b5162f27e186d@mail.gmail.com>
-References: <1268398235-21806-1-git-send-email-suokkos@gmail.com>
-	<1268398235-21806-2-git-send-email-suokkos@gmail.com>
-	<1268398235-21806-3-git-send-email-suokkos@gmail.com>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Subject: Re: Gallium driver and compatibility issues
+Date: Fri, 12 Mar 2010 16:19:58 +0100
+Message-ID: <4B9A5B9E.8090102@student.tuwien.ac.at>
+References: <1268329369.2107.14.camel@brian.bconsult.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1268398235-21806-3-git-send-email-suokkos-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1268329369.2107.14.camel-nwZTc+tSiniYW16jBriTx7NAH6kLmebB@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,66 +17,79 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pauli Nieminen <suokkos-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
+To: Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBNYXIgMTIsIDIwMTAgYXQgNDo1MCBBTSwgUGF1bGkgTmllbWluZW4gPHN1b2trb3NA
-Z21haWwuY29tPiB3cm90ZToKPiBDbGVhbnVwIG1ha2Ugc3lzdGVtIHNvIHRoYXQgYWxsIG5vbmlu
-c3RhbGxlZCBoZWFkZXJzIGFyZSBwdXQKPiB0byBub2luc3RfSEVBREVSUy4gVGhpcyBxdWFyZW50
-ZWVzIHRoYXQgaGVhZGVyIHdpbGwgYmUgcHJlc2VudAo+IGluIHRhciBiYWxsIGJ1dCBub3QgaW5z
-dGFsbGVkIHdpdGggbWFrZSBpbnN0YWxsLgo+Cj4gQ0M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCj4gU2lnbmVkLW9mZi1ieTogUGF1bGkgTmllbWluZW4gPHN1b2trb3NAZ21haWwuY29t
-Pgo+IC0tLQo+IMKgTWFrZWZpbGUuYW0gwqAgwqAgwqAgwqAgfCDCoCDCoDYgKysrLS0tCj4gwqBp
-bnRlbC9NYWtlZmlsZS5hbSDCoCB8IMKgIDEwICsrKysrKy0tLS0KPiDCoG5vdXZlYXUvTWFrZWZp
-bGUuYW0gfCDCoCDCoDQgKysrLQo+IMKgMyBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCsp
-LCA4IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL01ha2VmaWxlLmFtIGIvTWFrZWZpbGUu
-YW0KPiBpbmRleCBlNDM0ZTFkLi42MWRhMTg2IDEwMDY0NAo+IC0tLSBhL01ha2VmaWxlLmFtCj4g
-KysrIGIvTWFrZWZpbGUuYW0KPiBAQCAtNTUsMTMgKzU1LDEzIEBAIGxpYmRybV9sYV9TT1VSQ0VT
-ID0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgXAo+IMKgIMKgIMKgIMKgeGY4
-NmRybUhhc2guYyDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBcCj4gwqAg
-wqAgwqAgwqB4Zjg2ZHJtUmFuZG9tLmMgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgXAo+IMKgIMKgIMKgIMKgeGY4NmRybVNMLmMgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgXAo+IC0gwqAgwqAgwqAgeGY4NmRybU1vZGUuYyDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBcCj4gLSDCoCDCoCDCoCBsaWJkcm1fbGlzdHMuaAo+
-ICsgwqAgwqAgwqAgeGY4NmRybU1vZGUuYwo+Cj4gwqBsaWJkcm1pbmNsdWRlZGlyID0gJHtpbmNs
-dWRlZGlyfQo+IMKgbGliZHJtaW5jbHVkZV9IRUFERVJTID0geGY4NmRybS5oIHhmODZkcm1Nb2Rl
-LmgKPgo+IC1ub2luc3RfSEVBREVSUyA9IHhmODZhdG9taWMuaAo+ICtub2luc3RfSEVBREVSUyA9
-IHhmODZhdG9taWMuaCBcCj4gKyDCoCDCoCDCoCBsaWJkcm1fbGlzdHMuaAo+Cj4KPiDCoEVYVFJB
-X0RJU1QgPSBsaWJkcm0ucGMuaW4gaW5jbHVkZS9kcm0vKgo+IGRpZmYgLS1naXQgYS9pbnRlbC9N
-YWtlZmlsZS5hbSBiL2ludGVsL01ha2VmaWxlLmFtCj4gaW5kZXggOWFkZDUwNS4uZDU2YjAzYSAx
-MDA2NDQKPiAtLS0gYS9pbnRlbC9NYWtlZmlsZS5hbQo+ICsrKyBiL2ludGVsL01ha2VmaWxlLmFt
-Cj4gQEAgLTM2LDE0ICszNiwxNiBAQCBsaWJkcm1faW50ZWxfbGFfTElCQUREID0gLi4vbGliZHJt
-LmxhIEBQVEhSRUFEU1RVQlNfTElCU0AgQENMT0NLX0xJQkAKPgo+IMKgbGliZHJtX2ludGVsX2xh
-X1NPVVJDRVMgPSBcCj4gwqAgwqAgwqAgwqBpbnRlbF9idWZtZ3IuYyBcCj4gLSDCoCDCoCDCoCBp
-bnRlbF9idWZtZ3JfcHJpdi5oIFwKPiDCoCDCoCDCoCDCoGludGVsX2J1Zm1ncl9mYWtlLmMgXAo+
-IMKgIMKgIMKgIMKgaW50ZWxfYnVmbWdyX2dlbS5jIFwKPiAtIMKgIMKgIMKgIGludGVsX2NoaXBz
-ZXQuaCBcCj4gLSDCoCDCoCDCoCBtbS5jIFwKPiAtIMKgIMKgIMKgIG1tLmgKPiArIMKgIMKgIMKg
-IG1tLmMKPgo+IMKgbGliZHJtX2ludGVsaW5jbHVkZWRpciA9ICR7aW5jbHVkZWRpcn0KPiDCoGxp
-YmRybV9pbnRlbGluY2x1ZGVfSEVBREVSUyA9IGludGVsX2J1Zm1nci5oCj4KPiArbm9pbnN0X0hF
-QURFUlMgPSBcCj4gKyDCoCDCoCDCoCBpbnRlbF9idWZtZ3JfcHJpdi5oIFwKPiArIMKgIMKgIMKg
-IGludGVsX2NoaXBzZXQuaCBcCj4gKyDCoCDCoCDCoCBtbS5oCj4gKwo+IMKgcGtnY29uZmlnX0RB
-VEEgPSBsaWJkcm1faW50ZWwucGMKPiBkaWZmIC0tZ2l0IGEvbm91dmVhdS9NYWtlZmlsZS5hbSBi
-L25vdXZlYXUvTWFrZWZpbGUuYW0KPiBpbmRleCA1ZDc1OWM1Li41MzA5OWViIDEwMDY0NAo+IC0t
-LSBhL25vdXZlYXUvTWFrZWZpbGUuYW0KPiArKysgYi9ub3V2ZWF1L01ha2VmaWxlLmFtCj4gQEAg
-LTE4LDcgKzE4LDYgQEAgbGliZHJtX25vdXZlYXVfbGFfU09VUkNFUyA9IFwKPiDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoG5vdXZlYXVfbm90aWZpZXIuYyBcCj4gwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBub3V2ZWF1X2JvLmMgXAo+IMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgbm91dmVhdV9yZXNvdXJjZS5j
-IFwKPiAtIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIG5vdXZlYXVfcHJp
-dmF0ZS5oIFwKPiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoG5vdXZl
-YXVfcmVsb2MuYwo+Cj4gwqBsaWJkcm1fbm91dmVhdWNvbW1vbmluY2x1ZGVkaXIgPSAke2luY2x1
-ZGVkaXJ9L25vdXZlYXUKPiBAQCAtMzgsNSArMzcsOCBAQCBsaWJkcm1fbm91dmVhdWluY2x1ZGVk
-aXIgPSAke2luY2x1ZGVkaXJ9L2RybQo+IMKgbGliZHJtX25vdXZlYXVpbmNsdWRlX0hFQURFUlMg
-PSBcCj4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBub3V2
-ZWF1X2RybWlmLmgKPgo+ICtub2luc3RfSEVBREVSUyA9IFwKPiArIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIG5vdXZlYXVfcHJpdmF0ZS5oCj4gKwo+IMKgcGtnY29uZmlnZGlyID0gQHBrZ2NvbmZp
-Z2RpckAKPiDCoHBrZ2NvbmZpZ19EQVRBID0gbGliZHJtX25vdXZlYXUucGMKCkkgZG9uJ3QgdGhp
-bmsgdGhpcyBpcyB0aGUgYmVzdCBzdHJhdGVneS4gSGF2aW5nIHRoZSBoZWFkZXJzIHVuZGVyCl9T
-T1VSQ0VTIGFscmVhZHkgbWVhbnMgdGhleSdsbCBnZXQgZGlzdHJpYnV0ZWQuIFRoZSBvbmx5IHJl
-YXNvbiBmb3IKdGhlIHNlcGFyYXRlIF9IRUFERVJTIGRlY2xhcmF0aW9ucyBpcyBpZiB5b3UgbmVl
-ZCB0byBpbnN0YWxsIHRoZW0uCgpodHRwOi8vd3d3LmdudS5vcmcvc29mdHdhcmUvYXV0b21ha2Uv
-bWFudWFsL2F1dG9tYWtlLmh0bWwjSGVhZGVycwoKLS0KRGFuCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+On 11.03.2010 18:42, Uwe Bugla wrote:
+> Hi,
+>
+> I use two nv34 cards and I would like to test / try out / use the
+> Gallium driver without drawbacks.
+>
+>   
+Note that you said "use", and not "own", which is a little
+biased towards "they're plugged into the same MB".
+
+> Unfortunately this has not been working since I decided to install /
+> compile nouveau drivers.
+>
+>   
+This is kind of a pre-requisite to be able to try the gallium
+drivers ... well, you can run a simulation in your head, but,
+that would be rather tedious.
+
+> My system is Debian Squeeze, my kernel is 2.6.34-rc1.
+>
+> The problem is:
+>
+> Every time I load nouveau_dri.so into RAM existing applications are
+> broken / unusable (Example: gnome-games).
+>
+>   
+Loading stuff into RAM by itself shouldn't cause any problems
+if that RAM isn't used by something else, but, I'll just interpret
+this as best I can:
+AIGLX is loading it from .../lib/dri/, i.e. you installed it globally -
+not the safest way to try, because now any app using OpenGL
+may use the hw through indirect rendering.
+(indirect meaning app -> libGL -> Xorg -> nouveau_dri, instead
+of app -> libGL -> nouveau_dri)
+
+> It does not matter if I overwrite existing versions of libglut*,
+> libGLw*, libGLU*, libGL*, libEGL* or not - that does not make any
+> difference.
+> The center of the problem is nouveau_dri.so and nothing else.
+>
+>   
+Sure, libGL etc. don't directly control the hardware, they
+hook into the dri driver (nouveau_dri.so) to do that.
+
+> Could it please be possible to modify this driver file so that it does
+> NOT continue to break existing applications??
+>
+>   
+It will break existing applications if existing applications make
+use of it and it is itself broken.
+So, either don't let them use it, or fix it. We're working on that.
+
+Consider yourself lucky that you got an answer at all. Normally,
+at this time, we don't care about the process of people trying the
+gallium driver without knowing exactly (well, to a certain degree
+at least) what they're doing.
+
+Half-expecting to have my message dissected now,
+
+Christoph
+> Would be a pleasure!
+>
+> Cheers
+>
+> Uwe
+>
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>   
