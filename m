@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27049] fails to start - drm open issue?
-Date: Fri, 12 Mar 2010 10:00:00 -0800 (PST)
-Message-ID: <20100312180000.A15801300A9@annarchy.freedesktop.org>
+Date: Fri, 12 Mar 2010 10:05:29 -0800 (PST)
+Message-ID: <20100312180529.EAA031300AA@annarchy.freedesktop.org>
 References: <bug-27049-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,12 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=27049
 
 
-Michal Suchanek <hramrach-aRb0bU7PRFPrBKCeMvbIDA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #33997|0                           |1
-        is obsolete|                            |
 
 
 
-
---- Comment #3 from Michal Suchanek <hramrach-aRb0bU7PRFPrBKCeMvbIDA@public.gmane.org>  2010-03-12 09:59:59 PST ---
-Created an attachment (id=34004)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=34004)
-drm dmesg excerpt
-
-Installing the firmware changes dmesg output slightly but the X server fails in
-the same way producing the same log.
+--- Comment #4 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-12 10:05:29 PST ---
+Update to lastest git, there is no need to install firmware (nouveau tree or
+kernel 2.6.34-rc1+).
 
 
 -- 
