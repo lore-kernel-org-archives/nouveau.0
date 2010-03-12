@@ -1,16 +1,18 @@
-From: "Shinpei KATO" <shinpei-a3aLqY3FAeqkRP3n4FtbsiGn5s73+xxf@public.gmane.org>
-Subject: Re: Interrupt setting
-Date: Sat, 13 Mar 2010 10:45:04 +0900
-Message-ID: <000301cac24e$cf65bfb0$6e313f10$@is.s.u-tokyo.ac.jp>
-References: <000301cac169$2a657720$7f306560$@is.s.u-tokyo.ac.jp>
-	<000b01cac229$148be2c0$3da3a840$@is.s.u-tokyo.ac.jp>
-	<586c2acd1003121730m377d3682q9b8df00ed797d765@mail.gmail.com>
+From: Chicken Shack <chicken.shack-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: Gallium driver and compatibility issues
+Date: Fri, 12 Mar 2010 21:58:46 +0100
+Message-ID: <1268427526.2685.9.camel@brian.bconsult.de>
+References: <1268329369.2107.14.camel@brian.bconsult.de>
+	<586c2acd1003111023y72ca711at32b69b88252673f3@mail.gmail.com>
+	<1268336434.2397.3.camel@brian.bconsult.de>
+	<20100312125239.4a29011c@farn>
+	<1268401894.1759.59.camel@brian.bconsult.de>
+	<20100312222541.131d8885@farn>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <586c2acd1003121730m377d3682q9b8df00ed797d765-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: ja
+In-Reply-To: <20100312222541.131d8885@farn>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,117 +22,109 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: 'Younes Manton' <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Dear Younes,
-
-Thank you for your reply.
-
-> Nouveau doesn't really make use of interrupts so you wont see them
-> while running OpenGL. In general we make use of fences to signal when
-> things of interest have occured. Is there something particular you're
-> trying to accomplish or is this just a learning exercise?
-
-I have been using Nouveau for a research purpose, though it has been just a
-month.
-So I can say both something particular and a learning exercise.
-I have tried understanding the behavir of fences, but a bit hard to catch up
-the execution flow.
-
-To my understanding, for instance every time pushbuf ioctl is called, you
-create a fence object.
-Does this make a caller process to wait for a completion of a GPU command?
-I inserted printk()s in nouveau_fence_wait(), but the process does not seem
-sleeping.
-
-I am also wondering if current GPUs can be set up to generate interrupts
-when GPU commands are done.
-My guess is that NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY is to generate interrupts
-when DMA transfers are done.
-Am I misunderstanding?
-
-Best,
-- Shinpei
-
-> -----Original Message-----
-> From: Younes Manton [mailto:younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org]
-> Sent: Saturday, March 13, 2010 10:31 AM
-> To: Shinpei KATO
-> Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> Subject: Re: [Nouveau] Interrupt setting
+Am Freitag, den 12.03.2010, 22:25 +0200 schrieb Pekka Paalanen:
+> On Fri, 12 Mar 2010 14:51:34 +0100
+> Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org> wrote:
 > 
-> On Fri, Mar 12, 2010 at 4:14 PM, Shinpei KATO
-> <shinpei-a3aLqY3FAeqkRP3n4FtbsiGn5s73+xxf@public.gmane.org> wrote:
-> > Hi,
-> >
-> > I am responding to myself...
-> > Interrupts now work; I should have set the
-> > NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY_STYLE_WRITE_LE_AWAKEN flag every
-> time a
-> > command is sent.
-> > In fact, I thought this flag tells GPU to notify us of when DMA
-transfers
-> > are done, but I got PGRAPH_NOTIFY interrupts by this.
-> > It sounds to me that they notify of when GPU operations are done rather
-> than
-> > DMA transfers.
-> > # PGRAPH_BUFFER_NOTIFY sounds more related to DMA transfers.
-> >
-> > Is my understanding wrong?
-> > I appreciate any comments or information about this.
-> >
-> > Best regards,
-> > - Shinpei
-> >
-> >> -----Original Message-----
-> >> From: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> >> [mailto:nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org] On Behalf Of Shinpei
-> KATO
-> >> Sent: Friday, March 12, 2010 7:21 AM
-> >> To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> >> Subject: [Nouveau] Interrupt setting
-> >>
-> >> Hi all,
-> >>
-> >> I am a Nouveau user on FC12 with GeForce 9500GT.
-> >> I have read the Nouveau wiki documents, and they imply that there are
-> ways
-> >> to set GPU to send interrupts to CPU, when we want to be notified for
-> >> something, e.g., when DMA transfer or GPU operation is completed.
-> >> By default, when I run an OpenGL demo application from Gallium3D, the
-> > driver
-> >> gets no interrupts from GPU in nouveau_irq_handler(), except that it
-> gets
-> >> one NV_PFIFO_INTR_CACHE_ERROR interrupt right after the FIFO is
-> allocated.
-> >> According to the wiki docs, I need to set
-> >> NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY_STYLE_WRITE_LE_AWAKEN into the
-> >> 'notify'
-> >> field of an object in a channel.
-> >> Hence, I tried seting a flag to a DMA notifier in nouveau_dma_init():
-> >>
-> >> // seems entry[1] is related to a DMA notifier?
-> >> nv_wo32(dev, m2mf, 1,
-> >> NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY_STYLE_WRITE_LE_AWAKEN);
-> >>
-> >> I also tried sending some command:
-> >>
-> >> // guess this is a very wrong way ;-)
-> >> BEGIN_RING(chan, NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY, 1);
-> >> OUT_RING(chan,
-> >> NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY_STYLE_WRITE_LE_AWAKEN);
-> >>
-> >> But they both did not work...
-> >> How can we set GPU to send interrupts to CPU?
-> >> I would appreciate your comments.
-> >>
-> >> Thanks,
-> >> - Shinpei
-> >>
+> > "Note, that the Nvidia proprietary driver....."
+> > Lapse No. 3:
+> > Misleading usage of expressions.
+> > Everybody talking about the "Nvidia proprietary driver" in the
+> > graphic card context of Nvidia cards normallly means the blob
+> > driver shipped by Nvidia (closed source driver!) which does not
+> > have any problems with stuff like Compiz or other 3D
+> > applications. I do not like blob drivers for a whole bunch of
+> > reasons. As you are definitely using the wrong expression it
+> > remains your personal secret what you are trying to express or
+> > say.
 > 
-> Nouveau doesn't really make use of interrupts so you wont see them
-> while running OpenGL. In general we make use of fences to signal when
-> things of interest have occured. Is there something particular you're
-> trying to accomplish or is this just a learning exercise?
+> One of the most common reasons for problems with Nouveau are
+> the remnants of the proprietary driver. Since you did not
+> provide kernel log, X log, nor glxinfo output, I of course
+> assumed the most probable case. A stale libglx from the blob
+> kills OpenGL, for instance.
+> 
+> Furthermore, you cannot have the Nvidia proprietary 3D
+> driver running by default, and then use the Nouveau 3D driver
+> on selected apps. If you use *any* part of Nouveau, you cannot
+> have *any* part of the proprietary driver, and vice versa.
+> They cannot live together at all.
+> 
+> I'm sorry I guessed your problem wrong. There was no real
+> information to begin the diagnosis with.
+> 
+> > "Problems are expected on the OpenGL front....."
+> > Lapse No. 4:
+> > I did not mention nearly all driver parts of the Gallium drivers
+> > carrying the "GL" in their names just by chance. I reflect while
+> > I am typing messages. I explicitly mentioned that the versions of
+> > the driver parts carrying the "GL" in their names are NOT
+> > responsible for the breakage that I reported.
+> > Thus it still remains your personal secret what you mean by
+> > "OpenGL front".
+> 
+> Actually, they are. Mesa libGL will try to load nouveau_dri.so
+> to provide hardware accelerated 3D rendering. At this time
+> OpenGL (via Mesa) is the only real user of nouveau_dri.so.
+> nouveau_dri.so may be loaded by the X server (AIGLX) or
+> the application (direct rendering) when they load libGL.
+> 
+> In short, having nouveau_dri.so will break OpenGL and perhaps
+> kill the X server in the AIGLX case.
+> 
+> > Lapse No. 6:
+> > Instead of repeating the core message of my request for 4 times
+> > in this mail (how insane!) I propose to change this page
+> > http://nouveau.freedesktop.org/wiki/GalliumHowto
+> > 
+> > in the following way:
+> > 
+> > 1. Wipe off the following stupid idiotic crap:
+> > 
+> > "Warning : Nouveau's developers don't want people to build
+> > gallium drivers now, and do not support it at all. They also
+> > don't want bug reports on gallium ATM. This is code in rapid
+> > development. Bug reports for this are useless, as it's known to
+> > be broken."
+> 
+> That is rude on purpose. It is supposed to be crystal clear
+> to everyone, that this is not yet for end users, but apparently
+> it is not that clear. The time for end users will come, later.
+> At that time the page will be rewritten to be polite. Right now
+> it is just a cheatsheet for new developers.
+> 
+> > And once again: The error is not hidden in some library
+> > file containing the "GL" in its name, and the versioning of those
+> > GL files is also NOT the problem.
+> > It's the sources of the nouveau_dri.so file that do contain the
+> > bug.
+> 
+> True. nouveau_dri.so misses complete features and contains bugs.
+> 
+> I read your two first posts as nothing more than an elaborate
+> "Fix everything, please". That really is what people are actually
+> doing on their free time. Trying to kick their butt can only make
+> them ignorant or angry.
+> 
+
+Yup! Good vibes!
+
+a. I do not use parts of the Nvidia blob driver or the blob as whole.
+b. Up to now I always loaded nouveau_dri.so via AIGLX plus minimal
+xorg.conf plus nouveau kernel staging driver.
+c. I can send you some xorg.0.log if you may wish.
+What other log files could be useful please?
+d. In fact the xorg server did not crash even once.
+The only thing that is broken is the specific application (solitaire).
+There do exist apps that are not broken.
+
+That's it for now. If you need further info please tell me.
+Otherwise I will stay away from Gallium from now on.
+
+Cheers
+
+Uwe
