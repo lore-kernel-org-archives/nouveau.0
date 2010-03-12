@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
-Date: Fri, 12 Mar 2010 13:28:35 -0800 (PST)
-Message-ID: <20100312212836.0CBDB130112@annarchy.freedesktop.org>
+Date: Fri, 12 Mar 2010 13:46:05 -0800 (PST)
+Message-ID: <20100312214605.E14E61300AB@annarchy.freedesktop.org>
 References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,35 +26,32 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26800
 
 
 
---- Comment #13 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-12 13:28:35 PST ---
-(In reply to comment #12)
-> Created an attachment (id=34006)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=34006) [details]
-> nv67_tvdac_load_2.patch
+--- Comment #14 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-12 13:46:05 PST ---
+(In reply to comment #13)
+> (In reply to comment #12)
+> > Created an attachment (id=34006)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=34006) [details] [details]
+> > nv67_tvdac_load_2.patch
+> > 
+> > 
+> > Does the attached patch have the same effect?
+> > 
 > 
+> Do I need to revert the previous patch to apply this one? 
 > 
-> Does the attached patch have the same effect?
+Yes.
+
+> > Actually it's a bit unexpected, TV-out is supposed to work on all the nv40-like
+> > cards, but I think you're the first one to try it on an nv6x. 
 > 
-
-Do I need to revert the previous patch to apply this one? 
-
-> Actually it's a bit unexpected, TV-out is supposed to work on all the nv40-like
-> cards, but I think you're the first one to try it on an nv6x. 
-
-Hmmm ok. According to the status matrix, it is showing that it's the nv30 that
-is supposed to have functional TV-out, with NV40 cards marked as "mostly."
-
-This is interesting, because I have a 6600 chip in my media machine, and I was
-unable to get TV out from that as well, which I think is an NV40 card. I didn't
-spend much time on that, so I'll do more testing.
-
-> Sadly the
-> mmiotrace you sent seems to be incomplete: Are you sure you waited long enough
-> before giving up? X often takes quite a while to start up when you're
-> mmiotracing, up to several minutes.
-
-I did give it a few minutes, but perhaps not enough. I'll try it again and wait
-longer.
+> Hmmm ok. According to the status matrix, it is showing that it's the nv30 that
+> is supposed to have functional TV-out, with NV40 cards marked as "mostly."
+> 
+> This is interesting, because I have a 6600 chip in my media machine, and I was
+> unable to get TV out from that as well, which I think is an NV40 card. I didn't
+> spend much time on that, so I'll do more testing.
+> 
+That one was reported to work IIRC.
 
 
 -- 
