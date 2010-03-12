@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27049] fails to start - drm open issue?
-Date: Fri, 12 Mar 2010 09:28:26 -0800 (PST)
-Message-ID: <20100312172826.C4DD6130110@annarchy.freedesktop.org>
-References: <bug-27049-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27036] kernel panic on resume on 9400M (NVAC)
+Date: Fri, 12 Mar 2010 09:35:23 -0800 (PST)
+Message-ID: <20100312173523.2769B1300A8@annarchy.freedesktop.org>
+References: <bug-27036-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27049-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27036-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +20,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=27049
+http://bugs.freedesktop.org/show_bug.cgi?id=27036
 
 
 
 
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-12 09:28:26 PST ---
-[    7.189551] [drm] nouveau 0000:03:00.0: No ctxprog for NVac
-
-you need to install the firmware
-
-http://nouveau.freedesktop.org/wiki/TroubleShooting
+--- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-12 09:35:22 PST ---
+it's probably a duplicate of (still unresolved) bug 26521
 
 
 -- 
