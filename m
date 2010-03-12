@@ -1,15 +1,15 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: Gallium driver and compatibility issues
-Date: Fri, 12 Mar 2010 12:52:39 +0200
-Message-ID: <20100312125239.4a29011c@farn>
-References: <1268329369.2107.14.camel@brian.bconsult.de>
-	<586c2acd1003111023y72ca711at32b69b88252673f3@mail.gmail.com>
-	<1268336434.2397.3.camel@brian.bconsult.de>
+From: Arvind R <arvino55-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Patch RFC] ttm: nouveau accelerated on Xen pv-ops
+	kernel
+Date: Fri, 12 Mar 2010 18:15:57 +0530
+Message-ID: <d799c4761003120445h57ab1373m31eb0add242ef74c@mail.gmail.com>
+References: <d799c4761003100521h663c82eepda85f3f0309828c2@mail.gmail.com>
+	<20100311130258.49dc04bd@farn>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1268336434.2397.3.camel-nwZTc+tSiniYW16jBriTx7NAH6kLmebB@public.gmane.org>
+In-Reply-To: <20100311130258.49dc04bd@farn>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,94 +19,81 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, xen-devel-GuqFBffKawuULHF6PoxzQEEOCMrvLtNR@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 11 Mar 2010 20:40:34 +0100
-Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org> wrote:
+On Thu, Mar 11, 2010 at 4:32 PM, Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> wrote:
+> I'm adding dri-devel@ to CC, since this suggested patch touches
+> TTM code, and none of the Nouveau code. TTM patches go via
+> dri-devel@.
+>
+> Thanks.
+>
+>
+> On Wed, 10 Mar 2010 18:51:21 +0530
+> Arvind R <arvino55-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>
+>> Hi,
+>> Following is a simple patch that is needed in nouveau to get
+>> accelerated X on a Xen dom0 pv_ops kernel. The kernel is jeremy's
+>> 2.6.31.6 as of 20100222. The whole gpu tree of nouveau (which is
+>> almost the mainline merge), was substituted into the kernel-tree.
+>> All components of X (mesa, Xorg-server-7.5, xf86-nouveau, libdrm)
+>> used of the same day.
+>>
+>> Patch:
+>> diff -Naur nouveau-kernel.orig/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>> nouveau-kernel.new/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>> --- nouveau-kernel.orig/drivers/gpu/drm/ttm/ttm_bo_vm.c 2010-01-27
+>> 10:19:28.000000000 +0530
+>> +++ nouveau-kernel.new/drivers/gpu/drm/ttm/ttm_bo_vm.c =A02010-03-10
+>> 17:28:59.000000000 +0530
+>> @@ -271,7 +271,10 @@
+>> =A0 =A0 =A0 =A0 =A0*/
+>>
+>> =A0 =A0 =A0 =A0 vma->vm_private_data =3D bo;
+>> - =A0 =A0 =A0 vma->vm_flags |=3D VM_RESERVED | VM_IO | VM_MIXEDMAP |
+>> VM_DONTEXPAND;
+>> + =A0 =A0 =A0 vma->vm_flags |=3D VM_RESERVED | VM_MIXEDMAP |
+>> VM_DONTEXPAND;
+>> + =A0 =A0 =A0 if (!((bo->mem.placement & TTM_PL_MASK_MEM) &
+>> TTM_PL_FLAG_TT))
+>> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 vma->vm_flags |=3D VM_IO;
+>> + =A0 =A0 =A0 vma->vm_page_prot =3D vma_get_vm_prot(vma->vm_flags);
+>> =A0 =A0 =A0 =A0 return 0;
+>> =A0out_unref:
+>> =A0 =A0 =A0 =A0 ttm_bo_unref(&bo);
+>>
+sorry for the typo and other procedural errors.
+the last added line should be
++    vma->vm_page_prot =3D vm_get_page_prot(vma->vm_flags)
 
-> Am Donnerstag, den 11.03.2010, 13:23 -0500 schrieb Younes Manton:
-> > On Thu, Mar 11, 2010 at 12:42 PM, Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
-> > wrote:
-> > > Hi,
-> > >
-> > > I use two nv34 cards and I would like to test / try out / use
-> > > the Gallium driver without drawbacks.
+>> This patch is necessary because, in Xen, PFN of a page is
+>> virtualised. So physical addresses
+>> for DMA programming needs to use the MFN. Xen transparently does
+>> the correct translation
+>> using the _PAGE_IOMEM prot-bit in the PTE. If the bit is set,
+>> then Xen assumes that the backing
+>> memory is in the IOMEM space, and PFN equals MFN. If not set,
+>> page_to_pfn() returns MFN.
+>>
+>> The patch enables the ttm_bo_vm_fault() handler to behave
+>> correctly under Xen, and has no
+>> side-effects on normal (not under Xen) operations. The use of
+>> TTM_PL_FLAG_TT in the
+>> check assumes that all other placements are backed by device
+>> memory or IO. If there are
+>> any other placements that use system memory, that flag has to be
+>> OR'ed into the check.
+>>
+>> The above patch has no implications on a normal kernel or a Xen
+>> pv_ops kernel booted without
+>> the Xen hypervisor. My testing is on a debian-lenny environment
+>> on a Core2 processor with
+>> nVidia GeForce 9400 GT.
+>
+Efficacy of patch:
+successful flightgear run on dom0 AND bareboot!
 
-A multicard setup? According to
-http://nouveau.freedesktop.org/wiki/FeatureMatrix
-that is not supported yet.
-
-What do you mean "without drawbacks"? Have only the apps
-you select to use the experimental driver and all other
-apps to use the stable software renderer? Do not install
-nouveau_dri.so system-wide, then.
-
-Note, that the Nvidia proprietary driver simply cannot live
-together with Nouveau like this.
-
-> > > Unfortunately this has not been working since I decided to
-> > > install / compile nouveau drivers.
-
-Problems are expected on the OpenGL front, if you install any
-of the experimental, unreleased 3D drivers.
-
-> > > My system is Debian Squeeze, my kernel is 2.6.34-rc1.
-> > >
-> > > The problem is:
-> > >
-> > > Every time I load nouveau_dri.so into RAM existing
-> > > applications are broken / unusable (Example: gnome-games).
-
-Without logs we cannot help at all.
-
-> > > It does not matter if I overwrite existing versions of
-> > > libglut*, libGLw*, libGLU*, libGL*, libEGL* or not - that
-> > > does not make any difference.
-
-Did you forget libglx? The X log would tell.
-
-> > > The center of the problem is nouveau_dri.so and nothing else.
-> > >
-> > > Could it please be possible to modify this driver file so
-> > > that it does NOT continue to break existing applications??
-
-Yes. That is called "development". It is what people are
-doing all the time. You whining about it does not make it
-happen faster. Quite the contrary.
-
-> > Don't install nouveau_dri.so globally. When you want to try it
-> > with a specific application set
-> > LIBGL_DRIVERS_PATH=/path/to/nouveau_dri.so in your env.
-> 
-> Thanks. Sounds plausible.
-> 
-> But:
-> 1. Udev decides which driver is being loaded into memory at boot
-> time. 2. I was asking for a _long term_ solution, not for a quick
-> short term workaround without changing the driver itself.
-
-udev has nothing to do with this. Udev only loads the kernel
-modules. The 3D driver is not a kernel module, though it depends
-on Nouveau DRM.
-
-The long term solution is *long term*. Nouveau still does not
-officially support 3D, although some reports of some 3D apps
-working exist.
-
-The current advice is to *never* install nouveau_dri.so
-system-wide.
-
-Also, you have failed to provide any logs nor descriptions
-about what is broken and how. Therefore we cannot help.
-My best guess is that you have parts of the prorietary Nvidia
-driver still in your system (e.g. libglx).
-
-If you want to try things, do follow
-http://nouveau.freedesktop.org/wiki/GalliumHowto
-and do not install the Gallium3D driver system-wide.
-
--- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Arvind R.
