@@ -1,13 +1,16 @@
-From: Brian DeRocher <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
-Subject: Re: nv50 mouse cursor disappears hourly
-Date: Fri, 12 Mar 2010 09:37:53 -0500
-Message-ID: <201003120937.53520.brian@derocher.org>
-References: <201003111530.01357.brian@derocher.org>
+From: Dan Nicholson <dbn.lists-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Intel-gfx] [PATCH 3/3] libdrm: Move all noninstalled
+	headers to noinst_HEADERS.
+Date: Fri, 12 Mar 2010 06:47:33 -0800
+Message-ID: <91705d081003120647q7c88818bo9d8b5162f27e186d@mail.gmail.com>
+References: <1268398235-21806-1-git-send-email-suokkos@gmail.com>
+	<1268398235-21806-2-git-send-email-suokkos@gmail.com>
+	<1268398235-21806-3-git-send-email-suokkos@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <201003111530.01357.brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <1268398235-21806-3-git-send-email-suokkos-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,39 +20,66 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pauli Nieminen <suokkos-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thursday 11 March 2010 15:30:01 Brian DeRocher wrote:
-> Next time it happens, i'll check /var/log/
-
-/var/log/syslog
-
-Mar 11 15:26:38 bregalad kernel: [ 4011.159249] [drm] nouveau 0000:01:00.0: Allocating FIFO number 4
-Mar 11 15:26:38 bregalad kernel: [ 4011.172345] [drm] nouveau 0000:01:00.0: nouveau_channel_alloc: initialised FIFO 4
-Mar 11 15:26:56 bregalad kernel: [ 4029.528631] [drm] nouveau 0000:01:00.0: nouveau_channel_free: freeing fifo 4
-Mar 11 15:30:01 bregalad /USR/SBIN/CRON[4460]: (www-data) CMD ([ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache/access.log ] && /usr/lib/cgi-bin/awstats.pl -config=awstats -update >/dev/null)
-Mar 11 15:40:01 bregalad /USR/SBIN/CRON[4703]: (www-data) CMD ([ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache/access.log ] && /usr/lib/cgi-bin/awstats.pl -config=awstats -update >/dev/null)
-Mar 11 15:50:01 bregalad /USR/SBIN/CRON[5128]: (www-data) CMD ([ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache/access.log ] && /usr/lib/cgi-bin/awstats.pl -config=awstats -update >/dev/null)
-Mar 11 15:59:05 bregalad kernel: [ 5958.643154] [drm] nouveau 0000:01:00.0: EvoCh 0 Mthd 0x0000 Data 0x00000400 (0x0002 0x01)
-Mar 11 16:00:01 bregalad /USR/SBIN/CRON[5371]: (www-data) CMD ([ -x /usr/lib/cgi-bin/awstats.pl -a -f /etc/awstats/awstats.conf -a -r /var/log/apache/access.log ] && /usr/lib/cgi-bin/awstats.pl -config=awstats -update >/dev/null)
-
-
-/var/log/dmesg
-
-Mar 11 15:59:05 bregalad kernel: [ 5958.643154] [drm] nouveau 0000:01:00.0: EvoCh 0 Mthd 0x0000 Data 0x00000400 (0x0002 0x01)
-Mar 11 14:20:53 bregalad kernel: [   65.957641] [drm] nouveau 0000:01:00.0: nouveau_channel_alloc: initialised FIFO 3
-Mar 11 14:29:08 bregalad kernel: [  561.104849] [drm] LVDS-7: set mode 1920x1200 3e
-Mar 11 14:29:23 bregalad kernel: [  576.013970] [drm] LVDS-7: set mode 1920x1200_60.00 3d
-Mar 11 14:29:45 bregalad kernel: [  598.589129] CPUFREQ: Per core ondemand sysfs interface is deprecated - up_threshold
-Mar 11 14:47:32 bregalad kernel: [ 1665.713034] CE: hpet increasing min_delta_ns to 15000 nsec
-Mar 11 14:50:34 bregalad kernel: [ 1847.552047] CE: hpet increasing min_delta_ns to 22500 nsec
-Mar 11 15:26:38 bregalad kernel: [ 4011.159249] [drm] nouveau 0000:01:00.0: Allocating FIFO number 4
-Mar 11 15:26:38 bregalad kernel: [ 4011.172345] [drm] nouveau 0000:01:00.0: nouveau_channel_alloc: initialised FIFO 4
-Mar 11 15:26:56 bregalad kernel: [ 4029.528631] [drm] nouveau 0000:01:00.0: nouveau_channel_free: freeing fifo 4
-Mar 11 15:59:05 bregalad kernel: [ 5958.643154] [drm] nouveau 0000:01:00.0: EvoCh 0 Mthd 0x0000 Data 0x00000400 (0x0002 0x01)
-
-Brian
-
---
-http://brian.derocher.org
+T24gRnJpLCBNYXIgMTIsIDIwMTAgYXQgNDo1MCBBTSwgUGF1bGkgTmllbWluZW4gPHN1b2trb3NA
+Z21haWwuY29tPiB3cm90ZToKPiBDbGVhbnVwIG1ha2Ugc3lzdGVtIHNvIHRoYXQgYWxsIG5vbmlu
+c3RhbGxlZCBoZWFkZXJzIGFyZSBwdXQKPiB0byBub2luc3RfSEVBREVSUy4gVGhpcyBxdWFyZW50
+ZWVzIHRoYXQgaGVhZGVyIHdpbGwgYmUgcHJlc2VudAo+IGluIHRhciBiYWxsIGJ1dCBub3QgaW5z
+dGFsbGVkIHdpdGggbWFrZSBpbnN0YWxsLgo+Cj4gQ0M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCj4gU2lnbmVkLW9mZi1ieTogUGF1bGkgTmllbWluZW4gPHN1b2trb3NAZ21haWwuY29t
+Pgo+IC0tLQo+IMKgTWFrZWZpbGUuYW0gwqAgwqAgwqAgwqAgfCDCoCDCoDYgKysrLS0tCj4gwqBp
+bnRlbC9NYWtlZmlsZS5hbSDCoCB8IMKgIDEwICsrKysrKy0tLS0KPiDCoG5vdXZlYXUvTWFrZWZp
+bGUuYW0gfCDCoCDCoDQgKysrLQo+IMKgMyBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCsp
+LCA4IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL01ha2VmaWxlLmFtIGIvTWFrZWZpbGUu
+YW0KPiBpbmRleCBlNDM0ZTFkLi42MWRhMTg2IDEwMDY0NAo+IC0tLSBhL01ha2VmaWxlLmFtCj4g
+KysrIGIvTWFrZWZpbGUuYW0KPiBAQCAtNTUsMTMgKzU1LDEzIEBAIGxpYmRybV9sYV9TT1VSQ0VT
+ID0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgXAo+IMKgIMKgIMKgIMKgeGY4
+NmRybUhhc2guYyDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBcCj4gwqAg
+wqAgwqAgwqB4Zjg2ZHJtUmFuZG9tLmMgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgXAo+IMKgIMKgIMKgIMKgeGY4NmRybVNMLmMgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgXAo+IC0gwqAgwqAgwqAgeGY4NmRybU1vZGUuYyDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBcCj4gLSDCoCDCoCDCoCBsaWJkcm1fbGlzdHMuaAo+
+ICsgwqAgwqAgwqAgeGY4NmRybU1vZGUuYwo+Cj4gwqBsaWJkcm1pbmNsdWRlZGlyID0gJHtpbmNs
+dWRlZGlyfQo+IMKgbGliZHJtaW5jbHVkZV9IRUFERVJTID0geGY4NmRybS5oIHhmODZkcm1Nb2Rl
+LmgKPgo+IC1ub2luc3RfSEVBREVSUyA9IHhmODZhdG9taWMuaAo+ICtub2luc3RfSEVBREVSUyA9
+IHhmODZhdG9taWMuaCBcCj4gKyDCoCDCoCDCoCBsaWJkcm1fbGlzdHMuaAo+Cj4KPiDCoEVYVFJB
+X0RJU1QgPSBsaWJkcm0ucGMuaW4gaW5jbHVkZS9kcm0vKgo+IGRpZmYgLS1naXQgYS9pbnRlbC9N
+YWtlZmlsZS5hbSBiL2ludGVsL01ha2VmaWxlLmFtCj4gaW5kZXggOWFkZDUwNS4uZDU2YjAzYSAx
+MDA2NDQKPiAtLS0gYS9pbnRlbC9NYWtlZmlsZS5hbQo+ICsrKyBiL2ludGVsL01ha2VmaWxlLmFt
+Cj4gQEAgLTM2LDE0ICszNiwxNiBAQCBsaWJkcm1faW50ZWxfbGFfTElCQUREID0gLi4vbGliZHJt
+LmxhIEBQVEhSRUFEU1RVQlNfTElCU0AgQENMT0NLX0xJQkAKPgo+IMKgbGliZHJtX2ludGVsX2xh
+X1NPVVJDRVMgPSBcCj4gwqAgwqAgwqAgwqBpbnRlbF9idWZtZ3IuYyBcCj4gLSDCoCDCoCDCoCBp
+bnRlbF9idWZtZ3JfcHJpdi5oIFwKPiDCoCDCoCDCoCDCoGludGVsX2J1Zm1ncl9mYWtlLmMgXAo+
+IMKgIMKgIMKgIMKgaW50ZWxfYnVmbWdyX2dlbS5jIFwKPiAtIMKgIMKgIMKgIGludGVsX2NoaXBz
+ZXQuaCBcCj4gLSDCoCDCoCDCoCBtbS5jIFwKPiAtIMKgIMKgIMKgIG1tLmgKPiArIMKgIMKgIMKg
+IG1tLmMKPgo+IMKgbGliZHJtX2ludGVsaW5jbHVkZWRpciA9ICR7aW5jbHVkZWRpcn0KPiDCoGxp
+YmRybV9pbnRlbGluY2x1ZGVfSEVBREVSUyA9IGludGVsX2J1Zm1nci5oCj4KPiArbm9pbnN0X0hF
+QURFUlMgPSBcCj4gKyDCoCDCoCDCoCBpbnRlbF9idWZtZ3JfcHJpdi5oIFwKPiArIMKgIMKgIMKg
+IGludGVsX2NoaXBzZXQuaCBcCj4gKyDCoCDCoCDCoCBtbS5oCj4gKwo+IMKgcGtnY29uZmlnX0RB
+VEEgPSBsaWJkcm1faW50ZWwucGMKPiBkaWZmIC0tZ2l0IGEvbm91dmVhdS9NYWtlZmlsZS5hbSBi
+L25vdXZlYXUvTWFrZWZpbGUuYW0KPiBpbmRleCA1ZDc1OWM1Li41MzA5OWViIDEwMDY0NAo+IC0t
+LSBhL25vdXZlYXUvTWFrZWZpbGUuYW0KPiArKysgYi9ub3V2ZWF1L01ha2VmaWxlLmFtCj4gQEAg
+LTE4LDcgKzE4LDYgQEAgbGliZHJtX25vdXZlYXVfbGFfU09VUkNFUyA9IFwKPiDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoG5vdXZlYXVfbm90aWZpZXIuYyBcCj4gwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBub3V2ZWF1X2JvLmMgXAo+IMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgbm91dmVhdV9yZXNvdXJjZS5j
+IFwKPiAtIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIG5vdXZlYXVfcHJp
+dmF0ZS5oIFwKPiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoG5vdXZl
+YXVfcmVsb2MuYwo+Cj4gwqBsaWJkcm1fbm91dmVhdWNvbW1vbmluY2x1ZGVkaXIgPSAke2luY2x1
+ZGVkaXJ9L25vdXZlYXUKPiBAQCAtMzgsNSArMzcsOCBAQCBsaWJkcm1fbm91dmVhdWluY2x1ZGVk
+aXIgPSAke2luY2x1ZGVkaXJ9L2RybQo+IMKgbGliZHJtX25vdXZlYXVpbmNsdWRlX0hFQURFUlMg
+PSBcCj4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBub3V2
+ZWF1X2RybWlmLmgKPgo+ICtub2luc3RfSEVBREVSUyA9IFwKPiArIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIG5vdXZlYXVfcHJpdmF0ZS5oCj4gKwo+IMKgcGtnY29uZmlnZGlyID0gQHBrZ2NvbmZp
+Z2RpckAKPiDCoHBrZ2NvbmZpZ19EQVRBID0gbGliZHJtX25vdXZlYXUucGMKCkkgZG9uJ3QgdGhp
+bmsgdGhpcyBpcyB0aGUgYmVzdCBzdHJhdGVneS4gSGF2aW5nIHRoZSBoZWFkZXJzIHVuZGVyCl9T
+T1VSQ0VTIGFscmVhZHkgbWVhbnMgdGhleSdsbCBnZXQgZGlzdHJpYnV0ZWQuIFRoZSBvbmx5IHJl
+YXNvbiBmb3IKdGhlIHNlcGFyYXRlIF9IRUFERVJTIGRlY2xhcmF0aW9ucyBpcyBpZiB5b3UgbmVl
+ZCB0byBpbnN0YWxsIHRoZW0uCgpodHRwOi8vd3d3LmdudS5vcmcvc29mdHdhcmUvYXV0b21ha2Uv
+bWFudWFsL2F1dG9tYWtlLmh0bWwjSGVhZGVycwoKLS0KRGFuCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
