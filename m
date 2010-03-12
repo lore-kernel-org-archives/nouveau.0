@@ -1,19 +1,13 @@
-From: Luca Barbieri <luca.barbieri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Gallium driver and compatibility issues
-Date: Fri, 12 Mar 2010 23:06:27 +0100
-Message-ID: <ff13bc9a1003121406x1612c2bfn7a3b4581152f5646@mail.gmail.com>
-References: <1268329369.2107.14.camel@brian.bconsult.de>
-	<586c2acd1003111023y72ca711at32b69b88252673f3@mail.gmail.com>
-	<1268336434.2397.3.camel@brian.bconsult.de>
-	<20100312125239.4a29011c@farn>
-	<1268401894.1759.59.camel@brian.bconsult.de>
-	<20100312222541.131d8885@farn>
-	<1268428922.2920.0.camel@brian.bconsult.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
+Date: Fri, 12 Mar 2010 14:35:44 -0800 (PST)
+Message-ID: <20100312223544.5041D130111@annarchy.freedesktop.org>
+References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1268428922.2920.0.camel-nwZTc+tSiniYW16jBriTx7NAH6kLmebB@public.gmane.org>
+In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,11 +17,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-It is not surprising that some (or most) 3D applications don't
-actually work correctly with nouveau on nv3x right now.
+http://bugs.freedesktop.org/show_bug.cgi?id=26800
 
-The driver will probably improve in the future.
+
+
+
+
+--- Comment #15 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-12 14:35:43 PST ---
+I tried to get a full mmiotrace with the blob again, and no luck. I let it
+attempt to boot X for about 20 minutes. The LVDS blinked once or twice, but
+that was it, nothing on the TV. The hard drive light wasn't blinking or
+anything. :/
+
+I'll try out that other patch and post back.
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
