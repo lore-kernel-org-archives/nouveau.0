@@ -1,13 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
-Date: Fri, 12 Mar 2010 13:46:05 -0800 (PST)
-Message-ID: <20100312214605.E14E61300AB@annarchy.freedesktop.org>
-References: <bug-26800-8800@http.bugs.freedesktop.org/>
+From: Luca Barbieri <luca.barbieri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Gallium driver and compatibility issues
+Date: Fri, 12 Mar 2010 23:06:27 +0100
+Message-ID: <ff13bc9a1003121406x1612c2bfn7a3b4581152f5646@mail.gmail.com>
+References: <1268329369.2107.14.camel@brian.bconsult.de>
+	<586c2acd1003111023y72ca711at32b69b88252673f3@mail.gmail.com>
+	<1268336434.2397.3.camel@brian.bconsult.de>
+	<20100312125239.4a29011c@farn>
+	<1268401894.1759.59.camel@brian.bconsult.de>
+	<20100312222541.131d8885@farn>
+	<1268428922.2920.0.camel@brian.bconsult.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1268428922.2920.0.camel-nwZTc+tSiniYW16jBriTx7NAH6kLmebB@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,44 +23,11 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26800
+It is not surprising that some (or most) 3D applications don't
+actually work correctly with nouveau on nv3x right now.
 
-
-
-
-
---- Comment #14 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-12 13:46:05 PST ---
-(In reply to comment #13)
-> (In reply to comment #12)
-> > Created an attachment (id=34006)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=34006) [details] [details]
-> > nv67_tvdac_load_2.patch
-> > 
-> > 
-> > Does the attached patch have the same effect?
-> > 
-> 
-> Do I need to revert the previous patch to apply this one? 
-> 
-Yes.
-
-> > Actually it's a bit unexpected, TV-out is supposed to work on all the nv40-like
-> > cards, but I think you're the first one to try it on an nv6x. 
-> 
-> Hmmm ok. According to the status matrix, it is showing that it's the nv30 that
-> is supposed to have functional TV-out, with NV40 cards marked as "mostly."
-> 
-> This is interesting, because I have a 6600 chip in my media machine, and I was
-> unable to get TV out from that as well, which I think is an NV40 card. I didn't
-> spend much time on that, so I'll do more testing.
-> 
-That one was reported to work IIRC.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+The driver will probably improve in the future.
