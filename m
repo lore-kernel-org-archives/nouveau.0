@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
-Date: Fri, 12 Mar 2010 15:28:00 -0800 (PST)
-Message-ID: <20100312232801.001F81300AC@annarchy.freedesktop.org>
-References: <bug-26800-8800@http.bugs.freedesktop.org/>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Interrupt setting
+Date: Fri, 12 Mar 2010 20:30:41 -0500
+Message-ID: <586c2acd1003121730m377d3682q9b8df00ed797d765@mail.gmail.com>
+References: <000301cac169$2a657720$7f306560$@is.s.u-tokyo.ac.jp>
+	<000b01cac229$148be2c0$3da3a840$@is.s.u-tokyo.ac.jp>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <000b01cac229$148be2c0$3da3a840$@is.s.u-tokyo.ac.jp>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,25 +18,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Shinpei KATO <shinpei-a3aLqY3FAeqkRP3n4FtbsiGn5s73+xxf@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26800
+On Fri, Mar 12, 2010 at 4:14 PM, Shinpei KATO
+<shinpei-a3aLqY3FAeqkRP3n4FtbsiGn5s73+xxf@public.gmane.org> wrote:
+> Hi,
+>
+> I am responding to myself...
+> Interrupts now work; I should have set the
+> NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY_STYLE_WRITE_LE_AWAKEN flag every time a
+> command is sent.
+> In fact, I thought this flag tells GPU to notify us of when DMA transfers
+> are done, but I got PGRAPH_NOTIFY interrupts by this.
+> It sounds to me that they notify of when GPU operations are done rather than
+> DMA transfers.
+> # PGRAPH_BUFFER_NOTIFY sounds more related to DMA transfers.
+>
+> Is my understanding wrong?
+> I appreciate any comments or information about this.
+>
+> Best regards,
+> - Shinpei
+>
+>> -----Original Message-----
+>> From: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> [mailto:nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org] On Behalf Of Shinpei KATO
+>> Sent: Friday, March 12, 2010 7:21 AM
+>> To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> Subject: [Nouveau] Interrupt setting
+>>
+>> Hi all,
+>>
+>> I am a Nouveau user on FC12 with GeForce 9500GT.
+>> I have read the Nouveau wiki documents, and they imply that there are ways
+>> to set GPU to send interrupts to CPU, when we want to be notified for
+>> something, e.g., when DMA transfer or GPU operation is completed.
+>> By default, when I run an OpenGL demo application from Gallium3D, the
+> driver
+>> gets no interrupts from GPU in nouveau_irq_handler(), except that it gets
+>> one NV_PFIFO_INTR_CACHE_ERROR interrupt right after the FIFO is allocated.
+>> According to the wiki docs, I need to set
+>> NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY_STYLE_WRITE_LE_AWAKEN into the
+>> 'notify'
+>> field of an object in a channel.
+>> Hence, I tried seting a flag to a DMA notifier in nouveau_dma_init():
+>>
+>> // seems entry[1] is related to a DMA notifier?
+>> nv_wo32(dev, m2mf, 1,
+>> NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY_STYLE_WRITE_LE_AWAKEN);
+>>
+>> I also tried sending some command:
+>>
+>> // guess this is a very wrong way ;-)
+>> BEGIN_RING(chan, NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY, 1);
+>> OUT_RING(chan,
+>> NV_MEMORY_TO_MEMORY_FORMAT_NOTIFY_STYLE_WRITE_LE_AWAKEN);
+>>
+>> But they both did not work...
+>> How can we set GPU to send interrupts to CPU?
+>> I would appreciate your comments.
+>>
+>> Thanks,
+>> - Shinpei
+>>
 
-
-
-
-
---- Comment #16 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-12 15:27:59 PST ---
-With patch 2 I get:
-
-        subconnector:   Composite
-        select subconnector:    Automatic
-
-Other than that, seems to work the same as patch 1.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Nouveau doesn't really make use of interrupts so you wont see them
+while running OpenGL. In general we make use of fences to signal when
+things of interest have occured. Is there something particular you're
+trying to accomplish or is this just a learning exercise?
