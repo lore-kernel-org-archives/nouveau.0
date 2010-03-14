@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23445] NV46: GPU lockup with gdm prompt AND logged
 	in fbcon
-Date: Sun, 14 Mar 2010 16:27:05 -0700 (PDT)
-Message-ID: <20100314232705.9A414130086@annarchy.freedesktop.org>
+Date: Sun, 14 Mar 2010 16:27:36 -0700 (PDT)
+Message-ID: <20100314232736.3D1DA130086@annarchy.freedesktop.org>
 References: <bug-23445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=23445
 
 
 
---- Comment #17 from Alexander Trubitsyn <a.trubitsyn-JGs/UdohzUI@public.gmane.org>  2010-03-14 16:27:05 PST ---
-Created an attachment (id=34045)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=34045)
-lsmod log
+--- Comment #18 from Alexander Trubitsyn <a.trubitsyn-JGs/UdohzUI@public.gmane.org>  2010-03-14 16:27:35 PST ---
+Created an attachment (id=34046)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=34046)
+lspci -vv log
 
 
 -- 
