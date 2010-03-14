@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27064] Nouveau fails to start X. This is a Nvidia
- G210m, the laptop is an asus UL50vt
-Date: Sat, 13 Mar 2010 14:47:20 -0800 (PST)
-Message-ID: <20100313224720.2D8A31300A0@annarchy.freedesktop.org>
-References: <bug-27064-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
+Date: Sat, 13 Mar 2010 16:42:24 -0800 (PST)
+Message-ID: <20100314004224.E528813009C@annarchy.freedesktop.org>
+References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27064-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +20,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=27064
+http://bugs.freedesktop.org/show_bug.cgi?id=26800
 
 
 
 
 
---- Comment #1 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-13 14:47:19 PST ---
-Please provide full kernel logs. Which kernel version are you using ?
+--- Comment #18 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-13 16:42:24 PST ---
+Interesting... Some new plymouth packages came in to the lucid lynx repo, and I
+was unable to successfully boot through plymouth with your patches. (unless I
+remove splash from the kernel command line)
 
-Afaik you need switcheroo for dual graphics, this code should be in 2.6.34-rc1
-or in drm-next.
-http://lwn.net/Articles/376311/
+Reverting back to a prepatch package seems to have allowed me to boot through
+plymouth...
 
-But no idea if it has any chances to work with nouveau. The initial patch says
-it was only tested with Intel/Ati.
+I'll do more testing tonight/tomorrow, including your new patches, because I'm
+pretty loaded. :b
 
 
 -- 
