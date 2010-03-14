@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27049] fails to start - drm open issue?
-Date: Sun, 14 Mar 2010 09:14:48 -0700 (PDT)
-Message-ID: <20100314161448.2D7A313009C@annarchy.freedesktop.org>
-References: <bug-27049-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27076] New: [C51/6100 GO] Image corruption / broken
+	Xv
+Date: Sun, 14 Mar 2010 15:55:13 -0700 (PDT)
+Message-ID: <bug-27076-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27049-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +19,39 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=27049
+http://bugs.freedesktop.org/show_bug.cgi?id=27076
+
+           Summary: [C51/6100 GO] Image corruption / broken Xv
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Forwarding from Launchpad bug
+https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/532756
 
+This is with DDX git up to commit 9b4118d, libdrm 2.6.18 with the 0.0.16 API
+bump reverted, and 2.6.33 drm + nouveau.
 
+The user reports image corruption on the bottom of the desktop wallpaper, but
+only with a background image or gradient - not a flat colour.  Image here:
+http://www.flickr.com/photos/danielecruciani/4417023969/
 
---- Comment #5 from Michal Suchanek <hramrach-aRb0bU7PRFPrBKCeMvbIDA@public.gmane.org>  2010-03-14 09:14:47 PST ---
-With 2.6.34-rc1 the X server starts.
-The kernel also says in the log that it has version 0.0.16 of the nouveau drm
-module.
+The user also reports that Xv produces nothing but scrambled colours. 
+Screenshot here:
+http://launchpadlibrarian.net/40483459/Schermata-Awakenedvoice-DrupalCCKAndViewsTutorial767.mov.png
 
-Is it possible that when the kernel drm version does not match the driver
-version it just quietly exits instead of reporting a meaningful error?
+Dmesg: http://launchpadlibrarian.net/40871533/BootDmesg.txt
+Xorg.0.log: http://launchpadlibrarian.net/40871601/XorgLog.txt
+lspci output: http://launchpadlibrarian.net/40871582/Lspci.txt
 
 
 -- 
