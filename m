@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
-Date: Sat, 13 Mar 2010 16:42:24 -0800 (PST)
-Message-ID: <20100314004224.E528813009C@annarchy.freedesktop.org>
+Date: Sat, 13 Mar 2010 16:48:15 -0800 (PST)
+Message-ID: <20100314004815.8E90413009C@annarchy.freedesktop.org>
 References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,16 +26,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26800
 
 
 
---- Comment #18 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-13 16:42:24 PST ---
-Interesting... Some new plymouth packages came in to the lucid lynx repo, and I
-was unable to successfully boot through plymouth with your patches. (unless I
-remove splash from the kernel command line)
+--- Comment #19 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-13 16:48:15 PST ---
+Just to clarify, your first two patches caused the new plymouth (~-14) to hang.
 
-Reverting back to a prepatch package seems to have allowed me to boot through
-plymouth...
-
-I'll do more testing tonight/tomorrow, including your new patches, because I'm
-pretty loaded. :b
+I'll do more testing when I'm coherent. :b
 
 
 -- 
