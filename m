@@ -1,15 +1,13 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: RFC: gallium/nv50: get rid of the screen_init stateobj
-Date: Sun, 14 Mar 2010 15:09:55 +0100
-Message-ID: <6d4bc9fc1003140709h57a48301kfdc05e3f857b9aff@mail.gmail.com>
-References: <4B9CBB24.60202@student.tuwien.ac.at>
-	<6d4bc9fc1003140503v724e572t342136e72c8cc164@mail.gmail.com>
-	<4B9CEA4E.3000508@student.tuwien.ac.at>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27049] fails to start - drm open issue?
+Date: Sun, 14 Mar 2010 09:14:48 -0700 (PDT)
+Message-ID: <20100314161448.2D7A313009C@annarchy.freedesktop.org>
+References: <bug-27049-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4B9CEA4E.3000508-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+In-Reply-To: <bug-27049-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,44 +17,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-BEGIN_RING also does autobind, the rest seems ok.
+http://bugs.freedesktop.org/show_bug.cgi?id=27049
 
-Maarten.
 
-On Sun, Mar 14, 2010 at 2:53 PM, Christoph Bumiller
-<e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> wrote:
-> On 14.03.2010 13:03, Maarten Maathuis wrote:
->> On Sun, Mar 14, 2010 at 11:32 AM, Christoph Bumiller
->> <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> wrote:
->>
->>> Hi.
->>> There's not much to say here, just replacing the screen_init
->>> stateobj with direct pushbuffer emission.
->>>
->>> We don't need to store all the usless state from init, and the
->>> constant buffer relocations which currently don't work if the
->>> addresses change (because the method CB_DEF_SET isn't
->>> among them (not an address)) become effective.
->>>
->>> Thoughts, ack / nack ?
->>> Thanks,
->>> =A0Christoph
->>>
->>>
->>> _______________________________________________
->>> Nouveau mailing list
->>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->>> http://lists.freedesktop.org/mailman/listinfo/nouveau
->>>
->>>
->>>
->> Perhaps add a BEGIN_RING_RELOC to libdrm? To make it more obvious.
->>
->> Maarten.
->>
-> Like the following (attached) ?:
->
+
+
+
+--- Comment #5 from Michal Suchanek <hramrach-aRb0bU7PRFPrBKCeMvbIDA@public.gmane.org>  2010-03-14 09:14:47 PST ---
+With 2.6.34-rc1 the X server starts.
+The kernel also says in the log that it has version 0.0.16 of the nouveau drm
+module.
+
+Is it possible that when the kernel drm version does not match the driver
+version it just quietly exits instead of reporting a meaningful error?
+
+
+-- 
+Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
