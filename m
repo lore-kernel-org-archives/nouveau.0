@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27076] New: [C51/6100 GO] Image corruption / broken
-	Xv
-Date: Sun, 14 Mar 2010 15:55:13 -0700 (PDT)
-Message-ID: <bug-27076-8800@http.bugs.freedesktop.org/>
+From: Keith Whitwell <keith.whitwell-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
+Subject: Re: [Mesa3d-dev] [PATCH] nv30/nv40 Gallium drivers
+	unification
+Date: Sun, 14 Mar 2010 23:12:14 +0000
+Message-ID: <c524168e1003141612s3b667cd1s33fcf2c8b588a0f6@mail.gmail.com>
+References: <ff13bc9a1003130929v68107b8fge54fc1a7d7e78f91@mail.gmail.com>
+	<c524168e1003130935t603b36a7u55fbe4ae96e57358@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <c524168e1003130935t603b36a7u55fbe4ae96e57358-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,45 +19,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa3d-dev-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=27076
+On Sat, Mar 13, 2010 at 5:35 PM, Keith Whitwell
+<keith.whitwell-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> wrote:
+> Sounds good to me - fewer driver directories to fix up after changes...
+>
 
-           Summary: [C51/6100 GO] Image corruption / broken Xv
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+It'd be good to get this merged sooner rather than later as I'll soon
+be starting on pipe_resources conversion for the nv drivers.  Once I
+do that, there will be heaps of conflicts with your patches, but if I
+can merge them in before I do the conversion all will be well...
 
-
-Forwarding from Launchpad bug
-https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/532756
-
-This is with DDX git up to commit 9b4118d, libdrm 2.6.18 with the 0.0.16 API
-bump reverted, and 2.6.33 drm + nouveau.
-
-The user reports image corruption on the bottom of the desktop wallpaper, but
-only with a background image or gradient - not a flat colour.  Image here:
-http://www.flickr.com/photos/danielecruciani/4417023969/
-
-The user also reports that Xv produces nothing but scrambled colours. 
-Screenshot here:
-http://launchpadlibrarian.net/40483459/Schermata-Awakenedvoice-DrupalCCKAndViewsTutorial767.mov.png
-
-Dmesg: http://launchpadlibrarian.net/40871533/BootDmesg.txt
-Xorg.0.log: http://launchpadlibrarian.net/40871601/XorgLog.txt
-lspci output: http://launchpadlibrarian.net/40871582/Lspci.txt
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Keith
