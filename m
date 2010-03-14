@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
-Date: Sat, 13 Mar 2010 18:30:20 -0800 (PST)
-Message-ID: <20100314023020.8B91C13009B@annarchy.freedesktop.org>
-References: <bug-26800-8800@http.bugs.freedesktop.org/>
+From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nv50 mouse cursor disappears hourly
+Date: Sun, 14 Mar 2010 10:37:59 +0100
+Message-ID: <b67489df1003140137s3e8a5a91u4d76241777b5d812@mail.gmail.com>
+References: <201003111530.01357.brian@derocher.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <201003111530.01357.brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,23 +17,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Brian DeRocher <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26800
-
-
-
-
-
---- Comment #20 from Andy Rink <personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>  2010-03-13 18:30:20 PST ---
-Actually, scratch that bit about plymouth hanging... I'm getting the same
-behavior from my basement PC running the vanilla 2.6.33 w/ 8800gts.
-
-So probably not related to your patch. Sorry.
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gVGh1LCBNYXIgMTEsIDIwMTAgYXQgOTozMCBQTSwgQnJpYW4gRGVSb2NoZXIgPGJyaWFuQGRl
+cm9jaGVyLm9yZz4gd3JvdGU6Cj4gSSBjb21waWxlZCBsaW51eC0yLjYgZnJvbSBnaXQuIMKgSSB0
+aGluayBteSBsYXN0IHB1bGwvbWVyZ2U/IGlzIHRoaXMgb25lIChnaXQgc2hvdykKPgo+IGNvbW1p
+dCBkMDNhYjJkNzhiNmFiNjJlOTRmOTk1OGRhNTBiNDQxOWMyN2UwZjYwCj4gQXV0aG9yOiBNYXJj
+aW4gS2/Fm2NpZWxuaWNraSA8a29yaWFraW5AMHgwNC5uZXQ+Cj4gRGF0ZTogwqAgTW9uIE1hciAx
+IDAwOjE4OjM5IDIwMTAgKzAwMDAKPgo+IMKgIMKgZHJtL252NTA6IEltcHJvdmUgUEdSQVBIIGlu
+dGVycnVwdCBoYW5kbGluZy4KPgoKSXMgdGhpcyBhIHJlZ3Jlc3Npb24gPyBEaWQgeW91IGJ1aWxk
+IGFuIGVhcmxpZXIga2VybmVsIHRoYXQgd29ya2VkID8KLmdpdC9sb2dzL0hFQUQgbWlnaHQgaGVs
+cC4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
