@@ -1,15 +1,16 @@
 From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: nv50 mouse cursor disappears hourly
-Date: Mon, 15 Mar 2010 20:15:29 +0100
-Message-ID: <b67489df1003151215w517a5766qff796733d5bc36b8@mail.gmail.com>
+Date: Mon, 15 Mar 2010 20:25:22 +0100
+Message-ID: <b67489df1003151225j54616bf6kefc9962d68f64bcf@mail.gmail.com>
 References: <201003111530.01357.brian@derocher.org>
 	<b67489df1003140137s3e8a5a91u4d76241777b5d812@mail.gmail.com>
 	<201003151451.11546.brian@derocher.org>
+	<b67489df1003151215w517a5766qff796733d5bc36b8@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <201003151451.11546.brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <b67489df1003151215w517a5766qff796733d5bc36b8-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,47 +24,27 @@ To: Brian DeRocher <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
 Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBNYXIgMTUsIDIwMTAgYXQgNzo1MSBQTSwgQnJpYW4gRGVSb2NoZXIgPGJyaWFuQGRl
-cm9jaGVyLm9yZz4gd3JvdGU6Cj4gT24gU3VuZGF5IDE0IE1hcmNoIDIwMTAgMDU6Mzc6NTkgeW91
-IHdyb3RlOgo+PiBJcyB0aGlzIGEgcmVncmVzc2lvbiA/IERpZCB5b3UgYnVpbGQgYW4gZWFybGll
-ciBrZXJuZWwgdGhhdCB3b3JrZWQgPwo+PiAuZ2l0L2xvZ3MvSEVBRCBtaWdodCBoZWxwLgo+Cj4g
-SGVyZSdzIHRoZSB3aG9sZSBmaWxlLgo+Cj4gMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
-MDAwMDAwMDAwMCBhODA3MmMyYTkyYTEzNTExZTI4ZWRiZWMwMTViNThjNmI2NmMzNWM5Cj4gwqBy
-b290IDxyb290QGJyZWdhbGFkLm5vYmxpcy5vcmc+IDEyNjAyOTE0MzggLTA1MDAgwqAgwqAgwqBj
-bG9uZTogZnJvbSBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9naXQvbm91dmVhdS9saW51
-eC0yLjYKPgo+IGE4MDcyYzJhOTJhMTM1MTFlMjhlZGJlYzAxNWI1OGM2YjY2YzM1YzkgYTczM2I5
-MzU4MjAyM2ZkMTAwYzVjZTY0MzBmM2EwYjBmMjZhZjg2Ywo+IMKgcm9vdCA8cm9vdEBicmVnYWxh
-ZC5ub2JsaXMub3JnPiAxMjY2NTM0NzU4IC0wNTAwIMKgIMKgIMKgcHVsbCA6IEZhc3QtZm9yd2Fy
-ZAo+Cj4gYTczM2I5MzU4MjAyM2ZkMTAwYzVjZTY0MzBmM2EwYjBmMjZhZjg2YyBkMDNhYjJkNzhi
-NmFiNjJlOTRmOTk1OGRhNTBiNDQxOWMyN2UwZjYwCj4gwqByb290IDxyb290QGJyZWdhbGFkLm5v
-Ymxpcy5vcmc+IDEyNjc0NTQ1MDIgLTA1MDAgwqAgwqAgwqBwdWxsIDogRmFzdC1mb3J3YXJkCj4K
-PiBJJ20gdHJ5aW5nIHRvIHJlbWVtYmVyIHRoZSBoaXN0b3J5LiDCoEhlcmUgYXJlIHRoZSBkYXRl
-cyBvZiB0aG9zZSB1cGRhdGVzLgo+Cj4gMjAwOS0xMi0wOCDCoE1lcmdlIHJlbW90ZSBicmFuY2gg
-J2tvcmcvZHJtLXJhZGVvbi1kcCcgaW50byBkcm0tbGludXMgwqBEYXZlIEFpcmxpZSDCoDI0IMKg
-LTMyMy8rMjY1Nwo+IDIwMTAtMDItMTcgwqBkcm0vbm91dmVhdTogZml4IGkyY3RhYmxlIGJvdW5k
-cyBjaGVja2luZyDCoE1hcmNpbiBTbHVzYXJ6IMKgMSDCoC0zLys0Cj4gMjAxMC0wMy0wMSDCoGRy
-bS9udjUwOiBJbXByb3ZlIFBHUkFQSCBpbnRlcnJ1cHQgaGFuZGxpbmcuIMKgTWFyY2luIEtvxZtj
-aWVsbmlja2kgwqA3IMKgLTU2Lys2MjIKPgo+IEFmdGVyIHRoZSBmaXJzdCBjbG9uaW5nLCB0aGUg
-b3RoZXIgcGFja2FnZXMgbGlrZSBkcm0gb3IgeGY4Ni12aWRlby1ub3V2ZWF1IGRpZG4ndCBjb21w
-aWxlLiDCoFNvIGkgcmV2ZXJ0ZWQgYmFjayB0byB1c2luZyBhIHN0b2NrIGRlYmlhbiBrZXJuZWwu
-Cj4KPiBBZnRlciB0aGUgZmlyc3QgdXBkYXRlLiDCoEknbSBwcmV0dHkgc3VyZSBpdCB3YXMgd29y
-a2luZyBjb3JyZWN0bHkuIMKgTm8gY3Vyc29ycyBkaXNhcHBlYXJpbmcuCj4KPiBBZnRlciB0aGUg
-c2Vjb25kIHVwZGF0ZSBjbGVhcmx5IGl0J3MgZmFpbGluZy4KPgo+IEknZCBiZSBnbGFkIHRvIHJl
-dmVydCBiYWNrIGFuZCB0ZXN0LCBpZiBzb21lb25lIHdvdWxkIGhlbHAgbWUgd2l0aCB0aGUgZ2l0
-IGNvbW1hbmRzLiDCoFNob3VsZCBpIHRyeSBnaXQgYmlzZWN0Pwo+Cj4gSSBzdXBwb3NlIGknbGwg
-bmVlZCB0byBkbyB0aGUgc2FtZSB3aXRoIGRybSBhbmQgeGY4Ni12aWRlby1ub3V2ZWF1IGluIG9y
-ZGVyIHRvICgxKSBnZXQgaXQgdG8gY29tcGlsZSBhbmQgKDIpIHJlY3JlYXRlIHRoZSBzYW1lIGNv
-bmRpdGlvbnMuIMKgSXMgdGhhdCByaWdodD8KPgoKU2luY2UgMjAxMC0wMi0xNyBpcyByaWdodCBh
-ZnRlciB0aGUgQUJJIGJyZWFrLCB0aGlzIHNob3VsZCBub3QgY2F1c2UKYW55IHByb2JsZW1zLCBz
-byBJIHdvdWxkIGp1c3QgbW92ZSBiYWNrIHRvIHRoaXMgb2xkZXIga2VybmVsIGZpcnN0CndpdGgg
-Z2l0IGNoZWNrb3V0IGFuZCBjaGVjayBmb3Igc29tZSBwZXJpb2QgdGhhdCBpdCBpbmRlZWQgd29y
-a3MuCkFuZCBpZiBpdCBkb2VzIHdvcmssIHN0YXJ0IGEgYmlzZWN0aW9uIGJldHdlZW4gdGhlc2Ug
-dHdvIGRhdGVzLgoKTG9va2luZyBiYWNrIGF0IHRoaXMgY29tbWl0IHJhbmdlLCB0aGVyZSBpcyB0
-aGUgbnY1MCBjdHhwcm9nIHJpZ2h0IGluCnRoZSBtaWRkbGUuClNvIG1heWJlIGl0IHdvdWxkIGJl
-IGEgZ29vZCBpZGVhIHRvIHRyeSB0aGlzIG5vdXZlYXUgbW9kdWxlIHBhcmFtZXRlciBmaXJzdCA6
-CnBhcm06ICAgICAgICAgICBjdHhmdzpVc2UgZXh0ZXJuYWwgZmlybXdhcmUgYmxvYiBmb3IgZ3Jj
-dHggaW5pdCAoTlY0MCkgKGludCkKCihpdCBzZWVtcyB0aGUgcGFyYW0gZGVzY3JpcHRpb24gbmVl
-ZHMgYW4gdXBkYXRlIGZvciBOVjUwIDspICkKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+2010/3/15 Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>:
+>
+> Since 2010-02-17 is right after the ABI break, this should not cause
+> any problems, so I would just move back to this older kernel first
+> with git checkout and check for some period that it indeed works.
+> And if it does work, start a bisection between these two dates.
+>
+> Looking back at this commit range, there is the nv50 ctxprog right in
+> the middle.
+> So maybe it would be a good idea to try this nouveau module parameter fir=
+st :
+> parm: =A0 =A0 =A0 =A0 =A0 ctxfw:Use external firmware blob for grctx init=
+ (NV40) (int)
+>
+> (it seems the param description needs an update for NV50 ;) )
+>
+
+I should always ask first people who know better :)
+
+20:19 < mwk> shining: fwiw, ctxprog generator shouldn't be the one
+causing cursor screwups
+20:19 < mwk> it deals with entirely different area of card
+20:19 < mwk> ctxprog =3D=3D PGRAPH, cursor =3D=3D PDISPLAY
+20:19 < mwk> evoch =3D=3D PDISPLAY too
