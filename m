@@ -1,20 +1,14 @@
-From: Uwe Bugla <uwe.bugla-Mmb7MZpHnFY@public.gmane.org>
-Subject: Re: Gallium driver and compatibility issues
-Date: Mon, 15 Mar 2010 19:00:21 +0100
-Message-ID: <1268676021.1960.8.camel@brian.bconsult.de>
-References: <1268329369.2107.14.camel@brian.bconsult.de>
-	<586c2acd1003111023y72ca711at32b69b88252673f3@mail.gmail.com>
-	<1268336434.2397.3.camel@brian.bconsult.de>
-	<20100312125239.4a29011c@farn>
-	<1268401894.1759.59.camel@brian.bconsult.de>
-	<20100312222541.131d8885@farn>
-	<1268428922.2920.0.camel@brian.bconsult.de>
-	<ff13bc9a1003121406x1612c2bfn7a3b4581152f5646@mail.gmail.com>
+From: Brian DeRocher <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
+Subject: Re: nv50 mouse cursor disappears hourly
+Date: Mon, 15 Mar 2010 14:51:11 -0400
+Message-ID: <201003151451.11546.brian@derocher.org>
+References: <201003111530.01357.brian@derocher.org>
+	<b67489df1003140137s3e8a5a91u4d76241777b5d812@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <ff13bc9a1003121406x1612c2bfn7a3b4581152f5646-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <b67489df1003140137s3e8a5a91u4d76241777b5d812-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,31 +18,37 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Luca Barbieri <luca.barbieri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Am Freitag, den 12.03.2010, 23:06 +0100 schrieb Luca Barbieri:
-> It is not surprising that some (or most) 3D applications don't
-> actually work correctly with nouveau on nv3x right now.
-> 
-> The driver will probably improve in the future.
-
-Hi Luca,
-
-Thanks for your excellent merging work of the nv30 and nv40 branch!
-The trouble with the solitaire game is gone.
-Against all golden rules I have installed gallium 0.4 globally on my
-Gnome 2.28 desktop now, and it seems to do its job quite good without
-crashing or doing other harm to the installed software on my desktop.
-That's a good sign, isn't it?
-
-I know that the nv40 and nv30 series are completely different cards
-compared to the nv50 series and I know that there needs a lot of work to
-be done, but neverless I wanted to thank all devs for their good
-hitherto work while I am looking forward to the Gallium driver in
-general and to its Compiz Fusion support in detail.
-
-Best regards
-
-Uwe
+T24gU3VuZGF5IDE0IE1hcmNoIDIwMTAgMDU6Mzc6NTkgeW91IHdyb3RlOgo+IElzIHRoaXMgYSBy
+ZWdyZXNzaW9uID8gRGlkIHlvdSBidWlsZCBhbiBlYXJsaWVyIGtlcm5lbCB0aGF0IHdvcmtlZCA/
+Cj4gLmdpdC9sb2dzL0hFQUQgbWlnaHQgaGVscC4KCkhlcmUncyB0aGUgd2hvbGUgZmlsZS4KCjAw
+MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAgYTgwNzJjMmE5MmExMzUxMWUy
+OGVkYmVjMDE1YjU4YzZiNjZjMzVjOQogcm9vdCA8cm9vdEBicmVnYWxhZC5ub2JsaXMub3JnPiAx
+MjYwMjkxNDM4IC0wNTAwICAgICAgY2xvbmU6IGZyb20gZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3Rv
+cC5vcmcvZ2l0L25vdXZlYXUvbGludXgtMi42CgphODA3MmMyYTkyYTEzNTExZTI4ZWRiZWMwMTVi
+NThjNmI2NmMzNWM5IGE3MzNiOTM1ODIwMjNmZDEwMGM1Y2U2NDMwZjNhMGIwZjI2YWY4NmMKIHJv
+b3QgPHJvb3RAYnJlZ2FsYWQubm9ibGlzLm9yZz4gMTI2NjUzNDc1OCAtMDUwMCAgICAgIHB1bGwg
+OiBGYXN0LWZvcndhcmQKCmE3MzNiOTM1ODIwMjNmZDEwMGM1Y2U2NDMwZjNhMGIwZjI2YWY4NmMg
+ZDAzYWIyZDc4YjZhYjYyZTk0Zjk5NThkYTUwYjQ0MTljMjdlMGY2MAogcm9vdCA8cm9vdEBicmVn
+YWxhZC5ub2JsaXMub3JnPiAxMjY3NDU0NTAyIC0wNTAwICAgICAgcHVsbCA6IEZhc3QtZm9yd2Fy
+ZAoKSSdtIHRyeWluZyB0byByZW1lbWJlciB0aGUgaGlzdG9yeS4gIEhlcmUgYXJlIHRoZSBkYXRl
+cyBvZiB0aG9zZSB1cGRhdGVzLgoKMjAwOS0xMi0wOCAgTWVyZ2UgcmVtb3RlIGJyYW5jaCAna29y
+Zy9kcm0tcmFkZW9uLWRwJyBpbnRvIGRybS1saW51cyAgRGF2ZSBBaXJsaWUgIDI0ICAtMzIzLysy
+NjU3CjIwMTAtMDItMTcgIGRybS9ub3V2ZWF1OiBmaXggaTJjdGFibGUgYm91bmRzIGNoZWNraW5n
+ICBNYXJjaW4gU2x1c2FyeiAgMSAgLTMvKzQKMjAxMC0wMy0wMSAgZHJtL252NTA6IEltcHJvdmUg
+UEdSQVBIIGludGVycnVwdCBoYW5kbGluZy4gIE1hcmNpbiBLb8WbY2llbG5pY2tpICA3ICAtNTYv
+KzYyMgoKQWZ0ZXIgdGhlIGZpcnN0IGNsb25pbmcsIHRoZSBvdGhlciBwYWNrYWdlcyBsaWtlIGRy
+bSBvciB4Zjg2LXZpZGVvLW5vdXZlYXUgZGlkbid0IGNvbXBpbGUuICBTbyBpIHJldmVydGVkIGJh
+Y2sgdG8gdXNpbmcgYSBzdG9jayBkZWJpYW4ga2VybmVsLgoKQWZ0ZXIgdGhlIGZpcnN0IHVwZGF0
+ZS4gIEknbSBwcmV0dHkgc3VyZSBpdCB3YXMgd29ya2luZyBjb3JyZWN0bHkuICBObyBjdXJzb3Jz
+IGRpc2FwcGVhcmluZy4KCkFmdGVyIHRoZSBzZWNvbmQgdXBkYXRlIGNsZWFybHkgaXQncyBmYWls
+aW5nLgoKSSdkIGJlIGdsYWQgdG8gcmV2ZXJ0IGJhY2sgYW5kIHRlc3QsIGlmIHNvbWVvbmUgd291
+bGQgaGVscCBtZSB3aXRoIHRoZSBnaXQgY29tbWFuZHMuICBTaG91bGQgaSB0cnkgZ2l0IGJpc2Vj
+dD8KCkkgc3VwcG9zZSBpJ2xsIG5lZWQgdG8gZG8gdGhlIHNhbWUgd2l0aCBkcm0gYW5kIHhmODYt
+dmlkZW8tbm91dmVhdSBpbiBvcmRlciB0byAoMSkgZ2V0IGl0IHRvIGNvbXBpbGUgYW5kICgyKSBy
+ZWNyZWF0ZSB0aGUgc2FtZSBjb25kaXRpb25zLiAgSXMgdGhhdCByaWdodD8KCnRoYW5rcywKQnJp
+YW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
