@@ -1,13 +1,12 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nv30/nv40 Gallium drivers unification
-Date: Mon, 15 Mar 2010 01:22:19 -0400
-Message-ID: <586c2acd1003142222k6c9021b6wbbbc0fb829432aef@mail.gmail.com>
-References: <ff13bc9a1003130929v68107b8fge54fc1a7d7e78f91@mail.gmail.com>
+From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Subject: [PATCH] nv40: remove leftover nv40_transfer.c from
+	unification into nvfx
+Date: Mon, 15 Mar 2010 14:35:41 +0100
+Message-ID: <1268660141-4869-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <ff13bc9a1003130929v68107b8fge54fc1a7d7e78f91-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,48 +16,201 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa3d-dev-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
+To: younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>, mesa3d-dev-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Mar 13, 2010 at 1:29 PM, Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> wrote:
-> Currently the nv30 and nv40 Gallium drivers are very similar, and
-> contain about 5000 lines of essentially duplicate code.
->
-> I prepared a patchset (which can be found at
-> http://repo.or.cz/w/mesa/mesa-lb.git/shortlog/refs/heads/unification+fixes)
-> which gradually unifies the drivers, one file per the commit.
->
-> A new "nvfx" directory is created, and unified files are put there one by one.
-> After all patches are applied, the nv30 and nv40 directories are
-> removed and the only the new nvfx directory remains.
->
-> The first patches unify the engine naming (s/curie/eng3d/g;
-> s/rankine/eng3d), and switch nv40 to use the NV34TCL_ constants.
-> Initial versions of this work changed renouveau.xml to create a new
-> "NVFXTCL" object, but the current version doesn't need any
-> renouveau.xml modification at all.
->
-> The "unification+fixes" branch referenced above is the one that should
-> be tested.
-> The "unification" branch contains just the unification, with no
-> behavior changes, while "unification+fixes" also fixes swtnl and quad
-> rendering, allowing to better test the unification. Some cleanups on
-> top of the unfication are also included.
->
-> That same repository also contains other branches with significant
-> improvements on top of the unification, but I'm still not proposing
-> them for inclusion as they need more testing and some fixes.
->
-> While there are some branches in the Mesa repository that would
-> conflict with this, such branches seem to be popping up continuously
-> (and this is good!), so waiting until they are merged probably won't
-> really work.
->
-> The conflicts are minimal anyway and the driver fixes can be very
-> easily reconstructed over the unified codebase.
->
-> How about merging this?
-> Any objections? Any comments?
+---
+ src/gallium/drivers/nv40/nv40_transfer.c |  181 ------------------------------
+ 1 files changed, 0 insertions(+), 181 deletions(-)
+ delete mode 100644 src/gallium/drivers/nv40/nv40_transfer.c
 
-Pushed. Thanks.
+diff --git a/src/gallium/drivers/nv40/nv40_transfer.c b/src/gallium/drivers/nv40/nv40_transfer.c
+deleted file mode 100644
+index 3d8c8e8..0000000
+--- a/src/gallium/drivers/nv40/nv40_transfer.c
++++ /dev/null
+@@ -1,181 +0,0 @@
+-#include "pipe/p_state.h"
+-#include "pipe/p_defines.h"
+-#include "util/u_inlines.h"
+-#include "util/u_format.h"
+-#include "util/u_memory.h"
+-#include "util/u_math.h"
+-#include "nouveau/nouveau_winsys.h"
+-#include "nv40_context.h"
+-#include "nvfx_screen.h"
+-#include "nvfx_state.h"
+-
+-struct nv40_transfer {
+-	struct pipe_transfer base;
+-	struct pipe_surface *surface;
+-	boolean direct;
+-};
+-
+-static void
+-nv40_compatible_transfer_tex(struct pipe_texture *pt, unsigned width, unsigned height,
+-                             struct pipe_texture *template)
+-{
+-	memset(template, 0, sizeof(struct pipe_texture));
+-	template->target = pt->target;
+-	template->format = pt->format;
+-	template->width0 = width;
+-	template->height0 = height;
+-	template->depth0 = 1;
+-	template->last_level = 0;
+-	template->nr_samples = pt->nr_samples;
+-
+-	template->tex_usage = PIPE_TEXTURE_USAGE_DYNAMIC |
+-	                      NOUVEAU_TEXTURE_USAGE_LINEAR;
+-}
+-
+-static struct pipe_transfer *
+-nv40_transfer_new(struct pipe_context *pcontext, struct pipe_texture *pt,
+-		  unsigned face, unsigned level, unsigned zslice,
+-		  enum pipe_transfer_usage usage,
+-		  unsigned x, unsigned y, unsigned w, unsigned h)
+-{
+-        struct pipe_screen *pscreen = pcontext->screen;
+-	struct nvfx_miptree *mt = (struct nvfx_miptree *)pt;
+-	struct nv40_transfer *tx;
+-	struct pipe_texture tx_tex_template, *tx_tex;
+-
+-	tx = CALLOC_STRUCT(nv40_transfer);
+-	if (!tx)
+-		return NULL;
+-
+-	pipe_texture_reference(&tx->base.texture, pt);
+-	tx->base.x = x;
+-	tx->base.y = y;
+-	tx->base.width = w;
+-	tx->base.height = h;
+-	tx->base.stride = mt->level[level].pitch;
+-	tx->base.usage = usage;
+-	tx->base.face = face;
+-	tx->base.level = level;
+-	tx->base.zslice = zslice;
+-
+-	/* Direct access to texture */
+-	if ((pt->tex_usage & PIPE_TEXTURE_USAGE_DYNAMIC ||
+-	     debug_get_bool_option("NOUVEAU_NO_TRANSFER", TRUE/*XXX:FALSE*/)) &&
+-	    pt->tex_usage & NOUVEAU_TEXTURE_USAGE_LINEAR)
+-	{
+-		tx->direct = true;
+-		tx->surface = pscreen->get_tex_surface(pscreen, pt,
+-	                                               face, level, zslice,
+-	                                               pipe_transfer_buffer_flags(&tx->base));
+-		return &tx->base;
+-	}
+-
+-	tx->direct = false;
+-
+-	nv40_compatible_transfer_tex(pt, w, h, &tx_tex_template);
+-
+-	tx_tex = pscreen->texture_create(pscreen, &tx_tex_template);
+-	if (!tx_tex)
+-	{
+-		FREE(tx);
+-		return NULL;
+-	}
+-
+-	tx->base.stride = ((struct nvfx_miptree*)tx_tex)->level[0].pitch;
+-
+-	tx->surface = pscreen->get_tex_surface(pscreen, tx_tex,
+-	                                       0, 0, 0,
+-	                                       pipe_transfer_buffer_flags(&tx->base));
+-
+-	pipe_texture_reference(&tx_tex, NULL);
+-
+-	if (!tx->surface)
+-	{
+-		pipe_surface_reference(&tx->surface, NULL);
+-		FREE(tx);
+-		return NULL;
+-	}
+-
+-	if (usage & PIPE_TRANSFER_READ) {
+-		struct nvfx_screen *nvscreen = nvfx_screen(pscreen);
+-		struct pipe_surface *src;
+-
+-		src = pscreen->get_tex_surface(pscreen, pt,
+-	                                       face, level, zslice,
+-	                                       PIPE_BUFFER_USAGE_GPU_READ);
+-
+-		/* TODO: Check if SIFM can deal with x,y,w,h when swizzling */
+-		/* TODO: Check if SIFM can un-swizzle */
+-		nvscreen->eng2d->copy(nvscreen->eng2d,
+-		                      tx->surface, 0, 0,
+-		                      src, x, y,
+-		                      w, h);
+-
+-		pipe_surface_reference(&src, NULL);
+-	}
+-
+-	return &tx->base;
+-}
+-
+-static void
+-nv40_transfer_del(struct pipe_context *pcontext, struct pipe_transfer *ptx)
+-{
+-	struct nv40_transfer *tx = (struct nv40_transfer *)ptx;
+-
+-	if (!tx->direct && (ptx->usage & PIPE_TRANSFER_WRITE)) {
+-		struct pipe_screen *pscreen = pcontext->screen;
+-		struct nvfx_screen *nvscreen = nvfx_screen(pscreen);
+-		struct pipe_surface *dst;
+-
+-		dst = pscreen->get_tex_surface(pscreen, ptx->texture,
+-	                                       ptx->face, ptx->level, ptx->zslice,
+-	                                       PIPE_BUFFER_USAGE_GPU_WRITE | NOUVEAU_BUFFER_USAGE_NO_RENDER);
+-
+-		/* TODO: Check if SIFM can deal with x,y,w,h when swizzling */
+-		nvscreen->eng2d->copy(nvscreen->eng2d,
+-		                      dst, tx->base.x, tx->base.y,
+-		                      tx->surface, 0, 0,
+-		                      tx->base.width, tx->base.height);
+-
+-		pipe_surface_reference(&dst, NULL);
+-	}
+-
+-	pipe_surface_reference(&tx->surface, NULL);
+-	pipe_texture_reference(&ptx->texture, NULL);
+-	FREE(ptx);
+-}
+-
+-static void *
+-nv40_transfer_map(struct pipe_context *pcontext, struct pipe_transfer *ptx)
+-{
+-        struct pipe_screen *pscreen = pcontext->screen;
+-	struct nv40_transfer *tx = (struct nv40_transfer *)ptx;
+-	struct nv04_surface *ns = (struct nv04_surface *)tx->surface;
+-	struct nvfx_miptree *mt = (struct nvfx_miptree *)tx->surface->texture;
+-	void *map = pipe_buffer_map(pscreen, mt->buffer,
+-	                            pipe_transfer_buffer_flags(ptx));
+-
+-	if(!tx->direct)
+-		return map + ns->base.offset;
+-	else
+-		return map + ns->base.offset + ptx->y * ns->pitch + ptx->x * util_format_get_blocksize(ptx->texture->format);
+-}
+-
+-static void
+-nv40_transfer_unmap(struct pipe_context *pcontext, struct pipe_transfer *ptx)
+-{
+-        struct pipe_screen *pscreen = pcontext->screen;
+-	struct nv40_transfer *tx = (struct nv40_transfer *)ptx;
+-	struct nvfx_miptree *mt = (struct nvfx_miptree *)tx->surface->texture;
+-
+-	pipe_buffer_unmap(pscreen, mt->buffer);
+-}
+-
+-void
+-nv40_init_transfer_functions(struct nvfx_context *nvfx)
+-{
+-	nvfx->pipe.get_tex_transfer = nv40_transfer_new;
+-	nvfx->pipe.tex_transfer_destroy = nv40_transfer_del;
+-	nvfx->pipe.transfer_map = nv40_transfer_map;
+-	nvfx->pipe.transfer_unmap = nv40_transfer_unmap;
+-}
+-- 
+1.6.3.3
