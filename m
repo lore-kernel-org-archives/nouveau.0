@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27136] blank screen with G98 [Quadro NVS 420] (NV50)
  dual GPU, 4-head
-Date: Wed, 17 Mar 2010 14:15:11 -0700 (PDT)
-Message-ID: <20100317211511.BE1C31300FC@annarchy.freedesktop.org>
+Date: Wed, 17 Mar 2010 14:28:11 -0700 (PDT)
+Message-ID: <20100317212811.530731300D8@annarchy.freedesktop.org>
 References: <bug-27136-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,15 +24,21 @@ List-Id: nouveau.vger.kernel.org
 http://bugs.freedesktop.org/show_bug.cgi?id=27136
 
 
-Colin Hudler <hudler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|blank screen with G98       |blank screen with G98
-                   |[Quadro NVS 420] (NV98) dual|[Quadro NVS 420] (NV50) dual
-                   |GPU, 4-head                 |GPU, 4-head
 
 
+
+--- Comment #4 from Colin Hudler <hudler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-17 14:28:10 PST ---
+I need to correct something I wrote earlier.  The card has NO DisplayPort
+adapter, but something proprietary (?), which splits into a pair of connectors
+each having two DVI ports (4 DVI in total).  Apparently, the driver only thinks
+it is a DisplayPort.  Here's a crude drawing:
+
+<NVS420>[PORT]-+---[DVI1][DVI3]
+               |
+               +---[DVI2][DVI4]
+
+DVI1 and 3 are at PCI:5:0:0 , DVI2, DVI4 at PCI:6:0:0.  The primary display is
+attached to DVI1, second at DVI2.
 
 
 -- 
