@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27136] blank screen with G98 [Quadro NVS 420] (NV98)
  dual GPU, 4-head
-Date: Wed, 17 Mar 2010 13:35:11 -0700 (PDT)
-Message-ID: <20100317203511.4F5D51300FE@annarchy.freedesktop.org>
+Date: Wed, 17 Mar 2010 13:54:32 -0700 (PDT)
+Message-ID: <20100317205432.8EA981300FC@annarchy.freedesktop.org>
 References: <bug-27136-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,14 @@ http://bugs.freedesktop.org/show_bug.cgi?id=27136
 
 
 
---- Comment #2 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-17 13:35:10 PST ---
-To get proper debug logs you need to add drm.debug=6 as well (bitmask, 1 == drm
-debug, ioctl spam for example, 2 == driver debug, 4 == kms debug).
+--- Comment #3 from Colin Hudler <hudler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-17 13:54:31 PST ---
+Created an attachment (id=34160)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=34160)
+all kernel messages from boot until blank screen using drm.debug=6 and
+nouveau.reg_debug=0x70
+
+The attached kernel log spans from boot until after the screen goes blank when
+I type "modprobe nouveau reg_debug=0x070", and drm.debug=6 has also been set.
 
 
 -- 
