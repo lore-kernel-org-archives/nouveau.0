@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27152] New: [G72M] Screen corruption when using KMS.
- Dell Latitude D620 / Quadro NVS 110M/GeForce Go 7300
-Date: Wed, 17 Mar 2010 19:50:47 -0700 (PDT)
-Message-ID: <bug-27152-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27152] [G72M] Screen corruption when using KMS. Dell
+ Latitude D620 / Quadro NVS 110M/GeForce Go 7300
+Date: Wed, 17 Mar 2010 20:12:42 -0700 (PDT)
+Message-ID: <20100318031242.CD2EB130107@annarchy.freedesktop.org>
+References: <bug-27152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-27152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 http://bugs.freedesktop.org/show_bug.cgi?id=27152
 
-           Summary: [G72M] Screen corruption when using KMS. Dell Latitude
-                    D620 / Quadro NVS 110M/GeForce Go 7300
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Forwarded from Launchpad:
-https://bugs.edge.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/539730
 
-Nouveau seems unable to drive the LVDS on this laptop.
 
-Nothing useful is displayed on screen in graphics mode with this laptop,
-instead it seems like random data pixels and colours end up on the panel.
-
-Xorg log: http://launchpadlibrarian.net/41045198/XorgLogOld.gz
-dmesg: http://launchpadlibrarian.net/41056521/dmesg.log
-Dump of video bios: http://launchpadlibrarian.net/41058076/video.bios
-mmiotrace of nvidia-glx bringing up X:
-http://launchpadlibrarian.net/41072914/nvidia-glx_trace
+--- Comment #1 from Scott James Remnant <scott-Umf49k1wg4FWk0Htik3J/w@public.gmane.org>  2010-03-17 20:12:42 PST ---
+darktama has debugged this extensively and gave me a patch that produces right
+results; he has debugging output, edid, etc. so has an idea what's wrong I
+think
 
 
 -- 
