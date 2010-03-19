@@ -1,16 +1,17 @@
-From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Dan Nicholson <dbn.lists-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [Mesa3d-dev] makedepend in Mesa
-Date: Fri, 19 Mar 2010 20:23:08 +0100
-Message-ID: <b67489df1003191223v5b1d3152q5244f08d37b40e0f@mail.gmail.com>
+Date: Fri, 19 Mar 2010 13:34:58 -0700
+Message-ID: <91705d081003191334j71b8a3e7qc2a53e5c6f08e976@mail.gmail.com>
 References: <b67489df1002231329v1e4411a5ncaa61eb630670f5e@mail.gmail.com>
 	<91705d081002231414q3a0bef51tcf260f9f4ec4c87f@mail.gmail.com>
 	<b67489df1002251118w60d77d3dvadc284a0c59e0ee0@mail.gmail.com>
 	<91705d081002251241g38a50792p4348d6b7593c5da4@mail.gmail.com>
+	<b67489df1003191223v5b1d3152q5244f08d37b40e0f@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <91705d081002251241g38a50792p4348d6b7593c5da4-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <b67489df1003191223v5b1d3152q5244f08d37b40e0f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,46 +21,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Dan Nicholson <dbn.lists-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, mesa3d-dev <mesa3d-dev-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Feb 25, 2010 at 9:41 PM, Dan Nicholson <dbn.lists-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->
->> diff --git a/configure.ac b/configure.ac
->> index 485836a..a582337 100644
->> --- a/configure.ac
->> +++ b/configure.ac
->> @@ -28,8 +28,11 @@ AC_PROG_CPP
->> =A0AC_PROG_CC
->> =A0AC_PROG_CXX
->> =A0AC_CHECK_PROGS([MAKE], [gmake make])
->> -AC_PATH_PROG([MKDEP], [makedepend])
->> =A0AC_PATH_PROG([SED], [sed])
->> +AC_PATH_PROG([MKDEP], [makedepend], no)
->> +if test "x$MKDEP" =3D xno; then
->> + =A0 =A0AC_MSG_ERROR([makedepend not found])
->> +fi
->
-> Yep, that would do it. In fact, when I wrote configure.ac originally,
-> I wanted it to be a hard requirement and assumed that AC_PATH_PROG
-> would error by default if it didn't find the program.
->
-
-Should I resubmit a proper git patch ?
-
-I have been running with makedepend installed on my 3 systems for 1
-month, it has worked very well. I don't think I got ONE weird failure
-in the past month, while I used to get more than once per week.
-The only thing I need is to sometimes run autogen.sh and/or configure,
-when there are some structure changes (e.g. nv30-nv40 merge to nvfx).
-AFAIK this is also handled automatically in other projects. But this
-is much less annoying, because it fails at build time, instead of
-segfaulting at runtime.
-
-Everyone complains about mesa crappy build system so I thought all the
-failures I got were expected. Now I see they weren't, just that
-makedepend is badly required :)
-
-I am just worried some people might run into the same troubles as me.
-But I wonder if there are any since only Dan answered in that thread.
+T24gRnJpLCBNYXIgMTksIDIwMTAgYXQgMTI6MjMgUE0sIFhhdmllciBDaGFudHJ5CjxjaGFudHJ5
+LnhhdmllckBnbWFpbC5jb20+IHdyb3RlOgo+IE9uIFRodSwgRmViIDI1LCAyMDEwIGF0IDk6NDEg
+UE0sIERhbiBOaWNob2xzb24gPGRibi5saXN0c0BnbWFpbC5jb20+IHdyb3RlOgo+Pgo+Pj4gZGlm
+ZiAtLWdpdCBhL2NvbmZpZ3VyZS5hYyBiL2NvbmZpZ3VyZS5hYwo+Pj4gaW5kZXggNDg1ODM2YS4u
+YTU4MjMzNyAxMDA2NDQKPj4+IC0tLSBhL2NvbmZpZ3VyZS5hYwo+Pj4gKysrIGIvY29uZmlndXJl
+LmFjCj4+PiBAQCAtMjgsOCArMjgsMTEgQEAgQUNfUFJPR19DUFAKPj4+IMKgQUNfUFJPR19DQwo+
+Pj4gwqBBQ19QUk9HX0NYWAo+Pj4gwqBBQ19DSEVDS19QUk9HUyhbTUFLRV0sIFtnbWFrZSBtYWtl
+XSkKPj4+IC1BQ19QQVRIX1BST0coW01LREVQXSwgW21ha2VkZXBlbmRdKQo+Pj4gwqBBQ19QQVRI
+X1BST0coW1NFRF0sIFtzZWRdKQo+Pj4gK0FDX1BBVEhfUFJPRyhbTUtERVBdLCBbbWFrZWRlcGVu
+ZF0sIG5vKQo+Pj4gK2lmIHRlc3QgIngkTUtERVAiID0geG5vOyB0aGVuCj4+PiArIMKgIMKgQUNf
+TVNHX0VSUk9SKFttYWtlZGVwZW5kIG5vdCBmb3VuZF0pCj4+PiArZmkKPj4KPj4gWWVwLCB0aGF0
+IHdvdWxkIGRvIGl0LiBJbiBmYWN0LCB3aGVuIEkgd3JvdGUgY29uZmlndXJlLmFjIG9yaWdpbmFs
+bHksCj4+IEkgd2FudGVkIGl0IHRvIGJlIGEgaGFyZCByZXF1aXJlbWVudCBhbmQgYXNzdW1lZCB0
+aGF0IEFDX1BBVEhfUFJPRwo+PiB3b3VsZCBlcnJvciBieSBkZWZhdWx0IGlmIGl0IGRpZG4ndCBm
+aW5kIHRoZSBwcm9ncmFtLgo+Pgo+Cj4gU2hvdWxkIEkgcmVzdWJtaXQgYSBwcm9wZXIgZ2l0IHBh
+dGNoID8KClN1cmUuCgo+IEkgaGF2ZSBiZWVuIHJ1bm5pbmcgd2l0aCBtYWtlZGVwZW5kIGluc3Rh
+bGxlZCBvbiBteSAzIHN5c3RlbXMgZm9yIDEKPiBtb250aCwgaXQgaGFzIHdvcmtlZCB2ZXJ5IHdl
+bGwuIEkgZG9uJ3QgdGhpbmsgSSBnb3QgT05FIHdlaXJkIGZhaWx1cmUKPiBpbiB0aGUgcGFzdCBt
+b250aCwgd2hpbGUgSSB1c2VkIHRvIGdldCBtb3JlIHRoYW4gb25jZSBwZXIgd2Vlay4KPiBUaGUg
+b25seSB0aGluZyBJIG5lZWQgaXMgdG8gc29tZXRpbWVzIHJ1biBhdXRvZ2VuLnNoIGFuZC9vciBj
+b25maWd1cmUsCj4gd2hlbiB0aGVyZSBhcmUgc29tZSBzdHJ1Y3R1cmUgY2hhbmdlcyAoZS5nLiBu
+djMwLW52NDAgbWVyZ2UgdG8gbnZmeCkuCj4gQUZBSUsgdGhpcyBpcyBhbHNvIGhhbmRsZWQgYXV0
+b21hdGljYWxseSBpbiBvdGhlciBwcm9qZWN0cy4gQnV0IHRoaXMKPiBpcyBtdWNoIGxlc3MgYW5u
+b3lpbmcsIGJlY2F1c2UgaXQgZmFpbHMgYXQgYnVpbGQgdGltZSwgaW5zdGVhZCBvZgo+IHNlZ2Zh
+dWx0aW5nIGF0IHJ1bnRpbWUuCgpZZWFoLCBhdXRvbWF0aWMgYXV0b3Rvb2xzIHVwZGF0ZXMgY291
+bGQgbWF5YmUgYmUgaGFuZGxlZCBpbiB0aGUKdG9wLWxldmVsIE1ha2VmaWxlLCBidXQgcmVhbGx5
+IHRoYXQncyBtb3JlIG9mIGEgam9iIHRoYXQgYXV0b21ha2UKdGFrZXMgY2FyZSBvZi4KCj4gRXZl
+cnlvbmUgY29tcGxhaW5zIGFib3V0IG1lc2EgY3JhcHB5IGJ1aWxkIHN5c3RlbSBzbyBJIHRob3Vn
+aHQgYWxsIHRoZQo+IGZhaWx1cmVzIEkgZ290IHdlcmUgZXhwZWN0ZWQuIE5vdyBJIHNlZSB0aGV5
+IHdlcmVuJ3QsIGp1c3QgdGhhdAo+IG1ha2VkZXBlbmQgaXMgYmFkbHkgcmVxdWlyZWQgOikKPgo+
+IEkgYW0ganVzdCB3b3JyaWVkIHNvbWUgcGVvcGxlIG1pZ2h0IHJ1biBpbnRvIHRoZSBzYW1lIHRy
+b3VibGVzIGFzIG1lLgo+IEJ1dCBJIHdvbmRlciBpZiB0aGVyZSBhcmUgYW55IHNpbmNlIG9ubHkg
+RGFuIGFuc3dlcmVkIGluIHRoYXQgdGhyZWFkLgoKVGhlIG9ubHkgZHJhd2JhY2sgSSBrbm93IG9m
+IGlzIGFkZGluZyBhIGhhcmQgcmVxdWlyZW1lbnQgb24gbWFrZWRlcGVuZAp3aGVyZSB0aGVyZSB3
+YXNuJ3Qgb25lIGJlZm9yZSwgYnV0IGRpc3Ryb3MgdXN1YWxseSBoYXZlIGl0LgoKLS0KRGFuCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
