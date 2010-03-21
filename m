@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26733] Full-screen XV causes graphics lockup
-Date: Sat, 20 Mar 2010 16:48:58 -0700 (PDT)
-Message-ID: <20100320234858.C32DA13009C@annarchy.freedesktop.org>
-References: <bug-26733-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27217] New: Corruption during x-video playback
+Date: Sat, 20 Mar 2010 17:15:57 -0700 (PDT)
+Message-ID: <bug-27217-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26733-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +18,44 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26733
+http://bugs.freedesktop.org/show_bug.cgi?id=27217
+
+           Summary: Corruption during x-video playback
+           Product: xorg
+           Version: 7.5
+          Platform: All
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: personman_145-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Created an attachment (id=34271)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=34271)
+Screenshot of x-video corruption
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+I've found this most apparent during DVD playback. In particular, I've used
+Fight Club for testing.
 
+I'm currently running Kubuntu Lucid Lynx w/ a 2.6.33 kernel
 
+I've tried this on a:
 
+GeForce DDR
 
---- Comment #3 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-20 16:48:58 PST ---
-Looks like it's fixed now.
+Geforce 7000m
+
+GeForce 8800GTS
+
+and I get the same issues. Artifacts during playback.
+
+I've included a screenshot that shows exactly what I'm talking about... it is
+an illusive issue, but I manage to catch it on a screen capture, which I have
+included. I've circled the corruption in neon green.
 
 
 -- 
