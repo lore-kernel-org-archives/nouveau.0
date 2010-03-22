@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27153] [NV18] Frequent lockups during graphical
 	activities
-Date: Sun, 21 Mar 2010 18:47:56 -0700 (PDT)
-Message-ID: <20100322014756.640B113009A@annarchy.freedesktop.org>
+Date: Mon, 22 Mar 2010 04:22:44 -0700 (PDT)
+Message-ID: <20100322112244.CEBD51300A3@annarchy.freedesktop.org>
 References: <bug-27153-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,23 @@ http://bugs.freedesktop.org/show_bug.cgi?id=27153
 
 
 
---- Comment #2 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-21 18:47:55 PST ---
-The report on launchpad indicates that this is reproducible without the 3D
-component installed.
+--- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>  2010-03-22 04:22:44 PST ---
+Created an attachment (id=34310)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=34310)
+nv18_pgraph_lockup.patch
+
+The attached patch might help, in any case we don't have an mmiotrace for this
+card yet and it would be useful if we want to fix it properly.
+
+In short, you'd need to:
+- Start tracing
+- Load nvidia.ko and start X up with the nvidia proprietary driver
+- Run some 3d for a few seconds (e.g. fire up glxgears)
+- Stop tracing and send the generated output to mmio.dumps at gmail.com
+
+It's explained in more depth here:
+http://nouveau.freedesktop.org/wiki/MmioTrace
+http://cgit.freedesktop.org/nouveau/linux-2.6/tree/Documentation/trace/mmiotrace.txt
 
 
 -- 
