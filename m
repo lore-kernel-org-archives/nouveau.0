@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27288] EXA corruption on small pixmaps
-Date: Wed, 24 Mar 2010 05:38:54 -0700 (PDT)
-Message-ID: <20100324123855.143F2130163@annarchy.freedesktop.org>
-References: <bug-27288-8800@http.bugs.freedesktop.org/>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH] drm/nv50: Allow using the NVA3 new compute class.
+Date: Wed, 24 Mar 2010 13:43:16 +0000
+Message-ID: <1269438196-2400-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27288-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +18,24 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=27288
-
-
-
-
-
---- Comment #1 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>  2010-03-24 05:38:52 PST ---
-Created an attachment (id=34402)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=34402)
-What screenshots look like
-
-
--- 
-Configure bugmail: http://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+U2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0Pgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JhcGguYyB8ICAgIDcgKysrKy0tLQog
+MSBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmFwaC5jIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnY1MF9ncmFwaC5jCmluZGV4IGM2MmIzM2EuLmIyMDNkMDYgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JhcGguYworKysgYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udjUwX2dyYXBoLmMKQEAgLTQxMCw5ICs0MTAsMTAgQEAgc3RydWN0IG5v
+dXZlYXVfcGdyYXBoX29iamVjdF9jbGFzcyBudjUwX2dyYXBoX2dyY2xhc3NbXSA9IHsKIAl7IDB4
+NTAzOSwgZmFsc2UsIE5VTEwgfSwgLyogbTJtZiAqLwogCXsgMHg1MDJkLCBmYWxzZSwgTlVMTCB9
+LCAvKiAyZCAqLwogCXsgMHg1MGMwLCBmYWxzZSwgTlVMTCB9LCAvKiBjb21wdXRlICovCisJeyAw
+eDg1YzAsIGZhbHNlLCBOVUxMIH0sIC8qIGNvbXB1dGUgKG52YTMsIG52YTUsIG52YTgpICovCiAJ
+eyAweDUwOTcsIGZhbHNlLCBOVUxMIH0sIC8qIHRlc2xhIChudjUwKSAqLwotCXsgMHg4Mjk3LCBm
+YWxzZSwgTlVMTCB9LCAvKiB0ZXNsYSAobnY4MC9udjkwKSAqLwotCXsgMHg4Mzk3LCBmYWxzZSwg
+TlVMTCB9LCAvKiB0ZXNsYSAobnZhMCkgKi8KLQl7IDB4ODU5NywgZmFsc2UsIE5VTEwgfSwgLyog
+dGVzbGEgKG52YTgpICovCisJeyAweDgyOTcsIGZhbHNlLCBOVUxMIH0sIC8qIHRlc2xhIChudjh4
+L252OXgpICovCisJeyAweDgzOTcsIGZhbHNlLCBOVUxMIH0sIC8qIHRlc2xhIChudmEwLCBudmFh
+LCBudmFjKSAqLworCXsgMHg4NTk3LCBmYWxzZSwgTlVMTCB9LCAvKiB0ZXNsYSAobnZhMywgbnZh
+NSwgbnZhOCkgKi8KIAl7fQogfTsKLS0gCjEuNy4wLjIKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
