@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26796] Circular locking dependency error on NV43
-Date: Wed, 24 Mar 2010 04:10:42 -0700 (PDT)
-Message-ID: <20100324111042.6530513015B@annarchy.freedesktop.org>
-References: <bug-26796-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25393] Repeated "EDID checksum is invalid" erros
+ with varying remainders on NV43
+Date: Wed, 24 Mar 2010 04:18:45 -0700 (PDT)
+Message-ID: <20100324111846.4817813015B@annarchy.freedesktop.org>
+References: <bug-25393-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26796-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25393-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +21,17 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26796
-
-
-Tomas M <TomasMiljenovic-Ah+7SPImtolBDgjK7y7TUQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+http://bugs.freedesktop.org/show_bug.cgi?id=25393
 
 
 
 
---- Comment #2 from Tomas M <TomasMiljenovic-Ah+7SPImtolBDgjK7y7TUQ@public.gmane.org>  2010-03-24 04:10:41 PST ---
-Problem gone with latest DRM and kernel RC.
+
+--- Comment #3 from Tomas M <TomasMiljenovic-Ah+7SPImtolBDgjK7y7TUQ@public.gmane.org>  2010-03-24 04:18:43 PST ---
+X crashes and monitor deactivations no longer occur with latest upstream code. 
+
+EDID errors still reported upon boot, and when resuming from suspend. 
+Non-static graphical corruption still visible after resume.
 
 
 -- 
