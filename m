@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25762] Quadro NVS 140M doesn't wake up anymore
-Date: Thu, 25 Mar 2010 02:36:49 -0700 (PDT)
-Message-ID: <20100325093649.EFA8B130198@annarchy.freedesktop.org>
-References: <bug-25762-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27230] [105M / Acer] Bad EDID causes nouveau to fail
+ on Acer Extensa 5635G laptop
+Date: Thu, 25 Mar 2010 15:31:43 -0700 (PDT)
+Message-ID: <20100325223144.03A4C1301AB@annarchy.freedesktop.org>
+References: <bug-27230-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25762-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27230-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,21 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=25762
+http://bugs.freedesktop.org/show_bug.cgi?id=27230
+
+
+Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 
 
 
-
---- Comment #4 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>  2010-03-25 02:36:49 PST ---
-Xuan: Is it working for you now ?
-
-It works great for me.
+--- Comment #2 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-25 15:31:42 PST ---
+Thanks for that pointer; the second patch does fix it for the reporter.
 
 
 -- 
