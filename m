@@ -1,92 +1,49 @@
-From: SpliFF <spliff-nc9XehmSRdrhF+sknpXCvw@public.gmane.org>
-Subject: Re: [radeonhd] Re: [Mesa3d-dev] Status of s3tc patent in
+From: Ian Romanick <idr-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
+Subject: Re: [Mesa3d-dev] [Nouveau] Re: Status of s3tc patent in
  respect to open-source drivers and workarounds
-Date: Mon, 29 Mar 2010 17:01:41 +1100
-Message-ID: <4BB04245.8020202@warriorhut.org>
-References: <4BAF41C0.5010201@warriorhut.org>	
-	<e7bd23c31003281707v4d8107a8ka4330ce69ba5b322@mail.gmail.com>	
-	<4BB004EB.5080109@warriorhut.org>
-	<e7bd23c31003282134o32a5ec11ua6c7814fd5f3a7f5@mail.gmail.com>
+Date: Sun, 28 Mar 2010 23:05:24 -0700
+Message-ID: <4BB04324.2070206@freedesktop.org>
+References: <4BAF41C0.5010201@warriorhut.org>	<e7bd23c31003281707v4d8107a8ka4330ce69ba5b322@mail.gmail.com>	<4BB004EB.5080109@warriorhut.org> <6a89f9d51003282153l2c20b049s38d94c9691531efa@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <e7bd23c31003282134o32a5ec11ua6c7814fd5f3a7f5-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Corbin Simpson <mostawesomedude-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, radeonhd-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org, mesa3d-dev-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
+Return-path: <radeonhd+bounces-9531-gcfxdr-radeonhd=m.gmane.org-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org>
+List-Post: <mailto:radeonhd-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:radeonhd+help-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org>
+List-Subscribe: <mailto:radeonhd+subscribe-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org>
+List-Unsubscribe: <mailto:radeonhd+unsubscribe-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org>
+List-Owner: <mailto:radeonhd+owner-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org>
+List-Archive: <http://lists.opensuse.org/radeonhd/>
+In-Reply-To: <6a89f9d51003282153l2c20b049s38d94c9691531efa-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+To: Stephane Marchesin <stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: SpliFF <spliff-nc9XehmSRdrhF+sknpXCvw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, radeonhd-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org, mesa3d-dev-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 03/29/10 15:34, Corbin Simpson wrote:
->
-> There is already a non-infringing decoder inside Mesa, wired up
-> correctly, that kicks in when the HW supports it, but there's no
-> extension that exposes only decoding and loading functionality. As Ian
-> said, you need an encoder as well, and no HW has it, so you'd have to
-> write some questionable code.
->   
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-So to clarify, you're saying a partial implementation (decoder only)
-isn't an option at all? If you expose an extension it must be complete?
-Can't you just do a NOOP on encoding or handle it uncompressed? I don't
-see why the encoder is so important since it seems to me that
-uncompressed data would cause no issues for software rendering and
-compressed data should cause no issues for hardware rendering (as stated
-earlier, on most modern hardware you can pass it through to VRAM). The
-main problem seems to be the lack of a decoder as it makes assets
-completely unusable on certain platforms whereas lack of an encoder
-typically only impairs efficiency except in fringe cases (games that
-compress textures "on-the-fly").
+Stephane Marchesin wrote:
 
-> I'm kind of confused. Are you just trying to see if any of us can be
-> convinced to write this code for you?
->   
+> The core issue is that some people do not want to see this code in mesa
+> in whatever form, because they're afraid of lawsuits. Rumour has it that
+> VIA told them that they would sue. And the same things happened with SGI
+> for the float patents by the way. So blame VIA and SGI for their
+> anti-oss behaviour instead. For example next time you see a motherboard
+> with a VIA chipset, think twice...
 
-Yes. Though not for me as I don't play the games in question.
+The SGI situation is slightly different.  SGI *did* sue.
 
-However that's an oversimplification. What I'm really asking is when it
-was concluded no workaround is possible, to what extent was it discussed
-or was it agreed that nobody should look at the patent at all (willful
-infringement defense)? Are the legal opinions you are referring to made
-public? Is the issue a lack or resources, lack of interest, lack of
-alternatives, lack of understanding or just a general fear of
-unspecified litigation or vague threats.
+http://www.sgi.com/company_info/newsroom/press_releases/2006/october/ati.html
+http://271patent.blogspot.com/2008/08/wd-wis-all-instances-of-materiality.html
+http://www.patentlit.com/2008/05/02/silicon-graphics-v-ati-is-a-draw/
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
 
-It was also an attempt to see where the EFF sits on this issue and
-whether that would consider investigating some of the broader claims in
-the patent as part of their patent busting efforts. After all, if there
-really is NO possible workaround it kind of implies, to a layman at
-least, that the patents claims may be overly broad.
-
-I am simply following a sensible process of elimination, which is:
-
-a.) Determine what can't be done.
-b.) Determine what can be done.
-c.) Substitute b for a.
-
-If you won't touch it, then you won't. If you don't want to talk about
-it (again) I completely understand. I can't force you and I won't nag
-you. But there may be others out there, perhaps sitting on the
-sidelines, who might have something new to offer. At the least consider
-this a case of simple curiousity as the FAQ is somewhat vague on the
-matter and the specific claim(s) at issue unclear (at least to me). Even
-with access to the archives of this list I don't have the benefit of
-knowing the full extent to which this issue has been explored behind the
-scenes.
-
-I raised the points I raised to assist in a way that seems positive.
-That is to cut through several pages of patent legalese to the specific
-claim elements blocking a new type of decoder and then try build a
-preliminary technical assessment that could guide programmers around the
-hurdles or be reviewed by a patent attorney without completely wasting
-their time.
-
-SpliFF
+iEYEARECAAYFAkuwQyEACgkQX1gOwKyEAw8IoQCeIwJRaEZz3BiJIE3kUB+fG4mw
+R8UAn0+Y1m3WDLGfB7ZznyLrgOrbNeOG
+=M4I4
+-----END PGP SIGNATURE-----
+-- 
+To unsubscribe, e-mail: radeonhd+unsubscribe-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org
+For additional commands, e-mail: radeonhd+help-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org
