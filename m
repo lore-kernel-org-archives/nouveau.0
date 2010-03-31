@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27387] nouveau crashes on GForce8200 (onboard) after
  start of xorg
-Date: Wed, 31 Mar 2010 01:12:07 -0700 (PDT)
-Message-ID: <20100331081207.E4DBD130011@annarchy.freedesktop.org>
+Date: Wed, 31 Mar 2010 04:29:28 -0700 (PDT)
+Message-ID: <20100331112928.BB26F13005D@annarchy.freedesktop.org>
 References: <bug-27387-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,11 @@ http://bugs.freedesktop.org/show_bug.cgi?id=27387
 
 
 
---- Comment #2 from Stefan Treuheit <StefanTreuheit-S0/GAf8tV78@public.gmane.org>  2010-03-31 01:12:07 PST ---
-Created an attachment (id=34577)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=34577)
-logfile xorg
+--- Comment #3 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-31 04:29:28 PST ---
+Maybe it would have more chances of working if you actually used nouveau :)
+
+Read again http://nouveau.freedesktop.org/wiki/InstallNouveau to see how to
+create a minimal xorg.conf
 
 
 -- 
