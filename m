@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27387] nouveau crashes on GForce8200 (onboard) after
- start of xorg
-Date: Wed, 31 Mar 2010 04:29:28 -0700 (PDT)
-Message-ID: <20100331112928.BB26F13005D@annarchy.freedesktop.org>
-References: <bug-27387-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27398] New: displayport: x server does not draw
+ anything on ThinkPad T410
+Date: Wed, 31 Mar 2010 09:08:34 -0700 (PDT)
+Message-ID: <bug-27398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27387-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +19,94 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=27387
+http://bugs.freedesktop.org/show_bug.cgi?id=27398
+
+           Summary: displayport: x server does not draw anything on ThinkPad
+                    T410
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
+Created an attachment (id=34582)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=34582)
+dmesg when DP-1 is plugged in
+
+This happens when booting with an external monitor attached to Displayport on
+ThinkPad T410.
+
+After loading nouveau.ko the main display on LVDS-1 switches to hi-res
+framebuffer (KMS) like during normal boot. But when X is started, it switches
+to vt7 and then nothing happens - neither is the frame buffer is redrawn
+anymore, nor the external display is enabled. This is not a lockup, though. I
+can switch back to vt1 with ctrl-alt-f1, and I can login into the x session by
+blindly typing username/password (though xdm) or start gtk-demo from vt1. (Same
+happens if I just start X with "X -wr&" .)
+
+[in brief]
+
+xorg.conf:
+----> snip ----->
+Section "Device"
+        Identifier  "Card0"
+        Driver      "nouveau"
+        VendorName  "nVidia Corporation"
+        BoardName   "NVIDIA Quadro NVS 3100m"
+        BusID       "PCI:1:0:0"
+EndSection
+<---- snap <-----
+
+steps to reproduce:
+ - boot and load nouveau.ko
+ - start X with "X -wr -config ./xorg.conf&"
+
+result:
+ - KMS console works, but
+ - X stops redrawing the frambuffer switching to vt7 does not change the screen
+
+expected:
+ - KMS console works
+ - X draws a blank white screen on LVDS-1 (in vt7)
+ - xrandr can enable DP-1
 
 
+[notes]
 
---- Comment #3 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-31 04:29:28 PST ---
-Maybe it would have more chances of working if you actually used nouveau :)
+kernel reports several:
+[drm] nouveau 0000:01:00.0: 0xD404: Init table command not found: 0x3A
+   errors.
 
-Read again http://nouveau.freedesktop.org/wiki/InstallNouveau to see how to
-create a minimal xorg.conf
+what is SOR?
+[drm] nouveau 0000:01:00.0: plugged DisplayPort-1
+[drm] nouveau 0000:01:00.0: 0xD076: Init table command not found: 0x3A
+[drm] nouveau 0000:01:00.0: SOR-1: link training failed
+[drm] nouveau 0000:01:00.0: SOR-1: link training failed
+[drm] nouveau 0000:01:00.0: SOR-1: link training failed
+[drm] nouveau 0000:01:00.0: SOR-1: link training failed
+
+this looks suspicious
+[drm] nouveau 0000:01:00.0: unplugged DisplayPort-1
+[drm] nouveau 0000:01:00.0: unplugged DisplayPort-1
+[drm] nouveau 0000:01:00.0: unplugged DisplayPort-1
+[drm] nouveau 0000:01:00.0: plugged DisplayPort-1
+[drm] nouveau 0000:01:00.0: plugged DisplayPort-1
+[drm] nouveau 0000:01:00.0: plugged DisplayPort-1
+[drm] nouveau 0000:01:00.0: 0xD076: Init table command not found: 0x3A
+[drm] nouveau 0000:01:00.0: 0xD076: Init table command not found: 0x3A
+[drm] nouveau 0000:01:00.0: 0xD076: Init table command not found: 0x3A
+[drm] nouveau 0000:01:00.0: plugged DisplayPort-1
+[drm] nouveau 0000:01:00.0: 0xD076: Init table command not found: 0x3A
+[drm] nouveau 0000:01:00.0: SOR-1: link training failed
+
+Thanks in advance!
 
 
 -- 
