@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27387] nouveau crashes on GForce8200 (onboard) after
  start of xorg
-Date: Wed, 31 Mar 2010 01:11:13 -0700 (PDT)
-Message-ID: <20100331081113.5A17B13005D@annarchy.freedesktop.org>
+Date: Wed, 31 Mar 2010 01:12:07 -0700 (PDT)
+Message-ID: <20100331081207.E4DBD130011@annarchy.freedesktop.org>
 References: <bug-27387-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,10 @@ http://bugs.freedesktop.org/show_bug.cgi?id=27387
 
 
 
---- Comment #1 from Stefan Treuheit <StefanTreuheit-S0/GAf8tV78@public.gmane.org>  2010-03-31 01:11:12 PST ---
-Created an attachment (id=34576)
- --> (http://bugs.freedesktop.org/attachment.cgi?id=34576)
-system logfile (big, Ihave to compress)
+--- Comment #2 from Stefan Treuheit <StefanTreuheit-S0/GAf8tV78@public.gmane.org>  2010-03-31 01:12:07 PST ---
+Created an attachment (id=34577)
+ --> (http://bugs.freedesktop.org/attachment.cgi?id=34577)
+logfile xorg
 
 
 -- 
