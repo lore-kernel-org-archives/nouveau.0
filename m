@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26733] Full-screen XV causes graphics lockup
-Date: Thu,  1 Apr 2010 02:00:54 -0700 (PDT)
-Message-ID: <20100401090054.D6BD6130011@annarchy.freedesktop.org>
-References: <bug-26733-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27387] nouveau crashes on GForce8200 (onboard) after
+ start of xorg
+Date: Thu,  1 Apr 2010 04:19:21 -0700 (PDT)
+Message-ID: <20100401111921.AF302130011@annarchy.freedesktop.org>
+References: <bug-27387-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26733-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27387-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +21,14 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-http://bugs.freedesktop.org/show_bug.cgi?id=26733
+http://bugs.freedesktop.org/show_bug.cgi?id=27387
 
 
 
 
 
---- Comment #7 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-04-01 02:00:54 PST ---
-I agree. Day ago my Nouveau hang too without Xv (maybe was flash running, not
-sure).
+--- Comment #4 from Stefan Treuheit <StefanTreuheit-S0/GAf8tV78@public.gmane.org>  2010-04-01 04:19:21 PST ---
+I'm sorry for that stupid mistake. nouveau with xorg works fine now.
 
 
 -- 
