@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26733] Full-screen XV causes graphics lockup
-Date: Wed, 31 Mar 2010 21:17:33 -0700 (PDT)
-Message-ID: <20100401041733.219FE13005D@annarchy.freedesktop.org>
+Date: Thu,  1 Apr 2010 02:00:54 -0700 (PDT)
+Message-ID: <20100401090054.D6BD6130011@annarchy.freedesktop.org>
 References: <bug-26733-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,10 +26,9 @@ http://bugs.freedesktop.org/show_bug.cgi?id=26733
 
 
 
---- Comment #6 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-03-31 21:17:32 PST ---
-okias is right, but now it's happening during normal use too.  It seems to
-happen especially often while flash is playing something.  It's getting a bit
-annoying, so I'd be glad to test any patches you can suggest, or anything else.
+--- Comment #7 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2010-04-01 02:00:54 PST ---
+I agree. Day ago my Nouveau hang too without Xv (maybe was flash running, not
+sure).
 
 
 -- 
