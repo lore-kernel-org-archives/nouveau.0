@@ -1,12 +1,15 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH] drm/nv50: Add NVA3 support in ctxprog/ctxvals
-	generator.
-Date: Fri,  2 Apr 2010 10:28:18 +0000
-Message-ID: <1270204098-9664-1-git-send-email-koriakin@0x04.net>
+From: "Carlo E. Prelz" <fluido-1XNsQiTun9D1P9xLtpHBDw@public.gmane.org>
+Subject: Re: [PATCH] drm/nv50: Add NVA3 support in ctxprog/ctxvals
+ generator.
+Date: Sat, 3 Apr 2010 18:49:31 +0200
+Message-ID: <20100403164931.GA28923@frittella.fluido.as>
+References: <1270204098-9664-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <1270204098-9664-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,48 +22,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0Pgot
-LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JjdHguYyB8ICAgMTMgKysrKysrKysr
-KysrLQogMSBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9ucygtKQoK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JjdHguYyBiL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JjdHguYwppbmRleCAzYzNjYzQ2Li40MmE4ZmIyIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dyY3R4LmMKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9ncmN0eC5jCkBAIC0xNzcsNiArMTc3LDcgQEAgbnY1
-MF9ncmN0eF9pbml0KHN0cnVjdCBub3V2ZWF1X2dyY3R4ICpjdHgpCiAJY2FzZSAweDk2OgogCWNh
-c2UgMHg5ODoKIAljYXNlIDB4YTA6CisJY2FzZSAweGEzOgogCWNhc2UgMHhhNToKIAljYXNlIDB4
-YTg6CiAJY2FzZSAweGFhOgpAQCAtMzY0LDYgKzM2NSw3IEBAIG52NTBfZ3JhcGhfY29uc3RydWN0
-X21taW8oc3RydWN0IG5vdXZlYXVfZ3JjdHggKmN0eCkKIAljYXNlIDB4YWM6CiAJCWdyX2RlZihj
-dHgsIDB4NDAxYzAwLCAweDA0MjUwMGRmKTsKIAkJYnJlYWs7CisJY2FzZSAweGEzOgogCWNhc2Ug
-MHhhNToKIAljYXNlIDB4YTg6CiAJCWdyX2RlZihjdHgsIDB4NDAxYzAwLCAweDE0MjUwMGRmKTsK
-QEAgLTQxOCw2ICs0MjAsNyBAQCBudjUwX2dyYXBoX2NvbnN0cnVjdF9tbWlvKHN0cnVjdCBub3V2
-ZWF1X2dyY3R4ICpjdHgpCiAJCWJyZWFrOwogCWNhc2UgMHg4NDoKIAljYXNlIDB4YTA6CisJY2Fz
-ZSAweGEzOgogCWNhc2UgMHhhNToKIAljYXNlIDB4YTg6CiAJY2FzZSAweGFhOgpAQCAtNzkyLDYg
-Kzc5NSw3IEBAIG52NTBfZ3JhcGhfY29uc3RydWN0X21taW8oc3RydWN0IG5vdXZlYXVfZ3JjdHgg
-KmN0eCkKIAkJCQljYXNlIDB4YTU6CiAJCQkJCWdyX2RlZihjdHgsIG9mZnNldCArIDB4MWMsIDB4
-MzEwYzAwMDApOwogCQkJCQlicmVhazsKKwkJCQljYXNlIDB4YTM6CiAJCQkJY2FzZSAweGE4Ogog
-CQkJCWNhc2UgMHhhYToKIAkJCQljYXNlIDB4YWM6CkBAIC04NTksNiArODYzLDggQEAgbnY1MF9n
-cmFwaF9jb25zdHJ1Y3RfbW1pbyhzdHJ1Y3Qgbm91dmVhdV9ncmN0eCAqY3R4KQogCQkJZWxzZQog
-CQkJCWdyX2RlZihjdHgsIG9mZnNldCArIDB4OCwgMHgwNTAxMDIwMik7CiAJCQlncl9kZWYoY3R4
-LCBvZmZzZXQgKyAweGMsIDB4MDAwMzAyMDEpOworCQkJaWYgKGRldl9wcml2LT5jaGlwc2V0ID09
-IDB4YTMpCisJCQkJY3BfY3R4KGN0eCwgYmFzZSArIDB4MzZjLCAxKTsKIAogCQkJY3BfY3R4KGN0
-eCwgYmFzZSArIDB4NDAwLCAyKTsKIAkJCWdyX2RlZihjdHgsIGJhc2UgKyAweDQwNCwgMHgwMDAw
-MDA0MCk7CkBAIC0xMTU5LDcgKzExNjUsOSBAQCBudjUwX2dyYXBoX2NvbnN0cnVjdF94ZmVyMShz
-dHJ1Y3Qgbm91dmVhdV9ncmN0eCAqY3R4KQogCQludjUwX2dyYXBoX2NvbnN0cnVjdF9nZW5lX3Vu
-azgoY3R4KTsKIAkJaWYgKGRldl9wcml2LT5jaGlwc2V0ID09IDB4YTApCiAJCQl4Zl9lbWl0KGN0
-eCwgMHgxODksIDApOwotCQllbHNlIGlmIChkZXZfcHJpdi0+Y2hpcHNldCA8IDB4YTgpCisJCWVs
-c2UgaWYgKGRldl9wcml2LT5jaGlwc2V0ID09IDB4YTMpCisJCQl4Zl9lbWl0KGN0eCwgMHhkNSwg
-MCk7CisJCWVsc2UgaWYgKGRldl9wcml2LT5jaGlwc2V0ID09IDB4YTUpCiAJCQl4Zl9lbWl0KGN0
-eCwgMHg5OSwgMCk7CiAJCWVsc2UgaWYgKGRldl9wcml2LT5jaGlwc2V0ID09IDB4YWEpCiAJCQl4
-Zl9lbWl0KGN0eCwgMHg2NSwgMCk7CkBAIC0xMTk3LDYgKzEyMDUsOCBAQCBudjUwX2dyYXBoX2Nv
-bnN0cnVjdF94ZmVyMShzdHJ1Y3Qgbm91dmVhdV9ncmN0eCAqY3R4KQogCQljdHgtPmN0eHZhbHNf
-cG9zID0gb2Zmc2V0ICsgNDsKIAkJaWYgKGRldl9wcml2LT5jaGlwc2V0ID09IDB4YTApCiAJCQl4
-Zl9lbWl0KGN0eCwgMHhhODAsIDApOworCQllbHNlIGlmIChkZXZfcHJpdi0+Y2hpcHNldCA9PSAw
-eGEzKQorCQkJeGZfZW1pdChjdHgsIDB4YTdjLCAwKTsKIAkJZWxzZQogCQkJeGZfZW1pdChjdHgs
-IDB4YTdhLCAwKTsKIAkJeGZfZW1pdChjdHgsIDEsIDB4M2ZmZmZmKTsKQEAgLTEzNDEsNiArMTM1
-MSw3IEBAIG52NTBfZ3JhcGhfY29uc3RydWN0X2dlbmVfdW5rMShzdHJ1Y3Qgbm91dmVhdV9ncmN0
-eCAqY3R4KQogCQl4Zl9lbWl0KGN0eCwgMHg5NDIsIDApOwogCQlicmVhazsKIAljYXNlIDB4YTA6
-CisJY2FzZSAweGEzOgogCQl4Zl9lbWl0KGN0eCwgMHgyMDQyLCAwKTsKIAkJYnJlYWs7CiAJY2Fz
-ZSAweGE1OgotLSAKMS43LjAuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+With my NVA3 board, I am getting a lot of messages as follows:
+
+DRHD: handling fault status reg 3
+DMAR:[DMA Read] Request device [01:00.0] fault addr 0 
+DMAR:[fault reason 06] PTE Read access is not set
+
+This is while accessing web pages - for example, displaying a map from
+www.viamichelin.fr generates about 5 pages of such message groups. The
+map gets displayed OK, nevertheless.
+
+01:00.0 is the video card. The messages come from
+.../drivers/pci/dmar.c. Does this mean anything to you? 
+
+Carlo
+
+-- 
+  *         Se la Strada e la sua Virtu' non fossero state messe da parte,
+* K * Carlo E. Prelz - fluido-1XNsQiTun9D1P9xLtpHBDw@public.gmane.org             che bisogno ci sarebbe
+  *               di parlare tanto di amore e di rettitudine? (Chuang-Tzu)
