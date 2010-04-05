@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27455] dualhead not working,
-	second display always black
-Date: Mon,  5 Apr 2010 08:50:49 -0700 (PDT)
-Message-ID: <20100405155049.76698130011@annarchy.freedesktop.org>
-References: <bug-27455-8800@http.bugs.freedesktop.org/>
+From: Didier Spaier <didier.spaier-GqzDj6/B2j8@public.gmane.org>
+Subject: Blank screen at startup (conflict with VESA VGA)
+Date: Mon, 05 Apr 2010 22:59:40 +0200
+Message-ID: <4BBA4F3C.9070606@epsm.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +18,36 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27455
+Hi all,
 
---- Comment #5 from Michael Schmitt <tcwardrobe-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-05 08:50:49 PDT ---
-As it seems for the time being I can't use the blob. I had never an issue with
-the driver as long as the driver was fine with kernel / xorg versions but this
-time it puzzles me. Installation went fine, but as I try to start X (gdm) the
-Nvidia logo shows for a second, then the shell again, then the logo again, then
-shell and eventually a ncurses message pops up telling me that something went
-wrong. But NO errors are shown in Xorg log.
+new to this list ;)
 
-So I assume even with the newest nvidia blob (173.14.25) for legacy NV34 chips,
-a no-go with xorg 1.7.6.
+I have a Lenovo Thinkpad T61. lspci|grep VGA says:
+01:00.0 VGA compatible controller: nVidia Corporation Quadro NVS 140M (rev a1)
 
-regards
-Michael
+I have Slacware64-13.0 and Slackware64-current installed.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Nouveau is modularized in all my kernels for -current.
+
+A problem arise even if I don't want to use nouveau under X: unless nouveau be blacklisted in /etc/modprobe.d/blacklist.conf at startup,
+- when using one of the VESA modes at startup after a while screen goes blank and I get a warning in syslog e.g:
+   Apr  2 18:58:56 darkstar kernel: fb: conflicting fb hw usage nouveaufb vs VESA VGA - removing generic driver,
+- no problem when using a VGA mode (text only),
+
+this disregarding which X driver I use afterwards (I always start in console mode).
+
+But according to this page:
+http://nouveau.freedesktop.org/wiki/KernelModeSetting
+I thought nouveaufb shouldn't conflict with vesafb ? Am I wrong ?
+
+I tried with modules shipped in vanilla 2.6.33.1 as well as the last Nouveau kernel repository pulled from git: no luck in both cases.
+
+I know there are easy workarounds: either use "VGA=ask", "VGA=ext" or "VGA=normal" as a lilo.conf option or blacklist nouveau -- which doesn't hurt anyway as nouveau will be loaded at X startup anyhow.
+
+But this is still is an annoyance for newcomers as when they are trapped all they can do if they have a VESA mode in lilo.conf is launch another system or live CD/DVD and either edit lilo.conf and run lilo again or edit blacklist.conf to blacklist nouveau.
+
+But still, before kindly requesting Patrick Volkerding to blacklist nouveau in -current for the time being, I wanted to now of another way to go if possible.
+
+Thanks in advance for your answers,
+
+Didier
