@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27455] dualhead not working,
 	second display always black
-Date: Mon,  5 Apr 2010 06:55:25 -0700 (PDT)
-Message-ID: <20100405135525.654FE130011@annarchy.freedesktop.org>
+Date: Mon,  5 Apr 2010 06:58:27 -0700 (PDT)
+Message-ID: <20100405135827.E9D1C13005E@annarchy.freedesktop.org>
 References: <bug-27455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27455
 
---- Comment #3 from Michael Schmitt <tcwardrobe-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-05 06:55:24 PDT ---
-Created an attachment (id=34675)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=34675)
-dump after xrandr --output VGA-1 --off with nouveau
+--- Comment #4 from Michael Schmitt <tcwardrobe-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-05 06:58:27 PDT ---
+The dumps are only with nouveau as somehow with the recent Xorg the nvidia blob
+does not work anymore. I will investigate that, maybe I did something wrong or
+a newer nvidia blob is now available that will work again.
+
+regards
+Michael
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
