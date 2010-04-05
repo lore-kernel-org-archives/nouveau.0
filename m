@@ -1,13 +1,12 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 Subject: Re: Blank screen at startup (conflict with VESA VGA)
-Date: Mon, 5 Apr 2010 23:45:59 +0200
-Message-ID: <20100405214559.GA4230@joi.lan>
+Date: Tue, 6 Apr 2010 01:43:38 +0300
+Message-ID: <20100406014338.752ab0a3@daedalus.pq.iki.fi>
 References: <4BBA4F3C.9070606@epsm.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
 In-Reply-To: <4BBA4F3C.9070606-GqzDj6/B2j8@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -22,43 +21,55 @@ To: Didier Spaier <didier.spaier-GqzDj6/B2j8@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Apr 05, 2010 at 10:59:40PM +0200, Didier Spaier wrote:
-> Hi all,
-> 
-> new to this list ;)
-> 
+On Mon, 05 Apr 2010 22:59:40 +0200
+Didier Spaier <didier.spaier-GqzDj6/B2j8@public.gmane.org> wrote:
+
 > I have a Lenovo Thinkpad T61. lspci|grep VGA says:
-> 01:00.0 VGA compatible controller: nVidia Corporation Quadro NVS 140M (rev a1)
+> 01:00.0 VGA compatible controller: nVidia Corporation Quadro NVS
+> 140M (rev a1)
 > 
 > I have Slacware64-13.0 and Slackware64-current installed.
 > 
 > Nouveau is modularized in all my kernels for -current.
 > 
-> A problem arise even if I don't want to use nouveau under X: unless nouveau be blacklisted in /etc/modprobe.d/blacklist.conf at startup,
-> - when using one of the VESA modes at startup after a while screen goes blank and I get a warning in syslog e.g:
->    Apr  2 18:58:56 darkstar kernel: fb: conflicting fb hw usage nouveaufb vs VESA VGA - removing generic driver,
+> A problem arise even if I don't want to use nouveau under X:
+> unless nouveau be blacklisted in /etc/modprobe.d/blacklist.conf
+> at startup,
+> - when using one of the VESA modes at startup after a while
+> screen goes blank and I get a warning in syslog e.g: Apr  2
+> 18:58:56 darkstar kernel: fb: conflicting fb hw usage nouveaufb
+> vs VESA VGA - removing generic driver,
 
-It should work. Please provide full kernel log.
+This message is the expected behaviour. It is not an error.
+It means the vesafb hand-over is working, or at least it
+is attempted.
+
+At what stage does the screen go blank? At X startup?
 
 > - no problem when using a VGA mode (text only),
-
-But Nouveau framebuffer activates without errors, right?
-
 > 
-> this disregarding which X driver I use afterwards (I always start in console mode).
-> 
+> this disregarding which X driver I use afterwards (I always start
+> in console mode).
+
+Are you trying to use nouveau.ko in kernel, and a non-Nouveau
+X driver at the same time? That cannot work.
+
+If nouveau.ko is loaded, the only option for X is to use
+the nouveau driver (or perhaps fbdev). Any other driver,
+e.g. "vesa" or "nv", will lead to trouble.
+
+What kind of setup are you trying to run in this regard?
+
 > But according to this page:
 > http://nouveau.freedesktop.org/wiki/KernelModeSetting
 > I thought nouveaufb shouldn't conflict with vesafb ? Am I wrong ?
-> 
-> I tried with modules shipped in vanilla 2.6.33.1 as well as the last Nouveau kernel repository pulled from git: no luck in both cases.
-> 
-> I know there are easy workarounds: either use "VGA=ask", "VGA=ext" or "VGA=normal" as a lilo.conf option or blacklist nouveau -- which doesn't hurt anyway as nouveau will be loaded at X startup anyhow.
-> 
-> But this is still is an annoyance for newcomers as when they are trapped all they can do if they have a VESA mode in lilo.conf is launch another system or live CD/DVD and either edit lilo.conf and run lilo again or edit blacklist.conf to blacklist nouveau.
-> 
-> But still, before kindly requesting Patrick Volkerding to blacklist nouveau in -current for the time being, I wanted to now of another way to go if possible.
-> 
-> Thanks in advance for your answers,
-> 
-> Didier
+
+The hand-over should work: when nouveaufb initialises, vesafb
+gets automatically deactivated.
+
+In any case, complete kernel and X logs will help to diagnose
+your situation.
+
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
