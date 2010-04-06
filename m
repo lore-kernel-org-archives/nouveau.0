@@ -1,13 +1,13 @@
 From: Didier Spaier <didier.spaier-GqzDj6/B2j8@public.gmane.org>
 Subject: Re: Blank screen at startup (conflict with VESA VGA)
-Date: Tue, 06 Apr 2010 10:47:20 +0200
-Message-ID: <4BBAF518.1060306@epsm.fr>
-References: <4BBA4F3C.9070606@epsm.fr>
-	<20100406014338.752ab0a3@daedalus.pq.iki.fi>
+Date: Tue, 06 Apr 2010 10:48:49 +0200
+Message-ID: <4BBAF571.8050200@epsm.fr>
+References: <4BBA4F3C.9070606@epsm.fr> <20100405214559.GA4230@joi.lan>
+	<4BBAF07E.9070005@epsm.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="------------000305000600070102050006"
+Content-Type: multipart/mixed; boundary="------------010203080002080500030006"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100406014338.752ab0a3-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
+In-Reply-To: <4BBAF07E.9070005-GqzDj6/B2j8@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,87 +17,105 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 This is a multi-part message in MIME format.
---------------000305000600070102050006
+--------------010203080002080500030006
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for your answer.
+With the logs, this time. Sorry about that.
 
-I tried with a 2.6.32.2 kernel (nouveau works under X).
-
-Pekka Paalanen wrote:
-> On Mon, 05 Apr 2010 22:59:40 +0200
-> Didier Spaier <didier.spaier-GqzDj6/B2j8@public.gmane.org> wrote:
-> 
->> I have a Lenovo Thinkpad T61. lspci|grep VGA says:
->> 01:00.0 VGA compatible controller: nVidia Corporation Quadro NVS
->> 140M (rev a1)
+Didier Spaier wrote:
+> Thansk for your answer, kernel logs are attached.
+>=20
+> Please note that this time I tried with a 2.6.32.2 kernel (nouveau work=
+s=20
+> under X).
+>=20
+> Marcin Slusarz wrote:
+>> On Mon, Apr 05, 2010 at 10:59:40PM +0200, Didier Spaier wrote:
+>>> Hi all,
+>>>
+>>> new to this list ;)
+>>>
+>>> I have a Lenovo Thinkpad T61. lspci|grep VGA says:
+>>> 01:00.0 VGA compatible controller: nVidia Corporation Quadro NVS 140M=
+=20
+>>> (rev a1)
+>>>
+>>> I have Slacware64-13.0 and Slackware64-current installed.
+>>>
+>>> Nouveau is modularized in all my kernels for -current.
+>>>
+>>> A problem arise even if I don't want to use nouveau under X: unless=20
+>>> nouveau be blacklisted in /etc/modprobe.d/blacklist.conf at startup,
+>>> - when using one of the VESA modes at startup after a while screen=20
+>>> goes blank and I get a warning in syslog e.g:
+>>>    Apr  2 18:58:56 darkstar kernel: fb: conflicting fb hw usage=20
+>>> nouveaufb vs VESA VGA - removing generic driver,
 >>
->> I have Slacware64-13.0 and Slackware64-current installed.
+>> It should work. Please provide full kernel log.
+>=20
+> Kernel logs are attached for both cases. Unfortunately I don't see many=
+=20
+> differences ??
+>=20
 >>
->> Nouveau is modularized in all my kernels for -current.
+>>> - no problem when using a VGA mode (text only),
 >>
->> A problem arise even if I don't want to use nouveau under X:
->> unless nouveau be blacklisted in /etc/modprobe.d/blacklist.conf
->> at startup,
->> - when using one of the VESA modes at startup after a while
->> screen goes blank and I get a warning in syslog e.g: Apr  2
->> 18:58:56 darkstar kernel: fb: conflicting fb hw usage nouveaufb
->> vs VESA VGA - removing generic driver,
-> 
-> This message is the expected behaviour. It is not an error.
-> It means the vesafb hand-over is working, or at least it
-> is attempted.
-> 
-> At what stage does the screen go blank? At X startup?
-
-Nope. I start the system in console mode and get the blank screen before bash prompt, when it tries to switch from VESA to nouveaufb.
-
-> 
->> - no problem when using a VGA mode (text only),
+>> But Nouveau framebuffer activates without errors, right?
 >>
->> this disregarding which X driver I use afterwards (I always start
->> in console mode).
-> 
-> Are you trying to use nouveau.ko in kernel, and a non-Nouveau
-> X driver at the same time? That cannot work.
-> 
-> If nouveau.ko is loaded, the only option for X is to use
-> the nouveau driver (or perhaps fbdev). Any other driver,
-> e.g. "vesa" or "nv", will lead to trouble.
-> 
-> What kind of setup are you trying to run in this regard?
-> 
-I know that using another X driver than nouveau whilst nouveau kernel module is loaded shouldn't and doesn't work, I've tried that a couple of times ;)
+> Yes, switching to nouveau framebuffer OK in the latter case but not in=20
+> the former
+>=20
+>>> this disregarding which X driver I use afterwards (I always start in=20
+>>> console mode).
+>>>
+>>> But according to this page:
+>>> http://nouveau.freedesktop.org/wiki/KernelModeSetting
+>>> I thought nouveaufb shouldn't conflict with vesafb ? Am I wrong ?
+>>>
+>>> I tried with modules shipped in vanilla 2.6.33.1 as well as the last=20
+>>> Nouveau kernel repository pulled from git: no luck in both cases.
+>>>
+>>> I know there are easy workarounds: either use "VGA=3Dask", "VGA=3Dext=
+" or=20
+>>> "VGA=3Dnormal" as a lilo.conf option or blacklist nouveau -- which=20
+>>> doesn't hurt anyway as nouveau will be loaded at X startup anyhow.
+>>>
+>>> But this is still is an annoyance for newcomers as when they are=20
+>>> trapped all they can do if they have a VESA mode in lilo.conf is=20
+>>> launch another system or live CD/DVD and either edit lilo.conf and=20
+>>> run lilo again or edit blacklist.conf to blacklist nouveau.
+>>>
+>>> But still, before kindly requesting Patrick Volkerding to blacklist=20
+>>> nouveau in -current for the time being, I wanted to now of another=20
+>>> way to go if possible.
+>>>
+>>> Thanks in advance for your answers,
+>>>
+>>> Didier
+>>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>=20
 
-But here the screen, goes blank *before* i can even type "startx" if I start if VESA mode.
 
-Iff I can see the screen on the console I have no problem to use nouveau under X
+--=20
+Didier Spaier
+G=E9rant
+EPSM
+33 avenue Bosquet
+75007 PARIS
+T. 01 45 51 03 26 | M. 06 64 98 45 51
+didier.spaier-GqzDj6/B2j8@public.gmane.org | http://epsm.fr
 
-Whenever I start Linux with lilo, having lilo option "VGA=ask" in lilo.conf:
--> If I choose a VESA mode I get a blank screen at time of (automatically) switching to nouveaufb before bash prompt.
--> If I choose a VGA mode switching occurs with no problem ("old" screen in 80x25 is erased but I can see the new messages in 1680x1050).
-
->> But according to this page:
->> http://nouveau.freedesktop.org/wiki/KernelModeSetting
->> I thought nouveaufb shouldn't conflict with vesafb ? Am I wrong ?
-> 
-> The hand-over should work: when nouveaufb initialises, vesafb
-> gets automatically deactivated.
-> 
-Yes but it seems than if vesafb was loaded nouveaufb doesn't work well at first
-
-> In any case, complete kernel and X logs will help to diagnose
-> your situation.
-> 
-Logs are appended (only kernel logs, not X logs as I have no problem to use nouveau under X provided I can see the screen to type "startx" ;)
-
---------------000305000600070102050006
+--------------010203080002080500030006
 Content-Type: text/plain;
  name="messages"
 Content-Transfer-Encoding: 7bit
@@ -1088,7 +1106,7 @@ Apr  6 09:59:13 machine acpid: exiting
 Apr  6 09:59:14 machine exiting on signal 15
 
 
---------------000305000600070102050006
+--------------010203080002080500030006
 Content-Type: text/plain;
  name="syslog"
 Content-Transfer-Encoding: 7bit
@@ -1160,7 +1178,7 @@ Apr  6 09:05:14 machine kernel: VBoxDrv: dbg - g_abExecMemory=ffffffffa056a500
 Apr  6 09:05:14 machine kernel: vboxdrv: fAsync=1 offMin=0x61265 offMax=0x61265
 Apr  6 09:05:15 machine kernel: CE: hpet increasing min_delta_ns to 15000 nsec
 
---------------000305000600070102050006
+--------------010203080002080500030006
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1171,4 +1189,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---------------000305000600070102050006--
+--------------010203080002080500030006--
