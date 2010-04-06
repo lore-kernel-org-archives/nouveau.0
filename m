@@ -1,10 +1,13 @@
-From: Rico Tzschichholz <ricotz-zqRNUXuvxA0b1SvskN2V4Q@public.gmane.org>
-Subject: Patch to fix "make dist"
-Date: Thu, 01 Apr 2010 20:44:46 +0200
-Message-ID: <4BB4E99E.3090908@t-online.de>
+From: Didier Spaier <didier.spaier-GqzDj6/B2j8@public.gmane.org>
+Subject: Re: Blank screen at startup (conflict with VESA VGA)
+Date: Tue, 06 Apr 2010 10:27:42 +0200
+Message-ID: <4BBAF07E.9070005@epsm.fr>
+References: <4BBA4F3C.9070606@epsm.fr> <20100405214559.GA4230@joi.lan>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1981527828=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20100405214559.GA4230-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -12,121 +15,59 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 2440 and 3156)
---===============1981527828==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------enig466DDA44B0C93ECE46F18068"
+Thansk for your answer, kernel logs are attached.
 
-This is an OpenPGP/MIME signed message (RFC 2440 and 3156)
---------------enig466DDA44B0C93ECE46F18068
-Content-Type: multipart/mixed;
- boundary="------------060009090004050502000603"
+Please note that this time I tried with a 2.6.32.2 kernel (nouveau works under X).
 
-This is a multi-part message in MIME format.
---------------060009090004050502000603
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Marcin Slusarz wrote:
+> On Mon, Apr 05, 2010 at 10:59:40PM +0200, Didier Spaier wrote:
+>> Hi all,
+>>
+>> new to this list ;)
+>>
+>> I have a Lenovo Thinkpad T61. lspci|grep VGA says:
+>> 01:00.0 VGA compatible controller: nVidia Corporation Quadro NVS 140M (rev a1)
+>>
+>> I have Slacware64-13.0 and Slackware64-current installed.
+>>
+>> Nouveau is modularized in all my kernels for -current.
+>>
+>> A problem arise even if I don't want to use nouveau under X: unless nouveau be blacklisted in /etc/modprobe.d/blacklist.conf at startup,
+>> - when using one of the VESA modes at startup after a while screen goes blank and I get a warning in syslog e.g:
+>>    Apr  2 18:58:56 darkstar kernel: fb: conflicting fb hw usage nouveaufb vs VESA VGA - removing generic driver,
+> 
+> It should work. Please provide full kernel log.
 
-A patch is attached to fix this problem.
+Kernel logs are attached for both cases. Unfortunately I don't see many differences ??
 
-It removes the deprecated reference to README.NV1 and properly adds
-src/nv_rop.h
+> 
+>> - no problem when using a VGA mode (text only),
+> 
+> But Nouveau framebuffer activates without errors, right?
+> 
+Yes, switching to nouveau framebuffer OK in the latter case but not in the former
 
-Thanks,
-Rico Tzschichholz
-
---------------060009090004050502000603
-Content-Type: text/x-patch;
- name="0001-Fix-make-dist.patch"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
- filename="0001-Fix-make-dist.patch"
-
-=46rom 21f6c1bbb8b566fd75e3687c290cb89ae1cdb8cb Mon Sep 17 00:00:00 2001
-From: Rico Tzschichholz <ricotz-zqRNUXuvxA0b1SvskN2V4Q@public.gmane.org>
-Date: Thu, 1 Apr 2010 20:39:23 +0200
-Subject: [PATCH] Fix "make dist"
- - remove README.NV1 reference from Makefile.am
- - add nv_rop.h to src/Makefile.am
-
----
- Makefile.am     |    2 +-
- src/Makefile.am |    1 +
- 2 files changed, 2 insertions(+), 1 deletions(-)
-
-diff --git a/Makefile.am b/Makefile.am
-index 4d17fd0..011c574 100644
---- a/Makefile.am
-+++ b/Makefile.am
-@@ -21,7 +21,7 @@
- AUTOMAKE_OPTIONS =3D foreign
- SUBDIRS =3D src man
-=20
--EXTRA_DIST =3D README.NV1 ChangeLog
-+EXTRA_DIST =3D ChangeLog
-=20
- # Always regenerate the changelog
- CLEANFILES =3D ChangeLog
-diff --git a/src/Makefile.am b/src/Makefile.am
-index b5f7c86..f3c2c96 100644
---- a/src/Makefile.am
-+++ b/src/Makefile.am
-@@ -39,6 +39,7 @@ nouveau_drv_la_SOURCES =3D \
- 			 nv_driver.c \
- 			 nv_include.h \
- 			 nv_proto.h \
-+			 nv_rop.h \
- 			 nv_shadow.c \
- 			 nv_type.h \
- 			 nv04_exa.c \
---=20
-1.7.0.1
-
-
---------------060009090004050502000603--
-
---------------enig466DDA44B0C93ECE46F18068
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
-
-iQIcBAEBCAAGBQJLtOmeAAoJEF3s26iScOcjpyAP/i8s9ARmm5DWklA9nsR0J4m/
-RItbwXbHT934tW7JL3I8/LM4IVVQ1TuDs6LunJFhGgGdD75u3aXkqnGL/Ugedls0
-Nxnbw9PQiOy4TSPDj9QXPNUnaUOjq7iA4NMjaL1kfox2H+irdMlzycQBY/o0/zGz
-d6Ue91MRYvrj1Jj4SsJn09mXKVFnhBrfjE5WinLM09qPRk1S/+SR6L1eqW5VoiuO
-eHBZXYLF4tBGWdffRsXwqJPQ8AqesdyxFvWkCRcSIljDhuSph2URCe7lXhr0sV4x
-vfKLX2R5DXdFqccYUVN2hLUr4T6hVfv2ZiRMqZOcLyIpbRGpwc6FSOGoc6z0lsf4
-HKskBlLFGpxxtTvV5d8Urw2dUVrBfZZzCPjTmShirYWzxwNiluCd/D2K3kZMM/LC
-oxIXgvk/TOWu0+L3Xz2Jqh1XAEaJNIRRrJsKDf9gdqWV20kA+idkAq9r2wxwVb7c
-VsDufSsx+AmuK6XFomEg4mdmezEK6mbC3pP0Jdn9XqSGTJ7DfXnLiuw+q2LnX/U2
-x09ceF1ZJrFKiXWnxv2+t1GZybYFVcmOxHphpywY1yiNPpud+dm2oBSww1HygPaB
-cqxXSbw6sgbmNRYRjFn29pukUZe0uFzvXe43Q/GACSFopb7ivbP8pBOcYSKoSB9S
-HlfqVXi1/oDwhEBg20Sj
-=OjYU
------END PGP SIGNATURE-----
-
---------------enig466DDA44B0C93ECE46F18068--
-
---===============1981527828==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1981527828==--
+>> this disregarding which X driver I use afterwards (I always start in console mode).
+>>
+>> But according to this page:
+>> http://nouveau.freedesktop.org/wiki/KernelModeSetting
+>> I thought nouveaufb shouldn't conflict with vesafb ? Am I wrong ?
+>>
+>> I tried with modules shipped in vanilla 2.6.33.1 as well as the last Nouveau kernel repository pulled from git: no luck in both cases.
+>>
+>> I know there are easy workarounds: either use "VGA=ask", "VGA=ext" or "VGA=normal" as a lilo.conf option or blacklist nouveau -- which doesn't hurt anyway as nouveau will be loaded at X startup anyhow.
+>>
+>> But this is still is an annoyance for newcomers as when they are trapped all they can do if they have a VESA mode in lilo.conf is launch another system or live CD/DVD and either edit lilo.conf and run lilo again or edit blacklist.conf to blacklist nouveau.
+>>
+>> But still, before kindly requesting Patrick Volkerding to blacklist nouveau in -current for the time being, I wanted to now of another way to go if possible.
+>>
+>> Thanks in advance for your answers,
+>>
+>> Didier
+> 
