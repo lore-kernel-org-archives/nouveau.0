@@ -1,13 +1,13 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: Patch to fix "make dist"
-Date: Tue, 06 Apr 2010 13:53:33 +0200
-Message-ID: <878w903igy.fsf@riseup.net>
-References: <4BB4E99E.3090908@t-online.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27063] Nouveau does DMA to/from unexpected address
+Date: Tue,  6 Apr 2010 08:26:19 -0700 (PDT)
+Message-ID: <20100406152619.9379C13005D@annarchy.freedesktop.org>
+References: <bug-27063-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0050140297=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4BB4E99E.3090908-zqRNUXuvxA0b1SvskN2V4Q@public.gmane.org> (Rico Tzschichholz's message of
-	"Thu, 01 Apr 2010 20:44:46 +0200")
+In-Reply-To: <bug-27063-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,64 +15,21 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Rico Tzschichholz <ricotz-zqRNUXuvxA0b1SvskN2V4Q@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0050140297==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha1; protocol="application/pgp-signature"
+https://bugs.freedesktop.org/show_bug.cgi?id=27063
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+--- Comment #1 from Paul Crook <paul_crook-ez+xnXmNv0XR7s880joybQ@public.gmane.org> 2010-04-06 08:26:19 PDT ---
+If its of any help I have a 64 bit system (based on Fedora 12) with exactly
+this problem using git versions of the kernel (2.6.34-rc2) and nouveau from
+freedesktop (obtained today).
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+While the system is idle I'm willing to try stuff out.
 
-Rico Tzschichholz <ricotz-zqRNUXuvxA0b1SvskN2V4Q@public.gmane.org> writes:
-
-> A patch is attached to fix this problem.
->
-> It removes the deprecated reference to README.NV1 and properly adds
-> src/nv_rop.h
->
-Thanks, pushed.
-
-> Thanks,
-> Rico Tzschichholz
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-
-iEYEARECAAYFAku7IL0ACgkQ196Zy2qEI5dscQCeKxYP7L1otsj6eP02LvK8syK4
-E5oAoNcCf2AhFUMeNAAaiKLQGjn2bp89
-=jq/X
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0050140297==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0050140297==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
