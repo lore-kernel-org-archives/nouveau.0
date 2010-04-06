@@ -1,15 +1,12 @@
-From: Didier Spaier <didier.spaier-GqzDj6/B2j8@public.gmane.org>
-Subject: Re: Blank screen at startup (conflict with VESA VGA)
-Date: Tue, 06 Apr 2010 21:29:18 +0200
-Message-ID: <4BBB8B8E.9050004@epsm.fr>
-References: <4BBA4F3C.9070606@epsm.fr> <20100405214559.GA4230@joi.lan>
-	<4BBAF07E.9070005@epsm.fr> <20100406172019.GA2744@joi.lan>
-	<4BBB80B8.5000806@epsm.fr> <20100406192109.GA2943@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27501] New: nVidia 9600M GT (Macbook Pro current
+ model) is unable to boot
+Date: Tue,  6 Apr 2010 15:43:45 -0700 (PDT)
+Message-ID: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100406192109.GA2943-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,35 +16,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Marcin Slusarz wrote:
-> On Tue, Apr 06, 2010 at 08:43:04PM +0200, Didier Spaier wrote:
->> Marcin Slusarz wrote:
->>> On Tue, Apr 06, 2010 at 10:27:42AM +0200, Didier Spaier wrote:
->>>> Thansk for your answer, kernel logs are attached.
->>>>
->>> Can you check attached patch? It's a quick hack to kick vesa before
->>> we initialize the hardware.
->>>
->>> Marcin
->>>
->> I tried it on a vanilla Linus' 2.6.33.1 kernel and on a recent 2.6 Nouveau kernel pulled from git.
->>
->> In both case switch from VESA to nouveaufb works well during startup, thanks ;)
-> 
-> Great!
-> 
->> Will this patch be applied to mainstream ?
-> 
-> Not exactly this one. I'll cook a proper patch in a few days and ping you for
-> final testing, ok?
->
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
-Of course OK!
+           Summary: nVidia 9600M GT (Macbook Pro current model) is unable
+                    to boot
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: cdotv.mail-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Thanks again,
 
-Didier
+Hello, I like to raise attention on this very important bug over here:
+
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/546393
+
+The Ubuntu Lucid Beta 1 onwards is unable to boot into the desktop because the
+nouveau driver has a "pramin flush timeout" (check the video in post #12).
+
+Since Ubuntu is the most popular Linux distribution, this bug is very
+important, since all MacBook Pro 5,x Models are unable to boot into the desktop
+because nouveau is unable to load.
+
+Further testing found out that adding "nouveau.noaccel=1 blacklist=vga16fb" as
+kernel options helps booting the system.
+
+Maybe you could fix this bug and enable nouveau.noaccel=1 as a standard if the
+9600M GT nVidia card is detected.
+
+Any other fix would be nice too, this is very important.
+
+Thanks.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
