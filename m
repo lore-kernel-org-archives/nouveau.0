@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27064] Nouveau fails to start X. This is a Nvidia
  G210m, the laptop is an asus UL50vt
-Date: Thu,  8 Apr 2010 00:48:37 -0700 (PDT)
-Message-ID: <20100408074837.8EDBD13005E@annarchy.freedesktop.org>
+Date: Thu,  8 Apr 2010 01:09:24 -0700 (PDT)
+Message-ID: <20100408080924.DC0A513005E@annarchy.freedesktop.org>
 References: <bug-27064-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27064
 
---- Comment #3 from Giacomo Bagnoli <gbagnoli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-08 00:48:34 PDT ---
-Created an attachment (id=34801)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=34801)
-full dmesg output
+--- Comment #4 from Andrea Tacconi <tacconet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org> 2010-04-08 01:09:24 PDT ---
+Try to disable nvidiafb.
+
+http://nouveau.freedesktop.org/wiki/KernelModeSetting
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
