@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26733] Full-screen XV causes graphics lockup
-Date: Thu,  8 Apr 2010 11:05:16 -0700 (PDT)
-Message-ID: <20100408180516.1EA0C130011@annarchy.freedesktop.org>
+Date: Thu,  8 Apr 2010 11:11:25 -0700 (PDT)
+Message-ID: <20100408181125.15478130011@annarchy.freedesktop.org>
 References: <bug-26733-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26733
 
---- Comment #9 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-08 11:05:15 PDT ---
-Well it's still happening for me, once even without X running at all.
+--- Comment #10 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-08 11:11:24 PDT ---
+Can you provide full dmesg?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
