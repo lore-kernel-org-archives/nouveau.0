@@ -1,15 +1,17 @@
-From: Marcin =?utf-8?q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+From: "Shinpei KATO" <shinpei-a3aLqY3FAeqkRP3n4FtbsiGn5s73+xxf@public.gmane.org>
 Subject: Re: SERIALIZE command
-Date: Fri, 9 Apr 2010 21:16:33 +0000
-Message-ID: <201004092116.33489.koriakin@0x04.net>
+Date: Sat, 10 Apr 2010 07:21:25 +0900
+Message-ID: <000001cad833$005ae8d0$0110ba70$@is.s.u-tokyo.ac.jp>
 References: <000c01cad7f4$e7d0e6e0$b772b4a0$@is.s.u-tokyo.ac.jp>
 	<201004091605.34175.koriakin@0x04.net>
 	<000401cad812$e33e6ad0$a9bb4070$@is.s.u-tokyo.ac.jp>
+	<201004092116.33489.koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <000401cad812$e33e6ad0$a9bb4070$@is.s.u-tokyo.ac.jp>
+In-Reply-To: <201004092116.33489.koriakin-mP9o5jsk0RY@public.gmane.org>
+Content-Language: ja
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,45 +21,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Shinpei KATO <shinpei-a3aLqY3FAeqkRP3n4FtbsiGn5s73+xxf@public.gmane.org>
+To: =?utf-8?Q?'Marcin_Ko=C5=9Bcielnicki'?= <koriakin-mP9o5jsk0RY@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-PiBJIHRyaWVkIGluc2VydGluZyB0aGUgMHgxMTAgY29tbWFuZHMgd2l0aCBOdlN1Yk0yTUYgKHN1
-YmM9MCksIE12U3ViU3cKPiAoc3ViYz0xKSwgTnZTdWIyRCAoc3ViYz0yKSwgTnZTdWJHZGlSZWN0
-IChzdWJjPTMpLCBOdlN1YkltYWdlQmxpdCAoc3ViYz00KS4KPiBBcyBhIHJlc3VsdCwgSSBnb3Qg
-dGhlIFBGSUZPX0NBQ0hFX0VSUk9SIGludGVycnVwdHMsIHdpdGggcmVzcGVjdCB0byB0aG9zZQo+
-IHdpdGggTnZTdWJTdyBhbmQgTnZTdWJJbWFnZUJsaXQuIEkgYW0gcmVhbGx5IG5vdCBjZXJ0YWlu
-IHdoYXQKPiBQRklGT19DQUNIRV9FUlJPUiBpbmRpY2F0ZXMsIGJ1dCBzZWVtcyB0aGV5IGRvIG5v
-dCB3b3JrIGNvcnJlY3RseT8gV2VsbCwKPiB0aG9zZSB3aXRoIE52U3ViTTJNRiwgTnZTdWIyRCBh
-bmQgTnZTdWJHZGlSZWN0IGFyZSBzdGlsbCB2ZXJ5IGhlbHBmdWwKPiB0aG91Z2guCgpUaGlzIGlz
-IG5vdCBob3cgaXQgd29ya3MuCgpUaGUgY29tbWFuZCBjaGFubmVscyBvbiBudmlkaWEgaGFyZHdh
-cmUgYXJlIHNwbGl0IGludG8gOCBpZGVudGljYWwgc28tY2FsbGVkIApzdWJjaGFubmVscy4gVGhl
-IGNvbnN0cyB5b3UncmUgcmVmZXJpbmcgdG8gYXJlIHN1YmNoYW5uZWwgbnVtYmVycy4KCkhvd2V2
-ZXIsIHRoZXNlIHN1YmNoYW5uZWxzIGFyZW4ndCBjb25zdGFudGx5IGJvdW5kIHRvIHRoZSBzYW1l
-IG9iamVjdHMgLSB5b3UgCmJpbmQgYW4gb2JqZWN0IHRvIGEgc3ViY2hhbm5lbCBieSBleGVjdXRp
-bmcgY29tbWFuZCAwIHdpdGggZGF0YSBiZWluZyB0aGUgClJBTUhUIGhhbmRsZSBvZiBhbiBvYmpl
-Y3QuCgpUaGUgTnYqIGNvbnN0cyB5b3UncmUgcmVmZXJyaW5nIHRvIGFyZSBvbmx5IHZhbGlkIGlu
-IGtlcm5lbCwgYW5kIHJlcHJlc2VudCB0aGUgCmJpbmRpbmdzIGl0IHNldHMgdXAgYXQgc3RhcnQu
-IE1vc3Qgb2YgdGhlbSBkb24ndCBldmVuIGFwcGx5IHRvIE5WNTAuIEFsc28sIApOdlN1YlN3IGlz
-IGJvdW5kIHRvIGEgc29mdHdhcmUgb2JqZWN0LgoKUEZJRk9fQ0FDSEVfRVJST1IgaXMgYW4gZXJy
-b3IgdGhhdCBoYXBwZW5zIHdoZW4gdGhlIFBGSUZPIHB1bGxlciBlbmNvdW50ZXJzIApzb21lIHBy
-b2JsZW1zLiBPbmUgb2YgdGhlIGNhdXNlcyBpcyBzdWJtaXR0aW5nIGEgY29tbWFuZCBvbiBhIHN1
-YmNoYW5uZWwgd2hpY2ggCmlzbid0IGFjdHVhbGx5IGJvdW5kIHRvIGFueXRoaW5nLCB3aGljaCBp
-cyB3aGF0IGhhcHBlbnMgaGVyZS4KClNvZnR3YXJlIG9iamVjdHMgYXJlIGZha2Ugb2JqZWN0cyB3
-aGVyZSB5b3UgZG9uJ3QgYWN0dWFsbHkgYmluZCBhbnkgb2JqZWN0IHRvIAphIHN1YmNoYW5uZWws
-IGFuZCBpbnN0ZWFkIHRyYXAgdGhlIFBGSUZPX0NBQ0hFX0VSUk9SIHRoaXMgY2F1c2VzIG9uIGNv
-bW1hbmQgCnN1Ym1pc3Npb24gYW5kIGRvIHNvbWV0aGluZyBvbiB0aGUgaG9zdCBzaWRlLiBXZSB1
-c2UgdGhpcyBmb3Igc3luY2luZyB3aXRoIAp2Ymxhbmsgb24gbnY1MC4gVGhlc2UgZG9uJ3Qgc3Vw
-cG9ydCB0aGUgU0VSSUFMSVpFIGNvbW1hbmQgYmVjYXVzZSB0aGV5J3JlIG5vdCAKcmVhbCBvYmpl
-Y3RzLgoKQmFzaWNhbGx5LCB0aGVyZSBleGlzdCBvbmx5IDQgdHlwZXMgb2YgcmVhbCBvYmplY3Rz
-IHlvdSBjYW4gc3VibWl0IGNvbW1hbmRzIG9uIAphbmQgYmluZCB0byBzdWJjaGFuczoKCi0gbTJt
-ZiBbNTAzOV06IG1lbW9yeSBjb3BpZXMKLSBlbmcyZCBbNTAyZF06IDJkIGVuZ2luZQotIHRlc2xh
-IFs1MDk3LCA4Mjk3LCA4Mzk3LCA4NTk3XTogM2QgZW5naW5lCi0gdHVyaW5nIFs1MGMwLCA4NWMw
-XTogY29tcHV0YXRpb24gZW5naW5lOiBDVURBIGFuZCB0aGUgbGlrZQoKVmVyeSBsaWtlbHkgdGhl
-cmUgYXJlIG1vcmUgdHlwZXMsIHVzaW5nIGRpZmZlcmVudCBlbmdpbmUgdGhhbiBQR1JBUEgsIGJ1
-dCB3ZSAKZG9uJ3Qga25vdyBhbnl0aGluZyBhYm91dCB0aGVtIHlldC4gQXQgdGhlIHZlcnkgbGVh
-c3QgdGhlcmUgc2hvdWxkIGJlIHRoZSAKdmlkZW8gZGVjb2RpbmcgZW5naW5lLgoKTWFyY2luIEtv
-xZtjaWVsbmlja2kKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+Hi,
+
+Thanks again for your reply!
+
+> > I tried inserting the 0x110 commands with NvSubM2MF (subc=0), MvSubSw
+> > (subc=1), NvSub2D (subc=2), NvSubGdiRect (subc=3), NvSubImageBlit
+> (subc=4).
+> > As a result, I got the PFIFO_CACHE_ERROR interrupts, with respect to those
+> > with NvSubSw and NvSubImageBlit. I am really not certain what
+> > PFIFO_CACHE_ERROR indicates, but seems they do not work correctly? Well,
+> > those with NvSubM2MF, NvSub2D and NvSubGdiRect are still very helpful
+> > though.
+> 
+> This is not how it works.
+> 
+> The command channels on nvidia hardware are split into 8 identical so-called
+> subchannels. The consts you're refering to are subchannel numbers.
+> 
+> However, these subchannels aren't constantly bound to the same objects -
+> you
+> bind an object to a subchannel by executing command 0 with data being the
+> RAMHT handle of an object.
+> 
+> The Nv* consts you're referring to are only valid in kernel, and represent
+> the
+> bindings it sets up at start. Most of them don't even apply to NV50. Also,
+> NvSubSw is bound to a software object.
+
+Oops... I thought that each subchannel is always bound to the same object, and I was actually looking at only the kernel driver ;-)
+I have been trying to understand the behavior of GPU operations, using Gallium demo applications.
+To do so, I was dumping the commands sent from the user space (Nouveau/Gallium libdrm), by mapping the pushbuf to the kernel virtual address  in the kernel driver, to see what is going on.
+I was also inserting another command in the kernel driver, like in nouveau_gem_ioctl_pushbuf(), to see what happens. 
+Since several Gallium demo applications seem to use the subchannels in the same manner, I misunderstood that they are constantly bound to the same objects... 
+I should have looked into the libdrm code in detail. Now I see them, thanks.
+By the way, when I was dumping the commands, I sometimes saw 0x00000000 without any data.
+Do you have any idea what this value means? (just a NOP?)
+
+> PFIFO_CACHE_ERROR is an error that happens when the PFIFO puller encounters
+> some problems. One of the causes is submitting a command on a subchannel
+> which
+> isn't actually bound to anything, which is what happens here.
+> 
+> Software objects are fake objects where you don't actually bind any object
+> to
+> a subchannel, and instead trap the PFIFO_CACHE_ERROR this causes on command
+> submission and do something on the host side. We use this for syncing with
+> vblank on nv50. These don't support the SERIALIZE command because they're
+> not
+> real objects.
+
+So I was sending those commands with unbounded subchannels, that is why I got the PFIFO_CACHE_ERROR interrupts.
+
+> Basically, there exist only 4 types of real objects you can submit commands
+> on
+> and bind to subchans:
+> 
+> - m2mf [5039]: memory copies
+> - eng2d [502d]: 2d engine
+> - tesla [5097, 8297, 8397, 8597]: 3d engine
+> - turing [50c0, 85c0]: computation engine: CUDA and the like
+> 
+> Very likely there are more types, using different engine than PGRAPH, but
+> we
+> don't know anything about them yet. At the very least there should be the
+> video decoding engine.
+
+Got it.
+Regarding turing, you mean that Nouveau now supports CUDA?
+
+Thanks,
+- Shinpei
