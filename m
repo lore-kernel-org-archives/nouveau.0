@@ -1,12 +1,13 @@
-From: "Shinpei KATO" <shinpei-a3aLqY3FAeqkRP3n4FtbsiGn5s73+xxf@public.gmane.org>
-Subject: SERIALIZE command
-Date: Fri, 9 Apr 2010 23:56:54 +0900
-Message-ID: <000c01cad7f4$e7d0e6e0$b772b4a0$@is.s.u-tokyo.ac.jp>
+From: Marcin =?utf-8?q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: Re: SERIALIZE command
+Date: Fri, 9 Apr 2010 15:11:04 +0000
+Message-ID: <201004091511.04752.koriakin@0x04.net>
+References: <000c01cad7f4$e7d0e6e0$b772b4a0$@is.s.u-tokyo.ac.jp>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: ja
+In-Reply-To: <000c01cad7f4$e7d0e6e0$b772b4a0$@is.s.u-tokyo.ac.jp>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,28 +17,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Shinpei KATO <shinpei-a3aLqY3FAeqkRP3n4FtbsiGn5s73+xxf@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi all,
-
-I am trying to use the 0x110 SERIALIZE (or 0x108 WAIT_FOR_IDLE?) command to
-barrier the PGRAPH commands.
-Unfortunately, I do not find any examples either in nouveau or gallium.
-
-If it plays just a barrier, I guess it should work by something like (in
-case of m2mf):
-BEGIN_RING(chan, m2mf, 0x110, 1);
-OUT_RING(chan, 1);
-
-Otherwise, it may actually play to serialize some commands, then I would
-rather use as follows:
-BEGIN_RING(chan, m2mf, 0x110, 1);
-OUT_RING(chan, NUMBER_OF_FOLLOWING_COMMANDS);
-
-I have tried both approaches, and the application runs without any problems,
-but I am not sure if barriers have happened or not ;-)
-I would appreciate if anyone can tell me how to use the barrier command.
-
-Best,
-- Shinpei
+PiBJIGFtIHRyeWluZyB0byB1c2UgdGhlIDB4MTEwIFNFUklBTElaRSAob3IgMHgxMDggV0FJVF9G
+T1JfSURMRT8pIGNvbW1hbmQgdG8KPiBiYXJyaWVyIHRoZSBQR1JBUEggY29tbWFuZHMuCj4gVW5m
+b3J0dW5hdGVseSwgSSBkbyBub3QgZmluZCBhbnkgZXhhbXBsZXMgZWl0aGVyIGluIG5vdXZlYXUg
+b3IgZ2FsbGl1bS4KClRoZXJlIGFyZSBzb21lIGV4YW1wbGVzIGluIEREWCwgYnV0IHRoZXkgZG9u
+J3QgdXNlIHRoZSBzeW1ib2xpYyBuYW1lCgo+IElmIGl0IHBsYXlzIGp1c3QgYSBiYXJyaWVyLCBJ
+IGd1ZXNzIGl0IHNob3VsZCB3b3JrIGJ5IHNvbWV0aGluZyBsaWtlIChpbgo+IGNhc2Ugb2YgbTJt
+Zik6Cj4gQkVHSU5fUklORyhjaGFuLCBtMm1mLCAweDExMCwgMSk7Cj4gT1VUX1JJTkcoY2hhbiwg
+MSk7Cj4KPiBPdGhlcndpc2UsIGl0IG1heSBhY3R1YWxseSBwbGF5IHRvIHNlcmlhbGl6ZSBzb21l
+IGNvbW1hbmRzLCB0aGVuIEkgd291bGQKPiByYXRoZXIgdXNlIGFzIGZvbGxvd3M6Cj4gQkVHSU5f
+UklORyhjaGFuLCBtMm1mLCAweDExMCwgMSk7Cj4gT1VUX1JJTkcoY2hhbiwgTlVNQkVSX09GX0ZP
+TExPV0lOR19DT01NQU5EUyk7Cj4KPiBJIGhhdmUgdHJpZWQgYm90aCBhcHByb2FjaGVzLCBhbmQg
+dGhlIGFwcGxpY2F0aW9uIHJ1bnMgd2l0aG91dCBhbnkKPiBwcm9ibGVtcywgYnV0IEkgYW0gbm90
+IHN1cmUgaWYgYmFycmllcnMgaGF2ZSBoYXBwZW5lZCBvciBub3QgOy0pCj4gSSB3b3VsZCBhcHBy
+ZWNpYXRlIGlmIGFueW9uZSBjYW4gdGVsbCBtZSBob3cgdG8gdXNlIHRoZSBiYXJyaWVyIGNvbW1h
+bmQuCgpUaGUgV0FJVF9GT1JfSURMRS9TRVJJQUxJWkUgbWV0aG9kcyBbdGhleSdyZSByZWFsbHkg
+dGhlIHNhbWUsIEkganVzdCBkaWRuJ3QgCmtub3cgaXQgd2hlbiBJIG5hbWVkIHRoZSAweDExMCBv
+biBudjUwXSBpZ25vcmUgdGhlIGRhdGEgdmFsdWUuIFdoZW5ldmVyIAp0aGV5J3JlIG9uIHRoZSB0
+aXAgb2YgdGhlIGludGVybmFsIFBHUkFQSCBjb21tYW5kIEZJRk8sIHRoZXknbGwgc3RhbGwgYWxs
+IApwcm9jZXNzaW5nIHVudGlsIGFsbCBQR1JBUEggc3VidW5pdHMgYXJlIGlkbGVkLCBlZmZlY3Rp
+dmVseSBhY3RpbmcgYXMgYSBmdWxsIApiYXJyaWVyLgoKWWVzLCBTRVJJQUxJWkUgc2hvdWxkIGJl
+IHJlbmFtZWQgdG8gV0FJVF9GT1JfSURMRS4KCj4gQmVzdCwKPiAtIFNoaW5wZWkKCk1hcmNpbiBL
+b8WbY2llbG5pY2tpCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
