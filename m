@@ -1,35 +1,82 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27587] X (nouveau) crashes kernel on start
-Date: Sun, 11 Apr 2010 11:42:11 -0700 (PDT)
-Message-ID: <20100411184211.CA88B13005E@annarchy.freedesktop.org>
-References: <bug-27587-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied@redhat.com>
+Subject: Re: [PATCH 1/3] fbmem: fix aperture overlapping check
+Date: Mon, 12 Apr 2010 09:54:28 +1000
+Message-ID: <1271030068.3554.1.camel@localhost>
+References: <1270929334-3742-1-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1270929334-3742-1-git-send-email-marcin.slusarz@gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: marcin.slusarz@gmail.com
+Cc: LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org, linux-fbdev@vger.kernel.org, Peter Jones <pjones@redhat.com>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27587
+On Sat, 2010-04-10 at 21:55 +0200, marcin.slusarz@gmail.com wrote:
+> fb_do_apertures_overlap is returning wrong value when one aperture
+> is completely whithin the other. Add generic ranges_overlap macro
+> (probably kernel.h candidate) and use it here.
+> 
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+That doesn't seem right.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #34893|application/octet-stream    |text/plain
-          mime type|                            |
+The rules are:
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+the generic aperture has to be equal or smaller than the hw aperture,
+otherwise the generic driver will be trashing random hw pieces on the
+machine.
+
+So with that in mind, the check makes sure the generic aperture starts
+somewhere inside the hw aperture, which the test clearly gets right.
+
+Have you got a pointer to a machine where it fails?
+
+Dave.
+
+
+> Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Peter Jones <pjones@redhat.com>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> ---
+>  drivers/video/fbmem.c |   24 +++++++++++++++++-------
+>  1 files changed, 17 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/video/fbmem.c b/drivers/video/fbmem.c
+> index a15b44e..41f2e5e 100644
+> --- a/drivers/video/fbmem.c
+> +++ b/drivers/video/fbmem.c
+> @@ -1468,15 +1468,25 @@ static int fb_check_foreignness(struct fb_info *fi)
+>  	return 0;
+>  }
+>  
+> +/**
+> + * ranges_overlap - check whether two ranges overlap (their intersection is not empty)
+> + * @start1: start of the first range
+> + * @size1:  length of the first range
+> + * @start2: start of the second range
+> + * @size2:  length of the second range
+> + */
+> +#define ranges_overlap(start1, size1, start2, size2) ({	\
+> +	typeof(start1) __start1 = (start1);		\
+> +	typeof(size1)  __size1  = (size1);		\
+> +	typeof(start2) __start2 = (start2);		\
+> +	typeof(size2)  __size2  = (size2);		\
+> +	__start1 < __start2 + __size2 && __start1 + __size1 > __start2; \
+> +})
+> +
+>  static bool fb_do_apertures_overlap(struct fb_info *gen, struct fb_info *hw)
+>  {
+> -	/* is the generic aperture base the same as the HW one */
+> -	if (gen->aperture_base == hw->aperture_base)
+> -		return true;
+> -	/* is the generic aperture base inside the hw base->hw base+size */
+> -	if (gen->aperture_base > hw->aperture_base && gen->aperture_base <= hw->aperture_base + hw->aperture_size)
+> -		return true;
+> -	return false;
+> +	return ranges_overlap(gen->aperture_base, gen->aperture_size,
+> +				hw->aperture_base, hw->aperture_size);
+>  }
+>  /**
+>   *	register_framebuffer - registers a frame buffer device
