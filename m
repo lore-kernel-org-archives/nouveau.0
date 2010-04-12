@@ -1,8 +1,8 @@
 From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 Subject: [PATCH] Support writing out the pushbuffer in renouveau
-	trace format
-Date: Mon, 12 Apr 2010 17:46:23 +0200
-Message-ID: <1271087183-30350-1-git-send-email-luca@luca-barbieri.com>
+	trace format (v2)
+Date: Mon, 12 Apr 2010 18:20:52 +0200
+Message-ID: <1271089252-32389-1-git-send-email-luca@luca-barbieri.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -20,6 +20,10 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Changes in v2:
+- Unmap buffers we mapped, avoid assertion
+- Silence warnings
+
 This patch causes libdrm, when NOUVEAU_DUMP=1 is set, to write the
 pushbuffer to stdout instead of submitting it to the card.
 
@@ -29,8 +33,8 @@ trace.
 This is very useful for debugging and optimizing the Gallium driver.
 ---
  nouveau/nouveau_private.h |    2 ++
- nouveau/nouveau_pushbuf.c |   29 +++++++++++++++++++++++++----
- 2 files changed, 27 insertions(+), 4 deletions(-)
+ nouveau/nouveau_pushbuf.c |   35 +++++++++++++++++++++++++++++++----
+ 2 files changed, 33 insertions(+), 4 deletions(-)
 
 diff --git a/nouveau/nouveau_private.h b/nouveau/nouveau_private.h
 index 5a952f7..aa8a9c8 100644
@@ -46,7 +50,7 @@ index 5a952f7..aa8a9c8 100644
  	uint32_t cal_suffix1;
  	struct nouveau_bo *buffer[CALPB_BUFFERS];
 diff --git a/nouveau/nouveau_pushbuf.c b/nouveau/nouveau_pushbuf.c
-index 28b8018..8afdfdc 100644
+index 28b8018..ac8ca2f 100644
 --- a/nouveau/nouveau_pushbuf.c
 +++ b/nouveau/nouveau_pushbuf.c
 @@ -124,6 +124,9 @@ nouveau_pushbuf_init(struct nouveau_channel *chan)
@@ -59,7 +63,7 @@ index 28b8018..8afdfdc 100644
  	ret = nouveau_pushbuf_space(chan, 0);
  	if (ret)
  		return ret;
-@@ -235,6 +238,22 @@ nouveau_pushbuf_flush(struct nouveau_channel *chan, unsigned min)
+@@ -235,6 +238,28 @@ nouveau_pushbuf_flush(struct nouveau_channel *chan, unsigned min)
  	if (!nvpb->nr_push)
  		return 0;
  
@@ -67,22 +71,28 @@ index 28b8018..8afdfdc 100644
 +		unsigned i;
 +		for(i = 0; i < nvpb->nr_push; ++i) {
 +			uint32_t *p, *pend;
-+			struct nouveau_bo *bo = (struct nouveau_bo *)nvpb->buffers[nvpb->push[i].bo_index].user_priv;
++			struct nouveau_bo *bo = (struct nouveau_bo *)(unsigned long)nvpb->buffers[nvpb->push[i].bo_index].user_priv;
++			int mapped = 0;
 +			if(!bo->map)
++			{
++				mapped = 1;
 +				nouveau_bo_map(bo, NOUVEAU_BO_RD);
-+			p = bo->map + nvpb->push[i].offset;
-+			pend = (char*)p + nvpb->push[i].length;
++			}
++			p = (uint32_t*)((char*)bo->map + nvpb->push[i].offset);
++			pend = (uint32_t*)((char*)p + nvpb->push[i].length);
 +			printf("# pb #%i offset %i dwords %i\n", (int)i, (int)nvpb->push[i].offset, (int)(pend - p));
-+			for(; p != pend; ++p)
++			for(; p < pend; ++p)
 +				printf("%08x\n", *p);
 +			printf("# end\n");
++			if(mapped)
++				nouveau_bo_unmap(bo);
 +		}
 +	}
 +
  	req.channel = chan->id;
  	req.nr_push = nvpb->nr_push;
  	req.push = (uint64_t)(unsigned long)nvpb->push;
-@@ -245,10 +264,12 @@ nouveau_pushbuf_flush(struct nouveau_channel *chan, unsigned min)
+@@ -245,10 +270,12 @@ nouveau_pushbuf_flush(struct nouveau_channel *chan, unsigned min)
  	req.suffix0 = nvpb->cal_suffix0;
  	req.suffix1 = nvpb->cal_suffix1;
  
