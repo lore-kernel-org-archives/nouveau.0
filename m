@@ -1,15 +1,14 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/3] fbmem: fix aperture overlapping check
-Date: Tue, 13 Apr 2010 08:32:29 +1000
-Message-ID: <n2t21d7e9971004121532y394d2f29rf018d8f33769ba57@mail.gmail.com>
-References: <1270929334-3742-1-git-send-email-marcin.slusarz@gmail.com>
-	<1271030068.3554.1.camel@localhost> <20100412113438.GB2789@joi.lan>
-	<1271104101.5726.3.camel@t60prh> <20100412213327.GA4463@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27603] [nouveau] Celestia 1.6.0 crashes with
+ nv04_surface_copy_swizzle assertion
+Date: Mon, 12 Apr 2010 15:37:14 -0700 (PDT)
+Message-ID: <20100412223714.9753313005D@annarchy.freedesktop.org>
+References: <bug-27603-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100412213327.GA4463-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <bug-27603-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,27 +18,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: linux-fbdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Peter Jones <pjones-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
->
-> Ok, thanks for explanation. I'll drop this patch and rebase the others.
+https://bugs.freedesktop.org/show_bug.cgi?id=27603
 
-Cool,
+--- Comment #5 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2010-04-12 15:37:14 PDT ---
+(In reply to comment #4)
+> You have to go to the main page to find the git and http URL :
+> http://repo.or.cz/w/mesa/mesa-lb.git
+> (you can find this link on the first line of each git page.
+> 
+> Then try the stable branch.
 
->> You won't be able to make this work for vga16fb from what I can see
->> since it access 0xa000 directly, not via any of the defined apertures
->> that vesafb/offb use. vga16fb will need a different approach I suspect.
->
-> Yeah, there's an idea to claim 0xa0000 as an aperture of vga16fb and then
-> do the same in KMS driver but only if it's the primary card.
-> (You hinted to use SHADOW resource bit to check whether card is primary)
-> I think I'll try this approach soon.
+Thanks, I just tried that:
+% git clone git://repo.or.cz/mesa/mesa-lb.git/ mesa
+Initialized empty Git repository in /home/alex/src/opengl/mesa/.git/
+remote: Counting objects: 288777, done.
+remote: Compressing objects: 100% (52440/52440), done.
+remote: Total 288777 (delta 240300), reused 281772 (delta 234422)
+Receiving objects: 100% (288777/288777), 86.32 MiB | 745 KiB/s, done.
+Resolving deltas: 100% (240300/240300), done.
+warning: remote HEAD refers to nonexistent ref, unable to checkout.
 
-Yeah as long as we kick it off once, certain things like vga switcheroo change
-who the primary gpu is at runtime.
+I'm not sure why that's happening. 
 
-but it should be okay if both drivers have the kickoff paths.
+> If you are on 0.0.15, it won't be that easy, you probably should first upgrade
+> kernel module / libdrm / ddx to 0.0.16 (well, current git).
 
-Dave.
+I'm already on 0.0.16, not to worry. I made sure of that before starting with
+this!
+
+Thanks for your help so far!
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
