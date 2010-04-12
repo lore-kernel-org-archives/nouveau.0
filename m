@@ -1,12 +1,18 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH] Support writing out the pushbuffer in renouveau
-	trace format (v2)
-Date: Mon, 12 Apr 2010 18:20:52 +0200
-Message-ID: <1271089252-32389-1-git-send-email-luca@luca-barbieri.com>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: Blank screen at startup (conflict with VESA VGA)
+Date: Mon, 12 Apr 2010 20:04:58 +0300
+Message-ID: <20100412200458.0380a4fe@daedalus.pq.iki.fi>
+References: <4BBB8B8E.9050004@epsm.fr> <20100410220119.GA2949@joi.lan>
+	<4BC1DF11.3000603@epsm.fr> <20100411153919.GA12618@joi.lan>
+	<4BC1FA45.1050808@epsm.fr> <20100411170535.GA4016@joi.lan>
+	<4BC2231C.2060509@epsm.fr> <4BC2BA76.8040509@epsm.fr>
+	<20100412101413.GA2733@joi.lan> <4BC2F69E.6000905@epsm.fr>
+	<20100412105013.GA2789@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20100412105013.GA2789-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,98 +22,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Changes in v2:
-- Unmap buffers we mapped, avoid assertion
-- Silence warnings
+On Mon, 12 Apr 2010 12:50:13 +0200
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 
-This patch causes libdrm, when NOUVEAU_DUMP=1 is set, to write the
-pushbuffer to stdout instead of submitting it to the card.
+> I'm not aware of any trick to make both nv and nouveau working.
+> Maybe there should be a way to prevent nv (and vesa, but not
+> fbdev) from loading when KMS is in use?
 
-renouveau-parse can then be used to parse it and obtain a readable
-trace.
+Yeah, there was a brief discussion about that recently:
+http://people.freedesktop.org/~cbrill/dri-log/index.php?date=2010-03-21&channel=nouveau&show_html=true&highlight_names=&update=Update&date=2010-03-21
 
-This is very useful for debugging and optimizing the Gallium driver.
----
- nouveau/nouveau_private.h |    2 ++
- nouveau/nouveau_pushbuf.c |   35 +++++++++++++++++++++++++++++++----
- 2 files changed, 33 insertions(+), 4 deletions(-)
+I haven't heard anything about it since.
 
-diff --git a/nouveau/nouveau_private.h b/nouveau/nouveau_private.h
-index 5a952f7..aa8a9c8 100644
---- a/nouveau/nouveau_private.h
-+++ b/nouveau/nouveau_private.h
-@@ -40,6 +40,8 @@
- #define CALPB_BUFFERS 4
- #define CALPB_BUFSZ   16384
- struct nouveau_pushbuf_priv {
-+	char dump;
-+	char no_submit;
- 	uint32_t cal_suffix0;
- 	uint32_t cal_suffix1;
- 	struct nouveau_bo *buffer[CALPB_BUFFERS];
-diff --git a/nouveau/nouveau_pushbuf.c b/nouveau/nouveau_pushbuf.c
-index 28b8018..ac8ca2f 100644
---- a/nouveau/nouveau_pushbuf.c
-+++ b/nouveau/nouveau_pushbuf.c
-@@ -124,6 +124,9 @@ nouveau_pushbuf_init(struct nouveau_channel *chan)
- 	if (ret)
- 		return ret;
- 
-+	nvpb->dump = !!getenv("NOUVEAU_DUMP");
-+	nvpb->no_submit = !!getenv("NOUVEAU_NO_SUBMIT");
-+
- 	ret = nouveau_pushbuf_space(chan, 0);
- 	if (ret)
- 		return ret;
-@@ -235,6 +238,28 @@ nouveau_pushbuf_flush(struct nouveau_channel *chan, unsigned min)
- 	if (!nvpb->nr_push)
- 		return 0;
- 
-+	if(nvpb->dump) {
-+		unsigned i;
-+		for(i = 0; i < nvpb->nr_push; ++i) {
-+			uint32_t *p, *pend;
-+			struct nouveau_bo *bo = (struct nouveau_bo *)(unsigned long)nvpb->buffers[nvpb->push[i].bo_index].user_priv;
-+			int mapped = 0;
-+			if(!bo->map)
-+			{
-+				mapped = 1;
-+				nouveau_bo_map(bo, NOUVEAU_BO_RD);
-+			}
-+			p = (uint32_t*)((char*)bo->map + nvpb->push[i].offset);
-+			pend = (uint32_t*)((char*)p + nvpb->push[i].length);
-+			printf("# pb #%i offset %i dwords %i\n", (int)i, (int)nvpb->push[i].offset, (int)(pend - p));
-+			for(; p < pend; ++p)
-+				printf("%08x\n", *p);
-+			printf("# end\n");
-+			if(mapped)
-+				nouveau_bo_unmap(bo);
-+		}
-+	}
-+
- 	req.channel = chan->id;
- 	req.nr_push = nvpb->nr_push;
- 	req.push = (uint64_t)(unsigned long)nvpb->push;
-@@ -245,10 +270,12 @@ nouveau_pushbuf_flush(struct nouveau_channel *chan, unsigned min)
- 	req.suffix0 = nvpb->cal_suffix0;
- 	req.suffix1 = nvpb->cal_suffix1;
- 
--	do {
--		ret = drmCommandWriteRead(nvdev->fd, DRM_NOUVEAU_GEM_PUSHBUF,
--					  &req, sizeof(req));
--	} while (ret == -EAGAIN);
-+	if(!nvpb->no_submit) {
-+		do {
-+			ret = drmCommandWriteRead(nvdev->fd, DRM_NOUVEAU_GEM_PUSHBUF,
-+						  &req, sizeof(req));
-+		} while (ret == -EAGAIN);
-+	}
- 	nvpb->cal_suffix0 = req.suffix0;
- 	nvpb->cal_suffix1 = req.suffix1;
- 	nvdev->base.vm_vram_size = req.vram_available;
 -- 
-1.7.0.1.147.g6d84b
+Pekka Paalanen
+http://www.iki.fi/pq/
