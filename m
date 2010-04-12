@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27603] [nouveau] Celestia 1.6.0 crashes with
  nv04_surface_copy_swizzle assertion
-Date: Mon, 12 Apr 2010 15:37:14 -0700 (PDT)
-Message-ID: <20100412223714.9753313005D@annarchy.freedesktop.org>
+Date: Mon, 12 Apr 2010 15:59:23 -0700 (PDT)
+Message-ID: <20100412225923.9DBBB13005D@annarchy.freedesktop.org>
 References: <bug-27603-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,33 +23,27 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27603
 
---- Comment #5 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2010-04-12 15:37:14 PDT ---
-(In reply to comment #4)
-> You have to go to the main page to find the git and http URL :
-> http://repo.or.cz/w/mesa/mesa-lb.git
-> (you can find this link on the first line of each git page.
-> 
-> Then try the stable branch.
+--- Comment #6 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-12 15:59:23 PDT ---
+Just FYI, Luca made this repository before he got commit access to mesa. Since
+he got access a while ago, he will progressively merge all of this work, and
+that mesa-lb repo is pretty much dying now (though it should still work well).
 
-Thanks, I just tried that:
-% git clone git://repo.or.cz/mesa/mesa-lb.git/ mesa
-Initialized empty Git repository in /home/alex/src/opengl/mesa/.git/
-remote: Counting objects: 288777, done.
-remote: Compressing objects: 100% (52440/52440), done.
-remote: Total 288777 (delta 240300), reused 281772 (delta 234422)
-Receiving objects: 100% (288777/288777), 86.32 MiB | 745 KiB/s, done.
-Resolving deltas: 100% (240300/240300), done.
-warning: remote HEAD refers to nonexistent ref, unable to checkout.
+Luca already rebased the new 2d engine to mesa master locally, so I suppose it
+will be available soon in one way or another.
 
-I'm not sure why that's happening. 
+Anyway there are plenty of good reasons to first clone official mesa :
+http://cgit.freedesktop.org/mesa/mesa
 
-> If you are on 0.0.15, it won't be that easy, you probably should first upgrade
-> kernel module / libdrm / ddx to 0.0.16 (well, current git).
+$ git clone git://anongit.freedesktop.org/mesa/mesa
 
-I'm already on 0.0.16, not to worry. I made sure of that before starting with
-this!
+If you still want to try the new 2d right now, you can add mesa-lb as remote :
+$ cd mesa/
+$ git remote add lb git://repo.or.cz/mesa/mesa-lb.git/
+Then you can use lb/stable branch
 
-Thanks for your help so far!
+
+Otherwise there should be a very simple hack/workaround for that specific
+assertion.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
