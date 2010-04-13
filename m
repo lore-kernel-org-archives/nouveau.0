@@ -1,18 +1,12 @@
-From: Christopher James Halse Rogers <raof-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Blank screen at startup (conflict with VESA VGA)
-Date: Tue, 13 Apr 2010 11:15:28 +1000
-Message-ID: <1271121328.3035.2.camel@Spike>
-References: <4BBB8B8E.9050004@epsm.fr> <20100410220119.GA2949@joi.lan>
-	<4BC1DF11.3000603@epsm.fr> <20100411153919.GA12618@joi.lan>
-	<4BC1FA45.1050808@epsm.fr> <20100411170535.GA4016@joi.lan>
-	<4BC2231C.2060509@epsm.fr> <4BC2BA76.8040509@epsm.fr>
-	<20100412101413.GA2733@joi.lan> <4BC2F69E.6000905@epsm.fr>
-	<20100412105013.GA2789@joi.lan>
-	<20100412200458.0380a4fe@daedalus.pq.iki.fi>
+From: Renato Caldas <seventhguardian-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Spurious TV load detection on GeForce 6150 (no TV
+	connector)
+Date: Tue, 13 Apr 2010 09:45:29 +0100
+Message-ID: <w2x1caff7431004130145o51094dd7ve3d6a1cc5ff1c7f6@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1234770282=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100412200458.0380a4fe-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,70 +14,61 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: For testers of Fedora development releases <test-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hello,
 
---===============1234770282==
-Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature"; boundary="=-vlVLjhhKtxmNPIjTL+hd"
+Since I've updated to F13 I keep getting blank screens at "cold" boot
+with this card:
+00:05.0 VGA compatible controller: nVidia Corporation C51PV [GeForce
+6150] (rev a2)
 
+When I say "cold" boot I mean the first couple of times I turn on my
+computer in the morning. After a couple of reboots I get plymouth to
+show up, and then X11. This never happened with F12.
 
---=-vlVLjhhKtxmNPIjTL+hd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+After comparing the logs (--- bad, +++ good), I found these:
 
-On Mon, 2010-04-12 at 20:04 +0300, Pekka Paalanen wrote:
-> On Mon, 12 Apr 2010 12:50:13 +0200
-> Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->=20
-> > I'm not aware of any trick to make both nv and nouveau working.
-> > Maybe there should be a way to prevent nv (and vesa, but not
-> > fbdev) from loading when KMS is in use?
->=20
-> Yeah, there was a brief discussion about that recently:
-> http://people.freedesktop.org/~cbrill/dri-log/index.php?date=3D2010-03-21=
-&channel=3Dnouveau&show_html=3Dtrue&highlight_names=3D&update=3DUpdate&date=
-=3D2010-03-21
->=20
-> I haven't heard anything about it since.
->=20
+(...)
+ input: ImPS/2 Generic Wheel Mouse as
+/devices/platform/i8042/serio1/input/input4
+-[drm] nouveau 0000:00:05.0: Load detected on output B
+-[drm] nouveau 0000:00:05.0: allocated 1280x1024 fb: 0x49000, bo
+ffff880034ea0cd8
++[drm] nouveau 0000:00:05.0: allocated 1280x1024 fb: 0x49000, bo
+ffff880034ea8cd8
+ fbcon: nouveaufb (fb0) is primary device
+ [drm] nouveau 0000:00:05.0: Setting dpms mode 0 on vga encoder (output 0)
+ [drm] nouveau 0000:00:05.0: Output VGA-1 is running on CRTC 0 using output B
+-[drm] nouveau 0000:00:05.0: Setting dpms mode 0 on TV encoder (output 2)
+-[drm] nouveau 0000:00:05.0: Output TV-1 is running on CRTC 1 using output B
+-Console: switching to colour frame buffer device 90x36
++Console: switching to colour frame buffer device 160x64
+ fb0: nouveaufb frame buffer device
+(...)
+ [drm] nouveau 0000:00:05.0: Allocating FIFO number 1
+ [drm] nouveau 0000:00:05.0: nouveau_channel_alloc: initialised FIFO 1
+-[drm] nouveau 0000:00:05.0: Setting dpms mode 3 on TV encoder (output 2)
+ [drm] nouveau 0000:00:05.0: Allocating FIFO number 2
+ [drm] nouveau 0000:00:05.0: nouveau_channel_alloc: initialised FIFO 2
+(...)
 
-I wrote a patch for vesa on bugzilla[1] to do exactly that; a similar
-one for nv wouldn't be hard.
+Although this may seem like a hardware quirk (it may be, partially),
+the fact is that I don't have a TV output, only VGA and DVI. So I
+guess the driver shouldn't be looking for load on an nonexistent
+output. This other log line may be relevant (or not):
 
-[1] https://bugs.freedesktop.org/show_bug.cgi?id=3D26878
+Apr 13 08:35:30 localhost kernel: type=1400 audit(1271144119.830:4):
+avc:  denied  { mmap_zero } for  pid=462 comm="vbetool"
+scontext=system_u:system_r:vbetool_t:s0-s0:c0.c1023
+tcontext=system_u:system_r:vbetool_t:s0-s0:c0.c1023 tclass=memprotect
 
---=-vlVLjhhKtxmNPIjTL+hd
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+On the other hand, both CRTC's are using output B. I'm not that
+familiar with the hardware, and this may be completely wrong, but I
+assume an output can only be used by a single CRTC.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-
-iQEcBAABAgAGBQJLw8WjAAoJEBUHnPSAqAygKTwH/RqJb6kuK2Q6QvGzUyloJOlV
-LblxSKiAHXG9vUgmeLjZmVGXw1BkEdOj7XjOQL/tXZnwD60ftnid33yZGot3jFJs
-JTiAhyipgCCexAIuZ4+Ws7lSoSZY1tfMGlSDOE2/QQET/fJH/CdqWvWSiY00susq
-I/oh1Klbf1QngIISEdcFltYrcHJlIu4aZzfTU644q6Mps3+94N3EAruOnLlJi9DO
-30NaFJt8h1x5GGf+m4HLKINRhLtXbauzYLuJGLkoH5NMXY2hSe/5Gg4KDpanUElk
-PF0LWH6E13T5PcVunivBq4c4Qwk9aMjezJsIuEVwZbsi6NXbpKAu1MoYTw7qNLA=
-=zrCo
------END PGP SIGNATURE-----
-
---=-vlVLjhhKtxmNPIjTL+hd--
-
-
---===============1234770282==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1234770282==--
+Cheers,
+  Renato
