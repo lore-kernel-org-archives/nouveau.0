@@ -1,163 +1,31 @@
-From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: [PATCH] vga16fb, drm/nouveau: vga16fb->nouveau handoff
-Date: Tue, 13 Apr 2010 21:50:04 +0200
-Message-ID: <20100413195004.GA4402@joi.lan>
-References: <1270929334-3742-1-git-send-email-marcin.slusarz@gmail.com>
-	<1271030068.3554.1.camel@localhost> <20100412113438.GB2789@joi.lan>
-	<1271104101.5726.3.camel@t60prh> <20100412213327.GA4463@joi.lan>
+From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
+Subject: Re: [PATCH] Support writing out the pushbuffer in
+	renouveau trace format (v2)
+Date: Wed, 14 Apr 2010 04:02:53 +0200
+Message-ID: <j2kff13bc9a1004131902l3740039aqb971646747adc050@mail.gmail.com>
+References: <1271089252-32389-1-git-send-email-luca@luca-barbieri.com>
+	<20100413211935.1471edcb.mandin.patrice@orange.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20100412213327.GA4463@joi.lan>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Dave Airlie <airlied@redhat.com>
-Cc: linux-fbdev@vger.kernel.org, nouveau@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Peter Jones <pjones@redhat.com>, Andrew Morton <akpm@linux-foundation.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20100413211935.1471edcb.mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Apr 12, 2010 at 11:33:27PM +0200, Marcin Slusarz wrote:
-> > > > Have you got a pointer to a machine where it fails?
-> > > 
-> > > No, it failed with an artifical test while I was working on vga16fb handoff
-> > > (unfinished).
-> > 
-> > You won't be able to make this work for vga16fb from what I can see
-> > since it access 0xa000 directly, not via any of the defined apertures
-> > that vesafb/offb use. vga16fb will need a different approach I suspect.
-> 
-> Yeah, there's an idea to claim 0xa0000 as an aperture of vga16fb and then
-> do the same in KMS driver but only if it's the primary card. 
-> (You hinted to use SHADOW resource bit to check whether card is primary)
-> I think I'll try this approach soon.
+Simply putting the dump in the renouveau directory where a renouveau
+dump was taken previously seems to work for me (probably because we
+use the same handle values as nVidia?).
 
-Patch below works for me, but I couldn't test the case when nvidia card is secondary.
-
----
-From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Date: Tue, 13 Apr 2010 09:20:53 +0200
-Subject: [PATCH] vga16fb, drm/nouveau: vga16fb->nouveau handoff
-
-let vga16fb claim 0xA0000+0x10000 region as its aperture;
-nouveau does not use it, so we need to lie to kick vga16fb,
-but only if it's driving the primary card (by checking
-IORESOURCE_ROM_SHADOW resource flag)
-
-Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_state.c |   11 ++++++++++-
- drivers/video/vga16fb.c                 |   26 +++++++++++++++++++-------
- 2 files changed, 29 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c b/drivers/gpu/drm/nouveau/nouveau_state.c
-index cfa3239..a101861 100644
---- a/drivers/gpu/drm/nouveau/nouveau_state.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_state.c
-@@ -636,10 +636,12 @@ static void nouveau_OF_copy_vbios_to_ramin(struct drm_device *dev)
- #endif
- }
- 
-+#define VGA_FB_PHYS 0xA0000
-+#define VGA_FB_PHYS_LEN 65536
- static struct apertures_struct *nouveau_get_apertures(struct drm_device *dev)
- {
- 	struct pci_dev *pdev = dev->pdev;
--	struct apertures_struct *aper = alloc_apertures(3);
-+	struct apertures_struct *aper = alloc_apertures(4);
- 	if (!aper)
- 		return NULL;
- 
-@@ -658,6 +660,13 @@ static struct apertures_struct *nouveau_get_apertures(struct drm_device *dev)
- 		aper->ranges[aper->count].size = pci_resource_len(pdev, 3);
- 		aper->count++;
- 	}
-+	
-+	/* if it's the primary card, claim 0xa0000 as ours to kick vga16fb */
-+	if (pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW) {
-+		aper->ranges[aper->count].base = VGA_FB_PHYS;
-+		aper->ranges[aper->count].size = VGA_FB_PHYS_LEN;
-+		aper->count++;
-+	}
- 
- 	return aper;
- }
-diff --git a/drivers/video/vga16fb.c b/drivers/video/vga16fb.c
-index 76d8dae..45d7a3d 100644
---- a/drivers/video/vga16fb.c
-+++ b/drivers/video/vga16fb.c
-@@ -1264,10 +1264,19 @@ static void vga16fb_imageblit(struct fb_info *info, const struct fb_image *image
- 		vga_imageblit_color(info, image);
- }
- 
-+static void vga16fb_destroy(struct fb_info *info)
-+{
-+	iounmap(info->screen_base);
-+	fb_dealloc_cmap(&info->cmap);
-+	/* XXX unshare VGA regions */
-+	framebuffer_release(info);
-+}
-+
- static struct fb_ops vga16fb_ops = {
- 	.owner		= THIS_MODULE,
- 	.fb_open        = vga16fb_open,
- 	.fb_release     = vga16fb_release,
-+	.fb_destroy	= vga16fb_destroy,
- 	.fb_check_var	= vga16fb_check_var,
- 	.fb_set_par	= vga16fb_set_par,
- 	.fb_setcolreg 	= vga16fb_setcolreg,
-@@ -1307,6 +1316,11 @@ static int __devinit vga16fb_probe(struct platform_device *dev)
- 		ret = -ENOMEM;
- 		goto err_fb_alloc;
- 	}
-+	info->apertures = alloc_apertures(1);
-+	if (!info->apertures) {
-+		ret = -ENOMEM;
-+		goto err_ioremap;
-+	}
- 
- 	/* XXX share VGA_FB_PHYS and I/O region with vgacon and others */
- 	info->screen_base = (void __iomem *)VGA_MAP_MEM(VGA_FB_PHYS, 0);
-@@ -1336,7 +1350,7 @@ static int __devinit vga16fb_probe(struct platform_device *dev)
- 	info->fix = vga16fb_fix;
- 	/* supports rectangles with widths of multiples of 8 */
- 	info->pixmap.blit_x = 1 << 7 | 1 << 15 | 1 << 23 | 1 << 31;
--	info->flags = FBINFO_FLAG_DEFAULT |
-+	info->flags = FBINFO_FLAG_DEFAULT | FBINFO_MISC_FIRMWARE |
- 		FBINFO_HWACCEL_YPAN;
- 
- 	i = (info->var.bits_per_pixel == 8) ? 256 : 16;
-@@ -1355,6 +1369,9 @@ static int __devinit vga16fb_probe(struct platform_device *dev)
- 
- 	vga16fb_update_fix(info);
- 
-+	info->apertures->ranges[0].base = VGA_FB_PHYS;
-+	info->apertures->ranges[0].size = VGA_FB_PHYS_LEN;
-+
- 	if (register_framebuffer(info) < 0) {
- 		printk(KERN_ERR "vga16fb: unable to register framebuffer\n");
- 		ret = -EINVAL;
-@@ -1381,13 +1398,8 @@ static int vga16fb_remove(struct platform_device *dev)
- {
- 	struct fb_info *info = platform_get_drvdata(dev);
- 
--	if (info) {
-+	if (info)
- 		unregister_framebuffer(info);
--		iounmap(info->screen_base);
--		fb_dealloc_cmap(&info->cmap);
--	/* XXX unshare VGA regions */
--		framebuffer_release(info);
--	}
- 
- 	return 0;
- }
--- 
-1.7.0.4
+But yes, the tools should be improved here and dumping the objclass of
+the grobjs would be necessary for that.
