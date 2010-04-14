@@ -1,15 +1,12 @@
-From: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Subject: Re: [PATCH] Support writing out the pushbuffer in
-	renouveau trace format (v2)
-Date: Wed, 14 Apr 2010 04:02:53 +0200
-Message-ID: <j2kff13bc9a1004131902l3740039aqb971646747adc050@mail.gmail.com>
-References: <1271089252-32389-1-git-send-email-luca@luca-barbieri.com>
-	<20100413211935.1471edcb.mandin.patrice@orange.fr>
+From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH 1/2] drm/nv04: Enable native surf3d CLIP_* methods
+	on nv05
+Date: Wed, 14 Apr 2010 02:29:32 +0000
+Message-ID: <1271212173-11531-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100413211935.1471edcb.mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +16,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Simply putting the dump in the renouveau directory where a renouveau
-dump was taken previously seems to work for me (probably because we
-use the same handle values as nVidia?).
-
-But yes, the tools should be improved here and dumping the objclass of
-the grobjs would be necessary for that.
+U2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0Pgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MDRfZ3JhcGguYyB8ICAgIDIgKy0KIDEgZmls
+ZXMgY2hhbmdlZCwgMSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MDRfZ3JhcGguYyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252MDRfZ3JhcGguYwppbmRleCA2MTgzNTVlLi42YTg0YjZlIDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjA0X2dyYXBoLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnYwNF9ncmFwaC5jCkBAIC00OTIsNyArNDkyLDcgQEAgaW50IG52MDRfZ3JhcGhf
+aW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogCS8qaGFpa3Ugc2FtZSovCiAKIAkvKm52X3dy
+MzIoZGV2LCBOVjA0X1BHUkFQSF9ERUJVR18zLCAweGZhZDRmZjMxKTsqLwotCW52X3dyMzIoZGV2
+LCBOVjA0X1BHUkFQSF9ERUJVR18zLCAweGYwZDRmZjMxKTsKKwludl93cjMyKGRldiwgTlYwNF9Q
+R1JBUEhfREVCVUdfMywgMHhmMmQ0ZmYzMSk7CiAJLypoYWlrdSBhbmQgYmxvYiAxMGQ0Ki8KIAog
+CW52X3dyMzIoZGV2LCBOVjA0X1BHUkFQSF9TVEFURSAgICAgICAgLCAweEZGRkZGRkZGKTsKLS0g
+CjEuNy4wLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
