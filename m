@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27603] [nouveau] Celestia 1.6.0 crashes with
  nv04_surface_copy_swizzle assertion
-Date: Wed, 14 Apr 2010 12:19:03 -0700 (PDT)
-Message-ID: <20100414191903.3B8A7130011@annarchy.freedesktop.org>
+Date: Wed, 14 Apr 2010 12:49:04 -0700 (PDT)
+Message-ID: <20100414194904.4692B13005D@annarchy.freedesktop.org>
 References: <bug-27603-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27603
 
---- Comment #12 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-14 12:19:03 PDT ---
-Can you try with NOUVEAU_VTXIDX_IN_VRAM=1 ?
+--- Comment #13 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2010-04-14 12:49:04 PDT ---
+(In reply to comment #12)
+> Can you try with NOUVEAU_VTXIDX_IN_VRAM=1 ?
+> 
+> There is a very recent regression that causes a huge performance drop for my
+> agp card at least.
+> By setting the above variable, it goes from 2-3fps to 10-15fps :)
 
-There is a very recent regression that causes a huge performance drop for my
-agp card at least.
-By setting the above variable, it goes from 2-3fps to 10-15fps :)
+Yes, that was a huge improvement with that variable set, thanks for that one!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
