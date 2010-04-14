@@ -1,13 +1,14 @@
-From: =?utf-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH 2/2] drm/nv20: Enable DATA_ERROR reporting
-Date: Wed, 14 Apr 2010 02:29:33 +0000
-Message-ID: <1271212173-11531-2-git-send-email-koriakin@0x04.net>
-References: <1271212173-11531-1-git-send-email-koriakin@0x04.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27574] BUG: unable to handle kernel NULL pointer
+ dereference at 0000000000000028
+Date: Wed, 14 Apr 2010 02:49:02 -0700 (PDT)
+Message-ID: <20100414094902.4D80D13005E@annarchy.freedesktop.org>
+References: <bug-27574-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1271212173-11531-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
+In-Reply-To: <bug-27574-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +21,20 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0Pgot
-LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MjBfZ3JhcGguYyB8ICAgIDIgKy0KIDEgZmls
-ZXMgY2hhbmdlZCwgMSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MjBfZ3JhcGguYyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252MjBfZ3JhcGguYwppbmRleCBkNmZjMGE4Li5iZDgzOTcxIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjIwX2dyYXBoLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbnYyMF9ncmFwaC5jCkBAIC01NzAsNyArNTcwLDcgQEAgbnYyMF9ncmFwaF9pbml0
-KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJbnZfd3IzMihkZXYsIE5WMDRfUEdSQVBIX0RFQlVH
-XzAsIDB4RkZGRkZGRkYpOwogCW52X3dyMzIoZGV2LCBOVjA0X1BHUkFQSF9ERUJVR18wLCAweDAw
-MDAwMDAwKTsKIAludl93cjMyKGRldiwgTlYwNF9QR1JBUEhfREVCVUdfMSwgMHgwMDExODcwMCk7
-Ci0JbnZfd3IzMihkZXYsIE5WMDRfUEdSQVBIX0RFQlVHXzMsIDB4RjNDRTA0NzUpOyAvKiAweDQg
-PSBhdXRvIGN0eCBzd2l0Y2ggKi8KKwludl93cjMyKGRldiwgTlYwNF9QR1JBUEhfREVCVUdfMywg
-MHhGM0RFMDQ3NSk7IC8qIDB4NCA9IGF1dG8gY3R4IHN3aXRjaCAqLwogCW52X3dyMzIoZGV2LCBO
-VjEwX1BHUkFQSF9ERUJVR180LCAweDAwMDAwMDAwKTsKIAludl93cjMyKGRldiwgMHg0MDAwOUMg
-ICAgICAgICAgICwgMHgwMDAwMDA0MCk7CiAKLS0gCjEuNy4wLjIKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=27574
+
+--- Comment #1 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-14 02:49:02 PDT ---
+Just for the record, Alex reported this bug to kernel bugzilla in the same time
+:
+https://bugzilla.kernel.org/attachment.cgi?id=25936
+
+And also 2 months ago already on FDO, but mixed with other issues about s2ram
+and s2disk :
+http://bugs.freedesktop.org/show_bug.cgi?id=26521
+Another user (Michal) caught the same trace there too :
+http://bugs.freedesktop.org/attachment.cgi?id=34299
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
