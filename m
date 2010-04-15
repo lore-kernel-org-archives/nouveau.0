@@ -1,14 +1,19 @@
-From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/2] drm/nv20: Enable DATA_ERROR reporting
-Date: Thu, 15 Apr 2010 19:35:24 +0200
-Message-ID: <m2sb67489df1004151035p219ba2cvf377a5a6c62a91f3@mail.gmail.com>
-References: <1271212173-11531-1-git-send-email-koriakin@0x04.net>
-	<1271212173-11531-2-git-send-email-koriakin@0x04.net>
+From: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: Blank screen at startup (conflict with VESA VGA)
+Date: Thu, 15 Apr 2010 13:19:41 -0700
+Message-ID: <20100415201941.GA20030@soprano.nvidia.com>
+References: <4BC1FA45.1050808@epsm.fr> <20100411170535.GA4016@joi.lan>
+	<4BC2231C.2060509@epsm.fr> <4BC2BA76.8040509@epsm.fr>
+	<20100412101413.GA2733@joi.lan> <4BC2F69E.6000905@epsm.fr>
+	<20100412105013.GA2789@joi.lan>
+	<20100412200458.0380a4fe@daedalus.pq.iki.fi>
+	<1271121328.3035.2.camel@Spike> <20100413113451.GA10009@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1271212173-11531-2-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20100413113451.GA10009-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,74 +23,169 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: =?ISO-8859-2?Q?Marcin_Ko=B6cielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christopher James Halse Rogers <raof-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>, Didier-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-2010/4/14 Marcin Ko=B6cielnicki <koriakin-mP9o5jsk0RY@public.gmane.org>:
-> Signed-off-by: Marcin Ko=B6cielnicki <koriakin-mP9o5jsk0RY@public.gmane.org>
+On Tue, Apr 13, 2010 at 04:34:51AM -0700, Marcin Slusarz wrote:
+> On Tue, Apr 13, 2010 at 11:15:28AM +1000, Christopher James Halse Rogers wrote:
+> > On Mon, 2010-04-12 at 20:04 +0300, Pekka Paalanen wrote:
+> > > On Mon, 12 Apr 2010 12:50:13 +0200
+> > > Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> > > 
+> > > > I'm not aware of any trick to make both nv and nouveau working.
+> > > > Maybe there should be a way to prevent nv (and vesa, but not
+> > > > fbdev) from loading when KMS is in use?
+> > > 
+> > > Yeah, there was a brief discussion about that recently:
+> > > http://people.freedesktop.org/~cbrill/dri-log/index.php?date=2010-03-21&channel=nouveau&show_html=true&highlight_names=&update=Update&date=2010-03-21
+> > > 
+> > > I haven't heard anything about it since.
+> > > 
+> > 
+> > I wrote a patch for vesa on bugzilla[1] to do exactly that; a similar
+> > one for nv wouldn't be hard.
+> > 
+> > [1] https://bugs.freedesktop.org/show_bug.cgi?id=26878
+> 
+> Yay, thanks.
+> I adapted it to xf86-video-nv and it works!
+> Now we need to trick Aaron to apply it.
+> 
+> Aaron: please, please, please apply.
+> :)
+
+Sorry for the slow reply.  It sucks that this is necessary, but I guess it
+makes sense.  Comments below.
+
 > ---
-> =A0drivers/gpu/drm/nouveau/nv20_graph.c | =A0 =A02 +-
-> =A01 files changed, 1 insertions(+), 1 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nv20_graph.c b/drivers/gpu/drm/nouve=
-au/nv20_graph.c
-> index d6fc0a8..bd83971 100644
-> --- a/drivers/gpu/drm/nouveau/nv20_graph.c
-> +++ b/drivers/gpu/drm/nouveau/nv20_graph.c
-> @@ -570,7 +570,7 @@ nv20_graph_init(struct drm_device *dev)
-> =A0 =A0 =A0 =A0nv_wr32(dev, NV04_PGRAPH_DEBUG_0, 0xFFFFFFFF);
-> =A0 =A0 =A0 =A0nv_wr32(dev, NV04_PGRAPH_DEBUG_0, 0x00000000);
-> =A0 =A0 =A0 =A0nv_wr32(dev, NV04_PGRAPH_DEBUG_1, 0x00118700);
-> - =A0 =A0 =A0 nv_wr32(dev, NV04_PGRAPH_DEBUG_3, 0xF3CE0475); /* 0x4 =3D a=
-uto ctx switch */
-> + =A0 =A0 =A0 nv_wr32(dev, NV04_PGRAPH_DEBUG_3, 0xF3DE0475); /* 0x4 =3D a=
-uto ctx switch */
-> =A0 =A0 =A0 =A0nv_wr32(dev, NV10_PGRAPH_DEBUG_4, 0x00000000);
-> =A0 =A0 =A0 =A0nv_wr32(dev, 0x40009C =A0 =A0 =A0 =A0 =A0 , 0x00000040);
->
-> --
-> 1.7.0.2
->
+> From 112a8c9aa9de6ea30b4c3c98e5d7cbce312aaaf8 Mon Sep 17 00:00:00 2001
+> From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Date: Tue, 13 Apr 2010 13:17:56 +0200
+> Subject: [PATCH] Refuse to bind to a device which has kernel modesetting active.
+> 
+> Touching directly the hardware while kernel modesetting is active
+> breaks console output.
+> 
+> Patch almost entrirely based on VESA patch by
+> Christopher James Halse Rogers <christopher.halse.rogers-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+> 
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  configure.ac    |   11 +++++++++++
+>  src/Makefile.am |    2 +-
+>  src/nv_driver.c |   33 +++++++++++++++++++++++++++++++++
+>  3 files changed, 45 insertions(+), 1 deletions(-)
+> 
+> diff --git a/configure.ac b/configure.ac
+> index d717805..3028005 100644
+> --- a/configure.ac
+> +++ b/configure.ac
+> @@ -134,6 +134,17 @@ AC_SUBST([modes_dir])
+>  AC_SUBST([XORG_CFLAGS])
+>  AC_SUBST([moduledir])
+>  
+> +if test "x$XSERVER_LIBPCIACCESS" = xyes; then
+> +    PKG_CHECK_MODULES(LIBDRM, [libdrm > 2.4.3 xf86driproto], HAVE_KMS="yes", HAVE_KMS="no")
+> +    if test "x$HAVE_KMS" = xyes; then
+> +        AC_DEFINE(HAVE_KMS, 1, [Have kernel modesetting])
+> +    else
+> +        AC_MSG_WARN(Support for detecting kernel modesetting drivers is not available.)
+> +        AC_MSG_WARN(This driver can cause display problems in the presence of kernel modesetting.)
+> +        AC_MSG_WARN(Please install libdrm > 2.4.3 and xf86driproto to enable kms detection.)
 
-Relevant IRC discussion :
-02:07 < curro> shining^: hahah, fun, that could explain why someone
-decided to disable data errors on nv2x
-02:07 < shining^> lol
-02:07 < marcheu> curro: yes that's the reason
-02:07 < marcheu> we couldn't get A8 to work on nv20 without removing
-the error check
-02:07 < marcheu> I didn't think anyone would reenable it
-02:07 < shining^> ok so it was disabled on purpose. fun. and for that
-exact same reason
-02:07 < marcheu> yeah
-02:08 < shining^> I got many data errors, I just decided to look into
-the 2d one first
-02:08 < shining^> which was the a8 one
-02:08 < marcheu> same on nv40 btw
-02:08 < darktama> hmmm, not the same
-02:08 < curro> marcheu: ahh, good to know, mwk just sent a patch to reenabl=
-e it
-02:08 < marcheu> curro: yup noticed, wanted to reply but
-02:08 < darktama> nv40 rejected A8+blending at draw time with INVALID_STATE
-02:08 < darktama> we disabled STATE_CHECK to ignore that
-02:09 < marcheu> darktama: I think that's reenabled in the last patch
-from mwk though?
-02:09 < marcheu> didn't check the bits yet though
-02:09 < darktama> iirc STATE_CHECK was bit 29, i'll double-check though
-02:10 < marcheu> hmm no nv40 is untouched
-02:10 < darktama> nope, mwk turned on DATA_CHECK
-02:12 < darktama> on nv40, A8 is valid, and blending is valid, but
-combined they're not supposed to work I guess.. they just happen to
-accidently for us
-02:13 < marcheu> yeah
-02:13 < marcheu> error reporting is overrated :p
-02:13 < darktama> hehe :)
-02:13 < marcheu> maybe we need comments there
-02:13 < marcheu> "bit blah is disabled because blah"
+s/kms/KMS/
 
+> +    fi
+> +fi
+> +
+>  DRIVER_NAME=nv
+>  AC_SUBST([DRIVER_NAME])
+>  
+> diff --git a/src/Makefile.am b/src/Makefile.am
+> index 2677d9c..5d57010 100644
+> --- a/src/Makefile.am
+> +++ b/src/Makefile.am
+> @@ -23,7 +23,7 @@
+>  # -avoid-version prevents gratuitous .0.0.0 version numbers on the end
+>  # _ladir passes a dummy rpath to libtool so the thing will actually link
+>  # TODO: -nostdlib/-Bstatic/-lgcc platform magic, not installing the .a, etc.
+> -AM_CFLAGS = @XMODES_CFLAGS@ @XORG_CFLAGS@
+> +AM_CFLAGS = @XMODES_CFLAGS@ @XORG_CFLAGS@ $(LIBDRM_CFLAGS)
+>  nv_drv_la_LTLIBRARIES = nv_drv.la
+>  nv_drv_la_LDFLAGS = -module -avoid-version
+>  nv_drv_ladir = @moduledir@/drivers
+> diff --git a/src/nv_driver.c b/src/nv_driver.c
+> index 0d017f9..e117626 100644
+> --- a/src/nv_driver.c
+> +++ b/src/nv_driver.c
+> @@ -33,6 +33,11 @@
+>  #include "xf86int10.h"
+>  #include "vbeModes.h"
+>  
+> +#ifdef HAVE_KMS
+> +#include <xf86drmMode.h>
+> +#include <dri.h>
+> +#endif
+> +
+>  const   OptionInfoRec * RivaAvailableOptions(int chipid, int busid);
+>  Bool    RivaGetScrnInfoRec(PciChipsets *chips, int chip);
+>  Bool    G80GetScrnInfoRec(PciChipsets *chips, int chip);
+> @@ -830,6 +835,26 @@ NVIsSupported(CARD32 id)
+>      return FALSE;
+>  }
+>  
+> +#ifdef HAVE_KMS
+> +static Bool NVKernelModesettingEnabled (struct pci_device *device)
+> +{
+> +    char *busIdString;
+> +    int ret;
+> +
+> +    if (!xf86LoaderCheckSymbol("DRICreatePCIBusID"))
+> +	return FALSE;
 
-So should we just completely give up because it's a dead end, or is it
-still worth to investigate further ?
-I would like to help, so any crazy ideas about how to find what's
-going on are welcome.
+I know the rest of the code uses tabs, but please use spaces for new code.
+
+> +
+> +    busIdString = DRICreatePCIBusID(device);
+
+Eww.  Why doesn't drmCheckModesettingSupported take a pci_device*?  Oh
+well, whatever.
+
+> +    ret = drmCheckModesettingSupported(busIdString);
+
+There's no chance of false positives here, right?  E.g. if you set
+nouveau.modeset=0 on the kernel command line, does that make this return
+nonzero?
+
+> +    xfree(busIdString);
+> +
+> +    return (ret == 0);
+> +}
+> +#else
+> +static inline Bool NVKernelModesettingEnabled (struct pci_device *device) { return FALSE; }
+> +#endif //HAVE_KMS
+> +
+>  /* Mandatory */
+>  #if XSERVER_LIBPCIACCESS
+>  static Bool
+> @@ -864,6 +889,14 @@ NVPciProbe(DriverPtr drv, int entity, struct pci_device *dev, intptr_t data)
+>                 NV_NAME ": Found NVIDIA %s at %2.2x@%2.2x:%2.2x:%1.1x\n",
+>                 name, dev->bus, dev->domain, dev->dev, dev->func);
+>  
+> +    /* Trying to bring up a NV mode while kernel modesetting is enabled
+> +       results in badness */
+> +    if (NVKernelModesettingEnabled (dev)) {
+> +	xf86Msg (X_ERROR,
+> +	         "NV: Kernel modesetting driver in use, refusing to load\n");
+
+Please use NV_NAME instead of hard-coding the "NV:" prefix.
+
+> +	return FALSE;
+> +    }
+> +
+>      if(NVIsG80(id))
+>          return G80GetScrnInfoRec(NULL, entity);
+>      else if(dev->vendor_id == PCI_VENDOR_NVIDIA_SGS)
+> -- 
+> 1.7.0.4
