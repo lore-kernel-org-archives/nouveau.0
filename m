@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27574] BUG: unable to handle kernel NULL pointer
  dereference at 0000000000000028
-Date: Fri, 16 Apr 2010 01:06:33 -0700 (PDT)
-Message-ID: <20100416080633.A3BAE130011@annarchy.freedesktop.org>
+Date: Fri, 16 Apr 2010 01:07:04 -0700 (PDT)
+Message-ID: <20100416080704.DB0FB130011@annarchy.freedesktop.org>
 References: <bug-27574-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27574
 
---- Comment #2 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-16 01:06:33 PDT ---
-I caught it with 2.6.34-rc4, and looks like it happens every third time after
-suspend to ram.
+--- Comment #3 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-16 01:07:04 PDT ---
+Created an attachment (id=35081)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35081)
+2.6.34-rc4 kernel log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
