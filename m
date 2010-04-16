@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27706] Blank screen and "Error referencing VRAM
  ctxdma: -12" on NV44A with ubuntu lucid beta 2 (worked in alpha 3)
-Date: Fri, 16 Apr 2010 15:17:12 -0700 (PDT)
-Message-ID: <20100416221712.23CF513005E@annarchy.freedesktop.org>
+Date: Fri, 16 Apr 2010 15:21:08 -0700 (PDT)
+Message-ID: <20100416222109.01DE5130011@annarchy.freedesktop.org>
 References: <bug-27706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27706
 
---- Comment #9 from mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-04-16 15:17:11 PDT ---
-Created an attachment (id=35123)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=35123)
-kern.log on ubuntu lucid beta 2 installed, with video=vga16fb:off
+--- Comment #10 from mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-04-16 15:21:08 PDT ---
+Maybe I should add that my screen is plugged on the DVI interface, not the VGA
+one
+The AGP x8 is enabled in the BIOS
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
