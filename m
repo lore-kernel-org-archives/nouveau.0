@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27706] Blank screen and "Error referencing VRAM
  ctxdma: -12" on NV44A with ubuntu lucid beta 2 (worked in alpha 3)
-Date: Fri, 16 Apr 2010 13:08:04 -0700 (PDT)
-Message-ID: <20100416200804.EA2DE130011@annarchy.freedesktop.org>
+Date: Fri, 16 Apr 2010 13:08:18 -0700 (PDT)
+Message-ID: <20100416200818.80910130011@annarchy.freedesktop.org>
 References: <bug-27706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #35111|application/octet-stream    |text/plain
+  Attachment #35112|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
