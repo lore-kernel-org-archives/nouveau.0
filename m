@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27680] New: Misaligned reg ... nVidia Corporation
- C67 [GeForce 7150M / nForce 630M] (rev a2)
-Date: Thu, 15 Apr 2010 20:12:53 -0700 (PDT)
-Message-ID: <bug-27680-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27574] BUG: unable to handle kernel NULL pointer
+ dereference at 0000000000000028
+Date: Fri, 16 Apr 2010 01:06:33 -0700 (PDT)
+Message-ID: <20100416080633.A3BAE130011@annarchy.freedesktop.org>
+References: <bug-27574-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-27574-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,32 +21,11 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27680
+https://bugs.freedesktop.org/show_bug.cgi?id=27574
 
-           Summary: Misaligned reg ... nVidia Corporation C67 [GeForce
-                    7150M / nForce 630M] (rev a2)
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: correo.cuervo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-When the system is starting, the messages in the screen appears moved to the
-right side.
-
-I've found this in /var/log/errors.log file:
-
-Mar 25 17:51:18 laptop kernel: [drm] nouveau 0000:00:12.0: ======= misaligned
-reg 0x001020FB =======
-Mar 25 17:51:18 laptop kernel: [drm] nouveau 0000:00:12.0: ======= misaligned
-reg 0x001020FB
+--- Comment #2 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-16 01:06:33 PDT ---
+I caught it with 2.6.34-rc4, and looks like it happens every third time after
+suspend to ram.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
