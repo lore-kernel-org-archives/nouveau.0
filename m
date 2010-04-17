@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27706] Blank screen and "Error referencing VRAM
  ctxdma: -12" on NV44A with ubuntu lucid beta 2 (worked in alpha 3)
-Date: Sat, 17 Apr 2010 04:58:49 -0700 (PDT)
-Message-ID: <20100417115849.4220613005E@annarchy.freedesktop.org>
+Date: Sat, 17 Apr 2010 09:33:59 -0700 (PDT)
+Message-ID: <20100417163359.DC950130011@annarchy.freedesktop.org>
 References: <bug-27706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,28 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27706
 
---- Comment #16 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-17 04:58:48 PDT ---
-Before you start bisecting:
-video=vga16fb:off does not work because in Ubuntu vga16fb is compiled as module
-and kernel parameters does not affect it - you have to blacklist it by hand.
-There's "vga16fb: not registering due to another framebuffer present" (which is
-Ubuntu addon) in kernel log so it should not load it, BUT it exercises broken
-failure path in vga16fb which is iounmapping memory region which was not
-ioremapped by vga16fb (VGA_MAP_MEM is defined differently on different
-architectures - on x86 it's NOT ioremap), so it might affect nouveau - I need
-to investigate it more.
+mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-In reply to comment 13:
-IIRC Fedora does not enable vga16fb, so:
-- it might be diffent bug
-- this bug is not related to vga16fb at all
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #17 from mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-04-17 09:33:59 PDT ---
+Christopher, you were right.
+After upgrading to the PPA xorg-edgers packages, the problem seems to be solved
+: I can boot successfully without changing any boot parameter.
+
+So, it looks like the problem has already been solved in nouveau.
+For further reference, the PPA version number of libdrm is
+2.4.20+git20100404.c7650003-0ubuntu0sarvatt3 (instead of 2.4.18-1ubuntu3)
+xserver-xorg-video-nouveau version is
+1:0.0.15+git20100416.40636169-0ubuntu0sarvatt instead of
+1:0.0.15+git20100219+9b4118d-0ubuntu5
+
+The fix must be between these 2 versions.
+
+Sorry for the inconvenience, and thank you to all who had a look in this issue.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
