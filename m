@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27706] Blank screen and "Error referencing VRAM
  ctxdma: -12" on NV44A with ubuntu lucid beta 2 (worked in alpha 3)
-Date: Sat, 17 Apr 2010 04:06:19 -0700 (PDT)
-Message-ID: <20100417110619.83C0713005D@annarchy.freedesktop.org>
+Date: Sat, 17 Apr 2010 04:58:49 -0700 (PDT)
+Message-ID: <20100417115849.4220613005E@annarchy.freedesktop.org>
 References: <bug-27706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,26 +23,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27706
 
---- Comment #15 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-17 04:06:19 PDT ---
-So, the pertinent changes between Lucid Alpha 3 and Beta 2 would be:
-Alpha 3 had the nouveau kernel module + drm + ttm from linux 2.6.33 + the
-ctxprog voodoo generator backported, in the out-of-tree
-linux-backports-modules.
-Beta 2 has the drm stack from 2.6.33.2 + a number of fixes pulled in from
-nouveau/linux-2.6
+--- Comment #16 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-17 04:58:48 PDT ---
+Before you start bisecting:
+video=vga16fb:off does not work because in Ubuntu vga16fb is compiled as module
+and kernel parameters does not affect it - you have to blacklist it by hand.
+There's "vga16fb: not registering due to another framebuffer present" (which is
+Ubuntu addon) in kernel log so it should not load it, BUT it exercises broken
+failure path in vga16fb which is iounmapping memory region which was not
+ioremapped by vga16fb (VGA_MAP_MEM is defined differently on different
+architectures - on x86 it's NOT ioremap), so it might affect nouveau - I need
+to investigate it more.
 
-If you're interested in bisecting, it should be quicker to start with 2.6.33.2
-- if that works, then the problem is in one of the small number of backported
-nouveau patches we've got.  If it doesn't, it should be relatively quick to
-bisect from 2.6.33 to 2.6.33.2
-
-If you're uncomfortable building this stack from source, the xorg-edgers PPA
-has recent snapshots, available here:
-https://edge.launchpad.net/~xorg-edgers/+archive/ppa
-
-If that works, then this bug can be closed because it's already fixed.  If that
-doesn't work then you'll probably need to do some building from source in order
-to identify which change broke it.
+In reply to comment 13:
+IIRC Fedora does not enable vga16fb, so:
+- it might be diffent bug
+- this bug is not related to vga16fb at all
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
