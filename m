@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27706] Blank screen and "Error referencing VRAM
  ctxdma: -12" on NV44A with ubuntu lucid beta 2 (worked in alpha 3)
-Date: Sat, 17 Apr 2010 09:33:59 -0700 (PDT)
-Message-ID: <20100417163359.DC950130011@annarchy.freedesktop.org>
+Date: Sat, 17 Apr 2010 09:44:37 -0700 (PDT)
+Message-ID: <20100417164437.A6EB5130011@annarchy.freedesktop.org>
 References: <bug-27706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,28 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27706
 
-mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #17 from mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-04-17 09:33:59 PDT ---
-Christopher, you were right.
-After upgrading to the PPA xorg-edgers packages, the problem seems to be solved
-: I can boot successfully without changing any boot parameter.
-
-So, it looks like the problem has already been solved in nouveau.
-For further reference, the PPA version number of libdrm is
-2.4.20+git20100404.c7650003-0ubuntu0sarvatt3 (instead of 2.4.18-1ubuntu3)
-xserver-xorg-video-nouveau version is
-1:0.0.15+git20100416.40636169-0ubuntu0sarvatt instead of
-1:0.0.15+git20100219+9b4118d-0ubuntu5
-
-The fix must be between these 2 versions.
-
-Sorry for the inconvenience, and thank you to all who had a look in this issue.
+--- Comment #18 from mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-04-17 09:44:36 PDT ---
+Created an attachment (id=35135)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35135)
+Dmesg on ubuntu lucid beta 2 installed, with updated PPA packages (works)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
