@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27706] Blank screen and "Error referencing VRAM
  ctxdma: -12" on NV44A with ubuntu lucid beta 2 (worked in alpha 3)
-Date: Fri, 16 Apr 2010 15:41:55 -0700 (PDT)
-Message-ID: <20100416224155.19633130011@annarchy.freedesktop.org>
+Date: Fri, 16 Apr 2010 23:45:32 -0700 (PDT)
+Message-ID: <20100417064532.CF014130011@annarchy.freedesktop.org>
 References: <bug-27706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27706
 
---- Comment #12 from mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-04-16 15:41:54 PDT ---
-Regarding the kernel used by ubuntu, the changelog is there :
-http://changelogs.ubuntu.com/changelogs/pool/main/l/linux/linux_2.6.32-21.32/changelog
+--- Comment #13 from mossroy.mossroy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-04-16 23:45:32 PDT ---
+In any case, I don't think this could be due to ubuntu patches because the
+behavior is the same with fedora 13 beta
 
-There has been a few changes that consist in disabling acceleration for
-specific cards. See for example
-https://bugs.launchpad.net/ubuntu/+source/linux/+bug/544088
-Well, disabling acceleration is a workaround in my opinion, not a real fix...
+The versions used by fedora seem a bit more recent :
+kernel 2.6.33.1-24-fc13.i686
+xorg-x11-drv-nouveau 1:0.0.16-2.20100218git2964702.fc13
+libdrm 2.4.19-1.fc13
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
