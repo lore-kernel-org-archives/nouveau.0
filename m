@@ -1,31 +1,102 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26733] Full-screen XV causes graphics lockup
-Date: Mon, 19 Apr 2010 04:26:37 -0700 (PDT)
-Message-ID: <20100419112637.F1FA3130011@annarchy.freedesktop.org>
-References: <bug-26733-8800@http.bugs.freedesktop.org/>
+From: James Simmons <jsimmons@infradead.org>
+Subject: Re: [PATCH] vga16fb, drm: vga16fb->drm handoff
+Date: Mon, 19 Apr 2010 17:20:10 +0100 (BST)
+Message-ID: <alpine.LFD.2.00.1004191716020.2733@casper.infradead.org>
+References: <1270929334-3742-1-git-send-email-marcin.slusarz@gmail.com>
+	<1271030068.3554.1.camel@localhost> <20100412113438.GB2789@joi.lan>
+	<1271104101.5726.3.camel@t60prh>
+	<20100412213327.GA4463@joi.lan> <20100413195004.GA4402@joi.lan>
+	<20100418215751.GA2733@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26733-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20100418215751.GA2733@joi.lan>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: linux-fbdev@vger.kernel.org, nouveau@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Peter Jones <pjones@redhat.com>, Dave Airlie <airlied@redhat.com>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26733
 
---- Comment #16 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-19 04:26:37 PDT ---
-Problem occurs still, it just didn't showed for while :-(
+> More generic approach below - it should work for all drm drivers.
+> Unfortunately vga16fb handoff has 2 other issues:
+> - It can be compiled as module, so it can be loaded after KMS driver (and
+>   nothing prevents it right now)
+> - vga16fb registration error path is iounmapping memory which was not
+>   ioremapped.
+> I'm going to fix it soon.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Nak. See comments below.
+ 
+> ---
+> From: Marcin Slusarz <marcin.slusarz@gmail.com>
+> Subject: [PATCH] vga16fb, drm: vga16fb->drm handoff
+> 
+> let vga16fb claim 0xA0000+0x10000 region as its aperture;
+> drm drivers don't use it, so we have to detect it and kick
+> vga16fb manually - but only if drm is driving the primary card
+> (by checking IORESOURCE_ROM_SHADOW resource flag)
+> 
+> Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/intel_fb.c         |    1 +
+>  drivers/gpu/drm/nouveau/nouveau_fbcon.c |    1 +
+>  drivers/gpu/drm/nouveau/nouveau_state.c |    3 ++-
+>  drivers/gpu/drm/radeon/radeon_fb.c      |    1 +
+>  drivers/gpu/drm/vmwgfx/vmwgfx_fb.c      |    1 +
+>  drivers/video/fbmem.c                   |   19 ++++++++++++++++---
+>  drivers/video/vga16fb.c                 |   26 +++++++++++++++++++-------
+>  include/linux/fb.h                      |    4 +++-
+>  8 files changed, 44 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_fb.c b/drivers/gpu/drm/i915/intel_fb.c
+> index 6dbc277..8e403be 100644
+> --- a/drivers/gpu/drm/i915/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/intel_fb.c
+> @@ -201,6 +201,7 @@ static int intelfb_create(struct drm_device *dev, uint32_t fb_width,
+>  		info->apertures->ranges[0].size = pci_resource_len(dev->pdev, 2);
+>  	else
+>  		info->apertures->ranges[0].size = pci_resource_len(dev->pdev, 0);
+> +	info->pcidev = dev->pdev;
+
+No pci junk in struct fb_info. It needs to be bus independent.
+
+> diff --git a/drivers/video/fbmem.c b/drivers/video/fbmem.c
+> index 7cfcd71..4628a59 100644
+> --- a/drivers/video/fbmem.c
+> +++ b/drivers/video/fbmem.c
+> @@ -32,6 +32,7 @@
+>  #include <linux/device.h>
+>  #include <linux/efi.h>
+>  #include <linux/fb.h>
+> +#include <linux/pci.h>
+
+Please remove pci header.
+  
+>  #include <asm/fb.h>
+>  
+> @@ -1500,19 +1501,30 @@ static bool fb_do_apertures_overlap(struct apertures_struct *gena,
+>  	return false;
+>  }
+>  
+> -void remove_conflicting_framebuffers(struct apertures_struct *a, const char *name)
+> +#define VGA_FB_PHYS 0xA0000
+> +void remove_conflicting_framebuffers(struct apertures_struct *a,
+> +				     const char *name, struct pci_dev *pcidev)
+>  {
+>  	int i;
+> +	bool primary = false;
+> +
+> +	if (pcidev)
+> +		primary = pcidev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
+
+Not portable. Please use fb_is_primary_device(info) instead. It will also 
+make your code cleaner.
