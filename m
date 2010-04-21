@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27720] Hard Hang on suspend - 8600M GS
-Date: Tue, 20 Apr 2010 19:38:30 -0700 (PDT)
-Message-ID: <20100421023830.698E9130011@annarchy.freedesktop.org>
+Date: Tue, 20 Apr 2010 20:12:29 -0700 (PDT)
+Message-ID: <20100421031229.894CB130011@annarchy.freedesktop.org>
 References: <bug-27720-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,22 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27720
 
---- Comment #6 from Jim Bray <jimsantelmo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-20 19:38:30 PDT ---
-Created an attachment (id=35192)
- View: https://bugs.freedesktop.org/attachment.cgi?id=35192
- Review: https://bugs.freedesktop.org/review?bug=27720&attachment=35192
-
-Very crude hacks that appear to sort of work
-
-  I have done some printk-debugging, and come up with some preliminary results
-and a patch that works in my minimal testbed kernel, suspending the fb-console
-in single-user and resuming multiple times. It appears that
-acquire_console_sem() may be hanging things, and it is pretty clear that one or
-more of the pci calls, such as pci_set_power_state(pdev, PCI_D3hot), are
-hanging. I'll see if this works multi-user suspending from X.
-
-  This is *not* recommended as a patch, just as an indication of where the
-problems may lie.
+--- Comment #7 from Jim Bray <jimsantelmo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-20 20:12:29 PDT ---
+  I applied this patch to my working nouveau git kernel, and it is working well
+enough that I suspended and resumed after the comma in this sentence, which
+makes nouveau fully usable for my purposes. Hopefully a proper fix will be
+developed at some point.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
