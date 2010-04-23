@@ -1,14 +1,13 @@
-From: Programmeur fou <programmeur.fou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Gart to vram/vram to gart transfers broken on NVS 140M
-Date: Fri, 23 Apr 2010 08:24:21 +0200
-Message-ID: <4BD13D15.8080205@gmail.com>
-References: <4BD02139.4090506@free.fr>
-	<x2g6a89f9d51004220320w47174461l295eac76baa1e0e1@mail.gmail.com>
+From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Mesa-dev] drm-nouveau - more gl extensions?
+Date: Fri, 23 Apr 2010 11:04:40 +0200
+Message-ID: <u2pb67489df1004230204kb101c8d7na2721b2e9779ed5b@mail.gmail.com>
+References: <4BD02BA9.20406@interia.pl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <x2g6a89f9d51004220320w47174461l295eac76baa1e0e1-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <4BD02BA9.20406-khu2bkKidpXVItvQsEIGlw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,33 +17,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Stephane Marchesin <stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: yaiba.kurogane-khu2bkKidpXVItvQsEIGlw@public.gmane.org
 Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Le 22/04/2010 12:20, Stephane Marchesin a =E9crit :
-> On Thu, Apr 22, 2010 at 03:13, Martin Peres<martin.peres-GANU6spQydw@public.gmane.org>  wrote:
->    =
+On Thu, Apr 22, 2010 at 12:57 PM,  <yaiba.kurogane-khu2bkKidpXVItvQsEIGlw@public.gmane.org> wrote:
+> Hello. I have old nvidia hardware (NV17) and noticed that some extensions
+> are missing.They will be added in near future ? Anyone from nouveau
+> developers actually working on driver for such old hw ???
 
->> Hi Nouveau folks,
->>
->> I've been encountering some corruption on pixmaps for a while now, and it
->> seems like the problem comes from the DFS/UTS (Download From Screen / Up=
-load
->> To Screen).
->>
->> In fact, I'm pretty sure the problem comes from there as screenshots are
->> garbled and so does a few more things.
->>
->> I may have time to dig this up, where should I start, is there some
->> documentation on the NVS 140M ? Where is the gart2vram code located ?
->> Do you have any idea of where could be the problem ?
->>
->>      =
+A few months ago :
+15:27 < curro_> hmm, or we could expose gl1.3 already, IIRC the only
+thing left is cube mapping
 
-> If you really think that's UTS/DFS, edit nouveau_exa.c and disable
-> them (change the UTS/DFS functions to return FALSE, that'll trigger
-> fallbacks to sw copying).
->
-> Stephane
-OK, I'll try this out tonight. I'll keep you in touch.
+curro is the one that resurrected the nv10-nv20 driver and got it to a
+nicer state.
+He seemed less active recently, so probably busy with other things
+like work and/or life.
+
+I guess it depends on what extension / what gl version you are talking
+about and how complex they are to implement.
+And I suppose they are all supported by the blob (nvidia proprietary driver) ?
