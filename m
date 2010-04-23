@@ -1,42 +1,33 @@
-From: Xavier Chantry <chantry.xavier@gmail.com>
-Subject: Re: drm-nouveau - more gl extensions?
-Date: Fri, 23 Apr 2010 11:21:00 +0200
-Message-ID: <p2ib67489df1004230221n33afc43ej5d378c2cf352f1bc@mail.gmail.com>
-References: <4BD02BA9.20406@interia.pl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27574] BUG: unable to handle kernel NULL pointer
+ dereference at 0000000000000028
+Date: Fri, 23 Apr 2010 09:31:53 -0700 (PDT)
+Message-ID: <20100423163153.88EF0130085@annarchy.freedesktop.org>
+References: <bug-27574-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <4BD02BA9.20406@interia.pl>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces@lists.freedesktop.org
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-To: yaiba.kurogane@interia.pl
-Cc: mesa-dev@lists.freedesktop.org, nouveau <Nouveau@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-27574-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Apr 22, 2010 at 12:57 PM,  <yaiba.kurogane@interia.pl> wrote:
-> Hello. I have old nvidia hardware (NV17) and noticed that some extensions
-> are missing.They will be added in near future ? Anyone from nouveau
-> developers actually working on driver for such old hw ???
+https://bugs.freedesktop.org/show_bug.cgi?id=27574
 
-A few months ago :
-15:27 < curro_> hmm, or we could expose gl1.3 already, IIRC the only
-thing left is cube mapping
+--- Comment #4 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-23 09:31:53 PDT ---
+Forgot to mention, may be that can help, I have nouveau built in kernel not as
+module.
 
-curro is the one that resurrected the nv10-nv20 driver and got it to a
-nicer state.
-He seemed less active recently, so probably busy with other things
-like work and/or life.
-
-I guess it depends on what extension / what gl version you are talking
-about and how complex they are to implement.
-And I suppose they are all supported by the blob (nvidia proprietary driver) ?
-
-(kept mesa in CC this time)
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
