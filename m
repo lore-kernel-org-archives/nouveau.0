@@ -1,7 +1,7 @@
-From: Bob Gleitsmann <rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org>
-Subject: uevent support in nouveau DDX
-Date: Sun, 25 Apr 2010 14:16:49 -0400
-Message-ID: <201004251416.49984.rjgleits@bellsouth.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27832] New: Early versions of libudev cause crash
+Date: Sun, 25 Apr 2010 15:14:28 -0700 (PDT)
+Message-ID: <bug-27832-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,21 +18,36 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+https://bugs.freedesktop.org/show_bug.cgi?id=27832
 
-uevent support was added to the nouveau DDX in a recent commit. A test is made 
-in configure.ac for libudev being present but there is no minimum version. I 
-have had problems with this as I am using Fedora 11 which has udev-141 in it. 
-This version does not support all of the functions required by the DDX and 
-will crash Xorg. At least this function is missing: 
-udev_monitor_filter_add_match_subsystem_devtype
-I don't know when this was added to udev, but it was definitely after 141. In 
-the mean time, I will endeavor to fudge the configuration so that it doesn't 
-think that udev is installed. Hopefully this will result in a DDX that doesn't 
-crash. 
-I'm also going to try setting up a partition with Fedora 13 to see what 
-happens with that.
+           Summary: Early versions of libudev cause crash
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=35286)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35286)
+Patch to configure.ac to check libudev version >= 142
+
+It appears that at least version 142 of udev is required to properly support
+the recently added uevent code. Haven't tested with 142 because I don't want to
+mess up my distro Fedora 11. This only has 141. However, everything is usable
+if the driver thinks you don't have udev at all. Hence the attached patch.
 
 Best Wishes,
 
 Bob Gleitsmann
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
