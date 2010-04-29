@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27905] DVI monitor is blank - DVI detected as
 	Display Port ?
-Date: Thu, 29 Apr 2010 15:38:30 -0700 (PDT)
-Message-ID: <20100429223830.DFEC213004F@annarchy.freedesktop.org>
+Date: Thu, 29 Apr 2010 16:02:30 -0700 (PDT)
+Message-ID: <20100429230230.9896513004E@annarchy.freedesktop.org>
 References: <bug-27905-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27905
 
---- Comment #1 from Julien Wajsberg <felash-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-29 15:38:30 PDT ---
-Created an attachment (id=35337)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=35337)
-Dmesg boot log
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
+
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-29 16:02:30 PDT ---
+Your laptop's video bios is reporting LVDS, VGA and 2xDP connectors.  Is the
+"DVI" port on a docking station?  If so, this makes sense as there's probably
+docking stations with DP connectors instead.
+
+In any case, I pushed several fixes to nouveau git yesterday, one of which
+should probably fix your issue.
+
+It'd be useful to see verbose (load drm module with debug=1 option) logs from
+nouveau git if things still don't work correctly.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
