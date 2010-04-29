@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27905] DVI monitor is blank - DVI detected as
 	Display Port ?
-Date: Thu, 29 Apr 2010 16:51:01 -0700 (PDT)
-Message-ID: <20100429235101.9311813004E@annarchy.freedesktop.org>
+Date: Thu, 29 Apr 2010 16:54:22 -0700 (PDT)
+Message-ID: <20100429235423.095F713004F@annarchy.freedesktop.org>
 References: <bug-27905-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27905
 
---- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-29 16:51:01 PDT ---
-No, it's specifically 2cf43e3fa8b2de237908b6b0b24e42003e94f1db "drm/nv50: fix
-monitor detection on certain chipsets".
+--- Comment #5 from Cyril Brulebois <kibi-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org> 2010-04-29 16:54:22 PDT ---
+Christopher just pointed me to it in the meanwhile, sorry for the noise. I
+guess we'll have to wait for it to pop up in some stable updates, or point our
+kernel people to that patch.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
