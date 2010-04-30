@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27574] BUG: unable to handle kernel NULL pointer
  dereference at 0000000000000028
-Date: Fri, 30 Apr 2010 03:57:32 -0700 (PDT)
-Message-ID: <20100430105733.03A3313004F@annarchy.freedesktop.org>
+Date: Fri, 30 Apr 2010 04:09:46 -0700 (PDT)
+Message-ID: <20100430110946.9507F13000D@annarchy.freedesktop.org>
 References: <bug-27574-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27574
 
---- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-30 03:57:32 PDT ---
-Bugs can be non trivial to fix if you never hit them yourself. In this case it
-would be nice to know what value "mem->mem_type" has in ttm_pci_offset. So if
-you feel like poking around, that's where i would start. 0 is system, 1 is
-gart, 2 is vram, other is bad.
+--- Comment #7 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-30 04:09:46 PDT ---
+So if can give some instructions I can help you with investigation
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
