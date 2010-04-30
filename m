@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27905] DVI monitor is blank - DVI detected as
-	Display Port ?
-Date: Thu, 29 Apr 2010 23:34:58 -0700 (PDT)
-Message-ID: <20100430063458.D709613004F@annarchy.freedesktop.org>
-References: <bug-27905-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27574] BUG: unable to handle kernel NULL pointer
+ dereference at 0000000000000028
+Date: Fri, 30 Apr 2010 02:53:57 -0700 (PDT)
+Message-ID: <20100430095357.DCCF313000D@annarchy.freedesktop.org>
+References: <bug-27574-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27905-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27574-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,11 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27905
+https://bugs.freedesktop.org/show_bug.cgi?id=27574
 
---- Comment #6 from Julien Wajsberg <felash-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-29 23:34:58 PDT ---
-You're right, the DVI port is on a docking station, so this makes sense.
-
-I'll see with Cyril how I could test this. Thanks !
+--- Comment #5 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-30 02:53:57 PDT ---
+I reproduced it on 2.6.34-rc5 and 2.6.34-rc6, seems like nobody from nouveau
+team isn't interested in fixing this bug
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
