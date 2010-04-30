@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27574] BUG: unable to handle kernel NULL pointer
  dereference at 0000000000000028
-Date: Fri, 30 Apr 2010 04:09:46 -0700 (PDT)
-Message-ID: <20100430110946.9507F13000D@annarchy.freedesktop.org>
+Date: Fri, 30 Apr 2010 04:18:09 -0700 (PDT)
+Message-ID: <20100430111809.6049C13004F@annarchy.freedesktop.org>
 References: <bug-27574-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27574
 
---- Comment #7 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-30 04:09:46 PDT ---
-So if can give some instructions I can help you with investigation
+--- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-30 04:18:08 PDT ---
+Adding this to the beginning of the ttm_bo_pci_offset function should print the
+value every time, you may have to revert it afterwards because of flooded logs.
+
+printk(KERN_INFO TTM_PFX "mem->mem_type %d\n", mem->mem_type);
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
