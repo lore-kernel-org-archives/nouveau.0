@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27905] DVI monitor is blank - DVI detected as
 	Display Port ?
-Date: Fri, 30 Apr 2010 10:41:27 -0700 (PDT)
-Message-ID: <20100430174127.6EF0F13004F@annarchy.freedesktop.org>
+Date: Fri, 30 Apr 2010 19:53:54 -0700 (PDT)
+Message-ID: <20100501025354.9F26B13000D@annarchy.freedesktop.org>
 References: <bug-27905-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27905
 
---- Comment #8 from Julien Wajsberg <felash-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-30 10:41:26 PDT ---
-I managed to backport the change to Debian's current kernel.
-
-I had to apply also changeset d62823c984102a6f96df147a65bf1ffa7acaef1d
-"drm/nv50: store full dcb i2c entry from vbios", and to change some minor
-things, but I think I applied it correctly.
-
-But I still get the same bug.
-
-I attached the log for dmesg with debug output for drm, as you suggested.
-
-Thanks.
+--- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-04-30 19:53:54 PDT ---
+Ah sorry!  Can I get debug=15 instead.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
