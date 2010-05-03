@@ -1,58 +1,157 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27603] [nouveau] Celestia 1.6.0 crashes with
- nv04_surface_copy_swizzle assertion
-Date: Mon,  3 May 2010 04:49:22 -0700 (PDT)
-Message-ID: <20100503114922.C29F313000D@annarchy.freedesktop.org>
-References: <bug-27603-8800@http.bugs.freedesktop.org/>
+From: =?ISO-8859-1?Q?Jos=E9?= Fonseca <jfonseca@vmware.com>
+Subject: Re: [Mesa3d-dev] _mesa_init_texture_s3tc() vs
+ util_format_s3tc_init()
+Date: Mon, 03 May 2010 12:57:12 +0100
+Message-ID: <1272887832.15272.624.camel@jfonseca-laptop.eng.vmware.com>
+References: <q2xb67489df1005030136k889d7b6fg51c4a3961f052787@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27603-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="iso-8859-15"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <mesa3d-dev-bounces@lists.sourceforge.net>
+In-Reply-To: <q2xb67489df1005030136k889d7b6fg51c4a3961f052787@mail.gmail.com>
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
+	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=mesa3d-dev>
+List-Post: <mailto:mesa3d-dev@lists.sourceforge.net>
+List-Help: <mailto:mesa3d-dev-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/mesa3d-dev>,
+	<mailto:mesa3d-dev-request@lists.sourceforge.net?subject=subscribe>
+Errors-To: mesa3d-dev-bounces@lists.sourceforge.net
+To: Xavier Chantry <chantry.xavier@gmail.com>
+Cc: nouveau <Nouveau@lists.freedesktop.org>, mesa3d-dev <mesa3d-dev@lists.sourceforge.net>
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mjc2MDMKCi0tLSBD
-b21tZW50ICMxNSBmcm9tIFhhdmllciA8c2hpbmluZ3hjQGdtYWlsLmNvbT4gMjAxMC0wNS0wMyAw
-NDo0OToyMiBQRFQgLS0tCkl0J3Mgbm90IGEgZml4Li4uIEl0J3MgYSBjb21wbGV0ZSByZXdyaXRl
-IG9mIHRoZSAyZCBlbmdpbmUuCkl0IHdpbGwgcHJvYmFibHkgYmUgbWVyZ2VkIHNvbWUgZGF5IGJ5
-IGl0cyBvd24gYXV0aG9yLCBub3QgYnkgInNvbWVvbmUiLgoKVGhlcmUgaXMgbm8gc3VjaCB0aGlu
-ZyBhcyBhIHN0YWJsZSBtZXNhLmdpdCB0cmVlLiBUaGUgbWVzYS5naXQgdHJlZSBjb250YWlucwpl
-eHBlcmltZW50YWwgYnJhbmNoZXMgKGxpa2UgbnZmeC1uZXh0KSwgbWFpbiBkZXZlbG9wbWVudCBi
-cmFuY2ggKG1hc3RlciksIGFuZApzdGFibGUgcmVsZWFzZSBicmFuY2ggKDcuOCkuClRoaXMga2lu
-ZCBvZiB3b3JrIGlzIG9ubHkgZXZlciBtZXJnZWQgaW4gbWFzdGVyLiBCdXQgd2h5IGRvIHlvdSBj
-YXJlIGFuZCB3aGF0CmRpZmZlcmVuY2UgZG9lcyBpdCBtYWtlIHRvIHlvdSB3aGVyZSB0aGUgY29k
-ZSBsaWVzID8KCkFuZCBkaWQgeW91IGZvcmdldCB0aGF0IDNkIGlzIHVuc3VwcG9ydGVkIGFuZCBi
-dWdzIGFyZSBub3Qgd2FudGVkID8KCmh0dHA6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtp
-LwotIEJ1Z3MgaW4gdGhlIDMtRCBkcml2ZXIgYXJlIHVuZGVyIHByb2R1Y3Qg4oCcTWVzYeKAnSwg
-Y29tcG9uZW50CuKAnERyaXZlcnMvRFJJL25vdXZlYXXigJ0sIGJ1dCBwbGVhc2UgZG8gbm90IHN1
-Ym1pdCBidWdzIG9uIHRoZSAzLUQgc3VwcG9ydCB5ZXQuCi0gQW55IDMtRCBmdW5jdGlvbmFsaXR5
-IHRoYXQgbWlnaHQgZXhpc3QgaXMgc3RpbGwgdW5zdXBwb3J0ZWQuIERvIG5vdCBhc2sgZm9yCmlu
-c3RydWN0aW9ucyB0byB0cnkgaXQuIEJ1dCB5b3UgY2FuIHJlYWQgR2FsbGl1bUhvd3RvIGluIGNh
-c2UgeW91IGFyZSBicmF2ZQplbm91Z2guCmh0dHA6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93
-aWtpL0dhbGxpdW1Ib3d0bwotIFdhcm5pbmc6IHRoZSBOb3V2ZWF1IDNEIGRyaXZlcnMgYXJlIG5v
-dCB5ZXQgc3VpdGFibGUgZm9yIG9yZGluYXJ5IHVzZXJzLgpCdWcgcmVwb3J0cyBvbiB0aGUgM0Qg
-ZHJpdmVycyBhcmUgbm90IGFjY2VwdGVkLgoKWW91IHNob3VsZCBiZSB0aGFua2Z1bCB0aGF0IHNv
-bWVvbmUgYWxyZWFkeSB3cm90ZSBjb2RlIHRoYXQgZml4IHlvdXIgcHJvYmxlbQphbmQgdGhhdCBj
-b2RlIGlzIHZlcnkgZWFzaWx5IGF2YWlsYWJsZSBpbiBvZmZpY2lhbCBtZXNhLmdpdCB0cmVlLCBh
-bmQgdGhhdApzb21lb25lIGVsc2UgdG9vayB0aGUgdGltZSB0byBhbnN3ZXIgeW91IGFuZCBwb2lu
-dCB0byB0aGF0IGNvZGUgOikKClBTIDogSSBhbSBub3QgYSBkZXZlbG9wZXIgYW5kIGhhdmUgbm8g
-aW5mbHVlbmNlIG9uIHdoYXQgZ2V0cyBtZXJnZWQgaW4gbWVzYSwKbmVpdGhlciBvbiB0aGUgM2Qg
-c3VwcG9ydCAvIGJ1ZyBwb2xpY3kuCkFuZCB0aGlzIGJ1ZyBsb29rcyBtb3JlIGxpa2UgdW5vZmZp
-Y2lhbCB1c2VyIHN1cHBvcnQgdGhhbiBhbnl0aGluZy4gRmVlbCBmcmVlCnRvIHNlbmQgbWUgcHJp
-dmF0ZSBtYWlscyBpZiB5b3UgaGF2ZSBmdXJ0aGVyIHF1ZXN0aW9ucy4KCi0tIApDb25maWd1cmUg
-YnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1l
-bWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0t
-CllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+On Mon, 2010-05-03 at 01:36 -0700, Xavier Chantry wrote:
+> I am trying to understand the s3tc init code as nv50 gallium has a
+> problem with that.
+> =
+
+> It looks like some drivers (r300g and llvmpipe) actually inits s3tc in
+> two places :
+> ./src/mesa/main/texcompress_s3tc.c _mesa_init_texture_s3tc()
+> ./src/gallium/auxiliary/util/u_format_s3tc.c util_format_s3tc_init()
+> =
+
+> Here is an extract of the backtrace calls while loading fgfs on llvmpipe :
+> driCreateScreen -> llvmpipe_create_screen -> util_format_s3tc_init
+> driCreateContext -> st_create_context -> _mesa_create_context_for_api
+> -> init_attrib_groups -> _mesa_init_texture_s3tc
+>
+> These two functions seem to do more or less the same job, and
+> apparently, the classic mesa init is unused for a gallium driver.
+> So I suppose that init is not necessary, but it happens because
+> gallium and mesa are tightly tied together, and create context is
+> handled similarly, but it shouldn't hurt ?
+
+Both inits are necessary. The same .so is used for both paths, but given
+that gallium and mesa do not depend on each other that's the way to do
+it. Gallium and mesa also have seperate format translation functions.
+
+At least until we start factoring code into a separate library. (I said
+I'd do it, but stuff came up and I couldn't do when I thought, and I
+don't know when I'll be able to do it...)
+
+> Additionally r300g and llvmpipe added util_format_s3tc_init to their
+> create_screen functions, and util/u_format_s3tc.c apparently contains
+> all the functions that a gallium driver uses.
+> So I suppose that nvfx and nv50 should do the same ?
+> =
+
+> If that's correct, the patch below might not be completely wrong.
+> =
+
+> On Mon, May 3, 2010 at 12:44 AM, Xavier Chantry
+> <chantry.xavier@gmail.com> wrote:
+> > flightgear now dies with :
+> > Mesa warning: external dxt library not available: texstore_rgba_dxt3
+> > util/u_format_s3tc.c:66:util_format_dxt3_rgba_fetch_stub: Assertion `0'=
+ failed.
+> >
+> > I don't really understand what these stubs are about, they were
+> > introduced by following commit :
+> > commit d96e87c3c513f8ed350ae24425edb74b6d6fcc13
+> > Author: Jos=E9 Fonseca <jfonseca@vmware.com>
+> > Date:   Wed Apr 7 20:47:38 2010 +0100
+> >
+> >    util: Use stubs for the dynamically loaded S3TC functions.
+> >
+> >    Loosely based on Luca Barbieri's commit
+> >    52e9b990a192a9329006d5f7dd2ac222effea5a5.
+> >
+> > Looking at llvm and r300 code and trying to guess, I came up with the
+> > following patch that allows flightgear to start again. But I don't
+> > really understand that stuff so it could be wrong.
+> > nvfx is probably affected as well.
+> >
+> >
+> > diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c
+> > b/src/gallium/drivers/nouveau/nouveau_screen.c
+> > index 233a91a..a91b00b 100644
+> > --- a/src/gallium/drivers/nouveau/nouveau_screen.c
+> > +++ b/src/gallium/drivers/nouveau/nouveau_screen.c
+> > @@ -5,6 +5,7 @@
+> >  #include "util/u_memory.h"
+> >  #include "util/u_inlines.h"
+> >  #include "util/u_format.h"
+> > +#include "util/u_format_s3tc.h"
+> >
+> >  #include <stdio.h>
+> >  #include <errno.h>
+> > @@ -248,6 +249,8 @@ nouveau_screen_init(struct nouveau_screen *screen,
+> > struct nouveau_device *dev)
+> >        pscreen->fence_signalled =3D nouveau_screen_fence_signalled;
+> >        pscreen->fence_finish =3D nouveau_screen_fence_finish;
+> >
+> > +       util_format_s3tc_init();
+> > +
+> >        return 0;
+> >  }
+> >
+> > diff --git a/src/gallium/drivers/nv50/nv50_screen.c
+> > b/src/gallium/drivers/nv50/nv50_screen.c
+> > index 2dd1042..0d74c90 100644
+> > --- a/src/gallium/drivers/nv50/nv50_screen.c
+> > +++ b/src/gallium/drivers/nv50/nv50_screen.c
+> > @@ -20,6 +20,7 @@
+> >  * SOFTWARE.
+> >  */
+> >
+> > +#include "util/u_format_s3tc.h"
+> >  #include "pipe/p_screen.h"
+> >
+> >  #include "nv50_context.h"
+> > @@ -72,10 +73,6 @@ nv50_screen_is_format_supported(struct pipe_screen *=
+pscreen,
+> >                case PIPE_FORMAT_A8_UNORM:
+> >                case PIPE_FORMAT_I8_UNORM:
+> >                case PIPE_FORMAT_L8A8_UNORM:
+> > -               case PIPE_FORMAT_DXT1_RGB:
+> > -               case PIPE_FORMAT_DXT1_RGBA:
+> > -               case PIPE_FORMAT_DXT3_RGBA:
+> > -               case PIPE_FORMAT_DXT5_RGBA:
+> >                case PIPE_FORMAT_S8_USCALED_Z24_UNORM:
+> >                case PIPE_FORMAT_Z24_UNORM_S8_USCALED:
+> >                case PIPE_FORMAT_Z32_FLOAT:
+> > @@ -85,6 +82,11 @@ nv50_screen_is_format_supported(struct pipe_screen *=
+pscreen,
+> >                case PIPE_FORMAT_R16G16_SNORM:
+> >                case PIPE_FORMAT_R16G16_UNORM:
+> >                        return TRUE;
+> > +               case PIPE_FORMAT_DXT1_RGB:
+> > +               case PIPE_FORMAT_DXT1_RGBA:
+> > +               case PIPE_FORMAT_DXT3_RGBA:
+> > +               case PIPE_FORMAT_DXT5_RGBA:
+> > +                       return util_format_s3tc_enabled;
+> >                default:
+> >                        break;
+> >                }
+> >
+
+You should only advertise PIPE_FORMAT_DXT* for BIND_SAMPLER_VIEW, or you
+may end up in very weird paths. Same for YUV.
+
+Jose
+
+
+---------------------------------------------------------------------------=
+---
