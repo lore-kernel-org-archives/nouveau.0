@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27603] [nouveau] Celestia 1.6.0 crashes with
  nv04_surface_copy_swizzle assertion
-Date: Mon,  3 May 2010 03:16:40 -0700 (PDT)
-Message-ID: <20100503101640.B153313004E@annarchy.freedesktop.org>
+Date: Mon,  3 May 2010 04:49:22 -0700 (PDT)
+Message-ID: <20100503114922.C29F313000D@annarchy.freedesktop.org>
 References: <bug-27603-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-27603-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,38 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27603
-
---- Comment #14 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2010-05-03 03:16:40 PDT ---
-Could someone please merge the fix for this into the stable mesa.git tree?
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mjc2MDMKCi0tLSBD
+b21tZW50ICMxNSBmcm9tIFhhdmllciA8c2hpbmluZ3hjQGdtYWlsLmNvbT4gMjAxMC0wNS0wMyAw
+NDo0OToyMiBQRFQgLS0tCkl0J3Mgbm90IGEgZml4Li4uIEl0J3MgYSBjb21wbGV0ZSByZXdyaXRl
+IG9mIHRoZSAyZCBlbmdpbmUuCkl0IHdpbGwgcHJvYmFibHkgYmUgbWVyZ2VkIHNvbWUgZGF5IGJ5
+IGl0cyBvd24gYXV0aG9yLCBub3QgYnkgInNvbWVvbmUiLgoKVGhlcmUgaXMgbm8gc3VjaCB0aGlu
+ZyBhcyBhIHN0YWJsZSBtZXNhLmdpdCB0cmVlLiBUaGUgbWVzYS5naXQgdHJlZSBjb250YWlucwpl
+eHBlcmltZW50YWwgYnJhbmNoZXMgKGxpa2UgbnZmeC1uZXh0KSwgbWFpbiBkZXZlbG9wbWVudCBi
+cmFuY2ggKG1hc3RlciksIGFuZApzdGFibGUgcmVsZWFzZSBicmFuY2ggKDcuOCkuClRoaXMga2lu
+ZCBvZiB3b3JrIGlzIG9ubHkgZXZlciBtZXJnZWQgaW4gbWFzdGVyLiBCdXQgd2h5IGRvIHlvdSBj
+YXJlIGFuZCB3aGF0CmRpZmZlcmVuY2UgZG9lcyBpdCBtYWtlIHRvIHlvdSB3aGVyZSB0aGUgY29k
+ZSBsaWVzID8KCkFuZCBkaWQgeW91IGZvcmdldCB0aGF0IDNkIGlzIHVuc3VwcG9ydGVkIGFuZCBi
+dWdzIGFyZSBub3Qgd2FudGVkID8KCmh0dHA6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtp
+LwotIEJ1Z3MgaW4gdGhlIDMtRCBkcml2ZXIgYXJlIHVuZGVyIHByb2R1Y3Qg4oCcTWVzYeKAnSwg
+Y29tcG9uZW50CuKAnERyaXZlcnMvRFJJL25vdXZlYXXigJ0sIGJ1dCBwbGVhc2UgZG8gbm90IHN1
+Ym1pdCBidWdzIG9uIHRoZSAzLUQgc3VwcG9ydCB5ZXQuCi0gQW55IDMtRCBmdW5jdGlvbmFsaXR5
+IHRoYXQgbWlnaHQgZXhpc3QgaXMgc3RpbGwgdW5zdXBwb3J0ZWQuIERvIG5vdCBhc2sgZm9yCmlu
+c3RydWN0aW9ucyB0byB0cnkgaXQuIEJ1dCB5b3UgY2FuIHJlYWQgR2FsbGl1bUhvd3RvIGluIGNh
+c2UgeW91IGFyZSBicmF2ZQplbm91Z2guCmh0dHA6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93
+aWtpL0dhbGxpdW1Ib3d0bwotIFdhcm5pbmc6IHRoZSBOb3V2ZWF1IDNEIGRyaXZlcnMgYXJlIG5v
+dCB5ZXQgc3VpdGFibGUgZm9yIG9yZGluYXJ5IHVzZXJzLgpCdWcgcmVwb3J0cyBvbiB0aGUgM0Qg
+ZHJpdmVycyBhcmUgbm90IGFjY2VwdGVkLgoKWW91IHNob3VsZCBiZSB0aGFua2Z1bCB0aGF0IHNv
+bWVvbmUgYWxyZWFkeSB3cm90ZSBjb2RlIHRoYXQgZml4IHlvdXIgcHJvYmxlbQphbmQgdGhhdCBj
+b2RlIGlzIHZlcnkgZWFzaWx5IGF2YWlsYWJsZSBpbiBvZmZpY2lhbCBtZXNhLmdpdCB0cmVlLCBh
+bmQgdGhhdApzb21lb25lIGVsc2UgdG9vayB0aGUgdGltZSB0byBhbnN3ZXIgeW91IGFuZCBwb2lu
+dCB0byB0aGF0IGNvZGUgOikKClBTIDogSSBhbSBub3QgYSBkZXZlbG9wZXIgYW5kIGhhdmUgbm8g
+aW5mbHVlbmNlIG9uIHdoYXQgZ2V0cyBtZXJnZWQgaW4gbWVzYSwKbmVpdGhlciBvbiB0aGUgM2Qg
+c3VwcG9ydCAvIGJ1ZyBwb2xpY3kuCkFuZCB0aGlzIGJ1ZyBsb29rcyBtb3JlIGxpa2UgdW5vZmZp
+Y2lhbCB1c2VyIHN1cHBvcnQgdGhhbiBhbnl0aGluZy4gRmVlbCBmcmVlCnRvIHNlbmQgbWUgcHJp
+dmF0ZSBtYWlscyBpZiB5b3UgaGF2ZSBmdXJ0aGVyIHF1ZXN0aW9ucy4KCi0tIApDb25maWd1cmUg
+YnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1l
+bWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0t
+CllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
