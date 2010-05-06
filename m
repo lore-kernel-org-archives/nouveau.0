@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27905] DVI monitor is blank - DVI detected as
 	Display Port ?
-Date: Wed,  5 May 2010 16:29:55 -0700 (PDT)
-Message-ID: <20100505232955.7739113000D@annarchy.freedesktop.org>
+Date: Thu,  6 May 2010 02:47:28 -0700 (PDT)
+Message-ID: <20100506094728.DFA7713004F@annarchy.freedesktop.org>
 References: <bug-27905-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27905
 
-Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org> changed:
+--- Comment #18 from Julien Wajsberg <felash-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-06 02:47:28 PDT ---
+Oh you're right ;)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org
+(except that it's not true everywhere)
 
---- Comment #17 from Anssi Hannula <anssi-4qZELD6Fgxhg9hUCZPvPmw@public.gmane.org> 2010-05-05 16:29:54 PDT ---
-(In reply to comment #16)
-> Is it sufficient to boot with nomodeset=3 and be in a text console, with X
-> loaded ? Or should I boot single to not have X at all ?
-
-Look more closely, it is "nomodeset 3", not "nomodeset=3" :)
-The "3" will cause your system to boot to runlevel 3, which doesn't start X
-server.
+I'll do whatever I must do to boot without X. But not until monday, so please
+try to sleep. :-)
+</noise>
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
