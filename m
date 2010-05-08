@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20363] nouveau - slight pixel corruption in text
-Date: Sat,  8 May 2010 08:54:45 -0700 (PDT)
-Message-ID: <20100508155445.E016E130052@annarchy.freedesktop.org>
+Date: Sat,  8 May 2010 11:53:35 -0700 (PDT)
+Message-ID: <20100508185335.31ADD13004E@annarchy.freedesktop.org>
 References: <bug-20363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=20363
 
---- Comment #3 from Julien Wajsberg <felash-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-08 08:54:44 PDT ---
-Created an attachment (id=35508)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=35508)
-Example of the problem
+--- Comment #4 from Felipe <amadinho10-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-08 11:53:34 PDT ---
+Created an attachment (id=35509)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35509)
+pixel corruption
 
-same problem here with Geforce 6600 GT (NV43).
-
-Debian's version for xorg's nouveau driver : 0.0.15+git20100329+7858345-3
-
-I didn't see this problem with my laptop with the same version (which has a
-NV50 series).
+look at I character
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
