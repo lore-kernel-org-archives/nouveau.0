@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20363] nouveau - slight pixel corruption in text
-Date: Sat,  8 May 2010 11:53:35 -0700 (PDT)
-Message-ID: <20100508185335.31ADD13004E@annarchy.freedesktop.org>
+Date: Sat,  8 May 2010 11:58:57 -0700 (PDT)
+Message-ID: <20100508185857.ED7E213000D@annarchy.freedesktop.org>
 References: <bug-20363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=20363
 
---- Comment #4 from Felipe <amadinho10-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-08 11:53:34 PDT ---
-Created an attachment (id=35509)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=35509)
-pixel corruption
-
-look at I character
+--- Comment #5 from Felipe <amadinho10-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-08 11:58:57 PDT ---
+I forgot to say, I'm using up-to-date Ubuntu 10.04 now
+linux-kernel 2.6.32-22-generic
+nouveau version 1:0.0.15+git20100219+9b4118d-0ubuntu5
+GeForce 7300 LE
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
