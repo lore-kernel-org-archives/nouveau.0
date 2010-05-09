@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 28039] nouveau can't display preview
-Date: Sun,  9 May 2010 06:37:34 -0700 (PDT)
-Message-ID: <20100509133734.56E3D13004E@annarchy.freedesktop.org>
-References: <bug-28039-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: allow cursor image and position to
+	survive suspend
+Date: Sun,  9 May 2010 15:44:53 +0200
+Message-ID: <1273412693-4041-1-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-28039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +19,107 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=28039
+- This isn't triggered yet on a normal kernel, because it still does a VT
+switch, but it seemed like a good idea to fix this now.
 
---- Comment #4 from dimitri-b-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org 2010-05-09 06:37:34 PDT ---
-I am ;)
+Tested-by: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_crtc.h |    2 ++
+ drivers/gpu/drm/nouveau/nouveau_drv.c  |   29 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nv04_cursor.c  |    1 +
+ drivers/gpu/drm/nouveau/nv50_cursor.c  |    1 +
+ 4 files changed, 33 insertions(+), 0 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_crtc.h b/drivers/gpu/drm/nouveau/nouveau_crtc.h
+index 49fa7b2..cb1ce2a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_crtc.h
++++ b/drivers/gpu/drm/nouveau/nouveau_crtc.h
+@@ -40,6 +40,8 @@ struct nouveau_crtc {
+ 	int sharpness;
+ 	int last_dpms;
+ 
++	int cursor_saved_x, cursor_saved_y;
++
+ 	struct {
+ 		int cpp;
+ 		bool blanked;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
+index 1de974a..4bccba3 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
+@@ -177,6 +177,13 @@ nouveau_pci_suspend(struct pci_dev *pdev, pm_message_t pm_state)
+ 		nouveau_bo_unpin(nouveau_fb->nvbo);
+ 	}
+ 
++	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
++		struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
++
++		nouveau_bo_unmap(nv_crtc->cursor.nvbo);
++		nouveau_bo_unpin(nv_crtc->cursor.nvbo);
++	}
++
+ 	NV_INFO(dev, "Evicting buffers...\n");
+ 	ttm_bo_evict_mm(&dev_priv->ttm.bdev, TTM_PL_VRAM);
+ 
+@@ -318,12 +325,34 @@ nouveau_pci_resume(struct pci_dev *pdev)
+ 		nouveau_bo_pin(nouveau_fb->nvbo, TTM_PL_FLAG_VRAM);
+ 	}
+ 
++	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
++		struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
++		int ret;
++
++		ret = nouveau_bo_pin(nv_crtc->cursor.nvbo, TTM_PL_FLAG_VRAM);
++		if (!ret)
++			ret = nouveau_bo_map(nv_crtc->cursor.nvbo);
++		if (ret)
++			NV_ERROR(dev, "Could not pin/map cursor.\n");
++	}
++
+ 	if (dev_priv->card_type < NV_50) {
+ 		nv04_display_restore(dev);
+ 		NVLockVgaCrtcs(dev, false);
+ 	} else
+ 		nv50_display_init(dev);
+ 
++	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
++		struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
++
++		nv_crtc->cursor.set_offset(nv_crtc,
++					nv_crtc->cursor.nvbo->bo.offset -
++					dev_priv->vm_vram_base);
++
++		nv_crtc->cursor.set_pos(nv_crtc, nv_crtc->cursor_saved_x,
++			nv_crtc->cursor_saved_y);
++	}
++
+ 	/* Force CLUT to get re-loaded during modeset */
+ 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+ 		struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+diff --git a/drivers/gpu/drm/nouveau/nv04_cursor.c b/drivers/gpu/drm/nouveau/nv04_cursor.c
+index 89a91b9..aaf3de3 100644
+--- a/drivers/gpu/drm/nouveau/nv04_cursor.c
++++ b/drivers/gpu/drm/nouveau/nv04_cursor.c
+@@ -20,6 +20,7 @@ nv04_cursor_hide(struct nouveau_crtc *nv_crtc, bool update)
+ static void
+ nv04_cursor_set_pos(struct nouveau_crtc *nv_crtc, int x, int y)
+ {
++	nv_crtc->cursor_saved_x = x; nv_crtc->cursor_saved_y = y;
+ 	NVWriteRAMDAC(nv_crtc->base.dev, nv_crtc->index,
+ 		      NV_PRAMDAC_CU_START_POS,
+ 		      XLATE(y, 0, NV_PRAMDAC_CU_START_POS_Y) |
+diff --git a/drivers/gpu/drm/nouveau/nv50_cursor.c b/drivers/gpu/drm/nouveau/nv50_cursor.c
+index 753e723..03ad7ab 100644
+--- a/drivers/gpu/drm/nouveau/nv50_cursor.c
++++ b/drivers/gpu/drm/nouveau/nv50_cursor.c
+@@ -107,6 +107,7 @@ nv50_cursor_set_pos(struct nouveau_crtc *nv_crtc, int x, int y)
+ {
+ 	struct drm_device *dev = nv_crtc->base.dev;
+ 
++	nv_crtc->cursor_saved_x = x; nv_crtc->cursor_saved_y = y;
+ 	nv_wr32(dev, NV50_PDISPLAY_CURSOR_USER_POS(nv_crtc->index),
+ 		((y & 0xFFFF) << 16) | (x & 0xFFFF));
+ 	/* Needed to make the cursor move. */
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.0.4
