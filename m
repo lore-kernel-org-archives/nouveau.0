@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28039] nouveau can't display preview
-Date: Sun,  9 May 2010 06:50:21 -0700 (PDT)
-Message-ID: <20100509135021.2196013000D@annarchy.freedesktop.org>
+Date: Sun,  9 May 2010 06:57:48 -0700 (PDT)
+Message-ID: <20100509135748.2BAB313000D@annarchy.freedesktop.org>
 References: <bug-28039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28039
 
---- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-09 06:50:20 PDT ---
-Anything unusual in the kernel logs?
+--- Comment #6 from dimitri-b-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org 2010-05-09 06:57:47 PDT ---
+Created an attachment (id=35523)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35523)
+/var/log/kernel.log
+
+Here is a part of my /var/log/kernel.log
+Sory, i'm not able to see if there is something unusual or not.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
