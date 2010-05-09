@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 28039] New: nouveau can't display preview
-Date: Sun,  9 May 2010 06:26:03 -0700 (PDT)
-Message-ID: <bug-28039-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 28039] nouveau can't display preview
+Date: Sun,  9 May 2010 06:28:20 -0700 (PDT)
+Message-ID: <20100509132821.0211013004E@annarchy.freedesktop.org>
+References: <bug-28039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-28039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28039
 
-           Summary: nouveau can't display preview
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: dimitri-b-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=35520)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=35520)
-/var/log/Xorg0.log
-
-Hey,
-I'm using nouveau, and with it dolphin can't print pictures' preview. Same
-problem with chromium : when i move a tab, it's very slow and it don't print
-preview.
-All works fine when i use nv driver.
+--- Comment #1 from dimitri-b-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org 2010-05-09 06:28:20 PDT ---
+Created an attachment (id=35521)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35521)
+bug in dolphin
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
