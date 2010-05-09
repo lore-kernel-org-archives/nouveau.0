@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28039] nouveau can't display preview
-Date: Sun,  9 May 2010 06:34:35 -0700 (PDT)
-Message-ID: <20100509133435.B0BFF13004E@annarchy.freedesktop.org>
+Date: Sun,  9 May 2010 06:37:34 -0700 (PDT)
+Message-ID: <20100509133734.56E3D13004E@annarchy.freedesktop.org>
 References: <bug-28039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28039
 
---- Comment #3 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2010-05-09 06:34:35 PDT ---
-I also have this problem. I think it is related to the corruption problem that
-happens when using DFS/UTS.
-
-I see you are using archlinux like me, are you using nouveau-drm ?
+--- Comment #4 from dimitri-b-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org 2010-05-09 06:37:34 PDT ---
+I am ;)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
