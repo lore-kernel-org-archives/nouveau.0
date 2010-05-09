@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28039] nouveau can't display preview
-Date: Sun,  9 May 2010 07:26:35 -0700 (PDT)
-Message-ID: <20100509142635.E521813000D@annarchy.freedesktop.org>
+Date: Sun,  9 May 2010 13:43:55 -0700 (PDT)
+Message-ID: <20100509204355.7F79413000D@annarchy.freedesktop.org>
 References: <bug-28039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28039
 
---- Comment #8 from dimitri-b-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org 2010-05-09 07:26:35 PDT ---
-I've try a lot of xorg configuration, so i restarted my xorg server a lot.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I've rebot to have a clean kernel.log, and there isn't any FIFO 3.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #35523|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
