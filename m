@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28039] nouveau can't display preview
-Date: Sun,  9 May 2010 13:43:55 -0700 (PDT)
-Message-ID: <20100509204355.7F79413000D@annarchy.freedesktop.org>
+Date: Sun,  9 May 2010 13:44:12 -0700 (PDT)
+Message-ID: <20100509204412.8F0DD13000D@annarchy.freedesktop.org>
 References: <bug-28039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #35523|application/octet-stream    |text/plain
+  Attachment #35520|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
