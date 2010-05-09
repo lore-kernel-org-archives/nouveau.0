@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28039] nouveau can't display preview
-Date: Sun,  9 May 2010 07:03:29 -0700 (PDT)
-Message-ID: <20100509140329.BD7962DC101@annarchy.freedesktop.org>
+Date: Sun,  9 May 2010 07:26:35 -0700 (PDT)
+Message-ID: <20100509142635.E521813000D@annarchy.freedesktop.org>
 References: <bug-28039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28039
 
---- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-09 07:03:29 PDT ---
-The FIFO 3 message is odd, because xorg usually takes FIFO 2 and that's it. You
-seem to restart xorg a lot, but apart from that nothing odd.
+--- Comment #8 from dimitri-b-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org 2010-05-09 07:26:35 PDT ---
+I've try a lot of xorg configuration, so i restarted my xorg server a lot.
+
+I've rebot to have a clean kernel.log, and there isn't any FIFO 3.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
