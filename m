@@ -1,54 +1,106 @@
-From: "Emil Velikov" <emil.velikov-/E1597aS9LT10XsdtD+oqA@public.gmane.org>
-Subject: [PATCH] Fixes while parsing perf tables on GF5
-Date: Sun, 10 Oct 2010 19:26:59 +0100
-Message-ID: <op.vkdhi8rttkuz1w@emo>
+From: ilove cyndi <cyndilovesme@hotmail.com>
+Subject: new xwindow
+Date: Thu, 13 May 2010 10:22:27 +0000
+Message-ID: <SNT135-w430BAB91EB625603B947BDDFC0@phx.gbl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org, nouveau mailing list <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0663879057=="
+Return-path: <xdg-bounces+gcxd-xdg-list=gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/xdg>,
+	<mailto:xdg-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/xdg>
+List-Post: <mailto:xdg@lists.freedesktop.org>
+List-Help: <mailto:xdg-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/xdg>,
+	<mailto:xdg-request@lists.freedesktop.org?subject=subscribe>
+Sender: xdg-bounces+gcxd-xdg-list=gmane.org@lists.freedesktop.org
+Errors-To: xdg-bounces+gcxd-xdg-list=gmane.org@lists.freedesktop.org
+To: xorg@freedesktop.org, xorg-commit@lists.freedesktop.org, xorg-europe@lists.x.org, xdg@lists.freedesktop.org, nouveau@lists.freedesktop.org, xcb@lists.freedesktop.orgxor
 List-Id: nouveau.vger.kernel.org
 
+--===============0663879057==
+Content-Type: multipart/alternative;
+	boundary="_56bec372-db58-4b40-941c-f8881fff1738_"
 
- From 3dcc41d053357a93e523f0bcca593ed061fdac57 Mon Sep 17 00:00:00 2001
-From: Emil Velikov <eeydev-QabDm/c3fAmwa9SdKMSz+Q@public.gmane.org>
-Date: Sun, 10 Oct 2010 19:21:30 +0100
-Subject: [PATCH] Fixes while parsing perf tables on GF5
+--_56bec372-db58-4b40-941c-f8881fff1738_
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: quoted-printable
 
-Perf tables v1.2 & 1.3 does not store voltage
-Comment that the fanspeed does not apear to be valid for v1.5
 
-Signed-off-by: Emil Velikov <emil.velikov-/E1597aS9LT10XsdtD+oqA@public.gmane.org>
----
-  drivers/gpu/drm/nouveau/nouveau_perf.c |    4 +++-
-  1 files changed, 3 insertions(+), 1 deletions(-)
+HI,sir
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c  
-b/drivers/gpu/drm/nouveau/nouveau_perf.c
-index ac62a1b..d3725c1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_perf.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
-@@ -133,8 +133,10 @@ nouveau_perf_init(struct drm_device *dev)
-  		case 0x12:
-  		case 0x13:
-  		case 0x15:
-+			/* XXX: Cant we really trust fanspeed on 0x15 */
-  			perflvl->fanspeed = entry[55];
--			perflvl->voltage = entry[56];
-+			/* Table v 1.2 and 1.3 does not have big enough recordlen to store the  
-voltage */
-+			perflvl->voltage = (recordlen > 56) ? entry[56] : 0;
-  			perflvl->core = ROM32(entry[1]) * 10;
-  			perflvl->memory = ROM32(entry[5]) * 20;
-  			break;
--- 
-1.7.2.3
+=20
+
+I AM SORRY ABOUT THE OLD WEBSITE
+
+=20
+
+PLEASE TRY THE NEW ONE
+
+=20
+
+http://xwindow.webs.com/
+
+=20
+
+THANKS
+
+=20
+
+MIKHAIL HU
+
+=20
+ 		 	   		 =20
+_________________________________________________________________
+Hotmail =ABH=BDc=B1=C4=A5=CE=B7L=B3n=B8=EA=B0T=A6w=A5=FE=A7=DE=B3N
+https://signup.live.com/signup.aspx?id=3D60969
+--_56bec372-db58-4b40-941c-f8881fff1738_
+Content-Type: text/html; charset="big5"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px;
+padding:0px
+}
+body.hmmessage
+{
+font-size: 9pt;
+font-family:=B7s=B2=D3=A9=FA=C5=E9
+}
+--></style>
+</head>
+<body class=3D'hmmessage'>
+<FONT style=3D"FONT-SIZE: 12pt" size=3D3>HI,sir</FONT><BR>
+<FONT size=3D3></FONT>&nbsp;<BR>
+<FONT size=3D3>I AM SORRY ABOUT THE OLD WEBSITE</FONT><BR>
+<FONT size=3D3></FONT>&nbsp;<BR>
+<FONT size=3D3>PLEASE TRY THE NEW ONE</FONT><BR>
+<FONT size=3D3></FONT>&nbsp;<BR>
+<A href=3D"http://xwindow.webs.com/"><FONT size=3D3>http://xwindow.webs.c=
+om/</FONT></A><BR>
+<FONT size=3D3></FONT>&nbsp;<BR>
+<FONT size=3D3>THANKS</FONT><BR>
+<FONT size=3D3></FONT>&nbsp;<BR>
+<FONT size=3D3>MIKHAIL HU</FONT><BR>
+<FONT size=3D3></FONT>&nbsp;<BR> 		 	   		  <br /><hr />Hotmail =ABH=BDc=B1=
+=C4=A5=CE=B7L=B3n=B8=EA=B0T=A6w=A5=FE=A7=DE=B3N <a href=3D'https://signup=
+.live.com/signup.aspx?id=3D60969' target=3D'_new'>=B2{=A6b=B4N=A8=CF=A5=CE=
+</a></body>
+</html>
+--_56bec372-db58-4b40-941c-f8881fff1738_--
+
+--===============0663879057==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+xdg mailing list
+xdg@lists.freedesktop.org
+http://lists.freedesktop.org/mailman/listinfo/xdg
+
+--===============0663879057==--
