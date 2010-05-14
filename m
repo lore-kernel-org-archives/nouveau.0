@@ -1,10 +1,10 @@
-From: yaiba.kurogane-khu2bkKidpXVItvQsEIGlw@public.gmane.org
-Subject: xf86-video-nouveau-git and xorg-server-git
-Date: Thu, 13 May 2010 22:00:52 +0200
-Message-ID: <4BEC5A74.9010400@interia.pl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 28107] New: [NV31]
+Date: Fri, 14 May 2010 10:05:03 -0700 (PDT)
+Message-ID: <bug-28107-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,22 +18,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkhIFdpdGggY3VycmVudCBnaXQgdmVyc2lvbiBvZiB4b3JnLXNlcnZlciB3aGVuIEkgdHJ5IHRv
-IGNvbXBpbGUgCnhmODYtdmlkZW8tbm91dmVhdSBJIGdvdCB0aGVzZSBlcnJvcnM6Cm5vdXZlYXVf
-ZXhhLmxvCm5vdXZlYXVfZXhhLmM6IEluIGZ1bmN0aW9uICdub3V2ZWF1X2V4YV9jcmVhdGVfcGl4
-bWFwJzoKbm91dmVhdV9leGEuYzozMjU6Mzogd2FybmluZzogJ1hjYWxsb2MnIGlzIGRlcHJlY2F0
-ZWQgKGRlY2xhcmVkIGF0IAovdXNyL2luY2x1ZGUveG9yZy9vcy5oOjIyNSkKbm91dmVhdV9leGEu
-YzozMzE6Mjogd2FybmluZzogJ1hjYWxsb2MnIGlzIGRlcHJlY2F0ZWQgKGRlY2xhcmVkIGF0IAov
-dXNyL2luY2x1ZGUveG9yZy9vcy5oOjIyNSkKbm91dmVhdV9leGEuYzozNzI6Mzogd2FybmluZzog
-J1hmcmVlJyBpcyBkZXByZWNhdGVkIChkZWNsYXJlZCBhdCAKL3Vzci9pbmNsdWRlL3hvcmcvb3Mu
-aDoyMzQpCm5vdXZlYXVfZXhhLmM6IEluIGZ1bmN0aW9uICdub3V2ZWF1X2V4YV9kZXN0cm95X3Bp
-eG1hcCc6Cm5vdXZlYXVfZXhhLmM6Mzg4OjI6IHdhcm5pbmc6ICdYZnJlZScgaXMgZGVwcmVjYXRl
-ZCAoZGVjbGFyZWQgYXQgCi91c3IvaW5jbHVkZS94b3JnL29zLmg6MjM0KQogICBDQyAgICAgbm91
-dmVhdV94di5sbwpub3V2ZWF1X3h2LmM6IEluIGZ1bmN0aW9uICdOVlNldHVwQmxpdFZpZGVvJzoK
-bm91dmVhdV94di5jOjE1ODI6Mjogd2FybmluZzogJ1hjYWxsb2MnIGlzIGRlcHJlY2F0ZWQgKGRl
-Y2xhcmVkIGF0IAovdXNyL2luY2x1ZGUveG9yZy9vcy5oOjIyNSkKKC4uLikKCgoKLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KS3JlZHl0eSBoaXBvdGVj
-em5lIHogZG9wxYJhdMSFLiBTcHJhd2TFuiBrb25pZWN6bmllIQpodHRwOi8vbGlua2ludC5wbC9m
-MjZjYQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=28107
+
+           Summary: [NV31]
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: finest.bug-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Hello guys,
+
+I use your nouveau (git of 13.03.2010) driver on my ArchLinux system.
+
+When I boot my PC first time a day, it works just all fine. KMS switches to my
+preferred screen resolution of 1280x1024@85Hz.
+But after a quick reboot, the output on my screen is cut on the left side. My
+Monitor tells me it's running on 1024x1024@92Hz but the OS is telling me it
+runs at 1024x1024@85Hz. I can't set it to 85Hz, because it says me it's running
+at 85Hz.
+
+Your Finest Bug
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
