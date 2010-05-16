@@ -1,14 +1,13 @@
-From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: VDPAU & 8400GS support?
-Date: Sat, 15 May 2010 09:34:03 -0700
-Message-ID: <AANLkTilwEr2piGFFRt6z8a8mnqMP01gwjmXV0b_u8ZqG@mail.gmail.com>
-References: <AANLkTiliVTt8Kmno2lEr_t-Uc0WxNdYbTk3Ws4a3-5JQ@mail.gmail.com>
-	<AANLkTik5gLzFPKd37aae6vZA8xk8UY9Jf4F64tK8Xvfc@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26980] GT230M/nouveau: X server hangs spontaneously
+Date: Sun, 16 May 2010 03:36:26 -0700 (PDT)
+Message-ID: <20100516103626.C618413004E@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTik5gLzFPKd37aae6vZA8xk8UY9Jf4F64tK8Xvfc-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
->> I've been using the proprietary Nvidia driver and I just found out
->> about Nouveau. =A0Does it support VDPAU or are there plans to implement
->> it? =A0Does it support the 8400GS card?
->>
->
-> VDPAU is not supported.
->
-> From what I've seen on IRC, it seems like a big mess, with each card
-> family having (several?) different video decode engine.
-> The only work I know about is an initial support for mpeg2 decode
-> engine on nv40 :
-> http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=3Dnvfx-vpe&id=3D5=
-38d6ef8aac1cd861f6336e24e79a315fe58aba0
-> And afaik, the other engines are mostly unknown (no RE and no code).
->
-> Some of these details could be wrong, in that case hopefully someone
-> can correct me :)
->
-> About 8400GS, I suppose it's supported as well as any nv50 card, so
-> look at the nv50 column to see what to expect :
-> http://nouveau.freedesktop.org/wiki/FeatureMatrix
->
->
-> Below the main IRC discussion I read about video engines.
->
-[SNIP]
-> 23:04 < calim> mwk: yes; and my CPU says it doesn't need all this
-[SNIP]
-
-Has anyone been able to reliably decode 1080p in software?  It always
-ends up getting choppy and out of sync for me unless I use VDPAU.
-
-- Grant
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjY5ODAKCi0tLSBD
+b21tZW50ICM3IGZyb20gTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0PiAy
+MDEwLTA1LTE2IDAzOjM2OjI1IFBEVCAtLS0KVGhpcyBidWcgaXMgYSBodWdlIG15c3RlcnkgYW5k
+IEknbSBzdGFydGluZyB0byB0aGluayBpdCdzIGEgaHcgYnVnLiBPbmUKcG9zc2liaWxpdHkgaXMg
+dGhhdCBpdCdzIHRyaWdnZXJlZCBieSBhIHBhcnRpY3VsYXIgaW5zbiBzZXF1ZW5jZSB0aGF0IERE
+WCB1c2VzLgpDb3VsZCB5b3UgcGxlYXNlIHRyeSBodHRwOi8vMHgwNC5uZXQvfm13ay9udmE1LWhh
+Y2sucGF0Y2ggYW5kIHNlZSBpZiB0aGUKbG9ja3VwcyBzdGlsbCBoYXBwZW4/CgpJZiBhbnlvbmUg
+aGl0cyB0aGlzIGJ1Zywgd2l0aCB0aGUgYWJvdmUgcGF0Y2ggb3Igd2l0aG91dCwgcGxlYXNlIGNv
+bXBpbGUgcGd0ZXN0CmZyb20gaHR0cDovLzB4MDQubmV0L2NnaXQvaW5kZXguY2dpL3BndGVzdCBh
+bmQgZ2l2ZSB0aGUgb3V0cHV0IG9mIC4vcGVlawoweDQwMDAwMCAweDEwMDAwIGFmdGVyIHRoZSBs
+b2NrdXAuCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5v
+cmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlz
+IG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
