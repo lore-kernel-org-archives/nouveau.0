@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28107] [NV31] wrong refresh rate after reboot
-Date: Tue, 18 May 2010 07:44:41 -0700 (PDT)
-Message-ID: <20100518144441.97DB513000D@annarchy.freedesktop.org>
+Date: Tue, 18 May 2010 07:49:19 -0700 (PDT)
+Message-ID: <20100518144919.D966913000D@annarchy.freedesktop.org>
 References: <bug-28107-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28107
 
-finest.bug-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org changed:
+--- Comment #3 from finest.bug-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org 2010-05-18 07:49:19 PDT ---
+In this line is the only difference between those two files:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #35726|# dmesg | grep nouveau      |(85Hz) # dmesg | grep
-        description|                            |nouveau
+[drm] nouveau 0000:01:00.0: allocated 1280x1024 fb: 0x49000, bo dfaadc00
+[drm] nouveau 0000:01:00.0: allocated 1280x1024 fb: 0x49000, bo ded91c00
+
+Xorg.0.log has no differences between "cold" and "warm" state.
+
+For additional log messages please ask me :-)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
