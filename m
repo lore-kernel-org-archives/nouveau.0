@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28107] [NV31] wrong refresh rate after reboot
-Date: Tue, 18 May 2010 07:39:55 -0700 (PDT)
-Message-ID: <20100518143955.2D02D13000D@annarchy.freedesktop.org>
+Date: Tue, 18 May 2010 07:44:10 -0700 (PDT)
+Message-ID: <20100518144410.7396A13000D@annarchy.freedesktop.org>
 References: <bug-28107-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28107
 
-finest.bug-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org changed:
+--- Comment #2 from finest.bug-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org 2010-05-18 07:44:09 PDT ---
+Created an attachment (id=35727)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35727)
+(92Hz) # dmesg | grep nouveau
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #35726|#dmesg grep nouveau         |# dmesg | grep nouveau
-        description|                            |
+This is the result of dmesg on "warm" state (after a reboot), when the refresh
+rate is 92Hz and the screen output doesn't match the screen right.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
