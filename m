@@ -1,7 +1,7 @@
-From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nv50 piglit change between 7.8 and master
-Date: Mon, 17 May 2010 14:52:51 +0200
-Message-ID: <AANLkTilYP0j8uGJxcSui_MbjjE9mHlYYX77liQXKA9hi@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 28152] New: corruption in FVWM window decorations
+Date: Mon, 17 May 2010 22:07:42 -0700 (PDT)
+Message-ID: <bug-28152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,25 +15,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-7.8 branch (533b7663) : 209/246
-master branch (c882c31) : 216/241
+https://bugs.freedesktop.org/show_bug.cgi?id=28152
 
-In short :
-8 fail/warn -> pass
-5 fail -> skip
-1 pass -> fail
+           Summary: corruption in FVWM window decorations
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-So the only regression is glean/clipFlat
-Output:
-----------------------------------------------------------------------
-Test clipping with flat shading (provoking vertex).
 
-clipFlat: Failure for glBegin/End(GL_QUADS), glFrontFace(GL_CCW)
-	GL_EXT_provoking_vertex test: GL_FIRST_VERTEX_CONVENTION_EXT mode
-	Expected color (0, 1, 0) but found (1, 0, 0)
-clipFlat:  FAIL rgba8, db, z24, s8, win+pmap, id 33
+Created an attachment (id=35718)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35718)
+Screenshot (incorrectly rendered)
 
-If anyone cares, I can host the detailed html results somewhere.
+On an AGP fx5700 (NV36) card, I'm experiencing rendering glitches in FVWM's
+window decorations on nouveau.  The artifacts are completely consistent:
+exactly the same glitches occur on every single window.
+
+These glitches do not occur with other drivers, and I'm certain they didn't
+occur in nouveau last time I tried it (but this was well over a year ago).
+
+Attaching screenshots since pictures say 1000 words.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
