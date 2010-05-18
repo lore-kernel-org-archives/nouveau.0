@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28107] [NV31] wrong refresh rate after reboot
-Date: Tue, 18 May 2010 07:39:11 -0700 (PDT)
-Message-ID: <20100518143911.AEC9D13000D@annarchy.freedesktop.org>
+Date: Tue, 18 May 2010 07:39:55 -0700 (PDT)
+Message-ID: <20100518143955.2D02D13000D@annarchy.freedesktop.org>
 References: <bug-28107-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28107
 
---- Comment #1 from finest.bug-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org 2010-05-18 07:39:11 PDT ---
-Created an attachment (id=35726)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=35726)
-#dmesg grep nouveau
+finest.bug-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org changed:
 
-dmesg report of the "cold" system. 
-This is the result when the system starts normal and has the right refresh rate
-of 85Hz.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #35726|#dmesg grep nouveau         |# dmesg | grep nouveau
+        description|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
