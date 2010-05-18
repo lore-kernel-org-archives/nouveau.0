@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28152] corruption in FVWM window decorations
-Date: Mon, 17 May 2010 22:08:48 -0700 (PDT)
-Message-ID: <20100518050849.1348613004F@annarchy.freedesktop.org>
+Date: Mon, 17 May 2010 22:09:20 -0700 (PDT)
+Message-ID: <20100518050920.B06BF13004F@annarchy.freedesktop.org>
 References: <bug-28152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28152
 
---- Comment #1 from Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> 2010-05-17 22:08:48 PDT ---
-Created an attachment (id=35719)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=35719)
-Screenshot (correctly rendered)
+--- Comment #2 from Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> 2010-05-17 22:09:20 PDT ---
+Created an attachment (id=35721)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35721)
+Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
