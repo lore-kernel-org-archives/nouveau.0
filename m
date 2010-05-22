@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28212] image corruption
-Date: Sat, 22 May 2010 07:45:12 -0700 (PDT)
-Message-ID: <20100522144512.DF8C0130051@annarchy.freedesktop.org>
+Date: Sat, 22 May 2010 11:15:53 -0700 (PDT)
+Message-ID: <20100522181553.37B9213004E@annarchy.freedesktop.org>
 References: <bug-28212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28212
 
---- Comment #3 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-22 07:45:12 PDT ---
-Using compiz ? If yes, does it affect the results ?
+--- Comment #4 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2010-05-22 11:15:52 PDT ---
+Xavier: This is the kind of corruption I also get. So there are at least three
+of us having this issue.
+
+My exams are almost over, next week, I'll be free to dig into this problem once
+for all (hopefuly).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
