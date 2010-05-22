@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28212] image corruption
-Date: Sat, 22 May 2010 05:53:57 -0700 (PDT)
-Message-ID: <20100522125357.E557A13000D@annarchy.freedesktop.org>
+Date: Sat, 22 May 2010 05:54:30 -0700 (PDT)
+Message-ID: <20100522125430.8CA6313004E@annarchy.freedesktop.org>
 References: <bug-28212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28212
 
-okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #35795|dolphin_screenshot          |firefox_screenshot
-        description|                            |
+--- Comment #1 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-22 05:54:29 PDT ---
+Created an attachment (id=35796)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35796)
+dolphin_screenshot
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
