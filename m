@@ -1,7 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nv: improve KMS detection
-Date: Sun, 23 May 2010 21:46:45 +0200
-Message-ID: <20100523194645.GA15846@joi.lan>
+Subject: [PATCH] nouveau: detect incompatible libglx.so
+Date: Sun, 23 May 2010 21:49:16 +0200
+Message-ID: <20100523194916.GB15846@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -16,62 +16,69 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christopher James Halse Rogers <raof-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-1) DRICreatePCIBusID belongs to xserver dri module, so when it's
-   unavailable we can't format string for drmCheckModesettingSupported.
-   (This situation happened to me with KMS enabled and dri module moved
-   somewhere else by Gentoo's "eselect opengl set nvidia" switcher)
-   Open code DRICreatePCIBusID to drop dri dependency.
-2) Once we dropped dependency on dri module (which linked to libdrm),
-   we have to link directly to libdrm.
+Exit with proper message instead of crashing when user forgot
+to uninstall the proprietary driver.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- src/Makefile.am |    2 +-
- src/nv_driver.c |   11 +++--------
- 2 files changed, 4 insertions(+), 9 deletions(-)
+ src/nv_driver.c |   35 +++++++++++++++++++++++++++++++++++
+ 1 files changed, 35 insertions(+), 0 deletions(-)
 
-diff --git a/src/Makefile.am b/src/Makefile.am
-index 5d57010..8b23e21 100644
---- a/src/Makefile.am
-+++ b/src/Makefile.am
-@@ -25,7 +25,7 @@
- # TODO: -nostdlib/-Bstatic/-lgcc platform magic, not installing the .a, etc.
- AM_CFLAGS = @XMODES_CFLAGS@ @XORG_CFLAGS@ $(LIBDRM_CFLAGS)
- nv_drv_la_LTLIBRARIES = nv_drv.la
--nv_drv_la_LDFLAGS = -module -avoid-version
-+nv_drv_la_LDFLAGS = -module -avoid-version $(LIBDRM_LIBS)
- nv_drv_ladir = @moduledir@/drivers
- 
- nv_drv_la_SOURCES = $(nv_sources) $(riva_sources) $(g80_sources)
 diff --git a/src/nv_driver.c b/src/nv_driver.c
-index e10ae0c..6651cd4 100644
+index f60b6d9..2c953da 100644
 --- a/src/nv_driver.c
 +++ b/src/nv_driver.c
-@@ -836,18 +836,13 @@ NVIsSupported(CARD32 id)
+@@ -194,6 +194,38 @@ NVIdentify(int flags)
+     }
  }
  
- #ifdef HAVE_KMS
--static Bool NVKernelModesettingEnabled(struct pci_device *device)
-+static Bool NVKernelModesettingEnabled(struct pci_device *dev)
- {
--    char *busIdString;
-+    char busIdString[20];
-     int ret;
++static Bool glxIsCompatible()
++{
++	XF86ModuleData *d = LoaderSymbol("glxModuleData");
++
++	if (!d) {
++		xf86DrvMsg(-1, X_INFO,
++			"NOUVEAU: Couldn't find glx module informations. "
++			"Assuming it is disabled.\n");
++		return TRUE;
++	}
++
++	if (!d->vers) {
++		xf86DrvMsg(-1, X_ERROR,
++			"NOUVEAU: glx module has no version information!\n");
++		return FALSE;
++	}
++
++	if (!d->vers->vendor) {
++		xf86DrvMsg(-1, X_ERROR,
++			"NOUVEAU: glx module has no vendor information!\n");
++		return FALSE;
++	}
++
++	Bool ok = strcmp(d->vers->vendor, MODULEVENDORSTRING) == 0;
++	if (!ok)
++		xf86DrvMsg(-1, X_ERROR,
++			"NOUVEAU: glx module comes from incompatible vendor: \"%s\"\n",
++			d->vers->vendor);
++
++	return ok;
++}
++
+ static Bool
+ NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
+ 	   intptr_t match_data)
+@@ -209,6 +241,9 @@ NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
+ 	int chipset, ret;
+ 	char *busid;
  
--    if (!xf86LoaderCheckSymbol("DRICreatePCIBusID"))
--        return FALSE;
--
--    busIdString = DRICreatePCIBusID(device);
--
-+    snprintf(busIdString, 20, "pci:%04x:%02x:%02x.%d", dev->domain, dev->bus, dev->dev, dev->func);
-     ret = drmCheckModesettingSupported(busIdString);
--    xfree(busIdString);
- 
-     return (ret == 0);
- }
++	if (!glxIsCompatible())
++		return FALSE;
++
+ 	if (!xf86LoaderCheckSymbol("DRICreatePCIBusID")) {
+ 		xf86DrvMsg(-1, X_ERROR, "[drm] No DRICreatePCIBusID symbol\n");
+ 		return FALSE;
 -- 
 1.7.1
