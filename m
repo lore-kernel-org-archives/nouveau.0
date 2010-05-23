@@ -1,12 +1,12 @@
-From: =?UTF-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH v2] drm/nouveau: Add getparam for current PTIMER
-	time.
-Date: Sun, 23 May 2010 11:36:04 +0000
-Message-ID: <1274614564-8167-1-git-send-email-koriakin@0x04.net>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] nv: improve KMS detection
+Date: Sun, 23 May 2010 21:46:45 +0200
+Message-ID: <20100523194645.GA15846@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,34 +16,62 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christopher James Halse Rogers <raof-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyB3aWxsIGJlIHVzZWZ1bCBmb3IgY29tcHV0aW5nIEdQVS1DUFUgbGF0ZW5jeSwgaW5jbHVk
-aW5nCkdMX0FSQl90aW1lcl9xdWVyeSBleHRlbnNpb24uCgpTaWduZWQtb2ZmLWJ5OiBNYXJjaW4g
-S2/Fm2NpZWxuaWNraSA8a29yaWFraW5AMHgwNC5uZXQ+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9zdGF0ZS5jIHwgICAgMyArKysKIGluY2x1ZGUvZHJtL25vdXZlYXVfZHJt
-LmggICAgICAgICAgICAgICB8ICAgIDEgKwogMiBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMo
-KyksIDAgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9zdGF0ZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5j
-CmluZGV4IGUxNzEwNjQuLmI3OTM4ODAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfc3RhdGUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X3N0YXRlLmMKQEAgLTg1OSw2ICs4NTksOSBAQCBpbnQgbm91dmVhdV9pb2N0bF9nZXRwYXJhbShz
-dHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAogCWNhc2UgTk9VVkVBVV9HRVRQQVJB
-TV9WTV9WUkFNX0JBU0U6CiAJCWdldHBhcmFtLT52YWx1ZSA9IGRldl9wcml2LT52bV92cmFtX2Jh
-c2U7CiAJCWJyZWFrOworCWNhc2UgTk9VVkVBVV9HRVRQQVJBTV9QVElNRVJfVElNRToKKwkJZ2V0
-cGFyYW0tPnZhbHVlID0gZGV2X3ByaXYtPmVuZ2luZS50aW1lci5yZWFkKGRldik7CisJCWJyZWFr
-OwogCWNhc2UgTk9VVkVBVV9HRVRQQVJBTV9HUkFQSF9VTklUUzoKIAkJLyogTlY0MCBhbmQgTlY1
-MCB2ZXJzaW9ucyBhcmUgcXVpdGUgZGlmZmVyZW50LCBidXQgcmVnaXN0ZXIKIAkJICogYWRkcmVz
-cyBpcyB0aGUgc2FtZS4gVXNlciBpcyBzdXBwb3NlZCB0byBrbm93IHRoZSBjYXJkCmRpZmYgLS1n
-aXQgYS9pbmNsdWRlL2RybS9ub3V2ZWF1X2RybS5oIGIvaW5jbHVkZS9kcm0vbm91dmVhdV9kcm0u
-aAppbmRleCA1NzkyZmViLi42NTg5MjYxIDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9ub3V2ZWF1
-X2RybS5oCisrKyBiL2luY2x1ZGUvZHJtL25vdXZlYXVfZHJtLmgKQEAgLTc5LDYgKzc5LDcgQEAg
-c3RydWN0IGRybV9ub3V2ZWF1X2dwdW9ial9mcmVlIHsKICNkZWZpbmUgTk9VVkVBVV9HRVRQQVJB
-TV9DSElQU0VUX0lEICAgICAgMTEKICNkZWZpbmUgTk9VVkVBVV9HRVRQQVJBTV9WTV9WUkFNX0JB
-U0UgICAgMTIKICNkZWZpbmUgTk9VVkVBVV9HRVRQQVJBTV9HUkFQSF9VTklUUyAgICAgMTMKKyNk
-ZWZpbmUgTk9VVkVBVV9HRVRQQVJBTV9QVElNRVJfVElNRSAgICAgMTQKIHN0cnVjdCBkcm1fbm91
-dmVhdV9nZXRwYXJhbSB7CiAJdWludDY0X3QgcGFyYW07CiAJdWludDY0X3QgdmFsdWU7Ci0tIAox
-LjcuMC4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+1) DRICreatePCIBusID belongs to xserver dri module, so when it's
+   unavailable we can't format string for drmCheckModesettingSupported.
+   (This situation happened to me with KMS enabled and dri module moved
+   somewhere else by Gentoo's "eselect opengl set nvidia" switcher)
+   Open code DRICreatePCIBusID to drop dri dependency.
+2) Once we dropped dependency on dri module (which linked to libdrm),
+   we have to link directly to libdrm.
+
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ src/Makefile.am |    2 +-
+ src/nv_driver.c |   11 +++--------
+ 2 files changed, 4 insertions(+), 9 deletions(-)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 5d57010..8b23e21 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -25,7 +25,7 @@
+ # TODO: -nostdlib/-Bstatic/-lgcc platform magic, not installing the .a, etc.
+ AM_CFLAGS = @XMODES_CFLAGS@ @XORG_CFLAGS@ $(LIBDRM_CFLAGS)
+ nv_drv_la_LTLIBRARIES = nv_drv.la
+-nv_drv_la_LDFLAGS = -module -avoid-version
++nv_drv_la_LDFLAGS = -module -avoid-version $(LIBDRM_LIBS)
+ nv_drv_ladir = @moduledir@/drivers
+ 
+ nv_drv_la_SOURCES = $(nv_sources) $(riva_sources) $(g80_sources)
+diff --git a/src/nv_driver.c b/src/nv_driver.c
+index e10ae0c..6651cd4 100644
+--- a/src/nv_driver.c
++++ b/src/nv_driver.c
+@@ -836,18 +836,13 @@ NVIsSupported(CARD32 id)
+ }
+ 
+ #ifdef HAVE_KMS
+-static Bool NVKernelModesettingEnabled(struct pci_device *device)
++static Bool NVKernelModesettingEnabled(struct pci_device *dev)
+ {
+-    char *busIdString;
++    char busIdString[20];
+     int ret;
+ 
+-    if (!xf86LoaderCheckSymbol("DRICreatePCIBusID"))
+-        return FALSE;
+-
+-    busIdString = DRICreatePCIBusID(device);
+-
++    snprintf(busIdString, 20, "pci:%04x:%02x:%02x.%d", dev->domain, dev->bus, dev->dev, dev->func);
+     ret = drmCheckModesettingSupported(busIdString);
+-    xfree(busIdString);
+ 
+     return (ret == 0);
+ }
+-- 
+1.7.1
