@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 28212] image corruption
-Date: Sun, 23 May 2010 02:05:50 -0700 (PDT)
-Message-ID: <20100523090550.C935D13000D@annarchy.freedesktop.org>
-References: <bug-28212-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Add getparam for current PTIMER time.
+Date: Sun, 23 May 2010 11:09:43 +0000
+Message-ID: <1274612983-8017-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-28212-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +18,31 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=28212
-
---- Comment #6 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2010-05-23 02:05:50 PDT ---
-okias: Can you try to activate the image preview in dolphin ?
-
-If all you get is scrambled thumbnails, then, you have found a good way to
-reproduce this issue.
-
-Now, let's find what's happening.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+VGhpcyB3aWxsIGJlIHVzZWZ1bCBmb3IgY29tcHV0aW5nIEdQVS1DUFUgbGF0ZW5jeSwgaW5jbHVk
+aW5nCkdMX0FSQl90aW1lcl9xdWVyeSBleHRlbnNpb24uCgpTaWduZWQtb2ZmLWJ5OiBNYXJjaW4g
+S2/Fm2NpZWxuaWNraSA8a29yaWFraW5AMHgwNC5uZXQ+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9zdGF0ZS5jIHwgICAgMyArKysKIGluY2x1ZGUvZHJtL25vdXZlYXVfZHJt
+LmggICAgICAgICAgICAgICB8ICAgIDEgKwogMiBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMo
+KyksIDAgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9zdGF0ZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5j
+CmluZGV4IGUxNzEwNjQuLjM0OTlkZTMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfc3RhdGUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X3N0YXRlLmMKQEAgLTg1OSw2ICs4NTksOSBAQCBpbnQgbm91dmVhdV9pb2N0bF9nZXRwYXJhbShz
+dHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAogCWNhc2UgTk9VVkVBVV9HRVRQQVJB
+TV9WTV9WUkFNX0JBU0U6CiAJCWdldHBhcmFtLT52YWx1ZSA9IGRldl9wcml2LT52bV92cmFtX2Jh
+c2U7CiAJCWJyZWFrOworCWNhc2UgTk9VVkVBVV9HRVRQQVJBTV9QVElNRVJfVElNRToKKwkJZ2V0
+cGFyYW0tPnZhbHVlID0gbnYwNF90aW1lcl9yZWFkKGRldik7CisJCWJyZWFrOwogCWNhc2UgTk9V
+VkVBVV9HRVRQQVJBTV9HUkFQSF9VTklUUzoKIAkJLyogTlY0MCBhbmQgTlY1MCB2ZXJzaW9ucyBh
+cmUgcXVpdGUgZGlmZmVyZW50LCBidXQgcmVnaXN0ZXIKIAkJICogYWRkcmVzcyBpcyB0aGUgc2Ft
+ZS4gVXNlciBpcyBzdXBwb3NlZCB0byBrbm93IHRoZSBjYXJkCmRpZmYgLS1naXQgYS9pbmNsdWRl
+L2RybS9ub3V2ZWF1X2RybS5oIGIvaW5jbHVkZS9kcm0vbm91dmVhdV9kcm0uaAppbmRleCA1Nzky
+ZmViLi42NTg5MjYxIDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9ub3V2ZWF1X2RybS5oCisrKyBi
+L2luY2x1ZGUvZHJtL25vdXZlYXVfZHJtLmgKQEAgLTc5LDYgKzc5LDcgQEAgc3RydWN0IGRybV9u
+b3V2ZWF1X2dwdW9ial9mcmVlIHsKICNkZWZpbmUgTk9VVkVBVV9HRVRQQVJBTV9DSElQU0VUX0lE
+ICAgICAgMTEKICNkZWZpbmUgTk9VVkVBVV9HRVRQQVJBTV9WTV9WUkFNX0JBU0UgICAgMTIKICNk
+ZWZpbmUgTk9VVkVBVV9HRVRQQVJBTV9HUkFQSF9VTklUUyAgICAgMTMKKyNkZWZpbmUgTk9VVkVB
+VV9HRVRQQVJBTV9QVElNRVJfVElNRSAgICAgMTQKIHN0cnVjdCBkcm1fbm91dmVhdV9nZXRwYXJh
+bSB7CiAJdWludDY0X3QgcGFyYW07CiAJdWludDY0X3QgdmFsdWU7Ci0tIAoxLjcuMC4yCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
