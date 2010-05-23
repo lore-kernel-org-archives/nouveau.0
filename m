@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28212] image corruption
-Date: Sat, 22 May 2010 13:47:20 -0700 (PDT)
-Message-ID: <20100522204720.D421A13004E@annarchy.freedesktop.org>
+Date: Sun, 23 May 2010 02:05:50 -0700 (PDT)
+Message-ID: <20100523090550.C935D13000D@annarchy.freedesktop.org>
 References: <bug-28212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28212
 
---- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-22 13:47:20 PDT ---
-This looks like a typical tiling corruption, the question is, where does it
-happen?
+--- Comment #6 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2010-05-23 02:05:50 PDT ---
+okias: Can you try to activate the image preview in dolphin ?
+
+If all you get is scrambled thumbnails, then, you have found a good way to
+reproduce this issue.
+
+Now, let's find what's happening.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
