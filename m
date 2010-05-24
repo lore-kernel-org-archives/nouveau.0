@@ -1,18 +1,17 @@
-From: Clemens Eisserer <linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Kernel module fails to initialize on AMD751 based
-	system with NV34
-Date: Mon, 24 May 2010 22:55:46 +0200
-Message-ID: <AANLkTimFEvBkkFg-FtqjCwSzXDqixYxd2ef8ZCeYpbTI@mail.gmail.com>
-References: <AANLkTilecapB4FA9X-aufTLQql_-tkjv786dkH8L2H9N@mail.gmail.com>
-	<AANLkTim9Eh1tnMgYM_NyGkjQI9cq0wyvUbZkd1IeaVo-@mail.gmail.com>
-	<AANLkTilNGyLcP8Dr95RJJx1T5lWBXbRmB1ZtnbRBJBA6@mail.gmail.com>
-	<AANLkTinDO1dTAEm8cFA9rQ5ba2tkubCtrDgGgHymjt4M@mail.gmail.com>
-	<20100524233930.6f954897@daedalus.pq.iki.fi>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2] drm/nouveau: Add getparam for current
+ PTIMER time.
+Date: Tue, 25 May 2010 09:25:52 +1000
+Message-ID: <1274743552.4987.6.camel@araqiel>
+References: <1274614564-8167-1-git-send-email-koriakin@0x04.net>
+	<1274666529.2529.1.camel@nisroch>
+	<201005240750.20891.koriakin@0x04.net>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100524233930.6f954897-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
+In-Reply-To: <201005240750.20891.koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,24 +21,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin =?UTF-8?Q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-
-> NV0? That's a very bad sign to start with. I'm surprised
-> Nouveau does not just throw up right there.
-
-Nouveau status page says NV0x is supported for basic 2D stuff.
-Beside that, I started with NV34 and after that failed, I tried that NV0x card.
-
-
-> These both mention nvidiafb, one of them even rivafb.
-> Are you sure these are not loaded? (This is a basic
-> troubleshooting question,
-> http://nouveau.freedesktop.org/wiki/TroubleShooting )
-
-Come on, I wouldn't have asked here if that would be the case.
-
-
-- Clemens
+T24gTW9uLCAyMDEwLTA1LTI0IGF0IDA3OjUwICswMDAwLCBNYXJjaW4gS2/Fm2NpZWxuaWNraSB3
+cm90ZToKPiA+IE9uIFN1biwgMjAxMC0wNS0yMyBhdCAxMTozNiArMDAwMCwgTWFyY2luIEtvxZtj
+aWVsbmlja2kgd3JvdGU6Cj4gPiA+IFRoaXMgd2lsbCBiZSB1c2VmdWwgZm9yIGNvbXB1dGluZyBH
+UFUtQ1BVIGxhdGVuY3ksIGluY2x1ZGluZwo+ID4gPiBHTF9BUkJfdGltZXJfcXVlcnkgZXh0ZW5z
+aW9uLgo+ID4KPiA+IExvb2tzIGZpbmUsIGp1c3QgYSBxdWljayBxdWVzdGlvbiBhcyB0byB3aGV0
+aGVyIHRoaXMgaXMgbmVjZXNzYXJ5PyAgSQo+ID4gc2VlbSB0byByZWNhbGwgdGhhdCBvbiBudjQw
+LCB0aGUgUVVFUlkgbWV0aG9kcyBhY3R1YWxseSByZXR1cm4KPiA+IHRpbWVzdGFtcHMgaW4gdGhl
+ICJub3RpZmllciIgdGhhdCBvbmUgd291bGQgYXNzdW1lIGFyZSBmcm9tIFBUSU1FUi4KPiA+Cj4g
+PiBJcyB0aGVyZSBzb21lIHdheSB0byBkbyB0aGlzIG9uIEc4MCsgYWxzbz8KPiAKPiBUaGVyZSBp
+cy4gTm90aWZpZXJzIGFuZCBRVUVSWXMgYW5kIFBGSUZPIEZFTkNFcyBhbGwgcmV0dXJuIFBUSU1F
+UiB0aW1lLiBCdXQgCj4gdGhhdCdzIG5vdCB0aGUgcG9pbnQgLSBhbGwgb2YgdGhlc2UgY29tbWFu
+ZHMgZXhlY3V0ZSBvbiBHUFUgaW5zaWRlIHRoZSBHUFUgCj4gY29tbWFuZCBzdHJlYW0sIGFuZCB3
+ZSB3YW50IGEgQ1BVIHZlcnNpb24uIFNlZSB0aGUgR0xfQVJCX3RpbWVyX3F1ZXJ5IAo+IGV4dGVu
+c2lvbiBmb3IgZGV0YWlscy4uLiBnZW5lcmljIGlkZWE6Cj4gCj4gMS4gU3VibWl0IGxvdHMgb2Yg
+Y29tbWFuZHMgCj4gMi4gQWRkIGEgR1BVIHRpbWVzdGFtcCBxdWVyeSBhdCB0aGUgZW5kCj4gMy4g
+RmlyZQo+IDQuIEdldCBjdXJyZW50IEdQVSB0aW1lIGF0IHRoZSBtb21lbnQgb2YgZmlyaW5nIFt2
+aWEgdGhlIGFib3ZlIGdldHBhcmFtXQo+IDUuIERvIHNvbWV0aGluZyBlbHNlIGZvciBzb21lIHRp
+bWUsIGxpa2UgcmVuZGVyaW5nIGFub3RoZXIgZnJhbWUKPiA2LiBTdWJzdHJhY3QgcmVzdWx0cyBm
+cm9tIDIuIGFuZCA0LiB0byBtZWFzdXJlIGhvdyBmYXIgYWhlYWQgdGhlIENQVSBpcyBhdCB0aGUg
+Cj4gZW5kIG9mIGEgZnJhbWUgW0NQVS1HUFUgbGF0ZW5jeV0KPiAKPiBVc2luZyBhbm90aGVyIHF1
+ZXJ5IGF0IHRoZSBiZWdpbm5pbmcgb2YgdGhlIGNvbW1hbmQgYnVmZmVyIHdvbid0IGRvIHRoZSB0
+cmljaywgCj4gc2luY2UgR1BVIGNvdWxkIHN0aWxsIGJlIGJ1c3kgcmVuZGVyaW5nIHByZXZpb3Vz
+IGZyYW1lLiAgVW5sZXNzIHlvdSBnbEZpbmlzaCwgCj4gYnV0IHRoaXMgcmVzdWx0cyBpbiBwaXBl
+bGluZSBzdGFsbHMuClN1cmUgaXQgd2lsbCwgc2luY2Uge0VYVCxBUkJ9X3RpbWVyX3F1ZXJ5IGFj
+dHVhbGx5IHNheXMgdGhhdCBpdCBtZWFzdXJlcwp0aGUgdGltZSBpdCB0YWtlcyBmb3IgdGhlIGNv
+bW1hbmRzIGJldHdlZW4gYSBCZWdpblF1ZXJ5KCkgYW5kIGFuZApFbmRRdWVyeSgpIHRvIGJlIHBy
+b2Nlc3NlZCwgbm90IHRoZSB0aW1lIGJlZm9yZSBhbGwgY29tbWFuZHMgYmVmb3JlIHRoZQpCZWdp
+blF1ZXJ5KCkgcmlnaHQgdXAgdW50aWwgdGhlIEVuZFF1ZXJ5KCkgaGF2ZSBjb21wbGV0ZWQuCgpB
+IHNuaXBwZXQgZnJvbSBBUkJfdGltZXJfcXVlcnk6CgogICAgVGhlIHRpbWVyIGlzIHN0YXJ0ZWQg
+b3Igc3RvcHBlZCB3aGVuIHRoZSBlZmZlY3RzIGZyb20gYWxsCiAgICBwcmV2aW91cyBjb21tYW5k
+cyBvbiB0aGUgR0wgY2xpZW50IGFuZCBzZXJ2ZXIgc3RhdGUgYW5kIHRoZSBmcmFtZWJ1ZmZlcgog
+ICAgaGF2ZSBiZWVuIGZ1bGx5IHJlYWxpemVkLgoKV2hpY2gsIHRvIG1lLCBzZWVtIGxpa2UgdXNp
+bmcgdGhlIEdQVSBtZXRob2RzIHRvIHdyaXRlIHRpbWVzdGFtcHMgaW50byBidWZmZXJzCmF0IEJl
+Z2luUXVlcnkoKSBhbmQgRW5kUXVlcnkoKSB0aW1lIHdpbGwgd29yayBqdXN0IGZpbmUuICBPciBh
+bSBJIG1pc3NpbmcKc29tZXRoaW5nPwoKQmVuLgoKPiAKPiBNYXJjaW4gS2/Fm2NpZWxuaWNraQoK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
