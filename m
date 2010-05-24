@@ -1,14 +1,15 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nv: improve KMS detection
-Date: Mon, 24 May 2010 08:37:03 +1000
-Message-ID: <1274654223.7344.0.camel@nisroch>
-References: <20100523194645.GA15846@joi.lan>
+Subject: Re: [PATCH v2] drm/nouveau: Add getparam for current
+ PTIMER time.
+Date: Mon, 24 May 2010 12:02:09 +1000
+Message-ID: <1274666529.2529.1.camel@nisroch>
+References: <1274614564-8167-1-git-send-email-koriakin@0x04.net>
 Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100523194645.GA15846-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <1274614564-8167-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,66 +19,42 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christopher James Halse Rogers <raof-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>, Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: Marcin =?UTF-8?Q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 2010-05-23 at 21:46 +0200, Marcin Slusarz wrote:
-> 1) DRICreatePCIBusID belongs to xserver dri module, so when it's
->    unavailable we can't format string for drmCheckModesettingSupported.
->    (This situation happened to me with KMS enabled and dri module moved
->    somewhere else by Gentoo's "eselect opengl set nvidia" switcher)
->    Open code DRICreatePCIBusID to drop dri dependency.
-> 2) Once we dropped dependency on dri module (which linked to libdrm),
->    we have to link directly to libdrm.
-An alternative, which we use in Fedora for nv/vesa is to use
-pci_device_has_kernel_driver() from libpciaccess.
-
-Ben.
-
-> 
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  src/Makefile.am |    2 +-
->  src/nv_driver.c |   11 +++--------
->  2 files changed, 4 insertions(+), 9 deletions(-)
-> 
-> diff --git a/src/Makefile.am b/src/Makefile.am
-> index 5d57010..8b23e21 100644
-> --- a/src/Makefile.am
-> +++ b/src/Makefile.am
-> @@ -25,7 +25,7 @@
->  # TODO: -nostdlib/-Bstatic/-lgcc platform magic, not installing the .a, etc.
->  AM_CFLAGS = @XMODES_CFLAGS@ @XORG_CFLAGS@ $(LIBDRM_CFLAGS)
->  nv_drv_la_LTLIBRARIES = nv_drv.la
-> -nv_drv_la_LDFLAGS = -module -avoid-version
-> +nv_drv_la_LDFLAGS = -module -avoid-version $(LIBDRM_LIBS)
->  nv_drv_ladir = @moduledir@/drivers
->  
->  nv_drv_la_SOURCES = $(nv_sources) $(riva_sources) $(g80_sources)
-> diff --git a/src/nv_driver.c b/src/nv_driver.c
-> index e10ae0c..6651cd4 100644
-> --- a/src/nv_driver.c
-> +++ b/src/nv_driver.c
-> @@ -836,18 +836,13 @@ NVIsSupported(CARD32 id)
->  }
->  
->  #ifdef HAVE_KMS
-> -static Bool NVKernelModesettingEnabled(struct pci_device *device)
-> +static Bool NVKernelModesettingEnabled(struct pci_device *dev)
->  {
-> -    char *busIdString;
-> +    char busIdString[20];
->      int ret;
->  
-> -    if (!xf86LoaderCheckSymbol("DRICreatePCIBusID"))
-> -        return FALSE;
-> -
-> -    busIdString = DRICreatePCIBusID(device);
-> -
-> +    snprintf(busIdString, 20, "pci:%04x:%02x:%02x.%d", dev->domain, dev->bus, dev->dev, dev->func);
->      ret = drmCheckModesettingSupported(busIdString);
-> -    xfree(busIdString);
->  
->      return (ret == 0);
->  }
+T24gU3VuLCAyMDEwLTA1LTIzIGF0IDExOjM2ICswMDAwLCBNYXJjaW4gS2/Fm2NpZWxuaWNraSB3
+cm90ZToKPiBUaGlzIHdpbGwgYmUgdXNlZnVsIGZvciBjb21wdXRpbmcgR1BVLUNQVSBsYXRlbmN5
+LCBpbmNsdWRpbmcKPiBHTF9BUkJfdGltZXJfcXVlcnkgZXh0ZW5zaW9uLgpMb29rcyBmaW5lLCBq
+dXN0IGEgcXVpY2sgcXVlc3Rpb24gYXMgdG8gd2hldGhlciB0aGlzIGlzIG5lY2Vzc2FyeT8gIEkK
+c2VlbSB0byByZWNhbGwgdGhhdCBvbiBudjQwLCB0aGUgUVVFUlkgbWV0aG9kcyBhY3R1YWxseSBy
+ZXR1cm4KdGltZXN0YW1wcyBpbiB0aGUgIm5vdGlmaWVyIiB0aGF0IG9uZSB3b3VsZCBhc3N1bWUg
+YXJlIGZyb20gUFRJTUVSLgoKSXMgdGhlcmUgc29tZSB3YXkgdG8gZG8gdGhpcyBvbiBHODArIGFs
+c28/CgpCZW4uCgo+IAo+IFNpZ25lZC1vZmYtYnk6IE1hcmNpbiBLb8WbY2llbG5pY2tpIDxrb3Jp
+YWtpbkAweDA0Lm5ldD4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9z
+dGF0ZS5jIHwgICAgMyArKysKPiAgaW5jbHVkZS9kcm0vbm91dmVhdV9kcm0uaCAgICAgICAgICAg
+ICAgIHwgICAgMSArCj4gIDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAwIGRlbGV0
+aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X3N0YXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMKPiBpbmRl
+eCBlMTcxMDY0Li5iNzkzODgwIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L25vdXZlYXVfc3RhdGUuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+c3RhdGUuYwo+IEBAIC04NTksNiArODU5LDkgQEAgaW50IG5vdXZlYXVfaW9jdGxfZ2V0cGFyYW0o
+c3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKPiAgCWNhc2UgTk9VVkVBVV9HRVRQ
+QVJBTV9WTV9WUkFNX0JBU0U6Cj4gIAkJZ2V0cGFyYW0tPnZhbHVlID0gZGV2X3ByaXYtPnZtX3Zy
+YW1fYmFzZTsKPiAgCQlicmVhazsKPiArCWNhc2UgTk9VVkVBVV9HRVRQQVJBTV9QVElNRVJfVElN
+RToKPiArCQlnZXRwYXJhbS0+dmFsdWUgPSBkZXZfcHJpdi0+ZW5naW5lLnRpbWVyLnJlYWQoZGV2
+KTsKPiArCQlicmVhazsKPiAgCWNhc2UgTk9VVkVBVV9HRVRQQVJBTV9HUkFQSF9VTklUUzoKPiAg
+CQkvKiBOVjQwIGFuZCBOVjUwIHZlcnNpb25zIGFyZSBxdWl0ZSBkaWZmZXJlbnQsIGJ1dCByZWdp
+c3Rlcgo+ICAJCSAqIGFkZHJlc3MgaXMgdGhlIHNhbWUuIFVzZXIgaXMgc3VwcG9zZWQgdG8ga25v
+dyB0aGUgY2FyZAo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9ub3V2ZWF1X2RybS5oIGIvaW5j
+bHVkZS9kcm0vbm91dmVhdV9kcm0uaAo+IGluZGV4IDU3OTJmZWIuLjY1ODkyNjEgMTAwNjQ0Cj4g
+LS0tIGEvaW5jbHVkZS9kcm0vbm91dmVhdV9kcm0uaAo+ICsrKyBiL2luY2x1ZGUvZHJtL25vdXZl
+YXVfZHJtLmgKPiBAQCAtNzksNiArNzksNyBAQCBzdHJ1Y3QgZHJtX25vdXZlYXVfZ3B1b2JqX2Zy
+ZWUgewo+ICAjZGVmaW5lIE5PVVZFQVVfR0VUUEFSQU1fQ0hJUFNFVF9JRCAgICAgIDExCj4gICNk
+ZWZpbmUgTk9VVkVBVV9HRVRQQVJBTV9WTV9WUkFNX0JBU0UgICAgMTIKPiAgI2RlZmluZSBOT1VW
+RUFVX0dFVFBBUkFNX0dSQVBIX1VOSVRTICAgICAxMwo+ICsjZGVmaW5lIE5PVVZFQVVfR0VUUEFS
+QU1fUFRJTUVSX1RJTUUgICAgIDE0Cj4gIHN0cnVjdCBkcm1fbm91dmVhdV9nZXRwYXJhbSB7Cj4g
+IAl1aW50NjRfdCBwYXJhbTsKPiAgCXVpbnQ2NF90IHZhbHVlOwoKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
