@@ -1,15 +1,13 @@
-From: Marcin =?utf-8?q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: Re: [PATCH v2] drm/nouveau: Add getparam for current
-	PTIMER time.
-Date: Mon, 24 May 2010 07:50:20 +0000
-Message-ID: <201005240750.20891.koriakin@0x04.net>
-References: <1274614564-8167-1-git-send-email-koriakin@0x04.net>
-	<1274666529.2529.1.camel@nisroch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 28212] image corruption
+Date: Mon, 24 May 2010 03:40:13 -0700 (PDT)
+Message-ID: <20100524104013.E45B413000D@annarchy.freedesktop.org>
+References: <bug-28212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1274666529.2529.1.camel@nisroch>
+In-Reply-To: <bug-28212-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,31 +17,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-PiBPbiBTdW4sIDIwMTAtMDUtMjMgYXQgMTE6MzYgKzAwMDAsIE1hcmNpbiBLb8WbY2llbG5pY2tp
-IHdyb3RlOgo+ID4gVGhpcyB3aWxsIGJlIHVzZWZ1bCBmb3IgY29tcHV0aW5nIEdQVS1DUFUgbGF0
-ZW5jeSwgaW5jbHVkaW5nCj4gPiBHTF9BUkJfdGltZXJfcXVlcnkgZXh0ZW5zaW9uLgo+Cj4gTG9v
-a3MgZmluZSwganVzdCBhIHF1aWNrIHF1ZXN0aW9uIGFzIHRvIHdoZXRoZXIgdGhpcyBpcyBuZWNl
-c3Nhcnk/ICBJCj4gc2VlbSB0byByZWNhbGwgdGhhdCBvbiBudjQwLCB0aGUgUVVFUlkgbWV0aG9k
-cyBhY3R1YWxseSByZXR1cm4KPiB0aW1lc3RhbXBzIGluIHRoZSAibm90aWZpZXIiIHRoYXQgb25l
-IHdvdWxkIGFzc3VtZSBhcmUgZnJvbSBQVElNRVIuCj4KPiBJcyB0aGVyZSBzb21lIHdheSB0byBk
-byB0aGlzIG9uIEc4MCsgYWxzbz8KClRoZXJlIGlzLiBOb3RpZmllcnMgYW5kIFFVRVJZcyBhbmQg
-UEZJRk8gRkVOQ0VzIGFsbCByZXR1cm4gUFRJTUVSIHRpbWUuIEJ1dCAKdGhhdCdzIG5vdCB0aGUg
-cG9pbnQgLSBhbGwgb2YgdGhlc2UgY29tbWFuZHMgZXhlY3V0ZSBvbiBHUFUgaW5zaWRlIHRoZSBH
-UFUgCmNvbW1hbmQgc3RyZWFtLCBhbmQgd2Ugd2FudCBhIENQVSB2ZXJzaW9uLiBTZWUgdGhlIEdM
-X0FSQl90aW1lcl9xdWVyeSAKZXh0ZW5zaW9uIGZvciBkZXRhaWxzLi4uIGdlbmVyaWMgaWRlYToK
-CjEuIFN1Ym1pdCBsb3RzIG9mIGNvbW1hbmRzIAoyLiBBZGQgYSBHUFUgdGltZXN0YW1wIHF1ZXJ5
-IGF0IHRoZSBlbmQKMy4gRmlyZQo0LiBHZXQgY3VycmVudCBHUFUgdGltZSBhdCB0aGUgbW9tZW50
-IG9mIGZpcmluZyBbdmlhIHRoZSBhYm92ZSBnZXRwYXJhbV0KNS4gRG8gc29tZXRoaW5nIGVsc2Ug
-Zm9yIHNvbWUgdGltZSwgbGlrZSByZW5kZXJpbmcgYW5vdGhlciBmcmFtZQo2LiBTdWJzdHJhY3Qg
-cmVzdWx0cyBmcm9tIDIuIGFuZCA0LiB0byBtZWFzdXJlIGhvdyBmYXIgYWhlYWQgdGhlIENQVSBp
-cyBhdCB0aGUgCmVuZCBvZiBhIGZyYW1lIFtDUFUtR1BVIGxhdGVuY3ldCgpVc2luZyBhbm90aGVy
-IHF1ZXJ5IGF0IHRoZSBiZWdpbm5pbmcgb2YgdGhlIGNvbW1hbmQgYnVmZmVyIHdvbid0IGRvIHRo
-ZSB0cmljaywgCnNpbmNlIEdQVSBjb3VsZCBzdGlsbCBiZSBidXN5IHJlbmRlcmluZyBwcmV2aW91
-cyBmcmFtZS4gIFVubGVzcyB5b3UgZ2xGaW5pc2gsIApidXQgdGhpcyByZXN1bHRzIGluIHBpcGVs
-aW5lIHN0YWxscy4KCk1hcmNpbiBLb8WbY2llbG5pY2tpCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=28212
+
+--- Comment #8 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2010-05-24 03:40:13 PDT ---
+Okias: OK, we have the exact same behaviour. That's great.
+
+I'll try to work on it this week end, I'll keep you updated ;)
+
+Xavier: To fix this issue, should I try to create a minimum test-case or should
+I just dig into the source code and see if somewhere a memcpy is happening
+where it should not (by adding some errorF everywhere near memcpy statements) ?
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
