@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28248] the system completely freezes when playing
 	videos
-Date: Tue, 25 May 2010 12:25:15 -0700 (PDT)
-Message-ID: <20100525192515.5D60413000D@annarchy.freedesktop.org>
+Date: Tue, 25 May 2010 12:49:46 -0700 (PDT)
+Message-ID: <20100525194946.F3CEE13000D@annarchy.freedesktop.org>
 References: <bug-28248-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28248
 
---- Comment #1 from Bastien <bastien0705-YDxpq3io04c@public.gmane.org> 2010-05-25 12:25:14 PDT ---
-Created an attachment (id=35850)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=35850)
-Kernel log text/plain
-
-Adding kern.log with text/plain MIME-type.
+--- Comment #2 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-25 12:49:46 PDT ---
+Looks like a duplicate of https://bugs.freedesktop.org/show_bug.cgi?id=26733.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
