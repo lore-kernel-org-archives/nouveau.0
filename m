@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 28320] Xserver hangs in an infinite loop
-Date: Sun, 30 May 2010 04:19:51 -0700 (PDT)
-Message-ID: <20100530111951.0DAF813010B@annarchy.freedesktop.org>
-References: <bug-28320-8800@http.bugs.freedesktop.org/>
+From: Bryan Quigley <BryanQuigley-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+Subject: Nvidia says I have a 8200,
+	but lspci says a GeForce 9200M G
+Date: Tue, 25 May 2010 20:16:37 +0530
+Message-ID: <AANLkTilqRYN9lAFciH9JPUp4upw2wpzyxIOyweQkDOxd@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-28320-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +19,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=28320
+Hello all,
 
-Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> changed:
+I'm debugging a card that the Nvidia blob recognizes as an 8200 but
+lspci says is a GeForce 9200M G. =A0My original bug report is in
+launchpad.(https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nou=
+veau/+bug/557895),
+but I have been trying to debug further by using the nightly builds.
+It still requires the noaccel flag to be set to work.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #35953|application/octet-stream    |text/plain
-          mime type|                            |
+I was wondering if there is anyway I could force it to be detected as
+a 8200 with nouveau.  I am guessing that it may be using some accel
+features of the 9200 and that's the reason it doesn't work.  PCI ID is
+10de:086f
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Thanks!
+Bryan
+
+P.S. Off list, please respond directly. Thanks.
