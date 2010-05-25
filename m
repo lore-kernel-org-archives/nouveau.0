@@ -1,17 +1,12 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2] drm/nouveau: Add getparam for current
- PTIMER time.
-Date: Tue, 25 May 2010 09:25:52 +1000
-Message-ID: <1274743552.4987.6.camel@araqiel>
-References: <1274614564-8167-1-git-send-email-koriakin@0x04.net>
-	<1274666529.2529.1.camel@nisroch>
-	<201005240750.20891.koriakin@0x04.net>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 28248] New: the system completely freezes when
+	playing videos
+Date: Tue, 25 May 2010 12:18:08 -0700 (PDT)
+Message-ID: <bug-28248-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <201005240750.20891.koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +16,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin =?UTF-8?Q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyMDEwLTA1LTI0IGF0IDA3OjUwICswMDAwLCBNYXJjaW4gS2/Fm2NpZWxuaWNraSB3
-cm90ZToKPiA+IE9uIFN1biwgMjAxMC0wNS0yMyBhdCAxMTozNiArMDAwMCwgTWFyY2luIEtvxZtj
-aWVsbmlja2kgd3JvdGU6Cj4gPiA+IFRoaXMgd2lsbCBiZSB1c2VmdWwgZm9yIGNvbXB1dGluZyBH
-UFUtQ1BVIGxhdGVuY3ksIGluY2x1ZGluZwo+ID4gPiBHTF9BUkJfdGltZXJfcXVlcnkgZXh0ZW5z
-aW9uLgo+ID4KPiA+IExvb2tzIGZpbmUsIGp1c3QgYSBxdWljayBxdWVzdGlvbiBhcyB0byB3aGV0
-aGVyIHRoaXMgaXMgbmVjZXNzYXJ5PyAgSQo+ID4gc2VlbSB0byByZWNhbGwgdGhhdCBvbiBudjQw
-LCB0aGUgUVVFUlkgbWV0aG9kcyBhY3R1YWxseSByZXR1cm4KPiA+IHRpbWVzdGFtcHMgaW4gdGhl
-ICJub3RpZmllciIgdGhhdCBvbmUgd291bGQgYXNzdW1lIGFyZSBmcm9tIFBUSU1FUi4KPiA+Cj4g
-PiBJcyB0aGVyZSBzb21lIHdheSB0byBkbyB0aGlzIG9uIEc4MCsgYWxzbz8KPiAKPiBUaGVyZSBp
-cy4gTm90aWZpZXJzIGFuZCBRVUVSWXMgYW5kIFBGSUZPIEZFTkNFcyBhbGwgcmV0dXJuIFBUSU1F
-UiB0aW1lLiBCdXQgCj4gdGhhdCdzIG5vdCB0aGUgcG9pbnQgLSBhbGwgb2YgdGhlc2UgY29tbWFu
-ZHMgZXhlY3V0ZSBvbiBHUFUgaW5zaWRlIHRoZSBHUFUgCj4gY29tbWFuZCBzdHJlYW0sIGFuZCB3
-ZSB3YW50IGEgQ1BVIHZlcnNpb24uIFNlZSB0aGUgR0xfQVJCX3RpbWVyX3F1ZXJ5IAo+IGV4dGVu
-c2lvbiBmb3IgZGV0YWlscy4uLiBnZW5lcmljIGlkZWE6Cj4gCj4gMS4gU3VibWl0IGxvdHMgb2Yg
-Y29tbWFuZHMgCj4gMi4gQWRkIGEgR1BVIHRpbWVzdGFtcCBxdWVyeSBhdCB0aGUgZW5kCj4gMy4g
-RmlyZQo+IDQuIEdldCBjdXJyZW50IEdQVSB0aW1lIGF0IHRoZSBtb21lbnQgb2YgZmlyaW5nIFt2
-aWEgdGhlIGFib3ZlIGdldHBhcmFtXQo+IDUuIERvIHNvbWV0aGluZyBlbHNlIGZvciBzb21lIHRp
-bWUsIGxpa2UgcmVuZGVyaW5nIGFub3RoZXIgZnJhbWUKPiA2LiBTdWJzdHJhY3QgcmVzdWx0cyBm
-cm9tIDIuIGFuZCA0LiB0byBtZWFzdXJlIGhvdyBmYXIgYWhlYWQgdGhlIENQVSBpcyBhdCB0aGUg
-Cj4gZW5kIG9mIGEgZnJhbWUgW0NQVS1HUFUgbGF0ZW5jeV0KPiAKPiBVc2luZyBhbm90aGVyIHF1
-ZXJ5IGF0IHRoZSBiZWdpbm5pbmcgb2YgdGhlIGNvbW1hbmQgYnVmZmVyIHdvbid0IGRvIHRoZSB0
-cmljaywgCj4gc2luY2UgR1BVIGNvdWxkIHN0aWxsIGJlIGJ1c3kgcmVuZGVyaW5nIHByZXZpb3Vz
-IGZyYW1lLiAgVW5sZXNzIHlvdSBnbEZpbmlzaCwgCj4gYnV0IHRoaXMgcmVzdWx0cyBpbiBwaXBl
-bGluZSBzdGFsbHMuClN1cmUgaXQgd2lsbCwgc2luY2Uge0VYVCxBUkJ9X3RpbWVyX3F1ZXJ5IGFj
-dHVhbGx5IHNheXMgdGhhdCBpdCBtZWFzdXJlcwp0aGUgdGltZSBpdCB0YWtlcyBmb3IgdGhlIGNv
-bW1hbmRzIGJldHdlZW4gYSBCZWdpblF1ZXJ5KCkgYW5kIGFuZApFbmRRdWVyeSgpIHRvIGJlIHBy
-b2Nlc3NlZCwgbm90IHRoZSB0aW1lIGJlZm9yZSBhbGwgY29tbWFuZHMgYmVmb3JlIHRoZQpCZWdp
-blF1ZXJ5KCkgcmlnaHQgdXAgdW50aWwgdGhlIEVuZFF1ZXJ5KCkgaGF2ZSBjb21wbGV0ZWQuCgpB
-IHNuaXBwZXQgZnJvbSBBUkJfdGltZXJfcXVlcnk6CgogICAgVGhlIHRpbWVyIGlzIHN0YXJ0ZWQg
-b3Igc3RvcHBlZCB3aGVuIHRoZSBlZmZlY3RzIGZyb20gYWxsCiAgICBwcmV2aW91cyBjb21tYW5k
-cyBvbiB0aGUgR0wgY2xpZW50IGFuZCBzZXJ2ZXIgc3RhdGUgYW5kIHRoZSBmcmFtZWJ1ZmZlcgog
-ICAgaGF2ZSBiZWVuIGZ1bGx5IHJlYWxpemVkLgoKV2hpY2gsIHRvIG1lLCBzZWVtIGxpa2UgdXNp
-bmcgdGhlIEdQVSBtZXRob2RzIHRvIHdyaXRlIHRpbWVzdGFtcHMgaW50byBidWZmZXJzCmF0IEJl
-Z2luUXVlcnkoKSBhbmQgRW5kUXVlcnkoKSB0aW1lIHdpbGwgd29yayBqdXN0IGZpbmUuICBPciBh
-bSBJIG1pc3NpbmcKc29tZXRoaW5nPwoKQmVuLgoKPiAKPiBNYXJjaW4gS2/Fm2NpZWxuaWNraQoK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=28248
+
+           Summary: the system completely freezes when playing videos
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: bastien0705-YDxpq3io04c@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=35849)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35849)
+Kernel log from boot. The issue occurs at 19:02.
+
+Hi,
+First, sorry if I make mistakes, English isn't my native language.
+
+I'm experiencing an annoying issue since I use Nouveau driver (which I keep
+up-to-date).
+Sometimes, when I'm playing a video, my screen completely freezes. I can still
+move the cursor (which keeps the same appearance) but I can't do anything else.
+Ctrl-Alt-Backspace doesn't restart X, and Ctrl-Alt-Fn doesn't bring me to a
+console. The sound stops too. I have to manually shutdown the computer.
+This bug occurs whith any player (mplayer, vlc...). It doesn't occur with
+videos embedded in a Flash plugin. I would say this happens half the time,
+often during the first seconds.
+
+I'm using Debian Sid for amd64. My graphic card is a GeForce 8200.
+I have RandR enabled and two monitors.
+
+I attach my kernel log. The issue occurs at 19:02. These are the most useful
+lines :
+May 25 19:02:25 Igloo kernel: [43778.248875] [drm] nouveau 0000:02:00.0:
+PFIFO_DMA_PUSHER - Ch 2
+May 25 19:02:25 Igloo kernel: [43778.250999] [drm] nouveau 0000:02:00.0:
+PGRAPH_DATA_ERROR - Ch 2/5 Class 0x8397 Mthd 0x0e08 Data 0x00000000:0x3f4c0000
+May 25 19:02:25 Igloo kernel: [43778.251006] [drm] nouveau 0000:02:00.0:
+PGRAPH_DATA_ERROR - INVALID_VALUE
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
