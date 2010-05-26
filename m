@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26733] Full-screen XV causes graphics lockup
-Date: Wed, 26 May 2010 04:01:35 -0700 (PDT)
-Message-ID: <20100526110135.1F03713004F@annarchy.freedesktop.org>
+Date: Wed, 26 May 2010 05:40:36 -0700 (PDT)
+Message-ID: <20100526124036.42D6213000D@annarchy.freedesktop.org>
 References: <bug-26733-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26733
 
-okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #19 from Bastien <bastien0705-YDxpq3io04c@public.gmane.org> 2010-05-26 05:40:36 PDT ---
+Created an attachment (id=35865)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35865)
+Kernel log. The issue occurs at 19:02.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |bastien0705-YDxpq3io04c@public.gmane.org
-
---- Comment #18 from okias <d.okias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-05-26 04:01:34 PDT ---
-*** Bug 28248 has been marked as a duplicate of this bug. ***
+Sorry for the duplicate.
+I attach my own log here so you don't have to check my report. Here are the
+important lines :
+... [drm] nouveau 0000:02:00.0: PFIFO_DMA_PUSHER - Ch 2
+... [drm] nouveau 0000:02:00.0: PGRAPH_DATA_ERROR - Ch 2/5 Class 0x8397 Mthd
+0x0e08 Data 0x00000000:0x3f4c0000
+... [drm] nouveau 0000:02:00.0: PGRAPH_DATA_ERROR - INVALID_VALUE
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
