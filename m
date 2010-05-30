@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28320] Xserver hangs in an infinite loop
-Date: Sun, 30 May 2010 04:08:30 -0700 (PDT)
-Message-ID: <20100530110830.9CC381300B7@annarchy.freedesktop.org>
+Date: Sun, 30 May 2010 04:18:53 -0700 (PDT)
+Message-ID: <20100530111853.C28C3130111@annarchy.freedesktop.org>
 References: <bug-28320-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28320
 
---- Comment #2 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> 2010-05-30 04:08:30 PDT ---
-Created an attachment (id=35951)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=35951)
- [mi] overflowing...
+--- Comment #3 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> 2010-05-30 04:18:53 PDT ---
+Created an attachment (id=35953)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=35953)
+dmesg - this looks pomising...
+
+After killing the server I get some messages in the dmesg, maybe this helps...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
