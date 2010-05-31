@@ -1,14 +1,12 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Nvidia says I have a 8200,
-	but lspci says a GeForce 	9200M G
-Date: Sun, 30 May 2010 18:32:41 -0400
-Message-ID: <AANLkTilIFX3OelARW6o7osuRbInWscA4n2y4HnVQWFvH@mail.gmail.com>
-References: <AANLkTilqRYN9lAFciH9JPUp4upw2wpzyxIOyweQkDOxd@mail.gmail.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] nv50/exa: use dual-source blending for
+	component-alpha composite
+Date: Mon, 31 May 2010 11:44:48 +1000
+Message-ID: <1275270288-2764-1-git-send-email-skeggsb@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTilqRYN9lAFciH9JPUp4upw2wpzyxIOyweQkDOxd-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,31 +16,171 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Bryan Quigley <BryanQuigley-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, May 25, 2010 at 10:46 AM, Bryan Quigley <BryanQuigley-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> w=
-rote:
-> Hello all,
->
-> I'm debugging a card that the Nvidia blob recognizes as an 8200 but
-> lspci says is a GeForce 9200M G. =A0My original bug report is in
-> launchpad.(https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-n=
-ouveau/+bug/557895),
-> but I have been trying to debug further by using the nightly builds.
-> It still requires the noaccel flag to be set to work.
->
-> I was wondering if there is anyway I could force it to be detected as
-> a 8200 with nouveau. =A0I am guessing that it may be using some accel
-> features of the 9200 and that's the reason it doesn't work. =A0PCI ID is
-> 10de:086f
+From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-Don't pay attention to the marketing names, Nouveau is detecting your
-card as an NVAC and that's all that matters. See your log:
+---
+ src/nv50_accel.c |   38 ++++++++------------------------------
+ src/nv50_accel.h |    1 -
+ src/nv50_exa.c   |   45 ++++++++++++++++++++-------------------------
+ 3 files changed, 28 insertions(+), 56 deletions(-)
 
-[drm] nouveau 0000:02:00.0: Detected an NV50 generation card (0x0ac780b1)
-
-Those chips are a little different from most other NV50s and not many
-developers have access to them so there are probably still some issues
-that need to be worked out.
+diff --git a/src/nv50_accel.c b/src/nv50_accel.c
+index 1218e18..db8c744 100644
+--- a/src/nv50_accel.c
++++ b/src/nv50_accel.c
+@@ -213,7 +213,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, (0 << NV50TCL_CB_DEF_SET_BUFFER_SHIFT) | 0x4000);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_ADDR, 1);
+ 	OUT_RING  (chan, 0);
+-	BEGIN_RING_NI(chan, tesla, NV50TCL_CB_DATA(0), 16);
++	BEGIN_RING_NI(chan, tesla, NV50TCL_CB_DATA(0), 22);
+ 	OUT_RING  (chan, 0x80000000);
+ 	OUT_RING  (chan, 0x90000004);
+ 	OUT_RING  (chan, 0x82030210);
+@@ -228,36 +228,14 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, 0xc0050204);
+ 	OUT_RING  (chan, 0xc0060409);
+ 	OUT_RING  (chan, 0x00000780);
+-	OUT_RING  (chan, 0xc007060d);
+-	OUT_RING  (chan, 0x00000781);
+-	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_CCASA,
+-		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_CCASA,
+-		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+-		MARK_UNDO(chan);
+-		return FALSE;
+-	}
+-	OUT_RING  (chan, (0 << NV50TCL_CB_DEF_SET_BUFFER_SHIFT) | 0x4000);
+-	BEGIN_RING(chan, tesla, NV50TCL_CB_ADDR, 1);
+-	OUT_RING  (chan, 0);
+-	BEGIN_RING_NI(chan, tesla, NV50TCL_CB_DATA(0), 16);
+-	OUT_RING  (chan, 0x80000000);
+-	OUT_RING  (chan, 0x90000004);
+-	OUT_RING  (chan, 0x82030200);
+-	OUT_RING  (chan, 0x82040204);
+-	OUT_RING  (chan, 0x82010210);
+-	OUT_RING  (chan, 0x82020214);
+-	OUT_RING  (chan, 0xf6400201);
+-	OUT_RING  (chan, 0x0000c784);
+-	OUT_RING  (chan, 0xf0400011);
+-	OUT_RING  (chan, 0x00008784);
+-	OUT_RING  (chan, 0xc0040000);
+-	OUT_RING  (chan, 0xc0040204);
+-	OUT_RING  (chan, 0xc0040409);
++	OUT_RING  (chan, 0xc0040610);
++	OUT_RING  (chan, 0xc0050614);
++	OUT_RING  (chan, 0xc0060619);
+ 	OUT_RING  (chan, 0x00000780);
+-	OUT_RING  (chan, 0xc004060d);
+-	OUT_RING  (chan, 0x00000781);
++	OUT_RING  (chan, 0xc007061d);
++	OUT_RING  (chan, 0x00000780);
++	OUT_RING  (chan, 0x10000e0d);
++	OUT_RING  (chan, 0x0403c781);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+ 	if (OUT_RELOCh(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_S_A8,
+ 		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+diff --git a/src/nv50_accel.h b/src/nv50_accel.h
+index f5ccd92..4a885b5 100644
+--- a/src/nv50_accel.h
++++ b/src/nv50_accel.h
+@@ -11,7 +11,6 @@
+ #define PFP_S     0x0000 /* (src) */
+ #define PFP_C     0x0100 /* (src IN mask) */
+ #define PFP_CCA   0x0200 /* (src IN mask) component-alpha */
+-#define PFP_CCASA 0x0300 /* (src IN mask) component-alpha src-alpha */
+ #define PFP_S_A8  0x0400 /* (src) a8 rt */
+ #define PFP_C_A8  0x0500 /* (src IN mask) a8 rt - same for CA and CA_SA */
+ #define PFP_NV12  0x0600 /* NV12 YUV->RGB */
+diff --git a/src/nv50_exa.c b/src/nv50_exa.c
+index e86f903..8bacdf0 100644
+--- a/src/nv50_exa.c
++++ b/src/nv50_exa.c
+@@ -751,7 +751,7 @@ NV50EXABlend(PixmapPtr ppix, PicturePtr ppict, int op, int component_alpha)
+ 	NV50EXA_LOCALS(ppix);
+ 	struct nv50_blend_op *b = &NV50EXABlendOp[op];
+ 	unsigned sblend = b->src_blend;
+-	unsigned dblend = b->dst_blend;
++	unsigned dblend = b->dst_blend, dblend_a = b->dst_blend;
+ 
+ 	if (b->dst_alpha) {
+ 		if (!PICT_FORMAT_A(ppict->format)) {
+@@ -764,11 +764,18 @@ NV50EXABlend(PixmapPtr ppix, PicturePtr ppict, int op, int component_alpha)
+ 	}
+ 
+ 	if (b->src_alpha && component_alpha) {
+-		if (dblend == BF(SRC_ALPHA))
+-			dblend = BF(SRC_COLOR);
+-		else
+-		if (dblend == BF(ONE_MINUS_SRC_ALPHA))
+-			dblend = BF(ONE_MINUS_SRC_COLOR);
++		switch (dblend) {
++		case BF(SRC_ALPHA):
++			dblend   = BF(SRC1_COLOR);
++			dblend_a = BF(SRC1_ALPHA);
++			break;
++		case BF(ONE_MINUS_SRC_ALPHA):
++			dblend   = BF(ONE_MINUS_SRC1_COLOR);
++			dblend_a = BF(ONE_MINUS_SRC1_ALPHA);
++			break;
++		default:
++			break;
++		}
+ 	}
+ 
+ 	if (sblend == BF(ONE) && dblend == BF(ZERO)) {
+@@ -784,7 +791,7 @@ NV50EXABlend(PixmapPtr ppix, PicturePtr ppict, int op, int component_alpha)
+ 		OUT_RING  (chan, NV50TCL_BLEND_EQUATION_ALPHA_FUNC_ADD);
+ 		OUT_RING  (chan, sblend);
+ 		BEGIN_RING(chan, tesla, NV50TCL_BLEND_FUNC_DST_ALPHA, 1);
+-		OUT_RING  (chan, dblend);
++		OUT_RING  (chan, dblend_a);
+ 	}
+ }
+ 
+@@ -802,12 +809,6 @@ NV50EXACheckComposite(int op,
+ 		NOUVEAU_FALLBACK("src picture invalid\n");
+ 
+ 	if (pmpict) {
+-		if (pmpict->componentAlpha &&
+-		    PICT_FORMAT_RGB(pmpict->format) &&
+-		    NV50EXABlendOp[op].src_alpha &&
+-		    NV50EXABlendOp[op].src_blend != BF(ZERO))
+-			NOUVEAU_FALLBACK("component-alpha not supported\n");
+-
+ 		if (!NV50EXACheckTexture(pmpict, pdpict, op))
+ 			NOUVEAU_FALLBACK("mask picture invalid\n");
+ 	}
+@@ -874,19 +875,13 @@ NV50EXAPrepareComposite(int op,
+ 		state->have_mask = TRUE;
+ 
+ 		BEGIN_RING(chan, tesla, NV50TCL_FP_START_ID, 1);
+-		if (pdpict->format == PICT_a8) {
++		if (pmpict->componentAlpha && PICT_FORMAT_RGB(pmpict->format))
++			OUT_RING  (chan, PFP_CCA);
++		else
++		if (pdpict->format != PICT_a8)
++			OUT_RING  (chan, PFP_C);
++		else
+ 			OUT_RING  (chan, PFP_C_A8);
+-		} else {
+-			if (pmpict->componentAlpha &&
+-			    PICT_FORMAT_RGB(pmpict->format)) {
+-				if (NV50EXABlendOp[op].src_alpha)
+-					OUT_RING  (chan, PFP_CCASA);
+-				else
+-					OUT_RING  (chan, PFP_CCA);
+-			} else {
+-				OUT_RING  (chan, PFP_C);
+-			}
+-		}
+ 	} else {
+ 		state->have_mask = FALSE;
+ 
+-- 
+1.7.0.1
