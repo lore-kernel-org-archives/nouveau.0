@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27832] Early versions of libudev cause crash
-Date: Tue,  1 Jun 2010 10:54:14 -0700 (PDT)
-Message-ID: <20100601175414.B70EB1300B0@annarchy.freedesktop.org>
-References: <bug-27832-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27387] nouveau crashes on GForce8200 (onboard) after
+ start of xorg
+Date: Tue,  1 Jun 2010 11:03:32 -0700 (PDT)
+Message-ID: <20100601180332.6B4ED1300B6@annarchy.freedesktop.org>
+References: <bug-27387-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27832-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27387-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27832
+https://bugs.freedesktop.org/show_bug.cgi?id=27387
 
 Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #35286|application/octet-stream    |text/plain
-          mime type|                            |
-  Attachment #35286|0                           |1
-           is patch|                            |
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
