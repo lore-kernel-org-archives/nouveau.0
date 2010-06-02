@@ -1,15 +1,15 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nv: improve KMS detection
-Date: Wed, 2 Jun 2010 18:20:47 +0200
-Message-ID: <20100602162047.GA2973@joi.lan>
-References: <20100523194645.GA15846@joi.lan> <1274654223.7344.0.camel@nisroch>
-	<20100528184517.GA12408@soprano.nvidia.com>
+Subject: Re: [PATCH] nouveau: detect incompatible libglx.so
+Date: Wed, 2 Jun 2010 18:38:56 +0200
+Message-ID: <20100602163856.GB2973@joi.lan>
+References: <20100523194916.GB15846@joi.lan> <20100601181500.GB2854@joi.lan>
+	<1275432054.3727.1.camel@nisroch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20100528184517.GA12408-J3EY2hv0KmgMOYszX5p1ytBPR1lH4CV8@public.gmane.org>
+In-Reply-To: <1275432054.3727.1.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,27 +19,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christopher James Halse Rogers <raof-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, May 28, 2010 at 11:45:17AM -0700, Aaron Plattner wrote:
-> On Sun, May 23, 2010 at 03:37:03PM -0700, Ben Skeggs wrote:
-> > On Sun, 2010-05-23 at 21:46 +0200, Marcin Slusarz wrote:
-> > > 1) DRICreatePCIBusID belongs to xserver dri module, so when it's
-> > >    unavailable we can't format string for drmCheckModesettingSupported.
-> > >    (This situation happened to me with KMS enabled and dri module moved
-> > >    somewhere else by Gentoo's "eselect opengl set nvidia" switcher)
-> > >    Open code DRICreatePCIBusID to drop dri dependency.
-> > > 2) Once we dropped dependency on dri module (which linked to libdrm),
-> > >    we have to link directly to libdrm.
-> > An alternative, which we use in Fedora for nv/vesa is to use
-> > pci_device_has_kernel_driver() from libpciaccess.
-> 
-> That seems better than open-coding it, and avoids a dependency on libdrm
-> which is nice.
+On Wed, Jun 02, 2010 at 08:40:54AM +1000, Ben Skeggs wrote:
+> On Tue, 2010-06-01 at 20:15 +0200, Marcin Slusarz wrote:
+> > On Sun, May 23, 2010 at 09:49:16PM +0200, Marcin Slusarz wrote:
+> > > Exit with proper message instead of crashing when user forgot
+> > > to uninstall the proprietary driver.
+> > > 
+> > > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > ---
+> > >  src/nv_driver.c |   35 +++++++++++++++++++++++++++++++++++
+> > >  1 files changed, 35 insertions(+), 0 deletions(-)
+> > 
+> > ping
+> I question the need for this.  I quite often use nouveau with NVIDIA's
+> libglx installed and don't see this crashing you report.
 
-Well, you are trading one dependency for other. It doesn't really matter...
-Ben, are you going to send your patch to Aaron?
+Really? It crashes for me every time. Maybe you were having libglx.so, but no
+(NVIDIA's) libGLcore.so (etc), so glx extension was disabled?
+
+Before creation of Troubleshooting wiki page there were a lot of reports
+of crashes on #nouveau. They are still coming occasionally.
+
+IMHO it would be great to have a driver which Just Works (tm) and if it can't
+it should clearly say why...
 
 Marcin
