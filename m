@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25453] nouveau + multiple xorg servers + suspend2ram
- trashes root partition
-Date: Thu,  3 Jun 2010 13:13:32 -0700 (PDT)
-Message-ID: <20100603201332.708BC130096@annarchy.freedesktop.org>
-References: <bug-25453-8800@http.bugs.freedesktop.org/>
+From: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
+Subject: Re: [PATCH] nouveau: detect incompatible libglx.so
+Date: Fri, 4 Jun 2010 00:23:58 +0300
+Message-ID: <201006040023.59188.anssi.hannula@iki.fi>
+References: <20100523194916.GB15846@joi.lan> <20100602163856.GB2973@joi.lan>
+	<20100603121554.GA3071@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20100603121554.GA3071-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,40 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25453
+Marcin Slusarz kirjoitti torstai, 3. kes=E4kuuta 2010 15:15:54:
+> On Wed, Jun 02, 2010 at 06:38:56PM +0200, Marcin Slusarz wrote:
+> > On Wed, Jun 02, 2010 at 08:40:54AM +1000, Ben Skeggs wrote:
+> > > On Tue, 2010-06-01 at 20:15 +0200, Marcin Slusarz wrote:
+> > > > On Sun, May 23, 2010 at 09:49:16PM +0200, Marcin Slusarz wrote:
+> > > > > Exit with proper message instead of crashing when user forgot
+> > > > > to uninstall the proprietary driver.
+> > > > > =
 
---- Comment #3 from Tobias Hommel <nouveau-rnbUhoFKN64hFhg+JK9F0w@public.gmane.org> 2010-06-03 13:13:32 PDT ---
-So I tried again, this time no nvidiafb(wonder why it was loaded last time).
-Only nouveau, fb, fbcon kernel modules were loaded.
+> > > > > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > > > ---
+> > > > > =
 
-Again after 3 or 4 suspends/resumes with 2 xservers I get this strange harddisk
-errors, which have definitely nothing to do with the harddrive itself, as it
-also happens on a mirrored disk. And as already mentioned it only occurs with
-nouveau, not with the binary drivers.
+> > > > >  src/nv_driver.c |   35 +++++++++++++++++++++++++++++++++++
+> > > > >  1 files changed, 35 insertions(+), 0 deletions(-)
+> > > > =
 
-I attached the dmesg output for the current situation.
+> > > > ping
+> > > =
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+> > > I question the need for this.  I quite often use nouveau with NVIDIA's
+> > > libglx installed and don't see this crashing you report.
+> > =
+
+> > Really? It crashes for me every time. Maybe you were having libglx.so,
+> > but no (NVIDIA's) libGLcore.so (etc), so glx extension was disabled?
+> =
+
+> Hmm, I can't reproduce it anymore...
+
+For the record, IIRC this crash was recently fixed in mesa by a nvidia =
+
+provided patch.
+
+-- =
+
+Anssi Hannula
