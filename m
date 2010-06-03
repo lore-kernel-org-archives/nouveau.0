@@ -1,15 +1,14 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nouveau: detect incompatible libglx.so
-Date: Thu, 3 Jun 2010 14:15:54 +0200
-Message-ID: <20100603121554.GA3071@joi.lan>
-References: <20100523194916.GB15846@joi.lan> <20100601181500.GB2854@joi.lan>
-	<1275432054.3727.1.camel@nisroch> <20100602163856.GB2973@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25453] nouveau + multiple xorg servers + suspend2ram
+ trashes root partition
+Date: Thu,  3 Jun 2010 13:12:42 -0700 (PDT)
+Message-ID: <20100603201242.27750130245@annarchy.freedesktop.org>
+References: <bug-25453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20100602163856.GB2973-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <bug-25453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,30 +18,17 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jun 02, 2010 at 06:38:56PM +0200, Marcin Slusarz wrote:
-> On Wed, Jun 02, 2010 at 08:40:54AM +1000, Ben Skeggs wrote:
-> > On Tue, 2010-06-01 at 20:15 +0200, Marcin Slusarz wrote:
-> > > On Sun, May 23, 2010 at 09:49:16PM +0200, Marcin Slusarz wrote:
-> > > > Exit with proper message instead of crashing when user forgot
-> > > > to uninstall the proprietary driver.
-> > > > 
-> > > > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > > > ---
-> > > >  src/nv_driver.c |   35 +++++++++++++++++++++++++++++++++++
-> > > >  1 files changed, 35 insertions(+), 0 deletions(-)
-> > > 
-> > > ping
-> > I question the need for this.  I quite often use nouveau with NVIDIA's
-> > libglx installed and don't see this crashing you report.
-> 
-> Really? It crashes for me every time. Maybe you were having libglx.so, but no
-> (NVIDIA's) libGLcore.so (etc), so glx extension was disabled?
+https://bugs.freedesktop.org/show_bug.cgi?id=25453
 
-Hmm, I can't reproduce it anymore...
-Maybe a warning would be enough?
- 
-Marcin
+--- Comment #2 from Tobias Hommel <nouveau-rnbUhoFKN64hFhg+JK9F0w@public.gmane.org> 2010-06-03 13:12:41 PDT ---
+Created an attachment (id=36036)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=36036)
+output of dmesg after resume (linux 2.6.34)
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
