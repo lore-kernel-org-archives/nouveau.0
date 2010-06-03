@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25453] nouveau + multiple xorg servers + suspend2ram
  trashes root partition
-Date: Thu,  3 Jun 2010 13:12:42 -0700 (PDT)
-Message-ID: <20100603201242.27750130245@annarchy.freedesktop.org>
+Date: Thu,  3 Jun 2010 13:13:32 -0700 (PDT)
+Message-ID: <20100603201332.708BC130096@annarchy.freedesktop.org>
 References: <bug-25453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=25453
 
---- Comment #2 from Tobias Hommel <nouveau-rnbUhoFKN64hFhg+JK9F0w@public.gmane.org> 2010-06-03 13:12:41 PDT ---
-Created an attachment (id=36036)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=36036)
-output of dmesg after resume (linux 2.6.34)
+--- Comment #3 from Tobias Hommel <nouveau-rnbUhoFKN64hFhg+JK9F0w@public.gmane.org> 2010-06-03 13:13:32 PDT ---
+So I tried again, this time no nvidiafb(wonder why it was loaded last time).
+Only nouveau, fb, fbcon kernel modules were loaded.
+
+Again after 3 or 4 suspends/resumes with 2 xservers I get this strange harddisk
+errors, which have definitely nothing to do with the harddrive itself, as it
+also happens on a mirrored disk. And as already mentioned it only occurs with
+nouveau, not with the binary drivers.
+
+I attached the dmesg output for the current situation.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
