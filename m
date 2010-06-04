@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25453] nouveau + multiple xorg servers + suspend2ram
- trashes root partition
-Date: Fri,  4 Jun 2010 09:25:20 -0700 (PDT)
-Message-ID: <20100604162520.234D01300D7@annarchy.freedesktop.org>
-References: <bug-25453-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21124] nouveau: fonts "chipped" on NV44
+Date: Fri,  4 Jun 2010 12:35:05 -0700 (PDT)
+Message-ID: <20100604193505.F18A0130079@annarchy.freedesktop.org>
+References: <bug-21124-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21124-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +20,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25453
+https://bugs.freedesktop.org/show_bug.cgi?id=21124
 
---- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-04 09:25:19 PDT ---
-Worrying number of hardware/BIOS bugs...
+Philippe Gauthier <philippe.gauthier-zaZhG+4Qvxn3fQ9qLvQP4Q@public.gmane.org> changed:
 
----
-AMI BIOS detected: BIOS may corrupt low RAM, working around it.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |philippe.gauthier-zaZhG+4Qvxn3fQ9qLvQP4Q@public.gmane.org
 
-mtrr: your BIOS has configured an incorrect mask, fixing it.
+--- Comment #7 from Philippe Gauthier <philippe.gauthier-zaZhG+4Qvxn3fQ9qLvQP4Q@public.gmane.org> 2010-06-04 12:35:04 PDT ---
+I can't see the problem anymore if I am using the latest Git packages from
+Ubuntu's "xorg-edgers" packages. These package have the following X server
+version code:
 
-Node 0: aperture @ 20000000 size 32 MB
-Aperture pointing to e820 RAM. Ignoring.
-Your BIOS doesn't leave a aperture memory hole
-Please enable the IOMMU option in the BIOS setup
-This costs you 64 MB of RAM
+xorg-server
+2:1.8.1.901+git20100602+server-1.8-branch.b65c5be1-0ubuntu0sarvatt4~lucid
 
-ACPI Warning: Incorrect checksum in table [OEMB] - E9, should be E8
-(20100121/tbutils-314)
-ACPI: No dock devices found.
-PCI: Ignoring host bridge windows from ACPI; if necessary, use "pci=use_crs"
-and report a bug
+Current video hardware:
 
-mtrr: your BIOS has configured an incorrect mask, fixing it.
-mtrr: your BIOS has configured an incorrect mask, fixing it.
-
-k8temp 0000:00:18.3: Temperature readouts might be wrong - check erratum #141
-
-pci 0000:00:02.0: OHCI: BIOS handoff failed (BIOS bug?) 000007b4
----
-
-Maybe there's a BIOS update for your machine?
+01:00.0 VGA compatible controller: nVidia Corporation G72 [GeForce 7300 SE/7200
+GS] (rev a1)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
