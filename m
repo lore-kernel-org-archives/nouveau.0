@@ -1,14 +1,13 @@
-From: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH] nouveau: detect incompatible libglx.so
-Date: Fri, 4 Jun 2010 00:23:58 +0300
-Message-ID: <201006040023.59188.anssi.hannula@iki.fi>
-References: <20100523194916.GB15846@joi.lan> <20100602163856.GB2973@joi.lan>
-	<20100603121554.GA3071@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26980] GT230M/nouveau: X server hangs spontaneously
+Date: Fri,  4 Jun 2010 02:17:27 -0700 (PDT)
+Message-ID: <20100604091727.E23591300D9@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100603121554.GA3071-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,78 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Marcin Slusarz kirjoitti torstai, 3. kes=E4kuuta 2010 15:15:54:
-> On Wed, Jun 02, 2010 at 06:38:56PM +0200, Marcin Slusarz wrote:
-> > On Wed, Jun 02, 2010 at 08:40:54AM +1000, Ben Skeggs wrote:
-> > > On Tue, 2010-06-01 at 20:15 +0200, Marcin Slusarz wrote:
-> > > > On Sun, May 23, 2010 at 09:49:16PM +0200, Marcin Slusarz wrote:
-> > > > > Exit with proper message instead of crashing when user forgot
-> > > > > to uninstall the proprietary driver.
-> > > > > =
-
-> > > > > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > > > > ---
-> > > > > =
-
-> > > > >  src/nv_driver.c |   35 +++++++++++++++++++++++++++++++++++
-> > > > >  1 files changed, 35 insertions(+), 0 deletions(-)
-> > > > =
-
-> > > > ping
-> > > =
-
-> > > I question the need for this.  I quite often use nouveau with NVIDIA's
-> > > libglx installed and don't see this crashing you report.
-> > =
-
-> > Really? It crashes for me every time. Maybe you were having libglx.so,
-> > but no (NVIDIA's) libGLcore.so (etc), so glx extension was disabled?
-> =
-
-> Hmm, I can't reproduce it anymore...
-
-For the record, IIRC this crash was recently fixed in mesa by a nvidia =
-
-provided patch.
-
--- =
-
-Anssi Hannula
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjY5ODAKCkF4ZWwg
+QmVja2VydCA8YmVja2VydEBwaHlzLmV0aHouY2g+IGNoYW5nZWQ6CgogICAgICAgICAgIFdoYXQg
+ICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LQogICAgICAgICAgICAgICAgIENDfCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8YmVja2Vy
+dEBwaHlzLmV0aHouY2gKCi0tLSBDb21tZW50ICM4IGZyb20gQXhlbCBCZWNrZXJ0IDxiZWNrZXJ0
+QHBoeXMuZXRoei5jaD4gMjAxMC0wNi0wNCAwMjoxNzoyNyBQRFQgLS0tCkkgaGF2ZSBvYnNlcnZl
+ZCB0aGlzIGJ1ZyBhbHNvIG9uIFVidW50dSAxMC4wNCAoRGV0YWlscyBiZWxvdyk6Cgpb4oCmXQoo
+SUkpIE5PVVZFQVUoMCk6IE1vZGVsaW5lICIxMTUyeDg2NCJ4MC4wICAxMDguMDAgIDExNTIgMTIx
+NiAxMzQ0IDE2MDAgIDg2NCA4NjUKODY4IDkwMCAraHN5bmMgK3ZzeW5jICg2Ny41IGtIeikKKElJ
+KSBOT1VWRUFVKDApOiBNb2RlbGluZSAiMTQwMHgxMDUwIngwLjAgIDE1Ni4wMCAgMTQwMCAxNTA0
+IDE2NDggMTg5NiAgMTA1MAoxMDUzIDEwNTcgMTA5OSAtaHN5bmMgK3ZzeW5jICg4Mi4zIGtIeikK
+KElJKSBOT1VWRUFVKDApOiBNb2RlbGluZSAiMTQ0MHg5MDAieDAuMCAgMTA2LjUwICAxNDQwIDE1
+MjAgMTY3MiAxOTA0ICA5MDAgOTAzCjkwOSA5MzQgLWhzeW5jICt2c3luYyAoNTUuOSBrSHopCihJ
+SSkgTk9VVkVBVSgwKTogTW9kZWxpbmUgIjE0NDB4OTAwIngwLjAgIDEzNi43NSAgMTQ0MCAxNTM2
+IDE2ODggMTkzNiAgOTAwIDkwMwo5MDkgOTQyIC1oc3luYyArdnN5bmMgKDcwLjYga0h6KQooSUkp
+IE5PVVZFQVUoMCk6IE1vZGVsaW5lICIxNjgweDEwNTAieDAuMCAgMTQ2LjI1ICAxNjgwIDE3ODQg
+MTk2MCAyMjQwICAxMDUwCjEwNTMgMTA1OSAxMDg5IC1oc3luYyArdnN5bmMgKDY1LjMga0h6KQpb
+bWldIEVRIG92ZXJmbG93aW5nLiBUaGUgc2VydmVyIGlzIHByb2JhYmx5IHN0dWNrIGluIGFuIGlu
+ZmluaXRlIGxvb3AuCgpCYWNrdHJhY2U6CjA6IC91c3IvYmluL1ggKHhvcmdfYmFja3RyYWNlKzB4
+MjgpIFsweDRhMzI0OF0KMTogL3Vzci9iaW4vWCAobWllcUVucXVldWUrMHgxZjQpIFsweDRhMmFj
+NF0KMjogL3Vzci9iaW4vWCAoeGY4NlBvc3RNb3Rpb25FdmVudFArMHhjNCkgWzB4NDdjZWE0XQoz
+OiAvdXNyL2xpYi94b3JnL21vZHVsZXMvaW5wdXQvZXZkZXZfZHJ2LnNvICgweDdmNTE4MmYxMDAw
+MCsweDUzY2YpClsweDdmNTE4MmYxNTNjZl0KNDogL3Vzci9iaW4vWCAoMHg0MDAwMDArMHg2ZmNh
+NykgWzB4NDZmY2E3XQo1OiAvdXNyL2Jpbi9YICgweDQwMDAwMCsweDExZDFmMykgWzB4NTFkMWYz
+XQo2OiAvbGliL2xpYnB0aHJlYWQuc28uMCAoMHg3ZjUxODgyM2UwMDArMHhmOGYwKSBbMHg3ZjUx
+ODgyNGQ4ZjBdCjc6IC9saWIvbGliYy5zby42IChpb2N0bCsweDcpIFsweDdmNTE4NmZmNjE1N10K
+ODogL2xpYi9saWJkcm0uc28uMiAoZHJtSW9jdGwrMHgyOCkgWzB4N2Y1MTg1NWE3NWI4XQo5OiAv
+bGliL2xpYmRybS5zby4yIChkcm1Db21tYW5kV3JpdGUrMHgxYikgWzB4N2Y1MTg1NWE3ODNiXQox
+MDogL2xpYi9saWJkcm1fbm91dmVhdS5zby4xICgweDdmNTE4NGY2OTAwMCsweDJmN2QpIFsweDdm
+NTE4NGY2YmY3ZF0KMTE6IC9saWIvbGliZHJtX25vdXZlYXUuc28uMSAobm91dmVhdV9ib19tYXBf
+cmFuZ2UrMHhmYykgWzB4N2Y1MTg0ZjZjMWJjXQoxMjogL2xpYi9saWJkcm1fbm91dmVhdS5zby4x
+ICgweDdmNTE4NGY2OTAwMCsweDIxNjYpIFsweDdmNTE4NGY2YjE2Nl0KMTM6IC9saWIvbGliZHJt
+X25vdXZlYXUuc28uMSAobm91dmVhdV9wdXNoYnVmX2ZsdXNoKzB4MjljKSBbMHg3ZjUxODRmNmI0
+ZmNdCjE0OiAvdXNyL2xpYi94b3JnL21vZHVsZXMvbGliZXhhLnNvICgweDdmNTE4NDBjNDAwMCsw
+eDg4NzYpIFsweDdmNTE4NDBjYzg3Nl0KMTU6IC91c3IvbGliL3hvcmcvbW9kdWxlcy9saWJleGEu
+c28gKDB4N2Y1MTg0MGM0MDAwKzB4OTQxNSkgWzB4N2Y1MTg0MGNkNDE1XQoxNjogL3Vzci9iaW4v
+WCAoMHg0MDAwMDArMHhkOGE3YikgWzB4NGQ4YTdiXQoxNzogL3Vzci9iaW4vWCAoMHg0MDAwMDAr
+MHgyZWJiNCkgWzB4NDJlYmI0XQoxODogL3Vzci9iaW4vWCAoMHg0MDAwMDArMHgzMGMzYykgWzB4
+NDMwYzNjXQoxOTogL3Vzci9iaW4vWCAoMHg0MDAwMDArMHgyNjFhYSkgWzB4NDI2MWFhXQoyMDog
+L2xpYi9saWJjLnNvLjYgKF9fbGliY19zdGFydF9tYWluKzB4ZmQpIFsweDdmNTE4NmYzNmM0ZF0K
+MjE6IC91c3IvYmluL1ggKDB4NDAwMDAwKzB4MjVkNTkpIFsweDQyNWQ1OV0KCnN0cmFjZSBzaG93
+cyB0b25zIG9mIHRoaXM6Cgpb4oCmXQotLS0gU0lHQUxSTSAoQWxhcm0gY2xvY2spIEAgMCAoMCkg
+LS0tCnJ0X3NpZ3JldHVybigweGUpICAgICAgICAgICAgICAgICAgICAgICA9IC0xIEVJTlRSIChJ
+bnRlcnJ1cHRlZCBzeXN0ZW0gY2FsbCkKaW9jdGwoOCwgMHg0MDA4NjQ4NSwgMHg3ZmZmOThlM2E2
+ZDApICAgID0gPyBFUkVTVEFSVFNZUyAoVG8gYmUgcmVzdGFydGVkKQotLS0gU0lHQUxSTSAoQWxh
+cm0gY2xvY2spIEAgMCAoMCkgLS0tCnJ0X3NpZ3JldHVybigweGUpICAgICAgICAgICAgICAgICAg
+ICAgICA9IC0xIEVJTlRSIChJbnRlcnJ1cHRlZCBzeXN0ZW0gY2FsbCkKaW9jdGwoOCwgMHg0MDA4
+NjQ4NSwgMHg3ZmZmOThlM2E2ZDApICAgID0gPyBFUkVTVEFSVFNZUyAoVG8gYmUgcmVzdGFydGVk
+KQotLS0gU0lHQUxSTSAoQWxhcm0gY2xvY2spIEAgMCAoMCkgLS0tCnJ0X3NpZ3JldHVybigweGUp
+ICAgICAgICAgICAgICAgICAgICAgICA9IC0xIEVJTlRSIChJbnRlcnJ1cHRlZCBzeXN0ZW0gY2Fs
+bCkKaW9jdGwoOCwgMHg0MDA4NjQ4NSwgMHg3ZmZmOThlM2E2ZDApICAgID0gPyBFUkVTVEFSVFNZ
+UyAoVG8gYmUgcmVzdGFydGVkKQotLS0gU0lHQUxSTSAoQWxhcm0gY2xvY2spIEAgMCAoMCkgLS0t
+CnJ0X3NpZ3JldHVybigweGUpICAgICAgICAgICAgICAgICAgICAgICA9IC0xIEVJTlRSIChJbnRl
+cnJ1cHRlZCBzeXN0ZW0gY2FsbCkKaW9jdGwoOCwgMHg0MDA4NjQ4NSwgMHg3ZmZmOThlM2E2ZDAp
+ICAgID0gPyBFUkVTVEFSVFNZUyAoVG8gYmUgcmVzdGFydGVkKQpb4oCmXQoKbmVwZXI6fiMgdW5h
+bWUgLWEKTGludXggbmVwZXIgMi42LjMyLTIyLWdlbmVyaWMgIzMzLVVidW50dSBTTVAgV2VkIEFw
+ciAyOCAxMzoyODowNSBVVEMgMjAxMAp4ODZfNjQgR05VL0xpbnV4Cm5lcGVyOn4jIGxzYl9yZWxl
+YXNlIC1hCk5vIExTQiBtb2R1bGVzIGFyZSBhdmFpbGFibGUuCkRpc3RyaWJ1dG9yIElEOiBVYnVu
+dHUKRGVzY3JpcHRpb246ICAgIFVidW50dSAxMC4wNCBMVFMKUmVsZWFzZTogICAgICAgIDEwLjA0
+CkNvZGVuYW1lOiAgICAgICBsdWNpZApuZXBlcjp+IyBkcGtnIC1sIHwgZmdyZXAgbm91dmVhdQpp
+aSAgbGliZHJtLW5vdXZlYXUxICAgICAgICAgICAgIDIuNC4xOC0xdWJ1bnR1MyAgICAgICAgICAg
+ICAgICAgICAgICAgIFvigKZdCmlpICB4c2VydmVyLXhvcmctdmlkZW8tbm91dmVhdSAgMTowLjAu
+MTUrZ2l0MjAxMDAyMTkrOWI0MTE4ZC0wdWJ1bnR1NSAgW+KApl0KbmVwZXI6fiMgZHBrZyAtbCB8
+IGVncmVwICd4c2VydmVyLXhvcmcoIHwtY29yZSknCmlpICB4c2VydmVyLXhvcmcgICAgICAgICAg
+ICAgICAgMTo3LjUrNXVidW50dTEgICAgICAgICAgICAgICAgICAgICAgICAgW+KApl0KaWkgIHhz
+ZXJ2ZXIteG9yZy1jb3JlICAgICAgICAgICAyOjEuNy42LTJ1YnVudHU3ICAgICAgICAgICAgICAg
+ICAgICAgICBb4oCmXQpuZXBlcjp+IyBsc3BjaSB8IGZncmVwIFZHQQowMTowMC4wIFZHQSBjb21w
+YXRpYmxlIGNvbnRyb2xsZXI6IG5WaWRpYSBDb3Jwb3JhdGlvbiBHVDIxOCBbR2VGb3JjZSAyMTBd
+IChyZXYKYTIpCm5lcGVyOn4jCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5m
+cmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJl
+Y2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBm
+b3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
