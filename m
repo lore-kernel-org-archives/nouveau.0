@@ -1,47 +1,83 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25453] nouveau + multiple xorg servers + suspend2ram
- trashes root partition
-Date: Sat,  5 Jun 2010 04:38:17 -0700 (PDT)
-Message-ID: <20100605113817.77C3813010C@annarchy.freedesktop.org>
-References: <bug-25453-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: [PATCH] kmmio/mmiotrace: fix double free of kmmio_fault_pages
+Date: Sat, 5 Jun 2010 18:49:42 +0200
+Message-ID: <20100605164919.GA2816@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+To: LKML <linux-kernel@vger.kernel.org>
+Cc: Pekka Paalanen <pq@iki.fi>, Stuart Bennett <stuart@freedesktop.org>, Christoph Bumiller <e0425955@student.tuwien.ac.at>, Shinpei KATO <shinpei@il.is.s.u-tokyo.ac.jp>, nouveau@lists.freedesktop.org, x86@kernel.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25453
+After every iounmap mmiotrace has to free kmmio_fault_pages, but it
+can't do it directly, so it defers freeing by RCU.
 
---- Comment #5 from Tobias Hommel <nouveau-rnbUhoFKN64hFhg+JK9F0w@public.gmane.org> 2010-06-05 04:38:16 PDT ---
-(In reply to comment #4)
-> Worrying number of hardware/BIOS bugs...
+It usually works, but when mmiotraced code calls ioremap-iounmap
+multiple times without sleeping between (so RCU won't kick in and
+start freeing) it can be given the same virtual address, so at
+every iounmap mmiotrace will schedule the same pages for release.
+Obviously it will explode on second free.
 
-I know, but a graphics driver shouldn't touch filesystem related stuff anyway.
-Never!
-I suppose I'm not the only one with a buggy BIOS, at least the ACPI tables are
-broken on nearly every board and probably the other stuff too. So the cause for
-this problem should be found. Or is it that unusual to use more than one x
-server and suspend?
-As soon as I can spare some time, I'll do some further tests.
+Fix it by marking kmmio_fault_pages which are scheduled for release
+and not adding them second time.
 
-> .....
-> 
-> Maybe there's a BIOS update for your machine?
+Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: Pekka Paalanen <pq@iki.fi>
+Cc: Stuart Bennett <stuart@freedesktop.org>
+---
+ arch/x86/mm/kmmio.c |   16 +++++++++++++---
+ 1 files changed, 13 insertions(+), 3 deletions(-)
 
-Negative on that, unfortunately.
-
+diff --git a/arch/x86/mm/kmmio.c b/arch/x86/mm/kmmio.c
+index 5d0e67f..e5d5e2c 100644
+--- a/arch/x86/mm/kmmio.c
++++ b/arch/x86/mm/kmmio.c
+@@ -45,6 +45,8 @@ struct kmmio_fault_page {
+ 	 * Protected by kmmio_lock, when linked into kmmio_page_table.
+ 	 */
+ 	int count;
++
++	bool scheduled_for_release;
+ };
+ 
+ struct kmmio_delayed_release {
+@@ -398,8 +400,11 @@ static void release_kmmio_fault_page(unsigned long page,
+ 	BUG_ON(f->count < 0);
+ 	if (!f->count) {
+ 		disarm_kmmio_fault_page(f);
+-		f->release_next = *release_list;
+-		*release_list = f;
++		if (!f->scheduled_for_release) {
++			f->release_next = *release_list;
++			*release_list = f;
++			f->scheduled_for_release = true;
++		}
+ 	}
+ }
+ 
+@@ -471,8 +476,10 @@ static void remove_kmmio_fault_pages(struct rcu_head *head)
+ 			prevp = &f->release_next;
+ 		} else {
+ 			*prevp = f->release_next;
++			f->release_next = NULL;
++			f->scheduled_for_release = false;
+ 		}
+-		f = f->release_next;
++		f = *prevp;
+ 	}
+ 	spin_unlock_irqrestore(&kmmio_lock, flags);
+ 
+@@ -510,6 +517,9 @@ void unregister_kmmio_probe(struct kmmio_probe *p)
+ 	kmmio_count--;
+ 	spin_unlock_irqrestore(&kmmio_lock, flags);
+ 
++	if (!release_list)
++		return;
++
+ 	drelease = kmalloc(sizeof(*drelease), GFP_ATOMIC);
+ 	if (!drelease) {
+ 		pr_crit("leaking kmmio_fault_page objects.\n");
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.1
