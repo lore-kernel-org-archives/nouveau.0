@@ -1,82 +1,67 @@
-From: Ingo Molnar <mingo@elte.hu>
-Subject: Re: [PATCH] kmmio/mmiotrace: fix double free of kmmio_fault_pages
-Date: Mon, 7 Jun 2010 15:33:21 +0200
-Message-ID: <20100607133321.GA7562@elte.hu>
-References: <20100605164919.GA2816@joi.lan>
- <20100605193301.GA2674@joi.lan>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Building Nouveau DRM for a recent kernel
+ (linux-2.6.35-rc1)
+Date: Tue, 08 Jun 2010 08:04:27 +1000
+Message-ID: <1275948267.2459.1.camel@nisroch>
+References: <AANLkTilSnNIJU8d2Ftxacus2acu2X30aWG1Ni8JKs-JT@mail.gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20100605193301.GA2674@joi.lan>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, Pekka Paalanen <pq@iki.fi>, Stuart Bennett <stuart@freedesktop.org>, Christoph Bumiller <e0425955@student.tuwien.ac.at>, Shinpei KATO <shinpei@il.is.s.u-tokyo.ac.jp>, nouveau@lists.freedesktop.org, x86@kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <AANLkTilSnNIJU8d2Ftxacus2acu2X30aWG1Ni8JKs-JT-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Sebastian =?ISO-8859-1?Q?Jeger=E5s?= <jegeras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
-* Marcin Slusarz <marcin.slusarz@gmail.com> wrote:
-
-> On Sat, Jun 05, 2010 at 06:49:42PM +0200, Marcin Slusarz wrote:
-> > After every iounmap mmiotrace has to free kmmio_fault_pages, but it
-> > can't do it directly, so it defers freeing by RCU.
-> > 
-> > It usually works, but when mmiotraced code calls ioremap-iounmap
-> > multiple times without sleeping between (so RCU won't kick in and
-> > start freeing) it can be given the same virtual address, so at
-> > every iounmap mmiotrace will schedule the same pages for release.
-> > Obviously it will explode on second free.
-> > 
-> > Fix it by marking kmmio_fault_pages which are scheduled for release
-> > and not adding them second time.
-> > 
-> 
-> Attached patch for mmiotrace testing module allows to reliably reproduce
-> the bug. It can be folded into the main patch.
-> 
-> ---
-> diff --git a/arch/x86/mm/testmmiotrace.c b/arch/x86/mm/testmmiotrace.c
-> index 8565d94..5f0937b 100644
-> --- a/arch/x86/mm/testmmiotrace.c
-> +++ b/arch/x86/mm/testmmiotrace.c
-> @@ -90,6 +90,19 @@ static void do_test(unsigned long size)
->  	iounmap(p);
->  }
->  
-> +static void do_test2(void)
-
-Please add a comment about what the test function achieves.
-
-> +{
-> +	void __iomem *p;
-> +	int i;
-> +	
-> +	for (i = 0; i < 10; ++i) {
-> +		p = ioremap_nocache(mmio_address, 4096);
-
-s/4096/PAGE_SIZE
-
-> +		if (p)
-> +			iounmap(p);
-> +	}
-> +	synchronize_rcu(); /* will freeing work? */
-> +}
-> +
->  static int __init init(void)
->  {
->  	unsigned long size = (read_far) ? (8 << 20) : (16 << 10);
-> @@ -104,6 +117,7 @@ static int __init init(void)
->  		   "and writing 16 kB of rubbish in there.\n",
->  		   size >> 10, mmio_address);
->  	do_test(size);
-> +	do_test2();
-
-Please name the new function in a bit more meaningful way (such as 
-do_test_remap()).
-
-Looks good, please send the full (folded back) patch anew, with Pekka's Ack in 
-place as well.
-
-Thanks,
-
-	Ingo
+T24gTW9uLCAyMDEwLTA2LTA3IGF0IDE1OjE4ICswMjAwLCBTZWJhc3RpYW4gSmVnZXLDpXMgd3Jv
+dGU6Cj4gSGVsbG8uCj4gSSBoYWQgc29tZSB0cm91YmxlIGJ1aWxkaW5nIG5vdXZlYXUgZHJtIGZv
+ciBsaW51eC0yLjYuMzUtcmMxLgo+IEkgaW52ZXN0aWdhdGVkIGEgYml0IHdoeSBpdCBmYWlsZWQg
+YW5kIG5vdGljZWQgdGhhdCB0aGUKPiBmYl9pbmZvLXN0cnVjdHVyZSBoYWQgY2hhbmdlZCBzbGln
+aHRseS4KVGhpcyBpcyBrbm93bi4gIEknbGwgbWVyZ2UgTGludXMnIHRyZWUgaW50byBvdXJzIHdo
+ZW4gMi42LjM1LXJjMyBpcwpyZWxlYXNlZCBwcm9iYWJseSwgd2hpY2ggd2lsbCByZXNvbHZlIHRo
+aXMuCgpCZW4uCj4gCj4gU2luY2UgSSBkbyBub3QgaGF2ZSBhbnkgcHJldmlvdXMga25vd2xlZGdl
+IG9mIGhvdyB0aGUgZHJpdmVyIHdvcmtzLAo+IEknbSBub3QgY2VydGFpbiBpZiB0aGlzIGlzIGEg
+cHJvcGVyIGZpeCwgYnV0IGl0IHNlZW1zIHRvIHdvcmsuCj4gSSdtIGN1cmlvdXMgaWYgdGhlcmUn
+cyBhIGJldHRlciBzb2x1dGlvbiwgb3IgaWYgbXkgc29sdXRpb24gYnJlYWtzIGluCj4gYWxsIG90
+aGVyIGNhc2VzLgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2ZiY29uLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKPiBpbmRl
+eCA4ZTdkYzFkLi4zOTQzYTAwIDEwMDY0NAo+IAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfZmJjb24uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfZmJjb24uYwo+IEBAIC0zMTcsNiArMzE3LDkgQEAgbm91dmVhdV9mYmNvbl9jcmVhdGUoc3Ry
+dWN0IGRybV9kZXZpY2UgKmRldiwgdWludDMyX3QgZmJfd2lkdGgsCj4gIAlpbmZvLT5maXgubW1p
+b19sZW4gPSBwY2lfcmVzb3VyY2VfbGVuKGRldi0+cGRldiwgMSk7Cj4gCj4gIAo+ICAJLyogU2V0
+IGFwZXJ0dXJlIGJhc2Uvc2l6ZSBmb3IgdmVzYWZiIHRha2VvdmVyICovCj4gKwo+ICsgICAgaW5m
+by0+YXBlcnR1cmVzID0gYWxsb2NfYXBlcnR1cmVzKDEpOwo+ICsKPiAgI2lmIGRlZmluZWQoX19p
+Mzg2X18pIHx8IGRlZmluZWQoX194ODZfNjRfXykKPiAgCWlmIChub3V2ZWF1X2ZiY29uX2hhc192
+ZXNhZmJfb3JfZWZpZmIoZGV2KSkgewo+ICAJCS8qIFNvbWUgTlZJRElBIFZCSU9TJyBhcmUgc3R1
+cGlkIGFuZCBkZWNpZGUgdG8gcHV0IHRoZQo+IAo+IEBAIC0zMjYsMTUgKzMyOSwxNSBAQCBub3V2
+ZWF1X2ZiY29uX2NyZWF0ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1aW50MzJfdCBmYl93aWR0
+aCwKPiAgCQkgKiB3ZSBoYXZlIGxlZnQgaXMgdG8gZmluZCBvdXQgbGZiX2Jhc2UgdGhlIHNhbWUg
+d2F5Cj4gIAkJICogdmVzYWZiIGRpZC4KPiAgCQkgKi8KPiAtCQlpbmZvLT5hcGVydHVyZV9iYXNl
+ID0gc2NyZWVuX2luZm8ubGZiX2Jhc2U7Cj4gCj4gLQkJaW5mby0+YXBlcnR1cmVfc2l6ZSA9IHNj
+cmVlbl9pbmZvLmxmYl9zaXplOwo+ICsJCWluZm8tPmFwZXJ0dXJlcy0+cmFuZ2VzLT5iYXNlID0g
+c2NyZWVuX2luZm8ubGZiX2Jhc2U7Cj4gKwkJaW5mby0+YXBlcnR1cmVzLT5yYW5nZXMtPnNpemUg
+PSBzY3JlZW5faW5mby5sZmJfc2l6ZTsKPiAgCQlpZiAoc2NyZWVuX2luZm8ub3JpZ192aWRlb19p
+c1ZHQSA9PSBWSURFT19UWVBFX1ZMRkIpCj4gCj4gLQkJCWluZm8tPmFwZXJ0dXJlX3NpemUgKj0g
+NjU1MzY7Cj4gKwkJCWluZm8tPmFwZXJ0dXJlcy0+cmFuZ2VzLT5zaXplICo9IDY1NTM2Owo+ICAJ
+fSBlbHNlCj4gICNlbmRpZgo+ICAJewo+IC0JCWluZm8tPmFwZXJ0dXJlX2Jhc2UgPSBpbmZvLT5m
+aXgubW1pb19zdGFydDsKPiAtCQlpbmZvLT5hcGVydHVyZV9zaXplID0gaW5mby0+Zml4Lm1taW9f
+bGVuOwo+IAo+ICsJCWluZm8tPmFwZXJ0dXJlcy0+cmFuZ2VzLT5iYXNlID0gaW5mby0+Zml4Lm1t
+aW9fc3RhcnQ7Cj4gKwkJaW5mby0+YXBlcnR1cmVzLT5yYW5nZXMtPnNpemUgPSBpbmZvLT5maXgu
+bW1pb19sZW47Cj4gIAl9Cj4gIAo+ICAJaW5mby0+cGl4bWFwLnNpemUgPSA2NCoxMDI0Owo+IAo+
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVh
+dSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1CgoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
