@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28449] I messed up and now nouveau doesn't work.
-Date: Tue,  8 Jun 2010 11:08:37 -0700 (PDT)
-Message-ID: <20100608180837.0DCCD130104@annarchy.freedesktop.org>
+Date: Tue,  8 Jun 2010 11:10:22 -0700 (PDT)
+Message-ID: <20100608181022.704BE1300A8@annarchy.freedesktop.org>
 References: <bug-28449-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28449
 
---- Comment #1 from David Ronis <David.Ronis-BAnzPxqWUM23NexWsGEg3A@public.gmane.org> 2010-06-08 11:08:36 PDT ---
-Created an attachment (id=36159)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=36159)
-log file
+David Ronis <David.Ronis-BAnzPxqWUM23NexWsGEg3A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #36158|0                           |1
+        is obsolete|                            |
+
+--- Comment #2 from David Ronis <David.Ronis-BAnzPxqWUM23NexWsGEg3A@public.gmane.org> 2010-06-08 11:10:22 PDT ---
+Created an attachment (id=36160)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=36160)
+xorg.conf
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
