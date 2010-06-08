@@ -1,15 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Building Nouveau DRM for a recent kernel
- (linux-2.6.35-rc1)
-Date: Tue, 08 Jun 2010 08:04:27 +1000
-Message-ID: <1275948267.2459.1.camel@nisroch>
-References: <AANLkTilSnNIJU8d2Ftxacus2acu2X30aWG1Ni8JKs-JT@mail.gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 28320] Xserver hangs in an infinite loop
+Date: Tue,  8 Jun 2010 07:15:11 -0700 (PDT)
+Message-ID: <20100608141511.B211913008D@annarchy.freedesktop.org>
+References: <bug-28320-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTilSnNIJU8d2Ftxacus2acu2X30aWG1Ni8JKs-JT-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-28320-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,49 +17,20 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Sebastian =?ISO-8859-1?Q?Jeger=E5s?= <jegeras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyMDEwLTA2LTA3IGF0IDE1OjE4ICswMjAwLCBTZWJhc3RpYW4gSmVnZXLDpXMgd3Jv
-dGU6Cj4gSGVsbG8uCj4gSSBoYWQgc29tZSB0cm91YmxlIGJ1aWxkaW5nIG5vdXZlYXUgZHJtIGZv
-ciBsaW51eC0yLjYuMzUtcmMxLgo+IEkgaW52ZXN0aWdhdGVkIGEgYml0IHdoeSBpdCBmYWlsZWQg
-YW5kIG5vdGljZWQgdGhhdCB0aGUKPiBmYl9pbmZvLXN0cnVjdHVyZSBoYWQgY2hhbmdlZCBzbGln
-aHRseS4KVGhpcyBpcyBrbm93bi4gIEknbGwgbWVyZ2UgTGludXMnIHRyZWUgaW50byBvdXJzIHdo
-ZW4gMi42LjM1LXJjMyBpcwpyZWxlYXNlZCBwcm9iYWJseSwgd2hpY2ggd2lsbCByZXNvbHZlIHRo
-aXMuCgpCZW4uCj4gCj4gU2luY2UgSSBkbyBub3QgaGF2ZSBhbnkgcHJldmlvdXMga25vd2xlZGdl
-IG9mIGhvdyB0aGUgZHJpdmVyIHdvcmtzLAo+IEknbSBub3QgY2VydGFpbiBpZiB0aGlzIGlzIGEg
-cHJvcGVyIGZpeCwgYnV0IGl0IHNlZW1zIHRvIHdvcmsuCj4gSSdtIGN1cmlvdXMgaWYgdGhlcmUn
-cyBhIGJldHRlciBzb2x1dGlvbiwgb3IgaWYgbXkgc29sdXRpb24gYnJlYWtzIGluCj4gYWxsIG90
-aGVyIGNhc2VzLgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2ZiY29uLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKPiBpbmRl
-eCA4ZTdkYzFkLi4zOTQzYTAwIDEwMDY0NAo+IAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZmJjb24uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfZmJjb24uYwo+IEBAIC0zMTcsNiArMzE3LDkgQEAgbm91dmVhdV9mYmNvbl9jcmVhdGUoc3Ry
-dWN0IGRybV9kZXZpY2UgKmRldiwgdWludDMyX3QgZmJfd2lkdGgsCj4gIAlpbmZvLT5maXgubW1p
-b19sZW4gPSBwY2lfcmVzb3VyY2VfbGVuKGRldi0+cGRldiwgMSk7Cj4gCj4gIAo+ICAJLyogU2V0
-IGFwZXJ0dXJlIGJhc2Uvc2l6ZSBmb3IgdmVzYWZiIHRha2VvdmVyICovCj4gKwo+ICsgICAgaW5m
-by0+YXBlcnR1cmVzID0gYWxsb2NfYXBlcnR1cmVzKDEpOwo+ICsKPiAgI2lmIGRlZmluZWQoX19p
-Mzg2X18pIHx8IGRlZmluZWQoX194ODZfNjRfXykKPiAgCWlmIChub3V2ZWF1X2ZiY29uX2hhc192
-ZXNhZmJfb3JfZWZpZmIoZGV2KSkgewo+ICAJCS8qIFNvbWUgTlZJRElBIFZCSU9TJyBhcmUgc3R1
-cGlkIGFuZCBkZWNpZGUgdG8gcHV0IHRoZQo+IAo+IEBAIC0zMjYsMTUgKzMyOSwxNSBAQCBub3V2
-ZWF1X2ZiY29uX2NyZWF0ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1aW50MzJfdCBmYl93aWR0
-aCwKPiAgCQkgKiB3ZSBoYXZlIGxlZnQgaXMgdG8gZmluZCBvdXQgbGZiX2Jhc2UgdGhlIHNhbWUg
-d2F5Cj4gIAkJICogdmVzYWZiIGRpZC4KPiAgCQkgKi8KPiAtCQlpbmZvLT5hcGVydHVyZV9iYXNl
-ID0gc2NyZWVuX2luZm8ubGZiX2Jhc2U7Cj4gCj4gLQkJaW5mby0+YXBlcnR1cmVfc2l6ZSA9IHNj
-cmVlbl9pbmZvLmxmYl9zaXplOwo+ICsJCWluZm8tPmFwZXJ0dXJlcy0+cmFuZ2VzLT5iYXNlID0g
-c2NyZWVuX2luZm8ubGZiX2Jhc2U7Cj4gKwkJaW5mby0+YXBlcnR1cmVzLT5yYW5nZXMtPnNpemUg
-PSBzY3JlZW5faW5mby5sZmJfc2l6ZTsKPiAgCQlpZiAoc2NyZWVuX2luZm8ub3JpZ192aWRlb19p
-c1ZHQSA9PSBWSURFT19UWVBFX1ZMRkIpCj4gCj4gLQkJCWluZm8tPmFwZXJ0dXJlX3NpemUgKj0g
-NjU1MzY7Cj4gKwkJCWluZm8tPmFwZXJ0dXJlcy0+cmFuZ2VzLT5zaXplICo9IDY1NTM2Owo+ICAJ
-fSBlbHNlCj4gICNlbmRpZgo+ICAJewo+IC0JCWluZm8tPmFwZXJ0dXJlX2Jhc2UgPSBpbmZvLT5m
-aXgubW1pb19zdGFydDsKPiAtCQlpbmZvLT5hcGVydHVyZV9zaXplID0gaW5mby0+Zml4Lm1taW9f
-bGVuOwo+IAo+ICsJCWluZm8tPmFwZXJ0dXJlcy0+cmFuZ2VzLT5iYXNlID0gaW5mby0+Zml4Lm1t
-aW9fc3RhcnQ7Cj4gKwkJaW5mby0+YXBlcnR1cmVzLT5yYW5nZXMtPnNpemUgPSBpbmZvLT5maXgu
-bW1pb19sZW47Cj4gIAl9Cj4gIAo+ICAJaW5mby0+cGl4bWFwLnNpemUgPSA2NCoxMDI0Owo+IAo+
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVh
-dSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1CgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=28320
+
+--- Comment #4 from Pico <picogeyer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-08 07:15:11 PDT ---
+Created an attachment (id=36145)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=36145)
+Gdb backtrace of Xorg
+
+I think I'm having exactly the same issue.
+Would this backtrace of Xorg help?
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
