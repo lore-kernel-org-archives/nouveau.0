@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28449] I messed up and now nouveau doesn't work.
-Date: Tue,  8 Jun 2010 11:10:22 -0700 (PDT)
-Message-ID: <20100608181022.704BE1300A8@annarchy.freedesktop.org>
+Date: Tue,  8 Jun 2010 11:33:35 -0700 (PDT)
+Message-ID: <20100608183335.490E91300D8@annarchy.freedesktop.org>
 References: <bug-28449-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,24 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28449
 
-David Ronis <David.Ronis-BAnzPxqWUM23NexWsGEg3A@public.gmane.org> changed:
+--- Comment #3 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> 2010-06-08 11:33:35 PDT ---
+Try this hack:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #36158|0                           |1
-        is obsolete|                            |
+diff --git a/src/nv_driver.c b/src/nv_driver.c
+index f60b6d9..7a6311c 100644
+--- a/src/nv_driver.c
++++ b/src/nv_driver.c
+@@ -1138,6 +1138,9 @@ NVScreenInit(int scrnIndex, ScreenPtr pScreen, int argc,
+char **argv)
+        pNv->BlockHandler = pScreen->BlockHandler;
+        pScreen->BlockHandler = NVBlockHandler;
 
---- Comment #2 from David Ronis <David.Ronis-BAnzPxqWUM23NexWsGEg3A@public.gmane.org> 2010-06-08 11:10:22 PDT ---
-Created an attachment (id=36160)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=36160)
-xorg.conf
++       if (!CreateScratchPixmapsForScreen(pScreen->myNum))
++               return FALSE;
++
+        drmmode_fbcon_copy(pScreen);
+
+        if (!NVEnterVT(pScrn->scrnIndex, 0))
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
