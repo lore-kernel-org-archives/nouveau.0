@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26521] Bug in kernel module - ttm_bo_pci_offset
-Date: Wed,  9 Jun 2010 00:52:30 -0700 (PDT)
-Message-ID: <20100609075230.8DF121300B3@annarchy.freedesktop.org>
-References: <bug-26521-8800@http.bugs.freedesktop.org/>
+From: Konrad Rzeszutek Wilk <konrad.wilk-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+Subject: Re: PFIFO_DMA_PUSHER + Xen + NV30 + questions.
+Date: Wed, 9 Jun 2010 09:47:20 -0400
+Message-ID: <20100609134720.GA7131@phenom.dumpdata.com>
+References: <20100604212455.GA7143@phenom.dumpdata.com>
+	<AANLkTimyQzqCw1QnSNxmUvilOqaWe60twrNGo4n8BIcx@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26521-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <AANLkTimyQzqCw1QnSNxmUvilOqaWe60twrNGo4n8BIcx-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,16 +19,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26521
+> > I've fleshed out most of them (like GART had the wrong phys addresses,
+> > ouch!), but the one that I am stumbling at is that I see the PFIFO_DMA_PUSHER,
+> > which I am to understand means: "Oh, the GPU obj operation you stuck on the
+> > RAMHT/RAMIN is busted."
 
---- Comment #9 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-09 00:52:30 PDT ---
-I've tested 2.6.35-rc1 and -rc2 and looks like it works. At least I haven't got
-this error since last to weeks
+.. snip ..
+> buffer. Either you pointed the card at garbage instead of a sensible
+> buffer (nv10_fifo_create_context for nv30 IIRC) or your initial
+> pushbuf (submitted by nouveau_dma_init) contains garbage. Or maybe
+> something else, but based on your log that would be my guess.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+That was it. I had the physical addresses of the buffers properly put in
+the GATT, but the physical address the GATT page directory that was programmed in
+the GART was completly bogus. So the GART on behalf of the card, ended up reading
+bogus addresses. Ouch.
+
+Now of to fix vmap faults.
