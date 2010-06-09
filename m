@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26521] Bug in kernel module - ttm_bo_pci_offset
-Date: Tue,  8 Jun 2010 13:57:21 -0700 (PDT)
-Message-ID: <20100608205721.8C0E41300D1@annarchy.freedesktop.org>
+Date: Wed,  9 Jun 2010 00:52:30 -0700 (PDT)
+Message-ID: <20100609075230.8DF121300B3@annarchy.freedesktop.org>
 References: <bug-26521-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26521
 
---- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-08 13:57:20 PDT ---
-It seems ttm code was heavily changed during 2.6.35 development and the
-function we crash in (ttm_bo_pci_offset) was removed.
-
-We need a new trace probably...
+--- Comment #9 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-09 00:52:30 PDT ---
+I've tested 2.6.35-rc1 and -rc2 and looks like it works. At least I haven't got
+this error since last to weeks
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
