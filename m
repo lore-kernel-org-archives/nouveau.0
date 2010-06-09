@@ -1,15 +1,11 @@
-From: Konrad Rzeszutek Wilk <konrad.wilk-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
-Subject: Re: PFIFO_DMA_PUSHER + Xen + NV30 + questions.
-Date: Wed, 9 Jun 2010 09:47:20 -0400
-Message-ID: <20100609134720.GA7131@phenom.dumpdata.com>
-References: <20100604212455.GA7143@phenom.dumpdata.com>
-	<AANLkTimyQzqCw1QnSNxmUvilOqaWe60twrNGo4n8BIcx@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 28470] New: Cannot set AGP rate - system unstable.
+Date: Wed,  9 Jun 2010 12:36:35 -0700 (PDT)
+Message-ID: <bug-28470-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <AANLkTimyQzqCw1QnSNxmUvilOqaWe60twrNGo4n8BIcx-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,24 +15,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-> > I've fleshed out most of them (like GART had the wrong phys addresses,
-> > ouch!), but the one that I am stumbling at is that I see the PFIFO_DMA_PUSHER,
-> > which I am to understand means: "Oh, the GPU obj operation you stuck on the
-> > RAMHT/RAMIN is busted."
+https://bugs.freedesktop.org/show_bug.cgi?id=28470
 
-.. snip ..
-> buffer. Either you pointed the card at garbage instead of a sensible
-> buffer (nv10_fifo_create_context for nv30 IIRC) or your initial
-> pushbuf (submitted by nouveau_dma_init) contains garbage. Or maybe
-> something else, but based on your log that would be my guess.
+           Summary: Cannot set AGP rate - system unstable.
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: blocker
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: a51473-FaFVXakVy0NBDgjK7y7TUQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-That was it. I had the physical addresses of the buffers properly put in
-the GATT, but the physical address the GATT page directory that was programmed in
-the GART was completly bogus. So the GART on behalf of the card, ended up reading
-bogus addresses. Ouch.
 
-Now of to fix vmap faults.
+I have gigabyte 7nf-rz motherboard. It is nforce2 based.
+Problem is that chipset or particular board or bios or whatever... is unstable
+when AGP rate is set to x8.
+During heavy use (3d or even flash/mplayer video play) it tends to lock system
+hard. So hard, that even played sound is looped inside soundcard buffers.
+This problem is persistent over many windows xp installations, various linux
+distros, many nvidia blob drivers. My card is nv7600gs, but even amd radeon
+9200 suffer same problem.
+
+Solution is simple: set agp to x4 - problem solved 100%.
+Nvidia blob allowed me to do it.
+
+Now I'm using fedora13 with nouveau.
+Is there any way to set agp rate to x4?
+
+My setup:
+xorg-x11-drv-nouveau-0.0.16-6.20100423git13c1043.fc13.i686
+libdrm-2.4.20-1.fc13.i686
+kernel-PAE-2.6.33.5-112.fc13.i686
+
+Yes, this problem is a blocker for me to became nouveau user in long term.
+
+Have nice day.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
