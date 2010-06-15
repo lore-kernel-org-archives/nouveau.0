@@ -1,45 +1,34 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 28320] Xserver hangs in an infinite loop
-Date: Tue, 15 Jun 2010 07:22:35 -0700 (PDT)
-Message-ID: <20100615142235.812451300C9@annarchy.freedesktop.org>
-References: <bug-28320-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [BUG ?] Nouveau driver on 330M GT
+Date: Wed, 16 Jun 2010 06:58:25 +1000
+Message-ID: <1276635505.14136.1.camel@araqiel>
+References: <201006111052.29187.goretux@gmail.com>
+	 <201006151318.08619.goretux@gmail.com> <1276601463.2526.4.camel@nisroch>
+	 <201006151506.27154.goretux@gmail.com>
+Reply-To: skeggsb@gmail.com
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-28320-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <201006151506.27154.goretux@gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Eric Lacombe <goretux@gmail.com>
+Cc: Younes Manton <younes.m@gmail.com>, Dave Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=28320
+On Tue, 2010-06-15 at 15:06 +0200, Eric Lacombe wrote:
+> > Is this a system with switchable graphics (Optimus probably)?  If so,
+> > fiddle with your BIOS options and try and enable only the NVIDIA board.
+> 
+> oops, my fault... I forgot to switch to the nvidia chip (my laptop is a sony 
+> vaio Z11Z9E) with the button. Here the new drm logs with a 2.6.35-rc2 kernel :
+Aah, yep, that's much better.  I've seen what I believe to be a similar
+issue reported, but other things have prevented me looking at it
+properly yet.
 
---- Comment #6 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> 2010-06-15 07:22:34 PDT ---
-(In reply to comment #5)
-> That " [mi] EQ overflowing" message is completely meaningless. Please, read
-> http://marc.info/?l=fedora-devel-list&m=124101535025331&w=2 and then take a
-> look at the disaster which happens when people start to file this message as a
-> bug at https://bugzilla.redhat.com/show_bug.cgi?id=465884. 
+I'm on holidays for the next 2 weeks, but I'll get back to looking at it
+then.  The only suggestion so far is to make sure you're using the very
+latest code from nouveau git, just to make sure it's not already
+fixed :)
 
-Yes, I knew this, that ist why I looked into the GDB where the server was
-hanging. I am not experienced with X debugging to understand this bug though,
-so I decided to ask here.
-
-> Much more interesting is this backtrace:
-
-It looks to me that the server causes an deadlock in the kernel, and after that
-it hopelessly hangs in that tight loop trying to get a response from the
-kernel....
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Ben.
