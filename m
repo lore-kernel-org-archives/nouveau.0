@@ -1,12 +1,14 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Don't clear AGPCMD completely on
-	INIT_RESET.
-Date: Thu, 17 Jun 2010 16:28:31 +0200
-Message-ID: <1276784911-11630-1-git-send-email-currojerez@riseup.net>
+From: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+Subject: Re: Re-enable dithering after
+	commit	a7b9f9e5adef276c25584e28ce9e520045ff048b
+Date: Wed, 16 Jun 2010 19:24:03 +0200
+Message-ID: <4C1908B3.2060201@ensi-bourges.fr>
+References: <4C187F74.4040402@ensi-bourges.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <4C187F74.4040402-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,32 +21,30 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-We just need to clear the SBA and ENABLE bits to reset the AGP
-controller: If the AGP bridge was configured to use "fast writes",
-clearing the FW bit would break the subsequent MMIO writes and
-eventually end with a lockup.
+Le 16/06/2010 09:38, Martin Peres a =E9crit :
+> Hi everyone,
+>
+> After commit a7b9f9e5adef276c25584e28ce9e520045ff048b, dithering has =
 
-Note that all the BIOSes I've seen do the same as we did (it works for
-them because they don't use MMIO), OTOH the blob leaves FW untouched.
+> disappeared on LVDS (for those who needed it).
+>
+> ThibG on IRC has bisected this behaviour to =
 
-Signed-off-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_bios.c |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+> a7b9f9e5adef276c25584e28ce9e520045ff048b. Here is a patch that =
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-index ee36f8f..903e72b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-@@ -2126,7 +2126,8 @@ init_reset(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
- 	/* no iexec->execute check by design */
- 
- 	pci_nv_19 = bios_rd32(bios, NV_PBUS_PCI_NV_19);
--	bios_wr32(bios, NV_PBUS_PCI_NV_19, 0);
-+	bios_wr32(bios, NV_PBUS_PCI_NV_19, pci_nv_19 & ~0xf00);
-+
- 	bios_wr32(bios, reg, value1);
- 
- 	udelay(10);
--- 
-1.6.4.4
+> re-enables it.
+>
+> Please comment on it.
+>
+> Martin
+Well, too late, Jerez already pushed a patch to do that :)
+
+Do you have any idea of why it took almost 10 hours between the moment I =
+
+sent this mail and the moment I actually received it from the list ? Is =
+
+there a manual approbation somewhere to get rid of the spam ?
+
+Thanks to Jerez for the patch anyway :) It works just as great and is =
+
+better designed.
