@@ -1,17 +1,13 @@
-From: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
-Subject: Re: [BUG ?] Nouveau driver on 330M GT
-Date: Wed, 16 Jun 2010 13:47:51 +0200
-Message-ID: <20100616134751.a59b9ac8.mandin.patrice@orange.fr>
-References: <201006111052.29187.goretux@gmail.com>
-	<201006151318.08619.goretux@gmail.com>
-	<1276601463.2526.4.camel@nisroch>
-	<201006151506.27154.goretux@gmail.com>
-	<1276635505.14136.1.camel@araqiel>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 28570] glxinfo  direct rendering crash on nv11
+Date: Wed, 16 Jun 2010 05:26:04 -0700 (PDT)
+Message-ID: <20100616122604.4382E130093@annarchy.freedesktop.org>
+References: <bug-28570-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1276635505.14136.1.camel@araqiel>
+In-Reply-To: <bug-28570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,26 +20,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Le Wed, 16 Jun 2010 06:58:25 +1000
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> a =E9crit:
+https://bugs.freedesktop.org/show_bug.cgi?id=28570
 
-> I'm on holidays for the next 2 weeks, but I'll get back to looking at it
-> then.  The only suggestion so far is to make sure you're using the very
-> latest code from nouveau git, just to make sure it's not already
-> fixed :)
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
-Isn't it related to still-unsupported tmds revision 2 tables? This is
-in Eric log:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+          Component|Server/general              |Driver/nouveau
+         AssignedTo|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+                 CC|                            |currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org
 
-[   15.276217] [drm] nouveau 0000:01:00.0: TMDS table revision 2.0 not =
+--- Comment #1 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-06-16 05:26:03 PDT ---
+It should be fixed by the DDX commit db98ad23633958e52 -- I'm reassigning and
+marking this bug as fixed because it was the DDX fault.
 
-currently supported
+Thanks for reporting.
 
--- =
-
-Patrice Mandin
-WWW: http://pmandin.atari.org/
-Programmeur Linux, Atari
-Sp=E9cialit=E9: D=E9veloppement, jeux
-
-"who writes the code, decides"
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
