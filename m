@@ -1,14 +1,14 @@
-From: Stephane Marchesin <stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Re-enable dithering after commit
-	a7b9f9e5adef276c25584e28ce9e520045ff048b
-Date: Thu, 17 Jun 2010 12:36:29 -0700
-Message-ID: <AANLkTin383_xfgGamabXVUHaE2DA7pG5wLNa7VW574Ob@mail.gmail.com>
-References: <4C187F74.4040402@ensi-bourges.fr>
-	<4C1908B3.2060201@ensi-bourges.fr>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: Re-enable dithering after
+	commit	a7b9f9e5adef276c25584e28ce9e520045ff048b
+Date: Thu, 17 Jun 2010 21:49:45 +0200
+Message-ID: <4C1A7C59.3020704@free.fr>
+References: <4C187F74.4040402@ensi-bourges.fr>	<4C1908B3.2060201@ensi-bourges.fr>
+	<AANLkTin383_xfgGamabXVUHaE2DA7pG5wLNa7VW574Ob@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2089501262=="
+Content-Type: multipart/mixed; boundary="===============1905313881=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4C1908B3.2060201-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+In-Reply-To: <AANLkTin383_xfgGamabXVUHaE2DA7pG5wLNa7VW574Ob-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,83 +19,77 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Mime-version: 1.0
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============2089501262==
-Content-Type: multipart/alternative; boundary=0016367b6c7277d45704893ef488
+This is a multi-part message in MIME format.
+--===============1905313881==
+Content-Type: multipart/alternative;
+ boundary="------------010707040504010706010304"
 
---0016367b6c7277d45704893ef488
-Content-Type: text/plain; charset=ISO-8859-1
+This is a multi-part message in MIME format.
+--------------010707040504010706010304
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 16, 2010 at 10:24, Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>w=
-rote:
-
-> Le 16/06/2010 09:38, Martin Peres a =E9crit :
+Le 17/06/2010 21:36, Stephane Marchesin a =E9crit :
 >
->  Hi everyone,
->>
->> After commit a7b9f9e5adef276c25584e28ce9e520045ff048b, dithering has
->> disappeared on LVDS (for those who needed it).
->>
->> ThibG on IRC has bisected this behaviour to
->> a7b9f9e5adef276c25584e28ce9e520045ff048b. Here is a patch that re-enable=
-s
->> it.
->>
->> Please comment on it.
->>
->> Martin
->>
-> Well, too late, Jerez already pushed a patch to do that :)
 >
-> Do you have any idea of why it took almost 10 hours between the moment I
-> sent this mail and the moment I actually received it from the list ? Is
-> there a manual approbation somewhere to get rid of the spam ?
+> On Wed, Jun 16, 2010 at 10:24, Martin Peres=20
+> <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org <mailto:martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>>=20
+> wrote:
 >
+>
+>     Do you have any idea of why it took almost 10 hours between the
+>     moment I sent this mail and the moment I actually received it from
+>     the list ? Is there a manual approbation somewhere to get rid of
+>     the spam ?
+>
+>
+> Yes, because you're not subscribed to the list.
+>
+> Stephane
+Woops, used the wrong adress, my bad ...
 
-Yes, because you're not subscribed to the list.
-
-Stephane
-
---0016367b6c7277d45704893ef488
+--------------010707040504010706010304
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-<br><br><div class=3D"gmail_quote">On Wed, Jun 16, 2010 at 10:24, Martin Pe=
-res <span dir=3D"ltr">&lt;<a href=3D"mailto:martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org">m=
-artin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org</a>&gt;</span> wrote:<br><blockquote class=3D"g=
-mail_quote" style=3D"border-left: 1px solid rgb(204, 204, 204); margin: 0pt=
- 0pt 0pt 0.8ex; padding-left: 1ex;">
-Le 16/06/2010 09:38, Martin Peres a =E9crit :<div><div></div><div class=3D"=
-h5"><br>
-<blockquote class=3D"gmail_quote" style=3D"border-left: 1px solid rgb(204, =
-204, 204); margin: 0pt 0pt 0pt 0.8ex; padding-left: 1ex;">
-Hi everyone,<br>
-<br>
-After commit a7b9f9e5adef276c25584e28ce9e520045ff048b, dithering has disapp=
-eared on LVDS (for those who needed it).<br>
-<br>
-ThibG on IRC has bisected this behaviour to a7b9f9e5adef276c25584e28ce9e520=
-045ff048b. Here is a patch that re-enables it.<br>
-<br>
-Please comment on it.<br>
-<br>
-Martin<br>
-</blockquote></div></div>
-Well, too late, Jerez already pushed a patch to do that :)<br>
-<br>
-Do you have any idea of why it took almost 10 hours between the moment I se=
-nt this mail and the moment I actually received it from the list ? Is there=
- a manual approbation somewhere to get rid of the spam ?<br></blockquote>
-<div><br>Yes, because you&#39;re not subscribed to the list.<br><br>Stephan=
-e<br><br></div></div><br>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+</head>
+<body text="#000000" bgcolor="#ffffff">
+Le 17/06/2010 21:36, Stephane Marchesin a &eacute;crit&nbsp;:
+<blockquote
+ cite="mid:AANLkTin383_xfgGamabXVUHaE2DA7pG5wLNa7VW574Ob-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org"
+ type="cite"><br>
+  <br>
+  <div class="gmail_quote">On Wed, Jun 16, 2010 at 10:24, Martin Peres <span
+ dir="ltr">&lt;<a moz-do-not-send="true"
+ href="mailto:martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org">martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org</a>&gt;</span>
+wrote:<br>
+  <blockquote class="gmail_quote"
+ style="border-left: 1px solid rgb(204, 204, 204); margin: 0pt 0pt 0pt 0.8ex; padding-left: 1ex;"><br>
+Do you have any idea of why it took almost 10 hours between the moment
+I sent this mail and the moment I actually received it from the list ?
+Is there a manual approbation somewhere to get rid of the spam ?<br>
+  </blockquote>
+  <div><br>
+Yes, because you're not subscribed to the list.<br>
+  <br>
+Stephane</div>
+  </div>
+</blockquote>
+Woops, used the wrong adress, my bad ...<br>
+</body>
+</html>
 
---0016367b6c7277d45704893ef488--
+--------------010707040504010706010304--
 
---===============2089501262==
+--===============1905313881==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2089501262==--
+--===============1905313881==--
