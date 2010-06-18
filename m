@@ -1,14 +1,14 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: Re-enable dithering after
-	commit	a7b9f9e5adef276c25584e28ce9e520045ff048b
-Date: Thu, 17 Jun 2010 21:49:45 +0200
-Message-ID: <4C1A7C59.3020704@free.fr>
-References: <4C187F74.4040402@ensi-bourges.fr>	<4C1908B3.2060201@ensi-bourges.fr>
-	<AANLkTin383_xfgGamabXVUHaE2DA7pG5wLNa7VW574Ob@mail.gmail.com>
+From: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
+Subject: Re: nvfx
+Date: Fri, 18 Jun 2010 18:05:09 +0200
+Message-ID: <20100618180509.23f24f1b.mandin.patrice@orange.fr>
+References: <AANLkTinqWb6nC0fcFU_kWmDs4fmGTxudmuN-GSmQjFlu@mail.gmail.com>
+	<AANLkTimX_IgQ0eZvNYrVE_0lyiDv6vqQ7D7WUqyBZIlp@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1905313881=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTin383_xfgGamabXVUHaE2DA7pG5wLNa7VW574Ob-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <AANLkTimX_IgQ0eZvNYrVE_0lyiDv6vqQ7D7WUqyBZIlp-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,88 +16,63 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marek =?UTF-8?B?T2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============1905313881==
-Content-Type: multipart/alternative;
- boundary="------------010707040504010706010304"
-
-This is a multi-part message in MIME format.
---------------010707040504010706010304
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
-
-Le 17/06/2010 21:36, Stephane Marchesin a =E9crit :
->
->
-> On Wed, Jun 16, 2010 at 10:24, Martin Peres=20
-> <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org <mailto:martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>>=20
-> wrote:
->
->
->     Do you have any idea of why it took almost 10 hours between the
->     moment I sent this mail and the moment I actually received it from
->     the list ? Is there a manual approbation somewhere to get rid of
->     the spam ?
->
->
-> Yes, because you're not subscribed to the list.
->
-> Stephane
-Woops, used the wrong adress, my bad ...
-
---------------010707040504010706010304
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <meta content="text/html; charset=ISO-8859-1"
- http-equiv="Content-Type">
-</head>
-<body text="#000000" bgcolor="#ffffff">
-Le 17/06/2010 21:36, Stephane Marchesin a &eacute;crit&nbsp;:
-<blockquote
- cite="mid:AANLkTin383_xfgGamabXVUHaE2DA7pG5wLNa7VW574Ob-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org"
- type="cite"><br>
-  <br>
-  <div class="gmail_quote">On Wed, Jun 16, 2010 at 10:24, Martin Peres <span
- dir="ltr">&lt;<a moz-do-not-send="true"
- href="mailto:martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org">martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org</a>&gt;</span>
-wrote:<br>
-  <blockquote class="gmail_quote"
- style="border-left: 1px solid rgb(204, 204, 204); margin: 0pt 0pt 0pt 0.8ex; padding-left: 1ex;"><br>
-Do you have any idea of why it took almost 10 hours between the moment
-I sent this mail and the moment I actually received it from the list ?
-Is there a manual approbation somewhere to get rid of the spam ?<br>
-  </blockquote>
-  <div><br>
-Yes, because you're not subscribed to the list.<br>
-  <br>
-Stephane</div>
-  </div>
-</blockquote>
-Woops, used the wrong adress, my bad ...<br>
-</body>
-</html>
-
---------------010707040504010706010304--
-
---===============1905313881==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1905313881==--
+TGUgVGh1LCAxNyBKdW4gMjAxMCAwMzozNToxOSArMDIwMApNYXJlayBPbMWhw6FrIDxtYXJhZW9A
+Z21haWwuY29tPiBhIMOpY3JpdDoKCj4gT24gRnJpLCBKdW4gMTEsIDIwMTAgYXQgMzozNyBQTSwg
+WGF2aWVyIENoYW50cnkgPGNoYW50cnkueGF2aWVyQGdtYWlsLmNvbT53cm90ZToKPiAKPiA+IEhp
+IE1hcmVrCj4gPgo+ID4gVGhhbmtzIGEgbG90IGZvciB5b3VyIHJlYmFzaW5nIHdvcmsuCj4gPiBI
+ZXJlIGlzIG15IHJlcG9ydCA6Cj4gPgo+ID4gLSBhbGwgbXkgZ2FtZXMgdGhhdCBicm9rZSB3aXRo
+IHRlbXBvcmFyaWVzIHBhdGNoICh0aGV5IHdlcmUgZWl0aGVyCj4gPiBjb21wbGV0ZWx5IGJsYWNr
+IG9yIGxvdCBvZiBibGFjayBzY3JlZW4gZmxhc2ggZXZlcnkgZnJhbWUpIGJlaGF2ZQo+ID4gYmFk
+bHksIGJ1dCBpbiBkaWZmZXJlbnQgd2F5cyA6Cj4gPiAqIGV0cmFjZXIgaXMgdmVyeSBzbG93IGFu
+ZCBvZnRlbiBjcmFzaCBpbiB0dG0gY29kZSBbMV0gKEkgdGhpbmsgdGhpcwo+ID4gaXMgYW4gb2xk
+IGJ1ZyB0aGF0IGp1c3QgcmVzdXJyZWN0ZWQsIG5vIGlkZWEgd2h5KQo+ID4gKiBmb29iaWxsYXJk
+IGlzIHZlcnkgc2xvdyBhbmQgc3RpbGwgZmxhc2ggYSBiaXQKPiA+ICogc3RyYW5nZWx5LCBuZXZl
+cmJhbGwgc2VlbXMgdG8gd29yaywgSSBnZXQgc2ltaWxhciByZXN1bHRzIHRoYW4gd2l0aAo+ID4g
+b2xkIG52ZngtbmV4dC02YiBicmFuY2ggd2l0aCB0ZW1wb3JhcmllcyByZXZlcnRlZC4gbm8gYmxh
+Y2sgZmxhc2gKPiA+IHdoaWxlIHBsYXlpbmcuCj4gPiAqIGdsZXN0IHNlZ2ZhdWx0IFsyXQo+ID4K
+PiA+IEkgYWxzbyBjb21wYXJlZCB3aXRoIHBpZ2xpdCB0aGUgb2xkIG52ZnggYnJhbmNoIHdpdGgg
+dGhlIG5ldyBtZXJnZWQgb25lIDoKPiA+IDExNC8xNzQgdnMgMTEzLzE3NAo+ID4gVGhhdCBsb29r
+cyBxdWl0ZSBnb29kIHdpdGggMyBuZXcgcGFzcywgYnV0IDQgbmV3IGZhaWwgOgo+ID4gKiBmYm8t
+Y29weXBpeAo+ID4gUmV0dXJuY29kZSB3YXMgLTYKPiA+ICogZ2xlYW4gcGJvCj4gPiAgICAgLi4v
+Li4vLi4vLi4vc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3V0aWwvdV9pbmxpbmVzLmg6Nzc6cGlwZV9y
+ZWZlcmVuY2U6Cj4gPiBBc3NlcnRpb24gYHBpcGVfaXNfcmVmZXJlbmNlZChyZWZlcmVuY2UpXFxc
+JyBmYWlsZWQuCj4gPiAqIHRleENvbWJpbmU0OiAgRkFJTCByZ2JhOCwgZGIsIHoyNCwgczgsIHdp
+bitwbWFwLCBpZCAzMwo+ID4gKiBmcC1sb25nLWFsdQo+ID4KPiAKPiBIaSBYYXZpZXIsCj4gCj4g
+U29ycnkgZm9yIHRoZSBsYXRlIHJlcGx5Lgo+IAo+IFRoZSBhc3NlcnRpb24gaW4gcGlwZV9yZWZl
+cmVuY2UgY2FuIGJlIGZpeGVkIHF1aXRlIGVhc2lseSBJIHRoaW5rLiBUaGVyZSBpcwo+IHBpcGVf
+Kl9yZWZlcmVuY2UgbWlzc2luZyBzb21ld2hlcmUuCj4gCj4gQ29uY2VybmluZyBmcC1sb25nLWFs
+dSwgdGhlcmUgYXJlIG5ldyBDQVBzIGZvciBzaGFkZXIgbGltaXRzIHdoaWNoIHNob3VsZCBiZQo+
+IGZpbGxlZCBvdXQgYnV0IEkgZG9uJ3Qga25vdyB3aGF0IHZhbHVlcyB0byBwdXQgdGhlcmUuIElm
+IHRoZSB0d28gZ2V0IGZpeGVkLAo+IGl0IHdpbGwgaG9wZWZ1bGx5IGJlIGp1c3QgMiBuZXcgZmFp
+bHVyZXMgYWxvbmcgd2l0aCAzIHRoYXQgcGFzcy4KPiAKPiAKPiA+IFRoZXJlIGlzIGp1c3QgZnAt
+bG9uZy1hbHUgdGhhdCBpcyBmb3Igc3VyZSBhIHJlZ3Jlc3Npb24gY2F1c2VkIGJ5IG5ldwo+ID4g
+bWFzdGVyIGNvZGUgKHNvbWUgZ2FsbGl1bSBjaGFuZ2VzKS4gSSBkb24ndCBrbm93IGFib3V0IHRo
+ZSAzIG90aGVycy4KPiA+Cj4gPiBJdCBtaWdodCBiZSB3b3J0aCB0byByZS10ZXN0IGV2ZXJ5dGhp
+bmcgb24geW91ciBuZXcgYnJhbmNoIHdpdGggdGhpcwo+ID4gcGF0Y2ggcmV2ZXJ0ZWQgOgo+ID4g
+bnZmeDogcmV3cml0ZSByZW5kZXIgdGVtcG9yYXJpZXMgY29kZSwgYWxzbyBhZmZlY3RpbmcgMkQg
+YW5kIHJlc291cmNlIGNvZGUKPiA+Cj4gCj4gSGVyZSBpcyB0aGUgdHJlZSB3aXRoIHRoZSBjb21t
+aXQgcmV2ZXJ0ZWQ6Cj4gCj4gZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvfm1hcmVrby9t
+ZXNhIG52ZngtbmV4dC02Yi1ub3RlbXBzCj4gCj4gSXQgaXMgY29tcGlsZS10ZXN0ZWQgc28gaWYg
+aXQgZG9lcyBub3Qgd29yaywgdGhlcmUgaXMgbm90aGluZyBJIGNhbiBkbyBhYm91dAo+IGl0Lgo+
+IAo+IC1NYXJlawoKSSBqdXN0IHRlc3RlZCB0aGUgbmV3IHRyZWUgbnZmeC1uZXh0LTZiLW5vdGVt
+cHMsIEkgdGhpbmsgd2Ugc2hvdWxkIGdvCnNvbWUgY29tbWl0cyBiZWZvcmUsIGJlY2F1c2UgTHVj
+YSByZW1vdmVkIHRoZSBjaGVjayBpbiBmYm8gc2V0dGluZwpiZXR3ZWVuIGRpZmZlcmVuY2UgaW4g
+Yml0cyBiZXR3ZWVuIGNvbG91ciBhbmQgZGVwdGgvc3RlbmNpbCBidWZmZXIsIGFuZApudjMwIGh3
+IGRvZXMgbm90IHN1cHBvcnQgdGhhdCAodGhleSBtdXN0IGJlIGVxdWFsKSBhbmQgZG9pbmcgdGhh
+dApzaW1wbHkgaGFuZyB0aGUgZ3B1LgoKQ29tbWl0IDQ3ODcwNTkyNjM3NTVmYjkyYjJiYjA5YWM3
+MTY1OGQ5YjRjYzkzNjggJ252Zng6IG5ldyAyRDogYWRkCnN1cHBvcnQgZm9yIHJlbmRlciB0ZW1w
+b3JhcmllcycgcmVtb3ZlZCB0aGlzIGNoZWNrIGFuZCBmYm8gdGVzdHMKdHJpZ2dlciB0aGUgYnVn
+LiBNYXliZSBMdWNhIHdhcyBwbGFubmluZyB0byB1c2UgdGVtcG9yYXJpZXMgdG8gYXZvaWQKdGhp
+cyBjaGVjaywgYnV0IHVuZm9ydHVuYXRlbHkgd2UgZG8gbm90IGtub3cgaWYgaGUgZmluaXNoZWQg
+aXQgb3Igbm90LgoKLS0gClBhdHJpY2UgTWFuZGluCldXVzogaHR0cDovL3BtYW5kaW4uYXRhcmku
+b3JnLwpQcm9ncmFtbWV1ciBMaW51eCwgQXRhcmkKU3DDqWNpYWxpdMOpOiBEw6l2ZWxvcHBlbWVu
+dCwgamV1eAoKIndobyB3cml0ZXMgdGhlIGNvZGUsIGRlY2lkZXMiCgoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
