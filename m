@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28626] Oops: kernel NULL pointer dereference in
  nouveau_connector_get_modes
-Date: Sun, 20 Jun 2010 09:29:17 -0700 (PDT)
-Message-ID: <20100620162917.9EF96130081@annarchy.freedesktop.org>
+Date: Sun, 20 Jun 2010 09:29:42 -0700 (PDT)
+Message-ID: <20100620162942.6AAB81300D5@annarchy.freedesktop.org>
 References: <bug-28626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28626
 
---- Comment #1 from Albert Damen <albrt-hi6Y0CQ0nG0@public.gmane.org> 2010-06-20 09:29:17 PDT ---
-Created an attachment (id=36381)
- View: https://bugs.freedesktop.org/attachment.cgi?id=36381
- Review: https://bugs.freedesktop.org/review?bug=28626&attachment=36381
+Albert Damen <albrt-hi6Y0CQ0nG0@public.gmane.org> changed:
 
-Suggested patch
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #36380|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
