@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
  spontaneously
-Date: Thu, 24 Jun 2010 12:26:55 -0700 (PDT)
-Message-ID: <20100624192655.850301300DC@annarchy.freedesktop.org>
+Date: Thu, 24 Jun 2010 12:28:12 -0700 (PDT)
+Message-ID: <20100624192812.72052130098@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
---- Comment #10 from Mark Hagger <mark.hagger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-24 12:26:54 PDT ---
-(In reply to comment #7)
-> If anyone hits this bug, with the above patch or without, please compile pgtest
-> from http://0x04.net/cgit/index.cgi/pgtest and give the output of ./peek
-> 0x400000 0x10000 after the lockup.
-
-I can get this to hang almost at will, on a fresh Fedora 13 install, I've
-attached output from the peek run, hope it helps.
+--- Comment #11 from Mark Hagger <mark.hagger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-24 12:28:11 PDT ---
+Created an attachment (id=36471)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=36471)
+Xorg and peek output after hang
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
