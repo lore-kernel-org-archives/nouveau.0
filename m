@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
  spontaneously
-Date: Thu, 24 Jun 2010 23:24:18 -0700 (PDT)
-Message-ID: <20100625062418.574C2130081@annarchy.freedesktop.org>
+Date: Fri, 25 Jun 2010 01:32:11 -0700 (PDT)
+Message-ID: <20100625083211.E39C2130094@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
---- Comment #13 from gregwilkins <gregw-bhVrg1dYsf0dnm+yROfE0A@public.gmane.org> 2010-06-24 23:24:16 PDT ---
-Created an attachment (id=36485)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=36485)
-dmesg taken during X lockup
-
-It happened again....
-here is the dmesg output that I captured by ssh-ing in while X was in 100% CPU
-state.
-
-I also thought I had captured and strace... but I made a mistake. I'll capture
-that next time. Is there anything else you need, this is happening every few
-hours for me?
+--- Comment #14 from Mark Hagger <mark.hagger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-25 01:32:11 PDT ---
+(In reply to comment #13)
+> that next time. Is there anything else you need, this is happening every few
+> hours for me?
+See comment#7, Marcin says he wants output from "peek" after a hang has
+occurred.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
