@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
  spontaneously
-Date: Fri, 25 Jun 2010 03:46:27 -0700 (PDT)
-Message-ID: <20100625104627.8354E1300DE@annarchy.freedesktop.org>
+Date: Fri, 25 Jun 2010 04:10:34 -0700 (PDT)
+Message-ID: <20100625111034.57BE91300BF@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,22 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjY5ODAKCi0tLSBD
-b21tZW50ICMxNSBmcm9tIE1hcmNpbiBLb8WbY2llbG5pY2tpIDxrb3JpYWtpbkAweDA0Lm5ldD4g
-MjAxMC0wNi0yNSAwMzo0NjoyNiBQRFQgLS0tClN0YXR1cyB1cGRhdGUuCgpGaXJzdCwgd2UgZG9u
-J3QgbmVlZCBhbnkgYWRkaXRpb25hbCBkdW1wcyAtIEJlbiBmb3VuZCBhIHJlbGlhYmxlIHdheSB0
-bwpyZXByb2R1Y2UgdGhpcyBidWcgc2VtaS1pbnN0YW50bHksIHNvIHdlIGNhbiBtYWtlIGFueSBk
-dW1wcyB3ZSBuZWVkLgoKQnV0LCB3ZSBzdGlsbCBoYXZlIG5vIGlkZWEgd2hhdCdzIGNhdXNpbmcg
-dGhpcyBidWcuIEFuZCByaWdodCBub3cgYWxsCmRldmVsb3BlcnMgaHVudGluZyBmb3IgdGhpcyBi
-dWcgYXJlIGVpdGhlciB0b28gYnVzeSB3aXRoIG90aGVyIHRoaW5ncywgb3Igb24KdmFjYXRpb24u
-CgpTbywgcGxlYXNlIG5vIG1vcmUgZHVtcHMuIFlvdSBoYXZlIGZvdXIgb3B0aW9uczoKCiAtIHVz
-ZSBvdGhlciBkcml2ZXIKIC0gZGlzYWJsZSBhY2NlbGVyYXRpb24gW25vdXZlYXUubm9hY2NlbD0x
-IG9uIGtlcm5lbCBjb21tYW5kIGxpbmVdCiAtIGRlY2lkZSB0aGF0IHJlYm9vdGluZyBldmVyeSBm
-ZXcgaG91cnMgaXNuJ3QgdGhhdCBiYWQgYWZ0ZXIgYWxsCiAtIGRlYnVnIGFuZCBmaXggdGhhdCBi
-dWcgb24geW91ciBvd24KClllcywgd2Uga25vdyB0aGUgc2l0dWF0aW9uIHN1Y2tzLiBTb3JyeSBm
-b3IgdGhhdC4KCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9w
-Lm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRo
-aXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVn
-LgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=26980
+
+--- Comment #16 from Peter Grasch <grasch-P/mQJME0YO5aGJUfhsZlMNi2O/JbrIOy@public.gmane.org> 2010-06-25 04:10:33 PDT ---
+Would you mind posting the method to reproduce the bug?
+
+Thanks!
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
