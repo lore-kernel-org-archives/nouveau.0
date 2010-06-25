@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
  spontaneously
-Date: Fri, 25 Jun 2010 04:59:14 -0700 (PDT)
-Message-ID: <20100625115914.4BF2D130093@annarchy.freedesktop.org>
+Date: Fri, 25 Jun 2010 05:20:29 -0700 (PDT)
+Message-ID: <20100625122029.DD2C61300B4@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
---- Comment #18 from Peter Grasch <grasch-P/mQJME0YO5aGJUfhsZlMNi2O/JbrIOy@public.gmane.org> 2010-06-25 04:59:13 PDT ---
-Hm I don't have any problems with this site (have been scrolling for almost 2
-minutes now without any issues).
+--- Comment #19 from Pico <picogeyer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-25 05:20:29 PDT ---
+(In reply to comment #17)
+> 06:16:48 <darktama> I can reproduce the issue *very* quickly with
+> http://www.nvnews.net/vbulletin/showthread.php?t=150598
+> 06:16:57 <darktama> the first post has an image, and a smaller thumbnail image
+> 06:17:42 <darktama> if I scroll up and down for a bit (<1min) with the the
+> thumbnail going off/on the screen, it'll hang
 
-I am using a 8600M GT, tough but I'd thought I'd test it because my X has hung
-twice in the last three days with the same symptoms as well...
+I can't reproduce the bug with that site either using a GeForce 210, though my
+X hangs about twice a day.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
