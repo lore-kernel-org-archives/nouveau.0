@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28763] Kernel Oops when displaying a large image
-Date: Sat, 26 Jun 2010 04:27:33 -0700 (PDT)
-Message-ID: <20100626112733.2F5771300CE@annarchy.freedesktop.org>
+Date: Sat, 26 Jun 2010 05:16:33 -0700 (PDT)
+Message-ID: <20100626121633.17BB61300BA@annarchy.freedesktop.org>
 References: <bug-28763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28763
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-26 05:16:32 PDT ---
+what is the output of
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #36509|application/octet-stream    |text/plain
-          mime type|                            |
+gdb /lib/modules/2.6.34-1-amd64/kernel/drivers/gpu/drm/ttm/ttm.ko
+disassemble ttm_tt_swapout
+
+?
+
+could you compile 2.6.35-rc3 with debug info (at least CONFIG_DEBUG_INFO and
+CONFIG_FRAME_POINTER) and reproduce it?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
