@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 28763] Kernel Oops when displaying a large image
-Date: Mon, 28 Jun 2010 02:24:25 -0700 (PDT)
-Message-ID: <20100628092425.9D9BE13009C@annarchy.freedesktop.org>
-References: <bug-28763-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 28524] Debian Testing Kernel Upgrade Enables KMS,
+ Disables External Monitor
+Date: Mon, 28 Jun 2010 08:30:08 -0700 (PDT)
+Message-ID: <20100628153008.97AFC130085@annarchy.freedesktop.org>
+References: <bug-28524-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-28763-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-28524-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=28763
+https://bugs.freedesktop.org/show_bug.cgi?id=28524
 
---- Comment #6 from Gabriel Kerneis <kerneis-klhGwnj84BUD5ynB6aAmlA@public.gmane.org> 2010-06-28 02:24:25 PDT ---
-Created an attachment (id=36564)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=36564)
-kern.org (2.6.35-rc3)
+--- Comment #3 from GilbertSullivan <whirlygig-Wuw85uim5zDR7s880joybQ@public.gmane.org> 2010-06-28 08:30:08 PDT ---
+Got a VGA cable and connected the external monitor to the port replicator with
+that. The external monitor works via the VGA connector, but still not with the
+DVI connector.
+
+This is not a hardware issue. The port replicator and external monitor
+connected by DVI work fine with the BIOS screen and a version of the operating
+system which shall not be named.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
