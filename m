@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28763] Kernel Oops when displaying a large image
-Date: Mon, 28 Jun 2010 01:08:24 -0700 (PDT)
-Message-ID: <20100628080824.D1F101300D7@annarchy.freedesktop.org>
+Date: Mon, 28 Jun 2010 02:23:44 -0700 (PDT)
+Message-ID: <20100628092344.BC46F13010C@annarchy.freedesktop.org>
 References: <bug-28763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,21 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28763
 
---- Comment #4 from Gabriel Kerneis <kerneis-klhGwnj84BUD5ynB6aAmlA@public.gmane.org> 2010-06-28 01:08:23 PDT ---
-$ gdb /lib/modules/2.6.34-1-amd64/kernel/drivers/gpu/drm/ttm/ttm.ko
-GNU gdb (GDB) 7.1-debian
-Copyright (C) 2010 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
-and "show warranty" for details.
-This GDB was configured as "x86_64-linux-gnu".
-For bug reporting instructions, please see:
-<http://www.gnu.org/software/gdb/bugs/>...
-Reading symbols from
-/lib/modules/2.6.34-1-amd64/kernel/drivers/gpu/drm/ttm/ttm.ko...(no debugging
-symbols found)...done.
-(gdb) disassemble ttm_tt_swapout
+--- Comment #5 from Gabriel Kerneis <kerneis-klhGwnj84BUD5ynB6aAmlA@public.gmane.org> 2010-06-28 02:23:43 PDT ---
+I confirm that I can reproduce this with 2.6.35-rc3 (compiled with the
+requested flags).
+
 Dump of assembler code for function ttm_tt_swapout:
    0x00000000000010a6 <+0>:    push   %r15
    0x00000000000010a8 <+2>:    push   %r14
@@ -165,13 +154,8 @@ Dump of assembler code for function ttm_tt_swapout:
    0x0000000000001287 <+481>:    retq   
 End of assembler dump.
 
-
-> could you compile 2.6.35-rc3 with debug info (at least CONFIG_DEBUG_INFO and
-> CONFIG_FRAME_POINTER) and reproduce it?
-
-I'll try and let you know.
-
-Best regards.
+See the attached kern.log for the "Oops" error messages and tell me if I can
+provide further information.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
