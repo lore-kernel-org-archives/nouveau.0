@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28763] Kernel Oops when displaying a large image
-Date: Mon, 28 Jun 2010 12:21:20 -0700 (PDT)
-Message-ID: <20100628192120.83D731300BD@annarchy.freedesktop.org>
+Date: Mon, 28 Jun 2010 12:22:48 -0700 (PDT)
+Message-ID: <20100628192248.F032A1300E7@annarchy.freedesktop.org>
 References: <bug-28763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28763
 
---- Comment #7 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-28 12:21:20 PDT ---
-Created an attachment (id=36582)
- View: https://bugs.freedesktop.org/attachment.cgi?id=36582
- Review: https://bugs.freedesktop.org/review?bug=28763&attachment=36582
-
-some BUG_ONs in affected code
-
-please retest with attached patch
+--- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-28 12:22:48 PDT ---
+... on 2.6.35-rc3 kernel
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
