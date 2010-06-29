@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Tue, 29 Jun 2010 14:16:47 -0700 (PDT)
-Message-ID: <20100629211647.8440F1300F4@annarchy.freedesktop.org>
+Date: Tue, 29 Jun 2010 15:38:25 -0700 (PDT)
+Message-ID: <20100629223825.1C6231300BE@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,28 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #5 from Peter Hardman <peter-v4kLDURhBtCoPqikrtklHZJpZx93mCW/@public.gmane.org> 2010-06-29 14:16:47 PDT ---
-The GUI resolution when X starts is fixed by having the proper drivers and an
-xorg.conf that specifies the resolution I want.
+--- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-06-29 15:38:24 PDT ---
+(In reply to comment #5)
+> Do you just want an mmio trace that covers the point when the Kernel switches
+> from VGA to 720x576, or do you want one that covers X starting as well? 
+> 
+> And I don't have access to a TV. Actually, since there's nothing connected to
+> the TV (S-video?) connector I don't understand why the driver is using it in
+> the first place. It doesn't use the DVI connector which also has nothing
+> connected to it.
 
-The consoles are still not using the full screen though - about a 720x576 sized
-patch in the top LH corner of the screen. Smaller than the TV-1 when that was
-overlayed on VGA-1
+Right, that's why an mmiotrace from your card would be useful. If you're
+interested on fixing it you could:
 
-Do you just want an mmio trace that covers the point when the Kernel switches
-from VGA to 720x576, or do you want one that covers X starting as well? 
+ * Start tracing (the details are described in the links I posted
+   in my last comment).
 
-And I don't have access to a TV. Actually, since there's nothing connected to
-the TV (S-video?) connector I don't understand why the driver is using it in
-the first place. It doesn't use the DVI connector which also has nothing
-connected to it.
+ * Start X with the nvidia proprietary driver (IOW the "blob"),
+   but before, put the following in your xorg.conf, 'Section "Device"':
+> Option "UseDisplayDevice" "TV"
 
-Pete
+ * Stop tracing and send the compressed results to mmio.dumps at
+   gmail.com.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
