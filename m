@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Tue, 29 Jun 2010 07:20:30 -0700 (PDT)
-Message-ID: <20100629142030.666BD1300E3@annarchy.freedesktop.org>
+Date: Tue, 29 Jun 2010 11:06:29 -0700 (PDT)
+Message-ID: <20100629180629.D1F201300D4@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #2 from Emil <eeydev-QabDm/c3fAmwa9SdKMSz+Q@public.gmane.org> 2010-06-29 07:20:30 PDT ---
-It appears that there are some bits left from the blob
-(/usr/lib/xorg/modules/extensions/libglx.so), and the xorg.conf is not setup
-correctly (you should use, nouveau, rather than nv/vesa).
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Have you gone through the TroubleShooting [1], namely sections 3 and 8
-
-[1] http://nouveau.freedesktop.org/wiki/TroubleShooting
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #36597|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
