@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Tue, 29 Jun 2010 11:06:29 -0700 (PDT)
-Message-ID: <20100629180629.D1F201300D4@annarchy.freedesktop.org>
+Date: Tue, 29 Jun 2010 13:10:27 -0700 (PDT)
+Message-ID: <20100629201027.A435E1300B2@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #3 from Peter Hardman <peter-v4kLDURhBtCoPqikrtklHZJpZx93mCW/@public.gmane.org> 2010-06-29 13:10:27 PDT ---
+Oh dear, how embarrassing.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #36597|application/octet-stream    |text/plain
-          mime type|                            |
+I _thought_ I had gone through section 3, but I had done it on the wrong
+instance of Arch... I had not removed the nvidia-173xx-utils package on the
+test instance.
+
+I also didn't realise I even had the vesa driver installed.
+
+So the problem is now resolved.
+
+And now I know what RandR does, and how to disable the TV out in xorg.conf.
+
+Again, many apologies fot the time wasted..
+
+Pete
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
