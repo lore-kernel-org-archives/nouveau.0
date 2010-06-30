@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Wed, 30 Jun 2010 03:15:15 -0700 (PDT)
-Message-ID: <20100630101515.9D122130083@annarchy.freedesktop.org>
+Date: Wed, 30 Jun 2010 04:06:41 -0700 (PDT)
+Message-ID: <20100630110641.7E978130113@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,24 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #8 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-06-30 03:15:15 PDT ---
-(In reply to comment #7)
-> I'm currently on Xorg 1.8 and apparently the NVIDA driver is not supported by
-> that version of Xorg (which is why I'm using nouveau in the first place). For
-> the purposes of getting a trace will it be OK to use Xorg 1.8 or should I
-> downgrade to 1.7?
-> 
-Not sure.
-
-> No big deal, but if I need to downgrade it will have to wait until I can have
-> unfettered access to this PC for a few hours - which will not be till the
-> weekend at the earliest.
-> 
-Ok, could I also have a look at your VBIOS [1]? It might be enough to fix it.
-
-> Pete
-
-[1] http://nouveau.freedesktop.org/wiki/DumpingVideoBios
+--- Comment #9 from Peter Hardman <peter-v4kLDURhBtCoPqikrtklHZJpZx93mCW/@public.gmane.org> 2010-06-30 04:06:41 PDT ---
+Created an attachment (id=36630)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=36630)
+Video rom
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
