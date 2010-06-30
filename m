@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Tue, 29 Jun 2010 15:38:25 -0700 (PDT)
-Message-ID: <20100629223825.1C6231300BE@annarchy.freedesktop.org>
+Date: Wed, 30 Jun 2010 01:36:35 -0700 (PDT)
+Message-ID: <20100630083635.A5CFB1300AB@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,28 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-06-29 15:38:24 PDT ---
-(In reply to comment #5)
-> Do you just want an mmio trace that covers the point when the Kernel switches
-> from VGA to 720x576, or do you want one that covers X starting as well? 
-> 
-> And I don't have access to a TV. Actually, since there's nothing connected to
-> the TV (S-video?) connector I don't understand why the driver is using it in
-> the first place. It doesn't use the DVI connector which also has nothing
-> connected to it.
+--- Comment #7 from Peter Hardman <peter-v4kLDURhBtCoPqikrtklHZJpZx93mCW/@public.gmane.org> 2010-06-30 01:36:35 PDT ---
+I'm currently on Xorg 1.8 and apparently the NVIDA driver is not supported by
+that version of Xorg (which is why I'm using nouveau in the first place). For
+the purposes of getting a trace will it be OK to use Xorg 1.8 or should I
+downgrade to 1.7?
 
-Right, that's why an mmiotrace from your card would be useful. If you're
-interested on fixing it you could:
+No big deal, but if I need to downgrade it will have to wait until I can have
+unfettered access to this PC for a few hours - which will not be till the
+weekend at the earliest.
 
- * Start tracing (the details are described in the links I posted
-   in my last comment).
-
- * Start X with the nvidia proprietary driver (IOW the "blob"),
-   but before, put the following in your xorg.conf, 'Section "Device"':
-> Option "UseDisplayDevice" "TV"
-
- * Stop tracing and send the compressed results to mmio.dumps at
-   gmail.com.
+Pete
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
