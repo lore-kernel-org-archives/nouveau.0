@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Wed, 30 Jun 2010 08:14:29 -0700 (PDT)
-Message-ID: <20100630151429.5C1DE1300FA@annarchy.freedesktop.org>
+Date: Wed, 30 Jun 2010 09:11:49 -0700 (PDT)
+Message-ID: <20100630161149.0F99E1300F6@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #12 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-06-30 08:14:29 PDT ---
-(In reply to comment #11)
-> If you can load the nvidia kernel module it might be enough to do this to get a
-> trace (instead of starting X):
-> 
-> mknod nvidia0 c 195 0
-> cat nvidia0
+--- Comment #13 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-30 09:11:48 PDT ---
+(In reply to comment #7)
+> I'm currently on Xorg 1.8 and apparently the NVIDA driver is not supported by
+> that version of Xorg (which is why I'm using nouveau in the first place). For
+> the purposes of getting a trace will it be OK to use Xorg 1.8 or should I
+> downgrade to 1.7?
 
-I don't think so, we need to catch it while it's trying to detect TV.
+You could start X with the "-ignoreABI" command-line option (or set it
+somewhere in xorg.conf).  I'm guessing that if X works with this option, the
+trace will be useful.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
