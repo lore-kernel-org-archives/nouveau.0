@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Wed, 30 Jun 2010 09:11:49 -0700 (PDT)
-Message-ID: <20100630161149.0F99E1300F6@annarchy.freedesktop.org>
+Date: Wed, 30 Jun 2010 13:06:11 -0700 (PDT)
+Message-ID: <20100630200611.7029A13007B@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #13 from Tavian Barnes <tavianator-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-30 09:11:48 PDT ---
-(In reply to comment #7)
-> I'm currently on Xorg 1.8 and apparently the NVIDA driver is not supported by
-> that version of Xorg (which is why I'm using nouveau in the first place). For
-> the purposes of getting a trace will it be OK to use Xorg 1.8 or should I
-> downgrade to 1.7?
+--- Comment #14 from Peter Hardman <peter-v4kLDURhBtCoPqikrtklHZJpZx93mCW/@public.gmane.org> 2010-06-30 13:06:11 PDT ---
+Turned out I only had to downgrade the kernel from 2.6.34 to 3.6.33. I've
+emailed the trace to mmio.dump at gmail.com. It's also available at:
 
-You could start X with the "-ignoreABI" command-line option (or set it
-somewhere in xorg.conf).  I'm guessing that if X works with this option, the
-trace will be useful.
+http://www.somborneshetlands.co.uk/things/Zotac-FX5200-mmiotrace.tar.gz
+
+Pete
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
