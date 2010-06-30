@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Wed, 30 Jun 2010 07:39:40 -0700 (PDT)
-Message-ID: <20100630143940.27E9B13009B@annarchy.freedesktop.org>
+Date: Wed, 30 Jun 2010 08:14:29 -0700 (PDT)
+Message-ID: <20100630151429.5C1DE1300FA@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #11 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-30 07:39:39 PDT ---
-If you can load the nvidia kernel module it might be enough to do this to get a
-trace (instead of starting X):
+--- Comment #12 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-06-30 08:14:29 PDT ---
+(In reply to comment #11)
+> If you can load the nvidia kernel module it might be enough to do this to get a
+> trace (instead of starting X):
+> 
+> mknod nvidia0 c 195 0
+> cat nvidia0
 
-mknod nvidia0 c 195 0
-cat nvidia0
+I don't think so, we need to catch it while it's trying to detect TV.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
