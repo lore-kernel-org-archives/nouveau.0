@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Wed, 30 Jun 2010 04:06:41 -0700 (PDT)
-Message-ID: <20100630110641.7E978130113@annarchy.freedesktop.org>
+Date: Wed, 30 Jun 2010 07:04:25 -0700 (PDT)
+Message-ID: <20100630140425.ACFFE1300C2@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #9 from Peter Hardman <peter-v4kLDURhBtCoPqikrtklHZJpZx93mCW/@public.gmane.org> 2010-06-30 04:06:41 PDT ---
-Created an attachment (id=36630)
+--- Comment #10 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-06-30 07:04:25 PDT ---
+(In reply to comment #9)
+> Created an attachment (id=36630)
  --> (https://bugs.freedesktop.org/attachment.cgi?id=36630)
-Video rom
+> Video rom
+
+Nothing suspicious in it, so yeah, a full mmiotrace would be more useful.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
