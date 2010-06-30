@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Wed, 30 Jun 2010 07:04:25 -0700 (PDT)
-Message-ID: <20100630140425.ACFFE1300C2@annarchy.freedesktop.org>
+Date: Wed, 30 Jun 2010 07:39:40 -0700 (PDT)
+Message-ID: <20100630143940.27E9B13009B@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #10 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-06-30 07:04:25 PDT ---
-(In reply to comment #9)
-> Created an attachment (id=36630)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=36630)
-> Video rom
+--- Comment #11 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-06-30 07:39:39 PDT ---
+If you can load the nvidia kernel module it might be enough to do this to get a
+trace (instead of starting X):
 
-Nothing suspicious in it, so yeah, a full mmiotrace would be more useful.
+mknod nvidia0 c 195 0
+cat nvidia0
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
