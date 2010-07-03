@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28810] Blank consoles (Ctrl+Alt+Fn) after X starts
  on Arch Linux with FX5200 card.
-Date: Sat,  3 Jul 2010 09:23:09 -0700 (PDT)
-Message-ID: <20100703162309.735E4130082@annarchy.freedesktop.org>
+Date: Sat,  3 Jul 2010 11:37:05 -0700 (PDT)
+Message-ID: <20100703183705.201BE130096@annarchy.freedesktop.org>
 References: <bug-28810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,31 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28810
 
---- Comment #17 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-07-03 09:23:09 PDT ---
-Created an attachment (id=36728)
- View: https://bugs.freedesktop.org/attachment.cgi?id=36728
- Review: https://bugs.freedesktop.org/review?bug=28810&attachment=36728
+--- Comment #18 from Peter Hardman <peter-v4kLDURhBtCoPqikrtklHZJpZx93mCW/@public.gmane.org> 2010-07-03 11:37:04 PDT ---
+Thanks for the patch. Building a Linux kernel seems to be a complete nightmare
+unlike NetBSD where its very easy. I'll give it a go once I've figured out how
+its done -and why it seems so complicated.
 
-nv34_tv_detect_quirk.patch
+I'd found 'Option "Ignore"' at [1] just after I'd added the output of lspci.
 
-(In reply to comment #16)
-> Created an attachment (id=36724)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=36724)
-> Output of lspci -vvnn
-> 
-> Ouput of lspci -vvnn attached.
-> 
-Ok, could you try the attached patch?
-
-> The xorg.conf Option lines added by nvidia-settings to disable TV don't work
-> for nouveau, but 'xrandr --output TV-1 --off' does work for X. 
-> 
-See [1], 'Option "Ignore"' is what you were looking for, but you shouldn't need
-it anymore.
-
-> Pete
-
-[1] http://wiki.debian.org/XStrikeForce/HowToRandR12
+[1] http://www.thinkwiki.org/wiki/Xorg_RandR_1.2#xorg.conf
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
