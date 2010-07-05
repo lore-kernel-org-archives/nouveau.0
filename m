@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26057] Artefacts in kde 4
-Date: Mon,  5 Jul 2010 01:16:38 -0700 (PDT)
-Message-ID: <20100705081638.C98561300B7@annarchy.freedesktop.org>
+Date: Mon,  5 Jul 2010 01:17:30 -0700 (PDT)
+Message-ID: <20100705081730.595831300F2@annarchy.freedesktop.org>
 References: <bug-26057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26057
 
---- Comment #3 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2010-07-05 01:16:38 PDT ---
-Could you please add a snapshot of the issues you are having?
-
-I will have a look at it soon.
+--- Comment #4 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2010-07-05 01:17:29 PDT ---
+Also, please add kernel logs along with Xorg ones.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
