@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
- spontaneously
-Date: Sun,  4 Jul 2010 19:26:44 -0700 (PDT)
-Message-ID: <20100705022644.657401300E1@annarchy.freedesktop.org>
-References: <bug-26980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26057] Artefacts in kde 4
+Date: Mon,  5 Jul 2010 01:16:38 -0700 (PDT)
+Message-ID: <20100705081638.C98561300B7@annarchy.freedesktop.org>
+References: <bug-26057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +20,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26980
+https://bugs.freedesktop.org/show_bug.cgi?id=26057
 
---- Comment #23 from gregwilkins <gregw-bhVrg1dYsf0dnm+yROfE0A@public.gmane.org> 2010-07-04 19:26:44 PDT ---
-As per comment #15, I can confirm that setting [nouveau.noaccel=1 on kernel
-command line] does prevent lockups (at least for 3 days).   It does result in a
-occasional strange display artefacts (eg black boxes left after tool tips
-close), but is entirely usable and causes less issues than using the
-proprietary driver.
+--- Comment #3 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2010-07-05 01:16:38 PDT ---
+Could you please add a snapshot of the issues you are having?
+
+I will have a look at it soon.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
