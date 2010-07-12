@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28212] image corruption
-Date: Mon, 12 Jul 2010 05:09:55 -0700 (PDT)
-Message-ID: <20100712120955.C0F51130108@annarchy.freedesktop.org>
+Date: Mon, 12 Jul 2010 05:15:11 -0700 (PDT)
+Message-ID: <20100712121511.E5F3D1300C2@annarchy.freedesktop.org>
 References: <bug-28212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,40 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28212
 
---- Comment #13 from tearofadragon-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org 2010-07-12 05:09:55 PDT ---
-Created an attachment (id=36966)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=36966)
-Messages output
+--- Comment #14 from tearofadragon-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org 2010-07-12 05:15:11 PDT ---
+Hi! I'm having the same problem (while surfing the web / running KDE 4.4.5 or
+everything else) and I tried running with drm.debug=1 nouveau.reg_debug=0x200
+in my kernel options.
+
+I've attached the dmesg / Xorg.log and messages output.
+
+[messages contains an old boot before debug was enabled!]
+
+I needed to gzip the messages output due to being 23 MB big...
+
+I hope this helps. If there is anything else needed, just tell me what I should
+do and I'll give my best.
+
+lspci -v prints this:
+01:00.0 VGA compatible controller: nVidia Corporation G96 [GeForce 9600M GS]
+(rev a1) (prog-if 00 [VGA controller])
+        Subsystem: Wistron Corp. Device 208c
+        Flags: bus master, fast devsel, latency 0, IRQ 16
+        Memory at f2000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=256M]
+        Memory at f0000000 (64-bit, non-prefetchable) [size=32M]
+        I/O ports at 2000 [size=128]
+        Expansion ROM at <unassigned> [disabled]
+        Capabilities: [60] Power Management version 3
+        Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+        Capabilities: [78] Express Endpoint, MSI 00
+        Capabilities: [b4] Vendor Specific Information: Len=14 <?>
+        Capabilities: [100] Virtual Channel
+        Capabilities: [128] Power Budgeting <?>
+        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
+<?>
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau, nvidiafb
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
