@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28212] image corruption
-Date: Mon, 12 Jul 2010 05:08:00 -0700 (PDT)
-Message-ID: <20100712120800.E81D9130135@annarchy.freedesktop.org>
+Date: Mon, 12 Jul 2010 05:09:55 -0700 (PDT)
+Message-ID: <20100712120955.C0F51130108@annarchy.freedesktop.org>
 References: <bug-28212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28212
 
---- Comment #12 from tearofadragon-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org 2010-07-12 05:08:00 PDT ---
-Created an attachment (id=36965)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=36965)
-Xorg log
+--- Comment #13 from tearofadragon-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org 2010-07-12 05:09:55 PDT ---
+Created an attachment (id=36966)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=36966)
+Messages output
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
