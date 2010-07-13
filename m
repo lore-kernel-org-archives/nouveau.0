@@ -1,13 +1,14 @@
-From: Abelenda Diego <diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Strange problem with dual head on GeForce9600GT (dual
-	DVI)
-Date: Tue, 13 Jul 2010 18:46:24 +0200
-Message-ID: <20100713184624.29722b49@Lina>
-References: <20100713184231.6c3ca5db@Lina>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
+ spontaneously
+Date: Tue, 13 Jul 2010 11:12:23 -0700 (PDT)
+Message-ID: <20100713181223.19A3A1300CB@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1260244479=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100713184231.6c3ca5db@Lina>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,78 +16,61 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Mime-version: 1.0
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1260244479==
-Content-Type: multipart/signed; micalg=PGP-SHA1;
- boundary="Sig_/FZQF8d9bvWtDUkQXm476yHO"; protocol="application/pgp-signature"
-
---Sig_/FZQF8d9bvWtDUkQXm476yHO
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, 13 Jul 2010 18:42:31 +0200
-Abelenda Diego <diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-
-> Hi,
->=20
-> I am using nouveau for some time now, I am quite happy with it. I had
-> two screens connected with DVI to VGA adapters and dual screen was
-> working no problem. Today I decided to replace the DVI to VGA adapters
-> with plain DVI-I dual link cables and found out something strange, the
-> second screen doesn't display anything anymore, it stays black.
->=20
-> I am using gentoo linux with
-> Linus' kernel 2.6.35_rc4
-> libdrm 2.4.21
-> media-libs/mesa 7.8.2
-> x11-drivers/xf86-video-nouveau 0.0.16_pre20100615
->=20
-> Is it somehow related to
-> https://bugs.freedesktop.org/show_bug.cgi?id=3D27455 or do I need to
-> open a new bug report, with some dumps from renouveau ?
-
-Sorry my cables are not DVI-I dual link they are DVI-D dual link (this
-might make a difference).
-
---Sig_/FZQF8d9bvWtDUkQXm476yHO
-Content-Type: application/pgp-signature; name=signature.asc
-Content-Disposition: attachment; filename=signature.asc
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.15 (GNU/Linux)
-
-iQIcBAEBAgAGBQJMPJhpAAoJEKJk+FAH5Bn4kQ4P/3r8P0vjSEpO2+7eJpNJLaLB
-Ef1TlPhF4xkcv7/jSh9e0ziSSdshK4btgDGQEZenplgK+rB1ZdVWia5JjzkZqiCD
-xcXP9SE0aCftiNNuoYXnQZFtbaVhGfmLvrZk4lX33ncaH69oelwy0vfCG5pWzMhY
-Yj4EcK47gmNB1fiy/p9fkTv+L9FKmQEWz31lsDXLaBH4Duwia1PgLGU54BqOol4s
-KZ9igBpZ3Bum6v45IHyysiir47hoOzlfCz+KtCio6ZPM7XKjcXnq3eCM+7P+KhXO
-mPyTVHKsLSJm11y5iMt6tOKlW1qMyeOSy2BFNyFbZw28GVwQoEdLYo6A4Ih/9P9A
-RpBaveABreR0l2nSIaTqy239y4tsFvKmXzR2UTxwaAjHxlI/+/vpuGVt4hl4UpAH
-qzbDXbyT+sCVHxvmEICcNIawIneE3YYGzjtBJeOZ1XXm2wUdDD7b56LB/QskUTwQ
-cnQa8sA+gs66aLucXN1hbOLC6CTHgEhXKrhI7fEp2YYp4NKYveJCaehV9CkSOJwW
-yLFyiaknn3kyZqK+3xsJurwa6dHn+p3rlqBCDSwpIFbmAn37GfocKdN6XTIukwGo
-lz6ixCAmo8ouEAJ/VzrnNiRW9qeRt9c/Ds1S3LId469cmlQrRb74c/ApAo+xrl3Q
-3m74Ukrh2oLrsqT93uqH
-=KtFL
------END PGP SIGNATURE-----
-
---Sig_/FZQF8d9bvWtDUkQXm476yHO--
-
---===============1260244479==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1260244479==--
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjY5ODAKCi0tLSBD
+b21tZW50ICMyNSBmcm9tIE1hcmNpbiBLb8WbY2llbG5pY2tpIDxrb3JpYWtpbkAweDA0Lm5ldD4g
+MjAxMC0wNy0xMyAxMToxMjoyMiBQRFQgLS0tCldlbGwuLi4gdGhlIHN0YXR1cyBpcyBzdGlsbCB0
+aGUgc2FtZS4gV2UgW21lIGFuZCBkYXJrdGFtYSAvIEJlbiBTa2VnZ3NdIGJvdGgKaGF2ZSBubyBm
+dWNraW5nIGlkZWEgd2hhdCdzIApjYXVzaW5nIHRoaXMgcHJvYmxlbS4KCkl0IHR1cm5zIG91dCwg
+c3R1ZmYgaXMgY29tcGxpY2F0ZWQuIE5WQTMrIGNhcmQgaW50cm9kdWNlZCBzb21lIHNvcnQgb2Yg
+Cm1pY3JvY29udHJvbGxlciBvbi1ib2FyZCB0aGF0IHJ1bnMgYWxsIHRoZSB0aW1lIGFuZCBjb250
+cm9scyBzdHVmZiBsaWtlIHBvd2VyIAptYW5hZ2VtZW50LiBJbiBhbGwgTlZBMysgdHJhY2VzLCB3
+ZSBzZWUgYSBsb3Qgb2YgcGxhY2VzIHdoZXJlIGJsb2IgaXMgdGFsa2luZyAKdG8gdGhhdCBjb250
+cm9sbGVyIGFuZCBkb2VzIHN0dWZmIHRvIFBHUkFQSC4gQXRtIHdlIGNhbiBvbmx5IGFzc3VtZSB0
+aGF0IApsb2NrdXBzIGFyZSBjYXVzZWQgYnkgdXMgbm90IGRvaW5nIHRoaXMuCgpXZSBoYXZlIG5v
+IGlkZWEgd2hhdCBleGFjdGx5IHRoYXQgbWljcm9jb250cm9sbGVyIGRvZXMgYW5kIGhvdyB0byB0
+YWxrIHRvIGl0LiAKV29yc2UsIHRoaXMgbWljcm9jb250cm9sbGVyIG5lZWRzIG1pY3JvY29kZSB0
+aGF0IGlzIHVwbG9hZGVkIGJ5IHRoZSBkcml2ZXIuIApBbmQganVkZ2luZyBieSB3aGF0IEkndmUg
+c2VlbiBhbHJlYWR5LCBjdHhwcm9ncyB3ZXJlIGEgd2FsayBpbiB0aGUgcGFyayAKY29tcGFyZWQg
+dG8gdGhpcyBuZXcgdWMuIFRoZSBwcm9ncyBhcmUgaHVnZSwgYW5kIHRoZXJlIGFyZSBzaGl0bG9h
+ZHMgb2YgCm9wY29kZXMgdG8gUkUuCgpTbyAtIHdlJ3JlIGJsb2NrZWQgYWdhaW4gb24gUkVpbmcg
+c29tZSBtYWdpY2FsIGNvZGUuIEFuZCB3ZSdyZSB0YWxraW5nIHJlYWwgCmNvZGUgdGhpcyB0aW1l
+LCBhcyBvcHBvc2VkIHRvIGN0eHByb2dzIHdoaWNoIHdlcmUgbW9zdGx5IGp1c3QgYSBsaXN0IG9m
+IHJlZ3MgCnRvIGNvcHkuLi4KClVudGlsIHdlIHVuZGVyc3RhbmQgd2hhdCdzIGdvaW5nIG9uLCBz
+dGF0dXMgZm9yIE5WQTMrIGNhcmRzIHN0YXlzIHRoZSBzYW1lIC0gCndlIGhhdmUgYWJzb2x1ZWx5
+IG5vIGlkZWEgaG93IHRvIGZpeCB0aGF0IGJ1ZyBhbmQgRVRBIGlzIG9uIHRoZSBvcmRlciBvZiBh
+dCAKbGVhc3QgbW9udGhzLgoKQW5kIGZvciB0aGUgcmVjb3JkOiBJJ20gZ29pbmcgdG8ga2lsbCBh
+bnlvbmUgd2hvIGNhbGxzIHRoaXMgbmV3IHByb2dzIAoidm9vZG9vIiwgIm1hZ2ljIiwgb3IgYW55
+dGhpbmcgbGlrZSB0aGF0LiBXZSBhbHJlYWR5IGRlY2lkZWQgb24gdGhlIG5hbWUgb2YgCiJmdWMg
+cHJvZ3MiLiBBbmQgdGhlIFBNIG1pY3Jva29udHJvbGxlciBpcyBub3QgdGhlIG9ubHkgcGxhY2Ug
+d2hlcmUgdGhlcmUgYXJlIAp1c2VkLiBSaWdodCBub3cgd2Uga25vdyBvZiB0aGUgZm9sbG93aW5n
+OgoKIC0gTlY5OCsgY3J5cHRvZ3JhcGhpYyBlbmdpbmUgc2V0dXAKIC0gTlY5OCsgY3J5cHRvZ3Jh
+cGhpYyBlbmdpbmUgY3R4cHJvZ3MKIC0gTlY5OCsgdmlkZW8gZGVjb2RpbmcgY3R4cHJvZ3MKIC0g
+TlZBMysgdW5rbm93biBlbmdpbmUgMTA0eHh4IFtETUEgY29waWVyP10gY3R4cHJvZ3MKIC0gTlZB
+MysgUE0gbWljcm9jb250cm9sbGVyCiAtIE5WQzAgUEdSQVBIIGN0eHByb2dzCgpXaXRoIHN1Y2gg
+YSBodWdlIGxpc3Qgb2YgdXNlcnMsIFJFaW5nIGZ1YyBwcm9ncyBpcyBhIGhpZ2ggcHJpb3JpdHkg
+Zm9yIG1lLiAKS2VlcCB5b3VyIGZpbmdlcnMgY3Jvc3NlZC4gQW5kIGZpbmQgbG90cyBvZiBSRS1j
+YXBhYmxlIHBlb3BsZSB0byBoZWxwLCB0aGlzIGlzIApnb2luZyB0byBiZSBhIGxvbmcgcmlkZS4u
+LgoKUFMuIE5vdGUgdGhhdCBjaGlwc2V0IG9yZGVyaW5nIGlzIGEgYml0IGZ1bm55IGFuZCBpdCBk
+b2VzIE5PVCBmb2xsb3cgTlZ4eCAKbnVtZXJpY2FsIHZhbHVlcy4gVGhlIHNhbmVyIG9yZGVyaW5n
+IEkndmUgY29tZSB1cCB3aXRoIGlzIGF0IApodHRwOi8vZ2l0aHViLmNvbS9wYXRoc2NhbGUvZW52
+eXRvb2xzL2Jsb2IvbWFzdGVyL252Y2hpcHNldHMueG1sIC0gaXQgYmVzdCAKbWF0Y2hlcyBvcmRl
+ciBvZiBhZGRpbmcgbmV3IGZ1bmN0aW9uYWxpdHkuIEFsc28sIGZvciB2aWRlbyBkZWNvZGluZyB1
+bml0cywgCk5WQTAgYW5kIE5WOTggc2hvdWxkIGJlIHN3YXBwZWQsIGllLiBOVjk4KyB2aWRlbyBk
+ZWNvZGluZyBkb2VzIG5vdCBpbmNsdWRlIApOVkEwLiBTbyBOVkEzKyBjYXJkcyBhcmUgTlZBMywg
+TlZBNSwgTlZBOCwgTlZBRiwgTlZDMC4gQnV0IG5vdCBOVkFBL05WQUMuCgpQUFMuIEluIG90aGVy
+IHdvcmRzLCBpZiB5b3Ugd2FudCB5b3VyIGNhcmQgdG8gd29yayB3aXRoIG5vdXZlYXUsIGRvbid0
+IGJ1eQpOVkEzKyBjYXJkcyB5ZXQuIE9yLCBmb2xsb3dpbmcgbnZpZGlhIGNvZGVuYW1lcywgZG9u
+J3QgYnV5IHN0dWZmIHdpdGggR1QyMXgKY2hpcHNldCBpbiBpdC4gTm9yIE1DUDg5LCBidXQgdGhh
+dCBvbmUgaXMgdG9vIGRhbW4gcmFyZSBhbnl3YXkuCgpQUFBTLiBJZiB5b3UgdGhpbmsgeW91J3Jl
+IGFibGUgdG8gUkUgbWljcm9jb2RlcywgY29udGFjdCBtZS4gU3JzbHkuIFdlIG5lZWQKbW9yZSBw
+ZW9wbGUuIEJhZGx5LgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRl
+c2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZp
+bmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRo
+ZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
