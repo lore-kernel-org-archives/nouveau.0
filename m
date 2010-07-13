@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29039] Crash at kernel level
-Date: Tue, 13 Jul 2010 08:27:10 -0700 (PDT)
-Message-ID: <20100713152710.434031300A2@annarchy.freedesktop.org>
+Date: Tue, 13 Jul 2010 08:29:05 -0700 (PDT)
+Message-ID: <20100713152905.7A51513007D@annarchy.freedesktop.org>
 References: <bug-29039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,13 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #36991|application/octet-stream    |text/plain
-          mime type|                            |
+             Status|NEW                         |RESOLVED
+         Resolution|                            |DUPLICATE
+
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-13 08:29:05 PDT ---
+
+
+*** This bug has been marked as a duplicate of bug 26521 ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
