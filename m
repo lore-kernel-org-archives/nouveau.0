@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
- spontaneously
-Date: Tue, 13 Jul 2010 11:12:23 -0700 (PDT)
-Message-ID: <20100713181223.19A3A1300CB@annarchy.freedesktop.org>
-References: <bug-26980-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Strange problem with dual head on GeForce9600GT (dual
+ DVI)
+Date: Wed, 14 Jul 2010 09:08:04 +1000
+Message-ID: <1279062484.2966.1.camel@nisroch>
+References: <20100713184231.6c3ca5db@Lina>  <20100713184624.29722b49@Lina>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20100713184624.29722b49@Lina>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,59 +19,44 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Abelenda Diego <diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjY5ODAKCi0tLSBD
-b21tZW50ICMyNSBmcm9tIE1hcmNpbiBLb8WbY2llbG5pY2tpIDxrb3JpYWtpbkAweDA0Lm5ldD4g
-MjAxMC0wNy0xMyAxMToxMjoyMiBQRFQgLS0tCldlbGwuLi4gdGhlIHN0YXR1cyBpcyBzdGlsbCB0
-aGUgc2FtZS4gV2UgW21lIGFuZCBkYXJrdGFtYSAvIEJlbiBTa2VnZ3NdIGJvdGgKaGF2ZSBubyBm
-dWNraW5nIGlkZWEgd2hhdCdzIApjYXVzaW5nIHRoaXMgcHJvYmxlbS4KCkl0IHR1cm5zIG91dCwg
-c3R1ZmYgaXMgY29tcGxpY2F0ZWQuIE5WQTMrIGNhcmQgaW50cm9kdWNlZCBzb21lIHNvcnQgb2Yg
-Cm1pY3JvY29udHJvbGxlciBvbi1ib2FyZCB0aGF0IHJ1bnMgYWxsIHRoZSB0aW1lIGFuZCBjb250
-cm9scyBzdHVmZiBsaWtlIHBvd2VyIAptYW5hZ2VtZW50LiBJbiBhbGwgTlZBMysgdHJhY2VzLCB3
-ZSBzZWUgYSBsb3Qgb2YgcGxhY2VzIHdoZXJlIGJsb2IgaXMgdGFsa2luZyAKdG8gdGhhdCBjb250
-cm9sbGVyIGFuZCBkb2VzIHN0dWZmIHRvIFBHUkFQSC4gQXRtIHdlIGNhbiBvbmx5IGFzc3VtZSB0
-aGF0IApsb2NrdXBzIGFyZSBjYXVzZWQgYnkgdXMgbm90IGRvaW5nIHRoaXMuCgpXZSBoYXZlIG5v
-IGlkZWEgd2hhdCBleGFjdGx5IHRoYXQgbWljcm9jb250cm9sbGVyIGRvZXMgYW5kIGhvdyB0byB0
-YWxrIHRvIGl0LiAKV29yc2UsIHRoaXMgbWljcm9jb250cm9sbGVyIG5lZWRzIG1pY3JvY29kZSB0
-aGF0IGlzIHVwbG9hZGVkIGJ5IHRoZSBkcml2ZXIuIApBbmQganVkZ2luZyBieSB3aGF0IEkndmUg
-c2VlbiBhbHJlYWR5LCBjdHhwcm9ncyB3ZXJlIGEgd2FsayBpbiB0aGUgcGFyayAKY29tcGFyZWQg
-dG8gdGhpcyBuZXcgdWMuIFRoZSBwcm9ncyBhcmUgaHVnZSwgYW5kIHRoZXJlIGFyZSBzaGl0bG9h
-ZHMgb2YgCm9wY29kZXMgdG8gUkUuCgpTbyAtIHdlJ3JlIGJsb2NrZWQgYWdhaW4gb24gUkVpbmcg
-c29tZSBtYWdpY2FsIGNvZGUuIEFuZCB3ZSdyZSB0YWxraW5nIHJlYWwgCmNvZGUgdGhpcyB0aW1l
-LCBhcyBvcHBvc2VkIHRvIGN0eHByb2dzIHdoaWNoIHdlcmUgbW9zdGx5IGp1c3QgYSBsaXN0IG9m
-IHJlZ3MgCnRvIGNvcHkuLi4KClVudGlsIHdlIHVuZGVyc3RhbmQgd2hhdCdzIGdvaW5nIG9uLCBz
-dGF0dXMgZm9yIE5WQTMrIGNhcmRzIHN0YXlzIHRoZSBzYW1lIC0gCndlIGhhdmUgYWJzb2x1ZWx5
-IG5vIGlkZWEgaG93IHRvIGZpeCB0aGF0IGJ1ZyBhbmQgRVRBIGlzIG9uIHRoZSBvcmRlciBvZiBh
-dCAKbGVhc3QgbW9udGhzLgoKQW5kIGZvciB0aGUgcmVjb3JkOiBJJ20gZ29pbmcgdG8ga2lsbCBh
-bnlvbmUgd2hvIGNhbGxzIHRoaXMgbmV3IHByb2dzIAoidm9vZG9vIiwgIm1hZ2ljIiwgb3IgYW55
-dGhpbmcgbGlrZSB0aGF0LiBXZSBhbHJlYWR5IGRlY2lkZWQgb24gdGhlIG5hbWUgb2YgCiJmdWMg
-cHJvZ3MiLiBBbmQgdGhlIFBNIG1pY3Jva29udHJvbGxlciBpcyBub3QgdGhlIG9ubHkgcGxhY2Ug
-d2hlcmUgdGhlcmUgYXJlIAp1c2VkLiBSaWdodCBub3cgd2Uga25vdyBvZiB0aGUgZm9sbG93aW5n
-OgoKIC0gTlY5OCsgY3J5cHRvZ3JhcGhpYyBlbmdpbmUgc2V0dXAKIC0gTlY5OCsgY3J5cHRvZ3Jh
-cGhpYyBlbmdpbmUgY3R4cHJvZ3MKIC0gTlY5OCsgdmlkZW8gZGVjb2RpbmcgY3R4cHJvZ3MKIC0g
-TlZBMysgdW5rbm93biBlbmdpbmUgMTA0eHh4IFtETUEgY29waWVyP10gY3R4cHJvZ3MKIC0gTlZB
-MysgUE0gbWljcm9jb250cm9sbGVyCiAtIE5WQzAgUEdSQVBIIGN0eHByb2dzCgpXaXRoIHN1Y2gg
-YSBodWdlIGxpc3Qgb2YgdXNlcnMsIFJFaW5nIGZ1YyBwcm9ncyBpcyBhIGhpZ2ggcHJpb3JpdHkg
-Zm9yIG1lLiAKS2VlcCB5b3VyIGZpbmdlcnMgY3Jvc3NlZC4gQW5kIGZpbmQgbG90cyBvZiBSRS1j
-YXBhYmxlIHBlb3BsZSB0byBoZWxwLCB0aGlzIGlzIApnb2luZyB0byBiZSBhIGxvbmcgcmlkZS4u
-LgoKUFMuIE5vdGUgdGhhdCBjaGlwc2V0IG9yZGVyaW5nIGlzIGEgYml0IGZ1bm55IGFuZCBpdCBk
-b2VzIE5PVCBmb2xsb3cgTlZ4eCAKbnVtZXJpY2FsIHZhbHVlcy4gVGhlIHNhbmVyIG9yZGVyaW5n
-IEkndmUgY29tZSB1cCB3aXRoIGlzIGF0IApodHRwOi8vZ2l0aHViLmNvbS9wYXRoc2NhbGUvZW52
-eXRvb2xzL2Jsb2IvbWFzdGVyL252Y2hpcHNldHMueG1sIC0gaXQgYmVzdCAKbWF0Y2hlcyBvcmRl
-ciBvZiBhZGRpbmcgbmV3IGZ1bmN0aW9uYWxpdHkuIEFsc28sIGZvciB2aWRlbyBkZWNvZGluZyB1
-bml0cywgCk5WQTAgYW5kIE5WOTggc2hvdWxkIGJlIHN3YXBwZWQsIGllLiBOVjk4KyB2aWRlbyBk
-ZWNvZGluZyBkb2VzIG5vdCBpbmNsdWRlIApOVkEwLiBTbyBOVkEzKyBjYXJkcyBhcmUgTlZBMywg
-TlZBNSwgTlZBOCwgTlZBRiwgTlZDMC4gQnV0IG5vdCBOVkFBL05WQUMuCgpQUFMuIEluIG90aGVy
-IHdvcmRzLCBpZiB5b3Ugd2FudCB5b3VyIGNhcmQgdG8gd29yayB3aXRoIG5vdXZlYXUsIGRvbid0
-IGJ1eQpOVkEzKyBjYXJkcyB5ZXQuIE9yLCBmb2xsb3dpbmcgbnZpZGlhIGNvZGVuYW1lcywgZG9u
-J3QgYnV5IHN0dWZmIHdpdGggR1QyMXgKY2hpcHNldCBpbiBpdC4gTm9yIE1DUDg5LCBidXQgdGhh
-dCBvbmUgaXMgdG9vIGRhbW4gcmFyZSBhbnl3YXkuCgpQUFBTLiBJZiB5b3UgdGhpbmsgeW91J3Jl
-IGFibGUgdG8gUkUgbWljcm9jb2RlcywgY29udGFjdCBtZS4gU3JzbHkuIFdlIG5lZWQKbW9yZSBw
-ZW9wbGUuIEJhZGx5LgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRl
-c2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZp
-bmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRo
-ZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
-dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Tue, 2010-07-13 at 18:46 +0200, Abelenda Diego wrote:
+> On Tue, 13 Jul 2010 18:42:31 +0200
+> Abelenda Diego <diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> 
+> > Hi,
+> > 
+> > I am using nouveau for some time now, I am quite happy with it. I had
+> > two screens connected with DVI to VGA adapters and dual screen was
+> > working no problem. Today I decided to replace the DVI to VGA adapters
+> > with plain DVI-I dual link cables and found out something strange, the
+> > second screen doesn't display anything anymore, it stays black.
+> > 
+> > I am using gentoo linux with
+> > Linus' kernel 2.6.35_rc4
+> > libdrm 2.4.21
+> > media-libs/mesa 7.8.2
+> > x11-drivers/xf86-video-nouveau 0.0.16_pre20100615
+> > 
+> > Is it somehow related to
+> > https://bugs.freedesktop.org/show_bug.cgi?id=27455 or do I need to
+> > open a new bug report, with some dumps from renouveau ?
+> 
+> Sorry my cables are not DVI-I dual link they are DVI-D dual link (this
+> might make a difference).
+I doubt it's related to the bug you mentioned, the display engines are
+completely different.
+
+If you could attach your dmesg output after booting with "log_buf_len=1M
+drm.debug=14 nouveau.reg_debug=0x0200" I'll take a look and see if some
+of the recent fixes could apply to you.
+
+Thanks!
+Ben.
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
