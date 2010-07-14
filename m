@@ -1,15 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Strange problem with dual head on GeForce9600GT (dual
- DVI)
-Date: Wed, 14 Jul 2010 09:08:04 +1000
-Message-ID: <1279062484.2966.1.camel@nisroch>
-References: <20100713184231.6c3ca5db@Lina>  <20100713184624.29722b49@Lina>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29064] New: System freeze while using nouveau
+Date: Wed, 14 Jul 2010 12:45:24 -0700 (PDT)
+Message-ID: <bug-29064-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100713184624.29722b49@Lina>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,44 +15,67 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Abelenda Diego <diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 2010-07-13 at 18:46 +0200, Abelenda Diego wrote:
-> On Tue, 13 Jul 2010 18:42:31 +0200
-> Abelenda Diego <diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> 
-> > Hi,
-> > 
-> > I am using nouveau for some time now, I am quite happy with it. I had
-> > two screens connected with DVI to VGA adapters and dual screen was
-> > working no problem. Today I decided to replace the DVI to VGA adapters
-> > with plain DVI-I dual link cables and found out something strange, the
-> > second screen doesn't display anything anymore, it stays black.
-> > 
-> > I am using gentoo linux with
-> > Linus' kernel 2.6.35_rc4
-> > libdrm 2.4.21
-> > media-libs/mesa 7.8.2
-> > x11-drivers/xf86-video-nouveau 0.0.16_pre20100615
-> > 
-> > Is it somehow related to
-> > https://bugs.freedesktop.org/show_bug.cgi?id=27455 or do I need to
-> > open a new bug report, with some dumps from renouveau ?
-> 
-> Sorry my cables are not DVI-I dual link they are DVI-D dual link (this
-> might make a difference).
-I doubt it's related to the bug you mentioned, the display engines are
-completely different.
+https://bugs.freedesktop.org/show_bug.cgi?id=29064
 
-If you could attach your dmesg output after booting with "log_buf_len=1M
-drm.debug=14 nouveau.reg_debug=0x0200" I'll take a look and see if some
-of the recent fixes could apply to you.
+           Summary: System freeze while using nouveau
+           Product: xorg
+           Version: 7.5
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: tearofadragon-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Thanks!
-Ben.
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+Created an attachment (id=37051)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37051)
+xorg log (system is compiled debug friendly)
+
+I'm unsure as I don't know much about this specific topic.
+
+I think it was a hard system freeze.
+
+lspci -v
+01:00.0 VGA compatible controller: nVidia Corporation G96 [GeForce 9600M GS]
+(rev a1) (prog-if 00 [VGA controller])
+        Subsystem: Wistron Corp. Device 208c
+        Flags: bus master, fast devsel, latency 0, IRQ 16
+        Memory at f2000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=256M]
+        Memory at f0000000 (64-bit, non-prefetchable) [size=32M]
+        I/O ports at 2000 [size=128]
+        Expansion ROM at <unassigned> [disabled]
+        Capabilities: [60] Power Management version 3
+        Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+        Capabilities: [78] Express Endpoint, MSI 00
+        Capabilities: [b4] Vendor Specific Information: Len=14 <?>
+        Capabilities: [100] Virtual Channel
+        Capabilities: [128] Power Budgeting <?>
+        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
+<?>
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau, nvidiafb
+
+Last two entries in messages are:
+Jul 14 21:22:03 mako kernel: ACPI: EC: GPE storm detected, transactions will
+use polling mode
+Jul 14 21:22:11 mako kernel: [drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch
+2
+
+I've appended the Xorg.log.
+
+System is Gentoo, the nouveau-linux git patched to 2.6.35-rc5.
+
+If there is need for more information, feel free to contact me.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
