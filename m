@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29064] System freeze while using nouveau
-Date: Wed, 14 Jul 2010 12:49:32 -0700 (PDT)
-Message-ID: <20100714194932.454071300D3@annarchy.freedesktop.org>
+Date: Wed, 14 Jul 2010 12:53:56 -0700 (PDT)
+Message-ID: <20100714195356.E58EF13010F@annarchy.freedesktop.org>
 References: <bug-29064-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29064
 
-tearofadragon-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #37051|application/x-text          |text/plain
-          mime type|                            |
+--- Comment #1 from tearofadragon-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org 2010-07-14 12:53:56 PDT ---
+Created an attachment (id=37052)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37052)
+Extracted all lines with nouveau / drm / ttm from log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
