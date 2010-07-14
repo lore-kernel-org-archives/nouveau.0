@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29064] System freeze while using nouveau
-Date: Wed, 14 Jul 2010 12:46:09 -0700 (PDT)
-Message-ID: <20100714194609.F1FB31300A4@annarchy.freedesktop.org>
+Date: Wed, 14 Jul 2010 12:49:32 -0700 (PDT)
+Message-ID: <20100714194932.454071300D3@annarchy.freedesktop.org>
 References: <bug-29064-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ tearofadragon-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #37051|application/x-trash         |application/x-text
+  Attachment #37051|application/x-text          |text/plain
           mime type|                            |
 
 -- 
