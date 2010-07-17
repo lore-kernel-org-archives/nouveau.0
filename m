@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
- spontaneously
-Date: Thu, 15 Jul 2010 15:44:20 -0700 (PDT)
-Message-ID: <20100715224420.2CAF61300BF@annarchy.freedesktop.org>
-References: <bug-26980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29129] New: Cannot set refresh rate on nv50
+Date: Sat, 17 Jul 2010 05:39:23 -0700 (PDT)
+Message-ID: <bug-29129-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +18,74 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26980
+https://bugs.freedesktop.org/show_bug.cgi?id=29129
 
---- Comment #27 from Dmytro Poplavskiy <dmytro.poplavskiy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-15 15:44:19 PDT ---
-I also have the similar problem on GT240 on OpenSuse 11.3,
-I hope the backtrace may help.
+           Summary: Cannot set refresh rate on nv50
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+               URL: http://marc.info/?l=linux-kernel&m=127913459017236&w=2
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: svenjoac-Mmb7MZpHnFY@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-#0  0x00007fddfac33e87 in ioctl () from /lib64/libc.so.6
-#1  0x00007fddf93ebc38 in drmIoctl (fd=10, request=1074291842,
-arg=0x7fffca3b0330) at xf86drm.c:184
-#2  0x00007fddf93edf3b in drmCommandWrite (fd=<value optimized out>,
-drmCommandIndex=<value optimized out>, data=<value optimized out>, size=<value
-optimized out>)
-    at xf86drm.c:2398
-#3  0x00007fddf8dad07d in nouveau_bo_wait (bo=0x829b00, cpu_write=<value
-optimized out>, no_wait=<value optimized out>, no_block=<value optimized out>)
-    at nouveau_bo.c:385
-#4  0x00007fddf8dad68e in nouveau_bo_map_range (bo=0x829b00, delta=0,
-size=<value optimized out>, flags=8) at nouveau_bo.c:428
-#5  0x00007fddf8dac21a in nouveau_pushbuf_space (chan=0x8366c0, min=<value
-optimized out>) at nouveau_pushbuf.c:53
-#6  0x00007fddf8dac760 in nouveau_pushbuf_flush (chan=0x8366c0, min=0) at
-nouveau_pushbuf.c:273
-#7  0x00007fddf7f0e7a5 in ?? () from /usr/lib64/xorg/modules/libexa.so
-#8  0x00007fddf7f10272 in ?? () from /usr/lib64/xorg/modules/libexa.so
+Since Linux 2.6.34, it is no longer possible to set the refresh rate with the
+"video=...@nn" parameter, e.g. video=1280x1024@75 is ignored.
+
+I bisected this to the following commit:
+
+drm/nv50: enable hpd on any connector we know the gpio line for
+
+Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+diff --git a/drivers/gpu/drm/nouveau/nv50_display.c
+b/drivers/gpu/drm/nouveau/nv50_display.c
+index 61a89f2..ebcd8bf 100644
+--- a/drivers/gpu/drm/nouveau/nv50_display.c
++++ b/drivers/gpu/drm/nouveau/nv50_display.c
+@@ -370,7 +370,9 @@ nv50_display_init(struct drm_device *dev)
+         struct nouveau_connector *conn = nouveau_connector(connector);
+         struct dcb_gpio_entry *gpio;
+
+-        if (conn->dcb->gpio_tag == 0xff)
++        if (connector->connector_type != DRM_MODE_CONNECTOR_DVII &&
++            connector->connector_type != DRM_MODE_CONNECTOR_DVID &&
++            connector->connector_type != DRM_MODE_CONNECTOR_DisplayPort)
+             continue;
+
+         gpio = nouveau_bios_gpio_entry(dev, conn->dcb->gpio_tag);
+
+diff --git a/drivers/gpu/drm/nouveau/nv50_display.c
+b/drivers/gpu/drm/nouveau/nv50_display.c
+index ebcd8bf..61a89f2 100644
+--- a/drivers/gpu/drm/nouveau/nv50_display.c
++++ b/drivers/gpu/drm/nouveau/nv50_display.c
+@@ -370,9 +370,7 @@ nv50_display_init(struct drm_device *dev)
+         struct nouveau_connector *conn = nouveau_connector(connector);
+         struct dcb_gpio_entry *gpio;
+
+-        if (connector->connector_type != DRM_MODE_CONNECTOR_DVII &&
+-            connector->connector_type != DRM_MODE_CONNECTOR_DVID &&
+-            connector->connector_type != DRM_MODE_CONNECTOR_DisplayPort)
++        if (conn->dcb->gpio_tag == 0xff)
+             continue;
+
+         gpio = nouveau_bios_gpio_entry(dev, conn->dcb->gpio_tag);
+
+
+It should be noted that since this commit all the card data appear under
+/sys/class/drm/card0-DVI-I-1, e.g. /sys/class/drm/card0-DVI-I-1/enabled says
+"enabled" and /sys/class/drm/card0-VGA-1/enabled says "disabled", despite the
+monitor being connected via VGA.
+
+I only noticed this in 2.6.35-rc5 because the default refresh rate changed to
+60 Hz there, see https://bugzilla.kernel.org/show_bug.cgi?id=16402.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
