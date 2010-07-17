@@ -1,9 +1,9 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Bug 29129] New: Cannot set refresh rate on nv50
-Date: Sat, 17 Jul 2010 23:34:55 +1000
-Message-ID: <2A83ACCB-F0CA-4326-A1E7-9A8E4EB901AB@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29129] Cannot set refresh rate on nv50
+Date: Sat, 17 Jul 2010 06:34:58 -0700 (PDT)
+Message-ID: <20100717133458.2D9B42DC101@annarchy.freedesktop.org>
 References: <bug-29129-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0 (iPhone Mail 8A293)
+Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
@@ -17,11 +17,14 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org" <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I *seriously* doubt this commit is responsible. It has nothing even remotely close to any changes that could cause what you're seeing.
+https://bugs.freedesktop.org/show_bug.cgi?id=29129
+
+--- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-17 06:34:57 PDT ---
+I *seriously* doubt this commit is responsible. It has nothing even remotely
+close to any changes that could cause what you're seeing.
 
 Ben.
 
@@ -106,3 +109,8 @@ On 17/07/2010, at 22:39, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 > Nouveau mailing list
 > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 > http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
