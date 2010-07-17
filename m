@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29129] Cannot set refresh rate on nv50
-Date: Sat, 17 Jul 2010 10:00:50 -0700 (PDT)
-Message-ID: <20100717170051.6753A13012D@annarchy.freedesktop.org>
-References: <bug-29129-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29133] New: Mesa 7.8.1 implementation error: bad
+ format in do_row()
+Date: Sat, 17 Jul 2010 14:22:37 -0700 (PDT)
+Message-ID: <bug-29133-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29129-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +19,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29129
-
---- Comment #2 from Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> 2010-07-17 10:00:50 PDT ---
-You're of course right, Ben, looks like I screwed up the last bisection step.
-The actual change that introduced the buggy behavior was the previous one,
-7f612d87f8b4b1ddbcee04264a93e5af7b9f21c7:
-
-drm/nouveau: use dcb connector table for creating drm connectors
-
-This makes this code common to both the nv04 and nv50 paths.
-
-For the moment, we keep the previous behaviour with HDMI/eDP connectors
-and report them as DVI-D/DP instead.  This will be fixed once the rest
-of the code has been fixed to deal with those types.
-
-Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-
-I refrain from including the 274 lines "git diff" output.
-
-In dmesg I see the following messages:
-
-[    0.896501] [drm] nouveau 0000:01:00.0: Detected a DVI-I connector
-[    0.896543] [drm] nouveau 0000:01:00.0: Detected a VGA connector
-[    0.896570] [drm] nouveau 0000:01:00.0: Detected a TV connector
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjkxMzMKCiAgICAg
+ICAgICAgU3VtbWFyeTogTWVzYSA3LjguMSBpbXBsZW1lbnRhdGlvbiBlcnJvcjogYmFkIGZvcm1h
+dCBpbgogICAgICAgICAgICAgICAgICAgIGRvX3JvdygpCiAgICAgICAgICAgUHJvZHVjdDogTWVz
+YQogICAgICAgICAgIFZlcnNpb246IHVuc3BlY2lmaWVkCiAgICAgICAgICBQbGF0Zm9ybTogeDg2
+LTY0IChBTUQ2NCkKICAgICAgICBPUy9WZXJzaW9uOiBMaW51eCAoQWxsKQogICAgICAgICAgICBT
+dGF0dXM6IE5FVwogICAgICAgICAgU2V2ZXJpdHk6IG5vcm1hbAogICAgICAgICAgUHJpb3JpdHk6
+IG1lZGl1bQogICAgICAgICBDb21wb25lbnQ6IERyaXZlcnMvRFJJL25vdXZlYXUKICAgICAgICBB
+c3NpZ25lZFRvOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwogICAgICAgIFJlcG9ydGVk
+Qnk6IHBhdmxpa2RAcG9zdC5zawoKCknCtG0gdXNpbmcgTWFuZHJpdmEgMjAxMC4xIChzcHJpbmcp
+CkhhcmR3YXJlOiA2NGJpdCBBTUQgYW5kIG52aWRpYSBHVDczMDAKRHJpdmVyczogTWVzYSA3Ljgu
+MSAKeDExLWRyaXZlci12aWRlby1ub3V2ZWF1IDAuMC4xNS0wLjIwMTAwMzE2LjEKS2VybmVsIDIu
+Ni4zMy41CgpQcm9ibGVtOgotIEnCtG0gY29tcGlsaW5nIGFscGhhIHZlcnNpb24gb2YgdGhpcyBn
+YW1lIGh0dHA6Ly93aWxkZmlyZWdhbWVzLmNvbS8wYWQvCkdhbWUgbWVudSBpcyBzdGFydGluZy4g
+QnV0IHdoZW4gSSBzdGFydGluZyB0aGUgZ2FtZSBjb25zb2xlIGlzIHdyaXRpbmcgbWFueQp0aW1l
+IHRoaXMKCgpNZXNhIDcuOC4xIGltcGxlbWVudGF0aW9uIGVycm9yOiBiYWQgZm9ybWF0IGluIGRv
+X3JvdygpClBsZWFzZSByZXBvcnQgYXQgYnVnemlsbGEuZnJlZWRlc2t0b3Aub3JnCgotIGVuZGlu
+ZyB3aXRoCgpTZWdtZW50YXRpb24gZmF1bHQuCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBz
+Oi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZ
+b3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBh
+c3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
