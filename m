@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29129] Cannot set refresh rate on nv50
-Date: Sat, 17 Jul 2010 06:34:58 -0700 (PDT)
-Message-ID: <20100717133458.2D9B42DC101@annarchy.freedesktop.org>
+Date: Sat, 17 Jul 2010 10:00:50 -0700 (PDT)
+Message-ID: <20100717170051.6753A13012D@annarchy.freedesktop.org>
 References: <bug-29129-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,93 +22,29 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29129
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-17 06:34:57 PDT ---
-I *seriously* doubt this commit is responsible. It has nothing even remotely
-close to any changes that could cause what you're seeing.
+--- Comment #2 from Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> 2010-07-17 10:00:50 PDT ---
+You're of course right, Ben, looks like I screwed up the last bisection step.
+The actual change that introduced the buggy behavior was the previous one,
+7f612d87f8b4b1ddbcee04264a93e5af7b9f21c7:
 
-Ben.
+drm/nouveau: use dcb connector table for creating drm connectors
 
-Sent from my iPhone
+This makes this code common to both the nv04 and nv50 paths.
 
-On 17/07/2010, at 22:39, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org wrote:
+For the moment, we keep the previous behaviour with HDMI/eDP connectors
+and report them as DVI-D/DP instead.  This will be fixed once the rest
+of the code has been fixed to deal with those types.
 
-> https://bugs.freedesktop.org/show_bug.cgi?id=29129
-> 
->           Summary: Cannot set refresh rate on nv50
->           Product: xorg
->           Version: unspecified
->          Platform: x86-64 (AMD64)
->               URL: http://marc.info/?l=linux-kernel&m=127913459017236&w=2
->        OS/Version: Linux (All)
->            Status: NEW
->          Severity: normal
->          Priority: medium
->         Component: Driver/nouveau
->        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->        ReportedBy: svenjoac-Mmb7MZpHnFY@public.gmane.org
->         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-> 
-> 
-> Since Linux 2.6.34, it is no longer possible to set the refresh rate with the
-> "video=...@nn" parameter, e.g. video=1280x1024@75 is ignored.
-> 
-> I bisected this to the following commit:
-> 
-> drm/nv50: enable hpd on any connector we know the gpio line for
-> 
-> Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c
-> b/drivers/gpu/drm/nouveau/nv50_display.c
-> index 61a89f2..ebcd8bf 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_display.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
-> @@ -370,7 +370,9 @@ nv50_display_init(struct drm_device *dev)
->         struct nouveau_connector *conn = nouveau_connector(connector);
->         struct dcb_gpio_entry *gpio;
-> 
-> -        if (conn->dcb->gpio_tag == 0xff)
-> +        if (connector->connector_type != DRM_MODE_CONNECTOR_DVII &&
-> +            connector->connector_type != DRM_MODE_CONNECTOR_DVID &&
-> +            connector->connector_type != DRM_MODE_CONNECTOR_DisplayPort)
->             continue;
-> 
->         gpio = nouveau_bios_gpio_entry(dev, conn->dcb->gpio_tag);
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c
-> b/drivers/gpu/drm/nouveau/nv50_display.c
-> index ebcd8bf..61a89f2 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_display.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
-> @@ -370,9 +370,7 @@ nv50_display_init(struct drm_device *dev)
->         struct nouveau_connector *conn = nouveau_connector(connector);
->         struct dcb_gpio_entry *gpio;
-> 
-> -        if (connector->connector_type != DRM_MODE_CONNECTOR_DVII &&
-> -            connector->connector_type != DRM_MODE_CONNECTOR_DVID &&
-> -            connector->connector_type != DRM_MODE_CONNECTOR_DisplayPort)
-> +        if (conn->dcb->gpio_tag == 0xff)
->             continue;
-> 
->         gpio = nouveau_bios_gpio_entry(dev, conn->dcb->gpio_tag);
-> 
-> 
-> It should be noted that since this commit all the card data appear under
-> /sys/class/drm/card0-DVI-I-1, e.g. /sys/class/drm/card0-DVI-I-1/enabled says
-> "enabled" and /sys/class/drm/card0-VGA-1/enabled says "disabled", despite the
-> monitor being connected via VGA.
-> 
-> I only noticed this in 2.6.35-rc5 because the default refresh rate changed to
-> 60 Hz there, see https://bugzilla.kernel.org/show_bug.cgi?id=16402.
-> 
-> -- 
-> Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-> ------- You are receiving this mail because: -------
-> You are the assignee for the bug.
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+
+I refrain from including the 274 lines "git diff" output.
+
+In dmesg I see the following messages:
+
+[    0.896501] [drm] nouveau 0000:01:00.0: Detected a DVI-I connector
+[    0.896543] [drm] nouveau 0000:01:00.0: Detected a VGA connector
+[    0.896570] [drm] nouveau 0000:01:00.0: Detected a TV connector
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
