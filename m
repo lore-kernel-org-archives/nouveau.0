@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Tue, 20 Jul 2010 12:51:32 -0700 (PDT)
-Message-ID: <20100720195132.B3C941300CB@annarchy.freedesktop.org>
+Date: Tue, 20 Jul 2010 15:33:23 -0700 (PDT)
+Message-ID: <20100720223323.5DD7F1300A7@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-20 12:51:32 PDT ---
-Our only chance is mmiotracing nvidia kernel module and figuring out what they
-do differently. 
-
-http://nouveau.freedesktop.org/wiki/MmioTrace
+--- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-20 15:33:22 PDT ---
+Ah, this is a known issue.  EFI leaves the display engine in a state we're not
+expecting.  As Marcin said, a mmiotrace of the binary driver would be very
+useful to see how they reset it to the state we expect.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
