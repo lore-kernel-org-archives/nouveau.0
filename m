@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Tue, 20 Jul 2010 12:36:25 -0700 (PDT)
-Message-ID: <20100720193625.63F7F1300DC@annarchy.freedesktop.org>
+Date: Tue, 20 Jul 2010 12:51:32 -0700 (PDT)
+Message-ID: <20100720195132.B3C941300CB@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #5 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-20 12:36:25 PDT ---
-Another interesting tidbit: While X works well with the proprietary driver the
-consoles (efifb) stay black once X started. I.e pressing ctrl+alt+f1 gives a
-black screen (but typing blindly works) and pressing crtl+alt+f7 brings me back
-to the X session.
+--- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-20 12:51:32 PDT ---
+Our only chance is mmiotracing nvidia kernel module and figuring out what they
+do differently. 
+
+http://nouveau.freedesktop.org/wiki/MmioTrace
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
