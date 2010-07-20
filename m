@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Tue, 20 Jul 2010 12:33:53 -0700 (PDT)
-Message-ID: <20100720193353.386E11300EF@annarchy.freedesktop.org>
+Date: Tue, 20 Jul 2010 12:36:25 -0700 (PDT)
+Message-ID: <20100720193625.63F7F1300DC@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #4 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-20 12:33:53 PDT ---
-Interestingly, if I boot a kernel which only has vesafb (i.e. not efifb) I get
-the exact same result: Console is fine, starting X with the nv driver produces
-black screen and hang.
+--- Comment #5 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-20 12:36:25 PDT ---
+Another interesting tidbit: While X works well with the proprietary driver the
+consoles (efifb) stay black once X started. I.e pressing ctrl+alt+f1 gives a
+black screen (but typing blindly works) and pressing crtl+alt+f7 brings me back
+to the X session.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
