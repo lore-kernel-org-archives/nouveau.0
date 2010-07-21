@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Wed, 21 Jul 2010 13:02:35 -0700 (PDT)
-Message-ID: <20100721200235.6E4FD1300DE@annarchy.freedesktop.org>
+Date: Wed, 21 Jul 2010 13:03:41 -0700 (PDT)
+Message-ID: <20100721200341.EA43A13010E@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #8 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-21 13:02:35 PDT ---
-OK, I've got the mmio trace:
-http://rapidshare.com/files/408257350/nvidia-efi-trace.bz2
-
-This is how it was produced:
-1) boot into console on kernel 2.6.32-gentoo-r6
-2) start tracing
-3) add marker
-4) modprobe nvidia
-5) add marker
-6) start x and wait until DE is finished
-6) end trace
+--- Comment #9 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-21 13:03:41 PDT ---
+Created an attachment (id=37278)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37278)
+dmesg of the trace in comment #8
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
