@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Thu, 22 Jul 2010 10:55:13 -0700 (PDT)
-Message-ID: <20100722175513.F014D1300B8@annarchy.freedesktop.org>
+Date: Thu, 22 Jul 2010 12:38:49 -0700 (PDT)
+Message-ID: <20100722193849.ED4C01300DB@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #13 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-22 10:55:13 PDT ---
-Created an attachment (id=37320)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37320)
-dmesg output with evo patch (real)
+Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> changed:
 
-Ben, you're the man. After applying your patch correctly (didn't remove the
---dry-run last time ...) nouveaufb now *works*. Yay!
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
-The X driver doesn't yet work, but I will update to latest git first before
-reporting that.
+--- Comment #14 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-22 12:38:49 PDT ---
+Now I've updated xf86-video-nouveau to latest git and voila, X runs perfectly.
+
+Kernel: 2.6.35-rc5 with nouveau-drm from today's git
+xorg nouveau driver: today's git
+
+On a small sidenote: When during boot the console switches from efifb to
+nouveaufb for about one second there is still the garbled screen. Then it goes
+away and the console output starts at around the middle of the screen
+(vertical).
+
+Big thanks for the uber-fast and competent handling, closing as FIXED.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
