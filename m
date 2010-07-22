@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Thu, 22 Jul 2010 12:38:49 -0700 (PDT)
-Message-ID: <20100722193849.ED4C01300DB@annarchy.freedesktop.org>
+Date: Thu, 22 Jul 2010 12:41:26 -0700 (PDT)
+Message-ID: <20100722194126.447D41300E3@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
-Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #14 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-22 12:38:49 PDT ---
-Now I've updated xf86-video-nouveau to latest git and voila, X runs perfectly.
-
-Kernel: 2.6.35-rc5 with nouveau-drm from today's git
-xorg nouveau driver: today's git
-
-On a small sidenote: When during boot the console switches from efifb to
-nouveaufb for about one second there is still the garbled screen. Then it goes
-away and the console output starts at around the middle of the screen
-(vertical).
-
-Big thanks for the uber-fast and competent handling, closing as FIXED.
+--- Comment #15 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-22 12:41:25 PDT ---
+BTW, should we report this to the nv guys? I guess they need a similar fix.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
