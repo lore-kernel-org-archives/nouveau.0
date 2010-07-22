@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Wed, 21 Jul 2010 19:45:41 -0700 (PDT)
-Message-ID: <20100722024541.BF1A713010B@annarchy.freedesktop.org>
+Date: Wed, 21 Jul 2010 22:58:04 -0700 (PDT)
+Message-ID: <20100722055804.4B533130081@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #10 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-21 19:45:41 PDT ---
-Created an attachment (id=37289)
- View: https://bugs.freedesktop.org/attachment.cgi?id=37289
- Review: https://bugs.freedesktop.org/review?bug=29171&attachment=37289
+--- Comment #11 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-21 22:58:03 PDT ---
+Created an attachment (id=37292)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37292)
+dmesg output with evo patch
 
-EVO channel init modifications
+Attached booting into efifb => nouveaufb => x with the attached patch applied.
+However, I think the debug output you are looking for is not there?
 
-Can you try the attached patch for me, and provide the dmesg output you see
-with it.
+Here's what I did:
+1) Apply patch to 2.6.35-rc3, applied fine with 1 line offset (don't have the
+bandwidth to download current git at the moment - can do that on the weekend if
+needed)
+2) boot into patched kernel with video=efifb
+3) symptoms are the same (garbled screen)
+4) log in blindly to start x
+5) switch to a console again and dump dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
