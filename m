@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Wed, 21 Jul 2010 23:10:14 -0700 (PDT)
-Message-ID: <20100722061014.BA4061300B2@annarchy.freedesktop.org>
+Date: Thu, 22 Jul 2010 10:55:13 -0700 (PDT)
+Message-ID: <20100722175513.F014D1300B8@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #12 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-21 23:10:14 PDT ---
-The output indicates that you're not running with those patches, those timeout
-messages don't exist with the patch applied.
+--- Comment #13 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-07-22 10:55:13 PDT ---
+Created an attachment (id=37320)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37320)
+dmesg output with evo patch (real)
+
+Ben, you're the man. After applying your patch correctly (didn't remove the
+--dry-run last time ...) nouveaufb now *works*. Yay!
+
+The X driver doesn't yet work, but I will update to latest git first before
+reporting that.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
