@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29171] Garbled console on Macbook 13" (6,
- 1 9400M]) when using EFI
-Date: Thu, 22 Jul 2010 19:42:53 -0700 (PDT)
-Message-ID: <20100723024253.1A1E21300FC@annarchy.freedesktop.org>
-References: <bug-29171-8800@http.bugs.freedesktop.org/>
+From: Arthur Huillet <arthur.huillet-GANU6spQydw@public.gmane.org>
+Subject: Re: =?utf-8?q?Is_it_possible_to_resume_the_TiNDC=27s=3F?=
+Date: Fri, 23 Jul 2010 10:08:21 +0200
+Message-ID: <1c11cb5350f2e0dcfb88a31ee06f9036@alia>
+References: <4C48CCD5.9080509@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <4C48CCD5.9080509-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,25 +20,34 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29171
+Hello,
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+On Fri, 23 Jul 2010 00:57:25 +0200, GatoLoko <gatoloko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> 
+> The last TiNDC is more than a year old, and if I remember right, the
+> previous editor isn't around to make a new one, so i was thinking about
+> doing it myself.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|FIXED                       |
+If your writing skills are up to it I can but encourage you to do so.
 
---- Comment #16 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-22 19:42:52 PDT ---
-Re-opening bug, as it's not fixed in nouveau as of yet.  I'm still not entirely
-sure what the correct fix *is*.
+> I think the TiNDC's were very interesting to know the current status of
+> things in a more enjoyable and friendly way than the status matrix.
 
-Reporting to the nv guys may be useful, though I'm not entirely sure if you'll
-see any response from them.  If for some reason they do fix it, it'll be useful
-as we'll hopefully get some idea of how to properly fix it (hint: nvidia write
-nv) :)
+The status matrix shows a synthetic, high level view of the status of the
+driver, and it's useful in itself to 
+show how ready nouveau is for various use cases.
 
+> If this is accepted, maybe we can repeat it every few month to keep the
+> TiNDC's up to date.
+
+That would be, I believe, very welcome. 
+
+I used to help the previous TiNDC editor with small technical questions
+and big picture stuff, and I'll be happy to help you as well in order to
+offload the currently active developers.
+
+Thanks for you interest in TiNDC, we need PR tools and TiNDC is a great
+one.
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Greetings, 
+A.H.
