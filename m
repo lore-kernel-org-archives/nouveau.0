@@ -1,121 +1,64 @@
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH v2] vga16fb: refuse to load in face of other driver
-	controlling primary card
-Date: Fri, 23 Jul 2010 17:00:09 +0200
-Message-ID: <AANLkTik4aFSwhfjvmA5RJxa+tLxmhC4_EHcOMpaGEhLD@mail.gmail.com>
-References: <20100720191923.GA11056@joi.lan>
-	<20100722172039.e935c67d.akpm@linux-foundation.org>
-	<20100723131034.GA6618@joi.lan>
+From: GatoLoko <gatoloko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Is it possible to resume the TiNDC's?
+Date: Fri, 23 Jul 2010 18:51:04 +0200
+Message-ID: <4C49C878.9070100@gmail.com>
+References: <4C48CCD5.9080509@gmail.com>
+	<1c11cb5350f2e0dcfb88a31ee06f9036@alia>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20100723131034.GA6618@joi.lan>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, LKML <linux-kernel@vger.kernel.org>, linux-fbdev@vger.kernel.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1c11cb5350f2e0dcfb88a31ee06f9036@alia>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Jul 23, 2010 at 15:10, Marcin Slusarz <marcin.slusarz@gmail.com=
-> wrote:
-> diff --git a/drivers/video/fbmem.c b/drivers/video/fbmem.c
-> index 731fce6..cb19cae 100644
-> --- a/drivers/video/fbmem.c
-> +++ b/drivers/video/fbmem.c
-> @@ -1504,6 +1504,7 @@ static bool fb_do_apertures_overlap(struct aper=
-tures_struct *gena,
-> =C2=A0}
->
-> =C2=A0#define VGA_FB_PHYS 0xA0000
-> +#define VGA_FB_PHYS_LEN 65536
-
-Does this really belong here?
-
-> =C2=A0void remove_conflicting_framebuffers(struct apertures_struct *a=
-,
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 const char *na=
-me, bool primary)
-> =C2=A0{
-> @@ -1532,6 +1533,17 @@ void remove_conflicting_framebuffers(struct ap=
-ertures_struct *a,
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL(remove_conflicting_framebuffers);
->
-> +struct resource *request_vga_mem_region(const char *name)
-> +{
-> + =C2=A0 =C2=A0 =C2=A0 struct resource *res =3D request_mem_region(VG=
-A_FB_PHYS,
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 VGA_FB_PHYS_LEN, name);
-> + =C2=A0 =C2=A0 =C2=A0 if (res =3D=3D NULL)
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 printk(KERN_INFO "=
-%s: other driver owns the primary card, refusing to load\n",
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 name);
-> + =C2=A0 =C2=A0 =C2=A0 return res;
-> +}
-> +EXPORT_SYMBOL(request_vga_mem_region);
-> +
-> =C2=A0/**
-> =C2=A0* =C2=A0 =C2=A0 register_framebuffer - registers a frame buffer=
- device
-> =C2=A0* =C2=A0 =C2=A0 @fb_info: frame buffer info structure
-> @@ -1548,6 +1560,8 @@ register_framebuffer(struct fb_info *fb_info)
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0int i;
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0struct fb_event event;
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0struct fb_videomode mode;
-> + =C2=A0 =C2=A0 =C2=A0 bool primary;
-> + =C2=A0 =C2=A0 =C2=A0 struct resource *res =3D fb_info->resource;
->
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0if (num_registered_fb =3D=3D FB_MAX)
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -ENXIO;
-> @@ -1555,8 +1569,19 @@ register_framebuffer(struct fb_info *fb_info)
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0if (fb_check_foreignness(fb_info))
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -ENOSYS=
-;
->
-> + =C2=A0 =C2=A0 =C2=A0 primary =3D fb_is_primary_device(fb_info);
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0remove_conflicting_framebuffers(fb_info->a=
-pertures, fb_info->fix.id,
-> - =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0f=
-b_is_primary_device(fb_info));
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 primary=
-);
-> +
-> + =C2=A0 =C2=A0 =C2=A0 /*
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0* if the card is primary and the resourc=
-e was not already allocated
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0* by framebuffer driver then lock vga me=
-mory region
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0*/
-> + =C2=A0 =C2=A0 =C2=A0 if (primary && res =3D=3D NULL) {
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 res =3D request_vg=
-a_mem_region(fb_info->fix.id);
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (res =3D=3D NUL=
-L)
-> + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 return -EBUSY;
-> + =C2=A0 =C2=A0 =C2=A0 }
-
-More VGA-specific stuff in drivers/video/fbmem.c.
-Not all platforms have VGA memory.
-
-Gr{oetje,eeting}s,
-
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-=
-m68k.org
-
-In personal conversations with technical people, I call myself a hacker=
-=2E But
-when I'm talking to journalists I just say "programmer" or something li=
-ke that.
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0=C2=A0 -- Linus Torvalds
+LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU1NBR0UtLS0tLQpIYXNoOiBTSEExCgpFbCAyMy8wNy8x
+MCAxMDowOCwgQXJ0aHVyIEh1aWxsZXQgZXNjcmliacOzOgo+IEhlbGxvLAoKSGkhCgo+IElmIHlv
+dXIgd3JpdGluZyBza2lsbHMgYXJlIHVwIHRvIGl0IEkgY2FuIGJ1dCBlbmNvdXJhZ2UgeW91IHRv
+IGRvIHNvLgoKSSBkb24ndCBrbm93IGhvdyBnb29kIG15IHdyaXRpbmdzIGFyZSwgYnV0IHdlIGNh
+biBnaXZlIGl0IGEgdHJ5IGFuZCBzZWUKd2hhdCBjb21lcyBvdXQuIFNpbmNlIEkgaW50ZW5kIHRv
+IHByZXNlbnQgdGhlIHRleHQgaW4gdGhpcyBsaXN0IGJlZm9yZQpwdWJsaXNoaW5nLCB5b3UgY2Fu
+IGFsd2F5cyBtYWtlIGNvcnJlY3Rpb25zIG9yIGV2ZW4gdGVsbCBtZSBJJ20gbm90IGdvb2QKZW5v
+dWdoIChhbmQgc2luY2UgSSdtIG5vdCBuYXRpdmUgZW5nbGlzaCBzcGVha2VyLCB0aGF0IG1heSBi
+ZSB0aGUgY2FzZSkuCgoKPiBUaGUgc3RhdHVzIG1hdHJpeCBzaG93cyBhIHN5bnRoZXRpYywgaGln
+aCBsZXZlbCB2aWV3IG9mIHRoZSBzdGF0dXMgb2YgdGhlCj4gZHJpdmVyLCBhbmQgaXQncyB1c2Vm
+dWwgaW4gaXRzZWxmIHRvIAo+IHNob3cgaG93IHJlYWR5IG5vdXZlYXUgaXMgZm9yIHZhcmlvdXMg
+dXNlIGNhc2VzLgoKSSB3YXMgbm90IGltcGx5aW5nIHRoYXQgdGhleSBhcmUgbXV0dWFsbHkgZXhj
+bHVzaXZlLCBidXQgdGhhdCB0aGV5CmNvbXBsZW1lbnRhcnkuIFRoZXJlIGFyZSB0aGluZyB5b3Ug
+Y2FuJ3QgZWFzaWx5IHJlZmxlY3QgaW4gYSBzdGF0dXMKbWF0cml4LCBidXQgeW91IGNhbiBjb21t
+ZW50IGFib3V0IHRoYXQgaW4gYSBUaU5EQy4KCgo+IEkgdXNlZCB0byBoZWxwIHRoZSBwcmV2aW91
+cyBUaU5EQyBlZGl0b3Igd2l0aCBzbWFsbCB0ZWNobmljYWwgcXVlc3Rpb25zCj4gYW5kIGJpZyBw
+aWN0dXJlIHN0dWZmLCBhbmQgSSdsbCBiZSBoYXBweSB0byBoZWxwIHlvdSBhcyB3ZWxsIGluIG9y
+ZGVyIHRvCj4gb2ZmbG9hZCB0aGUgY3VycmVudGx5IGFjdGl2ZSBkZXZlbG9wZXJzLgoKSSdtIHN1
+cmUgdGhlcmUgd2lsbCBiZSB0aGluZyBJIHdvbid0IHVuZGVyc3RhbmQsIHNvIGFueSBoZWxwIHdp
+bGwgYmUKd2VsY29tZWQuCgoKU28sIGlmIG5vYm9keSBoYXMgY29tcGxhaW5zIGFib3V0IHRoaXMs
+IEkgdGhpbmsgdGhlIGZvbGxvd2luZyBxdWVzdGlvbnMKbWF5IGNvdmVyIG1vc3QgdGhpbmdzLCBh
+bmQgd2hvZXZlciB3YW50cyB0byBhbnN3ZXIgdGhlbSBjYW4gYWx3YXlzIGFkZAphbnl0aGluZyBl
+bHNlIGhlIHdhbnRzLiBJJ20gb3BlbiB0byBjb21tZW50cy9hbnN3ZXJzL3F1ZXN0aW9ucy4KCkN1
+cnJlbnQgc3RhdHVzOwoKMS4tIFdoYXQgZG8geW91IHRoaW5rIGFyZSB0aGUgbW9zdCBpbXBvcnRh
+bnQgY2hhbmdlcyBpbiB0aGUgbGFzdCB5ZWFyCihzaW5jZSB0aGUgbGFzdCBUaU5EQyBpcyBtb3Jl
+IHRoYW4gYSB5ZWFyIG9sZCk/CgoyLi0gV2hhdCBpcyBnb2luZyBvbiByaWdodCBub3c/IFdoYXQg
+YXJlIHlvdSAoaW5kaXZpZHVhbCBkZXZlbG9wZXIpCndvcmtpbmcgb24gcmlnaHQgbm93IGFuZCBo
+b3cgZmFyIGFyZSB5b3Ugb24gdGhhdCB0YXNrPyBGaW5kaW5nIHByb2JsZW1zCndpdGggaXQ/Cgoz
+Li0gV2hhdCBpcyBnb2luZyB0byBoYXBwZW4gaW4gYSBzaG9ydCB0aW1lIChub3QgYXNraW5nIGRh
+dGVzLCBidXQgc2hvcnQKdGVybSBwbGFucyk/IFBvd2VyIG1hbmFnZW1lbnQ/IFZpZGVvIGRlY29k
+aW5nIHBlcmhhcHM/IFNvbWV0aGluZyBlbHNlPwoKSGVscCBuZWVkZWQ7CgoxLi0gVGhlcmUgaXMg
+YSBudjl4IGR1bXBzIHJlcXVlc3QgaW4gdGhlICJ0ZXN0ZXJzIHdhbnRlZCIgd2lraSBwYWdlIGJ1
+dCwKaXMgdGhlcmUgc29tZXRoaW5nIGVsc2UgeW91IG5lZWQ/CgoKLSAtLS0tLS0tLQpHYXRvTG9r
+bwoKLS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0KVmVyc2lvbjogR251UEcgdjEuNC4xMCAo
+R05VL0xpbnV4KQpDb21tZW50OiBVc2luZyBHbnVQRyB3aXRoIE1vemlsbGEgLSBodHRwOi8vZW5p
+Z21haWwubW96ZGV2Lm9yZy8KCmlFWUVBUkVDQUFZRkFreEp5SGdBQ2drUTA2M3RKTE93UXVmVzJn
+Q2ZkSldPLytIeVNrb2JsdjYwcFYxVis2c1oKYmxvQW5SWGVOa3pYc1BVc2FqU0dNTDlsRTBHaTBE
+RFIKPWl5dTIKLS0tLS1FTkQgUEdQIFNJR05BVFVSRS0tLS0tCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
