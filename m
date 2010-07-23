@@ -1,62 +1,78 @@
-From: GatoLoko <gatoloko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Is it posible to resume the TiNDC's?
-Date: Fri, 23 Jul 2010 00:57:25 +0200
-Message-ID: <4C48CCD5.9080509@gmail.com>
+From: Andrew Morton <akpm@linux-foundation.org>
+Subject: Re: [PATCH] vga16fb: refuse to load in face of other driver
+ controlling primary card
+Date: Thu, 22 Jul 2010 17:20:39 -0700
+Message-ID: <20100722172039.e935c67d.akpm@linux-foundation.org>
+References: <20100720191923.GA11056@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20100720191923.GA11056@joi.lan>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, linux-fbdev@vger.kernel.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+On Tue, 20 Jul 2010 21:19:23 +0200
+Marcin Slusarz <marcin.slusarz@gmail.com> wrote:
 
-The last TiNDC is more than a year old, and if I remember right, the
-previous editor isn't around to make a new one, so i was thinking about
-doing it myself.
+> We don't want vga16fb to mess with hardware initialized by other driver.
+> Detect it and refuse to load.
+> It fixes nouveau interrupt storm on some machines.
+> 
+> Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+> ---
+>  drivers/video/vga16fb.c |   13 ++++++++++++-
+>  1 files changed, 12 insertions(+), 1 deletions(-)
+> 
+> diff --git a/drivers/video/vga16fb.c b/drivers/video/vga16fb.c
+> index 28ccab4..4505446 100644
+> --- a/drivers/video/vga16fb.c
+> +++ b/drivers/video/vga16fb.c
+> @@ -22,6 +22,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/screen_info.h>
+>  
+> +#include <asm/fb.h>
+>  #include <asm/io.h>
+>  #include <video/vga.h>
+>  
+> @@ -1415,7 +1416,7 @@ static struct platform_device *vga16fb_device;
+>  
+>  static int __init vga16fb_init(void)
+>  {
+> -	int ret;
+> +	int ret, i;
+>  #ifndef MODULE
+>  	char *option = NULL;
+>  
+> @@ -1424,6 +1425,16 @@ static int __init vga16fb_init(void)
+>  
+>  	vga16fb_setup(option);
+>  #endif
+> +	for (i = 0 ; i < FB_MAX; i++) {
+> +		if (!registered_fb[i])
+> +			continue;
+> +		if (fb_is_primary_device(registered_fb[i])) {
+> +			printk(KERN_INFO "vga16fb: %s is driving the primary card, refusing to load\n",
+> +				registered_fb[i]->fix.id);
+> +			return -EBUSY;
+> +		}
+> +	}
+> +
+>  	ret = platform_driver_register(&vga16fb_driver);
+>  
+>  	if (!ret) {
 
-I think the TiNDC's were very interesting to know the current status of
-things in a more enjoyable and friendly way than the status matrix.
+This seems pretty hacky, and specific to vga16fb.
 
-I know they were a summary of the channel logs, but summarizing more
-than a year of log, even if we have all of them, is an huge task, so if
-you agree, I propose to do them in this way.
-
-1.- I post a list of questions in this list (current status?, what are
-you doing now?, future plans?, is there anything you need from us users
-right now? thing like that).
-2.- Any developer who wants to, answer one or more of them and/or adds a
-new question that can be answered.
-3.- A week after my post with the questions, I summarize the answers and
-post that summary.
-4.- If everyone agrees, it's posted as a TiNDC. If there is any problem,
-it's fixed prior to publication.
-
-What do you think? Would you agree with this? Does anyone have a better
-suggestion?
-
-If this is accepted, maybe we can repeat it every few month to keep the
-TiNDC's up to date.
-
-- --------
-GatoLoko
+Is vga16fb.c the only fbdev driver (now and forever more) which can
+grab the hardware from under a different driver's feet?
 
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
-
-iEYEARECAAYFAkxIzNUACgkQ063tJLOwQueOKwCZAWbkl4NrygvBfSeWS0tqBkck
-xLUAn2CX/P3Zo95ELqgF1dKvidoKbWgn
-=s1Dz
------END PGP SIGNATURE-----
+This is the basic and very common problem of two drivers diddling the
+same hardware, yes?  A common way of preventing such collisions is to
+perform a suitably-checked request_region() in both drivers.  Whichever
+driver gets there second will get a failure and will bale out cleanly. 
+Can that mechanism be made to work in this case?
