@@ -1,16 +1,13 @@
-From: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
-Subject: Re: nvfx
-Date: Fri, 23 Jul 2010 19:01:33 +0200
-Message-ID: <20100723190133.9e3e7320.mandin.patrice@orange.fr>
-References: <AANLkTinqWb6nC0fcFU_kWmDs4fmGTxudmuN-GSmQjFlu@mail.gmail.com>
-	<AANLkTimX_IgQ0eZvNYrVE_0lyiDv6vqQ7D7WUqyBZIlp@mail.gmail.com>
-	<20100618180509.23f24f1b.mandin.patrice@orange.fr>
-	<AANLkTilelUM7VKRRLs9Ep4Ewn00mJvKoKqeWkyZt-0h2@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 18881] Nouveau doesn't work with nvidia 8200
+Date: Fri, 23 Jul 2010 16:16:35 -0700 (PDT)
+Message-ID: <20100723231635.130F71300BB@annarchy.freedesktop.org>
+References: <bug-18881-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTilelUM7VKRRLs9Ep4Ewn00mJvKoKqeWkyZt-0h2-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-18881-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,82 +17,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marek =?UTF-8?B?T2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-TGUgRnJpLCAxOCBKdW4gMjAxMCAxODo0MzoyNyArMDIwMApNYXJlayBPbMWhw6FrIDxtYXJhZW9A
-Z21haWwuY29tPiBhIMOpY3JpdDoKCj4gT24gRnJpLCBKdW4gMTgsIDIwMTAgYXQgNjowNSBQTSwg
-UGF0cmljZSBNYW5kaW4gPG1hbmRpbi5wYXRyaWNlQG9yYW5nZS5mcj53cm90ZToKPiAKPiA+IExl
-IFRodSwgMTcgSnVuIDIwMTAgMDM6MzU6MTkgKzAyMDAKPiA+IE1hcmVrIE9sxaHDoWsgPG1hcmFl
-b0BnbWFpbC5jb20+IGEgw6ljcml0Ogo+ID4KPiA+ID4gT24gRnJpLCBKdW4gMTEsIDIwMTAgYXQg
-MzozNyBQTSwgWGF2aWVyIENoYW50cnkgPAo+ID4gY2hhbnRyeS54YXZpZXJAZ21haWwuY29tPndy
-b3RlOgo+ID4gPgo+ID4gPiA+IEhpIE1hcmVrCj4gPiA+ID4KPiA+ID4gPiBUaGFua3MgYSBsb3Qg
-Zm9yIHlvdXIgcmViYXNpbmcgd29yay4KPiA+ID4gPiBIZXJlIGlzIG15IHJlcG9ydCA6Cj4gPiA+
-ID4KPiA+ID4gPiAtIGFsbCBteSBnYW1lcyB0aGF0IGJyb2tlIHdpdGggdGVtcG9yYXJpZXMgcGF0
-Y2ggKHRoZXkgd2VyZSBlaXRoZXIKPiA+ID4gPiBjb21wbGV0ZWx5IGJsYWNrIG9yIGxvdCBvZiBi
-bGFjayBzY3JlZW4gZmxhc2ggZXZlcnkgZnJhbWUpIGJlaGF2ZQo+ID4gPiA+IGJhZGx5LCBidXQg
-aW4gZGlmZmVyZW50IHdheXMgOgo+ID4gPiA+ICogZXRyYWNlciBpcyB2ZXJ5IHNsb3cgYW5kIG9m
-dGVuIGNyYXNoIGluIHR0bSBjb2RlIFsxXSAoSSB0aGluayB0aGlzCj4gPiA+ID4gaXMgYW4gb2xk
-IGJ1ZyB0aGF0IGp1c3QgcmVzdXJyZWN0ZWQsIG5vIGlkZWEgd2h5KQo+ID4gPiA+ICogZm9vYmls
-bGFyZCBpcyB2ZXJ5IHNsb3cgYW5kIHN0aWxsIGZsYXNoIGEgYml0Cj4gPiA+ID4gKiBzdHJhbmdl
-bHksIG5ldmVyYmFsbCBzZWVtcyB0byB3b3JrLCBJIGdldCBzaW1pbGFyIHJlc3VsdHMgdGhhbiB3
-aXRoCj4gPiA+ID4gb2xkIG52ZngtbmV4dC02YiBicmFuY2ggd2l0aCB0ZW1wb3JhcmllcyByZXZl
-cnRlZC4gbm8gYmxhY2sgZmxhc2gKPiA+ID4gPiB3aGlsZSBwbGF5aW5nLgo+ID4gPiA+ICogZ2xl
-c3Qgc2VnZmF1bHQgWzJdCj4gPiA+ID4KPiA+ID4gPiBJIGFsc28gY29tcGFyZWQgd2l0aCBwaWds
-aXQgdGhlIG9sZCBudmZ4IGJyYW5jaCB3aXRoIHRoZSBuZXcgbWVyZ2VkIG9uZQo+ID4gOgo+ID4g
-PiA+IDExNC8xNzQgdnMgMTEzLzE3NAo+ID4gPiA+IFRoYXQgbG9va3MgcXVpdGUgZ29vZCB3aXRo
-IDMgbmV3IHBhc3MsIGJ1dCA0IG5ldyBmYWlsIDoKPiA+ID4gPiAqIGZiby1jb3B5cGl4Cj4gPiA+
-ID4gUmV0dXJuY29kZSB3YXMgLTYKPiA+ID4gPiAqIGdsZWFuIHBibwo+ID4gPiA+Cj4gPiAuLi8u
-Li8uLi8uLi9zcmMvZ2FsbGl1bS9hdXhpbGlhcnkvdXRpbC91X2lubGluZXMuaDo3NzpwaXBlX3Jl
-ZmVyZW5jZToKPiA+ID4gPiBBc3NlcnRpb24gYHBpcGVfaXNfcmVmZXJlbmNlZChyZWZlcmVuY2Up
-XFxcJyBmYWlsZWQuCj4gPiA+ID4gKiB0ZXhDb21iaW5lNDogIEZBSUwgcmdiYTgsIGRiLCB6MjQs
-IHM4LCB3aW4rcG1hcCwgaWQgMzMKPiA+ID4gPiAqIGZwLWxvbmctYWx1Cj4gPiA+ID4KPiA+ID4K
-PiA+ID4gSGkgWGF2aWVyLAo+ID4gPgo+ID4gPiBTb3JyeSBmb3IgdGhlIGxhdGUgcmVwbHkuCj4g
-PiA+Cj4gPiA+IFRoZSBhc3NlcnRpb24gaW4gcGlwZV9yZWZlcmVuY2UgY2FuIGJlIGZpeGVkIHF1
-aXRlIGVhc2lseSBJIHRoaW5rLiBUaGVyZQo+ID4gaXMKPiA+ID4gcGlwZV8qX3JlZmVyZW5jZSBt
-aXNzaW5nIHNvbWV3aGVyZS4KPiA+ID4KPiA+ID4gQ29uY2VybmluZyBmcC1sb25nLWFsdSwgdGhl
-cmUgYXJlIG5ldyBDQVBzIGZvciBzaGFkZXIgbGltaXRzIHdoaWNoIHNob3VsZAo+ID4gYmUKPiA+
-ID4gZmlsbGVkIG91dCBidXQgSSBkb24ndCBrbm93IHdoYXQgdmFsdWVzIHRvIHB1dCB0aGVyZS4g
-SWYgdGhlIHR3byBnZXQKPiA+IGZpeGVkLAo+ID4gPiBpdCB3aWxsIGhvcGVmdWxseSBiZSBqdXN0
-IDIgbmV3IGZhaWx1cmVzIGFsb25nIHdpdGggMyB0aGF0IHBhc3MuCj4gPiA+Cj4gPiA+Cj4gPiA+
-ID4gVGhlcmUgaXMganVzdCBmcC1sb25nLWFsdSB0aGF0IGlzIGZvciBzdXJlIGEgcmVncmVzc2lv
-biBjYXVzZWQgYnkgbmV3Cj4gPiA+ID4gbWFzdGVyIGNvZGUgKHNvbWUgZ2FsbGl1bSBjaGFuZ2Vz
-KS4gSSBkb24ndCBrbm93IGFib3V0IHRoZSAzIG90aGVycy4KPiA+ID4gPgo+ID4gPiA+IEl0IG1p
-Z2h0IGJlIHdvcnRoIHRvIHJlLXRlc3QgZXZlcnl0aGluZyBvbiB5b3VyIG5ldyBicmFuY2ggd2l0
-aCB0aGlzCj4gPiA+ID4gcGF0Y2ggcmV2ZXJ0ZWQgOgo+ID4gPiA+IG52Zng6IHJld3JpdGUgcmVu
-ZGVyIHRlbXBvcmFyaWVzIGNvZGUsIGFsc28gYWZmZWN0aW5nIDJEIGFuZCByZXNvdXJjZQo+ID4g
-Y29kZQo+ID4gPiA+Cj4gPiA+Cj4gPiA+IEhlcmUgaXMgdGhlIHRyZWUgd2l0aCB0aGUgY29tbWl0
-IHJldmVydGVkOgo+ID4gPgo+ID4gPiBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9+bWFy
-ZWtvL21lc2E8aHR0cDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnLyU3RW1hcmVrby9tZXNhPm52
-ZngtbmV4dC02Yi1ub3RlbXBzCj4gPiA+Cj4gPiA+IEl0IGlzIGNvbXBpbGUtdGVzdGVkIHNvIGlm
-IGl0IGRvZXMgbm90IHdvcmssIHRoZXJlIGlzIG5vdGhpbmcgSSBjYW4gZG8KPiA+IGFib3V0Cj4g
-PiA+IGl0Lgo+ID4gPgo+ID4gPiAtTWFyZWsKPiA+Cj4gPiBJIGp1c3QgdGVzdGVkIHRoZSBuZXcg
-dHJlZSBudmZ4LW5leHQtNmItbm90ZW1wcywgSSB0aGluayB3ZSBzaG91bGQgZ28KPiA+IHNvbWUg
-Y29tbWl0cyBiZWZvcmUsIGJlY2F1c2UgTHVjYSByZW1vdmVkIHRoZSBjaGVjayBpbiBmYm8gc2V0
-dGluZwo+ID4gYmV0d2VlbiBkaWZmZXJlbmNlIGluIGJpdHMgYmV0d2VlbiBjb2xvdXIgYW5kIGRl
-cHRoL3N0ZW5jaWwgYnVmZmVyLCBhbmQKPiA+IG52MzAgaHcgZG9lcyBub3Qgc3VwcG9ydCB0aGF0
-ICh0aGV5IG11c3QgYmUgZXF1YWwpIGFuZCBkb2luZyB0aGF0Cj4gPiBzaW1wbHkgaGFuZyB0aGUg
-Z3B1Lgo+ID4KPiA+IENvbW1pdCA0Nzg3MDU5MjYzNzU1ZmI5MmIyYmIwOWFjNzE2NThkOWI0Y2M5
-MzY4ICdudmZ4OiBuZXcgMkQ6IGFkZAo+ID4gc3VwcG9ydCBmb3IgcmVuZGVyIHRlbXBvcmFyaWVz
-JyByZW1vdmVkIHRoaXMgY2hlY2sgYW5kIGZibyB0ZXN0cwo+ID4gdHJpZ2dlciB0aGUgYnVnLiBN
-YXliZSBMdWNhIHdhcyBwbGFubmluZyB0byB1c2UgdGVtcG9yYXJpZXMgdG8gYXZvaWQKPiA+IHRo
-aXMgY2hlY2ssIGJ1dCB1bmZvcnR1bmF0ZWx5IHdlIGRvIG5vdCBrbm93IGlmIGhlIGZpbmlzaGVk
-IGl0IG9yIG5vdC4KPiAKPiBJIGRvIG5vdCB3YW50IHRvIGd1ZXNzIGhlcmUuIEkgd291bGQgbGlr
-ZSB0byBoZWFyIHNvbWV0aGluZyBmcm9tIEx1Y2EgYmVmb3JlCj4gZG9pbmcgYW55dGhpbmcgZWxz
-ZSB3aXRoIGhpcyBjb2RlLgoKSXQgaGFzIGJlZW4gMyBtb250aHMgc2luY2UgbGF0ZXN0IEx1Y2En
-cyBzaWduLCBhbmQgSSdtIGFmcmFpZCBpdCB3aWxsCmJlIGEgd2hpbGUgYmVmb3JlIGl0IGNoYW5n
-ZXMgOi0oLgoKTWFyZWssIGlmIHlvdSBhcmUgc3RpbGwgaW50ZXJlc3RlZCBpbiBtZXJnaW5nIHN0
-dWZmIGZyb20gbnZmeC1uZXh0LTZiLApJIHdvdWxkIGxpa2UgdG8gcHJvcG9zZSB1cCB0byBjb21t
-aXQKOWE0YzY2YjBkMTk2M2M0ZDkwZmNjYWM0MWU3YWE0ODEwNTgzNTg1NyBpbmNsdWRlZCAoYXMg
-SSBzYWlkIGJlZm9yZSwKdGhlIGZvbGxvd2luZyBvbmVzIGJyaW5nIGJhY2sgbmFzdHkgcmVncmVz
-c2lvbiByZWdhcmRpbmcgZmJvIHN0dWZmLApoYW5naW5nIHRoZSBncHUgaGFyZCkuCgpMdWNhIGRp
-ZCBtYW55IGZpeGVzIGluIGhpcyBicmFuY2ggc28gaXQncyByZWFsbHkgYmFkIHRoZXNlIG9uZXMg
-YXJlIG5vdAptZXJnZWQgYmFjayB0byBtYXN0ZXIuIEFsc28sIEkgZG9uJ3QgZmVlbCBsaWtlIHRv
-dWNoaW5nIHRoZSBudmZ4CmJhY2tlbmQgaW4gbWFzdGVyIHRpbGwgdGhlc2UgZml4ZXMgYXJlIG1l
-cmdlZC4KCi0tIApQYXRyaWNlIE1hbmRpbgpXV1c6IGh0dHA6Ly9wbWFuZGluLmF0YXJpLm9yZy8K
-UHJvZ3JhbW1ldXIgTGludXgsIEF0YXJpClNww6ljaWFsaXTDqTogRMOpdmVsb3BwZW1lbnQsIGpl
-dXgKCiJ3aG8gd3JpdGVzIHRoZSBjb2RlLCBkZWNpZGVzIgoKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=18881
+
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|ASSIGNED                    |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-23 16:16:34 PDT ---
+No reponse from the reporter for more than a year. Closing.
+If the problem still exists on current version, please reopen with new set of
+logs.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
