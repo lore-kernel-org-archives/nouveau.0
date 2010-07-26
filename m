@@ -1,41 +1,73 @@
 From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: Re: [Nouveau] [PATCH v2] vga16fb: refuse to load in face of other
- driver controlling primary card
-Date: Sun, 25 Jul 2010 13:54:24 +0200
-Message-ID: <20100725115424.GA2837@joi.lan>
-References: <20100720191923.GA11056@joi.lan>
- <20100722172039.e935c67d.akpm@linux-foundation.org>
- <20100723131034.GA6618@joi.lan>
- <AANLkTimQZ6_+o=3pGa6hGbeFU99RMPFRmO+ndMZDHZMS@mail.gmail.com>
+Subject: Re: deadlock possiblity introduced by "drm/nouveau: use drm_mm in
+	preference to custom code doing the same thing"
+Date: Mon, 26 Jul 2010 13:59:33 +0200
+Message-ID: <20100726115933.GA2799@joi.lan>
+References: <20100710232432.GA4137@joi.lan> <1278810132.2324.6.camel@nisroch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
 Content-Disposition: inline
-In-Reply-To: <AANLkTimQZ6_+o=3pGa6hGbeFU99RMPFRmO+ndMZDHZMS@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Dave Airlie <airlied@gmail.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, nouveau@lists.freedesktop.org, linux-fbdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+In-Reply-To: <1278810132.2324.6.camel@nisroch>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Jul 25, 2010 at 06:42:48PM +1000, Dave Airlie wrote:
-> On Fri, Jul 23, 2010 at 11:10 PM, Marcin Slusarz
-> <marcin.slusarz@gmail.com> wrote:
-> > On Thu, Jul 22, 2010 at 05:20:39PM -0700, Andrew Morton wrote:
-> >> On Tue, 20 Jul 2010 21:19:23 +0200
-> >> Marcin Slusarz <marcin.slusarz@gmail.com> wrote:
-> >>
-> >> > We don't want vga16fb to mess with hardware initialized by other driver.
-> >> > Detect it and refuse to load.
-> >> > It fixes nouveau interrupt storm on some machines.
+On Sun, Jul 11, 2010 at 11:02:12AM +1000, Ben Skeggs wrote:
+> On Sun, 2010-07-11 at 01:24 +0200, Marcin Slusarz wrote:
+> > Hi
+> > 
+> > Patch "drm/nouveau: use drm_mm in preference to custom code doing the same thing"
+> > in nouveau tree introduced new deadlock possibility, for which lockdep complains loudly:
+> > 
+> > (...)
+> > 
+> Hey,
 > 
-> Can't we keep this all inside vga16fb? 
-
-That's what v1 did (*), but Andrew didn't like it.
-
-> just have it walk PCI tree
-> looking for a primary VGA card, and if it has a driver bound, just
-> refuse to bind.
+> Thanks for the report, I'll look at this more during the week.
 > 
-> Dave.
+> > Deadlock scenario looks like this:
+> > CPU1                                        CPU2
+> > nouveau code calls some drm_mm.c
+> > function which takes mm->unused_lock
+> > 
+> >                                             nouveau_channel_free disables irqs and takes dev_priv->context_switch_lock
+> >                                                             calls nv50_graph_destroy_context which
+> >                                                             (... backtrace above)
+> >                                                             calls drm_mm_put_block which tries to take mm->unused_lock (spins)
+> > nouveau interrupt raises
+> > 
+> > nouveau_irq_handler tries to take
+> > dev_priv->context_switch_lock (spins)
+> > 
+> > deadlock
+> It's important to note that the drm_mm referenced eventually by
+> nv50_graph_destroy_context is per-channel on the card, so for the
+> deadlock to happen it'd have to be multiple threads from a single
+> process, one thread creating/destroying and object on the channel while
+> another was trying to destroy the channel.
+> 
+> > 
+> > Possible solutions:
+> > - reverting "drm/nouveau: use drm_mm in preference to custom code doing the same thing"
+> > - disabling interrupts before calling drm_mm functions - unmaintainable and still
+> >   deadlockable in multicard setups (nouveau and eg radeon)
+> Agreed it's unmaintainable, but, as mentioned above, the relevant locks
+> can't be touched by radeon.
+> 
+> > - making mm->unused_lock HARDIRQ-safe (patch below) - simple but with slight overhead
+> I'll look more during the week, there's other solutions to be explored.
 
-(*) http://lkml.org/lkml/2010/7/20/244
+So, did you find other solution?
+
+Marcin
