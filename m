@@ -1,76 +1,59 @@
-From: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
-Subject: Re: nvfx
-Date: Tue, 27 Jul 2010 18:53:05 +0200
-Message-ID: <20100727185305.d39feb83.mandin.patrice@orange.fr>
-References: <AANLkTinqWb6nC0fcFU_kWmDs4fmGTxudmuN-GSmQjFlu@mail.gmail.com>
-	<AANLkTimX_IgQ0eZvNYrVE_0lyiDv6vqQ7D7WUqyBZIlp@mail.gmail.com>
-	<20100618180509.23f24f1b.mandin.patrice@orange.fr>
-	<AANLkTilelUM7VKRRLs9Ep4Ewn00mJvKoKqeWkyZt-0h2@mail.gmail.com>
-	<20100723190133.9e3e7320.mandin.patrice@orange.fr>
-	<AANLkTimf0B66ErpPHLy9cKCZ9f+4DOLpATwHxWrbjC0C@mail.gmail.com>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: Re: mmotm 2010-07-27 - nouveau lockdep issues.
+Date: Wed, 28 Jul 2010 08:03:51 +0200
+Message-ID: <20100728060334.GA2756@joi.lan>
+References: <201007272226.o6RMQRBm008735@imap1.linux-foundation.org>
+	<31845.1280295723@localhost>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTimf0B66ErpPHLy9cKCZ9f+4DOLpATwHxWrbjC0C-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <31845.1280295723@localhost>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Valdis.Kletnieks@vt.edu
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-Le Sat, 24 Jul 2010 15:34:06 +0200
-Luca Barbieri <luca-Ukmtq+NC3rhBHFWNQifrYwC/G2K4zDHf@public.gmane.org> a =E9crit:
+On Wed, Jul 28, 2010 at 01:42:03AM -0400, Valdis.Kletnieks@vt.edu wrote:
+> On Tue, 27 Jul 2010 14:56:50 PDT, akpm@linux-foundation.org said:
+> > The mm-of-the-moment snapshot 2010-07-27-14-56 has been uploaded to
+> > 
+> >    http://userweb.kernel.org/~akpm/mmotm/
+> 
+> Hit this while the X server was on its way down during a 'shutdown -r now'. Worked fine
+> in -rc5-mmotm0719. 'e16' is the Enlightenment window manager, if that matters.
+> 
+> [   93.181787] [drm:output_poll_execute] *ERROR* delayed enqueue failed 1
+> [   99.802836] [drm] nouveau 0000:01:00.0: Allocating FIFO number 4
+> [   99.808875] [drm] nouveau 0000:01:00.0: nouveau_channel_alloc: initialised FIFO 4
+> [  103.262226] [drm:output_poll_execute] *ERROR* delayed enqueue failed 1
+> [  113.341948] [drm:output_poll_execute] *ERROR* delayed enqueue failed 1
+> [  123.421836] [drm:output_poll_execute] *ERROR* delayed enqueue failed 1
+> [  123.550520] [drm] nouveau 0000:01:00.0: nouveau_channel_free: freeing fifo 4
+> [  123.551253] 
+> [  123.551253] ======================================================
+> [  123.551253] [ INFO: HARDIRQ-safe -> HARDIRQ-unsafe lock order detected ]
+> [  123.551253] 2.6.35-rc6-mmotm0727 #1
+> [  123.551253] ------------------------------------------------------
+> [  123.551253] e16/3822 [HC0[0]:SC0[0]:HE0:SE1] is trying to acquire:
+> [  123.551253]  (&(&mm->unused_lock)->rlock){+.+...}, at: [<ffffffff812a94bc>] drm_mm_put_block+0x10e/0x142
+> [  123.551253] 
+> [  123.551253] and this task is already holding:
+> [  123.551253]  (&(&dev_priv->context_switch_lock)->rlock){-.....}, at: [<ffffffff812bdbab>] nouveau_channel_free+0x10f/0x233
+> [  123.551253] which would create a new lock dependency:
+> [  123.551253]  (&(&dev_priv->context_switch_lock)->rlock){-.....} -> (&(&mm->unused_lock)->rlock){+.+...}
+> [  123.551253] 
 
-> I got busy with other things and then essentially lost interest;
-> furthermore, my nv40 is not even working right now.
-> =
+It's only theoritcal issue. If you want to quiet it down until it will be "fixed" properly, you can
+apply patch from http://lists.freedesktop.org/archives/nouveau/2010-July/005994.html
 
-> As for the code, sure, feel free to make it work and merge it :)
-> The new temporary code did indeed screw things up, and I think it also
-> had other stuff mixed in that I didn't factor out.
-> However, the old temporary code is wrong because the temporary is
-> per-surface, while it should be attached to the resource, so that
-> multiple surfaces, and direct use of the resource itself, works
-> properly.
-> =
-
-> nv40 should support having mismatching color/depth as long as both are
-> linear and not swizzled.
-> I'm not sure if that is the case on nv30 or if there the restriction
-> applies to both cases.
-> =
-
-> There are also two branches starting with "RFC" in mesa git that add
-> correct nv30 ARB_texture_rectangle and correct glsl support, which
-> require minor Gallium changes but for which IIRC I never got answers
-> back from Gallium maintainers.
-> =
-
-> There should also be code in other branches to add control flow for
-> nv40 fragment programs (and perhaps other features I don't remember
-> right now).
-
-Hello Luca,
-
-Happy to get some news from you, and a bit sad you can not continue to
-work on it.
-
-Thanks for this report. At last, we know in which state is the work you
-left.
-
--- =
-
-Patrice Mandin
-WWW: http://pmandin.atari.org/
-Programmeur Linux, Atari
-Sp=E9cialit=E9: D=E9veloppement, jeux
-
-"who writes the code, decides"
+Marcin
