@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29324] New: [NV31] Artefacts with latest git
-Date: Fri, 30 Jul 2010 13:42:18 -0700 (PDT)
-Message-ID: <bug-29324-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29324] [NV31] Artefacts with latest git
+Date: Fri, 30 Jul 2010 13:42:49 -0700 (PDT)
+Message-ID: <20100730204249.754FC1300E8@annarchy.freedesktop.org>
+References: <bug-29324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-29324-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29324
 
-           Summary: [NV31] Artefacts with latest git
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
 
-
-Created an attachment (id=37466)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37466)
-dmesg
-
-Just updated kernel module to latest git and have a really bad screen
-corruption on NV31 after kernel module is loaded.
-
-If you need a screen photo I provide it ...
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #37466|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
