@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29324] [NV31] Artefacts with latest git
-Date: Sat, 31 Jul 2010 04:22:19 -0700 (PDT)
-Message-ID: <20100731112219.B8DEC1300BF@annarchy.freedesktop.org>
+Date: Sat, 31 Jul 2010 05:59:41 -0700 (PDT)
+Message-ID: <20100731125941.5685A130116@annarchy.freedesktop.org>
 References: <bug-29324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,24 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29324
 
---- Comment #1 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-31 04:22:18 PDT ---
-I noticed this in your kernel.log:
+--- Comment #2 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-07-31 05:59:40 PDT ---
+(In reply to comment #0)
+> Created an attachment (id=37466)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37466)
+> dmesg
+> 
+> Just updated kernel module to latest git and have a really bad screen
+> corruption on NV31 after kernel module is loaded.
+> 
+> If you need a screen photo I provide it ...
 
-[    4.902810] [drm] nouveau 0000:01:00.0: GPU lockup - switching to software
-fbcon
+58bbb63720c8997e0136fe1884101e7ca40d68fd is probably the culprit. If reverting
+that commit solves the corruption, can you get me a BIOS dump [1] and a
+register dump? (after a fresh boot and before having loaded nouveau, you can
+use [2] to get one)
 
-If you have an older kernel version that works, could you try bisecting this?
+[1] http://nouveau.freedesktop.org/wiki/DumpingVideoBios
+[2] http://cgit.freedesktop.org/~currojerez/tvdump/
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
