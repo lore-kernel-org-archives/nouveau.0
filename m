@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29064] System freeze while using nouveau
-Date: Sat, 31 Jul 2010 03:33:45 -0700 (PDT)
-Message-ID: <20100731103345.D42741300DE@annarchy.freedesktop.org>
-References: <bug-29064-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29324] [NV31] Artefacts with latest git
+Date: Sat, 31 Jul 2010 04:22:19 -0700 (PDT)
+Message-ID: <20100731112219.B8DEC1300BF@annarchy.freedesktop.org>
+References: <bug-29324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29064-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29324-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29064
+https://bugs.freedesktop.org/show_bug.cgi?id=29324
 
---- Comment #2 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2010-07-31 03:33:45 PDT ---
-Created an attachment (id=37481)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37481)
-dmesg with drm.debug=0x06 on 9400M
+--- Comment #1 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-31 04:22:18 PDT ---
+I noticed this in your kernel.log:
+
+[    4.902810] [drm] nouveau 0000:01:00.0: GPU lockup - switching to software
+fbcon
+
+If you have an older kernel version that works, could you try bisecting this?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
