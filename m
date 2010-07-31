@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29324] [NV31] Artefacts with latest git
-Date: Sat, 31 Jul 2010 11:27:35 -0700 (PDT)
-Message-ID: <20100731182735.5445C1300B9@annarchy.freedesktop.org>
+Date: Sat, 31 Jul 2010 11:28:02 -0700 (PDT)
+Message-ID: <20100731182802.B2382130093@annarchy.freedesktop.org>
 References: <bug-29324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29324
 
---- Comment #3 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2010-07-31 11:27:35 PDT ---
-Created an attachment (id=37485)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37485)
-vbtracetool
+--- Comment #4 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2010-07-31 11:28:02 PDT ---
+Created an attachment (id=37486)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37486)
+tvdump
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
