@@ -1,16 +1,13 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: 2 cards in, but work only separately
-Date: Sun, 1 Aug 2010 12:30:02 +0200
-Message-ID: <20100801103002.GA2719@joi.lan>
-References: <201007312208.33260.k@11.lv>
-	<20100801114104.43f1b5e4@daedalus.pq.iki.fi>
-	<201008010859.40932.k@11.lv>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29324] [NV31] Artefacts with latest git
+Date: Sun,  1 Aug 2010 04:31:15 -0700 (PDT)
+Message-ID: <20100801113115.442AD13005E@annarchy.freedesktop.org>
+References: <bug-29324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <201008010859.40932.k-atMwuq7AWwA@public.gmane.org>
+In-Reply-To: <bug-29324-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,43 +17,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: =?utf-8?Q?K=C4=81rlis?= Repsons <k@11.lv>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBBdWcgMDEsIDIwMTAgYXQgMDg6NTk6MjhBTSArMDAwMCwgS8SBcmxpcyBSZXBzb25z
-IHdyb3RlOgo+IE9uIFN1bmRheSAwMSBBdWd1c3QgMjAxMCAwODo0MTowNCBQZWtrYSBQYWFsYW5l
-biB3cm90ZToKPiA+IE9uIFNhdCwgMzEgSnVsIDIwMTAgMjI6MDg6MjMgKzAwMDAKPiA+IAo+ID4g
-S8SBcmxpcyBSZXBzb25zIDxrQDExLmx2PiB3cm90ZToKPiA+ID4gSGkgbGlzdCwKPiA+ID4gbXkg
-dGhhbmtzIHRvIGRldmVsb3BlcnMgb2Ygbm91dmVhdSBmaXJzdDogSSB3b25kZXIgaG93IHlvdSBw
-dXQgaXQKPiA+ID4gdG9nZXRoZXIgdGhpcyBmYXIsIHdoZXJlIHRoZXJlJ3MgcXVpdGUgZW5vdWdo
-IHRvIGFwcHJlY2lhdGUhCj4gPiA+IAo+ID4gPiBUaGlzIHF1ZXN0aW9uIEkgaGF2ZTogc3RyYW5n
-ZWx5IEkgY2FuIGdldCBlYWNoIG9mIDIgY2FyZHMgdG8gd29yawo+ID4gPiBzZXBhcmF0ZWx5IGZv
-ciBhIGR1YWxzZWF0IFBDIGJ5IHRvZ2dsaW5nIG9uL29mZiBmYmNvbj1tYXA6IGtlcm5lbAo+ID4g
-PiBvcHRpb24gKGNvbXBpbGVkIHdpdGggQ09ORklHX0ZSQU1FQlVGRkVSX0NPTlNPTEVfREVURUNU
-X1BSSU1BUlkpCj4gPiA+IC0tIGJ5IGRvaW5nIHNvIEkgY2FuIGhhdmUgZWFjaCBjYXJkIGluaXRp
-YWxpemVkIGFuZCBzdGFydCBpdCdzCj4gPiA+IFhvcmcsIGFsbCB3ZWxsbCwgYnV0IGNhbid0IGhh
-dmUgYm90aCBjYXJkcyBpbml0aWFsaXplZCAoYW5kIHRodXMKPiA+ID4gdXNlZCkgLS0gd2h5Pwo+
-ID4gPiAKPiA+ID4gSW4gdmVyeSBzaG9ydCwgdGhpcyBpcyB3aGF0IG15IGRtZXNnIHNheXM6Cj4g
-PiA+IFtkcm1dIEluaXRpYWxpemVkIGRybSAxLjEuMCAyMDA2MDgxMAo+ID4gPiBub3V2ZWF1IDAw
-MDA6MDE6MDAuMDogUENJIElOVCBBIC0+IEdTSSAxNiAobGV2ZWwsIGxvdykgLT4gSVJRIDE2Cj4g
-PiA+IFtkcm1dIEluaXRpYWxpemVkIG5vdXZlYXUgMC4wLjE2IDIwMDkwNDIwIGZvciAwMDAwOjAx
-OjAwLjAgb24KPiA+ID4gbWlub3IgMCBub3V2ZWF1IDAwMDA6MDQ6MDAuMDogZW5hYmxpbmcgZGV2
-aWNlICgwMDAwIC0+IDAwMDIpCj4gPiA+IG5vdXZlYXUgMDAwMDowNDowMC4wOiBQQ0kgSU5UIEEg
-LT4gR1NJIDE2IChsZXZlbCwgbG93KSAtPiBJUlEgMTYKPiA+ID4gbm91dmVhdSAwMDAwOjA0OjAw
-LjA6IFBDSSBJTlQgQSBkaXNhYmxlZAo+ID4gPiBub3V2ZWF1OiBwcm9iZSBvZiAwMDAwOjA0OjAw
-LjAgZmFpbGVkIHdpdGggZXJyb3IgLTEyCj4gPiAKPiA+IElzIHRoaXMgcmVhbGx5IGEgY29udGlu
-dW91cyBzZWN0aW9uIG9mIHRoZSBrZXJuZWwgbG9nLCBubwo+ID4gbGluZXMgcmVtb3ZlZCBmcm9t
-IGJldHdlZW4/Cj4gTm8sIEkgcmVtb3ZlZCEgU2VlIGFsbCBpbiBhdHRhY2ghCj4gCj4gPiBXaGF0
-IHZlcnNpb25zIG9mIHRoZSBOb3V2ZWF1IGNvbXBvbmVudHMgYW5kIHRoZSBrZXJuZWwgeW91IGhh
-dmU/Cj4gPiBXaGF0IGNhcmRzIGRvIHlvdSBoYXZlPwo+IExpbnV4IDIuNi4zNC1nZW50b28tcjIg
-KG5vIERSTSBvciBub3V2ZWF1IGRyaXZlciBpbik7Cj4gCj4gbm91dmVhdS1kcm0gMjAxMDA1MjAg
-ZnJvbSBwb3J0YWdlIChnaXZlcyBtZSBjaDcwMDYua28gZHJtX2ttc19oZWxwZXIua28gZHJtLmtv
-IAo+IG5vdXZlYXUua28gdHRtLmtvKTsKPiAKPiBHZUZvcmNlIDczMDBHUywgR2VGb3JjZSA2MjAw
-TEUhCgpUaGVzZSBhcmUgTlY0MCdzIChzZWUgaHR0cDovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3Jn
-L3dpa2kvQ29kZU5hbWVzKSBhbmQgbXVsdGljYXJkCihodHRwOi8vbm91dmVhdS5mcmVlZGVza3Rv
-cC5vcmcvd2lraS9GZWF0dXJlTWF0cml4KSBvbiBOVjQwJ3Mgd29ya3Mgc2luY2UgMjAxMC4wNS4y
-NS4KSnVzdCB1cGdyYWRlLgoKTWFyY2luCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=29324
+
+Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #37485|0                           |1
+        is obsolete|                            |
+
+--- Comment #5 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2010-08-01 04:31:14 PDT ---
+Created an attachment (id=37497)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37497)
+vbtracetool
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
