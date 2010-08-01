@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29324] [NV31] Artefacts with latest git
-Date: Sun,  1 Aug 2010 04:31:15 -0700 (PDT)
-Message-ID: <20100801113115.442AD13005E@annarchy.freedesktop.org>
+Date: Sun,  1 Aug 2010 04:32:42 -0700 (PDT)
+Message-ID: <20100801113242.0FF5D1300E7@annarchy.freedesktop.org>
 References: <bug-29324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,13 @@ Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #37485|0                           |1
+  Attachment #37486|0                           |1
         is obsolete|                            |
 
---- Comment #5 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2010-08-01 04:31:14 PDT ---
-Created an attachment (id=37497)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37497)
-vbtracetool
+--- Comment #6 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2010-08-01 04:32:41 PDT ---
+Created an attachment (id=37498)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37498)
+tvdump
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
