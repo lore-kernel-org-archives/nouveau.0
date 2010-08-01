@@ -1,10 +1,14 @@
-From: =?utf-8?q?K=C4=81rlis_Repsons?= <k@11.lv>
-Subject: 2 cards in, but work only separately
-Date: Sat, 31 Jul 2010 22:08:23 +0000
-Message-ID: <201007312208.33260.k@11.lv>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
+ spontaneously
+Date: Sat, 31 Jul 2010 19:51:59 -0700 (PDT)
+Message-ID: <20100801025159.D0EC61300FD@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1214541161=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,72 +21,65 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1214541161==
-Content-Type: multipart/signed;
-  boundary="nextPart1791357.E41NTGnArr";
-  protocol="application/pgp-signature";
-  micalg=pgp-sha1
-Content-Transfer-Encoding: 7bit
+https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
---nextPart1791357.E41NTGnArr
-Content-Type: text/plain;
-  charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Hi list,
-my thanks to developers of nouveau first: I wonder how you put it together =
-this=20
-far, where there's quite enough to appreciate!
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-This question I have: strangely I can get each of 2 cards to work separatel=
-y=20
-for a dualseat PC by toggling on/off fbcon=3Dmap: kernel option (compiled w=
-ith=20
-CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY) -- by doing so I can have each c=
-ard=20
-initialized and start it's Xorg, all welll, but can't have both cards=20
-initialized (and thus used) -- why?
+--- Comment #28 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-07-31 19:51:59 PDT ---
+Adding a me too.  
 
-In very short, this is what my dmesg says:
-[drm] Initialized drm 1.1.0 20060810
-nouveau 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
-[drm] Initialized nouveau 0.0.16 20090420 for 0000:01:00.0 on minor 0
-nouveau 0000:04:00.0: enabling device (0000 -> 0002)
-nouveau 0000:04:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
-nouveau 0000:04:00.0: PCI INT A disabled
-nouveau: probe of 0000:04:00.0 failed with error -12
+NVA8, GT218
 
-0000:01 is address of one card, 0000:04 of the other. What happens is that =
-one=20
-of cards will fail to be initialized (in one case 01, other time 04). So is=
-=20
-that supposed to be that way currently or I missed to pass some parameters =
-or=20
-bug, or..? What more should I post here if anyone interested in this?
+[drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch 2
 
---nextPart1791357.E41NTGnArr
-Content-Type: application/pgp-signature; name=signature.asc 
-Content-Description: This is a digitally signed message part.
+Fedora 13. Seems to happen reproducably after playing freeciv for 45 - 60
+minutes.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.16 (GNU/Linux)
+[  3407.261] [mi] EQ overflowing. The server is probably stuck in an infinite
+loop.
+[  3407.262] 
+Backtrace:
+[  3407.272] 0: /usr/bin/Xorg (xorg_backtrace+0x3c) [0x80ad11c]
+[  3407.272] 1: /usr/bin/Xorg (mieqEnqueue+0x1b7) [0x809b8f7]
+[  3407.272] 2: /usr/bin/Xorg (xf86PostMotionEventP+0xd2) [0x80c8232]
+[  3407.272] 3: /usr/lib/xorg/modules/input/evdev_drv.so (0xe7c000+0x30a2)
+[0xe7f0a2]
+[  3407.272] 4: /usr/lib/xorg/modules/input/evdev_drv.so (0xe7c000+0x3349)
+[0xe7f349]
+[  3407.272] 5: /usr/bin/Xorg (0x8047000+0x76c30) [0x80bdc30]
+[  3407.272] 6: /usr/bin/Xorg (0x8047000+0x12db64) [0x8174b64]
+[  3407.272] 7: (vdso) (__kernel_sigreturn+0x0) [0xdba400]
+[  3407.272] 8: (vdso) (__kernel_vsyscall+0x2) [0xdba416]
+[  3407.272] 9: /lib/libc.so.6 (ioctl+0x19) [0x74c0b9]
+[  3407.272] 10: /usr/lib/libdrm.so.2 (drmIoctl+0x2e) [0x7fd6a7e]
+[  3407.272] 11: /usr/lib/libdrm.so.2 (drmCommandWrite+0x3c) [0x7fd6e0c]
+[  3407.273] 12: /usr/lib/libdrm_nouveau.so.1 (0xfb5000+0x2a9a) [0xfb7a9a]
+[  3407.273] 13: /usr/lib/libdrm_nouveau.so.1 (nouveau_bo_map_range+0xf1)
+[0xfb7c91]
+[  3407.273] 14: /usr/lib/libdrm_nouveau.so.1 (nouveau_bo_map+0x34) [0xfb7d64]
+[  3407.273] 15: /usr/lib/libdrm_nouveau.so.1 (0xfb5000+0x1c2e) [0xfb6c2e]
+[  3407.273] 16: /usr/lib/libdrm_nouveau.so.1 (nouveau_pushbuf_flush+0x1ca)
+[0xfb700a]
+[  3407.273] 17: /usr/lib/xorg/modules/drivers/nouveau_drv.so
+(0x131000+0x1b76f) [0x14c76f]
+[  3407.273] 18: /usr/lib/xorg/modules/libexa.so (0x163000+0x8ac3) [0x16bac3]
+[  3407.273] 19: /usr/lib/xorg/modules/libexa.so (0x163000+0x9673) [0x16c673]
+[  3407.273] 20: /usr/bin/Xorg (0x8047000+0xe6f26) [0x812df26]
+[  3407.273] 21: /usr/bin/Xorg (0x8047000+0x17967d) [0x81c067d]
+[  3407.273] 22: /usr/bin/Xorg (miCompositeRects+0x7f) [0x81c079f]
+[  3407.273] 23: /usr/bin/Xorg (CompositeRects+0x74) [0x811da34]
+[  3407.273] 24: /usr/bin/Xorg (0x8047000+0xe036d) [0x812736d]
+[  3407.273] 25: /usr/bin/Xorg (0x8047000+0xdc494) [0x8123494]
+[  3407.273] 26: /usr/bin/Xorg (0x8047000+0x50a37) [0x8097a37]
+[  3407.273] 27: /usr/bin/Xorg (0x8047000+0x1b595) [0x8062595]
+[  3407.273] 28: /lib/libc.so.6 (__libc_start_main+0xe6) [0x68dcc6]
+[  3407.273] 29: /usr/bin/Xorg (0x8047000+0x1b181) [0x8062181]
 
-iEYEABECAAYFAkxUnuEACgkQHuSu329e3GHduQCg536Y1UuULU0nATmtBFD1AtU7
-oJ4AoKq1oDzUfNHnFpz915jFtZ2q02Ky
-=yZ4e
------END PGP SIGNATURE-----
-
---nextPart1791357.E41NTGnArr--
-
---===============1214541161==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1214541161==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
