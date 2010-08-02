@@ -1,119 +1,136 @@
-From: tip-bot for Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: [tip:perf/core] x86,mmiotrace: Add support for tracing STOS instruction
-Date: Mon, 2 Aug 2010 07:58:22 GMT
-Message-ID: <tip-cc05152ab72d7a65e6ea97d286af4f878c8f7371@git.kernel.org>
-References: <20100731205101.GA5860@joi.lan>
-Reply-To: mingo@redhat.com, hpa@zytor.com, linux-kernel@vger.kernel.org,
-	  marcin.slusarz@gmail.com, fweisbec@gmail.com,
-	  nouveau@lists.freedesktop.org, rostedt@goodmis.org, pq@iki.fi,
-	  tglx@linutronix.de, mingo@elte.hu
+From: =?utf-8?q?K=C4=81rlis_Repsons?= <k@11.lv>
+Subject: Re: 2 cards in, but work only separately
+Date: Mon, 2 Aug 2010 09:19:33 +0000
+Message-ID: <201008020919.46649.k@11.lv>
+References: <201007312208.33260.k@11.lv> <201008010859.40932.k@11.lv>
+	<20100801103002.GA2719@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20100731205101.GA5860@joi.lan>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: linux-tip-commits@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, hpa@zytor.com, mingo@redhat.com, marcin.slusarz@gmail.com, fweisbec@gmail.com, nouveau@lists.freedesktop.org, rostedt@goodmis.org, pq@iki.fi, tglx@linutronix.de, mingo@elte.hu
+Content-Type: multipart/mixed; boundary="===============2047257635=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20100801103002.GA2719-OI9uyE9O0yo@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Commit-ID:  cc05152ab72d7a65e6ea97d286af4f878c8f7371
-Gitweb:     http://git.kernel.org/tip/cc05152ab72d7a65e6ea97d286af4f878c8f7371
-Author:     Marcin Slusarz <marcin.slusarz@gmail.com>
-AuthorDate: Sat, 31 Jul 2010 22:51:01 +0200
-Committer:  Frederic Weisbecker <fweisbec@gmail.com>
-CommitDate: Mon, 2 Aug 2010 01:32:01 +0200
+--===============2047257635==
+Content-Type: multipart/signed;
+  boundary="nextPart3019503.YEhrTYXvLU";
+  protocol="application/pgp-signature";
+  micalg=pgp-sha1
+Content-Transfer-Encoding: 7bit
 
-x86,mmiotrace: Add support for tracing STOS instruction
+--nextPart3019503.YEhrTYXvLU
+Content-Type: Text/Plain;
+  charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support for stos access tracing with mmiotrace.
+On Sunday 01 August 2010 10:30:02 Marcin Slusarz wrote:
+> On Sun, Aug 01, 2010 at 08:59:28AM +0000, K=C4=81rlis Repsons wrote:
+> > On Sunday 01 August 2010 08:41:04 Pekka Paalanen wrote:
+> > > On Sat, 31 Jul 2010 22:08:23 +0000
+> > >=20
+> > > K=C4=81rlis Repsons <k@11.lv> wrote:
+> > > > Hi list,
+> > > > my thanks to developers of nouveau first: I wonder how you put it
+> > > > together this far, where there's quite enough to appreciate!
+> > > >=20
+> > > > This question I have: strangely I can get each of 2 cards to work
+> > > > separately for a dualseat PC by toggling on/off fbcon=3Dmap: kernel
+> > > > option (compiled with CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY)
+> > > > -- by doing so I can have each card initialized and start it's
+> > > > Xorg, all welll, but can't have both cards initialized (and thus
+> > > > used) -- why?
+> > > >=20
+> > > > In very short, this is what my dmesg says:
+> > > > [drm] Initialized drm 1.1.0 20060810
+> > > > nouveau 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
+> > > > [drm] Initialized nouveau 0.0.16 20090420 for 0000:01:00.0 on
+> > > > minor 0 nouveau 0000:04:00.0: enabling device (0000 -> 0002)
+> > > > nouveau 0000:04:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
+> > > > nouveau 0000:04:00.0: PCI INT A disabled
+> > > > nouveau: probe of 0000:04:00.0 failed with error -12
+> > >=20
+> > > Is this really a continuous section of the kernel log, no
+> > > lines removed from between?
+> >=20
+> > No, I removed! See all in attach!
+> >=20
+> > > What versions of the Nouveau components and the kernel you have?
+> > > What cards do you have?
+> >=20
+> > Linux 2.6.34-gentoo-r2 (no DRM or nouveau driver in);
+> >=20
+> > nouveau-drm 20100520 from portage (gives me ch7006.ko drm_kms_helper.ko
+> > drm.ko nouveau.ko ttm.ko);
+> >=20
+> > GeForce 7300GS, GeForce 6200LE!
+>=20
+> These are NV40's (see http://nouveau.freedesktop.org/wiki/CodeNames) and
+> multicard (http://nouveau.freedesktop.org/wiki/FeatureMatrix) on NV40's
+> works since 2010.05.25. Just upgrade.
+>=20
+> Marcin
 
-Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
-Acked-by: Pekka Paalanen <pq@iki.fi>
-Cc: Nouveau <nouveau@lists.freedesktop.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: H. Peter Anvin <hpa@zytor.com>
-Cc: Ingo Molnar <mingo@elte.hu>
-Cc: Steven Rostedt <rostedt@goodmis.org>
-LKML-Reference: <20100731205101.GA5860@joi.lan>
-Signed-off-by: Frederic Weisbecker <fweisbec@gmail.com>
----
- arch/x86/mm/pf_in.c |   30 +++++++++++++++++-------------
- 1 files changed, 17 insertions(+), 13 deletions(-)
+So I'm back with updated system:
+$ uname gives me 2.6.35-rc3, where Linux 2.6.35-rc6 (object=20
+b37fa16e78d6f9790462b3181602a26b5af36260) is used as base for nouveau-maste=
+r=20
+with HEAD 439a21f25f60221e6d9032cb8ad3bb1aafee44ea, nouveau kernel modules=
+=20
+compiled in;
+libdrm 2.4.21-r1 from gentoo x11 overlay;
+xf86-video-nouveau 0.0.16_pre20100615;
+x11-base/xorg-server-1.8.99.905 from overlay too.
 
-diff --git a/arch/x86/mm/pf_in.c b/arch/x86/mm/pf_in.c
-index 308e325..38e6d17 100644
---- a/arch/x86/mm/pf_in.c
-+++ b/arch/x86/mm/pf_in.c
-@@ -40,16 +40,16 @@ static unsigned char prefix_codes[] = {
- static unsigned int reg_rop[] = {
- 	0x8A, 0x8B, 0xB60F, 0xB70F, 0xBE0F, 0xBF0F
- };
--static unsigned int reg_wop[] = { 0x88, 0x89 };
-+static unsigned int reg_wop[] = { 0x88, 0x89, 0xAA, 0xAB };
- static unsigned int imm_wop[] = { 0xC6, 0xC7 };
- /* IA32 Manual 3, 3-432*/
--static unsigned int rw8[] = { 0x88, 0x8A, 0xC6 };
-+static unsigned int rw8[] = { 0x88, 0x8A, 0xC6, 0xAA };
- static unsigned int rw32[] = {
--	0x89, 0x8B, 0xC7, 0xB60F, 0xB70F, 0xBE0F, 0xBF0F
-+	0x89, 0x8B, 0xC7, 0xB60F, 0xB70F, 0xBE0F, 0xBF0F, 0xAB
- };
--static unsigned int mw8[] = { 0x88, 0x8A, 0xC6, 0xB60F, 0xBE0F };
-+static unsigned int mw8[] = { 0x88, 0x8A, 0xC6, 0xB60F, 0xBE0F, 0xAA };
- static unsigned int mw16[] = { 0xB70F, 0xBF0F };
--static unsigned int mw32[] = { 0x89, 0x8B, 0xC7 };
-+static unsigned int mw32[] = { 0x89, 0x8B, 0xC7, 0xAB };
- static unsigned int mw64[] = {};
- #else /* not __i386__ */
- static unsigned char prefix_codes[] = {
-@@ -63,20 +63,20 @@ static unsigned char prefix_codes[] = {
- static unsigned int reg_rop[] = {
- 	0x8A, 0x8B, 0xB60F, 0xB70F, 0xBE0F, 0xBF0F
- };
--static unsigned int reg_wop[] = { 0x88, 0x89 };
-+static unsigned int reg_wop[] = { 0x88, 0x89, 0xAA, 0xAB };
- static unsigned int imm_wop[] = { 0xC6, 0xC7 };
--static unsigned int rw8[] = { 0xC6, 0x88, 0x8A };
-+static unsigned int rw8[] = { 0xC6, 0x88, 0x8A, 0xAA };
- static unsigned int rw32[] = {
--	0xC7, 0x89, 0x8B, 0xB60F, 0xB70F, 0xBE0F, 0xBF0F
-+	0xC7, 0x89, 0x8B, 0xB60F, 0xB70F, 0xBE0F, 0xBF0F, 0xAB
- };
- /* 8 bit only */
--static unsigned int mw8[] = { 0xC6, 0x88, 0x8A, 0xB60F, 0xBE0F };
-+static unsigned int mw8[] = { 0xC6, 0x88, 0x8A, 0xB60F, 0xBE0F, 0xAA };
- /* 16 bit only */
- static unsigned int mw16[] = { 0xB70F, 0xBF0F };
- /* 16 or 32 bit */
- static unsigned int mw32[] = { 0xC7 };
- /* 16, 32 or 64 bit */
--static unsigned int mw64[] = { 0x89, 0x8B };
-+static unsigned int mw64[] = { 0x89, 0x8B, 0xAB };
- #endif /* not __i386__ */
- 
- struct prefix_bits {
-@@ -410,7 +410,6 @@ static unsigned long *get_reg_w32(int no, struct pt_regs *regs)
- unsigned long get_ins_reg_val(unsigned long ins_addr, struct pt_regs *regs)
- {
- 	unsigned int opcode;
--	unsigned char mod_rm;
- 	int reg;
- 	unsigned char *p;
- 	struct prefix_bits prf;
-@@ -437,8 +436,13 @@ unsigned long get_ins_reg_val(unsigned long ins_addr, struct pt_regs *regs)
- 	goto err;
- 
- do_work:
--	mod_rm = *p;
--	reg = ((mod_rm >> 3) & 0x7) | (prf.rexr << 3);
-+	/* for STOS, source register is fixed */
-+	if (opcode == 0xAA || opcode == 0xAB) {
-+		reg = arg_AX;
-+	} else {
-+		unsigned char mod_rm = *p;
-+		reg = ((mod_rm >> 3) & 0x7) | (prf.rexr << 3);
-+	}
- 	switch (get_ins_reg_width(ins_addr)) {
- 	case 1:
- 		return *get_reg_w8(reg, prf.rex, regs);
+Yes, that problem with cards initialization is gone!
+
+But now I'm at the "next level of trouble":=20
+1. when two Xservers are running, after some minutes video output of the=20
+primary card ceases (logging out restarts X and then it's back..), while th=
+e=20
+second output is still ok;
+2. after hibernation/resume the same problematic video output is showing me=
+=20
+some vt with my X11 mouse cursor and gpm's one in the same time, all input =
+is=20
+directed to X11, but no useful video output for primary card, while second=
+=20
+output is ok (again X restart helps).
+
+What would you suggest me now?
+
+--nextPart3019503.YEhrTYXvLU
+Content-Type: application/pgp-signature; name=signature.asc 
+Content-Description: This is a digitally signed message part.
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+iEYEABECAAYFAkxWjbIACgkQHuSu329e3GEo/wCg1WyzpiAPpBSG5RCb5OeB21yi
+zvEAn3gHjvKEXDLSwy5EnKn6VXKIFUgk
+=4Agi
+-----END PGP SIGNATURE-----
+
+--nextPart3019503.YEhrTYXvLU--
+
+--===============2047257635==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2047257635==--
