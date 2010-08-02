@@ -1,15 +1,30 @@
-From: Frederic Weisbecker <fweisbec@gmail.com>
-Subject: [PATCH 12/12] x86,mmiotrace: Add support for tracing STOS instruction
-Date: Mon,  2 Aug 2010 02:13:13 +0200
-Message-ID: <1280707993-6599-13-git-send-regression-fweisbec@gmail.com>
-References: <1280707993-6599-1-git-send-regression-fweisbec@gmail.com>
+From: tip-bot for Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: [tip:perf/core] x86,mmiotrace: Add support for tracing STOS instruction
+Date: Mon, 2 Aug 2010 07:58:22 GMT
+Message-ID: <tip-cc05152ab72d7a65e6ea97d286af4f878c8f7371@git.kernel.org>
+References: <20100731205101.GA5860@joi.lan>
+Reply-To: mingo@redhat.com, hpa@zytor.com, linux-kernel@vger.kernel.org,
+	  marcin.slusarz@gmail.com, fweisbec@gmail.com,
+	  nouveau@lists.freedesktop.org, rostedt@goodmis.org, pq@iki.fi,
+	  tglx@linutronix.de, mingo@elte.hu
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1280707993-6599-1-git-send-regression-fweisbec@gmail.com>
+In-Reply-To: <20100731205101.GA5860@joi.lan>
+Content-Disposition: inline
 Sender: linux-kernel-owner@vger.kernel.org
-Cc: LKML <linux-kernel@vger.kernel.org>, Marcin Slusarz <marcin.slusarz@gmail.com>, Nouveau <nouveau@lists.freedesktop.org>, Thomas Gleixner <tglx@linutronix.de>, "H. Peter Anvin" <hpa@zytor.com>, Ingo Molnar <mingo@elte.hu>, Steven Rostedt <rostedt@goodmis.org>, Frederic Weisbecker <fweisbec@gmail.com>
+To: linux-tip-commits@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, hpa@zytor.com, mingo@redhat.com, marcin.slusarz@gmail.com, fweisbec@gmail.com, nouveau@lists.freedesktop.org, rostedt@goodmis.org, pq@iki.fi, tglx@linutronix.de, mingo@elte.hu
 List-Id: nouveau.vger.kernel.org
 
-From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Commit-ID:  cc05152ab72d7a65e6ea97d286af4f878c8f7371
+Gitweb:     http://git.kernel.org/tip/cc05152ab72d7a65e6ea97d286af4f878c8f7371
+Author:     Marcin Slusarz <marcin.slusarz@gmail.com>
+AuthorDate: Sat, 31 Jul 2010 22:51:01 +0200
+Committer:  Frederic Weisbecker <fweisbec@gmail.com>
+CommitDate: Mon, 2 Aug 2010 01:32:01 +0200
+
+x86,mmiotrace: Add support for tracing STOS instruction
 
 Add support for stos access tracing with mmiotrace.
 
@@ -102,5 +117,3 @@ index 308e325..38e6d17 100644
  	switch (get_ins_reg_width(ins_addr)) {
  	case 1:
  		return *get_reg_w8(reg, prf.rex, regs);
--- 
-1.6.2.3
