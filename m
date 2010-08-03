@@ -1,9 +1,10 @@
-From: yaiba.kurogane-khu2bkKidpXVItvQsEIGlw@public.gmane.org
-Subject: [nouveau-drm] failed to set mode on crtc
-Date: Tue, 03 Aug 2010 00:19:15 +0200
-Message-ID: <4C574463.3080201@interia.pl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29386] New: 2D performance drops drastically when
+ enabling a 2nd monitor
+Date: Tue,  3 Aug 2010 10:37:00 -0700 (PDT)
+Message-ID: <bug-29386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -18,79 +19,89 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-  Hi. I have a problem with current kernel 2.6.35 and nouveau module 
-compiled from git (today).From xorg.0.log I got information that no 
-output was found.And here is some nasty kernel logs:
+https://bugs.freedesktop.org/show_bug.cgi?id=29386
 
-...
-Aug  2 21:53:02 zilog kernel: Linux agpgart interface v0.103
-Aug  2 21:53:02 zilog kernel: [drm] Initialized drm 1.1.0 20060810
-Aug  2 21:53:02 zilog kernel: nouveau 0000:01:00.0: PCI INT A -> GSI 16 
-(level, low) -> IRQ 16
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Detected an 
-NV10 generation card (0x017100a3)
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Attempting to 
-load BIOS image from PRAMIN
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: ... appears to 
-be valid
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: BMP BIOS found
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: BMP version 5.20
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Bios version 
-04.17.00.18
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Found Display 
-Configuration Block version 1.4
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: No useful 
-information in BIOS output table; adding all possible outputs
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Loading NV17 
-power sequencing microcode
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Parsing VBIOS 
-init table 0 at offset 0xC4D2
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Parsing VBIOS 
-init table 1 at offset 0xC77E
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Parsing VBIOS 
-init table 2 at offset 0xC5BC
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Parsing VBIOS 
-init table 3 at offset 0xCC81
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Parsing VBIOS 
-init table 4 at offset 0xC719
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Detected 64MiB 
-VRAM
-Aug  2 21:53:02 zilog kernel: [TTM] Zone  kernel: Available graphics 
-memory: 320512 kiB.
-Aug  2 21:53:02 zilog kernel: [TTM] Initializing pool allocator.
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: 64 MiB GART 
-(aperture)
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Saving VGA fonts
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Allocating 
-FIFO number 0
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: 
-nouveau_channel_alloc: initialised FIFO 0
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Setting dpms 
-mode 3 on vga encoder (output 0)
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: Setting dpms 
-mode 3 on tmds encoder (output 1)
-Aug  2 21:53:02 zilog kernel: [drm] nouveau 0000:01:00.0: allocated 
-1280x1024 fb: 0x48000, bo e6e43c00
-Aug  2 21:53:02 zilog kernel: [drm:drm_crtc_helper_set_config] *ERROR* 
-failed to set mode on crtc e72b1000
-Aug  2 21:53:02 zilog kernel: fbcon_init: detected unhandled fb_set_par 
-error, error code -22
-Aug  2 21:53:02 zilog kernel: [drm:drm_crtc_helper_set_config] *ERROR* 
-failed to set mode on crtc e72b1000
-Aug  2 21:53:02 zilog kernel: Console: switching to colour frame buffer 
-device 160x64
-Aug  2 21:53:02 zilog kernel: [drm:drm_crtc_helper_set_config] *ERROR* 
-failed to set mode on crtc e72b1000
-Aug  2 21:53:02 zilog kernel: fb0: nouveaufb frame buffer device
-Aug  2 21:53:02 zilog kernel: drm: registered panic notifier
-Aug  2 21:53:02 zilog kernel: Slow work thread pool: Starting up
-Aug  2 21:53:02 zilog kernel: Slow work thread pool: Ready
-Aug  2 21:53:02 zilog kernel: [drm] Initialized nouveau 0.0.16 20090420 
-for 0000:01:00.0 on minor 0
-...
+           Summary: 2D performance drops drastically when enabling a 2nd
+                    monitor
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: malsaqer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-What is going on?
 
-----------------------------------------------------------------------
-Rozpocznij z nami zabawe ... czekamy na Ciebie w saloonie.
-Sprawdz >> http://linkint.pl/f27ba
+Created an attachment (id=37547)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37547)
+Xorg.0.log
+
+I have two 1280x1024 identical monitor and nv18 MX 440 older nvidia card. The
+card has one VGA-1 and one DVI-I outputs. The operating system is Fedora 13 and
+xorg-x11-server-Xorg-1.8.2-2.fc13.i686
+xorg-x11-drv-nouveau-0.0.16-7.20100423git13c1043.fc13.i686
+___________________________
+$ lspci -vnn | grep nVidia
+VGA compatible controller [0300]: nVidia Corporation NV18 [GeForce4 MX 440 AGP
+8x] [10de:0181] (rev a2) (prog-if 00 [VGA controller])
+___________________________
+$ xrandr -q
+Screen 0: minimum 320 x 200, current 1280 x 1024, maximum 4096 x 4096
+VGA-1 connected (normal left inverted right x axis y axis)
+   1280x1024      60.0 +   75.0  
+   1280x960       60.0  
+   1152x864       75.0  
+   1024x768       85.0     75.1     70.1     60.0  
+   832x624        74.6  
+   800x600        85.1     72.2     75.0     60.3     56.2  
+   640x480        85.0     72.8     75.0     66.7     60.0  
+   720x400        70.1  
+DVI-I-1 connected 1280x1024+0+0 (normal left inverted right x axis y axis)
+376mm x 301mm
+   1280x1024      60.0*+   75.0  
+   1280x960       60.0  
+   1152x864       75.0  
+   1024x768       85.0     75.1     70.1     60.0  
+   832x624        74.6  
+   800x600        85.1     72.2     75.0     60.3     56.2  
+   640x480        85.0     72.8     75.0     66.7     60.0  
+   720x400        70.1  
+TV-1 disconnected (normal left inverted right x axis y axis)
+_____________________________________________________________
+
+If I enable the VGA-1 at auto resolution, the 2D performance drops so bad that
+when I raise a window, I see it gets painted on the screen for a couple of
+seconds. browser scrolling is so slow and all gui apps as well. Desktop effects
+are disabled.
+The commands I use are:
+____________________________________________________
+$ xrandr --screen 0 --output VGA-1 --auto
+$ xrandr --screen 0 --output VGA-1 --left-of DVI-I-1
+____________________________________________________
+
+Direct rendering is enabled according to glxinfo
+_______________________________________________
+$ glxinfo | grep -i render
+direct rendering: Yes
+OpenGL renderer string: Mesa DRI nv18 20091015
+_______________________________________________
+
+If I clone the monitors, however, performance is not dropped. I also tried
+lowering the resolutions of the monitors until performance did not drop when I
+reached the 1024x768 resolution for each screen.
+
+So it is probably the buffer size needed to accommodate the two outputs in one
+big screen of size.
+
+I know this is an older card, but I also know it can handle two screens because
+I have used it with FC12 and under with nVidia drivers with no performance
+problems.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
