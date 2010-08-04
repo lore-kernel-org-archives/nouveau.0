@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29386] 2D performance drops drastically when
  enabling a 2nd monitor
-Date: Wed,  4 Aug 2010 12:25:23 -0700 (PDT)
-Message-ID: <20100804192523.993F01300B0@annarchy.freedesktop.org>
+Date: Wed,  4 Aug 2010 13:32:33 -0700 (PDT)
+Message-ID: <20100804203233.B45F51300C8@annarchy.freedesktop.org>
 References: <bug-29386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29386
 
---- Comment #4 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-04 12:25:23 PDT ---
-Created an attachment (id=37576)
- View: https://bugs.freedesktop.org/attachment.cgi?id=37576
- Review: https://bugs.freedesktop.org/review?bug=29386&attachment=37576
-
-nv10_pixmap_limits.patch
-
-(In reply to comment #3)
-> Thank you for the quick reply. Do you whether nouveau is working to impelement
-> a work around like nvidia does or is it not of the interest due to that fact it
-> is an aging hardware?
-
-The attached patch may help, it bumps the 2D engine addressing limits to
-4096x4096. If you still find it too slow you're probably hitting Composite
-fallbacks because of the texture dimension limits Younes mentioned.
+--- Comment #5 from Mohamad <malsaqer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-04 13:32:33 PDT ---
+Thank you man. It worked like a charm. I was really about to buy another AGP
+card, but no need any more. I also get the same glxgears fps as with only one
+monitor so I guess no draw backs.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
