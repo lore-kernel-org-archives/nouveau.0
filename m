@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29171] Garbled console on Macbook 13" (6,
- 1 9400M]) when using EFI
-Date: Wed,  4 Aug 2010 13:41:50 -0700 (PDT)
-Message-ID: <20100804204150.0CEBD1300E7@annarchy.freedesktop.org>
-References: <bug-29171-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
+ spontaneously
+Date: Wed,  4 Aug 2010 14:04:37 -0700 (PDT)
+Message-ID: <20100804210437.9D9FF1300A6@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29171
-
-Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org
-
---- Comment #19 from Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org> 2010-08-04 13:41:49 PDT ---
-The patch also fixes it for me on a MacBookAir2,1 w/9400M, booting through EFI.
- Thanks! :) I see hangs every now and again, but haven't managed to grab a log
-out of them yet.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjY5ODAKCi0tLSBD
+b21tZW50ICMyOSBmcm9tIE1hcmNpbiBLb8WbY2llbG5pY2tpIDxrb3JpYWtpbkAweDA0Lm5ldD4g
+MjAxMC0wOC0wNCAxNDowNDozNiBQRFQgLS0tCkNhbiB3ZSBwbGVhc2Ugc3RvcCB3aXRoIHRoZSAi
+bWUgdG9vInMgYW5kIHVzZWxlc3MgYmFja3RyYWNlcyBhbHJlYWR5PyBXZQphbHJlYWR5IGtub3cg
+dGhlIGJ1ZyBhZmZlY3RzIGFueW9uZSB3aXRoIE5WQTMrIGNhcmRzIGFuZCB0aGUgYmFja3RyYWNl
+cyBvbmx5CnNob3cgdGhlIGZhbGxvdXQgb2YgdGhlIGZhbGxvdXQgb2YgdGhlIGZhbGxvdXQgb2Yg
+dGhlIG9yaWdpbmFsIHByb2JsZW0uLi4KCkFsc286IGlmIHlvdSBnZXQgYSBETUFfUFVTSEVSLCB0
+aGF0J3MgYW5vdGhlciBidWcuIFRoaXMgYnVnIGhhcHBlbnMgd2l0aCB0b3RhbApzaWxlbmNlIGZy
+b20gdGhlIGtlcm5lbCAtIHRoZSBjYXJkIGp1c3QgaGFuZ3Mgd2l0aG91dCB0ZWxsaW5nIHVzIHdo
+eS4KCk5vdywgYSBzdGF0dXMgdXBkYXRlLiBTbyBmYXIsIEkgUkVkIHRoZSBpbnN0cnVjdGlvbiBz
+ZXQgYW5kIGRpc2Fhc3NlbWJsZWQgYQpnb29kIGNodW5rIG9mIHRoYXQgbWljcm9jb2RlLiBTdXJl
+IGVub3VnaCwgaXQgcG9rZXMgUEdSQVBIIGFuZCB3YXRjaGVzIGZvcgpzdHVmZiBvbiBpdC4gQnV0
+IHRoZSBjb2RlIGRvZXNuJ3QgeWV0IGZ1bGx5IG1ha2Ugc2Vuc2UgdG8gbWUsIGFuZCBJJ20KdGVt
+cG9yYXJpbHkgYXdheSBmcm9tIG15IE5WQTUgY2FyZCwgc28uLi4gY291bGQgc29tZW9uZSBkdW1w
+IHNvbWUgcmVnaXN0ZXJzIGZvcgptZT8KCkkgbmVlZCBhIGR1bXAgb2YgdGhlIHJlZ2lzdGVycyBi
+b3RoIGJlZm9yZSBhbmQgYWZ0ZXIgdGhlIGhhbmcuIFRoZSBpbnRlcmVzdGluZwpzdHVmZiBpcyBp
+biAxMGF4eHggcmFuZ2UsIGFuZCBpZGVhbGx5IEknZCB3YW50IG91dHB1dCBvZiAiLi9wZWVrIDEw
+YTAwMCAxMDAwIi4KSG93ZXZlciwgaWYgdGhlIGNhcmQgZG9lc24ndCBsaWtlIGl0IGFuZCBoYW5n
+cyBvciBzb21ldGhpbmcgdXBvbiB0aGF0IGNvbW1hbmQsCmR1bXAgcmVnaXN0ZXJzIGluZGl2aWR1
+YWxseSBpbnN0ZWFkIGJ5IGRvaW5nICIuL3BlZWsgWCIgZm9yIFggYmVpbmcgMTBhMDA4LAoxMGE2
+ZmMsIDEwYTRmYywgMTBhNGY0LCAxMGE3MTQsIDEwYTcwMCwgMTBhNzA0LCAxMGE0ZGMsIDEwYTY5
+MCwgMTBhNjg4LgoKUmVwZWF0aW5nIHRoYXQgMiBvciAzIHRpbWVzIG1heSBiZSB1c2VmdWwsIGVz
+cC4gYWNyb3NzIGRpZmZlcmVudCBjaGlwc2V0cy4gQnV0Cm5vdCBUT08gbXVjaCwgcGxlYXNlLgoK
+LS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJw
+cmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJl
+Y2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
