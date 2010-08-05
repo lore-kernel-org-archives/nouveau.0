@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29386] 2D performance drops drastically when
- enabling a 2nd monitor
-Date: Wed,  4 Aug 2010 17:35:09 -0700 (PDT)
-Message-ID: <20100805003509.EF3B513007A@annarchy.freedesktop.org>
-References: <bug-29386-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26733] Full-screen XV causes graphics lockup
+Date: Wed,  4 Aug 2010 19:31:32 -0700 (PDT)
+Message-ID: <20100805023133.0D53313010A@annarchy.freedesktop.org>
+References: <bug-26733-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26733-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29386
+https://bugs.freedesktop.org/show_bug.cgi?id=26733
 
-Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
+--- Comment #21 from Gary E. Miller <gem-m5MkRmJ/tOjQT0dZR+AlfA@public.gmane.org> 2010-08-04 19:31:32 PDT ---
+Still valid for me with kernel 2.6.35 and the plain vanilla in kernel nouveau.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-04 17:35:09 PDT ---
-I've pushed the patch to master. Marking as fixed.
+No need for  full screen. Happens for me in less then 1 minute in a TV window.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
