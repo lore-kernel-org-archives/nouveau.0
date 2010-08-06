@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29415] New: Screen shutdown with Nvidia GeForce 9400M
-Date: Thu,  5 Aug 2010 18:14:04 -0700 (PDT)
-Message-ID: <bug-29415-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29415] Screen shutdown with Nvidia GeForce 9400M
+Date: Thu,  5 Aug 2010 18:14:46 -0700 (PDT)
+Message-ID: <20100806011446.DD3DA1300E7@annarchy.freedesktop.org>
+References: <bug-29415-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-29415-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29415
 
-           Summary: Screen shutdown with Nvidia GeForce 9400M
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: saintger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=37608)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37608)
-Xorg.0.log
-
-Attempting to use the latest nouveau driver with my Nvidia GeForce 9400M
-results in my screen switching off and/or displaying garbage.
-
-I use a Mac Mini (model late 2009) on an up-to-date Debian Testing with the
-latest (git) nouveau driver (as of today). The video card is a Nvidia GeForce
-9400M (nVidia Corporation C79 [GeForce 9400] (rev b1)) connected via
-mini-diplayport -> VGA to a CRT Iiyama Vision Master Pro 410.
-
-The minidisplay-port -> VGA connector is apparently an active connector.
-The video card and the screen work fine under Mac OS X or with the vesa driver.
-
-In attachment is my syslog, Xorg.0.log, lspci, myvga.rom (card's BIOS dump) and
-because it is quite big, a link to the POST trace.
+--- Comment #1 from saintger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-08-05 18:14:46 PDT ---
+Created an attachment (id=37609)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37609)
+syslog
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
