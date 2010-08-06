@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29415] Screen shutdown with Nvidia GeForce 9400M
-Date: Thu,  5 Aug 2010 18:31:15 -0700 (PDT)
-Message-ID: <20100806013115.D540413006E@annarchy.freedesktop.org>
-References: <bug-29415-8800@http.bugs.freedesktop.org/>
+From: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: nv vpe video decoder
+Date: Thu, 5 Aug 2010 22:36:18 -0400
+Message-ID: <20100805223618.1cdcbb08@amd64linuxmsi.rentzhouse.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29415-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,13 +18,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29415
+Hello,
+	I have my work on the nv vpe video decoder in a functional
+	state.  In case you didn't know this decoder accelerates mpeg2
+	video at the idct/mc level.  I have verified that it works on
+	nv40 hardware.  I believe it works on nv30 hardware (and
+	maybe some earlier hardware), but I cannot verify since I have
+	none. 
+	I will reply with patches against the kernel, drm, ddx
+	and mesa for your review.  Any comments are welcome.
 
---- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-05 18:31:15 PDT ---
-Can I see a nouveau kernel log with "log_buf_len=1M drm.debug=14
-nouveau.reg_debug=0x0200 3" in your boot options?
+	An important note is that the performance isn't that
+	great in my opinion.  There is something preventing the nv vpe
+	engine from rendering cmds at the same rate as the blob.  Either
+	caching or whatever.    
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Jimmy Rentz  
+
+	
