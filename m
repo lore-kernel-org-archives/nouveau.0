@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29415] Screen shutdown with Nvidia GeForce 9400M
-Date: Thu,  5 Aug 2010 18:16:16 -0700 (PDT)
-Message-ID: <20100806011616.E81991300E4@annarchy.freedesktop.org>
+Date: Thu,  5 Aug 2010 18:21:46 -0700 (PDT)
+Message-ID: <20100806012146.4A3E51300F1@annarchy.freedesktop.org>
 References: <bug-29415-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29415
 
---- Comment #3 from saintger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-08-05 18:16:16 PDT ---
-Created an attachment (id=37611)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37611)
-card's BIOS dump
+--- Comment #4 from saintger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-08-05 18:21:46 PDT ---
+Here is the link to the POST trace (logfile-deloopd.gz):
+http://dl.free.fr/d1hBw3kb9
+
+This link will be valid for 30 days. After that I can re-upload it or send it
+to whoever is interested.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
