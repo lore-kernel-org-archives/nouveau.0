@@ -1,11 +1,13 @@
 From: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nv vpe video decoder
-Date: Thu, 5 Aug 2010 22:36:18 -0400
-Message-ID: <20100805223618.1cdcbb08@amd64linuxmsi.rentzhouse.lan>
+Subject: [PATCH 1/4] kernel: nv vpe
+Date: Thu, 5 Aug 2010 22:40:29 -0400
+Message-ID: <20100805224029.55d09da3@amd64linuxmsi.rentzhouse.lan>
+References: <20100805223618.1cdcbb08@amd64linuxmsi.rentzhouse.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20100805223618.1cdcbb08-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,24 +17,1829 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
-	I have my work on the nv vpe video decoder in a functional
-	state.  In case you didn't know this decoder accelerates mpeg2
-	video at the idct/mc level.  I have verified that it works on
-	nv40 hardware.  I believe it works on nv30 hardware (and
-	maybe some earlier hardware), but I cannot verify since I have
-	none. 
-	I will reply with patches against the kernel, drm, ddx
-	and mesa for your review.  Any comments are welcome.
+This patch includes all the relevant nv vpe kernel support.
+This patch applies against the latest nouveau-linux-2.6.
+Though, the makefile might need adjusting.
 
-	An important note is that the performance isn't that
-	great in my opinion.  There is something preventing the nv vpe
-	engine from rendering cmds at the same rate as the blob.  Either
-	caching or whatever.    
+Some notes about the decoder engine:
+* It is composed of the mmio control registers, fifo and the
+output surfaces.
+* The fifo pushbuffer can be allocated from vram or agp.  
+AGP is not working right now but it should in theory.
+* Output surfaces for the luma+chroma data can be only be
+allocated from vram.
+* Since only one set of mmio control registers exist only one client 
+app can use the engine at a time.  I suppose it might be possible to
+support context switching but that might be too slow to be useful.
 
-Jimmy Rentz  
+Client usage:
+* Client app calls the vpe channel create ioctl to setup the hw
+and fifo pushbuffer. 
+* Client app creates all the output surfaces via buffer objects.
+* Client apps writes a set of cmds to the pushbuffer then calls
+the fire ioctl to kick of a decode of a cmd sequence.
+* Client app calls the query ioctl to see when an output surface is done
+rendering.
 
-	
+Some notes about the kernel implementation:
+
+* Both user and kernel submission of pushbuffers is supported. 
+I originally implemented the kernel submission via a copy of the
+pushbuffer.  The user-space pushbuffer was added later for performance 
+reaons.  Though, you still need to call the kernel to fire since mmio
+access is not allowed for user-mode.
+
+* The output surface must be pinned in memory until the rendering is done.
+A sequence type fence exists that lets you query when a given output surface
+is done decoding.  This would make it possible to free a surface if you want.
+The kernel would then automatically unpin the surface if you replace it later.
+Realistically, it wouldn't be smart for performance reasons to free these surfaces.
+
+Signed-off-by: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+
+
+diff --git a/drivers/gpu/drm/nouveau/Makefile b/drivers/gpu/drm/nouveau/Makefile
+index 2405d5e..7a6d699 100644
+--- a/drivers/gpu/drm/nouveau/Makefile
++++ b/drivers/gpu/drm/nouveau/Makefile
+@@ -23,7 +23,7 @@ nouveau-y := nouveau_drv.o nouveau_state.o nouveau_channel.o nouveau_mem.o \
+              nv04_dac.o nv04_dfp.o nv04_tv.o nv17_tv.o nv17_tv_modes.o \
+              nv04_crtc.o nv04_display.o nv04_cursor.o nv04_fbcon.o \
+              nv10_gpio.o nv50_gpio.o \
+-	     nv50_calc.o
++			 nv50_calc.o nouveau_vd_vpe.o
+ 
+ nouveau-$(CONFIG_DRM_NOUVEAU_DEBUG) += nouveau_debugfs.o
+ nouveau-$(CONFIG_COMPAT) += nouveau_ioc32.o
+diff --git a/drivers/gpu/drm/nouveau/nouveau_channel.c b/drivers/gpu/drm/nouveau/nouveau_channel.c
+index e952c3b..cfbc981 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_channel.c
++++ b/drivers/gpu/drm/nouveau/nouveau_channel.c
+@@ -336,6 +336,15 @@ nouveau_channel_cleanup(struct drm_device *dev, struct drm_file *file_priv)
+ 		if (chan && chan->file_priv == file_priv)
+ 			nouveau_channel_free(chan);
+ 	}
++
++	if (dev_priv->vpe_channel) {
++		NV_DEBUG(dev, "clearing VPE channel from file_priv\n");
++		struct nouveau_vd_vpe_channel *vpe_channel;
++		vpe_channel = dev_priv->vpe_channel;
++
++		if (vpe_channel->file_priv == file_priv)
++			nouveau_vpe_channel_free(vpe_channel);
++	}
+ }
+ 
+ int
+@@ -437,6 +446,14 @@ struct drm_ioctl_desc nouveau_ioctls[] = {
+ 	DRM_IOCTL_DEF(DRM_NOUVEAU_GEM_CPU_PREP, nouveau_gem_ioctl_cpu_prep, DRM_AUTH),
+ 	DRM_IOCTL_DEF(DRM_NOUVEAU_GEM_CPU_FINI, nouveau_gem_ioctl_cpu_fini, DRM_AUTH),
+ 	DRM_IOCTL_DEF(DRM_NOUVEAU_GEM_INFO, nouveau_gem_ioctl_info, DRM_AUTH),
++	DRM_IOCTL_DEF(DRM_NOUVEAU_VD_VPE_CHANNEL_ALLOC,
++						nouveau_vd_vpe_ioctl_channel_alloc, DRM_AUTH),
++	DRM_IOCTL_DEF(DRM_NOUVEAU_VD_VPE_CHANNEL_FREE,
++						nouveau_vd_vpe_ioctl_channel_free, DRM_AUTH),
++	DRM_IOCTL_DEF(DRM_NOUVEAU_VD_VPE_PUSHBUF_FIRE,
++						nouveau_vd_vpe_ioctl_pushbuf_fire, DRM_AUTH),
++	DRM_IOCTL_DEF(DRM_NOUVEAU_VD_VPE_SURFACE_QUERY,
++						nouveau_vd_vpe_ioctl_surface_query, DRM_AUTH),
+ };
+ 
+ int nouveau_max_ioctl = DRM_ARRAY_SIZE(nouveau_ioctls);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+index 7933de4..cc3387d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+@@ -117,6 +117,117 @@ nouveau_debugfs_channel_fini(struct nouveau_channel *chan)
+ 	}
+ }
+ 
++static
++int nouveau_debugfs_vpe_channel_info(struct seq_file *m, void *data)
++{
++	struct drm_info_node *node = (struct drm_info_node *) m->private;
++	struct nouveau_vd_vpe_channel *chan = node->info_ent->data;
++	int i;
++	uint32_t val;
++
++	seq_printf(m, "cpu fifo state:\n");
++	seq_printf(m, "           max: 0x%08x\n", chan->dma.max << 2);
++	seq_printf(m, "           cur: 0x%08x\n", chan->dma.cur << 2);
++	seq_printf(m, "           put: 0x%08x\n", chan->dma.put << 2);
++	seq_printf(m, "          free: 0x%08x\n", chan->dma.free << 2);
++
++	seq_printf(m, "vpe fifo state:\n");
++	seq_printf(m, "           config: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_USER_CONFIG));
++	seq_printf(m, "           offset: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_USER_OFFSET));
++	seq_printf(m, "           size: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_USER_SIZE));
++	seq_printf(m, "           get: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_USER_GET));
++	seq_printf(m, "           put: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_USER_PUT));
++	seq_printf(m, "           get.seq: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_SEQUENCE_GET));
++	seq_printf(m, "           put.seq: 0x%08x\n",
++					chan->dma.sequence);
++
++	seq_printf(m, "vpe engine status:\n");
++	seq_printf(m, "           engine_config_1: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_ENGINE_CONFIG_1));
++	seq_printf(m, "           engine_config_2: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_ENGINE_CONFIG_2));
++	seq_printf(m, "           engine_setup_1: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_ENGINE_SETUP_1));
++	seq_printf(m, "           engine_setup_2: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_ENGINE_SETUP_2));
++	seq_printf(m, "           engine_reader_config: 0x%08x\n",
++				nv_rd32(chan->dev, NV_VPE_MPEG2_ENGINE_READER_CONFIG));
++	seq_printf(m, "           engine_processing_status: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_ENGINE_STATUS));
++	seq_printf(m, "           engine_status: 0x%08x\n",
++					nv_rd32(chan->dev, NV_VPE_MPEG2_ENGINE_CONTROL));
++
++	seq_printf(m, "vpe decode surface config:\n");
++	val = nv_rd32(chan->dev, NV_VPE_MPEG2_SURFACE_INFO);
++	seq_printf(m, "           info: 0x%08X\n",
++					val);
++	val = nv_rd32(chan->dev, NV_VPE_MPEG2_CONTEXT_DIMENSIONS);
++	seq_printf(m, "           dimensions: width = %d, height = %d\n",
++					(val >> 16) & 0xFFF, val & 0xFFF);
++
++	seq_printf(m, "vpe decode surface fb offsets:\n");
++	for (i = 0; i < ARRAY_SIZE(chan->surface); i++) {
++		seq_printf(m, "         luma.[0x%08X] = 0x%08X\n", i,
++		nv_rd32(chan->dev, NV_VPE_MPEG2_LUMA_SURFACE_OFFSET_GET(i)));
++		seq_printf(m, "       chroma.[0x%08X] = 0x%08X\n", i,
++		nv_rd32(chan->dev, NV_VPE_MPEG2_CHROMA_SURFACE_OFFSET_GET(i)));
++	}
++
++	return 0;
++}
++
++int nouveau_debugfs_vpe_channel_init(struct nouveau_vd_vpe_channel *chan)
++{
++	struct drm_nouveau_private *dev_priv = chan->dev->dev_private;
++	struct drm_minor *minor = chan->dev->primary;
++	int ret;
++
++	if (!dev_priv->debugfs.vpe_channel_root) {
++		dev_priv->debugfs.vpe_channel_root =
++			debugfs_create_dir("vpe_channel", minor->debugfs_root);
++		if (!dev_priv->debugfs.vpe_channel_root)
++			return -ENOENT;
++	}
++
++	strcpy(chan->debugfs.name, "0");
++	chan->debugfs.info.name = chan->debugfs.name;
++	chan->debugfs.info.show = nouveau_debugfs_vpe_channel_info;
++	chan->debugfs.info.driver_features = 0;
++	chan->debugfs.info.data = chan;
++
++	ret = drm_debugfs_create_files(&chan->debugfs.info, 1,
++				       dev_priv->debugfs.vpe_channel_root,
++				       chan->dev->primary);
++	if (ret == 0)
++		chan->debugfs.active = true;
++	return ret;
++}
++
++void
++nouveau_debugfs_vpe_channel_fini(struct nouveau_vd_vpe_channel *chan)
++{
++	struct drm_nouveau_private *dev_priv = chan->dev->dev_private;
++
++	if (!chan->debugfs.active)
++		return;
++
++	drm_debugfs_remove_files(&chan->debugfs.info, 1, chan->dev->primary);
++	chan->debugfs.active = false;
++
++	if (chan == dev_priv->vpe_channel) {
++		debugfs_remove(dev_priv->debugfs.vpe_channel_root);
++		dev_priv->debugfs.vpe_channel_root = NULL;
++	}
++}
++
++
++
+ static int
+ nouveau_debugfs_chipset_info(struct seq_file *m, void *data)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index da62e92..150cbf9 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -502,6 +502,38 @@ struct nv04_mode_state {
+ 	struct nv04_crtc_reg crtc_reg[2];
+ };
+ 
++struct nouveau_vd_vpe_surface {
++	struct nouveau_bo *luma_bo;
++	struct nouveau_bo *chroma_bo;
++	uint32_t dma_sequence;
++};
++
++struct nouveau_vd_vpe_channel {
++	struct drm_device *dev;
++	struct drm_file *file_priv;
++	uint32_t width;
++	uint32_t height;
++
++	/* Push buffer state */
++	struct {
++		uint32_t max;
++		uint32_t cur;
++		uint32_t put;
++		uint32_t free;
++		uint32_t sequence;
++		/* access via pushbuf_bo */
++	} dma;
++
++	struct nouveau_bo *pushbuf_bo;
++	struct nouveau_vd_vpe_surface surface[8];
++
++	struct {
++		bool active;
++		char name[32];
++		struct drm_info_list info;
++	} debugfs;
++};
++
+ enum nouveau_card_type {
+ 	NV_04      = 0x00,
+ 	NV_10      = 0x10,
+@@ -626,10 +658,13 @@ struct drm_nouveau_private {
+ 
+ 	struct {
+ 		struct dentry *channel_root;
++		struct dentry *vpe_channel_root;
+ 	} debugfs;
+ 
+ 	struct nouveau_fbdev *nfbdev;
+ 	struct apertures_struct *apertures;
++
++	struct nouveau_vd_vpe_channel *vpe_channel;
+ };
+ 
+ static inline struct drm_nouveau_private *
+@@ -667,6 +702,16 @@ nouveau_bo_ref(struct nouveau_bo *ref, struct nouveau_bo **pnvbo)
+ 	(ch) = nv->fifos[(id)];                                  \
+ } while (0)
+ 
++#define NOUVEAU_GET_VPE_CHANNEL_WITH_RETURN(id, ch) do {    \
++	struct drm_nouveau_private *nv = dev->dev_private;       \
++	if (nv->vpe_channel && (nv->vpe_channel->file_priv != id)) {	\
++		NV_ERROR(dev, "pid %d doesn't own vpe channel\n", \
++			 DRM_CURRENTPID);                  \
++		return -EPERM;                                   \
++	}                                                        \
++	(ch) = nv->vpe_channel;                                  \
++} while (0)
++
+ /* nouveau_drv.c */
+ extern int nouveau_noagp;
+ extern int nouveau_duallink;
+@@ -811,6 +856,8 @@ extern int  nouveau_debugfs_init(struct drm_minor *);
+ extern void nouveau_debugfs_takedown(struct drm_minor *);
+ extern int  nouveau_debugfs_channel_init(struct nouveau_channel *);
+ extern void nouveau_debugfs_channel_fini(struct nouveau_channel *);
++extern int nouveau_debugfs_vpe_channel_init(struct nouveau_vd_vpe_channel *);
++extern void nouveau_debugfs_vpe_channel_fini(struct nouveau_vd_vpe_channel *);
+ #else
+ static inline int
+ nouveau_debugfs_init(struct drm_minor *minor)
+@@ -832,6 +879,17 @@ static inline void
+ nouveau_debugfs_channel_fini(struct nouveau_channel *chan)
+ {
+ }
++
++static inline int
++nouveau_debugfs_vpe_channel_init(struct nouveau_vd_vpe_channel *chan)
++{
++	return 0;
++}
++
++static inline void
++nouveau_debugfs_vpe_channel_fini(struct nouveau_vd_vpe_channel *chan)
++{
++}
+ #endif
+ 
+ /* nouveau_dma.c */
+@@ -1161,6 +1219,17 @@ extern int nouveau_gem_ioctl_cpu_fini(struct drm_device *, void *,
+ extern int nouveau_gem_ioctl_info(struct drm_device *, void *,
+ 				  struct drm_file *);
+ 
++/* nouveau_vd_vpe.c */
++extern void nouveau_vpe_channel_free(struct nouveau_vd_vpe_channel *);
++extern int nouveau_vd_vpe_ioctl_channel_alloc(struct drm_device *, void *,
++				  struct drm_file *);
++extern int nouveau_vd_vpe_ioctl_channel_free(struct drm_device *, void *,
++				  struct drm_file *);
++extern int nouveau_vd_vpe_ioctl_pushbuf_fire(struct drm_device *, void *,
++				  struct drm_file *);
++extern int nouveau_vd_vpe_ioctl_surface_query(struct drm_device *, void *,
++				  struct drm_file *);
++
+ /* nv10_gpio.c */
+ int nv10_gpio_get(struct drm_device *dev, enum dcb_gpio_tag tag);
+ int nv10_gpio_set(struct drm_device *dev, enum dcb_gpio_tag tag, int state);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_reg.h b/drivers/gpu/drm/nouveau/nouveau_reg.h
+index 9c1056c..3dd8308 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_reg.h
++++ b/drivers/gpu/drm/nouveau/nouveau_reg.h
+@@ -176,6 +176,37 @@
+ #define NV04_PTIMER_TIME_1                                 0x00009410
+ #define NV04_PTIMER_ALARM_0                                0x00009420
+ 
++/* The NV VPE MPEG2 control registers that exist on NV40 and NV30 and
++ * some other older boards possibly.*/
++#define NV_VPE_MPEG2_ENGINE_CONFIG_1                       0x0000B0E0
++#define NV_VPE_MPEG2_ENGINE_CONFIG_2                       0x0000B0E8
++#define NV_VPE_MPEG2_ENGINE_SETUP_1                        0x0000B100
++#define NV_VPE_MPEG2_ENGINE_SETUP_2                        0x0000B140
++#define NV_VPE_MPEG2_ENGINE_STATUS                         0x0000B200
++#define NV_VPE_MPEG2_ENGINE_READER_CONFIG                  0x0000B204
++#define NV_VPE_MPEG2_USER_CONFIG                           0x0000B300
++#	define NV_VPE_MPEG2_USER_NOT_PRESENT                   0x020F0200
++#	define NV_VPE_MPEG2_USER_PRESENT                       0x02001ec1
++#	define NV_VPE_MPEG2_USER_VRAM                           (0 << 16)
++#	define NV_VPE_MPEG2_USER_AGP_OR_PCI                     (1 << 16)
++#	define NV_VPE_MPEG2_USER_AGP_OR_PCI_READY               (2 << 16)
++/* Complete guess here about pcie.*/
++#	define NV_VPE_MPEG2_USER_PCIE                           (8 << 16)
++#define NV_VPE_MPEG2_UNKNOWN_SETUP_3                       0x0000B314
++#define NV_VPE_MPEG2_USER_OFFSET                           0x0000B320
++#define NV_VPE_MPEG2_USER_SIZE                             0x0000B324
++#define NV_VPE_MPEG2_USER_PUT                              0x0000B328
++#define NV_VPE_MPEG2_USER_GET                              0x0000B330
++#define NV_VPE_MPEG2_ENGINE_CONTROL                        0x0000B32C
++#	define NV_VPE_MPEG2_ENGINE_STOP                      0
++#	define NV_VPE_MPEG2_ENGINE_START                     1
++#define NV_VPE_MPEG2_SEQUENCE_GET                          0x0000B340
++#define NV_VPE_MPEG2_SURFACE_INFO                          0x0000B378
++#define NV_VPE_MPEG2_CONTEXT_DIMENSIONS                    0x0000B37C
++#define NV_VPE_MPEG2_LUMA_SURFACE_OFFSET_GET(s)   (0x0000B450 + (s * 8))
++#define NV_VPE_MPEG2_CHROMA_SURFACE_OFFSET_GET(s) (0x0000B454 + (s * 8))
++#define NV_VPE_MPEG2_ENGINE_STATUS_1                       0x0000B848
++
+ #define NV04_PGRAPH_DEBUG_0                                0x00400080
+ #define NV04_PGRAPH_DEBUG_1                                0x00400084
+ #define NV04_PGRAPH_DEBUG_2                                0x00400088
+diff --git a/drivers/gpu/drm/nouveau/nouveau_vd_vpe.c b/drivers/gpu/drm/nouveau/nouveau_vd_vpe.c
+new file mode 100644
+index 0000000..149f10b
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/nouveau_vd_vpe.c
+@@ -0,0 +1,1218 @@
++/*
++ * Copyright (C) 2010 Jimmy Rentz
++ * All Rights Reserved.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
++ * IN NO EVENT SHALL THE COPYRIGHT OWNER(S) AND/OR ITS SUPPLIERS BE
++ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
++ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
++ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
++#include "drmP.h"
++#include "drm.h"
++
++#include "nouveau_drv.h"
++#include "nouveau_drm.h"
++#include "nouveau_vpe_hw.h"
++
++/* VPE MPEG2 HW notes:
++ * - There is a 64byte fetch size.  That is why each set of commands must
++ * be aligned on a 64 byte boundary for firing.
++ * - One fetch of cmds seem to process in 1 microsecond on my nv4e.
++ * However, I presume this can vary based on the hw and nature of commands.
++ * - Each firing of a set of commands must be followed by a small delay.
++ * The main reason is to avoid overwhelming the hw.
++ * The delays below were determined from testing/measuring.  I doubt they
++   are perfect and they could be tweaked a bit.*/
++
++/* Channel/Surface init commands should not take long to process.*/
++#define VPE_UDELAY_FIRE_INIT        4
++
++/* Normal firing needs this type of delay.*/
++#define VPE_UDELAY_FIRE_NORMAL      35
++
++/* Need a longer delay at the end of the fifo since it takes longer.*/
++#define VPE_UDELAY_FIRE_END        100
++
++/* Set if you want to validate vpe user cmds.
++ * Otherwise, they are copied asis.
++ * The reason this exists is because a user could set a vpe surface to
++ * point to the visible framebuffer, etc.  However, the user could never
++ * make a vpe surface use a gart address since it isn't supported by the
++ * hardware.*/
++/*#define NOUVEAU_VPE_VALIDATE_USER_CMDS*/
++
++/* TODO - Export this from nouveau_gem.c*/
++/* Needed to copy userspace pushbuffers that are sent to the vpe hw.*/
++static inline void *
++_u_memcpya(uint64_t user, unsigned nmemb, unsigned size)
++{
++	void *mem;
++	void __user *userptr = (void __force __user *)(uintptr_t)user;
++
++	mem = kmalloc(nmemb * size, GFP_KERNEL);
++	if (!mem)
++		return ERR_PTR(-ENOMEM);
++
++	if (DRM_COPY_FROM_USER(mem, userptr, nmemb * size)) {
++		kfree(mem);
++		return ERR_PTR(-EFAULT);
++	}
++
++	return mem;
++}
++
++/* Internal */
++static inline void
++nouveau_vpe_cmd_write(struct nouveau_vd_vpe_channel *vpe_channel,
++					uint32_t value)
++{
++	nouveau_bo_wr32(vpe_channel->pushbuf_bo, vpe_channel->dma.cur++,
++					value);
++	vpe_channel->dma.free--;
++
++	if (vpe_channel->dma.cur == vpe_channel->dma.max) {
++		vpe_channel->dma.cur = 0;
++		vpe_channel->dma.free = vpe_channel->dma.max;
++	}
++}
++
++static inline void
++nouveau_vpe_cmd_align(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	uint32_t nop_count;
++	uint32_t cmd_sequence_count;
++	int i;
++
++	/* Alignment is needed when ending cmd sequences.*/
++	cmd_sequence_count = vpe_channel->dma.cur - vpe_channel->dma.put;
++	nop_count = ALIGN(cmd_sequence_count, NV_VPE_CMD_ALIGNMENT);
++	nop_count -= cmd_sequence_count;
++
++	for (i = 0; i < nop_count; i++)
++		nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_NOP <<
++							NV_VPE_CMD_TYPE_SHIFT);
++}
++
++static inline void
++nouveau_vpe_fire(struct nouveau_vd_vpe_channel *vpe_channel, uint64_t delay)
++{
++	struct drm_device *dev = vpe_channel->dev;
++	uint32_t put;
++
++	DRM_MEMORYBARRIER();
++
++	put = (vpe_channel->dma.cur / NV_VPE_CMD_ALIGNMENT) *
++		NV_VPE_CMD_ALIGNMENT;
++
++	nouveau_bo_rd32(vpe_channel->pushbuf_bo, put);
++
++	nv_wr32(dev, NV_VPE_MPEG2_USER_PUT, put << 2);
++
++	vpe_channel->dma.put = put;
++
++	if (delay)
++		DRM_UDELAY(delay);
++}
++
++static uint32_t
++nouveau_vpe_channel_read_get(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	struct drm_device *dev = vpe_channel->dev;
++
++	return nv_rd32(dev, NV_VPE_MPEG2_USER_GET) >> 2;
++}
++
++static int
++nouveau_vpe_wait_until_engine_idle(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	struct drm_device *dev = vpe_channel->dev;
++
++	if (!nouveau_wait_until(dev, 10000000, NV_VPE_MPEG2_ENGINE_STATUS,
++							0x0FFFFFFF, 0)) {
++			NV_ERROR(dev, "nouveau_vpe_wait_until_engine_idle - engine is not"
++					" idle.  status = 0x%08X.\n",
++					nv_rd32(dev, NV_VPE_MPEG2_ENGINE_STATUS));
++			return -EINVAL;
++		}
++
++	return 0;
++}
++
++static int
++nouveau_vpe_channel_wait(struct nouveau_vd_vpe_channel *vpe_channel,
++					uint32_t put)
++{
++	uint32_t get;
++	uint32_t prev_get = 0;
++	bool is_beg = (put == 0) || (vpe_channel->dma.put == 0);
++	uint32_t cnt = 0;
++
++	get = prev_get = nouveau_vpe_channel_read_get(vpe_channel);
++
++	while ((!is_beg && (get < put)) ||
++		    (is_beg && (get != 0))) {
++
++		/* reset counter as long as GET is still advancing, this is
++		 * to avoid misdetecting a GPU lockup if the GPU happens to
++		 * just be processing an operation that takes a long time
++		 */
++		get = nouveau_vpe_channel_read_get(vpe_channel);
++		if (get != prev_get) {
++			prev_get = get;
++			cnt = 0;
++		}
++
++		if ((++cnt & 0xff) == 0) {
++			DRM_UDELAY(1);
++			if (cnt > 100000) {
++				NV_ERROR(vpe_channel->dev, "nouveau_vpe_channel_wait - lockup. "
++					"cur = 0x%08X, put = 0x%08X, get = 0x%08X, put.seq = %u,"
++					"get.seq = %u, ec1 = 0x%08X, ec2 = 0x%08X, es = 0x%08X.\n",
++					vpe_channel->dma.cur, put,
++					nouveau_vpe_channel_read_get(vpe_channel),
++					vpe_channel->dma.sequence,
++					nv_rd32(vpe_channel->dev, NV_VPE_MPEG2_SEQUENCE_GET),
++					nv_rd32(vpe_channel->dev, NV_VPE_MPEG2_ENGINE_CONFIG_1),
++					nv_rd32(vpe_channel->dev, NV_VPE_MPEG2_ENGINE_CONFIG_2),
++					nv_rd32(vpe_channel->dev, NV_VPE_MPEG2_ENGINE_STATUS));
++				return -EBUSY;
++			}
++		}
++	}
++
++	return 0;
++}
++
++static void
++nouveau_vpe_cmd_end_sequence_header(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_END_SEQUENCE <<
++						NV_VPE_CMD_TYPE_SHIFT | NV_VPE_CMD_SEQUENCE << 24);
++
++	nouveau_vpe_cmd_write(vpe_channel, ++vpe_channel->dma.sequence);
++}
++
++static void
++nouveau_vpe_cmd_end_sequence_trailer(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_END_SEQUENCE <<
++					NV_VPE_CMD_TYPE_SHIFT);
++}
++
++static void
++nouveau_vpe_cmd_end_sequence_finish(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	nouveau_vpe_cmd_align(vpe_channel);
++	nouveau_vpe_fire(vpe_channel, VPE_UDELAY_FIRE_NORMAL);
++}
++
++#ifndef NOUVEAU_VPE_VALIDATE_USER_CMDS
++static void
++_OUT_RINGp(struct nouveau_vd_vpe_channel *chan, const void *data,
++		unsigned nr_dwords)
++{
++	bool is_iomem;
++	u32 *mem = ttm_kmap_obj_virtual(&chan->pushbuf_bo->kmap, &is_iomem);
++	mem = &mem[chan->dma.cur];
++	if (is_iomem)
++		memcpy_toio((void __force __iomem *)mem, data, nr_dwords * 4);
++	else
++		memcpy(mem, data, nr_dwords * 4);
++	chan->dma.cur += nr_dwords;
++}
++#endif
++
++static int
++nouveau_vpe_cmd_write_user_batch(struct nouveau_vd_vpe_channel *chan,
++									const void *data, unsigned nr_dwords)
++{
++#ifdef NOUVEAU_VPE_VALIDATE_USER_CMDS
++	bool is_iomem;
++	u32 *mem = ttm_kmap_obj_virtual(&chan->pushbuf_bo->kmap, &is_iomem);
++	u32 *user_data = (u32 *) data;
++	uint32_t val;
++	int i;
++	bool in_mb_db = false;
++	bool at_end_mb_db = false;
++
++	mem = &mem[chan->dma.cur];
++
++	for (i = 0; i < nr_dwords; i++) {
++		val = user_data[i];
++
++		if (in_mb_db) {
++			if (at_end_mb_db) {
++				if (val == (NV_VPE_CMD_DCT_SEPARATOR << NV_VPE_CMD_TYPE_SHIFT))
++					at_end_mb_db = false;
++				else
++					in_mb_db = false;
++			} else if (val & NV_VPE_DCT_BLOCK_TERMINATOR)
++					at_end_mb_db = true;
++		}
++		if (!in_mb_db) {
++			switch (val & 0xF0000000) {
++			case NV_VPE_CMD_DCT_SEPARATOR << NV_VPE_CMD_TYPE_SHIFT:
++				in_mb_db = true;
++				at_end_mb_db = false;
++				break;
++			case NV_VPE_CMD_DCT_CHROMA_HEADER << NV_VPE_CMD_TYPE_SHIFT:
++			case NV_VPE_CMD_DCT_LUMA_HEADER << NV_VPE_CMD_TYPE_SHIFT:
++			case NV_VPE_CMD_DCT_COORDINATE << NV_VPE_CMD_TYPE_SHIFT:
++			case NV_VPE_CMD_CHROMA_MOTION_VECTOR_HEADER <<
++				NV_VPE_CMD_TYPE_SHIFT:
++			case NV_VPE_CMD_LUMA_MOTION_VECTOR_HEADER << NV_VPE_CMD_TYPE_SHIFT:
++			case NV_VPE_CMD_MOTION_VECTOR << NV_VPE_CMD_TYPE_SHIFT:
++			case NV_VPE_CMD_NOP << NV_VPE_CMD_TYPE_SHIFT:
++				break;
++			default:
++				NV_ERROR(chan->dev, "vpe - invalid cmd 0x%08X detected. "
++						"Aborting cmd sequence.\n", val);
++			return -EINVAL;
++			}
++		}
++
++		/* Always iomem/vram for vpe.*/
++		iowrite32_native(val, (void __force __iomem *)&mem[i]);
++	}
++
++	chan->dma.cur += nr_dwords;
++#else
++	_OUT_RINGp(chan, data, nr_dwords);
++#endif
++
++	return 0;
++}
++
++static bool
++nouveau_vpe_validate_surface(struct nouveau_vd_vpe_channel *vpe_channel,
++							    uint32_t handle,
++							    struct nouveau_bo *target_nvbo)
++{
++	struct drm_device *dev = vpe_channel->dev;
++	struct drm_gem_object *gem;
++	struct nouveau_bo *nvbo;
++	bool result;
++
++	gem = drm_gem_object_lookup(dev, vpe_channel->file_priv, handle);
++	if (unlikely(!gem)) {
++		result = false;
++		NV_ERROR(dev, "nouveau_vpe_validate_gem_handle - "
++				"Unknown handle 0x%08X.\n", handle);
++		goto out;
++	}
++	nvbo = nouveau_gem_object(gem);
++	if (unlikely(!nvbo || (nvbo != target_nvbo))) {
++		result = false;
++		NV_ERROR(dev, "nouveau_vpe_validate_gem_handle - "
++				"Unknown bo 0x%08X.\n", handle);
++		goto out;
++	}
++
++	result = true;
++
++out:
++
++	mutex_lock(&dev->struct_mutex);
++	drm_gem_object_unreference(gem);
++	mutex_unlock(&dev->struct_mutex);
++
++	return result;
++}
++
++static int
++nouveau_vpe_pin_surface(struct nouveau_vd_vpe_channel *vpe_channel,
++				uint32_t handle, uint32_t required_size,
++				struct nouveau_bo **pnvbo)
++{
++	struct drm_device *dev = vpe_channel->dev;
++	struct drm_gem_object *gem;
++	struct nouveau_bo *nvbo;
++	uint32_t mem_type;
++	unsigned long size;
++	int ret;
++
++	gem = drm_gem_object_lookup(dev, vpe_channel->file_priv, handle);
++	if (!gem) {
++		NV_ERROR(dev, "nouveau_vpe_pin_surface - "
++				" Unknown handle 0x%08X.\n", handle);
++		return -EINVAL;
++	}
++	nvbo = nouveau_gem_object(gem);
++	if (!nvbo) {
++		ret = -EINVAL;
++		NV_ERROR(dev, "nouveau_vpe_pin_surface - "
++				"Unknown bo 0x%08X.\n", handle);
++		goto out;
++	}
++	ret = ttm_bo_reserve(&nvbo->bo, false, false, false, 0);
++	if (ret)
++		goto out;
++
++	mem_type = nvbo->bo.mem.mem_type;
++	size = nvbo->bo.mem.size;
++
++	ttm_bo_unreserve(&nvbo->bo);
++
++	if (mem_type != TTM_PL_VRAM) {
++		ret = -EINVAL;
++		NV_ERROR(dev, "nouveau_vpe_pin_surface - bo must be in vram.\n");
++		goto out;
++	}
++	if (size < required_size) {
++		ret = -EINVAL;
++		NV_ERROR(dev, "nouveau_vpe_pin_surface - bo 0x%08X has size %lu, "
++				"required %u.\n", handle,
++				size, required_size);
++		goto out;
++	}
++	ret = nouveau_bo_pin(nvbo, TTM_PL_FLAG_VRAM);
++	if (ret) {
++		NV_ERROR(dev, "nouveau_vpe_pin_surface - "
++				"Could not pin handle 0x%08X.\n", handle);
++		goto out;
++	}
++
++	*pnvbo = nvbo;
++	ret = 0;
++
++out:
++
++	mutex_lock(&dev->struct_mutex);
++	drm_gem_object_unreference(gem);
++	mutex_unlock(&dev->struct_mutex);
++
++	return ret;
++}
++
++static void
++nouveau_vpe_unpin_surface(struct nouveau_vd_vpe_channel *vpe_channel,
++			struct nouveau_bo *nvbo)
++{
++	if (nvbo && nvbo->pin_refcnt)
++		nouveau_bo_unpin(nvbo);
++}
++
++static void
++nouveau_vpe_reset_pushbuf_to_start(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	int i;
++	uint32_t nop_count;
++
++	if (vpe_channel->dma.cur) {
++		/* Just write nops till the end since alignment is a non-issue
++		 * here.*/
++		nop_count = vpe_channel->dma.max - vpe_channel->dma.cur;
++
++		for (i = 0; i < nop_count; i++)
++			nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_NOP <<
++						NV_VPE_CMD_TYPE_SHIFT);
++	}
++
++	nouveau_vpe_fire(vpe_channel, VPE_UDELAY_FIRE_END);
++}
++
++static int
++nouveau_vpe_channel_pushbuf_alloc(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	struct drm_device *dev = vpe_channel->dev;
++	struct nouveau_bo *pushbuf_bo;
++	int ret;
++	uint32_t flags;
++
++	if (0)
++		/*dev_priv->gart_info.type == NOUVEAU_GART_AGP)
++		* agp init is broken right now it seems.*/
++		flags = TTM_PL_FLAG_TT;
++	else
++		flags = TTM_PL_FLAG_VRAM;
++
++	ret = nouveau_gem_new(dev, NULL, NV_VPE_PUSHBUFFER_SIZE, 0,
++						 flags, 0, 0x0000, false, true, &pushbuf_bo);
++	if (ret)
++		return ret;
++
++	ret = nouveau_bo_pin(pushbuf_bo, flags);
++	if (ret)
++		goto out_err;
++
++	ret = nouveau_bo_map(pushbuf_bo);
++	if (ret)
++		goto out_err;
++
++	vpe_channel->pushbuf_bo = pushbuf_bo;
++	vpe_channel->dma.max  = vpe_channel->pushbuf_bo->bo.mem.size >> 2;
++	vpe_channel->dma.free = vpe_channel->dma.max;
++
++out_err:
++	if (ret) {
++		mutex_lock(&dev->struct_mutex);
++		drm_gem_object_unreference(pushbuf_bo->gem);
++		mutex_unlock(&dev->struct_mutex);
++	}
++
++	return ret;
++}
++
++static int
++nouveau_vpe_channel_hw_init(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	uint32_t value;
++	struct drm_device *dev = vpe_channel->dev;
++	struct drm_nouveau_private *dev_priv = dev->dev_private;
++	uint32_t pushbuf_offset = 0;
++
++	/* Turn off the mpeg2 decoder.*/
++	nv_wr32(dev, NV_VPE_MPEG2_USER_CONFIG,
++		NV_VPE_MPEG2_USER_NOT_PRESENT);
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_CONTROL, NV_VPE_MPEG2_ENGINE_STOP);
++	nv_wr32(dev, NV_VPE_MPEG2_USER_PUT, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_USER_OFFSET, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_USER_SIZE, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_1, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_2, 0);
++	nv_rd32(dev, NV_VPE_MPEG2_ENGINE_CONTROL);
++
++	/* Pause a tiny bit to let the hardware reset.
++	 * This might be needed.*/
++	DRM_UDELAY(100);
++
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_1, 0x01010000);
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_2, 0x01010000);
++	nv_wr32(dev, NV_VPE_MPEG2_UNKNOWN_SETUP_3, 0x100);
++
++	/* Some type of mpeg2 engine config.
++	 * It seems that the hardware automatically sets this to 0x20.
++	 * However, I have an nv4a mmio trace where the nvidia driver
++	 * actually writes 0x20.
++	 * Also I have noticed that when the mpeg2 engine hw locks
++	 * up after playing video, this register gets reset to 0x1.
++	 */
++	if (nv_rd32(dev, NV_VPE_MPEG2_ENGINE_CONFIG_1) != 0x20)
++		nv_wr32(dev, NV_VPE_MPEG2_ENGINE_CONFIG_1, 0x20);
++	if (nv_rd32(dev, NV_VPE_MPEG2_ENGINE_CONFIG_2) != 0x20)
++		nv_wr32(dev, NV_VPE_MPEG2_ENGINE_CONFIG_2, 0x20);
++
++	/* Make sure the decoder is ready.
++	 * So, we check each status register.
++	 * Well, that is what these registers seem to be.
++	 */
++	value = nv_rd32(dev, NV_VPE_MPEG2_ENGINE_STATUS);
++
++	/* Is the hw still busy? */
++	if (value & 0x1)
++		if (!nouveau_wait_until(dev, 10000000, NV_VPE_MPEG2_ENGINE_STATUS,
++							0x0FFFFFFF, 0)) {
++			NV_ERROR(dev, "nouveau_vpe_channel_hw_init - "
++					"unknown status value of 0x%08X for engine "
++					"status reg. Must exit.\n",
++					nv_rd32(dev, NV_VPE_MPEG2_ENGINE_STATUS));
++			return -EINVAL;
++		}
++
++	/* Make sure the decoder is ready. */
++	value = nv_rd32(dev, NV_VPE_MPEG2_ENGINE_STATUS_1);
++
++	/* If we got this value then we might have a problem. */
++	if (value & 0x200) {
++		NV_ERROR(dev, "nouveau_vpe_channel_hw_init - "
++					"unknown status value of 0x%08X for engine status 1 reg. "
++					"Must exit.\n",
++					value);
++		return -EINVAL;
++	}
++
++	/* Is the status reg still busy? */
++	if (value & 0x1)
++		if (!nouveau_wait_until(dev, 10000000, NV_VPE_MPEG2_ENGINE_STATUS_1,
++							0x0FFFFFFF, 0)) {
++			NV_ERROR(dev, "nouveau_vpe_channel_hw_init - "
++					"unknown status value of 0x%08X for engine status 1 reg. "
++					"Must exit.\n",
++					nv_rd32(dev, NV_VPE_MPEG2_ENGINE_STATUS_1));
++			return -EINVAL;
++		}
++
++	/* Reset the mpeg2 pushbuffer/user. */
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_CONTROL, NV_VPE_MPEG2_ENGINE_STOP);
++	nv_wr32(dev, NV_VPE_MPEG2_USER_OFFSET, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_USER_SIZE, 0);
++
++	/* The setup of the command buffer is different for agp and pci/pcie.
++	 * NOTE: Agp is not working right now so it is disabled.*/
++	if (vpe_channel->pushbuf_bo->bo.mem.mem_type == TTM_PL_TT) {
++
++		pushbuf_offset = lower_32_bits(dev_priv->gart_info.aper_base) +
++		    lower_32_bits(vpe_channel->pushbuf_bo->bo.offset);
++
++		nv_wr32(dev, NV_VPE_MPEG2_USER_CONFIG,
++				NV_VPE_MPEG2_USER_PRESENT | NV_VPE_MPEG2_USER_AGP_OR_PCI);
++		/* This needs the agp aperature in the offset.*/
++		nv_wr32(dev, NV_VPE_MPEG2_USER_OFFSET,
++				pushbuf_offset);
++		nv_wr32(dev, NV_VPE_MPEG2_USER_SIZE,
++				vpe_channel->dma.max << 2);
++		nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_1, 0x01010000);
++		nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_2, 0x01010000);
++		nv_wr32(dev, NV_VPE_MPEG2_USER_CONFIG,
++				NV_VPE_MPEG2_USER_PRESENT | NV_VPE_MPEG2_USER_AGP_OR_PCI |
++				NV_VPE_MPEG2_USER_AGP_OR_PCI_READY);
++	} else {
++		/* For pci, only the fb offset is used.
++		 * However, have to init the pushbuffer/user using the fb size?
++		 * This is not related to decoding but strictly for reading from
++		 * the pushbuffer/user.  It might be caching related.
++		 * The nv driver uses different values but it looks fb size related.
++		 * So, I will go with that for now.
++		 */
++		pushbuf_offset = lower_32_bits(vpe_channel->pushbuf_bo->bo.offset);
++		nv_wr32(dev, NV_VPE_MPEG2_USER_CONFIG,
++				NV_VPE_MPEG2_USER_PRESENT | NV_VPE_MPEG2_USER_VRAM);
++		nv_wr32(dev, NV_VPE_MPEG2_USER_OFFSET, 0);
++		nv_wr32(dev, NV_VPE_MPEG2_USER_SIZE, dev_priv->fb_available_size);
++		nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_1, 0x01010000);
++		nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_2, 0x01010000);
++		nv_wr32(dev, NV_VPE_MPEG2_USER_CONFIG,
++				NV_VPE_MPEG2_USER_PRESENT | NV_VPE_MPEG2_USER_VRAM);
++		nv_wr32(dev, NV_VPE_MPEG2_USER_OFFSET,
++				pushbuf_offset);
++		nv_wr32(dev, NV_VPE_MPEG2_USER_SIZE,
++				vpe_channel->dma.max << 2);
++	}
++
++	/* Start up the mpeg2 engine */
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_CONTROL, NV_VPE_MPEG2_ENGINE_STOP);
++	nv_wr32(dev, NV_VPE_MPEG2_USER_PUT, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_CONTROL, NV_VPE_MPEG2_ENGINE_START);
++	nv_rd32(dev, NV_VPE_MPEG2_ENGINE_CONTROL);
++
++	return 0;
++}
++
++static int
++nouveau_vpe_channel_init(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	struct drm_device *dev = vpe_channel->dev;
++	int ret;
++	int i;
++	uint32_t value;
++
++	/* Reset decoder to the initial state.*/
++	nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_INIT_CHANNEL <<
++					NV_VPE_CMD_TYPE_SHIFT | NV_VPE_CMD_INIT_CHANNEL_ACCEL
++					<< 24);
++	nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_INIT_CHANNEL <<
++					NV_VPE_CMD_TYPE_SHIFT);
++	/* NOTE: The surface group info value might be tiling related. */
++	nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_INIT_CHANNEL <<
++					NV_VPE_CMD_TYPE_SHIFT |
++					NV_VPE_CMD_INIT_CHANNEL_SURFACE_GROUP_INFO << 24);
++
++	nouveau_vpe_cmd_end_sequence_header(vpe_channel);
++	/* No body/trailer for the init cmd.*/
++	nouveau_vpe_cmd_end_sequence_finish(vpe_channel);
++
++	ret = nouveau_vpe_channel_wait(vpe_channel, vpe_channel->dma.put);
++	if (ret)
++		return ret;
++
++	/* Clear out all surface references.*/
++	for (i = 0; i < NV_VPE_MAX_SURFACES; i++) {
++
++		nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_INIT_SURFACE <<
++						NV_VPE_CMD_TYPE_SHIFT |
++						NV_VPE_CMD_INIT_SURFACE_LUMA(i));
++		nouveau_vpe_cmd_align(vpe_channel);
++
++		nouveau_vpe_fire(vpe_channel, VPE_UDELAY_FIRE_INIT);
++		ret = nouveau_vpe_channel_wait(vpe_channel, vpe_channel->dma.put);
++		if (ret)
++			return ret;
++
++		nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_INIT_SURFACE <<
++						NV_VPE_CMD_TYPE_SHIFT |
++						NV_VPE_CMD_INIT_SURFACE_CHROMA(i));
++		nouveau_vpe_cmd_align(vpe_channel);
++
++		nouveau_vpe_fire(vpe_channel, VPE_UDELAY_FIRE_INIT);
++		ret = nouveau_vpe_channel_wait(vpe_channel, vpe_channel->dma.put);
++		if (ret)
++			return ret;
++	}
++
++	/* Init the decoder channel.*/
++	nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_INIT_CHANNEL <<
++						NV_VPE_CMD_TYPE_SHIFT |
++						NV_VPE_CMD_INIT_CHANNEL_ACCEL << 24
++						/* If IDCT is disabled then only MC is done.*/
++						| NV_VPE_CMD_INIT_CHANNEL_ACCEL_IDCT);
++	nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_INIT_CHANNEL <<
++						NV_VPE_CMD_TYPE_SHIFT |
++						(vpe_channel->width << 12 | vpe_channel->height));
++	/* NOTE: The surface group info value might be tiling related. */
++	nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_INIT_CHANNEL <<
++						NV_VPE_CMD_TYPE_SHIFT |
++						NV_VPE_CMD_INIT_CHANNEL_SURFACE_GROUP_INFO << 24
++						| (ALIGN(vpe_channel->width, 112) / 32));
++
++	nouveau_vpe_cmd_end_sequence_header(vpe_channel);
++	/* No body/trailer for the init cmd.*/
++	nouveau_vpe_cmd_end_sequence_finish(vpe_channel);
++
++	ret = nouveau_vpe_channel_wait(vpe_channel, vpe_channel->dma.put);
++	if (ret)
++		return ret;
++
++	ret = nouveau_vpe_wait_until_engine_idle(vpe_channel);
++	if (ret)
++		return ret;
++
++	/* Make sure hardware context is setup correctly */
++
++	value = nv_rd32(dev, NV_VPE_MPEG2_SURFACE_INFO);
++	if (value != (0x10000 | (ALIGN(vpe_channel->width, 128)))) {
++		NV_ERROR(dev, "nouveau_vpe_channel_init - "
++				"channel surface setup wrong for width = %d,"
++				"height = %d, got = 0x%08X.\n",
++				vpe_channel->width, vpe_channel->height, value);
++		return -EINVAL;
++	}
++
++	value = nv_rd32(dev, NV_VPE_MPEG2_CONTEXT_DIMENSIONS);
++	if (value != (((vpe_channel->width & 0xFFF) << 16) | (vpe_channel->height & 0xFFF))) {
++		NV_ERROR(dev, "nouveau_vpe_channel_init - "
++				"channel dimensions wrong for width = %d,"
++				"height = %d, got = 0x%08X.\n",
++				vpe_channel->width, vpe_channel->height, value);
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static void
++nouveau_vpe_channel_shutdown(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	nouveau_vpe_cmd_end_sequence_header(vpe_channel);
++	/* No body/trailer for the init cmd.*/
++	nouveau_vpe_cmd_end_sequence_finish(vpe_channel);
++}
++
++static void
++nouveau_vpe_channel_hw_shutdown(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	struct drm_device *dev = vpe_channel->dev;
++
++	nouveau_vpe_channel_shutdown(vpe_channel);
++
++	nouveau_vpe_channel_wait(vpe_channel,  vpe_channel->dma.cur);
++
++	/* Just a slight pause. This might not be needed. */
++	DRM_UDELAY(100);
++
++	/* Turn off the mpeg2 decoder.*/
++	nv_wr32(dev, NV_VPE_MPEG2_USER_CONFIG,
++		NV_VPE_MPEG2_USER_NOT_PRESENT);
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_CONTROL, NV_VPE_MPEG2_ENGINE_STOP);
++	nv_wr32(dev, NV_VPE_MPEG2_USER_PUT, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_USER_OFFSET, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_USER_SIZE, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_1, 0);
++	nv_wr32(dev, NV_VPE_MPEG2_ENGINE_SETUP_2, 0);
++	nv_rd32(dev, NV_VPE_MPEG2_ENGINE_CONTROL);
++}
++
++static int
++nouveau_vpe_channel_alloc(struct drm_device *dev,
++				struct drm_nouveau_vd_vpe_channel_alloc *req,
++				struct drm_file *file_priv)
++{
++	struct drm_nouveau_private *dev_priv = dev->dev_private;
++	struct nouveau_vd_vpe_channel *vpe_channel;
++	int ret;
++
++	if (dev_priv->vpe_channel) {
++		NV_ERROR(dev, "vpe channel is already in use.\n");
++		return -EPERM;
++	}
++
++	if ((dev_priv->card_type != NV_40) &&
++	     (dev_priv->card_type != NV_30)) {
++		NV_ERROR(dev, "vpe is not supported on NV%d.\n",
++			dev_priv->card_type);
++		return -EINVAL;
++	}
++
++	if ((req->width < NV_VPE_MIN_WIDTH) ||
++	     (req->width > NV_VPE_MAX_WIDTH) ||
++	     (req->height < NV_VPE_MIN_HEIGHT) ||
++	     (req->height > NV_VPE_MAX_HEIGHT)) {
++		NV_ERROR(dev, "vpe does not support width = %d, height = %d\n",
++			req->width, req->height);
++		return -EINVAL;
++	}
++
++	vpe_channel = kzalloc(sizeof(*vpe_channel), GFP_KERNEL);
++	if (!vpe_channel)
++		return -ENOMEM;
++
++	req->width = ALIGN(req->width, 16);
++	req->height = ALIGN(req->height, 16);
++	vpe_channel->dev = dev;
++	vpe_channel->width = req->width;
++	vpe_channel->height = req->height;
++
++	ret = nouveau_vpe_channel_pushbuf_alloc(vpe_channel);
++	if (ret)
++		goto out_err;
++
++	ret = nouveau_vpe_channel_hw_init(vpe_channel);
++	if (ret)
++		goto out_err;
++
++	ret = nouveau_vpe_channel_init(vpe_channel);
++	if (ret)
++		goto out_err;
++
++	ret = drm_gem_handle_create(file_priv, vpe_channel->pushbuf_bo->gem,
++				    &req->pushbuf_handle);
++	if (ret)
++		goto out_err;
++
++	nouveau_debugfs_vpe_channel_init(vpe_channel);
++
++	vpe_channel->file_priv = file_priv;
++	dev_priv->vpe_channel = vpe_channel;
++
++	NV_INFO(dev, "intialized vpe channel\n");
++
++out_err:
++	if (ret)
++		nouveau_vpe_channel_free(vpe_channel);
++
++	return ret;
++}
++
++void
++nouveau_vpe_channel_free(struct nouveau_vd_vpe_channel *vpe_channel)
++{
++	struct drm_device *dev;
++	struct drm_nouveau_private *dev_priv;
++	struct nouveau_vd_vpe_surface *vpe_surface;
++	int i;
++
++	if (!vpe_channel)
++		return;
++
++	dev = vpe_channel->dev;
++	dev_priv = dev->dev_private;
++
++	nouveau_vpe_channel_hw_shutdown(vpe_channel);
++
++	nouveau_debugfs_vpe_channel_fini(vpe_channel);
++
++	for (i = 0; i < ARRAY_SIZE(vpe_channel->surface); i++) {
++		vpe_surface = &vpe_channel->surface[i];
++		if (vpe_surface->luma_bo)
++			nouveau_vpe_unpin_surface(vpe_channel, vpe_surface->luma_bo);
++		if (vpe_surface->chroma_bo)
++			nouveau_vpe_unpin_surface(vpe_channel, vpe_surface->chroma_bo);
++	}
++
++	if (vpe_channel->pushbuf_bo) {
++		nouveau_bo_unmap(vpe_channel->pushbuf_bo);
++		mutex_lock(&vpe_channel->dev->struct_mutex);
++		drm_gem_object_unreference(vpe_channel->pushbuf_bo->gem);
++		mutex_unlock(&vpe_channel->dev->struct_mutex);
++	}
++
++	NV_INFO(vpe_channel->dev, "shutdown vpe channel\n");
++
++	dev_priv->vpe_channel = NULL;
++
++	kfree(vpe_channel);
++}
++
++static int
++nouveau_vpe_reference_surface(struct nouveau_vd_vpe_channel *vpe_channel,
++						uint32_t surface_index, uint64_t addr_offset,
++						bool is_luma)
++{
++	struct drm_device *dev = vpe_channel->dev;
++	uint32_t value;
++	int ret;
++
++	if (vpe_channel->dma.free < 8)
++		nouveau_vpe_reset_pushbuf_to_start(vpe_channel);
++
++	nouveau_vpe_cmd_write(vpe_channel, NV_VPE_CMD_INIT_SURFACE <<
++					NV_VPE_CMD_TYPE_SHIFT | (is_luma ?
++					NV_VPE_CMD_INIT_SURFACE_LUMA(surface_index) :
++					NV_VPE_CMD_INIT_SURFACE_CHROMA(surface_index))
++		| NV_VPE_CMD_INIT_SURFACE_OFFSET_DIV(lower_32_bits(addr_offset)));
++	nouveau_vpe_cmd_align(vpe_channel);
++
++	if (vpe_channel->dma.free >= NV_VPE_CMD_ALIGNMENT)
++		nouveau_vpe_fire(vpe_channel, VPE_UDELAY_FIRE_INIT);
++	else
++		nouveau_vpe_reset_pushbuf_to_start(vpe_channel);
++
++	ret = nouveau_vpe_channel_wait(vpe_channel, vpe_channel->dma.cur);
++	if (ret)
++		return ret;
++
++	ret = nouveau_vpe_wait_until_engine_idle(vpe_channel);
++	if (ret)
++		return ret;
++
++	if (is_luma) {
++		value = nv_rd32(dev, NV_VPE_MPEG2_LUMA_SURFACE_OFFSET_GET(surface_index));
++		if (lower_32_bits(addr_offset) != value) {
++			NV_ERROR(dev, "vpe - surface.luma ref is wrong. "
++				"Expected 0x%08X, Got 0x%08X.\n",
++				lower_32_bits(addr_offset), value);
++			return -EINVAL;
++		}
++	} else {
++		value = nv_rd32(dev, NV_VPE_MPEG2_CHROMA_SURFACE_OFFSET_GET(surface_index));
++		if (lower_32_bits(addr_offset) != value) {
++			NV_ERROR(dev, "vpe - surface.chroma ref is wrong. "
++				"Expected 0x%08X, Got 0x%08X.\n",
++				lower_32_bits(addr_offset), value);
++			return -EINVAL;
++		}
++	}
++
++	return 0;
++}
++
++static int
++nouveau_vpe_channel_validate_surfaces(struct nouveau_vd_vpe_channel *vpe_channel,
++			struct drm_nouveau_vd_vpe_surface *surfaces, int nr_surfaces,
++			struct nouveau_vd_vpe_surface **target_vpe_surface)
++{
++	struct drm_device *dev = vpe_channel->dev;
++	int ret;
++	int i;
++	struct nouveau_vd_vpe_surface *vpe_surface;
++	struct drm_nouveau_vd_vpe_surface *surface;
++	uint32_t decoder_surface_size = 0;
++
++	for (i = 0, surface = surfaces; i < nr_surfaces; i++, surface++) {
++		if (unlikely(surface->surface_index >= ARRAY_SIZE(vpe_channel->surface))) {
++			NV_ERROR(dev, "nouveau_vpe_channel_validate_surfaces - "
++			"surface_index %d is invalid.\n", surface->surface_index);
++			return -EINVAL;
++		}
++
++		vpe_surface = &vpe_channel->surface[surface->surface_index];
++		if (!vpe_surface->luma_bo ||
++		    !nouveau_vpe_validate_surface(vpe_channel, surface->luma_handle, vpe_surface->luma_bo)) {
++			if (!decoder_surface_size)
++				decoder_surface_size = vpe_channel->width * vpe_channel->height;
++
++			if (vpe_surface->luma_bo) {
++				nouveau_vpe_unpin_surface(vpe_channel, vpe_surface->luma_bo);
++				vpe_surface->luma_bo = NULL;
++			}
++
++			ret = nouveau_vpe_pin_surface(vpe_channel, surface->luma_handle,
++							decoder_surface_size, &vpe_surface->luma_bo);
++			if (ret) {
++				NV_ERROR(dev, "nouveau_vpe_channel_validate_surfaces - "
++					"could not pin surface_index %d, luma handle 0x%08X, "
++					"error %d.\n", surface->surface_index,
++					surface->luma_handle, ret);
++				return ret;
++			}
++
++			ret = nouveau_vpe_reference_surface(vpe_channel, surface->surface_index,
++										  vpe_surface->luma_bo->bo.offset, true);
++			if (ret) {
++				NV_ERROR(dev, "nouveau_vpe_channel_validate_surfaces - "
++					"could not reference surface_index %d, luma handle 0x%08X, "
++					"error %d.\n", surface->surface_index,
++					surface->luma_handle, ret);
++				nouveau_vpe_unpin_surface(vpe_channel, vpe_surface->luma_bo);
++				vpe_surface->luma_bo = NULL;
++				return ret;
++			}
++
++			vpe_surface->dma_sequence = 0;
++		}
++		if (!vpe_surface->chroma_bo ||
++		    !nouveau_vpe_validate_surface(vpe_channel, surface->chroma_handle, vpe_surface->chroma_bo)) {
++
++			if (!decoder_surface_size)
++				decoder_surface_size = vpe_channel->width * vpe_channel->height;
++
++			if (vpe_surface->chroma_bo) {
++				nouveau_vpe_unpin_surface(vpe_channel, vpe_surface->chroma_bo);
++				vpe_surface->chroma_bo = NULL;
++			}
++
++			/* The chroma surface is 1/2 the size of the luma in both the width
++			 * and height.*/
++			ret = nouveau_vpe_pin_surface(vpe_channel, surface->chroma_handle,
++					decoder_surface_size / 4, &vpe_surface->chroma_bo);
++			if (ret) {
++				NV_ERROR(dev, "nouveau_vpe_channel_validate_surfaces - "
++					"could not pin surface_index %d, chroma handle 0x%08X, "
++					"error %d.\n", surface->surface_index,
++				surface->luma_handle, ret);
++				return ret;
++			}
++
++			ret = nouveau_vpe_reference_surface(vpe_channel, surface->surface_index,
++							vpe_surface->chroma_bo->bo.offset, false);
++			if (ret) {
++				NV_ERROR(dev, "nouveau_vpe_channel_validate_surfaces - "
++					"could not reference surface_index %d, "
++					"chroma handle 0x%08X, error %d.\n",
++					surface->surface_index, surface->luma_handle, ret);
++				nouveau_vpe_unpin_surface(vpe_channel, vpe_surface->chroma_bo);
++				vpe_surface->chroma_bo = NULL;
++				return ret;
++			}
++
++			vpe_surface->dma_sequence = 0;
++		}
++
++		/* First surface is considered the target.*/
++		if (i == 0)
++			*target_vpe_surface = vpe_surface;
++	}
++
++	return 0;
++}
++
++static int
++nouveau_vpe_channel_pushbuf_fire(struct nouveau_vd_vpe_channel *vpe_channel,
++							struct drm_nouveau_vd_vpe_pushbuf_fire *req)
++{
++	int ret;
++	uint32_t *pushbuf = NULL;
++	uint32_t *batches = NULL;
++	struct drm_nouveau_vd_vpe_surface *surfaces = NULL;
++	struct nouveau_vd_vpe_surface *vpe_surface = NULL;
++	int i;
++	uint32_t offset = 0;
++	uint32_t batch_size;
++	bool is_end_sequence = req->flags &
++				NOUVEAU_VD_VPE_PUSHBUF_FIRE_FLAG_END_SEQUENCE;
++	bool is_update_dma_pos = req->flags &
++				NOUVEAU_VD_VPE_PUSHBUF_FIRE_FLAG_UPDATE_DMA_POS;
++	bool do_fire_batch;
++
++	if (req->nr_surfaces) {
++		surfaces = _u_memcpya(req->surfaces, req->nr_surfaces, sizeof(*surfaces));
++		if (unlikely(IS_ERR(surfaces))) {
++			ret = PTR_ERR(surfaces);
++			goto out;
++		}
++	}
++
++	if (req->nr_dwords) {
++		pushbuf = _u_memcpya(req->dwords, req->nr_dwords, sizeof(uint32_t));
++		if (unlikely(IS_ERR(pushbuf))) {
++			ret = PTR_ERR(pushbuf);
++			goto out;
++		}
++	}
++
++	if (req->nr_batches) {
++		batches = _u_memcpya(req->batches, req->nr_batches, sizeof(uint32_t));
++		if (unlikely(IS_ERR(batches))) {
++			ret = PTR_ERR(batches);
++			goto out;
++		}
++	}
++
++	if (req->nr_surfaces) {
++		ret = nouveau_vpe_channel_validate_surfaces(vpe_channel,
++										surfaces, req->nr_surfaces,
++										&vpe_surface);
++		if (unlikely(ret))
++			goto out;
++	}
++
++	if (is_update_dma_pos) {
++		if (req->dma_cur >= vpe_channel->dma.max) {
++			ret = -EINVAL;
++		    goto out;
++		}
++		vpe_channel->dma.cur = req->dma_cur;
++		vpe_channel->dma.free = vpe_channel->dma.max - vpe_channel->dma.cur;
++		if (!is_end_sequence)
++			nouveau_vpe_fire(vpe_channel, VPE_UDELAY_FIRE_NORMAL);
++	}
++
++	for (i = 0; i < req->nr_batches; i++) {
++		batch_size = batches[i];
++
++		do_fire_batch = !(batch_size &
++						NOUVEAU_VD_VPE_PUSHBUF_FIRE_BATCH_DO_NOT_FIRE);
++
++		batch_size &= 0xFFFF;
++
++		if (unlikely(!batch_size)) {
++			ret = -EINVAL;
++			goto out;
++		}
++
++		if (unlikely((batch_size + offset) > req->nr_dwords)) {
++			ret = -EINVAL;
++			goto out;
++		}
++
++		if (batch_size > vpe_channel->dma.free)
++			nouveau_vpe_reset_pushbuf_to_start(vpe_channel);
++
++		ret = nouveau_vpe_cmd_write_user_batch(vpe_channel,
++			(const void *)((uint64_t)pushbuf + (offset << 2)), batch_size);
++		if (ret)
++			goto out;
++
++		offset += batch_size;
++		vpe_channel->dma.free -= batch_size;
++
++		if (!vpe_channel->dma.free) {
++			vpe_channel->dma.cur = 0;
++			vpe_channel->dma.free = vpe_channel->dma.max;
++			nouveau_vpe_fire(vpe_channel, VPE_UDELAY_FIRE_END);
++		}
++
++		if (do_fire_batch)
++			nouveau_vpe_fire(vpe_channel, VPE_UDELAY_FIRE_NORMAL);
++	}
++
++	if (req->nr_dwords) {
++		if (vpe_channel->dma.free < NV_VPE_MAX_MB)
++			nouveau_vpe_reset_pushbuf_to_start(vpe_channel);
++	}
++
++	if (is_end_sequence) {
++		if (vpe_channel->dma.free < NV_VPE_CMD_ALIGNMENT)
++			nouveau_vpe_reset_pushbuf_to_start(vpe_channel);
++		nouveau_vpe_cmd_end_sequence_header(vpe_channel);
++		nouveau_vpe_cmd_end_sequence_trailer(vpe_channel);
++		nouveau_vpe_cmd_end_sequence_finish(vpe_channel);
++
++		if (vpe_surface)
++			vpe_surface->dma_sequence = vpe_channel->dma.sequence;
++	}
++
++	req->dma_free = vpe_channel->dma.free;
++	req->dma_cur = vpe_channel->dma.cur;
++	ret = 0;
++out:
++	if (!IS_ERR(surfaces) && surfaces)
++		kfree(surfaces);
++	if (!IS_ERR(batches) && batches)
++		kfree(batches);
++	if (!IS_ERR(pushbuf) && pushbuf)
++		kfree(pushbuf);
++
++	return ret;
++}
++
++static int
++nouveau_vpe_surface_query(struct nouveau_vd_vpe_channel *vpe_channel,
++				struct drm_nouveau_vd_vpe_surface_query *req)
++{
++	struct drm_device *dev = vpe_channel->dev;
++	struct nouveau_vd_vpe_surface *vpe_surface;
++	uint32_t i;
++	uint32_t value;
++
++	if (unlikely(req->surface_index >= ARRAY_SIZE(vpe_channel->surface))) {
++		NV_ERROR(dev, "nouveau_vpe_surface_query - invalid surface index %d.\n",
++			req->surface_index);
++		return -EINVAL;
++	}
++
++	req->is_busy = 0;
++
++	vpe_surface = &vpe_channel->surface[req->surface_index];
++
++	/* This is set when a cmd sequence is done for the target surface.*/
++	if (vpe_surface->dma_sequence) {
++		/* Read the current sequence and see if any surfaces have
++		 * finished rendering.*/
++		value = nv_rd32(dev, NV_VPE_MPEG2_SEQUENCE_GET);
++		for (i = 0; i < ARRAY_SIZE(vpe_channel->surface); i++) {
++			if (vpe_channel->surface[i].luma_bo ||
++			    vpe_channel->surface[i].chroma_bo) {
++				if (value >= vpe_channel->surface[i].dma_sequence)
++					vpe_channel->surface[i].dma_sequence = 0;
++				else if (i == req->surface_index)
++					req->is_busy = 1;
++			}
++		}
++	}
++
++	return 0;
++}
++
++/* IOCtls.*/
++
++int
++nouveau_vd_vpe_ioctl_channel_alloc(struct drm_device *dev, void *data,
++				struct drm_file *file_priv)
++{
++
++	struct drm_nouveau_vd_vpe_channel_alloc *req = data;
++
++	return nouveau_vpe_channel_alloc(dev, req, file_priv);
++}
++
++int
++nouveau_vd_vpe_ioctl_channel_free(struct drm_device *dev, void *data,
++				struct drm_file *file_priv)
++{
++	struct nouveau_vd_vpe_channel *vpe_channel;
++
++	NOUVEAU_GET_VPE_CHANNEL_WITH_RETURN(file_priv, vpe_channel);
++
++	nouveau_vpe_channel_free(vpe_channel);
++
++	return 0;
++}
++
++int nouveau_vd_vpe_ioctl_pushbuf_fire(struct drm_device *dev, void *data,
++				  struct drm_file *file_priv)
++{
++	struct nouveau_vd_vpe_channel *vpe_channel;
++	struct drm_nouveau_vd_vpe_pushbuf_fire *req = data;
++
++	NOUVEAU_GET_VPE_CHANNEL_WITH_RETURN(file_priv, vpe_channel);
++
++	return nouveau_vpe_channel_pushbuf_fire(vpe_channel, req);
++}
++
++int nouveau_vd_vpe_ioctl_surface_query(struct drm_device *dev, void *data,
++				  struct drm_file *file_priv)
++{
++	struct nouveau_vd_vpe_channel *vpe_channel;
++	struct drm_nouveau_vd_vpe_surface_query *req = data;
++
++	NOUVEAU_GET_VPE_CHANNEL_WITH_RETURN(file_priv, vpe_channel);
++
++	return nouveau_vpe_surface_query(vpe_channel, req);
++}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_vpe_hw.h b/drivers/gpu/drm/nouveau/nouveau_vpe_hw.h
+new file mode 100644
+index 0000000..8e3dfb9
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/nouveau_vpe_hw.h
+@@ -0,0 +1,153 @@
++/*
++ * Copyright (C) 2010 Jimmy Rentz
++ * All Rights Reserved.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
++ * IN NO EVENT SHALL THE COPYRIGHT OWNER(S) AND/OR ITS SUPPLIERS BE
++ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
++ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
++ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
++#ifndef __NOUVEAU_VPE_HW_H__
++#define __NOUVEAU_VPE_HW_H__
++
++/* VPE is the video decoder engine that is found in nv30, nv40 and some
++ * older hardware (geforce 4 and higher I believe).
++ * It contains an mpeg2 decoder with the following properties:
++ * (-) Decodes at the idct level.  However, I believe older cards only
++ * support mc level.
++ * (-) 32x64 to 2032x2032 profiles.
++ * (-) 4:2:0 chroma sampling.
++ * (-) Only one set of registers so only one user unless some type of
++ * context/channel switching is added.*/
++
++#define NV_VPE_MAX_CHANNELS		1
++#define NV_VPE_MAX_SURFACES		8
++#define NV_VPE_MIN_WIDTH		32
++#define NV_VPE_MIN_HEIGHT		64
++#define NV_VPE_MAX_WIDTH		2032
++#define NV_VPE_MAX_HEIGHT		2032
++#define NV_VPE_PUSHBUFFER_SIZE		(1 * 1024 * 1024)
++#define NV_VPE_CMD_ALIGNMENT		16
++
++#define NV_VPE_MAX_MB_BATCH		16
++#define NV_VPE_MAX_MB_HEADER		20
++#define NV_VPE_MAX_MB_DCT		(33 * 6)
++#define NV_VPE_MAX_MB		(NV_VPE_MAX_MB_HEADER + NV_VPE_MAX_MB_DCT)
++
++#define NV_VPE_CMD_TYPE_SHIFT	28
++
++/* All cmd info.*/
++#define NV_VPE_CMD_NOP 0x1
++
++#define NV_VPE_CMD_INIT_SURFACE 0x2
++    #define NV_VPE_CMD_INIT_SURFACE_LUMA(index) ((index * 2) << 24)
++    #define NV_VPE_CMD_INIT_SURFACE_CHROMA(index) (((index * 2) + 1) << 24)
++    #define NV_VPE_CMD_INIT_SURFACE_OFFSET_DIV(offset) (offset >> 5)
++
++#define NV_VPE_CMD_INIT_CHANNEL 0x3
++    /* ( (width round to 112) / 32 */
++    #define NV_VPE_CMD_INIT_CHANNEL_SURFACE_GROUP_INFO 0x1
++    #define NV_VPE_CMD_INIT_CHANNEL_ACCEL 0x2
++    /* (0x1 to turn on idct operations). */
++	#define NV_VPE_CMD_INIT_CHANNEL_ACCEL_IDCT 0x1
++
++#define NV_VPE_CMD_DCT_SEPARATOR 0x6
++#define NV_VPE_CMD_END_SEQUENCE 0x7
++    #define NV_VPE_CMD_SEQUENCE 0x1
++
++/* DCT Blocks */
++#define NV_VPE_CMD_DCT_CHROMA_HEADER	0x8
++#define NV_VPE_CMD_DCT_LUMA_HEADER	0x9
++    /* The block pattern is used for chroma and luma blocks */
++    #define NV_VPE_CMD_DCT_BLOCK_PATTERN(p)	((p) << 24)
++    /* Not sure what this is for. This is always set in the dct block header */
++    #define NV_VPE_CMD_DCT_BLOCK_UNKNOWN	0x10000
++    /* Target surface index. Is 0 based. */
++    #define NV_VPE_CMD_DCT_BLOCK_TARGET_SURFACE(s)	(s << 20)
++    /* If picture element is frame */
++    #define NV_VPE_CMD_PICT_FRAME	0x80000
++    /* If field based encoding and a luma block */
++    #define NV_VPE_CMD_PICT_FRAME_FIELD	0x800000
++    /* If picture element or field encoding is bottom field */
++    #define NV_VD_VPE_CMD_BOTTOM_FIELD	0x20000
++    /* If macroblock x coordinate is even */
++    #define NV_VD_VPE_CMD_EVEN_X_COORD	0x8000
++
++/* Used to terminate a set of dct data blocks.*/
++#define NV_VPE_DCT_BLOCK_TERMINATOR	0x1
++
++/* Used to designate dct data blocks that are all zero.*/
++#define NV_VPE_DCT_BLOCK_NULL	(0x80040000 | NV_VPE_DCT_BLOCK_TERMINATOR)
++
++/* Coordinates of dct */
++#define NV_VPE_CMD_DCT_COORDINATE	0xA
++    #define NV_VPE_DCT_POINTS_LUMA(x, y, p) (((y * 16 * p) << 12) | (x * 16))
++    #define NV_VPE_DCT_POINTS_CHROMA(x, y, p) (((y * 8 * p) << 12) | (x * 16))
++
++/* Motion Vectors */
++#define NV_VPE_CMD_LUMA_MOTION_VECTOR_HEADER	0xD
++#define NV_VPE_CMD_CHROMA_MOTION_VECTOR_HEADER	0xC
++#define NV_VPE_CMD_MOTION_VECTOR		0xE
++
++    /* Motion Vector Header */
++
++    /* Set if 2 motion vectors exist for this header.
++     * Otherwise, it is cleared and only 1 exists.*/
++    #define NV_VPE_CMD_MC_MV_COUNT_2	(0x1 << 16)
++
++    /* [Field Picture or Field Motion Only]
++     * motion_vertical_field_select is set here.
++    * This means that the bottom field is selected for the given vertical
++    * vector. However, dual-prime blocks do not follow this rule.
++    * It is treated speciallly for them.*/
++    #define NV_VPE_CMD_BOTTOM_FIELD_VERTICAL_MOTION_SELECT_FIRST (0x1 << 17)
++
++    /* [Frame Picture and Frame Motion Type only] */
++    #define NV_VPE_CMD_FRAME_PICT_FRAME_MOTION (0x1 << 19)
++
++    /* MC prediction surface index. Is 0 based. */
++    #define NV_VPE_CMD_PREDICTION_SURFACE(s) (s << 20)
++
++    /* Set if this is a second motion vector. Otherwise, the first one is
++     * assumed.*/
++    #define NV_VPE_CMD_MOTION_VECTOR_TYPE_SECOND (0x1 << 23)
++
++    /* [Frame Picture and Frame Motion Type OR Field Picture only]*/
++    #define NV_VPE_CMD_FRAME_FRAME_PICT_OR_FIELD (0x1 << 24)
++
++    /* If Vertical Motion Vector is odd then set. This is before any
++     * operations are done. */
++    #define NV_VPE_CMD_ODD_VERTICAL_MOTION_VECTOR (0x1 << 25)
++
++    /* If Horizontal Motion Vector is odd then set. This is before any
++     * operations are done. */
++    #define NV_VPE_CMD_ODD_HORIZONTAL_MOTION_VECTOR (0x1 << 26)
++
++    /* If set then the motion vectors are backward.  Otherwise,
++     * they are forward.*/
++    #define NV_VPE_CMD_MOTION_VECTOR_BACKWARD (0x1 << 27)
++
++    /* Motion Vectors. This is the equation used for each motion vector.
++    * d is only used as a second vector displacement in a couple of cases.
++    */
++    #define NV_VPE_MOTION_VECTOR_VERTICAL(y, c, v, q, d) (((y * c) + (v / q) + d) << 12)
++    #define NV_VPE_MOTION_VECTOR_HORIZONTAL(x, c, v, q, d) ((x * c) + (v / q) + d)
++
++#endif
+diff --git a/include/drm/nouveau_drm.h b/include/drm/nouveau_drm.h
+index fe917de..c597c0a 100644
+--- a/include/drm/nouveau_drm.h
++++ b/include/drm/nouveau_drm.h
+@@ -184,6 +184,52 @@ enum nouveau_bus_type {
+ struct drm_nouveau_sarea {
+ };
+ 
++/* VPE Supports mpeg2 only.*/
++struct drm_nouveau_vd_vpe_channel_alloc {
++	uint32_t width;
++	uint32_t height;
++	/* Used for user pushbuf access.
++	 * mmio access is not allowed so you still need to fire as normal.*/
++	uint32_t pushbuf_handle;
++};
++
++struct drm_nouveau_vd_vpe_channel_free {
++};
++
++#define NOUVEAU_VD_VPE_PUSHBUF_FIRE_FLAG_END_SEQUENCE   0x00000001
++#define NOUVEAU_VD_VPE_PUSHBUF_FIRE_FLAG_UPDATE_DMA_POS 0x00000002
++/* structure for surface.*/
++struct drm_nouveau_vd_vpe_surface {
++	uint32_t luma_handle;
++	uint32_t chroma_handle;
++	uint32_t surface_index;
++};
++
++/* This flag lets you turn off firing for a specific batch.
++ * This is needed in some cases to avoid locking up the decoder.*/
++#define NOUVEAU_VD_VPE_PUSHBUF_FIRE_BATCH_DO_NOT_FIRE  0x10000000
++struct drm_nouveau_vd_vpe_pushbuf_fire {
++	/* [in] */
++	uint32_t nr_dwords;
++	uint64_t dwords;
++	uint32_t nr_batches;
++	uint64_t batches;
++	/* Surface[0] is always the target.*/
++	uint32_t nr_surfaces;
++	uint64_t surfaces;
++	uint32_t flags;
++	/* Needed when writing to the hw pushbuf from user space.
++	 * This also will perform a fire.*/
++	uint32_t dma_cur;
++	/* [out] */
++	uint32_t dma_free;
++};
++
++struct drm_nouveau_vd_vpe_surface_query {
++	uint32_t surface_index;
++	uint32_t is_busy;
++};
++
+ #define DRM_NOUVEAU_GETPARAM           0x00
+ #define DRM_NOUVEAU_SETPARAM           0x01
+ #define DRM_NOUVEAU_CHANNEL_ALLOC      0x02
+@@ -196,5 +242,9 @@ struct drm_nouveau_sarea {
+ #define DRM_NOUVEAU_GEM_CPU_PREP       0x42
+ #define DRM_NOUVEAU_GEM_CPU_FINI       0x43
+ #define DRM_NOUVEAU_GEM_INFO           0x44
++#define DRM_NOUVEAU_VD_VPE_CHANNEL_ALLOC  0x49
++#define DRM_NOUVEAU_VD_VPE_CHANNEL_FREE   0x50
++#define DRM_NOUVEAU_VD_VPE_PUSHBUF_FIRE   0x51
++#define DRM_NOUVEAU_VD_VPE_SURFACE_QUERY  0x52
+ 
+ #endif /* __NOUVEAU_DRM_H__ */
