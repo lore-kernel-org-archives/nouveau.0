@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
  spontaneously
-Date: Fri,  6 Aug 2010 03:40:38 -0700 (PDT)
-Message-ID: <20100806104038.225501300A5@annarchy.freedesktop.org>
+Date: Fri,  6 Aug 2010 03:41:18 -0700 (PDT)
+Message-ID: <20100806104118.2C49F1300C3@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
---- Comment #30 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-06 03:40:37 PDT ---
-Created an attachment (id=37625)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37625)
-peek results from before lockup
+--- Comment #31 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-06 03:41:17 PDT ---
+Created an attachment (id=37626)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37626)
+peek results after lockup
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
