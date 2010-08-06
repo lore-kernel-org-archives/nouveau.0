@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29324] [NV31] Artefacts with latest git
-Date: Fri,  6 Aug 2010 04:40:32 -0700 (PDT)
-Message-ID: <20100806114032.BA65A130123@annarchy.freedesktop.org>
+Date: Fri,  6 Aug 2010 08:00:50 -0700 (PDT)
+Message-ID: <20100806150050.8EAB61300F0@annarchy.freedesktop.org>
 References: <bug-29324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29324
 
---- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-06 04:40:32 PDT ---
-Created an attachment (id=37629)
- View: https://bugs.freedesktop.org/attachment.cgi?id=37629
- Review: https://bugs.freedesktop.org/review?bug=29324&attachment=37629
-
-nv31_pfb_init.patch
-
-Thanks, can you try again with the attached patch?
+--- Comment #8 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2010-08-06 08:00:49 PDT ---
+Created an attachment (id=37637)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37637)
+new tvdump after X
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
