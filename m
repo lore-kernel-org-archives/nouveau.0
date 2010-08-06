@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
- spontaneously
-Date: Fri,  6 Aug 2010 03:41:49 -0700 (PDT)
-Message-ID: <20100806104149.B66471300FD@annarchy.freedesktop.org>
-References: <bug-26980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29324] [NV31] Artefacts with latest git
+Date: Fri,  6 Aug 2010 04:40:32 -0700 (PDT)
+Message-ID: <20100806114032.BA65A130123@annarchy.freedesktop.org>
+References: <bug-29324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29324-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +20,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26980
+https://bugs.freedesktop.org/show_bug.cgi?id=29324
 
---- Comment #32 from Mark Carey <mark.carey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-06 03:41:49 PDT ---
-Created an attachment (id=37627)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37627)
-Xorg.0.log from lockup
+--- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-06 04:40:32 PDT ---
+Created an attachment (id=37629)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=37629
+ Review: https://bugs.freedesktop.org/review?bug=29324&attachment=37629
+
+nv31_pfb_init.patch
+
+Thanks, can you try again with the attached patch?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
