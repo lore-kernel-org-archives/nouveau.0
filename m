@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29324] [NV31] Artefacts with latest git
-Date: Fri,  6 Aug 2010 08:31:44 -0700 (PDT)
-Message-ID: <20100806153144.A643B1300D8@annarchy.freedesktop.org>
-References: <bug-29324-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29415] Screen shutdown with Nvidia GeForce 9400M
+Date: Fri,  6 Aug 2010 12:14:18 -0700 (PDT)
+Message-ID: <20100806191418.F2CA31300A8@annarchy.freedesktop.org>
+References: <bug-29415-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29324-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29415-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29324
+https://bugs.freedesktop.org/show_bug.cgi?id=29415
 
-Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
+--- Comment #7 from saintger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-08-06 12:14:18 PDT ---
+Created an attachment (id=37648)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37648)
+kern.log with "log_buf_len=1M drm.debug=14 nouveau.reg_debug=0x0200 3"
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #37629|0                           |1
-        is obsolete|                            |
-
---- Comment #9 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-06 08:31:44 PDT ---
-Created an attachment (id=37641)
- View: https://bugs.freedesktop.org/attachment.cgi?id=37641
- Review: https://bugs.freedesktop.org/review?bug=29324&attachment=37641
-
-nv31_pfb_init.patch
-
-New patch attached, the other one had an arithmetic overflow issue.
+Here is the kern.log with the options "log_buf_len=1M drm.debug=14
+nouveau.reg_debug=0x0200 3"
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
