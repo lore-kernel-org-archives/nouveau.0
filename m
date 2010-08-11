@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26733] Full-screen XV causes graphics lockup
-Date: Tue, 10 Aug 2010 11:12:42 -0700 (PDT)
-Message-ID: <20100810181242.2442C1300D7@annarchy.freedesktop.org>
+Date: Tue, 10 Aug 2010 21:46:58 -0700 (PDT)
+Message-ID: <20100811044659.0E4991300E3@annarchy.freedesktop.org>
 References: <bug-26733-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,48 +22,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26733
 
---- Comment #22 from Ben Kevan <ben.kevan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-10 11:12:42 PDT ---
-I am having the same issue during normal day to day use. The applications being
-used are:
+--- Comment #23 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-10 21:46:58 PDT ---
+(In reply to comment #22)
+> I am having the same issue during normal day to day use. The applications being
+> I'm on Fedora 13, running: 
+> 
+> 2.6.33.6-147.2.4.fc13.i686.PAE
+Can you update to this kernel, it's the only *known* issue which could cause
+something like this to occur: 
+http://koji.fedoraproject.org/koji/buildinfo?buildID=189280
 
-Fluxbox
-urxvt
-xcompmgr
-mpc 
-pidgin
-Chromium (unsure if pages have flash at the time of crash) 
-
-Here's info on my card:
-
-$ lspci | grep -i nvidia
-01:00.0 VGA compatible controller: nVidia Corporation G98M [Quadro NVS 160M]
-
-Here's the info from /var/log/messages that pertain to the crash: 
-
-$ sudo grep PGRAPH /var/log/messages
-Aug 10 10:39:10 bkfc05006060 kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_DATA_ERROR - Ch 2/5 Class 0x8297 Mthd 0x0200 Data 0x00000000:0x00044110
-Aug 10 10:39:10 bkfc05006060 kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_DATA_ERROR - INVALID_BITFIELD
-Aug 10 10:39:10 bkfc05006060 kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_DATA_ERROR - Ch 2/5 Class 0x8297 Mthd 0x0208 Data 0x00000000:0x0014a200
-Aug 10 10:39:10 bkfc05006060 kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_DATA_ERROR - INVALID_BITFIELD
-Aug 10 10:48:23 bkfc05006060 kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_DATA_ERROR - Ch 2/5 Class 0x8297 Mthd 0x0fa4 Data 0x00000000:0x00042050
-Aug 10 10:48:23 bkfc05006060 kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_DATA_ERROR - INVALID_BITFIELD
-Aug 10 10:48:23 bkfc05006060 kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_DATA_ERROR - Ch 2/5 Class 0x8297 Mthd 0x0fa8 Data 0x00000000:0x00036c0f
-Aug 10 10:48:23 bkfc05006060 kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_DATA_ERROR - INVALID_VALUE
-
-I'm on Fedora 13, running: 
-
-2.6.33.6-147.2.4.fc13.i686.PAE
-
-Please fix.. I would hate to have to move to the proprietary driver to get a
-functional machine.
+> 
+> Please fix.. I would hate to have to move to the proprietary driver to get a
+> functional machine.
+If one of us nouveau devs could reproduce this issue, we'd have a way to find
+out *why* it's happening and fix it.  Unfortunately, I don't think any of us
+can, so it's hard to fix.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
