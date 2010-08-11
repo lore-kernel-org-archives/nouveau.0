@@ -1,15 +1,14 @@
-From: GatoLoko <gatoloko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Is it possible to resume the TiNDC's?
-Date: Wed, 11 Aug 2010 20:34:33 +0200
-Message-ID: <4C62ED39.4030306@gmail.com>
-References: <4C48CCD5.9080509@gmail.com>
-	<1c11cb5350f2e0dcfb88a31ee06f9036@alia>
-	<4C49C878.9070100@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
+ spontaneously
+Date: Wed, 11 Aug 2010 11:38:14 -0700 (PDT)
+Message-ID: <20100811183814.6C2081300B9@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4C49C878.9070100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,26 +21,27 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
-Hi!
+--- Comment #33 from Rich Coe <Richard.Coe-uBwQTICB363QT0dZR+AlfA@public.gmane.org> 2010-08-11 11:38:13 PDT ---
+I found this bug while researching my X locks up issue.  
+This solution does not address the hardware issue documented here, but
+I want help anyone who is in a similar situation that does *NOT* have
+the hardware lockup and that the noaccel=1 does not work.
 
-I said I'll try to make a draft in a week, but I had a change in my
-schedule, reducing the time I can spend on this.
+In my case all you have to do is move a window and then immediately
+click in another window.  There may be other ways to reproduce this.
 
-There is A LOT to read, and some times I need to reread or google things
-to understand what I'm reading, so it's going to take a little longer,
-but don't worry because I won't disappear without completing this.
+The only workaround is to restart the window manager or Xorg.
 
-- --------
-GatoLoko
+Investigating the issue I found this patch:
+http://cgit.freedesktop.org/xorg/xserver/patch/?id=1884db430a5680e37e94726dff46686e2218d525
+Subject: Revert "dix: use the event mask of the grab for TryClientEvents."
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+I am using xorg-server-1.8.0 and found the issue was introduced in
+xorg-server-1.6.3. The patch fix appears in xorg-server-1.8.2 and later
 
-iEYEARECAAYFAkxi7TkACgkQ063tJLOwQuf2ngCghy4w5+gmChfFryA15CFplom2
-0ZUAnjuhE3RRvpO7/+9BM6IYO1eMKwJH
-=r/SM
------END PGP SIGNATURE-----
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
