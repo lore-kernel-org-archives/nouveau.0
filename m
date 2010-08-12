@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29455] Nouveau TV-out incorrectly detecting load on
 	NV18
-Date: Thu, 12 Aug 2010 05:28:14 -0700 (PDT)
-Message-ID: <20100812122814.4820E1300A6@annarchy.freedesktop.org>
+Date: Thu, 12 Aug 2010 08:25:48 -0700 (PDT)
+Message-ID: <20100812152548.1BC561300F9@annarchy.freedesktop.org>
 References: <bug-29455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29455
 
---- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-12 05:28:14 PDT ---
-Your DCB tables are a little bit unusual... Does your card really have a TV
-output?
+--- Comment #7 from Vlado Plaga <rechner-dLI15PoULosb1SvskN2V4Q@public.gmane.org> 2010-08-12 08:25:47 PDT ---
+(In reply to comment #6)
+> Your DCB tables are a little bit unusual... Does your card really have a TV
+> output?
+
+It's not a normal TV output, but the "mini-VGA video output" on my iMac's back
+allegedly can do s-video and composite output with the help of an adapter:
+http://store.apple.com/us/product/M9109G/A?mco=MTY3ODQ5OTY
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
