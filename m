@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29455] Nouveau TV-out incorrectly detecting load on
 	NV18
-Date: Thu, 12 Aug 2010 04:29:26 -0700 (PDT)
-Message-ID: <20100812112926.86F781300C4@annarchy.freedesktop.org>
+Date: Thu, 12 Aug 2010 04:34:18 -0700 (PDT)
+Message-ID: <20100812113418.505E21300A3@annarchy.freedesktop.org>
 References: <bug-29455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29455
 
---- Comment #4 from Vlado Plaga <rechner-dLI15PoULosb1SvskN2V4Q@public.gmane.org> 2010-08-12 04:29:26 PDT ---
-Created an attachment (id=37811)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37811)
-Full kernel log
+--- Comment #5 from Vlado Plaga <rechner-dLI15PoULosb1SvskN2V4Q@public.gmane.org> 2010-08-12 04:34:18 PDT ---
+Thanks for the quick reaction! It would be nice if I could contribute to fixing
+this problem.
+
+I made the register dump on the same machine, but with a different (and older)
+kernel without support for nouveau. X was running with the nv driver. Is that
+ok?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
