@@ -1,14 +1,12 @@
-From: Greg KH <gregkh-l3A5Bk7waGM@public.gmane.org>
-Subject: [05/67] x86,
-	kmmio/mmiotrace: Fix double free of kmmio_fault_pages
-Date: Wed, 11 Aug 2010 17:05:20 -0700
-Message-ID: <20100812000613.137972824@clark.site>
-References: <20100812000641.GA6348@kroah.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29525] New: DVI monitor (via docking station)
+	remains blank
+Date: Thu, 12 Aug 2010 03:02:01 -0700 (PDT)
+Message-ID: <bug-29525-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100812000641.GA6348-U8xfFu+wG4EAvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,128 +16,67 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ingo Molnar <mingo-X9Un+BFzKDI@public.gmane.org>, akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org, torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org, stable-review-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, alan-qBU/x9rampVanCEyBjwyrvXRex20P6io@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-2.6.35-stable review patch.  If anyone has any objections, please let us know.
+https://bugs.freedesktop.org/show_bug.cgi?id=29525
 
-------------------
+           Summary: DVI monitor (via docking station) remains blank
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: aa_z9-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 
-commit 8b8f79b927b6b302bb65fb8c56e7a19be5fbdbef upstream.
+Laptop: Toshiba Tecra P10 with a single DB15 VGA output
+GPU: nVidia Corporation G86M [Quadro NVS 150M] (according to lspci)
+PCI id:  10de:06ea    (rev a1)
+Docking station: a second VGA output and a DVI output
 
-After every iounmap mmiotrace has to free kmmio_fault_pages, but
-it can't do it directly, so it defers freeing by RCU.
+Issue: Nouveau driver will drive the LVDS laptop screen and either VGA output
+but will not drive the DVI output, even though it seems to be correctly listed
+in xrandr's output. The DVI monitor simply remains blank with "no signal"
+displayed. This is the case at the framebuffer console level and when X is
+started.
 
-It usually works, but when mmiotraced code calls ioremap-iounmap
-multiple times without sleeping between (so RCU won't kick in
-and start freeing) it can be given the same virtual address, so
-at every iounmap mmiotrace will schedule the same pages for
-release. Obviously it will explode on second free.
+Kernel: 2.6.35
+DRM, libdrm, nouveau, etc: all recent versions from git
 
-Fix it by marking kmmio_fault_pages which are scheduled for
-release and not adding them second time.
+There are some potentially interesting kernel messages when the docking station
+is attached - i.e. the "unknown type" messages.
 
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Tested-by: Marcin Kocielnicki <koriakin-mP9o5jsk0RY@public.gmane.org>
-Tested-by: Shinpei KATO <shinpei-a3aLqY3FAeqkRP3n4FtbsiGn5s73+xxf@public.gmane.org>
-Acked-by: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Cc: Stuart Bennett <stuart-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
-Cc: Marcin Kocielnicki <koriakin-mP9o5jsk0RY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-LKML-Reference: <20100613215654.GA3829-OI9uyE9O0yo@public.gmane.org>
-Signed-off-by: Ingo Molnar <mingo-X9Un+BFzKDI@public.gmane.org>
-Signed-off-by: Greg Kroah-Hartman <gregkh-l3A5Bk7waGM@public.gmane.org>
+Aug 11 19:15:00 its-ess-sb kernel: [    3.739304] [drm] nouveau 0000:01:00.0:
+TMDS table revision 2.0 not currently supported
+Aug 11 19:15:00 its-ess-sb kernel: [    3.740063] [drm] nouveau 0000:01:00.0:
+DCB connector table: VHER 0x40 5 16 4
+Aug 11 19:15:00 its-ess-sb kernel: [    3.740166] [drm] nouveau 0000:01:00.0:  
+0: 0x00000040: type 0x40 idx 0 tag 0xff
+Aug 11 19:15:00 its-ess-sb kernel: [    3.740287] [drm] nouveau 0000:01:00.0:  
+1: 0x00000100: type 0x00 idx 1 tag 0xff
+Aug 11 19:15:00 its-ess-sb kernel: [    3.740407] [drm] nouveau 0000:01:00.0:  
+2: 0x00001255: type 0x55 idx 2 tag 0x07
+Aug 11 19:15:00 its-ess-sb kernel: [    3.740526] [drm] nouveau 0000:01:00.0:
+unknown type, using 0x31
+Aug 11 19:15:00 its-ess-sb kernel: [    3.740628] [drm] nouveau 0000:01:00.0:  
+3: 0x00000351: type 0x51 idx 3 tag 0xff
+Aug 11 19:15:00 its-ess-sb kernel: [    3.740747] [drm] nouveau 0000:01:00.0:
+unknown type, using 0x00
+Aug 11 19:15:00 its-ess-sb kernel: [    3.740842] [drm] nouveau 0000:01:00.0:  
+4: 0x00000462: type 0x62 idx 4 tag 0xff
+Aug 11 19:15:00 its-ess-sb kernel: [    3.740962] [drm] nouveau 0000:01:00.0:
+unknown type, using 0xff
 
----
- arch/x86/mm/kmmio.c         |   16 +++++++++++++---
- arch/x86/mm/testmmiotrace.c |   22 ++++++++++++++++++++++
- 2 files changed, 35 insertions(+), 3 deletions(-)
+I am about to reboot with the docking station removed. I'll attach the same
+part of the boot sequence plus exact details about driver versions, etc.
 
---- a/arch/x86/mm/kmmio.c
-+++ b/arch/x86/mm/kmmio.c
-@@ -45,6 +45,8 @@ struct kmmio_fault_page {
- 	 * Protected by kmmio_lock, when linked into kmmio_page_table.
- 	 */
- 	int count;
-+
-+	bool scheduled_for_release;
- };
- 
- struct kmmio_delayed_release {
-@@ -398,8 +400,11 @@ static void release_kmmio_fault_page(uns
- 	BUG_ON(f->count < 0);
- 	if (!f->count) {
- 		disarm_kmmio_fault_page(f);
--		f->release_next = *release_list;
--		*release_list = f;
-+		if (!f->scheduled_for_release) {
-+			f->release_next = *release_list;
-+			*release_list = f;
-+			f->scheduled_for_release = true;
-+		}
- 	}
- }
- 
-@@ -471,8 +476,10 @@ static void remove_kmmio_fault_pages(str
- 			prevp = &f->release_next;
- 		} else {
- 			*prevp = f->release_next;
-+			f->release_next = NULL;
-+			f->scheduled_for_release = false;
- 		}
--		f = f->release_next;
-+		f = *prevp;
- 	}
- 	spin_unlock_irqrestore(&kmmio_lock, flags);
- 
-@@ -510,6 +517,9 @@ void unregister_kmmio_probe(struct kmmio
- 	kmmio_count--;
- 	spin_unlock_irqrestore(&kmmio_lock, flags);
- 
-+	if (!release_list)
-+		return;
-+
- 	drelease = kmalloc(sizeof(*drelease), GFP_ATOMIC);
- 	if (!drelease) {
- 		pr_crit("leaking kmmio_fault_page objects.\n");
---- a/arch/x86/mm/testmmiotrace.c
-+++ b/arch/x86/mm/testmmiotrace.c
-@@ -90,6 +90,27 @@ static void do_test(unsigned long size)
- 	iounmap(p);
- }
- 
-+/*
-+ * Tests how mmiotrace behaves in face of multiple ioremap / iounmaps in
-+ * a short time. We had a bug in deferred freeing procedure which tried
-+ * to free this region multiple times (ioremap can reuse the same address
-+ * for many mappings).
-+ */
-+static void do_test_bulk_ioremapping(void)
-+{
-+	void __iomem *p;
-+	int i;
-+
-+	for (i = 0; i < 10; ++i) {
-+		p = ioremap_nocache(mmio_address, PAGE_SIZE);
-+		if (p)
-+			iounmap(p);
-+	}
-+
-+	/* Force freeing. If it will crash we will know why. */
-+	synchronize_rcu();
-+}
-+
- static int __init init(void)
- {
- 	unsigned long size = (read_far) ? (8 << 20) : (16 << 10);
-@@ -104,6 +125,7 @@ static int __init init(void)
- 		   "and writing 16 kB of rubbish in there.\n",
- 		   size >> 10, mmio_address);
- 	do_test(size);
-+	do_test_bulk_ioremapping();
- 	pr_info("All done.\n");
- 	return 0;
- }
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
