@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29525] DVI monitor (via docking station) remains
 	blank
-Date: Thu, 12 Aug 2010 03:09:52 -0700 (PDT)
-Message-ID: <20100812100952.D17B5130110@annarchy.freedesktop.org>
+Date: Thu, 12 Aug 2010 03:39:39 -0700 (PDT)
+Message-ID: <20100812103939.4D8571300AA@annarchy.freedesktop.org>
 References: <bug-29525-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29525
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-12 03:09:52 PDT ---
-Can I see a dmesg log with "drm.debug=14 nouveau.reg_debug=0x0200
-log_buf_len=2M" appended to your kernel boot options.
+--- Comment #2 from aa_z9-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org 2010-08-12 03:39:39 PDT ---
+dmesg output attached
 
-Thanks.
+libdrm: git commit b04515c5d6c95f573457a94267b855cceb639105
+
+xf86-video-nouveau: git commit 1cb6c91a9afe88d73f8a1180b00f56a9150a16ed
+
+kernel modules: git commit 63c5e51ea78dd6e76e0d03b119c464dbd45d711e
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
