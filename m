@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29553] corrupted output on KDE status bar
-Date: Fri, 13 Aug 2010 01:46:11 -0700 (PDT)
-Message-ID: <20100813084611.B986213008B@annarchy.freedesktop.org>
-References: <bug-29553-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29455] Nouveau TV-out incorrectly detecting load on
+	NV18
+Date: Fri, 13 Aug 2010 04:03:54 -0700 (PDT)
+Message-ID: <20100813110354.3BEA51300E6@annarchy.freedesktop.org>
+References: <bug-29455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29553-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +21,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29553
-
-Stefan Mathe <mstefan-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Version|unspecified                 |7.5
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mjk0NTUKCi0tLSBD
+b21tZW50ICM5IGZyb20gVmxhZG8gUGxhZ2EgPHJlY2huZXJAdmxhZG8tZG8uZGU+IDIwMTAtMDgt
+MTMgMDQ6MDM6NTQgUERUIC0tLQooSW4gcmVwbHkgdG8gY29tbWVudCAjOCkKCj4gTW9zdCBsaWtl
+bHkgdGhlcmUncyBhIEdQSU8tY29udHJvbGxlZCBzd2l0Y2ggeW91IGhhdmUgdG8gcG9rZSB0byBt
+YWtlIFRWLW91dAo+IHdvcms6IHRoZSBhdHRhY2hlZCBwYXRjaCBpcyBqdXN0IGEgd2lsZCBndWVz
+cywgaWYgaXQgaGFzIG5vIGVmZmVjdCB5b3UgY291bGQKPiB0cnkgdG8gcGxheSBhIGJpdCB3aXRo
+IHRoZSAiZ3Bpby0+bGluZSIgcGFyYW1ldGVyICh2YWx1ZXMgaW4gNy05IGFuZCAyLTQgc2hvdWxk
+Cj4gYmUgc2FmZSkuCgpJIGFwcGxpZWQgdGhlIHBhdGNoIChtYW51YWxseSkgdG8gdGhlIDIuNi4z
+NSBLZXJuZWwgZnJvbSBEZWJpYW4gKGV4cGVyaW1lbnRhbCksCmJ1dCBpdCBoYWQgbm8gZWZmZWN0
+LiBJIGRvbid0IGZlZWwgY29tZm9ydGFibGUgZmlkZGxpbmcgYXJvdW5kIHdpdGggdGhlIHZhbHVl
+cwpmb3IgImdwaW8tPmxpbmUiIHdpdGhvdXQgaGF2aW5nIHRoZSBzbGlnaHRlc3QgaWRlYSB3aGF0
+IHRoaXMgd291bGQgb3Igc2hvdWxkCmNhdXNlLiBUaGUgdmFsdWUgaW4geW91ciBwYXRjaCB3YXMg
+IjciLCBzbyB0aGVyZSB3b3VsZCBzdGlsbCBiZSA1IHBvc3NpYmlsaXRpZXMKbGVmdCB0byB0cnk/
+Cgo+IEJUVywgZG8geW91IGhhcHBlbiB0byBoYXZlIGFjY2VzcyB0byBvbmUgb2YgdGhlc2UgYWRh
+cHRlcnM/CgpObywgSSBkb24ndCBoYXZlIG9uICh5ZXQpLiBCdXQgSSdtIG5vdyB0cnlpbmcgdG8g
+YnV5IG9uZSBzZWNvbmQtaGFuZCBvbiBlQmF5LiBJCmRvbid0IGZlZWwgbGlrZSBzcGVuZGluZyDi
+gqwgMTkgb24gdGhlIGFkYXB0ZXIgZnJvbSBBcHBsZSwgYnV0IGFwYXJ0IGZyb20gdGVzdGluZwpm
+b3IgIm5vdXZlYXUiIEkgbWlnaHQgbmVlZCB0aGUgYWRhcHRlciBsYXRlciBpbiBjYXNlIG15IGlN
+YWMgc3BlbmRzIGhpcyBsYXN0CnllYXJzIGF0IG15IG11bSdzIHBsYWNlLCBhcyBhIGNvbWJpbmVk
+IGludGVybmV0IG1hY2hpbmUgYW5kIERWRCBwbGF5ZXIuIElmIEkKc2hvdWxkIGdldCB0aGUgYWRh
+cHRlciAoaS5lLiBuby1vbmUgZWxzZSBnaXZlcyBhIGhpZ2hlciBiaWQgaW4gdGhlIG5leHQgd2Vl
+aykKaXQgd291bGQgc3RpbGwgdGFrZSBhIGZldyBtb3JlIGRheXMgdW50aWwgaXQgY291bGQgYmUg
+aGVyZS4gQnV0IHRoZSBjb21pbmcgd2VlawpJJ2xsIGJlIG9uIGhvbGlkYXlzIGFueXdheS4KCi0t
+IApDb25maWd1cmUgYnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJl
+ZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNh
+dXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
