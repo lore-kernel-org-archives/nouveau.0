@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26733] Full-screen XV causes graphics lockup
-Date: Fri, 13 Aug 2010 12:35:23 -0700 (PDT)
-Message-ID: <20100813193523.DB68D1300BD@annarchy.freedesktop.org>
+Date: Fri, 13 Aug 2010 14:08:39 -0700 (PDT)
+Message-ID: <20100813210839.B1A121300E4@annarchy.freedesktop.org>
 References: <bug-26733-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26733
 
---- Comment #25 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-13 12:35:23 PDT ---
-I've had more than a few xvideo related lockups over time, but this time i was
-able to see it was preceded by a PFIFO_DMA_PUSHER. Don't have any concrete
-ideas yet, besides carefully reviewing the xvideo code in the ddx. You are
-welcome to share any ideas or thoughts that might help solve this.
+--- Comment #26 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-13 14:08:39 PDT ---
+Had a look at the nv50 xv code, found some odd things. No sure if they are the
+cause, but it doesn't hurt to fix things. You are ofcourse welcome to try the
+latest ddx (that's the xorg driver for those who don't know).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
