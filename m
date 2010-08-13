@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29553] corrupted output on KDE status bar
-Date: Fri, 13 Aug 2010 01:41:17 -0700 (PDT)
-Message-ID: <20100813084117.C06FB1300A5@annarchy.freedesktop.org>
+Date: Fri, 13 Aug 2010 01:45:17 -0700 (PDT)
+Message-ID: <20100813084517.199E5130070@annarchy.freedesktop.org>
 References: <bug-29553-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29553
 
---- Comment #4 from Stefan Mathe <mstefan-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org> 2010-08-13 01:41:17 PDT ---
-One more observation:
+Stefan Mathe <mstefan-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org> changed:
 
-The analogue clock is also corrupted from time to time (see snapshot). Again, a
-transparent widget...
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Platform|Other                       |x86-64 (AMD64)
+         OS/Version|All                         |Linux (All)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
