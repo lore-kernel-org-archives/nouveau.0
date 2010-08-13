@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29455] Nouveau TV-out incorrectly detecting load on
 	NV18
-Date: Fri, 13 Aug 2010 05:51:45 -0700 (PDT)
-Message-ID: <20100813125145.55C55130101@annarchy.freedesktop.org>
+Date: Fri, 13 Aug 2010 07:47:57 -0700 (PDT)
+Message-ID: <20100813144757.703A5130109@annarchy.freedesktop.org>
 References: <bug-29455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,30 +23,36 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29455
 
---- Comment #10 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-13 05:51:45 PDT ---
-Created an attachment (id=37847)
- View: https://bugs.freedesktop.org/attachment.cgi?id=37847
- Review: https://bugs.freedesktop.org/review?bug=29455&attachment=37847
+--- Comment #11 from Vlado Plaga <rechner-dLI15PoULosb1SvskN2V4Q@public.gmane.org> 2010-08-13 07:47:56 PDT ---
+> Yeah, the attached patch adds some debugging output that may be useful for you
+> to see the effects of your changes, "output=2 sample=YXXXXXXX" with Y!=0 means
+> load is incorrectly being detected in your tv output.
 
-nouveau_dac_detect_debug.patch
+Debugging output still does not help me understand much... but nevertheless I
+wanted to give it a try. 
 
-(In reply to comment #9)
-> (In reply to comment #8)
-> 
-> > Most likely there's a GPIO-controlled switch you have to poke to make TV-out
-> > work: the attached patch is just a wild guess, if it has no effect you could
-> > try to play a bit with the "gpio->line" parameter (values in 7-9 and 2-4 should
-> > be safe).
-> 
-> I applied the patch (manually) to the 2.6.35 Kernel from Debian (experimental),
-> but it had no effect. I don't feel comfortable fiddling around with the values
-> for "gpio->line" without having the slightest idea what this would or should
-> cause. The value in your patch was "7", so there would still be 5 possibilities
-> left to try?
-> 
-Yeah, the attached patch adds some debugging output that may be useful for you
-to see the effects of your changes, "output=2 sample=YXXXXXXX" with Y!=0 means
-load is incorrectly being detected in your tv output.
+The first problem with the patch was: I don't have the file "nv10_gpio.c". Is
+that a problem? Ok, I guess I should be using latest nouveau git instead of a
+stable kernel anyway... so I tried the out-of-tree build (alternative), but
+there was a new problem:
+
+In file included from
+/usr/src/nouveau/master/drivers/gpu/drm/nouveau/nouveau_bios.c:31:
+include/linux/io-mapping.h:25:23: error: asm/iomap.h: No such file or directory
+make[3]: *** [/usr/src/nouveau/master/drivers/gpu/drm/nouveau/nouveau_bios.o]
+Error 1
+make[2]: *** [/usr/src/nouveau/master/drivers/gpu/drm/nouveau] Error 2
+make[1]: *** [_module_/usr/src/nouveau/master/drivers/gpu/drm] Error 2
+make[1]: Leaving directory `/usr/src/linux-source-2.6.35'
+make: *** [modules] Error 2
+
+I suppose it is an architecture-related problem. In kernel 2.6.35
+nouveau_bios.c does not include "linux/io-mapping.h" yet, so "asm/iomap.h" is
+not required either. The later file is in
+"linux-source-2.6.35/arch/x86/include/asm/iomap.h" on my system, whis is
+probably not good for a PPC. There is also a
+"linux-source-2.6.35/include/asm-generic/iomap.h", which might be an
+alternative.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
