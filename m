@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29553] corrupted output on KDE status bar
-Date: Fri, 13 Aug 2010 01:45:17 -0700 (PDT)
-Message-ID: <20100813084517.199E5130070@annarchy.freedesktop.org>
+Date: Fri, 13 Aug 2010 01:46:11 -0700 (PDT)
+Message-ID: <20100813084611.B986213008B@annarchy.freedesktop.org>
 References: <bug-29553-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,7 @@ Stefan Mathe <mstefan-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Platform|Other                       |x86-64 (AMD64)
-         OS/Version|All                         |Linux (All)
+            Version|unspecified                 |7.5
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
