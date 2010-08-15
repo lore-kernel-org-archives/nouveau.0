@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Sun, 15 Aug 2010 06:46:00 -0700 (PDT)
-Message-ID: <20100815134600.736961300CE@annarchy.freedesktop.org>
+Date: Sun, 15 Aug 2010 06:46:30 -0700 (PDT)
+Message-ID: <20100815134630.880651300D3@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
-DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |high
-                 CC|                            |drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+--- Comment #1 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-15 06:46:30 PDT ---
+Created an attachment (id=37887)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37887)
+Kernel log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
