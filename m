@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Sun, 15 Aug 2010 08:41:58 -0700 (PDT)
-Message-ID: <20100815154158.23BBC130136@annarchy.freedesktop.org>
+Date: Sun, 15 Aug 2010 08:42:18 -0700 (PDT)
+Message-ID: <20100815154218.18AB91300BC@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #37887|application/octet-stream    |text/plain
+  Attachment #37888|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
