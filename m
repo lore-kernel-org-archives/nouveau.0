@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29455] Nouveau TV-out incorrectly detecting load on
 	NV18
-Date: Sun, 15 Aug 2010 02:43:13 -0700 (PDT)
-Message-ID: <20100815094313.0F19E13008D@annarchy.freedesktop.org>
+Date: Sun, 15 Aug 2010 02:43:55 -0700 (PDT)
+Message-ID: <20100815094355.CA0791300DA@annarchy.freedesktop.org>
 References: <bug-29455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29455
 
---- Comment #16 from Vlado Plaga <rechner-dLI15PoULosb1SvskN2V4Q@public.gmane.org> 2010-08-15 02:43:12 PDT ---
-Created an attachment (id=37880)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=37880)
-Kernel log (truncated)
-
-Kernel log including DRM errors with Kernel 2.6.35+ (git)
+--- Comment #17 from Vlado Plaga <rechner-dLI15PoULosb1SvskN2V4Q@public.gmane.org> 2010-08-15 02:43:55 PDT ---
+Created an attachment (id=37881)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=37881)
+Output of "lspci -vvnn"
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
