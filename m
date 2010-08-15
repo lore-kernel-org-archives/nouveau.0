@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29455] Nouveau TV-out incorrectly detecting load on
 	NV18
-Date: Sun, 15 Aug 2010 02:45:59 -0700 (PDT)
-Message-ID: <20100815094559.49F2913005E@annarchy.freedesktop.org>
+Date: Sun, 15 Aug 2010 02:46:44 -0700 (PDT)
+Message-ID: <20100815094644.65AA31300F4@annarchy.freedesktop.org>
 References: <bug-29455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Vlado Plaga <rechner-dLI15PoULosb1SvskN2V4Q@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #37880|text/x-log                  |text/plain
+  Attachment #37881|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
