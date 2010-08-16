@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29553] corrupted output on KDE status bar
-Date: Mon, 16 Aug 2010 03:24:39 -0700 (PDT)
-Message-ID: <20100816102439.943581300DA@annarchy.freedesktop.org>
+Date: Mon, 16 Aug 2010 03:26:52 -0700 (PDT)
+Message-ID: <20100816102652.B5B5413011B@annarchy.freedesktop.org>
 References: <bug-29553-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,33 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29553
 
-Stefan Mathe <mstefan-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org> changed:
+--- Comment #7 from Stefan Mathe <mstefan-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org> 2010-08-16 03:26:52 PDT ---
+(In reply to comment #6)
+> (In reply to comment #5)
+> > it's probably not nouveau bug, see:
+> > https://bugs.kde.org/show_bug.cgi?id=224666
+> 
+> Thanks Marcin!
+> 
+> Yes, it could be a KDE problem (it defintely looks like the one described on
+> their forum). It is probably something more subtle related to the interaction
+> of KDE with the drivers, since:
+> 
+> 1) It goes away if I install the proprietary NVidia drivers
+> 2) It never occurs on my laptop with Intel graphic card
+> 
+> I'm going to try KDE 4.5 and report back on this.
+> 
+> Many thanks,
+> Stefan,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |NOTOURBUG
+Yep, I installed KDE 4.5 and it went away. So indeed, it seems to be a KDE bug
+that only surfaces in conjunction with the nouveau drivers.
+
+I've closed the bug report. Thanks Marcin for the useful feedback!
+
+All the best,
+Stefan.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
