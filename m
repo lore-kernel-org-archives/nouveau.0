@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
- spontaneously
-Date: Fri, 20 Aug 2010 01:04:42 -0700 (PDT)
-Message-ID: <20100820080442.44ED81300EF@annarchy.freedesktop.org>
-References: <bug-26980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29685] DPMS does not turn off LCD backlight on NV18
+ [GeForce4 MX with AGP8X (Mac)]
+Date: Fri, 20 Aug 2010 05:35:50 -0700 (PDT)
+Message-ID: <20100820123551.0D70A130100@annarchy.freedesktop.org>
+References: <bug-29685-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29685-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26980
+https://bugs.freedesktop.org/show_bug.cgi?id=29685
 
---- Comment #34 from bugs-OXl1b/uZKHizQB+pC5nmwQ@public.gmane.org 2010-08-20 01:04:41 PDT ---
-./peek'ing my QUADRO NVS 140M results in all zeroes ("...") before and after
-the lockup, regardless of whether I peek the range "10a000 1000" or the single
-addresses. Am I doing anything wrong?
+--- Comment #1 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-20 05:35:50 PDT ---
+Created an attachment (id=38013)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=38013
+ Review: https://bugs.freedesktop.org/review?bug=29685&attachment=38013
 
-Things that cause lockups with nouveau appear to increasingly slow down the
-blob-driver, which because of this is also no option for me to use. After some
-time using KDE4/Skype/Firefox/OpenOffice the system becomes terribly slow with
-blob.
+nouveau_imac_backlight.patch
 
-If I can be of any help with testing, please let me know.
+The attached patch should fix it, can you give it a try?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
