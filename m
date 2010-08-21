@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
- NVS 3100M (HP EliteBook 8440p)
-Date: Sat, 21 Aug 2010 01:16:09 -0700 (PDT)
-Message-ID: <20100821081609.9E89A130080@annarchy.freedesktop.org>
-References: <bug-29714-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29685] DPMS does not turn off LCD backlight on NV18
+ [GeForce4 MX with AGP8X (Mac)]
+Date: Sat, 21 Aug 2010 04:59:32 -0700 (PDT)
+Message-ID: <20100821115932.8703D1300C7@annarchy.freedesktop.org>
+References: <bug-29685-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29685-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +21,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29714
-
---- Comment #6 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-21 01:16:08 PDT ---
-(In reply to comment #5)
-> (In reply to comment #4)
-> > What exact snapshot of 2.6.36 do you have?  A similar bug to this has been
-> > fixed already, and made it for -rc1.
-> 
-> I used snapshot from
-> http://kernel.ubuntu.com/~kernel-ppa/mainline/daily/2010-08-19-maverick/.
-> String from file BUILD.LOG: *** BUILDING:
-> commit:763008c4357b73c8d18396dfd8d79dc58fa3f99d series:maverick abinum:999 ...
-> Can you give link to similar bug or commit that fixes this bug?
-
-Given that commit has been added to Linux kernel on 18 August, I do not think
-that these bugs are same and this bug fixed.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mjk2ODUKCi0tLSBD
+b21tZW50ICMyIGZyb20gVmxhZG8gUGxhZ2EgPHJlY2huZXJAdmxhZG8tZG8uZGU+IDIwMTAtMDgt
+MjEgMDQ6NTk6MzIgUERUIC0tLQooSW4gcmVwbHkgdG8gY29tbWVudCAjMSkKCj4gVGhlIGF0dGFj
+aGVkIHBhdGNoIHNob3VsZCBmaXggaXQsIGNhbiB5b3UgZ2l2ZSBpdCBhIHRyeT8KClllcyEgR3Jl
+YXQhIFRoYW5rIHlvdSEgTm93IGZvciBtZSBub3V2ZWF1IGlzIHN1cGVyaW9yIHRvIG52IGluIGV2
+ZXJ5IGFzcGVjdC4uLgpleGNlcHQgZm9yICJpbnN0YWxsYXRpb24iLCBtYXliZS4gOy0pCgpGaXJz
+dCBJIHRyaWVkIHRoZSBwYXRjaCB3aXRoIFVidW50dSAxMC4xMCdzIGtlcm5lbCBzb3VyY2VzICgy
+LjYuMzUpLCBhbmQgaXQgd2FzCmFwcGxpZWQgd2l0aG91dCBjb21wbGFpbnQsIGJ1dCB0aGUgY29t
+cGlsYXRpb24gZmFpbGVkIHdpdGgKCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MDRfZGZwLmM6
+IEluIGZ1bmN0aW9uIOKAmG52MDRfZGZwX3VwZGF0ZV9iYWNrbGlnaHTigJk6CmRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252MDRfZGZwLmM6NDU0OiBlcnJvcjogaW1wbGljaXQgZGVjbGFyYXRpb24g
+b2YgZnVuY3Rpb24K4oCYbnZfbWFza+KAmQptYWtlWzVdOiAqKiogW2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252MDRfZGZwLm9dIEZlaGxlciAxCm1ha2VbNF06ICoqKiBbZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXVdIEZlaGxlciAyCm1ha2VbM106ICoqKiBbZHJpdmVycy9ncHUvZHJtXSBGZWhsZXIg
+MgptYWtlWzJdOiAqKiogW2RyaXZlcnMvZ3B1XSBGZWhsZXIgMgptYWtlWzFdOiAqKiogW2RyaXZl
+cnNdIEZlaGxlciAyCm1ha2VbMV06IFZlcmxhc3NlIFZlcnplaWNobmlzICcvdXNyL3NyYy9saW51
+eC1zb3VyY2UtMi42LjM1JwptYWtlOiAqKiogW2RlYmlhbi9zdGFtcC9idWlsZC9rZXJuZWxdIEZl
+aGxlciAyCgpUaGVuIEkgdHJpZWQgdGhlIG9mZmljaWFsIDIuNi4zNi1yYzEsIGFuZCB0aGUgYmFj
+a2xpZ2h0IGNhbiBub3cgYmUgc3dpdGNoZWQgb2ZmCnByb3Blcmx5LiBVbmZvcnR1bmF0ZWx5IHRo
+ZSBFRElEIGVycm9yIG1lbnRpb25lZCBpbiBidWcgIzI5NDU1IGlzIGFsc28gYmFjawphZ2Fpbi4K
+CldpbGwgdGhhdCBidWcgYmUgZml4ZWQgaW4gMi42LjM2LXJjMj8gQ2FuIEkganVzdCByZXBsYWNl
+IHRoZSAiZ3B1L2RybS9ub3V2ZWF1IgpkaXJlY3Rvcnk/IE9yIHNob3VsZCBJIHRha2UgdGhlIHdo
+b2xlIGxpbnV4IHRyZWUgZnJvbSBub3V2ZWF1J3MgZ2l0IGFnYWluPwoKLS0gCkNvbmZpZ3VyZSBi
+dWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVt
+YWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0K
+WW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
