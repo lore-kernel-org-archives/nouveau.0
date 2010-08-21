@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
  NVS 3100M (HP EliteBook 8440p)
-Date: Sat, 21 Aug 2010 09:00:16 -0700 (PDT)
-Message-ID: <20100821160016.977A4130099@annarchy.freedesktop.org>
+Date: Sat, 21 Aug 2010 13:53:10 -0700 (PDT)
+Message-ID: <20100821205311.15A511300A1@annarchy.freedesktop.org>
 References: <bug-29714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29714
 
-Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                URL|https://bugs.launchpad.net/ |
-                   |ubuntu/+source/xserver-xorg |
-                   |-video-nouveau/+bug/621436  |
-           See Also|                            |https://launchpad.net/bugs/
-                   |                            |621436
+--- Comment #8 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-21 13:53:10 PDT ---
+I made screenshot, and in contrast to image on screen, it shows perfect
+picture.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
