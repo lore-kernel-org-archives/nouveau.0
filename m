@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29729] VT/Frame Buffer Blank..X screens are cloned
  instead of one virtual screen
-Date: Sat, 21 Aug 2010 15:57:38 -0700 (PDT)
-Message-ID: <20100821225738.7AED71300CE@annarchy.freedesktop.org>
+Date: Sat, 21 Aug 2010 15:58:22 -0700 (PDT)
+Message-ID: <20100821225822.65DF31300F3@annarchy.freedesktop.org>
 References: <bug-29729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29729
 
---- Comment #1 from Shaun Reich <shaun.reich-sVbgdUKTYbrR7s880joybQ@public.gmane.org> 2010-08-21 15:57:38 PDT ---
-Created an attachment (id=38051)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38051)
-dmesg log
+--- Comment #2 from Shaun Reich <shaun.reich-sVbgdUKTYbrR7s880joybQ@public.gmane.org> 2010-08-21 15:58:22 PDT ---
+Created an attachment (id=38052)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38052)
+xorg log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
