@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29685] DPMS does not turn off LCD backlight on NV18
- [GeForce4 MX with AGP8X (Mac)]
-Date: Sat, 21 Aug 2010 14:45:01 -0700 (PDT)
-Message-ID: <20100821214503.9145A130078@annarchy.freedesktop.org>
-References: <bug-29685-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19356] DPMS does not turn off LCD backlight on NV34M
+ [GeForce FX Go5200]
+Date: Sat, 21 Aug 2010 14:53:19 -0700 (PDT)
+Message-ID: <20100821215319.895FD1300B8@annarchy.freedesktop.org>
+References: <bug-19356-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29685-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19356-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mjk2ODUKCi0tLSBD
-b21tZW50ICMzIGZyb20gRnJhbmNpc2NvIEplcmV6IDxjdXJyb2plcmV6QHJpc2V1cC5uZXQ+IDIw
-MTAtMDgtMjEgMTQ6NDU6MDEgUERUIC0tLQooSW4gcmVwbHkgdG8gY29tbWVudCAjMikKPiAoSW4g
-cmVwbHkgdG8gY29tbWVudCAjMSkKPiAKPiA+IFRoZSBhdHRhY2hlZCBwYXRjaCBzaG91bGQgZml4
-IGl0LCBjYW4geW91IGdpdmUgaXQgYSB0cnk/Cj4gCj4gWWVzISBHcmVhdCEgVGhhbmsgeW91ISBO
-b3cgZm9yIG1lIG5vdXZlYXUgaXMgc3VwZXJpb3IgdG8gbnYgaW4gZXZlcnkgYXNwZWN0Li4uCj4g
-ZXhjZXB0IGZvciAiaW5zdGFsbGF0aW9uIiwgbWF5YmUuIDstKQo+IApPaywgcHVzaGVkLgoKPiBG
-aXJzdCBJIHRyaWVkIHRoZSBwYXRjaCB3aXRoIFVidW50dSAxMC4xMCdzIGtlcm5lbCBzb3VyY2Vz
-ICgyLjYuMzUpLCBhbmQgaXQgd2FzCj4gYXBwbGllZCB3aXRob3V0IGNvbXBsYWludCwgYnV0IHRo
-ZSBjb21waWxhdGlvbiBmYWlsZWQgd2l0aAo+IAo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-MDRfZGZwLmM6IEluIGZ1bmN0aW9uIOKAmG52MDRfZGZwX3VwZGF0ZV9iYWNrbGlnaHTigJk6Cj4g
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnYwNF9kZnAuYzo0NTQ6IGVycm9yOiBpbXBsaWNpdCBk
-ZWNsYXJhdGlvbiBvZiBmdW5jdGlvbgo+IOKAmG52X21hc2vigJkKPiBtYWtlWzVdOiAqKiogW2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252MDRfZGZwLm9dIEZlaGxlciAxCj4gbWFrZVs0XTogKioq
-IFtkcml2ZXJzL2dwdS9kcm0vbm91dmVhdV0gRmVobGVyIDIKPiBtYWtlWzNdOiAqKiogW2RyaXZl
-cnMvZ3B1L2RybV0gRmVobGVyIDIKPiBtYWtlWzJdOiAqKiogW2RyaXZlcnMvZ3B1XSBGZWhsZXIg
-Mgo+IG1ha2VbMV06ICoqKiBbZHJpdmVyc10gRmVobGVyIDIKPiBtYWtlWzFdOiBWZXJsYXNzZSBW
-ZXJ6ZWljaG5pcyAnL3Vzci9zcmMvbGludXgtc291cmNlLTIuNi4zNScKPiBtYWtlOiAqKiogW2Rl
-Ymlhbi9zdGFtcC9idWlsZC9rZXJuZWxdIEZlaGxlciAyCj4gCjQ5ZWVkODBhZDBjZmE1ZDVkMDI5
-OTJlODA4ODQ2M2NiZjFhNWZmODUgaXMgd2hhdCB5b3UncmUgbWlzc2luZy4KCj4gVGhlbiBJIHRy
-aWVkIHRoZSBvZmZpY2lhbCAyLjYuMzYtcmMxLCBhbmQgdGhlIGJhY2tsaWdodCBjYW4gbm93IGJl
-IHN3aXRjaGVkIG9mZgo+IHByb3Blcmx5LiBVbmZvcnR1bmF0ZWx5IHRoZSBFRElEIGVycm9yIG1l
-bnRpb25lZCBpbiBidWcgIzI5NDU1IGlzIGFsc28gYmFjawo+IGFnYWluLgo+IApUcnkgY2hlcnJ5
-LXBpY2tpbmcgYzgwZGE5MmVkZWM5OTVhMzlhZmUyYThjMmVkZTJmZTJlMmIzMGZjMCBmcm9tIHRo
-ZSBub3V2ZWF1Cmtlcm5lbCB0cmVlLgoKPiBXaWxsIHRoYXQgYnVnIGJlIGZpeGVkIGluIDIuNi4z
-Ni1yYzI/CgpOb3Qgc3VyZSBpZiBpdCB3aWxsIGJlIGZpeGVkIGZvciBSQzIgYnV0IGl0IHdpbGwg
-cHJvYmFibHkgYmUgZm9yIG9uZSBvZiB0aGUKbmV4dCBSQ3MuCgo+IENhbiBJIGp1c3QgcmVwbGFj
-ZSB0aGUgImdwdS9kcm0vbm91dmVhdSIKPiBkaXJlY3Rvcnk/IE9yIHNob3VsZCBJIHRha2UgdGhl
-IHdob2xlIGxpbnV4IHRyZWUgZnJvbSBub3V2ZWF1J3MgZ2l0IGFnYWluPwoKVGhhdCB3b3JrcyBz
-b21ldGltZXMsIGlmIHRoZSBpbnRlcm5hbCBBUElzIGhhdmVuJ3QgYmVlbiBicm9rZW4gYmV0d2Vl
-biB0aGUKa2VybmVsIHZlcnNpb25zIHlvdSdyZSB0cnlpbmcgdG8gbWl4LCBidXQgbm8gZ3VhcmFu
-dGVlcy4KCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9y
-Zy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMg
-bWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=19356
+
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #20 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-21 14:53:18 PDT ---
+Closing this bug because the fix for bug #29685 probably fixed this one too and
+there's been no response from the reporter in more than a year.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
