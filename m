@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29729] VT/Frame Buffer Blank..X screens are cloned
  instead of one virtual screen
-Date: Sat, 21 Aug 2010 16:07:14 -0700 (PDT)
-Message-ID: <20100821230714.56C4213009F@annarchy.freedesktop.org>
+Date: Sat, 21 Aug 2010 17:16:00 -0700 (PDT)
+Message-ID: <20100822001600.4BAD31300E9@annarchy.freedesktop.org>
 References: <bug-29729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29729
 
---- Comment #4 from Shaun Reich <shaun.reich-sVbgdUKTYbrR7s880joybQ@public.gmane.org> 2010-08-21 16:07:13 PDT ---
-Created an attachment (id=38054)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38054)
-xorg conf
+--- Comment #5 from Shaun Reich <shaun.reich-sVbgdUKTYbrR7s880joybQ@public.gmane.org> 2010-08-21 17:16:00 PDT ---
+Okay, xrandr --output DVI-I-3 --right-of DVI-I-4
 
-oops, almost forgot my xorg.conf.
+fixes my problem for now. But the real question that I am wondering, is why
+does the xorg.conf virtual screen stuff not work? Is it related? Or is it just
+something that changed in xorg, nouveau, and is now deprecated/non-functional?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
