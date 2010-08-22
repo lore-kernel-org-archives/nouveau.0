@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29729] VT/Frame Buffer Blank..X screens are cloned
  instead of one virtual screen
-Date: Sun, 22 Aug 2010 01:55:42 -0700 (PDT)
-Message-ID: <20100822085542.C36B813009B@annarchy.freedesktop.org>
+Date: Sun, 22 Aug 2010 02:11:41 -0700 (PDT)
+Message-ID: <20100822091141.12B5F1300C7@annarchy.freedesktop.org>
 References: <bug-29729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29729
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #38054|application/octet-stream    |text/plain
-          mime type|                            |
+--- Comment #7 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-22 02:11:40 PDT ---
+try to boot with kernel option "fbcon=map:1"
+if it will help enable CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
