@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29729] VT/Frame Buffer Blank..X screens are cloned
  instead of one virtual screen
-Date: Sat, 21 Aug 2010 18:06:12 -0700 (PDT)
-Message-ID: <20100822010612.796691300BA@annarchy.freedesktop.org>
+Date: Sun, 22 Aug 2010 01:54:56 -0700 (PDT)
+Message-ID: <20100822085456.8B1481300C8@annarchy.freedesktop.org>
 References: <bug-29729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29729
 
---- Comment #6 from Shaun Reich <shaun.reich-sVbgdUKTYbrR7s880joybQ@public.gmane.org> 2010-08-21 18:06:12 PDT ---
-Uhh..seems the "screen clone" issue was fixed after I re-labeled the DVI
-outputs in my xorg.conf. I didn't realize they were non-const...because they
-obviously changed.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-So now it's kind of just the framebuffer issue...although that still seems
-errata ;-)
-
-
-Also, when I am in the X virtual terminal, and switch to a non-...the display
-is frozen with the same image (stand-still) until I switch back.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #38051|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
