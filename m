@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29729] VT/Frame Buffer Blank..X screens are cloned
  instead of one virtual screen
-Date: Sat, 21 Aug 2010 17:16:00 -0700 (PDT)
-Message-ID: <20100822001600.4BAD31300E9@annarchy.freedesktop.org>
+Date: Sat, 21 Aug 2010 18:06:12 -0700 (PDT)
+Message-ID: <20100822010612.796691300BA@annarchy.freedesktop.org>
 References: <bug-29729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29729
 
---- Comment #5 from Shaun Reich <shaun.reich-sVbgdUKTYbrR7s880joybQ@public.gmane.org> 2010-08-21 17:16:00 PDT ---
-Okay, xrandr --output DVI-I-3 --right-of DVI-I-4
+--- Comment #6 from Shaun Reich <shaun.reich-sVbgdUKTYbrR7s880joybQ@public.gmane.org> 2010-08-21 18:06:12 PDT ---
+Uhh..seems the "screen clone" issue was fixed after I re-labeled the DVI
+outputs in my xorg.conf. I didn't realize they were non-const...because they
+obviously changed.
 
-fixes my problem for now. But the real question that I am wondering, is why
-does the xorg.conf virtual screen stuff not work? Is it related? Or is it just
-something that changed in xorg, nouveau, and is now deprecated/non-functional?
+So now it's kind of just the framebuffer issue...although that still seems
+errata ;-)
+
+
+Also, when I am in the X virtual terminal, and switch to a non-...the display
+is frozen with the same image (stand-still) until I switch back.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
