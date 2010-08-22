@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
- NVS 3100M (HP EliteBook 8440p)
-Date: Sun, 22 Aug 2010 10:16:10 -0700 (PDT)
-Message-ID: <20100822171610.279BC13009B@annarchy.freedesktop.org>
-References: <bug-29714-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv50: initialize ramht_refs list for faked 0
+	channel
+Date: Sun, 22 Aug 2010 20:54:08 +0200
+Message-ID: <20100822185408.GA2883@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +20,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29714
+We need it for PFIFO_INTR_CACHE_ERROR interrupt handling,
+because nouveau_fifo_swmthd looks for matching gpuobj in
+ramht_refs list.
+It fixes kernel panic in nouveau_gpuobj_ref_find.
 
---- Comment #12 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-22 10:16:09 PDT ---
-Created an attachment (id=38066)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38066)
-EDID of my display.
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nv50_instmem.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nv50_instmem.c b/drivers/gpu/drm/nouveau/nv50_instmem.c
+index b57cc4a..6e57426 100644
+--- a/drivers/gpu/drm/nouveau/nv50_instmem.c
++++ b/drivers/gpu/drm/nouveau/nv50_instmem.c
+@@ -139,6 +139,8 @@ nv50_instmem_init(struct drm_device *dev)
+ 	chan->file_priv = (struct drm_file *)-2;
+ 	dev_priv->fifos[0] = dev_priv->fifos[127] = chan;
+ 
++	INIT_LIST_HEAD(&chan->ramht_refs);
++
+ 	/* Channel's PRAMIN object + heap */
+ 	ret = nouveau_gpuobj_new_fake(dev, 0, c_offset, c_size, 0,
+ 							NULL, &chan->ramin);
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.1.1
