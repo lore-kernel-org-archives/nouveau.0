@@ -1,57 +1,105 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [mesa PATCH] nouveau: handle early initialization errors
-Date: Mon, 23 Aug 2010 22:40:58 +0200
-Message-ID: <20100823204058.GA8160@joi.lan>
+From: Chris Ball <cjb@laptop.org>
+Subject: Re: [PATCH] drm/nouveau/kms: Implement KDB debug
+	hooks for nouveau KMS.
+Date: Mon, 23 Aug 2010 16:50:53 -0400
+Message-ID: <m3k4nhqcia.fsf_-_@pullcord.laptop.org>
+References: <m3iq9yqd7w.fsf@pullcord.laptop.org>
+	<4C5ACF3F.8050409@windriver.com>
+	<m3hbj0fju3.fsf_-_@pullcord.laptop.org>
+	<m3aaoimqrp.fsf_-_@pullcord.laptop.org> <87eidsemcf.fsf@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <kgdb-bugreport-bounces@lists.sourceforge.net>
+In-Reply-To: <87eidsemcf.fsf@riseup.net> (Francisco Jerez's message of "Sat,
+	21 Aug 2010 04:22:24 +0200")
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
+	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=kgdb-bugreport>
+List-Post: <mailto:kgdb-bugreport@lists.sourceforge.net>
+List-Help: <mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
+	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=subscribe>
+Errors-To: kgdb-bugreport-bounces@lists.sourceforge.net
+To: Francisco Jerez <currojerez@riseup.net>
+Cc: David Airlie <airlied@linux.ie>, kgdb-bugreport@lists.sourceforge.net, nouveau@lists.freedesktop.org, Jesse Barnes <jbarnes@virtuousgeek.org>, Jason Wessel <jason.wessel@windriver.com>
 List-Id: nouveau.vger.kernel.org
 
-handle very early errors in pipe_screen creation (failure of
-nouveau_screen_init in nv50_screen_create)
----
- src/gallium/drivers/nouveau/nouveau_screen.c       |    3 ++-
- .../winsys/nouveau/drm/nouveau_drm_winsys.c        |    3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Hi Francisco,
 
-diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c b/src/gallium/drivers/nouveau/nouveau_screen.c
-index 513e5e0..ebb21a6 100644
---- a/src/gallium/drivers/nouveau/nouveau_screen.c
-+++ b/src/gallium/drivers/nouveau/nouveau_screen.c
-@@ -258,6 +258,7 @@ nouveau_screen_fini(struct nouveau_screen *screen)
+   > There is a problem with this on pre-nv20 cards. Fbcon
+   > acceleration won't work properly with IRQs disabled because you
+   > miss the context switching interrupts: You'll get a locked up
+   > fbcon if you hit sysrq-g when there's some process using the GPU.
+   > 
+   > I'd suggest disabling acceleration while in debug mode
+   > (e.g. using nouveau_fbcon_save_disable_accel()). That aside the
+   > patch looks good to me.
+
+Thanks very much for this.  Here's a (only compile-tested) patch for
+this, on top of jwessel's current kgdb-next branch.  Jason, would you
+mind testing on pre-nv20 and applying?
+
+Thanks,
+
+- Chris.
+
+
+From: Chris Ball <cjb@laptop.org>
+Subject: [PATCH] drm/nouveau/kms: Avoid a hang entering KDB with VT accel on.
+
+Francisco Jerez advises that pre-nv20 cards would hang if we entered
+kdb with accel on and IRQs disabled, so we now disable accel before
+entering kdb and re-enable it on the way back out.
+
+Signed-off-by: Chris Ball <cjb@laptop.org>
+Cc: Francisco Jerez <currojerez@riseup.net>
+Cc: Jason Wessel <jason.wessel@windriver.com>
+---
+ drivers/gpu/drm/nouveau/nv04_crtc.c |    9 +++++++++
+ 1 files changed, 9 insertions(+), 0 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nv04_crtc.c b/drivers/gpu/drm/nouveau/nv04_crtc.c
+index fb669dd..427f90e 100644
+--- a/drivers/gpu/drm/nouveau/nv04_crtc.c
++++ b/drivers/gpu/drm/nouveau/nv04_crtc.c
+@@ -31,10 +31,11 @@
+ #include "nouveau_connector.h"
+ #include "nouveau_crtc.h"
+ #include "nouveau_fb.h"
+ #include "nouveau_hw.h"
+ #include "nvreg.h"
++#include "nouveau_fbcon.h"
+ 
+ static int
+ nv04_crtc_mode_set_base(struct drm_crtc *crtc, int x, int y,
+ 			struct drm_framebuffer *old_fb);
+ 
+@@ -858,10 +859,18 @@ nv04_crtc_mode_set_base(struct drm_crtc *crtc, int x, int y,
+ static int
+ nv04_crtc_mode_set_base_atomic(struct drm_crtc *crtc,
+ 			       struct drm_framebuffer *fb,
+ 			       int x, int y, int enter)
  {
- 	struct pipe_winsys *ws = screen->base.winsys;
- 	nouveau_channel_free(&screen->channel);
--	ws->destroy(ws);
-+	if (ws)
-+		ws->destroy(ws);
++	struct drm_nouveau_private *dev_priv = crtc->dev->dev_private;
++	struct drm_device *dev = dev_priv->dev;
++
++	if (enter)
++		nouveau_fbcon_save_disable_accel(dev);
++	else
++		nouveau_fbcon_restore_accel(dev);
++
+ 	return nv04_crtc_do_mode_set_base(crtc, fb, x, y, true);
  }
  
-diff --git a/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c b/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
-index 660dbd0..d4bf124 100644
---- a/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
-+++ b/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
-@@ -19,7 +19,8 @@ nouveau_drm_destroy_winsys(struct pipe_winsys *s)
- {
- 	struct nouveau_winsys *nv_winsys = nouveau_winsys(s);
- 	struct nouveau_screen *nv_screen= nouveau_screen(nv_winsys->pscreen);
--	nouveau_device_close(&nv_screen->device);
-+	if (nv_screen)
-+		nouveau_device_close(&nv_screen->device);
- 	FREE(nv_winsys);
- }
- 
+ static void nv04_cursor_upload(struct drm_device *dev, struct nouveau_bo *src,
+ 			       struct nouveau_bo *dst)
 -- 
-1.7.1.1
+1.6.2.5
+
+------------------------------------------------------------------------------
+Sell apps to millions through the Intel(R) Atom(Tm) Developer Program
+Be part of this innovative community and reach millions of netbook users 
+worldwide. Take advantage of special opportunities to increase revenue and 
+speed time-to-market. Join now, and jumpstart your future.
+http://p.sf.net/sfu/intel-atom-d2d
