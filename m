@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29766] New: suspend-to-ram problem on GF7600 notebook
-Date: Mon, 23 Aug 2010 14:38:44 -0700 (PDT)
-Message-ID: <bug-29766-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29583] nouveau freeze Xorg on NV34
+Date: Mon, 23 Aug 2010 23:40:09 -0700 (PDT)
+Message-ID: <20100824064009.6ACD3130082@annarchy.freedesktop.org>
+References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-29583-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,40 +20,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29766
+https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
-           Summary: suspend-to-ram problem on GF7600 notebook
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: mjt-XAri/EZa3C4vJsYlp49lxw@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #5 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-23 23:40:07 PDT ---
+Curious behavior of nouveau driver(though I don't know if it's connect with
+this problem):
+Once nouveau driver is loaded,after the screen resolution changed(which is
+normal),there is a area,about 640*480 in size,at the top-left corner of the
+screen,is totally white.
 
-
-I've sent this bugreport to the mailinglist, but apparently the post produced
-no interest whatsoever.  So re-submitting it here.
-
-Full details are at
-http://lists.freedesktop.org/archives/nouveau/2010-August/006238.html , dmesg
-from the bootup are here:
-http://lists.freedesktop.org/archives/nouveau/attachments/20100817/bc561c8f/attachment-0001.asc
-.
-
-In summary, current KMS driver in kernel does not work in suspend-to-ram-resume
-cycle, leaving the screen non-functional after resume, at least on a particular
-notebook, and generating tons of kernel messages.  There's no X involved at all
-(I tried to suspend/resume without starting X), but from X the behavour is the
-same.
-
-I selected x86(IA32) arch, but exactly the same happens with 64bit kernel.
-
-Thanks!
+This behavior started maybe after 2.6.36-rc1
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
