@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Mon, 23 Aug 2010 23:40:09 -0700 (PDT)
-Message-ID: <20100824064009.6ACD3130082@annarchy.freedesktop.org>
-References: <bug-29583-8800@http.bugs.freedesktop.org/>
+From: Dragos Delcea <dragos.delcea-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: shouldn't nouveau.ko depend on fbcon.ko?
+Date: Wed, 25 Aug 2010 16:26:40 +0300
+Message-ID: <AANLkTinqnf3qpSBhb6g7EtxVO3d+_BbcYfxXZJC9Ht9A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0219889971=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29583-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +17,56 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29583
+--===============0219889971==
+Content-Type: multipart/alternative; boundary=0016364d1df3fb9a92048ea5d410
 
---- Comment #5 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-23 23:40:07 PDT ---
-Curious behavior of nouveau driver(though I don't know if it's connect with
-this problem):
-Once nouveau driver is loaded,after the screen resolution changed(which is
-normal),there is a area,about 640*480 in size,at the top-left corner of the
-screen,is totally white.
+--0016364d1df3fb9a92048ea5d410
+Content-Type: text/plain; charset=ISO-8859-1
 
-This behavior started maybe after 2.6.36-rc1
+Hi,
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I noticed that loading nouveau doesn't load fbcon automatically; and without
+fbcon, when loading nouveau the console turns blank. I spent a few good
+hours until I was able to figure out that I had to manually modprobe fbcon
+to get the console back after loading nouveau.
+This is happening on a vanilla 2.6.35.3; shouldn't there be dependencies in
+place between modules?
+
+Note that I haven't got to the xorg part just yet, I'm currently installing
+gentoo.
+
+thanks,
+Dragos
+
+PS please include me in the reply as I'm not subscribed.
+
+--0016364d1df3fb9a92048ea5d410
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<div><br></div><div>I noticed that loading nouveau doesn&#39;t load fbco=
+n automatically; and without fbcon, when loading nouveau the console turns =
+blank. I spent a few good hours until I was able to figure out that I had t=
+o manually modprobe fbcon to get the console back after loading nouveau.</d=
+iv>
+<div>This is happening on a vanilla 2.6.35.3; shouldn&#39;t there be depend=
+encies in place between modules?</div><div><br></div><div>Note that I haven=
+&#39;t got to the xorg part just yet, I&#39;m currently installing gentoo.<=
+/div>
+<div><br></div><div>thanks,</div><div>Dragos</div><div><br></div><div>PS pl=
+ease include me in the reply as I&#39;m not subscribed.</div>
+
+--0016364d1df3fb9a92048ea5d410--
+
+--===============0219889971==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0219889971==--
