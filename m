@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29800] drm detects GPU lockup with dual cards/Xorg
  hard locks even with single screen
-Date: Wed, 25 Aug 2010 13:43:37 -0700 (PDT)
-Message-ID: <20100825204337.45911130148@annarchy.freedesktop.org>
+Date: Wed, 25 Aug 2010 13:45:46 -0700 (PDT)
+Message-ID: <20100825204546.1D0DE1300F8@annarchy.freedesktop.org>
 References: <bug-29800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29800
 
---- Comment #1 from Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-25 13:43:37 PDT ---
-As discussed in IRC, I've done the following:
-
--Updated the kernel per the instructions at
-http://nouveau.freedesktop.org/wiki/InstallDRM
--Updated the libdrm and xf86-video-nouveau per the instructions at
-http://nouveau.freedesktop.org/wiki/InstallNouveau
-
-Below, you will find attachments that give more info about the problem.
+--- Comment #2 from Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-25 13:45:46 PDT ---
+Created an attachment (id=38149)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38149)
+Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
