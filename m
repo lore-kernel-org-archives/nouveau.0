@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29800] drm detects GPU lockup with dual cards/Xorg
  hard locks even with single screen
-Date: Wed, 25 Aug 2010 13:49:50 -0700 (PDT)
-Message-ID: <20100825204950.657901300FE@annarchy.freedesktop.org>
+Date: Wed, 25 Aug 2010 13:58:44 -0700 (PDT)
+Message-ID: <20100825205844.651481300DF@annarchy.freedesktop.org>
 References: <bug-29800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29800
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #5 from Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-25 13:58:44 PDT ---
+Created an attachment (id=38152)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38152)
+egrep "drm|nouveau|vgaarb" /var/log/messages
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #38149|application/octet-stream    |text/plain
-          mime type|                            |
+I've stripped out entries from this that were from before and after the boot
+with the problem. If the full content of the messages file from this specific
+boot is needed, let me know and I can upload that instead.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
