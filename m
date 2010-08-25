@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29800] drm detects GPU lockup with dual cards/Xorg
  hard locks even with single screen
-Date: Wed, 25 Aug 2010 13:49:19 -0700 (PDT)
-Message-ID: <20100825204919.4CB781300A8@annarchy.freedesktop.org>
+Date: Wed, 25 Aug 2010 13:49:50 -0700 (PDT)
+Message-ID: <20100825204950.657901300FE@annarchy.freedesktop.org>
 References: <bug-29800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #38150|application/octet-stream    |text/plain
+  Attachment #38149|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
