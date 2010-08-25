@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29800] drm detects GPU lockup with dual cards/Xorg
  hard locks even with single screen
-Date: Wed, 25 Aug 2010 14:27:34 -0700 (PDT)
-Message-ID: <20100825212734.8CA591300AD@annarchy.freedesktop.org>
+Date: Wed, 25 Aug 2010 14:30:33 -0700 (PDT)
+Message-ID: <20100825213033.7D36B1300C6@annarchy.freedesktop.org>
 References: <bug-29800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,13 +27,15 @@ Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #38150|0                           |1
+  Attachment #38152|0                           |1
         is obsolete|                            |
 
---- Comment #6 from Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-25 14:27:34 PDT ---
-Created an attachment (id=38154)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38154)
-New dmesg without mesa-dri-drivers-experimental
+--- Comment #7 from Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-25 14:30:33 PDT ---
+Created an attachment (id=38155)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38155)
+/var/log/messages
+
+cleared just before rebooting to install the problematic cards
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
