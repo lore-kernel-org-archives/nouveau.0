@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Thu, 26 Aug 2010 07:58:09 -0700 (PDT)
-Message-ID: <20100826145809.DFC891300A0@annarchy.freedesktop.org>
+Date: Thu, 26 Aug 2010 09:20:14 -0700 (PDT)
+Message-ID: <20100826162014.E4D4C1300B5@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #12 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-08-26 07:58:09 PDT ---
-Created an attachment (id=38178)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38178)
-second tvdump output
+--- Comment #13 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-26 09:20:14 PDT ---
+Last dmesg indicates there's second problem - slightly broken OFfb handover:
+"Trying to free nonexistent resource <0000000098004000-00000000980c3fff>"
 
-Sure. It's a bit different from the last one.
+I doubt it's the reason of "blank screen", but it should be fixed anyway.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
