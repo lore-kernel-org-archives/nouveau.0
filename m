@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Thu, 26 Aug 2010 06:36:37 -0700 (PDT)
-Message-ID: <20100826133637.58A141300EB@annarchy.freedesktop.org>
-References: <bug-29810-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29820] New: Nouveau doesn't handle VGA-OUT correctly
+ on a 9400M (Macbook Unibody), but DVI-OUT works !?!?!
+Date: Thu, 26 Aug 2010 06:56:00 -0700 (PDT)
+Message-ID: <bug-29820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29810-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +19,41 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29810
+https://bugs.freedesktop.org/show_bug.cgi?id=29820
 
---- Comment #8 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-08-26 06:36:37 PDT ---
-if i use the video=VGA-1:e switch or no switch at all the system starts with
-nvidiafb which was not suggested in nouveau wiki. The console comes up, nouveau
-and drm module are shown in lsmod but noveau lines do not appear in dmesg. 
+           Summary: Nouveau doesn't handle VGA-OUT correctly on a 9400M
+                    (Macbook Unibody), but DVI-OUT works !?!?!
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: yerazunis-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-If i use video=ofonly or video=ofonly,VGA-1:e the system comes up without
-nvidiafb and the screen goes blank when it tries to load nouveau module.
+
+On the Macbooks there are two display adapters you can plug into the 
+Mini DisplayPort socket- one yields DVI, the other VGA.
+
+DVI output works fine on all monitors tested.  Yeah team!
+
+VGA does not.  Although Linux sees the external display and gets the external
+monitor information correctly (i.e. EDID seems to work), but the VGA signal
+generated is only non-syncing artifacts; different monitors show different  
+results, but none succeed in syncing up to what should be reasonable 
+resolutions and frame rates.
+
+There is no relevant results on this in the Xorg.0.log file, so no attachments.
+
+The machine is a late 2008 Macbook Unibody (5,1) running Fedora Core 13, but
+the same behavior is seen on Core 11 and Ubuntu, and booting via ReFIT.  
+
+It's not a broken-hardware problem; both the ->VGA and ->DVI adapters work fine
+when booted into MacOS.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
