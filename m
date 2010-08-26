@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Wed, 25 Aug 2010 23:28:54 -0700 (PDT)
-Message-ID: <20100826062854.2BBCD13012F@annarchy.freedesktop.org>
+Date: Thu, 26 Aug 2010 02:22:53 -0700 (PDT)
+Message-ID: <20100826092253.AD93713010F@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,24 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #4 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-08-25 23:28:54 PDT ---
-The computer has a CRT display and also a mini vga output on its side which i
-don't use.
+--- Comment #5 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-26 02:22:53 PDT ---
+(In reply to comment #0)
+> Created an attachment (id=38169)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38169)
+> lspci output
+> 
+> I have an old CRT eMac with an Nvidia GeForce2 MX card. I try to make it work
+> with the packaged debian nouveau modules. When the system loads the nouveau
+> kernel module the screen goes blank. I can log into the computer with ssh and
+> get the console back with unloading the nouveau module. The X display does not
+> start at all.
+> 
+> Is there a way to make it work?
+
+A register dump with nouveau unloaded would be useful (using [1], it depends on
+libpciaccess).
+
+[1] http://cgit.freedesktop.org/~currojerez/tvdump
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
