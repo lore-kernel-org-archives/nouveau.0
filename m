@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29809] Random hangs on GeForce 8400M GS (NV86)
-Date: Wed, 25 Aug 2010 21:16:14 -0700 (PDT)
-Message-ID: <20100826041614.F20CA130093@annarchy.freedesktop.org>
+Date: Wed, 25 Aug 2010 21:33:24 -0700 (PDT)
+Message-ID: <20100826043324.85C5D13009F@annarchy.freedesktop.org>
 References: <bug-29809-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29809
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-25 21:16:14 PDT ---
-There's been a number of reports of random hangs etc since 2.6.36-rc1 was
-merged, and I agree this is probably the most likely candidate.  However, I'm
-not certain why yet.
-
-I personally don't see any issue in normal use, but may have just encountered
-the problem running gtkperf with compiz enabled.  I'll play around with
-reverting that commit now too.
-
-For the suspend issue, I've seen that too randomly, a vt-switch to console and
-back seems to "fix" it.
+--- Comment #2 from Matthias Schiffer <mschiffer-Nyw9WiXk/RKXhJHkyCwd5uTW4wlIGRCZ@public.gmane.org> 2010-08-25 21:33:24 PDT ---
+I see this issue without running any GL programs and with only swrast
+installed. It don't think I do anything special when I get it, it occurs in
+normal use for me.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
