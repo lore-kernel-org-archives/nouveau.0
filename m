@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Thu, 26 Aug 2010 07:00:07 -0700 (PDT)
-Message-ID: <20100826140007.17AD413007C@annarchy.freedesktop.org>
+Date: Thu, 26 Aug 2010 07:34:12 -0700 (PDT)
+Message-ID: <20100826143412.8703F130092@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #9 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-26 07:00:06 PDT ---
-(In reply to comment #8)
-> if i use the video=VGA-1:e switch or no switch at all the system starts with
-> nvidiafb which was not suggested in nouveau wiki. The console comes up, nouveau
-> and drm module are shown in lsmod but noveau lines do not appear in dmesg. 
-> 
-> If i use video=ofonly or video=ofonly,VGA-1:e the system comes up without
-> nvidiafb and the screen goes blank when it tries to load nouveau module.
+--- Comment #10 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-08-26 07:34:10 PDT ---
+Created an attachment (id=38177)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38177)
+second dmesg output
 
-Try with "video=nvidiafb:off video=VGA-1:e".
+Something seems to happen. I get different messages in dmesg. Although the
+screen goes blank again and this time it does not even allow to remove the
+nouveau module (module is in use)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
