@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29809] Random hangs on GeForce 8400M GS (NV86)
-Date: Wed, 25 Aug 2010 21:33:24 -0700 (PDT)
-Message-ID: <20100826043324.85C5D13009F@annarchy.freedesktop.org>
+Date: Wed, 25 Aug 2010 22:18:45 -0700 (PDT)
+Message-ID: <20100826051845.96A3B130120@annarchy.freedesktop.org>
 References: <bug-29809-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29809
 
---- Comment #2 from Matthias Schiffer <mschiffer-Nyw9WiXk/RKXhJHkyCwd5uTW4wlIGRCZ@public.gmane.org> 2010-08-25 21:33:24 PDT ---
-I see this issue without running any GL programs and with only swrast
-installed. It don't think I do anything special when I get it, it occurs in
-normal use for me.
+--- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-25 22:18:45 PDT ---
+Yeah, I don't think they're related.  Just meant to note that I've seen
+regressions as a result of that commit too.
+
+I've tracked down the fix for the issue I was seeing, it's in nouveau git now. 
+But, I don't think it'll help you still, unfortunately.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
