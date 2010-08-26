@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Wed, 25 Aug 2010 23:26:26 -0700 (PDT)
-Message-ID: <20100826062627.0AC841300C7@annarchy.freedesktop.org>
+Date: Wed, 25 Aug 2010 23:28:54 -0700 (PDT)
+Message-ID: <20100826062854.2BBCD13012F@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #3 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-08-25 23:26:26 PDT ---
-Created an attachment (id=38172)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38172)
-Xorg log
+--- Comment #4 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-08-25 23:28:54 PDT ---
+The computer has a CRT display and also a mini vga output on its side which i
+don't use.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
