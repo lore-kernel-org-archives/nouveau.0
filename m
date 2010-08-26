@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Wed, 25 Aug 2010 23:24:12 -0700 (PDT)
-Message-ID: <20100826062413.1D9FE13007E@annarchy.freedesktop.org>
+Date: Wed, 25 Aug 2010 23:26:01 -0700 (PDT)
+Message-ID: <20100826062601.B36ED130063@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #1 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-08-25 23:24:12 PDT ---
-Created an attachment (id=38170)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38170)
-dmesg output
+--- Comment #2 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-08-25 23:26:01 PDT ---
+Created an attachment (id=38171)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38171)
+xorg.conf
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
