@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Thu, 26 Aug 2010 02:26:01 -0700 (PDT)
-Message-ID: <20100826092601.75D31130111@annarchy.freedesktop.org>
+Date: Thu, 26 Aug 2010 03:01:47 -0700 (PDT)
+Message-ID: <20100826100147.E80AB130123@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,19 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #8 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-26 02:26:01 PDT ---
-(In reply to comment #7)
-> Bisect result:
-> 
-> 58374713c9dfb4d231f8c56cac089f6fbdedc2ec is the first bad commit
-> commit 58374713c9dfb4d231f8c56cac089f6fbdedc2ec
-> Author: Arnd Bergmann <arnd-r2nGTMty4D4@public.gmane.org>
-> Date:   Sat Jul 10 23:51:39 2010 +0200
-> 
->     drm: kill BKL from common code
-
-Ben may have fixed this with e644bb2066cc46c01e5f8902bf840f19e1f942c6, could
-you try again with latest git?
+--- Comment #9 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-26 03:01:47 PDT ---
+Tried,doesn't fix the bug.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
