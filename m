@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29809] Random hangs on GeForce 8400M GS (NV86)
-Date: Thu, 26 Aug 2010 15:02:56 -0700 (PDT)
-Message-ID: <20100826220256.91A401300F1@annarchy.freedesktop.org>
-References: <bug-29809-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29820] Nouveau doesn't handle VGA-OUT correctly on a
+ 9400M (Macbook Unibody), but DVI-OUT works !?!?!
+Date: Thu, 26 Aug 2010 15:28:48 -0700 (PDT)
+Message-ID: <20100826222848.E37741300D5@annarchy.freedesktop.org>
+References: <bug-29820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29809-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29820-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29809
+https://bugs.freedesktop.org/show_bug.cgi?id=29820
 
---- Comment #4 from Matthias Schiffer <mschiffer-Nyw9WiXk/RKXhJHkyCwd5uTW4wlIGRCZ@public.gmane.org> 2010-08-26 15:02:56 PDT ---
-Indeed, the current HEAD doesn't work any better. After reverting 5837471, I
-haven't had any crashes, my system was running several hours since then, so it
-is really that commit causing the hangs.
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-26 15:28:48 PDT ---
+This isn't an issue with VGA out, your macbook doesn't *do* VGA at all. 
+DP->DVI works because the adaptor is passive, and the display looks basically
+like normal DVI to the driver.  VGA on the other hand is an active adaptor, and
+nouveau sees a DisplayPort monitor, not VGA.
 
-The s2ram issue occured nevertheless, so that problem is completely unrelated
-to the hangs.
+Nouveau DP support is currently limited to working only when the VBIOS (or,
+EFI) has initialised the display previously.  If it hasn't been, a blank screen
+(or possibly badly synced screen sometimes) is the expected result.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
