@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Fri, 27 Aug 2010 04:02:16 -0700 (PDT)
-Message-ID: <20100827110216.1F6B11300B3@annarchy.freedesktop.org>
-References: <bug-29810-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29583] nouveau freeze Xorg on NV34
+Date: Fri, 27 Aug 2010 05:06:28 -0700 (PDT)
+Message-ID: <20100827120628.0FF411301DE@annarchy.freedesktop.org>
+References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29810-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29583-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +20,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29810
+https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #17 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-27 04:02:15 PDT ---
-(In reply to comment #16)
-> Ugh. You mean i should compile a full, at least 2.6.36 kernel with a patched
-> driver and maybe a complete Xorg as well?
-
-Yes, you'll have to build more recent versions of libdrm and xf86-video-nouveau
-if the kernel patch I attached does the trick.
+--- Comment #11 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-27 05:06:27 PDT ---
+You could try to build a kernel with CONFIG_LOCKUP_DETECTOR enabled. The lockup
+detector logs a backtrace when the kernel stays stuck for a minute or so. It
+may be useful along with a serial/netconsole to track this problem down.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
