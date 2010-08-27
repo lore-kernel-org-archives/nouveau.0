@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Thu, 26 Aug 2010 21:01:15 -0700 (PDT)
-Message-ID: <20100827040115.10CE91300A5@annarchy.freedesktop.org>
+Date: Fri, 27 Aug 2010 04:02:16 -0700 (PDT)
+Message-ID: <20100827110216.1F6B11300B3@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #16 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-08-26 21:01:14 PDT ---
-Ugh. You mean i should compile a full, at least 2.6.36 kernel with a patched
-driver and maybe a complete Xorg as well?
+--- Comment #17 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-27 04:02:15 PDT ---
+(In reply to comment #16)
+> Ugh. You mean i should compile a full, at least 2.6.36 kernel with a patched
+> driver and maybe a complete Xorg as well?
+
+Yes, you'll have to build more recent versions of libdrm and xf86-video-nouveau
+if the kernel patch I attached does the trick.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
