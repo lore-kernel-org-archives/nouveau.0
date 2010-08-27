@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Fri, 27 Aug 2010 05:20:00 -0700 (PDT)
-Message-ID: <20100827122000.7F18C1302C7@annarchy.freedesktop.org>
+Date: Fri, 27 Aug 2010 05:35:18 -0700 (PDT)
+Message-ID: <20100827123518.EA10013010F@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #12 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-27 05:19:59 PDT ---
-The all-is-frozen situation described in the comment only appeared once.
-During my bisecting,while Xorg is frozen,I'm still able to move mouse and
-network is still working.
-So according to the definition of 'Hardlockups':
-  Hardlockups are bugs that cause the CPU to loop in kernel mode
-  for more than 60 seconds, without letting other interrupts have a
-  chance to run.
-I don't think this is a hardlockup.
+--- Comment #13 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-27 05:35:18 PDT ---
+(In reply to comment #12)
+> The all-is-frozen situation described in the comment only appeared once.
+> During my bisecting,while Xorg is frozen,I'm still able to move mouse and
+> network is still working.
+> So according to the definition of 'Hardlockups':
+>   Hardlockups are bugs that cause the CPU to loop in kernel mode
+>   for more than 60 seconds, without letting other interrupts have a
+>   chance to run.
+> I don't think this is a hardlockup.
+
+Ah! Then CONFIG_DETECT_HUNG_TASK would be more appropriate.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
