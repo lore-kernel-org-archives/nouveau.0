@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Fri, 27 Aug 2010 06:37:03 -0700 (PDT)
-Message-ID: <20100827133703.AA044130061@annarchy.freedesktop.org>
+Date: Fri, 27 Aug 2010 06:39:24 -0700 (PDT)
+Message-ID: <20100827133924.0D8D51300DE@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #15 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-27 06:37:03 PDT ---
-Created an attachment (id=38220)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38220)
-Kernel log
-
-Only attach part of it,should be enough.
-Don't think you would need the full 247k dmesg output.
+--- Comment #16 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-27 06:39:24 PDT ---
+BTW,X is running at R stat while hanging,and top shows sys takes all the cpu
+time.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
