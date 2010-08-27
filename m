@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Fri, 27 Aug 2010 06:39:24 -0700 (PDT)
-Message-ID: <20100827133924.0D8D51300DE@annarchy.freedesktop.org>
+Date: Fri, 27 Aug 2010 06:51:33 -0700 (PDT)
+Message-ID: <20100827135133.200491300C2@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #16 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-27 06:39:24 PDT ---
-BTW,X is running at R stat while hanging,and top shows sys takes all the cpu
-time.
+--- Comment #17 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-27 06:51:32 PDT ---
+FYI,commit 58374713c9dfb4d231f8c56cac089f6fbdedc2ec changed lock_kernel() and
+unlock_kernel() before and after the func() call to mutex_lock() and
+mutex_unlock().
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
