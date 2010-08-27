@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Fri, 27 Aug 2010 05:35:18 -0700 (PDT)
-Message-ID: <20100827123518.EA10013010F@annarchy.freedesktop.org>
+Date: Fri, 27 Aug 2010 06:15:22 -0700 (PDT)
+Message-ID: <20100827131522.3400B1300BC@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,18 +22,24 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #13 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-27 05:35:18 PDT ---
-(In reply to comment #12)
-> The all-is-frozen situation described in the comment only appeared once.
-> During my bisecting,while Xorg is frozen,I'm still able to move mouse and
-> network is still working.
-> So according to the definition of 'Hardlockups':
->   Hardlockups are bugs that cause the CPU to loop in kernel mode
->   for more than 60 seconds, without letting other interrupts have a
->   chance to run.
-> I don't think this is a hardlockup.
+--- Comment #14 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-27 06:15:21 PDT ---
+(In reply to comment #13)
+> (In reply to comment #12)
+> > The all-is-frozen situation described in the comment only appeared once.
+> > During my bisecting,while Xorg is frozen,I'm still able to move mouse and
+> > network is still working.
+Actually if it were some kind of kernel deadlock you wouldn't be able to move
+the mouse at all. Most likely the card has locked up for some reason, can you
+reboot with "drm.debug=3 log_buf_len=256k" in the kernel command line and
+attach new kernel logs after the hang?
 
-Ah! Then CONFIG_DETECT_HUNG_TASK would be more appropriate.
+> > So according to the definition of 'Hardlockups':
+> >   Hardlockups are bugs that cause the CPU to loop in kernel mode
+> >   for more than 60 seconds, without letting other interrupts have a
+> >   chance to run.
+> > I don't think this is a hardlockup.
+> 
+> Ah! Then CONFIG_DETECT_HUNG_TASK would be more appropriate.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
