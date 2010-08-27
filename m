@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Fri, 27 Aug 2010 08:02:38 -0700 (PDT)
-Message-ID: <20100827150238.ECEB31300F1@annarchy.freedesktop.org>
+Date: Fri, 27 Aug 2010 08:09:28 -0700 (PDT)
+Message-ID: <20100827150928.3AB0A1300A3@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #18 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-27 08:02:38 PDT ---
-(In reply to comment #15)
-> Created an attachment (id=38220)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38220)
-> Kernel log
-> 
-> Only attach part of it,should be enough.
-> Don't think you would need the full 247k dmesg output.
-
-It looks like fallout from an earlier problem, so yeah, full kernel logs would
-be interesting.
+--- Comment #19 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-27 08:09:27 PDT ---
+Created an attachment (id=38224)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38224)
+More Kernel Log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
