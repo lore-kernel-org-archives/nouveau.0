@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Sat, 28 Aug 2010 07:26:30 -0700 (PDT)
-Message-ID: <20100828142630.521671300AE@annarchy.freedesktop.org>
+Date: Sat, 28 Aug 2010 08:33:50 -0700 (PDT)
+Message-ID: <20100828153350.BBC291300F1@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #22 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-28 07:26:30 PDT ---
-BTW,I won't have chance to use this computer (with NV34 graphic card) for the
-coming month.
+--- Comment #23 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-28 08:33:50 PDT ---
+Created an attachment (id=38240)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=38240
+ Review: https://bugs.freedesktop.org/review?bug=29583&attachment=38240
+
+nouveau_ttm_preemption.patch
+
+(In reply to comment #22)
+> BTW,I won't have chance to use this computer (with NV34 graphic card) for the
+> coming month.
+
+Most likely this is a race between the X server thread and the TTM delayed work
+queue. It couldn't happen before because taking the BKL disables preemption.
+Are you still in time to test patches?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
