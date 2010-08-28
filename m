@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Sat, 28 Aug 2010 05:25:16 -0700 (PDT)
-Message-ID: <20100828122516.76B1213007E@annarchy.freedesktop.org>
+Date: Sat, 28 Aug 2010 07:26:30 -0700 (PDT)
+Message-ID: <20100828142630.521671300AE@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #21 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-28 05:25:15 PDT ---
-Full kernel log here (too large for bugzilla):
-http://pastebin.com/5TKurz6u
-
-And I can reproduce it without 3D driver (completely without
-3D,nouveau_dri,libGL & mesa uninstalled)
+--- Comment #22 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-28 07:26:30 PDT ---
+BTW,I won't have chance to use this computer (with NV34 graphic card) for the
+coming month.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
