@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Sat, 28 Aug 2010 16:01:27 -0700 (PDT)
-Message-ID: <20100828230127.97F761300F9@annarchy.freedesktop.org>
+Date: Sat, 28 Aug 2010 16:09:42 -0700 (PDT)
+Message-ID: <20100828230942.9CAA913009F@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,23 +22,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
---- Comment #24 from DarkRaven <drdarkraven-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-28 16:01:27 PDT ---
-(In reply to comment #23)
-> Created an attachment (id=38240)
- View: https://bugs.freedesktop.org/attachment.cgi?id=38240
- Review: https://bugs.freedesktop.org/review?bug=29583&attachment=38240
+walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-> nouveau_ttm_preemption.patch
-> 
-> (In reply to comment #22)
-> > BTW,I won't have chance to use this computer (with NV34 graphic card) for the
-> > coming month.
-> 
-> Most likely this is a race between the X server thread and the TTM delayed work
-> queue. It couldn't happen before because taking the BKL disables preemption.
-> Are you still in time to test patches?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-Sorry, can't.
+--- Comment #25 from walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-28 16:09:42 PDT ---
+I've been having similar freezes with NV34 while using very recent kernels, so
+I would be very happy to test patches.
+
+I'm using the nouveau support in Linus.git kernel, though, not nouveau.git.  I
+could start using nouveau.git if that's what you'd be creating patches from.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
