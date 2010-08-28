@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29846] NV4B startx results in black screen
-Date: Sat, 28 Aug 2010 09:36:15 -0700 (PDT)
-Message-ID: <20100828163615.13F8713008E@annarchy.freedesktop.org>
+Date: Sat, 28 Aug 2010 09:48:47 -0700 (PDT)
+Message-ID: <20100828164847.D3E251300A7@annarchy.freedesktop.org>
 References: <bug-29846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,35 +22,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29846
 
---- Comment #2 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-08-28 09:36:14 PDT ---
-(In reply to comment #1)
-> (In reply to comment #0)
-> > Created an attachment (id=38230)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38230)
-> > dmesg of nouveau module load and startx
-> > 
-> > My NV4b card starts X but it results in a black screen.
-> > I see a bunch of errors continually like:
-> > [drm:drm_edid_block_valid] *ERROR* Raw EDID:
-> > ...
-> > nouveau 0000:03:00.0: TV-1: EDID block 0 invalid.
-> > [drm] nouveau 0000:03:00.0: DDC responded, but no EDID for TV-1
-> > 
-> Uhm, I'd swear I had fixed this a couple of weeks ago... It seems the merge of
-> "v2.6.36-rc1" reverted half of the fix by accident, can you try again with
-> latest git?
-> 
-> > I am connecting the card to a vga display via a dvi+vga converter.  
-> > I tried disabling tv out by using tv_disable=1 at the command line but that
-> > doesn't seem to help.
-> > 
-> > This card has actually started X fine in the past and this is the same monitor
-> > I used before.
-> > 
-> > I am running the latest nouveau-linux-2.6 kernel
-> > (764e0885f987171030368a3f20993cd2855c4e40).
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
-Yes, it works fine now.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-28 09:48:47 PDT ---
+Marking as fixed.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
