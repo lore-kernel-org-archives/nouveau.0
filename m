@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29583] nouveau freeze Xorg on NV34
-Date: Sat, 28 Aug 2010 16:09:42 -0700 (PDT)
-Message-ID: <20100828230942.9CAA913009F@annarchy.freedesktop.org>
+Date: Sat, 28 Aug 2010 18:23:42 -0700 (PDT)
+Message-ID: <20100829012342.1490413011F@annarchy.freedesktop.org>
 References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,18 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
-walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #26 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-28 18:23:41 PDT ---
+(In reply to comment #25)
+> I've been having similar freezes with NV34 while using very recent kernels, so
+> I would be very happy to test patches.
+> 
+> I'm using the nouveau support in Linus.git kernel, though, not nouveau.git.  I
+> could start using nouveau.git if that's what you'd be creating patches from.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #25 from walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-28 16:09:42 PDT ---
-I've been having similar freezes with NV34 while using very recent kernels, so
-I would be very happy to test patches.
-
-I'm using the nouveau support in Linus.git kernel, though, not nouveau.git.  I
-could start using nouveau.git if that's what you'd be creating patches from.
+Yeah, you could apply it over Linus' tree, if you want, but it has already been
+reported to solve the problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
