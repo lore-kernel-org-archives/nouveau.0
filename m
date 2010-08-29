@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29809] Random hangs on GeForce 8400M GS (NV86)
-Date: Sat, 28 Aug 2010 18:24:57 -0700 (PDT)
-Message-ID: <20100829012457.699BB1300FF@annarchy.freedesktop.org>
+Date: Sun, 29 Aug 2010 03:30:57 -0700 (PDT)
+Message-ID: <20100829103057.296E11300DD@annarchy.freedesktop.org>
 References: <bug-29809-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29809
 
---- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-28 18:24:57 PDT ---
-This seems to be a duplicate of bug 29583, can you confirm that the patch
-attached to it fixes it?
+--- Comment #7 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-08-29 03:30:57 PDT ---
+This patch sort of works.
+
+My system used to hang just after few minutes of usage.
+With this patch I used the system for about 1/2 of hour, but then X hanged.
+I might be another bug.
+( I also did many s2ram cycles, which sometimes garbage the screen, so I might
+be just lucky to have this hang)
+
+Note that in 2.6.35, I see no hangs, no matter what I do with the system.
+(But like I said before I might have beein just lucky. I do see occasional
+garbage on the screen after resume from ram)
+
+I always run compiz.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
