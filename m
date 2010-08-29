@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29809] Random hangs on GeForce 8400M GS (NV86)
-Date: Sun, 29 Aug 2010 03:57:38 -0700 (PDT)
-Message-ID: <20100829105738.7295E1300E4@annarchy.freedesktop.org>
+Date: Sun, 29 Aug 2010 09:18:58 -0700 (PDT)
+Message-ID: <20100829161858.387901300F1@annarchy.freedesktop.org>
 References: <bug-29809-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,31 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29809
 
---- Comment #8 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-29 03:57:38 PDT ---
-Created an attachment (id=38258)
- View: https://bugs.freedesktop.org/attachment.cgi?id=38258
- Review: https://bugs.freedesktop.org/review?bug=29809&attachment=38258
+--- Comment #9 from Matthias Schiffer <mschiffer-Nyw9WiXk/RKXhJHkyCwd5uTW4wlIGRCZ@public.gmane.org> 2010-08-29 09:18:58 PDT ---
+The patch from bug 29583 seems to fix the hangs for me, my system has been
+running for several hours without problems. I'm not running compiz or other GL
+programs.
 
-nouveau_pushbuf_deadlock.patch
-
-(In reply to comment #7)
-> This patch sort of works.
-> 
-> My system used to hang just after few minutes of usage.
-> With this patch I used the system for about 1/2 of hour, but then X hanged.
-> I might be another bug.
-> ( I also did many s2ram cycles, which sometimes garbage the screen, so I might
-> be just lucky to have this hang)
-> 
-Can you reproduce it with the attached patch applied on top of the other one?
-If you can (and it isn't locked up hard), please provide kernel logs after the
-hang.
-
-> Note that in 2.6.35, I see no hangs, no matter what I do with the system.
-> (But like I said before I might have beein just lucky. I do see occasional
-> garbage on the screen after resume from ram)
-> 
-> I always run compiz.
+Should I test the new patch, too?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
