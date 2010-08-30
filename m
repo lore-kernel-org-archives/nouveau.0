@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29809] Random hangs on GeForce 8400M GS (NV86)
-Date: Mon, 30 Aug 2010 11:59:42 -0700 (PDT)
-Message-ID: <20100830185942.29EBB1300DF@annarchy.freedesktop.org>
-References: <bug-29809-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29583] nouveau freeze Xorg on NV34
+Date: Mon, 30 Aug 2010 11:59:44 -0700 (PDT)
+Message-ID: <20100830185944.5FC4E1300DF@annarchy.freedesktop.org>
+References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29809-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29583-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29809
+https://bugs.freedesktop.org/show_bug.cgi?id=29583
 
 Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |DUPLICATE
+                 CC|                            |mschiffer@universe-factory.
+                   |                            |net
 
---- Comment #10 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-30 11:59:41 PDT ---
-(In reply to comment #9)
-> The patch from bug 29583 seems to fix the hangs for me, my system has been
-> running for several hours without problems. I'm not running compiz or other GL
-> programs.
-> 
-Thanks, I'm marking this bug as duplicate then.
-
-> Should I test the new patch, too?
-
-*** This bug has been marked as a duplicate of bug 29583 ***
+--- Comment #29 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-30 11:59:41 PDT ---
+*** Bug 29809 has been marked as a duplicate of this bug. ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
