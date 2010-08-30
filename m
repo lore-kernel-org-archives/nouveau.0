@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29800] drm detects GPU lockup with dual cards/Xorg
- hard locks even with single screen
-Date: Mon, 30 Aug 2010 11:57:10 -0700 (PDT)
-Message-ID: <20100830185710.771921300B7@annarchy.freedesktop.org>
-References: <bug-29800-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29809] Random hangs on GeForce 8400M GS (NV86)
+Date: Mon, 30 Aug 2010 11:59:42 -0700 (PDT)
+Message-ID: <20100830185942.29EBB1300DF@annarchy.freedesktop.org>
+References: <bug-29809-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29809-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +20,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29800
+https://bugs.freedesktop.org/show_bug.cgi?id=29809
 
---- Comment #9 from Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-08-30 11:57:10 PDT ---
-After a coworker got his F13 x86 install working with 3 monitors (with the
-blob) by removing NetworkManager, I started looking into my problem some more,
-and first tried removing NetworkManager. That did not change anything.
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
-So I googled for the NVIDIA(0) WAIT error that I had from the bottom of the X
-log from when I used the blob. Sure enough, first result is a redhat bug
-(closed as notabug). The error is apparently in the Intel IOMMU, and adding
-intel_iommu=off to the boot command line seems to fix the hard lockup and
-allows my x86_64 install of F13 to use all 3 screens on both cards with the
-blob.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |DUPLICATE
 
-I will check if this has also fixed nouveau sometime soon and report back if it
-has.
+--- Comment #10 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-08-30 11:59:41 PDT ---
+(In reply to comment #9)
+> The patch from bug 29583 seems to fix the hangs for me, my system has been
+> running for several hours without problems. I'm not running compiz or other GL
+> programs.
+> 
+Thanks, I'm marking this bug as duplicate then.
+
+> Should I test the new patch, too?
+
+*** This bug has been marked as a duplicate of bug 29583 ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
