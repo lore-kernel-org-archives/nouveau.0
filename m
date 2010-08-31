@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29525] DVI monitor (via docking station) remains
-	blank
-Date: Mon, 30 Aug 2010 23:30:05 -0700 (PDT)
-Message-ID: <20100831063005.19626130083@annarchy.freedesktop.org>
-References: <bug-29525-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nv50: initialize ramht_refs list for
+ faked 0 channel
+Date: Tue, 31 Aug 2010 23:22:23 +0200
+Message-ID: <20100831212223.GA12076@joi.lan>
+References: <20100822185408.GA2883@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29525-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20100822185408.GA2883-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,58 +22,30 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29525
+On Sun, Aug 22, 2010 at 08:54:08PM +0200, Marcin Slusarz wrote:
+> We need it for PFIFO_INTR_CACHE_ERROR interrupt handling,
+> because nouveau_fifo_swmthd looks for matching gpuobj in
+> ramht_refs list.
+> It fixes kernel panic in nouveau_gpuobj_ref_find.
+> 
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nv50_instmem.c |    2 ++
+>  1 files changed, 2 insertions(+), 0 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nv50_instmem.c b/drivers/gpu/drm/nouveau/nv50_instmem.c
+> index b57cc4a..6e57426 100644
+> --- a/drivers/gpu/drm/nouveau/nv50_instmem.c
+> +++ b/drivers/gpu/drm/nouveau/nv50_instmem.c
+> @@ -139,6 +139,8 @@ nv50_instmem_init(struct drm_device *dev)
+>  	chan->file_priv = (struct drm_file *)-2;
+>  	dev_priv->fifos[0] = dev_priv->fifos[127] = chan;
+>  
+> +	INIT_LIST_HEAD(&chan->ramht_refs);
+> +
+>  	/* Channel's PRAMIN object + heap */
+>  	ret = nouveau_gpuobj_new_fake(dev, 0, c_offset, c_size, 0,
+>  							NULL, &chan->ramin);
+> -- 
 
-aa_z9-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #37836|0                           |1
-        is obsolete|                            |
-
---- Comment #6 from aa_z9-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org 2010-08-30 23:30:04 PDT ---
-Created an attachment (id=38327)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38327)
-Gzipped Tar file containing 6 dmesg outputs (text format).
-
-Hi,
-
-I have performed further testing using the following versions:
-
-git://anongit.freedesktop.org/nouveau/linux-2.6    
-1a8315a37e0e3b11daf923d9637321e0ff612e7e
-
-git://anongit.freedesktop.org/nouveau/xf86-video-nouveau
-065576d5df0df4da61050d789f548801656b62d5
-
-git://anongit.freedesktop.org/git/mesa/drm/
-23287f05cf2443ddf9e028e29beb5bd30979c6cf
-
-After booting with the DVI monitor connected, the DVI monitor remains blank
-(dmesg > 1.txt).
-
-After unplugging the DVI cable (2.txt) and plugging it back in, the DVI monitor
-displays correctly (3.txt).
-
-After starting X, the DVI monitor only displays the (mouse) cursor (4.txt).
-
-After typing "xrandr --output DVI-D-1 --mode 640x350" the DVI monitor displays
-the X screen properly (although at the reduced resolution) (5.txt).
-
-After typing "xrandr --output DVI-D-1 --auto" the DVI monitor displays at the
-correct native resolution (6.txt). Note: This command doesn't seem to cause the
-DVI monitor to display correctly unless the previous xrandr command (i.e. at
-the reduced resolution) is executed.
-
-Two further issues, possibly related issues:
-* The mouse cursor dissappears permanently sometimes from LVDS-1, although X is
-apparently otherwise unaffected.
-* The DVI monitor won't work again after a suspend/resume, even by
-unplugging/re-connecting/trying lower resolutions, etc. as above.
-
-Scott
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+ping
