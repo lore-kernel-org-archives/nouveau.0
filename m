@@ -1,52 +1,45 @@
-From: Jason Wessel <jason.wessel@windriver.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/kms: Implement
- KDB debug hooks for nouveau KMS.
-Date: Wed, 01 Sep 2010 06:35:15 -0500
-Message-ID: <4C7E3A73.5070503@windriver.com>
-References: <m3iq9yqd7w.fsf@pullcord.laptop.org>
-	<4C5ACF3F.8050409@windriver.com>
-	<m3hbj0fju3.fsf_-_@pullcord.laptop.org>
-	<m3aaoimqrp.fsf_-_@pullcord.laptop.org>
-	<1283335002.2741.5.camel@maxim-laptop>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29583] nouveau freeze Xorg on NV34
+Date: Wed,  1 Sep 2010 05:05:38 -0700 (PDT)
+Message-ID: <20100901120538.852C4130136@annarchy.freedesktop.org>
+References: <bug-29583-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <kgdb-bugreport-bounces@lists.sourceforge.net>
-In-Reply-To: <1283335002.2741.5.camel@maxim-laptop>
-List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
-	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=unsubscribe>
-List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=kgdb-bugreport>
-List-Post: <mailto:kgdb-bugreport@lists.sourceforge.net>
-List-Help: <mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=help>
-List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
-	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=subscribe>
-Errors-To: kgdb-bugreport-bounces@lists.sourceforge.net
-To: Maxim Levitsky <maximlevitsky@gmail.com>
-Cc: David Airlie <airlied@linux.ie>, kgdb-bugreport@lists.sourceforge.net, Jesse Barnes <jbarnes@virtuousgeek.org>, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-29583-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDkvMDEvMjAxMCAwNDo1NiBBTSwgTWF4aW0gTGV2aXRza3kgd3JvdGU6Cj4gT24gVGh1LCAy
-MDEwLTA4LTE5IGF0IDEzOjU1IC0wNDAwLCBDaHJpcyBCYWxsIHdyb3RlOiAKPiAgIAo+PiBIaSwK
-Pj4KPj4gSGVyZSdzIGEgcGF0Y2ggdG8gYWRkIHN1cHBvcnQgZm9yIEtNUyBkZWJ1Z2dpbmcgdG8g
-Tm91dmVhdSwgYWxvbmcgdGhlCj4+IHN0eWxlIG9mIHRoZSBwcmV2aW91cyBwYXRjaGVzIGZvciBJ
-bnRlbMK5IGFuZCBSYWRlb27Csi4gIEknbSBvbmx5IGFibGUKPj4gdG8gdGVzdCBvbiBudjUwIGhl
-cmUsIHNvIGEgdGVzdCBvbiBudjA0IHdvdWxkIGJlIG11Y2ggYXBwcmVjaWF0ZWQsCj4+IGFuZCBJ
-J3ZlIHB1Ymxpc2hlZCBpbnN0cnVjdGlvbnMgb24gaG93IHRvIHRlc3QgaGVyZcKzLiAgVGhhbmtz
-IQo+Pgo+PiAtIENocmlzLgo+PiAgICAgCj4KPiBIaSwKPgo+IEkganVzdCB0cmllZCB0aGF0IHBh
-dGNoLCBidXQgdW5mb3J0dW5hdGVseSBuZXRoZXIgd2l0aCBub3Igd2l0aG91dCBpdAo+IGtkYiBz
-ZWVtcyBub3QgdG8gd29yay4KPiBJdCBjb3VsZCBiZSBpZDEwdCBlcnJvciBmcm9tIG15IHNpZGUs
-IGJ1dCBJIGRpZCB0ZXN0IHRoZSBrZGIgaW4gdGhlIHBhc3QKPiB3aXRoIGZldyBLTVMgcGF0Y2hl
-cywgYW5kIGl0IHNlZW1lZCB0byB3b3JrLgo+Cj4gTm93IEkgY2FuJ3QgZXZlbiBnZXQgaXRzIHBy
-b21wdCBvbiB0aGUgY29uc29sZS4KPgo+IFRoaXMgaXMgd2hhdCBJIGRvOgo+Cj4gZWNobyBrYmQg
-fCBzdWRvIHRlZSAvc3lzL21vZHVsZS9rZ2Rib2MvcGFyYW1ldGVycy9rZ2Rib2MKPiAoYWxzbyB0
-cmllZCBib290aW5nIHdpdGgga2dkYm9jPWtiZCkKPiAgIAoKVHJ5IGNoYW5naW5nIGl0IHRvIGtn
-ZGJvYz1rbXMsa2JkICBvciB0aGUgImVjaG8ga21zLGtiZCIKCldoZW4geW91IHVzZSBvbmx5IHRo
-ZSBrYmQsIHRoZSBrbXMgZmVhdHVyZSBpcyBub3QgYWN0aXZhdGVkLgoKSmFzb24uCgoKCi0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLQpUaGlzIFNGLm5ldCBEZXYyRGV2IGVtYWlsIGlzIHNwb25zb3JlZCBi
-eToKClNob3cgb2ZmIHlvdXIgcGFyYWxsZWwgcHJvZ3JhbW1pbmcgc2tpbGxzLgpFbnRlciB0aGUg
-SW50ZWwoUikgVGhyZWFkaW5nIENoYWxsZW5nZSAyMDEwLgpodHRwOi8vcC5zZi5uZXQvc2Z1L2lu
-dGVsLXRocmVhZC1zZmQKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KS2dkYi1idWdyZXBvcnQgbWFpbGluZyBsaXN0CktnZGItYnVncmVwb3J0QGxpc3RzLnNv
-dXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5m
-by9rZ2RiLWJ1Z3JlcG9ydAo=
+https://bugs.freedesktop.org/show_bug.cgi?id=29583
+
+--- Comment #31 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-01 05:05:37 PDT ---
+(In reply to comment #30)
+> (In reply to comment #28)
+> > I've pushed the fix to master, closing.
+> 
+> The bug may be closed, but the dumb questions linger on forever :p
+> 
+> Yesterday I noticed a very similar hang on my NV4 machine (which I didn't see
+> before yesterday).
+> 
+> Does it make sense that this same bug would also affect an NV4 chipset?  Or
+> should I start thinking about filing a different bug report?
+> 
+Yeah it's probably the same issue, this bug affected the whole card range.
+
+> Many thanks!
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
