@@ -1,15 +1,17 @@
 From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nv50: initialize ramht_refs list for
- faked 0 channel
-Date: Wed, 01 Sep 2010 12:54:31 +0300
-Message-ID: <1283334871.2741.3.camel@maxim-laptop>
-References: <20100822185408.GA2883@joi.lan>
-	<1283334805.2741.2.camel@maxim-laptop>
+Subject: Re: [PATCH] drm/nouveau/kms: Implement KDB debug hooks
+ for nouveau KMS.
+Date: Wed, 01 Sep 2010 12:56:42 +0300
+Message-ID: <1283335002.2741.5.camel@maxim-laptop>
+References: <m3iq9yqd7w.fsf@pullcord.laptop.org>
+	<4C5ACF3F.8050409@windriver.com>
+	<m3hbj0fju3.fsf_-_@pullcord.laptop.org>
+	<m3aaoimqrp.fsf_-_@pullcord.laptop.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1283334805.2741.2.camel@maxim-laptop>
+In-Reply-To: <m3aaoimqrp.fsf_-_-0VGQAjvlmrQzNDMTQreKSUB+6BGkLq7r@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,8 +21,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Jason Wessel <jason.wessel-CWA4WttNNZF54TAoqtyWWQ@public.gmane.org>
+To: Chris Ball <cjb-2X9k7bc8m7Mdnm+yROfE0A@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, kgdb-bugreport-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Jesse Barnes <jbarnes-Y1mF5jBUw70BENJcbMCuUQ@public.gmane.org>, Jason Wessel <jason.wessel-CWA4WttNNZF54TAoqtyWWQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Sorry, wrong thread!
+T24gVGh1LCAyMDEwLTA4LTE5IGF0IDEzOjU1IC0wNDAwLCBDaHJpcyBCYWxsIHdyb3RlOiAKPiBI
+aSwKPiAKPiBIZXJlJ3MgYSBwYXRjaCB0byBhZGQgc3VwcG9ydCBmb3IgS01TIGRlYnVnZ2luZyB0
+byBOb3V2ZWF1LCBhbG9uZyB0aGUKPiBzdHlsZSBvZiB0aGUgcHJldmlvdXMgcGF0Y2hlcyBmb3Ig
+SW50ZWzCuSBhbmQgUmFkZW9uwrIuICBJJ20gb25seSBhYmxlCj4gdG8gdGVzdCBvbiBudjUwIGhl
+cmUsIHNvIGEgdGVzdCBvbiBudjA0IHdvdWxkIGJlIG11Y2ggYXBwcmVjaWF0ZWQsCj4gYW5kIEkn
+dmUgcHVibGlzaGVkIGluc3RydWN0aW9ucyBvbiBob3cgdG8gdGVzdCBoZXJlwrMuICBUaGFua3Mh
+Cj4gCj4gLSBDaHJpcy4KCkhpLAoKSSBqdXN0IHRyaWVkIHRoYXQgcGF0Y2gsIGJ1dCB1bmZvcnR1
+bmF0ZWx5IG5ldGhlciB3aXRoIG5vciB3aXRob3V0IGl0CmtkYiBzZWVtcyBub3QgdG8gd29yay4K
+SXQgY291bGQgYmUgaWQxMHQgZXJyb3IgZnJvbSBteSBzaWRlLCBidXQgSSBkaWQgdGVzdCB0aGUg
+a2RiIGluIHRoZSBwYXN0CndpdGggZmV3IEtNUyBwYXRjaGVzLCBhbmQgaXQgc2VlbWVkIHRvIHdv
+cmsuCgpOb3cgSSBjYW4ndCBldmVuIGdldCBpdHMgcHJvbXB0IG9uIHRoZSBjb25zb2xlLgoKVGhp
+cyBpcyB3aGF0IEkgZG86CgplY2hvIGtiZCB8IHN1ZG8gdGVlIC9zeXMvbW9kdWxlL2tnZGJvYy9w
+YXJhbWV0ZXJzL2tnZGJvYwooYWxzbyB0cmllZCBib290aW5nIHdpdGgga2dkYm9jPWtiZCkKCkJv
+dGggc2VlbXMgdG8gc3RhcnQga2RiLCBiZWNhdXNlCgptYXhpbUBtYXhpbS1sYXB0b3A6fiQgY2F0
+IC9zeXMvbW9kdWxlL2tnZGJvYy9wYXJhbWV0ZXJzL2tnZGJvYyAKa2JkCgptYXhpbUBtYXhpbS1s
+YXB0b3A6fiQgZG1lc2cgfCBncmVwIGtnZGIKWyAgICAwLjAwMDAwMF0gQ29tbWFuZCBsaW5lOiBC
+T09UX0lNQUdFPS9ib290L3ZtbGludXotMi42LjM2LXJjMysgcm9vdD1VVUlEPTUyMzQxYjY4LTc0
+ZjMtNGM5Ni1hYWY4LTc1ODZhMDZjNGI0ZSBybyBzcGxhc2ggdmlkZW89bm91dmVhdSBubWlfd2F0
+Y2hkb2c9bGFwaWMga2dkYm9jPWtiZApbICAgIDAuMDAwMDAwXSBLZXJuZWwgY29tbWFuZCBsaW5l
+OiBCT09UX0lNQUdFPS9ib290L3ZtbGludXotMi42LjM2LXJjMysgcm9vdD1VVUlEPTUyMzQxYjY4
+LTc0ZjMtNGM5Ni1hYWY4LTc1ODZhMDZjNGI0ZSBybyBzcGxhc2ggdmlkZW89bm91dmVhdSBubWlf
+d2F0Y2hkb2c9bGFwaWMga2dkYm9jPWtiZApbICAgIDIuNjcxOTE0XSBrZ2RiOiBSZWdpc3RlcmVk
+IEkvTyBkcml2ZXIga2dkYm9jLgoKCk5vdyB3aGVuIEkgZmlyc3Qgc3dpdGNoIHRvIGNvbnNvbGUg
+YW5kIHRoZW4gcHJlc3MgQWx0K1N5c1JRK0csIEkganVzdCBnZXQgU1lTUlE6IERFQlVHLCBhbmQg
+c3lzdGVtIGhhbmdzLgpJdCBjb3VsZCBiZSBwcmludGsgbGV2ZWwsIGJ1dCB0aGF0IHNob3VsZCBi
+ZSBvaywgbm8/CgptYXhpbUBtYXhpbS1sYXB0b3A6fiQgY2F0IC9wcm9jL3N5cy9rZXJuZWwvcHJp
+bnRrCjcgICAgICAgNCAgICAgICAxICAgICAgIDcKCgpBbHNvIGlmIEkgcmVtZW1iZXIgY29ycmVj
+dCBpbnB1dHRpbmcgJ2cnIHRoZW4gRU5URVIgc2hvdWxkIHJlc3VtZSB0aGUgc3lzdGVtLCBidXQg
+aXQgZG9lc24ndC4KClNvIEkgdGhpbmsga2RiIGRvZXNuJ3Qgd29yayBhdCBhbGwgaGVyZQoKQmVz
+dCByZWdhcmRzLAogICAgICAgIE1heGltIExldml0c2t5CgoKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
