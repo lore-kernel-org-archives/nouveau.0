@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29935] New: X locks up with second monitor with DPMS
-Date: Wed,  1 Sep 2010 05:14:58 -0700 (PDT)
-Message-ID: <bug-29935-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29935] X locks up with second monitor with DPMS
+Date: Wed,  1 Sep 2010 05:15:39 -0700 (PDT)
+Message-ID: <20100901121539.47239130106@annarchy.freedesktop.org>
+References: <bug-29935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-29935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,48 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29935
 
-           Summary: X locks up with second monitor with DPMS
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-(Version is 1:0.0.16+git20100518+4b8f1a0-1)
-
-When powersaving kicks in and turns off my laptop's display and the external
-monitor, X locks up (or maybe it locks up on waking up).
-
-(--) NOUVEAU(0): Chipset: "NVIDIA NVac"
-(==) NOUVEAU(0): Depth 24, (--) framebuffer bpp 32
-(==) NOUVEAU(0): RGB weight 888
-(==) NOUVEAU(0): Default visual is TrueColor
-(==) NOUVEAU(0): Using HW cursor
-(II) NOUVEAU(0): Output LVDS-1 using monitor section Configured Monitor
-(II) NOUVEAU(0): Output DP-1 has no monitor section
-(II) NOUVEAU(0): EDID for output LVDS-1
-(II) NOUVEAU(0): Manufacturer: APP  Model: 9c8c  Serial#: 16843009
-(II) NOUVEAU(0): Year: 2008  Week: 5
-(II) NOUVEAU(0): EDID Version: 1.3
-
-(II) NOUVEAU(0): EDID for output DP-1
-(II) NOUVEAU(0): Manufacturer: SAM  Model: 194  Serial#: 1112092985
-(II) NOUVEAU(0): Year: 2005  Week: 52
-(II) NOUVEAU(0): EDID Version: 1.3
-(II) NOUVEAU(0): Digital Display Input
-(II) NOUVEAU(0): Max Image Size [cm]: horiz.: 38  vert.: 30
-(II) NOUVEAU(0): Gamma: 2.20
-(II) NOUVEAU(0): DPMS capabilities: Off
-
-I'm wary to reproduce, but if you tell me what information is needed I will do
-so.
+--- Comment #1 from Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org> 2010-09-01 05:15:38 PDT ---
+Could be related to #29934, I suppose.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
