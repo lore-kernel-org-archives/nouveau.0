@@ -1,8 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29934] New: X locks up when hotplugging second
-	monitor
-Date: Wed,  1 Sep 2010 05:13:13 -0700 (PDT)
-Message-ID: <bug-29934-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29935] New: X locks up with second monitor with DPMS
+Date: Wed,  1 Sep 2010 05:14:58 -0700 (PDT)
+Message-ID: <bug-29935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,9 +18,9 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29934
+https://bugs.freedesktop.org/show_bug.cgi?id=29935
 
-           Summary: X locks up when hotplugging second monitor
+           Summary: X locks up with second monitor with DPMS
            Product: xorg
            Version: unspecified
           Platform: x86-64 (AMD64)
@@ -37,9 +36,8 @@ https://bugs.freedesktop.org/show_bug.cgi?id=29934
 
 (Version is 1:0.0.16+git20100518+4b8f1a0-1)
 
-When I hotplug or hotunplug my external monitor (DVI on displayport), X
-frequently, but not always, locks up with a completely corrupted screen.
-
+When powersaving kicks in and turns off my laptop's display and the external
+monitor, X locks up (or maybe it locks up on waking up).
 
 (--) NOUVEAU(0): Chipset: "NVIDIA NVac"
 (==) NOUVEAU(0): Depth 24, (--) framebuffer bpp 32
