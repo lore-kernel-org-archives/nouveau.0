@@ -1,35 +1,56 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29934] X locks up when hotplugging second monitor
-Date: Wed,  1 Sep 2010 05:33:38 -0700 (PDT)
-Message-ID: <20100901123338.ECD1E1300C6@annarchy.freedesktop.org>
-References: <bug-29934-8800@http.bugs.freedesktop.org/>
+From: Maxim Levitsky <maximlevitsky@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/kms: Implement
+ KDB debug hooks for nouveau KMS.
+Date: Thu, 02 Sep 2010 13:46:03 +0300
+Message-ID: <1283424363.2736.1.camel@maxim-laptop>
+References: <m3iq9yqd7w.fsf@pullcord.laptop.org>
+	<4C5ACF3F.8050409@windriver.com>
+	<m3hbj0fju3.fsf_-_@pullcord.laptop.org>
+	<m3aaoimqrp.fsf_-_@pullcord.laptop.org>
+	<1283335002.2741.5.camel@maxim-laptop> <4C7E3A73.5070503@windriver.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29934-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <kgdb-bugreport-bounces@lists.sourceforge.net>
+In-Reply-To: <4C7E3A73.5070503@windriver.com>
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
+	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=kgdb-bugreport>
+List-Post: <mailto:kgdb-bugreport@lists.sourceforge.net>
+List-Help: <mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
+	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=subscribe>
+Errors-To: kgdb-bugreport-bounces@lists.sourceforge.net
+To: Jason Wessel <jason.wessel@windriver.com>
+Cc: David Airlie <airlied@linux.ie>, kgdb-bugreport@lists.sourceforge.net, Jesse Barnes <jbarnes@virtuousgeek.org>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29934
-
---- Comment #2 from Johannes Berg <johannes-cdvu00un1VgdHxzADdlk8Q@public.gmane.org> 2010-09-01 05:33:38 PDT ---
-Here's a video showing the corrupted screen:
-
-http://johannes.sipsolutions.net/files/20100901_001.mp4
-
-Unfortunately, the very quick flickering was hardly caught by the camera.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gV2VkLCAyMDEwLTA5LTAxIGF0IDA2OjM1IC0wNTAwLCBKYXNvbiBXZXNzZWwgd3JvdGU6IAo+
+IE9uIDA5LzAxLzIwMTAgMDQ6NTYgQU0sIE1heGltIExldml0c2t5IHdyb3RlOgo+ID4gT24gVGh1
+LCAyMDEwLTA4LTE5IGF0IDEzOjU1IC0wNDAwLCBDaHJpcyBCYWxsIHdyb3RlOiAKPiA+ICAgCj4g
+Pj4gSGksCj4gPj4KPiA+PiBIZXJlJ3MgYSBwYXRjaCB0byBhZGQgc3VwcG9ydCBmb3IgS01TIGRl
+YnVnZ2luZyB0byBOb3V2ZWF1LCBhbG9uZyB0aGUKPiA+PiBzdHlsZSBvZiB0aGUgcHJldmlvdXMg
+cGF0Y2hlcyBmb3IgSW50ZWzCuSBhbmQgUmFkZW9uwrIuICBJJ20gb25seSBhYmxlCj4gPj4gdG8g
+dGVzdCBvbiBudjUwIGhlcmUsIHNvIGEgdGVzdCBvbiBudjA0IHdvdWxkIGJlIG11Y2ggYXBwcmVj
+aWF0ZWQsCj4gPj4gYW5kIEkndmUgcHVibGlzaGVkIGluc3RydWN0aW9ucyBvbiBob3cgdG8gdGVz
+dCBoZXJlwrMuICBUaGFua3MhCj4gPj4KPiA+PiAtIENocmlzLgo+ID4+ICAgICAKPiA+Cj4gPiBI
+aSwKPiA+Cj4gPiBJIGp1c3QgdHJpZWQgdGhhdCBwYXRjaCwgYnV0IHVuZm9ydHVuYXRlbHkgbmV0
+aGVyIHdpdGggbm9yIHdpdGhvdXQgaXQKPiA+IGtkYiBzZWVtcyBub3QgdG8gd29yay4KPiA+IEl0
+IGNvdWxkIGJlIGlkMTB0IGVycm9yIGZyb20gbXkgc2lkZSwgYnV0IEkgZGlkIHRlc3QgdGhlIGtk
+YiBpbiB0aGUgcGFzdAo+ID4gd2l0aCBmZXcgS01TIHBhdGNoZXMsIGFuZCBpdCBzZWVtZWQgdG8g
+d29yay4KPiA+Cj4gPiBOb3cgSSBjYW4ndCBldmVuIGdldCBpdHMgcHJvbXB0IG9uIHRoZSBjb25z
+b2xlLgo+ID4KPiA+IFRoaXMgaXMgd2hhdCBJIGRvOgo+ID4KPiA+IGVjaG8ga2JkIHwgc3VkbyB0
+ZWUgL3N5cy9tb2R1bGUva2dkYm9jL3BhcmFtZXRlcnMva2dkYm9jCj4gPiAoYWxzbyB0cmllZCBi
+b290aW5nIHdpdGgga2dkYm9jPWtiZCkKPiA+ICAgCj4gCj4gVHJ5IGNoYW5naW5nIGl0IHRvIGtn
+ZGJvYz1rbXMsa2JkICBvciB0aGUgImVjaG8ga21zLGtiZCIKPiAKPiBXaGVuIHlvdSB1c2Ugb25s
+eSB0aGUga2JkLCB0aGUga21zIGZlYXR1cmUgaXMgbm90IGFjdGl2YXRlZC4KVGhpcyBkb2Vzbid0
+IGhlbHAuCgpJIGFtIGFmcmFpZCB0aGF0IHRoaXMgYnVnIGlzbid0IHJlbGF0ZWQgdG8ga21zLCBi
+dXQgcmF0aGVyIGlzIGdlbmVyaWMuCgpCZXN0IHJlZ2FyZHMsCk1heGltIExldml0c2t5CgoKCi0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLQpUaGlzIFNGLm5ldCBEZXYyRGV2IGVtYWlsIGlzIHNwb25zb3Jl
+ZCBieToKClNob3cgb2ZmIHlvdXIgcGFyYWxsZWwgcHJvZ3JhbW1pbmcgc2tpbGxzLgpFbnRlciB0
+aGUgSW50ZWwoUikgVGhyZWFkaW5nIENoYWxsZW5nZSAyMDEwLgpodHRwOi8vcC5zZi5uZXQvc2Z1
+L2ludGVsLXRocmVhZC1zZmQKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KS2dkYi1idWdyZXBvcnQgbWFpbGluZyBsaXN0CktnZGItYnVncmVwb3J0QGxpc3Rz
+LnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0
+aW5mby9rZ2RiLWJ1Z3JlcG9ydAo=
