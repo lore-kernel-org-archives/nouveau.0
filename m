@@ -1,56 +1,66 @@
-From: Maxim Levitsky <maximlevitsky@gmail.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/kms: Implement
- KDB debug hooks for nouveau KMS.
-Date: Thu, 02 Sep 2010 13:46:03 +0300
-Message-ID: <1283424363.2736.1.camel@maxim-laptop>
-References: <m3iq9yqd7w.fsf@pullcord.laptop.org>
-	<4C5ACF3F.8050409@windriver.com>
-	<m3hbj0fju3.fsf_-_@pullcord.laptop.org>
-	<m3aaoimqrp.fsf_-_@pullcord.laptop.org>
-	<1283335002.2741.5.camel@maxim-laptop> <4C7E3A73.5070503@windriver.com>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nv50: initialize ramht_refs list for
+ faked 0 channel
+Date: Thu, 2 Sep 2010 12:45:44 +0200
+Message-ID: <20100902104544.GA2716@joi.lan>
+References: <20100822185408.GA2883@joi.lan> <20100831212223.GA12076@joi.lan>
+	<1283291578.23822.2.camel@nisroch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <kgdb-bugreport-bounces@lists.sourceforge.net>
-In-Reply-To: <4C7E3A73.5070503@windriver.com>
-List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
-	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=unsubscribe>
-List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=kgdb-bugreport>
-List-Post: <mailto:kgdb-bugreport@lists.sourceforge.net>
-List-Help: <mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=help>
-List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
-	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=subscribe>
-Errors-To: kgdb-bugreport-bounces@lists.sourceforge.net
-To: Jason Wessel <jason.wessel@windriver.com>
-Cc: David Airlie <airlied@linux.ie>, kgdb-bugreport@lists.sourceforge.net, Jesse Barnes <jbarnes@virtuousgeek.org>, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <1283291578.23822.2.camel@nisroch>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCAyMDEwLTA5LTAxIGF0IDA2OjM1IC0wNTAwLCBKYXNvbiBXZXNzZWwgd3JvdGU6IAo+
-IE9uIDA5LzAxLzIwMTAgMDQ6NTYgQU0sIE1heGltIExldml0c2t5IHdyb3RlOgo+ID4gT24gVGh1
-LCAyMDEwLTA4LTE5IGF0IDEzOjU1IC0wNDAwLCBDaHJpcyBCYWxsIHdyb3RlOiAKPiA+ICAgCj4g
-Pj4gSGksCj4gPj4KPiA+PiBIZXJlJ3MgYSBwYXRjaCB0byBhZGQgc3VwcG9ydCBmb3IgS01TIGRl
-YnVnZ2luZyB0byBOb3V2ZWF1LCBhbG9uZyB0aGUKPiA+PiBzdHlsZSBvZiB0aGUgcHJldmlvdXMg
-cGF0Y2hlcyBmb3IgSW50ZWzCuSBhbmQgUmFkZW9uwrIuICBJJ20gb25seSBhYmxlCj4gPj4gdG8g
-dGVzdCBvbiBudjUwIGhlcmUsIHNvIGEgdGVzdCBvbiBudjA0IHdvdWxkIGJlIG11Y2ggYXBwcmVj
-aWF0ZWQsCj4gPj4gYW5kIEkndmUgcHVibGlzaGVkIGluc3RydWN0aW9ucyBvbiBob3cgdG8gdGVz
-dCBoZXJlwrMuICBUaGFua3MhCj4gPj4KPiA+PiAtIENocmlzLgo+ID4+ICAgICAKPiA+Cj4gPiBI
-aSwKPiA+Cj4gPiBJIGp1c3QgdHJpZWQgdGhhdCBwYXRjaCwgYnV0IHVuZm9ydHVuYXRlbHkgbmV0
-aGVyIHdpdGggbm9yIHdpdGhvdXQgaXQKPiA+IGtkYiBzZWVtcyBub3QgdG8gd29yay4KPiA+IEl0
-IGNvdWxkIGJlIGlkMTB0IGVycm9yIGZyb20gbXkgc2lkZSwgYnV0IEkgZGlkIHRlc3QgdGhlIGtk
-YiBpbiB0aGUgcGFzdAo+ID4gd2l0aCBmZXcgS01TIHBhdGNoZXMsIGFuZCBpdCBzZWVtZWQgdG8g
-d29yay4KPiA+Cj4gPiBOb3cgSSBjYW4ndCBldmVuIGdldCBpdHMgcHJvbXB0IG9uIHRoZSBjb25z
-b2xlLgo+ID4KPiA+IFRoaXMgaXMgd2hhdCBJIGRvOgo+ID4KPiA+IGVjaG8ga2JkIHwgc3VkbyB0
-ZWUgL3N5cy9tb2R1bGUva2dkYm9jL3BhcmFtZXRlcnMva2dkYm9jCj4gPiAoYWxzbyB0cmllZCBi
-b290aW5nIHdpdGgga2dkYm9jPWtiZCkKPiA+ICAgCj4gCj4gVHJ5IGNoYW5naW5nIGl0IHRvIGtn
-ZGJvYz1rbXMsa2JkICBvciB0aGUgImVjaG8ga21zLGtiZCIKPiAKPiBXaGVuIHlvdSB1c2Ugb25s
-eSB0aGUga2JkLCB0aGUga21zIGZlYXR1cmUgaXMgbm90IGFjdGl2YXRlZC4KVGhpcyBkb2Vzbid0
-IGhlbHAuCgpJIGFtIGFmcmFpZCB0aGF0IHRoaXMgYnVnIGlzbid0IHJlbGF0ZWQgdG8ga21zLCBi
-dXQgcmF0aGVyIGlzIGdlbmVyaWMuCgpCZXN0IHJlZ2FyZHMsCk1heGltIExldml0c2t5CgoKCi0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQpUaGlzIFNGLm5ldCBEZXYyRGV2IGVtYWlsIGlzIHNwb25zb3Jl
-ZCBieToKClNob3cgb2ZmIHlvdXIgcGFyYWxsZWwgcHJvZ3JhbW1pbmcgc2tpbGxzLgpFbnRlciB0
-aGUgSW50ZWwoUikgVGhyZWFkaW5nIENoYWxsZW5nZSAyMDEwLgpodHRwOi8vcC5zZi5uZXQvc2Z1
-L2ludGVsLXRocmVhZC1zZmQKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KS2dkYi1idWdyZXBvcnQgbWFpbGluZyBsaXN0CktnZGItYnVncmVwb3J0QGxpc3Rz
-LnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0
-aW5mby9rZ2RiLWJ1Z3JlcG9ydAo=
+On Wed, Sep 01, 2010 at 07:52:58AM +1000, Ben Skeggs wrote:
+> On Tue, 2010-08-31 at 23:22 +0200, Marcin Slusarz wrote:
+> > On Sun, Aug 22, 2010 at 08:54:08PM +0200, Marcin Slusarz wrote:
+> > > We need it for PFIFO_INTR_CACHE_ERROR interrupt handling,
+> > > because nouveau_fifo_swmthd looks for matching gpuobj in
+> > > ramht_refs list.
+> > > It fixes kernel panic in nouveau_gpuobj_ref_find.
+> > > 
+> > > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > ---
+> > >  drivers/gpu/drm/nouveau/nv50_instmem.c |    2 ++
+> > >  1 files changed, 2 insertions(+), 0 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/nouveau/nv50_instmem.c b/drivers/gpu/drm/nouveau/nv50_instmem.c
+> > > index b57cc4a..6e57426 100644
+> > > --- a/drivers/gpu/drm/nouveau/nv50_instmem.c
+> > > +++ b/drivers/gpu/drm/nouveau/nv50_instmem.c
+> > > @@ -139,6 +139,8 @@ nv50_instmem_init(struct drm_device *dev)
+> > >  	chan->file_priv = (struct drm_file *)-2;
+> > >  	dev_priv->fifos[0] = dev_priv->fifos[127] = chan;
+> > >  
+> > > +	INIT_LIST_HEAD(&chan->ramht_refs);
+> > > +
+> > >  	/* Channel's PRAMIN object + heap */
+> > >  	ret = nouveau_gpuobj_new_fake(dev, 0, c_offset, c_size, 0,
+> > >  							NULL, &chan->ramin);
+> > > -- 
+> > 
+> > ping
+> Pong!  Thank you for the patch.
+> 
+> I meant to reply to this earlier but it slipped my mind.  I have a
+> number of pending cleanups to all this stuff that should make this patch
+> unnecessary.
+
+Oh, come on. It's a simple one-line bugfix for easily triggerable kernel panic.
+Patch like this should not wait a week for any response - it should be applied
+ASAP and go to Linus possibly with -stable tag.
+
+Marcin
