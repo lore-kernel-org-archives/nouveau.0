@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
  NVS 3100M with DisplayPort (HP EliteBook 8440p)
-Date: Sat,  4 Sep 2010 04:00:08 -0700 (PDT)
-Message-ID: <20100904110008.8C6E5130948@annarchy.freedesktop.org>
+Date: Sat,  4 Sep 2010 04:13:01 -0700 (PDT)
+Message-ID: <20100904111301.83DC4130062@annarchy.freedesktop.org>
 References: <bug-29714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29714
 
-Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #38112|0                           |1
-        is obsolete|                            |
-
---- Comment #14 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-04 04:00:06 PDT ---
-Created an attachment (id=38428)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38428)
-Output of dmesg on Linux kernel version 2.6.36-rc3
+--- Comment #15 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-04 04:13:00 PDT ---
+I sent output of MMIO tracing by e-mail to the appropriate address.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
