@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26733] Full-screen XV causes graphics lockup
-Date: Sat,  4 Sep 2010 06:01:03 -0700 (PDT)
-Message-ID: <20100904130103.517B4130071@annarchy.freedesktop.org>
-References: <bug-26733-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
+ NVS 3100M with embedded DisplayPort (HP EliteBook 8440p)
+Date: Sat,  4 Sep 2010 06:12:46 -0700 (PDT)
+Message-ID: <20100904131246.EEC141300CC@annarchy.freedesktop.org>
+References: <bug-29714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26733-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjY3MzMKCi0tLSBD
-b21tZW50ICMzMCBmcm9tIEJhc3RpZW4gPGJhc3RpZW4wNzA1QGFvbC5jb20+IDIwMTAtMDktMDQg
-MDY6MDE6MDMgUERUIC0tLQpJIG5vdGljZWQgc29tZXRoaW5nIHN0cmFuZ2UuCkkndmUgYmVlbiBl
-eHBlcmllbmNpbmcgdGhpcyBpc3N1ZSBmb3IgYSBsb25nIHRpbWUgbm93LCBhbmQgSSdtIGFsbW9z
-dCBzdXJlIDogaXQKaGFwcGVucyB3aGVuIG15IGNvbXB1dGVyIGlzIGhvdC4KCkkgaGF2ZSBhIHZl
-cnkgYmFkIHZlbnRpbGF0ZWQgbGFwdG9wIChDb21wYXEgUHJlc2FyaW8gQ1E2MCkuIFNvbWV0aW1l
-cyBpdCBldmVuCnN1ZGRlbmx5IHNodXRkb3ducyBiZWNhdXNlIG9mIGhpcyB0ZW1wZXJhdHVyZS4K
-CldoZW4gbXkgbGFwdG9wIGlzIHVwIGZyb20gdGhlIG1vcm5pbmcgYW5kIEkgdHJ5IHRvIHBsYXkg
-YSB2aWRlbyBvbiB0aGUgZXZlbmluZywKdGhhdCBjYXVzZXMgZ3JhcGhpY3MgbG9ja3VwIChsZXQn
-cyBzYXkgaW4gOTAlIG9mIHRpbWUsIGV2ZW4gbW9yZSBpZiBpdCdzIGEgSFEKdmlkZW8pLiBIaXMg
-dGVtcGVyYXR1cmUgaXMgdGhlbiBhcm91bmQgOTDCsEMuCkhvd2V2ZXIsIGlmIEkgbGV0IG15IGxh
-cHRvcCBjb29sIGRvd24sIHRoZW4gdHVybiBpdCBvbiAobW9zdCBvZnRlbiBoaXMKdGVtcGVydHVy
-ZSB3aWxsIHRoZW4gYmUgNjXCsEMpIGFuZCB0cnkgYWdhaW4sIHRoZXJlJ3Mgbm8gcHJvYmxlbS4K
-CgpUaGF0IHNlZW1zIHdlaXJkLCBhbmQgbWF5YmUgSSdtIHdyb25nLiBCdXQgdGhhdCBjb3VsZCBl
-eHBsYWluIHdoeSB0aGUgaXNzdWUKaGFwcGVucyBvbmx5IHRvIHNvbWUgcGVvcGxlLCBhbmQgd2h5
-IGl0IGRvZXNuJ3QgYWx3YXlzIGhhcHBlbi4KCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cHM6
-Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlv
-dSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFz
-c2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=29714
+
+Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Corrupted image (running    |Corrupted image (running
+                   |stripes) on Quadro NVS      |stripes) on Quadro NVS
+                   |3100M with DisplayPort (HP  |3100M with embedded
+                   |EliteBook 8440p)            |DisplayPort (HP EliteBook
+                   |                            |8440p)
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
