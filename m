@@ -1,43 +1,50 @@
-From: Piotr Hosowicz <piotr@hosowicz.com>
-Subject: Re: Nouveau driver fails
-Date: Sat, 04 Sep 2010 15:43:26 +0200
-Message-ID: <4C824CFE.2020103@example.com>
-References: <4C80DBE5.1040701@example.com> <1283607263.9039.15.camel@ayu>
-Reply-To: piotr@hosowicz.com
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
+ NVS 3100M with embedded DisplayPort (HP EliteBook 8440p)
+Date: Sat,  4 Sep 2010 06:50:18 -0700 (PDT)
+Message-ID: <20100904135018.78EBD1300BC@annarchy.freedesktop.org>
+References: <bug-29714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-2;
-	format=flowed
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1283607263.9039.15.camel@ayu>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Calvin Walton <calvin.walton@gmail.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-29714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 04.09.2010 15:34, Calvin Walton wrote:
-> On Fri, 2010-09-03 at 13:28 +0200, Piotr Hosowicz wrote:
->> Hello,
->>
->> Nouveau driver seems to fail. Please find attached Xorg.0.log, lspci=
- and
->> kernel config. My card is 01:00.0 VGA compatible controller: nVidia
->> Corporation G96 [GeForce 9400 GT] (rev a1). Tried with today's Linux=
- Next.
->
-> You might get better results asking the nouveau developers directly -
-> I've added the nouveau mailing list to the CC.
->
-> (http://www.spinics.net/lists/kernel/msg1079386.html has the attachme=
-nts
-> archived.)
+https://bugs.freedesktop.org/show_bug.cgi?id=29714
 
-Thanks.
+--- Comment #16 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-04 06:50:18 PDT ---
+Suspicious strings from output of dmesg, possibly pointing to this problem:
 
-Pior Hosowicz
+...
+[   13.904181] [drm] nouveau 0000:01:00.0: unplugged Embedded DisplayPort-1
+[   13.904944] [drm] nouveau 0000:01:00.0: plugged Embedded DisplayPort-1
+[   13.906631] [drm] nouveau 0000:01:00.0: unplugged Embedded DisplayPort-1
+[   13.907431] [drm] nouveau 0000:01:00.0: plugged Embedded DisplayPort-1
+[   14.018602] [drm] nouveau 0000:01:00.0: unplugged Embedded DisplayPort-1
+[   14.019357] [drm] nouveau 0000:01:00.0: plugged Embedded DisplayPort-1
+[   14.019367] [drm] nouveau 0000:01:00.0: plugged Embedded DisplayPort-1
+[   14.021106] [drm] nouveau 0000:01:00.0: unplugged Embedded DisplayPort-1
+[   14.021904] [drm] nouveau 0000:01:00.0: plugged Embedded DisplayPort-1
+[   14.133016] [drm] nouveau 0000:01:00.0: unplugged Embedded DisplayPort-1
+[   14.133032] [drm] nouveau 0000:01:00.0: unplugged Embedded DisplayPort-1
+[   14.133799] [drm] nouveau 0000:01:00.0: plugged Embedded DisplayPort-1
+[   14.135469] [drm] nouveau 0000:01:00.0: unplugged Embedded DisplayPort-1
+[   14.135478] [drm] nouveau 0000:01:00.0: unplugged Embedded DisplayPort-1
+[   14.136267] [drm] nouveau 0000:01:00.0: plugged Embedded DisplayPort-1
+...
 
---=20
-TV: "Rosjanki osi=B1gn=EA=B3y szczyt w niew=B3a=B6ciwym miejscu, w
-niew=B3a=B6ciwym czasie i w=B3a=B6ciwie zupe=B3nie niepotrzebnie."
-NP: Deep Purple - a)Exposition b)We Can Work It
-NB: 2.6.36-rc3-20100831-1507-pz+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
