@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Mon,  6 Sep 2010 07:34:58 -0700 (PDT)
-Message-ID: <20100906143458.9375113011B@annarchy.freedesktop.org>
+Date: Mon,  6 Sep 2010 08:23:08 -0700 (PDT)
+Message-ID: <20100906152308.3B48B130091@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #20 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-09-06 07:34:58 PDT ---
-Created an attachment (id=38476)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38476)
-device tree archive
+--- Comment #21 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-06 08:23:08 PDT ---
+Created an attachment (id=38477)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=38477
+ Review: https://bugs.freedesktop.org/review?bug=29810&attachment=38477
 
-Here you are. Okay i read through the Troubleshoot guide and think over the
-next step.
+nv11_emac_kms_2.patch
+
+(In reply to comment #20)
+> Created an attachment (id=38476)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38476)
+> device tree archive
+> 
+> Here you are. Okay i read through the Troubleshoot guide and think over the
+> next step.
+
+Thanks, can you try this patch instead of the last one and tell me how it goes?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
