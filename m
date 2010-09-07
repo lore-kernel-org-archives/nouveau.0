@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Tue,  7 Sep 2010 09:11:13 -0700 (PDT)
-Message-ID: <20100907161113.5620C1300A0@annarchy.freedesktop.org>
+Date: Tue,  7 Sep 2010 11:37:47 -0700 (PDT)
+Message-ID: <20100907183747.7B4C21300E5@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,40 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #27 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-07 09:11:11 PDT ---
-(In reply to comment #26)
-> (In reply to comment #25)
-> > Sigh... so it seems OF is the only way to get an EDID for your monitor, new
-> > patch attached, try it *without* "video=VGA-1:e".
-> 
-> I am not sure i am doing the thing you thought about. I appended your third
-> patch to the second and got black screen again. Should i have used only the
-> third? I try these with the 2.6.33 kernel. I hope its not a problem (it went
-> fine with it with your first patch). 
-> 
-Yes, try with the last patch alone, and provide full kernel logs if it doesn't
-work.
+--- Comment #28 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-09-07 11:37:47 PDT ---
+Created an attachment (id=38526)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38526)
+fourth dmesg output
 
-> > > seems to be present in the nouveau feature matrix at NV10.
-> > 
-> > Xmoto uses OpenGL to draw itself, so yes, it's 3d. And by the way, your card
-> > needs the classic mesa drivers instead of gallium, to build them pass
-> > "--with-dri-drivers=nouveau" instead of "--enable-gallium-nouveau" to the mesa
-> > configure script.
-> 
-> Well ... that means i should compile mesa as well? Check out from git not only
-> the mesa/drm part as written on the page but the whole mesa branch and compile
-> somehow?
-
-You just have to clone the mesa repository, as described here [1].
-
-> I feel like it would be really great to have a Makefile somewhere
-> which does all this checkout/compile/package/install stuff. The Xorg log says
-> something about nouveau_vieux_dri.so. The mesa compiling would produce that?
-
-Yup.
-
-[1] http://nouveau.freedesktop.org/wiki/GalliumHowto
+Unfortunately the same thing happened with the last patch. I hope you meant
+this by detailed kernel log.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
