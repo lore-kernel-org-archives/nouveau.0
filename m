@@ -1,16 +1,13 @@
-From: Piotr Hosowicz <piotr-aAmyfUXO971Wk0Htik3J/w@public.gmane.org>
-Subject: Re: Nouveau driver fails
-Date: Mon, 06 Sep 2010 21:37:02 +0200
-Message-ID: <4C8542DE.1060409@example.com>
-References: <4C80DBE5.1040701@example.com> <1283607263.9039.15.camel@ayu>
-	<4C824EFA.5070704@example.com>
-	<AANLkTimWCgk+sGVosO=UZn6R1qhfxuUYX8e8ptRDO-YG@mail.gmail.com>
-Reply-To: piotr-aAmyfUXO971Wk0Htik3J/w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29810] Blank screen on nouveau module load
+Date: Tue,  7 Sep 2010 05:52:44 -0700 (PDT)
+Message-ID: <20100907125244.47C89130104@annarchy.freedesktop.org>
+References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-2"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTimWCgk+sGVosO=UZn6R1qhfxuUYX8e8ptRDO-YG-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-29810-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,51 +17,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 06.09.2010 21:31, Younes Manton wrote:
-> 2010/9/4 Piotr Hosowicz<piotr-aAmyfUXO971Wk0Htik3J/w@public.gmane.org>:
->> On 04.09.2010 15:34, Calvin Walton wrote:
->>>
->>> On Fri, 2010-09-03 at 13:28 +0200, Piotr Hosowicz wrote:
->>>>
->>>> Hello,
->>>>
->>>> Nouveau driver seems to fail. Please find attached Xorg.0.log, lspci a=
-nd
->>>> kernel config. My card is 01:00.0 VGA compatible controller: nVidia
->>>> Corporation G96 [GeForce 9400 GT] (rev a1). Tried with today's Linux
->>>> Next.
->>>
->>> You might get better results asking the nouveau developers directly -
->>> I've added the nouveau mailing list to the CC.
->>>
->>> (http://www.spinics.net/lists/kernel/msg1079386.html has the attachments
->>> archived.)
->>
->> Calvin did not send dmesg output, here it is.
->>
->> Regards,
->>
->> Piotr Hosowicz
->
-> How are you connected to the monitor? DVI, VGA? Something is a little
-> off with the connectors I think.
+https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
-I am connected via DVI port.
+--- Comment #22 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-09-07 05:52:44 PDT ---
+Well it went worse. This time the screen remains blank and the nouveau module
+is loaded. So i think i will stay at the previous solution. 
 
-Regards,
+Finally i compiled and tried the 2.6.36 kernel and the DDX driver and managed
+to start X with nouveau. Although it seems to be slower than the nv driver.
+glxgears dropped to 50 from 150, it uses software rendering for opengl and hung
+the machine on video load. I wonder if these can get better.
 
-Piotr Hosowicz
-
-
--- =
-
-"Chcemy waszego dobra!" - powiedzia=B3 lider
-socjaldemokrat=F3w. Zaniepokojeni obywatele
-zaczeli ukrywa=E6 swoje dobra w bezpiecznych
-miejscach.
-NP: Peter Green Splinter Group - There's A River
-NB: 2.6.36-rc3-20100831-1507-pz+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
