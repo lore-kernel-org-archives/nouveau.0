@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Tue,  7 Sep 2010 05:52:44 -0700 (PDT)
-Message-ID: <20100907125244.47C89130104@annarchy.freedesktop.org>
+Date: Tue,  7 Sep 2010 06:12:54 -0700 (PDT)
+Message-ID: <20100907131254.65C5C13013B@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #22 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-09-07 05:52:44 PDT ---
-Well it went worse. This time the screen remains blank and the nouveau module
-is loaded. So i think i will stay at the previous solution. 
+--- Comment #23 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-07 06:12:53 PDT ---
+(In reply to comment #22)
+> Well it went worse. This time the screen remains blank and the nouveau module
+> is loaded. So i think i will stay at the previous solution. 
+> 
+Did you have "video=VGA-1:e" in your kernel command line? If you did please try
+without.
 
-Finally i compiled and tried the 2.6.36 kernel and the DDX driver and managed
-to start X with nouveau. Although it seems to be slower than the nv driver.
-glxgears dropped to 50 from 150, it uses software rendering for opengl and hung
-the machine on video load. I wonder if these can get better.
+> Finally i compiled and tried the 2.6.36 kernel and the DDX driver and managed
+> to start X with nouveau.
+
+Where did you get that kernel from? The nouveau kernel tree or Linus' tree?
+
+> Although it seems to be slower than the nv driver.
+> glxgears dropped to 50 from 150, it uses software rendering for opengl and hung
+> the machine on video load. I wonder if these can get better.
+
+It uses software rendering because you haven't installed the 3D driver (try it
+at your own risk, it's still unsupported).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
