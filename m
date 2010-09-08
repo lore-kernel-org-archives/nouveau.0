@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Tue,  7 Sep 2010 20:38:55 -0700 (PDT)
-Message-ID: <20100908033855.2AAC52DC101@annarchy.freedesktop.org>
+Date: Tue,  7 Sep 2010 20:54:34 -0700 (PDT)
+Message-ID: <20100908035434.266A22DC101@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,24 +22,36 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #32 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-09-07 20:38:55 PDT ---
-(In reply to comment #30)
-> (In reply to comment #28)
-> > Created an attachment (id=38526)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38526)
-> > fourth dmesg output
-> > 
-> > Unfortunately the same thing happened with the last patch. I hope you meant
-> > this by detailed kernel log.
-> 
-> Are you sure you reverted the previous patches before trying this one? They
-> aren't supposed to work together.
+--- Comment #33 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-09-07 20:54:33 PDT ---
+(In reply to comment #31)
+> (In reply to comment #29)
+> This is a long and complicated bug report, so I'd be grateful for a brief
+> summary of the steps you took to get everything working.  In particular, which
+> git repos did you actually need?
 
-Well i have just checked. All .c files in drivers/gpu/drm/nouveau have
-modification date feb.24 only the nouveau_connector.c is sept 7. The module is
-recompiled and put into the /lib directory. I really don't know about this
-driver details but the fact is it worked when i only applied your first
-nv04_crtc.c suggestions.
+Well the way it worked is very close to one written at 
+http://nouveau.freedesktop.org/wiki/DebianInstall
+In the large frame. Roughly it was:
+a) I checked out the nouveau kernel and applied the patch given in comment #15
+. I compiled and installed the new kernel.
+b) instead of compiling libdrm i used the debian packaged one (2.4.21)
+c) i also checked out the mesa driver
+git://anongit.freedesktop.org/git/mesa/mesa
+configured with 
+./configure --enable-debug --enable-glx-tls --disable-asm
+--with-dri-drivers=nouveau --disable-gallium-i915 --disable-gallium-i965
+--disable-gallium-radeon --disable-gallium-r600 --disable-gallium-svga
+--with-state-trackers=glx,dri
+and put the resulting lib/nouveau_vieux_dri.so to /usr/lib/dri
+d) Checked out the ddx and installed as written
+
+> I'm confused about the need for gallium to run 3d software -- I read somewhere
+> that it's needed for 3d support, but Francisco told you to use the other flag.
+
+Yes as far as i know for this card the nouveau_vieux_dri driver is needed
+instead, which was created in step c)
+
+> Thanks!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
