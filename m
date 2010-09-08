@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27153] [NV18] Frequent lockups during graphical
-	activities
-Date: Tue,  7 Sep 2010 17:54:09 -0700 (PDT)
-Message-ID: <20100908005409.7B779130062@annarchy.freedesktop.org>
-References: <bug-27153-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25366] PGRAPH_ERROR with Quadro NVS 280 SD (NV17 or
+	NV18)
+Date: Tue,  7 Sep 2010 17:54:10 -0700 (PDT)
+Message-ID: <20100908005410.7B4A513006B@annarchy.freedesktop.org>
+References: <bug-25366-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27153-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25366-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27153
+https://bugs.freedesktop.org/show_bug.cgi?id=25366
 
 Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |DUPLICATE
+                 CC|                            |chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
---- Comment #4 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-07 17:54:08 PDT ---
-
-
-*** This bug has been marked as a duplicate of bug 25366 ***
+--- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-07 17:54:08 PDT ---
+*** Bug 27153 has been marked as a duplicate of this bug. ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
