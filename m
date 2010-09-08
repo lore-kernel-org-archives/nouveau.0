@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Wed,  8 Sep 2010 05:37:15 -0700 (PDT)
-Message-ID: <20100908123715.589501300B5@annarchy.freedesktop.org>
+Date: Wed,  8 Sep 2010 07:25:05 -0700 (PDT)
+Message-ID: <20100908142505.212EE130082@annarchy.freedesktop.org>
 References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-08 05:37:15 PDT ---
-Can you post your dmesg log from after loading the nouveau driver please?
+--- Comment #2 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-08 07:25:04 PDT ---
+Created an attachment (id=38551)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38551)
+xorg log when using nouveau driver
 
-Nouveau should be able to find your EDID if you're using new enough code.
+Here is the output of xorg when using nouveau.
+
+(by using nouveau in the device section of xorg.conf. If no xorg.conf, seems to
+fallback to fbdev).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
