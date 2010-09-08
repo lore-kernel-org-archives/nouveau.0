@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25366] PGRAPH_ERROR with Quadro NVS 280 SD (NV17 or
-	NV18)
-Date: Tue,  7 Sep 2010 17:56:27 -0700 (PDT)
-Message-ID: <20100908005627.5D934130106@annarchy.freedesktop.org>
-References: <bug-25366-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29810] Blank screen on nouveau module load
+Date: Tue,  7 Sep 2010 20:38:55 -0700 (PDT)
+Message-ID: <20100908033855.2AAC52DC101@annarchy.freedesktop.org>
+References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25366-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29810-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25366
+https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
-Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
+--- Comment #32 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-09-07 20:38:55 PDT ---
+(In reply to comment #30)
+> (In reply to comment #28)
+> > Created an attachment (id=38526)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38526)
+> > fourth dmesg output
+> > 
+> > Unfortunately the same thing happened with the last patch. I hope you meant
+> > this by detailed kernel log.
+> 
+> Are you sure you reverted the previous patches before trying this one? They
+> aren't supposed to work together.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #4 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-07 17:56:26 PDT ---
-This should be fixed with latest git, please reopen if it's not.
+Well i have just checked. All .c files in drivers/gpu/drm/nouveau have
+modification date feb.24 only the nouveau_connector.c is sept 7. The module is
+recompiled and put into the /lib directory. I really don't know about this
+driver details but the fact is it worked when i only applied your first
+nv04_crtc.c suggestions.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
