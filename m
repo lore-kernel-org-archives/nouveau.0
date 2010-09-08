@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25366] PGRAPH_ERROR with Quadro NVS 280 SD (NV17 or
 	NV18)
-Date: Tue,  7 Sep 2010 17:54:10 -0700 (PDT)
-Message-ID: <20100908005410.7B4A513006B@annarchy.freedesktop.org>
+Date: Tue,  7 Sep 2010 17:56:27 -0700 (PDT)
+Message-ID: <20100908005627.5D934130106@annarchy.freedesktop.org>
 References: <bug-25366-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,11 @@ Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
---- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-07 17:54:08 PDT ---
-*** Bug 27153 has been marked as a duplicate of this bug. ***
+--- Comment #4 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-07 17:56:26 PDT ---
+This should be fixed with latest git, please reopen if it's not.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
