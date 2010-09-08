@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Wed,  8 Sep 2010 12:02:18 -0700 (PDT)
-Message-ID: <20100908190218.F35241300A7@annarchy.freedesktop.org>
+Date: Wed,  8 Sep 2010 12:22:29 -0700 (PDT)
+Message-ID: <20100908192229.3B78C1300EB@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #35 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-09-08 12:02:18 PDT ---
-Created an attachment (id=38563)
+--- Comment #36 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-08 12:22:28 PDT ---
+(In reply to comment #35)
+> Created an attachment (id=38563)
  --> (https://bugs.freedesktop.org/attachment.cgi?id=38563)
-fifth demsg output
+> fifth demsg output
+> 
+> Here you are. Debian kernel, video=nvidiafb:off argument. Your last patch only.
 
-Here you are. Debian kernel, video=nvidiafb:off argument. Your last patch only.
+> [   15.741618] 216: NVDA,Display-A NVDA,Display-A c27813bc 0 1
+                                                              ^^^
+
+Man, that definitely means you have "nv11_emac_kms_2.patch" applied, try "git
+reset --hard" to get a clean tree before going forward.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
