@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Thu,  9 Sep 2010 11:53:59 -0700 (PDT)
-Message-ID: <20100909185359.5DEB5130126@annarchy.freedesktop.org>
-References: <bug-30086-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
+ NVS 3100M with embedded DisplayPort (HP EliteBook 8440p)
+Date: Thu,  9 Sep 2010 12:32:49 -0700 (PDT)
+Message-ID: <20100909193249.AD6AF130147@annarchy.freedesktop.org>
+References: <bug-29714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30086-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30086
+https://bugs.freedesktop.org/show_bug.cgi?id=29714
 
---- Comment #5 from walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-09 11:53:58 PDT ---
-(In reply to comment #4)
-
-> [   339.439] (EE) [drm] failed to open device
-> [   339.439] (EE) No devices detected.
-
-I got that error too at first.  The device it's looking for is
-crw-rw---- 1 root video 226, 0 2010-09-09 06:39 /dev/dri/card0
-
-In my case that device wasn't created during boot until I added
-console framebuffer support in the kernel. CONFIG_FRAMEBUFFER_CONSOLE=y
-
-After I made that change, then I could see that the nouveau fb
-driver takes over the console during early bootup -- and that
-(somehow) prods udev into creating the missing device.
-
-There may be an alternative way to do the same thing but I don't
-know how to do it.  (Hints welcomed.)
+--- Comment #17 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-09 12:32:49 PDT ---
+Created an attachment (id=38583)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38583)
+Output of dmesg on Linux kernel version 2.6.36 with "drm.debug=14" option
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
