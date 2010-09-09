@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Thu,  9 Sep 2010 15:32:40 -0700 (PDT)
-Message-ID: <20100909223240.D0A341300E5@annarchy.freedesktop.org>
+Date: Thu,  9 Sep 2010 15:40:54 -0700 (PDT)
+Message-ID: <20100909224054.D53871300FE@annarchy.freedesktop.org>
 References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,23 +22,34 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
---- Comment #7 from walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-09 15:32:40 PDT ---
-(In reply to comment #6)
-> (In reply to comment #5)
-> > In my case that device wasn't created during boot until I added
-> > console framebuffer support in the kernel. CONFIG_FRAMEBUFFER_CONSOLE=y
+--- Comment #8 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-09 15:40:54 PDT ---
+(In reply to comment #4)
+> There is not much in /var/log/messages after a failed attempt... If I change
+> xorg.conf from nv to nouveau, then logout from gnome, gdm will fail to start.
 > 
-> Why would you *not* have fbcon=y? Without fbcon, you will not have a text
-> console at all with Nouveau.
+> At that time, I have nothing added in /var/log/messages.
+> In /var/log/syslog, I get:
+> 
+> Sep  9 18:52:27 franck-laptop gdm-binary[23109]: WARNING: GdmDisplay: display
+> lasted 0,230001 seconds
+> Sep  9 18:52:27 franck-laptop gdm-binary[23109]: WARNING:
+> GdmLocalDisplayFactory: maximum number of X display failures reached: check X
+> server log for errors
+> 
+> In /var/log/Xorg.0.log, I get the same messages as in the attachment I made,
+> ending with:
+> 
+> [   339.439] (EE) [drm] failed to open device
+> [   339.439] (EE) No devices detected.
+> 
+> Is there any other log I can provide ?
 
-Now I remember.  My mistake was building fbcon as a module.  When I changed
-it to built-in then everything started working correctly.
+I need to see your dmesg output (or /var/log/messages) from nouveau trying to
+start *without* "nomodeset" (so, you'll get a blank screen because nouveau
+can't read your edid) in order to better diagnose the problem.
 
-Before I figured it all out, I loaded the fbcon module from a blank console
-screen before starting X -- thus getting the missing device error mentioned by
-the OP.
-
-If there's a way to shoot yourself in the foot -- I promise to find it :)
+"failed to open device" is probably because you were trying to use nouveau
+without kernel modesetting enabled.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
