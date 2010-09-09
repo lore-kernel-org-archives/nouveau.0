@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Thu,  9 Sep 2010 14:10:31 -0700 (PDT)
-Message-ID: <20100909211031.6CBA81300BD@annarchy.freedesktop.org>
+Date: Thu,  9 Sep 2010 15:32:40 -0700 (PDT)
+Message-ID: <20100909223240.D0A341300E5@annarchy.freedesktop.org>
 References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,31 +22,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
---- Comment #6 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2010-09-09 14:10:31 PDT ---
-(In reply to comment #5)
-> In my case that device wasn't created during boot until I added
-> console framebuffer support in the kernel. CONFIG_FRAMEBUFFER_CONSOLE=y
+--- Comment #7 from walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-09 15:32:40 PDT ---
+(In reply to comment #6)
+> (In reply to comment #5)
+> > In my case that device wasn't created during boot until I added
+> > console framebuffer support in the kernel. CONFIG_FRAMEBUFFER_CONSOLE=y
+> 
+> Why would you *not* have fbcon=y? Without fbcon, you will not have a text
+> console at all with Nouveau.
 
-Why would you *not* have fbcon=y? Without fbcon, you will not have a text
-console at all with Nouveau.
+Now I remember.  My mistake was building fbcon as a module.  When I changed
+it to built-in then everything started working correctly.
 
-> After I made that change, then I could see that the nouveau fb
-> driver takes over the console during early bootup -- and that
-> (somehow) prods udev into creating the missing device.
+Before I figured it all out, I loaded the fbcon module from a blank console
+screen before starting X -- thus getting the missing device error mentioned by
+the OP.
 
-That is a little odd trigger for it, but still just an unrelated theoretical
-issue of the case when someone wants to have graphics but not a console.
-
-
-To the original poster:
-
-You were asked to provide a complete kernel log from boot up to the original
-failure. Do not filter it, do not interpret it, do not compress it. Without the
-log you cannot be helped.
-
-It is almost as if you do not have KMS enabled (or Nouveau installed properly).
-The log will show the cause. When Nouveau loads, it will print many lines to
-the kernel log at kernel module init time, before X starts.
+If there's a way to shoot yourself in the foot -- I promise to find it :)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
