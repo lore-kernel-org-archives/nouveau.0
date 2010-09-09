@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Thu,  9 Sep 2010 10:03:23 -0700 (PDT)
-Message-ID: <20100909170323.663081300C4@annarchy.freedesktop.org>
+Date: Thu,  9 Sep 2010 11:53:59 -0700 (PDT)
+Message-ID: <20100909185359.5DEB5130126@annarchy.freedesktop.org>
 References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,26 +22,24 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
---- Comment #4 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-09 10:03:23 PDT ---
-There is not much in /var/log/messages after a failed attempt... If I change
-xorg.conf from nv to nouveau, then logout from gnome, gdm will fail to start.
+--- Comment #5 from walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-09 11:53:58 PDT ---
+(In reply to comment #4)
 
-At that time, I have nothing added in /var/log/messages.
-In /var/log/syslog, I get:
+> [   339.439] (EE) [drm] failed to open device
+> [   339.439] (EE) No devices detected.
 
-Sep  9 18:52:27 franck-laptop gdm-binary[23109]: WARNING: GdmDisplay: display
-lasted 0,230001 seconds
-Sep  9 18:52:27 franck-laptop gdm-binary[23109]: WARNING:
-GdmLocalDisplayFactory: maximum number of X display failures reached: check X
-server log for errors
+I got that error too at first.  The device it's looking for is
+crw-rw---- 1 root video 226, 0 2010-09-09 06:39 /dev/dri/card0
 
-In /var/log/Xorg.0.log, I get the same messages as in the attachment I made,
-ending with:
+In my case that device wasn't created during boot until I added
+console framebuffer support in the kernel. CONFIG_FRAMEBUFFER_CONSOLE=y
 
-[   339.439] (EE) [drm] failed to open device
-[   339.439] (EE) No devices detected.
+After I made that change, then I could see that the nouveau fb
+driver takes over the console during early bootup -- and that
+(somehow) prods udev into creating the missing device.
 
-Is there any other log I can provide ?
+There may be an alternative way to do the same thing but I don't
+know how to do it.  (Hints welcomed.)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
