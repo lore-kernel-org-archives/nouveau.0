@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29810] Blank screen on nouveau module load
-Date: Wed,  8 Sep 2010 12:22:29 -0700 (PDT)
-Message-ID: <20100908192229.3B78C1300EB@annarchy.freedesktop.org>
+Date: Wed,  8 Sep 2010 21:53:40 -0700 (PDT)
+Message-ID: <20100909045340.1FEC91302BE@annarchy.freedesktop.org>
 References: <bug-29810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,19 +22,31 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29810
 
---- Comment #36 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-08 12:22:28 PDT ---
-(In reply to comment #35)
-> Created an attachment (id=38563)
+--- Comment #37 from Zoltan Varnagy <doi-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> 2010-09-08 21:53:39 PDT ---
+(In reply to comment #36)
+> (In reply to comment #35)
+> > Created an attachment (id=38563)
  --> (https://bugs.freedesktop.org/attachment.cgi?id=38563)
-> fifth demsg output
+> > fifth demsg output
+> > 
+> > Here you are. Debian kernel, video=nvidiafb:off argument. Your last patch only.
 > 
-> Here you are. Debian kernel, video=nvidiafb:off argument. Your last patch only.
+> > [   15.741618] 216: NVDA,Display-A NVDA,Display-A c27813bc 0 1
+>                                                               ^^^
+> 
+> Man, that definitely means you have "nv11_emac_kms_2.patch" applied, try "git
+> reset --hard" to get a clean tree before going forward.
 
-> [   15.741618] 216: NVDA,Display-A NVDA,Display-A c27813bc 0 1
-                                                              ^^^
+Hmm yes, something close to that, sorry. I reverted the patch by copying back
+the older nv04_crtc.c file and as it was older than the nv04_crtc.o the
+compiler did not recompile the object file. I did it again and the system
+started fine. It chose some funny 158x60 text mode on nouveau module load with
+tiny letters. 
 
-Man, that definitely means you have "nv11_emac_kms_2.patch" applied, try "git
-reset --hard" to get a clean tree before going forward.
+So the configuration is which was intended last time. Debian experimental
+kernel, video=nvidiafb:off argument. Your last patch only.
+
+Do you need any kernel or register dumps?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
