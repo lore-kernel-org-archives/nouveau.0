@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29729] VT/Frame Buffer Blank..X screens are cloned
- instead of one virtual screen
-Date: Fri, 10 Sep 2010 09:26:48 -0700 (PDT)
-Message-ID: <20100910162649.1CD51130111@annarchy.freedesktop.org>
-References: <bug-29729-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 30135] New: The KDE icons is broken
+Date: Sat, 11 Sep 2010 09:08:24 -0700 (PDT)
+Message-ID: <bug-30135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +18,35 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29729
-
---- Comment #8 from Shaun Reich <shaun.reich-sVbgdUKTYbrR7s880joybQ@public.gmane.org> 2010-09-10 09:26:48 PDT ---
-(In reply to comment #7)
-> try to boot with kernel option "fbcon=map:1"
-> if it will help enable CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY
-
-The first had no affect. 
-
-The second requires compiling my own kernel, no? Can't really do that at the
-moment
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzAxMzUKCiAgICAg
+ICAgICAgU3VtbWFyeTogVGhlIEtERSBpY29ucyBpcyBicm9rZW4KICAgICAgICAgICBQcm9kdWN0
+OiB4b3JnCiAgICAgICAgICAgVmVyc2lvbjogNy41CiAgICAgICAgICBQbGF0Zm9ybTogT3RoZXIK
+ICAgICAgICBPUy9WZXJzaW9uOiBBbGwKICAgICAgICAgICAgU3RhdHVzOiBORVcKICAgICAgICAg
+IFNldmVyaXR5OiBub3JtYWwKICAgICAgICAgIFByaW9yaXR5OiBtZWRpdW0KICAgICAgICAgQ29t
+cG9uZW50OiBEcml2ZXIvbm91dmVhdQogICAgICAgIEFzc2lnbmVkVG86IG5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCiAgICAgICAgUmVwb3J0ZWRCeTogY2Fjb3VyZXRAd2FuYWRvby5mcgog
+ICAgICAgICBRQUNvbnRhY3Q6IHhvcmctdGVhbUBsaXN0cy54Lm9yZwoKCkNyZWF0ZWQgYW4gYXR0
+YWNobWVudCAoaWQ9Mzg2MjApCiAtLT4gKGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0
+YWNobWVudC5jZ2k/aWQ9Mzg2MjApCkV4YW1wbGUgd2l0aCB0aGUgYnVnIGluIEFwcGxldCBpY29u
+IMKrIHRyYW5zbGF0aW9uIMK7CgpEZXNjcmlwdGlvbiBvZiBwcm9ibGVtOgpXaXRoIEtERSA0LjUs
+IEkgaGF2ZSBLREUgaW1hZ2Ugb3IgaWNvbiBhcmUgYmx1cnJlZC4gSXQncyBjb25jZXJuZWQgOiBh
+cHBsZXQsCmljb24gYW5kIGFscmVhZHkgZ3JhcGhpYyBjb21wb25lbnQgaW4gS0RFLiBUaGUgY3Vy
+c29yLCBpZiBnbyB0byB0aGUgaW1hZ2UsIHRoZQppbWFnZSBpcyBub3JtYWwgYW5kIGlmIHRoZSBj
+dXJzb3IgZXhpdCB0aGUgaW1hZ2UsIGl0J3MgYmx1cnJlZC4KCkR1cmluZyB0aGUgYnVnLCBhbGwg
+b2Ygc2NyZWVuIGluIHNjcmVlbnNob3QgaXMgYmx1cnJlZC4KClNlZSB0aGUgc2NyZWVuc2hvdCBm
+b3IgZXhhbXBsZS4KCgpWZXJzaW9uLVJlbGVhc2UgbnVtYmVyIG9mIHNlbGVjdGVkIGNvbXBvbmVu
+dCAoaWYgYXBwbGljYWJsZSk6CktERSA0LjUKCgpIb3cgcmVwcm9kdWNpYmxlOgpVc2UgS0RFIDQu
+NSBhbmQgbW92ZSB0aGUgY3Vyc29yIG9uIGFuIGljb24gYW5kIGV4aXQgdGhlIGltYWdlIHdpdGgg
+dGhlIGN1cnNvci4KVGhlIGltYWdlIGlzIGJsdXJyZWQgKGl0J3Mgbm90IHN5c3RlbWF0aWMgKS4K
+CkFkZGl0aW9uYWwgaW5mbzoKSSB1c2Ugbm91VmVhdSBkcml2ZXIgd2l0aCBuVmlkaWEgODgwMCBH
+VFMuIEJ1dCBLREUgNC41IGluIEZlZG9yYSAxMywgc2FtZQpwcm9ibGVtLiBLREUgNC40IG9yIG9s
+ZGVyIGRvZXNuJ3QgaGF2ZSB0aGlzIHByb2JsZW0uCkRpc2FibGluZyBLV2luIGNvbXBvc2l0aW5n
+IG5vIGNoYW5nZSB0aGUgc2l0dWF0aW9u4oCmCgpJIHJlcG9ydGVkIHRoaXMgYnVnIG9uIEJ1Z3pp
+bGxhIEZlZG9yYSBhbmQgS0RFLCBidXQgdGhleSByZWNvbW1lbmRlZCB0byByZXBvcnQKdGhpcwpo
+ZXJl4oCmCgpSZXByb2R1Y2libGU6IEFsd2F5cwoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRw
+czovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0g
+WW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUg
+YXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
