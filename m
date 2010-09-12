@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30146] Horizontal Couloured Lines with Nvidia 6,
 	800 GT (NV40)
-Date: Sun, 12 Sep 2010 06:11:03 -0700 (PDT)
-Message-ID: <20100912131103.7F4BB130062@annarchy.freedesktop.org>
+Date: Sun, 12 Sep 2010 06:15:10 -0700 (PDT)
+Message-ID: <20100912131510.7ED21130080@annarchy.freedesktop.org>
 References: <bug-30146-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30146
 
---- Comment #2 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-09-12 06:11:03 PDT ---
-Created an attachment (id=38648)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38648)
-Xorg.0.log when my NV40 crashed
+--- Comment #3 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-09-12 06:15:10 PDT ---
+To make it clear,I'm having problems with my Nvidia Geforce 6,800 GT (NV40)
+not my spare Geforce MX400 (NV11).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
