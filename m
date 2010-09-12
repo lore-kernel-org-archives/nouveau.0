@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30146] Horizontal Couloured Lines with Nvidia 6,
 	800 GT (NV40)
-Date: Sun, 12 Sep 2010 10:19:55 -0700 (PDT)
-Message-ID: <20100912171955.68A641300F1@annarchy.freedesktop.org>
+Date: Sun, 12 Sep 2010 10:20:12 -0700 (PDT)
+Message-ID: <20100912172012.BBBE8130081@annarchy.freedesktop.org>
 References: <bug-30146-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #38646|text/x-log                  |text/plain
+  Attachment #38648|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
