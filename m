@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
  NVS 3100M with embedded DisplayPort (HP EliteBook 8440p)
-Date: Sun, 12 Sep 2010 14:21:25 -0700 (PDT)
-Message-ID: <20100912212125.C5F6C1300B2@annarchy.freedesktop.org>
+Date: Sun, 12 Sep 2010 14:21:52 -0700 (PDT)
+Message-ID: <20100912212152.8C08A13011F@annarchy.freedesktop.org>
 References: <bug-29714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,7 +28,7 @@ Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=29415
+                   |                            |g/show_bug.cgi?id=29820
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
