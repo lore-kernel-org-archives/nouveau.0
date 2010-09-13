@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Mon, 13 Sep 2010 00:39:44 -0700 (PDT)
-Message-ID: <20100913073945.0A78C130133@annarchy.freedesktop.org>
+Date: Mon, 13 Sep 2010 00:40:18 -0700 (PDT)
+Message-ID: <20100913074018.227FB1300B8@annarchy.freedesktop.org>
 References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,29 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
---- Comment #9 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-13 00:39:44 PDT ---
-Ok, here I come with the requested log files. Sorry for being tough on this :-)
-
-1) with no xorg.conf, let X11 auto-configure:
-
-dmesg-noxorg.txt
-Xorg.noxorg.log
-
-works but fallback to vesa (output is quite bad)
-
-2) with a xorg.conf using nv driver
-
-dmesg-xorg-nv.txt
-Xorg.nv.log
-
-Works (but no 3D of course)
-
-3) with a xorg.conf using nouveau driver
-
-dmesg-xorg-nouveau.txt
-Xorg.nouveau.log
-
-Fails, X won't start.
+--- Comment #10 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-13 00:40:17 PDT ---
+Created an attachment (id=38661)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38661)
+No xorg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
