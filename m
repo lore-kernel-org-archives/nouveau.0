@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Mon, 13 Sep 2010 08:07:40 -0700 (PDT)
-Message-ID: <20100913150740.55DC61300F3@annarchy.freedesktop.org>
+Date: Mon, 13 Sep 2010 08:08:34 -0700 (PDT)
+Message-ID: <20100913150834.95B141300C0@annarchy.freedesktop.org>
 References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
---- Comment #17 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-13 08:07:40 PDT ---
-Ok, I have removed all previously installed proprietary NVidia drivers. I have
-removed any xorg.conf file from the way, and here are my dmesg and Xorg.0.log
-files.
-Display is black, no X, no console.
+--- Comment #18 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-13 08:08:33 PDT ---
+Created an attachment (id=38669)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38669)
+dmesg after removing nvidia install, no xorg.conf
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
