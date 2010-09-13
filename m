@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Mon, 13 Sep 2010 02:33:22 -0700 (PDT)
-Message-ID: <20100913093322.88BF81300AE@annarchy.freedesktop.org>
+Date: Mon, 13 Sep 2010 05:47:36 -0700 (PDT)
+Message-ID: <20100913124736.AF4AC1300DD@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
-Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #22 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-09-13 05:47:36 PDT ---
+#29714 has indeed the very same symptoms as this. Also, I've seen similar and
+repeated messages of "unplugged DisplayPort" and "plugged DisplayPort".
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=29714
+What happens when you try the attachment "EVO channel init modifications"? For
+me it solved the garbled screen problem.
+But unfortunately nouveau crashes so frequently that I had to revert to the
+binary driver for now.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
