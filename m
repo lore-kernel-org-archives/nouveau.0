@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30172] New: GL_EXT_framebuffer_blit function required
-Date: Mon, 13 Sep 2010 13:38:31 -0700 (PDT)
-Message-ID: <bug-30172-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 30086] Nouveau fails with unreadable EDID
+Date: Mon, 13 Sep 2010 15:32:37 -0700 (PDT)
+Message-ID: <20100913223237.D84EB1300D2@annarchy.freedesktop.org>
+References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-30086-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,26 +20,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30172
+https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
-           Summary: GL_EXT_framebuffer_blit function required
-           Product: Mesa
-           Version: git
-          Platform: All
-        OS/Version: All
-            Status: NEW
-          Severity: enhancement
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org
-
-
-Couldn't find Drivers/Gallium/Nouveau in the Component list so put this in
-here.
-
-It would be nice to get GL_EXT_framebuffer_blit implemented for the Nouveau
-driver, as some programs I have tested won't work without this function.
+--- Comment #20 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-13 15:32:37 PDT ---
+OK, Your laptop is one of those weirdo Sony laptops that don't provide EDID in
+any normal way.  This has been implemented in Nouveau upstream, but your
+distribution appears not to ship it.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
