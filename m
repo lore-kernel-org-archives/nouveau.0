@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Mon, 13 Sep 2010 06:15:34 -0700 (PDT)
-Message-ID: <20100913131534.20E481300AC@annarchy.freedesktop.org>
+Date: Mon, 13 Sep 2010 08:07:40 -0700 (PDT)
+Message-ID: <20100913150740.55DC61300F3@annarchy.freedesktop.org>
 References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
---- Comment #16 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-13 06:15:33 PDT ---
-In all 3 cases you had nvidia proprietary driver (both kernel and userspace).
-Uninstall it and try again.
-
-You should not see this in kernel log:
-"NVRM: loading NVIDIA UNIX x86_64 Kernel Module"
-
-and this in xorg.0.log:
-Module glx: vendor="NVIDIA Corporation"
+--- Comment #17 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-13 08:07:40 PDT ---
+Ok, I have removed all previously installed proprietary NVidia drivers. I have
+removed any xorg.conf file from the way, and here are my dmesg and Xorg.0.log
+files.
+Display is black, no X, no console.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
