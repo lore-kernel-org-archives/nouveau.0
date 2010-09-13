@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Mon, 13 Sep 2010 08:08:34 -0700 (PDT)
-Message-ID: <20100913150834.95B141300C0@annarchy.freedesktop.org>
+Date: Mon, 13 Sep 2010 08:09:21 -0700 (PDT)
+Message-ID: <20100913150921.690A81300EC@annarchy.freedesktop.org>
 References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,29 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
---- Comment #18 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-13 08:08:33 PDT ---
-Created an attachment (id=38669)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38669)
-dmesg after removing nvidia install, no xorg.conf
+alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #38551|0                           |1
+        is obsolete|                            |
+  Attachment #38661|0                           |1
+        is obsolete|                            |
+  Attachment #38662|0                           |1
+        is obsolete|                            |
+  Attachment #38663|0                           |1
+        is obsolete|                            |
+  Attachment #38664|0                           |1
+        is obsolete|                            |
+  Attachment #38665|0                           |1
+        is obsolete|                            |
+  Attachment #38666|0                           |1
+        is obsolete|                            |
+
+--- Comment #19 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-13 08:09:21 PDT ---
+Created an attachment (id=38670)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38670)
+Xorg.0.log after removing nvidia install, no xorg.conf
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
