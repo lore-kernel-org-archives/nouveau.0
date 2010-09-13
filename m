@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30086] Nouveau fails with unreadable EDID
-Date: Mon, 13 Sep 2010 00:43:02 -0700 (PDT)
-Message-ID: <20100913074302.A36E813006A@annarchy.freedesktop.org>
+Date: Mon, 13 Sep 2010 00:43:25 -0700 (PDT)
+Message-ID: <20100913074325.D614E1300D1@annarchy.freedesktop.org>
 References: <bug-30086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30086
 
---- Comment #15 from alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org 2010-09-13 00:43:02 PDT ---
-Created an attachment (id=38666)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38666)
-Xorg.0.log nouveau
+alci-R1JjGarguu0dnm+yROfE0A@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #38661|No xorg                     |dmesg no xorg
+        description|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
