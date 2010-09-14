@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30146] Horizontal Couloured Lines with Nvidia 6,
 	800 GT (NV40)
-Date: Tue, 14 Sep 2010 08:44:27 -0700 (PDT)
-Message-ID: <20100914154427.930BE130107@annarchy.freedesktop.org>
+Date: Tue, 14 Sep 2010 08:57:18 -0700 (PDT)
+Message-ID: <20100914155718.2BC531300A2@annarchy.freedesktop.org>
 References: <bug-30146-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30146
 
---- Comment #5 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-09-14 08:44:27 PDT ---
-(In reply to comment #4)
-> Does it work OK with acceleration disabled? (e.g. boot with "nouveau.noaccel=1"
-> in your kernel command line)
+--- Comment #6 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-09-14 08:57:17 PDT ---
+(In reply to comment #5)
+> (In reply to comment #4)
+> > Does it work OK with acceleration disabled? (e.g. boot with "nouveau.noaccel=1"
+> > in your kernel command line)
+> 
+> Hi there Francisco,
+>                   I haven't tried that option in my kernel parameters,but I
+> will give it a try,and report back if it doesn't.
+> 
+> Regards,
+>        STEVE555
 
-Hi there Francisco,
-                  I haven't tried that option in my kernel parameters,but I
-will give it a try,and report back if it doesn't.
+Dear Francisco,
+              I've just tried out your solution to my problem and it works!
+I'd like to thank you very much indeed.I hope they'll be a patch soon so I
+won't have to type in nouveau.noaccel=1 all the time.
 
 Regards,
        STEVE555
