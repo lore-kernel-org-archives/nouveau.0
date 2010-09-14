@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30172] GL_EXT_framebuffer_blit function required
-Date: Tue, 14 Sep 2010 01:19:23 -0700 (PDT)
-Message-ID: <20100914081923.F2AA01300C6@annarchy.freedesktop.org>
+Date: Tue, 14 Sep 2010 01:22:16 -0700 (PDT)
+Message-ID: <20100914082217.037901300B9@annarchy.freedesktop.org>
 References: <bug-30172-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30172
 
---- Comment #4 from Luca Barbieri <luca.barbieri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-14 01:19:23 PDT ---
-Indeed Mesa only exports glBlitFramebuffer and not glBlitFramebufferEXT.
+Luca Barbieri <luca.barbieri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-It seems this was done intentionally by adding static_dispatch="false" to its
-definition.
-
-I'm not sure what are the rules for choosing whether to export an entry point
-as a function and thus whether this was an appropriate choice or not.
-
-nVidia seems to export it, so probably Mesa should too.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|enhancement                 |normal
+          Component|Drivers/DRI/nouveau         |Mesa core
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
+                   |rg                          |org
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
