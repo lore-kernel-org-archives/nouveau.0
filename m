@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30146] Horizontal Couloured Lines with Nvidia 6,
-	800 GT (NV40)
-Date: Tue, 14 Sep 2010 09:30:20 -0700 (PDT)
-Message-ID: <20100914163021.1480D1300C3@annarchy.freedesktop.org>
-References: <bug-30146-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
+ NVS 3100M with embedded DisplayPort (HP EliteBook 8440p)
+Date: Tue, 14 Sep 2010 11:18:56 -0700 (PDT)
+Message-ID: <20100914181856.B9664130125@annarchy.freedesktop.org>
+References: <bug-29714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30146-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,11 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30146
+https://bugs.freedesktop.org/show_bug.cgi?id=29714
 
---- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-14 09:30:18 PDT ---
-This is a regression, right? Do you remember when it stopped to work? You could
-try "git bisect" to find the commit that introduced the problem.
+--- Comment #20 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-14 11:18:56 PDT ---
+Created an attachment (id=38701)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38701)
+Output of dmesg on Linux kernel version 2.6.35 with "EVO channel init
+modifications" patch from bug 29171
+
+With "EVO channel init modifications" patch from bug 29171 instead corrupted
+screen I see black screen.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
