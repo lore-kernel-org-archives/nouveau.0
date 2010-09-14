@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30172] GL_EXT_framebuffer_blit function required
-Date: Mon, 13 Sep 2010 20:53:58 -0700 (PDT)
-Message-ID: <20100914035358.EDA85130101@annarchy.freedesktop.org>
+Date: Tue, 14 Sep 2010 00:43:24 -0700 (PDT)
+Message-ID: <20100914074324.EE8661300C8@annarchy.freedesktop.org>
 References: <bug-30172-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30172
 
---- Comment #1 from Luca Barbieri <luca.barbieri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-13 20:53:58 PDT ---
-EXT_framebuffer_blit is supported with any Gallium driver, by the state tracker
-itself.
+--- Comment #2 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2010-09-14 00:43:25 PDT ---
+I am getting this:
 
-Perhaps you mean the nouveau_vieux DRI driver?
+$ scons
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+g++ -o glsl_toon glsl_toon.o build/Shader.o build/ShaderProgram.o build/Timer.o
+build/VertexBuffer.o build/Mesh.o build/Light.o build/Texture.o
+build/FrameTimer.o build/FrameBuffer.o -lSDL -lSDL_image -lGL -lGLU
+build/FrameBuffer.o: In function `FrameBuffer::BlitTo(FrameBuffer*, unsigned
+int, unsigned int)':
+FrameBuffer.cpp:(.text+0x1373): undefined reference to `glBlitFramebufferEXT'
+collect2: ld returned 1 exit status
+scons: *** [glsl_toon] Error 1
+scons: building terminated because of errors.
 
-If not, what are exactly the issues you are experiencing?
+Grepping the includes shows that it is definitely defined in the includes so
+probably it's not in the libraries.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
