@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30158] nouveau fails to display on external monitor
-Date: Tue, 14 Sep 2010 23:02:15 -0700 (PDT)
-Message-ID: <20100915060215.3328A1300C8@annarchy.freedesktop.org>
+Date: Tue, 14 Sep 2010 23:04:46 -0700 (PDT)
+Message-ID: <20100915060446.EFC391300BF@annarchy.freedesktop.org>
 References: <bug-30158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30158
 
---- Comment #2 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-14 23:02:14 PDT ---
-Created an attachment (id=38711)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38711)
-log files for "X throws error, restarts, then everything ok"
+--- Comment #3 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-14 23:04:46 PDT ---
+Created an attachment (id=38712)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38712)
+log files for "blank screen with non blinking cursor in the upper left"
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
