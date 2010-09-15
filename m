@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30213] ION2 (NV50) locks up with infinite loop
-Date: Wed, 15 Sep 2010 08:43:39 -0700 (PDT)
-Message-ID: <20100915154339.DCFCA1301EE@annarchy.freedesktop.org>
+Date: Wed, 15 Sep 2010 08:48:11 -0700 (PDT)
+Message-ID: <20100915154811.234BE1300E5@annarchy.freedesktop.org>
 References: <bug-30213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30213
 
-Stefan Dirsch <sndirsch-l3A5Bk7waGM@public.gmane.org> changed:
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-15 08:48:10 PDT ---
+this is probably a duplicate of bug 26980
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugzilla.novell.com
-                   |                            |/show_bug.cgi?id=639548
+(your card is NVA8)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
