@@ -1,11 +1,11 @@
 From: randrianasulu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Subject: Small demagic patch for nv04 plus two tables for
+Subject: Fwd: Small demagic patch for nv04 plus two tables for
 	discussion
-Date: Wed, 15 Sep 2010 20:01:43 +0400
-Message-ID: <201009152001.43514.randrianasulu@gmail.com>
+Date: Wed, 15 Sep 2010 20:30:22 +0400
+Message-ID: <201009152030.22860.randrianasulu@gmail.com>
 Mime-Version: 1.0
 Content-Type: Multipart/Mixed;
-  boundary="Boundary-00=_n3OkMra2qNOMbcb"
+  boundary="Boundary-00=_eSPkM8C/ROdfsae"
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,19 +19,34 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---Boundary-00=_n3OkMra2qNOMbcb
+--Boundary-00=_eSPkM8C/ROdfsae
 Content-Type: text/plain;
-  charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+  charset="windows-1251"
+Content-Transfer-Encoding: quoted-printable
 Content-Disposition: inline
+
+Sorry, demagic patch had typo, and it broke compilation here! Rebased and=20
+fixed one attached
+
+
+=2D---------  =CF=E5=F0=E5=F1=EB=E0=ED=ED=EE=E5 =F1=EE=EE=E1=F9=E5=ED=E8=E5=
+  ----------
+
+=D2=E5=EC=E0: Small demagic patch for nv04 plus two tables for discussion
+=C4=E0=F2=E0: =D1=F0=E5=E4=E0 15 =F1=E5=ED=F2=FF=E1=F0=FF 2010
+=CE=F2=EF=F0=E0=E2=E8=F2=E5=EB=FC: randrianasulu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+=CF=EE=EB=F3=F7=E0=F2=E5=EB=FC:  nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
 Hello all!
 
-Unfortunately, this patch creates too-long lines, but i really prefer symbolic 
+Unfortunately, this patch creates too-long lines, but i really prefer symbo=
+lic=20
 names, when they defined everywhere else.
 
-Studying  texture combiners, i  created two tables, they probably has some 
-errors, but I want to be pointed at errors before i even start to code, so 
+Studying  texture combiners, i  created two tables, they probably has some=
+=20
+errors, but I want to be pointed at errors before i even start to code, so=
+=20
 please comment on them:
 
 
@@ -39,13 +54,16 @@ please comment on them:
 sources:
 [1] http://www.opengl.org/sdk/docs/man/xhtml/glTexEnv.xml
 [2] http://www.gamecareerguide.com/features/19981009/multitexturing_01.htm
-[3] IRC talk 
-[4] 
-http://people.freedesktop.org/~idr/2007Q4-VGP351/20071106%20-%20Texture%20mapping,
+[3] IRC talk=20
+[4]=20
+http://people.freedesktop.org/~idr/2007Q4-VGP351/20071106%20-%20Texture%20m=
+apping,
 %20part%203.pdf
 
 
---Boundary-00=_n3OkMra2qNOMbcb
+=2D------------------------------------------------------
+
+--Boundary-00=_eSPkM8C/ROdfsae
 Content-Type: text/x-diff;
   charset="iso 8859-1";
   name="0001-nv0x-demagic-nv04_state_raster.c-and-nv04_state_tex..patch"
@@ -53,7 +71,7 @@ Content-Transfer-Encoding: quoted-printable
 Content-Disposition: attachment;
 	filename="0001-nv0x-demagic-nv04_state_raster.c-and-nv04_state_tex..patch"
 
-=46rom f8726c6e190466d91b588c1ad7409da506663218 Mon Sep 17 00:00:00 2001
+=46rom d253d21ac4097ddf9787ad7b4e099c1f40968758 Mon Sep 17 00:00:00 2001
 =46rom: Andrew Randrianasulu <randrianasulu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Date: Wed, 15 Sep 2010 19:40:16 +0400
 Subject: [PATCH] nv0x: demagic nv04_state_raster.c and nv04_state_tex.c
@@ -67,7 +85,7 @@ Subject: [PATCH] nv0x: demagic nv04_state_raster.c and nv04_state_tex.c
 
 diff --git a/src/mesa/drivers/dri/nouveau/nv04_state_raster.c b/src/mesa/dr=
 ivers/dri/nouveau/nv04_state_raster.c
-index c191571..51aacba 100644
+index c191571..d478ace 100644
 =2D-- a/src/mesa/drivers/dri/nouveau/nv04_state_raster.c
 +++ b/src/mesa/drivers/dri/nouveau/nv04_state_raster.c
 @@ -176,13 +176,13 @@ nv04_emit_control(GLcontext *ctx, int emit)
@@ -163,7 +181,7 @@ SRC_SHIFT;
 +		blend |=3D get_blend_func(ctx->Color.BlendDstRGB) << NV04_TEXTURED_TRIAN=
 GLE_BLEND_DST_SHIFT |
 +			get_blend_func(ctx->Color.BlendSrcRGB) << NV04_TEXTURED_TRIANGLE_BLEND_=
-SRC_SHIFT<;
+SRC_SHIFT;
 =20
  		if (ctx->Color.BlendEnabled)
  			blend |=3D NV04_TEXTURED_TRIANGLE_BLEND_BLEND_ENABLE;
@@ -219,94 +237,7 @@ SHIFT |
 1.7.0.2
 
 
---Boundary-00=_n3OkMra2qNOMbcb
-Content-Type: text/html;
-  charset="iso 8859-1";
-  name="gl_blend_table.html"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename="gl_blend_table.html"
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-  <meta content="text/html; charset=windows-1251" http-equiv="Content-Type">
-<title>gl_blend_table</title></head><body>http://www.opengl.org/sdk/docs/man/xhtml/glTexEnv.xml<br>
-<br>
-<br>
-<br>
-GL_BLEND as tn2 combiner input bindings<br>
-<br>
-case&nbsp; GL_RGB<br>
-ALPHA = GL_ALPHA_PREVIOUS.<br>
-alpha_input = [previous, 1, ZERO, 0]<br>
-RGB = RGB_previous * (INV&nbsp; RGB_SOURCE) + RGB_CONST * RGB_SOURCE<br>
-rgb_input = [INV (texture), previous, const, texture]<br>
-<br>
-case RGBA<br>
-ALPHA = ALPHA_PREVIOUS * ALPHA_SOURCE <br>
-alpha_input = [previous, 1,&nbsp; texture, 1]<br>
-RGBA = RGB_previous * (INV RGB_SOURCE) + RGB_CONST * RGB_SOURCE<br>
-rgb_input = [INV (texture), previous, const, texture]<br>
-</body></html>
---Boundary-00=_n3OkMra2qNOMbcb
-Content-Type: text/html;
-  charset="iso 8859-1";
-  name="texture_environment_combiners_NV_ATI_ARB.html"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
-	filename="texture_environment_combiners_NV_ATI_ARB.html"
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-  <meta content=3D"text/html; charset=3Dwindows-1251" http-equiv=3D"Content=
-=2DType">
-<title>texture_environment_combiners_NV_ATI_ARB</title></head><body>case GL=
-_SUBTRACT:<br>
-&lt;------&gt; color_combine =3D (R200_TXC_ARG_B_ZERO |<br>
-&lt;------&gt;&lt;------&gt;&lt;------&gt;&nbsp; R200_TXC_COMP_ARG_B |.<br>
-&lt;------&gt;&lt;------&gt;&lt;------&gt;&nbsp; R200_TXC_NEG_ARG_C |<br>
-&lt;------&gt;&lt;------&gt;&lt;------&gt;&nbsp; R200_TXC_OP_MADD);<br>
-&lt;------&gt; R200_COLOR_ARG( 0, A );<br>
-&lt;------&gt; R200_COLOR_ARG( 1, C );<br>
-<br>
-&lt;airlied&gt; AndrewR: generally you have a negative bit, so you just fee=
-d in arg1 and negative arg2 and arg0 =3D=3D 1<code><br>
-R200_TXC_NEG_ARG_A                     (1 &lt;&lt; 19)<br>
-<br>
-&lt;AndrewR&gt; so, for four-component input one can just set arg0 =3D=3D
-arg3 =3D=3D 1, then negate arg 2 and freed arg 1, and execute add (NV
-version)<br>
-</code><br>
-<br>
-case GL_ADD:<br>
-&lt;------&gt; color_combine =3D (R200_TXC_ARG_B_ZERO |<br>
-&lt;------&gt;&lt;------&gt;&lt;------&gt;&nbsp; R200_TXC_COMP_ARG_B |.<br>
-&lt;------&gt;&lt;------&gt;&lt;------&gt;&nbsp; R200_TXC_OP_MADD);<br>
-&lt;------&gt; R200_COLOR_ARG( 0, A );<br>
-&lt;------&gt; R200_COLOR_ARG( 1, C );<br>
-<br>
-ARB_texture_env_combine operations in terms of NV_texture_env_combine4 NV e=
-xtension:<br>
-<pre>REPLACE                 Arg0 =3D <br>ADD                     Arg0 * Ar=
-g1 + Arg2 * Arg3 (arg0, 1, 1, 0)<br><br><br>MODULATE                Arg0 * =
-Arg1 =3D<br>ADD                     Arg0 * Arg1 + Arg2 * Arg3 (arg0, arg1, =
-1, 0)<br><br>ADD                     Arg0 + Arg1 =3D<br>ADD                =
-     Arg0 * Arg1 + Arg2 * Arg3 (arg0, 1, arg1, 1)<br><br>ADD_SIGNED_ARB    =
-      Arg0 + Arg1 - 0.5 =3D<br>ADD_SIGNED_EXT          Arg0 * Arg1 + Arg2 *=
- Arg3 - 0.5 (arg0, 1, 1, arg1)<br><br>SUBTRACT_ARB            Arg0 - Arg1 =
-=3D<br>ADD                     Arg0 * Arg1 + Arg2 * Arg3 (arg0, 1, INV(arg1=
-), 1)<br><br>MODULATE_ADD_ATI        Arg0 * Arg2 + Arg1 =3D <br>ADD        =
-             Arg0 * Arg1 + Arg2 * Arg3 (arg0, arg1, arg1, 1)<br><br>MODULAT=
-E_SIGNED_ADD_ATI        Arg0 * Arg2 + Arg1 - 0.5 =3D<br>ADD_SIGNED_EXT     =
-            Arg0 * Arg1 + Arg2 * Arg3 - 0.5 (arg0, arg2, arg1, 1)<br><br><b=
-r>MODULATE_SUBTRACT_ATI          Arg0 * Arg2 - Arg1 =3D <br>ADD            =
-         Arg0 * Arg1 + Arg2 * Arg3 (arg0, arg2, INV(arg1), 1)<br><br><br>IN=
-TERPOLATE_ARB         Arg0 * (Arg2) + Arg1 * (1-Arg2) =3D<br>ADD           =
-          Arg0 * Arg1 + Arg2 * Arg3 (arg0, arg2, arg1, INV(arg2))<br><br></=
-pre>
-<br>
-</body></html>
---Boundary-00=_n3OkMra2qNOMbcb
+--Boundary-00=_eSPkM8C/ROdfsae
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -317,4 +248,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---Boundary-00=_n3OkMra2qNOMbcb--
+--Boundary-00=_eSPkM8C/ROdfsae--
