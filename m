@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30213] ION2 (NV50) locks up with infinite loop
-Date: Wed, 15 Sep 2010 07:41:17 -0700 (PDT)
-Message-ID: <20100915144117.810E31300D6@annarchy.freedesktop.org>
-References: <bug-30213-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 30158] nouveau fails to display on external monitor
+Date: Wed, 15 Sep 2010 08:33:43 -0700 (PDT)
+Message-ID: <20100915153343.22308130139@annarchy.freedesktop.org>
+References: <bug-30158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-30158-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +20,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30213
+https://bugs.freedesktop.org/show_bug.cgi?id=30158
 
---- Comment #2 from Jeff Mahoney <jeffm-IBi9RG/b67k@public.gmane.org> 2010-09-15 07:41:17 PDT ---
-Created an attachment (id=38724)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38724)
-hwinfo output
+--- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-15 08:33:42 PDT ---
+try to blacklist vga16fb first - see
+https://wiki.ubuntu.com/X/Troubleshooting/Nouveau#Disable%20vga16fb
+
+(the log says it is "not registering due to another framebuffer present", but
+it's not completely true)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
