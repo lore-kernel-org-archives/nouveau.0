@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30158] nouveau fails to display on external monitor
-Date: Wed, 15 Sep 2010 16:32:35 -0700 (PDT)
-Message-ID: <20100915233235.B11EF1300CD@annarchy.freedesktop.org>
+Date: Thu, 16 Sep 2010 00:11:28 -0700 (PDT)
+Message-ID: <20100916071128.E802C1300DA@annarchy.freedesktop.org>
 References: <bug-30158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,7 +22,7 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30158
 
---- Comment #6 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-15 16:32:35 PDT ---
+--- Comment #7 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-16 00:11:28 PDT ---
 (In reply to comment #5)
 > try to blacklist vga16fb first - see
 > https://wiki.ubuntu.com/X/Troubleshooting/Nouveau#Disable%20vga16fb
@@ -30,18 +30,18 @@ https://bugs.freedesktop.org/show_bug.cgi?id=30158
 > (the log says it is "not registering due to another framebuffer present", but
 > it's not completely true)
 
-I have blacklisted vga16fb via adding [ blacklist vga16fb ] to
-/etc/modprobe.d/blacklist-framebuffer.conf and verified with [ lsmod |grep -i
-vga16fb ] and [ hwinfo --gfx |grep -i vga16fb ] that it is not present (I hope
-that was sufficient?).
+Thanks to your link I have now tried to enable nv. I had thought this would be
+very difficult and hard to undo but with your link it wasn't at all. Means I
+blacklisted nouveau on startup with nouveau.modeset=0 and tell X to use nv
+instead of nouveau. Result: nv runs without problems, and the performance is
+quite ok (sufficient for my needs, actually). So with nv I don't need to force
+an error in X anymore to bring X up.
 
-Now, if starting with a xorg.conf without error I receive the same result as
-before - blank screen with a non blinking cursor in the upper left, but
-terminals accessible.
+Maybe this helps with circling the problem - nouveau runs fine on my internal
+monitor but fails with my external monitor whereas nv runs fine both on the
+internal monitor as the external monitor.
 
-So as far as I can see, blacklisting vga16fb does not make any difference. I
-still need an intentional error in xorg.conf to make X working. Do you need new
-log files for the case with vga16fb disabled?
+Again, if you need the log-files for this case, too, please give a note.
 
 Best regards, Michael
 
