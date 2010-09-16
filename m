@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30158] nouveau fails to display on external monitor
-Date: Thu, 16 Sep 2010 02:24:47 -0700 (PDT)
-Message-ID: <20100916092447.F30FA13011A@annarchy.freedesktop.org>
+Date: Thu, 16 Sep 2010 13:49:55 -0700 (PDT)
+Message-ID: <20100916204955.45FC01300F5@annarchy.freedesktop.org>
 References: <bug-30158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,27 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30158
 
---- Comment #9 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-16 02:24:47 PDT ---
-Created an attachment (id=38736)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38736)
-Log files for "X configured to driver nv but nouveau enabled"
+--- Comment #10 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-16 13:49:55 PDT ---
+(In reply to comment #5)
+> try to blacklist vga16fb first - see
+> https://wiki.ubuntu.com/X/Troubleshooting/Nouveau#Disable%20vga16fb
+> 
+> (the log says it is "not registering due to another framebuffer present", but
+> it's not completely true)
 
-had to gzip the tar because bugzilla didn't accept it saying it was too big
+Well, I was a too quick. If I don't disable kernel mode setting for nouveau
+(omit nouveau.modeset=0) and set X to nv as in Message #8 X does come up, but I
+don't have terminals and the system might crash on shutting down. To be
+specific what I see is a random pattern of colored ascii signs when opening a
+terminal with for example CTRL+ALT+F1, and I see the same kind of pattern on
+shutdown.
+
+I went back to the state of Message #7 - I disable nouveau kernel mode setting
+on boot and configure xorg.conf to use nv. This works fine, though I still
+don't know if I am running nouveau or nv (nouveau is reported to be active and
+can't find a trace of nv). Maybe you could help me on this matter, please.
+
+Best regards, Michael
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
