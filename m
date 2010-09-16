@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30158] nouveau fails to display on external monitor
-Date: Thu, 16 Sep 2010 13:49:55 -0700 (PDT)
-Message-ID: <20100916204955.45FC01300F5@annarchy.freedesktop.org>
+Date: Thu, 16 Sep 2010 14:38:01 -0700 (PDT)
+Message-ID: <20100916213802.0E237130081@annarchy.freedesktop.org>
 References: <bug-30158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,27 +22,49 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30158
 
---- Comment #10 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-16 13:49:55 PDT ---
-(In reply to comment #5)
-> try to blacklist vga16fb first - see
-> https://wiki.ubuntu.com/X/Troubleshooting/Nouveau#Disable%20vga16fb
-> 
-> (the log says it is "not registering due to another framebuffer present", but
-> it's not completely true)
+--- Comment #11 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2010-09-16 14:38:01 PDT ---
+(In reply to comment #8)
+> I have interesting news. After I had enabled nv I checked with hwinfo --gfx and
+> lsmod to see if it was active. It wasn't. Instead the system still reported
+> nouveau to be active. That puzzled me quite a bit but explained why performance
+> was so good. I then tried again to put [ driver "nouveau" ] into the xorg.conf
+> while still [ nouveau.modeset=0 ] - hard crash (no terminals, requiring repair
+> from live-cd). Next I tried xorg.conf with back to [ driver "nv" ] but removed
+> the [ nouveau.modeset=0 ] boot-statement (the link you provided said "to enable
+> nv make X to use [ driver "nv" ] and disable nouveau with [ nouveau.modeset=0
+> ]).
 
-Well, I was a too quick. If I don't disable kernel mode setting for nouveau
-(omit nouveau.modeset=0) and set X to nv as in Message #8 X does come up, but I
-don't have terminals and the system might crash on shutting down. To be
-specific what I see is a random pattern of colored ascii signs when opening a
-terminal with for example CTRL+ALT+F1, and I see the same kind of pattern on
-shutdown.
+The "nv" driver has no kernel part at all, therefore it will never show up in
+lsmod, and I guess the same applies to hwinfo, since "nv" never registers with
+the kernel. "nv" pokes the hardware directly from user space, corrupting any
+state a proper kernel driver (nouveau) has set up.
 
-I went back to the state of Message #7 - I disable nouveau kernel mode setting
-on boot and configure xorg.conf to use nv. This works fine, though I still
-don't know if I am running nouveau or nv (nouveau is reported to be active and
-can't find a trace of nv). Maybe you could help me on this matter, please.
+If you have Nouveau KMS enabled (maybe even if you just have the nouveau kernel
+module loaded), "nv" X.org driver will corrupt the card state, and when the
+kernel driver attempts to do anything, it will probably crash somehow (just
+like you later experienced).
 
-Best regards, Michael
+If you use *any* other X.org driver than "nouveau", then you *must* disable the
+Nouveau kernel module, or at least disable Nouveau KMS with nouveau.modeset=0.
+Do note, that without an explicit X.org driver configuration, X will attemp
+several different drivers one by one, and use the one that happens to
+initialize.
+
+> I'm adding an attachment containing kern.log, Xorg.0.log (there is only one
+> logfile now), the output of lsmod, the output of hwinfo --gfx and my xorg.conf
+> as they are now.
+
+I haven't checked any of the logs, because they are packaged, and I'm not
+really that interested. Please, see http://nouveau.freedesktop.org/wiki/Bugs .
+
+I just wanted to correct some misconceptions.
+
+> I'd be very thankful if you could check against my attached files whether I am
+> now running nv or nouveau? I am still not sure about that.
+
+The X log should be fairly self-explanatory on that. And if you run Nouveau,
+the kernel log will have many lines (a lot more than 5) from nouveau. You will
+know, when you see them.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
