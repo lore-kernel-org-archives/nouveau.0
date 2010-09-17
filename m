@@ -1,154 +1,77 @@
-From: randrianasulu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Subject: PMC_BOOT_0 and nv4ref.h
-Date: Fri, 17 Sep 2010 11:17:40 +0400
-Message-ID: <201009171117.40774.randrianasulu@gmail.com>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: nouveau/ttm: BUG in ttm_bo_release_list
+Date: Fri, 17 Sep 2010 19:43:52 +0200
+Message-ID: <20100917174352.GA2770@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
 Content-Disposition: inline
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-looking at
-http://www.ms.mff.cuni.cz/~havlj3am/src/nouveau/nvosdk-unscrambled/nv04/nv4ref.h
+Hi
+Since upgrade from 2.6.35 to 2.6.36-rc3 (nouveau tree) I'm hitting this bug a couple of times a day:
 
-i found few "interesting" regs, not sure if current nouveau sets them correctly ?
+[ 2869.618504] ------------[ cut here ]------------
+[ 2869.618532] kernel BUG at drivers/gpu/drm/ttm/ttm_bo.c:153!
+[ 2869.618560] invalid opcode: 0000 [#1] PREEMPT SMP 
+[ 2869.618600] last sysfs file: /sys/devices/pci0000:00/0000:00:03.0/0000:02:00.0/pm_status
+[ 2869.618637] CPU 0 
+[ 2869.618649] Modules linked in: nouveau ttm drm_kms_helper snd_hda_codec_realtek snd_hda_intel snd_hda_codec
+[ 2869.618730] 
+[ 2869.618742] Pid: 11, comm: kworker/0:1 Not tainted 2.6.36-rc3-nv+ #485 P6T SE/System Product Name
+[ 2869.618781] RIP: 0010:[<ffffffffa0082c9e>]  [<ffffffffa0082c9e>] ttm_bo_release_list+0x37/0xcf [ttm]
+[ 2869.618830] RSP: 0018:ffff8801bfd85d40  EFLAGS: 00010202
+[ 2869.618855] RAX: 0000000000000001 RBX: ffff8801b1e50c00 RCX: ffff8801b7500330
+[ 2869.618887] RDX: 0000000000000001 RSI: 0000000000000037 RDI: ffff8801b1e50c44
+[ 2869.618918] RBP: ffff8801bfd85d60 R08: 0000000000000002 R09: ffff8801bf683000
+[ 2869.618950] R10: ffff8801b1e50c70 R11: 0000000000000000 R12: ffff8801b1e50c44
+[ 2869.618981] R13: ffff8801b7500188 R14: 0000000000000000 R15: ffff8801b7500738
+[ 2869.619013] FS:  0000000000000000(0000) GS:ffff880001e00000(0000) knlGS:0000000000000000
+[ 2869.619048] CS:  0010 DS: 0000 ES: 0000 CR0: 000000008005003b
+[ 2869.619074] CR2: 00007f2cc0f6b000 CR3: 00000001bfe8a000 CR4: 00000000000006f0
+[ 2869.619106] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[ 2869.619137] DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000400
+[ 2869.619168] Process kworker/0:1 (pid: 11, threadinfo ffff8801bfd84000, task ffff8801bfd88000)
+[ 2869.619205] Stack:
+[ 2869.619217]  0000000000000000 ffff8801b1e50c44 ffffffffa0082c67 ffff8801bdcb8ab0
+[ 2869.619262] <0> ffff8801bfd85d80 ffffffff8121c83a ffff8801b1e50000 ffff8801b1e50c00
+[ 2869.619318] <0> ffff8801bfd85dd0 ffffffffa00839f4 ffff880001e0ebc0 0000000000000001
+[ 2869.619374] Call Trace:
+[ 2869.619392]  [<ffffffffa0082c67>] ? ttm_bo_release_list+0x0/0xcf [ttm]
+[ 2869.619425]  [<ffffffff8121c83a>] kref_put+0x43/0x4d
+[ 2869.619451]  [<ffffffffa00839f4>] ttm_bo_delayed_delete+0xa2/0xf9 [ttm]
+[ 2869.619484]  [<ffffffffa0083a4b>] ? ttm_bo_delayed_workqueue+0x0/0x30 [ttm]
+[ 2869.619517]  [<ffffffffa0083a65>] ttm_bo_delayed_workqueue+0x1a/0x30 [ttm]
+[ 2869.619551]  [<ffffffff8107eb83>] process_one_work+0x29f/0x448
+[ 2869.619580]  [<ffffffff8107f0e5>] worker_thread+0x1d6/0x349
+[ 2869.619607]  [<ffffffff8107ef0f>] ? worker_thread+0x0/0x349
+[ 2869.619635]  [<ffffffff81082198>] kthread+0x7d/0x85
+[ 2869.619661]  [<ffffffff8102edd4>] kernel_thread_helper+0x4/0x10
+[ 2869.619692]  [<ffffffff8105c10b>] ? finish_task_switch+0x49/0xb2
+[ 2869.619722]  [<ffffffff814333d1>] ? _raw_spin_unlock_irq+0x19/0x34
+[ 2869.619752]  [<ffffffff814339ad>] ? restore_args+0x0/0x30
+[ 2869.619779]  [<ffffffff8108211b>] ? kthread+0x0/0x85
+[ 2869.619805]  [<ffffffff8102edd0>] ? kernel_thread_helper+0x0/0x10
+[ 2869.619832] Code: 48 8d 5f bc 48 83 ec 08 8b 07 4c 8b 6f c4 85 c0 74 04 0f 0b eb fe 8b 47 fc 85 c0 74 04 0f 0b eb fe 8b 87 a8 00 00 00 85 c0 74 04 <0f> 0b eb fe 48 83 bb 38 01 00 00 00 74 04 0f 0b eb fe 48 83 bb 
+[ 2869.620255] RIP  [<ffffffffa0082c9e>] ttm_bo_release_list+0x37/0xcf [ttm]
+[ 2869.620295]  RSP <ffff8801bfd85d40>
+[ 2869.629610] ---[ end trace 302a6257f0da8cdc ]---
 
+this is BUG_ON(atomic_read(&bo->cpu_writers));
 
-from
-nv4ref.h
+I'm on b642f07208988270ac402d2548d42dab1d5fec92 "drm/nv50: fix 100c90 write on nva3".
+If you have any patches / ideas how to debug this, let me know.
 
-/* Framebuffer registers */
-#define NV_PFB                                0x00100FFF:0x00100000	/* RW--D */
-#define NV_PFB_BOOT_0                                    0x00100000	/* RW-4R */
-#define NV_PFB_BOOT_0_RAM_AMOUNT                                1:0	/* RW-VF */
-#define NV_PFB_BOOT_0_RAM_AMOUNT_32MB                    0x00000000	/* RW--V */
-#define NV_PFB_BOOT_0_RAM_AMOUNT_4MB                     0x00000001	/* RW--V */
-#define NV_PFB_BOOT_0_RAM_AMOUNT_8MB                     0x00000002	/* RW--V */
-#define NV_PFB_BOOT_0_RAM_AMOUNT_16MB                    0x00000003	/* RW--V */
-#define NV_PFB_BOOT_0_RAM_WIDTH_128                             2:2	/* RW-VF */
-#define NV_PFB_BOOT_0_RAM_WIDTH_128_OFF                  0x00000000	/* RW--V */
-#define NV_PFB_BOOT_0_RAM_WIDTH_128_ON                   0x00000001	/* RW--V */
-#define NV_PFB_BOOT_0_RAM_TYPE                                  4:3	/* RW-VF */
-#define NV_PFB_BOOT_0_RAM_TYPE_256K                      0x00000000	/* RW--V */
-#define NV_PFB_BOOT_0_RAM_TYPE_512K_2BANK                0x00000001	/* RW--V */
-#define NV_PFB_BOOT_0_RAM_TYPE_512K_4BANK                0x00000002	/* RW--V */
-#define NV_PFB_BOOT_0_RAM_TYPE_1024K_2BANK               0x00000003	/* RW--V */
-#define NV_PFB_CONFIG_0                                  0x00100200	/* RW-4R */
-#define NV_PFB_CONFIG_0_TYPE                                   14:0	/* RWIVF */
-#define NV_PFB_CONFIG_0_TYPE_OLD1024_FIXED_8BPP          0x00000120	/* RW--V */
-#define NV_PFB_CONFIG_0_TYPE_OLD1024_FIXED_16BPP         0x00000220	/* RW--V */
-#define NV_PFB_CONFIG_0_TYPE_OLD1024_FIXED_32BPP         0x00000320	/* RW--V */
-#define NV_PFB_CONFIG_0_TYPE_OLD1024_VAR_8BPP            0x00004120	/* RW--V */
-#define NV_PFB_CONFIG_0_TYPE_OLD1024_VAR_16BPP           0x00004220	/* RW--V */
-#define NV_PFB_CONFIG_0_TYPE_OLD1024_VAR_32BPP           0x00004320	/* RW--V */
-#define NV_PFB_CONFIG_0_TYPE_TETRIS                      0x00002000	/* RW--V */
-#define NV_PFB_CONFIG_0_TYPE_NOTILING                    0x00001114	/* RWI-V */
-#define NV_PFB_CONFIG_0_TETRIS_MODE                           17:15	/* RWI-F */
-#define NV_PFB_CONFIG_0_TETRIS_MODE_PASS                 0x00000000	/* RWI-V */
-#define NV_PFB_CONFIG_0_TETRIS_MODE_1                    0x00000001	/* RW--V */
-#define NV_PFB_CONFIG_0_TETRIS_MODE_2                    0x00000002	/* RW--V */
-#define NV_PFB_CONFIG_0_TETRIS_MODE_3                    0x00000003	/* RW--V */
-#define NV_PFB_CONFIG_0_TETRIS_MODE_4                    0x00000004	/* RW--V */
-#define NV_PFB_CONFIG_0_TETRIS_MODE_5                    0x00000005	/* RW--V */
-#define NV_PFB_CONFIG_0_TETRIS_MODE_6                    0x00000006	/* RW--V */
-#define NV_PFB_CONFIG_0_TETRIS_MODE_7                    0x00000007	/* RW--V */
-#define NV_PFB_CONFIG_0_TETRIS_SHIFT                          19:18	/* RWI-F */
-#define NV_PFB_CONFIG_0_TETRIS_SHIFT_0                   0x00000000	/* RWI-V */
-#define NV_PFB_CONFIG_0_TETRIS_SHIFT_1                   0x00000001	/* RW--V */
-#define NV_PFB_CONFIG_0_TETRIS_SHIFT_2                   0x00000002	/* RW--V */
-#define NV_PFB_CONFIG_0_BANK_SWAP                             22:20	/* RWI-F */
-#define NV_PFB_CONFIG_0_BANK_SWAP_OFF                    0x00000000	/* RWI-V */
-#define NV_PFB_CONFIG_0_BANK_SWAP_1M                     0x00000001	/* RW--V */
-#define NV_PFB_CONFIG_0_BANK_SWAP_2M                     0x00000005	/* RW--V */
-#define NV_PFB_CONFIG_0_BANK_SWAP_4M                     0x00000007	/* RW--V */
-#define NV_PFB_CONFIG_0_UNUSED                                23:23	/* RW-VF */
-#define NV_PFB_CONFIG_0_SCRAMBLE_EN                           29:29	/* RWIVF */
-#define NV_PFB_CONFIG_0_SCRAMBLE_EN_INIT                 0x00000000	/* RW--V */
-#define NV_PFB_CONFIG_0_SCRAMBLE_ACTIVE                  0x00000001	/* RW--V */
-#define NV_PFB_CONFIG_0_PRAMIN_WR                             28:28	/* RWIVF */
-#define NV_PFB_CONFIG_0_PRAMIN_WR_INIT                   0x00000000	/* RW--V */
-#define NV_PFB_CONFIG_0_PRAMIN_WR_DISABLED               0x00000001	/* RW--V */
-#define NV_PFB_CONFIG_0_PRAMIN_WR_MASK                        27:24	/* RWIVF */
-#define NV_PFB_CONFIG_0_PRAMIN_WR_MASK_INIT              0x00000000	/* RWI-V */
-#define NV_PFB_CONFIG_0_PRAMIN_WR_MASK_CLEAR             0x0000000f	/* RWI-V */
-#define NV_PFB_CONFIG_1                                  0x00100204	/* RW-4R */
-#define NV_PFB_RTL                                       0x00100300	/* RW-4R */
-#define NV_PFB_RTL_H                                            0:0	/* RWIUF */
-#define NV_PFB_RTL_H_DEFAULT                             0x00000000	/* RWI-V */
-#define NV_PFB_RTL_MC                                           1:1	/* RWIUF */
-#define NV_PFB_RTL_MC_DEFAULT                            0x00000000	/* RWI-V */
-#define NV_PFB_RTL_V                                            2:2	/* RWIUF */
-#define NV_PFB_RTL_V_DEFAULT                             0x00000000	/* RWI-V */
-#define NV_PFB_RTL_G                                            3:3	/* RWIUF */
-#define NV_PFB_RTL_G_DEFAULT                             0x00000000	/* RWI-V */
-#define NV_PFB_RTL_GB                                           4:4	/* RWIUF */
-#define NV_PFB_RTL_GB_DEFAULT                            0x00000000	/* RWI-V */
-#define NV_PFB_CONFIG_0_RESOLUTION                              5:0	/* RWIVF */
-#define NV_PFB_CONFIG_0_RESOLUTION_320_PIXELS            0x0000000a	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_400_PIXELS            0x0000000d	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_480_PIXELS            0x0000000f	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_512_PIXELS            0x00000010	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_640_PIXELS            0x00000014	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_800_PIXELS            0x00000019	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_960_PIXELS            0x0000001e	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_1024_PIXELS           0x00000020	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_1152_PIXELS           0x00000024	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_1280_PIXELS           0x00000028	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_1600_PIXELS           0x00000032	/* RW--V */
-#define NV_PFB_CONFIG_0_RESOLUTION_DEFAULT               0x00000014	/* RWI-V */
-#define NV_PFB_CONFIG_0_PIXEL_DEPTH                             9:8	/* RWIVF */
-#define NV_PFB_CONFIG_0_PIXEL_DEPTH_8_BITS               0x00000001	/* RW--V */
-#define NV_PFB_CONFIG_0_PIXEL_DEPTH_16_BITS              0x00000002	/* RW--V */
-#define NV_PFB_CONFIG_0_PIXEL_DEPTH_32_BITS              0x00000003	/* RW--V */
-#define NV_PFB_CONFIG_0_PIXEL_DEPTH_DEFAULT              0x00000001	/* RWI-V */
-#define NV_PFB_CONFIG_0_TILING                                12:12	/* RWIVF */
-#define NV_PFB_CONFIG_0_TILING_ENABLED                   0x00000000	/* RW--V */
-#define NV_PFB_CONFIG_0_TILING_DISABLED                  0x00000001	/* RWI-V */
-#define NV_PFB_CONFIG_1_SGRAM100                                3:3	/* RWIVF */
-#define NV_PFB_CONFIG_1_SGRAM100_ENABLED                 0x00000000	/* RWI-V */
-#define NV_PFB_CONFIG_1_SGRAM100_DISABLED                0x00000001	/* RW--V */
-#define NV_PFB_DEBUG_0_CKE_ALWAYSON                           29:29	/* RWIVF */
-#define NV_PFB_DEBUG_0_CKE_ALWAYSON_OFF                  0x00000000	/* RW--V */
-#define NV_PFB_DEBUG_0_CKE_ALWAYSON_ON                   0x00000001	/* RWI-V */
-
-my translation
-
-define NV04_PFB_BOOT_0_RAM_WIDTH_128_enable = 1 << 2;
-define NV04_PFB_CFG0_TYPE = 14:0
-define NV04_PFB_CFG0_TYPE_OLD1024_FIXED_8BPP = 0x00000120;
-define NV04_PFB_CFG0_TYPE_OLD1024_FIXED_16BPP = 0x00000220;
-define NV04_PFB_CFG0_TYPE_OLD1024_FIXED_32BPP = 0x00000320;
-define NV04_PFB_CFG0_TYPE_TETRIS = 0x00002000;
-define NV04_PFB_CFG0_TYPE_NOTILING = 0x00001114;
-define NV04_PFB_CFG0_TETRIS_MODE = 17:15
-define NV04_PFB_CFG0_TETRIS_MODE_PASS                 0x00000000:
-define NV04_PFB_CFG0_TETRIS_MODE_1 = 0x00000001;
-.....
-define NV04_PFB_CFG0_TETRIS_MODE_7 = 0x00000007;
-define NV04_PFB_CFG0_TETRIS_SHIFT = 19:18
-define NV04_PFB_CFG0_TETRIS_SHIFT_0                   0x00000000:
-define NV04_PFB_CFG0_TETRIS_SHIFT_1                   0x00000001:
-define NV04_PFB_CFG0_TETRIS_SHIFT_2                   0x00000002:
-define NV04_PFB_CFG0_BANK_SWAP   =  22:20
-define NV04_PFB_CFG0_SWAP_OFF            =        0x00000000;
-define NV04_PFB_CFG0_SWAP_1M             =        0x00000001;
-define NV04_PFB_CFG0_SWAP_2M             =        0x00000005;
-define NV04_PFB_CFG0_SWAP_4M             =        0x00000007;
-define NV04_PFB_CFG0_TILING =       12:12
-define NV04_PFB_CFG0_TILING_ENABLED           =   0x00000000;
-define NV04_PFB_CFG0_TILING_DISABLED         =    0x00000001;
-
-define NV04_PFB_CFG1_SGRAM100 =  3:3
-define NV04_PFB_CFG1_SGRAM100_ENABLED           =      0x00000000;
-define NV04_PFB_CFG1_SGRAM100_DISABLED          =      0x00000001;
+Marcin
