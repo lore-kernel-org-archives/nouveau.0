@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30158] nouveau fails to display on external monitor
-Date: Thu, 16 Sep 2010 14:38:01 -0700 (PDT)
-Message-ID: <20100916213802.0E237130081@annarchy.freedesktop.org>
+Date: Thu, 16 Sep 2010 23:09:10 -0700 (PDT)
+Message-ID: <20100917060910.6FB3913008B@annarchy.freedesktop.org>
 References: <bug-30158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,49 +22,50 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30158
 
---- Comment #11 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2010-09-16 14:38:01 PDT ---
-(In reply to comment #8)
-> I have interesting news. After I had enabled nv I checked with hwinfo --gfx and
-> lsmod to see if it was active. It wasn't. Instead the system still reported
-> nouveau to be active. That puzzled me quite a bit but explained why performance
-> was so good. I then tried again to put [ driver "nouveau" ] into the xorg.conf
-> while still [ nouveau.modeset=0 ] - hard crash (no terminals, requiring repair
-> from live-cd). Next I tried xorg.conf with back to [ driver "nv" ] but removed
-> the [ nouveau.modeset=0 ] boot-statement (the link you provided said "to enable
-> nv make X to use [ driver "nv" ] and disable nouveau with [ nouveau.modeset=0
-> ]).
+--- Comment #12 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-16 23:09:10 PDT ---
+(In reply to comment #11)
 
-The "nv" driver has no kernel part at all, therefore it will never show up in
-lsmod, and I guess the same applies to hwinfo, since "nv" never registers with
-the kernel. "nv" pokes the hardware directly from user space, corrupting any
-state a proper kernel driver (nouveau) has set up.
+Hello,
 
-If you have Nouveau KMS enabled (maybe even if you just have the nouveau kernel
-module loaded), "nv" X.org driver will corrupt the card state, and when the
-kernel driver attempts to do anything, it will probably crash somehow (just
-like you later experienced).
+thanks for the clarifications and sorry about the packed log files, I didn't
+know that.
 
-If you use *any* other X.org driver than "nouveau", then you *must* disable the
-Nouveau kernel module, or at least disable Nouveau KMS with nouveau.modeset=0.
-Do note, that without an explicit X.org driver configuration, X will attemp
-several different drivers one by one, and use the one that happens to
-initialize.
+As you suggest I took a look into the log files myself. The log files for the
+config I have now (comes up without error, works fine) actually do show nv is
+used.
 
-> I'm adding an attachment containing kern.log, Xorg.0.log (there is only one
-> logfile now), the output of lsmod, the output of hwinfo --gfx and my xorg.conf
-> as they are now.
+But in the log files for the other config that was at least working somehow
+(nouveau kernel mode setting enabled and X forced to throw an error) I really
+can't figure which driver is used. Don't find any output either for nv, nouveau
+or anything else that might be a driver.
 
-I haven't checked any of the logs, because they are packaged, and I'm not
-really that interested. Please, see http://nouveau.freedesktop.org/wiki/Bugs .
+The log file for the case "blank screen" does show nouveau is used, there is -
+as you say - a lot of output from it. But as far as I can tell there are no
+nouveau errors to be seen. So nouveau configured correctly does not work and
+does not throw an error. But only for the external monitor, internal monitor
+does work.
 
-I just wanted to correct some misconceptions.
+I hope somebody will be interested and take care of this bug. It took me such a
+long time and hard effort to get around this prob and also, I'd like to use a
+proper kernel mode driver (as you put it). Using the config that forces X to
+throw an error isn't really a permanent option, because a) I can't figure if
+that is using nouveau and b) this considerably makes startup time longer since
+it needs 2 user interactions plus an X server restart. Also, a config that
+begins with a system error is nothing I can trust in, might cause problems
+later I just didn't encounter yet.
 
-> I'd be very thankful if you could check against my attached files whether I am
-> now running nv or nouveau? I am still not sure about that.
+I use nv now and wait to see if that bug gets fixed sometime.
 
-The X log should be fairly self-explanatory on that. And if you run Nouveau,
-the kernel log will have many lines (a lot more than 5) from nouveau. You will
-know, when you see them.
+Best regards, Michael
+
+PS I don't think I have to disable / unload nouveau completely to use nv. I
+followed the link given above to the nouveau troubleshooting FAQ, and there
+they said, you may unload nouveau, but you don't have to - disabling kernel
+mode switching should be sufficient. I'd prefer to use nouveau when sometime
+the bug will be fixed so I don't want do disable it completely now. The nv
+config I have now works correct, as of yet I did not find any graphics related
+problem and I have checked quite some points now with it, so as of now I don't
+see the necessity / benefit of unloading nouveau completely.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
