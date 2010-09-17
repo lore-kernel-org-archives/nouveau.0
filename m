@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30158] nouveau fails to display on external monitor
-Date: Thu, 16 Sep 2010 23:09:10 -0700 (PDT)
-Message-ID: <20100917060910.6FB3913008B@annarchy.freedesktop.org>
-References: <bug-30158-8800@http.bugs.freedesktop.org/>
+From: randrianasulu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Subject: PMC_BOOT_0 and nv4ref.h
+Date: Fri, 17 Sep 2010 11:17:40 +0400
+Message-ID: <201009171117.40774.randrianasulu@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30158-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,57 +16,139 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30158
+looking at
+http://www.ms.mff.cuni.cz/~havlj3am/src/nouveau/nvosdk-unscrambled/nv04/nv4ref.h
 
---- Comment #12 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-16 23:09:10 PDT ---
-(In reply to comment #11)
+i found few "interesting" regs, not sure if current nouveau sets them correctly ?
 
-Hello,
 
-thanks for the clarifications and sorry about the packed log files, I didn't
-know that.
+from
+nv4ref.h
 
-As you suggest I took a look into the log files myself. The log files for the
-config I have now (comes up without error, works fine) actually do show nv is
-used.
+/* Framebuffer registers */
+#define NV_PFB                                0x00100FFF:0x00100000	/* RW--D */
+#define NV_PFB_BOOT_0                                    0x00100000	/* RW-4R */
+#define NV_PFB_BOOT_0_RAM_AMOUNT                                1:0	/* RW-VF */
+#define NV_PFB_BOOT_0_RAM_AMOUNT_32MB                    0x00000000	/* RW--V */
+#define NV_PFB_BOOT_0_RAM_AMOUNT_4MB                     0x00000001	/* RW--V */
+#define NV_PFB_BOOT_0_RAM_AMOUNT_8MB                     0x00000002	/* RW--V */
+#define NV_PFB_BOOT_0_RAM_AMOUNT_16MB                    0x00000003	/* RW--V */
+#define NV_PFB_BOOT_0_RAM_WIDTH_128                             2:2	/* RW-VF */
+#define NV_PFB_BOOT_0_RAM_WIDTH_128_OFF                  0x00000000	/* RW--V */
+#define NV_PFB_BOOT_0_RAM_WIDTH_128_ON                   0x00000001	/* RW--V */
+#define NV_PFB_BOOT_0_RAM_TYPE                                  4:3	/* RW-VF */
+#define NV_PFB_BOOT_0_RAM_TYPE_256K                      0x00000000	/* RW--V */
+#define NV_PFB_BOOT_0_RAM_TYPE_512K_2BANK                0x00000001	/* RW--V */
+#define NV_PFB_BOOT_0_RAM_TYPE_512K_4BANK                0x00000002	/* RW--V */
+#define NV_PFB_BOOT_0_RAM_TYPE_1024K_2BANK               0x00000003	/* RW--V */
+#define NV_PFB_CONFIG_0                                  0x00100200	/* RW-4R */
+#define NV_PFB_CONFIG_0_TYPE                                   14:0	/* RWIVF */
+#define NV_PFB_CONFIG_0_TYPE_OLD1024_FIXED_8BPP          0x00000120	/* RW--V */
+#define NV_PFB_CONFIG_0_TYPE_OLD1024_FIXED_16BPP         0x00000220	/* RW--V */
+#define NV_PFB_CONFIG_0_TYPE_OLD1024_FIXED_32BPP         0x00000320	/* RW--V */
+#define NV_PFB_CONFIG_0_TYPE_OLD1024_VAR_8BPP            0x00004120	/* RW--V */
+#define NV_PFB_CONFIG_0_TYPE_OLD1024_VAR_16BPP           0x00004220	/* RW--V */
+#define NV_PFB_CONFIG_0_TYPE_OLD1024_VAR_32BPP           0x00004320	/* RW--V */
+#define NV_PFB_CONFIG_0_TYPE_TETRIS                      0x00002000	/* RW--V */
+#define NV_PFB_CONFIG_0_TYPE_NOTILING                    0x00001114	/* RWI-V */
+#define NV_PFB_CONFIG_0_TETRIS_MODE                           17:15	/* RWI-F */
+#define NV_PFB_CONFIG_0_TETRIS_MODE_PASS                 0x00000000	/* RWI-V */
+#define NV_PFB_CONFIG_0_TETRIS_MODE_1                    0x00000001	/* RW--V */
+#define NV_PFB_CONFIG_0_TETRIS_MODE_2                    0x00000002	/* RW--V */
+#define NV_PFB_CONFIG_0_TETRIS_MODE_3                    0x00000003	/* RW--V */
+#define NV_PFB_CONFIG_0_TETRIS_MODE_4                    0x00000004	/* RW--V */
+#define NV_PFB_CONFIG_0_TETRIS_MODE_5                    0x00000005	/* RW--V */
+#define NV_PFB_CONFIG_0_TETRIS_MODE_6                    0x00000006	/* RW--V */
+#define NV_PFB_CONFIG_0_TETRIS_MODE_7                    0x00000007	/* RW--V */
+#define NV_PFB_CONFIG_0_TETRIS_SHIFT                          19:18	/* RWI-F */
+#define NV_PFB_CONFIG_0_TETRIS_SHIFT_0                   0x00000000	/* RWI-V */
+#define NV_PFB_CONFIG_0_TETRIS_SHIFT_1                   0x00000001	/* RW--V */
+#define NV_PFB_CONFIG_0_TETRIS_SHIFT_2                   0x00000002	/* RW--V */
+#define NV_PFB_CONFIG_0_BANK_SWAP                             22:20	/* RWI-F */
+#define NV_PFB_CONFIG_0_BANK_SWAP_OFF                    0x00000000	/* RWI-V */
+#define NV_PFB_CONFIG_0_BANK_SWAP_1M                     0x00000001	/* RW--V */
+#define NV_PFB_CONFIG_0_BANK_SWAP_2M                     0x00000005	/* RW--V */
+#define NV_PFB_CONFIG_0_BANK_SWAP_4M                     0x00000007	/* RW--V */
+#define NV_PFB_CONFIG_0_UNUSED                                23:23	/* RW-VF */
+#define NV_PFB_CONFIG_0_SCRAMBLE_EN                           29:29	/* RWIVF */
+#define NV_PFB_CONFIG_0_SCRAMBLE_EN_INIT                 0x00000000	/* RW--V */
+#define NV_PFB_CONFIG_0_SCRAMBLE_ACTIVE                  0x00000001	/* RW--V */
+#define NV_PFB_CONFIG_0_PRAMIN_WR                             28:28	/* RWIVF */
+#define NV_PFB_CONFIG_0_PRAMIN_WR_INIT                   0x00000000	/* RW--V */
+#define NV_PFB_CONFIG_0_PRAMIN_WR_DISABLED               0x00000001	/* RW--V */
+#define NV_PFB_CONFIG_0_PRAMIN_WR_MASK                        27:24	/* RWIVF */
+#define NV_PFB_CONFIG_0_PRAMIN_WR_MASK_INIT              0x00000000	/* RWI-V */
+#define NV_PFB_CONFIG_0_PRAMIN_WR_MASK_CLEAR             0x0000000f	/* RWI-V */
+#define NV_PFB_CONFIG_1                                  0x00100204	/* RW-4R */
+#define NV_PFB_RTL                                       0x00100300	/* RW-4R */
+#define NV_PFB_RTL_H                                            0:0	/* RWIUF */
+#define NV_PFB_RTL_H_DEFAULT                             0x00000000	/* RWI-V */
+#define NV_PFB_RTL_MC                                           1:1	/* RWIUF */
+#define NV_PFB_RTL_MC_DEFAULT                            0x00000000	/* RWI-V */
+#define NV_PFB_RTL_V                                            2:2	/* RWIUF */
+#define NV_PFB_RTL_V_DEFAULT                             0x00000000	/* RWI-V */
+#define NV_PFB_RTL_G                                            3:3	/* RWIUF */
+#define NV_PFB_RTL_G_DEFAULT                             0x00000000	/* RWI-V */
+#define NV_PFB_RTL_GB                                           4:4	/* RWIUF */
+#define NV_PFB_RTL_GB_DEFAULT                            0x00000000	/* RWI-V */
+#define NV_PFB_CONFIG_0_RESOLUTION                              5:0	/* RWIVF */
+#define NV_PFB_CONFIG_0_RESOLUTION_320_PIXELS            0x0000000a	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_400_PIXELS            0x0000000d	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_480_PIXELS            0x0000000f	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_512_PIXELS            0x00000010	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_640_PIXELS            0x00000014	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_800_PIXELS            0x00000019	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_960_PIXELS            0x0000001e	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_1024_PIXELS           0x00000020	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_1152_PIXELS           0x00000024	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_1280_PIXELS           0x00000028	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_1600_PIXELS           0x00000032	/* RW--V */
+#define NV_PFB_CONFIG_0_RESOLUTION_DEFAULT               0x00000014	/* RWI-V */
+#define NV_PFB_CONFIG_0_PIXEL_DEPTH                             9:8	/* RWIVF */
+#define NV_PFB_CONFIG_0_PIXEL_DEPTH_8_BITS               0x00000001	/* RW--V */
+#define NV_PFB_CONFIG_0_PIXEL_DEPTH_16_BITS              0x00000002	/* RW--V */
+#define NV_PFB_CONFIG_0_PIXEL_DEPTH_32_BITS              0x00000003	/* RW--V */
+#define NV_PFB_CONFIG_0_PIXEL_DEPTH_DEFAULT              0x00000001	/* RWI-V */
+#define NV_PFB_CONFIG_0_TILING                                12:12	/* RWIVF */
+#define NV_PFB_CONFIG_0_TILING_ENABLED                   0x00000000	/* RW--V */
+#define NV_PFB_CONFIG_0_TILING_DISABLED                  0x00000001	/* RWI-V */
+#define NV_PFB_CONFIG_1_SGRAM100                                3:3	/* RWIVF */
+#define NV_PFB_CONFIG_1_SGRAM100_ENABLED                 0x00000000	/* RWI-V */
+#define NV_PFB_CONFIG_1_SGRAM100_DISABLED                0x00000001	/* RW--V */
+#define NV_PFB_DEBUG_0_CKE_ALWAYSON                           29:29	/* RWIVF */
+#define NV_PFB_DEBUG_0_CKE_ALWAYSON_OFF                  0x00000000	/* RW--V */
+#define NV_PFB_DEBUG_0_CKE_ALWAYSON_ON                   0x00000001	/* RWI-V */
 
-But in the log files for the other config that was at least working somehow
-(nouveau kernel mode setting enabled and X forced to throw an error) I really
-can't figure which driver is used. Don't find any output either for nv, nouveau
-or anything else that might be a driver.
+my translation
 
-The log file for the case "blank screen" does show nouveau is used, there is -
-as you say - a lot of output from it. But as far as I can tell there are no
-nouveau errors to be seen. So nouveau configured correctly does not work and
-does not throw an error. But only for the external monitor, internal monitor
-does work.
+define NV04_PFB_BOOT_0_RAM_WIDTH_128_enable = 1 << 2;
+define NV04_PFB_CFG0_TYPE = 14:0
+define NV04_PFB_CFG0_TYPE_OLD1024_FIXED_8BPP = 0x00000120;
+define NV04_PFB_CFG0_TYPE_OLD1024_FIXED_16BPP = 0x00000220;
+define NV04_PFB_CFG0_TYPE_OLD1024_FIXED_32BPP = 0x00000320;
+define NV04_PFB_CFG0_TYPE_TETRIS = 0x00002000;
+define NV04_PFB_CFG0_TYPE_NOTILING = 0x00001114;
+define NV04_PFB_CFG0_TETRIS_MODE = 17:15
+define NV04_PFB_CFG0_TETRIS_MODE_PASS                 0x00000000:
+define NV04_PFB_CFG0_TETRIS_MODE_1 = 0x00000001;
+.....
+define NV04_PFB_CFG0_TETRIS_MODE_7 = 0x00000007;
+define NV04_PFB_CFG0_TETRIS_SHIFT = 19:18
+define NV04_PFB_CFG0_TETRIS_SHIFT_0                   0x00000000:
+define NV04_PFB_CFG0_TETRIS_SHIFT_1                   0x00000001:
+define NV04_PFB_CFG0_TETRIS_SHIFT_2                   0x00000002:
+define NV04_PFB_CFG0_BANK_SWAP   =  22:20
+define NV04_PFB_CFG0_SWAP_OFF            =        0x00000000;
+define NV04_PFB_CFG0_SWAP_1M             =        0x00000001;
+define NV04_PFB_CFG0_SWAP_2M             =        0x00000005;
+define NV04_PFB_CFG0_SWAP_4M             =        0x00000007;
+define NV04_PFB_CFG0_TILING =       12:12
+define NV04_PFB_CFG0_TILING_ENABLED           =   0x00000000;
+define NV04_PFB_CFG0_TILING_DISABLED         =    0x00000001;
 
-I hope somebody will be interested and take care of this bug. It took me such a
-long time and hard effort to get around this prob and also, I'd like to use a
-proper kernel mode driver (as you put it). Using the config that forces X to
-throw an error isn't really a permanent option, because a) I can't figure if
-that is using nouveau and b) this considerably makes startup time longer since
-it needs 2 user interactions plus an X server restart. Also, a config that
-begins with a system error is nothing I can trust in, might cause problems
-later I just didn't encounter yet.
-
-I use nv now and wait to see if that bug gets fixed sometime.
-
-Best regards, Michael
-
-PS I don't think I have to disable / unload nouveau completely to use nv. I
-followed the link given above to the nouveau troubleshooting FAQ, and there
-they said, you may unload nouveau, but you don't have to - disabling kernel
-mode switching should be sufficient. I'd prefer to use nouveau when sometime
-the bug will be fixed so I don't want do disable it completely now. The nv
-config I have now works correct, as of yet I did not find any graphics related
-problem and I have checked quite some points now with it, so as of now I don't
-see the necessity / benefit of unloading nouveau completely.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+define NV04_PFB_CFG1_SGRAM100 =  3:3
+define NV04_PFB_CFG1_SGRAM100_ENABLED           =      0x00000000;
+define NV04_PFB_CFG1_SGRAM100_DISABLED          =      0x00000001;
