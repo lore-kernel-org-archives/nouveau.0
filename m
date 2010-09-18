@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30158] nouveau fails to display on external monitor
-Date: Sat, 18 Sep 2010 15:03:50 -0700 (PDT)
-Message-ID: <20100918220350.9CA0A13011C@annarchy.freedesktop.org>
+Date: Sat, 18 Sep 2010 15:04:14 -0700 (PDT)
+Message-ID: <20100918220414.E412C1300E9@annarchy.freedesktop.org>
 References: <bug-30158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30158
 
---- Comment #17 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-18 15:03:50 PDT ---
-Created an attachment (id=38791)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38791)
-Xorg.0.log for startx from textonly console with nouveau enabled (fails to
-blank screen)
+--- Comment #18 from Michael Boehm <varp-b-Mmb7MZpHnFY@public.gmane.org> 2010-09-18 15:04:14 PDT ---
+Created an attachment (id=38792)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38792)
+xorg.conf for startx from textonly console with nouveau enabled (fails to blank
+screen)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
