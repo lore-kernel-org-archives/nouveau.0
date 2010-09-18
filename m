@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30146] Horizontal Couloured Lines with Nvidia 6,
 	800 GT (NV40)
-Date: Sat, 18 Sep 2010 03:20:10 -0700 (PDT)
-Message-ID: <20100918102010.39FD2130079@annarchy.freedesktop.org>
+Date: Sat, 18 Sep 2010 03:22:13 -0700 (PDT)
+Message-ID: <20100918102214.02C861300A3@annarchy.freedesktop.org>
 References: <bug-30146-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30146
 
---- Comment #9 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-09-18 03:20:09 PDT ---
-Created an attachment (id=38777)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38777)
-Dmesg with init 3 and no nouveau.noaccel=1
+--- Comment #10 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-09-18 03:22:13 PDT ---
+Created an attachment (id=38778)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38778)
+Xorg.0.log with init 3,no nouveau.noaccel=1 and I used "startx -- -logverbose
+6"
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
