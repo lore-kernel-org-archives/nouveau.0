@@ -1,90 +1,73 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: nouveau/ttm: BUG in ttm_bo_release_list
-Date: Sat, 18 Sep 2010 09:39:21 +1000
-Message-ID: <1284766761.14299.1.camel@araqiel>
-References: <20100917174352.GA2770@joi.lan>
-Reply-To: skeggsb@gmail.com
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 30158] nouveau fails to display on external monitor
+Date: Sat, 18 Sep 2010 01:14:24 -0700 (PDT)
+Message-ID: <20100918081424.359181300AC@annarchy.freedesktop.org>
+References: <bug-30158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <20100917174352.GA2770@joi.lan>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-30158-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2010-09-17 at 19:43 +0200, Marcin Slusarz wrote:
-> Hi
-> Since upgrade from 2.6.35 to 2.6.36-rc3 (nouveau tree) I'm hitting this bug a couple of times a day:
-> 
-> [ 2869.618504] ------------[ cut here ]------------
-> [ 2869.618532] kernel BUG at drivers/gpu/drm/ttm/ttm_bo.c:153!
-> [ 2869.618560] invalid opcode: 0000 [#1] PREEMPT SMP 
-> [ 2869.618600] last sysfs file: /sys/devices/pci0000:00/0000:00:03.0/0000:02:00.0/pm_status
-> [ 2869.618637] CPU 0 
-> [ 2869.618649] Modules linked in: nouveau ttm drm_kms_helper snd_hda_codec_realtek snd_hda_intel snd_hda_codec
-> [ 2869.618730] 
-> [ 2869.618742] Pid: 11, comm: kworker/0:1 Not tainted 2.6.36-rc3-nv+ #485 P6T SE/System Product Name
-> [ 2869.618781] RIP: 0010:[<ffffffffa0082c9e>]  [<ffffffffa0082c9e>] ttm_bo_release_list+0x37/0xcf [ttm]
-> [ 2869.618830] RSP: 0018:ffff8801bfd85d40  EFLAGS: 00010202
-> [ 2869.618855] RAX: 0000000000000001 RBX: ffff8801b1e50c00 RCX: ffff8801b7500330
-> [ 2869.618887] RDX: 0000000000000001 RSI: 0000000000000037 RDI: ffff8801b1e50c44
-> [ 2869.618918] RBP: ffff8801bfd85d60 R08: 0000000000000002 R09: ffff8801bf683000
-> [ 2869.618950] R10: ffff8801b1e50c70 R11: 0000000000000000 R12: ffff8801b1e50c44
-> [ 2869.618981] R13: ffff8801b7500188 R14: 0000000000000000 R15: ffff8801b7500738
-> [ 2869.619013] FS:  0000000000000000(0000) GS:ffff880001e00000(0000) knlGS:0000000000000000
-> [ 2869.619048] CS:  0010 DS: 0000 ES: 0000 CR0: 000000008005003b
-> [ 2869.619074] CR2: 00007f2cc0f6b000 CR3: 00000001bfe8a000 CR4: 00000000000006f0
-> [ 2869.619106] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> [ 2869.619137] DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000400
-> [ 2869.619168] Process kworker/0:1 (pid: 11, threadinfo ffff8801bfd84000, task ffff8801bfd88000)
-> [ 2869.619205] Stack:
-> [ 2869.619217]  0000000000000000 ffff8801b1e50c44 ffffffffa0082c67 ffff8801bdcb8ab0
-> [ 2869.619262] <0> ffff8801bfd85d80 ffffffff8121c83a ffff8801b1e50000 ffff8801b1e50c00
-> [ 2869.619318] <0> ffff8801bfd85dd0 ffffffffa00839f4 ffff880001e0ebc0 0000000000000001
-> [ 2869.619374] Call Trace:
-> [ 2869.619392]  [<ffffffffa0082c67>] ? ttm_bo_release_list+0x0/0xcf [ttm]
-> [ 2869.619425]  [<ffffffff8121c83a>] kref_put+0x43/0x4d
-> [ 2869.619451]  [<ffffffffa00839f4>] ttm_bo_delayed_delete+0xa2/0xf9 [ttm]
-> [ 2869.619484]  [<ffffffffa0083a4b>] ? ttm_bo_delayed_workqueue+0x0/0x30 [ttm]
-> [ 2869.619517]  [<ffffffffa0083a65>] ttm_bo_delayed_workqueue+0x1a/0x30 [ttm]
-> [ 2869.619551]  [<ffffffff8107eb83>] process_one_work+0x29f/0x448
-> [ 2869.619580]  [<ffffffff8107f0e5>] worker_thread+0x1d6/0x349
-> [ 2869.619607]  [<ffffffff8107ef0f>] ? worker_thread+0x0/0x349
-> [ 2869.619635]  [<ffffffff81082198>] kthread+0x7d/0x85
-> [ 2869.619661]  [<ffffffff8102edd4>] kernel_thread_helper+0x4/0x10
-> [ 2869.619692]  [<ffffffff8105c10b>] ? finish_task_switch+0x49/0xb2
-> [ 2869.619722]  [<ffffffff814333d1>] ? _raw_spin_unlock_irq+0x19/0x34
-> [ 2869.619752]  [<ffffffff814339ad>] ? restore_args+0x0/0x30
-> [ 2869.619779]  [<ffffffff8108211b>] ? kthread+0x0/0x85
-> [ 2869.619805]  [<ffffffff8102edd0>] ? kernel_thread_helper+0x0/0x10
-> [ 2869.619832] Code: 48 8d 5f bc 48 83 ec 08 8b 07 4c 8b 6f c4 85 c0 74 04 0f 0b eb fe 8b 47 fc 85 c0 74 04 0f 0b eb fe 8b 87 a8 00 00 00 85 c0 74 04 <0f> 0b eb fe 48 83 bb 38 01 00 00 00 74 04 0f 0b eb fe 48 83 bb 
-> [ 2869.620255] RIP  [<ffffffffa0082c9e>] ttm_bo_release_list+0x37/0xcf [ttm]
-> [ 2869.620295]  RSP <ffff8801bfd85d40>
-> [ 2869.629610] ---[ end trace 302a6257f0da8cdc ]---
-> 
-> this is BUG_ON(atomic_read(&bo->cpu_writers));
-> 
-> I'm on b642f07208988270ac402d2548d42dab1d5fec92 "drm/nv50: fix 100c90 write on nva3".
-> If you have any patches / ideas how to debug this, let me know.
-I've actually seen this a couple of times.  It appears I was incorrectly
-blaming some patches I have in progress for it, the problem appeared to
-go away when I reverted them.  Perhaps it's more random.  I have no
-current ideas however.
+https://bugs.freedesktop.org/show_bug.cgi?id=30158
 
-Ben.
+--- Comment #14 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2010-09-18 01:14:23 PDT ---
+(In reply to comment #13)
 > 
-> Marcin
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+> In the meanwhile I have clearly found that for the case when X throws an error
+> and restarts, then all fine, nouveau actually IS running. hwinfo --gfx has an
+> entry I had before overseen that says [ driver "nouveau" ] this entry is not
+> present when running nv. Still, X log files don't have the slightest indication
+> that nouveau was started, but it must be running. Which is also quite obvious,
+> since with this case kernel mode setting is active and X cannot switch to any
+> other driver.
+
+See my previous post, why I think hwinfo gets it wrong.
+
+If X log does not have a lot of lines from NOUVEAU, (accelerated) Nouveau is
+*not* used by X.
+
+It is quite possible to be able to start X with a user mode driver (that is,
+one that pokes the hardware bypassing the kernel), while still having a kernel
+mode driver active. This is a bug, and I recall some efforts have been made to
+detect it, but I would not count on it yet. The situation leads to an unstable
+system, where two drivers drive the same hardware without knowing about each
+other.
+
+What happens with Ubuntu: it first tries the normal config, and if X fails, it
+will switch to a fail-safe config. I have no idea what drivers the fail-safe
+config tries to use. Quite likely "vesafb" is one of those, and is incompatible
+with Nouveau kernel mode driver, too.
+
+The only X driver apart from "nouveau" that can work with the Nouveau kernel
+driver, is "fbdev". If it gets used automatically, you are fine, you just do
+not get any graphics acceleration whatsoever and probably lack other features,
+too. "fbdev" uses the generic kernel framebuffer interface, which is very much
+hardware agnostic.
+
+I don't have the time to help you further now, or check your logs, but don't
+give up. It could be nice to boot Ubuntu to text-mode (non-graphical), set up
+Nouveau, and start X with the command 'startx'. When it fails, the fail-safe-X
+should not kick in. In that situation, the complete (starting at current
+boot-up) kernel and X logs would be most useful in debugging this.
+
+More about KMS and checking if it is active:
+http://nouveau.freedesktop.org/wiki/KernelModeSetting
+
+Cheers.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
