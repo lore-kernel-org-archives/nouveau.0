@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30146] Horizontal Couloured Lines with Nvidia 6,
 	800 GT (NV40)
-Date: Sat, 18 Sep 2010 02:58:42 -0700 (PDT)
-Message-ID: <20100918095842.C5E501300DF@annarchy.freedesktop.org>
+Date: Sat, 18 Sep 2010 03:20:10 -0700 (PDT)
+Message-ID: <20100918102010.39FD2130079@annarchy.freedesktop.org>
 References: <bug-30146-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,24 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30146
 
---- Comment #8 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-09-18 02:58:42 PDT ---
-Hi Francisco,
-            I'm sorry for the late reply,I had discussed my issue on the
-nouveau irc channel.I did do a git bisect on the linix-2.6 kernel module branch
-with not much success.I simply can't remember when the code broke for
-me,although it was around the start of 30-08-2010.
-
-I think a different approach to solve the problem could be better.Since the
-kernel option of nouveau.noaccel=1,I can boot fine into the desktop  with no
-problems.
-
-If I now leave out the parameter,I can get as far as the desktop,but the X
-server will freeze as soon as it does.
-
-I will upload my latest dmesg and Xorg.0.log whenb that problem occurs.
-
-Regards,
-        STEVE555
+--- Comment #9 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-09-18 03:20:09 PDT ---
+Created an attachment (id=38777)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38777)
+Dmesg with init 3 and no nouveau.noaccel=1
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
