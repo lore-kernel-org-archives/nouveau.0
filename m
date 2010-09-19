@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30158] nouveau fails to display on external monitor
-Date: Sun, 19 Sep 2010 02:53:34 -0700 (PDT)
-Message-ID: <20100919095334.C1A2F130113@annarchy.freedesktop.org>
+Date: Sun, 19 Sep 2010 02:53:53 -0700 (PDT)
+Message-ID: <20100919095353.E922F130124@annarchy.freedesktop.org>
 References: <bug-30158-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #38790|text/x-log                  |text/plain
+  Attachment #38791|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
