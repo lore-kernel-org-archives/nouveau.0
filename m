@@ -1,14 +1,18 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [RFC] Initial power management vbios parsing,
- voltage & clock setting to nouveau.
-Date: Mon, 20 Sep 2010 01:54:42 +0200
-Message-ID: <4C96A2C2.7090804@free.fr>
-References: <4C909882.2080702@free.fr> <i6qfu5$nk2$1@dough.gmane.org>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nouveau and multiple video cards
+Date: Sun, 19 Sep 2010 20:22:25 -0400
+Message-ID: <AANLkTinKFLdngzQdj5Dz2QhMDD9ZivuAbzkLtkYn5wug@mail.gmail.com>
+References: <20100918160119.GA3930@scooter>
+	<AANLkTimWEBinSZ5mPVWhgVeHosN0Qh1N6GN8Uh_zbxZ-@mail.gmail.com>
+	<AANLkTikAmoVDpfMD81kJqfQ85rWCGoEMAUga54CDV1co@mail.gmail.com>
+	<AANLkTikW4oVmg74TkSO23R7XpiTyGCa5npmE3vVZ5cv+@mail.gmail.com>
+	<AANLkTiktUJsULg6_+8wqP+5OaxfEnoz3innKam8DsGMP@mail.gmail.com>
+	<20100919224853.GA19353@scooter>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <i6qfu5$nk2$1@dough.gmane.org>
+In-Reply-To: <20100919224853.GA19353@scooter>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,27 +22,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Felix Blanke <felixblanke-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-  Le 15/09/2010 14:58, Robert Kaiser a =E9crit :
-> On an only slightly related note, what's the recommended way to read =
+On Sun, Sep 19, 2010 at 6:48 PM, Felix Blanke <felixblanke-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> Hi,
+>
+> I hope it is ok if I would ask one last question:
+>
+> It is possible to use a quadro NVS 450 with 3 monitors via DVI and nouveau?
+>
+>
+> The status matrix is kind of old (e.g. it says that dual link dvi is WIP, it works
+> for me good :)) and I dont find that quado NVS 450 on it.
+>
+>
+> Thanks again!
 
-> out the temperature of the GPU when using nouveau? (I have a NV4B =
-
-> card, but I think I read this is mostly the same for all NVidias, right?)
-There is no way to get the temperature using nouveau at the moment. This =
-
-feature should land in nouveau git some time this week.
-
-Reading the temperature is not as straightforward as just reading a =
-
-register. It works that way on nv84+, for earlier cards, you need to =
-
-parse the vbios to set-up the sensor and then read the temperature (and =
-
-change the value with some additional little calcultations). The =
-
-documentation should be available soon, I'm working on merging all the =
-
-doc we have.
+If the card can actually drive 3 monitors at once with the nvidia
+driver then it should work in nouveau now or can be implemented with
+some reversing. Maybe someone who knows more about mode setting can
+give you a definitive answer.
