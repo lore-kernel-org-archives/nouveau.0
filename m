@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30286] New: Rendering Artefacts for "EffectFrames"
- with KWin trunk
-Date: Mon, 20 Sep 2010 09:44:45 -0700 (PDT)
-Message-ID: <bug-30286-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Problems with dual head on NVidia Quadro NVS 295
+Date: Tue, 21 Sep 2010 08:09:09 +1000
+Message-ID: <1285020549.9989.0.camel@nisroch>
+References: <4C977BF6.20505@cs.toronto.edu>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <4C977BF6.20505-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,52 +18,105 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Stefan Mathe <mstefan-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30286
+On Mon, 2010-09-20 at 18:21 +0300, Stefan Mathe wrote:
+> Hello,
+> 
+> I'm having problems configuring the dual-head display using an NVidia
+> Quadro NVS 295 display card. It uses two identical LCD monitors (model
+> HP LP2475w), connected using DP cables. If I connect one single monitor
+> (either to the DP-1 or to the DP-2 output), the desktop shows up
+> correctly. If I connect both monitors, only the left monitor shows the
+> image, and the desktop is extended as if the second monitor were showing
+> something. But the right monitor remains blank.
+This is expected.  Nouveau can't fully program a native DP output on its
+own yet, and relies on assistance from the video BIOS.  As such, only
+displays which have previously been initialised by the VBIOS will work.
 
-           Summary: Rendering Artefacts for "EffectFrames" with KWin trunk
-           Product: Mesa
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: kde-DczxDNHMV8knNWVl+fqZflaTQe2KTcn/@public.gmane.org
-
-
-Created an attachment (id=38827)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38827)
-PresentWindows effect showing artefacts.
-
-I noticed that KWin's EffectFrames are rendered incorrectly with nouveau and
-current kwin trunk (please see attached screenshot). There has been a change
-between 4.5 and current trunk, so I cannot say if the same problem exsists with
-4.5. as well.
-
-The EffectFrame is a GLTexture generated with TextureFromPixmap from a Qt
-QPixmap. In the screenshot we see that the icons are rendered correctly (also
-using QPixmap -> TFP -> GLTexture conversion) while the other textures are
-rendered incorrectly. This includes the pure black background texture, the
-textures generated from Plasma's FrameSvg and text textures.
-
-The relevant code is in kwin trunk scene_opengl.cpp [1]
-SceneOpenGL::EffectFrame::render() at line 2002. An example for creating a
-texture can be found in SceneOpenGL::EffectFrame::updateTextTexture() at line
-2264. If you want to have any other information to the code, do not hesistate
-to ask, as I recently refactored that code.
-
-I am using nouveau, dri and kernel from debian experimental. glxinfo says it's
-Mesa 7.8.2
-
-[1]
-http://websvn.kde.org/trunk/KDE/kdebase/workspace/kwin/scene_opengl.cpp?view=markup
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Ben.
+> 
+> I am using OpenSUSE 11.3, with the nouveau drivers included in its
+> kernel (kernel version 2.6.34). The relevant parts of xorg.conf.d are:
+> 
+> Section "Device"
+>   Identifier "Default Device"
+>   Option "SWcursor" "true"
+>   Option "monitor-DP-1" "LeftMonitor"
+>   Option "monitor-DP-2" "RightMonitor"
+> EndSection
+> 
+> Section "Monitor"
+>   Identifier "LeftMonitor"
+>   Option "PreferredMode" "1920x1200"
+> EndSection
+> 
+> Section "Monitor"
+>   Identifier "RightMonitor"
+>   Option     "RightOf" "LeftMonitor"
+>   Option     "PreferredMode" "1920x1200"
+> EndSection
+> 
+> Section "Screen"
+>   Identifier "Default Screen"
+>   Device "Default Device"
+>   Monitor "LeftMonitor"
+>   DefaultDepth 24
+>   SubSection "Display"
+>      Depth 24
+>      Virtual 3840 1200
+>   EndSubSection
+> EndSection
+> 
+> Section "ServerLayout"
+>   Identifier "Layout0"
+>   Screen 0 "Default Screen" 0 0
+> EndSection
+> 
+> Note that I had to set the mouse cursor to software rendering because it
+> was not showing up at all when using hardware rendering (cursor was
+> entirely invisible but the mouse was operational).
+> 
+> The output of the "xrandr" command is:
+> 
+> Screen 0: minimum 320 x 200, current 3840 x 1200, maximum 8192 x 8192
+> DP-1 connected 1920x1200+0+0 (normal left inverted right x axis y axis)
+> 546mm x 352mm
+>    1920x1200      60.0*+   59.9 
+>    1920x1080      60.0 
+>    1600x1200      60.0 
+>    1680x1050      60.0 
+>    1600x1000      60.0 
+>    1280x1024      75.0 
+>    1280x960       60.0 
+>    1152x864       75.0 
+>    1024x768       75.1     60.0 
+>    832x624        74.6 
+>    800x600        75.0     60.3 
+>    640x480        75.0     60.0 
+>    720x400        70.1 
+> DP-2 connected 1920x1200+1920+0 (normal left inverted right x axis y
+> axis) 546mm x 352mm
+>    1920x1200      60.0*+   59.9 
+>    1600x1200      60.0 
+>    1680x1050      60.0 
+>    1600x1000      60.0 
+>    1280x1024      75.0 
+>    1280x960       60.0 
+>    1152x864       75.0 
+>    1024x768       75.1     60.0 
+>    832x624        74.6 
+>    800x600        75.0     60.3 
+>    640x480        75.0     60.0 
+>    720x400        70.1 
+> 
+> I have also attached my Xorg.0.log file.
+> 
+> Many thanks in advance for the help,
+> Stefan.
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
