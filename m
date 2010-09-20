@@ -1,20 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nouveau and multiple video cards
-Date: Mon, 20 Sep 2010 10:41:57 +1000
-Message-ID: <1284943317.30072.1.camel@nisroch>
-References: <20100918160119.GA3930@scooter>
-	<AANLkTimWEBinSZ5mPVWhgVeHosN0Qh1N6GN8Uh_zbxZ-@mail.gmail.com>
-	<AANLkTikAmoVDpfMD81kJqfQ85rWCGoEMAUga54CDV1co@mail.gmail.com>
-	<AANLkTikW4oVmg74TkSO23R7XpiTyGCa5npmE3vVZ5cv+@mail.gmail.com>
-	<AANLkTiktUJsULg6_+8wqP+5OaxfEnoz3innKam8DsGMP@mail.gmail.com>
-	<20100919224853.GA19353@scooter>
-	<AANLkTinKFLdngzQdj5Dz2QhMDD9ZivuAbzkLtkYn5wug@mail.gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 30146] Horizontal Couloured Lines with Nvidia 6,
+	800 GT (NV40)
+Date: Sun, 19 Sep 2010 19:05:42 -0700 (PDT)
+Message-ID: <20100920020542.E2767130060@annarchy.freedesktop.org>
+References: <bug-30146-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTinKFLdngzQdj5Dz2QhMDD9ZivuAbzkLtkYn5wug-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-30146-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,37 +18,37 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 2010-09-19 at 20:22 -0400, Younes Manton wrote:
-> On Sun, Sep 19, 2010 at 6:48 PM, Felix Blanke <felixblanke-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > Hi,
-> >
-> > I hope it is ok if I would ask one last question:
-> >
-> > It is possible to use a quadro NVS 450 with 3 monitors via DVI and nouveau?
-> >
-> >
-> > The status matrix is kind of old (e.g. it says that dual link dvi is WIP, it works
-> > for me good :)) and I dont find that quado NVS 450 on it.
-> >
-> >
-> > Thanks again!
+https://bugs.freedesktop.org/show_bug.cgi?id=30146
+
+--- Comment #11 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-19 19:05:42 PDT ---
+(In reply to comment #8)
+> Hi Francisco,
+>             I'm sorry for the late reply,I had discussed my issue on the
+> nouveau irc channel.I did do a git bisect on the linix-2.6 kernel module branch
+> with not much success.I simply can't remember when the code broke for
+> me,although it was around the start of 30-08-2010.
 > 
-> If the card can actually drive 3 monitors at once with the nvidia
-> driver then it should work in nouveau now or can be implemented with
-> some reversing. Maybe someone who knows more about mode setting can
-> give you a definitive answer.
-I don't believe there's any NVIDIA GPUs with more than 2 CRTCs.  At
-least, none I've seen.
+> I think a different approach to solve the problem could be better.Since the
+> kernel option of nouveau.noaccel=1,I can boot fine into the desktop  with no
+> problems.
+> 
+Well, your kernel logs aren't very useful, because they end before the crash,
+they don't even have a trace of the X server starting up. Your best bet is
+still 'git-bisect', e.g. if you start bisecting from the 15 Aug it shouldn't
+take you than 12 steps to get to the culprit.
 
-There are boards which can drive 4 displays, but they're actually
-dual-GPU boards.
+> If I now leave out the parameter,I can get as far as the desktop,but the X
+> server will freeze as soon as it does.
+> 
+> I will upload my latest dmesg and Xorg.0.log whenb that problem occurs.
+> 
+> Regards,
+>         STEVE555
 
-Ben.
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
