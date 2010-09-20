@@ -1,13 +1,12 @@
-From: Abelenda Diego <diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Problems with dual head on NVidia Quadro NVS 295
-Date: Mon, 20 Sep 2010 17:53:22 +0200
-Message-ID: <20100920175322.3ea3ed7e@Lina>
-References: <4C977BF6.20505@cs.toronto.edu>
-Reply-To: diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 30286] New: Rendering Artefacts for "EffectFrames"
+ with KWin trunk
+Date: Mon, 20 Sep 2010 09:44:45 -0700 (PDT)
+Message-ID: <bug-30286-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1948340157=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4C977BF6.20505-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,150 +16,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Stefan Mathe <mstefan-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1948340157==
-Content-Type: multipart/signed; micalg=PGP-SHA1;
- boundary="Sig_/J=GFX8rsQ.euj0GKgJm49Tj"; protocol="application/pgp-signature"
+https://bugs.freedesktop.org/show_bug.cgi?id=30286
 
---Sig_/J=GFX8rsQ.euj0GKgJm49Tj
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+           Summary: Rendering Artefacts for "EffectFrames" with KWin trunk
+           Product: Mesa
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: kde-DczxDNHMV8knNWVl+fqZflaTQe2KTcn/@public.gmane.org
 
-On Mon, 20 Sep 2010 18:21:26 +0300
-Stefan Mathe <mstefan-26n5VD7DAF2Tm46uYYfjYg@public.gmane.org> wrote:
 
-> Hello,
->=20
-> I'm having problems configuring the dual-head display using an NVidia
-> Quadro NVS 295 display card. It uses two identical LCD monitors (model
-> HP LP2475w), connected using DP cables. If I connect one single
-> monitor (either to the DP-1 or to the DP-2 output), the desktop shows
-> up correctly. If I connect both monitors, only the left monitor shows
-> the image, and the desktop is extended as if the second monitor were
-> showing something. But the right monitor remains blank.
->=20
-> I am using OpenSUSE 11.3, with the nouveau drivers included in its
-> kernel (kernel version 2.6.34). The relevant parts of xorg.conf.d are:
->=20
-> Section "Device"
->   Identifier "Default Device"
->   Option "SWcursor" "true"
->   Option "monitor-DP-1" "LeftMonitor"
->   Option "monitor-DP-2" "RightMonitor"
-> EndSection
->=20
-> Section "Monitor"
->   Identifier "LeftMonitor"
->   Option "PreferredMode" "1920x1200"
-> EndSection
->=20
-> Section "Monitor"
->   Identifier "RightMonitor"
->   Option     "RightOf" "LeftMonitor"
->   Option     "PreferredMode" "1920x1200"
-> EndSection
->=20
-> Section "Screen"
->   Identifier "Default Screen"
->   Device "Default Device"
->   Monitor "LeftMonitor"
->   DefaultDepth 24
->   SubSection "Display"
->      Depth 24
->      Virtual 3840 1200
->   EndSubSection
-> EndSection
->=20
-> Section "ServerLayout"
->   Identifier "Layout0"
->   Screen 0 "Default Screen" 0 0
-> EndSection
->=20
-> Note that I had to set the mouse cursor to software rendering because
-> it was not showing up at all when using hardware rendering (cursor was
-> entirely invisible but the mouse was operational).
->=20
-> The output of the "xrandr" command is:
->=20
-> Screen 0: minimum 320 x 200, current 3840 x 1200, maximum 8192 x 8192
-> DP-1 connected 1920x1200+0+0 (normal left inverted right x axis y
-> axis) 546mm x 352mm
->    1920x1200      60.0*+   59.9=20
->    1920x1080      60.0=20
->    1600x1200      60.0=20
->    1680x1050      60.0=20
->    1600x1000      60.0=20
->    1280x1024      75.0=20
->    1280x960       60.0=20
->    1152x864       75.0=20
->    1024x768       75.1     60.0=20
->    832x624        74.6=20
->    800x600        75.0     60.3=20
->    640x480        75.0     60.0=20
->    720x400        70.1=20
-> DP-2 connected 1920x1200+1920+0 (normal left inverted right x axis y
-> axis) 546mm x 352mm
->    1920x1200      60.0*+   59.9=20
->    1600x1200      60.0=20
->    1680x1050      60.0=20
->    1600x1000      60.0=20
->    1280x1024      75.0=20
->    1280x960       60.0=20
->    1152x864       75.0=20
->    1024x768       75.1     60.0=20
->    832x624        74.6=20
->    800x600        75.0     60.3=20
->    640x480        75.0     60.0=20
->    720x400        70.1=20
->=20
-> I have also attached my Xorg.0.log file.
->=20
-> Many thanks in advance for the help,
-> Stefan.
+Created an attachment (id=38827)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38827)
+PresentWindows effect showing artefacts.
 
-Got exactly the same problem with an nvidia 9600GT and two DVI cables.
-Using gentoo and I tested the kernels 2.6.34 2.6.35 and the 2.6.36_rc
-nothing changed. Until now I had the two screens connected via a
-DVI-to-VGA adapter and there was another problem, there was some
-static on the second screen, but the nvidia proprietary driver did the
-same thing.
+I noticed that KWin's EffectFrames are rendered incorrectly with nouveau and
+current kwin trunk (please see attached screenshot). There has been a change
+between 4.5 and current trunk, so I cannot say if the same problem exsists with
+4.5. as well.
 
---Sig_/J=GFX8rsQ.euj0GKgJm49Tj
-Content-Type: application/pgp-signature; name=signature.asc
-Content-Disposition: attachment; filename=signature.asc
+The EffectFrame is a GLTexture generated with TextureFromPixmap from a Qt
+QPixmap. In the screenshot we see that the icons are rendered correctly (also
+using QPixmap -> TFP -> GLTexture conversion) while the other textures are
+rendered incorrectly. This includes the pure black background texture, the
+textures generated from Plasma's FrameSvg and text textures.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.16 (GNU/Linux)
+The relevant code is in kwin trunk scene_opengl.cpp [1]
+SceneOpenGL::EffectFrame::render() at line 2002. An example for creating a
+texture can be found in SceneOpenGL::EffectFrame::updateTextTexture() at line
+2264. If you want to have any other information to the code, do not hesistate
+to ask, as I recently refactored that code.
 
-iQIcBAEBAgAGBQJMl4N1AAoJEKJk+FAH5Bn4BaYQAJd66dhKfSGscCBnMtzU/IQ4
-8qiQGARXnKPuT0NjM01aqoKIYOWt0OtVpoB76iMbVMXGQR/1LKaZUxnXG0l9Hy4D
-ebd/NCTFdpF0emWsy2VQ74rzdErZ4EjFuxv9/IL/UAiI/bkFySbhphXujmwm12Y1
-C8wf4fOegFmn5Kt+BEVp96BG5jsllybT/pqETxd+VqsUC1hOUXpDMZq7xY+Vlvsb
-jQnryet+sLB/K/ceUmIZIhWFcjblMZBl3Bd+JKJaTnhPKx4Kn5b8OKHXLa9lWPvO
-u3qg0YqD7s9Oj4Ybs/6MUMJW0aR1YQJWXuiTYU0R6XfqC35E0x3Cr/kndjt6YqUc
-Dmv35ktq4EY9CAdS23KjVFP9KyIYcYmAhfH4qratTxxfULKpQTgFGeYLCe2ew0I7
-PhNKXXveMCtafbVjEA5aYq9/ZIexMRtbI4RwmADhWYN3KfflWzLAHcI4D1UhdP3n
-ronaW28kNAj3CVfqMNJnvtNkG8WZhgMPhKMDTzda6iNKStr77ETZ1zGi9rX6dX3S
-6RGm2jPDzHReb8Fihpo2kJSPiGksT1AS6PslcQkZbEwfvkEG6tQEmAwsAZaLLpQP
-OOetdq4Dle0sP/u4J5ELV6QwSN6ehMccGiHso37zRTAgreJXfkYC6XcqnGytbhjV
-Sh2zyOryRz6MRf6aCaAW
-=fMHI
------END PGP SIGNATURE-----
+I am using nouveau, dri and kernel from debian experimental. glxinfo says it's
+Mesa 7.8.2
 
---Sig_/J=GFX8rsQ.euj0GKgJm49Tj--
+[1]
+http://websvn.kde.org/trunk/KDE/kdebase/workspace/kwin/scene_opengl.cpp?view=markup
 
---===============1948340157==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1948340157==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
