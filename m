@@ -1,68 +1,41 @@
-From: Maxim Levitsky <maximlevitsky@gmail.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/kms: Implement
- KDB debug hooks for nouveau KMS.
-Date: Wed, 22 Sep 2010 03:42:15 +0200
-Message-ID: <1285119735.5949.5.camel@maxim-laptop>
-References: <m3iq9yqd7w.fsf@pullcord.laptop.org>
-	<4C5ACF3F.8050409@windriver.com>
-	<m3hbj0fju3.fsf_-_@pullcord.laptop.org>
-	<m3aaoimqrp.fsf_-_@pullcord.laptop.org>
-	<1283335002.2741.5.camel@maxim-laptop> <4C7E3A73.5070503@windriver.com>
-	<1283424363.2736.1.camel@maxim-laptop>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29800] drm detects GPU lockup with dual cards/Xorg
+ hard locks even with single screen
+Date: Wed, 22 Sep 2010 01:32:58 -0700 (PDT)
+Message-ID: <20100922083258.C9932130133@annarchy.freedesktop.org>
+References: <bug-29800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <kgdb-bugreport-bounces@lists.sourceforge.net>
-In-Reply-To: <1283424363.2736.1.camel@maxim-laptop>
-List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
-	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=unsubscribe>
-List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=kgdb-bugreport>
-List-Post: <mailto:kgdb-bugreport@lists.sourceforge.net>
-List-Help: <mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=help>
-List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
-	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=subscribe>
-Errors-To: kgdb-bugreport-bounces@lists.sourceforge.net
-To: Jason Wessel <jason.wessel@windriver.com>
-Cc: David Airlie <airlied@linux.ie>, kgdb-bugreport@lists.sourceforge.net, Jesse Barnes <jbarnes@virtuousgeek.org>, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-29800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAyMDEwLTA5LTAyIGF0IDEzOjQ2ICswMzAwLCBNYXhpbSBMZXZpdHNreSB3cm90ZTog
-Cj4gT24gV2VkLCAyMDEwLTA5LTAxIGF0IDA2OjM1IC0wNTAwLCBKYXNvbiBXZXNzZWwgd3JvdGU6
-IAo+ID4gT24gMDkvMDEvMjAxMCAwNDo1NiBBTSwgTWF4aW0gTGV2aXRza3kgd3JvdGU6Cj4gPiA+
-IE9uIFRodSwgMjAxMC0wOC0xOSBhdCAxMzo1NSAtMDQwMCwgQ2hyaXMgQmFsbCB3cm90ZTogCj4g
-PiA+ICAgCj4gPiA+PiBIaSwKPiA+ID4+Cj4gPiA+PiBIZXJlJ3MgYSBwYXRjaCB0byBhZGQgc3Vw
-cG9ydCBmb3IgS01TIGRlYnVnZ2luZyB0byBOb3V2ZWF1LCBhbG9uZyB0aGUKPiA+ID4+IHN0eWxl
-IG9mIHRoZSBwcmV2aW91cyBwYXRjaGVzIGZvciBJbnRlbMK5IGFuZCBSYWRlb27Csi4gIEknbSBv
-bmx5IGFibGUKPiA+ID4+IHRvIHRlc3Qgb24gbnY1MCBoZXJlLCBzbyBhIHRlc3Qgb24gbnYwNCB3
-b3VsZCBiZSBtdWNoIGFwcHJlY2lhdGVkLAo+ID4gPj4gYW5kIEkndmUgcHVibGlzaGVkIGluc3Ry
-dWN0aW9ucyBvbiBob3cgdG8gdGVzdCBoZXJlwrMuICBUaGFua3MhCj4gPiA+Pgo+ID4gPj4gLSBD
-aHJpcy4KPiA+ID4+ICAgICAKPiA+ID4KPiA+ID4gSGksCj4gPiA+Cj4gPiA+IEkganVzdCB0cmll
-ZCB0aGF0IHBhdGNoLCBidXQgdW5mb3J0dW5hdGVseSBuZXRoZXIgd2l0aCBub3Igd2l0aG91dCBp
-dAo+ID4gPiBrZGIgc2VlbXMgbm90IHRvIHdvcmsuCj4gPiA+IEl0IGNvdWxkIGJlIGlkMTB0IGVy
-cm9yIGZyb20gbXkgc2lkZSwgYnV0IEkgZGlkIHRlc3QgdGhlIGtkYiBpbiB0aGUgcGFzdAo+ID4g
-PiB3aXRoIGZldyBLTVMgcGF0Y2hlcywgYW5kIGl0IHNlZW1lZCB0byB3b3JrLgo+ID4gPgo+ID4g
-PiBOb3cgSSBjYW4ndCBldmVuIGdldCBpdHMgcHJvbXB0IG9uIHRoZSBjb25zb2xlLgo+ID4gPgo+
-ID4gPiBUaGlzIGlzIHdoYXQgSSBkbzoKPiA+ID4KPiA+ID4gZWNobyBrYmQgfCBzdWRvIHRlZSAv
-c3lzL21vZHVsZS9rZ2Rib2MvcGFyYW1ldGVycy9rZ2Rib2MKPiA+ID4gKGFsc28gdHJpZWQgYm9v
-dGluZyB3aXRoIGtnZGJvYz1rYmQpCj4gPiA+ICAgCj4gPiAKPiA+IFRyeSBjaGFuZ2luZyBpdCB0
-byBrZ2Rib2M9a21zLGtiZCAgb3IgdGhlICJlY2hvIGttcyxrYmQiCj4gPiAKPiA+IFdoZW4geW91
-IHVzZSBvbmx5IHRoZSBrYmQsIHRoZSBrbXMgZmVhdHVyZSBpcyBub3QgYWN0aXZhdGVkLgo+IFRo
-aXMgZG9lc24ndCBoZWxwLgo+IAo+IEkgYW0gYWZyYWlkIHRoYXQgdGhpcyBidWcgaXNuJ3QgcmVs
-YXRlZCB0byBrbXMsIGJ1dCByYXRoZXIgaXMgZ2VuZXJpYy4KCkkgdHVybnMgb3V0IHRoYXQgaXQg
-d2FzIHRoZSBOTUkgd2F0Y2hkb2cgdGhhdCBJIGhhZCBlbmFibGVkLgpXaXRob3V0IGl0IGtkYiB3
-b3JrcyB2ZXJ5IHdlbGwsIGluY2x1ZGluZyB0aGUga21zIHN1cHBvcnQuCgpJdCB3b3VsZCBiZSBi
-ZXR0ZXIgaWYgeW91IHdlcmUgdG8gZGV0ZWN0IGttcyBpbnN0ZWFkIG9mIGFkZGluZyBhbgpleHBs
-aWNpdCBwYXJhbSB0byBrZ2Rib2MgY21kIGxpbmUuCgpBbHNvIGZvdW5kIG91dCB0aGF0IGFmdGVy
-IGEgZGVidWcgc2Vzc2lvbiB3aXRoIEFsdCtTeXNSUStnIGFuZCBYCnJ1bm5pbmcsIHRoZXNlIGtl
-eXMgYXJlbid0IHJlbGVhc2VkLiBJIGhhZCB0byBwcmVzcyBvbiBhbGwgb2YgdGhlbSB0bwptYWtl
-IHRoZW0gcmVsZWFzZS4KSXQgbWFrZXMgc2Vuc2UgYXMga2dkYm9jIGluIHRoYXQgY2FzZSByZWFk
-cyBkaXJlY3RseSBmcm9tIGtleWJvYXJkIHBvcnQuCgpCZXN0IHJlZ2FyZHMsCk1heGltIExldml0
-c2t5CgoKCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KU3RhcnQgdW5jb3ZlcmluZyB0aGUgbWFueSBh
-ZHZhbnRhZ2VzIG9mIHZpcnR1YWwgYXBwbGlhbmNlcwphbmQgc3RhcnQgdXNpbmcgdGhlbSB0byBz
-aW1wbGlmeSBhcHBsaWNhdGlvbiBkZXBsb3ltZW50IGFuZAphY2NlbGVyYXRlIHlvdXIgc2hpZnQg
-dG8gY2xvdWQgY29tcHV0aW5nLgpodHRwOi8vcC5zZi5uZXQvc2Z1L25vdmVsbC1zZmRldjJkZXYK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KS2dkYi1idWdy
-ZXBvcnQgbWFpbGluZyBsaXN0CktnZGItYnVncmVwb3J0QGxpc3RzLnNvdXJjZWZvcmdlLm5ldApo
-dHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby9rZ2RiLWJ1Z3JlcG9y
-dAo=
+https://bugs.freedesktop.org/show_bug.cgi?id=29800
+
+Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTOURBUG
+
+--- Comment #10 from Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-22 01:32:58 PDT ---
+I believe it is safe to assume that it will work with nouveau as well, though I
+will not have time to test any time in the foreseeable future. I am marking
+this as notourbug.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
