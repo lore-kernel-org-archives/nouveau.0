@@ -1,41 +1,77 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29800] drm detects GPU lockup with dual cards/Xorg
- hard locks even with single screen
-Date: Wed, 22 Sep 2010 01:32:58 -0700 (PDT)
-Message-ID: <20100922083258.C9932130133@annarchy.freedesktop.org>
-References: <bug-29800-8800@http.bugs.freedesktop.org/>
+From: Maxim Levitsky <maximlevitsky@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/kms: Implement
+ KDB debug hooks for nouveau KMS.
+Date: Wed, 22 Sep 2010 16:03:18 +0200
+Message-ID: <1285164198.3159.8.camel@maxim-laptop>
+References: <m3iq9yqd7w.fsf@pullcord.laptop.org>
+	<4C5ACF3F.8050409@windriver.com>
+	<m3hbj0fju3.fsf_-_@pullcord.laptop.org>
+	<m3aaoimqrp.fsf_-_@pullcord.laptop.org>
+	<1283335002.2741.5.camel@maxim-laptop> <4C7E3A73.5070503@windriver.com>
+	<1283424363.2736.1.camel@maxim-laptop>
+	<1285119735.5949.5.camel@maxim-laptop>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <kgdb-bugreport-bounces@lists.sourceforge.net>
+In-Reply-To: <1285119735.5949.5.camel@maxim-laptop>
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
+	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=kgdb-bugreport>
+List-Post: <mailto:kgdb-bugreport@lists.sourceforge.net>
+List-Help: <mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
+	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=subscribe>
+Errors-To: kgdb-bugreport-bounces@lists.sourceforge.net
+To: Jason Wessel <jason.wessel@windriver.com>
+Cc: David Airlie <airlied@linux.ie>, kgdb-bugreport@lists.sourceforge.net, Jesse Barnes <jbarnes@virtuousgeek.org>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29800
-
-Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |NOTOURBUG
-
---- Comment #10 from Thomas Spear <Speeddymon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-22 01:32:58 PDT ---
-I believe it is safe to assume that it will work with nouveau as well, though I
-will not have time to test any time in the foreseeable future. I am marking
-this as notourbug.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gV2VkLCAyMDEwLTA5LTIyIGF0IDAzOjQyICswMjAwLCBNYXhpbSBMZXZpdHNreSB3cm90ZTog
+Cj4gT24gVGh1LCAyMDEwLTA5LTAyIGF0IDEzOjQ2ICswMzAwLCBNYXhpbSBMZXZpdHNreSB3cm90
+ZTogCj4gPiBPbiBXZWQsIDIwMTAtMDktMDEgYXQgMDY6MzUgLTA1MDAsIEphc29uIFdlc3NlbCB3
+cm90ZTogCj4gPiA+IE9uIDA5LzAxLzIwMTAgMDQ6NTYgQU0sIE1heGltIExldml0c2t5IHdyb3Rl
+Ogo+ID4gPiA+IE9uIFRodSwgMjAxMC0wOC0xOSBhdCAxMzo1NSAtMDQwMCwgQ2hyaXMgQmFsbCB3
+cm90ZTogCj4gPiA+ID4gICAKPiA+ID4gPj4gSGksCj4gPiA+ID4+Cj4gPiA+ID4+IEhlcmUncyBh
+IHBhdGNoIHRvIGFkZCBzdXBwb3J0IGZvciBLTVMgZGVidWdnaW5nIHRvIE5vdXZlYXUsIGFsb25n
+IHRoZQo+ID4gPiA+PiBzdHlsZSBvZiB0aGUgcHJldmlvdXMgcGF0Y2hlcyBmb3IgSW50ZWzCuSBh
+bmQgUmFkZW9uwrIuICBJJ20gb25seSBhYmxlCj4gPiA+ID4+IHRvIHRlc3Qgb24gbnY1MCBoZXJl
+LCBzbyBhIHRlc3Qgb24gbnYwNCB3b3VsZCBiZSBtdWNoIGFwcHJlY2lhdGVkLAo+ID4gPiA+PiBh
+bmQgSSd2ZSBwdWJsaXNoZWQgaW5zdHJ1Y3Rpb25zIG9uIGhvdyB0byB0ZXN0IGhlcmXCsy4gIFRo
+YW5rcyEKPiA+ID4gPj4KPiA+ID4gPj4gLSBDaHJpcy4KPiA+ID4gPj4gICAgIAo+ID4gPiA+Cj4g
+PiA+ID4gSGksCj4gPiA+ID4KPiA+ID4gPiBJIGp1c3QgdHJpZWQgdGhhdCBwYXRjaCwgYnV0IHVu
+Zm9ydHVuYXRlbHkgbmV0aGVyIHdpdGggbm9yIHdpdGhvdXQgaXQKPiA+ID4gPiBrZGIgc2VlbXMg
+bm90IHRvIHdvcmsuCj4gPiA+ID4gSXQgY291bGQgYmUgaWQxMHQgZXJyb3IgZnJvbSBteSBzaWRl
+LCBidXQgSSBkaWQgdGVzdCB0aGUga2RiIGluIHRoZSBwYXN0Cj4gPiA+ID4gd2l0aCBmZXcgS01T
+IHBhdGNoZXMsIGFuZCBpdCBzZWVtZWQgdG8gd29yay4KPiA+ID4gPgo+ID4gPiA+IE5vdyBJIGNh
+bid0IGV2ZW4gZ2V0IGl0cyBwcm9tcHQgb24gdGhlIGNvbnNvbGUuCj4gPiA+ID4KPiA+ID4gPiBU
+aGlzIGlzIHdoYXQgSSBkbzoKPiA+ID4gPgo+ID4gPiA+IGVjaG8ga2JkIHwgc3VkbyB0ZWUgL3N5
+cy9tb2R1bGUva2dkYm9jL3BhcmFtZXRlcnMva2dkYm9jCj4gPiA+ID4gKGFsc28gdHJpZWQgYm9v
+dGluZyB3aXRoIGtnZGJvYz1rYmQpCj4gPiA+ID4gICAKPiA+ID4gCj4gPiA+IFRyeSBjaGFuZ2lu
+ZyBpdCB0byBrZ2Rib2M9a21zLGtiZCAgb3IgdGhlICJlY2hvIGttcyxrYmQiCj4gPiA+IAo+ID4g
+PiBXaGVuIHlvdSB1c2Ugb25seSB0aGUga2JkLCB0aGUga21zIGZlYXR1cmUgaXMgbm90IGFjdGl2
+YXRlZC4KPiA+IFRoaXMgZG9lc24ndCBoZWxwLgo+ID4gCj4gPiBJIGFtIGFmcmFpZCB0aGF0IHRo
+aXMgYnVnIGlzbid0IHJlbGF0ZWQgdG8ga21zLCBidXQgcmF0aGVyIGlzIGdlbmVyaWMuCj4gCj4g
+SSB0dXJucyBvdXQgdGhhdCBpdCB3YXMgdGhlIE5NSSB3YXRjaGRvZyB0aGF0IEkgaGFkIGVuYWJs
+ZWQuCj4gV2l0aG91dCBpdCBrZGIgd29ya3MgdmVyeSB3ZWxsLCBpbmNsdWRpbmcgdGhlIGttcyBz
+dXBwb3J0LgpQbGVhc2UgZGlzcmVnYXJkIHRoaXMuIGtkYiB3b3JrcyB3aXRoIG5taSB3YXRjaGRv
+ZyBub3cgYXMgd2VsbC4KUHJvYmFibHkgc29tZXRoaW5nIHdhcyBmaXhlZCwgbWF5YmUgdW5yZWxh
+dGVkIHRvIGl0LgoKPiAKPiBJdCB3b3VsZCBiZSBiZXR0ZXIgaWYgeW91IHdlcmUgdG8gZGV0ZWN0
+IGttcyBpbnN0ZWFkIG9mIGFkZGluZyBhbgo+IGV4cGxpY2l0IHBhcmFtIHRvIGtnZGJvYyBjbWQg
+bGluZS4KPiAKPiBBbHNvIGZvdW5kIG91dCB0aGF0IGFmdGVyIGEgZGVidWcgc2Vzc2lvbiB3aXRo
+IEFsdCtTeXNSUStnIGFuZCBYCj4gcnVubmluZywgdGhlc2Uga2V5cyBhcmVuJ3QgcmVsZWFzZWQu
+IEkgaGFkIHRvIHByZXNzIG9uIGFsbCBvZiB0aGVtIHRvCj4gbWFrZSB0aGVtIHJlbGVhc2UuCj4g
+SXQgbWFrZXMgc2Vuc2UgYXMga2dkYm9jIGluIHRoYXQgY2FzZSByZWFkcyBkaXJlY3RseSBmcm9t
+IGtleWJvYXJkIHBvcnQuCkFuZCBJIHNlZSB0aGF0IGtnZGIgYWN0dWFsbHkgaGFzIGEgY29kZSB0
+aGF0IHdvcmtzIHRoYXQgYXJvdW5kLgpJIHN1c3BlY3QgdGhhdCB3aGF0IGhhcHBlbnMgaXMgdGhh
+dCBrZXlzIGFyZSByZWxlYXNlZCBiZWZvcmUgWCBjb250aW51ZXMKcnVubmluZywgYW5kIHRoZXJl
+Zm9yZSBpdCBkb2Vzbid0IHBpY2sgdGhlc2UgZXZlbnRzIHVwLgoKCkJlc3QgcmVnYXJkcywKCU1h
+eGltIExldml0c2t5CgoKCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KU3RhcnQgdW5jb3ZlcmluZyB0
+aGUgbWFueSBhZHZhbnRhZ2VzIG9mIHZpcnR1YWwgYXBwbGlhbmNlcwphbmQgc3RhcnQgdXNpbmcg
+dGhlbSB0byBzaW1wbGlmeSBhcHBsaWNhdGlvbiBkZXBsb3ltZW50IGFuZAphY2NlbGVyYXRlIHlv
+dXIgc2hpZnQgdG8gY2xvdWQgY29tcHV0aW5nLgpodHRwOi8vcC5zZi5uZXQvc2Z1L25vdmVsbC1z
+ZmRldjJkZXYKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+S2dkYi1idWdyZXBvcnQgbWFpbGluZyBsaXN0CktnZGItYnVncmVwb3J0QGxpc3RzLnNvdXJjZWZv
+cmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby9rZ2Ri
+LWJ1Z3JlcG9ydAo=
