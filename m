@@ -1,82 +1,38 @@
-From: Maxim Levitsky <maximlevitsky@gmail.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/kms: Implement
- KDB debug hooks for nouveau KMS.
-Date: Wed, 22 Sep 2010 16:06:27 +0200
-Message-ID: <1285164387.3159.10.camel@maxim-laptop>
-References: <m3iq9yqd7w.fsf@pullcord.laptop.org>
-	<4C5ACF3F.8050409@windriver.com>
-	<m3hbj0fju3.fsf_-_@pullcord.laptop.org>
-	<m3aaoimqrp.fsf_-_@pullcord.laptop.org>
-	<1283335002.2741.5.camel@maxim-laptop> <4C7E3A73.5070503@windriver.com>
-	<1283424363.2736.1.camel@maxim-laptop>
-	<1285119735.5949.5.camel@maxim-laptop>
-	<1285164198.3159.8.camel@maxim-laptop>
+From: =?ISO-8859-2?Q?Grzesiek_S=F3jka?= <pld-t9zbU3WrWHI@public.gmane.org>
+Subject: AMD768 & GeForce5200: nouveau bug??
+Date: Fri, 24 Sep 2010 16:37:38 +0200
+Message-ID: <4C9CB7B2.3010401@pfu.pl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <kgdb-bugreport-bounces@lists.sourceforge.net>
-In-Reply-To: <1285164198.3159.8.camel@maxim-laptop>
-List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
-	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=unsubscribe>
-List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=kgdb-bugreport>
-List-Post: <mailto:kgdb-bugreport@lists.sourceforge.net>
-List-Help: <mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=help>
-List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/kgdb-bugreport>,
-	<mailto:kgdb-bugreport-request@lists.sourceforge.net?subject=subscribe>
-Errors-To: kgdb-bugreport-bounces@lists.sourceforge.net
-To: Jason Wessel <jason.wessel@windriver.com>
-Cc: David Airlie <airlied@linux.ie>, kgdb-bugreport@lists.sourceforge.net, Jesse Barnes <jbarnes@virtuousgeek.org>, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCAyMDEwLTA5LTIyIGF0IDE2OjAzICswMjAwLCBNYXhpbSBMZXZpdHNreSB3cm90ZTog
-Cj4gT24gV2VkLCAyMDEwLTA5LTIyIGF0IDAzOjQyICswMjAwLCBNYXhpbSBMZXZpdHNreSB3cm90
-ZTogCj4gPiBPbiBUaHUsIDIwMTAtMDktMDIgYXQgMTM6NDYgKzAzMDAsIE1heGltIExldml0c2t5
-IHdyb3RlOiAKPiA+ID4gT24gV2VkLCAyMDEwLTA5LTAxIGF0IDA2OjM1IC0wNTAwLCBKYXNvbiBX
-ZXNzZWwgd3JvdGU6IAo+ID4gPiA+IE9uIDA5LzAxLzIwMTAgMDQ6NTYgQU0sIE1heGltIExldml0
-c2t5IHdyb3RlOgo+ID4gPiA+ID4gT24gVGh1LCAyMDEwLTA4LTE5IGF0IDEzOjU1IC0wNDAwLCBD
-aHJpcyBCYWxsIHdyb3RlOiAKPiA+ID4gPiA+ICAgCj4gPiA+ID4gPj4gSGksCj4gPiA+ID4gPj4K
-PiA+ID4gPiA+PiBIZXJlJ3MgYSBwYXRjaCB0byBhZGQgc3VwcG9ydCBmb3IgS01TIGRlYnVnZ2lu
-ZyB0byBOb3V2ZWF1LCBhbG9uZyB0aGUKPiA+ID4gPiA+PiBzdHlsZSBvZiB0aGUgcHJldmlvdXMg
-cGF0Y2hlcyBmb3IgSW50ZWzCuSBhbmQgUmFkZW9uwrIuICBJJ20gb25seSBhYmxlCj4gPiA+ID4g
-Pj4gdG8gdGVzdCBvbiBudjUwIGhlcmUsIHNvIGEgdGVzdCBvbiBudjA0IHdvdWxkIGJlIG11Y2gg
-YXBwcmVjaWF0ZWQsCj4gPiA+ID4gPj4gYW5kIEkndmUgcHVibGlzaGVkIGluc3RydWN0aW9ucyBv
-biBob3cgdG8gdGVzdCBoZXJlwrMuICBUaGFua3MhCj4gPiA+ID4gPj4KPiA+ID4gPiA+PiAtIENo
-cmlzLgo+ID4gPiA+ID4+ICAgICAKPiA+ID4gPiA+Cj4gPiA+ID4gPiBIaSwKPiA+ID4gPiA+Cj4g
-PiA+ID4gPiBJIGp1c3QgdHJpZWQgdGhhdCBwYXRjaCwgYnV0IHVuZm9ydHVuYXRlbHkgbmV0aGVy
-IHdpdGggbm9yIHdpdGhvdXQgaXQKPiA+ID4gPiA+IGtkYiBzZWVtcyBub3QgdG8gd29yay4KPiA+
-ID4gPiA+IEl0IGNvdWxkIGJlIGlkMTB0IGVycm9yIGZyb20gbXkgc2lkZSwgYnV0IEkgZGlkIHRl
-c3QgdGhlIGtkYiBpbiB0aGUgcGFzdAo+ID4gPiA+ID4gd2l0aCBmZXcgS01TIHBhdGNoZXMsIGFu
-ZCBpdCBzZWVtZWQgdG8gd29yay4KPiA+ID4gPiA+Cj4gPiA+ID4gPiBOb3cgSSBjYW4ndCBldmVu
-IGdldCBpdHMgcHJvbXB0IG9uIHRoZSBjb25zb2xlLgo+ID4gPiA+ID4KPiA+ID4gPiA+IFRoaXMg
-aXMgd2hhdCBJIGRvOgo+ID4gPiA+ID4KPiA+ID4gPiA+IGVjaG8ga2JkIHwgc3VkbyB0ZWUgL3N5
-cy9tb2R1bGUva2dkYm9jL3BhcmFtZXRlcnMva2dkYm9jCj4gPiA+ID4gPiAoYWxzbyB0cmllZCBi
-b290aW5nIHdpdGgga2dkYm9jPWtiZCkKPiA+ID4gPiA+ICAgCj4gPiA+ID4gCj4gPiA+ID4gVHJ5
-IGNoYW5naW5nIGl0IHRvIGtnZGJvYz1rbXMsa2JkICBvciB0aGUgImVjaG8ga21zLGtiZCIKPiA+
-ID4gPiAKPiA+ID4gPiBXaGVuIHlvdSB1c2Ugb25seSB0aGUga2JkLCB0aGUga21zIGZlYXR1cmUg
-aXMgbm90IGFjdGl2YXRlZC4KPiA+ID4gVGhpcyBkb2Vzbid0IGhlbHAuCj4gPiA+IAo+ID4gPiBJ
-IGFtIGFmcmFpZCB0aGF0IHRoaXMgYnVnIGlzbid0IHJlbGF0ZWQgdG8ga21zLCBidXQgcmF0aGVy
-IGlzIGdlbmVyaWMuCj4gPiAKPiA+IEkgdHVybnMgb3V0IHRoYXQgaXQgd2FzIHRoZSBOTUkgd2F0
-Y2hkb2cgdGhhdCBJIGhhZCBlbmFibGVkLgo+ID4gV2l0aG91dCBpdCBrZGIgd29ya3MgdmVyeSB3
-ZWxsLCBpbmNsdWRpbmcgdGhlIGttcyBzdXBwb3J0Lgo+IFBsZWFzZSBkaXNyZWdhcmQgdGhpcy4g
-a2RiIHdvcmtzIHdpdGggbm1pIHdhdGNoZG9nIG5vdyBhcyB3ZWxsLgo+IFByb2JhYmx5IHNvbWV0
-aGluZyB3YXMgZml4ZWQsIG1heWJlIHVucmVsYXRlZCB0byBpdC4KPiAKPiA+IAo+ID4gSXQgd291
-bGQgYmUgYmV0dGVyIGlmIHlvdSB3ZXJlIHRvIGRldGVjdCBrbXMgaW5zdGVhZCBvZiBhZGRpbmcg
-YW4KPiA+IGV4cGxpY2l0IHBhcmFtIHRvIGtnZGJvYyBjbWQgbGluZS4KPiA+IAo+ID4gQWxzbyBm
-b3VuZCBvdXQgdGhhdCBhZnRlciBhIGRlYnVnIHNlc3Npb24gd2l0aCBBbHQrU3lzUlErZyBhbmQg
-WAo+ID4gcnVubmluZywgdGhlc2Uga2V5cyBhcmVuJ3QgcmVsZWFzZWQuIEkgaGFkIHRvIHByZXNz
-IG9uIGFsbCBvZiB0aGVtIHRvCj4gPiBtYWtlIHRoZW0gcmVsZWFzZS4KPiA+IEl0IG1ha2VzIHNl
-bnNlIGFzIGtnZGJvYyBpbiB0aGF0IGNhc2UgcmVhZHMgZGlyZWN0bHkgZnJvbSBrZXlib2FyZCBw
-b3J0Lgo+IEFuZCBJIHNlZSB0aGF0IGtnZGIgYWN0dWFsbHkgaGFzIGEgY29kZSB0aGF0IHdvcmtz
-IHRoYXQgYXJvdW5kLgo+IEkgc3VzcGVjdCB0aGF0IHdoYXQgaGFwcGVucyBpcyB0aGF0IGtleXMg
-YXJlIHJlbGVhc2VkIGJlZm9yZSBYIGNvbnRpbnVlcwo+IHJ1bm5pbmcsIGFuZCB0aGVyZWZvcmUg
-aXQgZG9lc24ndCBwaWNrIHRoZXNlIGV2ZW50cyB1cC4KCkhvd2V2ZXIgYW4gZXZ0ZXN0IG9uIGlu
-cHV0IGV2ZW50IHJ1bm5pbmcgb24ga2VybmVsIHR0eSwgc3RpbGwgb25seSBwaWNrcwpyZWxlYXNl
-IG9mIHRoZSBhbHQga2V5LgoKQmVzdCByZWdhcmRzLApNYXhpbSBMZXZpdHNreQoKCi0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQpTdGFydCB1bmNvdmVyaW5nIHRoZSBtYW55IGFkdmFudGFnZXMgb2Ygdmly
-dHVhbCBhcHBsaWFuY2VzCmFuZCBzdGFydCB1c2luZyB0aGVtIHRvIHNpbXBsaWZ5IGFwcGxpY2F0
-aW9uIGRlcGxveW1lbnQgYW5kCmFjY2VsZXJhdGUgeW91ciBzaGlmdCB0byBjbG91ZCBjb21wdXRp
-bmcuCmh0dHA6Ly9wLnNmLm5ldC9zZnUvbm92ZWxsLXNmZGV2MmRldgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpLZ2RiLWJ1Z3JlcG9ydCBtYWlsaW5nIGxp
-c3QKS2dkYi1idWdyZXBvcnRAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291
-cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL2tnZGItYnVncmVwb3J0Cg==
+Hi there,
+
+	Im using ASUS A7M266-D mainboard based on AMD768 chipset and Nvidia
+GeForce FX5200 dual DVI graphics adapter. I'm forced to switch from
+binary Nvidia drivers to nouveau but the problem is that nouveau.ko
+would not load with AGP support turned on. Is it a nouveau/kernel bug??
+	To build the kernel I used the kernel tree downloaded from the nouveau
+repository about a week ago. The dmesg output with/without the AGP
+support you can find at:
+http://yen.ipipan.waw.pl/~gs159090/tmp/withAGP.txt.gz
+http://yen.ipipan.waw.pl/~gs159090/tmp/withoutAGP.txt.gz
+And here is lspci -vv output
+http://yen.ipipan.waw.pl/~gs159090/tmp/lspci-vv.txt.gz
+
+Thanks in advance for any help.
+
+Regards
+Greg
