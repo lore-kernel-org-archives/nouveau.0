@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30369] nvidia 8400GS G98 chip Nouveau GPU lockup -
  switching to software fbcon
-Date: Fri, 24 Sep 2010 22:48:26 -0700 (PDT)
-Message-ID: <20100925054826.2EC601300FF@annarchy.freedesktop.org>
+Date: Fri, 24 Sep 2010 22:53:59 -0700 (PDT)
+Message-ID: <20100925055400.246F8130207@annarchy.freedesktop.org>
 References: <bug-30369-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,14 @@ Dan Smith <mrplowdan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|nvidia 8400GS G98 chip GPU  |nvidia 8400GS G98 chip
-                   |lockup - switching to       |Nouveau GPU lockup -
-                   |software fbcon              |switching to software fbcon
+           Severity|normal                      |critical
+
+--- Comment #3 from Dan Smith <mrplowdan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-24 22:53:59 PDT ---
+After thinking about it I'm bumping this to critical, this is a show stopper
+for anyone with the same hardware configuration as it happens in all previous
+fedora live cds as well. Anyone booting to a garbled screen for the first time
+trying Linux isn't going to be a fan. I'm trying the newest fedora release
+soon.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
