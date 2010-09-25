@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28039] nouveau can't display preview
-Date: Sat, 25 Sep 2010 02:57:39 -0700 (PDT)
-Message-ID: <20100925095740.08ACE1300FD@annarchy.freedesktop.org>
+Date: Sat, 25 Sep 2010 03:03:24 -0700 (PDT)
+Message-ID: <20100925100324.C97411300FA@annarchy.freedesktop.org>
 References: <bug-28039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,24 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28039
 
---- Comment #10 from Alex <strangebrew-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> 2010-09-25 02:57:39 PDT ---
-(In reply to comment #9)
-> *** Bug 26057 has been marked as a duplicate of this bug. ***
-
-I have some info about this bug and mentioned duplicate.
-Problems with nouveau driver occured in Fedora 13 and Ubuntu 10.10 (I filed
-similar bug at Launchpad https://bugs.launchpad.net/bugs/636319).
-BUT! Everything works fine in Mandriva 2010.1. No artifacts in tray! No
-artifacts at all!
-Kernel (uname -r):
-2.6.33.7-desktop-2mnb
-Xorg and nouveau versions:
-x11-server-xorg-1.7.7-1mdv2010.1
-x11-driver-video-nouveau-0.0.15-0.20100316.1mdv2010.1
-lib64drm_nouveau1-2.4.20-2mdv2010.1
-My card (lspci | grep -i nvidia):
-01:00.0 VGA compatible controller: nVidia Corporation G92 [GeForce 9800 GT]
-(rev a2).
+--- Comment #11 from Alex <strangebrew-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> 2010-09-25 03:03:24 PDT ---
+The idea was: maybe Mandriva have some patch for it? Can you contact them if
+it's true?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
