@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30369] nvidia 8400GS G98 chip GPU lockup - switching
- to software fbcon
-Date: Fri, 24 Sep 2010 22:00:27 -0700 (PDT)
-Message-ID: <20100925050027.EF7352DC101@annarchy.freedesktop.org>
+Subject: [Bug 30369] nvidia 8400GS G98 chip Nouveau GPU lockup -
+ switching to software fbcon
+Date: Fri, 24 Sep 2010 22:48:26 -0700 (PDT)
+Message-ID: <20100925054826.2EC601300FF@annarchy.freedesktop.org>
 References: <bug-30369-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30369
 
---- Comment #2 from Dan Smith <mrplowdan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-24 22:00:27 PDT ---
-Created an attachment (id=38946)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38946)
-dmesg
+Dan Smith <mrplowdan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|nvidia 8400GS G98 chip GPU  |nvidia 8400GS G98 chip
+                   |lockup - switching to       |Nouveau GPU lockup -
+                   |software fbcon              |switching to software fbcon
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
