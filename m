@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30369] nvidia 8400GS G98 chip Nouveau GPU lockup -
  switching to software fbcon
-Date: Sat, 25 Sep 2010 04:14:03 -0700 (PDT)
-Message-ID: <20100925111403.7AF05130092@annarchy.freedesktop.org>
+Date: Sat, 25 Sep 2010 04:14:39 -0700 (PDT)
+Message-ID: <20100925111439.DC7DC13010B@annarchy.freedesktop.org>
 References: <bug-30369-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #38944|text/x-log                  |text/plain
+  Attachment #38945|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
