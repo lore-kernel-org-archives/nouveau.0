@@ -1,7 +1,8 @@
-From: =?ISO-8859-2?Q?Grzesiek_S=F3jka?= <pld-t9zbU3WrWHI@public.gmane.org>
-Subject: GeForce FX5200 dual DVI & Samsung 204b
-Date: Sat, 25 Sep 2010 16:04:23 +0200
-Message-ID: <4C9E0167.8000507@pfu.pl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 30375] New: (NV34) X server using 100% cpu with
+ latest nouveau.git and xf86-video-nouveau.git
+Date: Sat, 25 Sep 2010 10:40:43 -0700 (PDT)
+Message-ID: <bug-30375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,27 +19,41 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi there,
+https://bugs.freedesktop.org/show_bug.cgi?id=30375
 
-Im using GeForce FX5200 dual DVI graphics adapter connected with two
-Samsung 204b monitors. At the moment I'm using binary nvidia drivers and
-everything works fine but I'm forced to switch to nouveau. Unfortunately
-there are problems. It seems that nouveau.ko wrongly detects the
-PixelClock of my monitors. More precisely, after loading of nouveu.ko
-the screen starts to blink. According to my experience the problem is
-too hight PixelClock. Moreover, in the /var/log/Xorg.0.log you can find
-the line:
+           Summary: (NV34) X server using 100% cpu with latest nouveau.git
+                    and xf86-video-nouveau.git
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-NOUVEAU(0): Ranges: V min: 56 V max: 75 Hz, H min: 30 H max: 81 kHz,
-PixClock max 175 MHz
 
-which is false. The maximum PixClk for Sumsung 204b is 162MHz. I was
-trying to play with the video= kernel parameter but there is no way to
-force the PixClk. I was also trying to edit the suitable ModeLine in the
-drivers/gpu/drm/drm_edid_modes.h but I thing nouveau.ko ignores it. So
-my question is what to change (in the kernel source) to override the
-detection and force MaxPixelClock to 162MHz just to make sure that the
-problem is related to PixelClock. To build the kernel I used the kernel
-tree downloaded from nouveau about one week ago.
+This bug is 100% reproducible on 32-bit linux (not 64-bit) when using the most
+recent nightly builds of firefox to view www.npr.org.
 
-Thanks in advance for any help.
+The firefox devs changed something on Sept 10 (2010) that tickles this bug in
+nouveau.  (The same firefox build works normally with the 'nv' driver.)
+
+To reproduce the problem, download the latest nightly build of ff here:
+ftp://ftp.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-4.0b7pre.en-US.linux-i686.tar.bz2
+
+Then visit www.npr.org, that's all.  Xorg will begin using all of the cpu,
+making the machine unusably slow.
+
+I see the same when using the linus.git kernel, too, so this is not a brand new
+bug.
+
+NV34 [GeForce FX 5200] rev 161 on an older single-core AMD k8 processor.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
