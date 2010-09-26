@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28039] nouveau can't display preview
-Date: Sun, 26 Sep 2010 03:31:10 -0700 (PDT)
-Message-ID: <20100926103110.63396130076@annarchy.freedesktop.org>
+Date: Sun, 26 Sep 2010 03:42:50 -0700 (PDT)
+Message-ID: <20100926104250.5BD3D13015C@annarchy.freedesktop.org>
 References: <bug-28039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,31 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28039
 
---- Comment #13 from Alex <strangebrew-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> 2010-09-26 03:31:10 PDT ---
-(In reply to comment #12)
-Well, my bug was not only seen in Firefox. It was there in KDE tray and Dolphin
-image previews too. Here, good example, I had exactly the same in Ubuntu:
-https://bugs.freedesktop.org/attachment.cgi?id=36763.
-The vesion of buggy nouveau I used in Ubuntu was 0.0.16+git20100917 from
-Xorg-edgers PPA, very fresh! The version that came in distro
-(0.0.16+git20100805) was buggy too.
+--- Comment #14 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-26 03:42:49 PDT ---
+Hi I use nouveau DDX and libdrm from git and latest rcX kernels - and I have
+same issues with kde4's (4.5.1) tray icons (actually not all icons) and
+icons in taskbar
+
+On Sun, Sep 26, 2010 at 1:31 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+
+> https://bugs.freedesktop.org/show_bug.cgi?id=28039
+>
+> --- Comment #13 from Alex <strangebrew-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> 2010-09-26 03:31:10 PDT
+> ---
+> (In reply to comment #12)
+> Well, my bug was not only seen in Firefox. It was there in KDE tray and
+> Dolphin
+> image previews too. Here, good example, I had exactly the same in Ubuntu:
+> https://bugs.freedesktop.org/attachment.cgi?id=36763.
+> The vesion of buggy nouveau I used in Ubuntu was 0.0.16+git20100917 from
+> Xorg-edgers PPA, very fresh! The version that came in distro
+> (0.0.16+git20100805) was buggy too.
+>
+> --
+> Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+> ------- You are receiving this mail because: -------
+> You are on the CC list for the bug.
+>
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
