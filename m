@@ -1,7 +1,7 @@
 From: Piotr Hosowicz <piotr-aAmyfUXO971Wk0Htik3J/w@public.gmane.org>
 Subject: Re: Problems with the driver
-Date: Sun, 26 Sep 2010 17:29:46 +0200
-Message-ID: <4C9F66EA.3010307@example.com>
+Date: Sun, 26 Sep 2010 19:10:20 +0200
+Message-ID: <4C9F7E7C.8090009@example.com>
 References: <4C9F54F2.1010108@example.com> <20100926151055.GA3284@joi.lan>
 Reply-To: piotr-aAmyfUXO971Wk0Htik3J/w@public.gmane.org
 Mime-Version: 1.0
@@ -36,16 +36,12 @@ On 26.09.2010 17:10, Marcin Slusarz wrote:
 > You have 0.0.16 nouveau kernel module, but 0.0.15 libdrm/xf86-video-nouve=
 au.
 > This is probably your main problem. Upgrade libdrm and xf86-video-nouveau.
-
-Ok, I'll try it.
-
+>
 > Note, you didn't uninstall NVIDIA proprietary driver (Module glx:
 > endor=3D"NVIDIA Corporation" in xorg.log) which might crash X if wrong
 > version of some component is installed (don't remember which one, just
 > uninstall nvidia drivers)
-
-Now I did, wish me luck.
-
+>
 > If you resolve these issues and still have problem, simplify your xorg.co=
 nf
 > to contain only:
@@ -54,20 +50,16 @@ nf
 > Identifier "n"
 > Driver "nouveau"
 > EndSection
-
-Yes, I reduced it already.
-
+>
 > Almost all above is documented on wiki: http://nouveau.freedesktop.org/wi=
 ki/TroubleShooting
 
-Thanks, I read a bit and it seems that it won't be so simple.
+I failed again. :-( Something is not ok with DRM.
 
 -- =
 
-"Bardzo fajna firma, tylko czasami nie p=B3aci. Do jej g=B3=F3wnych
-zalet nale=BF=B1: ekspres ci=B6nieniowy (ale tylko na jednym z pi=EA-
-ter) oraz fajne widoki z salki konferencyjnej. No i jakie=B6
-p=F3=B3 roku temu odesz=B3o 90% pracownik=F3w dzia=B3u IT, ale mo=BFe nie
-mieli racji ;)"
+Z cyklu "Uroki demokracji", czyli pytania i odpowiedzi w teledurniejach:
+- Znamy trzy stany skupienia - sta=B3y, ciek=B3y i...?
+- Galaretka.
 NP:  -
 NB: 2.6.36-rc5-git7
