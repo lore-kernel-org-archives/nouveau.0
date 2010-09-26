@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30370] Nouveau module crashes with "divide error"
-Date: Sun, 26 Sep 2010 10:57:37 -0700 (PDT)
-Message-ID: <20100926175737.D6BEB1301DA@annarchy.freedesktop.org>
-References: <bug-30370-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 30375] (NV34) X server using 100% cpu with latest
+ nouveau.git and xf86-video-nouveau.git
+Date: Sun, 26 Sep 2010 13:59:24 -0700 (PDT)
+Message-ID: <20100926205924.ED5B9130106@annarchy.freedesktop.org>
+References: <bug-30375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30370-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-30375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +21,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30370
+https://bugs.freedesktop.org/show_bug.cgi?id=30375
 
---- Comment #4 from Emil Velikov <eeydev-QabDm/c3fAmwa9SdKMSz+Q@public.gmane.org> 2010-09-26 10:57:37 PDT ---
-The problem is a combined issue of two things
+--- Comment #1 from Robert Kaiser <kairo-mUdhYT1RRAM@public.gmane.org> 2010-09-26 13:59:24 PDT ---
+I didn't find anything sticking out that could influence graphics that way when
+I did look at Firefox/Mozilla code logs, and I didn't see that happening myself
+even though I'm using state-of-the-art Mozilla code as part of my work daily,
+and I'm using nouveau as well.
 
-1. The original nv50 and nv98 use a pll_limits table v2.1 which has a default
-pll_limits entry (reg == 0)
+Are you sure it's not something like Flash, which accesses graphics directly?
 
-Note: The same revision of the pll table is being used on a range of nv4x
-cards, where the some pll's are not present in the table, thus the default
-entry's setting are being used 
-
-2. The different cards have different UNK plls, that somewhat need to be setup
-(their exact purpose is currently unknown but the vbios has values for them,
-that appear to be used)
-
-The above patch is a quick and easy solution, although actual check if the pll
-has to be setup on the specific card, should be implemented
+Of course, with Firefox adding hardware acceleration capabilities recently, our
+Mozilla code could trigger nouveau bugs more easily - but from what I see on my
+machine, Mozilla doesn't actually enable hardware-accelerated windows (i.e.
+compositing) with nouveau right now. Check the bottom of about:support in
+Firefox, it probably will tell you that 0/x windows are accelerated.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
