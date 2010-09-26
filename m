@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30370] Nouveau module crashes with "divide error"
-Date: Sat, 25 Sep 2010 21:40:29 -0700 (PDT)
-Message-ID: <20100926044029.E01CF1300C1@annarchy.freedesktop.org>
-References: <bug-30370-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 28039] nouveau can't display preview
+Date: Sun, 26 Sep 2010 03:31:10 -0700 (PDT)
+Message-ID: <20100926103110.63396130076@annarchy.freedesktop.org>
+References: <bug-28039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30370-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-28039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30370
+https://bugs.freedesktop.org/show_bug.cgi?id=28039
 
---- Comment #2 from aa_z9-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org 2010-09-25 21:40:29 PDT ---
-Created an attachment (id=38957)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38957)
-dmesg output with options: drm.debug=14 nouveau.reg_debug=0x0200
-
-Patch applied, new dmesg output attached.
-
-Thanks for your help.
+--- Comment #13 from Alex <strangebrew-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> 2010-09-26 03:31:10 PDT ---
+(In reply to comment #12)
+Well, my bug was not only seen in Firefox. It was there in KDE tray and Dolphin
+image previews too. Here, good example, I had exactly the same in Ubuntu:
+https://bugs.freedesktop.org/attachment.cgi?id=36763.
+The vesion of buggy nouveau I used in Ubuntu was 0.0.16+git20100917 from
+Xorg-edgers PPA, very fresh! The version that came in distro
+(0.0.16+git20100805) was buggy too.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
