@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30370] Nouveau module crashes with "divide error"
-Date: Sun, 26 Sep 2010 04:43:47 -0700 (PDT)
-Message-ID: <20100926114347.264F22DC012@annarchy.freedesktop.org>
+Date: Sun, 26 Sep 2010 05:12:48 -0700 (PDT)
+Message-ID: <20100926121248.2F9A11300E7@annarchy.freedesktop.org>
 References: <bug-30370-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30370
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-26 05:12:47 PDT ---
+Ok, so we can't calculate clock for PLL_UNK05, which purpose is... unknown.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #38957|application/octet-stream    |text/plain
-          mime type|                            |
+I guess we could apply this patch as is?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
