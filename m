@@ -1,13 +1,18 @@
-From: =?ISO-8859-1?Q?Grzesiek_S=F3jka?= <pld-t9zbU3WrWHI@public.gmane.org>
-Subject: Re: AMD768 & GeForce5200: nouveau bug??
-Date: Mon, 27 Sep 2010 10:44:47 +0200
-Message-ID: <4CA0597F.80109@pfu.pl>
-References: <4C9CB7B2.3010401@pfu.pl> <8739syrins.fsf@riseup.net>
+From: Dmitri Sosnik <dimavs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [drm] failed to open device
+Date: Mon, 27 Sep 2010 20:02:14 +1000
+Message-ID: <AANLkTimXXy_1RdXLZDPQX_6qx1QcZAsD6=CsfANZ2N=q@mail.gmail.com>
+References: <AANLkTim1Qp9Wd_P=rQEKh3Mp8zukPLwqkrg-nY7u3SU2@mail.gmail.com>
+	<1285566262.2360.0.camel@nisroch>
+	<AANLkTinqXrW0zeBX-nu_W7O5ic6mY4EHi=mLRvdDqd_v@mail.gmail.com>
+	<1285568554.2360.3.camel@nisroch>
+	<AANLkTimvaY9VHm6Ov=q8T+DtDJghSMWoCycAMXC5C8hg@mail.gmail.com>
+	<1285576949.2360.4.camel@nisroch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <8739syrins.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <1285576949.2360.4.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,32 +22,17 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 09/24/10 22:27, Francisco Jerez wrote:
-> Grzesiek S=F3jka<pld-t9zbU3WrWHI@public.gmane.org>  writes:
+>> Nope, it fails with "failed to copy vbios to system memory" message.
+> Right. =A0The equivilant to what you're seeing nouveau fail with!
 >
->> Hi there,
->>
->> 	Im using ASUS A7M266-D mainboard based on AMD768 chipset and Nvidia
->> GeForce FX5200 dual DVI graphics adapter. I'm forced to switch from
->> binary Nvidia drivers to nouveau but the problem is that nouveau.ko
->> would not load with AGP support turned on. Is it a nouveau/kernel bug??
->> 	To build the kernel I used the kernel tree downloaded from the nouveau
->> repository about a week ago. The dmesg output with/without the AGP
->> support you can find at:
->> http://yen.ipipan.waw.pl/~gs159090/tmp/withAGP.txt.gz
->> http://yen.ipipan.waw.pl/~gs159090/tmp/withoutAGP.txt.gz
->> And here is lspci -vv output
->> http://yen.ipipan.waw.pl/~gs159090/tmp/lspci-vv.txt.gz
->>
->> Thanks in advance for any help.
->
-> That looks like a bug in the amdk7 agp driver, can you give this patch a
-> try?
-The patch from Francisco Jerez works fine for me so I was wondering what =
+> I'm not sure what to suggest from here.
 
-to do next. It would be nice to apply it to the official kernel tree. =
+Thanks, Ben! I thought I'll deal with bios later, but it appears to be
+the main issue. I'll play with it.
 
-Should I open a bug?? Write to someone??
+Cheers,
+D
