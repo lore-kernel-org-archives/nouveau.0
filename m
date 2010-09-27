@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30387] Fade out when asking for permissions crashes X
-Date: Sun, 26 Sep 2010 20:08:41 -0700 (PDT)
-Message-ID: <20100927030841.4DB02130155@annarchy.freedesktop.org>
+Date: Sun, 26 Sep 2010 20:09:11 -0700 (PDT)
+Message-ID: <20100927030911.B3E831300AA@annarchy.freedesktop.org>
 References: <bug-30387-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30387
 
---- Comment #1 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-09-26 20:08:41 PDT ---
-Created an attachment (id=38974)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=38974)
-kernel log
+--- Comment #2 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-09-26 20:09:11 PDT ---
+Created an attachment (id=38975)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=38975)
+xorg log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
