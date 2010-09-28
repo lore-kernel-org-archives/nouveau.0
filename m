@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30424] Resume from suspend to ram fails on G71
  [Quadro FX 1500M] (rev a1)
-Date: Tue, 28 Sep 2010 09:03:32 -0700 (PDT)
-Message-ID: <20100928160332.588BE13000D@annarchy.freedesktop.org>
+Date: Tue, 28 Sep 2010 09:05:14 -0700 (PDT)
+Message-ID: <20100928160514.B9B2D13000D@annarchy.freedesktop.org>
 References: <bug-30424-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30424
 
---- Comment #1 from Cristian Rosa <cristianrosa-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> 2010-09-28 09:03:29 PDT ---
-Created an attachment (id=39015)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39015)
-The X.org log of the crash
+--- Comment #2 from Cristian Rosa <cristianrosa-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> 2010-09-28 09:05:12 PDT ---
+I'm using kernel from nouveau's git 2.6.36-rc5
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
