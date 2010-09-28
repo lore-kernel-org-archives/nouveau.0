@@ -1,14 +1,14 @@
-From: =?ISO-8859-1?Q?Grzesiek_S=F3jka?= <pld-t9zbU3WrWHI@public.gmane.org>
-Subject: Re: GeForce FX5200 dual DVI & Samsung 204b
-Date: Tue, 28 Sep 2010 12:53:55 +0200
-Message-ID: <4CA1C943.8080607@pfu.pl>
-References: <4C9E0167.8000507@pfu.pl>
-	<20100928004117.0a0ae0ca@daedalus.pq.iki.fi>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26980] GT230M or GT218 with nouveau: X server hangs
+ spontaneously
+Date: Tue, 28 Sep 2010 04:02:41 -0700 (PDT)
+Message-ID: <20100928110241.69FAE13004E@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20100928004117.0a0ae0ca-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,7 +21,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-By the way: There is now direct implication between the refresh rate and
-the PixelClock. In theory you can do arbitrary low resolution/refresh
-rate by arbitrary high PixelClock. Only thing is that setting to high
-values of PixelClock does not make any sense.
+https://bugs.freedesktop.org/show_bug.cgi?id=26980
+
+--- Comment #37 from kavol-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org 2010-09-28 04:02:39 PDT ---
+Created an attachment (id=39004)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39004)
+./peek 10a000 1000 after and before the crash
+
+07:00.0 VGA compatible controller: nVidia Corporation Device 0a65 (rev a2)
+
+here are my dumps
+
+note that "before" is actually after reboot - don't know how to capture right
+before the freeze
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
