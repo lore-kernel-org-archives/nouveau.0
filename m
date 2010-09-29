@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30146] Horizontal Couloured Lines with Nvidia 6,
-	800 GT (NV40)
-Date: Wed, 29 Sep 2010 15:58:17 -0700 (PDT)
-Message-ID: <20100929225817.73F81130051@annarchy.freedesktop.org>
-References: <bug-30146-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Add a module option to force
+ card POST.
+Date: Thu, 30 Sep 2010 09:15:42 +1000
+Message-ID: <1285802142.6466.1.camel@nisroch>
+References: <1285758901-2763-1-git-send-email-koriakin@0x04.net>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30146-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1285758901-2763-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,59 +19,47 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin =?UTF-8?Q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30146
-
---- Comment #12 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-09-29 15:58:17 PDT ---
-(In reply to comment #11)
-> (In reply to comment #8)
-> > Hi Francisco,
-> >             I'm sorry for the late reply,I had discussed my issue on the
-> > nouveau irc channel.I did do a git bisect on the linix-2.6 kernel module branch
-> > with not much success.I simply can't remember when the code broke for
-> > me,although it was around the start of 30-08-2010.
-> > 
-> > I think a different approach to solve the problem could be better.Since the
-> > kernel option of nouveau.noaccel=1,I can boot fine into the desktop  with no
-> > problems.
-> > 
-> Well, your kernel logs aren't very useful, because they end before the crash,
-> they don't even have a trace of the X server starting up. Your best bet is
-> still 'git-bisect', e.g. if you start bisecting from the 15 Aug it shouldn't
-> take you than 12 steps to get to the culprit.
-> 
-> > If I now leave out the parameter,I can get as far as the desktop,but the X
-> > server will freeze as soon as it does.
-> > 
-> > I will upload my latest dmesg and Xorg.0.log whenb that problem occurs.
-> > 
-> > Regards,
-> >         STEVE555
-
-Dear Francisco,
-              Here is an update to to my efforts.
-I tried to a git bisect on the nouveau kernel modules,but I seemed to messed up
-my Fedora installation,so I did a fresh install of a nightly build of Fedora
-14,and did a yum upgrade to Fedora 15.
-
-I tried to install the kernel-modules with the latest Fedora 14 kernel at the
-time,(kernel.i686 0:2.6.35.4-12.fc14),but the build kept running into an error
-when trying to build with it.
-
-So when I used the latest Fedora 15 kernel(2.6.36-0.28.rc6.git0.fc15.i686),I
-found I couldn't even boot with that kernel.So I used the parameters:
-enforcing=0 nouveau.noaccel=1 and I could boot into the desktop.
-
-So what I'm trying to say is I'm not so sure now if the kernel-module code is
-at fault,as I haven't built the latest kernel-module code with the latest
-kernel for Fedora 15 yet.
-
-Regards,
-       STEVE555
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gV2VkLCAyMDEwLTA5LTI5IGF0IDExOjE1ICswMDAwLCBNYXJjaW4gS2/Fm2NpZWxuaWNraSB3
+cm90ZToKClllcywgdGhpcyBpcyB1c2VmdWwgZm9yIGRldmVsb3BtZW50IHB1cnBvc2VzIGluIHRo
+ZSB2ZXJ5IGxlYXN0LiAgSSd2ZQpxdWV1ZWQgaXQgdXAgaW4gbXkgdHJlZS4KClRoYW5rcywKQmVu
+Lgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Jpb3MuYyB8ICAgIDIg
+KysKPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuYyAgfCAgICA0ICsrKysK
+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaCAgfCAgICAxICsKPiAgMyBm
+aWxlcyBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDAgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMKPiBpbmRleCAwYjg0NGVhLi40ZGY2ODk4IDEw
+MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jCj4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMKPiBAQCAtNjg3MSw2ICs2
+ODcxLDggQEAgbm91dmVhdV9iaW9zX2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiAgCQkJ
+InJ1bm5pbmcgVkJJT1MgaW5pdCB0YWJsZXMuXG4iKTsKPiAgCQliaW9zLT5leGVjdXRlID0gdHJ1
+ZTsKPiAgCX0KPiArCWlmIChub3V2ZWF1X2ZvcmNlX3Bvc3QpCj4gKwkJYmlvcy0+ZXhlY3V0ZSA9
+IHRydWU7Cj4gIAo+ICAJcmV0ID0gbm91dmVhdV9ydW5fdmJpb3NfaW5pdChkZXYpOwo+ICAJaWYg
+KHJldCkKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMKPiBpbmRleCAzOTUzNWM4
+Li44MDA2ZjMwIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+ZHJ2LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5jCj4gQEAg
+LTgwLDYgKzgwLDEwIEBAIE1PRFVMRV9QQVJNX0RFU0Mobm9mYmFjY2VsLCAiRGlzYWJsZSBmYmNv
+biBhY2NlbGVyYXRpb24iKTsKPiAgaW50IG5vdXZlYXVfbm9mYmFjY2VsID0gMDsKPiAgbW9kdWxl
+X3BhcmFtX25hbWVkKG5vZmJhY2NlbCwgbm91dmVhdV9ub2ZiYWNjZWwsIGludCwgMDQwMCk7Cj4g
+IAo+ICtNT0RVTEVfUEFSTV9ERVNDKGZvcmNlX3Bvc3QsICJGb3JjZSBQT1NUIik7Cj4gK2ludCBu
+b3V2ZWF1X2ZvcmNlX3Bvc3QgPSAwOwo+ICttb2R1bGVfcGFyYW1fbmFtZWQoZm9yY2VfcG9zdCwg
+bm91dmVhdV9mb3JjZV9wb3N0LCBpbnQsIDA0MDApOwo+ICsKPiAgTU9EVUxFX1BBUk1fREVTQyhv
+dmVycmlkZV9jb25udHlwZSwgIklnbm9yZSBEQ0IgY29ubmVjdG9yIHR5cGUiKTsKPiAgaW50IG5v
+dXZlYXVfb3ZlcnJpZGVfY29ubnR5cGUgPSAwOwo+ICBtb2R1bGVfcGFyYW1fbmFtZWQob3ZlcnJp
+ZGVfY29ubnR5cGUsIG5vdXZlYXVfb3ZlcnJpZGVfY29ubnR5cGUsIGludCwgMDQwMCk7Cj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmggYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCj4gaW5kZXggNTkxMjU0ZS4uNjIwMWM0NyAx
+MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCj4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaAo+IEBAIC03NTUsNiArNzU1
+LDcgQEAgZXh0ZXJuIGNoYXIgKm5vdXZlYXVfdmJpb3M7Cj4gIGV4dGVybiBpbnQgbm91dmVhdV9p
+Z25vcmVsaWQ7Cj4gIGV4dGVybiBpbnQgbm91dmVhdV9ub2ZiYWNjZWw7Cj4gIGV4dGVybiBpbnQg
+bm91dmVhdV9ub2FjY2VsOwo+ICtleHRlcm4gaW50IG5vdXZlYXVfZm9yY2VfcG9zdDsKPiAgZXh0
+ZXJuIGludCBub3V2ZWF1X292ZXJyaWRlX2Nvbm50eXBlOwo+ICBleHRlcm4gY2hhciAqbm91dmVh
+dV9wZXJmbHZsOwo+ICBleHRlcm4gaW50IG5vdXZlYXVfcGVyZmx2bF93cjsKCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
