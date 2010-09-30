@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30387] Fade out when asking for permissions crashes X
-Date: Thu, 30 Sep 2010 04:28:52 -0700 (PDT)
-Message-ID: <20100930112853.1F12A13004E@annarchy.freedesktop.org>
-References: <bug-30387-8800@http.bugs.freedesktop.org/>
+From: =?ISO-8859-2?Q?Grzesiek_S=F3jka?= <pld-t9zbU3WrWHI@public.gmane.org>
+Subject: Re: GeForce FX5200 dual DVI & Samsung 204b
+Date: Thu, 30 Sep 2010 17:13:56 +0200
+Message-ID: <4CA4A934.4080109@pfu.pl>
+References: <4C9E0167.8000507@pfu.pl>	<20100928004117.0a0ae0ca@daedalus.pq.iki.fi>
+	<4CA1C6C0.1000709@pfu.pl>	<20100928170227.00665f76@daedalus.pq.iki.fi>
+	<4CA21515.4030903@pfu.pl>	<20100929193136.644e0d68@daedalus.pq.iki.fi>
+	<878w2jike0.fsf@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30387-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <878w2jike0.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,21 +20,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30387
+I did download new sources and applied the amd-agp patch but no change.
+I get the some problems. Here is the dmesg without modeset:
+http://yen.ipipan.waw.pl/~gs159090/tmp/txt.gz
+Then I added following modeline to the file drm_edid_modes.h
 
---- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-09-30 04:28:51 PDT ---
-(In reply to comment #0)
-> To reproduce just open something that will ask for permissions. I choose
-> synaptic.  It crashes on the fadeout to ask for a password.
+/* 1600x1200@50Hz */
+{ DRM_MODE("1600x1200", DRM_MODE_TYPE_DRIVER, 135000, 1600, 1664,
+  1856, 2160, 0, 1200, 1201, 1204, 1250, 0,
+  DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC) },
 
-It doesn't look like it's crashing in nouveau. You could get debug symbols for
-your X server and try to reproduce the crash with gdb attached, that would get
-you a more meaningful backtrace.
+and tried to force the mode by setting video=DVI-I-[12]:1600x1200-15@50.
+No luck, here you have the dmesg:
+http://yen.ipipan.waw.pl/~gs159090/tmp/txt2.gz
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I also did some test with the xorg:
+http://yen.ipipan.waw.pl/~gs159090/tmp/Xorg.0.log.gz
+http://yen.ipipan.waw.pl/~gs159090/tmp/xorg.conf.gz
+
+The interesting thing is that according to the dmesg the xorgs tries to
+set the mode:
+Modeline 58:"1600x1200_def" 0 144000 1600 1628 1788 1920 1200 1201 1204
+1250 0x0 0x0
+but just after the mode is used:
+Modeline 75:"1600x1200" 0 162000 1600 1664 1856 2160 1200 1201 1204 1250
+0x48 0x5
+Here is the xrandr --verbose output:
+http://yen.ipipan.waw.pl/~gs159090/tmp/xrandr.nouveau.gz
+
+Just in case I also recorded the xrandr output in the case of the Nvidia
+binary driver:
+http://yen.ipipan.waw.pl/~gs159090/tmp/xrandr.nvidia.gz
+I was really surprised because the xrandr claims that the refresh rate
+is 50Hz but at the OSD there is an information that the refresh rate is
+60Hz. What to think?? Next thing is that the refresh rate of 50Hz is out
+of the monitor range: VertRefresh 56 - 75. So the Xserver should not to
+set it to 50.
+
+All the time (when using nouveau.ko) the monitor #1 is switched off and
+#2 is blinking. It does not mater if Xserver is running or not.
+
+Please let me know if you need any more data.
+
+Thanks for any help in advance.
+
+Regards
