@@ -1,15 +1,12 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Add a module option to force
- card POST.
-Date: Thu, 30 Sep 2010 09:15:42 +1000
-Message-ID: <1285802142.6466.1.camel@nisroch>
-References: <1285758901-2763-1-git-send-email-koriakin@0x04.net>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 30482] New: Xf86-driver-nouveau build broken because
+ of change to xserver
+Date: Wed, 29 Sep 2010 17:22:43 -0700 (PDT)
+Message-ID: <bug-30482-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1285758901-2763-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,47 +16,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin =?UTF-8?Q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCAyMDEwLTA5LTI5IGF0IDExOjE1ICswMDAwLCBNYXJjaW4gS2/Fm2NpZWxuaWNraSB3
-cm90ZToKClllcywgdGhpcyBpcyB1c2VmdWwgZm9yIGRldmVsb3BtZW50IHB1cnBvc2VzIGluIHRo
-ZSB2ZXJ5IGxlYXN0LiAgSSd2ZQpxdWV1ZWQgaXQgdXAgaW4gbXkgdHJlZS4KClRoYW5rcywKQmVu
-Lgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Jpb3MuYyB8ICAgIDIg
-KysKPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuYyAgfCAgICA0ICsrKysK
-PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaCAgfCAgICAxICsKPiAgMyBm
-aWxlcyBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDAgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMKPiBpbmRleCAwYjg0NGVhLi40ZGY2ODk4IDEw
-MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jCj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMKPiBAQCAtNjg3MSw2ICs2
-ODcxLDggQEAgbm91dmVhdV9iaW9zX2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiAgCQkJ
-InJ1bm5pbmcgVkJJT1MgaW5pdCB0YWJsZXMuXG4iKTsKPiAgCQliaW9zLT5leGVjdXRlID0gdHJ1
-ZTsKPiAgCX0KPiArCWlmIChub3V2ZWF1X2ZvcmNlX3Bvc3QpCj4gKwkJYmlvcy0+ZXhlY3V0ZSA9
-IHRydWU7Cj4gIAo+ICAJcmV0ID0gbm91dmVhdV9ydW5fdmJpb3NfaW5pdChkZXYpOwo+ICAJaWYg
-KHJldCkKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMKPiBpbmRleCAzOTUzNWM4
-Li44MDA2ZjMwIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-ZHJ2LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5jCj4gQEAg
-LTgwLDYgKzgwLDEwIEBAIE1PRFVMRV9QQVJNX0RFU0Mobm9mYmFjY2VsLCAiRGlzYWJsZSBmYmNv
-biBhY2NlbGVyYXRpb24iKTsKPiAgaW50IG5vdXZlYXVfbm9mYmFjY2VsID0gMDsKPiAgbW9kdWxl
-X3BhcmFtX25hbWVkKG5vZmJhY2NlbCwgbm91dmVhdV9ub2ZiYWNjZWwsIGludCwgMDQwMCk7Cj4g
-IAo+ICtNT0RVTEVfUEFSTV9ERVNDKGZvcmNlX3Bvc3QsICJGb3JjZSBQT1NUIik7Cj4gK2ludCBu
-b3V2ZWF1X2ZvcmNlX3Bvc3QgPSAwOwo+ICttb2R1bGVfcGFyYW1fbmFtZWQoZm9yY2VfcG9zdCwg
-bm91dmVhdV9mb3JjZV9wb3N0LCBpbnQsIDA0MDApOwo+ICsKPiAgTU9EVUxFX1BBUk1fREVTQyhv
-dmVycmlkZV9jb25udHlwZSwgIklnbm9yZSBEQ0IgY29ubmVjdG9yIHR5cGUiKTsKPiAgaW50IG5v
-dXZlYXVfb3ZlcnJpZGVfY29ubnR5cGUgPSAwOwo+ICBtb2R1bGVfcGFyYW1fbmFtZWQob3ZlcnJp
-ZGVfY29ubnR5cGUsIG5vdXZlYXVfb3ZlcnJpZGVfY29ubnR5cGUsIGludCwgMDQwMCk7Cj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmggYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCj4gaW5kZXggNTkxMjU0ZS4uNjIwMWM0NyAx
-MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaAo+IEBAIC03NTUsNiArNzU1
-LDcgQEAgZXh0ZXJuIGNoYXIgKm5vdXZlYXVfdmJpb3M7Cj4gIGV4dGVybiBpbnQgbm91dmVhdV9p
-Z25vcmVsaWQ7Cj4gIGV4dGVybiBpbnQgbm91dmVhdV9ub2ZiYWNjZWw7Cj4gIGV4dGVybiBpbnQg
-bm91dmVhdV9ub2FjY2VsOwo+ICtleHRlcm4gaW50IG5vdXZlYXVfZm9yY2VfcG9zdDsKPiAgZXh0
-ZXJuIGludCBub3V2ZWF1X292ZXJyaWRlX2Nvbm50eXBlOwo+ICBleHRlcm4gY2hhciAqbm91dmVh
-dV9wZXJmbHZsOwo+ICBleHRlcm4gaW50IG5vdXZlYXVfcGVyZmx2bF93cjsKCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=30482
+
+           Summary: Xf86-driver-nouveau build broken because of change to
+                    xserver
+           Product: Mesa
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org
+
+
+Patch 5c6a2f93ebc16a78093782b442306de23ae94e78 (commited Sept 27, 2010) to
+xserver deletes pixmapPrivate, which is still used in drmmode_display.c. It
+does not appear to be an accident.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
