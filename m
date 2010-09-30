@@ -1,16 +1,14 @@
-From: =?ISO-8859-2?Q?Grzesiek_S=F3jka?= <pld-t9zbU3WrWHI@public.gmane.org>
-Subject: Re: GeForce FX5200 dual DVI & Samsung 204b
-Date: Thu, 30 Sep 2010 20:06:17 +0200
-Message-ID: <4CA4D199.8010403@pfu.pl>
-References: <4C9E0167.8000507@pfu.pl>	<20100928004117.0a0ae0ca@daedalus.pq.iki.fi>
-	<4CA1C6C0.1000709@pfu.pl>	<20100928170227.00665f76@daedalus.pq.iki.fi>
-	<4CA21515.4030903@pfu.pl>	<20100929193136.644e0d68@daedalus.pq.iki.fi>	<878w2jike0.fsf@riseup.net>
-	<4CA4A934.4080109@pfu.pl> <87zkuzgqsv.fsf@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 29714] Corrupted image (running stripes) on Quadro
+ NVS 3100M with embedded DisplayPort (HP EliteBook 8440p)
+Date: Thu, 30 Sep 2010 12:37:57 -0700 (PDT)
+Message-ID: <20100930193757.A348713004F@annarchy.freedesktop.org>
+References: <bug-29714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <87zkuzgqsv.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <bug-29714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +18,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 09/30/10 18:05, Francisco Jerez wrote:
-> Does the following command help?
-> $ xrandr --output DVI-I-2 --set "scaling mode" "None"
-Yes! Now I have:
-xrandr --output DVI-I-1 --set "scaling mode" "None"
-xrandr --output DVI-I-2 --set "scaling mode" "None"
-in xinitrc. Both displays work fine when Xserver is running. But after I
-go back to the console the display #1 switches off and #2 starts to
-blink again. Is it possible to fix the console??
+https://bugs.freedesktop.org/show_bug.cgi?id=29714
 
-Regards.
+Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #21 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-09-30 12:37:56 PDT ---
+Commit
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=2aa335a9b84e5403c3d0be3a35237c6c695d812e
+fixes this bug. Ben, thank you very much.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
