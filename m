@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30589] Dual screen connected with VGA works,
  but not with DVI on G94 [GeForce 9600GT]
-Date: Sun,  3 Oct 2010 11:35:33 -0700 (PDT)
-Message-ID: <20101003183533.B857313000D@annarchy.freedesktop.org>
+Date: Sun,  3 Oct 2010 11:38:28 -0700 (PDT)
+Message-ID: <20101003183828.3A60813000D@annarchy.freedesktop.org>
 References: <bug-30589-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30589
 
---- Comment #5 from diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-10-03 11:35:32 PDT ---
-Created an attachment (id=39144)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39144)
-xrandr state when booting with one connector in DVI the other in VGA and
-without the video= option
+--- Comment #6 from diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-10-03 11:38:27 PDT ---
+Created an attachment (id=39145)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39145)
+xrandr state after changing the VGA connector with a DVI one
+
+When booting without the video= option, with one DVI and one VGA, both screen
+work as expected, but if I replace the VGA by a DVI the screen stays black with
+"no signal".
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
