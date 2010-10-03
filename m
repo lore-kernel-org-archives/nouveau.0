@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30582] SDL tests under su root crashes X server
-Date: Sun,  3 Oct 2010 04:37:54 -0700 (PDT)
-Message-ID: <20101003113754.E191613004F@annarchy.freedesktop.org>
-References: <bug-30582-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 30589] New: Dual screen connected with VGA works,
+ but not with DVI on G94 [GeForce 9600GT]
+Date: Sun,  3 Oct 2010 11:30:49 -0700 (PDT)
+Message-ID: <bug-30589-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +19,47 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30582
+https://bugs.freedesktop.org/show_bug.cgi?id=30589
 
---- Comment #1 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2010-10-03 04:37:54 PDT ---
-Looks like such a hard crash, that logs do not get to disk. Can you try the
-suggestions in http://nouveau.freedesktop.org/wiki/HangDiagnosis to get a
-kernel log showing the crash?
+           Summary: Dual screen connected with VGA works, but not with DVI
+                    on G94 [GeForce 9600GT]
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Can you reproduce this without nouveau_dri.so?
 
-Also, might be worth to try with the latest git nouveau kernel modules
-(requires a kernel upgrade for you).
+Created an attachment (id=39139)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39139)
+Both monitors are connected via DVI after a fresh reboot
 
-Is this a regression, have you ever had a situation, where the test apps do not
-cause a hard crash?
+When connecting my two identical Acer monitors with their VGA input (using a
+DVI-to-VGA adapter) the dual screen works and xrandr is capable of changing the
+resolution of both monitors independently.
 
-Errm, "Couldn't set console screen info." sounds weird, are you sure SDL is
-using X here, and does not attempt to use, say, SVGA or kernel framebuffer?
-Does 'su root' allow you to start any X applications, that is, does it preserve
-DISPLAY environment variable for you? Try starting e.g. xterm from a 'su root'
-shell.
+But when connecting both screens to DVI-I input one monitor stays black saying
+"no signal" even if xrandr says that the screen is connected and at native
+resolution.
+
+It seems that the video= option affects this, and changes the behavior when one
+monitor is connected to VGA while the other is connected to DVI input. If the
+option "video=DVI-I-x:1920x1080eD" is passed for both screens (DVI-I-1 and
+DVI-I-2) only the VGA one shows something while we expect only the DVI one to
+work and not the VGA (as stated here : ) . If no option is passed both work as
+expected.
+
+EDID are parsed correctly and monitors are detected correctly as will be shown
+in the multiple xrandr outputs that will follow.
+
+As discussed on IRC it is impossible to force the subconnector with xrandr so
+we can't test this way. But anyway the sub-connectors are selected correctly.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
