@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30589] Dual screen connected with VGA works,
  but not with DVI on G94 [GeForce 9600GT]
-Date: Sun,  3 Oct 2010 11:33:45 -0700 (PDT)
-Message-ID: <20101003183346.01EAB13004E@annarchy.freedesktop.org>
+Date: Sun,  3 Oct 2010 11:34:43 -0700 (PDT)
+Message-ID: <20101003183443.4AFB713004E@annarchy.freedesktop.org>
 References: <bug-30589-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30589
 
---- Comment #3 from diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-10-03 11:33:45 PDT ---
-Created an attachment (id=39142)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39142)
-xrandr state after disconnecting the left monitor (no monitor connected)
+--- Comment #4 from diego.abelenda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-10-03 11:34:42 PDT ---
+Created an attachment (id=39143)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39143)
+xrandr state when booting with one connector in DVI the other in VGA and the
+video= option
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
