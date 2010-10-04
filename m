@@ -1,18 +1,12 @@
-From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Canvas in Firefox, corruption
-Date: Mon, 4 Oct 2010 14:29:05 +0200
-Message-ID: <AANLkTineRoqREeC7_pSH9Xf8_zO0n9dxDMAGgZq8HPJr@mail.gmail.com>
-References: <4C6690D6.6050507@spider007.net>
-	<20100814210400.1faf8378@laptop64.home>
-	<4C66EA8B.2010902@spider007.net>
-	<AANLkTimYsP=A8YXZNnRR9p5EtVeiCsgHndjeg6U955CW@mail.gmail.com>
-	<AANLkTinf9sWfUa1_o9SXtTk2--9zpaxmo+nstyWe4L1Y@mail.gmail.com>
-	<AANLkTik06ZjvbDBwTvRZmC3ZWtA2P8u2Sq+Mg79Emu6f@mail.gmail.com>
+From: "Gerd v. Egidy" <lists-6VzpN07DMvo@public.gmane.org>
+Subject: Triplehead with TripleHead2Go: counterpart to
+	TwinViewXineramaInfoOverride?
+Date: Mon, 4 Oct 2010 14:15:58 +0200
+Message-ID: <201010041415.58285.lists@egidy.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTik06ZjvbDBwTvRZmC3ZWtA2P8u2Sq+Mg79Emu6f-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,28 +16,65 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Sjon <archlinux.org-pbuv2Qasjt8Gk0GAwe0YXA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 18, 2010 at 11:51 PM, Xavier Chantry
-<chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Sun, Aug 15, 2010 at 12:48 AM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->>
->> Maybe someone should tell mozilla to use ARGB instead of XRGB, because
->> that will be hardware accelerated (XRender and opengl disagree on what
->> should be sampled when going outside the texture without an alpha
->> channel).
->>
->
-> You are very welcome to add any corrections or clarifications to the report.
-> https://bugzilla.mozilla.org/show_bug.cgi?id=587499
->
+Hi,
 
-https://bugzilla.mozilla.org/show_bug.cgi?id=587499#c1
-"Or alternatively PAD repeat can be set on the source images at least in some
-cases. Everything depends on whether it is preferable (for performance reasons)
-to have SRC compositing operation instead of OVER for some images which are
-known to be opaque. Also see bug 568767 for more details."
+I have 3 monitors with 1600x1200 connected to a 8400 (NV50) card like this:
 
-What do you think of this comment, how does nouveau handle that ?
+
+           HDMI ----------------------- Monitor1
+           |
+8400 card -|
+           |                      DVI-- Monitor2
+           DVI ---- TripleHead2Go-|
+                                  DVI-- Monitor3
+
+The Matrox TripleHead2Go splits one DVI signal for two (or three) monitors. So 
+the output of the card is a 3200x1200 resolution which is then split into 
+1600x1200 for each monitor.
+
+I use the TripleHead2Go to connect all monitors to one card, allowing the use 
+of TwinView and not needing to rely on Xinerama. I used two cards and Xinerama 
+some years ago but it became too slow so I switched to the solution with the 
+TripleHead2Go.
+
+Currently I'm using the closed-source nvidia driver but it is lacking KMS, 
+suspend often crashes and I would prefer not to use closed-source drivers. 
+
+I just tried Nouveau on the Fedora 14 beta and it worked out of the box. 
+Congratulations to all you developers achieving something like that via 
+reverse engineering!
+
+There is one minor thing though: with the closed nvidia driver I can use the 
+TwinViewXineramaInfoOverride option to fake the xinerama data for three 
+screens. KDE reads out this data to pop up windows in the right position, 
+maximize window is separated for the 3 screens etc.
+
+Is there something similar available for nouveau?
+
+FYI, my current xorg.conf for the closed source driver looks like this:
+
+ection "Screen"
+    Identifier     "Screen0"
+    Device         "Device0"
+    Monitor        "Monitor0"
+    DefaultDepth    24
+    Option         "TwinView" "1"
+    Option         "metamodes" "DFP-0: 3200x1200 +0+0, DFP-1: 1600x1200 
++3200+0"
+    Option         "TwinViewXineramaInfoOverride" "1600x1200 +0+0, 1600x1200 
++1600+0, 1600x1200 +3200+0"
+    SubSection     "Display"
+        Depth       24
+    EndSubSection
+EndSection
+
+Kind regards,
+
+Gerd
+
+-- 
+Address (better: trap) for people I really don't want to get mail from:
+jonas-K4Lox0BdAqn6SQ/niu2adgC/G2K4zDHf@public.gmane.org
