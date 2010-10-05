@@ -1,14 +1,19 @@
-From: =?ISO-8859-1?Q?Grzesiek_S=F3jka?= <pld-t9zbU3WrWHI@public.gmane.org>
-Subject: Re: dual head
-Date: Tue, 05 Oct 2010 23:43:59 +0200
-Message-ID: <4CAB9C1F.5060003@pfu.pl>
-References: <4CAAFE97.60804@pfu.pl>
-	<20101006003910.23bb4708@daedalus.pq.iki.fi>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: GeForce FX5200 dual DVI & Samsung 204b
+Date: Tue, 5 Oct 2010 23:45:37 +0200
+Message-ID: <20101005214537.GA4034@joi.lan>
+References: <4CA4A934.4080109@pfu.pl> <87zkuzgqsv.fsf@riseup.net>
+	<4CA4D199.8010403@pfu.pl> <87pqvuhksw.fsf@riseup.net>
+	<4CA5B64D.8000608@pfu.pl> <871v88hgam.fsf@riseup.net>
+	<4CAAFB3A.8010804@pfu.pl> <87fwwkhk8h.fsf@riseup.net>
+	<4CAB3BDC.4070502@pfu.pl>
+	<20101006003325.3bfb33e9@daedalus.pq.iki.fi>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20101006003910.23bb4708-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20101006003325.3bfb33e9-cxYvVS3buNOdIgDiPM52R8c4bpwCjbIv@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,18 +27,45 @@ To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 10/05/10 23:39, Pekka Paalanen wrote:
-> On Tue, 05 Oct 2010 12:31:51 +0200
-> Grzesiek S=F3jka<pld-t9zbU3WrWHI@public.gmane.org>  wrote:
->
->> Is it possible to get two different fb devices using dual head
->> GPU and the nouveau.ko module??
->
-> Do you mean the kernel fb devices, /dev/fb*?
->
-> AFAIK that is not implemented. Do you want to run
-> two fb applications on different monitors without X?
-> Or do you want multi-seat X? What is your use case?
-The first one. To have different console on every monitor without the =
-
-Xserver.
+T24gV2VkLCBPY3QgMDYsIDIwMTAgYXQgMTI6MzM6MjVBTSArMDMwMCwgUGVra2EgUGFhbGFuZW4g
+d3JvdGU6Cj4gT24gVHVlLCAwNSBPY3QgMjAxMCAxNjo1MzoxNiArMDIwMAo+IEdyemVzaWVrIFPD
+s2prYSA8cGxkQHBmdS5wbD4gd3JvdGU6Cj4gCj4gPiBPbiAxMC8wNS8xMCAxNDo1NSwgRnJhbmNp
+c2NvIEplcmV6IHdyb3RlOgo+ID4gPj4gUFMuIEknbSBhZnJhaWQgdGhhdCBteSBzeXN0ZW0gaXMg
+bm90IHZlcnkgc3RhYmxlIHdoZW4gdGhlIEFHUAo+ID4gPj4gc3VwcG9ydCBpcyB0dXJuZWQgb24g
+Ym90aCB1c2luZyB0aGUgbm91dmVhdSBrZXJuZWwgc291cmNlIHRyZWUKPiA+ID4+IGFuZCB0aGUg
+UExEIHBhdGNoZWQgMi42LjM1LTUgdmVyc2lvbiB3aXRoIGFuIGV4dHJhIGFtZC1rNy1hZ3AKPiA+
+ID4+IHBhdGNoLiBUaGUgWHNlcnZlciB1c2VzIHRoZSBkcml2ZXI6Cj4gPiA+IFVuc3RhYmxlPyBI
+b3c/IFdoYXQncyB0aGUgcHJvYmxlbT8KPiA+IAo+ID4gSGVyZSBhcmUgdGhlIGxvZ3M6Cj4gPiBo
+dHRwOi8veWVuLmlwaXBhbi53YXcucGwvfmdzMTU5MDkwL3RtcC9sb2cudGd6Cj4gPiAKPiA+IEJU
+VzogU29tZXRpbWVzIHRoZSBYc2VydmVyIGZyZWV6ZXMgZHVyaW5nIG5vcm1hbCB3b3JrLgo+ID4g
+VW5mb3J0dW5hdGVseSBJIHdhcyBub3QgYWJsZSB0byBnZW5lcmF0ZSBzdWNoIGEgY3J1c2ggbm93
+LiBJIHNlbmQKPiA+IHlvdSBsb2dzIGlmIGl0IGhhcHBlbnMgYWdhaW4uCj4gCj4gV2hvYSwgeW91
+IGhhdmUgdGhyZWUgZ3JhcGhpY3MgY2FyZHMvY2hpcHM/Cj4gWCBsb2cgbGlzdHMgdGhyZWUgZGV2
+aWNlcywgbWF5YmUgdGhlIHRoaXJkIG9uZSBpcyBub3QKPiBhIGdyYXBoaWNzIGNhcmQ/Cj4gCj4g
+QW55d2F5LCB0aGUgTWF0cm94IGNhcmQgaXMgYW4gaW1wb3J0YW50IGRldGFpbC4KPiAKPiBYIGRy
+aXZlcnMgaW4gdXNlOgo+IC0gbm91dmVhdQo+IC0gbWdhCj4gCj4ga2VybmVsIGRyaXZlcnMgaW4g
+dXNlOgo+IC0gbWF0cm94ZmIgKGZiMCkKPiAtIG5vdXZlYXUgKGZiMSkKPiAKPiBZb3VyIGtlcm5l
+bCBsb2cgaXMgbWlzc2luZyB0aGUgcGFydCBmcm9tIGJvb3QgdG8gMTIKPiBzZWNvbmRzLiBNaWdo
+dCBub3QgY29udGFpbiBhbnl0aGluZyBpbXBvcnRhbnQsIGJ1dAo+IHdvdWxkIGJlIG5pY2UgdG8g
+c2VlIGl0Lgo+IAo+IFlvdSBhcmUgbWlzc2luZyBWR0EgYXJiaXRlciBzdXBwb3J0IGluIGtlcm5l
+bC4KPiAKPiBJJ20gbm90IHN1cmUgaG93IG1hbnkgY29uZmxpY3RzIGFsbCB0aG9zZSBjYXJkcyBh
+bmQgZHJpdmVycwo+IGNyZWF0ZSBpbiB0aGVvcnksIGJ1dCBtaXNzaW5nIFZHQSBhcmJpdGVyIGlz
+IG5vdCBnb29kIGluCj4gYSBtdWx0aS1jYXJkIG1hY2hpbmUuCj4gCj4gSSBob3BlIHNvbWVvbmUg
+Y2FuIHRlbGwsIGlmIHRoZSBmb2xsb3dpbmcgYXJlIGNvbmZsaWN0cywgYW5kCj4gaWYgc28sIGFy
+ZSB0aGV5IGZpeGFibGU6Cj4gLSBtZ2EgdnMuIG5vdXZlYXUgRERYIChYQUEgdnMuIEVYQSwgcHJl
+LVJhbmRyIHZzLiBSYW5kciAxLjIpCj4gLSBtZ2EgdnMuIG1hdHJveGZiIChrZXJuZWwgZHJpdmVy
+IHZzLiBYIGRyaXZlcikKPiAtIG1hdHJveGZiIHZzLiBub3V2ZWF1IChsZWdhY3kga2VybmVsIGZi
+IGRyaXZlciB2cy4gS01TIGRyaXZlciwKPiBtdWx0aXBsZSBmYiBkZXZpY2VzKQo+IAo+IEZpbmFs
+bHksIHRoZXJlIGlzIGEga2VybmVsIEJVRyBhdCB0aGUgZW5kIG9mIHRoZSBsb2csCj4gZnJvbSBU
+VE0uIEkgY2FuJ3QgdGVsbCBpZiBpdCBpcyBzb21ldGhpbmcgYWxyZWFkeQo+IGZpeGVkLgoKSnVz
+dCBhIHF1aWNrIG5vdGU6IHRoaXMgQlVHIHNob3VsZCBiZSBlYXNpbHkgZml4YWJsZSBieSBhcHBs
+eWluZwp0aGUgc2FtZSBmaXggRnJhbmNpc2NvIGRpZCBmb3IgYW1kLWs3LWFncC5jL2FtZF9pbnNl
+cnRfbWVtb3J5IHRvCmFtZF9yZW1vdmVfbWVtb3J5LgoKPiBPbmUgb3B0aW9uIGlzIHRvIHJlbW92
+ZSBhbGwgYnV0IHRoZSBudmlkaWEgZ3JhcGhpY3MgY2FyZCwKPiB0aGF0IHdvdWxkIGhvcGVmdWxs
+eSBzdGFiaWxpc2UgeW91ciBzeXN0ZW0gaW1tZWRpYXRlbHkuCj4gQXBwYXJlbnRseSB5b3UgYXJl
+IG5vdCByZWFsbHkgdXNpbmcgdGhlIE1hdHJveCBjYXJkLCB5ZXM/Cj4gQXQgbGVhc3QsIGRpc2Fi
+bGUgbWF0cm94ZmIgYW5kIG1nYSwgYW5kIGVuYWJsZSBWR0EgYXJiaXRlciwKPiBpZiBub3QgdG91
+Y2hpbmcgdGhlIGhhcmR3YXJlLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
