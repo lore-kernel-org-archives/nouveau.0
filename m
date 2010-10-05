@@ -1,7 +1,7 @@
 From: =?ISO-8859-2?Q?Grzesiek_S=F3jka?= <pld-t9zbU3WrWHI@public.gmane.org>
 Subject: Re: GeForce FX5200 dual DVI & Samsung 204b
-Date: Tue, 05 Oct 2010 15:27:50 +0200
-Message-ID: <4CAB27D6.2000800@pfu.pl>
+Date: Tue, 05 Oct 2010 16:53:16 +0200
+Message-ID: <4CAB3BDC.4070502@pfu.pl>
 References: <4C9E0167.8000507@pfu.pl>	<20100928004117.0a0ae0ca@daedalus.pq.iki.fi>
 	<4CA1C6C0.1000709@pfu.pl>	<20100928170227.00665f76@daedalus.pq.iki.fi>
 	<4CA21515.4030903@pfu.pl>	<20100929193136.644e0d68@daedalus.pq.iki.fi>	<878w2jike0.fsf@riseup.net>
@@ -32,9 +32,13 @@ On 10/05/10 14:55, Francisco Jerez wrote:
 >> is turned on both using the nouveau kernel source tree and the PLD
 >> patched 2.6.35-5 version with an extra amd-k7-agp patch. The Xserver
 >> uses the driver:
+> Unstable? How? What's the problem?
 
-The Xserver crushes every time when I try to shut it down. To send you 
-the dmesg and Xlog I need some more time. I messed something up in the 
-kernel configuration and I'm only able to use single user mod.
+Here are the logs:
+http://yen.ipipan.waw.pl/~gs159090/tmp/log.tgz
 
-Regards
+BTW: Sometimes the Xserver freezes during normal work. Unfortunately I 
+was not able to generate such a crush now. I send you logs if it happens 
+again.
+
+Regards.
