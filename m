@@ -1,14 +1,14 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: Trouble with building xf86-video-nouveau
-Date: Wed, 6 Oct 2010 17:35:02 +0300
-Message-ID: <20101006173502.707ec26e@daedalus.pq.iki.fi>
-References: <39cd79ff15131cff86908d06f0863e8f3dad41ea@mail.qip.ru>
-	<i8fmiq$2uf$1@dough.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 30375] (NV34) X server using 100% cpu with latest
+ nouveau.git and xf86-video-nouveau.git
+Date: Wed,  6 Oct 2010 16:05:07 -0700 (PDT)
+Message-ID: <20101006230507.B4EC613000D@annarchy.freedesktop.org>
+References: <bug-30375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <i8fmiq$2uf$1@dough.gmane.org>
+In-Reply-To: <bug-30375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,41 +18,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 05 Oct 2010 10:17:05 -0700
-walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+https://bugs.freedesktop.org/show_bug.cgi?id=30375
 
-> On 10/04/2010 10:38 PM, noname_oz-EE1Pc4pW+aiHXe+LvDLADg@public.gmane.org wrote:
-> > I have problem with building nouveau driver. I already have
-> > installed latest versions of mesa and libdrm. In process of
-> > building i have this error:
-> >
-> > drmmode_display.c: In function drmmode_xf86crtc_resize:
-> > drmmode_display.c:1076: error: struct _ScrnInfoRec has no
-> > member named pixmapPrivate
-> 
-> Two wild guesses.  Do you have the proprietary nvidia-drivers
-> package installed? If so, run 'eselect opengl list' to find out
-> which version you are using.  Try switching to the xorg-x11
-> version.
-> 
-> The *-9999 package just pulls from the git repository and build
-> whatever code happens to be there at the time.  Try re-installing
-> the package again to get any commits you may have missed the
-> first time.
+--- Comment #4 from walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-06 16:05:06 PDT ---
+(In reply to comment #3)
 
-No, this is a known breakage due to API changes in the X.org
-server. Nouveau DDX does not yet have a fix.
+> Again, I've looked closely at my amd64 builds of firefox and nouveau-related
+> packages and there is no sign of this cpu overload problem.  Just on i686.
 
-There is already a bug report:
-https://bugs.freedesktop.org/show_bug.cgi?id=30482
-
-In the mean time, you just need to revert to an older
-(preferrably released) X server.
+Another big difference between the two machines is that the i686 has NV34
+hardware while the amd64 has NV4x.
 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
