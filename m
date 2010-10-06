@@ -1,13 +1,14 @@
-From: walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Trouble with building xf86-video-nouveau
-Date: Tue, 05 Oct 2010 10:17:05 -0700
-Message-ID: <i8fmiq$2uf$1@dough.gmane.org>
-References: <39cd79ff15131cff86908d06f0863e8f3dad41ea@mail.qip.ru>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 30482] Xf86-driver-nouveau build broken because of
+ change to xserver
+Date: Wed,  6 Oct 2010 06:11:34 -0700 (PDT)
+Message-ID: <20101006131134.A077F13000D@annarchy.freedesktop.org>
+References: <bug-30482-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <39cd79ff15131cff86908d06f0863e8f3dad41ea-00AcXzPn1AMox3rIn2DAYQ@public.gmane.org>
+In-Reply-To: <bug-30482-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 10/04/2010 10:38 PM, noname_oz-EE1Pc4pW+aiHXe+LvDLADg@public.gmane.org wrote:
-> I have problem with building nouveau driver. I already have installed latest versions of mesa and libdrm. In process of building i have this error:
->
-> drmmode_display.c: In function drmmode_xf86crtc_resize:
-> drmmode_display.c:1076: error: struct _ScrnInfoRec has no member namedpixmapPrivate
+https://bugs.freedesktop.org/show_bug.cgi?id=30482
 
-Two wild guesses.  Do you have the proprietary nvidia-drivers package installed?
-If so, run 'eselect opengl list' to find out which version you are using.  Try
-switching to the xorg-x11 version.
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2010-10-06 06:11:34 PDT ---
+Happens also on x86-32:
 
-The *-9999 package just pulls from the git repository and build whatever code
-happens to be there at the time.  Try re-installing the package again to get
-any commits you may have missed the first time.
+make[2]: Entering directory `/home/guest/source/xf86-video-nouveau/src'
+  CC     drmmode_display.lo
+drmmode_display.c: In function 'drmmode_xf86crtc_resize':
+drmmode_display.c:1076: error: 'struct _ScrnInfoRec' has no member named
+'pixmapPrivate'
+make[2]: *** [drmmode_display.lo] Error 1
+make[2]: Leaving directory `/home/guest/source/xf86-video-nouveau/src'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/home/guest/source/xf86-video-nouveau'
+make: *** [all] Error 2
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
