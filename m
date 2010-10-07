@@ -1,12 +1,12 @@
-From: Martin Peres <programmeur.fou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 Subject: Re: Add pause/unpause methods for PFIFO & PGRAPH. Use
  them to get stable clock changes
-Date: Thu, 07 Oct 2010 17:38:17 +0200
-Message-ID: <4CADE969.8060505@gmail.com>
+Date: Thu, 07 Oct 2010 17:38:42 +0200
+Message-ID: <4CADE982.7080309@free.fr>
 References: <4CA3223F.9030503@free.fr> <4CA4C57E.5090400@free.fr>
 	<4CAD2383.50907@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="------------030508080004040808000602"
+Content-Type: multipart/mixed; boundary="------------030907070507070605020800"
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <4CAD2383.50907-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,7 +22,7 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 This is a multi-part message in MIME format.
---------------030508080004040808000602
+--------------030907070507070605020800
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -34,7 +34,7 @@ Content-Transfer-Encoding: quoted-printable
 >
 Sorry, I forgot to attach it. Here it is.
 
---------------030508080004040808000602
+--------------030907070507070605020800
 Content-Type: text/x-patch;
  name="0001-Pause-the-card-before-reclocking.patch"
 Content-Transfer-Encoding: 7bit
@@ -431,7 +431,7 @@ index cbf5ae2..b24c397 100644
 1.7.2
 
 
---------------030508080004040808000602
+--------------030907070507070605020800
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -442,4 +442,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---------------030508080004040808000602--
+--------------030907070507070605020800--
