@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30375] (NV34) X server using 100% cpu with latest
- nouveau.git and xf86-video-nouveau.git
-Date: Wed,  6 Oct 2010 16:05:07 -0700 (PDT)
-Message-ID: <20101006230507.B4EC613000D@annarchy.freedesktop.org>
-References: <bug-30375-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: Add pause/unpause methods for PFIFO & PGRAPH. Use
+ them to get stable clock changes
+Date: Thu, 07 Oct 2010 03:33:55 +0200
+Message-ID: <4CAD2383.50907@free.fr>
+References: <4CA3223F.9030503@free.fr> <4CA4C57E.5090400@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <4CA4C57E.5090400-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +21,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30375
+  Hi,
 
---- Comment #4 from walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-06 16:05:06 PDT ---
-(In reply to comment #3)
+Here is an updated version, all in one patch. When we agree on the code, 
+I'll split it into 3 patches.
 
-> Again, I've looked closely at my amd64 builds of firefox and nouveau-related
-> packages and there is no sign of this cpu overload problem.  Just on i686.
+The new code is way better. As suggested on IRC, I also disable IRQs and 
+PFIFO cache pull and push.
 
-Another big difference between the two machines is that the i686 has NV34
-hardware while the amd64 has NV4x.
+Please have a look and test it. This patch needs to get upstream as it 
+gives a reliable way to change the clock even in the middle of a game.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+It is not perfect yet, changing the clocks too often (like several 
+thousand of times) lead to an hung card :)
+
+Regards,
+
+Martin
