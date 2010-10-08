@@ -1,15 +1,11 @@
-From: walt <w41ter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: OT: compilation
-Date: Thu, 07 Oct 2010 17:21:09 -0700
-Message-ID: <i8lo5m$m6n$1@dough.gmane.org>
-References: <4CAE2A1B.1000105@pfu.pl>
-	<20101007233420.1f763477@daedalus.pq.iki.fi>
-	<4CAE3198.3020405@pfu.pl>
+From: =?ISO-8859-2?Q?Grzesiek_S=F3jka?= <pld-t9zbU3WrWHI@public.gmane.org>
+Subject: dual head X config
+Date: Fri, 08 Oct 2010 18:01:04 +0200
+Message-ID: <4CAF4040.5020409@pfu.pl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4CAE3198.3020405-t9zbU3WrWHI@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,59 +18,40 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTAvMDcvMjAxMCAwMTo0NiBQTSwgR3J6ZXNpZWsgU8OzamthIHdyb3RlOgo+IE9uIDEwLzA3
-LzEwIDIyOjM0LCBQZWtrYSBQYWFsYW5lbiB3cm90ZToKPj4gWWVzLCBpdCBpcyBDT05GSUdfTE9D
-QUxWRVJTSU9OX0FVVE8gYXMgZmFyIGFzIEkgcmVjYWxsLCBkaXNhYmxlIHRoYXQuCj4gV2hlcmUg
-aXMgaXQ/PyBXaGljaCBmaWxlPz8KCkl0IGlzIHBhcnQgb2YgeW91ciBrZXJuZWwgY29uZmlndXJh
-dGlvbi4gIEdvIHRvIHRoZSBkaXJlY3RvcnkgY29udGFpbmluZwp0aGUgc291cmNlIGNvZGUgb2Yg
-eW91ciBrZXJuZWwsIHVzdWFsbHkgL3Vzci9zcmMvbGludXgtMi42Lnh4LCBhbmQgdGhlbgpydW4g
-J21ha2UgbWVudWNvbmZpZycuCgpXaGVuIHRoZSBjb25maWd1cmF0aW9uIG1lbnUgYXBwZWFycywg
-dHlwZSB0aGUgJy8nIGNoYXJhY3RlciB0byBlbnRlciB0aGUKJ3NlYXJjaCcgbW9kZSBhbmQgdGhl
-biB0eXBlICdsb2NhbHZlcnNpb24nIChmb3IgZXhhbXBsZSkgdG8gZmluZCB0aGUgbGlzdApvZiBt
-YXRjaGluZyBpdGVtcy4KCkkgZmluZCB0d28gaXRlbXM6CgogIFN5bWJvbDogTE9DQUxWRVJTSU9O
-IFs9XSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg4pSCCiAgIOKUgiBUeXBlICA6IHN0cmluZyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIOKUggogICDilIIgUHJvbXB0OiBMb2Nh
-bCB2ZXJzaW9uIC0gYXBwZW5kIHRvIGtlcm5lbCByZWxlYXNlICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICDilIIKICAg4pSCICAgRGVmaW5l
-ZCBhdCBpbml0L0tjb25maWc6ODcgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg4pSCCiAgIOKUgiAgIExv
-Y2F0aW9uOiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIOKUggogICDilIIg
-ICAgIC0+IEdlbmVyYWwgc2V0dXAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICDilIIKICAg
-4pSCICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg4pSC
-CiAgIOKUgiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IOKUggogICDilIIgU3ltYm9sOiBMT0NBTFZFUlNJT05fQVVUTyBbPXldICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICDilIIKICAg4pSCIFR5cGUgIDogYm9vbGVhbiAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAg4pSCCiAgIOKUgiBQcm9tcHQ6IEF1dG9tYXRpY2FsbHkgYXBwZW5kIHZlcnNpb24g
-aW5mb3JtYXRpb24gdG8gdGhlIHZlcnNpb24gc3RyaW5nICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIOKUggogICDilIIgICBEZWZpbmVkIGF0IGluaXQvS2NvbmZpZzo5NyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICDilIIKICAg4pSCICAgTG9jYXRpb246ICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAg4pSCCiAgIOKUgiAgICAgLT4gR2VuZXJhbCBzZXR1cCAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIOKUggoKVGhlIGRpZmZlcmVuY2UgYmV0d2VlbiB0aGUg
-dHdvIGlzIG5vdCBvYnZpb3VzLCBidXQgdGhlIHNlY29uZCBpdGVtIGlzIHdoYXQKeW91IHdlcmUg
-KGNvcnJlY3RseSkgYWR2aXNlZCB0byBsb29rIGZvci4KCk5vdGljZSB0aGF0IHRoZSAiTG9jYXRp
-b24iIG9mIGJvdGggaXRlbXMgaXMgIkdlbmVyYWwgc2V0dXAiLgoKRXhpdCB0aGUgc2VhcmNoIGZ1
-bmN0aW9uLgoKWW91IHNob3VsZCBub3cgYmUgYmFjayBpbiB0aGUga2VybmVsIGNvbmZpZ3VyYXRp
-b24gbWVudSBhbmQgLCBqdXN0IGJ5Cmx1Y2ssIHRoZSAiR2VuZXJhbCBzZXR1cCIgaXRlbSBzaG91
-bGQgYWxyZWFkeSBiZSBoaWdobGlnaHRlZCAoZm9yIG1lIGl0CmlzIGNvbG9yZWQgYmx1ZSkuCgpI
-aXQgRW50ZXIgdG8gc2VlIHRoZSB0aGUgIkdlbmVyYWwgc2V0dXAiIG1lbnUuCgpPbiBteSBtYWNo
-aW5lIHRoZSBpdGVtIHlvdSB3YW50IGlzIG9uIGxpbmUgbnVtYmVyIGZvdXIuICBIaXQgdGhlIFNQ
-QUNFCmJhciB0byBzZWxlY3QgdGhlIGl0ZW0gYW5kIHRoZW4gdXNlIHRoZSBUQUIga2V5IHRvIG5h
-dmlnYXRlIHRvICJFeGl0IgphbmQgaGl0IEVudGVyIHRvIGdvIGJhY2sgdG8gdGhlIG1haW4gbWVu
-dSBhbmQgdGhlbiBoaXQgIkV4aXQiIGFnYWluLgoKWW91IHNob3VsZCBzZWUgYSBkaWFsb2cgYXNr
-aW5nIHlvdSBpZiB5b3Ugd2FudCB0byBzYXZlIHlvdXIgbmV3IGtlcm5lbApjb25maWd1cmF0aW9u
-LCBhbmQsIG9mIGNvdXJzZSwgeW91IGRvIHdhbnQgdG8gc2F2ZSBpdC4KCk5vdyByZWNvbXBpbGUg
-YW5kIGluc3RhbGwgeW91ciBuZXcga2VybmVsLgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+Hi there,
+
+I have a question. I have a dual DVI NV34 adapter and at the moment the 
+Xserver works fine. Two separated displays configured as follows:
+
+Section "Monitor"
+   Identifier     "Monitor0"
+   Option         "Primary"    "True"
+EndSection
+Section "Monitor"
+   Identifier     "Monitor1"
+   Option         "RightOf" "Monitor0"
+   Option         "Primary"    "False"
+EndSection
+Section "Device"
+   Identifier     "Device0"
+   Driver         "nouveau"
+   #assigns the output DVI-I-1 to Monitor0
+   Option         "monitor-DVI-I-1" "Monitor0"
+   #assigns the output DVI-I-2 to Monitor1
+   Option         "monitor-DVI-I-2" "Monitor1"
+EndSection
+Section "Screen"
+   Identifier          "screen0"
+   Device              "Device0"
+   Monitor             "Monitor0"
+   DefaultDepth       16
+   SubSection "Display"
+     Depth           16
+     Virtual          3200 1200
+    EndSubSection
+EndSection
+
+The problem is that I would like to make the mplayer stretch the movie 
+to both monitors when going into the fullscreen mode. When I was using 
+the binary nvidia driver I used the TwinView to do this. Is it possible 
+using the nouveau driver??
