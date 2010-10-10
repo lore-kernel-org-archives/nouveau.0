@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30286] Rendering Artefacts for "EffectFrames" with
-	KWin trunk
-Date: Sun, 10 Oct 2010 04:29:24 -0700 (PDT)
-Message-ID: <20101010112924.3766513004E@annarchy.freedesktop.org>
-References: <bug-30286-8800@http.bugs.freedesktop.org/>
+From: "Emil Velikov" <emil.velikov-/E1597aS9LT10XsdtD+oqA@public.gmane.org>
+Subject: [PATCH] Fixes while parsing perf tables on GF5
+Date: Sun, 10 Oct 2010 19:26:59 +0100
+Message-ID: <op.vkdhi8rttkuz1w@emo>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30286-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,26 +15,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org, nouveau mailing list <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzAyODYKCi0tLSBD
-b21tZW50ICMxIGZyb20gTWFydGluIEdyw6TDn2xpbiA8a2RlQG1hcnRpbi1ncmFlc3NsaW4uY29t
-PiAyMDEwLTEwLTEwIDA0OjI5OjI0IFBEVCAtLS0KSSBhZGRlZCBhIHdvcmthcm91bmQgdG8gS1dp
-biBieSBrZWVwaW5nIHRoZSBRUGl4bWFwIGFyb3VuZCBhcyBsb25nIGFzIGEgdGV4dHVyZQppcyBi
-b3VuZCBmcm9tIHRoYXQgcGl4bWFwLgoKU1ZOIGNvbW1pdCAxMTg0NDU4IGJ5IGdyYWVzc2xpbjoK
-Ck1ha2UgRWZmZWN0RnJhbWVzIHdvcmsgd2l0aCBOb3V2ZWF1IGRyaXZlci4KClRoaXMgd29ya3Nh
-cm91bmQgYSBwcm9ibGVtIHdpdGggdGhlIG5vdXZlYXUgZHJpdmVyIGNhdXNpbmcKdGhlIHRleHQg
-ZnJhbWVzIHRvIGJlIGluY29ycmVjdGx5IHJlbmRlcmVkLiBXZSBuZWVkIHRvIGtlZXAKdGhlIFFQ
-aXhtYXAgYXJvdW5kIGFzIGxvbmcgYXMgd2UgaGF2ZSBhIHRleHR1cmUgY3JlYXRlZCBmcm9tCnRo
-YXQgdGV4dHVyZS4KVGhpcyBhcHBsaWVzIGZvciB0aGUgdGV4dCBhbmQgdGhlIHVuc3R5bGVkIGVm
-ZmVjdCBmcmFtZS4gRm9yCnRoZSBmcmFtZXMgZ2VuZXJhdGVkIGZyb20gUGxhc21hJ3MgRnJhbWVT
-dmdzIGl0IGlzIG5vdCByZXF1aXJlZC4KQWRkcmVzc2VzIGZyZWVkZXNrdG9wLm9yZyBidWcgMzAy
-ODYKCiBNICArMjAgLTkgICAgIHNjZW5lX29wZW5nbC5jcHAgIAogTSAgKzIgLTAgICAgICBzY2Vu
-ZV9vcGVuZwoKaHR0cDovL3dlYnN2bi5rZGUub3JnLz92aWV3PXJldmlzaW9uJnJldmlzaW9uPTEx
-ODQ0NTgKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9y
-Zy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMg
-bWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+ From 3dcc41d053357a93e523f0bcca593ed061fdac57 Mon Sep 17 00:00:00 2001
+From: Emil Velikov <eeydev-QabDm/c3fAmwa9SdKMSz+Q@public.gmane.org>
+Date: Sun, 10 Oct 2010 19:21:30 +0100
+Subject: [PATCH] Fixes while parsing perf tables on GF5
+
+Perf tables v1.2 & 1.3 does not store voltage
+Comment that the fanspeed does not apear to be valid for v1.5
+
+Signed-off-by: Emil Velikov <emil.velikov-/E1597aS9LT10XsdtD+oqA@public.gmane.org>
+---
+  drivers/gpu/drm/nouveau/nouveau_perf.c |    4 +++-
+  1 files changed, 3 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c  
+b/drivers/gpu/drm/nouveau/nouveau_perf.c
+index ac62a1b..d3725c1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_perf.c
++++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
+@@ -133,8 +133,10 @@ nouveau_perf_init(struct drm_device *dev)
+  		case 0x12:
+  		case 0x13:
+  		case 0x15:
++			/* XXX: Cant we really trust fanspeed on 0x15 */
+  			perflvl->fanspeed = entry[55];
+-			perflvl->voltage = entry[56];
++			/* Table v 1.2 and 1.3 does not have big enough recordlen to store the  
+voltage */
++			perflvl->voltage = (recordlen > 56) ? entry[56] : 0;
+  			perflvl->core = ROM32(entry[1]) * 10;
+  			perflvl->memory = ROM32(entry[5]) * 20;
+  			break;
+-- 
+1.7.2.3
