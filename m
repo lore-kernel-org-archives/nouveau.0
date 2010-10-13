@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30817] nouveau makes xorg hard lock at seemingly
 	random times
-Date: Wed, 13 Oct 2010 03:26:05 -0700 (PDT)
-Message-ID: <20101013102605.73CA413004E@annarchy.freedesktop.org>
+Date: Wed, 13 Oct 2010 07:45:54 -0700 (PDT)
+Message-ID: <20101013144555.161A713000D@annarchy.freedesktop.org>
 References: <bug-30817-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30817
 
---- Comment #2 from Chi-Thanh Christopher Nguyen <chithanh-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> 2010-10-13 03:26:04 PDT ---
-Possibly a duplicate of bug 26980.
+--- Comment #3 from Jordan Bradley <jordan.w.bradley-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-13 07:45:54 PDT ---
+(In reply to comment #2)
+> Possibly a duplicate of bug 26980.
+
+Yes that seems to be my issue. Feel free to mark this bug as a duplicate.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
