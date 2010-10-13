@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16327] Graphical corruption with NVCrush11.
-Date: Wed, 13 Oct 2010 10:17:19 -0700 (PDT)
-Message-ID: <20101013171720.16B2E13004F@annarchy.freedesktop.org>
-References: <bug-16327-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19214] video mode change causes monitor to go out of
+	range
+Date: Wed, 13 Oct 2010 10:48:33 -0700 (PDT)
+Message-ID: <20101013174833.EB80B13000D@annarchy.freedesktop.org>
+References: <bug-19214-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16327-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19214-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +21,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=16327
+https://bugs.freedesktop.org/show_bug.cgi?id=19214
 
 Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+         Resolution|                            |DUPLICATE
 
---- Comment #14 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-13 10:17:19 PDT ---
-No reponse from the reporter for more than a year. Closing.
-If the problem still exists on current version, please reopen with new set of
-logs.
+--- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-13 10:48:33 PDT ---
+No reponse from the reporter for more than a year. Closing as duplicate of
+mentioned bug. If the problem still exists on current version, please reopen
+with requested logs.
+
+*** This bug has been marked as a duplicate of bug 16952 ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
