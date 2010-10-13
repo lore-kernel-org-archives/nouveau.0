@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30817] New: nouveau makes xorg hard lock at
- seemingly random times
-Date: Tue, 12 Oct 2010 19:06:58 -0700 (PDT)
-Message-ID: <bug-30817-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 30817] nouveau makes xorg hard lock at seemingly
+	random times
+Date: Tue, 12 Oct 2010 19:11:35 -0700 (PDT)
+Message-ID: <20101013021136.02C9413000D@annarchy.freedesktop.org>
+References: <bug-30817-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-30817-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30817
 
-           Summary: nouveau makes xorg hard lock at seemingly random times
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: jordan.w.bradley-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-I am using an EVGA NVidia GT220 video card on Gentoo Linux. I'm using libdrm,
-mesa and nouveau from the git repositories. At seemingly random times my
-computer locks up. I can still move the mouse cursor but I can't do anything
-with what is on the screen. A kernel panic hadn't occurred because I could
-still SSH into the machine. I thought it was the 3D effects of compiz since I
-had gallium enabled when I compiled mesa. I switched back to metacity and the
-desktop still would lock up. Would nouveau be a cause of this? If so what do
-you need to find the problem and how would I get it?
-
-Thanks.
+--- Comment #1 from Jordan Bradley <jordan.w.bradley-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-12 19:11:35 PDT ---
+I found this page: http://nouveau.freedesktop.org/wiki/TroubleShooting, I will
+try these steps tomorrow and report.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
