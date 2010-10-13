@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30482] Xf86-driver-nouveau build broken because of
  change to xserver
-Date: Wed, 13 Oct 2010 08:54:31 -0700 (PDT)
-Message-ID: <20101013155431.EFE6C13004E@annarchy.freedesktop.org>
+Date: Wed, 13 Oct 2010 08:55:51 -0700 (PDT)
+Message-ID: <20101013155551.D451E13004E@annarchy.freedesktop.org>
 References: <bug-30482-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,12 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Product|Mesa                        |xorg
-          Component|Drivers/DRI/nouveau         |Driver/nouveau
-          QAContact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-13 08:55:51 PDT ---
+fixed by commit a47c274f329b3b8bfbdcf155d6d832599d823dc8: "Fix for the last
+xserver ABI." by Francisco Jerez
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
