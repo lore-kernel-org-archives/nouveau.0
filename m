@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30482] Xf86-driver-nouveau build broken because of
- change to xserver
-Date: Wed, 13 Oct 2010 08:55:51 -0700 (PDT)
-Message-ID: <20101013155551.D451E13004E@annarchy.freedesktop.org>
-References: <bug-30482-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16327] Graphical corruption with NVCrush11.
+Date: Wed, 13 Oct 2010 10:17:19 -0700 (PDT)
+Message-ID: <20101013171720.16B2E13004F@annarchy.freedesktop.org>
+References: <bug-16327-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30482-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16327-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,7 +20,7 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30482
+https://bugs.freedesktop.org/show_bug.cgi?id=16327
 
 Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -30,9 +29,10 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|                            |FIXED
 
---- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-13 08:55:51 PDT ---
-fixed by commit a47c274f329b3b8bfbdcf155d6d832599d823dc8: "Fix for the last
-xserver ABI." by Francisco Jerez
+--- Comment #14 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-13 10:17:19 PDT ---
+No reponse from the reporter for more than a year. Closing.
+If the problem still exists on current version, please reopen with new set of
+logs.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
