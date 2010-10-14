@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30865] Segfault after upgrading xorg-edgers Nouveau
  a couple of commits
-Date: Thu, 14 Oct 2010 05:08:40 -0700 (PDT)
-Message-ID: <20101014120840.50C7513004E@annarchy.freedesktop.org>
+Date: Thu, 14 Oct 2010 14:04:04 -0700 (PDT)
+Message-ID: <20101014210404.588ED13000D@annarchy.freedesktop.org>
 References: <bug-30865-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,30 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30865
 
---- Comment #2 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-14 05:08:39 PDT ---
-Btw the segfault is in nouveau_dri.so but you didn't show mesa version..
-Just like the ddx, you need latest git for mesa too if you want it to work with
-the new libdrm API.
+Nigel Cunningham <nigel-jrkICu/7yk3k1uMJSBkQmQ@public.gmane.org> changed:
 
-Also 3d is completely unsupported, developers don't look at bugs reports
-related to 3d. It's also recommended to not install 3d system-wide as you did.
-This is all on the wiki, if only people would bother to read it :
-http://nouveau.freedesktop.org/wiki/GalliumHowto
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
-So if 3d causes a segfault and you cannot fix it, you just remove the broken 3d
-driver, and problem is solved.
+--- Comment #3 from Nigel Cunningham <nigel-jrkICu/7yk3k1uMJSBkQmQ@public.gmane.org> 2010-10-14 14:04:04 PDT ---
+Thanks for the reply.
+
+Sorry for missing mesa out - I didn't notice it when I looked at what had been
+upgraded in the dpkg log.
+
+I do realise 3d is unsupported. This bug report wasn't intended as a complaint,
+but more as a FYI. I know, too, that you can't fix bugs if you don't know they
+exist, and I had searched but not seen any indication that anyone knew this one
+exists. The Nouveau page doesn't say how do you want bugs reported. Do you just
+want an email sent to the list?
+
+Regards,
+
+Nigel
+
+(Marking invalid, since you said it is)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
