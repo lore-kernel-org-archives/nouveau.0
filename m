@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30865] Segfault after upgrading xorg-edgers Nouveau
  a couple of commits
-Date: Thu, 14 Oct 2010 05:01:21 -0700 (PDT)
-Message-ID: <20101014120121.B03A713000D@annarchy.freedesktop.org>
+Date: Thu, 14 Oct 2010 05:08:40 -0700 (PDT)
+Message-ID: <20101014120840.50C7513004E@annarchy.freedesktop.org>
 References: <bug-30865-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30865
 
---- Comment #1 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-14 05:01:21 PDT ---
-Invalid.
+--- Comment #2 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-14 05:08:39 PDT ---
+Btw the segfault is in nouveau_dri.so but you didn't show mesa version..
+Just like the ddx, you need latest git for mesa too if you want it to work with
+the new libdrm API.
 
-You need to upgrade xserver-xorg-video-nouveau to latest git, up to this commit
-: 4f42708c26fa57bac7854701a6e757958c8d0654
+Also 3d is completely unsupported, developers don't look at bugs reports
+related to 3d. It's also recommended to not install 3d system-wide as you did.
+This is all on the wiki, if only people would bother to read it :
+http://nouveau.freedesktop.org/wiki/GalliumHowto
 
-See steps 8 and 9 here http://nouveau.freedesktop.org/wiki/InstallNouveau if
-you cannot find up-to-date packages.
+So if 3d causes a segfault and you cannot fix it, you just remove the broken 3d
+driver, and problem is solved.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
