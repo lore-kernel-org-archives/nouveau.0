@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30865] Segfault after upgrading xorg-edgers Nouveau
  a couple of commits
-Date: Thu, 14 Oct 2010 14:04:04 -0700 (PDT)
-Message-ID: <20101014210404.588ED13000D@annarchy.freedesktop.org>
+Date: Thu, 14 Oct 2010 14:21:04 -0700 (PDT)
+Message-ID: <20101014212104.F079513000D@annarchy.freedesktop.org>
 References: <bug-30865-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,30 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30865
 
-Nigel Cunningham <nigel-jrkICu/7yk3k1uMJSBkQmQ@public.gmane.org> changed:
+--- Comment #4 from Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> 2010-10-14 14:21:03 PDT ---
+The proper solution would have been to bump libdrm-nouveau's soname, since not
+only the API but also the ABI has changed.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |INVALID
-
---- Comment #3 from Nigel Cunningham <nigel-jrkICu/7yk3k1uMJSBkQmQ@public.gmane.org> 2010-10-14 14:04:04 PDT ---
-Thanks for the reply.
-
-Sorry for missing mesa out - I didn't notice it when I looked at what had been
-upgraded in the dpkg log.
-
-I do realise 3d is unsupported. This bug report wasn't intended as a complaint,
-but more as a FYI. I know, too, that you can't fix bugs if you don't know they
-exist, and I had searched but not seen any indication that anyone knew this one
-exists. The Nouveau page doesn't say how do you want bugs reported. Do you just
-want an email sent to the list?
-
-Regards,
-
-Nigel
-
-(Marking invalid, since you said it is)
+But I guess nouveau is still in "not released yet, only the latest git of
+everything is supported at all" state, and distributions which ship it anyway
+have to find their way around that (e.g. by changing package names when the ABI
+breaks).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
