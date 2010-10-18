@@ -1,12 +1,12 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix nv40 gart size
-Date: Mon, 18 Oct 2010 17:09:30 +0200
-Message-ID: <1287414570.2373.5.camel@workstation>
-References: <1287321287.2215.13.camel@workstation> <87sk03d33v.fsf@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 30975] New: A Question about the linux-2.6
+ kernel-modules for nouveau
+Date: Mon, 18 Oct 2010 16:12:32 -0700 (PDT)
+Message-ID: <bug-30975-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="=-SpKadeNuYWtEs/xoapZg"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <87sk03d33v.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,83 +16,62 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: Nouveau Dev List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+https://bugs.freedesktop.org/show_bug.cgi?id=30975
 
---=-SpKadeNuYWtEs/xoapZg
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-Oh, yes. It seems my email client had some good lunch with the tabs.
-
-I added the patch as an attachment. Hope it works this time.
-
--- Lucas
-
-Am Montag, den 18.10.2010, 15:47 +0200 schrieb Francisco Jerez: 
-> Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> writes:
-> 
-> > Nouveau sets GART size to 64MiB for all cards before nv50, but nv40 has
-> > enough RAMIN space to support 512MiB GART size. This patch fixes this
-> > value to make use of this hardware capability.
-> >
-> > Signed-off-by: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-> > ---
-> The patch doesn't seem to apply, I guess it's been corrupted on the way.
-> Can you please resend?
+           Summary: A Question about the linux-2.6 kernel-modules for
+                    nouveau
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: trivial
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
---=-SpKadeNuYWtEs/xoapZg
-Content-Disposition: attachment; filename="nv40_gart_size.diff"
-Content-Type: text/x-patch; name="nv40_gart_size.diff"; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Hi to all,
+         I have a question about building my own custom kernel using the
+rpm-tools. I can build the kernel modules using the out-of-tree build against
+my latest kernel from Fedora Rawhide with no problems. I have bult my own
+custom kernel using make xconfig,make clean, make modules, make
+modules_install,and finally, dracut -f /boot/initramfs <kernel version>.img
+<kernel version>
 
-From a1dda375b4a03aba7af45f4723b7fc69bdc8421e Mon Sep 17 00:00:00 2001
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Date: Fri, 15 Oct 2010 22:22:59 +0200
-Subject: [PATCH] drm/nouveau: fix nv40 gart size
+My only bug-bear by doing the make modules method is that it took a total of 5
+1/2 hours with my Athlon XP 3,000 machine.So I looked at building the nouveau
+kernel faster using the rpm-tools methodHere is the link
+http://fedoraproject.org/wiki/PackageMaintainers/CreatingPackageHowTo
 
-Nouveau sets GART size to 64MiB for all cards before nv50, but nv40 has
-enough RAMIN space to support 512MiB GART size. This patch fixes this
-value to make use of this hardware capability.
+I have built a skeleton spec file using rpm-spec, and filled in the details
+from the kernel section of Fedora Koji,and the Fedora rpm-tools howto.
+http://fedoraproject.org/wiki/PackageMaintainers/CreatingPackageHowTo
 
-Signed-off-by: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_sgdma.c |    6 +++++-
- 1 files changed, 5 insertions(+), 1 deletions(-)
+I've ran rpmlint -i linux-2.6.36-nouveau.i686.spec to test my spec file,but I
+keep getting this error:
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-index 7f028fe..388b3e1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-@@ -224,7 +224,11 @@ nouveau_sgdma_init(struct drm_device *dev)
- 	int i, ret;
- 
- 	if (dev_priv->card_type < NV_50) {
--		aper_size = (64 * 1024 * 1024);
-+		if(dev_priv->card_type < NV_40) {
-+			aper_size = (64 * 1024 * 1024);
-+		} else {
-+			aper_size = (512 * 1024 * 1024);
-+		}
- 		obj_size  = (aper_size >> NV_CTXDMA_PAGE_SHIFT) * 4;
- 		obj_size += 8; /* ctxdma header */
- 	} else {
+linux-2.6.36-nouveau.i686.spec: W: invalid-url Source0:
+/root/opt/linux-2.6/linux-2.6.36-nouveau.tar.gz
+The value should be a valid, public HTTP, HTTPS, or FTP URL.
+
+I've tried both url's for the linux-2.6 git repository,and also linus's url for
+the kernel,but I still keep getting the same error.
+
+I have attached the spec file I've been using to see where I've been going
+wrong.
+
+Any help would be greatly appreciated.
+
+Regards,
+       STEVE555
+
 -- 
-1.7.2.3
-
-
---=-SpKadeNuYWtEs/xoapZg
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---=-SpKadeNuYWtEs/xoapZg--
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
