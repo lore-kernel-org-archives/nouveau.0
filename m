@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30975] A Question about the linux-2.6 kernel-modules
  for nouveau
-Date: Tue, 19 Oct 2010 03:29:17 -0700 (PDT)
-Message-ID: <20101019102918.057DE13004E@annarchy.freedesktop.org>
+Date: Tue, 19 Oct 2010 03:46:21 -0700 (PDT)
+Message-ID: <20101019104621.9FA1E13004F@annarchy.freedesktop.org>
 References: <bug-30975-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30975
 
---- Comment #1 from Steven Ward <STEVENWARD666-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-10-19 03:29:16 PDT ---
-Created an attachment (id=39529)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39529)
-This is the current spec file I'm trying to use to build the nouveau kernel.
+--- Comment #2 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2010-10-19 03:46:20 PDT ---
+You can compile drm modules against your kernel:
+
+https://build.opensuse.org/package/files?package=drm-nouveau&project=home%3Ajobermayr
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
