@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31026] External display does not work with Nouveau
 	driver
-Date: Thu, 21 Oct 2010 07:32:12 -0700 (PDT)
-Message-ID: <20101021143212.947AD13000D@annarchy.freedesktop.org>
+Date: Thu, 21 Oct 2010 07:35:18 -0700 (PDT)
+Message-ID: <20101021143518.66E6013000D@annarchy.freedesktop.org>
 References: <bug-31026-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31026
 
---- Comment #2 from LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> 2010-10-21 07:32:12 PDT ---
-Created an attachment (id=39610)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39610)
-Dmesg output after attemt to enable external monitor
+--- Comment #3 from LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> 2010-10-21 07:35:17 PDT ---
+Created an attachment (id=39611)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39611)
+Xorg log
 
-It's a GeForce 9200M GS
+Don't know why Bugzilla didn't attach the log when I created the bug. Buggy
+software.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
