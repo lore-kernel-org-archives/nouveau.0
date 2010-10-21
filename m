@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Thu, 21 Oct 2010 13:48:59 -0700 (PDT)
-Message-ID: <20101021204859.CAF6D13004F@annarchy.freedesktop.org>
+Date: Thu, 21 Oct 2010 13:50:11 -0700 (PDT)
+Message-ID: <20101021205011.6536813004E@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #26 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-10-21 13:48:58 PDT ---
-Tried nouveau-drm and xf86-video-nouveau from today's git together with kernel
-2.6.36.
-
-However the screen freezes in the middle of the boot process (at the udev
-stage) and the dmesg (attached) shows an OOPS.
+--- Comment #27 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-10-21 13:50:10 PDT ---
+Created an attachment (id=39618)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39618)
+OOPS with 2.6.36
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
