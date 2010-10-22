@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28763] Kernel Oops when displaying a large image
-Date: Fri, 22 Oct 2010 15:34:26 -0700 (PDT)
-Message-ID: <20101022223426.C214313004E@annarchy.freedesktop.org>
+Date: Fri, 22 Oct 2010 15:37:23 -0700 (PDT)
+Message-ID: <20101022223723.D1AAA13004E@annarchy.freedesktop.org>
 References: <bug-28763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=28763
 
---- Comment #12 from Leonid Isaev <lisaev-GZvvpLG7cYSVc3sceRu5cw@public.gmane.org> 2010-10-22 15:34:22 PDT ---
-Created an attachment (id=39639)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39639)
-kernel.log
+Leonid Isaev <lisaev-GZvvpLG7cYSVc3sceRu5cw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Version|unspecified                 |7.5
+
+--- Comment #13 from Leonid Isaev <lisaev-GZvvpLG7cYSVc3sceRu5cw@public.gmane.org> 2010-10-22 15:37:23 PDT ---
+Oops, this message should go first.
+
+I can confirm this bug with a vanilla 2.6.35.7. The above attachment is a piece
+of kernel.log. The crash occurs when rendering http://xkcd.com/802_large/ in
+firefox, and doing something to the window. Strangely, the same image open
+perfectly in links -g.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
