@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31026] External display does not work with Nouveau
 	driver
-Date: Thu, 21 Oct 2010 15:50:19 -0700 (PDT)
-Message-ID: <20101021225019.849F8130051@annarchy.freedesktop.org>
+Date: Thu, 21 Oct 2010 23:32:32 -0700 (PDT)
+Message-ID: <20101022063233.0186B13004F@annarchy.freedesktop.org>
 References: <bug-31026-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31026
 
---- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-21 15:50:17 PDT ---
-I *think* your problem is probably fixed in nouveau git.  It looks like the
-kernel you're using has a version of nouveau with a display-related regression,
-that has been fixed for a long time now.
+--- Comment #5 from LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> 2010-10-21 23:32:32 PDT ---
+Indeed - I upgraded to 2.6.36 and it's fixed there. Thanks
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
