@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29171] Garbled console on Macbook 13" (6,
  1 9400M]) when using EFI
-Date: Fri, 22 Oct 2010 13:12:28 -0700 (PDT)
-Message-ID: <20101022201228.9912613000D@annarchy.freedesktop.org>
+Date: Fri, 22 Oct 2010 13:13:18 -0700 (PDT)
+Message-ID: <20101022201318.416F313004E@annarchy.freedesktop.org>
 References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #29 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-10-22 13:12:28 PDT ---
-Latest git runs fine, thank you Ben.
+--- Comment #30 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-10-22 13:13:17 PDT ---
+> These problems from comment #27 remain but I've opened a new bug #31058.
 
-These problems from comment #27 remain but I've opened a new bug #31058.
+Typo: comment #17 not #27
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
