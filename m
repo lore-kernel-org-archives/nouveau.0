@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31026] External display does not work with Nouveau
 	driver
-Date: Thu, 21 Oct 2010 23:32:32 -0700 (PDT)
-Message-ID: <20101022063233.0186B13004F@annarchy.freedesktop.org>
+Date: Thu, 21 Oct 2010 23:33:15 -0700 (PDT)
+Message-ID: <20101022063315.C549F13004F@annarchy.freedesktop.org>
 References: <bug-31026-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31026
 
---- Comment #5 from LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> 2010-10-21 23:32:32 PDT ---
-Indeed - I upgraded to 2.6.36 and it's fixed there. Thanks
+LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
