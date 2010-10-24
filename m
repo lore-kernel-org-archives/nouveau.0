@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31074] Reproducable OOPS with VLC's "Accelerated
  video output" [9400M]
-Date: Sun, 24 Oct 2010 01:52:12 -0700 (PDT)
-Message-ID: <20101024085212.9A04C13000D@annarchy.freedesktop.org>
+Date: Sun, 24 Oct 2010 05:05:50 -0700 (PDT)
+Message-ID: <20101024120550.8C03E13000D@annarchy.freedesktop.org>
 References: <bug-31074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31074
 
---- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-24 01:52:11 PDT ---
-You probably didn't enable CONFIG_DEBUG_INFO or don't have
-CONFIG_FRAME_POINTER. Please enable it and reproduce once more. You should not
-see "?" in every line of stacktrace.
+--- Comment #2 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-10-24 05:05:50 PDT ---
+Created an attachment (id=39665)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=39665
+ Review: https://bugs.freedesktop.org/review?bug=31074&attachment=39665
+
+nv50_vsync_head.patch
+
+The attached patch may help.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
