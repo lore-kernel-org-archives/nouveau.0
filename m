@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31074] Reproducable OOPS with VLC's "Accelerated
  video output" [9400M]
-Date: Sun, 24 Oct 2010 06:03:37 -0700 (PDT)
-Message-ID: <20101024130337.54B4813000D@annarchy.freedesktop.org>
+Date: Sun, 24 Oct 2010 06:10:35 -0700 (PDT)
+Message-ID: <20101024131035.5EFC213000D@annarchy.freedesktop.org>
 References: <bug-31074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31074
 
---- Comment #3 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-10-24 06:03:37 PDT ---
-(In reply to comment #2)
-> The attached patch may help.
+Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> changed:
 
-Francisco, your patch fixes the problem. Cheers.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #39663|0                           |1
+        is obsolete|                            |
+
+--- Comment #4 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-10-24 06:10:35 PDT ---
+Created an attachment (id=39666)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39666)
+better stacktrace (netconsole) of OOPS
+
+(In reply to comment #1)
+
+I had those two defined. Switching from out-of-tree nouveau modules to the
+nouveau linux-2.6 tree produced a better stacktrace, so maybe that was the
+problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
