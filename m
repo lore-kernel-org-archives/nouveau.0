@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31058] Flickering area on external monitor [9400M]
-Date: Sun, 24 Oct 2010 01:10:34 -0700 (PDT)
-Message-ID: <20101024081034.C1AAA13004E@annarchy.freedesktop.org>
+Date: Sun, 24 Oct 2010 01:21:49 -0700 (PDT)
+Message-ID: <20101024082149.EED1613000D@annarchy.freedesktop.org>
 References: <bug-31058-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,21 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31058
 
-Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #39654|0                           |1
-        is obsolete|                            |
-
---- Comment #5 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-10-24 01:10:34 PDT ---
-Created an attachment (id=39662)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39662)
-stacktrace (netconsole) of OOPS
-
-Stacktrace as requested in comment #4.
-Note that every line was logged twice, due to me exerimenting with netconsole
-targets. Please just ignore that.
+--- Comment #6 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2010-10-24 01:21:49 PDT ---
+New finding: The OOPS disappears if I disable VLC's option "Accelerated video
+output (Overlay)".
+Note that on the laptop's internal screen I *can* play full screen with that
+option *enabled* and no OOPS happens. It only happens on the external display.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
