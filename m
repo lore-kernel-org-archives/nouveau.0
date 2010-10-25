@@ -1,15 +1,13 @@
-From: DJ Delorie <dj-Ht4Cp5ncgjRBDgjK7y7TUQ@public.gmane.org>
-Subject: Re: one desktop on four monitors ?
-Date: Sun, 24 Oct 2010 22:11:24 -0400
-Message-ID: <201010250211.o9P2BO9o002199@envy.delorie.com>
-References: <201010240426.o9O4Qm8w007081@envy.delorie.com>
-	<AANLkTim-Req7CGadSsTrbe4ghi9531N-KuYqW0kDufev@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 30024] Screen corruptions on suspend/resume [G86]
+Date: Sun, 24 Oct 2010 20:19:00 -0700 (PDT)
+Message-ID: <20101025031900.52EE713000D@annarchy.freedesktop.org>
+References: <bug-30024-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-reply-to: <AANLkTim-Req7CGadSsTrbe4ghi9531N-KuYqW0kDufev-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-	(message from Younes Manton on Sun, 24 Oct 2010 21:39:00 -0400)
+In-Reply-To: <bug-30024-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,17 +17,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+https://bugs.freedesktop.org/show_bug.cgi?id=30024
 
-> > While I'd prefer to use xrandr for these monitors, I've read that it's
-> > just not supported yet (sigh).
-> 
-> Most of whats needed to get this working in a RandR based driver is
-> just not implemented in the server yet.
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-What about *without* RandR ?  I can get it to bring up all four
-monitors sort-of, I'm OK with Xinerama for now, I just want something
-that works...
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-10-24 20:19:00 PDT ---
+Thanks to effort of nouveau developers, that bug is fully fixed now.
+It was due to missing relocations in constant buffer upload.
+
+Thank you nouveau developers once again!
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
