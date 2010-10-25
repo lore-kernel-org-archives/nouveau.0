@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30024] Screen corruptions on suspend/resume [G86]
-Date: Sun, 24 Oct 2010 20:19:00 -0700 (PDT)
-Message-ID: <20101025031900.52EE713000D@annarchy.freedesktop.org>
-References: <bug-30024-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27587] X (nouveau) crashes kernel on start
+Date: Mon, 25 Oct 2010 16:22:39 -0700 (PDT)
+Message-ID: <20101025232239.2FA3813000D@annarchy.freedesktop.org>
+References: <bug-27587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30024-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +20,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30024
+https://bugs.freedesktop.org/show_bug.cgi?id=27587
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
          Resolution|                            |FIXED
 
---- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-10-24 20:19:00 PDT ---
-Thanks to effort of nouveau developers, that bug is fully fixed now.
-It was due to missing relocations in constant buffer upload.
-
-Thank you nouveau developers once again!
+--- Comment #2 from Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> 2010-10-25 16:22:38 PDT ---
+Resolving via Comment #1.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
