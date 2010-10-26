@@ -1,12 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31122] New: Cannot control backlight intensity on
-	Powerbook
-Date: Mon, 25 Oct 2010 20:07:38 -0700 (PDT)
-Message-ID: <bug-31122-8800@http.bugs.freedesktop.org/>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: one desktop on four monitors ?
+Date: Tue, 26 Oct 2010 00:10:32 -0400
+Message-ID: <AANLkTik84bEYDj0A9ejLSQZA9C=1-kVA=vZV9RXOTZJ0@mail.gmail.com>
+References: <201010240426.o9O4Qm8w007081@envy.delorie.com>
+	<AANLkTim-Req7CGadSsTrbe4ghi9531N-KuYqW0kDufev@mail.gmail.com>
+	<201010250211.o9P2BO9o002199@envy.delorie.com>
+	<AANLkTi=d2N5Fv-ndtgZw5uHTJrhYytO+-jkFqkKyrzRU@mail.gmail.com>
+	<201010260144.o9Q1itQh005230@envy.delorie.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <201010260144.o9Q1itQh005230-Mhfd7Cn2s7ZOU/xweIFGFw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,69 +21,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: DJ Delorie <dj-Ht4Cp5ncgjRBDgjK7y7TUQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31122
+On Mon, Oct 25, 2010 at 9:44 PM, DJ Delorie <dj-Ht4Cp5ncgjRBDgjK7y7TUQ@public.gmane.org> wrote:
+>
+> Grrr. =A0Can the nouveau driver grab two cards at a time and tell the X
+> server it's one card?
 
-           Summary: Cannot control backlight intensity on Powerbook
-           Product: xorg
-           Version: unspecified
-          Platform: PowerPC
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: enhancement
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: jk-KVH6KZ/iFWQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+No. It would be pretty tricky to do, especially with different chip
+versions and generations, but even with identical cards it's probably
+a fair bit of effort that would be better spent on proper X server
+support. X server internals aren't really my area of interest so I
+can't tell you much more.
 
+> Does nouveau support any cards that can drive four monitors with one
+> card, with at least one monitor at 2560x1600 ? =A0Would that get me what
+> I want?
+>
 
-The backlight intensity cannot be controlled using the special Powerbook
-function keys and neither through Gnome's brightness applet.
-
-I don't know how, but the function keys work fine when running the nv driver
-with Debian stock Linux kernel 2.6.32-5-powerpc (which uses nvidiafb, in case
-that is important).  The Gnome applet, though, doesn't work either; Gnome,
-however, shows a nice overlay indicating that the brightness changed when the
-fn-keys are pressed.
-
-I ran radeontool as described in bug #29685 and took dumps of the registers
-while regulating the brightness under nv, in case thats helpful:
-
-  fn-key brightness level 0 (no backlight):
-  0x0060081c: 0x86066050
-  0x000010f0: 0x00000535
-
-  fn-key brightness levels 1-8:
-  0x0060081c: 0x86066051 or 0x86066055 (bit 0x4 flips randomly)
-  0x000010f0: 0x82450535, 0x82900535, 0x82db0535, 0x83290535,
-              0x83740535, 0x83bf0535, 0x840d0535, 0x84550535
-              for levels 1-8, respectively
-
-  dpms standby at max. brightness (xset dpms force standby):
-  0x0060081c: 0x86066050
-  0x000010f0: 0x04550535
-
-I played a bit with radeontool, and bits 0x0fff0000 of 0x10f0 seem continous. 
-The values can actually be set a bit higher (and lower) than level 8 (or level
-1). The maximum brightness here is reached at ca. 0x84c00535.
-
-The display will also be in maximum brightness when bit 31 of 0x10f0 is not set
-(as long as bit 1 of 0x60081c is set, otherwise the backlight turns off).
-
-The machine is a PowerBook6,2 12", with an
-
-  nVidia Corporation NV34M [GeForce FX Go5200] [10de:0329] (rev a1).
-
-It is running Debian xserver-xorg-video-nouveau 1:0.0.16+git20100825+390f1c8-1
-and vanilla Linux 2.6.36.
-
-I also filed the related bug #31120 about the backlight not working after
-hibernation.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Current Nvidia cards that support 4 heads are actually dual-GPUs on a
+single card, so the problem is largely the same. Sorry to be the
+bearer of bad news.
