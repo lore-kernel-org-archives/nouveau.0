@@ -1,21 +1,12 @@
-From: Felix Blanke <felixblanke-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: OT: Eyefinity with four monitors (was: Re: one
- desktop on four monitors ?)
-Date: Tue, 26 Oct 2010 13:20:58 +0200
-Message-ID: <20101026132058.00003cb7@unknown>
-References: <201010240426.o9O4Qm8w007081@envy.delorie.com>
-	<AANLkTim-Req7CGadSsTrbe4ghi9531N-KuYqW0kDufev@mail.gmail.com>
-	<201010250211.o9P2BO9o002199@envy.delorie.com>
-	<AANLkTi=d2N5Fv-ndtgZw5uHTJrhYytO+-jkFqkKyrzRU@mail.gmail.com>
-	<201010260144.o9Q1itQh005230@envy.delorie.com>
-	<AANLkTik84bEYDj0A9ejLSQZA9C=1-kVA=vZV9RXOTZJ0@mail.gmail.com>
-	<20101026120046.00001f3d@unknown>
-	<4CC6B5E3.9060406@cs.tu-berlin.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31139] New: Wake from sleep doesn't turn on
+	display(s)
+Date: Tue, 26 Oct 2010 10:33:53 -0700 (PDT)
+Message-ID: <bug-31139-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4CC6B5E3.9060406-CFLBMwTPW48UNGrzBIF7/Q@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,35 +16,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: =?UTF-8?Q?Ch=C3=AD-Thanh?= Christopher =?UTF-8?Q?Nguy=E1=BB=85n?= <chithanh-CFLBMwTPW48UNGrzBIF7/Q@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2VsbCB0aGUgRmxleCBvbmx5IGdvdCBhIGJ1aWxkIGluIGFkYXB0ZXIuCgpCdXQgeW91IGNhbid0
-IHVzZSB0aGUgaGRtaSBvdXRwdXQgZm9yIGEgMy4gbW9uaXRvciB3aGlsZSB1c2luZyAyeCBkdmku
-ClRoYXQgaGF0IHNvbWV0aGluZyB0byBkbyB3aXRoIGNsb2NrLi53aGF0ZXZlciA6RCBJIHRhbGtl
-ZCBhYm91dCB0aGF0Cmlzc3VlIGF0IHRoZSByYWRlb24gbWFpbGluZyBsaXN0LiBJIGdvdCBhIDU3
-NTAgYW5kIEkgY2FuJ3QgdXNlIHRoZSBoZG1pCm91dHB1dCB3aGlsZSAgdXNpbmcgMnhkdmkgKEkg
-dHJpZWQgaXQgd2l0aCB0aGUgbmV3ZXN0IGtlcm5lbCkuIEZvciB0aGUKdGhpcmQgbW9uaXRvciBJ
-J3ZlIG5vdyBhbiBhY3RpdmUgZHZpLT5kcCBhZGFwdGVyIGZyb20gc2FwcGhpcmUgKHNpbmdsZQps
-aW5rIG9ubHkpLiBUaGUgcHJpY2UgaW4gZ2VybWFueSBpcyBhYm91dCAyNWV1cm8sIHRoYXQgd2Fz
-IGZpbmUgZm9yCm1lIDopCgpJZiB5b3UgcmVhbGx5IHdhbnQgdG8gdXNlIDQgZGlzcGxheXMgeW91
-J2xsIG5lZWQgZGlzcGxheXBvcnQgYW5kIGEgY2FyZAp3aXRoIG1pbi4gMnhkdmkgKyAyeGRwIChJ
-IGd1ZXNzIHRoZXJlIGlzIG5vIHN1Y2ggYSBjYXJkKSBvciBhIGNhcmQgd2l0aAo0eCBkcCAoYW5k
-IGFjdGl2ZSBhZGFwdGVycyBpZiB5b3VyIGhhdmUgbm9uLWRwIGRpc3BsYXlzKS4KClJlZ2FyZHMs
-CkZlbGl4CgpBbSBUdWUsIDI2IE9jdCAyMDEwIDEzOjA1OjA3ICswMjAwCnNjaHJpZWIgQ2jDrS1U
-aGFuaCBDaHJpc3RvcGhlciBOZ3V54buFbiA8Y2hpdGhhbmhAY3MudHUtYmVybGluLmRlPjoKCj4g
-RmVsaXggQmxhbmtlIHNjaHJpZWI6Cj4gPiBUaGF0IGFyZSBleGFjdCB0aGUgc2FtZSBpbmZvcm1h
-dGlvbnMgSSBnb3QuCj4gPgo+ID4gSSB3YW50ZWQgdG8gZ2V0IDMgc2NyZWVuIHdvcmtpbmcgbGlr
-ZSBvbmUgc2luZ2xlIHNjcmVlbi4gTm8gY2hhbmNlCj4gPiB3aXRoIG5vdXZlYXUuCj4gPgo+ID4g
-V2hhdCB5b3UgY291bGQgZG8gKEkgaG9wZSB5b3UgZ3V5cyBkb24ndCBraWxsIG1lIDopKToKPiA+
-Cj4gPiBJZiB5b3VyIGRpc3BsYXlzIGdvdCBkaXNwbGF5cG9ydCB1c2UgYW4gQU1EIGNhcmQgd2l0
-aCBleWVmaW5pdHkuIElmCj4gPiB5b3VyIGRpc3BsYXlzIGRvbnQgaGF2ZSBkaXNwbGF5cG9ydCB5
-b3UgbmVlZCB0byBidXkgNHggYWN0aXZlCj4gPiBkdmktPmRpc3BseXBvcnQgYWRhcHRlcnMgOi8K
-PiAKPiBBIFNhcHBoaXJlIDU3NzAgRmxleCBzaG91bGQgc3VwcG9ydCB0aGUgZGVzY3JpYmVkIHNl
-dHVwIHdpdGhvdXQgYW55Cj4gYWRhcHRlcnMgKGV4Y2VwdCBtYXliZSBhIHBhc3NpdmUgRFZJLT5I
-RE1JIG9uZSkuCj4gCj4gCj4gQmVzdCByZWdhcmRzLAo+IENow60tVGhhbmggQ2hyaXN0b3BoZXIg
-Tmd1eeG7hW4KPiAKPiAKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=31139
+
+           Summary: Wake from sleep doesn't turn on display(s)
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: psadauskas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+MacBook Pro (Mid 2010 model) with Nvidia NV50 using nouveau driver on Arch
+Linux.
+
+Using both the packaged xf86-video-nouveau (0.0.16_git20100819) and nouveau
+from git, the display fails to resume after sleep. Happens when closing the
+lid, and using `pm-suspend`, even after removing pm scripts 98video-quirks and
+99-video as suggested in other bug trackers. 
+
+After sleeping, the display never comes on, nor does the display backlight.
+External displays connected to the Mini-DisplayPort->DVI stay asleep (amber
+LED). Sleeping from and/or waking to a non-X virtual terminal (eg, Ctrl-Alt-F1)
+does not restore the display, nor does switching after waking. The laptop is
+responsive, keyboard backlight comes on, and I can type `sudo reboot` into a
+terminal that I left focused before sleeping, and the laptop shuts down and
+reboots, with the display working after reboot. 
+
+Attached is messages.log of the sleep (first line), and the resume (line 35 or
+so). Please let me know what additonal information is needed.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
