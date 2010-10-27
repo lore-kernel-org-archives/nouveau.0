@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31169] New: no image when booting / G86 [GeForce
-	8400M GS]
-Date: Wed, 27 Oct 2010 10:03:44 -0700 (PDT)
-Message-ID: <bug-31169-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
+Date: Wed, 27 Oct 2010 10:06:06 -0700 (PDT)
+Message-ID: <20101027170606.1A8C913000D@annarchy.freedesktop.org>
+References: <bug-31169-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-31169-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31169
 
-           Summary: no image when booting / G86 [GeForce 8400M GS]
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: marius.vasilescu-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-When I boot into Ubuntu 10.04 / 10.10, I get a weird image (see attachment).
-
-I switched between terminals, but the display didn't change at all. For
-instance, ctrl+alt+f2, "sudo reboot", enter, enter = reboots the system.
-
-"blacklist=vga16fb nouveau.noaccel=1" params didn't work either.
-
-The same happens with the latest from xorg-edgers: xserver-xorg-video-nouveau
-1:0.0.16+git20101026.22020457-0ubuntu0sarvatt
+--- Comment #1 from Marius Vasilescu <marius.vasilescu-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> 2010-10-27 10:06:05 PDT ---
+Created an attachment (id=39815)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39815)
+screen image
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
