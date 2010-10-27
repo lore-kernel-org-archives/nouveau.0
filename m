@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
-Date: Wed, 27 Oct 2010 10:09:42 -0700 (PDT)
-Message-ID: <20101027170942.CFF7F13004F@annarchy.freedesktop.org>
+Date: Wed, 27 Oct 2010 10:33:27 -0700 (PDT)
+Message-ID: <20101027173327.A224113004F@annarchy.freedesktop.org>
 References: <bug-31169-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31169
 
---- Comment #2 from Marius Vasilescu <marius.vasilescu-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> 2010-10-27 10:09:42 PDT ---
-Created an attachment (id=39816)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39816)
-Xorg.0.log
+Marius Vasilescu <marius.vasilescu-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|major                       |critical
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
