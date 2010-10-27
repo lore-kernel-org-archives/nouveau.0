@@ -1,11 +1,15 @@
-From: Jesse Adkins <jesserayadkins-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH xf86-video-nouveau] Purge cvs tags.
-Date: Tue, 26 Oct 2010 16:05:32 -0700
-Message-ID: <1288134332-6100-1-git-send-email-jesserayadkins@gmail.com>
+From: "Gerd v. Egidy" <lists-6VzpN07DMvo@public.gmane.org>
+Subject: Re: one desktop on four monitors ?
+Date: Wed, 27 Oct 2010 14:34:36 +0200
+Message-ID: <201010271434.36590.lists@egidy.de>
+References: <201010240426.o9O4Qm8w007081@envy.delorie.com>
+	<AANLkTik84bEYDj0A9ejLSQZA9C=1-kVA=vZV9RXOTZJ0@mail.gmail.com>
+	<20101026120046.00001f3d@unknown>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20101026120046.00001f3d@unknown>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,31 +22,37 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Jesse Adkins <jesserayadkins-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- src/nv_const.h   |    2 --
- src/nv_include.h |    2 --
- 2 files changed, 0 insertions(+), 4 deletions(-)
+Hi,
 
-diff --git a/src/nv_const.h b/src/nv_const.h
-index 0df25b6..20984ae 100644
---- a/src/nv_const.h
-+++ b/src/nv_const.h
-@@ -1,5 +1,3 @@
--/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/nv/nv_const.h,v 1.6 2001/12/07 00:09:55 mvojkovi Exp $ */
--
- #ifndef __NV_CONST_H__
- #define __NV_CONST_H__
- 
-diff --git a/src/nv_include.h b/src/nv_include.h
-index ce89596..48f0b21 100644
---- a/src/nv_include.h
-+++ b/src/nv_include.h
-@@ -1,5 +1,3 @@
--/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/nv/nv_include.h,v 1.9 2000/10/06 12:31:03 eich Exp $ */
--
- #ifndef __NV_INCLUDE_H__
- #define __NV_INCLUDE_H__
- 
+> I wanted to get 3 screen working like one single screen. No chance with
+> nouveau.
+
+I have 3 Screens working with one desktop here:
+
+           HDMI ----------------------- Monitor1
+           |
+8400 card -|
+           |                      DVI-- Monitor2
+           DVI ---- TripleHead2Go-|
+                                  DVI-- Monitor3
+
+You just need a Matrox TripleHead2Go. To use 4 screens you'd need two of them.
+
+Nouveau works, but currently the xinerama-info can not be tweaked. That means 
+my KDE doesn't know about the 3 screens and pops up windows in between. I've 
+read that it can be tweaked with a custom libxinerama but I haven't looked 
+into it yet.
+
+So I'm currently still running the Nvidia blob.
+
+Just as note: I'm not using xinerama, but 1 big screen on one card. 
+Nonetheless xinerama information is used to tell the desktop about the screens 
+in use.
+
+Kind regards,
+
+Gerd
+
 -- 
-1.7.1
+Address (better: trap) for people I really don't want to get mail from:
+jonas-K4Lox0BdAqn6SQ/niu2adgC/G2K4zDHf@public.gmane.org
