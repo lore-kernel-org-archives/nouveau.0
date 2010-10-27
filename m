@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
-Date: Wed, 27 Oct 2010 13:49:29 -0700 (PDT)
-Message-ID: <20101027204929.2414013004F@annarchy.freedesktop.org>
+Date: Wed, 27 Oct 2010 14:54:12 -0700 (PDT)
+Message-ID: <20101027215412.BF44513004F@annarchy.freedesktop.org>
 References: <bug-31169-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31169
 
---- Comment #3 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2010-10-27 13:49:28 PDT ---
-Please post full dmesg output while corrupted screen.
+--- Comment #4 from Marius Vasilescu <marius.vasilescu-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> 2010-10-27 14:54:12 PDT ---
+Created an attachment (id=39821)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39821)
+dmesg
 
-You should be able to catch it via "dmesg >dmesg.log" before rebooting.
+Here it is. If you need additional info, please let me know.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
