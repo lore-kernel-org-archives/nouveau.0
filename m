@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
-Date: Wed, 27 Oct 2010 14:54:12 -0700 (PDT)
-Message-ID: <20101027215412.BF44513004F@annarchy.freedesktop.org>
-References: <bug-31169-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Marcin_Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: Re: NVAF feedback
+Date: Thu, 28 Oct 2010 16:05:52 +0000
+Message-ID: <e2af201572ad6e0c7400882a78845045@0x04.net>
+References: <4CC99883.4040808@aquazul.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31169-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <4CC99883.4040808-mfMr2rENS1xBDgjK7y7TUQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,19 +17,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Mourad De Clerck <mourad-mfMr2rENS1xBDgjK7y7TUQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31169
-
---- Comment #4 from Marius Vasilescu <marius.vasilescu-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> 2010-10-27 14:54:12 PDT ---
-Created an attachment (id=39821)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39821)
-dmesg
-
-Here it is. If you need additional info, please let me know.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gVGh1LCAyOCBPY3QgMjAxMCAxNzozNjozNSArMDIwMCwgTW91cmFkIERlIENsZXJjayA8bW91
+cmFkQGFxdWF6dWwuY29tPgp3cm90ZToKPiBIZWxsbywKPiAKPiBJIG5vdGljZWQgYSBwYXRjaCBp
+biBkcm0tY29yZS1uZXh0IHRoYXQgd291bGQgYWRkIE5WQUYgc3VwcG9ydDoKPiAKPiBlNjliNDQx
+ODgyNWMyZTRjNjU2M2FlMWQ2OWJkNzUzNzc4MjZlMjYzCj4gZHJtL252NTA6IGRlbWFnaWMgZ3Jj
+dHgsIGFuZCBhZGQgTlZBRiBzdXBwb3J0Cj4gCj4gU28gSSBkZWNpZGVkIHRvIHRyeSBpdCBvdXQg
+b24gbXkgTWFjYm9va1BybzcsMSAoMTMiIE1CUCkuCj4gCj4gSSBjYW4gcmVwb3J0IHRoYXQgWG9y
+ZyBzdGFydHMgdXAsIGFuZCBldmVyeXRoaW5nIGlzIE9LIGFjY29yZGluZyB0byB0aGUKPiBYb3Jn
+IGxvZy4gSG93ZXZlciwgdGhlIHNjcmVlbiBpcyBzb21ld2hhdCBjb3JydXB0ZWQgKGJhY2tncm91
+bmQgaW1hZ2VzCj4gYW5kIHdpbmRvd3MgYXJlIGRyYXduLCBmb3JlZ3JvdW5kIHRleHQgYW5kIGlt
+YWdlcyBhcmUgbm90KSwgYW5kIHRoZQo+IGRtZXNnIHNwZXdzIGEgbG90IG9mIHRoZXNlOgo+IAo+
+IFtkcm1dIG5vdXZlYXUgMDAwMDowNDowMC4wOiBQR1JBUEhfSUxMRUdBTF9NVEhEIC0gQ2ggMi81
+IENsYXNzIDB4ODU5Nwo+IE10aGQgMHgxMzQwIERhdGEgMHgwMDAwMDAwMDoweDAwMDA4MDA2Cj4g
+W2RybV0gbm91dmVhdSAwMDAwOjA0OjAwLjA6IFBHUkFQSF9JTExFR0FMX0NMQVNTIC0gQ2ggMi81
+IENsYXNzIDB4ODU5Nwo+IE10aGQgMHgxMzQwIERhdGEgMHgwMDAwMDAwMDoweDAwMDA4MDA2Cj4g
+bm91dmVhdV9yYXRlbGltaXQ6IDI1MjAgY2FsbGJhY2tzIHN1cHByZXNzZWQKPiAKPiBKdXN0IHRo
+b3VnaHQgSSdkIHJlcG9ydCBpdC4gVGhhbmtzIGZvciB5b3VyIHdvcmsuCj4gCj4gLS0gTQoKT3V0
+ZGF0ZWQgeGY4Ni12aWRlby1ub3V2ZWF1LCBpdCBkaWRuJ3Qga25vdyBhYm91dCBOVkFGIGFuZCB0
+cmllZCB0byB1c2UKdGhlIE5WQTMgb2JqZWN0IGNsYXNzLiBQbGVhc2UgdXBkYXRlIHRvIGxhdGVz
+dCBnaXQuCgpNYXJjaW4gS2/Fm2NpZWxuaWNraQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
