@@ -1,10 +1,9 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31208] New: Nouveau messes up images and text
-Date: Fri, 29 Oct 2010 00:57:32 -0700 (PDT)
-Message-ID: <bug-31208-8800@http.bugs.freedesktop.org/>
+From: Aaron Sowry <aaron+nv-+1tCnOwpXBmzQB+pC5nmwQ@public.gmane.org>
+Subject: nouveau exposes backlight controls in presence of ACPI
+Date: Fri, 29 Oct 2010 17:49:34 +0200
+Message-ID: <20101029154934.GA2076@aeneby.se>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1025676761=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,39 +17,49 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31208
 
-           Summary: Nouveau messes up images and text
-           Product: xorg
-           Version: 7.4
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: high
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: spawn-tlvImHW8VfIX7l1+7OJHGg@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--===============1025676761==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="jI8keyz6grp/JLjh"
+Content-Disposition: inline
 
 
-Created an attachment (id=39879)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39879)
-Xorg im using
+--jI8keyz6grp/JLjh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-At a random time it suddenly just messes up the text and images all the
-programs,
-it looks like i has read the image from a wrong point and then does it all the
-way down.
-it only does that in dual head with extended desktop. this does not happen when
-it just runs as a clone
+It seems to be de facto standard to only expose kernel-level backlight controls in the absence of ACPI, however nouveau does this regardless of whether ACPI equivalents are available or not. This will confuse userspace in some situations. Does this need patching or is there some reason for this behaviour?
 
-Some images/text it is possible to reload, after reload it shows up just fine
-until next time.
+/Aaron
 
-Normally i use Fluxbox but i have tested it on gnome and kde too.
+--jI8keyz6grp/JLjh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+Content-Disposition: inline
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+
+iQEcBAEBAgAGBQJMyu0OAAoJECw8YUUfeQL97rsIALJ7YmMdnE7vXiJz6WjS6G5T
+i3EmRrZrDvpPqLxyQOyLDVdwg5AgFlOyVDAPtPvK6wU0LcXHVRverl9mBcG0kpnG
+VbvreX3C3thmyTJSHchxn7EUQULB/PiI9coQRQ6mDynWrXlWcYo9NurtUStKxM7V
+xm/9U/0YjTjppjOEeS+hgkkZ1Vg4xZVIFqzH7fmL+UJvOVIjDwF3d+1ZwgxWzCYr
+G31AJmExqhHwwA6zBuRZ654dc8Ho540+epNs0e9d4IrMjDT+xBM9vvlO6VyLWDmp
+ONv8oODaqVxTFPJaYhcuKddzBH7x7uhcZlLmzdljxwkq5n/ND2abY2JEKXU0Cfg=
+=hJfM
+-----END PGP SIGNATURE-----
+
+--jI8keyz6grp/JLjh--
+
+--===============1025676761==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1025676761==--
