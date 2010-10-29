@@ -1,7 +1,7 @@
-From: Mourad De Clerck <mourad-mfMr2rENS1xBDgjK7y7TUQ@public.gmane.org>
-Subject: NVAF feedback
-Date: Thu, 28 Oct 2010 17:36:35 +0200
-Message-ID: <4CC99883.4040808@aquazul.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31208] New: Nouveau messes up images and text
+Date: Fri, 29 Oct 2010 00:57:32 -0700 (PDT)
+Message-ID: <bug-31208-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,29 +15,42 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
+https://bugs.freedesktop.org/show_bug.cgi?id=31208
 
-I noticed a patch in drm-core-next that would add NVAF support:
+           Summary: Nouveau messes up images and text
+           Product: xorg
+           Version: 7.4
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: high
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: spawn-tlvImHW8VfIX7l1+7OJHGg@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-e69b4418825c2e4c6563ae1d69bd75377826e263
-drm/nv50: demagic grctx, and add NVAF support
 
-So I decided to try it out on my MacbookPro7,1 (13" MBP).
+Created an attachment (id=39879)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39879)
+Xorg im using
 
-I can report that Xorg starts up, and everything is OK according to the
-Xorg log. However, the screen is somewhat corrupted (background images
-and windows are drawn, foreground text and images are not), and the
-dmesg spews a lot of these:
+At a random time it suddenly just messes up the text and images all the
+programs,
+it looks like i has read the image from a wrong point and then does it all the
+way down.
+it only does that in dual head with extended desktop. this does not happen when
+it just runs as a clone
 
-[drm] nouveau 0000:04:00.0: PGRAPH_ILLEGAL_MTHD - Ch 2/5 Class 0x8597
-Mthd 0x1340 Data 0x00000000:0x00008006
-[drm] nouveau 0000:04:00.0: PGRAPH_ILLEGAL_CLASS - Ch 2/5 Class 0x8597
-Mthd 0x1340 Data 0x00000000:0x00008006
-nouveau_ratelimit: 2520 callbacks suppressed
+Some images/text it is possible to reload, after reload it shows up just fine
+until next time.
 
-Just thought I'd report it. Thanks for your work.
+Normally i use Fluxbox but i have tested it on gnome and kde too.
 
--- M
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
