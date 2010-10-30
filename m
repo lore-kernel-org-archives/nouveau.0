@@ -1,10 +1,14 @@
-From: Aaron Sowry <aaron+nv-+1tCnOwpXBmzQB+pC5nmwQ@public.gmane.org>
-Subject: nouveau exposes backlight controls in presence of ACPI
-Date: Fri, 29 Oct 2010 17:49:34 +0200
-Message-ID: <20101029154934.GA2076@aeneby.se>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 23495] nouveau KMS produces no output on a Dell
+	3008WFP monitor
+Date: Fri, 29 Oct 2010 23:59:49 -0700 (PDT)
+Message-ID: <20101030065950.0872B130051@annarchy.freedesktop.org>
+References: <bug-23495-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1025676761=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-23495-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,49 +21,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+https://bugs.freedesktop.org/show_bug.cgi?id=23495
 
---===============1025676761==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="jI8keyz6grp/JLjh"
-Content-Disposition: inline
+--- Comment #10 from hedgehog <hedgehogshiatus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-10-29 23:59:49 PDT ---
+(In reply to comment #8)
+> Thanks for that.  I'm curious, how's latest git?  There probably won't be any
+> change, but it doesn't hurt to try :)
 
+Hi,
+I have this Ubuntu bug open against the NVidia driver:
+https://bugs.launchpad.net/ubuntu/+source/xorg/+bug/667683
 
---jI8keyz6grp/JLjh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Lots of sysinfo in that report if any of it helps - Summary: two Quadron FX
+3800's.
+I wanted to switch to nouveau... but I have this display, so wonder if I can
+help resolve this issue?
 
-It seems to be de facto standard to only expose kernel-level backlight controls in the absence of ACPI, however nouveau does this regardless of whether ACPI equivalents are available or not. This will confuse userspace in some situations. Does this need patching or is there some reason for this behaviour?
+Best wishes
 
-/Aaron
-
---jI8keyz6grp/JLjh
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-Content-Disposition: inline
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.9 (GNU/Linux)
-
-iQEcBAEBAgAGBQJMyu0OAAoJECw8YUUfeQL97rsIALJ7YmMdnE7vXiJz6WjS6G5T
-i3EmRrZrDvpPqLxyQOyLDVdwg5AgFlOyVDAPtPvK6wU0LcXHVRverl9mBcG0kpnG
-VbvreX3C3thmyTJSHchxn7EUQULB/PiI9coQRQ6mDynWrXlWcYo9NurtUStKxM7V
-xm/9U/0YjTjppjOEeS+hgkkZ1Vg4xZVIFqzH7fmL+UJvOVIjDwF3d+1ZwgxWzCYr
-G31AJmExqhHwwA6zBuRZ654dc8Ho540+epNs0e9d4IrMjDT+xBM9vvlO6VyLWDmp
-ONv8oODaqVxTFPJaYhcuKddzBH7x7uhcZlLmzdljxwkq5n/ND2abY2JEKXU0Cfg=
-=hJfM
------END PGP SIGNATURE-----
-
---jI8keyz6grp/JLjh--
-
---===============1025676761==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1025676761==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
