@@ -1,13 +1,12 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: [PATCH xf86-video-nouveau] Purge cvs tags.
-Date: Sat, 30 Oct 2010 22:31:25 +0200
-Message-ID: <87d3qra0de.fsf@riseup.net>
-References: <1288134332-6100-1-git-send-email-jesserayadkins@gmail.com>
+From: Delan Azabani <delan-Boohn7ZbvbpBDgjK7y7TUQ@public.gmane.org>
+Subject: Build failure for gallium nouveau driver from git
+Date: Sun, 31 Oct 2010 16:44:35 +0800
+Message-ID: <4CCD2C73.1070806@azabani.com>
+Reply-To: delan-Boohn7ZbvbpBDgjK7y7TUQ@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0161878724=="
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1288134332-6100-1-git-send-email-jesserayadkins-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-	(Jesse Adkins's message of "Tue, 26 Oct 2010 16:05:32 -0700")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,77 +16,63 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Jesse Adkins <jesserayadkins-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0161878724==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
+The latest git version of freedesktop/mesa/mesa (building for gallium
+driver according to nouveau wiki/GalliumHowto) does not compile. The
+messages shown are:
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+nouveau_screen.c: In function =91nouveau_screen_init=92:
+nouveau_screen.c:239: warning: passing argument 4 of
+=91nouveau_channel_alloc=92 makes pointer from integer without a cast
+/usr/include/nouveau/nouveau_channel.h:51: note: expected =91struct
+nouveau_channel **=92 but argument is of type =91int=92
+nouveau_screen.c:239: error: too many arguments to function
+=91nouveau_channel_alloc=92
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm running Ubuntu 10.10 with the latest git libdrm installed. Nvidia
+proprietary drivers are not installed; running distribution-packaged
+2D-only nouveau driver. By the way, my understanding of the code is
+limited, so the things I try to fix the problem with are probably silly.
 
-Jesse Adkins <jesserayadkins-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
+This line seems to be the culprit:
 
-> Signed-off-by: Jesse Adkins <jesserayadkins-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  src/nv_const.h   |    2 --
->  src/nv_include.h |    2 --
->  2 files changed, 0 insertions(+), 4 deletions(-)
->
-> diff --git a/src/nv_const.h b/src/nv_const.h
-> index 0df25b6..20984ae 100644
-> --- a/src/nv_const.h
-> +++ b/src/nv_const.h
-> @@ -1,5 +1,3 @@
-> -/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/nv/nv_const.h,v 1.6 =
-2001/12/07 00:09:55 mvojkovi Exp $ */
-> -
->  #ifndef __NV_CONST_H__
->  #define __NV_CONST_H__
->=20=20
-> diff --git a/src/nv_include.h b/src/nv_include.h
-> index ce89596..48f0b21 100644
-> --- a/src/nv_include.h
-> +++ b/src/nv_include.h
-> @@ -1,5 +1,3 @@
-> -/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/nv/nv_include.h,v 1.=
-9 2000/10/06 12:31:03 eich Exp $ */
-> -
->  #ifndef __NV_INCLUDE_H__
->  #define __NV_INCLUDE_H__
+ret =3D nouveau_channel_alloc(dev, 0xbeef0201, 0xbeef0202, 512*1024,
+&screen->channel);
 
-Thanks, pushed.
+Even though nouveau_context.c has a similar call with the same number of
+arguments, it isn't an error. I also couldn't find the function
+definition for nouveau_channel_alloc anywhere. Naively, I remove the
+last argument so it looks like this:
 
---=-=-=--
+ret =3D nouveau_channel_alloc(dev, 0xbeef0201, 0xbeef0202, 512*1024);
 
---==-=-=
-Content-Type: application/pgp-signature
+The error disappears, and the compile continues. Another error now:
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
+nv50_surface.c: In function =91nv50_surface_set=92:
+nv50_surface.c:95: error: =91NOUVEAU_BO_TILE_LAYOUT_MASK=92 undeclared
+(first use in this function)
+nv50_surface.c:95: error: (Each undeclared identifier is reported only once
+nv50_surface.c:95: error: for each function it appears in.)
+make[4]: *** [nv50_surface.o] Error 1
+make[4]: *** Waiting for unfinished jobs....
+nv50_transfer.c: In function =91nv50_transfer_rect_m2mf=92:
+nv50_transfer.c:48: error: =91NOUVEAU_BO_TILE_LAYOUT_MASK=92 undeclared
+(first use in this function)
+nv50_transfer.c:48: error: (Each undeclared identifier is reported only once
+nv50_transfer.c:48: error: for each function it appears in.)
+nv50_transfer.c: In function =91nv50_upload_sifc=92:
+nv50_transfer.c:283: error: =91NOUVEAU_BO_TILE_LAYOUT_MASK=92 undeclared
+(first use in this function)
+make[4]: *** [nv50_transfer.o] Error 1
 
-iF4EAREIAAYFAkzMgJ0ACgkQg5k4nX1Sv1sd8QD/Ys5cYTmrVgJNG+/UA2Tdb7bq
-NciegTAQvBQW3PdzeBIBAJOe2/t1sP9m6Gb9jMs7NM6VCILXiuYLo8MrfVJCcG8S
-=FI6q
------END PGP SIGNATURE-----
---==-=-=--
+Don't know how to fix that one. Even the nouveau_channel_alloc error,
+which I 'fixed', seems odd because it was called elsewhere just the same
+without fail.
 
---===============0161878724==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- =
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0161878724==--
+Thanks and best regards,
+Delan Azabani
+http://azabani.com/
