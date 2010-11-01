@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31275] kernel BUG at
- drivers/gpu/drm/nouveau/nouveau_object.c:300!
-Date: Sun, 31 Oct 2010 18:57:54 -0700 (PDT)
-Message-ID: <20101101015754.ECBD413004F@annarchy.freedesktop.org>
-References: <bug-31275-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Marcin_Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: Re: [RFC/PATCH] Switch dri driver to use rules-ng-ng
+	headers
+Date: Mon, 01 Nov 2010 01:59:31 +0000
+Message-ID: <7d9982d90fbc76c45c09e18e0a9f08b1@0x04.net>
+References: <1288571171-8102-1-git-send-email-noviktor@seznam.cz>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31275-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1288571171-8102-1-git-send-email-noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,17 +18,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?Viktor_Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31275
-
---- Comment #1 from jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-10-31 18:57:54 PDT ---
-Created an attachment (id=39940)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39940)
-Nouveau Kernel Log with debug
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+PiBmb2xsb3dpbmcgcGF0Y2hlcyBtYWtlIHRoZSBkcmkgZHJpdmVyIHVzZSBydWxlcy1uZy1uZyhy
+bm4pIGdlbmVyYXRlZAo+IHJlZ2lzdGVyIGRlZmluaXRpb25zIGluc3RlYWQgb2YgcmVub3V2ZWF1
+IGdlbmVyYXRlZCBvbmVzLgo+IEZpcnN0IHNldCBvZiA1IHBhdGNoZXMgaXMgZm9yIG1lc2EgcmVw
+b3NpdG9yeSwgc2Vjb25kIHNldCBvZiA0IHBhdGNoZXMKaXMKPiBmb3Igcm5uIGFuZCBjb25zaXN0
+cyBvZiBjaGFuZ2VzIHBvcnRlZCBmcm9tIHJlbm91dmVhdS4KCkFwcGxpZWQgdGhlIHJubiBzdHVm
+Zi4KCj4gT25lIHRoaW5nIEkgZG8gbm90IHVuZGVyc3RhbmQgaXMsIHdoeSBybm4gZG9lcyBub3Qg
+Z2VuZXJhdGUKPiBOVjIwXzNEX1RFWF9FTkFCTEVfX0xFTihzaG91bGQgYmUgNCksIHNvIGFueSBw
+b2ludGVycyBvbiB3aGF0IHRvIAo+IGRvIGFyZSB3ZWxjb21lLCBhcyBhcmUgYW55IG90aGVyIGNv
+bW1lbnRzLCBzdWdnZXN0aW9ucyBldGMuCgpUaGlzIGlzIGNhdXNlZCBieSB0aGUgd2F5IFRFWF9F
+TkFCTEUgaXMgZGVmaW5lZC4uLgoKPHN0cmlwZSBsZW5ndGg9IjQiIHN0cmlkZT0iNjQiPgogIDxk
+b2M+IFRleHR1cmUgdW5pdHMuIDwvZG9jPgogIDwhLS0gLi4uIC0tPgogIDxyZWczMiBvZmZzZXQ9
+IjB4MWIwYyIgbmFtZT0iVEVYX0VOQUJMRSI+CiAgICA8IS0tIC4uLiAtLT4KICA8L3JlZzMyPgo8
+L3N0cmlwZT4KClRFWF9FTkFCTEUgaXMgYWN0dWFsbHkgYSBzaW5ndWxhciByZWdpc3RlciBkZWZp
+bmVkIHdpdGhpbiBhbiBhbm9ueW1vdXMKc3RyaXBlIHdpdGggbGVuZ3RoIDQuIElmIFRFWF9FTkFC
+TEUgd2FzIGl0c2VsZiBhbiBhcnJheS1yZWdpc3RlciwKTlYyMF8zRF9URVhfRU5BQkxFX19MRU4g
+d291bGQgYmUgaXRzIGxlbmd0aC4gV2hhdCB5b3Ugd2FudCBpcyB0aGUgbGVuZ3RoCm9mIHRoZSBz
+dHJpcGUsIHdoaWNoIGRvZXNuJ3QgaGF2ZSBhIG5hbWUsIGFuZCBoZW5jZSBkb2Vzbid0IGhhdmUg
+YSBkZWZpbmUuCgpJJ2Qgc3VnZ2VzdCBjaGFuZ2luZyB0aGUgc3RyaXBlJ3MgbmFtZSB0byBURVgs
+IGFuZCBudWtpbmcgVEVYXyBwcmVmaXggZnJvbQp0aGUgcmVncyBpbnNpZGUgaXQ6IHlvdSdsbCBl
+bmQgdXAgd2l0aCBOVjIwXzNEX1RFWF9fTEVOIGRlZmluZWQgdG8gNCwgYW5kCnRoZSBlZmZlY3Rp
+dmUgbmFtZXMgb2Ygc3R1ZmYgaW5zaWRlIGl0IHdpbGwgYmUgdW5jaGFuZ2VkLgoKTWFyY2luIEtv
+xZtjaWVsbmlja2kKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
