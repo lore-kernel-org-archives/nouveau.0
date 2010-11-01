@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31295] Can't change fbcon resolution via kernel
 	command line
-Date: Mon,  1 Nov 2010 07:44:24 -0700 (PDT)
-Message-ID: <20101101144424.D694C13004F@annarchy.freedesktop.org>
+Date: Mon,  1 Nov 2010 07:47:00 -0700 (PDT)
+Message-ID: <20101101144700.CF40613000D@annarchy.freedesktop.org>
 References: <bug-31295-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,29 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31295
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2010-11-01 07:44:24 PDT ---
-Created an attachment (id=39952)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39952)
-dmesg
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2010-11-01 07:47:00 PDT ---
+cat /sys/class/drm/card0-VGA-1/modes 
+1280x1024
+1024x768
+1024x768
+1024x768
+1024x768
+832x624
+800x600
+800x600
+800x600
+800x600
+800x600
+640x480
+640x480
+640x480
+640x480
+640x480
+720x400
+720x400
+
+Hm, a bit more informative lines can be helpful here ... for example, color
+depth and/or vertical refresh rates .....
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
