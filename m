@@ -1,15 +1,15 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+From: =?UTF-8?Q?Marcin_Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
 Subject: Re: [RFC/PATCH] Switch dri driver to use rules-ng-ng
 	headers
-Date: Mon, 01 Nov 2010 18:15:28 +0100
-Message-ID: <87k4kx7yof.fsf@riseup.net>
+Date: Mon, 01 Nov 2010 17:29:30 +0000
+Message-ID: <d792844d3db3d6ca532ce35479cf6f7f@0x04.net>
 References: <1288571454-8151-1-git-send-email-noviktor@seznam.cz>
+	<87k4kx7yof.fsf@riseup.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1456731329=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1288571454-8151-1-git-send-email-noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ("Viktor
-	=?utf-8?Q?Novotn=C3=BD=22's?= message of "Mon,
-	1 Nov 2010 01:30:45 +0100")
+In-Reply-To: <87k4kx7yof.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,80 +19,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Viktor =?utf-8?Q?Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
-Cc: Marcin-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1456731329==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
-
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
-
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Viktor Novotn=C3=BD <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> writes:
-
-> From: Viktor Novotn=C3=BD <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
->
-> Hi,
->
-> following patches make the dri driver use rules-ng-ng(rnn) generated
-> register definitions instead of renouveau generated ones.  First set
-> of 5 patches is for mesa repository, second set of 4 patches is for
-> rnn and consists of changes ported from renouveau.
->
-Some renames seem awkward to me, but I can get used to it. I'm OK with
-the change as long as Ben agrees with it too (along with a similar change
-for the DDX), and the rnn repository moves somewhere we can all commit to
-(i.e. sourceforge).
-
-Marcin? What are your feelings with regard to that possibility?
-
-BTW, is rnn already a complete replacement of the renouveau database? Can
-it be used to turn renouveau/mmt dumps into a human readable form?
-
-> One thing I do not understand is, why rnn does not generate
-> NV20_3D_TEX_ENABLE__LEN(should be 4), so any pointers on what to do
-> are welcome, as are any other comments, suggestions etc.
->
-That's no big deal, there's already a define with the number of texture
-samplers in nv20_driver.h:35.
-
-> Regards
-> 	Viktor
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-
-iF4EAREIAAYFAkzO9bAACgkQg5k4nX1Sv1sSvQEAkotXY1vxLfJoacYdNBRfGryC
-HYIqD+l6ed6DxOYGa0QA+QHuuSoQbzDmX8d0MspAAf0N3pQXVamdKMSvAZF2ZP/c
-=Zo2p
------END PGP SIGNATURE-----
---==-=-=--
-
---===============1456731329==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1456731329==--
+PiBTb21lIHJlbmFtZXMgc2VlbSBhd2t3YXJkIHRvIG1lLCBidXQgSSBjYW4gZ2V0IHVzZWQgdG8g
+aXQuIEknbSBPSyB3aXRoCj4gdGhlIGNoYW5nZSBhcyBsb25nIGFzIEJlbiBhZ3JlZXMgd2l0aCBp
+dCB0b28gKGFsb25nIHdpdGggYSBzaW1pbGFyCmNoYW5nZQo+IGZvciB0aGUgRERYKSwgYW5kIHRo
+ZSBybm4gcmVwb3NpdG9yeSBtb3ZlcyBzb21ld2hlcmUgd2UgY2FuIGFsbCBjb21taXQKdG8KPiAo
+aS5lLiBzb3VyY2Vmb3JnZSkuCj4gCj4gTWFyY2luPyBXaGF0IGFyZSB5b3VyIGZlZWxpbmdzIHdp
+dGggcmVnYXJkIHRvIHRoYXQgcG9zc2liaWxpdHk/CgpGaW5lIHdpdGggbWUuCiAKPiBCVFcsIGlz
+IHJubiBhbHJlYWR5IGEgY29tcGxldGUgcmVwbGFjZW1lbnQgb2YgdGhlIHJlbm91dmVhdSBkYXRh
+YmFzZT8KQ2FuCj4gaXQgYmUgdXNlZCB0byB0dXJuIHJlbm91dmVhdS9tbXQgZHVtcHMgaW50byBh
+IGh1bWFuIHJlYWRhYmxlIGZvcm0/CgpOb29uZSBldmVyIGNvZGVkIHRoYXQgcGFydCwgYWx0aG91
+Z2ggcGFyc2luZyByZW5vdXZlYXUgZHVtcHMgaXMgZ29pbmcgdG8KYmUKdmVyeSBzaW1wbGUgdXNp
+bmcgdGhlIGV4aXN0aW5nIHJubmRlYyBjb2RlIHRoYXQgZGVtbWlvIHVzZXMuCgptbXQgdHJhY2Vz
+IGFyZSBtdWNoIG1vcmUgdHJvdWJsZSBkdWUgdG8gcmVvcmRlcmluZyB3cml0ZXMsIG11bHRpcGxl
+IEZJRk9zLApldGMuCgpNYXJjaW4gS2/Fm2NpZWxuaWNraQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
