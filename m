@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31295] Can't change fbcon resolution via kernel
 	command line
-Date: Mon,  1 Nov 2010 07:50:08 -0700 (PDT)
-Message-ID: <20101101145008.48E6313000D@annarchy.freedesktop.org>
+Date: Mon,  1 Nov 2010 09:20:21 -0700 (PDT)
+Message-ID: <20101101162021.5D40F13004F@annarchy.freedesktop.org>
 References: <bug-31295-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31295
 
---- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2010-11-01 07:50:06 PDT ---
-Created an attachment (id=39953)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=39953)
-.config
-
-I have fbcon, nouveau, drm  compiled as modules, and my system starts up with
-old VGA text mode, then  during udev startup  nouveau module will be
-auto-loaded.
+--- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2010-11-01 09:20:19 PDT ---
+Created an attachment (id=39959)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=39959)
+dmesg after booting with just video=VGA-1:800x600
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
