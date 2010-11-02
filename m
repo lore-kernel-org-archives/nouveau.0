@@ -1,16 +1,13 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [RFC/PATCH] Switch dri driver to use rules-ng-ng
- headers
-Date: Tue, 02 Nov 2010 08:08:13 +1000
-Message-ID: <1288649293.2571.0.camel@nisroch>
-References: <1288571454-8151-1-git-send-email-noviktor@seznam.cz>
-	<87k4kx7yof.fsf@riseup.net>
-Reply-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31117] nouveau [NV98] [mi] EQ overflowing
+Date: Mon,  1 Nov 2010 18:44:30 -0700 (PDT)
+Message-ID: <20101102014430.DD60913000D@annarchy.freedesktop.org>
+References: <bug-31117-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <87k4kx7yof.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <bug-31117-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +17,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: Marcin-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyMDEwLTExLTAxIGF0IDE4OjE1ICswMTAwLCBGcmFuY2lzY28gSmVyZXogd3JvdGU6
-Cj4gVmlrdG9yIE5vdm90bsO9IDxub3Zpa3RvckBzZXpuYW0uY3o+IHdyaXRlczoKPiAKPiA+IEZy
-b206IFZpa3RvciBOb3ZvdG7DvSA8bm92aWt0b3JAc2V6bmFtLmN6Pgo+ID4KPiA+IEhpLAo+ID4K
-PiA+IGZvbGxvd2luZyBwYXRjaGVzIG1ha2UgdGhlIGRyaSBkcml2ZXIgdXNlIHJ1bGVzLW5nLW5n
-KHJubikgZ2VuZXJhdGVkCj4gPiByZWdpc3RlciBkZWZpbml0aW9ucyBpbnN0ZWFkIG9mIHJlbm91
-dmVhdSBnZW5lcmF0ZWQgb25lcy4gIEZpcnN0IHNldAo+ID4gb2YgNSBwYXRjaGVzIGlzIGZvciBt
-ZXNhIHJlcG9zaXRvcnksIHNlY29uZCBzZXQgb2YgNCBwYXRjaGVzIGlzIGZvcgo+ID4gcm5uIGFu
-ZCBjb25zaXN0cyBvZiBjaGFuZ2VzIHBvcnRlZCBmcm9tIHJlbm91dmVhdS4KPiA+Cj4gU29tZSBy
-ZW5hbWVzIHNlZW0gYXdrd2FyZCB0byBtZSwgYnV0IEkgY2FuIGdldCB1c2VkIHRvIGl0LiBJJ20g
-T0sgd2l0aAo+IHRoZSBjaGFuZ2UgYXMgbG9uZyBhcyBCZW4gYWdyZWVzIHdpdGggaXQgdG9vIChh
-bG9uZyB3aXRoIGEgc2ltaWxhciBjaGFuZ2UKPiBmb3IgdGhlIEREWCksIGFuZCB0aGUgcm5uIHJl
-cG9zaXRvcnkgbW92ZXMgc29tZXdoZXJlIHdlIGNhbiBhbGwgY29tbWl0IHRvCj4gKGkuZS4gc291
-cmNlZm9yZ2UpLgpJdCdzIGZpbmUgYnkgbWUsIEkgZm9yZ2V0IHRoZSBuYW1lcyBhbnl3YXkgYW5k
-IGhhdmUgdG8gbG9vayB0aGVtIHVwIGZyb20KdGhlIG51bWJlcnMgOikKCkJlbi4KPiAKPiBNYXJj
-aW4/IFdoYXQgYXJlIHlvdXIgZmVlbGluZ3Mgd2l0aCByZWdhcmQgdG8gdGhhdCBwb3NzaWJpbGl0
-eT8KPiAKPiBCVFcsIGlzIHJubiBhbHJlYWR5IGEgY29tcGxldGUgcmVwbGFjZW1lbnQgb2YgdGhl
-IHJlbm91dmVhdSBkYXRhYmFzZT8gQ2FuCj4gaXQgYmUgdXNlZCB0byB0dXJuIHJlbm91dmVhdS9t
-bXQgZHVtcHMgaW50byBhIGh1bWFuIHJlYWRhYmxlIGZvcm0/Cj4gCj4gPiBPbmUgdGhpbmcgSSBk
-byBub3QgdW5kZXJzdGFuZCBpcywgd2h5IHJubiBkb2VzIG5vdCBnZW5lcmF0ZQo+ID4gTlYyMF8z
-RF9URVhfRU5BQkxFX19MRU4oc2hvdWxkIGJlIDQpLCBzbyBhbnkgcG9pbnRlcnMgb24gd2hhdCB0
-byBkbwo+ID4gYXJlIHdlbGNvbWUsIGFzIGFyZSBhbnkgb3RoZXIgY29tbWVudHMsIHN1Z2dlc3Rp
-b25zIGV0Yy4KPiA+Cj4gVGhhdCdzIG5vIGJpZyBkZWFsLCB0aGVyZSdzIGFscmVhZHkgYSBkZWZp
-bmUgd2l0aCB0aGUgbnVtYmVyIG9mIHRleHR1cmUKPiBzYW1wbGVycyBpbiBudjIwX2RyaXZlci5o
-OjM1Lgo+IAo+ID4gUmVnYXJkcwo+ID4gCVZpa3Rvcgo+ID4gX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gPiBO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=31117
+
+Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #2 from Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> 2010-11-01 18:44:30 PDT ---
+After upgrading to the latest code available in openSUSE Factory I can no
+longer reproduce this issue. I am guessing this was fixed upstream. I will
+reopen if I run into issues again.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
