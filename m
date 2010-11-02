@@ -1,11 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31336] New: KMS start:Black Screen and Switch off
-Date: Tue,  2 Nov 2010 12:37:50 -0700 (PDT)
-Message-ID: <bug-31336-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nouveau exposes backlight controls in presence of ACPI
+Date: Wed, 03 Nov 2010 08:37:51 +1000
+Message-ID: <1288737471.6100.0.camel@nisroch>
+References: <20101029154934.GA2076@aeneby.se>
+	<1288670315.6477.2.camel@nisroch>  <20101102145153.GA4075@aeneby.se>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20101102145153.GA4075-+1tCnOwpXBmzQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,31 +19,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Aaron Sowry <aaron+nv-+1tCnOwpXBmzQB+pC5nmwQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzEzMzYKCiAgICAg
-ICAgICAgU3VtbWFyeTogS01TIHN0YXJ0OkJsYWNrIFNjcmVlbiBhbmQgU3dpdGNoIG9mZgogICAg
-ICAgICAgIFByb2R1Y3Q6IHhvcmcKICAgICAgICAgICBWZXJzaW9uOiA3LjUKICAgICAgICAgIFBs
-YXRmb3JtOiB4ODYtNjQgKEFNRDY0KQogICAgICAgIE9TL1ZlcnNpb246IExpbnV4IChBbGwpCiAg
-ICAgICAgICAgIFN0YXR1czogTkVXCiAgICAgICAgICBTZXZlcml0eTogbm9ybWFsCiAgICAgICAg
-ICBQcmlvcml0eTogbWVkaXVtCiAgICAgICAgIENvbXBvbmVudDogRHJpdmVyL25vdXZlYXUKICAg
-ICAgICBBc3NpZ25lZFRvOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwogICAgICAgIFJl
-cG9ydGVkQnk6IG1haWxAaW5rZXktYXJ0Lm5ldAogICAgICAgICBRQUNvbnRhY3Q6IHhvcmctdGVh
-bUBsaXN0cy54Lm9yZwoKCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9Mzk5OTIpCiAtLT4gKGh0
-dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9Mzk5OTIpCktlcm5l
-bC1Mb2cKCkhlbGxvIGV2ZXJ5Ym9keS4KSSd2ZSBnb3QgYSBwcm9ibGVtIHdpdGggdGhlIE5vdXZl
-YXUgRHJpdmVyIGFuZCBLTVMuCk15IHZpZGVvIGNhcmQgaXMgYSA5NjAwR1QuCkkgYnVpbHQgTm91
-dmVhdSB3aXRoIHRoaXMgdHV0b3JpYWwgOgpodHRwOi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcv
-d2lraS9JbnN0YWxsTm91dmVhdSAgClNvICwgSeKAmXZlIGdvdCBhIG5ldyBrZXJuZWwgd2l0aCBO
-b3V2ZWF1IG1vZHVsZSBhY3RpdmF0ZWQsIEnigJl2ZSBnb3QgYWxzbyB0aGUKbGFzdCB2ZXJzaW9u
-IG9mIGxpYmRybSBhbmQgeGY4Ni12aWRlby1ub3V2ZWF1LiAKQnV0IHdoZW4gSSB0cmllZCB0byBs
-YXVuY2ggdGhpcyBuZXcga2VybmVsICxJ4oCZdmUgZ290IGEgYmxhY2sgc2NyZWVuIGFuZCB0aGVu
-CnRoZSBtb25pdG9yIHN3aXRjaCBvZmYganVzdCBhZnRlciB0aGUgbGF1bmNoIG9mIEtNUy4KSSd2
-ZSBnb3QgdGhlIHNhbWUgcHJvYmxlbSB3aXRoIGV4cGVyaW1lbnRhbCBwYWNrYWdlcyBvZiBEZWJp
-YW4uCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcv
-dXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1h
-aWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Tue, 2010-11-02 at 15:51 +0100, Aaron Sowry wrote:
+> > However.  There's also the platform-specific modules (thinkpad etc) that
+> > will provide their own backlight methods if the standard ACPI mechanism
+> > isn't available.  I didn't see any immediately obvious way of knowing
+> > whether or not they were being provided.
+> > 
+> > I'm not too certain the best way to deal with this, any ideas? :)
+> 
+> See attached patch, which prevents nouveau registering a backlight control if ACPI already provides one. If there are no glaring errors in the code/implementation then I would like to submit it.
+This is much like what I intended to commit.  I guess it doesn't hurt to
+do so, it doesn't help with all cases yet but if it fixes issues for
+some people, why not.
+
+Ben.
+> 
+> Dealing with platform-specific modules is tricky because it looks like nouveau initialises itself quite early on in the boot process:
+> 
+> [aaron@jules ~]$ dmesg | grep ACPI
+> ...
+> [    3.359377] nouveau 0000:01:00.0: power state changed by ACPI to D0
+> [    3.359560] nouveau 0000:01:00.0: power state changed by ACPI to D0
+> [    4.860678] [drm] nouveau 0000:01:00.0: Detected ACPI backlight support, not registering control
+> [   14.206997] ACPI: WMI: Skipping duplicate GUID 05901221-D566-11D1-B2F0-00A0C9062910
+> [   14.207693] ACPI: WMI: Mapper loaded
+> [   17.686907] thinkpad_acpi: ThinkPad ACPI Extras v0.24
+> [   17.689517] thinkpad_acpi: This ThinkPad has standard ACPI backlight brightness control, supported by the ACPI video driver
+> [   17.756039] thinkpad_acpi: Standard ACPI backlight interface available, not loading native one.
+> 
+> My suggestion would be that it is the responsibility of user-space to select an appropriate ACPI backlight control.
+> 
+> /Aaron
