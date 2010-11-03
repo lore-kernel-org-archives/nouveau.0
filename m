@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31366] [drm][KMS][Regression] Screen shutdown during
-	boot
-Date: Wed,  3 Nov 2010 15:32:46 -0700 (PDT)
-Message-ID: <20101103223246.A372313000D@annarchy.freedesktop.org>
-References: <bug-31366-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nouveau: Don't expose backlight control in
+ presence of ACPI
+Date: Thu, 04 Nov 2010 09:59:53 +1000
+Message-ID: <1288828793.22971.0.camel@nisroch>
+References: <20101103101229.GA4523@aeneby.se>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31366-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20101103101229.GA4523-+1tCnOwpXBmzQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,18 +19,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Aaron Sowry <aaron-+1tCnOwpXBmzQB+pC5nmwQ@public.gmane.org>
+Cc: airlied-cv59FeDIM0c@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzEzNjYKCi0tLSBD
-b21tZW50ICMxIGZyb20gVW5iZWthbmR0IEzDqW8gPHZpdmFuZW9uQGdtYWlsLmNvbT4gMjAxMC0x
-MS0wMyAxNTozMjo0NiBQRFQgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9NDAwMjgpCiAt
-LT4gKGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NDAwMjgp
-CkRtZXNnIHdpdGggZGVidWcgb2YgdGhlIDIuNi4zMi54IGtlcm5lbAoKSGVyZSBpcyBteSBvdGhl
-ciBrZXJuZWwgZG1lc2cgd2l0aCBkcm0gZGVidWcgb3V0cHV0LgoKLS0gCkNvbmZpZ3VyZSBidWdt
-YWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWls
-Ci0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91
-IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+On Wed, 2010-11-03 at 11:12 +0100, Aaron Sowry wrote:
+> From: Aaron Sowry <aaron-+1tCnOwpXBmzQB+pC5nmwQ@public.gmane.org>
+> 
+> Avoid confusing userspace by not publishing backlight controls if ACPI equivalents are available.
+> Signed-off-by: Aaron Sowry <aaron-+1tCnOwpXBmzQB+pC5nmwQ@public.gmane.org>
+Thanks,
+
+I've pushed an equivalent change into nouveau git.
+
+Ben.
+> ---
+> --- linux-2.6/drivers/gpu/drm/nouveau/nouveau_state.c.orig      2010-11-03 09:56:29.502828966 +0100
+> +++ linux-2.6/drivers/gpu/drm/nouveau/nouveau_state.c   2010-11-03 10:46:27.765829000 +0100
+> @@ -23,6 +23,7 @@
+>   * DEALINGS IN THE SOFTWARE.
+>   */
+> 
+> +#include <linux/acpi.h>
+>  #include <linux/swab.h>
+>  #include <linux/slab.h>
+>  #include "drmP.h"
+> @@ -648,9 +649,14 @@ nouveau_card_init(struct drm_device *dev
+>                         goto out_fence;
+>         }
+> 
+> -       ret = nouveau_backlight_init(dev);
+> -       if (ret)
+> -               NV_ERROR(dev, "Error %d registering backlight\n", ret);
+> +       if (acpi_video_backlight_support())
+> +               NV_INFO(dev, "Detected ACPI backlight support, "
+> +                               "not registering interface\n");
+> +       else {
+> +               ret = nouveau_backlight_init(dev);
+> +               if (ret)
+> +                       NV_ERROR(dev, "Error %d registering backlight\n", ret);
+> +       }
+> 
+>         nouveau_fbcon_init(dev);
+>         drm_kms_helper_poll_init(dev);
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
