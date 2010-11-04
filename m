@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31366] [drm][KMS][Regression] Screen shutdown during
 	boot
-Date: Thu,  4 Nov 2010 09:28:11 -0700 (PDT)
-Message-ID: <20101104162812.0440613000D@annarchy.freedesktop.org>
+Date: Thu,  4 Nov 2010 09:36:05 -0700 (PDT)
+Message-ID: <20101104163605.BC53B130051@annarchy.freedesktop.org>
 References: <bug-31366-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31366
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-04 09:28:11 PDT ---
-It's funny. On 2.6.32 kernel we detected both cards (NV98 and NVAC), but
-couldn't initialize NV98 because we couldn't find its VBIOS. On 2.6.36 we again
-detected both cards but this time we found _both_ VBIOSes. As NV98 was detected
-first it drives primary framebuffer (fb0). 
-
-So it's not a bug :).
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-04 09:36:05 PDT ---
+You can point fb0 at correct card by using fbcon=map: boot option.
+See
+http://git.kernel.org/?p=linux/kernel/git/torvalds/linux-2.6.git;a=blob;f=Documentation/fb/fbcon.txt
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
