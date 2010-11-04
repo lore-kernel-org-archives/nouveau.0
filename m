@@ -1,14 +1,14 @@
-From: Didier Spaier <didier.spaier-GqzDj6/B2j8@public.gmane.org>
-Subject: Re: [Bug 31336] New: KMS start:Black Screen and Switch off
-Date: Thu, 04 Nov 2010 13:23:17 +0100
-Message-ID: <4CD2A5B5.5050401@epsm.fr>
-References: <bug-31336-8800@http.bugs.freedesktop.org/>
-	<4CD2A2AF.30702@epsm.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31366] [drm][KMS][Regression] Screen shutdown during
+	boot
+Date: Thu,  4 Nov 2010 09:14:58 -0700 (PDT)
+Message-ID: <20101104161458.1946F13004F@annarchy.freedesktop.org>
+References: <bug-31366-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4CD2A2AF.30702-GqzDj6/B2j8@public.gmane.org>
+In-Reply-To: <bug-31366-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-TGUgMDQvMTEvMjAxMCAxMzoxMCwgRGlkaWVyIFNwYWllciBhIMOpY3JpdCA6Cj4gTGUgMDIvMTEv
-MjAxMCAyMDozNywgYnVnemlsbGEtZGFlbW9uQGZyZWVkZXNrdG9wLm9yZyBhIMOpY3JpdCA6Cj4+
-IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTMxMzM2Cj4+Cj4+
-IFN1bW1hcnk6IEtNUyBzdGFydDpCbGFjayBTY3JlZW4gYW5kIFN3aXRjaCBvZmYKPj4gUHJvZHVj
-dDogeG9yZwo+PiBWZXJzaW9uOiA3LjUKPj4gUGxhdGZvcm06IHg4Ni02NCAoQU1ENjQpCj4+IE9T
-L1ZlcnNpb246IExpbnV4IChBbGwpCj4+IFN0YXR1czogTkVXCj4+IFNldmVyaXR5OiBub3JtYWwK
-Pj4gUHJpb3JpdHk6IG1lZGl1bQo+PiBDb21wb25lbnQ6IERyaXZlci9ub3V2ZWF1Cj4+IEFzc2ln
-bmVkVG86IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IFJlcG9ydGVkQnk6IG1haWxA
-aW5rZXktYXJ0Lm5ldAo+PiBRQUNvbnRhY3Q6IHhvcmctdGVhbUBsaXN0cy54Lm9yZwo+Pgo+Pgo+
-PiBDcmVhdGVkIGFuIGF0dGFjaG1lbnQgKGlkPTM5OTkyKQo+PiAtLT4gKGh0dHBzOi8vYnVncy5m
-cmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9Mzk5OTIpCj4+IEtlcm5lbC1Mb2cKPj4K
-Pj4gSGVsbG8gZXZlcnlib2R5Lgo+PiBJJ3ZlIGdvdCBhIHByb2JsZW0gd2l0aCB0aGUgTm91dmVh
-dSBEcml2ZXIgYW5kIEtNUy4KPj4gTXkgdmlkZW8gY2FyZCBpcyBhIDk2MDBHVC4KPj4gSSBidWls
-dCBOb3V2ZWF1IHdpdGggdGhpcyB0dXRvcmlhbCA6Cj4+IGh0dHA6Ly9ub3V2ZWF1LmZyZWVkZXNr
-dG9wLm9yZy93aWtpL0luc3RhbGxOb3V2ZWF1Cj4+IFNvICwgSeKAmXZlIGdvdCBhIG5ldyBrZXJu
-ZWwgd2l0aCBOb3V2ZWF1IG1vZHVsZSBhY3RpdmF0ZWQsIEnigJl2ZSBnb3QgYWxzbyB0aGUKPj4g
-bGFzdCB2ZXJzaW9uIG9mIGxpYmRybSBhbmQgeGY4Ni12aWRlby1ub3V2ZWF1Lgo+PiBCdXQgd2hl
-biBJIHRyaWVkIHRvIGxhdW5jaCB0aGlzIG5ldyBrZXJuZWwgLEnigJl2ZSBnb3QgYSBibGFjayBz
-Y3JlZW4gYW5kIHRoZW4KPj4gdGhlIG1vbml0b3Igc3dpdGNoIG9mZiBqdXN0IGFmdGVyIHRoZSBs
-YXVuY2ggb2YgS01TLgo+PiBJJ3ZlIGdvdCB0aGUgc2FtZSBwcm9ibGVtIHdpdGggZXhwZXJpbWVu
-dGFsIHBhY2thZ2VzIG9mIERlYmlhbi4KPgo+IE1heWJlIHRoZSBoYW5kLW92ZXIgb2Ygbm91dmVh
-dWZiIGRvZXMgbm90IGdvIHdlbGwgZGVwZW5kaW5nIG9uIHRoZSBwcmV2aW91cyBmYiBkcml2ZXIg
-dXNlZCAoaWYgYW55KSwgc2VlIGhlcmU6IGh0dHA6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93
-aWtpL0tlcm5lbE1vZGVTZXR0aW5nLgo+Cj4gVG8gY2hlY2sgSSBzdWdnZXN0IHlvdSBsYXVuY2gg
-eW91ciBzeXN0ZW0gd2l0aCB0aGUgIlZHQT1ub3JtYWwiIHBhcmFtZXRlciBvbiB0aGUgY29tbWFu
-ZCBsaW5lLgo+Cj4gSWYgdGhhdCB3b3JrcywganVzdCBjaGFuZ2UgdGhlIGZiIGRyaXZlciB1c2Vk
-OyBpZiBub3QuLi4gVGhlbiBteSBndWVzcyB3YXMgYmFkLCBzb3JyeS4KPgpBdCBmaXJzdCBJIGRp
-ZG4ndCBzZWUgdmdhPTc5MiBpbiB5b3VyIGNvbW1hbmQgbGluZSBzbyBtYXkgYmUgSSBhbSB3cm9u
-ZyA/PyAodGhlcmUgd2FzIGEgaGFuZC1vdmVyIHByb2JsZW0gb2Ygbm91dmVhdWZiIHdpdGggdmVz
-YWIgYnV0IGl0IGhhcyBiZWVuIGZpeGVkIGxvbmcgYWdvKS4KCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=31366
+
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #40026|application/octet-stream    |text/plain
+          mime type|                            |
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
