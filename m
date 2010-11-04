@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31366] [drm][KMS][Regression] Screen shutdown during
-	boot
-Date: Thu,  4 Nov 2010 09:36:05 -0700 (PDT)
-Message-ID: <20101104163605.BC53B130051@annarchy.freedesktop.org>
-References: <bug-31366-8800@http.bugs.freedesktop.org/>
+From: son_of_the_osiris-khu2bkKidpXVItvQsEIGlw@public.gmane.org
+Subject: =?utf-8?q?Question_about_patches_from_Viktor_Novotn?=
+	=?utf-8?b?w70=?=
+Date: Thu, 04 Nov 2010 18:10:34 +0100
+Message-ID: <4CD2E90A.10602@interia.pl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31366-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +19,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31366
-
---- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-04 09:36:05 PDT ---
-You can point fb0 at correct card by using fbcon=map: boot option.
-See
-http://git.kernel.org/?p=linux/kernel/git/torvalds/linux-2.6.git;a=blob;f=Documentation/fb/fbcon.txt
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+SGkuIEkgYW0gYXNraW5nIGFib3V0IHBhdGNoZXMgZm9yIE1lc2E6ClBBVENIIDEvNV0gZHJpL25v
+dXZlYXU6IEltcG9ydCBoZWFkZXJzIGZyb20gcnVsZXMtbmctbmcKW1BBVENIIDIvNV0gZHJpL25v
+dXZlYXU6IG52MDQ6IFVzZSBydWxlcy1uZy1uZyBoZWFkZXJzCltQQVRDSCAzLzVdIGRyaS9ub3V2
+ZWF1OiBudjEwOiBVc2UgcnVsZXMtbmctbmcgaGVhZGVycwpbUEFUQ0ggNC81XSBkcmkvbm91dmVh
+dSBudjIwOiBVc2UgcnVsZXMtbmctbmcgaGVhZGVycwpbUEFUQ0ggNS81XSBkcmkvbm91dmVhdTog
+UmVtb3ZlIG5vdXZlYXVfY2xhc3MuaCwgZmluaXNoaW5nIHN3aXRjaCB0byAKcnVsZXMtbmctbmcg
+aGVhZGVycwoKSXMgc29tZXRoaW5nIHdyb25nIHdpdGggdGhlbSA/IFRoZXkgd2FzIG1lcmdlZCB0
+byBtZXNhLW1hc3RlciA/CgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCk5hamxlcHN6YSB3eXN6dWtpd2Fya2EgdGFu
+aWNoIGxvdMOzdyEKU3ByYXdkxbwgPj4+IGh0dHA6Ly9saW5raW50LnBsL2YyODRhCgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
