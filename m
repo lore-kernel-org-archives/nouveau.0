@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31336] KMS start:Black Screen and Switch off
-Date: Thu, 11 Nov 2010 12:27:36 -0800 (PST)
-Message-ID: <20101111202736.5387813000D@annarchy.freedesktop.org>
+Date: Thu, 11 Nov 2010 12:45:25 -0800 (PST)
+Message-ID: <20101111204525.B12CE13004F@annarchy.freedesktop.org>
 References: <bug-31336-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31336
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+mail-YRqDQ9N0cvceIZ0/mPfg9Q@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #39992|application/octet-stream    |text/plain
-          mime type|                            |
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
+
+--- Comment #1 from mail-YRqDQ9N0cvceIZ0/mPfg9Q@public.gmane.org 2010-11-11 12:45:25 PST ---
+This bug is invalid.It's not a true bug but a bad configuration.
+My videocard has two dvi port used not the good DVI port . 
+I use now the good one and nouveau driver work fine with kms  .
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
