@@ -1,102 +1,96 @@
-From: randrianasulu@gmail.com
-Subject: Different swap behaviour between 2.6.36 and .37-rc1 ?
-Date: Mon, 15 Nov 2010 18:40:30 +0300
-Message-ID: <201011151840.31916.randrianasulu@gmail.com>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: Re: GeForce FX 5200: no kms
+Date: Mon, 15 Nov 2010 17:25:49 +0100
+Message-ID: <87oc9qwo36.fsf@riseup.net>
+References: <20101114001107.GA2771@joi.lan>
+	<599238.49669.qm@web28305.mail.ukl.yahoo.com>
+	<20101114122837.GA2660@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain;
-  charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0194693716=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20101114122837.GA2660-OI9uyE9O0yo@public.gmane.org> (Marcin Slusarz's message of
+	"Sun, 14 Nov 2010 13:28:37 +0100")
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Paolo Milani <paolomilani-ur4TIblo6goN+BqQ9rBEUg@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello all.
+--===============0194693716==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-I'm using this kernel tree:
-http://cgit.freedesktop.org/nouveau/linux-2.6/
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-It works OK for most time, but some days ago i booted with mem=256m (machine 
-has 768mb of ram) and found what after merging 2.6.37-rc1 into this tree some 
-workloads generated much more swap activity, than 2.6.36-based tree (from 
-around 5/11/2010).
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If I boot my kernel with mem=256m, then add swapfile (Adding 399996k swap 
-on /swap.file.  Priority:-1 extents:728 across:2152040k) startx with nouveau 
-driver and start to do usual stuff, after some hours of use 2.6.37-rc1 based 
-kernel started  to swap thing in and mostly OUT swapfile, sometimes stalling 
-machine for long time (around minute).
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
 
-I have mozilla (seamonkey) session open most of time, in both cases it sized 
-around
-14823 guest     20   0  298m 102m  11m S 10.5 41.5 156:43.55 seamonkey-bin   
+> On Sun, Nov 14, 2010 at 10:18:10AM +0000, Paolo Milani wrote:
+>> --- Dom 14/11/10, Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> > It should work. Please post your kernel logs from a failed
+>> > boot (they are somewhere in /var/log).
+>>=20
+>> when boot fails (and system crashes), it write nothing in /var/log: ther=
+e are only logs of the previous successful boot (with nomodeset option).
+>>=20
+>> my procedure:
+>> 1- boot without nomodeset: system crashes.
+>> 2- boot with another linux distribution, then I mount partition of point=
+ 1, but in /mnt/var/log there are no logs of failed boot. It wrote nothing.
+>>=20
+>> So, I don't know how get logs from a failed boot. If there is a guide, I=
+'m eager to read it. Many thanks.
+>>=20
+>
+> http://nouveau.freedesktop.org/wiki/HangDiagnosis
+> The most successful method is netconsole.
+>
+If you don't feel like setting up a netconsole, at least show us the
+output from "dmesg", Xorg.0.log and "lspci -vv" after a successful
+boot. That alone may tell us something (no guarantees, if you really
+want to find out what's going on netconsole is your best bet).
 
-(~300 mb virt, ~100mb res)
+> Marcin
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
 
-Then, i start some git pull/make job (on wine or kernel source tree). After 
-job finished, 2.6.36-based kernel behave OK, even if i have some 126976k used 
-in swapfile. 2.6.37-rc1 based kernel  starts to swap things, at  application 
-start, at menu open time (e16 here - nothing  over-bloated), when i scroll 
-some pages in  seamonkey ... Most notable - closing seamonkey takes much more 
-time (and swap-outs) under 2.6.37-rc1 kernel. 
+--=-=-=--
 
-May be this behaviour was fixed in latest mainline kernel, i tried to look 
-at /sys/class/drm/ttm/memory_accounting/kernel/used_memory  but under  both 
-kernel valus stays around 18000-19000 (currently: 18196) this lead me to thin 
-this is not just some pixmaps for my 256 Mb VRAM GeForce6200/agp videocard. 
-But i can be wrong here.
+--==-=-=
+Content-Type: application/pgp-signature
 
-I have usual ide hdd, still configured as hdc/hdd:
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
 
-/dev/hdd:
+iF4EAREIAAYFAkzhXw0ACgkQg5k4nX1Sv1u4BAD9EdD8aI8LX7s0ilQcq4P2hoer
+uMU3EyCgPcg9kbM1fS8A/j0k5DEDcvtloRfnmCKwE/q3WuoqajtupA+U5HxyuN9d
+=zhw/
+-----END PGP SIGNATURE-----
+--==-=-=--
 
- Model=SAMSUNG SP0802N, FwRev=TK200-04, SerialNo=S00JJ10X568638
- Config={ HardSect NotMFM HdSw>15uSec Fixed DTR>10Mbs }
- RawCHS=16383/16/63, TrkSize=34902, SectSize=554, ECCbytes=4
- BuffType=DualPortCache, BuffSize=2048kB, MaxMultSect=16, MultSect=16
- CurCHS=4047/16/255, CurSects=16511760, LBA=yes, LBAsects=156368016
- IORDY=on/off, tPIO={min:240,w/IORDY:120}, tDMA={min:120,rec:120}
- PIO modes:  pio0 pio1 pio2 pio3 pio4 
- DMA modes:  mdma0 mdma1 mdma2 
- UDMA modes: udma0 udma1 udma2 udma3 udma4 *udma5 
- AdvancedPM=no WriteCache=enabled
- Drive conforms to: ATA/ATAPI-7 T13 1532D revision 0:  ATA/ATAPI-1,2,3,4,5,6,7
+--===============0194693716==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
- * signifies the current active mode
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
-/dev/hdc:
-
- Model=ST3160021A, FwRev=8.01, SerialNo=5LJ0BXTG
- Config={ HardSect NotMFM HdSw>15uSec Fixed DTR>10Mbs RotSpdTol>.5% }
- RawCHS=16383/16/63, TrkSize=0, SectSize=0, ECCbytes=4
- BuffType=unknown, BuffSize=2048kB, MaxMultSect=16, MultSect=16
- CurCHS=4047/16/255, CurSects=16511760, LBA=yes, LBAsects=312581808
- IORDY=on/off, tPIO={min:240,w/IORDY:120}, tDMA={min:120,rec:120}
- PIO modes:  pio0 pio1 pio2 pio3 pio4 
- DMA modes:  mdma0 mdma1 mdma2 
- UDMA modes: udma0 udma1 udma2 udma3 udma4 *udma5 
- AdvancedPM=no WriteCache=enabled
- Drive conforms to: ATA/ATAPI-6 T13 1410D revision 2:  ATA/ATAPI-1,2,3,4,5,6
-
- * signifies the current active mode
-
-driver in use:
-Uniform Multi-Platform E-IDE driver
-via82cxxx 0000:00:11.1: VIA vt8233a (rev 00) IDE UDMA133
-via82cxxx 0000:00:11.1: IDE controller (0x1106:0x0571 rev 0x06)
-
-
-default ext3 with ordered data mode on all partitions touched by swap, make or 
-usual system activity (/ i mean).
-
-/proc/sys/vm/swappines stays at 60 for two kernels, dirty_ratio - 20, constant 
-too.
-
-I'm out of ideas what was changed, because i rebooted few times and 2.6.36 was  
-always better in this  area, compared to 2.6.37-rc1. Note, you may need to  
-actually work with seamonkey , may be for few  hours, right after session 
-restore it barely touches swap here with 256mb RAM. 
-
-I think i'll try until 2.6.37-rc2 and if this behaviour continued - I will 
-open bug at kernel bugzilla with configs and other data .....
+--===============0194693716==--
