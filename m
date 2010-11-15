@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27905] DVI monitor is blank - DVI detected as
-	Display Port ?
-Date: Mon, 15 Nov 2010 09:43:25 -0800 (PST)
-Message-ID: <20101115174325.585AC13000D@annarchy.freedesktop.org>
-References: <bug-27905-8800@http.bugs.freedesktop.org/>
+From: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
+Subject: Re: [PATCH] mesa: nouveau/nvfx primitive restart
+Date: Mon, 15 Nov 2010 19:55:00 +0100
+Message-ID: <20101115195500.aacf0f31.mandin.patrice@orange.fr>
+References: <20101113112006.e161abe1.mandin.patrice@orange.fr>
+	<4CDE7936.6040309@student.tuwien.ac.at>
+	<20101113152651.6d098db7.mandin.patrice@orange.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27905-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20101113152651.6d098db7.mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +22,49 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27905
+Le Sat, 13 Nov 2010 15:26:51 +0100
+Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org> a =E9crit:
 
---- Comment #19 from Seth Rosenblum <ricklerre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-15 09:43:24 PST ---
-I'm also having this issue, with kernel 2.6.35 and xorg version 7.5. My nVidia
-card is the same (Quadro NVS 160M).
+> Le Sat, 13 Nov 2010 12:40:38 +0100
+> Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> a =E9crit:
+> =
 
-The DVI response on my docking station is identical to the response I get when
-I'm plugged in directly to the DP on my laptop or my dock.
+> > On 13.11.2010 11:20, Patrice Mandin wrote:
+> > > Hello,
+> > >
+> > > As nv30/nv40 supports primitive restart in hardware, here is a patch.
+> > >
+> > Thank you, note however that this does not make it work yet in the case
+> > where the driver decides to push vertex data on the FIFO directly, which
+> > is implemented via the translate module and u_split_prim in nvfx_push.c,
+> > maybe you could adjust that path too ?
+> =
 
-Is there any additional info I can provide to you all to help this along?
+> Of course, I was also wondering if there were any other code paths that
+> may need to be fixed.
 
-Thanks
+After having rewritten a bit the test in renouveau, my patch appears to
+be wrong.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I found a bit of early announcements about nv30 chips that talk about a
+vertex cache. Luca Barbieri thought 0x1710 could be some kind of vertex
+cache flush (see http://people.freedesktop.org/~cbrill/dri-log/dri-devel-20=
+10-01-14.log
+(at 18:50)).
+
+0x1dac that I changed recently, thinking it could be
+PRIMITIVE_RESTART_ENABLE, could be a VERTEX_CACHE_ENABLE instead. =
+
+
+When using a vbo, the blob always resend vertex data when
+primitive_restart is used, even when using an array of indices (which
+could contain the primitive_restart index, set with 0x1db0).
+
+-- =
+
+Patrice Mandin
+WWW: http://pmandin.atari.org/
+Programmeur Linux, Atari
+Sp=E9cialit=E9: D=E9veloppement, jeux
+
+"who writes the code, decides"
