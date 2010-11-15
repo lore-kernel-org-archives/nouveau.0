@@ -1,15 +1,14 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: [RFC/PATCH] Switch dri driver to use rules-ng-ng
-	headers
-Date: Mon, 15 Nov 2010 18:37:31 +0100
-Message-ID: <87d3q6wkro.fsf@riseup.net>
-References: <1288571454-8151-1-git-send-email-noviktor@seznam.cz>
-	<87k4kewm2h.fsf@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27905] DVI monitor is blank - DVI detected as
+	Display Port ?
+Date: Mon, 15 Nov 2010 09:43:25 -0800 (PST)
+Message-ID: <20101115174325.585AC13000D@annarchy.freedesktop.org>
+References: <bug-27905-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0949459060=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <87k4kewm2h.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> (Francisco Jerez's message of "Mon,
-	15 Nov 2010 18:09:26 +0100")
+In-Reply-To: <bug-27905-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,68 +18,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Viktor =?utf-8?Q?Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0949459060==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
+https://bugs.freedesktop.org/show_bug.cgi?id=27905
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+--- Comment #19 from Seth Rosenblum <ricklerre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-15 09:43:24 PST ---
+I'm also having this issue, with kernel 2.6.35 and xorg version 7.5. My nVidia
+card is the same (Quadro NVS 160M).
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The DVI response on my docking station is identical to the response I get when
+I'm plugged in directly to the DP on my laptop or my dock.
 
-Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> writes:
+Is there any additional info I can provide to you all to help this along?
 
-> Viktor Novotn=C3=BD <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> writes:
->>
->> Hi,
->>
->> following patches make the dri driver use rules-ng-ng(rnn) generated reg=
-ister definitions instead of renouveau generated ones.
->> First set of 5 patches is for mesa repository, second set of 4 patches i=
-s for rnn and consists of changes ported from renouveau.
->>
-> Everything pushed, thanks!
+Thanks
 
-By the way, there's a new rules-ng-ng repository here:
-
-   http://nouveau.git.sourceforge.net/git/gitweb.cgi?p=3Dnouveau/envytools;=
-a=3Dsummary
-   git://nouveau.git.sourceforge.net/gitroot/nouveau/envytools
-   ssh://USERNAME-544KYIEcJNaTAPO+BZSMPv4XsKrqFRkM0e7PPNI6Mm0@public.gmane.org/gitroot/nouveau/envytools
-
-Everyone that used to have write access to the renouveau database should
-be able to commit there too.
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-
-iF4EAREIAAYFAkzhb9sACgkQg5k4nX1Sv1sH9wD+JuRb1XxLOgQuKsBvjzv1D0wT
-xh6XvTPbBE2rUdbxIeEA/1qXkCqNEbpVwLkdkjY4c8yeMVNN3nnhoWYZD/Arc2xz
-=0lPn
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0949459060==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0949459060==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
