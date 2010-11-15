@@ -1,11 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31637] New: NV30, PFIFO_CACHE_ERROR when stopping kdm
-Date: Mon, 15 Nov 2010 12:19:55 -0800 (PST)
-Message-ID: <bug-31637-8800@http.bugs.freedesktop.org/>
+From: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
+Subject: Re: PFIFO_CACHE_ERROR
+Date: Mon, 15 Nov 2010 21:22:10 +0100
+Message-ID: <20101115212210.335647df.mandin.patrice@orange.fr>
+References: <4CBEA28A.2060400@pfu.pl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <4CBEA28A.2060400-t9zbU3WrWHI@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,44 +20,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31637
+Le Wed, 20 Oct 2010 10:04:26 +0200
+Grzesiek S=F3jka <pld-t9zbU3WrWHI@public.gmane.org> a =E9crit:
 
-           Summary: NV30, PFIFO_CACHE_ERROR when stopping kdm
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+> Hi there!
+> =
 
+> I'm using GeForce FX5200 and today I installed
+> Mesa-dri-driver-nouveau-7.9-3.i686. Now when I shut down the Xserver I =
 
-Created an attachment (id=40285)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40285)
-Logged kernel messages when stopping kdm
+> get lots of PFIFO_CACHE_ERROR. Is it something serious or a kind of a =
 
-I have this problem since a long time, but did not bother making a bug report
-as it does not hang the machine; and a recent message on nouveau mailing list
-reminding me of it. Here is what happens:
+> versions problem? I'm using very recent nouveau kernel and
+> xorg-driver-video-nouveau-0.0.16-0.20100921.1.i686.
+> =
 
-vt1 -> text console
-vt7 -> kdm or logged kde session running
+> This is the dmesg
+>
+> [snip]
 
-If I run /etc/init.d/kdm stop from the text console, I got the
-PFIFO_CACHE_ERROR, if I do it from an X terminal in the kde session, no errors
-happens.
+I also encounter a similar issue, for a very long time. This time, I
+opened this bug report:
+https://bugs.freedesktop.org/show_bug.cgi?id=3D31637
 
-Restarting the server from kdm login screen also does not produce errors.
+Could you check it happens also for you in the same conditions?
 
-Using gdm does not trigger the error in any case, so it's something specific to
-kdm (from my pov). Also the fact I stop kdm from a different virtual console
-may be important.
+-- =
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Patrice Mandin
+WWW: http://pmandin.atari.org/
+Programmeur Linux, Atari
+Sp=E9cialit=E9: D=E9veloppement, jeux
+
+"who writes the code, decides"
