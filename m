@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28449] I messed up and now nouveau doesn't work.
-Date: Mon, 15 Nov 2010 16:18:30 -0800 (PST)
-Message-ID: <20101116001831.06BE513004E@annarchy.freedesktop.org>
+Date: Mon, 15 Nov 2010 16:18:39 -0800 (PST)
+Message-ID: <20101116001839.EF90513004E@annarchy.freedesktop.org>
 References: <bug-28449-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,11 +26,8 @@ Matej Cepl <mcepl-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |mcepl-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-
---- Comment #6 from Matej Cepl <mcepl-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> 2010-11-15 16:18:30 PST ---
-Looks like we have this in Fedora
-https://bugzilla.redhat.com/show_bug.cgi?id=653142
+           See Also|                            |https://bugzilla.redhat.com
+                   |                            |/show_bug.cgi?id=653142
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
