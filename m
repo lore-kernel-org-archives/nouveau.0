@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31644] Nouveau driver with "Gigabyte nVidia 9600GT"
- - black screen
-Date: Mon, 15 Nov 2010 16:48:07 -0800 (PST)
-Message-ID: <20101116004807.418AA13004E@annarchy.freedesktop.org>
-References: <bug-31644-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Does anyone know the meaning of EVO channel errors?
+Date: Tue, 16 Nov 2010 20:18:21 +0100
+Message-ID: <AANLkTi=+bYtv2i9h31skkew2-hYJ=NYfv6zWhnee2=cu@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31644-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +18,10 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31644
+What do the last two numbers mean?
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-15 16:48:07 PST ---
-Please retry with the latest Linux kernel version, or better yet, nouveau git
-(git://anongit.freedesktop.org/git/nouveau/linux-2.6).
-
-The logs indicate a rather "outdated" version of nouveau, and upstream has had
-several fixes which could be relevant.
+Maarten.
 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Far away from the primal instinct, the song seems to fade away, the
+river get wider between your thoughts and the things we do and say.
