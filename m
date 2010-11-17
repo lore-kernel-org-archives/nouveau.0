@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31644] Nouveau driver with "Gigabyte nVidia 9600GT"
  - black screen
-Date: Wed, 17 Nov 2010 09:31:30 -0800 (PST)
-Message-ID: <20101117173130.881A913004E@annarchy.freedesktop.org>
+Date: Wed, 17 Nov 2010 09:32:28 -0800 (PST)
+Message-ID: <20101117173228.5B9D813004F@annarchy.freedesktop.org>
 References: <bug-31644-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31644
 
---- Comment #4 from miko1992-UAhLvdtLeS4k+I/owrrOrA@public.gmane.org 2010-11-17 09:31:29 PST ---
->>Did you reboot between checking nv and nouveau? If not, please do - nv messes
-up gpu state.
-
-No I didn't.
-
->> (Please don't paste logs in comments - attach complete, unfiltered logs from
-boot up to the problem, do not compress them)
-
-Sorry for that.
-
-So, here is the new full logs (replaced some MAC addresses and MB/GPU unrelated
-devices names to XXXX for some privacy). The same old black screen.
-
-Thank you for your help.
+--- Comment #5 from miko1992-UAhLvdtLeS4k+I/owrrOrA@public.gmane.org 2010-11-17 09:32:27 PST ---
+Created an attachment (id=40339)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40339)
+New Logs
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
