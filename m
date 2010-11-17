@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31676] garbled text after loading nouveau module on
  EFI boot; X driver thinks there are no connected outputs
-Date: Wed, 17 Nov 2010 02:50:55 -0800 (PST)
-Message-ID: <20101117105055.E29B213000D@annarchy.freedesktop.org>
+Date: Wed, 17 Nov 2010 03:02:45 -0800 (PST)
+Message-ID: <20101117110245.321B313000D@annarchy.freedesktop.org>
 References: <bug-31676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31676
 
-Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org> changed:
+--- Comment #3 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org> 2010-11-17 03:02:44 PST ---
+(Sorry about the mime-type fix spam...)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #40331|text/x-log                  |text/plain
-          mime type|                            |
+Not loading the vbios/int10 dumps in grub2 doesn't change anything... somehow
+nouveau still finds a BIOS via PRAMIN?  nvidia proprietary driver still doesn't
+work as well.
+
+I also tried nv, but no luck ("Ignoring unsupported device 0x10de08a2 (GeForce
+320M)").  Only thing I can get working is fbdev.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
