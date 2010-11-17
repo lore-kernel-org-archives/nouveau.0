@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31676] garbled text after loading nouveau module on
  EFI boot; X driver thinks there are no connected outputs
-Date: Wed, 17 Nov 2010 02:50:25 -0800 (PST)
-Message-ID: <20101117105025.E22F913000D@annarchy.freedesktop.org>
+Date: Wed, 17 Nov 2010 02:50:49 -0800 (PST)
+Message-ID: <20101117105049.85BF413000D@annarchy.freedesktop.org>
 References: <bug-31676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31676
 
---- Comment #2 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org> 2010-11-17 02:50:25 PST ---
-Created an attachment (id=40331)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40331)
-Xorg.0.log
+Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #40329|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
