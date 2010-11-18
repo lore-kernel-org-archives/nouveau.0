@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31637] NV30, PFIFO_CACHE_ERROR when stopping kdm
-Date: Thu, 18 Nov 2010 12:26:26 -0800 (PST)
-Message-ID: <20101118202626.C440B13000D@annarchy.freedesktop.org>
+Date: Thu, 18 Nov 2010 13:46:39 -0800 (PST)
+Message-ID: <20101118214639.29D1813000D@annarchy.freedesktop.org>
 References: <bug-31637-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31637
 
---- Comment #1 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-18 12:26:26 PST ---
-Just noticed that in my log: the first error happens on channel with object
-0x8a (NVXX_IMAGE_FROM_CPU), the following errors happen on a different channel
-with object 0x39 (NVXX_MEMORY_TO_MEMORY_FORMAT) however the called methods
-match the first object.
+--- Comment #2 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-18 13:46:38 PST ---
+I just compared timing info (from both kernel and X log files), and the error
+happens after nouveau_channel_free() has been called, from NVTakedownDma() in
+the DDX.
+
+So it appears something is not totally cleaned up, and the fifo is still
+executing commands.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
