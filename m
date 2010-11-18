@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31684] No Xv acceleration with 7600 GT AGP (NV4B),
- last git drivers
-Date: Thu, 18 Nov 2010 14:10:45 -0800 (PST)
-Message-ID: <20101118221045.80DCB13004E@annarchy.freedesktop.org>
-References: <bug-31684-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31637] NV30, PFIFO_CACHE_ERROR when stopping kdm
+Date: Thu, 18 Nov 2010 14:11:39 -0800 (PST)
+Message-ID: <20101118221139.C58E313004F@annarchy.freedesktop.org>
+References: <bug-31637-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31684-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31637-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,11 +20,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31684
+https://bugs.freedesktop.org/show_bug.cgi?id=31637
 
---- Comment #2 from Maks <pwet_pwet_yepyep-PkbjNfxxIARGWvitb5QawA@public.gmane.org> 2010-11-18 14:10:45 PST ---
-OK, it's because i use the gentoo sources kernel, the stable branch. So i'll
-going to test with the kernel in the unstable branch of Portage.
+--- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-11-18 14:11:38 PST ---
+Created an attachment (id=40400)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=40400
+ Review: https://bugs.freedesktop.org/review?bug=31637&attachment=40400
+
+nouveau_grobj_sync.patch
+
+This patch might help.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
