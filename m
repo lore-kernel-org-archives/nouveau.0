@@ -1,32 +1,60 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] Driver can't detect video output and xserver
- doesn't start
-Date: Fri, 19 Nov 2010 00:14:33 -0800 (PST)
-Message-ID: <20101119081433.975D213000D@annarchy.freedesktop.org>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Matthew Garrett <mjg@redhat.com>
+Subject: [PATCH 5/5] ACPI: Tie ACPI backlight devices to PCI devices if possible
+Date: Fri, 19 Nov 2010 10:53:56 -0500
+Message-ID: <1290182036-30484-5-git-send-email-mjg@redhat.com>
+References: <1290182036-30484-1-git-send-email-mjg@redhat.com>
+Return-path: <linux-acpi-owner@vger.kernel.org>
+In-Reply-To: <1290182036-30484-1-git-send-email-mjg@redhat.com>
+Sender: linux-acpi-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org
+Cc: rpurdie@rpsys.net, akpm@linux-foundation.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org, lenb@kernel.org, Matthew Garrett <mjg@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
+Dual-GPU machines may provide more than one ACPI backlight interface. Tie
+the backlight device to the GPU in order to allow userspace to identify
+the correct interface.
 
---- Comment #44 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-19 00:14:33 PST ---
-I've pushed Francisco's patch to nouveau git.
+Signed-off-by: Matthew Garrett <mjg@redhat.com>
+---
+ drivers/acpi/video.c |   15 ++++++++++++++-
+ 1 files changed, 14 insertions(+), 1 deletions(-)
 
+diff --git a/drivers/acpi/video.c b/drivers/acpi/video.c
+index 38165a8..0403647 100644
+--- a/drivers/acpi/video.c
++++ b/drivers/acpi/video.c
+@@ -843,6 +843,9 @@ static void acpi_video_device_find_cap(struct acpi_video_device *device)
+ 
+ 	if (acpi_video_backlight_support()) {
+ 		struct backlight_properties props;
++		struct pci_dev *pdev;
++		acpi_handle acpi_parent;
++		struct device *parent = NULL;
+ 		int result;
+ 		static int count = 0;
+ 		char *name;
+@@ -855,10 +858,20 @@ static void acpi_video_device_find_cap(struct acpi_video_device *device)
+ 			return;
+ 		count++;
+ 
++		acpi_get_parent(device->dev->handle, &acpi_parent);
++
++		pdev = acpi_get_pci_dev(acpi_parent);
++		if (pdev) {
++			parent = &pdev->dev;
++			pci_dev_put(pdev);
++		}
++
+ 		memset(&props, 0, sizeof(struct backlight_properties));
+ 		props.type = BACKLIGHT_FIRMWARE;
+ 		props.max_brightness = device->brightness->count - 3;
+-		device->backlight = backlight_device_register(name, NULL, device,
++		device->backlight = backlight_device_register(name,
++							      parent,
++							      device,
+ 							      &acpi_backlight_ops,
+ 							      &props);
+ 		kfree(name);
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.3.2
+
