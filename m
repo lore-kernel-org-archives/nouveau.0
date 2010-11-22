@@ -1,126 +1,81 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [Patch] Add a way to list the available voltages
-Date: Mon, 22 Nov 2010 10:13:48 +0100
-Message-ID: <4CEA344C.1050805@free.fr>
+From: Richard Purdie <rpurdie@linux.intel.com>
+Subject: Re: [PATCH 1/5] Backlight: Add backlight type
+Date: Mon, 22 Nov 2010 10:17:00 +0000
+Message-ID: <1290421020.1272.16707.camel@rex>
+References: <1290182036-30484-1-git-send-email-mjg@redhat.com>
+	 <20101119120523.15bc341c.akpm@linux-foundation.org>
+	 <20101119202558.GA10898@srcf.ucam.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="------------090500090007030301010403"
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20101119202558.GA10898@srcf.ucam.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Matthew Garrett <mjg59@srcf.ucam.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org, lenb@kernel.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---------------090500090007030301010403
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+On Fri, 2010-11-19 at 20:25 +0000, Matthew Garrett wrote:
+> On Fri, Nov 19, 2010 at 12:05:23PM -0800, Andrew Morton wrote:
+> > On Fri, 19 Nov 2010 10:53:52 -0500
+> > Matthew Garrett <mjg@redhat.com> wrote:
+> > 
+> > > There may be multiple ways of controlling the backlight on a given machine.
+> > > Allow drivers to expose the type of interface they are providing, making
+> > > it possible for userspace to make appropriate policy decisions.
+> > > 
+> > > ...
+> > >
+> > >  60 files changed, 102 insertions(+), 0 deletions(-)
+> > 
+> > This patch has a pretty short half-life.
+> 
+> Well, ideally it would have landed in the backlight tree when I sent it 
+> months ago. Then we'd have the opportunity to ensure that everything was 
+> fixed up before it went in in the merge window.
+> 
+> > > @@ -62,6 +68,8 @@ struct backlight_properties {
+> > >  	/* FB Blanking active? (values as for power) */
+> > >  	/* Due to be removed, please use (state & BL_CORE_FBBLANK) */
+> > >  	int fb_blank;
+> > > +	/* Backlight type */
+> > > +	enum backlight_type type;
+> > >  	/* Flags used to signal drivers of state changes */
+> > >  	/* Upper 4 bits are reserved for driver internal use */
+> > >  	unsigned int state;
+> > 
+> > And if/when the half-life expires, we'll have drivers in-tree which
+> > forget to set backlight_properties.type.  I haven't checked, but if
+> > we're lucky they will default to "0".
+> 
+> Depends entirely on whether they kzalloc the structure or not before
+> calling backlight_device_register(). 
+> 
+> > What will be the runtime effects upon such unconverted drivers? 
+> > Ideally we'd like them to continue to work OK, and to emit a runtime
+> > warning.  In which case you'll need BACKLIGHT_RAW=1 so the unconverted
+> > driver can be detected, warned about and fixed up by the core code.
+> 
+> The worst case I can think of is that we walk off the array - I guess 
+> there's an argument for sanity checking that in backlight_show_type().
 
-Hi,
+I think adding a BACKLIGHT_TYPEUNKNOWN as the first item in the enum,
+sanity checking the array bounds and printing a warning if type is not
+one of the defined values would be good.
 
-This patch makes it easy for people to set their custom_voltage file. 
-Previously, they had to guess what was the available voltages.
+I also want to make sure you think this patch is going to scale with
+multiple GPU output machines? Thats the main reason I've held off any
+patch like this as it doesn't help solve that problem as far as I can
+tell. Yes, we have the device parent information and I see later in the
+patch series you ensure the backlight is registered against the
+connector which is good. If you have an ACPI "firmware" control that you
+say should always be preferred, how do we know which connector device
+that corresponds to in the multiple output case? From that point of view
+this model falls apart?
 
-This patch depends on my previous patch to add a custom perflvl.
+What I really want to avoid is a new interface which just papers over
+cracks, only to have everything crumble anyway.
 
-Martin
+Cheers,
 
-
---------------090500090007030301010403
-Content-Type: text/x-patch;
- name="0001-Add-a-way-to-list-the-available-voltages-through-sys.patch"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename*0="0001-Add-a-way-to-list-the-available-voltages-through-sys.pa";
- filename*1="tch"
-
-From e9c880e0882bb609a9ce4ec0bf28ef99ea78714a Mon Sep 17 00:00:00 2001
-From: Martin Peres <mupuf-IIUFz0z94vfYtjvyW6yDsg@public.gmane.org>
-Date: Mon, 22 Nov 2010 09:59:16 +0100
-Subject: [PATCH] Add a way to list the available voltages through sysfs
-
-Signed-off-by: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_pm.c |   32 ++++++++++++++++++++++++++++++++
- 1 files changed, 32 insertions(+), 0 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_pm.c b/drivers/gpu/drm/nouveau/nouveau_pm.c
-index 49d8a17..b0d0691 100644
---- a/drivers/gpu/drm/nouveau/nouveau_pm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_pm.c
-@@ -412,6 +412,33 @@ static DEVICE_ATTR(custom_voltage, S_IRUGO | S_IWUSR,
-                    nouveau_pm_get_custom_voltage,
-                    nouveau_pm_set_custom_voltage);
- 
-+static ssize_t
-+nouveau_pm_get_voltages(struct device *d, struct device_attribute *a, char *buf)
-+{
-+	struct drm_device *dev = pci_get_drvdata(to_pci_dev(d));
-+	struct drm_nouveau_private *dev_priv = dev->dev_private;
-+	struct nouveau_pm_engine *pm = &dev_priv->engine.pm;
-+	struct nouveau_pm_voltage *volt = &pm->voltage;
-+	int cur_voltage = nouveau_voltage_gpio_get(dev);
-+	char *ptr = buf;
-+	int len = PAGE_SIZE;
-+	int i;
-+
-+	for (i = 0; i < volt->nr_level; i++) {
-+		int size = snprintf(ptr, len, "%c %d [*10mV]\n",
-+		                    cur_voltage == volt->level[i].voltage ? '*' : ' ',
-+		                    volt->level[i].voltage
-+		                   );
-+
-+		ptr += size;
-+		len -= size;
-+	}
-+
-+	return strlen(buf);
-+}
-+
-+static DEVICE_ATTR(voltages, S_IRUGO, nouveau_pm_get_voltages, NULL);
-+
- static int
- nouveau_sysfs_init(struct drm_device *dev)
- {
-@@ -463,6 +490,10 @@ nouveau_sysfs_init(struct drm_device *dev)
- 	if (ret)
- 		return ret;
- 
-+	ret = device_create_file(d, &dev_attr_voltages);
-+	if (ret)
-+		return ret;
-+
- 	return 0;
- }
- 
-@@ -488,6 +519,7 @@ nouveau_sysfs_fini(struct drm_device *dev)
- 	device_remove_file(d, &dev_attr_custom_shader);
- 	device_remove_file(d, &dev_attr_custom_unk05);
- 	device_remove_file(d, &dev_attr_custom_voltage);
-+	device_remove_file(d, &dev_attr_voltages);
- }
- 
- #ifdef CONFIG_HWMON
--- 
-1.7.3.2
-
-
-
---------------090500090007030301010403
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---------------090500090007030301010403--
+Richard
