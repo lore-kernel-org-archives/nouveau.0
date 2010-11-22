@@ -1,81 +1,35 @@
-From: Richard Purdie <rpurdie@linux.intel.com>
+From: Matthew Garrett <mjg59@srcf.ucam.org>
 Subject: Re: [PATCH 1/5] Backlight: Add backlight type
-Date: Mon, 22 Nov 2010 10:17:00 +0000
-Message-ID: <1290421020.1272.16707.camel@rex>
-References: <1290182036-30484-1-git-send-email-mjg@redhat.com>
-	 <20101119120523.15bc341c.akpm@linux-foundation.org>
-	 <20101119202558.GA10898@srcf.ucam.org>
+Date: Mon, 22 Nov 2010 12:30:50 +0000
+Message-ID: <20101122123050.GA5385@srcf.ucam.org>
+References: <1290182036-30484-1-git-send-email-mjg@redhat.com> <20101119120523.15bc341c.akpm@linux-foundation.org> <20101119202558.GA10898@srcf.ucam.org> <1290421020.1272.16707.camel@rex>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20101119202558.GA10898@srcf.ucam.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Matthew Garrett <mjg59@srcf.ucam.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-acpi-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <1290421020.1272.16707.camel@rex>
+Sender: linux-acpi-owner@vger.kernel.org
+To: Richard Purdie <rpurdie@linux.intel.com>
 Cc: Andrew Morton <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org, lenb@kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2010-11-19 at 20:25 +0000, Matthew Garrett wrote:
-> On Fri, Nov 19, 2010 at 12:05:23PM -0800, Andrew Morton wrote:
-> > On Fri, 19 Nov 2010 10:53:52 -0500
-> > Matthew Garrett <mjg@redhat.com> wrote:
-> > 
-> > > There may be multiple ways of controlling the backlight on a given machine.
-> > > Allow drivers to expose the type of interface they are providing, making
-> > > it possible for userspace to make appropriate policy decisions.
-> > > 
-> > > ...
-> > >
-> > >  60 files changed, 102 insertions(+), 0 deletions(-)
-> > 
-> > This patch has a pretty short half-life.
-> 
-> Well, ideally it would have landed in the backlight tree when I sent it 
-> months ago. Then we'd have the opportunity to ensure that everything was 
-> fixed up before it went in in the merge window.
-> 
-> > > @@ -62,6 +68,8 @@ struct backlight_properties {
-> > >  	/* FB Blanking active? (values as for power) */
-> > >  	/* Due to be removed, please use (state & BL_CORE_FBBLANK) */
-> > >  	int fb_blank;
-> > > +	/* Backlight type */
-> > > +	enum backlight_type type;
-> > >  	/* Flags used to signal drivers of state changes */
-> > >  	/* Upper 4 bits are reserved for driver internal use */
-> > >  	unsigned int state;
-> > 
-> > And if/when the half-life expires, we'll have drivers in-tree which
-> > forget to set backlight_properties.type.  I haven't checked, but if
-> > we're lucky they will default to "0".
-> 
-> Depends entirely on whether they kzalloc the structure or not before
-> calling backlight_device_register(). 
-> 
-> > What will be the runtime effects upon such unconverted drivers? 
-> > Ideally we'd like them to continue to work OK, and to emit a runtime
-> > warning.  In which case you'll need BACKLIGHT_RAW=1 so the unconverted
-> > driver can be detected, warned about and fixed up by the core code.
-> 
-> The worst case I can think of is that we walk off the array - I guess 
-> there's an argument for sanity checking that in backlight_show_type().
+On Mon, Nov 22, 2010 at 10:17:00AM +0000, Richard Purdie wrote:
 
-I think adding a BACKLIGHT_TYPEUNKNOWN as the first item in the enum,
-sanity checking the array bounds and printing a warning if type is not
-one of the defined values would be good.
+> I also want to make sure you think this patch is going to scale with
+> multiple GPU output machines? Thats the main reason I've held off any
+> patch like this as it doesn't help solve that problem as far as I can
+> tell. Yes, we have the device parent information and I see later in the
+> patch series you ensure the backlight is registered against the
+> connector which is good. If you have an ACPI "firmware" control that you
+> say should always be preferred, how do we know which connector device
+> that corresponds to in the multiple output case? From that point of view
+> this model falls apart?
 
-I also want to make sure you think this patch is going to scale with
-multiple GPU output machines? Thats the main reason I've held off any
-patch like this as it doesn't help solve that problem as far as I can
-tell. Yes, we have the device parent information and I see later in the
-patch series you ensure the backlight is registered against the
-connector which is good. If you have an ACPI "firmware" control that you
-say should always be preferred, how do we know which connector device
-that corresponds to in the multiple output case? From that point of view
-this model falls apart?
+The ACPI device will point at the correct PCI device. Associating it 
+with the appropriate connector is theoretically possible in the case of 
+open drivers, but I hadn't seen it as a high priority since (in 
+practice) there's no situations where an ACPI interface will be able to 
+control more than one backlight.
 
-What I really want to avoid is a new interface which just papers over
-cracks, only to have everything crumble anyway.
-
-Cheers,
-
-Richard
+-- 
+Matthew Garrett | mjg59@srcf.ucam.org
