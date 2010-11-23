@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 30135] The KDE icons is broken
-Date: Tue, 23 Nov 2010 07:33:09 -0800 (PST)
-Message-ID: <20101123153309.2AEBF13004D@annarchy.freedesktop.org>
+Date: Tue, 23 Nov 2010 07:50:59 -0800 (PST)
+Message-ID: <20101123155059.3DEA013004E@annarchy.freedesktop.org>
 References: <bug-30135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,66 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=30135
 
---- Comment #1 from Allan Sandfeld <kde-7WRYCqIwvBxWk0Htik3J/w@public.gmane.org> 2010-11-23 07:33:07 PST ---
-I can confirm this problem with a Quadro NVS 140M (G84M, I think).
+--- Comment #2 from Allan Sandfeld <kde-7WRYCqIwvBxWk0Htik3J/w@public.gmane.org> 2010-11-23 07:50:58 PST ---
+A bit investigation reveals a bit of xrender-code in KDE's plasma library
+(kdelibs/plasma/paintutils.cpp). The bug only occurs with icons inside plasma,
+and it is triggered by pixmaps transitions (like those that happens during
+mouseover).
 
-The problem does not appear with the nvidia driver and seems specific to
-nouveau. I haven't tried nouveau under KDE 4.4, but if really did behave
-different it seems like to be a specific XRender blend function or similar that
-has a bug in it. Either Qt 4.7 or KDE 4.5 could have started to use a function
-optimizing something that was done in software before, thus exposing the bug.
-The question is not what function that is, and if the change was in KDE or Qt.
+I've inserted the code that triggers it below. It seems pretty straight
+forward, the only thing that seems interesting is the PictStandardA8 format. I
+can see nv30_exa.c and nv40_exa.c has specific code to handle the a8 format,
+but nv50_exa.c has no special handling of A8. I don't know much about exa, but
+could this be the source of the problem?
+
+        // QX11PaintEngine doesn't implement CompositionMode_Plus in Qt 4.3,
+        // which we need to be able to do a transition from one pixmap to
+        // another.
+        //
+        // In order to avoid the overhead of converting the pixmaps to images
+        // and doing the operation entirely in software, this function has a
+        // specialized path for X11 that uses Xrender directly to do the
+        // transition. This operation can be fully accelerated in HW.
+        //
+        // This specialization can be removed when QX11PaintEngine supports
+        // CompositionMode_Plus.
+        QPixmap source(targetPixmap), destination(startPixmap);
+
+        source.detach();
+        destination.detach();
+
+        Display *dpy = QX11Info::display();
+
+        XRenderPictFormat *format = XRenderFindStandardFormat(dpy,
+PictStandardA8);
+        XRenderPictureAttributes pa;
+        pa.repeat = 1; // RepeatNormal
+
+        // Create a 1x1 8 bit repeating alpha picture
+        Pixmap pixmap = XCreatePixmap(dpy, destination.handle(), 1, 1, 8);
+        Picture alpha = XRenderCreatePicture(dpy, pixmap, format, CPRepeat,
+&pa);
+        XFreePixmap(dpy, pixmap);
+
+        // Fill the alpha picture with the opacity value
+        XRenderColor xcolor;
+        xcolor.alpha = quint16(0xffff * amount);
+        XRenderFillRectangle(dpy, PictOpSrc, alpha, &xcolor, 0, 0, 1, 1);
+
+        // Reduce the alpha of the destination with 1 - opacity
+        XRenderComposite(dpy, PictOpOutReverse, alpha, None,
+destination.x11PictureHandle(),
+                         0, 0, 0, 0, 0, 0, destination.width(),
+destination.height());
+
+        // Add source * opacity to the destination
+        XRenderComposite(dpy, PictOpAdd, source.x11PictureHandle(), alpha,
+                         destination.x11PictureHandle(),
+                         toRect.x(), toRect.y(), 0, 0, 0, 0,
+destination.width(), destination.height());
+
+        XRenderFreePicture(dpy, alpha);
+        return destination;
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
