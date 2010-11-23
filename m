@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30424] Resume from suspend to ram fails on G71
- [Quadro FX 1500M] (rev a1)
-Date: Tue, 23 Nov 2010 08:31:51 -0800 (PST)
-Message-ID: <20101123163152.134EC13004D@annarchy.freedesktop.org>
-References: <bug-30424-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] Driver can't detect video output and xserver
+ doesn't start
+Date: Tue, 23 Nov 2010 08:57:35 -0800 (PST)
+Message-ID: <20101123165735.08A7D13004D@annarchy.freedesktop.org>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30424-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30424
+https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
-Robert Kaiser <kairo-mUdhYT1RRAM@public.gmane.org> changed:
+--- Comment #45 from Martin Decky <martin-Jk0gIJtyDDQ@public.gmane.org> 2010-11-23 08:57:34 PST ---
+Created an attachment (id=40509)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40509)
+output of lspci -vvnn on my iMac G4
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #39015|application/x-trash         |text/plain
-          mime type|                            |
+(In reply to comment #42)
+
+Hello guys, sorry for my late reply (the machine is not always readily
+available) and for forgetting to add myself to the CC list. Anyway, even though
+the patch has been already pushed upstream (thanks!) here is my output of
+lspci.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
