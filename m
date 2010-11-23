@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Tue, 23 Nov 2010 08:57:35 -0800 (PST)
-Message-ID: <20101123165735.08A7D13004D@annarchy.freedesktop.org>
+Date: Tue, 23 Nov 2010 12:42:20 -0800 (PST)
+Message-ID: <20101123204220.503E813004D@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #45 from Martin Decky <martin-Jk0gIJtyDDQ@public.gmane.org> 2010-11-23 08:57:34 PST ---
-Created an attachment (id=40509)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40509)
-output of lspci -vvnn on my iMac G4
+--- Comment #46 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-11-23 12:42:19 PST ---
+> Andrey, the patch I'm attaching should fix KMS on your card with DVI-D and
+> DVI-A, can you try it on a recent kernel tree and tell me if it works? If it
+> does, can you provide the output from "lspci -vvnn" as well?
 
-(In reply to comment #42)
-
-Hello guys, sorry for my late reply (the machine is not always readily
-available) and for forgetting to add myself to the CC list. Anyway, even though
-the patch has been already pushed upstream (thanks!) here is my output of
-lspci.
+I will test this patch when find free night. I need upgrade xserver for this,
+so it takes a lot of time.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
