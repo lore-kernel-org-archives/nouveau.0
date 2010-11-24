@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] Driver can't detect video output and xserver
- doesn't start
-Date: Tue, 23 Nov 2010 12:42:20 -0800 (PST)
-Message-ID: <20101123204220.503E813004D@annarchy.freedesktop.org>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29766] suspend-to-ram problem on GF7600 notebook
+Date: Tue, 23 Nov 2010 16:18:19 -0800 (PST)
+Message-ID: <20101124001819.AFF2C13004D@annarchy.freedesktop.org>
+References: <bug-29766-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29766-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +20,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
+https://bugs.freedesktop.org/show_bug.cgi?id=29766
 
---- Comment #46 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-11-23 12:42:19 PST ---
-> Andrey, the patch I'm attaching should fix KMS on your card with DVI-D and
-> DVI-A, can you try it on a recent kernel tree and tell me if it works? If it
-> does, can you provide the output from "lspci -vvnn" as well?
+Jeremy M <jskier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I will test this patch when find free night. I need upgrade xserver for this,
-so it takes a lot of time.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |jskier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #1 from Jeremy M <jskier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-23 16:18:18 PST ---
+I have the same problem on with my GeForce 7600 GT PCIE card on my desktop. If
+in console, fonts become  upon resume. If using X, I get a hard crash and
+garbled black and white lines upon resume.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
