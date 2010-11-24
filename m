@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29766] suspend-to-ram problem on GF7600 notebook
-Date: Tue, 23 Nov 2010 16:18:19 -0800 (PST)
-Message-ID: <20101124001819.AFF2C13004D@annarchy.freedesktop.org>
+Date: Tue, 23 Nov 2010 16:21:31 -0800 (PST)
+Message-ID: <20101124002131.D1E8E13004F@annarchy.freedesktop.org>
 References: <bug-29766-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,12 +26,16 @@ Jeremy M <jskier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |jskier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+           Platform|x86 (IA32)                  |All
 
---- Comment #1 from Jeremy M <jskier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-23 16:18:18 PST ---
-I have the same problem on with my GeForce 7600 GT PCIE card on my desktop. If
-in console, fonts become  upon resume. If using X, I get a hard crash and
-garbled black and white lines upon resume.
+--- Comment #2 from Jeremy M <jskier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-23 16:21:31 PST ---
+(In reply to comment #1)
+> I have the same problem on with my GeForce 7600 GT PCIE card on my desktop. If
+> in console, fonts become  upon resume. If using X, I get a hard crash and
+> garbled black and white lines upon resume.
+
+Running Arch Linux 64bit; updated platform to all. Also running
+0.0.16_git20100819-1 version.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
