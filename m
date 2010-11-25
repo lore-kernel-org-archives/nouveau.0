@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31920] New: Brightness control is erratic
+Subject: [Bug 31920] Brightness control is erratic
  (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Thu, 25 Nov 2010 10:06:35 -0800 (PST)
-Message-ID: <bug-31920-8800@http.bugs.freedesktop.org/>
+Date: Thu, 25 Nov 2010 10:08:15 -0800 (PST)
+Message-ID: <20101125180815.D268C13004D@annarchy.freedesktop.org>
+References: <bug-31920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-31920-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31920
 
-           Summary: Brightness control is erratic
-                    (/sys/class/backlight/nv_backlight/max_brightness is
-                    wrong)
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-I have a Sony Vaio CW2 laptop, with an Nvidia GeForce 310M card. I am using the
-nouveau driver from git (via the xorg-edgers ubuntu repository). I have to say
-it works really well - I even get desktop effects in KDE with Gallium. 
-
-However, there is one problem with screen brightness. The max_brightness value
-for the backlight interface (/sys/class/backlight/nv_backlight/max_brightness)
-is set to 1025. When I use KDE power-devil (or any brightness control tool), it
-reduces the brightness by tiny fractions, which still keeps the screen at full
-brightness. The brightness actually varies only between 0 and 127 (128-1025 are
-full brightness), and then too only if I change it in increments of 10 or 20. I
-think ideally the max_brightness value should be 7 (or 10?) and it should vary
-in steps of 1.
+--- Comment #1 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-25 10:08:13 PST ---
+Created an attachment (id=40571)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40571)
+dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
