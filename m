@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31676] garbled text after loading nouveau module on
  EFI boot; X driver thinks there are no connected outputs
-Date: Thu, 25 Nov 2010 03:51:19 -0800 (PST)
-Message-ID: <20101125115119.9334C13004D@annarchy.freedesktop.org>
+Date: Thu, 25 Nov 2010 04:29:13 -0800 (PST)
+Message-ID: <20101125122913.832C613004D@annarchy.freedesktop.org>
 References: <bug-31676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,32 +23,41 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31676
 
---- Comment #6 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org> 2010-11-25 03:51:19 PST ---
-Hmm so based on the raw DCB:
+--- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-25 04:29:13 PST ---
+(In reply to comment #6)
+> Hmm so based on the raw DCB:
+> 
+> [drm] nouveau 0000:02:00.0: Raw DCB entry 0: 040001b6 0f220010
+> [drm] nouveau 0000:02:00.0: Raw DCB entry 1: 020112a6 0f220010
+> [drm] nouveau 0000:02:00.0: Raw DCB entry 2: 02011262 00020010
+> [drm] nouveau 0000:02:00.0: Raw DCB entry 3: 0000000e 0000000
+> 
+> It looks like the card is reporting 2 DP type outputs, and 1 TMDS output.  From
+> the parsing of the connector table:
+> 
+> [drm] nouveau 0000:02:00.0:   0: 0x00002047: type 0x47 idx 0 tag 0x08
+> [drm] nouveau 0000:02:00.0:   1: 0x00101146: type 0x46 idx 1 tag 0x07
+> 
+> It looks like the TMDS output is out of there... perhaps Apple just isn't using
+> it.
+They are using it, the TMDS encoder is linked to the type 0x46 connector and is
+used when using a DP->DVI adaptor.
 
-[drm] nouveau 0000:02:00.0: Raw DCB entry 0: 040001b6 0f220010
-[drm] nouveau 0000:02:00.0: Raw DCB entry 1: 020112a6 0f220010
-[drm] nouveau 0000:02:00.0: Raw DCB entry 2: 02011262 00020010
-[drm] nouveau 0000:02:00.0: Raw DCB entry 3: 0000000e 0000000
+> The two left are an eDP connector and DP connector.  It seems Apple is now
+> using eDP for internal display connections?  Interesting.
+Yes, that's correct, as are most vendors now.
 
-It looks like the card is reporting 2 DP type outputs, and 1 TMDS output.  From
-the parsing of the connector table:
-
-[drm] nouveau 0000:02:00.0:   0: 0x00002047: type 0x47 idx 0 tag 0x08
-[drm] nouveau 0000:02:00.0:   1: 0x00101146: type 0x46 idx 1 tag 0x07
-
-It looks like the TMDS output is out of there... perhaps Apple just isn't using
-it.  The two left are an eDP connector and DP connector.  It seems Apple is now
-using eDP for internal display connections?  Interesting.
-
-Then later:
-
-[drm] nouveau 0000:02:00.0: expected bit 16 == 0, got 0x01114000
-No connectors reported connected with modes
-
-Uh oh.  This appears to be from nouveau_dp_auxch(). Unfortunately I'm not sure
-I can puzzle out what all this is doing.  Presumably it's trying to query stuff
-on the eDP port/connector, but that's failing...?
+> 
+> Then later:
+> 
+> [drm] nouveau 0000:02:00.0: expected bit 16 == 0, got 0x01114000
+> No connectors reported connected with modes
+> 
+> Uh oh.  This appears to be from nouveau_dp_auxch(). Unfortunately I'm not sure
+> I can puzzle out what all this is doing.  Presumably it's trying to query stuff
+> on the eDP port/connector, but that's failing...?
+It's failing for some reason yes, I'd need to look in more detail to figure out
+why however.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
