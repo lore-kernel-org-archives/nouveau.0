@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31920] Brightness control is erratic
  (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Thu, 25 Nov 2010 10:08:15 -0800 (PST)
-Message-ID: <20101125180815.D268C13004D@annarchy.freedesktop.org>
+Date: Thu, 25 Nov 2010 10:08:45 -0800 (PST)
+Message-ID: <20101125180845.5D52E13004D@annarchy.freedesktop.org>
 References: <bug-31920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31920
 
---- Comment #1 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-25 10:08:13 PST ---
-Created an attachment (id=40571)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40571)
-dmesg
+--- Comment #2 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-25 10:08:44 PST ---
+Created an attachment (id=40572)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40572)
+xorg.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
