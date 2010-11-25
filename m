@@ -1,13 +1,14 @@
-From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] nvfx: reset nvfx->hw_zeta
-Date: Wed, 24 Nov 2010 21:50:36 +0100
-Message-ID: <1290631836-21180-2-git-send-email-chantry.xavier@gmail.com>
-References: <1290631836-21180-1-git-send-email-chantry.xavier@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31676] garbled text after loading nouveau module on
+ EFI boot; X driver thinks there are no connected outputs
+Date: Thu, 25 Nov 2010 03:51:19 -0800 (PST)
+Message-ID: <20101125115119.9334C13004D@annarchy.freedesktop.org>
+References: <bug-31676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1290631836-21180-1-git-send-email-chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-31676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-If nvfx_framebuffer prepare and validate were called successively with
-fb->zsbuf not NULL and then NULL, nvfx->hw_zeta would contain garbage and
-this would cause failures in nvfx_framebuffer_relocate/OUT_RELOC(hw_zeta).
+https://bugs.freedesktop.org/show_bug.cgi?id=31676
 
-This was triggered by piglit/texwrap 2D GL_DEPTH_COMPONENT24 and caused
-first a 'write to user buffer!!' error in libdrm and then worse things.
+--- Comment #6 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org> 2010-11-25 03:51:19 PST ---
+Hmm so based on the raw DCB:
 
-Signed-off-by: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- src/gallium/drivers/nvfx/nvfx_state_fb.c |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+[drm] nouveau 0000:02:00.0: Raw DCB entry 0: 040001b6 0f220010
+[drm] nouveau 0000:02:00.0: Raw DCB entry 1: 020112a6 0f220010
+[drm] nouveau 0000:02:00.0: Raw DCB entry 2: 02011262 00020010
+[drm] nouveau 0000:02:00.0: Raw DCB entry 3: 0000000e 0000000
 
-diff --git a/src/gallium/drivers/nvfx/nvfx_state_fb.c b/src/gallium/drivers/nvfx/nvfx_state_fb.c
-index 73885de..90eb110 100644
---- a/src/gallium/drivers/nvfx/nvfx_state_fb.c
-+++ b/src/gallium/drivers/nvfx/nvfx_state_fb.c
-@@ -113,7 +113,9 @@ nvfx_framebuffer_validate(struct nvfx_context *nvfx, unsigned prepare_result)
- 		nvfx->state.render_temps |= nvfx_surface_get_render_target(fb->cbufs[i], prepare_result, &nvfx->hw_rt[i]) << i;
- 
- 	for(; i < 4; ++i)
--		nvfx->hw_rt[i].bo = 0;
-+		nvfx->hw_rt[i].bo = NULL;
-+
-+	nvfx->hw_zeta.bo = NULL;
- 
- 	if (fb->zsbuf) {
- 		nvfx->state.render_temps |= nvfx_surface_get_render_target(fb->zsbuf, prepare_result, &nvfx->hw_zeta) << 7;
+It looks like the card is reporting 2 DP type outputs, and 1 TMDS output.  From
+the parsing of the connector table:
+
+[drm] nouveau 0000:02:00.0:   0: 0x00002047: type 0x47 idx 0 tag 0x08
+[drm] nouveau 0000:02:00.0:   1: 0x00101146: type 0x46 idx 1 tag 0x07
+
+It looks like the TMDS output is out of there... perhaps Apple just isn't using
+it.  The two left are an eDP connector and DP connector.  It seems Apple is now
+using eDP for internal display connections?  Interesting.
+
+Then later:
+
+[drm] nouveau 0000:02:00.0: expected bit 16 == 0, got 0x01114000
+No connectors reported connected with modes
+
+Uh oh.  This appears to be from nouveau_dp_auxch(). Unfortunately I'm not sure
+I can puzzle out what all this is doing.  Presumably it's trying to query stuff
+on the eDP port/connector, but that's failing...?
+
 -- 
-1.7.3.2
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
