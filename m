@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31780] DRM/Nouveau Blank Screen with 8500 GT
-Date: Sat, 27 Nov 2010 06:33:00 -0800 (PST)
-Message-ID: <20101127143300.93E9A13004E@annarchy.freedesktop.org>
+Date: Sat, 27 Nov 2010 08:46:51 -0800 (PST)
+Message-ID: <20101127164652.1D38913004E@annarchy.freedesktop.org>
 References: <bug-31780-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31780
 
---- Comment #3 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2010-11-27 06:33:00 PST ---
-What do you expect to get?
+--- Comment #4 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-27 08:46:50 PST ---
+I see - perhaps nouveau fb is working properly after all.  I will try removing
+support for radeon from the kernel configuration and see if the fbcon comes up
+on the nvidia card.
 
-You have radeondrmfb on fb0, where the fbcon is, and nouveaufb on fb1, where no
-fbcon is. Therefore there is nothing to show on nouveaufb. If you expect the
-fbcon to cloned on both cards, I don't think that is implemented, but you
-should be able to assign some VCs to fb0 and some to fb1 by using
-fbcon=map:<numbers> kernel argument. In theory, at least.
+As to X, it does not work if I use the nouveau driver (nv works, have not tried
+the nvidia binary), but that is with the Arch Linux driver:
 
-Or do you mean that not even X can use nouveau?
+xf86-video-nouveau 0.0.16_git20100819-1
+
+which is likely out of date by now.
+
+If I can get the framebuffer stuff to work, I'll try compiling from source to
+see if X can be made to work as well.
+
+Thanks for the help!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
