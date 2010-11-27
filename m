@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sat, 27 Nov 2010 15:45:37 -0800 (PST)
-Message-ID: <20101127234537.28F3B13004D@annarchy.freedesktop.org>
+Date: Sat, 27 Nov 2010 15:47:44 -0800 (PST)
+Message-ID: <20101127234744.59DB213004F@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #48 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-11-27 15:45:36 PST ---
-Created an attachment (id=40607)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40607)
-dmesg log of kernel with patch.
+--- Comment #49 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-11-27 15:47:43 PST ---
+Created an attachment (id=40608)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40608)
+Xorg.log
+
+According to log weren't files of dri devices.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
