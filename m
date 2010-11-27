@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sat, 27 Nov 2010 15:42:15 -0800 (PST)
-Message-ID: <20101127234215.C228113004D@annarchy.freedesktop.org>
+Date: Sat, 27 Nov 2010 15:45:37 -0800 (PST)
+Message-ID: <20101127234537.28F3B13004D@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #47 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-11-27 15:42:14 PST ---
-I tried this patch. It looks like working, but driver still doesn't work for
-me.
-I got 2.6.37-rc3 kernel, applied patch and built it. nvidia frame buffer driver
-was disabled. I installed xorg-server from experimental of Debian and built
-libdrm and nouveau driver. After rebooting, monitor suspended. It seems system
-worked, but monitor didn't display anything.
-I attach logs of kernel, X and lspci.
+--- Comment #48 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-11-27 15:45:36 PST ---
+Created an attachment (id=40607)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40607)
+dmesg log of kernel with patch.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
