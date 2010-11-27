@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31780] DRM/Nouveau Blank Screen with 8500 GT
-Date: Sat, 27 Nov 2010 10:22:56 -0800 (PST)
-Message-ID: <20101127182256.6E4E213004D@annarchy.freedesktop.org>
+Date: Sat, 27 Nov 2010 10:24:18 -0800 (PST)
+Message-ID: <20101127182418.3277E13004D@annarchy.freedesktop.org>
 References: <bug-31780-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31780
 
---- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-27 10:22:55 PST ---
-Don't know if accepts that notation, people usually do drm.debug=15 in their
-grub.
+--- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-27 10:24:15 PST ---
+That should be 14 ofcource if you want 0xe.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
