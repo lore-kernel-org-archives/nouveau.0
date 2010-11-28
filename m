@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31954] Mesa fails to build
-Date: Sun, 28 Nov 2010 00:47:10 -0800 (PST)
-Message-ID: <20101128084710.EEC8913004D@annarchy.freedesktop.org>
-References: <bug-31954-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31957] New: Video Noise on HDMI output
+Date: Sun, 28 Nov 2010 02:56:38 -0800 (PST)
+Message-ID: <bug-31957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31954-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +18,31 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31954
+https://bugs.freedesktop.org/show_bug.cgi?id=31957
 
---- Comment #1 from Vinson Lee <vlee-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> 2010-11-28 00:47:10 PST ---
-Please retry with a more recent version of libdrm.
+           Summary: Video Noise on HDMI output
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-http://cgit.freedesktop.org/mesa/drm
+
+When the nouveau driver is used, bright whites have noise in them.
+The picture is steady for all other colours.
+Replacing the driver with the nvidia closed source one, the HDMI works fine. So
+all cables must be OK, it must be a driver bug.
+I suspect a HDCP problem. How do I tell if HDCP has negotiated correctly or not
+with the nouveau driver?
+If I use the nouveau driver, but instead with the DVI connector, and connect it
+to an analogue VGA adapter to the same TV display unit, the output is fine with
+no noise.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
