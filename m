@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31957] New: Video Noise on HDMI output
-Date: Sun, 28 Nov 2010 02:56:38 -0800 (PST)
-Message-ID: <bug-31957-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31961] New: [drm:drm_crtc_helper_set_config] *ERROR*
+ failed to set mode on [CRTC:6]
+Date: Sun, 28 Nov 2010 13:20:59 -0800 (PST)
+Message-ID: <bug-31961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,31 +19,59 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31957
+https://bugs.freedesktop.org/show_bug.cgi?id=31961
 
-           Summary: Video Noise on HDMI output
+           Summary: [drm:drm_crtc_helper_set_config] *ERROR* failed to set
+                    mode on [CRTC:6]
            Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
+           Version: git
+          Platform: x86 (IA32)
         OS/Version: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+        ReportedBy: dasfox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-When the nouveau driver is used, bright whites have noise in them.
-The picture is steady for all other colours.
-Replacing the driver with the nvidia closed source one, the HDMI works fine. So
-all cables must be OK, it must be a driver bug.
-I suspect a HDCP problem. How do I tell if HDCP has negotiated correctly or not
-with the nouveau driver?
-If I use the nouveau driver, but instead with the DVI connector, and connect it
-to an analogue VGA adapter to the same TV display unit, the output is fine with
-no noise.
+I'm running Arch Linux 2010.05 i686 with a Compaq Presario SR1923WM (Running a
+AMD 3500+ and 1GB Ram).
+
+Here is the box specs;
+http://h10025.www1.hp.com/ewfrf/wc/document?docname=c00683218&tmp_task=prodinfoCategory&lc=en&dlc=en&cc=us&site=null&key=null&product=3208974
+
+Xorg versions:
+---------------
+xorg-server-1.9.2-2
+xf86-video-nouveau-0.0.16_git20100819-1
+nouveau-dri-7.9-1
+
+I noticed in dmesg these lines;
+
+[drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]
+fbcon_init: detected unhandled fb_set_par error, error code -22
+[drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]
+Console: switching to colour frame buffer device 90x36
+[drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]
+fb0: nouveaufb frame buffer device
+drm: registered panic notifier
+
+
+Here are my logs;
+--------------
+
+dmesg:
+http://pastebin.com/B9g95YGT
+
+Xorg.0.log:
+http://pastebin.com/jTW5mhAV
+
+
+
+
+THANKS
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
