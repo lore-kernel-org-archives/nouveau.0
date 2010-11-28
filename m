@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31961] [drm:drm_crtc_helper_set_config] *ERROR*
  failed to set mode on [CRTC:6]
-Date: Sun, 28 Nov 2010 13:21:58 -0800 (PST)
-Message-ID: <20101128212158.62E3113004E@annarchy.freedesktop.org>
+Date: Sun, 28 Nov 2010 13:22:32 -0800 (PST)
+Message-ID: <20101128212232.774A913004D@annarchy.freedesktop.org>
 References: <bug-31961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31961
 
---- Comment #1 from DasFox <dasfox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-28 13:21:58 PST ---
-Forgot to mention I compiled kernel 2.36.1....
+--- Comment #2 from DasFox <dasfox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-28 13:22:32 PST ---
+I mean 2.6.36.1... :)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
