@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31780] DRM/Nouveau Blank Screen with 8500 GT
-Date: Sat, 27 Nov 2010 16:33:04 -0800 (PST)
-Message-ID: <20101128003305.5969A13004E@annarchy.freedesktop.org>
-References: <bug-31780-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31954] New: Mesa fails to build
+Date: Sat, 27 Nov 2010 22:52:31 -0800 (PST)
+Message-ID: <bug-31954-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31780-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +18,29 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31780
-
---- Comment #10 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-27 16:33:03 PST ---
-Created an attachment (id=40610)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40610)
-dmesg log with drm.debug=15
-
-Here is another log, with drm.debug=15 this time.  The debugging seemed to work
-when I used a "debug" kernel parameter in addition to the "drm.debug=15".  This
-log also has the radeon driver loading and taking control of the fbcon, but
-since this doesn't seem to be the real issue, that is likely fine.
-
-Looking at the log, I think I see the problem in the nouveau driver.  It
-apparently decides that my monitor is connected to the VGA-2 connector, when in
-fact I have my monitor plugged into the DVI connector on the card, would be
-DVI-I-2.  The detected mode of 1440x900 is correct for my LCD monitor, so
-apparently the detection of the monitor is working properly - it is just that
-apparently the driver thinks it is querying the monitor through the VGA
-connector.
-
-Any settings I can try to make this work, or any code changes that might make
-it work?
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzE5NTQKCiAgICAg
+ICAgICAgU3VtbWFyeTogTWVzYSBmYWlscyB0byBidWlsZAogICAgICAgICAgIFByb2R1Y3Q6IE1l
+c2EKICAgICAgICAgICBWZXJzaW9uOiBnaXQKICAgICAgICAgIFBsYXRmb3JtOiBPdGhlcgogICAg
+ICAgIE9TL1ZlcnNpb246IEFsbAogICAgICAgICAgICBTdGF0dXM6IE5FVwogICAgICAgICAgU2V2
+ZXJpdHk6IG5vcm1hbAogICAgICAgICAgUHJpb3JpdHk6IG1lZGl1bQogICAgICAgICBDb21wb25l
+bnQ6IERyaXZlcnMvRFJJL25vdXZlYXUKICAgICAgICBBc3NpZ25lZFRvOiBub3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwogICAgICAgIFJlcG9ydGVkQnk6IGxhdXJhbHVjYXNhbGRheUBnbWFp
+bC5jb20KCgpCdWlsZGluZyBNZXNhIGFmdGVyIGNsb25pbmcgZ2l0IHJlcG9zaXRvcnkgSSBnZXQg
+dGhpcyBlcnJvcjoKCiQuL2F1dG9nZW4uc2ggLS13aXRoLWRyaS1kcml2ZXJzPW5vdXZlYXUKCi4u
+LgoKbm91dmVhdV9jb250ZXh0LmM6IEluIGZ1bmN0aW9uIOKAmG5vdXZlYXVfY29udGV4dF9pbml0
+4oCZOgpub3V2ZWF1X2NvbnRleHQuYzoxMzI6IHdhcm5pbmc6IHBhc3NpbmcgYXJndW1lbnQgNCBv
+ZiDigJhub3V2ZWF1X2NoYW5uZWxfYWxsb2PigJkKbWFrZXMgcG9pbnRlciBmcm9tIGludGVnZXIg
+d2l0aG91dCBhIGNhc3QKL3Vzci9pbmNsdWRlL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmg6NTE6
+IG5vdGU6IGV4cGVjdGVkIOKAmHN0cnVjdApub3V2ZWF1X2NoYW5uZWwgKirigJkgYnV0IGFyZ3Vt
+ZW50IGlzIG9mIHR5cGUg4oCYaW504oCZCm5vdXZlYXVfY29udGV4dC5jOjEzMjogZXJyb3I6IHRv
+byBtYW55IGFyZ3VtZW50cyB0byBmdW5jdGlvbgrigJhub3V2ZWF1X2NoYW5uZWxfYWxsb2PigJkK
+bWFrZVs2XTogKioqIFtub3V2ZWF1X2NvbnRleHQub10gRXJyb3IgMQoKCk15IGd1ZXNzIGlzIHRo
+aXMgY29tbWl0IGhhcyBzb21ldGhpbmcgdG8gZG8sIGJ1dCBJIGNvdWxkIGJlIHdyb25nOgoKCmh0
+dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9tZXNhL21lc2EvY29tbWl0Lz9pZD1jMjVmY2Y1YWE1
+YmVjY2Q3NzMxNzA2YjhmODU2ODIxNzBhMmVjYTU2CgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0
+dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0t
+LSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRo
+ZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
