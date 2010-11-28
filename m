@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31780] DRM/Nouveau Blank Screen with 8500 GT
-Date: Sat, 27 Nov 2010 16:16:26 -0800 (PST)
-Message-ID: <20101128001626.47F6A13004E@annarchy.freedesktop.org>
+Date: Sat, 27 Nov 2010 16:33:04 -0800 (PST)
+Message-ID: <20101128003305.5969A13004E@annarchy.freedesktop.org>
 References: <bug-31780-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,26 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31780
 
---- Comment #9 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-27 16:16:25 PST ---
-I tried drm.debug=15 and didn't seem to see any additional information in the
-logs.  Is there a kernel config option I need to enable to make this work?
+--- Comment #10 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-11-27 16:33:03 PST ---
+Created an attachment (id=40610)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40610)
+dmesg log with drm.debug=15
+
+Here is another log, with drm.debug=15 this time.  The debugging seemed to work
+when I used a "debug" kernel parameter in addition to the "drm.debug=15".  This
+log also has the radeon driver loading and taking control of the fbcon, but
+since this doesn't seem to be the real issue, that is likely fine.
+
+Looking at the log, I think I see the problem in the nouveau driver.  It
+apparently decides that my monitor is connected to the VGA-2 connector, when in
+fact I have my monitor plugged into the DVI connector on the card, would be
+DVI-I-2.  The detected mode of 1440x900 is correct for my LCD monitor, so
+apparently the detection of the monitor is working properly - it is just that
+apparently the driver thinks it is querying the monitor through the VGA
+connector.
+
+Any settings I can try to make this work, or any code changes that might make
+it work?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
