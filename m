@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31957] Video Noise on HDMI output
-Date: Mon, 29 Nov 2010 11:28:43 -0800 (PST)
-Message-ID: <20101129192843.4C7FA13004D@annarchy.freedesktop.org>
+Date: Mon, 29 Nov 2010 11:29:35 -0800 (PST)
+Message-ID: <20101129192935.D1A8113004E@annarchy.freedesktop.org>
 References: <bug-31957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31957
 
---- Comment #2 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-11-29 11:28:42 PST ---
-Created an attachment (id=40644)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40644)
-drm.debug=4 output as requested
+--- Comment #3 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-11-29 11:29:34 PST ---
+Created an attachment (id=40645)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40645)
+Xorg.0.log that goes with the drm.debug=4 output.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
