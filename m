@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31961] [drm:drm_crtc_helper_set_config] *ERROR*
- failed to set mode on [CRTC:6]
-Date: Mon, 29 Nov 2010 04:54:06 -0800 (PST)
-Message-ID: <20101129125406.4B55813004D@annarchy.freedesktop.org>
-References: <bug-31961-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31957] Video Noise on HDMI output
+Date: Mon, 29 Nov 2010 11:28:43 -0800 (PST)
+Message-ID: <20101129192843.4C7FA13004D@annarchy.freedesktop.org>
+References: <bug-31957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +20,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31961
+https://bugs.freedesktop.org/show_bug.cgi?id=31957
 
---- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-11-29 04:54:05 PST ---
-(In reply to comment #0)
-> I noticed in dmesg these lines;
-> 
-> [drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]
-> fbcon_init: detected unhandled fb_set_par error, error code -22
-> [drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]
-> Console: switching to colour frame buffer device 90x36
-> [drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]
-> fb0: nouveaufb frame buffer device
-> drm: registered panic notifier
-> 
-
-Any chance you could run the nvidia binary driver in that box with no outputs
-connected and no output-related options in xorg.conf? (e.g. make sure you don't
-have "UseDisplayDevice" or "ConnectedMonitor" lines) Then can you ssh in from
-another machine and grab a register dump (running this program as root:
-http://cgit.freedesktop.org/~currojerez/tvdump/) and your Xorg log?
+--- Comment #2 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-11-29 11:28:42 PST ---
+Created an attachment (id=40644)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40644)
+drm.debug=4 output as requested
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
