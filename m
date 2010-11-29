@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31957] Video Noise on HDMI output
-Date: Mon, 29 Nov 2010 11:29:35 -0800 (PST)
-Message-ID: <20101129192935.D1A8113004E@annarchy.freedesktop.org>
+Date: Mon, 29 Nov 2010 11:31:20 -0800 (PST)
+Message-ID: <20101129193120.E53C313004D@annarchy.freedesktop.org>
 References: <bug-31957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31957
 
---- Comment #3 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-11-29 11:29:34 PST ---
-Created an attachment (id=40645)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40645)
-Xorg.0.log that goes with the drm.debug=4 output.
+--- Comment #4 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-11-29 11:31:20 PST ---
+Note that the modes detected by Nouveau are not the same as those detected by
+Xorg.0.log
+
+Xorg detects
+24.665] (II) NOUVEAU(0): Modeline "1920x1080"x0.0   74.25  1920 2448 2492 2640 
+1080 1084 1089 1125 +hsync +vsync (28.1 kHz)
+
+I.e.  A non-interlaced one that the kernel log does not find.
+nouveau detects only the interlaced version.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
