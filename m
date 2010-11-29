@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31957] Video Noise on HDMI output
-Date: Mon, 29 Nov 2010 04:44:30 -0800 (PST)
-Message-ID: <20101129124430.CB73F13004F@annarchy.freedesktop.org>
-References: <bug-31957-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31961] [drm:drm_crtc_helper_set_config] *ERROR*
+ failed to set mode on [CRTC:6]
+Date: Mon, 29 Nov 2010 04:54:06 -0800 (PST)
+Message-ID: <20101129125406.4B55813004D@annarchy.freedesktop.org>
+References: <bug-31961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +21,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31957
+https://bugs.freedesktop.org/show_bug.cgi?id=31961
 
---- Comment #1 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-11-29 04:44:30 PST ---
+--- Comment #3 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-11-29 04:54:05 PST ---
 (In reply to comment #0)
-> When the nouveau driver is used, bright whites have noise in them.
-> The picture is steady for all other colours.
-> Replacing the driver with the nvidia closed source one, the HDMI works fine. So
-> all cables must be OK, it must be a driver bug.
-> I suspect a HDCP problem. How do I tell if HDCP has negotiated correctly or not
-> with the nouveau driver?
-> If I use the nouveau driver, but instead with the DVI connector, and connect it
-> to an analogue VGA adapter to the same TV display unit, the output is fine with
-> no noise.
+> I noticed in dmesg these lines;
+> 
+> [drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]
+> fbcon_init: detected unhandled fb_set_par error, error code -22
+> [drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]
+> Console: switching to colour frame buffer device 90x36
+> [drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]
+> fb0: nouveaufb frame buffer device
+> drm: registered panic notifier
+> 
 
-Can you reboot with "drm.debug=4" in your kernel command line and attach the
-full output from "dmesg"?
+Any chance you could run the nvidia binary driver in that box with no outputs
+connected and no output-related options in xorg.conf? (e.g. make sure you don't
+have "UseDisplayDevice" or "ConnectedMonitor" lines) Then can you ssh in from
+another machine and grab a register dump (running this program as root:
+http://cgit.freedesktop.org/~currojerez/tvdump/) and your Xorg log?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
