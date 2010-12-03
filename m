@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31957] Video Noise on HDMI output
-Date: Fri,  3 Dec 2010 13:38:33 -0800 (PST)
-Message-ID: <20101203213833.E971413004E@annarchy.freedesktop.org>
+Date: Fri,  3 Dec 2010 14:31:59 -0800 (PST)
+Message-ID: <20101203223159.1A08013004F@annarchy.freedesktop.org>
 References: <bug-31957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,25 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31957
 
---- Comment #7 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-03 13:38:33 PST ---
-Here are some of the mode lines that the NVIDIA driver can be switched to.
-The NVIDIA drive output does not have any "noise".
-Output via xvidtune -show
-"1280x1024"   135.00   1280 1296 1440 1688   1024 1025 1028 1066 +hsync +vsync
-
+--- Comment #8 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-03 14:31:58 PST ---
+I forced nouveau to use exactly the same modeline as the NVIDIA driver was
+using.
 "1920x1080"   148.50   1920 2448 2492 2640   1080 1084 1089 1125 +hsync +vsync
 
-"1920x1080"    74.16   1920 2558 2602 2750   1080 1084 1089 1125 +hsync +vsync
-
-"1920x1080"    74.25   1920 2008 2052 2200   1080 1084 1094 1124 +hsync +vsync
-interlace
-
-"1280x1024"   108.00   1280 1328 1440 1688   1024 1025 1028 1066 +hsync +vsync
-
-"1280x1024"   135.00   1280 1296 1440 1688   1024 1025 1028 1066 +hsync +vsync
-
-"1920x1080"    74.25   1920 2008 2052 2200   1080 1084 1094 1124 +hsync +vsync
-interlace
+With exactly the same modeline according to xvidtune -show, the nouveau driver
+displays noise, the NVIDIA driver is fine. Therefore, this is not a cable
+problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
