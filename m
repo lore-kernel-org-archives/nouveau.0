@@ -1,12 +1,13 @@
-From: Christian Brassat <christian.brassat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Firefox userChrome.css colors
-Date: Sat, 4 Dec 2010 01:41:52 +0800
-Message-ID: <20101203174152.GA3208@akyka.192.168.1.1>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31957] Video Noise on HDMI output
+Date: Fri,  3 Dec 2010 13:38:33 -0800 (PST)
+Message-ID: <20101203213833.E971413004E@annarchy.freedesktop.org>
+References: <bug-31957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-31957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,22 +20,29 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi there,
+https://bugs.freedesktop.org/show_bug.cgi?id=31957
 
-I have switched to nouveau today, and while I am pretty satisfied, there
-is one thing I have noticed.
+--- Comment #7 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-03 13:38:33 PST ---
+Here are some of the mode lines that the NVIDIA driver can be switched to.
+The NVIDIA drive output does not have any "noise".
+Output via xvidtune -show
+"1280x1024"   135.00   1280 1296 1440 1688   1024 1025 1028 1066 +hsync +vsync
 
-I use a heavily modified userChrome.css for Firefox, and I noticed that
-while using nouveau, the colors of the images (icons, backgrounds) are
-somewhat more pale than they are supposed to be. Font colors and other
-colors specified via CSS (i.e. gradients) display fine, though.
+"1920x1080"   148.50   1920 2448 2492 2640   1080 1084 1089 1125 +hsync +vsync
 
-While not a big deal, I thought it might be interesing, and I might bring
-this to attention so that it may be looked into when there is some free
-time.
+"1920x1080"    74.16   1920 2558 2602 2750   1080 1084 1089 1125 +hsync +vsync
 
-Greetings,
-Christian
+"1920x1080"    74.25   1920 2008 2052 2200   1080 1084 1094 1124 +hsync +vsync
+interlace
+
+"1280x1024"   108.00   1280 1328 1440 1688   1024 1025 1028 1066 +hsync +vsync
+
+"1280x1024"   135.00   1280 1296 1440 1688   1024 1025 1028 1066 +hsync +vsync
+
+"1920x1080"    74.25   1920 2008 2052 2200   1080 1084 1094 1124 +hsync +vsync
+interlace
 
 -- 
-:: I think I misplaced my signature. If you find it, please send it back.
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
