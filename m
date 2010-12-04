@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32097] Segfault when starting X with latest nouveau
-Date: Sat,  4 Dec 2010 03:36:32 -0800 (PST)
-Message-ID: <20101204113633.0E95813004E@annarchy.freedesktop.org>
+Date: Sat,  4 Dec 2010 03:37:29 -0800 (PST)
+Message-ID: <20101204113729.1637F13004F@annarchy.freedesktop.org>
 References: <bug-32097-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32097
 
---- Comment #1 from Martin <usurpator-97jfqw80gc6171pxa8y+qA@public.gmane.org> 2010-12-04 03:36:32 PST ---
-Created an attachment (id=40797)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40797)
-dmesg
+Martin <usurpator-97jfqw80gc6171pxa8y+qA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |high
+                 CC|                            |usurpator-97jfqw80gc6171pxa8y+qA@public.gmane.org
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
