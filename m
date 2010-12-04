@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32097] New: Segfault when starting X with latest
-	nouveau
-Date: Sat,  4 Dec 2010 03:35:43 -0800 (PST)
-Message-ID: <bug-32097-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32097] Segfault when starting X with latest nouveau
+Date: Sat,  4 Dec 2010 03:36:32 -0800 (PST)
+Message-ID: <20101204113633.0E95813004E@annarchy.freedesktop.org>
+References: <bug-32097-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-32097-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32097
 
-           Summary: Segfault when starting X with latest nouveau
-           Product: xorg
-           Version: 7.5
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: usurpator-97jfqw80gc6171pxa8y+qA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=40796)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40796)
-Xorg.log
-
-I followed the instructions on
-http://nouveau.freedesktop.org/wiki/InstallNouveau and installed the kernel
-repository, the nouveau kernel driver, the nouveau xorg driver and libdrm from
-git (as of 3rd of December 2010).
-When starting X using startx I get a segfault. dmesg and Xorg.log are attached.
-Any ideas what I can do next?
+--- Comment #1 from Martin <usurpator-97jfqw80gc6171pxa8y+qA@public.gmane.org> 2010-12-04 03:36:32 PST ---
+Created an attachment (id=40797)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40797)
+dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
