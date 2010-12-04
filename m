@@ -1,15 +1,12 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: Display goes off when framebuffer enabled and Kernel
- Panic with fbset
-Date: Sat, 4 Dec 2010 13:33:59 +0200
-Message-ID: <20101204133359.2560c298@daedalus.pq.iki.fi>
-References: <20101204072803.GA4170@localhost2.local>
-	<20101204075925.GB4170@localhost2.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 32097] New: Segfault when starting X with latest
+	nouveau
+Date: Sat,  4 Dec 2010 03:35:43 -0800 (PST)
+Message-ID: <bug-32097-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20101204075925.GB4170-bi+AKbBUZKbUbxaO3c2PGA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,33 +16,37 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 3 Dec 2010 22:59:25 -0900
-Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+https://bugs.freedesktop.org/show_bug.cgi?id=32097
 
-> I yanked the compiled in nouveau-drm from kernel 2.6.35 and
-> reinstalled the snapshot =x11-base/nouveau-drm-20100811 package
-> providing kernel drivers.
+           Summary: Segfault when starting X with latest nouveau
+           Product: xorg
+           Version: 7.5
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: usurpator-97jfqw80gc6171pxa8y+qA@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-> Looks like I have some newer masked 2.6.36 kernel versions I can
-> try, to see if this bug still exists?
 
-As always with unreleased software, the best is to try the latest
-development code. You need a 2.6.37-rc kernel for that.
+Created an attachment (id=40796)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40796)
+Xorg.log
 
-I would suggest the out-of-tree build option described in
-http://nouveau.freedesktop.org/wiki/InstallDRM
-
-and then use the x11-overlay git ebuilds (version 9999) for
-libdrm and xf86-video-nouveau.
-
-That is what I do with Gentoo.
-
-Cheers.
+I followed the instructions on
+http://nouveau.freedesktop.org/wiki/InstallNouveau and installed the kernel
+repository, the nouveau kernel driver, the nouveau xorg driver and libdrm from
+git (as of 3rd of December 2010).
+When starting X using startx I get a segfault. dmesg and Xorg.log are attached.
+Any ideas what I can do next?
 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
