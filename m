@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sun,  5 Dec 2010 13:09:33 -0800 (PST)
-Message-ID: <20101205210933.AE42A13004D@annarchy.freedesktop.org>
+Date: Sun,  5 Dec 2010 13:11:01 -0800 (PST)
+Message-ID: <20101205211101.53DEC13004D@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #52 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-05 13:09:33 PST ---
-Created an attachment (id=40814)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40814)
-dmesg wiith parameter video=offb:off
-
-I tried this parameter, but nothing is changed except I didn't see process of
-booting system.
+--- Comment #53 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-05 13:11:01 PST ---
+Created an attachment (id=40815)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40815)
+Xorg.log with parameter video=offb:off
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
