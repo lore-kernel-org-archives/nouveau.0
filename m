@@ -1,14 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31676] garbled text after loading nouveau module on
- EFI boot; X driver thinks there are no connected outputs
-Date: Sun,  5 Dec 2010 13:49:42 -0800 (PST)
-Message-ID: <20101205214942.5E81E13004D@annarchy.freedesktop.org>
-References: <bug-31676-8800@http.bugs.freedesktop.org/>
+From: Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Display goes off when framebuffer enabled and Kernel
+ Panic with fbset
+Date: Sun, 5 Dec 2010 16:04:22 -0900
+Message-ID: <20101206010422.GB4122@localhost2.local>
+References: <20101204072803.GA4170@localhost2.local>
+	<20101204075925.GB4170@localhost2.local>
+	<20101205070234.GB4102@localhost2.local>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20101205070234.GB4102-bi+AKbBUZKbUbxaO3c2PGA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +24,31 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31676
+On Sat, Dec 04, 2010 at 10:02:34PM -0900, Roger wrote:
+>Wow. This is a fluke.  I got around to the recommendation of installing the
+>latest kernel snapshot (2.6.37*), but ended up rebooting using 2.6.35 after
+>apparently recompiling nouveau-drm out of kernel driver package.
+>
+>The fluke looks to me like for this card, I need to be mighty cautious and
+>recompile the nouveau-drm modules more often -- or maybe it was the cold boot
+>-- else I get the black/white vertical bars and kernel freeze.
+>
+>
+>The following cards seems to work using nouveau framebuffer/Xorg:
+>NV40 generation card (0x04b200b1) - G73 [GeForce 7600 GS]
+Correction, as of kernel 2.6.35, this card still seems to freeze the OS on boot
+when loading nouveau drm, but sometimes it will boot.  Sometimes loading of DRM
+on boot does work, but it seems to be a fluke if it does.  I have  yet to
+hook-up my laptop via ttyS0 to get dmesg/console output remotely... I should have though,
+but just thought of this. :-/
 
---- Comment #8 from mike dentifrice <fluor-WY42bBC+8W1AfugRpC6u6w@public.gmane.org> 2010-12-05 13:49:41 PST ---
-(In reply to comment #7)
+>NV20 generation card (0x025300a3) - NV25 [GeForce4 Ti 4200]
+>NV10 generation card (0x011200b2) - NV11 [GeForce2 Go]
+>I only noticed some very very minor pixel disintegration when using Xorg &
+>Seamonkey using LCars(?) theme colors.  Likely the LCD Display timings(?).
 
-> > [drm] nouveau 0000:02:00.0: expected bit 16 == 0, got 0x01114000
-> > No connectors reported connected with modes
-> > 
-> > Uh oh.  This appears to be from nouveau_dp_auxch(). Unfortunately I'm not sure
-> > I can puzzle out what all this is doing.  Presumably it's trying to query stuff
-> > on the eDP port/connector, but that's failing...?
-> 
-> It's failing for some reason yes, I'd need to look in more detail to figure out
-> why however.
-
-Any progress on that?
-
-FYI, Nouveau also fails to work when booting the MacBookAir3,1 (there's a few
-variants, and I tried it on a 1,6ghz C2D processor, 4gb RAM, 128gb SSD) in BIOS
-emulation mode. 
-
-One gets a garbled output, both during the text boot sequence and when xorg
-starts (with considerable color distortion). Consequently, one has to add the
-"nomodeset" kernel option in order to boot.
-
-The proprietary NVIDIA driver does work, however.
-
-Shall I open a separate bug report for the 320M card failing to work on the MBA
-31 in bios emulation mode? Which debug logs shall I provide, if any?
+Duh.  Dumb user finds the "auto adjust" button on the LCD monitor. :-/
 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Roger
+http://rogerx.freeshell.org/
