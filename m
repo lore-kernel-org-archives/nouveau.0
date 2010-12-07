@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] Driver can't detect video output and xserver
- doesn't start
-Date: Tue,  7 Dec 2010 04:28:37 -0800 (PST)
-Message-ID: <20101207122837.3432B13004D@annarchy.freedesktop.org>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+From: James Courtier-Dutton <james.dutton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: "Decode videos"
+Date: Tue, 7 Dec 2010 13:58:22 +0000
+Message-ID: <AANLkTi=7xfD=JcyexZZ-dRrEBDkiPat87ZgwwQbb5gxM@mail.gmail.com>
+References: <AANLkTimLWGd5Qp8ARTUy5ru8Uwm_H2=B-0nCAys4yK3W@mail.gmail.com>
+	<AANLkTikufPCJWBMJt2A6yRzA9q2bH-x9zf4KJ6+WySHB@mail.gmail.com>
+	<20101206200707.4793a30a@amd64linuxmsi.rentzhouse.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20101206200707.4793a30a-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,29 +19,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
-
---- Comment #58 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-12-07 04:28:36 PST ---
-(In reply to comment #57)
-> Created an attachment (id=40858)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40858)
-> dmesg wiith second patch parameter video=offb:off
-> 
-> Both patches doesn't change anything. After booting kernel tried to set video
-> mode, but it is failed and monitor suspended. I could make a blind input in
-> console. (At least with second patch).
-> Additional, I tried to remove nouveau driver and boot without parameter video.
-> (xserver uses frame buffer driver). But all is same. As I understand, driver
-> doesn't take control from kernel.
-
-This monitor works with offb, right? Can you get a register dump from it?
-(while you're in text mode, don't start X) You can use "video=ofonly
-nouveau.modeset=0" to make sure no other framebuffer driver takes over.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gNyBEZWNlbWJlciAyMDEwIDAxOjA3LCBKaW1teSBSZW50eiA8amIxN2Jzb21lQGdtYWlsLmNv
+bT4gd3JvdGU6Cj4gT24gTW9uLCA2IERlYyAyMDEwIDIzOjA1OjEwICswMTAwCj4gWGF2aWVyIENo
+YW50cnkgPGNoYW50cnkueGF2aWVyQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPj4gT24gTW9uLCBEZWMg
+NiwgMjAxMCBhdCA3OjM1IFBNLCBNaWtoYWlsIFJhbWVuZGlrIDxtckByYW1lbmRpay5ydT4KPj4g
+d3JvdGU6Cj4+ID4gSGVsbG8sCj4+ID4KPj4gPiBodHRwOi8vbm91dmVhdS5mcmVlZGVza3RvcC5v
+cmcvd2lraS9GZWF0dXJlTWF0cml4IGxpc3RzICJEZWNvZGUKPj4gPiB2aWRlb3MiIGFzIFdJUCBm
+b3IgTlYzMCBhbmQgTlY0MCBzZWllcy4KPj4gPgo+PiA+IEFzIEkgaGF2ZSBhbiBOVjQ0LCBJIHdv
+dWxkIHJlYWxseSBsaWtlIHRvIGtub3cgLSB3aGF0IGlzIHRoaXMKPj4gPiBmZWF0dXJlIGdvaW5n
+IHRvIGJlPyBWRFBBVSBzdXBwb3J0IGZvciB0aGVzZSBjYXJkcywgb3IgWHZNQywgb3IKPj4gPiBz
+b21ldGhpbmcgZWxzZT8KPj4gPgo+Pgo+PiBBY2NvcmRpbmcgdG8KPj4gaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTAtQXVndXN0LzAwNjE0Mi5odG1sCj4+
+IGFuZCB0aGUgZm9sbG93aW5nIG1haWxzL3BhdGNoZXMgOiBYdk1DLgo+Pgo+PiBOb3Qgc3VyZSB3
+aGF0IGlzIHBvc3NpYmxlIG9uIG52NDAgYnV0IHRoYXQgc3ViamVjdCB3YXMgZGlzY3Vzc2VkCj4+
+IHF1aWNrbHkgaGVyZToKPj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9u
+b3V2ZWF1LzIwMTAtTWF5LzAwNTcyNi5odG1sCj4KPiBJbml0aWFsbHkgSSB3b3VsZCBzYXkgWFZN
+Qy4gwqBWRFBBVSBleHBlY3RzIGZ1bGwgaHcgYml0c3RyZWFtCj4gZGVjb2RlLiDCoFhWTUMgb25s
+eSBkb2VzIGRlY29kZSBzdGFydGluZyBhdCBpZGN0L21iLiDCoEkgYW0gZ3Vlc3NpbmcgaXQKPiBp
+cyBwb3NzaWJsZSB0byBzdXBwb3J0IFZEUEFVIGJ5IGRvaW5nIHRoZSBlYXJsaWVyIHN0YWdlcyBp
+biBzb2Z0d2FyZQo+IHRoZW4gaGFuZGxpbmcgdGhlIHJlc2V0IHRvIGh3LiDCoFdlbGwsIHVubGVz
+cyBzb21lb25lIGZpZ3VyZXMgb3V0IHNvbWUKPiB3YXkgdG8gaGFuZGxlIHRoZSBmdWxsIHBpcGVs
+aW5lIGluIGh3IHZpYSBzaGFkZXJzIHdoaWNoIGlzIHNvbWV0aGluZwo+IEkgaGF2ZSBubyB0aW1l
+IG9yIGtub3dsZWRnZS4KPgoKSSB0aGluayBpdCB3b3VsZCBiZSBiZXR0ZXIgaWYgb25lIGNvdWxk
+IGRvIHZkcGF1IGluIHNvZnR3YXJlIGFuZCB0aGVuCmluaXRpYWxseSBvZmZsb2FkIHRoZSBpZGN0
+L21iIHRvIHRoZSBoYXJkd2FyZS4KVGhlIHJlYXNvbiBiZWluZyB2ZHBhdSBzdXBwb3J0cyBtcGVn
+MiBhbmQgbXBlZzQsIFhWTUMgb25seSBzdXBwb3J0cyBtcGVnMi4KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
