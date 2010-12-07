@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Mon,  6 Dec 2010 23:14:43 -0800 (PST)
-Message-ID: <20101207071443.3582113004D@annarchy.freedesktop.org>
+Date: Mon,  6 Dec 2010 23:22:29 -0800 (PST)
+Message-ID: <20101207072229.80DA013004F@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #56 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-06 23:14:42 PST ---
-Created an attachment (id=40857)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40857)
-dmesg wiith first patch parameter video=offb:off
+--- Comment #57 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-06 23:22:28 PST ---
+Created an attachment (id=40858)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40858)
+dmesg wiith second patch parameter video=offb:off
+
+Both patches doesn't change anything. After booting kernel tried to set video
+mode, but it is failed and monitor suspended. I could make a blind input in
+console. (At least with second patch).
+Additional, I tried to remove nouveau driver and boot without parameter video.
+(xserver uses frame buffer driver). But all is same. As I understand, driver
+doesn't take control from kernel.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
