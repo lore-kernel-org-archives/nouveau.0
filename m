@@ -1,16 +1,14 @@
-From: Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: "Decode videos"
-Date: Mon, 6 Dec 2010 20:11:16 -0900
-Message-ID: <20101207051116.GD4066@localhost2.local>
-References: <AANLkTimLWGd5Qp8ARTUy5ru8Uwm_H2=B-0nCAys4yK3W@mail.gmail.com>
-	<AANLkTikufPCJWBMJt2A6yRzA9q2bH-x9zf4KJ6+WySHB@mail.gmail.com>
-	<20101206200707.4793a30a@amd64linuxmsi.rentzhouse.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 21273] Driver can't detect video output and xserver
+ doesn't start
+Date: Mon,  6 Dec 2010 23:14:43 -0800 (PST)
+Message-ID: <20101207071443.3582113004D@annarchy.freedesktop.org>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20101206200707.4793a30a-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,41 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Dec 06, 2010 at 08:07:07PM -0500, Jimmy Rentz wrote:
->Initially I would say XVMC.  VDPAU expects full hw bitstream
->decode.  XVMC only does decode starting at idct/mb.  I am guessing it
->is possible to support VDPAU by doing the earlier stages in software
->then handling the reset to hw.  Well, unless someone figures out some
->way to handle the full pipeline in hw via shaders which is something
->I have no time or knowledge.  
->
->The latest version of the video decode/vpe/nv40 patches are here:
->http://people.freedesktop.org/~jb17bsome/vpe/ddx/ddx_nouveau_vpe_v1.patch
->http://people.freedesktop.org/~jb17bsome/vpe/drm/drm_nouveau_vpe_v5.patch
->http://people.freedesktop.org/~jb17bsome/vpe/kernel/kernel_nouveau_vpe_v6.patch
->http://people.freedesktop.org/~jb17bsome/vpe/mesa/mesa_pipe_video_nouveau_vpe_v3.patch 
->For mesa you need to pull the pipe-video branch.  All the others apply
->fine against the latest branches for the ddx, drm, nouveau kernel.
->
->The current patches integrate vpe better with gem/ttm.  This means
->that relocs/fences are emitted and it doesn't just pin all memory like
->before. Though, it does runs much slower compared to my last non-gem
->version located under the old directories in (ddx/drm/kernel/mesa).  I
->am fairly certain from oprofile dumps that it is because of too many
->relocs emitted or something, but I haven't followed up.
->
->Anyway hopes this helps.
->
->Jimmy
+https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
-Just a quick ping on this topic.
-
-I have 2 video cards with XvMC capabilities on 450P3 and 2x750P3 CPU's, of
-which, XvMC is required for playback of high resolution video... unless
-I use the rough MPlayer slow CPU scaling hacks.
-
-I hopefully plan to experiment with the XvMC patches in the near future.
+--- Comment #56 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-06 23:14:42 PST ---
+Created an attachment (id=40857)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40857)
+dmesg wiith first patch parameter video=offb:off
 
 -- 
-Roger
-http://rogerx.freeshell.org/
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
