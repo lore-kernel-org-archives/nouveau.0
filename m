@@ -1,13 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30307] 8500GT Hardware Lockup
-Date: Wed,  8 Dec 2010 00:37:00 -0800 (PST)
-Message-ID: <20101208083700.64FCA13004E@annarchy.freedesktop.org>
-References: <bug-30307-8800@http.bugs.freedesktop.org/>
+From: Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Display goes off when framebuffer enabled and Kernel
+ Panic with fbset
+Date: Wed, 8 Dec 2010 00:34:58 -0900
+Message-ID: <20101208093458.GA11429@localhost2.local>
+References: <20101204072803.GA4170@localhost2.local>
+	<20101204075925.GB4170@localhost2.local>
+	<20101205070234.GB4102@localhost2.local>
+	<20101205133804.5430594f@daedalus.pq.iki.fi>
+	<20101206011231.GC4122@localhost2.local>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20101206011231.GC4122-bi+AKbBUZKbUbxaO3c2PGA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,44 +26,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzAzMDcKCi0tLSBD
-b21tZW50ICMxIGZyb20gR8O2a2NlbiBFcmFzbGFuIDxnb2tjZW5AcGFyZHVzLm9yZy50cj4gMjAx
-MC0xMi0wOCAwMDozNjo1NiBQU1QgLS0tCkkgcmVwcm9kdWNlIHRoaXMgc29tZXRpbWVzIHdpdGgg
-bm91dmVhdSBkcml2ZXIsIGNhcmQgaXMgOgoKblZpZGlhIENvcnBvcmF0aW9uIEc5NiBbUXVhZHJv
-IEZYIDU4MF0KCmRtZXNnIG91dHB1dCBoYXM6CgpbODg3MjUuODEyMzA5XSBbZHJtXSBub3V2ZWF1
-IDAwMDA6MDI6MDAuMDogUEdSQVBIX1RSQVAgLSBDaCAyLzUgQ2xhc3MgMHg4Mjk3Ck10aGQgMHgw
-ZTA0IERhdGEgMHgwMDAwMDAwMDoweDAwNTEwMDQ2Cls4ODcyNS44MTIzMjNdIFtkcm1dIG5vdXZl
-YXUgMDAwMDowMjowMC4wOiBQR1JBUEhfVFJBUF9DQ0FDSEVfRkFVTFQgLSBWTToKVHJhcHBlZCBy
-ZWFkIGF0IDAwNDBiMTIwMDAgc3RhdHVzIDAwMDAxNTYwIGNoYW5uZWwgMiAoMHgwMDAwMGE5MCkK
-Wzg4NzI1LjgxMjMzNF0gW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBHUkFQSF9UUkFQX0ND
-QUNIRV9GQVVMVCAtIDAwMDAwMDAwCjAwMDAwMDAwIDAwMDAwMDAwIDAwMDAwMDAwIDAwMDAwMDAw
-IDAwMDAwMDAwIDAwMDAwMDAwCls4ODcyNS44MTIzNDddIFtkcm1dIG5vdXZlYXUgMDAwMDowMjow
-MC4wOiBQR1JBUEhfVFJBUF9NUF9FWEVDIC0gVFAgMCBNUCAwOgpJTlZBTElEX09QQ09ERSBhdCAw
-MDAwMDAgd2FycCAxOCwgb3Bjb2RlIDAwMDAwMDAwIDAwMDAwMDAwCls4ODcyNS44MTIzNThdIFtk
-cm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiBQR1JBUEhfVFJBUF9NUF9FWEVDIC0gVFAgMCBNUCAx
-OgpJTlZBTElEX09QQ09ERSBhdCAwMDAwMDAgd2FycCAxLCBvcGNvZGUgMDAwMDAwMDAgMDAwMDAw
-MDAKWzg4NzI1LjgxMjM2NF0gW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBHUkFQSF9UUkFQ
-X01QIC0gVFAxOiBVbmhhbmRsZWQKdXN0YXR1cyAweDAwMDIwMDAwCls4ODcyNS44MTIzODFdIFtk
-cm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiBQR1JBUEhfVFJBUCAtIENoIDIvNSBDbGFzcyAweDgy
-OTcKTXRoZCAweDE1ZTAgRGF0YSAweDAwMDAwMDAwOjB4MDAwMDAwMDAKWzg4NzI1LjgxMjM4Nl0g
-W2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBHUkFQSF9UUkFQX01QIC0gVFAwOiBVbmhhbmRs
-ZWQKdXN0YXR1cyAweDAwMDIwMDAwCls4ODcyNS44MTIzOTVdIFtkcm1dIG5vdXZlYXUgMDAwMDow
-MjowMC4wOiBQR1JBUEhfVFJBUF9NUF9FWEVDIC0gVFAgMSBNUCAwOgpJTlZBTElEX09QQ09ERSBh
-dCAwMDAwMDAgd2FycCA3LCBvcGNvZGUgMDAwMDAwMDAgMDAwMDAwMDAKWzg4NzI1LjgxMjQwNV0g
-W2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBHUkFQSF9UUkFQX01QX0VYRUMgLSBUUCAxIE1Q
-IDE6CklOVkFMSURfT1BDT0RFIGF0IDAwMDAwMCB3YXJwIDIwLCBvcGNvZGUgMDAwMDAwMDAgMDAw
-MDAwMDAKWzg4NzI1LjgxMjQxMF0gW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBHUkFQSF9U
-UkFQX01QIC0gVFAxOiBVbmhhbmRsZWQKdXN0YXR1cyAweDAwMDIwMDAwCls4ODcyNS44MTI0MzBd
-IFtkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiBQR1JBUEhfVFJBUCAtIENoIDIvNSBDbGFzcyAw
-eDgyOTcKTXRoZCAweDBmMDQgRGF0YSAweDAwMDAwMDAwOjB4MDAwMDAwMDAKWzg4NzI1LjgxMjQ0
-MF0gW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBHUkFQSF9UUkFQX0NDQUNIRV9GQVVMVCAt
-IFZNOgpUcmFwcGVkIHJlYWQgYXQgMDA0MGIxMjAwMCBzdGF0dXMgMDAwMDA1NjAgY2hhbm5lbCAy
-ICgweDAwMDAwYTkwKQpbODg3MjUuODEyNDQ4XSBbZHJtXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDog
-UEdSQVBIX1RSQVBfQ0NBQ0hFX0ZBVUxUIC0gMDAwMDAwMDAKMDAwMDAwMDAgMDAwMDAwMDAgMDAw
-MDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAKCi0tIApDb25maWd1cmUgYnVnbWFpbDog
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0t
-LS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUg
-dGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+I've gotten KGDB re-working here and didn't get anything on output via serial
+console.  Might not have had an option activated, rechecking & rebooting.  But
+with this hard freeze, kdump is likely the only option.
+
+I've spent some time trying to get kdump working, but have been unsuccessful
+kexec'ing a kernel.  Keeps telling me I haven't appended "crashkernel=" when I
+already have appended it -- checked /proc/cmdline.  But rechecking a few more
+options with kexec/kdump, recompiling and will check back if I get any further
+debugging on this.
+
+nosmp still fails too.
+
+(My other two systems seem stable with nouveau framebuffer + Xorg.  Just this
+one is freezing with nouveau drm loading.)
+
+-- 
+Roger
+http://rogerx.freeshell.org/
