@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Wed,  8 Dec 2010 12:52:28 -0800 (PST)
-Message-ID: <20101208205228.1752C13004D@annarchy.freedesktop.org>
+Date: Wed,  8 Dec 2010 12:55:41 -0800 (PST)
+Message-ID: <20101208205541.D119D13004D@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #59 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-08 12:52:27 PST ---
-Created an attachment (id=40932)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40932)
-registers without X booting. Kernel parameters: "video=ofonly
-nouveau.modeset=0"
+--- Comment #60 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-08 12:55:41 PST ---
+I see in dmesg:
+[    0.370917] Console: switching to colour frame buffer device 200x75
+[    0.399597] fb0: Open Firmware frame buffer device on
+/pci@f0000000/NVDA,Parent@10/NVDA,Display-B@1
+[    0.400377] fb1: Open Firmware frame buffer device on
+/pci@f0000000/NVDA,Parent@10/NVDA,Display-A@0
+
+Should I disable Open Firmware frame buffer too?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
