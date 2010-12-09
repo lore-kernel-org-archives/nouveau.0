@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31957] Video Noise on HDMI output
-Date: Thu,  9 Dec 2010 12:21:02 -0800 (PST)
-Message-ID: <20101209202103.11EED13004E@annarchy.freedesktop.org>
+Date: Thu,  9 Dec 2010 13:04:29 -0800 (PST)
+Message-ID: <20101209210429.2CCF2130051@annarchy.freedesktop.org>
 References: <bug-31957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31957
 
---- Comment #14 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2010-12-09 12:21:00 PST ---
-(In reply to comment #11)
-> Created an attachment (id=40958)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40958)
-> xrandr --prop
-> 
-> xrandr --prop
-> output as requested.
-
-Ok, dithering is off, so that's not the cause.
+--- Comment #15 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-09 13:04:26 PST ---
+Created an attachment (id=40961)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40961)
+Camera picture of the screen showing noise to the left of the window.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
