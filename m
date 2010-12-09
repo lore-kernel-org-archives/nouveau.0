@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31957] Video Noise on HDMI output
-Date: Thu,  9 Dec 2010 11:42:22 -0800 (PST)
-Message-ID: <20101209194223.D24F613004E@annarchy.freedesktop.org>
+Date: Thu,  9 Dec 2010 12:21:02 -0800 (PST)
+Message-ID: <20101209202103.11EED13004E@annarchy.freedesktop.org>
 References: <bug-31957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31957
 
---- Comment #13 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-09 11:42:20 PST ---
-Is there a small command line test I can do in order to compare the nvidia
-driver setting the mode and the nouveau driver setting the mode?
-The noise first appears as soon as the nouveau driver does a mode change from
-the BIOS boot up mode into the other mode during boot up which makes the boot
-message text look smaller.
-So, the problem is visible even before X starts.
+--- Comment #14 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2010-12-09 12:21:00 PST ---
+(In reply to comment #11)
+> Created an attachment (id=40958)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40958)
+> xrandr --prop
+> 
+> xrandr --prop
+> output as requested.
+
+Ok, dithering is off, so that's not the cause.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
