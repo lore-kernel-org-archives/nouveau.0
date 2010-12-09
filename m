@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Thu,  9 Dec 2010 14:41:36 -0800 (PST)
-Message-ID: <20101209224136.B2BAA13004F@annarchy.freedesktop.org>
+Date: Thu,  9 Dec 2010 14:45:09 -0800 (PST)
+Message-ID: <20101209224509.3F66413004D@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #63 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-09 14:41:35 PST ---
-Created an attachment (id=40968)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40968)
-dmesg with third patch kernel parameters" video=ofonly"
+--- Comment #64 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-09 14:45:07 PST ---
+Created an attachment (id=40969)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=40969)
+dmesg with third patch kernel parameters "video=offb:off"
+
+Unfortunately, it still doesn't work.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
