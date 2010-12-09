@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31957] Video Noise on HDMI output
-Date: Thu,  9 Dec 2010 11:34:01 -0800 (PST)
-Message-ID: <20101209193401.4000913004F@annarchy.freedesktop.org>
+Date: Thu,  9 Dec 2010 11:35:55 -0800 (PST)
+Message-ID: <20101209193555.6F0D013004E@annarchy.freedesktop.org>
 References: <bug-31957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31957
 
---- Comment #11 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-09 11:34:00 PST ---
-Created an attachment (id=40958)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=40958)
+--- Comment #12 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-09 11:35:54 PST ---
 xrandr --prop
-
-xrandr --prop
-output as requested.
+does not give any output with the nvidia driver.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
