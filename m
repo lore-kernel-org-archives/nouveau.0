@@ -1,23 +1,12 @@
-From: Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Display goes off when framebuffer enabled and Kernel
- Panic with fbset
-Date: Fri, 10 Dec 2010 22:57:48 -0900
-Message-ID: <20101211075748.GA4479@localhost2.local>
-References: <20101204075925.GB4170@localhost2.local>
-	<20101205070234.GB4102@localhost2.local>
-	<20101205133804.5430594f@daedalus.pq.iki.fi>
-	<20101206011231.GC4122@localhost2.local>
-	<20101208093458.GA11429@localhost2.local>
-	<20101208122300.GA4480@localhost2.local>
-	<20101209004202.GA4477@localhost2.local>
-	<8762v3ards.fsf@riseup.net>
-	<20101210104352.GA4505@localhost2.local> <op.vni2axo3tkuz1w@emo>
+From: Giacomo <delleceste-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: vga switcheroo not working / crashing the machine on
+ i915/nvidia hybrid. (ASUS U30JC)
+Date: Sat, 11 Dec 2010 15:05:14 +0100
+Message-ID: <AANLkTimkHLNA_kYKp3P1Qyrass7puqGYzQi3LxQNNV5q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <op.vni2axo3tkuz1w@emo>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -27,41 +16,102 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.velikov-/E1597aS9LT10XsdtD+oqA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Dec 11, 2010 at 02:24:25AM -0000, Emil Velikov wrote:
->Roger, looking at your logs it appears that you are still running an old  
->version of nouveau
->
->Make sure that you are running the latest git as it includes a few AGP  
->related bug-fixes
->Note that nouveau is NOT only a kernel. For more info on how to download,  
->compile and install take a look at the wiki [1] [2]
->
->[1] http://nouveau.freedesktop.org/wiki/InstallNouveau
->[2] http://nouveau.freedesktop.org/wiki/GentooEbuilds
+Hello.
 
-I've already done all this. I experienced the same exact problem upstream.
+In my double-carded ASUS U30JC (nvidia + intel i915) I do the following:
 
-This is the only card (box) experiencing this problem aside from my two other
-nvidia driven boxes.
+stop X
 
-Think I documented on this thread that I stepped back down to stable; One, because I
-think I was having compile problems; Second, I need stable around here --
-especially when I was trying to get KDump working.  Since I was failing at
-KDump too, one person here suggested sending in complete logs just so I could get
-something in.
+This is the output of /sys/kernel/debug/vgaswitcheroo/switch
 
-KGDB didn't show anything, either the debug output isn't getting out fast
-enough before freeze, or likely because it's not putting out anything.
+daphne linux # cat /sys/kernel/debug/vgaswitcheroo/switch
+0: :Pwr:0000:01:00.0
+1:+:Pwr:0000:00:02.0 (intel graphic card in use, ok)
 
-I need debug output to do anything, KDump is suppose to be it.  But so far, I'm just
-chasing my tail around here.
+echo "DDIS" > /sys/kernel/debug/vgaswitcheroo/switch does not change
+the output above (intel remains marked as active)
 
-Think I'll just leave this SMP box with "nouveau noagp=1" until I figure-out
-KDump or I can get AGP debug output.
+echo "OFF" > /sys/kernel/debug/vgaswitcheroo/switch
 
--- 
-Roger
-http://rogerx.freeshell.org/
+seems to switch off Nvidia card, because the output above becomes:
+0: :Off:0000:01:00.0
+1:+:Pwr:0000:00:02.0
+
+restarting X completely freezes the machine, black screen (need to power do=
+wn
+by
+pressing the power button).
+
+
+ASUS U30JC Nvidia (nouveau) + intel i915.
+
+Kernel 2.6.35
+x11-base/xorg-server 1.9.2.902
+x11-drivers/xf86-video-nouveau 0.0.16_pre20101010
+
+Shutting down the Nvidia graphic card via acpi_call
+https://github.com/mkottman/acpi_call
+produces the same freeze after trying to restart X.
+
+Same problem with kernel 2.6.36 and acpi_call.
+Did not try vga switcheroo on 2.6.36 due to problems with that kernel
+
+https://bugzilla.kernel.org/show_bug.cgi?id=3D24542
+
+echo "OFF" > /sys/kernel/debug/vgaswitcheroo/switch
+
+produces in dmesg:
+
+Dec  8 00:06:18 daphne kernel: VGA switcheroo: switched nouveau off
+Dec  8 00:06:18 daphne kernel: [drm] nouveau 0000:01:00.0: Disabling fbcon
+acceleration...
+Dec  8 00:06:18 daphne kernel: [drm] nouveau 0000:01:00.0: Unpinning
+framebuffer(s)...
+Dec  8 00:06:18 daphne kernel: [drm] nouveau 0000:01:00.0: Evicting buffers=
+...
+Dec  8 00:06:18 daphne kernel: [drm] nouveau 0000:01:00.0: Idling channels.=
+..
+Dec  8 00:06:18 daphne kernel: [drm] nouveau 0000:01:00.0: Suspending GPU
+objects...
+Dec  8 00:06:19 daphne kernel: [drm] nouveau 0000:01:00.0: And we're gone!
+Dec  8 00:06:19 daphne kernel: nouveau 0000:01:00.0: PCI INT A disabled
+Dec  8 00:06:19 daphne kernel: nouveau 0000:01:00.0: power state changed by
+ACPI to D3
+
+which seems to be correct.
+
+The crash taking place when restarting X does not leave any trace on dmesg.
+
+Thanks in advance.
+
+Giacomo.
+Elettra Synchrotron Radiation Facility
+Trieste, IT.
+
+-- =
+
+Giacomo S.
+http://www.giacomos.it
+
+- - - - - - - - - - - - - - - - - - - - - -
+
+* iqfire-wall, un progetto
+=A0 open source che implementa un
+=A0 filtro di pacchetti di rete per Linux,
+=A0 e` disponibile per il download qui:
+=A0 http://sourceforge.net/projects/ipfire-wall
+
+* Informazioni e pagina web ufficiale:
+=A0 http://www.giacomos.it/iqfire/index.html
+
+- - - - - - - - - - - - - - - - - - - - - -
+
+=A0. ''=A0 `.
+:=A0=A0 :'=A0 =A0 :
+=A0`.=A0 ` '
+=A0 =A0 `- Debian GNU/Linux -- The power of freedom
+=A0 =A0 =A0 =A0 http://www.debian.org
