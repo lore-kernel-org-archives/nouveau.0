@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sun, 12 Dec 2010 14:14:31 -0800 (PST)
-Message-ID: <20101212221431.B35F713004D@annarchy.freedesktop.org>
+Date: Sun, 12 Dec 2010 14:17:03 -0800 (PST)
+Message-ID: <20101212221703.4B6EA13004D@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #66 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-12 14:14:30 PST ---
-Created an attachment (id=41047)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41047)
-Difference in registers on kernel 2.6.37-rc5 with patch beetween  OpenFB and
-NouveauFB
+Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #41046|0                           |1
+        is obsolete|                            |
+
+--- Comment #67 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-12 14:17:02 PST ---
+Created an attachment (id=41048)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41048)
+Difference in register on kernel 2.6.36.2 beetween  OpenFB and NvidiaFB
+
+I made mistake in previous comment to this diff.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
