@@ -1,7 +1,8 @@
-From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nv50 channel takedown
-Date: Sun, 12 Dec 2010 11:56:19 +0100
-Message-ID: <AANLkTimCGns+nKEb90yr+KUNf=d0W0A_5eA-Rnzq682s@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 32332] New: Nouveau sometimes fail to set
+ appropriate resolution.
+Date: Sun, 12 Dec 2010 02:56:51 -0800 (PST)
+Message-ID: <bug-32332-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,44 +16,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I am seeing problems on 2.6.36-rc7 based kernels.
+https://bugs.freedesktop.org/show_bug.cgi?id=32332
 
-The error always happens during a channel destruction (always gallium
-on channel 3 in my tests), and always looks like this :
-<3>[  612.115977] [drm] nouveau 0000:01:00.0: AIII, invalid/inactive
-channel id 128
-<6>[  612.115987] [drm] nouveau 0000:01:00.0: PGRAPH_DATA_ERROR - Ch
--1/3 Class 0x5039 Mthd 0x0184 Data 0x00000000:0x00000e02
-<6>[  612.115990] [drm] nouveau 0000:01:00.0: PGRAPH_DATA_ERROR - INVALID_OBJECT
+           Summary: Nouveau sometimes fail to set appropriate resolution.
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: minor
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: blahapeta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-This is associated with screen corruptions, mostly all fonts/icons disappearing.
 
-The oldest commit where I could see the error during a full piglit run :
+Created an attachment (id=41029)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41029)
+Dmesg
 
-commit ea645107d204ebb9c6da494b8fc82e03d74e4513
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Tue Oct 12 08:01:59 2010 +1000
+I am using 8600M GT on my laptop. Approximately at 10% of computer starts
+system works only at 800x600 resolution and it cannot be changed to higher one.
+Guess it KMS problem.
 
-    drm/nouveau: fix thinko in channel locking in semaphore path
+After restart it works fine.
 
-But I might have seen troubles with older commits (still 2.6.36-rc7 based).
-And I still don't know if the issue is always triggered by the same
-piglit tests or not.
-
-But with a later commit, the issue became much more frequent,
-triggered by many piglit tests, so I could easily isolate one
-(fdo10370) which reproduces the issue almost every time :
-
-commit 36a7ebda99e904a66188c7304d033e81780455e2
-Author: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Date:   Mon Oct 18 03:53:39 2010 +0200
-
-    drm/nouveau: Refactor context destruction to avoid a lock ordering issue.
-
-Reversing pfifo and pgraph destruction order as before, and the issue
-becomes less frequent again.
-
-I would love to know if anyone at all ever managed to reproduce this.
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
