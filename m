@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32332] New: Nouveau sometimes fail to set
- appropriate resolution.
-Date: Sun, 12 Dec 2010 02:56:51 -0800 (PST)
-Message-ID: <bug-32332-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32332] Nouveau sometimes fail to set appropriate
+	resolution.
+Date: Sun, 12 Dec 2010 02:57:37 -0800 (PST)
+Message-ID: <20101212105737.15D6C13004D@annarchy.freedesktop.org>
+References: <bug-32332-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-32332-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32332
 
-           Summary: Nouveau sometimes fail to set appropriate resolution.
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: minor
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: blahapeta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=41029)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41029)
-Dmesg
-
-I am using 8600M GT on my laptop. Approximately at 10% of computer starts
-system works only at 800x600 resolution and it cannot be changed to higher one.
-Guess it KMS problem.
-
-After restart it works fine.
+--- Comment #1 from blahapeta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2010-12-12 02:57:36 PST ---
+Created an attachment (id=41030)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41030)
+Xorg log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
