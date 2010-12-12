@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sun, 12 Dec 2010 14:12:50 -0800 (PST)
-Message-ID: <20101212221250.9AAA013004D@annarchy.freedesktop.org>
+Date: Sun, 12 Dec 2010 14:14:31 -0800 (PST)
+Message-ID: <20101212221431.B35F713004D@annarchy.freedesktop.org>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #65 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-12 14:12:49 PST ---
-Created an attachment (id=41046)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41046)
-Difference in register on kernel 2.6.36.2 beetween  OpenFB and NouveauFB
+--- Comment #66 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2010-12-12 14:14:30 PST ---
+Created an attachment (id=41047)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41047)
+Difference in registers on kernel 2.6.37-rc5 with patch beetween  OpenFB and
+NouveauFB
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
