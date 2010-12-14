@@ -1,36 +1,35 @@
-From: Dave Airlie <airlied@gmail.com>
-Subject: Re: [Nouveau] vga switcheroo not working / crashing the machine on
-	i915/nvidia hybrid. (ASUS U30JC)
-Date: Mon, 13 Dec 2010 11:09:58 +1000
-Message-ID: <AANLkTimCDac1ZhcE2woxCkMCR2BP7oiTzcsgbb1Bjijb@mail.gmail.com>
-References: <AANLkTimkHLNA_kYKp3P1Qyrass7puqGYzQi3LxQNNV5q@mail.gmail.com>
+From: James Courtier-Dutton <james.dutton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Interlace modes for nouveau and HDMI
+Date: Tue, 14 Dec 2010 05:08:32 +0000
+Message-ID: <AANLkTikOWbunQtY-et3WeomtNAE3PfATh8PKbtr256jY@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <AANLkTimkHLNA_kYKp3P1Qyrass7puqGYzQi3LxQNNV5q@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Giacomo <delleceste@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Dec 12, 2010 at 12:05 AM, Giacomo <delleceste@gmail.com> wrote:
-> Hello.
->
-> In my double-carded ASUS U30JC (nvidia + intel i915) I do the following:
+Hi,
 
-You might want to try the branch in my drm-testing repo
+Does nouveau support interlace modes?
+It seems to filter out interlace modes in this line in nouveau_connector.c:447:
 
-http://git.kernel.org/?p=linux/kernel/git/airlied/drm-testing.git;a=shortlog;h=refs/heads/drm-nvidia-switch
+        list_for_each_entry(mode, &nv_connector->base.probed_modes, head) {
+                if (helper->mode_valid(connector, mode) != MODE_OK ||
+                    (mode->flags & DRM_MODE_FLAG_INTERLACE))
+                        continue;
 
-Has much improvements for gpu switching on intel/nvidia.
+Why does the nouveau driver do this?
 
-Dave.
+Kind Regards
+
+James
