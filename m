@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32406] nouveau fails to send hotplug event to ALSA
  hda hdmi audio
-Date: Wed, 15 Dec 2010 03:22:12 -0800 (PST)
-Message-ID: <20101215112212.C42F513004F@annarchy.freedesktop.org>
+Date: Wed, 15 Dec 2010 03:46:14 -0800 (PST)
+Message-ID: <20101215114614.C6CCC13004D@annarchy.freedesktop.org>
 References: <bug-32406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32406
 
---- Comment #1 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-15 03:22:10 PST ---
-Created an attachment (id=41137)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41137)
-mmio trace of the nvidia module while running "service gdm start"
+--- Comment #2 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-15 03:46:10 PST ---
+Created an attachment (id=41138)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41138)
+mmio trace of the nvidia module loading, and then starting X
 
-mmio trace of the nvidia module while running "service gdm start"
-That is enough to should the needed messages
-[ 4326.778126] HDMI hot plug event: Pin=5 Presence_Detect=1 ELD_Valid=0
-[ 4351.695743] HDMI hot plug event: Pin=5 Presence_Detect=1 ELD_Valid=0
-[ 4352.597993] HDMI hot plug event: Pin=5 Presence_Detect=1 ELD_Valid=1
+The previous trace did not seem to output anything useful.
+This one is better.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
