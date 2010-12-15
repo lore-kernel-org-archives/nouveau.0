@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32406] New: nouveau fails to send hotplug event to
- ALSA hda hdmi audio
-Date: Wed, 15 Dec 2010 02:53:48 -0800 (PST)
-Message-ID: <bug-32406-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32406] nouveau fails to send hotplug event to ALSA
+ hda hdmi audio
+Date: Wed, 15 Dec 2010 03:22:12 -0800 (PST)
+Message-ID: <20101215112212.C42F513004F@annarchy.freedesktop.org>
+References: <bug-32406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-32406-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,25 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32406
 
-           Summary: nouveau fails to send hotplug event to ALSA hda hdmi
-                    audio
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-15 03:22:10 PST ---
+Created an attachment (id=41137)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41137)
+mmio trace of the nvidia module while running "service gdm start"
 
-
-The nvidia driver causes this event
-[ 2250.800276] HDMI hot plug event: Pin=5 Presence_Detect=1 ELD_Valid=1
-The nouveau driver fails to sent this event, and thus the ALSA driver fails to
-update its /proc/asound/card1/eld#1.0  and therefore does not output sound.
+mmio trace of the nvidia module while running "service gdm start"
+That is enough to should the needed messages
+[ 4326.778126] HDMI hot plug event: Pin=5 Presence_Detect=1 ELD_Valid=0
+[ 4351.695743] HDMI hot plug event: Pin=5 Presence_Detect=1 ELD_Valid=0
+[ 4352.597993] HDMI hot plug event: Pin=5 Presence_Detect=1 ELD_Valid=1
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
