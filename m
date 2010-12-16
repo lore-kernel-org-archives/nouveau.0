@@ -1,13 +1,15 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: Re: mesa: Patch that fix/add missing WAIT_RING calls
-Date: Thu, 16 Dec 2010 17:20:58 +0100
-Message-ID: <1292516458.2113.21.camel@Portable-Work>
-References: <AANLkTinj4TObB1Mb9mG3T74OQiyKd+vK1Dk-WYuT6=Qc@mail.gmail.com>
+From: Mikhail Ramendik <mr-eJ/51bLfIl8ox3rIn2DAYQ@public.gmane.org>
+Subject: Re: "Decode videos"
+Date: Thu, 16 Dec 2010 19:28:47 +0000
+Message-ID: <AANLkTikOvVZhzXqFOtBvDhudcP=SL__YvBoRHbY__V1d@mail.gmail.com>
+References: <AANLkTimLWGd5Qp8ARTUy5ru8Uwm_H2=B-0nCAys4yK3W@mail.gmail.com>
+	<AANLkTikufPCJWBMJt2A6yRzA9q2bH-x9zf4KJ6+WySHB@mail.gmail.com>
+	<20101206200707.4793a30a@amd64linuxmsi.rentzhouse.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTinj4TObB1Mb9mG3T74OQiyKd+vK1Dk-WYuT6=Qc-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20101206200707.4793a30a-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,39 +19,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Michel,
+On 7 December 2010 01:07, Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 
-had a short look on this, as far as i can tell at the time the patch
-looks fairly good and we really need this checks.
+> Initially I would say XVMC. =A0VDPAU expects full hw bitstream
+> decode. =A0XVMC only does decode starting at idct/mb. =A0I am guessing it
+> is possible to support VDPAU by doing the earlier stages in software
+> then handling the reset to hw. =A0Well, unless someone figures out some
+> way to handle the full pipeline in hw via shaders which is something
+> I have no time or knowledge.
 
-Some small notes:
+Just had an idea - perhaps VAAPI would be easier to support than VDPAU?
 
-1. In loops with fixed iterations the WAIT_RING should be called before
-the loop, not inside. I think it is ok if we waste a few pushbuf entries
-to avoid calling libdrm too often.
-
-See for example nvfx_push_vbo and nvfx_render_prim.
-
-2. You decreased the size of the checks in several places. We should
-review all of them before pushing this changes. I remember some of them
-had some offset for some crude reason. I will review them by this
-weekend if no one does it earlier.
-
--- lynxeye
+The main thing would probably be h264, as that is the only format
+which some modern CPUs are not strong enough to decode.
 
 
-Am Donnerstag, den 16.12.2010, 12:22 +0100 schrieb Michel Hermier:
-> Hi,
-> While trying to run a 3D app I needed to modify/add some WAIT_RING
-> calls so the push buffer is properly checked, before we try to blindly
-> push to it (sine OUT_RING don't perform this checks yet, I have a
-> small patch for that for libdrm).
-> I allready discussed about it with lynxeye and shining on IRC.
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+-- =
+
+Yours, Mikhail Ramendik
+
+Unless explicitly stated, all opinions in my mail are my own and do
+not reflect the views of any organization
