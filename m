@@ -1,16 +1,12 @@
-From: James Courtier-Dutton <james.dutton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: "Decode videos"
-Date: Thu, 16 Dec 2010 19:44:06 +0000
-Message-ID: <AANLkTimxkpQKHdg5G2ZY-97_4P4XAZ+UobZHFNF7ZqOf@mail.gmail.com>
-References: <AANLkTimLWGd5Qp8ARTUy5ru8Uwm_H2=B-0nCAys4yK3W@mail.gmail.com>
-	<AANLkTikufPCJWBMJt2A6yRzA9q2bH-x9zf4KJ6+WySHB@mail.gmail.com>
-	<20101206200707.4793a30a@amd64linuxmsi.rentzhouse.lan>
-	<AANLkTikOvVZhzXqFOtBvDhudcP=SL__YvBoRHbY__V1d@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 32453] New: SIGABRT caused by malloc around
+ RegionCreate. Can only reproduce with nouveau not vesa.
+Date: Thu, 16 Dec 2010 13:27:18 -0800 (PST)
+Message-ID: <bug-32453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTikOvVZhzXqFOtBvDhudcP=SL__YvBoRHbY__V1d-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +16,66 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Mikhail Ramendik <mr-eJ/51bLfIl8ox3rIn2DAYQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTYgRGVjZW1iZXIgMjAxMCAxOToyOCwgTWlraGFpbCBSYW1lbmRpayA8bXJAcmFtZW5kaWsu
-cnU+IHdyb3RlOgo+IE9uIDcgRGVjZW1iZXIgMjAxMCAwMTowNywgSmltbXkgUmVudHogPGpiMTdi
-c29tZUBnbWFpbC5jb20+IHdyb3RlOgo+Cj4+IEluaXRpYWxseSBJIHdvdWxkIHNheSBYVk1DLiDC
-oFZEUEFVIGV4cGVjdHMgZnVsbCBodyBiaXRzdHJlYW0KPj4gZGVjb2RlLiDCoFhWTUMgb25seSBk
-b2VzIGRlY29kZSBzdGFydGluZyBhdCBpZGN0L21iLiDCoEkgYW0gZ3Vlc3NpbmcgaXQKPj4gaXMg
-cG9zc2libGUgdG8gc3VwcG9ydCBWRFBBVSBieSBkb2luZyB0aGUgZWFybGllciBzdGFnZXMgaW4g
-c29mdHdhcmUKPj4gdGhlbiBoYW5kbGluZyB0aGUgcmVzZXQgdG8gaHcuIMKgV2VsbCwgdW5sZXNz
-IHNvbWVvbmUgZmlndXJlcyBvdXQgc29tZQo+PiB3YXkgdG8gaGFuZGxlIHRoZSBmdWxsIHBpcGVs
-aW5lIGluIGh3IHZpYSBzaGFkZXJzIHdoaWNoIGlzIHNvbWV0aGluZwo+PiBJIGhhdmUgbm8gdGlt
-ZSBvciBrbm93bGVkZ2UuCj4KPiBKdXN0IGhhZCBhbiBpZGVhIC0gcGVyaGFwcyBWQUFQSSB3b3Vs
-ZCBiZSBlYXNpZXIgdG8gc3VwcG9ydCB0aGFuIFZEUEFVPwo+Cj4gVGhlIG1haW4gdGhpbmcgd291
-bGQgcHJvYmFibHkgYmUgaDI2NCwgYXMgdGhhdCBpcyB0aGUgb25seSBmb3JtYXQKPiB3aGljaCBz
-b21lIG1vZGVybiBDUFVzIGFyZSBub3Qgc3Ryb25nIGVub3VnaCB0byBkZWNvZGUuCj4KClRoYXQg
-aXMgY29ycmVjdC4gWFZNQyBvbmx5IGRvZXMgTVBFRzIgdGhhdCBtb3N0IFBDcyBjYW4gZG8gd2l0
-aCBqdXN0ClhWLCBhbmQgbm91dmVhdSBhbHJlYWR5IHN1cHBvcnRzIFhWLgpJIGNhbiBydW4gbm91
-dmVhdSBvbiBhIEFUT00tSU9OIGJveCB1c2luZyB0aGUgbm91dmVhdSBYViBkcml2ZXIgZm9yCk1Q
-RUcyIFNEIG1vdmllcy4KVkRQQVUgaXMgcmVxdWlyZWQgZm9yIEhEIEgyNjQvTVBFRzQgbW92aWVz
-IGFzIHRoZSBBVE9NLUlPTiBjYW5ub3QgZG8KSEQgSDI2NCB3aXRoIFhWLgoKU28sIGkgYWdyZWUs
-IGdldHRpbmcgbm91dmVhdSB0byBzdXBwb3J0IEgyNjQvTVBFRzQgcGxheWJhY2sgd291bGQgYmUg
-Z29vZC4KSXQgZG9lcyBub3QgZXZlbiBoYXZlIHRvIGJlIHZkcGF1IG9yIHZhYXBpLiBJdCBjb3Vs
-ZCBiZSBhIG5ldyBBUEkgaWYKdGhhdCB3b3VsZCBiZSBlYXNpZXIuClRoZSBpZGN0L21iIHBhcnRz
-IG9mIGRlY29kaW5nIEgyNjQvTVBFRzQgaXMgc3RpbGwgdGhlIG1vc3QgQ1BVCmludGVuc2l2ZSBh
-bmQgYmVzdCB0byBkbyBvbiB0aGUgZ3JhcGhpY3MgY2FyZCBpZiBwb3NzaWJsZS4KRGVjb2Rpbmcg
-dGhlIGJpdHN0cmVhbSBkZWNvZGluZyBpcyBwcm9iYWJseSBPSyB0byBkbyBpbiBzb2Z0d2FyZSBv
-bgp0aGUgQ1BVIGluc3RlYWQgb2YgdGhlIEdQVS4KCktpbmQgUmVnYXJkcwoKSmFtZXMKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=32453
+
+           Summary: SIGABRT caused by malloc around RegionCreate. Can only
+                    reproduce with nouveau not vesa.
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: brandon-Qdl1sq8EXS0@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=41187)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41187)
+Xorg.1.log from the machine
+
+Using git nouveau kernel, libdrm, and nouveau xorg driver as of today on top of
+openSUSE Factory Xorg. 
+
+Backtrace from gdb:
+#0  0x00007ff87fbb6ad5 in raise (sig=<value optimized out>)
+    at ../nptl/sysdeps/unix/sysv/linux/raise.c:64
+#1  0x00007ff87fbb7fd6 in abort () at abort.c:92
+#2  0x00007ff87fbf75da in __malloc_assert (assertion=<value optimized out>, 
+    file=<value optimized out>, line=<value optimized out>, 
+    function=<value optimized out>) at malloc.c:352
+#3  0x00007ff87fbf97a6 in sYSMALLOc (av=0x7ff87feece80, bytes=15335424)
+    at malloc.c:3094
+#4  _int_malloc (av=0x7ff87feece80, bytes=15335424) at malloc.c:4747
+#5  0x00007ff87fbfbc69 in __libc_malloc (bytes=15335424) at malloc.c:3661
+#6  0x00007ff87d146ef4 in exaPrepareAccessReg_mixed (pPixmap=0x1aef1a0, 
+    index=1, pReg=0x0) at exa_migration_mixed.c:203
+#7  0x00007ff87d143602 in exaChangeWindowAttributes (pWin=0x1ad5dc0, mask=1)
+    at exa.c:652
+#8  0x00000000005602d7 in compChangeWindowAttributes (pWin=0x1ad5dc0, mask=1)
+    at compinit.c:114
+#9  0x0000000000436c4d in ChangeWindowAttributes (pWin=<value optimized out>, 
+    vmask=1, vlist=<value optimized out>, client=0xb870d0) at window.c:1459
+#10 0x000000000043cb78 in ProcChangeWindowAttributes (client=0xb870d0)
+    at dispatch.c:693
+#11 0x00000000004428f1 in Dispatch () at dispatch.c:432
+#12 0x0000000000425b5e in main (argc=9, argv=<value optimized out>, 
+    envp=<value optimized out>) at main.c:291
+
+If I use the vesa driver the system comes up fine. Reproducing by launching
+emacs inside of a gnome session.
+
+If I use MALLOC_CHECK_=3 /etc/init.d/xdm restart I can sometimes get Xorg w/
+nouveau to work for a few days before crashing. But, that isn't a real
+solution.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
