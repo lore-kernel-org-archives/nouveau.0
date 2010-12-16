@@ -1,15 +1,16 @@
-From: Mikhail Ramendik <mr-eJ/51bLfIl8ox3rIn2DAYQ@public.gmane.org>
+From: James Courtier-Dutton <james.dutton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: "Decode videos"
-Date: Thu, 16 Dec 2010 19:28:47 +0000
-Message-ID: <AANLkTikOvVZhzXqFOtBvDhudcP=SL__YvBoRHbY__V1d@mail.gmail.com>
+Date: Thu, 16 Dec 2010 19:44:06 +0000
+Message-ID: <AANLkTimxkpQKHdg5G2ZY-97_4P4XAZ+UobZHFNF7ZqOf@mail.gmail.com>
 References: <AANLkTimLWGd5Qp8ARTUy5ru8Uwm_H2=B-0nCAys4yK3W@mail.gmail.com>
 	<AANLkTikufPCJWBMJt2A6yRzA9q2bH-x9zf4KJ6+WySHB@mail.gmail.com>
 	<20101206200707.4793a30a@amd64linuxmsi.rentzhouse.lan>
+	<AANLkTikOvVZhzXqFOtBvDhudcP=SL__YvBoRHbY__V1d@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20101206200707.4793a30a-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
+In-Reply-To: <AANLkTikOvVZhzXqFOtBvDhudcP=SL__YvBoRHbY__V1d-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,28 +20,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Mikhail Ramendik <mr-eJ/51bLfIl8ox3rIn2DAYQ@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 7 December 2010 01:07, Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-
-> Initially I would say XVMC. =A0VDPAU expects full hw bitstream
-> decode. =A0XVMC only does decode starting at idct/mb. =A0I am guessing it
-> is possible to support VDPAU by doing the earlier stages in software
-> then handling the reset to hw. =A0Well, unless someone figures out some
-> way to handle the full pipeline in hw via shaders which is something
-> I have no time or knowledge.
-
-Just had an idea - perhaps VAAPI would be easier to support than VDPAU?
-
-The main thing would probably be h264, as that is the only format
-which some modern CPUs are not strong enough to decode.
-
-
--- =
-
-Yours, Mikhail Ramendik
-
-Unless explicitly stated, all opinions in my mail are my own and do
-not reflect the views of any organization
+T24gMTYgRGVjZW1iZXIgMjAxMCAxOToyOCwgTWlraGFpbCBSYW1lbmRpayA8bXJAcmFtZW5kaWsu
+cnU+IHdyb3RlOgo+IE9uIDcgRGVjZW1iZXIgMjAxMCAwMTowNywgSmltbXkgUmVudHogPGpiMTdi
+c29tZUBnbWFpbC5jb20+IHdyb3RlOgo+Cj4+IEluaXRpYWxseSBJIHdvdWxkIHNheSBYVk1DLiDC
+oFZEUEFVIGV4cGVjdHMgZnVsbCBodyBiaXRzdHJlYW0KPj4gZGVjb2RlLiDCoFhWTUMgb25seSBk
+b2VzIGRlY29kZSBzdGFydGluZyBhdCBpZGN0L21iLiDCoEkgYW0gZ3Vlc3NpbmcgaXQKPj4gaXMg
+cG9zc2libGUgdG8gc3VwcG9ydCBWRFBBVSBieSBkb2luZyB0aGUgZWFybGllciBzdGFnZXMgaW4g
+c29mdHdhcmUKPj4gdGhlbiBoYW5kbGluZyB0aGUgcmVzZXQgdG8gaHcuIMKgV2VsbCwgdW5sZXNz
+IHNvbWVvbmUgZmlndXJlcyBvdXQgc29tZQo+PiB3YXkgdG8gaGFuZGxlIHRoZSBmdWxsIHBpcGVs
+aW5lIGluIGh3IHZpYSBzaGFkZXJzIHdoaWNoIGlzIHNvbWV0aGluZwo+PiBJIGhhdmUgbm8gdGlt
+ZSBvciBrbm93bGVkZ2UuCj4KPiBKdXN0IGhhZCBhbiBpZGVhIC0gcGVyaGFwcyBWQUFQSSB3b3Vs
+ZCBiZSBlYXNpZXIgdG8gc3VwcG9ydCB0aGFuIFZEUEFVPwo+Cj4gVGhlIG1haW4gdGhpbmcgd291
+bGQgcHJvYmFibHkgYmUgaDI2NCwgYXMgdGhhdCBpcyB0aGUgb25seSBmb3JtYXQKPiB3aGljaCBz
+b21lIG1vZGVybiBDUFVzIGFyZSBub3Qgc3Ryb25nIGVub3VnaCB0byBkZWNvZGUuCj4KClRoYXQg
+aXMgY29ycmVjdC4gWFZNQyBvbmx5IGRvZXMgTVBFRzIgdGhhdCBtb3N0IFBDcyBjYW4gZG8gd2l0
+aCBqdXN0ClhWLCBhbmQgbm91dmVhdSBhbHJlYWR5IHN1cHBvcnRzIFhWLgpJIGNhbiBydW4gbm91
+dmVhdSBvbiBhIEFUT00tSU9OIGJveCB1c2luZyB0aGUgbm91dmVhdSBYViBkcml2ZXIgZm9yCk1Q
+RUcyIFNEIG1vdmllcy4KVkRQQVUgaXMgcmVxdWlyZWQgZm9yIEhEIEgyNjQvTVBFRzQgbW92aWVz
+IGFzIHRoZSBBVE9NLUlPTiBjYW5ub3QgZG8KSEQgSDI2NCB3aXRoIFhWLgoKU28sIGkgYWdyZWUs
+IGdldHRpbmcgbm91dmVhdSB0byBzdXBwb3J0IEgyNjQvTVBFRzQgcGxheWJhY2sgd291bGQgYmUg
+Z29vZC4KSXQgZG9lcyBub3QgZXZlbiBoYXZlIHRvIGJlIHZkcGF1IG9yIHZhYXBpLiBJdCBjb3Vs
+ZCBiZSBhIG5ldyBBUEkgaWYKdGhhdCB3b3VsZCBiZSBlYXNpZXIuClRoZSBpZGN0L21iIHBhcnRz
+IG9mIGRlY29kaW5nIEgyNjQvTVBFRzQgaXMgc3RpbGwgdGhlIG1vc3QgQ1BVCmludGVuc2l2ZSBh
+bmQgYmVzdCB0byBkbyBvbiB0aGUgZ3JhcGhpY3MgY2FyZCBpZiBwb3NzaWJsZS4KRGVjb2Rpbmcg
+dGhlIGJpdHN0cmVhbSBkZWNvZGluZyBpcyBwcm9iYWJseSBPSyB0byBkbyBpbiBzb2Z0d2FyZSBv
+bgp0aGUgQ1BVIGluc3RlYWQgb2YgdGhlIEdQVS4KCktpbmQgUmVnYXJkcwoKSmFtZXMKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
