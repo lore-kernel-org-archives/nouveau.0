@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32453] SIGABRT caused by malloc around RegionCreate.
  Can only reproduce with nouveau not vesa.
-Date: Thu, 16 Dec 2010 13:27:48 -0800 (PST)
-Message-ID: <20101216212748.6676913004D@annarchy.freedesktop.org>
+Date: Thu, 16 Dec 2010 13:28:15 -0800 (PST)
+Message-ID: <20101216212815.D62C513004D@annarchy.freedesktop.org>
 References: <bug-32453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32453
 
---- Comment #1 from Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> 2010-12-16 13:27:48 PST ---
-Created an attachment (id=41188)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41188)
-dmesg
+--- Comment #2 from Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> 2010-12-16 13:28:14 PST ---
+Created an attachment (id=41189)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41189)
+gdb backtrace
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
