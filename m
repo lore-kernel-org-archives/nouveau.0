@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32406] nouveau fails to send hotplug event to ALSA
  hda hdmi audio
-Date: Wed, 15 Dec 2010 16:17:56 -0800 (PST)
-Message-ID: <20101216001756.3C59013004D@annarchy.freedesktop.org>
+Date: Thu, 16 Dec 2010 03:07:38 -0800 (PST)
+Message-ID: <20101216110738.B8E9713004E@annarchy.freedesktop.org>
 References: <bug-32406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32406
 
---- Comment #3 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-15 16:17:55 PST ---
-I tried the following and it worked:
-
-I modified the patch. nv50_sor.c::nv50_sor_create(), remove the "||
-dev_priv->chipset == 0xac" case so that nva3_audio_init is called for your
-card.
-
-I now get the hotplug event, and the ALSA audio picks up the HDMI output.
-I will test actual audio tomorrow.
+--- Comment #4 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-16 03:07:36 PST ---
+Update: It does not actually work from boot.
+If you modprobe the nouveau module after boot, it works, if nouveau loads
+during boot up, it does not send the "hot plug" event.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
