@@ -1,14 +1,10 @@
 From: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: mesa: Patch that fix/add missing WAIT_RING calls
-Date: Fri, 17 Dec 2010 10:23:12 +0100
-Message-ID: <AANLkTinc=jqbXdU2KKrS8DWT4bBd1ScxWWJN6K_qGs22@mail.gmail.com>
-References: <AANLkTinj4TObB1Mb9mG3T74OQiyKd+vK1Dk-WYuT6=Qc@mail.gmail.com>
-	<1292516458.2113.21.camel@Portable-Work>
+Subject: libdrm: Make some kernel structures fully initialized
+Date: Fri, 17 Dec 2010 13:37:49 +0100
+Message-ID: <AANLkTikhxe79ytfkVG3W13K+wsemAWErqWX512ghNH-3@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=90e6ba4fbe2e2d4ab704979a703e
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1292516458.2113.21.camel@Portable-Work>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +17,109 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-2010/12/16 Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>:
-> Hi Michel,
->
-> had a short look on this, as far as i can tell at the time the patch
-> looks fairly good and we really need this checks.
->
-> Some small notes:
->
-> 1. In loops with fixed iterations the WAIT_RING should be called before
-> the loop, not inside. I think it is ok if we waste a few pushbuf entries
-> to avoid calling libdrm too often.
->
-> See for example nvfx_push_vbo and nvfx_render_prim.
->
+--90e6ba4fbe2e2d4ab704979a703e
+Content-Type: text/plain; charset=UTF-8
 
-Calling WAIT_RING is almost a NOOP since most of the function is
-inlined in the short path (more likely to happen, else the buffer is
-too really small).
-So wasting is few pushbuffer entries is ok for me, but since it is
-almost a NOOP, I see it as a bad practice. I mean, if you group the
-atomical RING command together, one can hardly make a misstake.
-On IRC I was advised to change most of the WAIT_RING to BEGIN_RING,
-that as quite some sence to me. Even if I guess the subchannel was
-binded explicitly for performance reasons or because it's the only
-subchannel to support the 3D objects (I didn't checked, but I guess
-it's a pure convention), lets be in the safe way, if one day we remove
-the explicit bind. While I agree it as some cost to call BEGIN_RING,
-it still sounds quite resonable, since it is inlined.
+Hi,
+A patch that initialise kernel structures. In addition  to reduce the
+noise of valgrind when running piglit tests, it may be also
+interesting to have these structures fully initialised for the future
+in case of some kernel ioctrl changes.
 
+--90e6ba4fbe2e2d4ab704979a703e
+Content-Type: application/octet-stream;
+	name="0001-nouveau-initialise-kernel-request-structures.patch"
+Content-Disposition: attachment;
+	filename="0001-nouveau-initialise-kernel-request-structures.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_ght2ap7f0
 
->
-> 2. You decreased the size of the checks in several places. We should
-> review all of them before pushing this changes. I remember some of them
-> had some offset for some crude reason. I will review them by this
-> weekend if no one does it earlier.
->
+RnJvbSAxYzQyNjY4ZTllYWMwZTM2YzZhZWU3MjI5MWNhNmQzNThlMDFhNGU1IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBNaWNoZWwgSGVybWllciA8aGVybWllckBmcnVnYWx3YXJlLm9y
+Zz4KRGF0ZTogRnJpLCAxNyBEZWMgMjAxMCAxMzoyNTo0OCArMDEwMApTdWJqZWN0OiBbUEFUQ0hd
+IG5vdXZlYXU6IGluaXRpYWxpc2Uga2VybmVsIHJlcXVlc3Qgc3RydWN0dXJlcwoKLS0tCiBub3V2
+ZWF1L25vdXZlYXVfYm8uYyAgICAgIHwgICAxNCArKysrKysrLS0tLS0tLQogbm91dmVhdS9ub3V2
+ZWF1X2RldmljZS5jICB8ICAgIDQgKystLQogbm91dmVhdS9ub3V2ZWF1X3B1c2hidWYuYyB8ICAg
+IDQgKystLQogMyBmaWxlcyBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMo
+LSkKCmRpZmYgLS1naXQgYS9ub3V2ZWF1L25vdXZlYXVfYm8uYyBiL25vdXZlYXUvbm91dmVhdV9i
+by5jCmluZGV4IGQ2YmIyMmQuLmU2ZTNlOTggMTAwNjQ0Ci0tLSBhL25vdXZlYXUvbm91dmVhdV9i
+by5jCisrKyBiL25vdXZlYXUvbm91dmVhdV9iby5jCkBAIC05NCw3ICs5NCw3IEBAIHN0YXRpYyB2
+b2lkCiBub3V2ZWF1X2JvX2tmcmVlKHN0cnVjdCBub3V2ZWF1X2JvX3ByaXYgKm52Ym8pCiB7CiAJ
+c3RydWN0IG5vdXZlYXVfZGV2aWNlX3ByaXYgKm52ZGV2ID0gbm91dmVhdV9kZXZpY2UobnZiby0+
+YmFzZS5kZXZpY2UpOwotCXN0cnVjdCBkcm1fZ2VtX2Nsb3NlIHJlcTsKKwlzdHJ1Y3QgZHJtX2dl
+bV9jbG9zZSByZXEgPSB7IDAgfTsKIAogCWlmICghbnZiby0+aGFuZGxlKQogCQlyZXR1cm47CkBA
+IC0xMTMsNyArMTEzLDcgQEAgc3RhdGljIGludAogbm91dmVhdV9ib19rYWxsb2Moc3RydWN0IG5v
+dXZlYXVfYm9fcHJpdiAqbnZibywgc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbikKIHsKIAlz
+dHJ1Y3Qgbm91dmVhdV9kZXZpY2VfcHJpdiAqbnZkZXYgPSBub3V2ZWF1X2RldmljZShudmJvLT5i
+YXNlLmRldmljZSk7Ci0Jc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9uZXcgcmVxOworCXN0cnVjdCBk
+cm1fbm91dmVhdV9nZW1fbmV3IHJlcSA9IHsgMCB9OwogCXN0cnVjdCBkcm1fbm91dmVhdV9nZW1f
+aW5mbyAqaW5mbyA9ICZyZXEuaW5mbzsKIAlpbnQgcmV0OwogCkBAIC0yNDEsNyArMjQxLDcgQEAg
+bm91dmVhdV9ib193cmFwKHN0cnVjdCBub3V2ZWF1X2RldmljZSAqZGV2LCB1aW50MzJfdCBoYW5k
+bGUsCiAJCXN0cnVjdCBub3V2ZWF1X2JvICoqYm8pCiB7CiAJc3RydWN0IG5vdXZlYXVfZGV2aWNl
+X3ByaXYgKm52ZGV2ID0gbm91dmVhdV9kZXZpY2UoZGV2KTsKLQlzdHJ1Y3QgZHJtX25vdXZlYXVf
+Z2VtX2luZm8gcmVxOworCXN0cnVjdCBkcm1fbm91dmVhdV9nZW1faW5mbyByZXEgPSB7IDAgfTsK
+IAlzdHJ1Y3Qgbm91dmVhdV9ib19wcml2ICpudmJvOwogCWludCByZXQ7CiAKQEAgLTI3NCw3ICsy
+NzQsNyBAQCBub3V2ZWF1X2JvX2hhbmRsZV9nZXQoc3RydWN0IG5vdXZlYXVfYm8gKmJvLCB1aW50
+MzJfdCAqaGFuZGxlKQogCQlyZXR1cm4gLUVJTlZBTDsKIAogCWlmICghbnZiby0+Z2xvYmFsX2hh
+bmRsZSkgewotCQlzdHJ1Y3QgZHJtX2dlbV9mbGluayByZXE7CisJCXN0cnVjdCBkcm1fZ2VtX2Zs
+aW5rIHJlcSA9IHsgMCB9OwogIAogCQlyZXQgPSBub3V2ZWF1X2JvX2thbGxvYyhudmJvLCBOVUxM
+KTsKIAkJaWYgKHJldCkKQEAgLTMwMCw3ICszMDAsNyBAQCBub3V2ZWF1X2JvX2hhbmRsZV9yZWYo
+c3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYsIHVpbnQzMl90IGhhbmRsZSwKIHsKIAlzdHJ1Y3Qg
+bm91dmVhdV9kZXZpY2VfcHJpdiAqbnZkZXYgPSBub3V2ZWF1X2RldmljZShkZXYpOwogCXN0cnVj
+dCBub3V2ZWF1X2JvX3ByaXYgKm52Ym87Ci0Jc3RydWN0IGRybV9nZW1fb3BlbiByZXE7CisJc3Ry
+dWN0IGRybV9nZW1fb3BlbiByZXEgPSB7IDAgfTsKIAlpbnQgcmV0OwogCiAJcmVxLm5hbWUgPSBo
+YW5kbGU7CkBAIC0zNjUsNyArMzY1LDcgQEAgbm91dmVhdV9ib193YWl0KHN0cnVjdCBub3V2ZWF1
+X2JvICpibywgaW50IGNwdV93cml0ZSwgaW50IG5vX3dhaXQsIGludCBub19ibG9jaykKIHsKIAlz
+dHJ1Y3Qgbm91dmVhdV9kZXZpY2VfcHJpdiAqbnZkZXYgPSBub3V2ZWF1X2RldmljZShiby0+ZGV2
+aWNlKTsKIAlzdHJ1Y3Qgbm91dmVhdV9ib19wcml2ICpudmJvID0gbm91dmVhdV9ibyhibyk7Ci0J
+c3RydWN0IGRybV9ub3V2ZWF1X2dlbV9jcHVfcHJlcCByZXE7CisJc3RydWN0IGRybV9ub3V2ZWF1
+X2dlbV9jcHVfcHJlcCByZXEgPSB7IDAgfTsKIAlpbnQgcmV0OwogCiAJaWYgKCFudmJvLT5nbG9i
+YWxfaGFuZGxlICYmICFudmJvLT53cml0ZV9tYXJrZXIgJiYgIWNwdV93cml0ZSkKQEAgLTQ2Miw3
+ICs0NjIsNyBAQCBub3V2ZWF1X2JvX3VubWFwKHN0cnVjdCBub3V2ZWF1X2JvICpibykKIAogCWlm
+IChiby0+bWFwICYmICFudmJvLT5zeXNtZW0gJiYgbnZiby0+bWFwX3JlZmNudCkgewogCQlzdHJ1
+Y3Qgbm91dmVhdV9kZXZpY2VfcHJpdiAqbnZkZXYgPSBub3V2ZWF1X2RldmljZShiby0+ZGV2aWNl
+KTsKLQkJc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9jcHVfZmluaSByZXE7CisJCXN0cnVjdCBkcm1f
+bm91dmVhdV9nZW1fY3B1X2ZpbmkgcmVxID0geyAwIH07CiAKIAkJcmVxLmhhbmRsZSA9IG52Ym8t
+PmhhbmRsZTsKIAkJZHJtQ29tbWFuZFdyaXRlKG52ZGV2LT5mZCwgRFJNX05PVVZFQVVfR0VNX0NQ
+VV9GSU5JLApkaWZmIC0tZ2l0IGEvbm91dmVhdS9ub3V2ZWF1X2RldmljZS5jIGIvbm91dmVhdS9u
+b3V2ZWF1X2RldmljZS5jCmluZGV4IDJmZmNiYTYuLmFkNGY3OGQgMTAwNjQ0Ci0tLSBhL25vdXZl
+YXUvbm91dmVhdV9kZXZpY2UuYworKysgYi9ub3V2ZWF1L25vdXZlYXVfZGV2aWNlLmMKQEAgLTE1
+Nyw3ICsxNTcsNyBAQCBub3V2ZWF1X2RldmljZV9nZXRfcGFyYW0oc3RydWN0IG5vdXZlYXVfZGV2
+aWNlICpkZXYsCiAJCQkgdWludDY0X3QgcGFyYW0sIHVpbnQ2NF90ICp2YWx1ZSkKIHsKIAlzdHJ1
+Y3Qgbm91dmVhdV9kZXZpY2VfcHJpdiAqbnZkZXYgPSBub3V2ZWF1X2RldmljZShkZXYpOwotCXN0
+cnVjdCBkcm1fbm91dmVhdV9nZXRwYXJhbSBnOworCXN0cnVjdCBkcm1fbm91dmVhdV9nZXRwYXJh
+bSBnID0geyAwIH07CiAJaW50IHJldDsKIAogCWlmICghbnZkZXYgfHwgIXZhbHVlKQpAQCAtMTc4
+LDcgKzE3OCw3IEBAIG5vdXZlYXVfZGV2aWNlX3NldF9wYXJhbShzdHJ1Y3Qgbm91dmVhdV9kZXZp
+Y2UgKmRldiwKIAkJCSB1aW50NjRfdCBwYXJhbSwgdWludDY0X3QgdmFsdWUpCiB7CiAJc3RydWN0
+IG5vdXZlYXVfZGV2aWNlX3ByaXYgKm52ZGV2ID0gbm91dmVhdV9kZXZpY2UoZGV2KTsKLQlzdHJ1
+Y3QgZHJtX25vdXZlYXVfc2V0cGFyYW0gczsKKwlzdHJ1Y3QgZHJtX25vdXZlYXVfc2V0cGFyYW0g
+cyA9IHsgMCB9OwogCWludCByZXQ7CiAKIAlpZiAoIW52ZGV2KQpkaWZmIC0tZ2l0IGEvbm91dmVh
+dS9ub3V2ZWF1X3B1c2hidWYuYyBiL25vdXZlYXUvbm91dmVhdV9wdXNoYnVmLmMKaW5kZXggOTA4
+MzZiYy4uYmNmM2NhZSAxMDA2NDQKLS0tIGEvbm91dmVhdS9ub3V2ZWF1X3B1c2hidWYuYworKysg
+Yi9ub3V2ZWF1L25vdXZlYXVfcHVzaGJ1Zi5jCkBAIC04MCw3ICs4MCw3IEBAIG5vdXZlYXVfcHVz
+aGJ1Zl9maW5pX2NhbGwoc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbikKIHN0YXRpYyBpbnQK
+IG5vdXZlYXVfcHVzaGJ1Zl9pbml0X2NhbGwoc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwg
+aW50IGJ1Zl9zaXplKQogewotCXN0cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1ZiByZXE7CisJ
+c3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmIHJlcSA9IHsgMCB9OwogCXN0cnVjdCBub3V2
+ZWF1X2NoYW5uZWxfcHJpdiAqbnZjaGFuID0gbm91dmVhdV9jaGFubmVsKGNoYW4pOwogCXN0cnVj
+dCBub3V2ZWF1X3B1c2hidWZfcHJpdiAqbnZwYiA9ICZudmNoYW4tPnBiOwogCXN0cnVjdCBub3V2
+ZWF1X2RldmljZSAqZGV2ID0gY2hhbi0+ZGV2aWNlOwpAQCAtMjI0LDcgKzIyNCw3IEBAIG5vdXZl
+YXVfcHVzaGJ1Zl9mbHVzaChzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpjaGFuLCB1bnNpZ25lZCBt
+aW4pCiAJc3RydWN0IG5vdXZlYXVfZGV2aWNlX3ByaXYgKm52ZGV2ID0gbm91dmVhdV9kZXZpY2Uo
+Y2hhbi0+ZGV2aWNlKTsKIAlzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsX3ByaXYgKm52Y2hhbiA9IG5v
+dXZlYXVfY2hhbm5lbChjaGFuKTsKIAlzdHJ1Y3Qgbm91dmVhdV9wdXNoYnVmX3ByaXYgKm52cGIg
+PSAmbnZjaGFuLT5wYjsKLQlzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWYgcmVxOworCXN0
+cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1ZiByZXEgPSB7IDAgfTsKIAl1bnNpZ25lZCBpOwog
+CWludCByZXQ7CiAKLS0gCjEuNy4zLjMKCg==
+--90e6ba4fbe2e2d4ab704979a703e
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Review them ;) I'm quite confident since I used one game (using quake
-engine) for around 45 minutes before quitting cleanly, while in the
-past it was crashing randomly ine less then 1 minutes when huge vertex
-loads happened ;)
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--90e6ba4fbe2e2d4ab704979a703e--
