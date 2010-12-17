@@ -1,17 +1,18 @@
-From: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Mikhail Ramendik <mr-eJ/51bLfIl8ox3rIn2DAYQ@public.gmane.org>
 Subject: Re: "Decode videos"
-Date: Thu, 16 Dec 2010 20:10:11 -0500
-Message-ID: <20101216201011.156e62ab@amd64linuxmsi.rentzhouse.lan>
+Date: Fri, 17 Dec 2010 01:46:27 +0000
+Message-ID: <AANLkTik=YaHaixeJWmwJTH-vPyyzrwtn3DeY7O767Oi=@mail.gmail.com>
 References: <AANLkTimLWGd5Qp8ARTUy5ru8Uwm_H2=B-0nCAys4yK3W@mail.gmail.com>
 	<AANLkTikufPCJWBMJt2A6yRzA9q2bH-x9zf4KJ6+WySHB@mail.gmail.com>
 	<20101206200707.4793a30a@amd64linuxmsi.rentzhouse.lan>
 	<AANLkTikOvVZhzXqFOtBvDhudcP=SL__YvBoRHbY__V1d@mail.gmail.com>
 	<AANLkTimxkpQKHdg5G2ZY-97_4P4XAZ+UobZHFNF7ZqOf@mail.gmail.com>
+	<20101216201011.156e62ab@amd64linuxmsi.rentzhouse.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTimxkpQKHdg5G2ZY-97_4P4XAZ+UobZHFNF7ZqOf-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20101216201011.156e62ab-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,52 +22,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: James Courtier-Dutton <james.dutton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, James Courtier-Dutton <james.dutton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAxNiBEZWMgMjAxMCAxOTo0NDowNiArMDAwMApKYW1lcyBDb3VydGllci1EdXR0b24g
-PGphbWVzLmR1dHRvbkBnbWFpbC5jb20+IHdyb3RlOgoKPiBPbiAxNiBEZWNlbWJlciAyMDEwIDE5
-OjI4LCBNaWtoYWlsIFJhbWVuZGlrIDxtckByYW1lbmRpay5ydT4gd3JvdGU6Cj4gPiBPbiA3IERl
-Y2VtYmVyIDIwMTAgMDE6MDcsIEppbW15IFJlbnR6IDxqYjE3YnNvbWVAZ21haWwuY29tPiB3cm90
-ZToKPiA+Cj4gPj4gSW5pdGlhbGx5IEkgd291bGQgc2F5IFhWTUMuIMKgVkRQQVUgZXhwZWN0cyBm
-dWxsIGh3IGJpdHN0cmVhbQo+ID4+IGRlY29kZS4gwqBYVk1DIG9ubHkgZG9lcyBkZWNvZGUgc3Rh
-cnRpbmcgYXQgaWRjdC9tYi4gwqBJIGFtIGd1ZXNzaW5nCj4gPj4gaXQgaXMgcG9zc2libGUgdG8g
-c3VwcG9ydCBWRFBBVSBieSBkb2luZyB0aGUgZWFybGllciBzdGFnZXMgaW4KPiA+PiBzb2Z0d2Fy
-ZSB0aGVuIGhhbmRsaW5nIHRoZSByZXNldCB0byBody4gwqBXZWxsLCB1bmxlc3Mgc29tZW9uZQo+
-ID4+IGZpZ3VyZXMgb3V0IHNvbWUgd2F5IHRvIGhhbmRsZSB0aGUgZnVsbCBwaXBlbGluZSBpbiBo
-dyB2aWEgc2hhZGVycwo+ID4+IHdoaWNoIGlzIHNvbWV0aGluZyBJIGhhdmUgbm8gdGltZSBvciBr
-bm93bGVkZ2UuCj4gPgo+ID4gSnVzdCBoYWQgYW4gaWRlYSAtIHBlcmhhcHMgVkFBUEkgd291bGQg
-YmUgZWFzaWVyIHRvIHN1cHBvcnQgdGhhbgo+ID4gVkRQQVU/Cj4gPgo+ID4gVGhlIG1haW4gdGhp
-bmcgd291bGQgcHJvYmFibHkgYmUgaDI2NCwgYXMgdGhhdCBpcyB0aGUgb25seSBmb3JtYXQKPiA+
-IHdoaWNoIHNvbWUgbW9kZXJuIENQVXMgYXJlIG5vdCBzdHJvbmcgZW5vdWdoIHRvIGRlY29kZS4K
-PiA+Cj4gCj4gVGhhdCBpcyBjb3JyZWN0LiBYVk1DIG9ubHkgZG9lcyBNUEVHMiB0aGF0IG1vc3Qg
-UENzIGNhbiBkbyB3aXRoIGp1c3QKPiBYViwgYW5kIG5vdXZlYXUgYWxyZWFkeSBzdXBwb3J0cyBY
-Vi4KPiBJIGNhbiBydW4gbm91dmVhdSBvbiBhIEFUT00tSU9OIGJveCB1c2luZyB0aGUgbm91dmVh
-dSBYViBkcml2ZXIgZm9yCj4gTVBFRzIgU0QgbW92aWVzLgo+IFZEUEFVIGlzIHJlcXVpcmVkIGZv
-ciBIRCBIMjY0L01QRUc0IG1vdmllcyBhcyB0aGUgQVRPTS1JT04gY2Fubm90IGRvCj4gSEQgSDI2
-NCB3aXRoIFhWLgo+IAo+IFNvLCBpIGFncmVlLCBnZXR0aW5nIG5vdXZlYXUgdG8gc3VwcG9ydCBI
-MjY0L01QRUc0IHBsYXliYWNrIHdvdWxkIGJlCj4gZ29vZC4gSXQgZG9lcyBub3QgZXZlbiBoYXZl
-IHRvIGJlIHZkcGF1IG9yIHZhYXBpLiBJdCBjb3VsZCBiZSBhIG5ldwo+IEFQSSBpZiB0aGF0IHdv
-dWxkIGJlIGVhc2llci4KPiBUaGUgaWRjdC9tYiBwYXJ0cyBvZiBkZWNvZGluZyBIMjY0L01QRUc0
-IGlzIHN0aWxsIHRoZSBtb3N0IENQVQo+IGludGVuc2l2ZSBhbmQgYmVzdCB0byBkbyBvbiB0aGUg
-Z3JhcGhpY3MgY2FyZCBpZiBwb3NzaWJsZS4KPiBEZWNvZGluZyB0aGUgYml0c3RyZWFtIGRlY29k
-aW5nIGlzIHByb2JhYmx5IE9LIHRvIGRvIGluIHNvZnR3YXJlIG9uCj4gdGhlIENQVSBpbnN0ZWFk
-IG9mIHRoZSBHUFUuCj4gCj4gS2luZCBSZWdhcmRzCj4gCj4gSmFtZXMKClllcywgTVBFRzIgYWNj
-ZWwgaXNuJ3QgcmVhbGx5IHVzZWZ1bCBjdXJyZW50bHkuICBJdCBpcyBqdXN0IHRoYXQKSSByZSB0
-aGF0IHN0dWZmIGEgbG9uZyB0aW1lIGFnbyBmb3IgcGxheWluZyAxMDgwaSBtcGVnMiBoZC4gIEkg
-bmVlZGVkIGl0CmZvciBteSBYUDE3MDAgQXRobG9uIHNpbmNlIGl0IGNvdWxkbid0IGhhbmRsZSBp
-dCwgZXRjLiAgCgpJdCB3b3VsZCBiZSBuaWNlIGZvciBILjI2NCB0byBiZSBzdXBwb3J0ZWQgaW4g
-bm91dmVhdS4gIFRoZQpwcm9ibGVtIGlzIHRoYXQgc29tZW9uZSB3b3VsZCBoYXZlIHRvIHdyaXRl
-IGEgc2hhZGVyIHRvIHBlcmZvcm0KdGhlIG1iL2lkY3Qgc3RhZ2UuICBJIGd1ZXNzIGl0IGlzIGRv
-YWJsZSwgYnV0IEkgaW1hZ2luZSB0aGF0IHNvbWUgZ3B1cwp3aWxsIGhhdmUgdHJvdWJsZSBydW5u
-aW5nIHRoZSBzaGFkZXJzIHdpdGhvdXQgc2xvd2luZyBkb3duIHRvbwptdWNoLiAgSG93ZXZlciwg
-aXQgaXMgdW5yZWFsaXN0aWMgdG8gdGhpbmsgKGZvciBtZSkgdGhhdCBzb21lb25lIHdpbGwgYmUK
-dHJ5aW5nIHRvIHdhdGNoIGEgSC4yNjQgYmx1LXJheSBvbiBhbiBOVjMwL05WNDAuClRoZSBpZGVh
-bCBILjI2NCBzb2x1dGlvbiBpcyB0byBoYXZlIGZ1bGwgaHcgb2ZmbG9hZCBmb3IgPj0gTlY1MCBj
-YXJkcwp1c2luZyB0aGUgZGVjb2RlIGh3LiAgVGhhdCBjb3VsZCB0YWtlIHNvbWUgdGltZSBzaW5j
-ZSB0aGUgaHcKbWljcm9jb2RlL3Byb2dyYW1zIHdpbGwgbmVlZCB0byBiZSByZSBpZiBJIHJlbWVt
-YmVyIGNvcnJlY3RseS4KCkppbW15Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+On 17 December 2010 01:10, Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
+> It would be nice for H.264 to be supported in nouveau. =A0The
+> problem is that someone would have to write a shader to perform
+> the mb/idct stage. =A0I guess it is doable, but I imagine that some gpus
+> will have trouble running the shaders without slowing down too
+> much. =A0However, it is unrealistic to think (for me) that someone will be
+> trying to watch a H.264 blu-ray on an NV30/NV40.
+> The ideal H.264 solution is to have full hw offload for >=3D NV50 cards
+> using the decode hw. =A0That could take some time since the hw
+> microcode/programs will need to be re if I remember correctly.
+
+Well, h.264 is not just used in Blu Ray. There are satellite HD
+programs and recordings of such. I have some (on UK Freesat), and I
+have an NV44.
+
+In my particular case, I got the NV44 in late 2006 because it had no
+fan (I wanted a quiet system) and it gave a DVI output to my AGP
+motherboard. Upgrading that would mean replacing the motherboard (to
+get PCIx), that means replacing the RAM... and all that to see HD sat?
+
+Or should I just forget acceleration and try to tweak the decoder -
+currently the xine engine in kaffeine - to do HD sat in CPU? It's a 3
+GHz P4 so it might do it, especially since the bitrate is not that
+high and no scaling is required? I could do with 720p if I knew how to
+decode that from a "full HD" stream.
+
+-- =
+
+Yours, Mikhail Ramendik
+
+Unless explicitly stated, all opinions in my mail are my own and do
+not reflect the views of any organization
