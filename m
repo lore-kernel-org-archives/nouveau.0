@@ -1,18 +1,14 @@
-From: Mikhail Ramendik <mr-eJ/51bLfIl8ox3rIn2DAYQ@public.gmane.org>
-Subject: Re: "Decode videos"
-Date: Fri, 17 Dec 2010 01:46:27 +0000
-Message-ID: <AANLkTik=YaHaixeJWmwJTH-vPyyzrwtn3DeY7O767Oi=@mail.gmail.com>
-References: <AANLkTimLWGd5Qp8ARTUy5ru8Uwm_H2=B-0nCAys4yK3W@mail.gmail.com>
-	<AANLkTikufPCJWBMJt2A6yRzA9q2bH-x9zf4KJ6+WySHB@mail.gmail.com>
-	<20101206200707.4793a30a@amd64linuxmsi.rentzhouse.lan>
-	<AANLkTikOvVZhzXqFOtBvDhudcP=SL__YvBoRHbY__V1d@mail.gmail.com>
-	<AANLkTimxkpQKHdg5G2ZY-97_4P4XAZ+UobZHFNF7ZqOf@mail.gmail.com>
-	<20101216201011.156e62ab@amd64linuxmsi.rentzhouse.lan>
+From: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: mesa: Patch that fix/add missing WAIT_RING calls
+Date: Fri, 17 Dec 2010 10:23:12 +0100
+Message-ID: <AANLkTinc=jqbXdU2KKrS8DWT4bBd1ScxWWJN6K_qGs22@mail.gmail.com>
+References: <AANLkTinj4TObB1Mb9mG3T74OQiyKd+vK1Dk-WYuT6=Qc@mail.gmail.com>
+	<1292516458.2113.21.camel@Portable-Work>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20101216201011.156e62ab-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
+In-Reply-To: <1292516458.2113.21.camel@Portable-Work>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,40 +18,47 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, James Courtier-Dutton <james.dutton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 17 December 2010 01:10, Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+2010/12/16 Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>:
+> Hi Michel,
+>
+> had a short look on this, as far as i can tell at the time the patch
+> looks fairly good and we really need this checks.
+>
+> Some small notes:
+>
+> 1. In loops with fixed iterations the WAIT_RING should be called before
+> the loop, not inside. I think it is ok if we waste a few pushbuf entries
+> to avoid calling libdrm too often.
+>
+> See for example nvfx_push_vbo and nvfx_render_prim.
+>
 
-> It would be nice for H.264 to be supported in nouveau. =A0The
-> problem is that someone would have to write a shader to perform
-> the mb/idct stage. =A0I guess it is doable, but I imagine that some gpus
-> will have trouble running the shaders without slowing down too
-> much. =A0However, it is unrealistic to think (for me) that someone will be
-> trying to watch a H.264 blu-ray on an NV30/NV40.
-> The ideal H.264 solution is to have full hw offload for >=3D NV50 cards
-> using the decode hw. =A0That could take some time since the hw
-> microcode/programs will need to be re if I remember correctly.
+Calling WAIT_RING is almost a NOOP since most of the function is
+inlined in the short path (more likely to happen, else the buffer is
+too really small).
+So wasting is few pushbuffer entries is ok for me, but since it is
+almost a NOOP, I see it as a bad practice. I mean, if you group the
+atomical RING command together, one can hardly make a misstake.
+On IRC I was advised to change most of the WAIT_RING to BEGIN_RING,
+that as quite some sence to me. Even if I guess the subchannel was
+binded explicitly for performance reasons or because it's the only
+subchannel to support the 3D objects (I didn't checked, but I guess
+it's a pure convention), lets be in the safe way, if one day we remove
+the explicit bind. While I agree it as some cost to call BEGIN_RING,
+it still sounds quite resonable, since it is inlined.
 
-Well, h.264 is not just used in Blu Ray. There are satellite HD
-programs and recordings of such. I have some (on UK Freesat), and I
-have an NV44.
 
-In my particular case, I got the NV44 in late 2006 because it had no
-fan (I wanted a quiet system) and it gave a DVI output to my AGP
-motherboard. Upgrading that would mean replacing the motherboard (to
-get PCIx), that means replacing the RAM... and all that to see HD sat?
+>
+> 2. You decreased the size of the checks in several places. We should
+> review all of them before pushing this changes. I remember some of them
+> had some offset for some crude reason. I will review them by this
+> weekend if no one does it earlier.
+>
 
-Or should I just forget acceleration and try to tweak the decoder -
-currently the xine engine in kaffeine - to do HD sat in CPU? It's a 3
-GHz P4 so it might do it, especially since the bitrate is not that
-high and no scaling is required? I could do with 720p if I knew how to
-decode that from a "full HD" stream.
-
--- =
-
-Yours, Mikhail Ramendik
-
-Unless explicitly stated, all opinions in my mail are my own and do
-not reflect the views of any organization
+Review them ;) I'm quite confident since I used one game (using quake
+engine) for around 45 minutes before quitting cleanly, while in the
+past it was crashing randomly ine less then 1 minutes when huge vertex
+loads happened ;)
