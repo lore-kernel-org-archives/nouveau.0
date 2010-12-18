@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25265] NV30, resume from suspend2ram fails
-Date: Sat, 18 Dec 2010 05:48:09 -0800 (PST)
-Message-ID: <20101218134809.EADA513004D@annarchy.freedesktop.org>
-References: <bug-25265-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32494] New: [NV46] GPU lockup,
+ switching to software fbcon at startup
+Date: Sat, 18 Dec 2010 05:55:16 -0800 (PST)
+Message-ID: <bug-32494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25265-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +19,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25265
+https://bugs.freedesktop.org/show_bug.cgi?id=32494
 
-Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+           Summary: [NV46] GPU lockup, switching to software fbcon at
+                    startup
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |WONTFIX
 
---- Comment #3 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-12-18 05:48:08 PST ---
-As this NV30 card may be currently dying, I don't think I'll ever use it again,
-so I close this bug.
+Created an attachment (id=41232)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41232)
+kernel log
+
+Having switched to a 7300 GS card to replace my NV30, it was a bit unpleasant
+to see the NV46 not working with nouveau.
+
+"GPU lockup - switching to software fbcon" happens at startup time, long before
+X is started.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
