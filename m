@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32406] nouveau fails to send hotplug event to ALSA
- hda hdmi audio
-Date: Fri, 17 Dec 2010 15:00:58 -0800 (PST)
-Message-ID: <20101217230058.F1A9013004D@annarchy.freedesktop.org>
-References: <bug-32406-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25265] NV30, resume from suspend2ram fails
+Date: Sat, 18 Dec 2010 05:48:09 -0800 (PST)
+Message-ID: <20101218134809.EADA513004D@annarchy.freedesktop.org>
+References: <bug-25265-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32406-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25265-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +20,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=32406
+https://bugs.freedesktop.org/show_bug.cgi?id=25265
 
---- Comment #5 from James <buzzbuzz22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2010-12-17 15:00:58 PST ---
-Further investigation has found the following:
-1) The nouveau driver sets the correct gpio pins and the ALSA audio driver can
-see them set.
-2) The hotplug event only happens when the state of the gpio pins changes.
-3) The ALSA driver creates the hotplug event as a result of detecting the gpio
-pins change.
-4) nouveau modules seems to load before the alsa module, so the hotplug event
-never gets created by the ALSA audio driver because it is not loaded.
-5) If the nouveau driver is loaded after boot, the hotplug event is sent to
-ALSA and it works fine.
-6) If the ALSA driver is loaded after boot, it detects the gpio pins settings
-and acts correctly and works fine.
-7) The problem is only present if the nouveau and alsa module load at boot
-time.
-I am investingating (7) next.
+Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |WONTFIX
+
+--- Comment #3 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-12-18 05:48:08 PST ---
+As this NV30 card may be currently dying, I don't think I'll ever use it again,
+so I close this bug.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
