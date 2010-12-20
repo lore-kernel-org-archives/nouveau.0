@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32494] [NV46] GPU lockup,
- switching to software fbcon at startup
-Date: Mon, 20 Dec 2010 12:03:59 -0800 (PST)
-Message-ID: <20101220200359.7DF2113004D@annarchy.freedesktop.org>
-References: <bug-32494-8800@http.bugs.freedesktop.org/>
+From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Subject: nouveau_bo_busy not supported in kernel anymore
+Date: Mon, 20 Dec 2010 22:20:35 +0100
+Message-ID: <1292880035.3094.266.camel@workstation>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,16 +15,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Dev List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=32494
+Hi all,
 
---- Comment #2 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-12-20 12:03:59 PST ---
-Uploaded mmio trace to mmio.dumps-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org account, of loading the blob and
-then starting X.
+I want to bring up this issue again on the mailing list, since it got
+lost in some irc chat a few days ago.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Deadwood came to the channel and noted that
+25ee1f0e25195729f28b15f33d74db9ec6afd696 removes support for
+NOUVEAU_GEM_CPU_PREP_NOBLOCK in the kernel. This renders nouveau_bo_busy
+quite useless.
+
+Since nvfx depends on this function to avoid render serialization in the
+fragment shader code we should either revert the commit, or if there are
+valid reasons to remove the kernel support, rewrite the frag shader path
+in nvfx.
+
+Also radeon guys use some similar logic in their caching buffer manager
+to implement buffer reuse, which seems to be a possible worthwhile
+optimization for nvfx.
+
+Darktama, can you please comment on the reasons for the kernel change?
+
+-- lynxeye
