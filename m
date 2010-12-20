@@ -1,11 +1,14 @@
-From: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nv04_exa: kill useless WAIT_RING
-Date: Sun, 19 Dec 2010 23:17:34 +0100
-Message-ID: <1292797054-12001-1-git-send-email-chantry.xavier@gmail.com>
+From: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: libdrm: Make some kernel structures fully initialized
+Date: Mon, 20 Dec 2010 09:16:18 +0100
+Message-ID: <AANLkTi=PXpUxCYURUyM+LMqPyacMnw7qD8WrrSTO9gRj@mail.gmail.com>
+References: <AANLkTikhxe79ytfkVG3W13K+wsemAWErqWX512ghNH-3@mail.gmail.com>
+	<AANLkTimetOhzK65U_FaYk-uGXU_-LgthUAaEAXi5GA_8@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <AANLkTimetOhzK65U_FaYk-uGXU_-LgthUAaEAXi5GA_8-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,32 +18,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
----
- src/nv04_exa.c |    2 --
- 1 files changed, 0 insertions(+), 2 deletions(-)
-
-diff --git a/src/nv04_exa.c b/src/nv04_exa.c
-index 2760d4b..bc20ca3 100644
---- a/src/nv04_exa.c
-+++ b/src/nv04_exa.c
-@@ -148,7 +148,6 @@ NV04EXASolid (PixmapPtr pPixmap, int x1, int y1, int x2, int y2)
- 	int width = x2-x1;
- 	int height = y2-y1;
- 
--	WAIT_RING (chan, 3);
- 	BEGIN_RING(chan, rect,
- 		   NV04_GDI_RECTANGLE_TEXT_UNCLIPPED_RECTANGLE_POINT(0), 2);
- 	OUT_RING  (chan, (x1 << 16) | y1);
-@@ -278,7 +277,6 @@ NV04EXACopy(PixmapPtr pDstPixmap, int srcX, int srcY, int dstX, int dstY,
- 		dstY = 0;
- 	}
- 
--	WAIT_RING (chan, 4);
- 	BEGIN_RING(chan, blit, NV01_IMAGE_BLIT_POINT_IN, 3);
- 	OUT_RING  (chan, (srcY << 16) | srcX);
- 	OUT_RING  (chan, (dstY << 16) | dstX);
--- 
-1.7.3.3
+SSBub3RpY2VkIGl0IGFmdGVyIHNlbmRpbmcgdGhlIHBhdGNoLCB0aGUgYXBwcm9wcmlhdGUgQyBh
+bGxvY2F0aW9uCmRlZmluaXRpb24gc2VlbXMgdG8gYmUKICAgIHN0cnVjdCBkcm1fbm91dmVhdV9n
+ZW1fbmV3IHJlcSA9IHt7IDAgfX07CgpUaGVyZSBpcyBhIHByb2JsZW0gd2l0aCB1c2luZyBtZW1z
+ZXQgZm9yIG1lLiBVc2luZyB0aGlzIGRlZmF1bHQKaW5pdGlhbGlzZXIsIHRoZSBjb21waWxlciBz
+aG91bGQgYmUgYWJsZSB0byBmb3JjZSB0byAwIG9ubHkgdGhlIG5lZWRlZAp2YWx1ZXMgd2hlbiBk
+b2luZyBvcHRpbWlzYXRpb25zIHBhc3Nlcywgd2hpbGUgd2l0aCBtZW1zZXQgaXQgbWF5IG5vdApz
+ZWUgdGhlbS4gQW5kIEkgcmVhZCBvbiBzb21lIHdlYnNpdGUgdGhhdCB1c2luZyBtZW1zZXQgaXMg
+YmFkIGZvciBzb21lCm90aGVyIHJlYXNvbnMgYW5kIHRoYXQgdXNpbmcgdGhpcyBjb25zdHJ1Y3Rp
+b24gaXMgdGhlIEMgd2F5IHRvCnByb3Blcmx5IGluaXRpYWxpc2Ugc3RydWN0dXJlcy9hcnJheSAo
+b24gdGhlIHN0YWNrKS4KCjIwMTAvMTIvMTkgWGF2aWVyIENoYW50cnkgPGNoYW50cnkueGF2aWVy
+QGdtYWlsLmNvbT46Cj4gT24gRnJpLCBEZWMgMTcsIDIwMTAgYXQgMTozNyBQTSwgTWljaGVsIEhl
+cm1pZXIKPiA8bWljaGVsLmhlcm1pZXJAZ21haWwuY29tPiB3cm90ZToKPj4gSGksCj4+IEEgcGF0
+Y2ggdGhhdCBpbml0aWFsaXNlIGtlcm5lbCBzdHJ1Y3R1cmVzLiBJbiBhZGRpdGlvbiDCoHRvIHJl
+ZHVjZSB0aGUKPj4gbm9pc2Ugb2YgdmFsZ3JpbmQgd2hlbiBydW5uaW5nIHBpZ2xpdCB0ZXN0cywg
+aXQgbWF5IGJlIGFsc28KPj4gaW50ZXJlc3RpbmcgdG8gaGF2ZSB0aGVzZSBzdHJ1Y3R1cmVzIGZ1
+bGx5IGluaXRpYWxpc2VkIGZvciB0aGUgZnV0dXJlCj4+IGluIGNhc2Ugb2Ygc29tZSBrZXJuZWwg
+aW9jdHJsIGNoYW5nZXMuCj4+Cj4KPiBJZiB5b3Ugc2VuZCB5b3VyIHBhdGNoIGlubGluZSAoZS5n
+LiB3aXRoIGdpdCBzZW5kLWVtYWlsKSwgd2UgY2FuIGFsc28KPiByZXZpZXcgaW5saW5lIHdoaWNo
+IGlzIHByYWN0aWNhbC4KPgo+IEp1c3Qgb25lIGNvbW1lbnQgOgo+IG5vdXZlYXVfYm8uYzogSW4g
+ZnVuY3Rpb24gJ25vdXZlYXVfYm9fa2FsbG9jJzoKPiBub3V2ZWF1X2JvLmM6MTE2Ojk6IHdhcm5p
+bmc6IG1pc3NpbmcgYnJhY2VzIGFyb3VuZCBpbml0aWFsaXplcgo+IG5vdXZlYXVfYm8uYzoxMTY6
+OTogd2FybmluZzogKG5lYXIgaW5pdGlhbGl6YXRpb24gZm9yICdyZXEuaW5mbycpCj4KPiBUaGF0
+cyBiZWNhdXNlIHRoZSBmaXJzdCBtZW1iZXIgb2YgZHJtX25vdXZlYXVfZ2VtX25ldyBpcyBhbm90
+aGVyCj4gc3RydWN0dXJlIDogZHJtX25vdXZlYXVfZ2VtX2luZm8KPgo+IFRoaXMgc2VlbXMgdG8g
+d29yazoKPiDCoCDCoCDCoCDCoHN0cnVjdCBkcm1fbm91dmVhdV9nZW1fbmV3IHJlcSA9IHsgeyAw
+IH0sIDAsIDAgfTsKPgo+IEFuZCB3ZSBjb3VsZCBhbHNvIHVzZSBtZW1zZXQuCj4KX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
