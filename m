@@ -1,10 +1,9 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: DMA pusher encountered while using XVideo
-Date: Tue, 21 Dec 2010 20:32:55 +0100
-Message-ID: <AANLkTikCjkvJ8yMAM1uttn9RrYP_pA7pETcXPQWLQaOe@mail.gmail.com>
+From: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Kernel patch: validate nouveau_channel_get id argument
+Date: Fri, 24 Dec 2010 18:12:40 +0100
+Message-ID: <AANLkTikRCm19--tRgjAJqcLgb1f_hWcWJpRvgAqGKfQw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=0023547c8a8701af6a04982b188d
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,50 +17,73 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I realise that the the values PGRAPH complains about are indeed wrong,
-the question is how did they end up corrupted like this? I'm assuming
-since this is a SIFC transfer and method 0x860 is SIFC_DATA that the
-PFIFO errors are a symptom of an earlier problem, the same thing that
-caused the PGRAPH errors. This is a fairly recent nouveau kernel, a
-few commits behind the latest one.
+--0023547c8a8701af6a04982b188d
+Content-Type: text/plain; charset=UTF-8
 
-Any ideas how to pursue this problem?
+Hi,
+While hacking libdrm I triggered a kernel oups due to a non checked
+argument from user land.
+In nouveau_ioctl_notifier_alloc, nouveau_channel_get is invoked, but
+it doesn't validate the na->channel input argument. The attached patch
+validates the channel index, and change it's type to uint32_t since it
+is an index after all.
 
+Cheers,
+    Michel
 
-[16832.259025] [drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch 2 Get
-0x00200502ec Put 0x0020054400 IbGet 0x0000089f IbPut 0x000008a0 State
-0x80004860 Push 0x00406040
-[16832.271320] [drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR INVALID_VALUE
-[16832.271331] [drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR
-[16832.271345] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2
-(0x00007a0000) subc 2 class 0x502d mthd 0x084c data 0xff307dda
-[16832.271357] [drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR INVALID_VALUE
-[16832.271366] [drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR
-[16832.271377] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2
-(0x00007a0000) subc 2 class 0x502d mthd 0x0854 data 0xff2e7cd8
-[16832.271389] [drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR INVALID_VALUE
-[16832.271396] [drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR
-[16832.271407] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2
-(0x00007a0000) subc 2 class 0x502d mthd 0x085c data 0xff2d7ad4
-[16860.259096] [drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch 2 Get
-0x00200608ac Put 0x0020064290 IbGet 0x00000ac1 IbPut 0x00000ac2 State
-0x80004861 Push 0x00406040
-[16962.217582] [drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch 2 Get
-0x00200503e8 Put 0x0020054474 IbGet 0x000000bd IbPut 0x000000be State
-0x80002054 Push 0x00406040
-[17165.555724] [drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch 2 Get
-0x0020040000 Put 0x0020043cb0 IbGet 0x00000d3d IbPut 0x00000d3e State
-0x80002054 Push 0x00406040
-[17187.315735] [drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch 2 Get
-0x00200503e8 Put 0x0020054474 IbGet 0x00000405 IbPut 0x00000407 State
-0x80002054 Push 0x00406040
-[17232.210475] [drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch 2 Get
-0x00200508ac Put 0x0020054290 IbGet 0x00000439 IbPut 0x0000043a State
-0x80004861 Push 0x00504031
-[17232.213417] [drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch 2 Get
-0x0020054290 Put 0x0020054290 IbGet 0x00000439 IbPut 0x0000043a State
-0x80000000 Push 0x00406040
+--0023547c8a8701af6a04982b188d
+Content-Type: application/octet-stream;
+	name="0001-Fix-channel-nouveau_channel_get-index-type-and-check.patch"
+Content-Disposition: attachment;
+	filename="0001-Fix-channel-nouveau_channel_get-index-type-and-check.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_gi3c9u9p0
 
--- 
-Far away from the primal instinct, the song seems to fade away, the
-river get wider between your thoughts and the things we do and say.
+RnJvbSBkYzAwZTVjY2NlM2YxMGU1MWFlMTQzZDZkZGE2YWE4ZmViYWIyNzFkIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBNaWNoZWwgSGVybWllciA8aGVybWllckBmcnVnYWx3YXJlLm9y
+Zz4KRGF0ZTogRnJpLCAyNCBEZWMgMjAxMCAxNDo0OToxMyArMDEwMApTdWJqZWN0OiBbUEFUQ0hd
+IEZpeCBjaGFubmVsIG5vdXZlYXVfY2hhbm5lbF9nZXQgaW5kZXggdHlwZSBhbmQgY2hlY2sgaXQn
+cyB2YWx1ZS4KCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMg
+fCAgICA1ICsrKystCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oICAgICB8
+ICAgIDIgKy0KIDIgZmlsZXMgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygt
+KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY2hhbm5lbC5j
+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMKaW5kZXggZTM3OTc3
+ZC4uYmMwN2E2MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9j
+aGFubmVsLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMK
+QEAgLTI0NywxMiArMjQ3LDE1IEBAIG5vdXZlYXVfY2hhbm5lbF9nZXRfdW5sb2NrZWQoc3RydWN0
+IG5vdXZlYXVfY2hhbm5lbCAqcmVmKQogfQogCiBzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICoKLW5v
+dXZlYXVfY2hhbm5lbF9nZXQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9maWxl
+ICpmaWxlX3ByaXYsIGludCBpZCkKK25vdXZlYXVfY2hhbm5lbF9nZXQoc3RydWN0IGRybV9kZXZp
+Y2UgKmRldiwgc3RydWN0IGRybV9maWxlICpmaWxlX3ByaXYsIHVpbnQzMl90IGlkKQogewogCXN0
+cnVjdCBkcm1fbm91dmVhdV9wcml2YXRlICpkZXZfcHJpdiA9IGRldi0+ZGV2X3ByaXZhdGU7CiAJ
+c3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbjsKIAl1bnNpZ25lZCBsb25nIGZsYWdzOwogCisJ
+aWYgKHVubGlrZWx5KGlkID49IE5PVVZFQVVfTUFYX0NIQU5ORUxfTlIpKQorCQlyZXR1cm4gRVJS
+X1BUUigtRUlOVkFMKTsKKwogCXNwaW5fbG9ja19pcnFzYXZlKCZkZXZfcHJpdi0+Y2hhbm5lbHMu
+bG9jaywgZmxhZ3MpOwogCWNoYW4gPSBub3V2ZWF1X2NoYW5uZWxfZ2V0X3VubG9ja2VkKGRldl9w
+cml2LT5jaGFubmVscy5wdHJbaWRdKTsKIAlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZkZXZfcHJp
+di0+Y2hhbm5lbHMubG9jaywgZmxhZ3MpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2
+LmgKaW5kZXggZTgxNTc1Ni4uZWMzZWVkMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9kcnYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2Rydi5oCkBAIC04NzAsNyArODcwLDcgQEAgZXh0ZXJuIGludCAgbm91dmVhdV9jaGFubmVsX2Fs
+bG9jKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiBleHRlcm4gc3RydWN0IG5vdXZlYXVfY2hhbm5l
+bCAqCiBub3V2ZWF1X2NoYW5uZWxfZ2V0X3VubG9ja2VkKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwg
+Kik7CiBleHRlcm4gc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqCi1ub3V2ZWF1X2NoYW5uZWxfZ2V0
+KHN0cnVjdCBkcm1fZGV2aWNlICosIHN0cnVjdCBkcm1fZmlsZSAqLCBpbnQgaWQpOworbm91dmVh
+dV9jaGFubmVsX2dldChzdHJ1Y3QgZHJtX2RldmljZSAqLCBzdHJ1Y3QgZHJtX2ZpbGUgKiwgdWlu
+dDMyX3QgaWQpOwogZXh0ZXJuIHZvaWQgbm91dmVhdV9jaGFubmVsX3B1dF91bmxvY2tlZChzdHJ1
+Y3Qgbm91dmVhdV9jaGFubmVsICoqKTsKIGV4dGVybiB2b2lkIG5vdXZlYXVfY2hhbm5lbF9wdXQo
+c3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqKik7CiBleHRlcm4gdm9pZCBub3V2ZWF1X2NoYW5uZWxf
+cmVmKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4sCi0tIAoxLjcuMy40Cgo=
+--0023547c8a8701af6a04982b188d
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--0023547c8a8701af6a04982b188d--
