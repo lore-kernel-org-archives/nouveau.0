@@ -1,14 +1,16 @@
-From: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 Subject: Re: Kernel patch: validate nouveau_channel_get id argument
-Date: Sat, 25 Dec 2010 17:20:58 +0100
-Message-ID: <AANLkTikQP2DtprBkFr0z1q5vdb=FwDLc5R-Zeuv7ypz1@mail.gmail.com>
+Date: Sat, 25 Dec 2010 19:34:48 +0100
+Message-ID: <87sjxlwvjr.fsf@riseup.net>
 References: <AANLkTikRCm19--tRgjAJqcLgb1f_hWcWJpRvgAqGKfQw@mail.gmail.com>
 	<87r5d6yngq.fsf@riseup.net>
 	<AANLkTi=cy3Mm4U3zk6-6WXBCPJXqyh4Q8SV_UOBQFNbU@mail.gmail.com>
+	<AANLkTikQP2DtprBkFr0z1q5vdb=FwDLc5R-Zeuv7ypz1@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=0023547c8d45ef753d04983e7c62
+Content-Type: multipart/mixed; boundary="===============1276300775=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTi=cy3Mm4U3zk6-6WXBCPJXqyh4Q8SV_UOBQFNbU-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <AANLkTikQP2DtprBkFr0z1q5vdb=FwDLc5R-Zeuv7ypz1-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+	(Michel Hermier's message of "Sat, 25 Dec 2010 17:20:58 +0100")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,66 +20,42 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+To: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---0023547c8d45ef753d04983e7c62
-Content-Type: text/plain; charset=UTF-8
+--===============1276300775==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-Second try ^^ I'm not used at all at preparing patch for kernel
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
---0023547c8d45ef753d04983e7c62
-Content-Type: application/octet-stream;
-	name="0001-drm-nouveau-Fix-potential-crash-in-NOUVEAU_NOTIFIERO.patch"
-Content-Disposition: attachment;
-	filename="0001-drm-nouveau-Fix-potential-crash-in-NOUVEAU_NOTIFIERO.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_gi4pvhir0
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-RnJvbSA0NTFjNTMyYjg3OGYzODUxM2RiNzk1ZWU4ZWVhNmJmMjUzNzZjNzI2IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBNaWNoZWwgSGVybWllciA8aGVybWllckBmcnVnYWx3YXJlLm9y
-Zz4KRGF0ZTogU2F0LCAyNSBEZWMgMjAxMCAxNjo1ODo1NiArMDEwMApTdWJqZWN0OiBbUEFUQ0hd
-IGRybS9ub3V2ZWF1OiBGaXggcG90ZW50aWFsIGNyYXNoIGluIE5PVVZFQVVfTk9USUZJRVJPQkpf
-QUxMT0MgaW9jdGwuCgpXaGVuIGhhY2tpbmcgdGhlIGxpYmRybSBmb3IgaW1wcm92ZW1lbnRzLCBJ
-IHRyaWdnZXJlZCBhIGtlcm5lbCBjcmFzaApyZWxhdGVkIHRvIHRoZSBmYWN0IHRoYXQgdGhlIE5P
-VVZFQVVfTk9USUZJRVJPQkpfQUxMT0MgaW9jdGwgY2FsbApub3V2ZWF1X2NoYW5uZWxfZ2V0IHdp
-dGggYW4gdW5jaGVja2VkIGNoYW5uZWwgaW5kZXguClRoZSBwYXRjaCBlbnN1cmUgdGhhdCB0aGUg
-Y2hhbm5lbCBpbmRleCBpcyBhbiB1bnNpZ25lZCBhbmQgdmFsaWRhdGUKaXRzIHZhbHVlIGluIG5v
-dXZlYXVfY2hhbm5lbF9nZXQuCgpTaWduZWQtb2ZmLWJ5OiBNaWNoZWwgSGVybWllciA8aGVybWll
-ckBmcnVnYWx3YXJlLm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2No
-YW5uZWwuYyB8ICAgIDUgKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2
-LmggICAgIHwgICAgMiArLQogMiBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDIgZGVs
-ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9j
-aGFubmVsLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2NoYW5uZWwuYwppbmRl
-eCBlMzc5NzdkLi5iYzA3YTYxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2NoYW5uZWwuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2No
-YW5uZWwuYwpAQCAtMjQ3LDEyICsyNDcsMTUgQEAgbm91dmVhdV9jaGFubmVsX2dldF91bmxvY2tl
-ZChzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpyZWYpCiB9CiAKIHN0cnVjdCBub3V2ZWF1X2NoYW5u
-ZWwgKgotbm91dmVhdV9jaGFubmVsX2dldChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3Qg
-ZHJtX2ZpbGUgKmZpbGVfcHJpdiwgaW50IGlkKQorbm91dmVhdV9jaGFubmVsX2dldChzdHJ1Y3Qg
-ZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGVfcHJpdiwgdWludDMyX3QgaWQp
-CiB7CiAJc3RydWN0IGRybV9ub3V2ZWF1X3ByaXZhdGUgKmRldl9wcml2ID0gZGV2LT5kZXZfcHJp
-dmF0ZTsKIAlzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpjaGFuOwogCXVuc2lnbmVkIGxvbmcgZmxh
-Z3M7CiAKKwlpZiAodW5saWtlbHkoaWQgPj0gTk9VVkVBVV9NQVhfQ0hBTk5FTF9OUikpCisJCXJl
-dHVybiBFUlJfUFRSKC1FSU5WQUwpOworCiAJc3Bpbl9sb2NrX2lycXNhdmUoJmRldl9wcml2LT5j
-aGFubmVscy5sb2NrLCBmbGFncyk7CiAJY2hhbiA9IG5vdXZlYXVfY2hhbm5lbF9nZXRfdW5sb2Nr
-ZWQoZGV2X3ByaXYtPmNoYW5uZWxzLnB0cltpZF0pOwogCXNwaW5fdW5sb2NrX2lycXJlc3RvcmUo
-JmRldl9wcml2LT5jaGFubmVscy5sb2NrLCBmbGFncyk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9kcnYuaAppbmRleCBlODE1NzU2Li5lYzNlZWQyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfZHJ2LmgKQEAgLTg3MCw3ICs4NzAsNyBAQCBleHRlcm4gaW50ICBub3V2ZWF1X2No
-YW5uZWxfYWxsb2Moc3RydWN0IGRybV9kZXZpY2UgKmRldiwKIGV4dGVybiBzdHJ1Y3Qgbm91dmVh
-dV9jaGFubmVsICoKIG5vdXZlYXVfY2hhbm5lbF9nZXRfdW5sb2NrZWQoc3RydWN0IG5vdXZlYXVf
-Y2hhbm5lbCAqKTsKIGV4dGVybiBzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICoKLW5vdXZlYXVfY2hh
-bm5lbF9nZXQoc3RydWN0IGRybV9kZXZpY2UgKiwgc3RydWN0IGRybV9maWxlICosIGludCBpZCk7
-Citub3V2ZWF1X2NoYW5uZWxfZ2V0KHN0cnVjdCBkcm1fZGV2aWNlICosIHN0cnVjdCBkcm1fZmls
-ZSAqLCB1aW50MzJfdCBpZCk7CiBleHRlcm4gdm9pZCBub3V2ZWF1X2NoYW5uZWxfcHV0X3VubG9j
-a2VkKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKiopOwogZXh0ZXJuIHZvaWQgbm91dmVhdV9jaGFu
-bmVsX3B1dChzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICoqKTsKIGV4dGVybiB2b2lkIG5vdXZlYXVf
-Y2hhbm5lbF9yZWYoc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwKLS0gCjEuNy4zLjQKCg==
---0023547c8d45ef753d04983e7c62
+Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
+
+> Second try ^^ I'm not used at all at preparing patch for kernel
+
+Thanks. I've pushed it with a couple of minor fixes.
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iF4EAREIAAYFAk0WOUgACgkQg5k4nX1Sv1sFjQD7BWv/v2H6YmBCUMiNzqScJ3Zu
+jVHG/SdrE+Anx86P7nMA/RmP9Nfg1WUgRLsYgpJeGozSpRfrras4o/RM+927uYcC
+=auK5
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============1276300775==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +66,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---0023547c8d45ef753d04983e7c62--
+--===============1276300775==--
