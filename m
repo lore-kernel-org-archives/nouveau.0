@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Fri, 24 Dec 2010 21:01:05 -0800 (PST)
-Message-ID: <20101225050105.193FF13004D@annarchy.freedesktop.org>
+Date: Fri, 24 Dec 2010 21:01:33 -0800 (PST)
+Message-ID: <20101225050133.CB73F13004F@annarchy.freedesktop.org>
 References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
---- Comment #1 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-12-24 21:01:04 PST ---
-Created an attachment (id=41431)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41431)
-Kern log using DVI
+--- Comment #2 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-12-24 21:01:33 PST ---
+Created an attachment (id=41432)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41432)
+Xorg log using DVI
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
