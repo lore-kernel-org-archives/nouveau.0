@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Fri, 24 Dec 2010 21:32:00 -0800 (PST)
-Message-ID: <20101225053200.682C013004D@annarchy.freedesktop.org>
+Date: Sat, 25 Dec 2010 05:39:26 -0800 (PST)
+Message-ID: <20101225133926.B052413004F@annarchy.freedesktop.org>
 References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
-Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> changed:
+--- Comment #6 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-12-25 05:39:26 PST ---
+Created an attachment (id=41440)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=41440
+ Review: https://bugs.freedesktop.org/review?bug=32645&attachment=41440
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #41431|0                           |1
-        is obsolete|                            |
+nv20_broken_dcb.patch
 
---- Comment #5 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-12-24 21:32:00 PST ---
-Created an attachment (id=41435)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41435)
-Kern log using DVI (with debug mode turned on.. I think)
+(In reply to comment #0)
+> I have a monitor that supports both DVI and VGA.  The VGA seems to work fine
+> (aside from the fact that at startup it sometimes powers down for a second).
+> The DVI on the other hand doesn't work as soon as we start booting (BIOS and
+> GRUB work).  
+> 
+> I am attaching the kern and Xorg log for both when using VGA and when using
+> DVI.  I am using the latest Xorg Edgers PPA in Ubuntu, built from git 3 days
+> ago.
+
+Apparently your BIOS incorrectly claims that you have an LVDS output (instead
+of TMDS), the attached patch may help.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
