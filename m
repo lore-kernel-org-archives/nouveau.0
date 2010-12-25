@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Fri, 24 Dec 2010 21:02:40 -0800 (PST)
-Message-ID: <20101225050240.70F2513004D@annarchy.freedesktop.org>
+Date: Fri, 24 Dec 2010 21:32:00 -0800 (PST)
+Message-ID: <20101225053200.682C013004D@annarchy.freedesktop.org>
 References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
---- Comment #4 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-12-24 21:02:40 PST ---
-Created an attachment (id=41434)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41434)
-Xorg log using VGA (this works just for comparison)
+Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #41431|0                           |1
+        is obsolete|                            |
+
+--- Comment #5 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-12-24 21:32:00 PST ---
+Created an attachment (id=41435)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41435)
+Kern log using DVI (with debug mode turned on.. I think)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
