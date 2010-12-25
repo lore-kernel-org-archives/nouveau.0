@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32645] New: NV20 GF 3 Ti 200,
-	displays blank screen to DVI
-Date: Fri, 24 Dec 2010 21:00:26 -0800 (PST)
-Message-ID: <bug-32645-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
+Date: Fri, 24 Dec 2010 21:01:05 -0800 (PST)
+Message-ID: <20101225050105.193FF13004D@annarchy.freedesktop.org>
+References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-32645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
-           Summary: NV20 GF 3 Ti 200, displays blank screen to DVI
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-I have a monitor that supports both DVI and VGA.  The VGA seems to work fine
-(aside from the fact that at startup it sometimes powers down for a second).
-The DVI on the other hand doesn't work as soon as we start booting (BIOS and
-GRUB work).  
-
-I am attaching the kern and Xorg log for both when using VGA and when using
-DVI.  I am using the latest Xorg Edgers PPA in Ubuntu, built from git 3 days
-ago.
+--- Comment #1 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-12-24 21:01:04 PST ---
+Created an attachment (id=41431)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41431)
+Kern log using DVI
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
