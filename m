@@ -1,9 +1,11 @@
-From: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Kernel patch: validate nouveau_channel_get id argument
-Date: Fri, 24 Dec 2010 18:12:40 +0100
-Message-ID: <AANLkTikRCm19--tRgjAJqcLgb1f_hWcWJpRvgAqGKfQw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 32645] New: NV20 GF 3 Ti 200,
+	displays blank screen to DVI
+Date: Fri, 24 Dec 2010 21:00:26 -0800 (PST)
+Message-ID: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=0023547c8a8701af6a04982b188d
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,73 +19,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---0023547c8a8701af6a04982b188d
-Content-Type: text/plain; charset=UTF-8
+https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
-Hi,
-While hacking libdrm I triggered a kernel oups due to a non checked
-argument from user land.
-In nouveau_ioctl_notifier_alloc, nouveau_channel_get is invoked, but
-it doesn't validate the na->channel input argument. The attached patch
-validates the channel index, and change it's type to uint32_t since it
-is an index after all.
+           Summary: NV20 GF 3 Ti 200, displays blank screen to DVI
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Cheers,
-    Michel
 
---0023547c8a8701af6a04982b188d
-Content-Type: application/octet-stream;
-	name="0001-Fix-channel-nouveau_channel_get-index-type-and-check.patch"
-Content-Disposition: attachment;
-	filename="0001-Fix-channel-nouveau_channel_get-index-type-and-check.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_gi3c9u9p0
+I have a monitor that supports both DVI and VGA.  The VGA seems to work fine
+(aside from the fact that at startup it sometimes powers down for a second).
+The DVI on the other hand doesn't work as soon as we start booting (BIOS and
+GRUB work).  
 
-RnJvbSBkYzAwZTVjY2NlM2YxMGU1MWFlMTQzZDZkZGE2YWE4ZmViYWIyNzFkIE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBNaWNoZWwgSGVybWllciA8aGVybWllckBmcnVnYWx3YXJlLm9y
-Zz4KRGF0ZTogRnJpLCAyNCBEZWMgMjAxMCAxNDo0OToxMyArMDEwMApTdWJqZWN0OiBbUEFUQ0hd
-IEZpeCBjaGFubmVsIG5vdXZlYXVfY2hhbm5lbF9nZXQgaW5kZXggdHlwZSBhbmQgY2hlY2sgaXQn
-cyB2YWx1ZS4KCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMg
-fCAgICA1ICsrKystCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oICAgICB8
-ICAgIDIgKy0KIDIgZmlsZXMgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygt
-KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY2hhbm5lbC5j
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMKaW5kZXggZTM3OTc3
-ZC4uYmMwN2E2MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9j
-aGFubmVsLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jaGFubmVsLmMK
-QEAgLTI0NywxMiArMjQ3LDE1IEBAIG5vdXZlYXVfY2hhbm5lbF9nZXRfdW5sb2NrZWQoc3RydWN0
-IG5vdXZlYXVfY2hhbm5lbCAqcmVmKQogfQogCiBzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICoKLW5v
-dXZlYXVfY2hhbm5lbF9nZXQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9maWxl
-ICpmaWxlX3ByaXYsIGludCBpZCkKK25vdXZlYXVfY2hhbm5lbF9nZXQoc3RydWN0IGRybV9kZXZp
-Y2UgKmRldiwgc3RydWN0IGRybV9maWxlICpmaWxlX3ByaXYsIHVpbnQzMl90IGlkKQogewogCXN0
-cnVjdCBkcm1fbm91dmVhdV9wcml2YXRlICpkZXZfcHJpdiA9IGRldi0+ZGV2X3ByaXZhdGU7CiAJ
-c3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbjsKIAl1bnNpZ25lZCBsb25nIGZsYWdzOwogCisJ
-aWYgKHVubGlrZWx5KGlkID49IE5PVVZFQVVfTUFYX0NIQU5ORUxfTlIpKQorCQlyZXR1cm4gRVJS
-X1BUUigtRUlOVkFMKTsKKwogCXNwaW5fbG9ja19pcnFzYXZlKCZkZXZfcHJpdi0+Y2hhbm5lbHMu
-bG9jaywgZmxhZ3MpOwogCWNoYW4gPSBub3V2ZWF1X2NoYW5uZWxfZ2V0X3VubG9ja2VkKGRldl9w
-cml2LT5jaGFubmVscy5wdHJbaWRdKTsKIAlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZkZXZfcHJp
-di0+Y2hhbm5lbHMubG9jaywgZmxhZ3MpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2
-LmgKaW5kZXggZTgxNTc1Ni4uZWMzZWVkMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kcnYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2Rydi5oCkBAIC04NzAsNyArODcwLDcgQEAgZXh0ZXJuIGludCAgbm91dmVhdV9jaGFubmVsX2Fs
-bG9jKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiBleHRlcm4gc3RydWN0IG5vdXZlYXVfY2hhbm5l
-bCAqCiBub3V2ZWF1X2NoYW5uZWxfZ2V0X3VubG9ja2VkKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwg
-Kik7CiBleHRlcm4gc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqCi1ub3V2ZWF1X2NoYW5uZWxfZ2V0
-KHN0cnVjdCBkcm1fZGV2aWNlICosIHN0cnVjdCBkcm1fZmlsZSAqLCBpbnQgaWQpOworbm91dmVh
-dV9jaGFubmVsX2dldChzdHJ1Y3QgZHJtX2RldmljZSAqLCBzdHJ1Y3QgZHJtX2ZpbGUgKiwgdWlu
-dDMyX3QgaWQpOwogZXh0ZXJuIHZvaWQgbm91dmVhdV9jaGFubmVsX3B1dF91bmxvY2tlZChzdHJ1
-Y3Qgbm91dmVhdV9jaGFubmVsICoqKTsKIGV4dGVybiB2b2lkIG5vdXZlYXVfY2hhbm5lbF9wdXQo
-c3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqKik7CiBleHRlcm4gdm9pZCBub3V2ZWF1X2NoYW5uZWxf
-cmVmKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4sCi0tIAoxLjcuMy40Cgo=
---0023547c8a8701af6a04982b188d
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+I am attaching the kern and Xorg log for both when using VGA and when using
+DVI.  I am using the latest Xorg Edgers PPA in Ubuntu, built from git 3 days
+ago.
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---0023547c8a8701af6a04982b188d--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
