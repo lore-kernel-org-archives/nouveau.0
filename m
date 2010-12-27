@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Sun, 26 Dec 2010 15:18:00 -0800 (PST)
-Message-ID: <20101226231800.26CA813004F@annarchy.freedesktop.org>
+Date: Mon, 27 Dec 2010 02:22:59 -0800 (PST)
+Message-ID: <20101227102300.0386B13004E@annarchy.freedesktop.org>
 References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
---- Comment #10 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-12-26 15:17:59 PST ---
-Created an attachment (id=41464)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41464)
-Xorg with DVI and patch actually working
+--- Comment #11 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2010-12-27 02:22:59 PST ---
+(In reply to comment #9)
+> Created an attachment (id=41463)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41463)
+> Kern with DVI with patch really working
+> 
+> Thanks! It now works.. but there is an ok amount of artifacting and flashing
+> going on.  (It's usable, but acceleration (video) at least doesn't appear to
+> work).
+
+Could you be a bit more specific about this "artifacting and flashing"? What do
+you have to do to trigger it? Can you catch it in a screenshot? Do you see
+anything wrong in the accelerated framebuffer console?
+
+If you are running an OpenGL compositing manager or any OpenGL applications,
+please uninstall the 3D drivers to rule that out as the cause of corruption.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
