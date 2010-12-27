@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32494] [NV46] GPU lockup,
  switching to software fbcon at startup
-Date: Mon, 27 Dec 2010 07:28:29 -0800 (PST)
-Message-ID: <20101227152829.ECE0913004D@annarchy.freedesktop.org>
+Date: Mon, 27 Dec 2010 10:04:19 -0800 (PST)
+Message-ID: <20101227180419.903FF13004D@annarchy.freedesktop.org>
 References: <bug-32494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32494
 
---- Comment #4 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-12-27 07:28:29 PST ---
-Same here. I see the following message in kernel log:
+--- Comment #5 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2010-12-27 10:04:18 PST ---
+There is another bug that may look like yours:
+https://bugs.freedesktop.org/show_bug.cgi?id=23445
 
-[drm] nouveau 0000:01:00.0: PFIFO_DMA_PUSHER - Ch 31 Get 0x19851600 Put
-0x0cc4a444 State 0xd0840105 Push 0x00000000
-[drm] nouveau 0000:01:00.0: PFIFO_INTR 0x00010000 - Ch 31
-
--- fm (fmarl on irc)
+I opened this one because I thought it was different enough, but they may have
+the same cause.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
