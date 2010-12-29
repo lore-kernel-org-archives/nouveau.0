@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Mon, 27 Dec 2010 18:01:55 -0800 (PST)
-Message-ID: <20101228020155.BD77413004D@annarchy.freedesktop.org>
-References: <bug-32645-8800@http.bugs.freedesktop.org/>
+From: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
+Subject: CRTC video scanout position for high precision vblank
+	timestamping?
+Date: Wed, 29 Dec 2010 10:01:40 +0100
+Message-ID: <4D1AF8F4.6020707@tuebingen.mpg.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,13 +19,46 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=32645
+Hello all,
 
---- Comment #12 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2010-12-27 18:01:55 PST ---
-My fault.  Testing with a new monitor revealed no issues..  Thanks again! 
-Should I mark as fixed or wait until the patch is committed?
+i have recently implemented some patches to the drm core and to the 
+intel and radeon kms drivers to provide high precision timestamping of 
+vblank intervals and for timestamping of pageflip bufferswap completion. 
+This is needed to properly implement the DRI2 sync & swap bits and their 
+support for the oml_sync_control extension.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+The patches are in drm-next and will hopefully land in the 2.6.38 merge 
+window. Now i'd like to add support for the nouveau kms driver as well.
+
+I had a look at the current nouveau code in drm-next. Implementing the 
+patches shouldn't be a problem, it is mostly copy & paste from 
+radeon/intel kms + a little bit of adjustments and then testing.
+
+Problem: The code needs to query the current video scanout position of a 
+given crtc. My missing bit of information is the location and format of 
+the MMIO registers which presumably exist on nvidia gpu's to provide 
+this information. I know the gpu's support this, because the NVidia 
+proprietary drivers on both MS-Windows and MacOS/X provide a function to 
+query this info from userspace (Windows DirectDraw-7 GetScanline() 
+function, OS/X CGDisplayBeamposition() function). Unfortunately the 
+nvidia blob on Linux (and Linux/X11 itself) to my knowledge doesn't 
+support such an api, so i can't simply mmio-trace the blob to find the 
+relevant register. Also afaik the rules-ng database and the current 
+driver source code don't document the location of such a register.
+
+I've already made friendship with renouveau and hacked it a bit for my 
+purpose, but playing with it for an hour on a Geforce 8800 and staring 
+at dumps didn't get me lucky that easily.
+
+I thought i'd ask if any of you have by accident stumbled across such a 
+register or would have any good hints how i could narrow down the 
+search. Otherwise i'll hack up renouveau to do a bit of pattern 
+matching, searching for characteristic patterns in the brute force way 
+and praying to the gods of computing that this won't take forever. To my 
+surprise I already had to learn that apparently just reading the wrong 
+registers can cause display corruption and crash the whole machine.
+
+Any helpful comments highly appreciated.
+
+Thanks,
+-mario
