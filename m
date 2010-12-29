@@ -1,18 +1,10 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: CRTC video scanout position for high precision vblank
-	timestamping?
-Date: Wed, 29 Dec 2010 23:41:21 +1000
-Message-ID: <A3641521-D599-4B17-BB92-E5D4E92871B5@gmail.com>
-References: <4D1AF8F4.6020707@tuebingen.mpg.de>
-	<AANLkTi=9FagJJYP148Zsc26mm+BCvRCNTqD4jsLT7os6@mail.gmail.com>
-	<AANLkTimBropE8C8uxnwkuQKdM-yNByY2a=EQQfGZNVCf@mail.gmail.com>
-	<1293615882.4523.1.camel@nisroch>
-	<4D1B0B62.3040107@tuebingen.mpg.de> <871v50ojdf.fsf@riseup.net>
-Mime-Version: 1.0 (iPhone Mail 8C148)
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Dule <karabaja4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Changing nouveau brightness and contrast settings
+Date: Wed, 29 Dec 2010 12:26:34 +0100
+Message-ID: <AANLkTinf+kYxujBwojEnXMMSLD7emYCLym+Q_0ODODrK@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============0557107177=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <871v50ojdf.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,69 +14,104 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Sorry for the top-posting. Also confirmed on fermi (nvc0).
+--===============0557107177==
+Content-Type: multipart/alternative; boundary=0016e645b932a2fd8f04988ad861
 
-Ben.
+--0016e645b932a2fd8f04988ad861
+Content-Type: text/plain; charset=ISO-8859-1
 
-Sent from my iPhone
+Hello,
 
-On 29/12/2010, at 22:26, Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> wrote:
+I have the following issue: my LCD monitor is broken and it's brightness and
+contrast settings are way off. Integrated hardware controls don't work. This
+issue forced me to change contrast and brightness settings using software,
+which I can do with nvidia proprietary drivers from nvidia-xsettings tool.
 
-> Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org> writes:
-> 
->> On 12/29/2010 10:44 AM, Ben Skeggs wrote:
->>> On Wed, 2010-12-29 at 10:37 +0100, Maarten Maathuis wrote:
->>> [...]
->>>> 
->>>> In my infinite wisdom i swapped the vertical and horizontal regs,
->>>> these are the right ones:
->>>> 
->>>> 0x616340: CRTC0 horizontal scanline (lower 16 bits, upper 16 bits is a
->>>> counter that increments every display cycle)
->>>> 0x616344: CRTC0 vertical scanline (lower 16 bits, upper 16 bits empty)
->>>> 
->>>> 0x616B40: CRTC1 horizontal scanline
->>>> 0x616B44: CRTC1 vertical scanline
->>> Ah, I should've waited 10 minutes before doing the same here.  Ah well,
->>> I can confirm at least on NV84, I can't imagine it differs at all on any
->>> nv50+ board either.
->>> 
-> 
-> I can confirm those registers are still there on NVA8.
-> 
->>> Ben.
->>>> 
->> 
->> Wow, that was fast! Thanks! I'll get some good sleep now and then give
->> it a try on my GF-8800. This is probably also useful to implement the
->> .get_vblank_counter() hook properly. Currently it hooks up to
->> drm_vblank_count() which is problematic, as .get_vblank_counter() is
->> meant to query the hardware for the purpose of reinitializing
->> drm_vblank_count() after a long vblank irq off period.
->> 
->> I'll let you know how it goes, hopefully with some nice patches asap.
->> 
->> If somebody knows about similar NV40 and earlier registers, keep it
->> coming :-)
->> 
-> On nv04-nv4x class hardware there's a scanline counter in the lower 12
-> bits of 0x600808 (0x602808 for the second CRTC), bit 16 lights up during
-> the vblank period.
-> 
-> I don't think I've ever seen a hardware frame counter there, but they
-> might have one. Tracing what the nvidia blob does for SGI_video_sync and
-> friends would be your best bet I guess.
-> 
->> Is the range from NV_PCRTC0_OFFSET to NV_PCRTC0_OFFSET +
->> NV_PCRTC0_SIZE a good starting point for a search on NV40 and earlier?
->> 
->> thanks,
->> -mario
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> http://lists.freedesktop.org/mailman/listinfo/nouveau
+However, I cannot seem to do the same with nouveau. There is no X or nouveau
+tool to do such action, except xgamma which can change only gamma, and not
+brightness or contrast.
+
+I realize nouveau drivers are in it's early stages of development, so lack
+of such tool is understandable. So, I looked at nouveau code to try and find
+hard-coded brightness and contrast settings which I can change and just
+recompile the drivers, but I have been unsuccessful. Only thing that I found
+is this function:
+
+nouveau_xv.c:
+
+void
+NVSetPortDefaults (ScrnInfoPtr pScrn, NVPortPrivPtr pPriv)
+{
+NVPtr pNv = NVPTR(pScrn);
+
+pPriv->brightness = 0;
+pPriv->contrast = 4096;
+        //etc...
+}
+
+but I suspect these settings are related to rendering video and not X
+rendering?
+
+Anyway, I would appreciate your help for pointing me to the right part of
+the code, or any other way I can circumvent this problem.
+
+Many thanks,
+
+Dule
+
+--0016e645b932a2fd8f04988ad861
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<div><br></div><div>I have the following issue: my LCD monitor is bro=
+ken and it&#39;s brightness and contrast settings are way off. Integrated h=
+ardware controls don&#39;t work. This issue forced me to change contrast an=
+d brightness settings using software, which I can do with=A0nvidia propriet=
+ary drivers from=A0nvidia-xsettings tool.</div>
+
+<div><br></div><div>However, I cannot seem to do the same with nouveau. The=
+re is no X or nouveau tool to do such action, except xgamma which can chang=
+e only gamma, and not brightness or contrast.</div><div><br></div><div>
+
+I realize nouveau drivers are in it&#39;s early stages of development, so l=
+ack of such tool is understandable. So, I looked at nouveau code to try and=
+ find hard-coded brightness and contrast settings which I can change and ju=
+st recompile the drivers, but I have been unsuccessful. Only thing that I f=
+ound is this function:</div>
+
+<div><br></div><div>nouveau_xv.c:</div><div><br></div><div><div>void</div><=
+div>NVSetPortDefaults (ScrnInfoPtr pScrn, NVPortPrivPtr pPriv)</div><div>{<=
+/div><div><span class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>=
+NVPtr pNv =3D NVPTR(pScrn);</div>
+
+<div><br></div><div><span class=3D"Apple-tab-span" style=3D"white-space:pre=
+">	</span>pPriv-&gt;brightness<span class=3D"Apple-tab-span" style=3D"white=
+-space:pre">		</span>=3D 0;</div><div><span class=3D"Apple-tab-span" style=
+=3D"white-space:pre">	</span>pPriv-&gt;contrast<span class=3D"Apple-tab-spa=
+n" style=3D"white-space:pre">			</span>=3D 4096;</div>
+
+<div>=A0=A0 =A0 =A0 =A0//etc...</div><div>}</div></div><div><br></div><div>=
+but I suspect these settings are related to rendering video and not X rende=
+ring?</div><div><br></div><div>Anyway, I would appreciate your help for poi=
+nting me to the right part of the code, or any other way I can=A0circumvent=
+ this problem.</div>
+
+<div><br></div><div>Many thanks,</div><div><br></div><div>Dule</div>
+
+--0016e645b932a2fd8f04988ad861--
+
+--===============0557107177==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0557107177==--
