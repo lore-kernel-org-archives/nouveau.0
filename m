@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Tue,  4 Jan 2011 05:33:17 -0800 (PST)
-Message-ID: <20110104133318.04EC913004D@annarchy.freedesktop.org>
-References: <bug-32645-8800@http.bugs.freedesktop.org/>
+From: Chriss Kalogeropoulos <iz.iznogood-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: nouveau crashes on startup
+Date: Sun, 02 Jan 2011 20:06:03 +0200
+Message-ID: <1293991563.2656.16.camel@chriss-iMac>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +18,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=32645
+hi everybody,
 
---- Comment #17 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-01-04 05:33:17 PST ---
-(In reply to comment #16)
-> It works but has the artifacts on both monitors that I have that are 1440 x 900
-> and 1600 x 1200 using DVI (with patch).  Using VGA they both work great.
-> 
-> The monitors are fine (I swapped out the GF3 and put in a GF5 for the time
-> being)
-> And the Geforce3 works fine with the nvidia driver, no flickering or artifacts.
-> But the nv driver doesn't work at all with the GF3 DVI setup.
+i have a problem with the latest kernel and nouveau driver and i would
+appreciate any assistance.
 
-OK, a few register dumps (running [1] as root) from the nvidia driver at
-several different video modes/refresh rates/color depths would be very useful.
+My setup is an 24'' core duo 2 iMac,4 gb ram and an nvidia 7600 card.
+I use the 10.10 ubuntu (64 bit). Nouveau was working amazingly well with
+all the latest ubuntu versions even after enabling experimental 3d.
 
-[1] http://cgit.freedesktop.org/~currojerez/tvdump/
+A few months ago i managed to fry the card  (probably by running some
+benchmark for cairo-perf). This happened during the 10.04 ubuntu
+version. After the first reboot, i got garbage on the screen and i
+though that the card should be replaced. 
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+To my surprise, the system managed to start with the following message :
+"nouveau gpu lockup, switching to software fbcon". After that i had no
+problems using the software accelerated driver and i also had some
+opengl acceleration.
+
+With 2.6.36 and 2.6.37 drivers, the system cannot fall back to the fbcon
+but displays garbage and freezes before X can display anything. 
+
+Is  there anything i can do to go back to the old behavior with the
+latest kernels ? is there any kind of log or info to post that might
+help resolve the issue ? 
+
+please cc me since i am not on the list
+
+Thanks in advance
