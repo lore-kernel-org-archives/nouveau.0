@@ -1,87 +1,42 @@
-From: Pekka Paalanen <pq@iki.fi>
-Subject: Re: [PATCH] drm: Remove DRIVER_DATE and CORE_DATE
-Date: Mon, 3 Jan 2011 20:04:59 +0200
-Message-ID: <20110103200459.64b7b4db@daedalus.pq.iki.fi>
-References: <AANLkTi=nE87vGVvYQQgAjYXBRZtcq=j5Do1S47WQFLt1@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
+Date: Mon,  3 Jan 2011 11:06:32 -0800 (PST)
+Message-ID: <20110103190632.80C2313004E@annarchy.freedesktop.org>
+References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <AANLkTi=nE87vGVvYQQgAjYXBRZtcq=j5Do1S47WQFLt1@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: sedat.dilek@gmail.com
-Cc: nouveau@lists.freedesktop.org, =?ISO-8859-1?Q?D=E4nzer?= <michel@daenzer.net>, LKML <linux-kernel@vger.kernel.org>, DRI <dri-devel@lists.freedesktop.org>, linux-next@vger.kernel.org, sedat.dilek@googlemail.com, Michel@freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-32645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 22 Dec 2010 10:51:26 +0100
-Sedat Dilek <sedat.dilek@googlemail.com> wrote:
+https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
-> DRIVER_DATE is not maintained or upgraded on changes in many drm
-> drivers.
-> 
-> For example radeon has one DRIVER_DATE for User and Kernel
-> ModeSetting driver, this makes no sense as UMS and KMS driver
-> have different versions. And of course this all increases
-> maintenance, too. For radeon it is enough to bump
-> {KMS_}DRIVER_MAJOR, {KMS_}DRIVER_MINOR and
-> {KMS_}DRIVER_PATCHLEVEL defines.
-> 
-> Furthermore, I also removed CORE_DATE.
-> 
-> With radeon-KMS my dmesg looks now like this:
-> 
-> [   12.328937] [drm] Initialized drm 1.1.0
-> [   13.144019] [drm] Initialized radeon 2.8.0 for 0000:01:00.0 on
-> minor 0
-> 
-> Signed-off-by: Sedat Dilek <sedat.dilek@gmail.com>
-> 
-> Note: Tested with radeon RV250 (KMS) and linux-next
-> (next-20101221).
-...
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
-> index bb17057..50abca3 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drv.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
-> @@ -416,11 +416,6 @@ static struct drm_driver driver = {
->  
->  	.name = DRIVER_NAME,
->  	.desc = DRIVER_DESC,
-> -#ifdef GIT_REVISION
-> -	.date = GIT_REVISION,
-> -#else
-> -	.date = DRIVER_DATE,
-> -#endif
->  	.major = DRIVER_MAJOR,
->  	.minor = DRIVER_MINOR,
->  	.patchlevel = DRIVER_PATCHLEVEL,
+--- Comment #15 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-01-03 11:06:32 PST ---
+(In reply to comment #14)
+> Oops.. you are correct
+> here are two videos documenting the two issues I've seen so far:
+> Bootup:  About a third of the screen flashes on the bottom, then the top,this
+> happens repeatadly.  Also happens when playing videos.
+> https://docs.google.com/leaf?id=0B9PdLrdrtm1wOGQzMzYwNjMtZjgwMC00ZTljLThlOGEtZDFmODM0ZDIwMWNh&hl=en&authkey=CNngh6UD
+> Small artifacts:  Note on the top of the video (side of the screen) When the
+> mouse is over certain objects small artifacts appear.
+> https://docs.google.com/leaf?id=0B9PdLrdrtm1wMGNiOGQ4YzMtZWUwOC00Mzg2LWIwN2EtMzRhZmMzNDAwNTk5&hl=en&authkey=CPygr9cM
 
-Just a reminder, why this hunk was there in the first place:
-it is quite usual for the Nouveau DRM to be compiled out-of-tree,
-from different kernel git sources than the hosting kernel.
-This was an attempt to record in the kernel log which exact
-revision is being used. GIT_REVISION is defined by the Makefile
-that is recommended to be used for out-of-tree building.
-
-I didn't check if this patch has been accepted, but I believe
-maintaining differences between nouveau/linux-2.6 and upstream
-kernel trees is a burden.
-
-Is there a better way to add revision information to an
-out-of-tree built kernel module?
-Or maybe this is not useful at all?
-
-
-Cheers.
+So, if I've understood correctly, you only get artifacts with this monitor and
+not with the other one? Could you please try "nv" or the nvidia binary driver?
 
 -- 
-Pekka Paalanen
-http://www.iki.fi/pq/
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
