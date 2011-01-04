@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Mon,  3 Jan 2011 21:45:48 -0800 (PST)
-Message-ID: <20110104054548.E983313004D@annarchy.freedesktop.org>
-References: <bug-32645-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32453] SIGABRT caused by malloc around RegionCreate.
+ Can only reproduce with nouveau not vesa.
+Date: Tue,  4 Jan 2011 01:53:10 -0800 (PST)
+Message-ID: <20110104095310.2595913004E@annarchy.freedesktop.org>
+References: <bug-32453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-32453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +21,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=32645
-
---- Comment #16 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2011-01-03 21:45:48 PST ---
-It works but has the artifacts on both monitors that I have that are 1440 x 900
-and 1600 x 1200 using DVI (with patch).  Using VGA they both work great.
-
-The monitors are fine (I swapped out the GF3 and put in a GF5 for the time
-being)
-And the Geforce3 works fine with the nvidia driver, no flickering or artifacts.
-But the nv driver doesn't work at all with the GF3 DVI setup.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzI0NTMKCk1pY2hl
+bCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5uZXQ+IGNoYW5nZWQ6CgogICAgICAgICAgIFdoYXQg
+ICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LQogIEF0dGFjaG1lbnQgIzQxMTg3fHRleHQveC1sb2cgICAgICAgICAgICAgICAgICB8dGV4dC9w
+bGFpbgogICAgICAgICAgbWltZSB0eXBlfCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cgot
+LSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnBy
+ZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVj
+YXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
