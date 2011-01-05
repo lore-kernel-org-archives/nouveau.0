@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32855] Incorrect image stretching with Render in
  RepeatPad mode, NV50
-Date: Wed,  5 Jan 2011 11:56:40 -0800 (PST)
-Message-ID: <20110105195640.124EA13004F@annarchy.freedesktop.org>
+Date: Wed,  5 Jan 2011 11:57:00 -0800 (PST)
+Message-ID: <20110105195700.73A4313004D@annarchy.freedesktop.org>
 References: <bug-32855-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32855
 
---- Comment #5 from Zack Weinberg <zackw-VmQCmMdMyN0AvxtiuMwx3w@public.gmane.org> 2011-01-05 11:56:39 PST ---
-Created an attachment (id=41688)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41688)
-Xorg.log
+--- Comment #6 from Zack Weinberg <zackw-VmQCmMdMyN0AvxtiuMwx3w@public.gmane.org> 2011-01-05 11:57:00 PST ---
+Created an attachment (id=41689)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41689)
+dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
