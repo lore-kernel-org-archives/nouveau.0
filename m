@@ -1,11 +1,14 @@
-From: Chriss Kalogeropoulos <iz.iznogood-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nouveau crashes on startup
-Date: Sun, 02 Jan 2011 20:06:03 +0200
-Message-ID: <1293991563.2656.16.camel@chriss-iMac>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27455] dualhead not working,
+	second display always black
+Date: Wed,  5 Jan 2011 03:23:46 -0800 (PST)
+Message-ID: <20110105112346.F241E13004E@annarchy.freedesktop.org>
+References: <bug-27455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-27455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-hi everybody,
-
-i have a problem with the latest kernel and nouveau driver and i would
-appreciate any assistance.
-
-My setup is an 24'' core duo 2 iMac,4 gb ram and an nvidia 7600 card.
-I use the 10.10 ubuntu (64 bit). Nouveau was working amazingly well with
-all the latest ubuntu versions even after enabling experimental 3d.
-
-A few months ago i managed to fry the card  (probably by running some
-benchmark for cairo-perf). This happened during the 10.04 ubuntu
-version. After the first reboot, i got garbage on the screen and i
-though that the card should be replaced. 
-
-To my surprise, the system managed to start with the following message :
-"nouveau gpu lockup, switching to software fbcon". After that i had no
-problems using the software accelerated driver and i also had some
-opengl acceleration.
-
-With 2.6.36 and 2.6.37 drivers, the system cannot fall back to the fbcon
-but displays garbage and freezes before X can display anything. 
-
-Is  there anything i can do to go back to the old behavior with the
-latest kernels ? is there any kind of log or info to post that might
-help resolve the issue ? 
-
-please cc me since i am not on the list
-
-Thanks in advance
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mjc0NTUKCkJqw7hy
+Z2UgU29sbGkgPGJqb3JnZUBzb2xsaS5wcml2Lm5vPiBjaGFuZ2VkOgoKICAgICAgICAgICBXaGF0
+ICAgIHxSZW1vdmVkICAgICAgICAgICAgICAgICAgICAgfEFkZGVkCi0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0KICAgICAgICAgICBQbGF0Zm9ybXx4ODYgKElBMzIpICAgICAgICAgICAgICAgICAgfEFsbAog
+ICAgICAgICAgICAgICAgIENDfCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8YmpvcmdlQHNv
+bGxpLnByaXYubm8KCi0tLSBDb21tZW50ICM3IGZyb20gQmrDuHJnZSBTb2xsaSA8YmpvcmdlQHNv
+bGxpLnByaXYubm8+IDIwMTEtMDEtMDUgMDM6MjM6NDYgUFNUIC0tLQpJIHNlZSB0aGlzIG9uIHg4
+Nl82NCBmZWRvcmEgMTQgdG9vLgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3Mu
+ZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSBy
+ZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUg
+Zm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
