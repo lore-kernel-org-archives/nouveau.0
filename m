@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32864] wayland "libEGL warning: failed to create DRM
 	screen"
-Date: Wed,  5 Jan 2011 17:37:47 -0800 (PST)
-Message-ID: <20110106013747.7F23F13004F@annarchy.freedesktop.org>
+Date: Wed,  5 Jan 2011 20:12:23 -0800 (PST)
+Message-ID: <20110106041223.BCE5813004E@annarchy.freedesktop.org>
 References: <bug-32864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32864
 
---- Comment #2 from Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> 2011-01-05 17:37:47 PST ---
-$ lspci | grep -i vga
-01:00.0 VGA compatible controller: nVidia Corporation G98 [GeForce 9300 GE]
-(rev a1)
+--- Comment #3 from wucan <canbaby-0GSiYjBpcig@public.gmane.org> 2011-01-05 20:12:23 PST ---
+(In reply to comment #2)
+> $ lspci | grep -i vga
+> 01:00.0 VGA compatible controller: nVidia Corporation G98 [GeForce 9300 GE]
+> (rev a1)
+> 
+> Someone else replicated the problem with a nv94 card.
 
-Someone else replicated the problem with a nv94 card.
+reproduct and confirm this problem with:
+01:00.0 VGA compatible controller: nVidia Corporation G98 [GeForce 9300M GS]
+(rev a1)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
