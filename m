@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32864] wayland "libEGL warning: failed to create DRM
 	screen"
-Date: Thu,  6 Jan 2011 00:16:25 -0800 (PST)
-Message-ID: <20110106081625.AB53F13004D@annarchy.freedesktop.org>
+Date: Thu,  6 Jan 2011 00:33:53 -0800 (PST)
+Message-ID: <20110106083353.2D29613004D@annarchy.freedesktop.org>
 References: <bug-32864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32864
 
---- Comment #4 from wucan <canbaby-0GSiYjBpcig@public.gmane.org> 2011-01-06 00:16:24 PST ---
-I found, it's in src/gallium/target/egl/egl.c failed to
-dlopen("pipe_nouveaus.so", ...).
+--- Comment #5 from Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> 2011-01-06 00:33:53 PST ---
+Looks like this was fixed in:
 
-Who know why dlopen() failed? Since all so files are there.
+commit 84ebd8e2d7b13cf43069a2b79168cf7a1df02b71
+Author: Vinson Lee <vlee-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+Date:   Thu Jan 6 00:06:38 2011 -0800
+
+    nvc0: Fix typo of nvc0_mm.c in SConscript.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
