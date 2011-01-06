@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32864] wayland "libEGL warning: failed to create DRM
 	screen"
-Date: Wed,  5 Jan 2011 20:12:23 -0800 (PST)
-Message-ID: <20110106041223.BCE5813004E@annarchy.freedesktop.org>
+Date: Thu,  6 Jan 2011 00:16:25 -0800 (PST)
+Message-ID: <20110106081625.AB53F13004D@annarchy.freedesktop.org>
 References: <bug-32864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32864
 
---- Comment #3 from wucan <canbaby-0GSiYjBpcig@public.gmane.org> 2011-01-05 20:12:23 PST ---
-(In reply to comment #2)
-> $ lspci | grep -i vga
-> 01:00.0 VGA compatible controller: nVidia Corporation G98 [GeForce 9300 GE]
-> (rev a1)
-> 
-> Someone else replicated the problem with a nv94 card.
+--- Comment #4 from wucan <canbaby-0GSiYjBpcig@public.gmane.org> 2011-01-06 00:16:24 PST ---
+I found, it's in src/gallium/target/egl/egl.c failed to
+dlopen("pipe_nouveaus.so", ...).
 
-reproduct and confirm this problem with:
-01:00.0 VGA compatible controller: nVidia Corporation G98 [GeForce 9300M GS]
-(rev a1)
+Who know why dlopen() failed? Since all so files are there.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
