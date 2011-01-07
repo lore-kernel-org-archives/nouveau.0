@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32864] wayland "libEGL warning: failed to create DRM
 	screen"
-Date: Thu,  6 Jan 2011 20:22:15 -0800 (PST)
-Message-ID: <20110107042215.1CD68130060@annarchy.freedesktop.org>
+Date: Thu,  6 Jan 2011 20:23:50 -0800 (PST)
+Message-ID: <20110107042350.E4FF113006A@annarchy.freedesktop.org>
 References: <bug-32864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32864
 
---- Comment #7 from Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> 2011-01-06 20:22:14 PST ---
-Created an attachment (id=41737)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41737)
-wayland compositor strace output
+Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #41737|wayland compositor strace   |wayland compositor strace
+        description|output                      |output, failing, commit
+                   |                            |6d9ca78ef7bf831b9b63f4bda68
+                   |                            |623cbae627508 (latest)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
