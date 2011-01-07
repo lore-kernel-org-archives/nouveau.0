@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Thu,  6 Jan 2011 18:27:26 -0800 (PST)
-Message-ID: <20110107022726.D105513004D@annarchy.freedesktop.org>
+Date: Thu,  6 Jan 2011 18:28:06 -0800 (PST)
+Message-ID: <20110107022807.0D19013004E@annarchy.freedesktop.org>
 References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
---- Comment #18 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2011-01-06 18:27:26 PST ---
-Created an attachment (id=41731)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41731)
-NVidia driver - different problem
-
-Apparently, I was wrong about the nVidia driver working fine.  It doesn't have
-the same issues though as shown in the screen-shot.
+--- Comment #19 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2011-01-06 18:28:06 PST ---
+Created an attachment (id=41732)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41732)
+Lower Resolution Dump of nVidia driver
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
