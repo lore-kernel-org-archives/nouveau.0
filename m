@@ -1,10 +1,13 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: [PATCH] fix hwmon device binding
-Date: Thu, 06 Jan 2011 20:54:35 +0100
-Message-ID: <1294343675.2120.18.camel@workstation>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
+Date: Thu,  6 Jan 2011 18:27:26 -0800 (PST)
+Message-ID: <20110107022726.D105513004D@annarchy.freedesktop.org>
+References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="=-P/8vVJBcHvKZfQ+lariw"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-32645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,64 +17,20 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Nouveau Dev List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
---=-P/8vVJBcHvKZfQ+lariw
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--- Comment #18 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2011-01-06 18:27:26 PST ---
+Created an attachment (id=41731)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41731)
+NVidia driver - different problem
 
-The following patch fixes the creation directory of the hwmon files, to
-get our directory hierarchy in line with all other hwmon drivers.
+Apparently, I was wrong about the nVidia driver working fine.  It doesn't have
+the same issues though as shown in the screen-shot.
 
---lynxeye
-
---=-P/8vVJBcHvKZfQ+lariw
-Content-Disposition: attachment; filename="0002-drm-nouveau-fix-hwmon-device-binding.patch"
-Content-Type: text/x-patch; name="0002-drm-nouveau-fix-hwmon-device-binding.patch"; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-From b29a9259cbc6f88f83d7162e88f89f9345c1be3d Mon Sep 17 00:00:00 2001
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Date: Thu, 6 Jan 2011 20:29:53 +0100
-Subject: [PATCH 2/2] drm/nouveau: fix hwmon device binding
-
-Bind the hwmon structs to nouveau device kobj. This makes sure
-the hwmon files are created in the device subdir in line with
-all other hwmon drivers.
-
-Signed-off-by: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_pm.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_pm.c b/drivers/gpu/drm/nouveau/nouveau_pm.c
-index d938141..1b24caa 100644
---- a/drivers/gpu/drm/nouveau/nouveau_pm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_pm.c
-@@ -422,7 +422,7 @@ nouveau_hwmon_init(struct drm_device *dev)
- 		return ret;
- 	}
- 	dev_set_drvdata(hwmon_dev, dev);
--	ret = sysfs_create_group(&hwmon_dev->kobj,
-+	ret = sysfs_create_group(&dev->pdev->dev.kobj,
- 					&hwmon_attrgroup);
- 	if (ret) {
- 		NV_ERROR(dev,
 -- 
-1.7.3.4
-
-
---=-P/8vVJBcHvKZfQ+lariw
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---=-P/8vVJBcHvKZfQ+lariw--
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
