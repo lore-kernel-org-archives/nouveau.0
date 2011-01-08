@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32864] wayland "libEGL warning: failed to create DRM
 	screen"
-Date: Sat,  8 Jan 2011 15:03:15 -0800 (PST)
-Message-ID: <20110108230315.2726013004D@annarchy.freedesktop.org>
+Date: Sat,  8 Jan 2011 12:57:37 -0800 (PST)
+Message-ID: <20110108205737.10AC2130051@annarchy.freedesktop.org>
 References: <bug-32864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32864
 
---- Comment #13 from Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> 2011-01-08 15:03:14 PST ---
-Wiped my entire build and install directories, recloned and built everything,
-same error.
-
-Still getting:
-
-     31798:    /home/darxus/install/lib/egl/pipe_nouveau.so: error: symbol
-lookup error: undefined symbol: nvc0_screen_create (fatal)
+--- Comment #10 from Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> 2011-01-08 12:57:36 PST ---
+Ignore my last comment, it shows I was loading all the wrong libraries, instead
+of from ~/install/
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
