@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32864] wayland "libEGL warning: failed to create DRM
 	screen"
-Date: Sat,  8 Jan 2011 13:17:05 -0800 (PST)
-Message-ID: <20110108211705.1EB07130061@annarchy.freedesktop.org>
+Date: Sat,  8 Jan 2011 14:32:24 -0800 (PST)
+Message-ID: <20110108223224.44197130063@annarchy.freedesktop.org>
 References: <bug-32864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32864
 
---- Comment #11 from Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> 2011-01-08 13:17:04 PST ---
-Created an attachment (id=41777)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41777)
-Output of "wayland/compositor/compositor > ld_debug.all.txt 2>&1" with
-LD_DEBUG=all, for mesa commit 90e29afcb62411b69d57dac76fe89c69c9936ed6
+--- Comment #12 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-08 14:32:23 PST ---
+/home/darxus/install/lib/egl/pipe_nouveau.so: error: symbol lookup error:
+undefined symbol: nvc0_screen_create (fatal)
+
+These commands should fix it:
+
+make distclean
+./autogen.sh
+./configure ...
+make
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
