@@ -1,12 +1,14 @@
-From: Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Latest Git still freezes AGP [GeForce 7600 GS]
-Date: Sat, 8 Jan 2011 14:41:55 -0900
-Message-ID: <20110108234155.GC4575@localhost2.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 32864] wayland "libEGL warning: failed to create DRM
+	screen"
+Date: Sat,  8 Jan 2011 15:55:16 -0800 (PST)
+Message-ID: <20110108235516.CA29E130051@annarchy.freedesktop.org>
+References: <bug-32864-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-32864-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,20 +21,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+https://bugs.freedesktop.org/show_bug.cgi?id=32864
 
-Just a ping here concerning the "nVidia Corporation G73 [GeForce 7600 GS]" and
-AGP issues.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
-I still have to use agpmode=0 (aka kernel parameter nouveau.agpmode=0) to
-avoid kernel (framebuffer) freezes when loading drm/nouveau drivers.
-
-
-My next task will be to get KDB working to hopefully get a backtrace.  Or is it
-futile at this point?  Using KGDB, I think stalls the serial bus and, the info
-I earlier collected showed nothing relevant to this or to any indication of a
-kernel panic.
+--- Comment #14 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-08 15:55:14 PST ---
+fixed by commit 69191d41231b95af7565e32393c5487163859d7e "targets/egl: add
+libnvc0.a to nouveau libs"
 
 -- 
-Roger
-http://rogerx.freeshell.org/
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
