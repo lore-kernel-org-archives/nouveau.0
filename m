@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32933] Screen corruption with drm-nouveau-next
-Date: Sun,  9 Jan 2011 09:23:59 -0800 (PST)
-Message-ID: <20110109172359.1AED913004D@annarchy.freedesktop.org>
-References: <bug-32933-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [libdrm PATCH 1/3] nouveau: remove unused OUT_RELOC2 and
+	OUT_RELOCr
+Date: Sun,  9 Jan 2011 18:30:58 +0100
+Message-ID: <1294594263-1862-1-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32933-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +19,44 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=32933
+---
+ nouveau/nouveau_pushbuf.h |   17 -----------------
+ 1 files changed, 0 insertions(+), 17 deletions(-)
 
---- Comment #3 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-01-09 09:23:59 PST ---
-Logs do not contain anything interesting.
-
-But I bisected the issue today. It seems the problematic commit is
-5f6fdca570b13a8a2c9cab9ab6edfc17487049cf
-
+diff --git a/nouveau/nouveau_pushbuf.h b/nouveau/nouveau_pushbuf.h
+index 2a98789..70d0f28 100644
+--- a/nouveau/nouveau_pushbuf.h
++++ b/nouveau/nouveau_pushbuf.h
+@@ -109,15 +109,6 @@ OUT_RELOC(struct nouveau_channel *chan, struct nouveau_bo *bo,
+ 					  data, 0, flags, vor, tor);
+ }
+ 
+-static __inline__ int
+-OUT_RELOC2(struct nouveau_channel *chan, struct nouveau_bo *bo,
+-	   unsigned data, unsigned data2, unsigned flags,
+-	   unsigned vor, unsigned tor)
+-{
+-	return nouveau_pushbuf_emit_reloc(chan, chan->cur++, bo,
+-					  data, data2, flags, vor, tor);
+-}
+-
+ /* Raw data + flags depending on FB/TT buffer */
+ static __inline__ int
+ OUT_RELOCd(struct nouveau_channel *chan, struct nouveau_bo *bo,
+@@ -143,14 +134,6 @@ OUT_RELOCl(struct nouveau_channel *chan, struct nouveau_bo *bo,
+ 	return OUT_RELOC(chan, bo, delta, flags | NOUVEAU_BO_LOW, 0, 0);
+ }
+ 
+-/* Low 32-bits of offset + GPU linear access range info */
+-static __inline__ int
+-OUT_RELOCr(struct nouveau_channel *chan, struct nouveau_bo *bo,
+-	   unsigned delta, unsigned size, unsigned flags)
+-{
+-	return OUT_RELOC2(chan, bo, delta, size, flags | NOUVEAU_BO_LOW, 0, 0);
+-}
+-
+ /* High 32-bits of offset */
+ static __inline__ int
+ OUT_RELOCh(struct nouveau_channel *chan, struct nouveau_bo *bo,
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.3.3
