@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32933] Screen corruption with drm-nouveau-next
-Date: Sun,  9 Jan 2011 03:09:41 -0800 (PST)
-Message-ID: <20110109110941.6089413004D@annarchy.freedesktop.org>
+Date: Sun,  9 Jan 2011 03:35:57 -0800 (PST)
+Message-ID: <20110109113557.B6C7E13004D@annarchy.freedesktop.org>
 References: <bug-32933-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32933
 
---- Comment #1 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-01-09 03:09:41 PST ---
-Forget to mention:
-Xorg-server is 7.4 from Fedora 14 stock
-graphics adapter is nvA0
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-09 03:35:57 PST ---
+Can you post dmesg please. Also, any chance of finding which commit is
+responsible. Thanks :)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
