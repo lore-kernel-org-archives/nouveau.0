@@ -1,14 +1,15 @@
-From: rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: Latest Git still freezes AGP [GeForce 7600 GS]
-Date: Sat, 8 Jan 2011 16:27:47 -0900
-Message-ID: <20110109012747.GA4523@localhost2.local>
+Date: Sun, 9 Jan 2011 01:20:04 -0900
+Message-ID: <20110109102004.GA4537@localhost2.local>
 References: <20110108234155.GC4575@localhost2.local>
+	<20110109012747.GA4523@localhost2.local>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20110108234155.GC4575-bi+AKbBUZKbUbxaO3c2PGA@public.gmane.org>
+In-Reply-To: <20110109012747.GA4523-bi+AKbBUZKbUbxaO3c2PGA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +22,46 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Jan 08, 2011 at 02:41:55PM -0900, Roger wrote:
+On Sat, Jan 08, 2011 at 04:27:47PM -0900, rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org wrote:
+>On Sat, Jan 08, 2011 at 02:41:55PM -0900, Roger wrote:
+>>
+>>Just a ping here concerning the "nVidia Corporation G73 [GeForce 7600 GS]" and
+>>AGP issues.
+>>
+>>
+>>I still have to use agpmode=0 (aka kernel parameter nouveau.agpmode=0) to
+>>avoid kernel (framebuffer) freezes when loading drm/nouveau drivers.
+>>
+>>
+>>My next task will be to get KDB working to hopefully get a backtrace.  Or is it
+>>futile at this point?  Using KGDB, I think stalls the serial bus and, the info
+>>I earlier collected showed nothing relevant to this or to any indication of a
+>>kernel panic.
 >
->Just a ping here concerning the "nVidia Corporation G73 [GeForce 7600 GS]" and
->AGP issues.
+>(I meant KDUMP instead of KDB within the above paragraph.)
 >
 >
->I still have to use agpmode=0 (aka kernel parameter nouveau.agpmode=0) to
->avoid kernel (framebuffer) freezes when loading drm/nouveau drivers.
+>Interesting. I've recompiled this kernel to include the drm & nouveau as
+>modules.  (I also added KDUMP along with RELOC.)  The modules seem to be
+>loading and activating framebuffer console mode now without freezing, while
+>also enabling AGP mode.
 >
+>I was anticipating to use/activate KDUMP dump kernel after loading the drm &
+>nouveau modules which trigger the freeze when AGP is enabled.
 >
->My next task will be to get KDB working to hopefully get a backtrace.  Or is it
->futile at this point?  Using KGDB, I think stalls the serial bus and, the info
->I earlier collected showed nothing relevant to this or to any indication of a
->kernel panic.
+>Seems like this bug is halfway worked out?
 
-(I meant KDUMP instead of KDB within the above paragraph.)
+I've gone back to recent stable kernel release 2.6.37 that I just installed,
+and verify that compiling the in-kernel nouveau as module does allow AGP mode
+to work.  I do believe however, 2.6.37 statically linked nouveau driver will
+freeze framebuffer when trying to use AGP mode.
 
+To me, this is really starting to sound more like a timing issue between the
+"Host bridge: Intel Corporation 440BX/ZX/DX - 82443BX/ZX/DX Host bridge" and
+nouveau?
 
-Interesting. I've recompiled this kernel to include the drm & nouveau as
-modules.  (I also added KDUMP along with RELOC.)  The modules seem to be
-loading and activating framebuffer console mode now without freezing, while
-also enabling AGP mode.
-
-I was anticipating to use/activate KDUMP dump kernel after loading the drm &
-nouveau modules which trigger the freeze when AGP is enabled.
-
-Seems like this bug is halfway worked out?
+(FYI: drm is still being compiled statically. Just nouveau requires to be
+compiled as module to evade AGP issues.)
 
 -- 
 Roger
