@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] X fails to set mode on NV11 and dies.
-Date: Mon, 10 Jan 2011 05:40:20 -0800 (PST)
-Message-ID: <20110110134020.5054E13004D@annarchy.freedesktop.org>
+Date: Mon, 10 Jan 2011 06:16:44 -0800 (PST)
+Message-ID: <20110110141644.D969113004D@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #3 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-10 05:40:20 PST ---
-Is there anything I can do to help get this sorted for the NV11 chipset?
+Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Version|unspecified                 |6.7.0
+
+--- Comment #4 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-10 06:16:44 PST ---
+I have some newer logs, with VESA_FB and PRINTK timings enable attached to this
+report.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
