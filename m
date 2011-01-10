@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] X fails to set mode on NV11 and dies.
-Date: Mon, 10 Jan 2011 05:30:42 -0800 (PST)
-Message-ID: <20110110133042.8A2B813004F@annarchy.freedesktop.org>
+Date: Mon, 10 Jan 2011 05:32:12 -0800 (PST)
+Message-ID: <20110110133212.8F67613004D@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #1 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-10 05:30:42 PST ---
-Created an attachment (id=41837)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41837)
-Xorg.0.log
+--- Comment #2 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-10 05:32:12 PST ---
+I'd like to add that I have experienced the same problem with Fedora 15 and
+Ubuntu Natty with the same hardware. 
+
+Also, I have a newer laptop with NV34 chipset, the above distributions and
+Gentoo works perfectly on that.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
