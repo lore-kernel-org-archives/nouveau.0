@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] X fails to set mode on NV11 and dies.
-Date: Tue, 11 Jan 2011 02:59:21 -0800 (PST)
-Message-ID: <20110111105921.6688313004D@annarchy.freedesktop.org>
+Date: Tue, 11 Jan 2011 05:47:51 -0800 (PST)
+Message-ID: <20110111134751.DE97D13004D@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
-Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> changed:
+--- Comment #8 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-11 05:47:51 PST ---
+Just been doing some additional work on this. Apparently disabling LVDS-1 got X
+working.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #41872|application/octet-stream    |text/plain
-          mime type|                            |
+I am now building 2.6.37 and testing again to see if the fixes applied to that
+kernel solves the issue entirely.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
