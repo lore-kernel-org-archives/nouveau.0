@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] X fails to set mode on NV11 and dies.
-Date: Tue, 11 Jan 2011 06:24:44 -0800 (PST)
-Message-ID: <20110111142444.3879313004F@annarchy.freedesktop.org>
+Date: Tue, 11 Jan 2011 06:25:57 -0800 (PST)
+Message-ID: <20110111142557.F240213004F@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #10 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-11 06:24:43 PST ---
-Created an attachment (id=41875)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41875)
-2.6.37 dmesg
+--- Comment #11 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-11 06:25:57 PST ---
+Created an attachment (id=41876)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41876)
+2.6.37 Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
