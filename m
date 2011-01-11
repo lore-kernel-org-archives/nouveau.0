@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] X fails to set mode on NV11 and dies.
-Date: Tue, 11 Jan 2011 06:25:57 -0800 (PST)
-Message-ID: <20110111142557.F240213004F@annarchy.freedesktop.org>
+Date: Tue, 11 Jan 2011 08:47:56 -0800 (PST)
+Message-ID: <20110111164756.2596A13004F@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #11 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-11 06:25:57 PST ---
-Created an attachment (id=41876)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41876)
-2.6.37 Xorg.0.log
+--- Comment #12 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-11 08:47:55 PST ---
+what happens if you remove "vga=791" from 2.6.37 kernel command line?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
