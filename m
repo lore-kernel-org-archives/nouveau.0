@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] X fails to set mode on NV11 and dies.
-Date: Tue, 11 Jan 2011 08:47:56 -0800 (PST)
-Message-ID: <20110111164756.2596A13004F@annarchy.freedesktop.org>
+Date: Tue, 11 Jan 2011 09:39:58 -0800 (PST)
+Message-ID: <20110111173958.1BE4F13004F@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #12 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-11 08:47:55 PST ---
-what happens if you remove "vga=791" from 2.6.37 kernel command line?
+--- Comment #13 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-11 09:39:58 PST ---
+Makes no real difference,the problem is with X trying to start up but not
+getting what it needs. Console working perfectly OK. 
+
+2.6.37 could not even boot with all vga/video related parameters removed,
+needed just LVDS-1:-d to even boot. 
+
+I suspect something has substantially changed for the worse with 2.6.37.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
