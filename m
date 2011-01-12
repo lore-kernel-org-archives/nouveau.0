@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] X fails to set mode on NV11 and dies.
-Date: Wed, 12 Jan 2011 03:01:38 -0800 (PST)
-Message-ID: <20110112110138.3E4B513004F@annarchy.freedesktop.org>
+Date: Wed, 12 Jan 2011 03:02:33 -0800 (PST)
+Message-ID: <20110112110233.CC0C213004D@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #16 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 03:01:37 PST ---
-Created an attachment (id=41906)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41906)
-GPU hang with 2.6.37's xorg.conf
+--- Comment #17 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 03:02:33 PST ---
+Created an attachment (id=41907)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41907)
+GPU hang in 2.6.37 - Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
