@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Wed, 12 Jan 2011 03:04:03 -0800 (PST)
-Message-ID: <20110112110403.B6A0113004D@annarchy.freedesktop.org>
+Date: Wed, 12 Jan 2011 04:06:19 -0800 (PST)
+Message-ID: <20110112120619.BA6A413004F@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
-Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> changed:
+--- Comment #18 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 04:06:17 PST ---
+With diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c
+b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index cfb8a3c..97de9e1 100644 (nv10_invalid_placement_range.patch), and same
+kernel parameter arguments, it boots just fine but X still exhibits problem.
+New logs added. 
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|X fails to set mode on NV11 |2.6.37 - NV11 goes into GPU
-                   |and dies.                   |hang
+Next thing to do is to test kernel without these parameters.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
