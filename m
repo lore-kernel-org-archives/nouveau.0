@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Wed, 12 Jan 2011 05:35:06 -0800 (PST)
-Message-ID: <20110112133506.CF3BE13004E@annarchy.freedesktop.org>
+Date: Wed, 12 Jan 2011 05:35:32 -0800 (PST)
+Message-ID: <20110112133532.5820713004D@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,8 @@ Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #41915|0                           |1
-        is obsolete|                            |
-
---- Comment #26 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 05:35:05 PST ---
-Created an attachment (id=41920)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41920)
-w/ newer range patch, Xorg.0.log
+  Attachment #41919|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
