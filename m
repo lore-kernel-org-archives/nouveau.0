@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Wed, 12 Jan 2011 05:34:27 -0800 (PST)
-Message-ID: <20110112133427.7860E13004F@annarchy.freedesktop.org>
+Date: Wed, 12 Jan 2011 05:35:06 -0800 (PST)
+Message-ID: <20110112133506.CF3BE13004E@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,13 @@ Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #41913|0                           |1
+  Attachment #41915|0                           |1
         is obsolete|                            |
 
---- Comment #25 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 05:34:26 PST ---
-Created an attachment (id=41919)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41919)
-w/ newer range patch, dmesg output
+--- Comment #26 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 05:35:05 PST ---
+Created an attachment (id=41920)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41920)
+w/ newer range patch, Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
