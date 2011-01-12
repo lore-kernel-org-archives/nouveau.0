@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32959] X fails to set mode on NV11 and dies.
-Date: Wed, 12 Jan 2011 03:02:33 -0800 (PST)
-Message-ID: <20110112110233.CC0C213004D@annarchy.freedesktop.org>
+Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
+Date: Wed, 12 Jan 2011 03:04:03 -0800 (PST)
+Message-ID: <20110112110403.B6A0113004D@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #17 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 03:02:33 PST ---
-Created an attachment (id=41907)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41907)
-GPU hang in 2.6.37 - Xorg.0.log
+Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|X fails to set mode on NV11 |2.6.37 - NV11 goes into GPU
+                   |and dies.                   |hang
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
