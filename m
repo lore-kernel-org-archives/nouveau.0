@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Wed, 12 Jan 2011 05:33:52 -0800 (PST)
-Message-ID: <20110112133352.54C1513004F@annarchy.freedesktop.org>
+Date: Wed, 12 Jan 2011 05:34:27 -0800 (PST)
+Message-ID: <20110112133427.7860E13004F@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #24 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 05:33:51 PST ---
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c
-b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index c41e1c2..30fe6f7 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> changed:
 
-The above latest patch fixes the problems with NV11 chipset completely, X nows
-starts properly. Congratulations, it all works now. Thank you so much!
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #41913|0                           |1
+        is obsolete|                            |
 
-New logs provided.
+--- Comment #25 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 05:34:26 PST ---
+Created an attachment (id=41919)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41919)
+w/ newer range patch, dmesg output
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
