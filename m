@@ -1,14 +1,15 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: [libdrm PATCH 1/3] nouveau: remove unused OUT_RELOC2
-	and OUT_RELOCr
-Date: Wed, 12 Jan 2011 19:26:07 +0100
-Message-ID: <87mxn6htc0.fsf@riseup.net>
-References: <1294594263-1862-1-git-send-email-marcin.slusarz@gmail.com>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [ddx PATCH v2] convert OUT_RELOCh + OUT_RELOCl to
+	OUT_RELOC2
+Date: Wed, 12 Jan 2011 20:26:20 +0100
+Message-ID: <20110112192620.GB3189@joi.lan>
+References: <1294594263-1862-4-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0500599985=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1294594263-1862-1-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-	(Marcin Slusarz's message of "Sun, 9 Jan 2011 18:30:58 +0100")
+Content-Disposition: inline
+In-Reply-To: <1294594263-1862-4-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,93 +19,261 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0500599985==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+---
+ src/nv50_accel.c |   32 ++++++++------------------------
+ src/nv50_exa.c   |   24 ++++++++----------------
+ src/nv50_xv.c    |   25 ++++++++-----------------
+ 3 files changed, 24 insertions(+), 57 deletions(-)
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v2: s/OUT_RELOChl/OUT_RELOC2/g as requested
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
-
-> ---
->  nouveau/nouveau_pushbuf.h |   17 -----------------
->  1 files changed, 0 insertions(+), 17 deletions(-)
->
-> diff --git a/nouveau/nouveau_pushbuf.h b/nouveau/nouveau_pushbuf.h
-> index 2a98789..70d0f28 100644
-> --- a/nouveau/nouveau_pushbuf.h
-> +++ b/nouveau/nouveau_pushbuf.h
-> @@ -109,15 +109,6 @@ OUT_RELOC(struct nouveau_channel *chan, struct nouve=
-au_bo *bo,
->  					  data, 0, flags, vor, tor);
->  }
->=20=20
-> -static __inline__ int
-> -OUT_RELOC2(struct nouveau_channel *chan, struct nouveau_bo *bo,
-> -	   unsigned data, unsigned data2, unsigned flags,
-> -	   unsigned vor, unsigned tor)
-> -{
-> -	return nouveau_pushbuf_emit_reloc(chan, chan->cur++, bo,
-> -					  data, data2, flags, vor, tor);
-> -}
-> -
->  /* Raw data + flags depending on FB/TT buffer */
->  static __inline__ int
->  OUT_RELOCd(struct nouveau_channel *chan, struct nouveau_bo *bo,
-> @@ -143,14 +134,6 @@ OUT_RELOCl(struct nouveau_channel *chan, struct nouv=
-eau_bo *bo,
->  	return OUT_RELOC(chan, bo, delta, flags | NOUVEAU_BO_LOW, 0, 0);
->  }
->=20=20
-> -/* Low 32-bits of offset + GPU linear access range info */
-> -static __inline__ int
-> -OUT_RELOCr(struct nouveau_channel *chan, struct nouveau_bo *bo,
-> -	   unsigned delta, unsigned size, unsigned flags)
-> -{
-> -	return OUT_RELOC2(chan, bo, delta, size, flags | NOUVEAU_BO_LOW, 0, 0);
-> -}
-> -
->  /* High 32-bits of offset */
->  static __inline__ int
->  OUT_RELOCh(struct nouveau_channel *chan, struct nouveau_bo *bo,
-
-This patch series looks like a good clean-up. Ben, do you have any
-additional changes in mind for the libdrm API? (If you do they could go
-in together to avoid annoying users more often than necessary)
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-
-iF4EAREIAAYFAk0t8kAACgkQg5k4nX1Sv1ugngD/SN26umbkGCgWn8Ux/bdVJZvt
-YDANZl3co6MWNC2+FJoA/0SlKut07UC3chloiPMyn0f1z+T1Q/f+e9OWutJrKGYs
-=E7m2
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0500599985==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0500599985==--
+diff --git a/src/nv50_accel.c b/src/nv50_accel.c
+index d6c7528..d2c44c7 100644
+--- a/src/nv50_accel.c
++++ b/src/nv50_accel.c
+@@ -148,9 +148,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, 0x54);
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PVP_OFFSET,
+-		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PVP_OFFSET,
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PVP_OFFSET,
+ 		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+@@ -190,9 +188,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, 0);
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch,
+-		       PFP_OFFSET + PFP_S, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch,
++	if (OUT_RELOC2(chan, pNv->tesla_scratch,
+ 		       PFP_OFFSET + PFP_S, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+@@ -208,9 +204,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, 0xf6400001);
+ 	OUT_RING  (chan, 0x0000c785);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch,
+-		       PFP_OFFSET + PFP_C, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch,
++	if (OUT_RELOC2(chan, pNv->tesla_scratch,
+ 		       PFP_OFFSET + PFP_C, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+@@ -236,9 +230,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, 0xc004060d);
+ 	OUT_RING  (chan, 0x00000781);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch,
+-		       PFP_OFFSET + PFP_CCA, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch,
++	if (OUT_RELOC2(chan, pNv->tesla_scratch,
+ 		       PFP_OFFSET + PFP_CCA, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+@@ -264,9 +256,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, 0xc007060d);
+ 	OUT_RING  (chan, 0x00000781);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_CCASA,
+-		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_CCASA,
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_CCASA,
+ 		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+@@ -292,9 +282,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, 0xc004060d);
+ 	OUT_RING  (chan, 0x00000781);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_S_A8,
+-		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_S_A8,
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_S_A8,
+ 		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+@@ -314,9 +302,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, 0x1000000d);
+ 	OUT_RING  (chan, 0x0403c781);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_C_A8,
+-		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_C_A8,
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_C_A8,
+ 		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+@@ -342,9 +328,7 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+ 	OUT_RING  (chan, 0x10000609);
+ 	OUT_RING  (chan, 0x0403c781);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_NV12,
+-		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_NV12,
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PFP_OFFSET + PFP_NV12,
+ 		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+diff --git a/src/nv50_exa.c b/src/nv50_exa.c
+index e8ff5aa..776187f 100644
+--- a/src/nv50_exa.c
++++ b/src/nv50_exa.c
+@@ -137,8 +137,7 @@ NV50EXAAcquireSurface2D(PixmapPtr ppix, int is_src)
+ 	BEGIN_RING(chan, eng2d, mthd + 0x18, 4);
+ 	OUT_RING  (chan, ppix->drawable.width);
+ 	OUT_RING  (chan, ppix->drawable.height);
+-	if (OUT_RELOCh(chan, bo, 0, bo_flags) ||
+-	    OUT_RELOCl(chan, bo, 0, bo_flags))
++	if (OUT_RELOC2(chan, bo, 0, bo_flags))
+ 		return FALSE;
+ 
+ 	if (is_src == 0)
+@@ -494,8 +493,7 @@ NV50EXARenderTarget(PixmapPtr ppix, PicturePtr ppict)
+ 	}
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_RT_ADDRESS_HIGH(0), 5);
+-	if (OUT_RELOCh(chan, bo, 0, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, bo, 0, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR))
++	if (OUT_RELOC2(chan, bo, 0, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR))
+ 		return FALSE;
+ 	OUT_RING  (chan, format);
+ 	OUT_RING  (chan, bo->tile_mode << 4);
+@@ -586,13 +584,11 @@ NV50EXATexture(PixmapPtr ppix, PicturePtr ppict, unsigned unit)
+ 		NOUVEAU_FALLBACK("pixmap is scanout buffer\n");
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_TIC_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags))
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags))
+ 		return FALSE;
+ 	OUT_RING  (chan, 0x00000800);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags))
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags))
+ 		return FALSE;
+ 	OUT_RING  (chan, (CB_TIC << NV50TCL_CB_DEF_SET_BUFFER_SHIFT) | 0x4000);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_ADDR, 1);
+@@ -680,13 +676,11 @@ NV50EXATexture(PixmapPtr ppix, PicturePtr ppict, unsigned unit)
+ 	OUT_RING  (chan, 0x00000000);
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_TSC_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags))
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags))
+ 		return FALSE;
+ 	OUT_RING  (chan, 0x00000000);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags))
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags))
+ 		return FALSE;
+ 	OUT_RING  (chan, (CB_TSC << NV50TCL_CB_DEF_SET_BUFFER_SHIFT) | 0x4000);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_ADDR, 1);
+@@ -849,15 +843,13 @@ NV50EXAPrepareComposite(int op,
+ 		     PICT_FORMAT_RGB(pmpict->format));
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_VP_ADDRESS_HIGH, 2);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PVP_OFFSET, shd_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PVP_OFFSET, shd_flags)) {
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PVP_OFFSET, shd_flags)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_FP_ADDRESS_HIGH, 2);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PFP_OFFSET, shd_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PFP_OFFSET, shd_flags)) {
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PFP_OFFSET, shd_flags)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+diff --git a/src/nv50_xv.c b/src/nv50_xv.c
+index 1538cdc..449b54e 100644
+--- a/src/nv50_xv.c
++++ b/src/nv50_xv.c
+@@ -76,8 +76,7 @@ nv50_xv_state_emit(PixmapPtr ppix, int id, struct nouveau_bo *src,
+ 		return FALSE;
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_RT_ADDRESS_HIGH(0), 5);
+-	if (OUT_RELOCh(chan, bo, 0, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, bo, 0, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
++	if (OUT_RELOC2(chan, bo, 0, NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+@@ -99,15 +98,13 @@ nv50_xv_state_emit(PixmapPtr ppix, int id, struct nouveau_bo *src,
+ 	OUT_RING  (chan, 0);
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_TIC_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags)) {
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+ 	OUT_RING  (chan, 0x00000800);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags)) {
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, TIC_OFFSET, tcb_flags)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+@@ -200,15 +197,13 @@ nv50_xv_state_emit(PixmapPtr ppix, int id, struct nouveau_bo *src,
+ 	}
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_TSC_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags)) {
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+ 	OUT_RING  (chan, 0x00000000);
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags)) {
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, TSC_OFFSET, tcb_flags)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+@@ -242,14 +237,12 @@ nv50_xv_state_emit(PixmapPtr ppix, int id, struct nouveau_bo *src,
+ 	OUT_RING  (chan, 0x00000000);
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_VP_ADDRESS_HIGH, 2);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PVP_OFFSET, shd_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PVP_OFFSET, shd_flags)) {
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PVP_OFFSET, shd_flags)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+ 	BEGIN_RING(chan, tesla, NV50TCL_FP_ADDRESS_HIGH, 2);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PFP_OFFSET, shd_flags) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PFP_OFFSET, shd_flags)) {
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PFP_OFFSET, shd_flags)) {
+ 		MARK_UNDO(chan);
+ 		return FALSE;
+ 	}
+@@ -403,9 +396,7 @@ nv50_xv_csc_update(ScrnInfoPtr pScrn, NVPortPrivPtr pPriv)
+ 		return;
+ 
+ 	BEGIN_RING(chan, tesla, NV50TCL_CB_DEF_ADDRESS_HIGH, 3);
+-	if (OUT_RELOCh(chan, pNv->tesla_scratch, PFP_DATA,
+-		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR) ||
+-	    OUT_RELOCl(chan, pNv->tesla_scratch, PFP_DATA,
++	if (OUT_RELOC2(chan, pNv->tesla_scratch, PFP_DATA,
+ 		       NOUVEAU_BO_VRAM | NOUVEAU_BO_WR)) {
+ 		MARK_UNDO(chan);
+ 		return;
+-- 
+1.7.3.3
