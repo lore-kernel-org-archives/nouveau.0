@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Wed, 12 Jan 2011 04:06:19 -0800 (PST)
-Message-ID: <20110112120619.BA6A413004F@annarchy.freedesktop.org>
+Date: Wed, 12 Jan 2011 04:06:56 -0800 (PST)
+Message-ID: <20110112120656.C928E13004E@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #18 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 04:06:17 PST ---
-With diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c
-b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index cfb8a3c..97de9e1 100644 (nv10_invalid_placement_range.patch), and same
-kernel parameter arguments, it boots just fine but X still exhibits problem.
-New logs added. 
-
-Next thing to do is to test kernel without these parameters.
+--- Comment #19 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-12 04:06:56 PST ---
+Created an attachment (id=41910)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41910)
+w/ range patch and kernel args - dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
