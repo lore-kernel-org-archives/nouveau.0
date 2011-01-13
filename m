@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32453] SIGABRT caused by malloc around RegionCreate.
  Can only reproduce with nouveau not vesa.
-Date: Thu, 13 Jan 2011 11:27:41 -0800 (PST)
-Message-ID: <20110113192741.A205413004E@annarchy.freedesktop.org>
+Date: Thu, 13 Jan 2011 11:48:45 -0800 (PST)
+Message-ID: <20110113194845.E5F5C13004D@annarchy.freedesktop.org>
 References: <bug-32453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32453
 
---- Comment #5 from Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> 2011-01-13 11:27:41 PST ---
-Created an attachment (id=41982)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41982)
-/var/log/gdm/:0.log.2
+--- Comment #6 from Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> 2011-01-13 11:48:45 PST ---
+(In reply to comment #4)
+> Does the patch from bug 32803 happen to help for this as well?
 
-Here is the gdm capture from Xorg. NOTE: I had to add export
-LIBC_FATAL_STDERR_=1 to get this.
+Yes, I have the patch from 32803 and I am still hitting the bug. I am running
+the latest xorg-x11-server from openSUSE: 
+
+https://build.opensuse.org/package/show?package=xorg-x11-server&project=X11%3AXOrg
+
+Thanks, Brandon
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
