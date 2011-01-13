@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32453] SIGABRT caused by malloc around RegionCreate.
- Can only reproduce with nouveau not vesa.
-Date: Thu, 13 Jan 2011 11:52:42 -0800 (PST)
-Message-ID: <20110113195242.3785C13004D@annarchy.freedesktop.org>
+Subject: [Bug 32453] SIGABRT caused by malloc around
+ exaPrepareAccessReg_mixed
+Date: Thu, 13 Jan 2011 11:56:01 -0800 (PST)
+Message-ID: <20110113195601.194E913004D@annarchy.freedesktop.org>
 References: <bug-32453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32453
 
---- Comment #7 from Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> 2011-01-13 11:52:41 PST ---
-Created an attachment (id=41985)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=41985)
-Latest backtrace
+Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> changed:
 
-With the latest Xorg available to me the backtrace has changed abit and is
-around malloc in exaPrepareAccessReg_mixed().
-
-Starting with MALLOC_CHECK=3 still works around the issue.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|SIGABRT caused by malloc    |SIGABRT caused by malloc
+                   |around RegionCreate. Can    |around
+                   |only reproduce with nouveau |exaPrepareAccessReg_mixed
+                   |not vesa.                   |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
