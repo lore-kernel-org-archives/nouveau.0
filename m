@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32453] SIGABRT caused by malloc around
  exaPrepareAccessReg_mixed
-Date: Thu, 13 Jan 2011 11:56:01 -0800 (PST)
-Message-ID: <20110113195601.194E913004D@annarchy.freedesktop.org>
+Date: Thu, 13 Jan 2011 11:59:58 -0800 (PST)
+Message-ID: <20110113195958.988FB13004D@annarchy.freedesktop.org>
 References: <bug-32453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32453
 
-Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> changed:
+--- Comment #8 from Brandon Philips <brandon-Qdl1sq8EXS0@public.gmane.org> 2011-01-13 11:59:58 PST ---
+Created an attachment (id=41986)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=41986)
+gdm capture of latest Xorg crash
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|SIGABRT caused by malloc    |SIGABRT caused by malloc
-                   |around RegionCreate. Can    |around
-                   |only reproduce with nouveau |exaPrepareAccessReg_mixed
-                   |not vesa.                   |
+Here is what gdm captured from the latest Xorg when it crashes.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
