@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32453] SIGABRT caused by malloc around
- exaPrepareAccessReg_mixed
-Date: Fri, 14 Jan 2011 01:01:32 -0800 (PST)
-Message-ID: <20110114090132.CD4E813004F@annarchy.freedesktop.org>
-References: <bug-32453-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32494] [NV46] GPU lockup,
+ switching to software fbcon at startup
+Date: Fri, 14 Jan 2011 04:45:25 -0800 (PST)
+Message-ID: <20110114124525.8B45213004D@annarchy.freedesktop.org>
+References: <bug-32494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-32494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzI0NTMKCi0tLSBD
-b21tZW50ICM5IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4gMjAxMS0w
-MS0xNCAwMTowMTozMSBQU1QgLS0tCldlbGwsIHRoZSBiYWNrdHJhY2VzIGZyb20gdGhlIFhvcmcg
-YW5kIGdkbSBsb2cgZmlsZXMgYW5kIGZyb20gZ2RiIGFsbCBsb29rCmRpZmZlcmVudC4gOn0gU28g
-YXMgaW4gYnVnIDMyNDUzLCB0aGUgcmVhbCBwcm9ibGVtIGNvdWxkIGJlIG1lbW9yeSBjb3JydXB0
-aW9uCnNvbWV3aGVyZSBlbHNlIHdoaWNoIGlzIG9ubHkgY2F1Z2h0IGluIHRoZXNlIHBsYWNlcy4K
-CkFwYXJ0IGZyb20gcnVubmluZyB0aGUgWCBzZXJ2ZXIgaW4gdmFsZ3JpbmQsIGdldHRpbmcgYSBn
-ZGIgYmFja3RyYWNlIGZvciB0aGUKZnJlZSgpIGZhaWx1cmUgaW4gdGhlIGdkbSBsb2cgZmlsZSBt
-aWdodCBiZSB1c2VmdWwuCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVl
-ZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2Vp
-dmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3Ig
-dGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=32494
+
+--- Comment #6 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-14 04:45:25 PST ---
+Created an attachment (id=42021)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42021)
+Kernel log, from drm-nouveau-staging branch
+
+With git repo from drm-nouveau-staging branch, I now get PFIFO_CACHE_ERROR
+which was not the case with master.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
