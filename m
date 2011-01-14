@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32494] [NV46] GPU lockup,
  switching to software fbcon at startup
-Date: Fri, 14 Jan 2011 04:45:25 -0800 (PST)
-Message-ID: <20110114124525.8B45213004D@annarchy.freedesktop.org>
+Date: Fri, 14 Jan 2011 04:46:01 -0800 (PST)
+Message-ID: <20110114124601.CE01F13004D@annarchy.freedesktop.org>
 References: <bug-32494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32494
 
---- Comment #6 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-14 04:45:25 PST ---
-Created an attachment (id=42021)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42021)
-Kernel log, from drm-nouveau-staging branch
+Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-With git repo from drm-nouveau-staging branch, I now get PFIFO_CACHE_ERROR
-which was not the case with master.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #42021|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
