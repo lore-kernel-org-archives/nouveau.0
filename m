@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31676] garbled text after loading nouveau module on
- EFI boot; X driver thinks there are no connected outputs
-Date: Sun, 16 Jan 2011 23:52:18 -0800 (PST)
-Message-ID: <20110117075218.AD01F13004D@annarchy.freedesktop.org>
-References: <bug-31676-8800@http.bugs.freedesktop.org/>
+From: Sebastian Sumpf <Sebastian.Sumpf-8yWX5rHJKN6Gw+nKnLezzg@public.gmane.org>
+Subject: Noveau on MacBook Air
+Date: Mon, 17 Jan 2011 12:02:57 +0100
+Message-ID: <4D3421E1.4030001@genode-labs.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +18,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31676
-
---- Comment #12 from Brian Tarricone <bjt23-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org> 2011-01-16 23:52:16 PST ---
-Is there any more info or testing I can provide on this?  Getting pretty bummed
-to be using fbdev for the past couple months :(
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+SGksCgp3ZSd2ZSB0cmllZCB0byB1c2UgdGhlIG5vdmVhdSBkcml2ZXIgb24gYSBNQkEgMywyIGFu
+ZCBmb3VuZCAoQnVnIDY1MDk0OSkKdGhhdCBpdCBpcyBub3Qgd29ya2luZyBjb3JyZWN0bHksIHRo
+ZSByZWFzb24gbWF5IGJlIHRoZSBlRFAuIElzIHRoZXJlCmFueSB3YXkgd2UgY2FuIGhlbHAgdG8g
+Zml4IHRoaXMgaXNzdWU/IFdlJ3ZlIGdvdCBhIE1CQSwgTGludXgsIGFuZCBzb21lCmV4cGVyaWVu
+Y2Ugd2l0aCBMaW51eCBkZXZpY2UgZHJpdmVycy4gV2hhdCB3b3VsZCBiZSBhIGdvb2Qgc3RhcnRp
+bmcKcG9pbnQgdG8gZGVidWcgbm92ZWF1IGluIG9yZGVyIHRvIGZpeCB0aGlzIGJ1Zz8KCkdyZWV0
+aW5ncywKLS0gClNlYmFzdGlhbiBTdW1wZgpHZW5vZGUgTGFicwoKaHR0cDovL3d3dy5nZW5vZGUt
+bGFicy5jb20gwrcgaHR0cDovL2dlbm9kZS5vcmcKCkdlbm9kZSBMYWJzIEdtYkggwrcgQW10c2dl
+cmljaHQgRHJlc2RlbiDCtyBIUkIgMjg0MjQgwrcgU2l0eiBEcmVzZGVuCkdlc2Now6RmdHNmw7xo
+cmVyOiBEci4tSW5nLiBOb3JtYW4gRmVza2UsIENocmlzdGlhbiBIZWxtdXRoCgoKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
