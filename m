@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33222] random hang-up with nouveau when browsing
  with Google chrome
-Date: Tue, 18 Jan 2011 08:08:33 -0800 (PST)
-Message-ID: <20110118160833.D6E1A13004E@annarchy.freedesktop.org>
+Date: Tue, 18 Jan 2011 08:08:58 -0800 (PST)
+Message-ID: <20110118160858.AB52313004E@annarchy.freedesktop.org>
 References: <bug-33222-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #42141|text/x-log                  |text/plain
+  Attachment #42142|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
