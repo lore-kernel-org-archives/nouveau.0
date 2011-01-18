@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33222] random hang-up with nouveau when browsing
  with Google chrome
-Date: Mon, 17 Jan 2011 20:26:56 -0800 (PST)
-Message-ID: <20110118042656.A018B13004D@annarchy.freedesktop.org>
+Date: Tue, 18 Jan 2011 08:08:33 -0800 (PST)
+Message-ID: <20110118160833.D6E1A13004E@annarchy.freedesktop.org>
 References: <bug-33222-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33222
 
---- Comment #2 from Zhang Chi <zhangchi866-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-17 20:26:56 PST ---
-Sorry but I forgot to mention that the version of my Google Chrome is
-8.0.552.224 with all experiments disabled. My system locale is zh-CN.UTF-8 and
-default fonts for chrome are: Georgia Normal 12, Droid Sans Fallback 12 and
-DejaVu Sans YuanTi Mono 12(can be found at
-http://forum.ubuntu.org.cn/viewtopic.php?t=110509).
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #42141|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
