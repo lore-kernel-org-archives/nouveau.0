@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33297] New: X hangs with nouveau and linux kernel
+Subject: [Bug 33297] X hangs with nouveau and linux kernel
 	2.6.38-rc1
-Date: Thu, 20 Jan 2011 09:46:36 -0800 (PST)
-Message-ID: <bug-33297-8800@http.bugs.freedesktop.org/>
+Date: Thu, 20 Jan 2011 09:47:23 -0800 (PST)
+Message-ID: <20110120174723.BDDC913004E@annarchy.freedesktop.org>
+References: <bug-33297-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33297-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33297
 
-           Summary: X hangs with nouveau and linux kernel 2.6.38-rc1
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Hi there
-
-I have installed following software:
-- nouveau DDX driver - from git;
-- libdrm - from git;
-- linux kernel 2.6.38-rc1;
-- xorg - 1.9.2 from debian instalation
-
-And with all this stuff X hangs after some time. I can't realise what is the
-cause of these hangs but it happened two times after starting KDevelop 4.0.2.
-There is nothing special/extraordinary in dmesg. Actually hangs only X and
-graphic subsystem. I can reboot the system with SysRq magic button :) (any
-other key combinations don't work) and also I can ssh to my box from other one.
-
-You can find stack trace with which X fails in attached Xorg.log
+--- Comment #1 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-20 09:47:22 PST ---
+Created an attachment (id=42236)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42236)
+dmesg is here
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
