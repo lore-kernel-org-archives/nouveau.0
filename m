@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33297] X hangs with nouveau and linux kernel
 	2.6.38-rc1
-Date: Thu, 20 Jan 2011 09:50:37 -0800 (PST)
-Message-ID: <20110120175037.A562313004E@annarchy.freedesktop.org>
+Date: Thu, 20 Jan 2011 09:55:59 -0800 (PST)
+Message-ID: <20110120175559.7E25B13004D@annarchy.freedesktop.org>
 References: <bug-33297-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33297
 
---- Comment #3 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-20 09:50:35 PST ---
-And one more with linux kernel 2.6.37 this combination of software works OK
+Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |high
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
