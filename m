@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33297] X hangs with nouveau and linux kernel
 	2.6.38-rc1
-Date: Thu, 20 Jan 2011 10:11:02 -0800 (PST)
-Message-ID: <20110120181102.4016F13004F@annarchy.freedesktop.org>
+Date: Thu, 20 Jan 2011 10:11:26 -0800 (PST)
+Message-ID: <20110120181127.0C4EA13004F@annarchy.freedesktop.org>
 References: <bug-33297-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #42236|text/x-log                  |text/plain
+  Attachment #42237|application/x-trash         |text/plain
           mime type|                            |
 
 -- 
