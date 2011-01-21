@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Thu, 20 Jan 2011 20:47:18 -0800 (PST)
-Message-ID: <20110121044718.ED1622DC012@annarchy.freedesktop.org>
+Date: Fri, 21 Jan 2011 04:46:00 -0800 (PST)
+Message-ID: <20110121124600.6AB8313004E@annarchy.freedesktop.org>
 References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
---- Comment #26 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2011-01-20 20:47:18 PST ---
-I've actually switched to just testing the 1600x1200 monitor for now... It
-didn't appear to have any effect.. Should I have undone the previous patch
-first?
-Can I just do a register dump of the 1600x1200?
+--- Comment #27 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-01-21 04:45:59 PST ---
+(In reply to comment #26)
+> Can I just do a register dump of the 1600x1200?
+
+Yeah, that should do it, thanks.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
