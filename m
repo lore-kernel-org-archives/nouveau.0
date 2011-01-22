@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33373] nouveau dual monitor configuration doesn't
  work with linux 2.6.38-rc2
-Date: Sat, 22 Jan 2011 15:50:11 -0800 (PST)
-Message-ID: <20110122235011.63E4A13004D@annarchy.freedesktop.org>
+Date: Sat, 22 Jan 2011 15:51:17 -0800 (PST)
+Message-ID: <20110122235117.E4E4413004F@annarchy.freedesktop.org>
 References: <bug-33373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33373
 
---- Comment #1 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-22 15:50:10 PST ---
-Created an attachment (id=42323)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42323)
-xorg log
+--- Comment #2 from Alexander <alex.vizor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-22 15:51:17 PST ---
+Created an attachment (id=42324)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42324)
+dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
