@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Fri, 21 Jan 2011 04:46:00 -0800 (PST)
-Message-ID: <20110121124600.6AB8313004E@annarchy.freedesktop.org>
+Date: Fri, 21 Jan 2011 16:37:35 -0800 (PST)
+Message-ID: <20110122003735.202A113004D@annarchy.freedesktop.org>
 References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
---- Comment #27 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-01-21 04:45:59 PST ---
-(In reply to comment #26)
-> Can I just do a register dump of the 1600x1200?
-
-Yeah, that should do it, thanks.
+--- Comment #28 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2011-01-21 16:37:34 PST ---
+Created an attachment (id=42295)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42295)
+TVdump from nouveau running 1600x1200
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
