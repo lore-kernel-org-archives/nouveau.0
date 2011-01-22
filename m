@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Sat, 22 Jan 2011 09:55:39 -0800 (PST)
-Message-ID: <20110122175539.7F6BC13004E@annarchy.freedesktop.org>
+Date: Sat, 22 Jan 2011 10:43:57 -0800 (PST)
+Message-ID: <20110122184357.D36A513004D@annarchy.freedesktop.org>
 References: <bug-32645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32645
 
---- Comment #32 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2011-01-22 09:55:38 PST ---
-The flickering is gone! Thanks!
+--- Comment #33 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-01-22 10:43:57 PST ---
+(In reply to comment #32)
+> The flickering is gone! Thanks!
+
+OK, that means that something's repeatedly polling the status of your VGA
+connector. Your card has only one CRTC and there's no way to do that without
+disrupting the DVI-D output. That's not our bug, whatever is polling your VGA
+connector should be listening to RandR events instead.
+
+By the way, do you need any of the nv20_crtc_lwm patches to get rid of the
+bandwidth artifacts, or are the "perflvl" kernel options enough?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
