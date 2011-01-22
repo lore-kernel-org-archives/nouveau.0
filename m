@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33357] Nouveau GPU lockup
-Date: Fri, 21 Jan 2011 16:42:20 -0800 (PST)
-Message-ID: <20110122004220.EA68413004D@annarchy.freedesktop.org>
+Date: Fri, 21 Jan 2011 16:43:13 -0800 (PST)
+Message-ID: <20110122004313.BD32213004D@annarchy.freedesktop.org>
 References: <bug-33357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33357
 
---- Comment #1 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-01-21 16:42:20 PST ---
-Created an attachment (id=42298)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42298)
-dmesg
+--- Comment #2 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-01-21 16:43:13 PST ---
+Created an attachment (id=42299)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42299)
+XorgLog.txt
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
