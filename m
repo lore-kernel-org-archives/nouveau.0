@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33222] random hang-up with nouveau when browsing
  with Google chrome
-Date: Sat, 22 Jan 2011 06:50:49 -0800 (PST)
-Message-ID: <20110122145049.EDB6513004D@annarchy.freedesktop.org>
+Date: Sat, 22 Jan 2011 06:51:43 -0800 (PST)
+Message-ID: <20110122145143.D352C13004D@annarchy.freedesktop.org>
 References: <bug-33222-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33222
 
---- Comment #4 from Zhang Chi <zhangchi866-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-22 06:50:49 PST ---
-Created an attachment (id=42304)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42304)
-Xorg configuration
+--- Comment #5 from Zhang Chi <zhangchi866-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-22 06:51:42 PST ---
+Created an attachment (id=42305)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42305)
+lspci -vv output as you may need it
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
