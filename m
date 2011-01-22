@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33222] random hang-up with nouveau when browsing
  with Google chrome
-Date: Sat, 22 Jan 2011 06:51:43 -0800 (PST)
-Message-ID: <20110122145143.D352C13004D@annarchy.freedesktop.org>
+Date: Sat, 22 Jan 2011 06:58:08 -0800 (PST)
+Message-ID: <20110122145808.E68C213004D@annarchy.freedesktop.org>
 References: <bug-33222-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33222
 
---- Comment #5 from Zhang Chi <zhangchi866-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-22 06:51:42 PST ---
-Created an attachment (id=42305)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42305)
-lspci -vv output as you may need it
+--- Comment #6 from Zhang Chi <zhangchi866-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-22 06:58:08 PST ---
+I have to mention that this bug is quite like
+https://bugs.freedesktop.org/show_bug.cgi?id=26980
+except when I pressed SysRq+E, when the harddisk indicator is no longer
+flashing, the screen is still locked up, with the last screen in X, and a mouse
+able to move.
+
+Both xf86-video-nouveau and mesa are from git repo.
+for xf86-video-nouveau I used:
+./configure --prefix=/usr
+and for mesa:
+./configure --enable-glx-tls --with-dri-drivers= --enable-gallium-nouveau
+--disable-gallium-i915 --disable-gallium-i965 --disable-gallium-radeon
+--disable-gallium-r600 --disable-gallium-svga --with-state-trackers=glx,dri
+--prefix=/usr
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
