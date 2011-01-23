@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33373] nouveau dual monitor configuration doesn't
  work with linux 2.6.38-rc2
-Date: Sun, 23 Jan 2011 01:45:21 -0800 (PST)
-Message-ID: <20110123094521.0D8DD130051@annarchy.freedesktop.org>
+Date: Sun, 23 Jan 2011 01:45:41 -0800 (PST)
+Message-ID: <20110123094541.488E913004F@annarchy.freedesktop.org>
 References: <bug-33373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #42324|text/x-log                  |text/plain
+  Attachment #42323|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
