@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32645] NV20 GF 3 Ti 200, displays blank screen to DVI
-Date: Sun, 23 Jan 2011 14:12:17 -0800 (PST)
-Message-ID: <20110123221217.81A6B13004E@annarchy.freedesktop.org>
-References: <bug-32645-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 29171] Garbled console on Macbook 13" (6,
+ 1 9400M]) when using EFI
+Date: Sun, 23 Jan 2011 15:16:12 -0800 (PST)
+Message-ID: <20110123231612.5B1C313004E@annarchy.freedesktop.org>
+References: <bug-29171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-29171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,11 +21,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=32645
+https://bugs.freedesktop.org/show_bug.cgi?id=29171
 
---- Comment #34 from Bryan Quigley <BryanQuigley-sfgG/1UML+TQT0dZR+AlfA@public.gmane.org> 2011-01-23 14:12:16 PST ---
-How would I narrow down who is repeatedly polling the status of my VGA?
-The perflvl kernel options are enough.. What is that actually doing?
+--- Comment #33 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-23 15:16:11 PST ---
+Err, what branch of the nouveau tree does this work on?  drm-nouveau-staging is
+currently the main development branch, and is 2.6.38-rc2 + a couple of other
+bits.  If it doesn't work there, can you bisect it back the where it broke
+again?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
