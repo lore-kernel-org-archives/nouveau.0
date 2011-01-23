@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29171] Garbled console on Macbook 13" (6,
- 1 9400M]) when using EFI
-Date: Sun, 23 Jan 2011 07:00:08 -0800 (PST)
-Message-ID: <20110123150008.5098913005E@annarchy.freedesktop.org>
-References: <bug-29171-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32933] Screen corruption with drm-nouveau-next
+Date: Sun, 23 Jan 2011 08:40:17 -0800 (PST)
+Message-ID: <20110123164017.38F9913004D@annarchy.freedesktop.org>
+References: <bug-32933-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-32933-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +20,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29171
+https://bugs.freedesktop.org/show_bug.cgi?id=32933
 
-Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> changed:
+Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|FIXED                       |
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
---- Comment #32 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2011-01-23 07:00:06 PST ---
-REOPENing because this bug still happens as of vanilla kernel 2.6.38-rc2.
-It is fixed in the nouveau tree though.
+--- Comment #5 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-01-23 08:40:15 PST ---
+Yes, code from drm-nouveau-staging seems to fix it. I used this for several
+hours now and haven't seen any corruption.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
