@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33432] New: [nv84 2D] Random Xorg Crash
-Date: Mon, 24 Jan 2011 14:03:09 -0800 (PST)
-Message-ID: <bug-33432-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33434] New: [nouveau nv84] BUG while reloading module
+Date: Mon, 24 Jan 2011 14:14:58 -0800 (PST)
+Message-ID: <bug-33434-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,9 +18,9 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33432
+https://bugs.freedesktop.org/show_bug.cgi?id=33434
 
-           Summary: [nv84 2D] Random Xorg Crash
+           Summary: [nouveau nv84] BUG while reloading module
            Product: xorg
            Version: unspecified
           Platform: Other
@@ -34,12 +34,7 @@ https://bugs.freedesktop.org/show_bug.cgi?id=33432
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=42407)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42407)
-Xorg log
-
-I just had a terminal fullscreen and was compiling mesa when X crashed / screen
-froze. Not a single message in kernel log, just a backtrace in Xorg log.
+BUG: unable to handle kernel paging request at ffffffffa024dd8f
 
 git as of today:
 kernel: 64b792
