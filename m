@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33445] NVS 3100M : Blank screen on kernel module
 	loading
-Date: Tue, 25 Jan 2011 01:04:03 -0800 (PST)
-Message-ID: <20110125090403.831F413004D@annarchy.freedesktop.org>
+Date: Tue, 25 Jan 2011 01:04:23 -0800 (PST)
+Message-ID: <20110125090423.DDB2913004D@annarchy.freedesktop.org>
 References: <bug-33445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,11 +27,7 @@ celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #42427|syslog.log From unloading   |syslog.log when unloading
-        description|nouveau+ttm+drm_kms_helper, |nouveau+ttm+drm_kms_helper,
-                   |reloading drm with debug=6  |reloading drm with debug=6
-                   |and reloading nouveau.      |and reloading nouveau.
-  Attachment #42427|application/octet-stream    |text/plain
+  Attachment #42426|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
