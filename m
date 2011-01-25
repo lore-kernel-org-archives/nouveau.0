@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33445] NVS 3100M : Blank screen on kernel module
 	loading
-Date: Mon, 24 Jan 2011 18:21:48 -0800 (PST)
-Message-ID: <20110125022148.2F03613004F@annarchy.freedesktop.org>
+Date: Tue, 25 Jan 2011 01:04:03 -0800 (PST)
+Message-ID: <20110125090403.831F413004D@annarchy.freedesktop.org>
 References: <bug-33445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33445
 
---- Comment #1 from celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-01-24 18:21:47 PST ---
-Created an attachment (id=42427)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42427)
-syslog.log From unloading nouveau+ttm+drm_kms_helper, reloading drm with
-debug=6 and reloading nouveau.
+celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-The second par of the syslog.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #42427|syslog.log From unloading   |syslog.log when unloading
+        description|nouveau+ttm+drm_kms_helper, |nouveau+ttm+drm_kms_helper,
+                   |reloading drm with debug=6  |reloading drm with debug=6
+                   |and reloading nouveau.      |and reloading nouveau.
+  Attachment #42427|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
