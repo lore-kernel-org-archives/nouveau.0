@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33445] NVS 3100M : Blank screen on kernel module
 	loading
-Date: Thu, 27 Jan 2011 05:34:05 -0800 (PST)
-Message-ID: <20110127133405.DD89413004D@annarchy.freedesktop.org>
+Date: Thu, 27 Jan 2011 11:36:18 -0800 (PST)
+Message-ID: <20110127193618.5C46F13004F@annarchy.freedesktop.org>
 References: <bug-33445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33445
 
---- Comment #2 from celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-01-27 05:34:05 PST ---
-Created an attachment (id=42587)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42587)
-vga rom extracted with vbtracetool
+--- Comment #3 from celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-01-27 11:36:15 PST ---
+No improvment with 2.6.38-rc2 from nouveau git.
+I may add syslogs when running this kernel if needed.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
