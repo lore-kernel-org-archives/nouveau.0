@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 12368] No valid modes on a QUADRO NVS 140M
-Date: Tue, 25 Jan 2011 07:59:24 -0800 (PST)
-Message-ID: <20110125155924.6B71C13004F@annarchy.freedesktop.org>
-References: <bug-12368-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33445] NVS 3100M : Blank screen on kernel module
+	loading
+Date: Thu, 27 Jan 2011 05:34:05 -0800 (PST)
+Message-ID: <20110127133405.DD89413004D@annarchy.freedesktop.org>
+References: <bug-33445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-12368-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=12368
+https://bugs.freedesktop.org/show_bug.cgi?id=33445
 
---- Comment #9 from Allan Sandfeld <kde-7WRYCqIwvBxWk0Htik3J/w@public.gmane.org> 2011-01-25 07:59:24 PST ---
-I had no valid modes by default on my Thinkpad R61 (neither 1680x1050 internal
-or standard external 1920x1080p was working by default). The only way to start
-X up was to feed it manually generated modelines.
+--- Comment #2 from celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-01-27 05:34:05 PST ---
+Created an attachment (id=42587)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42587)
+vga rom extracted with vbtracetool
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
