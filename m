@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33668] [regression] [nv4c] Screen corruption
-Date: Fri, 28 Jan 2011 11:55:46 -0800 (PST)
-Message-ID: <20110128195547.00CDE13004D@annarchy.freedesktop.org>
+Date: Fri, 28 Jan 2011 11:56:27 -0800 (PST)
+Message-ID: <20110128195628.1E70B13004D@annarchy.freedesktop.org>
 References: <bug-33668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33668
 
---- Comment #1 from Tomasz Wasiak <tjwasiak-wo4oW1Pw1HF3vZ0LZ0W7Rg@public.gmane.org> 2011-01-28 11:55:46 PST ---
-Created an attachment (id=42667)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42667)
-X server log without ShadowFB option set
+--- Comment #2 from Tomasz Wasiak <tjwasiak-wo4oW1Pw1HF3vZ0LZ0W7Rg@public.gmane.org> 2011-01-28 11:56:27 PST ---
+Created an attachment (id=42668)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42668)
+dmesg output
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
