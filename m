@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33668] [regression] [nv4c] Screen corruption
-Date: Fri, 28 Jan 2011 11:57:13 -0800 (PST)
-Message-ID: <20110128195713.8C21413004D@annarchy.freedesktop.org>
+Date: Fri, 28 Jan 2011 12:00:20 -0800 (PST)
+Message-ID: <20110128200020.8DB5613004D@annarchy.freedesktop.org>
 References: <bug-33668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33668
 
---- Comment #3 from Tomasz Wasiak <tjwasiak-wo4oW1Pw1HF3vZ0LZ0W7Rg@public.gmane.org> 2011-01-28 11:57:13 PST ---
-Created an attachment (id=42669)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42669)
-X server configuration file
+--- Comment #4 from Tomasz Wasiak <tjwasiak-wo4oW1Pw1HF3vZ0LZ0W7Rg@public.gmane.org> 2011-01-28 12:00:17 PST ---
+Forgot to mention that it is hardware (nv4c) specific. Took hard disk with that
+system to another machine (GeForce 6800 PCI-E which is identified as nv43,
+Gigabyte GA-M57SLI-S4 mainboard) reconfigured BusID in xorg.conf at it was
+working without ShadowFB!!!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
