@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33707] New: Gimp causes Nouveau/GPU lockup
-Date: Sat, 29 Jan 2011 20:44:47 -0800 (PST)
-Message-ID: <bug-33707-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33434] [nouveau nv84] BUG while reloading module
+Date: Sun, 30 Jan 2011 00:26:22 -0800 (PST)
+Message-ID: <20110130082622.9F68013004D@annarchy.freedesktop.org>
+References: <bug-33434-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33434-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +20,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33707
+https://bugs.freedesktop.org/show_bug.cgi?id=33434
 
-           Summary: Gimp causes Nouveau/GPU lockup
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: high
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: i.am.inuyasha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #4 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-01-30 00:26:22 PST ---
+Oh. This seems my fault. I have not tested with reloading, sorry.
 
-
-Install Nouveau, open Gimp, start working. Your GPU will lock up within
-minutes. No other application appears to cause this. Keyboard also seems to be
-locked up except Alt+SysRq. SSH still works.
-
-Device: nVidia GeForce 6200 OC (AGP), using DVI and VGA outputs.
-
-Downloaded and compiled the driver from Git with 3D support; using Compiz.
-(Hopefully you're not just going to dismiss this without even looking at it
-because "lol 3D not supported sry"? At least instructions on how to gather more
-useful information would be nice...)
+I will look into this today and try to fix it without the need to revert this
+commit.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
