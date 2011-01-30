@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33434] [nouveau nv84] BUG while reloading module
-Date: Sun, 30 Jan 2011 03:10:24 -0800 (PST)
-Message-ID: <20110130111024.F014C13004D@annarchy.freedesktop.org>
-References: <bug-33434-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33707] Gimp causes Nouveau/GPU lockup
+Date: Sun, 30 Jan 2011 03:17:28 -0800 (PST)
+Message-ID: <20110130111728.38D972DC012@annarchy.freedesktop.org>
+References: <bug-33707-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33434-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33707-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +20,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33434
+https://bugs.freedesktop.org/show_bug.cgi?id=33707
 
---- Comment #6 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-30 03:10:24 PST ---
-I wake up and get the same fix from 2 different persons :)
-joi on IRC 12h ago :
-00:39   joi >> shining^: http://paste.pocoo.org/show/328947/ <- should fix it
+--- Comment #1 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-01-30 03:17:27 PST ---
+lol 3D not supported sry
 
-I just applied and it does work, so thank you both.
+Instructions on how to report a bug, which includes how to gather more
+useful information :
+http://nouveau.freedesktop.org/wiki/Bugs
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
