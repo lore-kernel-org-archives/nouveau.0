@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33728] Framebuffer and Xorg display distorted only
  at monitor's native resolution
-Date: Sun, 30 Jan 2011 10:48:46 -0800 (PST)
-Message-ID: <20110130184846.C7B4113004D@annarchy.freedesktop.org>
+Date: Sun, 30 Jan 2011 10:49:46 -0800 (PST)
+Message-ID: <20110130184946.B8B6313004D@annarchy.freedesktop.org>
 References: <bug-33728-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33728
 
---- Comment #1 from Mark Ramige <mark-PVWywRySYQIdnm+yROfE0A@public.gmane.org> 2011-01-30 10:48:46 PST ---
-Created an attachment (id=42726)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42726)
-dmesg
+--- Comment #2 from Mark Ramige <mark-PVWywRySYQIdnm+yROfE0A@public.gmane.org> 2011-01-30 10:49:46 PST ---
+Created an attachment (id=42727)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42727)
+Photo of monitor
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
