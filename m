@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Mon, 31 Jan 2011 14:33:57 -0800 (PST)
-Message-ID: <20110131223357.C710213004F@annarchy.freedesktop.org>
+Date: Mon, 31 Jan 2011 14:43:29 -0800 (PST)
+Message-ID: <20110131224329.E266913004D@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #29 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-31 14:33:57 PST ---
-Here's some extra information.
+--- Comment #30 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-31 14:43:29 PST ---
+Some more experiments w/ the video=LVDS-1:d parameter on 2.6.36
 
-Apparently if I add 'video=LVDS:d' to the kernel parameter line, the hang with
-2.6.37 doesn't happen. This definitely was not needed with 2.6.36.
+Without creates a 1600x1200 display but console thinks it is 1024x768
+With it creates a 1600x1200 display and console thinks it is 1600x1200. 
+
+I hope this is of use!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
