@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33771] New: Hang on boot with Quadro NVS295
-Date: Mon, 31 Jan 2011 10:08:21 -0800 (PST)
-Message-ID: <bug-33771-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] Nouveau + nvidia GT240 = unworkable
+Date: Mon, 31 Jan 2011 10:17:45 -0800 (PST)
+Message-ID: <20110131181746.4E8BF13004E@annarchy.freedesktop.org>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,35 +20,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33771
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
-           Summary: Hang on boot with Quadro NVS295
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: bloch-IilqBRwaBYtWk0Htik3J/w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #2 from Jonathan Heaney <agent_jdh-/E1597aS9LT10XsdtD+oqA@public.gmane.org> 2011-01-31 10:17:45 PST ---
+The nouveau driver does not appear to provide acceleration (at least for the
+moment) with GT240 cards.  You can get X to start, however, by using
 
+Option "NoAccel" "true"
 
-On a Dell Precision T5500 workstation with a Quadro NVS295 card, booting up now
-hangs part of the way through.  Today I updated to the latest build of Nouveau
-available in Fedora koji (xorg-x11-drv-nouveau-0.0.16-17.20110117git38e8809)
-and the same thing happened.  The monitors are two Dell 24-inch models.  I've
-tried connecting via DVI and via DisplayPort and it doesn't seem to make much
-of a difference.  Booting with one monitor connected and using the Vesa driver
-does work.  The odd thing is that there are number of other similar
-workstations here with similar hardware that don't seem to have this problem,
-though I suppose there may be different sub-revisions of the graphics hardware.
+In your X config.
 
-The only Xorg log files I can obtain at the moment are from using the Vesa
-driver - let me know if those would be helpful.  There is no xorg.conf in use,
-so it's unlikely to be misconfiguration.
+It is painfully slow though, so the only real option is to use the proprietary
+NVidia driver.
+
+The KMS/Nouveau framebuffer works as well, but again without acceleration, I
+have a copy of the dmesg output as it loads the driver and will upload if it
+will be useful; I guess the devs know of this issue with GT240's though.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
