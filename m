@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Mon, 31 Jan 2011 03:54:47 -0800 (PST)
-Message-ID: <20110131115447.9C96613004D@annarchy.freedesktop.org>
+Date: Mon, 31 Jan 2011 03:55:27 -0800 (PST)
+Message-ID: <20110131115527.B641813004F@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #27 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-31 03:54:47 PST ---
-At long last. I've managed to get debugging w/ drm.debug=6. Attached is the log
-output.
+--- Comment #28 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-31 03:55:27 PST ---
+Created an attachment (id=42744)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42744)
+drm.debug=6 output via netconsole.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
