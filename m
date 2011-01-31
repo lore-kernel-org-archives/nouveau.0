@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] Nouveau + nvidia GT240 = unworkable
-Date: Mon, 31 Jan 2011 10:17:45 -0800 (PST)
-Message-ID: <20110131181746.4E8BF13004E@annarchy.freedesktop.org>
-References: <bug-33165-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
+Date: Mon, 31 Jan 2011 14:33:57 -0800 (PST)
+Message-ID: <20110131223357.C710213004F@annarchy.freedesktop.org>
+References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-32959-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +20,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33165
+https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #2 from Jonathan Heaney <agent_jdh-/E1597aS9LT10XsdtD+oqA@public.gmane.org> 2011-01-31 10:17:45 PST ---
-The nouveau driver does not appear to provide acceleration (at least for the
-moment) with GT240 cards.  You can get X to start, however, by using
+--- Comment #29 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-01-31 14:33:57 PST ---
+Here's some extra information.
 
-Option "NoAccel" "true"
-
-In your X config.
-
-It is painfully slow though, so the only real option is to use the proprietary
-NVidia driver.
-
-The KMS/Nouveau framebuffer works as well, but again without acceleration, I
-have a copy of the dmesg output as it loads the driver and will upload if it
-will be useful; I guess the devs know of this issue with GT240's though.
+Apparently if I add 'video=LVDS:d' to the kernel parameter line, the hang with
+2.6.37 doesn't happen. This definitely was not needed with 2.6.36.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
