@@ -1,14 +1,11 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Anyone with the current nouveau tree have issues
- resuming from suspend to ram?
-Date: Wed, 2 Feb 2011 15:29:35 +0100
-Message-ID: <AANLkTi=9JaOOPoDCjJuAUvHrUMfXg9Fc7sCbQ1dBk1Cn@mail.gmail.com>
-References: <AANLkTi=R_nG30HAskdpquxMDDnQ=5vfHfgz0CgViU=rT@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33841] New: Fedora 14 randomly crashes
+Date: Wed,  2 Feb 2011 07:48:03 -0800 (PST)
+Message-ID: <bug-33841-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTi=R_nG30HAskdpquxMDDnQ=5vfHfgz0CgViU=rT-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +18,60 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jan 25, 2011 at 12:04 AM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> Just wanted to ask, before trying to hunt it down :)
->
-> Display does come back, but it stays stuck with a blinking cursors,
-> nothing in logs related to resume, even when doing an Emergency-Sync
-> (i do see the message that sync happened, other keys just don't work).
->
-> Maarten.
->
-> --
-> Far away from the primal instinct, the song seems to fade away, the
-> river get wider between your thoughts and the things we do and say.
->
+https://bugs.freedesktop.org/show_bug.cgi?id=33841
 
-It turned out to be a missing firmware for a realtek 8168 NIC. For
-some reason it was causing delay of around a minute when resuming. No
-idea yet why it takes so long to time out.
+           Summary: Fedora 14 randomly crashes
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: franzmariamd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=42855)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42855)
+output dmesg after crash and restart with a rescue dvd
+
+My computer randomly crashes with Fedora 14.
+
+I had the same problem with Fedora 12 one year ago; so I returned to use Fedora
+11.
+I used Fedora 11 for more than a year without problems.
+One month ago I had to pass to Fedora 14, fresh installation.
+I use the default driver nouveau. It seems ok, it recognizes the hardware
+(video card and monitor) and set the correct resolution 1440x900.
+But randomly my computer freezes.
+The problems with Fedora 14 is the same encountered with Fedora 12.
+Level of hang = 3:
+Display is frozen, no reaction at all to key presses or mouse. NumLock etc.
+keyboard lights do not react.
+
+I passed to use nvidia rpmfusion driver, but I had the same problem.
+
+My motherboard is MSI MS-7301.
+Video card Nvidia 8300GS 128M.
+Monitor Packard Bell PKB VIS 190WS.
+
+If I start with kernel option nouveau.modeset=0 computer never freezes; but
+resolution is set to 1280x1024 and not to correct one (1440x900).
+I suppose with this kernel option I'm using the vesa driver.
+So with vesa driver is all OK.
+
+After a crash using nouveau driver I restart with the rescue DVD and I save
+dmesg output.
+
+I hope it is useful.
+
+Best regards.
+Franco
 
 -- 
-Far away from the primal instinct, the song seems to fade away, the
-river get wider between your thoughts and the things we do and say.
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
