@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Wed,  2 Feb 2011 08:38:23 -0800 (PST)
-Message-ID: <20110202163823.59B9513004F@annarchy.freedesktop.org>
+Date: Wed,  2 Feb 2011 09:15:51 -0800 (PST)
+Message-ID: <20110202171551.D27CF13004F@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,23 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #31 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-02-02 08:38:19 PST ---
-Created an attachment (id=42858)
- View: https://bugs.freedesktop.org/attachment.cgi?id=42858
- Review: https://bugs.freedesktop.org/review?bug=32959&attachment=42858
-
-nv04_lvds_no_native_mode.patch
-
-(In reply to comment #29)
-> Here's some extra information.
-> 
-> Apparently if I add 'video=LVDS:d' to the kernel parameter line, the hang with
-> 2.6.37 doesn't happen. This definitely was not needed with 2.6.36.
-
-The attached patch should help with that crash. To find out why we can't find a
-native mode for your LVDS panel, can you get me a BIOS dump? (see [1])
-
-[1] http://nouveau.freedesktop.org/wiki/DumpingVideoBios
+--- Comment #32 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-02 09:15:51 PST ---
+Created an attachment (id=42860)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42860)
+dell-inspiron-8100-vbios.rom
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
