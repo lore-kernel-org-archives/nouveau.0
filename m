@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Wed,  2 Feb 2011 09:15:51 -0800 (PST)
-Message-ID: <20110202171551.D27CF13004F@annarchy.freedesktop.org>
+Date: Wed,  2 Feb 2011 09:22:41 -0800 (PST)
+Message-ID: <20110202172241.F306013004D@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #32 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-02 09:15:51 PST ---
-Created an attachment (id=42860)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42860)
-dell-inspiron-8100-vbios.rom
+--- Comment #33 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-02 09:22:40 PST ---
+Created an attachment (id=42861)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42861)
+drm.debug=6 output via netconsole w/ nv04 lvds no native mode patch
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
