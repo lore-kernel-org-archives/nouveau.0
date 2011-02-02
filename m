@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33841] Fedora 14 randomly crashes
-Date: Wed,  2 Feb 2011 08:08:05 -0800 (PST)
-Message-ID: <20110202160805.CACF313004D@annarchy.freedesktop.org>
+Date: Wed,  2 Feb 2011 08:11:27 -0800 (PST)
+Message-ID: <20110202161127.A3B1213004D@annarchy.freedesktop.org>
 References: <bug-33841-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33841
 
---- Comment #1 from Franco <franzmariamd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-02 08:08:04 PST ---
-Created an attachment (id=42856)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42856)
-Xorg.0.log after boot without nouveau.modeset=0
+--- Comment #2 from Franco <franzmariamd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-02 08:11:27 PST ---
+Created an attachment (id=42857)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=42857)
+dmesg.log  after boot without nouveau.modeset=0.
 
-Xorg.0.log after boot without nouveau.modeset=0.
-Using nouveau driver.
-1440x900 60Hz.
+dmesg.log using nouveau driver.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
