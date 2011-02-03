@@ -1,15 +1,13 @@
-From: Dzianis Kahanovich <mahatma-jC57FVqSskN9IU3jSFkzTg@public.gmane.org>
-Subject: Re: nv4c broken after october (approx.)
-Date: Thu, 03 Feb 2011 21:26:34 +0200
-Message-ID: <4D4B016A.2040704@bspu.unibel.by>
-References: <4D499444.20009@bspu.unibel.by>
-	<AANLkTi=Ts_vC9BP6YTqNWn93zpFTTwZCbs3__-TyHbSR@mail.gmail.com>
-Reply-To: mahatma-cw37gHAUgAY@public.gmane.org
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: Re: TDMS bandwidth limits
+Date: Thu, 03 Feb 2011 22:40:52 +0100
+Message-ID: <87k4hg4x0b.fsf@riseup.net>
+References: <DE8B09DD-4ACE-499A-A33C-C12C005803F0@math.uni-bonn.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0858189787=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTi=Ts_vC9BP6YTqNWn93zpFTTwZCbs3__-TyHbSR-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <DE8B09DD-4ACE-499A-A33C-C12C005803F0-o02PS0xoJP/q4qjOmvqfQQ@public.gmane.org> ("Edgar
+	=?utf-8?Q?Fu=C3=9F=22's?= message of "Thu, 3 Feb 2011 19:59:43 +0100")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,33 +17,79 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Xavier Chantry <chantry.xavier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Edgar =?utf-8?Q?Fu=C3=9F?= <ef-o02PS0xoJP/q4qjOmvqfQQ@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Xavier Chantry wrote:
+--===============0858189787==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
->> After october I got broken image on my integrated nv4c chip (are you need
->> precise model?). I don't know precise time points, but now known: in Gentoo
-...
-> This is the third report I see today.. for a patch 3-4 months old. At
-> least according to wilder on IRC.
-> 
-> http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=c88f13e25b0040c1dd0f93e0ac40f62a6005ce59
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-Thanx! I reverse this patch and return to accelerated...
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 17:44   curro >> wilder: do you get the same corruption with a
-> 1024x768 framebuffer?
-> 
-> So what's your resolution and can you try to force 1024x768, as
-> explained there :
-> http://nouveau.freedesktop.org/wiki/KernelModeSetting
+Edgar Fu=C3=9F <ef-o02PS0xoJP/q4qjOmvqfQQ@public.gmane.org> writes:
 
-Not so trivial, becouse fb.ko (fbmem.c) module not listen for cmdline. But I use
-harcoded into drm_fb_helper.c (this is faster then full rebuild to integrate
-fb.ko). So, all combinations pairs - fb 1024x768,1280x1024 and xorg.conf
-1024x768,1280x1024 make same corruption without patch rollback.
+> I'm curious what the TDMS bandwidth limit values in get_tmds_link_bandwid=
+th() are based on.
 
--- 
-WBR, Dzianis Kahanovich AKA Denis Kaganovich, http://mahatma.bspu.unibel.by/
+They're based on what the nvidia proprietary driver itself refuses to
+do, though, I'm not 100% sure that I had nv44 in my sample when I made
+that change.
+
+> We're using chipset =3D=3D 44 cards that happily run 1600x1200@60 using t=
+he propriety driver and which also used to work with nouveau up to Linux 2.=
+6.36.2. Since 2.6.37, nouveau refuses to use that mode because the required=
+ 163M pixel clock exceeds the computed TDMS bandwidth of 155M (earlier vers=
+ions allowed for 165M regardless of chipset value).
+> Although I cannot tell for sure which timing the closed-source driver run=
+s 1600x1200@60 with on these monitors, I find it unlikely that it uses some=
+ built-in, non-EDID timing requiring a lower pixel clock. I also don't susp=
+ect NVidia running their own chips above specs.
+
+It might be using a reduced-blanking mode, check your Xorg.0.log to be
+sure. See the "-logverbose" option if you don't get all the timings
+printed out with the default verbosity level.
+
+> So either NVidia doesn't disclose the specs even to their own programmers=
+, the values in get_tmds_link_bandwidth() are wrong, or, more likely, I'm m=
+issing something.
+> Patching get_tmds_link_bandwidth() to allow for 165M already for chipset =
+>=3D 0x44 appears to work. However, I don't feel comfortable with stretchin=
+g rates above spec.
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iF4EAREIAAYFAk1LIOUACgkQg5k4nX1Sv1tVFQD9GQRe3G0mbRrR1z6jEq19NpNX
+h7NwHuLZ7l5N7SwQYuIA+gOIGfwlvKpAX4YCvqLFFQyOUIzD4JtbU0KZqGGYl7T3
+=QmCX
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============0858189787==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0858189787==--
