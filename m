@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32959] 2.6.37 - NV11 goes into GPU hang
-Date: Wed,  2 Feb 2011 15:37:42 -0800 (PST)
-Message-ID: <20110202233742.D575513004F@annarchy.freedesktop.org>
+Date: Wed,  2 Feb 2011 16:12:56 -0800 (PST)
+Message-ID: <20110203001256.D12AF13004D@annarchy.freedesktop.org>
 References: <bug-32959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32959
 
---- Comment #34 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-02 15:37:42 PST ---
-http://annarchy.freedesktop.org/~currojerez/nv10_invalid_placement_range.patch
-
-This patch is also required to prevent X crashes.
+--- Comment #35 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-02 16:12:56 PST ---
+Thank you, the two patches given above fixed the problem entirely for me, no
+more X or kernel hangs with 2.6.37. I now consider this report closed. Until
+the next time :)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
