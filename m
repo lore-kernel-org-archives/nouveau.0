@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 30135] The KDE icons is broken
-Date: Fri,  4 Feb 2011 07:27:11 -0800 (PST)
-Message-ID: <20110204152711.9C4F913004D@annarchy.freedesktop.org>
-References: <bug-30135-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
+From: =?iso-8859-1?Q?Edgar_Fu=DF?= <ef-o02PS0xoJP/q4qjOmvqfQQ@public.gmane.org>
+Subject: TDMS bandwidth limits
+Date: Thu, 3 Feb 2011 19:59:43 +0100
+Message-ID: <DE8B09DD-4ACE-499A-A33C-C12C005803F0@math.uni-bonn.de>
+Mime-Version: 1.0 (Apple Message framework v1082)
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-30135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +18,8 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=30135
-
-Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #6 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-04 07:27:10 PST ---
-This was likely a bug in the now reworked kernel vm part. As there are two
-reports of "working with recent code" I'm closing this as fixed.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I'm curious what the TDMS bandwidth limit values in get_tmds_link_bandwidth() are based on.
+We're using chipset == 44 cards that happily run 1600x1200@60 using the propriety driver and which also used to work with nouveau up to Linux 2.6.36.2. Since 2.6.37, nouveau refuses to use that mode because the required 163M pixel clock exceeds the computed TDMS bandwidth of 155M (earlier versions allowed for 165M regardless of chipset value).
+Although I cannot tell for sure which timing the closed-source driver runs 1600x1200@60 with on these monitors, I find it unlikely that it uses some built-in, non-EDID timing requiring a lower pixel clock. I also don't suspect NVidia running their own chips above specs.
+So either NVidia doesn't disclose the specs even to their own programmers, the values in get_tmds_link_bandwidth() are wrong, or, more likely, I'm missing something.
+Patching get_tmds_link_bandwidth() to allow for 165M already for chipset >= 0x44 appears to work. However, I don't feel comfortable with stretching rates above spec.
