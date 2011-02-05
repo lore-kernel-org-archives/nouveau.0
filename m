@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Sat,  5 Feb 2011 01:32:22 -0800 (PST)
-Message-ID: <20110205093222.3678C13004E@annarchy.freedesktop.org>
+Date: Sat,  5 Feb 2011 05:26:02 -0800 (PST)
+Message-ID: <20110205132602.E8C5013004E@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #4 from zeruke <oninekoze-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-05 01:32:21 PST ---
-@Tomasz Wasiak
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-05 05:26:01 PST ---
+My guess is that something is wrong with tiled scanout. This was enabled with
+commit
+http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=c88f13e25b0040c1dd0f93e0ac40f62a6005ce59
 
-both of those options don't work but i did find a thing in tty1 stating
+You're not the first to complain, and it's maybe a good to gather the "real"
+names of problem cards.
 
-[    8.520202] [drm] nouveau 0000:00:12.0: ======= misaligned reg 0x001020FB
-=======
-[    8.520217] [drm] nouveau 0000:00:12.0: ======= misaligned reg 0x001020FB
-=======
+In my log i have:
+[drm] nouveau 0000:01:00.0: Detected an NV50 generation card (0x096000c1)
+
+You should have something with NV40 or NV44 generation card, the 96 in my case
+means that i have an NV96.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
