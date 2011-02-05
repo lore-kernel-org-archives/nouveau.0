@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Sat,  5 Feb 2011 06:13:02 -0800 (PST)
-Message-ID: <20110205141303.0A64F13004E@annarchy.freedesktop.org>
+Date: Sat,  5 Feb 2011 06:30:59 -0800 (PST)
+Message-ID: <20110205143059.9484B13004D@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #7 from berbae <roger.berny-uXZ41zQLoH0@public.gmane.org> 2011-02-05 06:13:02 PST ---
-For the GeForce 7100 / nForce 630i I have in the log :
+--- Comment #8 from berbae <roger.berny-uXZ41zQLoH0@public.gmane.org> 2011-02-05 06:30:58 PST ---
+Sorry I just noticed in the list from
+http://nouveau.freedesktop.org/wiki/CodeNames :
+
+NV63    GeForce 7100 / nForce 630i
+
+In dmesg I have :
 
 [drm] nouveau 0000:00:10.0: Detected an NV40 generation card (0x063000a2)
 
-From http://en.wikipedia.org/wiki/GeForce_7_Series :
+But in Xorg.0.log I have effectively :
 
-"The 7100 series was introduced on August 30, 2006 and is based on GeForce 6200
-Series architecture."
-and
-"it is little more than a revamped version of the GeForce 6200TC"
+[   133.128] (--) NOUVEAU(0): Chipset: "NVIDIA NV63"
 
-I presume that's why it is considered as NV40 chipset.
+and also :
+
+[   133.472] (II) NOUVEAU(0): [XvMC] Associated with NV40 texture adapter.
+
+So it is not clear to me what chipset it is.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
