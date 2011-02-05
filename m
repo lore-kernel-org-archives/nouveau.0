@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Fri,  4 Feb 2011 23:00:45 -0800 (PST)
-Message-ID: <20110205070045.2D0C213004F@annarchy.freedesktop.org>
+Date: Sat,  5 Feb 2011 01:32:22 -0800 (PST)
+Message-ID: <20110205093222.3678C13004E@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #3 from Tomasz Wasiak <tjwasiak-wo4oW1Pw1HF3vZ0LZ0W7Rg@public.gmane.org> 2011-02-04 23:00:44 PST ---
-(In reply to comment #2)
-> This is same corruption I am having on GeForce 6100/nForce 430 (bug #33688).
-> 
-> Try using NoAccel or ShadowFB option in xorg.conf and check if that helps...
+--- Comment #4 from zeruke <oninekoze-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-05 01:32:21 PST ---
+@Tomasz Wasiak
 
-I do not know why BugZilla refers to wrong bug (I was writing about
-https://bugs.freedesktop.org/show_bug.cgi?id=33668)...
+both of those options don't work but i did find a thing in tty1 stating
+
+[    8.520202] [drm] nouveau 0000:00:12.0: ======= misaligned reg 0x001020FB
+=======
+[    8.520217] [drm] nouveau 0000:00:12.0: ======= misaligned reg 0x001020FB
+=======
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
