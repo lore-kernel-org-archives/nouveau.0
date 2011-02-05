@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Sat,  5 Feb 2011 13:18:39 -0800 (PST)
-Message-ID: <20110205211839.B978213004F@annarchy.freedesktop.org>
+Date: Sat,  5 Feb 2011 13:43:42 -0800 (PST)
+Message-ID: <20110205214342.4D4B413004D@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #11 from zeruke <oninekoze-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-05 13:18:39 PST ---
-@ Maarten Maathuis
+--- Comment #12 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-05 13:43:41 PST ---
+(In reply to comment #11)
+> @ Maarten Maathuis
+> 
+> i would do the mmio trace if i could but right now until nvidia updates the
+> beta driver to support the new xorg stuff then i wont be able to use the closed
+> source drivers unless i downgrade which at the moment i don't really want to do
 
-i would do the mmio trace if i could but right now until nvidia updates the
-beta driver to support the new xorg stuff then i wont be able to use the closed
-source drivers unless i downgrade which at the moment i don't really want to do
+Which xorg version and which nvidia version are you using ?
+http://nouveau.freedesktop.org/wiki/BlobVersions
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
