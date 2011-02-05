@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Sat,  5 Feb 2011 06:32:05 -0800 (PST)
-Message-ID: <20110205143205.1DC5E13004D@annarchy.freedesktop.org>
+Date: Sat,  5 Feb 2011 06:43:22 -0800 (PST)
+Message-ID: <20110205144322.485A513004D@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #9 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-05 06:32:04 PST ---
-NV6X is just because there were no numbers left in NV4X :)
+--- Comment #10 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-05 06:43:20 PST ---
+I think a mmio trace (http://nouveau.freedesktop.org/wiki/MmioTrace) of all the
+problematic cards running the closed source driver should shed some light on
+what is wrong with the tiling code on these cards. Because i suspect the blob
+uses a tiled frontbuffer too.
+
+You can send them to the email address mentioned at the bottom of the wiki
+page.
+
+Even though I'm not the best person to look at this (i don't use that
+generation of hardware anymore for example), I'll do what i can though if noone
+steps up.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
