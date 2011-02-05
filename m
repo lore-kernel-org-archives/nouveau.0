@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Sat,  5 Feb 2011 05:26:02 -0800 (PST)
-Message-ID: <20110205132602.E8C5013004E@annarchy.freedesktop.org>
+Date: Sat,  5 Feb 2011 05:46:57 -0800 (PST)
+Message-ID: <20110205134657.5385413004D@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-05 05:26:01 PST ---
-My guess is that something is wrong with tiled scanout. This was enabled with
-commit
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=c88f13e25b0040c1dd0f93e0ac40f62a6005ce59
+--- Comment #6 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-05 05:46:57 PST ---
+List of cards reported so far, I looked up for codenames on
+http://nouveau.freedesktop.org/wiki/CodeNames
 
-You're not the first to complain, and it's maybe a good to gather the "real"
-names of problem cards.
-
-In my log i have:
-[drm] nouveau 0000:01:00.0: Detected an NV50 generation card (0x096000c1)
-
-You should have something with NV40 or NV44 generation card, the 96 in my case
-means that i have an NV96.
+GeForce 7150m / nForce 630M - nv67
+GeForce 7100 / nForce 630i - nv67?
+GeForce 6100 / nForce 430 - nv4e
+GeForce 6150SE nForce 430 - nv4c
+GeForce FX Go5700 - nv36
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
