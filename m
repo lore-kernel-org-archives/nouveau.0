@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
- nouveau: random GPU lockups
-Date: Sun,  6 Feb 2011 03:31:22 -0800 (PST)
-Message-ID: <20110206113122.4240F2DC102@annarchy.freedesktop.org>
-References: <bug-26980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33887] nouveau causes graphic corruption were you
+ cant do anything
+Date: Sun,  6 Feb 2011 04:12:24 -0800 (PST)
+Message-ID: <20110206121224.84D6A2DC012@annarchy.freedesktop.org>
+References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjY5ODAKClRpemlh
-bm8gTcO8bGxlciA8dG1AZGV2LXplcm8uY2g+IGNoYW5nZWQ6CgogICAgICAgICAgIFdoYXQgICAg
-fFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQog
-ICAgICAgICAgICAgICAgIENDfCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8dG1AZGV2LXpl
-cm8uY2gKCi0tLSBDb21tZW50ICM0MyBmcm9tIFRpemlhbm8gTcO8bGxlciA8dG1AZGV2LXplcm8u
-Y2g+IDIwMTEtMDItMDYgMDM6MzE6MjAgUFNUIC0tLQpJJ2Qgc2F5IHRoZSBjdXJyZW50IGluc3Ry
-dWN0aW9ucyB0byBidWlsZCB0aGUgcGVlayAoYW5kIG90aGVyIHV0aWxpdGllcykgYXJlOgoKZ2l0
-IGNsb25lIGdpdDovLzB4MDQubmV0L3BndGVzdApjZCBwZ3Rlc3QKbWFrZQoKLS0gCkNvbmZpZ3Vy
-ZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFi
-PWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0t
-LS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=33887
+
+--- Comment #15 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-06 04:12:23 PST ---
+You are not listening, we already know what commit broke it :
+http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=c88f13e25b0040c1dd0f93e0ac40f62a6005ce59
+
+Now we want to know why tiled scanout does not work with these nforce boards,
+and we need a mmiotrace for that.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
