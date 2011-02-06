@@ -1,11 +1,14 @@
-From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Nouveau won't load with GeForce 6150SE nForce 430 (NV40)
-Date: Sat, 5 Feb 2011 16:30:07 -0800
-Message-ID: <AANLkTim9QZxKmNwux38ggsp1Y22vzHCja1gV-F2QhsOZ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33445] NVS 3100M : Blank screen on kernel module
+	loading
+Date: Sat,  5 Feb 2011 16:42:56 -0800 (PST)
+Message-ID: <20110206004256.862D12DC101@annarchy.freedesktop.org>
+References: <bug-33445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,12 +21,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I can't seem to get nouveau to load with my onboard GeForce 6150SE
-nForce 430 which I believe is an NV40 chip.  I enabled DRM and
-DRM_NOUVEAU in the kernel but lspci -v doesn't show any kernel driver
-in use and Xorg fails to load the module.  It does work with the
-nvidia driver.  I'm using Gentoo.
+https://bugs.freedesktop.org/show_bug.cgi?id=33445
 
-Should nouveau work with my card?  If so, any idea what I did wrong?
+--- Comment #5 from celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-02-05 16:42:56 PST ---
+(In reply to comment #4)
+> Do you have fbcon configured as a module? You have to load it then...
 
-- Grant
+fbcon (I guess this is CONFIG_FRAMEBUFFER_CONSOLE) is built-in.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
