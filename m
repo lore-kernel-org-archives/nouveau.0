@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33967] New: No image on a VGA screen attached to DVI
- with a dvi to vga adaptor on NVa3 card..
-Date: Sun,  6 Feb 2011 09:09:53 -0800 (PST)
-Message-ID: <bug-33967-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33967] No image on a VGA screen attached to DVI with
+ a dvi to vga adaptor on NVa3 card..
+Date: Sun,  6 Feb 2011 09:11:07 -0800 (PST)
+Message-ID: <20110206171108.02CB113004D@annarchy.freedesktop.org>
+References: <bug-33967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,46 +21,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33967
-
-           Summary: No image on a VGA screen attached to DVI with a dvi to
-                    vga adaptor on NVa3 card..
-           Product: xorg
-           Version: 7.6
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: GatoLoko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=42994)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=42994)
-dmesg log
-
-On a dualhead system, the second screen (a VGA CRT with a DVI adaptor) never
-shows anything, remaining in power save mode since boot until shutdown.
-
-I disconnected the other screen, forcing this one to show the bios and boot
-messages, and once while the kernel is loading, the screen goes off. The system
-is reachable through ssh and seems to be working right.
-
-When both screens are connected, xrandr shows info about both of them. I can
-change resolutions on both of them, change the refresh rate on both of them,
-... but no image on the screen connected to DVI.
-
-Booting windows, dualhead works, and both screens show proper
-images/resolutions/refresh.
-
-Looking at xrandr output, it seems the connectors naming is wrong.
-The screen connected to VGA is shown as connected to "DVI-I-1" and the one
-connected to DVI is shown as connected to "VGA-1"
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzM5NjcKCi0tLSBD
+b21tZW50ICMxIGZyb20gUmHDumwgU29yaWFubyA8R2F0b0xva29AZ21haWwuY29tPiAyMDExLTAy
+LTA2IDA5OjExOjA2IFBTVCAtLS0KQ3JlYXRlZCBhbiBhdHRhY2htZW50IChpZD00Mjk5NSkKIC0t
+PiAoaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9pZD00Mjk5NSkK
+bHNwY2kgb3V0cHV0CgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVz
+a3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2Vpdmlu
+ZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhl
+IGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
