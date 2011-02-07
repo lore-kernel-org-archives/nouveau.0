@@ -1,17 +1,13 @@
-From: Edgar =?iso-8859-1?B?RnXf?= <ef-o02PS0xoJP/q4qjOmvqfQQ@public.gmane.org>
-Subject: Re: TDMS bandwidth limits
-Date: Mon, 7 Feb 2011 15:51:15 +0100
-Message-ID: <20110207145115.GV26554@gumme.math.uni-bonn.de>
-References: <DE8B09DD-4ACE-499A-A33C-C12C005803F0@math.uni-bonn.de>
-	<87k4hg4x0b.fsf@riseup.net>
-	<B6BAA649-2D35-4374-B7F6-568B5B749E47@math.uni-bonn.de>
-	<87pqr4vxnf.fsf@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33977] X core font rendering is "laggy"
+Date: Mon,  7 Feb 2011 08:05:24 -0800 (PST)
+Message-ID: <20110207160524.E561113004E@annarchy.freedesktop.org>
+References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <87pqr4vxnf.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <bug-33977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,41 +20,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-> A register dump [1] would be the easiest way to find out the exact timings,
-OK, I'll ask a colleague to give this a try. The problem is to set up a machine that both runs the proprietary driver and a recent enough Debian to have libpciaccess available.
-
-> but any standard 1600x1200 reduced-blanking mode should do it.
-Yes, but having the exact same timings on the FB console and X11 results a smoother switch between the two modes.
-
-> You could just use the same CVT reduced-blanking mode on both X and the
-> framebuffer console.
-Sorry for the apperantly dumb question, but how do tell X to use the CVT mode?
-
-> Well, that works for me, can I have a look at your kernel logs?
-Hm. I tried to reproduce the problem I faced on friday, but it disappeared. Now I get the "reduced blanking" message in the drm_fb_helper_connector_parse_command_line debug output. Strange.
-
-Now I tried to give the modeline the drm debug output to xorg.conf, but it doesn't pick it up. I must be doing something stupidly wrong again:
-
-[...]
-Section "Monitor"
-	Identifier	"Bildschirm"
-	Option		"DPMS"
-	ModeLine	"reduced"	130 1600 1648 1680 1760 1200 1203 1207 1235
-EndSection
-
-Section "Screen"
-[...]
-	Monitor		"Bildschirm"
-	DefaultDepth	24
-	SubSection	"Display"
-		Depth	24
-		Virtual	1600 1200
-		Modes	"reduced"
-	EndSubSection
-EndSection
-
-Section "ServerLayout"
-	Identifier	"Server"
-	Screen		"Schrirm"
-[...]
-EndSection
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzM5NzcKCi0tLSBD
+b21tZW50ICM0IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4gMjAxMS0w
+Mi0wNyAwODowNToyNCBQU1QgLS0tCihJbiByZXBseSB0byBjb21tZW50ICMzKQo+IFRoaXMgaXMg
+YW4geHNlcnZlciBpc3N1ZSB3aGljaCBpIHJlY2VudGx5IGZpeGVkLgo+IAo+IGh0dHA6Ly9jZ2l0
+LmZyZWVkZXNrdG9wLm9yZy94b3JnL3hzZXJ2ZXIvY29tbWl0Lz9pZD01NDFiMjUwMzhhNWRlNzQ0
+MTFhMDk0NTcwYjQwN2M1YWUwMThjMmJhCgpEdXJpbmcgdGhlIHJldmlldyBvZiB0aGF0IHBhdGNo
+LCBJIGdvdCB0aGUgaW1wcmVzc2lvbiB0aGUgcHJvYmxlbSB5b3Ugd2VyZQp0cnlpbmcgdG8gc29s
+dmUgd2FzIG91dHB1dCBiZWluZyBkZWxheWVkIHNvbWV3aGF0LCBidXQgYXBwZWFyaW5nIG9uIGl0
+cyBvd24KZXZlbnR1YWxseS4gSG93ZXZlciwgdGhpcyBidWcgcmVwb3J0IHRhbGtzIGFib3V0IHNv
+bWUgb3V0cHV0IG5vdCBhcHBlYXJpbmcKdW50aWwgZnVydGhlciB1c2VyIGFjdGlvbi4gVGhhdCBz
+b3VuZHMgbGlrZSBtYXliZSB0aGUgZHJpdmVyIGZsdXNoZXMgdGhlCmNvbW1hbmQgc3RyZWFtIHRv
+IHRoZSBoYXJkd2FyZSBpbiB0aGUgYmxvY2sgaGFuZGxlciBiZWZvcmUgRVhBIGdldHMgYSBjaGFu
+Y2UgdG8KdXBsb2FkIGRlZmVycmVkIHNvZnR3YXJlIHJlbmRlcmluZz8KCi0tIApDb25maWd1cmUg
+YnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1l
+bWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0t
+CllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
