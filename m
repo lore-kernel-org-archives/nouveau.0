@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33977] X core font rendering is "laggy"
-Date: Mon,  7 Feb 2011 09:23:29 -0800 (PST)
-Message-ID: <20110207172329.C8EFC13004F@annarchy.freedesktop.org>
+Date: Mon,  7 Feb 2011 10:09:28 -0800 (PST)
+Message-ID: <20110207180928.5246613004E@annarchy.freedesktop.org>
 References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33977
 
---- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-07 09:23:29 PST ---
-In all my testing the output does appear regardless of further actions. It was
-just a delay issue for me. But indeed, it's possible this is a flush issue (i
-thought i checked that, but now I'm not sure). I'll have a look at it,
-including the xserver side of it.
+--- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-07 10:09:27 PST ---
+The "gaps in text" problem at high throughput isn't fixed by adding a flush in
+the driver, for that the original solution is still needed. Even flushing every
+10 ms isn't enough to get the same result. The latency issues at low throughput
+(typing for example) is pretty much solved with an extra driver flush after
+small uploads to the screen pixmap.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
