@@ -1,14 +1,14 @@
-From: Didier Spaier <didier.spaier-GqzDj6/B2j8@public.gmane.org>
-Subject: Re: [Bug 33977] X core font rendering is "laggy"
-Date: Mon, 07 Feb 2011 10:31:58 +0100
-Message-ID: <4D4FBC0E.2090504@epsm.fr>
-References: <bug-33977-8800@http.bugs.freedesktop.org/>
-	<20110207091543.AA74D13004F@annarchy.freedesktop.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33887] nouveau causes graphic corruption were you
+ cant do anything
+Date: Mon,  7 Feb 2011 02:29:35 -0800 (PST)
+Message-ID: <20110207102936.0119F13004F@annarchy.freedesktop.org>
+References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20110207091543.AA74D13004F-4GnqB8vgsbnwRzGw0Gvu8Q/tdpCO6/zZ@public.gmane.org>
+In-Reply-To: <bug-33887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +21,34 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Le 07/02/2011 10:15, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org a =E9crit :
-> https://bugs.freedesktop.org/show_bug.cgi?id=3D33977
->
-> --- Comment #3 from Maarten Maathuis<madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  2011-02-07 01=
-:15:43 PST ---
-> This is an xserver issue which i recently fixed.
->
-> http://cgit.freedesktop.org/xorg/xserver/commit/?id=3D541b25038a5de74411a=
-094570b407c5ae018c2ba
->
-> I have asked for it to be also put in the next 1.9 release, will have to =
-wait
-> how this goes.
->
+https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
-The bug is tagged as x86-64 (AMD64) Linux (All) but it occurs here as well =
-(i686).
+--- Comment #23 from Bozhan <bozhan-uiMcrn6V0Vs@public.gmane.org> 2011-02-07 02:29:35 PST ---
+I have same problems!
 
-And during a few seconds sometimes I see only half of the last row of text =
-displayed (vertically cut).
+My video card is:
+
+00:0d.0 VGA compatible controller: nVidia Corporation C61 [GeForce 6100 nForce
+405] (rev a2) (prog-if 00 [VGA controller])
+        Subsystem: ASRock Incorporation Device 03d1
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx-
+        Status: Cap+ 66MHz+ UDF- FastB2B+ ParErr- DEVSEL=fast >TAbort- <TAbort-
+<MAbort- >SERR- <PERR- INTx-
+        Latency: 0
+        Interrupt: pin A routed to IRQ 20
+        Region 0: Memory at de000000 (32-bit, non-prefetchable) [size=16M]
+        Region 1: Memory at c0000000 (64-bit, prefetchable) [size=256M]
+        Region 3: Memory at dd000000 (64-bit, non-prefetchable) [size=16M]
+        Expansion ROM at dfcc0000 [disabled] [size=128K]
+        Capabilities: <access denied>
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau, nvidiafb
+
+As i understand developers needs mmiotrace but did i have to make it with
+nvidia module? We can't use it right now because of broken ABI??!?
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
