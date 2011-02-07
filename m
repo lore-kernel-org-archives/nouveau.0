@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33887] nouveau causes graphic corruption were you
- cant do anything
-Date: Sun,  6 Feb 2011 15:45:25 -0800 (PST)
-Message-ID: <20110206234525.85E4013004F@annarchy.freedesktop.org>
-References: <bug-33887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33977] New: X core font rendering is "laggy"
+Date: Sun,  6 Feb 2011 19:31:13 -0800 (PST)
+Message-ID: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +18,35 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33887
+https://bugs.freedesktop.org/show_bug.cgi?id=33977
 
---- Comment #20 from zeruke <oninekoze-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-06 15:45:25 PST ---
-(In reply to comment #19)
-> Created an attachment (id=43011)
- View: https://bugs.freedesktop.org/attachment.cgi?id=43011
- Review: https://bugs.freedesktop.org/review?bug=33887&attachment=43011
+           Summary: X core font rendering is "laggy"
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: abrasive-ZZMxLsbnWvg@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-> possible fix for nv4x/nv6x chipsets
-> 
-> I don't know these cards as well as curro, but, we do this wrong on at least
-> NV67, quite possible some others too.  Can anyone on nv4x experiencing this
-> give this patch a shot?
 
-i tried but im guessing im doing something wrong because i get this when trying
-to patch
+I'm having trouble with terminals under X after updating xf86-video-nouveau and
+libdrm.
+When entering characters (in urxvt), the cursor in the previous cell is only
+cleared after some delay, and lines printed in the terminal are often not
+displayed until I generate more output or update some other part of the screen.
+ There are also remnants of text visible in the fractional row under the last
+terminal row. This seems to be an issue only with X core fonts, and not with
+Xft ones.
 
-patching file nv40_graph.c
-Hunk #1 FAILED at 223.
-Hunk #2 FAILED at 230.
-Hunk #3 FAILED at 239.
-3 out of 3 hunks FAILED -- saving rejects to file nv40_graph.c.rej
+I have an NV50 card, and the issue appeared after updating xf86-video-nouveau
+from a git snapshot on 2010-08-19 to one from 2010-12-17. The issue is still
+present on 2011-02-06. The upgrade necessitated upgrading libdrm from 2.4.21 to
+2.4.23.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
