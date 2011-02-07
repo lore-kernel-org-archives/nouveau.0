@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33986] mouse freeze randomly but periodical
-Date: Mon,  7 Feb 2011 02:44:42 -0800 (PST)
-Message-ID: <20110207104442.40C8213004D@annarchy.freedesktop.org>
+Date: Mon,  7 Feb 2011 02:45:15 -0800 (PST)
+Message-ID: <20110207104515.7F71B13004D@annarchy.freedesktop.org>
 References: <bug-33986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33986
 
---- Comment #2 from develop-bz7xYOng5Jy2T+V5DUblTA@public.gmane.org 2011-02-07 02:44:40 PST ---
-Created an attachment (id=43022)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=43022)
-xorg.log
+--- Comment #3 from develop-bz7xYOng5Jy2T+V5DUblTA@public.gmane.org 2011-02-07 02:45:15 PST ---
+Created an attachment (id=43023)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=43023)
+lspci.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
