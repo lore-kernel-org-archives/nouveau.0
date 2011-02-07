@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33977] X core font rendering is "laggy"
-Date: Mon,  7 Feb 2011 08:05:24 -0800 (PST)
-Message-ID: <20110207160524.E561113004E@annarchy.freedesktop.org>
+Date: Mon,  7 Feb 2011 09:23:29 -0800 (PST)
+Message-ID: <20110207172329.C8EFC13004F@annarchy.freedesktop.org>
 References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-33977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,22 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzM5NzcKCi0tLSBD
-b21tZW50ICM0IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4gMjAxMS0w
-Mi0wNyAwODowNToyNCBQU1QgLS0tCihJbiByZXBseSB0byBjb21tZW50ICMzKQo+IFRoaXMgaXMg
-YW4geHNlcnZlciBpc3N1ZSB3aGljaCBpIHJlY2VudGx5IGZpeGVkLgo+IAo+IGh0dHA6Ly9jZ2l0
-LmZyZWVkZXNrdG9wLm9yZy94b3JnL3hzZXJ2ZXIvY29tbWl0Lz9pZD01NDFiMjUwMzhhNWRlNzQ0
-MTFhMDk0NTcwYjQwN2M1YWUwMThjMmJhCgpEdXJpbmcgdGhlIHJldmlldyBvZiB0aGF0IHBhdGNo
-LCBJIGdvdCB0aGUgaW1wcmVzc2lvbiB0aGUgcHJvYmxlbSB5b3Ugd2VyZQp0cnlpbmcgdG8gc29s
-dmUgd2FzIG91dHB1dCBiZWluZyBkZWxheWVkIHNvbWV3aGF0LCBidXQgYXBwZWFyaW5nIG9uIGl0
-cyBvd24KZXZlbnR1YWxseS4gSG93ZXZlciwgdGhpcyBidWcgcmVwb3J0IHRhbGtzIGFib3V0IHNv
-bWUgb3V0cHV0IG5vdCBhcHBlYXJpbmcKdW50aWwgZnVydGhlciB1c2VyIGFjdGlvbi4gVGhhdCBz
-b3VuZHMgbGlrZSBtYXliZSB0aGUgZHJpdmVyIGZsdXNoZXMgdGhlCmNvbW1hbmQgc3RyZWFtIHRv
-IHRoZSBoYXJkd2FyZSBpbiB0aGUgYmxvY2sgaGFuZGxlciBiZWZvcmUgRVhBIGdldHMgYSBjaGFu
-Y2UgdG8KdXBsb2FkIGRlZmVycmVkIHNvZnR3YXJlIHJlbmRlcmluZz8KCi0tIApDb25maWd1cmUg
-YnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1l
-bWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0t
-CllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=33977
+
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-07 09:23:29 PST ---
+In all my testing the output does appear regardless of further actions. It was
+just a delay issue for me. But indeed, it's possible this is a flush issue (i
+thought i checked that, but now I'm not sure). I'll have a look at it,
+including the xserver side of it.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
