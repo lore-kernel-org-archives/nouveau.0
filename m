@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33977] X core font rendering is "laggy"
-Date: Sun,  6 Feb 2011 19:31:27 -0800 (PST)
-Message-ID: <20110207033127.DD79113004D@annarchy.freedesktop.org>
+Date: Sun,  6 Feb 2011 19:57:03 -0800 (PST)
+Message-ID: <20110207035703.7662C13004F@annarchy.freedesktop.org>
 References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33977
 
-James Laird <abrasive-ZZMxLsbnWvg@public.gmane.org> changed:
+--- Comment #1 from James Laird <abrasive-ZZMxLsbnWvg@public.gmane.org> 2011-02-06 19:57:03 PST ---
+git bisect reveals the culprit:
+9a5142fae6e1a0a470352f511427916e6fa01b9c is the first bad commit
+commit 9a5142fae6e1a0a470352f511427916e6fa01b9c
+Author: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Date:   Fri Aug 27 21:11:59 2010 +0200
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Platform|Other                       |x86-64 (AMD64)
-         OS/Version|All                         |Linux (All)
+    nv50/exa: Stop using wfb by default, but add an option to enable it.
+
+    - Some scenarios, such as those heavy in core font rendering might prefer
+wfb.
+    - Other (modern) situations are better of with wfb disabled.
+
+    Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
