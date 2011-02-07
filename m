@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Mon,  7 Feb 2011 02:36:48 -0800 (PST)
-Message-ID: <20110207103648.2D76613004E@annarchy.freedesktop.org>
+Date: Mon,  7 Feb 2011 02:41:35 -0800 (PST)
+Message-ID: <20110207104135.7EC0C13004F@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #24 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-07 02:36:46 PST ---
-Nvidia only supports released xservers. zeruke is using an alpha ubuntu with a
-prerelease xserver. So if you have a normal release you should be fine.
+--- Comment #25 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-07 02:41:34 PST ---
+comment 19 provides a patch, so forget about the mmiotrace, just try the patch.
+
+But you need to be able to build a kernel from source, probably from git and
+apply the patch there.
+http://nouveau.freedesktop.org/wiki/InstallDRM
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
