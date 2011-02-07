@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33986] New: mouse freeze randomly but periodical
-Date: Mon,  7 Feb 2011 02:43:42 -0800 (PST)
-Message-ID: <bug-33986-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33986] mouse freeze randomly but periodical
+Date: Mon,  7 Feb 2011 02:44:17 -0800 (PST)
+Message-ID: <20110207104417.C275E13004F@annarchy.freedesktop.org>
+References: <bug-33986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33986-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33986
 
-           Summary: mouse freeze randomly but periodical
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: develop-bz7xYOng5Jy2T+V5DUblTA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-my mouse freeze with nouvau. i have the probleme since Ubuntu Lucid till
-Kubuntu Natty. my laptop is a Dell E6410.
+--- Comment #1 from develop-bz7xYOng5Jy2T+V5DUblTA@public.gmane.org 2011-02-07 02:44:15 PST ---
+Created an attachment (id=43021)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=43021)
+dmesg.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
