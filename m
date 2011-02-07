@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33999] 2.6.37 - NV11 crashes X if glxgears maximised
-Date: Mon,  7 Feb 2011 12:13:49 -0800 (PST)
-Message-ID: <20110207201349.6FD8813004F@annarchy.freedesktop.org>
+Date: Mon,  7 Feb 2011 12:14:20 -0800 (PST)
+Message-ID: <20110207201420.862D813004F@annarchy.freedesktop.org>
 References: <bug-33999-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33999
 
---- Comment #1 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-07 12:13:49 PST ---
-Created an attachment (id=43038)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=43038)
-dmesg output
+--- Comment #2 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-07 12:14:19 PST ---
+Created an attachment (id=43040)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=43040)
+2.6.37 Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
