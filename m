@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Mon,  7 Feb 2011 02:29:35 -0800 (PST)
-Message-ID: <20110207102936.0119F13004F@annarchy.freedesktop.org>
+Date: Mon,  7 Feb 2011 02:36:48 -0800 (PST)
+Message-ID: <20110207103648.2D76613004E@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,30 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #23 from Bozhan <bozhan-uiMcrn6V0Vs@public.gmane.org> 2011-02-07 02:29:35 PST ---
-I have same problems!
-
-My video card is:
-
-00:0d.0 VGA compatible controller: nVidia Corporation C61 [GeForce 6100 nForce
-405] (rev a2) (prog-if 00 [VGA controller])
-        Subsystem: ASRock Incorporation Device 03d1
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx-
-        Status: Cap+ 66MHz+ UDF- FastB2B+ ParErr- DEVSEL=fast >TAbort- <TAbort-
-<MAbort- >SERR- <PERR- INTx-
-        Latency: 0
-        Interrupt: pin A routed to IRQ 20
-        Region 0: Memory at de000000 (32-bit, non-prefetchable) [size=16M]
-        Region 1: Memory at c0000000 (64-bit, prefetchable) [size=256M]
-        Region 3: Memory at dd000000 (64-bit, non-prefetchable) [size=16M]
-        Expansion ROM at dfcc0000 [disabled] [size=128K]
-        Capabilities: <access denied>
-        Kernel driver in use: nouveau
-        Kernel modules: nouveau, nvidiafb
-
-As i understand developers needs mmiotrace but did i have to make it with
-nvidia module? We can't use it right now because of broken ABI??!?
+--- Comment #24 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-07 02:36:46 PST ---
+Nvidia only supports released xservers. zeruke is using an alpha ubuntu with a
+prerelease xserver. So if you have a normal release you should be fine.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
