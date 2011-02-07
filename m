@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33967] No image on a VGA screen attached to DVI with
  a dvi to vga adaptor on NVa3 card..
-Date: Mon,  7 Feb 2011 05:13:55 -0800 (PST)
-Message-ID: <20110207131355.7C82D13004F@annarchy.freedesktop.org>
+Date: Mon,  7 Feb 2011 12:34:46 -0800 (PST)
+Message-ID: <20110207203446.94A0D13004E@annarchy.freedesktop.org>
 References: <bug-33967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,29 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33967
 
---- Comment #4 from Dragos Delcea <dragos.delcea-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-07 05:13:55 PST ---
-just finished submitting a bug report to the gentoo bugzilla about the same
-behaviour: upon boot the internal display goes blank at KMS activation time,
-but external monitor works - xrandr reports both working and X (of course)
-thinks it too.
-(http://bugs.gentoo.org/show_bug.cgi?id=353957)
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-07 12:34:46 PST ---
+Taken from dmesg log:
 
-in my case the situation is a bit clearer: it all worked up to and including
-2.6.36, so it's a 2.6.37 regression.
+Found Display Configuration Block version 4.0
+Raw DCB entry 0: 02000300 00020030
+Raw DCB entry 1: 01011312 00020030
+Raw DCB entry 2: 01011310 00000000
+Raw DCB entry 3: 02022362 00020010
+Raw DCB entry 4: 0000000e 00000000
+DCB connector table: VHER 0x40 5 16 4
+0: 0x00001030: type 0x30 idx 0 tag 0x07
+1: 0x00000100: type 0x00 idx 1 tag 0xff
+2: 0x00002261: type 0x61 idx 2 tag 0x08
 
-also, one more hint can be found in the fact that between the working and
-non-working xrandr output there are differences in refresh rates for the
-internal, non-working display.
-my hw is a bit different (see the gentoo bug for details)
+Conclusion:
+
+It seems that the DCB connector table or DCB output table is wrong. VGA
+connector is linked to an digital and analog output, while the DVI is only
+linked to an analog. Very small chance it's being misparsed, but more likely
+it's a broken DCB connector table.
+
+I'll try to see if can get the attention of Ben Skeggs, maybe you need a quirk
+for this broken bios table.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
