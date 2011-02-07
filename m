@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33977] New: X core font rendering is "laggy"
-Date: Sun,  6 Feb 2011 19:31:13 -0800 (PST)
-Message-ID: <bug-33977-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33977] X core font rendering is "laggy"
+Date: Sun,  6 Feb 2011 19:31:27 -0800 (PST)
+Message-ID: <20110207033127.DD79113004D@annarchy.freedesktop.org>
+References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33977
 
-           Summary: X core font rendering is "laggy"
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: abrasive-ZZMxLsbnWvg@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+James Laird <abrasive-ZZMxLsbnWvg@public.gmane.org> changed:
 
-
-I'm having trouble with terminals under X after updating xf86-video-nouveau and
-libdrm.
-When entering characters (in urxvt), the cursor in the previous cell is only
-cleared after some delay, and lines printed in the terminal are often not
-displayed until I generate more output or update some other part of the screen.
- There are also remnants of text visible in the fractional row under the last
-terminal row. This seems to be an issue only with X core fonts, and not with
-Xft ones.
-
-I have an NV50 card, and the issue appeared after updating xf86-video-nouveau
-from a git snapshot on 2010-08-19 to one from 2010-12-17. The issue is still
-present on 2011-02-06. The upgrade necessitated upgrading libdrm from 2.4.21 to
-2.4.23.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Platform|Other                       |x86-64 (AMD64)
+         OS/Version|All                         |Linux (All)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
