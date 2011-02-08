@@ -1,18 +1,13 @@
-From: Edgar =?iso-8859-1?B?RnXf?= <ef-o02PS0xoJP/q4qjOmvqfQQ@public.gmane.org>
-Subject: Re: TDMS bandwidth limits
-Date: Tue, 8 Feb 2011 17:27:59 +0100
-Message-ID: <20110208162759.GI26554@gumme.math.uni-bonn.de>
-References: <DE8B09DD-4ACE-499A-A33C-C12C005803F0@math.uni-bonn.de>
-	<87k4hg4x0b.fsf@riseup.net>
-	<B6BAA649-2D35-4374-B7F6-568B5B749E47@math.uni-bonn.de>
-	<87pqr4vxnf.fsf@riseup.net>
-	<20110207145115.GV26554@gumme.math.uni-bonn.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27063] Nouveau does DMA to/from unexpected address
+Date: Tue,  8 Feb 2011 08:43:21 -0800 (PST)
+Message-ID: <20110208164321.EACB413004E@annarchy.freedesktop.org>
+References: <bug-27063-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20110207145115.GV26554-RayvUUCCFj8DFOHtvJrj9sUtbM6s6Vk+@public.gmane.org>
+In-Reply-To: <bug-27063-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,9 +20,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-> Now I tried to give the modeline the drm debug output to xorg.conf,
-> but it doesn't pick it up.
-> I must be doing something stupidly wrong again:
-For the record: It picked up my Monitor section for the VGA output, not for DVI-D as intended.
-I should have read my logs more carefully.
-Sorry for the partial noise.
+https://bugs.freedesktop.org/show_bug.cgi?id=27063
+
+Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #2 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-08 08:43:21 PST ---
+As mentioned in the redhat bugzilla this bug is fixed.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
