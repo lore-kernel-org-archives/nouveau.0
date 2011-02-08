@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33999] 2.6.37 - NV11 crashes X if glxgears started
-Date: Mon,  7 Feb 2011 16:22:51 -0800 (PST)
-Message-ID: <20110208002251.C52D213004D@annarchy.freedesktop.org>
+Date: Mon,  7 Feb 2011 18:12:10 -0800 (PST)
+Message-ID: <20110208021210.AEB3113004D@annarchy.freedesktop.org>
 References: <bug-33999-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,29 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33999
 
-Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> changed:
+--- Comment #6 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-07 18:12:08 PST ---
+I managed to get a backtrace:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #43052|0                           |1
-        is obsolete|                            |
+Program received signal SIGSEGV, Segmentation fault.
+0xb72d7821 in nouveau_dri2_create_buffer (pDraw=0x845e918, attachment=1,
+format=0) at nouveau_dri2.c:72
+72    nouveau_dri2.c: No such file or directory.
+    in nouveau_dri2.c
+(gdb) bt
+#0  0xb72d7821 in nouveau_dri2_create_buffer (pDraw=0x845e918, attachment=1,
+format=0) at nouveau_dri2.c:72
+#1  0xb7327935 in ?? () from /usr/lib/xorg/modules/extensions/libdri2.so
+#2  0xb7329ca0 in ?? () from /usr/lib/xorg/modules/extensions/libdri2.so
+#3  0x08071e7f in Dispatch () at dispatch.c:432
+#4  0x0806577a in main (argc=6, argv=0xbfbd3824, envp=0xbfbd3840) at main.c:291
 
---- Comment #5 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-07 16:22:51 PST ---
-Created an attachment (id=43058)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=43058)
-2.6.37 dmesg
+The offending line of code that caused the crash is:
+
+    nouveau_bo_handle_get(nouveau_pixmap(ppix)->bo, &nvbuf->base.name);
+
+I'm not sure why it's crashing at this point but my guess is that it's probably
+the ->bo that might be the cause. I'd be glad to help track the cause down. I
+just need some input on how to proceed.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
