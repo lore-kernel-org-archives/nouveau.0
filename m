@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Mon,  7 Feb 2011 21:12:49 -0800 (PST)
-Message-ID: <20110208051249.A04B013004D@annarchy.freedesktop.org>
+Date: Mon,  7 Feb 2011 21:23:45 -0800 (PST)
+Message-ID: <20110208052345.4714C13004E@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #26 from Ronald <rwarsow-Mmb7MZpHnFY@public.gmane.org> 2011-02-07 21:12:49 PST ---
-dmesg | grep generation
-[drm] nouveau 0000:01:00.0: Detected an NV50 generation card (0x0a3180a2)
+--- Comment #27 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-07 21:23:44 PST ---
+(In reply to comment #26)
+> dmesg | grep generation
+> [drm] nouveau 0000:01:00.0: Detected an NV50 generation card (0x0a3180a2)
+> 
+> 
+> I boot with nouveau.noaccel=1 as mentioned in $INTERNET,but still see sometimes
+> some corruptions moving windows. moving it out the screen and back helps.
+> 
+> kernels 35,37,38
 
-
-I boot with nouveau.noaccel=1 as mentioned in $INTERNET,but still see sometimes
-some corruptions moving windows. moving it out the screen and back helps.
-
-kernels 35,37,38
+I *highly* doubt the bug you're seeing is the same bug.  Plus, if you're seeing
+corruption with noaccel, it's likely not nouveau's fault at all either.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
