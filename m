@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33977] X core font rendering is "laggy"
-Date: Wed,  9 Feb 2011 03:30:38 -0800 (PST)
-Message-ID: <20110209113038.DFA7F13004E@annarchy.freedesktop.org>
+Date: Wed,  9 Feb 2011 03:54:42 -0800 (PST)
+Message-ID: <20110209115442.E32B7130051@annarchy.freedesktop.org>
 References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-33977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,14 +20,24 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33977
-
---- Comment #10 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-09 03:30:37 PST ---
-I was more worried about the xserver-exa side latency. It would be nice to have
-some kind of maximum latency. The driver can't do anything if the pixmap isn't
-anywhere in the driver.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzM5NzcKCi0tLSBD
+b21tZW50ICMxMSBmcm9tIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5uZXQ+IDIwMTEt
+MDItMDkgMDM6NTQ6NDIgUFNUIC0tLQooSW4gcmVwbHkgdG8gY29tbWVudCAjMTApCj4gSSB3YXMg
+bW9yZSB3b3JyaWVkIGFib3V0IHRoZSB4c2VydmVyLWV4YSBzaWRlIGxhdGVuY3kuIEl0IHdvdWxk
+IGJlIG5pY2UgdG8gaGF2ZQo+IHNvbWUga2luZCBvZiBtYXhpbXVtIGxhdGVuY3kuIFRoZSBkcml2
+ZXIgY2FuJ3QgZG8gYW55dGhpbmcgaWYgdGhlIHBpeG1hcCBpc24ndAo+IGFueXdoZXJlIGluIHRo
+ZSBkcml2ZXIuCgpIbW0sIHRoYXQncyBhIGdvb2QgcG9pbnQuIFNvIGlmIHlvdSd2ZSBkb3VibGUt
+Y2hlY2tlZCB0aGF0IHRoZSBkcml2ZXIgaXMKZmx1c2hpbmcgcHJvcGVybHkgaW4gdGhlIEJsb2Nr
+SGFuZGxlciwgYW5kIHRoZXJlJ3Mgc3RpbGwgbm8gdGltZW91dCBpbnRlcnZhbCBpbgpleGFEYW1h
+Z2VSZXBvcnRfbWl4ZWQgd2hpY2ggcHJvdmlkZXMgYSBiZXR0ZXIgdHJhZGVvZmYgYmV0d2VlbiBs
+YXRlbmN5IGFuZAp0aHJvdWdocHV0LCBsZXQncyBsZWF2ZSBpdCBhdCB0aGF0IGZvciBub3cuCgoK
+SG93ZXZlciwgdGhlbiB0aGUgcXVlc3Rpb24gcmVtYWlucyB3aGF0IGlzIHRoZSBjYXVzZSBvZiB0
+aGUgJ1suLi5dIG5vdApkaXNwbGF5ZWQgdW50aWwgSSBnZW5lcmF0ZSBtb3JlIG91dHB1dCBvciB1
+cGRhdGUgc29tZSBvdGhlciBwYXJ0IG9mIHRoZSBzY3JlZW4nCmluIHRoaXMgcmVwb3J0LiBUaGF0
+IGRvZXNuJ3Qgc291bmQgbGlrZSBzb21ldGhpbmcgeW91ciBFWEEgY2hhbmdlIHdvdWxkIGhlbHAK
+d2l0aC4KCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9y
+Zy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMg
+bWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
