@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Wed,  9 Feb 2011 07:30:41 -0800 (PST)
-Message-ID: <20110209153041.7A5E913004F@annarchy.freedesktop.org>
+Date: Wed,  9 Feb 2011 07:37:07 -0800 (PST)
+Message-ID: <20110209153707.9301E13004F@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
-Ronald <rwarsow-Mmb7MZpHnFY@public.gmane.org> changed:
+--- Comment #29 from Ronald <rwarsow-Mmb7MZpHnFY@public.gmane.org> 2011-02-09 07:37:06 PST ---
+Created an attachment (id=43162)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=43162)
+kernel-38-rc4 with nouveau.noaccel=1
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |rwarsow-Mmb7MZpHnFY@public.gmane.org
-
---- Comment #28 from Ronald <rwarsow-Mmb7MZpHnFY@public.gmane.org> 2011-02-09 07:30:40 PST ---
-aha okay.
-
-yust checked: with distro kernel it's gone.
-
-with 38-rc4 I will attache 2 photo's
-
-
-tell me if should open a new or attach them to an already open bug.
+kernel-38-rc4 with nouveau.noaccel=1
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
