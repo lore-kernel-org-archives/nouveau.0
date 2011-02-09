@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33707] Gimp causes Nouveau/GPU lockup
-Date: Tue,  8 Feb 2011 16:52:46 -0800 (PST)
-Message-ID: <20110209005246.D44C813004F@annarchy.freedesktop.org>
+Date: Tue,  8 Feb 2011 16:53:32 -0800 (PST)
+Message-ID: <20110209005332.BA3AD13004D@annarchy.freedesktop.org>
 References: <bug-33707-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,22 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33707
 
---- Comment #3 from Rena Kunisaki <i.am.inuyasha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-08 16:52:46 PST ---
-Created an attachment (id=43140)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=43140)
-System log
+--- Comment #4 from Rena Kunisaki <i.am.inuyasha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-08 16:53:32 PST ---
+Created an attachment (id=43141)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=43141)
+Kernel log
 
-OK, here's a complete system log, from when it booted to when the GPU locked
-up. Unfortunately doesn't look like it contains the actual crash, whereas the
-partial log (attachment 42730) does.
-
-This crash was caused by opening a large image in Gimp (3600x1080) and moving a
-large layer (1680x1050) at 50% zoom. It locked up midway through redrawing the
-moving layer. The keyboard also stops responding.
-
-This crash doesn't appear to happen if Compiz is not running. Perhaps Gimp is
-doing some sort of 3D accelerated blit when it detects a compositing window
-manager?
+Here is the corresponding kernel log.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
