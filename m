@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23832] extended display not working
-Date: Wed,  9 Feb 2011 02:41:38 -0800 (PST)
-Message-ID: <20110209104138.3A97313004E@annarchy.freedesktop.org>
-References: <bug-23832-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25608] [PATCH] nouveau_exa.c: Move upper-limit
+ calculations outside while-loop
+Date: Wed,  9 Feb 2011 02:48:38 -0800 (PST)
+Message-ID: <20110209104838.9793413004D@annarchy.freedesktop.org>
+References: <bug-25608-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23832-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25608-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,7 +21,7 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=23832
+https://bugs.freedesktop.org/show_bug.cgi?id=25608
 
 Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
 
@@ -29,10 +30,9 @@ Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|                            |FIXED
 
---- Comment #5 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-09 02:41:36 PST ---
-I'm closing this since the report is against a "stoneage" version of nouveau.
-If you still have problems with recent version of nouveau please reopen with
-new info.
+--- Comment #1 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-09 02:48:38 PST ---
+Closing this since the mentioned improvement is in repository. Didn't check
+since when.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
