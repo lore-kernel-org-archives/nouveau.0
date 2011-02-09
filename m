@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33977] X core font rendering is "laggy"
-Date: Wed,  9 Feb 2011 12:22:00 -0800 (PST)
-Message-ID: <20110209202200.F288413004F@annarchy.freedesktop.org>
+Date: Wed,  9 Feb 2011 12:28:37 -0800 (PST)
+Message-ID: <20110209202837.C064013004E@annarchy.freedesktop.org>
 References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33977
 
---- Comment #12 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-09 12:22:00 PST ---
-Maarten: your latest ddx patch (exa: Flush (S)IFC to the frontbuffer
-immediately) fixed this bug for me. I had very similar effects in xterm as the
-reporter.
+--- Comment #13 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-09 12:28:36 PST ---
+Just to be clear, nouveau uses a "FlushCallback" instead a call in the
+BlockHandler. This should apparently cover more cases than the BlockHandler,
+but I don't know the specifics.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
