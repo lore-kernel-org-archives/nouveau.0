@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33977] X core font rendering is "laggy"
-Date: Wed,  9 Feb 2011 01:32:05 -0800 (PST)
-Message-ID: <20110209093205.51BFE13004F@annarchy.freedesktop.org>
-References: <bug-33977-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24831] XRandR multihead fails on NV50
+Date: Wed,  9 Feb 2011 02:37:13 -0800 (PST)
+Message-ID: <20110209103713.1842413004E@annarchy.freedesktop.org>
+References: <bug-24831-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-24831-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzM5NzcKCi0tLSBD
-b21tZW50ICM3IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4gMjAxMS0w
-Mi0wOSAwMTozMjowNCBQU1QgLS0tCihJbiByZXBseSB0byBjb21tZW50ICM2KQo+IFRoZSAiZ2Fw
-cyBpbiB0ZXh0IiBwcm9ibGVtIGF0IGhpZ2ggdGhyb3VnaHB1dCBpc24ndCBmaXhlZCBieSBhZGRp
-bmcgYSBmbHVzaCBpbgo+IHRoZSBkcml2ZXIsIGZvciB0aGF0IHRoZSBvcmlnaW5hbCBzb2x1dGlv
-biBpcyBzdGlsbCBuZWVkZWQuIEV2ZW4gZmx1c2hpbmcgZXZlcnkKPiAxMCBtcyBpc24ndCBlbm91
-Z2ggdG8gZ2V0IHRoZSBzYW1lIHJlc3VsdC4KCkknbSBzdGlsbCBub3QgMTAwJSBjb252aW5jZWQg
-dGhpcyBwcm9ibGVtIGlzIHNldmVyZSBlbm91Z2ggdG8ganVzdGlmeSB0aGUKdGhyb3VnaHB1dCBw
-ZW5hbHR5IG9mIHRoZSBwYXRjaCB0aG91Z2guLi4gU2luY2UgdGhlIHJhZGVvbiBkcml2ZXIgcmVj
-ZW50bHkKc3dpdGNoZWQgdG8gYWx3YXlzIHVzaW5nIERvd25sb2FkRnJvbS9VcGxvYWRUb1NjcmVl
-biB0byBhY2Nlc3MgdGlsZWQgR1BVCnBpeG1hcHMsIEkndmUgYmVlbiBsb29raW5nIGZvciBpdCBi
-dXQgaGF2ZW4ndCByZWFsbHkgbm90aWNlZCBpdCB5ZXQgKG15IHhzZXJ2ZXIKY2hlY2tvdXQgZG9l
-c24ndCBoYXZlIHlvdXIgcGF0Y2ggeWV0KS4KCgo+IFRoZSBsYXRlbmN5IGlzc3VlcyBhdCBsb3cg
-dGhyb3VnaHB1dCAodHlwaW5nIGZvciBleGFtcGxlKSBpcyBwcmV0dHkgbXVjaCBzb2x2ZWQKPiB3
-aXRoIGFuIGV4dHJhIGRyaXZlciBmbHVzaCBhZnRlciBzbWFsbCB1cGxvYWRzIHRvIHRoZSBzY3Jl
-ZW4gcGl4bWFwLgoKTm90IHN1cmUgd2h5IHlvdSdkIG5lZWQgYW55ICdleHRyYSBmbHVzaGVzJyBi
-ZXNpZGVzIHRoZSBmbHVzaCBpbiB5b3VyCkJsb2NrSGFuZGxlciwgd2hpY2ggaGFzIGFsd2F5cyBi
-ZWVuIG5lY2Vzc2FyeS4gSnVzdCBtYWtlIHN1cmUgdGhpcyBmbHVzaApoYXBwZW5zIGFmdGVyIEV4
-YUJsb2NrSGFuZGxlciAoaS5lLiBhZnRlciBjYWxsaW5nIGRvd24gdGhlIHdyYXBwZXIgY2hhaW4p
-LgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Vz
-ZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWls
-IGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=24831
+
+Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #5 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-09 02:37:12 PST ---
+I'm closing this bug since it is against a pretty outdated version of nouveau
+and xrandr multihead is working well for most people, nowadays. If you still
+have problems with recent nouveau, please reopen this bug and supply new info.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
