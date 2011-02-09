@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 11993] Native YV12 overlay bandwidth problems
-Date: Wed,  9 Feb 2011 02:53:28 -0800 (PST)
-Message-ID: <20110209105328.8969A13004D@annarchy.freedesktop.org>
-References: <bug-11993-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33668] [regression] [nv4c] Screen corruption
+Date: Wed,  9 Feb 2011 02:59:05 -0800 (PST)
+Message-ID: <20110209105905.35F7413004D@annarchy.freedesktop.org>
+References: <bug-33668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-11993-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33668-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,11 +20,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=11993
+https://bugs.freedesktop.org/show_bug.cgi?id=33668
 
---- Comment #5 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-09 02:53:27 PST ---
-UMS is removed and anything should be ported to KMS. Is this still an issue or
-could we close this bug?
+--- Comment #7 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-09 02:59:05 PST ---
+There is a chance this issue is fixed in git since Ben pushed a fix regarding
+this. Could you please retest with kernel built from latest git and tiled
+scanout enabled in ddx?
+
+Thanks.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
