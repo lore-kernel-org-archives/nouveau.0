@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Wed,  9 Feb 2011 07:39:58 -0800 (PST)
-Message-ID: <20110209153958.B252413004F@annarchy.freedesktop.org>
+Date: Wed,  9 Feb 2011 08:19:58 -0800 (PST)
+Message-ID: <20110209161958.59DBE13004E@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #30 from Ronald <rwarsow-Mmb7MZpHnFY@public.gmane.org> 2011-02-09 07:39:57 PST ---
-Created an attachment (id=43163)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=43163)
-kernel-38-rc4 without nouveau.noaccel=1
+--- Comment #31 from zeruke <oninekoze-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-09 08:19:57 PST ---
+well i still cant check on the patch because for some reason I cant build
+it....i get errors like the kernel tree is wrong and if not that i get
+something about files being unexpected or expected somewhere.....it might be
+because im using ubuntu but im not sure...or maybe im just missing a step but i
+am using the instructions at http://nouveau.freedesktop.org/wiki/InstallDRM
 
-kernel-38-rc4 *without* nouveau.noaccel=1
-
-same with kernel 37
-only hard reset works
+maybe i can get one already compiled by someone?....and im using the latest rc
+of kernel 2.6.38 with the ubuntu's patch on it..
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
