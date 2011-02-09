@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33977] X core font rendering is "laggy"
-Date: Wed,  9 Feb 2011 03:24:28 -0800 (PST)
-Message-ID: <20110209112428.5E690130051@annarchy.freedesktop.org>
+Date: Wed,  9 Feb 2011 03:30:38 -0800 (PST)
+Message-ID: <20110209113038.DFA7F13004E@annarchy.freedesktop.org>
 References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-33977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,22 +20,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzM5NzcKCi0tLSBD
-b21tZW50ICM5IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4gMjAxMS0w
-Mi0wOSAwMzoyNDoyNyBQU1QgLS0tCihJbiByZXBseSB0byBjb21tZW50ICM4KQo+IEkganVzdCBk
-b24ndCBrbm93IHdoYXQgd2lsbCBoYXBwZW4gb24gaGlnaCBjcHUgbG9hZHMgKG91dHNpZGUgeG9y
-ZykuIFdpbGwgdGhlCj4gQmxvY2tIYW5kbGVyIHN0aWxsIGJlIGNhbGxlZCBldmVyeSA1MG1zPwoK
-VGhlIEJsb2NrSGFuZGxlciBpcyBvbmx5IGNhbGxlZCBiZWZvcmUgdGhlIFggc2VydmVyIGJsb2Nr
-cyB3YWl0aW5nIGZvciBpbnB1dCBvcgpjbGllbnQgcmVxdWVzdHMuIFRoaXMgbWF5IG5ldmVyIGhh
-cHBlbiBpZiBjbGllbnRzIHNlbmQgcmVuZGVyaW5nIHJlcXVlc3RzIG1vcmUKcXVpY2tseSB0aGFu
-IHRoZSBzZXJ2ZXIgY2FuIHByb2Nlc3MgdGhlbSAoZS5nLiB4MTFwZXJmKSwgYnV0IGluIHRoYXQg
-Y2FzZQp5b3UnbGwgcHJvYmFibHkgZmx1c2ggdG8gdGhlIGhhcmR3YXJlIHJlZ3VsYXJseSBhbnl3
-YXkgZHVlIHRvIHJ1bm5pbmcgb3V0IG9mCmNvbW1hbmQgc3RyZWFtIHNwYWNlLiBJZiB0aGF0J3Mg
-bm90IHRoZSBjYXNlLCB0aGUgZHJpdmVyIG5lZWRzIGFub3RoZXIKbWVjaGFuaXNtIHRvIGVuc3Vy
-ZSBmbHVzaGVzIG9jY3VyIGF0IGFwcHJvcHJpYXRlIGludGVydmFscy4KCi0tIApDb25maWd1cmUg
-YnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1l
-bWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0t
-CllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=33977
+
+--- Comment #10 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-09 03:30:37 PST ---
+I was more worried about the xserver-exa side latency. It would be nice to have
+some kind of maximum latency. The driver can't do anything if the pixmap isn't
+anywhere in the driver.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
