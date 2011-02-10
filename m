@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27049] fails to start - drm open issue?
-Date: Thu, 10 Feb 2011 06:24:31 -0800 (PST)
-Message-ID: <20110210142431.90CB513004D@annarchy.freedesktop.org>
-References: <bug-27049-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32658] random logout causes data loss
+Date: Thu, 10 Feb 2011 06:27:59 -0800 (PST)
+Message-ID: <20110210142759.D327613004F@annarchy.freedesktop.org>
+References: <bug-32658-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27049-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-32658-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,11 +20,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27049
+https://bugs.freedesktop.org/show_bug.cgi?id=32658
 
---- Comment #7 from Michal Suchanek <hramrach-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-10 06:24:31 PST ---
-That's not exactly helpful output as that same message is output on various
-occasions and does not point at the actual issue at hand.
+--- Comment #1 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-10 06:27:59 PST ---
+Your attachment got lost. Is this still problem? If it is, please attach dmesg
+after logout.
+
+I doubt this is a nouveau bug, but we can't handle this bug appropriate without
+some info.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
