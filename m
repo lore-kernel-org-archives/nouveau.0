@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27049] fails to start - drm open issue?
-Date: Thu, 10 Feb 2011 06:13:11 -0800 (PST)
-Message-ID: <20110210141311.DE97E13004F@annarchy.freedesktop.org>
+Date: Thu, 10 Feb 2011 06:24:31 -0800 (PST)
+Message-ID: <20110210142431.90CB513004D@annarchy.freedesktop.org>
 References: <bug-27049-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,18 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27049
 
-Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #6 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-10 06:13:11 PST ---
-Closing this since the issue is fixed.
-
-And no nouveau doesn't silently fails, it always prints "(EE) [drm] failed to
-open device".
+--- Comment #7 from Michal Suchanek <hramrach-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-10 06:24:31 PST ---
+That's not exactly helpful output as that same message is output on various
+occasions and does not point at the actual issue at hand.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
