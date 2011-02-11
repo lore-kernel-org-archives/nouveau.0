@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33887] nouveau causes graphic corruption were you
- cant do anything
-Date: Fri, 11 Feb 2011 02:43:11 -0800 (PST)
-Message-ID: <20110211104311.A873713004F@annarchy.freedesktop.org>
-References: <bug-33887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34179] New: Nouveau 3D driver: nv50_pc_emit.c:863
+ assertion error kills Compiz
+Date: Fri, 11 Feb 2011 07:06:23 -0800 (PST)
+Message-ID: <bug-34179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +19,43 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33887
+https://bugs.freedesktop.org/show_bug.cgi?id=34179
 
---- Comment #33 from Andy Whitcroft <apw-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-02-11 02:43:11 PST ---
-Note that Ubuntu 2.6.38-rc4 based kernels are available with the "possible fix
-for nv4x/nv6x chipsets" patch applied are available, see the downstream bug for
-details:
+           Summary: Nouveau 3D driver: nv50_pc_emit.c:863 assertion error
+                    kills Compiz
+           Product: Mesa
+           Version: 7.10
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: sense-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org
 
-  https://bugs.launchpad.net/ubuntu/+source/linux/+bug/711591/comments/24
+
+When you use the experimental Gallium3D driver of Nouveau to enable DRI, Compiz
+will actually try to run, but it will be abort because of the following
+assertion error:
+"compiz: nv50_pc_emit.c:863: emit_flop: Assertion `STYPE(i, 0) == 0x09'
+failed."
+
+It seems that this only happens with PCI-E cards that have the NV50 chip.
+
+There is an 'xorg.log' at <http://launchpadlibrarian.net/63209980/XorgLog.txt>.
+An unprocessed stacktrace can be found at
+<http://launchpadlibrarian.net/63209976/Stacktrace.txt>, the stacktrace
+processed by Apport at <http://launchpadlibrarian.net/63321404/Stacktrace.txt>.
+StacktraceTop:
+ __kernel_vsyscall ()
+ *__GI_raise (sig=6)
+ *__GI_abort () at abort.c:59
+
+This bug was originally reported by several people in Ubuntu on Launchpad, the
+master bug report can be found at <https://launchpad.net/bugs/710588>. You can
+find many more log files at this bug report, and attached to its duplicates.
+If you need something specifically, please ask!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
