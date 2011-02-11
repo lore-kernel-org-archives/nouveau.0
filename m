@@ -1,11 +1,14 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] Also flush from the BlockHandler.
-Date: Thu, 10 Feb 2011 20:12:07 +0100
-Message-ID: <1297365127-1989-1-git-send-email-madman2003@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33887] nouveau causes graphic corruption were you
+ cant do anything
+Date: Thu, 10 Feb 2011 23:53:46 -0800 (PST)
+Message-ID: <20110211075346.BE30F13004E@annarchy.freedesktop.org>
+References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,42 +21,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-- The fact that commit 02c50db307a4e4eeb87f7db5d401bc53cce3b21f
-  fixed missing text for some people proves this is needed.
-  That commit should have only improved latency a bit.
-- The FlushCallback is still needed for DRI2 texture_from_pixmap.
-- See bugs.fd.o #33977 for discussion.
+https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
-Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- src/nv_driver.c |    9 ++++++---
- 1 files changed, 6 insertions(+), 3 deletions(-)
+--- Comment #32 from zeruke <oninekoze-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-10 23:53:46 PST ---
+Created an attachment (id=43234)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=43234)
+after patch with res at 1280x800(16:10)
 
-diff --git a/src/nv_driver.c b/src/nv_driver.c
-index 3e009fc..523cab8 100644
---- a/src/nv_driver.c
-+++ b/src/nv_driver.c
-@@ -384,15 +384,18 @@ NVBlockHandler (
- )
- {
- 	ScreenPtr pScreen = screenInfo.screens[i];
--	ScrnInfoPtr pScrnInfo = xf86Screens[i];
--	NVPtr pNv = NVPTR(pScrnInfo);
-+	ScrnInfoPtr pScrn = xf86Screens[i];
-+	NVPtr pNv = NVPTR(pScrn);
- 
- 	pScreen->BlockHandler = pNv->BlockHandler;
- 	(*pScreen->BlockHandler) (i, blockData, pTimeout, pReadmask);
- 	pScreen->BlockHandler = NVBlockHandler;
- 
-+	if (pScrn->vtSema && !pNv->NoAccel)
-+		FIRE_RING (pNv->chan);
-+
- 	if (pNv->VideoTimerCallback) 
--		(*pNv->VideoTimerCallback)(pScrnInfo, currentTime.milliseconds);
-+		(*pNv->VideoTimerCallback)(pScrn, currentTime.milliseconds);
- }
- 
- static Bool
+the patch fixes it were now i can see for the most part but it doesnt fix what
+was going on befor the compleate blocking of the screen
+
+still has a small tiling of about 3 or so when resolution is at 1280x800(16:10)
+which i believe is my screens native resolution....that tiling is fixed by
+lowering the resolution which i now have at 1024x768(4:3)
+
+it seems to have the small tiling when the aspect ratio is at (16:10) and
+(9:5), all resolutions using the aspect ratio (4:3) shows things perfectly when
+using the patch
+
 -- 
-1.7.4
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
