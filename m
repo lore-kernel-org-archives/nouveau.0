@@ -1,184 +1,127 @@
-From: Jean Delvare <khali@linux-fr.org>
-Subject: Re: hwmon API update
-Date: Sun, 13 Feb 2011 23:08:33 +0100
-Message-ID: <20110213230833.0ee2ff16@endymion.delvare>
-References: <4D57CC24.1040306@free.fr>
-	<20110213171640.GB13323@ericsson.com>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Wayland doesn't work outside of X with nouveau,
+	and it should
+Date: Mon, 14 Feb 2011 00:20:55 +0100
+Message-ID: <AANLkTikRFoOXa8JHoLQQ=ZvrFt0_7TVrmfZLXhb3OEMo@mail.gmail.com>
+References: <20110213185318.GT22937@chaosreigns.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <lm-sensors-bounces@lm-sensors.org>
-In-Reply-To: <20110213171640.GB13323@ericsson.com>
-List-Unsubscribe: <http://lists.lm-sensors.org/mailman/options/lm-sensors>,
-	<mailto:lm-sensors-request@lm-sensors.org?subject=unsubscribe>
-List-Archive: <http://lists.lm-sensors.org/pipermail/lm-sensors/>
-List-Post: <mailto:lm-sensors@lm-sensors.org>
-List-Help: <mailto:lm-sensors-request@lm-sensors.org?subject=help>
-List-Subscribe: <http://lists.lm-sensors.org/mailman/listinfo/lm-sensors>,
-	<mailto:lm-sensors-request@lm-sensors.org?subject=subscribe>
-Sender: lm-sensors-bounces@lm-sensors.org
-Errors-To: lm-sensors-bounces@lm-sensors.org
-To: Martin Peres <martin.peres@free.fr>
-Cc: nouveau <Nouveau@lists.freedesktop.org>, lm-sensors@lm-sensors.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20110213185318.GT22937-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 13 Feb 2011 09:16:40 -0800, Guenter Roeck wrote:
-> On Sun, Feb 13, 2011 at 07:18:44AM -0500, Martin Peres wrote:
-> > Hi,
-> > 
-> > I am working on power management on the nouveau driver and I need a way 
-> > to get data out of and send commands to the i2c drivers from the kernel 
-> > space.
+On Sun, Feb 13, 2011 at 7:53 PM,  <Darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> wrote:
+> Since pageflip support for NV50 cards was added on the 9th, wayland should
+> work for me outside of X, but all I'm getting is apparently random chunks
+> of uninitialized video memory.
+>
+> It seems nobody has looked into the problem who has an Nvidia card. =A0I =
+have
+> no idea where to begin.
+>
+> I added my PCI ID to mesa's dri2_driver_map so I could use egl_dri2 since
+> egl_dri2 is what is being used with Intel cards, to make sure it wasn't
+> just a difference between egl_dri2 and egl_gallium which I normally use.
+> Wayland works fine under X this way with egl_dri2.
+>
+> I think similar results are happening with ATI/AMD cards, so wayland
+> without X is only working on Intel cards.
+>
+> Build instructions for Wayland are here:
+> http://wayland.freedesktop.org/building.html
+> They should be up to date and thorough. =A0I have an easier build script =
+for
+> Ubuntu Maverick here: =A0http://www.chaosreigns.com/wayland/ubuntu.html
+> You should be able to just run the compositor program outside of X to get
+> DRM output.
+>
+> My console output (which I don't think contains anything interesting):
+>
+> X output, which works:
+> http://www.chaosreigns.com/wayland/wayland.x11.txt
+> With strace:
+> http://www.chaosreigns.com/wayland/wayland.x11.strace.txt
+>
+> DRM output, not working:
+> http://www.chaosreigns.com/wayland/wayland.drm.txt
+> With strace:
+> http://www.chaosreigns.com/wayland/wayland.drm.strace.txt
+>
+> The script I used to run it:
+> http://www.chaosreigns.com/wayland/wayland-compositor.sh
+>
+> To get your PCI ID:
+> $ lspci -nv |grep VGA
+> 05:00.0 0300: 10de:0611 (rev a2) (prog-if 00 [VGA controller])
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ^^^^
+>
+> My Mesa patch to add my PCI ID so I can use egl_dri2 (I sent this to
+> mesa-dev a while ago, but it didn't get applied - this one is updated).
+> You just need to add another line with your PCI ID in nouveau_chip_ids[].
+> What would it take to get these in mesa?
+>
 
-Why? You already have a way to get data out of and send commands to the
-I2C devices themselves (Using the i2c_smbus_* functions). Why do you
-insist on going through the I2C device drivers?
+Nouveau doesn't really do PCI ID lists, so you have to match to the
+vendor ID, check that you're dealing with a video card and not some
+other nvidia device. Then you can use something like
+nouveau_device_open_existing and the struct that you get from that
+contains "chipset" which can be used to determine what you have.
 
-> > We can already change the clocks of the card, but we need a way to 
+> [PATCH] Add nVidia Corporation G92 [GeForce 8800 GT] to dri2_driver_map
+>
+> ---
+> =A0src/egl/drivers/dri2/platform_drm.c | =A0 =A05 +++++
+> =A01 files changed, 5 insertions(+), 0 deletions(-)
+>
+> diff --git a/src/egl/drivers/dri2/platform_drm.c b/src/egl/drivers/dri2/p=
+latform_drm.c
+> index 42939a5..4652011 100644
+> --- a/src/egl/drivers/dri2/platform_drm.c
+> +++ b/src/egl/drivers/dri2/platform_drm.c
+> @@ -558,6 +558,10 @@ const int r600_chip_ids[] =3D {
+> =A0 =A00x6779, /* PCI_CHIP_CAICOS_6779 */
+> =A0};
+>
+> +const int nouveau_chip_ids[] =3D {
+> + =A0 0x0611, /* G92 [GeForce 8800 GT] */
+> +};
+> +
+> =A0const struct dri2_driver_map driver_map[] =3D {
+> =A0 =A0{ 0x8086, "i915", i915_chip_ids, ARRAY_SIZE(i915_chip_ids) },
+> =A0 =A0{ 0x8086, "i965", i965_chip_ids, ARRAY_SIZE(i965_chip_ids) },
+> @@ -565,6 +569,7 @@ const struct dri2_driver_map driver_map[] =3D {
+> =A0 =A0{ 0x1002, "r200", r200_chip_ids, ARRAY_SIZE(r200_chip_ids) },
+> =A0 =A0{ 0x1002, "r300", r300_chip_ids, ARRAY_SIZE(r300_chip_ids) },
+> =A0 =A0{ 0x1002, "r600", r600_chip_ids, ARRAY_SIZE(r600_chip_ids) },
+> + =A0 { 0x10de, "nouveau", nouveau_chip_ids, ARRAY_SIZE(nouveau_chip_ids)=
+ },
+> =A0};
+>
+> =A0char *
+> --
+> 1.7.1
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
 
-How is this relevant to the discussion? Are the clock chips connected
-to the I2C bus too?
 
-> > monitor the temperature and bump the fan speed if needed.
 
-Hardware is very badly designed if the driver actually has to take care
-of this. Thermal management should be handled by the hardware directly.
-And as a matter of fact, the Analog Devices ADT7473 and the Fintek
-F75375S support this.
+-- =
 
-> > Another problem with letting users mess with the i2c driver by 
-> > themselves is that some cards use the i2c driver for fan management 
-> > while others don't. This is why I would like to introduce nouveau as an 
-
-I guess you mean I2C device, not i2c driver. You will have to be
-precise in your wording if you want others to understand where you are
-going.
-
-When the I2C device isn't used for fan management, how is it done?
-
-> > hwmon driver, exporting the temperature, fan management and clock speeds 
-> > so as we can use the thermal zone to monitor the temperature and react 
-> > when needed.
-
-It only makes sense to instantiate a hwmon device from nouveau directly
-if the temperature sensor or the fan management is _not_ done by an I2C
-device. So it seems unrelated with your patch. Why are you mentioning
-it then?
-
-And clock speeds don't have anything to do with hwmon, BTW.
-
-> > So far, we use:
-> > - w83l785ts
-> > - w83781d
-> > - adt7473 (most common one)
-> > - f75375
-> > - lm99
-> > 
-> > With the help of Matthew Garret, I updated his previous proposal for an 
-> > in-kernel API for hwmon. The patch should apply cleanly on Linux 
-
-I can't remember this proposal. A link would be appreciated.
-
-> > 2.6.38-rc4. This patch only provides the API, no modification to the 
-> > drivers has been completed yet.
-
-Do you mean that you don't have the code at all yet, or that you did
-not include it in this patch set? Either way, this is wrong. There is
-no point in asking for a review of only half of your solution. We can't
-comment on the relevance of your proposal without seeing how you intend
-to use it.
-
-> > Looking forward to your review and feedback.
-
-I have no plan to review your patch, sorry. You did not provide a
-proper description of your problem, and you didn't explain why it can't
-be solved with the current kernel infrastructures. Worse, you propose a
-brand new hwmon subsystem, but you don't even provide a description of
-its design, let alone an explanation of why you think this design is
-appropriate. And you don't show us code using it either.
-
-All I can say after a quick look at the patch, is that you are
-overengineering a lot. You have enumerated all sensor properties which
-exist, and are trying to handle all sensor types. You have a specific
-need (thermal management of graphics cards), but you are already trying
-to provide a generic access to all hwmon attributes which exist,
-regardless of the needs or relevance. Do you really think you'll need
-information about the case intrusion status in nouveau? Seriously?
-
-> > From 059b647b7b8bd98c04cf48b4062048b8ae963593 Mon Sep 17 00:00:00 2001
-> > From: Martin Peres <martin.peres@ensi-bourges.fr>
-> > Date: Sun, 13 Feb 2011 11:35:17 +0100
-> > Subject: [PATCH] hwmon API update
-> > 
-> > Original creator: Matthew Garrett <mjg@redhat.com>
-> > 
-> > Signed-off-by: Martin Peres <martin.peres@ensi-bourges.fr>
-> 
-> This is an extremely complex change just for the benefit of one driver,
-> with a huge potential of misuse. The changes required in each driver
-> to actually implement the API are substantial, and pretty much only add
-> complexity to each hwmon driver with no real benefit.
-
-I would be very curious to know how comes that the radeon driver
-apparently works just fine without this change, if the nouveau driver
-can't do without it.
-
-My main concern is that the code you will have to add to every new
-hwmon driver you will want nouveau to be able to use, is likely to be
-larger than the code needed to access the device registers directly
-from nouveau. Getting a temperature value from a hwmon device is
-typically done with a single call to i2c_smbus_read_byte_data().
-
-> The cost gets even larger if one has to consider that some may want or
-> have to to backport drivers to earlier kernel versions. This patchset
-> would result in significant efforts to do such backports.
-
-This will never be a good reason to reject a change, sorry. Just look
-at the many changes the i2c subsystem went through in the past 2 years.
-They make it difficult to backport i2c device drivers to older kernels,
-but they still happened, because they were needed. When backporting a
-driver, you have to deal with the history of the kernel at large,
-that's life.
-
-> For the API itself, there are lots of functions with similar parameters, 
-> and those parameters are needed in the drivers to determine which attribute
-> is affected. A single function would have accomplished the same, as the drivers
-> will need case statements anyway to identify the actual attribute to be read
-> or written. What we end up here with is a large number of functions to be
-> supported by each driver, all with pretty much the same set of arguments.
-
-This is the kind of thing which would show up immediately if we could
-see a few actual implementations of the hwmon driver side of the API.
-In general, I would tend to agree with Guenter that exporting a dozen
-functions from the hwmon core driver seems just wrong, especially given
-the specific problem you claim you are trying to solve.
-
-> I don't know what current thinking is about kernel size increases, but it
-> looks like this patch will result in quite significant kernel size increase
-> (some 18*8 = 144 bytes per driver for all the pointers, plus the actual 
-> functions, adds up to a lot). Again this would be with no benefit for most
-> of the users of the hwmon subsystem. Sure, one can argue that the size increases
-> will only occur if the drivers are actually loaded, but that is a pretty weak
-> argument since the code size increase will still show up in each driver.
-> 
-> In summary I am not in favor for this change. Maybe Jean thinks differently,
-> but for my part I don't plan to approve it.
-
-I don't plan to approve it either, at least not in its current state.
-As I said above already, I want a complete description of the problem
-first, an explanation of why the change is needed, why a more
-lightweight solution wouldn't do, and why nouveau needs it when radeon
-doesn't. And I want to see actual implementations of the API on both
-sides.
-
-Sorry but you can't push for a new API affecting 100 drivers without
-justifying everything you do. An API with no implementers and no users
-is not how you'll convince me.
-
--- 
-Jean Delvare
-
-_______________________________________________
-lm-sensors mailing list
-lm-sensors@lm-sensors.org
-http://lists.lm-sensors.org/mailman/listinfo/lm-sensors
+Far away from the primal instinct, the song seems to fade away, the
+river get wider between your thoughts and the things we do and say.
