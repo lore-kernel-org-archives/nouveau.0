@@ -1,41 +1,98 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33967] No image on a VGA screen attached to DVI with
- a dvi to vga adaptor on NVa3 card..
-Date: Sun, 13 Feb 2011 07:57:45 -0800 (PST)
-Message-ID: <20110213155745.5BD2313004F@annarchy.freedesktop.org>
-References: <bug-33967-8800@http.bugs.freedesktop.org/>
+From: Guenter Roeck <guenter.roeck@ericsson.com>
+Subject: Re: hwmon API update
+Date: Sun, 13 Feb 2011 09:16:40 -0800
+Message-ID: <20110213171640.GB13323@ericsson.com>
+References: <4D57CC24.1040306@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <lm-sensors-bounces@lm-sensors.org>
+Content-Disposition: inline
+In-Reply-To: <4D57CC24.1040306@free.fr>
+List-Unsubscribe: <http://lists.lm-sensors.org/mailman/options/lm-sensors>,
+	<mailto:lm-sensors-request@lm-sensors.org?subject=unsubscribe>
+List-Archive: <http://lists.lm-sensors.org/pipermail/lm-sensors/>
+List-Post: <mailto:lm-sensors@lm-sensors.org>
+List-Help: <mailto:lm-sensors-request@lm-sensors.org?subject=help>
+List-Subscribe: <http://lists.lm-sensors.org/mailman/listinfo/lm-sensors>,
+	<mailto:lm-sensors-request@lm-sensors.org?subject=subscribe>
+Sender: lm-sensors-bounces@lm-sensors.org
+Errors-To: lm-sensors-bounces@lm-sensors.org
+To: Martin Peres <martin.peres@free.fr>
+Cc: nouveau <Nouveau@lists.freedesktop.org>, "lm-sensors@lm-sensors.org" <lm-sensors@lm-sensors.org>
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzM5NjcKCi0tLSBD
-b21tZW50ICM2IGZyb20gUmHDumwgU29yaWFubyA8R2F0b0xva29AZ21haWwuY29tPiAyMDExLTAy
-LTEzIDA3OjU3OjQ1IFBTVCAtLS0KQ3JlYXRlZCBhbiBhdHRhY2htZW50IChpZD00MzMxNykKIFZp
-ZXc6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NDMzMTcK
-IFJldmlldzogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9yZXZpZXc/YnVnPTMzOTY3JmF0
-dGFjaG1lbnQ9NDMzMTcKClBvc2libGUgcGF0Y2ggZm9yIHdyb25nIERDQiB0YWJsZQoKSSByZXBs
-aWVkIHRvIHRoZSBsYXN0IGJ1Z3ppbGxhIG1lc3NhZ2UgYnkgbWFpbCwgYnV0IGl0IGRvZXNuJ3Qg
-c2hvdyBoZXJlLCBzbwpJJ20gYWRkaW5nIGl0IGFnYWluLgoKSSBkb24ndCBrbm93IGlmIHRoaXMg
-aXMgYSBwcm9wZXIgZml4IG9yIGEgcGllY2Ugb2YgdHJhc2gsIHNvIEkgd29uZGVyIGlmCnNvbWVi
-b2R5IGNhbiBoYXZlIGEgbG9vayBhdCBpdCBhbmQgdGVsbCBtZSBob3cgaXQgbG9va3MsIGFuZCB3
-aGV0aGVyIGl0J3Mgc2FmZQp0byB0ZXN0IGl0IG9yIEknbSBkb2luZyBpdCB3cm9uZy4gT3IganVz
-dCBmaXggaXQgc28gSSBzZWUgd2hlcmUgaSBtZXNzZWQgdXAuCgotLSAKQ29uZmlndXJlIGJ1Z21h
-aWw6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwK
-LS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3Ug
-YXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+On Sun, Feb 13, 2011 at 07:18:44AM -0500, Martin Peres wrote:
+> Hi,
+> 
+> I am working on power management on the nouveau driver and I need a way 
+> to get data out of and send commands to the i2c drivers from the kernel 
+> space.
+> 
+> We can already change the clocks of the card, but we need a way to 
+> monitor the temperature and bump the fan speed if needed.
+> Another problem with letting users mess with the i2c driver by 
+> themselves is that some cards use the i2c driver for fan management 
+> while others don't. This is why I would like to introduce nouveau as an 
+> hwmon driver, exporting the temperature, fan management and clock speeds 
+> so as we can use the thermal zone to monitor the temperature and react 
+> when needed.
+> 
+> So far, we use:
+> - w83l785ts
+> - w83781d
+> - adt7473 (most common one)
+> - f75375
+> - lm99
+> 
+> With the help of Matthew Garret, I updated his previous proposal for an 
+> in-kernel API for hwmon. The patch should apply cleanly on Linux 
+> 2.6.38-rc4. This patch only provides the API, no modification to the 
+> drivers has been completed yet.
+> 
+> Looking forward to your review and feedback.
+> 
+> Martin
+
+> From 059b647b7b8bd98c04cf48b4062048b8ae963593 Mon Sep 17 00:00:00 2001
+> From: Martin Peres <martin.peres@ensi-bourges.fr>
+> Date: Sun, 13 Feb 2011 11:35:17 +0100
+> Subject: [PATCH] hwmon API update
+> 
+> Original creator: Matthew Garrett <mjg@redhat.com>
+> 
+> Signed-off-by: Martin Peres <martin.peres@ensi-bourges.fr>
+
+This is an extremely complex change just for the benefit of one driver,
+with a huge potential of misuse. The changes required in each driver
+to actually implement the API are substantial, and pretty much only add
+complexity to each hwmon driver with no real benefit.
+
+The cost gets even larger if one has to consider that some may want or
+have to to backport drivers to earlier kernel versions. This patchset
+would result in significant efforts to do such backports.
+
+For the API itself, there are lots of functions with similar parameters, 
+and those parameters are needed in the drivers to determine which attribute
+is affected. A single function would have accomplished the same, as the drivers
+will need case statements anyway to identify the actual attribute to be read
+or written. What we end up here with is a large number of functions to be
+supported by each driver, all with pretty much the same set of arguments.
+
+I don't know what current thinking is about kernel size increases, but it
+looks like this patch will result in quite significant kernel size increase
+(some 18*8 = 144 bytes per driver for all the pointers, plus the actual 
+functions, adds up to a lot). Again this would be with no benefit for most
+of the users of the hwmon subsystem. Sure, one can argue that the size increases
+will only occur if the drivers are actually loaded, but that is a pretty weak
+argument since the code size increase will still show up in each driver.
+
+In summary I am not in favor for this change. Maybe Jean thinks differently,
+but for my part I don't plan to approve it.
+
+Guenter
+
+_______________________________________________
+lm-sensors mailing list
+lm-sensors@lm-sensors.org
+http://lists.lm-sensors.org/mailman/listinfo/lm-sensors
