@@ -1,8 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/2] drm/nouveau: decode PFIFO DMA_PUSHER error
-	codes
-Date: Sun, 13 Feb 2011 20:46:40 +0100
-Message-ID: <1297626403-3349-1-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH 2/2] drm/nv50: fix typos in CCACHE error reporting
+Date: Sun, 13 Feb 2011 20:46:41 +0100
+Message-ID: <1297626403-3349-2-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,54 +18,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+The code was supposed to print registers around 0x405018 (which is read
+earlier), not 0x405818.
+
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nv04_fifo.c |   17 ++++++++++++++---
- 1 files changed, 14 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nv50_graph.c |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv04_fifo.c b/drivers/gpu/drm/nouveau/nv04_fifo.c
-index f89d104..dfa600c 100644
---- a/drivers/gpu/drm/nouveau/nv04_fifo.c
-+++ b/drivers/gpu/drm/nouveau/nv04_fifo.c
-@@ -379,6 +379,15 @@ out:
- 	return handled;
- }
+diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
+index 37e21d2..c75cff1 100644
+--- a/drivers/gpu/drm/nouveau/nv50_graph.c
++++ b/drivers/gpu/drm/nouveau/nv50_graph.c
+@@ -912,10 +912,10 @@ nv50_pgraph_trap_handler(struct drm_device *dev, u32 display, u64 inst, u32 chid
+ 			printk("\n");
+ 			NV_INFO(dev, "PGRAPH - TRAP_CCACHE %08x %08x %08x %08x"
+ 				     " %08x %08x %08x\n",
+-				nv_rd32(dev, 0x405800), nv_rd32(dev, 0x405804),
+-				nv_rd32(dev, 0x405808), nv_rd32(dev, 0x40580c),
+-				nv_rd32(dev, 0x405810), nv_rd32(dev, 0x405814),
+-				nv_rd32(dev, 0x40581c));
++				nv_rd32(dev, 0x405000), nv_rd32(dev, 0x405004),
++				nv_rd32(dev, 0x405008), nv_rd32(dev, 0x40500c),
++				nv_rd32(dev, 0x405010), nv_rd32(dev, 0x405014),
++				nv_rd32(dev, 0x40501c));
  
-+static const char *nv_dma_state_err(u32 state)
-+{
-+	static const char * const desc[] = {
-+		"NONE", "CALL_SUBR_ACTIVE", "INVALID_MTHD", "RET_SUBR_INACTIVE",
-+		"INVALID_CMD", "IB_EMPTY"/* NV50+ */, "MEM_FAULT", "UNK"
-+	};
-+	return desc[(state >> 29) & 0x7];
-+}
-+
- void
- nv04_fifo_isr(struct drm_device *dev)
- {
-@@ -460,9 +469,10 @@ nv04_fifo_isr(struct drm_device *dev)
- 				if (nouveau_ratelimit())
- 					NV_INFO(dev, "PFIFO_DMA_PUSHER - Ch %d Get 0x%02x%08x "
- 					     "Put 0x%02x%08x IbGet 0x%08x IbPut 0x%08x "
--					     "State 0x%08x Push 0x%08x\n",
-+					     "State 0x%08x (err: %s) Push 0x%08x\n",
- 						chid, ho_get, dma_get, ho_put,
- 						dma_put, ib_get, ib_put, state,
-+						nv_dma_state_err(state),
- 						push);
+ 		}
  
- 				/* METHOD_COUNT, in DMA_STATE on earlier chipsets */
-@@ -476,8 +486,9 @@ nv04_fifo_isr(struct drm_device *dev)
- 				}
- 			} else {
- 				NV_INFO(dev, "PFIFO_DMA_PUSHER - Ch %d Get 0x%08x "
--					     "Put 0x%08x State 0x%08x Push 0x%08x\n",
--					chid, dma_get, dma_put, state, push);
-+					     "Put 0x%08x State 0x%08x (err: %s) Push 0x%08x\n",
-+					chid, dma_get, dma_put, state,
-+					nv_dma_state_err(state), push);
- 
- 				if (dma_get != dma_put)
- 					nv_wr32(dev, 0x003244, dma_put);
 -- 
 1.7.4.rc3
