@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33967] No image on a VGA screen attached to DVI with
- a dvi to vga adaptor on NVa3 card..
-Date: Mon, 14 Feb 2011 07:13:08 -0800 (PST)
-Message-ID: <20110214151308.74FEE2DC101@annarchy.freedesktop.org>
-References: <bug-33967-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33887] nouveau causes graphic corruption were you
+ cant do anything
+Date: Mon, 14 Feb 2011 10:17:08 -0800 (PST)
+Message-ID: <20110214181708.ABDC42DC101@annarchy.freedesktop.org>
+References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +21,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzM5NjcKCi0tLSBD
-b21tZW50ICMxMSBmcm9tIFJhw7psIFNvcmlhbm8gPEdhdG9Mb2tvQGdtYWlsLmNvbT4gMjAxMS0w
-Mi0xNCAwNzoxMzowOCBQU1QgLS0tCkkndmUgdGVzdGVkIEJlbidzIHBhdGNoIGFuZCBpdCB3b3Jr
-cyBuaWNlbHksIHN1cmVseSBpbiBhIGJldHRlciBmYXNoaW9uIHRoYW4gbXkKb3duLgoKLS0gCkNv
-bmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5j
-Z2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6
-IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=33887
+
+Jakub Wilk <jwilk-tXgOlIzOKNReoWH0uzbU5w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |jwilk-tXgOlIzOKNReoWH0uzbU5w@public.gmane.org
+
+--- Comment #34 from Jakub Wilk <jwilk-tXgOlIzOKNReoWH0uzbU5w@public.gmane.org> 2011-02-14 10:17:07 PST ---
+I was experiencing a similar problem with GeForce 6150SE nForce 430. After
+rebuilding my kernel with https://bugs.freedesktop.org/attachment.cgi?id=43011
+applied, and the problem went way.
+
+More details in the downstream bug report: http://bugs.debian.org/613078
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
