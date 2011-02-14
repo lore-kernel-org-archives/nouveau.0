@@ -1,14 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] fix drmSetMaster error reporting
-Date: Mon, 14 Feb 2011 11:28:26 +1000
-Message-ID: <1297646911.2037.2.camel@nisroch>
-References: <1297626403-3349-3-git-send-email-marcin.slusarz@gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33967] No image on a VGA screen attached to DVI with
+ a dvi to vga adaptor on NVa3 card..
+Date: Sun, 13 Feb 2011 19:42:35 -0800 (PST)
+Message-ID: <20110214034235.AB3C413004E@annarchy.freedesktop.org>
+References: <bug-33967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1297626403-3349-3-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-33967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,28 +18,19 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 2011-02-13 at 20:46 +0100, Marcin Slusarz wrote:
-> On error, drmSetMaster returns -1 and sets errno.
-Pushed.
+https://bugs.freedesktop.org/show_bug.cgi?id=33967
 
-> ---
->  src/nv_driver.c |    2 +-
->  1 files changed, 1 insertions(+), 1 deletions(-)
-> 
-> diff --git a/src/nv_driver.c b/src/nv_driver.c
-> index 3e009fc..754739c 100644
-> --- a/src/nv_driver.c
-> +++ b/src/nv_driver.c
-> @@ -334,7 +334,7 @@ NVEnterVT(int scrnIndex, int flags)
->  
->  	ret = drmSetMaster(nouveau_device(pNv->dev)->fd);
->  	if (ret)
-> -		ErrorF("Unable to get master: %d\n", ret);
-> +		ErrorF("Unable to get master: %s\n", strerror(errno));
->  
->  	if (!xf86SetDesiredModes(pScrn))
->  		return FALSE;
+--- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-13 19:42:35 PST ---
+Created an attachment (id=43329)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=43329
+ Review: https://bugs.freedesktop.org/review?bug=33967&attachment=43329
+
+Possible alternate fix: encoder quirks
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
