@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33967] No image on a VGA screen attached to DVI with
  a dvi to vga adaptor on NVa3 card..
-Date: Sun, 13 Feb 2011 19:42:35 -0800 (PST)
-Message-ID: <20110214034235.AB3C413004E@annarchy.freedesktop.org>
+Date: Sun, 13 Feb 2011 19:45:41 -0800 (PST)
+Message-ID: <20110214034542.0B2D913004D@annarchy.freedesktop.org>
 References: <bug-33967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33967
 
---- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-13 19:42:35 PST ---
-Created an attachment (id=43329)
- View: https://bugs.freedesktop.org/attachment.cgi?id=43329
- Review: https://bugs.freedesktop.org/review?bug=33967&attachment=43329
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Possible alternate fix: encoder quirks
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #43329|0                           |1
+        is obsolete|                            |
+
+--- Comment #10 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-13 19:45:39 PST ---
+Created an attachment (id=43330)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=43330
+ Review: https://bugs.freedesktop.org/review?bug=33967&attachment=43330
+
+Fixed version of encoder table quirk
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
