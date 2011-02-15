@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25754] Nouveau - GPU Lockup on 2.6.33-rc1
-Date: Tue, 15 Feb 2011 06:49:25 -0800 (PST)
-Message-ID: <20110215144925.B10032DC012@annarchy.freedesktop.org>
-References: <bug-25754-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 24810] TTM out of aperture space, X lockup
+Date: Tue, 15 Feb 2011 09:55:44 -0800 (PST)
+Message-ID: <20110215175544.6C875130009@annarchy.freedesktop.org>
+References: <bug-24810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25754-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-24810-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25754
+https://bugs.freedesktop.org/show_bug.cgi?id=24810
 
---- Comment #2 from Matt Koco <mattkoco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-15 06:49:25 PST ---
-(In reply to comment #1)
-> This bug is against an "stoneage" version of nouveau. Could you please retest
-> with recent nouveau?
-> 
-> I will close this as not reproducible, if we get no reaction within one month.
+Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
 
-Sorry, can't test, as that box bit the dust.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #4 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-15 09:55:43 PST ---
+Ok, so we could consider this as fixed. Thank you for your reply.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
