@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25223] LVDS detected, but disabled on GeForce Go 7300
-Date: Tue, 15 Feb 2011 02:53:37 -0800 (PST)
-Message-ID: <20110215105337.B54472DC101@annarchy.freedesktop.org>
-References: <bug-25223-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15650] Hard freeze when starting X with GeForce 6800
+	GS (NV43)
+Date: Tue, 15 Feb 2011 02:59:29 -0800 (PST)
+Message-ID: <20110215105929.64AC92DC101@annarchy.freedesktop.org>
+References: <bug-15650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15650-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25223
+https://bugs.freedesktop.org/show_bug.cgi?id=15650
 
---- Comment #12 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-15 02:53:37 PST ---
-This report seems to be against a very old version of nouveau. Is this still an
-issue with recent nouveau?
+Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
 
-If we get no status update within one month I will close this bug as
-unreproducible.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
+
+--- Comment #14 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-15 02:59:29 PST ---
+Closing this as there were no status updates for about two years. If this is
+still a problem with recent nouveau, please reopen with new logs.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
