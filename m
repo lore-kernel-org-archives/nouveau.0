@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25754] Nouveau - GPU Lockup on 2.6.33-rc1
-Date: Tue, 15 Feb 2011 01:31:39 -0800 (PST)
-Message-ID: <20110215093139.A4B512DC012@annarchy.freedesktop.org>
-References: <bug-25754-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27483] dmesg error: [drm] nouveau 0000:02:00.0:
+ EvoCh 0 Mthd 0x0000 Data 0x00000400 (0x0002 0x01)
+Date: Tue, 15 Feb 2011 01:39:00 -0800 (PST)
+Message-ID: <20110215093900.DDBD62DC101@annarchy.freedesktop.org>
+References: <bug-27483-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25754-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,13 +21,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25754
+https://bugs.freedesktop.org/show_bug.cgi?id=27483
 
---- Comment #1 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-15 01:31:39 PST ---
-This bug is against an "stoneage" version of nouveau. Could you please retest
-with recent nouveau?
+--- Comment #1 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-15 01:39:00 PST ---
+Is this still an issue with recent nouveau. We had a couple of Evo related
+changes since reporting of this bug.
 
-I will close this as not reproducible, if we get no reaction within one month.
+Please retest and come back to this bugreport. Thanks.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
