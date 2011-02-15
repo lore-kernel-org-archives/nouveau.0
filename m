@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32097] Segfault when starting X with latest nouveau
-Date: Tue, 15 Feb 2011 01:20:30 -0800 (PST)
-Message-ID: <20110215092030.DE9652DC101@annarchy.freedesktop.org>
-References: <bug-32097-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25754] Nouveau - GPU Lockup on 2.6.33-rc1
+Date: Tue, 15 Feb 2011 01:31:39 -0800 (PST)
+Message-ID: <20110215093139.A4B512DC012@annarchy.freedesktop.org>
+References: <bug-25754-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32097-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25754-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +20,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=32097
+https://bugs.freedesktop.org/show_bug.cgi?id=25754
 
---- Comment #3 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-15 01:20:30 PST ---
-It seems you didn't install libdrm properly. Make sure the header files are in
-the correct location, too.
+--- Comment #1 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-02-15 01:31:39 PST ---
+This bug is against an "stoneage" version of nouveau. Could you please retest
+with recent nouveau?
 
-Could you please try this and come back to this bugreport, whether it is
-working for you? Thanks.
+I will close this as not reproducible, if we get no reaction within one month.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
