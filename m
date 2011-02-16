@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33445] NVS 3100M : Blank screen on kernel module
-	loading
-Date: Tue, 15 Feb 2011 20:33:13 -0800 (PST)
-Message-ID: <20110216043313.80C94130009@annarchy.freedesktop.org>
-References: <bug-33445-8800@http.bugs.freedesktop.org/>
+From: Benjamin Franzke <benjaminfranzke-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Fix pageflip event
+Date: Wed, 16 Feb 2011 10:04:48 +0100
+Message-ID: <1297847088-5824-1-git-send-email-benjaminfranzke@googlemail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +18,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33445
+Assign correct event when initializing nouveau_page_flip_state.
+---
+ drivers/gpu/drm/nouveau/nouveau_display.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
---- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-15 20:33:09 PST ---
-I highly recommend *against* trying to change the performance level here. 
-There's something odd about the PLLs on nva3+ boards (sometimes), which is the
-more likely reason why we detect a 950MHz memclk.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index c42d84e..764c15d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -290,7 +290,7 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+ 
+ 	/* Initialize a page flip struct */
+ 	*s = (struct nouveau_page_flip_state)
+-		{ { }, s->event, nouveau_crtc(crtc)->index,
++		{ { }, event, nouveau_crtc(crtc)->index,
+ 		  fb->bits_per_pixel, fb->pitch, crtc->x, crtc->y,
+ 		  new_bo->bo.offset };
+ 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.3.4
