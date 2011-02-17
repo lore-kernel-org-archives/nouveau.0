@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34371] [natty] Video corruption on kernel
  2.6.38-1-generic (and on -3) and nVidia Corporation GT216 [GeForce GT 230M]
  (rev a2)
-Date: Wed, 16 Feb 2011 20:07:18 -0800 (PST)
-Message-ID: <20110217040718.33120130005@annarchy.freedesktop.org>
+Date: Wed, 16 Feb 2011 20:10:30 -0800 (PST)
+Message-ID: <20110217041030.55095130009@annarchy.freedesktop.org>
 References: <bug-34371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,10 +24,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34371
 
---- Comment #6 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-02-16 20:07:18 PST ---
-Created an attachment (id=43470)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=43470)
-dmesg.txt
+--- Comment #7 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-02-16 20:10:30 PST ---
+Bugzilla says the screenshot is too big to attach, but it's in launchpad here:
+https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/713781/+attachment/1832795/+files/05022011109.jpg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
