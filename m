@@ -1,7 +1,7 @@
 From: Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/3] Page flipping man page update
-Date: Thu, 17 Feb 2011 03:47:46 +0100
-Message-ID: <1297910872.31321.3.camel@ginzen>
+Subject: [PATCH 3/3] Fix gcc 4.6.0 set but unused variable warnings
+Date: Thu, 17 Feb 2011 03:48:16 +0100
+Message-ID: <1297910903.31321.5.camel@ginzen>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -20,22 +20,50 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Francesco Marella <fmarl-XtQPfPCVGG7srOwW+9ziJQ@public.gmane.org>
 ---
- man/nouveau.man |    3 +++
- 1 files changed, 3 insertions(+), 0 deletions(-)
+ src/drmmode_display.c |    2 --
+ src/nv_driver.c       |    3 +--
+ 2 files changed, 1 insertions(+), 4 deletions(-)
 
-diff --git a/man/nouveau.man b/man/nouveau.man
-index 39de690..dd9d938 100644
---- a/man/nouveau.man
-+++ b/man/nouveau.man
-@@ -90,6 +90,9 @@ For example:
- .B
- Option \*qZaphodHeads\*q \*qLVDS,VGA-0\*q
- will assign xrandr outputs LVDS and VGA-0 to this instance of the driver.
-+.TP
-+.BI "Option \*qPageFlip\*q \*q" boolean \*q
-+Enable DRI2 page flipping. Default: on.
- .SH "SEE ALSO"
- __xservername__(__appmansuffix__), __xconfigfile__(__filemansuffix__), Xserver(__appmansuffix__), X(__miscmansuffix__)
- .SH AUTHORS
+diff --git a/src/drmmode_display.c b/src/drmmode_display.c
+index d14dd80..43a2672 100644
+--- a/src/drmmode_display.c
++++ b/src/drmmode_display.c
+@@ -1158,7 +1158,6 @@ static const xf86CrtcConfigFuncsRec drmmode_xf86crtc_config_funcs = {
+ 
+ Bool drmmode_pre_init(ScrnInfoPtr pScrn, int fd, int cpp)
+ {
+-	xf86CrtcConfigPtr   xf86_config;
+ 	drmmode_ptr drmmode;
+ 	int i;
+ 
+@@ -1167,7 +1166,6 @@ Bool drmmode_pre_init(ScrnInfoPtr pScrn, int fd, int cpp)
+ 	drmmode->fb_id = 0;
+ 
+ 	xf86CrtcConfigInit(pScrn, &drmmode_xf86crtc_config_funcs);
+-	xf86_config = XF86_CRTC_CONFIG_PTR(pScrn);
+ 
+ 	drmmode->cpp = cpp;
+ 	drmmode->mode_res = drmModeGetResources(drmmode->fd);
+diff --git a/src/nv_driver.c b/src/nv_driver.c
+index 523cab8..b959745 100644
+--- a/src/nv_driver.c
++++ b/src/nv_driver.c
+@@ -601,7 +601,7 @@ NVPreInit(ScrnInfoPtr pScrn, int flags)
+ 	MessageType from;
+ 	const char *reason;
+ 	uint64_t v;
+-	int ret, i;
++	int ret;
+ 
+ 	if (flags & PROBE_DETECT) {
+ 		EntityInfoPtr pEnt = xf86GetEntityInfo(pScrn->entityList[0]);
+@@ -609,7 +609,6 @@ NVPreInit(ScrnInfoPtr pScrn, int flags)
+ 		if (!pEnt)
+ 			return FALSE;
+ 
+-		i = pEnt->index;
+ 		free(pEnt);
+ 
+ 		return TRUE;
 -- 
 1.7.4
