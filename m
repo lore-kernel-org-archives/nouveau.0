@@ -1,7 +1,7 @@
 From: Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/3] Update configure.ac with autoupdate
-Date: Thu, 17 Feb 2011 03:47:08 +0100
-Message-ID: <1297910842.31321.1.camel@ginzen>
+Subject: [PATCH 2/3] Page flipping man page update
+Date: Thu, 17 Feb 2011 03:47:46 +0100
+Message-ID: <1297910872.31321.3.camel@ginzen>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -20,63 +20,22 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Francesco Marella <fmarl-XtQPfPCVGG7srOwW+9ziJQ@public.gmane.org>
 ---
- configure.ac |   15 ++++++++-------
- 1 files changed, 8 insertions(+), 7 deletions(-)
+ man/nouveau.man |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
 
-diff --git a/configure.ac b/configure.ac
-index 676c2a4..6a143dc 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -20,11 +20,11 @@
- #
- # Process this file with autoconf to produce a configure script
- 
--AC_PREREQ(2.57)
-+AC_PREREQ([2.60])
- AC_INIT([xf86-video-nouveau],
--        0.0.16,
-+        [0.0.16],
-         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],
--        xf86-video-nouveau)
-+        [xf86-video-nouveau])
- 
- AC_DEFINE_UNQUOTED([NV_MAJOR_VERSION],
-                    [$(echo $PACKAGE_VERSION | sed -e 's/^\([[0-9]]*\)\.[[0-9]]*\.[[0-9]]*/\1/')],
-@@ -40,7 +40,7 @@ AC_DEFINE_UNQUOTED([NV_DRIVER_DATE],
-                    [Driver date])
- 
- AC_CONFIG_SRCDIR([Makefile.am])
--AM_CONFIG_HEADER([config.h])
-+AC_CONFIG_HEADERS([config.h])
- AC_CONFIG_AUX_DIR(.)
- 
- AM_INIT_AUTOMAKE([dist-bzip2])
-@@ -49,13 +49,13 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
- 
- # Checks for programs.
- AC_DISABLE_STATIC
--AC_PROG_LIBTOOL
-+LT_INIT
- AC_PROG_CC
- 
- AH_TOP([#include "xorg-server.h"])
- 
- AC_ARG_WITH(xorg-module-dir,
--            AC_HELP_STRING([--with-xorg-module-dir=DIR],
-+            AS_HELP_STRING([--with-xorg-module-dir=DIR],
-                            [Default xorg module directory [[default=$libdir/xorg/modules]]]),
-             [moduledir="$withval"],
-             [moduledir="$libdir/xorg/modules"])
-@@ -113,8 +113,9 @@ AC_SUBST([DRIVER_NAME])
- XORG_MANPAGE_SECTIONS
- XORG_RELEASE_VERSION
- 
--AC_OUTPUT([
-+AC_CONFIG_FILES([
- 	Makefile
- 	src/Makefile
- 	man/Makefile
- ])
-+AC_OUTPUT
+diff --git a/man/nouveau.man b/man/nouveau.man
+index 39de690..dd9d938 100644
+--- a/man/nouveau.man
++++ b/man/nouveau.man
+@@ -90,6 +90,9 @@ For example:
+ .B
+ Option \*qZaphodHeads\*q \*qLVDS,VGA-0\*q
+ will assign xrandr outputs LVDS and VGA-0 to this instance of the driver.
++.TP
++.BI "Option \*qPageFlip\*q \*q" boolean \*q
++Enable DRI2 page flipping. Default: on.
+ .SH "SEE ALSO"
+ __xservername__(__appmansuffix__), __xconfigfile__(__filemansuffix__), Xserver(__appmansuffix__), X(__miscmansuffix__)
+ .SH AUTHORS
 -- 
 1.7.4
