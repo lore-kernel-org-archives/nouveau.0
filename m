@@ -1,13 +1,14 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Fix pageflip event
-Date: Thu, 17 Feb 2011 15:43:13 +1000
-Message-ID: <AANLkTik6cywedWQXjzj6_xPqy5=4_Uy2dETvA0NTTxrR@mail.gmail.com>
-References: <1297847088-5824-1-git-send-email-benjaminfranzke@googlemail.com>
+Subject: Re: [PATCH 1/3] Update configure.ac with autoupdate
+Date: Thu, 17 Feb 2011 14:27:14 +1000
+Message-ID: <1297916840.11351.0.camel@nisroch>
+References: <1297910842.31321.1.camel@ginzen>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1297847088-5824-1-git-send-email-benjaminfranzke-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <1297910842.31321.1.camel@ginzen>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,44 +18,71 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Benjamin Franzke <benjaminfranzke-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau ML <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Feb 16, 2011 at 7:04 PM, Benjamin Franzke
-<benjaminfranzke-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> wrote:
-> Assign correct event when initializing nouveau_page_flip_state.
-Ah yes, I though that was an oddity when I was getting nv50/nvc0 page
-flipping done.
+On Thu, 2011-02-17 at 03:47 +0100, Francesco Marella wrote:
+> Signed-off-by: Francesco Marella <fmarl-XtQPfPCVGG7srOwW+9ziJQ@public.gmane.org>
+Thank you, pushed all 3 patches.
 
-Pushed to nouveau git,
-Thanks!
-
+Ben.
 > ---
-> =A0drivers/gpu/drm/nouveau/nouveau_display.c | =A0 =A02 +-
-> =A01 files changed, 1 insertions(+), 1 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/=
-nouveau/nouveau_display.c
-> index c42d84e..764c15d 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -290,7 +290,7 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct =
-drm_framebuffer *fb,
->
-> =A0 =A0 =A0 =A0/* Initialize a page flip struct */
-> =A0 =A0 =A0 =A0*s =3D (struct nouveau_page_flip_state)
-> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 { { }, s->event, nouveau_crtc(crtc)->index,
-> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 { { }, event, nouveau_crtc(crtc)->index,
-> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0fb->bits_per_pixel, fb->pitch, crtc->x=
-, crtc->y,
-> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0new_bo->bo.offset };
->
-> --
-> 1.7.3.4
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+>  configure.ac |   15 ++++++++-------
+>  1 files changed, 8 insertions(+), 7 deletions(-)
+> 
+> diff --git a/configure.ac b/configure.ac
+> index 676c2a4..6a143dc 100644
+> --- a/configure.ac
+> +++ b/configure.ac
+> @@ -20,11 +20,11 @@
+>  #
+>  # Process this file with autoconf to produce a configure script
+>  
+> -AC_PREREQ(2.57)
+> +AC_PREREQ([2.60])
+>  AC_INIT([xf86-video-nouveau],
+> -        0.0.16,
+> +        [0.0.16],
+>          [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],
+> -        xf86-video-nouveau)
+> +        [xf86-video-nouveau])
+>  
+>  AC_DEFINE_UNQUOTED([NV_MAJOR_VERSION],
+>                     [$(echo $PACKAGE_VERSION | sed -e 's/^\([[0-9]]*\)\.[[0-9]]*\.[[0-9]]*/\1/')],
+> @@ -40,7 +40,7 @@ AC_DEFINE_UNQUOTED([NV_DRIVER_DATE],
+>                     [Driver date])
+>  
+>  AC_CONFIG_SRCDIR([Makefile.am])
+> -AM_CONFIG_HEADER([config.h])
+> +AC_CONFIG_HEADERS([config.h])
+>  AC_CONFIG_AUX_DIR(.)
+>  
+>  AM_INIT_AUTOMAKE([dist-bzip2])
+> @@ -49,13 +49,13 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+>  
+>  # Checks for programs.
+>  AC_DISABLE_STATIC
+> -AC_PROG_LIBTOOL
+> +LT_INIT
+>  AC_PROG_CC
+>  
+>  AH_TOP([#include "xorg-server.h"])
+>  
+>  AC_ARG_WITH(xorg-module-dir,
+> -            AC_HELP_STRING([--with-xorg-module-dir=DIR],
+> +            AS_HELP_STRING([--with-xorg-module-dir=DIR],
+>                             [Default xorg module directory [[default=$libdir/xorg/modules]]]),
+>              [moduledir="$withval"],
+>              [moduledir="$libdir/xorg/modules"])
+> @@ -113,8 +113,9 @@ AC_SUBST([DRIVER_NAME])
+>  XORG_MANPAGE_SECTIONS
+>  XORG_RELEASE_VERSION
+>  
+> -AC_OUTPUT([
+> +AC_CONFIG_FILES([
+>  	Makefile
+>  	src/Makefile
+>  	man/Makefile
+>  ])
+> +AC_OUTPUT
