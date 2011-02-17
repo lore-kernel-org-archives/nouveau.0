@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34348] (regression/bisected) (2.6.37 nouveau/KMS)
- internal laptop display remains blank
-Date: Thu, 17 Feb 2011 01:39:47 -0800 (PST)
-Message-ID: <20110217093947.6C763130005@annarchy.freedesktop.org>
-References: <bug-34348-8800@http.bugs.freedesktop.org/>
+From: Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org>
+Subject: [PATCH] nv20_graph.c - added licence info and author
+Date: Thu, 17 Feb 2011 12:39:18 +0000
+Message-ID: <1297946358.13315.59.camel@lithium>
+Reply-To: alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34348-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,25 +19,40 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34348
-
---- Comment #2 from Dragos Delcea <dragos.delcea-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-17 01:39:47 PST ---
-(In reply to comment #1)
-> I wouldn't be certain this commit is the culprit yet.  That commit has a typo
-> which would also mess things up, and was fixed by
-> 85341f27b49833325f97580edcd687b4d90bb30b.
-
-ok, but neither 2.6.37 nor 2.6.38-rc4-git8 work for me, even if they have the
-above commit.
-
-You probably only mean that the bisection might be misleading due to the above,
-but where does this leave me? what are the next steps I can take to get around
-that (if any)? some git-fu pointers would be highly appreciated, as I'm just
-learning the ropes...
-In the meantime, I'll try building a kernel based on
-85341f27b49833325f97580edcd687b4d90bb30b and see what I get.
+diff --git a/drivers/gpu/drm/nouveau/nv20_graph.c b/drivers/gpu/drm/nouveau/nv20_graph.c
+index 8464b76..2d645b6 100644
+--- a/drivers/gpu/drm/nouveau/nv20_graph.c
++++ b/drivers/gpu/drm/nouveau/nv20_graph.c
+@@ -1,3 +1,29 @@
++/*
++ * Copyright (C) 2007 Ben Skeggs.
++ * All Rights Reserved.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
++ * IN NO EVENT SHALL THE COPYRIGHT OWNER(S) AND/OR ITS SUPPLIERS BE
++ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
++ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
++ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
+ #include "drmP.h"
+ #include "drm.h"
+ #include "nouveau_drv.h"
 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Tactical Nuclear Kittens
