@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34371] [natty] Video corruption on kernel
  2.6.38-1-generic (and on -3) and nVidia Corporation GT216 [GeForce GT 230M]
  (rev a2)
-Date: Wed, 16 Feb 2011 20:05:10 -0800 (PST)
-Message-ID: <20110217040510.0F53C130005@annarchy.freedesktop.org>
+Date: Wed, 16 Feb 2011 20:05:27 -0800 (PST)
+Message-ID: <20110217040527.0A2C1130005@annarchy.freedesktop.org>
 References: <bug-34371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,10 +24,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34371
 
---- Comment #2 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-02-16 20:05:09 PST ---
-Created an attachment (id=43466)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=43466)
-CurrentDmesg.txt
+--- Comment #3 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-02-16 20:05:26 PST ---
+Created an attachment (id=43467)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=43467)
+XorgLog.txt
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
