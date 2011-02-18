@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34429] Failure during resume on NV50: INIT_AUXCH: rd
  auxch fail -121
-Date: Fri, 18 Feb 2011 00:56:49 -0800 (PST)
-Message-ID: <20110218085649.31192130005@annarchy.freedesktop.org>
+Date: Fri, 18 Feb 2011 00:57:22 -0800 (PST)
+Message-ID: <20110218085722.C7F7F13000B@annarchy.freedesktop.org>
 References: <bug-34429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34429
 
---- Comment #1 from Fabian Moser <e-mail+freedesktop-xxErKMtOoaJY9F1qCS7Utw@public.gmane.org> 2011-02-18 00:56:48 PST ---
-Created an attachment (id=43512)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=43512)
-Power manager activities during suspend/resume
+--- Comment #2 from Fabian Moser <e-mail+freedesktop-xxErKMtOoaJY9F1qCS7Utw@public.gmane.org> 2011-02-18 00:57:22 PST ---
+Created an attachment (id=43513)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=43513)
+Xorg messages from boot to resume
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
