@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34469] libdrm modetest fails, and causes kernel panic
-Date: Sat, 19 Feb 2011 00:54:41 -0800 (PST)
-Message-ID: <20110219085441.79DF7130005@annarchy.freedesktop.org>
+Date: Sat, 19 Feb 2011 08:39:57 -0800 (PST)
+Message-ID: <20110219163957.CFE19130009@annarchy.freedesktop.org>
 References: <bug-34469-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34469
 
---- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-19 00:54:40 PST ---
-The very next commit in the tree (8e645575d469bf08c9d5d98a101ef4cfce6a9180
-"drm/nouveau: Fix pageflip event") has a fix related to page flipping, could
-you please try it.
+--- Comment #3 from Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> 2011-02-19 08:39:57 PST ---
+Sorry I failed to mention, I had applied that "drm/nouveau: Fix pageflip event"
+patch manually, before it was committed.  Without it the screen never update in
+wayland (DRM), staying frozen on the first frame.  I expect modetest would have
+done the same.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
