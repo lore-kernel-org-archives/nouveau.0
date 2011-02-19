@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34487] New: Troubleshooting GeForce 6150LE
-Date: Sat, 19 Feb 2011 12:46:37 -0800 (PST)
-Message-ID: <bug-34487-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34491] New: Resuming from Suspend to RAM causes poor
+ 2D performance
+Date: Sat, 19 Feb 2011 15:30:21 -0800 (PST)
+Message-ID: <bug-34491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,42 +19,41 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34487
+https://bugs.freedesktop.org/show_bug.cgi?id=34491
 
-           Summary: Troubleshooting GeForce 6150LE
+           Summary: Resuming from Suspend to RAM causes poor 2D
+                    performance
            Product: xorg
-           Version: 7.6
-          Platform: x86-64 (AMD64)
+           Version: 7.4
+          Platform: x86 (IA32)
         OS/Version: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: diptongo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        ReportedBy: shiningarcanine-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-Created an attachment (id=43556)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=43556)
-Tarball with kernel config, dmesg output, xorg log, and other system
-information.
+Created an attachment (id=43562)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=43562)
+dmesg kernel log following a boot, suspend to RAM and then resume
 
-A bit before than kernel 2.6.36, nouveau kernel driver stopped working in my
-GeForce 6150LE (10de:0241) integrated graphics card (from a Dell Dimension
-C521):
+I am using KDE 4.6.0 on Gentoo Linux's testing tree with the Linux 2.6.38-rc5
+kernel. Resuming from a suspend to RAM kills 2D performance. This issue also
+occurs with Linux 2.6.38-rc4.
 
-00:05.0 VGA compatible controller: nVidia Corporation C51 [GeForce 6150 LE]
-(rev a2)
+I discovered this while I was testing a power management patch for Martin
+Peres. His patch provided a proc interface for changing my card's performance
+level. If I set the performance level and suspend to RAM, the system will not
+resume at all and I cannot even ssh into it. Without setting a performance
+level with his patch applied, the system will resume from a suspend to RAM, but
+2D performance is awful. Resuming from a suspend to RAM also results in poor 2D
+performance even if his patch is not applied.
 
-I was trying to bisect it, but someone at IRC (#nouevau on freenode) told me
-that it was better to just get the 2.6.38-rc5 dmesg and Xorg outputs and fill a
-bug with them.
-
-The only images obtained are residual from previous boot with garbage.  There
-seem to be also a keyboard and mouse interaction when Xorg starts, as it leaves
-them completely off.  I'm currently running 2.6.35.7 with a very similar kernel
-configuration and works fine with software cursor.
+There are some messages in the dmesg kernel log that seem to describe what is
+going wrong, but I do not understand them. I have attached the output.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
