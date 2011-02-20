@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29171] Garbled console on Macbook 13" (6,
- 1 9400M]) when using EFI
-Date: Sun, 20 Feb 2011 13:33:01 -0800 (PST)
-Message-ID: <20110220213301.45548130009@annarchy.freedesktop.org>
-References: <bug-29171-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33357] Nouveau GPU lockup
+Date: Sun, 20 Feb 2011 13:36:50 -0800 (PST)
+Message-ID: <20110220213650.C8825130009@annarchy.freedesktop.org>
+References: <bug-33357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29171
+https://bugs.freedesktop.org/show_bug.cgi?id=33357
 
-Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> changed:
+Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|                            |FIXED
+             Status|NEW                         |RESOLVED
+         Resolution|                            |DUPLICATE
 
---- Comment #34 from Felix Leimbach <felix.leimbach-hi6Y0CQ0nG0@public.gmane.org> 2011-02-20 13:33:00 PST ---
-It works in 2.6.35-rc5. Marking RESOLVED.
+--- Comment #7 from Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> 2011-02-20 13:36:49 PST ---
+
+
+*** This bug has been marked as a duplicate of bug 26980 ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
