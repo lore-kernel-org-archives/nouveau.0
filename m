@@ -1,15 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34508] [grub x86_64-efi] Macbook 5,
- 2 - conflicting fb hw usage nouveaufb vs EFI VGA - removing generic
- driver
-Date: Sun, 20 Feb 2011 14:17:36 -0800 (PST)
-Message-ID: <20110220221736.657C8130005@annarchy.freedesktop.org>
-References: <bug-34508-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
+ nouveau: random GPU lockups
+Date: Sun, 20 Feb 2011 15:56:37 -0800 (PST)
+Message-ID: <20110220235637.84E3A130009@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34508-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,15 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34508
+https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
-Gregory Bellier <dest-vb1CFJ/PVqUHz/9yF02f9g@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|blocker                     |critical
-           Priority|medium                      |highest
-                 CC|                            |dest-vb1CFJ/PVqUHz/9yF02f9g@public.gmane.org
+--- Comment #49 from Alex Mayorga Adame <alex_mayorga-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> 2011-02-20 15:56:36 PST ---
+FWIW you can see a peek of my frozen nVidia Corporation GT216 [GeForce GT 230M]
+(rev a2) at
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/553789/+attachment/1863113/+files/peek-696104.txt
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
