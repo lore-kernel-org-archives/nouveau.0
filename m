@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33887] nouveau causes graphic corruption were you
  cant do anything
-Date: Tue, 22 Feb 2011 03:05:54 -0800 (PST)
-Message-ID: <20110222110554.91DBA130009@annarchy.freedesktop.org>
+Date: Tue, 22 Feb 2011 03:12:00 -0800 (PST)
+Message-ID: <20110222111201.01C7D130005@annarchy.freedesktop.org>
 References: <bug-33887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33887
 
---- Comment #35 from Andy Whitcroft <apw-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-02-22 03:05:53 PST ---
-We have a couple of reports back on the downstream bug with the "possible fix
-for nv4x/nv6x chipsets" patch applied.  One report of complete mitigation,
-another which sounds like there is a second issue but they are improved by the
-patch.  Comments #25 and #26 below:
+--- Comment #36 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-22 03:12:00 PST ---
+That patch was never meant to be tested by everyone. It was a hack to test for
+people who have problems.
 
-    https://bugs.launchpad.net/ubuntu/+source/linux/+bug/711591
+Ben committed this 5 days ago. It seems to be in linus' tree too.
+
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=aaa3d08c357dcfbe13ec23786c294759183a4d8d
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
