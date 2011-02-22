@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34429] Failure during resume on NV50: INIT_AUXCH: rd
- auxch fail -121
-Date: Tue, 22 Feb 2011 07:57:51 -0800 (PST)
-Message-ID: <20110222155752.E9DC8130009@annarchy.freedesktop.org>
-References: <bug-34429-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] gallium/nv50: use 0x8697 class on NVAF
+Date: Tue, 22 Feb 2011 18:32:40 +0100
+Message-ID: <20110222173240.GA9687@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34429-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +19,42 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34429
+Addresses: https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/723012
 
---- Comment #3 from Fabian Moser <e-mail+freedesktop-xxErKMtOoaJY9F1qCS7Utw@public.gmane.org> 2011-02-22 07:57:49 PST ---
-An apparently similar issue has been reproduced during Fedora 15 nouveau Test
-Day with the provided Live ISO.
+Reported-and-tested-by: Alan Pope
+---
+ src/gallium/drivers/nv50/nv50_reg.h    |    4 ++++
+ src/gallium/drivers/nv50/nv50_screen.c |    3 +++
+ 2 files changed, 7 insertions(+), 0 deletions(-)
 
+diff --git a/src/gallium/drivers/nv50/nv50_reg.h b/src/gallium/drivers/nv50/nv50_reg.h
+index 949838b..90d77e5 100644
+--- a/src/gallium/drivers/nv50/nv50_reg.h
++++ b/src/gallium/drivers/nv50/nv50_reg.h
+@@ -1685,6 +1685,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
+ 
+ 
++#define NVAFTCL										0x00008697
++
++
++
+ #define NV50_COMPUTE									0x000050c0
+ 
+ #define  NV50_COMPUTE_NOP								0x00000100
+diff --git a/src/gallium/drivers/nv50/nv50_screen.c b/src/gallium/drivers/nv50/nv50_screen.c
+index edc3d54..8069509 100644
+--- a/src/gallium/drivers/nv50/nv50_screen.c
++++ b/src/gallium/drivers/nv50/nv50_screen.c
+@@ -389,6 +389,9 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
+ 		case 0xac:
+ 			tesla_class = NVA0TCL;
+ 			break;
++		case 0xaf:
++			tesla_class = NVAFTCL;
++			break;
+ 		default:
+ 			tesla_class = NVA8TCL;
+ 			break;
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.4.rc3
