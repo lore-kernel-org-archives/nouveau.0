@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34678] New: Kernel modules cannot be loaded
-Date: Thu, 24 Feb 2011 11:55:21 -0800 (PST)
-Message-ID: <bug-34678-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34680] New: Enable dithering by default for eDP
+	panels
+Date: Thu, 24 Feb 2011 13:26:02 -0800 (PST)
+Message-ID: <bug-34680-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,29 +19,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34678
+https://bugs.freedesktop.org/show_bug.cgi?id=34680
 
-           Summary: Kernel modules cannot be loaded
+           Summary: Enable dithering by default for eDP panels
            Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
+           Version: unspecified
+          Platform: All
+        OS/Version: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
+        ReportedBy: homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-git snapshot (UTC): 20110223.0045
+Please, enable dithering by default dor eDP panels (18 bits) such as was done
+for LVDS panels.
 
-# WARNING: Loop detected:
-/lib/modules/2.6.37.1-1.2-desktop/updates/drivers/gpu/drm/drm.ko needs ttm.ko
-which needs drm.ko again!
-
-I assume it was introduced by one of Ben Skeggs commits.
+Thanks.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
