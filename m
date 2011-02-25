@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33987] no full color on laptop screen.
-Date: Fri, 25 Feb 2011 11:17:51 -0800 (PST)
-Message-ID: <20110225191751.794C5130009@annarchy.freedesktop.org>
-References: <bug-33987-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34429] Failure during resume on NV50: INIT_AUXCH: rd
+ auxch fail -121
+Date: Fri, 25 Feb 2011 12:41:19 -0800 (PST)
+Message-ID: <20110225204120.1702F130009@annarchy.freedesktop.org>
+References: <bug-34429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33987-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-34429-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +21,24 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33987
+https://bugs.freedesktop.org/show_bug.cgi?id=34429
 
---- Comment #6 from develop-bz7xYOng5Jy2T+V5DUblTA@public.gmane.org 2011-02-25 11:17:51 PST ---
-yes that will works.
+Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-but i will fallback again to nvidia, nouveau is so unstable with my hardware
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-
-Screen 0: minimum 320 x 200, current 1440 x 900, maximum 8192 x 8192
-eDP-1 connected 1440x900+0+0 (normal left inverted right x axis y axis) 303mm x
-190mm
-        EDID:
-                00ffffffffffff004ca3425400000000
-                00140104951e13780a63168b5b579529
-                1e4f5400000001010101010101010101
-                0101010101011d2aa0e8518420302e46
-                99002fbe1000001a141ca0e851842030
-                2e4699002fbe1000001a000000fe0043
-                353144578231343142540a2000000000
-                00004101190000000009010a202000f9
-        dithering:      On
-                supported: Off          On           Automatic   
-        scaling mode:   Full
-                supported: None         Full         Center       Full aspect 
-   1440x900       60.0*+   40.0  
-   1152x864       60.0  
-   1024x768       59.9  
-   800x600        59.9  
-VGA-1 disconnected (normal left inverted right x axis y axis)
-        scaling mode:   None
-                supported: None         Full         Center       Full aspect 
-DP-1 disconnected (normal left inverted right x axis y axis)
-        dithering:      Off
-                supported: Off          On           Automatic   
-        scaling mode:   Full
-                supported: None         Full         Center       Full aspect 
-DP-2 disconnected (normal left inverted right x axis y axis)
-        dithering:      Off
-                supported: Off          On           Automatic   
-        scaling mode:   Full
-                supported: None         Full         Center       Full aspect
+--- Comment #4 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-02-25 12:41:19 PST ---
+I have a similar problem on the same hardware with Ubuntu 11.04 Alpha 2.
+dmesg output contains the same lines:
+  ...
+  [drm] nouveau 0000:01:00.0: Restoring mode...
+  [drm] nouveau 0000:01:00.0: INIT_AUXCH: rd auxch fail -121
+  [drm] nouveau 0000:01:00.0: INIT_AUXCH: rd auxch fail -121
+  [drm] nouveau 0000:01:00.0: 0xBDCC: auxch rd fail: -121
+  [drm] nouveau 0000:01:00.0: INIT_AUXCH: rd auxch fail -121
+  ...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
