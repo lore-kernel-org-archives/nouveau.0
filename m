@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34680] Enable dithering by default for eDP panels
-Date: Fri, 25 Feb 2011 13:07:09 -0800 (PST)
-Message-ID: <20110225210709.B18A0130005@annarchy.freedesktop.org>
+Date: Fri, 25 Feb 2011 13:08:38 -0800 (PST)
+Message-ID: <20110225210838.271C6130005@annarchy.freedesktop.org>
 References: <bug-34680-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,7 @@ Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|https://bugs.freedesktop.or |
-                   |g/show_bug.cgi?id=33987     |
+           Severity|normal                      |minor
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
