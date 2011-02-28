@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
  nouveau: random GPU lockups
-Date: Mon, 28 Feb 2011 13:17:46 -0800 (PST)
-Message-ID: <20110228211746.D0219130005@annarchy.freedesktop.org>
+Date: Mon, 28 Feb 2011 13:18:20 -0800 (PST)
+Message-ID: <20110228211820.3508A13000B@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,8 @@ Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://launchpad.net/bugs/
-                   |                            |553789
+           See Also|                            |https://bugzilla.redhat.com
+                   |                            |/show_bug.cgi?id=679319
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
