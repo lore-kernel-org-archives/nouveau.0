@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33999] 2.6.37 - NV11 crashes X if glxgears started
-Date: Mon, 28 Feb 2011 18:36:13 -0800 (PST)
-Message-ID: <20110301023613.F1F99130009@annarchy.freedesktop.org>
+Date: Tue,  1 Mar 2011 03:01:52 -0800 (PST)
+Message-ID: <20110301110152.1B66E2DC184@annarchy.freedesktop.org>
 References: <bug-33999-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33999
 
---- Comment #7 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-02-28 18:36:13 PST ---
-Just a quick word to say I've traced it to memory allocation problems. The card
-is a 32MB adapter living in a 64MB GART, with 16MB allocated to a scratch
-buffer. Attempts to reduce the amount of memory allocated to the scratch buffer
-ended in failure. The biggest allocation was 17MB, not sure what this was
-allocated for. See http://ompldr.org/vN2x1eQ for some debugging in the nouveau
-ddx driver. 
+--- Comment #8 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-03-01 03:01:51 PST ---
+http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=ace98a492353e6de712f4f717e6d3f562e3591f0
+fixes the crash in the X server. 
+(thanks to pq)
 
-Ideas welcome on how to get this to work.
+There are still problems, but trying 2.6.38-rc6 at the moment.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
