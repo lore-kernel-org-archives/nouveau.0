@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34919] DVI Dock Connectors: Signal but not usable.
-Date: Wed,  2 Mar 2011 05:42:29 -0800 (PST)
-Message-ID: <20110302134229.265D4130009@annarchy.freedesktop.org>
+Date: Wed,  2 Mar 2011 05:48:07 -0800 (PST)
+Message-ID: <20110302134807.8931A130005@annarchy.freedesktop.org>
 References: <bug-34919-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34919
 
---- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-02 05:42:28 PST ---
-The reason is:
-
-[drm] nouveau 0000:01:00.0: Off-chip encoder 6/0 unsupported
-[drm] nouveau 0000:01:00.0: Off-chip encoder 2/0 unsupported
-[drm] nouveau 0000:01:00.0: Off-chip encoder 6/1 unsupported
-[drm] nouveau 0000:01:00.0: Off-chip encoder 2/1 unsupported
-
-No idea how much work it is to implement support.
+--- Comment #2 from kirchmeyer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-03-02 05:48:07 PST ---
+Ok well at least I know it's not something I'm doing wrong. Honestly this is
+the only reason that keeps me from sticking with nouveau.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
