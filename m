@@ -1,76 +1,74 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [lm-sensors] hwmon API update
-Date: Thu, 03 Mar 2011 14:09:54 +0100
-Message-ID: <4D6F9322.3080209@free.fr>
-References: <4D57CC24.1040306@free.fr>	<20110213171640.GB13323@ericsson.com>	<20110213230833.0ee2ff16@endymion.delvare>
+From: Guenter Roeck <guenter.roeck@ericsson.com>
+Subject: Re: [Nouveau]  hwmon API update
+Date: Thu, 3 Mar 2011 07:22:16 -0800
+Message-ID: <20110303152216.GA21667@ericsson.com>
+References: <4D57CC24.1040306@free.fr> <20110213171640.GB13323@ericsson.com>
+	<20110213230833.0ee2ff16@endymion.delvare>
 	<AANLkTindG=m4FhNS202MH8YVBUCoDEADTQLxo-Bf_8qx@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTindG=m4FhNS202MH8YVBUCoDEADTQLxo-Bf_8qx-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Jean Delvare <khali-PUYAD+kWke1g9hUCZPvPmw@public.gmane.org>, nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Guenter Roeck <guenter.roeck-IzeFyvvaP7pWk0Htik3J/w@public.gmane.org>, lm-sensors-GZX6beZjE8VD60Wz+7aTrA@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <lm-sensors-bounces@lm-sensors.org>
+Content-Disposition: inline
+In-Reply-To: <AANLkTindG=m4FhNS202MH8YVBUCoDEADTQLxo-Bf_8qx@mail.gmail.com>
+List-Unsubscribe: <http://lists.lm-sensors.org/mailman/options/lm-sensors>,
+	<mailto:lm-sensors-request@lm-sensors.org?subject=unsubscribe>
+List-Archive: <http://lists.lm-sensors.org/pipermail/lm-sensors/>
+List-Post: <mailto:lm-sensors@lm-sensors.org>
+List-Help: <mailto:lm-sensors-request@lm-sensors.org?subject=help>
+List-Subscribe: <http://lists.lm-sensors.org/mailman/listinfo/lm-sensors>,
+	<mailto:lm-sensors-request@lm-sensors.org?subject=subscribe>
+Sender: lm-sensors-bounces@lm-sensors.org
+Errors-To: lm-sensors-bounces@lm-sensors.org
+To: Dave Airlie <airlied@gmail.com>
+Cc: nouveau <Nouveau@lists.freedesktop.org>, Martin Peres <martin.peres@free.fr>, "lm-sensors@lm-sensors.org" <lm-sensors@lm-sensors.org>
 List-Id: nouveau.vger.kernel.org
 
-Dave,
-
-The answers are inlined.
-
-Le 03/03/2011 10:36, Dave Airlie a =E9crit :
+On Thu, Mar 03, 2011 at 04:36:09AM -0500, Dave Airlie wrote:
+> On Mon, Feb 14, 2011 at 8:08 AM, Jean Delvare <khali@linux-fr.org> wrote:
+> > On Sun, 13 Feb 2011 09:16:40 -0800, Guenter Roeck wrote:
+> >> On Sun, Feb 13, 2011 at 07:18:44AM -0500, Martin Peres wrote:
+> >> > Hi,
+> >> >
+> >> > I am working on power management on the nouveau driver and I need a way
+> >> > to get data out of and send commands to the i2c drivers from the kernel
+> >> > space.
+> 
 > Martin,
->
-> you probably should have cc'ed Matthew since it was his patch you based t=
-his on,
+> 
+> you probably should have cc'ed Matthew since it was his patch you based this on,
 > and I think he can provide a good explaination.
-I knew he was monitoring the nouveau ML. He provided a good explanation
-but forgot to CC the nouveau ML.
-
-Could someone in the lm-sensors mailing list forward the most important =
-
-thread?
+> 
 > to clarify some points,
->
-> radeon does probably want something exactly like this, we just haven't go=
-tten to
+> 
+> radeon does probably want something exactly like this, we just haven't gotten to
 > it completely yet, I'd rather not have two drivers in the kernel for
 > exact same hardware,
-> and I believe sharing the hwmon code to do what we want is a good plan si=
-nce you
+> and I believe sharing the hwmon code to do what we want is a good plan since you
 > don't go around reinventing wheels, but if hwmon/i2c maintainers have
 > no interest
 > it leaves with little choice but to implement about 5-10 i2c drivers
 > again in drm codebase.
->
+> 
 > Maybe hwmon/i2c maintainers could suggest a cleaner way to implement
 > what we want,
 > which I think I can summarize as
->
+> 
 > a) access to monitored values in-kernel
-> b) no userspace access to the same values except via sanitised via the dr=
-iver.
-a) is mandatory, b) would be great!
-> though I'm not following this as closely as I should so I may have
-> missed something.
-I don't think you missed anything but long argue on the lm-sensors ML.
-> Dave.
-The reason why I didn't answer on this matter earlier was that I was in =
+> b) no userspace access to the same values except via sanitised via the driver.
+>
+This is not a matter of "no interest". Interest is there, but if one demands
+too much one may get nothing.
 
-the process
-of moving from one city to another. I only got the internet access on =
+Request for b) so far was "no userspace access", period. This is unacceptable
+since providing userspace access to monitored values is the whole point of hwmon.
 
-both my computers
-yesterday evening and I was planing to restart the process this week end.
+I could imagine an API that covers both a) and b), as long as b) focuses
+on the "sanitize" aspect and doesn't try to limit userspace access to attributes.
 
-It's good to see you we are not the only one needing this.
+Guenter
 
-Martin
+_______________________________________________
+lm-sensors mailing list
+lm-sensors@lm-sensors.org
+http://lists.lm-sensors.org/mailman/listinfo/lm-sensors
