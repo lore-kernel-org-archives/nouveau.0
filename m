@@ -1,101 +1,102 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31676] garbled text after loading nouveau module on
- EFI boot; X driver thinks there are no connected outputs
-Date: Thu,  3 Mar 2011 13:14:12 -0800 (PST)
-Message-ID: <20110303211412.C1E9E130005@annarchy.freedesktop.org>
-References: <bug-31676-8800@http.bugs.freedesktop.org/>
+From: Guenter Roeck <guenter.roeck@ericsson.com>
+Subject: Re: [Nouveau]  hwmon API update
+Date: Thu, 3 Mar 2011 13:19:18 -0800
+Message-ID: <1299187158.18605.28.camel@groeck-laptop>
+References: <4D57CC24.1040306@free.fr> <20110213171640.GB13323@ericsson.com>
+	<20110213230833.0ee2ff16@endymion.delvare>
+	<AANLkTindG=m4FhNS202MH8YVBUCoDEADTQLxo-Bf_8qx@mail.gmail.com>
+	<20110303152216.GA21667@ericsson.com>  <4D6FCFF2.7040604@free.fr>
+	<1299185295.2255.13.camel@workstation>
+Reply-To: guenter.roeck@ericsson.com
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <lm-sensors-bounces@lm-sensors.org>
+In-Reply-To: <1299185295.2255.13.camel@workstation>
+List-Unsubscribe: <http://lists.lm-sensors.org/mailman/options/lm-sensors>,
+	<mailto:lm-sensors-request@lm-sensors.org?subject=unsubscribe>
+List-Archive: <http://lists.lm-sensors.org/pipermail/lm-sensors/>
+List-Post: <mailto:lm-sensors@lm-sensors.org>
+List-Help: <mailto:lm-sensors-request@lm-sensors.org?subject=help>
+List-Subscribe: <http://lists.lm-sensors.org/mailman/listinfo/lm-sensors>,
+	<mailto:lm-sensors-request@lm-sensors.org?subject=subscribe>
+Sender: lm-sensors-bounces@lm-sensors.org
+Errors-To: lm-sensors-bounces@lm-sensors.org
+To: Lucas Stach <dev@lynxeye.de>
+Cc: nouveau <Nouveau@lists.freedesktop.org>, Martin Peres <martin.peres@free.fr>, "lm-sensors@lm-sensors.org" <lm-sensors@lm-sensors.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31676
-
---- Comment #13 from Armando Di Cianno <armando-Xv4Cf/eB9g3k1uMJSBkQmQ@public.gmane.org> 2011-03-03 13:14:12 PST ---
-I can confirm this bug, and especially comment #10 - I have exactly the same
-distortion in BIOS mode (not worrying about EFI here at the moment. As
-expected, the binary blob NVIDIA drivers work just fine.
-
-None of 2.6.35-gentoo-r5, or more importantly vanilla 2.6.37 or 2.6.36-rc7 work
-with nouveau.
-
-`dmesg |grep -e "drm" -e "nouveau" -e "nvidia"` on 2.6.38-rc7 looks like this:
-#####
-[drm] Initialized drm 1.1.0 20060810
-nouveau 0000:02:00.0: PCI INT A -> Link[LGPU] -> GSI 22 (level, low) -> IRQ 22
-nouveau 0000:02:00.0: setting latency timer to 64
-[drm] nouveau 0000:02:00.0: Detected an NV50 generation card (0x0af100a2)
-[drm] nouveau 0000:02:00.0: Attempting to load BIOS image from PRAMIN
-[drm] nouveau 0000:02:00.0: ... appears to be valid
-[drm] nouveau 0000:02:00.0: BIT BIOS found
-[drm] nouveau 0000:02:00.0: Bios version 70.89.13.00
-[drm] nouveau 0000:02:00.0: Pointer to BIT loadval table invalid
-[drm] nouveau 0000:02:00.0: TMDS table version 2.0
-[drm] nouveau 0000:02:00.0: Found Display Configuration Block version 4.0
-[drm] nouveau 0000:02:00.0: Raw DCB entry 0: 040001b6 0f220010
-[drm] nouveau 0000:02:00.0: Raw DCB entry 1: 020112a6 0f220010
-[drm] nouveau 0000:02:00.0: Raw DCB entry 2: 02011262 00020010
-[drm] nouveau 0000:02:00.0: Raw DCB entry 3: 0000000e 00000000
-[drm] nouveau 0000:02:00.0: DCB connector table: VHER 0x40 5 16 4
-[drm] nouveau 0000:02:00.0:   0: 0x00002047: type 0x47 idx 0 tag 0x08
-[drm] nouveau 0000:02:00.0:   1: 0x00101146: type 0x46 idx 1 tag 0x07
-[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 0 at offset 0x6A0C
-[drm] nouveau 0000:02:00.0: 0x6CC8: Condition still not met after 20ms,
-skipping following opcodes
-[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 1 at offset 0x6E7D
-[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 2 at offset 0x6E7F
-[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 3 at offset 0x6EB4
-[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 4 at offset 0x6F78
-[drm] nouveau 0000:02:00.0: Parsing VBIOS init table at offset 0x6FDD
-[drm] nouveau 0000:02:00.0: 0x6FDD: Condition still not met after 20ms,
-skipping following opcodes
-[drm] nouveau 0000:02:00.0: 4 available performance level(s)
-[drm] nouveau 0000:02:00.0: 0: memory 405MHz core 405MHz shader 405MHz voltage
-900mV
-[drm] nouveau 0000:02:00.0: 1: memory 450MHz core 450MHz shader 810MHz voltage
-900mV
-[drm] nouveau 0000:02:00.0: 2: memory 450MHz core 450MHz shader 810MHz voltage
-900mV
-[drm] nouveau 0000:02:00.0: 3: memory 450MHz core 450MHz shader 950MHz voltage
-900mV
-[drm] nouveau 0000:02:00.0: c: memory 0MHz core 550MHz shader 1400MHz
-[drm] nouveau 0000:02:00.0: Detected 256MiB VRAM
-[drm] nouveau 0000:02:00.0: Stolen system memory at: 0x00af000000
-[drm] nouveau 0000:02:00.0: 512 MiB GART (aperture)
-[drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-[drm] No driver support for vblank timestamp query.
-[drm] nouveau 0000:02:00.0: allocated 1366x768 fb: 0x60000000, bo
-ffff88013a93fc00
-fb0: nouveaufb frame buffer device
-drm: registered panic notifier
-[drm] Initialized nouveau 0.0.16 20090420 for 0000:02:00.0 on minor 0
-ehci_hcd 0000:00:04.1: disable lpm/ppcd for nvidia mcp89
-ehci_hcd 0000:00:06.1: disable lpm/ppcd for nvidia mcp89
-mbp_nvidia_bl: MacBookAir 3,1 detected
-Modules linked in: sco bnep rfcomm l2cap snd_hda_codec_hdmi
-snd_hda_codec_cirrus snd_hda_intel snd_hda_codec snd_hwdep snd_pcm uvcvideo
-snd_timer applesmc input_polldev mbp_nvidia_bl btusb snd snd_page_alloc mac_hid
-rtc_cmos xfs exportfs jfs reiserfs raid10 raid456 async_raid6_recov
-async_memcpy async_pq async_xor xor async_tx raid6_pq raid1 raid0 dm_snapshot
-dm_mirror dm_region_hash dm_log scsi_wait_scan usbhid usb_storage hid_apple hid
-bcm5974
-#####
-
-Happy to test any patches or suggestions.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gVGh1LCAyMDExLTAzLTAzIGF0IDE1OjQ4IC0wNTAwLCBMdWNhcyBTdGFjaCB3cm90ZToKPiBB
+bSBEb25uZXJzdGFnLCBkZW4gMDMuMDMuMjAxMSwgMTg6MjkgKzAxMDAgc2NocmllYiBNYXJ0aW4g
+UGVyZXM6Cj4gPiBMZSAwMy8wMy8yMDExIDE2OjIyLCBHdWVudGVyIFJvZWNrIGEgw6ljcml0IDoK
+PiA+ID4gT24gVGh1LCBNYXIgMDMsIDIwMTEgYXQgMDQ6MzY6MDlBTSAtMDUwMCwgRGF2ZSBBaXJs
+aWUgd3JvdGU6Cj4gPiA+PiBPbiBNb24sIEZlYiAxNCwgMjAxMSBhdCA4OjA4IEFNLCBKZWFuIERl
+bHZhcmU8a2hhbGlAbGludXgtZnIub3JnPiAgd3JvdGU6Cj4gPiA+Pj4gT24gU3VuLCAxMyBGZWIg
+MjAxMSAwOToxNjo0MCAtMDgwMCwgR3VlbnRlciBSb2VjayB3cm90ZToKPiA+ID4+Pj4gT24gU3Vu
+LCBGZWIgMTMsIDIwMTEgYXQgMDc6MTg6NDRBTSAtMDUwMCwgTWFydGluIFBlcmVzIHdyb3RlOgo+
+ID4gPj4+Pj4gSGksCj4gPiA+Pj4+Pgo+ID4gPj4+Pj4gSSBhbSB3b3JraW5nIG9uIHBvd2VyIG1h
+bmFnZW1lbnQgb24gdGhlIG5vdXZlYXUgZHJpdmVyIGFuZCBJIG5lZWQgYSB3YXkKPiA+ID4+Pj4+
+IHRvIGdldCBkYXRhIG91dCBvZiBhbmQgc2VuZCBjb21tYW5kcyB0byB0aGUgaTJjIGRyaXZlcnMg
+ZnJvbSB0aGUga2VybmVsCj4gPiA+Pj4+PiBzcGFjZS4KPiA+ID4+IE1hcnRpbiwKPiA+ID4+Cj4g
+PiA+PiB5b3UgcHJvYmFibHkgc2hvdWxkIGhhdmUgY2MnZWQgTWF0dGhldyBzaW5jZSBpdCB3YXMg
+aGlzIHBhdGNoIHlvdSBiYXNlZCB0aGlzIG9uLAo+ID4gPj4gYW5kIEkgdGhpbmsgaGUgY2FuIHBy
+b3ZpZGUgYSBnb29kIGV4cGxhaW5hdGlvbi4KPiA+ID4+Cj4gPiA+PiB0byBjbGFyaWZ5IHNvbWUg
+cG9pbnRzLAo+ID4gPj4KPiA+ID4+IHJhZGVvbiBkb2VzIHByb2JhYmx5IHdhbnQgc29tZXRoaW5n
+IGV4YWN0bHkgbGlrZSB0aGlzLCB3ZSBqdXN0IGhhdmVuJ3QgZ290dGVuIHRvCj4gPiA+PiBpdCBj
+b21wbGV0ZWx5IHlldCwgSSdkIHJhdGhlciBub3QgaGF2ZSB0d28gZHJpdmVycyBpbiB0aGUga2Vy
+bmVsIGZvcgo+ID4gPj4gZXhhY3Qgc2FtZSBoYXJkd2FyZSwKPiA+ID4+IGFuZCBJIGJlbGlldmUg
+c2hhcmluZyB0aGUgaHdtb24gY29kZSB0byBkbyB3aGF0IHdlIHdhbnQgaXMgYSBnb29kIHBsYW4g
+c2luY2UgeW91Cj4gPiA+PiBkb24ndCBnbyBhcm91bmQgcmVpbnZlbnRpbmcgd2hlZWxzLCBidXQg
+aWYgaHdtb24vaTJjIG1haW50YWluZXJzIGhhdmUKPiA+ID4+IG5vIGludGVyZXN0Cj4gPiA+PiBp
+dCBsZWF2ZXMgd2l0aCBsaXR0bGUgY2hvaWNlIGJ1dCB0byBpbXBsZW1lbnQgYWJvdXQgNS0xMCBp
+MmMgZHJpdmVycwo+ID4gPj4gYWdhaW4gaW4gZHJtIGNvZGViYXNlLgo+ID4gPj4KPiA+ID4+IE1h
+eWJlIGh3bW9uL2kyYyBtYWludGFpbmVycyBjb3VsZCBzdWdnZXN0IGEgY2xlYW5lciB3YXkgdG8g
+aW1wbGVtZW50Cj4gPiA+PiB3aGF0IHdlIHdhbnQsCj4gPiA+PiB3aGljaCBJIHRoaW5rIEkgY2Fu
+IHN1bW1hcml6ZSBhcwo+ID4gPj4KPiA+ID4+IGEpIGFjY2VzcyB0byBtb25pdG9yZWQgdmFsdWVz
+IGluLWtlcm5lbAo+ID4gPj4gYikgbm8gdXNlcnNwYWNlIGFjY2VzcyB0byB0aGUgc2FtZSB2YWx1
+ZXMgZXhjZXB0IHZpYSBzYW5pdGlzZWQgdmlhIHRoZSBkcml2ZXIuCj4gPiA+Pgo+ID4gPiBUaGlz
+IGlzIG5vdCBhIG1hdHRlciBvZiAibm8gaW50ZXJlc3QiLiBJbnRlcmVzdCBpcyB0aGVyZSwgYnV0
+IGlmIG9uZSBkZW1hbmRzCj4gPiA+IHRvbyBtdWNoIG9uZSBtYXkgZ2V0IG5vdGhpbmcuCj4gPiA+
+Cj4gPiA+IFJlcXVlc3QgZm9yIGIpIHNvIGZhciB3YXMgIm5vIHVzZXJzcGFjZSBhY2Nlc3MiLCBw
+ZXJpb2QuIFRoaXMgaXMgdW5hY2NlcHRhYmxlCj4gPiA+IHNpbmNlIHByb3ZpZGluZyB1c2Vyc3Bh
+Y2UgYWNjZXNzIHRvIG1vbml0b3JlZCB2YWx1ZXMgaXMgdGhlIHdob2xlIHBvaW50IG9mIGh3bW9u
+Lgo+IAo+IEFuZCB0aGF0IGlzIHdoYXQgd2Ugd2FudCB0byBkby4gQnV0IGl0IHdvdWxkIGJlIG5p
+Y2UgaWYgdGhlIGdyYXBoaWNzCj4gZHJpdmVycyBjb3VsZCBwcm92aWRlIGEgX3NpbmdsZV8gaW50
+ZXJmYWNlIHRvIHVzZXJzcGFjZS4gTm90IGFsbCBib2FyZHMKPiBoYXZlIGkyYyBoYXJkd2FyZSBt
+b25pdG9yaW5nIGNoaXBzIGFuZCB3aXRoIGEgc2luZ2xlIGludGVyZmFjZSB3ZSBjb3VsZAo+IGZh
+bGwgYmFjayB0byB0aGUgaW50ZXJuYWwgZ3B1IHNlbnNvciwgdHJhbnNwYXJlbnRseSBmb3IgdGhl
+IHVzZXIuCj4gCj4gPiA+Cj4gPiA+IEkgY291bGQgaW1hZ2luZSBhbiBBUEkgdGhhdCBjb3ZlcnMg
+Ym90aCBhKSBhbmQgYiksIGFzIGxvbmcgYXMgYikgZm9jdXNlcwo+ID4gPiBvbiB0aGUgInNhbml0
+aXplIiBhc3BlY3QgYW5kIGRvZXNuJ3QgdHJ5IHRvIGxpbWl0IHVzZXJzcGFjZSBhY2Nlc3MgdG8g
+YXR0cmlidXRlcy4KPiA+ID4KPiA+ID4gR3VlbnRlcgo+ID4gYikgd2FzIGludHJvZHVjZWQgYnkg
+RGF2ZSwgSSBuZXZlciBhc2tlZCBmb3IgaXQgYmVjYXVzZSBJIGRvbid0IG1pbmQgCj4gPiBkdXBs
+aWNhdGluZyBzZW5zb3IgZGF0YSAob25lIGh3bW9uIGRldmljZSBuYW1lZCBub3V2ZWF1IGFuZCBv
+bmUgZm9yIHRoZSAKPiA+IHJhdyBhY2Nlc3MgdG8gdGhlIGkyYyBjaGlwKS4KPiAKPiBTb3JyeSBm
+b3IgdGhlIGNvbmZ1c2lvbiBNYXJ0aW4sIEkgYnJvdWdodCB1cCB0aGUgcG9pbnQgb2YgbGltaXRp
+bmcKPiB1c2Vyc3BhY2UgYWNjZXNzIGFuZCBkaWQgbm90IGNjIHRoZSBub3V2ZWF1IG1haWxpbmcg
+bGlzdC4gSSB0aGluayBpdCBpcwo+IGJhZCBiZWhhdmlvdXIgdG8gZXhwb3NlIHZhbHVlcyB0byB1
+c2Vyc3BhY2Ugd2hpY2ggYXJlIHRvdGFsbHkgb2ZmIHRoZQo+IHJlYWwgdmFsdWVzLiBUaGlzIGNv
+bmZ1c2VzIHVzZXJzIGFuZCBzaG91bGQgYmUgYXZvaWRlZCwgZXNwZWNpYWxseSBzaW5jZQo+IHdl
+IGNhbiBwcm92aWRlIHNhbml0aXplZCB2YWx1ZXMuCj4gCj4gV2h5IHNob3VsZCB3ZSBwdXNoIHRo
+ZSBsb2dpYyBhbmQgYXBpIGZvciBzYW5pdGl6aW5nIHRoZSB2YWx1ZXMgdG8gbWFueQo+IGh3bW9u
+IGRyaXZlcnMgaWYgd2UgY291bGQgZWFzaWx5IGRvIHRoaXMgYXQgYSBzaW5nbGUgcG9pbnQgaW4g
+dGhlCj4gZ3JhcGhpY3MgZHJpdmVyLCBpZiB3ZSBwcm92aWRlIHRoZSB1c2Vyc3BhY2UgaW50ZXJm
+YWNlIG91cnNlbGYgYW5kIHVzZQo+IHRoZSBod21vbiBkcml2ZXIgb25seSB0byBpbnN0cnVtZW50
+IHRoZSBtb25pdG9yaW5nIGNoaXA/CgpJIGRvbid0IHRoaW5rIHRoZSBmdW5jdGlvbmFsaXR5IChu
+b3IgdGhlIGludGVybmFsIEFQSSkgc2hvdWxkIGhhdmUgdG8gYmUKaW1wbGVtZW50ZWQgaW4gaW5k
+aXZpZHVhbCBkcml2ZXJzLiBJbnN0ZWFkLCB0aGVyZSBzaG91bGQgYmUgYSBuZXcgQVBJCmJldHdl
+ZW4gaHdtb24gZHJpdmVycyBhbmQgdGhlIGh3bW9uIGNvcmUuIFVzaW5nIHRoaXMgQVBJLCB0aGUg
+aHdtb24gY29yZQp3b3VsZCByZWFkL3dyaXRlIHJhdyB2YWx1ZXMgZnJvbS90byBod21vbiBkcml2
+ZXJzIGFuZCBtYWtlIHRob3NlIHZhbHVlcwphdmFpbGFibGUgdG8gdXNlcmxhbmQgYW5kIHRvIG90
+aGVyIGRyaXZlcnMgKHN1Y2ggYXMgdGhlIG5vdXZlYXUgZHJpdmVyKS4KVGhlIGh3bW9uIGNvcmUg
+d291bGQgdGhlbiBhbHNvIHBlcmZvcm0gc2FuaXRpemluZyBpZiBuZWNlc3NhcnksIGllIGNhbGwK
+cmVnaXN0ZXJlZCBzYW5pdGl6aW5nIGZ1bmN0aW9ucy4KCldpdGggdGhpcyBhcHByb2FjaCwgaHdt
+b24gd291bGQgcmVwb3J0IHNhbml0aXplZCB2YWx1ZXMsIGdyYXBoaWNzCmRyaXZlcnMgd291bGQg
+bm90IGhhdmUgdG8gc3VwcG9ydC9nZW5lcmF0ZSBod21vbiBzeXNmcyBBQkkgYXR0cmlidXRlcywK
+YW5kIGh3bW9uIGRyaXZlciBzdHJ1Y3R1cmUgd291bGQgYmUgbXVjaCBzaW1wbGVyLCBzaW5jZSBk
+cml2ZXJzIGNvdWxkCmNvbmNlbnRyYXRlIG9uIGdldHRpbmcgZGF0YSBmcm9tIGFuZCB0byBjaGlw
+cyBpbnN0ZWFkIG9mIGhhdmluZyB0byBkZWFsCndpdGggc3lzZnMgYXR0cmlidXRlcy4gVGhhdCB3
+b3VsZCBiZSBhIHdpbiBmb3IgZXZlcnlvbmUuCgpHdWVudGVyCgoKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxtLXNlbnNvcnMgbWFpbGluZyBsaXN0Cmxt
+LXNlbnNvcnNAbG0tc2Vuc29ycy5vcmcKaHR0cDovL2xpc3RzLmxtLXNlbnNvcnMub3JnL21haWxt
+YW4vbGlzdGluZm8vbG0tc2Vuc29ycw==
