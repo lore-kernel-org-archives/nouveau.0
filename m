@@ -1,16 +1,14 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: Re: [lm-sensors] hwmon API update
-Date: Thu, 03 Mar 2011 21:48:15 +0100
-Message-ID: <1299185295.2255.13.camel@workstation>
-References: <4D57CC24.1040306@free.fr> <20110213171640.GB13323@ericsson.com>
-	<20110213230833.0ee2ff16@endymion.delvare>
-	<AANLkTindG=m4FhNS202MH8YVBUCoDEADTQLxo-Bf_8qx@mail.gmail.com>
-	<20110303152216.GA21667@ericsson.com>  <4D6FCFF2.7040604@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31676] garbled text after loading nouveau module on
+ EFI boot; X driver thinks there are no connected outputs
+Date: Thu,  3 Mar 2011 13:14:12 -0800 (PST)
+Message-ID: <20110303211412.C1E9E130005@annarchy.freedesktop.org>
+References: <bug-31676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4D6FCFF2.7040604-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-31676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,74 +18,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: Jean Delvare <khali-PUYAD+kWke1g9hUCZPvPmw@public.gmane.org>, nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "lm-sensors-GZX6beZjE8VD60Wz+7aTrA@public.gmane.org" <lm-sensors-GZX6beZjE8VD60Wz+7aTrA@public.gmane.org>, Guenter Roeck <guenter.roeck-IzeFyvvaP7pWk0Htik3J/w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gRG9ubmVyc3RhZywgZGVuIDAzLjAzLjIwMTEsIDE4OjI5ICswMTAwIHNjaHJpZWIgTWFydGlu
-IFBlcmVzOgo+IExlIDAzLzAzLzIwMTEgMTY6MjIsIEd1ZW50ZXIgUm9lY2sgYSDDqWNyaXQgOgo+
-ID4gT24gVGh1LCBNYXIgMDMsIDIwMTEgYXQgMDQ6MzY6MDlBTSAtMDUwMCwgRGF2ZSBBaXJsaWUg
-d3JvdGU6Cj4gPj4gT24gTW9uLCBGZWIgMTQsIDIwMTEgYXQgODowOCBBTSwgSmVhbiBEZWx2YXJl
-PGtoYWxpQGxpbnV4LWZyLm9yZz4gIHdyb3RlOgo+ID4+PiBPbiBTdW4sIDEzIEZlYiAyMDExIDA5
-OjE2OjQwIC0wODAwLCBHdWVudGVyIFJvZWNrIHdyb3RlOgo+ID4+Pj4gT24gU3VuLCBGZWIgMTMs
-IDIwMTEgYXQgMDc6MTg6NDRBTSAtMDUwMCwgTWFydGluIFBlcmVzIHdyb3RlOgo+ID4+Pj4+IEhp
-LAo+ID4+Pj4+Cj4gPj4+Pj4gSSBhbSB3b3JraW5nIG9uIHBvd2VyIG1hbmFnZW1lbnQgb24gdGhl
-IG5vdXZlYXUgZHJpdmVyIGFuZCBJIG5lZWQgYSB3YXkKPiA+Pj4+PiB0byBnZXQgZGF0YSBvdXQg
-b2YgYW5kIHNlbmQgY29tbWFuZHMgdG8gdGhlIGkyYyBkcml2ZXJzIGZyb20gdGhlIGtlcm5lbAo+
-ID4+Pj4+IHNwYWNlLgo+ID4+IE1hcnRpbiwKPiA+Pgo+ID4+IHlvdSBwcm9iYWJseSBzaG91bGQg
-aGF2ZSBjYydlZCBNYXR0aGV3IHNpbmNlIGl0IHdhcyBoaXMgcGF0Y2ggeW91IGJhc2VkIHRoaXMg
-b24sCj4gPj4gYW5kIEkgdGhpbmsgaGUgY2FuIHByb3ZpZGUgYSBnb29kIGV4cGxhaW5hdGlvbi4K
-PiA+Pgo+ID4+IHRvIGNsYXJpZnkgc29tZSBwb2ludHMsCj4gPj4KPiA+PiByYWRlb24gZG9lcyBw
-cm9iYWJseSB3YW50IHNvbWV0aGluZyBleGFjdGx5IGxpa2UgdGhpcywgd2UganVzdCBoYXZlbid0
-IGdvdHRlbiB0bwo+ID4+IGl0IGNvbXBsZXRlbHkgeWV0LCBJJ2QgcmF0aGVyIG5vdCBoYXZlIHR3
-byBkcml2ZXJzIGluIHRoZSBrZXJuZWwgZm9yCj4gPj4gZXhhY3Qgc2FtZSBoYXJkd2FyZSwKPiA+
-PiBhbmQgSSBiZWxpZXZlIHNoYXJpbmcgdGhlIGh3bW9uIGNvZGUgdG8gZG8gd2hhdCB3ZSB3YW50
-IGlzIGEgZ29vZCBwbGFuIHNpbmNlIHlvdQo+ID4+IGRvbid0IGdvIGFyb3VuZCByZWludmVudGlu
-ZyB3aGVlbHMsIGJ1dCBpZiBod21vbi9pMmMgbWFpbnRhaW5lcnMgaGF2ZQo+ID4+IG5vIGludGVy
-ZXN0Cj4gPj4gaXQgbGVhdmVzIHdpdGggbGl0dGxlIGNob2ljZSBidXQgdG8gaW1wbGVtZW50IGFi
-b3V0IDUtMTAgaTJjIGRyaXZlcnMKPiA+PiBhZ2FpbiBpbiBkcm0gY29kZWJhc2UuCj4gPj4KPiA+
-PiBNYXliZSBod21vbi9pMmMgbWFpbnRhaW5lcnMgY291bGQgc3VnZ2VzdCBhIGNsZWFuZXIgd2F5
-IHRvIGltcGxlbWVudAo+ID4+IHdoYXQgd2Ugd2FudCwKPiA+PiB3aGljaCBJIHRoaW5rIEkgY2Fu
-IHN1bW1hcml6ZSBhcwo+ID4+Cj4gPj4gYSkgYWNjZXNzIHRvIG1vbml0b3JlZCB2YWx1ZXMgaW4t
-a2VybmVsCj4gPj4gYikgbm8gdXNlcnNwYWNlIGFjY2VzcyB0byB0aGUgc2FtZSB2YWx1ZXMgZXhj
-ZXB0IHZpYSBzYW5pdGlzZWQgdmlhIHRoZSBkcml2ZXIuCj4gPj4KPiA+IFRoaXMgaXMgbm90IGEg
-bWF0dGVyIG9mICJubyBpbnRlcmVzdCIuIEludGVyZXN0IGlzIHRoZXJlLCBidXQgaWYgb25lIGRl
-bWFuZHMKPiA+IHRvbyBtdWNoIG9uZSBtYXkgZ2V0IG5vdGhpbmcuCj4gPgo+ID4gUmVxdWVzdCBm
-b3IgYikgc28gZmFyIHdhcyAibm8gdXNlcnNwYWNlIGFjY2VzcyIsIHBlcmlvZC4gVGhpcyBpcyB1
-bmFjY2VwdGFibGUKPiA+IHNpbmNlIHByb3ZpZGluZyB1c2Vyc3BhY2UgYWNjZXNzIHRvIG1vbml0
-b3JlZCB2YWx1ZXMgaXMgdGhlIHdob2xlIHBvaW50IG9mIGh3bW9uLgoKQW5kIHRoYXQgaXMgd2hh
-dCB3ZSB3YW50IHRvIGRvLiBCdXQgaXQgd291bGQgYmUgbmljZSBpZiB0aGUgZ3JhcGhpY3MKZHJp
-dmVycyBjb3VsZCBwcm92aWRlIGEgX3NpbmdsZV8gaW50ZXJmYWNlIHRvIHVzZXJzcGFjZS4gTm90
-IGFsbCBib2FyZHMKaGF2ZSBpMmMgaGFyZHdhcmUgbW9uaXRvcmluZyBjaGlwcyBhbmQgd2l0aCBh
-IHNpbmdsZSBpbnRlcmZhY2Ugd2UgY291bGQKZmFsbCBiYWNrIHRvIHRoZSBpbnRlcm5hbCBncHUg
-c2Vuc29yLCB0cmFuc3BhcmVudGx5IGZvciB0aGUgdXNlci4KCj4gPgo+ID4gSSBjb3VsZCBpbWFn
-aW5lIGFuIEFQSSB0aGF0IGNvdmVycyBib3RoIGEpIGFuZCBiKSwgYXMgbG9uZyBhcyBiKSBmb2N1
-c2VzCj4gPiBvbiB0aGUgInNhbml0aXplIiBhc3BlY3QgYW5kIGRvZXNuJ3QgdHJ5IHRvIGxpbWl0
-IHVzZXJzcGFjZSBhY2Nlc3MgdG8gYXR0cmlidXRlcy4KPiA+Cj4gPiBHdWVudGVyCj4gYikgd2Fz
-IGludHJvZHVjZWQgYnkgRGF2ZSwgSSBuZXZlciBhc2tlZCBmb3IgaXQgYmVjYXVzZSBJIGRvbid0
-IG1pbmQgCj4gZHVwbGljYXRpbmcgc2Vuc29yIGRhdGEgKG9uZSBod21vbiBkZXZpY2UgbmFtZWQg
-bm91dmVhdSBhbmQgb25lIGZvciB0aGUgCj4gcmF3IGFjY2VzcyB0byB0aGUgaTJjIGNoaXApLgoK
-U29ycnkgZm9yIHRoZSBjb25mdXNpb24gTWFydGluLCBJIGJyb3VnaHQgdXAgdGhlIHBvaW50IG9m
-IGxpbWl0aW5nCnVzZXJzcGFjZSBhY2Nlc3MgYW5kIGRpZCBub3QgY2MgdGhlIG5vdXZlYXUgbWFp
-bGluZyBsaXN0LiBJIHRoaW5rIGl0IGlzCmJhZCBiZWhhdmlvdXIgdG8gZXhwb3NlIHZhbHVlcyB0
-byB1c2Vyc3BhY2Ugd2hpY2ggYXJlIHRvdGFsbHkgb2ZmIHRoZQpyZWFsIHZhbHVlcy4gVGhpcyBj
-b25mdXNlcyB1c2VycyBhbmQgc2hvdWxkIGJlIGF2b2lkZWQsIGVzcGVjaWFsbHkgc2luY2UKd2Ug
-Y2FuIHByb3ZpZGUgc2FuaXRpemVkIHZhbHVlcy4KCldoeSBzaG91bGQgd2UgcHVzaCB0aGUgbG9n
-aWMgYW5kIGFwaSBmb3Igc2FuaXRpemluZyB0aGUgdmFsdWVzIHRvIG1hbnkKaHdtb24gZHJpdmVy
-cyBpZiB3ZSBjb3VsZCBlYXNpbHkgZG8gdGhpcyBhdCBhIHNpbmdsZSBwb2ludCBpbiB0aGUKZ3Jh
-cGhpY3MgZHJpdmVyLCBpZiB3ZSBwcm92aWRlIHRoZSB1c2Vyc3BhY2UgaW50ZXJmYWNlIG91cnNl
-bGYgYW5kIHVzZQp0aGUgaHdtb24gZHJpdmVyIG9ubHkgdG8gaW5zdHJ1bWVudCB0aGUgbW9uaXRv
-cmluZyBjaGlwPwoKPiBNeSBvbmx5IHdpc2ggd2FzIHRvIHByb3ZpZGUgYSBzaW1wbGUgd2F5IGZv
-ciB1c2VycyB0byByZWFkL2NoYW5nZSB0aGVpciAKPiBmYW4gc3BlZWQgYW5kIGdldCB0aGUgR1BV
-IHRlbXBlcmF0dXJlIG5vIG1hdHRlciBpZiB0aGVpciBjYXJkIGhhdmUgYW4gCj4gaTJjIGNvbnRy
-b2xsZXIgb3Igbm90Lgo+IEkgZG8gYWdyZWUgdGhhdCBzYW5pdGl6aW5nIGNvdWxkIGJlIG9mIGlu
-dGVyZXN0LCBJIGVzcGVjaWFsbHkgdGhpbmsgCj4gYWJvdXQgdHdlYWtpbmcgdGhlIHRlbXBlcmF0
-dXJlIHZhbHVlIHdpdGggcGFyYW1ldGVycyBzdG9yZWQgaW5zaWRlIHRoZSAKPiB2Ymlvcy4KPiAK
-PiBJIGFtIGZ1bGx5IG9wZW4gdG8gc3VnZ2VzdGlvbnMgYXMgbG9uZyBhcyBpdCBpbnZvbHZlcyBz
-aGFyaW5nIHRoZSBjb2RlIAo+IGluIG9uZSB3YXkgb3IgYW5vdGhlci4KPiAKPiBNYXJ0aW4KPiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUg
-bWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+IAoKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=31676
+
+--- Comment #13 from Armando Di Cianno <armando-Xv4Cf/eB9g3k1uMJSBkQmQ@public.gmane.org> 2011-03-03 13:14:12 PST ---
+I can confirm this bug, and especially comment #10 - I have exactly the same
+distortion in BIOS mode (not worrying about EFI here at the moment. As
+expected, the binary blob NVIDIA drivers work just fine.
+
+None of 2.6.35-gentoo-r5, or more importantly vanilla 2.6.37 or 2.6.36-rc7 work
+with nouveau.
+
+`dmesg |grep -e "drm" -e "nouveau" -e "nvidia"` on 2.6.38-rc7 looks like this:
+#####
+[drm] Initialized drm 1.1.0 20060810
+nouveau 0000:02:00.0: PCI INT A -> Link[LGPU] -> GSI 22 (level, low) -> IRQ 22
+nouveau 0000:02:00.0: setting latency timer to 64
+[drm] nouveau 0000:02:00.0: Detected an NV50 generation card (0x0af100a2)
+[drm] nouveau 0000:02:00.0: Attempting to load BIOS image from PRAMIN
+[drm] nouveau 0000:02:00.0: ... appears to be valid
+[drm] nouveau 0000:02:00.0: BIT BIOS found
+[drm] nouveau 0000:02:00.0: Bios version 70.89.13.00
+[drm] nouveau 0000:02:00.0: Pointer to BIT loadval table invalid
+[drm] nouveau 0000:02:00.0: TMDS table version 2.0
+[drm] nouveau 0000:02:00.0: Found Display Configuration Block version 4.0
+[drm] nouveau 0000:02:00.0: Raw DCB entry 0: 040001b6 0f220010
+[drm] nouveau 0000:02:00.0: Raw DCB entry 1: 020112a6 0f220010
+[drm] nouveau 0000:02:00.0: Raw DCB entry 2: 02011262 00020010
+[drm] nouveau 0000:02:00.0: Raw DCB entry 3: 0000000e 00000000
+[drm] nouveau 0000:02:00.0: DCB connector table: VHER 0x40 5 16 4
+[drm] nouveau 0000:02:00.0:   0: 0x00002047: type 0x47 idx 0 tag 0x08
+[drm] nouveau 0000:02:00.0:   1: 0x00101146: type 0x46 idx 1 tag 0x07
+[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 0 at offset 0x6A0C
+[drm] nouveau 0000:02:00.0: 0x6CC8: Condition still not met after 20ms,
+skipping following opcodes
+[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 1 at offset 0x6E7D
+[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 2 at offset 0x6E7F
+[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 3 at offset 0x6EB4
+[drm] nouveau 0000:02:00.0: Parsing VBIOS init table 4 at offset 0x6F78
+[drm] nouveau 0000:02:00.0: Parsing VBIOS init table at offset 0x6FDD
+[drm] nouveau 0000:02:00.0: 0x6FDD: Condition still not met after 20ms,
+skipping following opcodes
+[drm] nouveau 0000:02:00.0: 4 available performance level(s)
+[drm] nouveau 0000:02:00.0: 0: memory 405MHz core 405MHz shader 405MHz voltage
+900mV
+[drm] nouveau 0000:02:00.0: 1: memory 450MHz core 450MHz shader 810MHz voltage
+900mV
+[drm] nouveau 0000:02:00.0: 2: memory 450MHz core 450MHz shader 810MHz voltage
+900mV
+[drm] nouveau 0000:02:00.0: 3: memory 450MHz core 450MHz shader 950MHz voltage
+900mV
+[drm] nouveau 0000:02:00.0: c: memory 0MHz core 550MHz shader 1400MHz
+[drm] nouveau 0000:02:00.0: Detected 256MiB VRAM
+[drm] nouveau 0000:02:00.0: Stolen system memory at: 0x00af000000
+[drm] nouveau 0000:02:00.0: 512 MiB GART (aperture)
+[drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+[drm] No driver support for vblank timestamp query.
+[drm] nouveau 0000:02:00.0: allocated 1366x768 fb: 0x60000000, bo
+ffff88013a93fc00
+fb0: nouveaufb frame buffer device
+drm: registered panic notifier
+[drm] Initialized nouveau 0.0.16 20090420 for 0000:02:00.0 on minor 0
+ehci_hcd 0000:00:04.1: disable lpm/ppcd for nvidia mcp89
+ehci_hcd 0000:00:06.1: disable lpm/ppcd for nvidia mcp89
+mbp_nvidia_bl: MacBookAir 3,1 detected
+Modules linked in: sco bnep rfcomm l2cap snd_hda_codec_hdmi
+snd_hda_codec_cirrus snd_hda_intel snd_hda_codec snd_hwdep snd_pcm uvcvideo
+snd_timer applesmc input_polldev mbp_nvidia_bl btusb snd snd_page_alloc mac_hid
+rtc_cmos xfs exportfs jfs reiserfs raid10 raid456 async_raid6_recov
+async_memcpy async_pq async_xor xor async_tx raid6_pq raid1 raid0 dm_snapshot
+dm_mirror dm_region_hash dm_log scsi_wait_scan usbhid usb_storage hid_apple hid
+bcm5974
+#####
+
+Happy to test any patches or suggestions.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
