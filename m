@@ -1,15 +1,16 @@
-From: koriakim-mP9o5jsk0RY@public.gmane.org
-Subject: Re: CCACHE and VFETCH FAULTs causing lockups
-Date: Tue, 01 Mar 2011 23:06:15 +0100
-Message-ID: <1299017175.4061.6.camel@bandersnatch>
-References: <AANLkTik0CkbQz=PoXNG7bQEn_5ssAfp7cr=Z=3qJz6h2@mail.gmail.com>
-	<1299016269.1822.3.camel@nisroch>
-	<AANLkTimiy=U04vfiXRAqDj_eT+zxSN2_3NvmF4jRQWxc@mail.gmail.com>
-Reply-To: koriakim-mP9o5jsk0RY@public.gmane.org
+From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Subject: Re: [lm-sensors] hwmon API update
+Date: Thu, 03 Mar 2011 21:48:15 +0100
+Message-ID: <1299185295.2255.13.camel@workstation>
+References: <4D57CC24.1040306@free.fr> <20110213171640.GB13323@ericsson.com>
+	<20110213230833.0ee2ff16@endymion.delvare>
+	<AANLkTindG=m4FhNS202MH8YVBUCoDEADTQLxo-Bf_8qx@mail.gmail.com>
+	<20110303152216.GA21667@ericsson.com>  <4D6FCFF2.7040604@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0815110071=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTimiy=U04vfiXRAqDj_eT+zxSN2_3NvmF4jRQWxc-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <4D6FCFF2.7040604-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,106 +20,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Cc: Jean Delvare <khali-PUYAD+kWke1g9hUCZPvPmw@public.gmane.org>, nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "lm-sensors-GZX6beZjE8VD60Wz+7aTrA@public.gmane.org" <lm-sensors-GZX6beZjE8VD60Wz+7aTrA@public.gmane.org>, Guenter Roeck <guenter.roeck-IzeFyvvaP7pWk0Htik3J/w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0815110071==
-Content-Type: multipart/alternative; boundary="=-M4zmqYfuCbN+yU2EmvfX"
-
-
---=-M4zmqYfuCbN+yU2EmvfX
-Content-Type: text/plain; charset=utf-8
-Content-ID: <1299017175.4061.3.camel@bandersnatch>
-Content-Transfer-Encoding: quoted-printable
-
-> So these faults are just generic errors? Unrelated to page faults?
-
-These faults *are* page faults, in a way.
-
-On nv50, page faults are quite weird. When a fault happens, the MMU's fau=
-lt reporting registers at 0x100c90 are filled with fault information, and=
- the 'fault pending' flag is set. This is what nouveau reports as VM FAUL=
-T.
-
-However, this does NOT trigger any specific interrupt - the fault is inst=
-ead reported to requesting engine, which in turn reports an engine-specif=
-ic interrupt, like VFETCH FAULT or CCACHE FAULT. These interrupts sometim=
-es [eg for TPROP traps] also report some more useful information in engin=
-e-specific registers.
-
-Usually getting an engine fault implies getting a VM fault, but not alway=
-s, so nouveau reports them separately - it only uses the engine fault as =
-a trigger to check for new VM faults, but does not associate them in any =
-way. The reasons for mismatches could be:
-
-- Interrupts that trigger VM fault in some cases, but not in others: DMA_=
-PUSHER/MEM_FAULT can happen due to DMA_LIMIT overrun, or due to VM fault
-- Multiple VM faults in quick succession will result in only one of them =
-being reported as VM fault, but all of them as engine faults
-
-Hope this clears things up.
-
-Marcin Ko=C5=9Bcielnicki
---=-M4zmqYfuCbN+yU2EmvfX
-Content-Type: text/html; charset=utf-8
-Content-ID: <1299017175.4061.5.camel@bandersnatch>
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://ww=
-w.w3.org/TR/html4/loose.dtd">
-<html><head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
--8">
-    <meta name=3D"generator" content=3D"Osso Notes">
-    <title></title></head>
-<body>
-<p>&gt; So these faults are just generic errors? Unrelated to page faults=
-?
-<br>
-<br>These faults *are* page faults, in a way.
-<br>
-<br>On nv50, page faults are quite weird. When a fault happens, the MMU's=
- fault reporting registers at 0x100c90 are filled with fault information,=
- and the 'fault pending' flag is set. This is what nouveau reports as VM =
-FAULT.
-<br>
-<br>However, this does NOT trigger any specific interrupt - the fault is =
-instead reported to requesting engine, which in turn reports an engine-sp=
-ecific interrupt, like VFETCH FAULT or CCACHE FAULT. These interrupts som=
-etimes [eg for TPROP traps] also report some more useful information in e=
-ngine-specific registers.
-<br>
-<br>Usually getting an engine fault implies getting a VM fault, but not a=
-lways, so nouveau reports them separately - it only uses the engine fault=
- as a trigger to check for new VM faults, but does not associate them in =
-any way. The reasons for mismatches could be:
-<br>
-<br>- Interrupts that trigger VM fault in some cases, but not in others: =
-DMA_PUSHER/MEM_FAULT can happen due to DMA_LIMIT overrun, or due to VM fa=
-ult
-<br>- Multiple VM faults in quick succession will result in only one of t=
-hem being reported as VM fault, but all of them as engine faults
-<br>
-<br>Hope this clears things up.
-<br>
-<br>Marcin Ko=C5=9Bcielnicki</p>
-</body>
-</html>
-
---=-M4zmqYfuCbN+yU2EmvfX--
-
-
---===============0815110071==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0815110071==--
+QW0gRG9ubmVyc3RhZywgZGVuIDAzLjAzLjIwMTEsIDE4OjI5ICswMTAwIHNjaHJpZWIgTWFydGlu
+IFBlcmVzOgo+IExlIDAzLzAzLzIwMTEgMTY6MjIsIEd1ZW50ZXIgUm9lY2sgYSDDqWNyaXQgOgo+
+ID4gT24gVGh1LCBNYXIgMDMsIDIwMTEgYXQgMDQ6MzY6MDlBTSAtMDUwMCwgRGF2ZSBBaXJsaWUg
+d3JvdGU6Cj4gPj4gT24gTW9uLCBGZWIgMTQsIDIwMTEgYXQgODowOCBBTSwgSmVhbiBEZWx2YXJl
+PGtoYWxpQGxpbnV4LWZyLm9yZz4gIHdyb3RlOgo+ID4+PiBPbiBTdW4sIDEzIEZlYiAyMDExIDA5
+OjE2OjQwIC0wODAwLCBHdWVudGVyIFJvZWNrIHdyb3RlOgo+ID4+Pj4gT24gU3VuLCBGZWIgMTMs
+IDIwMTEgYXQgMDc6MTg6NDRBTSAtMDUwMCwgTWFydGluIFBlcmVzIHdyb3RlOgo+ID4+Pj4+IEhp
+LAo+ID4+Pj4+Cj4gPj4+Pj4gSSBhbSB3b3JraW5nIG9uIHBvd2VyIG1hbmFnZW1lbnQgb24gdGhl
+IG5vdXZlYXUgZHJpdmVyIGFuZCBJIG5lZWQgYSB3YXkKPiA+Pj4+PiB0byBnZXQgZGF0YSBvdXQg
+b2YgYW5kIHNlbmQgY29tbWFuZHMgdG8gdGhlIGkyYyBkcml2ZXJzIGZyb20gdGhlIGtlcm5lbAo+
+ID4+Pj4+IHNwYWNlLgo+ID4+IE1hcnRpbiwKPiA+Pgo+ID4+IHlvdSBwcm9iYWJseSBzaG91bGQg
+aGF2ZSBjYydlZCBNYXR0aGV3IHNpbmNlIGl0IHdhcyBoaXMgcGF0Y2ggeW91IGJhc2VkIHRoaXMg
+b24sCj4gPj4gYW5kIEkgdGhpbmsgaGUgY2FuIHByb3ZpZGUgYSBnb29kIGV4cGxhaW5hdGlvbi4K
+PiA+Pgo+ID4+IHRvIGNsYXJpZnkgc29tZSBwb2ludHMsCj4gPj4KPiA+PiByYWRlb24gZG9lcyBw
+cm9iYWJseSB3YW50IHNvbWV0aGluZyBleGFjdGx5IGxpa2UgdGhpcywgd2UganVzdCBoYXZlbid0
+IGdvdHRlbiB0bwo+ID4+IGl0IGNvbXBsZXRlbHkgeWV0LCBJJ2QgcmF0aGVyIG5vdCBoYXZlIHR3
+byBkcml2ZXJzIGluIHRoZSBrZXJuZWwgZm9yCj4gPj4gZXhhY3Qgc2FtZSBoYXJkd2FyZSwKPiA+
+PiBhbmQgSSBiZWxpZXZlIHNoYXJpbmcgdGhlIGh3bW9uIGNvZGUgdG8gZG8gd2hhdCB3ZSB3YW50
+IGlzIGEgZ29vZCBwbGFuIHNpbmNlIHlvdQo+ID4+IGRvbid0IGdvIGFyb3VuZCByZWludmVudGlu
+ZyB3aGVlbHMsIGJ1dCBpZiBod21vbi9pMmMgbWFpbnRhaW5lcnMgaGF2ZQo+ID4+IG5vIGludGVy
+ZXN0Cj4gPj4gaXQgbGVhdmVzIHdpdGggbGl0dGxlIGNob2ljZSBidXQgdG8gaW1wbGVtZW50IGFi
+b3V0IDUtMTAgaTJjIGRyaXZlcnMKPiA+PiBhZ2FpbiBpbiBkcm0gY29kZWJhc2UuCj4gPj4KPiA+
+PiBNYXliZSBod21vbi9pMmMgbWFpbnRhaW5lcnMgY291bGQgc3VnZ2VzdCBhIGNsZWFuZXIgd2F5
+IHRvIGltcGxlbWVudAo+ID4+IHdoYXQgd2Ugd2FudCwKPiA+PiB3aGljaCBJIHRoaW5rIEkgY2Fu
+IHN1bW1hcml6ZSBhcwo+ID4+Cj4gPj4gYSkgYWNjZXNzIHRvIG1vbml0b3JlZCB2YWx1ZXMgaW4t
+a2VybmVsCj4gPj4gYikgbm8gdXNlcnNwYWNlIGFjY2VzcyB0byB0aGUgc2FtZSB2YWx1ZXMgZXhj
+ZXB0IHZpYSBzYW5pdGlzZWQgdmlhIHRoZSBkcml2ZXIuCj4gPj4KPiA+IFRoaXMgaXMgbm90IGEg
+bWF0dGVyIG9mICJubyBpbnRlcmVzdCIuIEludGVyZXN0IGlzIHRoZXJlLCBidXQgaWYgb25lIGRl
+bWFuZHMKPiA+IHRvbyBtdWNoIG9uZSBtYXkgZ2V0IG5vdGhpbmcuCj4gPgo+ID4gUmVxdWVzdCBm
+b3IgYikgc28gZmFyIHdhcyAibm8gdXNlcnNwYWNlIGFjY2VzcyIsIHBlcmlvZC4gVGhpcyBpcyB1
+bmFjY2VwdGFibGUKPiA+IHNpbmNlIHByb3ZpZGluZyB1c2Vyc3BhY2UgYWNjZXNzIHRvIG1vbml0
+b3JlZCB2YWx1ZXMgaXMgdGhlIHdob2xlIHBvaW50IG9mIGh3bW9uLgoKQW5kIHRoYXQgaXMgd2hh
+dCB3ZSB3YW50IHRvIGRvLiBCdXQgaXQgd291bGQgYmUgbmljZSBpZiB0aGUgZ3JhcGhpY3MKZHJp
+dmVycyBjb3VsZCBwcm92aWRlIGEgX3NpbmdsZV8gaW50ZXJmYWNlIHRvIHVzZXJzcGFjZS4gTm90
+IGFsbCBib2FyZHMKaGF2ZSBpMmMgaGFyZHdhcmUgbW9uaXRvcmluZyBjaGlwcyBhbmQgd2l0aCBh
+IHNpbmdsZSBpbnRlcmZhY2Ugd2UgY291bGQKZmFsbCBiYWNrIHRvIHRoZSBpbnRlcm5hbCBncHUg
+c2Vuc29yLCB0cmFuc3BhcmVudGx5IGZvciB0aGUgdXNlci4KCj4gPgo+ID4gSSBjb3VsZCBpbWFn
+aW5lIGFuIEFQSSB0aGF0IGNvdmVycyBib3RoIGEpIGFuZCBiKSwgYXMgbG9uZyBhcyBiKSBmb2N1
+c2VzCj4gPiBvbiB0aGUgInNhbml0aXplIiBhc3BlY3QgYW5kIGRvZXNuJ3QgdHJ5IHRvIGxpbWl0
+IHVzZXJzcGFjZSBhY2Nlc3MgdG8gYXR0cmlidXRlcy4KPiA+Cj4gPiBHdWVudGVyCj4gYikgd2Fz
+IGludHJvZHVjZWQgYnkgRGF2ZSwgSSBuZXZlciBhc2tlZCBmb3IgaXQgYmVjYXVzZSBJIGRvbid0
+IG1pbmQgCj4gZHVwbGljYXRpbmcgc2Vuc29yIGRhdGEgKG9uZSBod21vbiBkZXZpY2UgbmFtZWQg
+bm91dmVhdSBhbmQgb25lIGZvciB0aGUgCj4gcmF3IGFjY2VzcyB0byB0aGUgaTJjIGNoaXApLgoK
+U29ycnkgZm9yIHRoZSBjb25mdXNpb24gTWFydGluLCBJIGJyb3VnaHQgdXAgdGhlIHBvaW50IG9m
+IGxpbWl0aW5nCnVzZXJzcGFjZSBhY2Nlc3MgYW5kIGRpZCBub3QgY2MgdGhlIG5vdXZlYXUgbWFp
+bGluZyBsaXN0LiBJIHRoaW5rIGl0IGlzCmJhZCBiZWhhdmlvdXIgdG8gZXhwb3NlIHZhbHVlcyB0
+byB1c2Vyc3BhY2Ugd2hpY2ggYXJlIHRvdGFsbHkgb2ZmIHRoZQpyZWFsIHZhbHVlcy4gVGhpcyBj
+b25mdXNlcyB1c2VycyBhbmQgc2hvdWxkIGJlIGF2b2lkZWQsIGVzcGVjaWFsbHkgc2luY2UKd2Ug
+Y2FuIHByb3ZpZGUgc2FuaXRpemVkIHZhbHVlcy4KCldoeSBzaG91bGQgd2UgcHVzaCB0aGUgbG9n
+aWMgYW5kIGFwaSBmb3Igc2FuaXRpemluZyB0aGUgdmFsdWVzIHRvIG1hbnkKaHdtb24gZHJpdmVy
+cyBpZiB3ZSBjb3VsZCBlYXNpbHkgZG8gdGhpcyBhdCBhIHNpbmdsZSBwb2ludCBpbiB0aGUKZ3Jh
+cGhpY3MgZHJpdmVyLCBpZiB3ZSBwcm92aWRlIHRoZSB1c2Vyc3BhY2UgaW50ZXJmYWNlIG91cnNl
+bGYgYW5kIHVzZQp0aGUgaHdtb24gZHJpdmVyIG9ubHkgdG8gaW5zdHJ1bWVudCB0aGUgbW9uaXRv
+cmluZyBjaGlwPwoKPiBNeSBvbmx5IHdpc2ggd2FzIHRvIHByb3ZpZGUgYSBzaW1wbGUgd2F5IGZv
+ciB1c2VycyB0byByZWFkL2NoYW5nZSB0aGVpciAKPiBmYW4gc3BlZWQgYW5kIGdldCB0aGUgR1BV
+IHRlbXBlcmF0dXJlIG5vIG1hdHRlciBpZiB0aGVpciBjYXJkIGhhdmUgYW4gCj4gaTJjIGNvbnRy
+b2xsZXIgb3Igbm90Lgo+IEkgZG8gYWdyZWUgdGhhdCBzYW5pdGl6aW5nIGNvdWxkIGJlIG9mIGlu
+dGVyZXN0LCBJIGVzcGVjaWFsbHkgdGhpbmsgCj4gYWJvdXQgdHdlYWtpbmcgdGhlIHRlbXBlcmF0
+dXJlIHZhbHVlIHdpdGggcGFyYW1ldGVycyBzdG9yZWQgaW5zaWRlIHRoZSAKPiB2Ymlvcy4KPiAK
+PiBJIGFtIGZ1bGx5IG9wZW4gdG8gc3VnZ2VzdGlvbnMgYXMgbG9uZyBhcyBpdCBpbnZvbHZlcyBz
+aGFyaW5nIHRoZSBjb2RlIAo+IGluIG9uZSB3YXkgb3IgYW5vdGhlci4KPiAKPiBNYXJ0aW4KPiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUg
+bWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+IAoKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
