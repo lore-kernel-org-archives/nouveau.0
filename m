@@ -1,20 +1,22 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+From: Guenter Roeck <guenter.roeck-IzeFyvvaP7pWk0Htik3J/w@public.gmane.org>
 Subject: Re: [lm-sensors] hwmon API update
-Date: Fri, 04 Mar 2011 00:53:12 +0100
-Message-ID: <4D7029E8.4040706@free.fr>
-References: <4D57CC24.1040306@free.fr> <20110213171640.GB13323@ericsson.com>	
-	<20110213230833.0ee2ff16@endymion.delvare>	
-	<AANLkTindG=m4FhNS202MH8YVBUCoDEADTQLxo-Bf_8qx@mail.gmail.com>	
-	<20110303152216.GA21667@ericsson.com> <4D6FCFF2.7040604@free.fr>	
-	<1299185295.2255.13.camel@workstation>	
-	<1299187158.18605.28.camel@groeck-laptop>	
+Date: Thu, 3 Mar 2011 16:59:00 -0800
+Message-ID: <20110304005900.GB31318@ericsson.com>
+References: <20110213171640.GB13323@ericsson.com>
+	<20110213230833.0ee2ff16@endymion.delvare>
+	<AANLkTindG=m4FhNS202MH8YVBUCoDEADTQLxo-Bf_8qx@mail.gmail.com>
+	<20110303152216.GA21667@ericsson.com> <4D6FCFF2.7040604@free.fr>
+	<1299185295.2255.13.camel@workstation>
+	<1299187158.18605.28.camel@groeck-laptop>
 	<1299189416.2255.22.camel@workstation>
 	<1299189822.18605.35.camel@groeck-laptop>
+	<4D7029E8.4040706@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1299189822.18605.35.camel@groeck-laptop>
+Content-Disposition: inline
+In-Reply-To: <4D7029E8.4040706-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,100 +26,27 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: guenter.roeck-IzeFyvvaP7pWk0Htik3J/w@public.gmane.org
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 Cc: Jean Delvare <khali-PUYAD+kWke1g9hUCZPvPmw@public.gmane.org>, nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "lm-sensors-GZX6beZjE8VD60Wz+7aTrA@public.gmane.org" <lm-sensors-GZX6beZjE8VD60Wz+7aTrA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-TGUgMDMvMDMvMjAxMSAyMzowMywgR3VlbnRlciBSb2VjayBhIMOpY3JpdCA6Cj4gT24gVGh1LCAy
-MDExLTAzLTAzIGF0IDE2OjU2IC0wNTAwLCBMdWNhcyBTdGFjaCB3cm90ZToKPj4gQW0gRG9ubmVy
-c3RhZywgZGVuIDAzLjAzLjIwMTEsIDEzOjE5IC0wODAwIHNjaHJpZWIgR3VlbnRlciBSb2VjazoK
-Pj4+IE9uIFRodSwgMjAxMS0wMy0wMyBhdCAxNTo0OCAtMDUwMCwgTHVjYXMgU3RhY2ggd3JvdGU6
-Cj4+Pj4gQW0gRG9ubmVyc3RhZywgZGVuIDAzLjAzLjIwMTEsIDE4OjI5ICswMTAwIHNjaHJpZWIg
-TWFydGluIFBlcmVzOgo+Pj4+PiBMZSAwMy8wMy8yMDExIDE2OjIyLCBHdWVudGVyIFJvZWNrIGEg
-w6ljcml0IDoKPj4+Pj4+IE9uIFRodSwgTWFyIDAzLCAyMDExIGF0IDA0OjM2OjA5QU0gLTA1MDAs
-IERhdmUgQWlybGllIHdyb3RlOgo+Pj4+Pj4+IE9uIE1vbiwgRmViIDE0LCAyMDExIGF0IDg6MDgg
-QU0sIEplYW4gRGVsdmFyZTxraGFsaUBsaW51eC1mci5vcmc+ICAgd3JvdGU6Cj4+Pj4+Pj4+IE9u
-IFN1biwgMTMgRmViIDIwMTEgMDk6MTY6NDAgLTA4MDAsIEd1ZW50ZXIgUm9lY2sgd3JvdGU6Cj4+
-Pj4+Pj4+PiBPbiBTdW4sIEZlYiAxMywgMjAxMSBhdCAwNzoxODo0NEFNIC0wNTAwLCBNYXJ0aW4g
-UGVyZXMgd3JvdGU6Cj4+Pj4+Pj4+Pj4gSGksCj4+Pj4+Pj4+Pj4KPj4+Pj4+Pj4+PiBJIGFtIHdv
-cmtpbmcgb24gcG93ZXIgbWFuYWdlbWVudCBvbiB0aGUgbm91dmVhdSBkcml2ZXIgYW5kIEkgbmVl
-ZCBhIHdheQo+Pj4+Pj4+Pj4+IHRvIGdldCBkYXRhIG91dCBvZiBhbmQgc2VuZCBjb21tYW5kcyB0
-byB0aGUgaTJjIGRyaXZlcnMgZnJvbSB0aGUga2VybmVsCj4+Pj4+Pj4+Pj4gc3BhY2UuCj4+Pj4+
-Pj4gTWFydGluLAo+Pj4+Pj4+Cj4+Pj4+Pj4geW91IHByb2JhYmx5IHNob3VsZCBoYXZlIGNjJ2Vk
-IE1hdHRoZXcgc2luY2UgaXQgd2FzIGhpcyBwYXRjaCB5b3UgYmFzZWQgdGhpcyBvbiwKPj4+Pj4+
-PiBhbmQgSSB0aGluayBoZSBjYW4gcHJvdmlkZSBhIGdvb2QgZXhwbGFpbmF0aW9uLgo+Pj4+Pj4+
-Cj4+Pj4+Pj4gdG8gY2xhcmlmeSBzb21lIHBvaW50cywKPj4+Pj4+Pgo+Pj4+Pj4+IHJhZGVvbiBk
-b2VzIHByb2JhYmx5IHdhbnQgc29tZXRoaW5nIGV4YWN0bHkgbGlrZSB0aGlzLCB3ZSBqdXN0IGhh
-dmVuJ3QgZ290dGVuIHRvCj4+Pj4+Pj4gaXQgY29tcGxldGVseSB5ZXQsIEknZCByYXRoZXIgbm90
-IGhhdmUgdHdvIGRyaXZlcnMgaW4gdGhlIGtlcm5lbCBmb3IKPj4+Pj4+PiBleGFjdCBzYW1lIGhh
-cmR3YXJlLAo+Pj4+Pj4+IGFuZCBJIGJlbGlldmUgc2hhcmluZyB0aGUgaHdtb24gY29kZSB0byBk
-byB3aGF0IHdlIHdhbnQgaXMgYSBnb29kIHBsYW4gc2luY2UgeW91Cj4+Pj4+Pj4gZG9uJ3QgZ28g
-YXJvdW5kIHJlaW52ZW50aW5nIHdoZWVscywgYnV0IGlmIGh3bW9uL2kyYyBtYWludGFpbmVycyBo
-YXZlCj4+Pj4+Pj4gbm8gaW50ZXJlc3QKPj4+Pj4+PiBpdCBsZWF2ZXMgd2l0aCBsaXR0bGUgY2hv
-aWNlIGJ1dCB0byBpbXBsZW1lbnQgYWJvdXQgNS0xMCBpMmMgZHJpdmVycwo+Pj4+Pj4+IGFnYWlu
-IGluIGRybSBjb2RlYmFzZS4KPj4+Pj4+Pgo+Pj4+Pj4+IE1heWJlIGh3bW9uL2kyYyBtYWludGFp
-bmVycyBjb3VsZCBzdWdnZXN0IGEgY2xlYW5lciB3YXkgdG8gaW1wbGVtZW50Cj4+Pj4+Pj4gd2hh
-dCB3ZSB3YW50LAo+Pj4+Pj4+IHdoaWNoIEkgdGhpbmsgSSBjYW4gc3VtbWFyaXplIGFzCj4+Pj4+
-Pj4KPj4+Pj4+PiBhKSBhY2Nlc3MgdG8gbW9uaXRvcmVkIHZhbHVlcyBpbi1rZXJuZWwKPj4+Pj4+
-PiBiKSBubyB1c2Vyc3BhY2UgYWNjZXNzIHRvIHRoZSBzYW1lIHZhbHVlcyBleGNlcHQgdmlhIHNh
-bml0aXNlZCB2aWEgdGhlIGRyaXZlci4KPj4+Pj4+Pgo+Pj4+Pj4gVGhpcyBpcyBub3QgYSBtYXR0
-ZXIgb2YgIm5vIGludGVyZXN0Ii4gSW50ZXJlc3QgaXMgdGhlcmUsIGJ1dCBpZiBvbmUgZGVtYW5k
-cwo+Pj4+Pj4gdG9vIG11Y2ggb25lIG1heSBnZXQgbm90aGluZy4KPj4+Pj4+Cj4+Pj4+PiBSZXF1
-ZXN0IGZvciBiKSBzbyBmYXIgd2FzICJubyB1c2Vyc3BhY2UgYWNjZXNzIiwgcGVyaW9kLiBUaGlz
-IGlzIHVuYWNjZXB0YWJsZQo+Pj4+Pj4gc2luY2UgcHJvdmlkaW5nIHVzZXJzcGFjZSBhY2Nlc3Mg
-dG8gbW9uaXRvcmVkIHZhbHVlcyBpcyB0aGUgd2hvbGUgcG9pbnQgb2YgaHdtb24uCj4+Pj4gQW5k
-IHRoYXQgaXMgd2hhdCB3ZSB3YW50IHRvIGRvLiBCdXQgaXQgd291bGQgYmUgbmljZSBpZiB0aGUg
-Z3JhcGhpY3MKPj4+PiBkcml2ZXJzIGNvdWxkIHByb3ZpZGUgYSBfc2luZ2xlXyBpbnRlcmZhY2Ug
-dG8gdXNlcnNwYWNlLiBOb3QgYWxsIGJvYXJkcwo+Pj4+IGhhdmUgaTJjIGhhcmR3YXJlIG1vbml0
-b3JpbmcgY2hpcHMgYW5kIHdpdGggYSBzaW5nbGUgaW50ZXJmYWNlIHdlIGNvdWxkCj4+Pj4gZmFs
-bCBiYWNrIHRvIHRoZSBpbnRlcm5hbCBncHUgc2Vuc29yLCB0cmFuc3BhcmVudGx5IGZvciB0aGUg
-dXNlci4KPj4+Pgo+Pj4+Pj4gSSBjb3VsZCBpbWFnaW5lIGFuIEFQSSB0aGF0IGNvdmVycyBib3Ro
-IGEpIGFuZCBiKSwgYXMgbG9uZyBhcyBiKSBmb2N1c2VzCj4+Pj4+PiBvbiB0aGUgInNhbml0aXpl
-IiBhc3BlY3QgYW5kIGRvZXNuJ3QgdHJ5IHRvIGxpbWl0IHVzZXJzcGFjZSBhY2Nlc3MgdG8gYXR0
-cmlidXRlcy4KPj4+Pj4+Cj4+Pj4+PiBHdWVudGVyCj4+Pj4+IGIpIHdhcyBpbnRyb2R1Y2VkIGJ5
-IERhdmUsIEkgbmV2ZXIgYXNrZWQgZm9yIGl0IGJlY2F1c2UgSSBkb24ndCBtaW5kCj4+Pj4+IGR1
-cGxpY2F0aW5nIHNlbnNvciBkYXRhIChvbmUgaHdtb24gZGV2aWNlIG5hbWVkIG5vdXZlYXUgYW5k
-IG9uZSBmb3IgdGhlCj4+Pj4+IHJhdyBhY2Nlc3MgdG8gdGhlIGkyYyBjaGlwKS4KPj4+PiBTb3Jy
-eSBmb3IgdGhlIGNvbmZ1c2lvbiBNYXJ0aW4sIEkgYnJvdWdodCB1cCB0aGUgcG9pbnQgb2YgbGlt
-aXRpbmcKPj4+PiB1c2Vyc3BhY2UgYWNjZXNzIGFuZCBkaWQgbm90IGNjIHRoZSBub3V2ZWF1IG1h
-aWxpbmcgbGlzdC4gSSB0aGluayBpdCBpcwo+Pj4+IGJhZCBiZWhhdmlvdXIgdG8gZXhwb3NlIHZh
-bHVlcyB0byB1c2Vyc3BhY2Ugd2hpY2ggYXJlIHRvdGFsbHkgb2ZmIHRoZQo+Pj4+IHJlYWwgdmFs
-dWVzLiBUaGlzIGNvbmZ1c2VzIHVzZXJzIGFuZCBzaG91bGQgYmUgYXZvaWRlZCwgZXNwZWNpYWxs
-eSBzaW5jZQo+Pj4+IHdlIGNhbiBwcm92aWRlIHNhbml0aXplZCB2YWx1ZXMuCj4+Pj4KPj4+PiBX
-aHkgc2hvdWxkIHdlIHB1c2ggdGhlIGxvZ2ljIGFuZCBhcGkgZm9yIHNhbml0aXppbmcgdGhlIHZh
-bHVlcyB0byBtYW55Cj4+Pj4gaHdtb24gZHJpdmVycyBpZiB3ZSBjb3VsZCBlYXNpbHkgZG8gdGhp
-cyBhdCBhIHNpbmdsZSBwb2ludCBpbiB0aGUKPj4+PiBncmFwaGljcyBkcml2ZXIsIGlmIHdlIHBy
-b3ZpZGUgdGhlIHVzZXJzcGFjZSBpbnRlcmZhY2Ugb3Vyc2VsZiBhbmQgdXNlCj4+Pj4gdGhlIGh3
-bW9uIGRyaXZlciBvbmx5IHRvIGluc3RydW1lbnQgdGhlIG1vbml0b3JpbmcgY2hpcD8KPj4+IEkg
-ZG9uJ3QgdGhpbmsgdGhlIGZ1bmN0aW9uYWxpdHkgKG5vciB0aGUgaW50ZXJuYWwgQVBJKSBzaG91
-bGQgaGF2ZSB0byBiZQo+Pj4gaW1wbGVtZW50ZWQgaW4gaW5kaXZpZHVhbCBkcml2ZXJzLiBJbnN0
-ZWFkLCB0aGVyZSBzaG91bGQgYmUgYSBuZXcgQVBJCj4+PiBiZXR3ZWVuIGh3bW9uIGRyaXZlcnMg
-YW5kIHRoZSBod21vbiBjb3JlLiBVc2luZyB0aGlzIEFQSSwgdGhlIGh3bW9uIGNvcmUKPj4+IHdv
-dWxkIHJlYWQvd3JpdGUgcmF3IHZhbHVlcyBmcm9tL3RvIGh3bW9uIGRyaXZlcnMgYW5kIG1ha2Ug
-dGhvc2UgdmFsdWVzCj4+PiBhdmFpbGFibGUgdG8gdXNlcmxhbmQgYW5kIHRvIG90aGVyIGRyaXZl
-cnMgKHN1Y2ggYXMgdGhlIG5vdXZlYXUgZHJpdmVyKS4KPj4+IFRoZSBod21vbiBjb3JlIHdvdWxk
-IHRoZW4gYWxzbyBwZXJmb3JtIHNhbml0aXppbmcgaWYgbmVjZXNzYXJ5LCBpZSBjYWxsCj4+PiBy
-ZWdpc3RlcmVkIHNhbml0aXppbmcgZnVuY3Rpb25zLgo+Pj4KPj4+IFdpdGggdGhpcyBhcHByb2Fj
-aCwgaHdtb24gd291bGQgcmVwb3J0IHNhbml0aXplZCB2YWx1ZXMsIGdyYXBoaWNzCj4+PiBkcml2
-ZXJzIHdvdWxkIG5vdCBoYXZlIHRvIHN1cHBvcnQvZ2VuZXJhdGUgaHdtb24gc3lzZnMgQUJJIGF0
-dHJpYnV0ZXMsCj4+PiBhbmQgaHdtb24gZHJpdmVyIHN0cnVjdHVyZSB3b3VsZCBiZSBtdWNoIHNp
-bXBsZXIsIHNpbmNlIGRyaXZlcnMgY291bGQKPj4+IGNvbmNlbnRyYXRlIG9uIGdldHRpbmcgZGF0
-YSBmcm9tIGFuZCB0byBjaGlwcyBpbnN0ZWFkIG9mIGhhdmluZyB0byBkZWFsCj4+PiB3aXRoIHN5
-c2ZzIGF0dHJpYnV0ZXMuIFRoYXQgd291bGQgYmUgYSB3aW4gZm9yIGV2ZXJ5b25lLgo+Pj4KPj4+
-IEd1ZW50ZXIKPj4gVGhpcyBpcyBhIGJpZ2dlciBjaGFuZ2UgdGhhbiB3ZSBpbml0aWFsbHkgYWlt
-ZWQgZm9yIGFuZCBJIGRpZG4ndCBkYXJlIHRvCj4+IGFzayBmb3Igc3VjaCBhIGhlYXZ5IG1vZGlm
-aWNhdGlvbiwgYnV0IEknbSB2ZXJ5IGhhcHB5IHdpdGggdGhpcyBzb2x1dGlvbgo+PiBpZiB5b3Ug
-cHJlZmVyIGFuZCBzdXBwb3J0IGl0IHRoaXMgd2F5Lgo+IElmIGRvbmUgcmlnaHQsIGl0IHNob3Vs
-ZCBiZSBtdWNoIGxlc3MgaW52YXNpdmUgdGhhbiB0aGUgcHJldmlvdXMKPiBhcHByb2FjaCAtIG1l
-YW5pbmcgZXhpc3RpbmcgZHJpdmVycyB3b3VsZCBub3QgaGF2ZSB0byBiZSBtb2RpZmllZCBhbmQK
-PiBjYW4gYmUgY29udmVydGVkIGFzIHRpbWUgcGVybWl0cy4KVGhlIHByZXZpb3VzIHNvbHV0aW9u
-IGFscmVhZHkgcGVybWl0dGVkIHRoYXQsIGJ1dCBhbnl3YXksIGl0J3MgZ29vZCB0bwpzZWUgeW91
-IHdlbGNvbWUgY2hhbmdlLgo+PiB1IGhhdmUgbm8gb2JqZWN0aW9ucyBJIHdpbGwgdHJ5IHRvIGhh
-Y2sgc29tZXRoaW5nIHRvZ2V0aGVyIGJ5IHRoaXMKPj4gd2Vla2VuZCBzbyB3ZSBjb3VsZCBmdXJ0
-aGVyIGRpc2N1c3MgdGhlIGlzc3VlIHdpdGggc29tZSByZWFsIGNvZGUgYXQKPj4gaGFuZC4KPj4K
-PiBTdXJlLCBnbyBhaGVhZC4gSSBzdGFydGVkIHNvbWV0aGluZyB0b28sIGJ1dCBJIGRvbid0IHJl
-YWxseSBoYXZlIG11Y2gKPiB0aW1lIHJpZ2h0IG5vdy4KSSdtIGVhZ2VyIHRvIHNlZSB0aGUgc29s
-dXRpb25zIGJvdGggb2YgeW91IGhhdmUgY29tZSB1cCB3aXRoIQo+IEd1ZW50ZXIKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Thu, Mar 03, 2011 at 06:53:12PM -0500, Martin Peres wrote:
+[ ... ]
+> >>> Guenter
+> >> This is a bigger change than we initially aimed for and I didn't dare to
+> >> ask for such a heavy modification, but I'm very happy with this solution
+> >> if you prefer and support it this way.
+> > If done right, it should be much less invasive than the previous
+> > approach - meaning existing drivers would not have to be modified and
+> > can be converted as time permits.
+> The previous solution already permitted that, but anyway, it's good to
+> see you welcome change.
+
+It touched all drivers. It did not move anything out of drivers, forcing drivers
+supporting the new functions to support both sysfs _and_ the new functions.
+Significant difference.
+
+The idea here - at least mine - is to move sysfs attribute management 
+into core hwmon code.
+
+Guenter
