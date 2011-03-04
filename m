@@ -1,14 +1,11 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] gallium/nv50: use 0x8697 class on NVAF
-Date: Fri, 4 Mar 2011 17:50:17 +0100
-Message-ID: <20110304165017.GB2743@joi.lan>
-References: <20110222173240.GA9687@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 35025] New: Serious compiler warnings
+Date: Fri,  4 Mar 2011 15:45:50 -0800 (PST)
+Message-ID: <bug-35025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20110222173240.GA9687-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +18,54 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Feb 22, 2011 at 06:32:40PM +0100, Marcin Slusarz wrote:
-> Addresses: https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/723012
-> 
-> Reported-and-tested-by: Alan Pope
-> ---
->  src/gallium/drivers/nv50/nv50_reg.h    |    4 ++++
->  src/gallium/drivers/nv50/nv50_screen.c |    3 +++
->  2 files changed, 7 insertions(+), 0 deletions(-)
-> 
-> diff --git a/src/gallium/drivers/nv50/nv50_reg.h b/src/gallium/drivers/nv50/nv50_reg.h
-> index 949838b..90d77e5 100644
-> --- a/src/gallium/drivers/nv50/nv50_reg.h
-> +++ b/src/gallium/drivers/nv50/nv50_reg.h
-> @@ -1685,6 +1685,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
->  
->  
->  
-> +#define NVAFTCL										0x00008697
-> +
-> +
-> +
->  #define NV50_COMPUTE									0x000050c0
->  
->  #define  NV50_COMPUTE_NOP								0x00000100
-> diff --git a/src/gallium/drivers/nv50/nv50_screen.c b/src/gallium/drivers/nv50/nv50_screen.c
-> index edc3d54..8069509 100644
-> --- a/src/gallium/drivers/nv50/nv50_screen.c
-> +++ b/src/gallium/drivers/nv50/nv50_screen.c
-> @@ -389,6 +389,9 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
->  		case 0xac:
->  			tesla_class = NVA0TCL;
->  			break;
-> +		case 0xaf:
-> +			tesla_class = NVAFTCL;
-> +			break;
->  		default:
->  			tesla_class = NVA8TCL;
->  			break;
-> -- 
-> 1.7.4.rc3
-> 
+https://bugs.freedesktop.org/show_bug.cgi?id=35025
 
-ping
+           Summary: Serious compiler warnings
+           Product: Mesa
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: blocker
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
 
-if it's wrong for some reason, just say so...
+
+git20110304.1454
+
+E: Mesa 64bit-portability-issue nouveau_texture.c:400, 489
+E: Mesa 64bit-portability-issue nouveau_screen.c:254, 257
+
+
+nouveau_texture.c: In function 'nouveau_teximage':
+nouveau_texture.c:400:2: warning: implicit declaration of function
+'_mesa_validate_pbo_teximage'
+nouveau_texture.c:400:9: warning: assignment makes pointer from integer without
+a cast
+nouveau_texture.c:417:3: warning: implicit declaration of function
+'_mesa_unmap_teximage_pbo'
+nouveau_texture.c: In function 'nouveau_texsubimage':
+nouveau_texture.c:489:9: warning: assignment makes pointer from integer without
+a cast
+
+
+nouveau_mm.c: In function 'mm_slab_new':
+nouveau_mm.c:147:17: warning: format '%lu' expects type 'long unsigned int',
+but argument 2 has type 'uint64_t'
+nouveau_screen.c: In function 'nouveau_screen_init':
+nouveau_screen.c:254:2: warning: implicit declaration of function
+'nouveau_mm_create'
+nouveau_screen.c:254:18: warning: assignment makes pointer from integer without
+a cast
+nouveau_screen.c:257:18: warning: assignment makes pointer from integer without
+a cast
+nouveau_screen.c: In function 'nouveau_screen_fini':
+nouveau_screen.c:266:2: warning: implicit declaration of function
+'nouveau_mm_destroy'
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
