@@ -1,14 +1,14 @@
 From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: properly handle pushbuffer check
-	failures
-Date: Mon, 7 Mar 2011 18:10:13 +0000
-Message-ID: <AANLkTin4oJda-wB4b6X9B+En3EXX6wHXQdVg=o_qX0zA@mail.gmail.com>
-References: <20110307113135.GA2788@joi.lan>
+Subject: Re: [PATCH] gallium/nv50: use 0x8697 class on NVAF
+Date: Mon, 7 Mar 2011 18:15:46 +0000
+Message-ID: <AANLkTinJdfL13yT3hze+5vj8Kv9cAxCsF-4YCJt9Hebv@mail.gmail.com>
+References: <20110222173240.GA9687@joi.lan>
+	<20110304165017.GB2743@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20110307113135.GA2788-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <20110304165017.GB2743-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,101 +22,64 @@ To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Mar 7, 2011 at 11:31 AM, Marcin Slusarz
-<marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> When "buffer in list" check does not pass, don't free validation lists - =
-they were
-> not initialized yet.
+On Fri, Mar 4, 2011 at 4:50 PM, Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> w=
+rote:
+> On Tue, Feb 22, 2011 at 06:32:40PM +0100, Marcin Slusarz wrote:
+>> Addresses: https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-=
+nouveau/+bug/723012
+>>
+>> Reported-and-tested-by: Alan Pope
+>> ---
+>> =A0src/gallium/drivers/nv50/nv50_reg.h =A0 =A0| =A0 =A04 ++++
+>> =A0src/gallium/drivers/nv50/nv50_screen.c | =A0 =A03 +++
+>> =A02 files changed, 7 insertions(+), 0 deletions(-)
+>>
+>> diff --git a/src/gallium/drivers/nv50/nv50_reg.h b/src/gallium/drivers/n=
+v50/nv50_reg.h
+>> index 949838b..90d77e5 100644
+>> --- a/src/gallium/drivers/nv50/nv50_reg.h
+>> +++ b/src/gallium/drivers/nv50/nv50_reg.h
+>> @@ -1685,6 +1685,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN=
+ THE SOFTWARE.
+>>
+>>
+>>
+>> +#define NVAFTCL =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A00x00008697
+>> +
+>> +
+>> +
+>> =A0#define NV50_COMPUTE =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 0x000050c0
+>>
+>> =A0#define =A0NV50_COMPUTE_NOP =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A00x00000100
+>> diff --git a/src/gallium/drivers/nv50/nv50_screen.c b/src/gallium/driver=
+s/nv50/nv50_screen.c
+>> index edc3d54..8069509 100644
+>> --- a/src/gallium/drivers/nv50/nv50_screen.c
+>> +++ b/src/gallium/drivers/nv50/nv50_screen.c
+>> @@ -389,6 +389,9 @@ nv50_screen_create(struct pipe_winsys *ws, struct no=
+uveau_device *dev)
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 case 0xac:
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 tesla_class =3D NVA0TCL;
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 break;
+>> + =A0 =A0 =A0 =A0 =A0 =A0 case 0xaf:
+>> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 tesla_class =3D NVAFTCL;
+>> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 break;
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 default:
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 tesla_class =3D NVA8TCL;
+>> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 break;
+>> --
+>> 1.7.4.rc3
+>>
 >
-> Fixes this oops:
+> ping
 >
-> [drm] nouveau 0000:02:00.0: push 105 buffer not in list
-> BUG: unable to handle kernel NULL pointer dereference at 000000000000057c
-> IP: [<ffffffff81236aa4>] do_raw_spin_lock+0x14/0x13c
-> PGD 1ac6cb067 PUD 1aaa52067 PMD 0
-> CPU 0
-> Modules linked in: nouveau ttm drm_kms_helper snd_hda_codec_realtek snd_h=
-da_intel snd_hda_codec
->
-> Pid: 6265, comm: OilRush_x86 Not tainted 2.6.38-rc6-nv+ #632 System manuf=
-acturer System Product Name/P6T SE
-> RIP: 0010:[<ffffffff81236aa4>] =A0[<ffffffff81236aa4>] do_raw_spin_lock+0=
-x14/0x13c
-> (...)
-> Process OilRush_x86 (pid: 6265, threadinfo ffff8801a6aee000, task ffff880=
-1a26c0000)
-> =A00000000000000000 ffff8801ac74c618 0000000000000000 0000000000000578
-> =A00000000000000000 ffff8801ac74c618 0000000000000000 ffff8801bd9d0000
-> =A0[<ffffffff81417f78>] _raw_spin_lock+0x1e/0x22
-> =A0[<ffffffffa00a2746>] nouveau_bo_fence+0x2e/0x60 [nouveau]
-> =A0[<ffffffffa00a540b>] validate_fini_list+0x35/0xeb [nouveau]
-> =A0[<ffffffffa00a54d3>] validate_fini+0x12/0x31 [nouveau]
-> =A0[<ffffffffa00a6386>] nouveau_gem_ioctl_pushbuf+0xe94/0xf6b [nouveau]
-> =A0[<ffffffff8141ac56>] ? sub_preempt_count+0x9e/0xb2
-> =A0[<ffffffff81417e94>] ? _raw_spin_unlock_irqrestore+0x30/0x4d
-> =A0[<ffffffff8105dea2>] ? __wake_up+0x3f/0x48
-> =A0[<ffffffff812aebb4>] drm_ioctl+0x289/0x361
-> =A0[<ffffffff8141ac56>] ? sub_preempt_count+0x9e/0xb2
-> =A0[<ffffffffa00a54f2>] ? nouveau_gem_ioctl_pushbuf+0x0/0xf6b [nouveau]
-> =A0[<ffffffff8141ac56>] ? sub_preempt_count+0x9e/0xb2
-> =A0[<ffffffffa010caa2>] nouveau_compat_ioctl+0x16/0x1c [nouveau]
-> =A0[<ffffffff81142c0d>] compat_sys_ioctl+0x1c8/0x12d7
-> =A0[<ffffffff814179ca>] ? trace_hardirqs_off_thunk+0x3a/0x6c
-> =A0[<ffffffff81058099>] sysenter_dispatch+0x7/0x30
-> =A0[<ffffffff8141798e>] ? trace_hardirqs_on_thunk+0x3a/0x3c
-> RIP =A0[<ffffffff81236aa4>] do_raw_spin_lock+0x14/0x13c
-> =A0RSP <ffff8801a6aefb88>
-> ---[ end trace 0014d5d93e6147e1 ]---
->
-> Additionally, don't call validate_fini twice in case of validation failur=
-e.
->
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
-> =A0drivers/gpu/drm/nouveau/nouveau_gem.c | =A0 =A06 ++++--
-> =A01 files changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouv=
-eau/nouveau_gem.c
-> index 3ce58d2..e8b04f4 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> @@ -600,7 +600,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, voi=
-d *data,
-> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0if (push[i].bo_index >=3D req->nr_buffers)=
- {
-> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0NV_ERROR(dev, "push %d buf=
-fer not in list\n", i);
-> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0ret =3D -EINVAL;
-> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 goto out;
-> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 goto out_prevalid;
-> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0}
->
-> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0bo[push[i].bo_index].read_domains |=3D (1 =
-<< 31);
-> @@ -612,7 +612,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, voi=
-d *data,
-> =A0 =A0 =A0 =A0if (ret) {
-> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0if (ret !=3D -ERESTARTSYS)
-> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0NV_ERROR(dev, "validate: %=
-d\n", ret);
-> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 goto out;
-> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 goto out_prevalid;
-> =A0 =A0 =A0 =A0}
->
-> =A0 =A0 =A0 =A0/* Apply any relocations that are required */
-> @@ -705,6 +705,8 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, voi=
-d *data,
-> =A0out:
-> =A0 =A0 =A0 =A0validate_fini(&op, fence);
-> =A0 =A0 =A0 =A0nouveau_fence_unref(&fence);
-> +
-> +out_prevalid:
-> =A0 =A0 =A0 =A0kfree(bo);
-> =A0 =A0 =A0 =A0kfree(push);
->
-> --
-> 1.7.4.rc3
+> if it's wrong for some reason, just say so...
 >
 > _______________________________________________
 > Nouveau mailing list
@@ -124,7 +87,9 @@ d *data,
 > http://lists.freedesktop.org/mailman/listinfo/nouveau
 >
 
-This seems a simple fix, so i pushed it.
+The patch seems ok to me, the nitpicker in me would tell you to
+separate the reported by and tested by tags and include Alan Pope's
+email address :)
 
 -- =
 
