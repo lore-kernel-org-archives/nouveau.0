@@ -1,15 +1,15 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix __nouveau_fence_wait
- performance regression
-Date: Mon, 7 Mar 2011 18:18:41 +0000
-Message-ID: <AANLkTin_jouzPDGfNnYq_BRqPzbvOW+F6jFNuc7p=p5E@mail.gmail.com>
-References: <20110213203804.GA5395@joi.lan>
-	<20110304164905.GA2743@joi.lan>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] gallium/nv50: use 0x8697 class on NVAF
+Date: Mon, 7 Mar 2011 19:28:58 +0100
+Message-ID: <20110307182858.GA9371@joi.lan>
+References: <20110222173240.GA9687@joi.lan> <20110304165017.GB2743@joi.lan>
+	<AANLkTinJdfL13yT3hze+5vj8Kv9cAxCsF-4YCJt9Hebv@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20110304164905.GA2743-OI9uyE9O0yo@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <AANLkTinJdfL13yT3hze+5vj8Kv9cAxCsF-4YCJt9Hebv-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,83 +19,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Mar 4, 2011 at 4:49 PM, Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> w=
-rote:
-> On Sun, Feb 13, 2011 at 09:38:04PM +0100, Marcin Slusarz wrote:
->> Combination of locking and interchannel synchronization changes
->> uncovered poor behaviour of nouveau_fence_wait, which on HZ=3D100
->> configuration could waste up to 10 ms per call.
->> Depending on application, it lead to 10-30% FPS regression.
->> To fix it, shorten thread sleep time to 0.1 ms and ensure
->> spinning happens for at least one *full* tick.
->>
->> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->> ---
->> =A0drivers/gpu/drm/nouveau/nouveau_fence.c | =A0 10 ++++++++--
->> =A01 files changed, 8 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/n=
-ouveau/nouveau_fence.c
->> index 221b846..75ba5e2 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
->> @@ -27,6 +27,9 @@
->> =A0#include "drmP.h"
->> =A0#include "drm.h"
->>
->> +#include <linux/ktime.h>
->> +#include <linux/hrtimer.h>
->> +
->> =A0#include "nouveau_drv.h"
->> =A0#include "nouveau_ramht.h"
->> =A0#include "nouveau_dma.h"
->> @@ -230,9 +233,12 @@ int
->> =A0__nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool =
-intr)
->> =A0{
->> =A0 =A0 =A0 unsigned long timeout =3D jiffies + (3 * DRM_HZ);
->> - =A0 =A0 unsigned long sleep_time =3D jiffies + 1;
->> + =A0 =A0 unsigned long sleep_time =3D jiffies + 2;
->> + =A0 =A0 ktime_t t;
->> =A0 =A0 =A0 int ret =3D 0;
->>
->> + =A0 =A0 t =3D ktime_set(0, NSEC_PER_MSEC / 10);
->> +
->> =A0 =A0 =A0 while (1) {
->> =A0 =A0 =A0 =A0 =A0 =A0 =A0 if (__nouveau_fence_signalled(sync_obj, sync=
-_arg))
->> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 break;
->> @@ -245,7 +251,7 @@ __nouveau_fence_wait(void *sync_obj, void *sync_arg,=
- bool lazy, bool intr)
->> =A0 =A0 =A0 =A0 =A0 =A0 =A0 __set_current_state(intr ? TASK_INTERRUPTIBLE
->> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 : TASK_UNINTERRUPTIBLE);
->> =A0 =A0 =A0 =A0 =A0 =A0 =A0 if (lazy && time_after_eq(jiffies, sleep_tim=
-e))
->> - =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 schedule_timeout(1);
->> + =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 schedule_hrtimeout(&t, HRTIMER=
-_MODE_REL);
->>
->> =A0 =A0 =A0 =A0 =A0 =A0 =A0 if (intr && signal_pending(current)) {
->> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ret =3D -ERESTARTSYS;
->> --
->> 1.7.4.rc3
->>
->
-> ping again
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
-
-This looks ok to me, but I would like to get Ben Skeggs ok on this one
-as well. So i've CC'ed him, hopefully he'll notice :-)
-
--- =
-
-Far away from the primal instinct, the song seems to fade away, the
-river get wider between your thoughts and the things we do and say.
+T24gTW9uLCBNYXIgMDcsIDIwMTEgYXQgMDY6MTU6NDZQTSArMDAwMCwgTWFhcnRlbiBNYWF0aHVp
+cyB3cm90ZToKPiBPbiBGcmksIE1hciA0LCAyMDExIGF0IDQ6NTAgUE0sIE1hcmNpbiBTbHVzYXJ6
+IDxtYXJjaW4uc2x1c2FyekBnbWFpbC5jb20+IHdyb3RlOgo+ID4gT24gVHVlLCBGZWIgMjIsIDIw
+MTEgYXQgMDY6MzI6NDBQTSArMDEwMCwgTWFyY2luIFNsdXNhcnogd3JvdGU6Cj4gPj4gQWRkcmVz
+c2VzOiBodHRwczovL2J1Z3MubGF1bmNocGFkLm5ldC91YnVudHUvK3NvdXJjZS94c2VydmVyLXhv
+cmctdmlkZW8tbm91dmVhdS8rYnVnLzcyMzAxMgo+ID4+Cj4gPj4gUmVwb3J0ZWQtYW5kLXRlc3Rl
+ZC1ieTogQWxhbiBQb3BlCj4gPj4gLS0tCj4gPj4gwqBzcmMvZ2FsbGl1bS9kcml2ZXJzL252NTAv
+bnY1MF9yZWcuaCDCoCDCoHwgwqAgwqA0ICsrKysKPiA+PiDCoHNyYy9nYWxsaXVtL2RyaXZlcnMv
+bnY1MC9udjUwX3NjcmVlbi5jIHwgwqAgwqAzICsrKwo+ID4+IMKgMiBmaWxlcyBjaGFuZ2VkLCA3
+IGluc2VydGlvbnMoKyksIDAgZGVsZXRpb25zKC0pCj4gPj4KPiA+PiBkaWZmIC0tZ2l0IGEvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9udjUwL252NTBfcmVnLmggYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL252
+NTAvbnY1MF9yZWcuaAo+ID4+IGluZGV4IDk0OTgzOGIuLjkwZDc3ZTUgMTAwNjQ0Cj4gPj4gLS0t
+IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9udjUwL252NTBfcmVnLmgKPiA+PiArKysgYi9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL252NTAvbnY1MF9yZWcuaAo+ID4+IEBAIC0xNjg1LDYgKzE2ODUsMTAgQEAg
+V0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUiBPVEhFUiBERUFMSU5HUyBJTiBUSEUgU09G
+VFdBUkUuCj4gPj4KPiA+Pgo+ID4+Cj4gPj4gKyNkZWZpbmUgTlZBRlRDTCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDB4MDAwMDg2OTcK
+PiA+PiArCj4gPj4gKwo+ID4+ICsKPiA+PiDCoCNkZWZpbmUgTlY1MF9DT01QVVRFIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDB4MDAwMDUwYzAKPiA+Pgo+ID4+IMKgI2Rl
+ZmluZSDCoE5WNTBfQ09NUFVURV9OT1AgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAw
+eDAwMDAwMTAwCj4gPj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnY1MC9udjUw
+X3NjcmVlbi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9udjUwL252NTBfc2NyZWVuLmMKPiA+PiBp
+bmRleCBlZGMzZDU0Li44MDY5NTA5IDEwMDY0NAo+ID4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbnY1MC9udjUwX3NjcmVlbi5jCj4gPj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9udjUw
+L252NTBfc2NyZWVuLmMKPiA+PiBAQCAtMzg5LDYgKzM4OSw5IEBAIG52NTBfc2NyZWVuX2NyZWF0
+ZShzdHJ1Y3QgcGlwZV93aW5zeXMgKndzLCBzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldikKPiA+
+PiDCoCDCoCDCoCDCoCDCoCDCoCDCoCBjYXNlIDB4YWM6Cj4gPj4gwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgdGVzbGFfY2xhc3MgPSBOVkEwVENMOwo+ID4+IMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIGJyZWFrOwo+ID4+ICsgwqAgwqAgwqAgwqAgwqAgwqAgY2FzZSAw
+eGFmOgo+ID4+ICsgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgdGVzbGFfY2xhc3MgPSBO
+VkFGVENMOwo+ID4+ICsgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgYnJlYWs7Cj4gPj4g
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgZGVmYXVsdDoKPiA+PiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCB0ZXNsYV9jbGFzcyA9IE5WQThUQ0w7Cj4gPj4gwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgYnJlYWs7Cj4gPj4gLS0KPiA+PiAxLjcuNC5yYzMKPiA+Pgo+ID4KPiA+
+IHBpbmcKPiA+Cj4gPiBpZiBpdCdzIHdyb25nIGZvciBzb21lIHJlYXNvbiwganVzdCBzYXkgc28u
+Li4KPiA+Cj4gCj4gVGhlIHBhdGNoIHNlZW1zIG9rIHRvIG1lLCB0aGUgbml0cGlja2VyIGluIG1l
+IHdvdWxkIHRlbGwgeW91IHRvCj4gc2VwYXJhdGUgdGhlIHJlcG9ydGVkIGJ5IGFuZCB0ZXN0ZWQg
+YnkgdGFncyBhbmQgaW5jbHVkZSBBbGFuIFBvcGUncwo+IGVtYWlsIGFkZHJlc3MgOikKPiAKCkNo
+cmlzdG9waCBhbHJlYWR5IGZpeGVkIGl0IGluIGhpcyBiaWcgIm52NTA6IHJlcGxhY2UgbW9zdCBv
+ZiBpdCB3aXRoIG52YzAKZHJpdmVyIHBvcnRlZCB0byBudjUwIiBjb21taXQuCgpUaGFua3MgZm9y
+IGEgcmV2aWV3IGFueXdheSA6KSwKTWFyY2luCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
