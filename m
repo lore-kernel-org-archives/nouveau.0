@@ -1,12 +1,13 @@
-From: Neal Holtz <nholtz-invPoGwsRgKUIZwRiZtBUQ@public.gmane.org>
-Subject: Linux Mint 10 KDE Live DVD would not start on Fujitsu
- laptop, NVIDIA video, HDMI
-Date: Sun, 06 Mar 2011 21:04:59 -0500
-Message-ID: <201103062105.00061.nholtz@cee.carleton.ca>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: properly handle pushbuffer check
+	failures
+Date: Mon, 7 Mar 2011 12:31:35 +0100
+Message-ID: <20110307113135.GA2788@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,45 +20,82 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I had a problem with LInux Mint 10 KDE, with the Live DVD resulting
-in a blank screen and no keyboard response during the KDE splash.  
+When "buffer in list" check does not pass, don't free validation lists - they were
+not initialized yet.
 
-I traced it to the fact that the laptop screen was turned off and it had 
-switched to HDMI.
+Fixes this oops:
 
-After installing LM 10 KDE and installing the NVIDI proprietary drivers
-(and disabling nouveau), it worked fine.
+[drm] nouveau 0000:02:00.0: push 105 buffer not in list
+BUG: unable to handle kernel NULL pointer dereference at 000000000000057c
+IP: [<ffffffff81236aa4>] do_raw_spin_lock+0x14/0x13c
+PGD 1ac6cb067 PUD 1aaa52067 PMD 0
+CPU 0
+Modules linked in: nouveau ttm drm_kms_helper snd_hda_codec_realtek snd_hda_intel snd_hda_codec
 
-I have reported it as launchpad bug 724722, and more info
-is available there, including lots of logs:
+Pid: 6265, comm: OilRush_x86 Not tainted 2.6.38-rc6-nv+ #632 System manufacturer System Product Name/P6T SE
+RIP: 0010:[<ffffffff81236aa4>]  [<ffffffff81236aa4>] do_raw_spin_lock+0x14/0x13c
+(...)
+Process OilRush_x86 (pid: 6265, threadinfo ffff8801a6aee000, task ffff8801a26c0000)
+ 0000000000000000 ffff8801ac74c618 0000000000000000 0000000000000578
+ 0000000000000000 ffff8801ac74c618 0000000000000000 ffff8801bd9d0000
+ [<ffffffff81417f78>] _raw_spin_lock+0x1e/0x22
+ [<ffffffffa00a2746>] nouveau_bo_fence+0x2e/0x60 [nouveau]
+ [<ffffffffa00a540b>] validate_fini_list+0x35/0xeb [nouveau]
+ [<ffffffffa00a54d3>] validate_fini+0x12/0x31 [nouveau]
+ [<ffffffffa00a6386>] nouveau_gem_ioctl_pushbuf+0xe94/0xf6b [nouveau]
+ [<ffffffff8141ac56>] ? sub_preempt_count+0x9e/0xb2
+ [<ffffffff81417e94>] ? _raw_spin_unlock_irqrestore+0x30/0x4d
+ [<ffffffff8105dea2>] ? __wake_up+0x3f/0x48
+ [<ffffffff812aebb4>] drm_ioctl+0x289/0x361
+ [<ffffffff8141ac56>] ? sub_preempt_count+0x9e/0xb2
+ [<ffffffffa00a54f2>] ? nouveau_gem_ioctl_pushbuf+0x0/0xf6b [nouveau]
+ [<ffffffff8141ac56>] ? sub_preempt_count+0x9e/0xb2
+ [<ffffffffa010caa2>] nouveau_compat_ioctl+0x16/0x1c [nouveau]
+ [<ffffffff81142c0d>] compat_sys_ioctl+0x1c8/0x12d7
+ [<ffffffff814179ca>] ? trace_hardirqs_off_thunk+0x3a/0x6c
+ [<ffffffff81058099>] sysenter_dispatch+0x7/0x30
+ [<ffffffff8141798e>] ? trace_hardirqs_on_thunk+0x3a/0x3c
+RIP  [<ffffffff81236aa4>] do_raw_spin_lock+0x14/0x13c
+ RSP <ffff8801a6aefb88>
+---[ end trace 0014d5d93e6147e1 ]---
 
-https://bugs.launchpad.net/linuxmint/+bug/724722
+Additionally, don't call validate_fini twice in case of validation failure.
 
-There are at least 2 other similar cases reported on launchpad/linuxmint
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_gem.c |    6 ++++--
+ 1 files changed, 4 insertions(+), 2 deletions(-)
 
-Machine particulars:
-
-wall:~> inxi -F
-System:    Host wall Kernel 2.6.35-27-generic x86_64 (64 bit) Distro Linux Mint 10 KDE
-CPU:       Dual core Intel Core i5 M 430 (-HT-MCP-) cache 3072 KB flags (lm nx sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx) bmips 9044.14 
-           Clock Speeds: (1) 1199.00 MHz (2) 1199.00 MHz (3) 1199.00 MHz (4) 1199.00 MHz
-Graphics:  Card nVidia GT216 [GeForce GT 330M] tty res: 148x52 
-Audio:     Card-1 nVidia High Definition Audio Controller driver HDA Intel BusID: 01:00.1
-           Card-2 Intel 5 Series/3400 Series Chipset High Definition Audiodriver HDA Intel BusID: 00:1b.0
-           Sound: Advanced Linux Sound Architecture Version 1.0.23
-Network:   Card-1 Atheros AR9287 Wireless Network Adapter (PCI-Express) driver ath9k BusID: 10:00.0
-           Card-2 Broadcom NetLink BCM57780 Gigabit Ethernet PCIe driver tg3 v: 3.110 BusID: 18:00.0
-Disks:     HDD Total Size: 500.1GB (15.1% used) 1: /dev/sda FUJITSU_MJA2500B 500.1GB 
-Partition: ID:/ size: 19G used: 6.5G (38%) fs: ext4 ID:/home size: 437G used: 64G (16%) fs: ext4 
-           ID:swap-1 size: 4.10GB used: 0.00GB (0%) fs: swap 
-Info:      Processes 191 Uptime 1:29 Memory 743.8/3824.2MB Runlevel 2 Client Shell inxi 1.4.12 
-
-
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 3ce58d2..e8b04f4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -600,7 +600,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
+ 		if (push[i].bo_index >= req->nr_buffers) {
+ 			NV_ERROR(dev, "push %d buffer not in list\n", i);
+ 			ret = -EINVAL;
+-			goto out;
++			goto out_prevalid;
+ 		}
+ 
+ 		bo[push[i].bo_index].read_domains |= (1 << 31);
+@@ -612,7 +612,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
+ 	if (ret) {
+ 		if (ret != -ERESTARTSYS)
+ 			NV_ERROR(dev, "validate: %d\n", ret);
+-		goto out;
++		goto out_prevalid;
+ 	}
+ 
+ 	/* Apply any relocations that are required */
+@@ -705,6 +705,8 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
+ out:
+ 	validate_fini(&op, fence);
+ 	nouveau_fence_unref(&fence);
++
++out_prevalid:
+ 	kfree(bo);
+ 	kfree(push);
+ 
 -- 
-Neal Holtz                             http://cee.carleton.ca/~nholtz
-Dept. of Civil and Environmental Engineering,   Carleton University,   
-Ottawa, Ontario, Canada K1S 5B6.               nholtz-invPoGwsRgKUIZwRiZtBUQ@public.gmane.org
-Public Key:  http://holtz3.cee.carleton.ca/~nholtz/pubkey.asc
-Office-Hours: http://holtz3.cee.carleton.ca/~nholtz/office-hours.html
-Free-Busy: http://holtz3.cee.carleton.ca/~nholtz/free-busy.cgi
+1.7.4.rc3
