@@ -1,15 +1,13 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] gallium/nv50: use 0x8697 class on NVAF
-Date: Mon, 7 Mar 2011 19:28:58 +0100
-Message-ID: <20110307182858.GA9371@joi.lan>
-References: <20110222173240.GA9687@joi.lan> <20110304165017.GB2743@joi.lan>
-	<AANLkTinJdfL13yT3hze+5vj8Kv9cAxCsF-4YCJt9Hebv@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 25777] Blank Screen on Gt230M
+Date: Mon,  7 Mar 2011 10:36:27 -0800 (PST)
+Message-ID: <20110307183627.6997D13000C@annarchy.freedesktop.org>
+References: <bug-25777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <AANLkTinJdfL13yT3hze+5vj8Kv9cAxCsF-4YCJt9Hebv-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-25777-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,54 +17,16 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBNYXIgMDcsIDIwMTEgYXQgMDY6MTU6NDZQTSArMDAwMCwgTWFhcnRlbiBNYWF0aHVp
-cyB3cm90ZToKPiBPbiBGcmksIE1hciA0LCAyMDExIGF0IDQ6NTAgUE0sIE1hcmNpbiBTbHVzYXJ6
-IDxtYXJjaW4uc2x1c2FyekBnbWFpbC5jb20+IHdyb3RlOgo+ID4gT24gVHVlLCBGZWIgMjIsIDIw
-MTEgYXQgMDY6MzI6NDBQTSArMDEwMCwgTWFyY2luIFNsdXNhcnogd3JvdGU6Cj4gPj4gQWRkcmVz
-c2VzOiBodHRwczovL2J1Z3MubGF1bmNocGFkLm5ldC91YnVudHUvK3NvdXJjZS94c2VydmVyLXhv
-cmctdmlkZW8tbm91dmVhdS8rYnVnLzcyMzAxMgo+ID4+Cj4gPj4gUmVwb3J0ZWQtYW5kLXRlc3Rl
-ZC1ieTogQWxhbiBQb3BlCj4gPj4gLS0tCj4gPj4gwqBzcmMvZ2FsbGl1bS9kcml2ZXJzL252NTAv
-bnY1MF9yZWcuaCDCoCDCoHwgwqAgwqA0ICsrKysKPiA+PiDCoHNyYy9nYWxsaXVtL2RyaXZlcnMv
-bnY1MC9udjUwX3NjcmVlbi5jIHwgwqAgwqAzICsrKwo+ID4+IMKgMiBmaWxlcyBjaGFuZ2VkLCA3
-IGluc2VydGlvbnMoKyksIDAgZGVsZXRpb25zKC0pCj4gPj4KPiA+PiBkaWZmIC0tZ2l0IGEvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9udjUwL252NTBfcmVnLmggYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL252
-NTAvbnY1MF9yZWcuaAo+ID4+IGluZGV4IDk0OTgzOGIuLjkwZDc3ZTUgMTAwNjQ0Cj4gPj4gLS0t
-IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9udjUwL252NTBfcmVnLmgKPiA+PiArKysgYi9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL252NTAvbnY1MF9yZWcuaAo+ID4+IEBAIC0xNjg1LDYgKzE2ODUsMTAgQEAg
-V0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUiBPVEhFUiBERUFMSU5HUyBJTiBUSEUgU09G
-VFdBUkUuCj4gPj4KPiA+Pgo+ID4+Cj4gPj4gKyNkZWZpbmUgTlZBRlRDTCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDB4MDAwMDg2OTcK
-PiA+PiArCj4gPj4gKwo+ID4+ICsKPiA+PiDCoCNkZWZpbmUgTlY1MF9DT01QVVRFIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDB4MDAwMDUwYzAKPiA+Pgo+ID4+IMKgI2Rl
-ZmluZSDCoE5WNTBfQ09NUFVURV9OT1AgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAw
-eDAwMDAwMTAwCj4gPj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnY1MC9udjUw
-X3NjcmVlbi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9udjUwL252NTBfc2NyZWVuLmMKPiA+PiBp
-bmRleCBlZGMzZDU0Li44MDY5NTA5IDEwMDY0NAo+ID4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
-cnMvbnY1MC9udjUwX3NjcmVlbi5jCj4gPj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9udjUw
-L252NTBfc2NyZWVuLmMKPiA+PiBAQCAtMzg5LDYgKzM4OSw5IEBAIG52NTBfc2NyZWVuX2NyZWF0
-ZShzdHJ1Y3QgcGlwZV93aW5zeXMgKndzLCBzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldikKPiA+
-PiDCoCDCoCDCoCDCoCDCoCDCoCDCoCBjYXNlIDB4YWM6Cj4gPj4gwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgdGVzbGFfY2xhc3MgPSBOVkEwVENMOwo+ID4+IMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIGJyZWFrOwo+ID4+ICsgwqAgwqAgwqAgwqAgwqAgwqAgY2FzZSAw
-eGFmOgo+ID4+ICsgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgdGVzbGFfY2xhc3MgPSBO
-VkFGVENMOwo+ID4+ICsgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgYnJlYWs7Cj4gPj4g
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgZGVmYXVsdDoKPiA+PiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCB0ZXNsYV9jbGFzcyA9IE5WQThUQ0w7Cj4gPj4gwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgYnJlYWs7Cj4gPj4gLS0KPiA+PiAxLjcuNC5yYzMKPiA+Pgo+ID4KPiA+
-IHBpbmcKPiA+Cj4gPiBpZiBpdCdzIHdyb25nIGZvciBzb21lIHJlYXNvbiwganVzdCBzYXkgc28u
-Li4KPiA+Cj4gCj4gVGhlIHBhdGNoIHNlZW1zIG9rIHRvIG1lLCB0aGUgbml0cGlja2VyIGluIG1l
-IHdvdWxkIHRlbGwgeW91IHRvCj4gc2VwYXJhdGUgdGhlIHJlcG9ydGVkIGJ5IGFuZCB0ZXN0ZWQg
-YnkgdGFncyBhbmQgaW5jbHVkZSBBbGFuIFBvcGUncwo+IGVtYWlsIGFkZHJlc3MgOikKPiAKCkNo
-cmlzdG9waCBhbHJlYWR5IGZpeGVkIGl0IGluIGhpcyBiaWcgIm52NTA6IHJlcGxhY2UgbW9zdCBv
-ZiBpdCB3aXRoIG52YzAKZHJpdmVyIHBvcnRlZCB0byBudjUwIiBjb21taXQuCgpUaGFua3MgZm9y
-IGEgcmV2aWV3IGFueXdheSA6KSwKTWFyY2luCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=25777
+
+--- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-07 10:36:26 PST ---
+This should be fixed now.
+Patrick, can you confirm this?
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
