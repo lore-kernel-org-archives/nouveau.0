@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 24866] AddScreen/ScreenInit failed for driver 0 /
-	NV50
-Date: Mon,  7 Mar 2011 09:41:19 -0800 (PST)
-Message-ID: <20110307174119.75A9B13004F@annarchy.freedesktop.org>
-References: <bug-24866-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25036] KMS + multihead leaves ghost mouse pointer
+Date: Mon,  7 Mar 2011 09:52:34 -0800 (PST)
+Message-ID: <20110307175234.43001130051@annarchy.freedesktop.org>
+References: <bug-25036-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-24866-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25036-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +20,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=24866
+https://bugs.freedesktop.org/show_bug.cgi?id=25036
 
 Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|                            |INVALID
+         Resolution|                            |FIXED
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-07 09:41:18 PST ---
-This bug is related to UMS codepath which was removed more than a year ago and
-KMS should work fine. If it does not, please file new bug report.
-
-I'm closing this bug.
+--- Comment #7 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-07 09:52:33 PST ---
+It seems to be fixed, so I'm closing this bug report.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
