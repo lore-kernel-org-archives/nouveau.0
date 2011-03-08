@@ -1,18 +1,16 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 Subject: Re: [PATCH] drm/nouveau: fix __nouveau_fence_wait
- performance regression
-Date: Tue, 08 Mar 2011 10:34:37 +1000
-Message-ID: <1299544479.14726.2.camel@nisroch>
+	performance regression
+Date: Tue, 08 Mar 2011 01:58:50 +0100
+Message-ID: <87lj0qzaut.fsf@riseup.net>
 References: <20110213203804.GA5395@joi.lan> <20110304164905.GA2743@joi.lan>
 	<AANLkTin_jouzPDGfNnYq_BRqPzbvOW+F6jFNuc7p=p5E@mail.gmail.com>
 	<1299536668.29441.3.camel@nisroch> <20110307232256.GA2680@joi.lan>
-	<20110307232719.GB2680@joi.lan>
-Reply-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1143752651=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20110307232719.GB2680-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <20110307232256.GA2680-OI9uyE9O0yo@public.gmane.org> (Marcin Slusarz's message of
+	"Tue, 8 Mar 2011 00:22:56 +0100")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,203 +21,230 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 2011-03-08 at 00:27 +0100, Marcin Slusarz wrote:
-> On Tue, Mar 08, 2011 at 12:22:56AM +0100, Marcin Slusarz wrote:
-> > On Tue, Mar 08, 2011 at 08:24:26AM +1000, Ben Skeggs wrote:
-> > > On Mon, 2011-03-07 at 18:18 +0000, Maarten Maathuis wrote:
-> > > > On Fri, Mar 4, 2011 at 4:49 PM, Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > > > > On Sun, Feb 13, 2011 at 09:38:04PM +0100, Marcin Slusarz wrote:
-> > > > >> Combination of locking and interchannel synchronization changes
-> > > > >> uncovered poor behaviour of nouveau_fence_wait, which on HZ=100
-> > > > >> configuration could waste up to 10 ms per call.
-> > > > >> Depending on application, it lead to 10-30% FPS regression.
-> > > > >> To fix it, shorten thread sleep time to 0.1 ms and ensure
-> > > > >> spinning happens for at least one *full* tick.
-> > > > >>
-> > > > >> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > > > >> ---
-> > > > >>  drivers/gpu/drm/nouveau/nouveau_fence.c |   10 ++++++++--
-> > > > >>  1 files changed, 8 insertions(+), 2 deletions(-)
-> > > > >>
-> > > > >> diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > >> index 221b846..75ba5e2 100644
-> > > > >> --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > >> +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > >> @@ -27,6 +27,9 @@
-> > > > >>  #include "drmP.h"
-> > > > >>  #include "drm.h"
-> > > > >>
-> > > > >> +#include <linux/ktime.h>
-> > > > >> +#include <linux/hrtimer.h>
-> > > > >> +
-> > > > >>  #include "nouveau_drv.h"
-> > > > >>  #include "nouveau_ramht.h"
-> > > > >>  #include "nouveau_dma.h"
-> > > > >> @@ -230,9 +233,12 @@ int
-> > > > >>  __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool intr)
-> > > > >>  {
-> > > > >>       unsigned long timeout = jiffies + (3 * DRM_HZ);
-> > > > >> -     unsigned long sleep_time = jiffies + 1;
-> > > > >> +     unsigned long sleep_time = jiffies + 2;
-> > > > >> +     ktime_t t;
-> > > > >>       int ret = 0;
-> > > > >>
-> > > > >> +     t = ktime_set(0, NSEC_PER_MSEC / 10);
-> > > > >> +
-> > > > >>       while (1) {
-> > > > >>               if (__nouveau_fence_signalled(sync_obj, sync_arg))
-> > > > >>                       break;
-> > > > >> @@ -245,7 +251,7 @@ __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool intr)
-> > > > >>               __set_current_state(intr ? TASK_INTERRUPTIBLE
-> > > > >>                       : TASK_UNINTERRUPTIBLE);
-> > > > >>               if (lazy && time_after_eq(jiffies, sleep_time))
-> > > > >> -                     schedule_timeout(1);
-> > > > >> +                     schedule_hrtimeout(&t, HRTIMER_MODE_REL);
-> > > > >>
-> > > > >>               if (intr && signal_pending(current)) {
-> > > > >>                       ret = -ERESTARTSYS;
-> > > > >> --
-> > > > >> 1.7.4.rc3
-> > > > >>
-> > > > >
-> > > > > ping again
-> > > > > _______________________________________________
-> > > > > Nouveau mailing list
-> > > > > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > > > > http://lists.freedesktop.org/mailman/listinfo/nouveau
-> > > > >
-> > > > 
-> > > > This looks ok to me, but I would like to get Ben Skeggs ok on this one
-> > > > as well. So i've CC'ed him, hopefully he'll notice :-)
-> > > Ah sorry, I have actually looked at this quite a while back but came to
-> > > no solid conclusion.
-> > > 
-> > > While yes, I did see some minor performance improvement from it, I also
-> > > notice that now we once again get 100% CPU usage while an app is waiting
-> > > for the GPU a lot..
-> > 
-> > It's not "minor" performance improvement:
-> > 
-> > without this patch (FPS):
-> > nexuiz:    53
-> > wop:       181
-> > tremulous: 157
-> > wsw0.5:    89
-> > glxgears:  730
-> > 
-> > with:
-> > nexuiz:    63   (+18%)
-> > wop:       248  (+37%)
-> > tremulous: 156  (-0.6%)
-> > wsw0.5:    91   (+2%)
-> > glxgears:  1054 (+44%)
-> > 
-> > 
-> > Ok, so you are worried about CPU usage... Let's see what will happen if
-> > I remove spinning added by "drm/nouveau: Spin for a bit in 
-> > nouveau_fence_wait() before yielding the CPU".
-> > 
-> > reduced version (attached):
-> > nexuiz:    62
-> > wop:       248
-> > trem:      157
-> > wsw0.5:    90
-> > glxgears:  1055
-> > 
-> > Good enough?
-> 
-> Just for comparison:
-> kernel 2.6.37 + pre nvc0fied mesa had:
-> nexuiz:    34
-> wop:       139
-> tremulous: 82
-> wsw0.5:    53
-> glxgears:  1056
-Here's what I see on NVA8 with nv50fiednvc0 (mesa master and nouveau
-master), with all cpu cores set to "performance":
+--===============1143752651==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-Before:
-gears: 998 (25.0% cpu)
-OA: 197.2
-nexuiz: 34.81
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-After:
-gears: 980 (21.0% cpu)
-OA: 195.7
-nexuiz: 35.30
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I also tried with all cores set to "powersave" for comparison.  It's
-pretty much the same deal there with little to no difference between
-before/after, *except* glxgears gains 100fps here.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
 
-Ben.
+> On Tue, Mar 08, 2011 at 08:24:26AM +1000, Ben Skeggs wrote:
+>> On Mon, 2011-03-07 at 18:18 +0000, Maarten Maathuis wrote:
+>> > On Fri, Mar 4, 2011 at 4:49 PM, Marcin Slusarz <marcin.slusarz@gmail.c=
+om> wrote:
+>> > > On Sun, Feb 13, 2011 at 09:38:04PM +0100, Marcin Slusarz wrote:
+>> > >> Combination of locking and interchannel synchronization changes
+>> > >> uncovered poor behaviour of nouveau_fence_wait, which on HZ=3D100
+>> > >> configuration could waste up to 10 ms per call.
+>> > >> Depending on application, it lead to 10-30% FPS regression.
+>> > >> To fix it, shorten thread sleep time to 0.1 ms and ensure
+>> > >> spinning happens for at least one *full* tick.
+>> > >>
+>> > >> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>> > >> ---
+>> > >>  drivers/gpu/drm/nouveau/nouveau_fence.c |   10 ++++++++--
+>> > >>  1 files changed, 8 insertions(+), 2 deletions(-)
+>> > >>
+>> > >> diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/=
+drm/nouveau/nouveau_fence.c
+>> > >> index 221b846..75ba5e2 100644
+>> > >> --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
+>> > >> +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+>> > >> @@ -27,6 +27,9 @@
+>> > >>  #include "drmP.h"
+>> > >>  #include "drm.h"
+>> > >>
+>> > >> +#include <linux/ktime.h>
+>> > >> +#include <linux/hrtimer.h>
+>> > >> +
+>> > >>  #include "nouveau_drv.h"
+>> > >>  #include "nouveau_ramht.h"
+>> > >>  #include "nouveau_dma.h"
+>> > >> @@ -230,9 +233,12 @@ int
+>> > >>  __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bo=
+ol intr)
+>> > >>  {
+>> > >>       unsigned long timeout =3D jiffies + (3 * DRM_HZ);
+>> > >> -     unsigned long sleep_time =3D jiffies + 1;
+>> > >> +     unsigned long sleep_time =3D jiffies + 2;
+>> > >> +     ktime_t t;
+>> > >>       int ret =3D 0;
+>> > >>
+>> > >> +     t =3D ktime_set(0, NSEC_PER_MSEC / 10);
+>> > >> +
+>> > >>       while (1) {
+>> > >>               if (__nouveau_fence_signalled(sync_obj, sync_arg))
+>> > >>                       break;
+>> > >> @@ -245,7 +251,7 @@ __nouveau_fence_wait(void *sync_obj, void *sync=
+_arg, bool lazy, bool intr)
+>> > >>               __set_current_state(intr ? TASK_INTERRUPTIBLE
+>> > >>                       : TASK_UNINTERRUPTIBLE);
+>> > >>               if (lazy && time_after_eq(jiffies, sleep_time))
+>> > >> -                     schedule_timeout(1);
+>> > >> +                     schedule_hrtimeout(&t, HRTIMER_MODE_REL);
+>> > >>
+>> > >>               if (intr && signal_pending(current)) {
+>> > >>                       ret =3D -ERESTARTSYS;
+>> > >> --
+>> > >> 1.7.4.rc3
+>> > >>
+>> > >
+>> > > ping again
+>> > > _______________________________________________
+>> > > Nouveau mailing list
+>> > > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> > > http://lists.freedesktop.org/mailman/listinfo/nouveau
+>> > >
+>> >=20
+>> > This looks ok to me, but I would like to get Ben Skeggs ok on this one
+>> > as well. So i've CC'ed him, hopefully he'll notice :-)
+>> Ah sorry, I have actually looked at this quite a while back but came to
+>> no solid conclusion.
+>>=20
+>> While yes, I did see some minor performance improvement from it, I also
+>> notice that now we once again get 100% CPU usage while an app is waiting
+>> for the GPU a lot..
+>
+> It's not "minor" performance improvement:
+>
+> without this patch (FPS):
+> nexuiz:    53
+> wop:       181
+> tremulous: 157
+> wsw0.5:    89
+> glxgears:  730
+>
+> with:
+> nexuiz:    63   (+18%)
+> wop:       248  (+37%)
+> tremulous: 156  (-0.6%)
+> wsw0.5:    91   (+2%)
+> glxgears:  1054 (+44%)
+>
+>
+> Ok, so you are worried about CPU usage... Let's see what will happen if
+> I remove spinning added by "drm/nouveau: Spin for a bit in=20
+> nouveau_fence_wait() before yielding the CPU".
+>
+> reduced version (attached):
+> nexuiz:    62
+> wop:       248
+> trem:      157
+> wsw0.5:    90
+> glxgears:  1055
+>
+> Good enough?
 
-> 
-> > ---
-> > From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > Subject: [PATCH] drm/nouveau: fix __nouveau_fence_wait performance regression
-> > 
-> > Combination of locking and interchannel synchronization changes
-> > uncovered poor behaviour of nouveau_fence_wait, which on HZ=100
-> > configuration could waste up to 10 ms per call.
-> > Depending on application, it lead to 10-30% FPS regression.
-> > 
-> > To fix it, shorten thread sleep time to 0.1 ms.
-> > 
-> > Additionally, remove spinning (added by "drm/nouveau: Spin for
-> > a bit in nouveau_fence_wait() before yielding the CPU"), because
-> > it's not needed anymore.
-> > 
-> > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > ---
-> >  drivers/gpu/drm/nouveau/nouveau_fence.c |   11 ++++++++---
-> >  1 files changed, 8 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > index a244702..010243b 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > @@ -27,6 +27,9 @@
-> >  #include "drmP.h"
-> >  #include "drm.h"
-> >  
-> > +#include <linux/ktime.h>
-> > +#include <linux/hrtimer.h>
-> > +
-> >  #include "nouveau_drv.h"
-> >  #include "nouveau_ramht.h"
-> >  #include "nouveau_dma.h"
-> > @@ -229,9 +232,11 @@ int
-> >  __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool intr)
-> >  {
-> >  	unsigned long timeout = jiffies + (3 * DRM_HZ);
-> > -	unsigned long sleep_time = jiffies + 1;
-> > +	ktime_t t;
-> >  	int ret = 0;
-> >  
-> > +	t = ktime_set(0, NSEC_PER_MSEC / 10);
-> > +
-> >  	while (1) {
-> >  		if (__nouveau_fence_signalled(sync_obj, sync_arg))
-> >  			break;
-> > @@ -243,8 +248,8 @@ __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool intr)
-> >  
-> >  		__set_current_state(intr ? TASK_INTERRUPTIBLE
-> >  			: TASK_UNINTERRUPTIBLE);
-> > -		if (lazy && time_after_eq(jiffies, sleep_time))
-> > -			schedule_timeout(1);
-> > +		if (lazy)
-> > +			schedule_hrtimeout(&t, HRTIMER_MODE_REL);
-> >  
-> >  		if (intr && signal_pending(current)) {
-> >  			ret = -ERESTARTSYS;
-> > -- 
-> > 1.7.4.rc3
-> > 
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+Remember to exercise some software fallbacks as well (e.g. something
+using core fonts), software fallbacks were the main users of the
+spinning you've removed.
+
+Anyway, software fallbacks and occlusion queries are the only two places
+(that I can think of now) where we need the low latency your patch
+gives, and, as Ben already pointed out, we probably want to keep CPU
+usage at minimum in every other case.  As a middle ground, the "lazy"
+flag (or rather, a "hog" flag?) could be exposed all the way up to
+userspace, and those two cases fixed to set the flag differently.
+
+What do you think?
+
+>
+> ---
+> From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Subject: [PATCH] drm/nouveau: fix __nouveau_fence_wait performance regres=
+sion
+>
+> Combination of locking and interchannel synchronization changes
+> uncovered poor behaviour of nouveau_fence_wait, which on HZ=3D100
+> configuration could waste up to 10 ms per call.
+> Depending on application, it lead to 10-30% FPS regression.
+>
+> To fix it, shorten thread sleep time to 0.1 ms.
+>
+> Additionally, remove spinning (added by "drm/nouveau: Spin for
+> a bit in nouveau_fence_wait() before yielding the CPU"), because
+> it's not needed anymore.
+>
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_fence.c |   11 ++++++++---
+>  1 files changed, 8 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/no=
+uveau/nouveau_fence.c
+> index a244702..010243b 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+> @@ -27,6 +27,9 @@
+>  #include "drmP.h"
+>  #include "drm.h"
+>=20=20
+> +#include <linux/ktime.h>
+> +#include <linux/hrtimer.h>
+> +
+>  #include "nouveau_drv.h"
+>  #include "nouveau_ramht.h"
+>  #include "nouveau_dma.h"
+> @@ -229,9 +232,11 @@ int
+>  __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool int=
+r)
+>  {
+>  	unsigned long timeout =3D jiffies + (3 * DRM_HZ);
+> -	unsigned long sleep_time =3D jiffies + 1;
+> +	ktime_t t;
+>  	int ret =3D 0;
+>=20=20
+> +	t =3D ktime_set(0, NSEC_PER_MSEC / 10);
+> +
+>  	while (1) {
+>  		if (__nouveau_fence_signalled(sync_obj, sync_arg))
+>  			break;
+> @@ -243,8 +248,8 @@ __nouveau_fence_wait(void *sync_obj, void *sync_arg, =
+bool lazy, bool intr)
+>=20=20
+>  		__set_current_state(intr ? TASK_INTERRUPTIBLE
+>  			: TASK_UNINTERRUPTIBLE);
+> -		if (lazy && time_after_eq(jiffies, sleep_time))
+> -			schedule_timeout(1);
+> +		if (lazy)
+> +			schedule_hrtimeout(&t, HRTIMER_MODE_REL);
+>=20=20
+>  		if (intr && signal_pending(current)) {
+>  			ret =3D -ERESTARTSYS;
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iF4EAREIAAYFAk11f0oACgkQg5k4nX1Sv1sJwgD/R6b3K0uIwzveGUOpAkHm5x+m
+DDKNLKQrZA+RZTcUKdkBAIn13BW7fgLqNvAwgIIdtzIhZtPjmvh4bF12SU+FZWOe
+=nKxs
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============1143752651==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1143752651==--
