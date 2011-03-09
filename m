@@ -1,20 +1,11 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix __nouveau_fence_wait
- performance regression
-Date: Wed, 9 Mar 2011 19:04:01 +0100
-Message-ID: <20110309180401.GA2611@joi.lan>
-References: <20110213203804.GA5395@joi.lan> <20110304164905.GA2743@joi.lan>
-	<AANLkTin_jouzPDGfNnYq_BRqPzbvOW+F6jFNuc7p=p5E@mail.gmail.com>
-	<1299536668.29441.3.camel@nisroch> <20110307232256.GA2680@joi.lan>
-	<87lj0qzaut.fsf@riseup.net> <20110308121628.GA20238@joi.lan>
-	<871v2hzin7.fsf@riseup.net> <20110309001404.GA22679@joi.lan>
-	<87fwqwb3kj.fsf@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 35157] New: Black Screen while booting
+Date: Wed,  9 Mar 2011 10:50:22 -0800 (PST)
+Message-ID: <bug-35157-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <87fwqwb3kj.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,335 +15,319 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Mar 09, 2011 at 06:34:36PM +0100, Francisco Jerez wrote:
-> Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
-> 
-> > On Tue, Mar 08, 2011 at 05:22:52PM +0100, Francisco Jerez wrote:
-> >> Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
-> >> 
-> >> > On Tue, Mar 08, 2011 at 01:58:50AM +0100, Francisco Jerez wrote:
-> >> >> Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
-> >> >> 
-> >> >> > On Tue, Mar 08, 2011 at 08:24:26AM +1000, Ben Skeggs wrote:
-> >> >> >> On Mon, 2011-03-07 at 18:18 +0000, Maarten Maathuis wrote:
-> >> >> >> > On Fri, Mar 4, 2011 at 4:49 PM, Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> >> >> >> > > On Sun, Feb 13, 2011 at 09:38:04PM +0100, Marcin Slusarz wrote:
-> >> >> >> > >> Combination of locking and interchannel synchronization changes
-> >> >> >> > >> uncovered poor behaviour of nouveau_fence_wait, which on HZ=100
-> >> >> >> > >> configuration could waste up to 10 ms per call.
-> >> >> >> > >> Depending on application, it lead to 10-30% FPS regression.
-> >> >> >> > >> To fix it, shorten thread sleep time to 0.1 ms and ensure
-> >> >> >> > >> spinning happens for at least one *full* tick.
-> >> >> >> > >>
-> >> >> >> > >> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> >> >> >> > >> ---
-> >> >> >> > >>  drivers/gpu/drm/nouveau/nouveau_fence.c |   10 ++++++++--
-> >> >> >> > >>  1 files changed, 8 insertions(+), 2 deletions(-)
-> >> >> >> > >>
-> >> >> >> > >> diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> >> >> >> > >> index 221b846..75ba5e2 100644
-> >> >> >> > >> --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> >> >> >> > >> +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> >> >> >> > >> @@ -27,6 +27,9 @@
-> >> >> >> > >>  #include "drmP.h"
-> >> >> >> > >>  #include "drm.h"
-> >> >> >> > >>
-> >> >> >> > >> +#include <linux/ktime.h>
-> >> >> >> > >> +#include <linux/hrtimer.h>
-> >> >> >> > >> +
-> >> >> >> > >>  #include "nouveau_drv.h"
-> >> >> >> > >>  #include "nouveau_ramht.h"
-> >> >> >> > >>  #include "nouveau_dma.h"
-> >> >> >> > >> @@ -230,9 +233,12 @@ int
-> >> >> >> > >>  __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool intr)
-> >> >> >> > >>  {
-> >> >> >> > >>       unsigned long timeout = jiffies + (3 * DRM_HZ);
-> >> >> >> > >> -     unsigned long sleep_time = jiffies + 1;
-> >> >> >> > >> +     unsigned long sleep_time = jiffies + 2;
-> >> >> >> > >> +     ktime_t t;
-> >> >> >> > >>       int ret = 0;
-> >> >> >> > >>
-> >> >> >> > >> +     t = ktime_set(0, NSEC_PER_MSEC / 10);
-> >> >> >> > >> +
-> >> >> >> > >>       while (1) {
-> >> >> >> > >>               if (__nouveau_fence_signalled(sync_obj, sync_arg))
-> >> >> >> > >>                       break;
-> >> >> >> > >> @@ -245,7 +251,7 @@ __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool intr)
-> >> >> >> > >>               __set_current_state(intr ? TASK_INTERRUPTIBLE
-> >> >> >> > >>                       : TASK_UNINTERRUPTIBLE);
-> >> >> >> > >>               if (lazy && time_after_eq(jiffies, sleep_time))
-> >> >> >> > >> -                     schedule_timeout(1);
-> >> >> >> > >> +                     schedule_hrtimeout(&t, HRTIMER_MODE_REL);
-> >> >> >> > >>
-> >> >> >> > >>               if (intr && signal_pending(current)) {
-> >> >> >> > >>                       ret = -ERESTARTSYS;
-> >> >> >> > >> --
-> >> >> >> > >> 1.7.4.rc3
-> >> >> >> > >>
-> >> >> >> > >
-> >> >> >> > > ping again
-> >> >> >> > > _______________________________________________
-> >> >> >> > > Nouveau mailing list
-> >> >> >> > > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> >> >> >> > > http://lists.freedesktop.org/mailman/listinfo/nouveau
-> >> >> >> > >
-> >> >> >> > 
-> >> >> >> > This looks ok to me, but I would like to get Ben Skeggs ok on this one
-> >> >> >> > as well. So i've CC'ed him, hopefully he'll notice :-)
-> >> >> >> Ah sorry, I have actually looked at this quite a while back but came to
-> >> >> >> no solid conclusion.
-> >> >> >> 
-> >> >> >> While yes, I did see some minor performance improvement from it, I also
-> >> >> >> notice that now we once again get 100% CPU usage while an app is waiting
-> >> >> >> for the GPU a lot..
-> >> >> >
-> >> >> > It's not "minor" performance improvement:
-> >> >> >
-> >> >> > without this patch (FPS):
-> >> >> > nexuiz:    53
-> >> >> > wop:       181
-> >> >> > tremulous: 157
-> >> >> > wsw0.5:    89
-> >> >> > glxgears:  730
-> >> >> >
-> >> >> > with:
-> >> >> > nexuiz:    63   (+18%)
-> >> >> > wop:       248  (+37%)
-> >> >> > tremulous: 156  (-0.6%)
-> >> >> > wsw0.5:    91   (+2%)
-> >> >> > glxgears:  1054 (+44%)
-> >> >> >
-> >> >> >
-> >> >> > Ok, so you are worried about CPU usage... Let's see what will happen if
-> >> >> > I remove spinning added by "drm/nouveau: Spin for a bit in 
-> >> >> > nouveau_fence_wait() before yielding the CPU".
-> >> >> >
-> >> >> > reduced version (attached):
-> >> >> > nexuiz:    62
-> >> >> > wop:       248
-> >> >> > trem:      157
-> >> >> > wsw0.5:    90
-> >> >> > glxgears:  1055
-> >> >> >
-> >> >> > Good enough?
-> >> >> 
-> >> >> Remember to exercise some software fallbacks as well (e.g. something
-> >> >> using core fonts), software fallbacks were the main users of the
-> >> >> spinning you've removed.
-> >> >
-> >> > corefonts are pretty fast (measured "time dmesg"):
-> >> >
-> >> > without (spinning + timeout 10ms): 0.08s
-> >> > with (spinning + hrtimeout 0.1ms): 0.08s
-> >> > reduced (no spinning + hrtimeout 0.1ms): 0.25s
-> >> > old (no spinning + timeout 10ms): 13s
-> >> >
-> >> Ah, so it's still trading one performance regression for another, and
-> >> you could make everyone happy at the same time.
-> >> 
-> >> > So I think "no spinning + hrtimeout 0.1ms" is a reasonable compromise...
-> >> >
-> >> What's the CPU usage difference between the spinning and the no-spinning
-> >> cases? 
-> >
-> > 1 cpu set to performance mode
-> >
-> > spinning + hrtimeout 0.1ms:
-> >               FPS  usr     sys
-> > nexuiz:        63 46.60 + 52.36
-> > wop:          248 57.54 + 41.99
-> > trem:         156 92.40 +  7.30
-> > wsw0.5:        91 52.91 + 46.37
-> > glxgears:    1054 10.00 + 90.00
-> > corefonts:        42.86 + 54.29 0.08s(time)
-> >
-> > So it fills the CPU in almost 100%...
-> >
-> > no spinning + hrtimeout 0.1ms:
-> >               FPS  usr     sys
-> > nexuiz:        62 49.97 +  8.42
-> > wop:          248 58.04 + 22.04
-> > trem:         157 92.42 +  6.92
-> > wsw0.5:        90 51.69 +  4.58
-> > glxgears:    1055 11.45 + 11.05
-> > corefonts:        20.52 +  7.82 0.25s
-> >
-> > OK.
-> > So I did some more tests:
-> >
-> > no spinning + hrtimeout 0.01ms:
-> >             FPS  usr     sys
-> > nexuiz:      63 49.50 + 14.01
-> > wop:        245 57.21 + 24.66
-> > trem:       148 89.31 + 10.01
-> > wsw0.5:      91 52.92 + 11.10
-> > glxgears:  1055 10.61 + 22.34
-> > corefonts:      38.24 + 27.45 0.09s
-> >
-> > tremulous FPS is down, sys CPU usage is down, but not so good as in
-> > "no spinning, 0.1ms", corefonts are almost as fast
-> >
-> > ---
-> >
-> > no spinning + hrtimeout 0.01ms increasing by factor x2, max at 1ms:
-> > nexuiz:      62 48.38 +  8.00
-> > wop:        245 56.55 + 19.92
-> > trem:       149 90.46 +  8.86
-> > wsw0.5:      92 52.10 +  4.56
-> > glxgears:  1026 11.68 +  9.87
-> > corefonts:      46.60 + 25.24 0.09s
-> >
-> > almost like "no spinning + 0.01ms", but glxgears FPS is down
-> >
-> > ---
-> >
-> > no spinning + hrtimeout 0.001ms:
-> > nexuiz:      63 52.04 + 16.13
-> > wop:        246 58.94 + 22.59
-> > trem:       155 92.73 +  6.38
-> > wsw0.5:      91 54.39 + 16.88
-> > glxgears:  1055 10.62 + 30.55
-> > corefonts:      53.01 + 28.92 0.07s
-> >
-> > tremulous FPS is back, sys CPU usage is sometimes bigger, sometimes smaller,
-> > corefonts are fast, but take a lot of CPU time
-> >
-> > ---
-> >
-> > no spinning + hrtimeout 0.001ms increasing by factor x2, max at 1ms
-> > nexuiz:      62 49.46 +  6.70
-> > wop:        247 58.80 + 17.95
-> > trem:       156 92.16 +  7.28
-> > wsw0.5:      91 52.79 +  4.03
-> > glxgears:  1050 11.44 + 12.54
-> > corefonts:      36.05 + 32.56 0.07s
-> >
-> > glxgears FPS is a bit down, sys CPU times are as good (or better) as in
-> > "no spinning, 0.1ms", corefonts are fast
-> >
-> > this is the best, patch below
-> >
-> >> It's likely to be negligible for most applications aside from the
-> >> ones using queries and fallbacks intensively, and in those two cases I
-> >> agree with you that optimizing for low CPU usage doesn't make a huge lot
-> >> of sense, getting low latency is already hard enough.
-> >> 
-> >> If I'm wrong and the initial spinning affects the overall CPU usage
-> >> negatively, then we have two different use cases with different latency
-> >> requirements and the DRM API needs to be fixed (though, there're maybe
-> >> other solutions to explore first, like, start with a really small
-> >> hrtimeout and increase it exponentially up to some cut-off value).
-> >> 
-> >> > BTW, old behaviour (no spinning + timeout 10ms) affects other workloads too
-> >> > nexuiz:      50
-> >> > wop:        153
-> >> > tremulous:  155
-> >> > wsw0.5:      89
-> >> > glxgears:   100 (!)
-> >> >
-> >> >> Anyway, software fallbacks and occlusion queries are the only two places
-> >> >> (that I can think of now) where we need the low latency your patch
-> >> >> gives, and, as Ben already pointed out, we probably want to keep CPU
-> >> >> usage at minimum in every other case.  As a middle ground, the "lazy"
-> >> >> flag (or rather, a "hog" flag?) could be exposed all the way up to
-> >> >> userspace, and those two cases fixed to set the flag differently.
-> >> >> 
-> >> >> What do you think?
-> >> >
-> >> > I'm not sure. I think optimizing for low CPU usage is not the best what
-> >> > we can do right now. 3D performance is still too low behind blob.
-> >> > Let's fix 3D perf first and think about CPU usage later.
-> >> >
-> >> 
-> >> IMHO, switching to lazy waits was the right choice at this stage, it
-> >> doesn't make optimizing for "3D performance" any harder, quite the
-> >> opposite, it helps to pinpoint some poorly-pipelining programming
-> >> practices by making the already existing performance problem more
-> >> obvious.
-> >> 
-> >> >> >
-> >> >> > ---
-> >> >> > From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> >> >> > Subject: [PATCH] drm/nouveau: fix __nouveau_fence_wait performance regression
-> >> >> >
-> >> >> > Combination of locking and interchannel synchronization changes
-> >> >> > uncovered poor behaviour of nouveau_fence_wait, which on HZ=100
-> >> >> > configuration could waste up to 10 ms per call.
-> >> >> > Depending on application, it lead to 10-30% FPS regression.
-> >> >> >
-> >> >> > To fix it, shorten thread sleep time to 0.1 ms.
-> >> >> >
-> >> >> > Additionally, remove spinning (added by "drm/nouveau: Spin for
-> >> >> > a bit in nouveau_fence_wait() before yielding the CPU"), because
-> >> >> > it's not needed anymore.
-> >> >> >
-> >> >> > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> >> >> > ---
-> >> >> >  drivers/gpu/drm/nouveau/nouveau_fence.c |   11 ++++++++---
-> >> >> >  1 files changed, 8 insertions(+), 3 deletions(-)
-> >> >> >
-> >> >> > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> >> >> > index a244702..010243b 100644
-> >> >> > --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> >> >> > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> >> >> > @@ -27,6 +27,9 @@
-> >> >> >  #include "drmP.h"
-> >> >> >  #include "drm.h"
-> >> >> >  
-> >> >> > +#include <linux/ktime.h>
-> >> >> > +#include <linux/hrtimer.h>
-> >> >> > +
-> >> >> >  #include "nouveau_drv.h"
-> >> >> >  #include "nouveau_ramht.h"
-> >> >> >  #include "nouveau_dma.h"
-> >> >> > @@ -229,9 +232,11 @@ int
-> >> >> >  __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool intr)
-> >> >> >  {
-> >> >> >  	unsigned long timeout = jiffies + (3 * DRM_HZ);
-> >> >> > -	unsigned long sleep_time = jiffies + 1;
-> >> >> > +	ktime_t t;
-> >> >> >  	int ret = 0;
-> >> >> >  
-> >> >> > +	t = ktime_set(0, NSEC_PER_MSEC / 10);
-> >> >> > +
-> >> >> >  	while (1) {
-> >> >> >  		if (__nouveau_fence_signalled(sync_obj, sync_arg))
-> >> >> >  			break;
-> >> >> > @@ -243,8 +248,8 @@ __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool intr)
-> >> >> >  
-> >> >> >  		__set_current_state(intr ? TASK_INTERRUPTIBLE
-> >> >> >  			: TASK_UNINTERRUPTIBLE);
-> >> >> > -		if (lazy && time_after_eq(jiffies, sleep_time))
-> >> >> > -			schedule_timeout(1);
-> >> >> > +		if (lazy)
-> >> >> > +			schedule_hrtimeout(&t, HRTIMER_MODE_REL);
-> >> >> >  
-> >> >> >  		if (intr && signal_pending(current)) {
-> >> >> >  			ret = -ERESTARTSYS;
-> >
-> >
-> >
-> > ---
-> > From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > Subject: [PATCH] drm/nouveau: fix __nouveau_fence_wait performance
-> >
-> > Commit fcccab2e4eb8d579837481054cc2cb28eea0baef
-> > ("drm/nouveau: Use lazy fence waits when doing software interchannel sync")
-> > turned on lazy waits. Unfortunately __nouveau_fence_wait was not optimized
-> > for this case and on HZ=100 kernel wasted up to 10 ms per call.
-> >
-> That patch isn't the culprit of your problem, you're unlikely to be
-> hitting the failure path of nouveau_fence_sync(), and that's the only
-> thing I changed with that commit. Lazy waits were enabled earlier by
-> 21e86c1c8a844bf978f8fc431a59c9f5a578812d.
-> 
-> That aside it looks good, I've pushed it after fixing the commit
-> description. Thank you.
+https://bugs.freedesktop.org/show_bug.cgi?id=35157
 
-I wasn't sure about this commit. Thanks for fixing it.
+           Summary: Black Screen while booting
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: limaunion-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Marcin
+
+Hi! I'm getting a black screen _inmediately_after_booting_ the Linux kernel,
+being unable to access any tty console nor X11 (of course ssh is ok).
+
+I'm running a self-compiled kernel from vanilla (2.6.37.2) and am trying to
+switch from the NVIDIA propietary driver to nouveau.
+
+I've followed the following instructions in order to enable the required kernel
+settings:
+http://en.gentoo-wiki.com/wiki/Nouveau (the real distro I'm using is Debian
+testing)
+
+I'm not sure if this is a bug or not but let me know any other information
+required.
+Thanks in advance.
+
+
+$ cat dmesg | egrep -i '(nouveau|drm)'
+[    0.000000] Linux version 2.6.37.2.nouveau (limaunion@debian1) (gcc version
+4.4.5 (Debian 4.4.5-12) ) #7 SMP Fri Mar 4 22:35:28 2011
+[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-2.6.37.2.nouveau
+root=/dev/sda1 ro vga=775
+[    0.000000] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-2.6.37.2.nouveau
+root=/dev/sda1 ro vga=775
+[    3.633513] [drm] Initialized drm 1.1.0 20060810
+[    3.808087] usb usb1: Manufacturer: Linux 2.6.37.2.nouveau ehci_hcd
+[    3.921663] nouveau 0000:02:00.0: PCI INT A -> Link[APC8] -> GSI 16 (level,
+low) -> IRQ 16
+[    3.921671] nouveau 0000:02:00.0: setting latency timer to 64
+[    3.924642] [drm] nouveau 0000:02:00.0: Detected an NV40 generation card
+(0x044a00a2)
+[    3.925947] [drm] nouveau 0000:02:00.0: Attempting to load BIOS image from
+PRAMIN
+[    4.005997] [drm] nouveau 0000:02:00.0: ... appears to be valid
+[    4.006014] [drm] nouveau 0000:02:00.0: BIT BIOS found
+[    4.006019] [drm] nouveau 0000:02:00.0: Bios version 05.44.02.67
+[    4.006024] [drm] nouveau 0000:02:00.0: TMDS table version 1.1
+[    4.006028] [drm] nouveau 0000:02:00.0: BIT table 'd' not found
+[    4.006033] [drm] nouveau 0000:02:00.0: Found Display Configuration Block
+version 3.0
+[    4.006039] [drm] nouveau 0000:02:00.0: Raw DCB entry 0: 01000300 00000028
+[    4.006044] [drm] nouveau 0000:02:00.0: Raw DCB entry 1: 02011310 00000028
+[    4.006048] [drm] nouveau 0000:02:00.0: Raw DCB entry 2: 01011312 00000000
+[    4.006052] [drm] nouveau 0000:02:00.0: Raw DCB entry 3: 020223f1 00c0c080
+[    4.006058] [drm] nouveau 0000:02:00.0: DCB connector table: VHER 0x30 5 7 2
+[    4.006063] [drm] nouveau 0000:02:00.0:   0: 0x00000000: type 0x00 idx 0 tag
+0xff
+[    4.006068] [drm] nouveau 0000:02:00.0:   1: 0x00002130: type 0x30 idx 1 tag
+0x08
+[    4.006073] [drm] nouveau 0000:02:00.0:   2: 0x00000210: type 0x10 idx 2 tag
+0xff
+[    4.006078] [drm] nouveau 0000:02:00.0:   3: 0x00000211: type 0x11 idx 3 tag
+0xff
+[    4.006083] [drm] nouveau 0000:02:00.0:   4: 0x00000213: type 0x13 idx 4 tag
+0xff
+[    4.006093] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 0 at offset
+0xDCEA
+[    4.006477] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 1 at offset
+0xE04F
+[    4.026225] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 2 at offset
+0xE589
+[    4.026243] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 3 at offset
+0xE6DE
+[    4.028135] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 4 at offset
+0xE888
+[    4.047489] [drm] nouveau 0000:02:00.0: mem timing table length unknown: 14
+[    4.047495] [drm] nouveau 0000:02:00.0: 1 available performance level(s)
+[    4.047501] [drm] nouveau 0000:02:00.0: 0: memory 532MHz core 350MHz
+fanspeed 100%
+[    4.047512] [drm] nouveau 0000:02:00.0: c: memory 401MHz core 200MHz
+[    4.047520] [drm] nouveau 0000:02:00.0: Detected 256MiB VRAM
+[    4.049196] [drm] nouveau 0000:02:00.0: 64 MiB GART (aperture)
+[    4.051165] [drm] nouveau 0000:02:00.0: Allocating FIFO number 0
+[    4.051564] [drm] nouveau 0000:02:00.0: nouveau_channel_alloc: initialised
+FIFO 0
+[    4.051576] [drm] nouveau 0000:02:00.0: Setting dpms mode 3 on vga encoder
+(output 0)
+[    4.051582] [drm] nouveau 0000:02:00.0: Setting dpms mode 3 on vga encoder
+(output 1)
+[    4.051587] [drm] nouveau 0000:02:00.0: Setting dpms mode 3 on tmds encoder
+(output 2)
+[    4.051593] [drm] nouveau 0000:02:00.0: Setting dpms mode 3 on TV encoder
+(output 3)
+[    4.208627] [drm] nouveau 0000:02:00.0: allocated 1680x1050 fb: 0x49000, bo
+ffff88007ae81c00
+[    4.208694] fb0: nouveaufb frame buffer device
+[    4.208698] drm: registered panic notifier
+[    4.208705] [drm] Initialized nouveau 0.0.16 20090420 for 0000:02:00.0 on
+minor 0
+[    4.488065] usb usb2: Manufacturer: Linux 2.6.37.2.nouveau ohci_hcd
+
+
+$ cat lsmod.out.txt | egrep '(drm|nouveau)'
+nouveau               464294  0
+ttm                    42177  1 nouveau
+drm_kms_helper         21691  1 nouveau
+drm                   141427  3 nouveau,ttm,drm_kms_helper
+fb                     30953  2 nouveau,drm_kms_helper
+cfbcopyarea             2857  1 nouveau
+i2c_algo_bit            4103  2 nouveau,bttv
+cfbimgblt               1897  1 nouveau
+button                  4522  1 nouveau
+i2c_core               15872  20
+tuner,tea5767,tda8290,tda18271,tda827x,tda9887,tuner_simple,tea5761,tvaudio,tda7432,msp3400,nouveau,bttv,drm_kms_helper,v4l2_common,videodev,drm,i2c_algo_bit,tveeprom,i2c_nforce2
+cfbfillrect             2917  1 nouveau
+
+
+$ cat Xorg.0.log
+X.Org X Server 1.7.7
+Release Date: 2010-05-04
+X Protocol Version 11, Revision 0
+Build Operating System: Linux 2.6.32-5-amd64 x86_64 Debian
+Current Operating System: Linux debian1 2.6.37.2.nouveau #7 SMP Fri Mar 4
+22:35:28 ART 2011 x86_64
+Kernel command line: BOOT_IMAGE=/boot/vmlinuz-2.6.37.2.nouveau root=/dev/sda1
+ro vga=775
+Build Date: 12 January 2011  02:59:50AM
+xorg-server 2:1.7.7-11 (Cyril Brulebois <kibi-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org>)
+Current version of pixman: 0.16.4
+        Before reporting problems, check http://wiki.x.org
+        to make sure that you have the latest version.
+Markers: (--) probed, (**) from config file, (==) default setting,
+        (++) from command line, (!!) notice, (II) informational,
+        (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: "/var/log/Xorg.0.log", Time: Fri Mar  4 22:37:43 2011
+(==) Using config file: "/etc/X11/xorg.conf"
+(==) Using system config directory "/usr/share/X11/xorg.conf.d"
+(==) No Layout section.  Using the first Screen section.
+(==) No screen section available. Using defaults.
+(**) |-->Screen "Default Screen Section" (0)
+(**) |   |-->Monitor "<default monitor>"
+(==) No device specified for screen "Default Screen Section".
+        Using the first device section listed.
+(**) |   |-->Device "devname"
+(==) No monitor specified for screen "Default Screen Section".
+        Using a default monitor configuration.
+(==) Automatically adding devices
+(==) Automatically enabling devices
+(WW) The directory "/usr/share/fonts/X11/cyrillic" does not exist.
+        Entry deleted from font path.
+(==) FontPath set to:
+        /usr/share/fonts/X11/misc,
+        /usr/share/fonts/X11/100dpi/:unscaled,
+        /usr/share/fonts/X11/75dpi/:unscaled,
+        /usr/share/fonts/X11/Type1,
+        /usr/share/fonts/X11/100dpi,
+        /usr/share/fonts/X11/75dpi,
+        /var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType,
+        built-ins
+(==) ModulePath set to "/usr/lib/xorg/modules"
+(==) |-->Input Device "Generic Keyboard"
+(==) No Layout section. Using the first core keyboard device.
+(II) The server relies on udev to provide the list of input devices.
+        If no devices become available, reconfigure udev or disable
+AutoAddDevices.
+(WW) AllowEmptyInput is on, devices using drivers 'kbd', 'mouse' or 'vmmouse'
+will be disabled.
+(WW) Disabling Generic Keyboard
+(II) Loader magic: 0x7c8a00
+(II) Module ABI versions:
+        X.Org ANSI C Emulation: 0.4
+        X.Org Video Driver: 6.0
+        X.Org XInput driver : 7.0
+        X.Org Server Extension : 2.0
+(++) using VT number 7
+(--) PCI: (0:1:7:0) 109e:036e:0000:0000 Brooktree Corporation Bt878 Video
+Capture rev 17, Mem @ 0xfdfff000/4096
+(--) PCI:*(0:2:0:0) 10de:016a:1682:2234 nVidia Corporation NV44 [GeForce 7100
+GS] rev 161, Mem @ 0xfa000000/16777216, 0xd0000000/268435456,
+0xfb000000/16777216, BIOS @ 0x????????/131072
+(II) Open ACPI successful (/var/run/acpid.socket)
+(II) LoadModule: "extmod"
+(II) Loading /usr/lib/xorg/modules/extensions/libextmod.so
+(II) Module extmod: vendor="X.Org Foundation"
+        compiled for 1.7.7, module version = 1.0.0
+        Module class: X.Org Server Extension
+        ABI class: X.Org Server Extension, version 2.0
+(II) Loading extension SELinux
+(II) Loading extension MIT-SCREEN-SAVER
+(II) Loading extension XFree86-VidModeExtension
+(II) Loading extension XFree86-DGA
+(II) Loading extension DPMS
+(II) Loading extension XVideo
+(II) Loading extension XVideo-MotionCompensation
+(II) Loading extension X-Resource
+(II) LoadModule: "dbe"
+(II) Loading /usr/lib/xorg/modules/extensions/libdbe.so
+(II) Module dbe: vendor="X.Org Foundation"
+        compiled for 1.7.7, module version = 1.0.0
+        Module class: X.Org Server Extension
+        ABI class: X.Org Server Extension, version 2.0
+(II) Loading extension DOUBLE-BUFFER
+(II) LoadModule: "glx"
+(II) Loading /usr/lib/xorg/modules/extensions/libglx.so
+(II) Module glx: vendor="NVIDIA Corporation"
+        compiled for 4.0.2, module version = 1.0.0
+        Module class: X.Org Server Extension
+(II) NVIDIA GLX Module  260.19.36  Tue Jan 18 17:12:12 PST 2011
+(II) Loading extension GLX
+(II) LoadModule: "record"
+(II) Loading /usr/lib/xorg/modules/extensions/librecord.so
+(II) Module record: vendor="X.Org Foundation"
+        compiled for 1.7.7, module version = 1.13.0
+        Module class: X.Org Server Extension
+        ABI class: X.Org Server Extension, version 2.0
+(II) Loading extension RECORD
+(II) LoadModule: "dri"
+(II) Loading /usr/lib/xorg/modules/extensions/libdri.so
+(II) Module dri: vendor="X.Org Foundation"
+        compiled for 1.7.7, module version = 1.0.0
+        ABI class: X.Org Server Extension, version 2.0
+(II) Loading extension XFree86-DRI
+(II) LoadModule: "dri2"
+(II) Loading /usr/lib/xorg/modules/extensions/libdri2.so
+(II) Module dri2: vendor="X.Org Foundation"
+        compiled for 1.7.7, module version = 1.1.0
+        ABI class: X.Org Server Extension, version 2.0
+(II) Loading extension DRI2
+(II) LoadModule: "nouveau"
+(II) Loading /usr/lib/xorg/modules/drivers/nouveau_drv.so
+(II) Module nouveau: vendor="X.Org Foundation"
+        compiled for 1.7.7, module version = 0.0.15
+        Module class: X.Org Video Driver
+        ABI class: X.Org Video Driver, version 6.0
+(II) NOUVEAU driver Date:   Tue Mar 16 13:08:37 2010 +1000
+(II) NOUVEAU driver for NVIDIA chipset families :
+        RIVA TNT    (NV04)
+        RIVA TNT2   (NV05)
+        GeForce 256 (NV10)
+        GeForce 2   (NV11, NV15)
+        GeForce 4MX (NV17, NV18)
+        GeForce 3   (NV20)
+        GeForce 4Ti (NV25, NV28)
+        GeForce FX  (NV3x)
+        GeForce 6   (NV4x)
+        GeForce 7   (G7x)
+        GeForce 8   (G8x)
+(II) Primary Device is: PCI 02@00:00:0
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenByBusid: Searching for BusID pci:0000:02:00.0
+drmOpenDevice: node name is /dev/dri/card0
+drmOpenDevice: open result is 8, (OK)
+drmOpenByBusid: drmOpenMinor returns 8
+drmOpenByBusid: drmGetBusid reports pci:0000:02:00.0
+(EE) [drm] failed to open device
+(EE) No devices detected.
+
+Fatal server error:
+no screens found
+
+Please consult the The X.Org Foundation support
+         at http://wiki.x.org
+ for help.
+Please also check the log file at "/var/log/Xorg.0.log" for additional
+information.
+
+$ lspci -nn
+00:00.0 RAM memory [0500]: nVidia Corporation MCP61 Memory Controller
+[10de:03ea] (rev a1)
+00:01.0 ISA bridge [0601]: nVidia Corporation MCP61 LPC Bridge [10de:03e0] (rev
+a2)
+00:01.1 SMBus [0c05]: nVidia Corporation MCP61 SMBus [10de:03eb] (rev a2)
+00:01.2 RAM memory [0500]: nVidia Corporation MCP61 Memory Controller
+[10de:03f5] (rev a2)
+00:02.0 USB Controller [0c03]: nVidia Corporation MCP61 USB Controller
+[10de:03f1] (rev a3)
+00:02.1 USB Controller [0c03]: nVidia Corporation MCP61 USB Controller
+[10de:03f2] (rev a3)
+00:04.0 PCI bridge [0604]: nVidia Corporation MCP61 PCI bridge [10de:03f3] (rev
+a1)
+00:05.0 Audio device [0403]: nVidia Corporation MCP61 High Definition Audio
+[10de:03f0] (rev a2)
+00:06.0 IDE interface [0101]: nVidia Corporation MCP61 IDE [10de:03ec] (rev a2)
+00:07.0 Bridge [0680]: nVidia Corporation MCP61 Ethernet [10de:03ef] (rev a2)
+00:08.0 IDE interface [0101]: nVidia Corporation MCP61 SATA Controller
+[10de:03f6] (rev a2)
+00:09.0 PCI bridge [0604]: nVidia Corporation MCP61 PCI Express bridge
+[10de:03e8] (rev a2)
+00:18.0 Host bridge [0600]: Advanced Micro Devices [AMD] K8 [Athlon64/Opteron]
+HyperTransport Technology Configuration [1022:1100]
+00:18.1 Host bridge [0600]: Advanced Micro Devices [AMD] K8 [Athlon64/Opteron]
+Address Map [1022:1101]
+00:18.2 Host bridge [0600]: Advanced Micro Devices [AMD] K8 [Athlon64/Opteron]
+DRAM Controller [1022:1102]
+00:18.3 Host bridge [0600]: Advanced Micro Devices [AMD] K8 [Athlon64/Opteron]
+Miscellaneous Control [1022:1103]
+01:07.0 Multimedia video controller [0400]: Brooktree Corporation Bt878 Video
+Capture [109e:036e] (rev 11)
+01:07.1 Multimedia controller [0480]: Brooktree Corporation Bt878 Audio Capture
+[109e:0878] (rev 11)
+02:00.0 VGA compatible controller [0300]: nVidia Corporation NV44 [GeForce 7100
+GS] [10de:016a] (rev a1)
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
