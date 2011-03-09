@@ -1,11 +1,13 @@
-From: Nikolaus Rath <Nikolaus-BTH8mxji4b0@public.gmane.org>
-Subject: Getting bus address of GPU memory
-Date: Wed, 09 Mar 2011 14:18:27 -0500
-Message-ID: <8739mwcdbw.fsf@inspiron.ap.columbia.edu>
+From: "Emil Velikov" <emil.velikov-/E1597aS9LT10XsdtD+oqA@public.gmane.org>
+Subject: Re: Problem setting refresh rate on 8400GS
+Date: Wed, 09 Mar 2011 19:27:27 -0000
+Message-ID: <op.vr3cb0lntkuz1w@emo>
+References: <AANLkTinVNbeYDo_g=4EYVt0BJ=4Cf6SJ02dPmUvw860w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <AANLkTinVNbeYDo_g=4EYVt0BJ=4Cf6SJ02dPmUvw860w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,41 +17,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Donald Jenkins <dj.jankins-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgpUaGlzIGlzbid0IGRpcmVjdGx5IG5vdXZlYXUgcmVsYXRlZCwgYnV0IHNpbmNlIEkg
-d2FzIHdlbGNvbWUgb24gdGhlIElSQwpjaGFubmVsIEkgYXNzdW1lIHRoYXQgSSBtYXkgcG9zdCBt
-eSBxdWVzdGlvbiBvbiB0aGUgTUwgYXMgd2VsbC4KCldlIGFyZSB0cnlpbmcgdG8gdXNlIGFuIE5W
-aWRpYSBUZXNsYSBjYXJkIGZvciBoaWdobHkgcGFyYWxsZWwgcmVhbCB0aW1lCmNvbXB1dGF0aW9u
-cy4gT3VyIHByb2JsZW0gaXMgdG8gZ2V0IHRoZSBkYXRhIGZyb20gYSBjdXN0b20gUENJZSBkZXZp
-Y2UKaW50byB0aGUgR1BVIGZhc3QgZW5vdWdoIChhbmQgYmFjaykuIFdlIG5lZWQgdG8gdHJhbnNm
-ZXIgfjIwMCBieXRlcwpldmVyeSB+MTB1cywgc28gdGhlIGxpbWl0aW5nIGZhY3RvciBpcyBsYXRl
-bmN5IHJhdGhlciB0aGFuIGJhbmR3aWR0aC4KClNvIGZhciwgd2UgaGF2ZSB0cmFuc2ZlcnJlZCB0
-aGUgZGF0YSB2aWEgdGhlIGhvc3QgUkFNLCBidXQgSSBhbSB0cnlpbmcKdG8gZmluZCBhIHdheSB0
-byBkbyBkaXJlY3QgcGVlci10by1wZWVyIERNQSB0cmFuc2Zlci4gVGhlIFRlc2xhIGNhcmQKc3Vw
-cG9ydHMgcGVlci10by1wZWVyIHRyYW5zZmVycyB0byBvdGhlciBHUFVzLCBzbyBpbiBwcmluY2lw
-bGUgdGhpcwpzaG91bGQgYmUgcG9zc2libGUuCgpNeSBpZGVhIChidXQgSSdtIGhhcHB5IHRvIGhl
-YXIgb3RoZXJzIGFzIHdlbGwpIGlzIHRvIGRldGVybWluZSB0aGUgYnVzCmFkZHJlc3Mgb2Ygc29t
-ZSBHUFUgbWVtb3J5IGxvY2F0aW9uLCBhbmQgdGhlbiBsZXQgdGhlIG90aGVyIFBDSWUgY2FyZApw
-dXNoIGFuZCBwdWxsIHRoZSBkYXRhIGFzIG5lZWRlZC4KCkhvd2V2ZXIsIEkgYW0gbm90IHN1cmUg
-aG93IHRvIGRldGVybWluZSB0aGUgYnVzIGFkZHJlc3MuIEEgYnJ1dGUgZm9yY2UKbWV0aG9kIHdv
-dWxkIGJlIHRvIHdyaXRlIGEgbWFya2VyIHN0cmluZyBzb21ld2hlcmUgaW50byBHUFUgbWVtb3J5
-IGFuZAp0aGVuIHNlYXJjaCB0aHJvdWdoIGFsbCBQQ0llIEJBUnMuIEhvd2V2ZXIsIHRoZXJlIGlz
-IGEgY2hhbmNlIHRoYXQgdGhlCm1hcmtlciBzdHJpbmcgZG9lcyBub3QgZW5kIHVwIGluIHRoZSBt
-YXBwZWQgbWVtb3J5IGFyZWEuIEknbSBjdXJyZW50bHkKdHJ5aW5nIHRvIGZpZ3VyZSB0aGF0IG91
-dCBieSBzZWFyY2hpbmcgdGhyb3VnaCB0aGUgQkFScyB3aXRoIHRoZSBDUFUKKHNlZSBvdGhlciBw
-b3N0aW5nKS4KCkluIGNhc2UgdGhhdCBmYWlsczogZG9lcyBhbnlvbmUgaGF2ZSBhIHN1Z2dlc3Rp
-b24gaG93IGVsc2Ugd2UgbWlnaHQKYWNjb21wbGlzaCB3aGF0IHdlIHdhbnQ/IElzIHRoZXJlIGEg
-d2F5IHRvIGNoYW5nZSB0aGUgbWFwcGluZyBmcm9tIEJBUnMKdG8gR1BVIG1lbW9yeT8gQ291bGQg
-b25lIG9mIHRoZSBub3V2ZWF1IGRlYnVnZ2luZyB0b29scyBiZSB1c2VkIHRvCmZpZ3VyZSBvdXQg
-aG93IHRoZSBudmlkaWEgZHJpdmVyIGRvZXMgdGhlIEdQVS10by1HUFUgdHJhbnNmZXIgYW5kIHRh
-cCBvZgp0aGUgYnVzIGFkZHJlc3M/CgoKSGFja2lzaCBzb2x1dGlvbnMgYXJlIHF1aXRlIHdlbGNv
-bWUsIHdlIGFyZSBhbHJlYWR5IHdvcmtpbmcgd2l0aCBhCnBhdGNoZWQga2VybmVsIGFueXdheSB0
-byBzaGFyZSB0aGUgcGlubmVkIGhvc3QgbWVtb3J5IGJldHdlZW4gZHJpdmVycy4KCgpCZXN0LAoK
-ICAgLU5pa29sYXVzCgotLSAKIMK7VGltZSBmbGllcyBsaWtlIGFuIGFycm93LCBmcnVpdCBmbGll
-cyBsaWtlIGEgQmFuYW5hLsKrCgogIFBHUCBmaW5nZXJwcmludDogNUI5MyA2MUY4IDRFQTIgRTI3
-OSBBQkY2ICAwMkNGIEE5QUQgQjdGOCBBRTRFIDQyNUMKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+
+   Hi Donald,
+See the comments inline
+
+On Wed, 09 Mar 2011 05:38:55 -0000, Donald Jenkins <dj.jankins-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  
+wrote:
+> Hello.
+> Having serious problems with all nvidia boards plugged on my PC, now on
+> 8400GS.
+> Xorg with 2D-only nouveau driver sets invalid preferred refresh rate  
+> 60hz on
+> SAMTRON 73v, when 75hz needed.
+
+How old is this monitor ? Did it work correctly using the blob/earlier
+  nouveau ?
+
+> output of xrandr:
+>
+> Screen 0: minimum 320 x 200, current 1280 x 1024, maximum 8192 x 8192
+> DVI-I-1 disconnected (normal left inverted right x axis y axis)
+> VGA-1 connected 1280x1024+0+0 (normal left inverted right x axis y axis)
+> 338mm x 270mm
+>    1280x1024      60.0*+   75.0
+>    1152x864       75.0
+>    1024x768       75.1     70.1     60.0
+>    832x624        74.6
+>    800x600        72.2     75.0     60.3     56.2
+>    640x480        72.8     75.0     66.7     60.0
+>    720x400        70.1
+>
+> I can *manually* set correct refresh rate using xrandr -r 75 command (for
+> example, in .xinitrc), but Xorg configuration don't recognize it at all.
+> Some full screen software games reset refresh rate back to 60hz.
+> How I can "hardcode" it in xorg.conf? I really stuck at this point.
+
+You can find how to "hardcode" the timings/refresh rate, by googling for
+  "xorg modeline".
+
+Note 1: The refresh rate change will take place AFTER Xorg is up (i.e.
+  currently there is not way to set it at boot time).
+Note 2: The generated values may or may not work. What you can try is
+  startup "Xorg --verbose 9" using the blob and it should print the refresh
+  rate/timings used. Then you can add it to xorg.conf
+
+> Thanks.
+
+P.S. Apologies for any typos
+
+Cheers
