@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35172] Nouveau crashes my gnome session
-Date: Thu, 10 Mar 2011 09:31:59 -0800 (PST)
-Message-ID: <20110310173159.44EAB13004E@annarchy.freedesktop.org>
+Date: Thu, 10 Mar 2011 09:42:30 -0800 (PST)
+Message-ID: <20110310174230.2E79D13004F@annarchy.freedesktop.org>
 References: <bug-35172-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35172
 
---- Comment #2 from LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> 2011-03-10 09:31:59 PST ---
-Created an attachment (id=44306)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44306)
-Syslog output
+--- Comment #3 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-03-10 09:42:29 PST ---
+You are using the 3D driver. We do not accept bugs for this, yet. If you are
+using distro packages please report in the appropiate bugtracker.
+
+If you are using a self compiled version try building with debug flags and see
+if you can figure out where it breaks.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
