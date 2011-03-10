@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34220] Detects Load on output and blinks screen
-	every ~30secs
-Date: Wed,  9 Mar 2011 19:59:07 -0800 (PST)
-Message-ID: <20110310035907.C791E13004F@annarchy.freedesktop.org>
-References: <bug-34220-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35135] oops on rmmod nouveau with NV46
+Date: Thu, 10 Mar 2011 01:24:58 -0800 (PST)
+Message-ID: <20110310092458.5655413000C@annarchy.freedesktop.org>
+References: <bug-35135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzQyMjAKCkd5w7Zy
-Z3kgQmFsbMOzIDxiYWxsb2d5QGZyZWVzdGFydC5odT4gY2hhbmdlZDoKCiAgICAgICAgICAgV2hh
-dCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tCiAgICAgICAgICAgICAgICAgQ0N8ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHxiYWxs
-b2d5QGZyZWVzdGFydC5odQoKLS0tIENvbW1lbnQgIzEgZnJvbSBHecO2cmd5IEJhbGzDsyA8YmFs
-bG9neUBmcmVlc3RhcnQuaHU+IDIwMTEtMDMtMDkgMTk6NTk6MDcgUFNUIC0tLQpTYW1lIGhlcmUs
-IHRoZSBzY3JlZW4gcmFuZG9tbHkgYmxpbmtzIG91dCBpbiBldmVyeSAzMC82MC85MHRo4oCmIHNl
-Y29uZHMuIChJIGFsc28KdXNlIEFyY2ggTGludXgpCgpNeSB2aWRlbyBjYXJkOgowMTowMC4wIFZH
-QSBjb21wYXRpYmxlIGNvbnRyb2xsZXI6IG5WaWRpYSBDb3Jwb3JhdGlvbiBOVjE3IFtHZUZvcmNl
-NCBNWCA0NDBdCihyZXYgYTMpCgpUaGUgZXJyb3IgbWVzc2FnZSBvbiBlYWNoIGJsaW5rIGZyb20g
-ZXZlcnl0aGluZy5sb2c6Cmtlcm5lbDogW2RybV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IEREQyBy
-ZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQprZXJuZWw6IFtkcm1dIG5vdXZlYXUgMDAw
-MDowMTowMC4wOiBMb2FkIGRldGVjdGVkIG9uIG91dHB1dCBBCgpQYWNrYWdlIHZlcnNpb25zOgpr
-ZXJuZWwyNiAyLjYuMzcuMy0xCmxpYmRybSAyLjQuMjMtMgp4Zjg2LXZpZGVvLW5vdXZlYXUgMC4w
-LjE2X2dpdDIwMTAxMjE3LTEKeG9yZy1zZXJ2ZXIgMS45LjQtMQpsaWJnbCA3LjEwLjEtMQptZXNh
-IDcuMTAuMS0xCgpJIHJlcG9ydGVkIHRoaXMgYnVnIG9uIEFyY2ggTGludXggYnVndHJhY2tlciBh
-bHNvOgpodHRwczovL2J1Z3MuYXJjaGxpbnV4Lm9yZy90YXNrLzIzMjEzCgotLSAKQ29uZmlndXJl
-IGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9
-ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0t
-LQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=35135
+
+--- Comment #2 from Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-10 01:24:58 PST ---
+Marcin, I've tested your patch and it fixes the oops, Thank you.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
