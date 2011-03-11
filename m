@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35171] x11-drivers/xf86-video-nouveau does not work
- with Quadro FX1800 on HP elitebook 8540w
-Date: Fri, 11 Mar 2011 12:34:24 -0800 (PST)
-Message-ID: <20110311203424.1DD0F13000C@annarchy.freedesktop.org>
-References: <bug-35171-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35172] Nouveau crashes my gnome session
+Date: Fri, 11 Mar 2011 13:53:00 -0800 (PST)
+Message-ID: <20110311215300.31AB413004E@annarchy.freedesktop.org>
+References: <bug-35172-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35172-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,11 +20,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35171
+https://bugs.freedesktop.org/show_bug.cgi?id=35172
 
---- Comment #1 from Jiri Pittner <jiri-hC7mc10fD15fhe3zRZoJiw@public.gmane.org> 2011-03-11 12:34:23 PST ---
-If I give up hardware acceleration, 
-with nouveau.noaccel=1 it works, also with external DVI monitor.
+LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #44306|0                           |1
+        is obsolete|                            |
+
+--- Comment #4 from LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> 2011-03-11 13:52:59 PST ---
+Created an attachment (id=44368)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44368)
+More detailed syslog
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
