@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Sun, 13 Mar 2011 08:06:18 -0700 (PDT)
-Message-ID: <20110313150618.74DCF13000C@annarchy.freedesktop.org>
+Date: Sun, 13 Mar 2011 12:06:47 -0700 (PDT)
+Message-ID: <20110313190647.8A29D13000C@annarchy.freedesktop.org>
 References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
---- Comment #2 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> 2011-03-13 08:06:18 PDT ---
-I have seen that bugreport, that was about KMS? i think i have that enabled
-(according to http://nouveau.freedesktop.org/wiki/KernelModeSetting)
+--- Comment #3 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> 2011-03-13 12:06:47 PDT ---
+Ah, now after recompile the kernel with no nouveau and then install nvidia-blob
+i get the same error as mentioned in the email at
+http://lists.freedesktop.org/archives/nouveau/2010-September/006608.html
 
-Anyway, i go install nvidia drivers and report back.
+NVRM: failed to copy vbios to system memory.
+NVRM: RmInitAdapter failed! (0x30:0xffffffff:832)
+NVRM: rm_init_adapter(0) failed
+NVRM: failed to copy vbios to system memory.
+NVRM: RmInitAdapter failed! (0x30:0xffffffff:832)
+NVRM: rm_init_adapter(0) failed
+NVRM: failed to copy vbios to system memory.
+NVRM: RmInitAdapter failed! (0x30:0xffffffff:832)
+NVRM: rm_init_adapter(0) failed
+
+looks like i got the same problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
