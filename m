@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Sun, 13 Mar 2011 03:55:09 -0700 (PDT)
-Message-ID: <20110313105509.2CB5413000C@annarchy.freedesktop.org>
+Date: Sun, 13 Mar 2011 04:32:24 -0700 (PDT)
+Message-ID: <20110313113224.28E3113004E@annarchy.freedesktop.org>
 References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
-hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> changed:
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-13 04:32:23 PDT ---
+See http://lists.freedesktop.org/archives/nouveau/2010-September/006607.html
+and http://lists.freedesktop.org/archives/nouveau/2010-September/006608.html
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #44410|application/octet-stream    |text/plain
-          mime type|                            |
+Does the NVIDIA binary driver work for you?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
