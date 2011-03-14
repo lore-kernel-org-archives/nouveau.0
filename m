@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35307] DVI display doesn't work with nouveau and
 	GeForce 9500GT
-Date: Mon, 14 Mar 2011 09:57:00 -0700 (PDT)
-Message-ID: <20110314165700.7EF9A13000C@annarchy.freedesktop.org>
+Date: Mon, 14 Mar 2011 09:59:46 -0700 (PDT)
+Message-ID: <20110314165946.B75E813004F@annarchy.freedesktop.org>
 References: <bug-35307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35307
 
---- Comment #1 from Elad Alfassa <elad-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> 2011-03-14 09:57:00 PDT ---
-Created an attachment (id=44446)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44446)
-Xorg.0.log
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-you can see that Xorg detects my monitor, and it knows that the monitor is
-connected to the DVI port.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #44445|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
