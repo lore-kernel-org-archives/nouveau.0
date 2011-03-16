@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 29766] suspend-to-ram problem on GF7600 notebook
-Date: Wed, 16 Mar 2011 12:41:42 -0700 (PDT)
-Message-ID: <20110316194142.8287013004F@annarchy.freedesktop.org>
+Date: Wed, 16 Mar 2011 12:42:32 -0700 (PDT)
+Message-ID: <20110316194233.052B813000C@annarchy.freedesktop.org>
 References: <bug-29766-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=29766
 
---- Comment #3 from Michael Tokarev <mjt-XAri/EZa3C4vJsYlp49lxw@public.gmane.org> 2011-03-16 12:41:41 PDT ---
-Created an attachment (id=44518)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44518)
-dmesg from 2.6.38 with extvga attached showing 2 successful
-suspend-to-ram/resume cycles
+--- Comment #4 from Michael Tokarev <mjt-XAri/EZa3C4vJsYlp49lxw@public.gmane.org> 2011-03-16 12:42:32 PDT ---
+Created an attachment (id=44519)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44519)
+dmesg from 2.6.38 without extvga attached, unsuccessful resume
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
