@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35344] nouveau: xinit fails with message from dmesg
-Date: Tue, 15 Mar 2011 17:04:06 -0700 (PDT)
-Message-ID: <20110316000406.9515413004F@annarchy.freedesktop.org>
+Date: Tue, 15 Mar 2011 17:04:41 -0700 (PDT)
+Message-ID: <20110316000441.BF30213004F@annarchy.freedesktop.org>
 References: <bug-35344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35344
 
---- Comment #1 from somethingsome2000-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-03-15 17:04:06 PDT ---
-Created an attachment (id=44489)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44489)
-dmesg logfile from boot
+--- Comment #2 from somethingsome2000-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-03-15 17:04:41 PDT ---
+Created an attachment (id=44490)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44490)
+xorg log file
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
