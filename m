@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35344] New: nouveau: xinit fails with message from
-	dmesg
-Date: Tue, 15 Mar 2011 17:02:15 -0700 (PDT)
-Message-ID: <bug-35344-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35344] nouveau: xinit fails with message from dmesg
+Date: Tue, 15 Mar 2011 17:04:06 -0700 (PDT)
+Message-ID: <20110316000406.9515413004F@annarchy.freedesktop.org>
+References: <bug-35344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35344
 
-           Summary: nouveau: xinit fails with message from dmesg
-           Product: xorg
-           Version: 7.4
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: blocker
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: somethingsome2000-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-This did not happen with kernel 2.6.38-rc8 but started with the 2.6.38 release
+--- Comment #1 from somethingsome2000-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-03-15 17:04:06 PDT ---
+Created an attachment (id=44489)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44489)
+dmesg logfile from boot
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
