@@ -1,14 +1,14 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/1] nv30: Fix parsing of perf table
-Date: Fri, 18 Mar 2011 22:02:06 +1000
-Message-ID: <1300449733.2258.0.camel@nisroch>
-References: <1300409184-6853-1-git-send-email-emil.l.velikov@gmail.com>
+Subject: Re: [PATCH 1/1] nv50: improve nv50_pm_clock_get()
+Date: Fri, 18 Mar 2011 22:04:09 +1000
+Message-ID: <1300449860.2258.2.camel@nisroch>
+References: <1300410948-12022-1-git-send-email-emil.l.velikov@gmail.com>
 Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1300409184-6853-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1300410948-12022-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,32 +22,44 @@ To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2011-03-18 at 00:46 +0000, Emil Velikov wrote:
-> Perf tables v 1.2 and 1.3 (seen on Geforce FX / 5) are not long enough to store
-> the voltage label/id
+On Fri, 2011-03-18 at 01:15 +0000, Emil Velikov wrote:
+> On some cards the memory and/or shader pll can be switched off/disabled
+> Check and return the linked/standart clock
 > 
 > Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > ---
->  drivers/gpu/drm/nouveau/nouveau_perf.c |    6 +++++-
->  1 files changed, 5 insertions(+), 1 deletions(-)
+>  drivers/gpu/drm/nouveau/nv50_pm.c |   13 +++++++++++++
+>  1 files changed, 13 insertions(+), 0 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c b/drivers/gpu/drm/nouveau/nouveau_perf.c
-> index ac62a1b..b09780b 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_perf.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
-> @@ -134,7 +134,11 @@ nouveau_perf_init(struct drm_device *dev)
->  		case 0x13:
->  		case 0x15:
->  			perflvl->fanspeed = entry[55];
-> -			perflvl->voltage = entry[56];
-> +/*
-> + * Table v 1.2 and 1.3 does not have big enough recordlen to store the
-> + * voltage
-> + */
-I'm not sure the comment is 100% necessary, but, it should be indented
-to the same level as the perflvl->* member settings.
+> diff --git a/drivers/gpu/drm/nouveau/nv50_pm.c b/drivers/gpu/drm/nouveau/nv50_pm.c
+> index 7dbb305..c01a64f 100644
+> --- a/drivers/gpu/drm/nouveau/nv50_pm.c
+> +++ b/drivers/gpu/drm/nouveau/nv50_pm.c
+> @@ -47,6 +47,19 @@ nv50_pm_clock_get(struct drm_device *dev, u32 id)
+>  
+>  	reg0 = nv_rd32(dev, pll.reg + 0);
+>  	reg1 = nv_rd32(dev, pll.reg + 4);
+> +
+> +	if ((reg0 & 0x80000000) == 0) {
+> +		if (id == PLL_SHADER) {
+> +			NV_INFO(dev, "Shader PLL appears to be OFF\n");
+> +			ret = nv50_pm_clock_get(dev, PLL_CORE);
+> +			if (ret > 0)
+> +				return ret*2;
+This seems somewhat OK, from what I recall seeing.  Have you seen any
+definite evidence to suggest that the shaders actually run at double the
+core clock if the PLL is "off"?
 
-> +			perflvl->voltage = (recordlen > 56) ? entry[56] : 0;
->  			perflvl->core = ROM32(entry[1]) * 10;
->  			perflvl->memory = ROM32(entry[5]) * 20;
->  			break;
+> +		} else if (id == PLL_MEMORY) {
+> +			NV_INFO(dev, "Memory PLL appears to be OFF\n");
+> +			return 100*1000;
+This, is more dubious.  Are you trying to indicate that it's running at
+the reference clock?  Or always at a fixed 100MHz?
+
+Ben.
+> +		}
+> +	}
+> +
+>  	P = (reg0 & 0x00070000) >> 16;
+>  	N = (reg1 & 0x0000ff00) >> 8;
+>  	M = (reg1 & 0x000000ff);
