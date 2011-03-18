@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35374] nouveau: nv50,
  regression "GPU lockup - switching to software fbcon" introduced in
  2.6.38-rc8
-Date: Fri, 18 Mar 2011 13:04:29 -0700 (PDT)
-Message-ID: <20110318200429.86E8813000C@annarchy.freedesktop.org>
+Date: Fri, 18 Mar 2011 13:04:52 -0700 (PDT)
+Message-ID: <20110318200452.CB4E313000C@annarchy.freedesktop.org>
 References: <bug-35374-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,7 +28,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #44527|application/octet-stream    |text/plain
+  Attachment #44528|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
