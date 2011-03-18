@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35307] DVI display doesn't work with nouveau and
-	GeForce 9500GT
-Date: Fri, 18 Mar 2011 02:38:21 -0700 (PDT)
-Message-ID: <20110318093821.3B84413004E@annarchy.freedesktop.org>
-References: <bug-35307-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/1] nv30: Fix parsing of perf table
+Date: Fri, 18 Mar 2011 22:02:06 +1000
+Message-ID: <1300449733.2258.0.camel@nisroch>
+References: <1300409184-6853-1-git-send-email-emil.l.velikov@gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1300409184-6853-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,19 +18,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35307
+On Fri, 2011-03-18 at 00:46 +0000, Emil Velikov wrote:
+> Perf tables v 1.2 and 1.3 (seen on Geforce FX / 5) are not long enough to store
+> the voltage label/id
+> 
+> Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_perf.c |    6 +++++-
+>  1 files changed, 5 insertions(+), 1 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c b/drivers/gpu/drm/nouveau/nouveau_perf.c
+> index ac62a1b..b09780b 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_perf.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
+> @@ -134,7 +134,11 @@ nouveau_perf_init(struct drm_device *dev)
+>  		case 0x13:
+>  		case 0x15:
+>  			perflvl->fanspeed = entry[55];
+> -			perflvl->voltage = entry[56];
+> +/*
+> + * Table v 1.2 and 1.3 does not have big enough recordlen to store the
+> + * voltage
+> + */
+I'm not sure the comment is 100% necessary, but, it should be indented
+to the same level as the perflvl->* member settings.
 
-Elad Alfassa <elad-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugzilla.redhat.com
-                   |                            |/show_bug.cgi?id=684688
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+> +			perflvl->voltage = (recordlen > 56) ? entry[56] : 0;
+>  			perflvl->core = ROM32(entry[1]) * 10;
+>  			perflvl->memory = ROM32(entry[5]) * 20;
+>  			break;
