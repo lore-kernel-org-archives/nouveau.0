@@ -1,11 +1,13 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/5] nouveau: Fix checkpatch.pl error messages
-Date: Sat, 19 Mar 2011 23:31:50 +0000
-Message-ID: <1300577514-6833-1-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 2/5] nouveau: Fix checkpatch.pl error messages
+Date: Sat, 19 Mar 2011 23:31:51 +0000
+Message-ID: <1300577514-6833-2-git-send-email-emil.l.velikov@gmail.com>
+References: <1300577514-6833-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1300577514-6833-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,239 +20,154 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fix the following message
-'ERROR: trailing statements should be on next line'
+Fix 'ERROR: code indent should use tabs where possible'
+Fix 'ERROR: space required before the open parenthesis ('
 
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_display.c |   20 +++++++--
- drivers/gpu/drm/nouveau/nouveau_mem.c     |   12 ++++--
- drivers/gpu/drm/nouveau/nouveau_object.c  |    8 +++-
- drivers/gpu/drm/nouveau/nv50_display.c    |   64 +++++++++++++++++++++-------
- drivers/gpu/drm/nouveau/nv50_fb.c         |    9 +++-
- drivers/gpu/drm/nouveau/nv50_grctx.c      |    3 +-
- drivers/gpu/drm/nouveau/nvc0_grctx.c      |    4 +-
- 7 files changed, 88 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drv.h |    6 +++---
+ drivers/gpu/drm/nouveau/nouveau_mem.c |   14 +++++++-------
+ drivers/gpu/drm/nouveau/nv50_grctx.c  |    4 ++--
+ drivers/gpu/drm/nouveau/nvc0_graph.c  |   18 +++++++++---------
+ 4 files changed, 21 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index 764c15d..2dca746 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -91,12 +91,22 @@ nouveau_framebuffer_init(struct drm_device *dev,
- 			nv_fb->r_dma = NvEvoVRAM_LP;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index 0611188..0c18a06 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -884,13 +884,13 @@ extern void nouveau_channel_idle(struct nouveau_channel *chan);
+ 	int ret = nouveau_gpuobj_class_new((d), (c), NVOBJ_ENGINE_##e);        \
+ 	if (ret)                                                               \
+ 		return ret;                                                    \
+-} while(0)
++} while (0)
  
- 		switch (fb->depth) {
--		case  8: nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_8; break;
--		case 15: nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_15; break;
--		case 16: nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_16; break;
-+		case  8:
-+			nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_8;
-+			break;
-+		case 15:
-+			nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_15;
-+			break;
-+		case 16:
-+			nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_16;
-+			break;
- 		case 24:
--		case 32: nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_24; break;
--		case 30: nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_30; break;
-+		case 32:
-+			nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_24;
-+			break;
-+		case 30:
-+			nv_fb->r_format = NV50_EVO_CRTC_FB_DEPTH_30;
-+			break;
- 		default:
- 			 NV_ERROR(dev, "unknown depth %d\n", fb->depth);
- 			 return -EINVAL;
+ #define NVOBJ_MTHD(d,c,m,e) do {                                               \
+ 	int ret = nouveau_gpuobj_mthd_new((d), (c), (m), (e));                 \
+ 	if (ret)                                                               \
+ 		return ret;                                                    \
+-} while(0)
++} while (0)
+ 
+ extern int  nouveau_gpuobj_early_init(struct drm_device *);
+ extern int  nouveau_gpuobj_init(struct drm_device *);
+@@ -900,7 +900,7 @@ extern void nouveau_gpuobj_resume(struct drm_device *dev);
+ extern int  nouveau_gpuobj_class_new(struct drm_device *, u32 class, u32 eng);
+ extern int  nouveau_gpuobj_mthd_new(struct drm_device *, u32 class, u32 mthd,
+ 				    int (*exec)(struct nouveau_channel *,
+-					        u32 class, u32 mthd, u32 data));
++						u32 class, u32 mthd, u32 data));
+ extern int  nouveau_gpuobj_mthd_call(struct nouveau_channel *, u32, u32, u32);
+ extern int  nouveau_gpuobj_mthd_call2(struct drm_device *, int, u32, u32, u32);
+ extern int nouveau_gpuobj_channel_init(struct nouveau_channel *,
 diff --git a/drivers/gpu/drm/nouveau/nouveau_mem.c b/drivers/gpu/drm/nouveau/nouveau_mem.c
-index 8af07c4..12f511e 100644
+index 12f511e..fd4752b 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_mem.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_mem.c
-@@ -432,10 +432,14 @@ nouveau_mem_vram_init(struct drm_device *dev)
- 		u32 rsvd;
+@@ -603,7 +603,7 @@ nouveau_mem_timing_init(struct drm_device *dev)
  
- 		/* estimate grctx size, the magics come from nv40_grctx.c */
--		if      (dev_priv->chipset == 0x40) rsvd = 0x6aa0 * vs;
--		else if (dev_priv->chipset  < 0x43) rsvd = 0x4f00 * vs;
--		else if (nv44_graph_class(dev))	    rsvd = 0x4980 * vs;
--		else				    rsvd = 0x4a40 * vs;
-+		if (dev_priv->chipset == 0x40)
-+			rsvd = 0x6aa0 * vs;
-+		else if (dev_priv->chipset  < 0x43)
-+			rsvd = 0x4f00 * vs;
-+		else if (nv44_graph_class(dev))
-+			rsvd = 0x4980 * vs;
-+		else
-+			rsvd = 0x4a40 * vs;
- 		rsvd += 16 * 1024;
- 		rsvd *= dev_priv->engine.fifo.channels;
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_object.c b/drivers/gpu/drm/nouveau/nouveau_object.c
-index 823800d..a89256e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_object.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_object.c
-@@ -416,9 +416,13 @@ nv50_gpuobj_dma_init(struct nouveau_gpuobj *obj, u32 offset, int class,
- 	flags0 |= 0x00100000;
- 
- 	switch (access) {
--	case NV_MEM_ACCESS_RO: flags0 |= 0x00040000; break;
-+	case NV_MEM_ACCESS_RO:
-+		flags0 |= 0x00040000;
-+		break;
- 	case NV_MEM_ACCESS_RW:
--	case NV_MEM_ACCESS_WO: flags0 |= 0x00080000; break;
-+	case NV_MEM_ACCESS_WO:
-+		flags0 |= 0x00080000;
-+		break;
- 	default:
- 		break;
+ 	/* Get "some number" from the timing reg for NV_40
+ 	 * Used in calculations later */
+-	if(dev_priv->card_type == NV_40) {
++	if (dev_priv->card_type == NV_40) {
+ 		magic_number = (nv_rd32(dev,0x100228) & 0x0f000000) >> 24;
  	}
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index 75a376c..031116c 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -629,8 +629,12 @@ nv50_display_unk10_handler(struct drm_device *dev)
- 			continue;
  
- 		switch ((mc & 0x00000f00) >> 8) {
--		case 0: type = OUTPUT_ANALOG; break;
--		case 1: type = OUTPUT_TV; break;
-+		case 0:
-+			type = OUTPUT_ANALOG;
-+			break;
-+		case 1:
-+			type = OUTPUT_TV;
-+			break;
- 		default:
- 			NV_ERROR(dev, "invalid mc, DAC-%d: 0x%08x\n", i, mc);
- 			goto ack;
-@@ -652,12 +656,24 @@ nv50_display_unk10_handler(struct drm_device *dev)
- 			continue;
+@@ -649,22 +649,22 @@ nouveau_mem_timing_init(struct drm_device *dev)
+ 		timing->reg_100224 = (tUNK_0 + tUNK_19 + 1 + magic_number) << 24 |
+ 				      tUNK_18 << 16 |
+ 				      (tUNK_1 + tUNK_19 + 1 + magic_number) << 8;
+-		if(dev_priv->chipset == 0xa8) {
++		if (dev_priv->chipset == 0xa8) {
+ 			timing->reg_100224 |= (tUNK_2 - 1);
+ 		} else {
+ 			timing->reg_100224 |= (tUNK_2 + 2 - magic_number);
+ 		}
  
- 		switch ((mc & 0x00000f00) >> 8) {
--		case 0: type = OUTPUT_LVDS; break;
--		case 1: type = OUTPUT_TMDS; break;
--		case 2: type = OUTPUT_TMDS; break;
--		case 5: type = OUTPUT_TMDS; break;
--		case 8: type = OUTPUT_DP; break;
--		case 9: type = OUTPUT_DP; break;
-+		case 0:
-+			type = OUTPUT_LVDS;
-+			break;
-+		case 1:
-+			type = OUTPUT_TMDS;
-+			break;
-+		case 2:
-+			type = OUTPUT_TMDS;
-+			break;
-+		case 5:
-+			type = OUTPUT_TMDS;
-+			break;
-+		case 8:
-+			type = OUTPUT_DP;
-+			break;
-+		case 9:
-+			type = OUTPUT_DP;
-+			break;
- 		default:
- 			NV_ERROR(dev, "invalid mc, SOR-%d: 0x%08x\n", i, mc);
- 			goto ack;
-@@ -761,8 +777,12 @@ nv50_display_unk20_handler(struct drm_device *dev)
- 			continue;
+ 		timing->reg_100228 = (tUNK_12 << 16 | tUNK_11 << 8 | tUNK_10);
+-		if(dev_priv->chipset >= 0xa3 && dev_priv->chipset < 0xaa) {
++		if (dev_priv->chipset >= 0xa3 && dev_priv->chipset < 0xaa) {
+ 			timing->reg_100228 |= (tUNK_19 - 1) << 24;
+ 		}
  
- 		switch ((mc & 0x00000f00) >> 8) {
--		case 0: type = OUTPUT_ANALOG; break;
--		case 1: type = OUTPUT_TV; break;
-+		case 0:
-+			type = OUTPUT_ANALOG;
-+			break;
-+		case 1:
-+			type = OUTPUT_TV;
-+			break;
- 		default:
- 			NV_ERROR(dev, "invalid mc, DAC-%d: 0x%08x\n", i, mc);
- 			goto ack;
-@@ -784,12 +804,24 @@ nv50_display_unk20_handler(struct drm_device *dev)
- 			continue;
+-		if(dev_priv->card_type == NV_40) {
++		if (dev_priv->card_type == NV_40) {
+ 			/* NV40: don't know what the rest of the regs are..
+ 			 * And don't need to know either */
+ 			timing->reg_100228 |= 0x20200000 | magic_number << 24;
+-		} else if(dev_priv->card_type >= NV_50) {
++		} else if (dev_priv->card_type >= NV_50) {
+ 			/* XXX: reg_10022c */
+ 			timing->reg_10022c = tUNK_2 - 1;
  
- 		switch ((mc & 0x00000f00) >> 8) {
--		case 0: type = OUTPUT_LVDS; break;
--		case 1: type = OUTPUT_TMDS; break;
--		case 2: type = OUTPUT_TMDS; break;
--		case 5: type = OUTPUT_TMDS; break;
--		case 8: type = OUTPUT_DP; break;
--		case 9: type = OUTPUT_DP; break;
-+		case 0:
-+			type = OUTPUT_LVDS;
-+			break;
-+		case 1:
-+			type = OUTPUT_TMDS;
-+			break;
-+		case 2:
-+			type = OUTPUT_TMDS;
-+			break;
-+		case 5:
-+			type = OUTPUT_TMDS;
-+			break;
-+		case 8:
-+			type = OUTPUT_DP;
-+			break;
-+		case 9:
-+			type = OUTPUT_DP;
-+			break;
- 		default:
- 			NV_ERROR(dev, "invalid mc, SOR-%d: 0x%08x\n", i, mc);
- 			goto ack;
-diff --git a/drivers/gpu/drm/nouveau/nv50_fb.c b/drivers/gpu/drm/nouveau/nv50_fb.c
-index ddebd71..d6880e4 100644
---- a/drivers/gpu/drm/nouveau/nv50_fb.c
-+++ b/drivers/gpu/drm/nouveau/nv50_fb.c
-@@ -277,9 +277,12 @@ nv50_fb_vm_trap(struct drm_device *dev, int display)
- 	else
- 		printk("%02x/", st2);
+@@ -674,7 +674,7 @@ nouveau_mem_timing_init(struct drm_device *dev)
+ 			timing->reg_100234 = (tRAS << 24 | tRC);
+ 			timing->reg_100234 += max(tUNK_10,tUNK_11) << 16;
  
--	if      (cl && cl->data) cl = nouveau_enum_find(cl->data, st3);
--	else if (en && en->data) cl = nouveau_enum_find(en->data, st3);
--	else                     cl = NULL;
-+	if (cl && cl->data)
-+		cl = nouveau_enum_find(cl->data, st3);
-+	else if (en && en->data)
-+		cl = nouveau_enum_find(en->data, st3);
-+	else
-+		cl = NULL;
- 	if (cl)
- 		printk("%s", cl->name);
- 	else
+-			if(dev_priv->chipset < 0xa3) {
++			if (dev_priv->chipset < 0xa3) {
+ 				timing->reg_100234 |= (tUNK_2 + 2) << 8;
+ 			} else {
+ 				/* XXX: +6? */
+@@ -685,7 +685,7 @@ nouveau_mem_timing_init(struct drm_device *dev)
+ 			 * reg_100238: 0x00??????
+ 			 * reg_10023c: 0x!!??0202 for NV50+ cards (empirical evidence) */
+ 			timing->reg_10023c = 0x202;
+-			if(dev_priv->chipset < 0xa3) {
++			if (dev_priv->chipset < 0xa3) {
+ 				timing->reg_10023c |= 0x4000000 | (tUNK_2 - 1) << 16;
+ 			} else {
+ 				/* currently unknown
 diff --git a/drivers/gpu/drm/nouveau/nv50_grctx.c b/drivers/gpu/drm/nouveau/nv50_grctx.c
-index 336aab2..6a4290a 100644
+index 6a4290a..9d1f6ba 100644
 --- a/drivers/gpu/drm/nouveau/nv50_grctx.c
 +++ b/drivers/gpu/drm/nouveau/nv50_grctx.c
-@@ -572,7 +572,8 @@ nv50_graph_construct_mmio(struct nouveau_grctx *ctx)
+@@ -748,7 +748,7 @@ nv50_graph_construct_mmio(struct nouveau_grctx *ctx)
+ 				gr_def(ctx, offset + 0x64, 0x0000001f);
+ 				gr_def(ctx, offset + 0x68, 0x0000000f);
+ 				gr_def(ctx, offset + 0x6c, 0x0000000f);
+-			} else if(dev_priv->chipset < 0xa0) {
++			} else if (dev_priv->chipset < 0xa0) {
+ 				cp_ctx(ctx, offset + 0x50, 1);
+ 				cp_ctx(ctx, offset + 0x70, 1);
+ 			} else {
+@@ -2837,7 +2837,7 @@ nv50_graph_construct_xfer_tprop(struct nouveau_grctx *ctx)
+ 	xf_emit(ctx, 1, 1);		/* 00000001 DST_LINEAR */
+ 	if (IS_NVA3F(dev_priv->chipset))
+ 		xf_emit(ctx, 1, 1);	/* 0000001f tesla UNK169C */
+-	if(dev_priv->chipset == 0x50)
++	if (dev_priv->chipset == 0x50)
+ 		xf_emit(ctx, 1, 0);	/* ff */
+ 	else
+ 		xf_emit(ctx, 3, 0);	/* 1, 7, 3ff */
+diff --git a/drivers/gpu/drm/nouveau/nvc0_graph.c b/drivers/gpu/drm/nouveau/nvc0_graph.c
+index 3de9b72..c19ff30 100644
+--- a/drivers/gpu/drm/nouveau/nvc0_graph.c
++++ b/drivers/gpu/drm/nouveau/nvc0_graph.c
+@@ -200,15 +200,15 @@ nvc0_graph_create_context(struct nouveau_channel *chan)
+ 	for (i = 0; i < priv->grctx_size; i += 4)
+ 		nv_wo32(grctx, i, priv->grctx_vals[i / 4]);
  
- 			/* per-MP state */
- 			for (j = 0; j < (dev_priv->chipset < 0xa0 ? 2 : 4); j++) {
--				if (!(units & (1 << (j+24)))) continue;
-+				if (!(units & (1 << (j+24))))
-+					continue;
- 				if (dev_priv->chipset < 0xa0)
- 					offset = base + 0x200 + (j<<7);
- 				else
-diff --git a/drivers/gpu/drm/nouveau/nvc0_grctx.c b/drivers/gpu/drm/nouveau/nvc0_grctx.c
-index f880ff7..7aa0cbf 100644
---- a/drivers/gpu/drm/nouveau/nvc0_grctx.c
-+++ b/drivers/gpu/drm/nouveau/nvc0_grctx.c
-@@ -32,7 +32,9 @@ nv_icmd(struct drm_device *dev, u32 icmd, u32 data)
- {
- 	nv_wr32(dev, 0x400204, data);
- 	nv_wr32(dev, 0x400200, icmd);
--	while (nv_rd32(dev, 0x400700) & 2) {}
-+	while (nv_rd32(dev, 0x400700) & 2) {
-+		/* by design */
-+	}
- }
+-        nv_wo32(grctx, 0xf4, 0);
+-        nv_wo32(grctx, 0xf8, 0);
+-        nv_wo32(grctx, 0x10, grch->mmio_nr);
+-        nv_wo32(grctx, 0x14, lower_32_bits(grch->mmio->vinst));
+-        nv_wo32(grctx, 0x18, upper_32_bits(grch->mmio->vinst));
+-        nv_wo32(grctx, 0x1c, 1);
+-        nv_wo32(grctx, 0x20, 0);
+-        nv_wo32(grctx, 0x28, 0);
+-        nv_wo32(grctx, 0x2c, 0);
++	nv_wo32(grctx, 0xf4, 0);
++	nv_wo32(grctx, 0xf8, 0);
++	nv_wo32(grctx, 0x10, grch->mmio_nr);
++	nv_wo32(grctx, 0x14, lower_32_bits(grch->mmio->vinst));
++	nv_wo32(grctx, 0x18, upper_32_bits(grch->mmio->vinst));
++	nv_wo32(grctx, 0x1c, 1);
++	nv_wo32(grctx, 0x20, 0);
++	nv_wo32(grctx, 0x28, 0);
++	nv_wo32(grctx, 0x2c, 0);
+ 	pinstmem->flush(dev);
+ 	return 0;
  
- static void
 -- 
 1.7.1
