@@ -1,8 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35441] New: header files (at least nouveau_device.h
- and nouveau_grojb.h) missing from git
-Date: Fri, 18 Mar 2011 20:43:27 -0700 (PDT)
-Message-ID: <bug-35441-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35445] New: 2.6.38 kernel fails to boot
+Date: Sat, 19 Mar 2011 02:43:37 -0700 (PDT)
+Message-ID: <bug-35445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,40 +18,30 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35441
+https://bugs.freedesktop.org/show_bug.cgi?id=35445
 
-           Summary: header files (at least nouveau_device.h and
-                    nouveau_grojb.h) missing from git
-           Product: Mesa
-           Version: git
-          Platform: Other
-        OS/Version: All
+           Summary: 2.6.38 kernel fails to boot
+           Product: xorg
+           Version: 7.4
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
             Status: NEW
-          Severity: major
+          Severity: critical
           Priority: medium
-         Component: Drivers/DRI/nouveau
+         Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: rwhite-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org
+        ReportedBy: somethingsome2000-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-The current git repository as of this date is missing at least two header files
-referenced by src/mesa/drivers/dri/nouveau/nouveau_driver.h
+Created an attachment (id=44612)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44612)
+image of output
 
-The file nouveau_device.h is missing and when I just experimentally commented
-that out then nouveau_gobj.h cropped up missing so I stopped.
-
-All the other header files in the same block of includes that I could locate
-are all apparently local to this directory. They are also all local includes
-(e.g. in "" not <> quotes) so I figure they are all from here.
-
-spot checking I think
-
-nouveau_device.h, nouveau_grobj.h, nouveau_channel.h, and nouveau_notifier.h
-and any .c files they front for are suspiciously missing or live somewhere
-inobvious to me.
-
-This was first observed about two weeks ago but I didn't realize this was the
-right place to report it. /doh.
+This does not happen 100% of the time.
+Sometimes, I am left with a black screen and no output and about 10% of the
+time, the kernel actually boots but fails to launch X (bug 35344)
+Image of dmesg output is attached.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
