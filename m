@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35441] header files (at least nouveau_device.h and
- nouveau_grojb.h) missing from git
-Date: Sun, 20 Mar 2011 00:15:42 -0700 (PDT)
-Message-ID: <20110320071542.1FE4413000C@annarchy.freedesktop.org>
-References: <bug-35441-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34220] Detects Load on output and blinks screen
+	every ~30secs
+Date: Sun, 20 Mar 2011 03:52:03 -0700 (PDT)
+Message-ID: <20110320105203.52C2E13004F@annarchy.freedesktop.org>
+References: <bug-34220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-34220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +21,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzU0NDEKCi0tLSBD
-b21tZW50ICMxIGZyb20g0KHQtdCx0LDRgdGC0YzRj9C9IEdsacWjYSDOms6xz4TOuc69zrEgPGNn
-bGl0YUB5YWhvby5jb20+IDIwMTEtMDMtMjAgMDA6MTU6NDEgUERUIC0tLQpDcmVhdGVkIGFuIGF0
-dGFjaG1lbnQgKGlkPTQ0NjI5KQogVmlldzogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9h
-dHRhY2htZW50LmNnaT9pZD00NDYyOQogUmV2aWV3OiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Au
-b3JnL3Jldmlldz9idWc9MzU0NDEmYXR0YWNobWVudD00NDYyOQoKYSBzdWl0YWJsZSBwYXRjaAoK
-SW4gZmlsZSBgc3JjL21lc2EvZHJpdmVycy9kcmkvbm91dmVhdS9NYWtlZmlsZS5hbScgdXNlIGBM
-SUJEUk1fQ0ZMQUdTJyBpbnN0ZWFkCm9mIGp1c3QgYENGTEFHUyc6IHRoZSBwa2ctY29uZmlnIGZs
-YWdzIGZyb20gYGxpYmRybV9ub3V2ZWF1LnBjJyAoaW5zdGFsbGVkIGJ5CmBsaWJkcm0nKSBtdXN0
-IHlpZWxkIGl0cyBgLUkvdXNyL2luY2x1ZGUvbm91dmVhdScgd2hlcmUgeW91IGZpbmQgYWxsIHRo
-ZXNlCiJtaXNzaW5nIiBoZWFkZXIgZmlsZXMuIChgSU5DTFVERVMnIHZhcmlhYmxlIGluc3RlYWQg
-ZG9lcyBub3Qgc2VlbSB0byB3b3JrKS4KCmMuCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBz
-Oi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZ
-b3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBh
-c3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=34220
+
+Nikolay Rysev <mad.f3ka-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |mad.f3ka-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #2 from Nikolay Rysev <mad.f3ka-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-20 03:51:58 PDT ---
+*** Bug 34972 has been marked as a duplicate of this bug. ***
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
