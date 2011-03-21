@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35514] Black screen with nouveau on a GeForce 8600M
  GT, either LiveCD or fresh install
-Date: Mon, 21 Mar 2011 11:27:48 -0700 (PDT)
-Message-ID: <20110321182748.DD6A313000C@annarchy.freedesktop.org>
+Date: Mon, 21 Mar 2011 11:28:43 -0700 (PDT)
+Message-ID: <20110321182844.11F1913000C@annarchy.freedesktop.org>
 References: <bug-35514-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35514
 
---- Comment #2 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-03-21 11:27:47 PDT ---
-Created an attachment (id=44677)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44677)
-BootDmesg.txt
+--- Comment #3 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-03-21 11:28:19 PDT ---
+Created an attachment (id=44678)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44678)
+Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
