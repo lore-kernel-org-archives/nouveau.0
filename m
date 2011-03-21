@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35514] Black screen with nouveau on a GeForce 8600M
- GT, either LiveCD or fresh install
-Date: Mon, 21 Mar 2011 11:28:43 -0700 (PDT)
-Message-ID: <20110321182844.11F1913000C@annarchy.freedesktop.org>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Bug 35514] Black screen with nouveau on a GeForce
+ 8600M GT, either LiveCD or fresh install
+Date: Mon, 21 Mar 2011 19:55:42 -0000
+Message-ID: <op.vsplm4db7cbmmg@emo>
 References: <bug-35514-8800@http.bugs.freedesktop.org/>
+	<20110321182844.11F1913000C@annarchy.freedesktop.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35514-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20110321182844.11F1913000C-4GnqB8vgsbnwRzGw0Gvu8Q/tdpCO6/zZ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,16 +20,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: mathieu.marquer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35514
+There are a couple of things that should be taken into account
 
---- Comment #3 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-03-21 11:28:19 PDT ---
-Created an attachment (id=44678)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44678)
-Xorg.0.log
+1. In the dmesg log provided nouveau is not loaded (remove nomodeset from
+the kernel command line)
+2. Please (re)move the nouveau_dri.so file, as 3D is not supported.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Most likely the issue is unrelated to point 2, but without a comprehensive
+log (see point 1), nothing decisive can be said.
+As a possible "fix" take a look at Forcing Modes [1], and select a
+lower resolution. (the list can be seen in your Xorg log)
+
+[1] http://nouveau.freedesktop.org/wiki/KernelModeSetting
