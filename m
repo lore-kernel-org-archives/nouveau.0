@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35514] Black screen with nouveau on a GeForce 8600M
  GT, either LiveCD or fresh install
-Date: Mon, 21 Mar 2011 13:17:14 -0700 (PDT)
-Message-ID: <20110321201714.CBCEA13004E@annarchy.freedesktop.org>
+Date: Mon, 21 Mar 2011 13:18:29 -0700 (PDT)
+Message-ID: <20110321201829.4F65413004F@annarchy.freedesktop.org>
 References: <bug-35514-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35514
 
---- Comment #4 from nholtz-invPoGwsRgKUIZwRiZtBUQ@public.gmane.org 2011-03-21 13:17:13 PDT ---
-I wonder if this is the problem that causes the HDMI output to be selected and
-turns off the screen graphics.  As in...
-
-https://bugs.launchpad.net/linuxmint/+bug/724722
-
-If you have an HDMI output, try hooking it to something ...
-
-neal
+--- Comment #5 from Mathieu Marquer <mathieu.marquer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-21 13:18:28 PDT ---
+No HDMI, just a VGA, but I'll try.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
