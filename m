@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35171] x11-drivers/xf86-video-nouveau does not work
  with Quadro FX1800 on HP elitebook 8540w
-Date: Tue, 22 Mar 2011 09:34:13 -0700 (PDT)
-Message-ID: <20110322163413.B476A13000C@annarchy.freedesktop.org>
+Date: Tue, 22 Mar 2011 09:34:30 -0700 (PDT)
+Message-ID: <20110322163430.A64DD13004E@annarchy.freedesktop.org>
 References: <bug-35171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,7 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35171
 
---- Comment #3 from Jiri Pittner <jiri-hC7mc10fD15fhe3zRZoJiw@public.gmane.org> 2011-03-22 09:34:11 PDT ---
-Created an attachment (id=44716)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44716)
-dmesg output while mouse pointer on external monitor disappears
-
+--- Comment #4 from Jiri Pittner <jiri-hC7mc10fD15fhe3zRZoJiw@public.gmane.org> 2011-03-22 09:34:29 PDT ---
 There is another bug which presents itself even with nouveau.noaccel=1,
 if an external DP monitor is attached. I have 1920x1200 external DVI monitor
 with DVI/DP adater. Irregularly, after 2-5 hours, the mouse pointer
