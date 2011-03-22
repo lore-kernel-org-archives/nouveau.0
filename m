@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35171] x11-drivers/xf86-video-nouveau does not work
- with Quadro FX1800 on HP elitebook 8540w
-Date: Tue, 22 Mar 2011 09:34:30 -0700 (PDT)
-Message-ID: <20110322163430.A64DD13004E@annarchy.freedesktop.org>
-References: <bug-35171-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35360] nouveau: no space while hiding cursor
+Date: Tue, 22 Mar 2011 10:21:22 -0700 (PDT)
+Message-ID: <20110322172122.5FE3213000C@annarchy.freedesktop.org>
+References: <bug-35360-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35360-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35171
+https://bugs.freedesktop.org/show_bug.cgi?id=35360
 
---- Comment #4 from Jiri Pittner <jiri-hC7mc10fD15fhe3zRZoJiw@public.gmane.org> 2011-03-22 09:34:29 PDT ---
-There is another bug which presents itself even with nouveau.noaccel=1,
-if an external DP monitor is attached. I have 1920x1200 external DVI monitor
-with DVI/DP adater. Irregularly, after 2-5 hours, the mouse pointer
-disappears from the external monitor, but remains on the builtin display
-(movable). Simple restart of X server (/etc/init.d/xdm restart) does not help.
-Switching to text console ctrl-alt-F1 does not work either. Dmesg contains
-nouveau error reports, cf. attachment.
+--- Comment #1 from Robert White <rwhite-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org> 2011-03-22 10:21:21 PDT ---
+Created an attachment (id=44717)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44717)
+Nomiinal Xor.0.log while message persists regular output in dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
