@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35360] nouveau: no space while hiding cursor
-Date: Tue, 22 Mar 2011 10:22:17 -0700 (PDT)
-Message-ID: <20110322172217.3F54F13004F@annarchy.freedesktop.org>
+Date: Tue, 22 Mar 2011 10:32:03 -0700 (PDT)
+Message-ID: <20110322173204.1E51A13000C@annarchy.freedesktop.org>
 References: <bug-35360-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,52 +22,31 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35360
 
---- Comment #2 from Robert White <rwhite-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org> 2011-03-22 10:22:17 PDT ---
-I have started getting this as well.
+--- Comment #3 from Robert White <rwhite-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org> 2011-03-22 10:32:03 PDT ---
+Bonus Symptom: If I try to switch to VT(1) [e.g. ctrl-alt-f1] the cursor
+disappears but the screen doesn't switch. Keyboard input goes nowhere, but when
+I "switch back" [ctrl-alt-f7] the cursor returns and the keyboard comes back to
+life. Any attempt to go from VT1-non-func to VT2-non-func makes no differenc.
 
-This is a single-headed laptop running 64bit system running linux-2.6.38-gentoo
-kernel compiled with gcc 4.5.2 p1.1. [there are four outputs available I think
-but only one is connected.]
+DMESG from two attmpts left this behind...
 
-All components are from the gentoo x11 overlay (so they are fresh fetches from
-the git tree as of my last rebuild several days ago). I am not sure how to get
-the git signatures.
+[109438.348916] [drm] nouveau 0000:01:00.0: no space while hiding cursor
+[109440.616640] detected fb_set_par error, error code: -16
+[109456.000523] [drm] nouveau 0000:01:00.0: no space while hiding cursor
+[109456.796429] detected fb_set_par error, error code: -16
+[109473.865107] [drm] nouveau 0000:01:00.0: no space while hiding cursor
 
-I am using gallium and i have disabled classic (since it wouldnt' compile as
-some files were missing form the git commit.)
 
-My system has been up for a day, and the screen has been going blank and back
-(normally, e.g. blank screen saver) while there is full-blown KDE 4.6 running
-and a VMWare instance running in non-unity mode.
+Note that the input paths in the alternate VTs are still good as I could
+blindly log in before switching back. from /var/log/messages:
 
-I was going to git fetch and rebuild but I figured that since the system is
-still running fine despite the message i could sit on the configuration for a
-while in case there is something I can collect for the devs...?
+Mar 22 10:27:39 BAEatBoeing login[18516]: ROOT LOGIN  on '/dev/tty5'
 
-There are _no_ corresponding messages in Xorg.0.log. It's last message was the
-final messages of a normal startup, which in my case was
-
-[  3747.106] (--) SynPS/2 Synaptics TouchPad: touchpad found
-
-and that was quite a long time ago.
-
-Uptime: 10:04:01 up 1 day,  6:05, 11 users,  load average: 0.25, 0.24, 0.19
-
-[107527.262456] [drm] nouveau 0000:01:00.0: no space while hiding cursor
-[107542.332665] [drm] nouveau 0000:01:00.0: no space while hiding cursor
-[107671.592721] [drm] nouveau 0000:01:00.0: PGRAPH - TRAP_TPDMA - VM: Trapped
-write at 0041ef9d00 status 0000cb20 channel 2 (0x00000ce0)
-[107671.592729] [drm] nouveau 0000:01:00.0: PGRAPH_TRAP_TPDMA_2D - TP 0 -
-Unknown fault at address 0041ef9d00
-[107671.592736] [drm] nouveau 0000:01:00.0: PGRAPH_TRAP_TPDMA_2D - TP 0 - e0c:
-00000000, e18: 00000000, e1c: 01740000, e20: 00000011, e24: 0c030000
-[107671.592743] [drm] nouveau 0000:01:00.0: PGRAPH - TRAP
-[107671.592752] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2 (0x0000ce0000) subc 2
-class 0x502d mthd 0x0860 data 0x72727272
-[107701.958991] [drm] nouveau 0000:01:00.0: no space while hiding cursor
-[107718.031554] [drm] nouveau 0000:01:00.0: no space while hiding cursor
-
-My system tempratures are all nominal (not that it matters)
+Another possible contributor is that I have 'transparent hugepage' support
+active. I don't know it that could have glombed onto some mapping as I no idea
+how it really works 8-). I do know that the xorg shared mapping pages "seem to"
+count since the number of hugepage mappings was non-zero immediately after xorg
+started. (weak evidence, I know...)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
