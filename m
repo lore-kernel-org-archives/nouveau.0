@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35475] asus laptop boots to blank screen 2 out of 3
-	times
-Date: Wed, 23 Mar 2011 00:16:46 -0700 (PDT)
-Message-ID: <20110323071647.225B013004E@annarchy.freedesktop.org>
-References: <bug-35475-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31676] garbled text after loading nouveau module on
+ EFI boot; X driver thinks there are no connected outputs
+Date: Wed, 23 Mar 2011 03:03:08 -0700 (PDT)
+Message-ID: <20110323100309.0357413000C@annarchy.freedesktop.org>
+References: <bug-31676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35475-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35475
+https://bugs.freedesktop.org/show_bug.cgi?id=31676
 
-Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
+--- Comment #14 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2011-03-23 03:03:08 PDT ---
+Created an attachment (id=44747)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44747)
+dmesg of last kernel with debug
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+I made a dmesg log with debug output.
 
---- Comment #2 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-03-23 00:16:45 PDT ---
-This looks like a race between ACPI power-up and nouveau kicking in to detect
-your card and additionally to that it seems to choose the wrong chip when
-nouveau loads correctly.
+The kernel used is a clone of git branch of nouveau patched with an updated EFI
+physical mode (merge done by myself).
 
-Dave, could you please take a look at this? I'm not an expert with optimus.
+now the screen is garbage, probably due to the false output resolution
+(1024x768).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
