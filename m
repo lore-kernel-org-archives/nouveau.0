@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34220] Detects Load on output and blinks screen
 	every ~30secs
-Date: Wed, 23 Mar 2011 06:59:30 -0700 (PDT)
-Message-ID: <20110323135930.EDD9413000C@annarchy.freedesktop.org>
+Date: Wed, 23 Mar 2011 07:01:14 -0700 (PDT)
+Message-ID: <20110323140114.B222613004E@annarchy.freedesktop.org>
 References: <bug-34220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34220
 
---- Comment #3 from noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org 2011-03-23 06:59:29 PDT ---
-I have same problem, card is
-01:00.0 VGA compatible controller: nVidia Corporation NV25 [GeForce4 Ti 4200]
-(rev a3)
-OS is Gentoo.
-I tried
-Nouveau kernels 2.6.38-rc8-g7972f91 and 2.6.37-rc3-gd095e23,
-xorg-servers 1.9.4, 1.9.5 and 1.10.0,
-xf86-video-nouveau 0.0.16_pre20101130 and git 92db2bc.
-
-Nothing helped, so I tried proprietary drivers 96.43.19 and noticed line
-[    30.567] (WW) NVIDIA(GPU-0): Unable to read EDID for display device CRT-1
-This lead me to trying i2cdetect and indeed on all 3 i2c adapters there is
-nothing on adress 0x50, where EDID should be. Any ideas?
+--- Comment #4 from noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org 2011-03-23 07:01:13 PDT ---
+Created an attachment (id=44752)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44752)
+Xorg log with nouveau driver
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
