@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31676] garbled text after loading nouveau module on
  EFI boot; X driver thinks there are no connected outputs
-Date: Wed, 23 Mar 2011 03:03:08 -0700 (PDT)
-Message-ID: <20110323100309.0357413000C@annarchy.freedesktop.org>
+Date: Wed, 23 Mar 2011 05:53:39 -0700 (PDT)
+Message-ID: <20110323125339.90BD713004F@annarchy.freedesktop.org>
 References: <bug-31676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31676
 
---- Comment #14 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2011-03-23 03:03:08 PDT ---
-Created an attachment (id=44747)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44747)
-dmesg of last kernel with debug
+--- Comment #15 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2011-03-23 05:53:39 PDT ---
 
-I made a dmesg log with debug output.
+The memory frequency reported mismatch nvidia-settings report :
 
-The kernel used is a clone of git branch of nouveau patched with an updated EFI
-physical mode (merge done by myself).
+nouveau report 405MHz or 450MHz, nvidia report : 532Mhz for the same card.
 
-now the screen is garbage, probably due to the false output resolution
-(1024x768).
+then the boot frequencies reported by nouveau drivers are totally break.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
