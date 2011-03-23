@@ -1,22 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Bug 35514] Black screen with nouveau on a GeForce
- 8600M GT, either LiveCD or fresh install
-Date: Wed, 23 Mar 2011 21:26:19 -0000
-Message-ID: <op.vste542a7cbmmg@emo>
-References: <bug-35514-8800@http.bugs.freedesktop.org/>
-	<20110321182844.11F1913000C@annarchy.freedesktop.org>
-	<op.vsplm4db7cbmmg@emo>
-	<AANLkTinMnzvz8UTparZOeXKQ=4mnC5JShKJJtBUV=vs7@mail.gmail.com>
-	<op.vspl47xf7cbmmg@emo>
-	<AANLkTimt9j-YrnTwmFWchpawJbTFxd058zN0SeS_aqDh@mail.gmail.com>
-	<op.vspmtqy27cbmmg@emo>
-	<AANLkTi=xtccAqd-3kZNfqAf7bL3RmWqC7_YQyx+N6k3i@mail.gmail.com>
-	<AANLkTinwdxFuDrKzH7siWjiNkaFzVUD3gau-zWGBZv8D@mail.gmail.com>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: GeForce 9100M G
+Date: Wed, 23 Mar 2011 22:30:06 +0000
+Message-ID: <AANLkTineQebqOVZSfLuzGNLJSvCvC+Gu9o5dx5sWcbhG@mail.gmail.com>
+References: <freemail.20110323212406.91713.1@xmldata09.freemail.hu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <AANLkTinwdxFuDrKzH7siWjiNkaFzVUD3gau-zWGBZv8D-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <freemail.20110323212406.91713.1-0d0J76Zq9nW8EKb22Aum+OJADrAPUjSR@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -26,12 +17,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Mathieu Marquer <mathieu.marquer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Ecker Sandor <esanya-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Your dmesg looks fine (apart from "DCB encoder 1 unknown")
-Can you try forcing another resolution as mentioned before, see
-ForceModes [1]
+On Wed, Mar 23, 2011 at 8:24 PM, Ecker Sandor <esanya-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> wrote:
+> Hi,
+>
+> I'm not sure if this is the right place to ask.
+>
+> My question wuold be: is the GeForce 9100M G supported in nouveau? On the site: http://nouveau.freedesktop.org/wiki/CodeNames#NV50 it can not be found. The 9200M is supported.
+>
+> Is it complicated to support 9100 too?
+>
+> Is there any plan to support 9100?
 
-[1] http://nouveau.freedesktop.org/wiki/KernelModeSetting
+In general nouveau supports generations of card. I think you have a
+NVAC, but i am not certain. I would be surprised if it didn't work.
+
+>
+> I use my laptop with linux, and the official nvidia driver has a bug, and the laptop can be suspended only once (1x). So once I can suspend my work, but not 2x.
+>
+> My question would be with nouveau works the suspend any times?
+>
+> Thanks,
+> Regards,
+> Sandor
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
+
+
+
+-- 
+Far away from the primal instinct, the song seems to fade away, the
+river get wider between your thoughts and the things we do and say.
