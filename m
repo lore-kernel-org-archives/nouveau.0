@@ -1,7 +1,7 @@
 From: Ecker Sandor <esanya-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org>
 Subject: GeForce 9100M G
-Date: Wed, 23 Mar 2011 21:29:41 +0100 (CET)
-Message-ID: <freemail.20110323212941.18184.2@xmldata09.freemail.hu>
+Date: Wed, 23 Mar 2011 21:24:06 +0100 (CET)
+Message-ID: <freemail.20110323212406.91713.1@xmldata09.freemail.hu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
