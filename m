@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34220] Detects Load on output and blinks screen
 	every ~30secs
-Date: Wed, 23 Mar 2011 07:01:14 -0700 (PDT)
-Message-ID: <20110323140114.B222613004E@annarchy.freedesktop.org>
+Date: Wed, 23 Mar 2011 07:01:52 -0700 (PDT)
+Message-ID: <20110323140153.1679F13004F@annarchy.freedesktop.org>
 References: <bug-34220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34220
 
---- Comment #4 from noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org 2011-03-23 07:01:13 PDT ---
-Created an attachment (id=44752)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44752)
-Xorg log with nouveau driver
+--- Comment #5 from noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org 2011-03-23 07:01:52 PDT ---
+Created an attachment (id=44753)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44753)
+kernel log with nouveau driver
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
