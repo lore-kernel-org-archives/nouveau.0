@@ -1,15 +1,11 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Bug 31676] garbled text after loading nouveau module
- on EFI boot; X driver thinks there are no connected outputs
-Date: Wed, 23 Mar 2011 18:04:47 -0000
-Message-ID: <op.vss5t9pw7cbmmg@emo>
-References: <bug-31676-8800@http.bugs.freedesktop.org/>
-	<20110323125339.90BD713004F@annarchy.freedesktop.org>
+From: Ecker Sandor <esanya-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org>
+Subject: GeForce 9100M G
+Date: Wed, 23 Mar 2011 21:29:41 +0100 (CET)
+Message-ID: <freemail.20110323212941.18184.2@xmldata09.freemail.hu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20110323125339.90BD713004F-4GnqB8vgsbnwRzGw0Gvu8Q/tdpCO6/zZ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,18 +15,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Cc: gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Benoit Gschwind
+Hi,
 
-Your system has an IGP  - integrated graphics processor, with no
-memory chips. Thus no memory clk is used nor set.
+I'm not sure if this is the right place to ask. 
 
-nvidia-settings reports the frequency of your system memory.
-In some vbioses the memory clk for IGPs is set to 0 just to explicitly
-confirm the above statement.
+My question wuold be: is the GeForce 9100M G supported in nouveau? On the site: http://nouveau.freedesktop.org/wiki/CodeNames#NV50 it can not be found. The 9200M is supported. 
 
-On nva[3|5|8|f] systems the get_clock() function does not always the
-clocks correctly (looking at your shader frequency)
+Is it complicated to support 9100 too?
+
+Is there any plan to support 9100?
+
+I use my laptop with linux, and the official nvidia driver has a bug, and the laptop can be suspended only once (1x). So once I can suspend my work, but not 2x.
+
+My question would be with nouveau works the suspend any times?
+
+Thanks,
+Regards,
+Sandor
