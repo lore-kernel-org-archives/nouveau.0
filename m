@@ -1,19 +1,13 @@
-From: Mathieu Marquer <mathieu.marquer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Bug 35514] Black screen with nouveau on a GeForce
- 8600M GT, either LiveCD or fresh install
-Date: Mon, 21 Mar 2011 21:24:08 +0100
-Message-ID: <AANLkTi=xtccAqd-3kZNfqAf7bL3RmWqC7_YQyx+N6k3i@mail.gmail.com>
-References: <bug-35514-8800@http.bugs.freedesktop.org/>
-	<20110321182844.11F1913000C@annarchy.freedesktop.org>
-	<op.vsplm4db7cbmmg@emo>
-	<AANLkTinMnzvz8UTparZOeXKQ=4mnC5JShKJJtBUV=vs7@mail.gmail.com>
-	<op.vspl47xf7cbmmg@emo>
-	<AANLkTimt9j-YrnTwmFWchpawJbTFxd058zN0SeS_aqDh@mail.gmail.com>
-	<op.vspmtqy27cbmmg@emo>
+From: Jerome Glisse <j.glisse-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: How to directly access GPU memory
+Date: Wed, 23 Mar 2011 14:22:02 -0400
+Message-ID: <AANLkTimW+f2onDdzzYmqN6UevGfXk1oCjvJ8=DM5f8kt@mail.gmail.com>
+References: <87bp1kcef4.fsf@inspiron.ap.columbia.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1085377330=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <op.vspmtqy27cbmmg@emo>
+In-Reply-To: <87bp1kcef4.fsf-ki6eFfmvX+JNJvdX2p2jX/iOs8n+Ptt7@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,56 +17,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Nikolaus Rath <Nikolaus-BTH8mxji4b0@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1085377330==
-Content-Type: multipart/alternative; boundary=0016364171694b549c049f03ebdc
-
---0016364171694b549c049f03ebdc
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Mon, Mar 21, 2011 at 21:21, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>wrote:
-
-> Please calm down and read my first email.
-> Now read it again.
+On Wed, Mar 9, 2011 at 1:54 PM, Nikolaus Rath <Nikolaus-BTH8mxji4b0@public.gmane.org> wrote:
+> Hello,
 >
-> Thank you
+> I would like to directly access some GPU memory. Is there some standard
+> way to do this when using the nouveau driver, e.g. by mmap'ing a
+> specific range of /dev/something, or do I have to write my own kernel
+> module to set up the mapping of the PCIe BARs?
 >
-OK you said dmesg and I read Xorg.log, apologies...
-I'll post one as soon as I have a few time to try again, I didn't save it
-during my last tries.
+> If there is a standard way, is that only standard for the nouveau driver
+> or will the same procedure work for other drivers too (in particular the
+> proprietary nvidia driver)?
+>
+>
+> Thanks,
+>
+> =A0 -Nikolaus
+>
 
---0016364171694b549c049f03ebdc
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+You can try to mmap the pci bar but neither nouveau or the closed
+source driver is intended to play nicely with program that access
+video memory directly, you may expect crash and losing data. You need
+to play along the rules of each driver by using the proper API to
+allocate & access memory which is different btw nouveau and closed
+driver or others driver out there.
 
-<div class=3D"gmail_quote">On Mon, Mar 21, 2011 at 21:21, Emil Velikov <spa=
-n dir=3D"ltr">&lt;<a href=3D"mailto:emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">emil.l.veliko=
-v@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex;">
-
-
-Please calm down and read my first email.<br>
-Now read it again.<br>
-<br>
-Thank you<br>
-</blockquote></div>OK you said dmesg and I read Xorg.log, apologies...<br>I=
-&#39;ll post one as soon as I have a few time to try again, I didn&#39;t sa=
-ve it during my last tries.<br>
-
---0016364171694b549c049f03ebdc--
-
---===============1085377330==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1085377330==--
+Cheers,
+Jerome
