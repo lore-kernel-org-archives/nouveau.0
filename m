@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34220] Detects Load on output and blinks screen
-	every ~30secs
-Date: Wed, 23 Mar 2011 07:02:24 -0700 (PDT)
-Message-ID: <20110323140224.BF8BC130051@annarchy.freedesktop.org>
-References: <bug-34220-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Bug 31676] garbled text after loading nouveau module
+ on EFI boot; X driver thinks there are no connected outputs
+Date: Wed, 23 Mar 2011 18:04:47 -0000
+Message-ID: <op.vss5t9pw7cbmmg@emo>
+References: <bug-31676-8800@http.bugs.freedesktop.org/>
+	<20110323125339.90BD713004F@annarchy.freedesktop.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20110323125339.90BD713004F-4GnqB8vgsbnwRzGw0Gvu8Q/tdpCO6/zZ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,17 +19,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Cc: gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34220
+Benoit Gschwind
 
---- Comment #6 from noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org 2011-03-23 07:02:23 PDT ---
-Created an attachment (id=44754)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44754)
-Xorg log with nvidia driver
+Your system has an IGP  - integrated graphics processor, with no
+memory chips. Thus no memory clk is used nor set.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+nvidia-settings reports the frequency of your system memory.
+In some vbioses the memory clk for IGPs is set to 0 just to explicitly
+confirm the above statement.
+
+On nva[3|5|8|f] systems the get_clock() function does not always the
+clocks correctly (looking at your shader frequency)
