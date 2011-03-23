@@ -1,11 +1,14 @@
-From: Ecker Sandor <esanya-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org>
-Subject: GeForce 9100M G
-Date: Wed, 23 Mar 2011 21:24:06 +0100 (CET)
-Message-ID: <freemail.20110323212406.91713.1@xmldata09.freemail.hu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 35514] Black screen with nouveau on a GeForce 8600M
+ GT, either LiveCD or fresh install
+Date: Wed, 23 Mar 2011 14:00:47 -0700 (PDT)
+Message-ID: <20110323210047.5BC5F13004E@annarchy.freedesktop.org>
+References: <bug-35514-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35514-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,20 +21,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+https://bugs.freedesktop.org/show_bug.cgi?id=35514
 
-I'm not sure if this is the right place to ask. 
+Mathieu Marquer <mathieu.marquer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-My question wuold be: is the GeForce 9100M G supported in nouveau? On the site: http://nouveau.freedesktop.org/wiki/CodeNames#NV50 it can not be found. The 9200M is supported. 
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #44676|0                           |1
+        is obsolete|                            |
+  Attachment #44677|0                           |1
+        is obsolete|                            |
 
-Is it complicated to support 9100 too?
+--- Comment #6 from Mathieu Marquer <mathieu.marquer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-23 14:00:45 PDT ---
+Created an attachment (id=44767)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=44767)
+Actual dmesg (without "nomodeset")
 
-Is there any plan to support 9100?
-
-I use my laptop with linux, and the official nvidia driver has a bug, and the laptop can be suspended only once (1x). So once I can suspend my work, but not 2x.
-
-My question would be with nouveau works the suspend any times?
-
-Thanks,
-Regards,
-Sandor
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
