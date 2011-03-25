@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 24002] PFIFO_CACHE_ERROR PGRAPH_ERROR
-Date: Fri, 25 Mar 2011 10:39:41 -0700 (PDT)
-Message-ID: <20110325173941.677D713004F@annarchy.freedesktop.org>
+Date: Fri, 25 Mar 2011 11:13:13 -0700 (PDT)
+Message-ID: <20110325181313.9363E13000C@annarchy.freedesktop.org>
 References: <bug-24002-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=24002
 
---- Comment #2 from jussi haverinen <haverinen.jussi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-25 10:39:41 PDT ---
-Created an attachment (id=44860)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44860)
-kernel.log boot to crash
+jussi haverinen <haverinen.jussi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I've got the same error, PFIFO_CACHE_ERROR's and some other stuff.  I was
-watching a video with smplayer with output gl fast with kde compositing turned
-on.  Problem persisted until I turned off the compositing and I haven't gotten
-around to the video bit yet, but I'll try with xv.  Card is gt220 (nv05).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |haverinen.jussi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #3 from jussi haverinen <haverinen.jussi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-25 11:13:13 PDT ---
+(In reply to comment #2)
+Ahh, forgot some data.  Archlinux up-to-date, nouveau-dri 7.10.1-1
+xf-86-video-nouveau 0.0.16_git20101217-1.  In the hangs, (not "crashes") mouse
+kept moving.  There were times (hang happened about 3 times, before disabling
+gl programs) the screen would update maybe once a minute, with theoretically it
+being possible to interact with the system, until the lag/hang got so bad that
+I had to do a hard boot.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
