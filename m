@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Thu, 24 Mar 2011 12:36:57 -0700 (PDT)
-Message-ID: <20110324193657.1452C13000C@annarchy.freedesktop.org>
-References: <bug-35267-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35441] header files (at least nouveau_device.h and
+ nouveau_grojb.h) missing from git
+Date: Fri, 25 Mar 2011 01:36:41 -0700 (PDT)
+Message-ID: <20110325083641.3A7BB13004F@annarchy.freedesktop.org>
+References: <bug-35441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35267
-
---- Comment #5 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> 2011-03-24 12:36:56 PDT ---
-Back when I had a OSX on my laptop, I used refit with GPT/BIOS syncing, and
-nouveau worked back then (At least I think it did..I should been checking more
-carefully back then)
-I was hoping to somehow get away with no bios sync.
-
-about your points:
-a) I use(d) 2.6.36/38 in various versions. If your kernel does not boot at all,
-you may want check my config at
-https://dev.spahan.ch/svn/linux/kernel/configs/config oh, and you MUST use a
-64bit kernel with EFI64 I think.
-c) that is a error on that page. I can boot with EFI64 but not with EFI32
-d) I think I tried different values there. But I  did not get any different
-results at all, which makes me think I maybe did something worng, I will try
-test again. (As I do not have macosx installed, I am not able to do that dtrace
-thing as that is not installed in the install disk environment... well, I try
-install it on a external disk and see if I can get any results.)
-Additionaly, those screen resolutions there are for the default macbookpro4,1
-(1440x900) but i got the "HighDEf" (1920x1200).
-
-
-Anyway, can a developer tell me if it should be possible to use nouveau without
-BIOS at all? If not, I wont waste more time on this and move on to waste time
-on try getting BIOS emulation work in Grub.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzU0NDEKCtCh0LXQ
+sdCw0YHRgtGM0Y/QvSBHbGnFo2EgzprOsc+EzrnOvc6xIDxjZ2xpdGFAeWFob28uY29tPiBjaGFu
+Z2VkOgoKICAgICAgICAgICBXaGF0ICAgIHxSZW1vdmVkICAgICAgICAgICAgICAgICAgICAgfEFk
+ZGVkCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICBBdHRhY2htZW50ICM0NDc3OXwwICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgfDEKICAgICAgICBpcyBvYnNvbGV0ZXwgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgfAoKLS0tIENvbW1lbnQgIzUgZnJvbSDQodC10LHQsNGB0YLRjNGP0L0gR2xpxaNh
+IM6azrHPhM65zr3OsSA8Y2dsaXRhQHlhaG9vLmNvbT4gMjAxMS0wMy0yNSAwMTozNjo0MCBQRFQg
+LS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9NDQ4MTIpCiBWaWV3OiBodHRwczovL2J1Z3Mu
+ZnJlZWRlc2t0b3Aub3JnL2F0dGFjaG1lbnQuY2dpP2lkPTQ0ODEyCiBSZXZpZXc6IGh0dHBzOi8v
+YnVncy5mcmVlZGVza3RvcC5vcmcvcmV2aWV3P2J1Zz0zNTQ0MSZhdHRhY2htZW50PTQ0ODEyCgp1
+c2UgcGtnY29uZmlnIGluIGNvbmZpZ3VyZS5hYyBhbmQgSU5DTFVERVMgaW4gTWFrZWZpbGVzCgoK
+LSBtb3ZlZCBgKz0nIHN0dWZmIGFmdGVyICJpbmNsdWRlIC4uL01ha2VmaWxlLnRlbXBsYXRlIgoK
+LSBwbGFjaW5nIHN0dWZmIGluIGNvbmZpZ3VyZS5hYwoKc2hvcnRjb21pbmc6CnNob3VsZCBjb25z
+aWRlciBmb3Igbm91dmVhdSBhbHNvIG52NTAgZXRjLiBsaWtlIGZvciByYWRlb24gcjMwMCByNjAw
+IC4uLgoKcHJvcG9zYWw6CnNwbGl0IGBNYWtlZmlsZS50ZW1wbGF0ZScgaW50byBgTWFrZWZpbGUu
+Y29tbW9uJyBhbmQgYE1ha2VmaWxlLnRhcmdldHMnCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0
+dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0t
+LSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRo
+ZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
