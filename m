@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31676] garbled text after loading nouveau module on
- EFI boot; X driver thinks there are no connected outputs
-Date: Sun, 27 Mar 2011 02:23:07 -0700 (PDT)
-Message-ID: <20110327092308.A5AAE13000C@annarchy.freedesktop.org>
-References: <bug-31676-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35714] New: Nouveau: GLSL issue with Gnome Shell
+Date: Sun, 27 Mar 2011 03:22:11 -0700 (PDT)
+Message-ID: <bug-35714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +18,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31676
+https://bugs.freedesktop.org/show_bug.cgi?id=35714
 
---- Comment #16 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2011-03-27 02:23:05 PDT ---
-Hello,
+           Summary: Nouveau: GLSL issue with Gnome Shell
+           Product: xorg
+           Version: unspecified
+          Platform: All
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: venemo-uAjRD0nVeow@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I made some other tests. The conclusion is that, in bios mode nouveau have only
-timing issue, the video outputs are detected properly but lines are not draw
-properly. The issue is on line length which is unstable. I compared modeline
-provided by nvidia and nouveau they seems to be equals, I do not check V/Hsync
-and flags.
 
-In EFI mode nouveau doesn't detect properly video outputs. it fail in detection
-process.
+Nouveau seems to have problems rendering Gnome Shell's applications menu.
 
-Best regards
+Here is how it looks like:
+http://i53.tinypic.com/4udmpy.png
+
+Here is the code for their use of GLSL:
+http://git.gnome.org/browse/gnome-shell/tree/src/st/st-scroll-view-fade.c
+
+Here is the related bug on Gnome Shell:
+https://bugzilla.gnome.org/show_bug.cgi?id=645814
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
