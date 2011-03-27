@@ -1,11 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35714] New: Nouveau: GLSL issue with Gnome Shell
-Date: Sun, 27 Mar 2011 03:22:11 -0700 (PDT)
-Message-ID: <bug-35714-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35441] header files (at least nouveau_device.h and
+ nouveau_grojb.h) missing from git
+Date: Sun, 27 Mar 2011 04:51:33 -0700 (PDT)
+Message-ID: <20110327115133.EC78113000C@annarchy.freedesktop.org>
+References: <bug-35441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +21,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35714
+https://bugs.freedesktop.org/show_bug.cgi?id=35441
 
-           Summary: Nouveau: GLSL issue with Gnome Shell
-           Product: xorg
-           Version: unspecified
-          Platform: All
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: venemo-uAjRD0nVeow@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #7 from Peter Hjalmarsson <xake-ca8b1Tj3MiseIZ0/mPfg9Q@public.gmane.org> 2011-03-27 04:51:33 PDT ---
+(From update of attachment 44813)
+Emm, why rename the radeon variable?
 
 
-Nouveau seems to have problems rendering Gnome Shell's applications menu.
-
-Here is how it looks like:
-http://i53.tinypic.com/4udmpy.png
-
-Here is the code for their use of GLSL:
-http://git.gnome.org/browse/gnome-shell/tree/src/st/st-scroll-view-fade.c
-
-Here is the related bug on Gnome Shell:
-https://bugzilla.gnome.org/show_bug.cgi?id=645814
+-RADEON_LIBS = `pkg-config --libs libdrm_radeon`
++NOUVEAU_LIBS = `shell pkg-config libdrm_nouveau --libs`
++NOUVEAU_CFLAGS = `shell pkg-config libdrm_nouveau --cflags`
++
++RADEON_LDFLAGS = `pkg-config --libs libdrm_radeon`
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
