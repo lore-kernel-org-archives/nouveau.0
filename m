@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Mon, 28 Mar 2011 21:18:25 -0700 (PDT)
-Message-ID: <20110329041825.A5D3613000C@annarchy.freedesktop.org>
+Date: Mon, 28 Mar 2011 21:23:25 -0700 (PDT)
+Message-ID: <20110329042325.5333913004F@annarchy.freedesktop.org>
 References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
---- Comment #6 from bugzilla-zXQU9YWDTqjmlV4oE/1sFAC/G2K4zDHf@public.gmane.org 2011-03-28 21:18:25 PDT ---
-(In reply to comment #5)
-> If not, I wont waste more time on this and move on to waste time
-> on try getting BIOS emulation work in Grub.
+--- Comment #7 from bugzilla-zXQU9YWDTqjmlV4oE/1sFAC/G2K4zDHf@public.gmane.org 2011-03-28 21:23:24 PDT ---
+I can reproduce this problem with F15 alpha, using
+2.6.38-0.rc5.git1.1.fc15.x86_64. It's fatal for EFI booting the F15 LiveCD
+which depends on nouveau.
 
-I've done this with both GRUBs. The problem is to get Apple's EFI into BIOS
-emulation means a hybrid (sync'd) MBR+GPT which means the worst combination of
-both: 4 partitions max, and no LVM.
-
-I have done the sync with rEFIt + Grub 0.97. And without rEFIT using only GRUB2
-(compiled normally, not with EFI support) with it's gptsync command.
+Attaching dmesg.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
