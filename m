@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35714] Nouveau: GLSL issue with Gnome Shell
-Date: Tue, 29 Mar 2011 12:53:04 -0700 (PDT)
-Message-ID: <20110329195304.7CC7113004E@annarchy.freedesktop.org>
-References: <bug-35714-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34505] Please provide an option to ignore invalid
+	EDID
+Date: Tue, 29 Mar 2011 14:47:00 -0700 (PDT)
+Message-ID: <20110329214700.2F7DA13000C@annarchy.freedesktop.org>
+References: <bug-34505-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-34505-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +21,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35714
+https://bugs.freedesktop.org/show_bug.cgi?id=34505
 
-Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
+Carlo Stemberger <carlo.stemberger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|WONTFIX                     |
+             Status|NEW                         |RESOLVED
+         Resolution|                            |WONTFIX
 
---- Comment #3 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2011-03-29 12:53:04 PDT ---
-Hey, 
+--- Comment #1 from Carlo Stemberger <carlo.stemberger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-29 14:46:59 PDT ---
+That's no longer needed.
 
-The policy has changed, it is now accepted to report misrendered images (see
-http://nouveau.freedesktop.org/wiki/MesaDrivers).
-So, I re-open this bug report. This is your lucky day ;)
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=614225#32
 
-Could you provide more information? Kernel logs, mesa version (git master would
-be preferred) and maybe the lspci output for your GPU would be helpful.
+Thank you.
+
+Carlo
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
