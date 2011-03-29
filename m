@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Mon, 28 Mar 2011 21:24:32 -0700 (PDT)
-Message-ID: <20110329042432.4C60A13000C@annarchy.freedesktop.org>
-References: <bug-35267-8800@http.bugs.freedesktop.org/>
+From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: commit 'drm/nv50-nvc0: request and wait on notification
+ of modeset completion' causes suspend failures
+Date: Tue, 29 Mar 2011 18:03:17 +0200
+Message-ID: <1301414597.5173.4.camel@maxim-laptop>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,17 +16,27 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: bskeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35267
+Recently I bisected this commit, and furthermore did a manual revert.
+Symptoms are very simple: black screen on resume from ram/disk in about
+90% of cases.
+System itself continues to function.
 
---- Comment #8 from bugzilla-zXQU9YWDTqjmlV4oE/1sFAC/G2K4zDHf@public.gmane.org 2011-03-28 21:24:31 PDT ---
-Created an attachment (id=44978)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=44978)
-dmesg output 2.6.38.0-rc5 MBP4,1
+Also I am getting black screen on boot alarmingly often
+I suspect this code to be the reason as well.
+
+
+For reference I use latest (updated today) git tips of nouveau master
+branch, mesa and xf86-video-nouveau.
+
+
 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Best regards,
+        Maxim Levitsky
+
+Visit my blog: http://maximlevitsky.wordpress.com
+Warning: Above blog contains rants.
