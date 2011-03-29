@@ -1,12 +1,14 @@
-From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: commit 'drm/nv50-nvc0: request and wait on notification
- of modeset completion' causes suspend failures
-Date: Tue, 29 Mar 2011 18:03:17 +0200
-Message-ID: <1301414597.5173.4.camel@maxim-laptop>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 35441] header files (at least nouveau_device.h and
+ nouveau_grojb.h) missing from git
+Date: Tue, 29 Mar 2011 09:30:07 -0700 (PDT)
+Message-ID: <20110329163008.03E0313000C@annarchy.freedesktop.org>
+References: <bug-35441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,27 +18,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: bskeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Recently I bisected this commit, and furthermore did a manual revert.
-Symptoms are very simple: black screen on resume from ram/disk in about
-90% of cases.
-System itself continues to function.
-
-Also I am getting black screen on boot alarmingly often
-I suspect this code to be the reason as well.
-
-
-For reference I use latest (updated today) git tips of nouveau master
-branch, mesa and xf86-video-nouveau.
-
-
-
--- 
-Best regards,
-        Maxim Levitsky
-
-Visit my blog: http://maximlevitsky.wordpress.com
-Warning: Above blog contains rants.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzU0NDEKCtCh0LXQ
+sdCw0YHRgtGM0Y/QvSBHbGnFo2EgzprOsc+EzrnOvc6xIDxjZ2xpdGFAeWFob28uY29tPiBjaGFu
+Z2VkOgoKICAgICAgICAgICBXaGF0ICAgIHxSZW1vdmVkICAgICAgICAgICAgICAgICAgICAgfEFk
+ZGVkCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICBBdHRhY2htZW50ICM0NDgxMnwwICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgfDEKICAgICAgICBpcyBvYnNvbGV0ZXwgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgfAoKLS0tIENvbW1lbnQgIzkgZnJvbSDQodC10LHQsNGB0YLRjNGP0L0gR2xpxaNh
+IM6azrHPhM65zr3OsSA8Y2dsaXRhQHlhaG9vLmNvbT4gMjAxMS0wMy0yOSAwOTozMDowNSBQRFQg
+LS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9NDUwMDgpCiBWaWV3OiBodHRwczovL2J1Z3Mu
+ZnJlZWRlc2t0b3Aub3JnL2F0dGFjaG1lbnQuY2dpP2lkPTQ1MDA4CiBSZXZpZXc6IGh0dHBzOi8v
+YnVncy5mcmVlZGVza3RvcC5vcmcvcmV2aWV3P2J1Zz0zNTQ0MSZhdHRhY2htZW50PTQ1MDA4Cgp1
+c2UgcGtnY29uZmlnIGluIGNvbmZpZ3VyZS5hYyBhbmQgSU5DTFVERVMgaW4gTWFrZWZpbGVzCgpj
+b25maWdzL2xpbnV4LWRyaSBpcyBhIG1ha2VmaWxlCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0
+dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0t
+LSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRo
+ZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
