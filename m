@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35441] header files (at least nouveau_device.h and
- nouveau_grojb.h) missing from git
-Date: Wed, 30 Mar 2011 03:58:57 -0700 (PDT)
-Message-ID: <20110330105857.94ECE13000C@annarchy.freedesktop.org>
-References: <bug-35441-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35714] Nouveau: GLSL issue with Gnome Shell
+Date: Wed, 30 Mar 2011 08:06:30 -0700 (PDT)
+Message-ID: <20110330150630.0612813004F@annarchy.freedesktop.org>
+References: <bug-35714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +20,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzU0NDEKCi0tLSBD
-b21tZW50ICMxMiBmcm9tINCh0LXQsdCw0YHRgtGM0Y/QvSBHbGnFo2EgzprOsc+EzrnOvc6xIDxj
-Z2xpdGFAeWFob28uY29tPiAyMDExLTAzLTMwIDAzOjU4OjU3IFBEVCAtLS0KQ3JlYXRlZCBhbiBh
-dHRhY2htZW50IChpZD00NTAzOCkKIFZpZXc6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcv
-YXR0YWNobWVudC5jZ2k/aWQ9NDUwMzgKIFJldmlldzogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9w
-Lm9yZy9yZXZpZXc/YnVnPTM1NDQxJmF0dGFjaG1lbnQ9NDUwMzgKCnNwbGl0IE1ha2VmaWxlLnRl
-bXBsYXRlIGFuZCB1c2UgcGtnY29uZmlnIGluIGNvbmZpZ3VyZS5hYyBhbmQgY29uZmlndXJlIGFu
-ZApJTkNMVURFUyBpbiBNYWtlZmlsZXMKCnNwbGl0IGBNYWtlZmlsZS50ZW1wbGF0ZScgaW50byBg
-TWFrZWZpbGUuZGVmaW5lcycgYW5kIGBNYWtlZmlsZS50YXJnZXRzJwoKLS0gCkNvbmZpZ3VyZSBi
-dWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVt
-YWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0K
-WW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=35714
+
+--- Comment #4 from Rui Tiago Matos <tiagomatos-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-03-30 08:06:29 PDT ---
+(In reply to comment #3)
+> Hey, 
+> 
+> The policy has changed, it is now accepted to report misrendered images (see
+> http://nouveau.freedesktop.org/wiki/MesaDrivers).
+> So, I re-open this bug report. This is your lucky day ;)
+> 
+> Could you provide more information? Kernel logs, mesa version (git master would
+> be preferred) and maybe the lspci output for your GPU would be helpful.
+
+I can reproduce this with mesa master on linux 2.6.38 with an NV86. Check here
+for the commit that introduced the bug in gnome-shell:
+
+https://bugzilla.gnome.org/show_bug.cgi?id=645814#c2
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
