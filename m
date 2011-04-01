@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35878] Incorrect rendering of neverball reflection
 	effect
-Date: Fri,  1 Apr 2011 09:13:10 -0700 (PDT)
-Message-ID: <20110401161310.83C6713004E@annarchy.freedesktop.org>
+Date: Fri,  1 Apr 2011 09:13:29 -0700 (PDT)
+Message-ID: <20110401161329.AE0BB13004E@annarchy.freedesktop.org>
 References: <bug-35878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35878
 
---- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-04-01 09:13:10 PDT ---
-Created an attachment (id=45141)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45141)
-screenshot
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-you see that letters are rendered with black surface instead of glassy one
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |low
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
