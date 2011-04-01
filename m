@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34554] Nouveau seems to have corrupted my laptop
  screen's EDID info
-Date: Fri,  1 Apr 2011 10:10:22 -0700 (PDT)
-Message-ID: <20110401171022.C27A413004F@annarchy.freedesktop.org>
+Date: Fri,  1 Apr 2011 10:11:17 -0700 (PDT)
+Message-ID: <20110401171117.EF7E213000C@annarchy.freedesktop.org>
 References: <bug-34554-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34554
 
---- Comment #12 from Andy Getz <suertreus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-01 10:10:22 PDT ---
-Created an attachment (id=45146)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45146)
-M1710 lspci -vvv
+--- Comment #13 from Andy Getz <suertreus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-01 10:11:16 PDT ---
+Created an attachment (id=45147)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45147)
+D620 Xorg log
+
+Same display configuration as described for dmesg above
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
