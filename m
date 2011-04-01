@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34554] Nouveau seems to have corrupted my laptop
  screen's EDID info
-Date: Fri,  1 Apr 2011 10:08:27 -0700 (PDT)
-Message-ID: <20110401170827.7AFB613004F@annarchy.freedesktop.org>
+Date: Fri,  1 Apr 2011 10:09:58 -0700 (PDT)
+Message-ID: <20110401170958.C673F13004E@annarchy.freedesktop.org>
 References: <bug-34554-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34554
 
---- Comment #10 from Andy Getz <suertreus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-01 10:08:26 PDT ---
-Created an attachment (id=45144)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45144)
-M1710 dmesg
-
-M1710 dmesg from not long after boot
-Attached displays:
-built-in LVDS panel (no image)
-Acer DVI monitor via Dell docking station, IOGEAR GCS1104 EDID-aware DVI KVM
+--- Comment #11 from Andy Getz <suertreus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-01 10:09:58 PDT ---
+Created an attachment (id=45145)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45145)
+D620 lspci -vvv
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
