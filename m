@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35875] New: GPU hang while playing games (#1)
-Date: Fri,  1 Apr 2011 08:54:02 -0700 (PDT)
-Message-ID: <bug-35875-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35876] New: Hard GPU hang on nvidia
+Date: Fri,  1 Apr 2011 08:58:47 -0700 (PDT)
+Message-ID: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,23 +18,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35875
+https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
-           Summary: GPU hang while playing games (#1)
+           Summary: Hard GPU hang on nvidia
            Product: Mesa
            Version: git
           Platform: x86-64 (AMD64)
         OS/Version: Linux (All)
             Status: NEW
-          Severity: normal
+          Severity: major
           Priority: medium
          Component: Drivers/DRI/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
         ReportedBy: maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
-Created an attachment (id=45136)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45136)
+Created an attachment (id=45137)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45137)
 git snapshot
 
 Hardware: Geforce 8400M GS - (0x086700a2)
@@ -47,27 +47,21 @@ Kernel drm version: dd34154f9bd75d13caefffd9d6086a1d23a45856
           drm/nouveau: use static vidshift of 2 on volt 0x30 tables
 
 
-This time, it happened this way:
-I open neverball, play it for a while, then system freezes, nothing in the
-kernel log until I execute the SAK, then I get this generic message in the
-kernel log:
+This already happened here many times.
+Just 2D usage of compiz is enough.
+I will eventually test if even just 2D usage can trigger this.
 
-[ 1678.640048] [drm] nouveau 0000:01:00.0: Failed to idle channel 2.
-[ 1680.266949] [drm] nouveau 0000:01:00.0: GPU lockup - switching to software
-fbcon
-[ 1682.860053] [drm] nouveau 0000:01:00.0: Failed to idle channel 4.
+I get this in the kernel log:
 
+<3>[17638.684109] [drm] nouveau 0000:01:00.0: vm flush timeout: engine 0
+<3>[17644.904441] [drm] nouveau 0000:01:00.0: PRAMIN flush timeout
+<6>[17645.869768] [drm] nouveau 0000:01:00.0: PFIFO_INTR 0x04000000 - Ch 2
+<3>[17645.966182] [drm] nouveau 0000:01:00.0: vm flush timeout: engine 5
 
-Then X restarts, and doesn't use 3D acceleration because no new GPU channels
-can be allocated:
+(Extracted using ram based "black-box", a fixed area in the system memory I
+read after a crash.)
 
-[  1686.340] (EE) NOUVEAU(0): Error creating GPU channel: -16
-[  1686.341] (EE) NOUVEAU(0): Error initialising acceleration.  Falling back to
-NoAccel
-
-
-Thats all. I really don't expect that to be fixed, just want to document this
-issue.
+System freezes fully.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
