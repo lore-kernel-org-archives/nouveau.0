@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35878] New: Incorrect rendering of neverball
-	reflection effect
-Date: Fri,  1 Apr 2011 09:06:11 -0700 (PDT)
-Message-ID: <bug-35878-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35878] Incorrect rendering of neverball reflection
+	effect
+Date: Fri,  1 Apr 2011 09:13:10 -0700 (PDT)
+Message-ID: <20110401161310.83C6713004E@annarchy.freedesktop.org>
+References: <bug-35878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35878
 
-           Summary: Incorrect rendering of neverball reflection effect
-           Product: Mesa
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: minor
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+--- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-04-01 09:13:10 PDT ---
+Created an attachment (id=45141)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45141)
+screenshot
 
-
-Created an attachment (id=45140)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45140)
-git snapshot
-
-Hardware: Geforce 8400M GS - (0x086700a2)
-          Acer Aspire 5720G
-
-Userspace: Git tips of all components except Xserver.
-          In attached file, you see the latest commits of each tree
-
-Kernel drm version: dd34154f9bd75d13caefffd9d6086a1d23a45856
-          drm/nouveau: use static vidshift of 2 on volt 0x30 tables
-
-
-This can be seen in the welcome screen, might somehow be related to stencil.
-Screenshot attached.
+you see that letters are rendered with black surface instead of glassy one
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
