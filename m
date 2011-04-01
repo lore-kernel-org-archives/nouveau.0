@@ -1,8 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35874] New: gamma settings does not work with
- nouveau and Geforce 285
-Date: Fri,  1 Apr 2011 08:23:07 -0700 (PDT)
-Message-ID: <bug-35874-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35875] New: GPU hang while playing games (#1)
+Date: Fri,  1 Apr 2011 08:54:02 -0700 (PDT)
+Message-ID: <bug-35875-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,36 +18,56 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35874
+https://bugs.freedesktop.org/show_bug.cgi?id=35875
 
-           Summary: gamma settings does not work with nouveau and Geforce
-                    285
-           Product: xorg
-           Version: unspecified
+           Summary: GPU hang while playing games (#1)
+           Product: Mesa
+           Version: git
           Platform: x86-64 (AMD64)
         OS/Version: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
-         Component: Driver/nouveau
+         Component: Drivers/DRI/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: popelov-0QGUyfyil/E@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+        ReportedBy: maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
-Hello, 
+Created an attachment (id=45136)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45136)
+git snapshot
 
-Nouveau driver (0.0.16.git20110323.1614-1.1, OpenSuse 11.4, KDE) fully ignores
-gamma and brightness settings in KDE Display settings and xrandr --gamma.
+Hardware: Geforce 8400M GS - (0x086700a2)
+          Acer Aspire 5720G
 
-My video is:
-# lspci:
-06:00.0 VGA compatible controller: nVidia Corporation GT200b [GeForce GTX 285]
-(rev a1)
+Userspace: Git tips of all components except Xserver.
+          In attached file, you see the latest commits of each tree
 
-kernel: 2.6.37.1-1.2-desktop
+Kernel drm version: dd34154f9bd75d13caefffd9d6086a1d23a45856
+          drm/nouveau: use static vidshift of 2 on volt 0x30 tables
 
-Thanks.
+
+This time, it happened this way:
+I open neverball, play it for a while, then system freezes, nothing in the
+kernel log until I execute the SAK, then I get this generic message in the
+kernel log:
+
+[ 1678.640048] [drm] nouveau 0000:01:00.0: Failed to idle channel 2.
+[ 1680.266949] [drm] nouveau 0000:01:00.0: GPU lockup - switching to software
+fbcon
+[ 1682.860053] [drm] nouveau 0000:01:00.0: Failed to idle channel 4.
+
+
+Then X restarts, and doesn't use 3D acceleration because no new GPU channels
+can be allocated:
+
+[  1686.340] (EE) NOUVEAU(0): Error creating GPU channel: -16
+[  1686.341] (EE) NOUVEAU(0): Error initialising acceleration.  Falling back to
+NoAccel
+
+
+Thats all. I really don't expect that to be fixed, just want to document this
+issue.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
