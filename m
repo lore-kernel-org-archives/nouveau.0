@@ -1,8 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35878] Incorrect rendering of neverball reflection
-	effect
-Date: Fri,  1 Apr 2011 12:43:50 -0700 (PDT)
-Message-ID: <20110401194350.86FCC13004E@annarchy.freedesktop.org>
+Subject: [Bug 35878] No support for user clip planes in NV50 driver
+Date: Fri,  1 Apr 2011 12:45:06 -0700 (PDT)
+Message-ID: <20110401194507.1F73313004E@annarchy.freedesktop.org>
 References: <bug-35878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,7 +22,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35878
 
---- Comment #3 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-04-01 12:43:50 PDT ---
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Incorrect rendering of      |No support for user clip
+                   |neverball reflection effect |planes in NV50 driver
+           Priority|low                         |lowest
+
+--- Comment #4 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-04-01 12:45:05 PDT ---
 Aha!. Thats the same problem with 3D windows of compiz.
 So thats is a really very minor problem.
 
