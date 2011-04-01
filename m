@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35878] Incorrect rendering of neverball reflection
 	effect
-Date: Fri,  1 Apr 2011 12:03:47 -0700 (PDT)
-Message-ID: <20110401190348.E3A4913004E@annarchy.freedesktop.org>
+Date: Fri,  1 Apr 2011 12:43:50 -0700 (PDT)
+Message-ID: <20110401194350.86FCC13004E@annarchy.freedesktop.org>
 References: <bug-35878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35878
 
---- Comment #2 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2011-04-01 12:03:47 PDT ---
-This is because user clip planes are ignored by nv50, it looks correct on nvc0
-and like on the screenshot when I comment out the clip planes enable there.
+--- Comment #3 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-04-01 12:43:50 PDT ---
+Aha!. Thats the same problem with 3D windows of compiz.
+So thats is a really very minor problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
