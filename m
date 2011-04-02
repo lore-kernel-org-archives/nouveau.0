@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35878] No support for user clip planes in NV50 driver
-Date: Fri,  1 Apr 2011 12:45:06 -0700 (PDT)
-Message-ID: <20110401194507.1F73313004E@annarchy.freedesktop.org>
-References: <bug-35878-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35889] New: Screen of Geforce4 440 GO NV17 corrupts
+ while booting
+Date: Fri,  1 Apr 2011 17:26:42 -0700 (PDT)
+Message-ID: <bug-35889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +19,45 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35878
+https://bugs.freedesktop.org/show_bug.cgi?id=35889
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+           Summary: Screen of Geforce4 440 GO NV17 corrupts while booting
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: stefan.langenmaier+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Incorrect rendering of      |No support for user clip
-                   |neverball reflection effect |planes in NV50 driver
-           Priority|low                         |lowest
 
---- Comment #4 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-04-01 12:45:05 PDT ---
-Aha!. Thats the same problem with 3D windows of compiz.
-So thats is a really very minor problem.
+Created an attachment (id=45150)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45150)
+The used config file for the creation of the kernel.
+
+Hello
+
+the machine is a Toshiba Satellite 5100-S201
+with a nVidia GeForce4 440 Go 10de:0174 (rev a3)
+I'm running the kernel 2.6.38 with kms enabled.
+
+When I start the pc it boots normal for one or two seconds and I can see the
+typical lines, but then the screen freezes and it starts to show strange
+artifacts. They are almost always different sometimes horizontal bars in black
+in white. Sometimes the screen fades slowly to black, sometimes to bright
+white.
+In the background the pc boots normal and I can ssh into the box.
+
+When I add nouveau.modeset=0 to the boot parameters the systems boots without
+any artifacts. But I cannot start the xserver.
+
+When I add another monitor to the external vga connector. The internal monitor
+stays black and the external monitor displays the content just fine and I can
+also launch the xserver.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
