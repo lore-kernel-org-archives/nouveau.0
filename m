@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35901] two full hd displays (left and right) with
- nouveau does not work any more
-Date: Sat,  2 Apr 2011 02:26:53 -0700 (PDT)
-Message-ID: <20110402092653.C036613000C@annarchy.freedesktop.org>
-References: <bug-35901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35562] Nouveau fails to link in Mesa 7.10.1
+Date: Sat,  2 Apr 2011 17:15:14 -0700 (PDT)
+Message-ID: <20110403001514.A56F513000C@annarchy.freedesktop.org>
+References: <bug-35562-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35562-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,11 +20,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35901
+https://bugs.freedesktop.org/show_bug.cgi?id=35562
 
---- Comment #1 from Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> 2011-04-02 02:26:53 PDT ---
-Please have a look at:
-http://bugs.gentoo.org/show_bug.cgi?format=multiple&id=356965
+--- Comment #1 from nello martuscielli <ppc.addon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-02 17:15:14 PDT ---
+the same problem here on ppc32 (CRUX PPC 2.7).
+
+libdrm-2.4.24 and linux-2.6.38.2 kernel.
+
+my config:
+
+./configure --prefix=/usr \
+        --with-driver=dri \
+        --with-dri-driverdir=/usr/lib/dri \
+        --enable-glx-tls \
+        --enable-gallium-radeon --enable-gallium-r600 \
+        --enable-gallium-nouveau --enable-gallium-swrast
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
