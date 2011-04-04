@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35930] flickering in many OpenGL applications with
-	Compiz
-Date: Sun,  3 Apr 2011 08:59:06 -0700 (PDT)
-Message-ID: <20110403155906.CEFCA13004F@annarchy.freedesktop.org>
-References: <bug-35930-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35514] Black screen with nouveau on a GeForce 8600M
+ GT, either LiveCD or fresh install
+Date: Mon,  4 Apr 2011 04:55:15 -0700 (PDT)
+Message-ID: <20110404115515.44BFE13004E@annarchy.freedesktop.org>
+References: <bug-35514-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35930-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35514-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35930
-
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-04-03 08:59:06 PDT ---
-Kwin4 is affected as well.
-In fact here supertuxkart doesn't show this problem in compiz , but in kwin4 it
-flickers badly.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzU1MTQKCi0tLSBD
+b21tZW50ICM3IGZyb20gQ2hyaXN0b3BoZXIgSmFtZXMgSGFsc2UgUm9nZXJzIDxjaGFsc2Vyb2dl
+cnNAZ21haWwuY29tPiAyMDExLTA0LTA0IDA0OjU1OjEyIFBEVCAtLS0KVGhlIG1hbnkKWyAgIDE3
+Ljk2MTYzMl0gY29tcG9zaXRlIHN5bmMgbm90IHN1cHBvcnRlZAptZXNzYWdlcyBtaWdodCBiZSBh
+IHBhcnQgb2YgdGhlIHByb2JsZW0gYXMgdGhleSBjb3JyZXNwb25kIHRvIHRoZQpbICAgIDE4LjQ3
+OV0gKElJKSBOT1VWRUFVKDApOiBERENNb2RlRnJvbURldGFpbGVkVGltaW5nOiAxNDQweDkwMCBX
+YXJuaW5nOiBXZQpvbmx5IGhhbmRsZSBzZXBhcmF0ZSBzeW5jLgpYb3JnLjAubG9nIHdhcm5pbmdz
+LgoKVGhlIGRtZXNnIHdvdWxkIGJlIG1vcmUgdXNlZnVsIGlmIHlvdSBhZGRlZCDigJxkcm0uZGVi
+dWc9MHgwNOKAnSB0byB0aGUga2VybmVsCmNvbW1hbmQgbGluZTsgdGhhdCB0dXJucyBvbiBLTVMg
+ZGVidWcgbWVzc2FnZXMsIGFuZCBzaW5jZSB0aGlzIGlzIChhdCBsZWFzdCkgYQptb2Rlc2V0dGlu
+ZyBwcm9ibGVtIHRoZXkncmUgbGlrZWx5IHRvIGJlIHVzZWZ1bC4KCllvdSBzYXkgdGhhdCB0aGUg
+bnZpZGlhIGJpbmFyeSBkcml2ZXIgKmtpbmQgb2YqIHdvcmtzPyAgSXMgdGhpcyBvbmUgb2YgdGhl
+CmxhcHRvcHMgd2hlcmUgdGhlIG52aWRpYSBkcml2ZXIgZG9lc24ndCB3b3JrIHByb3Blcmx5PwoK
+LS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJw
+cmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJl
+Y2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
