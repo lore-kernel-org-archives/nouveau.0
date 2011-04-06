@@ -1,15 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34508] [grub x86_64-efi] Macbook 5,
- 2 - conflicting fb hw usage nouveaufb vs EFI VGA - removing generic
- driver
-Date: Wed,  6 Apr 2011 05:44:39 -0700 (PDT)
-Message-ID: <20110406124440.9C99E13004F@annarchy.freedesktop.org>
-References: <bug-34508-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23023] no backlight support  in /sys or /proc ;
+ xbacklight not working
+Date: Wed,  6 Apr 2011 09:45:09 -0700 (PDT)
+Message-ID: <20110406164509.46B87130052@annarchy.freedesktop.org>
+References: <bug-23023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34508-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23023-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,21 +21,46 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34508
+https://bugs.freedesktop.org/show_bug.cgi?id=23023
 
-Gregory Bellier <dest-vb1CFJ/PVqUHz/9yF02f9g@public.gmane.org> changed:
+Ian Pilcher <arequipeno-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |
 
---- Comment #5 from Gregory Bellier <dest-vb1CFJ/PVqUHz/9yF02f9g@public.gmane.org> 2011-04-06 05:44:38 PDT ---
-I did my tests with a 2.6.35 kernel. I built a custom kernel based on 2.6.38.2
-and it works. Meaning, I can successfully boot on Linux when Nouveau and
-Grub-EFI are involved.
+--- Comment #3 from Ian Pilcher <arequipeno-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-06 09:45:08 PDT ---
+I'm not getting any backlight support here:
 
-This is a relief. Now I can drop NVidia binary ...
+[ipilcher@localhost ~]$ lspci | grep VGA
+01:00.0 VGA compatible controller: nVidia Corporation GT218 [NVS 3100M] (rev
+a2)
+[ipilcher@localhost ~]$ xrandr
+Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192
+LVDS-1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 344mm
+x 193mm
+   1920x1080      60.0*+   60.0     50.0  
+   1680x1050      60.0  
+   1400x1050      60.0  
+   1280x1024      59.9  
+   1280x960       59.9  
+   1152x864       60.0  
+   1024x768       59.9  
+   800x600        59.9  
+   640x480        59.4  
+   720x400        59.6  
+   640x400        60.0  
+   640x350        59.8  
+VGA-1 disconnected (normal left inverted right x axis y axis)
+DP-1 disconnected (normal left inverted right x axis y axis)
+DP-2 disconnected (normal left inverted right x axis y axis)
+DP-3 disconnected (normal left inverted right x axis y axis)
+[ipilcher@localhost ~]$ xbacklight
+No outputs have backlight property
+
+nouveau version is
+xorg-x11-drv-nouveau-0.0.16-13.20101010git8c8f15c.fc14.x86_64
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
