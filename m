@@ -1,68 +1,45 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23023] no backlight support  in /sys or /proc ;
- xbacklight not working
-Date: Wed,  6 Apr 2011 09:45:09 -0700 (PDT)
-Message-ID: <20110406164509.46B87130052@annarchy.freedesktop.org>
-References: <bug-23023-8800@http.bugs.freedesktop.org/>
+From: Andreas Radke <a.radke@arcor.de>
+Subject: Re: Mesa 7.10.2 release
+Date: Thu, 7 Apr 2011 14:06:33 +0200
+Message-ID: <20110407140633.6a9c5cae@workstation64.home>
+References: <4D9CD215.4000003@freedesktop.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23023-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+In-Reply-To: <4D9CD215.4000003@freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=23023
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-Ian Pilcher <arequipeno-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+This bug breaks the build here for ArchLinux:
+https://bugs.freedesktop.org/show_bug.cgi?id=35562
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|FIXED                       |
+This commit seems to cause it though I couldn't find it in the gitweb
+interface in the 7.10 branch:
 
---- Comment #3 from Ian Pilcher <arequipeno-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-06 09:45:08 PDT ---
-I'm not getting any backlight support here:
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=5f0f9f0486e9cf43939dfbd1051298f05da1eec4
 
-[ipilcher@localhost ~]$ lspci | grep VGA
-01:00.0 VGA compatible controller: nVidia Corporation GT218 [NVS 3100M] (rev
-a2)
-[ipilcher@localhost ~]$ xrandr
-Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192
-LVDS-1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 344mm
-x 193mm
-   1920x1080      60.0*+   60.0     50.0  
-   1680x1050      60.0  
-   1400x1050      60.0  
-   1280x1024      59.9  
-   1280x960       59.9  
-   1152x864       60.0  
-   1024x768       59.9  
-   800x600        59.9  
-   640x480        59.4  
-   720x400        59.6  
-   640x400        60.0  
-   640x350        59.8  
-VGA-1 disconnected (normal left inverted right x axis y axis)
-DP-1 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-[ipilcher@localhost ~]$ xbacklight
-No outputs have backlight property
+Any idea other than reverting it?
 
-nouveau version is
-xorg-x11-drv-nouveau-0.0.16-13.20101010git8c8f15c.fc14.x86_64
+- -Andreas Radke
+ArchLinux package maintainer
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+iEUEARECAAYFAk2dqMkACgkQLju01StYJ8iDegCfUg7W1knO4LDOODlt5tDJGusH
+r64AmOS/zWb3e8qmm5RRt4qQQuNZFZg=
+=c1/P
+-----END PGP SIGNATURE-----
