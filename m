@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35901] two full hd displays (left and right) with
- nouveau does not work any more
-Date: Thu,  7 Apr 2011 12:55:40 -0700 (PDT)
-Message-ID: <20110407195540.6AB0213000C@annarchy.freedesktop.org>
-References: <bug-35901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32494] [NV46] GPU lockup,
+ switching to software fbcon at startup
+Date: Fri,  8 Apr 2011 05:29:34 -0700 (PDT)
+Message-ID: <20110408122934.1D37C13000C@annarchy.freedesktop.org>
+References: <bug-32494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-32494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +21,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35901
+https://bugs.freedesktop.org/show_bug.cgi?id=32494
 
-Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> changed:
+--- Comment #7 from Alexander Koryushkin <madcored-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-08 05:29:33 PDT ---
+Created an attachment (id=45417)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45417)
+Kernel log
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |highest
+0000:00:10.0 VGA compatible controller: nVidia Corporation NV17 [GeForce4 440
+Go 64M] (rev a3)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
