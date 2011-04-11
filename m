@@ -1,41 +1,50 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35562] Nouveau fails to link in Mesa 7.10.1
-Date: Mon, 11 Apr 2011 02:25:30 -0700 (PDT)
-Message-ID: <20110411092530.7B17313004F@annarchy.freedesktop.org>
-References: <bug-35562-8800@http.bugs.freedesktop.org/>
+From: Stratos Psomadakis <psomas@ece.ntua.gr>
+Subject: nouveau_pm.c: Build error
+Date: Mon, 11 Apr 2011 16:22:30 +0300
+Message-ID: <4DA30096.1070404@ece.ntua.gr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35562-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature";
+ boundary="------------enig316FE0E93B62F7E76B40C37B"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35562
+This is an OpenPGP/MIME signed message (RFC 2440 and 3156)
+--------------enig316FE0E93B62F7E76B40C37B
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
---- Comment #3 from Bernhard Rosenkraenzer <bero-9zdaV+82baBg9hUCZPvPmw@public.gmane.org> 2011-04-11 02:25:29 PDT ---
-Created an attachment (id=45468)
- View: https://bugs.freedesktop.org/attachment.cgi?id=45468
- Review: https://bugs.freedesktop.org/review?bug=35562&attachment=45468
+In nouveau_pm.c, in the function nouveau_pm_acpi_event(), there's no
+check for CONFIG_POWER_SUPPLY.
 
-Proposed fix
+If CONFIG_POWER_SUPPLY is set to either n or m, the
+power_supply_is_system_supplied() is 'missing' and there's a build error.=
 
-This fixes it for me.
 
-No guarantees that the resulting driver will actually work (not sure which
-files need nv04_pushbuf.h and which files need nvc0_pushbuf.h...), all my test
-boxes have Intel or ATI graphics chips...
+One solution is to add an #ifdef CONFIG_POWER_SUPPLY along with the
+#ifdef CONFIG_ACPI before the function.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+--=20
+Stratos Psomadakis
+<psomas@ece.ntua.gr>
+
+
+
+--------------enig316FE0E93B62F7E76B40C37B
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.17 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+
+iEYEARECAAYFAk2jAJkACgkQid1lVeNDMmBxawCeMImAAaWmMbe9x3/oVjKZzChY
+ex4An3XXFBOjMXh0YFmcMMoVMv0KAeOT
+=S07X
+-----END PGP SIGNATURE-----
+
+--------------enig316FE0E93B62F7E76B40C37B--
