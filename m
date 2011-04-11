@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36142] Second DVI output produces no signal with
- nVidia G96 [Quadro FX 380] (rev a1)
-Date: Mon, 11 Apr 2011 14:33:33 -0700 (PDT)
-Message-ID: <20110411213333.1A1A613000C@annarchy.freedesktop.org>
-References: <bug-36142-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH] pm: fix a compilation failure when
+	CONFIG_POWER_SUPPLY is not set
+Date: Tue, 12 Apr 2011 00:55:44 +0200
+Message-ID: <1302562544-6793-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36142-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,18 +17,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: psomas-CiBbMcFdDxlMo1R+fwTmgw@public.gmane.org, Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36142
+Signed-off-by: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+Reported-by: Stratos Psomadakis <psomas-CiBbMcFdDxlMo1R+fwTmgw@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_pm.c |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
 
-Jordan Bettis <jordanb-q3/FTUuX59U@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #45491|application/octet-stream    |text/plain
-          mime type|                            |
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_pm.c b/drivers/gpu/drm/nouveau/nouveau_pm.c
+index 0b1caeb..dc8a0cc 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_pm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_pm.c
+@@ -449,7 +449,7 @@ nouveau_hwmon_fini(struct drm_device *dev)
+ #endif
+ }
+ 
+-#ifdef CONFIG_ACPI
++#if defined(CONFIG_ACPI) && defined(CONFIG_POWER_SUPPLY)
+ static int
+ nouveau_pm_acpi_event(struct notifier_block *nb, unsigned long val, void *data)
+ {
+@@ -508,7 +508,7 @@ nouveau_pm_init(struct drm_device *dev)
+ 
+ 	nouveau_sysfs_init(dev);
+ 	nouveau_hwmon_init(dev);
+-#ifdef CONFIG_ACPI
++#if defined(CONFIG_ACPI) && defined(CONFIG_POWER_SUPPLY)
+ 	pm->acpi_nb.notifier_call = nouveau_pm_acpi_event;
+ 	register_acpi_notifier(&pm->acpi_nb);
+ #endif
+@@ -530,7 +530,7 @@ nouveau_pm_fini(struct drm_device *dev)
+ 	nouveau_perf_fini(dev);
+ 	nouveau_volt_fini(dev);
+ 
+-#ifdef CONFIG_ACPI
++#if defined(CONFIG_ACPI) && defined(CONFIG_POWER_SUPPLY)
+ 	unregister_acpi_notifier(&pm->acpi_nb);
+ #endif
+ 	nouveau_hwmon_fini(dev);
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.4.4
