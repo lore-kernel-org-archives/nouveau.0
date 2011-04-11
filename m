@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36142] Second DVI output produces no signal with
  nVidia G96 [Quadro FX 380] (rev a1)
-Date: Mon, 11 Apr 2011 14:30:50 -0700 (PDT)
-Message-ID: <20110411213050.EB2DD13000C@annarchy.freedesktop.org>
+Date: Mon, 11 Apr 2011 14:31:10 -0700 (PDT)
+Message-ID: <20110411213110.62F9313004F@annarchy.freedesktop.org>
 References: <bug-36142-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36142
 
---- Comment #1 from Jordan Bettis <jordanb-q3/FTUuX59U@public.gmane.org> 2011-04-11 14:30:50 PDT ---
-Created an attachment (id=45490)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45490)
-lspci -vvnn
+--- Comment #2 from Jordan Bettis <jordanb-q3/FTUuX59U@public.gmane.org> 2011-04-11 14:31:09 PDT ---
+Created an attachment (id=45491)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45491)
+dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
