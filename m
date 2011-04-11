@@ -1,13 +1,12 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nv50: improve nv50_pm_get_clock()
-Date: Mon, 11 Apr 2011 20:43:23 +0100
-Message-ID: <1302551003-4516-1-git-send-email-emil.l.velikov@gmail.com>
-References: <op.vsny08pg7cbmmg@emo>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 36142] New: Second DVI output produces no signal
+ with nVidia G96 [Quadro FX 380] (rev a1)
+Date: Mon, 11 Apr 2011 14:29:30 -0700 (PDT)
+Message-ID: <bug-36142-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <op.vsny08pg7cbmmg@emo>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,52 +19,64 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Many of the nv50 cards have their shader and/or memory pll
-disabled at some stage.
-This patch addresses those cases, so that the function
-returns the correct frequency.
+https://bugs.freedesktop.org/show_bug.cgi?id=36142
 
-When the shader pll is disabled, the blob reports 2*core clock
-Whereas for memory, the data stored in the vbios. This action
-is incorrect as some vbioses store a clock value that is less
-than the refference clock of the pll.
+           Summary: Second DVI output produces no signal with nVidia G96
+                    [Quadro FX 380] (rev a1)
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: jordanb-q3/FTUuX59U@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Thus we are reporting the reff_clk as it is the frequency the
-pll actually operates
 
-v2 - Convert NV_INFO() messages to NV_DEBUG()
-Provide more information in the actuall message
+Created an attachment (id=45489)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45489)
+xorg.0.log
 
-Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nv50_pm.c |   15 +++++++++++++++
- 1 files changed, 15 insertions(+), 0 deletions(-)
+I have verified that this is not a problem with the cable nor the monitor (all
+combinations of monitor and cable work when plugged into DVI-1 and none work
+when plugged into DVI-2)
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_pm.c b/drivers/gpu/drm/nouveau/nv50_pm.c
-index 7dbb305..8a28100 100644
---- a/drivers/gpu/drm/nouveau/nv50_pm.c
-+++ b/drivers/gpu/drm/nouveau/nv50_pm.c
-@@ -47,6 +47,21 @@ nv50_pm_clock_get(struct drm_device *dev, u32 id)
- 
- 	reg0 = nv_rd32(dev, pll.reg + 0);
- 	reg1 = nv_rd32(dev, pll.reg + 4);
-+
-+	if ((reg0 & 0x80000000) == 0) {
-+		if (id == PLL_SHADER) {
-+			NV_DEBUG(dev, "Shader PLL is disabled. "
-+				"Shader clock is twice the core\n");
-+			ret = nv50_pm_clock_get(dev, PLL_CORE);
-+			if (ret > 0)
-+				return ret << 1;
-+		} else if (id == PLL_MEMORY) {
-+			NV_DEBUG(dev, "Memory PLL is disabled. "
-+				"Memory clock is equal to the ref_clk\n");
-+			return pll.refclk;
-+		}
-+	}
-+
- 	P = (reg0 & 0x00070000) >> 16;
- 	N = (reg1 & 0x0000ff00) >> 8;
- 	M = (reg1 & 0x000000ff);
+xrandr sees the second monitor and detects its make and optimal resolution
+properly:
+
+jrb@shiloh:~$ xrandr
+Screen 0: minimum 320 x 200, current 2560 x 1024, maximum 8192 x 8192
+DVI-I-1 connected 1280x1024+0+0 (normal left inverted right x axis y axis)
+376mm x 301mm
+   1280x1024      60.0*+   75.0  
+   1280x960       60.0  
+   1152x864       75.0  
+   1280x720       60.0  
+   1024x768       75.1     70.1     66.0     60.0  
+   832x624        74.6  
+   800x600        72.2     75.0     60.3     56.2  
+   640x480        72.8     75.0     66.7     60.0  
+   720x400        70.1  
+DVI-I-2 connected 1280x1024+1280+0 (normal left inverted right x axis y axis)
+338mm x 270mm
+   1280x1024      60.0*+
+   1280x960       60.0  
+   1152x864       75.0  
+   1024x768       75.1     70.1     60.0  
+   832x624        74.6  
+   800x600        72.2     75.0     60.3     56.2  
+   640x480        72.8     75.0     66.7     60.0  
+   720x400        70.1  
+jrb@shiloh:~$ 
+
+But the monitor (either monitor) reports "no signal" when plugged into DVI-2.
+
+Here is
+
 -- 
-1.7.1
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
