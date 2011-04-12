@@ -1,8 +1,8 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Bug 36163] New: nouveau fails to render framebuffer
- on [GeForce 7300 GS]
-Date: Tue, 12 Apr 2011 19:39:13 +0100
-Message-ID: <1302633553.4636.11.camel@emo-laptop>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 36163] nouveau fails to render framebuffer on
+	[GeForce 7300 GS]
+Date: Tue, 12 Apr 2011 11:39:22 -0700 (PDT)
+Message-ID: <20110412183923.0F191130051@annarchy.freedesktop.org>
 References: <bug-36163-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -18,10 +18,12 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+https://bugs.freedesktop.org/show_bug.cgi?id=36163
+
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-12 11:39:22 PDT ---
 Can you please attach both full kernel and X logs (as plain text).
 If for some reason you feel that some information is too sensitive to be
 shared, please remove it. Try to keep the logs as complete as possible
@@ -306,4 +308,9 @@ wrote:
 > 0 Get 0x00001f04 Put 0x00001f68 State 0x80001680 Push 0x00000000
 > 
 > etc.
-> 
+>
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
