@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36167] Suspend does not work with Geforce7600 GT and
  kernel2.6.38
-Date: Tue, 12 Apr 2011 08:26:18 -0700 (PDT)
-Message-ID: <20110412152618.D14D413000C@annarchy.freedesktop.org>
+Date: Tue, 12 Apr 2011 08:26:45 -0700 (PDT)
+Message-ID: <20110412152645.44303130051@annarchy.freedesktop.org>
 References: <bug-36167-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36167
 
---- Comment #1 from Otto Allmendinger <otto.allmendinger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-12 08:26:17 PDT ---
-Created an attachment (id=45530)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45530)
-output of "lspci -v"
+--- Comment #2 from Otto Allmendinger <otto.allmendinger-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-12 08:26:45 PDT ---
+Created an attachment (id=45531)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45531)
+Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
