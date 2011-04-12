@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36174] Xorg crashing in nv44 card in 3D apps
-Date: Tue, 12 Apr 2011 09:43:31 -0700 (PDT)
-Message-ID: <20110412164331.827A113004F@annarchy.freedesktop.org>
+Date: Tue, 12 Apr 2011 10:44:20 -0700 (PDT)
+Message-ID: <20110412174421.0D94113000C@annarchy.freedesktop.org>
 References: <bug-36174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36174
 
---- Comment #1 from a.radke-KvP5wT2u2U0@public.gmane.org 2011-04-12 09:43:31 PDT ---
-Created an attachment (id=45544)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45544)
-dmesg
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #45544|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
