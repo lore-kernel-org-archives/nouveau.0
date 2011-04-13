@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36219] Block artifacts with OpenGL rendering on NV4B
 	(G73)
-Date: Wed, 13 Apr 2011 11:34:01 -0700 (PDT)
-Message-ID: <20110413183401.285B113000C@annarchy.freedesktop.org>
+Date: Wed, 13 Apr 2011 11:35:40 -0700 (PDT)
+Message-ID: <20110413183540.9D79A13000C@annarchy.freedesktop.org>
 References: <bug-36219-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36219
 
---- Comment #1 from Andrew Savchenko <bircoph-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-13 11:34:00 PDT ---
-Created an attachment (id=45585)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45585)
-glxgears.jpg
+--- Comment #2 from Andrew Savchenko <bircoph-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-13 11:35:40 PDT ---
+Created an attachment (id=45586)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45586)
+openastromenace.jpg
 
-This is how glxgears looks.
+This is example of openastromenace game's appearance using nouveau.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
