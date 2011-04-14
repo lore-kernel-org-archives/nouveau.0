@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34554] Nouveau seems to have corrupted my laptop
- screen's EDID info
-Date: Thu, 14 Apr 2011 15:41:46 -0700 (PDT)
-Message-ID: <20110414224146.B445313004F@annarchy.freedesktop.org>
-References: <bug-34554-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36248] New: Kernel 2.6.39-rc2: Boot logo causes
+	Nouveau crash
+Date: Thu, 14 Apr 2011 15:54:05 -0700 (PDT)
+Message-ID: <bug-36248-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34554-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +19,47 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34554
+https://bugs.freedesktop.org/show_bug.cgi?id=36248
 
---- Comment #17 from Andy Getz <suertreus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-14 15:41:46 PDT ---
-Created an attachment (id=45639)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45639)
-Userspace-facing I2C interface header from i2c-tools
+           Summary: Kernel 2.6.39-rc2: Boot logo causes Nouveau crash
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: nigel-jrkICu/7yk3k1uMJSBkQmQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Available from http://www.lm-sensors.org/wiki/I2CTools; included here in case
-that site gets nuked.
+
+Created an attachment (id=45640)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45640)
+Photo of oops
+
+With the 2.6.39-rc2 kernel with Nouveau (KMS), I get an oops at boot if I have
+the Boot Logo configuration option enabled, with the following backtrace:
+
+nouveau_bo_wr32
+nouveau_fbcon_sync
+cfb_imageblit
+snprintf
+drm_crtc_helper_set_config
+nouveau_fbcon_imageblit
+fb_show_logo
+fbcon_switch
+redraw_screen
+bind_con_driver
+
+(I'll attach the screenshot, which has full details).
+
+After some testing of disabling various configuration options, I found that
+toggling CONFIG_LOGO stopped the oops.
+
+The last kernel which I could successfully boot was 2.6.37. I could not boot
+2.6.38, but couldn't get a backtrace then.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
