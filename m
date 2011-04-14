@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34554] Nouveau seems to have corrupted my laptop
  screen's EDID info
-Date: Thu, 14 Apr 2011 15:40:22 -0700 (PDT)
-Message-ID: <20110414224022.4B06913004F@annarchy.freedesktop.org>
+Date: Thu, 14 Apr 2011 15:41:46 -0700 (PDT)
+Message-ID: <20110414224146.B445313004F@annarchy.freedesktop.org>
 References: <bug-34554-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,30 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34554
 
---- Comment #16 from Andy Getz <suertreus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-14 15:40:19 PDT ---
-Created an attachment (id=45638)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45638)
-C program for reading, writing, and manipulating contents of EDID EEPROMs
-attached to I2C/DDC interfaces using SMBus
+--- Comment #17 from Andy Getz <suertreus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-14 15:41:46 PDT ---
+Created an attachment (id=45639)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45639)
+Userspace-facing I2C interface header from i2c-tools
 
-/* Copyright (C) 2011 Andy Getzendanner                                      
-//
-// Hereby licensed AS-IS to anyone who wants it                              
-//
-// Responsibility and liability for unintended consequences including        
-//
-// hardware damage are hereby disclaimed; USE ONLY AT YOUR OWN RISK          
-//
-// Note: compile with at least -O due to inlined SMBus functions             
-//
-// Note: errors in i2c-dev.h likely result from using the kernel-internal    
-//
-//       version of that file rather than the userspace-facing one from the  
-//
-//       i2c-tools package, available from:                                  
-//
-//           http://www.lm-sensors.org/wiki/I2CTools                         
-*/
+Available from http://www.lm-sensors.org/wiki/I2CTools; included here in case
+that site gets nuked.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
