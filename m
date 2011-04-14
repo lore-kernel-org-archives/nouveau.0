@@ -1,47 +1,36 @@
-From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: Re: 2.6.39-rc1 nouveau regression (bisected)
-Date: Thu, 14 Apr 2011 21:02:01 +0200
-Message-ID: <20110414190117.GA3493@joi.lan>
-References: <20110403181206.GA19291@comet.dominikbrodowski.net>
- <20110407151129.GA24977@comet.dominikbrodowski.net>
- <20110414170559.GA10768@comet.dominikbrodowski.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 35901] two full hd displays (left and right) with
+ nouveau does not work any more
+Date: Thu, 14 Apr 2011 12:23:45 -0700 (PDT)
+Message-ID: <20110414192345.2809013004F@annarchy.freedesktop.org>
+References: <bug-35901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20110414170559.GA10768@comet.dominikbrodowski.net>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Dominik Brodowski <linux@dominikbrodowski.net>
-Cc: Ben Skeggs <bskeggs@redhat.com>, airlied@redhat.com, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, mjg@redhat.com, maciej.rutecki@gmail.com, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Apr 14, 2011 at 07:05:59PM +0200, Dominik Brodowski wrote:
-> Thought about CCing Linus to show him that 2.6.39-rcX isn't as "calm"
-> to everyone, but then chose to CC Maciej instead: Would you be so kind and
-> add this to your regression list? Thanks!
-> 
-> Since commit 38f1cff
-> 
->     From: Dave Airlie <airlied@redhat.com>
->     Date: Wed, 16 Mar 2011 11:34:41 +1000
->     Subject: [PATCH] Merge commit '5359533801e3dd3abca5b7d3d985b0b33fd9fe8b' into dr
-> 
->     This commit changed an internal radeon structure, that meant a new driver
->     in -next had to be fixed up, merge in the commit and fix up the driver.
-> 
->     Also fixes a trivial nouveau merge.
-> 
->     Conflicts:
->         drivers/gpu/drm/nouveau/nouveau_mem.c
-> 
-> booting my atom/NM10/ION2 system crashes hard during boot, right after
-> blanking the screen, and before the initramfs gets loaded. I just
-> re-checked: both parent commits ( 5359533 and 4819d2e ) do indeed work
-> just fine, but the merge commit ( 38f1cff ) fails, same as tip ( 85f2e68 ).
+https://bugs.freedesktop.org/show_bug.cgi?id=35901
 
-Can you activate netconsole and check whether kernel spits anything interesting?
-You might try to load nouveau module after boot - maybe something will be saved
-to /var/log or you could even ssh into the box and check dmesg...
+--- Comment #2 from x2b <thekingofthekolk-Mmb7MZpHnFY@public.gmane.org> 2011-04-14 12:23:44 PDT ---
+Same problem here. Once I use xrandr to put one device left-of the other, the
+elements are not drawn correctly, any window is merely a huge gray blob,
+although the cursor is drawn just fine and moves along both screens without
+problems. There are no errors within Xorg.log, but this problem is seriously
+annoying, so please fix this :)
 
-
-Marcin
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
