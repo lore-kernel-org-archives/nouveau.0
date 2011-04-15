@@ -1,48 +1,55 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35901] two full hd displays (left and right) with
- nouveau does not work any more
-Date: Thu, 14 Apr 2011 22:56:06 -0700 (PDT)
-Message-ID: <20110415055606.CCDCD13000C@annarchy.freedesktop.org>
-References: <bug-35901-8800@http.bugs.freedesktop.org/>
+From: Dominik Brodowski <linux@dominikbrodowski.net>
+Subject: Re: 2.6.39-rc1 nouveau regression (bisected)
+Date: Fri, 15 Apr 2011 08:11:36 +0200
+Message-ID: <20110415061136.GA21979@isilmar-3.linta.de>
+References: <20110403181206.GA19291@comet.dominikbrodowski.net> <20110407151129.GA24977@comet.dominikbrodowski.net> <20110414170559.GA10768@comet.dominikbrodowski.net> <20110414190117.GA3493@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20110414190117.GA3493@joi.lan>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, airlied@redhat.com, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, mjg@redhat.com, maciej.rutecki@gmail.com, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35901
+On Thu, Apr 14, 2011 at 09:02:01PM +0200, Marcin Slusarz wrote:
+> On Thu, Apr 14, 2011 at 07:05:59PM +0200, Dominik Brodowski wrote:
+> > Thought about CCing Linus to show him that 2.6.39-rcX isn't as "calm"
+> > to everyone, but then chose to CC Maciej instead: Would you be so kind and
+> > add this to your regression list? Thanks!
+> > 
+> > Since commit 38f1cff
+> > 
+> >     From: Dave Airlie <airlied@redhat.com>
+> >     Date: Wed, 16 Mar 2011 11:34:41 +1000
+> >     Subject: [PATCH] Merge commit '5359533801e3dd3abca5b7d3d985b0b33fd9fe8b' into dr
+> > 
+> >     This commit changed an internal radeon structure, that meant a new driver
+> >     in -next had to be fixed up, merge in the commit and fix up the driver.
+> > 
+> >     Also fixes a trivial nouveau merge.
+> > 
+> >     Conflicts:
+> >         drivers/gpu/drm/nouveau/nouveau_mem.c
+> > 
+> > booting my atom/NM10/ION2 system crashes hard during boot, right after
+> > blanking the screen, and before the initramfs gets loaded. I just
+> > re-checked: both parent commits ( 5359533 and 4819d2e ) do indeed work
+> > just fine, but the merge commit ( 38f1cff ) fails, same as tip ( 85f2e68 ).
+> 
+> Can you activate netconsole and check whether kernel spits anything interesting?
+> You might try to load nouveau module after boot - maybe something will be saved
+> to /var/log or you could even ssh into the box and check dmesg...
 
---- Comment #6 from Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> 2011-04-14 22:56:06 PDT ---
-lspci -v -s 00:12.0
+Compiling it as a module seems to work fine. When I do so, no regression is
+obvious from what gets reported in "dmesg". However, somehow I now do get
+some output: The last message I see is
 
-00:12.0 VGA compatible controller: nVidia Corporation C68 [GeForce 7025 /
-nForce 630a] (rev a2) (prog-if 00 [VGA controller])
-    Subsystem: ABIT Computer Corp. Device 1c2f
-    Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 20
-    Memory at fb000000 (32-bit, non-prefetchable) [size=16M]
-    Memory at e0000000 (64-bit, prefetchable) [size=256M]
-    Memory at fc000000 (64-bit, non-prefetchable) [size=16M]
-    [virtual] Expansion ROM at c0000000 [disabled] [size=128K]
-    Capabilities: [48] Power Management version 2
-    Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
-    Kernel driver in use: nouveau
-    Kernel modules: nouveau
+[drm] nouveau 0000:01:00.0: allocated 1680x1050, fb 0x40.... b0 <some pointer value>
 
-It is a "Abit AN-M2" Mainboard with "nForce 630a (MCP67 media communications
-processor)".
+Then, nothing more. However, it really is quite strange why this error only
+appears in the CONFIG_NOUVEAU=y case, not in the =m case...
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Best,
+	Dominik
