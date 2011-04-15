@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35901] two full hd displays (left and right) with
  nouveau does not work any more
-Date: Fri, 15 Apr 2011 08:13:31 -0700 (PDT)
-Message-ID: <20110415151331.83C7213000C@annarchy.freedesktop.org>
+Date: Fri, 15 Apr 2011 08:23:38 -0700 (PDT)
+Message-ID: <20110415152338.34D8813000C@annarchy.freedesktop.org>
 References: <bug-35901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35901
 
---- Comment #9 from Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> 2011-04-15 08:13:31 PDT ---
-Created an attachment (id=45670)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45670)
-xorg log of non-working configuration
+--- Comment #10 from Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> 2011-04-15 08:23:37 PDT ---
+Created an attachment (id=45671)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45671)
+xrandr-right-of results in this picture
+
+To make it clear: "below" is working and "right-of" (or "left-of") is NOT
+working with the following "new" software installation. the last two log files
+were made with this software installation. 
+
+ x11-base/xorg-server-1.10.0.902
+ x11-drivers/xf86-video-nouveau-0.0.16_pre20110323
+ media-libs/mesa-7.10.2
+ x11-libs/libdrm-2.4.24
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
