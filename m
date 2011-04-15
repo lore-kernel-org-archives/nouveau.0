@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35901] two full hd displays (left and right) with
  nouveau does not work any more
-Date: Thu, 14 Apr 2011 22:53:02 -0700 (PDT)
-Message-ID: <20110415055302.AB527130051@annarchy.freedesktop.org>
+Date: Thu, 14 Apr 2011 22:53:40 -0700 (PDT)
+Message-ID: <20110415055341.3D78E13000C@annarchy.freedesktop.org>
 References: <bug-35901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35901
 
---- Comment #4 from Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> 2011-04-14 22:53:02 PDT ---
-Created an attachment (id=45649)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45649)
-kernel log of a working combination
+--- Comment #5 from Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> 2011-04-14 22:53:40 PDT ---
+Created an attachment (id=45650)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45650)
+xorg log of a working combination
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
