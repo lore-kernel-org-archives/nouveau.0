@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
-Date: Thu, 14 Apr 2011 20:04:21 -0700 (PDT)
-Message-ID: <20110415030422.01F52130051@annarchy.freedesktop.org>
+Date: Thu, 14 Apr 2011 20:08:50 -0700 (PDT)
+Message-ID: <20110415030850.D7DC913004F@annarchy.freedesktop.org>
 References: <bug-31169-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31169
 
---- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-14 20:04:20 PDT ---
-Does booting with "nouveau.uscript_lvds=0x0200" or
-"nouveau.uscript_lvds=0x0300" help the issue at all?
+--- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-14 20:08:50 PDT ---
+Err, scratch that: "nouveau.uscript_lvds=0x0100" or
+"nouveau.uscript_lvds=0x0300" I meant!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
