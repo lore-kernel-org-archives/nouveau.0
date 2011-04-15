@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35901] two full hd displays (left and right) with
  nouveau does not work any more
-Date: Fri, 15 Apr 2011 08:12:34 -0700 (PDT)
-Message-ID: <20110415151234.D53AB13000C@annarchy.freedesktop.org>
+Date: Fri, 15 Apr 2011 08:13:31 -0700 (PDT)
+Message-ID: <20110415151331.83C7213000C@annarchy.freedesktop.org>
 References: <bug-35901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,22 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35901
 
---- Comment #8 from Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> 2011-04-15 08:12:33 PDT ---
-Created an attachment (id=45669)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45669)
-kernel log of non-working configuration
-
-this includes two display configurations:
-1. one display on top, the other at the bottom:
-  xrandr --output VGA-1 --mode 1920x1080
-  xrandr --output DVI-D-1 --below VGA-1
-Everything is fine.
-
-2. one display left, the other display right:
-  xrandr --output VGA-1 --mode 1920x1080
-  xrandr --output DVI-D-1 --right-of VGA-1
-the mouse coursor is fine, but everything else not! (-> i will provide a
-screenshot soon!)
+--- Comment #9 from Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> 2011-04-15 08:13:31 PDT ---
+Created an attachment (id=45670)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45670)
+xorg log of non-working configuration
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
