@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
-Date: Thu, 14 Apr 2011 20:08:50 -0700 (PDT)
-Message-ID: <20110415030850.D7DC913004F@annarchy.freedesktop.org>
-References: <bug-31169-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35901] two full hd displays (left and right) with
+ nouveau does not work any more
+Date: Thu, 14 Apr 2011 22:53:02 -0700 (PDT)
+Message-ID: <20110415055302.AB527130051@annarchy.freedesktop.org>
+References: <bug-35901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31169-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,11 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31169
+https://bugs.freedesktop.org/show_bug.cgi?id=35901
 
---- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-14 20:08:50 PDT ---
-Err, scratch that: "nouveau.uscript_lvds=0x0100" or
-"nouveau.uscript_lvds=0x0300" I meant!
+--- Comment #4 from Mario Bachmann <grafgrimm77-Mmb7MZpHnFY@public.gmane.org> 2011-04-14 22:53:02 PDT ---
+Created an attachment (id=45649)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45649)
+kernel log of a working combination
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
