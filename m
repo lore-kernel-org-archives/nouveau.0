@@ -1,8 +1,8 @@
-From: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Fix a crash at card takedown for
- NV40 and older cards trying to free a vga bo
-Date: Sun, 17 Apr 2011 16:15:09 -0400
-Message-ID: <20110417161509.6e6aa2ed@amd64linuxmsi.rentzhouse.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 36330] New: 2.6.38 kernel fails to boot with nouveau
+ driver active
+Date: Sun, 17 Apr 2011 13:28:18 -0700 (PDT)
+Message-ID: <bug-36330-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,41 +19,45 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-NV40 and older cards (pre NV50) reserve a vram bo for the vga memory at
-card init. This bo is then freed at card shutdown.  The problem is that
-the ttm bo vram manager was already freed. So a crash occurs when the
-vga bo is freed. The fix is to free the vga bo prior to freeing the ttm
-bo vram manager. There might be other solutions but this seemed the
-simplest to me. 
+https://bugs.freedesktop.org/show_bug.cgi?id=36330
 
-Signed-off-by: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+           Summary: 2.6.38 kernel fails to boot with nouveau driver active
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: ghutzl-S0/GAf8tV78@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_mem.c
-b/drivers/gpu/drm/nouveau/nouveau_mem.c index 9c7bc3f..ce3cb5e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_mem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_mem.c
-@@ -154,8 +154,6 @@ nouveau_mem_vram_fini(struct drm_device *dev)
- {
- 	struct drm_nouveau_private *dev_priv = dev->dev_private;
- 
--	nouveau_bo_ref(NULL, &dev_priv->vga_ram);
--
- 	ttm_bo_device_release(&dev_priv->ttm.bdev);
- 
- 	nouveau_ttm_global_release(dev_priv);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c
-b/drivers/gpu/drm/nouveau/nouveau_state.c index 66e8037..98ab6b2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_state.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_state.c
-@@ -738,6 +738,11 @@ static void nouveau_card_takedown(struct
-drm_device *dev) engine->mc.takedown(dev);
- 	engine->display.late_takedown(dev);
- 
-+	if (dev_priv->vga_ram) {
-+		nouveau_bo_unpin(dev_priv->vga_ram);
-+		nouveau_bo_ref(NULL, &dev_priv->vga_ram);
-+	}
-+
- 	mutex_lock(&dev->struct_mutex);
- 	ttm_bo_clean_mm(&dev_priv->ttm.bdev, TTM_PL_VRAM);
- 	ttm_bo_clean_mm(&dev_priv->ttm.bdev, TTM_PL_TT);
+
+Created an attachment (id=45742)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45742)
+my kernel config for a 2.6.38.2 vanilla kernel
+
+Hello!
+
+My 2.6.38 kernel fails to boot when using the nouveau driver. See these
+pictures of the kernel output while booting:
+
+http://tinypic.com/r/xefq6e/7
+http://tinypic.com/r/2w5kc8w/7
+http://tinypic.com/r/30wmlmv/7
+
+I made 3 pictures because I wanted to show the effect of the "shifted" text in
+the fullscreen picture where you can barely read the text. The other two
+pictures show the text.
+
+I am running gentoo linux and I used kernel 2.6.37 for quite a while with no
+problems but was not able to produce a working 2.6.38 kernel. I have tried the
+gentoo-sources-2.6.38-r1 and also a vanilla 2.6.38.2 kernel and the behaviour
+is the same for both. I have attached my kernel config.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
