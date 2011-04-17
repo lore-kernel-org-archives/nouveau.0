@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36330] 2.6.38 kernel fails to boot with nouveau
 	driver active
-Date: Sun, 17 Apr 2011 14:28:30 -0700 (PDT)
-Message-ID: <20110417212830.5C1A813004F@annarchy.freedesktop.org>
+Date: Sun, 17 Apr 2011 14:30:52 -0700 (PDT)
+Message-ID: <20110417213053.00379130051@annarchy.freedesktop.org>
 References: <bug-36330-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36330
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-17 14:28:27 PDT ---
-This is probably the same bug which was reported recently:
-https://lkml.org/lkml/2011/4/15/27
-https://bugs.freedesktop.org/show_bug.cgi?id=36248
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #45742|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
