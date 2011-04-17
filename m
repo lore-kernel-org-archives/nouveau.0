@@ -1,15 +1,15 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 Subject: Re: [PATCH] drm/nvc0/pm: read core/shader/memory clocks
  (more) correctly
-Date: Mon, 18 Apr 2011 08:32:39 +1000
-Message-ID: <1303079563.13003.1.camel@nisroch>
+Date: Mon, 18 Apr 2011 00:54:23 +0200
+Message-ID: <4DAB6F9F.3050905@free.fr>
 References: <1303053035-25716-1-git-send-email-martin.peres@free.fr>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+	<1303079563.13003.1.camel@nisroch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1303053035-25716-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <1303079563.13003.1.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,34 +19,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 2011-04-17 at 17:10 +0200, Martin Peres wrote:
-> ---
->  drivers/gpu/drm/nouveau/nouveau_perf.c |    6 +++---
->  1 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c b/drivers/gpu/drm/nouveau/nouveau_perf.c
-> index 950caba..d64a98a 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_perf.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
-> @@ -177,9 +177,9 @@ nouveau_perf_init(struct drm_device *dev)
->  #define subent(n) entry[perf[2] + ((n) * perf[3])]
->  			perflvl->fanspeed = 0; /*XXX*/
->  			perflvl->voltage = entry[2];
-> -			perflvl->core = (ROM16(subent(0)) & 0xfff) * 1000;
-> -			perflvl->shader = (ROM16(subent(1)) & 0xfff) * 1000;
-> -			perflvl->memory = (ROM16(subent(2)) & 0xfff) * 1000;
-> +			perflvl->core = (ROM16(subent(3)) & 0xfff) * 1000;
-> +			perflvl->shader = (ROM16(subent(3)) & 0xfff) / 2 * 1000;
-> +			perflvl->memory = (ROM16(subent(5)) & 0xfff) * 1000;
-Um, NACK.  This is *definitely* very very wrong on NVA8, which uses
-version 0x40 of this table too.
-
-Ben.
-
->  			break;
->  		}
->  
+TGUgMTgvMDQvMjAxMSAwMDozMiwgQmVuIFNrZWdncyBhIMOpY3JpdCA6Cj4gT24gU3VuLCAyMDEx
+LTA0LTE3IGF0IDE3OjEwICswMjAwLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4+IC0tLQo+PiAgIGRy
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcGVyZi5jIHwgICAgNiArKystLS0KPj4gICAx
+IGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPj4KPj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcGVyZi5jIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9wZXJmLmMKPj4gaW5kZXggOTUwY2FiYS4uZDY0YTk4
+YSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9wZXJmLmMK
+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9wZXJmLmMKPj4gQEAgLTE3
+Nyw5ICsxNzcsOSBAQCBub3V2ZWF1X3BlcmZfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+
+PiAgICNkZWZpbmUgc3ViZW50KG4pIGVudHJ5W3BlcmZbMl0gKyAoKG4pICogcGVyZlszXSldCj4+
+ICAgCQkJcGVyZmx2bC0+ZmFuc3BlZWQgPSAwOyAvKlhYWCovCj4+ICAgCQkJcGVyZmx2bC0+dm9s
+dGFnZSA9IGVudHJ5WzJdOwo+PiAtCQkJcGVyZmx2bC0+Y29yZSA9IChST00xNihzdWJlbnQoMCkp
+JiAgMHhmZmYpICogMTAwMDsKPj4gLQkJCXBlcmZsdmwtPnNoYWRlciA9IChST00xNihzdWJlbnQo
+MSkpJiAgMHhmZmYpICogMTAwMDsKPj4gLQkJCXBlcmZsdmwtPm1lbW9yeSA9IChST00xNihzdWJl
+bnQoMikpJiAgMHhmZmYpICogMTAwMDsKPj4gKwkJCXBlcmZsdmwtPmNvcmUgPSAoUk9NMTYoc3Vi
+ZW50KDMpKSYgIDB4ZmZmKSAqIDEwMDA7Cj4+ICsJCQlwZXJmbHZsLT5zaGFkZXIgPSAoUk9NMTYo
+c3ViZW50KDMpKSYgIDB4ZmZmKSAvIDIgKiAxMDAwOwo+PiArCQkJcGVyZmx2bC0+bWVtb3J5ID0g
+KFJPTTE2KHN1YmVudCg1KSkmICAweGZmZikgKiAxMDAwOwo+IFVtLCBOQUNLLiAgVGhpcyBpcyAq
+ZGVmaW5pdGVseSogdmVyeSB2ZXJ5IHdyb25nIG9uIE5WQTgsIHdoaWNoIHVzZXMKPiB2ZXJzaW9u
+IDB4NDAgb2YgdGhpcyB0YWJsZSB0b28uCj4KPiBCZW4uCkNyYXAsIEkgd291bGQgaGF2ZSBzd29y
+biB0aGlzIHRhYmxlIHdhcyBpbnRyb2R1Y2VkIGZvciBGZXJtaSEgU29ycnkgZm9yIAp0aGUgbm9p
+c2UgdGhlbiwgSSdsbCB0cnkgdG8gZmluZCBhIGZpeCBmb3IgdGhhdCAob3RoZXIgdGhhbiBsb29r
+aW5nIGF0IAp0aGUgY29kZW5hbWUpLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
