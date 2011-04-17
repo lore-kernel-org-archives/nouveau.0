@@ -1,16 +1,17 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nvc0/pm: read core/shader/memory clocks
- (more) correctly
-Date: Mon, 18 Apr 2011 08:56:26 +1000
-Message-ID: <1303080990.15225.0.camel@nisroch>
-References: <1303053035-25716-1-git-send-email-martin.peres@free.fr>
-	<1303079563.13003.1.camel@nisroch> <4DAB6F9F.3050905@free.fr>
+Subject: Re: [PATCH] drm/nouveau: Fix a complier warning in the
+ card init error path
+Date: Mon, 18 Apr 2011 09:01:23 +1000
+Message-ID: <1303081287.15225.2.camel@nisroch>
+References: <20110417161453.0310de4d@amd64linuxmsi.rentzhouse.lan>
+	<20110417211525.GA3440@joi.lan>
+	<20110417182745.212a6516@amd64linuxmsi.rentzhouse.lan>
 Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4DAB6F9F.3050905-GANU6spQydw@public.gmane.org>
+In-Reply-To: <20110417182745.212a6516-bEIzoA7YQWm4miubQJdzGGS2/mPcPMSI/gJWpUujD0o@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +21,46 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+To: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyMDExLTA0LTE4IGF0IDAwOjU0ICswMjAwLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4g
-TGUgMTgvMDQvMjAxMSAwMDozMiwgQmVuIFNrZWdncyBhIMOpY3JpdCA6Cj4gPiBPbiBTdW4sIDIw
-MTEtMDQtMTcgYXQgMTc6MTAgKzAyMDAsIE1hcnRpbiBQZXJlcyB3cm90ZToKPiA+PiAtLS0KPiA+
-PiAgIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcGVyZi5jIHwgICAgNiArKystLS0K
-PiA+PiAgIDEgZmlsZXMgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+
-ID4+Cj4gPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcGVy
-Zi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9wZXJmLmMKPiA+PiBpbmRleCA5
-NTBjYWJhLi5kNjRhOThhIDEwMDY0NAo+ID4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfcGVyZi5jCj4gPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9wZXJmLmMKPiA+PiBAQCAtMTc3LDkgKzE3Nyw5IEBAIG5vdXZlYXVfcGVyZl9pbml0KHN0cnVj
-dCBkcm1fZGV2aWNlICpkZXYpCj4gPj4gICAjZGVmaW5lIHN1YmVudChuKSBlbnRyeVtwZXJmWzJd
-ICsgKChuKSAqIHBlcmZbM10pXQo+ID4+ICAgCQkJcGVyZmx2bC0+ZmFuc3BlZWQgPSAwOyAvKlhY
-WCovCj4gPj4gICAJCQlwZXJmbHZsLT52b2x0YWdlID0gZW50cnlbMl07Cj4gPj4gLQkJCXBlcmZs
-dmwtPmNvcmUgPSAoUk9NMTYoc3ViZW50KDApKSYgIDB4ZmZmKSAqIDEwMDA7Cj4gPj4gLQkJCXBl
-cmZsdmwtPnNoYWRlciA9IChST00xNihzdWJlbnQoMSkpJiAgMHhmZmYpICogMTAwMDsKPiA+PiAt
-CQkJcGVyZmx2bC0+bWVtb3J5ID0gKFJPTTE2KHN1YmVudCgyKSkmICAweGZmZikgKiAxMDAwOwo+
-ID4+ICsJCQlwZXJmbHZsLT5jb3JlID0gKFJPTTE2KHN1YmVudCgzKSkmICAweGZmZikgKiAxMDAw
-Owo+ID4+ICsJCQlwZXJmbHZsLT5zaGFkZXIgPSAoUk9NMTYoc3ViZW50KDMpKSYgIDB4ZmZmKSAv
-IDIgKiAxMDAwOwo+ID4+ICsJCQlwZXJmbHZsLT5tZW1vcnkgPSAoUk9NMTYoc3ViZW50KDUpKSYg
-IDB4ZmZmKSAqIDEwMDA7Cj4gPiBVbSwgTkFDSy4gIFRoaXMgaXMgKmRlZmluaXRlbHkqIHZlcnkg
-dmVyeSB3cm9uZyBvbiBOVkE4LCB3aGljaCB1c2VzCj4gPiB2ZXJzaW9uIDB4NDAgb2YgdGhpcyB0
-YWJsZSB0b28uCj4gPgo+ID4gQmVuLgo+IENyYXAsIEkgd291bGQgaGF2ZSBzd29ybiB0aGlzIHRh
-YmxlIHdhcyBpbnRyb2R1Y2VkIGZvciBGZXJtaSEgU29ycnkgZm9yIAo+IHRoZSBub2lzZSB0aGVu
-LCBJJ2xsIHRyeSB0byBmaW5kIGEgZml4IGZvciB0aGF0IChvdGhlciB0aGFuIGxvb2tpbmcgYXQg
-Cj4gdGhlIGNvZGVuYW1lKS4KSSdtIGhpZ2hseSBza2VwdGljYWwgdGhhdCBpdCdzIGNvcnJlY3Qg
-b24gZmVybWkgdG9vLCBidXQsIEkgY2FuJ3QgY2hlY2sKdGhhdCBteXNlbGYgcmlnaHQgbm93LiAg
-SSBzaGFsbCBkbyBpdCBkdXJpbmcgdGhlIHdlZWsgaG93ZXZlci4KCkJlbi4KCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Sun, 2011-04-17 at 18:27 -0400, Jimmy Rentz wrote:
+> On Sun, 17 Apr 2011 23:18:36 +0200
+> Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> 
+> > On Sun, Apr 17, 2011 at 04:14:53PM -0400, Jimmy Rentz wrote:
+> > > Fix an unitialized variable complier warning in nouveau_card_init.
+> > >     
+> > > Signed-off-by: Jimmy Rentz <jb17bsome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > 
+> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c
+> > > b/drivers/gpu/drm/nouveau/nouveau_state.c index 3404950..66e8037
+> > > 100644 --- a/drivers/gpu/drm/nouveau/nouveau_state.c
+> > > +++ b/drivers/gpu/drm/nouveau/nouveau_state.c
+> > > @@ -679,7 +679,7 @@ out_fifo:
+> > >  		engine->fifo.takedown(dev);
+> > >  out_engine:
+> > >  	if (!nouveau_noaccel) {
+> > > -		for (e = e - 1; e >= 0; e--) {
+> > > +		for (e = NVOBJ_ENGINE_NR - 1; e >= 0; e--) {
+> > >  			if (!dev_priv->eng[e])
+> > >  				continue;
+> > >  			dev_priv->eng[e]->fini(dev, e);
+> > 
+> > This code is supposed to handle the situation when one of engine
+> > initialization routines failed and this change will break it...
+> > 
+> > Marcin
+> 
+> Really?  It wasn't intentional.  I didn't see the e referenced above.
+It's used above, but I don't think it's actually an error.  The
+situation where it's uninitialised can't actually happen
+
+I pushed a patch that'll silence any compiler that may be complaining.
+
+Ben.
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
