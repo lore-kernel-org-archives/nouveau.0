@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
-Date: Sat, 16 Apr 2011 19:52:02 -0700 (PDT)
-Message-ID: <20110417025202.999BA13004F@annarchy.freedesktop.org>
-References: <bug-31169-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH] drm/nvc0/pm: read core/shader/memory clocks
+	(more) correctly
+Date: Sun, 17 Apr 2011 17:10:35 +0200
+Message-ID: <1303053035-25716-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31169-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,13 +19,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31169
+---
+ drivers/gpu/drm/nouveau/nouveau_perf.c |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
 
---- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-16 19:52:02 PDT ---
-Ok, cool, thanks :)  I'll look at implementing support for panels such as yours
-when I get to the office on Monday morning.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c b/drivers/gpu/drm/nouveau/nouveau_perf.c
+index 950caba..d64a98a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_perf.c
++++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
+@@ -177,9 +177,9 @@ nouveau_perf_init(struct drm_device *dev)
+ #define subent(n) entry[perf[2] + ((n) * perf[3])]
+ 			perflvl->fanspeed = 0; /*XXX*/
+ 			perflvl->voltage = entry[2];
+-			perflvl->core = (ROM16(subent(0)) & 0xfff) * 1000;
+-			perflvl->shader = (ROM16(subent(1)) & 0xfff) * 1000;
+-			perflvl->memory = (ROM16(subent(2)) & 0xfff) * 1000;
++			perflvl->core = (ROM16(subent(3)) & 0xfff) * 1000;
++			perflvl->shader = (ROM16(subent(3)) & 0xfff) / 2 * 1000;
++			perflvl->memory = (ROM16(subent(5)) & 0xfff) * 1000;
+ 			break;
+ 		}
+ 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.4.4
