@@ -1,13 +1,12 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Rename bit_table()
-Date: Mon, 18 Apr 2011 22:39:59 +1000
-Message-ID: <7E95CA71-FC55-4583-8701-779B6ECF59A9@gmail.com>
-References: <1303090182-5218-1-git-send-email-emil.l.velikov@gmail.com>
-Mime-Version: 1.0 (iPhone Mail 8C148)
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/2] drm/nouveau: Remove unnecessary argument from
+	parse_bit_*()
+Date: Mon, 18 Apr 2011 13:53:20 +0100
+Message-ID: <1303131201-15861-1-git-send-email-emil.l.velikov@gmail.com>
+Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1303090182-5218-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,139 +16,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Sorry for the top post, sent from in bed, on a mobile phone.
+Purge bitoffset as we already store the type (bit,bmp)
+as well as the offset (inside struct nvbios)
 
-Personally, I prefer how it is now.  If people want it changed, I guess that's ok, but, bit_table_find() instead maybe?
+Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_bios.c |   27 +++++++++++++--------------
+ 1 files changed, 13 insertions(+), 14 deletions(-)
 
-Ben.
-
-Sent from my iPhone
-
-On 18/04/2011, at 11:29, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-
-> Rename bit_table() to find_bit_table() to make the
-> if easier on the eyes, as well as to remove duplication
-> i.e. existing struct already has the same name
-> 
-> Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
-> drivers/gpu/drm/nouveau/nouveau_bios.c |    4 ++--
-> drivers/gpu/drm/nouveau/nouveau_bios.h |    2 +-
-> drivers/gpu/drm/nouveau/nouveau_mem.c  |    2 +-
-> drivers/gpu/drm/nouveau/nouveau_perf.c |    2 +-
-> drivers/gpu/drm/nouveau/nouveau_temp.c |    2 +-
-> drivers/gpu/drm/nouveau/nouveau_volt.c |    2 +-
-> drivers/gpu/drm/nouveau/nv50_pm.c      |    2 +-
-> 7 files changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-> index 8486dc6..9cb09ee 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-> @@ -5493,7 +5493,7 @@ struct bit_table {
-> #define BIT_TABLE(id, funcid) ((struct bit_table){ id, parse_bit_##funcid##_tbl_entry })
-> 
-> int
-> -bit_table(struct drm_device *dev, u8 id, struct bit_entry *bit)
-> +find_bit_table(struct drm_device *dev, u8 id, struct bit_entry *bit)
-> {
->    struct drm_nouveau_private *dev_priv = dev->dev_private;
->    struct nvbios *bios = &dev_priv->vbios;
-> @@ -5524,7 +5524,7 @@ parse_bit_table(struct nvbios *bios, const uint16_t bitoffset,
->    struct drm_device *dev = bios->dev;
->    struct bit_entry bitentry;
-> 
-> -    if (bit_table(dev, table->id, &bitentry) == 0)
-> +    if (find_bit_table(dev, table->id, &bitentry) == 0)
->        return table->parse_fn(dev, bios, &bitentry);
-> 
->    NV_INFO(dev, "BIT table '%c' not found\n", table->id);
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.h b/drivers/gpu/drm/nouveau/nouveau_bios.h
-> index 8a54fa7..2516ac4 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bios.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bios.h
-> @@ -46,7 +46,7 @@ struct bit_entry {
->    uint8_t *data;
-> };
-> 
-> -int bit_table(struct drm_device *, u8 id, struct bit_entry *);
-> +int find_bit_table(struct drm_device *, u8 id, struct bit_entry *);
-> 
-> struct dcb_i2c_entry {
->    uint32_t entry;
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_mem.c b/drivers/gpu/drm/nouveau/nouveau_mem.c
-> index ce3cb5e..b424218 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_mem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_mem.c
-> @@ -557,7 +557,7 @@ nouveau_mem_timing_init(struct drm_device *dev)
->    int i, recordlen, entries;
-> 
->    if (bios->type == NVBIOS_BIT) {
-> -        if (bit_table(dev, 'P', &P))
-> +        if (find_bit_table(dev, 'P', &P))
->            return;
-> 
->        if (P.version == 1)
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c b/drivers/gpu/drm/nouveau/nouveau_perf.c
-> index 670e3cb..0457ae7 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_perf.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
-> @@ -84,7 +84,7 @@ nouveau_perf_init(struct drm_device *dev)
->    int vid, i;
-> 
->    if (bios->type == NVBIOS_BIT) {
-> -        if (bit_table(dev, 'P', &P))
-> +        if (find_bit_table(dev, 'P', &P))
->            return;
-> 
->        if (P.version != 1 && P.version != 2) {
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_temp.c b/drivers/gpu/drm/nouveau/nouveau_temp.c
-> index 649b041..db6a091 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_temp.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_temp.c
-> @@ -284,7 +284,7 @@ nouveau_temp_init(struct drm_device *dev)
->    u8 *temp = NULL;
-> 
->    if (bios->type == NVBIOS_BIT) {
-> -        if (bit_table(dev, 'P', &P))
-> +        if (find_bit_table(dev, 'P', &P))
->            return;
-> 
->        if (P.version == 1)
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_volt.c b/drivers/gpu/drm/nouveau/nouveau_volt.c
-> index 75e8727..49b100d 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_volt.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_volt.c
-> @@ -113,7 +113,7 @@ nouveau_volt_init(struct drm_device *dev)
->    int i, headerlen, recordlen, entries, vidmask, vidshift;
-> 
->    if (bios->type == NVBIOS_BIT) {
-> -        if (bit_table(dev, 'P', &P))
-> +        if (find_bit_table(dev, 'P', &P))
->            return;
-> 
->        if (P.version == 1)
-> diff --git a/drivers/gpu/drm/nouveau/nv50_pm.c b/drivers/gpu/drm/nouveau/nv50_pm.c
-> index 8a28100..424361e 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_pm.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_pm.c
-> @@ -111,7 +111,7 @@ nv50_pm_clock_set(struct drm_device *dev, void *pre_state)
->    int P = state->P;
-> 
->    if (state->type == PLL_MEMORY && perflvl->memscript &&
-> -        bit_table(dev, 'M', &BIT_M) == 0 &&
-> +        find_bit_table(dev, 'M', &BIT_M) == 0 &&
->        BIT_M.version == 1 && BIT_M.length >= 0x0b) {
->        script = ROM16(BIT_M.data[0x05]);
->        if (script)
-> -- 
-> 1.7.1
-> 
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+index 8486dc6..943c622 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bios.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+@@ -5518,8 +5518,7 @@ bit_table(struct drm_device *dev, u8 id, struct bit_entry *bit)
+ }
+ 
+ static int
+-parse_bit_table(struct nvbios *bios, const uint16_t bitoffset,
+-		struct bit_table *table)
++parse_bit_table(struct nvbios *bios, struct bit_table *table)
+ {
+ 	struct drm_device *dev = bios->dev;
+ 	struct bit_entry bitentry;
+@@ -5532,7 +5531,7 @@ parse_bit_table(struct nvbios *bios, const uint16_t bitoffset,
+ }
+ 
+ static int
+-parse_bit_structure(struct nvbios *bios, const uint16_t bitoffset)
++parse_bit_structure(struct nvbios *bios)
+ {
+ 	int ret;
+ 
+@@ -5542,23 +5541,23 @@ parse_bit_structure(struct nvbios *bios, const uint16_t bitoffset)
+ 	 * functions shouldn't be actually *doing* anything apart from pulling
+ 	 * data from the image into the bios struct, thus no interdependencies
+ 	 */
+-	ret = parse_bit_table(bios, bitoffset, &BIT_TABLE('i', i));
++	ret = parse_bit_table(bios, &BIT_TABLE('i', i));
+ 	if (ret) /* info? */
+ 		return ret;
+ 	if (bios->major_version >= 0x60) /* g80+ */
+-		parse_bit_table(bios, bitoffset, &BIT_TABLE('A', A));
+-	ret = parse_bit_table(bios, bitoffset, &BIT_TABLE('C', C));
++		parse_bit_table(bios, &BIT_TABLE('A', A));
++	ret = parse_bit_table(bios, &BIT_TABLE('C', C));
+ 	if (ret)
+ 		return ret;
+-	parse_bit_table(bios, bitoffset, &BIT_TABLE('D', display));
+-	ret = parse_bit_table(bios, bitoffset, &BIT_TABLE('I', init));
++	parse_bit_table(bios, &BIT_TABLE('D', display));
++	ret = parse_bit_table(bios, &BIT_TABLE('I', init));
+ 	if (ret)
+ 		return ret;
+-	parse_bit_table(bios, bitoffset, &BIT_TABLE('M', M)); /* memory? */
+-	parse_bit_table(bios, bitoffset, &BIT_TABLE('L', lvds));
+-	parse_bit_table(bios, bitoffset, &BIT_TABLE('T', tmds));
+-	parse_bit_table(bios, bitoffset, &BIT_TABLE('U', U));
+-	parse_bit_table(bios, bitoffset, &BIT_TABLE('d', displayport));
++	parse_bit_table(bios, &BIT_TABLE('M', M)); /* memory? */
++	parse_bit_table(bios, &BIT_TABLE('L', lvds));
++	parse_bit_table(bios, &BIT_TABLE('T', tmds));
++	parse_bit_table(bios, &BIT_TABLE('U', U));
++	parse_bit_table(bios, &BIT_TABLE('d', displayport));
+ 
+ 	return 0;
+ }
+@@ -6773,7 +6772,7 @@ static int nouveau_parse_vbios_struct(struct drm_device *dev)
+ 		NV_TRACE(dev, "BIT BIOS found\n");
+ 		bios->type = NVBIOS_BIT;
+ 		bios->offset = offset;
+-		return parse_bit_structure(bios, offset + 6);
++		return parse_bit_structure(bios);
+ 	}
+ 
+ 	offset = findstr(bios->data, bios->length,
+-- 
+1.7.1
