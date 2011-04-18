@@ -1,10 +1,14 @@
-From: Marc Rios <marcrios84-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Nvidia GT450M
-Date: Mon, 18 Apr 2011 21:17:30 +0200
-Message-ID: <BANLkTinPx2y-7YZxg6amLvVsaPgaVY2x5w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 36163] nouveau fails to render framebuffer on
+	[GeForce 7300 GS]
+Date: Mon, 18 Apr 2011 12:43:40 -0700 (PDT)
+Message-ID: <20110418194340.19A7013000C@annarchy.freedesktop.org>
+References: <bug-36163-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0519274859=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-36163-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,62 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0519274859==
-Content-Type: multipart/alternative; boundary=90e6ba1819c85e2d4504a1363fea
+https://bugs.freedesktop.org/show_bug.cgi?id=36163
 
---90e6ba1819c85e2d4504a1363fea
-Content-Type: text/plain; charset=UTF-8
+--- Comment #4 from SanskritFritz <semmikozod-hRtevi7K+EU+Va1GwOuvDg@public.gmane.org> 2011-04-18 12:43:39 PDT ---
+Created an attachment (id=45781)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45781)
+one session kernel.log
 
-Hi,
+This is another kernel.log as requested by pq at the irc channel. This time
+modprobe nouveau completely locked my system, only REISUB helped.
 
-I supose this has been reported yet, but I have not find it.
-
-I have recently bought a new laptop (ASUS N53S) with nvidia card 450M. When
-I load the nouveau module I get this error in dmesg:
-
-[  117.724465] [drm] nouveau 0000:01:00.0: PGRAPH: unsupported chipset,
-please report!
-[  117.724593] [drm] nouveau 0000:01:00.0: PGRAPH: unknown config: 2/0/0/0,
-1
-[  117.727225] [drm] nouveau 0000:01:00.0: failed to load fuc409d
-
-I think you may find it interesting. If I try to switch to nvidia card I get
-a black screen. I supose, can be caused by this error...
-
-Regards,
-
---
-Marc Rios
-
---90e6ba1819c85e2d4504a1363fea
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br><br>I supose this has been reported yet, but I have not find it. <br=
-><br>I have recently bought a new laptop (ASUS N53S) with nvidia card 450M.=
- When I load the nouveau module I get this error in dmesg:<br><br>[=C2=A0 1=
-17.724465] [drm] nouveau 0000:01:00.0: PGRAPH: unsupported chipset, please =
-report!<br>
-
-[=C2=A0 117.724593] [drm] nouveau 0000:01:00.0: PGRAPH: unknown config: 2/0=
-/0/0, 1<br>[=C2=A0 117.727225] [drm] nouveau 0000:01:00.0: failed to load f=
-uc409d<br><br>I think you may find it interesting. If I try to switch to nv=
-idia card I get a black screen. I supose, can be caused by this error...<br=
->
-
-<br>Regards,<br><br clear=3D"all">--<br>Marc Rios<br><br><br>
-
---90e6ba1819c85e2d4504a1363fea--
-
---===============0519274859==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0519274859==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
