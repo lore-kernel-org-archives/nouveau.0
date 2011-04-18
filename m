@@ -1,16 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH] drm/nvc0/pm: read core/shader/memory clocks
- (more) correctly
-Date: Mon, 18 Apr 2011 01:05:38 +0200
-Message-ID: <4DAB7242.1080205@free.fr>
-References: <1303053035-25716-1-git-send-email-martin.peres@free.fr>	
-	<1303079563.13003.1.camel@nisroch> <4DAB6F9F.3050905@free.fr>
-	<1303080990.15225.0.camel@nisroch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
+Date: Sun, 17 Apr 2011 17:58:35 -0700 (PDT)
+Message-ID: <20110418005835.E43BE13000C@annarchy.freedesktop.org>
+References: <bug-31169-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1303080990.15225.0.camel@nisroch>
+In-Reply-To: <bug-31169-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,44 +17,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-TGUgMTgvMDQvMjAxMSAwMDo1NiwgQmVuIFNrZWdncyBhIMOpY3JpdCA6Cj4gT24gTW9uLCAyMDEx
-LTA0LTE4IGF0IDAwOjU0ICswMjAwLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4+IExlIDE4LzA0LzIw
-MTEgMDA6MzIsIEJlbiBTa2VnZ3MgYSDDqWNyaXQgOgo+Pj4gT24gU3VuLCAyMDExLTA0LTE3IGF0
-IDE3OjEwICswMjAwLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4+Pj4gLS0tCj4+Pj4gICAgZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9wZXJmLmMgfCAgICA2ICsrKy0tLQo+Pj4+ICAgIDEg
-ZmlsZXMgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+Pj4+Cj4+Pj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcGVyZi5jIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9wZXJmLmMKPj4+PiBpbmRleCA5NTBjYWJhLi5k
-NjRhOThhIDEwMDY0NAo+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-cGVyZi5jCj4+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9wZXJmLmMK
-Pj4+PiBAQCAtMTc3LDkgKzE3Nyw5IEBAIG5vdXZlYXVfcGVyZl9pbml0KHN0cnVjdCBkcm1fZGV2
-aWNlICpkZXYpCj4+Pj4gICAgI2RlZmluZSBzdWJlbnQobikgZW50cnlbcGVyZlsyXSArICgobikg
-KiBwZXJmWzNdKV0KPj4+PiAgICAJCQlwZXJmbHZsLT5mYW5zcGVlZCA9IDA7IC8qWFhYKi8KPj4+
-PiAgICAJCQlwZXJmbHZsLT52b2x0YWdlID0gZW50cnlbMl07Cj4+Pj4gLQkJCXBlcmZsdmwtPmNv
-cmUgPSAoUk9NMTYoc3ViZW50KDApKSYgICAweGZmZikgKiAxMDAwOwo+Pj4+IC0JCQlwZXJmbHZs
-LT5zaGFkZXIgPSAoUk9NMTYoc3ViZW50KDEpKSYgICAweGZmZikgKiAxMDAwOwo+Pj4+IC0JCQlw
-ZXJmbHZsLT5tZW1vcnkgPSAoUk9NMTYoc3ViZW50KDIpKSYgICAweGZmZikgKiAxMDAwOwo+Pj4+
-ICsJCQlwZXJmbHZsLT5jb3JlID0gKFJPTTE2KHN1YmVudCgzKSkmICAgMHhmZmYpICogMTAwMDsK
-Pj4+PiArCQkJcGVyZmx2bC0+c2hhZGVyID0gKFJPTTE2KHN1YmVudCgzKSkmICAgMHhmZmYpIC8g
-MiAqIDEwMDA7Cj4+Pj4gKwkJCXBlcmZsdmwtPm1lbW9yeSA9IChST00xNihzdWJlbnQoNSkpJiAg
-IDB4ZmZmKSAqIDEwMDA7Cj4+PiBVbSwgTkFDSy4gIFRoaXMgaXMgKmRlZmluaXRlbHkqIHZlcnkg
-dmVyeSB3cm9uZyBvbiBOVkE4LCB3aGljaCB1c2VzCj4+PiB2ZXJzaW9uIDB4NDAgb2YgdGhpcyB0
-YWJsZSB0b28uCj4+Pgo+Pj4gQmVuLgo+PiBDcmFwLCBJIHdvdWxkIGhhdmUgc3dvcm4gdGhpcyB0
-YWJsZSB3YXMgaW50cm9kdWNlZCBmb3IgRmVybWkhIFNvcnJ5IGZvcgo+PiB0aGUgbm9pc2UgdGhl
-biwgSSdsbCB0cnkgdG8gZmluZCBhIGZpeCBmb3IgdGhhdCAob3RoZXIgdGhhbiBsb29raW5nIGF0
-Cj4+IHRoZSBjb2RlbmFtZSkuCj4gSSdtIGhpZ2hseSBza2VwdGljYWwgdGhhdCBpdCdzIGNvcnJl
-Y3Qgb24gZmVybWkgdG9vLCBidXQsIEkgY2FuJ3QgY2hlY2sKPiB0aGF0IG15c2VsZiByaWdodCBu
-b3cuICBJIHNoYWxsIGRvIGl0IGR1cmluZyB0aGUgd2VlayBob3dldmVyLgo+Cj4gQmVuLgpJIHdh
-cyBhbHNvIGhpZ2hseSBza2VwdGljYWwgYWJvdXQgdGhpcywgYnV0IEkgbG9va2VkIGF0IGFsbCB0
-aGUgdmJpb3MgCmFuZCBpdCBzZWVtZWQgZ29vZCBvbiBhbGwgb2YgdGhlbS4KClRoZW4sIEkgbG9v
-a2VkIGF0IHRvb2xzIGxpa2UgbmliaXRvciBvciBGZXJtaSBiaW9zIGVkaXRvciAKKGh0dHA6Ly93
-d3cueHRyZW1lc3lzdGVtcy5vcmcvZm9ydW1zL3Nob3d0aHJlYWQucGhwP3Q9MjU2MzY3KSB3aGlj
-aCBhbHNvIApoaWdobGlnaHRzIHRoZSBzdWJlbnRyaWVzIDMgYW5kIDUuCgpJJ2xsIGxvb2sgZnVy
-dGhlciBhbmQgdHJ5IHRvIHNlZSBpZiByYW1jZmcgY291bGQgaGVscCB1cyBzZWxlY3QgdGhlIApy
-aWdodCBzdWJlbnRyaWVzLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=31169
+
+--- Comment #10 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-17 17:58:35 PDT ---
+Ok, nouveau git has a couple of patches now that should make using these
+options unnecessary.
+
+Are you able to test them please!
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
