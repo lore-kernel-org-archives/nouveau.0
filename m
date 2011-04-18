@@ -1,12 +1,13 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/2] drm/nouveau: Remove unnecessary argument from
-	parse_bit_*()
-Date: Mon, 18 Apr 2011 13:53:20 +0100
-Message-ID: <1303131201-15861-1-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 2/2] drm/nouveau: Rework parse_bmp_structure()
+Date: Mon, 18 Apr 2011 13:53:21 +0100
+Message-ID: <1303131201-15861-2-git-send-email-emil.l.velikov@gmail.com>
+References: <1303131201-15861-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1303131201-15861-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,79 +20,71 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Purge bitoffset as we already store the type (bit,bmp)
-as well as the offset (inside struct nvbios)
+Nuke unneeded parameter 'offset' (value already stored in
+'bios->offset')
 
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_bios.c |   27 +++++++++++++--------------
- 1 files changed, 13 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_bios.c |   12 ++++++------
+ 1 files changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-index 8486dc6..943c622 100644
+index 943c622..3c0ce01 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_bios.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-@@ -5518,8 +5518,7 @@ bit_table(struct drm_device *dev, u8 id, struct bit_entry *bit)
- }
- 
- static int
--parse_bit_table(struct nvbios *bios, const uint16_t bitoffset,
--		struct bit_table *table)
-+parse_bit_table(struct nvbios *bios, struct bit_table *table)
- {
- 	struct drm_device *dev = bios->dev;
- 	struct bit_entry bitentry;
-@@ -5532,7 +5531,7 @@ parse_bit_table(struct nvbios *bios, const uint16_t bitoffset,
- }
- 
- static int
--parse_bit_structure(struct nvbios *bios, const uint16_t bitoffset)
-+parse_bit_structure(struct nvbios *bios)
- {
- 	int ret;
- 
-@@ -5542,23 +5541,23 @@ parse_bit_structure(struct nvbios *bios, const uint16_t bitoffset)
- 	 * functions shouldn't be actually *doing* anything apart from pulling
- 	 * data from the image into the bios struct, thus no interdependencies
- 	 */
--	ret = parse_bit_table(bios, bitoffset, &BIT_TABLE('i', i));
-+	ret = parse_bit_table(bios, &BIT_TABLE('i', i));
- 	if (ret) /* info? */
- 		return ret;
- 	if (bios->major_version >= 0x60) /* g80+ */
--		parse_bit_table(bios, bitoffset, &BIT_TABLE('A', A));
--	ret = parse_bit_table(bios, bitoffset, &BIT_TABLE('C', C));
-+		parse_bit_table(bios, &BIT_TABLE('A', A));
-+	ret = parse_bit_table(bios, &BIT_TABLE('C', C));
- 	if (ret)
- 		return ret;
--	parse_bit_table(bios, bitoffset, &BIT_TABLE('D', display));
--	ret = parse_bit_table(bios, bitoffset, &BIT_TABLE('I', init));
-+	parse_bit_table(bios, &BIT_TABLE('D', display));
-+	ret = parse_bit_table(bios, &BIT_TABLE('I', init));
- 	if (ret)
- 		return ret;
--	parse_bit_table(bios, bitoffset, &BIT_TABLE('M', M)); /* memory? */
--	parse_bit_table(bios, bitoffset, &BIT_TABLE('L', lvds));
--	parse_bit_table(bios, bitoffset, &BIT_TABLE('T', tmds));
--	parse_bit_table(bios, bitoffset, &BIT_TABLE('U', U));
--	parse_bit_table(bios, bitoffset, &BIT_TABLE('d', displayport));
-+	parse_bit_table(bios, &BIT_TABLE('M', M)); /* memory? */
-+	parse_bit_table(bios, &BIT_TABLE('L', lvds));
-+	parse_bit_table(bios, &BIT_TABLE('T', tmds));
-+	parse_bit_table(bios, &BIT_TABLE('U', U));
-+	parse_bit_table(bios, &BIT_TABLE('d', displayport));
- 
+@@ -5562,7 +5562,7 @@ parse_bit_structure(struct nvbios *bios)
  	return 0;
  }
-@@ -6773,7 +6772,7 @@ static int nouveau_parse_vbios_struct(struct drm_device *dev)
- 		NV_TRACE(dev, "BIT BIOS found\n");
- 		bios->type = NVBIOS_BIT;
+ 
+-static int parse_bmp_structure(struct drm_device *dev, struct nvbios *bios, unsigned int offset)
++static int parse_bmp_structure(struct drm_device *dev, struct nvbios *bios)
+ {
+ 	/*
+ 	 * Parses the BMP structure for useful things, but does not act on them
+@@ -5607,7 +5607,7 @@ static int parse_bmp_structure(struct drm_device *dev, struct nvbios *bios, unsi
+ 	 * offset + 156: minimum pixel clock for LVDS dual link
+ 	 */
+ 
+-	uint8_t *bmp = &bios->data[offset], bmp_version_major, bmp_version_minor;
++	uint8_t *bmp = &bios->data[bios->offset], bmp_version_major, bmp_version_minor;
+ 	uint16_t bmplength;
+ 	uint16_t legacy_scripts_offset, legacy_i2c_offset;
+ 
+@@ -5701,7 +5701,7 @@ static int parse_bmp_structure(struct drm_device *dev, struct nvbios *bios, unsi
+ 	 */
+ 	bios->feature_byte = bmp[9];
+ 
+-	parse_bios_version(dev, bios, offset + 10);
++	parse_bios_version(dev, bios, bios->offset + 10);
+ 
+ 	if (bmp_version_major < 5 || bmp_version_minor < 0x10)
+ 		bios->old_style_init = true;
+@@ -5719,7 +5719,7 @@ static int parse_bmp_structure(struct drm_device *dev, struct nvbios *bios, unsi
+ 
+ 	legacy_i2c_offset = 0x48;	/* BMP version 2 & 3 */
+ 	if (bmplength > 61)
+-		legacy_i2c_offset = offset + 54;
++		legacy_i2c_offset = bios->offset + 54;
+ 	bios->legacy.i2c_indices.crt = bios->data[legacy_i2c_offset];
+ 	bios->legacy.i2c_indices.tv = bios->data[legacy_i2c_offset + 1];
+ 	bios->legacy.i2c_indices.panel = bios->data[legacy_i2c_offset + 2];
+@@ -5737,7 +5737,7 @@ static int parse_bmp_structure(struct drm_device *dev, struct nvbios *bios, unsi
+ 		bios->fminvco = ROM32(bmp[71]);
+ 	}
+ 	if (bmplength > 88)
+-		parse_script_table_pointers(bios, offset + 75);
++		parse_script_table_pointers(bios, bios->offset + 75);
+ 	if (bmplength > 94) {
+ 		bios->tmds.output0_script_ptr = ROM16(bmp[89]);
+ 		bios->tmds.output1_script_ptr = ROM16(bmp[91]);
+@@ -6781,7 +6781,7 @@ static int nouveau_parse_vbios_struct(struct drm_device *dev)
+ 		NV_TRACE(dev, "BMP BIOS found\n");
+ 		bios->type = NVBIOS_BMP;
  		bios->offset = offset;
--		return parse_bit_structure(bios, offset + 6);
-+		return parse_bit_structure(bios);
+-		return parse_bmp_structure(dev, bios, offset);
++		return parse_bmp_structure(dev, bios);
  	}
  
- 	offset = findstr(bios->data, bios->length,
+ 	NV_ERROR(dev, "No known BIOS signature found\n");
 -- 
 1.7.1
