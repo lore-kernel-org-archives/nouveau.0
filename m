@@ -1,13 +1,14 @@
-From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 Subject: Re: [PATCH 0/2] Safer reclocking
-Date: Tue, 19 Apr 2011 05:45:28 +0300
-Message-ID: <1303181128.2802.9.camel@maxim-laptop>
+Date: Tue, 19 Apr 2011 10:11:08 +0200
+Message-ID: <4DAD439C.5030601@free.fr>
 References: <1300572857-8712-1-git-send-email-martin.peres@free.fr>
+	<1303181128.2802.9.camel@maxim-laptop>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1300572857-8712-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <1303181128.2802.9.camel@maxim-laptop>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,46 +18,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+To: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, 2011-03-19 at 23:14 +0100, Martin Peres wrote:
-> This version corrects the missing symbol linking error you could get by compiling on a x86_32 kernel:
-> ERROR: "__udivdi3" [drivers/gpu/drm/nouveau/nouveau.ko] undefined!
-> 
-> Again, please test it on hw ranging from nv30 to nva0 (nvac/ION is supported)
-
-Martin Peres, Hi!
-
-Any update on this support?
-
-The old patch of yours that works fine on my card surely doesn't apply
-to latest git. I am going to forward-port it so I could switch to next
-kernel, but I was thinking that maybe you have a new version of this
-patch, so I won't waste my time.
-Without this patch, reclocking is very very unstable as you know, but I
-need it to keep card temperature within reasonable bounds.
-
-(And pref level 0 gives me ~50 FPS in compiz....)
-
-Speaking of performance, offtopic, nouvaeu + kwin isn't usable at all,
-but compiz really is.
-
-Kwin on the other hand is dead slow even on perf level 2, and
-surprisingly, even if I start compiz in KDE it is significantly slower
-that same compiz in Gnome (but usable).
-
-And when I move mouse over any Qt application, FPS drops below 5 FPS,
-probably due to mixture of Xrender and GL calls.
-So nouveau + kwin is absolutely not usable.
-
-compiz + gnome without any open windows shows ~300 FPS on perf level 2
-slightly higher that nvidia blob.
-
-I own quite slow card, nvidia geforce 8400M GS, codename NV86
-
-I am looking forward to switch to KDE in near future.
-
-Best regards,
-	Maxim Levitsky
+TGUgMTkvMDQvMjAxMSAwNDo0NSwgTWF4aW0gTGV2aXRza3kgYSDDqWNyaXQgOgo+IE9uIFNhdCwg
+MjAxMS0wMy0xOSBhdCAyMzoxNCArMDEwMCwgTWFydGluIFBlcmVzIHdyb3RlOgo+PiBUaGlzIHZl
+cnNpb24gY29ycmVjdHMgdGhlIG1pc3Npbmcgc3ltYm9sIGxpbmtpbmcgZXJyb3IgeW91IGNvdWxk
+IGdldCBieSBjb21waWxpbmcgb24gYSB4ODZfMzIga2VybmVsOgo+PiBFUlJPUjogIl9fdWRpdmRp
+MyIgW2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXUua29dIHVuZGVmaW5lZCEKPj4KPj4g
+QWdhaW4sIHBsZWFzZSB0ZXN0IGl0IG9uIGh3IHJhbmdpbmcgZnJvbSBudjMwIHRvIG52YTAgKG52
+YWMvSU9OIGlzIHN1cHBvcnRlZCkKPiBNYXJ0aW4gUGVyZXMsIEhpIQo+Cj4gQW55IHVwZGF0ZSBv
+biB0aGlzIHN1cHBvcnQ/ClllcywgSSBoYXZlIGEgcGF0Y2ggcGVuZGluZy4gSSdsbCByZWxlYXNl
+IGl0IGluIGEgZmV3IGRheXMgaWYgeW91IHdhbnQuCj4gVGhlIG9sZCBwYXRjaCBvZiB5b3VycyB0
+aGF0IHdvcmtzIGZpbmUgb24gbXkgY2FyZCBzdXJlbHkgZG9lc24ndCBhcHBseQo+IHRvIGxhdGVz
+dCBnaXQuIEkgYW0gZ29pbmcgdG8gZm9yd2FyZC1wb3J0IGl0IHNvIEkgY291bGQgc3dpdGNoIHRv
+IG5leHQKPiBrZXJuZWwsIGJ1dCBJIHdhcyB0aGlua2luZyB0aGF0IG1heWJlIHlvdSBoYXZlIGEg
+bmV3IHZlcnNpb24gb2YgdGhpcwo+IHBhdGNoLCBzbyBJIHdvbid0IHdhc3RlIG15IHRpbWUuClBs
+ZWFzZSwgZG9uJ3QuIEkgYWxyZWFkeSBoYXZlIGRvbmUgaXQgOykKPiBXaXRob3V0IHRoaXMgcGF0
+Y2gsIHJlY2xvY2tpbmcgaXMgdmVyeSB2ZXJ5IHVuc3RhYmxlIGFzIHlvdSBrbm93LCBidXQgSQo+
+IG5lZWQgaXQgdG8ga2VlcCBjYXJkIHRlbXBlcmF0dXJlIHdpdGhpbiByZWFzb25hYmxlIGJvdW5k
+cy4KPgo+IChBbmQgcHJlZiBsZXZlbCAwIGdpdmVzIG1lIH41MCBGUFMgaW4gY29tcGl6Li4uLikK
+Pgo+IFNwZWFraW5nIG9mIHBlcmZvcm1hbmNlLCBvZmZ0b3BpYywgbm91dmFldSArIGt3aW4gaXNu
+J3QgdXNhYmxlIGF0IGFsbCwKPiBidXQgY29tcGl6IHJlYWxseSBpcy4KS1dpbiB3b3JrcyBncmVh
+dCBmb3IgbWUgb24gbm91dmVhdS4KPiBLd2luIG9uIHRoZSBvdGhlciBoYW5kIGlzIGRlYWQgc2xv
+dyBldmVuIG9uIHBlcmYgbGV2ZWwgMiwgYW5kCj4gc3VycHJpc2luZ2x5LCBldmVuIGlmIEkgc3Rh
+cnQgY29tcGl6IGluIEtERSBpdCBpcyBzaWduaWZpY2FudGx5IHNsb3dlcgo+IHRoYXQgc2FtZSBj
+b21waXogaW4gR25vbWUgKGJ1dCB1c2FibGUpLgo+Cj4gQW5kIHdoZW4gSSBtb3ZlIG1vdXNlIG92
+ZXIgYW55IFF0IGFwcGxpY2F0aW9uLCBGUFMgZHJvcHMgYmVsb3cgNSBGUFMsCj4gcHJvYmFibHkg
+ZHVlIHRvIG1peHR1cmUgb2YgWHJlbmRlciBhbmQgR0wgY2FsbHMuCj4gU28gbm91dmVhdSArIGt3
+aW4gaXMgYWJzb2x1dGVseSBub3QgdXNhYmxlLgo+Cj4gY29tcGl6ICsgZ25vbWUgd2l0aG91dCBh
+bnkgb3BlbiB3aW5kb3dzIHNob3dzIH4zMDAgRlBTIG9uIHBlcmYgbGV2ZWwgMgo+IHNsaWdodGx5
+IGhpZ2hlciB0aGF0IG52aWRpYSBibG9iLgpJIGRvbid0IGtub3cgaWYgSSBoYXZlIDMwMCBmcHMg
+YmVjYXVzZSBJIGNhcCBpdCBhdCA2MGZwcywgdGhpcyBpc24ndCAKdXNlZnVsIHRvIGRyYXcgZmFz
+dGVyIHRoYW4gdGhhdC4KPiBJIG93biBxdWl0ZSBzbG93IGNhcmQsIG52aWRpYSBnZWZvcmNlIDg0
+MDBNIEdTLCBjb2RlbmFtZSBOVjg2Cj4KPiBJIGFtIGxvb2tpbmcgZm9yd2FyZCB0byBzd2l0Y2gg
+dG8gS0RFIGluIG5lYXIgZnV0dXJlLgpXZWxsLCByZWFsbHksIEkgZG9uJ3QgdW5kZXJzdGFuZCB3
+aGF0J3Mgc2xvdyBvbiB5b3VyIGNhcmQgOnMKPiBCZXN0IHJlZ2FyZHMsCj4gCU1heGltIExldml0
+c2t5Cj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
