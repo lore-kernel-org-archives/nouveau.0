@@ -1,74 +1,87 @@
-From: Ben Skeggs <bskeggs@redhat.com>
-Subject: Re: 2.6.39-rc1 nouveau(?) regression (bisected)
-Date: Wed, 20 Apr 2011 08:34:42 +1000
-Message-ID: <1303252482.7270.398.camel@caspar>
-References: <20110414190117.GA3493@joi.lan>
-	 <20110415061136.GA21979@isilmar-3.linta.de>
-	 <4DAA1453.5000604@nigelcunningham.com.au>
-	 <20110416235028.GA6096@taurine.csclub.uwaterloo.ca>
-	 <20110417151204.GA24519@taurine.csclub.uwaterloo.ca>
-	 <20110417154557.GA2871@joi.lan>
-	 <20110417162427.GB25242@taurine.csclub.uwaterloo.ca>
-	 <20110417164920.GA2626@joi.lan> <20110418200204.GA2522@joi.lan>
-	 <BANLkTi=Oo03CQchHYh4EvEsk+wZy7akLNw@mail.gmail.com>
-	 <20110419214747.GA2965@joi.lan>
-Reply-To: bskeggs@redhat.com
+From: Hanno =?ISO-8859-1?B?QvZjaw==?= <hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org>
+Subject: Any effort on tegra?
+Date: Wed, 20 Apr 2011 00:59:15 +0200
+Message-ID: <20110420005915.4f91fcfe@laverne>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20110419214747.GA2965@joi.lan>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Kyle Spaans <kspaans@uwaterloo.ca>, linux-kernel@vger.kernel.org, Dominik Brodowski <linux@dominikbrodowski.net>, airlied@redhat.com, dri-devel@lists.freedesktop.org, mjg@redhat.com, maciej.rutecki@gmail.com, nouveau@lists.freedesktop.org, Nigel Cunningham <lkml@nigelcunningham.com.au>, Nick Piggin <npiggin@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1494152602=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 2011-04-19 at 23:47 +0200, Marcin Slusarz wrote:
-> On Mon, Apr 18, 2011 at 01:27:10PM -0700, Linus Torvalds wrote:
-> > On Mon, Apr 18, 2011 at 1:02 PM, Marcin Slusarz
-> > <marcin.slusarz@gmail.com> wrote:
-> > >
-> > > It's some nasty corruption:
-> > 
-> > Looks like something wrote 0xffffffff to free'd memory.
-> > 
-> > Enabling DEBUG_PAGEALLOC *might* show where it happens.
-> > 
-> > >
-> > > [    6.523867] =============================================================================
-> > > [    6.523916] BUG sysfs_dir_cache: Poison overwritten
-> > > [    6.523949] -----------------------------------------------------------------------------
-> > > [    6.523950]
-> > > [    6.524016] INFO: 0xffff8801bb47df4c-0xffff8801bb47df4f. First byte 0xff instead of 0x6b
-> > > [    6.524061] INFO: Slab 0xffffea00060f7b58 objects=22 used=21 fp=0xffff8801bb47df18 flags=0x80000000000000c1
-> > > [    6.524110] INFO: Object 0xffff8801bb47df18 @offset=3864 fp=0x          (null)
-> > > [    6.524111]
-> > > [    6.524170] Bytes b4 0xffff8801bb47df08:  00 00 00 00 00 00 00 00 5a 5a 5a 5a 5a 5a 5a 5a ........ZZZZZZZZ
-> > > [    6.524516]   Object 0xffff8801bb47df18:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b kkkkkkkkkkkkkkkk
-> > > [    6.524862]   Object 0xffff8801bb47df28:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b kkkkkkkkkkkkkkkk
-> > > [    6.525208]   Object 0xffff8801bb47df38:  6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b 6b kkkkkkkkkkkkkkkk
-> > > [    6.525556]   Object 0xffff8801bb47df48:  6b 6b 6b 6b ff ff ff ff 6b 6b 6b 6b 6b 6b 6b 6b kkkk<FF><FF><FF><FF>kkkkkkkk
-> > 
-> > So here the 0xffffffff is pretty obvious.
-> > 
-> > > and in another boot:
-> > >
-> > > [    6.704786] BUG: unable to handle kernel paging request at ffffffffbc70b058
-> > 
-> > Here it is less obvious, but it was _probably_ a regular kernel
-> > pointer of the type 0xffff8801bc70b058 before the high bits were
-> > overwritten by a 0xffffffff.
-> > 
-> > So then sysfs_refresh_inode() follows that pointer, and crashes.
-> > 
-> > Just a guess, obviously, but it looks rather likely.
-> 
-> Thanks. It helped a bit.
-> I'll send two patches in response to this message, one of which fixes this bug.
-Nice catch.  I'll push these to the nouveau tree now, and get them to
-Dave with some additional fixes.
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
 
-Ben.
-> 
-> Marcin
-> 
+--===============1494152602==
+Content-Type: multipart/signed; micalg=PGP-SHA256; protocol="application/pgp-signature"; boundary="=_zucker.schokokeks.org-14205-1303253959-0001-2"
+
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
+
+--=_zucker.schokokeks.org-14205-1303253959-0001-2
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Nvidia produces the tegra SoC-systems, a popular use is the toshiba
+ac100.
+
+These devices have an internal graphics chip, one can get a driver from
+nvidia, but as you can guess, it's proprietary only.
+
+I don't have any idea if these internal graphics chips are in any way
+similar to "normal" nvidia graphic cards, but wanted to ask if there's
+any effort by the nouveau-project to also support those?
+
+(the binary driver is a pity, as it only supports xorg-server-1.6)
+
+--=20
+Hanno B=F6ck		mail/jabber: hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org
+GPG: BBB51E42		http://www.hboeck.de/
+
+--=_zucker.schokokeks.org-14205-1303253959-0001-2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.17 (GNU/Linux)
+
+iQIcBAEBCAAGBQJNrhPGAAoJEKWIAHK7tR5Cb7wQAJfNBdYZBfo5tmg3bT8aQlbZ
++V3HI1+jJEI5tN1m7hFRNbngBpWqLdNScCqG+c4bKALwV7iDwLsUcz9DItAWWRiF
+HTVmgXMgjOMDo3QscmJTvbYqknhTBX+AlapN2MLDCX0XqSM848eTbK4yAzswiHHC
+0yesAKHiwTCGjfRk+2I6Ng2rQz5rRoedqvPjptznBQhG67yF0c51v8gbojWicvk+
+KS5KifpTddPdxWUlOYmJAg1aRXMX0CglQKpNwg+3C7sV5sJrYqfZtARLqX7OuO+V
+GRyt6MaRdv1A3vhjjseiqMcbv3a0IXwGCgnts1kgK1rM/8apF3+JOocpURP4avyp
+NLNd5IdzbA5R2VDNUdQQhGIFyfti5H38+O2kuiNRyBWqEOITVyjFh/HOHMusWBI4
+ucM0vdUr8Ilk7BQchJnP2AbMejPf2eOeGyoDjZ18uEEZORd2IL6HQS6+0777dPuW
+vSdxB10Uq+FRN2Hq7bVfJRdURoU9++gdcfGVquOdfdy+ZS9YjNuAdJf0+loslctw
+v2FFPeG5qsqD8bdKDgbqWnIbjnIrdDn+KrAZ5E+0IhwpnKsFSiveKnCXWwVDXOTw
+BPlwhUK0dPJEzgmiNiVnGy2bFAJ30bmJjMLaiRIBTV0wy+7K3rzwkFlREqN2kSdZ
+ZxvmWQShIE17sGRgpYMy
+=KtWc
+-----END PGP SIGNATURE-----
+
+--=_zucker.schokokeks.org-14205-1303253959-0001-2--
+
+--===============1494152602==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1494152602==--
