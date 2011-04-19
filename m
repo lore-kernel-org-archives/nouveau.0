@@ -1,10 +1,13 @@
-From: Hanno =?ISO-8859-1?B?QvZjaw==?= <hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org>
-Subject: Any effort on tegra?
-Date: Wed, 20 Apr 2011 00:59:15 +0200
-Message-ID: <20110420005915.4f91fcfe@laverne>
+From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Subject: Re: Any effort on tegra?
+Date: Wed, 20 Apr 2011 01:28:30 +0200
+Message-ID: <1303255710.2295.4.camel@workstation>
+References: <20110420005915.4f91fcfe@laverne>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1494152602=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20110420005915.4f91fcfe@laverne>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,74 +17,27 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Hanno =?ISO-8859-1?Q?B=F6ck?= <hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a MIME-formatted message.  If you see this text it means that your
-E-mail software does not support MIME-formatted messages.
-
---===============1494152602==
-Content-Type: multipart/signed; micalg=PGP-SHA256; protocol="application/pgp-signature"; boundary="=_zucker.schokokeks.org-14205-1303253959-0001-2"
-
-This is a MIME-formatted message.  If you see this text it means that your
-E-mail software does not support MIME-formatted messages.
-
---=_zucker.schokokeks.org-14205-1303253959-0001-2
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Nvidia produces the tegra SoC-systems, a popular use is the toshiba
-ac100.
-
-These devices have an internal graphics chip, one can get a driver from
-nvidia, but as you can guess, it's proprietary only.
-
-I don't have any idea if these internal graphics chips are in any way
-similar to "normal" nvidia graphic cards, but wanted to ask if there's
-any effort by the nouveau-project to also support those?
-
-(the binary driver is a pity, as it only supports xorg-server-1.6)
-
---=20
-Hanno B=F6ck		mail/jabber: hanno-60OJuG18Xr6zQB+pC5nmwQ@public.gmane.org
-GPG: BBB51E42		http://www.hboeck.de/
-
---=_zucker.schokokeks.org-14205-1303253959-0001-2
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment; filename=signature.asc
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.17 (GNU/Linux)
-
-iQIcBAEBCAAGBQJNrhPGAAoJEKWIAHK7tR5Cb7wQAJfNBdYZBfo5tmg3bT8aQlbZ
-+V3HI1+jJEI5tN1m7hFRNbngBpWqLdNScCqG+c4bKALwV7iDwLsUcz9DItAWWRiF
-HTVmgXMgjOMDo3QscmJTvbYqknhTBX+AlapN2MLDCX0XqSM848eTbK4yAzswiHHC
-0yesAKHiwTCGjfRk+2I6Ng2rQz5rRoedqvPjptznBQhG67yF0c51v8gbojWicvk+
-KS5KifpTddPdxWUlOYmJAg1aRXMX0CglQKpNwg+3C7sV5sJrYqfZtARLqX7OuO+V
-GRyt6MaRdv1A3vhjjseiqMcbv3a0IXwGCgnts1kgK1rM/8apF3+JOocpURP4avyp
-NLNd5IdzbA5R2VDNUdQQhGIFyfti5H38+O2kuiNRyBWqEOITVyjFh/HOHMusWBI4
-ucM0vdUr8Ilk7BQchJnP2AbMejPf2eOeGyoDjZ18uEEZORd2IL6HQS6+0777dPuW
-vSdxB10Uq+FRN2Hq7bVfJRdURoU9++gdcfGVquOdfdy+ZS9YjNuAdJf0+loslctw
-v2FFPeG5qsqD8bdKDgbqWnIbjnIrdDn+KrAZ5E+0IhwpnKsFSiveKnCXWwVDXOTw
-BPlwhUK0dPJEzgmiNiVnGy2bFAJ30bmJjMLaiRIBTV0wy+7K3rzwkFlREqN2kSdZ
-ZxvmWQShIE17sGRgpYMy
-=KtWc
------END PGP SIGNATURE-----
-
---=_zucker.schokokeks.org-14205-1303253959-0001-2--
-
---===============1494152602==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1494152602==--
+QW0gTWl0dHdvY2gsIGRlbiAyMC4wNC4yMDExLCAwMDo1OSArMDIwMCBzY2hyaWViIEhhbm5vIELD
+tmNrOgo+IEhpLAo+IAo+IE52aWRpYSBwcm9kdWNlcyB0aGUgdGVncmEgU29DLXN5c3RlbXMsIGEg
+cG9wdWxhciB1c2UgaXMgdGhlIHRvc2hpYmEKPiBhYzEwMC4KPiAKPiBUaGVzZSBkZXZpY2VzIGhh
+dmUgYW4gaW50ZXJuYWwgZ3JhcGhpY3MgY2hpcCwgb25lIGNhbiBnZXQgYSBkcml2ZXIgZnJvbQo+
+IG52aWRpYSwgYnV0IGFzIHlvdSBjYW4gZ3Vlc3MsIGl0J3MgcHJvcHJpZXRhcnkgb25seS4KPiAK
+PiBJIGRvbid0IGhhdmUgYW55IGlkZWEgaWYgdGhlc2UgaW50ZXJuYWwgZ3JhcGhpY3MgY2hpcHMg
+YXJlIGluIGFueSB3YXkKPiBzaW1pbGFyIHRvICJub3JtYWwiIG52aWRpYSBncmFwaGljIGNhcmRz
+LCBidXQgd2FudGVkIHRvIGFzayBpZiB0aGVyZSdzCj4gYW55IGVmZm9ydCBieSB0aGUgbm91dmVh
+dS1wcm9qZWN0IHRvIGFsc28gc3VwcG9ydCB0aG9zZT8KCk5vLCBzb3JyeS4gVGVncmFzIGFyZSBz
+aWduaWZpY2FudGx5IGRpZmZlcmVudCBmcm9tIG5vcm1hbCBudmlkaWEKY2hpcHNldHMuIFNvbWUg
+a25vd2xlZGdlIGNhbiBiZSBhcHBsaWVkLCBidXQgaXQncyBsaWtlbHkgZWFzaWVyIHRvIHdyaXRl
+CmEgbmV3IGRyaXZlciBmb3IgdGVncmFzIHRoYW4gYWRhcHRpbmcgbm91dmVhdS4gU28gdGhlcmUg
+YXJlIG5vIGVmZm9ydHMKaW4gc3VwcG9ydGluZyB0ZWdyYSB3aXRoaW4gbm91dmVhdS4KCj4gCj4g
+KHRoZSBiaW5hcnkgZHJpdmVyIGlzIGEgcGl0eSwgYXMgaXQgb25seSBzdXBwb3J0cyB4b3JnLXNl
+cnZlci0xLjYpCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
