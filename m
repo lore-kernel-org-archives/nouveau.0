@@ -1,49 +1,29 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Wed, 20 Apr 2011 06:11:18 -0700 (PDT)
-Message-ID: <20110420131118.CD2E813000C@annarchy.freedesktop.org>
-References: <bug-35267-8800@http.bugs.freedesktop.org/>
+From: Kyle Spaans <kspaans@uwaterloo.ca>
+Subject: Re: 2.6.39-rc1 nouveau(?) regression (bisected)
+Date: Wed, 20 Apr 2011 10:18:23 -0400
+Message-ID: <20110420141823.GA8166@taurine.csclub.uwaterloo.ca>
+References: <20110415061136.GA21979@isilmar-3.linta.de>
+ <4DAA1453.5000604@nigelcunningham.com.au>
+ <20110416235028.GA6096@taurine.csclub.uwaterloo.ca>
+ <20110417151204.GA24519@taurine.csclub.uwaterloo.ca>
+ <20110417154557.GA2871@joi.lan>
+ <20110417162427.GB25242@taurine.csclub.uwaterloo.ca>
+ <20110417164920.GA2626@joi.lan>
+ <20110418200204.GA2522@joi.lan>
+ <BANLkTi=Oo03CQchHYh4EvEsk+wZy7akLNw@mail.gmail.com>
+ <20110419214747.GA2965@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20110419214747.GA2965@joi.lan>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, linux-kernel@vger.kernel.org, Dominik Brodowski <linux@dominikbrodowski.net>, Ben Skeggs <bskeggs@redhat.com>, airlied@redhat.com, dri-devel@lists.freedesktop.org, mjg@redhat.com, maciej.rutecki@gmail.com, nouveau@lists.freedesktop.org, Nigel Cunningham <lkml@nigelcunningham.com.au>, Nick Piggin <npiggin@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35267
+On Tue, Apr 19, 2011 at 11:47:47PM +0200, Marcin Slusarz wrote:
+> Thanks. It helped a bit.
+> I'll send two patches in response to this message, one of which fixes this bug.
 
---- Comment #9 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> 2011-04-20 06:11:18 PDT ---
-I played around a little more with this.
-
-This is either a Grub bug, or the kernel does not honor the fake bios thingy
-created by grub.
-
-I compiled the vbios i extracted (booting into bios mode with a live-CD) into
-the kernel (just for fun), and it actualy found that, and could read that BIT
-bios thing, however, it crashes as it does not find some other tables needed (i
-assume i would need to somehow update those ...at least i think thats what grub
-is doing...). The nouveauFB runs perfectly with that, but no X (and the kernel
-crashes around like mad :-p)
-
-I tried play around with nouveau_bios.c, as i found the vbios at address
-0xc0000 in /dev/mem, but i get kernel errors about not be able to access that
-address.
-
-I keep on play around with it :-p
-However, my knowledge about kernel stuff and hardware and acpi and bios is by
-far not enough to do real debugging here.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Those patches fixed my system. Thanks!
