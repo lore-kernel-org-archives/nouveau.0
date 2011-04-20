@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36416] External monitor connected to docking station
  gets no signal, although recognized
-Date: Wed, 20 Apr 2011 03:26:39 -0700 (PDT)
-Message-ID: <20110420102640.8EF3813000C@annarchy.freedesktop.org>
+Date: Wed, 20 Apr 2011 03:38:24 -0700 (PDT)
+Message-ID: <20110420103825.530F113000C@annarchy.freedesktop.org>
 References: <bug-36416-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36416
 
---- Comment #3 from Alexander Diewald <alex-LJ/xIhIu6xqjKv3TNrM5DQ@public.gmane.org> 2011-04-20 03:26:39 PDT ---
-Created an attachment (id=45854)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45854)
-xrandr query
+--- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-20 03:38:22 PDT ---
+Can you mail the vbios image from /sys/kernel/debug/dri/0/vbios.rom ("mount -t
+debugfs debugfs /sys/kernel/debug" if not already done) to
+mmio.dumps-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, and mention this bug number in the subject.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
