@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36422] New: unable to hibernate with nouveau and
- NV11 [bisected]
-Date: Wed, 20 Apr 2011 05:57:07 -0700 (PDT)
-Message-ID: <bug-36422-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
+Date: Wed, 20 Apr 2011 06:11:18 -0700 (PDT)
+Message-ID: <20110420131118.CD2E813000C@annarchy.freedesktop.org>
+References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,55 +20,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36422
+https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
-           Summary: unable to hibernate with nouveau and NV11 [bisected]
-           Product: xorg
-           Version: unspecified
-          Platform: All
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: csights-97jfqw80gc6171pxa8y+qA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #9 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> 2011-04-20 06:11:18 PDT ---
+I played around a little more with this.
 
+This is either a Grub bug, or the kernel does not honor the fake bios thingy
+created by grub.
 
-Hi,
-   This is a kernel bug and i've opened a report there.
-https://bugzilla.kernel.org/show_bug.cgi?id=33582
+I compiled the vbios i extracted (booting into bios mode with a live-CD) into
+the kernel (just for fun), and it actualy found that, and could read that BIT
+bios thing, however, it crashes as it does not find some other tables needed (i
+assume i would need to somehow update those ...at least i think thats what grub
+is doing...). The nouveauFB runs perfectly with that, but no X (and the kernel
+crashes around like mad :-p)
 
-but i heard that opening a bug here was appropriate.  if not, i :(, please
-close.
+I tried play around with nouveau_bios.c, as i found the vbios at address
+0xc0000 in /dev/mem, but i get kernel errors about not be able to access that
+address.
 
-   I'm able to successfully hibernate while using nouveau with kernel version
-2.6.35 (and before) but unable to hibernate in 2.6.36 (and after up to
-2.6.39-rc2).
-   I am not using X.  From the console I test whether hibernate is possible
-using "pm-hibernate".
-   I've bisected this and located a range of possible commits which changed
-this behavior.  
-last known good: d17f395cdcec39033a481f96d75e8b3d3c41d43a
-first known bad: 816544b21b020bdb9dcb9a5003fe3e1f109e8698
-   Between these commits the kernel would not compile.
-
-
-   This is the nVidia card in the machine.
-02:00.0 VGA compatible controller: nVidia Corporation NV11 [GeForce2 MX/MX 400]
-(rev b2) (prog-if 00 [VGA controller])
-        Subsystem: nVidia Corporation Device 0054
-        Flags: bus master, 66MHz, medium devsel, latency 32, IRQ 11
-        Memory at dc000000 (32-bit, non-prefetchable) [size=16M]
-        Memory at d0000000 (32-bit, prefetchable) [size=128M]
-        [virtual] Expansion ROM at dd000000 [disabled] [size=64K]
-        Capabilities: [60] Power Management version 2
-        Capabilities: [44] AGP version 2.0
-
-Let me know if I can provide more info or test patches!
-
-Thanks,  Chad.
+I keep on play around with it :-p
+However, my knowledge about kernel stuff and hardware and acpi and bios is by
+far not enough to do real debugging here.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
