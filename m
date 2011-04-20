@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36416] External monitor connected to docking station
  gets no signal, although recognized
-Date: Wed, 20 Apr 2011 03:25:30 -0700 (PDT)
-Message-ID: <20110420102530.9A43D13000C@annarchy.freedesktop.org>
+Date: Wed, 20 Apr 2011 03:26:12 -0700 (PDT)
+Message-ID: <20110420102612.4516813000C@annarchy.freedesktop.org>
 References: <bug-36416-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36416
 
---- Comment #1 from Alexander Diewald <alex-LJ/xIhIu6xqjKv3TNrM5DQ@public.gmane.org> 2011-04-20 03:25:29 PDT ---
-Created an attachment (id=45852)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45852)
-dmesg output
+--- Comment #2 from Alexander Diewald <alex-LJ/xIhIu6xqjKv3TNrM5DQ@public.gmane.org> 2011-04-20 03:26:09 PDT ---
+Created an attachment (id=45853)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45853)
+XServer log file
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
