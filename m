@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36248] Kernel 2.6.39-rc2: Boot logo causes Nouveau
 	crash
-Date: Fri, 22 Apr 2011 07:28:14 -0700 (PDT)
-Message-ID: <20110422142814.C78B013000C@annarchy.freedesktop.org>
+Date: Fri, 22 Apr 2011 07:36:33 -0700 (PDT)
+Message-ID: <20110422143633.9364B13000C@annarchy.freedesktop.org>
 References: <bug-36248-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,12 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+         Resolution|FIXED                       |DUPLICATE
 
---- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-22 07:28:13 PDT ---
-Fixed by commit a18d89ca026140eb8ac4459bf70a01c571dd9a32 "drm/nouveau: fix
-notifier memory corruption bug" (after 2.6.39-rc4)
+--- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-22 07:36:32 PDT ---
+Heh. It was already reported. I'm marking it as duplicate.
+
+*** This bug has been marked as a duplicate of bug 35374 ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
