@@ -1,14 +1,15 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36248] Kernel 2.6.39-rc2: Boot logo causes Nouveau
-	crash
-Date: Fri, 22 Apr 2011 07:36:33 -0700 (PDT)
-Message-ID: <20110422143633.9364B13000C@annarchy.freedesktop.org>
-References: <bug-36248-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35374] nouveau: nv50,
+ regression "GPU lockup - switching to software fbcon" introduced in
+ 2.6.38-rc8
+Date: Fri, 22 Apr 2011 07:36:34 -0700 (PDT)
+Message-ID: <20110422143634.4F05F13000C@annarchy.freedesktop.org>
+References: <bug-35374-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36248-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35374-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +22,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36248
+https://bugs.freedesktop.org/show_bug.cgi?id=35374
 
 Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|FIXED                       |DUPLICATE
+                 CC|                            |nigel-jrkICu/7yk3k1uMJSBkQmQ@public.gmane.org
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-22 07:36:32 PDT ---
-Heh. It was already reported. I'm marking it as duplicate.
-
-*** This bug has been marked as a duplicate of bug 35374 ***
+--- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-22 07:36:32 PDT ---
+*** Bug 36248 has been marked as a duplicate of this bug. ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
