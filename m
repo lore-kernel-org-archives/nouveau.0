@@ -1,14 +1,15 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36422] unable to hibernate with nouveau and NV11
-	[bisected]
-Date: Wed, 20 Apr 2011 16:00:36 -0700 (PDT)
-Message-ID: <20110420230036.C3A5F13000C@annarchy.freedesktop.org>
-References: <bug-36422-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35374] nouveau: nv50,
+ regression "GPU lockup - switching to software fbcon" introduced in
+ 2.6.38-rc8
+Date: Thu, 21 Apr 2011 18:27:43 -0700 (PDT)
+Message-ID: <20110422012743.E8B7813000C@annarchy.freedesktop.org>
+References: <bug-35374-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36422-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35374-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +22,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36422
+https://bugs.freedesktop.org/show_bug.cgi?id=35374
 
---- Comment #2 from c sights <csights-97jfqw80gc6171pxa8y+qA@public.gmane.org> 2011-04-20 16:00:35 PDT ---
-(In reply to comment #1)
-> I probably can't help you with hibernation bug, but if you would post a compile
-> error I could provide a patch or workaround, so you could continue bisecting
-> this.
+EoD <EoD-7ZCJe6FrUuc@public.gmane.org> changed:
 
-  CC [M]  drivers/gpu/drm/nouveau/nouveau_drv.o
-  CC [M]  drivers/gpu/drm/nouveau/nouveau_state.o
-  CC [M]  drivers/gpu/drm/nouveau/nouveau_channel.o
-  CC [M]  drivers/gpu/drm/nouveau/nouveau_mem.o
-  CC [M]  drivers/gpu/drm/nouveau/nouveau_object.o
-drivers/gpu/drm/nouveau/nouveau_object.c: In function 'nouveau_gpuobj_new':
-drivers/gpu/drm/nouveau/nouveau_object.c:236:23: error: 'struct drm_mm' has no
-member named 'ml_entry'
-make[4]: *** [drivers/gpu/drm/nouveau/nouveau_object.o] Error 1
-make[3]: *** [drivers/gpu/drm/nouveau] Error 2
-make[2]: *** [drivers/gpu/drm] Error 2
-make[1]: *** [drivers/gpu] Error 2
-make: *** [drivers] Error 2
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |EoD-7ZCJe6FrUuc@public.gmane.org
 
+--- Comment #4 from EoD <EoD-7ZCJe6FrUuc@public.gmane.org> 2011-04-21 18:27:42 PDT ---
+I can confirm a similiar bug. But my system completely locks up, that's why I
+can't provide you with a proper dmesg log (I could make a picture though).
 
-> Please attach dmesg from last known good and first bad kernel.
-> Dmesg from .39-rcX might be useful too.
+I also did a bisect and ended up with the same commit
+73412c3854c877e5f37ad944ee8977addde4d35a. I got an AGP GeForce 7600 GT (NV40 -
+not NV50!).
 
-I'll attach these later....
+Do you require further information?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
