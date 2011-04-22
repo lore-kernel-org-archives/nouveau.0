@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35374] nouveau: nv50,
  regression "GPU lockup - switching to software fbcon" introduced in
  2.6.38-rc8
-Date: Thu, 21 Apr 2011 18:27:43 -0700 (PDT)
-Message-ID: <20110422012743.E8B7813000C@annarchy.freedesktop.org>
+Date: Thu, 21 Apr 2011 19:48:15 -0700 (PDT)
+Message-ID: <20110422024815.1E2E813000C@annarchy.freedesktop.org>
 References: <bug-35374-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,17 +28,12 @@ EoD <EoD-7ZCJe6FrUuc@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |EoD-7ZCJe6FrUuc@public.gmane.org
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
---- Comment #4 from EoD <EoD-7ZCJe6FrUuc@public.gmane.org> 2011-04-21 18:27:42 PDT ---
-I can confirm a similiar bug. But my system completely locks up, that's why I
-can't provide you with a proper dmesg log (I could make a picture though).
-
-I also did a bisect and ended up with the same commit
-73412c3854c877e5f37ad944ee8977addde4d35a. I got an AGP GeForce 7600 GT (NV40 -
-not NV50!).
-
-Do you require further information?
+--- Comment #5 from EoD <EoD-7ZCJe6FrUuc@public.gmane.org> 2011-04-21 19:48:11 PDT ---
+Nevermind, this bug has been fixed by a18d89ca026140eb8ac4459bf70a01c571dd9a32
+(2.6.39-rc2+).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
