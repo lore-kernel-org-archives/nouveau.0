@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36422] unable to hibernate with nouveau and NV11
 	[bisected]
-Date: Fri, 22 Apr 2011 16:42:30 -0700 (PDT)
-Message-ID: <20110422234230.5DC6413000C@annarchy.freedesktop.org>
+Date: Fri, 22 Apr 2011 16:43:05 -0700 (PDT)
+Message-ID: <20110422234305.4C86013000C@annarchy.freedesktop.org>
 References: <bug-36422-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36422
 
---- Comment #4 from c sights <csights-97jfqw80gc6171pxa8y+qA@public.gmane.org> 2011-04-22 16:42:29 PDT ---
-Created an attachment (id=45984)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45984)
-dmesg of "first bad" kernel boot
+--- Comment #5 from c sights <csights-97jfqw80gc6171pxa8y+qA@public.gmane.org> 2011-04-22 16:43:05 PDT ---
+Created an attachment (id=45985)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45985)
+dmesg of 2.6.39-rc4 kernel boot
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
