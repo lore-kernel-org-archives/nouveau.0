@@ -1,15 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35374] nouveau: nv50,
- regression "GPU lockup - switching to software fbcon" introduced in
- 2.6.38-rc8
-Date: Thu, 21 Apr 2011 19:48:15 -0700 (PDT)
-Message-ID: <20110422024815.1E2E813000C@annarchy.freedesktop.org>
-References: <bug-35374-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
+Date: Fri, 22 Apr 2011 04:52:41 -0700 (PDT)
+Message-ID: <20110422115241.8C94913000C@annarchy.freedesktop.org>
+References: <bug-31169-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35374-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31169-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,18 +20,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35374
+https://bugs.freedesktop.org/show_bug.cgi?id=31169
 
-EoD <EoD-7ZCJe6FrUuc@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #5 from EoD <EoD-7ZCJe6FrUuc@public.gmane.org> 2011-04-21 19:48:11 PDT ---
-Nevermind, this bug has been fixed by a18d89ca026140eb8ac4459bf70a01c571dd9a32
-(2.6.39-rc2+).
+--- Comment #12 from Marius Vasilescu <marius.vasilescu-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> 2011-04-22 04:52:41 PDT ---
+Ben, I've just tried to compile it, but I've got some errors during the
+compilation process (in nouveau_backlight.c). Unfortunately, I'm very busy this
+period and I don't have much time to experiment. I'll wait for the deb packages
+on xorg-edgers and let you know.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
