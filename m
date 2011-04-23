@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36382] Frozen graphics and corrupted second monitor
  (mouse still moves)
-Date: Sat, 23 Apr 2011 11:23:22 -0700 (PDT)
-Message-ID: <20110423182322.8468C130051@annarchy.freedesktop.org>
+Date: Sat, 23 Apr 2011 11:55:07 -0700 (PDT)
+Message-ID: <20110423185507.B62A3130056@annarchy.freedesktop.org>
 References: <bug-36382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36382
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-23 11:23:21 PDT ---
-You can try playing with WrappedFB (man nouveau), AFAIK it *does*
-resolve similar issue on another Debian box.
+--- Comment #3 from Xavier <shiningxc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-23 11:55:03 PDT ---
+Funny, I also experienced corrupted second monitor after doing the same
+upgrade. But not frozen graphics. Well I think it froze only once, and after
+some time, so it was not easily reproducible.
 
-Another option is to change/enable/disable xft fonts inside xterm.
+After updating to latest git of everything (kernel, drm, ddx), I still got the
+same corruption, and not a single gpu lockup. I just found one combination of
+xrandr commands that would crash X every time, but no big deal.
 
-How do you configure your dial head setup - xrandr of xorg.conf ?
+Anyway as Emil said, I found many workarounds to my problem (if it's the same)
+:
+- use wrappedfb in xorg.conf (which was the default before the upgrade)
+- use xft to render fonts
+- don't run xrandr settings before the wm
 
-Cheers
+So I am curious to know how this would work for you.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
