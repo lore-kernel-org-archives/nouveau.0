@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36422] unable to hibernate with nouveau and NV11
 	[bisected]
-Date: Sat, 23 Apr 2011 03:45:08 -0700 (PDT)
-Message-ID: <20110423104508.E2400130051@annarchy.freedesktop.org>
+Date: Sat, 23 Apr 2011 03:45:21 -0700 (PDT)
+Message-ID: <20110423104521.E283113000C@annarchy.freedesktop.org>
 References: <bug-36422-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #45984|application/octet-stream    |text/plain
+  Attachment #45985|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
