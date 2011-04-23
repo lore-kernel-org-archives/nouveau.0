@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36422] unable to hibernate with nouveau and NV11
 	[bisected]
-Date: Sat, 23 Apr 2011 03:45:21 -0700 (PDT)
-Message-ID: <20110423104521.E283113000C@annarchy.freedesktop.org>
+Date: Sat, 23 Apr 2011 10:08:26 -0700 (PDT)
+Message-ID: <20110423170826.727E1130051@annarchy.freedesktop.org>
 References: <bug-36422-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36422
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #7 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-23 10:08:24 PDT ---
+Created an attachment (id=45995)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=45995
+ Review: https://bugs.freedesktop.org/review?bug=36422&attachment=45995
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #45985|application/octet-stream    |text/plain
-          mime type|                            |
+compile fix
+
+Ok. Here's the temporary compile fix.
+(ml_entry was renamed to node_list in commit
+d1024ce91ff4c2c4ccbf692d204c71cbf215157a ("drm: sane naming for drm_mm.c"), but
+nouveau tree was rebased before pulling)
+
+
+
+Before continuing bisection can you revert commit
+309b8c89c8ddf9dd8e5f253c185d6af1d0358a79 on top of e.g.
+816544b21b020bdb9dcb9a5003fe3e1f109e8698 and see if it fixes hibernation?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
