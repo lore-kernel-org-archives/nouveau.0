@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Sat, 23 Apr 2011 12:13:22 -0700 (PDT)
-Message-ID: <20110423191322.5EA6013000C@annarchy.freedesktop.org>
+Date: Sat, 23 Apr 2011 13:00:17 -0700 (PDT)
+Message-ID: <20110423200017.EB37E130051@annarchy.freedesktop.org>
 References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
---- Comment #11 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> 2011-04-23 12:13:21 PDT ---
-Created an attachment (id=45998)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=45998)
-dmesg output from patched nouveau
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Some warnings in demsg, but nouveau works.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #45998|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
