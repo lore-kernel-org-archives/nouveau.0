@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Sat, 23 Apr 2011 12:12:18 -0700 (PDT)
-Message-ID: <20110423191218.4248C13000C@annarchy.freedesktop.org>
+Date: Sat, 23 Apr 2011 12:13:22 -0700 (PDT)
+Message-ID: <20110423191322.5EA6013000C@annarchy.freedesktop.org>
 References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
---- Comment #10 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> 2011-04-23 12:12:17 PDT ---
-Created an attachment (id=45997)
- View: https://bugs.freedesktop.org/attachment.cgi?id=45997
- Review: https://bugs.freedesktop.org/review?bug=35267&attachment=45997
+--- Comment #11 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> 2011-04-23 12:13:21 PDT ---
+Created an attachment (id=45998)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=45998)
+dmesg output from patched nouveau
 
-read grub faked bios from memory
-
-The follwoing patch adds a stupid way to read the vbios from the location grub
-places it.
-Use 'loadbios /boot/vbios.bin /int10.bin' in grub (1.99+) and starting X with
-nouveau driver works for me.
+Some warnings in demsg, but nouveau works.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
