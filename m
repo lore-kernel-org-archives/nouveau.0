@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31920] Brightness control is erratic
  (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Sun, 24 Apr 2011 01:33:27 -0700 (PDT)
-Message-ID: <20110424083327.AFCE413004F@annarchy.freedesktop.org>
+Date: Sun, 24 Apr 2011 01:35:06 -0700 (PDT)
+Message-ID: <20110424083507.1542513000C@annarchy.freedesktop.org>
 References: <bug-31920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31920
 
---- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-24 01:33:26 PDT ---
-It would be better to integrate nvidiabl into nouveau.
+--- Comment #7 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-04-24 01:35:05 PDT ---
+Agreed. Is there some way this could be kickstarted?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
