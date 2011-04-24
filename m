@@ -1,11 +1,14 @@
-From: Robert Kaiser <kairo-mUdhYT1RRAM@public.gmane.org>
-Subject: Happy Easter! A gift, someone?
-Date: Sun, 24 Apr 2011 15:14:45 +0200
-Message-ID: <ip17o6$oq7$1@dough.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 32494] [NV46] GPU lockup,
+ switching to software fbcon at startup
+Date: Sun, 24 Apr 2011 11:58:27 -0700 (PDT)
+Message-ID: <20110424185827.C090713000C@annarchy.freedesktop.org>
+References: <bug-32494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-32494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,39 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi nouveau-team!
+https://bugs.freedesktop.org/show_bug.cgi?id=32494
 
-First of all, Happy Easter! But what would Easter be without some gifts? ;-)
+EoD <EoD-7ZCJe6FrUuc@public.gmane.org> changed:
 
-The truth is, I upgraded my system recently, and even if that means that 
-I moved to a manufacturer-provided open graphics stack, I still want to 
-help nouveau somewhat, if useful and possible.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |EoD-7ZCJe6FrUuc@public.gmane.org
 
-Because of that, I'd be willing to send my old graphics card to a 
-nouveau developer, given that may result in some work to make stuff like 
-that work better (I'm not sure how much that generation of cards is 
-still in the plans of anyone to work on, but let's see).
+--- Comment #8 from EoD <EoD-7ZCJe6FrUuc@public.gmane.org> 2011-04-24 11:58:26 PDT ---
+This sounds very much like Bug 35374 . Can you try it with the current
+2.6.39-rc4 kernel?
 
-The card in question is a "ASUS EN7600GT 2DHT Silent", which has a 
-GeForce 7600 GT chip (NV4B) and a somewhat large passive cooling system 
-to not require any active cooling.
-
-Of course, that didn't match ideally with nouveau not supporting any 
-power management on NV4*, so it ran at pretty high temperatures all the 
-time since I switched away from the binary driver.
-
-Probably because of that, the heads of 3 electrolyte capacitors on the 
-card are slightly curved out - but it looked to me like the card would 
-still work as "well" as it did all the time before - that is, it had 
-massive problems with nouveau all the time and only worked somewhat 
-usefully for longer periods of time when the kernel was launched with 
-nouveau.noaccel=1 - which is not ideal, of course.
-
-So, if anyone's around who wants to play with that card and try to 
-improve nouveau working with it, tell me where to send it and I will. 
-You get it for free, I'm also playing for sending it to you. As I'm in 
-Vienna, Austria, Europe, I'd prefer to send to Europe, but I should in 
-theory be able to send anywhere on this Earth (sorry, no luck atm when 
-you're based on Mars or a different solar system).
-
-Robert Kaiser
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
