@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36560] snow when motion is present (NV15)
-Date: Sun, 24 Apr 2011 22:12:26 -0700 (PDT)
-Message-ID: <20110425051226.A4B3E13000C@annarchy.freedesktop.org>
+Date: Sun, 24 Apr 2011 22:18:47 -0700 (PDT)
+Message-ID: <20110425051848.13B5713000C@annarchy.freedesktop.org>
 References: <bug-36560-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36560
 
---- Comment #3 from Jason McCarty <jmccarty-vRdzynncJC4@public.gmane.org> 2011-04-24 22:12:26 PDT ---
-Created an attachment (id=46041)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=46041)
-xorg log using nv driver
+--- Comment #4 from Jason McCarty <jmccarty-vRdzynncJC4@public.gmane.org> 2011-04-24 22:18:47 PDT ---
+Oh, perhaps I should mention that the white spots/dashes are the "snow", which
+changes as I move a window around. The larger white region is part of a firefox
+window that I was moving.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
