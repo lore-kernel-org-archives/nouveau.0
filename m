@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36560] snow when motion is present (NV15)
-Date: Sun, 24 Apr 2011 22:10:45 -0700 (PDT)
-Message-ID: <20110425051045.324E7130051@annarchy.freedesktop.org>
+Date: Sun, 24 Apr 2011 22:11:46 -0700 (PDT)
+Message-ID: <20110425051146.1FABE130051@annarchy.freedesktop.org>
 References: <bug-36560-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36560
 
---- Comment #1 from Jason McCarty <jmccarty-vRdzynncJC4@public.gmane.org> 2011-04-24 22:10:45 PDT ---
-Created an attachment (id=46039)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=46039)
-dmesg output
+--- Comment #2 from Jason McCarty <jmccarty-vRdzynncJC4@public.gmane.org> 2011-04-24 22:11:45 PDT ---
+Created an attachment (id=46040)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=46040)
+xorg log using nouveau driver
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
