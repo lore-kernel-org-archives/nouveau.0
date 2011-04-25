@@ -1,11 +1,14 @@
-From: Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Brightness control
-Date: Sun, 24 Apr 2011 04:29:53 -0400
-Message-ID: <BANLkTim+Mi2oGphFGPL_PdetKFfEzvej+g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 36422] unable to hibernate with nouveau and NV11
+	[bisected]
+Date: Mon, 25 Apr 2011 14:04:12 -0700 (PDT)
+Message-ID: <20110425210412.E0C6213004F@annarchy.freedesktop.org>
+References: <bug-36422-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-36422-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,25 +21,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi everyone,
+https://bugs.freedesktop.org/show_bug.cgi?id=36422
 
-I have a Sony Vaio CW2 laptop, with an Nvidia GeForce 310M card. I
-have an issue with screen brightness, which I have reported here --
-https://bugs.freedesktop.org/show_bug.cgi?id=31920
+--- Comment #10 from c sights <csights-97jfqw80gc6171pxa8y+qA@public.gmane.org> 2011-04-25 14:04:10 PDT ---
+(In reply to comment #9)
+> Created an attachment (id=46048)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=46048
+ Review: https://bugs.freedesktop.org/review?bug=36422&attachment=46048
 
-As I have asked in my last comment, is there a way to prevent nouveau
-from exporting the backlight brightness control interface? That way, I
-could probably use the equivalent interface provided by nvidiabl
-(https://github.com/guillaumezin/nvidiabl) and have better brightness
-control. If such a feature does not exist, could it be considered for
-addition as a kernel parameter?
+> possible fix
+> 
+> commit description does not match patch body, so let's apply commit description
+> and see if it fixes your issue
+
+  Unfortunately this did not fix the hibernate problem.  I tested on both
+2.6.39-rc4 and modifying the original commit on the development tree.
+
+Do you have another try? :)
 
 Thanks,
-Rohan
-
-PS: I am not subscribed to the list, please cc the replies to me.
+  C.
 
 -- 
-Rohan Dhruva
-Rensselaer Polytechnic Institute
-MS-IT, Class of 2011
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
