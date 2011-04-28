@@ -1,13 +1,14 @@
-From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 Subject: Re: [PATCH 0/2] reclocking stability improvements
-Date: Thu, 28 Apr 2011 13:32:26 +0300
-Message-ID: <1303986746.6092.6.camel@maxim-laptop>
+Date: Thu, 28 Apr 2011 13:15:27 +0200
+Message-ID: <4DB94C4F.3000801@free.fr>
 References: <1303948692-22455-1-git-send-email-martin.peres@free.fr>
+	<1303986746.6092.6.camel@maxim-laptop>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1303948692-22455-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <1303986746.6092.6.camel@maxim-laptop>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,51 +18,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+To: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 2011-04-28 at 01:58 +0200, Martin Peres wrote:
-> Hi everyone,
-> 
-> I would like everyone to test this set of patch as we'll need them quite soon for timing management on nv50.
-> 
-> Please report success/failure by answering to this email.
-> 
-> Thanks in advance,
-> Martin
-
-I tested this.
-Patch seems to work except following problems:
-
-Sometimes reclocking fails like this:
-
-root@maxim-laptop:/home/maxim# echo 2 > /sys/class/drm/card0/device/performance_level
-bash: echo: write error: Resource temporarily unavailable
-
-
-[  630.371117] [drm] nouveau 0000:01:00.0: setting performance level: performance_level_2
-[  630.412048] [drm] nouveau 0000:01:00.0: PFIFO DMA_PUSH never depleted (0xd06091)
-
-Once it even  hang the GPU.
-Easy to reproduce while running compiz and its benchmark overlay.
-
-
-Also, it seems not to restore perf level after resume from ram.
-
-Best regards
-	Maxim Levitsky
-
-
-> 
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
-
--- 
-Best regards,
-        Maxim Levitsky
-
-Visit my blog: http://maximlevitsky.wordpress.com
-Warning: Above blog contains rants.
+TGUgMjgvMDQvMjAxMSAxMjozMiwgTWF4aW0gTGV2aXRza3kgYSDDqWNyaXQgOgo+IE9uIFRodSwg
+MjAxMS0wNC0yOCBhdCAwMTo1OCArMDIwMCwgTWFydGluIFBlcmVzIHdyb3RlOgo+PiBIaSBldmVy
+eW9uZSwKPj4KPj4gSSB3b3VsZCBsaWtlIGV2ZXJ5b25lIHRvIHRlc3QgdGhpcyBzZXQgb2YgcGF0
+Y2ggYXMgd2UnbGwgbmVlZCB0aGVtIHF1aXRlIHNvb24gZm9yIHRpbWluZyBtYW5hZ2VtZW50IG9u
+IG52NTAuCj4+Cj4+IFBsZWFzZSByZXBvcnQgc3VjY2Vzcy9mYWlsdXJlIGJ5IGFuc3dlcmluZyB0
+byB0aGlzIGVtYWlsLgo+Pgo+PiBUaGFua3MgaW4gYWR2YW5jZSwKPj4gTWFydGluCj4gSSB0ZXN0
+ZWQgdGhpcy4KPiBQYXRjaCBzZWVtcyB0byB3b3JrIGV4Y2VwdCBmb2xsb3dpbmcgcHJvYmxlbXM6
+Cj4KPiBTb21ldGltZXMgcmVjbG9ja2luZyBmYWlscyBsaWtlIHRoaXM6Cj4KPiByb290QG1heGlt
+LWxhcHRvcDovaG9tZS9tYXhpbSMgZWNobyAyPiAgL3N5cy9jbGFzcy9kcm0vY2FyZDAvZGV2aWNl
+L3BlcmZvcm1hbmNlX2xldmVsCj4gYmFzaDogZWNobzogd3JpdGUgZXJyb3I6IFJlc291cmNlIHRl
+bXBvcmFyaWx5IHVuYXZhaWxhYmxlClRoaXMgaXMgZXhwZWN0ZWQuIFVuZm9ydHVuYXRlbHksIEkg
+Y2FuJ3QgZG8gYW55dGhpbmcgYmV0dGVyIHRoYW4gdGhpcyAKZm9yIHRoZSB1cGNvbWluZyBtb250
+aHMuIEkgbmVlZCBoZWxwIGZyb20gdGhlIHBlb3BsZSByZWFsbHkgaW50byB0aGUgCmNvbW1hbmQg
+c3VibWlzc2lvbiBzeXN0ZW0uCj4KPiBbICA2MzAuMzcxMTE3XSBbZHJtXSBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogc2V0dGluZyBwZXJmb3JtYW5jZSBsZXZlbDogcGVyZm9ybWFuY2VfbGV2ZWxfMgo+
+IFsgIDYzMC40MTIwNDhdIFtkcm1dIG5vdXZlYXUgMDAwMDowMTowMC4wOiBQRklGTyBETUFfUFVT
+SCBuZXZlciBkZXBsZXRlZCAoMHhkMDYwOTEpCkkgY29uc2lkZXIgaXQgbm90IHNhZmUgdG8gcmVj
+bG9jayBjb3JlIGlmIFBGSUZPIERNQV9QVVNIIGlzbid0IGVtcHR5LiAKSGVuY2UgdGhlIHJlYXNv
+biB3aHkgSSBhYm9ydCB0aGVyZS4KPiBPbmNlIGl0IGV2ZW4gIGhhbmcgdGhlIEdQVS4KVGhpcyBz
+aG91bGRuJ3QgaGFwcGVuIGJ1dCBJIG1hbmFnZWQgdG8gaGFuZyBpdCB0b28gb25jZS4gQW55d2F5
+LCB0aGlzIAppc24ndCBwZXJmZWN0IGJ1dCBzdGlsbCB3YXkgYmV0dGVyIHRoYW4gd2hhdCBpcyBj
+dXJyZW50bHkgaW1wbGVtZW50ZWQuCj4gRWFzeSB0byByZXByb2R1Y2Ugd2hpbGUgcnVubmluZyBj
+b21waXogYW5kIGl0cyBiZW5jaG1hcmsgb3ZlcmxheS4KPgpFeGFjdGx5LCB3aGVuIHBsYXlpbmcg
+b3BlbiBhcmVuYSwgdGhlIHN1Y2Nlc3MgcmF0aW8gaXMgdmVyeSB2ZXJ5IGxvdyBidXQgCkkgZG9u
+J3QgbWluZCB5ZXQuIEkgZmlyc3Qgd2FudCBzdGFiaWxpdHkgYW5kIHRoZW4gcmVsaWFiaWxpdHku
+Cj4gQWxzbywgaXQgc2VlbXMgbm90IHRvIHJlc3RvcmUgcGVyZiBsZXZlbCBhZnRlciByZXN1bWUg
+ZnJvbSByYW0uCkdvb2QgY2F0Y2gsIEkgdGhvdWdodCBJIGhhZCBmaXhlZCB0aGF0IGJ1dCBpdCBk
+b2Vzbid0IHNlZW0gbGlrZS4gSSdsbCAKZml4IHRoaXMgdG9uaWdodCBhbmQgc2VuZCBhbiB1cGRh
+dGUuIFRoYW5rcyBhIGxvdC4KPiBCZXN0IHJlZ2FyZHMKPiAJTWF4aW0gTGV2aXRza3kKVGhhbmtz
+IGEgbG90IGZvciB0ZXN0aW5nIGl0IE1heGltLgoKTWFydGluCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
