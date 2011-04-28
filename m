@@ -1,16 +1,15 @@
-From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH 0/2] reclocking stability improvements
-Date: Thu, 28 Apr 2011 17:09:05 +0300
-Message-ID: <1303999745.4295.9.camel@maxim-laptop>
+Date: Thu, 28 Apr 2011 16:24:06 +0100
+Message-ID: <op.vunmefj57cbmmg@emo>
 References: <1303948692-22455-1-git-send-email-martin.peres@free.fr>
-	<1303986746.6092.6.camel@maxim-laptop>  <4DB94C4F.3000801@free.fr>
-	<1303991011.6092.9.camel@maxim-laptop>  <4DB95989.2090702@free.fr>
-	<1303993965.6092.11.camel@maxim-laptop>  <4DB95F02.50202@free.fr>
+	<1303986746.6092.6.camel@maxim-laptop> <4DB94C4F.3000801@free.fr>
+	<1303991011.6092.9.camel@maxim-laptop>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4DB95F02.50202-GANU6spQydw@public.gmane.org>
+In-Reply-To: <1303991011.6092.9.camel@maxim-laptop>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +19,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAyMDExLTA0LTI4IGF0IDE0OjM1ICswMjAwLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4g
-TGUgMjgvMDQvMjAxMSAxNDozMiwgTWF4aW0gTGV2aXRza3kgYSDDqWNyaXQgOgo+ID4gT24gVGh1
-LCAyMDExLTA0LTI4IGF0IDE0OjExICswMjAwLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4gPj4gR29v
-ZCB3b3JrIE1heGltIQo+ID4+IENhbiB5b3UgcGxlYXNlIHRlbGwgdXMgd2hhdCBjYXJkIHlvdSB1
-c2U/IEZvciB3aGF0IHJhbmdlIG9mIGNhcmQgaXMgdGhpcwo+ID4+IHRydWU/IEkgY2FuIGdpdmUg
-eW91IGFjY2VzcyB0byB0aGUgdmJpb3MgcmVwbyBzbyBhcyB5b3UgY2FuIGNvbnRhY3Qgc29tZQo+
-ID4+IHBlb3BsZSBmb3IgZnVydGhlciB0ZXN0aW5nIGlmIHlvdSB3YW50IHRvIDopCj4gPiBJIHVz
-ZSBOVjg2IEdlZm9yY2UgODQwME0gR1MgY2FyZC4KPiA+IERvbid0IGhhdmUgbXVjaCB0aW1lIHRo
-b3VnaC4KPiBPaywgY29vbC4gSSBnb3QgYSA4NjAwIEdTIGZyb20gbXkgZmF0aGVyLCBJJ2xsIHNl
-ZSBpZiBJIGNhbiByZXByb2R1Y2UgCj4gdGhpcyBpc3N1ZS4KPiAKPiBUb28gYmFkIGZvciB5b3Vy
-IHRpbWUsIEknbGwgc2VlIHdoYXQgSSBjYW4gZG8gdGhvdWdoLiBUaGlzIGNvdWxkIHZlcnkgCj4g
-d2VsbCBleHBsYWluIHNvbWUgaW5zdGFiaWxpdHkgSSd2ZSBiZWVuIGVuY291bnRlcmluZy4KPiAK
-CgpBbmQgb25lIG1vcmUgdGhpbmcsIEkgZGlkIGEgaG91ciBhZ28uCkkgZG9jdW1lbnRlZCBwb3dl
-ciB1c2FnZSBvZiBub3V2ZWF1IHZzIG52aWRpYS4KU2FtZSBzZXR0aW5ncywgc2FtZSBrZXJuZWws
-IG9ubHkgR1BVIGRyaXZlcnMgZGlmZmVyOgpSZXN1bHQgaXMgdmVyeSBzYWQ6CgpudmlkaWE6CiAg
-ICAgICAgcGVyZiBsZXZlbDAgOiB+MTUuOC0xNi4wVwogICAgICAgIHBlcmYgbGV2ZWwyIDogfjE2
-LjctMTcuMVcKbm91dmVhdToKICAgICAgICBwZXJmIGxldmVsMCA6IH4yMC40LTIwLjhXCiAgICAg
-ICAgcGVyZiBsZXZlbDIgOiB+MjMuMC0yMy41VwoKClRoaXMgbWVhbnMgMiB0aGluZ3MuCjEuIFRo
-ZXJlIGlzIG1ham9yIHNvdXJjZSBvZiBQTSBpbXByb3ZlbWVudCBzb21ld2hlcmUgZWxzZQoyLCBD
-bG9ja3MgZG9uJ3QgYWZmZWN0IHRoaW5ncyBtdWNoICh0aGF0cyB3aHkgc29tZXdoYXQgd3Jvbmcg
-Y2xvY2tzIHNldApieSBub3V2ZWF1IGRvbid0IHNob3cgdmlzaWJsZSBkaWZmZXJlbmNlIGluIHBl
-cmZvcm1hbmNlL3Bvd2VyIHVzYWdlLgoKKE5vdGU6IEkgd2FzIHVuZGVyIGZhbHNlIGltcHJlc3Np
-b24gdGhhdCB3aGVuIHlvdSBmb3JjZSBudmlkaWEgdG8KbWF4aW11bSBwZXJmIGxldmVsLCBpdCBs
-aWVzIHRvIHlvdSBhbmQgc2V0cyBpdCBvbmx5IHdoZW4gZGV2aWNlIGlzbid0CmlkbGUuIFdlbGws
-IGFjY29yZGluZyB0byByZWdpc3RlcnMgMHg0MDAwLTB4NDA0MCBudmlkaWEgZG9lc24ndCBsaWUu
-Li4pCgpBbHNvLCBpbnRlcmVzdGluZyBmYWN0IGlzIHRoYXQgY2xvY2sgcmVnaXN0ZXJzIGhhdmUg
-bWFueSBiaXRzIHRoYXQKbm91dmVhdSBkb2Vzbid0IHRvdWNoLCBidXQgdGhleSBzdXJlIGhhdmUg
-c29tZSBtZWFuaW5nLgpXZWxsLCByZXZlcnNlIGVuZ2luZWVyaW5nIGlzIHZlcnkgdG91Z2ggam9i
-LiBJbiBmYWN0IHdoYXQgbm91dmVhdQpkZXZlbG9wZXJzIGRpZCBpcyBhbHJlYWR5IHdlbGwgYmV5
-b25kIHdoYXQgYmVsaWV2ZWQgdG8gYmUgcG9zc2libGUsIHNvCm5vIGNvbXBsYWlucyA6LSkKClNw
-ZWFraW5nIG9mIHJlcG9ydCBvbiBnZW5lcmFsIFBNIHJlZ3Jlc3Npb24gcmVwb3J0ZWQgYnkgcGhv
-cm9uaXguY29tLAppdHMgcHJvYmFibHkgdGhlcmUgYnV0IG5vdCBhcyBkcmFtYXRpYyBhcyB0aGV5
-IHdhbnQgaXQgdG8gYXBwZWFyLgpJIHJlbWVtYmVyIGJlaW5nIGFibGUgKHdpdGggaGVscCBvZiBz
-b21lIHNtb2tlIGFuZCBtaXJyb3JzKSB0byBsb3dlcgpwb3dlciBjb25zdW1wdGlvbiB0byAxNFcs
-IHNvIGl0cyBoaWdoZXIgYSBiaXQgcHJvYmFibHkgYnV0IG5vdCB0aGF0Cm11Y2guCgotLSAKQmVz
-dCByZWdhcmRzLAogICAgICAgIE1heGltIExldml0c2t5CgpWaXNpdCBteSBibG9nOiBodHRwOi8v
-bWF4aW1sZXZpdHNreS53b3JkcHJlc3MuY29tCldhcm5pbmc6IEFib3ZlIGJsb2cgY29udGFpbnMg
-cmFudHMuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Thu, 28 Apr 2011 12:43:31 +0100, Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
+> Martin, one more thing, this is my observations regarding clocks I
+> finished today:
+>
+>
+> clock = (ref * N / M) >> (P & 0x7)
+>
+> first line is blob, second nouveau
+>
+> level0:
+>                          P         NNMM
+>     0x4008 - memory - 0018e200 00002505   = 1           = 01.0000
+>                       80016400 00002505   = 37 / 5 / 2  = 03.7000
+>
+>     0x4020 - shader - 80010000 00000b01   = 11 / 1 / 2  = 05.5000
+>                       80020000 00001b02   = 27 / 2 / 4  = 03.3750
+>
+>     0x4028 - core   - a0120000 00001b04   = 27 / 4 / 4  = 01.6875
+>                       a0020000 00001b04   = 27 / 4 / 4  = 01.6875
+>
+>     0x4030 - unk_05 - a0120000 00000b02   = 11 / 2 / 4  = 01.3750
+>                       80020000 00001b04   = 27 / 4 / 4  = 01.6875
+>
+> level1:
+>
+>     0x4008 - memory - 809ae400 00002505   = 37 / 5 / 4  = 01.8500
+>                       80026400 00002505   = 37 / 5 / 4  = 01.8500
+>    0x4020 - shader - 80000000 00000b01   = 11 / 1 / 1  = 11.0000
+>                       80010000 00000b01   = 11 / 1 / 2  = 05.5000
+>    0x4028 - core   - a0090000 00000b02   = 11 / 2 / 1  = 05.5000
+>                       a0010000 00000b02   = 11 / 2 / 1  = 05.5000
+>
+>     0x4030 - unk_05 - a0120000 00000b02   = 11 / 2 / 4  = 01.3750
+>                       80010000 00000b02   = 11 / 2 / 2  = 05.5000
+>
+> level2:
+>
+>     0x4008 - memory - 8059e400 00002505   = 37 / 5 / 2  = 03.7000
+>                       80016400 00002505   = 37 / 5 / 2  = 03.7000
+>
+>     0x4020 - shader - 80000000 00000b01   = 11 / 1 / 1  = 11.0000
+>                       80000000 00001002   = 16 / 2 / 1  = 08.0000
+>
+>     0x4028 - core   - a0090000 00001002   = 16 / 2 / 2  = 04.0000
+>                       a0010000 00001002   = 16 / 2 / 2  = 04.0000
+>
+>     0x4030 - unk_05 - a0120000 00000b02   = 11 / 2 / 4  = 01.3750
+>                       80010000 00001202   = 18 / 2 / 2  = 06.0000
+>
+>
+> Clocks are very different and we seems to overclock hard the unk_05 PLL
+> And shader PLL is underclocked always, so another way to boost performance?
+> (it didn't seem to affect perfomace much here, but yet...)
+>
+>
+
+Maxim most likely you are tired of hearing this, but the shader PLL in many
+cases is disabled(-ish)
+Either by nv_wr32(dev, (nv_rd32(dev, 0x4020) & ~0x80000000)), or by the
+0xc040 register (don't remember the exact bit)
+Whereas for the unk_05 the logic of the blob has been changed in it's recent
+versions - i.e. blob v195.xx the numbers(P/M/N) where the same as the nouveau
+
+Cheers
+Emil (xexaxo)
