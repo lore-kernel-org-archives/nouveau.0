@@ -1,18 +1,11 @@
-From: Nigel Cunningham <nigel-jrkICu/7yk3k1uMJSBkQmQ@public.gmane.org>
-Subject: Re: [PATCH 0/2] reclocking stability improvements
-Date: Fri, 29 Apr 2011 17:07:49 +1000
-Message-ID: <4DBA63C5.7020306@tuxonice.net>
-References: <1303948692-22455-1-git-send-email-martin.peres@free.fr>		<1303986746.6092.6.camel@maxim-laptop>
-	<4DB94C4F.3000801@free.fr>		<1303991011.6092.9.camel@maxim-laptop>
-	<op.vunmefj57cbmmg@emo>		<1304009882.9935.7.camel@maxim-laptop>
-	<4DB9B0D7.2050700@free.fr>	<1304015383.18153.12.camel@maxim-laptop>
-	<4DB9B36A.4020704@free.fr> <4DBA0CA6.2010508@tuxonice.net>
-	<4DBA60B6.2060905@free.fr>
+From: Douglas Kaynor <dbkaynor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Problem with nouveau
+Date: Thu, 28 Apr 2011 10:44:12 -0700
+Message-ID: <BANLkTik+2VCjCuz_OQLb0q05Hoia=7j9QQ@mail.gmail.com>
+Reply-To: doug-Z6oFFtodYqOsTnJN9+BGXg@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0056829335=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4DBA60B6.2060905-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,43 +15,61 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkuCgpPbiAyOS8wNC8xMSAxNjo1NCwgTWFydGluIFBlcmVzIHdyb3RlOgo+IExlIDI5LzA0LzIw
-MTEgMDI6NTYsIE5pZ2VsIEN1bm5pbmdoYW0gYSDDqWNyaXQgOgo+PiBIaS4KPj4KPj4gT24gMjkv
-MDQvMTEgMDQ6MzUsIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4+IExlIDI4LzA0LzIwMTEgMjA6Mjks
-IE1heGltIExldml0c2t5IGEgw6ljcml0IDoKPj4+PiBPbiBUaHUsIDIwMTEtMDQtMjggYXQgMjA6
-MjQgKzAyMDAsIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4+Pj4gTGUgMjgvMDQvMjAxMSAxODo1OCwg
-TWF4aW0gTGV2aXRza3kgYSDDqWNyaXQgOgo+Pj4+Pj4gSW50ZXJlc3RpbmcgZmFjdCBpcyB0aGF0
-IEdQVSB0ZW1wZXJhdHVyZXMgcmlzZSB0byB2ZXJ5IGhpZ2ggbGV2ZWxzCj4+Pj4+PiAofjc1Qykg
-ZXZlbiB3aGlsZSBkb2luZyBDUFUgb25seSB3b3JrIChsaWtlIGNvbXBpbGluZyBrZXJuZWwgZm9y
-Cj4+Pj4+PiBleGFtcGxlKS4KPj4+Pj4gTGV0IG1lIGd1ZXNzLCB5b3UncmUgb24gYSBsYXB0b3A/
-IFRoZSB0ZW1wZXJhdHVyZSBvZiB0aGUgY2FzZSBnb2VzIHVwCj4+Pj4+IHdoZW4gdGhlIHByb2Nl
-c3NvciBpcyB3b3JraW5nIGFuZCBzbywgaXQgY29vbHMgdGhlIEdQVSBsZXNzIDspCj4+Pj4gWWVz
-LCBidXQgdGhhdCBkb2Vzbid0IGhhcHBlbiB3aGlsZSB1c2luZyBudmlkaWEgdG8gdGhpcyBleHRl
-bnQuCj4+Pj4gSSB0aGluayB0aGF0IEdQVSBoYXMgbWFueSB1bml0cyBydW5uaW5nIGluIGVuZGxl
-c3MgbG9vcCBkb2luZyBub3RoaW5nCj4+Pj4gYnV0IGNvbnN1bWluZyBwb3dlciAofjVXKSBkaWZm
-ZXJlbmNlIQo+Pj4gSSByZWFsbHkgbmVlZCB0byBoYXZlIGEgbG9vayBhdCB0aGlzLiBJIGhhdmUg
-YSBwb3dlciBtZXRlciBub3cgKGFjcGkKPj4+IHJlcG9ydHMgbWUgZnVua3kgcG93ZXIgY29uc3Vt
-cHRpb24gZmlndXJlcyBiZWNhdXNlIG15IGJhdHRlcnkgaXMgZGVhZCkuCj4+IEp1c3QgYmVlbiBy
-ZWFkaW5nIHRocm91Z2ggeW91ciBwb3N0cyBmcm9tIGxhc3QgbmlnaHQsIGFuZCB3YW50ZWQgdG8g
-bGV0Cj4+IHlvdSBrbm93IEknbSBpbnRlcmVzdGVkIGFuZCB3aWxsaW5nIHRvIHRlc3QgcGF0Y2hl
-cyB0b28uCj4+Cj4+IEkgaGF2ZSBhbiA4NjAwR1RTIGJhc2VkIGxhcHRvcCwgYW5kIGhhdmUgc2Vl
-biB0aGUgc2FtZSByYW5nZSBvZiBwb3dlcgo+PiB1c2FnZSAoaWUgaGF2ZSBzZWVuIDE0VyBpbiB0
-aGUgcGFnZSAtIHByZXN1bWFibHkgd2hlbiBJIHdhcyB1c2luZyB0aGUKPj4gYmxvYiAtLCBidXQg
-Y2FuIG9ubHkgZ2V0IGl0IGRvd24gdG8gMjNXIGF0IHRoZSBtb21lbnQgdXNpbmcgTm91dmVhdSku
-Cj4+Cj4+IFJlZ2FyZHMsCj4+Cj4+IE5pZ2VsCj4gOVchIFdlbGwsIHlvdSBjYW4gdHJ5IGRvd25j
-bG9ja2luZyB0aGUgY2FyZCwgYnV0IHRoaXMgd29uJ3QgZ2V0IHlvdSBkb3duCj4gdG8gMTRXLiBX
-aGVuIGZhbiBtYW5hZ2VtZW50IGlzIGRvbmUsIEknbGwgaGF2ZSBhIGxvb2sgYXQgd2hhdCB0aGUg
-YmxvYgo+IGRvZXMgYW5kIHRyeSB0byBmaW5kIHNvbWUgbWFnaWMgdGhlcmUuCgpZZWFoIC0gSSBm
-aW5kIDlXIGEgYml0IHVuYmVsaWV2YWJsZSB0b28uIEknbGwgdHJ5IHRvIGZpbmQgc29tZSB0aW1l
-IHRvCmdpdmUgdGhlIE5WaWRpYSBkcml2ZXIgYSBydW4gYWdhaW4sIGJ1dCBJJ20gYSBjaHJvbmlj
-IG92ZXItY29tbWl0dGVyLCBzbwp3b24ndCBwcm9taXNlIEknbGwgZG8gYW55dGhpbmcgcmVhbCBz
-b29uIG5vdyEKCk5pZ2VsCi0tIApFdm9sdXRpb24gKG4pOiBBIGh5cG90aGV0aWNhbCBwcm9jZXNz
-IHdoZXJlYnkgaW1wcm9iYWJsZQpldmVudHMgb2NjdXIgd2l0aCBhbGFybWluZyBmcmVxdWVuY3ks
-IG9yZGVyIGFyaXNlcyBmcm9tIGNoYW9zLCBhbmQKbm8gb25lIGlzIGdpdmVuIGNyZWRpdC4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+--===============0056829335==
+Content-Type: multipart/alternative; boundary=0050450145f6f693e904a1fe1ae9
+
+--0050450145f6f693e904a1fe1ae9
+Content-Type: text/plain; charset=ISO-8859-1
+
+I have a issue in nv50_crtc.c. My system constantly spits out messages "No
+native mode, forcing panel scaling"
+
+The message is output to the screen and to the kernel ring buffer at a rate
+of about one every 5 seconds. I commented out line 203 and rebuilt the
+kernel so that the system was usable. It now flickers every 5 seconds but is
+usable.
+
+Red Hat 6.0 or Suse 11.0 with kernel 2.6.38.4
+nVidia G92 (GeForce GTS 250).
+
+If more info is needed please ask.
+
+-- 
+Douglas B Kaynor
+doug-Z6oFFtodYqOsTnJN9+BGXg@public.gmane.org
+
+--0050450145f6f693e904a1fe1ae9
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<span class=3D"Apple-style-span" style=3D"border-collapse: collapse; font-f=
+amily: arial, sans-serif; font-size: 13px; ">I have a issue in nv50_crtc.c.=
+ My system=A0constantly=A0spits out messages &quot;No native mode, forcing =
+panel scaling&quot;<div>
+<br></div><div>The message is output to the screen and to the kernel ring b=
+uffer at a rate of about one every 5 seconds. I commented out line 203 and =
+rebuilt the kernel so that the system was usable. It now flickers every 5 s=
+econds but is usable.</div>
+<div><br></div><div>Red Hat 6.0 or Suse 11.0 with=A0kernel 2.6.38.4</div><d=
+iv>nVidia G92 (GeForce GTS 250).</div><div><br></div><div>If more info is n=
+eeded please ask.<br clear=3D"all"></div></span><br>-- <br>Douglas B Kaynor=
+<br>
+<a href=3D"mailto:doug-Z6oFFtodYqOsTnJN9+BGXg@public.gmane.org">doug-Z6oFFtodYqOsTnJN9+BGXg@public.gmane.org</a><br>
+
+--0050450145f6f693e904a1fe1ae9--
+
+--===============0056829335==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0056829335==--
