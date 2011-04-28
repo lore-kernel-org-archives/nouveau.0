@@ -1,13 +1,15 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: NV46 disconnected VGA
-Date: Thu, 28 Apr 2011 19:43:37 +0300
-Message-ID: <20110428194337.746426eb@farn.lan>
-References: <91317.18506.qm@web161604.mail.bf1.yahoo.com>
+From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 0/2] reclocking stability improvements
+Date: Thu, 28 Apr 2011 19:58:02 +0300
+Message-ID: <1304009882.9935.7.camel@maxim-laptop>
+References: <1303948692-22455-1-git-send-email-martin.peres@free.fr>
+	<1303986746.6092.6.camel@maxim-laptop> <4DB94C4F.3000801@free.fr>
+	<1303991011.6092.9.camel@maxim-laptop>  <op.vunmefj57cbmmg@emo>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <91317.18506.qm-TyUnntYMKjLK0anN2EpufZEhsgyP+Z75VpNB7YpNyf8@public.gmane.org>
+In-Reply-To: <op.vunmefj57cbmmg@emo>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,122 +19,99 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCAyNiBBcHIgMjAxMSAxNDowODo1MCAtMDcwMCAoUERUKQpTZWJhc3RpYW4gR2xpdGEg
-PGdsc2ViYUB5YWhvby5jb20+IHdyb3RlOgoKPiBIaSwKPiAKPiB0aGFua3MgZm9yIHlvdXIgcXVl
-c3Rpb25zLCBpIGhhZCB0cmllZCBzaW1wbGVyIGNvbmZpZywgYnV0IHNob3VsZCBoYXZlIGdvdHRl
-biB0byAKPiB0aGUgcmVhbGx5IGJhcmUgb25lLCBzbyBub3cgSSBkaWQ6IHNhbWUgcmVzdWx0Lgou
-Li4KPiBTZWN0aW9uICJEZXZpY2UiCj4gICAgICAgICBJZGVudGlmaWVyICAgICAgIk5WSURJQSBO
-VjQ2Igo+ICAgICAgICAgRHJpdmVyICAgICAgICAgICJub3V2ZWF1Igo+ICAgICAgICAgT3B0aW9u
-ICAgICAgICAgICJaYXBob2RIZWFkcyIgICAgICAgICAgICJMVkRTLTEsVkdBLTEiCj4gRW5kU2Vj
-dGlvbgoKWmFwaG9kSGVhZHMgaXMgbm90IG5lZWRlZCwgdW5sZXNzIHlvdSB3YW50IHNlcGFyYXRl
-IFNDUkVFTnMuClNob3VsZCBiZSBoYXJtbGVzcyBoZXJlLCB0aG91Z2guCgo+IFRoZSBMQ0Qgc2hv
-d3MgUkdCIGFtb25nIGl0cyAibGl2ZSIgaW5wdXRzICh0aGUgZGVhZCBvbmVzIGFyZSBncmF5ZWQs
-IHRoZXNlIG9uZXMgCj4gYXJlIGNvbG9yZWQpLiBBbmQgdGhlIGFsdGVybmF0aXZlIE9TIGV4dGVu
-ZHMgaXRzIGRlc2t0b3AgdGVzdGVkIHN1Y2Nlc3NmdWxseSBvbiAKPiBpdC4KCklzIHRoZXJlIGEg
-c2lnbmFsPyBJIHRob3VnaHQgdGhlcmUgd291bGQgbm90IGJlIGEgc2lnbmFsIGlmIE5vdXZlYXUK
-Y29uc2lkZXJzIFZHQSBkaXNjb25uZWN0ZWQuCgo+IGxvY2FsaG9zdCAkIGNhdCAvdmFyL2xvZy9Y
-b3JnLjAubG9nIAouLi4KPiBbICA4MDYxLjU5M10gCj4gWC5PcmcgWCBTZXJ2ZXIgMS4xMC45OS4x
-Cj4gUmVsZWFzZSBEYXRlOiB1bnJlbGVhc2VkCi4uLgo+IFsgIDgwNjEuNTk0XSAoPT0pIE5vIExh
-eW91dCBzZWN0aW9uLiAgVXNpbmcgdGhlIGZpcnN0IFNjcmVlbiBzZWN0aW9uLgo+IFsgIDgwNjEu
-NTk0XSAoPT0pIE5vIHNjcmVlbiBzZWN0aW9uIGF2YWlsYWJsZS4gVXNpbmcgZGVmYXVsdHMuCj4g
-WyAgODA2MS41OTRdICgqKikgfC0tPlNjcmVlbiAiRGVmYXVsdCBTY3JlZW4gU2VjdGlvbiIgKDAp
-Cj4gWyAgODA2MS41OTRdICgqKikgfCAgIHwtLT5Nb25pdG9yICI8ZGVmYXVsdCBtb25pdG9yPiIK
-PiBbICA4MDYxLjU5NV0gKD09KSBObyBkZXZpY2Ugc3BlY2lmaWVkIGZvciBzY3JlZW4gIkRlZmF1
-bHQgU2NyZWVuIFNlY3Rpb24iLgo+ICAgICBVc2luZyB0aGUgZmlyc3QgZGV2aWNlIHNlY3Rpb24g
-bGlzdGVkLgo+IFsgIDgwNjEuNTk1XSAoKiopIHwgICB8LS0+RGV2aWNlICJOVklESUEgTlY0NiIK
-PiBbICA4MDYxLjU5NV0gKD09KSBObyBtb25pdG9yIHNwZWNpZmllZCBmb3Igc2NyZWVuICJEZWZh
-dWx0IFNjcmVlbiBTZWN0aW9uIi4KPiAgICAgVXNpbmcgYSBkZWZhdWx0IG1vbml0b3IgY29uZmln
-dXJhdGlvbi4KClRoaXMgbG9va3MgYmV0dGVyIG5vdy4KCi4uLgo+IFsgIDgwNjEuNjE4XSAoLS0p
-IE5PVVZFQVUoMCk6IENoaXBzZXQ6ICJOVklESUEgTlY0NiIKPiBbICA4MDYxLjYxOF0gKElJKSBO
-T1VWRUFVKDApOiBDcmVhdGluZyBkZWZhdWx0IERpc3BsYXkgc3Vic2VjdGlvbiBpbiBTY3JlZW4g
-Cj4gc2VjdGlvbgo+ICAgICAiRGVmYXVsdCBTY3JlZW4gU2VjdGlvbiIgZm9yIGRlcHRoL2ZiYnBw
-IDI0LzMyCj4gWyAgODA2MS42MThdICg9PSkgTk9VVkVBVSgwKTogRGVwdGggMjQsICgtLSkgZnJh
-bWVidWZmZXIgYnBwIDMyCj4gWyAgODA2MS42MThdICg9PSkgTk9VVkVBVSgwKTogUkdCIHdlaWdo
-dCA4ODgKPiBbICA4MDYxLjYxOF0gKD09KSBOT1VWRUFVKDApOiBEZWZhdWx0IHZpc3VhbCBpcyBU
-cnVlQ29sb3IKPiBbICA4MDYxLjYxOF0gKCoqKSBOT1VWRUFVKDApOiBPcHRpb24gIlphcGhvZEhl
-YWRzIiAiTFZEUy0xLFZHQS0xIgo+IFsgIDgwNjEuNjE4XSAoPT0pIE5PVVZFQVUoMCk6IFVzaW5n
-IEhXIGN1cnNvcgo+IFsgIDgwNjEuNjE4XSAoPT0pIE5PVVZFQVUoMCk6IEdMWCBzeW5jIHRvIFZC
-bGFuayBkaXNhYmxlZC4KPiBbICA4MDYxLjYxOF0gKD09KSBOT1VWRUFVKDApOiBQYWdlIGZsaXBw
-aW5nIGVuYWJsZWQKPiBbICA4MDYxLjk3NV0gKElJKSBOT1VWRUFVKDApOiBPdXRwdXQgTFZEUy0x
-IGhhcyBubyBtb25pdG9yIHNlY3Rpb24KPiBbICA4MDYyLjAyMV0gKElJKSBOT1VWRUFVKDApOiBP
-dXRwdXQgVkdBLTEgaGFzIG5vIG1vbml0b3Igc2VjdGlvbgo+IFsgIDgwNjIuMDQ3XSAoSUkpIE5P
-VVZFQVUoMCk6IE91dHB1dCBUVi0xIGhhcyBubyBtb25pdG9yIHNlY3Rpb24KPiBbICA4MDYyLjI1
-OF0gKElJKSBOT1VWRUFVKDApOiBFRElEIGZvciBvdXRwdXQgTFZEUy0xCj4gWyAgODA2Mi4yNThd
-IChJSSkgTk9VVkVBVSgwKTogTWFudWZhY3R1cmVyOiAuLi4gIE1vZGVsOiAzLi4uICBTZXJpYWwj
-OiAwCj4gWyAgODA2Mi4yNThdIChJSSkgTk9VVkVBVSgwKTogWWVhcjogMjAwNSAgV2VlazogMAo+
-IFsgIDgwNjIuMjU4XSAoSUkpIE5PVVZFQVUoMCk6IEVESUQgVmVyc2lvbjogMS4zCi4uLgo+IFsg
-IDgwNjIuMzA0XSAoSUkpIE5PVVZFQVUoMCk6IEVESUQgZm9yIG91dHB1dCBWR0EtMQo+IFsgIDgw
-NjIuMzMwXSAoSUkpIE5PVVZFQVUoMCk6IEVESUQgZm9yIG91dHB1dCBUVi0xCj4gWyAgODA2Mi4z
-MzBdIChJSSkgTk9VVkVBVSgwKTogT3V0cHV0IExWRFMtMSBkaXNjb25uZWN0ZWQKPiBbICA4MDYy
-LjMzMF0gKElJKSBOT1VWRUFVKDApOiBPdXRwdXQgVkdBLTEgZGlzY29ubmVjdGVkCj4gWyAgODA2
-Mi4zMzBdIChJSSkgTk9VVkVBVSgwKTogT3V0cHV0IFRWLTEgZGlzY29ubmVjdGVkCj4gWyAgODA2
-Mi4zMzBdIChXVykgTk9VVkVBVSgwKTogTm8gb3V0cHV0cyBkZWZpbml0ZWx5IGNvbm5lY3RlZCwg
-dHJ5aW5nIGFnYWluLi4uCj4gWyAgODA2Mi4zMzBdIChJSSkgTk9VVkVBVSgwKTogT3V0cHV0IExW
-RFMtMSBjb25uZWN0ZWQKPiBbICA4MDYyLjMzMF0gKElJKSBOT1VWRUFVKDApOiBPdXRwdXQgVkdB
-LTEgZGlzY29ubmVjdGVkCj4gWyAgODA2Mi4zMzBdIChJSSkgTk9VVkVBVSgwKTogT3V0cHV0IFRW
-LTEgZGlzY29ubmVjdGVkCgpJdCBuZXZlciBzZWVzIGFueXRoaW5nIGNvbm5lY3RlZC4gSXQgbWln
-aHQgYmUgYSBrbm93biAiZmVhdHVyZSIgb2YKc29tZSBoYXJkd2FyZSwgc2luY2UgdGhlcmUgaXMg
-dGhlIHNhbml0eSBjaGVjayB0aGF0IHRoZW4gZW5hYmxlcwpMVkRTLiBJIGhvcGUgc29tZW9uZSBl
-bHNlIGNvbW1lbnRzIG9uIHRoYXQuCgo+ID4gT24gVHVlLCAyNiBBcHIgMjAxMSAwMTo1ODowMSAt
-MDcwMCAoUERUKQo+ID4gU2ViYXN0aWFuIEdsaXRhIDxnbHNlYmFAeWFob28uY29tPiB3cm90ZToK
-PiA+IAo+ID4gPiBTZWN0aW9uICJEZXZpY2UiCj4gPiA+ICAgICAgSWRlbnRpZmllciAgICAiTlZJ
-RElBIE5WNDYiCj4gPiA+ICAgICBWZW5kb3JOYW1lICAgICAiTlZJRElBIENvcnAiCj4gPiA+ICAg
-ICBEcml2ZXIgICAgICAgICAibm91dmVhdSIKPiA+ID4gCj4gPiA+ICAgICBPcHRpb24gICAgICAg
-ICAiTW9uaXRvci1MVkRTLTEiICAgICJMQ0QgMTUuNCcnIFdYR0EiCj4gPiA+ICAgICAgT3B0aW9u
-ICAgICAgICAiTW9uaXRvci1WR0EtMSIgICAgICAgICAiTENEIgo+ID4gPiAgICAgT3B0aW9uICAg
-ICAgICAgIk1vbml0b3ItVFYtMSIgICAgICAgICI8TWlzc2luZz4iCj4gPiA+IAo+ID4gPiAgICAg
-T3B0aW9uICAgICAgICAiSFdfY3Vyc29yIiAgICAgICAgICJ0cnVlIgo+ID4gPiAgICAgT3B0aW9u
-ICAgICAgICAgIk1vZGVEZWJ1ZyIgICAgICAgICJPbiIKPiA+ID4gIEVuZFNlY3Rpb24KPiA+IAo+
-ID4gV2hhdCBhcmUgeW91IHRyeWluZyB0byBhY2hpZXZlIHdpdGggdGhpcyBjb25maWcsICBleGFj
-dGx5Pwo+IAo+IEkgd2FzIHVuZGVyIHRoZSBiZWxpZWYgdGhhdCBJIHdhcyB0cnlpbmcgdG8gYWNo
-aWV2ZSBkdWFsaGVhZC4KPiAKPiBsb2NhbGhvc3QgJCBtYW4geG9yZy5jb25mCj4gCj4gICAgICAg
-IFdpdGggUmFuZFIgMS4yLWVuYWJsZWQgZHJpdmVycywgbW9uaXRvciBzZWN0aW9ucyBtYXkgYmUg
-IHRpZWQgIHRvICBzcGXigJAKPiAgICAgICAgY2lmaWMgIG91dHB1dHMgb2YgdGhlIHZpZGVvIGNh
-cmQuICBVc2luZyB0aGUgbmFtZSBvZiB0aGUgb3V0cHV0IGRlZmluZWQKPiAgICAgICAgYnkgdGhl
-IHZpZGVvIGRyaXZlciBwbHVzIHRoZSBpZGVudGlmaWVyIG9mIGEgbW9uaXRvciBzZWN0aW9uLCBv
-bmUgYXNzb+KAkAo+ICAgICAgICBjaWF0ZXMgIGEgIG1vbml0b3IgIHNlY3Rpb24gIHdpdGggIGFu
-IG91dHB1dCBieSBhZGRpbmcgYW4gb3B0aW9uIHRvIHRoZQo+ICAgICAgICBEZXZpY2Ugc2VjdGlv
-biBpbiB0aGUgZm9sbG93aW5nIGZvcm1hdDoKPiAKPiAgICAgICAgT3B0aW9uICJNb25pdG9yLW91
-dHB1dG5hbWUiICJtb25pdG9yc2VjdGlvbiIKPiAKPiAgICAgICAgKGZvciBleGFtcGxlLCBPcHRp
-b24gIk1vbml0b3ItVkdBIiAiVkdBIG1vbml0b3IiIGZvciBhIFZHQSBvdXRwdXQpCj4gCj4gICAg
-ICAgIEluIHRoZSBhYnNlbmNlIG9mIHNwZWNpZmljIGFzc29jaWF0aW9uIG9mIG1vbml0b3Igc2Vj
-dGlvbnMgdG8gIG91dHB1dHMsCj4gICAgICAgIGlmICBhICBtb25pdG9yICBzZWN0aW9uIGlzIHBy
-ZXNlbnQgdGhlIHNlcnZlciB3aWxsIGFzc29jaWF0ZSBpdCB3aXRoIGFuCj4gICAgICAgIG91dHB1
-dCB0byBwcmVzZXJ2ZSBjb21wYXRpYmlsaXR5IGZvciAgcHJldmlvdXMgIHNpbmdsZS1oZWFkICBj
-b25maWd1cmHigJAKPiAgICAgICAgdGlvbnMuCj4gCj4gQWxzbyB0aGVyZSBhcmUgMiAiU2NyZWVu
-IiBsaW5lcyBpbiB0aGUgU2VydmVyTGF5b3V0IHNlY3Rpb24uCgpGb3IgZHVhbC1oZWFkLCBub3Jt
-YWxseSB5b3UgZG8gbm90IG5lZWQgYW55IG9mIHRoYXQuIE1vbml0b3JzCnNob3VsZCBiZSBhdXRv
-ZGV0ZWN0ZWQuIEF1dG9kZXRlY3Rpb24gaXMgZmFpbGluZyBmb3IgeW91LgoKQWxzbywgeW91IHdp
-bGwgb25seSBoYXZlIGEgc2luZ2xlIFNDUkVFTiBpbiBkdWFsLWhlYWQsIGJvdGgKaGVhZHMgaW4g
-dGhlIHNhbWUgU0NSRUVOLiBTbywgb25seSBvbmUgIlNjcmVlbiIsIG1heC4KCj4gPiBodHRwOi8v
-bm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9NdWx0aU1vbml0b3JEZXNrdG9wCj4gCj4gT0ss
-IHRoZSB0aGluZyBpcyBHVEsrLCBmbHV4Ym94IGFuZCBhbm90aGVyIGRvemVuIGFwcGxpY2F0aW9u
-cyBzZWVtIHRvIG5lZWQgCj4geGluZXJhbWEgbWVhbmluZyBvbmUgc2NyZWVuL211bHRpcGxlIG1v
-bml0b3JzOiBJIG5lZWQgdGhpcy4KCkFuZCB0aGF0IGlzIHdoYXQgeW91IHNoYWxsIGdldCwgb25j
-ZSB3ZSBnZXQgdGhlIFZHQSBvdXRwdXQKb25saW5lLiBUaGF0IHJlYWxseSBpcyB0aGUgZGVmYXVs
-dCBvcGVyYXRpb24sIG5vdCBaYXBob2QgbW9kZS4KCj4gPiBXaGF0IGRvZXMgdGhlICBrZXJuZWwg
-c2F5IGFib3V0IHRoZSBvdXRwdXRzIGluIHRoZSBsb2c/Cj4gCj4gbG9jYWxob3N0ICQgZG1lc2cg
-IyBZb3UgbWVhbnQgZG1lc2c/CgpZZXMsIEkgc2hvdWxkIGhhdmUgYmVlbiBtb3JlIHNwZWNpZmlj
-LiBCdXQgbWF5YmUgd2UgZG9uJ3QgbmVlZCBpdApqdXN0IHlldC4KCj4gPiBIYXMgeW91ciBWR0Et
-bW9uaXRvcidzIEREQyAgd29ya2VkIGJlZm9yZT8KPiAKPiBJIGRvbid0IHJlY2FsbCB0aGF0IGFi
-b3V0IHRoZSBWR0EgaW4gTGludXgsLiBhbHRob3VnaCBJIHVzZWQgYW4gSW50ZWwgR01BIG9uIHRo
-ZSAKPiBMQ0QsIGJ1dCBpbiB0aGUgb3RoZXIgT1MgSSB1c2VkIHRvICB1c2UgZXh0ZW5kIHRoZSBk
-ZXNrdG9wIHdlZWtseS4KCkRvIHlvdSBtZWFuIGl0IG9mdGVuIGxvc3QgdGhlIGRlc2t0b3Agc2V0
-dGluZ3MgZm9yIHRoZQpWR0EtY29ubmVjdGVkIG1vbml0b3I/CgpJZiBJIGdvdCBpdCByaWdodCwg
-dGhlIGNvcmUgb2YgeW91ciBwcm9ibGVtIGlzIHRoYXQgdGhlCmV4dGVybmFsIG1vbml0b3IsIGNv
-bm5lY3RlZCB2aWEgVkdBIChkb2Vzbid0IG1hdHRlciBpZgp0aGUgbW9uaXRvciBpcyBhIGZsYXQg
-cGFuZWwgb3IgYSBDUlQpLCBpcyBuZXZlciBkZXRlY3RlZAphcyBjb25uZWN0ZWQuIFRoZXJlIGFy
-ZSB0d28gd2F5cyB5b3UgY291bGQgdHJ5IHRvIGZvcmNlCml0IGFzIGNvbm5lY3RlZDoKCnhyYW5k
-ciAtLW91dHB1dCBWR0EtMSAtLW1vZGUgMTAyNHg3NjggLS1yaWdodC1vZiBMVkRTLTEKb3Igc29t
-ZXRoaW5nIHNpbWlsYXIsIElJUkMgdGhhdCBzaG91bGQgZm9yY2UtZW5hYmxlIHRoZQpvdXRwdXQu
-CgpGb3JjaW5nIHRoZSBtb2RlIG9uIHRoZSBrZXJuZWwgY29tbWFuZCBsaW5lLCBhcyBwZXIKaW5z
-dHJ1Y3Rpb25zIGluCmh0dHA6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtpL0tlcm5lbE1v
-ZGVTZXR0aW5nCgpBbmQga2VlcCB0aGUgc2ltcGxpc3RpYyB4b3JnLmNvbmYgZm9yIG5vdy4KCkhU
-SCwgQ2hlZXJzCgotLSAKUGVra2EgUGFhbGFuZW4KaHR0cDovL3d3dy5pa2kuZmkvcHEvCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Thu, 2011-04-28 at 16:24 +0100, Emil Velikov wrote:
+> On Thu, 28 Apr 2011 12:43:31 +0100, Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> 
+> > Martin, one more thing, this is my observations regarding clocks I
+> > finished today:
+> >
+> >
+> > clock = (ref * N / M) >> (P & 0x7)
+> >
+> > first line is blob, second nouveau
+> >
+> > level0:
+> >                          P         NNMM
+> >     0x4008 - memory - 0018e200 00002505   = 1           = 01.0000
+> >                       80016400 00002505   = 37 / 5 / 2  = 03.7000
+> >
+> >     0x4020 - shader - 80010000 00000b01   = 11 / 1 / 2  = 05.5000
+> >                       80020000 00001b02   = 27 / 2 / 4  = 03.3750
+> >
+> >     0x4028 - core   - a0120000 00001b04   = 27 / 4 / 4  = 01.6875
+> >                       a0020000 00001b04   = 27 / 4 / 4  = 01.6875
+> >
+> >     0x4030 - unk_05 - a0120000 00000b02   = 11 / 2 / 4  = 01.3750
+> >                       80020000 00001b04   = 27 / 4 / 4  = 01.6875
+> >
+> > level1:
+> >
+> >     0x4008 - memory - 809ae400 00002505   = 37 / 5 / 4  = 01.8500
+> >                       80026400 00002505   = 37 / 5 / 4  = 01.8500
+> >    0x4020 - shader - 80000000 00000b01   = 11 / 1 / 1  = 11.0000
+> >                       80010000 00000b01   = 11 / 1 / 2  = 05.5000
+> >    0x4028 - core   - a0090000 00000b02   = 11 / 2 / 1  = 05.5000
+> >                       a0010000 00000b02   = 11 / 2 / 1  = 05.5000
+> >
+> >     0x4030 - unk_05 - a0120000 00000b02   = 11 / 2 / 4  = 01.3750
+> >                       80010000 00000b02   = 11 / 2 / 2  = 05.5000
+> >
+> > level2:
+> >
+> >     0x4008 - memory - 8059e400 00002505   = 37 / 5 / 2  = 03.7000
+> >                       80016400 00002505   = 37 / 5 / 2  = 03.7000
+> >
+> >     0x4020 - shader - 80000000 00000b01   = 11 / 1 / 1  = 11.0000
+> >                       80000000 00001002   = 16 / 2 / 1  = 08.0000
+> >
+> >     0x4028 - core   - a0090000 00001002   = 16 / 2 / 2  = 04.0000
+> >                       a0010000 00001002   = 16 / 2 / 2  = 04.0000
+> >
+> >     0x4030 - unk_05 - a0120000 00000b02   = 11 / 2 / 4  = 01.3750
+> >                       80010000 00001202   = 18 / 2 / 2  = 06.0000
+> >
+> >
+> > Clocks are very different and we seems to overclock hard the unk_05 PLL
+> > And shader PLL is underclocked always, so another way to boost performance?
+> > (it didn't seem to affect perfomace much here, but yet...)
+> >
+> >
+> 
+> Maxim most likely you are tired of hearing this, but the shader PLL in many
+> cases is disabled(-ish)
+> Either by nv_wr32(dev, (nv_rd32(dev, 0x4020) & ~0x80000000)), or by the
+> 0xc040 register (don't remember the exact bit)
+> Whereas for the unk_05 the logic of the blob has been changed in it's recent
+> versions - i.e. blob v195.xx the numbers(P/M/N) where the same as the nouveau
+> 
+> Cheers
+> Emil (xexaxo)
+
+I sure didn't know about register 0xC040, but I know about bit 31
+(0x80000000) and took it into account. It isn't set only for memory
+clock in perf level 0 by the blob.
+
+Also clocking seems not to be the major power problem, there is
+something else.
+(see my post about observed power consumption).
+
+My gut feeling is that blob can decrease number of running shader cores,
+and in nouveau all are running anyway.
+
+
+
+Interesting fact is that GPU temperatures rise to very high levels
+(~75C) even while doing CPU only work (like compiling kernel for
+example).
+
+
+-- 
+Best regards,
+        Maxim Levitsky
+
+Visit my blog: http://maximlevitsky.wordpress.com
+Warning: Above blog contains rants.
