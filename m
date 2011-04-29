@@ -1,17 +1,17 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+From: Nigel Cunningham <nigel-jrkICu/7yk3k1uMJSBkQmQ@public.gmane.org>
 Subject: Re: [PATCH 0/2] reclocking stability improvements
-Date: Thu, 28 Apr 2011 20:35:22 +0200
-Message-ID: <4DB9B36A.4020704@free.fr>
-References: <1303948692-22455-1-git-send-email-martin.peres@free.fr>	
-	<1303986746.6092.6.camel@maxim-laptop> <4DB94C4F.3000801@free.fr>	
-	<1303991011.6092.9.camel@maxim-laptop> <op.vunmefj57cbmmg@emo>	
-	<1304009882.9935.7.camel@maxim-laptop> <4DB9B0D7.2050700@free.fr>
-	<1304015383.18153.12.camel@maxim-laptop>
+Date: Fri, 29 Apr 2011 10:56:06 +1000
+Message-ID: <4DBA0CA6.2010508@tuxonice.net>
+References: <1303948692-22455-1-git-send-email-martin.peres@free.fr>		<1303986746.6092.6.camel@maxim-laptop>
+	<4DB94C4F.3000801@free.fr>		<1303991011.6092.9.camel@maxim-laptop>
+	<op.vunmefj57cbmmg@emo>		<1304009882.9935.7.camel@maxim-laptop>
+	<4DB9B0D7.2050700@free.fr>	<1304015383.18153.12.camel@maxim-laptop>
+	<4DB9B36A.4020704@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1304015383.18153.12.camel@maxim-laptop>
+In-Reply-To: <4DB9B36A.4020704-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +21,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-TGUgMjgvMDQvMjAxMSAyMDoyOSwgTWF4aW0gTGV2aXRza3kgYSDDqWNyaXQgOgo+IE9uIFRodSwg
-MjAxMS0wNC0yOCBhdCAyMDoyNCArMDIwMCwgTWFydGluIFBlcmVzIHdyb3RlOgo+PiBMZSAyOC8w
-NC8yMDExIDE4OjU4LCBNYXhpbSBMZXZpdHNreSBhIMOpY3JpdCA6Cj4+PiBJbnRlcmVzdGluZyBm
-YWN0IGlzIHRoYXQgR1BVIHRlbXBlcmF0dXJlcyByaXNlIHRvIHZlcnkgaGlnaCBsZXZlbHMKPj4+
-ICh+NzVDKSBldmVuIHdoaWxlIGRvaW5nIENQVSBvbmx5IHdvcmsgKGxpa2UgY29tcGlsaW5nIGtl
-cm5lbCBmb3IKPj4+IGV4YW1wbGUpLgo+PiBMZXQgbWUgZ3Vlc3MsIHlvdSdyZSBvbiBhIGxhcHRv
-cD8gVGhlIHRlbXBlcmF0dXJlIG9mIHRoZSBjYXNlIGdvZXMgdXAKPj4gd2hlbiB0aGUgcHJvY2Vz
-c29yIGlzIHdvcmtpbmcgYW5kIHNvLCBpdCBjb29scyB0aGUgR1BVIGxlc3MgOykKPiBZZXMsIGJ1
-dCB0aGF0IGRvZXNuJ3QgaGFwcGVuIHdoaWxlIHVzaW5nIG52aWRpYSB0byB0aGlzIGV4dGVudC4K
-PiBJIHRoaW5rIHRoYXQgR1BVIGhhcyBtYW55IHVuaXRzIHJ1bm5pbmcgaW4gZW5kbGVzcyBsb29w
-IGRvaW5nIG5vdGhpbmcKPiBidXQgY29uc3VtaW5nIHBvd2VyICh+NVcpIGRpZmZlcmVuY2UhCkkg
-cmVhbGx5IG5lZWQgdG8gaGF2ZSBhIGxvb2sgYXQgdGhpcy4gSSBoYXZlIGEgcG93ZXIgbWV0ZXIg
-bm93IChhY3BpIApyZXBvcnRzIG1lIGZ1bmt5IHBvd2VyIGNvbnN1bXB0aW9uIGZpZ3VyZXMgYmVj
-YXVzZSBteSBiYXR0ZXJ5IGlzIGRlYWQpLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+SGkuCgpPbiAyOS8wNC8xMSAwNDozNSwgTWFydGluIFBlcmVzIHdyb3RlOgo+IExlIDI4LzA0LzIw
+MTEgMjA6MjksIE1heGltIExldml0c2t5IGEgw6ljcml0IDoKPj4gT24gVGh1LCAyMDExLTA0LTI4
+IGF0IDIwOjI0ICswMjAwLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4+PiBMZSAyOC8wNC8yMDExIDE4
+OjU4LCBNYXhpbSBMZXZpdHNreSBhIMOpY3JpdCA6Cj4+Pj4gSW50ZXJlc3RpbmcgZmFjdCBpcyB0
+aGF0IEdQVSB0ZW1wZXJhdHVyZXMgcmlzZSB0byB2ZXJ5IGhpZ2ggbGV2ZWxzCj4+Pj4gKH43NUMp
+IGV2ZW4gd2hpbGUgZG9pbmcgQ1BVIG9ubHkgd29yayAobGlrZSBjb21waWxpbmcga2VybmVsIGZv
+cgo+Pj4+IGV4YW1wbGUpLgo+Pj4gTGV0IG1lIGd1ZXNzLCB5b3UncmUgb24gYSBsYXB0b3A/IFRo
+ZSB0ZW1wZXJhdHVyZSBvZiB0aGUgY2FzZSBnb2VzIHVwCj4+PiB3aGVuIHRoZSBwcm9jZXNzb3Ig
+aXMgd29ya2luZyBhbmQgc28sIGl0IGNvb2xzIHRoZSBHUFUgbGVzcyA7KQo+PiBZZXMsIGJ1dCB0
+aGF0IGRvZXNuJ3QgaGFwcGVuIHdoaWxlIHVzaW5nIG52aWRpYSB0byB0aGlzIGV4dGVudC4KPj4g
+SSB0aGluayB0aGF0IEdQVSBoYXMgbWFueSB1bml0cyBydW5uaW5nIGluIGVuZGxlc3MgbG9vcCBk
+b2luZyBub3RoaW5nCj4+IGJ1dCBjb25zdW1pbmcgcG93ZXIgKH41VykgZGlmZmVyZW5jZSEKPiBJ
+IHJlYWxseSBuZWVkIHRvIGhhdmUgYSBsb29rIGF0IHRoaXMuIEkgaGF2ZSBhIHBvd2VyIG1ldGVy
+IG5vdyAoYWNwaQo+IHJlcG9ydHMgbWUgZnVua3kgcG93ZXIgY29uc3VtcHRpb24gZmlndXJlcyBi
+ZWNhdXNlIG15IGJhdHRlcnkgaXMgZGVhZCkuCgpKdXN0IGJlZW4gcmVhZGluZyB0aHJvdWdoIHlv
+dXIgcG9zdHMgZnJvbSBsYXN0IG5pZ2h0LCBhbmQgd2FudGVkIHRvIGxldAp5b3Uga25vdyBJJ20g
+aW50ZXJlc3RlZCBhbmQgd2lsbGluZyB0byB0ZXN0IHBhdGNoZXMgdG9vLgoKSSBoYXZlIGFuIDg2
+MDBHVFMgYmFzZWQgbGFwdG9wLCBhbmQgaGF2ZSBzZWVuIHRoZSBzYW1lIHJhbmdlIG9mIHBvd2Vy
+CnVzYWdlIChpZSBoYXZlIHNlZW4gMTRXIGluIHRoZSBwYWdlIC0gcHJlc3VtYWJseSB3aGVuIEkg
+d2FzIHVzaW5nIHRoZQpibG9iIC0sIGJ1dCBjYW4gb25seSBnZXQgaXQgZG93biB0byAyM1cgYXQg
+dGhlIG1vbWVudCB1c2luZyBOb3V2ZWF1KS4KClJlZ2FyZHMsCgpOaWdlbAotLSAKRXZvbHV0aW9u
+IChuKTogQSBoeXBvdGhldGljYWwgcHJvY2VzcyB3aGVyZWJ5IGltcHJvYmFibGUKZXZlbnRzIG9j
+Y3VyIHdpdGggYWxhcm1pbmcgZnJlcXVlbmN5LCBvcmRlciBhcmlzZXMgZnJvbSBjaGFvcywgYW5k
+Cm5vIG9uZSBpcyBnaXZlbiBjcmVkaXQuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
