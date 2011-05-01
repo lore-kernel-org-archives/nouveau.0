@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36744] New: [NVA5] BUG: unable to handle kernel NULL
- pointer dereference
-Date: Sun,  1 May 2011 09:07:17 -0700 (PDT)
-Message-ID: <bug-36744-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: make cursor_set implementation
+ consistent with other drivers
+Date: Sun, 1 May 2011 23:49:04 +0200
+Message-ID: <20110501214904.GA6742@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,32 +20,61 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36744
+When xorg state tracker wants to hide the cursor it calls set_cursor
+with NULL buffer_handle and size=0x0, but nouveau refuses to hide it
+because size is not 64x64... which is a bit odd. Both radeon and intel
+check buffer_handle before validating size of cursor, so make nouveau
+implementation consistent with them.
 
-           Summary: [NVA5] BUG: unable to handle kernel NULL pointer
-                    dereference
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nv04_crtc.c |    6 +++---
+ drivers/gpu/drm/nouveau/nv50_crtc.c |    6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-
-Created an attachment (id=46222)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=46222)
-Kernel log
-
-Since commit e5ca5dec3111772ade1cbbead50c0c594a49778d (bisected, drm/nouveau:
-remove remnants of nouveau_pgraph_engine) to nouveau/linux-2.6, I get NULL
-pointer dereference when starting kernel.
-
+diff --git a/drivers/gpu/drm/nouveau/nv04_crtc.c b/drivers/gpu/drm/nouveau/nv04_crtc.c
+index cc3cd17..3c78bc8 100644
+--- a/drivers/gpu/drm/nouveau/nv04_crtc.c
++++ b/drivers/gpu/drm/nouveau/nv04_crtc.c
+@@ -943,14 +943,14 @@ nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
+ 	struct drm_gem_object *gem;
+ 	int ret = 0;
+ 
+-	if (width != 64 || height != 64)
+-		return -EINVAL;
+-
+ 	if (!buffer_handle) {
+ 		nv_crtc->cursor.hide(nv_crtc, true);
+ 		return 0;
+ 	}
+ 
++	if (width != 64 || height != 64)
++		return -EINVAL;
++
+ 	gem = drm_gem_object_lookup(dev, file_priv, buffer_handle);
+ 	if (!gem)
+ 		return -ENOENT;
+diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
+index e900a51..75ad2dc 100644
+--- a/drivers/gpu/drm/nouveau/nv50_crtc.c
++++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
+@@ -349,14 +349,14 @@ nv50_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
+ 	struct drm_gem_object *gem;
+ 	int ret = 0, i;
+ 
+-	if (width != 64 || height != 64)
+-		return -EINVAL;
+-
+ 	if (!buffer_handle) {
+ 		nv_crtc->cursor.hide(nv_crtc, true);
+ 		return 0;
+ 	}
+ 
++	if (width != 64 || height != 64)
++		return -EINVAL;
++
+ 	gem = drm_gem_object_lookup(dev, file_priv, buffer_handle);
+ 	if (!gem)
+ 		return -ENOENT;
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.4.1
