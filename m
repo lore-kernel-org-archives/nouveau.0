@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33445] NVS 3100M : Blank screen on kernel module
-	loading
-Date: Sun,  1 May 2011 05:50:26 -0700 (PDT)
-Message-ID: <20110501125026.C834F130051@annarchy.freedesktop.org>
-References: <bug-33445-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36744] New: [NVA5] BUG: unable to handle kernel NULL
+ pointer dereference
+Date: Sun,  1 May 2011 09:07:17 -0700 (PDT)
+Message-ID: <bug-36744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +19,30 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33445
+https://bugs.freedesktop.org/show_bug.cgi?id=36744
 
---- Comment #9 from celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-01 05:50:26 PDT ---
-Created an attachment (id=46216)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=46216)
-dmesg log with linux 2.6.39-rc4
+           Summary: [NVA5] BUG: unable to handle kernel NULL pointer
+                    dereference
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-What happens is exactly the same with linux 2.6.39-rc4: blank screen when
-loading nouveau lkm.
+
+Created an attachment (id=46222)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=46222)
+Kernel log
+
+Since commit e5ca5dec3111772ade1cbbead50c0c594a49778d (bisected, drm/nouveau:
+remove remnants of nouveau_pgraph_engine) to nouveau/linux-2.6, I get NULL
+pointer dereference when starting kernel.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
