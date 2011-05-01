@@ -1,80 +1,104 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: make cursor_set implementation
- consistent with other drivers
-Date: Sun, 1 May 2011 23:49:04 +0200
-Message-ID: <20110501214904.GA6742@joi.lan>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: [PATCH] gallium/xorg st/nv50/i915: add PIPE_BIND_CURSOR
+Date: Sun, 1 May 2011 23:59:40 +0200
+Message-ID: <20110501215940.GD6742@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
 Content-Disposition: inline
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-When xorg state tracker wants to hide the cursor it calls set_cursor
-with NULL buffer_handle and size=0x0, but nouveau refuses to hide it
-because size is not 64x64... which is a bit odd. Both radeon and intel
-check buffer_handle before validating size of cursor, so make nouveau
-implementation consistent with them.
-
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+We need to distinguish surfaces for mouse cursors from scanouts, because nv50
+hardware display engine ignores tiling flags.
+i915 seems to have similar needs, so fix it too.
 ---
- drivers/gpu/drm/nouveau/nv04_crtc.c |    6 +++---
- drivers/gpu/drm/nouveau/nv50_crtc.c |    6 +++---
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ src/gallium/drivers/i915/i915_resource_texture.c |    6 +-----
+ src/gallium/drivers/nv50/nv50_miptree.c          |   11 +++++++++--
+ src/gallium/include/pipe/p_defines.h             |    1 +
+ src/gallium/state_trackers/xorg/xorg_crtc.c      |    1 +
+ 4 files changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv04_crtc.c b/drivers/gpu/drm/nouveau/nv04_crtc.c
-index cc3cd17..3c78bc8 100644
---- a/drivers/gpu/drm/nouveau/nv04_crtc.c
-+++ b/drivers/gpu/drm/nouveau/nv04_crtc.c
-@@ -943,14 +943,14 @@ nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
- 	struct drm_gem_object *gem;
- 	int ret = 0;
+diff --git a/src/gallium/drivers/i915/i915_resource_texture.c b/src/gallium/drivers/i915/i915_resource_texture.c
+index 7816925..7ad191b 100644
+--- a/src/gallium/drivers/i915/i915_resource_texture.c
++++ b/src/gallium/drivers/i915/i915_resource_texture.c
+@@ -826,11 +826,7 @@ i915_texture_create(struct pipe_screen *screen,
+    }
  
--	if (width != 64 || height != 64)
--		return -EINVAL;
+    /* for scanouts and cursors, cursors arn't scanouts */
 -
- 	if (!buffer_handle) {
- 		nv_crtc->cursor.hide(nv_crtc, true);
- 		return 0;
- 	}
+-   /* XXX: use a custom flag for cursors, don't rely on magically
+-    * guessing that this is Xorg asking for a cursor
+-    */
+-   if ((template->bind & PIPE_BIND_SCANOUT) && template->width0 != 64)
++   if ((template->bind & PIPE_BIND_SCANOUT) && !(template->bind & PIPE_BIND_CURSOR))
+       buf_usage = I915_NEW_SCANOUT;
+    else
+       buf_usage = I915_NEW_TEXTURE;
+diff --git a/src/gallium/drivers/nv50/nv50_miptree.c b/src/gallium/drivers/nv50/nv50_miptree.c
+index 9eeca05..d632e21 100644
+--- a/src/gallium/drivers/nv50/nv50_miptree.c
++++ b/src/gallium/drivers/nv50/nv50_miptree.c
+@@ -158,7 +158,9 @@ nv50_miptree_create(struct pipe_screen *pscreen,
+       tile_flags = 0x6000;
+       break;
+    default:
+-      if ((pt->bind & PIPE_BIND_SCANOUT) &&
++      if (pt->bind & PIPE_BIND_CURSOR)
++         tile_flags = 0; /* PDISPLAY does not support tiling */
++      else if ((pt->bind & PIPE_BIND_SCANOUT) &&
+           util_format_get_blocksizebits(pt->format) == 32)
+          tile_flags = 0x7a00;
+       else
+@@ -176,7 +178,12 @@ nv50_miptree_create(struct pipe_screen *pscreen,
+       unsigned blocksize = util_format_get_blocksize(pt->format);
  
-+	if (width != 64 || height != 64)
-+		return -EINVAL;
+       lvl->offset = mt->total_size;
+-      lvl->tile_mode = get_tile_dims(nbx, nby, d);
 +
- 	gem = drm_gem_object_lookup(dev, file_priv, buffer_handle);
- 	if (!gem)
- 		return -ENOENT;
-diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
-index e900a51..75ad2dc 100644
---- a/drivers/gpu/drm/nouveau/nv50_crtc.c
-+++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
-@@ -349,14 +349,14 @@ nv50_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
- 	struct drm_gem_object *gem;
- 	int ret = 0, i;
- 
--	if (width != 64 || height != 64)
--		return -EINVAL;
--
- 	if (!buffer_handle) {
- 		nv_crtc->cursor.hide(nv_crtc, true);
- 		return 0;
- 	}
- 
-+	if (width != 64 || height != 64)
-+		return -EINVAL;
++      if (tile_flags == 0)
++         lvl->tile_mode = 0;
++      else
++         lvl->tile_mode = get_tile_dims(nbx, nby, d);
 +
- 	gem = drm_gem_object_lookup(dev, file_priv, buffer_handle);
- 	if (!gem)
- 		return -ENOENT;
+       lvl->pitch = align(nbx * blocksize, NV50_TILE_PITCH(lvl->tile_mode));
+ 
+       mt->total_size += lvl->pitch *
+diff --git a/src/gallium/include/pipe/p_defines.h b/src/gallium/include/pipe/p_defines.h
+index 431a7fb..ae82baa 100644
+--- a/src/gallium/include/pipe/p_defines.h
++++ b/src/gallium/include/pipe/p_defines.h
+@@ -301,6 +301,7 @@ enum pipe_transfer_usage {
+ #define PIPE_BIND_TRANSFER_READ        (1 << 10) /* get_transfer */
+ #define PIPE_BIND_STREAM_OUTPUT        (1 << 11) /* set_stream_output_buffers */
+ #define PIPE_BIND_CUSTOM               (1 << 16) /* state-tracker/winsys usages */
++#define PIPE_BIND_CURSOR               (1 << 17) /* mouse cursor */
+ 
+ /* The first two flags above were previously part of the amorphous
+  * TEXTURE_USAGE, most of which are now descriptions of the ways a
+diff --git a/src/gallium/state_trackers/xorg/xorg_crtc.c b/src/gallium/state_trackers/xorg/xorg_crtc.c
+index d751ac1..8eaf414 100644
+--- a/src/gallium/state_trackers/xorg/xorg_crtc.c
++++ b/src/gallium/state_trackers/xorg/xorg_crtc.c
+@@ -218,6 +218,7 @@ crtc_load_cursor_argb_ga3d(xf86CrtcPtr crtc, CARD32 * image)
+ 	memset(&templat, 0, sizeof(templat));
+ 	templat.bind |= PIPE_BIND_RENDER_TARGET;
+ 	templat.bind |= PIPE_BIND_SCANOUT;
++	templat.bind |= PIPE_BIND_CURSOR;
+ 	templat.target = PIPE_TEXTURE_2D;
+ 	templat.last_level = 0;
+ 	templat.depth0 = 1;
 -- 
 1.7.4.1
