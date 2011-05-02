@@ -1,15 +1,14 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
 Subject: Re: [PATCH] drm/nouveau: printk info about disabled
  modesetting
-Date: Mon, 2 May 2011 18:39:15 +0200
-Message-ID: <20110502163915.GA3019@joi.lan>
+Date: Mon, 2 May 2011 19:42:03 +0300
+Message-ID: <20110502194203.317a9442@farn.lan>
 References: <20110404172735.GA8979@joi.lan> <20110501220341.GI6742@joi.lan>
 	<1304319078.23168.1.camel@nisroch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
 In-Reply-To: <1304319078.23168.1.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -20,11 +19,13 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, May 02, 2011 at 04:51:14PM +1000, Ben Skeggs wrote:
+On Mon, 02 May 2011 16:51:14 +1000
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
 > On Mon, 2011-05-02 at 00:03 +0200, Marcin Slusarz wrote:
 > > On Mon, Apr 04, 2011 at 07:27:35PM +0200, Marcin Slusarz wrote:
 > > > ... to make it obvious why nouveau refused to drive the hardware.
@@ -56,15 +57,24 @@ On Mon, May 02, 2011 at 04:51:14PM +1000, Ben Skeggs wrote:
 > I just wonder how this is useful.  I don't find it hard when looking at
 > people's logs to scroll to the top and look at the kernel commandline.
 
-It's not all about kernel commandline (but it's still nice to have it).
-You can pass modeset=0 by modprobe.conf and there's no way to read it from
-dmesg later.
-It just simplifies troubleshooting by taking one of the most frequent reasons
-of "nouveau does not detect my card"...
+The kernel command line does not show module parameters.
+
+It appears, that recently something has started to add KMS-disabling
+options to modprobe.conf or equivalent, and those can be further
+hidden in initramfs.
+
+Otherwise we have to start asking to dig the parameters from sysfs
+on mysterious does-not-work problems.
 
 > Really, that should be done *anyway* as there are many more options that
 > are relevant to what nouveau does/does not do as well...
 
-Yes. But no other parameter silently disables whole module.
+Then maybe we need debug options for those, too, or does the drm core
+already print the core options for some value of drm.debug?
 
-Marcin
+
+Thanks.
+
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
