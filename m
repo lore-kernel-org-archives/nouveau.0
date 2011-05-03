@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33445] NVS 3100M : Blank screen on kernel module
-	loading
-Date: Mon,  2 May 2011 15:59:13 -0700 (PDT)
-Message-ID: <20110502225913.EE7B413004E@annarchy.freedesktop.org>
-References: <bug-33445-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36786] New: [regression] switching from Linux 2.6.39
+ rc4 to rc5 nouveau gives a GPU lockup on boot
+Date: Mon,  2 May 2011 20:02:19 -0700 (PDT)
+Message-ID: <bug-36786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +19,30 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33445
+https://bugs.freedesktop.org/show_bug.cgi?id=36786
 
---- Comment #10 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-02 15:59:12 PDT ---
-Created an attachment (id=46263)
- View: https://bugs.freedesktop.org/attachment.cgi?id=46263
- Review: https://bugs.freedesktop.org/review?bug=33445&attachment=46263
+           Summary: [regression] switching from Linux 2.6.39 rc4 to rc5
+                    nouveau gives a GPU lockup on boot
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: high
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: pabs3-RVKGE0iud0ZIf6P1QZMOBw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-hardcode alternate set of dp magics
 
-I fear I know what's going on here.  Can you give this patch a try and report
-what you see?
+Created an attachment (id=46269)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=46269)
+dmesg for Linux 2.6.39 rc4
+
+Attached rc4 and rc5 dmesg.
+
+This is with Debian GNU/Linux from experimental.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
