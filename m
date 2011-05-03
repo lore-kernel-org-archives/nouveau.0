@@ -1,52 +1,82 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] gallium/xorg st/nv50/i915: add
-	PIPE_BIND_CURSOR
-Date: Tue, 3 May 2011 12:06:33 +0200
-Message-ID: <BANLkTik3OzX77vbab3a6nC-xS7p6+gauTQ@mail.gmail.com>
-References: <20110501215940.GD6742@joi.lan>
-	<BANLkTikex6zKKboJve=n42hUUEmrSJ6Ynw@mail.gmail.com>
-	<BANLkTikbYs7y2gCELyyi1OKcuZYYVCfieA@mail.gmail.com>
-	<BANLkTin7HGY12QcG7vc0aZ7mQ6SnZkrDJQ@mail.gmail.com>
-	<20110502184056.GD3461@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 35562] Nouveau fails to link in Mesa 7.10.1
+Date: Tue,  3 May 2011 11:21:57 -0700 (PDT)
+Message-ID: <20110503182157.21C0B13004F@annarchy.freedesktop.org>
+References: <bug-35562-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
-In-Reply-To: <20110502184056.GD3461@joi.lan>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: mesa-dev@lists.freedesktop.org, Benjamin Franzke <benjaminfranzke@googlemail.com>, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35562-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, May 2, 2011 at 8:40 PM, Marcin Slusarz <marcin.slusarz@gmail.com> w=
-rote:
-> On Mon, May 02, 2011 at 03:11:00PM +0200, Daniel Vetter wrote:
->> On Mon, May 2, 2011 at 2:56 PM, Benjamin Franzke
->> <benjaminfranzke@googlemail.com> wrote:
->> > I think in i915g the CURSOR flag should be used in i9x5_scanout_layout
->> > for the "special case for cursors" as well, instead of only checking
->> > only pt->width0 =3D=3D 64 && pt->height0 =3D=3D 64.
->>
->> Oops, so much for actually re-checking the code. On the other hand, that
->> part is broken, it needs a
->> =A0 =A0tex->tiling =3D I915_TILE_NONE;
->> and perhaps some check that width =3D=3D height =3D=3D 64 indeed holds. =
-Then
->> move it out as the first if clause and it'd start to make sense ...
->
-> Could you fix it in separate patch?
+https://bugs.freedesktop.org/show_bug.cgi?id=35562
 
-Jakob has said (on irc) that he intends to again play with xorg-i915g ...
--Daniel
--- =
+David Silva <folken22mtv-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> changed:
 
-Daniel Vetter
-daniel.vetter@ffwll.ch - +41 (0) 79 364 57 48 - http://blog.ffwll.ch
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Platform|Other                       |x86 (IA32)
+         OS/Version|All                         |Linux (All)
+
+--- Comment #4 from David Silva <folken22mtv-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2011-05-03 11:21:56 PDT ---
+Thank you Bernhard for the patch. I tested it and it initially worked for the
+gallium nouveau driver, however it did not work when i tried to enable building
+the non-gallium nouveau driver. I found that it needed an additional reference
+to the header in nouveau_driver.h:
+(the error references Mesa 7.10.1, but I'm compiling 7.10.2 and get the same
+error)
+
+--- Mesa-7.10.1/src/mesa/drivers/dri/nouveau/nouveau_driver-orig.h   
+2011-01-26 01:52:45.000000000 +0200
++++ Mesa-7.10.1/src/mesa/drivers/dri/nouveau/nouveau_driver.h    2011-05-03
+13:04:57.000000000 +0300
+@@ -37,6 +37,7 @@
+ #undef NDEBUG
+ #include <assert.h>
+
++#include <nouveau/nv04_pushbuf.h>
+ #include "nouveau_device.h"
+ #include "nouveau_pushbuf.h"
+ #include "nouveau_grobj.h"
+
+I added these lines to your patch and now Mesa builds smoothly.
+Kernel 2.6.38.4
+libdrm 2.4.25
+Mesa 7.10.2
+(Slackware 13.37)
+
+My config:
+
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --libdir=/usr/lib \
+  --mandir=/usr/man \
+  --docdir=/usr/doc/mesa-7.10.2 \
+  --with-dri-driverdir=/usr/lib/xorg/modules/dri \
+ 
+--with-dri-drivers="i810,i915,i965,mach64,mga,nouveau,r128,r200,r300,r600,radeon,savage,sis,tdfx,unichrome,swrast"
+\
+  --enable-xcb \
+  --enable-gallium-nouveau \
+  --build=i486-slackware-linux
+
+
+I don't own any NVIDIA cards either, so a test from someone who does would be
+welcome.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
