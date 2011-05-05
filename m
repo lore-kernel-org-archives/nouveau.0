@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35562] Nouveau fails to link in Mesa 7.10.1
-Date: Tue,  3 May 2011 11:21:57 -0700 (PDT)
-Message-ID: <20110503182157.21C0B13004F@annarchy.freedesktop.org>
-References: <bug-35562-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36866] New: blank screen with my card/chipset
+	combination
+Date: Thu,  5 May 2011 00:58:46 -0700 (PDT)
+Message-ID: <bug-36866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35562-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,61 +19,46 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35562
+https://bugs.freedesktop.org/show_bug.cgi?id=36866
 
-David Silva <folken22mtv-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Platform|Other                       |x86 (IA32)
-         OS/Version|All                         |Linux (All)
-
---- Comment #4 from David Silva <folken22mtv-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2011-05-03 11:21:56 PDT ---
-Thank you Bernhard for the patch. I tested it and it initially worked for the
-gallium nouveau driver, however it did not work when i tried to enable building
-the non-gallium nouveau driver. I found that it needed an additional reference
-to the header in nouveau_driver.h:
-(the error references Mesa 7.10.1, but I'm compiling 7.10.2 and get the same
-error)
-
---- Mesa-7.10.1/src/mesa/drivers/dri/nouveau/nouveau_driver-orig.h   
-2011-01-26 01:52:45.000000000 +0200
-+++ Mesa-7.10.1/src/mesa/drivers/dri/nouveau/nouveau_driver.h    2011-05-03
-13:04:57.000000000 +0300
-@@ -37,6 +37,7 @@
- #undef NDEBUG
- #include <assert.h>
-
-+#include <nouveau/nv04_pushbuf.h>
- #include "nouveau_device.h"
- #include "nouveau_pushbuf.h"
- #include "nouveau_grobj.h"
-
-I added these lines to your patch and now Mesa builds smoothly.
-Kernel 2.6.38.4
-libdrm 2.4.25
-Mesa 7.10.2
-(Slackware 13.37)
-
-My config:
-
-./configure \
-  --prefix=/usr \
-  --sysconfdir=/etc \
-  --libdir=/usr/lib \
-  --mandir=/usr/man \
-  --docdir=/usr/doc/mesa-7.10.2 \
-  --with-dri-driverdir=/usr/lib/xorg/modules/dri \
- 
---with-dri-drivers="i810,i915,i965,mach64,mga,nouveau,r128,r200,r300,r600,radeon,savage,sis,tdfx,unichrome,swrast"
-\
-  --enable-xcb \
-  --enable-gallium-nouveau \
-  --build=i486-slackware-linux
+           Summary: blank screen with my card/chipset combination
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: joerg-h461GfFH5Qjk1uMJSBkQmQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-I don't own any NVIDIA cards either, so a test from someone who does would be
-welcome.
+Created an attachment (id=46350)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=46350)
+lspci -v -v -n
+
+Hello,
+
+I am using linus 2.6.38 (config attached) tree.
+
+There I have three effects:
+
+- I get a partially blank screen and no reactoion on the console if I compile
+nvidia_agp in the kernel. as a module, it boots, although with problems.
+- I get a lot of [drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on
+[CRTC:6] messages
+- I get a login prompt, but the VT thinks the screen is 24x80, while the fb is
+much large
+
+- Most annoying: after a suspend to disk, the screen comes back completely
+black. Actually the screen becopmes black even on suspend. My wild guess is
+that is is related to the nvidia_agp problem.
+
+Bye,
+
+Joerg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
