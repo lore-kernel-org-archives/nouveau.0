@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36866] blank screen with my card/chipset combination
-Date: Thu,  5 May 2011 00:59:38 -0700 (PDT)
-Message-ID: <20110505075938.9961813004E@annarchy.freedesktop.org>
+Date: Thu,  5 May 2011 01:00:20 -0700 (PDT)
+Message-ID: <20110505080020.203AD130051@annarchy.freedesktop.org>
 References: <bug-36866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36866
 
---- Comment #1 from joerg-h461GfFH5Qjk1uMJSBkQmQ@public.gmane.org 2011-05-05 00:59:38 PDT ---
-Created an attachment (id=46351)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=46351)
-Kernel config
+--- Comment #2 from joerg-h461GfFH5Qjk1uMJSBkQmQ@public.gmane.org 2011-05-05 01:00:19 PDT ---
+Created an attachment (id=46352)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=46352)
+dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
