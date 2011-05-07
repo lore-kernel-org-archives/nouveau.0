@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35876] Hard GPU hang on nvidia
-Date: Sat,  7 May 2011 06:51:44 -0700 (PDT)
-Message-ID: <20110507135145.2DFC213004F@annarchy.freedesktop.org>
-References: <bug-35876-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Subject: [PATCH] drm/nouveau: release vga_ram allocation before
+	tearing down mm's
+Date: Sat,  7 May 2011 18:03:27 +0200
+Message-ID: <1304784207-18456-1-git-send-email-daniel.vetter@ffwll.ch>
+References: <20110507144519.12cb3d4f@neptune.home>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20110507144519.12cb3d4f-hY15tx4IgV39zxVx7UNMDg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,20 +18,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35876
-
---- Comment #2 from Alexander Potashev <aspotashev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-07 06:51:44 PDT ---
-What version of Linux kernel do you use? I'm having the same problem with
-vanilla kernel v2.6.39-rc6. But there were no problems with v2.6.37 (may be I
-haven't tested it enough).
-
-I think, this should be fixed in the kernel (more exactly, in the "nouveau"
-kernel driver).
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T3RoZXJ3aXNlIHdlIGhhdmUgYSB1c2UtYWZ0ZXIgZnJlZS4KClRlc3RlZC1hbmQtUmVwb3J0ZWQt
+Ynk6IEJydW5vIFByw6ltb250IDxib25ib25zQGxpbnV4LXZzZXJ2ZXIub3JnPgpTaWduZWQtb2Zm
+LWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgotLS0KIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfbWVtLmMgICB8ICAgIDIgLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfc3RhdGUuYyB8ICAgIDIgKysKIDIgZmlsZXMgY2hhbmdlZCwgMiBp
+bnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfbWVtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X21lbS5jCmluZGV4IDUwNDVmOGIuLmMzZTk1M2IgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfbWVtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9tZW0uYwpAQCAtMTUyLDggKzE1Miw2IEBAIG5vdXZlYXVfbWVtX3ZyYW1fZmluaShzdHJ1
+Y3QgZHJtX2RldmljZSAqZGV2KQogewogCXN0cnVjdCBkcm1fbm91dmVhdV9wcml2YXRlICpkZXZf
+cHJpdiA9IGRldi0+ZGV2X3ByaXZhdGU7CiAKLQlub3V2ZWF1X2JvX3JlZihOVUxMLCAmZGV2X3By
+aXYtPnZnYV9yYW0pOwotCiAJdHRtX2JvX2RldmljZV9yZWxlYXNlKCZkZXZfcHJpdi0+dHRtLmJk
+ZXYpOwogCiAJbm91dmVhdV90dG1fZ2xvYmFsX3JlbGVhc2UoZGV2X3ByaXYpOwpkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5jIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5jCmluZGV4IGEzMGFkZWMuLjFmZTY1MDMgMTAwNjQ0
+Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3RhdGUuYworKysgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMKQEAgLTc2OCw2ICs3NjgsOCBAQCBz
+dGF0aWMgdm9pZCBub3V2ZWF1X2NhcmRfdGFrZWRvd24oc3RydWN0IGRybV9kZXZpY2UgKmRldikK
+IAllbmdpbmUtPm1jLnRha2Vkb3duKGRldik7CiAJZW5naW5lLT5kaXNwbGF5LmxhdGVfdGFrZWRv
+d24oZGV2KTsKIAorCW5vdXZlYXVfYm9fcmVmKE5VTEwsICZkZXZfcHJpdi0+dmdhX3JhbSk7CisK
+IAltdXRleF9sb2NrKCZkZXYtPnN0cnVjdF9tdXRleCk7CiAJdHRtX2JvX2NsZWFuX21tKCZkZXZf
+cHJpdi0+dHRtLmJkZXYsIFRUTV9QTF9WUkFNKTsKIAl0dG1fYm9fY2xlYW5fbW0oJmRldl9wcml2
+LT50dG0uYmRldiwgVFRNX1BMX1RUKTsKLS0gCjEuNy41LjEKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
