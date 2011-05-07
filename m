@@ -1,89 +1,36 @@
-From: Bruno =?UTF-8?B?UHLDqW1vbnQ=?= <bonbons@linux-vserver.org>
-Subject: Re: 2.6.39-rc6, nouveau: unload trips on freed memory (SLUB poison)
-Date: Sat, 7 May 2011 14:45:19 +0200
-Message-ID: <20110507144519.12cb3d4f@neptune.home>
-References: <20110505221922.402da0f2@neptune.home>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 35876] Hard GPU hang on nvidia
+Date: Sat,  7 May 2011 06:51:44 -0700 (PDT)
+Message-ID: <20110507135145.2DFC213004F@annarchy.freedesktop.org>
+References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <20110505221922.402da0f2@neptune.home>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: nouveau@lists.freedesktop.org, Dave@freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAwNSBNYXkgMjAxMSBCcnVubyBQcsOpbW9udCA8Ym9uYm9uc0BsaW51eC12c2VydmVy
-Lm9yZz4gd3JvdGU6Cj4gV2l0aCAyLjYuMzktcmM2IEknbSBoaXR0aW5nIHRoZSBmb2xsb3dpbmcg
-KHJlbGV2YW50IHBhcnQgZnJvbSBvYmpkdW1wIG9mCj4gZHJtX21tLm8gYXQgYm90dG9tKS4KPiBT
-b21lIHBhcnQgb2Ygbm9kZSBwYXNzZWQgdG8gZHJtX21tX3JlbW92ZV9ub2RlKCkgaXMgYmVpbmcg
-dXNlIGFmdGVyIGZyZWUKPiBhbmQgaGl0cyBTTFVCIHBvaXNvbi4KPiAKPiBCcnVubwo+IAo+IAo+
-IFsgIDMyOC40NDc0OThdIGRybTogdW5yZWdpc3RlcmVkIHBhbmljIG5vdGlmaWVyCj4gWyAgMzI4
-LjQ0NzY0OF0gW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IDB4QUZEODogUGFyc2luZyBkaWdp
-dGFsIG91dHB1dCBzY3JpcHQgdGFibGUKPiBbICAzMjguNDQ4NjQyXSBbZHJtXSBub3V2ZWF1IDAw
-MDA6MDI6MDAuMDogUmVzdG9yaW5nIFZHQSBmb250cwo+IFsgIDMyOC40NTA5NDldIFtkcm06ZHJt
-X21tX3Rha2Vkb3duXSAqRVJST1IqIE1lbW9yeSBtYW5hZ2VyIG5vdCBjbGVhbi4gRGVsYXlpbmcg
-dGFrZWRvd24KCkhlcmUgaXMgdGhlIHRyYWNlIHRvIHRoZSBlcnJvcmluZyBkcm1fbW1fdGFrZWRv
-d24oKSBjYWxsOgoKWyAgIDk1LjQ4NjQ2NF0gW2RybTpkcm1fbW1fdGFrZWRvd25dICpFUlJPUiog
-TWVtb3J5IG1hbmFnZXIgbm90IGNsZWFuLiBEZWxheWluZyB0YWtlZG93bgpbICAgOTUuNDg2NTg1
-XSAtLS0tLS0tLS0tLS1bIGN1dCBoZXJlIF0tLS0tLS0tLS0tLS0KWyAgIDk1LjQ4NjY0MF0ga2Vy
-bmVsIEJVRyBhdCAvdXNyL3NyYy9saW51eC0yLjYvZHJpdmVycy9ncHUvZHJtL2RybV9tbS5jOjYy
-OCEKWyAgIDk1LjQ4NjY5N10gaW52YWxpZCBvcGNvZGU6IDAwMDAgWyMxXSAKWyAgIDk1LjQ4Njgw
-NV0gbGFzdCBzeXNmcyBmaWxlOiAvc3lzL2RldmljZXMvcGxhdGZvcm0vdzgzNjI3aGYuNjU2L3Rl
-bXAzX2lucHV0ClsgICA5NS40ODY4NjJdIE1vZHVsZXMgbGlua2VkIGluOiBub3V2ZWF1KC0pIGZi
-Y29uIHRpbGVibGl0IGZvbnQgdHRtIGJpdGJsaXQgc29mdGN1cnNvciBkcm1fa21zX2hlbHBlciBk
-cm0gZmIgZmJkZXYgaTJjX2FsZ29fYml0IGNmYmNvcHlhcmVhIHZpZGVvIGNmYmltZ2JsdCBjZmJm
-aWxscmVjdCBuZnMgbG9ja2QgbmZzX2FjbCBzdW5ycGMgc25kX2ludGVsOHgwIHNuZF9hYzk3X2Nv
-ZGVjIGFjOTdfYnVzIHNuZF9wY20gc25kX3RpbWVyIHNuZCBzbmRfcGFnZV9hbGxvYyBwY3Nwa3IK
-WyAgIDk1LjQ4ODA2MV0gClsgICA5NS40ODgxMjFdIFBpZDogMTcxNCwgY29tbTogcm1tb2QgVGFp
-bnRlZDogRyAgICAgICAgVyAgIDIuNi4zOS1yYzYtanVwaXRlci0wMDAwMS1nNDQzYmFkZi1kaXJ0
-eSAjMTMgTlZJRElBIENvcnBvcmF0aW9uLiBuRk9SQ0UtTUNQL01TLTYzNzMKWyAgIDk1LjQ4ODMw
-Nl0gRUlQOiAwMDYwOls8ZGViNTJlMGM+XSBFRkxBR1M6IDAwMDEwMjkyIENQVTogMApbICAgOTUu
-NDg4Mzk3XSBFSVAgaXMgYXQgZHJtX21tX3Rha2Vkb3duKzB4N2MvMHg4MCBbZHJtXQpbICAgOTUu
-NDg4NDUxXSBFQVg6IDAwMDAwMDVmIEVCWDogZGExNDg2MjAgRUNYOiBmZmZmZmVkNSBFRFg6IDAw
-MDAwMDAwClsgICA5NS40ODg1MDhdIEVTSTogZGExNDg2MjAgRURJOiAwMDAwMDA5MCBFQlA6IGRi
-YzQ3ZTE4IEVTUDogZGJjNDdlMDQKWyAgIDk1LjQ4ODU2M10gIERTOiAwMDdiIEVTOiAwMDdiIEZT
-OiAwMDAwIEdTOiAwMGUwIFNTOiAwMDY4ClsgICA5NS40ODg2MzFdIFByb2Nlc3Mgcm1tb2QgKHBp
-ZDogMTcxNCwgdGk9ZGJjNDYwMDAgdGFzaz1kZDQ0NjQ3MCB0YXNrLnRpPWRiYzQ2MDAwKQpbICAg
-OTUuNDg4NjkzXSBTdGFjazoKWyAgIDk1LjQ4ODc0MF0gIGRlYjYyYTI0IGRlYjVjOGFiIGRhMTQ4
-NjIwIGRhMDAwMWU4IDAwMDAwMDkwIGRiYzQ3ZTI4IGRlYzU5MzRiIGRhMDAwMTQ4ClsgICA5NS40
-ODkwOTldICBkYTAwMDFkOCBkYmM0N2U0NCBkZWM1NTBlYiBkYmM0N2U0NCBkZWY5OThjYiBkYTIw
-NDgyMCBkYTAwMDAwMCBkYTAwMDAwMApbICAgOTUuNDg5NDY5XSAgZGJjNDdlNjQgZGVmNmRjNTEg
-ZGViNWMyODAgZGEwMDAxNDggZGEyMDQ4MzAgZGEyMDQ4MjAgZGQ1MjcwYzAgZGQ1MjcxZDgKWyAg
-IDk1LjQ4OTgzOV0gQ2FsbCBUcmFjZToKWyAgIDk1LjQ4OTkwN10gIFs8ZGVjNTkzNGI+XSB0dG1f
-Ym9fbWFuX3Rha2Vkb3duKzB4MmIvMHg1MCBbdHRtXQpbICAgOTUuNDg5OTY4XSAgWzxkZWM1NTBl
-Yj5dIHR0bV9ib19jbGVhbl9tbSsweDViLzB4YTAgW3R0bV0KWyAgIDk1LjQ5MDA2M10gIFs8ZGVm
-OTk4Y2I+XSA/IG52MTBfZmJfdGFrZWRvd24rMHgyYi8weDUwIFtub3V2ZWF1XQpbICAgOTUuNDkw
-MTMwXSAgWzxkZWY2ZGM1MT5dIG5vdXZlYXVfdW5sb2FkKzB4YTEvMHgxNTAgW25vdXZlYXVdClsg
-ICA5NS40OTAxOThdICBbPGRlYjRlYzMzPl0gZHJtX3B1dF9kZXYrMHhiMy8weDFjMCBbZHJtXQpb
-ICAgOTUuNDkwMjYzXSAgWzxkZWY2ZDAxMD5dIG5vdXZlYXVfcGNpX3JlbW92ZSsweDEwLzB4MjAg
-W25vdXZlYXVdClsgICA5NS40OTAzMjVdICBbPGMxMWQwYmFmPl0gcGNpX2RldmljZV9yZW1vdmUr
-MHgzZi8weGYwClsgICA5NS40OTAzODRdICBbPGMxMjNiNmFiPl0gX19kZXZpY2VfcmVsZWFzZV9k
-cml2ZXIrMHg0Yi8weGEwClsgICA5NS40OTA0MjRdICBbPGMxMjNiNzc3Pl0gZHJpdmVyX2RldGFj
-aCsweDc3LzB4ODAKWyAgIDk1LjQ5MDQyNF0gIFs8YzEyM2FhNWI+XSBidXNfcmVtb3ZlX2RyaXZl
-cisweDViLzB4YTAKWyAgIDk1LjQ5MDQyNF0gIFs8YzEyM2JmYzY+XSBkcml2ZXJfdW5yZWdpc3Rl
-cisweDQ2LzB4ODAKWyAgIDk1LjQ5MDQyNF0gIFs8YzExMDA4N2Y+XSA/IHN5c2ZzX3JlbW92ZV9m
-aWxlKzB4Zi8weDIwClsgICA5NS40OTA0MjRdICBbPGMxMWQwZTRhPl0gcGNpX3VucmVnaXN0ZXJf
-ZHJpdmVyKzB4MmEvMHg3MApbICAgOTUuNDkwNDI0XSAgWzxkZWI1MGFkZj5dIGRybV9wY2lfZXhp
-dCsweDdmLzB4OTAgW2RybV0KWyAgIDk1LjQ5MDQyNF0gIFs8ZGVmZTlmMTc+XSBub3V2ZWF1X2V4
-aXQrMHgxYi8weDIyIFtub3V2ZWF1XQpbICAgOTUuNDkwNDI0XSAgWzxjMTA1Y2RiYj5dIHN5c19k
-ZWxldGVfbW9kdWxlKzB4MTliLzB4MWYwClsgICA5NS40OTA0MjRdICBbPGMxMGE0MmQyPl0gPyBk
-b19tdW5tYXArMHgyMTIvMHgyZjAKWyAgIDk1LjQ5MDQyNF0gIFs8YzEzNzBiZDc+XSBzeXNlbnRl
-cl9kb19jYWxsKzB4MTIvMHgyNgpbICAgOTUuNDkwNDI0XSBDb2RlOiA3NSBkNSA4NSBjOSA3NSAw
-ZCA4MyBjNCAwOCA1YiA1ZSA1ZiBjOSBjMyA4YiA0ZSAzMCBlYiBlZiAwZiAwYiBlYiBmZSBjNyA0
-NCAyNCAwNCBhYiBjOCBiNSBkZSBjNyAwNCAyNCAyNCAyYSBiNiBkZSBlOCA3NSBiYyA4MSBlMiA8
-MGY+IDBiIGViIGZlIDU1IDg5IGU1IDU2IDUzIDhiIDU4IDFjIGZmIDRiIDQ4IDBmIGI2IDUwIDEw
-IGY2IGMyIApbICAgOTUuNDkwNDI0XSBFSVA6IFs8ZGViNTJlMGM+XSBkcm1fbW1fdGFrZWRvd24r
-MHg3Yy8weDgwIFtkcm1dIFNTOkVTUCAwMDY4OmRiYzQ3ZTA0ClsgICA5NS40OTQ0MTBdIC0tLVsg
-ZW5kIHRyYWNlIGVhNmI2MzQ3MmY1MzU1NjkgXS0tLQoKCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZl
-bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+https://bugs.freedesktop.org/show_bug.cgi?id=35876
+
+--- Comment #2 from Alexander Potashev <aspotashev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-07 06:51:44 PDT ---
+What version of Linux kernel do you use? I'm having the same problem with
+vanilla kernel v2.6.39-rc6. But there were no problems with v2.6.37 (may be I
+haven't tested it enough).
+
+I think, this should be fixed in the kernel (more exactly, in the "nouveau"
+kernel driver).
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
