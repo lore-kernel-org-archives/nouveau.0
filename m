@@ -1,16 +1,17 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
 Subject: Re: [PATCH 2/2] drm/nouveau/nv50: reclock memory using
  PMS on nv50
-Date: Sat, 07 May 2011 00:42:15 +0100
-Message-ID: <op.vu22spl57cbmmg@emo>
+Date: Sat, 07 May 2011 03:50:35 +0200
+Message-ID: <4DC4A56B.4080008@ensi-bourges.fr>
 References: <1304015622-5910-1-git-send-email-martin.peres@free.fr>
 	<1304122633-21621-1-git-send-email-martin.peres@free.fr>
 	<1304122633-21621-3-git-send-email-martin.peres@free.fr>
+	<op.vu22spl57cbmmg@emo>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1304122633-21621-3-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <op.vu22spl57cbmmg@emo>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,366 +21,247 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, 30 Apr 2011 01:17:13 +0100, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote:
-
-> From: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
->
-> v2: Reclock memory after reclocking the other engines
->
-> Signed-off-by: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_pm.c  |   11 +--
->  drivers/gpu/drm/nouveau/nouveau_pms.h |   98 +++++++++++++++++++++
->  drivers/gpu/drm/nouveau/nv50_pm.c     |  153 ++++++++++++++++++++++++++++++---
->  3 files changed, 242 insertions(+), 20 deletions(-)
->  create mode 100644 drivers/gpu/drm/nouveau/nouveau_pms.h
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_pm.c b/drivers/gpu/drm/nouveau/nouveau_pm.c
-> index 88f58b1..44d01bb 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_pm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_pm.c
-> @@ -45,10 +45,6 @@ nouveau_pm_clock_set(struct drm_device *dev, struct nouveau_pm_level *perflvl,
->  	if (khz == 0)
->  		return 0;
->-	/* Do no reclock the memory if the frequencies didn't change */
-> -	if (id == PLL_MEMORY && pm->cur->memory == khz)
-> -		return 0;
-> -
->  	pre_state = pm->clock_pre(dev, perflvl, id, khz);
->  	if (IS_ERR(pre_state))
->  		return PTR_ERR(pre_state);
-> @@ -100,7 +96,6 @@ nouveau_pm_perflvl_set(struct drm_device *dev, struct nouveau_pm_level *perflvl)
-> 	nouveau_pm_clock_set(dev, perflvl, PLL_CORE, perflvl->core);
->  	nouveau_pm_clock_set(dev, perflvl, PLL_SHADER, perflvl->shader);
-> -	nouveau_pm_clock_set(dev, perflvl, PLL_MEMORY, perflvl->memory);
->  	nouveau_pm_clock_set(dev, perflvl, PLL_UNK05, perflvl->unk05);
-> 	/* Decrease the voltage if needed*/
-> @@ -110,11 +105,13 @@ nouveau_pm_perflvl_set(struct drm_device *dev, struct nouveau_pm_level *perflvl)
->  	/* Wait for PLLs to stabilize */
->  	udelay(100);
->+	pm->unpause(dev);
-> +
-> +	nouveau_pm_clock_set(dev, perflvl, PLL_MEMORY, perflvl->memory);
-> +
->  	pm->cur = perflvl;
->  	ret = 0;
->-	pm->unpause(dev);
-> -
->  	NV_DEBUG(dev, "Reclocking took %lluns\n",
->  		 (nv04_timer_read(dev) - start));
->diff --git a/drivers/gpu/drm/nouveau/nouveau_pms.h b/drivers/gpu/drm/nouveau/nouveau_pms.h
-> new file mode 100644
-> index 0000000..d7a445b
-> --- /dev/null
-> +++ b/drivers/gpu/drm/nouveau/nouveau_pms.h
-> @@ -0,0 +1,98 @@
-> +/*
-> + * Copyright 2010 Red Hat Inc.
-> + *
-> + * Permission is hereby granted, free of charge, to any person obtaining a
-> + * copy of this software and associated documentation files (the "Software"),
-> + * to deal in the Software without restriction, including without limitation
-> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-> + * and/or sell copies of the Software, and to permit persons to whom the
-> + * Software is furnished to do so, subject to the following conditions:
-> + *
-> + * The above copyright notice and this permission notice shall be included in
-> + * all copies or substantial portions of the Software.
-> + *
-> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> + * OTHER DEALINGS IN THE SOFTWARE.
-> + *
-> + * Authors: Ben Skeggs
-> + */
-> +
-> +#ifndef __NOUVEAU_PMS_H__
-> +#define __NOUVEAU_PMS_H__
-> +
-> +struct pms_ucode {
-> +	u8 data[256];
-> +	union {
-> +		u8  *u08;
-> +		u16 *u16;
-> +		u32 *u32;
-> +	} ptr;
-> +	u16 len;
-> +
-> +	u32 reg;
-> +	u32 val;
-> +};
-> +
-> +static inline void
-> +pms_init(struct pms_ucode *pms)
-> +{
-> +	pms->ptr.u08 = pms->data;
-> +	pms->reg = 0xffffffff;
-> +	pms->val = 0xffffffff;
-> +}
-> +
-> +static inline void
-> +pms_fini(struct pms_ucode *pms)
-> +{
-> +	do {
-> +		*pms->ptr.u08++ = 0x7f;
-> +		pms->len = pms->ptr.u08 - pms->data;
-> +	} while (pms->len & 3);
-> +	pms->ptr.u08 = pms->data;
-> +}
-> +
-> +static inline void
-> +pms_unkn(struct pms_ucode *pms, u8 v0)
-> +{
-> +	*pms->ptr.u08++ = v0;
-> +}
-> +
-> +static inline void
-> +pms_op5f(struct pms_ucode *pms, u8 v0, u8 v1)
-> +{
-> +	*pms->ptr.u08++ = 0x5f;
-> +	*pms->ptr.u08++ = v0;
-> +	*pms->ptr.u08++ = v1;
-> +}
-> +
-> +static inline void
-> +pms_wr32(struct pms_ucode *pms, u32 reg, u32 val)
-> +{
-> +	if (val != pms->val) {
-> +		if ((val & 0xffff0000) == (pms->val & 0xffff0000)) {
-> +			*pms->ptr.u08++ = 0x42;
-> +			*pms->ptr.u16++ = (val & 0x0000ffff);
-> +		} else {
-> +			*pms->ptr.u08++ = 0xe2;
-> +			*pms->ptr.u32++ = val;
-> +		}
-> +
-> +		pms->val = val;
-> +	}
-> +
-> +	if ((reg & 0xffff0000) == (pms->reg & 0xffff0000)) {
-> +		*pms->ptr.u08++ = 0x40;
-> +		*pms->ptr.u16++ = (reg & 0x0000ffff);
-> +	} else {
-> +		*pms->ptr.u08++ = 0xe0;
-> +		*pms->ptr.u32++ = reg;
-> +	}
-> +	pms->reg = reg;
-> +}
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/nouveau/nv50_pm.c b/drivers/gpu/drm/nouveau/nv50_pm.c
-> index 4dd2d76..9b81f03 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_pm.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_pm.c
-> @@ -26,9 +26,11 @@
->  #include "nouveau_drv.h"
->  #include "nouveau_bios.h"
->  #include "nouveau_pm.h"
-> +#include "nouveau_pms.h"
-> struct nv50_pm_state {
->  	struct nouveau_pm_level *perflvl;
-> +	struct pms_ucode ucode;
->  	struct pll_lims pll;
->  	enum pll_types type;
->  	int N, M, P;
-> @@ -73,14 +75,20 @@ void *
->  nv50_pm_clock_pre(struct drm_device *dev, struct nouveau_pm_level *perflvl,
->  		  u32 id, int khz)
->  {
-> +	struct drm_nouveau_private *dev_priv = dev->dev_private;
->  	struct nv50_pm_state *state;
-> -	int dummy, ret;
-> +	struct pms_ucode *pms;
-> +	u32 reg0_old, reg0_new;
-> +	u32 crtc_mask;
-> +	u32 reg_c040;
-> +	int ret, dummy, i;
-> 	state = kzalloc(sizeof(*state), GFP_KERNEL);
->  	if (!state)
->  		return ERR_PTR(-ENOMEM);
->  	state->type = id;
->  	state->perflvl = perflvl;
-> +	pms = &state->ucode;
-> 	ret = get_pll_limits(dev, id, &state->pll);
->  	if (ret < 0) {
-> @@ -95,20 +103,88 @@ nv50_pm_clock_pre(struct drm_device *dev, struct nouveau_pm_level *perflvl,
->  		return ERR_PTR(ret);
->  	}
->+	reg0_old = nv_rd32(dev, state->pll.reg + 0);
-> +	reg0_new = 0x80000000 | (state->P << 16) | (reg0_old & 0xfff8ffff);
-> +
-> +	reg_c040 = nv_rd32(dev, 0xc040);
-> +
-> +	crtc_mask = 0;
-> +	for (i = 0; i < 2; i++) {
-> +		if (nv_rd32(dev, NV50_PDISPLAY_CRTC_C(i, CLOCK)))
-> +			crtc_mask |= (1 << i);
-> +	}
-> +
-> +	pms_init(pms);
-> +
-> +	switch (state->type) {
-> +	case PLL_MEMORY:
-> +		/* Wait for vblank on all the CRTCs */
-> +		if (crtc_mask) {
-> +			pms_op5f(pms, crtc_mask, 0x00);
-> +			pms_op5f(pms, crtc_mask, 0x01);
-> +		}
-> +
-> +		pms_wr32(pms, 0x002504, 0x00000001);
-> +		pms_unkn(pms, 0x06); /* unknown */
-> +		pms_unkn(pms, 0xb0); /* Disable bus access */
-> +		pms_op5f(pms, 0x00, 0x01);
-> +
-> +		pms_wr32(pms, 0x1002d4, 0x00000001);
-> +		pms_wr32(pms, 0x1002d0, 0x00000001);
-> +
-> +		pms_wr32(pms, 0x100210, 0x00000000);
-> +		pms_wr32(pms, 0x1002dc, 0x00000001);
-> +		pms_wr32(pms, state->pll.reg + 0, reg0_old);
-> +		pms_wr32(pms, state->pll.reg + 4, (state->N << 8) | state->M);
-> +
-> +		pms_wr32(pms, state->pll.reg + 0, reg0_new);
-> +		pms_wr32(pms, 0x1002dc, 0x00000000);
-> +		pms_wr32(pms, 0x100210, 0x80000000);
-> +		pms_unkn(pms, 0x07); /* unknown */
-> +
-> +		pms_unkn(pms, 0x0b);
-> +		pms_unkn(pms, 0xd0); /* Enable bus access again */
-> +		pms_op5f(pms, 0x00, 0x01);
-This one should be "pms_op5f(pms, 0x00, 0x00);"
-
-Confirmed with a few nv84/86/96 traces
-Still not sure how much difference it is going to make (stability wise)
-
-> +		pms_wr32(pms, 0x002504, 0x00000000);
-> +		break;
-> +	default:
-> +		pms_unkn(pms, 0xb0); /* Disable bus access */
-> +
-> +		pms_wr32(pms, 0xc040,
-> +			(reg_c040 & ~(1 << 5 | 1 << 4)) | (1 << 20));
-> +		pms_wr32(pms, state->pll.reg + 0, reg0_new);
-> +		pms_wr32(pms, state->pll.reg + 4, (state->N << 8) | state->M);
-> +		pms_unkn(pms, 0x0e);
-> +
-> +		pms_wr32(pms, 0xc040, reg_c040);
-> +		pms_wr32(pms, 0xc040, 0x10);
-> +
-> +		pms_wr32(pms, 0xc040, reg_c040);
-> +
-> +		pms_unkn(pms, 0xd0); /* Enable bus access again */
-> +		break;
-> +	}
-> +	pms_fini(pms);
-> +
->  	return state;
->  }
-> void
->  nv50_pm_clock_set(struct drm_device *dev, void *pre_state)
->  {
-> +	struct drm_nouveau_private *dev_priv = dev->dev_private;
->  	struct nv50_pm_state *state = pre_state;
->  	struct nouveau_pm_level *perflvl = state->perflvl;
-> -	u32 reg = state->pll.reg, tmp;
-> +	struct pms_ucode *pms = &state->ucode;
->  	struct bit_entry BIT_M;
-> +	u32 pbus1098, r100b0c, r619f00;
-> +	u32 pms_data, pms_kick;
->  	u16 script;
-> +	u32 reg = state->pll.reg, tmp;
->  	int N = state->N;
->  	int M = state->M;
->  	int P = state->P;
-> +	int i;
-> 	if (state->type == PLL_MEMORY && perflvl->memscript &&
->  	    bit_table(dev, 'M', &BIT_M) == 0 &&
-> @@ -126,20 +202,71 @@ nv50_pm_clock_set(struct drm_device *dev, void *pre_state)
->  		nouveau_bios_run_init_table(dev, perflvl->memscript, NULL);
->  	}
->+	/* only use PMS for changing the memory clocks */
->  	if (state->type == PLL_MEMORY) {
-> -		nv_wr32(dev, 0x100210, 0);
-> -		nv_wr32(dev, 0x1002dc, 1);
-> -	}
-> -	/* TODO: Tweek 0x4700 before reclocking UNK05 */
-> -
-> -	tmp  = nv_rd32(dev, reg + 0) & 0xfff8ffff;
-> -	tmp |= 0x80000000 | (P << 16);
-> -	nv_wr32(dev, reg + 0, tmp);
-> -	nv_wr32(dev, reg + 4, (N << 8) | M);
-> +		if (dev_priv->chipset < 0x90) {
-> +			pms_data = 0x001400;
-> +			pms_kick = 0x00000003;
-> +		} else {
-> +			pms_data = 0x080000;
-> +			pms_kick = 0x00000001;
-> +		}
->-	if (state->type == PLL_MEMORY) {
-> -		nv_wr32(dev, 0x1002dc, 0);
-> -		nv_wr32(dev, 0x100210, 0x80000000);
-> +		/* upload ucode */
-> +		pbus1098 = nv_mask(dev, 0x001098, 0x00000008, 0x00000000);
-> +		nv_wr32(dev, 0x001304, 0x00000000);
-> +		for (i = 0; i < pms->len / 4; i++)
-> +			nv_wr32(dev, pms_data + (i * 4), pms->ptr.u32[i]);
-> +		nv_wr32(dev, 0x001098, pbus1098 | 0x18);
-> +
-> +		nv_mask(dev, 0x616308, 0x00000000, 0x00000010);
-> +		nv_mask(dev, 0x616b08, 0x00000000, 0x00000010);
-> +
-> +		/* and run it! there's some pre and post script operations that
-> +		* nvidia do too, need to figure those out
-> +		*/
-> +		nv_mask(dev, 0x100200, 0x00000800, 0x00000000);
-> +		r100b0c = nv_mask(dev, 0x100b0c, 0x000000ff, 0x00000012);
-> +		r619f00 = nv_mask(dev, 0x619f00, 0x00000008, 0x00000000);
-> +		nv_wr32(dev, 0x00130c, pms_kick);
-> +		if (!nv_wait(dev, 0x001308, 0x00000100, 0x00000000)) {
-> +			NV_ERROR(dev, "pms ucode exec timed out\n");
-> +			NV_ERROR(dev, "0x001308: 0x%08x\n",
-> +				nv_rd32(dev, 0x001308));
-> +			for (i = 0; i < pms->len / 4; i++) {
-> +				NV_ERROR(dev, "0x%06x: 0x%08x\n",
-> +					0x1400 + (i * 4),
-> +					nv_rd32(dev, 0x001400 + (i * 4)));
-> +			}
-> +		}
-> +		nv_wr32(dev, 0x619f00, r619f00);
-> +		nv_wr32(dev, 0x100b0c, r100b0c);
-> +		nv_mask(dev, 0x616308, 0x00000000, 0x00000010);
-> +		nv_mask(dev, 0x616b08, 0x00000000, 0x00000010);
-> +
-> +		/*if (perflvl->id == 0) {
-> +			nv_wr32(dev, 0x100228, 0x00020102);
-> +			nv_wr32(dev, 0x100230, 0x28000808);
-> +			nv_wr32(dev, 0x100234, 0x06020702);
-> +		} else if (perflvl->id == 1) {
-> +			nv_wr32(dev, 0x100228, 0x00040305);
-> +			nv_wr32(dev, 0x100230, 0x28000808);
-> +			nv_wr32(dev, 0x100234, 0x11050905);
-> +		}else if (perflvl->id == 2) {
-> +			nv_wr32(dev, 0x100228, 0x0008080c);
-> +			nv_wr32(dev, 0x100230, 0x28000808);
-> +			nv_wr32(dev, 0x100234, 0x270c0c09);
-> +		}*/
-> +
-> +		nv_mask(dev, 0x100200, 0x00000000, 0x00000800);
-> +
-> +	} else {
-> +		/* TODO: Tweek 0x4700 before reclocking UNK05 */
-> +
-> +		tmp  = nv_rd32(dev, reg + 0) & 0xfff8ffff;
-> +		tmp |= 0x80000000 | (P << 16);
-> +		nv_wr32(dev, reg + 0, tmp);
-> +		nv_wr32(dev, reg + 4, (N << 8) | M);
->  	}
-> 	kfree(state);
+TGUgMDcvMDUvMjAxMSAwMTo0MiwgRW1pbCBWZWxpa292IGEgw6ljcml0IDoKPiBPbiBTYXQsIDMw
+IEFwciAyMDExIDAxOjE3OjEzICswMTAwLCBNYXJ0aW4gUGVyZXMgCj4gPG1hcnRpbi5wZXJlc0Bm
+cmVlLmZyPiB3cm90ZToKPgo+PiBGcm9tOiBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BlbnNp
+LWJvdXJnZXMuZnI+Cj4+Cj4+IHYyOiBSZWNsb2NrIG1lbW9yeSBhZnRlciByZWNsb2NraW5nIHRo
+ZSBvdGhlciBlbmdpbmVzCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IE1hcnRpbiBQZXJlcyA8bWFydGlu
+LnBlcmVzQGVuc2ktYm91cmdlcy5mcj4KPj4gLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X3BtLmMgIHwgICAxMSArLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfcG1zLmggfCAgIDk4ICsrKysrKysrKysrKysrKysrKysrKwo+PiAgZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnY1MF9wbS5jICAgICB8ICAxNTMgCj4+ICsrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKy0tLQo+PiAgMyBmaWxlcyBjaGFuZ2VkLCAyNDIgaW5zZXJ0aW9ucygrKSwgMjAg
+ZGVsZXRpb25zKC0pCj4+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9wbXMuaAo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9wbS5jIAo+PiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcG0u
+Ywo+PiBpbmRleCA4OGY1OGIxLi40NGQwMWJiIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X3BtLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9wbS5jCj4+IEBAIC00NSwxMCArNDUsNiBAQCBub3V2ZWF1X3BtX2Nsb2NrX3NldChz
+dHJ1Y3QgZHJtX2RldmljZSAqZGV2LCAKPj4gc3RydWN0IG5vdXZlYXVfcG1fbGV2ZWwgKnBlcmZs
+dmwsCj4+ICAgICAgaWYgKGtoeiA9PSAwKQo+PiAgICAgICAgICByZXR1cm4gMDsKPj4gLSAgICAv
+KiBEbyBubyByZWNsb2NrIHRoZSBtZW1vcnkgaWYgdGhlIGZyZXF1ZW5jaWVzIGRpZG4ndCBjaGFu
+Z2UgKi8KPj4gLSAgICBpZiAoaWQgPT0gUExMX01FTU9SWSAmJiBwbS0+Y3VyLT5tZW1vcnkgPT0g
+a2h6KQo+PiAtICAgICAgICByZXR1cm4gMDsKPj4gLQo+PiAgICAgIHByZV9zdGF0ZSA9IHBtLT5j
+bG9ja19wcmUoZGV2LCBwZXJmbHZsLCBpZCwga2h6KTsKPj4gICAgICBpZiAoSVNfRVJSKHByZV9z
+dGF0ZSkpCj4+ICAgICAgICAgIHJldHVybiBQVFJfRVJSKHByZV9zdGF0ZSk7Cj4+IEBAIC0xMDAs
+NyArOTYsNiBAQCBub3V2ZWF1X3BtX3BlcmZsdmxfc2V0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYs
+IAo+PiBzdHJ1Y3Qgbm91dmVhdV9wbV9sZXZlbCAqcGVyZmx2bCkKPj4gICAgIG5vdXZlYXVfcG1f
+Y2xvY2tfc2V0KGRldiwgcGVyZmx2bCwgUExMX0NPUkUsIHBlcmZsdmwtPmNvcmUpOwo+PiAgICAg
+IG5vdXZlYXVfcG1fY2xvY2tfc2V0KGRldiwgcGVyZmx2bCwgUExMX1NIQURFUiwgcGVyZmx2bC0+
+c2hhZGVyKTsKPj4gLSAgICBub3V2ZWF1X3BtX2Nsb2NrX3NldChkZXYsIHBlcmZsdmwsIFBMTF9N
+RU1PUlksIHBlcmZsdmwtPm1lbW9yeSk7Cj4+ICAgICAgbm91dmVhdV9wbV9jbG9ja19zZXQoZGV2
+LCBwZXJmbHZsLCBQTExfVU5LMDUsIHBlcmZsdmwtPnVuazA1KTsKPj4gICAgIC8qIERlY3JlYXNl
+IHRoZSB2b2x0YWdlIGlmIG5lZWRlZCovCj4+IEBAIC0xMTAsMTEgKzEwNSwxMyBAQCBub3V2ZWF1
+X3BtX3BlcmZsdmxfc2V0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIAo+PiBzdHJ1Y3Qgbm91dmVh
+dV9wbV9sZXZlbCAqcGVyZmx2bCkKPj4gICAgICAvKiBXYWl0IGZvciBQTExzIHRvIHN0YWJpbGl6
+ZSAqLwo+PiAgICAgIHVkZWxheSgxMDApOwo+PiArICAgIHBtLT51bnBhdXNlKGRldik7Cj4+ICsK
+Pj4gKyAgICBub3V2ZWF1X3BtX2Nsb2NrX3NldChkZXYsIHBlcmZsdmwsIFBMTF9NRU1PUlksIHBl
+cmZsdmwtPm1lbW9yeSk7Cj4+ICsKPj4gICAgICBwbS0+Y3VyID0gcGVyZmx2bDsKPj4gICAgICBy
+ZXQgPSAwOwo+PiAtICAgIHBtLT51bnBhdXNlKGRldik7Cj4+IC0KPj4gICAgICBOVl9ERUJVRyhk
+ZXYsICJSZWNsb2NraW5nIHRvb2sgJWxsdW5zXG4iLAo+PiAgICAgICAgICAgKG52MDRfdGltZXJf
+cmVhZChkZXYpIC0gc3RhcnQpKTsKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfcG1zLmggCj4+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9w
+bXMuaAo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwLi5kN2E0NDViCj4+
+IC0tLSAvZGV2L251bGwKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9w
+bXMuaAo+PiBAQCAtMCwwICsxLDk4IEBACj4+ICsvKgo+PiArICogQ29weXJpZ2h0IDIwMTAgUmVk
+IEhhdCBJbmMuCj4+ICsgKgo+PiArICogUGVybWlzc2lvbiBpcyBoZXJlYnkgZ3JhbnRlZCwgZnJl
+ZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gCj4+IG9idGFpbmluZyBhCj4+ICsgKiBjb3B5IG9m
+IHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlIAo+
+PiAiU29mdHdhcmUiKSwKPj4gKyAqIHRvIGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVz
+dHJpY3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IAo+PiBsaW1pdGF0aW9uCj4+ICsgKiB0aGUgcmln
+aHRzIHRvIHVzZSwgY29weSwgbW9kaWZ5LCBtZXJnZSwgcHVibGlzaCwgZGlzdHJpYnV0ZSwgCj4+
+IHN1YmxpY2Vuc2UsCj4+ICsgKiBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBh
+bmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSAKPj4gdGhlCj4+ICsgKiBTb2Z0d2FyZSBpcyBm
+dXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgo+
+PiArICoKPj4gKyAqIFRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Np
+b24gbm90aWNlIHNoYWxsIGJlIAo+PiBpbmNsdWRlZCBpbgo+PiArICogYWxsIGNvcGllcyBvciBz
+dWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuCj4+ICsgKgo+PiArICogVEhFIFNP
+RlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQs
+IAo+PiBFWFBSRVNTIE9SCj4+ICsgKiBJTVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVE
+IFRPIFRIRSBXQVJSQU5USUVTIE9GIAo+PiBNRVJDSEFOVEFCSUxJVFksCj4+ICsgKiBGSVRORVNT
+IEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gCj4+
+IEVWRU5UIFNIQUxMCj4+ICsgKiBUSEUgQ09QWVJJR0hUIEhPTERFUihTKSBPUiBBVVRIT1IoUykg
+QkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIAo+PiBEQU1BR0VTIE9SCj4+ICsgKiBPVEhFUiBMSUFC
+SUxJVFksIFdIRVRIRVIgSU4gQU4gQUNUSU9OIE9GIENPTlRSQUNULCBUT1JUIE9SIAo+PiBPVEhF
+UldJU0UsCj4+ICsgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEgg
+VEhFIFNPRlRXQVJFIE9SIFRIRSAKPj4gVVNFIE9SCj4+ICsgKiBPVEhFUiBERUFMSU5HUyBJTiBU
+SEUgU09GVFdBUkUuCj4+ICsgKgo+PiArICogQXV0aG9yczogQmVuIFNrZWdncwo+PiArICovCj4+
+ICsKPj4gKyNpZm5kZWYgX19OT1VWRUFVX1BNU19IX18KPj4gKyNkZWZpbmUgX19OT1VWRUFVX1BN
+U19IX18KPj4gKwo+PiArc3RydWN0IHBtc191Y29kZSB7Cj4+ICsgICAgdTggZGF0YVsyNTZdOwo+
+PiArICAgIHVuaW9uIHsKPj4gKyAgICAgICAgdTggICp1MDg7Cj4+ICsgICAgICAgIHUxNiAqdTE2
+Owo+PiArICAgICAgICB1MzIgKnUzMjsKPj4gKyAgICB9IHB0cjsKPj4gKyAgICB1MTYgbGVuOwo+
+PiArCj4+ICsgICAgdTMyIHJlZzsKPj4gKyAgICB1MzIgdmFsOwo+PiArfTsKPj4gKwo+PiArc3Rh
+dGljIGlubGluZSB2b2lkCj4+ICtwbXNfaW5pdChzdHJ1Y3QgcG1zX3Vjb2RlICpwbXMpCj4+ICt7
+Cj4+ICsgICAgcG1zLT5wdHIudTA4ID0gcG1zLT5kYXRhOwo+PiArICAgIHBtcy0+cmVnID0gMHhm
+ZmZmZmZmZjsKPj4gKyAgICBwbXMtPnZhbCA9IDB4ZmZmZmZmZmY7Cj4+ICt9Cj4+ICsKPj4gK3N0
+YXRpYyBpbmxpbmUgdm9pZAo+PiArcG1zX2Zpbmkoc3RydWN0IHBtc191Y29kZSAqcG1zKQo+PiAr
+ewo+PiArICAgIGRvIHsKPj4gKyAgICAgICAgKnBtcy0+cHRyLnUwOCsrID0gMHg3ZjsKPj4gKyAg
+ICAgICAgcG1zLT5sZW4gPSBwbXMtPnB0ci51MDggLSBwbXMtPmRhdGE7Cj4+ICsgICAgfSB3aGls
+ZSAocG1zLT5sZW4gJiAzKTsKPj4gKyAgICBwbXMtPnB0ci51MDggPSBwbXMtPmRhdGE7Cj4+ICt9
+Cj4+ICsKPj4gK3N0YXRpYyBpbmxpbmUgdm9pZAo+PiArcG1zX3Vua24oc3RydWN0IHBtc191Y29k
+ZSAqcG1zLCB1OCB2MCkKPj4gK3sKPj4gKyAgICAqcG1zLT5wdHIudTA4KysgPSB2MDsKPj4gK30K
+Pj4gKwo+PiArc3RhdGljIGlubGluZSB2b2lkCj4+ICtwbXNfb3A1ZihzdHJ1Y3QgcG1zX3Vjb2Rl
+ICpwbXMsIHU4IHYwLCB1OCB2MSkKPj4gK3sKPj4gKyAgICAqcG1zLT5wdHIudTA4KysgPSAweDVm
+Owo+PiArICAgICpwbXMtPnB0ci51MDgrKyA9IHYwOwo+PiArICAgICpwbXMtPnB0ci51MDgrKyA9
+IHYxOwo+PiArfQo+PiArCj4+ICtzdGF0aWMgaW5saW5lIHZvaWQKPj4gK3Btc193cjMyKHN0cnVj
+dCBwbXNfdWNvZGUgKnBtcywgdTMyIHJlZywgdTMyIHZhbCkKPj4gK3sKPj4gKyAgICBpZiAodmFs
+ICE9IHBtcy0+dmFsKSB7Cj4+ICsgICAgICAgIGlmICgodmFsICYgMHhmZmZmMDAwMCkgPT0gKHBt
+cy0+dmFsICYgMHhmZmZmMDAwMCkpIHsKPj4gKyAgICAgICAgICAgICpwbXMtPnB0ci51MDgrKyA9
+IDB4NDI7Cj4+ICsgICAgICAgICAgICAqcG1zLT5wdHIudTE2KysgPSAodmFsICYgMHgwMDAwZmZm
+Zik7Cj4+ICsgICAgICAgIH0gZWxzZSB7Cj4+ICsgICAgICAgICAgICAqcG1zLT5wdHIudTA4Kysg
+PSAweGUyOwo+PiArICAgICAgICAgICAgKnBtcy0+cHRyLnUzMisrID0gdmFsOwo+PiArICAgICAg
+ICB9Cj4+ICsKPj4gKyAgICAgICAgcG1zLT52YWwgPSB2YWw7Cj4+ICsgICAgfQo+PiArCj4+ICsg
+ICAgaWYgKChyZWcgJiAweGZmZmYwMDAwKSA9PSAocG1zLT5yZWcgJiAweGZmZmYwMDAwKSkgewo+
+PiArICAgICAgICAqcG1zLT5wdHIudTA4KysgPSAweDQwOwo+PiArICAgICAgICAqcG1zLT5wdHIu
+dTE2KysgPSAocmVnICYgMHgwMDAwZmZmZik7Cj4+ICsgICAgfSBlbHNlIHsKPj4gKyAgICAgICAg
+KnBtcy0+cHRyLnUwOCsrID0gMHhlMDsKPj4gKyAgICAgICAgKnBtcy0+cHRyLnUzMisrID0gcmVn
+Owo+PiArICAgIH0KPj4gKyAgICBwbXMtPnJlZyA9IHJlZzsKPj4gK30KPj4gKwo+PiArI2VuZGlm
+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX3BtLmMgCj4+IGIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9wbS5jCj4+IGluZGV4IDRkZDJkNzYuLjliODFm
+MDMgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfcG0uYwo+PiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX3BtLmMKPj4gQEAgLTI2LDkgKzI2LDEx
+IEBACj4+ICAjaW5jbHVkZSAibm91dmVhdV9kcnYuaCIKPj4gICNpbmNsdWRlICJub3V2ZWF1X2Jp
+b3MuaCIKPj4gICNpbmNsdWRlICJub3V2ZWF1X3BtLmgiCj4+ICsjaW5jbHVkZSAibm91dmVhdV9w
+bXMuaCIKPj4gc3RydWN0IG52NTBfcG1fc3RhdGUgewo+PiAgICAgIHN0cnVjdCBub3V2ZWF1X3Bt
+X2xldmVsICpwZXJmbHZsOwo+PiArICAgIHN0cnVjdCBwbXNfdWNvZGUgdWNvZGU7Cj4+ICAgICAg
+c3RydWN0IHBsbF9saW1zIHBsbDsKPj4gICAgICBlbnVtIHBsbF90eXBlcyB0eXBlOwo+PiAgICAg
+IGludCBOLCBNLCBQOwo+PiBAQCAtNzMsMTQgKzc1LDIwIEBAIHZvaWQgKgo+PiAgbnY1MF9wbV9j
+bG9ja19wcmUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IG5vdXZlYXVfcG1fbGV2ZWwg
+Cj4+ICpwZXJmbHZsLAo+PiAgICAgICAgICAgIHUzMiBpZCwgaW50IGtoeikKPj4gIHsKPj4gKyAg
+ICBzdHJ1Y3QgZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9wcml2YXRl
+Owo+PiAgICAgIHN0cnVjdCBudjUwX3BtX3N0YXRlICpzdGF0ZTsKPj4gLSAgICBpbnQgZHVtbXks
+IHJldDsKPj4gKyAgICBzdHJ1Y3QgcG1zX3Vjb2RlICpwbXM7Cj4+ICsgICAgdTMyIHJlZzBfb2xk
+LCByZWcwX25ldzsKPj4gKyAgICB1MzIgY3J0Y19tYXNrOwo+PiArICAgIHUzMiByZWdfYzA0MDsK
+Pj4gKyAgICBpbnQgcmV0LCBkdW1teSwgaTsKPj4gICAgIHN0YXRlID0ga3phbGxvYyhzaXplb2Yo
+KnN0YXRlKSwgR0ZQX0tFUk5FTCk7Cj4+ICAgICAgaWYgKCFzdGF0ZSkKPj4gICAgICAgICAgcmV0
+dXJuIEVSUl9QVFIoLUVOT01FTSk7Cj4+ICAgICAgc3RhdGUtPnR5cGUgPSBpZDsKPj4gICAgICBz
+dGF0ZS0+cGVyZmx2bCA9IHBlcmZsdmw7Cj4+ICsgICAgcG1zID0gJnN0YXRlLT51Y29kZTsKPj4g
+ICAgIHJldCA9IGdldF9wbGxfbGltaXRzKGRldiwgaWQsICZzdGF0ZS0+cGxsKTsKPj4gICAgICBp
+ZiAocmV0IDwgMCkgewo+PiBAQCAtOTUsMjAgKzEwMyw4OCBAQCBudjUwX3BtX2Nsb2NrX3ByZShz
+dHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgCj4+IG5vdXZlYXVfcG1fbGV2ZWwgKnBlcmZs
+dmwsCj4+ICAgICAgICAgIHJldHVybiBFUlJfUFRSKHJldCk7Cj4+ICAgICAgfQo+PiArICAgIHJl
+ZzBfb2xkID0gbnZfcmQzMihkZXYsIHN0YXRlLT5wbGwucmVnICsgMCk7Cj4+ICsgICAgcmVnMF9u
+ZXcgPSAweDgwMDAwMDAwIHwgKHN0YXRlLT5QIDw8IDE2KSB8IChyZWcwX29sZCAmIDB4ZmZmOGZm
+ZmYpOwo+PiArCj4+ICsgICAgcmVnX2MwNDAgPSBudl9yZDMyKGRldiwgMHhjMDQwKTsKPj4gKwo+
+PiArICAgIGNydGNfbWFzayA9IDA7Cj4+ICsgICAgZm9yIChpID0gMDsgaSA8IDI7IGkrKykgewo+
+PiArICAgICAgICBpZiAobnZfcmQzMihkZXYsIE5WNTBfUERJU1BMQVlfQ1JUQ19DKGksIENMT0NL
+KSkpCj4+ICsgICAgICAgICAgICBjcnRjX21hc2sgfD0gKDEgPDwgaSk7Cj4+ICsgICAgfQo+PiAr
+Cj4+ICsgICAgcG1zX2luaXQocG1zKTsKPj4gKwo+PiArICAgIHN3aXRjaCAoc3RhdGUtPnR5cGUp
+IHsKPj4gKyAgICBjYXNlIFBMTF9NRU1PUlk6Cj4+ICsgICAgICAgIC8qIFdhaXQgZm9yIHZibGFu
+ayBvbiBhbGwgdGhlIENSVENzICovCj4+ICsgICAgICAgIGlmIChjcnRjX21hc2spIHsKPj4gKyAg
+ICAgICAgICAgIHBtc19vcDVmKHBtcywgY3J0Y19tYXNrLCAweDAwKTsKPj4gKyAgICAgICAgICAg
+IHBtc19vcDVmKHBtcywgY3J0Y19tYXNrLCAweDAxKTsKPj4gKyAgICAgICAgfQo+PiArCj4+ICsg
+ICAgICAgIHBtc193cjMyKHBtcywgMHgwMDI1MDQsIDB4MDAwMDAwMDEpOwo+PiArICAgICAgICBw
+bXNfdW5rbihwbXMsIDB4MDYpOyAvKiB1bmtub3duICovCj4+ICsgICAgICAgIHBtc191bmtuKHBt
+cywgMHhiMCk7IC8qIERpc2FibGUgYnVzIGFjY2VzcyAqLwo+PiArICAgICAgICBwbXNfb3A1Zihw
+bXMsIDB4MDAsIDB4MDEpOwo+PiArCj4+ICsgICAgICAgIHBtc193cjMyKHBtcywgMHgxMDAyZDQs
+IDB4MDAwMDAwMDEpOwo+PiArICAgICAgICBwbXNfd3IzMihwbXMsIDB4MTAwMmQwLCAweDAwMDAw
+MDAxKTsKPj4gKwo+PiArICAgICAgICBwbXNfd3IzMihwbXMsIDB4MTAwMjEwLCAweDAwMDAwMDAw
+KTsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweDEwMDJkYywgMHgwMDAwMDAwMSk7Cj4+ICsg
+ICAgICAgIHBtc193cjMyKHBtcywgc3RhdGUtPnBsbC5yZWcgKyAwLCByZWcwX29sZCk7Cj4+ICsg
+ICAgICAgIHBtc193cjMyKHBtcywgc3RhdGUtPnBsbC5yZWcgKyA0LCAoc3RhdGUtPk4gPDwgOCkg
+fCBzdGF0ZS0+TSk7Cj4+ICsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCBzdGF0ZS0+cGxsLnJl
+ZyArIDAsIHJlZzBfbmV3KTsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweDEwMDJkYywgMHgw
+MDAwMDAwMCk7Cj4+ICsgICAgICAgIHBtc193cjMyKHBtcywgMHgxMDAyMTAsIDB4ODAwMDAwMDAp
+Owo+PiArICAgICAgICBwbXNfdW5rbihwbXMsIDB4MDcpOyAvKiB1bmtub3duICovCj4+ICsKPj4g
+KyAgICAgICAgcG1zX3Vua24ocG1zLCAweDBiKTsKPj4gKyAgICAgICAgcG1zX3Vua24ocG1zLCAw
+eGQwKTsgLyogRW5hYmxlIGJ1cyBhY2Nlc3MgYWdhaW4gKi8KPj4gKyAgICAgICAgcG1zX29wNWYo
+cG1zLCAweDAwLCAweDAxKTsKPiBUaGlzIG9uZSBzaG91bGQgYmUgInBtc19vcDVmKHBtcywgMHgw
+MCwgMHgwMCk7Igo+Cj4gQ29uZmlybWVkIHdpdGggYSBmZXcgbnY4NC84Ni85NiB0cmFjZXMKPiBT
+dGlsbCBub3Qgc3VyZSBob3cgbXVjaCBkaWZmZXJlbmNlIGl0IGlzIGdvaW5nIHRvIG1ha2UgKHN0
+YWJpbGl0eSB3aXNlKQpDcmFwLCBJIHVzZSBzbyBtYW55IHZhcmlhdGlvbnMgb2YgdGhpcyBzY3Jp
+cHQuIEkgbXVzdCBoYXZlIHNjcmV3ZWQgdXAgCnRoaXMgYSBsaXR0bGUuCgpBbnl3YXksIEkgbm93
+IG93biBhIG52ODQgdGhhdCBpcyBxdWl0ZSB1bnN0YWJsZSB3aXRoIHRoaXMgY29kZSBzbyBJJ20g
+CnRyeWluZyB0byBmaXggaXQgKGxvbmcgYW5kIHBhaW5mdWwgbmVjZXNzYXJ5IHByb2Nlc3MpCj4K
+Pj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweDAwMjUwNCwgMHgwMDAwMDAwMCk7Cj4+ICsgICAg
+ICAgIGJyZWFrOwo+PiArICAgIGRlZmF1bHQ6Cj4+ICsgICAgICAgIHBtc191bmtuKHBtcywgMHhi
+MCk7IC8qIERpc2FibGUgYnVzIGFjY2VzcyAqLwo+PiArCj4+ICsgICAgICAgIHBtc193cjMyKHBt
+cywgMHhjMDQwLAo+PiArICAgICAgICAgICAgKHJlZ19jMDQwICYgfigxIDw8IDUgfCAxIDw8IDQp
+KSB8ICgxIDw8IDIwKSk7Cj4+ICsgICAgICAgIHBtc193cjMyKHBtcywgc3RhdGUtPnBsbC5yZWcg
+KyAwLCByZWcwX25ldyk7Cj4+ICsgICAgICAgIHBtc193cjMyKHBtcywgc3RhdGUtPnBsbC5yZWcg
+KyA0LCAoc3RhdGUtPk4gPDwgOCkgfCBzdGF0ZS0+TSk7Cj4+ICsgICAgICAgIHBtc191bmtuKHBt
+cywgMHgwZSk7Cj4+ICsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweGMwNDAsIHJlZ19jMDQw
+KTsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweGMwNDAsIDB4MTApOwo+PiArCj4+ICsgICAg
+ICAgIHBtc193cjMyKHBtcywgMHhjMDQwLCByZWdfYzA0MCk7Cj4+ICsKPj4gKyAgICAgICAgcG1z
+X3Vua24ocG1zLCAweGQwKTsgLyogRW5hYmxlIGJ1cyBhY2Nlc3MgYWdhaW4gKi8KPj4gKyAgICAg
+ICAgYnJlYWs7Cj4+ICsgICAgfQo+PiArICAgIHBtc19maW5pKHBtcyk7Cj4+ICsKPj4gICAgICBy
+ZXR1cm4gc3RhdGU7Cj4+ICB9Cj4+IHZvaWQKPj4gIG52NTBfcG1fY2xvY2tfc2V0KHN0cnVjdCBk
+cm1fZGV2aWNlICpkZXYsIHZvaWQgKnByZV9zdGF0ZSkKPj4gIHsKPj4gKyAgICBzdHJ1Y3QgZHJt
+X25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9wcml2YXRlOwo+PiAgICAgIHN0
+cnVjdCBudjUwX3BtX3N0YXRlICpzdGF0ZSA9IHByZV9zdGF0ZTsKPj4gICAgICBzdHJ1Y3Qgbm91
+dmVhdV9wbV9sZXZlbCAqcGVyZmx2bCA9IHN0YXRlLT5wZXJmbHZsOwo+PiAtICAgIHUzMiByZWcg
+PSBzdGF0ZS0+cGxsLnJlZywgdG1wOwo+PiArICAgIHN0cnVjdCBwbXNfdWNvZGUgKnBtcyA9ICZz
+dGF0ZS0+dWNvZGU7Cj4+ICAgICAgc3RydWN0IGJpdF9lbnRyeSBCSVRfTTsKPj4gKyAgICB1MzIg
+cGJ1czEwOTgsIHIxMDBiMGMsIHI2MTlmMDA7Cj4+ICsgICAgdTMyIHBtc19kYXRhLCBwbXNfa2lj
+azsKPj4gICAgICB1MTYgc2NyaXB0Owo+PiArICAgIHUzMiByZWcgPSBzdGF0ZS0+cGxsLnJlZywg
+dG1wOwo+PiAgICAgIGludCBOID0gc3RhdGUtPk47Cj4+ICAgICAgaW50IE0gPSBzdGF0ZS0+TTsK
+Pj4gICAgICBpbnQgUCA9IHN0YXRlLT5QOwo+PiArICAgIGludCBpOwo+PiAgICAgaWYgKHN0YXRl
+LT50eXBlID09IFBMTF9NRU1PUlkgJiYgcGVyZmx2bC0+bWVtc2NyaXB0ICYmCj4+ICAgICAgICAg
+IGJpdF90YWJsZShkZXYsICdNJywgJkJJVF9NKSA9PSAwICYmCj4+IEBAIC0xMjYsMjAgKzIwMiw3
+MSBAQCBudjUwX3BtX2Nsb2NrX3NldChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkIAo+PiAq
+cHJlX3N0YXRlKQo+PiAgICAgICAgICBub3V2ZWF1X2Jpb3NfcnVuX2luaXRfdGFibGUoZGV2LCBw
+ZXJmbHZsLT5tZW1zY3JpcHQsIE5VTEwpOwo+PiAgICAgIH0KPj4gKyAgICAvKiBvbmx5IHVzZSBQ
+TVMgZm9yIGNoYW5naW5nIHRoZSBtZW1vcnkgY2xvY2tzICovCj4+ICAgICAgaWYgKHN0YXRlLT50
+eXBlID09IFBMTF9NRU1PUlkpIHsKPj4gLSAgICAgICAgbnZfd3IzMihkZXYsIDB4MTAwMjEwLCAw
+KTsKPj4gLSAgICAgICAgbnZfd3IzMihkZXYsIDB4MTAwMmRjLCAxKTsKPj4gLSAgICB9Cj4+IC0g
+ICAgLyogVE9ETzogVHdlZWsgMHg0NzAwIGJlZm9yZSByZWNsb2NraW5nIFVOSzA1ICovCj4+IC0K
+Pj4gLSAgICB0bXAgID0gbnZfcmQzMihkZXYsIHJlZyArIDApICYgMHhmZmY4ZmZmZjsKPj4gLSAg
+ICB0bXAgfD0gMHg4MDAwMDAwMCB8IChQIDw8IDE2KTsKPj4gLSAgICBudl93cjMyKGRldiwgcmVn
+ICsgMCwgdG1wKTsKPj4gLSAgICBudl93cjMyKGRldiwgcmVnICsgNCwgKE4gPDwgOCkgfCBNKTsK
+Pj4gKyAgICAgICAgaWYgKGRldl9wcml2LT5jaGlwc2V0IDwgMHg5MCkgewo+PiArICAgICAgICAg
+ICAgcG1zX2RhdGEgPSAweDAwMTQwMDsKPj4gKyAgICAgICAgICAgIHBtc19raWNrID0gMHgwMDAw
+MDAwMzsKPj4gKyAgICAgICAgfSBlbHNlIHsKPj4gKyAgICAgICAgICAgIHBtc19kYXRhID0gMHgw
+ODAwMDA7Cj4+ICsgICAgICAgICAgICBwbXNfa2ljayA9IDB4MDAwMDAwMDE7Cj4+ICsgICAgICAg
+IH0KPj4gLSAgICBpZiAoc3RhdGUtPnR5cGUgPT0gUExMX01FTU9SWSkgewo+PiAtICAgICAgICBu
+dl93cjMyKGRldiwgMHgxMDAyZGMsIDApOwo+PiAtICAgICAgICBudl93cjMyKGRldiwgMHgxMDAy
+MTAsIDB4ODAwMDAwMDApOwo+PiArICAgICAgICAvKiB1cGxvYWQgdWNvZGUgKi8KPj4gKyAgICAg
+ICAgcGJ1czEwOTggPSBudl9tYXNrKGRldiwgMHgwMDEwOTgsIDB4MDAwMDAwMDgsIDB4MDAwMDAw
+MDApOwo+PiArICAgICAgICBudl93cjMyKGRldiwgMHgwMDEzMDQsIDB4MDAwMDAwMDApOwo+PiAr
+ICAgICAgICBmb3IgKGkgPSAwOyBpIDwgcG1zLT5sZW4gLyA0OyBpKyspCj4+ICsgICAgICAgICAg
+ICBudl93cjMyKGRldiwgcG1zX2RhdGEgKyAoaSAqIDQpLCBwbXMtPnB0ci51MzJbaV0pOwo+PiAr
+ICAgICAgICBudl93cjMyKGRldiwgMHgwMDEwOTgsIHBidXMxMDk4IHwgMHgxOCk7Cj4+ICsKPj4g
+KyAgICAgICAgbnZfbWFzayhkZXYsIDB4NjE2MzA4LCAweDAwMDAwMDAwLCAweDAwMDAwMDEwKTsK
+Pj4gKyAgICAgICAgbnZfbWFzayhkZXYsIDB4NjE2YjA4LCAweDAwMDAwMDAwLCAweDAwMDAwMDEw
+KTsKPj4gKwo+PiArICAgICAgICAvKiBhbmQgcnVuIGl0ISB0aGVyZSdzIHNvbWUgcHJlIGFuZCBw
+b3N0IHNjcmlwdCBvcGVyYXRpb25zIHRoYXQKPj4gKyAgICAgICAgKiBudmlkaWEgZG8gdG9vLCBu
+ZWVkIHRvIGZpZ3VyZSB0aG9zZSBvdXQKPj4gKyAgICAgICAgKi8KPj4gKyAgICAgICAgbnZfbWFz
+ayhkZXYsIDB4MTAwMjAwLCAweDAwMDAwODAwLCAweDAwMDAwMDAwKTsKPj4gKyAgICAgICAgcjEw
+MGIwYyA9IG52X21hc2soZGV2LCAweDEwMGIwYywgMHgwMDAwMDBmZiwgMHgwMDAwMDAxMik7Cj4+
+ICsgICAgICAgIHI2MTlmMDAgPSBudl9tYXNrKGRldiwgMHg2MTlmMDAsIDB4MDAwMDAwMDgsIDB4
+MDAwMDAwMDApOwo+PiArICAgICAgICBudl93cjMyKGRldiwgMHgwMDEzMGMsIHBtc19raWNrKTsK
+Pj4gKyAgICAgICAgaWYgKCFudl93YWl0KGRldiwgMHgwMDEzMDgsIDB4MDAwMDAxMDAsIDB4MDAw
+MDAwMDApKSB7Cj4+ICsgICAgICAgICAgICBOVl9FUlJPUihkZXYsICJwbXMgdWNvZGUgZXhlYyB0
+aW1lZCBvdXRcbiIpOwo+PiArICAgICAgICAgICAgTlZfRVJST1IoZGV2LCAiMHgwMDEzMDg6IDB4
+JTA4eFxuIiwKPj4gKyAgICAgICAgICAgICAgICBudl9yZDMyKGRldiwgMHgwMDEzMDgpKTsKPj4g
+KyAgICAgICAgICAgIGZvciAoaSA9IDA7IGkgPCBwbXMtPmxlbiAvIDQ7IGkrKykgewo+PiArICAg
+ICAgICAgICAgICAgIE5WX0VSUk9SKGRldiwgIjB4JTA2eDogMHglMDh4XG4iLAo+PiArICAgICAg
+ICAgICAgICAgICAgICAweDE0MDAgKyAoaSAqIDQpLAo+PiArICAgICAgICAgICAgICAgICAgICBu
+dl9yZDMyKGRldiwgMHgwMDE0MDAgKyAoaSAqIDQpKSk7Cj4+ICsgICAgICAgICAgICB9Cj4+ICsg
+ICAgICAgIH0KPj4gKyAgICAgICAgbnZfd3IzMihkZXYsIDB4NjE5ZjAwLCByNjE5ZjAwKTsKPj4g
+KyAgICAgICAgbnZfd3IzMihkZXYsIDB4MTAwYjBjLCByMTAwYjBjKTsKPj4gKyAgICAgICAgbnZf
+bWFzayhkZXYsIDB4NjE2MzA4LCAweDAwMDAwMDAwLCAweDAwMDAwMDEwKTsKPj4gKyAgICAgICAg
+bnZfbWFzayhkZXYsIDB4NjE2YjA4LCAweDAwMDAwMDAwLCAweDAwMDAwMDEwKTsKPj4gKwo+PiAr
+ICAgICAgICAvKmlmIChwZXJmbHZsLT5pZCA9PSAwKSB7Cj4+ICsgICAgICAgICAgICBudl93cjMy
+KGRldiwgMHgxMDAyMjgsIDB4MDAwMjAxMDIpOwo+PiArICAgICAgICAgICAgbnZfd3IzMihkZXYs
+IDB4MTAwMjMwLCAweDI4MDAwODA4KTsKPj4gKyAgICAgICAgICAgIG52X3dyMzIoZGV2LCAweDEw
+MDIzNCwgMHgwNjAyMDcwMik7Cj4+ICsgICAgICAgIH0gZWxzZSBpZiAocGVyZmx2bC0+aWQgPT0g
+MSkgewo+PiArICAgICAgICAgICAgbnZfd3IzMihkZXYsIDB4MTAwMjI4LCAweDAwMDQwMzA1KTsK
+Pj4gKyAgICAgICAgICAgIG52X3dyMzIoZGV2LCAweDEwMDIzMCwgMHgyODAwMDgwOCk7Cj4+ICsg
+ICAgICAgICAgICBudl93cjMyKGRldiwgMHgxMDAyMzQsIDB4MTEwNTA5MDUpOwo+PiArICAgICAg
+ICB9ZWxzZSBpZiAocGVyZmx2bC0+aWQgPT0gMikgewo+PiArICAgICAgICAgICAgbnZfd3IzMihk
+ZXYsIDB4MTAwMjI4LCAweDAwMDgwODBjKTsKPj4gKyAgICAgICAgICAgIG52X3dyMzIoZGV2LCAw
+eDEwMDIzMCwgMHgyODAwMDgwOCk7Cj4+ICsgICAgICAgICAgICBudl93cjMyKGRldiwgMHgxMDAy
+MzQsIDB4MjcwYzBjMDkpOwo+PiArICAgICAgICB9Ki8KPj4gKwo+PiArICAgICAgICBudl9tYXNr
+KGRldiwgMHgxMDAyMDAsIDB4MDAwMDAwMDAsIDB4MDAwMDA4MDApOwo+PiArCj4+ICsgICAgfSBl
+bHNlIHsKPj4gKyAgICAgICAgLyogVE9ETzogVHdlZWsgMHg0NzAwIGJlZm9yZSByZWNsb2NraW5n
+IFVOSzA1ICovCj4+ICsKPj4gKyAgICAgICAgdG1wICA9IG52X3JkMzIoZGV2LCByZWcgKyAwKSAm
+IDB4ZmZmOGZmZmY7Cj4+ICsgICAgICAgIHRtcCB8PSAweDgwMDAwMDAwIHwgKFAgPDwgMTYpOwo+
+PiArICAgICAgICBudl93cjMyKGRldiwgcmVnICsgMCwgdG1wKTsKPj4gKyAgICAgICAgbnZfd3Iz
+MihkZXYsIHJlZyArIDQsIChOIDw8IDgpIHwgTSk7Cj4+ICAgICAgfQo+PiAgICAga2ZyZWUoc3Rh
+dGUpOwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
