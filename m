@@ -1,17 +1,16 @@
-From: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH 2/2] drm/nouveau/nv50: reclock memory using
  PMS on nv50
-Date: Sat, 07 May 2011 03:50:35 +0200
-Message-ID: <4DC4A56B.4080008@ensi-bourges.fr>
+Date: Sat, 07 May 2011 10:48:15 +0300
+Message-ID: <1304754495.20640.3.camel@maxim-laptop>
 References: <1304015622-5910-1-git-send-email-martin.peres@free.fr>
 	<1304122633-21621-1-git-send-email-martin.peres@free.fr>
 	<1304122633-21621-3-git-send-email-martin.peres@free.fr>
-	<op.vu22spl57cbmmg@emo>
+	<op.vu22spl57cbmmg@emo>  <4DC4A56B.4080008@ensi-bourges.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="=-0U7OGdi9ZPXuYbwsdl9Z"
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <op.vu22spl57cbmmg@emo>
+In-Reply-To: <4DC4A56B.4080008-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,247 +20,633 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-TGUgMDcvMDUvMjAxMSAwMTo0MiwgRW1pbCBWZWxpa292IGEgw6ljcml0IDoKPiBPbiBTYXQsIDMw
-IEFwciAyMDExIDAxOjE3OjEzICswMTAwLCBNYXJ0aW4gUGVyZXMgCj4gPG1hcnRpbi5wZXJlc0Bm
-cmVlLmZyPiB3cm90ZToKPgo+PiBGcm9tOiBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BlbnNp
-LWJvdXJnZXMuZnI+Cj4+Cj4+IHYyOiBSZWNsb2NrIG1lbW9yeSBhZnRlciByZWNsb2NraW5nIHRo
-ZSBvdGhlciBlbmdpbmVzCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IE1hcnRpbiBQZXJlcyA8bWFydGlu
-LnBlcmVzQGVuc2ktYm91cmdlcy5mcj4KPj4gLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X3BtLmMgIHwgICAxMSArLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfcG1zLmggfCAgIDk4ICsrKysrKysrKysrKysrKysrKysrKwo+PiAgZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbnY1MF9wbS5jICAgICB8ICAxNTMgCj4+ICsrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKy0tLQo+PiAgMyBmaWxlcyBjaGFuZ2VkLCAyNDIgaW5zZXJ0aW9ucygrKSwgMjAg
-ZGVsZXRpb25zKC0pCj4+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9wbXMuaAo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9wbS5jIAo+PiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcG0u
-Ywo+PiBpbmRleCA4OGY1OGIxLi40NGQwMWJiIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X3BtLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9wbS5jCj4+IEBAIC00NSwxMCArNDUsNiBAQCBub3V2ZWF1X3BtX2Nsb2NrX3NldChz
-dHJ1Y3QgZHJtX2RldmljZSAqZGV2LCAKPj4gc3RydWN0IG5vdXZlYXVfcG1fbGV2ZWwgKnBlcmZs
-dmwsCj4+ICAgICAgaWYgKGtoeiA9PSAwKQo+PiAgICAgICAgICByZXR1cm4gMDsKPj4gLSAgICAv
-KiBEbyBubyByZWNsb2NrIHRoZSBtZW1vcnkgaWYgdGhlIGZyZXF1ZW5jaWVzIGRpZG4ndCBjaGFu
-Z2UgKi8KPj4gLSAgICBpZiAoaWQgPT0gUExMX01FTU9SWSAmJiBwbS0+Y3VyLT5tZW1vcnkgPT0g
-a2h6KQo+PiAtICAgICAgICByZXR1cm4gMDsKPj4gLQo+PiAgICAgIHByZV9zdGF0ZSA9IHBtLT5j
-bG9ja19wcmUoZGV2LCBwZXJmbHZsLCBpZCwga2h6KTsKPj4gICAgICBpZiAoSVNfRVJSKHByZV9z
-dGF0ZSkpCj4+ICAgICAgICAgIHJldHVybiBQVFJfRVJSKHByZV9zdGF0ZSk7Cj4+IEBAIC0xMDAs
-NyArOTYsNiBAQCBub3V2ZWF1X3BtX3BlcmZsdmxfc2V0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYs
-IAo+PiBzdHJ1Y3Qgbm91dmVhdV9wbV9sZXZlbCAqcGVyZmx2bCkKPj4gICAgIG5vdXZlYXVfcG1f
-Y2xvY2tfc2V0KGRldiwgcGVyZmx2bCwgUExMX0NPUkUsIHBlcmZsdmwtPmNvcmUpOwo+PiAgICAg
-IG5vdXZlYXVfcG1fY2xvY2tfc2V0KGRldiwgcGVyZmx2bCwgUExMX1NIQURFUiwgcGVyZmx2bC0+
-c2hhZGVyKTsKPj4gLSAgICBub3V2ZWF1X3BtX2Nsb2NrX3NldChkZXYsIHBlcmZsdmwsIFBMTF9N
-RU1PUlksIHBlcmZsdmwtPm1lbW9yeSk7Cj4+ICAgICAgbm91dmVhdV9wbV9jbG9ja19zZXQoZGV2
-LCBwZXJmbHZsLCBQTExfVU5LMDUsIHBlcmZsdmwtPnVuazA1KTsKPj4gICAgIC8qIERlY3JlYXNl
-IHRoZSB2b2x0YWdlIGlmIG5lZWRlZCovCj4+IEBAIC0xMTAsMTEgKzEwNSwxMyBAQCBub3V2ZWF1
-X3BtX3BlcmZsdmxfc2V0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIAo+PiBzdHJ1Y3Qgbm91dmVh
-dV9wbV9sZXZlbCAqcGVyZmx2bCkKPj4gICAgICAvKiBXYWl0IGZvciBQTExzIHRvIHN0YWJpbGl6
-ZSAqLwo+PiAgICAgIHVkZWxheSgxMDApOwo+PiArICAgIHBtLT51bnBhdXNlKGRldik7Cj4+ICsK
-Pj4gKyAgICBub3V2ZWF1X3BtX2Nsb2NrX3NldChkZXYsIHBlcmZsdmwsIFBMTF9NRU1PUlksIHBl
-cmZsdmwtPm1lbW9yeSk7Cj4+ICsKPj4gICAgICBwbS0+Y3VyID0gcGVyZmx2bDsKPj4gICAgICBy
-ZXQgPSAwOwo+PiAtICAgIHBtLT51bnBhdXNlKGRldik7Cj4+IC0KPj4gICAgICBOVl9ERUJVRyhk
-ZXYsICJSZWNsb2NraW5nIHRvb2sgJWxsdW5zXG4iLAo+PiAgICAgICAgICAgKG52MDRfdGltZXJf
-cmVhZChkZXYpIC0gc3RhcnQpKTsKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfcG1zLmggCj4+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9w
-bXMuaAo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwLi5kN2E0NDViCj4+
-IC0tLSAvZGV2L251bGwKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9w
-bXMuaAo+PiBAQCAtMCwwICsxLDk4IEBACj4+ICsvKgo+PiArICogQ29weXJpZ2h0IDIwMTAgUmVk
-IEhhdCBJbmMuCj4+ICsgKgo+PiArICogUGVybWlzc2lvbiBpcyBoZXJlYnkgZ3JhbnRlZCwgZnJl
-ZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gCj4+IG9idGFpbmluZyBhCj4+ICsgKiBjb3B5IG9m
-IHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlIAo+
-PiAiU29mdHdhcmUiKSwKPj4gKyAqIHRvIGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVz
-dHJpY3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IAo+PiBsaW1pdGF0aW9uCj4+ICsgKiB0aGUgcmln
-aHRzIHRvIHVzZSwgY29weSwgbW9kaWZ5LCBtZXJnZSwgcHVibGlzaCwgZGlzdHJpYnV0ZSwgCj4+
-IHN1YmxpY2Vuc2UsCj4+ICsgKiBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBh
-bmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSAKPj4gdGhlCj4+ICsgKiBTb2Z0d2FyZSBpcyBm
-dXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgo+
-PiArICoKPj4gKyAqIFRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Np
-b24gbm90aWNlIHNoYWxsIGJlIAo+PiBpbmNsdWRlZCBpbgo+PiArICogYWxsIGNvcGllcyBvciBz
-dWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuCj4+ICsgKgo+PiArICogVEhFIFNP
-RlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQs
-IAo+PiBFWFBSRVNTIE9SCj4+ICsgKiBJTVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVE
-IFRPIFRIRSBXQVJSQU5USUVTIE9GIAo+PiBNRVJDSEFOVEFCSUxJVFksCj4+ICsgKiBGSVRORVNT
-IEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gCj4+
-IEVWRU5UIFNIQUxMCj4+ICsgKiBUSEUgQ09QWVJJR0hUIEhPTERFUihTKSBPUiBBVVRIT1IoUykg
-QkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIAo+PiBEQU1BR0VTIE9SCj4+ICsgKiBPVEhFUiBMSUFC
-SUxJVFksIFdIRVRIRVIgSU4gQU4gQUNUSU9OIE9GIENPTlRSQUNULCBUT1JUIE9SIAo+PiBPVEhF
-UldJU0UsCj4+ICsgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEgg
-VEhFIFNPRlRXQVJFIE9SIFRIRSAKPj4gVVNFIE9SCj4+ICsgKiBPVEhFUiBERUFMSU5HUyBJTiBU
-SEUgU09GVFdBUkUuCj4+ICsgKgo+PiArICogQXV0aG9yczogQmVuIFNrZWdncwo+PiArICovCj4+
-ICsKPj4gKyNpZm5kZWYgX19OT1VWRUFVX1BNU19IX18KPj4gKyNkZWZpbmUgX19OT1VWRUFVX1BN
-U19IX18KPj4gKwo+PiArc3RydWN0IHBtc191Y29kZSB7Cj4+ICsgICAgdTggZGF0YVsyNTZdOwo+
-PiArICAgIHVuaW9uIHsKPj4gKyAgICAgICAgdTggICp1MDg7Cj4+ICsgICAgICAgIHUxNiAqdTE2
-Owo+PiArICAgICAgICB1MzIgKnUzMjsKPj4gKyAgICB9IHB0cjsKPj4gKyAgICB1MTYgbGVuOwo+
-PiArCj4+ICsgICAgdTMyIHJlZzsKPj4gKyAgICB1MzIgdmFsOwo+PiArfTsKPj4gKwo+PiArc3Rh
-dGljIGlubGluZSB2b2lkCj4+ICtwbXNfaW5pdChzdHJ1Y3QgcG1zX3Vjb2RlICpwbXMpCj4+ICt7
-Cj4+ICsgICAgcG1zLT5wdHIudTA4ID0gcG1zLT5kYXRhOwo+PiArICAgIHBtcy0+cmVnID0gMHhm
-ZmZmZmZmZjsKPj4gKyAgICBwbXMtPnZhbCA9IDB4ZmZmZmZmZmY7Cj4+ICt9Cj4+ICsKPj4gK3N0
-YXRpYyBpbmxpbmUgdm9pZAo+PiArcG1zX2Zpbmkoc3RydWN0IHBtc191Y29kZSAqcG1zKQo+PiAr
-ewo+PiArICAgIGRvIHsKPj4gKyAgICAgICAgKnBtcy0+cHRyLnUwOCsrID0gMHg3ZjsKPj4gKyAg
-ICAgICAgcG1zLT5sZW4gPSBwbXMtPnB0ci51MDggLSBwbXMtPmRhdGE7Cj4+ICsgICAgfSB3aGls
-ZSAocG1zLT5sZW4gJiAzKTsKPj4gKyAgICBwbXMtPnB0ci51MDggPSBwbXMtPmRhdGE7Cj4+ICt9
-Cj4+ICsKPj4gK3N0YXRpYyBpbmxpbmUgdm9pZAo+PiArcG1zX3Vua24oc3RydWN0IHBtc191Y29k
-ZSAqcG1zLCB1OCB2MCkKPj4gK3sKPj4gKyAgICAqcG1zLT5wdHIudTA4KysgPSB2MDsKPj4gK30K
-Pj4gKwo+PiArc3RhdGljIGlubGluZSB2b2lkCj4+ICtwbXNfb3A1ZihzdHJ1Y3QgcG1zX3Vjb2Rl
-ICpwbXMsIHU4IHYwLCB1OCB2MSkKPj4gK3sKPj4gKyAgICAqcG1zLT5wdHIudTA4KysgPSAweDVm
-Owo+PiArICAgICpwbXMtPnB0ci51MDgrKyA9IHYwOwo+PiArICAgICpwbXMtPnB0ci51MDgrKyA9
-IHYxOwo+PiArfQo+PiArCj4+ICtzdGF0aWMgaW5saW5lIHZvaWQKPj4gK3Btc193cjMyKHN0cnVj
-dCBwbXNfdWNvZGUgKnBtcywgdTMyIHJlZywgdTMyIHZhbCkKPj4gK3sKPj4gKyAgICBpZiAodmFs
-ICE9IHBtcy0+dmFsKSB7Cj4+ICsgICAgICAgIGlmICgodmFsICYgMHhmZmZmMDAwMCkgPT0gKHBt
-cy0+dmFsICYgMHhmZmZmMDAwMCkpIHsKPj4gKyAgICAgICAgICAgICpwbXMtPnB0ci51MDgrKyA9
-IDB4NDI7Cj4+ICsgICAgICAgICAgICAqcG1zLT5wdHIudTE2KysgPSAodmFsICYgMHgwMDAwZmZm
-Zik7Cj4+ICsgICAgICAgIH0gZWxzZSB7Cj4+ICsgICAgICAgICAgICAqcG1zLT5wdHIudTA4Kysg
-PSAweGUyOwo+PiArICAgICAgICAgICAgKnBtcy0+cHRyLnUzMisrID0gdmFsOwo+PiArICAgICAg
-ICB9Cj4+ICsKPj4gKyAgICAgICAgcG1zLT52YWwgPSB2YWw7Cj4+ICsgICAgfQo+PiArCj4+ICsg
-ICAgaWYgKChyZWcgJiAweGZmZmYwMDAwKSA9PSAocG1zLT5yZWcgJiAweGZmZmYwMDAwKSkgewo+
-PiArICAgICAgICAqcG1zLT5wdHIudTA4KysgPSAweDQwOwo+PiArICAgICAgICAqcG1zLT5wdHIu
-dTE2KysgPSAocmVnICYgMHgwMDAwZmZmZik7Cj4+ICsgICAgfSBlbHNlIHsKPj4gKyAgICAgICAg
-KnBtcy0+cHRyLnUwOCsrID0gMHhlMDsKPj4gKyAgICAgICAgKnBtcy0+cHRyLnUzMisrID0gcmVn
-Owo+PiArICAgIH0KPj4gKyAgICBwbXMtPnJlZyA9IHJlZzsKPj4gK30KPj4gKwo+PiArI2VuZGlm
-Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX3BtLmMgCj4+IGIv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9wbS5jCj4+IGluZGV4IDRkZDJkNzYuLjliODFm
-MDMgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfcG0uYwo+PiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX3BtLmMKPj4gQEAgLTI2LDkgKzI2LDEx
-IEBACj4+ICAjaW5jbHVkZSAibm91dmVhdV9kcnYuaCIKPj4gICNpbmNsdWRlICJub3V2ZWF1X2Jp
-b3MuaCIKPj4gICNpbmNsdWRlICJub3V2ZWF1X3BtLmgiCj4+ICsjaW5jbHVkZSAibm91dmVhdV9w
-bXMuaCIKPj4gc3RydWN0IG52NTBfcG1fc3RhdGUgewo+PiAgICAgIHN0cnVjdCBub3V2ZWF1X3Bt
-X2xldmVsICpwZXJmbHZsOwo+PiArICAgIHN0cnVjdCBwbXNfdWNvZGUgdWNvZGU7Cj4+ICAgICAg
-c3RydWN0IHBsbF9saW1zIHBsbDsKPj4gICAgICBlbnVtIHBsbF90eXBlcyB0eXBlOwo+PiAgICAg
-IGludCBOLCBNLCBQOwo+PiBAQCAtNzMsMTQgKzc1LDIwIEBAIHZvaWQgKgo+PiAgbnY1MF9wbV9j
-bG9ja19wcmUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IG5vdXZlYXVfcG1fbGV2ZWwg
-Cj4+ICpwZXJmbHZsLAo+PiAgICAgICAgICAgIHUzMiBpZCwgaW50IGtoeikKPj4gIHsKPj4gKyAg
-ICBzdHJ1Y3QgZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9wcml2YXRl
-Owo+PiAgICAgIHN0cnVjdCBudjUwX3BtX3N0YXRlICpzdGF0ZTsKPj4gLSAgICBpbnQgZHVtbXks
-IHJldDsKPj4gKyAgICBzdHJ1Y3QgcG1zX3Vjb2RlICpwbXM7Cj4+ICsgICAgdTMyIHJlZzBfb2xk
-LCByZWcwX25ldzsKPj4gKyAgICB1MzIgY3J0Y19tYXNrOwo+PiArICAgIHUzMiByZWdfYzA0MDsK
-Pj4gKyAgICBpbnQgcmV0LCBkdW1teSwgaTsKPj4gICAgIHN0YXRlID0ga3phbGxvYyhzaXplb2Yo
-KnN0YXRlKSwgR0ZQX0tFUk5FTCk7Cj4+ICAgICAgaWYgKCFzdGF0ZSkKPj4gICAgICAgICAgcmV0
-dXJuIEVSUl9QVFIoLUVOT01FTSk7Cj4+ICAgICAgc3RhdGUtPnR5cGUgPSBpZDsKPj4gICAgICBz
-dGF0ZS0+cGVyZmx2bCA9IHBlcmZsdmw7Cj4+ICsgICAgcG1zID0gJnN0YXRlLT51Y29kZTsKPj4g
-ICAgIHJldCA9IGdldF9wbGxfbGltaXRzKGRldiwgaWQsICZzdGF0ZS0+cGxsKTsKPj4gICAgICBp
-ZiAocmV0IDwgMCkgewo+PiBAQCAtOTUsMjAgKzEwMyw4OCBAQCBudjUwX3BtX2Nsb2NrX3ByZShz
-dHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgCj4+IG5vdXZlYXVfcG1fbGV2ZWwgKnBlcmZs
-dmwsCj4+ICAgICAgICAgIHJldHVybiBFUlJfUFRSKHJldCk7Cj4+ICAgICAgfQo+PiArICAgIHJl
-ZzBfb2xkID0gbnZfcmQzMihkZXYsIHN0YXRlLT5wbGwucmVnICsgMCk7Cj4+ICsgICAgcmVnMF9u
-ZXcgPSAweDgwMDAwMDAwIHwgKHN0YXRlLT5QIDw8IDE2KSB8IChyZWcwX29sZCAmIDB4ZmZmOGZm
-ZmYpOwo+PiArCj4+ICsgICAgcmVnX2MwNDAgPSBudl9yZDMyKGRldiwgMHhjMDQwKTsKPj4gKwo+
-PiArICAgIGNydGNfbWFzayA9IDA7Cj4+ICsgICAgZm9yIChpID0gMDsgaSA8IDI7IGkrKykgewo+
-PiArICAgICAgICBpZiAobnZfcmQzMihkZXYsIE5WNTBfUERJU1BMQVlfQ1JUQ19DKGksIENMT0NL
-KSkpCj4+ICsgICAgICAgICAgICBjcnRjX21hc2sgfD0gKDEgPDwgaSk7Cj4+ICsgICAgfQo+PiAr
-Cj4+ICsgICAgcG1zX2luaXQocG1zKTsKPj4gKwo+PiArICAgIHN3aXRjaCAoc3RhdGUtPnR5cGUp
-IHsKPj4gKyAgICBjYXNlIFBMTF9NRU1PUlk6Cj4+ICsgICAgICAgIC8qIFdhaXQgZm9yIHZibGFu
-ayBvbiBhbGwgdGhlIENSVENzICovCj4+ICsgICAgICAgIGlmIChjcnRjX21hc2spIHsKPj4gKyAg
-ICAgICAgICAgIHBtc19vcDVmKHBtcywgY3J0Y19tYXNrLCAweDAwKTsKPj4gKyAgICAgICAgICAg
-IHBtc19vcDVmKHBtcywgY3J0Y19tYXNrLCAweDAxKTsKPj4gKyAgICAgICAgfQo+PiArCj4+ICsg
-ICAgICAgIHBtc193cjMyKHBtcywgMHgwMDI1MDQsIDB4MDAwMDAwMDEpOwo+PiArICAgICAgICBw
-bXNfdW5rbihwbXMsIDB4MDYpOyAvKiB1bmtub3duICovCj4+ICsgICAgICAgIHBtc191bmtuKHBt
-cywgMHhiMCk7IC8qIERpc2FibGUgYnVzIGFjY2VzcyAqLwo+PiArICAgICAgICBwbXNfb3A1Zihw
-bXMsIDB4MDAsIDB4MDEpOwo+PiArCj4+ICsgICAgICAgIHBtc193cjMyKHBtcywgMHgxMDAyZDQs
-IDB4MDAwMDAwMDEpOwo+PiArICAgICAgICBwbXNfd3IzMihwbXMsIDB4MTAwMmQwLCAweDAwMDAw
-MDAxKTsKPj4gKwo+PiArICAgICAgICBwbXNfd3IzMihwbXMsIDB4MTAwMjEwLCAweDAwMDAwMDAw
-KTsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweDEwMDJkYywgMHgwMDAwMDAwMSk7Cj4+ICsg
-ICAgICAgIHBtc193cjMyKHBtcywgc3RhdGUtPnBsbC5yZWcgKyAwLCByZWcwX29sZCk7Cj4+ICsg
-ICAgICAgIHBtc193cjMyKHBtcywgc3RhdGUtPnBsbC5yZWcgKyA0LCAoc3RhdGUtPk4gPDwgOCkg
-fCBzdGF0ZS0+TSk7Cj4+ICsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCBzdGF0ZS0+cGxsLnJl
-ZyArIDAsIHJlZzBfbmV3KTsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweDEwMDJkYywgMHgw
-MDAwMDAwMCk7Cj4+ICsgICAgICAgIHBtc193cjMyKHBtcywgMHgxMDAyMTAsIDB4ODAwMDAwMDAp
-Owo+PiArICAgICAgICBwbXNfdW5rbihwbXMsIDB4MDcpOyAvKiB1bmtub3duICovCj4+ICsKPj4g
-KyAgICAgICAgcG1zX3Vua24ocG1zLCAweDBiKTsKPj4gKyAgICAgICAgcG1zX3Vua24ocG1zLCAw
-eGQwKTsgLyogRW5hYmxlIGJ1cyBhY2Nlc3MgYWdhaW4gKi8KPj4gKyAgICAgICAgcG1zX29wNWYo
-cG1zLCAweDAwLCAweDAxKTsKPiBUaGlzIG9uZSBzaG91bGQgYmUgInBtc19vcDVmKHBtcywgMHgw
-MCwgMHgwMCk7Igo+Cj4gQ29uZmlybWVkIHdpdGggYSBmZXcgbnY4NC84Ni85NiB0cmFjZXMKPiBT
-dGlsbCBub3Qgc3VyZSBob3cgbXVjaCBkaWZmZXJlbmNlIGl0IGlzIGdvaW5nIHRvIG1ha2UgKHN0
-YWJpbGl0eSB3aXNlKQpDcmFwLCBJIHVzZSBzbyBtYW55IHZhcmlhdGlvbnMgb2YgdGhpcyBzY3Jp
-cHQuIEkgbXVzdCBoYXZlIHNjcmV3ZWQgdXAgCnRoaXMgYSBsaXR0bGUuCgpBbnl3YXksIEkgbm93
-IG93biBhIG52ODQgdGhhdCBpcyBxdWl0ZSB1bnN0YWJsZSB3aXRoIHRoaXMgY29kZSBzbyBJJ20g
-CnRyeWluZyB0byBmaXggaXQgKGxvbmcgYW5kIHBhaW5mdWwgbmVjZXNzYXJ5IHByb2Nlc3MpCj4K
-Pj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweDAwMjUwNCwgMHgwMDAwMDAwMCk7Cj4+ICsgICAg
-ICAgIGJyZWFrOwo+PiArICAgIGRlZmF1bHQ6Cj4+ICsgICAgICAgIHBtc191bmtuKHBtcywgMHhi
-MCk7IC8qIERpc2FibGUgYnVzIGFjY2VzcyAqLwo+PiArCj4+ICsgICAgICAgIHBtc193cjMyKHBt
-cywgMHhjMDQwLAo+PiArICAgICAgICAgICAgKHJlZ19jMDQwICYgfigxIDw8IDUgfCAxIDw8IDQp
-KSB8ICgxIDw8IDIwKSk7Cj4+ICsgICAgICAgIHBtc193cjMyKHBtcywgc3RhdGUtPnBsbC5yZWcg
-KyAwLCByZWcwX25ldyk7Cj4+ICsgICAgICAgIHBtc193cjMyKHBtcywgc3RhdGUtPnBsbC5yZWcg
-KyA0LCAoc3RhdGUtPk4gPDwgOCkgfCBzdGF0ZS0+TSk7Cj4+ICsgICAgICAgIHBtc191bmtuKHBt
-cywgMHgwZSk7Cj4+ICsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweGMwNDAsIHJlZ19jMDQw
-KTsKPj4gKyAgICAgICAgcG1zX3dyMzIocG1zLCAweGMwNDAsIDB4MTApOwo+PiArCj4+ICsgICAg
-ICAgIHBtc193cjMyKHBtcywgMHhjMDQwLCByZWdfYzA0MCk7Cj4+ICsKPj4gKyAgICAgICAgcG1z
-X3Vua24ocG1zLCAweGQwKTsgLyogRW5hYmxlIGJ1cyBhY2Nlc3MgYWdhaW4gKi8KPj4gKyAgICAg
-ICAgYnJlYWs7Cj4+ICsgICAgfQo+PiArICAgIHBtc19maW5pKHBtcyk7Cj4+ICsKPj4gICAgICBy
-ZXR1cm4gc3RhdGU7Cj4+ICB9Cj4+IHZvaWQKPj4gIG52NTBfcG1fY2xvY2tfc2V0KHN0cnVjdCBk
-cm1fZGV2aWNlICpkZXYsIHZvaWQgKnByZV9zdGF0ZSkKPj4gIHsKPj4gKyAgICBzdHJ1Y3QgZHJt
-X25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9wcml2YXRlOwo+PiAgICAgIHN0
-cnVjdCBudjUwX3BtX3N0YXRlICpzdGF0ZSA9IHByZV9zdGF0ZTsKPj4gICAgICBzdHJ1Y3Qgbm91
-dmVhdV9wbV9sZXZlbCAqcGVyZmx2bCA9IHN0YXRlLT5wZXJmbHZsOwo+PiAtICAgIHUzMiByZWcg
-PSBzdGF0ZS0+cGxsLnJlZywgdG1wOwo+PiArICAgIHN0cnVjdCBwbXNfdWNvZGUgKnBtcyA9ICZz
-dGF0ZS0+dWNvZGU7Cj4+ICAgICAgc3RydWN0IGJpdF9lbnRyeSBCSVRfTTsKPj4gKyAgICB1MzIg
-cGJ1czEwOTgsIHIxMDBiMGMsIHI2MTlmMDA7Cj4+ICsgICAgdTMyIHBtc19kYXRhLCBwbXNfa2lj
-azsKPj4gICAgICB1MTYgc2NyaXB0Owo+PiArICAgIHUzMiByZWcgPSBzdGF0ZS0+cGxsLnJlZywg
-dG1wOwo+PiAgICAgIGludCBOID0gc3RhdGUtPk47Cj4+ICAgICAgaW50IE0gPSBzdGF0ZS0+TTsK
-Pj4gICAgICBpbnQgUCA9IHN0YXRlLT5QOwo+PiArICAgIGludCBpOwo+PiAgICAgaWYgKHN0YXRl
-LT50eXBlID09IFBMTF9NRU1PUlkgJiYgcGVyZmx2bC0+bWVtc2NyaXB0ICYmCj4+ICAgICAgICAg
-IGJpdF90YWJsZShkZXYsICdNJywgJkJJVF9NKSA9PSAwICYmCj4+IEBAIC0xMjYsMjAgKzIwMiw3
-MSBAQCBudjUwX3BtX2Nsb2NrX3NldChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkIAo+PiAq
-cHJlX3N0YXRlKQo+PiAgICAgICAgICBub3V2ZWF1X2Jpb3NfcnVuX2luaXRfdGFibGUoZGV2LCBw
-ZXJmbHZsLT5tZW1zY3JpcHQsIE5VTEwpOwo+PiAgICAgIH0KPj4gKyAgICAvKiBvbmx5IHVzZSBQ
-TVMgZm9yIGNoYW5naW5nIHRoZSBtZW1vcnkgY2xvY2tzICovCj4+ICAgICAgaWYgKHN0YXRlLT50
-eXBlID09IFBMTF9NRU1PUlkpIHsKPj4gLSAgICAgICAgbnZfd3IzMihkZXYsIDB4MTAwMjEwLCAw
-KTsKPj4gLSAgICAgICAgbnZfd3IzMihkZXYsIDB4MTAwMmRjLCAxKTsKPj4gLSAgICB9Cj4+IC0g
-ICAgLyogVE9ETzogVHdlZWsgMHg0NzAwIGJlZm9yZSByZWNsb2NraW5nIFVOSzA1ICovCj4+IC0K
-Pj4gLSAgICB0bXAgID0gbnZfcmQzMihkZXYsIHJlZyArIDApICYgMHhmZmY4ZmZmZjsKPj4gLSAg
-ICB0bXAgfD0gMHg4MDAwMDAwMCB8IChQIDw8IDE2KTsKPj4gLSAgICBudl93cjMyKGRldiwgcmVn
-ICsgMCwgdG1wKTsKPj4gLSAgICBudl93cjMyKGRldiwgcmVnICsgNCwgKE4gPDwgOCkgfCBNKTsK
-Pj4gKyAgICAgICAgaWYgKGRldl9wcml2LT5jaGlwc2V0IDwgMHg5MCkgewo+PiArICAgICAgICAg
-ICAgcG1zX2RhdGEgPSAweDAwMTQwMDsKPj4gKyAgICAgICAgICAgIHBtc19raWNrID0gMHgwMDAw
-MDAwMzsKPj4gKyAgICAgICAgfSBlbHNlIHsKPj4gKyAgICAgICAgICAgIHBtc19kYXRhID0gMHgw
-ODAwMDA7Cj4+ICsgICAgICAgICAgICBwbXNfa2ljayA9IDB4MDAwMDAwMDE7Cj4+ICsgICAgICAg
-IH0KPj4gLSAgICBpZiAoc3RhdGUtPnR5cGUgPT0gUExMX01FTU9SWSkgewo+PiAtICAgICAgICBu
-dl93cjMyKGRldiwgMHgxMDAyZGMsIDApOwo+PiAtICAgICAgICBudl93cjMyKGRldiwgMHgxMDAy
-MTAsIDB4ODAwMDAwMDApOwo+PiArICAgICAgICAvKiB1cGxvYWQgdWNvZGUgKi8KPj4gKyAgICAg
-ICAgcGJ1czEwOTggPSBudl9tYXNrKGRldiwgMHgwMDEwOTgsIDB4MDAwMDAwMDgsIDB4MDAwMDAw
-MDApOwo+PiArICAgICAgICBudl93cjMyKGRldiwgMHgwMDEzMDQsIDB4MDAwMDAwMDApOwo+PiAr
-ICAgICAgICBmb3IgKGkgPSAwOyBpIDwgcG1zLT5sZW4gLyA0OyBpKyspCj4+ICsgICAgICAgICAg
-ICBudl93cjMyKGRldiwgcG1zX2RhdGEgKyAoaSAqIDQpLCBwbXMtPnB0ci51MzJbaV0pOwo+PiAr
-ICAgICAgICBudl93cjMyKGRldiwgMHgwMDEwOTgsIHBidXMxMDk4IHwgMHgxOCk7Cj4+ICsKPj4g
-KyAgICAgICAgbnZfbWFzayhkZXYsIDB4NjE2MzA4LCAweDAwMDAwMDAwLCAweDAwMDAwMDEwKTsK
-Pj4gKyAgICAgICAgbnZfbWFzayhkZXYsIDB4NjE2YjA4LCAweDAwMDAwMDAwLCAweDAwMDAwMDEw
-KTsKPj4gKwo+PiArICAgICAgICAvKiBhbmQgcnVuIGl0ISB0aGVyZSdzIHNvbWUgcHJlIGFuZCBw
-b3N0IHNjcmlwdCBvcGVyYXRpb25zIHRoYXQKPj4gKyAgICAgICAgKiBudmlkaWEgZG8gdG9vLCBu
-ZWVkIHRvIGZpZ3VyZSB0aG9zZSBvdXQKPj4gKyAgICAgICAgKi8KPj4gKyAgICAgICAgbnZfbWFz
-ayhkZXYsIDB4MTAwMjAwLCAweDAwMDAwODAwLCAweDAwMDAwMDAwKTsKPj4gKyAgICAgICAgcjEw
-MGIwYyA9IG52X21hc2soZGV2LCAweDEwMGIwYywgMHgwMDAwMDBmZiwgMHgwMDAwMDAxMik7Cj4+
-ICsgICAgICAgIHI2MTlmMDAgPSBudl9tYXNrKGRldiwgMHg2MTlmMDAsIDB4MDAwMDAwMDgsIDB4
-MDAwMDAwMDApOwo+PiArICAgICAgICBudl93cjMyKGRldiwgMHgwMDEzMGMsIHBtc19raWNrKTsK
-Pj4gKyAgICAgICAgaWYgKCFudl93YWl0KGRldiwgMHgwMDEzMDgsIDB4MDAwMDAxMDAsIDB4MDAw
-MDAwMDApKSB7Cj4+ICsgICAgICAgICAgICBOVl9FUlJPUihkZXYsICJwbXMgdWNvZGUgZXhlYyB0
-aW1lZCBvdXRcbiIpOwo+PiArICAgICAgICAgICAgTlZfRVJST1IoZGV2LCAiMHgwMDEzMDg6IDB4
-JTA4eFxuIiwKPj4gKyAgICAgICAgICAgICAgICBudl9yZDMyKGRldiwgMHgwMDEzMDgpKTsKPj4g
-KyAgICAgICAgICAgIGZvciAoaSA9IDA7IGkgPCBwbXMtPmxlbiAvIDQ7IGkrKykgewo+PiArICAg
-ICAgICAgICAgICAgIE5WX0VSUk9SKGRldiwgIjB4JTA2eDogMHglMDh4XG4iLAo+PiArICAgICAg
-ICAgICAgICAgICAgICAweDE0MDAgKyAoaSAqIDQpLAo+PiArICAgICAgICAgICAgICAgICAgICBu
-dl9yZDMyKGRldiwgMHgwMDE0MDAgKyAoaSAqIDQpKSk7Cj4+ICsgICAgICAgICAgICB9Cj4+ICsg
-ICAgICAgIH0KPj4gKyAgICAgICAgbnZfd3IzMihkZXYsIDB4NjE5ZjAwLCByNjE5ZjAwKTsKPj4g
-KyAgICAgICAgbnZfd3IzMihkZXYsIDB4MTAwYjBjLCByMTAwYjBjKTsKPj4gKyAgICAgICAgbnZf
-bWFzayhkZXYsIDB4NjE2MzA4LCAweDAwMDAwMDAwLCAweDAwMDAwMDEwKTsKPj4gKyAgICAgICAg
-bnZfbWFzayhkZXYsIDB4NjE2YjA4LCAweDAwMDAwMDAwLCAweDAwMDAwMDEwKTsKPj4gKwo+PiAr
-ICAgICAgICAvKmlmIChwZXJmbHZsLT5pZCA9PSAwKSB7Cj4+ICsgICAgICAgICAgICBudl93cjMy
-KGRldiwgMHgxMDAyMjgsIDB4MDAwMjAxMDIpOwo+PiArICAgICAgICAgICAgbnZfd3IzMihkZXYs
-IDB4MTAwMjMwLCAweDI4MDAwODA4KTsKPj4gKyAgICAgICAgICAgIG52X3dyMzIoZGV2LCAweDEw
-MDIzNCwgMHgwNjAyMDcwMik7Cj4+ICsgICAgICAgIH0gZWxzZSBpZiAocGVyZmx2bC0+aWQgPT0g
-MSkgewo+PiArICAgICAgICAgICAgbnZfd3IzMihkZXYsIDB4MTAwMjI4LCAweDAwMDQwMzA1KTsK
-Pj4gKyAgICAgICAgICAgIG52X3dyMzIoZGV2LCAweDEwMDIzMCwgMHgyODAwMDgwOCk7Cj4+ICsg
-ICAgICAgICAgICBudl93cjMyKGRldiwgMHgxMDAyMzQsIDB4MTEwNTA5MDUpOwo+PiArICAgICAg
-ICB9ZWxzZSBpZiAocGVyZmx2bC0+aWQgPT0gMikgewo+PiArICAgICAgICAgICAgbnZfd3IzMihk
-ZXYsIDB4MTAwMjI4LCAweDAwMDgwODBjKTsKPj4gKyAgICAgICAgICAgIG52X3dyMzIoZGV2LCAw
-eDEwMDIzMCwgMHgyODAwMDgwOCk7Cj4+ICsgICAgICAgICAgICBudl93cjMyKGRldiwgMHgxMDAy
-MzQsIDB4MjcwYzBjMDkpOwo+PiArICAgICAgICB9Ki8KPj4gKwo+PiArICAgICAgICBudl9tYXNr
-KGRldiwgMHgxMDAyMDAsIDB4MDAwMDAwMDAsIDB4MDAwMDA4MDApOwo+PiArCj4+ICsgICAgfSBl
-bHNlIHsKPj4gKyAgICAgICAgLyogVE9ETzogVHdlZWsgMHg0NzAwIGJlZm9yZSByZWNsb2NraW5n
-IFVOSzA1ICovCj4+ICsKPj4gKyAgICAgICAgdG1wICA9IG52X3JkMzIoZGV2LCByZWcgKyAwKSAm
-IDB4ZmZmOGZmZmY7Cj4+ICsgICAgICAgIHRtcCB8PSAweDgwMDAwMDAwIHwgKFAgPDwgMTYpOwo+
-PiArICAgICAgICBudl93cjMyKGRldiwgcmVnICsgMCwgdG1wKTsKPj4gKyAgICAgICAgbnZfd3Iz
-MihkZXYsIHJlZyArIDQsIChOIDw8IDgpIHwgTSk7Cj4+ICAgICAgfQo+PiAgICAga2ZyZWUoc3Rh
-dGUpOwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--=-0U7OGdi9ZPXuYbwsdl9Z
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+Just my 0.2 cent, here are PMS scripts executed by the blob (270.41.06)
+with slightly better formatting (script attached)
+This is trace from bare Xorg start on my NV86.
+
+
+-- 
+Best regards,
+        Maxim Levitsky
+
+Visit my blog: http://maximlevitsky.wordpress.com
+Warning: Above blog contains rants.
+
+--=-0U7OGdi9ZPXuYbwsdl9Z
+Content-Disposition: attachment; filename="pms_scripts.txt"
+Content-Type: text/plain; name="pms_scripts.txt"; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+script1:
+
+00000000: e2 17 01 10 00     data 0x100117
+00000005: e0 0c a8 61 00     addr 0x61a80c
+0000000a: 00                 ???
+0000000b: 40 0c a8           addr 0x61a80c
+0000000e: 05                 ??? [unknown: 05]
+0000000f: e2 00 00 00 00     data 0
+00000014: 40 0c a8           addr 0x61a80c
+00000017: 7f                 exit
+
+
+script2:
+
+00000000: e2 a7 00 10 00     data 0x1000a7
+00000005: e0 0c a0 61 00     addr 0x61a00c
+0000000a: 00                 ???
+0000000b: 40 0c a0           addr 0x61a00c
+0000000e: 05                 ??? [unknown: 05]
+0000000f: e2 00 00 00 00     data 0
+00000014: 40 0c a0           addr 0x61a00c
+00000017: 7f                 exit
+
+
+script3:
+
+00000000: e2 00 33 00 00     data 0x3300
+00000005: e0 00 12 61 00     addr 0x611200
+0000000a: 42 01 00           data 0x1
+0000000d: e0 04 25 00 00     addr 0x2504
+00000012: 07                 ??? [unknown: 07]
+00000013: b0                 ??? [unknown: b0]
+00000014: 5f 00 01           unk5f [unknown: 00 00 01]
+00000017: e0 d4 02 10 00     addr 0x1002d4
+0000001c: 40 d0 02           addr 0x1002d0
+0000001f: 40 d0 02           addr 0x1002d0
+00000022: 42 00 00           data 0
+00000025: 40 10 02           addr 0x100210
+00000028: 42 01 00           data 0x1
+0000002b: 40 dc 02           addr 0x1002dc
+0000002e: 42 05 25           data 0x2505
+00000031: e0 0c 40 00 00     addr 0x400c
+00000036: e2 00 e4 59 80     data 0x8059e400
+0000003b: 40 08 40           addr 0x4008
+0000003e: 0d                 ??? [unknown: 0d]
+0000003f: 0a                 ??? [unknown: 0a]
+00000040: 40 08 40           addr 0x4008
+00000043: e2 00 00 00 00     data 0
+00000048: e0 dc 02 10 00     addr 0x1002dc
+0000004d: e2 00 00 00 80     data 0x80000000
+00000052: 40 10 02           addr 0x100210
+00000055: 07                 ??? [unknown: 07]
+00000056: e2 62 0a 00 00     data 0xa62
+0000005b: 40 c0 02           addr 0x1002c0
+0000005e: e2 04 09 01 0c     data 0xc010904
+00000063: 40 24 02           addr 0x100224
+00000066: e2 18 2a 12 06     data 0x6122a18
+0000006b: 40 20 02           addr 0x100220
+0000006e: e2 62 0b 00 00     data 0xb62
+00000073: 40 c0 02           addr 0x1002c0
+00000076: 42 62 0a           data 0xa62
+00000079: 40 c0 02           addr 0x1002c0
+0000007c: 0b                 ??? [unknown: 0b]
+0000007d: d0                 ??? [unknown: d0]
+0000007e: 5f 00 00           unk5f
+00000081: 42 30 33           data 0x3330
+00000084: e0 00 12 61 00     addr 0x611200
+00000089: 7f                 exit
+0000008a: 7f                 exit
+0000008b: 7f                 exit
+
+
+script4:
+------------little bug here------
+
+00000000: 0a                 ??? [unknown: 0a]
+00000001: 7f                 exit
+00000002: e2 00 33 00 00     data 0x3300
+00000007: e0 00 12 61 00     addr 0x611200
+0000000c: 42 01 00           data 0x1
+0000000f: e0 04 25 00 00     addr 0x2504
+00000014: 07                 ??? [unknown: 07]
+00000015: b0                 ??? [unknown: b0]
+00000016: 5f 00 01           unk5f [unknown: 00 00 01]
+00000019: e0 d4 02 10 00     addr 0x1002d4
+0000001e: 40 d0 02           addr 0x1002d0
+00000021: 40 d0 02           addr 0x1002d0
+00000024: 42 00 00           data 0
+00000027: 40 10 02           addr 0x100210
+0000002a: 42 01 00           data 0x1
+0000002d: 40 dc 02           addr 0x1002dc
+00000030: 42 05 25           data 0x2505
+00000033: e0 0c 40 00 00     addr 0x400c
+00000038: e2 00 e4 59 80     data 0x8059e400
+0000003d: 40 08 40           addr 0x4008
+00000040: 0d                 ??? [unknown: 0d]
+00000041: 0a                 ??? [unknown: 0a]
+00000042: 40 08 40           addr 0x4008
+00000045: e2 00 00 00 00     data 0
+0000004a: e0 dc 02 10 00     addr 0x1002dc
+0000004f: e2 00 00 00 80     data 0x80000000
+00000054: 40 10 02           addr 0x100210
+00000057: 07                 ??? [unknown: 07]
+00000058: e2 62 0a 00 00     data 0xa62
+0000005d: 40 c0 02           addr 0x1002c0
+00000060: e2 04 09 01 0c     data 0xc010904
+00000065: 40 24 02           addr 0x100224
+00000068: e2 18 2a 12 06     data 0x6122a18
+0000006d: 40 20 02           addr 0x100220
+00000070: e2 62 0b 00 00     data 0xb62
+00000075: 40 c0 02           addr 0x1002c0
+00000078: 42 62 0a           data 0xa62
+0000007b: 40 c0 02           addr 0x1002c0
+0000007e: 0b                 ??? [unknown: 0b]
+0000007f: d0                 ??? [unknown: d0]
+00000080: 5f 00 00           unk5f
+00000083: 42 30 33           data 0x3330
+00000086: e0 00 12 61 00     addr 0x611200
+0000008b: 7f                 exit
+
+
+
+script5:
+
+00000000: 0a                 ??? [unknown: 0a]
+00000001: 00                 ???
+00000002: e2 00 ?? ?? ??     data 0 [incomplete]
+
+
+script6:
+
+00000000: e2 00 33 00 00     data 0x3300
+00000005: e0 00 12 61 00     addr 0x611200
+0000000a: 07                 ??? [unknown: 07]
+0000000b: b0                 ??? [unknown: b0]
+0000000c: 5f 00 01           unk5f [unknown: 00 00 01]
+0000000f: e2 83 db f0 2e     data 0x2ef0db83
+00000014: e0 40 c0 00 00     addr 0xc040
+00000019: e2 00 00 00 80     data 0x80000000
+0000001e: 40 20 40           addr 0x4020
+00000021: e2 83 db f0 2e     data 0x2ef0db83
+00000026: 40 40 c0           addr 0xc040
+00000029: e2 00 00 09 a0     data 0xa0090000
+0000002e: 40 28 40           addr 0x4028
+00000031: e2 02 10 00 00     data 0x1002
+00000036: 40 2c 40           addr 0x402c
+00000039: 0e                 ??? [unknown: 0e]
+0000003a: e2 a3 db e0 2e     data 0x2ee0dba3
+0000003f: 40 40 c0           addr 0xc040
+00000042: e2 10 00 00 00     data 0x10
+00000047: 40 4c c0           addr 0xc04c
+0000004a: e2 a3 db e0 2e     data 0x2ee0dba3
+0000004f: 40 40 c0           addr 0xc040
+00000052: d0                 ??? [unknown: d0]
+00000053: 5f 00 00           unk5f
+00000056: e2 30 33 00 00     data 0x3330
+0000005b: e0 00 12 61 00     addr 0x611200
+00000060: 7f                 exit
+00000061: 7f                 exit
+00000062: 7f                 exit
+00000063: 7f                 exit
+
+
+script7:
+
+00000000: 5f 01 00           unk5f [unknown: 00 01 00]
+00000003: 5f 01 01           unk5f [unknown: 00 01 01]
+00000006: b0                 ??? [unknown: b0]
+00000007: 5f 00 01           unk5f [unknown: 00 00 01]
+0000000a: e2 83 db f0 2e     data 0x2ef0db83
+0000000f: e0 40 c0 00 00     addr 0xc040
+00000014: e2 00 00 00 80     data 0x80000000
+00000019: 40 20 40           addr 0x4020
+0000001c: e2 83 db f0 2e     data 0x2ef0db83
+00000021: 40 40 c0           addr 0xc040
+00000024: e2 00 00 09 a0     data 0xa0090000
+00000029: 40 28 40           addr 0x4028
+0000002c: e2 02 0b 00 00     data 0xb02
+00000031: 40 2c 40           addr 0x402c
+00000034: 0e                 ??? [unknown: 0e]
+00000035: e2 a3 db e0 2e     data 0x2ee0dba3
+0000003a: 40 40 c0           addr 0xc040
+0000003d: e2 10 00 00 00     data 0x10
+00000042: 40 4c c0           addr 0xc04c
+00000045: e2 a3 db e0 2e     data 0x2ee0dba3
+0000004a: 40 40 c0           addr 0xc040
+0000004d: d0                 ??? [unknown: d0]
+0000004e: 5f 00 00           unk5f
+00000051: 7f                 exit
+00000052: 7f                 exit
+00000053: 7f                 exit
+
+
+script8:
+
+00000000: 5f 01 01           unk5f [unknown: 00 01 01]
+00000003: 5f 01 00           unk5f [unknown: 00 01 00]
+00000006: e2 a3 db e0 2a     data 0x2ae0dba3
+0000000b: e0 40 c0 00 00     addr 0xc040
+00000010: 7f                 exit
+00000011: 7f                 exit
+00000012: 7f                 exit
+00000013: 7f                 exit
+
+
+script9:
+
+
+00000000: 5f 01 01           unk5f [unknown: 00 01 01]
+00000003: 5f 01 00           unk5f [unknown: 00 01 00]
+00000006: e2 01 00 00 00     data 0x1
+0000000b: e0 04 25 00 00     addr 0x2504
+00000010: 06                 ??? [unknown: 06]
+00000011: b0                 ??? [unknown: b0]
+00000012: 5f 00 01           unk5f [unknown: 00 00 01]
+00000015: e0 d4 02 10 00     addr 0x1002d4
+0000001a: 40 d0 02           addr 0x1002d0
+0000001d: 40 d0 02           addr 0x1002d0
+00000020: 42 00 00           data 0
+00000023: 40 10 02           addr 0x100210
+00000026: 42 01 00           data 0x1
+00000029: 40 dc 02           addr 0x1002dc
+0000002c: e2 00 e6 02 80     data 0x8002e600
+00000031: e0 08 40 00 00     addr 0x4008
+00000036: e2 00 e2 18 80     data 0x8018e200
+0000003b: 40 08 40           addr 0x4008
+0000003e: e2 00 00 00 00     data 0
+00000043: e0 dc 02 10 00     addr 0x1002dc
+00000048: e2 00 00 00 80     data 0x80000000
+0000004d: 40 10 02           addr 0x100210
+00000050: 07                 ??? [unknown: 07]
+00000051: e2 62 06 00 00     data 0x662
+00000056: 40 c0 02           addr 0x1002c0
+00000059: e2 04 0a 01 0a     data 0xa010a04
+0000005e: 40 24 02           addr 0x100224
+00000061: e2 0f 23 11 07     data 0x711230f
+00000066: 40 20 02           addr 0x100220
+00000069: e2 77 21 02 00     data 0x22177
+0000006e: 40 1c 07           addr 0x10071c
+00000071: e2 00 00 00 00     data 0
+00000076: 40 3c 05           addr 0x10053c
+00000079: 42 62 07           data 0x762
+0000007c: 40 c0 02           addr 0x1002c0
+0000007f: 42 62 06           data 0x662
+00000082: 40 c0 02           addr 0x1002c0
+00000085: 0b                 ??? [unknown: 0b]
+00000086: d0                 ??? [unknown: d0]
+00000087: 5f 00 00           unk5f
+0000008a: 7f                 exit
+0000008b: 7f                 exit
+
+
+script10:
+
+00000000: 5f 01 00           unk5f [unknown: 00 01 00]
+00000003: 5f 01 01           unk5f [unknown: 00 01 01]
+00000006: b0                 ??? [unknown: b0]
+00000007: 5f 00 01           unk5f [unknown: 00 00 01]
+0000000a: e2 83 db f0 2a     data 0x2af0db83
+0000000f: e0 40 c0 00 00     addr 0xc040
+00000014: e2 00 00 01 80     data 0x80010000
+00000019: 40 20 40           addr 0x4020
+0000001c: e2 83 db f0 2a     data 0x2af0db83
+00000021: 40 40 c0           addr 0xc040
+00000024: e2 00 00 12 a0     data 0xa0120000
+00000029: 40 28 40           addr 0x4028
+0000002c: e2 04 1b 00 00     data 0x1b04
+00000031: 40 2c 40           addr 0x402c
+00000034: 0e                 ??? [unknown: 0e]
+00000035: e2 a3 db e0 2a     data 0x2ae0dba3
+0000003a: 40 40 c0           addr 0xc040
+0000003d: e2 10 00 00 00     data 0x10
+00000042: 40 4c c0           addr 0xc04c
+00000045: e2 a3 db e0 2a     data 0x2ae0dba3
+0000004a: 40 40 c0           addr 0xc040
+0000004d: d0                 ??? [unknown: d0]
+0000004e: 5f 00 00           unk5f
+00000051: 7f                 exit
+00000052: 7f                 exit
+00000053: 7f                 exit
+
+
+script11:
+
+00000000: 5f 01 01           unk5f [unknown: 00 01 01]
+00000003: 5f 01 00           unk5f [unknown: 00 01 00]
+00000006: e2 a3 db e0 2e     data 0x2ee0dba3
+0000000b: e0 40 c0 00 00     addr 0xc040
+00000010: 7f                 exit
+00000011: 7f                 exit
+00000012: 7f                 exit
+00000013: 7f                 exit
+
+
+
+
+
+
+
+--=-0U7OGdi9ZPXuYbwsdl9Z
+Content-Disposition: attachment; filename="pms_translated.txt"
+Content-Type: text/plain; name="pms_translated.txt"; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+executing PMS script 1
+
+0x61a80c = 0x100117
+00                 
+0x61a80c = 0x100117
+05                 
+0x61a80c = 0x0
+exit
+
+
+executing PMS script 2
+
+0x61a00c = 0x1000a7
+00                 
+0x61a00c = 0x1000a7
+05                 
+0x61a00c = 0x0
+exit
+
+
+executing PMS script 3
+
+0x611200 = 0x3300
+0x2504 = 0x1
+07                 
+b0                 
+5f 00 01           
+0x1002d4 = 0x1
+0x1002d0 = 0x1
+0x1002d0 = 0x1
+0x100210 = 0x0
+0x1002dc = 0x1
+0x400c = 0x2505
+0x4008 = 0x8059e400
+0d                 
+0a                 
+0x4008 = 0x8059e400
+0x1002dc = 0x0
+0x100210 = 0x80000000
+07                 
+0x1002c0 = 0xa62
+0x100224 = 0xc010904
+0x100220 = 0x6122a18
+0x1002c0 = 0xb62
+0x1002c0 = 0xa62
+0b                 
+d0                 
+5f 00 00           
+0x611200 = 0x3330
+exit
+exit
+exit
+
+
+executing PMS script 4
+------------little bug here------
+
+0a                 
+exit
+0x611200 = 0x3300
+0x2504 = 0x1
+07                 
+b0                 
+5f 00 01           
+0x1002d4 = 0x1
+0x1002d0 = 0x1
+0x1002d0 = 0x1
+0x100210 = 0x0
+0x1002dc = 0x1
+0x400c = 0x2505
+0x4008 = 0x8059e400
+0d                 
+0a                 
+0x4008 = 0x8059e400
+0x1002dc = 0x0
+0x100210 = 0x80000000
+07                 
+0x1002c0 = 0xa62
+0x100224 = 0xc010904
+0x100220 = 0x6122a18
+0x1002c0 = 0xb62
+0x1002c0 = 0xa62
+0b                 
+d0                 
+5f 00 00           
+0x611200 = 0x3330
+exit
+
+
+
+executing PMS script 5
+
+0a                 
+00                 
+
+
+executing PMS script 6
+
+0x611200 = 0x3300
+07                 
+b0                 
+5f 00 01           
+0xc040 = 0x2ef0db83
+0x4020 = 0x80000000
+0xc040 = 0x2ef0db83
+0x4028 = 0xa0090000
+0x402c = 0x1002
+0e                 
+0xc040 = 0x2ee0dba3
+0xc04c = 0x10
+0xc040 = 0x2ee0dba3
+d0                 
+5f 00 00           
+0x611200 = 0x3330
+exit
+exit
+exit
+exit
+
+
+executing PMS script 7
+
+5f 01 00           
+5f 01 01           
+b0                 
+5f 00 01           
+0xc040 = 0x2ef0db83
+0x4020 = 0x80000000
+0xc040 = 0x2ef0db83
+0x4028 = 0xa0090000
+0x402c = 0xb02
+0e                 
+0xc040 = 0x2ee0dba3
+0xc04c = 0x10
+0xc040 = 0x2ee0dba3
+d0                 
+5f 00 00           
+exit
+exit
+exit
+
+
+executing PMS script 8
+
+5f 01 01           
+5f 01 00           
+0xc040 = 0x2ae0dba3
+exit
+exit
+exit
+exit
+
+
+executing PMS script 9
+
+
+5f 01 01           
+5f 01 00           
+0x2504 = 0x1
+06                 
+b0                 
+5f 00 01           
+0x1002d4 = 0x1
+0x1002d0 = 0x1
+0x1002d0 = 0x1
+0x100210 = 0x0
+0x1002dc = 0x1
+0x4008 = 0x8002e600
+0x4008 = 0x8018e200
+0x1002dc = 0x0
+0x100210 = 0x80000000
+07                 
+0x1002c0 = 0x662
+0x100224 = 0xa010a04
+0x100220 = 0x711230f
+0x10071c = 0x22177
+0x10053c = 0x0
+0x1002c0 = 0x762
+0x1002c0 = 0x662
+0b                 
+d0                 
+5f 00 00           
+exit
+exit
+
+
+executing PMS script 10
+
+5f 01 00           
+5f 01 01           
+b0                 
+5f 00 01           
+0xc040 = 0x2af0db83
+0x4020 = 0x80010000
+0xc040 = 0x2af0db83
+0x4028 = 0xa0120000
+0x402c = 0x1b04
+0e                 
+0xc040 = 0x2ae0dba3
+0xc04c = 0x10
+0xc040 = 0x2ae0dba3
+d0                 
+5f 00 00           
+exit
+exit
+exit
+
+
+executing PMS script 11
+
+5f 01 01           
+5f 01 00           
+0xc040 = 0x2ee0dba3
+exit
+exit
+exit
+exit
+
+
+
+
+
+
+
+--=-0U7OGdi9ZPXuYbwsdl9Z
+Content-Disposition: attachment; filename="pms_exec.py"
+Content-Type: text/x-python; name="pms_exec.py"; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+#! /usr/bin/env python
+
+import fileinput
+import re
+import os
+import sys
+
+command_pattern = re.compile(".*(data|addr|exit) ?(0x.*|[0-9]*|)?")
+unknown_pattern = re.compile("[0-9|a-f]:\ *(.*)(\?\?\?|unk5f)")
+
+for line in fileinput.input():
+
+    script_number = 0
+
+    #start of new script
+    if "script" in line:
+           script_number = int(line.split("script")[1][:-2])
+           print "executing PMS script %d" % script_number
+
+           address = 0xFFFFFFFF
+           value= 0xFFFFFFFF
+           continue
+
+
+    match = command_pattern.search(line)
+    if match:
+        if match.groups()[0] == "data":
+                value = int(match.groups()[1], 0)
+        elif match.groups()[0] == "addr":
+                address = int(match.groups()[1], 0)
+                print "0x%x = 0x%x" % (address, value)
+        elif match.groups()[0] == "exit":
+                print "exit"
+
+        continue
+
+
+
+    match = unknown_pattern.search(line)
+    if match:
+            print match.groups()[0]
+            continue
+
+    sys.stdout.write(line)
+    continue
+
+
+"""
+            answer = raw_input("do you want to: %s :" % execstring)
+
+            if answer == "no":
+                continue
+
+            print "executing %s" % execstring            
+
+            os.system(execstring)
+"""
+
+
+--=-0U7OGdi9ZPXuYbwsdl9Z
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--=-0U7OGdi9ZPXuYbwsdl9Z--
