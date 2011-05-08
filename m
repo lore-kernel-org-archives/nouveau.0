@@ -1,20 +1,13 @@
 From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: Re: [PATCH] gallium/xorg st/nv50/i915: add
- PIPE_BIND_CURSOR
-Date: Mon, 9 May 2011 00:33:50 +0200
-Message-ID: <20110508223350.GA10163@joi.lan>
-References: <20110501215940.GD6742@joi.lan>
-	<BANLkTikex6zKKboJve=n42hUUEmrSJ6Ynw@mail.gmail.com>
-	<BANLkTikbYs7y2gCELyyi1OKcuZYYVCfieA@mail.gmail.com>
-	<BANLkTin7HGY12QcG7vc0aZ7mQ6SnZkrDJQ@mail.gmail.com>
-	<20110502184056.GD3461@joi.lan>
-	<BANLkTik3OzX77vbab3a6nC-xS7p6+gauTQ@mail.gmail.com>
+Subject: [PATCH] gallium/nouveau: remove unused
+	nouveau_screen_bo_user
+Date: Mon, 9 May 2011 00:35:10 +0200
+Message-ID: <20110508223510.GB10163@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
 Content-Disposition: inline
-In-Reply-To: <BANLkTik3OzX77vbab3a6nC-xS7p6+gauTQ@mail.gmail.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
 	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
@@ -24,45 +17,53 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
 	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
 Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
 Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: mesa-dev@lists.freedesktop.org, Benjamin Franzke <benjaminfranzke@googlemail.com>, nouveau@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXkgMDMsIDIwMTEgYXQgMTI6MDY6MzNQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBPbiBNb24sIE1heSAyLCAyMDExIGF0IDg6NDAgUE0sIE1hcmNpbiBTbHVzYXJ6IDxt
-YXJjaW4uc2x1c2FyekBnbWFpbC5jb20+IHdyb3RlOgo+ID4gT24gTW9uLCBNYXkgMDIsIDIwMTEg
-YXQgMDM6MTE6MDBQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+PiBPbiBNb24sIE1h
-eSAyLCAyMDExIGF0IDI6NTYgUE0sIEJlbmphbWluIEZyYW56a2UKPiA+PiA8YmVuamFtaW5mcmFu
-emtlQGdvb2dsZW1haWwuY29tPiB3cm90ZToKPiA+PiA+IEkgdGhpbmsgaW4gaTkxNWcgdGhlIENV
-UlNPUiBmbGFnIHNob3VsZCBiZSB1c2VkIGluIGk5eDVfc2Nhbm91dF9sYXlvdXQKPiA+PiA+IGZv
-ciB0aGUgInNwZWNpYWwgY2FzZSBmb3IgY3Vyc29ycyIgYXMgd2VsbCwgaW5zdGVhZCBvZiBvbmx5
-IGNoZWNraW5nCj4gPj4gPiBvbmx5IHB0LT53aWR0aDAgPT0gNjQgJiYgcHQtPmhlaWdodDAgPT0g
-NjQuCj4gPj4KPiA+PiBPb3BzLCBzbyBtdWNoIGZvciBhY3R1YWxseSByZS1jaGVja2luZyB0aGUg
-Y29kZS4gT24gdGhlIG90aGVyIGhhbmQsIHRoYXQKPiA+PiBwYXJ0IGlzIGJyb2tlbiwgaXQgbmVl
-ZHMgYQo+ID4+IMKgIMKgdGV4LT50aWxpbmcgPSBJOTE1X1RJTEVfTk9ORTsKPiA+PiBhbmQgcGVy
-aGFwcyBzb21lIGNoZWNrIHRoYXQgd2lkdGggPT0gaGVpZ2h0ID09IDY0IGluZGVlZCBob2xkcy4g
-VGhlbgo+ID4+IG1vdmUgaXQgb3V0IGFzIHRoZSBmaXJzdCBpZiBjbGF1c2UgYW5kIGl0J2Qgc3Rh
-cnQgdG8gbWFrZSBzZW5zZSAuLi4KPiA+Cj4gPiBDb3VsZCB5b3UgZml4IGl0IGluIHNlcGFyYXRl
-IHBhdGNoPwo+IAo+IEpha29iIGhhcyBzYWlkIChvbiBpcmMpIHRoYXQgaGUgaW50ZW5kcyB0byBh
-Z2FpbiBwbGF5IHdpdGggeG9yZy1pOTE1ZyAuLi4KCkNocmlzdG9waCBjb21taXRlZCBnZW5lcmlj
-IGFuZCBudjUwIHBhcnQgKFRoYW5rcyBhZ2FpbiEpLgppOTE1IHBhcnQgYmVsb3cuCgotLS0KRnJv
-bTogTWFyY2luIFNsdXNhcnogPG1hcmNpbi5zbHVzYXJ6QGdtYWlsLmNvbT4KU3ViamVjdDogW1BB
-VENIXSBpOTE1OiB1c2UgUElQRV9CSU5EX0NVUlNPUgoKLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJz
-L2k5MTUvaTkxNV9yZXNvdXJjZV90ZXh0dXJlLmMgfCAgICA2ICstLS0tLQogMSBmaWxlcyBjaGFu
-Z2VkLCAxIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dh
-bGxpdW0vZHJpdmVycy9pOTE1L2k5MTVfcmVzb3VyY2VfdGV4dHVyZS5jIGIvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9pOTE1L2k5MTVfcmVzb3VyY2VfdGV4dHVyZS5jCmluZGV4IGUwNWIwNTkuLjk3YWMw
-MTIgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvaTkxNS9pOTE1X3Jlc291cmNlX3Rl
-eHR1cmUuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL2k5MTUvaTkxNV9yZXNvdXJjZV90ZXh0
-dXJlLmMKQEAgLTgyNSwxMSArODI1LDcgQEAgaTkxNV90ZXh0dXJlX2NyZWF0ZShzdHJ1Y3QgcGlw
-ZV9zY3JlZW4gKnNjcmVlbiwKICAgIH0KIAogICAgLyogZm9yIHNjYW5vdXRzIGFuZCBjdXJzb3Jz
-LCBjdXJzb3JzIGFybid0IHNjYW5vdXRzICovCi0KLSAgIC8qIFhYWDogdXNlIGEgY3VzdG9tIGZs
-YWcgZm9yIGN1cnNvcnMsIGRvbid0IHJlbHkgb24gbWFnaWNhbGx5Ci0gICAgKiBndWVzc2luZyB0
-aGF0IHRoaXMgaXMgWG9yZyBhc2tpbmcgZm9yIGEgY3Vyc29yCi0gICAgKi8KLSAgIGlmICgodGVt
-cGxhdGUtPmJpbmQgJiBQSVBFX0JJTkRfU0NBTk9VVCkgJiYgdGVtcGxhdGUtPndpZHRoMCAhPSA2
-NCkKKyAgIGlmICgodGVtcGxhdGUtPmJpbmQgJiBQSVBFX0JJTkRfU0NBTk9VVCkgJiYgISh0ZW1w
-bGF0ZS0+YmluZCAmIFBJUEVfQklORF9DVVJTT1IpKQogICAgICAgYnVmX3VzYWdlID0gSTkxNV9O
-RVdfU0NBTk9VVDsKICAgIGVsc2UKICAgICAgIGJ1Zl91c2FnZSA9IEk5MTVfTkVXX1RFWFRVUkU7
-Ci0tIAoxLjcuNC4xCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+
+---
+ src/gallium/drivers/nouveau/nouveau_screen.c |   14 --------------
+ src/gallium/drivers/nouveau/nouveau_screen.h |    2 --
+ 2 files changed, 0 insertions(+), 16 deletions(-)
+
+diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c b/src/gallium/drivers/nouveau/nouveau_screen.c
+index 401155b..223e768 100644
+--- a/src/gallium/drivers/nouveau/nouveau_screen.c
++++ b/src/gallium/drivers/nouveau/nouveau_screen.c
+@@ -81,20 +81,6 @@ nouveau_screen_bo_new(struct pipe_screen *pscreen, unsigned alignment,
+ 	return bo;
+ }
+ 
+-struct nouveau_bo *
+-nouveau_screen_bo_user(struct pipe_screen *pscreen, void *ptr, unsigned bytes)
+-{
+-	struct nouveau_device *dev = nouveau_screen(pscreen)->device;
+-	struct nouveau_bo *bo = NULL;
+-	int ret;
+-
+-	ret = nouveau_bo_user(dev, ptr, bytes, &bo);
+-	if (ret)
+-		return NULL;
+-
+-	return bo;
+-}
+-
+ void *
+ nouveau_screen_bo_map(struct pipe_screen *pscreen,
+ 		      struct nouveau_bo *bo,
+diff --git a/src/gallium/drivers/nouveau/nouveau_screen.h b/src/gallium/drivers/nouveau/nouveau_screen.h
+index 186ada3..d910809 100644
+--- a/src/gallium/drivers/nouveau/nouveau_screen.h
++++ b/src/gallium/drivers/nouveau/nouveau_screen.h
+@@ -47,8 +47,6 @@ nouveau_screen(struct pipe_screen *pscreen)
+ struct nouveau_bo *
+ nouveau_screen_bo_new(struct pipe_screen *pscreen, unsigned alignment,
+ 		      unsigned usage, unsigned bind, unsigned size);
+-struct nouveau_bo *
+-nouveau_screen_bo_user(struct pipe_screen *pscreen, void *ptr, unsigned bytes);
+ void *
+ nouveau_screen_bo_map(struct pipe_screen *pscreen,
+ 		      struct nouveau_bo *pb,
+-- 
+1.7.4.1
