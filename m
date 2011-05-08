@@ -1,69 +1,57 @@
-From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: [PATCH] gallium/nouveau: remove unused
-	nouveau_screen_bo_user
-Date: Mon, 9 May 2011 00:35:10 +0200
-Message-ID: <20110508223510.GB10163@joi.lan>
+From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: release vga_ram allocation
+ before tearing down mm's
+Date: Mon, 09 May 2011 08:39:46 +1000
+Message-ID: <1304894389.29328.0.camel@nisroch>
+References: <20110507144519.12cb3d4f@neptune.home>
+	<1304784207-18456-1-git-send-email-daniel.vetter@ffwll.ch>
+Reply-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
-Content-Disposition: inline
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-To: nouveau@lists.freedesktop.org
-Cc: mesa-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1304784207-18456-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
----
- src/gallium/drivers/nouveau/nouveau_screen.c |   14 --------------
- src/gallium/drivers/nouveau/nouveau_screen.h |    2 --
- 2 files changed, 0 insertions(+), 16 deletions(-)
-
-diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c b/src/gallium/drivers/nouveau/nouveau_screen.c
-index 401155b..223e768 100644
---- a/src/gallium/drivers/nouveau/nouveau_screen.c
-+++ b/src/gallium/drivers/nouveau/nouveau_screen.c
-@@ -81,20 +81,6 @@ nouveau_screen_bo_new(struct pipe_screen *pscreen, unsigned alignment,
- 	return bo;
- }
- 
--struct nouveau_bo *
--nouveau_screen_bo_user(struct pipe_screen *pscreen, void *ptr, unsigned bytes)
--{
--	struct nouveau_device *dev = nouveau_screen(pscreen)->device;
--	struct nouveau_bo *bo = NULL;
--	int ret;
--
--	ret = nouveau_bo_user(dev, ptr, bytes, &bo);
--	if (ret)
--		return NULL;
--
--	return bo;
--}
--
- void *
- nouveau_screen_bo_map(struct pipe_screen *pscreen,
- 		      struct nouveau_bo *bo,
-diff --git a/src/gallium/drivers/nouveau/nouveau_screen.h b/src/gallium/drivers/nouveau/nouveau_screen.h
-index 186ada3..d910809 100644
---- a/src/gallium/drivers/nouveau/nouveau_screen.h
-+++ b/src/gallium/drivers/nouveau/nouveau_screen.h
-@@ -47,8 +47,6 @@ nouveau_screen(struct pipe_screen *pscreen)
- struct nouveau_bo *
- nouveau_screen_bo_new(struct pipe_screen *pscreen, unsigned alignment,
- 		      unsigned usage, unsigned bind, unsigned size);
--struct nouveau_bo *
--nouveau_screen_bo_user(struct pipe_screen *pscreen, void *ptr, unsigned bytes);
- void *
- nouveau_screen_bo_map(struct pipe_screen *pscreen,
- 		      struct nouveau_bo *pb,
--- 
-1.7.4.1
+T24gU2F0LCAyMDExLTA1LTA3IGF0IDE4OjAzICswMjAwLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+
+IE90aGVyd2lzZSB3ZSBoYXZlIGEgdXNlLWFmdGVyIGZyZWUuCj4gCj4gVGVzdGVkLWFuZC1SZXBv
+cnRlZC1ieTogQnJ1bm8gUHLDqW1vbnQgPGJvbmJvbnNAbGludXgtdnNlcnZlci5vcmc+Cj4gU2ln
+bmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KQWgsIHdl
+IGFjdHVhbGx5IGhhdmUgYSBwYXRjaCBpbiB0aGUgbm91dmVhdSBnaXQgdHJlZSBmaXhpbmcgdGhp
+cwphbHJlYWR5LgoKSSdsbCBnZXQgdGhpcyB1cHN0cmVhbSBBU0FQLgoKQmVuLgoKPiAtLS0KPiAg
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9tZW0uYyAgIHwgICAgMiAtLQo+ICBkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMgfCAgICAyICsrCj4gIDIgZmlsZXMg
+Y2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X21lbS5jIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9tZW0uYwo+IGluZGV4IDUwNDVmOGIuLmMzZTk1M2IgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9tZW0uYwo+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfbWVtLmMKPiBAQCAtMTUyLDggKzE1Miw2IEBAIG5v
+dXZlYXVfbWVtX3ZyYW1fZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICB7Cj4gIAlzdHJ1
+Y3QgZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9wcml2YXRlOwo+ICAK
+PiAtCW5vdXZlYXVfYm9fcmVmKE5VTEwsICZkZXZfcHJpdi0+dmdhX3JhbSk7Cj4gLQo+ICAJdHRt
+X2JvX2RldmljZV9yZWxlYXNlKCZkZXZfcHJpdi0+dHRtLmJkZXYpOwo+ICAKPiAgCW5vdXZlYXVf
+dHRtX2dsb2JhbF9yZWxlYXNlKGRldl9wcml2KTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9zdGF0ZS5jCj4gaW5kZXggYTMwYWRlYy4uMWZlNjUwMyAxMDA2NDQKPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMKPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMKPiBAQCAtNzY4LDYgKzc2OCw4IEBAIHN0YXRpYyB2
+b2lkIG5vdXZlYXVfY2FyZF90YWtlZG93bihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICAJZW5n
+aW5lLT5tYy50YWtlZG93bihkZXYpOwo+ICAJZW5naW5lLT5kaXNwbGF5LmxhdGVfdGFrZWRvd24o
+ZGV2KTsKPiAgCj4gKwlub3V2ZWF1X2JvX3JlZihOVUxMLCAmZGV2X3ByaXYtPnZnYV9yYW0pOwo+
+ICsKPiAgCW11dGV4X2xvY2soJmRldi0+c3RydWN0X211dGV4KTsKPiAgCXR0bV9ib19jbGVhbl9t
+bSgmZGV2X3ByaXYtPnR0bS5iZGV2LCBUVE1fUExfVlJBTSk7Cj4gIAl0dG1fYm9fY2xlYW5fbW0o
+JmRldl9wcml2LT50dG0uYmRldiwgVFRNX1BMX1RUKTsKCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
