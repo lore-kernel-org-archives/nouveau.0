@@ -1,57 +1,156 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: release vga_ram allocation
- before tearing down mm's
-Date: Mon, 09 May 2011 08:39:46 +1000
-Message-ID: <1304894389.29328.0.camel@nisroch>
-References: <20110507144519.12cb3d4f@neptune.home>
-	<1304784207-18456-1-git-send-email-daniel.vetter@ffwll.ch>
-Reply-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: [PATCH] nv50/nvc0: make transfers aware of
+	PIPE_TRANSFER_MAP_DIRECTLY
+Date: Mon, 9 May 2011 00:39:00 +0200
+Message-ID: <20110508223900.GF10163@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1304784207-18456-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCAyMDExLTA1LTA3IGF0IDE4OjAzICswMjAwLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+
-IE90aGVyd2lzZSB3ZSBoYXZlIGEgdXNlLWFmdGVyIGZyZWUuCj4gCj4gVGVzdGVkLWFuZC1SZXBv
-cnRlZC1ieTogQnJ1bm8gUHLDqW1vbnQgPGJvbmJvbnNAbGludXgtdnNlcnZlci5vcmc+Cj4gU2ln
-bmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KQWgsIHdl
-IGFjdHVhbGx5IGhhdmUgYSBwYXRjaCBpbiB0aGUgbm91dmVhdSBnaXQgdHJlZSBmaXhpbmcgdGhp
-cwphbHJlYWR5LgoKSSdsbCBnZXQgdGhpcyB1cHN0cmVhbSBBU0FQLgoKQmVuLgoKPiAtLS0KPiAg
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9tZW0uYyAgIHwgICAgMiAtLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMgfCAgICAyICsrCj4gIDIgZmlsZXMg
-Y2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X21lbS5jIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9tZW0uYwo+IGluZGV4IDUwNDVmOGIuLmMzZTk1M2IgMTAwNjQ0Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9tZW0uYwo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfbWVtLmMKPiBAQCAtMTUyLDggKzE1Miw2IEBAIG5v
-dXZlYXVfbWVtX3ZyYW1fZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICB7Cj4gIAlzdHJ1
-Y3QgZHJtX25vdXZlYXVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkZXYtPmRldl9wcml2YXRlOwo+ICAK
-PiAtCW5vdXZlYXVfYm9fcmVmKE5VTEwsICZkZXZfcHJpdi0+dmdhX3JhbSk7Cj4gLQo+ICAJdHRt
-X2JvX2RldmljZV9yZWxlYXNlKCZkZXZfcHJpdi0+dHRtLmJkZXYpOwo+ICAKPiAgCW5vdXZlYXVf
-dHRtX2dsb2JhbF9yZWxlYXNlKGRldl9wcml2KTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9zdGF0ZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9zdGF0ZS5jCj4gaW5kZXggYTMwYWRlYy4uMWZlNjUwMyAxMDA2NDQKPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMKPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X3N0YXRlLmMKPiBAQCAtNzY4LDYgKzc2OCw4IEBAIHN0YXRpYyB2
-b2lkIG5vdXZlYXVfY2FyZF90YWtlZG93bihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICAJZW5n
-aW5lLT5tYy50YWtlZG93bihkZXYpOwo+ICAJZW5naW5lLT5kaXNwbGF5LmxhdGVfdGFrZWRvd24o
-ZGV2KTsKPiAgCj4gKwlub3V2ZWF1X2JvX3JlZihOVUxMLCAmZGV2X3ByaXYtPnZnYV9yYW0pOwo+
-ICsKPiAgCW11dGV4X2xvY2soJmRldi0+c3RydWN0X211dGV4KTsKPiAgCXR0bV9ib19jbGVhbl9t
-bSgmZGV2X3ByaXYtPnR0bS5iZGV2LCBUVE1fUExfVlJBTSk7Cj4gIAl0dG1fYm9fY2xlYW5fbW0o
-JmRldl9wcml2LT50dG0uYmRldiwgVFRNX1BMX1RUKTsKCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+If state tracker asked us to map resource directly and we can't
+do it (because of tiling), return NULL instead of doing full transfer
+- state tracker should handle it and fallback to some other method
+or repeat transfer without PIPE_TRANSFER_MAP_DIRECTLY.
+
+It greatly improves performance of xorg state tracker on nv50+,
+because fallback (DFS/UTS) is much faster than full transfer.
+---
+ src/gallium/drivers/nv50/nv50_transfer.c |   31 +++++++++++++++++++---------
+ src/gallium/drivers/nvc0/nvc0_transfer.c |   32 ++++++++++++++++++++---------
+ 2 files changed, 43 insertions(+), 20 deletions(-)
+
+diff --git a/src/gallium/drivers/nv50/nv50_transfer.c b/src/gallium/drivers/nv50/nv50_transfer.c
+index 7486977..13ac372 100644
+--- a/src/gallium/drivers/nv50/nv50_transfer.c
++++ b/src/gallium/drivers/nv50/nv50_transfer.c
+@@ -209,6 +209,10 @@ nv50_miptree_transfer_new(struct pipe_context *pctx,
+    uint32_t w, h, d, z, layer;
+    int ret;
+ 
++   if ((usage & PIPE_TRANSFER_MAP_DIRECTLY) &&
++         nouveau_bo_tile_layout(mt->base.bo))
++      return NULL;
++
+    if (mt->layout_3d) {
+       z = box->z;
+       d = u_minify(res->depth0, level);
+@@ -252,6 +256,11 @@ nv50_miptree_transfer_new(struct pipe_context *pctx,
+    tx->rect[0].pitch = lvl->pitch;
+    tx->rect[0].domain = NOUVEAU_BO_VRAM;
+ 
++   if (usage & PIPE_TRANSFER_MAP_DIRECTLY) {
++      tx->rect[1] = tx->rect[0];
++      return &tx->base;
++   }
++
+    size = tx->base.layer_stride;
+ 
+    ret = nouveau_bo_new(dev, NOUVEAU_BO_GART | NOUVEAU_BO_MAP, 0,
+@@ -296,19 +305,21 @@ nv50_miptree_transfer_del(struct pipe_context *pctx,
+    struct nv50_miptree *mt = nv50_miptree(tx->base.resource);
+    unsigned i;
+ 
+-   if (tx->base.usage & PIPE_TRANSFER_WRITE) {
+-      for (i = 0; i < tx->base.box.depth; ++i) {
+-         nv50_m2mf_transfer_rect(pscreen, &tx->rect[0], &tx->rect[1],
+-                                 tx->nblocksx, tx->nblocksy);
+-         if (mt->layout_3d)
+-            tx->rect[0].z++;
+-         else
+-            tx->rect[0].base += mt->layer_stride;
+-         tx->rect[1].base += tx->nblocksy * tx->base.stride;
++   if (!(tx->base.usage & PIPE_TRANSFER_MAP_DIRECTLY)) {
++      if (tx->base.usage & PIPE_TRANSFER_WRITE) {
++         for (i = 0; i < tx->base.box.depth; ++i) {
++            nv50_m2mf_transfer_rect(pscreen, &tx->rect[0], &tx->rect[1],
++                                    tx->nblocksx, tx->nblocksy);
++            if (mt->layout_3d)
++               tx->rect[0].z++;
++            else
++               tx->rect[0].base += mt->layer_stride;
++            tx->rect[1].base += tx->nblocksy * tx->base.stride;
++         }
+       }
++      nouveau_bo_ref(NULL, &tx->rect[1].bo);
+    }
+ 
+-   nouveau_bo_ref(NULL, &tx->rect[1].bo);
+    pipe_resource_reference(&transfer->resource, NULL);
+ 
+    FREE(tx);
+diff --git a/src/gallium/drivers/nvc0/nvc0_transfer.c b/src/gallium/drivers/nvc0/nvc0_transfer.c
+index 7bbfe05..6a2721c 100644
+--- a/src/gallium/drivers/nvc0/nvc0_transfer.c
++++ b/src/gallium/drivers/nvc0/nvc0_transfer.c
+@@ -246,6 +246,10 @@ nvc0_miptree_transfer_new(struct pipe_context *pctx,
+    uint32_t w, h, d, z, layer;
+    int ret;
+ 
++   if ((usage & PIPE_TRANSFER_MAP_DIRECTLY) &&
++         nouveau_bo_tile_layout(mt->base.bo))
++      return NULL;
++
+    tx = CALLOC_STRUCT(nvc0_transfer);
+    if (!tx)
+       return NULL;
+@@ -290,6 +294,11 @@ nvc0_miptree_transfer_new(struct pipe_context *pctx,
+    tx->rect[0].pitch = lvl->pitch;
+    tx->rect[0].domain = NOUVEAU_BO_VRAM;
+ 
++   if (usage & PIPE_TRANSFER_MAP_DIRECTLY) {
++      tx->rect[1] = tx->rect[0];
++      return &tx->base;
++   }
++
+    size = tx->base.layer_stride;
+ 
+    ret = nouveau_bo_new(dev, NOUVEAU_BO_GART | NOUVEAU_BO_MAP, 0,
+@@ -334,19 +343,22 @@ nvc0_miptree_transfer_del(struct pipe_context *pctx,
+    struct nvc0_miptree *mt = nvc0_miptree(tx->base.resource);
+    unsigned i;
+ 
+-   if (tx->base.usage & PIPE_TRANSFER_WRITE) {
+-      for (i = 0; i < tx->nlayers; ++i) {
+-         nvc0_m2mf_transfer_rect(pscreen, &tx->rect[0], &tx->rect[1],
+-                                 tx->nblocksx, tx->nblocksy);
+-         if (mt->layout_3d)
+-            tx->rect[0].z++;
+-         else
+-            tx->rect[0].base += mt->layer_stride;
+-         tx->rect[1].base += tx->nblocksy * tx->base.stride;
++   if (!(tx->base.usage & PIPE_TRANSFER_MAP_DIRECTLY)) {
++      if (tx->base.usage & PIPE_TRANSFER_WRITE) {
++         for (i = 0; i < tx->nlayers; ++i) {
++            nvc0_m2mf_transfer_rect(pscreen, &tx->rect[0], &tx->rect[1],
++                                    tx->nblocksx, tx->nblocksy);
++            if (mt->layout_3d)
++               tx->rect[0].z++;
++            else
++               tx->rect[0].base += mt->layer_stride;
++            tx->rect[1].base += tx->nblocksy * tx->base.stride;
++         }
+       }
++
++      nouveau_bo_ref(NULL, &tx->rect[1].bo);
+    }
+ 
+-   nouveau_bo_ref(NULL, &tx->rect[1].bo);
+    pipe_resource_reference(&transfer->resource, NULL);
+ 
+    FREE(tx);
+-- 
+1.7.4.1
