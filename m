@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37000] New: Exceeding render target size in
- xorg.conf breaks everything
-Date: Mon,  9 May 2011 03:10:00 -0700 (PDT)
-Message-ID: <bug-37000-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
+Date: Mon,  9 May 2011 04:09:20 -0700 (PDT)
+Message-ID: <20110509110920.AECF713004F@annarchy.freedesktop.org>
+References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,31 +20,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37000
+https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
-           Summary: Exceeding render target size in xorg.conf breaks
-                    everything
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: tomi.pievilainen+freedesktop-X3B1VOXEql0@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-If settings in xorg.conf exceed the maximum render target size (4096x4096
-here), the system ends up in a state where X can only be activated again after
-a reboot. Would be better to notice this and just bailout with an error
-message.
-
-When trying to exceed the size with xrandr (for example when rotating a
-monitor), another monitor is disabled. Rotating back won't re-enable the blank
-monitor, but rebooting X will help.
+--- Comment #12 from Daniel Kirchner <mokaga-N9AOi2cAC9ZBDgjK7y7TUQ@public.gmane.org> 2011-05-09 04:09:20 PDT ---
+I confirm that the hanfi's patch makes it work, but I think it would be better
+to patch grub to create proper ACPI table entries. That would maybe also make
+the proprietary nvidia drivers work and would be cleaner way anyways in my
+opinion.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
