@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Mon,  9 May 2011 04:09:20 -0700 (PDT)
-Message-ID: <20110509110920.AECF713004F@annarchy.freedesktop.org>
+Date: Mon,  9 May 2011 06:36:02 -0700 (PDT)
+Message-ID: <20110509133602.A520913004E@annarchy.freedesktop.org>
 References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
---- Comment #12 from Daniel Kirchner <mokaga-N9AOi2cAC9ZBDgjK7y7TUQ@public.gmane.org> 2011-05-09 04:09:20 PDT ---
-I confirm that the hanfi's patch makes it work, but I think it would be better
-to patch grub to create proper ACPI table entries. That would maybe also make
-the proprietary nvidia drivers work and would be cleaner way anyways in my
-opinion.
+--- Comment #13 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> 2011-05-09 06:36:00 PDT ---
+GRUB does copy some ACPI stuff around in the loadbios command. I just don't
+understand enough of the ACPI stuff to actually work around the problem (i
+tried play with ACPI first, but failed to achieve anything :-p )
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
