@@ -1,59 +1,67 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37026] New: can't compile drm_nouveau. Slackware
- 12.2 (linux-2.6.38-r4 from gentoo-sources)
-Date: Mon,  9 May 2011 10:10:59 -0700 (PDT)
-Message-ID: <bug-37026-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: [PATCH v2] nv50/nvc0: make transfers aware of
+ PIPE_TRANSFER_MAP_DIRECTLY
+Date: Mon, 9 May 2011 20:12:38 +0200
+Message-ID: <20110509181238.GA3018@joi.lan>
+References: <20110508223900.GF10163@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20110508223900.GF10163@joi.lan>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37026
+If state tracker asked us to map resource directly and we can't
+do it (because of tiling), return NULL instead of doing full transfer
+- state tracker should handle it and fallback to some other method
+or repeat transfer without PIPE_TRANSFER_MAP_DIRECTLY.
 
-           Summary: can't compile drm_nouveau. Slackware 12.2
-                    (linux-2.6.38-r4 from gentoo-sources)
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: ualinuxcn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+It greatly improves performance of xorg state tracker on nv50+,
+because its fallback (DFS/UTS) is much faster than full transfer.
+---
+ src/gallium/drivers/nv50/nv50_transfer.c |    3 +++
+ src/gallium/drivers/nvc0/nvc0_transfer.c |    3 +++
+ 2 files changed, 6 insertions(+), 0 deletions(-)
 
-
-# git clone git://anongit.freedesktop.org/git/mesa/drm
-# cd ./drm 
-# ./autogen.sh 
-http://paste.pocoo.org/show/385919/
-
-Here is my kernel .config
-http://paste.pocoo.org/show/385920/
-or
-# grep DRM .config
-CONFIG_DRM=y
-CONFIG_DRM_KMS_HELPER=y
-CONFIG_DRM_TTM=y
-CONFIG_DRM_NOUVEAU=y
-
-Here is # head  /var/log/messages
-http://paste.pocoo.org/show/385922/
-
+diff --git a/src/gallium/drivers/nv50/nv50_transfer.c b/src/gallium/drivers/nv50/nv50_transfer.c
+index 7486977..d9fb22aa 100644
+--- a/src/gallium/drivers/nv50/nv50_transfer.c
++++ b/src/gallium/drivers/nv50/nv50_transfer.c
+@@ -209,6 +209,9 @@ nv50_miptree_transfer_new(struct pipe_context *pctx,
+    uint32_t w, h, d, z, layer;
+    int ret;
+ 
++   if (usage & PIPE_TRANSFER_MAP_DIRECTLY)
++      return NULL;
++
+    if (mt->layout_3d) {
+       z = box->z;
+       d = u_minify(res->depth0, level);
+diff --git a/src/gallium/drivers/nvc0/nvc0_transfer.c b/src/gallium/drivers/nvc0/nvc0_transfer.c
+index 7bbfe05..0509113 100644
+--- a/src/gallium/drivers/nvc0/nvc0_transfer.c
++++ b/src/gallium/drivers/nvc0/nvc0_transfer.c
+@@ -246,6 +246,9 @@ nvc0_miptree_transfer_new(struct pipe_context *pctx,
+    uint32_t w, h, d, z, layer;
+    int ret;
+ 
++   if (usage & PIPE_TRANSFER_MAP_DIRECTLY)
++      return NULL;
++
+    tx = CALLOC_STRUCT(nvc0_transfer);
+    if (!tx)
+       return NULL;
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.4.1
