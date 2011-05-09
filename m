@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37042] the blur effect in kwin does not work with
  the git version of the 3-d nouveau driver
-Date: Mon,  9 May 2011 16:46:36 -0700 (PDT)
-Message-ID: <20110509234636.3FDC713004F@annarchy.freedesktop.org>
+Date: Mon,  9 May 2011 16:56:21 -0700 (PDT)
+Message-ID: <20110509235621.508A6130051@annarchy.freedesktop.org>
 References: <bug-37042-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37042
 
---- Comment #1 from jsardid-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-09 16:46:36 PDT ---
-I have also filed the bug in kde: https://bugs.kde.org/show_bug.cgi?id=272899
+--- Comment #2 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-09 16:56:21 PDT ---
+Well that is well known problem due to kwin including hacks parsing GL renderer
+version.
+See here: http://www.phoronix.com/scan.php?page=news_item&px=OTM1NQ
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
