@@ -1,9 +1,11 @@
-From: Uri Moszkowicz <uri-webSqJVl7FcAvxtiuMwx3w@public.gmane.org>
-Subject: Dual monitor support
-Date: Mon, 9 May 2011 11:48:02 -0400
-Message-ID: <BANLkTimf6PUohBOWkV-msJ=J-1YwSXUqcQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 37026] New: can't compile drm_nouveau. Slackware
+ 12.2 (linux-2.6.38-r4 from gentoo-sources)
+Date: Mon,  9 May 2011 10:10:59 -0700 (PDT)
+Message-ID: <bug-37026-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1675563975=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,64 +19,41 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1675563975==
-Content-Type: multipart/alternative; boundary=00248c6a8466eb1d2e04a2d9c4f5
+https://bugs.freedesktop.org/show_bug.cgi?id=37026
 
---00248c6a8466eb1d2e04a2d9c4f5
-Content-Type: text/plain; charset=ISO-8859-1
+           Summary: can't compile drm_nouveau. Slackware 12.2
+                    (linux-2.6.38-r4 from gentoo-sources)
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: ualinuxcn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Hi,
-I have an old Dell Precision 450 with an Nvidia Quadro nvs280 (lspci:
-"01:00.0 VGA compatible controller: nVidia Corporation NV18GL [Quadro NVS
-280 SD] (rev a2)") and am having trouble getting dual monitor support to
-work. With Ubuntu 10 using the Nouveau driver the dual monitor setup would
-work but the screens would gradually become corrupted. I upgraded to Ubuntu
-11 and now when I enable dual monitor support the second screen becomes
-completely garbled and the OS becomes unresponsive on the first. It doesn't
-seem to make a difference whether I use Gnome or xranr. I tried editing
-xorg.conf directly but no luck - when I go back to the login screen there is
-a mouse cursor and it moves around but the background is different (maybe
-zoomed in?) and there is nothing in the foreground to interact with (no
-windows). Is there any advice that you can offer which might help me work
-around this problem or should I just open a bug report and wait for the fix?
-Looks like I'm using version 1:0.0.16+git20110107+b795ca6e-0ubuntu7.
 
-Thanks,
-Uri
+# git clone git://anongit.freedesktop.org/git/mesa/drm
+# cd ./drm 
+# ./autogen.sh 
+http://paste.pocoo.org/show/385919/
 
---00248c6a8466eb1d2e04a2d9c4f5
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Here is my kernel .config
+http://paste.pocoo.org/show/385920/
+or
+# grep DRM .config
+CONFIG_DRM=y
+CONFIG_DRM_KMS_HELPER=y
+CONFIG_DRM_TTM=y
+CONFIG_DRM_NOUVEAU=y
 
-Hi,<div>I have an old Dell Precision 450 with an Nvidia Quadro nvs280 (lspc=
-i: &quot;01:00.0 VGA compatible controller: nVidia Corporation NV18GL [Quad=
-ro NVS 280 SD] (rev a2)&quot;) and am having trouble getting dual monitor s=
-upport to work. With Ubuntu 10 using the Nouveau driver the dual monitor se=
-tup would work but the screens would gradually become corrupted. I upgraded=
- to Ubuntu 11 and now when I enable dual monitor support the second screen =
-becomes completely garbled and the OS becomes unresponsive on the first. It=
- doesn&#39;t seem to make a difference whether I use Gnome or xranr. I trie=
-d editing xorg.conf directly but no luck - when I go back to the login scre=
-en there is a mouse cursor and it moves around but the background is differ=
-ent (maybe zoomed in?) and there is nothing in the foreground to interact w=
-ith (no windows). Is there any advice that you can offer which might help m=
-e work around this problem or should I just open a bug report and wait for =
-the fix? Looks like I&#39;m using version=A01:0.0.16+git20110107+b795ca6e-0=
-ubuntu7.</div>
+Here is # head  /var/log/messages
+http://paste.pocoo.org/show/385922/
 
-<div><br></div><div>Thanks,</div><div>Uri</div>
-
---00248c6a8466eb1d2e04a2d9c4f5--
-
---===============1675563975==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1675563975==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
