@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37042] the blur effect in kwin does not work with
  the git version of the 3-d nouveau driver
-Date: Tue, 10 May 2011 14:16:04 -0700 (PDT)
-Message-ID: <20110510211605.2956513004F@annarchy.freedesktop.org>
+Date: Tue, 10 May 2011 14:32:19 -0700 (PDT)
+Message-ID: <20110510213219.6B91013004E@annarchy.freedesktop.org>
 References: <bug-37042-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37042
 
---- Comment #9 from jsardid-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-10 14:16:03 PDT ---
-What a mess! I just tried again with oxygen transparent decoration and it's
-working, so most surely it was a small regression in the nouveau driver
-(Texture NPOT support), which has been fixed very fast, so my new git version
-is working properly (libgl1-mesa-dri-experimental         
-7.11.0+git20110510.d6b24865-0ubuntu0sarvatt)
+Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|NOTOURBUG                   |FIXED
+
+--- Comment #10 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-05-10 14:32:19 PDT ---
+This was a bug in the nv50 mesa driver, fixed by
+d6b248652a7b2c9c3e83a5f2188ce0ac77176bf0.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
