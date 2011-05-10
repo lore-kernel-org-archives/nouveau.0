@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37042] the blur effect in kwin does not work with
  the git version of the 3-d nouveau driver
-Date: Mon,  9 May 2011 17:06:04 -0700 (PDT)
-Message-ID: <20110510000605.D42EE13004F@annarchy.freedesktop.org>
+Date: Mon,  9 May 2011 17:26:49 -0700 (PDT)
+Message-ID: <20110510002649.C42F913004E@annarchy.freedesktop.org>
 References: <bug-37042-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37042
 
---- Comment #4 from jsardid-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-09 17:06:04 PDT ---
-I heard something but I thought it was related to the intel driver not nouveau.
-so, are you saying it is the same problem here?
+--- Comment #5 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-09 17:26:49 PDT ---
+It 'affects' whole mesa, because now mesa reports different driver version if
+different format, and kwin relied on that, although version string is
+information for user only that shouldn't be parsed.
+I use nouveau too here.
+(BTW, note that on my card, the nvidia driver hangs kwin hard everytime I use
+it... and nouveau doesn't...)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
