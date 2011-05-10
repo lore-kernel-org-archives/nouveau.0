@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37042] the blur effect in kwin does not work with
  the git version of the 3-d nouveau driver
-Date: Tue, 10 May 2011 13:26:47 -0700 (PDT)
-Message-ID: <20110510202647.7E0C113004F@annarchy.freedesktop.org>
+Date: Tue, 10 May 2011 13:46:27 -0700 (PDT)
+Message-ID: <20110510204627.D3AC613004F@annarchy.freedesktop.org>
 References: <bug-37042-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37042
 
---- Comment #7 from jsardid-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-10 13:26:45 PDT ---
-It's curious that mesa developers say it's a downstream bug and kde developers
-say it's upstream
-
-I write the comment on the two sides to see if we together can clarify the
-issue
-
-https://bugs.freedesktop.org/show_bug.cgi?id=37042
-https://bugs.kde.org/show_bug.cgi?id=272899
+--- Comment #8 from jsardid-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-10 13:46:26 PDT ---
+Ok, I apologize, as you said it seems it's not related with the mesa driver at
+all: I removed the transparency in the oxygen transparent decoration and blur
+effect came back to kde, so it seems the issue is in the oxygen transparent
+decoration.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
