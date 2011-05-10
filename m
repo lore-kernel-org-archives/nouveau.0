@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37042] the blur effect in kwin does not work with
- the git version of the 3-d nouveau driver
-Date: Tue, 10 May 2011 14:32:19 -0700 (PDT)
-Message-ID: <20110510213219.6B91013004E@annarchy.freedesktop.org>
-References: <bug-37042-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37085] New: HDMI thinks it works but TV says "no
+	signal"
+Date: Tue, 10 May 2011 15:25:34 -0700 (PDT)
+Message-ID: <bug-37085-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37042-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +19,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37042
+https://bugs.freedesktop.org/show_bug.cgi?id=37085
 
-Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
+           Summary: HDMI thinks it works but TV says "no signal"
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: n.vivia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|NOTOURBUG                   |FIXED
 
---- Comment #10 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-05-10 14:32:19 PDT ---
-This was a bug in the nv50 mesa driver, fixed by
-d6b248652a7b2c9c3e83a5f2188ce0ac77176bf0.
+It used to work. I'm sure. I used to be able to properly connect my HDMI TV.
+
+Then I upgraded Ubuntu to Natty, installed a second partition with the
+proprietary drivers in case I need audio, and linked both home directories,
+which may have messed with some setting.
+
+Now, I connect my HDMI TV and get this nice pop-up which asks me to reconfigure
+my screen settings. I set the TV's resolution to 1920x1080. The system thinks
+it works, I get a huge desktop and lose my mouse pointer when it goes beyond
+the right edge, but the TV says "no signal".
+
+My xorg.conf and dmesg output are here: http://pastebin.com/TvGCPS01
+I am using the minimal 4-line xorg.conf, but the same happens with no xorg.conf
+at all.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
