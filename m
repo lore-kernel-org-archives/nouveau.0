@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35360] nouveau: no space while hiding cursor
-Date: Wed, 11 May 2011 11:47:11 -0700 (PDT)
-Message-ID: <20110511184711.1F7B113004F@annarchy.freedesktop.org>
-References: <bug-35360-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37085] HDMI thinks it works but TV says "no signal"
+Date: Wed, 11 May 2011 14:03:14 -0700 (PDT)
+Message-ID: <20110511210314.69B6C13004E@annarchy.freedesktop.org>
+References: <bug-37085-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35360-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37085-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35360
+https://bugs.freedesktop.org/show_bug.cgi?id=37085
 
-Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
+--- Comment #1 from n.vivia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-11 14:03:13 PDT ---
+Tested with FC15 LiveCD. Same result... :(
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+By the way, this is my card:
 
---- Comment #4 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-05-11 11:47:10 PDT ---
-Fixed by xf86-video-nouveau commit 8378443bd3b26b57ef2ae424a700e01ead813d33.
+01:00.0 VGA compatible controller: nVidia Corporation G98 [GeForce 9300M GS]
+(rev a1)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
