@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33987] no full color on laptop screen.
-Date: Wed, 11 May 2011 06:41:21 -0700 (PDT)
-Message-ID: <20110511134121.A68F4130051@annarchy.freedesktop.org>
+Date: Wed, 11 May 2011 09:22:40 -0700 (PDT)
+Message-ID: <20110511162241.1842A13004F@annarchy.freedesktop.org>
 References: <bug-33987-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33987
 
-develop-bz7xYOng5Jy2T+V5DUblTA@public.gmane.org changed:
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Platform|x86-64 (AMD64)              |All
-           Priority|medium                      |high
+  Attachment #43026|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
