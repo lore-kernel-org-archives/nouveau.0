@@ -1,14 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35441] header files (at least nouveau_device.h and
- nouveau_grojb.h) missing from git
-Date: Fri, 13 May 2011 00:00:31 -0700 (PDT)
-Message-ID: <20110513070035.97E7913004F@annarchy.freedesktop.org>
-References: <bug-35441-8800@http.bugs.freedesktop.org/>
+From: Francesco Marella <francesco.marella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] nvfx: fill some PIPE_CAPs
+Date: Fri, 13 May 2011 13:20:28 +0200
+Message-ID: <BANLkTi=f2fy_D5-8YUbR_wR5JMJ3eLSy0A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=001485f8123e6466c304a3267fbc
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,21 +14,51 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35441
+--001485f8123e6466c304a3267fbc
+Content-Type: text/plain; charset=ISO-8859-1
 
-Fabio Pedretti <fabio.ped-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org> changed:
+-Francesco
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |johannesobermayr-Mmb7MZpHnFY@public.gmane.org
+--001485f8123e6466c304a3267fbc
+Content-Type: text/x-patch; charset=US-ASCII; name="0001-nvfx-fill-some-PIPE_CAPs.patch"
+Content-Disposition: attachment;
+	filename="0001-nvfx-fill-some-PIPE_CAPs.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_gnm6izjk0
 
---- Comment #13 from Fabio Pedretti <fabio.ped-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org> 2011-05-13 00:00:18 PDT ---
-*** Bug 37147 has been marked as a duplicate of this bug. ***
+RnJvbSAxZWYzY2EzY2E1OWFlOWU5NWUwNmMwYTk5OTc5NDQyMmZhOTRhZmE0IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBGcmFuY2VzY28gTWFyZWxsYSA8ZnJhbmNlc2NvLm1hcmVsbGFA
+Z21haWwuY29tPgpEYXRlOiBUaHUsIDEyIE1heSAyMDExIDEzOjI3OjA5ICswMjAwClN1YmplY3Q6
+IFtQQVRDSF0gbnZmeDogZmlsbCBzb21lIFBJUEVfQ0FQcwoKU2lnbmVkLW9mZi1ieTogRnJhbmNl
+c2NvIE1hcmVsbGEgPGZyYW5jZXNjby5tYXJlbGxhQGdtYWlsLmNvbT4KLS0tCiBzcmMvZ2FsbGl1
+bS9kcml2ZXJzL252ZngvbnZmeF9zY3JlZW4uYyB8ICAgIDYgKysrKysrCiAxIGZpbGVzIGNoYW5n
+ZWQsIDYgaW5zZXJ0aW9ucygrKSwgMCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL252ZngvbnZmeF9zY3JlZW4uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnZm
+eC9udmZ4X3NjcmVlbi5jCmluZGV4IGFiMDYzZDYuLjQ3NTEzOGMgMTAwNjQ0Ci0tLSBhL3NyYy9n
+YWxsaXVtL2RyaXZlcnMvbnZmeC9udmZ4X3NjcmVlbi5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbnZmeC9udmZ4X3NjcmVlbi5jCkBAIC04MCw2ICs4MCwxMiBAQCBudmZ4X3NjcmVlbl9nZXRf
+cGFyYW0oc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuLCBlbnVtIHBpcGVfY2FwIHBhcmFtKQog
+CQlyZXR1cm4gMDsgLy8gVE9ETzogaW1wbGVtZW50IGRlcHRoIGNsYW1wCiAJY2FzZSBQSVBFX0NB
+UF9QUklNSVRJVkVfUkVTVEFSVDoKIAkJcmV0dXJuIDA7IC8vIFRPRE86IGltcGxlbWVudCBwcmlt
+aXRpdmUgcmVzdGFydAorCWNhc2UgUElQRV9DQVBfQVJSQVlfVEVYVFVSRVM6CisJY2FzZSBQSVBF
+X0NBUF9UR1NJX0lOU1RBTkNFSUQ6CisJY2FzZSBQSVBFX0NBUF9WRVJURVhfRUxFTUVOVF9JTlNU
+QU5DRV9ESVZJU09SOgorCWNhc2UgUElQRV9DQVBfRlJBR01FTlRfQ09MT1JfQ0xBTVBfQ09OVFJP
+TDoKKwljYXNlIFBJUEVfQ0FQX1NFQU1MRVNTX0NVQkVfTUFQOgorCWNhc2UgUElQRV9DQVBfU0VB
+TUxFU1NfQ1VCRV9NQVBfUEVSX1RFWFRVUkU6CiAJY2FzZSBQSVBFX0NBUF9TSEFERVJfU1RFTkNJ
+TF9FWFBPUlQ6CiAJCXJldHVybiAwOwogCWNhc2UgUElQRV9DQVBfTUlYRURfQ09MT1JCVUZGRVJf
+Rk9STUFUUzoKLS0gCjEuNy41LjEKCg==
+--001485f8123e6466c304a3267fbc
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--001485f8123e6466c304a3267fbc--
