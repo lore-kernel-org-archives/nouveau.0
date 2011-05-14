@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35441] header files (at least nouveau_device.h and
- nouveau_grojb.h) missing from git
-Date: Sat, 14 May 2011 10:58:49 -0700 (PDT)
-Message-ID: <20110514175849.6273113004F@annarchy.freedesktop.org>
+Subject: [Bug 35441] [PATCH] Mesa does not find nouveau include
+ files with --enable-shared-dricore
+Date: Sat, 14 May 2011 11:01:46 -0700 (PDT)
+Message-ID: <20110514180147.10E4A13004F@annarchy.freedesktop.org>
 References: <bug-35441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,28 +27,19 @@ Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #45008|0                           |1
-        is obsolete|                            |
-  Attachment #45009|0                           |1
-        is obsolete|                            |
-  Attachment #45037|0                           |1
-        is obsolete|                            |
-  Attachment #45038|0                           |1
-        is obsolete|                            |
+            Summary|header files (at least      |[PATCH] Mesa does not find
+                   |nouveau_device.h and        |nouveau include files with
+                   |nouveau_grojb.h) missing    |--enable-shared-dricore
+                   |from git                    |
+             Status|NEW                         |ASSIGNED
+           Severity|major                       |critical
+           Priority|medium                      |highest
+          Component|Drivers/DRI/nouveau         |Mesa core
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
+                   |rg                          |org
 
---- Comment #14 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2011-05-14 10:58:48 PDT ---
-Created an attachment (id=46722)
- View: https://bugs.freedesktop.org/attachment.cgi?id=46722
- Review: https://bugs.freedesktop.org/review?bug=35441&attachment=46722
-
-Final fix!
-
-This patches fixes whole compiling.
-
-Tested on openSUSE (with and without --enable-shared-dricore).
-
-https://build.opensuse.org/package/show?package=Mesa&project=home%3Ajobermayr
-(with --enable-shared-dricore)
+--- Comment #15 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2011-05-14 11:01:46 PDT ---
+Set 'Component: Mesa core' since the patch touches core parts.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
