@@ -1,48 +1,100 @@
-From: Daniel Hazelton <dhazelton@enter.net>
-Subject: Re: 2.6.39-rc7 nouveau vs KDE 4.6.2
-Date: Sun, 15 May 2011 09:47:38 -0400
-Message-ID: <201105150947.38329.dhazelton@enter.net>
-References: <20110514231208.GA2947@p183> <20110515080929.GA2533@p183> <20110515082137.GA3882@p183>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 37243] New: Resume STR or STD,
+	black & white stripes & dots.
+Date: Sun, 15 May 2011 20:44:35 -0700 (PDT)
+Message-ID: <bug-37243-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: Text/Plain;
-  charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20110515082137.GA3882@p183>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alexey Dobriyan <adobriyan@gmail.com>
-Cc: bskeggs@redhat.com, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sunday, May 15, 2011 04:21:37 AM Alexey Dobriyan wrote:
-> On Sun, May 15, 2011 at 11:09:29AM +0300, Alexey Dobriyan wrote:
-> > On Sun, May 15, 2011 at 02:12:08AM +0300, Alexey Dobriyan wrote:
-> > > After logging into KDE, I get garbage areas when say mouse moves over
-> > > icon in tray, or when window is opened fullscreen to the point it's
-> > > unusable.
-> > > 
-> > > Previous version of KDE (4.4.5?) was OK.
-> > > 
-> > > 
-> > > Linux version 2.6.39-rc7 (ad@p183) (gcc version 4.4.5 (Gentoo 4.4.5
-> > > p1.2, pie-0.4.5) ) #4 SMP PREEMPT Tue May 10 22:07:32 EEST 2011
-> > 
-> > FYI, 2.6.38.5 is no different.
-> 
-> Disable compositing/"desktop effects" (alt+shift+F12) works except
-> switch to fbconsole and back leaves screen black.
+https://bugs.freedesktop.org/show_bug.cgi?id=37243
 
-(sorry if some of you get this double - I forgot to hit "reply all" when I 
-first replied...)
+           Summary: Resume STR or STD, black & white stripes & dots.
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: bryce2-b4dvK1Jd0NvqlBn2x/YWAg@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I've come across a similar bug with the binary blob driver from nvidia - and 
-compositing state doesn't matter. The fbconsole switch leaves that system with 
-an image of the desktop, but said image is non-responsive. In the case of an 
-application or game that was running in a fullscreen window it will lose some 
-events and generally get stuck non-working and showing nothing. After seeing 
-the report of problems with the fbcon switch (I've also seen some artifacting 
-and/or "garbage" with the binary blob) I'm wondering if there might not be a 
-hardware bug that nvidia manages to paper-over in the windows version of the 
-driver that nouveau and the ugly binary-blob are unable to miss in Linux...
 
-DRH
+System:
+
+Linux bnesbitt-desktop 2.6.32-31-generic #61-Ubuntu SMP Fri Apr 8 18:24:35 UTC
+2011 i686 GNU/Linux
+Shuttle SN41 nForce2
+
+Error log snippet:
+
+May 15 19:27:25 bnesbitt-desktop kernel: 986.776362] [drm] nouveau
+0000:03:00.0: AIII, invalid/inactive channel id 32
+May 15 19:27:25 bnesbitt-desktop kernel: <el id 32
+May 15 19:27:36 bnesbitt-desktop kernel: ] [drm] nouveau 0000:03:00.0: AIII,
+invalid/inactive channel id 32
+May 15 19:27:38 bnesbitt-desktop kernel: veau 0000:03:00.0: AIII,
+invalid/inactive channel id 32
+May 15 19:27:38 bnesbitt-desktop kernel: <m] nouveau 0000:03:00.0: AIII,
+invalid/inactive channel id 32
+May 15 19:27:38 bnesbitt-desktop kernel: <:03:00.0: AIII, invalid/inactive
+channel id 32
+May 15 19:28:02 bnesbitt-desktop kernel: </inactive channel id 32
+May 15 19:28:17 bnesbitt-desktop kernel: 0271] [drm] nouveau 0000:03:00.0:
+AIII, invalid/inactive channel id 32
+May 15 19:28:24 bnesbitt-desktop kernel: <active channel id 32
+May 15 19:28:32 bnesbitt-desktop kernel: AIII, invalid/inactive channel id 32
+May 15 19:28:35 bnesbitt-desktop kernel: <3tive channel id 32
+May 15 19:28:42 bnesbitt-desktop kernel: ] nouveau 0000:03:00.0: AIII,
+invalid/inactive channel id 32
+May 15 19:28:47 bnesbitt-desktop kernel: <3] [drm] nouveau 0000:03:00.0: AIII,
+invalid/inactive channel id 32
+May 15 19:28:52 bnesbitt-desktop kernel: 7074.217800] [drm] nouveau
+0000:03:00.0: AIII, invalid/inactive channel id 32
+May 15 19:28:54 bnesbitt-desktop kernel: <3uveau 0000:03:00.0: AIII,
+invalid/inactive channel id 32
+May 15 19:28:57 bnesbitt-desktop kernel: [ 7078.948004] __ratelimit: 205874
+callbacks suppressed
+May 15 19:28:57 bnesbitt-desktop kernel: [ 7078.948007] [drm] nouveau
+0000:03:00.0: PGRAPH_ERROR - nSource: ILLEGAL_MTHD, nStatus: PROTECTION_FAULT
+May 15 19:28:57 bnesbitt-desktop kernel: [ 7078.948014] [drm] nouveau
+0000:03:00.0: PGRAPH_ERROR - Ch -1/3 Class 0x0000 Mthd 0x0d78 Data
+0x00000000:0x00000000
+May 15 19:28:57 bnesbitt-desktop kernel: [ 7078.948031] [drm] nouveau
+0000:03:00.0: PGRAPH_ERROR - nSource: ILLEGAL_MTHD, nStatus: PROTECTION_FAULT
+May 15 19:28:57 bnesbitt-desktop kernel: [ 7078.948038] [drm] nouveau
+0000:03:00.0: PGRAPH_ERROR - Ch -1/3 Class 0x0000 Mthd 0x0d7c Data
+0x00000000:0x00000000
+
+
+See also Bug #37039
+
+After resume, the machine staggers up, but is unresponsive to CTRL-ALT-F1,
+CTRL-ALT-BKSP etc.  Eventually it falls into a twisted lump and must be
+rebooted.
+
+
+----
+
+Proprietary nVideo drivers WERE NOT installed.  I will install them to see if
+it gets better.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
