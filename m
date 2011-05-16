@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36382] Frozen graphics and corrupted second monitor
- (mouse still moves)
-Date: Mon, 16 May 2011 01:58:18 -0700 (PDT)
-Message-ID: <20110516085818.ADF0813004F@annarchy.freedesktop.org>
-References: <bug-36382-8800@http.bugs.freedesktop.org/>
+From: Krzysztof Smiechowicz <deadwood-5tc4TXWwyLM@public.gmane.org>
+Subject: G73 [GeForce 7600 GT] - nv41_sgdma_backend
+Date: Mon, 16 May 2011 21:31:02 +0200
+Message-ID: <4DD17B76.3030601@wp.pl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +18,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36382
+Hello,
 
---- Comment #5 from Antoine Sirinelli <freedesktop-HBC0pQshtZqSJCNSX2h5FQ@public.gmane.org> 2011-05-16 01:58:18 PDT ---
-(In reply to comment #2)
-> You can try playing with WrappedFB (man nouveau), AFAIK it *does*
-> resolve similar issue on another Debian box.
+I got a report from an AROS user that his current card (mentioned above) 
+has problems in 3D with nouveau - very slow rendering. After some 
+investigation it turned out the problem is usage of nv41_sgdma_backend 
+for this card. Once changed into nv04_sgdma_backend card works correctly 
+again.
 
-You are right. I created a simple xorg.conf file with WrappedFB set to "on" and
-it solved the problem.
+The error(s) reported with nv41_sgdma_backend is:
 
+[drm] nouveau vm flush timeout: 0x00000022
 
-> Another option is to change/enable/disable xft fonts inside xterm.
+The card product id is 0x0391
 
-I haven't tried it as the first solution was working fine.
+Please let me know what other information is needed.
 
-> How do you configure your dial head setup - xrandr of xorg.conf ?
-
-I did not have any xorg.conf. The dual-head configuration was set up by gnome
-using the "Screen" preferences. I believe it is relying on xrandr.
-
-Many thanks for your help,
-
-Antoine
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Best regards,
+Krzysztof
