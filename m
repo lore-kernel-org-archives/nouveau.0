@@ -1,11 +1,11 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Bug 37284] New: some applications crash the x server
- in multiscreen mode
-Date: Tue, 17 May 2011 13:44:19 +0100
-Message-ID: <op.vvmln50d7cbmmg@emo>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 37284] some applications crash the x server in
+	multiscreen mode
+Date: Tue, 17 May 2011 05:45:06 -0700 (PDT)
+Message-ID: <20110517124506.63D1813004F@annarchy.freedesktop.org>
 References: <bug-37284-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-37284-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
@@ -18,9 +18,12 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+https://bugs.freedesktop.org/show_bug.cgi?id=37284
+
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-17 05:45:05 PDT ---
 Hi Tim,
 
 First of all the bug report you linked is about a issue relating both the
@@ -50,8 +53,14 @@ bug report, after you have checked that one does not exist
 [1] http://nouveau.freedesktop.org/wiki/Bugs
 [2] http://nouveau.freedesktop.org/wiki/FAQ
 [3] http://nouveau.freedesktop.org/wiki/TroubleShooting
-[4] http://nouveau.freedesktop.org/wiki/TroubleShooting#Igetthe.22EQoverflowing.22error
+[4]
+http://nouveau.freedesktop.org/wiki/TroubleShooting#Igetthe.22EQoverflowing.22error
 
 P.S. I'm a Ubuntu user, to the extent that I do not want to configure
 all the userspace by myself. I do configure and build the kernel, libdrm,
 ddx and mesa by myself (simple script does the job for me)
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
