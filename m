@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37284] some applications crash the x server in
 	multiscreen mode
-Date: Tue, 17 May 2011 09:51:57 -0700 (PDT)
-Message-ID: <20110517165157.447D2130052@annarchy.freedesktop.org>
+Date: Tue, 17 May 2011 10:07:43 -0700 (PDT)
+Message-ID: <20110517170743.4D70013004E@annarchy.freedesktop.org>
 References: <bug-37284-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,42 +23,43 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37284
 
---- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-17 09:51:57 PDT ---
-On Tue, 17 May 2011 17:34:38 +0100, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+--- Comment #6 from tim blechmann <tim-xpEK/MU0Hawdnm+yROfE0A@public.gmane.org> 2011-05-17 10:07:43 PDT ---
+> > either it is a different issue, or it the log is not synced to disc
+> The above has been taken from the latest Xorg.log in the bug report and clearly
+> indicated that the issue was experienced using nouveau
 
-> https://bugs.freedesktop.org/show_bug.cgi?id=37284
->
-> --- Comment #4 from tim blechmann <tim-xpEK/MU0Hawdnm+yROfE0A@public.gmane.org> 2011-05-17 09:34:37 PDT ---
-> ...
-> either it is a different issue, or it the log is not synced to disc
-The above has been taken from the latest Xorg.log in the bug report and clearly
-indicated that the issue was experienced using nouveau
+well, this is the reason, why i am reporting the bug here ... after all, this
+is the bug tracker for nouveau,  isn't it?
 
-> ...
-> * run xrandr --output VGA-1 --off --output DVI-I-1 --mode 1680x1050 --pos
-> 1680x0 --rotate normal --output HDMI-1 --mode 1680x1050 --pos 0x0 --rotate
-> normal
-you kind of missed to mentioned *anywhere* this step
+> > ...
+> > * run xrandr --output VGA-1 --off --output DVI-I-1 --mode 1680x1050 --pos
+> > 1680x0 --rotate normal --output HDMI-1 --mode 1680x1050 --pos 0x0 --rotate
+> > normal
+> you kind of missed to mentioned *anywhere* this step
 
-> ...
-> * i check the tracker of my distribution and find a related issue
-* Ensure that the issue is the same as the one I'm experiensing
+the first sentence of my bug report was:
+"i am running my x server in multiscreen mode"
 
-> ...
-> * i stop using one of my crucial applications
-* Or try to find a workaround
-* I read the bugs section
+the subject:
+"some applications crash the x server in multiscreen mode"
 
-> * i submit a bug report upstream, pointing to the downstream report
-> * it initially gets `resolved' as `notourbug'
->
-> i am maintaining an open source project myself. but i have never told any of my
-> users that it is their problem, if my code crashes.
->
-Please read the bugs section [1] and open another bug.
-Thanks
 
-[1] http://nouveau.freedesktop.org/wiki/Bugs
+> > ...
+> > * i check the tracker of my distribution and find a related issue
+> * Ensure that the issue is the same as the one I'm experiencing
+
+the symptoms are the same:
+nouveau + multiscreen + gitk/git gui == crash
+
+> > ...
+> > * i stop using one of my crucial applications
+> * Or try to find a workaround
+
+like stop using gitk? i've been working without it for almost two months ...
+
+... sorry, but i have already spent too much time with this bug today ... will
+reinstall ubuntu 10.10 and the proprietary driver, since i need to get some
+work done
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
