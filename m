@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
  composition manager
-Date: Tue, 17 May 2011 13:03:54 -0700 (PDT)
-Message-ID: <20110517200354.1EC66130052@annarchy.freedesktop.org>
+Date: Tue, 17 May 2011 14:11:01 -0700 (PDT)
+Message-ID: <20110517211101.7829F13004F@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Product|xorg                        |Mesa
-           Platform|x86 (IA32)                  |All
-          Component|Driver/nouveau              |Drivers/DRI/nouveau
-          QAContact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
+--- Comment #4 from Bryan Cain <plombex342-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-17 14:11:01 PDT ---
+How did you narrow the issue down to Mesa?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
