@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37284] some applications crash the x server in
 	multiscreen mode
-Date: Tue, 17 May 2011 07:57:18 -0700 (PDT)
-Message-ID: <20110517145718.63FAB13004E@annarchy.freedesktop.org>
+Date: Tue, 17 May 2011 09:17:14 -0700 (PDT)
+Message-ID: <20110517161714.1231913004E@annarchy.freedesktop.org>
 References: <bug-37284-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,27 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37284
 
---- Comment #2 from tim blechmann <tim-xpEK/MU0Hawdnm+yROfE0A@public.gmane.org> 2011-05-17 07:57:17 PDT ---
-sorry for trying to report and resolve a bug, which at least in my case, is
-definitely related to nouveau
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-17 09:17:13 PDT ---
+Yet another relatively long reply but I believe it is necessary
+
+1. How about looking at the log for about 20 secs - you would have easily seen
+the issue - "EQ overflow"
+2. Then use that information to go through the relevant sections -
+faq/troubleshooting
+3. And provide a simple clear report indicating the issue and following the
+guides (see the bugs section)
+4. I would *not* have pointed out to bug report, that is not well defined - not
+to mention that your name does not appear in it (i.e. probably lacks
+information provided by yourself)
+
+My approach (not only) would be - spend 5(or less) minutes reading, another up
+to 5 thinking on how to formulate the issue, and 2 minutes for write up.
+
+I realize I sound like a prick although I'm a bit fed up with some users' *lack
+of interest to actually resolve issues* - they just want to report that "it
+does not work"
+
+Hopefully you will see some of the positive things that have been said in here
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
