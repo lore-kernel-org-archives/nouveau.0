@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
  composition manager
-Date: Tue, 17 May 2011 12:57:12 -0700 (PDT)
-Message-ID: <20110517195712.B7B12130051@annarchy.freedesktop.org>
+Date: Tue, 17 May 2011 13:03:54 -0700 (PDT)
+Message-ID: <20110517200354.1EC66130052@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #3 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-17 12:57:12 PDT ---
-In fact the exact same issue happens in kwin as well.
-In addition to that often the game itself plays just fine, but once you exit
-it, the composition manager starts to flicker badly in pretty much same way
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Product|xorg                        |Mesa
+           Platform|x86 (IA32)                  |All
+          Component|Driver/nouveau              |Drivers/DRI/nouveau
+          QAContact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
