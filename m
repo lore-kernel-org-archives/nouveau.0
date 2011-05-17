@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
  composition manager
-Date: Tue, 17 May 2011 14:11:01 -0700 (PDT)
-Message-ID: <20110517211101.7829F13004F@annarchy.freedesktop.org>
+Date: Tue, 17 May 2011 15:56:25 -0700 (PDT)
+Message-ID: <20110517225627.101F613004E@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #4 from Bryan Cain <plombex342-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-17 14:11:01 PDT ---
-How did you narrow the issue down to Mesa?
+--- Comment #5 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-17 15:56:24 PDT ---
+Well thats happen with compiz, so its 3D related.
+So as a good citizen, I set the component as nouveau wiki suggests for 3D bugs.
+This used not to happen in distinct past, so a bisect could be possible
+(execpt that is sucky to search libdrm commit tree for the commit that will
+work with specific mesa commit)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
