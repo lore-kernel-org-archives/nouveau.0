@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37284] some applications crash the x server in
 	multiscreen mode
-Date: Tue, 17 May 2011 09:17:14 -0700 (PDT)
-Message-ID: <20110517161714.1231913004E@annarchy.freedesktop.org>
+Date: Tue, 17 May 2011 09:34:38 -0700 (PDT)
+Message-ID: <20110517163438.3E61B13004E@annarchy.freedesktop.org>
 References: <bug-37284-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,27 +23,55 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37284
 
---- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-17 09:17:13 PDT ---
-Yet another relatively long reply but I believe it is necessary
+--- Comment #4 from tim blechmann <tim-xpEK/MU0Hawdnm+yROfE0A@public.gmane.org> 2011-05-17 09:34:37 PDT ---
+> 1. How about looking at the log for about 20 secs - you would have easily seen
+> the issue - "EQ overflow"
 
-1. How about looking at the log for about 20 secs - you would have easily seen
-the issue - "EQ overflow"
-2. Then use that information to go through the relevant sections -
-faq/troubleshooting
-3. And provide a simple clear report indicating the issue and following the
-guides (see the bugs section)
-4. I would *not* have pointed out to bug report, that is not well defined - not
-to mention that your name does not appear in it (i.e. probably lacks
-information provided by yourself)
+tim@moka:~/workspace/linux-2.6$ cat /var/log/Xorg.*|grep EQ
+[    11.505] (II) Initializing built-in extension BIG-REQUESTS
+[   129.374] (II) Initializing built-in extension BIG-REQUESTS
+[    42.459] (II) Initializing built-in extension BIG-REQUESTS
+[    36.257] (II) Initializing built-in extension BIG-REQUESTS
+[   165.193] (II) Initializing built-in extension BIG-REQUESTS
 
-My approach (not only) would be - spend 5(or less) minutes reading, another up
-to 5 thinking on how to formulate the issue, and 2 minutes for write up.
+either it is a different issue, or it the log is not synced to disc
 
-I realize I sound like a prick although I'm a bit fed up with some users' *lack
-of interest to actually resolve issues* - they just want to report that "it
-does not work"
+> 2. Then use that information to go through the relevant sections -
+> faq/troubleshooting
+> 3. And provide a simple clear report indicating the issue and following the
+> guides (see the bugs section)
 
-Hopefully you will see some of the positive things that have been said in here
+* install ubuntu 11.04
+* select nouveau
+* run xrandr --output VGA-1 --off --output DVI-I-1 --mode 1680x1050 --pos
+1680x0 --rotate normal --output HDMI-1 --mode 1680x1050 --pos 0x0 --rotate
+normal
+* run gitk
+* see how your x server restarts
+
+> 4. I would *not* have pointed out to bug report, that is not well defined - not
+> to mention that your name does not appear in it (i.e. probably lacks
+> information provided by yourself)
+
+unfortunately, my x debugging capabilities are a bit limited: if i try to
+attach gdb to the x process, x freezes, which makes it a bit hard to get a good
+backtrace
+
+
+> I realize I sound like a prick although I'm a bit fed up with some users' *lack
+> of interest to actually resolve issues* - they just want to report that "it
+> does not work"
+
+* i experience a bug
+* i check the tracker of my distribution and find a related issue
+* i subscribe to the bug
+* nothing happens
+* i stop using one of my crucial applications
+* i submit a bug report upstream, pointing to the downstream report
+* it initially gets `resolved' as `notourbug'
+
+i am maintaining an open source project myself. but i have never told any of my
+users that it is their problem, if my code crashes.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
