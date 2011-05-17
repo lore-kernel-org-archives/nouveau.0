@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
-	Compiz
-Date: Tue, 17 May 2011 12:54:58 -0700 (PDT)
-Message-ID: <20110517195458.B214013004F@annarchy.freedesktop.org>
+ composition manager
+Date: Tue, 17 May 2011 12:56:01 -0700 (PDT)
+Message-ID: <20110517195602.0C05313004F@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #2 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-17 12:54:57 PDT ---
-*** Bug 35877 has been marked as a duplicate of this bug. ***
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|flickering in many OpenGL   |flickering in many OpenGL
+                   |applications with Compiz    |applications with
+                   |                            |composition manager
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
