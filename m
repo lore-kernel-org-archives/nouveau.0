@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
  composition manager
-Date: Wed, 18 May 2011 13:59:07 -0700 (PDT)
-Message-ID: <20110518205907.D6C2713004F@annarchy.freedesktop.org>
+Date: Wed, 18 May 2011 14:51:37 -0700 (PDT)
+Message-ID: <20110518215137.5252A13004E@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #8 from Bryan Cain <plombex342-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-18 13:59:07 PDT ---
-This could still be an issue somewhere in the DDX driver, even if page flipping
-is not the problem.
+--- Comment #9 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-18 14:51:37 PDT ---
+To test that further I added 'return FALSE;' in nouveau_dri2.c:can_exchange()
+Seeing that this doesn't help I added:
+
+usleep(300 * 1000);
+
+just before:
+DRI2SwapComplete(s->client, draw, frame, tv_sec, tv_usec,
+         type, s->func, s->data);
+
+int nouveau_dri2.c in DDX
+
+And despite that huge delay (I tried first 30 * 1000 as suggested), nether
+rendering FPS dropped nor problem fixed.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
