@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31961] [drm:drm_crtc_helper_set_config] *ERROR*
  failed to set mode on [CRTC:6]
-Date: Wed, 18 May 2011 12:37:57 -0700 (PDT)
-Message-ID: <20110518193757.126D413004E@annarchy.freedesktop.org>
+Date: Wed, 18 May 2011 13:08:47 -0700 (PDT)
+Message-ID: <20110518200847.4B90413004E@annarchy.freedesktop.org>
 References: <bug-31961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,29 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31961
 
---- Comment #7 from avi142-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-18 12:37:56 PDT ---
-On a fresh F15.RC1 install, I can't get past the login screen due to this bug.
+--- Comment #8 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-05-18 13:08:46 PDT ---
+(In reply to comment #7)
+> On a fresh F15.RC1 install, I can't get past the login screen due to this bug.
+> 
+> My dmesg output is the same as previously posted.
 
-My dmesg output is the same as previously posted.
+[...]
 
-My motherboard:
+> I am considering trying to remove the nouveau driver and replacing it with the
+> proprietary driver. Is there an alternative to this?
 
-dmidecode | grep -i 'Base Board Information' -A4 -B1
-Handle 0x0002, DMI type 2, 8 bytes
-Base Board Information
-    Manufacturer: Hewlett-Packard
-    Product Name: 0844
-    Version: 123
-    Serial Number: [omitted]
-
-My graphics card:
-
-lspci | grep 'VGA'
-01:00.0 VGA compatible controller: nVidia Corporation NV18GL [Quadro4 380 XGL]
-(rev a2)
-
-I am considering trying to remove the nouveau driver and replacing it with the
-proprietary driver. Is there an alternative to this?
+Please upload dmesg with drm.debug=1 added to your kernel command line. This
+could help to narrow down the problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
