@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
  composition manager
-Date: Wed, 18 May 2011 13:56:32 -0700 (PDT)
-Message-ID: <20110518205632.DA0E413004E@annarchy.freedesktop.org>
+Date: Wed, 18 May 2011 13:59:07 -0700 (PDT)
+Message-ID: <20110518205907.D6C2713004F@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #7 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-18 13:56:32 PDT ---
-Nope, thats not pageflipping fault.
-I suspected that long ago and tested.
-To be sure I tested that again:
-
-
-
-maxim@maxim-laptop:~$ cat /etc/X11/xorg.conf | grep Flip
-        Option "PageFlip" "false"
-
-maxim@maxim-laptop:~$ cat /usr/local/var/log/Xorg.0.log | grep flip
-[  2674.564] (**) NOUVEAU(0): Page flipping disabled
-
-Still, exactly same problem.
+--- Comment #8 from Bryan Cain <plombex342-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-18 13:59:07 PDT ---
+This could still be an issue somewhere in the DDX driver, even if page flipping
+is not the problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
