@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35878] No support for user clip planes in NV50 driver
-Date: Thu, 19 May 2011 11:12:05 -0700 (PDT)
-Message-ID: <20110519181205.8F2CE13004F@annarchy.freedesktop.org>
-References: <bug-35878-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37398] New: some applications (like wine) crash
+ nouveau and leave it in an unworkable state
+Date: Fri, 20 May 2011 01:32:32 -0700 (PDT)
+Message-ID: <bug-37398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +19,37 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35878
+https://bugs.freedesktop.org/show_bug.cgi?id=37398
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+           Summary: some applications (like wine) crash nouveau and leave
+                    it in an unworkable state
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
 
---- Comment #6 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-19 11:12:05 PDT ---
-patch applied now, bug fixed.
+Created an attachment (id=46935)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=46935)
+backtrace of crash w/ exaPrepareAccessReg_mixed()
+
+Whenever when I start a wine application (the best example I have is
+Notepad++), X crashes either by locking up or restarting itself.  I can
+reproduce it every time with Notepad++ (one of the only wine apps I even have).
+Sometimes I can reproduce it with the standard Notepad as well.
+
+I'm using a 9500GT with xserver-xorg-video-nouveau package
+0.0.16+git20110323.8378443b-0ubuntu0sarvatt on Ubuntu. (xorg-edgers ppa)
+
+I have collected some data, which I've attached, from another computer via ssh
+and gdb.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
