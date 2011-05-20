@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
  nouveau: random GPU lockups
-Date: Fri, 20 May 2011 04:04:47 -0700 (PDT)
-Message-ID: <20110520110447.32FB2130051@annarchy.freedesktop.org>
+Date: Fri, 20 May 2011 04:21:06 -0700 (PDT)
+Message-ID: <20110520112106.309CD130051@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
---- Comment #51 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> 2011-05-20 04:04:41 PDT ---
-I have been using the git sources for two weeks, and updated to 2.6.39
-yesterday:
+--- Comment #52 from Pavel S. <pav_s-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> 2011-05-20 04:20:58 PDT ---
+I am sorry, the last comment was probably unclear:
 
-since somewhere after 25c68aef4e6abcc3c10f593fc565c342ebe2ded8 the lockups
-disappeared - and I hope they wont return.
-
-great work, thank you
+Hardware: Thinkpad T410, NVS 3100M (nva8?)
+Kernel: vanilla 2.6.39+ from kernel.org + nouveau tree merged
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
