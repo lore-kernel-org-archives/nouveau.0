@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37398] some applications (like wine) crash nouveau
  and leave it in an unworkable state
-Date: Fri, 20 May 2011 02:03:34 -0700 (PDT)
-Message-ID: <20110520090335.16A1013004E@annarchy.freedesktop.org>
+Date: Fri, 20 May 2011 02:04:33 -0700 (PDT)
+Message-ID: <20110520090433.E9620130051@annarchy.freedesktop.org>
 References: <bug-37398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37398
 
---- Comment #4 from Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-20 02:03:34 PDT ---
-Created an attachment (id=46938)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=46938)
-backtrace of crash type #2 (ExaFallbackPrepareReg, exaPrepareAccessReg_mixed)
+--- Comment #5 from Andy Matteson <xt.knight-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-20 02:04:33 PDT ---
+Created an attachment (id=46939)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=46939)
+backtrace of crash type #3 (ReadRequestFromClient)
 
-this is another crash that happens in the same situation
+and another crash that happens in that same situation
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
