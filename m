@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37056] --rotate left and --right-of <another output>
  doesn't work together
-Date: Fri, 20 May 2011 10:55:44 -0700 (PDT)
-Message-ID: <20110520175544.3412E130051@annarchy.freedesktop.org>
+Date: Fri, 20 May 2011 10:56:50 -0700 (PDT)
+Message-ID: <20110520175650.D598D13004F@annarchy.freedesktop.org>
 References: <bug-37056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37056
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-20 10:55:43 PDT ---
-This bug appears to be a duplicate of 35901.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-You can try the suggestions provided
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |DUPLICATE
+
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-20 10:56:49 PDT ---
+
+
+*** This bug has been marked as a duplicate of bug 35901 ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
