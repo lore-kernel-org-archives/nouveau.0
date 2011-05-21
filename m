@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35901] two full hd displays (left and right) with
- nouveau does not work any more
-Date: Fri, 20 May 2011 10:56:51 -0700 (PDT)
-Message-ID: <20110520175651.80350130051@annarchy.freedesktop.org>
-References: <bug-35901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35930] flickering in many OpenGL applications with
+ composition manager
+Date: Fri, 20 May 2011 17:59:11 -0700 (PDT)
+Message-ID: <20110521005911.67C1713004E@annarchy.freedesktop.org>
+References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35930-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +21,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35901
+https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #11 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-20 17:59:11 PDT ---
+I noticed something funny that might nail down that bug.
+If I rotate the screen, the bug disappears.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |tomi.pievilainen+freedeskto
-                   |                            |p@iki.fi
+I can even rotate the screen while game running and control the flicker this
+way (although sometimes flicker doesn't disappear - but compiz restart sure
+reappears it, and on the other hand flicker always appears if I start the game
+in rotated mode and rotate to normal).
 
---- Comment #16 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-20 10:56:49 PDT ---
-*** Bug 37056 has been marked as a duplicate of this bug. ***
+I tried left and upside-down rotations.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
