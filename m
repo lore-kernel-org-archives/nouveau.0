@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hang on nvidia
-Date: Fri, 20 May 2011 19:46:05 -0700 (PDT)
-Message-ID: <20110521024605.D238113004F@annarchy.freedesktop.org>
+Date: Fri, 20 May 2011 19:58:00 -0700 (PDT)
+Message-ID: <20110521025800.E0A9113004F@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #4 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-20 19:46:05 PDT ---
-Also note that if game doesn't run full-screen, I can still see rare flickering
-with pageflip disabled (with that return FALSE).
-Probably as was suggested before, it just exposes the problem that was there
-before.
+--- Comment #5 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-20 19:58:00 PDT ---
+Drat, disregard the comments, these are for other bug
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
