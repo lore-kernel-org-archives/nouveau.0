@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hang on nvidia
-Date: Fri, 20 May 2011 19:44:38 -0700 (PDT)
-Message-ID: <20110521024438.EC6C613004F@annarchy.freedesktop.org>
+Date: Fri, 20 May 2011 19:46:05 -0700 (PDT)
+Message-ID: <20110521024605.D238113004F@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,18 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #3 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-20 19:44:38 PDT ---
-Yes, it indeed pageflip support.
-Putting 'return FALSE' in can_exchange fixes the problem, last time I must have
-forgot to 'make install' or something.
-
-However, 'Option "PageFlip" "false"' doesn't help, because even if set, the
-condition in can_exchange lets flipping in some cases
-(if nouveau_exa_pixmap_is_onscreen() == FALSE).
-Not sure why that check is there.
-
-@Alexander Potashev - older kernel you describe just doesn't have pageflipping
-code, so sure you don't see it on it.
+--- Comment #4 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-20 19:46:05 PDT ---
+Also note that if game doesn't run full-screen, I can still see rare flickering
+with pageflip disabled (with that return FALSE).
+Probably as was suggested before, it just exposes the problem that was there
+before.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
