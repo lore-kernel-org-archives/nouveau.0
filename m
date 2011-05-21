@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
  composition manager
-Date: Fri, 20 May 2011 20:00:43 -0700 (PDT)
-Message-ID: <20110521030043.4CE5213004E@annarchy.freedesktop.org>
+Date: Fri, 20 May 2011 20:01:46 -0700 (PDT)
+Message-ID: <20110521030146.ED280130051@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #13 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-20 20:00:42 PDT ---
-Yes, it indeed pageflip support.
-Putting 'return FALSE' in can_exchange fixes the problem, last time I must have
-forgot to 'make install' or something.
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-However, 'Option "PageFlip" "false"' doesn't help, because even if set, the
-condition in can_exchange lets flipping in some cases
-(if nouveau_exa_pixmap_is_onscreen() == FALSE).
-Not sure why that check is there.
-
-Also note that if game doesn't run full-screen, I can still see rare flickering
-with pageflip disabled (with that return FALSE).
-Probably as was suggested before, it just exposes the problem that was there
-before.
-
-Also alien-arena works just fine.
-Although I likely won't play it, despite nice graphics, and theme, I hate the
-controls (you can't move left-right) and health there actually decreases and
-not increases in idle like in nexuiz.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Product|Mesa                        |xorg
+          Component|Drivers/DRI/nouveau         |Driver/nouveau
+          QAContact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
