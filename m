@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Sat, 21 May 2011 06:47:36 -0700 (PDT)
-Message-ID: <20110521134736.53C0C13004F@annarchy.freedesktop.org>
-References: <bug-35876-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33445] NVS 3100M : Blank screen on external eDP
+	monitor
+Date: Sat, 21 May 2011 07:14:44 -0700 (PDT)
+Message-ID: <20110521141444.4DF9313004F@annarchy.freedesktop.org>
+References: <bug-33445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,13 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35876
+https://bugs.freedesktop.org/show_bug.cgi?id=33445
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Hard GPU hang on nvidia     |Hard GPU hangs on NV86
+            Summary|NVS 3100M : Blank screen on |NVS 3100M : Blank screen on
+                   |kernel module loading       |external eDP monitor
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
