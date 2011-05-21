@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35930] flickering in many OpenGL applications with
- composition manager
-Date: Fri, 20 May 2011 20:01:46 -0700 (PDT)
-Message-ID: <20110521030146.ED280130051@annarchy.freedesktop.org>
-References: <bug-35930-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33445] NVS 3100M : Blank screen on kernel module
+	loading
+Date: Sat, 21 May 2011 03:41:44 -0700 (PDT)
+Message-ID: <20110521104144.62D8E13004F@annarchy.freedesktop.org>
+References: <bug-33445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35930-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35930
+https://bugs.freedesktop.org/show_bug.cgi?id=33445
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #12 from celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-21 03:41:44 PDT ---
+When I connect an external VGA monitor and load nouveau, I get the correct
+image on the VGA screen.
+The same happen with and without the latest patch.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Product|Mesa                        |xorg
-          Component|Drivers/DRI/nouveau         |Driver/nouveau
-          QAContact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Then the problem may be only eDP related.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
