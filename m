@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35876] Hard GPU hang on nvidia
-Date: Sat, 21 May 2011 06:47:05 -0700 (PDT)
-Message-ID: <20110521134705.74EE313004F@annarchy.freedesktop.org>
+Subject: [Bug 35876] Hard GPU hangs on NV86
+Date: Sat, 21 May 2011 06:47:36 -0700 (PDT)
+Message-ID: <20110521134736.53C0C13004F@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #6 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-21 06:47:05 PDT ---
-And for a comment that is relevant for this bugreport, I started as a long
-endurance test, using 2.6.35.
-Will see if it hangs in same way.
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-I remember that long ago there were no hangs.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Hard GPU hang on nvidia     |Hard GPU hangs on NV86
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
