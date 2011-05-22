@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37445] Nouveau regularly reports the TRAP_VFETCH
 	FAULT errors.
-Date: Sat, 21 May 2011 17:31:37 -0700 (PDT)
-Message-ID: <20110522003137.4D24213004F@annarchy.freedesktop.org>
+Date: Sat, 21 May 2011 17:34:28 -0700 (PDT)
+Message-ID: <20110522003428.84C0C13004F@annarchy.freedesktop.org>
 References: <bug-37445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37445
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-21 17:34:28 PDT ---
+I used to have a lot of faults on access to FB bar, apparently caused by BIOS.
+Since now FB bar is mapped via VM, maybe its the same thing?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Nouveau regulary reports    |Nouveau regularly reports
-                   |the TRAP_VFETCH FAULT       |the TRAP_VFETCH FAULT
-                   |errors.                     |errors.
+The faults themselves were accesses from SMI code my bios runs apparently for
+no reason (some debug code leftovers maybe)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
