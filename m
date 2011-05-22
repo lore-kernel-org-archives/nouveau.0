@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25258] [9400M] KMS and X do not use monitor's native
+Subject: [Bug 25258] KMS and X do not use monitor's native
 	resolution
-Date: Sun, 22 May 2011 09:35:30 -0700 (PDT)
-Message-ID: <20110522163530.819CF130051@annarchy.freedesktop.org>
+Date: Sun, 22 May 2011 09:38:21 -0700 (PDT)
+Message-ID: <20110522163821.4B031130051@annarchy.freedesktop.org>
 References: <bug-25258-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=25258
 
---- Comment #12 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2011-05-22 09:35:30 PDT ---
-Created an attachment (id=47007)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47007)
-dmesg output on ASUS E35M1-I Deluxe
+Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
 
-Same problem on ASUS E35M1-I Deluxe (radeon).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[9400M] KMS and X do not    |KMS and X do not use
+                   |use monitor's native        |monitor's native resolution
+                   |resolution                  |
+            Product|xorg                        |DRI
+            Version|unspecified                 |DRI CVS
+           Platform|x86-64 (AMD64)              |All
+          Component|Driver/nouveau              |General
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org
+                   |rg                          |.org
+          QAContact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
+
+--- Comment #13 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2011-05-22 09:38:20 PDT ---
+Assign to DRI / General since it seems to be a general problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
