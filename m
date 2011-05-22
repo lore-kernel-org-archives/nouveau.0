@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37445] Nouveau regularly reports the TRAP_VFETCH
 	FAULT errors.
-Date: Sun, 22 May 2011 03:23:07 -0700 (PDT)
-Message-ID: <20110522102307.9C2F713004F@annarchy.freedesktop.org>
+Date: Sun, 22 May 2011 03:27:56 -0700 (PDT)
+Message-ID: <20110522102756.D202813004F@annarchy.freedesktop.org>
 References: <bug-37445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37445
 
---- Comment #3 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-22 03:23:07 PDT ---
-That is what I suspected but didn't want to be true.
-That happens with many games, so I suspect its nouveau mesa driver and not game
-fault, and it might reflect upon something nasty happening in the driver
+--- Comment #4 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-22 03:27:56 PDT ---
+I also have just seen that in kernel log:
+
+
+[29782.682641] [drm] nouveau 0000:01:00.0: PGRAPH - TRAP_TEXTURE - TP0:
+Unhandled ustatus 0x00000003
+[29782.682671] [drm] nouveau 0000:01:00.0: PGRAPH_TRAP_TPDMA_RT - TP 0 -
+Unknown fault at address 0022467000
+[29782.682693] [drm] nouveau 0000:01:00.0: PGRAPH_TRAP_TPDMA_RT - TP 0 - e0c:
+00000000, e18: 00000000, e1c: 00000000, e20: 00001100, e24: 00030000
+[29782.682722] [drm] nouveau 0000:01:00.0: PGRAPH - TRAP
+[29782.682740] [drm] nouveau 0000:01:00.0: PGRAPH - ch 5 (0x000472b000) subc 5
+class 0x8297 mthd 0x15e0 data 0x00000000
+[29782.682771] [drm] nouveau 0000:01:00.0: VM: trapped write at 0x0022467000 on
+ch 5 [0x0000472b] PGRAPH/PROP/RT0 reason: PAGE_NOT_PRESENT
+
+
+Probably unrelated, or maybe not.
+This time its texture fetch fault.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
