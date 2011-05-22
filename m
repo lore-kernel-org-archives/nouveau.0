@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
  composition manager
-Date: Sun, 22 May 2011 02:49:21 -0700 (PDT)
-Message-ID: <20110522094923.67BC9130051@annarchy.freedesktop.org>
+Date: Sun, 22 May 2011 03:19:18 -0700 (PDT)
+Message-ID: <20110522101918.14035130051@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #17 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-22 02:49:18 PDT ---
-I understand that, but nouveau_dri2_finish_swap in DDX is called for both
-window DRI buffers and scanout buffers.
+--- Comment #18 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-22 03:19:17 PDT ---
+Also note that user with nick 'curro' noted that
+https://bugs.freedesktop.org/show_bug.cgi?id=35452 fixes that issue partially,
+and indeed even though flickering is there, at least upon full-screen game
+exit, compiz continues to work fine and not gain the same flickering issue.
 
-It seem that DRI2CanFlip filters indeed only full screen buffers, but I don't
-understand why it returns TRUE for all pixmaps.
-Aren't pixmaps not on the screen at all?
-Or it never called with pixmaps but only with windows.
-
-As far as I understand it, from very old memories of tinkering with X windows
-systems, pixmaps and windows are supposed to be interchangeable in X draw
-calls, just windows can be displayed, while pixmaps are strictly of-screen and
-can only be blitted to some window
+Also I found out why alien-arena was such a good reproducer of this bug.
+It now looks that compiz due to a bug or a race doesn't un-redirect games that
+switch resolution upon start.
+(First I noticed that if game uses non-native resolution, it always flickers,
+then I switched the screen via xrandr to target resolution _before_ starting
+the game, and flicker disappeared)
+And alien-arena weren't using native resolution.
+Pretty much for me that issue is fixed now as I don't really play
+non-fullscreen games (FPS loss and pointless anyway).
+And nether I want to play while rendering is done via compiz (because of
+non-native resolution bug)
+Nouveau i quite fast these days, fast enough to run all games I play
+occasionally at native resolution (1280x800)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
