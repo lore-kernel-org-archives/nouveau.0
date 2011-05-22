@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37460] BO memory leak
-Date: Sun, 22 May 2011 04:22:59 -0700 (PDT)
-Message-ID: <20110522112259.BC44413004E@annarchy.freedesktop.org>
+Date: Sun, 22 May 2011 04:23:14 -0700 (PDT)
+Message-ID: <20110522112314.D4BAB13004E@annarchy.freedesktop.org>
 References: <bug-37460-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37460
 
---- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-22 04:22:58 PDT ---
-Created an attachment (id=46999)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=46999)
-another kmemleak report
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I can trigger this memory leak at the rate of 1MB/s with rendercheck on xorg
-st.
-I'm attaching first 2000 lines of kmemleak report (out of 2.000.000).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #46993|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
