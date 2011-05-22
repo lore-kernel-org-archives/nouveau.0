@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37445] Nouveau regularly reports the TRAP_VFETCH
-	FAULT errors.
-Date: Sun, 22 May 2011 02:17:03 -0700 (PDT)
-Message-ID: <20110522091703.413E113004F@annarchy.freedesktop.org>
-References: <bug-37445-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35930] flickering in many OpenGL applications with
+ composition manager
+Date: Sun, 22 May 2011 02:49:21 -0700 (PDT)
+Message-ID: <20110522094923.67BC9130051@annarchy.freedesktop.org>
+References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35930-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37445
+https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #2 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2011-05-22 02:17:03 PDT ---
-VFETCH means "vertex fetch", so it's caused by vertex fetches / reads of vertex
-data by PGRAPH.
+--- Comment #17 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-22 02:49:18 PDT ---
+I understand that, but nouveau_dri2_finish_swap in DDX is called for both
+window DRI buffers and scanout buffers.
 
-One possible reason is that some app asks for vertices outside the limit of a
-vertex buffer (for whatever reason - could be app bug, driver bug or mesa bug),
-which go to a special memory area, NV50_3D_VERTEX_RUNOUT_ADDRESS, which isn't
-initialized and thus would cause VM faults at address 0.
+It seem that DRI2CanFlip filters indeed only full screen buffers, but I don't
+understand why it returns TRUE for all pixmaps.
+Aren't pixmaps not on the screen at all?
+Or it never called with pixmaps but only with windows.
+
+As far as I understand it, from very old memories of tinkering with X windows
+systems, pixmaps and windows are supposed to be interchangeable in X draw
+calls, just windows can be displayed, while pixmaps are strictly of-screen and
+can only be blitted to some window
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
