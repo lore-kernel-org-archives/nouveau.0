@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37471] Website with information about
-	maintainers/developers
-Date: Mon, 23 May 2011 07:49:03 -0700 (PDT)
-Message-ID: <20110523144903.82FD8130051@annarchy.freedesktop.org>
-References: <bug-37471-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35901] nv40: Dual display (--left-of ,
+ --right-of) with nouveau does not work any more
+Date: Mon, 23 May 2011 14:35:13 -0700 (PDT)
+Message-ID: <20110523213513.618A413004F@annarchy.freedesktop.org>
+References: <bug-35901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37471-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +21,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37471
+https://bugs.freedesktop.org/show_bug.cgi?id=35901
 
---- Comment #1 from Brian Paul <brian.e.paul-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-23 07:49:02 PDT ---
-I think it would be hard to keep that info up to date.
-If you're wondering who's most recently been working on a particular driver,
-the best thing to do is check the git history.
+--- Comment #17 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-05-23 14:35:12 PDT ---
+Created an attachment (id=47074)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=47074
+ Review: https://bugs.freedesktop.org/review?bug=35901&attachment=47074
+
+nv17_crtc_large_pitch.patch
+
+Apparently you're hitting a corner case of the nv17-nv40 modesetting code
+(pitch == 4096px), because of the pitch alignment restrictions imposed by
+tiling.
+
+Can you try out the attached patch?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
 ------- You are receiving this mail because: -------
-You are on the CC list for the bug.
+You are the assignee for the bug.
