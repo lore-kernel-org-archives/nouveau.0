@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36744] [NVA5] BUG: unable to handle kernel NULL
- pointer dereference
-Date: Mon, 23 May 2011 02:11:14 -0700 (PDT)
-Message-ID: <20110523091114.89DF713004E@annarchy.freedesktop.org>
-References: <bug-36744-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36163] nouveau fails to render framebuffer on
+	[GeForce 7300 GS]
+Date: Mon, 23 May 2011 04:53:34 -0700 (PDT)
+Message-ID: <20110523115334.CBBCB13004F@annarchy.freedesktop.org>
+References: <bug-36163-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-36163-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36744
+https://bugs.freedesktop.org/show_bug.cgi?id=36163
 
---- Comment #2 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-23 02:11:14 PDT ---
-In nouveau_card_init() function (nouveau_state.c file), engine->fifo.init()
-function is not called when nouveau_noaccel is enabled.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-On NV50/NVA0 cards, engine->fifo.init = nv50_fifo_init (nv50_fifo.c file) and
-this function is responsible to fill pfifo->playlist array, which is not done
-with nouveau_noaccel enabled.
-
-When nv50_fifo_playlist_update() is called, accessing pfifo->playlist (which
-was not initialized) triggers the NULL pointer dereference.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #45781|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
