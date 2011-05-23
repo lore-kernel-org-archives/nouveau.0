@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37445] Nouveau regularly reports the TRAP_VFETCH
-	FAULT errors.
-Date: Sun, 22 May 2011 13:52:57 -0700 (PDT)
-Message-ID: <20110522205257.640C513004F@annarchy.freedesktop.org>
-References: <bug-37445-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36744] [NVA5] BUG: unable to handle kernel NULL
+ pointer dereference
+Date: Mon, 23 May 2011 02:11:14 -0700 (PDT)
+Message-ID: <20110523091114.89DF713004E@annarchy.freedesktop.org>
+References: <bug-36744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-36744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37445
+https://bugs.freedesktop.org/show_bug.cgi?id=36744
 
---- Comment #5 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-22 13:52:57 PDT ---
-I also want to note that running Unigine demos (all of them) produces these
-TRAP_VFETCH FAULT messages and system eventually hangs.
-That issue might be the indicator.
+--- Comment #2 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-23 02:11:14 PDT ---
+In nouveau_card_init() function (nouveau_state.c file), engine->fifo.init()
+function is not called when nouveau_noaccel is enabled.
+
+On NV50/NVA0 cards, engine->fifo.init = nv50_fifo_init (nv50_fifo.c file) and
+this function is responsible to fill pfifo->playlist array, which is not done
+with nouveau_noaccel enabled.
+
+When nv50_fifo_playlist_update() is called, accessing pfifo->playlist (which
+was not initialized) triggers the NULL pointer dereference.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
