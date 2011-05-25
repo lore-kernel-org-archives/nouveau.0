@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35901] nv40: Dual display (--left-of ,
- --right-of) with nouveau does not work any more
-Date: Thu, 26 May 2011 05:54:43 -0700 (PDT)
-Message-ID: <20110526125443.402EC13004E@annarchy.freedesktop.org>
-References: <bug-35901-8800@http.bugs.freedesktop.org/>
+From: Flo <flo-922TnBLj4uE@public.gmane.org>
+Subject: GeForce 5500 crashes driver
+Date: Wed, 25 May 2011 10:08:00 +0200
+Message-ID: <4DDCB8E0.6050601@none.at>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +18,34 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35901
+Hi all,
 
-Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
+I have a 7 year old computer which is working fine so far and sufficient
+fast for my 'office' needs. I am running Debian testing. I bought a new
+monitor (HD) and a video card:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+256 MB GeForce FX5500, Inno3D, AGP 8x/4x
 
---- Comment #19 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-05-26 05:54:41 PDT ---
-(In reply to comment #18)
-> (In reply to comment #17)
-> > Created an attachment (id=47074)
- View: https://bugs.freedesktop.org/attachment.cgi?id=47074
- Review: https://bugs.freedesktop.org/review?bug=35901&attachment=47074
+Working fine, unfortunately it produces a crash:
 
-> > nv17_crtc_large_pitch.patch
-> > 
-> > Apparently you're hitting a corner case of the nv17-nv40 modesetting code
-> > (pitch == 4096px), because of the pitch alignment restrictions imposed by
-> > tiling.
-> > 
-> > Can you try out the attached patch?
-> 
-> Works like a charm, problem solved afaics.  Thanks!
-> 
-> -gmt
+.) Sometimes after 30 min, sometimes after a day
+.) Can happen anytime, even when screen saver is on. Happens more
+frequently if 'complicated' websites at browser windows are opened.
+.) Mouse is still moving but everything else on the display is frozen.
+.) I cannot switch to a console but I can login via network (i.e. to
+reboot).
 
-Thanks, I just pushed it to the nouveau tree, closing...
+I conclude that the crashes are due to the combination of video card and
+driver. So, the card is buggy or the driver is buggy.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I hope you can help me answering the following questions:
+.) Is it reasonable to track down the error? (Maybe it would make sense
+for driver improvement?). What should I start with?
+.) How are the chances that the problem will go away if I buy a similar
+(maybe also GeForce 5500) video card from another manufacturer.
+
+I really appreciate your help.
+
+Thanks in advance.
+
+Flo.
