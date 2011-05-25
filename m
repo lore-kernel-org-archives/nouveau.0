@@ -1,11 +1,14 @@
-From: Flo <debianflo-RbZlAiThDcE@public.gmane.org>
-Subject: GeForce 5500 crashes driver
-Date: Wed, 25 May 2011 10:11:39 +0200
-Message-ID: <4DDCB9BB.7090304@gmx.at>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 36744] [NVA5] BUG: unable to handle kernel NULL
+ pointer dereference
+Date: Wed, 25 May 2011 01:54:45 -0700 (PDT)
+Message-ID: <20110525085445.74A8A13004E@annarchy.freedesktop.org>
+References: <bug-36744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-36744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,34 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi all,
+https://bugs.freedesktop.org/show_bug.cgi?id=36744
 
-I have a 7 year old computer which is working fine so far and sufficient
-fast for my 'office' needs. I am running Debian testing. I bought a new
-monitor (HD) and a video card:
+Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-256 MB GeForce FX5500, Inno3D, AGP 8x/4x
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
-Working fine, unfortunately it produces a crash:
+--- Comment #3 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-25 01:54:45 PDT ---
+Fixed in git nouveau/linux-2.6 repository. Thanks darktama.
 
-.) Sometimes after 30 min, sometimes after a day
-.) Can happen anytime, even when screen saver is on. Happens more
-frequently if 'complicated' websites at browser windows are opened.
-.) Mouse is still moving but everything else on the display is frozen.
-.) I cannot switch to a console but I can login via network (i.e. to
-reboot).
-
-I conclude that the crashes are due to the combination of video card and
-driver. So, the card is buggy or the driver is buggy.
-
-I hope you can help me answering the following questions:
-.) Is it reasonable to track down the error? (Maybe it would make sense
-for driver improvement?). What should I start with?
-.) How are the chances that the problem will go away if I buy a similar
-(maybe also GeForce 5500) video card from another manufacturer.
-
-I really appreciate your help.
-
-Thanks in advance.
-
-Flo.
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
