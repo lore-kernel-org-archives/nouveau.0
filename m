@@ -1,129 +1,187 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37549] New: Dell Studio XPS 1340 - fails to enter
-	suspend mode
-Date: Tue, 24 May 2011 09:21:56 -0700 (PDT)
-Message-ID: <bug-37549-8800@http.bugs.freedesktop.org/>
+From: Jan Seiffert <kaffeemonster@googlemail.com>
+Subject: [Regression 2.6.39][nouveau][bisected?] leaving fullscreen XV
+ "crashes" with KDE desktop effects enabled
+Date: Wed, 25 May 2011 04:32:00 +0200
+Message-ID: <BANLkTimd6nvXTbn2hM+cKDNKFpxzsQLHog@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: bskeggs@redhat.com, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37549
+Please CC as not subscribed.
 
-           Summary: Dell Studio XPS 1340 - fails to enter suspend mode
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: daniel-FhjLw7zaDyBIvLhBkaBJOXtgZLXuOG4l@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+HW: 01:00.0 VGA compatible controller: nVidia Corporation G92 [GeForce
+8800 GTS 512] (rev a2)
+Xorg log says: (--) NOUVEAU(0): Chipset: "NVIDIA NV92"
+System is 64Bit x86
+
+Saw it on first test of 2.6.39 with 2.6.39-rc3, but only now had time
+to bisect from 2.6.39-rc3 to 2.6.38.
+Since with desktop effects other corruptions are also much much worse
+with 2.6.39 i found that this only happens with desktop effects.
+To reproduce:
+- enable KDE desktop effects
+ (or make sure they are enabled, during bisect KDE disabled them due
+to the crashes)
+- start a video with mplayer using XV
+- switch to full screen
+- switch out of full screen
+- quit mplayer
+computer is "dead", really dead...
+
+During bisect it also crashed on switching out of full screen,
+sometime it wasn't totally dead, but only X11, or just badly
+distorted/hangy (mouse still working, but nothing else of X11).
+
+I tried to bisect it, but since i hit other problems (no graphics at
+all or corrupted graphic from the start but could still operate blind
+to test if leaving fullscreen/ending XV crashes) and the exact form of
+crash changed during bisect, i'm not sure i hit the right commit (some
+needed skips also do NOT raise the confidence).
+2.6.39 final "crashes" on leaving full screen and only X11 is dead.
+(during bisect if machine is still alive but X11 dead only one time i
+found X11 stuck at 100% D-State (multicore helps...))
+
+Unfortunately i'm to stupid to revert the commit.
+
+If the machine was not deadly dead, things like this made it to syslog
+(and syslog was on, thanks to the permission check patch...), from the
+first derail point.
+Example 1:
+[drm] nouveau 0000:01:00.0: magic set 1:
+[drm] nouveau 0000:01:00.0:        0x00409904: 0x20085205
+[drm] nouveau 0000:01:00.0:        0x00409908: 0x00000000
+[drm] nouveau 0000:01:00.0:        0x0040990c: 0x40000e04
+[drm] nouveau 0000:01:00.0:        0x00409910: 0x00000000
+[drm] nouveau 0000:01:00.0: PGRAPH - TRAP_TEXTURE - TP1: Unhandled
+ustatus 0x00000003
+[drm] nouveau 0000:01:00.0: magic set 4:
+[drm] nouveau 0000:01:00.0:        0x0040c904: 0x20082805
+[drm] nouveau 0000:01:00.0:        0x0040c908: 0x00000000
+[drm] nouveau 0000:01:00.0:        0x0040c90c: 0x40000e04
+[drm] nouveau 0000:01:00.0:        0x0040c910: 0x00000000
+[drm] nouveau 0000:01:00.0: PGRAPH - TRAP_TEXTURE - TP4: Unhandled
+ustatus 0x00000003
+[drm] nouveau 0000:01:00.0: PGRAPH - TRAP
+[drm] nouveau 0000:01:00.0: PGRAPH - ch 2 (0x0000aa0000) subc 5 class
+0x8297 mthd 0x15e0 data 0x00000000
+[drm] nouveau 0000:01:00.0: VM: trapped write at 0x002000f004 on ch 2
+[0x00000aa0] PFIFO/PFIFO_READ/SEMAPHORE reason: DMAOBJ_LIMIT
+....
+....
+
+Example 2:
+[drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR BEGIN_END_ACTIVE
+[drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR
+[drm] nouveau 0000:01:00.0: PGRAPH - ch 2 (0x0000aa0000) subc 5 class
+0x8297 mthd 0x1360 data 0x00000001
+[drm] nouveau 0000:01:00.0: VM: trapped write at 0x002000f004 on ch 2
+[0x00000aa0] PFIFO/PFIFO_READ/SEMAPHORE reason: DMAOBJ_LIMIT
+....
+....
+
+$ git bisect bad
+c3b90a7d4ce28c5c25de8aad3956c5c3f188d6a1 is the first bad commit
+commit c3b90a7d4ce28c5c25de8aad3956c5c3f188d6a1
+Author: Ben Skeggs <bskeggs@redhat.com>
+Date:   Fri Jan 28 12:08:29 2011 +1000
+
+    drm/nv84: switch to new-style semaphores
+
+    These are the same semaphores nvc0 will use, and they potentially allow
+    us to do much cooler things than our current inter-channel sync impl.
+
+    Lets switch to them where possible now for some testing.
+
+$ git bisect log
+git bisect start
+# good: [521cb40b0c44418a4fd36dc633f575813d59a43d] Linux 2.6.38
+git bisect good 521cb40b0c44418a4fd36dc633f575813d59a43d
+# bad: [a6360dd37e1a144ed11e6548371bade559a1e4df] Linux 2.6.39-rc3
+git bisect bad a6360dd37e1a144ed11e6548371bade559a1e4df
+# skip: [e240ae4aad9c5c0da189cb6c956cca58abd428d0] xen: Use new
+irq_move functions
+git bisect skip e240ae4aad9c5c0da189cb6c956cca58abd428d0
+# good: [b3ed3a174c419702eddf9fb28636f6e4baa29d03] ARM: EXYNOS4:
+Update Clock part
+git bisect good b3ed3a174c419702eddf9fb28636f6e4baa29d03
+# good: [0ff1731a1ae51e8e48cd559d70db536281c47f8e] HID: bt: Add
+support for hidraw HIDIOCGFEATURE and HIDIOCSFEATURE
+git bisect good 0ff1731a1ae51e8e48cd559d70db536281c47f8e
+# good: [0a27d7f9f417c0305f7efa70631764a53c7af219] perf record: Use
+perf_evlist__mmap
+git bisect good 0a27d7f9f417c0305f7efa70631764a53c7af219
+# bad: [401a18e92ce32cd0ddfa5738899ca2b8114f2bbf] block: fix bug with
+inserting flush requests as sort/merge
+git bisect bad 401a18e92ce32cd0ddfa5738899ca2b8114f2bbf
+# good: [e34551339a195aa548eaf698523714a8fe7f1984] Merge branch
+'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/gerg/m68knommu
+git bisect good e34551339a195aa548eaf698523714a8fe7f1984
+# bad: [d3e458d78167102cc961237cfceef6fffc80c0b3] Merge branch
+'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound-2.6
+git bisect bad d3e458d78167102cc961237cfceef6fffc80c0b3
+# bad: [6d7ed21d17e640b120b902a314143e5ef4917a70] Merge branches
+'defcfg', 'drivers' and 'cyberpro-next' of
+master.kernel.org:/home/rmk/linux-2.6-arm
+git bisect bad 6d7ed21d17e640b120b902a314143e5ef4917a70
+# bad: [c8def554d031664e984323f6a5d667f070717776]
+smp_call_function_interrupt: use typedef and %pf
+git bisect bad c8def554d031664e984323f6a5d667f070717776
+# bad: [c87a8d8dcd2587c203f3dd8a3c5c15d1e128ec0d] drm/radeon: fixup
+refcounts in radeon dumb create ioctl.
+git bisect bad c87a8d8dcd2587c203f3dd8a3c5c15d1e128ec0d
+# bad: [8aa75009bca5e700e9236c8e066d2f943069c883] drm/radeon/kms:
+cayman/evergreen cs checker updates
+git bisect bad 8aa75009bca5e700e9236c8e066d2f943069c883
+# bad: [30d81817a2a7eefcf4aa8b703d5f8330451c2648] drm/nv50-nvc0: disp
+channels have fixed purposes, don't "allocate" them
+git bisect bad 30d81817a2a7eefcf4aa8b703d5f8330451c2648
+# skip: [63871f89d158e3f3e469dde00dd15763d474cb3c] Merge branch
+'drm-mm-cleanup' into drm-next
+git bisect skip 63871f89d158e3f3e469dde00dd15763d474cb3c
+# good: [4546b2c1d6e256c716e5240f5d6198a078fd7a22] radeon: move blit
+functions to radeon_asic.h
+git bisect good 4546b2c1d6e256c716e5240f5d6198a078fd7a22
+# good: [e11d57ca0b6dada29007ce3ad3db6c84034a768f] Merge
+remote-tracking branch 'airlied/drm-core-next' into drm-nouveau-next
+git bisect good e11d57ca0b6dada29007ce3ad3db6c84034a768f
+# bad: [ea5f2786a0942832f32deb7c507531b766028356] drm/nouveau: silence
+some compiler warnings
+git bisect bad ea5f2786a0942832f32deb7c507531b766028356
+# good: [e0435120a8e91990e995ffacb109f82cd44fdfc1] drm/nv40: support
+for 39-bit dma addresses on native PCIE chipsets
+git bisect good e0435120a8e91990e995ffacb109f82cd44fdfc1
+# bad: [cc8cd6479cb9d6b384ccdaa4b21fcbf0826bd232] drm/nvc0/pfifo:
+semi-handle a couple more irqs
+git bisect bad cc8cd6479cb9d6b384ccdaa4b21fcbf0826bd232
+# bad: [c3b90a7d4ce28c5c25de8aad3956c5c3f188d6a1] drm/nv84: switch to
+new-style semaphores
+git bisect bad c3b90a7d4ce28c5c25de8aad3956c5c3f188d6a1
 
 
-This problem was originally reported here:
-https://bugs.launchpad.net/ubuntu/+source/linux/+bug/754711
+Other software involved now ATM:
+[ebuild   R   ] x11-drivers/xf86-video-nouveau-0.0.16_pre20110323
+[ebuild   R   ] kde-base/kde-meta-4.6.2  USE="accessibility nls
+semantic-desktop (-aqua) (-kdeprefix) -sdk"
+[ebuild   R   ] x11-base/xorg-server-1.9.4  USE="doc ipv6 kdrive nptl
+udev xorg -dmx -minimal -static-libs -tslib"
+[ebuild   R   ]  media-libs/mesa-7.10.2  USE="classic gallium llvm
+motif nptl -debug -gles -hardened -pic (-selinux)"
+VIDEO_CARDS="nouveau -intel -mach64 -mga -r128 -radeon -savage -sis
+-tdfx -via -vmware"
+[ebuild   R   ]   sys-devel/llvm-2.8-r2  USE="libffi -alltargets
+-debug -llvm-gcc -ocaml -test -udis86"
+[ebuild   R   ]   x11-libs/libdrm-2.4.25  USE="libkms -static-libs"
+VIDEO_CARDS="nouveau -intel -radeon -vmware"
+But since i noticed this at 2.6.39-rc3 KDE was updated from 4.5 and if
+i remember right also the other stuff.
 
-The system works correctly with the Ubuntu-patched 2.6.35 Kernel as shipped
-with Ubuntu 10.10, but fails with the 2.6.38 kernel from Ubuntu 11.04.
 
-While tracking down this problem, I tested several mainline kernels, all of
-which also fail to suspend/resume on this system, as I describe below.
+So, throw patches at me, or tell me what other info you need, as long
+as it does not contain a serial console or such things...
 
-Steps to reproduce:
-- try to enter suspend mode (I used sudo pm-suspend)
-
-Expected result:
-- The system enters sleep mode and upon pressing the power switch, resumes
-successfully
-
-Actual result:
-I tried this with the following kernels (all mainline):
-
-2.6.39-999.201104080911 - The system enters suspend mode, but upon trying to
-resume, the system is unresponsive: backlight doesn't come on, there is no
-display, keyboard is unresponsive, and system doesn't respond to pings on the
-network.
-
-2.6.38-3-natty mainline kernel. The system boots and is usable, enters suspend
-mode, but upon attempting to resume is unresponsive, the backlight doesn't come
-up, no display, keyboard is unresponsive and system doesn't respond to pings on
-the network. At some point I saw capslock flashing but it stopped after a bit.
-
-v2.6.35.12-maverick mainline kernel, with this kernel the system boots but when
-trying to enter graphical mode becomes unresponsive, no keyboard, network ping
-or display (screen is black). 
-
-Here is some relevant information on the system, please let me know if any more
-tests are needed.
-
-dmi.bios.date: 09/08/2009
-dmi.bios.vendor: Dell Inc.
-dmi.bios.version: A11
-dmi.board.name: 0K183D
-dmi.board.vendor: Dell Inc.
-dmi.board.version: A11
-dmi.chassis.asset.tag: 1234567890
-dmi.chassis.type: 8
-dmi.chassis.vendor: Dell Inc.
-dmi.chassis.version: A11
-dmi.modalias:
-dmi:bvnDellInc.:bvrA11:bd09/08/2009:svnDellInc.:pnStudioXPS1340:pvrA11:rvnDellInc.:rn0K183D:rvrA11:cvnDellInc.:ct8:cvrA11:
-dmi.product.name: Studio XPS 1340
-dmi.product.version: A11
-dmi.sys.vendor: Dell Inc.
-
-GraphicsCard:
-02:00.0 VGA compatible controller [0300]: nVidia Corporation G98 [GeForce 9200M
-GS] [10de:06e8] (rev a1) (prog-if 00 [VGA controller])
-    Subsystem: Dell Device [1028:0271]
-    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx-
-    Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort-
-<MAbort- >SERR- <PERR- INTx-
-    Latency: 0, Cache Line Size: 64 bytes
-    Interrupt: pin A routed to IRQ 23
-    Region 0: Memory at ae000000 (32-bit, non-prefetchable) [size=16M]
-    Region 1: Memory at d0000000 (64-bit, prefetchable) [size=256M]
-    Region 3: Memory at ac000000 (64-bit, non-prefetchable) [size=32M]
-    Region 5: I/O ports at 4000 [size=128]
-    Capabilities: <access denied>
-    Kernel driver in use: nouveau
-    Kernel modules: nouveau, nvidiafb
-
-03:00.0 VGA compatible controller [0300]: nVidia Corporation C79 [GeForce 9400M
-G] [10de:0866] (rev b1) (prog-if 00 [VGA controller])
-    Subsystem: Dell Device [1028:0271]
-    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx-
-    Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort-
-<MAbort- >SERR- <PERR- INTx-
-    Latency: 0, Cache Line Size: 64 bytes
-    Interrupt: pin A routed to IRQ 18
-    Region 0: Memory at aa000000 (32-bit, non-prefetchable) [size=16M]
-    Region 1: Memory at b0000000 (64-bit, prefetchable) [size=256M]
-    Region 3: Memory at cc000000 (64-bit, prefetchable) [size=32M]
-    Region 5: I/O ports at 5000 [size=128]
-    [virtual] Expansion ROM at c0000000 [disabled] [size=128K]
-    Capabilities: <access denied>
-    Kernel driver in use: nouveau
-    Kernel modules: nouveau, nvidiafb
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Greetings
+Jan
