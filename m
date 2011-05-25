@@ -1,8 +1,7 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [TEST REQUEST] fermi (GeForce 4xx/5xx) ucode
-Date: Wed, 25 May 2011 16:57:07 +1000
-Message-ID: <1306306631.6559.6.camel@nisroch>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: Flo <debianflo-RbZlAiThDcE@public.gmane.org>
+Subject: GeForce 5500 crashes driver
+Date: Wed, 25 May 2011 10:11:39 +0200
+Message-ID: <4DDCB9BB.7090304@gmx.at>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,29 +18,34 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hey,
+Hi all,
 
-I've just committed, to nouveau git, an initial attempt at a replacement
-for NVIDIA's PGRAPH ucode.  It's been tested on NVC0 and NVC4 thus far,
-but in theory has support for NVC1, NVC3, NVC8 and NVCE also, it'd be
-good to see how people with these chipsets fare.
+I have a 7 year old computer which is working fine so far and sufficient
+fast for my 'office' needs. I am running Debian testing. I bought a new
+monitor (HD) and a video card:
 
-If you're on NVC1/NVC8/NVCE, current nouveau git will disable
-acceleration by default anyway, as NVC1 is known broken, and NVC8/NVCE
-I'm not sure has ever been tested.  To force nouveau to attempt
-acceleration, simply pass "noaccel=0" as an option to the nouveau kernel
-module.
+256 MB GeForce FX5500, Inno3D, AGP 8x/4x
 
-Also, if there's someone out there reading this with a GF119 (NVD9)
-chipset, I'd love to get a mmiotrace of the NVIDIA binary driver on your
-card.
+Working fine, unfortunately it produces a crash:
 
-Nouveau can be configured to use NVIDIA's ucode ("ctxfw=1" module
-option), I thought it might be useful to switch back and forth to
-compare stablity/bugs/etc, at least initially.
+.) Sometimes after 30 min, sometimes after a day
+.) Can happen anytime, even when screen saver is on. Happens more
+frequently if 'complicated' websites at browser windows are opened.
+.) Mouse is still moving but everything else on the display is frozen.
+.) I cannot switch to a console but I can login via network (i.e. to
+reboot).
 
-There's likely going to be a number of issues to sort out, so please let
-me know if you spot any!
+I conclude that the crashes are due to the combination of video card and
+driver. So, the card is buggy or the driver is buggy.
 
-Thanks!
-Ben.
+I hope you can help me answering the following questions:
+.) Is it reasonable to track down the error? (Maybe it would make sense
+for driver improvement?). What should I start with?
+.) How are the chances that the problem will go away if I buy a similar
+(maybe also GeForce 5500) video card from another manufacturer.
+
+I really appreciate your help.
+
+Thanks in advance.
+
+Flo.
