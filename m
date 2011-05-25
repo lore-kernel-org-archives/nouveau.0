@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37576] New: nouveau: xdpyinfo returns wrong screen
-	size
-Date: Wed, 25 May 2011 04:29:58 -0700 (PDT)
-Message-ID: <bug-37576-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
+ nouveau: random GPU lockups
+Date: Wed, 25 May 2011 05:20:29 -0700 (PDT)
+Message-ID: <20110525122029.B3D7613004F@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,28 +21,11 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37576
+https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
-           Summary: nouveau: xdpyinfo returns wrong screen size
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Something is obviously wrong:
-
-[ 13260.376] (II) NOUVEAU(0): Max Image Size [cm]: horiz.: 34  vert.: 19
-[ 13260.832] (II) NOUVEAU(0): Setting screen physical size to 508 x 285
-
-Very similar to bug #25615.
+--- Comment #54 from Frederic Crozat <fred-ku13qjcBzYesTnJN9+BGXg@public.gmane.org> 2011-05-25 05:20:25 PDT ---
+I can confirm I didn't had any freeze using 2.6.39 kernel on Lenovo T410 for 3
+days (I had several freezes per hour before), using GNOME Shell.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
