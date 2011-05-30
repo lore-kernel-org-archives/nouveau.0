@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35562] Nouveau fails to link in Mesa 7.10.1
-Date: Mon, 30 May 2011 10:18:34 -0700 (PDT)
-Message-ID: <20110530171834.A99EF13005E@annarchy.freedesktop.org>
-References: <bug-35562-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37768] New: [NVA8] UT2003: Splash-screen is
+ transparent with gnome-shell enabled
+Date: Mon, 30 May 2011 15:51:54 -0700 (PDT)
+Message-ID: <bug-37768-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35562-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,62 +19,41 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35562
+https://bugs.freedesktop.org/show_bug.cgi?id=37768
 
---- Comment #5 from ridai.govinda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-30 10:18:33 PDT ---
-David,
+           Summary: [NVA8] UT2003: Splash-screen is transparent with
+                    gnome-shell enabled
+           Product: Mesa
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org
 
-I tried mesa-7.10.2 and it fails with the same message. I have a NVidia card to
-test, does that patch work on mesa-7.10.2?
 
-Thanks!
+Created an attachment (id=47340)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=47340)
+Screenshot of the transparent splash-screen
 
-(In reply to comment #4)
-> Thank you Bernhard for the patch. I tested it and it initially worked for the
-> gallium nouveau driver, however it did not work when i tried to enable building
-> the non-gallium nouveau driver. I found that it needed an additional reference
-> to the header in nouveau_driver.h:
-> (the error references Mesa 7.10.1, but I'm compiling 7.10.2 and get the same
-> error)
-> 
-> --- Mesa-7.10.1/src/mesa/drivers/dri/nouveau/nouveau_driver-orig.h   
-> 2011-01-26 01:52:45.000000000 +0200
-> +++ Mesa-7.10.1/src/mesa/drivers/dri/nouveau/nouveau_driver.h    2011-05-03
-> 13:04:57.000000000 +0300
-> @@ -37,6 +37,7 @@
->  #undef NDEBUG
->  #include <assert.h>
-> 
-> +#include <nouveau/nv04_pushbuf.h>
->  #include "nouveau_device.h"
->  #include "nouveau_pushbuf.h"
->  #include "nouveau_grobj.h"
-> 
-> I added these lines to your patch and now Mesa builds smoothly.
-> Kernel 2.6.38.4
-> libdrm 2.4.25
-> Mesa 7.10.2
-> (Slackware 13.37)
-> 
-> My config:
-> 
-> ./configure \
->   --prefix=/usr \
->   --sysconfdir=/etc \
->   --libdir=/usr/lib \
->   --mandir=/usr/man \
->   --docdir=/usr/doc/mesa-7.10.2 \
->   --with-dri-driverdir=/usr/lib/xorg/modules/dri \
->  
-> --with-dri-drivers="i810,i915,i965,mach64,mga,nouveau,r128,r200,r300,r600,radeon,savage,sis,tdfx,unichrome,swrast"
-> \
->   --enable-xcb \
->   --enable-gallium-nouveau \
->   --build=i486-slackware-linux
-> 
-> 
-> I don't own any NVIDIA cards either, so a test from someone who does would be
-> welcome.
+When Gnome-Shell is enabled and I try to start Unreal Tournament 2003, the
+splash screen is not shown with a black background. Instead, there is a high
+level of transparency, which can be seen in the attached image.
+If I change the gnome-shell background to black, the image shows correctly.
+This implies that there is no missing colour information but instead an
+incorrect alpha value is used. With gnome-shell disabled the splash screen
+shows as normal.
+Dmesg or console output does not show anything strange.
+
+Running:
+kernel-2.6.38.6-27.fc15.x86_64 (but also tried with Koji kernel and upstream
+nouveau module)
+mesa-dri-drivers-7.11-0.11.20110525.0.fc15.i686
+xorg-x11-drv-nouveau-0.0.16-24.20110324git8378443.fc15.x86_64
+xorg-x11-server-Xorg-1.10.1-14.fc15.x86_64
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
