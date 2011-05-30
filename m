@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37768] New: [NVA8] UT2003: Splash-screen is
- transparent with gnome-shell enabled
-Date: Mon, 30 May 2011 15:51:54 -0700 (PDT)
-Message-ID: <bug-37768-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37769] New: [NVA8] UT2003: Unfinished frames during
+ gameplay and menu in fullscreen
+Date: Mon, 30 May 2011 16:34:26 -0700 (PDT)
+Message-ID: <bug-37769-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,14 +19,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37768
+https://bugs.freedesktop.org/show_bug.cgi?id=37769
 
-           Summary: [NVA8] UT2003: Splash-screen is transparent with
-                    gnome-shell enabled
+           Summary: [NVA8] UT2003: Unfinished frames during gameplay and
+                    menu in fullscreen
            Product: Mesa
            Version: unspecified
-          Platform: Other
-        OS/Version: All
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
@@ -35,18 +35,17 @@ https://bugs.freedesktop.org/show_bug.cgi?id=37768
         ReportedBy: r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org
 
 
-Created an attachment (id=47340)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47340)
-Screenshot of the transparent splash-screen
+Created an attachment (id=47341)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=47341)
+Splash video with nVidia logo, missing texture
 
-When Gnome-Shell is enabled and I try to start Unreal Tournament 2003, the
-splash screen is not shown with a black background. Instead, there is a high
-level of transparency, which can be seen in the attached image.
-If I change the gnome-shell background to black, the image shows correctly.
-This implies that there is no missing colour information but instead an
-incorrect alpha value is used. With gnome-shell disabled the splash screen
-shows as normal.
-Dmesg or console output does not show anything strange.
+When Gnome-shell is enabled, often frames are not completely finished before
+rendering. This shows sometimes by absent light effects or even textures, and
+sometimes by not rendering foreground elements. This happens often enough to
+make this game unplayable, even though the framerate is around 40FPS.
+Attached image will demonstrate several parts of frames that got captured. This
+should give a little more detail on what's going wrong.
+No error messages are given in dmesg or in terminal.
 
 Running:
 kernel-2.6.38.6-27.fc15.x86_64 (but also tried with Koji kernel and upstream
