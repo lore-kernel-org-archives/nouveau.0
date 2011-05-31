@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37796] [NV43] 2.6.39: system freezes for 1-2 seconds
-Date: Tue, 31 May 2011 13:13:24 -0700 (PDT)
-Message-ID: <20110531201324.C734E13004E@annarchy.freedesktop.org>
+Date: Tue, 31 May 2011 13:21:02 -0700 (PDT)
+Message-ID: <20110531202102.6443C13004E@annarchy.freedesktop.org>
 References: <bug-37796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37796
 
---- Comment #3 from magist3r <magist3r-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-31 13:13:24 PDT ---
-It works fine for me with this patch, thank you. In which version of kernel I
-can  expect this patch?
+--- Comment #4 from magist3r <magist3r-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-31 13:21:02 PDT ---
+Hm... No. Freezes happened again. And I have this messages again:
+[  745.865807] [drm] nouveau 0000:08:00.0: vm flush timeout: 0x00000032
+[  759.986271] [drm] nouveau 0000:08:00.0: vm flush timeout: 0x00000032
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
