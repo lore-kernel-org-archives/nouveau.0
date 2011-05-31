@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37796] [NV43] 2.6.39: system freezes for 1-2 seconds
-Date: Tue, 31 May 2011 10:34:32 -0700 (PDT)
-Message-ID: <20110531173432.5AB4313004F@annarchy.freedesktop.org>
+Date: Tue, 31 May 2011 13:13:24 -0700 (PDT)
+Message-ID: <20110531201324.C734E13004E@annarchy.freedesktop.org>
 References: <bug-37796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37796
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-31 10:34:31 PDT ---
-Created an attachment (id=47404)
- View: https://bugs.freedesktop.org/attachment.cgi?id=47404
- Review: https://bugs.freedesktop.org/review?bug=37796&attachment=47404
-
-test
+--- Comment #3 from magist3r <magist3r-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-31 13:13:24 PDT ---
+It works fine for me with this patch, thank you. In which version of kernel I
+can  expect this patch?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
