@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37796] 2.6.39: system freezes for 1-2 seconds
-Date: Tue, 31 May 2011 09:46:51 -0700 (PDT)
-Message-ID: <20110531164651.8AF5B13004E@annarchy.freedesktop.org>
+Subject: [Bug 37796] [NV43] 2.6.39: system freezes for 1-2 seconds
+Date: Tue, 31 May 2011 10:32:47 -0700 (PDT)
+Message-ID: <20110531173247.A843F13004F@annarchy.freedesktop.org>
 References: <bug-37796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37796
 
-magist3r <magist3r-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #47400|text/x-log                  |text/plain
-          mime type|                            |
+            Summary|2.6.39: system freezes for  |[NV43] 2.6.39: system
+                   |1-2 seconds                 |freezes for 1-2 seconds
+
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-31 10:32:47 PDT ---
+It seems to be connected to commit 7948758d27be1b69b6a79ed4f3f22e36a3b95965
+"drm/nv40: implement support for on-chip PCIEGART"
+
+It's not possible to revert this patch directly, so can you verify it by
+applying attached patch?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
