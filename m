@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35930] flickering in many OpenGL applications with
- composition manager
-Date: Mon, 30 May 2011 17:38:41 -0700 (PDT)
-Message-ID: <20110531003841.B060B130051@annarchy.freedesktop.org>
-References: <bug-35930-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37796] New: 2.6.39: system freezes for 1-2 seconds
+Date: Tue, 31 May 2011 09:46:07 -0700 (PDT)
+Message-ID: <bug-37796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35930-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +18,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35930
-
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org
-
---- Comment #22 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-05-30 17:38:41 PDT ---
-*** Bug 37769 has been marked as a duplicate of this bug. ***
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mzc3OTYKCiAgICAg
+ICAgICAgU3VtbWFyeTogMi42LjM5OiBzeXN0ZW0gZnJlZXplcyBmb3IgMS0yIHNlY29uZHMKICAg
+ICAgICAgICBQcm9kdWN0OiB4b3JnCiAgICAgICAgICAgVmVyc2lvbjogNy42CiAgICAgICAgICBQ
+bGF0Zm9ybTogeDg2IChJQTMyKQogICAgICAgIE9TL1ZlcnNpb246IExpbnV4IChBbGwpCiAgICAg
+ICAgICAgIFN0YXR1czogTkVXCiAgICAgICAgICBTZXZlcml0eTogbWFqb3IKICAgICAgICAgIFBy
+aW9yaXR5OiBtZWRpdW0KICAgICAgICAgQ29tcG9uZW50OiBEcml2ZXIvbm91dmVhdQogICAgICAg
+IEFzc2lnbmVkVG86IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCiAgICAgICAgUmVwb3J0
+ZWRCeTogbWFnaXN0M3JAZ21haWwuY29tCiAgICAgICAgIFFBQ29udGFjdDogeG9yZy10ZWFtQGxp
+c3RzLngub3JnCgoKQ3JlYXRlZCBhbiBhdHRhY2htZW50IChpZD00NzQwMCkKIC0tPiAoaHR0cHM6
+Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9hdHRhY2htZW50LmNnaT9pZD00NzQwMCkKa2VybmVsIGxv
+ZwoK0JBmdGVyIHVwZ3JhZGluZyB0byAyLjYuMzkgc3lzdGVtIHdhcyBmcmVlemluZyBmb3IgYSBm
+ZXcgc2Vjb25kcy4gQWZ0ZXIgYW4gaG91cgpvZiB3b3JrIGRpc2FibGVkIGt3aW4gZWZmZWN0cy4K
+CnN1ZG8gL3NiaW4vbHNwY2kgfCBncmVwIC1pIG52aWRpYQowODowMC4wIFZHQSBjb21wYXRpYmxl
+IGNvbnRyb2xsZXI6IG5WaWRpYSBDb3Jwb3JhdGlvbiBOVjQzIFtHZUZvcmNlIDY2MDBdIChyZXYK
+YTIpCm9wZW5TVVNFIDExLjQKa2RlIDQuNi4zCnhvcmcgNy42LTEuOS4zCnhvcmcteDExLWRyaXZl
+ci12aWRlby1ub3V2ZWF1LTAuMC4xNl8yMDExMDExNV9iNzk1Y2E2CmxpYmRybS0yLjQuMjMKTWVz
+YS03LjEwLjIKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9w
+Lm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRo
+aXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVn
+LgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
