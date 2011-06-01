@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37796] [NV43] 2.6.39: system freezes for 1-2 seconds
-Date: Tue, 31 May 2011 14:08:39 -0700 (PDT)
-Message-ID: <20110531210839.B5FB4130051@annarchy.freedesktop.org>
+Date: Tue, 31 May 2011 20:39:37 -0700 (PDT)
+Message-ID: <20110601033937.9087F13004F@annarchy.freedesktop.org>
 References: <bug-37796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37796
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-31 14:08:39 PDT ---
-Impossible with this patch applied. You probably didn't boot the right kernel.
-
-And please note that this patch won't be applied to any tree/version. It's just
-a temporary workaround.
+--- Comment #6 from magist3r <magist3r-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-05-31 20:39:36 PDT ---
+I've just rebuild the kernel module without rebuilding kernel. 
+If it is just workaround, can I expect a real fix of this problem in future
+kernel (3.0, 3.1 or?)?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
