@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Sat,  4 Jun 2011 06:45:12 -0700 (PDT)
-Message-ID: <20110604134512.EA0E113004F@annarchy.freedesktop.org>
+Date: Sat,  4 Jun 2011 06:46:50 -0700 (PDT)
+Message-ID: <20110604134650.A82F013004F@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #5 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-06-04 06:45:11 PDT ---
-Created an attachment (id=47523)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47523)
-5th part
+--- Comment #6 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-06-04 06:46:50 PDT ---
+Created an attachment (id=47524)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=47524)
+6th part
 
-PCRYPT, PBSP, PVP accesses...
+More PVP, PCRYPT, writes.
+I tried merging that with former part, didn't seem to succeed
+(need wait between them I guess, but I'll check that again later).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
