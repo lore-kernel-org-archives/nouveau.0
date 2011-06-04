@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37894] After sleep/hibernate,
 	X crashes after a few minutes
-Date: Sat,  4 Jun 2011 12:32:55 -0700 (PDT)
-Message-ID: <20110604193256.00365130051@annarchy.freedesktop.org>
+Date: Sat,  4 Jun 2011 12:58:45 -0700 (PDT)
+Message-ID: <20110604195845.8D19013004E@annarchy.freedesktop.org>
 References: <bug-37894-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,34 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37894
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-04 12:32:55 PDT ---
-Hi pablo
+--- Comment #2 from pablo <pablo-3clbbMySrdFF6kxbq+BtvQ@public.gmane.org> 2011-06-04 12:58:45 PDT ---
+Hi Emil,
 
-When Johannes Obermayr mentioned to try the latest git, he could/should have
-mentioned that nouveau consists of four components - kernel module, libdrm, ddx
-and mesa (3d)
+I apologize for not being clear.  Johannes did mention that I install the four
+components.  I ended up installing the following (and including some of the
+-devel packages simply because I have the Dev environment on this laptop):
 
-That aside I have a few simple things you can try to narrow the issue
+o Mesa
+o Mesa-devel
+o Mesa-nouveau3d
+o drm-nouveau-kmp-desktop
+o libdrm
+o libva1
+o libllvm
+o xorg-x11-driver-video
+o xorg-x11-driver-video-nouveau
+o xorg-x11-proto-devel
 
-1. Confirm it's not a KDE issue (try with gnome, lxde, ...)
-2. Use a minimal xorg.conf [1]
-3. Try disabling AIGLX in xorg.conf
-4. If the above fails append "nouveau.noaccel=1" to your kernel command line
+I don't see `ddx' but a little googling seems to imply that'd be the
+`xorg-x11-driver*' packages.  I hope so.  :D
 
-Although if you are interested in trying the latest git please follow these
-instructions [2]
+Thank you for the hints on narrowing the issue.  I'll try them and report back.
+ Unfortunately it's a bit like painting the cuckoo in a cuckoo clock, without
+the benefit of advancing time, it takes a few hours for the problem to manifest
+itself.
 
-[1] http://nouveau.freedesktop.org/wiki/InstallNouveau
-[2] http://nouveau.freedesktop.org/wiki/InstallNouveau
+Thanks again!
+-pablo
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
