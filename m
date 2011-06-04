@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37894] New: After sleep/hibernate,
- X crashes after a few minutes
-Date: Fri,  3 Jun 2011 14:01:36 -0700 (PDT)
-Message-ID: <bug-37894-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] Driver can't detect video output and xserver
+ doesn't start
+Date: Sat,  4 Jun 2011 02:57:44 -0700 (PDT)
+Message-ID: <20110604095744.95331130051@annarchy.freedesktop.org>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,62 +21,104 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37894
+https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
-           Summary: After sleep/hibernate, X crashes after a few minutes
-           Product: xorg
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: pablo-3clbbMySrdFF6kxbq+BtvQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=47492)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47492)
-tar-ball with the initial files 
-
-[ I originally filed this bug against "openSUSE" [1] and tried the recommended
-fix:  install latest Nouveau GIT builds [2] ]
-
-Howdy,
-
-I have an issue where resuming from a "suspend", X will crash.  I have had this
-issue with both the Nvidia and nouveau driver.  Given the nouveau driver is
-OSS, I figure it's easier to debug so it's currently installed on my laptop
-[3].
-
-Per Johannes Obermayr, I'm uploading a tar-ball with the following:
-
-o dmesg
-o /var/log/messages
-o Xorg.0.log
-o Xorg.0.log.old
-
-Please note the crash occurred at 15:29:10 - see the following message in
-`messages':
-
-    Jun  3 15:29:10 zoom kdm[1581]: X server for display :0 terminated
-unexpectedly
-
-When I say X crashes, what happens after a resumption is I end up in the login
-screen.
-
-I'm marking this ticket as "critical" because when X crashes, any unsaved work
-is lost.  :(
-
-Please let me know if you need any additional forensics.
-
-References
-==========
-[1] - https://bugzilla.novell.com/show_bug.cgi?id=696987
-[2] - 0.0.16.get20110530.0010-1.1
-[3] - M4300 - Quadro FX 360M
+--- Comment #68 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2011-06-04 02:57:44 PDT ---
+I checked kernel from git. Problem is still actual:
+Jun  4 13:44:10 power-debian kernel: [   41.258117] [drm] Initialized drm 1.1.0
+20060810
+Jun  4 13:44:10 power-debian kernel: [   41.905751] au8830 0001:10:15.0:
+enabling device (0004 -> 0007)
+Jun  4 13:44:10 power-debian kernel: [   41.905862] Vortex: init....
+Jun  4 13:44:10 power-debian kernel: [   42.114836] [drm] nouveau 0000:00:10.0:
+Detected an NV10 generation card (0x017200a5)
+Jun  4 13:44:10 power-debian kernel: [   42.115084] [drm] nouveau 0000:00:10.0:
+OF bios successfully copied (2701 bytes)
+Jun  4 13:44:10 power-debian kernel: [   42.115210] [drm] nouveau 0000:00:10.0:
+Attempting to load BIOS image from PRAMIN
+Jun  4 13:44:10 power-debian kernel: [   42.170951] [drm] nouveau 0000:00:10.0:
+... BIOS checksum invalid
+Jun  4 13:44:10 power-debian kernel: [   42.171027] [drm] nouveau 0000:00:10.0:
+Attempting to load BIOS image from PROM
+Jun  4 13:44:10 power-debian kernel: [   42.257320] done.
+Jun  4 13:44:10 power-debian kernel: [   42.340091] [drm] nouveau 0000:00:10.0:
+... BIOS checksum invalid
+Jun  4 13:44:10 power-debian kernel: [   42.340148] [drm] nouveau 0000:00:10.0:
+Attempting to load BIOS image from PCIROM
+Jun  4 13:44:10 power-debian kernel: [   42.340286] [drm] nouveau 0000:00:10.0:
+... BIOS signature not found
+Jun  4 13:44:10 power-debian kernel: [   42.340309] [drm] nouveau 0000:00:10.0:
+Attempting to load BIOS image from ACPI
+Jun  4 13:44:10 power-debian kernel: [   42.340337] [drm] nouveau 0000:00:10.0:
+... BIOS signature not found
+Jun  4 13:44:10 power-debian kernel: [   42.340360] [drm] nouveau 0000:00:10.0:
+Using BIOS image from PRAMIN
+Jun  4 13:44:10 power-debian kernel: [   42.387733] [drm] nouveau 0000:00:10.0:
+BMP BIOS found
+Jun  4 13:44:10 power-debian kernel: [   42.387784] [drm] nouveau 0000:00:10.0:
+BMP version 5.21
+Jun  4 13:44:10 power-debian kernel: [   42.387808] [drm] nouveau 0000:00:10.0:
+Bios version 04.17.00.56
+Jun  4 13:44:10 power-debian kernel: [   42.387833] [drm] nouveau 0000:00:10.0:
+No output data (DCB) found in BIOS
+Jun  4 13:44:10 power-debian kernel: [   42.388438] i2c i2c-5:
+therm_windtunnel: attach_adapter method is deprecated
+Jun  4 13:44:10 power-debian kernel: [   42.388470] i2c i2c-5: Please use
+another way to instantiate your i2c_client
+Jun  4 13:44:10 power-debian kernel: [   42.392908] [drm] nouveau 0000:00:10.0:
+Parsing VBIOS init table 0 at offset 0x0149
+Jun  4 13:44:10 power-debian kernel: [   42.393046] [drm] nouveau 0000:00:10.0:
+Parsing VBIOS init table 1 at offset 0x045F
+Jun  4 13:44:10 power-debian kernel: [   42.408019] [drm] nouveau 0000:00:10.0:
+Parsing VBIOS init table 2 at offset 0x0264
+Jun  4 13:44:10 power-debian kernel: [   42.428120] [drm] nouveau 0000:00:10.0:
+Parsing VBIOS init table 3 at offset 0x09EE
+Jun  4 13:44:10 power-debian kernel: [   42.428180] [drm] nouveau 0000:00:10.0:
+Parsing VBIOS init table 4 at offset 0x041F
+Jun  4 13:44:10 power-debian kernel: [   42.492733] i2c i2c-6:
+therm_windtunnel: attach_adapter method is deprecated
+Jun  4 13:44:10 power-debian kernel: [   42.492771] i2c i2c-6: Please use
+another way to instantiate your i2c_client
+Jun  4 13:44:10 power-debian kernel: [   42.732051] [drm] nouveau 0000:00:10.0:
+1 available performance level(s)
+Jun  4 13:44:10 power-debian kernel: [   42.732107] [drm] nouveau 0000:00:10.0:
+0: memory 400MHz
+Jun  4 13:44:10 power-debian kernel: [   42.732148] [drm] nouveau 0000:00:10.0:
+c: memory 351MHz core 270MHz
+Jun  4 13:44:10 power-debian kernel: [   42.732434] [TTM] Zone  kernel:
+Available graphics memory: 381492 kiB.
+Jun  4 13:44:10 power-debian kernel: [   42.732460] [TTM] Zone highmem:
+Available graphics memory: 774708 kiB.
+Jun  4 13:44:10 power-debian kernel: [   42.732482] [TTM] Initializing pool
+allocator.
+Jun  4 13:44:10 power-debian kernel: [   42.732545] [drm] nouveau 0000:00:10.0:
+Detected 32MiB VRAM
+Jun  4 13:44:10 power-debian kernel: [   42.734905] [drm] nouveau 0000:00:10.0:
+64 MiB GART (aperture)
+Jun  4 13:44:10 power-debian kernel: [   42.736697] [drm] Supports vblank
+timestamp caching Rev 1 (10.10.2010).
+Jun  4 13:44:10 power-debian kernel: [   42.736729] [drm] No driver support for
+vblank timestamp query.
+Jun  4 13:44:10 power-debian kernel: [   42.737146] [drm] nouveau 0000:00:10.0:
+Setting dpms mode 3 on vga encoder (output 0)
+Jun  4 13:44:10 power-debian kernel: [   42.758052] i2c i2c-7:
+therm_windtunnel: attach_adapter method is deprecated
+Jun  4 13:44:10 power-debian kernel: [   42.758088] i2c i2c-7: Please use
+another way to instantiate your i2c_client
+Jun  4 13:44:10 power-debian kernel: [   42.774005] No connectors reported
+connected with modes
+Jun  4 13:44:10 power-debian kernel: [   42.774037] [drm] Cannot find any crtc
+or sizes - going 1024x768
+Jun  4 13:44:10 power-debian kernel: [   42.774261] [drm] nouveau 0000:00:10.0:
+allocated 1024x768 fb: 0x49000, bo eedf4800
+Jun  4 13:44:10 power-debian kernel: [   42.775966] Console: switching to
+colour frame buffer device 128x48
+Jun  4 13:44:10 power-debian kernel: [   42.777549] fb0: nouveaufb frame buffer
+device
+Jun  4 13:44:10 power-debian kernel: [   42.777578] drm: registered panic
+notifier
+Jun  4 13:44:10 power-debian kernel: [   42.777617] [drm] Initialized nouveau
+0.0.16 20090420 for 0000:00:10.0 on minor 0
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
