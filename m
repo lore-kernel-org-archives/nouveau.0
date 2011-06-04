@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Sat,  4 Jun 2011 06:42:40 -0700 (PDT)
-Message-ID: <20110604134240.B364113004F@annarchy.freedesktop.org>
+Date: Sat,  4 Jun 2011 06:43:59 -0700 (PDT)
+Message-ID: <20110604134359.8023413004F@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #3 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-06-04 06:42:39 PDT ---
-Created an attachment (id=47521)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47521)
-3rd part
+--- Comment #4 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-06-04 06:43:59 PDT ---
+Created an attachment (id=47522)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=47522)
+4th part
 
-Most intersting part is PMC.ENABLE write.
-I tried to merge that part with part1, but got higher power usage.
-PFB accesses appear to lower power usage a bit too (~0.1W)
+Blob touches a clock register here.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
