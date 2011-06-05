@@ -1,15 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Can't "make" nouveau
-Date: Sun, 05 Jun 2011 13:30:01 +0100
-Message-ID: <op.vwlrobxd7cbmmg@emo>
-References: <157dd0bdb7e9a9d8ebae780348b77575.squirrel@webmail.no-log.org>
-	<op.vwkf2sdt7cbmmg@emo>
-	<8c76fdfc71405ab48f8b38a9d713a0a8.squirrel@webmail.no-log.org>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [mesa PATCH] nv50: fix nv50_sampler_state_delete array
+	overflow
+Date: Sun, 5 Jun 2011 21:00:28 +0200
+Message-ID: <20110605190028.GA22091@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <8c76fdfc71405ab48f8b38a9d713a0a8.squirrel-2RFepEojUI2f4uyq6WJiQx2eb7JE58TQ@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,32 +17,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Mariane <mariane-n+LsquliYkMdnm+yROfE0A@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 05 Jun 2011 13:15:36 +0100, Mariane <mariane-n+LsquliYkMdnm+yROfE0A@public.gmane.org> wrote:
+num_samplers is array of 3 elements, not 5
+---
+ src/gallium/drivers/nv50/nv50_state.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
->
-> Thank you for both answers. I am not going to compile the kernel but ppa
-> sounds good.
->
-> For Younes Manton: You can read the details here:
-> http://ubuntuforums.org/showthread.php?t=1689253
-> (you don't have to login if you just want to read).
->
-> Mariane
->
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
-
-Judging by a quick overview of the forum thread, most likely your
-second monitor is not detected
-Unfortunately I cannot see any logs attached (dmesg), neither a
-statement that you are using nouveau
-
-Nevertheless if "xrandr" does only print one monitor with the
-xorg-edgers ppa, please submit a bug
+diff --git a/src/gallium/drivers/nv50/nv50_state.c b/src/gallium/drivers/nv50/nv50_state.c
+index 799f496..8b54d9f 100644
+--- a/src/gallium/drivers/nv50/nv50_state.c
++++ b/src/gallium/drivers/nv50/nv50_state.c
+@@ -478,7 +478,7 @@ nv50_sampler_state_delete(struct pipe_context *pipe, void *hwcso)
+ {
+    unsigned s, i;
+ 
+-   for (s = 0; s < 5; ++s)
++   for (s = 0; s < 3; ++s)
+       for (i = 0; i < nv50_context(pipe)->num_samplers[s]; ++i)
+          if (nv50_context(pipe)->samplers[s][i] == hwcso)
+             nv50_context(pipe)->samplers[s][i] = NULL;
+-- 
+1.7.4.1
