@@ -1,79 +1,50 @@
-From: Maarten Maathuis <madman2003@gmail.com>
-Subject: Re: [Nouveau] [PATCH v2 2/2] xorg/nouveau: blacklist all
- pre NV30 cards
-Date: Sun, 5 Jun 2011 21:54:31 +0200
-Message-ID: <BANLkTimr-TiQ7HKY4hteCvu=f66OSkxYgg@mail.gmail.com>
-References: <20110516195110.GB5456@joi.lan> <20110516222014.GH5456@joi.lan>
-	<20110605190626.GE22091@joi.lan>
-	<BANLkTi=rs=TD44LirzwGjR8hWg4Miq4_Hg@mail.gmail.com>
-	<BANLkTik4GSV2EQ1ry0K-b-PwbhsuHdZsAw@mail.gmail.com>
-	<20110605194652.GA22358@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 37894] After sleep/hibernate,
+	X crashes after a few minutes
+Date: Sun,  5 Jun 2011 13:12:21 -0700 (PDT)
+Message-ID: <20110605201221.1F5E013004E@annarchy.freedesktop.org>
+References: <bug-37894-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
-In-Reply-To: <20110605194652.GA22358@joi.lan>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-37894-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Jun 5, 2011 at 9:46 PM, Marcin Slusarz <marcin.slusarz@gmail.com> w=
-rote:
-> On Sun, Jun 05, 2011 at 09:15:47PM +0200, Maarten Maathuis wrote:
->> 2011/6/5 St=E9phane Marchesin <stephane.marchesin@gmail.com>:
->> > On Sun, Jun 5, 2011 at 12:06, Marcin Slusarz <marcin.slusarz@gmail.com=
-> wrote:
->> >> On Tue, May 17, 2011 at 12:20:14AM +0200, Marcin Slusarz wrote:
->> >>> Bail out early in probe, so other driver can take control of the car=
-d.
->> >>> Doing it in screen_create would be too late.
->> >>> ---
->> >>> =A0src/gallium/targets/xorg-nouveau/nouveau_xorg.c | =A0 44 ++++++++=
-++++++++++-----
->> >>> =A01 files changed, 35 insertions(+), 9 deletions(-)
->> >>
->> >> ping
->> >>
->> >
->> > Why do you need a list of cards for that, as opposed to reading the re=
-g?
->> >
->>
->> I agree with Stephane, checking register 0 should work fine. First
->> check for NV04/05, then for NV10-NV2F.
->>
->
-> I did it this way because I didn't have access to device file descriptor =
-- it's created
-> somewhere near InitScreen and passed to nouveau_drm_screen_create - too l=
-ate to
-> exit gracefully (something which I believe is a bug, but I couldn't track=
- it).
->
-> But now I see xf86-video-nouveau is in exactly the same situation - it op=
-ens fd
-> temporarily in PciProbe. I'll adapt its code to target/xorg-nouveau.
+https://bugs.freedesktop.org/show_bug.cgi?id=37894
 
-I was incorrect in saying that you should check registers yourself
-(which would require root), but opening the device should give you the
-chipset type.
+--- Comment #3 from pablo <pablo-3clbbMySrdFF6kxbq+BtvQ@public.gmane.org> 2011-06-05 13:12:19 PDT ---
+Hi Emil,
 
->
-> Marcin
->
+A quick update ...
 
+First I tried "KDE" + "minimal xorg.conf", which didn't work.
 
+Next, I tried "gnome" + "minimal xorg.conf" and after nearly 48 hours, no
+issues.
 
--- =
+The above suggests some type of KDE issue.  This is good news.  Now, I need to
+ponder the next step.  I think I may open a KDE bug with "openSUSE" to get some
+direction from those folks because I'm not exactly sure how to proceed.
 
-Far away from the primal instinct, the song seems to fade away, the
-river get wider between your thoughts and the things we do and say.
+Of course, any ideas would be most welcomed!
+
+Also, should I close this bug?
+
+Thx a lot!
+-pablo
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
