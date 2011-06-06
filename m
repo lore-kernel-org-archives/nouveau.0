@@ -1,8 +1,8 @@
-From: =?UTF-8?Q?Marcin_Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: Re: [PATCH v3 2/2] xorg/nouveau: blacklist all pre NV30
- cards
-Date: Sun, 05 Jun 2011 23:43:15 +0200
-Message-ID: <4d561b116bfdafa4db7ebc389d712b9d@0x04.net>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: Re: [Nouveau] [PATCH v3 2/2] xorg/nouveau: blacklist all
+ pre NV30 cards
+Date: Mon, 6 Jun 2011 07:51:07 +0200
+Message-ID: <20110606055107.GA3758@joi.lan>
 References: <20110516195110.GB5456@joi.lan> <20110516222014.GH5456@joi.lan>
 	<20110605190626.GE22091@joi.lan>
 	<BANLkTi=rs=TD44LirzwGjR8hWg4Miq4_Hg@mail.gmail.com>
@@ -10,153 +10,107 @@ References: <20110516195110.GB5456@joi.lan> <20110516222014.GH5456@joi.lan>
 	<20110605194652.GA22358@joi.lan>
 	<BANLkTimr-TiQ7HKY4hteCvu=f66OSkxYgg@mail.gmail.com>
 	<20110605203159.GA26259@joi.lan>
+	<4d561b116bfdafa4db7ebc389d712b9d@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20110605203159.GA26259-OI9uyE9O0yo@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <4d561b116bfdafa4db7ebc389d712b9d@0x04.net>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: Marcin =?utf-8?Q?Ko=C5=9Bcielnicki?= <koriakin@0x04.net>
+Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-> ---
-> From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Subject: [PATCH] xorg/nouveau: blacklist all pre NV30 cards
->
-> Bail out early in probe, so other driver (xf86-video-nouveau) can
-> take control
-> of the card. Doing it in screen_create would be too late.
-> ---
->  src/gallium/targets/xorg-nouveau/Makefile       |    3 +
->  src/gallium/targets/xorg-nouveau/nouveau_xorg.c |   63
-> +++++++++++++++++++---
->  2 files changed, 57 insertions(+), 9 deletions(-)
->
-> diff --git a/src/gallium/targets/xorg-nouveau/Makefile
-> b/src/gallium/targets/xorg-nouveau/Makefile
-> index 16ac954..755969c 100644
-> --- a/src/gallium/targets/xorg-nouveau/Makefile
-> +++ b/src/gallium/targets/xorg-nouveau/Makefile
-> @@ -23,4 +23,7 @@ DRIVER_PIPES = \
->  DRIVER_LINKS = \
->  	$(shell pkg-config --libs libdrm libdrm_nouveau)
->
-> +DRIVER_INCLUDES = \
-> +	$(shell pkg-config --cflags-only-I libdrm libdrm_nouveau 
-> xf86driproto)
-> +
->  include ../Makefile.xorg
-> diff --git a/src/gallium/targets/xorg-nouveau/nouveau_xorg.c
-> b/src/gallium/targets/xorg-nouveau/nouveau_xorg.c
-> index a25254a..43470a1 100644
-> --- a/src/gallium/targets/xorg-nouveau/nouveau_xorg.c
-> +++ b/src/gallium/targets/xorg-nouveau/nouveau_xorg.c
-> @@ -29,6 +29,9 @@
->   */
->
->  #include "../../state_trackers/xorg/xorg_winsys.h"
-> +#include <nouveau_drmif.h>
-> +#include <xorg/dri.h>
-> +#include <xf86drmMode.h>
->
->  static void nouveau_xorg_identify(int flags);
->  static Bool nouveau_xorg_pci_probe(DriverPtr driver, int entity_num,
-> @@ -38,16 +41,9 @@ static Bool nouveau_xorg_pci_probe(DriverPtr
-> driver, int entity_num,
->  static const struct pci_id_match nouveau_xorg_device_match[] = {
->      { 0x10de, PCI_MATCH_ANY, PCI_MATCH_ANY, PCI_MATCH_ANY,
->        0x00030000, 0x00ffffff, 0 },
-> -    { 0x12d2, PCI_MATCH_ANY, PCI_MATCH_ANY, PCI_MATCH_ANY,
-> -      0x00030000, 0x00ffffff, 0 },
->      {0, 0, 0},
->  };
->
-> -static SymTabRec nouveau_xorg_chipsets[] = {
-> -    {PCI_MATCH_ANY, "NVIDIA Graphics Device"},
-> -    {-1, NULL}
-> -};
-> -
->  static PciChipsets nouveau_xorg_pci_devices[] = {
->      {PCI_MATCH_ANY, PCI_MATCH_ANY, NULL},
->      {-1, -1, NULL}
-> @@ -121,8 +117,7 @@ nouveau_xorg_setup(pointer module, pointer opts,
-> int *errmaj, int *errmin)
->  static void
->  nouveau_xorg_identify(int flags)
->  {
-> -    xf86PrintChipsets("nouveau2", "Driver for Modesetting Kernel 
-> Drivers",
-> -		      nouveau_xorg_chipsets);
-> +    xf86DrvMsg(0, X_INFO, "nouveau2: Gallium3D based 2D driver for
-> NV30+ NVIDIA chipsets\n");
->  }
->
->  static Bool
-> @@ -131,6 +126,56 @@ nouveau_xorg_pci_probe(DriverPtr driver,
->  {
->      ScrnInfoPtr scrn = NULL;
->      EntityInfoPtr entity;
-> +    struct nouveau_device *dev = NULL;
-> +    char *busid;
-> +    int chipset, ret;
-> +
-> +    if (device->vendor_id != 0x10DE)
-> +	return FALSE;
-> +
-> +    if (!xf86LoaderCheckSymbol("DRICreatePCIBusID")) {
-> +	xf86DrvMsg(-1, X_ERROR, "[drm] No DRICreatePCIBusID symbol\n");
-> +	return FALSE;
-> +    }
-> +    busid = DRICreatePCIBusID(device);
-> +
-> +    ret = nouveau_device_open(&dev, busid);
-> +    if (ret) {
-> +	xf86DrvMsg(-1, X_ERROR, "[drm] failed to open device\n");
-> +	free(busid);
-> +	return FALSE;
-> +    }
-> +
-> +    chipset = dev->chipset;
-> +    nouveau_device_close(&dev);
-> +
-> +    ret = drmCheckModesettingSupported(busid);
-> +    free(busid);
-> +    if (ret) {
-> +	xf86DrvMsg(-1, X_ERROR, "[drm] KMS not enabled\n");
-> +	return FALSE;
-> +    }
-> +
-> +    switch (chipset & 0xf0) {
-> +    case 0x00:
-> +    case 0x10:
-> +    case 0x20:
-> +	xf86DrvMsg(-1, X_NOTICE, "Too old chipset: NV%02x\n", chipset);
-> +	return FALSE;
-> +    case 0x30:
-> +    case 0x40:
-> +    case 0x60:
-> +    case 0x50:
-> +    case 0x80:
-> +    case 0x90:
-> +    case 0xa0:
-> +    case 0xc0:
-0xd0 should be added here, there's NVD9 already.
-> +	xf86DrvMsg(-1, X_INFO, "Detected chipset: NV%02x\n", chipset);
-> +	break;
-> +    default:
-> +	xf86DrvMsg(-1, X_ERROR, "Unknown chipset: NV%02x\n", chipset);
-> +	return FALSE;
-> +    }
->
->      scrn = xf86ConfigPciEntity(scrn, 0, entity_num,
-> nouveau_xorg_pci_devices,
->  			       NULL, NULL, NULL, NULL, NULL);
+T24gU3VuLCBKdW4gMDUsIDIwMTEgYXQgMTE6NDM6MTVQTSArMDIwMCwgTWFyY2luIEtvxZtjaWVs
+bmlja2kgd3JvdGU6Cj4gPiAtLS0KPiA+IEZyb206IE1hcmNpbiBTbHVzYXJ6IDxtYXJjaW4uc2x1
+c2FyekBnbWFpbC5jb20+Cj4gPiBTdWJqZWN0OiBbUEFUQ0hdIHhvcmcvbm91dmVhdTogYmxhY2ts
+aXN0IGFsbCBwcmUgTlYzMCBjYXJkcwo+ID4KPiA+IEJhaWwgb3V0IGVhcmx5IGluIHByb2JlLCBz
+byBvdGhlciBkcml2ZXIgKHhmODYtdmlkZW8tbm91dmVhdSkgY2FuCj4gPiB0YWtlIGNvbnRyb2wK
+PiA+IG9mIHRoZSBjYXJkLiBEb2luZyBpdCBpbiBzY3JlZW5fY3JlYXRlIHdvdWxkIGJlIHRvbyBs
+YXRlLgo+ID4gLS0tCj4gPiAgc3JjL2dhbGxpdW0vdGFyZ2V0cy94b3JnLW5vdXZlYXUvTWFrZWZp
+bGUgICAgICAgfCAgICAzICsKPiA+ICBzcmMvZ2FsbGl1bS90YXJnZXRzL3hvcmctbm91dmVhdS9u
+b3V2ZWF1X3hvcmcuYyB8ICAgNjMKPiA+ICsrKysrKysrKysrKysrKysrKystLS0KPiA+ICAyIGZp
+bGVzIGNoYW5nZWQsIDU3IGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCj4gPgo+ID4gZGlm
+ZiAtLWdpdCBhL3NyYy9nYWxsaXVtL3RhcmdldHMveG9yZy1ub3V2ZWF1L01ha2VmaWxlCj4gPiBi
+L3NyYy9nYWxsaXVtL3RhcmdldHMveG9yZy1ub3V2ZWF1L01ha2VmaWxlCj4gPiBpbmRleCAxNmFj
+OTU0Li43NTU5NjljIDEwMDY0NAo+ID4gLS0tIGEvc3JjL2dhbGxpdW0vdGFyZ2V0cy94b3JnLW5v
+dXZlYXUvTWFrZWZpbGUKPiA+ICsrKyBiL3NyYy9nYWxsaXVtL3RhcmdldHMveG9yZy1ub3V2ZWF1
+L01ha2VmaWxlCj4gPiBAQCAtMjMsNCArMjMsNyBAQCBEUklWRVJfUElQRVMgPSBcCj4gPiAgRFJJ
+VkVSX0xJTktTID0gXAo+ID4gIAkkKHNoZWxsIHBrZy1jb25maWcgLS1saWJzIGxpYmRybSBsaWJk
+cm1fbm91dmVhdSkKPiA+Cj4gPiArRFJJVkVSX0lOQ0xVREVTID0gXAo+ID4gKwkkKHNoZWxsIHBr
+Zy1jb25maWcgLS1jZmxhZ3Mtb25seS1JIGxpYmRybSBsaWJkcm1fbm91dmVhdSAKPiA+IHhmODZk
+cmlwcm90bykKPiA+ICsKPiA+ICBpbmNsdWRlIC4uL01ha2VmaWxlLnhvcmcKPiA+IGRpZmYgLS1n
+aXQgYS9zcmMvZ2FsbGl1bS90YXJnZXRzL3hvcmctbm91dmVhdS9ub3V2ZWF1X3hvcmcuYwo+ID4g
+Yi9zcmMvZ2FsbGl1bS90YXJnZXRzL3hvcmctbm91dmVhdS9ub3V2ZWF1X3hvcmcuYwo+ID4gaW5k
+ZXggYTI1MjU0YS4uNDM0NzBhMSAxMDA2NDQKPiA+IC0tLSBhL3NyYy9nYWxsaXVtL3RhcmdldHMv
+eG9yZy1ub3V2ZWF1L25vdXZlYXVfeG9yZy5jCj4gPiArKysgYi9zcmMvZ2FsbGl1bS90YXJnZXRz
+L3hvcmctbm91dmVhdS9ub3V2ZWF1X3hvcmcuYwo+ID4gQEAgLTI5LDYgKzI5LDkgQEAKPiA+ICAg
+Ki8KPiA+Cj4gPiAgI2luY2x1ZGUgIi4uLy4uL3N0YXRlX3RyYWNrZXJzL3hvcmcveG9yZ193aW5z
+eXMuaCIKPiA+ICsjaW5jbHVkZSA8bm91dmVhdV9kcm1pZi5oPgo+ID4gKyNpbmNsdWRlIDx4b3Jn
+L2RyaS5oPgo+ID4gKyNpbmNsdWRlIDx4Zjg2ZHJtTW9kZS5oPgo+ID4KPiA+ICBzdGF0aWMgdm9p
+ZCBub3V2ZWF1X3hvcmdfaWRlbnRpZnkoaW50IGZsYWdzKTsKPiA+ICBzdGF0aWMgQm9vbCBub3V2
+ZWF1X3hvcmdfcGNpX3Byb2JlKERyaXZlclB0ciBkcml2ZXIsIGludCBlbnRpdHlfbnVtLAo+ID4g
+QEAgLTM4LDE2ICs0MSw5IEBAIHN0YXRpYyBCb29sIG5vdXZlYXVfeG9yZ19wY2lfcHJvYmUoRHJp
+dmVyUHRyCj4gPiBkcml2ZXIsIGludCBlbnRpdHlfbnVtLAo+ID4gIHN0YXRpYyBjb25zdCBzdHJ1
+Y3QgcGNpX2lkX21hdGNoIG5vdXZlYXVfeG9yZ19kZXZpY2VfbWF0Y2hbXSA9IHsKPiA+ICAgICAg
+eyAweDEwZGUsIFBDSV9NQVRDSF9BTlksIFBDSV9NQVRDSF9BTlksIFBDSV9NQVRDSF9BTlksCj4g
+PiAgICAgICAgMHgwMDAzMDAwMCwgMHgwMGZmZmZmZiwgMCB9LAo+ID4gLSAgICB7IDB4MTJkMiwg
+UENJX01BVENIX0FOWSwgUENJX01BVENIX0FOWSwgUENJX01BVENIX0FOWSwKPiA+IC0gICAgICAw
+eDAwMDMwMDAwLCAweDAwZmZmZmZmLCAwIH0sCj4gPiAgICAgIHswLCAwLCAwfSwKPiA+ICB9Owo+
+ID4KPiA+IC1zdGF0aWMgU3ltVGFiUmVjIG5vdXZlYXVfeG9yZ19jaGlwc2V0c1tdID0gewo+ID4g
+LSAgICB7UENJX01BVENIX0FOWSwgIk5WSURJQSBHcmFwaGljcyBEZXZpY2UifSwKPiA+IC0gICAg
+ey0xLCBOVUxMfQo+ID4gLX07Cj4gPiAtCj4gPiAgc3RhdGljIFBjaUNoaXBzZXRzIG5vdXZlYXVf
+eG9yZ19wY2lfZGV2aWNlc1tdID0gewo+ID4gICAgICB7UENJX01BVENIX0FOWSwgUENJX01BVENI
+X0FOWSwgTlVMTH0sCj4gPiAgICAgIHstMSwgLTEsIE5VTEx9Cj4gPiBAQCAtMTIxLDggKzExNyw3
+IEBAIG5vdXZlYXVfeG9yZ19zZXR1cChwb2ludGVyIG1vZHVsZSwgcG9pbnRlciBvcHRzLAo+ID4g
+aW50ICplcnJtYWosIGludCAqZXJybWluKQo+ID4gIHN0YXRpYyB2b2lkCj4gPiAgbm91dmVhdV94
+b3JnX2lkZW50aWZ5KGludCBmbGFncykKPiA+ICB7Cj4gPiAtICAgIHhmODZQcmludENoaXBzZXRz
+KCJub3V2ZWF1MiIsICJEcml2ZXIgZm9yIE1vZGVzZXR0aW5nIEtlcm5lbCAKPiA+IERyaXZlcnMi
+LAo+ID4gLQkJICAgICAgbm91dmVhdV94b3JnX2NoaXBzZXRzKTsKPiA+ICsgICAgeGY4NkRydk1z
+ZygwLCBYX0lORk8sICJub3V2ZWF1MjogR2FsbGl1bTNEIGJhc2VkIDJEIGRyaXZlciBmb3IKPiA+
+IE5WMzArIE5WSURJQSBjaGlwc2V0c1xuIik7Cj4gPiAgfQo+ID4KPiA+ICBzdGF0aWMgQm9vbAo+
+ID4gQEAgLTEzMSw2ICsxMjYsNTYgQEAgbm91dmVhdV94b3JnX3BjaV9wcm9iZShEcml2ZXJQdHIg
+ZHJpdmVyLAo+ID4gIHsKPiA+ICAgICAgU2NybkluZm9QdHIgc2NybiA9IE5VTEw7Cj4gPiAgICAg
+IEVudGl0eUluZm9QdHIgZW50aXR5Owo+ID4gKyAgICBzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRl
+diA9IE5VTEw7Cj4gPiArICAgIGNoYXIgKmJ1c2lkOwo+ID4gKyAgICBpbnQgY2hpcHNldCwgcmV0
+Owo+ID4gKwo+ID4gKyAgICBpZiAoZGV2aWNlLT52ZW5kb3JfaWQgIT0gMHgxMERFKQo+ID4gKwly
+ZXR1cm4gRkFMU0U7Cj4gPiArCj4gPiArICAgIGlmICgheGY4NkxvYWRlckNoZWNrU3ltYm9sKCJE
+UklDcmVhdGVQQ0lCdXNJRCIpKSB7Cj4gPiArCXhmODZEcnZNc2coLTEsIFhfRVJST1IsICJbZHJt
+XSBObyBEUklDcmVhdGVQQ0lCdXNJRCBzeW1ib2xcbiIpOwo+ID4gKwlyZXR1cm4gRkFMU0U7Cj4g
+PiArICAgIH0KPiA+ICsgICAgYnVzaWQgPSBEUklDcmVhdGVQQ0lCdXNJRChkZXZpY2UpOwo+ID4g
+Kwo+ID4gKyAgICByZXQgPSBub3V2ZWF1X2RldmljZV9vcGVuKCZkZXYsIGJ1c2lkKTsKPiA+ICsg
+ICAgaWYgKHJldCkgewo+ID4gKwl4Zjg2RHJ2TXNnKC0xLCBYX0VSUk9SLCAiW2RybV0gZmFpbGVk
+IHRvIG9wZW4gZGV2aWNlXG4iKTsKPiA+ICsJZnJlZShidXNpZCk7Cj4gPiArCXJldHVybiBGQUxT
+RTsKPiA+ICsgICAgfQo+ID4gKwo+ID4gKyAgICBjaGlwc2V0ID0gZGV2LT5jaGlwc2V0Owo+ID4g
+KyAgICBub3V2ZWF1X2RldmljZV9jbG9zZSgmZGV2KTsKPiA+ICsKPiA+ICsgICAgcmV0ID0gZHJt
+Q2hlY2tNb2Rlc2V0dGluZ1N1cHBvcnRlZChidXNpZCk7Cj4gPiArICAgIGZyZWUoYnVzaWQpOwo+
+ID4gKyAgICBpZiAocmV0KSB7Cj4gPiArCXhmODZEcnZNc2coLTEsIFhfRVJST1IsICJbZHJtXSBL
+TVMgbm90IGVuYWJsZWRcbiIpOwo+ID4gKwlyZXR1cm4gRkFMU0U7Cj4gPiArICAgIH0KPiA+ICsK
+PiA+ICsgICAgc3dpdGNoIChjaGlwc2V0ICYgMHhmMCkgewo+ID4gKyAgICBjYXNlIDB4MDA6Cj4g
+PiArICAgIGNhc2UgMHgxMDoKPiA+ICsgICAgY2FzZSAweDIwOgo+ID4gKwl4Zjg2RHJ2TXNnKC0x
+LCBYX05PVElDRSwgIlRvbyBvbGQgY2hpcHNldDogTlYlMDJ4XG4iLCBjaGlwc2V0KTsKPiA+ICsJ
+cmV0dXJuIEZBTFNFOwo+ID4gKyAgICBjYXNlIDB4MzA6Cj4gPiArICAgIGNhc2UgMHg0MDoKPiA+
+ICsgICAgY2FzZSAweDYwOgo+ID4gKyAgICBjYXNlIDB4NTA6Cj4gPiArICAgIGNhc2UgMHg4MDoK
+PiA+ICsgICAgY2FzZSAweDkwOgo+ID4gKyAgICBjYXNlIDB4YTA6Cj4gPiArICAgIGNhc2UgMHhj
+MDoKPiAweGQwIHNob3VsZCBiZSBhZGRlZCBoZXJlLCB0aGVyZSdzIE5WRDkgYWxyZWFkeS4KClRo
+ZXJlJ3Mgbm8gcG9pbnQgaW4gYWRkaW5nIGl0IG5vdyAtIG1lc2EgZG9lcyBub3Qgc3VwcG9ydCBp
+dC4uLgooc2VlIG5vdXZlYXVfZHJtX3NjcmVlbl9jcmVhdGUgaW4gc3JjL2dhbGxpdW0vd2luc3lz
+L25vdXZlYXUvZHJtL25vdXZlYXVfZHJtX3dpbnN5cy5jKQoKPiA+ICsJeGY4NkRydk1zZygtMSwg
+WF9JTkZPLCAiRGV0ZWN0ZWQgY2hpcHNldDogTlYlMDJ4XG4iLCBjaGlwc2V0KTsKPiA+ICsJYnJl
+YWs7Cj4gPiArICAgIGRlZmF1bHQ6Cj4gPiArCXhmODZEcnZNc2coLTEsIFhfRVJST1IsICJVbmtu
+b3duIGNoaXBzZXQ6IE5WJTAyeFxuIiwgY2hpcHNldCk7Cj4gPiArCXJldHVybiBGQUxTRTsKPiA+
+ICsgICAgfQo+ID4KPiA+ICAgICAgc2NybiA9IHhmODZDb25maWdQY2lFbnRpdHkoc2NybiwgMCwg
+ZW50aXR5X251bSwKPiA+IG5vdXZlYXVfeG9yZ19wY2lfZGV2aWNlcywKPiA+ICAJCQkgICAgICAg
+TlVMTCwgTlVMTCwgTlVMTCwgTlVMTCwgTlVMTCk7Cj4gCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL21lc2EtZGV2Cg==
