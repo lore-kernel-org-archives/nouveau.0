@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27455] dualhead not working,
-	second display always black
-Date: Tue,  7 Jun 2011 12:55:39 -0700 (PDT)
-Message-ID: <20110607195539.6BAC813004F@annarchy.freedesktop.org>
-References: <bug-27455-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38050] New: segfault starting glxgears
+Date: Tue,  7 Jun 2011 13:15:47 -0700 (PDT)
+Message-ID: <bug-38050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +18,40 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mjc0NTUKCi0tLSBD
-b21tZW50ICM5IGZyb20gSmFyb23DrXIgQ8OhcMOtayA8amNhcGlrQHJlZGhhdC5jb20+IDIwMTEt
-MDYtMDcgMTI6NTU6MzQgUERUIC0tLQpDcmVhdGVkIGFuIGF0dGFjaG1lbnQgKGlkPTQ3NjgxKQog
-LS0+IChodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL2F0dGFjaG1lbnQuY2dpP2lkPTQ3Njgx
-KQp0YXIuZ3ogYXJjaGl2ZSBjb250YWluaW5nIHR2ZHVtcCBhbmQgeHJhbmRyIG91dHB1dHMgZm9y
-IGJsb2IgYW5kIG5vdXZlYXUKClRoZSBhdHRhY2hlZCBmaWxlIGNvbnRhaW5zIHRoZSBmb2xsb3dp
-bmcgZmlsZXM6CmR1bXBfMTkyMHgxMDgwXzEyODB4MTAyNC1ibG9iLnR4dAoKZHVtcF8xOTIweDEw
-ODBfMTI4MHgxMDI0LW5vdXZlYXUudHh0CgpkdW1wXzE5MjB4MTA4MF8xOTIweDEwODAtYmxvYi50
-eHQKCmR1bXBfMTkyMHgxMDgwXzE5MjB4MTA4MC1ub3V2ZWF1LnR4dAoKeHJhbmRyXzE5MjB4MTA4
-MF8xMjgweDEwMjQtYmxvYi50eHQKCnhyYW5kcl8xOTIweDEwODBfMTI4MHgxMDI0LW5vdXZlYXUu
-dHh0Cgp4cmFuZHJfMTkyMHgxMDgwXzE5MjB4MTA4MC1ibG9iLnR4dAoKeHJhbmRyXzE5MjB4MTA4
-MF8xOTIweDEwODAtbm91dmVhdS50eHQKCgpJbiBib3RoIGNhc2VzIHRoZSBzZWNvbmQgZGlzcGxh
-eSB3YXMgY29uZmlndXJlZCBhcyByaWdodC1vZiAuLi4KCkFzIGl0IHdhcyBtZW50aW9uZWQgYmVm
-b3JlIC4uLgoxOTIweDEwODBfMTI4MHgxMDI0IGNvbWJpbmF0aW9uIHdvcmtzIHdpdGggYm90aCBk
-cml2ZXJzIGNvcnJlY3RseQoxOTIweDEwODBfMTkyMHgxMDgwIGNvbWJpbmF0aW9uIHdvcmtzIHdp
-dGggYmxvYiBvbmx5CgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVz
-a3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2Vpdmlu
-ZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhl
-IGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=38050
+
+           Summary: segfault starting glxgears
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: freedesktop-UCmSlPBN2tkLqRSKpNnsEbNAH6kLmebB@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+using:
+- xf86-video-nouveau git
+- libdrm git
+- mesa-7.10.2
+- xorg-drivers-1.9  
+- xorg-server-1.9.5
+
+with:
+gfx-card V7700 -> see attachement
+
+crashes with modeset=1 and noaccel=1,
+as with modeset=1 only.
+
+- KDE log in works
+- starting Konsole works
+- calling glxgears segfaults
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
