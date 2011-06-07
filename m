@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38050] New: segfault starting glxgears
-Date: Tue,  7 Jun 2011 13:15:47 -0700 (PDT)
-Message-ID: <bug-38050-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38050] segfault starting glxgears
+Date: Tue,  7 Jun 2011 13:20:36 -0700 (PDT)
+Message-ID: <20110607202036.DD26313004E@annarchy.freedesktop.org>
+References: <bug-38050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-38050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38050
 
-           Summary: segfault starting glxgears
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: freedesktop-UCmSlPBN2tkLqRSKpNnsEbNAH6kLmebB@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-using:
-- xf86-video-nouveau git
-- libdrm git
-- mesa-7.10.2
-- xorg-drivers-1.9  
-- xorg-server-1.9.5
-
-with:
-gfx-card V7700 -> see attachement
-
-crashes with modeset=1 and noaccel=1,
-as with modeset=1 only.
-
-- KDE log in works
-- starting Konsole works
-- calling glxgears segfaults
+--- Comment #1 from karsten merkle <freedesktop-UCmSlPBN2tkLqRSKpNnsEbNAH6kLmebB@public.gmane.org> 2011-06-07 13:20:36 PDT ---
+Created an attachment (id=47685)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=47685)
+lspci -vvv -s 01:00.0
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
