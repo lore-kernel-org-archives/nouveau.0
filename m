@@ -1,14 +1,13 @@
-From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Subject: Re: Video mode set failed: Couldn't find matching GLX
- visual
-Date: Wed, 8 Jun 2011 19:50:58 +0300
-Message-ID: <20110608195058.466e54b0@farn.lan>
-References: <377581.30149.qm@web59311.mail.re1.yahoo.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 38050] segfault starting glxgears
+Date: Wed,  8 Jun 2011 14:07:51 -0700 (PDT)
+Message-ID: <20110608210751.9890713004F@annarchy.freedesktop.org>
+References: <bug-38050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <377581.30149.qm-GA1rN4BTIjOB9c0Qi4KiSlZ8N9CAUha/QQ4Iyu8u01E@public.gmane.org>
+In-Reply-To: <bug-38050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,49 +17,17 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pop Horea <pop.horea-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 7 Jun 2011 05:05:23 -0700 (PDT)
-Pop Horea <pop.horea-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
+https://bugs.freedesktop.org/show_bug.cgi?id=38050
 
-> 01:00.0 VGA compatible controller: nVidia Corporation GT218
-> [GeForce 310M] (rev a2) pophorea@pophorea-MS-168A:~$
-> glmark2[ Fail ] - Video mode set failed: Couldn't find matching
-> GLX visual glmark2
-> 11.01=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D
-> OpenGL Information=A0 =A0 GL_VENDOR: =A0 =A0 (null)=A0 =A0 GL_RENDERER:
-> (null)=A0 =A0 GL_VERSION: =A0 =A0(null)
-> =
+--- Comment #5 from karsten merkle <freedesktop-UCmSlPBN2tkLqRSKpNnsEbNAH6kLmebB@public.gmane.org> 2011-06-08 14:07:51 PDT ---
+Created an attachment (id=47735)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=47735)
+dmesg with mesa git
 
-> pophorea@pophorea-MS-168A:~$ glxinfo | grep renderingXlib:
-> =A0extension "GLX" missing on display ":0.0".Xlib: =A0extension "GLX"
-> missing on display ":0.0".Xlib: =A0extension "GLX" missing on
-> display ":0.0".Xlib: =A0extension "GLX" missing on display
-> ":0.0".Xlib: =A0extension "GLX" missing on display ":0.0".Error:
-> couldn't find RGB GLX visual or fbconfigXlib: =A0extension "GLX"
-> missing on display ":0.0".Xlib: =A0extension "GLX" missing on
-> display ":0.0".Xlib: =A0extension "GLX" missing on display
-> ":0.0".Xlib: =A0extension "GLX" missing on display ":0.0".Xlib:
-> =A0extension "GLX" missing on display ":0.0".Xlib: =A0extension "GLX"
-> missing on display ":0.0".
-
-> Xlib: =A0extension "GLX" missing on display ":0.0".
-
-That line is a pretty strong hint on what is broken.
-Your X server is missing glx for some reason. Maybe
-you failed to restore the original libglx.so when uninstalling
-the Nvidia proprietary driver?
-
-Please, attach the X log, if these hints are not enough.
-
-
-Thanks.
-
--- =
-
-Pekka Paalanen
-http://www.iki.fi/pq/
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
