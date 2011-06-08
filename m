@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38050] segfault starting glxgears
-Date: Wed,  8 Jun 2011 14:07:51 -0700 (PDT)
-Message-ID: <20110608210751.9890713004F@annarchy.freedesktop.org>
+Date: Wed,  8 Jun 2011 14:08:37 -0700 (PDT)
+Message-ID: <20110608210837.E162B13004E@annarchy.freedesktop.org>
 References: <bug-38050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38050
 
---- Comment #5 from karsten merkle <freedesktop-UCmSlPBN2tkLqRSKpNnsEbNAH6kLmebB@public.gmane.org> 2011-06-08 14:07:51 PDT ---
-Created an attachment (id=47735)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47735)
-dmesg with mesa git
+--- Comment #6 from karsten merkle <freedesktop-UCmSlPBN2tkLqRSKpNnsEbNAH6kLmebB@public.gmane.org> 2011-06-08 14:08:37 PDT ---
+Created an attachment (id=47736)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=47736)
+Xorg.0.log with mesa git
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
