@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38074] Dual head doesn't work for some combination
- of monitors (second screen still off)
-Date: Wed,  8 Jun 2011 07:53:58 -0700 (PDT)
-Message-ID: <20110608145358.DE37013004E@annarchy.freedesktop.org>
-References: <bug-38074-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: Video mode set failed: Couldn't find matching GLX
+ visual
+Date: Wed, 8 Jun 2011 19:50:58 +0300
+Message-ID: <20110608195058.466e54b0@farn.lan>
+References: <377581.30149.qm@web59311.mail.re1.yahoo.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <377581.30149.qm-GA1rN4BTIjOB9c0Qi4KiSlZ8N9CAUha/QQ4Iyu8u01E@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,43 +18,49 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pop Horea <pop.horea-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzgwNzQKCi0tLSBD
-b21tZW50ICMzIGZyb20gSmFyb23DrXIgQ8OhcMOtayA8amNhcGlrQHJlZGhhdC5jb20+IDIwMTEt
-MDYtMDggMDc6NTM6NTcgUERUIC0tLQpPbmNlIGFnYWluIHNvcnJ5IGZvciBvdmVybG9hZGluZyBZ
-b3VyIG1haWxib3ggLi4uCkkgZm9yZ290IHRvIGF0dGFjaCB0aGUgeHJhbmRyIG91dHB1dCAuLi4g
-ClRoZSBzdHJhbmdlIHRoaW5nIGlzLCB0aGF0IHRoZSBzZWNvbmQgbW9uaXRvciBzZWVtcyB0byBi
-ZSBjb25uZWN0ZWQgKGFjY29yZGluZwp0byB0aGUgb3V0cHV0KS4gQW5kIGl0IHNlZW1zLCB0aGF0
-IGJvdGggZGVza3RvcHMgYXJlIGJlaW5nIHJlbmRlcmVkIG9uIHRoZSBzYW1lCmFic29sdXRlIHBv
-c2l0aW9uIGV2ZW4gaWYgRFZJLUktMiBpcyBjb25maWd1cmVkIHJpZ2h0LW9mLiBJJ3ZlIHRyaWVk
-IGFsbApjb21iaW5hdGlvbnMgb2YgcG9zaXRpb25zIHdpdGhvdXQgc3VjY2Vzcy4KClNjcmVlbiAw
-OiBtaW5pbXVtIDMyMCB4IDIwMCwgY3VycmVudCAzODQwIHggMTA4MCwgbWF4aW11bSA4MTkyIHgg
-ODE5MgpEVkktSS0xIGNvbm5lY3RlZCAxOTIweDEwODArMCswIChub3JtYWwgbGVmdCBpbnZlcnRl
-ZCByaWdodCB4IGF4aXMgeSBheGlzKQo0NzdtbSB4IDI2OG1tCiAgIDE5MjB4MTA4MCAgICAgIDYw
-LjAqKyAgIDUwLjAgIAogICAxNjAweDEyMDAgICAgICA2MC4wICAKICAgMTY4MHgxMDUwICAgICAg
-NjAuMCAgCiAgIDEyODB4MTAyNCAgICAgIDc1LjAgICAgIDYwLjAgIAogICAxNDQweDkwMCAgICAg
-ICA3NS4wICAgICA1OS45ICAKICAgMTI4MHg5NjAgICAgICAgNjAuMCAgCiAgIDEyODB4ODAwICAg
-ICAgIDU5LjggIAogICAxMTUyeDg2NCAgICAgICA3NS4wICAKICAgMTI4MHg3MjAgICAgICAgNTAu
-MCAgICAgNjAuMCAgCiAgIDEwMjR4NzY4ICAgICAgIDc1LjEgICAgIDcwLjEgICAgIDYwLjAgIAog
-ICA4MzJ4NjI0ICAgICAgICA3NC42ICAKICAgODAweDYwMCAgICAgICAgNzIuMiAgICAgNzUuMCAg
-ICAgNjAuMyAgICAgNTYuMiAgCiAgIDcyMHg1NzYgICAgICAgIDUwLjAgIAogICA3MjB4NDgwICAg
-ICAgICA1OS45ICAKICAgNjQweDQ4MCAgICAgICAgNzIuOCAgICAgNzUuMCAgICAgNjYuNyAgICAg
-NjAuMCAgCiAgIDcyMHg0MDAgICAgICAgIDcwLjEgIApEVkktSS0yIGNvbm5lY3RlZCAxOTIweDEw
-ODArMTkyMCswIChub3JtYWwgbGVmdCBpbnZlcnRlZCByaWdodCB4IGF4aXMgeSBheGlzKQo0Nzdt
-bSB4IDI2OG1tCiAgIDE5MjB4MTA4MCAgICAgIDYwLjAqKyAgIDUwLjAgIAogICAxNjAweDEyMDAg
-ICAgICA2MC4wICAKICAgMTY4MHgxMDUwICAgICAgNjAuMCAgCiAgIDEyODB4MTAyNCAgICAgIDc1
-LjAgICAgIDYwLjAgIAogICAxNDQweDkwMCAgICAgICA3NS4wICAgICA1OS45ICAKICAgMTI4MHg5
-NjAgICAgICAgNjAuMCAgCiAgIDEyODB4ODAwICAgICAgIDU5LjggIAogICAxMTUyeDg2NCAgICAg
-ICA3NS4wICAKICAgMTI4MHg3MjAgICAgICAgNTAuMCAgICAgNjAuMCAgCiAgIDEwMjR4NzY4ICAg
-ICAgIDc1LjEgICAgIDcwLjEgICAgIDYwLjAgIAogICA4MzJ4NjI0ICAgICAgICA3NC42ICAKICAg
-ODAweDYwMCAgICAgICAgNzIuMiAgICAgNzUuMCAgICAgNjAuMyAgICAgNTYuMiAgCiAgIDcyMHg1
-NzYgICAgICAgIDUwLjAgIAogICA3MjB4NDgwICAgICAgICA1OS45ICAKICAgNjQweDQ4MCAgICAg
-ICAgNzIuOCAgICAgNzUuMCAgICAgNjYuNyAgICAgNjAuMCAgCiAgIDcyMHg0MDAgICAgICAgIDcw
-LjEKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91
-c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFp
-bCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Tue, 7 Jun 2011 05:05:23 -0700 (PDT)
+Pop Horea <pop.horea-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
+
+> 01:00.0 VGA compatible controller: nVidia Corporation GT218
+> [GeForce 310M] (rev a2) pophorea@pophorea-MS-168A:~$
+> glmark2[ Fail ] - Video mode set failed: Couldn't find matching
+> GLX visual glmark2
+> 11.01=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+> OpenGL Information=A0 =A0 GL_VENDOR: =A0 =A0 (null)=A0 =A0 GL_RENDERER:
+> (null)=A0 =A0 GL_VERSION: =A0 =A0(null)
+> =
+
+> pophorea@pophorea-MS-168A:~$ glxinfo | grep renderingXlib:
+> =A0extension "GLX" missing on display ":0.0".Xlib: =A0extension "GLX"
+> missing on display ":0.0".Xlib: =A0extension "GLX" missing on
+> display ":0.0".Xlib: =A0extension "GLX" missing on display
+> ":0.0".Xlib: =A0extension "GLX" missing on display ":0.0".Error:
+> couldn't find RGB GLX visual or fbconfigXlib: =A0extension "GLX"
+> missing on display ":0.0".Xlib: =A0extension "GLX" missing on
+> display ":0.0".Xlib: =A0extension "GLX" missing on display
+> ":0.0".Xlib: =A0extension "GLX" missing on display ":0.0".Xlib:
+> =A0extension "GLX" missing on display ":0.0".Xlib: =A0extension "GLX"
+> missing on display ":0.0".
+
+> Xlib: =A0extension "GLX" missing on display ":0.0".
+
+That line is a pretty strong hint on what is broken.
+Your X server is missing glx for some reason. Maybe
+you failed to restore the original libglx.so when uninstalling
+the Nvidia proprietary driver?
+
+Please, attach the X log, if these hints are not enough.
+
+
+Thanks.
+
+-- =
+
+Pekka Paalanen
+http://www.iki.fi/pq/
