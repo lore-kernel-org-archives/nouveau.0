@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38050] segfault starting glxgears
-Date: Wed,  8 Jun 2011 14:08:37 -0700 (PDT)
-Message-ID: <20110608210837.E162B13004E@annarchy.freedesktop.org>
-References: <bug-38050-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37894] After sleep/hibernate,
+	X crashes after a few minutes
+Date: Wed,  8 Jun 2011 14:10:38 -0700 (PDT)
+Message-ID: <20110608211038.C916013004E@annarchy.freedesktop.org>
+References: <bug-37894-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37894-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +21,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38050
+https://bugs.freedesktop.org/show_bug.cgi?id=37894
 
---- Comment #6 from karsten merkle <freedesktop-UCmSlPBN2tkLqRSKpNnsEbNAH6kLmebB@public.gmane.org> 2011-06-08 14:08:37 PDT ---
-Created an attachment (id=47736)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47736)
-Xorg.0.log with mesa git
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTOURBUG
+
+--- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-08 14:10:38 PDT ---
+Hi pablo
+
+I believe that we can close this bug as "notourbug" and I would appreciate if
+you can link the bug you opened with the KDE team.
+
+In such a way any other users can take a look and/or monitor the progress.
+
+Although if you have problems with other DE (gnome, lxde..), or it turns out
+that "nouveau is doing something wrong" please reopen the bug with a bit more
+information.
+
+Thanks
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
