@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38074] New: Dual head doesn't work for some
- combination of monitors (second screen still off)
-Date: Wed,  8 Jun 2011 07:30:40 -0700 (PDT)
-Message-ID: <bug-38074-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38074] Dual head doesn't work for some combination
+ of monitors (second screen still off)
+Date: Wed,  8 Jun 2011 07:35:56 -0700 (PDT)
+Message-ID: <20110608143556.7910B13004E@annarchy.freedesktop.org>
+References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,64 +21,27 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38074
-
-           Summary: Dual head doesn't work for some combination of
-                    monitors (second screen still off)
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: jcapik-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=47716)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47716)
-dmesg
-
-Hello.
-
-I'm experiencing an issue, when dual-head seems to not work for combination of
-displays, where the total width or height in pixels exceeds some value.
-
-Failing combinations:
-1920x1080 + 1920x1080
-1920x1080 + 1650x1050
-
-Working combinations:
-1920x1080 + 1280x1024 
-1650x1050 + 1280x1024
-
-NOTE 1 : It works without problems with the binary driver.
-NOTE 2 : There's quite good chance, that it has nothing to do with the total
-width/height since the 1280x1024 monitor is connected via DVI-I to D-SUB
-converter and it's a different brand with different timing.
-
-Versions:
----------------------------
-X.Org X Server 1.10.2
-Release Date: 2011-05-28
-X Protocol Version 11, Revision 0
-Current Operating System: Linux **** 2.6.38.7-30.fc15.x86_64 #1 SMP Fri May 27
-05:15:53 UTC 2011 x86_64
-Current version of pixman: 0.20.2
-
-xrandr program version       1.3.4
-Server reports RandR version 1.3
-
-xorg-x11-drv-nouveau-0.0.16-24.20110324git8378443.fc15.x86_64
----------------------------
-
-I'm willing to provide You with register dumps from blob & nouveau if You want.
-Just tell me where to download the right tool for taking the dumps.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzgwNzQKCi0tLSBD
+b21tZW50ICMxIGZyb20gSmFyb23DrXIgQ8OhcMOtayA8amNhcGlrQHJlZGhhdC5jb20+IDIwMTEt
+MDYtMDggMDc6MzU6NTUgUERUIC0tLQpGb3IgdHJhY2tpbmcgcHVycG9zZXMgLi4uIAoKMGY6MDAu
+MCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyOiBuVmlkaWEgQ29ycG9yYXRpb24gRzk2IFtRdWFk
+cm8gRlggMzgwXSAocmV2CmExKSAocHJvZy1pZiAwMCBbVkdBIGNvbnRyb2xsZXJdKQogICAgU3Vi
+c3lzdGVtOiBuVmlkaWEgQ29ycG9yYXRpb24gRGV2aWNlIDA2M2IKICAgIFBoeXNpY2FsIFNsb3Q6
+IDIKICAgIENvbnRyb2w6IEkvTysgTWVtKyBCdXNNYXN0ZXIrIFNwZWNDeWNsZS0gTWVtV0lOVi0g
+VkdBU25vb3AtIFBhckVyci0KU3RlcHBpbmctIFNFUlItIEZhc3RCMkItIERpc0lOVHgtCiAgICBT
+dGF0dXM6IENhcCsgNjZNSHotIFVERi0gRmFzdEIyQi0gUGFyRXJyLSBERVZTRUw9ZmFzdCA+VEFi
+b3J0LSA8VEFib3J0LQo8TUFib3J0LSA+U0VSUi0gPFBFUlItIElOVHgtCiAgICBMYXRlbmN5OiAw
+LCBDYWNoZSBMaW5lIFNpemU6IDY0IGJ5dGVzCiAgICBJbnRlcnJ1cHQ6IHBpbiBBIHJvdXRlZCB0
+byBJUlEgMjQKICAgIFJlZ2lvbiAwOiBNZW1vcnkgYXQgZjYwMDAwMDAgKDMyLWJpdCwgbm9uLXBy
+ZWZldGNoYWJsZSkgW3NpemU9MTZNXQogICAgUmVnaW9uIDE6IE1lbW9yeSBhdCBlMDAwMDAwMCAo
+NjQtYml0LCBwcmVmZXRjaGFibGUpIFtzaXplPTI1Nk1dCiAgICBSZWdpb24gMzogTWVtb3J5IGF0
+IGY0MDAwMDAwICg2NC1iaXQsIG5vbi1wcmVmZXRjaGFibGUpIFtzaXplPTMyTV0KICAgIFJlZ2lv
+biA1OiBJL08gcG9ydHMgYXQgZTAwMCBbc2l6ZT0xMjhdCiAgICBFeHBhbnNpb24gUk9NIGF0IDx1
+bmFzc2lnbmVkPiBbZGlzYWJsZWRdCiAgICBDYXBhYmlsaXRpZXM6IDxhY2Nlc3MgZGVuaWVkPgog
+ICAgS2VybmVsIGRyaXZlciBpbiB1c2U6IG5vdXZlYXUKICAgIEtlcm5lbCBtb2R1bGVzOiBub3V2
+ZWF1LCBudmlkaWFmYgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRl
+c2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZp
+bmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRo
+ZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
