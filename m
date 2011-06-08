@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37894] After sleep/hibernate,
-	X crashes after a few minutes
-Date: Wed,  8 Jun 2011 14:19:42 -0700 (PDT)
-Message-ID: <20110608211942.C86DD13004E@annarchy.freedesktop.org>
-References: <bug-37894-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38050] segfault starting glxgears
+Date: Wed,  8 Jun 2011 14:58:40 -0700 (PDT)
+Message-ID: <20110608215840.6DDD013004E@annarchy.freedesktop.org>
+References: <bug-38050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37894-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37894
+https://bugs.freedesktop.org/show_bug.cgi?id=38050
 
-pablo <pablo-3clbbMySrdFF6kxbq+BtvQ@public.gmane.org> changed:
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://bugzilla.novell.com
-                   |                            |/show_bug.cgi?id=696987
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
---- Comment #5 from pablo <pablo-3clbbMySrdFF6kxbq+BtvQ@public.gmane.org> 2011-06-08 14:19:41 PDT ---
-Hi Emil,
+--- Comment #8 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-08 14:58:39 PDT ---
+After discussion over #nouveau it turns out the issue was caused by nouveau-dri
 
-Once again, thank you /very/ much for your consideration.  I'm adding the
-openSUSE bug URL as requested.
+By removing nouveau_vieux_dri.so the problem has been resolved
 
-Through bifurcation, I /believe/ I've narrowed the issue with the `x11vnc'
-package.  As each test-run can take up to 24 hours, I can't say with certitude
-that it's `x11vnc'
-
-Cheers,
--pablo
+Marking as resolved:invalid due to bug policy
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
