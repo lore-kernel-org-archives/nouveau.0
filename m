@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38149] New: nouveau + GeForce 9600M GT +
- xorg/vbetest (or similar) = distorted image on the screen
-Date: Fri, 10 Jun 2011 05:24:35 -0700 (PDT)
-Message-ID: <bug-38149-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38149] nouveau + GeForce 9600M GT + xorg/vbetest (or
+ similar) = distorted image on the screen
+Date: Fri, 10 Jun 2011 05:47:58 -0700 (PDT)
+Message-ID: <20110610124758.5BBC013004E@annarchy.freedesktop.org>
+References: <bug-38149-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-38149-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,41 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38149
-
-           Summary: nouveau + GeForce 9600M GT + xorg/vbetest (or similar)
-                    = distorted image on the screen
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: ripper-tm-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=47807)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47807)
-As you can see, I failed at setting up wifi driver too :)
-
-As the log says, I'm using Linux version 2.6.38-gentoo-r6 on Acer Aspire 7730G
-(laptop).
-I've installed nouveau using this guide ->
-http://en.gentoo-wiki.com/wiki/Nouveau .
-After starting xorg or vbetest (with -m MODE), I get strange noise on the
-display (Like this -> http://img256.imageshack.us/img256/8364/image002qp.jpg).
-It doesn't disappear even when vbetest is finished.
-But console is working. If I type "dmesg > kernel_log.txt", I will see
-kernel_log.txt after reboot. And after reboot the image on the screen is
-normal.
-
-Thanks in advance.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzgxNDkKCi0tLSBD
+b21tZW50ICMxIGZyb20gTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0PiAy
+MDExLTA2LTEwIDA1OjQ3OjU2IFBEVCAtLS0KRmlyc3QsIGRvIG5vdCBydW4gdmJldGVzdCB3aXRo
+IG5vdXZlYXUuIEl0J3MgKm5vdCogc3VwcG9zZWQgdG8gd29yaywgYW5kIGl0CmNhbm5vdCB3b3Jr
+IC0gaXQncyBwb2tpbmcgdGhlIGNhcmQgYmVoaW5kIHRoZSBkcml2ZXIncyBiYWNrLCB3aGljaCBp
+cyBuZXZlciBhCmdvb2QgdGhpbmcuCgpTZWNvbmQsIGFyZSB5b3Ugc3VyZSB5b3UncmUgdXNpbmcg
+dGhlIG5vdXZlYXUgZHJpdmVyIGluIFgub3JnPyBZb3UgZGlkbid0CmF0dGFjaCB0aGUgWCBsb2dz
+LgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Vz
+ZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWls
+IGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
