@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38149] nouveau + GeForce 9600M GT + xorg/vbetest (or
- similar) = distorted image on the screen
-Date: Fri, 10 Jun 2011 05:47:58 -0700 (PDT)
-Message-ID: <20110610124758.5BBC013004E@annarchy.freedesktop.org>
-References: <bug-38149-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau/pm: Prevent overflow in
+	nouveau_perf_init()
+Date: Sat, 11 Jun 2011 13:30:32 +0100
+Message-ID: <1307795432-5417-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38149-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +19,35 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzgxNDkKCi0tLSBD
-b21tZW50ICMxIGZyb20gTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0PiAy
-MDExLTA2LTEwIDA1OjQ3OjU2IFBEVCAtLS0KRmlyc3QsIGRvIG5vdCBydW4gdmJldGVzdCB3aXRo
-IG5vdXZlYXUuIEl0J3MgKm5vdCogc3VwcG9zZWQgdG8gd29yaywgYW5kIGl0CmNhbm5vdCB3b3Jr
-IC0gaXQncyBwb2tpbmcgdGhlIGNhcmQgYmVoaW5kIHRoZSBkcml2ZXIncyBiYWNrLCB3aGljaCBp
-cyBuZXZlciBhCmdvb2QgdGhpbmcuCgpTZWNvbmQsIGFyZSB5b3Ugc3VyZSB5b3UncmUgdXNpbmcg
-dGhlIG5vdXZlYXUgZHJpdmVyIGluIFgub3JnPyBZb3UgZGlkbid0CmF0dGFjaCB0aGUgWCBsb2dz
-LgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Vz
-ZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWls
-IGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+While parsing the perf table, there is no check if
+the num of entries read from the vbios is less than
+the currently allocated number.
+
+In case of a buggy vbios this will cause overwriting
+of kernel memory, causing aditional problems.
+
+Add a simple check in order to prevent the case
+
+Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_perf.c |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c b/drivers/gpu/drm/nouveau/nouveau_perf.c
+index f2d98c9..b0e995f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_perf.c
++++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
+@@ -225,6 +225,11 @@ nouveau_perf_init(struct drm_device *dev)
+ 		entries   = perf[2];
+ 	}
+ 
++	if (entries > NOUVEAU_PM_MAX_LEVEL) {
++		NV_DEBUG(dev, "perf table has too many entries - buggy vbios?\n");
++		entries = NOUVEAU_PM_MAX_LEVEL;
++	}
++
+ 	entry = perf + headerlen;
+ 	for (i = 0; i < entries; i++) {
+ 		struct nouveau_pm_level *perflvl = &pm->perflvl[pm->nr_perflvl];
+-- 
+1.7.1
