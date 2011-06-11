@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38149] nouveau + GeForce 9600M GT + xorg/vbetest (or
- similar) = distorted image on the screen
-Date: Sat, 11 Jun 2011 05:50:00 -0700 (PDT)
-Message-ID: <20110611125000.7E32013004F@annarchy.freedesktop.org>
-References: <bug-38149-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/pm: Prevent overflow
+	in	nouveau_perf_init()
+Date: Sat, 11 Jun 2011 16:20:58 +0200
+Message-ID: <4DF379CA.1080401@free.fr>
+References: <1307795432-5417-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38149-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1307795432-5417-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38149
+Le 11/06/2011 14:30, Emil Velikov a =E9crit :
+> +	if (entries>  NOUVEAU_PM_MAX_LEVEL) {
+> +		NV_DEBUG(dev, "perf table has too many entries - buggy vbios?\n");
+> +		entries =3D NOUVEAU_PM_MAX_LEVEL;
+> +	}
+> +
+I would suggest using NV_ERROR or INFO. How will we get buggy vbios if =
 
-Pavel <ripper-tm-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |INVALID
-
---- Comment #2 from Pavel <ripper-tm-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> 2011-06-11 05:50:00 PDT ---
-Everything is ok now with Xorg. Sorry for the false report.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+we don't warn the users of such cards?
