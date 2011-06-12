@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38198] X: (EE) FBDEV(0): FBIOPUTCMAP: Invalid
 	argument
-Date: Sun, 12 Jun 2011 06:46:07 -0700 (PDT)
-Message-ID: <20110612134607.2E19B13004F@annarchy.freedesktop.org>
+Date: Sun, 12 Jun 2011 07:07:40 -0700 (PDT)
+Message-ID: <20110612140740.34E7513004E@annarchy.freedesktop.org>
 References: <bug-38198-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,26 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38198
 
-jukarimov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-12 07:07:39 PDT ---
+In order to work with nouveau you need the kernel module, libdrm, ddx and
+(optional) mesa/gallium
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Product|xorg                        |Mesa
-          Component|Driver/nVidia (open)        |Drivers/DRI/nouveau
-         AssignedTo|aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org        |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-          QAContact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
+A good starting point can be found here [1]
 
---- Comment #2 from jukarimov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-06-12 06:46:06 PDT ---
-Bump to mesa
+From your log I can see two things
+1. You do not have the minimal xorg.conf [1]
+2. Come to think of it, most likely you do not have the nouveau ddx
+(xf86-video-nouveau)
+
+Build the ddx, and add the "nouveau" to your xorg.conf.
+
+Any further issues please consult yourself with the faq[2], bugs[3] and
+mesadrivers[4]
+
+[1] http://nouveau.freedesktop.org/wiki/InstallNouveau
+[2] http://nouveau.freedesktop.org/wiki/FAQ
+[3] http://nouveau.freedesktop.org/wiki/Bugs
+[4] http://nouveau.freedesktop.org/wiki/MesaDrivers
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
