@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38208] nv50: Regression (bisected) - gamma does not
  work with 2.6.39
-Date: Sun, 12 Jun 2011 05:36:44 -0700 (PDT)
-Message-ID: <20110612123644.9923C13004E@annarchy.freedesktop.org>
+Date: Sun, 12 Jun 2011 05:42:04 -0700 (PDT)
+Message-ID: <20110612124204.6D11B13004E@annarchy.freedesktop.org>
 References: <bug-38208-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38208
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-12 05:42:03 PDT ---
+... bug 37643, gamma/ICC does not appear to work with 2.6.39, as well as with
+latest kernel.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nv50: Bisected regression   |nv50: Regression (bisected)
-                   |                            |- gamma does not work with
-                   |                            |2.6.39
+During the bisecting process the pageflipping has been disabled.
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-12 05:36:44 PDT ---
-Hi guys,
-
-Sorry for the messy posting (side effects of the bisecting)
-
-As already mentioned
+Apologies again for the flood
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
