@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31676] garbled text after loading nouveau module on
- EFI boot; X driver thinks there are no connected outputs
-Date: Sun, 12 Jun 2011 07:35:56 -0700 (PDT)
-Message-ID: <20110612143557.228AC13004F@annarchy.freedesktop.org>
-References: <bug-31676-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38198] X: (EE) FBDEV(0): FBIOPUTCMAP: Invalid
+	argument
+Date: Sun, 12 Jun 2011 08:18:27 -0700 (PDT)
+Message-ID: <20110612151827.D655113004E@annarchy.freedesktop.org>
+References: <bug-38198-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38198-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31676
+https://bugs.freedesktop.org/show_bug.cgi?id=38198
 
---- Comment #18 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2011-06-12 07:35:55 PDT ---
-Created an attachment (id=47868)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47868)
-dmesg efi + nouveau drm + video=eDP-1:1366x768e + debug
+Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTABUG
+
+--- Comment #4 from Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org> 2011-06-12 08:18:25 PDT ---
+As above - you aren't using the Nouveau driver.  Installing it per the
+instructions linked to above should work fine; please open another bug if it
+doesn't.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
