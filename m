@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38208] nv50: Bisected regression
-Date: Sun, 12 Jun 2011 05:35:04 -0700 (PDT)
-Message-ID: <20110612123504.56FA113004E@annarchy.freedesktop.org>
+Subject: [Bug 38208] nv50: Regression (bisected) - gamma does not
+ work with 2.6.39
+Date: Sun, 12 Jun 2011 05:36:44 -0700 (PDT)
+Message-ID: <20110612123644.9923C13004E@annarchy.freedesktop.org>
 References: <bug-38208-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +23,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38208
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-12 05:35:03 PDT ---
-Created an attachment (id=47865)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=47865)
-Bisect log (2.6.39 2.6.38 -- drivers/)
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|nv50: Bisected regression   |nv50: Regression (bisected)
+                   |                            |- gamma does not work with
+                   |                            |2.6.39
+
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-12 05:36:44 PDT ---
+Hi guys,
+
+Sorry for the messy posting (side effects of the bisecting)
+
+As already mentioned
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
