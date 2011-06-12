@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38198] X: (EE) FBDEV(0): FBIOPUTCMAP: Invalid
-	argument
-Date: Sun, 12 Jun 2011 08:18:27 -0700 (PDT)
-Message-ID: <20110612151827.D655113004E@annarchy.freedesktop.org>
-References: <bug-38198-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31169] no image when booting / G86 [GeForce 8400M GS]
+Date: Sun, 12 Jun 2011 11:27:37 -0700 (PDT)
+Message-ID: <20110612182737.AAB8313004E@annarchy.freedesktop.org>
+References: <bug-31169-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38198-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31169-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +20,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38198
+https://bugs.freedesktop.org/show_bug.cgi?id=31169
 
-Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org> changed:
+Marius Vasilescu <marius-w4xsyZNh/DQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|                            |NOTABUG
+         Resolution|                            |FIXED
 
---- Comment #4 from Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org> 2011-06-12 08:18:25 PDT ---
-As above - you aren't using the Nouveau driver.  Installing it per the
-instructions linked to above should work fine; please open another bug if it
-doesn't.
+--- Comment #16 from Marius Vasilescu <marius-w4xsyZNh/DQ@public.gmane.org> 2011-06-12 11:27:37 PDT ---
+Thanks Emil!
+
+It worked with the latest kernel - 3.0! Sorry, it took so long to confirm. Ben,
+thanks for the patches!
+
+I'll change the status to fixed, then.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
