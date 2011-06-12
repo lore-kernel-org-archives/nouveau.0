@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38196] Null pointer dereference in
  nouveau_gpuobj_channel_takedown
-Date: Sat, 11 Jun 2011 19:23:56 -0700 (PDT)
-Message-ID: <20110612022356.3A97D13004F@annarchy.freedesktop.org>
+Date: Sun, 12 Jun 2011 01:17:03 -0700 (PDT)
+Message-ID: <20110612081703.D246E13004E@annarchy.freedesktop.org>
 References: <bug-38196-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38196
 
---- Comment #1 from Bob Gleitsmann <rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org> 2011-06-11 19:23:56 PDT ---
-OK I don't know what product and component are to be used for bugs in kernel
-drm. It isn't mesa, but should to to the dri-devel mailing list. Or whatever
-you think.
+Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
 
-Bob
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Product|Mesa                        |xorg
+          Component|Drivers/DRI/nouveau         |Driver/nouveau
+
+--- Comment #2 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2011-06-12 01:17:03 PDT ---
+Since this bug apparently refers to nouveau_object.c in the kernel DRM, change
+the product/component to as per http://nouveau.freedesktop.org/wiki/Bugs .
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
