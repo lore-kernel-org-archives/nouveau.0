@@ -1,14 +1,14 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: zaverel <zaverel-GANU6spQydw@public.gmane.org>
 Subject: Re: nouveau Ignoring invalid EDID block 1
-Date: Wed, 15 Jun 2011 17:23:19 +0100
-Message-ID: <op.vw4k45cd7cbmmg@emo>
+Date: Wed, 15 Jun 2011 19:08:31 +0200
+Message-ID: <4DF8E70F.1050304@free.fr>
 References: <4DF88862.9030609@free.fr> <op.vw4dswkx7cbmmg@emo>
-	<4DF8D09C.5070704@free.fr>
+	<4DF8D09C.5070704@free.fr> <op.vw4k45cd7cbmmg@emo>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4DF8D09C.5070704-GANU6spQydw@public.gmane.org>
+In-Reply-To: <op.vw4k45cd7cbmmg@emo>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,42 +18,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, zaverel <zaverel-GANU6spQydw@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-As you have figured out already the issue is related to the
-EDID parser in the common drm code.
-
-I believe somewhere during the development process the parsing
-became more strict, thus your issue.
-
-Note the following differences
-
-* "old kernel" - 2.6.36 (modeline via xorg.conf)
-
-   1280x720 (0x79)   95.8MHz -HSync +VSync *current +preferred
-         h: width  1280 start 1360 end 1488 total 1696 skew    0 clock   56.5KHz
-         v: height  720 start  723 end  728 total  755           clock   74.8Hz
-
-* "new kernel" - 2.6.39 (parsed by drm_edid)
-
-   1280x720 (0x79)   74.2MHz +HSync +VSync *current +preferred
-         h: width  1280 start 1720 end 1760 total 1980 skew    0 clock   37.5KHz
-         v: height  720 start  725 end  730 total  750           clock   50.0Hz
-
-* parse-edid
-
-         Mode    "1280x720"      # vfreq 50.000Hz, hfreq 37.500kHz
-                 DotClock        74.250000
-                 HTimings        1280 1464 1504 1980
-                 VTimings        720 725 730 750
-                 Flags   "+HSync" "+VSync"
-         EndMode
-
-
-
-I would suggest for you to open a bugreport, attaching all the logs,
-so that the developers working on the common drm code, can take a
-look and provide better/safer solution (if available)
-
-Thanks
+T2sgLCBidXQgaSBhbHJlYWR5IG9wZW4gYSBidWcgaW4gZHJpLWRldmVsIGJ1dCBpJ3YgZ290IG5v
+IHJlc3BvbnNlIHVudGlsCm5vdy4KCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2
+ZXMvZHJpLWRldmVsLzIwMTEtSnVuZS8wMTIxMjkuaHRtbAoKc2VlIHlvdQoKCgoKTGUgMTUvMDYv
+MjAxMSAxODoyMywgRW1pbCBWZWxpa292IGEgw6ljcml0IDoKPiBBcyB5b3UgaGF2ZSBmaWd1cmVk
+IG91dCBhbHJlYWR5IHRoZSBpc3N1ZSBpcyByZWxhdGVkIHRvIHRoZQo+IEVESUQgcGFyc2VyIGlu
+IHRoZSBjb21tb24gZHJtIGNvZGUuCj4KPiBJIGJlbGlldmUgc29tZXdoZXJlIGR1cmluZyB0aGUg
+ZGV2ZWxvcG1lbnQgcHJvY2VzcyB0aGUgcGFyc2luZwo+IGJlY2FtZSBtb3JlIHN0cmljdCwgdGh1
+cyB5b3VyIGlzc3VlLgo+Cj4gTm90ZSB0aGUgZm9sbG93aW5nIGRpZmZlcmVuY2VzCj4KPiAqICJv
+bGQga2VybmVsIiAtIDIuNi4zNiAobW9kZWxpbmUgdmlhIHhvcmcuY29uZikKPgo+ICAgMTI4MHg3
+MjAgKDB4NzkpICAgOTUuOE1IeiAtSFN5bmMgK1ZTeW5jICpjdXJyZW50ICtwcmVmZXJyZWQKPiAg
+ICAgICAgIGg6IHdpZHRoICAxMjgwIHN0YXJ0IDEzNjAgZW5kIDE0ODggdG90YWwgMTY5NiBza2V3
+ICAgIDAKPiBjbG9jayAgIDU2LjVLSHoKPiAgICAgICAgIHY6IGhlaWdodCAgNzIwIHN0YXJ0ICA3
+MjMgZW5kICA3MjggdG90YWwgIDc1NSAgICAgICAgICAKPiBjbG9jayAgIDc0LjhIego+Cj4gKiAi
+bmV3IGtlcm5lbCIgLSAyLjYuMzkgKHBhcnNlZCBieSBkcm1fZWRpZCkKPgo+ICAgMTI4MHg3MjAg
+KDB4NzkpICAgNzQuMk1IeiArSFN5bmMgK1ZTeW5jICpjdXJyZW50ICtwcmVmZXJyZWQKPiAgICAg
+ICAgIGg6IHdpZHRoICAxMjgwIHN0YXJ0IDE3MjAgZW5kIDE3NjAgdG90YWwgMTk4MCBza2V3ICAg
+IDAKPiBjbG9jayAgIDM3LjVLSHoKPiAgICAgICAgIHY6IGhlaWdodCAgNzIwIHN0YXJ0ICA3MjUg
+ZW5kICA3MzAgdG90YWwgIDc1MCAgICAgICAgICAKPiBjbG9jayAgIDUwLjBIego+Cj4gKiBwYXJz
+ZS1lZGlkCj4KPiAgICAgICAgIE1vZGUgICAgIjEyODB4NzIwIiAgICAgICMgdmZyZXEgNTAuMDAw
+SHosIGhmcmVxIDM3LjUwMGtIego+ICAgICAgICAgICAgICAgICBEb3RDbG9jayAgICAgICAgNzQu
+MjUwMDAwCj4gICAgICAgICAgICAgICAgIEhUaW1pbmdzICAgICAgICAxMjgwIDE0NjQgMTUwNCAx
+OTgwCj4gICAgICAgICAgICAgICAgIFZUaW1pbmdzICAgICAgICA3MjAgNzI1IDczMCA3NTAKPiAg
+ICAgICAgICAgICAgICAgRmxhZ3MgICAiK0hTeW5jIiAiK1ZTeW5jIgo+ICAgICAgICAgRW5kTW9k
+ZQo+Cj4KPgo+IEkgd291bGQgc3VnZ2VzdCBmb3IgeW91IHRvIG9wZW4gYSBidWdyZXBvcnQsIGF0
+dGFjaGluZyBhbGwgdGhlIGxvZ3MsCj4gc28gdGhhdCB0aGUgZGV2ZWxvcGVycyB3b3JraW5nIG9u
+IHRoZSBjb21tb24gZHJtIGNvZGUsIGNhbiB0YWtlIGEKPiBsb29rIGFuZCBwcm92aWRlIGJldHRl
+ci9zYWZlciBzb2x1dGlvbiAoaWYgYXZhaWxhYmxlKQo+Cj4gVGhhbmtzCj4KPgoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
