@@ -1,14 +1,15 @@
-From: zaverel <zaverel-GANU6spQydw@public.gmane.org>
-Subject: Re: nouveau Ignoring invalid EDID block 1
-Date: Wed, 15 Jun 2011 19:08:31 +0200
-Message-ID: <4DF8E70F.1050304@free.fr>
-References: <4DF88862.9030609@free.fr> <op.vw4dswkx7cbmmg@emo>
-	<4DF8D09C.5070704@free.fr> <op.vw4k45cd7cbmmg@emo>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/pm: Prevent overflow in
+ nouveau_perf_init()
+Date: Thu, 16 Jun 2011 13:43:59 +1000
+Message-ID: <1308195843.3446.0.camel@nisroch>
+References: <1307795432-5417-1-git-send-email-emil.l.velikov@gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <op.vw4k45cd7cbmmg@emo>
+In-Reply-To: <1307795432-5417-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,36 +19,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T2sgLCBidXQgaSBhbHJlYWR5IG9wZW4gYSBidWcgaW4gZHJpLWRldmVsIGJ1dCBpJ3YgZ290IG5v
-IHJlc3BvbnNlIHVudGlsCm5vdy4KCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2
-ZXMvZHJpLWRldmVsLzIwMTEtSnVuZS8wMTIxMjkuaHRtbAoKc2VlIHlvdQoKCgoKTGUgMTUvMDYv
-MjAxMSAxODoyMywgRW1pbCBWZWxpa292IGEgw6ljcml0IDoKPiBBcyB5b3UgaGF2ZSBmaWd1cmVk
-IG91dCBhbHJlYWR5IHRoZSBpc3N1ZSBpcyByZWxhdGVkIHRvIHRoZQo+IEVESUQgcGFyc2VyIGlu
-IHRoZSBjb21tb24gZHJtIGNvZGUuCj4KPiBJIGJlbGlldmUgc29tZXdoZXJlIGR1cmluZyB0aGUg
-ZGV2ZWxvcG1lbnQgcHJvY2VzcyB0aGUgcGFyc2luZwo+IGJlY2FtZSBtb3JlIHN0cmljdCwgdGh1
-cyB5b3VyIGlzc3VlLgo+Cj4gTm90ZSB0aGUgZm9sbG93aW5nIGRpZmZlcmVuY2VzCj4KPiAqICJv
-bGQga2VybmVsIiAtIDIuNi4zNiAobW9kZWxpbmUgdmlhIHhvcmcuY29uZikKPgo+ICAgMTI4MHg3
-MjAgKDB4NzkpICAgOTUuOE1IeiAtSFN5bmMgK1ZTeW5jICpjdXJyZW50ICtwcmVmZXJyZWQKPiAg
-ICAgICAgIGg6IHdpZHRoICAxMjgwIHN0YXJ0IDEzNjAgZW5kIDE0ODggdG90YWwgMTY5NiBza2V3
-ICAgIDAKPiBjbG9jayAgIDU2LjVLSHoKPiAgICAgICAgIHY6IGhlaWdodCAgNzIwIHN0YXJ0ICA3
-MjMgZW5kICA3MjggdG90YWwgIDc1NSAgICAgICAgICAKPiBjbG9jayAgIDc0LjhIego+Cj4gKiAi
-bmV3IGtlcm5lbCIgLSAyLjYuMzkgKHBhcnNlZCBieSBkcm1fZWRpZCkKPgo+ICAgMTI4MHg3MjAg
-KDB4NzkpICAgNzQuMk1IeiArSFN5bmMgK1ZTeW5jICpjdXJyZW50ICtwcmVmZXJyZWQKPiAgICAg
-ICAgIGg6IHdpZHRoICAxMjgwIHN0YXJ0IDE3MjAgZW5kIDE3NjAgdG90YWwgMTk4MCBza2V3ICAg
-IDAKPiBjbG9jayAgIDM3LjVLSHoKPiAgICAgICAgIHY6IGhlaWdodCAgNzIwIHN0YXJ0ICA3MjUg
-ZW5kICA3MzAgdG90YWwgIDc1MCAgICAgICAgICAKPiBjbG9jayAgIDUwLjBIego+Cj4gKiBwYXJz
-ZS1lZGlkCj4KPiAgICAgICAgIE1vZGUgICAgIjEyODB4NzIwIiAgICAgICMgdmZyZXEgNTAuMDAw
-SHosIGhmcmVxIDM3LjUwMGtIego+ICAgICAgICAgICAgICAgICBEb3RDbG9jayAgICAgICAgNzQu
-MjUwMDAwCj4gICAgICAgICAgICAgICAgIEhUaW1pbmdzICAgICAgICAxMjgwIDE0NjQgMTUwNCAx
-OTgwCj4gICAgICAgICAgICAgICAgIFZUaW1pbmdzICAgICAgICA3MjAgNzI1IDczMCA3NTAKPiAg
-ICAgICAgICAgICAgICAgRmxhZ3MgICAiK0hTeW5jIiAiK1ZTeW5jIgo+ICAgICAgICAgRW5kTW9k
-ZQo+Cj4KPgo+IEkgd291bGQgc3VnZ2VzdCBmb3IgeW91IHRvIG9wZW4gYSBidWdyZXBvcnQsIGF0
-dGFjaGluZyBhbGwgdGhlIGxvZ3MsCj4gc28gdGhhdCB0aGUgZGV2ZWxvcGVycyB3b3JraW5nIG9u
-IHRoZSBjb21tb24gZHJtIGNvZGUsIGNhbiB0YWtlIGEKPiBsb29rIGFuZCBwcm92aWRlIGJldHRl
-ci9zYWZlciBzb2x1dGlvbiAoaWYgYXZhaWxhYmxlKQo+Cj4gVGhhbmtzCj4KPgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Sat, 2011-06-11 at 13:30 +0100, Emil Velikov wrote:
+> While parsing the perf table, there is no check if
+> the num of entries read from the vbios is less than
+> the currently allocated number.
+> 
+> In case of a buggy vbios this will cause overwriting
+> of kernel memory, causing aditional problems.
+> 
+> Add a simple check in order to prevent the case
+I've pushed this.  I'm not entirely certain we shouldn't just bail out
+completely if this is the case, I suspect that if there's this many, the
+VBIOS image is probably very screwed.
+
+This'll do for now :)
+
+Ben.
+> 
+> Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_perf.c |    5 +++++
+>  1 files changed, 5 insertions(+), 0 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c b/drivers/gpu/drm/nouveau/nouveau_perf.c
+> index f2d98c9..b0e995f 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_perf.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
+> @@ -225,6 +225,11 @@ nouveau_perf_init(struct drm_device *dev)
+>  		entries   = perf[2];
+>  	}
+>  
+> +	if (entries > NOUVEAU_PM_MAX_LEVEL) {
+> +		NV_DEBUG(dev, "perf table has too many entries - buggy vbios?\n");
+> +		entries = NOUVEAU_PM_MAX_LEVEL;
+> +	}
+> +
+>  	entry = perf + headerlen;
+>  	for (i = 0; i < entries; i++) {
+>  		struct nouveau_pm_level *perflvl = &pm->perflvl[pm->nr_perflvl];
