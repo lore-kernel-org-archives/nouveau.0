@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38208] nv50: Regression (bisected) - gamma does not
- work with 2.6.39
-Date: Wed, 15 Jun 2011 21:46:07 -0700 (PDT)
-Message-ID: <20110616044607.890DD13004F@annarchy.freedesktop.org>
-References: <bug-38208-8800@http.bugs.freedesktop.org/>
+From: zaverel <zaverel-GANU6spQydw@public.gmane.org>
+Subject: Re: nouveau Ignoring invalid EDID block 1
+Date: Thu, 16 Jun 2011 12:54:37 +0200
+Message-ID: <4DF9E0ED.4020203@free.fr>
+References: <4DF88862.9030609@free.fr> <op.vw4dswkx7cbmmg@emo>
+	<4DF8D09C.5070704@free.fr> <op.vw4k45cd7cbmmg@emo>
+	<4DF8E70F.1050304@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38208-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <4DF8E70F.1050304-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +22,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38208
+I open a new bugreport
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+https://bugs.freedesktop.org/show_bug.cgi?id=38364
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+and
+ 
+http://lists.freedesktop.org/archives/dri-devel/2011-June/012196.html
 
---- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-15 21:46:07 PDT ---
-Fixed in nouveau git.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+see you
