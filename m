@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38350] [NVAC] Screen doesn't come back after suspend
-Date: Sat, 18 Jun 2011 08:13:49 -0700 (PDT)
-Message-ID: <20110618151349.0F3CB130051@annarchy.freedesktop.org>
-References: <bug-38350-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27455] dualhead not working,
+	second display always black
+Date: Sat, 18 Jun 2011 13:09:13 -0700 (PDT)
+Message-ID: <20110618200913.A275A13004F@annarchy.freedesktop.org>
+References: <bug-27455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +21,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38350
+https://bugs.freedesktop.org/show_bug.cgi?id=27455
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-18 08:13:48 PDT ---
-For some reason the log does not provide any information about
-entering/resuming from suspend (suspend to ?ram/disk?)
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-The only thing that is a bit disturbing is
-"[ 3634.972104] [drm] nouveau 0000:02:00.0: Unexpected pageflip in channel 4."
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |
 
-Thus can you try disabling Pageflip in xorg.conf(Option "PageFlip" "off"), to
-determine if pageflipping is related to your issue
-
-Cheers
+--- Comment #12 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-18 13:09:11 PDT ---
+Should not have closed this bug
+Apologies
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
