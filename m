@@ -1,88 +1,92 @@
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Subject: Re: [PATCH 1/2] xorg/nouveau: rename to nouveau2
-Date: Mon, 20 Jun 2011 02:39:39 +0200
-Message-ID: <BANLkTinA+kEfe-H76HH5gNG0TXUzHahr4w@mail.gmail.com>
-References: <20110516195029.GA5456@joi.lan> <20110619222813.GJ4771@joi.lan>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: gpu lockup detection and fallback to noaccel
+Date: Mon, 20 Jun 2011 13:03:30 +0200
+Message-ID: <20110620110330.GA3678@joi.lan>
+References: <20110614211859.GA3687@joi.lan>
+	<1308119242.8806.1.camel@maxim-laptop>
+	<20110619222554.GI4771@joi.lan> <1308529026.2464.1.camel@nisroch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
-In-Reply-To: <20110619222813.GJ4771@joi.lan>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <1308529026.2464.1.camel@nisroch>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UHVzaGVkLCB0aGFua3MuCgpUaGUgb3RoZXIgcGF0Y2ggc2hvdWxkIGJlIHB1c2hlZCBieSBzb21l
-b25lIHdobyB1bmRlcnN0YW5kcyBpdCAoaS5lLiBub3QgbWUpLgoKWW91IGFscmVhZHkgaGF2ZSAz
-NiBjb21taXRzIGluIE1lc2EgbWFzdGVyLiBZb3Ugc2hvdWxkIHJlYWxseSBhcHBseQpmb3IgYW4g
-YWNjb3VudC4KCk1hcmVrCgpPbiBNb24sIEp1biAyMCwgMjAxMSBhdCAxMjoyOCBBTSwgTWFyY2lu
-IFNsdXNhcnoKPG1hcmNpbi5zbHVzYXJ6QGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gTW9uLCBNYXkg
-MTYsIDIwMTEgYXQgMDk6NTA6MjlQTSArMDIwMCwgTWFyY2luIFNsdXNhcnogd3JvdGU6Cj4+Cj4+
-IC0tLQo+PiDCoHNyYy9nYWxsaXVtL3RhcmdldHMveG9yZy1ub3V2ZWF1L01ha2VmaWxlIMKgIMKg
-IMKgIHwgwqAgwqAyICstCj4+IMKgc3JjL2dhbGxpdW0vdGFyZ2V0cy94b3JnLW5vdXZlYXUvbm91
-dmVhdV94b3JnLmMgfCDCoCAxNCArKysrKysrLS0tLS0tLQo+PiDCoDIgZmlsZXMgY2hhbmdlZCwg
-OCBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvc3JjL2dh
-bGxpdW0vdGFyZ2V0cy94b3JnLW5vdXZlYXUvTWFrZWZpbGUgYi9zcmMvZ2FsbGl1bS90YXJnZXRz
-L3hvcmctbm91dmVhdS9NYWtlZmlsZQo+PiBpbmRleCA1YTJjZGIxLi4xNmFjOTU0IDEwMDY0NAo+
-PiAtLS0gYS9zcmMvZ2FsbGl1bS90YXJnZXRzL3hvcmctbm91dmVhdS9NYWtlZmlsZQo+PiArKysg
-Yi9zcmMvZ2FsbGl1bS90YXJnZXRzL3hvcmctbm91dmVhdS9NYWtlZmlsZQo+PiBAQCAtMSw3ICsx
-LDcgQEAKPj4gwqBUT1AgPSAuLi8uLi8uLi8uLgo+PiDCoGluY2x1ZGUgJChUT1ApL2NvbmZpZ3Mv
-Y3VycmVudAo+Pgo+PiAtTElCTkFNRSA9IG1vZGVzZXR0aW5nX2Rydi5zbwo+PiArTElCTkFNRSA9
-IG5vdXZlYXUyX2Rydi5zbwo+Pgo+PiDCoENfU09VUkNFUyA9IFwKPj4gwqAgwqAgwqAgbm91dmVh
-dV90YXJnZXQuYyBcCj4+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS90YXJnZXRzL3hvcmctbm91
-dmVhdS9ub3V2ZWF1X3hvcmcuYyBiL3NyYy9nYWxsaXVtL3RhcmdldHMveG9yZy1ub3V2ZWF1L25v
-dXZlYXVfeG9yZy5jCj4+IGluZGV4IGYwZDY0OTIuLmEyNTI1NGEgMTAwNjQ0Cj4+IC0tLSBhL3Ny
-Yy9nYWxsaXVtL3RhcmdldHMveG9yZy1ub3V2ZWF1L25vdXZlYXVfeG9yZy5jCj4+ICsrKyBiL3Ny
-Yy9nYWxsaXVtL3RhcmdldHMveG9yZy1ub3V2ZWF1L25vdXZlYXVfeG9yZy5jCj4+IEBAIC01NCw3
-ICs1NCw3IEBAIHN0YXRpYyBQY2lDaGlwc2V0cyBub3V2ZWF1X3hvcmdfcGNpX2RldmljZXNbXSA9
-IHsKPj4gwqB9Owo+Pgo+PiDCoHN0YXRpYyBYRjg2TW9kdWxlVmVyc2lvbkluZm8gbm91dmVhdV94
-b3JnX3ZlcnNpb24gPSB7Cj4+IC0gwqAgwqAibW9kZXNldHRpbmciLAo+PiArIMKgIMKgIm5vdXZl
-YXUyIiwKPj4gwqAgwqAgwqBNT0RVTEVWRU5ET1JTVFJJTkcsCj4+IMKgIMKgIMKgTU9ESU5GT1NU
-UklORzEsCj4+IMKgIMKgIMKgTU9ESU5GT1NUUklORzIsCj4+IEBAIC03MCw5ICs3MCw5IEBAIHN0
-YXRpYyBYRjg2TW9kdWxlVmVyc2lvbkluZm8gbm91dmVhdV94b3JnX3ZlcnNpb24gPSB7Cj4+IMKg
-ICogWG9yZyBkcml2ZXIgZXhwb3J0ZWQgc3RydWN0dXJlcwo+PiDCoCAqLwo+Pgo+PiAtX1hfRVhQ
-T1JUIERyaXZlclJlYyBtb2Rlc2V0dGluZyA9IHsKPj4gK19YX0VYUE9SVCBEcml2ZXJSZWMgbm91
-dmVhdTIgPSB7Cj4+IMKgIMKgIMKgMSwKPj4gLSDCoCDCoCJtb2Rlc2V0dGluZyIsCj4+ICsgwqAg
-wqAibm91dmVhdTIiLAo+PiDCoCDCoCDCoG5vdXZlYXVfeG9yZ19pZGVudGlmeSwKPj4gwqAgwqAg
-wqBOVUxMLAo+PiDCoCDCoCDCoHhvcmdfdHJhY2tlcl9hdmFpbGFibGVfb3B0aW9ucywKPj4gQEAg
-LTg1LDcgKzg1LDcgQEAgX1hfRVhQT1JUIERyaXZlclJlYyBtb2Rlc2V0dGluZyA9IHsKPj4KPj4g
-wqBzdGF0aWMgTU9EVUxFU0VUVVBQUk9UTyhub3V2ZWF1X3hvcmdfc2V0dXApOwo+Pgo+PiAtX1hf
-RVhQT1JUIFhGODZNb2R1bGVEYXRhIG1vZGVzZXR0aW5nTW9kdWxlRGF0YSA9IHsKPj4gK19YX0VY
-UE9SVCBYRjg2TW9kdWxlRGF0YSBub3V2ZWF1Mk1vZHVsZURhdGEgPSB7Cj4+IMKgIMKgIMKgJm5v
-dXZlYXVfeG9yZ192ZXJzaW9uLAo+PiDCoCDCoCDCoG5vdXZlYXVfeG9yZ19zZXR1cCwKPj4gwqAg
-wqAgwqBOVUxMCj4+IEBAIC0xMDQsNyArMTA0LDcgQEAgbm91dmVhdV94b3JnX3NldHVwKHBvaW50
-ZXIgbW9kdWxlLCBwb2ludGVyIG9wdHMsIGludCAqZXJybWFqLCBpbnQgKmVycm1pbikKPj4gwqAg
-wqAgwqAgKi8KPj4gwqAgwqAgwqBpZiAoIXNldHVwRG9uZSkgewo+PiDCoCDCoCDCoCBzZXR1cERv
-bmUgPSAxOwo+PiAtIMKgIMKgIHhmODZBZGREcml2ZXIoJm1vZGVzZXR0aW5nLCBtb2R1bGUsIEhh
-dmVEcml2ZXJGdW5jcyk7Cj4+ICsgwqAgwqAgeGY4NkFkZERyaXZlcigmbm91dmVhdTIsIG1vZHVs
-ZSwgSGF2ZURyaXZlckZ1bmNzKTsKPj4KPj4gwqAgwqAgwqAgLyoKPj4gwqAgwqAgwqAgwqAqIFRo
-ZSByZXR1cm4gdmFsdWUgbXVzdCBiZSBub24tTlVMTCBvbiBzdWNjZXNzIGV2ZW4gdGhvdWdoIHRo
-ZXJlCj4+IEBAIC0xMjEsNyArMTIxLDcgQEAgbm91dmVhdV94b3JnX3NldHVwKHBvaW50ZXIgbW9k
-dWxlLCBwb2ludGVyIG9wdHMsIGludCAqZXJybWFqLCBpbnQgKmVycm1pbikKPj4gwqBzdGF0aWMg
-dm9pZAo+PiDCoG5vdXZlYXVfeG9yZ19pZGVudGlmeShpbnQgZmxhZ3MpCj4+IMKgewo+PiAtIMKg
-IMKgeGY4NlByaW50Q2hpcHNldHMoIm1vZGVzZXR0aW5nIiwgIkRyaXZlciBmb3IgTW9kZXNldHRp
-bmcgS2VybmVsIERyaXZlcnMiLAo+PiArIMKgIMKgeGY4NlByaW50Q2hpcHNldHMoIm5vdXZlYXUy
-IiwgIkRyaXZlciBmb3IgTW9kZXNldHRpbmcgS2VybmVsIERyaXZlcnMiLAo+PiDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCBub3V2ZWF1X3hvcmdfY2hpcHNldHMpOwo+PiDCoH0KPj4KPj4g
-QEAgLTEzNyw3ICsxMzcsNyBAQCBub3V2ZWF1X3hvcmdfcGNpX3Byb2JlKERyaXZlclB0ciBkcml2
-ZXIsCj4+IMKgIMKgIMKgaWYgKHNjcm4gIT0gTlVMTCkgewo+PiDCoCDCoCDCoCBzY3JuLT5kcml2
-ZXJWZXJzaW9uID0gMTsKPj4gwqAgwqAgwqAgc2Nybi0+ZHJpdmVyTmFtZSA9ICJub3V2ZWF1IjsK
-Pj4gLSDCoCDCoCBzY3JuLT5uYW1lID0gIm1vZGVzZXR0aW5nIjsKPj4gKyDCoCDCoCBzY3JuLT5u
-YW1lID0gIm5vdXZlYXUyIjsKPj4gwqAgwqAgwqAgc2Nybi0+UHJvYmUgPSBOVUxMOwo+Pgo+PiDC
-oCDCoCDCoCBlbnRpdHkgPSB4Zjg2R2V0RW50aXR5SW5mbyhlbnRpdHlfbnVtKTsKPj4gLS0KPgo+
-IENhbiBzb21lb25lIGNvbW1pdCB0aGlzIHBhdGNoPwo+Cj4gTWFyY2luCj4KPiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IG1lc2EtZGV2IG1haWxpbmcg
-bGlzdAo+IG1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo+Cl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNh
-LWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+On Mon, Jun 20, 2011 at 10:17:02AM +1000, Ben Skeggs wrote:
+> On Mon, 2011-06-20 at 00:25 +0200, Marcin Slusarz wrote:
+> > On Wed, Jun 15, 2011 at 09:27:22AM +0300, Maxim Levitsky wrote:
+> > > On Tue, 2011-06-14 at 23:18 +0200, Marcin Slusarz wrote: 
+> > > > Hi
+> > > > 
+> > > > I have a very rough patchset which adds support for GPU lockup detection and fallback
+> > > > to (more or less) noaccel to xf86-video-nouveau.
+> > > > 
+> > > > As the patches are only a proof of concept and needs a lot of work, I would like
+> > > > to know first if this is a desired feature - I don't want to spend a couple of days
+> > > > on patches which will be ignored or rejected with a reason "we don't need it".
+> > > > 
+> > > > So, what do you think?
+> > > 
+> > > Will love it! I have unexplained hangs here, so maybe I could debug them
+> > > further with this.
+> > > 
+> > 
+> > Thanks for encouragement. But...
+> > 
+> > I was hoping for reponse from someone with commit access. I really really hate wasting
+> > time, so I'm not going to finish it. Oh well, I guess it's not that important as I thought.
+> Hey,
+> 
+> I'd be interested in seeing the approach you've taken at least.  I'm not
+> convinced this is something we want exactly, my fear is that a lot of
+> bugs will end up covered over with people not noticing.  But, lets
+> see :)
+> 
+
+General idea is: detect nouveau_bo_map failures and disable acceleration.
+
+libdrm:
+Problem 1: timeout in __nouveau_fence_wait never triggers, because xserver uses signals, (SIGIO
+for input and SIGALRM for some short timers), which interrupt fence loop and causes syscall restart.
+Solution: detect timeouts on libdrm side.
+
+Problem 2: nouveau_pushbuf_flush asserts when it can't allocate space for next push buffer.
+Solution: handle it and return error. As WAIT_RING and FIRE_RING uses nouveau_pushbuf_flush, they
+need to propagate error further. BEGIN_RING uses WAIT_RING, so it needs propagate error too.
+
+xf86-video-nouveau:
+Should handle all errors (nouveau_bo_map, BEGIN_RING, WAIT_RING, FIRE_RING) and disable acceleration.
+This is tricky.
+Problem 3: we can't disable exa in the middle of accelerated operation (which might consist of
+several exa ops), so we need to mark channel with AccelBroken and return false from any Check/Prepare
+funcs. The problem is: we need at least one operation - nouveau_exa_prepare_access. On NV50 it means
+WrappedFB must be enabled. (I didn't investigate it yet, but maybe we could untile the pixmap?)
+WFB has some performance overhead, so this whole functionality would probably need driver option
+(e.g. DetectGPULockups), which would implicitly enable WFB :(. Exa with only PrepareAccess hook
+is EXTREMELY slow (~0.1 FPS, maybe even less), so after one full accel operation, we need
+to disable exa entirely and fallback to NoAccel - I didn't investigate how to do it yet.
+
+Additionally, nouveau_exa_prepare_access needs to use NOUVEAU_BO_NOSYNC when AccelIsBroken, because
+waiting for locked up pgraph does not make any sense.
+
+Completely unrelated to this madness is detecting GPU lockup at driver initialization time.
+It's nice and clean and it allows to restart xserver automatically in NoAccel mode after lockup
+(However it needs to workaround bug in xserver, bugfix already sent to xorg-devel list -
+http://lists.x.org/archives/xorg-devel/2011-June/023075.html).
+
+Mesa:
+Should assert when any of nouveau_bo_map/BEGIN_RING/WAIT_RING/FIRE_RING fail. At least for now.
+
+Marcin
