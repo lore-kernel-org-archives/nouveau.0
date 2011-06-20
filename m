@@ -1,15 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: gpu lockup detection and fallback to noaccel
-Date: Mon, 20 Jun 2011 10:17:02 +1000
-Message-ID: <1308529026.2464.1.camel@nisroch>
-References: <20110614211859.GA3687@joi.lan>
-	<1308119242.8806.1.camel@maxim-laptop> <20110619222554.GI4771@joi.lan>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Mesa-dev] [PATCH] gallium/nouveau: remove unused
+	nouveau_screen_bo_user
+Date: Mon, 20 Jun 2011 02:23:51 +0200
+Message-ID: <BANLkTinbYwHjNPr028he-4dPuTynCtV0Bg@mail.gmail.com>
+References: <20110508223510.GB10163@joi.lan> <20110619220607.GF4771@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20110619222554.GI4771-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <20110619220607.GF4771-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,43 +19,49 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, 2011-06-20 at 00:25 +0200, Marcin Slusarz wrote:
-> On Wed, Jun 15, 2011 at 09:27:22AM +0300, Maxim Levitsky wrote:
-> > On Tue, 2011-06-14 at 23:18 +0200, Marcin Slusarz wrote: 
-> > > Hi
-> > > 
-> > > I have a very rough patchset which adds support for GPU lockup detection and fallback
-> > > to (more or less) noaccel to xf86-video-nouveau.
-> > > 
-> > > As the patches are only a proof of concept and needs a lot of work, I would like
-> > > to know first if this is a desired feature - I don't want to spend a couple of days
-> > > on patches which will be ignored or rejected with a reason "we don't need it".
-> > > 
-> > > So, what do you think?
-> > 
-> > Will love it! I have unexplained hangs here, so maybe I could debug them
-> > further with this.
-> > 
-> 
-> Thanks for encouragement. But...
-> 
-> I was hoping for reponse from someone with commit access. I really really hate wasting
-> time, so I'm not going to finish it. Oh well, I guess it's not that important as I thought.
-Hey,
-
-I'd be interested in seeing the approach you've taken at least.  I'm not
-convinced this is something we want exactly, my fear is that a lot of
-bugs will end up covered over with people not noticing.  But, lets
-see :)
-
-Ben.
-
-> 
-> Marcin
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+UHVzaGVkLCB0aGFua3MuCgpNYXJlawoKT24gTW9uLCBKdW4gMjAsIDIwMTEgYXQgMTI6MDYgQU0s
+IE1hcmNpbiBTbHVzYXJ6CjxtYXJjaW4uc2x1c2FyekBnbWFpbC5jb20+IHdyb3RlOgo+IE9uIE1v
+biwgTWF5IDA5LCAyMDExIGF0IDEyOjM1OjEwQU0gKzAyMDAsIE1hcmNpbiBTbHVzYXJ6IHdyb3Rl
+Ogo+Pgo+PiAtLS0KPj4gwqBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9zY3Jl
+ZW4uYyB8IMKgIDE0IC0tLS0tLS0tLS0tLS0tCj4+IMKgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
+ZWF1L25vdXZlYXVfc2NyZWVuLmggfCDCoCDCoDIgLS0KPj4gwqAyIGZpbGVzIGNoYW5nZWQsIDAg
+aW5zZXJ0aW9ucygrKSwgMTYgZGVsZXRpb25zKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9zY3JlZW4uYyBiL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9ub3V2ZWF1X3NjcmVlbi5jCj4+IGluZGV4IDQwMTE1NWIuLjIyM2U3NjggMTAw
+NjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X3NjcmVlbi5j
+Cj4+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X3NjcmVlbi5jCj4+
+IEBAIC04MSwyMCArODEsNiBAQCBub3V2ZWF1X3NjcmVlbl9ib19uZXcoc3RydWN0IHBpcGVfc2Ny
+ZWVuICpwc2NyZWVuLCB1bnNpZ25lZCBhbGlnbm1lbnQsCj4+IMKgIMKgIMKgIHJldHVybiBibzsK
+Pj4gwqB9Cj4+Cj4+IC1zdHJ1Y3Qgbm91dmVhdV9ibyAqCj4+IC1ub3V2ZWF1X3NjcmVlbl9ib191
+c2VyKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwgdm9pZCAqcHRyLCB1bnNpZ25lZCBieXRl
+cykKPj4gLXsKPj4gLSDCoCDCoCBzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldiA9IG5vdXZlYXVf
+c2NyZWVuKHBzY3JlZW4pLT5kZXZpY2U7Cj4+IC0gwqAgwqAgc3RydWN0IG5vdXZlYXVfYm8gKmJv
+ID0gTlVMTDsKPj4gLSDCoCDCoCBpbnQgcmV0Owo+PiAtCj4+IC0gwqAgwqAgcmV0ID0gbm91dmVh
+dV9ib191c2VyKGRldiwgcHRyLCBieXRlcywgJmJvKTsKPj4gLSDCoCDCoCBpZiAocmV0KQo+PiAt
+IMKgIMKgIMKgIMKgIMKgIMKgIHJldHVybiBOVUxMOwo+PiAtCj4+IC0gwqAgwqAgcmV0dXJuIGJv
+Owo+PiAtfQo+PiAtCj4+IMKgdm9pZCAqCj4+IMKgbm91dmVhdV9zY3JlZW5fYm9fbWFwKHN0cnVj
+dCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwKPj4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+c3RydWN0IG5vdXZlYXVfYm8gKmJvLAo+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L25vdXZlYXVfc2NyZWVuLmggYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+bm91dmVhdV9zY3JlZW4uaAo+PiBpbmRleCAxODZhZGEzLi5kOTEwODA5IDEwMDY0NAo+PiAtLS0g
+YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9zY3JlZW4uaAo+PiArKysgYi9z
+cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9zY3JlZW4uaAo+PiBAQCAtNDcsOCAr
+NDcsNiBAQCBub3V2ZWF1X3NjcmVlbihzdHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4pCj4+IMKg
+c3RydWN0IG5vdXZlYXVfYm8gKgo+PiDCoG5vdXZlYXVfc2NyZWVuX2JvX25ldyhzdHJ1Y3QgcGlw
+ZV9zY3JlZW4gKnBzY3JlZW4sIHVuc2lnbmVkIGFsaWdubWVudCwKPj4gwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgdW5zaWduZWQgdXNhZ2UsIHVuc2lnbmVkIGJpbmQsIHVuc2lnbmVkIHNp
+emUpOwo+PiAtc3RydWN0IG5vdXZlYXVfYm8gKgo+PiAtbm91dmVhdV9zY3JlZW5fYm9fdXNlcihz
+dHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4sIHZvaWQgKnB0ciwgdW5zaWduZWQgYnl0ZXMpOwo+
+PiDCoHZvaWQgKgo+PiDCoG5vdXZlYXVfc2NyZWVuX2JvX21hcChzdHJ1Y3QgcGlwZV9zY3JlZW4g
+KnBzY3JlZW4sCj4+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIHN0cnVjdCBub3V2ZWF1
+X2JvICpwYiwKPj4gLS0KPgo+IENhbiBzb21lb25lIGNvbW1pdCB0aGlzIHBhdGNoPwo+IE9yIHJl
+amVjdCBpdC4gV2hhdGV2ZXIuCj4KPiBNYXJjaW4KPiBfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwo+IG1lc2EtZGV2IG1haWxpbmcgbGlzdAo+IG1lc2EtZGV2
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9tZXNhLWRldgo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
