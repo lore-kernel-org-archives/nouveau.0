@@ -1,11 +1,13 @@
-From: Stratos Psomadakis <psomas-CiBbMcFdDxlMo1R+fwTmgw@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Fix build error in nouveau_acpi.c
-Date: Wed, 22 Jun 2011 16:25:47 +0300
-Message-ID: <1308749147-4502-1-git-send-email-psomas@ece.ntua.gr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 28763] Kernel Oops when displaying a large image
+Date: Wed, 22 Jun 2011 13:35:48 -0700 (PDT)
+Message-ID: <20110622203548.A4E6F13004F@annarchy.freedesktop.org>
+References: <bug-28763-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-28763-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,38 +18,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Stratos Psomadakis <psomas-Hpc4xzY4zrDSDkk6z29a7FAUjnlXr6A1@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Stratos Psomadakis <psomas-Hpc4xzY4zrDSDkk6z29a7FAUjnlXr6A1@public.gmane.org>
+https://bugs.freedesktop.org/show_bug.cgi?id=28763
 
-Fix compilation failure when CONFIG_ACPI=y, but CONFIG_ACPI_VIDEO is not
-selected by Kconfig (ie CONFIG_ACPI_VIDEO=m|n)
+Steve Kelem <steve-4VC10GuQF2leoWH0uzbU5w@public.gmane.org> changed:
 
-When CONFIG_ACPI_VIDEO != y, nouveau_acpi_edid will fail to build, due to the
-call to the 'acpi_video_get_edid' function.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|normal                      |critical
+           Priority|medium                      |high
+                 CC|                            |steve-4VC10GuQF2leoWH0uzbU5w@public.gmane.org
 
-Signed-off-by: Stratos Psomadakis <psomas-Hpc4xzY4zrDSDkk6z29a7FAUjnlXr6A1@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_drv.h |    4 ++++
- 1 files changed, 4 insertions(+), 0 deletions(-)
+--- Comment #16 from Steve Kelem <steve-4VC10GuQF2leoWH0uzbU5w@public.gmane.org> 2011-06-22 13:35:48 PDT ---
+This crash happens on Fedora 15 (2.6.38.8-32.fc15.x86_64), which is the latest
+kernel that gets installed automatically.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 9c56331..23c6540 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -973,8 +973,12 @@ void nouveau_register_dsm_handler(void);
- void nouveau_unregister_dsm_handler(void);
- int nouveau_acpi_get_bios_chunk(uint8_t *bios, int offset, int len);
- bool nouveau_acpi_rom_supported(struct pci_dev *pdev);
-+#if defined(CONFIG_ACPI_VIDEO)
- int nouveau_acpi_edid(struct drm_device *, struct drm_connector *);
- #else
-+static inline int nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector) { return -EINVAL; }
-+#endif
-+#else
- static inline void nouveau_register_dsm_handler(void) {}
- static inline void nouveau_unregister_dsm_handler(void) {}
- static inline bool nouveau_acpi_rom_supported(struct pci_dev *pdev) { return false; }
 -- 
-1.7.5.4
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
