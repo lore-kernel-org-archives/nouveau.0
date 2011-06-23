@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Thu, 23 Jun 2011 06:22:53 -0700 (PDT)
-Message-ID: <20110623132253.93D6E130051@annarchy.freedesktop.org>
+Date: Thu, 23 Jun 2011 07:26:45 -0700 (PDT)
+Message-ID: <20110623142645.D22B7130051@annarchy.freedesktop.org>
 References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,21 +22,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=15758
 
---- Comment #23 from Jalil U. Karimov <esomboy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-23 06:22:51 PDT ---
-Bump,
-Bug exists even with gitty ddx, the rest X/mesa packages from ubuntu security
-team, SWAT, XXX Strike force, Crack pushers...
+Jalil U. Karimov <esomboy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Note: when typing and mouse pointer is visible, didn't happen, however when
-typing and mouse pointer were invisible(when over terminal),
-bug can be reproduced by running nvclock with one of the command flags,(i used
--T) printk appends lines, like:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
-[  678.802596] nvclock:18902 freeing invalid memtype fa000000-fa010000
-[  679.004591] nvclock:18902 freeing invalid memtype fa010000-fa030000
-
-
-Cheers.
+--- Comment #24 from Jalil U. Karimov <esomboy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-23 07:26:44 PDT ---
+Running the gtk version, didn't cause mouse missings.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
