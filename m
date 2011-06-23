@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33707] Gimp causes Nouveau/GPU lockup
-Date: Thu, 23 Jun 2011 11:32:58 -0700 (PDT)
-Message-ID: <20110623183258.1AA5813004F@annarchy.freedesktop.org>
+Date: Thu, 23 Jun 2011 11:49:02 -0700 (PDT)
+Message-ID: <20110623184902.31B1413004F@annarchy.freedesktop.org>
 References: <bug-33707-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33707
 
---- Comment #5 from Steve Kelem <steve-4VC10GuQF2leoWH0uzbU5w@public.gmane.org> 2011-06-23 11:32:56 PDT ---
-Created an attachment (id=48352)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=48352)
-screenshot of graphics buffer problem with firefox
+--- Comment #6 from Steve Kelem <steve-4VC10GuQF2leoWH0uzbU5w@public.gmane.org> 2011-06-23 11:49:01 PDT ---
+Created an attachment (id=48353)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=48353)
+screenshot of graphics buffer problem with gimp
 
-Attached is a screenshot of a graphics buffer problem that shows up in Firefox.
-Random blocks from the screen show up in the middle of Firefox windows when I
-scroll or my mouse hits some sensitive part of the screen.
+Attached is a screenshot of a Gimp (2.6.11) window.  The actual image is the
+previous attachment, but the display shows random blocks of garbage outside the
+"view" of the image.  (You can see some of the dashed line around where the
+"image" is inside the gimp window.)
 
-Firefox 4.0.1, Fedora 15 2.6.38.8-32.fc15.x86_64
+The garbage blocks show up (and sometimes disappear and sometimes disappear)
+when scrolling and zooming.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
