@@ -1,103 +1,44 @@
-From: Maze <maze@pkbd.org>
-Subject: Bug#631337: xserver-xorg-video-nouveau: excessive fan speed on GeForce 9600GT
-Date: Thu, 23 Jun 2011 02:11:08 +0200
-Message-ID: <20110623001108.GA7583@sherka.no-ip.biz>
-Reply-To: Maze <maze@pkbd.org>, 631337@bugs.debian.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
+Date: Thu, 23 Jun 2011 06:22:53 -0700 (PDT)
+Message-ID: <20110623132253.93D6E130051@annarchy.freedesktop.org>
+References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="ReaqsoxgOBHFXBhH"
-Return-path: <bounce-debian-bugs-dist=glddb-debian-bugs-dist=m.gmane.org@lists.debian.org>
-Resent-To: debian-bugs-dist@lists.debian.org
-Resent-Message-ID: <handler.631337.B.13087878782355@bugs.debian.org>
-Content-Disposition: inline
-List-Post: <mailto:debian-bugs-dist@lists.debian.org>
-List-Help: <mailto:debian-bugs-dist-request@lists.debian.org?subject=help>
-List-Subscribe: <mailto:debian-bugs-dist-request@lists.debian.org?subject=subscribe>
-List-Unsubscribe: <mailto:debian-bugs-dist-request@lists.debian.org?subject=unsubscribe>
-To: Debian Bug Tracking System <submit@bugs.debian.org>
-Cc: nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+https://bugs.freedesktop.org/show_bug.cgi?id=15758
 
---ReaqsoxgOBHFXBhH
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--- Comment #23 from Jalil U. Karimov <esomboy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-23 06:22:51 PDT ---
+Bump,
+Bug exists even with gitty ddx, the rest X/mesa packages from ubuntu security
+team, SWAT, XXX Strike force, Crack pushers...
 
-Package: xserver-xorg-video-nouveau
-Version: 1:0.0.16+git20110411+8378443-1+b1
-Severity: important
-Tags: upstream patch
+Note: when typing and mouse pointer is visible, didn't happen, however when
+typing and mouse pointer were invisible(when over terminal),
+bug can be reproduced by running nvclock with one of the command flags,(i used
+-T) printk appends lines, like:
+
+[  678.802596] nvclock:18902 freeing invalid memtype fa000000-fa010000
+[  679.004591] nvclock:18902 freeing invalid memtype fa010000-fa030000
 
 
-I own a GeForce 9600GT video card. The issue I've always had with this
-card is that the fan speed remains at 100%, generating approx. the same
-noise as a 747 during take off.
+Cheers.
 
-My loud beast is enrolled by the following ID:
-02:00.0 VGA compatible controller: nVidia Corporation G94 [GeForce 9600 GT]=
- (rev a1)
-
-It is only when I have an X server started with the nvidia module loaded
-that my GPU fanspeed falls down to a reasonnably noisy and otherwise
-adequate 35%.
-
-The following situations leave the card at 100% fan speed, with (to my
-knowledge) no easy way for the user to remedy:
-- no driver loaded
-- nvidia module loaded and X not started
-- nouveau loaded and X started
-- nouveau loaded and X not started
-
-Now, after two years of living with it, I found a way to fix it!
-
-In order to get a fan speed of 35%, you need to have the following
-values in your GPU registers:
-NV_E100 (0xe100): 00001b00
-NV_E11C (0xe11c): 0000021c
-NV_E120 (0xe120): 000000bd
-
-Instead, what I normally get when using nouveau is the following:
-NV_E100 (0xe100): 00001900
-NV_E11C (0xe11c): 00000001
-NV_E120 (0xe120): 00000000
-
-This is not a patch but rather a workaround. It'd be =C3=BCbercool if
-freedesktop could integrate that to nouveau so that my GPU fan speed is
-adjusted when the driver is loaded. The proprietary driver only does it
-when X is started, which is not the good way to go, so you could have it
-right when they don't.
-
-E11C and E120 are PWM registers for fan current supply which you
-probably know about. Don't ask me about E100, I found it by comparing
-the register content in cases where it works and cases where it don't.
-
-I'd be interested to know if someone else owns a 9600GT and uses it
-without the same issue in GNU/Linux. By googling I found out that quite=20
-a few people are suffering from excessive fan noise issues with this=20
-chipset in other OSes.  Once I talked to a guy on a forum who said he=20
-had exactly the same issue with a 9600GT on GNU/Linux.
-
-Regards,
-
---=20
-Maze
-http://www.pkbd.org
-
---ReaqsoxgOBHFXBhH
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-
-iQEcBAEBAgAGBQJOAoScAAoJEPtv9OGFsrEp3NgIAMgPtWto/Y06r3943sdjcDYR
-JIR8CpZWPPXFhVI3k2SvJgwnKel4T3/hG8Xbu8k/qtm8kEgsL2kyTBfxwASUe0Jw
-XMP3rV/IPnW9Mq5ttkFcTu316WcK4wgUJCMgAxH6B1a4RCeEOC+FuMHBmxi/rTo7
-zsej/mr8RoXZB/x4nDMj77q25o0TO99IhDZebbrQwuelPrusWlVF14LtkNe4ZG6X
-JJtLrZjRhHZNoA4I7EVNhjoQFMAo/qzLH2xq032gDcLGArJd+4xkkQj7J/wnSCpw
-GkEyEJ1XsJ0Ms3ytw2l4AZUdTF6x1R+mQE88Md+xZTFq7PVR7QlCcTzYWdFEN2w=
-=gyOR
------END PGP SIGNATURE-----
-
---ReaqsoxgOBHFXBhH--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
