@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38630] 2" of left side of screen appears on the
- right when using certain apps
-Date: Thu, 23 Jun 2011 19:09:12 -0700 (PDT)
-Message-ID: <20110624020912.7D6FF13004D@annarchy.freedesktop.org>
-References: <bug-38630-8800@http.bugs.freedesktop.org/>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Calculate reserved VRAM for PRAMIN
+	value before use.
+Date: Fri, 24 Jun 2011 02:08:46 -0400
+Message-ID: <BANLkTinzgN+4cNjF+s=PTDGzb-4wgEW=qw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary=0015176f0e4e0061cd04a66f0a5e
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +18,96 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38630
+--0015176f0e4e0061cd04a66f0a5e
+Content-Type: text/plain; charset=ISO-8859-1
 
-Tim <wd8oqx-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> changed:
+'drm/nouveau: rework vram init/fini ordering a little' changed the
+order of instmem.init() and nouveau_mem_vram_init() which resulted in
+using ramin_rsvd_vram before it was calculated and failing to init any
+accel on pre-NV50 cards.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |high
+Since it's only used on <NV50 just calculate it where it's needed and
+leave it as default 0 for NV50.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Signed-off-by: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+
+--0015176f0e4e0061cd04a66f0a5e
+Content-Type: application/octet-stream;
+	name="0001-drm-nouveau-Calculate-reserved-VRAM-for-PRAMIN-value.patch"
+Content-Disposition: attachment;
+	filename="0001-drm-nouveau-Calculate-reserved-VRAM-for-PRAMIN-value.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_gpaqpf0e0
+
+RnJvbSAwYWM3NjRkYmE5YjM2MWU5ZTg3NzkwZTYwOWY5ODMyZmIxZTI4ODdmIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBZb3VuZXMgTWFudG9uIDx5b3VuZXMubUBnbWFpbC5jb20+CkRh
+dGU6IEZyaSwgMjQgSnVuIDIwMTEgMDE6MTU6NTggLTA0MDAKU3ViamVjdDogW1BBVENIXSBkcm0v
+bm91dmVhdTogQ2FsY3VsYXRlIHJlc2VydmVkIFZSQU0gZm9yIFBSQU1JTiB2YWx1ZSBiZWZvcmUg
+dXNlLgoKJ2RybS9ub3V2ZWF1OiByZXdvcmsgdnJhbSBpbml0L2Zpbmkgb3JkZXJpbmcgYSBsaXR0
+bGUnIGNoYW5nZWQKdGhlIG9yZGVyIG9mIGluc3RtZW0uaW5pdCgpIGFuZCBub3V2ZWF1X21lbV92
+cmFtX2luaXQoKSB3aGljaApyZXN1bHRlZCBpbiB1c2luZyByYW1pbl9yc3ZkX3ZyYW0gYmVmb3Jl
+IGl0IHdhcyBjYWxjdWxhdGVkIGFuZApmYWlsaW5nIHRvIGluaXQgYW55IGFjY2VsIG9uIHByZS1O
+VjUwIGNhcmRzLgoKU2luY2UgaXQncyBvbmx5IHVzZWQgb24gPE5WNTAganVzdCBjYWxjdWxhdGUg
+aXQgd2hlcmUgaXQncyBuZWVkZWQKYW5kIGxlYXZlIGl0IGFzIGRlZmF1bHQgMCBmb3IgTlY1MC4K
+ClNpZ25lZC1vZmYtYnk6IFlvdW5lcyBNYW50b24gPHlvdW5lcy5tQGdtYWlsLmNvbT4KLS0tCiBk
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X21lbS5jICB8ICAgMjggLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnYwNF9pbnN0bWVtLmMg
+fCAgIDI1ICsrKysrKysrKysrKysrKysrKysrKysrKysKIDIgZmlsZXMgY2hhbmdlZCwgMjUgaW5z
+ZXJ0aW9ucygrKSwgMjggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9tZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+bWVtLmMKaW5kZXggYWI3OWJmOC4uODFkYWRlYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9tZW0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X21lbS5jCkBAIC00MjMsMzQgKzQyMyw2IEBAIG5vdXZlYXVfbWVtX3ZyYW1faW5pdChzdHJ1
+Y3QgZHJtX2RldmljZSAqZGV2KQogCQlyZXR1cm4gcmV0OwogCX0KIAotCS8qIHJlc2VydmUgc3Bh
+Y2UgYXQgZW5kIG9mIFZSQU0gZm9yIFBSQU1JTiAqLwotCWlmIChkZXZfcHJpdi0+Y2FyZF90eXBl
+ID49IE5WXzUwKSB7Ci0JCWRldl9wcml2LT5yYW1pbl9yc3ZkX3ZyYW0gPSAxICogMTAyNCAqIDEw
+MjQ7Ci0JfSBlbHNlCi0JaWYgKGRldl9wcml2LT5jYXJkX3R5cGUgPj0gTlZfNDApIHsKLQkJdTMy
+IHZzID0gaHdlaWdodDgoKG52X3JkMzIoZGV2LCAweDAwMTU0MCkgJiAweDAwMDBmZjAwKSA+PiA4
+KTsKLQkJdTMyIHJzdmQ7Ci0KLQkJLyogZXN0aW1hdGUgZ3JjdHggc2l6ZSwgdGhlIG1hZ2ljcyBj
+b21lIGZyb20gbnY0MF9ncmN0eC5jICovCi0JCWlmICAgICAgKGRldl9wcml2LT5jaGlwc2V0ID09
+IDB4NDApIHJzdmQgPSAweDZhYTAgKiB2czsKLQkJZWxzZSBpZiAoZGV2X3ByaXYtPmNoaXBzZXQg
+IDwgMHg0MykgcnN2ZCA9IDB4NGYwMCAqIHZzOwotCQllbHNlIGlmIChudjQ0X2dyYXBoX2NsYXNz
+KGRldikpCSAgICByc3ZkID0gMHg0OTgwICogdnM7Ci0JCWVsc2UJCQkJICAgIHJzdmQgPSAweDRh
+NDAgKiB2czsKLQkJcnN2ZCArPSAxNiAqIDEwMjQ7Ci0JCXJzdmQgKj0gZGV2X3ByaXYtPmVuZ2lu
+ZS5maWZvLmNoYW5uZWxzOwotCi0JCS8qIHBjaWVnYXJ0IHRhYmxlICovCi0JCWlmIChkcm1fcGNp
+X2RldmljZV9pc19wY2llKGRldikpCi0JCQlyc3ZkICs9IDUxMiAqIDEwMjQ7Ci0KLQkJLyogb2Jq
+ZWN0IHN0b3JhZ2UgKi8KLQkJcnN2ZCArPSA1MTIgKiAxMDI0OwotCi0JCWRldl9wcml2LT5yYW1p
+bl9yc3ZkX3ZyYW0gPSByb3VuZF91cChyc3ZkLCA0MDk2KTsKLQl9IGVsc2UgewotCQlkZXZfcHJp
+di0+cmFtaW5fcnN2ZF92cmFtID0gNTEyICogMTAyNDsKLQl9Ci0KIAlOVl9JTkZPKGRldiwgIkRl
+dGVjdGVkICVkTWlCIFZSQU1cbiIsIChpbnQpKGRldl9wcml2LT52cmFtX3NpemUgPj4gMjApKTsK
+IAlpZiAoZGV2X3ByaXYtPnZyYW1fc3lzX2Jhc2UpIHsKIAkJTlZfSU5GTyhkZXYsICJTdG9sZW4g
+c3lzdGVtIG1lbW9yeSBhdDogMHglMDEwbGx4XG4iLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnYwNF9pbnN0bWVtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjA0
+X2luc3RtZW0uYwppbmRleCBhZTM2YmZjLi5lMjA3NWRlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udjA0X2luc3RtZW0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udjA0X2luc3RtZW0uYwpAQCAtMjgsNiArMjgsMzEgQEAgaW50IG52MDRfaW5zdG1lbV9pbml0
+KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJLyogUkFNSU4gYWx3YXlzIGF2YWlsYWJsZSAqLwog
+CWRldl9wcml2LT5yYW1pbl9hdmFpbGFibGUgPSB0cnVlOwogCisJLyogUmVzZXJ2ZSBzcGFjZSBh
+dCBlbmQgb2YgVlJBTSBmb3IgUFJBTUlOICovCisJaWYgKGRldl9wcml2LT5jYXJkX3R5cGUgPj0g
+TlZfNDApIHsKKwkJdTMyIHZzID0gaHdlaWdodDgoKG52X3JkMzIoZGV2LCAweDAwMTU0MCkgJiAw
+eDAwMDBmZjAwKSA+PiA4KTsKKwkJdTMyIHJzdmQ7CisKKwkJLyogZXN0aW1hdGUgZ3JjdHggc2l6
+ZSwgdGhlIG1hZ2ljcyBjb21lIGZyb20gbnY0MF9ncmN0eC5jICovCisJCWlmICAgICAgKGRldl9w
+cml2LT5jaGlwc2V0ID09IDB4NDApIHJzdmQgPSAweDZhYTAgKiB2czsKKwkJZWxzZSBpZiAoZGV2
+X3ByaXYtPmNoaXBzZXQgIDwgMHg0MykgcnN2ZCA9IDB4NGYwMCAqIHZzOworCQllbHNlIGlmIChu
+djQ0X2dyYXBoX2NsYXNzKGRldikpCSAgICByc3ZkID0gMHg0OTgwICogdnM7CisJCWVsc2UJCQkJ
+ICAgIHJzdmQgPSAweDRhNDAgKiB2czsKKwkJcnN2ZCArPSAxNiAqIDEwMjQ7CisJCXJzdmQgKj0g
+ZGV2X3ByaXYtPmVuZ2luZS5maWZvLmNoYW5uZWxzOworCisJCS8qIHBjaWVnYXJ0IHRhYmxlICov
+CisJCWlmIChkcm1fcGNpX2RldmljZV9pc19wY2llKGRldikpCisJCQlyc3ZkICs9IDUxMiAqIDEw
+MjQ7CisKKwkJLyogb2JqZWN0IHN0b3JhZ2UgKi8KKwkJcnN2ZCArPSA1MTIgKiAxMDI0OworCisJ
+CWRldl9wcml2LT5yYW1pbl9yc3ZkX3ZyYW0gPSByb3VuZF91cChyc3ZkLCA0MDk2KTsKKwl9IGVs
+c2UgeworCQlkZXZfcHJpdi0+cmFtaW5fcnN2ZF92cmFtID0gNTEyICogMTAyNDsKKwl9CisKIAkv
+KiBTZXR1cCBzaGFyZWQgUkFNSFQgKi8KIAlyZXQgPSBub3V2ZWF1X2dwdW9ial9uZXdfZmFrZShk
+ZXYsIDB4MTAwMDAsIH4wLCA0MDk2LAogCQkJCSAgICAgIE5WT0JKX0ZMQUdfWkVST19BTExPQywg
+JnJhbWh0KTsKLS0gCjEuNy4xCgo=
+--0015176f0e4e0061cd04a66f0a5e
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--0015176f0e4e0061cd04a66f0a5e--
