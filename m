@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33707] Gimp causes Nouveau/GPU lockup
-Date: Thu, 23 Jun 2011 11:49:02 -0700 (PDT)
-Message-ID: <20110623184902.31B1413004F@annarchy.freedesktop.org>
-References: <bug-33707-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38627] New: Changing monitor resolution causes
+ screen corruption
+Date: Thu, 23 Jun 2011 18:29:04 -0700 (PDT)
+Message-ID: <bug-38627-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33707-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +19,37 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33707
+https://bugs.freedesktop.org/show_bug.cgi?id=38627
 
---- Comment #6 from Steve Kelem <steve-4VC10GuQF2leoWH0uzbU5w@public.gmane.org> 2011-06-23 11:49:01 PDT ---
-Created an attachment (id=48353)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=48353)
-screenshot of graphics buffer problem with gimp
+           Summary: Changing monitor resolution causes screen corruption
+           Product: Mesa
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: jukarimov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-Attached is a screenshot of a Gimp (2.6.11) window.  The actual image is the
-previous attachment, but the display shows random blocks of garbage outside the
-"view" of the image.  (You can see some of the dashed line around where the
-"image" is inside the gimp window.)
 
-The garbage blocks show up (and sometimes disappear and sometimes disappear)
-when scrolling and zooming.
+glxheads: exercise multiple GLX connections (any key = exit)
+Usage:
+  glxheads xdisplayname ...
+Example:
+  glxheads :0 mars:0 venus:1
+nvfx_screen_get_param:94 -  Warning: unknown PIPE_CAP 29
+Name: :0
+  Display:     0x8d7c008
+  Window:      0x3c00002
+  Context:     0x8d9d1e8
+  GL_VERSION:  2.1 Mesa 7.11-devel
+  GL_VENDOR:   nouveau
+  GL_RENDERER: Gallium 0.4 on NV44
+
+
+https://bugs.launchpad.net/ubuntu/+source/xorg/+bug/801389
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
