@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38687] Wrong resolution on LCD TV's
-Date: Mon, 27 Jun 2011 09:55:45 -0700 (PDT)
-Message-ID: <20110627165545.E0C8D13004D@annarchy.freedesktop.org>
+Date: Mon, 27 Jun 2011 09:56:21 -0700 (PDT)
+Message-ID: <20110627165621.B499413004D@annarchy.freedesktop.org>
 References: <bug-38687-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38687
 
---- Comment #3 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-27 09:55:45 PDT ---
-Created an attachment (id=48473)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=48473)
-normal startup with monitor
+--- Comment #4 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-27 09:56:20 PDT ---
+Created an attachment (id=48474)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=48474)
+startup with TV
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
