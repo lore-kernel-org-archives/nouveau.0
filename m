@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38687] Wrong resolution on LCD TV's
-Date: Mon, 27 Jun 2011 07:02:15 -0700 (PDT)
-Message-ID: <20110627140215.80E0913004D@annarchy.freedesktop.org>
+Date: Mon, 27 Jun 2011 09:41:05 -0700 (PDT)
+Message-ID: <20110627164105.C2D8513004D@annarchy.freedesktop.org>
 References: <bug-38687-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,25 +22,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38687
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-27 07:02:14 PDT ---
-Hi Damian
-
-Would you mind providing a bit more information in a slightly easier format
-
+--- Comment #2 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-27 09:41:05 PDT ---
 * Logs (see bugs[1] section for which ones and how to obtain them)
+Hmm...but this is specific to nouveau driver, this problems is at least with
+vesa, nv, nouveau, nVidia binary driver, more like an X infrastructure problem
+because it do not detect the resolution, but as you wish I'll post them in the
+next comment.
+
 * What connection are you using for your TV - vga,dvi,dp,hdmi
+-VGA.
+
 * Is there any other display device connected - LVDS, monitor,...?
+-No.
+
 * What tool do you use to get the list of resolutions/change the resolution
-
-Please provide a single set of logs, they should include
-* System startup with the TV plugged it
-* Your attempt to change the resolution
-* Reconnecting the TV and setting up the correct resolution
-
-
-Emil
-
-[1] http://nouveau.freedesktop.org/wiki/Bugs
+-Krandrtray, gnome-display-properties, nvidia-setting (all with same result)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
