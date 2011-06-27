@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38687] Wrong resolution on LCD TV's
-Date: Mon, 27 Jun 2011 11:34:18 -0700 (PDT)
-Message-ID: <20110627183418.B144713004D@annarchy.freedesktop.org>
+Date: Mon, 27 Jun 2011 11:39:23 -0700 (PDT)
+Message-ID: <20110627183923.182D813004D@annarchy.freedesktop.org>
 References: <bug-38687-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38687
 
---- Comment #7 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2011-06-27 11:34:16 PDT ---
-Just add one of these repositories (I assume openSUSE_11.3 is the right for
-you), install fitting drm-nouveau-kmp-{flavor} package and update the other
-packages:
-
-http://download.opensuse.org/repositories/home:/jobermayr/
-
-Then you will use latest - and more or less supported - graphics drivers stack
-which is much more stable than the half year old thing openSUSE delivers (my
-experience).
+--- Comment #8 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2011-06-27 11:39:23 PDT ---
+Sorry - twiddled fingers. I meant openSUSE_11.4 with drm-nouveau-kmp-default
+should fit. But don't mix X11:XOrg repo with packages from this
+repository/project!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
