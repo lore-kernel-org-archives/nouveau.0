@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38687] Wrong resolution on LCD TV's
-Date: Mon, 27 Jun 2011 00:48:11 -0700 (PDT)
-Message-ID: <20110627074811.A852D13004F@annarchy.freedesktop.org>
+Date: Mon, 27 Jun 2011 07:02:15 -0700 (PDT)
+Message-ID: <20110627140215.80E0913004D@annarchy.freedesktop.org>
 References: <bug-38687-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38687
 
-Stefan Dirsch <sndirsch-l3A5Bk7waGM@public.gmane.org> changed:
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-27 07:02:14 PDT ---
+Hi Damian
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|* Other                     |Driver/nouveau
-         AssignedTo|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+Would you mind providing a bit more information in a slightly easier format
+
+* Logs (see bugs[1] section for which ones and how to obtain them)
+* What connection are you using for your TV - vga,dvi,dp,hdmi
+* Is there any other display device connected - LVDS, monitor,...?
+* What tool do you use to get the list of resolutions/change the resolution
+
+Please provide a single set of logs, they should include
+* System startup with the TV plugged it
+* Your attempt to change the resolution
+* Reconnecting the TV and setting up the correct resolution
+
+
+Emil
+
+[1] http://nouveau.freedesktop.org/wiki/Bugs
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
