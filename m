@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38759] three monitors,
  two graphic cards and Xinerama - almost working
-Date: Wed, 29 Jun 2011 08:51:25 -0700 (PDT)
-Message-ID: <20110629155125.63A8913004D@annarchy.freedesktop.org>
+Date: Wed, 29 Jun 2011 12:46:24 -0700 (PDT)
+Message-ID: <20110629194624.A133D13004D@annarchy.freedesktop.org>
 References: <bug-38759-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38759
 
---- Comment #1 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2011-06-29 08:51:23 PDT ---
-Have you tried if you have any better luck with ZaphodHeads?
+--- Comment #2 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> 2011-06-29 12:46:24 PDT ---
+Thanks for your suggestion. I will google for ZaphodHeads examples and give it
+a try.
 
-http://nouveau.freedesktop.org/wiki/MultiMonitorDesktop
+In meantime, let me provide some new insights.
 
-The option is listed in the nouveau man page, but unfortunately I do not have
-an actual example to show. It would be configured like the "classic"
-separate-SCREEN dual-head, added with ZaphodHeads options.
+Just after X start:
+http://upload.nowaker.net/nwkr/dualcard-xinerama-after-startup.jpg As you can
+see, everything looks OK! (I don't care the window popping up in the middle of
+two monitors) When I move the pointer on the front screen or left screen,
+everything is still OK. When I move the pointer back to the right screen, the
+story from the last video begins. Have a look:
+http://upload.nowaker.net/nwkr/dualcard-xinerama-fail-2.3gp
+
+I believe something trivial is broken here. It's almost working - starts OK but
+moving a pointer to the right screen starts the fail story.
+
+I will also take a look at the source - but I won't be too optimistic as I am a
+Java developer and don't really know the X or Linux stuff.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
