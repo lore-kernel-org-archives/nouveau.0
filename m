@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31139] Wake from sleep doesn't turn on display(s)
-Date: Wed, 29 Jun 2011 06:03:26 -0700 (PDT)
-Message-ID: <20110629130326.BBEF7130051@annarchy.freedesktop.org>
-References: <bug-31139-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38759] three monitors,
+ two graphic cards and Xinerama - almost working
+Date: Wed, 29 Jun 2011 08:51:25 -0700 (PDT)
+Message-ID: <20110629155125.63A8913004D@annarchy.freedesktop.org>
+References: <bug-38759-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31139-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38759-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31139
+https://bugs.freedesktop.org/show_bug.cgi?id=38759
 
-Rob Clark <rob-l0cyMroinI0@public.gmane.org> changed:
+--- Comment #1 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2011-06-29 08:51:23 PDT ---
+Have you tried if you have any better luck with ZaphodHeads?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |rob-l0cyMroinI0@public.gmane.org
+http://nouveau.freedesktop.org/wiki/MultiMonitorDesktop
 
---- Comment #1 from Rob Clark <rob-l0cyMroinI0@public.gmane.org> 2011-06-29 06:03:26 PDT ---
-fwiw, I see same issue on a MBP-5,4 (ubuntu 11.04)
+The option is listed in the nouveau man page, but unfortunately I do not have
+an actual example to show. It would be configured like the "classic"
+separate-SCREEN dual-head, added with ZaphodHeads options.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
