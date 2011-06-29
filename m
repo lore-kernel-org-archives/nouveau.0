@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33445] NVS 3100M : Blank screen on internal eDP
 	monitor
-Date: Tue, 28 Jun 2011 22:22:18 -0700 (PDT)
-Message-ID: <20110629052218.F173313004D@annarchy.freedesktop.org>
+Date: Wed, 29 Jun 2011 04:20:29 -0700 (PDT)
+Message-ID: <20110629112029.38FEE130051@annarchy.freedesktop.org>
 References: <bug-33445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,22 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33445
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #14 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-29 04:20:28 PDT ---
+Actually, looking at things again the code would have been hit.  However, I
+understand those magics a bit more now, and it makes sense why the first patch
+didn't work.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #46263|0                           |1
-        is obsolete|                            |
-
---- Comment #13 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-28 22:22:18 PDT ---
-Created an attachment (id=48538)
- View: https://bugs.freedesktop.org/attachment.cgi?id=48538
- Review: https://bugs.freedesktop.org/review?bug=33445&attachment=48538
-
-dp magics + debug, take 2
-
-Hmm, it looks entirely plausible that the code added by the previous patch
-never got hit.  Can you give this new version a try please!
+The new patch still may.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
