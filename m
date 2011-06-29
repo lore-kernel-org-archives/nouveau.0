@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38759] New: three monitors,
- two graphic cards and Xinerama - almost working
-Date: Tue, 28 Jun 2011 19:39:38 -0700 (PDT)
-Message-ID: <bug-38759-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33445] NVS 3100M : Blank screen on internal eDP
+	monitor
+Date: Tue, 28 Jun 2011 22:22:18 -0700 (PDT)
+Message-ID: <20110629052218.F173313004D@annarchy.freedesktop.org>
+References: <bug-33445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,41 +21,24 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38759
+https://bugs.freedesktop.org/show_bug.cgi?id=33445
 
-           Summary: three monitors, two graphic cards and Xinerama -
-                    almost working
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #46263|0                           |1
+        is obsolete|                            |
 
-My goal is to achieve one huge X screen on three monitors and two graphics
-cards. I got a working solution without Xinerama (one X screen on front+right
-and one X screen on the left) but this of course won't let me drag the windows.
-Enabling Xinerama makes something really strange to the right monitor, just see
-the video: http://upload.nowaker.net/nwkr/xinerama-fail.3gp As you can see,
-it's almost working. 
+--- Comment #13 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-28 22:22:18 PDT ---
+Created an attachment (id=48538)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=48538
+ Review: https://bugs.freedesktop.org/review?bug=33445&attachment=48538
 
-lspci:
-01:00.0 VGA compatible controller: nVidia Corporation G73 [GeForce 7600 GT]
-(rev a1)
-07:01.0 VGA compatible controller: nVidia Corporation NV44A [GeForce 6200] (rev
-a1)
-(PCI-E x16 and old 32-bit PCI)
+dp magics + debug, take 2
 
-My xorg.conf: http://wklej.org/id/554292/txt/
-
-Using Ubuntu 10.10, amd64.
-Nouveau package version 2.4.21-1ubuntu2.1.
+Hmm, it looks entirely plausible that the code added by the previous patch
+never got hit.  Can you give this new version a try please!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
