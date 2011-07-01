@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38860] nouveau driver with Asus ENGT430 says
  unsupported chipset, please report
-Date: Thu, 30 Jun 2011 20:49:37 -0700 (PDT)
-Message-ID: <20110701034937.F167613004D@annarchy.freedesktop.org>
+Date: Thu, 30 Jun 2011 20:58:45 -0700 (PDT)
+Message-ID: <20110701035845.DD492130051@annarchy.freedesktop.org>
 References: <bug-38860-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38860
 
---- Comment #2 from Robert Riches <rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org> 2011-06-30 20:49:37 PDT ---
-I'm willing to give it a try.  Lest I go down a wrong path trying to Google
-where to get the nouveau git kernel, is there a recommended wiki or howto page?
+--- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-06-30 20:58:45 PDT ---
+The message is harmless, and you card should operate correctly as far as
+getting an image on the monitor.  It does, however, mean there's no support for
+any kind of acceleration.
 
-What is the level of risk from this message?  Is it simply that the specific
-model of chipset has not been marked on a checklist?  Or, is there significant
-risk that this card and driver combo would be unstable?  (So far, it has worked
-admirably for OS customization, but I haven't been doing much full-motion
-video--yet.)  I guess what I'm trying to ask is whether I should proceed to put
-this machine into production as is vs. go out and buy a different graphics
-card.
+The kernel in nouveau git (http://nouveau.freedesktop.org/wiki/InstallDRM) has
+support for your chipset.  However, your exact chipset may be broken still with
+nouveau in some way.  Acceleration is currently blacklisted by default even
+with the git kernel.
 
-Thanks,
+I say "may", as the only hardware I have with that chipset in it is in a
+pre-production laptop so I can't be certain it's the driver's fault.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
