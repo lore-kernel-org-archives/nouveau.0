@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33445] NVS 3100M : Blank screen on internal eDP
-	monitor
-Date: Sat,  2 Jul 2011 15:50:31 -0700 (PDT)
-Message-ID: <20110702225031.74D0B13004F@annarchy.freedesktop.org>
-References: <bug-33445-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38931] New: Crash when playing a game
+Date: Sun,  3 Jul 2011 09:20:48 -0700 (PDT)
+Message-ID: <bug-38931-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +18,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33445
+https://bugs.freedesktop.org/show_bug.cgi?id=38931
 
---- Comment #15 from celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-07-02 15:50:31 PDT ---
-OMGWTFBBQ! IT WORKS! IT WORKS! :D
-I can even start xorg using nouveau.
+           Summary: Crash when playing a game
+           Product: xorg
+           Version: 7.5
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: larsfunke1996-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-And at the same time it solves my ugly fonts I had using nvidia driver.
 
-BTW, here are the log lines added (I suppose) by your patch:
-Jul  3 00:30:56 Sylabtop kernel: [drm] nouveau 0000:01:00.0: DP config:
-0x950e270e/0x00052801 0x004150c9 0x950e270e
-Jul  3 00:30:56 Sylabtop kernel: [drm] nouveau 0000:01:00.0: DP config:
-0x00000000/0x00000000 0x00401100 0x14000000
-Jul  3 00:30:56 Sylabtop kernel: [drm] nouveau 0000:01:00.0: DP config:
-0x00000000/0x00000000 0x00401100 0x14000000
+I get a crash when I play a game (Teeworlds) for some time in windowed mode
+with Gnome 3 on Fedora 15. See attachment for error messages. 
 
-
-Now I hope it wouldn't take too long to make a real patch. ;)
+Card: GeForce 8400GS
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
