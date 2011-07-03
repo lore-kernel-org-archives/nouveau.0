@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38931] Crash when playing a game
-Date: Sun,  3 Jul 2011 09:25:11 -0700 (PDT)
-Message-ID: <20110703162511.F0DC613004D@annarchy.freedesktop.org>
+Subject: [Bug 38931] kernel crash in nouveau_fence_update when
+	playing a game
+Date: Sun,  3 Jul 2011 09:37:42 -0700 (PDT)
+Message-ID: <20110703163742.E30A213004D@annarchy.freedesktop.org>
 References: <bug-38931-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38931
 
---- Comment #1 from Lars Funke <larsfunke1996-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-03 09:25:11 PDT ---
-Created an attachment (id=48710)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=48710)
-Crash screen.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Crash when playing a game   |kernel crash in
+                   |                            |nouveau_fence_update when
+                   |                            |playing a game
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
