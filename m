@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38984] xorg-nouveau: Segfault after gdm3 login,
  EQ overflowing, GeForce 8600 GT (backtrace attached)
-Date: Tue,  5 Jul 2011 11:30:27 -0700 (PDT)
-Message-ID: <20110705183027.2668B130051@annarchy.freedesktop.org>
+Date: Tue,  5 Jul 2011 11:30:45 -0700 (PDT)
+Message-ID: <20110705183045.EB81D130052@annarchy.freedesktop.org>
 References: <bug-38984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #48786|application/octet-stream    |text/plain
+  Attachment #48784|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
