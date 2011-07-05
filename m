@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38984] xorg-nouveau: Segfault after gdm3 login,
  EQ overflowing, GeForce 8600 GT (backtrace attached)
-Date: Tue,  5 Jul 2011 11:21:06 -0700 (PDT)
-Message-ID: <20110705182106.9CE8B13004D@annarchy.freedesktop.org>
+Date: Tue,  5 Jul 2011 11:22:00 -0700 (PDT)
+Message-ID: <20110705182200.CF693130051@annarchy.freedesktop.org>
 References: <bug-38984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -22,10 +22,10 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mzg5ODQKCi0tLSBD
-b21tZW50ICMzIGZyb20gVGhvbWFzIFBJRVJTT04gPHdlYi5waWVyc29uQGdtYWlsLmNvbT4gMjAx
-MS0wNy0wNSAxMToyMTowNSBQRFQgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9NDg3ODYp
+b21tZW50ICM0IGZyb20gVGhvbWFzIFBJRVJTT04gPHdlYi5waWVyc29uQGdtYWlsLmNvbT4gMjAx
+MS0wNy0wNSAxMToyMjowMCBQRFQgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9NDg3ODcp
 CiAtLT4gKGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NDg3
-ODYpCmdkYiBiYWNrdHJhY2UgbsKwMQoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1
+ODcpCmdkYiBiYWNrdHJhY2UgbsKwMgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1
 Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFy
 ZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWdu
 ZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
