@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38984] New: xorg-nouveau: Segfault after gdm3 login,
+Subject: [Bug 38984] xorg-nouveau: Segfault after gdm3 login,
  EQ overflowing, GeForce 8600 GT (backtrace attached)
-Date: Tue,  5 Jul 2011 11:18:19 -0700 (PDT)
-Message-ID: <bug-38984-8800@http.bugs.freedesktop.org/>
+Date: Tue,  5 Jul 2011 11:19:41 -0700 (PDT)
+Message-ID: <20110705181941.4452913004D@annarchy.freedesktop.org>
+References: <bug-38984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-38984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,33 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mzg5ODQKCiAgICAg
-ICAgICAgU3VtbWFyeTogeG9yZy1ub3V2ZWF1OiBTZWdmYXVsdCBhZnRlciBnZG0zIGxvZ2luLCBF
-UQogICAgICAgICAgICAgICAgICAgIG92ZXJmbG93aW5nLCBHZUZvcmNlIDg2MDAgR1QgKGJhY2t0
-cmFjZSBhdHRhY2hlZCkKICAgICAgICAgICBQcm9kdWN0OiB4b3JnCiAgICAgICAgICAgVmVyc2lv
-bjogNy42CiAgICAgICAgICBQbGF0Zm9ybTogeDg2LTY0IChBTUQ2NCkKICAgICAgICBPUy9WZXJz
-aW9uOiBMaW51eCAoQWxsKQogICAgICAgICAgICBTdGF0dXM6IE5FVwogICAgICAgICAgU2V2ZXJp
-dHk6IG1ham9yCiAgICAgICAgICBQcmlvcml0eTogbWVkaXVtCiAgICAgICAgIENvbXBvbmVudDog
-RHJpdmVyL25vdXZlYXUKICAgICAgICBBc3NpZ25lZFRvOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwogICAgICAgIFJlcG9ydGVkQnk6IHdlYi5waWVyc29uQGdtYWlsLmNvbQogICAgICAg
-ICBRQUNvbnRhY3Q6IHhvcmctdGVhbUBsaXN0cy54Lm9yZwoKCkNyZWF0ZWQgYW4gYXR0YWNobWVu
-dCAoaWQ9NDg3ODMpCiAtLT4gKGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVu
-dC5jZ2k/aWQ9NDg3ODMpClhvcmcgbG9nICgyLjYuMzkpCgpIaSwKCnhzZXJ2ZXIgY3Jhc2gganVz
-dCBhZnRlciBnZG0zIGxvZ2luLCBkdXJpbmcgZ25vbWUyIGxvYWRpbmcuCgpTeW1wdG9tcyA6Ciog
-ZHVyaW5nIHdpbmRvdyBtYW5hZ2VyIGxvYWRpbmcgKGdub21lMikKKiBubyByZWFjdGlvbiBvbiBr
-ZXlwcmVzcyBvciBtb3VzZSBjbGljawoqIG1vdXNlIHBvaW50ZXIgc3RpbGwgbW92ZXMKKiBjb3Vs
-ZCBub3QgY2hhbmdlIHRvIGFub3RoZXIgdHR5IHdpdGggY3RybC1hbHQtRlsxLTZdCgpMb2dzIDoK
-KiBJIGF0dGFjaCBhIHhvcmctbG9nLgoqIEkgYXR0YWNoIDMgYmFja3RyYWNlcyBJIGRpZCB3aXRo
-IGdkYi4gKGJ0IG7CsDEgJ2dkYi5iYWNrdHJhY2UuMScgc2VlbSB0byBiZQppbnRlcmVzdGluZykK
-CkkgdXNlIGEga2VybmVsIDIuNi4zOS0yIGFuZCBJIGdldCB0aGUgc2FtZSByZXN1bHQgd2l0aCBh
-IGtlcm5lbCAzLjAuMHJjNS4KCkZvciB0aGUgbW9tZW50LCBJIHVzZSB0aGUgd29yayBhcm91bmQg
-J25vdXZlYXUubm9hY2NlbD0xJyBhbmQgaXQgc2VlbSB0bwpiZSBvay4gQnV0IHdpdGhvdXQgdGhp
-cyB3b3JrIGFyb3VuZCBteSBzeXN0ZW0gaXMgdW51c2FibGUuCgpEZWJpYW4gYnVnIHJlcG9ydCBp
-cyBoZXJlIDogCiogaHR0cDovL2J1Z3MuZGViaWFuLm9yZy9jZ2ktYmluL2J1Z3JlcG9ydC5jZ2k/
-YnVnPTYzMjI0NwoKVGhhbmtzIGZvciB5b3VyIGhlbHAuCgpCZXN0IHJlZ2FyZHMsClRob21hcyBQ
-SUVSU09OCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5v
-cmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlz
-IG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=38984
+
+--- Comment #1 from Thomas PIERSON <web.pierson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-05 11:19:41 PDT ---
+Created an attachment (id=48784)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=48784)
+Xorg log (linux 3.0.0)
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
