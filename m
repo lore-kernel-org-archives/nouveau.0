@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38992] GeForce 9500 GT: starts only with
-	nouveau.noaccel=1
-Date: Wed,  6 Jul 2011 01:16:50 -0700 (PDT)
-Message-ID: <20110706081658.9639613004D@annarchy.freedesktop.org>
-References: <bug-38992-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
+ is unable to boot
+Date: Wed,  6 Jul 2011 06:41:02 -0700 (PDT)
+Message-ID: <20110706134102.E0392130051@annarchy.freedesktop.org>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38992
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
-Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> changed:
+--- Comment #9 from Alex Murray <murray.alex-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-06 06:41:02 PDT ---
+Created an attachment (id=48817)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=48817)
+mmiotrace of module load of binary nvidia driver on MacBookPro 5,1 (9600M GT)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Product|Mesa                        |xorg
-          Component|Drivers/DRI/nouveau         |Driver/nouveau
-          QAContact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
---- Comment #1 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2011-07-06 01:16:28 PDT ---
-Please, provide complete kernel and X logs as instructed in
-http://nouveau.freedesktop.org/wiki/Bugs
-for the black screen and segfault case.
-
-Note, that while your aim may be 3D acceleration, your problem is not a Mesa or
-3D bug. When working on the black screen issue, please remove the 3D driver
-(nouveau_dri.so, which belongs to Mesa) to reduce the possible points of
-failure.
-
-Noaccel disables all 2D and 3D acceleration, and is merely a workaround to get
-to the desktop.
+Simply modprobing nouveau is enough to hang my machine, so attached is an
+mmiotrace of the nvidia driver which does not hang it - hopefully this helps.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
