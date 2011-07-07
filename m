@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38992] GeForce 9500 GT: starts only with
 	nouveau.noaccel=1
-Date: Thu,  7 Jul 2011 08:23:40 -0700 (PDT)
-Message-ID: <20110707152340.7E6A513004D@annarchy.freedesktop.org>
+Date: Thu,  7 Jul 2011 08:24:21 -0700 (PDT)
+Message-ID: <20110707152421.CEDC913004D@annarchy.freedesktop.org>
 References: <bug-38992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38992
 
---- Comment #7 from Tobias Kaminsky <tobias-XHmYR31XkfulnMjI0IkVqw@public.gmane.org> 2011-07-07 08:23:39 PDT ---
-(In reply to comment #6)
-> does it work if you boot with nouveau.nofbaccel=1?
-
-No.
-I get a black screen with a cursor which I can move.
-I attach the Xorg.log and the kernel-log.
+--- Comment #8 from Tobias Kaminsky <tobias-XHmYR31XkfulnMjI0IkVqw@public.gmane.org> 2011-07-07 08:24:18 PDT ---
+Created an attachment (id=48857)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=48857)
+Xorg.log with nofbaccel=1
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
