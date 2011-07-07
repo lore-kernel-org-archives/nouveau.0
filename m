@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39033] Second card not activated
-Date: Thu,  7 Jul 2011 08:17:30 -0700 (PDT)
-Message-ID: <20110707151730.D583F13004F@annarchy.freedesktop.org>
-References: <bug-39033-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38992] GeForce 9500 GT: starts only with
+	nouveau.noaccel=1
+Date: Thu,  7 Jul 2011 08:23:40 -0700 (PDT)
+Message-ID: <20110707152340.7E6A513004D@annarchy.freedesktop.org>
+References: <bug-38992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39033-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +21,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39033
+https://bugs.freedesktop.org/show_bug.cgi?id=38992
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #7 from Tobias Kaminsky <tobias-XHmYR31XkfulnMjI0IkVqw@public.gmane.org> 2011-07-07 08:23:39 PDT ---
+(In reply to comment #6)
+> does it work if you boot with nouveau.nofbaccel=1?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #48851|text/x-log                  |text/plain
-          mime type|                            |
+No.
+I get a black screen with a cursor which I can move.
+I attach the Xorg.log and the kernel-log.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
