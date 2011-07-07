@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39033] Second card not activated
-Date: Thu,  7 Jul 2011 05:15:57 -0700 (PDT)
-Message-ID: <20110707121557.B30C513004D@annarchy.freedesktop.org>
-References: <bug-39033-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38992] GeForce 9500 GT: starts only with
+	nouveau.noaccel=1
+Date: Thu,  7 Jul 2011 07:58:52 -0700 (PDT)
+Message-ID: <20110707145852.3B6DE130051@annarchy.freedesktop.org>
+References: <bug-38992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39033-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +21,10 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39033
+https://bugs.freedesktop.org/show_bug.cgi?id=38992
 
---- Comment #1 from nzkiwikiter2002-/E1597aS9LQAvxtiuMwx3w@public.gmane.org 2011-07-07 05:15:57 PDT ---
-Created an attachment (id=48851)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=48851)
-Xorg.0.log
+--- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-07 07:58:52 PDT ---
+does it work if you boot with nouveau.nofbaccel=1?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
