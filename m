@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39033] Second card not activated
-Date: Thu,  7 Jul 2011 08:17:10 -0700 (PDT)
-Message-ID: <20110707151710.9988C13004D@annarchy.freedesktop.org>
+Date: Thu,  7 Jul 2011 08:17:30 -0700 (PDT)
+Message-ID: <20110707151730.D583F13004F@annarchy.freedesktop.org>
 References: <bug-39033-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #48850|text/x-log                  |text/plain
+  Attachment #48851|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
