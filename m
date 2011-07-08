@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
  is unable to boot
-Date: Thu,  7 Jul 2011 17:03:27 -0700 (PDT)
-Message-ID: <20110708000327.11E1513004F@annarchy.freedesktop.org>
+Date: Thu,  7 Jul 2011 17:25:01 -0700 (PDT)
+Message-ID: <20110708002501.A685613004D@annarchy.freedesktop.org>
 References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
---- Comment #10 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-07 17:03:26 PDT ---
-Can you get a mmiotrace that includes starting X?  The binary driver doesn't
-really do anything at modprobe time, unlike nouveau.
+--- Comment #11 from Alex Murray <murray.alex-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-07 17:24:59 PDT ---
+Yep, will get it for you later tonight - also I've attached a couple[1][2]
+captures of the dmesg output to the corresponding fedora version of this bug[3]
+if its any help.
+
+[1] https://bugzilla.redhat.com/attachment.cgi?id=511713
+[2] https://bugzilla.redhat.com/attachment.cgi?id=511715
+[3] https://bugzilla.redhat.com/show_bug.cgi?id=679583
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
