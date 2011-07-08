@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
- nouveau: random GPU lockups
-Date: Fri,  8 Jul 2011 01:41:25 -0700 (PDT)
-Message-ID: <20110708084125.569FC130052@annarchy.freedesktop.org>
-References: <bug-26980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
+ is unable to boot
+Date: Fri,  8 Jul 2011 05:27:25 -0700 (PDT)
+Message-ID: <20110708122725.7E354130051@annarchy.freedesktop.org>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26980
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
---- Comment #57 from Frederic Crozat <fred-ku13qjcBzYesTnJN9+BGXg@public.gmane.org> 2011-07-08 01:41:20 PDT ---
-I didn't forgot anything : nouveau is rock stable with 2.6.39.x kernel on my
-T410 (no issue with VT switch. I didn't test suspend-to-ram). Your issues are a
-different bug, I think (X crash, no gpu lockup).
+--- Comment #12 from Alex Murray <murray.alex-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-08 05:27:24 PDT ---
+I've put a gzipped mmiotrace of nvidia module load then xinit in my dropbox [1]
+- let me know if I can do anything else. Thanks again for looking at this Ben,
+I really appreciate it.
+
+[1] http://www.dropbox.com/s/f09sque4l92maqm/mmiotrace.log.gz
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
