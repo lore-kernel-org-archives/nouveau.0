@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38687] Wrong resolution on LCD TV's
-Date: Fri,  8 Jul 2011 10:39:39 -0700 (PDT)
-Message-ID: <20110708173939.B50CD13004D@annarchy.freedesktop.org>
-References: <bug-38687-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37922] NV86: too high power usage.
+Date: Fri,  8 Jul 2011 11:12:12 -0700 (PDT)
+Message-ID: <20110708181212.8D4DF13004D@annarchy.freedesktop.org>
+References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38687-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,10 +20,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38687
+https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #10 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-08 10:39:39 PDT ---
-Can I provide something else to help?
+--- Comment #8 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-07-08 11:12:11 PDT ---
+Created an attachment (id=48901)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=48901)
+latest trace
+
+Latest trace. Might give a bit higher power usage, dunno.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
