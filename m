@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39099] two graphic cards and four monitors with
 	Nouveau
-Date: Sat,  9 Jul 2011 15:33:13 -0700 (PDT)
-Message-ID: <20110709223313.E8CEF1300B3@annarchy.freedesktop.org>
+Date: Sat,  9 Jul 2011 15:37:41 -0700 (PDT)
+Message-ID: <20110709223741.3B77113016D@annarchy.freedesktop.org>
 References: <bug-39099-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39099
 
---- Comment #2 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> 2011-07-09 15:33:12 PDT ---
-s/need insights/new insights/
+Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         OS/Version|All                         |Linux (All)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
