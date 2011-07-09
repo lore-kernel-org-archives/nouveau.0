@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38687] Wrong resolution on LCD TV's
-Date: Fri,  8 Jul 2011 17:03:19 -0700 (PDT)
-Message-ID: <20110709000319.E282B130105@annarchy.freedesktop.org>
-References: <bug-38687-8800@http.bugs.freedesktop.org/>
+From: Andrew Randrianasulu <randrianasulu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: nv1x 3d fix/workaround for Q3 demo
+Date: Sat, 9 Jul 2011 15:22:36 +0000
+Message-ID: <201107091522.36407.randrianasulu@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38687-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +19,41 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38687
+Hello. I have nv18 card in my machine currently.
 
---- Comment #11 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-08 17:03:19 PDT ---
-Hi Damian
+It works with kernel 3.0.0.-rc6 (i need to pass nouveau.tv_disable=1 parameter 
+to module, because uothervise it thinks i have TV connected, while in fact I 
+have only VGA CRT monitor connected)
 
-As previously suggested your issue could be related to the EDID
+Mesa 3d driver (7.12-devel (git-067c9d7)), on other hand, has few problems, 
+most obvious was wrong colors in Q3 demo menus (blue instead of red). swrast 
+worked fine. After some digging (for example, deactivating 
+EXT_compiled_vertex_array workarounds this bug, like disabling  "OpenGL 
+Extensions" from game menu completely) i found that this patch makes colors 
+fine:
 
-Thus can you obtain your TV's EDID [1] and [2] as well as Xorg.0.log [3]
+diff --git a/src/mesa/drivers/dri/nouveau/nv10_render.c 
+b/src/mesa/drivers/dri/nouveau/nv10_render.c
+index 20fb447..7e28229 100644
+--- a/src/mesa/drivers/dri/nouveau/nv10_render.c
++++ b/src/mesa/drivers/dri/nouveau/nv10_render.c
+@@ -99,7 +99,8 @@ get_hw_format(int type)
+        case GL_UNSIGNED_SHORT:
+                return NV10_3D_VTXBUF_FMT_TYPE_V16_SNORM;
+        case GL_UNSIGNED_BYTE:
+-               return NV10_3D_VTXBUF_FMT_TYPE_B8G8R8A8_UNORM;
++               // return NV10_3D_VTXBUF_FMT_TYPE_B8G8R8A8_UNORM;
++               return NV10_3D_VTXBUF_FMT_TYPE_U8_UNORM;
+        default:
+                assert(0);
+        }
 
-* System start with the TV (resolution of 800x600)
-* Disconnect the monitor and connect the TV ("I can use all! resolutions")
+Any idea if NV10_3D_VTXBUF_FMT_TYPE_B8G8R8A8_UNORM has any good on BE 
+machines? Or any other use in OpenGL subset, implemented in nv1x class 
+silicon?
 
-
-Thanks
-Emil
-
-
-[1] cat /sys/class/drm/cardXX-YYYY/edid > edid.bin
-Where XX is the card number (0,1,3..)
-YYYY is the connector used (VGA, DVI, HDMI...)
-
-[2] http://polypux.org/projects/read-edid/
-
-[3] /var/log/Xorg.0.log
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+I have more failed stuff, like non-working demos/reflect and demos/dinoshade 
+(probably stencil/z mixup or wrong format?), missing teapot in 
+demos/fbotexture (but fbo_firecube works fine), lockup in demos/engine after  
+I activated wireframe mode, and probably many others. But I'm very happy to 
+have this small victory over 3D in just few hours.
