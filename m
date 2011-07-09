@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39099] two graphic cards and four monitors with
 	Nouveau
-Date: Sat,  9 Jul 2011 15:31:33 -0700 (PDT)
-Message-ID: <20110709223133.376AD1300E2@annarchy.freedesktop.org>
+Date: Sat,  9 Jul 2011 15:33:13 -0700 (PDT)
+Message-ID: <20110709223313.E8CEF1300B3@annarchy.freedesktop.org>
 References: <bug-39099-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39099
 
---- Comment #1 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> 2011-07-09 15:31:33 PDT ---
-Some need insights, thanks to pq from #nouveau irc channel.
-
-4 monitors work when using a 3-monitors setup - the third and fourth monitor
-display the same picture (clone). What's interesting - this shouldn't happen as
-ZaphodHeads is set. Maybe it's a bug that makes ZaphodHeads work on the first
-graphic card only?
-
-Here's xrandr output for each screen. http://wklej.org/id/559818/txt/
-(I had to disable Xinerama for a while to get the xrandr output)
-
-3-monitors xorg.conf: http://wklej.org/id/555276/txt/
+--- Comment #2 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> 2011-07-09 15:33:12 PDT ---
+s/need insights/new insights/
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
