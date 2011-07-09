@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39099] New: two graphic cards and four monitors with
-	Nouveau
-Date: Sat,  9 Jul 2011 13:06:56 -0700 (PDT)
-Message-ID: <bug-39099-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39101] New: [NVA8] VirtualBox segfault when
+	accelerating 3D
+Date: Sat,  9 Jul 2011 13:34:31 -0700 (PDT)
+Message-ID: <bug-39101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,45 +19,35 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39099
+https://bugs.freedesktop.org/show_bug.cgi?id=39101
 
-           Summary: two graphic cards and four monitors with Nouveau
-           Product: xorg
-           Version: unspecified
+           Summary: [NVA8] VirtualBox segfault when accelerating 3D
+           Product: Mesa
+           Version: git
           Platform: x86-64 (AMD64)
-        OS/Version: All
+        OS/Version: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
-         Component: Driver/nouveau
+         Component: Drivers/DRI/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+        ReportedBy: r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org
 
 
-This bug is related to: https://bugs.freedesktop.org/show_bug.cgi?id=38759
-I was trying to get a 2-cards-3-monitors set-up working. I finally did it after
-updating to bleeding edge X and using ZaphodHeads option.
+Since my upgrade to Fedora 15 (host OS), VirtualBox crashes when trying to do
+OpenGL in Windows XP (guest OS, guest additions installed). The application
+that makes it crash is OpenGL Extensions Viewer, when trying the OpenGL 1.1
+(but really any) test program. On Fedora 14 3D acceleration with this program
+worked which makes this a regression. The (brief) explanation in VirtualBox is:
 
-3 monitors xorg.conf: http://wklej.org/id/555276/txt/  (working)
-4 monitors xorg.conf: http://wklej.org/id/559775/txt/  (failing)
-The only difference between those two configs is making use of 4th monitor.
+[ 3395.279858] VirtualBox[9335]: segfault at 18 ip 000000308644f029 sp
+00007f9d484f7900 error 4 in libGL.so.1.2[3086400000+6e000]
 
-3 monitors Xorg.0.log: http://wklej.org/id/559778/txt/ (working)
-4 monitors Xorg.0.log: http://wklej.org/id/559777/txt/ (failing)
-
-Error message: Screen(s) found, but none have a usable configuration.
-After `service gdm restart` main screen blinks 5 times and goes back to
-console.
-
-Ubuntu 11.04 - Linux ubuntu 2.6.38-8-generic #42-Ubuntu SMP Mon Apr 11 03:31:24
-UTC 2011 x86_64 x86_64 x86_64 GNU/Linux
-(this didn't work on Ubuntu 10.10 either)
-
-Packages version:
-libdrm-nouveau1a 2.4.26+git20110604.6dd804c5-0ubuntu0sarvatt~natty
-xserver-xorg-video-nouveau 1:0.0.16+git20110623.ab89aa02-0ubuntu0sarvatt~natty
-(from https://launchpad.net/~xorg-edgers/+archive/ppa)
+Relevant software versions:
+mesa-libGL-7.11-0.11.20110525.0.fc15.x86_64
+kernel-2.6.38.8-32.fc15.x86_64
+VirtualBox-4.0-4.0.10_72479_fedora15-1.x86_64
+Tried with both Gnome-shell and fallback, both failed.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
