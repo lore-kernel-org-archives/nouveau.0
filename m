@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39099] two graphic cards and four monitors with
 	Nouveau
-Date: Sat,  9 Jul 2011 15:37:41 -0700 (PDT)
-Message-ID: <20110709223741.3B77113016D@annarchy.freedesktop.org>
+Date: Sat,  9 Jul 2011 16:49:37 -0700 (PDT)
+Message-ID: <20110709234938.092701300AA@annarchy.freedesktop.org>
 References: <bug-39099-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,24 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39099
 
-Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> changed:
+--- Comment #3 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> 2011-07-09 16:49:37 PDT ---
+I tried combining ZaphotHeads on the first card and use one virtual-sized
+Screen on the second card. http://wklej.org/id/559842/
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         OS/Version|All                         |Linux (All)
+As long as I have Xinerama off, it works. I get 3 independent X screens on four
+monitors.
+
+However, when I enable Xinerama, the strange behaviour from my first bug report
+appears. The video is there. https://bugs.freedesktop.org/show_bug.cgi?id=38759
+
+
+So there are two alternative ways of resolving the issue:
+
+- fix ZaphodHeads work on two cards, four monitors
+- fix the strange behaviour from the video when using virtual screens
+- ...or tell me what I did wrong in xorg.conf so I get the error message:
+  Screen(s) found, but none have a usable configuration.
+  It's the preferred way. :)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
