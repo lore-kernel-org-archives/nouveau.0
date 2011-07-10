@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38687] Wrong resolution on LCD TV's
-Date: Sat,  9 Jul 2011 22:49:36 -0700 (PDT)
-Message-ID: <20110710054936.50C5F130171@annarchy.freedesktop.org>
+Date: Sat,  9 Jul 2011 22:58:51 -0700 (PDT)
+Message-ID: <20110710055851.E80A21301CC@annarchy.freedesktop.org>
 References: <bug-38687-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,18 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38687
 
---- Comment #12 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-09 22:49:35 PDT ---
-XXXXX@XXXXXXX:~> sudo ls /sys/class/
-root's password:
-ata_device  backlight  bsg  firmware  hidraw       input  mdio_bus  msr     
-power_supply  regulator    scsi_disk     sound       tty  video4linux
-ata_link    bdi        dma  gpio      hwmon        leds   mem       net     
-ppdev         rtc          scsi_generic  spi_master  usb  vtconsole
-ata_port    block      dmi  graphics  i2c-adapter  lirc   misc      pci_bus  rc
-           scsi_device  scsi_host     thermal     vc
-
-XXXXX@XXXXXXXX:~> sudo ls /sys/class/graphics/
-fb0  fbcon
+--- Comment #13 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-09 22:58:51 PDT ---
+sorry my fault, I am using now nvidia driver, trying later when installing
+nouveau...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
