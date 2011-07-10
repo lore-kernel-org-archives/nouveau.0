@@ -1,14 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Gigabyte NX86T connector table lies,
-	it has DVI-I not HDMI
-Date: Sun, 10 Jul 2011 10:51:14 +0100
-Message-ID: <1310291474-27279-2-git-send-email-emil.l.velikov@gmail.com>
-References: <1310291474-27279-1-git-send-email-emil.l.velikov@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 35562] Nouveau fails to link in Mesa 7.10.1
+Date: Sun, 10 Jul 2011 07:44:34 -0700 (PDT)
+Message-ID: <20110710144434.CC430130115@annarchy.freedesktop.org>
+References: <bug-35562-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1310291474-27279-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-35562-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_bios.c |    6 ++++++
- 1 files changed, 6 insertions(+), 0 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=35562
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-index aefc5cb..58d8c85 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-@@ -6006,6 +6006,12 @@ apply_dcb_connector_quirks(struct nvbios *bios, int idx)
- 		if (cte->type == DCB_CONNECTOR_HDMI_1)
- 			cte->type = DCB_CONNECTOR_DVI_I;
- 	}
-+
-+	/* Gigabyte GV-NX86T512H */
-+	if (nv_match_device(dev, 0x0402, 0x1458, 0x3455)) {
-+		if (cte->type == DCB_CONNECTOR_HDMI_1)
-+			cte->type = DCB_CONNECTOR_DVI_I;
-+	}
- }
- 
- static const u8 hpd_gpio[16] = {
+--- Comment #6 from "One" Timothy Jones <one.timothy.jones-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-10 07:44:30 PDT ---
+Ridai, FWIW, this patch works with Mesa 7.10.3. So, I'd think it work with .2
+as well.
+
+-TJ
+
 -- 
-1.7.6
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
