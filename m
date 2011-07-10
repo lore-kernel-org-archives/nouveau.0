@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35562] Nouveau fails to link in Mesa 7.10.1
-Date: Sun, 10 Jul 2011 07:44:34 -0700 (PDT)
-Message-ID: <20110710144434.CC430130115@annarchy.freedesktop.org>
-References: <bug-35562-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH] Enable hwmon support when both nouveau and
+ hwmon are built as modules.
+Date: Sun, 10 Jul 2011 17:04:45 +0200
+Message-ID: <4E19BF8D.6090205@free.fr>
+References: <4E10BAE4.8000506@googlemail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35562-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <4E10BAE4.8000506-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +21,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35562
-
---- Comment #6 from "One" Timothy Jones <one.timothy.jones-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-10 07:44:30 PDT ---
-Ridai, FWIW, this patch works with Mesa 7.10.3. So, I'd think it work with .2
-as well.
-
--TJ
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Le 03/07/2011 20:54, Ken Milmore a =E9crit :
+> The nouveau hwmon temperature support currently only functions when hwmon=
+ is
+> compiled into the kernel. There's no reason why this shouldn't also work =
+when
+> both hwmon and nouveau are modularised (as is the case with Slackware's s=
+tock
+> kernels). The patch below worked for me on 2.6.38.7.
+Looks good to me but I can't commit it.
+>
+> BTW, I notice that nouveau idles my 8600GT at around 71C, which is 18C ho=
+tter
+> than the Nvidia blob driver. Running some intensive OpenGL (Sauerbraten) =
+caused
+> the temperature to reach 85C in a few minutes. The blob rarely goes above=
+ 80C,
+> even after extended use.
+We are working on power management, it is all but simple ;)
