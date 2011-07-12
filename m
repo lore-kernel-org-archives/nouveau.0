@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35562] Nouveau fails to link in Mesa 7.10.1
-Date: Mon, 11 Jul 2011 22:57:26 -0700 (PDT)
-Message-ID: <20110712055726.DE8F9130114@annarchy.freedesktop.org>
+Date: Tue, 12 Jul 2011 03:37:59 -0700 (PDT)
+Message-ID: <20110712103759.9AB7A130170@annarchy.freedesktop.org>
 References: <bug-35562-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35562
 
---- Comment #8 from Robby Workman <rw-5Nist3LiYEEcWVvVuXF20w@public.gmane.org> 2011-07-11 22:57:26 PDT ---
-Yep, that patch fixes compilation; thanks!
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #9 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-12 03:37:58 PDT ---
+Reported FIXED
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
