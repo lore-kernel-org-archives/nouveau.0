@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34429] Failure during resume on NV50: INIT_AUXCH: rd
  auxch fail -121
-Date: Fri, 15 Jul 2011 15:03:15 -0700 (PDT)
-Message-ID: <20110715220315.909C81300C8@annarchy.freedesktop.org>
+Date: Fri, 15 Jul 2011 15:04:02 -0700 (PDT)
+Message-ID: <20110715220402.59A9313006E@annarchy.freedesktop.org>
 References: <bug-34429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34429
 
---- Comment #7 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-15 15:03:14 PDT ---
-Similar bug: bug 31676.
+Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Depends on|27398                       |31676
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
