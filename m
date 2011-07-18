@@ -1,13 +1,14 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Mistake in Gallium how-to in wiki?
-Date: Mon, 18 Jul 2011 16:57:40 -0400
-Message-ID: <CAMVNhxRzFQrBVPeaoYkz7gB03nL=sVFRdrBKKnU4UdhPXvmYWw@mail.gmail.com>
-References: <4E249AA8.5090703@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 39099] two graphic cards and four monitors with
+	Nouveau
+Date: Mon, 18 Jul 2011 16:05:39 -0700 (PDT)
+Message-ID: <20110718230539.7EC4A130135@annarchy.freedesktop.org>
+References: <bug-39099-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4E249AA8.5090703-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-39099-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,38 +18,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Andrew Green <andrew.green.df-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jul 18, 2011 at 4:42 PM, Andrew Green <andrew.green.df-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> Hi,
->
-> I think I've found a mistake in the Gallium instructions in the Nouveau wiki
-> (http://nouveau.freedesktop.org/wiki/GalliumHowto).
->
-> According to that page, one should run ./configure like this:
->
-> ./configure --enable-debug --enable-glx-tls --disable-asm \
-> --with-dri-drivers= --enable-gallium-nouveau \
-> --disable-gallium-i915 --disable-gallium-i965 \
-> --disable-gallium-r300 --disable-gallium-r600 --disable-gallium-svga \
-> --with-state-trackers=glx,dri
->
->
-> But when I compiled using that configuration, nouveau_dri.so was not built.
-> Also, a few of the configuration options were not recognized. However, this
-> configure command did work, at least for me:
->
-> ./configure --enable-debug --enable-glx-tls --disable-asm \
-> --with-dri-drivers --enable-glx --enable-dri --enable-xorg \
-> --with-state-trackers=glx,dri --with-gallium-drivers="nouveau
->
->
-> Hope this is helpful. (I'm completely "new" to "nouveau", so I guess I may
-> be completely off.) Thanks to the developers for their work on this,
-> greetings,
-> Andrew
+https://bugs.freedesktop.org/show_bug.cgi?id=39099
 
-The config options changed not too long ago and the wiki hasn't been
-updated. Feel free to update it if you have an account.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #48986|0                           |1
+        is obsolete|                            |
+
+--- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-18 16:05:38 PDT ---
+Created an attachment (id=49279)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=49279
+ Review: https://bugs.freedesktop.org/review?bug=39099&attachment=49279
+
+Final patch
+
+I was not able to oversee the issue while creating the initial patch
+The issue lies within a missing (or actually 3) brackets, causing incorrect
+argument to the function xf86IsEntityShared()
+
+It must be 
+* xf86IsEntityShared(pScrn->entityList[0])
+while currently it is
+* xf86IsEntityShared(pScrn->entityList[0] || pScrn->confScreen->device->screen
+== i)
+
+Please test
+Emil
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
