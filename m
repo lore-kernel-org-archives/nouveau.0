@@ -1,127 +1,82 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39330] New: nVidia GF108 [Quadro 1000M] gives:
- "PGRAPH: unsupported chipset, please report!"
-Date: Mon, 18 Jul 2011 06:05:20 -0700 (PDT)
-Message-ID: <bug-39330-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq@iki.fi>
+Subject: Re: RFC: ctx->Driver.Map/UnmapTextureImage() hooks
+Date: Mon, 18 Jul 2011 22:00:22 +0300
+Message-ID: <20110718220022.4231f6ac@farn>
+References: <4E03E3A3.8060903@vmware.com>
+	<CAEUUzO-6YH3YmtzWxfM=Sn3YT+ndDHJxy1bjff0+f_qd8yj_jA@mail.gmail.com>
+	<CAPM=9twbNrhH+5CFO38UvVOTgMHzMHEfBfRosPGo0=NCN-HaOg@mail.gmail.com>
+	<4E208571.90805@vmware.com> <20110715235911.6d2ff4f0@farn.lan>
+	<4E243E8D.2030605@vmware.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+In-Reply-To: <4E243E8D.2030605@vmware.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: Brian Paul <brianp@vmware.com>
+Cc: mesa-dev <mesa-dev@lists.freedesktop.org>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39330
+On Mon, 18 Jul 2011 08:09:17 -0600
+Brian Paul <brianp@vmware.com> wrote:
 
-           Summary: nVidia GF108 [Quadro 1000M] gives: "PGRAPH:
-                    unsupported chipset, please report!"
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: mikko.tiihonen-X3B1VOXEql0@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+> On 07/15/2011 02:59 PM, Pekka Paalanen wrote:
+> > On Fri, 15 Jul 2011 12:22:41 -0600
+> > Brian Paul<brianp@vmware.com>  wrote:
+> >
+> >> On 07/15/2011 10:07 AM, Dave Airlie wrote:
+> >>> On Fri, Jul 15, 2011 at 4:10 AM, Brian
+> >>> Paul<brian.e.paul@gmail.com>   wrote:
+> >>>>
+> >>>>
+> >>>> The map-texture-image-v4 branch that I just pushed implements
+> >>>> this change.  It really cleaned things up for the better and
+> >>>> will lead to a few more follow-on improvements.
+> >>>>
+> >>>> There's no obvious regressions with swrast or the gallium
+> >>>> drivers.  I updated the intel driver code and tested i915 and
+> >>>> it seems OK too, but I didn't do a full piglit run on it.  I
+> >>>> also updated the legacy r600 driver in case anyone cares but
+> >>>> didn't do any testing of it.
+> >>>>
+> >>>> I didn't update any of the other legacy DRI drivers.  Would
+> >>>> anyone object if we simply stop building mach64, r128,
+> >>>> unichrome, sis, etc? I'd be happy to remove those drivers
+> >>>> altogether for that matter.
+> >>>
+> >>> we could EOL those in 7.11, and if anyone wants to ship them,
+> >>> they can just build 7.11 for them.
+> >>
+> >> Sounds good to me.  I think we'd only keep the swrast, intel
+> >> and maybe r300/r600 drivers.  Opinions?
+> >
+> > Um, don't kill nouveau_vieux, please.
+> 
+> Does the old nouveau driver support some GPUs that the gallium 
+> nv50/nvc0 drivers don't support?
+
+Yes. Like Corbin said, 'nouveau_vieux' is for NV04-NV2x, while
+the gallium driver 'nouveau' supports NV30 and later.
+http://nouveau.freedesktop.org/wiki/MesaDrivers
+
+> If we want to keep the older driver someone will need to
+> volunteer to update the code to support the new driver hooks.
+
+Sorry, I cannot promise that.
+Nouveau_vieux seems to have been missing a maintainer for
+some time now.
 
 
-Running latest rawhide on Lenovo W520 laptop with Quadro 1000M card:
-
-[drm] nouveau 0000:01:00.0: PGRAPH: unsupported chipset, please report!
-
-xorg-x11-drv-nouveau-0.0.16-25.20110324git8378443.fc16.x86_64
-kernel-3.0-0.rc7.git0.1.fc16.x86_64
-
-lspci device information
-01:00.0 0300: 10de:0dfa (rev a1)
-01:00.0 VGA compatible controller: nVidia Corporation GF108 [Quadro 1000M] (rev
-a1)
-
-[    4.725472] [drm] nouveau 0000:01:00.0: Detected an NVc0 generation card
-(0x0c1d00a1)
-[    4.739676] [drm] nouveau 0000:01:00.0: Attempting to load BIOS image from
-PRAMIN
-[    4.800772] [drm] nouveau 0000:01:00.0: ... appears to be valid
-[    4.800776] [drm] nouveau 0000:01:00.0: BIT BIOS found
-[    4.800778] [drm] nouveau 0000:01:00.0: Bios version 70.08.55.00
-[    4.800780] [drm] nouveau 0000:01:00.0: Pointer to BIT loadval table invalid
-[    4.800882] [drm] nouveau 0000:01:00.0: TMDS table version 2.0
-[    4.800885] [drm] nouveau 0000:01:00.0: Found Display Configuration Block
-version 4.0
-[    4.800888] [drm] nouveau 0000:01:00.0: Raw DCB entry 0: 01800323 00010034
-[    4.800891] [drm] nouveau 0000:01:00.0: Raw DCB entry 1: 02011300 00000000
-[    4.800893] [drm] nouveau 0000:01:00.0: Raw DCB entry 2: 028223a6 0f220010
-[    4.800895] [drm] nouveau 0000:01:00.0: Raw DCB entry 3: 02822362 00020010
-[    4.800897] [drm] nouveau 0000:01:00.0: Raw DCB entry 4: 048333b6 0f220010
-[    4.800899] [drm] nouveau 0000:01:00.0: Raw DCB entry 5: 04833372 00020010
-[    4.800901] [drm] nouveau 0000:01:00.0: Raw DCB entry 6: 088443c6 0f220010
-[    4.800903] [drm] nouveau 0000:01:00.0: Raw DCB entry 7: 08844382 00020010
-[    4.800905] [drm] nouveau 0000:01:00.0: Raw DCB entry 8: 0000000e 00000000
-[    4.800908] [drm] nouveau 0000:01:00.0: DCB connector table: VHER 0x40 5 16
-4
-[    4.800910] [drm] nouveau 0000:01:00.0:   0: 0x00000040: type 0x40 idx 0 tag
-0xff
-[    4.800913] [drm] nouveau 0000:01:00.0:   1: 0x00000100: type 0x00 idx 1 tag
-0xff
-[    4.800915] [drm] nouveau 0000:01:00.0:   2: 0x00101246: type 0x46 idx 2 tag
-0x07
-[    4.800918] [drm] nouveau 0000:01:00.0:   3: 0x00202346: type 0x46 idx 3 tag
-0x08
-[    4.800928] [drm] nouveau 0000:01:00.0:   4: 0x00410446: type 0x46 idx 4 tag
-0x51
-[    4.800932] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 0 at offset
-0xD4E1
-[    4.822109] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 1 at offset
-0xDB3D
-[    4.829245] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 2 at offset
-0xED43
-[    4.829255] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 3 at offset
-0xED47
-[    4.829316] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 4 at offset
-0xEE2F
-[    4.829323] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table at offset
-0xEE94
-[    4.849313] [drm] nouveau 0000:01:00.0: 0xD41A: Condition still not met
-after 20ms, skipping following opcodes
-[    4.870252] [drm] nouveau 0000:01:00.0: 3 available performance level(s)
-[    4.870256] [drm] nouveau 0000:01:00.0: 0: memory 135MHz core 50MHz shader
-101MHz voltage 830mV timing 4
-[    4.870259] [drm] nouveau 0000:01:00.0: 1: memory 324MHz core 202MHz shader
-405MHz voltage 830mV timing 5
-[    4.870262] [drm] nouveau 0000:01:00.0: 3: memory 900MHz core 700MHz shader
-1400MHz voltage 1080mV timing 6
-[    4.870969] [TTM] Zone  kernel: Available graphics memory: 8198230 kiB.
-[    4.870971] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB.
-[    4.870973] [TTM] Initializing pool allocator.
-[    4.871098] [drm] nouveau 0000:01:00.0: Detected 1024MiB VRAM
-[    4.894786] [drm] nouveau 0000:01:00.0: 512 MiB GART (aperture)
-[    4.894824] [drm] nouveau 0000:01:00.0: PGRAPH: unsupported chipset, please
-report!
-[    4.902862] [drm] nouveau 0000:01:00.0: ACPI backlight interface available,
-not registering our own
-[    4.905058] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-[    4.905060] [drm] No driver support for vblank timestamp query.
-[    5.382950] [drm] nouveau 0000:01:00.0: allocated 1920x1200 fb: 0x8020000,
-bo ffff88041edb4d10
-[    5.383447] fbcon: nouveaufb (fb0) is primary device
-[    6.754561] Console: switching to colour frame buffer device 200x56
-[    6.758697] fb0: nouveaufb frame buffer device
-[    6.758699] drm: registered panic notifier
-[    6.758758] [drm] Initialized nouveau 0.0.16 20090420 for 0000:01:00.0 on
-minor 0
+Thanks.
 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Pekka Paalanen
+http://www.iki.fi/pq/
