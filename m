@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39099] two graphic cards and four monitors with
-	Nouveau
-Date: Mon, 18 Jul 2011 16:32:16 -0700 (PDT)
-Message-ID: <20110718233216.5BA631300EE@annarchy.freedesktop.org>
-References: <bug-39099-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drmmode_display: Resolve missing brackets
+Date: Tue, 19 Jul 2011 00:35:38 +0100
+Message-ID: <1311032138-10867-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39099-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +18,33 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39099
+Correct some missing/misplaced brackets in drmmode_pre_init()
+The issue was exposed when trying a 4 monitor desktop using two
+cards/gpus
 
---- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-18 16:32:15 PDT ---
-Created an attachment (id=49281)
- View: https://bugs.freedesktop.org/attachment.cgi?id=49281
- Review: https://bugs.freedesktop.org/review?bug=39099&attachment=49281
+Resolves https://bugs.freedesktop.org/show_bug.cgi?id=39099
 
-Fix yet another silly typo
+Reported-By: Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org>
+Tested-By: Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org>
+Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ src/drmmode_display.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-I've added a bit too many brackets
-It should be finally resolved
-
+diff --git a/src/drmmode_display.c b/src/drmmode_display.c
+index e5e4673..3afef66 100644
+--- a/src/drmmode_display.c
++++ b/src/drmmode_display.c
+@@ -1185,8 +1185,8 @@ Bool drmmode_pre_init(ScrnInfoPtr pScrn, int fd, int cpp)
+ 	xf86CrtcSetSizeRange(pScrn, 320, 200, drmmode->mode_res->max_width,
+ 			     drmmode->mode_res->max_height);
+ 	for (i = 0; i < drmmode->mode_res->count_crtcs; i++) {
+-		if (!xf86IsEntityShared(pScrn->entityList[0] ||
+-		     pScrn->confScreen->device->screen == i))
++		if (!xf86IsEntityShared(pScrn->entityList[0]) ||
++		     (pScrn->confScreen->device->screen == i))
+ 			drmmode_crtc_init(pScrn, drmmode, i);
+ 	}
+ 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.6
