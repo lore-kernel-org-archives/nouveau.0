@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39099] two graphic cards and four monitors with
-	Nouveau
-Date: Mon, 18 Jul 2011 12:46:33 -0700 (PDT)
-Message-ID: <20110718194633.D257413010B@annarchy.freedesktop.org>
-References: <bug-39099-8800@http.bugs.freedesktop.org/>
+From: Andrew Green <andrew.green.df-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Mistake in Gallium how-to in wiki?
+Date: Mon, 18 Jul 2011 15:42:16 -0500
+Message-ID: <4E249AA8.5090703@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39099-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +18,30 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39099
+Hi,
 
---- Comment #5 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> 2011-07-18 12:46:33 PDT ---
-I git pulled the drivers and applied your patch. Apparently it works - although
-your patch prints debug info only, you say.
+I think I've found a mistake in the Gallium instructions in the Nouveau 
+wiki (http://nouveau.freedesktop.org/wiki/GalliumHowto).
 
-21:03 < Nowaker> xexaxo: your patch made those four monitors working :)
-21:04 < Nowaker> xexaxo: sorry for testing it out so late but I played OpenTTD
-with my friends for three days in a row, and then got some work to do
-21:10 < xexaxo> Nowaker: the patch or the configuration ?
-21:10 < xexaxo> the patch only added some debug output
-21:11 < Nowaker> xexaxo: the patch
-21:11 < Nowaker> xexaxo: so someone fixed the issue in meantime on git
-21:12 < Nowaker> I'm just uploading the logs
-21:12 < xexaxo> Nowaker: can  you make sure that it's the patch, and try
-attaching the Xorg.log with/wo the patch (3 and 4 monitors please)
+According to that page, one should run ./configure like this:
 
-http://wklej.org/id/563568/txt/ - git+patch - 3-setup (working)
-http://wklej.org/id/563558/txt/ - git+patch - 4-setup (working)
+./configure --enable-debug --enable-glx-tls --disable-asm \
+--with-dri-drivers= --enable-gallium-nouveau \
+--disable-gallium-i915 --disable-gallium-i965 \
+--disable-gallium-r300 --disable-gallium-r600 --disable-gallium-svga \
+--with-state-trackers=glx,dri
 
-After `git reset --hard`
 
-http://wklej.org/id/563575/txt/ - git - 3-setup (working)
-http://wklej.org/id/563572/txt/ - git - 4-setup (failing the same way)
+But when I compiled using that configuration, nouveau_dri.so was not 
+built. Also, a few of the configuration options were not recognized. 
+However, this configure command did work, at least for me:
 
-Looks like you really fixed it:
+./configure --enable-debug --enable-glx-tls --disable-asm \
+--with-dri-drivers --enable-glx --enable-dri --enable-xorg \
+--with-state-trackers=glx,dri --with-gallium-drivers="nouveau
 
-+        if (!IsShared || ScreenEq ) // <- this!
-             drmmode_crtc_init(pScrn, drmmode, i);
 
-I made sure it's you who fixed the problem - twice. ;)
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Hope this is helpful. (I'm completely "new" to "nouveau", so I guess I 
+may be completely off.) Thanks to the developers for their work on this, 
+greetings,
+Andrew
