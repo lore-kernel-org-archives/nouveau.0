@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39375] mesa-7.11_rc1 weird colors and aliasing
 	(nouveau driver)
-Date: Tue, 19 Jul 2011 11:57:52 -0700 (PDT)
-Message-ID: <20110719185752.44097130163@annarchy.freedesktop.org>
+Date: Tue, 19 Jul 2011 12:15:21 -0700 (PDT)
+Message-ID: <20110719191521.1A2DD1300FA@annarchy.freedesktop.org>
 References: <bug-39375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39375
 
---- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-19 11:57:52 PDT ---
-A few of things
+--- Comment #4 from Patrizio Bassi <patrizio.bassi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-19 12:15:21 PDT ---
+1. yes now i understand, i tought it was nouveau specific
 
-1. This issue can be considered a part of mesa/core as it affects radeon as
-well
-2. The bugreport should be closed when/if the patch (or similar) is pushed
-Note: Meanwhile (if none is pushed for long time) you can always speak to
-gentoo people about adding it to the ebuild
-3. The warning you see is harmless, iirc a patch that silence is is present in
-mesa/master
+2. of course i'm going to ask gentoo guys to add this, i can check the gentoo
+status but not the mesa one. please assign to a different mainteiner, not the
+nouveau ones
+
+3. fine, would be nice to have it in the main branch but anyhow it's fine for
+me
+
+thank you for help
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
