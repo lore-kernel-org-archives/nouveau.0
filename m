@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39362] NVAF (320M) crash on modprobe
-Date: Tue, 19 Jul 2011 02:13:34 -0700 (PDT)
-Message-ID: <20110719091334.C280E13019D@annarchy.freedesktop.org>
-References: <bug-39362-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39375] mesa-7.11_rc1 weird colors and aliasing
+	(nouveau driver)
+Date: Tue, 19 Jul 2011 07:47:21 -0700 (PDT)
+Message-ID: <20110719144721.97F0A130154@annarchy.freedesktop.org>
+References: <bug-39375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,13 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39362
+https://bugs.freedesktop.org/show_bug.cgi?id=39375
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-19 02:13:34 PDT ---
-Hmm, I'm not sure this is correct. It's likely I just haven't handled the lack
-of mpll. I'll check this in the morning!
+Chi-Thanh Christopher Nguyen <chithanh-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> changed:
 
-Thanks for the report :)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Mesa core                   |Drivers/DRI/nouveau
+         AssignedTo|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |org                         |rg
+           See Also|                            |https://bugs.gentoo.org/sho
+                   |                            |w_bug.cgi?id=375337
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
