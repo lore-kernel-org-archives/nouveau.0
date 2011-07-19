@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39375] mesa-7.11_rc1 weird colors and aliasing
-	(nouveau driver)
-Date: Tue, 19 Jul 2011 12:15:21 -0700 (PDT)
-Message-ID: <20110719191521.1A2DD1300FA@annarchy.freedesktop.org>
-References: <bug-39375-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39033] Second card not activated
+Date: Tue, 19 Jul 2011 13:28:36 -0700 (PDT)
+Message-ID: <20110719202836.4B2D3130129@annarchy.freedesktop.org>
+References: <bug-39033-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39033-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +20,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39375
+https://bugs.freedesktop.org/show_bug.cgi?id=39033
 
---- Comment #4 from Patrizio Bassi <patrizio.bassi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-19 12:15:21 PDT ---
-1. yes now i understand, i tought it was nouveau specific
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-19 13:28:36 PDT ---
+If you look into your Xorg.0.log you will see the following
+"(EE) Screen 2 deleted because of no matching config section."
+That can be the reason for your issue
 
-2. of course i'm going to ask gentoo guys to add this, i can check the gentoo
-status but not the mesa one. please assign to a different mainteiner, not the
-nouveau ones
+In order to establish the correct issue and resolve it can you please
 
-3. fine, would be nice to have it in the main branch but anyhow it's fine for
-me
+* State how would you want your system setup
+** Single monitor per card, two monitors per card ....
+** Do you use/want to use xinerama? (i.e. have "one big screen") 
 
-thank you for help
+* Attach your xorg.conf (the one that produced the above message)
+
+Cheers
+Emil
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
