@@ -1,36 +1,39 @@
-From: Matt Turner <mattst88@gmail.com>
-Subject: Re: [Nouveau] RFC: ctx->Driver.Map/UnmapTextureImage()
-	hooks
-Date: Tue, 19 Jul 2011 12:04:44 -0400
-Message-ID: <CAEdQ38FzTL1OAVRrPLaoopOL4_wqbfiGWeQz-Z7Xw0tCe268uw@mail.gmail.com>
-References: <4E03E3A3.8060903@vmware.com>
-	<CAEUUzO-6YH3YmtzWxfM=Sn3YT+ndDHJxy1bjff0+f_qd8yj_jA@mail.gmail.com>
-	<CAPM=9twbNrhH+5CFO38UvVOTgMHzMHEfBfRosPGo0=NCN-HaOg@mail.gmail.com>
-	<4E208571.90805@vmware.com> <20110715235911.6d2ff4f0@farn.lan>
-	<4E243E8D.2030605@vmware.com> <20110718220022.4231f6ac@farn>
-	<87oc0qz4lp.fsf@riseup.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 39099] two graphic cards and four monitors with
+	Nouveau
+Date: Tue, 19 Jul 2011 10:37:01 -0700 (PDT)
+Message-ID: <20110719173702.14A4A130063@annarchy.freedesktop.org>
+References: <bug-39099-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
-In-Reply-To: <87oc0qz4lp.fsf@riseup.net>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-To: Francisco Jerez <currojerez@riseup.net>
-Cc: mesa-dev <mesa-dev@lists.freedesktop.org>, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-39099-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 19, 2011 at 11:12 AM, Francisco Jerez <currojerez@riseup.net> wrote:
-> (isn't fixing up the drivers the
-> responsibility of whoever changes the API?)
+https://bugs.freedesktop.org/show_bug.cgi?id=39099
 
-That's exactly why removing old drivers is being discussed.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Matt
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #8 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-19 10:36:59 PDT ---
+Latest patch resolves the issue and has been upstreamed
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
