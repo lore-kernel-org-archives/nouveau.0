@@ -1,14 +1,11 @@
-From: Andrew Green <andrew.green.df-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Mistake in Gallium how-to in wiki?
-Date: Fri, 22 Jul 2011 15:24:05 -0500
-Message-ID: <4E29DC65.3000901@gmail.com>
-References: <4E249AA8.5090703@gmail.com>
-	<op.vyt8lasb8t7z9u@localhost.localdomain>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 39495] New: MX440-8X TV-detect/framebuffer problem
+Date: Sat, 23 Jul 2011 13:43:31 -0700 (PDT)
+Message-ID: <bug-39495-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <op.vyt8lasb8t7z9u-bi+AKbBUZKY6gyzm1THtWbp2dZbC/Bob@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,58 +15,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RWwgMTgvMDcvMTEgMTg6MjMsIEVtaWwgVmVsaWtvdiBlc2NyaWJpw7M6Cj4gT24gTW9uLCAxOCBK
-dWwgMjAxMSAyMTo0MjoxNiArMDEwMCwgQW5kcmV3IEdyZWVuIAo+IDxhbmRyZXcuZ3JlZW4uZGZA
-Z21haWwuY29tPiB3cm90ZToKPgo+PiBIaSwKPj4KPj4gSSB0aGluayBJJ3ZlIGZvdW5kIGEgbWlz
-dGFrZSBpbiB0aGUgR2FsbGl1bSBpbnN0cnVjdGlvbnMgaW4gdGhlIAo+PiBOb3V2ZWF1IHdpa2kg
-KGh0dHA6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtpL0dhbGxpdW1Ib3d0bykuCj4+Cj4+
-IEFjY29yZGluZyB0byB0aGF0IHBhZ2UsIG9uZSBzaG91bGQgcnVuIC4vY29uZmlndXJlIGxpa2Ug
-dGhpczoKPj4KPj4gLi9jb25maWd1cmUgLS1lbmFibGUtZGVidWcgLS1lbmFibGUtZ2x4LXRscyAt
-LWRpc2FibGUtYXNtIFwKPj4gLS13aXRoLWRyaS1kcml2ZXJzPSAtLWVuYWJsZS1nYWxsaXVtLW5v
-dXZlYXUgXAo+PiAtLWRpc2FibGUtZ2FsbGl1bS1pOTE1IC0tZGlzYWJsZS1nYWxsaXVtLWk5NjUg
-XAo+PiAtLWRpc2FibGUtZ2FsbGl1bS1yMzAwIC0tZGlzYWJsZS1nYWxsaXVtLXI2MDAgLS1kaXNh
-YmxlLWdhbGxpdW0tc3ZnYSBcCj4+IC0td2l0aC1zdGF0ZS10cmFja2Vycz1nbHgsZHJpCj4+Cj4+
-Cj4+IEJ1dCB3aGVuIEkgY29tcGlsZWQgdXNpbmcgdGhhdCBjb25maWd1cmF0aW9uLCBub3V2ZWF1
-X2RyaS5zbyB3YXMgbm90IAo+PiBidWlsdC4gQWxzbywgYSBmZXcgb2YgdGhlIGNvbmZpZ3VyYXRp
-b24gb3B0aW9ucyB3ZXJlIG5vdCByZWNvZ25pemVkLiAKPj4gSG93ZXZlciwgdGhpcyBjb25maWd1
-cmUgY29tbWFuZCBkaWQgd29yaywgYXQgbGVhc3QgZm9yIG1lOgo+Pgo+PiAuL2NvbmZpZ3VyZSAt
-LWVuYWJsZS1kZWJ1ZyAtLWVuYWJsZS1nbHgtdGxzIC0tZGlzYWJsZS1hc20gXAo+PiAtLXdpdGgt
-ZHJpLWRyaXZlcnMgLS1lbmFibGUtZ2x4IC0tZW5hYmxlLWRyaSAtLWVuYWJsZS14b3JnIFwKPj4g
-LS13aXRoLXN0YXRlLXRyYWNrZXJzPWdseCxkcmkgLS13aXRoLWdhbGxpdW0tZHJpdmVycz0ibm91
-dmVhdQo+Pgo+Pgo+PiBIb3BlIHRoaXMgaXMgaGVscGZ1bC4gKEknbSBjb21wbGV0ZWx5ICJuZXci
-IHRvICJub3V2ZWF1Iiwgc28gSSBndWVzcyAKPj4gSSBtYXkgYmUgY29tcGxldGVseSBvZmYuKSBU
-aGFua3MgdG8gdGhlIGRldmVsb3BlcnMgZm9yIHRoZWlyIHdvcmsgb24gCj4+IHRoaXMsIGdyZWV0
-aW5ncywKPj4gQW5kcmV3Cj4KPiBOb3RlIHRoZSAiLS13aXRoLXN0YXRlLXRyYWNrZXJzIiBvcHRp
-b25zIGlzIHNvb24oaXNoKSB0byBiZSBkZXByZWNpYXRlZAo+Cj4gTXkgY3VycmVudCBjb25maWcg
-KGNvcnJlY3QgYWNjb3JkaW5nIHRvIHRoZSBsYXRlc3QgY2hhbmdlcykgaXMKPgo+ICAgICAuL2F1
-dG9nZW4uc2ggXAo+ICAgICAgICAgLS1wcmVmaXg9L3VzciBcCj4gICAgICAgICAtLXdpdGgtZHJp
-LWRyaXZlcnM9IFwKPiAgICAgICAgIC0td2l0aC1nYWxsaXVtLWRyaXZlcnM9c3dyYXN0LG5vdXZl
-YXUgXAo+ICAgICAgICAgLS1lbmFibGUtZGVidWcgXAo+ICAgICAgICAgLS1lbmFibGUtdGV4dHVy
-ZS1mbG9hdCBcCj4gICAgICAgICAtLWRpc2FibGUtYXNtIFwKPiAgICAgICAgIC0tZW5hYmxlLW9w
-ZW5nbCBcCj4gICAgICAgICAtLWRpc2FibGUtZ2xlczIgXAo+ICAgICAgICAgLS1kaXNhYmxlLW9w
-ZW52ZyBcCj4gICAgICAgICAtLWVuYWJsZS1kcmkgXAo+ICAgICAgICAgLS1lbmFibGUtZ2x4IFwK
-PiAgICAgICAgIC0tZW5hYmxlLXh2bWMgXAo+ICAgICAgICAgLS1kaXNhYmxlLXZhIFwKPiAgICAg
-ICAgIC0tZGlzYWJsZS12ZHBhdSBcCj4gICAgICAgICAtLWRpc2FibGUtb3NtZXNhIFwKPiAgICAg
-ICAgIC0tZGlzYWJsZS1lZ2wgXAo+ICAgICAgICAgLS1kaXNhYmxlLXhvcmcgXAo+ICAgICAgICAg
-LS1kaXNhYmxlLWQzZDF4IFwKPiAgICAgICAgIC0tZGlzYWJsZS14YSBcCj4gICAgICAgICAtLWRp
-c2FibGUtZ2JtIFwKPiAgICAgICAgIC0tZGlzYWJsZS14bGliLWdseCBcCj4gICAgICAgICAtLWRp
-c2FibGUtZ2FsbGl1bS1lZ2wgXAo+ICAgICAgICAgLS1kaXNhYmxlLWdhbGxpdW0tZ2JtIFwKPiAg
-ICAgICAgIC0tZGlzYWJsZS1nYWxsaXVtLWxsdm0gXAo+ICAgICAgICAgLS1kaXNhYmxlLXhjYiBc
-Cj4gICAgICAgICAtLWVuYWJsZS1kcmlnbHgtZGlyZWN0IFwKPiAgICAgICAgIC0tZW5hYmxlLWds
-eC10bHMgXAo+ICAgICAgICAgLS1lbmFibGUtZ2x1IFwKPiAgICAgICAgIC0tZW5hYmxlLWdsdyBc
-Cj4gICAgICAgICAtLWRpc2FibGUtbW90aWYKPgo+IFRoZSBhYm92ZSBidWlsZHMsIG5vdXZlYXUg
-YW5kIHN3cmFzdCBkcml2ZXJzIGFuZCB1c2VzIHRoZQo+IG9wZW5nbCBhbmQgeHZtYyBzdGF0ZS10
-cmFja2Vycwo+Cj4gTk9URTogQ29uc3VsdCB5b3Vyc2VsZiB3aXRoIHRoZSBkb2N1bWVudGF0aW9u
-IHJlZ2FyZGluZwo+ICItLWVuYWJsZS10ZXh0dXJlLWZsb2F0Igo+Cj4gRW1pbAo+Ck9LLiBUaGVz
-ZSBjb25maWcgb3B0aW9ucyBhbHNvIHdvcmtlZCBmaW5lIGZvciBtZSwgc28gSSBjaGFuZ2VkIHRo
-ZSB3aWtpIAp0byByZWNvbW1lbmQgdGhlbS4gSSBhbHNvIGFkZGVkIGEgVE9ETyBzdWdnZXN0aW5n
-IHNvbWVvbmUgYWRkIGEgc2hvcnQgCmV4cGxhbmF0aW9uIG9mIHRoZSBjb25maWcgb3B0aW9ucywg
-YW5kIGFkZGVkIHNvbWUgaW5zdHJ1Y3Rpb25zIGZvciAKcnVubmluZyBHbm9tZS4gQWdhaW4sIEkg
-aG9wZSBzb21lb25lIHdobyBrbm93cyBtb3JlIGFib3V0IGFsbCB0aGlzIGNhbiAKcmV2aWV3IHRo
-ZXNlIGNoYW5nZXMuCgpHcmVldGluZ3MsCkFuZHJldwoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=39495
+
+           Summary: MX440-8X TV-detect/framebuffer problem
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: lartza-OtfVy3EIGFFBDgjK7y7TUQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=49447)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49447)
+dmesg
+
+KMS with MX440-8X, when framebuffer kicks in, it's not full-screen but only a
+part of the screen on the upper left corner, like 1/4 of the whole monitor
+area. Two outputs are detected, VGA-1 and TV-1 and clone mode gets enabled.
+
+Fixed with video=TV-1:d and also fbset works to make it full-screen, but these
+shouldn't be needed. TV-1 connector is composite, or atleast looks like one.
+
+All relevant and irrelevant system info:
+
+GeForce4 MX 440 AGP 8x (64MB)
+Onboard VIA ProSavage
+
+Arch Linux
+kernel26-2.6.39.3
+xf86-video-nouveau-0.0.16_git20110531
+libdrm-2.4.25
+mesa-7.10.3
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
