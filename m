@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39498] nouveau hangs on unresponsive black screen at
 	startup
-Date: Sat, 23 Jul 2011 15:37:28 -0700 (PDT)
-Message-ID: <20110723223728.535651300FA@annarchy.freedesktop.org>
+Date: Sat, 23 Jul 2011 15:38:47 -0700 (PDT)
+Message-ID: <20110723223847.A530D130185@annarchy.freedesktop.org>
 References: <bug-39498-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39498
 
-Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |highest
+--- Comment #1 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-23 15:38:47 PDT ---
+Created an attachment (id=49450)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49450)
+logs for vga=775 before starting X
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
