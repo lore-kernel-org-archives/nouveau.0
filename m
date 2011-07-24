@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39498] nouveau hangs on unresponsive black screen at
 	startup
-Date: Sun, 24 Jul 2011 15:54:35 -0700 (PDT)
-Message-ID: <20110724225435.29CEA130110@annarchy.freedesktop.org>
+Date: Sun, 24 Jul 2011 16:10:57 -0700 (PDT)
+Message-ID: <20110724231057.305941301C7@annarchy.freedesktop.org>
 References: <bug-39498-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,30 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39498
 
---- Comment #14 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-24 15:54:32 PDT ---
-Emil, unfortunately I have tried the following options for the kernel module
-and none of them works:
+--- Comment #15 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-24 16:10:55 PDT ---
+Felix, just a quick comment on your logs. I am no expert at all, but I noticed
+something:
 
-msi=1 tv_disable=1 agpmode=0 noaccel=1 nofbaccel=1
+- xserver is trying to load the "nvidia" driver (binary driver from NVidia) and
+fortunately it's failing to load it because it's missing (otherwise it might
+conflict with nouveau); lsmod should not show that "nvidia" kernel module is
+loaded; Xorg.log should not show that it is trying to load nvidia_drv.so
+- xserver is loading the "nv" driver (successfully) and that could interfere
+with nouveau. you should avoid loading that. use 'Driver "nouveau"' in
+xorg.conf or otherwise remove the file nv_drv.so from
+/usr/lib/xorg/modules/drivers.
 
-except from noaccel=1 which is equivalent to NoAccel in xorg.conf (pointless).
+Summing up, only the following drivers/modules should be loaded when using
+nouveau:
 
-The "video" option in kernel boot, should only affect the framebuffer console,
-therefore I am not sure it would sort out the problem with acceleration, but I
-might try it later on...
-
-I could also disseminate printf() in the kernel module, but I do not know
-anything about it and in any case, there is no crash as in oops or segfault. As
-already pointed out, I believe the drm debug output should be very informative
-to the developers, but nobody is getting back...
-
-Felix, the bugs you are describing seem different from mine because:
-
-- I have a different NVidia card (mine is GeForce GT 330M);
-- I am not using openSUSE;
-- I do not have a blinking cursor in the upper left corner (it's a steady white
-underscore);
-- keyboard and mouse are both working fine for me.
+- kernel module (check with lsmod): nouveau, drm, drm_kms_helper, ttm
+- Xorg module (check from Xorg.log):
+/usr/lib/xorg/modules/drivers/nouveau_drv.so
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
