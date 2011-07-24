@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39498] nouveau hangs on unresponsive black screen at
 	startup
-Date: Sun, 24 Jul 2011 13:41:25 -0700 (PDT)
-Message-ID: <20110724204125.CE8B7130166@annarchy.freedesktop.org>
+Date: Sun, 24 Jul 2011 15:08:39 -0700 (PDT)
+Message-ID: <20110724220839.BB35C13016D@annarchy.freedesktop.org>
 References: <bug-39498-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,38 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39498
 
---- Comment #12 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-24 13:41:25 PDT ---
-Hi Emil, thanks once again very much for offering your support !
+--- Comment #13 from Felix Miata <mrmazda-ihVZJaRskl1bRRN4PJnoQQ@public.gmane.org> 2011-07-24 15:08:39 PDT ---
+Created an attachment (id=49480)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49480)
+Xorg.0.log & dmesg
 
-Yes, there will be no gdm greeter in runlevel 3, but I shall get some
-gnome-terminals and the gnome-panel too. Doesn't matter...
-
-By the way, the minimal xorg.conf did not help (and it actually enables AIGLX).
-
-The freedesktop snapshot kernel driver on 3.0.0-git3 did not sort things out
-either.
-
-Perhaps, the only difference that I recently noticed is that with NoAccel (only
-usable configuration) and AIGLX disabled in xorg.conf, I get:
-
-[   541.369] (**) Option "AIGLX" "off"
-...
-[   541.562] (**) AIGLX disabled
-[   541.562] (II) Loading extension GLX
-...
-[   542.281] (II) AIGLX: Loaded and initialized /usr/lib64/dri/swrast_dri.so
-[   542.281] (II) GLX: Initialized DRISWRAST GL provider for screen 0
-
-I think this is not very relevant. Perhaps it just means that it has loaded the
-SW rasterizer (the one used by the "nv" driver). It does not speed up anything
-(acceleration is disabled). It could be that earlier on Mesa did not produce
-that module after building it and therefore it was not getting loaded.
-
-I will now try to follow your latest advice. I will take some time to play
-around with all possible different configurations and options...
-
-However in the earliest logs (at the end of dmesg's output) there is some extra
-debugging output from the kernel drm module. Does that tell you anything ?
+I think https://bugzilla.novell.com/show_bug.cgi?id=706305 and
+https://bugzilla.novell.com/show_bug.cgi?id=707110 are this, so instead of
+filing new as per comment 6 in the latter, attaching messages and Xorg.0.log
+here.
+http://download.opensuse.org/repositories/home:/jobermayr/openSUSE_Factory/i586/drm-nouveau-kmp-desktop-20110721.2009_k3.0.0_2-2.3.i586.rpm
+used instead of normal Factory rpm.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
