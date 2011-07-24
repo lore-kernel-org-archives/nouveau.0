@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39498] nouveau hangs on unresponsive black screen at
 	startup
-Date: Sun, 24 Jul 2011 10:43:23 -0700 (PDT)
-Message-ID: <20110724174323.88ABF130134@annarchy.freedesktop.org>
+Date: Sun, 24 Jul 2011 12:08:27 -0700 (PDT)
+Message-ID: <20110724190828.4D06A1300EB@annarchy.freedesktop.org>
 References: <bug-39498-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,22 +23,32 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39498
 
---- Comment #8 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-24 10:43:23 PDT ---
-Just finished trying the kernel module from snapshot
-master-4fc2e2fc0157433883f10e0d7327c73069c66d63 instead of module from vanilla
-kernel 3.0.0 and it does not work either.
+--- Comment #9 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-24 12:08:25 PDT ---
+Emil, I tried following your advice, using the original driver which comes with
+kernel 3.0.0-git3 but the problem is still there (it gets stuck on an
+unresponsive black screen which only displays a small underscore "_" in the top
+left corner and I do not get the gdm greeter).
 
-I can still try out the freedesktop git trying to build only that module
-out-of-place or otherwise I could try the upstream kernel 3.0.0-git3.
+I am going to attach the logs (as file
+nouveau-discrete-with_Accel-kernel_3.0.0-git3-driver-no-aiglx-do_not_require_glx.txt),
+but I am sure they are very similar to the previous ones except from AIGLX
+being disabled and GLX loading only once (by default).
 
-Emil, thanks very much for your advice. I always start from runlevel 3 until
-things are stable. I tried disabling AIGLX several times before, without any
-benefit. I will now disable it permanently and also double-check that glx is
-not invoked twice from xorg.conf. If glx is loaded twice because of a problem
-that does not depend on the configuration, then I suppose there is little I can
-do about it...
+I will keep those two settings as you suggested from now on, but so far nothing
+has changed unfortunately !
 
-Any other idea ?
+Next I will try the kernel driver from the snapshot (commit
+4fc2e2fc0157433883f10e0d7327c73069c66d63) on the 3.0.0-git3, but at this point
+I really doubt it would sort things out.
+
+I am not sure but perhaps the only difference between the kernel module shipped
+with the upstream kernel and the out-of-place kernel module from the snapshot
+is that the following line is missing in the snapshot:
+
+[drm] nouveau 0000:01:00.0: Pointer to BIT loadval table invalid
+
+Other than that with kernel 3.0.0 there was no practical difference between the
+two kernel drivers (upstream and freedesktop snapshot).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
