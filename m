@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39498] nouveau hangs on unresponsive black screen at
 	startup
-Date: Sun, 24 Jul 2011 12:25:34 -0700 (PDT)
-Message-ID: <20110724192534.E6ABD13011D@annarchy.freedesktop.org>
+Date: Sun, 24 Jul 2011 13:41:25 -0700 (PDT)
+Message-ID: <20110724204125.CE8B7130166@annarchy.freedesktop.org>
 References: <bug-39498-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,37 +23,38 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39498
 
---- Comment #11 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-24 12:25:34 PDT ---
-(In reply to comment #9)
-> Emil, I tried following your advice, using the original driver which comes with
-> kernel 3.0.0-git3 but the problem is still there (it gets stuck on an
-> unresponsive black screen which only displays a small underscore "_" in the top
-> left corner and I do not get the gdm greeter).
-If you are starting at runlevel 3 there will be no kdm/gdm/xdm greeter
+--- Comment #12 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-24 13:41:25 PDT ---
+Hi Emil, thanks once again very much for offering your support !
 
-Thus I take that the display is _not_ black but there is still nothing relevant
-on it
+Yes, there will be no gdm greeter in runlevel 3, but I shall get some
+gnome-terminals and the gnome-panel too. Doesn't matter...
 
-> ....
-> [drm] nouveau 0000:01:00.0: Pointer to BIT loadval table invalid
-> 
-AFAIK the above message is not crucial
+By the way, the minimal xorg.conf did not help (and it actually enables AIGLX).
 
-There are a few things you can try - all without loading X
+The freedesktop snapshot kernel driver on 3.0.0-git3 did not sort things out
+either.
 
-1. Play with the module options "noaccel" and/or "nofbaccel" (modinfo nouveau
-for more info)
+Perhaps, the only difference that I recently noticed is that with NoAccel (only
+usable configuration) and AIGLX disabled in xorg.conf, I get:
 
-2. Select different resolution - append "video=..." [1] to your kernel command
-line
+[   541.369] (**) Option "AIGLX" "off"
+...
+[   541.562] (**) AIGLX disabled
+[   541.562] (II) Loading extension GLX
+...
+[   542.281] (II) AIGLX: Loaded and initialized /usr/lib64/dri/swrast_dri.so
+[   542.281] (II) GLX: Initialized DRISWRAST GL provider for screen 0
 
-3. Add some printf() statements in the kernel module to narrow in which state
-the issue occurs
+I think this is not very relevant. Perhaps it just means that it has loaded the
+SW rasterizer (the one used by the "nv" driver). It does not speed up anything
+(acceleration is disabled). It could be that earlier on Mesa did not produce
+that module after building it and therefore it was not getting loaded.
 
-Cheers
-Emil
+I will now try to follow your latest advice. I will take some time to play
+around with all possible different configurations and options...
 
-[1] http://nouveau.freedesktop.org/wiki/KernelModeSetting - Forcing Mode
+However in the earliest logs (at the end of dmesg's output) there is some extra
+debugging output from the kernel drm module. Does that tell you anything ?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
