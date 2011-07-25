@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39498] nouveau hangs on unresponsive black screen at
 	startup
-Date: Mon, 25 Jul 2011 10:59:16 -0700 (PDT)
-Message-ID: <20110725175916.79C061300CB@annarchy.freedesktop.org>
+Date: Mon, 25 Jul 2011 11:05:19 -0700 (PDT)
+Message-ID: <20110725180519.66026130099@annarchy.freedesktop.org>
 References: <bug-39498-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,22 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39498
 
---- Comment #20 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-25 10:59:15 PDT ---
-Emil, unfortunately (and as I was expecting) the "video" option in the kernel
-boot parameters did not sort out anything other than changing the resolution of
-the initial framebuffer console. The last option that you proposed was to
-disseminate printk() in the kernel module and try to trace the code path and
-try to understand where it gets stuck. That's not easy to do without any
-indication at all, because the it's several drivers (drm, drm_kms_helper,
-nouveau, ttm). Also there is no crash as in kernel oops or userspace segfault
-and I have already debug output from drm. I bet the problem lies there (drm or
-drm_kms_helper), but I really do not know where to begin without the assistance
-of one of the developers.
-
-Felix, I am glad to hear that you managed to sort out your issues. I am quite
-sure mine are not exactly related to yours and I am not using openSUSE,
-therefore trying the same packages has a very low priority for me now. I would
-really need to hear back from the developers...
+--- Comment #21 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-25 11:05:19 PDT ---
+Upgrading to kernel version 3.0.0-git4 did not change the situation... I am
+quite desperate about this problem. Several hours spent trying different
+options and different versions without achieving anything. A lot of money spent
+on a graphic card which does not even work with the original driver from its
+manufacturer ! Being a laptop, I cannot even smash it against the wall
+unfortunately !
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
