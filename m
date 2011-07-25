@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39498] nouveau hangs on unresponsive black screen at
 	startup
-Date: Mon, 25 Jul 2011 10:52:06 -0700 (PDT)
-Message-ID: <20110725175206.B686B13011C@annarchy.freedesktop.org>
+Date: Mon, 25 Jul 2011 10:59:16 -0700 (PDT)
+Message-ID: <20110725175916.79C061300CB@annarchy.freedesktop.org>
 References: <bug-39498-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39498
 
-Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> changed:
+--- Comment #20 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-25 10:59:15 PDT ---
+Emil, unfortunately (and as I was expecting) the "video" option in the kernel
+boot parameters did not sort out anything other than changing the resolution of
+the initial framebuffer console. The last option that you proposed was to
+disseminate printk() in the kernel module and try to trace the code path and
+try to understand where it gets stuck. That's not easy to do without any
+indication at all, because the it's several drivers (drm, drm_kms_helper,
+nouveau, ttm). Also there is no crash as in kernel oops or userspace segfault
+and I have already debug output from drm. I bet the problem lies there (drm or
+drm_kms_helper), but I really do not know where to begin without the assistance
+of one of the developers.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #49480|Xorg.0.log & dmesg          |Xorg.0.log & dmesg. The
-        description|                            |person that submitted these
-                   |                            |logs has now sorted out his
-                   |                            |problem.
-  Attachment #49480|0                           |1
-        is obsolete|                            |
-
---- Comment #19 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-25 10:52:06 PDT ---
-(From update of attachment 49480)
-The person that submitted these logs has now sorted out his problem.
+Felix, I am glad to hear that you managed to sort out your issues. I am quite
+sure mine are not exactly related to yours and I am not using openSUSE,
+therefore trying the same packages has a very low priority for me now. I would
+really need to hear back from the developers...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
