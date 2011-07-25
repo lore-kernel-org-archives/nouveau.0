@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39498] nouveau hangs on unresponsive black screen at
-	startup
-Date: Mon, 25 Jul 2011 11:05:19 -0700 (PDT)
-Message-ID: <20110725180519.66026130099@annarchy.freedesktop.org>
-References: <bug-39498-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39530] New: Also after installing Obermayrs
+ drm-nouveau driver booting succeeds only with nomodeset
+Date: Mon, 25 Jul 2011 12:14:15 -0700 (PDT)
+Message-ID: <bug-39530-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39498-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +19,33 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39498
+https://bugs.freedesktop.org/show_bug.cgi?id=39530
 
---- Comment #21 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-25 11:05:19 PDT ---
-Upgrading to kernel version 3.0.0-git4 did not change the situation... I am
-quite desperate about this problem. Several hours spent trying different
-options and different versions without achieving anything. A lot of money spent
-on a graphic card which does not even work with the original driver from its
-manufacturer ! Being a laptop, I cannot even smash it against the wall
-unfortunately !
+           Summary: Also after installing Obermayrs drm-nouveau driver
+                    booting succeeds only with nomodeset
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: j.reitsma-95pva7qL0WGEVqv0pETR8A@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+In reaction of https://bugzilla.novell.com/show_bug.cgi?id=707110, comment #6
+from Johannes Obermayr, I added repo 
+
+http://download.opensuse.org/repositories/home:/jobermayr/openSUSE_Factory
+
+to the list of repositories, and installed the appropriate rpm
+(drm-nouveau-kmp-desktop-20110721.2009_k3.0.0_2-2.3.x86_64.rpm   in my case).
+
+That didn't change the boot problem reported in the openSuse bug, so I enter a
+bug report here, on Johannes'request in his comment
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
