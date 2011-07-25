@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39498] nouveau hangs on unresponsive black screen at
 	startup
-Date: Mon, 25 Jul 2011 06:48:02 -0700 (PDT)
-Message-ID: <20110725134803.1CDD113007B@annarchy.freedesktop.org>
+Date: Mon, 25 Jul 2011 10:52:06 -0700 (PDT)
+Message-ID: <20110725175206.B686B13011C@annarchy.freedesktop.org>
 References: <bug-39498-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39498
 
---- Comment #18 from Felix Miata <mrmazda-ihVZJaRskl1bRRN4PJnoQQ@public.gmane.org> 2011-07-25 06:48:01 PDT ---
-https://bugzilla.novell.com/show_bug.cgi?id=707110 enabled me to get mine
-working.
+Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #49480|Xorg.0.log & dmesg          |Xorg.0.log & dmesg. The
+        description|                            |person that submitted these
+                   |                            |logs has now sorted out his
+                   |                            |problem.
+  Attachment #49480|0                           |1
+        is obsolete|                            |
+
+--- Comment #19 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-25 10:52:06 PDT ---
+(From update of attachment 49480)
+The person that submitted these logs has now sorted out his problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
