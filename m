@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39550] Brightness stuck to low value after
 	suspend/resume
-Date: Tue, 26 Jul 2011 11:13:32 -0700 (PDT)
-Message-ID: <20110726181332.E6B151301AC@annarchy.freedesktop.org>
+Date: Tue, 26 Jul 2011 11:24:38 -0700 (PDT)
+Message-ID: <20110726182438.84756130169@annarchy.freedesktop.org>
 References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,39 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-26 11:13:31 PDT ---
-Hi Auke
+--- Comment #3 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-26 11:24:37 PDT ---
+Please note that when I compared the openSUSE/jobermayr tree with mine from
+upstream, I found that the drm kernel module shipped by jobermayr and tagged as
+20110721.2009-2.3 on openSUSE does ship separate and different ACPI bits (at
+least there should be differences in the include files).
 
-Would you consider this as a regression ?
-
-Looking at your stripped log I can see "ACPI backlight interface available, not
-registering our own", thus I would say that the issue is not related to nouveau
-
-Although can you please try the following
-
-1 Boot into runlevel 3
-   Append " 3" to your kernel command line
-
-2 Make sure that nouveau is not loaded - "lsmod" will tell you if it is
-2.1 Possible solution - blacklist nouveau
-
-3 Try to adjust the brightness via acpi
-3.1 Look for *brightness* in /sys/devices/ 
-   find /sys/devices -name "*bright*" 2>/dev/null
-
-4 Suspend
-   pm-suspend
-
-5 Resume
-
-6 Try to adjust the brightness again
-
-7 Confirm/dismiss if it is a nouveau related issue
-
-I hope it helps
-
-Cheers,
-Emil
+I do not know if that helps... Here it does not even specify the version or
+whether it something that suddenly stopped working or otherwise something that
+never worked.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
