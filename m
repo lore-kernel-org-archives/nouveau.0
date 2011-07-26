@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39550] Brightness stuck to low value after
 	suspend/resume
-Date: Tue, 26 Jul 2011 12:06:19 -0700 (PDT)
-Message-ID: <20110726190619.9E79C130153@annarchy.freedesktop.org>
+Date: Tue, 26 Jul 2011 13:00:37 -0700 (PDT)
+Message-ID: <20110726200037.CE9E1130146@annarchy.freedesktop.org>
 References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-26 12:06:17 PDT ---
-Correction
+--- Comment #5 from Auke Booij <auke-ZQY5lnGs3kLQT0dZR+AlfA@public.gmane.org> 2011-07-26 13:00:34 PDT ---
+Emil:
+As you suggested, I booted without nouveau into a terminal. Indeed I have these
+interfaces in /sys, and before suspend/resume I could control brightness as
+usual. After suspend/resume, the screen stayed black (supposedly the backlight
+was completely off). Blindly starting X, which loaded nouveau, turned the
+screen on and gave me the fixed low brightness as described earlier. Seems like
+it's not a nouveau issue after all, so what do I do now?
 
-3.1 Look for brightness and/or backlight in /sys
-   find /sys -name "*brightness*" -o -name "*backlight*"
-
-Most likely you will have files similar to
-
-ls /sys/devices/pci0000:00/0000:00:0c.0/0000:02:00.0/backlight/acpi_video0/
-
-  brightness   actual_brightness  max_brightness
-
-You will have /sys/class/backlight, as well
-Note that the /sys/class/backlight/acpi_video0 (or similar) should point to the
-above entry
-
-
-Cheers
-Emil
+Guido:
+This is an Arch Linux install, with linux 2.6.39, nouveau-dri 7.10.3 and an
+xf86-video-nouveau driver that's said to be version 0.0.16_git20110531.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
