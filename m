@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39550] Brightness stuck to low value after
 	suspend/resume
-Date: Tue, 26 Jul 2011 11:24:38 -0700 (PDT)
-Message-ID: <20110726182438.84756130169@annarchy.freedesktop.org>
+Date: Tue, 26 Jul 2011 12:06:19 -0700 (PDT)
+Message-ID: <20110726190619.9E79C130153@annarchy.freedesktop.org>
 References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #3 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-26 11:24:37 PDT ---
-Please note that when I compared the openSUSE/jobermayr tree with mine from
-upstream, I found that the drm kernel module shipped by jobermayr and tagged as
-20110721.2009-2.3 on openSUSE does ship separate and different ACPI bits (at
-least there should be differences in the include files).
+--- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-26 12:06:17 PDT ---
+Correction
 
-I do not know if that helps... Here it does not even specify the version or
-whether it something that suddenly stopped working or otherwise something that
-never worked.
+3.1 Look for brightness and/or backlight in /sys
+   find /sys -name "*brightness*" -o -name "*backlight*"
+
+Most likely you will have files similar to
+
+ls /sys/devices/pci0000:00/0000:00:0c.0/0000:02:00.0/backlight/acpi_video0/
+
+  brightness   actual_brightness  max_brightness
+
+You will have /sys/class/backlight, as well
+Note that the /sys/class/backlight/acpi_video0 (or similar) should point to the
+above entry
+
+
+Cheers
+Emil
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
