@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39530] Also after installing Obermayrs drm-nouveau
  driver booting succeeds only with nomodeset
-Date: Tue, 26 Jul 2011 06:33:11 -0700 (PDT)
-Message-ID: <20110726133311.7A9961300D3@annarchy.freedesktop.org>
+Date: Tue, 26 Jul 2011 07:49:24 -0700 (PDT)
+Message-ID: <20110726144924.92647130105@annarchy.freedesktop.org>
 References: <bug-39530-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,27 +23,56 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39530
 
---- Comment #2 from Lee Matheson <lee_matheson-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> 2011-07-26 06:33:10 PDT ---
-@ Guido Trentalancia  - 'nomodeset' is a boot code that one enters on the
-options line of the Grub menu in openSUSE, and its use is documented in the
-openSUSE-11.3 and 11.4 release notes. It typically disables modesetting in the
-kernel for that boot, and it also forces openSUSE to use the 'nv' driver.
+--- Comment #3 from Guido Trentalancia <guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org> 2011-07-26 07:49:24 PDT ---
+Lee, most of the packages shipped by Johannes Obermayr are just git versions.
 
-To all, I encountered what I believe to be the same problem with the 3.0 RC7
-kernel on a 32-bit openSUSE-12.1 milestone-3 on a GeForce FX5200 hardware
-(which booted the nouveau driver fine with the latest 2.6.39 kernel on
-Tumbleweed-11.4).  
+If you look at the first part of
+https://bugs.freedesktop.org/show_bug.cgi?id=39498#c22 (Comment 22 of the
+severe issue I was experiencing and that I have now sorted out), you would
+realize that in particular:
 
-Note I also applied the suggested fix on this 32-bit openSUSE-12.1 Milestone-3
-with this FX5200 hardware with the 3.0 RC7 kernel as noted in
-https://bugzilla.novell.com/show_bug.cgi?id=707110 installing the specially
-packaged application drm-nouveau-kmp-desktop by Johannes Obermayr, but that was
-insufficient.  I also had to install the updated xorg-x11-driver-video-nouveau
-also packaged by Johannes Obermayr after which the nouveau driver did work on
-my FX5200. I documented that in Comment#7 on that
-https://bugzilla.novell.com/show_bug.cgi?id=707110 thread.
+- xorg driver xf86-video-nouveau shipped by openSUSE as from jobermayr is
+exactly or basically the same source code as upstream git;
 
-So with BOTH packages the nouveau driver works for me on the 3.0 rc7 kernel.
+- libdrm is exactly or basically the same source code as upstream libdrm git;
+
+- the drm kernel modules (20110721.2009-2.3) use the build option
+CONFIG_DRM_NOUVEAU_KMS=y, which as far as I remember was set to 'n' in the
+Makefile from the Nouveau DRM wiki (although I did also try enabling that once
+on the git source without achieving anything): in any case I did not touch the
+kernel module, still using the already mentioned one from freedesktop snapshot;
+
+In my particular case, the difference was probably made by using the Mesa build
+options from Johannes Obermayr:
+
+jobermayr: --enable-dri --enable-glx --enable-osmesa
+--with-dri-drivers=i810,i915,i965,nouveau,swrast --enable-shared-dricore
+--enable-gles1 --enable-gles2 --enable-openvg --enable-shared-glapi
+--with-gallium-drivers=i915,i965,nouveau,svga,swrast --enable-xcb --enable-xorg
+--enable-xa --enable-gallium-egl --with-egl-platforms=x11,drm --enable-debug
+--with-x --enable-gallium-llvm --enable-gbm --enable-gallium-gbm
+--enable-gallium-g3dvl --enable-xvmc --enable-vdpau --enable-texture-float
+--with-egl-displays=x11,drm
+
+instead of: --enable-selinux -with-dri-drivers=nouveau,i915,swrast
+--with-gallium-drivers=nouveau,i915,swrast,svga
+
+But I need to check it properly and understand which one of those several
+options did the trick.
+
+Let's get to your nomodeset issue. My understanding as someone whom is not an
+expert at all, is that starting the framebuffer console during initial boot-up
+before X starts, creates problems.
+
+All I can think of is the following mandatory drm kernel parameters:
+
+CONFIG_VT_HW_CONSOLE_BINDING=y
+CONFIG_FRAMEBUFFER_CONSOLE (Nouveau wiki reccomends setting it to 'y', but is
+also says that modeset=0 is equivalent to deactivating that option)
+
+Did you go through the following:
+
+http://nouveau.freedesktop.org/wiki/KernelModeSetting ?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
