@@ -1,14 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/2] g3dvl: disable iDCT for now
-Date: Wed, 27 Jul 2011 17:42:08 +1000
-Message-ID: <1311752531.2296.0.camel@nisroch>
-References: <n> <1311187717-3621-2-git-send-email-bryancain3@gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 36142] Second DVI output produces no signal with
+ nVidia G96 [Quadro FX 380] (rev a1)
+Date: Wed, 27 Jul 2011 08:15:27 -0700 (PDT)
+Message-ID: <20110727151527.9E5F7130151@annarchy.freedesktop.org>
+References: <bug-36142-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1311187717-3621-2-git-send-email-bryancain3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-36142-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,37 +18,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Bryan Cain <bryancain3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2011-07-20 at 13:48 -0500, Bryan Cain wrote:
-> ---
->  src/vl_hwmc.c |    4 ++--
->  1 files changed, 2 insertions(+), 2 deletions(-)
-The obvious question I have for this is, why?
+https://bugs.freedesktop.org/show_bug.cgi?id=36142
 
-Ben.
-> 
-> diff --git a/src/vl_hwmc.c b/src/vl_hwmc.c
-> index 6e9e0c7..8e24786 100644
-> --- a/src/vl_hwmc.c
-> +++ b/src/vl_hwmc.c
-> @@ -55,7 +55,7 @@ static XF86MCSurfaceInfoRec yv12_mpeg2_surface =
->  	2048,
->  	2048,
->  	2048,
-> -	XVMC_IDCT | XVMC_MOCOMP | XVMC_MPEG_2,
-> +	/*XVMC_IDCT |*/ XVMC_MOCOMP | XVMC_MPEG_2,
->  	XVMC_SUBPICTURE_INDEPENDENT_SCALING | XVMC_BACKEND_SUBPICTURE,
->  	&subpicture_list
->  };
-> @@ -69,7 +69,7 @@ static XF86MCSurfaceInfoRec uyvy_mpeg2_surface =
->  	2048,
->  	2048,
->  	2048,
-> -	XVMC_IDCT | XVMC_MOCOMP | XVMC_MPEG_2,
-> +	/*XVMC_IDCT |*/ XVMC_MOCOMP | XVMC_MPEG_2,
->  	XVMC_SUBPICTURE_INDEPENDENT_SCALING | XVMC_BACKEND_SUBPICTURE,
->  	&subpicture_list
->  };
+--- Comment #5 from daniel.nicoara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-07-27 08:15:26 PDT ---
+I'm seeing the same problem with the exact same hardware. However, if I boot
+off the Ubuntu Natty live CD, I get output to both monitors correctly. 
+
+I've also experimented with the live CD and tried booting from it, but having
+the ISO on one of my partitions and have grub boot off the ISO. In this case I
+don't get multiple monitors even though it's the exact same ISO. This makes me
+think it's a timing issue.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
