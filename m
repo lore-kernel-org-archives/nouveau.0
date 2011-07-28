@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38074] Dual head doesn't work for some combination
- of monitors (second screen still off)
-Date: Wed, 27 Jul 2011 16:09:52 -0700 (PDT)
-Message-ID: <20110727230952.48D5C130255@annarchy.freedesktop.org>
-References: <bug-38074-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36416] External monitor connected to docking station
+ gets no signal, although recognized
+Date: Thu, 28 Jul 2011 04:43:32 -0700 (PDT)
+Message-ID: <20110728114332.8E2401304DF@annarchy.freedesktop.org>
+References: <bug-36416-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-36416-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38074
+https://bugs.freedesktop.org/show_bug.cgi?id=36416
 
---- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-27 16:09:51 PDT ---
-It seems plausible the 1280x1024 display only works because it's using the
-analog function of the connector and not the digital.  I suspect that if you
-plugged another display in digitally on that port it'd still fail.
+--- Comment #5 from David Schoen <neerolyte-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-28 04:43:30 PDT ---
+(In reply to comment #4)
+> Can you mail the vbios image from /sys/kernel/debug/dri/0/vbios.rom ("mount -t
+> debugfs debugfs /sys/kernel/debug" if not already done) to
+> mmio.dumps-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, and mention this bug number in the subject.
 
-How exactly does it fail by the way, just the second display not showing an
-image?
+I'm experiencing the same bug, the second monitor does function via the
+proprietary nvidia driver and if I switch the DVI connections to both monitors
+the one that's stating no signal swaps around with nouveau, so I don't suspect
+any hardware faults.
 
-If you boot with a 1920x1080 display on the left connector, and plug the right,
-what happens?  What about the reverse?  (Just trying to rule out if it's a
-problem with a particular connector, or with programming an output without
-vbios assistance).
+I've posted my vbios.rom here:
+http://lyte.id.au/stuff/vbios.rom.gz
+
+I can email it directly as well if required...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
