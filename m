@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Fri, 29 Jul 2011 07:14:56 -0700 (PDT)
-Message-ID: <20110729141456.8126F130213@annarchy.freedesktop.org>
+Date: Fri, 29 Jul 2011 10:31:43 -0700 (PDT)
+Message-ID: <20110729173143.A1A71130267@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,17 +26,20 @@ maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #47531|0                           |1
-        is obsolete|                            |
-  Attachment #48901|0                           |1
+  Attachment #49720|0                           |1
         is obsolete|                            |
 
---- Comment #10 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-07-29 07:14:55 PDT ---
-Created an attachment (id=49720)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=49720)
-almost minimal trace
+--- Comment #11 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-07-29 10:31:42 PDT ---
+Created an attachment (id=49725)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49725)
+final trace
 
-Also attach it here
+Thats it, I found what register write spoiled the work done by trace.
+It would seem to me that that is some sort of PFIFO idle mode register, clock
+gating or whatever. nouveau sets register 0x400824, PGRAPH.CTXCTL_FLAGS_0 to
+0x4000 and spoils things. Now the latest trace or now more correctly set of
+register writes undos that register setting. So thats it 3W less while running
+normal desktop and compiz.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
