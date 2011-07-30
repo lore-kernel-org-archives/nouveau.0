@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37922] NV86: too high power usage.
-Date: Fri, 29 Jul 2011 10:31:43 -0700 (PDT)
-Message-ID: <20110729173143.A1A71130267@annarchy.freedesktop.org>
-References: <bug-37922-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32494] [NV46] GPU lockup,
+ switching to software fbcon at startup
+Date: Sat, 30 Jul 2011 02:11:57 -0700 (PDT)
+Message-ID: <20110730091157.7BBEA1300F2@annarchy.freedesktop.org>
+References: <bug-32494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-32494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37922
+https://bugs.freedesktop.org/show_bug.cgi?id=32494
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #10 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-07-30 02:11:57 PDT ---
+Tested again my NV46 with current nouveau git (3.0.0-rc6), and still get 'GPU
+lockup, switching to software fbcon at startup'. The same thing happens with my
+NVA5.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #49720|0                           |1
-        is obsolete|                            |
+With both cards, I have some crash when X is started, and garbage is displayed
+on screen. I'm starting to think my problems are not related to the cards per
+se, but maybe by wrong/faulty PCI-E management, as my motherboard has both an
+AGP and PCI-E connector.
 
---- Comment #11 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-07-29 10:31:42 PDT ---
-Created an attachment (id=49725)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=49725)
-final trace
-
-Thats it, I found what register write spoiled the work done by trace.
-It would seem to me that that is some sort of PFIFO idle mode register, clock
-gating or whatever. nouveau sets register 0x400824, PGRAPH.CTXCTL_FLAGS_0 to
-0x4000 and spoils things. Now the latest trace or now more correctly set of
-register writes undos that register setting. So thats it 3W less while running
-normal desktop and compiz.
+I'll try to grab some kernel log through serial port.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
