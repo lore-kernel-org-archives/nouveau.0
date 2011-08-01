@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Sat, 30 Jul 2011 14:18:52 -0700 (PDT)
-Message-ID: <20110730211852.DD0941301AA@annarchy.freedesktop.org>
+Date: Mon,  1 Aug 2011 00:16:22 -0700 (PDT)
+Message-ID: <20110801071622.9209F130118@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,21 +22,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #12 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2011-07-30 14:18:52 PDT ---
-Created an attachment (id=49752)
- View: https://bugs.freedesktop.org/attachment.cgi?id=49752
- Review: https://bugs.freedesktop.org/review?bug=37922&attachment=49752
+--- Comment #13 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-01 00:16:20 PDT ---
+Created an attachment (id=49772)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49772)
+full reclocking trace
 
-Enable xfer only when we need it to save power
+Thanks!, I didn't yet test this, but I am 100% sure that patch will work on my
+system.
 
-drm/nv50/ctxprog: enable xfer only when we need it to save power
+Meanwhile, I was playing with full reclocking trace, and I attach it here.
+I kept all (or at least vast majority) of PFB accesses so that you could look
+what it does to memory timings.
 
-This patch adds instructions to ctxprog and by doing, impact context-switching
-performance.
-My testcase showed a 1% performance cost using glxgears that is a
-context-switch bound application.
-
-Please test and report bugs/performance/power/other.
+It reduces power usage to 15.5W (and blob it about 15.3W).
+When I replay it, then load nouveau, then fix flag register and powerdown
+unused DAC, I get 15.8W. If I run full blown desktop, I am getting ~16W while I
+let the system go idle. Pretty impressive, considering that on stock nouveau,
+21W was lower bound for power usage....
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
