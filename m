@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Tue,  2 Aug 2011 20:12:30 -0700 (PDT)
-Message-ID: <20110803031230.CB35B13010C@annarchy.freedesktop.org>
+Date: Tue,  2 Aug 2011 20:13:02 -0700 (PDT)
+Message-ID: <20110803031302.8AC8813006F@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,22 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #14 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-02 20:12:30 PDT ---
-@Martin: I tested your patch and of course it works.
-Once small note is that you probably also want nouveau stop writing 0x4000 to
-that register initially. With your patch that flag is unset on first ctxprog
-invocation, so it doesn't matter much, yet nouveau shouldn't set it if blob
-doesn't.
-
-I also reduced trace futher.
-I also sadly note that my full reclocking trace reduces system stability a lot
-(supertuxkart crashes just after 1~2 laps and hangs the system).
-(Although due to low clocks involved it might just expose better hangs I had
-due to nouveau drivers....)
-
-Also, the register 0xc040, I poked this evening a lot does play some role in
-blob reclocking, yet though I don't have any ideas on how to nail down its
-contents.
+--- Comment #15 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-02 20:13:02 PDT ---
+Created an attachment (id=49857)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49857)
+new reclocking trace
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
