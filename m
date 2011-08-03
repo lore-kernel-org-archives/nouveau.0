@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Tue,  2 Aug 2011 20:13:02 -0700 (PDT)
-Message-ID: <20110803031302.8AC8813006F@annarchy.freedesktop.org>
+Date: Tue,  2 Aug 2011 20:14:00 -0700 (PDT)
+Message-ID: <20110803031400.3F3171301B1@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #15 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-02 20:13:02 PDT ---
-Created an attachment (id=49857)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=49857)
-new reclocking trace
+--- Comment #16 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-02 20:13:59 PDT ---
+Created an attachment (id=49858)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49858)
+c040 woes
+
+My poor man attempts to understand what that thing really does
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
