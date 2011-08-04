@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37922] NV86: too high power usage.
-Date: Tue,  2 Aug 2011 20:14:00 -0700 (PDT)
-Message-ID: <20110803031400.3F3171301B1@annarchy.freedesktop.org>
-References: <bug-37922-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39817] New: Chrome crash reports related with
+	Nouveau driver
+Date: Wed,  3 Aug 2011 17:35:34 -0700 (PDT)
+Message-ID: <bug-39817-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +19,24 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37922
+https://bugs.freedesktop.org/show_bug.cgi?id=39817
 
---- Comment #16 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-02 20:13:59 PDT ---
-Created an attachment (id=49858)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=49858)
-c040 woes
+           Summary: Chrome crash reports related with Nouveau driver
+           Product: Mesa
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: zmo-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org
 
-My poor man attempts to understand what that thing really does
+
+crbug.com/89705
+crbug.com/91585
+crbug.com/87948
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
