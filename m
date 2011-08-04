@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Wed,  3 Aug 2011 18:01:27 -0700 (PDT)
-Message-ID: <20110804010127.D8279130120@annarchy.freedesktop.org>
+Date: Wed,  3 Aug 2011 18:06:49 -0700 (PDT)
+Message-ID: <20110804010649.A16D013013C@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,23 +22,24 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #17 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-03 18:01:27 PDT ---
-Created an attachment (id=49894)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=49894)
-trace with reclock culled
+--- Comment #18 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-03 18:06:49 PDT ---
+Of course that is power usage while idle and many things (like wireless) turned
+off, but I for very long time measure power usage in these units (and to be
+sure I have a boot script triggered by grub parameter that sets these for me).
 
-Its actually is simplier that I expected.
-I took my last trace, and removed all reclocking scripts.
-(So the difference between this and non-reclocking trace is fiddling with GPIO
-ports and PPCI writes) the result, guess what is 16.0W, just 0.5W higher that
-with full reclocking trace and 0.7W higher that with blob (ether missed
-something in trace or some commands are uploaded via ring buffer - can't trace
-these)....
+While nouveau is loaded power usage is 16.5W on framebuffer console (and I
+check and print it every 1 sec, so screen redraw load isn't that low).
 
-Also system is now stable and as fast as pm level 1 allows it to be (fine with
-me).
+While in full KDE session with compiz running, but system otherwise idle, power
+usage is 16.9W.
 
-Yay!
+Of course when I actually use the system power usage is at 20-22W, but thats
+the same as with blob.
+
+Full screen brightness (compared to lowest) of course adds ~3W, but I always 
+set it to lowest while on battery and in room conditions its more that enough.
+
+So standard stuff, you know....
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
