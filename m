@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Thu,  4 Aug 2011 16:57:50 -0700 (PDT)
-Message-ID: <20110804235750.375BA1301BD@annarchy.freedesktop.org>
+Date: Thu,  4 Aug 2011 16:58:36 -0700 (PDT)
+Message-ID: <20110804235836.A0EFF1301B2@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,16 +26,8 @@ maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #49897|0                           |1
+  Attachment #49725|0                           |1
         is obsolete|                            |
-
---- Comment #20 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-04 16:57:49 PDT ---
-Created an attachment (id=49933)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=49933)
-minimal trace of non reclock magic - v2
-
-New trace with comments on how each register setting affects power usage and
-default values of registers.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
