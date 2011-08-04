@@ -1,8 +1,8 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nv41/pm: Write to correct registers on
-	nv41_fan_set()
-Date: Thu,  4 Aug 2011 19:22:44 +0100
-Message-ID: <1312482164-11599-1-git-send-email-emil.l.velikov@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 39843] New: HDMI output not detected on Point of
+ View R-VGA150904 (nv96, 9500gt)
+Date: Thu,  4 Aug 2011 14:28:41 -0700 (PDT)
+Message-ID: <bug-39843-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,24 +19,46 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nv40_pm.c |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=39843
 
-diff --git a/drivers/gpu/drm/nouveau/nv40_pm.c b/drivers/gpu/drm/nouveau/nv40_pm.c
-index c5ad31c..aa9fded 100644
---- a/drivers/gpu/drm/nouveau/nv40_pm.c
-+++ b/drivers/gpu/drm/nouveau/nv40_pm.c
-@@ -380,7 +380,7 @@ nv41_pm_fanspeed_set(struct drm_device *dev, int percent)
- 	u32 divs = pm->pwm_divisor;
- 	u32 duty = ((100 - percent) * divs) / 100;
- 
--	nv_wr32(dev, 0x0010f8, divs);
--	nv_wr32(dev, 0x0010f4, duty | 0x80000000);
-+	nv_wr32(dev, 0x0015f8, divs);
-+	nv_wr32(dev, 0x0015f4, duty | 0x80000000);
- 	return 0;
- }
+           Summary: HDMI output not detected on Point of View R-VGA150904
+                    (nv96, 9500gt)
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: nido-6YVbXssdEwM7gj3q02eW9A@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created an attachment (id=49928)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49928)
+dmesg output
+
+this card physically posesses a s-video out, DVI, and HDMI out. S-VIDEO out is
+not working correctly, but not directly relevant to this bug. DVI port is
+detected and working correctly, HDMI port is not deteted and the TV outputs 'No
+Signal'. If started with only the HDMI cable attached, video works up until the
+console switches to high resolution.
+
+Despite not giving output, the HDMI's EDID data fetched by X seems correct. 
+
+Kernel in question is commit 4fc2e2fc0157433883f10e0d7327c73069c66d63, Thu Jul
+21 16:12:58 2011 +1000
+xf86-video-nouveau version is commit de9d1ba7efeba64f319efa00df183d3cb78f24af,
+Tue Jul 19 00:35:38 2011 +0100
+drm commit ce317a6d09bb93cff73703b06e5a5bc3cc0b1c6a, Wed Jul 20 16:08:51 2011
++0800
+
+reverted commit f786eea4de502937dafb8f644fc0e6ce93522a6c without succes;
+problem remained.
+
 -- 
-1.7.6
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
