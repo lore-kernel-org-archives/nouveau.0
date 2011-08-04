@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39843] HDMI output not detected on Point of View
  R-VGA150904 (nv96, 9500gt)
-Date: Thu,  4 Aug 2011 14:30:13 -0700 (PDT)
-Message-ID: <20110804213013.BD92B1300BC@annarchy.freedesktop.org>
+Date: Thu,  4 Aug 2011 14:30:53 -0700 (PDT)
+Message-ID: <20110804213053.205C41301F3@annarchy.freedesktop.org>
 References: <bug-39843-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39843
 
-Nido Media <nido-6YVbXssdEwM7gj3q02eW9A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #49928|0                           |1
-        is obsolete|                            |
-
---- Comment #1 from Nido Media <nido-6YVbXssdEwM7gj3q02eW9A@public.gmane.org> 2011-08-04 14:30:12 PDT ---
-Created an attachment (id=49929)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=49929)
-text/plain dmesg
-
-changed attachment to text/plain; sorry
+--- Comment #2 from Nido Media <nido-6YVbXssdEwM7gj3q02eW9A@public.gmane.org> 2011-08-04 14:30:52 PDT ---
+Created an attachment (id=49930)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49930)
+xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
