@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Wed,  3 Aug 2011 18:06:49 -0700 (PDT)
-Message-ID: <20110804010649.A16D013013C@annarchy.freedesktop.org>
+Date: Wed,  3 Aug 2011 19:38:29 -0700 (PDT)
+Message-ID: <20110804023829.A0348130185@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,24 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #18 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-03 18:06:49 PDT ---
-Of course that is power usage while idle and many things (like wireless) turned
-off, but I for very long time measure power usage in these units (and to be
-sure I have a boot script triggered by grub parameter that sets these for me).
+--- Comment #19 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-03 19:38:29 PDT ---
+Created an attachment (id=49897)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49897)
+minimal trace of non reclock magic
 
-While nouveau is loaded power usage is 16.5W on framebuffer console (and I
-check and print it every 1 sec, so screen redraw load isn't that low).
+So this is more or less minimal trace. Reduces power usage from 21W to 16W.
 
-While in full KDE session with compiz running, but system otherwise idle, power
-usage is 16.9W.
-
-Of course when I actually use the system power usage is at 20-22W, but thats
-the same as with blob.
-
-Full screen brightness (compared to lowest) of course adds ~3W, but I always 
-set it to lowest while on battery and in room conditions its more that enough.
-
-So standard stuff, you know....
+If I in addition to that use Martin's reclocking code I can reduce the power
+usage further by 0.5W (of course nouveau adds 0.5W on its own, so end power
+usage on level 0 is ~16W in fb console).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
