@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37922] NV86: too high power usage.
-Date: Wed,  3 Aug 2011 19:38:29 -0700 (PDT)
-Message-ID: <20110804023829.A0348130185@annarchy.freedesktop.org>
-References: <bug-37922-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39817] Chrome crash reports related with Nouveau
+	driver
+Date: Thu,  4 Aug 2011 03:14:21 -0700 (PDT)
+Message-ID: <20110804101421.4DB031300E5@annarchy.freedesktop.org>
+References: <bug-39817-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39817-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +21,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37922
+https://bugs.freedesktop.org/show_bug.cgi?id=39817
 
---- Comment #19 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-03 19:38:29 PDT ---
-Created an attachment (id=49897)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=49897)
-minimal trace of non reclock magic
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-04 03:14:21 PDT ---
+You need to at least gather these informations:
+- card generation
+- versions of kernel, libdrm, xf86-video-nouveau and mesa
+- kernel log
 
-So this is more or less minimal trace. Reduces power usage from 21W to 16W.
+Please note that wrt 3D only nv50+ cards on 2.6.38+ kernel and mesa 7.11 are in
+supportable state.
 
-If I in addition to that use Martin's reclocking code I can reduce the power
-usage further by 0.5W (of course nouveau adds 0.5W on its own, so end power
-usage on level 0 is ~16W in fb console).
+See:
+http://nouveau.freedesktop.org/wiki/Bugs
+http://nouveau.freedesktop.org/wiki/MesaDrivers
+
+89705 is definitely a nouveau bug. I'm not so sure about 91585 and 87948
+(SIGSEGVs are very rare comparing to GPU lockups, like in 89705).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
