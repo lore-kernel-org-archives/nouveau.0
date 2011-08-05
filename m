@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Thu,  4 Aug 2011 16:58:36 -0700 (PDT)
-Message-ID: <20110804235836.A0EFF1301B2@annarchy.freedesktop.org>
+Date: Thu,  4 Aug 2011 17:03:23 -0700 (PDT)
+Message-ID: <20110805000323.5CC2913011E@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,15 @@ maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #49725|0                           |1
+  Attachment #49933|0                           |1
         is obsolete|                            |
+
+--- Comment #21 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-04 17:03:23 PDT ---
+Created an attachment (id=49934)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=49934)
+minimal trace of non reclock magic - v3
+
+some cosmetic updates
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
