@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39901] 4 monitors on two graphic cards GeRorce 450
- does not work
-Date: Sun,  7 Aug 2011 09:28:14 -0700 (PDT)
-Message-ID: <20110807162814.71BAA1300AF@annarchy.freedesktop.org>
-References: <bug-39901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39866] Incorrectly detects Analog outputs as TV out
+ on Apple Cards
+Date: Sun,  7 Aug 2011 13:33:06 -0700 (PDT)
+Message-ID: <20110807203306.4F14013008E@annarchy.freedesktop.org>
+References: <bug-39866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39866-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39901
+https://bugs.freedesktop.org/show_bug.cgi?id=39866
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-07 09:28:12 PDT ---
-Hi Vaclav
+--- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-07 13:33:05 PDT ---
+Hi Jon
 
-There was a bug [1] in xf86-video-nouveau that was causing this issue and the
-patch that resolves [2] it can be found in the master branch
+Can you please provide a bit more information about the system
+* Number and type of connectors
+* Logs if you try and insert the DVI to VGA adapter (+ monitor that is) into
+"DVI-1" (if it exists)
+* The same logs with additional verbose level - append "drm.debug=0x04" to your
+kernel command line
 
-Can you please update/rebuild and give it a try
-
-On top of that you can also try more minimalistic xorg.conf [1]
-
-I hope it helps
+From what I can see the issue is not a case of "TV miss detection" as in those
+cases the monitor does produce output (about a 1/4 of the full resolution)
 
 Cheers
 Emil
 
-[1] https://bugs.freedesktop.org/show_bug.cgi?id=39099
-[2]
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=de9d1ba7efeba64f319efa00df183d3cb78f24af
-
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
 ------- You are receiving this mail because: -------
+You are on the CC list for the bug.
 You are the assignee for the bug.
