@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35901] nv40: Dual display (--left-of ,
- --right-of) with nouveau does not work any more
-Date: Mon,  8 Aug 2011 08:14:13 -0700 (PDT)
-Message-ID: <20110808151413.49B4C130132@annarchy.freedesktop.org>
-References: <bug-35901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37922] NV86: too high power usage.
+Date: Tue,  9 Aug 2011 15:24:32 -0700 (PDT)
+Message-ID: <20110809222432.411B61301F3@annarchy.freedesktop.org>
+References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35901
+https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #20 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> 2011-08-08 08:14:09 PDT ---
-A patch referencing this bug report has been merged in Linux v3.0-rc3:
+--- Comment #22 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2011-08-09 15:24:31 PDT ---
+Maxim, could you try this?
 
-commit c1003d9c90f410777ab57f675b2a575c9c7ab5d7
-Author: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Date:   Tue May 24 15:57:14 2011 +0200
+nvapoke 1588 30 # disable VPE
+nvapoke 1590 3c00 # disable PBSP and PCRYPT)
 
-    drm/nv17-nv40: Fix modesetting failure when pitch == 4096px (fdo bug
-35901).
+Please tell me if it helps with power consumption :)
+
+Also, you can have fun by disabling PGRAPH:
+nvapoke 1588 3 (or 33 if you also want to disable VPE)
+
+Looking forward to your answer
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
