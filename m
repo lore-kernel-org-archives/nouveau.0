@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32453] SIGABRT caused by malloc around
- exaPrepareAccessReg_mixed
-Date: Wed, 10 Aug 2011 09:07:24 -0700 (PDT)
-Message-ID: <20110810160725.0923E130137@annarchy.freedesktop.org>
-References: <bug-32453-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37398] some applications (like wine) crash nouveau
+ and leave it in an unworkable state
+Date: Wed, 10 Aug 2011 09:07:25 -0700 (PDT)
+Message-ID: <20110810160725.B2F97130138@annarchy.freedesktop.org>
+References: <bug-37398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +21,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzI0NTMKCi0tLSBD
-b21tZW50ICMxMCBmcm9tIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5uZXQ+IDIwMTEt
-MDgtMTAgMDk6MDc6MjQgUERUIC0tLQpXb3VsZApodHRwOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcv
-eG9yZy94c2VydmVyL3BhdGNoLz9pZD05OWVlYjIxMWM3M2QyOGE2MGY5MDI0ZjQyY2Y5ZjllNDVi
-OGIwYzNkCmhhcHBlbiB0byBoZWxwPwoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1
-Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFy
-ZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWdu
-ZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzczOTgKCi0tLSBD
+b21tZW50ICM3IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4gMjAxMS0w
+OC0xMCAwOTowNzoyNSBQRFQgLS0tCldvdWxkCmh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy94
+b3JnL3hzZXJ2ZXIvcGF0Y2gvP2lkPTk5ZWViMjExYzczZDI4YTYwZjkwMjRmNDJjZjlmOWU0NWI4
+YjBjM2QKaGFwcGVuIHRvIGhlbHA/CgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVn
+cy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJl
+IHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25l
+ZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
