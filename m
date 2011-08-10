@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39550] Brightness stuck to low value after
 	suspend/resume
-Date: Tue,  9 Aug 2011 23:14:10 -0700 (PDT)
-Message-ID: <20110810061410.63C61130087@annarchy.freedesktop.org>
+Date: Tue,  9 Aug 2011 23:14:48 -0700 (PDT)
+Message-ID: <20110810061448.9E88A1300EB@annarchy.freedesktop.org>
 References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-09 23:14:08 PDT ---
-Can I get the output of the following, both before and after suspend/resume
+--- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-09 23:14:48 PDT ---
+Correction:
 
-nvapeek 0xe100; nvapeek 0xe28c; nvapeek 0xe100 8; nvapeek 0xe280 8
+nvapeek 0xe100; nvapeek 0xe28c; nvapeek 0xe104 8; nvapeek 0xe280 8
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
