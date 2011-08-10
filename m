@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] Brightness stuck to low value after
-	suspend/resume
-Date: Wed, 10 Aug 2011 15:53:47 -0700 (PDT)
-Message-ID: <20110810225347.B0FD31300A3@annarchy.freedesktop.org>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39988] [NVA5] Created FIFOs do not work
+Date: Wed, 10 Aug 2011 16:00:55 -0700 (PDT)
+Message-ID: <20110810230055.BEACA13015B@annarchy.freedesktop.org>
+References: <bug-39988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,11 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+https://bugs.freedesktop.org/show_bug.cgi?id=39988
 
---- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-10 15:53:47 PDT ---
-Heh. Okay.. Well, everything I know of on the GPU side that's relevant to the
-backlight level appears to be in order.. So, I'm out of ideas for the moment.
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-10 16:00:55 PDT ---
+I've noticed you mention this issue on IRC previously.
+
+Am I misremembering that you also mentioned that some other board doesn't work
+in that machine either?  And that the NVIDIA binary driver does not work?
+
+If the binary driver works, please post a kmmio trace of it.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
