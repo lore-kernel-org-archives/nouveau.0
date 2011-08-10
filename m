@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37398] some applications (like wine) crash nouveau
- and leave it in an unworkable state
-Date: Wed, 10 Aug 2011 09:07:25 -0700 (PDT)
-Message-ID: <20110810160725.B2F97130138@annarchy.freedesktop.org>
-References: <bug-37398-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39980] freezing nouveau
+Date: Wed, 10 Aug 2011 11:24:13 -0700 (PDT)
+Message-ID: <20110810182413.2E9FF1300CB@annarchy.freedesktop.org>
+References: <bug-39980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +20,33 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzczOTgKCi0tLSBD
-b21tZW50ICM3IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4gMjAxMS0w
-OC0xMCAwOTowNzoyNSBQRFQgLS0tCldvdWxkCmh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy94
-b3JnL3hzZXJ2ZXIvcGF0Y2gvP2lkPTk5ZWViMjExYzczZDI4YTYwZjkwMjRmNDJjZjlmOWU0NWI4
-YjBjM2QKaGFwcGVuIHRvIGhlbHA/CgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVn
-cy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJl
-IHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25l
-ZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=39980
+
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-10 11:24:11 PDT ---
+Hi Christoph
+
+Would you mind removing the following package in order to establish if it's
+related/triggers the issue
+
+libgl1-mesa-dri-experimental
+
+Note that by doing so your compositing manager will/should fallback to software
+rendering (you will not have any 3d/GL hardware acceleration) thus your desktop
+experience is not going to be as smooth
+
+For future reference would you mind attaching the whole log (dmesg) rather than
+pasting fragments of it in the report
+
+Can you please take a look at our Bugs [1] and FAQ [2] section to eliminite one
+of the most common root cause
+
+Cheers
+Emil
+
+[1] http://nouveau.freedesktop.org/wiki/Bugs
+[2] http://nouveau.freedesktop.org/wiki/FAQ
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
