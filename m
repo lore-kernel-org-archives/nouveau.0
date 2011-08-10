@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37922] NV86: too high power usage.
-Date: Tue,  9 Aug 2011 15:24:32 -0700 (PDT)
-Message-ID: <20110809222432.411B61301F3@annarchy.freedesktop.org>
-References: <bug-37922-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39550] Brightness stuck to low value after
+	suspend/resume
+Date: Tue,  9 Aug 2011 23:14:10 -0700 (PDT)
+Message-ID: <20110810061410.63C61130087@annarchy.freedesktop.org>
+References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37922
+https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #22 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2011-08-09 15:24:31 PDT ---
-Maxim, could you try this?
+--- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-09 23:14:08 PDT ---
+Can I get the output of the following, both before and after suspend/resume
 
-nvapoke 1588 30 # disable VPE
-nvapoke 1590 3c00 # disable PBSP and PCRYPT)
-
-Please tell me if it helps with power consumption :)
-
-Also, you can have fun by disabling PGRAPH:
-nvapoke 1588 3 (or 33 if you also want to disable VPE)
-
-Looking forward to your answer
+nvapeek 0xe100; nvapeek 0xe28c; nvapeek 0xe100 8; nvapeek 0xe280 8
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
