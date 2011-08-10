@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39988] New: [NVA5] Created FIFOs do not work
-Date: Wed, 10 Aug 2011 14:23:45 -0700 (PDT)
-Message-ID: <bug-39988-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39988] [NVA5] Created FIFOs do not work
+Date: Wed, 10 Aug 2011 14:28:32 -0700 (PDT)
+Message-ID: <20110810212832.A4C6D1300E8@annarchy.freedesktop.org>
+References: <bug-39988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-39988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39988
 
-           Summary: [NVA5] Created FIFOs do not work
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-
-Created an attachment (id=50104)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50104)
-kernel log with drm.debug=15
-
-I must currently use 'noaccel=1' to use nouveau on my NVA5 (GT 220, 1GB vram).
-
-While debugging, it appeared the extra created FIFOs simply do not run at all,
-and trigger PFIFO_DMA_PUSHER errors, with IB_EMPTY status. The first of these
-errors happen in nouveau_dma_init() function, which is the first one to be run
-after creation of a new FIFO.
-
-I must add 'vram_pushbuf=1' to kernel parameters to not have these errors at
-start, however, adding 'vram_notify=1' appears to have not effect.
-
-X crashes at start if I do not use 'noaccel=1', with or without
-'vram_pushbuf=1', triggering PFIFO_DMA_PUSHER errors, with INVALID_CMD status.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #50104|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
