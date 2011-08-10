@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39988] [NVA5] Created FIFOs do not work
-Date: Wed, 10 Aug 2011 14:28:32 -0700 (PDT)
-Message-ID: <20110810212832.A4C6D1300E8@annarchy.freedesktop.org>
+Date: Wed, 10 Aug 2011 14:29:29 -0700 (PDT)
+Message-ID: <20110810212929.CF9281300FB@annarchy.freedesktop.org>
 References: <bug-39988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39988
 
-Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #50104|application/octet-stream    |text/plain
-          mime type|                            |
+--- Comment #1 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-10 14:29:29 PDT ---
+Created an attachment (id=50105)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50105)
+kernel log, when trying to start X
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
