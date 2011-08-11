@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39988] [NVA5] Created FIFOs do not work
-Date: Thu, 11 Aug 2011 07:17:14 -0700 (PDT)
-Message-ID: <20110811141714.E62A01300BE@annarchy.freedesktop.org>
-References: <bug-39988-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40005] kernel crash in nv50_crtc_do_mode_set_base
+ during shutdown
+Date: Thu, 11 Aug 2011 09:20:23 -0700 (PDT)
+Message-ID: <20110811162023.A16D61300B8@annarchy.freedesktop.org>
+References: <bug-40005-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40005-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39988
+https://bugs.freedesktop.org/show_bug.cgi?id=40005
 
---- Comment #7 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 07:17:14 PDT ---
-Created an attachment (id=50132)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50132)
-X screenshot with patch
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|strange crash during        |kernel crash in
+                   |shutdowns                   |nv50_crtc_do_mode_set_base
+                   |                            |during shutdown
+
+--- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 09:20:23 PDT ---
+Line starting with "Code: f0 48" seems to be truncated. Can you recheck this is
+all you got?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
