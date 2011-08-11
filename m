@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40005] New: strang crash during shutdowns
-Date: Thu, 11 Aug 2011 05:14:07 -0700 (PDT)
-Message-ID: <bug-40005-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40005] strang crash during shutdowns
+Date: Thu, 11 Aug 2011 05:15:30 -0700 (PDT)
+Message-ID: <20110811121530.B94FF130106@annarchy.freedesktop.org>
+References: <bug-40005-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-40005-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40005
 
-           Summary: strang crash during shutdowns
-           Product: xorg
-           Version: 7.6
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Hi.
-
-Attached log shows some strange crash that happens usually when I shut down the
-system just before poweroff (or reboot).
-Seems to be somehow nouveau related?!
-
-Also notice the "[drm:drm_edid_block_valid] *ERROR* EDID checksum is invalid,
-remainder is 34" during boot a bit earlier.
-
-
-Using:
-- Debian sid
-- Linux 3.0
-- G86 [GeForce 8400M G] (rev a1)
-
-
-Cheers,
-Chris.
+--- Comment #1 from Christoph Anton Mitterer <calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org> 2011-08-11 05:15:29 PDT ---
+Created an attachment (id=50121)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50121)
+it's really annoying forcing people to enter a description if it's already
+clear by the name of the file.... will keep people from reporting issues....
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
