@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39988] [NVA5] Created FIFOs do not work
-Date: Thu, 11 Aug 2011 07:16:40 -0700 (PDT)
-Message-ID: <20110811141640.B321413012F@annarchy.freedesktop.org>
+Date: Thu, 11 Aug 2011 07:17:14 -0700 (PDT)
+Message-ID: <20110811141714.E62A01300BE@annarchy.freedesktop.org>
 References: <bug-39988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39988
 
---- Comment #6 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 07:16:40 PDT ---
-Yes, console acceleration works with vram_pushbuf=1.
-With your patch, X starts now, albeit showing full garbage.
+--- Comment #7 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 07:17:14 PDT ---
+Created an attachment (id=50132)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50132)
+X screenshot with patch
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
