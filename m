@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40005] kernel crash in nv50_crtc_do_mode_set_base
  during shutdown
-Date: Thu, 11 Aug 2011 09:20:23 -0700 (PDT)
-Message-ID: <20110811162023.A16D61300B8@annarchy.freedesktop.org>
+Date: Thu, 11 Aug 2011 10:15:03 -0700 (PDT)
+Message-ID: <20110811171503.4609E130072@annarchy.freedesktop.org>
 References: <bug-40005-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40005
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|strange crash during        |kernel crash in
-                   |shutdowns                   |nv50_crtc_do_mode_set_base
-                   |                            |during shutdown
-
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 09:20:23 PDT ---
-Line starting with "Code: f0 48" seems to be truncated. Can you recheck this is
-all you got?
+--- Comment #3 from Christoph Anton Mitterer <calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org> 2011-08-11 10:15:02 PDT ---
+I've just checked it... it is complete (well at least nothing more made it in
+the log).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
