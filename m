@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39988] [NVA5] Created FIFOs do not work
-Date: Thu, 11 Aug 2011 02:54:05 -0700 (PDT)
-Message-ID: <20110811095405.67A9413007A@annarchy.freedesktop.org>
+Date: Thu, 11 Aug 2011 04:05:43 -0700 (PDT)
+Message-ID: <20110811110544.2E728130219@annarchy.freedesktop.org>
 References: <bug-39988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39988
 
---- Comment #3 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 02:54:05 PDT ---
-The blob works, and also no problem in Windows either.
-
-I'll do an mmio trace, and also update/retest everything with the nv46.
+--- Comment #4 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 04:05:42 PDT ---
+mmio trace uploaded to mmio.dumps-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
