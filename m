@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39901] 4 monitors on two graphic cards GeRorce 450
  does not work
-Date: Thu, 11 Aug 2011 12:38:38 -0700 (PDT)
-Message-ID: <20110811193838.5BC5E1301B3@annarchy.freedesktop.org>
+Date: Thu, 11 Aug 2011 13:33:26 -0700 (PDT)
+Message-ID: <20110811203326.1A7CD1300DE@annarchy.freedesktop.org>
 References: <bug-39901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39901
 
---- Comment #2 from Vaclav <linux-fVFUNJGjhxXsq35pWSNszA@public.gmane.org> 2011-08-11 12:38:38 PDT ---
-Hi,
-Yes, now it works. Even some active elements (like flash on websites) are
-terrible slow - much more slower than with TwinView. 
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Anyway, thanks a lot!
-Vaclav
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 13:33:25 PDT ---
+I'm not 100% sure so don't take my word for it
+
+The reason for the slowness is because compositing/acceleration does not work
+with xinerama
+
+There has been a patch recently in the xserver that allows for xinerama to be
+used in conjunction with compositing. Nevertheless there could be some bits in
+nouveau that need updating
+
+In either case you will not get any acceleration if the total resolution
+exceeds 4096x4096
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
