@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39988] [NVA5] Created FIFOs do not work
-Date: Thu, 11 Aug 2011 04:05:43 -0700 (PDT)
-Message-ID: <20110811110544.2E728130219@annarchy.freedesktop.org>
+Date: Thu, 11 Aug 2011 04:14:06 -0700 (PDT)
+Message-ID: <20110811111406.8166D1300A1@annarchy.freedesktop.org>
 References: <bug-39988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39988
 
---- Comment #4 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 04:05:42 PDT ---
-mmio trace uploaded to mmio.dumps-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+--- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 04:14:05 PDT ---
+Created an attachment (id=50120)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=50120
+ Review: https://bugs.freedesktop.org/review?bug=39988&attachment=50120
+
+try harder at forcing vram pushbufs
+
+Thanks for the trace, I shall attempt to look at it tomorrow (bed time now!).
+
+From what you said, I presume console accel works okay with vram_pushbuf=1?  If
+that's the case, does X work too with this patch?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
