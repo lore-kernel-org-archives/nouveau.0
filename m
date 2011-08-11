@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39988] [NVA5] Created FIFOs do not work
-Date: Thu, 11 Aug 2011 04:14:06 -0700 (PDT)
-Message-ID: <20110811111406.8166D1300A1@annarchy.freedesktop.org>
-References: <bug-39988-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40005] New: strang crash during shutdowns
+Date: Thu, 11 Aug 2011 05:14:07 -0700 (PDT)
+Message-ID: <bug-40005-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +18,40 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39988
+https://bugs.freedesktop.org/show_bug.cgi?id=40005
 
---- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 04:14:05 PDT ---
-Created an attachment (id=50120)
- View: https://bugs.freedesktop.org/attachment.cgi?id=50120
- Review: https://bugs.freedesktop.org/review?bug=39988&attachment=50120
+           Summary: strang crash during shutdowns
+           Product: xorg
+           Version: 7.6
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-try harder at forcing vram pushbufs
 
-Thanks for the trace, I shall attempt to look at it tomorrow (bed time now!).
+Hi.
 
-From what you said, I presume console accel works okay with vram_pushbuf=1?  If
-that's the case, does X work too with this patch?
+Attached log shows some strange crash that happens usually when I shut down the
+system just before poweroff (or reboot).
+Seems to be somehow nouveau related?!
+
+Also notice the "[drm:drm_edid_block_valid] *ERROR* EDID checksum is invalid,
+remainder is 34" during boot a bit earlier.
+
+
+Using:
+- Debian sid
+- Linux 3.0
+- G86 [GeForce 8400M G] (rev a1)
+
+
+Cheers,
+Chris.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
