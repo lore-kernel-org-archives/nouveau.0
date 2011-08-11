@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40005] strang crash during shutdowns
-Date: Thu, 11 Aug 2011 05:15:30 -0700 (PDT)
-Message-ID: <20110811121530.B94FF130106@annarchy.freedesktop.org>
+Subject: [Bug 40005] strange crash during shutdowns
+Date: Thu, 11 Aug 2011 05:18:15 -0700 (PDT)
+Message-ID: <20110811121815.EE9251300AB@annarchy.freedesktop.org>
 References: <bug-40005-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40005
 
---- Comment #1 from Christoph Anton Mitterer <calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org> 2011-08-11 05:15:29 PDT ---
-Created an attachment (id=50121)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50121)
-it's really annoying forcing people to enter a description if it's already
-clear by the name of the file.... will keep people from reporting issues....
+Christoph Anton Mitterer <calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|strang crash during         |strange crash during
+                   |shutdowns                   |shutdowns
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
