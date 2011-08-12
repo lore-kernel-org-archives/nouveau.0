@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37445] Nouveau regularly reports the TRAP_VFETCH
-	FAULT errors.
-Date: Fri, 12 Aug 2011 16:35:28 -0700 (PDT)
-Message-ID: <20110812233528.B93F61300E2@annarchy.freedesktop.org>
-References: <bug-37445-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35876] Hard GPU hangs on NV86
+Date: Fri, 12 Aug 2011 16:37:51 -0700 (PDT)
+Message-ID: <20110812233752.0E056130184@annarchy.freedesktop.org>
+References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +20,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37445
+https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #6 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-12 16:35:28 PDT ---
-I'll should close this bug I think. Its just an application error who submits
-out of bound vertexes. mesa in debug mode actually complains about that.
+--- Comment #9 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-12 16:37:51 PDT ---
+In total tropics was running for hour and 30 minutes when I just shut it down.
+Last 20 minutes it run with card upclocked to pm level 2.
 
-Only thing though, maybe you want to filter this bogus data and not give it to
-apps?
+Now running Heaven benchmark.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
