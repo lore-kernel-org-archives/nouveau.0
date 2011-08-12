@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39988] [NVA5] Created FIFOs do not work
-Date: Thu, 11 Aug 2011 17:25:33 -0700 (PDT)
-Message-ID: <20110812002533.BF5CB130119@annarchy.freedesktop.org>
+Date: Fri, 12 Aug 2011 07:00:56 -0700 (PDT)
+Message-ID: <20110812140056.969261301B6@annarchy.freedesktop.org>
 References: <bug-39988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,19 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39988
 
---- Comment #8 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 17:25:32 PDT ---
-Created an attachment (id=50147)
- View: https://bugs.freedesktop.org/attachment.cgi?id=50147
- Review: https://bugs.freedesktop.org/review?bug=39988&attachment=50147
+--- Comment #9 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-12 07:00:53 PDT ---
+Created an attachment (id=50161)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50161)
+X screenshot with pci bus mastering patch
 
-reset pci bus mastering at init time
+It's a bit better with this second patch. KDE Menu, and many other stuff, are
+readable now, when they were partly full of garbage previously.
 
-Hmmm.. Yes, it looks like your card is completely failing to access system
-memory for some reason.  I can't believe it's a general issue with us setting
-up page tables etc, we'd surely have seen this report a *lot* more otherwise..
-
-The binary driver resets PCI bus mastering really early on during init, lets
-give that a go for starters..
+I also think it's something specific to my system, as you say. My motherboard
+has Via PT880 chipset, and can support an AGP or a PCI-E video card.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
