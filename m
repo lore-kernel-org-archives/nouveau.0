@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39901] 4 monitors on two graphic cards GeRorce 450
- does not work
-Date: Thu, 11 Aug 2011 13:33:26 -0700 (PDT)
-Message-ID: <20110811203326.1A7CD1300DE@annarchy.freedesktop.org>
-References: <bug-39901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39988] [NVA5] Created FIFOs do not work
+Date: Thu, 11 Aug 2011 17:25:33 -0700 (PDT)
+Message-ID: <20110812002533.BF5CB130119@annarchy.freedesktop.org>
+References: <bug-39988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39901
+https://bugs.freedesktop.org/show_bug.cgi?id=39988
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #8 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 17:25:32 PDT ---
+Created an attachment (id=50147)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=50147
+ Review: https://bugs.freedesktop.org/review?bug=39988&attachment=50147
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+reset pci bus mastering at init time
 
---- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-11 13:33:25 PDT ---
-I'm not 100% sure so don't take my word for it
+Hmmm.. Yes, it looks like your card is completely failing to access system
+memory for some reason.  I can't believe it's a general issue with us setting
+up page tables etc, we'd surely have seen this report a *lot* more otherwise..
 
-The reason for the slowness is because compositing/acceleration does not work
-with xinerama
-
-There has been a patch recently in the xserver that allows for xinerama to be
-used in conjunction with compositing. Nevertheless there could be some bits in
-nouveau that need updating
-
-In either case you will not get any acceleration if the total resolution
-exceeds 4096x4096
+The binary driver resets PCI bus mastering really early on during init, lets
+give that a go for starters..
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
