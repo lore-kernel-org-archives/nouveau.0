@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Fri, 12 Aug 2011 16:37:51 -0700 (PDT)
-Message-ID: <20110812233752.0E056130184@annarchy.freedesktop.org>
+Date: Fri, 12 Aug 2011 16:39:20 -0700 (PDT)
+Message-ID: <20110812233920.3B023130101@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #9 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-12 16:37:51 PDT ---
-In total tropics was running for hour and 30 minutes when I just shut it down.
-Last 20 minutes it run with card upclocked to pm level 2.
-
-Now running Heaven benchmark.
+--- Comment #10 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-12 16:39:19 PDT ---
+And forgot to mention, that my trace that reduces power usage was run while
+tropics were running, and everything is just fine!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
