@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Fri, 12 Aug 2011 16:39:20 -0700 (PDT)
-Message-ID: <20110812233920.3B023130101@annarchy.freedesktop.org>
+Date: Fri, 12 Aug 2011 17:49:47 -0700 (PDT)
+Message-ID: <20110813004948.018AC13015F@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #10 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-12 16:39:19 PDT ---
-And forgot to mention, that my trace that reduces power usage was run while
-tropics were running, and everything is just fine!
+--- Comment #11 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-12 17:49:47 PDT ---
+OK, did run Unegine Heaven for hour and 30 minutes. Don't want to leave system
+stressed and unattended. It sure works, beyond any doubt.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
