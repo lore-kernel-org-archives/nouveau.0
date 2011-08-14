@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Fri, 12 Aug 2011 17:49:47 -0700 (PDT)
-Message-ID: <20110813004948.018AC13015F@annarchy.freedesktop.org>
+Date: Sat, 13 Aug 2011 17:33:32 -0700 (PDT)
+Message-ID: <20110814003332.DD51513011D@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #11 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-12 17:49:47 PDT ---
-OK, did run Unegine Heaven for hour and 30 minutes. Don't want to leave system
-stressed and unattended. It sure works, beyond any doubt.
+--- Comment #12 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-13 17:33:32 PDT ---
+So far, so good. No hangs, everything I throw at nouveau works.
+Amazing.
+
+For now I'll use this ctxprog + my power saving settings for a week or so to
+ensure that there are no crashes.
+
+Then will debug the ctxprog.
+
+So far its just perfect.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
