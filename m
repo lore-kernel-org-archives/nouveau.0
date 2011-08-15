@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38860] nouveau driver with Asus ENGT430 says
  unsupported chipset, please report
-Date: Mon, 15 Aug 2011 09:13:42 -0700 (PDT)
-Message-ID: <20110815161342.A851F130143@annarchy.freedesktop.org>
+Date: Mon, 15 Aug 2011 11:16:38 -0700 (PDT)
+Message-ID: <20110815181638.D500A1300FA@annarchy.freedesktop.org>
 References: <bug-38860-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-38860-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,18 +21,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mzg4NjAKCi0tLSBD
-b21tZW50ICM0IGZyb20gbmV0d29ya2VyIDx5bGFsYXRheWFzZWZ1ZUBnbWFpbC5jb20+IDIwMTEt
-MDgtMTUgMDk6MTM6NDIgUERUIC0tLQpoaQoKSSd2ZSBzZWVuIHRoZSBzYW1lIG1lc3NhZ2UgYXQg
-Ym9vdCBteSBsYXB0b3AsIG15IGZlYXR1cmVzIGFyZToKCkRlYmlhbiBHTlUvTGludXggd2hlZXp5
-L3NpZCBcbiBcbAprZXJuZWwgMy4wLjAtMS1hbWQ2NApvbiBhIGJveCBEZWxsIEw1MDJYIHdpdGgg
-Z3JhcGhpYyBjYXJkIE5WSURJQcKuIEdlRm9yY2XCriBHVCA1MjVNIDFHQiBjb24KdGVjbm9sb2fD
-rWEgT3B0aW11cwoKSW4gbXkgZG1lc2cgc2F5czoKClsgICAgOS41OTg3NDRdIFtkcm1dIG5vdXZl
-YXUgMDAwMDowMTowMC4wOiBQR1JBUEg6IHVuc3VwcG9ydGVkIGNoaXBzZXQsIHBsZWFzZQpyZXBv
-cnQhCgpJZiB5b3UgbmVlZCBhbnkgbW9yZSBpbmZvLCBwbGVhc2UgYXNrIG1lLgoKLS0gCkNvbmZp
-Z3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/
-dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0t
-LS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=38860
+
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-15 11:16:38 PDT ---
+Hi networker
+
+As you have quite a recent card, there are a couple of things you can try
+1. Can you try nouveau/kernel
+2. Try linus 3.1
+
+Note that you have a Optimus system thus read here[1] for more information
+
+In either case can you please attach the full dmesg log. That will provide us a
+bit more information about your card
+
+Thanks
+
+[1] http://nouveau.freedesktop.org/wiki/Optimus
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
