@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39866] Incorrectly detects Analog outputs as TV out
  on Apple Cards
-Date: Mon, 15 Aug 2011 22:34:44 -0700 (PDT)
-Message-ID: <20110816053444.755C2130126@annarchy.freedesktop.org>
+Date: Mon, 15 Aug 2011 23:08:06 -0700 (PDT)
+Message-ID: <20110816060806.62CE6130099@annarchy.freedesktop.org>
 References: <bug-39866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39866
 
---- Comment #6 from Jon Sturm <jonimoose-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-15 22:34:42 PDT ---
-Created an attachment (id=50256)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50256)
-dmesg drmdebug unpluging and repluging adapter
+--- Comment #7 from Jon Sturm <jonimoose-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-15 23:08:05 PDT ---
+Created an attachment (id=50257)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50257)
+dmesg after plug and unplug, no drmdebug
 
-Attached is the dmesg with the drm debug line after I removed and repluged the
-adapter+monitor into the DVI port. I will do it without the drmdebug line
-shortly.
+This is the dmesg from booting without drmdebug and I removed the adpater
+before nouveau was loaded. I tried to just boot without it but it seemed to
+force booting Mac OS X when no output was attached, I'm not sure why that was.  
+
+I also started X without a display attached but xrandr claimed DVI-I-2 was
+connected. Unpluging and replugging the display with X running caused xrandr to
+say TV-1 disconnected but DVI-I-2 and DVI-I-1 never changed. I can run the
+tests again with TV detection disabled if needed, assuming yaboot plays nicely.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
