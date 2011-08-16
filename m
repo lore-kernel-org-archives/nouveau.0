@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38860] nouveau driver with Asus ENGT430 says
  unsupported chipset, please report
-Date: Mon, 15 Aug 2011 11:16:38 -0700 (PDT)
-Message-ID: <20110815181638.D500A1300FA@annarchy.freedesktop.org>
+Date: Mon, 15 Aug 2011 17:12:41 -0700 (PDT)
+Message-ID: <20110816001241.D75E61300AB@annarchy.freedesktop.org>
 References: <bug-38860-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38860
 
---- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-15 11:16:38 PDT ---
-Hi networker
-
-As you have quite a recent card, there are a couple of things you can try
-1. Can you try nouveau/kernel
-2. Try linus 3.1
-
-Note that you have a Optimus system thus read here[1] for more information
-
-In either case can you please attach the full dmesg log. That will provide us a
-bit more information about your card
-
-Thanks
-
-[1] http://nouveau.freedesktop.org/wiki/Optimus
+--- Comment #6 from networker <ylalatayasefue-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-15 17:12:41 PDT ---
+Created an attachment (id=50249)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50249)
+my_dmesg_for_nouveau
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
