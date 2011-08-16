@@ -1,11 +1,14 @@
-From: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nouveau: Add driver entry for vdpau
-Date: Tue, 16 Aug 2011 22:19:56 +0200
-Message-ID: <4E4AD0EC.4030102@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 38860] nouveau driver with Asus ENGT430 says
+ unsupported chipset, please report
+Date: Tue, 16 Aug 2011 13:27:56 -0700 (PDT)
+Message-ID: <20110816202756.1D7E7130114@annarchy.freedesktop.org>
+References: <bug-38860-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-38860-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,31 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
-diff --git a/src/nouveau_dri2.c b/src/nouveau_dri2.c
-index 1a68ed3..e5dfce0 100644
---- a/src/nouveau_dri2.c
-+++ b/src/nouveau_dri2.c
-@@ -429,12 +429,18 @@ nouveau_dri2_init(ScreenPtr pScreen)
- 	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
- 	NVPtr pNv = NVPTR(pScrn);
- 	DRI2InfoRec dri2 = { 0 };
-+	const char *drivernames[2] = { };
- 
--	if (pNv->Architecture >= NV_ARCH_30)
--		dri2.driverName = "nouveau";
--	else
--		dri2.driverName = "nouveau_vieux";
-+	if (pNv->Architecture >= NV_ARCH_30) {
-+		drivernames[0] = "nouveau";
-+		drivernames[1] = "nouveau";
-+		dri2.numDrivers = 2;
-+	} else {
-+		drivernames[0] = "nouveau_vieux";
-+		dri2.numDrivers = 1;
-+	}
- 
-+	dri2.driverNames = drivernames;
- 	dri2.fd = nouveau_device(pNv->dev)->fd;
- 	dri2.deviceName = pNv->drm_device_name;
+https://bugs.freedesktop.org/show_bug.cgi?id=38860
+
+--- Comment #9 from networker <ylalatayasefue-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-16 13:27:55 PDT ---
+Hi Emil
+
+Many thanks for your reply, I'll be testing your tips and as soon as possible I
+get results I'll try to reply this thread.
+
+thanks
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
