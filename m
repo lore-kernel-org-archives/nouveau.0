@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39866] Incorrectly detects Analog outputs as TV out
- on Apple Cards
-Date: Mon, 15 Aug 2011 23:11:54 -0700 (PDT)
-Message-ID: <20110816061155.02B69130168@annarchy.freedesktop.org>
-References: <bug-39866-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40138] New: nouveau doesn't show screen on DVI on
+ ALiveNF6G-DVI with DVI Graphics-SI Card
+Date: Tue, 16 Aug 2011 05:12:36 -0700 (PDT)
+Message-ID: <bug-40138-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39866-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +19,33 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39866
+https://bugs.freedesktop.org/show_bug.cgi?id=40138
 
---- Comment #8 from Jon Sturm <jonimoose-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-15 23:11:54 PDT ---
-I can also give a dev ssh access if needed as the box is mainly used as a build
-box for Arch Linux PPC packages as well as for a few friends to test if their
-code is big endian safe.
+           Summary: nouveau doesn't show screen on DVI on ALiveNF6G-DVI
+                    with DVI Graphics-SI Card
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: alexander.stein-jNDFPZUTrfQ+B2oLq8eQJv4efur1V5z/s0AfqQuZ5sE@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+I installed x11-base/nouveau-drm-99999999 on my Gentoo linux (which should be
+git HEAD) to get a more recent kernel module for my 3.0.0 kernel.
+The kernel starts fine showing the kernel log messages on the DVI connector.
+But (I guess) after loading the nouveau kernel module the screen gets blank and
+I have to use the VGA connector, which works fine nevertheless. Also X11 starts
+fine using the nouveau driver.
+Before I used nv driver which supported the DVI output, both VT and X11.
+I'll attach the dmesg.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
 ------- You are receiving this mail because: -------
-You are on the CC list for the bug.
 You are the assignee for the bug.
