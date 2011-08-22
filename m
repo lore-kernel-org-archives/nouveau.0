@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: properly handle allocation failure
- in nouveau_sgdma_populate
-Date: Mon, 22 Aug 2011 23:14:05 +0200
-Message-ID: <20110822211405.GA3098@joi.lan>
+Subject: [RFC PATCH] drm/nouveau: fix nv04_sgdma_bind on non-"4kB
+	pages" archs
+Date: Mon, 22 Aug 2011 23:22:13 +0200
+Message-ID: <20110822212213.GC3098@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -17,36 +17,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Not cleaning after alloc failure would result in crash on destroy,
-because nouveau_sgdma_clear assumes "ttm_alloced" to be not null when
-"pages" is not null.
+nv04_sgdma_bind binds the same page multiple times on
+architectures where PAGE_SIZE != 4096.
+Let's fix it.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: stable-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
 ---
- drivers/gpu/drm/nouveau/nouveau_sgdma.c |    5 ++++-
- 1 files changed, 4 insertions(+), 1 deletions(-)
+
+I'm not sure about it - other backends seems to not care
+about page size at all...
+
+---
+ drivers/gpu/drm/nouveau/nouveau_sgdma.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-index 82fad91..ca6028f 100644
+index ca6028f..d7bb9c6 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-@@ -37,8 +37,11 @@ nouveau_sgdma_populate(struct ttm_backend *be, unsigned long num_pages,
- 		return -ENOMEM;
+@@ -129,7 +129,7 @@ nv04_sgdma_bind(struct ttm_backend *be, struct ttm_mem_reg *mem)
  
- 	nvbe->ttm_alloced = kmalloc(sizeof(bool) * num_pages, GFP_KERNEL);
--	if (!nvbe->ttm_alloced)
-+	if (!nvbe->ttm_alloced) {
-+		kfree(nvbe->pages);
-+		nvbe->pages = NULL;
- 		return -ENOMEM;
-+	}
+ 		for (j = 0; j < PAGE_SIZE / NV_CTXDMA_PAGE_SIZE; j++, pte++) {
+ 			nv_wo32(gpuobj, (pte * 4) + 0, offset_l | 3);
+-			dma_offset += NV_CTXDMA_PAGE_SIZE;
++			offset_l += NV_CTXDMA_PAGE_SIZE;
+ 		}
+ 	}
  
- 	nvbe->nr_pages = 0;
- 	while (num_pages--) {
 -- 
 1.7.6
