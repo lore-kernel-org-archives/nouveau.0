@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [RFC PATCH] drm/nouveau: fix nv04_sgdma_bind on non-"4kB
-	pages" archs
-Date: Mon, 22 Aug 2011 23:22:13 +0200
-Message-ID: <20110822212213.GC3098@joi.lan>
+Subject: [PATCH] drm/nouveau: fix printk typo in ioremap failure
+	path
+Date: Mon, 22 Aug 2011 23:28:56 +0200
+Message-ID: <20110822212856.GD3098@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -17,35 +17,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-nv04_sgdma_bind binds the same page multiple times on
-architectures where PAGE_SIZE != 4096.
-Let's fix it.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
-
-I'm not sure about it - other backends seems to not care
-about page size at all...
-
----
- drivers/gpu/drm/nouveau/nouveau_sgdma.c |    2 +-
+ drivers/gpu/drm/nouveau/nouveau_state.c |    2 +-
  1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-index ca6028f..d7bb9c6 100644
---- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-@@ -129,7 +129,7 @@ nv04_sgdma_bind(struct ttm_backend *be, struct ttm_mem_reg *mem)
- 
- 		for (j = 0; j < PAGE_SIZE / NV_CTXDMA_PAGE_SIZE; j++, pte++) {
- 			nv_wo32(gpuobj, (pte * 4) + 0, offset_l | 3);
--			dma_offset += NV_CTXDMA_PAGE_SIZE;
-+			offset_l += NV_CTXDMA_PAGE_SIZE;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c b/drivers/gpu/drm/nouveau/nouveau_state.c
+index 283dfb4..43cbc81 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_state.c
++++ b/drivers/gpu/drm/nouveau/nouveau_state.c
+@@ -1145,7 +1145,7 @@ int nouveau_load(struct drm_device *dev, unsigned long flags)
+ 			ioremap(pci_resource_start(dev->pdev, ramin_bar),
+ 				dev_priv->ramin_size);
+ 		if (!dev_priv->ramin) {
+-			NV_ERROR(dev, "Failed to PRAMIN BAR");
++			NV_ERROR(dev, "Failed to map PRAMIN BAR\n");
+ 			ret = -ENOMEM;
+ 			goto err_mmio;
  		}
- 	}
- 
 -- 
 1.7.6
