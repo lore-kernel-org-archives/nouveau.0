@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
  composition manager
-Date: Mon, 22 Aug 2011 17:55:35 -0700 (PDT)
-Message-ID: <20110823005535.3B083130165@annarchy.freedesktop.org>
+Date: Mon, 22 Aug 2011 17:56:23 -0700 (PDT)
+Message-ID: <20110823005624.086B2130100@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #25 from Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org> 2011-08-22 17:55:33 PDT ---
-Created an attachment (id=50468)
- View: https://bugs.freedesktop.org/attachment.cgi?id=50468
- Review: https://bugs.freedesktop.org/review?bug=35930&attachment=50468
+--- Comment #26 from Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org> 2011-08-22 17:56:20 PDT ---
+Created an attachment (id=50469)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=50469
+ Review: https://bugs.freedesktop.org/review?bug=35930&attachment=50469
 
-DDX: Update front buffer pixmap and names before exchanging buffers
+DDX: Fixes to swap scheduling, especially for copy-swaps.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
