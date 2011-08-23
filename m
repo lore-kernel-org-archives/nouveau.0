@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Mon, 22 Aug 2011 20:51:13 -0700 (PDT)
-Message-ID: <20110823035114.05FEE1300D8@annarchy.freedesktop.org>
-References: <bug-35876-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35930] flickering in many OpenGL applications with
+ composition manager
+Date: Tue, 23 Aug 2011 01:09:05 -0700 (PDT)
+Message-ID: <20110823080905.0FC13130093@annarchy.freedesktop.org>
+References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35930-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +21,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35876
-
---- Comment #14 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-22 20:51:13 PDT ---
-Well, tropics is stable allright, but playing supertuxkat for about 5 laps got
-me another freeze. Well... that saga won't end.
-
-Of course that bit that fixes tropics does fix it, but now it seems to be part
-of the problem.
-
-Now I once again run closer to nvidia ctxprog. Who knows maybe that will help,
-but since stk is not automated, I couldn't test it properly until I implement
-automatic driving there that should be very easy to do.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzU5MzAKCi0tLSBD
+b21tZW50ICMyOSBmcm9tIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5uZXQ+IDIwMTEt
+MDgtMjMgMDE6MDk6MDQgUERUIC0tLQpJIHRoaW5rIHRoZXJlJ3MgYSBmdW5kYW1lbnRhbCBwcm9i
+bGVtIHdpdGggc2ltcGx5IGV4Y2hhbmdpbmcgdGhlIGJ1ZmZlcnMgZm9yIGEKcmVkaXJlY3RlZCB3
+aW5kb3cncyBiYWNraW5nIHBpeG1hcDogVGhlcmUncyBubyBzeW5jaHJvbml6YXRpb24gYmV0d2Vl
+biB0aGUgYXBwCmFuZCB0aGUgY29tcG9zaXRpbmcgbWFuYWdlciAoQ00pLCBzbyBieSB0aGUgdGlt
+ZSB0aGUgQ00gY29tcG9zaXRlcyB0aGUgd2luZG93CmNvbnRlbnRzIGFmdGVyIGEgZmxpcCwgdGhl
+IGFwcCBtaWdodCBoYXZlIGFscmVhZHkgZmxpcHBlZCBhZ2FpbiBhbmQgc3RhcnRlZApyZW5kZXJp
+bmcgdG8gdGhlIGJ1ZmZlciB0aGUgQ00gaXMgdXNpbmcgZm9yIGNvbXBvc2l0aW5nLiBJIHRoaW5r
+IHRoaXMgaXMgdGhlCmNhdXNlIG9mIHRoZSBmbGlja2VyaW5nLgoKSXQgbWlnaHQgYmUgcG9zc2li
+bGUgdG8gZml4IHRoaXMgKGF0IGxlYXN0IGFzIGxvbmcgYXMgdGhlcmUgYXJlbid0IHNldmVyYWwK
+Y2xpZW50cyB0cnlpbmcgdG8gZ2V0IGF0IHRoZSB3aW5kb3cgY29udGVudHMgdmlhIHRoZSBDb21w
+b3NpdGUgZXh0ZW5zaW9uLi4uKQp3aXRoIHRyaXBsZSBidWZmZXJpbmcsIGJ1dCBJIHdvbmRlciBp
+ZiBpdCdzIHJlYWxseSB3b3J0aCB0aGUgY29tcGxleGl0eS4gKEUuZy4KZXhjaGFuZ2luZyBidWZm
+ZXJzIGlzbid0IHBvc3NpYmxlIGFueXdheSB3aXRoIHRoZSBtYWpvcml0eSBvZiB3aW5kb3cgbWFu
+YWdlcnMsCndoaWNoIHJlcGFyZW50IGNsaWVudCB3aW5kb3dzKQoKLS0gCkNvbmZpZ3VyZSBidWdt
+YWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWls
+Ci0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91
+IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
