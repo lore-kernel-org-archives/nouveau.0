@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
- is unable to boot
-Date: Tue, 23 Aug 2011 13:42:55 -0700 (PDT)
-Message-ID: <20110823204255.EB129130153@annarchy.freedesktop.org>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40050] freezing nouveau,
+	when playing videos on a 2nd screen
+Date: Tue, 23 Aug 2011 14:28:00 -0700 (PDT)
+Message-ID: <20110823212800.C028F13014A@annarchy.freedesktop.org>
+References: <bug-40050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +21,35 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=40050
 
-Viktor Basso <viktor.basso-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-23 14:28:00 PDT ---
+Hi Christoph
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |viktor.basso-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org
+Looking in your log many(most) of the ERROR messages are 3D/GL related
 
---- Comment #13 from Viktor Basso <viktor.basso-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> 2011-08-23 13:42:54 PDT ---
-Hello
+On top of that please note that there has been a bug in kernel 2.6.39 that
+causes the system to hang when Xv is used in conjunction with 3D(GL
+app/game/compositing window manager)
 
-I cant add much, but i am having the same problem with MacBook Pro 5,3.
-Running 2.6.38-11-generic, and the 3.1 RC3 kernel compiled from git
+Can you try the following
+1. Remove libgl1-mesa-dri-experimental and/or update your kernel to 3.0
 
-Have gone back and fourth adding x-updates and xorg-edgers PPAs without any
-luck
+Note in general (with nouveau) it's recommended to try the latest (git) version
+of the following
+
+1, kernel [1]
+2. libdrm -- in your case it's not necessary
+3. xf86-video-nouveau
+4. optional mesa
+
+Can you give the suggestion(s) a try (I highly recommend removing
+mesa-experimental just to narrow down the issue)
+
+Cheers
+Emil
+
+[1] http://cgit.freedesktop.org/nouveau/linux-2.6/
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
