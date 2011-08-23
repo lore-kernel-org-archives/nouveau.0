@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35930] flickering in many OpenGL applications with
- composition manager
-Date: Tue, 23 Aug 2011 01:09:05 -0700 (PDT)
-Message-ID: <20110823080905.0FC13130093@annarchy.freedesktop.org>
-References: <bug-35930-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40138] nouveau doesn't show screen on DVI on
+ ALiveNF6G-DVI with DVI Graphics-SI Card
+Date: Tue, 23 Aug 2011 01:13:56 -0700 (PDT)
+Message-ID: <20110823081356.6F99E13012F@annarchy.freedesktop.org>
+References: <bug-40138-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35930-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40138-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,25 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzU5MzAKCi0tLSBD
-b21tZW50ICMyOSBmcm9tIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5uZXQ+IDIwMTEt
-MDgtMjMgMDE6MDk6MDQgUERUIC0tLQpJIHRoaW5rIHRoZXJlJ3MgYSBmdW5kYW1lbnRhbCBwcm9i
-bGVtIHdpdGggc2ltcGx5IGV4Y2hhbmdpbmcgdGhlIGJ1ZmZlcnMgZm9yIGEKcmVkaXJlY3RlZCB3
-aW5kb3cncyBiYWNraW5nIHBpeG1hcDogVGhlcmUncyBubyBzeW5jaHJvbml6YXRpb24gYmV0d2Vl
-biB0aGUgYXBwCmFuZCB0aGUgY29tcG9zaXRpbmcgbWFuYWdlciAoQ00pLCBzbyBieSB0aGUgdGlt
-ZSB0aGUgQ00gY29tcG9zaXRlcyB0aGUgd2luZG93CmNvbnRlbnRzIGFmdGVyIGEgZmxpcCwgdGhl
-IGFwcCBtaWdodCBoYXZlIGFscmVhZHkgZmxpcHBlZCBhZ2FpbiBhbmQgc3RhcnRlZApyZW5kZXJp
-bmcgdG8gdGhlIGJ1ZmZlciB0aGUgQ00gaXMgdXNpbmcgZm9yIGNvbXBvc2l0aW5nLiBJIHRoaW5r
-IHRoaXMgaXMgdGhlCmNhdXNlIG9mIHRoZSBmbGlja2VyaW5nLgoKSXQgbWlnaHQgYmUgcG9zc2li
-bGUgdG8gZml4IHRoaXMgKGF0IGxlYXN0IGFzIGxvbmcgYXMgdGhlcmUgYXJlbid0IHNldmVyYWwK
-Y2xpZW50cyB0cnlpbmcgdG8gZ2V0IGF0IHRoZSB3aW5kb3cgY29udGVudHMgdmlhIHRoZSBDb21w
-b3NpdGUgZXh0ZW5zaW9uLi4uKQp3aXRoIHRyaXBsZSBidWZmZXJpbmcsIGJ1dCBJIHdvbmRlciBp
-ZiBpdCdzIHJlYWxseSB3b3J0aCB0aGUgY29tcGxleGl0eS4gKEUuZy4KZXhjaGFuZ2luZyBidWZm
-ZXJzIGlzbid0IHBvc3NpYmxlIGFueXdheSB3aXRoIHRoZSBtYWpvcml0eSBvZiB3aW5kb3cgbWFu
-YWdlcnMsCndoaWNoIHJlcGFyZW50IGNsaWVudCB3aW5kb3dzKQoKLS0gCkNvbmZpZ3VyZSBidWdt
-YWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWls
-Ci0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91
-IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=40138
+
+--- Comment #2 from Alexander Stein <alexander.stein-jNDFPZUTrfQ+B2oLq8eQJv4efur1V5z/s0AfqQuZ5sE@public.gmane.org> 2011-08-23 01:13:55 PDT ---
+Created an attachment (id=50473)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50473)
+VBIOS dump
+
+As suggested on IRC I added the VBIOS read from
+/sys/kernel/debug/dri/0/vbios.rom
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
