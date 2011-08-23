@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35930] flickering in many OpenGL applications with
  composition manager
-Date: Tue, 23 Aug 2011 02:40:58 -0700 (PDT)
-Message-ID: <20110823094058.C86DA130171@annarchy.freedesktop.org>
+Date: Tue, 23 Aug 2011 04:25:21 -0700 (PDT)
+Message-ID: <20110823112521.1C07D130158@annarchy.freedesktop.org>
 References: <bug-35930-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,41 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35930
 
---- Comment #30 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-23 02:40:58 PDT ---
-Created an attachment (id=50479)
- View: https://bugs.freedesktop.org/attachment.cgi?id=50479
- Review: https://bugs.freedesktop.org/review?bug=35930&attachment=50479
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
-disable swaps of of-screen pixmaps
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
-I sure do agree with you.
-May we should agree on disable that swap then after all as I proposed?
+--- Comment #31 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-08-23 04:25:20 PDT ---
+(In reply to comment #29)
+> I think there's a fundamental problem with simply exchanging the buffers for a
+> redirected window's backing pixmap: There's no synchronization between the app
+> and the compositing manager (CM), so by the time the CM composites the window
+> contents after a flip, the app might have already flipped again and started
+> rendering to the buffer the CM is using for compositing. I think this is the
+> cause of the flickering.
+> 
+Exactly.
 
-That surly fixes that problem for me.
+> It might be possible to fix this (at least as long as there aren't several
+> clients trying to get at the window contents via the Composite extension...)
+> with triple buffering, but I wonder if it's really worth the complexity. (E.g.
+> exchanging buffers isn't possible anyway with the majority of window managers,
+> which reparent client windows)
+
+I was considering another solution, but I've been too busy in the last couple
+of months to put it into practice. Basically, the X server could make sure that
+at any given time all clients agree on the role of any buffers that are being
+shared by several clients, by blocking their GetBuffers requests at the right
+time, IOW no two clients would ever see the same buffer in two different slots
+at the same moment. AFAICT this can be made to work for an arbitrary number of
+clients getting at the same window at the same time.
+
+Maxim, I've pushed your patch as a temporary solution until I (or somebody else
+with more time) get around to fixing this synchronization problem in the X
+server.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
