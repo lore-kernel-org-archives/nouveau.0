@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Mon, 22 Aug 2011 19:45:00 -0700 (PDT)
-Message-ID: <20110823024500.AC01A130159@annarchy.freedesktop.org>
-References: <bug-35876-8800@http.bugs.freedesktop.org/>
+From: Konrad Rzeszutek Wilk <konrad.wilk-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: properly handle allocation
+ failure in nouveau_sgdma_populate
+Date: Mon, 22 Aug 2011 22:52:51 -0400
+Message-ID: <20110823025251.GB24557@dumpdata.com>
+References: <20110822211405.GA3098@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20110822211405.GA3098-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,30 +19,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35876
+On Mon, Aug 22, 2011 at 11:14:05PM +0200, Marcin Slusarz wrote:
+> Not cleaning after alloc failure would result in crash on destroy,
+> because nouveau_sgdma_clear assumes "ttm_alloced" to be not null when
+> "pages" is not null.
+> 
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Cc: stable-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
 
---- Comment #13 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-22 19:44:59 PDT ---
-Created an attachment (id=50470)
- View: https://bugs.freedesktop.org/attachment.cgi?id=50470
- Review: https://bugs.freedesktop.org/review?bug=35876&attachment=50470
+Acked-by: Konrad Rzeszutek Wilk <konrad.wilk-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
 
-fix for stability issues on NV86
-
-Thats all. I have finished the compare process.
-
-Like that or hate that, but in the end the source of so many crashes, data
-losses and general suffering,was found to be just one bit,just one bit that
-wasn't set by nouveau ctxprog generator in one of ctxvals in per MP state.
-(Well my card has 2 MPs, so that would make that 2 bits I guess :-) )
-
-Attached patch was tested by 1/2 hour run of Unegine tropics game.
-Unless you have reason to suspect that this bit can break other NV86 cards,
-please merge it.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_sgdma.c |    5 ++++-
+>  1 files changed, 4 insertions(+), 1 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+> index 82fad91..ca6028f 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+> @@ -37,8 +37,11 @@ nouveau_sgdma_populate(struct ttm_backend *be, unsigned long num_pages,
+>  		return -ENOMEM;
+>  
+>  	nvbe->ttm_alloced = kmalloc(sizeof(bool) * num_pages, GFP_KERNEL);
+> -	if (!nvbe->ttm_alloced)
+> +	if (!nvbe->ttm_alloced) {
+> +		kfree(nvbe->pages);
+> +		nvbe->pages = NULL;
+>  		return -ENOMEM;
+> +	}
+>  
+>  	nvbe->nr_pages = 0;
+>  	while (num_pages--) {
+> -- 
+> 1.7.6
+> 
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
