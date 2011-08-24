@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40336] Nouveau: Kernel oops when unplugging external
 	monitor
-Date: Wed, 24 Aug 2011 00:25:09 -0700 (PDT)
-Message-ID: <20110824072509.4BB171300A2@annarchy.freedesktop.org>
+Date: Wed, 24 Aug 2011 00:25:15 -0700 (PDT)
+Message-ID: <20110824072515.4E8AE1300E4@annarchy.freedesktop.org>
 References: <bug-40336-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ marco-w08N04152XNe4xh82S9ftw@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #50524|application/octet-stream    |text/plain
+  Attachment #50525|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
