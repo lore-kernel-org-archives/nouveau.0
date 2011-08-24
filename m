@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40336] Nouveau: Kernel oops when unplugging external
 	monitor
-Date: Wed, 24 Aug 2011 00:47:18 -0700 (PDT)
-Message-ID: <20110824074718.D6C371300BC@annarchy.freedesktop.org>
+Date: Wed, 24 Aug 2011 14:36:38 -0700 (PDT)
+Message-ID: <20110824213638.440A21300F2@annarchy.freedesktop.org>
 References: <bug-40336-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,25 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40336
 
---- Comment #8 from marco-w08N04152XNe4xh82S9ftw@public.gmane.org 2011-08-24 00:47:18 PDT ---
-I should mention that I use suspend2ram from time to time. But it seems that
-this bug also occur after a reboot without suspend2ram involved.
+--- Comment #9 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-24 14:36:37 PDT ---
+Created an attachment (id=50547)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=50547
+ Review: https://bugs.freedesktop.org/review?bug=40336&attachment=50547
+
+fix
+
+Hi Marco
+
+Thanks for the comprehensive bug report
+
+Regarding your issue - I believe it's similar to bug 40005
+
+Although in your case the nv04 codepath has been used
+
+Can you please try the patch provided
+
+Cheers
+Emil
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
