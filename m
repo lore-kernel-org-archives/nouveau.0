@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40336] Nouveau: Kernel oops when unplugging external
 	monitor
-Date: Wed, 24 Aug 2011 00:19:51 -0700 (PDT)
-Message-ID: <20110824071951.970411301DA@annarchy.freedesktop.org>
+Date: Wed, 24 Aug 2011 00:20:41 -0700 (PDT)
+Message-ID: <20110824072041.1949F130163@annarchy.freedesktop.org>
 References: <bug-40336-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40336
 
---- Comment #5 from marco-w08N04152XNe4xh82S9ftw@public.gmane.org 2011-08-24 00:19:51 PDT ---
-Created an attachment (id=50523)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50523)
-lsmod
+--- Comment #6 from marco-w08N04152XNe4xh82S9ftw@public.gmane.org 2011-08-24 00:20:40 PDT ---
+Created an attachment (id=50524)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50524)
+xrandr verbose output before unplugging monitor
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
