@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Tue, 23 Aug 2011 18:02:52 -0700 (PDT)
-Message-ID: <20110824010252.3217F130112@annarchy.freedesktop.org>
+Date: Tue, 23 Aug 2011 18:04:05 -0700 (PDT)
+Message-ID: <20110824010405.8169813008F@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #15 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-23 18:02:52 PDT ---
-OK, supertuxkart crashes often. I'll say as often as it would take to justify
-making it automatic so I could run it in background and not play it as its not
-fun to play game too much, especially thi game that I don't like that much.
+--- Comment #16 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-23 18:04:04 PDT ---
+Created an attachment (id=50512)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50512)
+mmio dump of PGRAPH
 
-In fact, I reproduced a hang with latest mesa, no reclocking and nvidia
-ctxprog.
-(Only thing that was on is power saving magic, but I had these crashes without
-it as well, so not likely to be the reason - still will test without it as well
-soon).
+this is an mmio dump of PGRAPH after crash, in unlikely case it can help narrow
+down the problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
