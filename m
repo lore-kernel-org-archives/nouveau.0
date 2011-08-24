@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40334] Kernel-BUG on resume from suspen-to-ram with
  NV GeForce Go 7600
-Date: Tue, 23 Aug 2011 23:26:19 -0700 (PDT)
-Message-ID: <20110824062619.1003B1300C2@annarchy.freedesktop.org>
+Date: Tue, 23 Aug 2011 23:27:54 -0700 (PDT)
+Message-ID: <20110824062754.2E063130112@annarchy.freedesktop.org>
 References: <bug-40334-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40334
 
---- Comment #1 from Erwin Rieger <er-ri-hi6Y0CQ0nG0@public.gmane.org> 2011-08-23 23:26:17 PDT ---
-Created an attachment (id=50516)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50516)
-vbtracetool vbios dump
+Erwin Rieger <er-ri-hi6Y0CQ0nG0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #50515|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
