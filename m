@@ -1,50 +1,36 @@
-From: Greg KH <greg@kroah.com>
-Subject: Re: [PATCH] drm/nv04/crtc: Bail out if FB is not bount to
- crtc
-Date: Thu, 25 Aug 2011 14:14:37 -0700
-Message-ID: <20110825211437.GB26773@kroah.com>
-References: <1314304611-5869-1-git-send-email-emil.l.velikov@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 35876] Hard GPU hangs on NV86
+Date: Thu, 25 Aug 2011 16:55:14 -0700 (PDT)
+Message-ID: <20110825235514.5EBDC1300D1@annarchy.freedesktop.org>
+References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <stable-bounces@linux.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <1314304611-5869-1-git-send-email-emil.l.velikov@gmail.com>
-List-Unsubscribe: <http://linux.kernel.org/mailman/options/stable>,
- <mailto:stable-request@linux.kernel.org?subject=unsubscribe>
-List-Archive: <http://linux.kernel.org/mailman/private/stable/>
-List-Post: <mailto:stable@linux.kernel.org>
-List-Help: <mailto:stable-request@linux.kernel.org?subject=help>
-List-Subscribe: <http://linux.kernel.org/mailman/listinfo/stable>,
- <mailto:stable-request@linux.kernel.org?subject=subscribe>
-Sender: stable-bounces@linux.kernel.org
-Errors-To: stable-bounces@linux.kernel.org
-To: Emil Velikov <emil.l.velikov@gmail.com>
-Cc: nouveau@lists.freedesktop.org, stable@kernel.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 25, 2011 at 09:36:51PM +0100, Emil Velikov wrote:
-> This commit resolves a possible 'NULL pointer dereference'
-> It uses the same approach as radeon, intel and nouveau/nv50
-> 
-> Fixes bug 'Nouveau: Kernel oops when unplugging external monitor'
-> https://bugs.freedesktop.org/show_bug.cgi?id=40336
-> 
-> Signed-off-by: Emil Velikov <emil.l.velikov@gmail.com>
-> ---
->  drivers/gpu/drm/nouveau/nv04_crtc.c |   15 +++++++++++++--
->  1 files changed, 13 insertions(+), 2 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
+--- Comment #20 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-25 16:55:12 PDT ---
+Created an attachment (id=50580)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50580)
+mmio dump of PGRAPH #2
 
-<formletter>
+Another crash running supertuxkart without compiz, but with reclocking (and
+that for sure doesn't matter as it crashed many times without it).
 
-This is not the correct way to submit patches for inclusion in the
-stable kernel tree.  Please read Documentation/stable_kernel_rules.txt
-for how to do this properly.
-
-</formletter>
-
-_______________________________________________
-stable mailing list
-stable@linux.kernel.org
-http://linux.kernel.org/mailman/listinfo/stable
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
