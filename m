@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Thu, 25 Aug 2011 13:41:49 -0700 (PDT)
-Message-ID: <20110825204149.6B1181301DA@annarchy.freedesktop.org>
+Date: Thu, 25 Aug 2011 13:43:03 -0700 (PDT)
+Message-ID: <20110825204303.7613E130072@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,20 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #50512|0                           |1
-        is obsolete|                            |
-
---- Comment #18 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-25 13:41:49 PDT ---
-Created an attachment (id=50577)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50577)
-another mmio dump of PGRAPH
-
-Here an mmio dump of PGRAPH right after freeze, without any killing of any
-processes that I did wrongly in former dump.
+--- Comment #19 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-25 13:43:03 PDT ---
+Forgot to mention that crash is from running supertuxkart with compiz.
+I somehow suspect that its the combination that makes the crash, so I'll test
+without compiz as well soon.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
