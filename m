@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40336] Nouveau: Kernel oops when unplugging external
 	monitor
-Date: Wed, 24 Aug 2011 14:36:38 -0700 (PDT)
-Message-ID: <20110824213638.440A21300F2@annarchy.freedesktop.org>
+Date: Wed, 24 Aug 2011 23:29:27 -0700 (PDT)
+Message-ID: <20110825062927.D2B181300CD@annarchy.freedesktop.org>
 References: <bug-40336-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,42 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40336
 
---- Comment #9 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-24 14:36:37 PDT ---
-Created an attachment (id=50547)
+--- Comment #10 from marco-w08N04152XNe4xh82S9ftw@public.gmane.org 2011-08-24 23:29:27 PDT ---
+(In reply to comment #9)
+> Created an attachment (id=50547)
  View: https://bugs.freedesktop.org/attachment.cgi?id=50547
  Review: https://bugs.freedesktop.org/review?bug=40336&attachment=50547
 
-fix
+> fix
+> 
+> Hi Marco
+> 
+> Thanks for the comprehensive bug report
+> 
+> Regarding your issue - I believe it's similar to bug 40005
+> 
+> Although in your case the nv04 codepath has been used
+> 
+> Can you please try the patch provided
+> 
+> Cheers
+> Emil
 
-Hi Marco
 
-Thanks for the comprehensive bug report
+Hi Emil,
 
-Regarding your issue - I believe it's similar to bug 40005
+it worked!!
+Thank you very much for your work.
 
-Although in your case the nv04 codepath has been used
+I am very satisfied with nouveau.
+I just have one bug on my list. Unfortunately, it is very hard to trigger this
+bug. It happens sometimes with mplayer2, but not mplayer. And it is somehow
+connected to a huge number of messages like
+(EE) NOUVEAU(0): [DRI2] DRI2SwapBuffers: drawable has no back or front?
 
-Can you please try the patch provided
+I will open a new bug if I have more reliable information and maybe log files.
 
-Cheers
-Emil
+Can be marked as fixed.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
