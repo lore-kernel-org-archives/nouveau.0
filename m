@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Thu, 25 Aug 2011 16:55:14 -0700 (PDT)
-Message-ID: <20110825235514.5EBDC1300D1@annarchy.freedesktop.org>
-References: <bug-35876-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40336] Nouveau: Kernel oops when unplugging external
+	monitor
+Date: Fri, 26 Aug 2011 10:50:54 -0700 (PDT)
+Message-ID: <20110826175054.4AF431301EF@annarchy.freedesktop.org>
+References: <bug-40336-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40336-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35876
+https://bugs.freedesktop.org/show_bug.cgi?id=40336
 
---- Comment #20 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-25 16:55:12 PDT ---
-Created an attachment (id=50580)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50580)
-mmio dump of PGRAPH #2
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Another crash running supertuxkart without compiz, but with reclocking (and
-that for sure doesn't matter as it crashed many times without it).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #11 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-26 10:50:53 PDT ---
+Thanks for testing
+
+Marking as FIXED
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
