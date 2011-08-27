@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Fri, 26 Aug 2011 19:56:20 -0700 (PDT)
-Message-ID: <20110827025620.C5FBE1300A5@annarchy.freedesktop.org>
+Date: Fri, 26 Aug 2011 19:57:00 -0700 (PDT)
+Message-ID: <20110827025700.E61C9130132@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #21 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-26 19:56:20 PDT ---
-Now was able to reproduce without ether compiz nor reclocking.
-Took whole hour of automated STK run.
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-I attach PFIFO and PGRAPH dumps.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #50577|0                           |1
+        is obsolete|                            |
+  Attachment #50580|0                           |1
+        is obsolete|                            |
 
-It looks like PFIFO cache error.
+--- Comment #22 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-26 19:57:00 PDT ---
+Created an attachment (id=50607)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50607)
+PGRAPH mmio dump
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
