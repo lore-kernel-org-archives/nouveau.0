@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Sat, 27 Aug 2011 14:31:11 -0700 (PDT)
-Message-ID: <20110827213111.2F0371300A4@annarchy.freedesktop.org>
-References: <bug-35876-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37922] NV86: too high power usage.
+Date: Sat, 27 Aug 2011 14:43:11 -0700 (PDT)
+Message-ID: <20110827214311.6CA13130109@annarchy.freedesktop.org>
+References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +20,24 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35876
+https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
 maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #50621|application/octet-stream    |text/plain
-          mime type|                            |
+  Attachment #49934|0                           |1
+        is obsolete|                            |
+
+--- Comment #23 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-27 14:43:10 PDT ---
+Created an attachment (id=50622)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50622)
+minimal trace of non reclock magic - v4
+
+Another version, with GPIO bits commented out as they are probably wrong on
+other systems.
+
+Also some cosmetic cleanup
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
