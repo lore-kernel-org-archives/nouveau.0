@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Fri, 26 Aug 2011 13:41:49 -0700 (PDT)
-Message-ID: <20110826204149.74E1C130156@annarchy.freedesktop.org>
-References: <bug-40406-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35876] Hard GPU hangs on NV86
+Date: Fri, 26 Aug 2011 19:56:20 -0700 (PDT)
+Message-ID: <20110827025620.C5FBE1300A5@annarchy.freedesktop.org>
+References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40406-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40406
+https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #5 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-08-26 13:41:48 PDT ---
-Created an attachment (id=50599)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50599)
-screenshot
+--- Comment #21 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-26 19:56:20 PDT ---
+Now was able to reproduce without ether compiz nor reclocking.
+Took whole hour of automated STK run.
+
+I attach PFIFO and PGRAPH dumps.
+
+It looks like PFIFO cache error.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
