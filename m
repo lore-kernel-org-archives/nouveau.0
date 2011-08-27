@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Sat, 27 Aug 2011 14:30:26 -0700 (PDT)
-Message-ID: <20110827213026.4D6C51300BF@annarchy.freedesktop.org>
+Date: Sat, 27 Aug 2011 14:31:11 -0700 (PDT)
+Message-ID: <20110827213111.2F0371300A4@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #26 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-27 14:30:25 PDT ---
-Created an attachment (id=50621)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50621)
-Another PFIFO dump
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-This time I made sure X doesn't submit anything and thus game channel was the
-only channel submitting commands.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #50621|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
