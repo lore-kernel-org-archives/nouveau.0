@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Sun, 28 Aug 2011 13:20:41 -0700 (PDT)
-Message-ID: <20110828202041.2C7AD1301AB@annarchy.freedesktop.org>
+Date: Sun, 28 Aug 2011 13:24:14 -0700 (PDT)
+Message-ID: <20110828202414.C97E71300B5@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #27 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-28 13:20:41 PDT ---
-Why would LVDS use DAC registers?
+--- Comment #28 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-28 13:24:14 PDT ---
+Dunno, there writes only affect VGA visually. On LVDS and DVI only effect is
+lower power usage.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
