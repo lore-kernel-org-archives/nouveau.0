@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Sat, 27 Aug 2011 19:39:31 -0700 (PDT)
-Message-ID: <20110828023931.5E9331300BA@annarchy.freedesktop.org>
+Date: Sun, 28 Aug 2011 12:18:40 -0700 (PDT)
+Message-ID: <20110828191841.0B5A8130148@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,42 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #24 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-27 19:39:31 PDT ---
-1099/1588/1590 information as requested:
+--- Comment #25 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-28 12:18:40 PDT ---
+Created an attachment (id=50637)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50637)
+information about DAC clock regs I gathered
 
-
-register 1098:
-
-0x21ca0004 - default
-0x21ca0034 - set by blob
-0xf9fe007e - writeable bits
-0x00000020 - enable automatic clock gating for register 0x1588
-0x00000040 - enable automatic clock gating for register 0x1590
-
-
-register 1588/1590:
-
-* registers consists of 2bit subregisters (or 4bit subregisters maybe???):
-0x00 - nothing
-0x01 - automatic clock gating, doesn't affect engine usability 
-        (tested on PGRAPH only). see register 0x1098
-
-0x02 - nothing/reserved - tested this in all combinations
-0x03 - disable clock - stops the engine - slightly larger power saving that
-0x01, but difference small
-
-
-1588 subregisters:
-0x00000003 - PGRAPH - (or part of it).
-0x00000030 - VPE - no power savings at all.
-
-1590 subregisters:
-0x00003000 - some VP2 engine
-0x00000300 - some another VP2 engine
-0x00000c00 - supposed to be also VP2 related - no reaction
-
-also note that writing 0x8000 to this register while 1098 bit 0x40 set harms
-power usage
+This is information on DAC registers I gathered recently
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
