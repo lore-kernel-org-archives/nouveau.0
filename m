@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37922] NV86: too high power usage.
-Date: Sun, 28 Aug 2011 12:18:40 -0700 (PDT)
-Message-ID: <20110828191841.0B5A8130148@annarchy.freedesktop.org>
+Date: Sun, 28 Aug 2011 13:09:23 -0700 (PDT)
+Message-ID: <20110828200923.DD067130147@annarchy.freedesktop.org>
 References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,37 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #25 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-28 12:18:40 PDT ---
-Created an attachment (id=50637)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50637)
-information about DAC clock regs I gathered
+--- Comment #26 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-28 13:09:23 PDT ---
+After applying power down magic, the power usage appears differently:
 
-This is information on DAC registers I gathered recently
+---------------- after whole magic --------------------
+
+
+DAC0 - should be for LVDS 
+
+0x00000000 - 16.400W
+0x00000001 - 16.400W
+0x00000002 - 16.400W
+0x00000003 - 16.400W
+
+0x80000000 - 16.480W
+0x80000001 - 16.200W
+0x80000002 - 16.085W
+0x80000003 - 16.200W
+
+
+
+DAC1 - VGA/...
+
+0x00000000 - 16.400W
+0x00000001 - 16.400W
+0x00000002 - 16.100W
+0x00000003 - 16.100W
+
+0x80000000 - 16.400W
+0x80000001 - 16.200W
+0x80000002 - 16.085W
+0x80000003 - 16.175W
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
