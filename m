@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40485] PGRAPH - ERROR nsource: LIMIT_COLOR nstatus:
  PROTECTION_FAULT
-Date: Tue, 30 Aug 2011 10:44:54 -0700 (PDT)
-Message-ID: <20110830174455.031C913013D@annarchy.freedesktop.org>
+Date: Tue, 30 Aug 2011 10:46:12 -0700 (PDT)
+Message-ID: <20110830174612.342F41300A2@annarchy.freedesktop.org>
 References: <bug-40485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40485
 
---- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-30 10:44:54 PDT ---
-It's probably unrelated, but you shouldn't use uvesafb with nouveau - uvesa
-might mess up gpu state.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #50680|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
