@@ -1,12 +1,14 @@
-From: Csillag Kristof <csillag.kristof-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: is there a way to override EDID detection? (for monitor
- with broken EDID)
-Date: Tue, 30 Aug 2011 07:00:49 +0200
-Message-ID: <4E5C6E81.6060105@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27455] dualhead not working,
+	second display always black
+Date: Mon, 29 Aug 2011 23:56:20 -0700 (PDT)
+Message-ID: <20110830065620.C48E61300B8@annarchy.freedesktop.org>
+References: <bug-27455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-27455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,32 +21,34 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Dear Nouveau users,
+https://bugs.freedesktop.org/show_bug.cgi?id=27455
 
-I am stuck with a bogus (but otherwise, great) monitor that can no 
-longer properly reports back it's EDID block via a digital connection.
-(With most of the video cards, anyway. I suspect a low-level (maybe 
-voltage) issue here.)
+--- Comment #13 from Ge@@ru <geaaru-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-29 23:56:17 PDT ---
+Hi,
+i use a gentoo distribution and i see that after release of the nouveau kernel
+driver v. 20110602 (with both kernel 3.x and 2.6.x) dual head doesn't work.
+I have a NVIDIA Quadro FX 2800M.
 
-I can get it to work with the proprietary NVIDIA driver by specifying 
-the "ConnectedMonitor" option (to override detecting the monitor, which 
-also fails most of the time), and the "CustomEDID" option (to pass in 
-the binary EDID info I have captured using one of the rare cards that 
-could drive it properly).
+01:00.0 VGA compatible controller: nVidia Corporation G92 [Quadro FX 2800M]
+(rev a2
 
-With this setup, it works reliably and flawlessly.
+So, with version 20110801 and 20110820 there is a regression that doesn't
+permit correct use of dual head.
 
-The question is, can I do the same thing with free Nouveou driver somehow?
+Currently, i use xorg-server-1.10.3 (i try soon 1.11.0) but i don't think that
+problem is on xorg-server.
 
-The current statis is that when I try to load the nouveau kernel module, 
-it fails to read the EDID, and then the monitor is no longer available.
-(The box does not crash, I can still login via the network, and read 
-dmesg.)
+So,now i downgrade version on kernel module to 20110602 and all works fine.
+Please, can you verify where is regression?
 
-Could you please advise me how to proceed?
-(Other that replace than fixing the hardware error, which is something I 
-can not do now, because of various reasons.)
+As x11 driver i use v. 0.0.16_pre20110323.
 
-Thank you for your help:
+Thanks
 
-    Kristof Csillag
+P.S. If it is needed i will upgrade soon a dump of the xorg.log when dual head
+doesn't work.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
