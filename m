@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40485] PGRAPH - ERROR nsource: LIMIT_COLOR nstatus:
  PROTECTION_FAULT
-Date: Tue, 30 Aug 2011 04:13:05 -0700 (PDT)
-Message-ID: <20110830111305.AA023130090@annarchy.freedesktop.org>
+Date: Tue, 30 Aug 2011 10:44:54 -0700 (PDT)
+Message-ID: <20110830174455.031C913013D@annarchy.freedesktop.org>
 References: <bug-40485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40485
 
-Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |INVALID
-
---- Comment #7 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-08-30 04:13:05 PDT ---
-Unfortunately you are using a nvfx class card and 3D features. Currently we are
-not providing any support for this combination as no one is maintaining the
-nvfx mesa driver. See http://nouveau.freedesktop.org/wiki/MesaDrivers
-
-Sorry, but have to close this bug as INVALID.
+--- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-30 10:44:54 PDT ---
+It's probably unrelated, but you shouldn't use uvesafb with nouveau - uvesa
+might mess up gpu state.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
