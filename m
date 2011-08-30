@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40485] PGRAPH - ERROR nsource: LIMIT_COLOR nstatus:
  PROTECTION_FAULT
-Date: Tue, 30 Aug 2011 03:23:34 -0700 (PDT)
-Message-ID: <20110830102335.16DE0130129@annarchy.freedesktop.org>
+Date: Tue, 30 Aug 2011 03:30:20 -0700 (PDT)
+Message-ID: <20110830103020.F02601300F7@annarchy.freedesktop.org>
 References: <bug-40485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40485
 
---- Comment #4 from Dennis Schridde <devurandom-hi6Y0CQ0nG0@public.gmane.org> 2011-08-30 03:23:34 PDT ---
-Created an attachment (id=50684)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50684)
-Xorg.0.log (after reboot)
+--- Comment #5 from Dennis Schridde <devurandom-hi6Y0CQ0nG0@public.gmane.org> 2011-08-30 03:30:18 PDT ---
+Created an attachment (id=50686)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50686)
+kernel .config
 
-(In reply to comment #3)
-> Created an attachment (id=50683)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50683)
-> dmesg (after reboot)
-> 
-> The VT springs back to live after issuing a reboot, but stays black when the
-> kernel is restarted via kexec. The system is again accessible via SSH. dmesg
-> after reboot attached.
-Also attaching Xorg.0.log from after the reboot. (X is running and pretending
-to use nouveau.)
+After a hardware reboot via BIOS ("halt" + start again) the graphics work
+normally again.
+
+Forgot to mention the nouveau version I am using
+(xf86-video-nouveau-0.0.16_pre20110801) and am attaching my kernel config.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
