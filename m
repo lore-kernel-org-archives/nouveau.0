@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40485] PGRAPH - ERROR nsource: LIMIT_COLOR nstatus:
  PROTECTION_FAULT
-Date: Tue, 30 Aug 2011 03:15:45 -0700 (PDT)
-Message-ID: <20110830101545.9652213018A@annarchy.freedesktop.org>
+Date: Tue, 30 Aug 2011 03:16:06 -0700 (PDT)
+Message-ID: <20110830101607.5FABD1300A7@annarchy.freedesktop.org>
 References: <bug-40485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40485
 
---- Comment #1 from Dennis Schridde <devurandom-hi6Y0CQ0nG0@public.gmane.org> 2011-08-30 03:15:44 PDT ---
-Created an attachment (id=50681)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50681)
-Xorg.0.log
+--- Comment #2 from Dennis Schridde <devurandom-hi6Y0CQ0nG0@public.gmane.org> 2011-08-30 03:16:06 PDT ---
+Created an attachment (id=50682)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50682)
+emerge --info
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
