@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40485] PGRAPH - ERROR nsource: LIMIT_COLOR nstatus:
  PROTECTION_FAULT
-Date: Tue, 30 Aug 2011 03:30:52 -0700 (PDT)
-Message-ID: <20110830103052.1CE8D1301F7@annarchy.freedesktop.org>
+Date: Tue, 30 Aug 2011 03:31:08 -0700 (PDT)
+Message-ID: <20110830103108.CDCF51300D4@annarchy.freedesktop.org>
 References: <bug-40485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Dennis Schridde <devurandom-hi6Y0CQ0nG0@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #50682|application/octet-stream    |text/plain
+  Attachment #50686|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
