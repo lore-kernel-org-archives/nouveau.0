@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40485] PGRAPH - ERROR nsource: LIMIT_COLOR nstatus:
  PROTECTION_FAULT
-Date: Tue, 30 Aug 2011 03:58:48 -0700 (PDT)
-Message-ID: <20110830105848.09649130166@annarchy.freedesktop.org>
+Date: Tue, 30 Aug 2011 04:13:05 -0700 (PDT)
+Message-ID: <20110830111305.AA023130090@annarchy.freedesktop.org>
 References: <bug-40485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40485
 
---- Comment #6 from Dennis Schridde <devurandom-hi6Y0CQ0nG0@public.gmane.org> 2011-08-30 03:58:47 PDT ---
-This bug might be much more related to me starting Windows 7 in a VirtualBox
-with virtualised Direct3D enabled. It just happened again, with the last thing
-I heard was the Windows 7 "pling" startup sound, when the screen froze.
+Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> changed:
 
-Again I was also watching a DVD at the time, and typing something into a
-Yakuake console (quake style console with transparent background enabled).
-Compositing is enabled for KWin.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
-VirtualBox 4.1.2
+--- Comment #7 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-08-30 04:13:05 PDT ---
+Unfortunately you are using a nvfx class card and 3D features. Currently we are
+not providing any support for this combination as no one is maintaining the
+nvfx mesa driver. See http://nouveau.freedesktop.org/wiki/MesaDrivers
+
+Sorry, but have to close this bug as INVALID.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
