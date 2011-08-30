@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31122] Cannot control backlight intensity on
-	Powerbook
-Date: Mon, 29 Aug 2011 17:23:17 -0700 (PDT)
-Message-ID: <20110830002318.0046213013D@annarchy.freedesktop.org>
-References: <bug-31122-8800@http.bugs.freedesktop.org/>
+From: Csillag Kristof <csillag.kristof-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: is there a way to override EDID detection? (for monitor
+ with broken EDID)
+Date: Tue, 30 Aug 2011 07:00:49 +0200
+Message-ID: <4E5C6E81.6060105@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +19,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31122
+Dear Nouveau users,
 
---- Comment #1 from cfr <margali-FcTltIntn4Fg9hUCZPvPmw@public.gmane.org> 2011-08-29 17:23:17 PDT ---
-This still applies to Debian's 3.0.0-1-powerpc kernel (when the kernel command
-line prohibits nvidiafb to force nouveau to be used) as does the bug concerning
-it not being switched back on after hibernation (#31122).
+I am stuck with a bogus (but otherwise, great) monitor that can no 
+longer properly reports back it's EDID block via a digital connection.
+(With most of the video cards, anyway. I suspect a low-level (maybe 
+voltage) issue here.)
 
-Is there any news of a fix or work around for this?
+I can get it to work with the proprietary NVIDIA driver by specifying 
+the "ConnectedMonitor" option (to override detecting the monitor, which 
+also fails most of the time), and the "CustomEDID" option (to pass in 
+the binary EDID info I have captured using one of the rare cards that 
+could drive it properly).
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+With this setup, it works reliably and flawlessly.
+
+The question is, can I do the same thing with free Nouveou driver somehow?
+
+The current statis is that when I try to load the nouveau kernel module, 
+it fails to read the EDID, and then the monitor is no longer available.
+(The box does not crash, I can still login via the network, and read 
+dmesg.)
+
+Could you please advise me how to proceed?
+(Other that replace than fixing the hardware error, which is something I 
+can not do now, because of various reasons.)
+
+Thank you for your help:
+
+    Kristof Csillag
