@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
-Date: Wed, 31 Aug 2011 13:09:02 -0700 (PDT)
-Message-ID: <20110831200902.34F0413006A@annarchy.freedesktop.org>
-References: <bug-40507-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40488] not detected in external monitor connected to
+	dvi
+Date: Wed, 31 Aug 2011 13:55:55 -0700 (PDT)
+Message-ID: <20110831205555.D499D13014D@annarchy.freedesktop.org>
+References: <bug-40488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40507-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +21,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40507
+https://bugs.freedesktop.org/show_bug.cgi?id=40488
 
---- Comment #12 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-08-31 13:09:01 PDT ---
-Created an attachment (id=50776)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50776)
-Xorg log for proprietary nVidia driver
+--- Comment #3 from ivan Ruano <ruano1983-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-31 13:55:55 PDT ---
+(In reply to comment #2)
+> Hi Ivan
+> 
+> The problem you are having is because there is no (known) encoder attached to
+> the DVI connector - see "Off-chip encoder 2/1 unsupported"
+> 
+> Can you please try nouveau git [1] - I'm not too sure if it will help but it's
+> worth a shot
+> 
+> Cheers
+> Emil
+> 
+> [1] http://cgit.freedesktop.org/nouveau/linux-2.6/
 
-Hmm, I'll run it with only the PCI:4:0:0 device when I have some time to close
-all the current open applications and workspaces :)
-
-As far as I remember it just doesn't initialize any nouveau driver, no real
-useful messages, otherwise I'd have more leads to search further or show here.
-
-Just for the record I've included my current Xorg log for my current session
-with proprietary driver.
+I echo what I said and it seems to work, although it grabs the resolution of
+external monitor otherwise all ok.
+thanks for the help
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
