@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
-Date: Wed, 31 Aug 2011 01:43:31 -0700 (PDT)
-Message-ID: <20110831084331.9FA52130143@annarchy.freedesktop.org>
+Date: Wed, 31 Aug 2011 02:09:14 -0700 (PDT)
+Message-ID: <20110831090914.E9561130275@annarchy.freedesktop.org>
 References: <bug-40507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40507
 
---- Comment #7 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2011-08-31 01:43:30 PDT ---
-Could you explain what your problem is?
-What do you expect to get, and what you have instead?
+--- Comment #8 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-08-31 02:09:14 PDT ---
+The GPU on PCI:4:0:0 cannot be used. It's in xorg.conf but won't be used.
 
-So far I have failed to see anything wrong here.
-
-Thanks.
+If I use only PC:4:0:0 and not PCI:5:0:0, X cannot start. It seems to always
+skip that GPU.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
