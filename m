@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40488] not detected in external monitor connected to
 	dvi
-Date: Wed, 31 Aug 2011 13:55:55 -0700 (PDT)
-Message-ID: <20110831205555.D499D13014D@annarchy.freedesktop.org>
+Date: Wed, 31 Aug 2011 14:01:31 -0700 (PDT)
+Message-ID: <20110831210131.9FECC1300D7@annarchy.freedesktop.org>
 References: <bug-40488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,24 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40488
 
---- Comment #3 from ivan Ruano <ruano1983-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-31 13:55:55 PDT ---
-(In reply to comment #2)
-> Hi Ivan
-> 
-> The problem you are having is because there is no (known) encoder attached to
-> the DVI connector - see "Off-chip encoder 2/1 unsupported"
-> 
-> Can you please try nouveau git [1] - I'm not too sure if it will help but it's
-> worth a shot
-> 
-> Cheers
-> Emil
-> 
-> [1] http://cgit.freedesktop.org/nouveau/linux-2.6/
+ivan Ruano <ruano1983-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I echo what I said and it seems to work, although it grabs the resolution of
-external monitor otherwise all ok.
-thanks for the help
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
