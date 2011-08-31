@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40502] New: Ability to assign arbitrary CRTC to an
- output is broken
-Date: Tue, 30 Aug 2011 18:13:03 -0700 (PDT)
-Message-ID: <bug-40502-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35876] Hard GPU hangs on NV86
+Date: Tue, 30 Aug 2011 18:56:37 -0700 (PDT)
+Message-ID: <20110831015638.3F7311300D5@annarchy.freedesktop.org>
+References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,56 +20,27 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40502
+https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
-           Summary: Ability to assign arbitrary CRTC to an output is
-                    broken
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: minor
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #28 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-30 18:56:38 PDT ---
+Back to the hangs caused by unegine demos. I reproduced that once more without
+my patch of course.
 
+I got:
 
-I am assigning that bug to nouveau DDX, although I really won't be surprised if
-that is xserver or even kernel driver bug.
+[10459.780042] [drm] nouveau 0000:01:00.0: PGRAPH TLB flush idle timeout fail:
+0x00c00603 0x0000014d 0x00005600 0x00000000
+[10464.810946] [drm] nouveau 0000:01:00.0: PGRAPH TLB flush idle timeout fail:
+0x00c00603 0x0000014d 0x00005600 0x00000000
+[10469.826439] [drm] nouveau 0000:01:00.0: PGRAPH TLB flush idle timeout fail:
+0x00c00603 0x0000014d 0x00005600 0x00000000
+[10474.841967] [drm] nouveau 0000:01:00.0: PGRAPH TLB flush idle timeout fail:
+0x00c00603 0x0000014d 0x00005600 0x00000000
+[10479.770036] [drm] nouveau 0000:01:00.0: PGRAPH TLB flush idle timeout fail:
+0x00c00603 0x0000014d 0x00005600 0x00000000
 
-I have two CRTCs (CRTC0 and CRTC1) (most modern cards have such number)
-
-I would like to assign CRTC1 to laptop screen, so I do this:
-
-xrandr --output LVDS-1 --auto --crtc 1
-
-Screen does blink however doing 'xrandr --verbose' still tells me that LVDS-1
-uses CRTC0.
-I can repeat that command again and again.
-If I enable kernel modesetting debug, I notice that LVDS-1 is connected once to
-CRTC0 and once to CRTC1 (on each invocation of 'xrandr' they change places),
-and it does succedd, leading me to beliving that on kernel level everything is
-fine.
-However on higher level something is really broken, as xrand insists that
-LVDS-1 connected to CRTC0, not to mention that such toggle of CRTCs shouln't
-take place as I told explicitly I want to use crtc1.
-
-This is preparation of hunt for bug that causes external connected monitor to
-go dark after suspend and resume cycle sometimes, then if I disconnect it, even
-nastier problem happends, the notebook screen goes dark as well, a thing that
-makes me suspect that one of CRTCs goes tits up.
-So I need a ability to control which CRTC is used.
-
-
-I am using very recent versions (from git actually) of everything related to
-GFX stack, although not everything is up to date, like for example xrand
-library.
-
-I think I will be able to handle that bug on my own, although if you have seen
-anything related, or maybe even fact that this is known, please tell me.
+In kernel log. PFIFO appears to be idle, and PGRAPH hung, while its MPs appear
+active.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
