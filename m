@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
-Date: Wed, 31 Aug 2011 01:22:10 -0700 (PDT)
-Message-ID: <20110831082211.294241300AD@annarchy.freedesktop.org>
+Date: Wed, 31 Aug 2011 01:24:22 -0700 (PDT)
+Message-ID: <20110831082422.E7F1B130109@annarchy.freedesktop.org>
 References: <bug-40507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40507
 
---- Comment #5 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-08-31 01:22:08 PDT ---
-Created an attachment (id=50751)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50751)
-X server
+--- Comment #6 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-08-31 01:24:22 PDT ---
+Pardon the upload problems. I had no idea bugzilla was so basic in it's
+recognition of filetypes and functionality!
+
+Please ignore above attachments comments, I've made sure the four attachments
+are correct and easy viewable now.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
