@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
-Date: Wed, 31 Aug 2011 12:52:02 -0700 (PDT)
-Message-ID: <20110831195202.6B70C1300BE@annarchy.freedesktop.org>
+Date: Wed, 31 Aug 2011 13:09:02 -0700 (PDT)
+Message-ID: <20110831200902.34F0413006A@annarchy.freedesktop.org>
 References: <bug-40507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40507
 
---- Comment #11 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-31 12:52:02 PDT ---
-I got carried away "helping" people today
-Apologies
+--- Comment #12 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-08-31 13:09:01 PDT ---
+Created an attachment (id=50776)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50776)
+Xorg log for proprietary nVidia driver
+
+Hmm, I'll run it with only the PCI:4:0:0 device when I have some time to close
+all the current open applications and workspaces :)
+
+As far as I remember it just doesn't initialize any nouveau driver, no real
+useful messages, otherwise I'd have more leads to search further or show here.
+
+Just for the record I've included my current Xorg log for my current session
+with proprietary driver.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
