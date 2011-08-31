@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
-Date: Wed, 31 Aug 2011 12:08:27 -0700 (PDT)
-Message-ID: <20110831190827.81165130177@annarchy.freedesktop.org>
+Date: Wed, 31 Aug 2011 12:28:08 -0700 (PDT)
+Message-ID: <20110831192808.5528F1300B8@annarchy.freedesktop.org>
 References: <bug-40507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,28 +22,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40507
 
---- Comment #9 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-08-31 12:08:26 PDT ---
-Hi Thomas
+--- Comment #10 from Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org> 2011-08-31 12:28:07 PDT ---
+Emil, that is exactly what I asked, and he explained. He is using ZaphodHeads,
+so the two driver instances in X log are both for the same one card, only
+different outputs. The other card is not taken into use, and I don't see error
+messages related to ignoring it, either.
 
-Looking at you logs/conf files I can see that
-1. The nouveau kernel module is loaded for every GPU on your card
-2. The xf86-video-nouveau - X driver is loaded for each GPU
-3. Each GPU is controlling it's associated display
+He should be having three driver instances in X logs, as per his configuration.
+He is missing all the instances for the card "04", IIRC.
 
-Note that when the system boots only one GPU is initialised, whereas the other
-is initialised by nouveau at a later stage
+He is also using Xinerama.
 
-"[drm] nouveau 0000:04:00.0: Adaptor not initialised, running VBIOS init
-tables."
+Thomas, maybe it would help to show the X and kernel logs, when you try to use
+only the problematic card (GPU)?
 
-Thus can you please be a bit more informative but saying what exactly do you
-want to do, and what your expectations are
-eg.
-"I want to use only GPU at PCI 4:0:0 and the other to be disabled" or
-"GPU xxx should control display xx but it's not"
-
-Cheers
-Emil
+Makes me wonder, if cold booting doesn't really support dual-GPU card's 2nd
+GPU...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
