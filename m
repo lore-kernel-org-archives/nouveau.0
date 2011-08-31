@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
-Date: Wed, 31 Aug 2011 01:21:51 -0700 (PDT)
-Message-ID: <20110831082151.EACD1130158@annarchy.freedesktop.org>
+Date: Wed, 31 Aug 2011 01:22:10 -0700 (PDT)
+Message-ID: <20110831082211.294241300AD@annarchy.freedesktop.org>
 References: <bug-40507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40507
 
-Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #50749|0                           |1
-        is obsolete|                            |
-
---- Comment #4 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-08-31 01:21:51 PDT ---
-Created an attachment (id=50750)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50750)
-X start error log
+--- Comment #5 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-08-31 01:22:08 PDT ---
+Created an attachment (id=50751)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50751)
+X server
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
