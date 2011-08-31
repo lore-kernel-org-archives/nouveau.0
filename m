@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35876] Hard GPU hangs on NV86
-Date: Tue, 30 Aug 2011 18:57:13 -0700 (PDT)
-Message-ID: <20110831015714.0FFC01300A6@annarchy.freedesktop.org>
+Date: Tue, 30 Aug 2011 18:57:57 -0700 (PDT)
+Message-ID: <20110831015757.A286F130126@annarchy.freedesktop.org>
 References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
---- Comment #29 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-30 18:57:13 PDT ---
-Created an attachment (id=50739)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50739)
-PFIFO after tropics induced hang
+--- Comment #30 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-08-30 18:57:57 PDT ---
+Created an attachment (id=50740)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50740)
+PGRAPH after tropics induced hangs.
+
+This time it hung after 4 minutes btw.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
