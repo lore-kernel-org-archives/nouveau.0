@@ -1,7 +1,8 @@
-From: Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: PGRAPH - DATA_ERROR SEMANTIC_COLOR_BACK_OVER_LIMIT
-Date: Wed, 31 Aug 2011 21:48:04 -0300
-Message-ID: <CAELBVzC7zYdJ8OvBM4dksHe9jgxVsJ9C2ZaqPS4Vp0zTVYJyZA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 40541] New: unable to handle kernel NULL pointer
+ dereference at (null)
+Date: Thu,  1 Sep 2011 03:03:18 -0700 (PDT)
+Message-ID: <bug-40541-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,71 +19,66 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+https://bugs.freedesktop.org/show_bug.cgi?id=40541
 
-I am not sure if this is an application bug or something
-nouveau-related.  I have been attempting to play FlightGear but after
-a few minutes each time I start the game, my computer becomes
-completely unresponsive.  Mouse movement sometimes works for a few
-seconds at a time, but no clicks work, nor any keyboard input (other
-than SysRq key sequences).
-
-Once I reboot, I can see in my log the following messages repeated
-again and again:
-
-[ 2440.151477] [drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR
-SEMANTIC_COLOR_BACK_OVER_LIMIT
-[ 2440.151484] [drm] nouveau 0000:01:00.0: PGRAPH - DATA_ERROR
-[ 2440.151489] [drm] nouveau 0000:01:00.0: PGRAPH - ch 4
-(0x00058f3000) subc 5 class 0x8297 mthd 0x0d78 data 0x00000002
-
-Interspersed once in a while is:
-
-[ 2443.177390] nouveau_ratelimit: 1291 callbacks suppressed
-
-Is this an error with the application?  I can report it to them if
-that is the best thing to do.  Alternatively, if it is a sign of a
-nouveau issue, what information would you need to be able to track it
-down?  I have the following card:
+           Summary: unable to handle kernel NULL pointer dereference at
+                           (null)
+           Product: xorg
+           Version: 7.4
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: bugs.freedesktop.org-0dECgsrgJpy+5WzXG67F4EEOCMrvLtNR@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-01:00.0 VGA compatible controller: nVidia Corporation G86 [GeForce
-8500 GT] (rev a1) (prog-if 00 [VGA controller])
-	Subsystem: eVga.com. Corp. Device c793
-	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR+ FastB2B- DisINTx-
-	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort-
-<TAbort- <MAbort- >SERR- <PERR- INTx-
-	Latency: 0, Cache Line Size: 64 bytes
-	Interrupt: pin A routed to IRQ 25
-	Region 0: Memory at fd000000 (32-bit, non-prefetchable) [size=16M]
-	Region 1: Memory at a0000000 (64-bit, prefetchable) [size=256M]
-	Region 3: Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
-	Region 5: I/O ports at dc00 [size=128]
-	Expansion ROM at fe7e0000 [disabled] [size=128K]
-	Capabilities: [60] Power Management version 2
-		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
-		Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
-	Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
-		Address: 0000000000000000  Data: 0000
-	Capabilities: [78] Express (v1) Endpoint, MSI 00
-		DevCap:	MaxPayload 128 bytes, PhantFunc 0, Latency L0s <512ns, L1 <4us
-			ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
-		DevCtl:	Report errors: Correctable- Non-Fatal- Fatal- Unsupported-
-			RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop-
-			MaxPayload 128 bytes, MaxReadReq 128 bytes
-		DevSta:	CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr- TransPend-
-		LnkCap:	Port #213, Speed 2.5GT/s, Width x16, ASPM L0s L1, Latency L0
-<512ns, L1 <4us
-			ClockPM- Surprise- LLActRep- BwNot-
-		LnkCtl:	ASPM Disabled; RCB 128 bytes Disabled- Retrain- CommClk+
-			ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-		LnkSta:	Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+ DLActive-
-BWMgmt- ABWMgmt-
-	Kernel driver in use: nouveau
+Created an attachment (id=50801)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50801)
+Important parts of my logs.
 
+I am getting the attached Errors since I am using kwin 4.7.0 with OpenGL-ES.
 
-Thanks,
+I am not sure if the following is related: When I am changing window sizes
+several times my memory gets filled up. The memory is not released by
+restarting kwin or X. When I filled my memory by doing this, I do not have to
+wait long for the attached Error, but I do not know what triggers it exactly.
+
+Occasionally, I also have thousands of messages of the following form in my
+logs:
+
+Aug 08 18:06:09 [kernel] [ 3810.714471] [TTM] Failed to find memory space for
+buffer 0xffff8800bc392000 eviction.
+Aug 08 18:06:09 [kernel] [ 3810.714476] [TTM] No space for ffff8800bc392000 (96
+pages, 384K, 0M)
+Aug 08 18:06:09 [kernel] [ 3810.714479] [TTM]   placement[0]=0x00070002 (1)
+Aug 08 18:06:09 [kernel] [ 3810.714480] [TTM]     has_type: 1
+Aug 08 18:06:09 [kernel] [ 3810.714482] [TTM]     use_type: 1
+Aug 08 18:06:09 [kernel] [ 3810.714484] [TTM]     flags: 0x0000000A
+Aug 08 18:06:09 [kernel] [ 3810.714485] [TTM]     gpu_offset: 0x00000000
+Aug 08 18:06:09 [kernel] [ 3810.714487] [TTM]     size: 131072
+Aug 08 18:06:09 [kernel] [ 3810.714489] [TTM]     available_caching: 0x00070000
+Aug 08 18:06:09 [kernel] [ 3810.714491] [TTM]     default_caching: 0x00010000
+
+This is the reason, why I did not upload full logs (all in all 40MB).
+Nevertheless, I can upload more logs if you wish so.
+
+As you can see in the logs, I have this problem since several kernel versions.
+
+My graphics card: GeForce 8600 GT
+
+Some version information (only applicable for the last logged crash):
+
+sys-kernel/gentoo-sources-3.0.1
+x11-base/xorg-x11-7.4-r1
+x11-drivers/xf86-video-nouveau-0.0.16_pre20110801
+x11-libs/libdrm-2.4.26
+media-libs/mesa-7.11
 
 -- 
-Kevin Winchester
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
