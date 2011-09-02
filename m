@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40572] Nouveau drm causes failure to resume from
- suspend with any kernel newer than 2.6.36
-Date: Fri,  2 Sep 2011 09:48:01 -0700 (PDT)
-Message-ID: <20110902164801.7076C130051@annarchy.freedesktop.org>
-References: <bug-40572-8800@http.bugs.freedesktop.org/>
+From: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Use drm_vblank_count_and_time() for
+	pageflip completion events.
+Date: Fri,  2 Sep 2011 19:36:10 +0200
+Message-ID: <1314984970-19456-1-git-send-email-mario.kleiner@tuebingen.mpg.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,19 +16,87 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40572
+Emit kms pageflip completion events with proper vblank count
+and timestamp for the vblank interval in which the pageflip
+completed. This makes the timestamps and counts consistent with
+what the OML_sync_control spec defines.
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-02 09:48:01 PDT ---
-Can you comment out nouveau_pm_init / nouveau_pm_fini calls from
-drivers/gpu/drm/nouveau/nouveau_state.c on e.g. 3.0 kernel and see if it fixes
-resume?
+Signed-off-by: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_display.c |   29 +++++++++++++++++++++++------
+ drivers/gpu/drm/nouveau/nouveau_drv.h     |    1 +
+ 2 files changed, 24 insertions(+), 6 deletions(-)
 
-And please attach dmesg output.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index eb514ea..6644e8d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -292,7 +292,7 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+ 	*s = (struct nouveau_page_flip_state)
+ 		{ { }, event, nouveau_crtc(crtc)->index,
+ 		  fb->bits_per_pixel, fb->pitch, crtc->x, crtc->y,
+-		  new_bo->bo.offset };
++		  new_bo->bo.offset, crtc->framedur_ns };
+ 
+ 	/* Choose the channel the flip will be handled in */
+ 	chan = nouveau_fence_channel(new_bo->bo.sync_obj);
+@@ -335,6 +335,9 @@ nouveau_finish_page_flip(struct nouveau_channel *chan,
+ 	struct drm_device *dev = chan->dev;
+ 	struct nouveau_page_flip_state *s;
+ 	unsigned long flags;
++	struct timeval tnow, tvbl;
++
++	do_gettimeofday(&tnow);
+ 
+ 	spin_lock_irqsave(&dev->event_lock, flags);
+ 
+@@ -348,12 +351,26 @@ nouveau_finish_page_flip(struct nouveau_channel *chan,
+ 			     struct nouveau_page_flip_state, head);
+ 	if (s->event) {
+ 		struct drm_pending_vblank_event *e = s->event;
+-		struct timeval now;
+ 
+-		do_gettimeofday(&now);
+-		e->event.sequence = 0;
+-		e->event.tv_sec = now.tv_sec;
+-		e->event.tv_usec = now.tv_usec;
++		e->event.sequence = drm_vblank_count_and_time(dev, s->crtc, &tvbl);
++
++		/* Called before vblank count and timestamp have
++		 * been updated for the vblank interval of flip
++		 * completion? If so, need to increment vblank count and
++		 * add one videorefresh duration to returned timestamp
++		 * to account for this. We assume this happened if we
++		 * get called over 0.9 frame durations after the last
++		 * timestamped vblank.
++		 */
++		if (10 * (timeval_to_ns(&tnow) - timeval_to_ns(&tvbl)) >
++		     9 * s->framedur_ns) {
++			e->event.sequence++;
++			tvbl = ns_to_timeval(timeval_to_ns(&tvbl) +
++			s->framedur_ns);
++		}
++
++		e->event.tv_sec = tvbl.tv_sec;
++		e->event.tv_usec = tvbl.tv_usec;
+ 		list_add_tail(&e->base.link, &e->base.file_priv->event_list);
+ 		wake_up_interruptible(&e->base.file_priv->event_wait);
+ 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index 72bfc14..d873b37 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -202,6 +202,7 @@ struct nouveau_page_flip_state {
+ 	struct drm_pending_vblank_event *event;
+ 	int crtc, bpp, pitch, x, y;
+ 	uint64_t offset;
++	s64 framedur_ns;
+ };
+ 
+ enum nouveau_channel_mutex_class {
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.4.1
