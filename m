@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40572] Nouveau drm causes failure to resume from
- suspend with any kernel newer than 2.6.36
-Date: Sat,  3 Sep 2011 00:27:55 -0700 (PDT)
-Message-ID: <20110903072755.68300130186@annarchy.freedesktop.org>
+Subject: [Bug 40572] [nvac] Nouveau drm causes failure to resume
+ from suspend with any kernel newer than 2.6.36
+Date: Sat,  3 Sep 2011 01:53:16 -0700 (PDT)
+Message-ID: <20110903085316.1D7AC130106@annarchy.freedesktop.org>
 References: <bug-40572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40572
 
---- Comment #4 from Daniel Lindgren <dali.spam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-03 00:27:55 PDT ---
-(In reply to comment #2)
-> Can you comment out nouveau_pm_init / nouveau_pm_fini calls from
-> drivers/gpu/drm/nouveau/nouveau_state.c on e.g. 3.0 kernel and see if it fixes
-> resume?
-> 
-> And please attach dmesg output.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Tried it on 3.0.4, no difference. Attached dmesg, but be aware that I can't get
-any info from the computer after a failed resume until it has been rebooted.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Nouveau drm causes failure  |[nvac] Nouveau drm causes
+                   |to resume from suspend with |failure to resume from
+                   |any kernel newer than       |suspend with any kernel
+                   |2.6.36                      |newer than 2.6.36
+
+--- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-03 01:53:15 PDT ---
+Ok. So this commit is unlikely to be the culprit.
+2 another ideas:
+- does suspend/resume works at all without nouveau?
+- can netconsole catch anything after failed resume?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
