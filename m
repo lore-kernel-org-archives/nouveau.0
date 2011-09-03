@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40572] Nouveau drm causes failure to resume from
  suspend with any kernel newer than 2.6.36
-Date: Sat,  3 Sep 2011 00:26:46 -0700 (PDT)
-Message-ID: <20110903072647.297A013010F@annarchy.freedesktop.org>
+Date: Sat,  3 Sep 2011 00:27:55 -0700 (PDT)
+Message-ID: <20110903072755.68300130186@annarchy.freedesktop.org>
 References: <bug-40572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40572
 
---- Comment #3 from Daniel Lindgren <dali.spam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-03 00:26:45 PDT ---
-Created an attachment (id=50856)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50856)
-dmesg
+--- Comment #4 from Daniel Lindgren <dali.spam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-03 00:27:55 PDT ---
+(In reply to comment #2)
+> Can you comment out nouveau_pm_init / nouveau_pm_fini calls from
+> drivers/gpu/drm/nouveau/nouveau_state.c on e.g. 3.0 kernel and see if it fixes
+> resume?
+> 
+> And please attach dmesg output.
+
+Tried it on 3.0.4, no difference. Attached dmesg, but be aware that I can't get
+any info from the computer after a failed resume until it has been rebooted.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
