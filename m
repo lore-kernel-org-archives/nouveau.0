@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40572] [nvac] Nouveau drm causes failure to resume
  from suspend with any kernel newer than 2.6.36
-Date: Sat,  3 Sep 2011 03:49:58 -0700 (PDT)
-Message-ID: <20110903104958.AE29913021D@annarchy.freedesktop.org>
+Date: Sat,  3 Sep 2011 03:50:36 -0700 (PDT)
+Message-ID: <20110903105036.7F8FD130197@annarchy.freedesktop.org>
 References: <bug-40572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40572
 
---- Comment #7 from Daniel Lindgren <dali.spam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-03 03:49:58 PDT ---
-> Netconsole didn't produce anything after resume. Verified that it worked by
-> inserting a USB stick before resume, but nothing logged after. No ping
-> responses either, the network's probably gone.
-
-I finally managed to get some output and there is a kernel panic, see attached
-netconsole.log.
+--- Comment #8 from Daniel Lindgren <dali.spam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-03 03:50:34 PDT ---
+Created an attachment (id=50865)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50865)
+netconsole with kernel panic
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
