@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40572] [nvac] Nouveau drm causes failure to resume
  from suspend with any kernel newer than 2.6.36
-Date: Sat,  3 Sep 2011 01:53:16 -0700 (PDT)
-Message-ID: <20110903085316.1D7AC130106@annarchy.freedesktop.org>
+Date: Sat,  3 Sep 2011 03:25:33 -0700 (PDT)
+Message-ID: <20110903102533.161F91301B1@annarchy.freedesktop.org>
 References: <bug-40572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40572
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #6 from Daniel Lindgren <dali.spam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-03 03:25:33 PDT ---
+(In reply to comment #5)
+> Ok. So this commit is unlikely to be the culprit.
+> 2 another ideas:
+> - does suspend/resume works at all without nouveau?
+> - can netconsole catch anything after failed resume?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Nouveau drm causes failure  |[nvac] Nouveau drm causes
-                   |to resume from suspend with |failure to resume from
-                   |any kernel newer than       |suspend with any kernel
-                   |2.6.36                      |newer than 2.6.36
+Blacklisted nouveau with 3.0.4, the screen is still black after resume but the
+machine is alive and I can ssh into it. No reboot.
 
---- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-03 01:53:15 PDT ---
-Ok. So this commit is unlikely to be the culprit.
-2 another ideas:
-- does suspend/resume works at all without nouveau?
-- can netconsole catch anything after failed resume?
+Netconsole didn't produce anything after resume. Verified that it worked by
+inserting a USB stick before resume, but nothing logged after. No ping
+responses either, the network's probably gone.
+
+Starting netconsole however changed the behaviour a bit, the machine reboots a
+little faster, about 20 seconds after I hit the power button to resume. Without
+netconsole it takes 40 seconds until it reboots.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
