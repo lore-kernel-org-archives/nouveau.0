@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40548] Displayport not working on NV50
-Date: Mon,  5 Sep 2011 07:26:19 -0700 (PDT)
-Message-ID: <20110905142620.089F01300A1@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 07:27:13 -0700 (PDT)
+Message-ID: <20110905142714.1B6E0130092@annarchy.freedesktop.org>
 References: <bug-40548-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40548
 
-Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #6 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 07:27:13 PDT ---
+(In reply to comment #2)
+> Is the monitor connected to the card at boot ?
+> 
+> Can you give it a try and attach your logs as recommended [1]
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #50922|text/x-log                  |text/plain
-          mime type|                            |
+There you go.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
