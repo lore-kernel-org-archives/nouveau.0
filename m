@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40642] nouveau_fence_update+0xe/0xe0
-Date: Mon,  5 Sep 2011 10:51:03 -0700 (PDT)
-Message-ID: <20110905175103.76694130061@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 10:57:21 -0700 (PDT)
+Message-ID: <20110905175721.EA88D130137@annarchy.freedesktop.org>
 References: <bug-40642-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40642
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #50925|text/x-log                  |text/plain
-          mime type|                            |
+--- Comment #1 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2011-09-05 10:57:20 PDT ---
+sushi is a new preview for nautilus in gnome 3.2
+it uses clutter-gst/gstreamer
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
