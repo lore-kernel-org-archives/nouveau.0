@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
 	suspending/resuming
-Date: Sun,  4 Sep 2011 19:48:25 -0700 (PDT)
-Message-ID: <20110905024825.819201300E6@annarchy.freedesktop.org>
+Date: Sun,  4 Sep 2011 19:50:29 -0700 (PDT)
+Message-ID: <20110905025029.830BB1300E5@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #1 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-04 19:48:25 PDT ---
-How to reproduce the problem:
-
-1- install archlinux x86-64
-2- pacman -Syu
-3- install xf86-video-nouveau, nouveau-dri
-4- install KDE4.
-5- pm-suspend as root
-6- resume the computer
-7- watch the graphics glitches
+--- Comment #2 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-04 19:50:29 PDT ---
+Please note that I have OpenGL compositing turned to on in KWin, I have tried
+to disable it but this problem still persists, I tried to restart X but the
+problem is still there, the only workaround I found is to reboot the computer
+completely, but as soon as I suspend my computer the graphics get corrupted
+again.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
