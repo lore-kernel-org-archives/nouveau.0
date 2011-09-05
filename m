@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40548] Displayport not working on NV50
-Date: Mon,  5 Sep 2011 11:56:46 -0700 (PDT)
-Message-ID: <20110905185646.7EEE0130147@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 11:59:54 -0700 (PDT)
+Message-ID: <20110905185954.60A8413012E@annarchy.freedesktop.org>
 References: <bug-40548-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,25 +22,38 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40548
 
---- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 11:56:46 PDT ---
-Thanks Felipe for the logs
+--- Comment #8 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 11:59:54 PDT ---
+(In reply to comment #7)
+> Thanks Felipe for the logs
+> 
+> It would have been great if you could tell us if the DP monitor is working at
+> boot, and at what exact moment it switches off - i.e. load of radeon/nouveau
 
-It would have been great if you could tell us if the DP monitor is working at
-boot, and at what exact moment it switches off - i.e. load of radeon/nouveau
+No, it doesn't work at boot, and it never switches off. The led turns blue, as
+if it just received signal, but it stays black. The back-light is on and
+everything, there's just nothing there.
 
-Looking at your logs it appears that you have a laptop with two cards/gpus
+> Looking at your logs it appears that you have a laptop with two cards/gpus
 
-Have you looked at Optimus [1]?
+Nope.
 
-Does this setup work with the proprietary driver ?
+> Have you looked at Optimus [1]?
 
-For some reason Xorg.log is saying that you have 2 monitors connected to your
-laptop, apart from the LVDS
+What is that?
 
-AFAIK nouveau/nvidia cannot control more than two outputs, thus can you try
-only one at a time ?
+> Does this setup work with the proprietary driver ?
 
-Cheers
+Yes.
+
+> For some reason Xorg.log is saying that you have 2 monitors connected to your
+> laptop, apart from the LVDS
+
+I do.
+
+> AFAIK nouveau/nvidia cannot control more than two outputs, thus can you try
+> only one at a time ?
+
+I'll try, but my LVDS is broken, so it would be tricky.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
