@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
  suspending/resuming computer
-Date: Mon,  5 Sep 2011 15:55:36 -0700 (PDT)
-Message-ID: <20110905225536.3CACE130144@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 15:57:38 -0700 (PDT)
+Message-ID: <20110905225738.9359C130154@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #14 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 15:55:36 PDT ---
-(In reply to comment #12)
-> could you try reading that debug file many times, possibly in a loop?
-> If that doesn't work, then its different issue I guess.
-> 
-> Please try to update to mesa from git, just in case issue is fixed there.
+--- Comment #15 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 15:57:38 PDT ---
+BTW running this has crashed my machine:
 
-I've been running "cat /sys/kernel/debug/dri/0/evict_vram" inside a while loop
-for more than 1 hour and every 1 second.
+while true; do cat /sys/kernel/debug/dri/0/evict_vram; done
 
-$ while true; do cat /sys/kernel/debug/dri/0/evict_vram; sleep 1; done
+when I added "sleep 1" it didn't crash my machine, I believe I exhausted my
+hardware.
 
-but I couldn't reproduce the issue that way.
+but still, I couldn't reproduce the issue. Any instructions for upgrading mesa
+to git?
 
-How can I upgrade mesa from git? Any instructions?
+Thanks.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
