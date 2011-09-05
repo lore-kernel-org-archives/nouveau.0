@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40548] Displayport not working on NV50
-Date: Mon,  5 Sep 2011 12:21:32 -0700 (PDT)
-Message-ID: <20110905192132.35AC4130162@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 12:54:28 -0700 (PDT)
+Message-ID: <20110905195428.3891B130117@annarchy.freedesktop.org>
 References: <bug-40548-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,37 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40548
 
---- Comment #9 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 12:21:31 PDT ---
-(In reply to comment #8)
-> > AFAIK nouveau/nvidia cannot control more than two outputs, thus can you try
-> > only one at a time ?
-> 
-> I'll try, but my LVDS is broken, so it would be tricky.
+--- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 12:54:27 PDT ---
+By bad forgot the Optimus link [1]
 
-Nope, same thing, even when I removed my VGA output display and rebooted.
+Whereas for the two GPU/cards I got this from your dmesg
+
+
+[    0.807677] [drm] radeon defaulting to kernel modesetting.
+[    0.807678] [drm] radeon kernel modesetting enabled.
+
+
+
+[    2.141658] MXM: GUID detected in BIOS
+[    2.141736] nouveau 0000:01:00.0: power state changed by ACPI to D0
+[    2.141741] nouveau 0000:01:00.0: power state changed by ACPI to D0
+[    2.141753] nouveau 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
+[    2.141759] nouveau 0000:01:00.0: setting latency timer to 64
+[    2.144701] [drm] nouveau 0000:01:00.0: Detected an NV50 generation card
+(0x0a5e00a2)
+
+Can you attach the output of lspci just to confirm/dismiss the above
+
+
+You can try the following 
+1. Append "video=LVDS-1:d" to your kernel command line to disable the LVDS
+2. Choose a lower resolution for your DP monitor - "video=DP-1:1024x768@60"
+
+Cheers
+Emil
+
+
+[1] http://nouveau.freedesktop.org/wiki/Optimus
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
