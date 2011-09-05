@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
  suspending/resuming computer
-Date: Mon,  5 Sep 2011 14:11:52 -0700 (PDT)
-Message-ID: <20110905211152.1B6BA1300F9@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 14:13:50 -0700 (PDT)
+Message-ID: <20110905211350.36127130134@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #12 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-05 14:11:51 PDT ---
-could you try reading that debug file many times, possibly in a loop?
-If that doesn't work, then its different issue I guess.
-
-Please try to update to mesa from git, just in case issue is fixed there.
+--- Comment #13 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-05 14:13:49 PDT ---
+Another thing, try compiz and see if it has same issue.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
