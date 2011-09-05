@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
  suspending/resuming computer
-Date: Mon,  5 Sep 2011 16:10:45 -0700 (PDT)
-Message-ID: <20110905231045.AB74C130466@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 16:46:04 -0700 (PDT)
+Message-ID: <20110905234604.E8E3813008B@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #16 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-05 16:10:45 PDT ---
-Oh, I didn't mean to make you run that for a hour!, a few minutes should have
-done it.
-Its clear you have another bug.
-So only suggestion left is to update mesa (and try compiz too).
-Its not difficult at all to compile mesa, I can even guide you if you join IRC
-now
+--- Comment #17 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 16:46:04 PDT ---
+(In reply to comment #16)
+> Oh, I didn't mean to make you run that for a hour!, a few minutes should have
+> done it.
+> Its clear you have another bug.
+> So only suggestion left is to update mesa (and try compiz too).
+> Its not difficult at all to compile mesa, I can even guide you if you join IRC
+> now
+
+What's your nick on IRC?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
