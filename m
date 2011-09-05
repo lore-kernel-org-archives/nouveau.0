@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40548] Displayport not working on NV50
-Date: Mon,  5 Sep 2011 12:54:28 -0700 (PDT)
-Message-ID: <20110905195428.3891B130117@annarchy.freedesktop.org>
-References: <bug-40548-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40630] nouveau: corrupted graphics after
+ suspending/resuming computer
+Date: Mon,  5 Sep 2011 13:31:47 -0700 (PDT)
+Message-ID: <20110905203148.66BA3130122@annarchy.freedesktop.org>
+References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40548-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +21,35 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40548
+https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 12:54:27 PDT ---
-By bad forgot the Optimus link [1]
+--- Comment #11 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 13:31:47 PDT ---
+(In reply to comment #10)
+> I had exactly the same problem.
+> Then it looked like 2 bugs. One was in mesa and the way it didn't upload
+> relocations for constant buffer, and other problem possible was in kernel, but
+> I am not very sure about that, and anyway you have new enough kernel not to
+> worry about.
+> 
+> So please make sure you have recent enough mesa (7.11 should be enough).
+> 
+> Also to reproduce that easily (cat /sys/kernel/debug/dri/0/evict_vram) was
+> added.
+> Just read that file few times like that:
+> 
+> cat /sys/kernel/debug/dri/0/evict_vram
+> 
+> (That assumes you have debugfs mounted on /sys/kernel/debug)
 
-Whereas for the two GPU/cards I got this from your dmesg
+Hello, I have mesa 7.11-2.
 
+[diego@myhost ~]$ pacman -Q mesa
+mesa 7.11-2
+[diego@myhost ~]$ 
 
-[    0.807677] [drm] radeon defaulting to kernel modesetting.
-[    0.807678] [drm] radeon kernel modesetting enabled.
-
-
-
-[    2.141658] MXM: GUID detected in BIOS
-[    2.141736] nouveau 0000:01:00.0: power state changed by ACPI to D0
-[    2.141741] nouveau 0000:01:00.0: power state changed by ACPI to D0
-[    2.141753] nouveau 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
-[    2.141759] nouveau 0000:01:00.0: setting latency timer to 64
-[    2.144701] [drm] nouveau 0000:01:00.0: Detected an NV50 generation card
-(0x0a5e00a2)
-
-Can you attach the output of lspci just to confirm/dismiss the above
-
-
-You can try the following 
-1. Append "video=LVDS-1:d" to your kernel command line to disable the LVDS
-2. Choose a lower resolution for your DP monitor - "video=DP-1:1024x768@60"
-
-Cheers
-Emil
-
-
-[1] http://nouveau.freedesktop.org/wiki/Optimus
+I tried mounting debugfs to /sys/kernel/debug/ and reading
+/sys/kernel/debug/dri/0/evict_vram a few times with cat but I cannot reproduce
+the issue that way.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
