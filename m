@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
-	suspending/resuming
-Date: Sun,  4 Sep 2011 20:33:58 -0700 (PDT)
-Message-ID: <20110905033358.8D72C130129@annarchy.freedesktop.org>
+ suspending/resuming computer
+Date: Sun,  4 Sep 2011 21:10:36 -0700 (PDT)
+Message-ID: <20110905041036.674071300DA@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #9 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-04 20:33:58 PDT ---
-I also notice sometimes when calling krunner (ALT + F2) in KDE, then typing
-something like "konsole", the pixels where krunner is will get all messed up
-too, I don't even need to suspend to reproduce this, it doesn't always happen
-but it happens most of the time, when I'm able to reproduce that I will take a
-picture.
+Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Thanks.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|nouveau: corrupted graphics |nouveau: corrupted graphics
+                   |after suspending/resuming   |after suspending/resuming
+                   |                            |computer
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
