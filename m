@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40548] Displayport not working on NV50
-Date: Mon,  5 Sep 2011 11:59:54 -0700 (PDT)
-Message-ID: <20110905185954.60A8413012E@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 12:21:32 -0700 (PDT)
+Message-ID: <20110905192132.35AC4130162@annarchy.freedesktop.org>
 References: <bug-40548-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,38 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40548
 
---- Comment #8 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 11:59:54 PDT ---
-(In reply to comment #7)
-> Thanks Felipe for the logs
+--- Comment #9 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 12:21:31 PDT ---
+(In reply to comment #8)
+> > AFAIK nouveau/nvidia cannot control more than two outputs, thus can you try
+> > only one at a time ?
 > 
-> It would have been great if you could tell us if the DP monitor is working at
-> boot, and at what exact moment it switches off - i.e. load of radeon/nouveau
+> I'll try, but my LVDS is broken, so it would be tricky.
 
-No, it doesn't work at boot, and it never switches off. The led turns blue, as
-if it just received signal, but it stays black. The back-light is on and
-everything, there's just nothing there.
-
-> Looking at your logs it appears that you have a laptop with two cards/gpus
-
-Nope.
-
-> Have you looked at Optimus [1]?
-
-What is that?
-
-> Does this setup work with the proprietary driver ?
-
-Yes.
-
-> For some reason Xorg.log is saying that you have 2 monitors connected to your
-> laptop, apart from the LVDS
-
-I do.
-
-> AFAIK nouveau/nvidia cannot control more than two outputs, thus can you try
-> only one at a time ?
-
-I'll try, but my LVDS is broken, so it would be tricky.
+Nope, same thing, even when I removed my VGA output display and rebooted.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
