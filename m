@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
 	suspending/resuming
-Date: Sun,  4 Sep 2011 19:53:33 -0700 (PDT)
-Message-ID: <20110905025333.C685C130119@annarchy.freedesktop.org>
+Date: Sun,  4 Sep 2011 20:02:57 -0700 (PDT)
+Message-ID: <20110905030257.8D5151300FF@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #3 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-04 19:53:33 PDT ---
-Created an attachment (id=50904)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50904)
-NOUVEAU IRC LOG
+--- Comment #4 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-04 20:02:57 PDT ---
+Created an attachment (id=50905)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50905)
+kernel log (dmesg)
 
-if you need more detailed information please see the IRC log attached from
-#nouveau. Or feel free to ask me questions, and I will gladly provide any help.
+Please find the dmesg attached, I have captured this dmesg after/when I have
+reproduced the problem.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
