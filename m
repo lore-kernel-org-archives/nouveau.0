@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
  suspending/resuming computer
-Date: Mon,  5 Sep 2011 13:31:47 -0700 (PDT)
-Message-ID: <20110905203148.66BA3130122@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 13:49:24 -0700 (PDT)
+Message-ID: <20110905204924.738991300B9@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,33 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #11 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 13:31:47 PDT ---
-(In reply to comment #10)
-> I had exactly the same problem.
-> Then it looked like 2 bugs. One was in mesa and the way it didn't upload
-> relocations for constant buffer, and other problem possible was in kernel, but
-> I am not very sure about that, and anyway you have new enough kernel not to
-> worry about.
-> 
-> So please make sure you have recent enough mesa (7.11 should be enough).
-> 
-> Also to reproduce that easily (cat /sys/kernel/debug/dri/0/evict_vram) was
-> added.
-> Just read that file few times like that:
-> 
-> cat /sys/kernel/debug/dri/0/evict_vram
-> 
-> (That assumes you have debugfs mounted on /sys/kernel/debug)
+Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Hello, I have mesa 7.11-2.
-
-[diego@myhost ~]$ pacman -Q mesa
-mesa 7.11-2
-[diego@myhost ~]$ 
-
-I tried mounting debugfs to /sys/kernel/debug/ and reading
-/sys/kernel/debug/dri/0/evict_vram a few times with cat but I cannot reproduce
-the issue that way.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Platform|Other                       |x86-64 (AMD64)
+         OS/Version|All                         |Linux (All)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
