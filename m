@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40548] Displayport not working on NV50
-Date: Mon,  5 Sep 2011 07:24:43 -0700 (PDT)
-Message-ID: <20110905142443.5A3D41300F2@annarchy.freedesktop.org>
+Date: Mon,  5 Sep 2011 07:25:39 -0700 (PDT)
+Message-ID: <20110905142539.3664B1300D5@annarchy.freedesktop.org>
 References: <bug-40548-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40548
 
-Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #50812|0                           |1
-        is obsolete|                            |
-
---- Comment #4 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 07:24:43 PDT ---
-Created an attachment (id=50921)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50921)
-dmesg
+--- Comment #5 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-05 07:25:38 PDT ---
+Created an attachment (id=50922)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50922)
+Xorg log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
