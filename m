@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
  suspending/resuming computer
-Date: Tue,  6 Sep 2011 16:34:04 -0700 (PDT)
-Message-ID: <20110906233404.BF0EA13007B@annarchy.freedesktop.org>
+Date: Tue,  6 Sep 2011 17:27:17 -0700 (PDT)
+Message-ID: <20110907002718.0782A130119@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #20 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-06 16:34:04 PDT ---
-I tried running openbox and kwin without opengl compositing and after
-suspending/resuming it doesn't exhibit this problem.
-
-the problem is only when opengl compositing is enabled.
+--- Comment #21 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-06 17:27:17 PDT ---
+I have compiled libdrm and Mesa from Git, the problem still persists.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
