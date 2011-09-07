@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
  suspending/resuming computer
-Date: Tue,  6 Sep 2011 18:59:14 -0700 (PDT)
-Message-ID: <20110907015914.4318C1300A8@annarchy.freedesktop.org>
+Date: Tue,  6 Sep 2011 18:59:41 -0700 (PDT)
+Message-ID: <20110907015941.99A8A1300D6@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #22 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-06 18:59:13 PDT ---
-Created an attachment (id=50946)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50946)
-glxgears after suspend/resume
-
-We (MaximLevitsky and I) have found that any 3D apps doesn't survive
-suspend/resume.
-
-Whether I start glxgears after suspend/resume, the graphics looks corrupted.
-
-screenshots of glxgears attached after suspend/resume (and also logs).
+--- Comment #23 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-06 18:59:41 PDT ---
+Created an attachment (id=50947)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50947)
+glxgears after suspend/resume maximized
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
