@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Thu,  8 Sep 2011 13:01:04 -0700 (PDT)
-Message-ID: <20110908200104.A3F34130071@annarchy.freedesktop.org>
+Date: Thu,  8 Sep 2011 13:01:41 -0700 (PDT)
+Message-ID: <20110908200141.D97C01301FE@annarchy.freedesktop.org>
 References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
---- Comment #6 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-09-08 13:01:04 PDT ---
-While I watched a movie (mplayer) today, the same(?) problem resulted in a
-kernel oops. This time, the syslog daemon was able to write the data to the
-harddisk. I attached the syslog file.
+--- Comment #7 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-09-08 13:01:41 PDT ---
+Created an attachment (id=50990)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=50990)
+syslog file after crash
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
