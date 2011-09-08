@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Thu,  8 Sep 2011 13:01:41 -0700 (PDT)
-Message-ID: <20110908200141.D97C01301FE@annarchy.freedesktop.org>
+Date: Thu,  8 Sep 2011 13:56:31 -0700 (PDT)
+Message-ID: <20110908205632.0850A13010F@annarchy.freedesktop.org>
 References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
---- Comment #7 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-09-08 13:01:41 PDT ---
-Created an attachment (id=50990)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50990)
-syslog file after crash
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #50598|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
