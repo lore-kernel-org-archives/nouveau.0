@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40739] Weird pixels on Nouveau chip Nva3 Nvidia
 	Quadro FX 1800M
-Date: Fri,  9 Sep 2011 09:11:11 -0700 (PDT)
-Message-ID: <20110909161111.BFAA413008E@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 09:16:04 -0700 (PDT)
+Message-ID: <20110909161604.9AD35130063@annarchy.freedesktop.org>
 References: <bug-40739-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40739
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #51010|text/x-log                  |text/plain
-          mime type|                            |
+--- Comment #8 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2011-09-09 09:16:04 PDT ---
+I don't see weird pixels, but I do see the colour transitions, i.e. that
+dithering seems to be disabled - http://nouveau.freedesktop.org/wiki/Dithering
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
