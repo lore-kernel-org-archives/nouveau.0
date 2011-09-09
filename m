@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27398] displayport: x server does not draw anything
- on ThinkPad T410
-Date: Fri,  9 Sep 2011 06:42:38 -0700 (PDT)
-Message-ID: <20110909134238.833C513019A@annarchy.freedesktop.org>
-References: <bug-27398-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40739] New: Weird pixels on Nouveau chip Nva3 Nvidia
+ Quadro FX 1800M
+Date: Fri,  9 Sep 2011 08:42:58 -0700 (PDT)
+Message-ID: <bug-40739-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +19,34 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27398
+https://bugs.freedesktop.org/show_bug.cgi?id=40739
 
---- Comment #12 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 06:42:36 PDT ---
-(In reply to comment #11)
-> (In reply to comment #10)
-> > I have a similar 34429 bug, which is reproduced on the latest git version. See
-> > the attached dmesg log to this bug.
-> 
-> It's not the same bug.  This bug is about DP outputs not working unless
-> initialised by the VBIOS.
+           Summary: Weird pixels on Nouveau chip Nva3 Nvidia Quadro FX
+                    1800M
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: gorilla.maguila-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Is it possible that the bug 34429 causes the same problem - uninitialized eDP
-output after suspend and resume?
+
+When using nouevau driver you can see weird pixels and extrange colour
+transitions on screen (See image attachment).
+
+I have taken some pictures with my mobile, because If I would enclose a
+screenshot under nouveau you wouldn't appreciate these visuals effects.
+
+It's not happening when using the blob.
+
+I'm using mesa 7.11 under kernel 3.0.4 in archlinux x64, I think its been
+happening every time I have used nouveau driver, If I am not mistaken since
+kernel 2.6.35.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
