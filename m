@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40739] Weird pixels on Nouveau chip Nva3 Nvidia
 	Quadro FX 1800M
-Date: Fri,  9 Sep 2011 08:54:28 -0700 (PDT)
-Message-ID: <20110909155428.E7BC21300E5@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 08:55:38 -0700 (PDT)
+Message-ID: <20110909155538.62606130174@annarchy.freedesktop.org>
 References: <bug-40739-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40739
 
---- Comment #6 from gorilla.maguila-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-09 08:54:23 PDT ---
-Created an attachment (id=51012)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51012)
-Image2
+--- Comment #7 from gorilla.maguila-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-09 08:55:33 PDT ---
+Created an attachment (id=51013)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51013)
+Image3
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
