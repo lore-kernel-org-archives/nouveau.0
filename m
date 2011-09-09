@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted graphics after
- suspend/hibernate computer
-Date: Thu,  8 Sep 2011 18:33:05 -0700 (PDT)
-Message-ID: <20110909013305.9ECE9130079@annarchy.freedesktop.org>
+	suspend/hibernate
+Date: Thu,  8 Sep 2011 19:01:24 -0700 (PDT)
+Message-ID: <20110909020124.F3C6E13014A@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,8 +28,8 @@ Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
             Summary|nouveau: corrupted graphics |nouveau: corrupted graphics
-                   |after suspend/resume        |after suspend/hibernate
-                   |computer                    |computer
+                   |after suspend/hibernate     |after suspend/hibernate
+                   |computer                    |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
