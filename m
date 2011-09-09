@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
- graphics after suspend/hibernate
-Date: Fri,  9 Sep 2011 03:19:50 -0700 (PDT)
-Message-ID: <20110909101950.3F2BF1301A3@annarchy.freedesktop.org>
-References: <bug-40630-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40548] Displayport not working on NV50
+Date: Fri,  9 Sep 2011 04:07:18 -0700 (PDT)
+Message-ID: <20110909110718.9B4311300AC@annarchy.freedesktop.org>
+References: <bug-40548-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40548-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40630
+https://bugs.freedesktop.org/show_bug.cgi?id=40548
 
---- Comment #29 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 03:19:50 PDT ---
-calim's response to this issue on #nouveau:
+--- Comment #13 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 04:07:17 PDT ---
+(In reply to comment #12)
+> Where does your nouveau kernel module come from?  The code in nouveau kernel
+> git should support native DP outputs correctly now, if you're not already using
+> that code, it's worth a try.
 
-06:06 < calim> diegoviola: that has to be some issue with kernel not restoring
-VRAM properly, the addresses the MP executes at look sane but the RAM contents
-are obviously garbage
-
-06:11 < calim> reducing the size of some buffer just hides the issue though
-06:12 < calim> or it might step over the large/small pages boundary, could be a
-hint
-
-06:13 < calim> he's already thought about all that
-
-06:13 < calim> s/about/of
-06:13 < calim> will probably have to look at the kernel's suspend code next
-06:14 < calim> I mean nouveau's suspend code
-
-06:16 < calim> maybe double the size (from 32 KiB up to the original 512 KiB)
-and check at which point it starts to fail to see if it really is the
-large-pages allocation boundary
+What do you mean by "git"? 3.1-rc5?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
