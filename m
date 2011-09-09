@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Fri,  9 Sep 2011 03:07:35 -0700 (PDT)
-Message-ID: <20110909100736.05B1D1300EE@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 03:19:50 -0700 (PDT)
+Message-ID: <20110909101950.3F2BF1301A3@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,26 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #28 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 03:07:35 PDT ---
-Hi,
+--- Comment #29 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 03:19:50 PDT ---
+calim's response to this issue on #nouveau:
 
-I've been playing Nexuiz for at least 2 hours at 1680x1050 with effects set to
-High, the FPS I get with my card is 30-45 FPS.
+06:06 < calim> diegoviola: that has to be some issue with kernel not restoring
+VRAM properly, the addresses the MP executes at look sane but the RAM contents
+are obviously garbage
 
-I don't get corrupted graphics anymore, and I managed to suspend/hibernate
-WHILE playing the game and the game didn't crash a single time while doing
-suspend/hibernate, which I find impressive.
+06:11 < calim> reducing the size of some buffer just hides the issue though
+06:12 < calim> or it might step over the large/small pages boundary, could be a
+hint
 
-So the game runs stable, but it I also got 2 or 3 crashes, what was the command
-for getting a trace? I don't get corrupted graphics anymore, which is nice.
+06:13 < calim> he's already thought about all that
 
-Thanks Naxim, I'm very impressed with Nouveau, it rocks.
+06:13 < calim> s/about/of
+06:13 < calim> will probably have to look at the kernel's suspend code next
+06:14 < calim> I mean nouveau's suspend code
+
+06:16 < calim> maybe double the size (from 32 KiB up to the original 512 KiB)
+and check at which point it starts to fail to see if it really is the
+large-pages allocation boundary
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
