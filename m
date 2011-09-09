@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34429] Failure during resume on NV50: INIT_AUXCH: rd
  auxch fail -121
-Date: Fri,  9 Sep 2011 06:09:21 -0700 (PDT)
-Message-ID: <20110909130921.D577C130136@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 06:13:29 -0700 (PDT)
+Message-ID: <20110909131329.581B3130105@annarchy.freedesktop.org>
 References: <bug-34429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34429
 
-Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #43841|0                           |1
-        is obsolete|                            |
-
---- Comment #8 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 06:09:20 PDT ---
-Created an attachment (id=50998)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=50998)
-dmesg from the nouveau git
+--- Comment #9 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 06:13:28 PDT ---
+Bug still reproduced on the latest git version. See attached dmesg log.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
