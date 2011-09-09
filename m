@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40630] nouveau: corrupted graphics after
-	suspend/hibernate
-Date: Thu,  8 Sep 2011 19:01:24 -0700 (PDT)
-Message-ID: <20110909020124.F3C6E13014A@annarchy.freedesktop.org>
+Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
+ graphics after suspend/hibernate
+Date: Thu,  8 Sep 2011 19:12:32 -0700 (PDT)
+Message-ID: <20110909021232.80B2813014B@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +27,10 @@ Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|nouveau: corrupted graphics |nouveau: corrupted graphics
-                   |after suspend/hibernate     |after suspend/hibernate
-                   |computer                    |
+            Summary|nouveau: corrupted graphics |nouveau: corrupted
+                   |after suspend/hibernate     |opengl/3d/composited
+                   |                            |graphics after
+                   |                            |suspend/hibernate
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
