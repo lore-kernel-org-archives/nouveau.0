@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40548] Displayport not working on NV50
-Date: Fri,  9 Sep 2011 04:07:18 -0700 (PDT)
-Message-ID: <20110909110718.9B4311300AC@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 05:01:42 -0700 (PDT)
+Message-ID: <20110909120142.B80D713019B@annarchy.freedesktop.org>
 References: <bug-40548-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40548
 
---- Comment #13 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 04:07:17 PDT ---
-(In reply to comment #12)
-> Where does your nouveau kernel module come from?  The code in nouveau kernel
-> git should support native DP outputs correctly now, if you're not already using
-> that code, it's worth a try.
-
-What do you mean by "git"? 3.1-rc5?
+--- Comment #14 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 05:01:42 PDT ---
+No, not Linus' tree, Nouveau's - which is at
+http://cgit.freedesktop.org/nouveau/linux-2.6
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
