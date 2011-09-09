@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27398] displayport: x server does not draw anything
  on ThinkPad T410
-Date: Fri,  9 Sep 2011 06:18:52 -0700 (PDT)
-Message-ID: <20110909131852.8643F1301D1@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 06:20:34 -0700 (PDT)
+Message-ID: <20110909132034.951EA130170@annarchy.freedesktop.org>
 References: <bug-27398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27398
 
---- Comment #10 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 06:18:51 PDT ---
-I have a similar 34429 bug, which is reproduced on the latest git version. See
-the attached dmesg log to this bug.
+--- Comment #11 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 06:20:34 PDT ---
+(In reply to comment #10)
+> I have a similar 34429 bug, which is reproduced on the latest git version. See
+> the attached dmesg log to this bug.
+
+It's not the same bug.  This bug is about DP outputs not working unless
+initialised by the VBIOS.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
