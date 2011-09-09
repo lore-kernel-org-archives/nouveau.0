@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34429] Failure during resume on NV50: INIT_AUXCH: rd
- auxch fail -121
-Date: Fri,  9 Sep 2011 06:13:29 -0700 (PDT)
-Message-ID: <20110909131329.581B3130105@annarchy.freedesktop.org>
-References: <bug-34429-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27398] displayport: x server does not draw anything
+ on ThinkPad T410
+Date: Fri,  9 Sep 2011 06:18:52 -0700 (PDT)
+Message-ID: <20110909131852.8643F1301D1@annarchy.freedesktop.org>
+References: <bug-27398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34429-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,10 +21,11 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34429
+https://bugs.freedesktop.org/show_bug.cgi?id=27398
 
---- Comment #9 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 06:13:28 PDT ---
-Bug still reproduced on the latest git version. See attached dmesg log.
+--- Comment #10 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 06:18:51 PDT ---
+I have a similar 34429 bug, which is reproduced on the latest git version. See
+the attached dmesg log to this bug.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
