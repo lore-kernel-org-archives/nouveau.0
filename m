@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40747] The new nouveau kernel module fails to use my
  monitor's native resolution
-Date: Fri,  9 Sep 2011 17:55:11 -0700 (PDT)
-Message-ID: <20110910005511.7F3E8130086@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 20:55:52 -0700 (PDT)
+Message-ID: <20110910035552.EDF7A13012E@annarchy.freedesktop.org>
 References: <bug-40747-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,40 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40747
 
---- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 17:55:11 PDT ---
-2.6.32 kernel allowed to use higher resolution because it didn't take into
-account hardware limitations - NV44's tmds maximum pixel clock is 155MHz and
-1600x1200 needs 162MHz.
-Your card is special if it worked before this 2.6.37 commit:
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=1f5bd44354c878cf8bb0e28a7cb27677e3640c45
+--- Comment #4 from monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org 2011-09-09 20:55:52 PDT ---
+> 2.6.32 kernel allowed to use higher resolution because it didn't take into
+> account hardware limitations - NV44's tmds maximum pixel clock is 155MHz and
+> 1600x1200 needs 162MHz.
+
+Hmm... I must admit I had no idea of such a limitation.  And I've had this
+machine for 5 years or so, now.  I've always used it at 1600x1200.  At the
+beginning, I used it at that resolution via VGA rather than DVI (not sure if
+that tmds limit applies to VGA), but the nvidia driver was also happy to set it
+to 1600x1200 over DVI (tho the nv driver always limited itself to 1280x1024
+over DVI, which is why I used VGA until nouveau matured).  And ever since
+nouveau's kernel module started to work, I've used it for 1600x1200 over DVI.
+
+I must say I'm shocked that a graphics card of the 21st century would not be
+able to go up to 1600x1200.  Hell, my old Matrox Millenium II went up to
+1800x1400 without complaining, more than 15 years ago.  Are you *really* sure
+of this 155 limit?
+
+So I guess I have 2 options:
+- find a way to convince nouveau to go past this limit.  Could we get an option
+  to get back the pre-2.6.37 behavior of limiting the tmds to 165?
+- find a way to tell nouveau to use a modeline which gives me 1600x1200 but
+  without the annoying "non optimal mode" warning on my monitor.
+  Is there a way to get finer control on the modeline than "video=NNNxMMM"?
+
+BTW, the 3.0.0-1 log shows that providing a "video=1600x1200" argument
+convinces nouveau to use 1600x1200 and while it doesn't use the native modeline
+(at 162Mhz) it does use a modeline at more than 155MHz:
+
+[    7.316860] [drm:drm_mode_debug_printmodeline], Modeline 48:"1600x1200" 0
+160961 1600 1704 1880 2160 1200 1201 1204 1242 0x0 0x6
+
+Not sure where that modeline comes from, nor why nouveau seems to ignore the
+155MHz limit for it.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
