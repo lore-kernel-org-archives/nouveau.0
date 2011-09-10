@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40747] The new nouveau kernel module fails to use my
  monitor's native resolution
-Date: Sat, 10 Sep 2011 14:00:51 -0700 (PDT)
-Message-ID: <20110910210051.7CFFF13014D@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 14:01:46 -0700 (PDT)
+Message-ID: <20110910210146.66EE0130175@annarchy.freedesktop.org>
 References: <bug-40747-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40747
 
---- Comment #8 from monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org 2011-09-10 14:00:50 PDT ---
-Created an attachment (id=51034)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51034)
-Half-successful boot with "video=1600x1200MR" with Debian's 3.0.0-1
+--- Comment #9 from monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org 2011-09-10 14:01:46 PDT ---
+Created an attachment (id=51035)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51035)
+Half-successful boot with "video=1600x1200R" with Debian's 3.0.0-1
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
