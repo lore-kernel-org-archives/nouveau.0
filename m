@@ -1,34 +1,62 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40747] The new nouveau kernel module fails to use my
- monitor's native resolution
-Date: Sat, 10 Sep 2011 14:01:46 -0700 (PDT)
-Message-ID: <20110910210146.66EE0130175@annarchy.freedesktop.org>
-References: <bug-40747-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: Re: [PATCH v2] nouveau: Add support for XvMC acceleration
+Date: Sun, 11 Sep 2011 00:54:20 +0200
+Message-ID: <20110910225420.GB30222@joi.lan>
+References: <4E6B180B.1070401@gmail.com>
+	<CAMmP6nczOaGwXbuaNEc-nrTw7kvGdjOr-6+qbWTMqm9s_UkpMA@mail.gmail.com>
+	<4E6B977B.8040402@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <4E6B977B.8040402@gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: Maarten Lankhorst <m.b.lankhorst@gmail.com>
+Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40747
-
---- Comment #9 from monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org 2011-09-10 14:01:46 PDT ---
-Created an attachment (id=51035)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51035)
-Half-successful boot with "video=1600x1200R" with Debian's 3.0.0-1
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gU2F0LCBTZXAgMTAsIDIwMTEgYXQgMDY6NTk6MzlQTSArMDIwMCwgTWFhcnRlbiBMYW5raG9y
+c3Qgd3JvdGU6Cj4gSGV5IOKYhSwKPiAKPiBPbiAwOS8xMC8yMDExIDA2OjI4IFBNLCDimIUgRW1l
+cmljIHdyb3RlOgo+ID4gSGkgTWFhcnRlbiwKPiA+IEkgdHJpZWQgdGhlIHYyIHBhdGNoIHdpdGgg
+bXkgZ29vZCBvbGQgZ2Vmb3JjZSA4NjAwTSBHUywgYW5kIGl0IHdvcmtlZCB3ZWxsLgo+ID4gVGhl
+IENQVSB1c2FnZSBzZWVtcyBhIGxpdHRsZSBoaWdoZXIgdGhhbiB1c3VhbCwgSSdkIHNhaWQgNjAl
+IGluc3RlYWQgb2YgNDAlCj4gPiBmb3IgYSA3MjBwIHZpZGVvLCBidXQgSSdsbCB0cnkgd2l0aCBh
+IGhpZ2hlciBiaXRyYXRlIHZpZGVvIGFuZCB3aXRob3V0Cj4gPiBidWlsZGluZyB3aXRoIGRlYnVn
+IHBhcmFtZXRlcnMgdG8gc2VlIGlmIEkgY2FuIGZvdW5kIGEgcGVyZm9ybWFuY2UgZ2Fpbi4KPiA+
+IFRoZSBvbmx5IHByb2JsZW0gaXMgdGhhdCBJIGNhbm5vdCBzZWVrIHRocm91Z2ggdGhlIHZpZGVv
+IHdpdGhvdXQgYW4gc2VnZmF1bHQKPiA+IG9uIHRoYXQgZXJyb3IgIlgxMSBlcnJvcjogQmFkQWNj
+ZXNzIChhdHRlbXB0IHRvIGFjY2VzcyBwcml2YXRlIHJlc291cmNlCj4gPiBkZW5pZWQpIiwgSSBh
+dHRhY2hlZCBhIGdkYiBiYWNrdHJhY2UuIEl0IGFwcGVhcnMgdG8gYmUgcmVsYXRlZCB0byB0aGUK
+PiA+IGRyYXdpbmcgb2YgdGhlIG1wbGF5ZXIgT1NELgo+ID4KPiBUaGF0J3MgZWl0aGVyIGEgYnVn
+IGluIG1wbGF5ZXIgb3IgaW4gdGhlIHN0YXRlIHRyYWNrZXIuIFdoYXQncyBveSBhbmQgb3gKPiBz
+ZXQgdG8gYXQgdGhlIHRpbWUgb2YgdGhlIGNyYXNoPyBhbmQgd2hlcmUgZG9lcyB4dmltYWdlLT5k
+YXRhIHBvaW50IHRvIDopCj4gClRoaXMgaXMgYSBidWcgaW4geGY4Ni12aWRlby1ub3V2ZWF1IGFj
+dHVhbGx5LCBhbmQgaXQgbGVhZHMgdG8gbWVtb3J5IGNvcnJ1cHRpb24KaW4gbXBsYXllci4KClBh
+dGNoIGJlbG93IGZpeGVzIGl0LCBidXQgT1NEIHN0aWxsIGRvZXNuJ3Qgd29yay4KCi0tLQpGcm9t
+IDAwZjc5ODYyOTFiODZkYjlhMDljMTY1MWViNDQ1MGM2OTc2MWZlMjcgTW9uIFNlcCAxNyAwMDow
+MDowMCAyMDAxCkZyb206IE1hcmNpbiBTbHVzYXJ6IDxtYXJjaW4uc2x1c2FyekBnbWFpbC5jb20+
+CkRhdGU6IFNhdCwgMTAgU2VwIDIwMTEgMjM6MTQ6NTMgKzAyMDAKU3ViamVjdDogW1BBVENIXSB4
+djogc3VwcG9ydCBBSTQ0L0lBNDQKCi0tLQogc3JjL25vdXZlYXVfeHYuYyB8ICAgIDggKysrKysr
+KysKIDEgZmlsZXMgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCAwIGRlbGV0aW9ucygtKQoKZGlm
+ZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X3h2LmMgYi9zcmMvbm91dmVhdV94di5jCmluZGV4IDMwNzUz
+ZmEuLjVhNTMzN2MgMTAwNjQ0Ci0tLSBhL3NyYy9ub3V2ZWF1X3h2LmMKKysrIGIvc3JjL25vdXZl
+YXVfeHYuYwpAQCAtMTQyNiw3ICsxNDI2LDE1IEBAIE5WUXVlcnlJbWFnZUF0dHJpYnV0ZXMoU2Ny
+bkluZm9QdHIgcFNjcm4sIGludCBpZCwKIAkJCXBpdGNoZXNbMF0gPSBzaXplOyAvLyA0KndpZHRo
+CiAJCXNpemUgKj0gKmg7IC8vIDQqd2lkdGgqaGVpZ2h0CiAJCWJyZWFrOworCWNhc2UgRk9VUkND
+X0FJNDQ6CisJY2FzZSBGT1VSQ0NfSUE0NDoKKwkJc2l6ZSA9ICp3OyAvLyB3aWR0aAorCQlpZiAo
+cGl0Y2hlcykKKwkJCXBpdGNoZXNbMF0gPSBzaXplOyAvLyB3aWR0aAorCQlzaXplICo9ICpoOyAv
+LyB3aWR0aCpoZWlnaHQKKwkJYnJlYWs7CiAJZGVmYXVsdDoKKwkJeGY4NkRydk1zZyhwU2Nybi0+
+c2NybkluZGV4LCBYX1dBUk5JTkcsICJVbmtub3duIGNvbG9yc3BhY2U6ICV4XG4iLCBpZCk7CiAJ
+CSp3ID0gKmggPSBzaXplID0gMDsKIAkJYnJlYWs7CiAJfQotLSAKMS43LjYuMQoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBs
+aXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
