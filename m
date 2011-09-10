@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Fri,  9 Sep 2011 22:22:44 -0700 (PDT)
-Message-ID: <20110910052244.9C6DA130105@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 22:26:22 -0700 (PDT)
+Message-ID: <20110910052622.4E1B71300AE@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #31 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 22:22:44 PDT ---
-I get this with the latest kernel from git head.
+--- Comment #32 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 22:26:20 PDT ---
+Created an attachment (id=51024)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51024)
+kernel .config
 
-[drm] nouveau 0000:01:00.0: PGRAPH - TRAP_MP - TP0: Unhandled ustatus
-0x00020000
-[drm] nouveau 0000:01:00.0: PGRAPH - TRAP
-[drm] nouveau 0000:01:00.0: PGRAPH - ch 4 (0x0001e81000) subc 5 class 0x8297
-mthd 0x1b0c data 0x1000f010
-
-
-[diego@myhost ~]$ uname -a
-Linux myhost 3.1.0-rc5+ #1 SMP Sat Sep 10 01:15:44 PYT 2011 x86_64 Intel(R)
-Core(TM)2 Duo CPU E7500 @ 2.93GHz GenuineIntel GNU/Linux
-[diego@myhost ~]$
+attached my kernel .config file, used for 3.0.4 and 3.1.0-rc5+ (git head)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
