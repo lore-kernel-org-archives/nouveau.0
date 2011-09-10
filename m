@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
- graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 08:41:21 -0700 (PDT)
-Message-ID: <20110910154121.252FC1300D6@annarchy.freedesktop.org>
-References: <bug-40630-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40747] The new nouveau kernel module fails to use my
+ monitor's native resolution
+Date: Sat, 10 Sep 2011 13:57:57 -0700 (PDT)
+Message-ID: <20110910205757.A8C5D13019A@annarchy.freedesktop.org>
+References: <bug-40747-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,58 +21,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40630
+https://bugs.freedesktop.org/show_bug.cgi?id=40747
 
---- Comment #35 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 08:41:20 PDT ---
-Small update and corrections:
+--- Comment #7 from monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org 2011-09-10 13:57:57 PDT ---
+So, I tried to play with the video= parameter and I now have an acceptable
+workaround with "video=1600x1200@55" which gives me the right resolution
+without any complaint from my monitor.
+I tried to "M" and the "R" thingies as in "1600x1200MR" or "1600x1200R" but
+these seem to be ignored, or at least didn't make much difference (actually the
+"R" does the same as when nothing is specified and the "MR" gives a marginally
+higher pixel clock).  I expected the "R" to give a much more substantial
+reduction in dotclock, or maybe the R is somehow ignored in the "MR"
+combination ("cvt" gives me the same modeline as I got with 1600x1200MR, at
+161MHz, whereas "cvs --reduced" drops the dotclock to 130MHz).
 
-This is a summary of findings  so far:
+I haven't tried the Xorg nouveau driver on top to see whether it obeys my
+"video=" arg or whether I'm going to have to play the same dance in the
+xorg.conf file (because right now the Xorg driver gives me the familiar "error
+opening the drm").  But at least using the fbdev driver, this gives me a good
+workaround.
 
-1. Fault always happens in MP1 of TP0, after resume from ram
-   That's of course very strange
-
-2. It doesn't matter if program was run through suspend 
-    or launched afrer suspend.
-   Which means that its not an error of preserving channel/program state
-   through suspend. Everything is uploaded new after the program starts.
-
-3. It doesn't matter if there was suspend or hibernate, 
-   even hibernate without BIOS suport (echo shutdown > /sys/power/disk)
-   Or in other words 'magic init' done on boot but missing after resume,
-   or opposite a screwup by bios after resume is ruled out.
-
-4. Actual size of allocated buffer doesn't matter. However just 
-   pretending that we allocated smaller buffers for each code type 
-   (by passing  smaller size to nouveau_resource_alloc fixes the issue. 
-   (32K was largest size that was working)
-   Also support for large pages was disabled in kernel and that didn't help.
-   This means that its not allocation, failure. It could be memory copy failure
-   though, although initially buffer is allocated in video ram.
-
-   This also means that the _code offset_ is what matters.
-   In addition to that note that code was uploaded by SIFC but it takes end 
-   address of area to copy to, thus really offset from start of out buffer 
-   shouldn't matter.
-
-5. Buffers that glxgears happen to upload (tested on his and my system and
-   appears not to change:
-
-   7fc00 - 2nd vertex shader - 392 bytes
-   7fe00 - vertex shader 392 bytes
-   fff00 - pixel shader - 24 bytes
-
-   However fault address is almost always 7bf00 or something very close to it 
-   (7bf08, 7c000)
-
-   That address is way outside the areas that were uploaded, which means that
-   TP1 really executes undefined code that just wasn't uploaded.
-
-   Filling the whole code buffer with pattern (using nouveau_bo_map) with 
-   pattern made  TP1 execute that pattern once again at 7bf00. Tested 
-   many times.
-   However if in addition to doing so, the code buffer upload was skipped, all
-   TPs  (all 4 of them) faulted in tandem at 7fe00 (vertex shader) trying to
-   execute the  pattern.
+I see only two ways to improve the situation (modulo the handling of "R"
+mentioned above):
+- provide a way to override the 155MHz limit (apparently, the hardware does not
+prevent overclocking and at least in my case, it handles such overclocking
+without blinking).
+- when the monitor's preferred modeline can't be used because of dotclock
+limits, output a clear message in the dmesg about it, and cook up a different
+modeline that preserves the resolution (e.g. at the cost of lower refresh
+rate).  This is because on LCD displays, using the native resolution is a lot
+more important than using a high enough refresh rate.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
