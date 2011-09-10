@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Fri,  9 Sep 2011 22:27:43 -0700 (PDT)
-Message-ID: <20110910052743.4911E13010A@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 22:28:04 -0700 (PDT)
+Message-ID: <20110910052804.A1F55130078@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #51024|.config                     |.config.txt
+  Attachment #51024|.config.txt                 |.config
            filename|                            |
 
 -- 
