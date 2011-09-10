@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 08:14:46 -0700 (PDT)
-Message-ID: <20110910151446.5CB75130135@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 08:41:21 -0700 (PDT)
+Message-ID: <20110910154121.252FC1300D6@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,29 +23,39 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #34 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 08:14:46 PDT ---
-Thanks for testing the latest kernel, and sadly as you see the problem is still
-there.
+--- Comment #35 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 08:41:20 PDT ---
+Small update and corrections:
 
-This is a summary of findings of findings so far:
+This is a summary of findings  so far:
 
 1. Fault always happens in MP1 of TP0, after resume from ram
+   That's of course very strange
 
 2. It doesn't matter if program was run through suspend 
     or launched afrer suspend.
+   Which means that its not an error of preserving channel/program state
+   through suspend. Everything is uploaded new after the program starts.
 
 3. It doesn't matter if there was suspend or hibernate, 
    even hibernate without BIOS suport (echo shutdown > /sys/power/disk)
+   Or in other words 'magic init' done on boot but missing after resume,
+   or opposite a screwup by bios after resume is ruled out.
 
-4. Actual size of allocated buffer doesn't matter. However just pretending that
-we 
-   allocated smaller buffers for each code type (by passing smaller size to
-   nouveau_resource_alloc fixes the issue. (32K was largest size that was
-working)
+4. Actual size of allocated buffer doesn't matter. However just 
+   pretending that we allocated smaller buffers for each code type 
+   (by passing  smaller size to nouveau_resource_alloc fixes the issue. 
+   (32K was largest size that was working)
+   Also support for large pages was disabled in kernel and that didn't help.
+   This means that its not allocation, failure. It could be memory copy failure
+   though, although initially buffer is allocated in video ram.
+
+   This also means that the _code offset_ is what matters.
+   In addition to that note that code was uploaded by SIFC but it takes end 
+   address of area to copy to, thus really offset from start of out buffer 
+   shouldn't matter.
 
 5. Buffers that glxgears happen to upload (tested on his and my system and
-apppears 
-   not to change:
+   appears not to change:
 
    7fc00 - 2nd vertex shader - 392 bytes
    7fe00 - vertex shader 392 bytes
@@ -54,14 +64,15 @@ apppears
    However fault address is almost always 7bf00 or something very close to it 
    (7bf08, 7c000)
 
-   That address is way outside the areas that were uploaded.
+   That address is way outside the areas that were uploaded, which means that
+   TP1 really executes undefined code that just wasn't uploaded.
 
-6. Filling whole code buffer with pattern (using nouveau_bo_map) with pattern
-made 
-   TP1 execute that pattern once again at 7bf00. Tested many tumes.
+   Filling the whole code buffer with pattern (using nouveau_bo_map) with 
+   pattern made  TP1 execute that pattern once again at 7bf00. Tested 
+   many times.
    However if in addition to doing so, the code buffer upload was skipped, all
-TPs 
-   (all 4 of them) faulted in tandem at 7fc00 trying to execute the pattern.
+   TPs  (all 4 of them) faulted in tandem at 7fe00 (vertex shader) trying to
+   execute the  pattern.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
