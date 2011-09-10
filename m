@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
- graphics after suspend/hibernate
-Date: Fri,  9 Sep 2011 22:30:23 -0700 (PDT)
-Message-ID: <20110910053023.E153F1300C2@annarchy.freedesktop.org>
-References: <bug-40630-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40747] The new nouveau kernel module fails to use my
+ monitor's native resolution
+Date: Sat, 10 Sep 2011 06:48:35 -0700 (PDT)
+Message-ID: <20110910134835.B246913011D@annarchy.freedesktop.org>
+References: <bug-40747-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +21,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40630
+https://bugs.freedesktop.org/show_bug.cgi?id=40747
 
---- Comment #33 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 22:30:22 PDT ---
-Created an attachment (id=51025)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51025)
-kernel .config
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-reattach kernel config as text file
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org,
+                   |                            |marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 06:48:33 PDT ---
+This limit applies only to single-link DVI-D. Any other connector or dual-link
+DVI-D have much higher pixel clocks.
+
+We could add an option to override this, but let's check other possibilities
+first.
+
+1) Can you experiment a bit with "video" option? There is some documentation
+at: http://nouveau.freedesktop.org/wiki/KernelModeSetting#ForcingModes
+2) Please attach Xorg.log from nvidia driver. I would like to see pixel clock
+used.
+
+(Adding Francisco to CC, he knows much more about modesetting than me)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
