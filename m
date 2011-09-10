@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Fri,  9 Sep 2011 22:26:22 -0700 (PDT)
-Message-ID: <20110910052622.4E1B71300AE@annarchy.freedesktop.org>
+Date: Fri,  9 Sep 2011 22:27:43 -0700 (PDT)
+Message-ID: <20110910052743.4911E13010A@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #32 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-09 22:26:20 PDT ---
-Created an attachment (id=51024)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51024)
-kernel .config
+Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-attached my kernel .config file, used for 3.0.4 and 3.1.0-rc5+ (git head)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #51024|.config                     |.config.txt
+           filename|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
