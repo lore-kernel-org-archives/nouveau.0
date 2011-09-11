@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 22:12:37 -0700 (PDT)
-Message-ID: <20110911051237.ABC00130125@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 22:13:51 -0700 (PDT)
+Message-ID: <20110911051351.9D14A1301A4@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #49 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 22:12:37 PDT ---
-Created an attachment (id=51042)
- View: https://bugs.freedesktop.org/attachment.cgi?id=51042
- Review: https://bugs.freedesktop.org/review?bug=40630&attachment=51042
+--- Comment #50 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 22:13:51 PDT ---
+(In reply to comment #48)
+> (In reply to comment #47)
+> > Thats because you don't have my blackbox patch applied
+> 
+> could you please upload your patch here?
 
-retrieve kernel log after crash patch
-
-When compiling kernel enable CONFIG_HWMEM_PRINTK.
-or as it called in decription, 'Log printk message buffer into fixed physical
-address' in kernel hacking->kernel debugging.
+I have your patch applied to my 3.0.4 kernel, but not in 3.1.0-rc5+ (git) I
+believe.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
