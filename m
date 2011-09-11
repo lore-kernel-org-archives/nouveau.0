@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 23:34:19 -0700 (PDT)
-Message-ID: <20110911063419.D2202130111@annarchy.freedesktop.org>
+Date: Sun, 11 Sep 2011 00:07:40 -0700 (PDT)
+Message-ID: <20110911070740.870AD1301B9@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,33 +23,46 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #55 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 23:34:18 PDT ---
-(In reply to comment #54)
-> Got this now (while playing Nexuiz) -- I got no crashes this time but this
-> error in dmesg:
-> 
-> [diego@myhost ~]$ dmesg
-> [drm] nouveau 0000:01:00.0: firmware ctxvals loaded
-> uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
-> uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
-> uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
-> [drm] nouveau 0000:01:00.0: firmware ctxvals loaded
-> [drm] nouveau 0000:01:00.0: firmware ctxvals loaded
-> [drm] nouveau 0000:01:00.0: PGRAPH - TRAP_VFETCH FAULT
-> [drm] nouveau 0000:01:00.0: PGRAPH - TRAP_VFETCH 00f00000 0000fe0c 00000000
-> 00000000
-> [drm] nouveau 0000:01:00.0: PGRAPH - TRAP
-> [drm] nouveau 0000:01:00.0: PGRAPH - ch 5 (0x000f7b0000) subc 5 class 0x8297
-> mthd 0x15f0 data 0x00000000
-> [drm] nouveau 0000:01:00.0: VM: trapped read at 0x0000000000 on ch 5
-> [0x0000f7b0] PGRAPH/VFETCH/00 reason: PT_NOT_PRESENT
-> uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
-> [diego@myhost ~]$ 
-> 
-> 
-> As you can see, I did a "dmesg -c" before, so I make sure I go this now.
+--- Comment #56 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-11 00:07:40 PDT ---
+Again (while playing Nexuis) -- no crashes.
 
-s/go/got/g
+
+[diego@myhost ~]$ dmesg
+[drm] nouveau 0000:01:00.0: firmware ctxvals loaded
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+process `skype' is using obsolete setsockopt SO_BSDCOMPAT
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+[drm] nouveau 0000:01:00.0: firmware ctxvals loaded
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: release dev 2 ep01-ISO, period 1, phase 0, 158 us
+uhci_hcd 0000:00:1d.3: reserve dev 2 ep01-ISO, period 1, phase 0, 158 us
+[drm] nouveau 0000:01:00.0: PGRAPH - TRAP_VFETCH FAULT
+[drm] nouveau 0000:01:00.0: PGRAPH - TRAP_VFETCH 00f00000 0000fe0c 00000000
+00000000
+[drm] nouveau 0000:01:00.0: PGRAPH - TRAP
+[drm] nouveau 0000:01:00.0: PGRAPH - ch 5 (0x00064f0000) subc 5 class 0x8297
+mthd 0x0f04 data 0x00000000
+[drm] nouveau 0000:01:00.0: VM: trapped read at 0x0000000000 on ch 5
+[0x000064f0] PGRAPH/VFETCH/00 reason: PT_NOT_PRESENT
+[diego@myhost ~]$
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
