@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 22:13:51 -0700 (PDT)
-Message-ID: <20110911051351.9D14A1301A4@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 22:16:36 -0700 (PDT)
+Message-ID: <20110911051636.3A60F1301B7@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #50 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 22:13:51 PDT ---
-(In reply to comment #48)
-> (In reply to comment #47)
-> > Thats because you don't have my blackbox patch applied
-> 
-> could you please upload your patch here?
-
-I have your patch applied to my 3.0.4 kernel, but not in 3.1.0-rc5+ (git) I
-believe.
+--- Comment #51 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 22:16:35 PDT ---
+And you need to use 3.1.0-rc5+ because as you remember we put there patch that
+loads nvidia's ctxprog
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
