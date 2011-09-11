@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 20:04:08 -0700 (PDT)
-Message-ID: <20110911030408.2BC2313006A@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 20:05:44 -0700 (PDT)
+Message-ID: <20110911030544.C1E31130146@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #40 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 20:04:07 PDT ---
-Created an attachment (id=51039)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51039)
-ctxvals prepared for load
+--- Comment #41 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 20:05:42 PDT ---
+Created an attachment (id=51040)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=51040
+ Review: https://bugs.freedesktop.org/review?bug=40630&attachment=51040
+
+patch to allow nouveau load binary ctxprog
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
