@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 22:16:36 -0700 (PDT)
-Message-ID: <20110911051636.3A60F1301B7@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 22:24:34 -0700 (PDT)
+Message-ID: <20110911052434.474BE13011F@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #51 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 22:16:35 PDT ---
-And you need to use 3.1.0-rc5+ because as you remember we put there patch that
-loads nvidia's ctxprog
+--- Comment #52 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 22:24:33 PDT ---
+(In reply to comment #51)
+> And you need to use 3.1.0-rc5+ because as you remember we put there patch that
+> loads nvidia's ctxprog
+
+Correct. I will just SSH in next time I get a hang, if I can make it hang, and
+get the dmesg. I will report here anything I find. Thanks.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
