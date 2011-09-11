@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 22:24:34 -0700 (PDT)
-Message-ID: <20110911052434.474BE13011F@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 22:40:13 -0700 (PDT)
+Message-ID: <20110911054013.E75131300D6@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #52 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 22:24:33 PDT ---
-(In reply to comment #51)
-> And you need to use 3.1.0-rc5+ because as you remember we put there patch that
-> loads nvidia's ctxprog
+--- Comment #53 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 22:40:12 PDT ---
+I've noticed this on my dmesg now:
 
-Correct. I will just SSH in next time I get a hang, if I can make it hang, and
-get the dmesg. I will report here anything I find. Thanks.
+[drm] nouveau 0000:01:00.0: PGRAPH - TRAP_VFETCH FAULT
+[drm] nouveau 0000:01:00.0: PGRAPH - TRAP_VFETCH 00f00000 0000fe0c 00000000
+00000000
+[drm] nouveau 0000:01:00.0: PGRAPH - TRAP
+[drm] nouveau 0000:01:00.0: PGRAPH - ch 5 (0x00078b0000) subc 5 class 0x8297
+mthd 0x15f0 data 0x01000000
+[drm] nouveau 0000:01:00.0: VM: trapped read at 0x0000000000 on ch 5
+[0x000078b0] PGRAPH/VFETCH/00 reason: PT_NOT_PRESENT
+
+https://gist.github.com/1209217
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
