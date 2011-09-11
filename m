@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 20:43:30 -0700 (PDT)
-Message-ID: <20110911034330.8123C130128@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 20:59:10 -0700 (PDT)
+Message-ID: <20110911035910.E3BD01300A2@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #42 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 20:43:30 PDT ---
-I was playing Nexuiz, got some hang while playing, had to reboot the computer.
+--- Comment #43 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 20:59:10 PDT ---
+(In reply to comment #42)
+> I was playing Nexuiz, got some hang while playing, had to reboot the computer.
+> 
+> Unfortunately when running this I get no such file or directory (after reboot)
+> 
+> [root@myhost ~]# cat /sys/kernel/debug/printk/crash_dmesg | strings
+> cat: /sys/kernel/debug/printk/crash_dmesg: No such file or directory
+> [root@myhost ~]#
 
-Unfortunately when running this I get no such file or directory (after reboot)
-
-[root@myhost ~]# cat /sys/kernel/debug/printk/crash_dmesg | strings
-cat: /sys/kernel/debug/printk/crash_dmesg: No such file or directory
-[root@myhost ~]#
+I'm very happy that I'm able to suspend/hibernate and graphics don't get
+screwed anytime though, the stability seems to have improved a lot. Thanks!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
