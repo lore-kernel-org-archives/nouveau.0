@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 21:53:39 -0700 (PDT)
-Message-ID: <20110911045339.5AAB613017B@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 22:08:41 -0700 (PDT)
+Message-ID: <20110911050841.2205213018E@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #45 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 21:53:39 PDT ---
-I got a crash in SuperTuxKart as well.
+--- Comment #46 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 22:08:40 PDT ---
+s/anytime/anymore/g
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
