@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 19:53:44 -0700 (PDT)
-Message-ID: <20110911025344.A525313012F@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 19:55:34 -0700 (PDT)
+Message-ID: <20110911025534.6C6EF13016F@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #36 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 19:53:44 PDT ---
-OK, we tested and memory is correctly uploaded. Also did a dump of pushbuffers,
-and nouveau does set the address of code to execute correctly.
-
-Yet, for some damn reason GPU still executes from undefined location.
-
-OK, we mmiotraced the blob, extracted ctxvals/ctxprog, and yes, problem
-disappeared. Also it was noted that some graphical corruptions disappeared.
-
-So, folks we really need better coverage of ctxprog and especially ctxvals,
-because these seems to contain chipset revision specific workarounds....
-
-Could we allow to load ctxprog/vals of nvidia then? so that users could do that
-in easier way that patch their kernel?
+--- Comment #37 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 19:55:33 PDT ---
+Created an attachment (id=51036)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51036)
+ctxvals mmiotrace
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
