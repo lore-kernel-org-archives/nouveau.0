@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sat, 10 Sep 2011 20:05:44 -0700 (PDT)
-Message-ID: <20110911030544.C1E31130146@annarchy.freedesktop.org>
+Date: Sat, 10 Sep 2011 20:43:30 -0700 (PDT)
+Message-ID: <20110911034330.8123C130128@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #41 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-10 20:05:42 PDT ---
-Created an attachment (id=51040)
- View: https://bugs.freedesktop.org/attachment.cgi?id=51040
- Review: https://bugs.freedesktop.org/review?bug=40630&attachment=51040
+--- Comment #42 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-10 20:43:30 PDT ---
+I was playing Nexuiz, got some hang while playing, had to reboot the computer.
 
-patch to allow nouveau load binary ctxprog
+Unfortunately when running this I get no such file or directory (after reboot)
+
+[root@myhost ~]# cat /sys/kernel/debug/printk/crash_dmesg | strings
+cat: /sys/kernel/debug/printk/crash_dmesg: No such file or directory
+[root@myhost ~]#
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
