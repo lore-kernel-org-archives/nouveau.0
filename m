@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
  graphics after suspend/hibernate
-Date: Sun, 11 Sep 2011 20:49:39 -0700 (PDT)
-Message-ID: <20110912034939.7A9DC13015B@annarchy.freedesktop.org>
+Date: Sun, 11 Sep 2011 21:15:23 -0700 (PDT)
+Message-ID: <20110912041523.96F44130137@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #63 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-11 20:49:39 PDT ---
-Doom 3 didn't crash though, but it was very slow.
+--- Comment #64 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-11 21:15:23 PDT ---
+Sorry!
 
-I managed to run "timedemo demo1" and it passed the test but very slowly (4
-FPS)
+I was missing some lib32 libs, like DRI and mesa (32 bits), now I installed
+those and Doom 3 runs freaking FAST!
+
+60+ FPS :D
+
+And runs stable too (without suspending)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
