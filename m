@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
- graphics after suspend/hibernate
-Date: Sun, 11 Sep 2011 21:15:23 -0700 (PDT)
-Message-ID: <20110912041523.96F44130137@annarchy.freedesktop.org>
-References: <bug-40630-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40548] Displayport not working on NV50
+Date: Mon, 12 Sep 2011 10:42:30 -0700 (PDT)
+Message-ID: <20110912174230.5AF51130149@annarchy.freedesktop.org>
+References: <bug-40548-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40548-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40630
+https://bugs.freedesktop.org/show_bug.cgi?id=40548
 
---- Comment #64 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-11 21:15:23 PDT ---
-Sorry!
+Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I was missing some lib32 libs, like DRI and mesa (32 bits), now I installed
-those and Doom 3 runs freaking FAST!
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
-60+ FPS :D
+--- Comment #15 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-12 10:42:28 PDT ---
+(In reply to comment #14)
+> No, not Linus' tree, Nouveau's - which is at
+> http://cgit.freedesktop.org/nouveau/linux-2.6
 
-And runs stable too (without suspending)
+Indeed, I tested that code and it's working fine.
+
+Now I wonder when it will be merged to Linux upstream... I guess 3.2, right?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
