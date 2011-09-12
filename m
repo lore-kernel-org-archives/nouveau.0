@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40548] Displayport not working on NV50
-Date: Mon, 12 Sep 2011 10:42:30 -0700 (PDT)
-Message-ID: <20110912174230.5AF51130149@annarchy.freedesktop.org>
+Date: Mon, 12 Sep 2011 12:10:12 -0700 (PDT)
+Message-ID: <20110912191012.25A481300E1@annarchy.freedesktop.org>
 References: <bug-40548-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,21 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40548
 
-Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #15 from Felipe Contreras <felipe.contreras-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-12 10:42:28 PDT ---
-(In reply to comment #14)
-> No, not Linus' tree, Nouveau's - which is at
-> http://cgit.freedesktop.org/nouveau/linux-2.6
-
-Indeed, I tested that code and it's working fine.
-
-Now I wonder when it will be merged to Linux upstream... I guess 3.2, right?
+--- Comment #16 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-12 12:10:07 PDT ---
+Yeah, it'll be merged for 3.2 - barring any show-stopping issues.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
