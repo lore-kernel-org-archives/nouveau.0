@@ -1,35 +1,54 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40138] nouveau doesn't show screen on DVI on
- ALiveNF6G-DVI with DVI Graphics-SI Card
-Date: Tue, 13 Sep 2011 04:50:43 -0700 (PDT)
-Message-ID: <20110913115043.696E913013C@annarchy.freedesktop.org>
-References: <bug-40138-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: Re: [PATCH v2] nouveau: Add support for XvMC acceleration
+Date: Tue, 13 Sep 2011 15:52:55 +0200
+Message-ID: <20110913135255.GA6051@joi.lan>
+References: <4E6B180B.1070401@gmail.com>
+	<CAMmP6nczOaGwXbuaNEc-nrTw7kvGdjOr-6+qbWTMqm9s_UkpMA@mail.gmail.com>
+	<4E6B977B.8040402@gmail.com> <20110910225420.GB30222@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40138-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20110910225420.GB30222@joi.lan>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: Maarten Lankhorst <m.b.lankhorst@gmail.com>, Ben Skeggs <skeggsb@gmail.com>
+Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40138
-
---- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-13 04:50:42 PDT ---
-Please attach dmesg with this patch applied and drm.debug=6 in kernel command
-line.
-
-Does Nvidia blob work with this card?
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gU3VuLCBTZXAgMTEsIDIwMTEgYXQgMTI6NTQ6MjBBTSArMDIwMCwgTWFyY2luIFNsdXNhcnog
+d3JvdGU6Cj4gT24gU2F0LCBTZXAgMTAsIDIwMTEgYXQgMDY6NTk6MzlQTSArMDIwMCwgTWFhcnRl
+biBMYW5raG9yc3Qgd3JvdGU6Cj4gPiBIZXkg4piFLAo+ID4gCj4gPiBPbiAwOS8xMC8yMDExIDA2
+OjI4IFBNLCDimIUgRW1lcmljIHdyb3RlOgo+ID4gPiBIaSBNYWFydGVuLAo+ID4gPiBJIHRyaWVk
+IHRoZSB2MiBwYXRjaCB3aXRoIG15IGdvb2Qgb2xkIGdlZm9yY2UgODYwME0gR1MsIGFuZCBpdCB3
+b3JrZWQgd2VsbC4KPiA+ID4gVGhlIENQVSB1c2FnZSBzZWVtcyBhIGxpdHRsZSBoaWdoZXIgdGhh
+biB1c3VhbCwgSSdkIHNhaWQgNjAlIGluc3RlYWQgb2YgNDAlCj4gPiA+IGZvciBhIDcyMHAgdmlk
+ZW8sIGJ1dCBJJ2xsIHRyeSB3aXRoIGEgaGlnaGVyIGJpdHJhdGUgdmlkZW8gYW5kIHdpdGhvdXQK
+PiA+ID4gYnVpbGRpbmcgd2l0aCBkZWJ1ZyBwYXJhbWV0ZXJzIHRvIHNlZSBpZiBJIGNhbiBmb3Vu
+ZCBhIHBlcmZvcm1hbmNlIGdhaW4uCj4gPiA+IFRoZSBvbmx5IHByb2JsZW0gaXMgdGhhdCBJIGNh
+bm5vdCBzZWVrIHRocm91Z2ggdGhlIHZpZGVvIHdpdGhvdXQgYW4gc2VnZmF1bHQKPiA+ID4gb24g
+dGhhdCBlcnJvciAiWDExIGVycm9yOiBCYWRBY2Nlc3MgKGF0dGVtcHQgdG8gYWNjZXNzIHByaXZh
+dGUgcmVzb3VyY2UKPiA+ID4gZGVuaWVkKSIsIEkgYXR0YWNoZWQgYSBnZGIgYmFja3RyYWNlLiBJ
+dCBhcHBlYXJzIHRvIGJlIHJlbGF0ZWQgdG8gdGhlCj4gPiA+IGRyYXdpbmcgb2YgdGhlIG1wbGF5
+ZXIgT1NELgo+ID4gPgo+ID4gVGhhdCdzIGVpdGhlciBhIGJ1ZyBpbiBtcGxheWVyIG9yIGluIHRo
+ZSBzdGF0ZSB0cmFja2VyLiBXaGF0J3Mgb3kgYW5kIG94Cj4gPiBzZXQgdG8gYXQgdGhlIHRpbWUg
+b2YgdGhlIGNyYXNoPyBhbmQgd2hlcmUgZG9lcyB4dmltYWdlLT5kYXRhIHBvaW50IHRvIDopCj4g
+PiAKPiBUaGlzIGlzIGEgYnVnIGluIHhmODYtdmlkZW8tbm91dmVhdSBhY3R1YWxseSwgYW5kIGl0
+IGxlYWRzIHRvIG1lbW9yeSBjb3JydXB0aW9uCj4gaW4gbXBsYXllci4KPiAKPiBQYXRjaCBiZWxv
+dyBmaXhlcyBpdCwgYnV0IE9TRCBzdGlsbCBkb2Vzbid0IHdvcmsuCj4gCgpXaXRoIGNvbW1pdCBm
+NjI2ZDk5ZWRmMTdhMWQzMjAzYjI1N2Y2ZmU2OTkzMjI5ZWE2ODY2IGluIG1lc2EgT1NEIGluIG1w
+bGF5ZXIKd29ya3MgKFllYWghIDspLiBJJ3ZlIHN1Ym1pdHRlZCBwYXRjaCBmb3IgbXBsYXllciB0
+byBkaXNhYmxlIE9TRCBpbnN0ZWFkIG9mCmNyYXNoaW5nLgoKQmVuLCBjYW4geW91IHJldmlldyBh
+bmQgcHVzaCBwYXRjaCBpbiB0aGUgcHJldmlvdXMgbWFpbD8gKHh2OiBzdXBwb3J0IEFJNDQvSUE0
+NCkKVGhhbmtzLgoKTWFyY2luCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2Et
+ZGV2Cg==
