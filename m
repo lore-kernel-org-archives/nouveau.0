@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40138] nouveau doesn't show screen on DVI on
- ALiveNF6G-DVI with DVI Graphics-SI Card
-Date: Mon, 12 Sep 2011 23:34:08 -0700 (PDT)
-Message-ID: <20110913063408.CBF6B130091@annarchy.freedesktop.org>
-References: <bug-40138-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
+ graphics after suspend/hibernate
+Date: Tue, 13 Sep 2011 04:26:06 -0700 (PDT)
+Message-ID: <20110913112606.6E1FA130094@annarchy.freedesktop.org>
+References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40138-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +21,11 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40138
+https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #4 from Alexander Stein <alexander.stein-jNDFPZUTrfQ+B2oLq8eQJv4efur1V5z/s0AfqQuZ5sE@public.gmane.org> 2011-09-12 23:34:07 PDT ---
-(In reply to comment #3)
-> Created an attachment (id=50978)
- View: https://bugs.freedesktop.org/attachment.cgi?id=50978
- Review: https://bugs.freedesktop.org/review?bug=40138&attachment=50978
-
-> quirk
-> 
-> Does it work with this patch?
-> 
-> If it works please attach output of lspci -vvn and test VGA output.
-
-No, this doesn't work. DVI is used when in BIOS and GRUB. It is also used when
-starting the kernel in VESA(?) mode and DVI is disabled when the nouveau module
-is loaded.
+--- Comment #65 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-13 04:26:05 PDT ---
+maybe we should open another bug report for the crashes that happens after
+suspending, as this one is for the graphics corruption after suspend.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
