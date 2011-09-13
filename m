@@ -1,11 +1,14 @@
-From: =?UTF-8?B?0JzQsNC60YHQuNC8INCk0L7QvNC40L0=?= <maxim-lwv6yGCE/feU31i11zIn4w@public.gmane.org>
-Subject: nvidia BIOS loaing policy (nouveau kernel driver)
-Date: Thu, 8 Sep 2011 20:50:52 +0400
-Message-ID: <CAHFj7GdqkYUqumFRHy3LDC7o0bGVZQ5HoQq8D1AXdsBf_i3+DQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 40747] The new nouveau kernel module fails to use my
+ monitor's native resolution
+Date: Tue, 13 Sep 2011 16:36:00 -0700 (PDT)
+Message-ID: <20110913233600.8D43A130179@annarchy.freedesktop.org>
+References: <bug-40747-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,25 +21,46 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello.
+https://bugs.freedesktop.org/show_bug.cgi?id=40747
 
-As far I understand from driver file "nouveau_bios.c", it may be
-loaded from pramin, prom, pcirom or acpi. However, it isn't clear, why
-they are arranged in that order.
-The question comes from seeing each time on boot "Invalid ROM
-contents" message on attepmt to load bios from pcirom. Actually, I
-find similar problem in google so, I suspect that my card isn't
-broken.
+--- Comment #10 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-09-13 16:35:59 PDT ---
+(In reply to comment #7)
+> So, I tried to play with the video= parameter and I now have an acceptable
+> workaround with "video=1600x1200@55" which gives me the right resolution
+> without any complaint from my monitor.
+> I tried to "M" and the "R" thingies as in "1600x1200MR" or "1600x1200R" but
+> these seem to be ignored, or at least didn't make much difference (actually the
+> "R" does the same as when nothing is specified and the "MR" gives a marginally
+> higher pixel clock).  I expected the "R" to give a much more substantial
+> reduction in dotclock, or maybe the R is somehow ignored in the "MR"
+> combination ("cvt" gives me the same modeline as I got with 1600x1200MR, at
+> 161MHz, whereas "cvs --reduced" drops the dotclock to 130MHz).
+> 
+That's a bug of the kernel command line parser... try "RM" instead of "MR".
 
-I don't know where nvidia likely to place bios, but, according to my
-experience and what I found from google, it is better to place acpi in
-"nouveau_bios.c" at first (or at least place pcirom at the end):
+> I haven't tried the Xorg nouveau driver on top to see whether it obeys my
+> "video=" arg or whether I'm going to have to play the same dance in the
+> xorg.conf file (because right now the Xorg driver gives me the familiar "error
+> opening the drm").  But at least using the fbdev driver, this gives me a good
+> workaround.
+> 
+It doesn't, right now you need to tell X to use a reduced blanking mode
+separately.
 
-static struct methods shadow_methods[] = {
-{ "ACPI", load_vbios_acpi, true },
-{ "PRAMIN", load_vbios_pramin, true },
-{ "PROM", load_vbios_prom, false },
-{ "PCIROM", load_vbios_pci, true },
-};
+> I see only two ways to improve the situation (modulo the handling of "R"
+> mentioned above):
+> - provide a way to override the 155MHz limit (apparently, the hardware does not
+> prevent overclocking and at least in my case, it handles such overclocking
+> without blinking).
+> - when the monitor's preferred modeline can't be used because of dotclock
+> limits, output a clear message in the dmesg about it, and cook up a different
+> modeline that preserves the resolution (e.g. at the cost of lower refresh
+> rate).  This is because on LCD displays, using the native resolution is a lot
+> more important than using a high enough refresh rate.
 
-   Maxim
+The latter would be a better idea IMHO.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
