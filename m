@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40866] Caught signal 11 (Segmentation fault). Server
 	aborting
-Date: Wed, 14 Sep 2011 03:09:25 -0700 (PDT)
-Message-ID: <20110914100925.5F2931301D6@annarchy.freedesktop.org>
+Date: Wed, 14 Sep 2011 03:10:28 -0700 (PDT)
+Message-ID: <20110914101028.8F701130159@annarchy.freedesktop.org>
 References: <bug-40866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40866
 
---- Comment #2 from JohnDoe_71Rus <johndoe99-HPQIj1OAFZMvJsYlp49lxw@public.gmane.org> 2011-09-14 03:09:24 PDT ---
-Created an attachment (id=51188)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51188)
-dmesg
+--- Comment #3 from JohnDoe_71Rus <johndoe99-HPQIj1OAFZMvJsYlp49lxw@public.gmane.org> 2011-09-14 03:10:28 PDT ---
+Created an attachment (id=51189)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51189)
+xorg.conf plain text
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
