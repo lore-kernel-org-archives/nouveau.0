@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40888] New: Implementation of OpenCL on Nouveau
-Date: Wed, 14 Sep 2011 13:18:42 -0700 (PDT)
-Message-ID: <bug-40888-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40884] Nouveau's TODO list for new comers
+Date: Wed, 14 Sep 2011 13:19:20 -0700 (PDT)
+Message-ID: <20110914201920.D0293130091@annarchy.freedesktop.org>
+References: <bug-40884-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-40884-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,40 +20,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40888
+https://bugs.freedesktop.org/show_bug.cgi?id=40884
 
-           Summary: Implementation of OpenCL on Nouveau
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
 
-
-Created an attachment (id=51215)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51215)
-Tom Stellard's presentation 
-
-Denis Steckelmacher
-(https://steckdenis.wordpress.com/2011/08/23/the-gsoc-is-over/) has been
-working hard to get OpenCL working on the CPU.
-
-At the XDC2011, we discussed how GPGPU should be handled and we kind of agreed
-on what we should do. This can basically be summed up as using the LLVM IR for
-compute. This means we need to implement LLVM backends for our GPUs. See the
-Mesa_compilers.pdf attachment.
-
-Also, the runtime bits should be written according the Compute Abstraction
-Layer specifications (https://github.com/shinpei0208/cal-spec).
-
-This bug report is actually a meta one that is tracking the development of
-OpenCL on Nouveau.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Depends on|                            |40886, 40888
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
