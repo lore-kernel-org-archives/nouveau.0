@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40858] nForce Go 430 onboard GPU GeForce 6100 Go
  (C51G) is not supported
-Date: Wed, 14 Sep 2011 00:01:59 -0700 (PDT)
-Message-ID: <20110914070159.8872713020E@annarchy.freedesktop.org>
+Date: Wed, 14 Sep 2011 00:02:32 -0700 (PDT)
+Message-ID: <20110914070232.83B59130154@annarchy.freedesktop.org>
 References: <bug-40858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40858
 
---- Comment #1 from runetmember-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-14 00:01:56 PDT ---
-Created an attachment (id=51175)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51175)
-Kernel log
+--- Comment #2 from runetmember-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-14 00:02:29 PDT ---
+Created an attachment (id=51176)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51176)
+vbios.rom
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
