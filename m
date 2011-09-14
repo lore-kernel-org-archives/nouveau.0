@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40892] Power management
-Date: Wed, 14 Sep 2011 15:38:19 -0700 (PDT)
-Message-ID: <20110914223819.B3D06130099@annarchy.freedesktop.org>
+Date: Wed, 14 Sep 2011 15:38:47 -0700 (PDT)
+Message-ID: <20110914223847.D2CFF1300C5@annarchy.freedesktop.org>
 References: <bug-40892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,8 +26,7 @@ Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Depends on|40884                       |
-             Blocks|                            |40884
+         Depends on|                            |40894
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
