@@ -1,8 +1,9 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40630] nouveau: corrupted opengl/3d/composited
- graphics after suspend/hibernate
-Date: Thu, 15 Sep 2011 05:37:08 -0700 (PDT)
-Message-ID: <20110915123708.20A14130099@annarchy.freedesktop.org>
+Subject: [Bug 40630] nouveau becomes very unstable after
+ suspend/hibernate/resume (opengl/3d/composited graphics and hangs) GeForce
+ 9500 GT
+Date: Thu, 15 Sep 2011 05:51:02 -0700 (PDT)
+Message-ID: <20110915125103.0336913006A@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +24,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #66 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-15 05:37:07 PDT ---
-Hello,
+Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I tried running SuperTuxKart after suspend and it crahsed as usual.
-
-Then I tried your suggestion: suspend without X, resume, unbind, restart
-nouveau module with your script, start X and play SuperTuxKart, but it crashed
-after playing for a while (1-2 laps).
-
-I did a dmesg from my laptop via SSH on the affected computer and found nothing
-interesting, excpet this line:
-
-[drm] nouveau 0000:01:00.0: Failed to idle channel 4.
-[drm] nouveau 0000:01:00.0: GPU lockup - switching to software fbcon
-[drm] nouveau 0000:01:00.0: Failed to idle channel 2.
-
-I tried looking in Xorg.0.log as well but found nothing interesting as well.
-
-Any ideas?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|nouveau: corrupted          |nouveau becomes very
+                   |opengl/3d/composited        |unstable after
+                   |graphics after              |suspend/hibernate/resume
+                   |suspend/hibernate           |(opengl/3d/composited
+                   |                            |graphics and hangs) GeForce
+                   |                            |9500 GT
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
