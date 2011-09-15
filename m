@@ -1,9 +1,9 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau becomes very unstable after
- suspend/hibernate/resume (corrupted graphics and hangs with
- opengl/3d/composited applications) GeForce 9500 GT
-Date: Thu, 15 Sep 2011 06:06:36 -0700 (PDT)
-Message-ID: <20110915130636.706C1130137@annarchy.freedesktop.org>
+ suspend/hibernate/resume (corrupted graphics and hangs with OpenGL
+ applications) GeForce 9500 GT
+Date: Thu, 15 Sep 2011 06:07:28 -0700 (PDT)
+Message-ID: <20110915130728.7A009130192@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -31,11 +31,11 @@ Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
             Summary|nouveau becomes very        |nouveau becomes very
                    |unstable after              |unstable after
                    |suspend/hibernate/resume    |suspend/hibernate/resume
-                   |(corrupted                  |(corrupted graphics and
-                   |opengl/3d/composited        |hangs with
-                   |graphics and opengl         |opengl/3d/composited
-                   |applications hangs) GeForce |applications) GeForce 9500
-                   |9500 GT                     |GT
+                   |(corrupted graphics and     |(corrupted graphics and
+                   |hangs with                  |hangs with OpenGL
+                   |opengl/3d/composited        |applications) GeForce 9500
+                   |applications) GeForce 9500  |GT
+                   |GT                          |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
