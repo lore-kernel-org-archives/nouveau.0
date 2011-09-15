@@ -1,43 +1,46 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40630] nouveau becomes very unstable after
- suspend/hibernate/resume (corrupted graphics and hangs with OpenGL
- applications) GeForce 9500 GT
-Date: Thu, 15 Sep 2011 06:07:28 -0700 (PDT)
-Message-ID: <20110915130728.7A009130192@annarchy.freedesktop.org>
-References: <bug-40630-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH] io-mapping: ensure io_mapping_map_atomic _is_ atomic
+Date: Thu, 15 Sep 2011 20:48:07 +0200
+Message-ID: <1316112487-15583-1-git-send-email-daniel.vetter@ffwll.ch>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Dave Airlie <airlied@linux.ie>
+Cc: linux-kernel@vger.kernel.org, DRI mailing list <dri-devel@lists.freedesktop.org>, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, stable@kernel.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40630
+For the !HAVE_ATOMIC_IOMAP case the stub functions did not call
+pagefault_disable/_enable. The i915 driver relies on the map
+actually being atomic, otherwise it can deadlock with it's own
+pagefault handler in the gtt pwrite fastpath.
 
-Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+This is exercised by gem_mmap_gtt from the intel-gpu-toosl gem
+testsuite.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nouveau becomes very        |nouveau becomes very
-                   |unstable after              |unstable after
-                   |suspend/hibernate/resume    |suspend/hibernate/resume
-                   |(corrupted graphics and     |(corrupted graphics and
-                   |hangs with                  |hangs with OpenGL
-                   |opengl/3d/composited        |applications) GeForce 9500
-                   |applications) GeForce 9500  |GT
-                   |GT                          |
+Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=38115
+Cc: stable@kernel.org
+Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+---
+ include/linux/io-mapping.h |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
+diff --git a/include/linux/io-mapping.h b/include/linux/io-mapping.h
+index 8cdcc2a1..6b3bef1 100644
+--- a/include/linux/io-mapping.h
++++ b/include/linux/io-mapping.h
+@@ -138,12 +138,14 @@ static inline void __iomem *
+ io_mapping_map_atomic_wc(struct io_mapping *mapping,
+ 			 unsigned long offset)
+ {
++	pagefault_disable();
+ 	return ((char __force __iomem *) mapping) + offset;
+ }
+ 
+ static inline void
+ io_mapping_unmap_atomic(void __iomem *vaddr)
+ {
++	pagefault_enable();
+ }
+ 
+ /* Non-atomic map/unmap */
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.6
