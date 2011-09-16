@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40938] New: Garbage on screen during "animations"
-Date: Fri, 16 Sep 2011 06:09:32 -0700 (PDT)
-Message-ID: <bug-40938-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40938] Garbage on screen during "animations"
+Date: Fri, 16 Sep 2011 06:11:22 -0700 (PDT)
+Message-ID: <20110916131122.9DF491300B9@annarchy.freedesktop.org>
+References: <bug-40938-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-40938-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,49 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40938
-
-           Summary: Garbage on screen during "animations"
-           Product: xorg
-           Version: unspecified
-          Platform: All
-        OS/Version: other
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: aurelien-KAXVyhDHzBc@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=51261)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51261)
-Garbage when the screensaver starts
-
-When menu appears or when the screensaver starts garbage are showed on screen.
-I'm using nouveau in version 20110303 with xorg v 1.10.4 and my nvidia card is:
-01:00.0 VGA compatible controller: nVidia Corporation G98M [Quadro NVS 160M]
-(rev a1).
-
-The first attachment has been taken when the screen saver just begun. The
-garbage is located on the top and on the bottom of the picture (note that the
-horizontal lines you can see inside the picture is normal.)
-
-The second attachment has been taken when a terminal (yakuake) was opening from
-the top of the screen. This garbage appears when the terminal is "falling
-down". Once this animation is finished the terminal appears fine.
-
-It's the same with menus when they appear with fading: during the fading there
-is garbage and once it's over the menu appears fine.
-
-Finaly I always seen this problem with nouveau driver and don't have it with
-the proprietary nvidia driver.
-
-AS far as I can imagine I guess this is a small bug concerning an uninitialized
-buffer?
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDA5MzgKCi0tLSBD
+b21tZW50ICMxIGZyb20gQXVyw6lsaWVuIDxhdXJlbGllbkBhcDJjLm9yZz4gMjAxMS0wOS0xNiAw
+NjoxMToxNyBQRFQgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9NTEyNjIpCiAtLT4gKGh0
+dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NTEyNjIpCkdhcmJh
+Z2Ugd2hlbiB5YWt1YWtlIHRlcm1pbmFsIGlzIGZhbGxpbmcgZG93biBmcm9tIHRoZSB0b3Agb2Yg
+dGhlIHNjcmVlbiBiZWZvcmUKdGhpcyBhbmltYXRpb24gZW5kcy4KCi0tIApDb25maWd1cmUgYnVn
+bWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFp
+bAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllv
+dSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
