@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
  nouveau: random GPU lockups
-Date: Fri, 16 Sep 2011 07:04:49 -0700 (PDT)
-Message-ID: <20110916140449.CCD6D13015D@annarchy.freedesktop.org>
+Date: Fri, 16 Sep 2011 07:08:17 -0700 (PDT)
+Message-ID: <20110916140818.25A4F13008C@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
---- Comment #63 from Arun Raghavan <arun-SJV6IgfXIPzk1uMJSBkQmQ@public.gmane.org> 2011-09-16 07:04:43 PDT ---
-(In reply to comment #62)
-[...]
-> Did you have any output in your kernel log from when this occurred?
+--- Comment #64 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-16 07:08:12 PDT ---
+(In reply to comment #63)
+> (In reply to comment #62)
+> [...]
+> > Did you have any output in your kernel log from when this occurred?
+> 
+> There was no output after the initial module load messages.
 
-There was no output after the initial module load messages.
+Are you able to install envytools
+(http://nouveau.git.sourceforge.net/git/gitweb.cgi?p=nouveau/envytools;a=summary)
+and run "nvapeek 0x400700 4" while the GPU is hung?
+
+Also, how new are all your userspace components (xf86-video-nouveau, libdrm,
+mesa etc)?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
