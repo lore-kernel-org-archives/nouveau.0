@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
  nouveau: random GPU lockups
-Date: Fri, 16 Sep 2011 07:01:49 -0700 (PDT)
-Message-ID: <20110916140149.656181301AC@annarchy.freedesktop.org>
+Date: Fri, 16 Sep 2011 07:04:49 -0700 (PDT)
+Message-ID: <20110916140449.CCD6D13015D@annarchy.freedesktop.org>
 References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
---- Comment #62 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-16 07:01:44 PDT ---
-(In reply to comment #61)
-> Using 3.0.4, this bug is very much still there (or at least the backgrace looks
-> very similar). Happy to help provide more information or debug if pointed in
-> the right direction.
-Any GPU hang etc will have similar backtraces from X's point of view, and it's
-not usually useful in itself to see what's happening.
+--- Comment #63 from Arun Raghavan <arun-SJV6IgfXIPzk1uMJSBkQmQ@public.gmane.org> 2011-09-16 07:04:43 PDT ---
+(In reply to comment #62)
+[...]
+> Did you have any output in your kernel log from when this occurred?
 
-Did you have any output in your kernel log from when this occurred?
+There was no output after the initial module load messages.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
