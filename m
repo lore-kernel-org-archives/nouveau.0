@@ -1,175 +1,111 @@
-From: "Shinpei KATO" <shinpei@il.is.s.u-tokyo.ac.jp>
-Subject: RE: Proposal for a DRM-compliant GPU command scheduler
-Date: Fri, 16 Sep 2011 09:07:31 -0700
-Message-ID: <000001cc748a$bf1a6a30$3d4f3e90$@il.is.s.u-tokyo.ac.jp>
-References: <003901cc73fe$0b6e09b0$224a1d10$@il.is.s.u-tokyo.ac.jp>
-	<20110916145832.GF2873@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
+ nouveau: random GPU lockups
+Date: Sat, 17 Sep 2011 05:48:47 -0700 (PDT)
+Message-ID: <20110917124847.9B4F7130163@annarchy.freedesktop.org>
+References: <bug-26980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <20110916145832.GF2873@phenom.ffwll.local>
-Content-Language: en-us
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: 'Daniel Vetter' <daniel@ffwll.ch>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Daniel,
+https://bugs.freedesktop.org/show_bug.cgi?id=26980
 
-Thanks for your comments.
-We can definitely clean up the code and send it again.
+ColdFeetBob <lithium_flower-1Ph4/jfBtgs@public.gmane.org> changed:
 
-We believe that the concept of our GPU scheduler is not specific to NVIDIA.
-It will need to interface with such functions to create/destroy GPU
-channels, send commands (command groups), and handle interrupts. As far as I
-can see, those for other hw also provide these functions?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |lithium_flower-1Ph4/jfBtgs@public.gmane.org
 
-In my opinion, the overhead of GPU scheduling must be compromised to some
-degree, if we need prioritization and isolation capabilities.
-If you don't have such capabilities, important processes would be
-unresponsive anyway on the GPU due to competing workload. We observe that
-the overhead is likely within 5-15% through our experiments.
+--- Comment #65 from ColdFeetBob <lithium_flower-1Ph4/jfBtgs@public.gmane.org> 2011-09-17 05:48:39 PDT ---
+I experimented this bug not long ago - right now, Im not sure it is exactly the
+same, since it's not really random but it happens everytime I run Supertux.
+I recovered the folloving kernel log lines rebooting from another partition
+after the freeze.
 
-I appreciate your idea for clever tricks patching up execution in case that
-the preceding workload spends too much time. I guess we can create timeout
-on each submission, and we allow the next command group to be issued, if the
-timer expires, even though the GPU still executes some context. We will add
-this implementation.
+kernel 3.0.4, Arch Linux, x86_64, fully updated
+nouveau-dri 7.11-2
 
-We should consider more carefully a race condition on a wait/command queue.
-But we use the Linux list_head function to implement these queues. Sorry
-that I misunderstood your comment.
+lspci:
 
-A scheduler configuration does not need to use /etc files. We made it as
-just an option. The scheduler can actually be configured through /proc
-filesystems as well. We can also propagate the priorities and resource limit
-properties that task_struct has.
+01:00.0 VGA compatible controller: nVidia Corporation GT215 [GeForce GT 240]
+(rev a2) (prog-if 00 [VGA controller])
 
-Can you review our code again once we revise it?
+kernel.log:
 
-Best Regards,
-- Shinpei
 
------Original Message-----
-From: Daniel Vetter [mailto:daniel.vetter@ffwll.ch] On Behalf Of Daniel
-Vetter
-Sent: Friday, September 16, 2011 7:59 AM
-To: Shinpei KATO
-Cc: dri-devel@lists.freedesktop.org; nouveau@lists.freedesktop.org
-Subject: Re: Proposal for a DRM-compliant GPU command scheduler
+Sep 11 08:44:25 faye kernel: [ 1297.836589] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 0
+Sep 11 08:44:25 faye kernel: [ 1298.301418] [drm] nouveau 0000:01:00.0:
+PFIFO_INTR 0x00400000 - Ch 2
+Sep 11 08:44:27 faye kernel: [ 1299.629024] [drm] nouveau 0000:01:00.0:
+PFIFO_INTR 0x04400000 - Ch 2
+Sep 11 08:44:27 faye kernel: [ 1300.956673] [drm] nouveau 0000:01:00.0:
+PFIFO_INTR 0x04400000 - Ch 2
+Sep 11 08:44:27 faye kernel: [ 1300.956719] psmouse.c: Wheel Mouse at
+isa0060/serio1/input0 lost synchronization, throwing 1 bytes away.
+Sep 11 08:44:29 faye kernel: [ 1302.284342] [drm] nouveau 0000:01:00.0:
+PFIFO_INTR 0x00400000 - Ch 2
+Sep 11 08:44:29 faye kernel: [ 1299.632344] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 5
+Sep 11 08:44:31 faye kernel: [ 1302.960046] [drm] nouveau 0000:01:00.0: PGRAPH
+TLB flush idle timeout fail: 0x00c00f01 0x00000209 0x00001600 0x00000000
+Sep 11 08:44:32 faye kernel: [ 1303.611794] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 5
+Sep 11 08:44:34 faye kernel: [ 1303.615050] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 5
+Sep 11 08:44:53 faye kernel: [ 1302.960046] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 0
+Sep 11 08:44:53 faye kernel: [ 1305.614198] [drm] nouveau 0000:01:00.0:
+PFIFO_INTR 0x00400000 - Ch 2
+Sep 11 08:44:53 faye kernel: [ 1307.613341] [drm] nouveau 0000:01:00.0: PGRAPH
+TLB flush idle timeout fail: 0x00c00f01 0x00000209 0x00001600 0x00000000
+Sep 11 08:44:53 faye kernel: [ 1310.944310] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 5
+Sep 11 08:44:53 faye kernel: [ 1307.613341] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 0
+Sep 11 08:44:53 faye kernel: [ 1314.940910] [drm] nouveau 0000:01:00.0: PRAMIN
+flush timeout
+Sep 11 08:44:53 faye kernel: [ 1310.941070] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 0
+Sep 11 08:44:53 faye kernel: [ 1316.266913] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 5
+Sep 11 08:44:53 faye kernel: [ 1312.943555] [drm] nouveau 0000:01:00.0: PGRAPH
+TLB flush idle timeout fail: 0x00c00f01 0x00000209 0x00001600 0x00000000
+Sep 11 08:44:53 faye kernel: [ 1312.943555] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 0
+Sep 11 08:44:55 faye kernel: [ 1318.264271] [drm] nouveau 0000:01:00.0:
+PFIFO_INTR 0x04c00000 - Ch 2
+Sep 11 08:44:55 faye kernel: [ 1322.259717] psmouse.c: resync failed, issuing
+reconnect request
+Sep 11 08:44:55 faye kernel: [ 1322.256898] [drm] nouveau 0000:01:00.0: PGRAPH
+TLB flush idle timeout fail: 0x00c00f01 0x00000209 0x00001600 0x00000000
+Sep 11 08:44:55 faye kernel: [ 1322.256898] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 0
+Sep 11 08:44:55 faye kernel: [ 1323.596565] [drm] nouveau 0000:01:00.0:
+PFIFO_INTR 0x00400000 - Ch 2
+Sep 11 08:44:55 faye kernel: [ 1326.270583] [drm] nouveau 0000:01:00.0: PRAMIN
+flush timeout
+Sep 11 08:44:55 faye kernel: [ 1328.923088] hrtimer: interrupt took 2607527851
+ns
+Sep 11 08:44:55 faye kernel: [ 1328.923099] [drm] nouveau 0000:01:00.0:
+PFIFO_INTR 0x00c00000 - Ch 2
+Sep 11 08:44:55 faye kernel: [ 1328.926536] [drm] nouveau 0000:01:00.0: vm
+flush timeout: engine 5
 
-Hi,
-
-I haven't attended xdc in chicago, but I've read through your slides and
-looked a bit at the code. We're planing to implement gpu scheduling for
-intel gpus, too, so I'm pretty interested in this area. Comments:
-
-- your code seems to rather thightly integrated with how nvidia hw works.
-  I'm not sure whether it's a good fit for other hw, especially if/when
-  there's better support from the hw for context switching.
-
-- by the looks of it, scheduling happens via: gpu completion irq handler
-  -> realtime thread -> waking up of the blocked process that got put to
-  sleep before command submission. There's also a fastpath that does not
-  block the command submission if the scheduler allows the process to run
-  immediately. I fear this has quite high overhead and the scheduler
-  design doesn't seem to allow clever tricks like issuing gpu batchbuffers
-  eagerly and patching up execution after the fact (if e.g. a previous
-  batchbuffer used up too much time). Your argument that the scheduler
-  completely disables itself is also a bit void - contemporary desktop and
-  mobile systems always have mutliple clients: A compositor and the
-  clients, sometimes there's even an X process rearing its ugly head ;-)
-
-- Imo your code needs quite some clean-up. I've noticed e.g. that it
-  doesn't use the linux struct list_head functions. It also seems to
-  re-implement a waitqueue/completions in a (racy) way.
-
-- Imo the area that would most benefit from a shared gpu scheduler
-  infrastructure is the userspace interface, so that a common set of tools
-  can be used accross different drivers. Your solutions to configure the
-  scheduler seems to be to read a file in /etc from the kernel module
-  which is ... a bit ugly, to say the least.
-
-In short it'd be awesome if you can help in creating a gpu scheduler
-infrastructure for linux. But unfortunately your current code is imo pretty
-far away from something that could be merged.
-
-Yours, Daniel
-
-On Thu, Sep 15, 2011 at 04:20:13PM -0700, Shinpei KATO wrote:
-> Hi,
-> 
-> I am the main developer of the TimeGraph GPU command scheduler, which 
-> was presented at XDC 2011 in Chicago a few days ago.
-> Please let me propose this approach to scheduling GPU-accelerated 
-> processes with DRM.
-> 
-> This GPU scheduler will help to prioritize and isolate multiple 
-> GPU-accelerated processes executing concurrently for protecting 
-> important GPU workload in multi-tasking environments. It is designed 
-> and implemented at the DRM level as a "drm_sched" component. Each 
-> architecture-dependent driver (nouveau, radeon, i915, etc.) is also 
-> required to call the scheduling functions provided by this drm_sched 
-> component accordingly. Nothing needs to be changed in user-space runtimes.
-> The priorities and resource limits can be specified through 
-> "/proc/driver/drm_sched/#PID/{sched_policy,resv_policy,priority,runtim
-> e,peri od}" and/or "/etc/drm_sched.spec". Other user interfaces could 
-> also be possible.
-> The impact of prioritization and isolation on protecting important 
-> GPU-accelerated processes from competing GPU workload is quite 
-> significant (e.g., 3-D games can run at a 10x~ faster rate, using our 
-> GPU scheduler, when heavy workload is competing the GPU). Performance 
-> interference among GPU-accelerated processes can also be well-controlled.
-> We can activate this GPU scheduler only when multiple processes use the
-GPU.
-> Hence *nothing* would be harmful for a standalone execution.
-> I felt that the audience at XDC 2011 was pretty supportive for this idea.
-> 
-> TimeGraph is developed in a collaborative project with Carnegie Mellon 
-> University, University of California Santa Cruz, and University of Tokyo.
-> The project website is: http://rtml.ece.cmu.edu/projects/timegraph/
-> 
-> The documentation about how it works is:
-> http://rtml.ece.cmu.edu/projects/timegraph/raw-attachment/wiki/documen
-> tation
-> /drm_sched_rtgpu.pdf
-> More information is available at:
-> http://rtml.ece.cmu.edu/projects/timegraph/wiki/documentation
-> 
-> The instruction to install our Nouveau-based prototype driver is:
-> http://rtml.ece.cmu.edu/projects/timegraph/wiki/install
-> For convenience of development, the GPU scheduler is provided as an 
-> independent kernel module (https://gitorious.org/rtgpu/timegraph), but 
-> it can also be part of DRM.
-> You will also need the Nouveau-tree Linux kernel patched for drm_sched 
-> (https://gitorious.org/rtgpu/linux-rtgpu). Please see the instruction
-above.
-> There are not so many changes applied to the current kernel code, as 
-> you can quickly reference at:
-> http://rtml.ece.cmu.edu/projects/timegraph/attachment/wiki/install/lin
-> ux-rtg
-> pu.patch
-> 
-> I would appreciate any comments and feedback from you.
-> 
-> Best Regards,
-> - Shinpei Kato
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---
-Daniel Vetter
-Mail: daniel@ffwll.ch
-Mobile: +41 (0)79 365 57 48
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
