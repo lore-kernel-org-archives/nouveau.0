@@ -1,14 +1,15 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26980] NVA3 / NVA5 / NVA8 / NVAF (GT2xx/GT3xx) with
- nouveau: random GPU lockups
-Date: Sat, 17 Sep 2011 05:48:47 -0700 (PDT)
-Message-ID: <20110917124847.9B4F7130163@annarchy.freedesktop.org>
-References: <bug-26980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40630] nouveau becomes very unstable after
+ suspend/hibernate/resume (corrupted graphics and hangs with OpenGL
+ applications) GeForce 9500 GT
+Date: Sat, 17 Sep 2011 07:31:00 -0700 (PDT)
+Message-ID: <20110917143100.CCD041301FD@annarchy.freedesktop.org>
+References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,89 +22,38 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26980
+https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
-ColdFeetBob <lithium_flower-1Ph4/jfBtgs@public.gmane.org> changed:
+--- Comment #68 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-17 07:31:00 PDT ---
+We did futher testing and even though we had some promising results, it looks
+like this bug is too hard to fix at least for myself.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |lithium_flower-1Ph4/jfBtgs@public.gmane.org
+We found following things:
 
---- Comment #65 from ColdFeetBob <lithium_flower-1Ph4/jfBtgs@public.gmane.org> 2011-09-17 05:48:39 PDT ---
-I experimented this bug not long ago - right now, Im not sure it is exactly the
-same, since it's not really random but it happens everytime I run Supertux.
-I recovered the folloving kernel log lines rebooting from another partition
-after the freeze.
+1. Forcing nouveau to run POST tables (force_post=1) made the same corruption
+as after suspend when we didn't use nvidia's ctxprog. The error reported was
+the same (failure in MP1 of TP1).
+Also, we managed to crash the system twice when force_post was set (running
+supertuxkart)
 
-kernel 3.0.4, Arch Linux, x86_64, fully updated
-nouveau-dri 7.11-2
+Sadly, We couldn't crash the system anymore when we tried to repeat that
+running Nexuz. Yet.
 
-lspci:
+Also when I decoded the init tables, I found that they do setup of memory
+controller, reclock the card, etc...
 
-01:00.0 VGA compatible controller: nVidia Corporation GT215 [GeForce GT 240]
-(rev a2) (prog-if 00 [VGA controller])
+2. Nature of the crashes after resume from ram and nvidia ctxprog:
+We found out that disabling of pageflip support made the crash occur less
+often, also we found that 2D activity like opening firefox or changing virtual
+desktop made system crash right away on condition that 3d app was already
+running (we used unigine tropics for that I think)
 
-kernel.log:
+3. Without nvidia ctxprog crashes happen as well.
 
+4. We ruled out that that problem was that core clock is more that 1/2 of
+shader clock. Its exactly 1/2
 
-Sep 11 08:44:25 faye kernel: [ 1297.836589] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 0
-Sep 11 08:44:25 faye kernel: [ 1298.301418] [drm] nouveau 0000:01:00.0:
-PFIFO_INTR 0x00400000 - Ch 2
-Sep 11 08:44:27 faye kernel: [ 1299.629024] [drm] nouveau 0000:01:00.0:
-PFIFO_INTR 0x04400000 - Ch 2
-Sep 11 08:44:27 faye kernel: [ 1300.956673] [drm] nouveau 0000:01:00.0:
-PFIFO_INTR 0x04400000 - Ch 2
-Sep 11 08:44:27 faye kernel: [ 1300.956719] psmouse.c: Wheel Mouse at
-isa0060/serio1/input0 lost synchronization, throwing 1 bytes away.
-Sep 11 08:44:29 faye kernel: [ 1302.284342] [drm] nouveau 0000:01:00.0:
-PFIFO_INTR 0x00400000 - Ch 2
-Sep 11 08:44:29 faye kernel: [ 1299.632344] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 5
-Sep 11 08:44:31 faye kernel: [ 1302.960046] [drm] nouveau 0000:01:00.0: PGRAPH
-TLB flush idle timeout fail: 0x00c00f01 0x00000209 0x00001600 0x00000000
-Sep 11 08:44:32 faye kernel: [ 1303.611794] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 5
-Sep 11 08:44:34 faye kernel: [ 1303.615050] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 5
-Sep 11 08:44:53 faye kernel: [ 1302.960046] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 0
-Sep 11 08:44:53 faye kernel: [ 1305.614198] [drm] nouveau 0000:01:00.0:
-PFIFO_INTR 0x00400000 - Ch 2
-Sep 11 08:44:53 faye kernel: [ 1307.613341] [drm] nouveau 0000:01:00.0: PGRAPH
-TLB flush idle timeout fail: 0x00c00f01 0x00000209 0x00001600 0x00000000
-Sep 11 08:44:53 faye kernel: [ 1310.944310] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 5
-Sep 11 08:44:53 faye kernel: [ 1307.613341] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 0
-Sep 11 08:44:53 faye kernel: [ 1314.940910] [drm] nouveau 0000:01:00.0: PRAMIN
-flush timeout
-Sep 11 08:44:53 faye kernel: [ 1310.941070] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 0
-Sep 11 08:44:53 faye kernel: [ 1316.266913] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 5
-Sep 11 08:44:53 faye kernel: [ 1312.943555] [drm] nouveau 0000:01:00.0: PGRAPH
-TLB flush idle timeout fail: 0x00c00f01 0x00000209 0x00001600 0x00000000
-Sep 11 08:44:53 faye kernel: [ 1312.943555] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 0
-Sep 11 08:44:55 faye kernel: [ 1318.264271] [drm] nouveau 0000:01:00.0:
-PFIFO_INTR 0x04c00000 - Ch 2
-Sep 11 08:44:55 faye kernel: [ 1322.259717] psmouse.c: resync failed, issuing
-reconnect request
-Sep 11 08:44:55 faye kernel: [ 1322.256898] [drm] nouveau 0000:01:00.0: PGRAPH
-TLB flush idle timeout fail: 0x00c00f01 0x00000209 0x00001600 0x00000000
-Sep 11 08:44:55 faye kernel: [ 1322.256898] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 0
-Sep 11 08:44:55 faye kernel: [ 1323.596565] [drm] nouveau 0000:01:00.0:
-PFIFO_INTR 0x00400000 - Ch 2
-Sep 11 08:44:55 faye kernel: [ 1326.270583] [drm] nouveau 0000:01:00.0: PRAMIN
-flush timeout
-Sep 11 08:44:55 faye kernel: [ 1328.923088] hrtimer: interrupt took 2607527851
-ns
-Sep 11 08:44:55 faye kernel: [ 1328.923099] [drm] nouveau 0000:01:00.0:
-PFIFO_INTR 0x00c00000 - Ch 2
-Sep 11 08:44:55 faye kernel: [ 1328.926536] [drm] nouveau 0000:01:00.0: vm
-flush timeout: engine 5
+5. ....
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
