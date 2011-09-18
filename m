@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] BIOS POST tables induced problems on GeForce
 	9500 GT
-Date: Sat, 17 Sep 2011 20:28:02 -0700 (PDT)
-Message-ID: <20110918032802.A44AB13006F@annarchy.freedesktop.org>
+Date: Sat, 17 Sep 2011 21:03:08 -0700 (PDT)
+Message-ID: <20110918040308.397B1130081@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #71 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-17 21:03:07 PDT ---
+Created an attachment (id=51300)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51300)
+list of POST register writes
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nouveau becomes very        |BIOS POST tables induced
-                   |unstable after              |problems on GeForce 9500 GT
-                   |suspend/hibernate/resume    |
-                   |(corrupted graphics and     |
-                   |hangs with OpenGL           |
-                   |applications) GeForce 9500  |
-                   |GT                          |
+Hopefully when we replay that list of register writes problem will reappear,
+just like with force_post
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
