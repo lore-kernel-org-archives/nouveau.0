@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] nouveau becomes very unstable after
  suspend/hibernate/resume (corrupted graphics and hangs with OpenGL
  applications) GeForce 9500 GT
-Date: Sat, 17 Sep 2011 09:57:13 -0700 (PDT)
-Message-ID: <20110917165713.5869013009B@annarchy.freedesktop.org>
+Date: Sat, 17 Sep 2011 20:27:04 -0700 (PDT)
+Message-ID: <20110918032704.D5294130056@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,13 +24,30 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #69 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-17 09:57:12 PDT ---
-We're running SuperTuxKart built from SVN on X and nothing else like this:
+--- Comment #70 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-17 20:27:04 PDT ---
+Now the situation is much better. We did many tests and we get this picture:
 
-xinit /usr/local/games/supertuxkart  --profile-laps=1000 --fullscreen
+There are 3 problems that are more or less independent. All are caused by ether
+suspend or running BIOS init tables (tested).
+None of these problems happen if nether of above was done.
 
-We ran this with ctxprog loaded and force_post=1 (without suspend) and
-SuerTuxKart just hung on lap 26/1000.
+In other words BIOS init tables set some registers to harmful values, but
+nvidia driver undoes that - bios writes really are evil and indeed one need
+'glove box' to handle BIOSes.
+
+1. Fault in MP1 of TP0 - we tested that often and we did get it with
+force_post=1.
+Nvidia ctxprog (more likely ctxvals) 'fixes' this.
+
+2. Semaphore related fault, happen after around 10 minutes of full screen STK.
+Was reproduced with and without forced POSTing, one time in each situation,
+same error according to PFIFO state dumps.
+Can be 'fixed' by turning pageflipping off.
+
+
+3. Crash that happens if we run glxgears in addition to STK.
+Happens very fast (~3 seconds from glxgears start), regardless of pageflipping.
+Both PFIFO and PGRAPH appears to be idle though.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
