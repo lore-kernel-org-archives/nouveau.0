@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] Bad memory clock set on GeForce 9500 GT after
 	resume
-Date: Sun, 18 Sep 2011 15:47:07 -0700 (PDT)
-Message-ID: <20110918224707.2AB7B13006A@annarchy.freedesktop.org>
+Date: Sun, 18 Sep 2011 15:53:03 -0700 (PDT)
+Message-ID: <20110918225303.DDFA913006A@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #76 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-18 15:53:03 PDT ---
+Created an attachment (id=51324)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51324)
+vbios.rom
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|BIOS POST tables induced    |Bad memory clock set on
-                   |problems on GeForce 9500 GT |GeForce 9500 GT after
-                   |                            |resume
+attaching a dump of /sys/kernel/debug/dri/0/vbios.rom
+
+cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
