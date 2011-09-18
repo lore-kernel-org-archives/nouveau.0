@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40630] BIOS POST tables induced problems on GeForce
-	9500 GT
-Date: Sun, 18 Sep 2011 15:45:49 -0700 (PDT)
-Message-ID: <20110918224549.8A6AC1300F1@annarchy.freedesktop.org>
+Subject: [Bug 40630] Bad memory clock set on GeForce 9500 GT after
+	resume
+Date: Sun, 18 Sep 2011 15:47:07 -0700 (PDT)
+Message-ID: <20110918224707.2AB7B13006A@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #75 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-18 15:45:49 PDT ---
-Created an attachment (id=51323)
- View: https://bugs.freedesktop.org/attachment.cgi?id=51323
- Review: https://bugs.freedesktop.org/review?bug=40630&attachment=51323
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-Temporary hack to fix this
-
-This is hack to fix this issue.
-It must be reversed further to get to bottom of this
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|BIOS POST tables induced    |Bad memory clock set on
+                   |problems on GeForce 9500 GT |GeForce 9500 GT after
+                   |                            |resume
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
