@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] BIOS POST tables induced problems on GeForce
 	9500 GT
-Date: Sat, 17 Sep 2011 21:03:08 -0700 (PDT)
-Message-ID: <20110918040308.397B1130081@annarchy.freedesktop.org>
+Date: Sat, 17 Sep 2011 21:13:45 -0700 (PDT)
+Message-ID: <20110918041345.E6F641300E6@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #71 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-17 21:03:07 PDT ---
-Created an attachment (id=51300)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51300)
-list of POST register writes
+--- Comment #72 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-17 21:13:45 PDT ---
+Created an attachment (id=51301)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=51301
+ Review: https://bugs.freedesktop.org/review?bug=40630&attachment=51301
 
-Hopefully when we replay that list of register writes problem will reappear,
-just like with force_post
+demmio_replay patch
+
+This is my tool I use to replay traces.
+I adapted it to replay this trace.
+Patch it to envytools
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
