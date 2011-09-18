@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] BIOS POST tables induced problems on GeForce
 	9500 GT
-Date: Sun, 18 Sep 2011 15:41:53 -0700 (PDT)
-Message-ID: <20110918224153.3AAE61301FC@annarchy.freedesktop.org>
+Date: Sun, 18 Sep 2011 15:45:49 -0700 (PDT)
+Message-ID: <20110918224549.8A6AC1300F1@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,32 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #74 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-18 15:41:52 PDT ---
-OK Folks, it was just one bit, and it was unset by bios init tables.
-One 
-Bit 0x400000 of register 0x4008, the register that responsible for memory
-clock.
+--- Comment #75 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-09-18 15:45:49 PDT ---
+Created an attachment (id=51323)
+ View: https://bugs.freedesktop.org/attachment.cgi?id=51323
+ Review: https://bugs.freedesktop.org/review?bug=40630&attachment=51323
 
-Actual values of this register:
+Temporary hack to fix this
 
-
-before suspend:
-
-0x90596400 PCLOCK.MPLL1 => { UNK0 = 0x6400 | P = 0x1 | UNK19 = 0xb | UNK28 =
-0x1 | ENABLE }
-
-after suspend:   
-0x90016400 PCLOCK.MPLL1 => { UNK0 = 0x6400 | P = 0x1 | UNK19 = 0 | UNK28 = 0x1
-| ENABLE }
-
-test1:  0x90096400 - corruptions, but stable (with ctxfw, hang after 10 secs)
-test2   0x90516400 - good (with ctxprog)
-test3   0x90416400 - good (with ctxprog), without ctxprog: good
-test4   0x90116400 - corruptions without ctxprog
-
-Also seems that without nvidia's ctxprog, while we always got corruption, we
-didn't get hangs (but we tested just few laps of STK+glxgears)
-It doesn't matter much. It is one bit and its in unknown PLL area....
+This is hack to fix this issue.
+It must be reversed further to get to bottom of this
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
