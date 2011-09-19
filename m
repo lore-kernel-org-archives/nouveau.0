@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] Bad memory clock set on GeForce 9500 GT after
 	resume
-Date: Mon, 19 Sep 2011 07:48:30 -0700 (PDT)
-Message-ID: <20110919144830.D073A130119@annarchy.freedesktop.org>
+Date: Mon, 19 Sep 2011 08:10:55 -0700 (PDT)
+Message-ID: <20110919151055.4FDD21301B9@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #79 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-19 07:48:30 PDT ---
-I was able to suspend the machine and run STK+glxgears for many hours and I
-didn't had another crash anymore, it seems like the hung I got in my last post
-is related to fast VT switching and not another thing, different bug.
+--- Comment #80 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-19 08:10:54 PDT ---
+if I ssh from my laptop to the affected computer I can run STK+glxgears for
+hours and no hangs.
+
+The last hangs I experienced only happens when there is a fast VT->X context
+switch.
+
+So it seems like it's completely unrelated to the suspend hangs.
+
+Thanks.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
