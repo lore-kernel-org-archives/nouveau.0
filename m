@@ -1,15 +1,15 @@
 From: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-Subject: Re: [PATCH 1/3] dri2: Implement handling of pageflip
-	completion events.
-Date: Mon, 19 Sep 2011 03:09:06 +0200
-Message-ID: <4E769632.9010201@tuebingen.mpg.de>
-References: <1314984801-12029-1-git-send-email-mario.kleiner@tuebingen.mpg.de>	<1314984801-12029-2-git-send-email-mario.kleiner@tuebingen.mpg.de>	<871uvsvund.fsf@riseup.net>	<F6AA723B-2F62-4FD7-8D1D-2A08BAEDFF51@tuebingen.mpg.de>
-	<8762l1toi2.fsf@riseup.net>
+Subject: Re: [PATCH 3/3] dri2: Fixes to swap scheduling,
+	especially for copy-swaps.
+Date: Mon, 19 Sep 2011 04:04:57 +0200
+Message-ID: <4E76A349.70103@tuebingen.mpg.de>
+References: <1314984801-12029-1-git-send-email-mario.kleiner@tuebingen.mpg.de>	<1314984801-12029-4-git-send-email-mario.kleiner@tuebingen.mpg.de>	<87wrdkufec.fsf@riseup.net>	<103D9770-D3B1-4E14-A177-645C19798057@tuebingen.mpg.de>
+	<8739g5to4b.fsf@riseup.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <8762l1toi2.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <8739g5to4b.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,638 +23,247 @@ To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 09/09/2011 11:05 PM, Francisco Jerez wrote:
+On 09/09/2011 11:14 PM, Francisco Jerez wrote:
 > Mario Kleiner<mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>  writes:
 >
->> On Sep 8, 2011, at 12:45 AM, Francisco Jerez wrote:
+>> On Sep 8, 2011, at 1:00 AM, Francisco Jerez wrote:
+>>
+>> Thanks for your review. See comments below.
 >>
 >>> Mario Kleiner<mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>  writes:
 >>>
->>>> Requests pageflip completion events from the kernel.
->>>> Implements pageflip completion handler to finalize
->>>> and timestamp swaps.
+>>>> Treats vblank event scheduling for the non-pageflip swap
+>>>> case correctly. Allows vblank controlled swaps for redirected
+>>>> windows. Fixes some corner-cases in OML_sync_control scheduling
+>>>> when divisor and remainder parameters are used.
 >>>>
->>>> Completion handler includes a consistency check, and
->>>> disambiguation if multiple crtc's are involved in a
->>>> pageflip (e.g., clone mode, extendend desktop). Only
->>>> the timestamp of the crtc whose vblank event initially
->>>> triggered the swap is used, but handler waits for flip
->>>> completion on all involved crtc's before completing the
->>>> swap and releasing the old framebuffer.
->>>>
->>>> This code is almost identical to the code used in the
->>>> ati/radeon ddx and intel ddx.
->>>>
->>> There's a good reason that I held myself back from doing this when I
->>> wrote the rest of the SwapBuffers stuff; right now the X server
->>> assumes
->>> that the DDX can't handle more than one SwapBuffers request in
->>> flight at
->>> any given time, so, after a SwapBuffers request has been received, the
->>> client is prevented from doing anything until the swap (and,
->>> consequently, the whole rendering of the previous frame) has been
->>> completed, that means that the client is forced to render each frame
->>> in
->>> lock-step, and it leads to a considerable performance loss.
->>>
->>> In my judgment it seemed quite dumb to wire up all the page-flipping
->>> infrastructure together, only to notice that it was slowing things
->>> down
->>> even further (since performance was the main point I had for
->>> it...). As
->>> the ability to report accurate swap completion events seemed to be of
->>> comparatively limited usefulness, I made the DDX pretend the buffers
->>> are
->>> swapped one frame before they actually are as a temporary workaround
->>> (see the comment at the end of nouveau_dri2_finish_swap()).
->>>
->>
->> Hi, thanks for the comments.
->
-> Thank you for looking into this :)
->>
-
-Sorry for the late reply. I'm a bit slow at the moment.
-
->> I see your point, but at least as a starting point for the first
->> iteration i don't think the current dri2 implementation of pageflips
->> was a dumb decision.
->>
->> It is the same default "double buffer" behaviour that the binary
->> drivers on Linux and also on other os'es (OS/X and Windows) expose.
->
-> Not the nvidia one, last time I checked.
->
-
-It doesn't neccessarily block glXXX drawing command submission, but it 
-doesn't do triple-buffering by default. It blocks rendering until swap 
-completion, probably just queueing up drawing commands internally.
-
-Here is how my toolkit waits for swap completion with the binary blob on 
-linux, os/x and windows:
-
-1. glXSwapBuffers() (aka SwapBuffers() on Windows aka 
-CGLFlushDrawable()) on OS/X).
-
-2. glBegin(GL_POINTS); glVertex2i(10,10); glEnd();
-3. glFinish();
-4. Read clock, scanout position etc. compute swap completion timestamp.
-
-On any tested binary NVidia, ATI or Intel drivers on any tested Windows, 
-OS/X or Linux version this blocks in glFinish() until swap completion, 
-at least for page-flipped fullscreen swaps if the optional "triple 
-buffering" option is not selected in the driver control panel. This 
-method is successfully tested on multiple ten thousand users setups over 
-at least the last six years.
-
-So glFinish() waits for draw completion and drawing apparently waits for 
-swap completion - strictly double-buffered with the drivers default 
-settings. Or at least the observable behaviour of the drivers is 
-consistent with this assumption.
-
->> As a default i think it makes sense if an application wants tight
->> control over presentation timing or - in the case of games - wants to
->> prevent irritating lag between user input and visual updates -- limit
->> the number of frames that the game can prerender.
->>
->> On the intel and ati gpu's, purely double-buffered pageflipping is
->> already a win for conserving memory bandwidth and because you avoid
->> blocking the single command fifo for multiple rendering clients, as
->> you have to if you use vsync'ed copy-blits to avoid tearing. This may
->> be less of a win on nvidia because they have multiple fifo's or some
->> independent dma engines if i understand correctly?
->
-> Yeah, but right now the sync-to-vblank is pushed through the main X
-> server channel, which means it stalls all X rendering until the next
-> vblank - that could be fixed though, by extending the kernel interface
-> to make it end up in the right channel, but I haven't found the
-> motivation to do it so far because it hasn't proved to be a big problem
-> in practice.
->
->>
->> Anyway, it's better for performance if clients can queue up multiple
->> rendered frames for other non-interactive use cases, e.g., benchmarks
->> or graphics demos. Or if client apps can decide themselves about
->> presentation timing. That was the point of support for the
->> oml_sync_control and intel_swap_events extensions and all the
->> timestamping.
->>
->> My specific use case for this patchset is a popular free software
->> toolkit (http://www.psychtoolbox.org) used by neuro-scientists and
->> brain scientists in general for audio&  visual stimulus presentation,
->> i/o etc. . Nouveau in its current state, at least on the cards i
->> tested, would be already a very suitable solution for doing this on
->> linux+nvidia.
->>
->> The only missing "must-have" feature for such applications are very
->> reliable and accurate presentation timestamps. Having those puts
->> nouveau ahead of the binary blob for such apps. The workloads are
->> usually not as demanding as current games and an occassional skipped
->> frame is tolerable, but frequently getting wrong/misleading
->> timestamps of when a frame was presented would be a total show-
->> stopper. Currently i have to blacklist nouveau in my toolkit just for
->> that reason.
->>
->>> So, IMHO, this change depends on the X server N-buffering changes
->>> going
->>> in - actually the DRI2SwapLimit() API that (IIRC) Pauli Nieminen
->>> proposed some time ago was all we needed, but it hasn't been accepted
->>> upstream for some reason.
->>>
->>
->> I was involved in that discussion at the time, iirc. I think having
->> the DRI2SwapLimit() API would make a lot of sense as a first step and
->> that those patches just got dropped due to maintainer-overload, not
->> really too much for technical reasons. To do multi-buffering
->> correctly, as specified by the oml_sync_control spec, a bit more than
->> Paul's API for setting the swap_limit would be needed, either on the
->> ddx driver level or in the x-server itself, e.g., to make sure the
->> ordering of glXSwapBuffersMscOML() swaps is correct, no more than one
->> swap gets executed per video refresh and to satisfy the divisor/
->> remainder constraints correctly if they are used by a client.
->
-> At least in nouveau's case, all of these problems are either already
-> solved or already present (even if you force it to do double-buffering),
-> and multi-buffering doesn't change the nature of the problem for us in
-> any way.
->
-
-Ok. Thanks for explaining.
-
-> With the current implementation (and IIRC it's the same on both radeon
-> and intel) the divisor/remainder relation is ignored in the case where
-> the gpu is too busy to finish its rendering in time for the predicted
-> MSC; the flip is carried out as soon as the GPU finishes, possibly a few
-> vblank periods later.
->
-> To fix this properly in nouveau, I think it would be good to push the
-> divisor/remainder calculation down to the kernel (second reason so far
-> to extend the kernel interface), but once it's done we'll get the
-> divisor/remainder relation right no matter if multibuffering is being
-> used or not.
->
-
-Agreed on that. The current fix only fixes the easy case where the 
-client submits a swap request too late to satisfy the divisor/remainder 
-relation, or where the relation is easily satisfiable. E.g., my toolkit 
-uses it to make sure that a swap happens after a user specified 
-deadline, but only on, e.g., odd numbered video refresh cycles, for the 
-purpose of getting frame-sequential stereo right.
-
-None of the current ddx handles the case where the backbuffer is still 
-busy at the target vblank.
-
-Imho there are a couple of things a pageflip ioctl() v2 should provide:
-
-* Some support for frame-sequential stereo.
-* 64 bit target_msc.
-* Divisor/remainder in kernel.
-
-
->> Special cases which are not important for typical games or benchmarks
->> but important for toolkits with precise timing needs. I actually
->> wanted to work on that, but didn't get around to do it so far. First
->> i'd like to have nouveau at the same level of timing functionality as
->> ati and intel.
->>
->> Could we have an optional nouveau-ddx xorg.conf parameter to select
->> between the current codepath and the "lower-performance but correct
->> timestamping" path implemented in these patches? Something like
->> "EnableTriplebuffering" or "Swaplimit" or
->> "MaxNumberPrerenderedFrames"?
->
-> IMHO getting a small (and required) fix (the swaplimit API) into one
-> software component is more advisable from the maintainership standpoint
-> than putting in place two different codepaths in another software
-> component, both of which are broken in its own way.
->
-
-I totally agree with you. But assume we finally manage to persuade Keith 
-to integrate that API into 1.12, it would still be nice - at least for 
-my users - if the nouveau ddx could optionally support a double-buffered 
-mode with correct timestamps on current servers, e.g., 1.9 - 1.11.
-
-I think the proposed patch should work for n-buffering on future servers 
-with a swaplimit api, and for double-buffering with correct timestamping 
-on current servers. For triple buffering on current servers it would be 
-simple to add your current implementation back as a special case with 
-only a few lines of code: Just don't request pageflip completion events 
-from the kernel, so the whole pageflip callback gets skipped, and call 
-DRI2SwapComplete() directly, as in the current ddx.
-
-I think a x-org.conf option for selecting double-buffering / 
-triple-buffering / n-buffering will be needed anyway, even with a 
-swaplimit api in place, so we could add it now and use it to switch 
-between double-buffering and n-buffering.
-
-I'm not really sure what Keith remaining objections to Paul's imho 
-rather small, simple and well reviewed swaplimit api patch are, or if we 
-just have some kind of miscommunication about what specific patch we 
-were talking about. I will try to look at it again next week.
-
-thanks,
--mario
-
-
->> I think having such a setting would make sense anyway, even if Paul's
->> API is implemented, exactly to control things like max number of
->> prerendered frames for games and apps which only use glXSwapBuffers()
->> but should have some control over input lag.
->>
->> The latest intel ddx seems to do the same with a "Triplebuffering"
->> setting.
->>
->> The setting could default to your current performance
->> implementation. The path in the new patches would get pretty frequent
->> exercise&   testing by myself and currently a couple of hundred happy
->> neuro-
->> scientists.
->>
->> thanks,
->> -mario
->>
 >>>> Signed-off-by: Mario Kleiner<mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
 >>>> ---
->>>>   src/drmmode_display.c |  105 +++++++++++++++++++++++++++++++++++++
->>>> ++++++++++--
->>>>   src/nouveau_dri2.c    |   89 +++++++++++++++++++++++++++++++++++++
->>>> ++--
->>>>   src/nv_proto.h        |    5 ++-
->>>>   3 files changed, 189 insertions(+), 10 deletions(-)
+>>>>   src/nouveau_dri2.c |   71 ++++++++++++++++++++++++++++++++++++++++
+>>>> ++++-------
+>>>>   1 files changed, 61 insertions(+), 10 deletions(-)
 >>>>
->>>> diff --git a/src/drmmode_display.c b/src/drmmode_display.c
->>>> index 3afef66..bcb2a94 100644
->>>> --- a/src/drmmode_display.c
->>>> +++ b/src/drmmode_display.c
->>>> @@ -83,6 +83,21 @@ typedef struct {
->>>>       drmmode_prop_ptr props;
->>>>   } drmmode_output_private_rec, *drmmode_output_private_ptr;
->>>>
->>>> +typedef struct {
->>>> +    drmmode_ptr drmmode;
->>>> +    unsigned old_fb_id;
->>>> +    int flip_count;
->>>> +    void *event_data;
->>>> +    unsigned int fe_frame;
->>>> +    unsigned int fe_tv_sec;
->>>> +    unsigned int fe_tv_usec;
->>>> +} drmmode_flipdata_rec, *drmmode_flipdata_ptr;
->>>> +
->>>> +typedef struct {
->>>> +    drmmode_flipdata_ptr flipdata;
->>>> +    Bool dispatch_me;
->>>> +} drmmode_flipevtcarrier_rec, *drmmode_flipevtcarrier_ptr;
->>>> +
->>>>   static void drmmode_output_dpms(xf86OutputPtr output, int mode);
->>>>
->>>>   static drmmode_ptr
->>>> @@ -1246,13 +1261,17 @@ drmmode_cursor_init(ScreenPtr pScreen)
->>>>   }
->>>>
->>>>   Bool
->>>> -drmmode_page_flip(DrawablePtr draw, PixmapPtr back, void *priv)
->>>> +drmmode_page_flip(DrawablePtr draw, PixmapPtr back, void *priv,
->>>> +		  unsigned int ref_crtc_hw_id)
->>>>   {
->>>>   	ScrnInfoPtr scrn = xf86Screens[draw->pScreen->myNum];
->>>>   	xf86CrtcConfigPtr config = XF86_CRTC_CONFIG_PTR(scrn);
->>>>   	drmmode_crtc_private_ptr crtc = config->crtc[0]->driver_private;
->>>>   	drmmode_ptr mode = crtc->drmmode;
->>>>   	int ret, i, old_fb_id;
->>>> +	int emitted = 0;
->>>> +	drmmode_flipdata_ptr flipdata;
->>>> +	drmmode_flipevtcarrier_ptr flipcarrier;
->>>>
->>>>   	old_fb_id = mode->fb_id;
->>>>   	ret = drmModeAddFB(mode->fd, scrn->virtualX, scrn->virtualY,
->>>> @@ -1265,24 +1284,64 @@ drmmode_page_flip(DrawablePtr draw,
->>>> PixmapPtr back, void *priv)
->>>>   		return FALSE;
->>>>   	}
->>>>
->>>> +	flipdata = calloc(1, sizeof(drmmode_flipdata_rec));
->>>> +	if (!flipdata) {
->>>> +		xf86DrvMsg(scrn->scrnIndex, X_WARNING,
->>>> +		"flip queue: data alloc failed.\n");
->>>> +		goto error_undo;
->>>> +	}
->>>> +
->>>> +	flipdata->event_data = priv;
->>>> +	flipdata->drmmode = mode;
->>>> +
->>>>   	for (i = 0; i<  config->num_crtc; i++) {
->>>>   		crtc = config->crtc[i]->driver_private;
->>>>
->>>>   		if (!config->crtc[i]->enabled)
->>>>   			continue;
->>>>
->>>> +		flipdata->flip_count++;
->>>> +
->>>> +		flipcarrier = calloc(1, sizeof(drmmode_flipevtcarrier_rec));
->>>> +		if (!flipcarrier) {
->>>> +			xf86DrvMsg(scrn->scrnIndex, X_WARNING,
->>>> +				   "flip queue: carrier alloc failed.\n");
->>>> +			if (emitted == 0)
->>>> +				free(flipdata);
->>>> +			goto error_undo;
->>>> +		}
->>>> +
->>>> +		/* Only the reference crtc will finally deliver its page flip
->>>> +		 * completion event. All other crtc's events will be discarded.
->>>> +		 */
->>>> +		flipcarrier->dispatch_me = ((1<<  i) == ref_crtc_hw_id);
->>>> +		flipcarrier->flipdata = flipdata;
->>>> +
->>>>   		ret = drmModePageFlip(mode->fd, crtc->mode_crtc->crtc_id,
->>>> -				      mode->fb_id, 0, priv);
->>>> +				      mode->fb_id, DRM_MODE_PAGE_FLIP_EVENT,
->>>> +				      flipcarrier);
->>>>   		if (ret) {
->>>>   			xf86DrvMsg(scrn->scrnIndex, X_WARNING,
->>>>   				   "flip queue failed: %s\n", strerror(errno));
->>>> -			return FALSE;
->>>> +
->>>> +			free(flipcarrier);
->>>> +			if (emitted == 0)
->>>> +				free(flipdata);
->>>> +			goto error_undo;
->>>>   		}
->>>> +
->>>> +		emitted++;
->>>>   	}
->>>>
->>>> -	drmModeRmFB(mode->fd, old_fb_id);
->>>> +	/* Will release old fb after all crtc's completed flip. */
->>>> +	flipdata->old_fb_id = old_fb_id;
->>>>
->>>>   	return TRUE;
->>>> +
->>>> +error_undo:
->>>> +	drmModeRmFB(mode->fd, mode->fb_id);
->>>> +	mode->fb_id = old_fb_id;
->>>> +	return FALSE;
->>>>   }
->>>>
->>>>   #ifdef HAVE_LIBUDEV
->>>> @@ -1348,6 +1407,40 @@ drmmode_uevent_fini(ScrnInfoPtr scrn)
->>>>   }
->>>>
->>>>   static void
->>>> +drmmode_flip_handler(int fd, unsigned int frame, unsigned int
->>>> tv_sec,
->>>> +		     unsigned int tv_usec, void *event_data)
->>>> +{
->>>> +	drmmode_flipevtcarrier_ptr flipcarrier = event_data;
->>>> +	drmmode_flipdata_ptr flipdata = flipcarrier->flipdata;
->>>> +	drmmode_ptr drmmode = flipdata->drmmode;
->>>> +
->>>> +	/* Is this the event whose info shall be delivered to higher
->>>> level? */
->>>> +	if (flipcarrier->dispatch_me) {
->>>> +		/* Yes: Cache msc, ust for later delivery. */
->>>> +		flipdata->fe_frame = frame;
->>>> +		flipdata->fe_tv_sec = tv_sec;
->>>> +		flipdata->fe_tv_usec = tv_usec;
->>>> +	}
->>>> +	free(flipcarrier);
->>>> +
->>>> +	/* Last crtc completed flip? */
->>>> +	flipdata->flip_count--;
->>>> +	if (flipdata->flip_count>  0)
->>>> +		return;
->>>> +
->>>> +	/* Release framebuffer */
->>>> +	drmModeRmFB(drmmode->fd, flipdata->old_fb_id);
->>>> +
->>>> +	if (flipdata->event_data == NULL)
->>>> +		return;
->>>> +
->>>> +	/* Deliver cached msc, ust from reference crtc to flip event
->>>> handler */
->>>> +	nouveau_dri2_flip_event_handler(flipdata->fe_frame, flipdata-
->>>>> fe_tv_sec,
->>>> +					flipdata->fe_tv_usec, flipdata->event_data);
->>>> +	free(flipdata);
->>>> +}
->>>> +
->>>> +static void
->>>>   drmmode_wakeup_handler(pointer data, int err, pointer p)
->>>>   {
->>>>   	ScrnInfoPtr scrn = data;
->>>> @@ -1377,6 +1470,10 @@ drmmode_screen_init(ScreenPtr pScreen)
->>>>   	/* Plug in a vblank event handler */
->>>>   	drmmode->event_context.version = DRM_EVENT_CONTEXT_VERSION;
->>>>   	drmmode->event_context.vblank_handler =
->>>> nouveau_dri2_vblank_handler;
->>>> +
->>>> +	/* Plug in a pageflip completion event handler */
->>>> +	drmmode->event_context.page_flip_handler = drmmode_flip_handler;
->>>> +
->>>>   	AddGeneralSocket(drmmode->fd);
->>>>
->>>>   	/* Register a wakeup handler to get informed on DRM events */
 >>>> diff --git a/src/nouveau_dri2.c b/src/nouveau_dri2.c
->>>> index 1a68ed3..87eaf08 100644
+>>>> index 9f0ee97..f14dea4 100644
 >>>> --- a/src/nouveau_dri2.c
 >>>> +++ b/src/nouveau_dri2.c
->>>> @@ -136,6 +136,7 @@ struct nouveau_dri2_vblank_state {
->>>>   	DRI2BufferPtr src;
->>>>   	DRI2SwapEventPtr func;
->>>>   	void *data;
->>>> +	unsigned int frame;
->>>>   };
+>>>> @@ -196,10 +196,8 @@ can_sync_to_vblank(DrawablePtr draw)
+>>>>   {
+>>>>   	ScrnInfoPtr scrn = xf86Screens[draw->pScreen->myNum];
+>>>>   	NVPtr pNv = NVPTR(scrn);
+>>>> -	PixmapPtr pix = NVGetDrawablePixmap(draw);
 >>>>
->>>>   static Bool
->>>> @@ -222,6 +223,18 @@ nouveau_dri2_finish_swap(DrawablePtr draw,
->>>> unsigned int frame,
->>>>   	REGION_INIT(0,&reg, (&(BoxRec){ 0, 0, draw->width, draw-
->>>>> height }), 0);
->>>>   	REGION_TRANSLATE(0,&reg, draw->x, draw->y);
->>>>
->>>> +	/* Main crtc for this drawable shall finally deliver pageflip
->>>> event. */
->>>> +	unsigned int ref_crtc_hw_id = nv_window_belongs_to_crtc(scrn,
->>>> draw->x,
->>>> +								draw->y,
->>>> +								draw->width,
->>>> +								draw->height);
->>>> +
->>>> +	/* Whenever first crtc is involved, choose it as reference, as
->>>> +	 * its vblank event triggered this swap.
->>>> +	 */
->>>> +	if (ref_crtc_hw_id&  1)
->>>> +		ref_crtc_hw_id = 1;
->>>> +
->>>>   	/* Throttle on the previous frame before swapping */
->>>>   	nouveau_bo_map(dst_bo, NOUVEAU_BO_RD);
->>>>   	nouveau_bo_unmap(dst_bo);
->>>> @@ -246,7 +259,7 @@ nouveau_dri2_finish_swap(DrawablePtr draw,
->>>> unsigned int frame,
->>>>
->>>>   		if (DRI2CanFlip(draw)) {
->>>>   			type = DRI2_FLIP_COMPLETE;
->>>> -			ret = drmmode_page_flip(draw, src_pix, s);
->>>> +			ret = drmmode_page_flip(draw, src_pix, s, ref_crtc_hw_id);
->>>>   			if (!ret)
->>>>   				goto out;
->>>>   		}
->>>> @@ -255,6 +268,10 @@ nouveau_dri2_finish_swap(DrawablePtr draw,
->>>> unsigned int frame,
->>>>   		SWAP(nouveau_pixmap(dst_pix)->bo, nouveau_pixmap(src_pix)->bo);
->>>>
->>>>   		DamageRegionProcessPending(draw);
->>>> +
->>>> +		/* If it is a page flip, finish it in the flip event handler. */
->>>> +		if (type == DRI2_FLIP_COMPLETE)
->>>> +			return;
->>>>   	} else {
->>>>   		type = DRI2_BLIT_COMPLETE;
->>>>
->>>> @@ -289,7 +306,7 @@ nouveau_dri2_schedule_swap(ClientPtr client,
+>>>>   	return pNv->glx_vblank&&
+>>>> -		nouveau_exa_pixmap_is_onscreen(pix)&&
+>>>
+>>> I'm not sure that this is the right way to fix this problem, depending
+>>> on the kind of transformations that the compositing manager is doing
+>>> you're likely to end up picking a CRTC at random... I just have the
+>>> impression that for redirected windows syncing to vblank is no longer
+>>> our responsibility, but rather the compositing manager's.
+>>>
+>>
+>> I don't think it is the perfect way either, but to me it seems to be
+>> some improvement for the time being. Ideally there would be protocol
+>> probably between the compositor and mesa to get this perfectly right -
+>> translate the oml_sync_control and classic glXSwapBuffers requests
+>> into some requests for the compositor and x-server.
+>>
+> I'm not sure the spec itself makes that much sense when you're running a
+> compositing manager... Anyway I suspect there's a common fix for this
+> and the synchronization issue we had with the "exchange" swapbuffers
+> path, that only involves some minor rewording in the DRI2 protocol.
+>
+
+Afaik the oml_sync_control spec is based on some sgi spec for their 
+former big multi-pipe machines (Onyx Infinite Reality engine and such), 
+where you had multiple displays, but they were usually driven with 
+exactly the same video modes in perfect sync, always acting like one big 
+single x-screen. That shows through in some places i think.
+
+But the spec itself should still make sense with composition manager. It 
+"just" requires quite a bit of extra protocol and effort for 
+unredirected windows if one wants to do it properly, as far as i can 
+see. Basically send the whole dri2swapbuffers request to the compositor, 
+get some acknowledge from it when it is safe to exchange the buffers and 
+then the compositor would need to schedule and send swaprequests itself, 
+according to the (target_msc, divisor, remainder) and would also need to 
+call dri2swapcomplete when the swap is actually done. Probably these 
+interactions should rather happen between mesa <-> compositor <-> 
+x-server/ddx rather than mesa <-> x-server <-> ddx <-> compositor. But 
+the spec itself - the api from the viewpoint of the gl client - would 
+still make a lot of sense imho.
+
+There were some plans on this on the 
+<http://dri.freedesktop.org/wiki/CompositeSwap> Wiki.
+
+>> But the current implementation under a compositor is not great. You
+>> get glxgears reporting that "vsync is on and the redraw rate should
+>> equal the refresh rate" but see 2900 fps reported on a 60 Hz display,
+>> with apparently 60 Hz animation. And, in my use case, toolkits that
+>> care about timing and do some consistency checks on their swapbuffers
+>> execution bail out immediately, telling you to fix your "totally
+>> broken graphics driver setup".
+>>
+>> It's a pure "better than nothing" change for the redirected case,
+>> which seems to behave less confusing, at least as no fancy
+>> transformations are used, e.g., during desktop transitions.
+>>
+> OK, fair enough.
+>
+
+So, you're ok with that "better than nothing" change?
+
+>> Some consistent crtc selection is another thing that imho would need a
+>> bit of work for nouveau and the other drivers. Currently nouveau
+>> always selects the 1st crtc for vblank events based swap scheduling
+>> and vsync if a window spans multiple displays on xinerama setups,
+>> regardless if a non-fullscreen window is displaying on the first or
+>> second monitor. Same goes for fullscreen drawables, regardless of how
+>> much area is covered by the viewport of a crtc. The other drivers
+>> select the crtc to sync by the intersection area of drawable and
+>> crtc, so tearing fuer multi-display spanning windows is limited to
+>> the "smaller display". It also makes sense to give users some control
+>> over this for clone mode, e.g., when they give a presentation and
+>> don't care if their laptops flat panel tears, but don't want tearing
+>> on the presentation screen for the audience. E.g., one could prefer
+>> the --primary output as defined by xrandr.
+>>
+>>>>   		nv_window_belongs_to_crtc(scrn, draw->x, draw->y,
+>>>>   					  draw->width, draw->height);
+>>>>   }
+>>>> @@ -344,9 +342,40 @@ nouveau_dri2_schedule_swap(ClientPtr client,
 >>>> DrawablePtr draw,
+>>>>   			   CARD64 *target_msc, CARD64 divisor, CARD64 remainder,
 >>>>   			   DRI2SwapEventPtr func, void *data)
 >>>>   {
+>>>> +	PixmapPtr dst_pix;
+>>>> +	PixmapPtr src_pix = nouveau_dri2_buffer(src)->ppix;
 >>>>   	struct nouveau_dri2_vblank_state *s;
->>>> -	CARD64 current_msc;
->>>> +	CARD64 current_msc, expect_msc;
->>>>   	int ret;
->>>>
->>>>   	/* Initialize a swap structure */
->>>> @@ -298,7 +315,7 @@ nouveau_dri2_schedule_swap(ClientPtr client,
->>>> DrawablePtr draw,
->>>>   		return FALSE;
->>>>
->>>>   	*s = (struct nouveau_dri2_vblank_state)
->>>> -		{ SWAP, client, draw->id, dst, src, func, data };
->>>> +		{ SWAP, client, draw->id, dst, src, func, data, 0 };
->>>>
->>>>   	if (can_sync_to_vblank(draw)) {
->>>>   		/* Get current sequence */
->>>> @@ -316,10 +333,10 @@ nouveau_dri2_schedule_swap(ClientPtr client,
->>>> DrawablePtr draw,
->>>>   		ret = nouveau_wait_vblank(draw, DRM_VBLANK_ABSOLUTE |
->>>>   					  DRM_VBLANK_EVENT,
->>>>   					  max(current_msc, *target_msc - 1),
->>>> -					  NULL, NULL, s);
->>>> +					&expect_msc, NULL, s);
->>>>   		if (ret)
->>>>   			goto fail;
->>>> -
->>>> +		s->frame = (unsigned int) expect_msc&  0xffffffff;
->>>>   	} else {
->>>>   		/* We can't/don't want to sync to vblank, just swap. */
->>>>   		nouveau_dri2_finish_swap(draw, 0, 0, 0, s);
->>>> @@ -423,6 +440,68 @@ nouveau_dri2_vblank_handler(int fd, unsigned
->>>> int frame,
->>>>   	}
->>>>   }
->>>>
->>>> +void
->>>> +nouveau_dri2_flip_event_handler(unsigned int frame, unsigned int
->>>> tv_sec,
->>>> +				unsigned int tv_usec, void *event_data)
->>>> +{
->>>> +	struct nouveau_dri2_vblank_state *flip = event_data;
->>>> +	DrawablePtr draw;
->>>> +	ScreenPtr screen;
->>>> +	ScrnInfoPtr scrn;
->>>> +	int status;
->>>> +	PixmapPtr pixmap;
+>>>>   	CARD64 current_msc, expect_msc;
+>>>> -	int ret;
+>>>> +	int ret, flip = 0;
+>>>> +	Bool front_updated;
 >>>> +
->>>> +	status = dixLookupDrawable(&draw, flip->draw, serverClient,
->>>> +				   M_ANY, DixWriteAccess);
->>>> +	if (status != Success) {
->>>> +		free(flip);
->>>> +		return;
+>>>> +	/* Truncate to match kernel interfaces; means occasional overflow
+>>>> +	 * misses, but that's generally not a big deal.
+>>>> +	 */
+>>>> +	*target_msc&= 0xffffffff;
+>>>> +	divisor&= 0xffffffff;
+>>>> +	remainder&= 0xffffffff;
+>>>> +
+>>> This doesn't really fix the problem with our 32bit counters wrapping
+>>> around, but, as the comment says, it's not a big deal...
+>>>
+>>
+>> Yes. Another item, get 64-bit counters and api for the kernel
+>> drm. Mostly to make explicit that there is a 32-bit limit in place.
+>>
+>>>> +	/* Update frontbuffer pixmap and name: Could have changed due to
+>>>> +	 * window (un)redirection as part of compositing.
+>>>> +	 */
+>>>> +	front_updated = update_front(draw, dst);
+>>>> +
+>>>> +	/* Assign frontbuffer pixmap, after update in update_front() */
+>>>> +	dst_pix = nouveau_dri2_buffer(dst)->ppix;
+>>>> +
+>>>> +	/* Flips need to be submitted one frame before */
+>>>> +	if (DRI2CanFlip(draw)&&  front_updated&&
+>>>> +	    can_exchange(draw, dst_pix, src_pix)) {
+>>>> +		flip = 1;
 >>>> +	}
 >>>> +
->>>> +	screen = draw->pScreen;
->>>> +	scrn = xf86Screens[screen->myNum];
->>>> +
->>>> +	pixmap = screen->GetScreenPixmap(screen);
->>>> +	xf86DrvMsg(scrn->scrnIndex, X_INFO,
->>>> +		   "%s:%d fevent[%p] width %d pitch %d (/4 %d)\n",
->>>> +		   __func__, __LINE__, flip, pixmap->drawable.width,
->>>> +		   pixmap->devKind, pixmap->devKind/4);
->>>> +
->>>> +	/* We assume our flips arrive in order, so we don't check the
->>>> frame */
->>>> +	switch (flip->action) {
->>>> +	case SWAP:
->>>> +		/* Check for too small vblank count of pageflip completion,
->>>> +		 * taking wraparound into account. This usually means some
->>>> +		 * defective kms pageflip completion, causing wrong (msc, ust)
->>>> +		 * return values and possible visual corruption.
->>>> +		 * Skip test for frame == 0, as this is a valid constant value
->>>> +		 * reported by all Linux kernels at least up to Linux 3.0.
->>>> +		 */
->>>> +		if ((frame != 0)&&
->>>> +		    (frame<  flip->frame)&&  (flip->frame - frame<  5)) {
->>>> +			xf86DrvMsg(scrn->scrnIndex, X_WARNING,
->>>> +				   "%s: Pageflip has impossible msc %d<  target_msc %d\n",
->>>> +				   __func__, frame, flip->frame);
->>>> +			/* All-Zero values signal failure of (msc, ust)
->>>> +			 * timestamping to client.
->>>> +			 */
->>>> +			frame = tv_sec = tv_usec = 0;
->>>> +		}
->>>> +
->>>> +		DRI2SwapComplete(flip->client, draw, frame, tv_sec, tv_usec,
->>>> +				 DRI2_FLIP_COMPLETE, flip->func,
->>>> +				 flip->data);
->>>> +		break;
->>>> +	default:
->>>> +		xf86DrvMsg(scrn->scrnIndex, X_WARNING,
->>>> +			   "%s: unknown vblank event received\n", __func__);
->>>> +		/* Unknown type */
->>>> +		break;
->>>> +	}
->>>> +
->>>> +	free(flip);
->>>> +}
->>>> +
->>>>   Bool
->>>>   nouveau_dri2_init(ScreenPtr pScreen)
->>>>   {
->>>> diff --git a/src/nv_proto.h b/src/nv_proto.h
->>>> index 2e4fce0..2bd2ac7 100644
->>>> --- a/src/nv_proto.h
->>>> +++ b/src/nv_proto.h
->>>> @@ -7,7 +7,8 @@ void drmmode_adjust_frame(ScrnInfoPtr pScrn, int x,
->>>> int y, int flags);
->>>>   void drmmode_remove_fb(ScrnInfoPtr pScrn);
->>>>   Bool drmmode_cursor_init(ScreenPtr pScreen);
->>>>   void drmmode_fbcon_copy(ScreenPtr pScreen);
->>>> -Bool drmmode_page_flip(DrawablePtr draw, PixmapPtr back, void
->>>> *priv);
->>>> +Bool drmmode_page_flip(DrawablePtr draw, PixmapPtr back, void *priv,
->>>> +		       unsigned int ref_crtc_hw_id);
->>>>   void drmmode_screen_init(ScreenPtr pScreen);
->>>>   void drmmode_screen_fini(ScreenPtr pScreen);
->>>>
->>>> @@ -26,6 +27,8 @@ Bool nouveau_allocate_surface(ScrnInfoPtr scrn,
->>>> int width, int height,
->>>>   void nouveau_dri2_vblank_handler(int fd, unsigned int frame,
->>>>   				 unsigned int tv_sec, unsigned int tv_usec,
->>>>   				 void *event_data);
->>>> +void nouveau_dri2_flip_event_handler(unsigned int frame, unsigned
->>>> int tv_sec,
->>>> +				     unsigned int tv_usec, void *event_data);
->>>>   Bool nouveau_dri2_init(ScreenPtr pScreen);
->>>>   void nouveau_dri2_fini(ScreenPtr pScreen);
+>>>> +	/* Correct target_msc by 'flip' if this is a page-flipped swap.
+>>>> +	 * Do it early, so handling of different timing constraints
+>>>> +	 * for divisor, remainder and msc vs. target_msc works.
+>>>> +	 */
+>>>> +	if (*target_msc>  0)
+>>>> +		*target_msc -= (CARD64) flip;
+>>>
+>>> We don't need the code above, blits are submitted one frame before as
+>>> well - the wait for the final vblank is done in hardware by the GPU
+>>> itself, that way we don't have to worry about tearing caused by the
+>>> GPU
+>>> being too busy to finish all its previous work in time for the
+>>> specified
+>>> vblank interval.
+>>>
 >>
->> *********************************************************************
->> Mario Kleiner
->> Max Planck Institute for Biological Cybernetics
->> Spemannstr. 38
->> 72076 Tuebingen
->> Germany
+>> Oh ok, thanks. I have special measurement equipment here to test
+>> pageflipped swaps for timing, but can't test the copyswap case
+>> easily. My toolkit was complaining loudly about inconsistencies, so i
+>> was just assuming it is due to the same logic as on other gpu's +
+>> missing code in the ddx. If copy-swaps are intentionally scheduled
+>> one frame ahead, then DRI2SwapComplete timestamps would need to be
+>> corrected for that. Currently you get the puzzling result from the
+>> timestamps that swaps complete before they were even scheduled by the
+>> client, typically a clear indication of broken vsync support in the
+>> driver.
 >>
->> e-mail: mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org
->> office: +49 (0)7071/601-1623
->> fax:    +49 (0)7071/601-616
->> www:    http://www.kyb.tuebingen.mpg.de/~kleinerm
->> *********************************************************************
->> "For a successful technology, reality must take precedence
->> over public relations, for Nature cannot be fooled."
->> (Richard Feynman)
+> Heh, yeah...
+>
+
+I will change the patch to remove the unneccessary bits and try if the 
+DRI2SwapComplete timestamps for the copy-swap case can be "fixed" instead.
+
+>> Do you know how this is done at the hardware level? Exactly as with
+>> pageflips? The gpu programming seems to be the same in the ddx.
+>
+> Yes, we use the same synchronization mechanism for pageflips and blits.
+>
+
+Hm. Then would it be easily possible for the kms-driver to emit 
+"pageflip completion" events for blits as well, e.g., when the drawing 
+engine continues or the main x server channel submits the blit? That 
+would be a simple and reliable way to timestamp blit-swaps on nouveau as 
+well. I've come up with some sketchy ideas to do this on intel and ati, 
+but didn't get around to test them so far. Their implementation will be 
+quite a bit more involved.
+
+>> Is the blip operation started at leading edge of the vblank interval?
+>> Or anywhere inside the vblank interval (level triggered)? Are such
+>> blits submitted on a separate fifo (or even dma engine?) in the gpu to
+>> avoid stalling the rest of the command stream until vblank?
+>
+> It depends, right now we have two completely different implementations
+> and we use one or the other depending on the card generation:
+>
+> On nv11-nv4x, we use the PGRAPH vsync methods (0x120-0x134), that means
+> it's the drawing engine that waits. Basically you have a counter that's
+> incremented by a CRTC of your choice when it reaches a scanline range of
+> your choice, wrapping around at a configurable value; you can put the
+> drawing engine to sleep until the counter reaches a given value. Right
+> now we make it wait until somewhere between vdisplay-3 and vdisplay-1
+> before going on with the swap.
+>
+
+Interesting, thanks for the explanation. Maybe that counter could also 
+be used to implement a hardware vblank counter on pre-NV50? Currently 
+the .get_vblank_counter hook is not correctly implemented in the 
+nouveau-kms driver. It currently hooks up to drm_vblank_count(), i.e., 
+it uses the value of the software drm counter which it is supposed to 
+reinitialize from scratch with fresh and independent values from the 
+hardware. At the moment this is basically a no-op and the drm will lose 
+vblank counts whenever it disables vblank irq's for power saving.
+
+I wanted to prepare a patch for this. For NV-50 there is a hardware 
+vblank counter. For earlier cards i couldn't find one, last time i 
+searched six month ago?
+
+>  From nv5x on, we use PFIFO semaphores to suspend the execution of the
+> channel (right now the main X server channel but this could be changed)
+> until a pre-allocated memory location gets a given value, which is
+> written there manually by the PDISPLAY vblank interrupt handler. I'm not
+> sure when exactly this IRQ happens, most likely it can be configured,
+> but I have reasons to believe that in some set-ups it happens at the
+> end of the vblank period causing the tearing I've seen a few times.
+>
+
+I've observed something similar on my QuadroFX-570 here with pageflips 
+as well. The kms-pageflip seems to always happen in scanline 5 of the 
+active scanout, instead of inside the vblank. Either that, or there's 
+some funny delay due to some additional buffering in the gpu between 
+crtc and output port?
+
+Thanks,
+-mario
