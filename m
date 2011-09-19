@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] Bad memory clock set on GeForce 9500 GT after
 	resume
-Date: Mon, 19 Sep 2011 10:33:44 -0700 (PDT)
-Message-ID: <20110919173344.782F1130195@annarchy.freedesktop.org>
+Date: Mon, 19 Sep 2011 10:35:51 -0700 (PDT)
+Message-ID: <20110919173551.2A07B1300F7@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #82 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-19 10:33:42 PDT ---
-Pictures of the affected card.
+--- Comment #83 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-19 10:35:50 PDT ---
+Created an attachment (id=51365)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51365)
+lspci -a
 
-Front:
-
-http://dl.dropbox.com/u/6005119/gpu/P1120649.JPG
-
-Back:
-
-http://dl.dropbox.com/u/6005119/gpu/P1120671.JPG
+added lspci -a
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
