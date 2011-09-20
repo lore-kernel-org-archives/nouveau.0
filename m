@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] Bad memory clock set on GeForce 9500 GT after
 	resume
-Date: Tue, 20 Sep 2011 15:08:42 -0700 (PDT)
-Message-ID: <20110920220842.8CC961301E6@annarchy.freedesktop.org>
+Date: Tue, 20 Sep 2011 16:10:34 -0700 (PDT)
+Message-ID: <20110920231034.A28A3130115@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #86 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-20 15:08:41 PDT ---
-I fail to reproduce this issue with this card as well:
+--- Comment #87 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-20 16:10:31 PDT ---
+I have a ThinkPad T510 with optimus GPU (hybrid Intel/Nvidia), I have switched
+the GPU in the BIOS to use the Nvidia card so I could try to reproduce this
+issue in my laptop as well, and failed to reproduce there as well.
 
-02:00.0 VGA compatible controller: nVidia Corporation G92 [GeForce 9800 GT]
-(rev a2)
+I have suspended hte laptop many times but glxgears appears just fine after
+suspend, no corrupted graphics, etc.
 
-
-This issue is only present with my GeForce 9500 GT.
-
-Weird.
+[diego@myhost ~]$ lspci|grep VGA
+01:00.0 VGA compatible controller: nVidia Corporation GT218 [NVS 3100M] (rev
+a2)
+[diego@myhost ~]$
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
