@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] Bad memory clock set on GeForce 9500 GT after
 	resume
-Date: Tue, 20 Sep 2011 15:01:26 -0700 (PDT)
-Message-ID: <20110920220126.1E61C1300BF@annarchy.freedesktop.org>
+Date: Tue, 20 Sep 2011 15:08:42 -0700 (PDT)
+Message-ID: <20110920220842.8CC961301E6@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #85 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-20 15:01:25 PDT ---
-I failed to reproduce this same problem with this card:
+--- Comment #86 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-20 15:08:41 PDT ---
+I fail to reproduce this issue with this card as well:
 
-01:00.0 VGA compatible controller: nVidia Corporation G96 [GeForce 9400 GT]
-(rev a1)
+02:00.0 VGA compatible controller: nVidia Corporation G92 [GeForce 9800 GT]
+(rev a2)
 
-BTW this problem is also present on Fedora 15, I tested it and the problem is
-there also.
+
+This issue is only present with my GeForce 9500 GT.
+
+Weird.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
