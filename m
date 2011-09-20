@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33445] NVS 3100M : Blank screen on internal eDP
-	monitor
-Date: Mon, 19 Sep 2011 23:29:55 -0700 (PDT)
-Message-ID: <20110920062955.A77B7130146@annarchy.freedesktop.org>
-References: <bug-33445-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40630] Bad memory clock set on GeForce 9500 GT after
+	resume
+Date: Tue, 20 Sep 2011 15:01:26 -0700 (PDT)
+Message-ID: <20110920220126.1E61C1300BF@annarchy.freedesktop.org>
+References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33445
+https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #17 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-19 23:29:55 PDT ---
-Yep, the fixed code isn't in an upstream kernel yet.  It's queued for 3.2.
+--- Comment #85 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-20 15:01:25 PDT ---
+I failed to reproduce this same problem with this card:
 
-Until then, current nouveau git will compile just fine against 3.1-rcX kernels.
- See
-http://nouveau.freedesktop.org/wiki/InstallDRM#out-of-treebuild.28alternative.29
-for details of how to do so.
+01:00.0 VGA compatible controller: nVidia Corporation G96 [GeForce 9400 GT]
+(rev a1)
+
+BTW this problem is also present on Fedora 15, I tested it and the problem is
+there also.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
