@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 41114] nouveau module crashes on boot
-Date: Thu, 22 Sep 2011 05:34:23 -0700 (PDT)
-Message-ID: <20110922123423.48E6B1300A0@annarchy.freedesktop.org>
+Date: Thu, 22 Sep 2011 05:34:52 -0700 (PDT)
+Message-ID: <20110922123452.D6B371301B0@annarchy.freedesktop.org>
 References: <bug-41114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=41114
 
-Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #51516|text/x-log                  |text/plain
-          mime type|                            |
+--- Comment #1 from Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> 2011-09-22 05:34:52 PDT ---
+Created an attachment (id=51517)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51517)
+vbios
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
