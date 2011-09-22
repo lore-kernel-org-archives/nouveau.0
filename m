@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 41114] nouveau module crashes on boot
-Date: Thu, 22 Sep 2011 05:36:37 -0700 (PDT)
-Message-ID: <20110922123637.AE93713015E@annarchy.freedesktop.org>
+Date: Thu, 22 Sep 2011 10:54:39 -0700 (PDT)
+Message-ID: <20110922175440.05183130148@annarchy.freedesktop.org>
 References: <bug-41114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=41114
 
---- Comment #2 from Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> 2011-09-22 05:36:37 PDT ---
-The NVidia binary driver works seemingly fine, if it matters.
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-22 10:54:39 PDT ---
+Hi Timo
+
+Can you try the latest kernel [1] or at least this patch (drm/nouveau: fix oops
+if i2c bus not found in nouveau_i2c_identify()) [2]
+
+It should resolve the "NULL pointer dereference"
+
+Cheers
+Emil
+
+[1] http://cgit.freedesktop.org/nouveau/linux-2.6/
+[2]
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=4213df3fa3af818b4ec0397428b007a9d033084c
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
