@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] Brightness stuck to low value after
-	suspend/resume
-Date: Thu, 22 Sep 2011 14:16:01 -0700 (PDT)
-Message-ID: <20110922211601.057A6130184@annarchy.freedesktop.org>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41114] nouveau module crashes on boot
+Date: Thu, 22 Sep 2011 14:57:48 -0700 (PDT)
+Message-ID: <20110922215748.D3B25130171@annarchy.freedesktop.org>
+References: <bug-41114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-41114-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +20,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+https://bugs.freedesktop.org/show_bug.cgi?id=41114
 
---- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-22 14:16:00 PDT ---
-Auke
-
-Can you try the following
-
-1. Boot with "nouveau.force_post=1" appended to your kernel command like
-2. Do not suspend, but simply try to change the brightness
-
-If it is stuck then the issue may be nouveau related, if not ...
-
-Btw have you tried the blob ? Does it have the same issue
-
-
-Cheers
-Emil
+--- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-22 14:57:48 PDT ---
+How did you acquire the VBIOS image?  If you didn't already do it this way, can
+you mount debugfs with nouveau loaded (i guess you may need the patch already
+mentioned), and copy the VBIOS image from /<debugfs/dri/0/vbios.rom for me
+please?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
