@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31920] Brightness control is erratic
- (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Fri, 23 Sep 2011 23:50:23 -0700 (PDT)
-Message-ID: <20110924065023.3243E130143@annarchy.freedesktop.org>
-References: <bug-31920-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40485] PGRAPH - ERROR nsource: LIMIT_COLOR nstatus:
+ PROTECTION_FAULT
+Date: Sat, 24 Sep 2011 08:37:07 -0700 (PDT)
+Message-ID: <20110924153707.5543E13008E@annarchy.freedesktop.org>
+References: <bug-40485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31920-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,11 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31920
+https://bugs.freedesktop.org/show_bug.cgi?id=40485
 
---- Comment #10 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-23 23:50:21 PDT ---
-Try the nouveau kernel git tree, there's been some updates there semi-recently
-to this area.
+--- Comment #9 from Dennis Schridde <devurandom-hi6Y0CQ0nG0@public.gmane.org> 2011-09-24 08:37:07 PDT ---
+(In reply to comment #8)
+> It's probably unrelated, but you shouldn't use uvesafb with nouveau - uvesa
+> might mess up gpu state.
+Thanks for the hint, I accidentially still had it in the list of modules to be
+modprobed on boot, even though it was blacklisted for autoloading.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
