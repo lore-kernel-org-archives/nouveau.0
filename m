@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40630] Bad memory clock set on GeForce 9500 GT after
 	resume
-Date: Fri, 23 Sep 2011 17:08:08 -0700 (PDT)
-Message-ID: <20110924000808.124151300B0@annarchy.freedesktop.org>
+Date: Fri, 23 Sep 2011 17:16:27 -0700 (PDT)
+Message-ID: <20110924001627.BC1081300A3@annarchy.freedesktop.org>
 References: <bug-40630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,35 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40630
 
---- Comment #89 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-23 17:08:07 PDT ---
-(In reply to comment #88)
-> Created an attachment (id=51531)
- View: https://bugs.freedesktop.org/attachment.cgi?id=51531
- Review: https://bugs.freedesktop.org/review?bug=40630&attachment=51531
+Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-> More complete MPLL programming during POST
-> 
-> Give this patch a try.  It should correct nouveau's MPLL setup when
-> cold-booting the card.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
-Works great, thank you so much! :)
+--- Comment #90 from Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-23 17:16:26 PDT ---
+I've rebuilt the kernel today from Linus Torvalds github repository and applied
+darktama's patch.
+
+Linux myhost 3.1.0-rc7+ #1 SMP Fri Sep 23 13:44:20 PYT 2011 x86_64 Intel(R)
+Core(TM)2 Duo CPU E7500 @ 2.93GHz GenuineIntel GNU/Linux
+
+So far things are very stable!
+
+I've ran STK (100 laps) with glxgears and suspended many times, I also
+suspended while in-game and things are very stable.
+
+I also tried using KDE 4.7 with kwin opengl compositing after and before
+suspending and things are very smooth and stable.
+
+I'm going to close this bug report now and mark it fixed. calim and
+MaximLevitsky already approved closing the bug report. calim have also stated
+that the real fix has been merged into nouveau git master and that it will be
+available in Linux 3.2. The commit is here:
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=a51d43c1b27581e780f60b6d724d146db94b31c5
+
+Thanks to everyone who have helped!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
