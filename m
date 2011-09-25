@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39550] Brightness stuck to low value after
 	suspend/resume
-Date: Sun, 25 Sep 2011 03:13:15 -0700 (PDT)
-Message-ID: <20110925101316.08C3B1300F9@annarchy.freedesktop.org>
+Date: Sun, 25 Sep 2011 04:21:33 -0700 (PDT)
+Message-ID: <20110925112133.40B46130102@annarchy.freedesktop.org>
 References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,33 +23,41 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #11 from rick <rick.hendricksen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-25 03:13:15 PDT ---
-I have the exact same problem as Auke, for as long as I have the laptop (about
-2 years). This problem used to occur with the blob as well (if I remember
-correctly) but it does work now.
-I am using an HP Elitebook 8530w (nVidia Corporation G96M [Quadro FX 770M] (rev
-a1)) on fedora 15.
-dmesg says: nouveau 0.0.16 20090420
-yum says: xorg-x11-drv-nouveau.x86_64 1:0.0.16-24.20110324git8378443.fc15
-mesa-dri-drivers: 7.11-1
+--- Comment #12 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-25 04:21:32 PDT ---
+Rik
 
-(In reply to comment #10)
-> Auke
-> 
-> Can you try the following
-> 
-> 1. Boot with "nouveau.force_post=1" appended to your kernel command like
-> 2. Do not suspend, but simply try to change the brightness
-> 
-> If it is stuck then the issue may be nouveau related, if not ...
-> 
-> Btw have you tried the blob ? Does it have the same issue
-> 
-> 
-> Cheers
-> Emil
+Can you please indicate what exactly do you mean with
 
-Brightness control does not work with this option for me.
+"Brightness control does not work with this option for me."
+
+Does it work before suspending the system?
+
+Can you please attach your dmesg log, as it is the one relevant in this case
+(whereas xf86-video-nouveau, mesa and libdrm are not)
+
+
+Auke, Rik
+
+AFAIK brightness/backlight is(can be) controlled via
+1. ACPI
+2. platform specific - (asus-laptop, samsung-laptop, thinkpad ...)
+3. the gpu/card itself
+
+On various system different ones work correctly
+
+By default nouveau does not register it's device if an ACPI one exists
+Note that the blob has similar behaviour but they have an option to override
+it.
+
+If you suspect that the ACPI backlight control is buggy you can disable it by
+appending "acpi_backlight=vendor" to your kernel command line
+
+This will fall back to either 2. or 3. - dmesg will tell you which one
+
+Feel free to give it a try
+
+Cheers
+Emil
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
