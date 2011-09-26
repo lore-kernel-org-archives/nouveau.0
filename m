@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31920] Brightness control is erratic
  (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Sun, 25 Sep 2011 22:19:47 -0700 (PDT)
-Message-ID: <20110926051947.32146130112@annarchy.freedesktop.org>
+Date: Mon, 26 Sep 2011 04:57:33 -0700 (PDT)
+Message-ID: <20110926115733.87BD8130195@annarchy.freedesktop.org>
 References: <bug-31920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31920
 
---- Comment #11 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-25 22:19:47 PDT ---
-I tried both the latest nouveau kernel git tree, and latest X.org packages from
-git (via the xorg-edgers ubuntu repository). None of them fix this bug.
+--- Comment #12 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-26 04:57:33 PDT ---
+What value does the various nv_backlight files have now?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
