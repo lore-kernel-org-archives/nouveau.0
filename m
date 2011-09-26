@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31920] Brightness control is erratic
  (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Mon, 26 Sep 2011 12:29:25 -0700 (PDT)
-Message-ID: <20110926192925.A1712130104@annarchy.freedesktop.org>
+Date: Mon, 26 Sep 2011 12:30:14 -0700 (PDT)
+Message-ID: <20110926193014.B87C61300C9@annarchy.freedesktop.org>
 References: <bug-31920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31920
 
---- Comment #17 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-26 12:29:25 PDT ---
-I just did a git pull, make clean, and recompiled the modules. My modules.dep
-file also shows that the extra/ directory is being used for nouveau modules. Is
-there anything else I must be doing? I'm quite sure that the stock ubuntu
-modules are being overriden.
-
-I'm also attaching my dmesg and xorg.log to be sure :)
+--- Comment #18 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-26 12:30:13 PDT ---
+Created an attachment (id=51641)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51641)
+Latest dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
