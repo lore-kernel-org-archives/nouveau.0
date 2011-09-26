@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31920] Brightness control is erratic
  (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Mon, 26 Sep 2011 15:34:53 -0700 (PDT)
-Message-ID: <20110926223453.34FA71300CC@annarchy.freedesktop.org>
+Date: Mon, 26 Sep 2011 15:47:25 -0700 (PDT)
+Message-ID: <20110926224725.BAE6D130091@annarchy.freedesktop.org>
 References: <bug-31920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31920
 
---- Comment #20 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-26 15:34:52 PDT ---
-(In reply to comment #17)
-> I just did a git pull, make clean, and recompiled the modules. My modules.dep
-> file also shows that the extra/ directory is being used for nouveau modules. Is
-> there anything else I must be doing? I'm quite sure that the stock ubuntu
-> modules are being overriden.
-> 
-> I'm also attaching my dmesg and xorg.log to be sure :)
+--- Comment #21 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-26 15:47:25 PDT ---
+Is there any way I can debug this issue? Maybe modify some other file I can
+modify? Delete the older modules? Thank you for your patience. 
 
-I'm afraid somehow you're still getting the old driver loaded.  The code in
-nouveau git *cannot* report max_brightness of 1025 anymore, as evidenced by
-this section of the patches linked above:
-
--       props.max_brightness = 1025;
-+       props.max_brightness = 100;
+Btw, when will this code merge into mainstream? I was wondering if we'll see it
+in next release of major distros.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
