@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31920] Brightness control is erratic
  (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Mon, 26 Sep 2011 09:24:31 -0700 (PDT)
-Message-ID: <20110926162431.D131D130110@annarchy.freedesktop.org>
+Date: Mon, 26 Sep 2011 11:57:26 -0700 (PDT)
+Message-ID: <20110926185726.6A77F1300E4@annarchy.freedesktop.org>
 References: <bug-31920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31920
 
---- Comment #13 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-26 09:24:30 PDT ---
-If anything, it has become less granular now. Here are some of the outputs:
+--- Comment #14 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-26 11:57:26 PDT ---
+Rohan
 
-rohan@ubuntu:/sys/class/backlight/nv_backlight$ cat max_brightness 
-1025
-rohan@ubuntu:/sys/class/backlight/nv_backlight$ cat actual_brightness 
-615
-rohan@ubuntu:/sys/class/backlight/nv_backlight$ cat brightness 
-615
-rohan@ubuntu:/sys/class/backlight/nv_backlight$ cat bl_power 
-0
-rohan@ubuntu:/sys/class/backlight/nv_backlight$ cat brightness 
-103
-rohan@ubuntu:/sys/class/backlight/nv_backlight$ 
+Can you please make sure that you are running nouveau kernel git tree [1] as
+the official kernel does _not_ yet have those changes
 
-IIRC, the max_brightness is still same as before (1025). However, the actual
-"max" looks to be something around 615.
+If you are interested what those changes are, here is the list [2]
+
+
+Thanks
+
+[1] http://cgit.freedesktop.org/nouveau/linux-2.6/
+[2]
+http://cgit.freedesktop.org/nouveau/linux-2.6/log/drivers/gpu/drm/nouveau/nouveau_backlight.c
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
