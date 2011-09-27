@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31920] Brightness control is erratic
  (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Mon, 26 Sep 2011 16:01:13 -0700 (PDT)
-Message-ID: <20110926230113.447F51300B8@annarchy.freedesktop.org>
+Date: Tue, 27 Sep 2011 01:09:13 -0700 (PDT)
+Message-ID: <20110927080913.D450713009F@annarchy.freedesktop.org>
 References: <bug-31920-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31920
 
---- Comment #22 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-26 16:01:12 PDT ---
-(In reply to comment #21)
-> Is there any way I can debug this issue? Maybe modify some other file I can
-> modify? Delete the older modules? Thank you for your patience. 
-
-I suggest perhaps deleting any directory in /lib/modules that contains
-nouveau.ko/drm.ko and friends, then reinstalling them from the nouveau git tree
-you built.
-
-
-> 
-> Btw, when will this code merge into mainstream? I was wondering if we'll see it
-> in next release of major distros.
-
-The patches are queued for kernel 3.2.
+--- Comment #23 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2011-09-27 01:09:13 PDT ---
+Don't know if Ubuntu uses this, but Fedora stuffs the nouveau driver into the
+initrd. If Ubuntu does a similar thing you have to rebuild your initrd after
+installing the new modules to get your newly built nouveau loaded.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
