@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39550] Brightness stuck to low value after
 	suspend/resume
-Date: Wed, 28 Sep 2011 08:01:55 -0700 (PDT)
-Message-ID: <20110928150155.6178E130187@annarchy.freedesktop.org>
+Date: Wed, 28 Sep 2011 08:02:41 -0700 (PDT)
+Message-ID: <20110928150241.41D2713014A@annarchy.freedesktop.org>
 References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,49 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #18 from rick <rick.hendricksen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-28 08:01:55 PDT ---
-(In reply to comment #17)
-> Peeks for "none" and "nouveau.force_post=1" would be enough - before and after
-> suspend
-normal boot:
-
-# nvapeek 0xe100; nvapeek 0xe28c; nvapeek 0xe104 8; nvapeek 0xe280 8
-0000e100: 001c1100
-0000e28c: 00000100
-0000e104: 72266640 0441474b
-0000e280: 44444747 00000000
-# pm-suspend
-# nvapeek 0xe100; nvapeek 0xe28c; nvapeek 0xe104 8; nvapeek 0xe280 8
-0000e100: 001c1100
-0000e28c: 00000100
-0000e104: 72266240 0441474b
-0000e280: 44444747 00000000
-
-
-
-using option: nouveau.force_post=1
-
-# nvapeek 0xe100; nvapeek 0xe28c; nvapeek 0xe104 8; nvapeek 0xe280 8
-0000e100: 001c1100
-0000e28c: 00000100
-0000e104: 72266240 0441474b
-0000e280: 44444747 00000000
-# pm-suspend
-# nvapeek 0xe100; nvapeek 0xe28c; nvapeek 0xe104 8; nvapeek 0xe280 8
-0000e100: 001c1100
-0000e28c: 00000100
-0000e104: 72266240 0441474b
-0000e280: 44444747 00000000
-
-> Can you attach your vbios as well please [2]
-> 
-> [2] $ nvagetvbios > vbios.rom
-
-nvagetvbios didnt exist, so I used nvagetbios (I assume you made a typo)
-> 
-> Cheers
-> Emil
->
+--- Comment #19 from rick <rick.hendricksen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-28 08:02:40 PDT ---
+Created an attachment (id=51716)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51716)
+rick's vbios
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
