@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41333] New: Nvidia GTA 240 card (NVA3) locks up when
+Subject: [Bug 41333] Nvidia GTA 240 card (NVA3) locks up when
  loading nouveau.ko module
-Date: Thu, 29 Sep 2011 05:44:39 -0700 (PDT)
-Message-ID: <bug-41333-8800@http.bugs.freedesktop.org/>
+Date: Thu, 29 Sep 2011 05:45:25 -0700 (PDT)
+Message-ID: <20110929124525.C68C1130108@annarchy.freedesktop.org>
+References: <bug-41333-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-41333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,35 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=41333
-
-           Summary: Nvidia GTA 240 card (NVA3) locks up when loading
-                    nouveau.ko module
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: stikonas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created an attachment (id=51753)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=51753)
-dmesg log
-
-Nvidia GTA 240 card (NVA3) locks up at the very beginning of the boot process.
-Kernel is booted with vga=0 parameter but it doesn't affect lock up.
-
-You can see in dmesg log:
-[    2.410505] [drm] nouveau 0000:04:00.0: GPU lockup - switching to software
-fbcon
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDEzMzMKCi0tLSBD
+b21tZW50ICMxIGZyb20gQW5kcml1cyDFoHRpa29uYXMgPHN0aWtvbmFzQGdtYWlsLmNvbT4gMjAx
+MS0wOS0yOSAwNTo0NToyNSBQRFQgLS0tCkNyZWF0ZWQgYW4gYXR0YWNobWVudCAoaWQ9NTE3NTQp
+CiAtLT4gKGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NTE3
+NTQpCmRtZXNnIGxvZyB3aXRoIG5vdXZlYXUuZm9yY2VfcG9zdD0xCgotLSAKQ29uZmlndXJlIGJ1
+Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1h
+aWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZ
+b3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
