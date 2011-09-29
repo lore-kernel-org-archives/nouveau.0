@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Thu, 29 Sep 2011 02:05:58 -0700 (PDT)
-Message-ID: <20110929090558.515A1130133@annarchy.freedesktop.org>
-References: <bug-40406-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41333] New: Nvidia GTA 240 card (NVA3) locks up when
+ loading nouveau.ko module
+Date: Thu, 29 Sep 2011 05:44:39 -0700 (PDT)
+Message-ID: <bug-41333-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40406-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +19,33 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40406
+https://bugs.freedesktop.org/show_bug.cgi?id=41333
 
---- Comment #12 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-09-29 02:05:58 PDT ---
-Damn, I can't find the log file. It seems, I copied messages instead of
-Xorg.log. Sorry. But the last few lines are always the same:
+           Summary: Nvidia GTA 240 card (NVA3) locks up when loading
+                    nouveau.ko module
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: stikonas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-[ 78793.917] (II) Power Button: Close
-[ 78793.917] (II) UnloadModule: "evdev"
-[ 78793.917] (II) Unloading evdev
-[ 78793.949] (II) Sleep Button: Close
-[ 78793.949] (II) UnloadModule: "evdev"
-[ 78793.949] (II) Unloading evdev
-[ 78793.977] (II) AT Translated Set 2 keyboard: Close
-[ 78793.977] (II) UnloadModule: "evdev"
-[ 78793.977] (II) Unloading evdev
-[ 78794.426] (II) UnloadModule: "synaptics"
-[ 78794.426] (II) Unloading synaptics
-[ 78794.451] (II) Logitech USB-PS/2 Optical Mouse: Close
-[ 78794.451] (II) UnloadModule: "evdev"
-[ 78794.451] (II) Unloading evdev
-[ 78796.215] (II) NOUVEAU(0): NVLeaveVT is called.
-[ 78796.216] (II) NOUVEAU(0): Closed GPU channel 1
 
-I used SYSRESQ-R/S/R/E/I/S/U/B
+Created an attachment (id=51753)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51753)
+dmesg log
+
+Nvidia GTA 240 card (NVA3) locks up at the very beginning of the boot process.
+Kernel is booted with vga=0 parameter but it doesn't affect lock up.
+
+You can see in dmesg log:
+[    2.410505] [drm] nouveau 0000:04:00.0: GPU lockup - switching to software
+fbcon
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
