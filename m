@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 41333] Nvidia GTA 240 card (NVA3) locks up when
  loading nouveau.ko module
-Date: Thu, 29 Sep 2011 08:25:35 -0700 (PDT)
-Message-ID: <20110929152535.8B16A130109@annarchy.freedesktop.org>
+Date: Thu, 29 Sep 2011 09:25:31 -0700 (PDT)
+Message-ID: <20110929162531.EB0AE130147@annarchy.freedesktop.org>
 References: <bug-41333-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=41333
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #2 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-09-29 09:25:31 PDT ---
+Adding 'nouveau.vram_pushbuf=1' to kernel parameters help a bit for my NVA5,
+but it's till far from perfect:
+https://bugs.freedesktop.org/show_bug.cgi?id=39988
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #51753|application/octet-stream    |text/plain
-          mime type|                            |
+Maybe you should try.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
