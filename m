@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Sat,  1 Oct 2011 10:24:10 -0700 (PDT)
-Message-ID: <20111001172410.ACF3413009F@annarchy.freedesktop.org>
+Date: Sat,  1 Oct 2011 10:43:32 -0700 (PDT)
+Message-ID: <20111001174332.90CE413006B@annarchy.freedesktop.org>
 References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,24 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
---- Comment #15 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-01 10:24:07 PDT ---
-Now that is nice :P
+--- Comment #16 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-10-01 10:43:31 PDT ---
+(In reply to comment #15)
 
-There are a couple of things
-1. Is there is reliable way of reproducing the lock
-2. Can you try without mesa/gallium/(nouveau_dri.so) and provide some logs
+> Now that is nice :P
+I like surprises. ;)
 
-Initially it would be great to try and resolve/narrow down the "GRAPH ERROR(s)"
+> There are a couple of things
+I really appreciate your help. Thanks.
+
+> 1. Is there is reliable way of reproducing the lock
+No. At the beginning, I thought that mplayer2 triggers the bug. It also happens
+when I am using chromium. Once, it happened when I was typing in a terminal.
+But this is a nice excuse to watch movies with mplayer instead of working. ;) I
+will try my best. ;)
+
+> 2. Can you try without mesa/gallium/(nouveau_dri.so) and provide some logs
+Could you be a little bit more precise here? Just removing nouveau_dri.so and
+using nouveau? And do you only need dmesg/messages/Xorg.log?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
