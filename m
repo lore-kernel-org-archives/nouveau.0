@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41333] Nvidia GTA 240 card (NVA3) locks up when
- loading nouveau.ko module
-Date: Thu, 29 Sep 2011 11:10:27 -0700 (PDT)
-Message-ID: <20110929181027.1E45C1301AD@annarchy.freedesktop.org>
-References: <bug-41333-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32406] nouveau fails to send hotplug event to ALSA
+ hda hdmi audio
+Date: Sat,  1 Oct 2011 04:53:57 -0700 (PDT)
+Message-ID: <20111001115357.D4B0613016F@annarchy.freedesktop.org>
+References: <bug-32406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-32406-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +21,63 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDEzMzMKCi0tLSBD
-b21tZW50ICMzIGZyb20gQW5kcml1cyDFoHRpa29uYXMgPHN0aWtvbmFzQGdtYWlsLmNvbT4gMjAx
-MS0wOS0yOSAxMToxMDoyNiBQRFQgLS0tCihJbiByZXBseSB0byBjb21tZW50ICMyKQo+IEFkZGlu
-ZyAnbm91dmVhdS52cmFtX3B1c2hidWY9MScgdG8ga2VybmVsIHBhcmFtZXRlcnMgaGVscCBhIGJp
-dCBmb3IgbXkgTlZBNSwKPiBidXQgaXQncyB0aWxsIGZhciBmcm9tIHBlcmZlY3Q6Cj4gaHR0cHM6
-Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9Mzk5ODgKPiAKPiBNYXliZSB5
-b3Ugc2hvdWxkIHRyeS4KClVuZm9ydHVuYXRlbHksICdub3V2ZWF1LnZyYW1fcHVzaGJ1Zj0xJyBk
-b2Vzbid0IGhlbHAgYXQgYWxsLiBUaGUgbG9ja3VwIGlzCnN0aWxsIHRoZXJlLgoKLS0gCkNvbmZp
-Z3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/
-dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0t
-LS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=32406
+
+--- Comment #7 from torquil-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-01 04:53:57 PDT ---
+(In reply to comment #6)
+> I have found the problem.
+> nouveau tries to send the eld info in
+> nv50_audio_mode_set()
+> 
+> Unfortunately, this is sent before the audio driver is loaded.
+> It is then resent later.
+> If the ALSA audio driver is forced to try and read the eld data 3 times instead
+> of just once, the eld data finally reaches the ALSA audio driver, and sound
+> then works.
+> So, I now have a valid work around.
+> Some further investigation is needed to discover why the sending of eld data is
+> so unreliable, requiring it to be sent multiple times.
+> Maybe some co-ordination between the nouveau driver and ALSA is required to
+> ensure good delivery of the eld data, so that it is valid before setting the
+> eld_valid GPIO.
+
+I've just been trying to get HDMI audio to work, using the Nouveau driver, and
+I'm running into this ELD issue. Is there any progress on this issue so as to
+make it work "out of the box"?
+
+Btw, I'm using Debian Sid with:
+
+Linux 3.0.4
+Nouveau x-driver: 1:0.0.16+git20110411+8378443-1+b2
+libasound 1.0.24.1-4
+
+on an Asis X5DID computer with:
+
+lspci -vs 02:00.0
+02:00.0 VGA compatible controller: nVidia Corporation GT216 [GeForce GT 320M]
+(rev a2) (prog-if 00 [VGA controller])
+    Subsystem: ASUSTeK Computer Inc. Device 1312
+    Flags: bus master, fast devsel, latency 0, IRQ 17
+    Memory at fb000000 (32-bit, non-prefetchable) [size=16M]
+    Memory at e0000000 (64-bit, prefetchable) [size=256M]
+    Memory at f6000000 (64-bit, prefetchable) [size=32M]
+    I/O ports at dc00 [size=128]
+    Expansion ROM at faf80000 [disabled] [size=512K]
+    Capabilities: <access denied>
+    Kernel driver in use: nouveau
+
+and
+
+lspci -vs 02:00.1
+02:00.1 Audio device: nVidia Corporation High Definition Audio Controller (rev
+a1)
+    Subsystem: ASUSTeK Computer Inc. Device 1312
+    Flags: bus master, fast devsel, latency 0, IRQ 17
+    Memory at faf7c000 (32-bit, non-prefetchable) [size=16K]
+    Capabilities: <access denied>
+    Kernel driver in use: HDA Intel
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
