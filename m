@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Sat,  1 Oct 2011 10:43:32 -0700 (PDT)
-Message-ID: <20111001174332.90CE413006B@annarchy.freedesktop.org>
+Date: Sat,  1 Oct 2011 11:15:26 -0700 (PDT)
+Message-ID: <20111001181526.1A68A1300C9@annarchy.freedesktop.org>
 References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,24 +22,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
---- Comment #16 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-10-01 10:43:31 PDT ---
-(In reply to comment #15)
+--- Comment #17 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-01 11:15:25 PDT ---
+(In reply to comment #16)
+> (In reply to comment #15)
+> > 2. Can you try without mesa/gallium/(nouveau_dri.so) and provide some logs
+> Could you be a little bit more precise here? Just removing nouveau_dri.so and
+> using nouveau? And do you only need dmesg/messages/Xorg.log?
 
-> Now that is nice :P
-I like surprises. ;)
+The idea is to narrow down who is causing this errors - X or GL
 
-> There are a couple of things
-I really appreciate your help. Thanks.
+* Move/remove the gallium driver (nouveau_dri.so) and make sure that you have
+swrast_dri.so in the same directory
+* Try and reproduce the issue
+* Append dmesg/messages or a picture
 
-> 1. Is there is reliable way of reproducing the lock
-No. At the beginning, I thought that mplayer2 triggers the bug. It also happens
-when I am using chromium. Once, it happened when I was typing in a terminal.
-But this is a nice excuse to watch movies with mplayer instead of working. ;) I
-will try my best. ;)
-
-> 2. Can you try without mesa/gallium/(nouveau_dri.so) and provide some logs
-Could you be a little bit more precise here? Just removing nouveau_dri.so and
-using nouveau? And do you only need dmesg/messages/Xorg.log?
+Thanks
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
