@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Sat,  1 Oct 2011 11:15:26 -0700 (PDT)
-Message-ID: <20111001181526.1A68A1300C9@annarchy.freedesktop.org>
-References: <bug-40406-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41404] New: excessive temperature for the nvidia core
+Date: Sun,  2 Oct 2011 07:38:31 -0700 (PDT)
+Message-ID: <bug-41404-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40406-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +18,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40406
-
---- Comment #17 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-01 11:15:25 PDT ---
-(In reply to comment #16)
-> (In reply to comment #15)
-> > 2. Can you try without mesa/gallium/(nouveau_dri.so) and provide some logs
-> Could you be a little bit more precise here? Just removing nouveau_dri.so and
-> using nouveau? And do you only need dmesg/messages/Xorg.log?
-
-The idea is to narrow down who is causing this errors - X or GL
-
-* Move/remove the gallium driver (nouveau_dri.so) and make sure that you have
-swrast_dri.so in the same directory
-* Try and reproduce the issue
-* Append dmesg/messages or a picture
-
-Thanks
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDE0MDQKCiAgICAg
+ICAgICAgU3VtbWFyeTogZXhjZXNzaXZlIHRlbXBlcmF0dXJlIGZvciB0aGUgbnZpZGlhIGNvcmUK
+ICAgICAgICAgICBQcm9kdWN0OiB4b3JnCiAgICAgICAgICAgVmVyc2lvbjogdW5zcGVjaWZpZWQK
+ICAgICAgICAgIFBsYXRmb3JtOiBPdGhlcgogICAgICAgIE9TL1ZlcnNpb246IEFsbAogICAgICAg
+ICAgICBTdGF0dXM6IE5FVwogICAgICAgICAgU2V2ZXJpdHk6IG5vcm1hbAogICAgICAgICAgUHJp
+b3JpdHk6IG1lZGl1bQogICAgICAgICBDb21wb25lbnQ6IERyaXZlci9ub3V2ZWF1CiAgICAgICAg
+QXNzaWduZWRUbzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKICAgICAgICBSZXBvcnRl
+ZEJ5OiBlcGlzdGVtZXByb21lbmV1ckBmcmVlLmZyCiAgICAgICAgIFFBQ29udGFjdDogeG9yZy10
+ZWFtQGxpc3RzLngub3JnCgoKaSB0ZXN0ZWQgbm91dmVhdSB3aXRoIDoKbWFuZHJpdmEgMjAxMC4w
+LCAyMDEwLjIKbWFnZWlhIDEKCmFsd2F5cyB0aGUgdGVtcGVyYXR1cmUgaXMgIGEgZGFuZ2Vyb3Vz
+IG9uZSA6IDgwIHRvIDkwIMKwQwoKd2l0aCBudmlkaWEgZHJpdmVyIHRlbXBlcmF0dXJlIGlzIDY0
+IMKwQwoKbW90aGVyIGJvYXJkIDogYXN1cyBNMk4KZ3JhcGhpY2FsIGNhcmQgOiBhc3VzIDg2MDAg
+R1QgKEVOODYwMEdUIFNJTEVOVCkKCk1hZ2VpYSBzdXBwbGllcyB4b3JnIDEuMTAuMSAoaSBkb24n
+dCBrbm93IHdoYXQgaXMgdGhlIG5vdXZlYXUgdmVyc2lvbikKCi0tIApDb25maWd1cmUgYnVnbWFp
+bDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAot
+LS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBh
+cmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
