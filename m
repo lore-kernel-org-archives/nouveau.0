@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Tue,  4 Oct 2011 01:11:01 -0700 (PDT)
-Message-ID: <20111004081101.D5ED5130082@annarchy.freedesktop.org>
+Date: Tue,  4 Oct 2011 01:11:55 -0700 (PDT)
+Message-ID: <20111004081155.B51A71300CB@annarchy.freedesktop.org>
 References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
---- Comment #18 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-10-04 01:11:00 PDT ---
-Ok, I haven't experienced any crashes since I switched to sw_rast. But I
-noticed syslog messages after suspend2ram which might be connected to this
-problem (cf. line no 280). What do you say?
+--- Comment #19 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-10-04 01:11:55 PDT ---
+Created an attachment (id=51917)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=51917)
+syslog file after suspend2ram
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
