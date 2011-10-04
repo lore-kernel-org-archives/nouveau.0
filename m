@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Tue,  4 Oct 2011 01:14:12 -0700 (PDT)
-Message-ID: <20111004081412.CC7F2130089@annarchy.freedesktop.org>
+Date: Tue,  4 Oct 2011 01:32:02 -0700 (PDT)
+Message-ID: <20111004083203.220FC130051@annarchy.freedesktop.org>
 References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
-Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> changed:
+--- Comment #21 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-10-04 01:32:02 PDT ---
+Ok, 5min after I sent the last reply, I encountered the problem again. Black
+screen, no mouse, no logs, even no blinking wifi light.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #51918|application/octet-stream    |text/plain
-          mime type|                            |
+It might be necessary to downgrade xorg-server from 1.11.0 to 1.10.4.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
