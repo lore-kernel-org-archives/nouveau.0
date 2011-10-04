@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Tue,  4 Oct 2011 01:13:56 -0700 (PDT)
-Message-ID: <20111004081356.7AB99130178@annarchy.freedesktop.org>
+Date: Tue,  4 Oct 2011 01:14:12 -0700 (PDT)
+Message-ID: <20111004081412.CC7F2130089@annarchy.freedesktop.org>
 References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #51917|application/octet-stream    |text/plain
+  Attachment #51918|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
