@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40502] Ability to assign arbitrary CRTC to an output
 	is broken
-Date: Sat,  8 Oct 2011 02:46:43 -0700 (PDT)
-Message-ID: <20111008094643.5447A1300F0@annarchy.freedesktop.org>
+Date: Sat,  8 Oct 2011 02:47:53 -0700 (PDT)
+Message-ID: <20111008094753.CCEE5130103@annarchy.freedesktop.org>
 References: <bug-40502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40502
 
---- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-08 02:46:42 PDT ---
-So, I understand now what is going on.
-Its actually a feature, very unusual and strange one.
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-When I execute:
-'xrandr --output LVDS-1 --auto --crtc 1'
-
-System does switch LVDS to CRTC1, however, xrandr also marks said CRTC as
-primary, which brings it to first position of crtc list in
-XRRGetScreenResources.
-and therefore on next invocation xrandr insists that output is once again
-connected to CRTC 0, which is technicaly true, but its different '0'.
-
-Also except reporting actual atom values, there is no way for xrandr to undo
-this feature which granted is to support backward compatability with older (and
-current?) desktops.
-
-Yet, at least xrandr could sort the crtc list and assuming that atom values for
-each crtc don't change (and they seem not) it'll fix this problem.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Driver/nouveau              |DDX/xorg
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+                   |rg                          |
+                 CC|                            |maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
