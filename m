@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33045] xrandr 2>&- hangs the terminal,
  xrandr 2>/dev/null doesn't
-Date: Sat,  8 Oct 2011 13:34:11 -0700 (PDT)
-Message-ID: <20111008203411.6BCBD130089@annarchy.freedesktop.org>
+Date: Sat,  8 Oct 2011 14:20:41 -0700 (PDT)
+Message-ID: <20111008212041.B46541300FC@annarchy.freedesktop.org>
 References: <bug-33045-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33045
 
-Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> changed:
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         AssignedTo|keithp-aN4HjG94KOLQT0dZR+AlfA@public.gmane.org           |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTABUG
+
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-08 14:20:41 PDT ---
+Hi Jim
+
+It appears that you are using fbdev rather than nouveau ddx
+(xf86-video-nouveau)
+
+Can you please install it and open another bug report if the issue exists
+
+Cheers
+Emil
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
