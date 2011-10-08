@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 41588] suspend/resume with active CRTC,
  but disconnected output causes problems
-Date: Sat,  8 Oct 2011 08:18:21 -0700 (PDT)
-Message-ID: <20111008151821.4A1F91300DA@annarchy.freedesktop.org>
+Date: Sat,  8 Oct 2011 08:22:16 -0700 (PDT)
+Message-ID: <20111008152216.0EE5D1300D3@annarchy.freedesktop.org>
 References: <bug-41588-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=41588
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-08 08:22:15 PDT ---
+Changed bug title to reflect further findings.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|connected DVI output dies   |suspend/resume with active
-                   |after suspend/resume        |CRTC, but disconnected
-                   |occasionally.               |output causes problems
+So to reproduce the problem (with the patch), all you need is:
+
+1. connect external monitor
+2. activate it using xrandr
+3. disconnect it (and rely on lack of software that deactivates the CRTC).
+
+4. suspend/resume.
+
+Now the bug is already there. If you suspended with compiz running, you can try
+to rotate the cube and it will freeze, sometimes the screen will be filled with
+black/white pattern.
+Of course if you connect the DVI output it won't show anything.
+
+If you suspend/resume again, you will get for sure that black/white pattern.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
