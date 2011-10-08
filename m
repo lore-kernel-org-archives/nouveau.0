@@ -1,11 +1,14 @@
-From: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v2] dri2: Add vdpau driver name entry
-Date: Sat, 08 Oct 2011 10:33:20 +0200
-Message-ID: <4E900AD0.4070704@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 40502] Ability to assign arbitrary CRTC to an output
+	is broken
+Date: Sat,  8 Oct 2011 02:46:43 -0700 (PDT)
+Message-ID: <20111008094643.5447A1300F0@annarchy.freedesktop.org>
+References: <bug-40502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-40502-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,40 +21,29 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-libvdpau has a driver loading mechanism that looks for a dri2 driver
-first before falling back to nvidia, so lets use that.
+https://bugs.freedesktop.org/show_bug.cgi?id=40502
 
----
+--- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-08 02:46:42 PDT ---
+So, I understand now what is going on.
+Its actually a feature, very unusual and strange one.
 
-v2: Keep compatibility entry for driverName for older versions
-of Xorg, and add vdpau for nouveau_vieux. I doubt it will ever
-happen, but it's harmless to add.
+When I execute:
+'xrandr --output LVDS-1 --auto --crtc 1'
 
-There is no libvdpau_nouveau at the moment, but since this is the only part
-needed from the xorg driver, I don't think there is any harm in exposing the
-correct driver name already.
+System does switch LVDS to CRTC1, however, xrandr also marks said CRTC as
+primary, which brings it to first position of crtc list in
+XRRGetScreenResources.
+and therefore on next invocation xrandr insists that output is once again
+connected to CRTC 0, which is technicaly true, but its different '0'.
 
-diff --git a/src/nouveau_dri2.c b/src/nouveau_dri2.c
-index 2081ce2..d14443f 100644
---- a/src/nouveau_dri2.c
-+++ b/src/nouveau_dri2.c
-@@ -428,11 +428,17 @@ nouveau_dri2_init(ScreenPtr pScreen)
- 	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
- 	NVPtr pNv = NVPTR(pScrn);
- 	DRI2InfoRec dri2 = { 0 };
-+	const char *drivernames[2][2] = {
-+		{ "nouveau", "nouveau" },
-+		{ "nouveau_vieux", "nouveau_vieux" }
-+	};
- 
- 	if (pNv->Architecture >= NV_ARCH_30)
--		dri2.driverName = "nouveau";
-+		dri2.driverNames = drivernames[0];
- 	else
--		dri2.driverName = "nouveau_vieux";
-+		dri2.driverNames = drivernames[1];
-+	dri2.numDrivers = 2;
-+	dri2.driverName = dri2.driverNames[0];
- 
- 	dri2.fd = nouveau_device(pNv->dev)->fd;
- 	dri2.deviceName = pNv->drm_device_name;
+Also except reporting actual atom values, there is no way for xrandr to undo
+this feature which granted is to support backward compatability with older (and
+current?) desktops.
+
+Yet, at least xrandr could sort the crtc list and assuming that atom values for
+each crtc don't change (and they seem not) it'll fix this problem.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
