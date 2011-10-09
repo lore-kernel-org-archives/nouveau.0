@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41588] suspend/resume with active CRTC,
- but disconnected output causes problems
-Date: Sun,  9 Oct 2011 04:12:22 -0700 (PDT)
-Message-ID: <20111009111222.571581300F4@annarchy.freedesktop.org>
-References: <bug-41588-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41608] Suspending/resuming system with cursor on
+ external screen prevents said screen from restoring after resume
+Date: Sun,  9 Oct 2011 04:22:19 -0700 (PDT)
+Message-ID: <20111009112219.74B0113010B@annarchy.freedesktop.org>
+References: <bug-41608-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-41608-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=41588
+https://bugs.freedesktop.org/show_bug.cgi?id=41608
 
---- Comment #3 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-09 04:12:21 PDT ---
-And I found the way to 100% reproduce the other way of breaking external
-output.
-I opened another bugreport: https://bugs.freedesktop.org/show_bug.cgi?id=41608
+--- Comment #1 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-09 04:22:18 PDT ---
+Verified to happen without compiz.
+Also disabled pageflipping in DDX, although it won't be active without compiz
+anyway.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
