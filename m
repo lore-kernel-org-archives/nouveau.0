@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Sun,  9 Oct 2011 13:12:27 -0700 (PDT)
-Message-ID: <20111009201227.1F2941300CC@annarchy.freedesktop.org>
+Date: Sun,  9 Oct 2011 13:14:01 -0700 (PDT)
+Message-ID: <20111009201401.33EEC13007A@annarchy.freedesktop.org>
 References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
---- Comment #23 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-10-09 13:12:26 PDT ---
-Ok, fortunately (after downgrading Xorg server), I was able to save log files
-after a crash. But I am afraid that the crash was not as bad as in the past
-because a hard reboot was not necessary and the screen was visible again after
-I killed all tasks (SYSRQ-E). Nevertheless, I attached syslog, Xorg.log, and
-dmesg.
+--- Comment #24 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-10-09 13:14:00 PDT ---
+Created an attachment (id=52154)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=52154)
+dmesg shortly after black screen
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
