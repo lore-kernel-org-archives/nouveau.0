@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Sun,  9 Oct 2011 13:16:34 -0700 (PDT)
-Message-ID: <20111009201634.138921300D3@annarchy.freedesktop.org>
-References: <bug-40406-8800@http.bugs.freedesktop.org/>
+From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 01/10]: nouveau: assorted fixes
+Date: Sun,  9 Oct 2011 22:58:30 +0200
+Message-ID: <1318193920-27461-1-git-send-email-maximlevitsky@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40406-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +18,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
-Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> changed:
+Hi,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #52155|application/octet-stream    |text/plain
-          mime type|                            |
+Here is my patch queue I accumulated over quite a long time.
+Patches 1-6 are bugfixes, and rest is mostly RFC.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Comments are welcome.
+
+Best regards,
+	Maxim Levitsky
