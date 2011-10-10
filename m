@@ -1,11 +1,15 @@
-From: "csolisr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" <csolisr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Problems configuring an NVIDIA GeForce GT 520 with a
-	1366x768 screen
-Date: Mon, 10 Oct 2011 17:18:32 -0600
-Message-ID: <CALOQyNMZwq7C7ZhMyVs9MJp5U0UxTXBrk0Yjwut-kpXeVPX4Ww@mail.gmail.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Problems configuring an NVIDIA GeForce GT 520 with a
+ 1366x768 screen
+Date: Tue, 11 Oct 2011 09:24:54 +1000
+Message-ID: <1318289094.21128.3.camel@nisroch>
+References: <CALOQyNMZwq7C7ZhMyVs9MJp5U0UxTXBrk0Yjwut-kpXeVPX4Ww@mail.gmail.com>
+Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1315695424=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CALOQyNMZwq7C7ZhMyVs9MJp5U0UxTXBrk0Yjwut-kpXeVPX4Ww-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,70 +19,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "csolisr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" <csolisr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1315695424==
-Content-Type: multipart/alternative; boundary=bcaec520f7c595d7a204aefa0365
-
---bcaec520f7c595d7a204aefa0365
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hello people. This is the first time I write to this list. Today, I tried t=
-o
-test the latest version of Nouveau in Ubuntu 11.04 Natty (as downloadable o=
-n
-the PPA located at
-https://launchpad.net/~ubuntu-x-swat/+archive/x-updates). The screen
-defaulted to 1024x768, but the full screen's resolution is
-1366x768. I tried to change the maximum resolution via xorg.conf, but the O=
-S
-refused to start the graphical interface until the xorg.conf file was
-erased. (The old xorg.conf file can be uploaded if needed). Is the NVIDIA
-GeForce GT 520 unable to change the resolution to an arbitrary size with th=
-e
-Nouveau driver as of yet?
-- Carlos Sol=EDs
-
---bcaec520f7c595d7a204aefa0365
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hello people. This is the first time I write to this list. Today, I tried t=
-o test the latest version of Nouveau in Ubuntu 11.04 Natty (as downloadable=
- on the PPA located at <a href=3D"https://launchpad.net/~ubuntu-x-swat/+arc=
-hive/x-updates">https://launchpad.net/~ubuntu-x-swat/+archive/x-updates</a>=
- ). The screen defaulted to 1024x768, but the full screen&#39;s resolution =
-is 1366x768. I tried to change the maximum resolution via xorg.conf, but th=
-e OS refused to start the graphical interface until the xorg.conf file was =
-erased. (The old xorg.conf file can be uploaded if needed). Is the NVIDIA G=
-eForce GT 520 unable to change the resolution to an arbitrary size with the=
- Nouveau driver as of yet?<br clear=3D"all">
-
-- Carlos Sol=EDs<br><style>img, #cubbies-overlay{ -moz-transition-property:=
- margin, box-shadow, z-index; -moz-transition-duration: 0.1s; -webkit-trans=
-ition-property: margin, box-shadow, z-index; -webkit-transition-duration: 0=
-.1s; }
-.cubbies-selected{ z-index: 9999; box-shadow: 3px 3px 8px -1px blue !import=
-ant; cursor: pointer !important; margin: -3px 3px 3px -3px; }
-.cubbies-selected:active{ box-shadow: 2px 2px 5px -1px darkblue !important;=
- margin: -1px 1px 1px -1px; }
-#cubbies-overlay{ position: fixed; z-index: 9999; bottom: 30px; left: 30px;=
- box-shadow: 0 2px 3px rgba(0,0,0,0.8); border: none; }
-#cubbies-overlay:hover{ box-shadow: 0 2px 3px rgb(0,0,0); }</style>
-
---bcaec520f7c595d7a204aefa0365--
-
---===============1315695424==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1315695424==--
+T24gTW9uLCAyMDExLTEwLTEwIGF0IDE3OjE4IC0wNjAwLCBjc29saXNyQGdtYWlsLmNvbSB3cm90
+ZToKPiBIZWxsbyBwZW9wbGUuIFRoaXMgaXMgdGhlIGZpcnN0IHRpbWUgSSB3cml0ZSB0byB0aGlz
+IGxpc3QuIFRvZGF5LCBJCj4gdHJpZWQgdG8gdGVzdCB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgTm91
+dmVhdSBpbiBVYnVudHUgMTEuMDQgTmF0dHkgKGFzCj4gZG93bmxvYWRhYmxlIG9uIHRoZSBQUEEg
+bG9jYXRlZCBhdAo+IGh0dHBzOi8vbGF1bmNocGFkLm5ldC9+dWJ1bnR1LXgtc3dhdC8rYXJjaGl2
+ZS94LXVwZGF0ZXMgKS4gVGhlIHNjcmVlbgo+IGRlZmF1bHRlZCB0byAxMDI0eDc2OCwgYnV0IHRo
+ZSBmdWxsIHNjcmVlbidzIHJlc29sdXRpb24gaXMgMTM2Nng3NjguIEkKPiB0cmllZCB0byBjaGFu
+Z2UgdGhlIG1heGltdW0gcmVzb2x1dGlvbiB2aWEgeG9yZy5jb25mLCBidXQgdGhlIE9TCj4gcmVm
+dXNlZCB0byBzdGFydCB0aGUgZ3JhcGhpY2FsIGludGVyZmFjZSB1bnRpbCB0aGUgeG9yZy5jb25m
+IGZpbGUgd2FzCj4gZXJhc2VkLiAoVGhlIG9sZCB4b3JnLmNvbmYgZmlsZSBjYW4gYmUgdXBsb2Fk
+ZWQgaWYgbmVlZGVkKS4gSXMgdGhlCj4gTlZJRElBIEdlRm9yY2UgR1QgNTIwIHVuYWJsZSB0byBj
+aGFuZ2UgdGhlIHJlc29sdXRpb24gdG8gYW4gYXJiaXRyYXJ5Cj4gc2l6ZSB3aXRoIHRoZSBOb3V2
+ZWF1IGRyaXZlciBhcyBvZiB5ZXQ/CkkgaGF2ZSBubyBpZGVhIHdoYXQgZXhhY3RseSBVYnVudHUg
+c2hpcHMuICBCdXQgc3VwcG9ydCBmb3IgdGhlIEdUNTIwCmhhc24ndCB5ZXQgYXBwZWFyZWQgaW4g
+YW4gdXBzdHJlYW0ga2VybmVsIHJlbGVhc2UuICBJdCdzIHF1ZXVlZCBmb3IgMy4yLAphbmQgdGhl
+IGNvZGUgaXMgc2l0dGluZyBpbiBub3V2ZWF1IGdpdC4gIFlvdSBtYXkgYmUgYWJsZSB0byBidWls
+ZCBhbgp1cGRhdGVkIG5vdXZlYXUgZHJpdmVyIGFnYWluc3QgeW91ciBjdXJyZW50IGtlcm5lbCBi
+eSBmb2xsb3dpbmcgdGhlCmluc3RydWN0aW9uc1sxXSBvbiB0aGUgbm91dmVhdSB3aWtpLgoKQmFz
+aWNhbGx5LCBkZXNwaXRlIHdoYXQgYSBjYXN1YWwgYnJvd3NlIGFyb3VuZCB0aGUgaW50ZXJuZXQg
+d2lsbCB0ZWxsCnlvdSwgR0YxMTkgKHdoaWNoIGlzIHdoYXQgR1Q1MjAgaXMpIGlzbid0IHF1aXRl
+IHRoZSBzYW1lIGFzIHByZXZpb3VzCkZlcm1pIGNoaXBzLCBodWdlIGNodW5rcyBvZiBpdCB3ZXJl
+IHJlZGVzaWduZWQuCgpCZW4uCgpbMV0KaHR0cDovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3JnL3dp
+a2kvSW5zdGFsbERSTSNvdXQtb2YtdHJlZWJ1aWxkLjI4YWx0ZXJuYXRpdmUuMjkKPiAtIENhcmxv
+cyBTb2zDrXMKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
