@@ -1,15 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] Import EVO commands into envytools
-Date: Mon, 10 Oct 2011 09:21:23 +1000
-Message-ID: <1318202483.2533.17.camel@nisroch>
-References: <1318200004-17439-1-git-send-email-maximlevitsky@gmail.com>
-	<1318200004-17439-2-git-send-email-maximlevitsky@gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 41585] X freeze and PGRAPH errors in dmesg
+Date: Sun,  9 Oct 2011 17:42:50 -0700 (PDT)
+Message-ID: <20111010004251.02FF71301E2@annarchy.freedesktop.org>
+References: <bug-41585-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1318200004-17439-2-git-send-email-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-41585-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,370 +17,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, 2011-10-10 at 00:40 +0200, Maxim Levitsky wrote:
-> ---
->  rnndb/nv_evo.xml |  311 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  1 files changed, 311 insertions(+), 0 deletions(-)
->  create mode 100644 rnndb/nv_evo.xml
-Nice work, comments inlined where appropriate below.
+https://bugs.freedesktop.org/show_bug.cgi?id=41585
 
-> 
-> diff --git a/rnndb/nv_evo.xml b/rnndb/nv_evo.xml
-> new file mode 100644
-> index 0000000..d776dbd
-> --- /dev/null
-> +++ b/rnndb/nv_evo.xml
-> @@ -0,0 +1,311 @@
-> +<?xml version="1.0" encoding="UTF-8"?>
-> +<database xmlns="http://nouveau.freedesktop.org/"
-> +	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-> +	  xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
-> +<import file="copyright.xml"/>
-> +<import file="nvchipsets.xml"/>
-> +<import file="nv_defs.xml"/>
-> +
-> +<!-- main EVO channel -->
-> +<domain name="NV_EVO_MASTER" bare="yes" prefix="chipset">
-> +
-> +	<!-- write 0 here executes all evo commands pending in PDISPLAY fifo -->
-> +	<reg32 offset="0x80" name="FLUSH_COMMANDS"/>
-Perhaps just call it FLUSH?
+Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> changed:
 
-> +
-> +	<reg32 offset="0x84" name="FLUSH2">
-> +		<bitfield pos="2" name="FLUSH_CLUT_CRTC0"/>
-> +		<bitfield pos="3" name="FLUSH_CLUT_CRTC1"/>
-> +		<bitfield pos="30" name="NOTIFY_ENABLED"/> <!--???-->
-> +		<bitfield pos="31" name="FLUSH_MAIN"/>
-> +	</reg32>
-> +
-> +	<!-- dma object that PDISPLAY needs when it uses display sync channels
-> +	     maybe that stores its state to
-> +	     when PDISPLAY executes non-main channel?...-->
-> +	<reg32 offset="0x88" name="DMA_NOTIFY"/>
-The documentation isn't correct here, but I'm not sure what to write.
-Nouveau currently uses it for synchronisation, to know when the entire
-set of queued commands is completely finished, nothing technically to do
-with the sync channels however.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Status Whiteboard|                            |2011BRB_Reviewed
+                 CC|                            |jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 
-The binary driver uses this in some other ways too, IIRC some magic with
-0x8c fills the buffer with data that they read back.  But, could be
-misremembering.  A valgrind trace will show what I mean though.
+--- Comment #3 from Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> 2011-10-09 17:42:50 PDT ---
+How reproducible is this?
 
-> +
-> +	<array name="DAC" offset="0x400" stride="0x80" length="2">
-> +
-> +		<reg32 offset="0x0" name="MODE_CTL">
-> +			<bitfield pos="0" name="CRTC0"/>
-> +			<bitfield pos="1" name="CRTC1"/>
-> +			<bitfield pos="6" name="ENABLED"/>
-This is *not* ENABLED, nouveau doesn't even set it.
+It's not clear based just on the backtrace if we're spinning in kernel land in 
+the ioctl or if that's just where we happened to be at the time.  Could you use 
+strace to see what syscalls are being generated.  That will give an idea if 
+it's spinning in the kernel or somewhere in userland:
 
-> +
-> +			<bitfield low="8" high="13"  name="PROTOCOL">
-> +				<value name="VGA"     value="0x0"/>
-> +				<value name="NTSC-M"  value="0x1"/>
-> +				<value name="NTSC-J"  value="0x2"/>
-> +				<value name="PAL"     value="0x3"/>
-> +				<value name="PAL-M"   value="0x4"/>
-> +				<value name="PAL-N"   value="0x5"/>
-> +				<value name="PAL-NC"  value="0x6"/>
-> +
-> +				<!-- HD480I/HD576I doesn't work with blob,
-> +				     maybe hw doesn't support it? -->
-> +				<value name="HD480P"  value="0xd"/>
-> +				<value name="HD576p"  value="0xe"/>
-> +
-> +				<value name="HD720p"  value="0x10"/>
-> +				<value name="HD1080i" value="0x12"/>
-> +				<value name="HD1080p" value="0x3F"/>
-> +			</bitfield>
-> +
-> +			<bitfield pos="14" name="SUB_CARR_FREQ">
-> +				<value name="3_57MHZ"  value="0"/>
-> +
-> +				<!-- PAL and PAL-NC use this -->
-> +				<value name="4_42MHZ" value="1"/>
-> +			</bitfield>
-> +		</reg32>
-> +
-> +		<reg32 offset="0x04" name="MODE_CTL2">
-> +			<bitfield pos="0" name="NEG_HSYNC" type="boolean"/>
-> +			<bitfield pos="1" name="NEG_VSYNC" type="boolean"/>
-> +		</reg32>
-> +
-> +		<!-- TODO: always set to 0x10000 on TV-out -->
-> +		<reg32 offset="0x20" name="UNK20"/>
-> +	</array>
-> +
-> +	<array name="SOR" offset="0x600" stride="0x40" length="2">
-> +
-> +		<reg32 offset="0x0" name="MODE_CTL">
-> +			<bitfield pos="0" name="CRTC0"/>
-> +			<bitfield pos="1" name="CRTC1"/>
-> +
-> +			<bitfield pos="6" name="ENABLED"/>
-Again, can't be ENABLED.
+sudo strace -p <pid of server process>
 
-> +
-> +			<bitfield low="8" high="11"  name="PROTOCOL">
-> +				<value name="LVDS" value="0"/>
-> +				<value name="TMDS_SINGLE_A" value="1"/>
-> +				<value name="TMDS_SINGLE_B" value="2"/>
-> +				<value name="TMDS_DUAL" value="5"/>
-> +				<value name="DP_A" value="8"/>
-> +				<value name="DP_B" value="9"/>
-> +			</bitfield>
-> +
-> +			<bitfield pos="12" name="NEG_HSYNC" type="boolean"/>
-> +			<bitfield pos="13" name="NEG_VSYNC" type="boolean"/>
-> +		</reg32>
-> +	</array>
-> +
-> +
-> +	<array name="CRTC" offset="0x800" stride="0x400" length="2">
-> +
-> +		<reg32 offset="0x004" name="CLOCK">
-> +			<bitfield low="0" high="22" name="CLK_KHZ" type="uint"/>
-Maybe FREQ_KHZ?
-
-> +			<bitfield pos="23" name="ENABLED"/>
-> +		</reg32>
-> +
-> +		<reg32 offset="0x008" name="INTERLACE">
-> +			<bitfield pos="1" name="ENABLED"/>
-> +		</reg32>
-> +
-> +		<reg32 offset="0x010" name="BACKGROUND_COLOR">
-> +			<bitfield low="0" high="9" name="RED" type="uint"/>
-> +			<bitfield low="10" high="19" name="GREEN" type="uint"/>
-> +			<bitfield low="20" high="29" name="BLUE" type="uint"/>
-> +		</reg32>
-BORDER_COLOUR might be more descriptive.
-
-> +
-> +		<!-- start of sync pulse is the reference, so: -->
-> +
-> +		<!-- totat scanlines of display -->
-> +		<reg32 offset="0x014" name="DISPLAY_TOTAL" type="wh16"/>
-> +
-> +		<!-- from start of sync to end of sync -->
-> +		<reg32 offset="0x018" name="SYNC_DURATION" type="wh16"/>
-> +
-> +		<!-- from start of sync to start of visible portion (end of back porch) -->
-> +		<reg32 offset="0x01c" name="SYNC_START_TO_DISP_START" type="wh16"/>
-> +
-> +		<!-- from start of sync to end of visible portion (start of front porch) -->
-> +		<reg32 offset="0x020" name="SYNC_START_TO_DISP_END" type="wh16"/>
-> +
-> +
-> +		<reg32 offset="0x024" name="INTERLACE_TIMINGS">
-> +			<!-- from start of sync to end of visible portion of next field (start of front porch) -->
-> +			<bitfield low="0" high="15" name="VSYNC_TO_END_DISP_NEXTFIELD" type="uint" />
-> +			<!-- from start of sync to start of visible portion of the next field (end of back porch) -->
-> +			<bitfield low="16" high="31" name="VSYNC_TO_START_DISP_NEXTFIELD" type="uint" />
-> +		</reg32>
-> +
-> +		<!-- TODO: (!) very related to scale/mode. Large values cause flicker on LVDS/DVI/VGA, clock?-->
-> +		<reg32 offset="0x028" name="UNK828">
-> +			<bitfield low="0" high="11" name="UNK" type="uint" />
-> +		</reg32>
-> +
-> +		<reg32 offset="0x02C" name="UNK82C"/> <!-- set always to 0 -->
-> +
-> +
-> +		<reg32 offset="0x040" name="CLUT">
-> +			<bitfield pos="31" name="ENABLED">
-> +				<value value="1" name="YES"/>
-> +				<value value="0" name="NO"/>
-> +			</bitfield>
-> +
-> +			<!-- in reduced mode, first and last 64 entries of LUT
-> +			     are ignored, and middle 128 entries are interpolated
-> +			     into 256 entries. Used by blob for 8-bit framebuffers -->
-> +			<bitfield pos="30" name="MODE">
-> +				<value value="0" name="REDUCED"/>
-> +				<value value="1" name="NORMAL"/>
-> +			</bitfield>
-> +		</reg32>
-> +
-> +		<reg32 offset="0x044" name="CLUT_ADDRESS"/>
-> +		<reg32 offset="0x05c" name="CLUT_DMA_HANDLE" variants="NV84-"/>
-> +
-> +		<group name="nv50_evo_fb_settings">
-> +			<reg32 offset="0x00" name="FB_OFFSET"/>
-> +
-> +			<reg32 offset="0x08" name="FB_SIZE"/>
-> +
-> +			<reg32 offset="0x0c" name="FB_CONFIG">
-> +				<bitfield pos="20" name="MODE">
-> +					<value value="0" name="TILE"/>
-> +					<value value="1" name="PITCH"/>
-> +				</bitfield>
-> +
-> +				<bitfield high="19" low="4" shr="4" name="PITCH"/>
-> +				<bitfield high="3" low="0" name="TILE_FLAGS"/>
-> +			</reg32>
-> +			<reg32 offset="0x010" name="FB_DEPTH" >
-> +				<bitfield high="15" low="8" name="DEPTH">
-> +					<value value="0x1e" name="8BPP"/>
-> +					<value value="0xe9" name="15BPP"/>
-> +					<value value="0xe8" name="16BPP"/>
-> +					<value value="0xcf" name="24BPP"/>
-> +					<value value="0xd1" name="30BPP"/>
-We could use the same names here as in NV50_SURFACE_FORMAT in rnndb.  I
-don't have any idea what formats aside from these that EVO accepts, it
-could be worth checking too.
-
-> +				</bitfield>
-> +			</reg32>
-> +		</group>
-> +
-> +		<stripe offset="0x060">
-> +			<use-group name="nv50_evo_fb_settings" />
-> +		</stripe>
-> +
-> +		<reg32 offset="0x074" name="FB_DMA_HANDLE"/>
-> +
-> +
-> +		<reg32 offset="0x080" name="CURSOR_CTL">
-> +			<bitfield pos="31" name="SHOW" type="boolean"/>
-> +		</reg32>
-> +		<reg32 offset="0x084" name="CURSOR_ADDRESS"/>
-> +		<reg32 offset="0x09c" name="CURSOR_DMA_HANDLE" variants="NV84-"/>
-> +
-> +		<reg32 offset="0x0a0" name="DITHER_CTRL">
-> +			<bitfield low="0" high="2" name="DEPTH">
-> +				<value value="0" name="DISABLED"/>
-> +				<value value="1" name="6BPP"/>
-> +				<value value="3" name="8BPP"/>
-> +			</bitfield>
-> +
-> +			<bitfield low="3" high="5" name="MODE">
-> +				<value value="0" name="OFF"/>
-> +				<value value="3" name="STATIC_2X2"/>
-> +				<value value="2" name="DYNAMIC_2X2"/>
-Perhaps reorder.  Also, is "4" accepted as a value here on your card?
-It's TEMPORAL on NVD9.
-
-> +			</bitfield>
-> +		</reg32>
-> +
-> +		<reg32 offset="0x0a4" name="BLUR_CTRL">
-> +			<!-- BLUR_ENABLE + UNK1 = black screen + hung card,
-> +			     no way to fix by setting back the old value -->
-> +			<bitfield low="0" high="1" name="UNK1"/>
-> +			<bitfield pos="2" name="ENABLE"/>
-> +			<bitfield pos="3" name="UNK3"/>
-> +
-> +			<!-- set to same values as BLUR1, but seems to do nothing -->
-> +			<bitfield low="16" high="23" name="BLUR2" type="int"/>
-> +
-> +			<!-- Blur value, (negative == sharpness) -->
-> +			<bitfield low="24" high="31" name="BLUR1" type="int"/>
-> +		</reg32>
-> +
-> +		<reg32 offset="0x0a8" name="COLOR_CTL">
-> +			<!-- TV_COLORS used on most TV modes,
-> +			     applies proper black/white levels -->
-> +			<bitfield pos="0" name="TV_COLORS"/>
-> +			<!-- ALT_TV_COLORS used in PAL-N and 720P/1080P/1080I modes,
-> +			     slightly different colors that with TV_COLORS -->
-> +			<bitfield pos="1" name="ALT_TV_COLORS"/>
-> +
-> +			<!-- draws on left and right of the screen two
-> +			     thin/thick violet lines -->
-> +			<bitfield pos="3" name="LEFTRIGHT_THIN_BORDER"/>
-> +			<bitfield pos="4" name="LEFTRIGHT_THICK_BORDER"/>
-> +
-> +			<bitfield  low="8" high="19" name="SATURATION" type="int"/>
-> +			<bitfield  low="20" high="31" name="TINT" type="int"/>
-> +		</reg32>
-> +
-> +		<!-- offset of CRTC window in framebuffer texture -->
-> +		<reg32 offset="0x0c0" name="FB_POS" type="xy16"/>
-> +
-> +		<!-- size of CRTC window in framebuffer texture -->
-> +		<reg32 offset="0x0c8" name="FB_REAL_RES" type="wh16"/>
-> +
-> +		<!-- offset to move CRTC window before output to physical screen -->
-> +		<reg32 offset="0x0d4" name="FB_SCREEN_POS" type="xy16"/>
-> +
-> +		<!-- size to scale CRTC window (which size is given in FB_REAL_RES)
-> +		     before output to physical screen -->
-> +		<reg32 offset="0x0d8" name="FB_SCALE_RES1" type="wh16" />
-> +		<!-- this value doesn't do anything, but must be same/lower that first
-> +			its sort of bottom limit/optimization. 0 seems to work -->
-> +		<reg32 offset="0x0dc" name="FB_SCALE_RES2" type="wh16" />
-> +
-> +		<!-- darktama: required to make display sync channels not hate life.
-> +		     UNK900 set to 0, UNK904 to 0x100 by blob -->
-> +		<reg32 offset="0x100" name="UNK900"/>
-> +		<reg32 offset="0x104" name="UNK904"/>
-> +
-> +		<!-- blob seeems to set that to 0x10000 -->
-> +		<reg32 offset="0x3a8" name="UNK3A8"/>
-> +
-> +	</array>
-> +</domain>
-> +
-> +<!-- display sync EVO channels, one per CRTC -->
-> +<domain name="NV_EVO_SYNC" bare="yes" prefix="chipset">
-> +
-> +	<!-- same as on main EVO channel -->
-> +	<reg32 offset="0x80" name="FLUSH_COMMANDS"/>
-Just FLUSH?
-
-> +
-> +	<!-- TODO: different values depends on whenever sync semaphore is used -->
-> +	<reg32 offset="0x84" name="SYNC_CTRL">
-> +		<bitfield pos="4" name="NOT_USE_SEM"/>
-This is actually 7:4 (IIRC), and should be called SWAP_INTERVAL
-
-> +		<bitfield pos="8" name="USE_SEM"/>
-Not 100% sure what this actually is, but it was required in some way to
-completely disable waiting for vblank before flipping.  I'd probably
-call it "IMMEDIATE" or something.
-
-> +	</reg32>
-> +
-> +	<!-- Semaphore support to sync against PGRAPH -->
-> +	<reg32 offset="0x88" name="SEM_OFFSET"/>
-> +	<reg32 offset="0x8c" name="SEM_WAIT_VALUE"/>
-SEM_ACQUIRE
-
-> +	<reg32 offset="0x90" name="SEM_WRITE_VALUE"/>
-SEM_RELEASE
-
-> +	<reg32 offset="0x94" name="SEM_DMAOBJ"/>
-> +
-> +	<!-- 0 written on pageflip-->
-> +	<reg32 offset="0xa0" name="UNKA0"/>
-> +	<reg32 offset="0xa5" name="UNKA4"/>
-> +
-> +
-> +	<reg32 offset="0xc0" name="FB_DMAOBJ"/>
-> +
-> +	<!-- darktama: allows gamma somehow, PDISP will bitch at you if
-> +		* you don't wait for vblank before changing this..
-> +		nouveau write 0x40000000 here-->
-> +	<reg32 offset="0xe0" name="UNKe0"/>
-> +
-> +	<!-- set to 0xfffe0000 on page flip -->
-> +	<reg32 offset="0x100" name="UNK100"/>
-> +
-> +	<!-- 0 written on pageflip -->
-> +	<reg32 offset="0x110" name="UNK110"/>
-> +	<reg32 offset="0x114" name="UNK114"/>
-> +
-> +	<!-- new framebuffer settings to apply. Same as in main evo channel-->
-> +	<stripe offset="0x800">
-> +		<use-group name="nv50_evo_fb_settings" />
-> +	</stripe>
-> +</domain>
-> +
-> +</database>
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
