@@ -1,13 +1,11 @@
-From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] nv50: cosmetic cleanup in modesetting code.
-Date: Tue, 11 Oct 2011 01:13:22 +0200
-Message-ID: <1318288402-6853-3-git-send-email-maximlevitsky@gmail.com>
-References: <1318288402-6853-1-git-send-email-maximlevitsky@gmail.com>
+From: "csolisr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" <csolisr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Problems configuring an NVIDIA GeForce GT 520 with a
+	1366x768 screen
+Date: Mon, 10 Oct 2011 17:18:32 -0600
+Message-ID: <CALOQyNMZwq7C7ZhMyVs9MJp5U0UxTXBrk0Yjwut-kpXeVPX4Ww@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1315695424=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1318288402-6853-1-git-send-email-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,149 +18,67 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Since I figured out the logic behind hardware mode values,
-this renames variables adds comments to reflect this, etc...
+--===============1315695424==
+Content-Type: multipart/alternative; boundary=bcaec520f7c595d7a204aefa0365
 
-Signed-off-by: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nv50_crtc.c |   88 ++++++++++++++++++-----------------
- drivers/gpu/drm/nouveau/nv50_evo.h  |    2 +-
- 2 files changed, 46 insertions(+), 44 deletions(-)
+--bcaec520f7c595d7a204aefa0365
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
-index 36232d9..dc71913 100644
---- a/drivers/gpu/drm/nouveau/nv50_crtc.c
-+++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
-@@ -622,53 +622,57 @@ nv50_crtc_mode_set(struct drm_crtc *crtc, struct drm_display_mode *mode,
- 	struct nouveau_channel *evo = nv50_display(dev)->master;
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
- 	struct nouveau_connector *nv_connector = NULL;
--	uint32_t hsync_dur,  vsync_dur, hsync_start_to_end, vsync_start_to_end;
--	uint32_t hunk1, vunk1, vunk2a, vunk2b;
--	uint32_t vtotal, htotal;
- 	int ret;
- 
-+	/* from start of sync to start of back porch*/
-+	uint32_t hsbckp = adjusted_mode->hsync_end - adjusted_mode->hsync_start;
-+	uint32_t vsbckp = adjusted_mode->vsync_end - adjusted_mode->vsync_start;
-+
-+	/* from start of sync to start of visible portion (end of back porch) */
-+	uint32_t hsdisp = adjusted_mode->htotal - adjusted_mode->hsync_start;
-+	uint32_t vsdisp = adjusted_mode->vtotal - adjusted_mode->vsync_start;
-+
-+	/* from start of sync to start of front porch (end of visible portion) */
-+	uint32_t hsfrntp = hsdisp + adjusted_mode->hdisplay;
-+	uint32_t vsfrntp = vsdisp + adjusted_mode->vdisplay;
-+
-+	/* from start of sync to start of another sync (end of front porch)*/
-+	uint32_t htotal = adjusted_mode->htotal;
-+	uint32_t vtotal = adjusted_mode->vtotal;
-+
-+	/* interlaced: from vsync to start of visible portion of _next_ field */
-+	uint32_t vs2ndisp = vtotal + vsdisp ;
-+
-+	/* interlaced: from vsync to start of front porch of _next_ field */
-+	uint32_t vs2nfrntp = vs2ndisp + adjusted_mode->vdisplay;
-+
- 	/* Find the connector attached to this CRTC */
- 	nv_connector = nouveau_crtc_connector_get(nv_crtc);
--
- 	*nv_crtc->mode = *adjusted_mode;
- 
- 	NV_DEBUG_KMS(dev, "index %d\n", nv_crtc->index);
- 
--	hsync_dur = adjusted_mode->hsync_end - adjusted_mode->hsync_start;
--	vsync_dur = adjusted_mode->vsync_end - adjusted_mode->vsync_start;
--	hsync_start_to_end = adjusted_mode->htotal - adjusted_mode->hsync_start;
--	vsync_start_to_end = adjusted_mode->vtotal - adjusted_mode->vsync_start;
--	/* I can't give this a proper name, anyone else can? */
--	hunk1 = adjusted_mode->htotal -
--		adjusted_mode->hsync_start + adjusted_mode->hdisplay;
--	vunk1 = adjusted_mode->vtotal -
--		adjusted_mode->vsync_start + adjusted_mode->vdisplay;
--	/* Another strange value, this time only for interlaced adjusted_modes. */
--	vunk2a = 2 * adjusted_mode->vtotal -
--		 adjusted_mode->vsync_start + adjusted_mode->vdisplay;
--	vunk2b = adjusted_mode->vtotal -
--		 adjusted_mode->vsync_start + adjusted_mode->vtotal;
--	vtotal = adjusted_mode->vtotal;
--	htotal = adjusted_mode->htotal;
--
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) {
--		vsync_dur /= 2;
--		vsync_start_to_end  /= 2;
--		vunk1 /= 2;
--		vunk2a /= 2;
--		vunk2b /= 2;
--		/* magic */
-+
-+		vsbckp /= 2;
-+		vsdisp  /= 2;
-+		vsfrntp /= 2;
-+		vs2nfrntp /= 2;
-+		vs2ndisp /= 2;
-+
-+		/* magic ??? */
- 		if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN) {
--			vsync_start_to_end -= 1;
--			vunk1 -= 1;
--			vunk2a -= 1;
--			vunk2b -= 1;
-+			vsdisp -= 1;
-+			vsfrntp -= 1;
-+			vs2nfrntp -= 1;
-+			vs2ndisp -= 1;
- 		}
-+
- 	} else if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN) {
- 		vtotal *= 2;
--		vsync_dur *= 2;
--		vsync_start_to_end  *= 2;
--		vunk1 *= 2;
-+		vsbckp *= 2;
-+		vsdisp  *= 2;
-+		vsfrntp *= 2;
- 	}
- 
- 	ret = RING_SPACE(evo, 17);
-@@ -679,18 +683,16 @@ nv50_crtc_mode_set(struct drm_crtc *crtc, struct drm_display_mode *mode,
- 	OUT_RING(evo, adjusted_mode->clock | 0x800000);
- 	OUT_RING(evo, (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) ? 2 : 0);
- 
--	BEGIN_RING(evo, 0, NV50_EVO_CRTC(nv_crtc->index, DISPLAY_START), 5);
-+	BEGIN_RING(evo, 0, NV50_EVO_CRTC(nv_crtc->index, DISPLAY_START),
-+		(adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) ? 6 : 5);
- 	OUT_RING(evo, 0);
- 	OUT_RING(evo, (vtotal << 16) | htotal);
--	OUT_RING(evo, (vsync_dur - 1) << 16 | (hsync_dur - 1));
--	OUT_RING(evo, (vsync_start_to_end - 1) << 16 |
--			(hsync_start_to_end - 1));
--	OUT_RING(evo, (vunk1 - 1) << 16 | (hunk1 - 1));
-+	OUT_RING(evo, (vsbckp - 1) << 16 | (hsbckp - 1));
-+	OUT_RING(evo, (vsdisp - 1) << 16 | (hsdisp - 1));
-+	OUT_RING(evo, (vsfrntp - 1) << 16 | (hsfrntp - 1));
- 
--	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) {
--		BEGIN_RING(evo, 0, NV50_EVO_CRTC(nv_crtc->index, UNK0824), 1);
--		OUT_RING(evo, (vunk2b - 1) << 16 | (vunk2a - 1));
--	}
-+	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
-+		OUT_RING(evo, (vs2ndisp - 1) << 16 | (vs2nfrntp - 1));
- 
- 	BEGIN_RING(evo, 0, NV50_EVO_CRTC(nv_crtc->index, UNK082C), 1);
- 	OUT_RING(evo, 0);
-diff --git a/drivers/gpu/drm/nouveau/nv50_evo.h b/drivers/gpu/drm/nouveau/nv50_evo.h
-index 3860ca6..3131553 100644
---- a/drivers/gpu/drm/nouveau/nv50_evo.h
-+++ b/drivers/gpu/drm/nouveau/nv50_evo.h
-@@ -63,7 +63,7 @@
- #define NV50_EVO_CRTC_DISPLAY_TOTAL                                  0x00000814
- #define NV50_EVO_CRTC_SYNC_DURATION                                  0x00000818
- #define NV50_EVO_CRTC_SYNC_START_TO_BLANK_END                        0x0000081c
--#define NV50_EVO_CRTC_UNK0820                                        0x00000820
-+#define NV50_EVO_CRTC_SYNC_START_TO_DISP_END                         0x00000820
- #define NV50_EVO_CRTC_UNK0824                                        0x00000824
- #define NV50_EVO_CRTC_UNK082C                                        0x0000082c
- #define NV50_EVO_CRTC_CLUT_MODE                                      0x00000840
--- 
-1.7.4.1
+Hello people. This is the first time I write to this list. Today, I tried t=
+o
+test the latest version of Nouveau in Ubuntu 11.04 Natty (as downloadable o=
+n
+the PPA located at
+https://launchpad.net/~ubuntu-x-swat/+archive/x-updates). The screen
+defaulted to 1024x768, but the full screen's resolution is
+1366x768. I tried to change the maximum resolution via xorg.conf, but the O=
+S
+refused to start the graphical interface until the xorg.conf file was
+erased. (The old xorg.conf file can be uploaded if needed). Is the NVIDIA
+GeForce GT 520 unable to change the resolution to an arbitrary size with th=
+e
+Nouveau driver as of yet?
+- Carlos Sol=EDs
+
+--bcaec520f7c595d7a204aefa0365
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hello people. This is the first time I write to this list. Today, I tried t=
+o test the latest version of Nouveau in Ubuntu 11.04 Natty (as downloadable=
+ on the PPA located at <a href=3D"https://launchpad.net/~ubuntu-x-swat/+arc=
+hive/x-updates">https://launchpad.net/~ubuntu-x-swat/+archive/x-updates</a>=
+ ). The screen defaulted to 1024x768, but the full screen&#39;s resolution =
+is 1366x768. I tried to change the maximum resolution via xorg.conf, but th=
+e OS refused to start the graphical interface until the xorg.conf file was =
+erased. (The old xorg.conf file can be uploaded if needed). Is the NVIDIA G=
+eForce GT 520 unable to change the resolution to an arbitrary size with the=
+ Nouveau driver as of yet?<br clear=3D"all">
+
+- Carlos Sol=EDs<br><style>img, #cubbies-overlay{ -moz-transition-property:=
+ margin, box-shadow, z-index; -moz-transition-duration: 0.1s; -webkit-trans=
+ition-property: margin, box-shadow, z-index; -webkit-transition-duration: 0=
+.1s; }
+.cubbies-selected{ z-index: 9999; box-shadow: 3px 3px 8px -1px blue !import=
+ant; cursor: pointer !important; margin: -3px 3px 3px -3px; }
+.cubbies-selected:active{ box-shadow: 2px 2px 5px -1px darkblue !important;=
+ margin: -1px 1px 1px -1px; }
+#cubbies-overlay{ position: fixed; z-index: 9999; bottom: 30px; left: 30px;=
+ box-shadow: 0 2px 3px rgba(0,0,0,0.8); border: none; }
+#cubbies-overlay:hover{ box-shadow: 0 2px 3px rgb(0,0,0); }</style>
+
+--bcaec520f7c595d7a204aefa0365--
+
+--===============1315695424==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1315695424==--
