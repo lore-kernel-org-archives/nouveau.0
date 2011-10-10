@@ -1,16 +1,12 @@
-From: Gianluca Cecchi <gianluca.cecchi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NVIDIA (including Optimus) laptop owners - please
-	read!
-Date: Mon, 10 Oct 2011 11:21:02 +0200
-Message-ID: <CAG2kNCyZH8tzrDspLzRWN+NyXL5ZYk8XRBZCq0+RMbdRCrWTFg@mail.gmail.com>
-References: <CAG2kNCycMfZ_p6RzZ3Tk0g4YYK8O6OAb5R3pj==jfcHAGDp4aQ@mail.gmail.com>
-	<1318131516.2361.5.camel@nisroch>
-	<CAG2kNCwDMKs6a9m9yFbu0NUcfu0k9hf3SNFe9f9tRZcJTcLW8w@mail.gmail.com>
-	<1318233100.2533.27.camel@nisroch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 41644] New: Mouse pointer flickering/disappearing on
+	NV05
+Date: Mon, 10 Oct 2011 03:10:59 -0700 (PDT)
+Message-ID: <bug-41644-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0493600743=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1318233100.2533.27.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,48 +16,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0493600743==
-Content-Type: multipart/alternative; boundary=0015174c3da84613d204aeee4fc9
+https://bugs.freedesktop.org/show_bug.cgi?id=41644
 
---0015174c3da84613d204aeee4fc9
-Content-Type: text/plain; charset=UTF-8
+           Summary: Mouse pointer flickering/disappearing on NV05
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: albertpool-2BgBnwcziRhmR6Xm/wNWPw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-On Monday, October 10, 2011, Ben Skeggs  wrote:
-> Thanks!
->
-> I was wrong, it's just that your version of nouveau doesn't support your
-> GF119 chipset.
->
 
-Any way to update in F15 to a newer driver supporting it? What would be the
-advantage for me? And for you if you like to receive any other useful
-information?
+Micro-Star MS-8806 card with Riva TNT2 chip. The card hadn't been used for
+years; the fan had to blow a lot of dust away before it would run quietly. It's
+working fine with Nouveau, even Google Earth and a couple of Compiz effects
+work (though compiz-check says that the card is unsupported). But there's an
+irritating issue with the mouse pointer.
 
---0015174c3da84613d204aeee4fc9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+The mouse pointer often flickers or disappears when I do not move the mouse.
+When moving the mouse it appears again.
 
-<br>On Monday, October 10, 2011, Ben Skeggs =C2=A0wrote:<br>&gt; Thanks!<br=
->&gt;<br>&gt; I was wrong, it&#39;s just that your version of nouveau doesn=
-&#39;t support your<br>&gt; GF119 chipset.<br>&gt;<br><br>Any way to update=
- in F15 to a newer driver supporting it? What would be the advantage for me=
-? And for you if you like to receive any other useful information?
+I have already sent my VBIOS to mupuf.
 
---0015174c3da84613d204aeee4fc9--
+The problem seems to become less serious when running Compiz instead of
+Metacity.
 
---===============0493600743==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0493600743==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
