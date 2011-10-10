@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 41585] X freeze and PGRAPH errors in dmesg
-Date: Mon, 10 Oct 2011 01:26:05 -0700 (PDT)
-Message-ID: <20111010082605.45BC1130079@annarchy.freedesktop.org>
+Date: Mon, 10 Oct 2011 01:26:36 -0700 (PDT)
+Message-ID: <20111010082637.083961300F3@annarchy.freedesktop.org>
 References: <bug-41585-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,13 +26,13 @@ Marco Albarelli <motosauro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #52150|0                           |1
+  Attachment #52151|0                           |1
         is obsolete|                            |
 
---- Comment #5 from Marco Albarelli <motosauro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-10 01:26:01 PDT ---
-Created an attachment (id=52164)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=52164)
-Complete dmesg after the freeze
+--- Comment #6 from Marco Albarelli <motosauro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-10 01:26:36 PDT ---
+Created an attachment (id=52165)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=52165)
+Xorg log after the freeze
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
