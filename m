@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
-Date: Tue, 11 Oct 2011 05:26:21 -0700 (PDT)
-Message-ID: <20111011122622.143FF1300DF@annarchy.freedesktop.org>
+Date: Tue, 11 Oct 2011 08:56:57 -0700 (PDT)
+Message-ID: <20111011155657.BF4BA13011B@annarchy.freedesktop.org>
 References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
---- Comment #29 from Marco <marco-w08N04152XNe4xh82S9ftw@public.gmane.org> 2011-10-11 05:26:20 PDT ---
-Created an attachment (id=52210)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=52210)
-syslog file (without pam messages)
+--- Comment #30 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-11 08:56:57 PDT ---
+Created an attachment (id=52218)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=52218)
+oops in iput
+
+The oops seems to be unrelated to nouveau. I think it has something to do with
+use of 32-bit kernel and HIGHMEM - please report it to bugzilla.kernel.org or
+LKML.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
