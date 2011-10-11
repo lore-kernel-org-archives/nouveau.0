@@ -1,15 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Problems configuring an NVIDIA GeForce GT 520 with a
- 1366x768 screen
-Date: Tue, 11 Oct 2011 09:24:54 +1000
-Message-ID: <1318289094.21128.3.camel@nisroch>
-References: <CALOQyNMZwq7C7ZhMyVs9MJp5U0UxTXBrk0Yjwut-kpXeVPX4Ww@mail.gmail.com>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 41585] X freeze and PGRAPH errors in dmesg
+Date: Tue, 11 Oct 2011 01:09:19 -0700 (PDT)
+Message-ID: <20111011080919.A0C9813009D@annarchy.freedesktop.org>
+References: <bug-41585-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CALOQyNMZwq7C7ZhMyVs9MJp5U0UxTXBrk0Yjwut-kpXeVPX4Ww-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-41585-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,36 +17,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "csolisr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" <csolisr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyMDExLTEwLTEwIGF0IDE3OjE4IC0wNjAwLCBjc29saXNyQGdtYWlsLmNvbSB3cm90
-ZToKPiBIZWxsbyBwZW9wbGUuIFRoaXMgaXMgdGhlIGZpcnN0IHRpbWUgSSB3cml0ZSB0byB0aGlz
-IGxpc3QuIFRvZGF5LCBJCj4gdHJpZWQgdG8gdGVzdCB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgTm91
-dmVhdSBpbiBVYnVudHUgMTEuMDQgTmF0dHkgKGFzCj4gZG93bmxvYWRhYmxlIG9uIHRoZSBQUEEg
-bG9jYXRlZCBhdAo+IGh0dHBzOi8vbGF1bmNocGFkLm5ldC9+dWJ1bnR1LXgtc3dhdC8rYXJjaGl2
-ZS94LXVwZGF0ZXMgKS4gVGhlIHNjcmVlbgo+IGRlZmF1bHRlZCB0byAxMDI0eDc2OCwgYnV0IHRo
-ZSBmdWxsIHNjcmVlbidzIHJlc29sdXRpb24gaXMgMTM2Nng3NjguIEkKPiB0cmllZCB0byBjaGFu
-Z2UgdGhlIG1heGltdW0gcmVzb2x1dGlvbiB2aWEgeG9yZy5jb25mLCBidXQgdGhlIE9TCj4gcmVm
-dXNlZCB0byBzdGFydCB0aGUgZ3JhcGhpY2FsIGludGVyZmFjZSB1bnRpbCB0aGUgeG9yZy5jb25m
-IGZpbGUgd2FzCj4gZXJhc2VkLiAoVGhlIG9sZCB4b3JnLmNvbmYgZmlsZSBjYW4gYmUgdXBsb2Fk
-ZWQgaWYgbmVlZGVkKS4gSXMgdGhlCj4gTlZJRElBIEdlRm9yY2UgR1QgNTIwIHVuYWJsZSB0byBj
-aGFuZ2UgdGhlIHJlc29sdXRpb24gdG8gYW4gYXJiaXRyYXJ5Cj4gc2l6ZSB3aXRoIHRoZSBOb3V2
-ZWF1IGRyaXZlciBhcyBvZiB5ZXQ/CkkgaGF2ZSBubyBpZGVhIHdoYXQgZXhhY3RseSBVYnVudHUg
-c2hpcHMuICBCdXQgc3VwcG9ydCBmb3IgdGhlIEdUNTIwCmhhc24ndCB5ZXQgYXBwZWFyZWQgaW4g
-YW4gdXBzdHJlYW0ga2VybmVsIHJlbGVhc2UuICBJdCdzIHF1ZXVlZCBmb3IgMy4yLAphbmQgdGhl
-IGNvZGUgaXMgc2l0dGluZyBpbiBub3V2ZWF1IGdpdC4gIFlvdSBtYXkgYmUgYWJsZSB0byBidWls
-ZCBhbgp1cGRhdGVkIG5vdXZlYXUgZHJpdmVyIGFnYWluc3QgeW91ciBjdXJyZW50IGtlcm5lbCBi
-eSBmb2xsb3dpbmcgdGhlCmluc3RydWN0aW9uc1sxXSBvbiB0aGUgbm91dmVhdSB3aWtpLgoKQmFz
-aWNhbGx5LCBkZXNwaXRlIHdoYXQgYSBjYXN1YWwgYnJvd3NlIGFyb3VuZCB0aGUgaW50ZXJuZXQg
-d2lsbCB0ZWxsCnlvdSwgR0YxMTkgKHdoaWNoIGlzIHdoYXQgR1Q1MjAgaXMpIGlzbid0IHF1aXRl
-IHRoZSBzYW1lIGFzIHByZXZpb3VzCkZlcm1pIGNoaXBzLCBodWdlIGNodW5rcyBvZiBpdCB3ZXJl
-IHJlZGVzaWduZWQuCgpCZW4uCgpbMV0KaHR0cDovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3JnL3dp
-a2kvSW5zdGFsbERSTSNvdXQtb2YtdHJlZWJ1aWxkLjI4YWx0ZXJuYXRpdmUuMjkKPiAtIENhcmxv
-cyBTb2zDrXMKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=41585
+
+--- Comment #8 from Marco Albarelli <motosauro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-11 01:09:19 PDT ---
+(In reply to comment #7)
+cut...
+> To fix this, someone needs to figure out why GPU locked up and/or how to reset
+> the GPU.
+
+If needed I have the strace dump which is ~19MB compressed text. I can attach
+it here or make it availabale through one of my external servers
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
