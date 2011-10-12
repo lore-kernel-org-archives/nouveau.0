@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41732] New: Kernel bug: null pointer dereference in
- nouveau_i2c_init
-Date: Wed, 12 Oct 2011 14:02:53 -0700 (PDT)
-Message-ID: <bug-41732-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41732] Kernel bug: null pointer dereference in
+	nouveau_i2c_init
+Date: Wed, 12 Oct 2011 16:07:04 -0700 (PDT)
+Message-ID: <20111012230704.20FD5130094@annarchy.freedesktop.org>
+References: <bug-41732-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-41732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=41732
 
-           Summary: Kernel bug: null pointer dereference in
-                    nouveau_i2c_init
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: pdewacht-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-12 16:07:03 PDT ---
+The kernel oops should be fixed already in nouveau git, there is some
+unanswered questions about the issue that caused it to be revealed in the first
+place though.
 
+Are you by any chance able to do a mmiotrace[1] of the NVIDIA binary driver for 
+me?
 
-Created an attachment (id=52275)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=52275)
-dmesg output
-
-This is from an Asus X5QS laptop with Geforce GT 555M graphics. During boot
-this  error is printed on the console and it hangs when starting X.
+[1] http://nouveau.freedesktop.org/wiki/MmioTrace
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
