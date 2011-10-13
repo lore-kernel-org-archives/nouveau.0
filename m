@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 41750] Driver sometimes freezes X - mouse still
  works. Symptom: Event Queue overflow
-Date: Thu, 13 Oct 2011 09:19:30 -0700 (PDT)
-Message-ID: <20111013161930.A46F4130153@annarchy.freedesktop.org>
+Date: Thu, 13 Oct 2011 09:20:15 -0700 (PDT)
+Message-ID: <20111013162015.527A0130093@annarchy.freedesktop.org>
 References: <bug-41750-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=41750
 
---- Comment #1 from christianasseburg-/E1597aS9LT10XsdtD+oqA@public.gmane.org 2011-10-13 09:19:30 PDT ---
-Created an attachment (id=52306)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=52306)
-Two instances of the freeze - with additional debug symbols
+--- Comment #2 from christianasseburg-/E1597aS9LT10XsdtD+oqA@public.gmane.org 2011-10-13 09:20:12 PDT ---
+Created an attachment (id=52307)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=52307)
+dmesg output for current session
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
