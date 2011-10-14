@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40866] GeForce4 Ti 4400 (NV25) X Segfaults in
  nouveau_channel_alloc
-Date: Fri, 14 Oct 2011 13:07:00 -0700 (PDT)
-Message-ID: <20111014200700.4058F1301B1@annarchy.freedesktop.org>
+Date: Fri, 14 Oct 2011 13:10:34 -0700 (PDT)
+Message-ID: <20111014201035.0330713016A@annarchy.freedesktop.org>
 References: <bug-40866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40866
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #6 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-14 13:10:33 PDT ---
+We debugged that a bit today, and found that X segfaults when it tries to open
+a GPU channel.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Caught signal 11            |GeForce4 Ti 4400 (NV25) X
-                   |(Segmentation fault).       |Segfaults in
-                   |Server aborting             |nouveau_channel_alloc
+Both DDX module and libdrm are now compiled from their git branches.
+kernel log is quiet in regard to errors.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
