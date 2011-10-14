@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40747] The new nouveau kernel module fails to use my
  monitor's native resolution
-Date: Fri, 14 Oct 2011 07:42:53 -0700 (PDT)
-Message-ID: <20111014144253.D5643130176@annarchy.freedesktop.org>
+Date: Fri, 14 Oct 2011 07:43:46 -0700 (PDT)
+Message-ID: <20111014144346.4D408130124@annarchy.freedesktop.org>
 References: <bug-40747-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40747
 
---- Comment #11 from monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org 2011-10-14 07:42:52 PDT ---
-Created an attachment (id=52336)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=52336)
-dmesg log for X start failure
+--- Comment #12 from monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org 2011-10-14 07:43:44 PDT ---
+Created an attachment (id=52337)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=52337)
+Xorg.log for X start failure
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
