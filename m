@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41750] Driver sometimes freezes X - mouse still
- works. Symptom: Event Queue overflow
-Date: Thu, 13 Oct 2011 09:20:15 -0700 (PDT)
-Message-ID: <20111013162015.527A0130093@annarchy.freedesktop.org>
-References: <bug-41750-8800@http.bugs.freedesktop.org/>
+From: Harry Putnam <reader-kFrNdAxtuftBDgjK7y7TUQ@public.gmane.org>
+Subject: Re: xrandr or xorg.conf... help with virtual size desktop
+Date: Fri, 14 Oct 2011 07:06:46 -0500
+Message-ID: <87ty7b6all.fsf@newsguy.com>
+References: <87botluh8e.fsf@newsguy.com>
+	<CAMVNhxRQOCZS4rVgxqCfQQUxZaoxRihSw96O3-m4WXDbjFshow@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41750-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +20,31 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=41750
+Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+writes:
 
---- Comment #2 from christianasseburg-/E1597aS9LT10XsdtD+oqA@public.gmane.org 2011-10-13 09:20:12 PDT ---
-Created an attachment (id=52307)
- --> (https://bugs.freedesktop.org/attachment.cgi?id=52307)
-dmesg output for current session
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+[...]
+
+>
+> The bug you're talking about is actually
+> https://bugs.freedesktop.org/show_bug.cgi?id=39949 for those
+> interested.
+
+Yikes... looks like a silly typo when I posted the bug url
+
+> I don't spend much time with the xserver or DDX code so I might be
+> wrong, but panning is as far as I know largely handled by the server
+> and is not something the driver has much control over. You'll have to
+> wait until this is fixed there or perhaps you can downgrade your
+> server to 1.10 until it's fixed. I don't think there's anything that
+> can be done in nouveau to work around it.
+
+Do you know if or what is being done about fixing it?  Or any idea of
+time frame? 
+
+Downgrading is probably the easiest thing to do.  I guess Nouveau
+will run on the older server?
+
+So is it a good chance that a pannable desktop will be attainable
+under 1.10?
