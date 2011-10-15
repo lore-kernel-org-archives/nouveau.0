@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40866] GeForce4 Ti 4400 (NV25) X Segfaults in
  nouveau_channel_alloc
-Date: Sat, 15 Oct 2011 09:26:34 -0700 (PDT)
-Message-ID: <20111015162634.D954B13012F@annarchy.freedesktop.org>
+Date: Sat, 15 Oct 2011 09:26:57 -0700 (PDT)
+Message-ID: <20111015162657.A7F35130173@annarchy.freedesktop.org>
 References: <bug-40866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40866
 
---- Comment #10 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-15 09:26:33 PDT ---
-It was indeed ABI problem. libdrm was pulled from /lib. Now it works
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTABUG
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
