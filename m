@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40866] GeForce4 Ti 4400 (NV25) X Segfaults in
  nouveau_channel_alloc
-Date: Sat, 15 Oct 2011 06:18:07 -0700 (PDT)
-Message-ID: <20111015131807.7FAFB13008E@annarchy.freedesktop.org>
+Date: Sat, 15 Oct 2011 06:20:11 -0700 (PDT)
+Message-ID: <20111015132011.C6F061300D4@annarchy.freedesktop.org>
 References: <bug-40866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40866
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #9 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-15 06:20:10 PDT ---
+Although, knowing that ubuntu plays games with libdrm and installs it to /lib
+or something crazy like that, it could be.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |NEW
+Also, before we compiled it, I more or less verified that stock ubbuntu
+packages or X and libdrm were used.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
