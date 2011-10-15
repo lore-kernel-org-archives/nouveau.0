@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40866] GeForce4 Ti 4400 (NV25) X Segfaults in
  nouveau_channel_alloc
-Date: Sat, 15 Oct 2011 06:17:44 -0700 (PDT)
-Message-ID: <20111015131744.68928130175@annarchy.freedesktop.org>
+Date: Sat, 15 Oct 2011 06:18:07 -0700 (PDT)
+Message-ID: <20111015131807.7FAFB13008E@annarchy.freedesktop.org>
 References: <bug-40866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,12 +27,7 @@ maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|NOTABUG                     |
-
---- Comment #8 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-10-15 06:17:44 PDT ---
-We did compile both libdrm and DDX. And installed both to /usr. I don't think
-its ABI issue (although I also suspected that first)
+             Status|REOPENED                    |NEW
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
