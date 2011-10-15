@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 41732] Kernel bug: null pointer dereference in
 	nouveau_i2c_init
-Date: Sat, 15 Oct 2011 08:07:20 -0700 (PDT)
-Message-ID: <20111015150720.304FE1300F7@annarchy.freedesktop.org>
+Date: Sat, 15 Oct 2011 08:11:39 -0700 (PDT)
+Message-ID: <20111015151139.48B811300A2@annarchy.freedesktop.org>
 References: <bug-41732-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=41732
 
---- Comment #2 from Peter De Wachter <pdewacht-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-15 08:07:19 PDT ---
-I was able to experiment a bit more today (it's not my own laptop). It looks
-like it's an Optimus system and I can't get the nvidia drivers to work:
-
-[   230.704] (--) NVIDIA(0): Connected display device(s) on GeForce GT 555M at
-PCI:1:0:0
-[   230.704] (--) NVIDIA(0):     none
-[   230.708] (EE) NVIDIA(0): No display devices found for this X screen.
-
-Still, I made the mmiotrace of the X server trying to start. If there's
-anything else I can try, please ask.
+--- Comment #3 from Peter De Wachter <pdewacht-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-15 08:11:36 PDT ---
+Created an attachment (id=52365)
+ --> (https://bugs.freedesktop.org/attachment.cgi?id=52365)
+nvidia binary driver mmiotrace
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
