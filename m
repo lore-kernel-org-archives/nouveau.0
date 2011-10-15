@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40866] GeForce4 Ti 4400 (NV25) X Segfaults in
  nouveau_channel_alloc
-Date: Fri, 14 Oct 2011 13:10:59 -0700 (PDT)
-Message-ID: <20111014201059.5CD8213017B@annarchy.freedesktop.org>
+Date: Sat, 15 Oct 2011 04:26:41 -0700 (PDT)
+Message-ID: <20111015112641.C57C8130153@annarchy.freedesktop.org>
 References: <bug-40866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40866
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Version|unspecified                 |git
+             Status|NEW                         |RESOLVED
+         Resolution|                            |NOTABUG
+
+--- Comment #7 from Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> 2011-10-15 04:26:41 PDT ---
+This looks like an ABI issue, most likely you're running a version of libdrm
+different to the one your DDX module was compiled with.
+
+Try "ldd /usr/lib/xorg/modules/drivers/nouveau_drv.so |grep libdrm" to find out
+which libraries are being used, and, in case they aren't what you'd expect,
+remove them, and make sure you're installing libdrm and the DDX to the right
+prefix.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
