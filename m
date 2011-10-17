@@ -1,11 +1,14 @@
-From: "Dmitriy.Trt" <dmitriy.trt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NVIDIA (including Optimus) laptop owners - please
-	read!
-Date: Sun, 16 Oct 2011 21:37:05 +0700
-Message-ID: <CAEBsfjeBuhFTFUdod-q4Ma5d3RJU6deb7MHFCs73M=oHtTW28w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 34680] Enable dithering by default for 18-bit eDP
+	panels
+Date: Mon, 17 Oct 2011 09:53:51 +0000
+Message-ID: <bug-34680-8800-N9zgzcxcGy@http.bugs.freedesktop.org/>
+References: <bug-34680-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1636590566=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-34680-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,84 +21,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1636590566==
-Content-Type: multipart/alternative; boundary=bcaec5314e79a5a93004af6b6cc3
+https://bugs.freedesktop.org/show_bug.cgi?id=34680
 
---bcaec5314e79a5a93004af6b6cc3
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-i2cdetect output has both 0x54 and 0x56. But I've stuck on getting vbios
-images.
-# nvagetbios -s PROM >vbios.rom
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
-gives me the error you've mentioned:
+--- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-17 02:53:51 PDT ---
+The code in nouveau git will now attempt to automatically determine whether it
+should enable dithering or not for a given display, so this should be resolved.
 
-> Attempt to extract the vbios from card 0 (nv86) using PROM
-> Invalid signature(0x55aa). You may want to try another retrieval method.
->
+Please re-open if it doesn't work for you, with your dmesg output and the
+output of /sys/class/drm/card0-eDP-1/edid attached.
 
-and adding string (without quotes) "nouveau.vbios=3DACPI" to kernel options
-doesn't work at all. GRUB2 shows me error:
+Thank you!
 
-> alloc magic is broken at 0xdfbdbc50
-> Aborted. Press any key to exit.
->
-
-Nouveau already works MUCH better than proprietary driver for my tasks.
-Thanks a lot for that! Please help me to help you.
-
-My system info:
-
-   - Debian testing/unstable
-   - kernel 3.0.0-1-686-pae from repository
-   - libdrm-nouveau1a 2.4.26-1
-   - xserver-xorg-video-nouveau 1:0.0.16+git20110411+8378443-1+exp1
-
---
-=D0=94=D0=BC=D0=B8=D1=82=D1=80=D0=B8=D0=B9 =D0=A2=D0=B0=D1=80=D1=82=D1=8B=
-=D0=BD=D0=BE=D0=B2 aka Dmitriy.trt
-Jabber: dmitriy.trt-962d5TIgE1qHXe+LvDLADg@public.gmane.org
-Skype: dmitriytrt
-
---bcaec5314e79a5a93004af6b6cc3
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-i2cdetect output has both 0x54 and 0x56. But I&#39;ve stuck on getting vbio=
-s images.<br># nvagetbios -s PROM &gt;vbios.rom<br><br>gives me the error y=
-ou&#39;ve mentioned:<br><blockquote style=3D"margin: 0pt 0pt 0pt 0.8ex; bor=
-der-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;" class=3D"gmail_=
-quote">
-Attempt to extract the vbios from card 0 (nv86) using PROM<br>Invalid signa=
-ture(0x55aa). You may want to try another retrieval method.<br></blockquote=
-><br>and adding string (without quotes) &quot;nouveau.vbios=3DACPI&quot; to=
- kernel options doesn&#39;t work at all. GRUB2 shows me error:<br>
-<blockquote style=3D"margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(=
-204, 204, 204); padding-left: 1ex;" class=3D"gmail_quote">alloc magic is br=
-oken at 0xdfbdbc50<br>Aborted. Press any key to exit.<br></blockquote><div>
-<br>Nouveau already works MUCH better than proprietary driver for my tasks.=
- Thanks a lot for that! Please help me to help you.<br><br>My system info: =
-<br><ul><li>Debian testing/unstable</li><li>kernel 3.0.0-1-686-pae from rep=
-ository<br>
-</li><li>libdrm-nouveau1a 2.4.26-1</li><li>xserver-xorg-video-nouveau 1:0.0=
-.16+git20110411+8378443-1+exp1<br></li></ul></div>--<br>=D0=94=D0=BC=D0=B8=
-=D1=82=D1=80=D0=B8=D0=B9 =D0=A2=D0=B0=D1=80=D1=82=D1=8B=D0=BD=D0=BE=D0=B2 a=
-ka Dmitriy.trt<br>Jabber: <a href=3D"mailto:dmitriy.trt-962d5TIgE1qHXe+LvDLADg@public.gmane.org" target=
-=3D"_blank">dmitriy.trt-962d5TIgE1qHXe+LvDLADg@public.gmane.org</a><br>
-Skype: dmitriytrt<br><br>
-
---bcaec5314e79a5a93004af6b6cc3--
-
---===============1636590566==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1636590566==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
