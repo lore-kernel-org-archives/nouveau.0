@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
-Date: Sat, 22 Oct 2011 21:30:13 +0000
-Message-ID: <bug-40507-8800-2mbOTnnf12@http.bugs.freedesktop.org/>
+Date: Sat, 22 Oct 2011 21:31:06 +0000
+Message-ID: <bug-40507-8800-9sSMUqm8I9@http.bugs.freedesktop.org/>
 References: <bug-40507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,22 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40507
 
---- Comment #13 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-10-22 14:30:13 PDT ---
-
-I've took the time to try and test the GPU on PCI:0:4:0:0, and that seems to
-not work at all.
-
-I notice there is an asterisk in front of the PCI:0:5:0:0 line in the
-Xorg.0.log, might that mean something like only that device is enabled?
-
-I'll include all the configs and logs for the very simple test case trying to
-use the non working device.
-
-Also, here's someone with seemingly the same problem. The solution there was to
-use the proprietary driver. Of course I will too after this post, but nouveau
-seems to perform much much better and is of course open source and I would like
-to use it and would like other with multiple cards and this same problem to be
-able to use it too!
+--- Comment #14 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-10-22 14:31:06 PDT ---
+Created attachment 52637
+  --> https://bugs.freedesktop.org/attachment.cgi?id=52637
+Xorg log for test case of non working card
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
