@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41984] New: nouveau lock all the system (NVIDIA
- GeForce GT 130M)
-Date: Wed, 19 Oct 2011 08:31:08 +0000
-Message-ID: <bug-41984-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
+Date: Sat, 22 Oct 2011 21:30:13 +0000
+Message-ID: <bug-40507-8800-2mbOTnnf12@http.bugs.freedesktop.org/>
+References: <bug-40507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-40507-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,36 +20,24 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=41984
+https://bugs.freedesktop.org/show_bug.cgi?id=40507
 
-             Bug #: 41984
-           Summary: nouveau lock all the system (NVIDIA GeForce GT 130M)
-    Classification: Unclassified
-           Product: xorg
-           Version: 7.7 (2011)
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: ice.cube-KK0ffGbhmjU@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #13 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-10-22 14:30:13 PDT ---
 
+I've took the time to try and test the GPU on PCI:0:4:0:0, and that seems to
+not work at all.
 
-after ~5 sec to 5 min of use all freeze
-with or without nouveau-dri.
+I notice there is an asterisk in front of the PCI:0:5:0:0 line in the
+Xorg.0.log, might that mean something like only that device is enabled?
 
-What do you need for more explanation?
+I'll include all the configs and logs for the very simple test case trying to
+use the non working device.
 
-Parabola GNU / Linux-libre
-gnome / wmii
-Linux-libre 3.0.4
-
-(The computer works at this time with nv)
-
-irc :: aurelien
+Also, here's someone with seemingly the same problem. The solution there was to
+use the proprietary driver. Of course I will too after this post, but nouveau
+seems to perform much much better and is of course open source and I would like
+to use it and would like other with multiple cards and this same problem to be
+able to use it too!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
