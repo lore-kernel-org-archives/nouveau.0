@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
-Date: Sat, 22 Oct 2011 21:32:29 +0000
-Message-ID: <bug-40507-8800-eWHedGFg1c@http.bugs.freedesktop.org/>
+Date: Sat, 22 Oct 2011 21:45:26 +0000
+Message-ID: <bug-40507-8800-3qcrJjhjAG@http.bugs.freedesktop.org/>
 References: <bug-40507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40507
 
---- Comment #15 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-10-22 14:32:29 PDT ---
-Created attachment 52638
-  --> https://bugs.freedesktop.org/attachment.cgi?id=52638
-ls of /sys/card/drm
+--- Comment #16 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-10-22 14:45:26 PDT ---
+Another intereseting note. Displaying an image to the device which X does not
+recognize is no problem, using fbi on /dev/fb0, using nouveaufb.
+
+Could be that it has nothing with the nouveau driver, but the way X initializes
+nouveau, in which case this ticket should probably be moved to another section?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
