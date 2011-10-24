@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42160] [NV4e] Mouse pointer disappears randomly
  after resuming from GNOME screensaver
-Date: Mon, 24 Oct 2011 12:58:43 +0000
-Message-ID: <bug-42160-8800-wk2OKjqjCi@http.bugs.freedesktop.org/>
+Date: Mon, 24 Oct 2011 12:59:41 +0000
+Message-ID: <bug-42160-8800-mJ7BJwPrxD@http.bugs.freedesktop.org/>
 References: <bug-42160-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42160
 
---- Comment #1 from Matias Kreder <delete-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> 2011-10-24 05:58:43 PDT ---
-Created attachment 52687
-  --> https://bugs.freedesktop.org/attachment.cgi?id=52687
-dmesg output with drb.debug
+--- Comment #2 from Matias Kreder <delete-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> 2011-10-24 05:59:41 PDT ---
+Created attachment 52688
+  --> https://bugs.freedesktop.org/attachment.cgi?id=52688
+Xorg log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
