@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40507] NV50 multi GPU only one GPU is used by X
-Date: Sat, 22 Oct 2011 21:45:26 +0000
-Message-ID: <bug-40507-8800-3qcrJjhjAG@http.bugs.freedesktop.org/>
-References: <bug-40507-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 42160] New: [NV4e] Mouse pointer disappears randomly
+ after resuming from GNOME screensaver
+Date: Mon, 24 Oct 2011 12:57:36 +0000
+Message-ID: <bug-42160-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40507-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +19,59 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40507
+https://bugs.freedesktop.org/show_bug.cgi?id=42160
 
---- Comment #16 from Thomas van Gulick <thomas-OAIPNaC2qqLgjWiVKyS68A@public.gmane.org> 2011-10-22 14:45:26 PDT ---
-Another intereseting note. Displaying an image to the device which X does not
-recognize is no problem, using fbi on /dev/fb0, using nouveaufb.
+             Bug #: 42160
+           Summary: [NV4e] Mouse pointer disappears randomly after
+                    resuming from GNOME screensaver
+    Classification: Unclassified
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: delete-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Could be that it has nothing with the nouveau driver, but the way X initializes
-nouveau, in which case this ticket should probably be moved to another section?
+
+Created attachment 52686
+  --> https://bugs.freedesktop.org/attachment.cgi?id=52686
+dmesg output
+
+Description of problem:
+
+Using Xorg with nouveau driver, the mouse pointer disappears after resuming
+from the GNOME screensaver or inactivity.
+The mouse still works,  I can click anywhere in the screen but the pointer is
+not seen.
+
+Bug is present in Fedora 15 and Fedora 16 beta.
+
+Version-Release number of selected component (if applicable):
+
+xorg-x11-drv-nouveau-0.0.16-27.20110720gitb806e3f.fc16.x86_64
+kernel-3.1.0-0.rc6.git0.0.fc16.x86_64
+
+How reproducible:
+Always
+
+Steps to Reproduce:
+1. Install Fedora 15/16 in a PC with Geforce 6150
+2. Leave the computer running some time
+3. 
+
+Actual results:
+After inactivity or screensaver (not determined yet) the mouse pointer
+disappears.
+
+Expected results:
+Mouse pointer always alive.
+
+Additional info:
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
