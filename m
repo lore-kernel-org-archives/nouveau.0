@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42160] [NV4e] Mouse pointer disappears randomly
  after resuming from GNOME screensaver
-Date: Mon, 24 Oct 2011 18:22:43 +0000
-Message-ID: <bug-42160-8800-3lXc988g0d@http.bugs.freedesktop.org/>
+Date: Mon, 24 Oct 2011 19:47:39 +0000
+Message-ID: <bug-42160-8800-3FpnpEf8eh@http.bugs.freedesktop.org/>
 References: <bug-42160-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42160
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #3 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-24 12:47:39 PDT ---
+If I remember correctly, the hardware cursor on NV4E is very sensitive/buggy.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #52688|text/x-log                  |text/plain
-          mime type|                            |
+This commit in the nv driver from years ago might give you a lead:
+http://cgit.freedesktop.org/xorg/driver/xf86-video-nv/commit/?id=7f281be7e53ac274016a6af6b2b5dc6f8bddb810
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
