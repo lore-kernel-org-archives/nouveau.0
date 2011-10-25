@@ -1,7 +1,8 @@
-From: Adel Gadllah <adel.gadllah-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] Fix max texture levels on nv50
-Date: Mon, 24 Oct 2011 19:50:18 +0200
-Message-ID: <CAD5qFUnXW2c97FbOnOOBTp64+2r-gKonHQ0Oj_+PyPm0gKnxhg@mail.gmail.com>
+From: Adam Jackson <ajax-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Fix bandwidth calculation for
+	DisplayPort
+Date: Tue, 25 Oct 2011 13:09:43 -0400
+Message-ID: <1319562583-14920-1-git-send-email-ajax@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,43 +19,27 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+Ported from the equivalent fix in drm-intel-next:
 
-The attached patch fixes the texture limits on nv50 to match what the
-hardware is actually capable off.
+http://cgit.freedesktop.org/~keithp/linux/commit/?h=drm-intel-next&id=cd9dde44f47501394b9f0715b6a36a92aa74c0d0
 
------
-
-From: Adel Gadllah <adel.gadllah-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Date: Mon, 24 Oct 2011 19:41:03 +0200
-Subject: [PATCH] Fix max texture levels on nv50
-
-MAX_TEXTURE_2D_LEVELS and MAX_TEXTURE_CUBE_LEVELS are supposed to be
-14 not 13, while MAX_TEXTURE_3D_LEVELS should be 12 not 10.
+Signed-off-by: Adam Jackson <ajax-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- src/gallium/drivers/nv50/nv50_screen.c |    6 +++---
- 1 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_connector.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/src/gallium/drivers/nv50/nv50_screen.c
-b/src/gallium/drivers/nv50/nv50_screen.c
-index 0bd6057..1270c83 100644
---- a/src/gallium/drivers/nv50/nv50_screen.c
-+++ b/src/gallium/drivers/nv50/nv50_screen.c
-@@ -80,11 +80,11 @@ nv50_screen_get_param(struct pipe_screen *pscreen,
-enum pipe_cap param)
-    case PIPE_CAP_MAX_COMBINED_SAMPLERS:
-       return 64;
-    case PIPE_CAP_MAX_TEXTURE_2D_LEVELS:
--      return 13;
-+      return 14;
-    case PIPE_CAP_MAX_TEXTURE_3D_LEVELS:
--      return 10;
-+      return 12;
-    case PIPE_CAP_MAX_TEXTURE_CUBE_LEVELS:
--      return 13;
-+      return 14;
-    case PIPE_CAP_MAX_TEXTURE_ARRAY_LAYERS: /* shader support missing */
-       return 0;
-    case PIPE_CAP_MIN_TEXEL_OFFSET:
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 939d4df..f5ca456 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -717,7 +717,7 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
+ 		else
+ 			max_clock = nv_encoder->dp.link_nr * 162000;
+ 
+-		clock = clock * nouveau_connector_bpp(connector) / 8;
++		clock = clock * nouveau_connector_bpp(connector) / 10;
+ 		break;
+ 	default:
+ 		BUG_ON(1);
 -- 
 1.7.6.4
