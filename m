@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 42280] NVc0 generation card (0x0c1000a1) not working
-Date: Wed, 26 Oct 2011 13:51:11 +0000
-Message-ID: <bug-42280-8800-q8vb5MuRm0@http.bugs.freedesktop.org/>
-References: <bug-42280-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39010] better handling of large pixmaps
+Date: Wed, 26 Oct 2011 16:08:56 +0000
+Message-ID: <bug-39010-8800-p3l8QCMJvv@http.bugs.freedesktop.org/>
+References: <bug-39010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-42280-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +20,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=42280
-
---- Comment #2 from Bruno Antunes <sardaukar.siet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-26 06:51:11 PDT ---
-Created attachment 52796
-  --> https://bugs.freedesktop.org/attachment.cgi?id=52796
-lspci output
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzkwMTAKCi0tLSBD
+b21tZW50ICMxIGZyb20gR3nDtnJneSBCYWxsw7MgPGJhbGxvZ3lAZnJlZXN0YXJ0Lmh1PiAyMDEx
+LTEwLTI2IDA5OjA4OjU2IFBEVCAtLS0KVGhhbmtzIGZvciB5b3VyIHBhdGNoLCBpdCBzb2x2ZXMg
+dGhlIHByb2JsZW0gZm9yIG1lIGluIEZpcmVmb3ggd2l0aCBOVjE3IGNhcmQKb24gQXJjaCBMaW51
+eC4KCkhvd2V2ZXIgSSBzaWxsIGdldCAnZmFpbCB0dG1fdmFsaWRhdGUnIG1lc3NhZ2VzIHdpdGgg
+T3BlbkdMIGFwcHMgKGUuZy4KcXVhZHJhcGFzc2VsLCBlbWVyaWxsb24pLiBXaGVuIEkgZXh0ZW5k
+IHRoZWlyIHdpbmRvdydzIHNpemUgdG8gdGhlIGZ1bGwgc2NyZWVuLAp0aGVpciBjb250ZW50cyBh
+cmUgZGlzYXBwZWFyLCBhbmQgSSBjYW4gc2VlIG9ubHkgYmxhY2sgYW5kIGdyYXkgcmVjdGFuZ2xl
+cy4KVGhlcmUgaXMgbm8gcHJvYmxlbSBpZiBJIHVzZSB0aGVtIG9ubHkgaW4gYSBzbWFsbCB3aW5k
+b3cuIChNeSBzY3JlZW4gcmVzb2x1dGlvbgppcyAxNDQwIMOXIDkwMC4pCgpDb3VsZCB5b3UgaGVs
+cCBtZSB0byBzb2x2ZSB0aGlzIHByb2JsZW0/IE9uIHRoZSBtYWlsaW5nIGxpc3QgeW91IG1lbnRp
+b25lZCBhCmxpYmRybSBwYXRjaCB0byBmYWxsYmFjayBvbiByZWxvYyBmYWlsdXJlcy4gQ291bGQg
+eW91IHNlbmQgbWUgdGhpcyBwYXRjaCBmb3IgYQp0ZXN0LCBwbGVhc2U/IE9yIGRvIHlvdSBrbm93
+IGFueSBvdGhlciB3b3JrYXJvdW5kPwoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1
+Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFy
+ZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWdu
+ZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
