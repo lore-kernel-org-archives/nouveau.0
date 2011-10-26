@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38759] three monitors,
- two graphic cards and Xinerama - almost working
-Date: Tue, 25 Oct 2011 19:21:22 +0000
-Message-ID: <bug-38759-8800-7Py7QagMYS@http.bugs.freedesktop.org/>
-References: <bug-38759-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 42280] New: NVc0 generation card (0x0c1000a1) not
+	working
+Date: Wed, 26 Oct 2011 13:48:12 +0000
+Message-ID: <bug-42280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38759-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +19,35 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38759
+https://bugs.freedesktop.org/show_bug.cgi?id=42280
 
-Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> changed:
+             Bug #: 42280
+           Summary: NVc0 generation card (0x0c1000a1) not working
+    Classification: Unclassified
+           Product: Mesa
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: sardaukar.siet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |INVALID
 
---- Comment #4 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> 2011-10-25 19:21:22 UTC ---
-I changed the status to INVALID since it was already fixed on Git.
+Created attachment 52795
+  --> https://bugs.freedesktop.org/attachment.cgi?id=52795
+dmesg output
 
----
+Hello.
 
-An already resolved four monitors problem is here:
-https://bugs.freedesktop.org/show_bug.cgi?id=39099
+I have an eVGA GT440 PCI-e card, and nouveau does not work. The card in
+question has 1024MB of DDR3 memory.
+
+Attached are the lspci and dmesg logs.
+
+My Linux info:
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
