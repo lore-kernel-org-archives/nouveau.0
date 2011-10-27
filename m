@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42280] NVc0 generation card (0x0c1000a1) not working
-Date: Thu, 27 Oct 2011 16:29:12 +0000
-Message-ID: <bug-42280-8800-O7T6MAqnVE@http.bugs.freedesktop.org/>
+Date: Thu, 27 Oct 2011 17:23:18 +0000
+Message-ID: <bug-42280-8800-QCJyxBIkry@http.bugs.freedesktop.org/>
 References: <bug-42280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42280
 
---- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-27 09:29:12 PDT ---
-Isn't it "nouveau.noaccel=0" instead of "noaccel=0"?
+--- Comment #7 from Bruno Antunes <sardaukar.siet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-27 10:23:18 PDT ---
+will that make the '-19' error go away?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
