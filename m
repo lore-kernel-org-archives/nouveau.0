@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42280] NVc0 generation card (0x0c1000a1) not working
-Date: Thu, 27 Oct 2011 09:11:05 +0000
-Message-ID: <bug-42280-8800-1BJOSEUweN@http.bugs.freedesktop.org/>
+Date: Thu, 27 Oct 2011 09:11:34 +0000
+Message-ID: <bug-42280-8800-rvNFjHv909@http.bugs.freedesktop.org/>
 References: <bug-42280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,21 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42280
 
---- Comment #4 from Bruno Antunes <sardaukar.siet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-27 02:11:05 PDT ---
-By "does not work" I mean I have no 3D accel :)
-
-I'll attach the X log, but the relevant part of it appears to be:
-
-
-[    15.599] (EE) NOUVEAU(0): Error creating GPU channel: -19
-[    15.599] (EE) NOUVEAU(0): Error initialising acceleration.  Falling back to
-NoAccel
-[    15.602] (==) NOUVEAU(0): Backing store disabled
-[    15.602] (==) NOUVEAU(0): Silken mouse enabled
-[    15.602] (==) NOUVEAU(0): DPMS enabled
-[    15.602] (II) NOUVEAU(0): RandR 1.2 enabled, ignore the following RandR
-disabled message.
-[    15.603] (--) RandR disabled
+--- Comment #5 from Bruno Antunes <sardaukar.siet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-27 02:11:34 PDT ---
+Created attachment 52817
+  --> https://bugs.freedesktop.org/attachment.cgi?id=52817
+X.org log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
