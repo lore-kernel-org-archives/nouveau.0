@@ -1,12 +1,13 @@
-From: Adam Jackson <ajax-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Fix bandwidth calculation for
-	DisplayPort
-Date: Tue, 25 Oct 2011 13:09:43 -0400
-Message-ID: <1319562583-14920-1-git-send-email-ajax@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 39010] better handling of large pixmaps
+Date: Thu, 27 Oct 2011 03:03:23 +0000
+Message-ID: <bug-39010-8800-oHp2XmbvC9@http.bugs.freedesktop.org/>
+References: <bug-39010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,27 +20,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ported from the equivalent fix in drm-intel-next:
-
-http://cgit.freedesktop.org/~keithp/linux/commit/?h=drm-intel-next&id=cd9dde44f47501394b9f0715b6a36a92aa74c0d0
-
-Signed-off-by: Adam Jackson <ajax-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 939d4df..f5ca456 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -717,7 +717,7 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
- 		else
- 			max_clock = nv_encoder->dp.link_nr * 162000;
- 
--		clock = clock * nouveau_connector_bpp(connector) / 8;
-+		clock = clock * nouveau_connector_bpp(connector) / 10;
- 		break;
- 	default:
- 		BUG_ON(1);
--- 
-1.7.6.4
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzkwMTAKCi0tLSBD
+b21tZW50ICMyIGZyb20gR3nDtnJneSBCYWxsw7MgPGJhbGxvZ3lAZnJlZXN0YXJ0Lmh1PiAyMDEx
+LTEwLTI2IDIwOjAzOjIzIFBEVCAtLS0KVW5mb3J0dW5hdGVseSwgeW91ciBwYXRjaCBleHRyZW1l
+bHkgc2xvd3MgZG93biBYVmlkZW8gcGVyZm9ybWFuY2UuCgpJIHRoaW5rIHdlIG5lZWQgdG8gZmlu
+ZCBhbm90aGVyIHNvbHV0aW9uIHRvIGF2b2lkIG1lbW9yeSBmbHVzaC4KCi0tIApDb25maWd1cmUg
+YnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1l
+bWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0t
+CllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
