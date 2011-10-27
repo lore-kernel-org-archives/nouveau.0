@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42280] NVc0 generation card (0x0c1000a1) not working
-Date: Wed, 26 Oct 2011 21:07:50 +0000
-Message-ID: <bug-42280-8800-XuOSvfbo4k@http.bugs.freedesktop.org/>
+Date: Thu, 27 Oct 2011 09:11:05 +0000
+Message-ID: <bug-42280-8800-1BJOSEUweN@http.bugs.freedesktop.org/>
 References: <bug-42280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42280
 
---- Comment #3 from Robert Hancock <hancockrwd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-26 21:07:50 UTC ---
-What do you mean by "does not work"? There does not seem to be anything
-obviously abnormal in dmesg. If you're referring to GNOME Shell not working in
-normal mode, then the Xorg.0.log file would be useful.
+--- Comment #4 from Bruno Antunes <sardaukar.siet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-27 02:11:05 PDT ---
+By "does not work" I mean I have no 3D accel :)
+
+I'll attach the X log, but the relevant part of it appears to be:
+
+
+[    15.599] (EE) NOUVEAU(0): Error creating GPU channel: -19
+[    15.599] (EE) NOUVEAU(0): Error initialising acceleration.  Falling back to
+NoAccel
+[    15.602] (==) NOUVEAU(0): Backing store disabled
+[    15.602] (==) NOUVEAU(0): Silken mouse enabled
+[    15.602] (==) NOUVEAU(0): DPMS enabled
+[    15.602] (II) NOUVEAU(0): RandR 1.2 enabled, ignore the following RandR
+disabled message.
+[    15.603] (--) RandR disabled
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
