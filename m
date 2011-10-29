@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42384] X fails on NV11 with Error allocating scanout
 	buffer: 0
-Date: Sat, 29 Oct 2011 19:59:03 +0000
-Message-ID: <bug-42384-8800-W8QiltlWiy@http.bugs.freedesktop.org/>
+Date: Sat, 29 Oct 2011 13:10:12 +0000
+Message-ID: <bug-42384-8800-mEIh2kgU4z@http.bugs.freedesktop.org/>
 References: <bug-42384-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42384
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #52902|text/x-log                  |text/plain
-          mime type|                            |
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-29 13:10:12 UTC ---
+Does it work if you lower bpp/resolution for framebuffer and/or xserver?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
