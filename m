@@ -1,16 +1,12 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: "enable ctxprog xfer only when we need it to save
- power" introduces big performance regression
-Date: Sat, 29 Oct 2011 21:09:38 +0200
-Message-ID: <20111029190938.GA3105@joi.lan>
-References: <20111029170801.GA3219@joi.lan>
- <20111029172923.GA3110@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 42384] New: X fails on NV11 with Error allocating
+ scanout buffer: 0
+Date: Sat, 29 Oct 2011 12:40:57 +0000
+Message-ID: <bug-42384-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20111029172923.GA3110-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +16,64 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Oct 29, 2011 at 07:29:23PM +0200, Marcin Slusarz wrote:
-> On Sat, Oct 29, 2011 at 07:08:01PM +0200, Marcin Slusarz wrote:
-> > Hi
-> > 
-> > I've bisected pretty big performance regression (nv92):
-> > 
-> > $ git bisect good
-> > b2737681d5442f05ab6419e05468c3d2511a5ced is the first bad commit
-> > commit b2737681d5442f05ab6419e05468c3d2511a5ced
-> > Author: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
-> > Date:   Sat Jul 30 23:08:45 2011 +0200
-> > 
-> >     drm/nv50/gr: enable ctxprog xfer only when we need it to save power
-> 
-> Weird, reverting it on top of current git does not restore it - in
-> glxgears it's even worse (-~50%).
+https://bugs.freedesktop.org/show_bug.cgi?id=42384
 
-It seems "drm/nv50/gr: refactor initialisation" relies on the above.
+             Bug #: 42384
+           Summary: X fails on NV11 with Error allocating scanout buffer:
+                    0
+    Classification: Unclassified
+           Product: xorg
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-So, reverting these commits:
 
-drm/nv50/gr: typo fix, how about we not reset fifo during graph init?
-drm/nv50/gr: refactor initialisation
-drm/nv50/gr: enable ctxprog xfer only when we need it to save power
+Created attachment 52902
+  --> https://bugs.freedesktop.org/attachment.cgi?id=52902
+xorg log
 
-on top of current git restores performance to the previous state.
+Hi,
 
-(First commit fixes bug in 2nd, so it needs to be reverted first)
+I have an old Geforce2Go card (NV11). The nouveau framebuffer is working fine
+(KMS enabled), but X won't start with the nouveau driver (it's okay with
+fbdev):
 
-Marcin
+[    54.231] (II) NOUVEAU(0): Opened GPU channel 1
+[    54.231] (II) NOUVEAU(0): [DRI2] Setup complete
+[    54.231] (II) NOUVEAU(0): [DRI2]   DRI driver: nouveau_vieux
+[    54.231] (II) NOUVEAU(0): [DRI2]   VDPAU driver: nouveau_vieux
+[    54.233] (EE) NOUVEAU(0): Error allocating scanout buffer: 0
+[    54.233] 
+Fatal server error:
+[    54.233] AddScreen/ScreenInit failed for driver 0
+
+I'm on Fedora 15 and I have tried with the latest packaged driver and with a
+build of xf86-video-nouveau from git.
+
+xf86-video-nouveau: git 29 Oct 2011
+libdrm-2.4.26-1.fc15.i686
+xorg-x11-server-Xorg-1.10.4-1.fc15.i686
+
+I'm not interested in 3D, but I can't work out if there's something I've failed
+to disable. If you need me to enable more debug, please point to some
+instructions on how to do this.
+
+dmesg, Xorg logs & cfg attached.
+
+Regards,
+Chris.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
