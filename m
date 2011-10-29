@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42384] X fails on NV11 with Error allocating scanout
 	buffer: 0
-Date: Sat, 29 Oct 2011 19:42:27 +0000
-Message-ID: <bug-42384-8800-XenhHDMw9M@http.bugs.freedesktop.org/>
+Date: Sat, 29 Oct 2011 12:43:04 +0000
+Message-ID: <bug-42384-8800-orV3os7y0q@http.bugs.freedesktop.org/>
 References: <bug-42384-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42384
 
---- Comment #1 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> 2011-10-29 12:42:27 PDT ---
-Created attachment 52903
-  --> https://bugs.freedesktop.org/attachment.cgi?id=52903
-kernel log
+--- Comment #2 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> 2011-10-29 12:43:04 UTC ---
+Created attachment 52904
+  --> https://bugs.freedesktop.org/attachment.cgi?id=52904
+xorg config
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
