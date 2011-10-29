@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41585] X freeze and PGRAPH errors in dmesg
-Date: Sat, 29 Oct 2011 12:47:16 +0000
-Message-ID: <bug-41585-8800-NXPvu705AW@http.bugs.freedesktop.org/>
-References: <bug-41585-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: "enable ctxprog xfer only when we need it to save power"
+ introduces big performance regression
+Date: Sat, 29 Oct 2011 19:08:01 +0200
+Message-ID: <20111029170801.GA3219@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41585-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,17 +17,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=41585
+Hi
 
---- Comment #11 from dirkneukirchen-S0/GAf8tV78@public.gmane.org 2011-10-29 05:47:16 PDT ---
-Created attachment 52884
-  --> https://bugs.freedesktop.org/attachment.cgi?id=52884
-Log: Piglit sanity.tests failing
+I've bisected pretty big performance regression (nv92):
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+$ git bisect good
+b2737681d5442f05ab6419e05468c3d2511a5ced is the first bad commit
+commit b2737681d5442f05ab6419e05468c3d2511a5ced
+Author: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+Date:   Sat Jul 30 23:08:45 2011 +0200
+
+    drm/nv50/gr: enable ctxprog xfer only when we need it to save power
+
+    This patch adds instructions to ctxprog and by doing, impacts context
+    switching performance.  My testcase showed a 1% performance cost using
+    glxgears that is a context-switch bound application.
+
+    Please test and report bugs/performance/power/other.
+
+    Many thanks to Maxim Levitsky for his dedicated work on lowering power
+    consumption with nouveau.
+
+    More patches are coming thanks to his work:
+
+    https://bugs.freedesktop.org/show_bug.cgi?id=37922
+
+    Signed-off-by: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+:040000 040000 3fcd1388cf04c71cb7a11f29f7be6033c948f119 418a527ee5970eabaa0eb6f8cb3dc96b4da523ea M      drivers
+
+The numbers are (FPS):
+nexuiz:            61 ->   49 (-19%)
+xonotic:           59 ->   37 (-37%)
+openarena:        163 ->  127 (-22%)
+world of padman:  242 ->  181 (-25%)
+warsow:            91 ->   61 (-32%)
+glxgears:        1198 -> 1107 (- 7%)
+
+Now, what can we do about it?
+
+Marcin
