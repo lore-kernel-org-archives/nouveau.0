@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39010] better handling of large pixmaps
-Date: Sun, 30 Oct 2011 08:56:11 +0000
-Message-ID: <bug-39010-8800-tKdhR0fRUR@http.bugs.freedesktop.org/>
+Date: Sun, 30 Oct 2011 09:02:30 +0000
+Message-ID: <bug-39010-8800-fegXFCEtwX@http.bugs.freedesktop.org/>
 References: <bug-39010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,7 +22,7 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39010
 
---- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2011-10-30 01:56:11 PDT ---
+--- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2011-10-30 02:02:30 PDT ---
 (In reply to comment #3)
 > Created attachment 52905 [details] [review]
 > exa: set max dimensions based on available VRAM
@@ -39,15 +39,14 @@ https://bugs.freedesktop.org/show_bug.cgi?id=39010
 > 
 > I tested this patch only on NV17 with 64 MB VRAM.
 
-Hm .... but those limits may also reflect some hw (family-specific) limits?
-What about more complex check? Pseudo : 
+And anyway ... shouldn't big pixmaps in case of vram shortage just be placed in
+GART, and used from it? (sure, xvideo will be slower ...special hint for xv
+pixmaps? can't remember if its already there .....)
 
-if card_family == NV10 
-{ if vram >= nv_10_min_ram : exa->maxX= 4096; else exa->maxX = 2046; } 
- elseif card_family == NV50
-{ if vram >= nv_50_min_vram : exa->maxX = 8190; else exa->maxX = 4096; }
-exa->maxX =  2046
-endif
+I have hacked up 2.6.38 kernel (frambuffer default bpp to 8, not 32 -> 5 to 1
+mb of vram saved) on machine with tnt2 vanta - 8mb/AGP - it works ... even as
+OpenGL hw renderer, i just need to lower resolution back to 640x480x32 for good
+Quake1.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
