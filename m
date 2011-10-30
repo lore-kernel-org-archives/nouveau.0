@@ -1,17 +1,16 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: =?UTF-8?Q?Marcin_Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
 Subject: Re: "enable ctxprog xfer only when we need it to save
  power" introduces big performance regression
-Date: Sun, 30 Oct 2011 11:33:49 +0100
-Message-ID: <20111030103349.GA3157@joi.lan>
+Date: Sun, 30 Oct 2011 12:37:53 +0200
+Message-ID: <b1e51088ca3c6498d71e414bd1878856@0x04.net>
 References: <20111029170801.GA3219@joi.lan> <20111029172923.GA3110@joi.lan>
-	<20111029190938.GA3105@joi.lan>
-	<1319934308.4078.1.camel@maxim-laptop>
+	<20111029190938.GA3105@joi.lan> <1319934308.4078.1.camel@maxim-laptop>
+	<20111030103349.GA3157@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1319934308.4078.1.camel@maxim-laptop>
+In-Reply-To: <20111030103349.GA3157-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +20,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>, Martin-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Oct 30, 2011 at 02:25:08AM +0200, Maxim Levitsky wrote:
-> On Sat, 2011-10-29 at 21:09 +0200, Marcin Slusarz wrote:
-> > On Sat, Oct 29, 2011 at 07:29:23PM +0200, Marcin Slusarz wrote:
-> > > On Sat, Oct 29, 2011 at 07:08:01PM +0200, Marcin Slusarz wrote:
-> > > > Hi
-> > > > 
-> > > > I've bisected pretty big performance regression (nv92):
-> > > > 
-> > > > $ git bisect good
-> > > > b2737681d5442f05ab6419e05468c3d2511a5ced is the first bad commit
-> > > > commit b2737681d5442f05ab6419e05468c3d2511a5ced
-> > > > Author: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
-> > > > Date:   Sat Jul 30 23:08:45 2011 +0200
-> > > > 
-> > > >     drm/nv50/gr: enable ctxprog xfer only when we need it to save power
-> > > 
-> > > Weird, reverting it on top of current git does not restore it - in
-> > > glxgears it's even worse (-~50%).
-> > 
-> > It seems "drm/nv50/gr: refactor initialisation" relies on the above.
-> > 
-> > So, reverting these commits:
-> > 
-> > drm/nv50/gr: typo fix, how about we not reset fifo during graph init?
-> > drm/nv50/gr: refactor initialisation
-> > drm/nv50/gr: enable ctxprog xfer only when we need it to save power
-> > 
-> > on top of current git restores performance to the previous state.
-> > 
-> > (First commit fixes bug in 2nd, so it needs to be reverted first)
-> > 
-> > Marcin
-> 
-> 
-> could you extract the ctxprog blob uses on your system and post it?
-> 
-
-How can I extract it?
-
-Marcin
+T24gMzAuMTAuMjAxMSAxMjozMywgTWFyY2luIFNsdXNhcnogd3JvdGU6Cj4gT24gU3VuLCBPY3Qg
+MzAsIDIwMTEgYXQgMDI6MjU6MDhBTSArMDIwMCwgTWF4aW0gTGV2aXRza3kgd3JvdGU6Cj4+IE9u
+IFNhdCwgMjAxMS0xMC0yOSBhdCAyMTowOSArMDIwMCwgTWFyY2luIFNsdXNhcnogd3JvdGU6Cj4+
+ID4gT24gU2F0LCBPY3QgMjksIDIwMTEgYXQgMDc6Mjk6MjNQTSArMDIwMCwgTWFyY2luIFNsdXNh
+cnogd3JvdGU6Cj4+ID4gPiBPbiBTYXQsIE9jdCAyOSwgMjAxMSBhdCAwNzowODowMVBNICswMjAw
+LCBNYXJjaW4gU2x1c2FyeiB3cm90ZToKPj4gPiA+ID4gSGkKPj4gPiA+ID4KPj4gPiA+ID4gSSd2
+ZSBiaXNlY3RlZCBwcmV0dHkgYmlnIHBlcmZvcm1hbmNlIHJlZ3Jlc3Npb24gKG52OTIpOgo+PiA+
+ID4gPgo+PiA+ID4gPiAkIGdpdCBiaXNlY3QgZ29vZAo+PiA+ID4gPiBiMjczNzY4MWQ1NDQyZjA1
+YWI2NDE5ZTA1NDY4YzNkMjUxMWE1Y2VkIGlzIHRoZSBmaXJzdCBiYWQgCj4+IGNvbW1pdAo+PiA+
+ID4gPiBjb21taXQgYjI3Mzc2ODFkNTQ0MmYwNWFiNjQxOWUwNTQ2OGMzZDI1MTFhNWNlZAo+PiA+
+ID4gPiBBdXRob3I6IE1hcnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGVuc2ktYm91cmdlcy5mcj4K
+Pj4gPiA+ID4gRGF0ZTogICBTYXQgSnVsIDMwIDIzOjA4OjQ1IDIwMTEgKzAyMDAKPj4gPiA+ID4K
+Pj4gPiA+ID4gICAgIGRybS9udjUwL2dyOiBlbmFibGUgY3R4cHJvZyB4ZmVyIG9ubHkgd2hlbiB3
+ZSBuZWVkIGl0IHRvIAo+PiBzYXZlIHBvd2VyCj4+ID4gPgo+PiA+ID4gV2VpcmQsIHJldmVydGlu
+ZyBpdCBvbiB0b3Agb2YgY3VycmVudCBnaXQgZG9lcyBub3QgcmVzdG9yZSBpdCAtIAo+PiBpbgo+
+PiA+ID4gZ2x4Z2VhcnMgaXQncyBldmVuIHdvcnNlICgtfjUwJSkuCj4+ID4KPj4gPiBJdCBzZWVt
+cyAiZHJtL252NTAvZ3I6IHJlZmFjdG9yIGluaXRpYWxpc2F0aW9uIiByZWxpZXMgb24gdGhlIAo+
+PiBhYm92ZS4KPj4gPgo+PiA+IFNvLCByZXZlcnRpbmcgdGhlc2UgY29tbWl0czoKPj4gPgo+PiA+
+IGRybS9udjUwL2dyOiB0eXBvIGZpeCwgaG93IGFib3V0IHdlIG5vdCByZXNldCBmaWZvIGR1cmlu
+ZyBncmFwaCAKPj4gaW5pdD8KPj4gPiBkcm0vbnY1MC9ncjogcmVmYWN0b3IgaW5pdGlhbGlzYXRp
+b24KPj4gPiBkcm0vbnY1MC9ncjogZW5hYmxlIGN0eHByb2cgeGZlciBvbmx5IHdoZW4gd2UgbmVl
+ZCBpdCB0byBzYXZlIAo+PiBwb3dlcgo+PiA+Cj4+ID4gb24gdG9wIG9mIGN1cnJlbnQgZ2l0IHJl
+c3RvcmVzIHBlcmZvcm1hbmNlIHRvIHRoZSBwcmV2aW91cyBzdGF0ZS4KPj4gPgo+PiA+IChGaXJz
+dCBjb21taXQgZml4ZXMgYnVnIGluIDJuZCwgc28gaXQgbmVlZHMgdG8gYmUgcmV2ZXJ0ZWQgZmly
+c3QpCj4+ID4KPj4gPiBNYXJjaW4KPj4KPj4KPj4gY291bGQgeW91IGV4dHJhY3QgdGhlIGN0eHBy
+b2cgYmxvYiB1c2VzIG9uIHlvdXIgc3lzdGVtIGFuZCBwb3N0IGl0Pwo+Pgo+Cj4gSG93IGNhbiBJ
+IGV4dHJhY3QgaXQ/Cj4KPiBNYXJjaW4KCkRvIGEgbW1pb3RyYWNlLCBsb29rIGZvciBhIHN0cmlu
+ZyBvZiB3cml0ZXMgdG8gNDAwMzI4IHByZWNlZGVkIGJ5IGEgCndyaXRlIG9mIDAgdG8gNDAwMzI0
+LgoKTWFyY2luIEtvxZtjaWVsbmlja2kKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
