@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42384] X fails on NV11 with Error allocating scanout
 	buffer: 0
-Date: Sun, 30 Oct 2011 16:06:24 +0000
-Message-ID: <bug-42384-8800-323ku1Rpkr@http.bugs.freedesktop.org/>
+Date: Sun, 30 Oct 2011 16:07:22 +0000
+Message-ID: <bug-42384-8800-kKdKLWWT0u@http.bugs.freedesktop.org/>
 References: <bug-42384-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,38 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42384
 
---- Comment #5 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> 2011-10-30 09:06:24 PDT ---
-You're absolutely right. The VRAM is 16Mb. I was misled by the GART aperture
-being 64Mb.
+Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> changed:
 
-No need for the hack. I managed to get it working by setting the framebuffer to
-8bpp at the lowest resolution listed in the modelines from the Xorg log
-(640x350). I can then get X working at full resolution as long as I use 16bpp.
-These together account for <4Mb, so something is being profligate with the
-VRAM, but it works, so I'm happy. Thankyou for your help.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #52903|0                           |1
+        is obsolete|                            |
 
-For the record, I put the following on the end of the kernel line in grub.conf:
-    video=LVDS-1:640x350-8
-
-and my xorg.conf looks like this:
-
-Section "Device"
-        Identifier      "n"
-        Driver          "nouveau"
-EndSection
-
-Section "Screen"
-        Identifier      "n"
-        Device          "n"
-        DefaultDepth    16
-
-        SubSection "Display"
-                Depth   16
-                Modes   "1600x1200"
-        EndSubSection
-EndSection
-
-I'll attach new logs.
+--- Comment #6 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> 2011-10-30 09:07:22 PDT ---
+Created attachment 52921
+  --> https://bugs.freedesktop.org/attachment.cgi?id=52921
+dmesg for working config
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
