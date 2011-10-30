@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42398] [nv92] full screen apps flash very frequently
  if pageflipping is enabled
-Date: Sun, 30 Oct 2011 13:43:27 +0000
-Message-ID: <bug-42398-8800-Oq43tiuKti@http.bugs.freedesktop.org/>
+Date: Sun, 30 Oct 2011 13:43:59 +0000
+Message-ID: <bug-42398-8800-FpE4aFSliA@http.bugs.freedesktop.org/>
 References: <bug-42398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42398
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #52911|application/octet-stream    |text/plain
-          mime type|                            |
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-30 06:43:59 PDT ---
+Created attachment 52912
+  --> https://bugs.freedesktop.org/attachment.cgi?id=52912
+xorg.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
