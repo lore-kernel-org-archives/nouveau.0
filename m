@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39010] better handling of large pixmaps
-Date: Sun, 30 Oct 2011 07:40:40 +0000
-Message-ID: <bug-39010-8800-6DRzQfZ88a@http.bugs.freedesktop.org/>
+Date: Sun, 30 Oct 2011 08:56:11 +0000
+Message-ID: <bug-39010-8800-tKdhR0fRUR@http.bugs.freedesktop.org/>
 References: <bug-39010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,22 +20,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzkwMTAKCi0tLSBD
-b21tZW50ICMzIGZyb20gR3nDtnJneSBCYWxsw7MgPGJhbGxvZ3lAZnJlZXN0YXJ0Lmh1PiAyMDEx
-LTEwLTMwIDAwOjQwOjQwIFBEVCAtLS0KQ3JlYXRlZCBhdHRhY2htZW50IDUyOTA1CiAgLS0+IGh0
-dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NTI5MDUKZXhhOiBz
-ZXQgbWF4IGRpbWVuc2lvbnMgYmFzZWQgb24gYXZhaWxhYmxlIFZSQU0KCkkgZm91bmQgYSBzb2x1
-dGlvbiEKClNpbmNlIHRoZSBWUkFNIHNpemUgY291bGQgdmFyeSBpbnNpZGUgZWFjaCBzZXJpZXMg
-b2YgY2FyZHMgKGUuZy4gTlYxMCBjYXJkcyBtYXkKaGF2ZSAzMiwgNjQgb3IgMTI4IE1CIFZSQU0p
-LCBpdCB3b3VsZCBiZXR0ZXIgdG8gc2V0IG1heCBkaW1lbnNpb25zIGJhc2VkIG9uCmF2YWlsYWJs
-ZSBWUkFNIGluc3RlYWQgb2YgY2FyZCBzZXJpZXMuCgpNeSBwcm9wb3NlZCBwYXRjaCBlbnN1cmVz
-IHRoYXQgd2UgYWx3YXlzIGhhdmUgZW5vdWdoIHNwYWNlIGluIFZSQU0gdG8gcHJvY2VzcwppbWFn
-ZXMuIEl0IGZpeGVzIG1lbW9yeSBmbHVzaCBvbiA2NCBNQiBjYXJkcywgYW5kIGFkZHMgYmFjayBl
-eGEgc3VwcG9ydCBmb3IKY2FyZHMgdGhhdCBoYXZlIDMyIE1CIG9yIGxlc3MgbWVtb3J5ICh3aXRo
-IGEgbWluaW1hbCA4IE1CIFZSQU0pLgoKSSB0ZXN0ZWQgdGhpcyBwYXRjaCBvbmx5IG9uIE5WMTcg
-d2l0aCA2NCBNQiBWUkFNLgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJl
-ZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNl
-aXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9y
-IHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=39010
+
+--- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2011-10-30 01:56:11 PDT ---
+(In reply to comment #3)
+> Created attachment 52905 [details] [review]
+> exa: set max dimensions based on available VRAM
+> 
+> I found a solution!
+> 
+> Since the VRAM size could vary inside each series of cards (e.g. NV10 cards may
+> have 32, 64 or 128 MB VRAM), it would better to set max dimensions based on
+> available VRAM instead of card series.
+> 
+> My proposed patch ensures that we always have enough space in VRAM to process
+> images. It fixes memory flush on 64 MB cards, and adds back exa support for
+> cards that have 32 MB or less memory (with a minimal 8 MB VRAM).
+> 
+> I tested this patch only on NV17 with 64 MB VRAM.
+
+Hm .... but those limits may also reflect some hw (family-specific) limits?
+What about more complex check? Pseudo : 
+
+if card_family == NV10 
+{ if vram >= nv_10_min_ram : exa->maxX= 4096; else exa->maxX = 2046; } 
+ elseif card_family == NV50
+{ if vram >= nv_50_min_vram : exa->maxX = 8190; else exa->maxX = 4096; }
+exa->maxX =  2046
+endif
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
