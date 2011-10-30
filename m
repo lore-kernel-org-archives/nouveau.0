@@ -1,16 +1,14 @@
-From: =?UTF-8?Q?Marcin_Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: Re: "enable ctxprog xfer only when we need it to save
- power" introduces big performance regression
-Date: Sun, 30 Oct 2011 12:37:53 +0200
-Message-ID: <b1e51088ca3c6498d71e414bd1878856@0x04.net>
-References: <20111029170801.GA3219@joi.lan> <20111029172923.GA3110@joi.lan>
-	<20111029190938.GA3105@joi.lan> <1319934308.4078.1.camel@maxim-laptop>
-	<20111030103349.GA3157@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 42384] X fails on NV11 with Error allocating scanout
+	buffer: 0
+Date: Sun, 30 Oct 2011 10:55:48 +0000
+Message-ID: <bug-42384-8800-6tYp2JBAPo@http.bugs.freedesktop.org/>
+References: <bug-42384-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20111030103349.GA3157-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <bug-42384-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +18,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>, Martin-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMzAuMTAuMjAxMSAxMjozMywgTWFyY2luIFNsdXNhcnogd3JvdGU6Cj4gT24gU3VuLCBPY3Qg
-MzAsIDIwMTEgYXQgMDI6MjU6MDhBTSArMDIwMCwgTWF4aW0gTGV2aXRza3kgd3JvdGU6Cj4+IE9u
-IFNhdCwgMjAxMS0xMC0yOSBhdCAyMTowOSArMDIwMCwgTWFyY2luIFNsdXNhcnogd3JvdGU6Cj4+
-ID4gT24gU2F0LCBPY3QgMjksIDIwMTEgYXQgMDc6Mjk6MjNQTSArMDIwMCwgTWFyY2luIFNsdXNh
-cnogd3JvdGU6Cj4+ID4gPiBPbiBTYXQsIE9jdCAyOSwgMjAxMSBhdCAwNzowODowMVBNICswMjAw
-LCBNYXJjaW4gU2x1c2FyeiB3cm90ZToKPj4gPiA+ID4gSGkKPj4gPiA+ID4KPj4gPiA+ID4gSSd2
-ZSBiaXNlY3RlZCBwcmV0dHkgYmlnIHBlcmZvcm1hbmNlIHJlZ3Jlc3Npb24gKG52OTIpOgo+PiA+
-ID4gPgo+PiA+ID4gPiAkIGdpdCBiaXNlY3QgZ29vZAo+PiA+ID4gPiBiMjczNzY4MWQ1NDQyZjA1
-YWI2NDE5ZTA1NDY4YzNkMjUxMWE1Y2VkIGlzIHRoZSBmaXJzdCBiYWQgCj4+IGNvbW1pdAo+PiA+
-ID4gPiBjb21taXQgYjI3Mzc2ODFkNTQ0MmYwNWFiNjQxOWUwNTQ2OGMzZDI1MTFhNWNlZAo+PiA+
-ID4gPiBBdXRob3I6IE1hcnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGVuc2ktYm91cmdlcy5mcj4K
-Pj4gPiA+ID4gRGF0ZTogICBTYXQgSnVsIDMwIDIzOjA4OjQ1IDIwMTEgKzAyMDAKPj4gPiA+ID4K
-Pj4gPiA+ID4gICAgIGRybS9udjUwL2dyOiBlbmFibGUgY3R4cHJvZyB4ZmVyIG9ubHkgd2hlbiB3
-ZSBuZWVkIGl0IHRvIAo+PiBzYXZlIHBvd2VyCj4+ID4gPgo+PiA+ID4gV2VpcmQsIHJldmVydGlu
-ZyBpdCBvbiB0b3Agb2YgY3VycmVudCBnaXQgZG9lcyBub3QgcmVzdG9yZSBpdCAtIAo+PiBpbgo+
-PiA+ID4gZ2x4Z2VhcnMgaXQncyBldmVuIHdvcnNlICgtfjUwJSkuCj4+ID4KPj4gPiBJdCBzZWVt
-cyAiZHJtL252NTAvZ3I6IHJlZmFjdG9yIGluaXRpYWxpc2F0aW9uIiByZWxpZXMgb24gdGhlIAo+
-PiBhYm92ZS4KPj4gPgo+PiA+IFNvLCByZXZlcnRpbmcgdGhlc2UgY29tbWl0czoKPj4gPgo+PiA+
-IGRybS9udjUwL2dyOiB0eXBvIGZpeCwgaG93IGFib3V0IHdlIG5vdCByZXNldCBmaWZvIGR1cmlu
-ZyBncmFwaCAKPj4gaW5pdD8KPj4gPiBkcm0vbnY1MC9ncjogcmVmYWN0b3IgaW5pdGlhbGlzYXRp
-b24KPj4gPiBkcm0vbnY1MC9ncjogZW5hYmxlIGN0eHByb2cgeGZlciBvbmx5IHdoZW4gd2UgbmVl
-ZCBpdCB0byBzYXZlIAo+PiBwb3dlcgo+PiA+Cj4+ID4gb24gdG9wIG9mIGN1cnJlbnQgZ2l0IHJl
-c3RvcmVzIHBlcmZvcm1hbmNlIHRvIHRoZSBwcmV2aW91cyBzdGF0ZS4KPj4gPgo+PiA+IChGaXJz
-dCBjb21taXQgZml4ZXMgYnVnIGluIDJuZCwgc28gaXQgbmVlZHMgdG8gYmUgcmV2ZXJ0ZWQgZmly
-c3QpCj4+ID4KPj4gPiBNYXJjaW4KPj4KPj4KPj4gY291bGQgeW91IGV4dHJhY3QgdGhlIGN0eHBy
-b2cgYmxvYiB1c2VzIG9uIHlvdXIgc3lzdGVtIGFuZCBwb3N0IGl0Pwo+Pgo+Cj4gSG93IGNhbiBJ
-IGV4dHJhY3QgaXQ/Cj4KPiBNYXJjaW4KCkRvIGEgbW1pb3RyYWNlLCBsb29rIGZvciBhIHN0cmlu
-ZyBvZiB3cml0ZXMgdG8gNDAwMzI4IHByZWNlZGVkIGJ5IGEgCndyaXRlIG9mIDAgdG8gNDAwMzI0
-LgoKTWFyY2luIEtvxZtjaWVsbmlja2kKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=42384
+
+--- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-30 03:55:48 PDT ---
+On Sat, Oct 29, 2011 at 11:26:59PM +0100, Chris Paulson-Ellis wrote:
+> On 29/10/11 22:06, Chris Paulson-Ellis wrote:
+> > On 29/10/11 14:10, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org wrote:
+> >> https://bugs.freedesktop.org/show_bug.cgi?id=42384
+> >>
+> >> --- Comment #3 from Marcin Slusarz<marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  
+> >> 2011-10-29 13:10:12 UTC ---
+> >> Does it work if you lower bpp/resolution for framebuffer and/or xserver?
+> >>
+> >
+> > Can't get bugzilla to work for this comment at present,...
+
+Then please CC bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org - mails will be automatically
+appended to bugreport.
+
+> > Yes. It works if I reduce the framebuffer and the X server to 800x600 
+> > 16bpp. Just reducing to 16bpp doesn't work. Just changing the X server 
+> > doesn't work, I have to change the framebuffer too.
+> >
+> > The card has 64MiB.
+
+Nouveau detects only 16 MB of VRAM. Can you verify it by looking at the card?
+According to http://www.nvidia.com/page/geforce2go.html there were 16, 32
+and 64 MB versions of GeForce2 Go.
+
+Very similar bug was reported few months ago:
+http://lists.freedesktop.org/archives/nouveau/2011-July/008631.html
+
+Can you test patch (hack) posted there?
+
+> I can also get it to work using "NoAccel", including at full 1600x1200, 
+> depth 24, although obviously with fbdev-like performance.
+
+Note: that's almost half of your VRAM.
+
+Marcin
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
