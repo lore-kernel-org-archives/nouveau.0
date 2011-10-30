@@ -1,16 +1,13 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: "enable ctxprog xfer only when we need it to save
- power" introduces big performance regression
-Date: Sun, 30 Oct 2011 11:15:29 +1000
-Message-ID: <1319937329.4794.0.camel@nisroch>
-References: <20111029170801.GA3219@joi.lan> <20111029172923.GA3110@joi.lan>
-	<CAGZ4FETt6QzMkxrMQwJsszjuQq0wdt85ujRZbxkdurkduaHh2A@mail.gmail.com>
-Reply-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 39010] better handling of large pixmaps
+Date: Sun, 30 Oct 2011 07:40:40 +0000
+Message-ID: <bug-39010-8800-6DRzQfZ88a@http.bugs.freedesktop.org/>
+References: <bug-39010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAGZ4FETt6QzMkxrMQwJsszjuQq0wdt85ujRZbxkdurkduaHh2A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +17,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, 2011-10-29 at 20:00 +0200, Maarten Maathuis wrote:
-> On Sat, Oct 29, 2011 at 7:29 PM, Marcin Slusarz
-> <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > On Sat, Oct 29, 2011 at 07:08:01PM +0200, Marcin Slusarz wrote:
-> >> Hi
-> >>
-> >> I've bisected pretty big performance regression (nv92):
-> >>
-> >> $ git bisect good
-> >> b2737681d5442f05ab6419e05468c3d2511a5ced is the first bad commit
-> >> commit b2737681d5442f05ab6419e05468c3d2511a5ced
-> >> Author: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
-> >> Date:   Sat Jul 30 23:08:45 2011 +0200
-> >>
-> >>     drm/nv50/gr: enable ctxprog xfer only when we need it to save power
-> >
-> > Weird, reverting it on top of current git does not restore it - in
-> > glxgears it's even worse (-~50%).
-> >
-> > Marcin
-> > _______________________________________________
-> > Nouveau mailing list
-> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > http://lists.freedesktop.org/mailman/listinfo/nouveau
-> >
-> 
-> Before this patch, what ensured that context switching was enabled?
-It was enabled by default during graph init, this was removed with the
-"drm/nv50/gr: refactor initialisation" commit.
-
-Ben.
-> 
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzkwMTAKCi0tLSBD
+b21tZW50ICMzIGZyb20gR3nDtnJneSBCYWxsw7MgPGJhbGxvZ3lAZnJlZXN0YXJ0Lmh1PiAyMDEx
+LTEwLTMwIDAwOjQwOjQwIFBEVCAtLS0KQ3JlYXRlZCBhdHRhY2htZW50IDUyOTA1CiAgLS0+IGh0
+dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NTI5MDUKZXhhOiBz
+ZXQgbWF4IGRpbWVuc2lvbnMgYmFzZWQgb24gYXZhaWxhYmxlIFZSQU0KCkkgZm91bmQgYSBzb2x1
+dGlvbiEKClNpbmNlIHRoZSBWUkFNIHNpemUgY291bGQgdmFyeSBpbnNpZGUgZWFjaCBzZXJpZXMg
+b2YgY2FyZHMgKGUuZy4gTlYxMCBjYXJkcyBtYXkKaGF2ZSAzMiwgNjQgb3IgMTI4IE1CIFZSQU0p
+LCBpdCB3b3VsZCBiZXR0ZXIgdG8gc2V0IG1heCBkaW1lbnNpb25zIGJhc2VkIG9uCmF2YWlsYWJs
+ZSBWUkFNIGluc3RlYWQgb2YgY2FyZCBzZXJpZXMuCgpNeSBwcm9wb3NlZCBwYXRjaCBlbnN1cmVz
+IHRoYXQgd2UgYWx3YXlzIGhhdmUgZW5vdWdoIHNwYWNlIGluIFZSQU0gdG8gcHJvY2VzcwppbWFn
+ZXMuIEl0IGZpeGVzIG1lbW9yeSBmbHVzaCBvbiA2NCBNQiBjYXJkcywgYW5kIGFkZHMgYmFjayBl
+eGEgc3VwcG9ydCBmb3IKY2FyZHMgdGhhdCBoYXZlIDMyIE1CIG9yIGxlc3MgbWVtb3J5ICh3aXRo
+IGEgbWluaW1hbCA4IE1CIFZSQU0pLgoKSSB0ZXN0ZWQgdGhpcyBwYXRjaCBvbmx5IG9uIE5WMTcg
+d2l0aCA2NCBNQiBWUkFNLgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJl
+ZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNl
+aXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9y
+IHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
