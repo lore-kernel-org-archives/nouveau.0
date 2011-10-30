@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39010] better handling of large pixmaps
-Date: Sun, 30 Oct 2011 09:02:30 +0000
-Message-ID: <bug-39010-8800-fegXFCEtwX@http.bugs.freedesktop.org/>
-References: <bug-39010-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: "enable ctxprog xfer only when we need it to save
+ power" introduces big performance regression
+Date: Sun, 30 Oct 2011 11:33:49 +0100
+Message-ID: <20111030103349.GA3157@joi.lan>
+References: <20111029170801.GA3219@joi.lan> <20111029172923.GA3110@joi.lan>
+	<20111029190938.GA3105@joi.lan>
+	<1319934308.4078.1.camel@maxim-laptop>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <1319934308.4078.1.camel@maxim-laptop>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,38 +21,47 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39010
-
---- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2011-10-30 02:02:30 PDT ---
-(In reply to comment #3)
-> Created attachment 52905 [details] [review]
-> exa: set max dimensions based on available VRAM
+On Sun, Oct 30, 2011 at 02:25:08AM +0200, Maxim Levitsky wrote:
+> On Sat, 2011-10-29 at 21:09 +0200, Marcin Slusarz wrote:
+> > On Sat, Oct 29, 2011 at 07:29:23PM +0200, Marcin Slusarz wrote:
+> > > On Sat, Oct 29, 2011 at 07:08:01PM +0200, Marcin Slusarz wrote:
+> > > > Hi
+> > > > 
+> > > > I've bisected pretty big performance regression (nv92):
+> > > > 
+> > > > $ git bisect good
+> > > > b2737681d5442f05ab6419e05468c3d2511a5ced is the first bad commit
+> > > > commit b2737681d5442f05ab6419e05468c3d2511a5ced
+> > > > Author: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
+> > > > Date:   Sat Jul 30 23:08:45 2011 +0200
+> > > > 
+> > > >     drm/nv50/gr: enable ctxprog xfer only when we need it to save power
+> > > 
+> > > Weird, reverting it on top of current git does not restore it - in
+> > > glxgears it's even worse (-~50%).
+> > 
+> > It seems "drm/nv50/gr: refactor initialisation" relies on the above.
+> > 
+> > So, reverting these commits:
+> > 
+> > drm/nv50/gr: typo fix, how about we not reset fifo during graph init?
+> > drm/nv50/gr: refactor initialisation
+> > drm/nv50/gr: enable ctxprog xfer only when we need it to save power
+> > 
+> > on top of current git restores performance to the previous state.
+> > 
+> > (First commit fixes bug in 2nd, so it needs to be reverted first)
+> > 
+> > Marcin
 > 
-> I found a solution!
 > 
-> Since the VRAM size could vary inside each series of cards (e.g. NV10 cards may
-> have 32, 64 or 128 MB VRAM), it would better to set max dimensions based on
-> available VRAM instead of card series.
+> could you extract the ctxprog blob uses on your system and post it?
 > 
-> My proposed patch ensures that we always have enough space in VRAM to process
-> images. It fixes memory flush on 64 MB cards, and adds back exa support for
-> cards that have 32 MB or less memory (with a minimal 8 MB VRAM).
-> 
-> I tested this patch only on NV17 with 64 MB VRAM.
 
-And anyway ... shouldn't big pixmaps in case of vram shortage just be placed in
-GART, and used from it? (sure, xvideo will be slower ...special hint for xv
-pixmaps? can't remember if its already there .....)
+How can I extract it?
 
-I have hacked up 2.6.38 kernel (frambuffer default bpp to 8, not 32 -> 5 to 1
-mb of vram saved) on machine with tnt2 vanta - 8mb/AGP - it works ... even as
-OpenGL hw renderer, i just need to lower resolution back to 640x480x32 for good
-Quake1.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Marcin
