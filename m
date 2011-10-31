@@ -1,32 +1,41 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 42280] NVc0 generation card (0x0c1000a1) not working
-Date: Mon, 31 Oct 2011 11:23:32 +0000
-Message-ID: <bug-42280-8800-mHLA9LZogk@http.bugs.freedesktop.org/>
-References: <bug-42280-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: Re: [PATCH] drm: serialize access to debugs_nodes.list
+Date: Mon, 31 Oct 2011 18:00:00 +0100
+Message-ID: <20111031170000.GA3415@joi.lan>
+References: <20111030220401.GA3628@joi.lan>
+	<20111031080656.GD2920@phenom.ffwll.local>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-42280-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20111031080656.GD2920@phenom.ffwll.local>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=42280
+On Mon, Oct 31, 2011 at 09:06:57AM +0100, Daniel Vetter wrote:
+> This is just ugly, you're adding a mutex to every drm_info_node, but only
+> use the one embedded into the minor. On a quick grep we're only ever using
+> the list in there, so I suggest to
+> - replace minor->debugfs_node.list with minor->debugfs_list and kill
+>   ->debugfs_node
+> - add the mutex as minor->debugfs_lock
+> That way it's clear what's going on.
 
---- Comment #10 from Bruno Antunes <sardaukar.siet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-31 04:23:32 PDT ---
-I'm using the 3.1 kernel from last Wednesday... it only works with
-"nouveau.noaccel=0"
+Yes, you are right. I don't know what the heck I was thinking.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+> Also, you've forgotten to add the locking to i915/i915_debugfs.c
+
+Yeah. Will fix it too.
+
+Marcin
