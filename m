@@ -1,11 +1,14 @@
-From: "William Moss" <bill.m.moss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: custom monitor formats
-Date: Mon, 31 Oct 2011 15:34:49 -0400
-Message-ID: <op.v38d0basymuwjf@coyote.billshome>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 16923] ClipRectangles on mask ignored if
+ transformation is used
+Date: Mon, 31 Oct 2011 23:36:27 +0000
+Message-ID: <bug-16923-8800-dWPvS5EtpV@http.bugs.freedesktop.org/>
+References: <bug-16923-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-16923-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,34 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I recently updated from OpenSUSE 11.3 to 11.4.
-The proprietary Nvidia driver will no longer work, even the latest  
-NVIDIA...run.
-I removed it and set up nouveau, which works fine except it ignores my  
-customized
-/etc/xorg.conf.d files and sets my monitor to 1024x768.
+https://bugs.freedesktop.org/show_bug.cgi?id=16923
 
-The monitor, an ACER AL1916W should be run at 1440x900 and this is the  
-preferred
-mode (modeline) in the configuration files. This is how it worked with the  
-NVIDIA
-drivers and should be still true.
+Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> changed:
 
-Apparently, the nouveau module (driver) is ignoring the settings in the
-/etc/xorg.d/50-device.conf and the associated conf files that are bound
-in the server conf file.
-
-I tested the setup with
-	xinit -- :0
-which works but at the incorrect resolution.
-
-I even tried a customized and compiled 3.0.4 Kernel, to no avail.
-
-Any help would be appreciated.
-I have no problem with compiling and installing or even modifying source.
-
-
-
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 -- 
-Using Opera's revolutionary e-mail client: http://www.opera.com/mail/
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
