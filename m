@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 31961] [drm:drm_crtc_helper_set_config] *ERROR*
  failed to set mode on [CRTC:6]
-Date: Mon, 31 Oct 2011 19:45:31 +0000
-Message-ID: <bug-31961-8800-XBl3he6xFj@http.bugs.freedesktop.org/>
+Date: Mon, 31 Oct 2011 19:47:52 +0000
+Message-ID: <bug-31961-8800-GJRSHJQ47i@http.bugs.freedesktop.org/>
 References: <bug-31961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31961
 
---- Comment #9 from Alex <alex.aycinena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-31 12:45:31 PDT ---
-Created attachment 52967
-  --> https://bugs.freedesktop.org/attachment.cgi?id=52967
-dmesg with drm.debug=1 set
+--- Comment #10 from Alex <alex.aycinena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-31 12:47:52 PDT ---
+I have an HP Pavilion s7700n with GeForce 6150 LE.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
