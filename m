@@ -1,44 +1,51 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] drm: serialize access to list of debugfs files
-Date: Mon, 31 Oct 2011 22:00:04 +0100
-Message-ID: <20111031210004.GB30108@phenom.ffwll.local>
-References: <20111030220401.GA3628@joi.lan>
-	<20111031080656.GD2920@phenom.ffwll.local>
-	<20111031170000.GA3415@joi.lan> <20111031173357.GA28581@joi.lan>
+From: "William Moss" <bill.m.moss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: custom monitor formats
+Date: Mon, 31 Oct 2011 15:34:49 -0400
+Message-ID: <op.v38d0basymuwjf@coyote.billshome>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20111031173357.GA28581@joi.lan>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Oct 31, 2011 at 06:33:57PM +0100, Marcin Slusarz wrote:
-> Nouveau, when configured with debugfs, creates debugfs files for every
-> channel, so structure holding list of files needs to be protected from
-> simultaneous changes by multiple threads.
-> 
-> Without this patch it's possible to hit kernel oops in
-> drm_debugfs_remove_files just by running a couple of xterms with
-> looped glxinfo.
-> 
-> Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+I recently updated from OpenSUSE 11.3 to 11.4.
+The proprietary Nvidia driver will no longer work, even the latest  
+NVIDIA...run.
+I removed it and set up nouveau, which works fine except it ignores my  
+customized
+/etc/xorg.conf.d files and sets my monitor to 1024x768.
 
-And v2 also includes a nice comment in the header explaining the locking.
-Awesome!
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+The monitor, an ACER AL1916W should be run at 1440x900 and this is the  
+preferred
+mode (modeline) in the configuration files. This is how it worked with the  
+NVIDIA
+drivers and should be still true.
+
+Apparently, the nouveau module (driver) is ignoring the settings in the
+/etc/xorg.d/50-device.conf and the associated conf files that are bound
+in the server conf file.
+
+I tested the setup with
+	xinit -- :0
+which works but at the incorrect resolution.
+
+I even tried a customized and compiled 3.0.4 Kernel, to no avail.
+
+Any help would be appreciated.
+I have no problem with compiling and installing or even modifying source.
+
+
+
+
 -- 
-Daniel Vetter
-Mail: daniel@ffwll.ch
-Mobile: +41 (0)79 365 57 48
+Using Opera's revolutionary e-mail client: http://www.opera.com/mail/
