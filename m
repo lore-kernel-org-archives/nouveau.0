@@ -1,32 +1,44 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31961] [drm:drm_crtc_helper_set_config] *ERROR*
- failed to set mode on [CRTC:6]
-Date: Mon, 31 Oct 2011 19:47:52 +0000
-Message-ID: <bug-31961-8800-GJRSHJQ47i@http.bugs.freedesktop.org/>
-References: <bug-31961-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH] drm: serialize access to list of debugfs files
+Date: Mon, 31 Oct 2011 22:00:04 +0100
+Message-ID: <20111031210004.GB30108@phenom.ffwll.local>
+References: <20111030220401.GA3628@joi.lan>
+	<20111031080656.GD2920@phenom.ffwll.local>
+	<20111031170000.GA3415@joi.lan> <20111031173357.GA28581@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20111031173357.GA28581@joi.lan>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31961
+On Mon, Oct 31, 2011 at 06:33:57PM +0100, Marcin Slusarz wrote:
+> Nouveau, when configured with debugfs, creates debugfs files for every
+> channel, so structure holding list of files needs to be protected from
+> simultaneous changes by multiple threads.
+> 
+> Without this patch it's possible to hit kernel oops in
+> drm_debugfs_remove_files just by running a couple of xterms with
+> looped glxinfo.
+> 
+> Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
 
---- Comment #10 from Alex <alex.aycinena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-31 12:47:52 PDT ---
-I have an HP Pavilion s7700n with GeForce 6150 LE.
-
+And v2 also includes a nice comment in the header explaining the locking.
+Awesome!
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Daniel Vetter
+Mail: daniel@ffwll.ch
+Mobile: +41 (0)79 365 57 48
