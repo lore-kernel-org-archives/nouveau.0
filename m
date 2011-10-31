@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42280] NVc0 generation card (0x0c1000a1) not working
-Date: Mon, 31 Oct 2011 10:40:54 +0000
-Message-ID: <bug-42280-8800-sMIo9uLHka@http.bugs.freedesktop.org/>
+Date: Mon, 31 Oct 2011 11:23:32 +0000
+Message-ID: <bug-42280-8800-mHLA9LZogk@http.bugs.freedesktop.org/>
 References: <bug-42280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,22 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42280
 
---- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-31 03:40:54 PDT ---
-(In reply to comment #8)
-> Thanks for the help, Marcin! I was just adding "noaccel=0" without "nouveau."!
-> 
-> This whole process is really not straight-forward. The reporting should be
-> simpler and the docs are hard to grasp.
-I presume you updated in the mean time, in which case, you don't need the
-option anymore anyway.  If you'd tried this without the updates as of
-yesterday, you would not be enjoying how gnome shell looked, which is the
-entire reason it was disabled by default.  It wasn't *mean't* to be used.
-
-> 
-> Enjoying default Gnome Shell now, thanks to you man! :D
-> 
-> Thanks a bunch
-Glad it's working for you though, thanks for letting us know.
+--- Comment #10 from Bruno Antunes <sardaukar.siet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-10-31 04:23:32 PDT ---
+I'm using the 3.1 kernel from last Wednesday... it only works with
+"nouveau.noaccel=0"
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
