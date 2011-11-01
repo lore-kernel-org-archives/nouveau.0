@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42479] piglit/glean/readPixSanity fails - dmesg
  PGRAPH - TRAP_TPDMA - TP0: Unhandled ustatus 0x00020000
-Date: Tue, 01 Nov 2011 15:27:22 +0000
-Message-ID: <bug-42479-8800-IOm591MBye@http.bugs.freedesktop.org/>
+Date: Tue, 01 Nov 2011 15:29:21 +0000
+Message-ID: <bug-42479-8800-JLxdvj3UP9@http.bugs.freedesktop.org/>
 References: <bug-42479-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42479
 
---- Comment #1 from dirkneukirchen-S0/GAf8tV78@public.gmane.org 2011-11-01 08:27:22 PDT ---
-Created attachment 53002
-  --> https://bugs.freedesktop.org/attachment.cgi?id=53002
-piglet.glean.readPixSanity results file
+--- Comment #2 from dirkneukirchen-S0/GAf8tV78@public.gmane.org 2011-11-01 08:29:21 PDT ---
+Created attachment 53003
+  --> https://bugs.freedesktop.org/attachment.cgi?id=53003
+processed glean results via piglit-summary-html.py
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
