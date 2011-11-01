@@ -1,7 +1,8 @@
-From: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
-Subject: [PATCH] drm/nv50/pm: fix a typo in clock calculation
-Date: Tue,  1 Nov 2011 11:41:17 +0100
-Message-ID: <1320144077-13569-1-git-send-email-martin.peres@ensi-bourges.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 42479] New: piglit/glean/readPixSanity fails - dmesg
+ PGRAPH - TRAP_TPDMA - TP0: Unhandled ustatus 0x00020000
+Date: Tue, 01 Nov 2011 15:24:29 +0000
+Message-ID: <bug-42479-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -16,26 +17,56 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>, Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nv50_pm.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=42479
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_pm.c b/drivers/gpu/drm/nouveau/nv50_pm.c
-index e7ff5ac..e025cae 100644
---- a/drivers/gpu/drm/nouveau/nv50_pm.c
-+++ b/drivers/gpu/drm/nouveau/nv50_pm.c
-@@ -295,7 +295,7 @@ read_clk(struct drm_device *dev, enum clk_src src)
- 			case 0x00000800:
- 				return read_clk(dev, clk_src_hclkm3d2) >> P;
- 			case 0x00000c00:
--				return read_pll(dev, clk_src_mclk) >> P;
-+				return read_clk(dev, clk_src_mclk) >> P;
- 			}
- 			break;
- 		}
+             Bug #: 42479
+           Summary: piglit/glean/readPixSanity fails - dmesg PGRAPH -
+                    TRAP_TPDMA - TP0: Unhandled ustatus 0x00020000
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: dirkneukirchen-S0/GAf8tV78@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created attachment 53001
+  --> https://bugs.freedesktop.org/attachment.cgi?id=53001
+dmesg with nonrelated errors removed
+
+System:
+
+- Ubuntu Oneiric with xorg-edgers (
+- piglit from git
+
+Steps to reproduce:
+
+1. running piglit
+env PIGLIT_BUILD_DIR=Programming/piglit ./piglit-run.py tests/sanity.tests
+results/sanity.results
+
+2. readPixSanity tests create dmesg
+[ 7963.282652] [drm] nouveau 0000:02:00.0: PGRAPH - TRAP_TPDMA - TP0: Unhandled
+ustatus 0x00020000
+[ 7963.282658] [drm] nouveau 0000:02:00.0: PGRAPH - TRAP
+[ 7963.282665] [drm] nouveau 0000:02:00.0: PGRAPH - ch 4 (0x0007d60000) subc 5
+class 0x8397 mthd 0x19d0 data 0x00000001
+
+3. piglit/glean fails
+
+uname -a
+Linux tenchi-htpc 3.1.0-1-generic #1-Ubuntu SMP Tue Oct 18 21:46:02 UTC 2011
+i686 athlon i386 GNU/Linux
+
 -- 
-1.7.7.1
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
