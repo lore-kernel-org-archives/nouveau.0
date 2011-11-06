@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40747] The new nouveau kernel module fails to use my
- monitor's native resolution
-Date: Thu, 03 Nov 2011 21:05:03 +0000
-Message-ID: <bug-40747-8800-eVza5BMFcd@http.bugs.freedesktop.org/>
-References: <bug-40747-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: print correct engine number which
+	failed to unload/idle
+Date: Sun,  6 Nov 2011 20:32:03 +0100
+Message-ID: <1320607930-21794-1-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +19,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40747
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_drv.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
---- Comment #14 from monnier-CRDzTM1onBSWkKpYnGOUKg@public.gmane.org 2011-11-03 14:05:03 PDT ---
-Ping?
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
+index ef196df..401c8ee 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
+@@ -226,7 +226,7 @@ nouveau_pci_suspend(struct pci_dev *pdev, pm_message_t pm_state)
+ 
+ 		ret = dev_priv->eng[e]->fini(dev, e, true);
+ 		if (ret) {
+-			NV_ERROR(dev, "... engine %d failed: %d\n", i, ret);
++			NV_ERROR(dev, "... engine %d failed: %d\n", e, ret);
+ 			goto out_abort;
+ 		}
+ 	}
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.7
