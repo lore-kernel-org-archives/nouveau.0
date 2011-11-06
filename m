@@ -1,8 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: by default use low bpp framebuffer
-	on low memory cards
-Date: Sun,  6 Nov 2011 20:32:04 +0100
-Message-ID: <1320607930-21794-2-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nv10: disable perf hack on low memory cards
+Date: Sun,  6 Nov 2011 20:32:05 +0100
+Message-ID: <1320607930-21794-3-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,43 +18,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Framebuffer's BPP is not that important but can waste significant part
-of memory on low-VRAM cards. Lower it to 8bpp on < 32MB cards and to
-16bpp on 64MB cards. It can still be overridden by video= option.
+On 16MB cards it's too easy to hit ENOMEM with 2D use when this
+perf hack is enabled.
+
+This should fix https://bugs.freedesktop.org/show_bug.cgi?id=42384
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_fbcon.c |   11 ++++++++++-
- 1 files changed, 10 insertions(+), 1 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_bo.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-index 14a8627..3a4cc32 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-@@ -487,6 +487,7 @@ int nouveau_fbcon_init(struct drm_device *dev)
- {
- 	struct drm_nouveau_private *dev_priv = dev->dev_private;
- 	struct nouveau_fbdev *nfbdev;
-+	int preferred_bpp;
- 	int ret;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 7226f41..a692648 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -148,6 +148,7 @@ set_placement_range(struct nouveau_bo *nvbo, uint32_t type)
  
- 	nfbdev = kzalloc(sizeof(struct nouveau_fbdev), GFP_KERNEL);
-@@ -505,7 +506,15 @@ int nouveau_fbcon_init(struct drm_device *dev)
- 	}
- 
- 	drm_fb_helper_single_add_all_connectors(&nfbdev->helper);
--	drm_fb_helper_initial_config(&nfbdev->helper, 32);
-+
-+	if (dev_priv->vram_size <= 32 * 1024 * 1024)
-+		preferred_bpp = 8;
-+	else if (dev_priv->vram_size <= 64 * 1024 * 1024)
-+		preferred_bpp = 16;
-+	else
-+		preferred_bpp = 32;
-+
-+	drm_fb_helper_initial_config(&nfbdev->helper, preferred_bpp);
- 	return 0;
- }
- 
+ 	if (dev_priv->card_type == NV_10 &&
+ 	    nvbo->tile_mode && (type & TTM_PL_FLAG_VRAM) &&
++	    dev_priv->vram_size >= 32 * 1024 * 1024 &&
+ 	    nvbo->bo.mem.num_pages < vram_pages / 2) {
+ 		/*
+ 		 * Make sure that the color and depth buffers are handled
 -- 
 1.7.7
