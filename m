@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: print correct engine number which
-	failed to unload/idle
-Date: Sun,  6 Nov 2011 20:32:03 +0100
-Message-ID: <1320607930-21794-1-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau: by default use low bpp framebuffer
+	on low memory cards
+Date: Sun,  6 Nov 2011 20:32:04 +0100
+Message-ID: <1320607930-21794-2-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,23 +19,43 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Framebuffer's BPP is not that important but can waste significant part
+of memory on low-VRAM cards. Lower it to 8bpp on < 32MB cards and to
+16bpp on 64MB cards. It can still be overridden by video= option.
+
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_drv.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c |   11 ++++++++++-
+ 1 files changed, 10 insertions(+), 1 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
-index ef196df..401c8ee 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
-@@ -226,7 +226,7 @@ nouveau_pci_suspend(struct pci_dev *pdev, pm_message_t pm_state)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index 14a8627..3a4cc32 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@ -487,6 +487,7 @@ int nouveau_fbcon_init(struct drm_device *dev)
+ {
+ 	struct drm_nouveau_private *dev_priv = dev->dev_private;
+ 	struct nouveau_fbdev *nfbdev;
++	int preferred_bpp;
+ 	int ret;
  
- 		ret = dev_priv->eng[e]->fini(dev, e, true);
- 		if (ret) {
--			NV_ERROR(dev, "... engine %d failed: %d\n", i, ret);
-+			NV_ERROR(dev, "... engine %d failed: %d\n", e, ret);
- 			goto out_abort;
- 		}
+ 	nfbdev = kzalloc(sizeof(struct nouveau_fbdev), GFP_KERNEL);
+@@ -505,7 +506,15 @@ int nouveau_fbcon_init(struct drm_device *dev)
  	}
+ 
+ 	drm_fb_helper_single_add_all_connectors(&nfbdev->helper);
+-	drm_fb_helper_initial_config(&nfbdev->helper, 32);
++
++	if (dev_priv->vram_size <= 32 * 1024 * 1024)
++		preferred_bpp = 8;
++	else if (dev_priv->vram_size <= 64 * 1024 * 1024)
++		preferred_bpp = 16;
++	else
++		preferred_bpp = 32;
++
++	drm_fb_helper_initial_config(&nfbdev->helper, preferred_bpp);
+ 	return 0;
+ }
+ 
 -- 
 1.7.7
