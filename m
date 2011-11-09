@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 41114] nouveau module crashes on boot
-Date: Wed, 09 Nov 2011 08:34:36 +0000
-Message-ID: <bug-41114-8800-O5YtikhElZ@http.bugs.freedesktop.org/>
+Date: Wed, 09 Nov 2011 00:39:59 +0000
+Message-ID: <bug-41114-8800-6CHHDAwzg5@http.bugs.freedesktop.org/>
 References: <bug-41114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=41114
 
---- Comment #7 from xavier.bru-6ktuUTfB/bM@public.gmane.org 2011-11-09 00:34:36 PST ---
-Created attachment 53317
-  --> https://bugs.freedesktop.org/attachment.cgi?id=53317
-nouveau crash
+--- Comment #8 from xavier.bru-6ktuUTfB/bM@public.gmane.org 2011-11-09 00:39:59 UTC ---
+We have same crash when loading the nouveau driver on a platform that owns an
+NviDia GPU (NVc0 generation card (0x0c8880a1). See previous attached traces.
+I applied the proposed [2] patch. It solves the crash, but we then the nouveau
+driver logs continuously errors:
+[drm] nouveau 0000:83:00.0: unknown i2c port 48
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
