@@ -1,14 +1,15 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix acpi related kbuild warnings
-Date: Wed, 9 Nov 2011 22:32:34 +0100
-Message-ID: <20111109213234.GB3402@joi.lan>
-References: <20111102213940.GA5459@joi.lan>
+Subject: Re: [PATCH] add missing return in nv50_accel_init failure
+	path
+Date: Wed, 9 Nov 2011 22:38:44 +0100
+Message-ID: <20111109213844.GC3402@joi.lan>
+References: <1320607930-21794-6-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20111102213940.GA5459-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <1320607930-21794-6-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,28 +23,11 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Nov 02, 2011 at 10:39:40PM +0100, Marcin Slusarz wrote:
-> Currently when X86 && ACPI && !X86_PLATFORM_DEVICES kbuild spits:
-> 
-> warning: (DRM_NOUVEAU) selects ACPI_WMI which has unmet direct
-> dependencies (X86 && X86_PLATFORM_DEVICES && ACPI)
-> warning: (DRM_NOUVEAU) selects MXM_WMI which has unmet direct
-> dependencies (X86 && X86_PLATFORM_DEVICES && ACPI_WMI)
-> 
-> and goes on, which leaves a situation where ACPI_WMI (which depends on
-> X86_PLATFORM_DEVICES) is enabled but X86_PLATFORM_DEVICES is not.
-> Additionally, Nouveau on IA64 would enable these X86-related drivers
-> when ACPI is enabled (doesn't matter but is wrong) and build
-> nouveau_acpi.c which depends on them.
-> 
-> To fix this, introduce hidden DRM_NOUVEAU_ACPI variable which selects
-> all acpi/x86 related configs and select it when both X86 and ACPI are
-> enabled.
-> 
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
+On Sun, Nov 06, 2011 at 08:32:08PM +0100, Marcin Slusarz wrote:
+> (...)
 
-Ben, can you apply it to Nouveau tree?
+I see my last kernel patches were already applied (with an exception
+of different fix to nv10 problem and vram-limit/debugging patch). Thanks.
+What about these 3 ddx patches? Any comments?
 
-Thanks,
 Marcin
