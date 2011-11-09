@@ -1,14 +1,14 @@
-From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Option "Rotate" is not used
-Date: Wed, 9 Nov 2011 10:40:29 -0800
-Message-ID: <CAN0CFw0GOyh-m83vhaRgGOdBVGy21zbQQJG1+SNfjd6xzOLtYA@mail.gmail.com>
-References: <CAN0CFw0f7yVR0hXFiNio4JKgce-GTKd3hU22ve1zNH1hDQsakw@mail.gmail.com>
-	<1320792334.2188.1.camel@nisroch>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: fix acpi related kbuild warnings
+Date: Wed, 9 Nov 2011 22:32:34 +0100
+Message-ID: <20111109213234.GB3402@joi.lan>
+References: <20111102213940.GA5459@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1320792334.2188.1.camel@nisroch>
+Content-Disposition: inline
+In-Reply-To: <20111102213940.GA5459-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,26 +18,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
->> I just switched from nvidia to nouveau and I get the following in Xorg.0=
-.log:
->>
->> (WW) NOUVEAU(0): Option "Rotate" is not used
->>
->> I have the following in xorg.conf because I've rotated the LCD screen
->> to change its orientation:
->>
->> Option "Rotate" "CCW"
->>
->> Can this be done with nouveau? =A0BTW, I can't say for sure that nouveau
->> isn't rotating the screen image because the workstation is remote.
-> Sure it can, nouveau is a randr 1.2 driver - so adding 'Option "Rotate"
-> "Left"' to the monitor section of your xorg.conf will work instead.
->
-> Ben.
+On Wed, Nov 02, 2011 at 10:39:40PM +0100, Marcin Slusarz wrote:
+> Currently when X86 && ACPI && !X86_PLATFORM_DEVICES kbuild spits:
+> 
+> warning: (DRM_NOUVEAU) selects ACPI_WMI which has unmet direct
+> dependencies (X86 && X86_PLATFORM_DEVICES && ACPI)
+> warning: (DRM_NOUVEAU) selects MXM_WMI which has unmet direct
+> dependencies (X86 && X86_PLATFORM_DEVICES && ACPI_WMI)
+> 
+> and goes on, which leaves a situation where ACPI_WMI (which depends on
+> X86_PLATFORM_DEVICES) is enabled but X86_PLATFORM_DEVICES is not.
+> Additionally, Nouveau on IA64 would enable these X86-related drivers
+> when ACPI is enabled (doesn't matter but is wrong) and build
+> nouveau_acpi.c which depends on them.
+> 
+> To fix this, introduce hidden DRM_NOUVEAU_ACPI variable which selects
+> all acpi/x86 related configs and select it when both X86 and ACPI are
+> enabled.
+> 
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
 
-Thanks Ben, that worked great.
+Ben, can you apply it to Nouveau tree?
 
-- Grant
+Thanks,
+Marcin
