@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 41114] nouveau module crashes on boot
-Date: Wed, 09 Nov 2011 14:27:14 +0000
-Message-ID: <bug-41114-8800-kVC5Oh2WRa@http.bugs.freedesktop.org/>
+Date: Wed, 09 Nov 2011 14:31:33 +0000
+Message-ID: <bug-41114-8800-h93MGOzrcG@http.bugs.freedesktop.org/>
 References: <bug-41114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=41114
 
---- Comment #9 from xavier.bru-6ktuUTfB/bM@public.gmane.org 2011-11-09 06:27:14 PST ---
+Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> changed:
 
-It seems that adding the nouveau.modeset=0 boot kernel parameter the driver
-loads without problem (but no traces are seen in dmesg).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Version|unspecified                 |git
+
+--- Comment #10 from Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> 2011-11-09 06:31:33 PST ---
+xavier: nomodeset disables nouveau completely.
+
+Ben: Is the vbios I posted helpful?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
