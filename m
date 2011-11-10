@@ -1,15 +1,15 @@
-From: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
-Subject: Re: "enable ctxprog xfer only when we need it to save
- power" introduces big performance regression
-Date: Thu, 10 Nov 2011 08:10:44 +0100
-Message-ID: <4EBB78F4.2020902@ensi-bourges.fr>
-References: <20111029170801.GA3219@joi.lan> <20111029172923.GA3110@joi.lan>
-	<20111029190938.GA3105@joi.lan> <20111109221009.GD3402@joi.lan>
+From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Option "Rotate" is not used
+Date: Thu, 10 Nov 2011 13:36:43 -0800
+Message-ID: <CAN0CFw3SNvUcO_u5pdRWmYCCRHW-ShF=iBbi=XBgbShLg7OknA@mail.gmail.com>
+References: <CAN0CFw0f7yVR0hXFiNio4JKgce-GTKd3hU22ve1zNH1hDQsakw@mail.gmail.com>
+	<1320792334.2188.1.camel@nisroch>
+	<CAN0CFw0GOyh-m83vhaRgGOdBVGy21zbQQJG1+SNfjd6xzOLtYA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20111109221009.GD3402-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <CAN0CFw0GOyh-m83vhaRgGOdBVGy21zbQQJG1+SNfjd6xzOLtYA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,37 +19,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Le 09/11/2011 23:10, Marcin Slusarz a =E9crit :
-> For anyone who don't read IRC logs - it turns out it regressed only on =
+>>> I just switched from nvidia to nouveau and I get the following in Xorg.=
+0.log:
+>>>
+>>> (WW) NOUVEAU(0): Option "Rotate" is not used
+>>>
+>>> I have the following in xorg.conf because I've rotated the LCD screen
+>>> to change its orientation:
+>>>
+>>> Option "Rotate" "CCW"
+>>>
+>>> Can this be done with nouveau? =A0BTW, I can't say for sure that nouveau
+>>> isn't rotating the screen image because the workstation is remote.
+>> Sure it can, nouveau is a randr 1.2 driver - so adding 'Option "Rotate"
+>> "Left"' to the monitor section of your xorg.conf will work instead.
+>>
+>> Ben.
+>
+> Thanks Ben, that worked great.
+>
+> - Grant
 
-> my box, because I have page flipping disabled (due to page flipping =
+I spoke too soon.  I don't get the warning in Xorg.0.log anymore, but
+someone tried to use the system and told me the screen was not rotated
+as it should be.  I tried both of these in xorg.conf with the same
+result:
 
-> being very buggy here, see =
+Section "Monitor"
+        Identifier "mymonitor"
+        Option "Rotate" "Left"
+EndSection
 
-> https://bugs.freedesktop.org/show_bug.cgi?id=3D42398), which forces gpu =
+Section "Monitor"
+        Identifier "mymonitor"
+        Option "Rotate" "CCW"
+EndSection
 
-> context switch on every frame - even with (OpenGL) full screen apps. =
+Any ideas?
 
-> And this patch slows down context switches. So, can we disable xfers =
-
-> in ctxprog only when page flipping is enabled? Or is there any other =
-
-> option? Marcin =
-
-Hmm, it isn't logical yet. To test for performance regression, I =
-
-launched the well known context switch test that is glxgears and only =
-
-found a performance decrease of 1%.
-
-I'll test with pageflip disabled though and see for myself.
-
-Anyway, we'll do something about it. I just hope that most cards don't =
-
-have this problem. This is clearly an hw regression.
-
-Martin
+- Grant
