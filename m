@@ -1,7 +1,8 @@
-From: Gianluca Cecchi <gianluca.cecchi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: better way to test optimus laptop
-Date: Fri, 11 Nov 2011 12:34:06 +0100
-Message-ID: <CAG2kNCz34=9y-sMGKEO=F4r-E2csBBQibB_jsWUFnnG_PHnhgA@mail.gmail.com>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Subject: [PATCH] drm/nvc0/gr: fix TP init for transform feedback
+	offset queries
+Date: Fri, 11 Nov 2011 20:43:06 +0100
+Message-ID: <1321040586-28352-1-git-send-email-e0425955@student.tuwien.ac.at>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,44 +19,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
-I have an Asus laptop, model U36SD with Nvidia optimus technlogy.
-My system has now Fedora 16 with kernel 3.1.0-7.fc16.x86_64
-$ lspci -vnnn|grep VGA
-00:02.0 VGA compatible controller [0300]: Intel Corporation 2nd
-Generation Core Processor Family Integrated Graphics Controller
-[8086:0126] (rev 09) (prog-if 00 [VGA controller])
-01:00.0 VGA compatible controller [0300]: nVidia Corporation Device
-[10de:1050] (rev ff) (prog-if ff)
+Without this, they return bytes written since the last update of
+the offset, but we want the full offset.
 
-At the moment, not being able to use optimus technology I compiled
-acpi_call (from 24/06/11) for my kernel and set this in
-/etc/rc.d/rc.local
-/sbin/modprobe acpi_call
-echo '\_SB.PCI0.PEG0.GFX0.DOFF' > /proc/acpi/call
+Trace shows setting this on GPC[0]/TP[0] is enough.
+---
+ drivers/gpu/drm/nouveau/nvc0_graph.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
-Also, due to some video problems for which I don't know if a possible
-con-cause could be both nouveau and i915 kernel modules loaded,
-I put in my grub.conf settings so that
-$ cat /proc/cmdline
-BOOT_IMAGE=/boot/vmlinuz-3.1.0-7.fc16.x86_64
-root=UUID=ce058d6c-d2ed-49e5-9869-965799f246a5 ro rd.md=0 rd.lvm=0
-rd.dm=0 KEYTABLE=us quiet SYSFONT=latarcyrheb-sun16 rhgb rd.luks=0
-LANG=en_US.UTF-8 i915.i915_enable_rc6=1 elevator=deadline
-nouveau.nomodeset=0
-
-$ sudo lsmod|grep nouve
-$ sudo lsmod|grep i915
-i915                  389156  3
-drm_kms_helper         26490  1 i915
-drm                   194532  5 ttm,i915,drm_kms_helper
-i2c_algo_bit            4958  1 i915
-i2c_core               25728  6
-videodev,i2c_i801,i915,drm_kms_helper,drm,i2c_algo_bit
-video                  12388  1 i915
-
-Is this correct approach at the moment? Anything to test in Optimus
-direction and to help nouveau?
-
-Thanks in advance,
-Gianluca
+diff --git a/drivers/gpu/drm/nouveau/nvc0_graph.c b/drivers/gpu/drm/nouveau/nvc0_graph.c
+index d99b285..713975b 100644
+--- a/drivers/gpu/drm/nouveau/nvc0_graph.c
++++ b/drivers/gpu/drm/nouveau/nvc0_graph.c
+@@ -357,6 +357,8 @@ nvc0_graph_init_gpc_0(struct drm_device *dev)
+ 	u8  tpnr[GPC_MAX];
+ 	int i, gpc, tpc;
+ 
++	nv_wr32(dev, TP_UNIT(0, 0, 0x5c), 1);
++
+ 	/*
+ 	 *      TP      ROP UNKVAL(magic_not_rop_nr)
+ 	 * 450: 4/0/0/0 2        3
+-- 
+1.7.3.4
