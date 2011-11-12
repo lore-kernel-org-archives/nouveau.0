@@ -1,12 +1,15 @@
-From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Subject: [PATCH] drm/nvc0/gr: fix TP init for transform feedback
-	offset queries
-Date: Fri, 11 Nov 2011 20:47:58 +0100
-Message-ID: <1321040878-5660-1-git-send-email-e0425955@student.tuwien.ac.at>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: [PATCH] master-compat: Compile i915 DRM for
+ out-of-tree. Optimus laptops need it.
+Date: Sat, 12 Nov 2011 10:27:29 +0200
+Message-ID: <20111112102729.38dfdb7e@farn.lan>
+References: <4EBCF7BF.3080600@gmail.com>
+	<4EBCF80D.4050705@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <4EBCF80D.4050705-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,29 +19,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Eric Appleman <erappleman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Without this, they return bytes written since the last update of
-the offset, but we want the full offset.
+On Fri, 11 Nov 2011 05:25:17 -0500
+Eric Appleman <erappleman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 
-Trace shows setting this on GPC[0]/TP[0] is enough.
----
- drivers/gpu/drm/nouveau/nvc0_graph.c |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+> On 11/11/2011 05:23 AM, Eric Appleman wrote:
+> > Hi, a machine with both an Intel and Nvidia GPU needs both
+> > drivers built as modules otherwise the former will not work
+> > properly.
+> >
+> > - Eric
+> Sorry, Thunderbird is bad with attachments.
 
-diff --git a/drivers/gpu/drm/nouveau/nvc0_graph.c b/drivers/gpu/drm/nouveau/nvc0_graph.c
-index d99b285..f6bc4a8 100644
---- a/drivers/gpu/drm/nouveau/nvc0_graph.c
-+++ b/drivers/gpu/drm/nouveau/nvc0_graph.c
-@@ -357,6 +357,8 @@ nvc0_graph_init_gpc_0(struct drm_device *dev)
- 	u8  tpnr[GPC_MAX];
- 	int i, gpc, tpc;
- 
-+	nv_wr32(dev, TP_UNIT(0, 0, 0x5c), 1); /* affects TFB offset queries */
-+
- 	/*
- 	 *      TP      ROP UNKVAL(magic_not_rop_nr)
- 	 * 450: 4/0/0/0 2        3
+Sorry, I'm not going to apply this.
+
+This way of installing is meant only for nouveau, and building
+i915 is for most people useless.
+
+If you want both nouveau and i915, I would recommend building
+the whole kernel with both of these from either Nouveau linux tree,
+or Linus' tree. Or some other upstream tree.
+
+
+Thanks.
+
 -- 
-1.7.3.4
+Pekka Paalanen
+http://www.iki.fi/pq/
