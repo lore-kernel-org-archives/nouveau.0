@@ -1,11 +1,13 @@
-From: Matthew Kolar <broken.shakles-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: I would like to offer my help.
-Date: Sat, 12 Nov 2011 19:44:38 -0600
-Message-ID: <4EBF2106.603@gmail.com>
+From: =?UTF-8?Q?Marcin_Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: Re: I would like to offer my help.
+Date: Sun, 13 Nov 2011 02:10:11 +0100
+Message-ID: <651aafd4627d45a8dd835885dcdd9ffd@0x04.net>
+References: <4EBF2106.603@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <4EBF2106.603-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,15 +17,27 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Matthew Kolar <broken.shakles-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello, Nouveau devs!
-
-  I would like you to know that I have a laptop with 2 Geforce GTX 285m 
-cards on board in an SLI config, I know the SLI part is not relevant at 
-this point, but I still would like to offer my rig for testing single 
-card configs.  If you want to walk me thru what you need me to do, just 
-shoot me an email.
-
-Matthew Kolar
+PiBIZWxsbywgTm91dmVhdSBkZXZzIQo+Cj4gIEkgd291bGQgbGlrZSB5b3UgdG8ga25vdyB0aGF0
+IEkgaGF2ZSBhIGxhcHRvcCB3aXRoIDIgR2Vmb3JjZSBHVFgKPiAyODVtIGNhcmRzIG9uIGJvYXJk
+IGluIGFuIFNMSSBjb25maWcsIEkga25vdyB0aGUgU0xJIHBhcnQgaXMgbm90Cj4gcmVsZXZhbnQg
+YXQgdGhpcyBwb2ludCwgYnV0IEkgc3RpbGwgd291bGQgbGlrZSB0byBvZmZlciBteSByaWcgZm9y
+Cj4gdGVzdGluZyBzaW5nbGUgY2FyZCBjb25maWdzLiAgSWYgeW91IHdhbnQgdG8gd2FsayBtZSB0
+aHJ1IHdoYXQgeW91Cj4gbmVlZCBtZSB0byBkbywganVzdCBzaG9vdCBtZSBhbiBlbWFpbC4KPgo+
+IE1hdHRoZXcgS29sYXIKClRoaXMgc291bmRzIGxpa2UgYSBwZXJmZWN0IGNvbmZpZ3VyYXRpb24g
+dG8gUkUgdGhlIGludGVyLUdQVSAKY29tbXVuaWNhdGlvbiB1c2VkIGJ5IEdQVWRpcmVjdC4gSSBk
+b24ndCBoYXZlIHRpbWUgcmlnaHQgbm93IHRvIGxvb2sgYXQgCml0LCBidXQgSSBzaG91bGQgYmUg
+YWJsZSB0byBwcmVwYXJlIHNvbWUgZ29vZCBpbnN0cnVjdGlvbnMgbmV4dCB3ZWVrLiAKQmFzaWNh
+bGx5IHdlJ2QgbmVlZCB0byBkbyBhIGNvbWJvIG1taW90cmFjZSArIHZhbGdyaW5kLW1tdCB0cmFj
+ZSBvZiBhIApDVURBIGFwcGxpY2F0aW9uIHV0aWxpc2luZyBHUFVkaXJlY3QgY2FsbHMgaW4gdmFy
+aW91cyBtb2Rlcy4KClRoZSAzZCBTTEkgZnVuY3Rpb25hbGl0eSwgYXMgdGVzdGVkIGJ5IG1lIG9u
+IGRvdWJsZS1udjUwIHVuZGVyIGxpbnV4LCAKYXBwZWFycyB0byBiZSBpbXBsZW1lbnRlZCBlbnRp
+cmVseSB1c2luZyAibm9ybWFsIiBmZWF0dXJlcyAtIHRoZSBzcGVjaWFsIAppbnRlci1HUFUgdHJh
+bnNmZXIgY2lyY3VpdHJ5IGlzIHNldCB1cCwgYnV0IG5ldmVyIGFjdHVhbGx5IHVzZWQuIE1heSAK
+c3RpbGwgYmUgd29ydGggYSB0cmFjZSBvbiBudmMwLCB0aG91Z2guCgpNYXJjaW4gS2/Fm2NpZWxu
+aWNraQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
