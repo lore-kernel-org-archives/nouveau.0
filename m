@@ -1,13 +1,12 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: Older Nvidia hardware driver state
-Date: Mon, 14 Nov 2011 12:48:50 +0100
-Message-ID: <877h32c4bh.fsf@riseup.net>
-References: <CAEk2StnHM+Gr_GZkg=RJP5ooJR02YJFMmxQXq8rqc8SeCDC_rg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 42921] New: Program received an X Window System
+	error.
+Date: Mon, 14 Nov 2011 13:15:08 +0000
+Message-ID: <bug-42921-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0720848190=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAEk2StnHM+Gr_GZkg=RJP5ooJR02YJFMmxQXq8rqc8SeCDC_rg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-	(Patrick Baggett's message of "Sun, 13 Nov 2011 19:34:35 -0600")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,80 +16,68 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0720848190==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
+https://bugs.freedesktop.org/show_bug.cgi?id=42921
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+             Bug #: 42921
+           Summary: Program received an X Window System error.
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: fox_gwhwup-jgFg43Yc3kMJGwgDXS7ZQA@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 
-Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
+Created attachment 53522
+  --> https://bugs.freedesktop.org/attachment.cgi?id=53522
+Xorg log
 
-> Hi all!
->
-Hi,
+I'm working on a GUI toolkit for Pygame, which can be downloaded at
+https://launchpad.net/simplegc
 
-> I read that the older Nvidia hardware (maybe < GF8) is in a different driver
-> and no longer maintained. Is that the case?
+Trying to run my example file in the project results in the following error:
+s@s-Air:~/Games/Tools/sgc/trunk/sgc/example$ python test.py 
+The program 'test.py' received an X Window System error.
+This probably reflects a bug in the program.
+The error was 'BadDrawable (invalid Pixmap or Window parameter)'.
+  (Details: serial 36 error_code 9 request_code 137 minor_code 8)
+  (Note to programmers: normally, X errors are reported asynchronously;
+   that is, you will receive the error a while after causing it.
+   To debug your program, run it with the --sync command line
+   option to change this behavior. You can then get a meaningful
+   backtrace from your debugger if you break on the gdk_x_error() function.)
 
-Yes and no.  If you're talking about the 3d drivers, I've done pretty
-much nothing as maintainer of the nv04-nv20 driver in the last few
-months, and the same goes for the nv30-nv40 driver, mostly because of
-lack of time of the people involved.  If you're talking about 2d, the
-situation is considerably better.
+The error doesn't occur until the code hits pygame.display.flip(), which makes
+it rather difficult to work out exactly which part is causing the problem. I'm
+using the menu widget in the game I am working on and it works perfectly, so
+it's obviously not the entire toolkit that's not working.
 
-And of course there's hardware-specific code different for each card
-generation, but IMHO calling them different separate drivers would be
-wrong, there's a significant amount of shared code.
+I'm not sure if this should be in the 3D section, as the bug is when running in
+OpenGL, but I'm only drawing in 2D. It still works fine the pygame/SDL, just
+not when I switch it to OpenGL.
 
-> I have a GeForce 4000 MX that I'm trying to get to work on
-> debian/sparc64, which I admit is a bit of longshot, but I was
-> wondering how much effort it would take to even get the driver to
-> build, and then to function. I'm very proficient in C but don't have
-> much experience writing drivers.
->
-It *should* be functional to a large extent, it's just that it might
-have bred a few bugs while we weren't looking :).  In any case your help
-is very welcome if you know how to program, feel free to address any
-questions to this mailing list or to the #nouveau IRC channel.
+I have checked this with the proprietary Nvidia driver and it works fine there,
+it's just when running the Nouveau driver.
 
-> Patrick Baggett
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+I'm not sure how to find out all the versions, but it's whatever an up-to-date
+Ubuntu 11.10 is running.
 
---=-=-=--
+Please tell me if you have any ideas on how to track the bug down. If you want
+to try to recreate the bug on your machine download the toolkit from above, and
+ensure you have python 2.x, pygame, pyopengl and pyFTGL installed. Then change
+the two lines near the top of the test.py file to enable OpenGL, and finally cd
+into the example folder and run 'python test.py'.
 
---==-=-=
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-
-iF4EAREIAAYFAk7BACIACgkQg5k4nX1Sv1uDGAD+Kv7G1+BSwrkblEtg2UTc+iAo
-fz7ZK4R1RFiuJgG49nUA/0FE7BbVc4OBjb+oI1U2c0blxZ4gaJeq9Rzvtcm18Qbt
-=SpQw
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0720848190==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0720848190==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
