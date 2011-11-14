@@ -1,14 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36142] Second DVI output produces no signal with
- nVidia G96 [Quadro FX 380] (rev a1)
-Date: Sun, 13 Nov 2011 21:19:13 +0000
-Message-ID: <bug-36142-8800-XAtliF12sx@http.bugs.freedesktop.org/>
-References: <bug-36142-8800@http.bugs.freedesktop.org/>
+From: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Older Nvidia hardware driver state
+Date: Sun, 13 Nov 2011 19:34:35 -0600
+Message-ID: <CAEk2StnHM+Gr_GZkg=RJP5ooJR02YJFMmxQXq8rqc8SeCDC_rg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1012049024=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36142-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +17,47 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36142
+--===============1012049024==
+Content-Type: multipart/alternative; boundary=bcaec520e69397f07b04b1a7df84
 
---- Comment #6 from Andreas Bierfert <andreas.bierfert-5CV/KFkYKWdyuFNXCmF+wQ@public.gmane.org> 2011-11-13 13:19:13 PST ---
-Same here. See https://bugzilla.redhat.com/show_bug.cgi?id=744899 as a
-reference.
+--bcaec520e69397f07b04b1a7df84
+Content-Type: text/plain; charset=ISO-8859-1
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Hi all!
+
+I read that the older Nvidia hardware (maybe < GF8) is in a different
+driver and no longer maintained. Is that the case? I have a GeForce 4000 MX
+that I'm trying to get to work on debian/sparc64, which I admit is a bit of
+longshot, but I was wondering how much effort it would take to even get the
+driver to build, and then to function. I'm very proficient in C but don't
+have much experience writing drivers.
+
+Patrick Baggett
+
+--bcaec520e69397f07b04b1a7df84
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi all!<div><br></div><div>I read that the older Nvidia hardware (maybe &lt=
+; GF8) is in a different driver and no longer maintained. Is that the case?=
+ I have a GeForce 4000 MX that I&#39;m trying to get to work on debian/spar=
+c64, which I admit is a bit of longshot, but I was wondering how much effor=
+t it would take to even get the driver to build, and then to function. I&#3=
+9;m very proficient in C but don&#39;t have much experience writing drivers=
+.</div>
+<div><br></div><div>Patrick Baggett</div>
+
+--bcaec520e69397f07b04b1a7df84--
+
+--===============1012049024==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1012049024==--
