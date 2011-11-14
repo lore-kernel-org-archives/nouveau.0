@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 42921] Program received an X Window System error.
-Date: Mon, 14 Nov 2011 13:16:16 +0000
-Message-ID: <bug-42921-8800-SqIy6vs6l9@http.bugs.freedesktop.org/>
+Date: Mon, 14 Nov 2011 13:16:48 +0000
+Message-ID: <bug-42921-8800-zQG7WSng4I@http.bugs.freedesktop.org/>
 References: <bug-42921-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=42921
 
---- Comment #1 from Sam Bull <fox_gwhwup-jgFg43Yc3kMJGwgDXS7ZQA@public.gmane.org> 2011-11-14 05:16:16 PST ---
-Created attachment 53523
-  --> https://bugs.freedesktop.org/attachment.cgi?id=53523
-Kernel log
+Sam Bull <fox_gwhwup-jgFg43Yc3kMJGwgDXS7ZQA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #53522|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
