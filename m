@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36142] Second DVI output produces no signal with
  nVidia G96 [Quadro FX 380] (rev a1)
-Date: Mon, 14 Nov 2011 06:57:47 +0000
-Message-ID: <bug-36142-8800-zxJ1rbIx1x@http.bugs.freedesktop.org/>
+Date: Mon, 14 Nov 2011 07:00:48 +0000
+Message-ID: <bug-36142-8800-NDQHC2eqAe@http.bugs.freedesktop.org/>
 References: <bug-36142-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36142
 
---- Comment #7 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-11-13 22:57:47 PST ---
-You might consider getting some logs with drm.debug=6 (kernel parameter)
-
-This will give you driver specific tracing and kms tracing.
+--- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-11-13 23:00:48 PST ---
+FYI drm.debug=1 is only the default tracing (lot's of ioctl messages!), 2 is
+driver information, 4 is kms information, they are a bitmask, so
+3=normal+driver and 5=normal+kms
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
