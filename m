@@ -1,8 +1,7 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43029] New: System won't boot using nouveau and
- Gainward Phantom adapters
-Date: Thu, 17 Nov 2011 16:51:49 +0000
-Message-ID: <bug-43029-8800@http.bugs.freedesktop.org/>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Keep RAMIN heap within the channel.
+Date: Tue, 22 Nov 2011 14:58:31 -0500
+Message-ID: <1321991911-2984-1-git-send-email-younes.m@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,34 +18,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43029
+The entire RAMIN is allocated to be 'size', but the heap is
+specified as 'base' + 'size' inside RAMIN, so it will overflow
+past RAMIN by 'base' bytes on NV50+ and clobber other allocatons
+unless it's size is adjusted.
 
-             Bug #: 43029
-           Summary: System won't boot using nouveau and Gainward Phantom
-                    adapters
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: All
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: blocker
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: ryzion-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Signed-off-by: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_object.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-
-I've been testing with all major linux distros and Gainward GTX560TI/570
-Phantom cards. The system hangs during boot if nouveau is enabled (I've
-bypassed the problem by disabling the driver via grub and the nouveau.modeset=0
-option). Other GTX570 cards work fine (tested EVGA and Gigabyte).
-
-If there is any data I can provide in order to solve the problem, please
-contact me.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_object.c b/drivers/gpu/drm/nouveau/nouveau_object.c
+index 02222c5..960c0ae 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_object.c
++++ b/drivers/gpu/drm/nouveau/nouveau_object.c
+@@ -680,7 +680,7 @@ nouveau_gpuobj_channel_init_pramin(struct nouveau_channel *chan)
+ 		return ret;
+ 	}
+ 
+-	ret = drm_mm_init(&chan->ramin_heap, base, size);
++	ret = drm_mm_init(&chan->ramin_heap, base, size - base);
+ 	if (ret) {
+ 		NV_ERROR(dev, "Error creating PRAMIN heap: %d\n", ret);
+ 		nouveau_gpuobj_ref(NULL, &chan->ramin);
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.7.1
