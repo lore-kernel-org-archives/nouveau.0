@@ -1,12 +1,14 @@
-From: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH to drm/nouveau] nouveau: Mark nouveau subchannel
-	unbound nouveau_grobj_free
-Date: Thu, 24 Nov 2011 14:08:53 +0100
-Message-ID: <4ECE41E5.3090608@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31122] Cannot control backlight intensity on
+	Powerbook
+Date: Fri, 25 Nov 2011 02:00:21 +0000
+Message-ID: <bug-31122-8800-i9dqKP4JRt@http.bugs.freedesktop.org/>
+References: <bug-31122-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,25 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Valgrind throws warns about a user-after-free if you try to bind a
-new subchannel after the old one in that slot was freed,
-so remove it from the channel list.
+https://bugs.freedesktop.org/show_bug.cgi?id=31122
 
-Signed-off-by: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+--- Comment #3 from cfr <reescf-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-11-24 18:00:21 PST ---
+The problem is that there is no device. The system doesn't recognise the
+existence of the backlight in some sense.
 
---- a/nouveau/nouveau_grobj.c
-+++ b/nouveau/nouveau_grobj.c
-@@ -100,12 +99,13 @@ nouveau_grobj_free(struct nouveau_grobj **grobj)
- 		struct drm_nouveau_gpuobj_free f;
- 
- 		FIRE_RING(&chan->base);
--
- 		f.channel = chan->drm.channel;
- 		f.handle  = nvgrobj->base.handle;
- 		drmCommandWrite(nvdev->fd, DRM_NOUVEAU_GPUOBJ_FREE,
- 				&f, sizeof(f));	
- 	}
-+	if (nvgrobj->base.bound != NOUVEAU_GROBJ_UNBOUND)
-+		chan->base.subc[nvgrobj->base.subc].gr = NULL;
- 	free(nvgrobj);
- }
+I realise you'd want dmesg output from the 3.1 kernel but I can't provide that
+right now because it panics on boot. I'll try to get it later.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
