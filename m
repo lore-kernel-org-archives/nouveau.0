@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43437] New: [NV4B] Crash when starting loads of 3D
-	applications
-Date: Thu, 01 Dec 2011 21:54:25 +0000
-Message-ID: <bug-43437-8800@http.bugs.freedesktop.org/>
+From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nouveau driver is not loading
+Date: Thu, 1 Dec 2011 17:30:39 -0500
+Message-ID: <CAMVNhxQyCsJFxu2gK_uG3wqPfrzqhMCcfw1GryyV+D-mKRYRHw@mail.gmail.com>
+References: <20111129210404.162990@gmx.net>
+	<CAMVNhxQTizDCJ8utXW=Mr=ktu3S_6SozYg2+vqAcbEz8V9PvAg@mail.gmail.com>
+	<20111201195400.107610@gmx.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20111201195400.107610-hi6Y0CQ0nG0@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,107 +19,89 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lars Callenbach <lars.callenbach-Mmb7MZpHnFY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43437
+On Thu, Dec 1, 2011 at 2:54 PM, Lars Callenbach <lars.callenbach-Mmb7MZpHnFY@public.gmane.org> wr=
+ote:
+> Thank you for your answer. I have restartet the computer and have not loa=
+ded nvidiafb. This is the output for the latest git-nouveau kernel module (=
+error code -12):
+> ---
+> [ =A0 =A06.971517] [drm] Initialized drm 1.1.0 20060810
 
-             Bug #: 43437
-           Summary: [NV4B] Crash when starting loads of 3D applications
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+> [ =A0 =A07.037917] [drm] nouveau 0000:06:00.0: Detected an NV40 generatio=
+n card (0x043000a4)
 
+> [ =A0 =A07.073400] [drm] nouveau 0000:06:00.0: 0 MiB GART (aperture)
 
-When starting a lot of 3D application on my NV4B (Geforce 7600GS AGP), a kernel
-panic occurs bringing the entire system to a halt. In my case this was
-Gnome-shell with several applications open, and glxgears running 8 or 9 times
-concurrently. A rather synthetic environment I must admit, but having a
-null-pointer dereference may never occur and/or bring the system down. :)
+That's strange...
 
-Reproducible:
-1. Log in to your desktop (in my case gnome shell)
-2. Start GLXGears
-3. Start GLXGears
-4. Start GLXGears
-5. Start GLXGears
-6. Start GLXGears
-7. Start GLXGears
-8. Start GLXGears
-9. Start GLXGears
-10. Start GLXGears
+> [ =A0 =A07.170138] [drm] nouveau 0000:06:00.0: ntfy -12
+> [ =A0 =A07.170288] [drm] nouveau 0000:06:00.0: 0xD642: Parsing digital ou=
+tput script table
+> [ =A0 =A07.220570] [drm] nouveau 0000:06:00.0: Restoring VGA fonts
+> [ =A0 =A07.221181] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.221584] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.221980] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.222372] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.222760] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.223127] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.223516] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.223905] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.224310] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.224707] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.225097] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.225486] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.225875] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.226263] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.226656] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.227048] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.227445] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.227842] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.228253] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
+> [ =A0 =A07.228625] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
+00000
 
-Expected behaviour:
-Loads of gears on my screen running really really slow. Or applications being
-killed because the GPU cannot service them
+This is also strange...
 
-Actual behaviour:
-Kernel BUG.
+> [ =A0 =A07.232989] [drm:drm_sysfs_connector_remove], removing "VGA-1" fro=
+m sysfs
+> [ =A0 =A07.233027] [drm:drm_sysfs_connector_remove], removing "DVI-I-1" f=
+rom sysfs
+> [ =A0 =A07.233054] [drm:drm_sysfs_connector_remove], removing "TV-1" from=
+ sysfs
+> [ =A0 =A07.233099] [drm:drm_irq_uninstall], irq=3D16
+> [ =A0 =A07.233118] [drm:drm_mm_takedown] *ERROR* Memory manager not clean=
+. Delaying takedown
+> [ =A0 =A07.233260] [drm:drm_mm_takedown] *ERROR* Memory manager not clean=
+. Delaying takedown
+> [ =A0 =A07.233401] [TTM] Finalizing pool allocator.
+> [ =A0 =A07.233437] [TTM] Zone =A0kernel: Used memory at exit: 0 kiB.
+> [ =A0 =A07.235221] [drm:drm_put_minor], release secondary minor 0
+> [ =A0 =A07.235330] [drm:drm_put_minor], release secondary minor 64
+> [ =A0 =A07.235507] nouveau 0000:06:00.0: PCI INT A disabled
+> [ =A0 =A07.235529] nouveau: probe of 0000:06:00.0 failed with error -12
 
-Software:
-Fedora 16
-kernel-3.1.2-1.fc16.i686
-xorg-x11-drv-nouveau-0.0.16-27.20110720gitb806e3f.fc16.i686
-
-Kernel log:
-    Dec 1 14:35:24 Seven kernel: [16444.216143] BUG: unable to handle kernel
-NULL pointer dereference at 00000001
-    Dec 1 14:35:24 Seven kernel: [16444.216418] IP: [<f7dd2cd8>]
-nouveau_fence_update+0xe/0xa5 [nouveau]
-    Dec 1 14:35:24 Seven kernel: [16444.217012] *pde = 56152067
-    Dec 1 14:35:24 Seven kernel: [16444.217012] Oops: 0000 [#1] SMP
-    Dec 1 14:35:24 Seven kernel: [16444.217012] Modules linked in: nf_nat_h323
-nf_conntrack_h323 nf_nat_pptp nf_conntrack_pptp nf_conntrack_proto_gre
-nf_nat_proto_gre nf_nat_tftp nf_conntrack_tftp nf_nat_sip nf_conntrack_sip
-nf_nat_irc nf_conntrack_irc nf_nat_ftp nf_conntrack_ftp fuse lockd rfcomm bnep
-nf_conntrack_netbios_ns nf_conntrack_broadcast ip6t_REJECT nf_conntrack_ipv6
-nf_defrag_ipv6 xt_state ipt_MASQUERADE iptable_nat nf_nat nf_conntrack_ipv4
-nf_conntrack nf_defrag_ipv4 ip6table_filter ip6_tables w83l785ts asb100
-hwmon_vid snd_emu10k1_synth snd_emux_synth snd_seq_virmidi snd_seq_midi_event
-snd_seq_midi_emul snd_emu10k1 snd_ac97_codec snd_cs4236 snd_wss_lib ac97_bus
-snd_opl3_lib snd_seq ppdev arc4 ath5k ath mac80211 cfg80211 btusb bluetooth
-snd_pcm snd_timer snd_mpu401 snd_mpu401_uart snd_page_alloc snd_util_mem
-snd_rawmidi snd_hwdep snd_seq_device snd soundcore parport_pc parport rfkill
-emu10k1_gp ns558 3c59x forcedeth mii i2c_nforce2 gameport binfmt_misc sunrpc
-uinput firewire_ohci pata_acpi ata_generic
-    Dec 1 14:35:24 Seven kernel: firewire_core crc_itu_t sata_sil pata_amd
-nouveau ttm drm_kms_helper drm i2c_algo_bit i2c_core mxm_wmi wmi video [last
-unloaded: scsi_wait_scan]
-    Dec 1 14:35:24 Seven kernel: [16444.217012]
-    Dec 1 14:35:24 Seven kernel: [16444.217012] Pid: 1541, comm: gnome-shell
-Not tainted 3.1.2-1.fc16.i686 #1 ASUSTeK Computer INC. A7N8X2.0/A7N8X2.0
-    Dec 1 14:35:24 Seven kernel: [16444.217012] EIP: 0060:[<f7dd2cd8>] EFLAGS:
-00010296 CPU: 0
-    Dec 1 14:35:24 Seven kernel: [16444.217012] EIP is at
-nouveau_fence_update+0xe/0xa5 [nouveau]
-    Dec 1 14:35:24 Seven kernel: [16444.217012] EAX: 00000001 EBX: ce179a60
-ECX: 00000001 EDX: 00000001
-    Dec 1 14:35:24 Seven kernel: [16444.217012] ESI: f0e63240 EDI: f0e63240
-EBP: f31cfd10 ESP: f31cfcfc
-    Dec 1 14:35:24 Seven kernel: [16444.217012] DS: 007b ES: 007b FS: 00d8 GS:
-00e0 SS: 0068
-    Dec 1 14:35:24 Seven kernel: [16444.217012] Process gnome-shell (pid: 1541,
-ti=f31ce000 task=f0e63240 task.ti=f31ce000)
-    Dec 1 14:35:24 Seven kernel: [16444.217012] Stack:
-    Dec 1 14:35:24 Seven kernel: [16444.217012] ce179f00 ce179820 ce179a60
-f0e63240 f0e63240 f31cfd1c f7dd2f7b 000003e8
-    Dec 1 14:35:24 Seven kernel: [16444.217012] f31cfd48 f7dd2fc6 00000000
-ce179a60 00f66310 0001cb83 00000000 00000004
-    Dec 1 14:35:24 Seven kernel: [16444.217012] f6e80000 00000004 00000060
-f31cfd78 f7dd31ba 00000000 00000017 ce179a60
-    Dec 1 14:35:24 Seven kernel: [16444.217012] Call TraDec 1 14:36:53 Seven
-kernel: imklog 5.8.5, log source = /proc/kmsg started.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Not sure what's going on with your card. Is this a regression? Did
+nouveau ever work for you? Does Nvidia's official driver work?
