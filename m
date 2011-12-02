@@ -1,15 +1,16 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix acpi related kbuild warnings
-Date: Fri, 2 Dec 2011 19:49:14 +0100
-Message-ID: <20111202184914.GB3302@joi.lan>
-References: <20111102213940.GA5459@joi.lan>
- <20111109213234.GB3402@joi.lan>
+From: "Lars Callenbach" <lars.callenbach-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: nouveau driver is not loading
+Date: Fri, 02 Dec 2011 20:18:46 +0100
+Message-ID: <20111202191846.296410@gmx.net>
+References: <20111129210404.162990@gmx.net>
+	<CAMVNhxQTizDCJ8utXW=Mr=ktu3S_6SozYg2+vqAcbEz8V9PvAg@mail.gmail.com>
+	<20111201195400.107610@gmx.net>
+	<CAMVNhxQyCsJFxu2gK_uG3wqPfrzqhMCcfw1GryyV+D-mKRYRHw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20111109213234.GB3402-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <CAMVNhxQyCsJFxu2gK_uG3wqPfrzqhMCcfw1GryyV+D-mKRYRHw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,30 +20,80 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Nov 09, 2011 at 10:32:34PM +0100, Marcin Slusarz wrote:
-> On Wed, Nov 02, 2011 at 10:39:40PM +0100, Marcin Slusarz wrote:
-> > Currently when X86 && ACPI && !X86_PLATFORM_DEVICES kbuild spits:
-> > 
-> > warning: (DRM_NOUVEAU) selects ACPI_WMI which has unmet direct
-> > dependencies (X86 && X86_PLATFORM_DEVICES && ACPI)
-> > warning: (DRM_NOUVEAU) selects MXM_WMI which has unmet direct
-> > dependencies (X86 && X86_PLATFORM_DEVICES && ACPI_WMI)
-> > 
-> > and goes on, which leaves a situation where ACPI_WMI (which depends on
-> > X86_PLATFORM_DEVICES) is enabled but X86_PLATFORM_DEVICES is not.
-> > Additionally, Nouveau on IA64 would enable these X86-related drivers
-> > when ACPI is enabled (doesn't matter but is wrong) and build
-> > nouveau_acpi.c which depends on them.
-> > 
-> > To fix this, introduce hidden DRM_NOUVEAU_ACPI variable which selects
-> > all acpi/x86 related configs and select it when both X86 and ACPI are
-> > enabled.
-> > 
-> > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > ---
-
-ping?
+SSBoYXZlIG5vdCB0ZXN0ZWQgbm91dmVhdSBiZWZvcmUuIE5WaWRpYSBkcml2ZXIgbG9hZHMgYnV0
+IHN5c3RlbSBmcmVlemVzIGFmdGVyIGEgZmV3IHNlY29uZHMuCgpEbyB5b3UgdGhpbmsgaXQgaXMg
+cmVsYXRlZCB0byBteSBvbGQgQUdQIGNhcmQ/CgotLS0tLS0tLSBPcmlnaW5hbC1OYWNocmljaHQg
+LS0tLS0tLS0KPiBEYXR1bTogVGh1LCAxIERlYyAyMDExIDE3OjMwOjM5IC0wNTAwCj4gVm9uOiBZ
+b3VuZXMgTWFudG9uIDx5b3VuZXMubUBnbWFpbC5jb20+Cj4gQW46IExhcnMgQ2FsbGVuYmFjaCA8
+bGFycy5jYWxsZW5iYWNoQGdteC5kZT4KPiBDQzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKPiBCZXRyZWZmOiBSZTogW05vdXZlYXVdIG5vdXZlYXUgZHJpdmVyIGlzIG5vdCBsb2FkaW5n
+Cgo+IE9uIFRodSwgRGVjIDEsIDIwMTEgYXQgMjo1NCBQTSwgTGFycyBDYWxsZW5iYWNoIDxsYXJz
+LmNhbGxlbmJhY2hAZ214LmRlPgo+IHdyb3RlOgo+ID4gVGhhbmsgeW91IGZvciB5b3VyIGFuc3dl
+ci4gSSBoYXZlIHJlc3RhcnRldCB0aGUgY29tcHV0ZXIgYW5kIGhhdmUgbm90Cj4gbG9hZGVkIG52
+aWRpYWZiLiBUaGlzIGlzIHRoZSBvdXRwdXQgZm9yIHRoZSBsYXRlc3QgZ2l0LW5vdXZlYXUga2Vy
+bmVsIG1vZHVsZQo+IChlcnJvciBjb2RlIC0xMik6Cj4gPiAtLS0KPiA+IFsgwqAgwqA2Ljk3MTUx
+N10gW2RybV0gSW5pdGlhbGl6ZWQgZHJtIDEuMS4wIDIwMDYwODEwCj4gCj4gPiBbIMKgIMKgNy4w
+Mzc5MTddIFtkcm1dIG5vdXZlYXUgMDAwMDowNjowMC4wOiBEZXRlY3RlZCBhbiBOVjQwIGdlbmVy
+YXRpb24KPiBjYXJkICgweDA0MzAwMGE0KQo+IAo+ID4gWyDCoCDCoDcuMDczNDAwXSBbZHJtXSBu
+b3V2ZWF1IDAwMDA6MDY6MDAuMDogMCBNaUIgR0FSVCAoYXBlcnR1cmUpCj4gCj4gVGhhdCdzIHN0
+cmFuZ2UuLi4KPiAKPiA+IFsgwqAgwqA3LjE3MDEzOF0gW2RybV0gbm91dmVhdSAwMDAwOjA2OjAw
+LjA6IG50ZnkgLTEyCj4gPiBbIMKgIMKgNy4xNzAyODhdIFtkcm1dIG5vdXZlYXUgMDAwMDowNjow
+MC4wOiAweEQ2NDI6IFBhcnNpbmcgZGlnaXRhbAo+IG91dHB1dCBzY3JpcHQgdGFibGUKPiA+IFsg
+wqAgwqA3LjIyMDU3MF0gW2RybV0gbm91dmVhdSAwMDAwOjA2OjAwLjA6IFJlc3RvcmluZyBWR0Eg
+Zm9udHMKPiA+IFsgwqAgwqA3LjIyMTE4MV0gW2RybV0gbm91dmVhdSAwMDAwOjA2OjAwLjA6IFBN
+QyAtIHVuaGFuZGxlZCBJTlRSCj4gMHgwMTAwMDAwMAo+ID4gWyDCoCDCoDcuMjIxNTg0XSBbZHJt
+XSBub3V2ZWF1IDAwMDA6MDY6MDAuMDogUE1DIC0gdW5oYW5kbGVkIElOVFIKPiAweDAxMDAwMDAw
+Cj4gPiBbIMKgIMKgNy4yMjE5ODBdIFtkcm1dIG5vdXZlYXUgMDAwMDowNjowMC4wOiBQTUMgLSB1
+bmhhbmRsZWQgSU5UUgo+IDB4MDEwMDAwMDAKPiA+IFsgwqAgwqA3LjIyMjM3Ml0gW2RybV0gbm91
+dmVhdSAwMDAwOjA2OjAwLjA6IFBNQyAtIHVuaGFuZGxlZCBJTlRSCj4gMHgwMTAwMDAwMAo+ID4g
+WyDCoCDCoDcuMjIyNzYwXSBbZHJtXSBub3V2ZWF1IDAwMDA6MDY6MDAuMDogUE1DIC0gdW5oYW5k
+bGVkIElOVFIKPiAweDAxMDAwMDAwCj4gPiBbIMKgIMKgNy4yMjMxMjddIFtkcm1dIG5vdXZlYXUg
+MDAwMDowNjowMC4wOiBQTUMgLSB1bmhhbmRsZWQgSU5UUgo+IDB4MDEwMDAwMDAKPiA+IFsgwqAg
+wqA3LjIyMzUxNl0gW2RybV0gbm91dmVhdSAwMDAwOjA2OjAwLjA6IFBNQyAtIHVuaGFuZGxlZCBJ
+TlRSCj4gMHgwMTAwMDAwMAo+ID4gWyDCoCDCoDcuMjIzOTA1XSBbZHJtXSBub3V2ZWF1IDAwMDA6
+MDY6MDAuMDogUE1DIC0gdW5oYW5kbGVkIElOVFIKPiAweDAxMDAwMDAwCj4gPiBbIMKgIMKgNy4y
+MjQzMTBdIFtkcm1dIG5vdXZlYXUgMDAwMDowNjowMC4wOiBQTUMgLSB1bmhhbmRsZWQgSU5UUgo+
+IDB4MDEwMDAwMDAKPiA+IFsgwqAgwqA3LjIyNDcwN10gW2RybV0gbm91dmVhdSAwMDAwOjA2OjAw
+LjA6IFBNQyAtIHVuaGFuZGxlZCBJTlRSCj4gMHgwMTAwMDAwMAo+ID4gWyDCoCDCoDcuMjI1MDk3
+XSBbZHJtXSBub3V2ZWF1IDAwMDA6MDY6MDAuMDogUE1DIC0gdW5oYW5kbGVkIElOVFIKPiAweDAx
+MDAwMDAwCj4gPiBbIMKgIMKgNy4yMjU0ODZdIFtkcm1dIG5vdXZlYXUgMDAwMDowNjowMC4wOiBQ
+TUMgLSB1bmhhbmRsZWQgSU5UUgo+IDB4MDEwMDAwMDAKPiA+IFsgwqAgwqA3LjIyNTg3NV0gW2Ry
+bV0gbm91dmVhdSAwMDAwOjA2OjAwLjA6IFBNQyAtIHVuaGFuZGxlZCBJTlRSCj4gMHgwMTAwMDAw
+MAo+ID4gWyDCoCDCoDcuMjI2MjYzXSBbZHJtXSBub3V2ZWF1IDAwMDA6MDY6MDAuMDogUE1DIC0g
+dW5oYW5kbGVkIElOVFIKPiAweDAxMDAwMDAwCj4gPiBbIMKgIMKgNy4yMjY2NTZdIFtkcm1dIG5v
+dXZlYXUgMDAwMDowNjowMC4wOiBQTUMgLSB1bmhhbmRsZWQgSU5UUgo+IDB4MDEwMDAwMDAKPiA+
+IFsgwqAgwqA3LjIyNzA0OF0gW2RybV0gbm91dmVhdSAwMDAwOjA2OjAwLjA6IFBNQyAtIHVuaGFu
+ZGxlZCBJTlRSCj4gMHgwMTAwMDAwMAo+ID4gWyDCoCDCoDcuMjI3NDQ1XSBbZHJtXSBub3V2ZWF1
+IDAwMDA6MDY6MDAuMDogUE1DIC0gdW5oYW5kbGVkIElOVFIKPiAweDAxMDAwMDAwCj4gPiBbIMKg
+IMKgNy4yMjc4NDJdIFtkcm1dIG5vdXZlYXUgMDAwMDowNjowMC4wOiBQTUMgLSB1bmhhbmRsZWQg
+SU5UUgo+IDB4MDEwMDAwMDAKPiA+IFsgwqAgwqA3LjIyODI1M10gW2RybV0gbm91dmVhdSAwMDAw
+OjA2OjAwLjA6IFBNQyAtIHVuaGFuZGxlZCBJTlRSCj4gMHgwMTAwMDAwMAo+ID4gWyDCoCDCoDcu
+MjI4NjI1XSBbZHJtXSBub3V2ZWF1IDAwMDA6MDY6MDAuMDogUE1DIC0gdW5oYW5kbGVkIElOVFIK
+PiAweDAxMDAwMDAwCj4gCj4gVGhpcyBpcyBhbHNvIHN0cmFuZ2UuLi4KPiAKPiA+IFsgwqAgwqA3
+LjIzMjk4OV0gW2RybTpkcm1fc3lzZnNfY29ubmVjdG9yX3JlbW92ZV0sIHJlbW92aW5nICJWR0Et
+MSIgZnJvbQo+IHN5c2ZzCj4gPiBbIMKgIMKgNy4yMzMwMjddIFtkcm06ZHJtX3N5c2ZzX2Nvbm5l
+Y3Rvcl9yZW1vdmVdLCByZW1vdmluZyAiRFZJLUktMSIKPiBmcm9tIHN5c2ZzCj4gPiBbIMKgIMKg
+Ny4yMzMwNTRdIFtkcm06ZHJtX3N5c2ZzX2Nvbm5lY3Rvcl9yZW1vdmVdLCByZW1vdmluZyAiVFYt
+MSIgZnJvbQo+IHN5c2ZzCj4gPiBbIMKgIMKgNy4yMzMwOTldIFtkcm06ZHJtX2lycV91bmluc3Rh
+bGxdLCBpcnE9MTYKPiA+IFsgwqAgwqA3LjIzMzExOF0gW2RybTpkcm1fbW1fdGFrZWRvd25dICpF
+UlJPUiogTWVtb3J5IG1hbmFnZXIgbm90IGNsZWFuLgo+IERlbGF5aW5nIHRha2Vkb3duCj4gPiBb
+IMKgIMKgNy4yMzMyNjBdIFtkcm06ZHJtX21tX3Rha2Vkb3duXSAqRVJST1IqIE1lbW9yeSBtYW5h
+Z2VyIG5vdCBjbGVhbi4KPiBEZWxheWluZyB0YWtlZG93bgo+ID4gWyDCoCDCoDcuMjMzNDAxXSBb
+VFRNXSBGaW5hbGl6aW5nIHBvb2wgYWxsb2NhdG9yLgo+ID4gWyDCoCDCoDcuMjMzNDM3XSBbVFRN
+XSBab25lIMKga2VybmVsOiBVc2VkIG1lbW9yeSBhdCBleGl0OiAwIGtpQi4KPiA+IFsgwqAgwqA3
+LjIzNTIyMV0gW2RybTpkcm1fcHV0X21pbm9yXSwgcmVsZWFzZSBzZWNvbmRhcnkgbWlub3IgMAo+
+ID4gWyDCoCDCoDcuMjM1MzMwXSBbZHJtOmRybV9wdXRfbWlub3JdLCByZWxlYXNlIHNlY29uZGFy
+eSBtaW5vciA2NAo+ID4gWyDCoCDCoDcuMjM1NTA3XSBub3V2ZWF1IDAwMDA6MDY6MDAuMDogUENJ
+IElOVCBBIGRpc2FibGVkCj4gPiBbIMKgIMKgNy4yMzU1MjldIG5vdXZlYXU6IHByb2JlIG9mIDAw
+MDA6MDY6MDAuMCBmYWlsZWQgd2l0aCBlcnJvciAtMTIKPiAKPiBOb3Qgc3VyZSB3aGF0J3MgZ29p
+bmcgb24gd2l0aCB5b3VyIGNhcmQuIElzIHRoaXMgYSByZWdyZXNzaW9uPyBEaWQKPiBub3V2ZWF1
+IGV2ZXIgd29yayBmb3IgeW91PyBEb2VzIE52aWRpYSdzIG9mZmljaWFsIGRyaXZlciB3b3JrPwoK
+LS0gCk5FVTogRnJlZVBob25lIC0gMGN0L21pbiBIYW5keXNwYXJ0YXJpZiBtaXQgR2VsZC16dXLD
+vGNrLUdhcmFudGllIQkJCkpldHp0IGluZm9ybWllcmVuOiBodHRwOi8vd3d3LmdteC5uZXQvZGUv
+Z28vZnJlZXBob25lCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
