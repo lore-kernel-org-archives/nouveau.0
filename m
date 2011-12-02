@@ -1,15 +1,13 @@
-From: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nouveau driver is not loading
-Date: Thu, 1 Dec 2011 17:30:39 -0500
-Message-ID: <CAMVNhxQyCsJFxu2gK_uG3wqPfrzqhMCcfw1GryyV+D-mKRYRHw@mail.gmail.com>
-References: <20111129210404.162990@gmx.net>
-	<CAMVNhxQTizDCJ8utXW=Mr=ktu3S_6SozYg2+vqAcbEz8V9PvAg@mail.gmail.com>
-	<20111201195400.107610@gmx.net>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [mesa PATCH] nouveau: fix double free when
+	nvXX_screen_create fails
+Date: Fri, 2 Dec 2011 19:46:59 +0100
+Message-ID: <20111202184659.GA3302@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20111201195400.107610-hi6Y0CQ0nG0@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,89 +17,143 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Lars Callenbach <lars.callenbach-Mmb7MZpHnFY@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Dec 1, 2011 at 2:54 PM, Lars Callenbach <lars.callenbach-Mmb7MZpHnFY@public.gmane.org> wr=
-ote:
-> Thank you for your answer. I have restartet the computer and have not loa=
-ded nvidiafb. This is the output for the latest git-nouveau kernel module (=
-error code -12):
-> ---
-> [ =A0 =A06.971517] [drm] Initialized drm 1.1.0 20060810
+When nvXX_screen_create fails, it destroys winsys object,
+so nouveau_drm_screen_create should not try to destroy it again.
 
-> [ =A0 =A07.037917] [drm] nouveau 0000:06:00.0: Detected an NV40 generatio=
-n card (0x043000a4)
+Note: This is a candidate for the 7.11 branch.
+---
+ src/gallium/drivers/nv50/nv50_screen.c             |    7 +++++--
+ src/gallium/drivers/nvc0/nvc0_screen.c             |    7 +++++--
+ src/gallium/drivers/nvfx/nvfx_screen.c             |    6 ++++--
+ .../winsys/nouveau/drm/nouveau_drm_winsys.c        |   10 ++++++----
+ 4 files changed, 20 insertions(+), 10 deletions(-)
 
-> [ =A0 =A07.073400] [drm] nouveau 0000:06:00.0: 0 MiB GART (aperture)
-
-That's strange...
-
-> [ =A0 =A07.170138] [drm] nouveau 0000:06:00.0: ntfy -12
-> [ =A0 =A07.170288] [drm] nouveau 0000:06:00.0: 0xD642: Parsing digital ou=
-tput script table
-> [ =A0 =A07.220570] [drm] nouveau 0000:06:00.0: Restoring VGA fonts
-> [ =A0 =A07.221181] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.221584] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.221980] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.222372] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.222760] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.223127] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.223516] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.223905] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.224310] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.224707] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.225097] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.225486] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.225875] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.226263] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.226656] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.227048] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.227445] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.227842] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.228253] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-> [ =A0 =A07.228625] [drm] nouveau 0000:06:00.0: PMC - unhandled INTR 0x010=
-00000
-
-This is also strange...
-
-> [ =A0 =A07.232989] [drm:drm_sysfs_connector_remove], removing "VGA-1" fro=
-m sysfs
-> [ =A0 =A07.233027] [drm:drm_sysfs_connector_remove], removing "DVI-I-1" f=
-rom sysfs
-> [ =A0 =A07.233054] [drm:drm_sysfs_connector_remove], removing "TV-1" from=
- sysfs
-> [ =A0 =A07.233099] [drm:drm_irq_uninstall], irq=3D16
-> [ =A0 =A07.233118] [drm:drm_mm_takedown] *ERROR* Memory manager not clean=
-. Delaying takedown
-> [ =A0 =A07.233260] [drm:drm_mm_takedown] *ERROR* Memory manager not clean=
-. Delaying takedown
-> [ =A0 =A07.233401] [TTM] Finalizing pool allocator.
-> [ =A0 =A07.233437] [TTM] Zone =A0kernel: Used memory at exit: 0 kiB.
-> [ =A0 =A07.235221] [drm:drm_put_minor], release secondary minor 0
-> [ =A0 =A07.235330] [drm:drm_put_minor], release secondary minor 64
-> [ =A0 =A07.235507] nouveau 0000:06:00.0: PCI INT A disabled
-> [ =A0 =A07.235529] nouveau: probe of 0000:06:00.0 failed with error -12
-
-Not sure what's going on with your card. Is this a regression? Did
-nouveau ever work for you? Does Nvidia's official driver work?
+diff --git a/src/gallium/drivers/nv50/nv50_screen.c b/src/gallium/drivers/nv50/nv50_screen.c
+index 3cd5fdf..156054b 100644
+--- a/src/gallium/drivers/nv50/nv50_screen.c
++++ b/src/gallium/drivers/nv50/nv50_screen.c
+@@ -22,6 +22,7 @@
+ 
+ #include "util/u_format.h"
+ #include "util/u_format_s3tc.h"
++#include "util/u_simple_screen.h"
+ #include "pipe/p_screen.h"
+ 
+ #include "nv50_context.h"
+@@ -310,9 +311,12 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
+    unsigned i, base;
+ 
+    screen = CALLOC_STRUCT(nv50_screen);
+-   if (!screen)
++   if (!screen) {
++      ws->destroy(ws);
+       return NULL;
++   }
+    pscreen = &screen->base.base;
++   pscreen->winsys = ws;
+ 
+    screen->base.sysmem_bindings = PIPE_BIND_CONSTANT_BUFFER;
+ 
+@@ -323,7 +327,6 @@ nv50_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
+    chan = screen->base.channel;
+    chan->user_private = screen;
+ 
+-   pscreen->winsys = ws;
+    pscreen->destroy = nv50_screen_destroy;
+    pscreen->context_create = nv50_create;
+    pscreen->is_format_supported = nv50_screen_is_format_supported;
+diff --git a/src/gallium/drivers/nvc0/nvc0_screen.c b/src/gallium/drivers/nvc0/nvc0_screen.c
+index 79c3e36..9268a7a 100644
+--- a/src/gallium/drivers/nvc0/nvc0_screen.c
++++ b/src/gallium/drivers/nvc0/nvc0_screen.c
+@@ -22,6 +22,7 @@
+ 
+ #include "util/u_format.h"
+ #include "util/u_format_s3tc.h"
++#include "util/u_simple_screen.h"
+ #include "pipe/p_screen.h"
+ 
+ #include "vl/vl_decoder.h"
+@@ -376,9 +377,12 @@ nvc0_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
+    unsigned i;
+ 
+    screen = CALLOC_STRUCT(nvc0_screen);
+-   if (!screen)
++   if (!screen) {
++      ws->destroy(ws);
+       return NULL;
++   }
+    pscreen = &screen->base.base;
++   pscreen->winsys = ws;
+ 
+    screen->base.sysmem_bindings = PIPE_BIND_CONSTANT_BUFFER;
+ 
+@@ -390,7 +394,6 @@ nvc0_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
+    chan = screen->base.channel;
+    chan->user_private = screen;
+ 
+-   pscreen->winsys = ws;
+    pscreen->destroy = nvc0_screen_destroy;
+    pscreen->context_create = nvc0_create;
+    pscreen->is_format_supported = nvc0_screen_is_format_supported;
+diff --git a/src/gallium/drivers/nvfx/nvfx_screen.c b/src/gallium/drivers/nvfx/nvfx_screen.c
+index f56c697..4085ec7 100644
+--- a/src/gallium/drivers/nvfx/nvfx_screen.c
++++ b/src/gallium/drivers/nvfx/nvfx_screen.c
+@@ -469,10 +469,13 @@ nvfx_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
+ 	unsigned eng3d_class = 0;
+ 	int ret, i;
+ 
+-	if (!screen)
++	if (!screen) {
++		ws->destroy(ws);
+ 		return NULL;
++	}
+ 
+ 	pscreen = &screen->base.base;
++	pscreen->winsys = ws;
+ 
+ 	ret = nouveau_screen_init(&screen->base, dev);
+ 	if (ret) {
+@@ -484,7 +487,6 @@ nvfx_screen_create(struct pipe_winsys *ws, struct nouveau_device *dev)
+ 	chan->user_private = screen;
+ 	chan->flush_notify = nvfx_channel_flush_notify;
+ 
+-	pscreen->winsys = ws;
+ 	pscreen->destroy = nvfx_screen_destroy;
+ 	pscreen->get_param = nvfx_screen_get_param;
+ 	pscreen->get_shader_param = nvfx_screen_get_shader_param;
+diff --git a/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c b/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
+index 7d7a276..d7a6bf7 100644
+--- a/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
++++ b/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
+@@ -30,6 +30,7 @@ nouveau_drm_screen_create(int fd)
+ 	struct nouveau_winsys *nvws;
+ 	struct pipe_winsys *ws;
+ 	struct nouveau_device *dev = NULL;
++	struct pipe_screen *screen;
+ 	struct pipe_screen *(*init)(struct pipe_winsys *,
+ 				    struct nouveau_device *);
+ 	int ret;
+@@ -68,11 +69,12 @@ nouveau_drm_screen_create(int fd)
+ 	ws = &nvws->base;
+ 	ws->destroy = nouveau_drm_destroy_winsys;
+ 
+-	nvws->pscreen = init(ws, dev);
+-	if (!nvws->pscreen) {
+-		ws->destroy(ws);
++	screen = init(ws, dev);
++	if (!screen)
++		/* winsys was destroyed by init */
+ 		return NULL;
+-	}
++
++	nvws->pscreen = screen;
+ 
+ 	return nvws->pscreen;
+ }
+-- 
+1.7.8.rc3
