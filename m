@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34491] Resuming from Suspend to RAM causes poor 2D
 	performance
-Date: Mon, 05 Dec 2011 21:57:39 +0000
-Message-ID: <bug-34491-8800-2U6LT85OI9@http.bugs.freedesktop.org/>
+Date: Mon, 05 Dec 2011 21:57:47 +0000
+Message-ID: <bug-34491-8800-hUsYW6UIEi@http.bugs.freedesktop.org/>
 References: <bug-34491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #43562|text/x-log                  |text/plain
+  Attachment #43566|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
