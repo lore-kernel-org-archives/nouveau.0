@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21471] Segfault from nouveau_drv.so apparently when
- probing output modes
-Date: Mon, 05 Dec 2011 18:52:31 +0000
-Message-ID: <bug-21471-8800-XfXxFtBGHR@http.bugs.freedesktop.org/>
-References: <bug-21471-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23092] Syslog flooded with "nouveau 0000:01:00.0:
+ Unhandled PFIFO_INTR - 0x00000010"
+Date: Mon, 05 Dec 2011 18:59:28 +0000
+Message-ID: <bug-23092-8800-443Z6sGxfD@http.bugs.freedesktop.org/>
+References: <bug-23092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21471-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23092-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +21,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21471
+https://bugs.freedesktop.org/show_bug.cgi?id=23092
 
 Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|                            |INVALID
+         Resolution|                            |FIXED
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-05 10:52:31 PST ---
-No logs attached. No response from the reporter. Marking as RESOLVED INVALID.
+--- Comment #9 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-05 10:59:28 PST ---
+I think we fixed it sometime ago with fb handover fixes. Marking as RESOLVED
+FIXED. If you can still reproduce it, please reopen.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
