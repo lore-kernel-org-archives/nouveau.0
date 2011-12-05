@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34491] Resuming from Suspend to RAM causes poor 2D
-	performance
-Date: Mon, 05 Dec 2011 21:57:47 +0000
-Message-ID: <bug-34491-8800-hUsYW6UIEi@http.bugs.freedesktop.org/>
-References: <bug-34491-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33999] 2.6.37 - NV11 crashes X if glxgears started
+Date: Mon, 05 Dec 2011 14:43:20 +0000
+Message-ID: <bug-33999-8800-TScoOKbDsA@http.bugs.freedesktop.org/>
+References: <bug-33999-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33999-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +20,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34491
+https://bugs.freedesktop.org/show_bug.cgi?id=33999
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #10 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-12-05 14:43:20 UTC ---
+Funny though, I just tested an NV11, in old box I played with today.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #43566|text/x-log                  |text/plain
-          mime type|                            |
+System itself has 256MB or ram, thus totally unusable even in xubuntu, but
+nouveau does work and glxgears does work as well (glxinfo reports that nouveau,
+nv11 driver is used).
+Kudos, guys!
+
+That card was Nvidia Geforce2 MX 200, with 32 MB of ram.
+I just installed ubuntu 11.10 there.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
