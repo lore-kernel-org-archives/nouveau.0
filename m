@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15481] Nouveau on nVidia Corporation G71 [GeForce
- 7950 GT]: works but lockup for 6 min at shutdown
-Date: Mon, 05 Dec 2011 17:56:28 +0000
-Message-ID: <bug-15481-8800-RTSk7tHcFe@http.bugs.freedesktop.org/>
-References: <bug-15481-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25762] Quadro NVS 140M doesn't wake up anymore
+Date: Mon, 05 Dec 2011 17:58:32 +0000
+Message-ID: <bug-25762-8800-Xh0nU20kZo@http.bugs.freedesktop.org/>
+References: <bug-25762-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25762-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,7 +20,7 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=15481
+https://bugs.freedesktop.org/show_bug.cgi?id=25762
 
 Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -29,10 +28,6 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 ----------------------------------------------------------------------------
              Status|REOPENED                    |RESOLVED
          Resolution|                            |FIXED
-
---- Comment #25 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-05 09:56:28 PST ---
-Should work fine now.
-Closing as RESOLVED FIXED.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
