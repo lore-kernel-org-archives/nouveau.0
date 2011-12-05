@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34139] Seemingly random GUI lock-ups
-Date: Mon, 05 Dec 2011 21:48:54 +0000
-Message-ID: <bug-34139-8800-9pf6j7L0hG@http.bugs.freedesktop.org/>
-References: <bug-34139-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34491] Resuming from Suspend to RAM causes poor 2D
+	performance
+Date: Mon, 05 Dec 2011 21:57:39 +0000
+Message-ID: <bug-34491-8800-2U6LT85OI9@http.bugs.freedesktop.org/>
+References: <bug-34491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34139-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-34491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,13 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34139
+https://bugs.freedesktop.org/show_bug.cgi?id=34491
 
---- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-05 13:48:54 PST ---
-Might be a duplicate of bug 26980, but you didn't even tell what card you
-have... Please test newer kernel (bonus points for testing nouveau.git -
-http://nouveau.freedesktop.org/wiki/InstallDRM) and if you can still reproduce
-this issue, attach full dmesg and xorg.log.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #43562|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
