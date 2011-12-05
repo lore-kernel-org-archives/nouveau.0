@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 25802] nouveau driver crashes in exa
-Date: Mon, 05 Dec 2011 19:46:24 +0000
-Message-ID: <bug-25802-8800-F32O6CFiE9@http.bugs.freedesktop.org/>
+Date: Mon, 05 Dec 2011 19:54:37 +0000
+Message-ID: <bug-25802-8800-4WjZdxEHvg@http.bugs.freedesktop.org/>
 References: <bug-25802-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=25802
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #32311|application/octet-stream    |text/plain
-          mime type|                            |
+--- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-05 11:54:37 PST ---
+Is it still the case on recent version of xf86-video-nouveau?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
