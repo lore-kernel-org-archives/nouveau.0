@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33999] 2.6.37 - NV11 crashes X if glxgears started
-Date: Mon, 05 Dec 2011 14:43:20 +0000
-Message-ID: <bug-33999-8800-TScoOKbDsA@http.bugs.freedesktop.org/>
+Date: Mon, 05 Dec 2011 15:32:47 +0000
+Message-ID: <bug-33999-8800-UZN6P2zeAv@http.bugs.freedesktop.org/>
 References: <bug-33999-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33999
 
---- Comment #10 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-12-05 14:43:20 UTC ---
-Funny though, I just tested an NV11, in old box I played with today.
+--- Comment #11 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-12-05 15:32:47 UTC ---
+(In reply to comment #10)
+> Funny though, I just tested an NV11, in old box I played with today.
+> 
+> System itself has 256MB or ram, thus totally unusable even in xubuntu, but
+> nouveau does work and glxgears does work as well (glxinfo reports that nouveau,
+> nv11 driver is used).
+> Kudos, guys!
+> 
+> That card was Nvidia Geforce2 MX 200, with 32 MB of ram.
+> I just installed ubuntu 11.10 there.
 
-System itself has 256MB or ram, thus totally unusable even in xubuntu, but
-nouveau does work and glxgears does work as well (glxinfo reports that nouveau,
-nv11 driver is used).
-Kudos, guys!
+How much graphic memory did you have on your box, and which versions of the
+OpenGL stack did you use with which kernel, please?
 
-That card was Nvidia Geforce2 MX 200, with 32 MB of ram.
-I just installed ubuntu 11.10 there.
+I will be testing on my old laptop as well.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
