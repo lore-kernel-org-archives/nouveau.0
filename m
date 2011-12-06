@@ -1,11 +1,14 @@
-From: "Dmitry A. Ashkadov" <dmitry.ashkadov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: NVS 4200M support
-Date: Wed, 07 Dec 2011 00:10:37 +0400
-Message-ID: <4EDE76BD.9000502@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 37398] some applications (like wine) crash nouveau
+ and leave it in an unworkable state
+Date: Tue, 06 Dec 2011 20:15:08 +0000
+Message-ID: <bug-37398-8800-aaFrrYKfit@http.bugs.freedesktop.org/>
+References: <bug-37398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-37398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,14 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello!
+https://bugs.freedesktop.org/show_bug.cgi?id=37398
 
-I have Nvidia NVS 4200M installed on my laptop. Does nouveau support it?
-If I change video to Discrete card in BIOS, then nouveau (version 
-0.0.16) logs:
-> nouveau: probe of 0000:01:00.0 failed with error -22
-and
-> [drm] failed to open device
-> No devices detected
+--- Comment #10 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-06 12:15:08 PST ---
+Thanks. So there is a released xserver with this commit.
 
-Thank you!
+Andy: can you test xorg-server 1.11 (or newer)?
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
