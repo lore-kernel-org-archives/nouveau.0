@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40890] OpenCL: Implement a GPGPU runtime following
- the CAL specification
-Date: Tue, 06 Dec 2011 16:57:09 +0000
-Message-ID: <bug-40890-8800-PZOzEsOi49@http.bugs.freedesktop.org/>
-References: <bug-40890-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35056] nouveau freezes with TRAP_TEXTURE error in
+ logs - Mouse keeps moving
+Date: Tue, 06 Dec 2011 17:07:56 +0000
+Message-ID: <bug-35056-8800-pHSNUl60rE@http.bugs.freedesktop.org/>
+References: <bug-35056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40890-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35056-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40890
+https://bugs.freedesktop.org/show_bug.cgi?id=35056
 
---- Comment #1 from Daniel Bergey <freedesktop-QsbjRrFH/oXjj5lIQsTtVx+cfEJg8WpL@public.gmane.org> 2011-12-06 08:57:09 PST ---
-github cal-spec link is broken.  Is this document (Dec 2010) an appropriate
-spec?
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-http://developer.amd.com/sdks/amdappsdk/assets/AMD_CAL_Programming_Guide_v2.0.pdf
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #44166|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
