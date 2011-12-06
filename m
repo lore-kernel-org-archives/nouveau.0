@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37549] Dell Studio XPS 1340 - fails to enter suspend
-	mode
-Date: Tue, 06 Dec 2011 19:31:47 +0000
-Message-ID: <bug-37549-8800-iJ68LKSKhI@http.bugs.freedesktop.org/>
-References: <bug-37549-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37669] [NVAC] problem when disabling external monitor
+Date: Tue, 06 Dec 2011 19:44:37 +0000
+Message-ID: <bug-37669-8800-zTb0zBRems@http.bugs.freedesktop.org/>
+References: <bug-37669-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37549-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37669-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +20,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37549
+https://bugs.freedesktop.org/show_bug.cgi?id=37669
 
---- Comment #4 from Seth Forshee <seth.forshee-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-12-06 11:31:47 PST ---
-(In reply to comment #3)
-> Can you provide dmesg from failed suspend on 64-bit kernel? I bet it will fail
-> differently than 32-bit kernel.
-> 
-> 2 256MB cards + 32-bit kernel without CONFIG_HIGHMEM4G (only 876 MB of RAM
-> directly accessible) = fail. Maybe it's fixable, but I wouldn't count on it.
+--- Comment #1 from Antoine Reversat <a.reversat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-06 11:44:37 PST ---
+So I started looking deeper into this issue and it's probably somewhat
+low-level as if I boot my computer into a console and load the nouveau driver
+then unplug DP-1 the same flickering happens (but re-pluging the monitor on
+DP-1 stops the flickering). I'll attach a demsg output with drm.debug=0x07
+there's some interresting things specialy (I think) these lines :
 
-Marcin: I take it you are referring to failure to suspend due to vmalloc
-failures in the nouveau driver? Indeed, Daniel has verified that this problem
-can be avoided by using a 64-bit kernel or by passing vmalloc=128M to the
-kernel (see the reference bug in Launchpad for details).
+checking generic (c0010000 640000) vs hw (c0000000 10000000)
 
-When that issue is avoided the system does appear to suspend successfully, but
-then hangs when resuming.
+and then 
+
+Dec  6 10:55:25 antoine-MacBook kernel: [   15.878616] [drm] nouveau
+0000:02:00.0: Register 0x00004028 not found in PLL limits table
+Dec  6 10:55:25 antoine-MacBook kernel: [   15.878622] [drm] nouveau
+0000:02:00.0: Register 0x00004008 not found in PLL limits table
+Dec  6 10:55:25 antoine-MacBook kernel: [   15.878630] [drm] nouveau
+0000:02:00.0: Register 0x00004030 not found in PLL limits table
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
