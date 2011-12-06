@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 43437] [NV4B] Crash when starting loads of 3D
 	applications
-Date: Tue, 06 Dec 2011 20:05:34 +0000
-Message-ID: <bug-43437-8800-5U8BZqmHmN@http.bugs.freedesktop.org/>
+Date: Tue, 06 Dec 2011 20:05:45 +0000
+Message-ID: <bug-43437-8800-IOdb4kyzR6@http.bugs.freedesktop.org/>
 References: <bug-43437-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -28,7 +28,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=40642
+                   |                            |g/show_bug.cgi?id=38931
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
