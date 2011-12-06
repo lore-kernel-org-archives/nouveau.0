@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37669] [NVAC] problem when disabling external monitor
-Date: Tue, 06 Dec 2011 19:47:24 +0000
-Message-ID: <bug-37669-8800-6BUwSobpZb@http.bugs.freedesktop.org/>
-References: <bug-37669-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32494] [NV46] GPU lockup,
+ switching to software fbcon at startup
+Date: Tue, 06 Dec 2011 19:56:01 +0000
+Message-ID: <bug-32494-8800-0BM4RfVrG1@http.bugs.freedesktop.org/>
+References: <bug-32494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37669-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-32494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37669
+https://bugs.freedesktop.org/show_bug.cgi?id=32494
 
---- Comment #2 from Antoine Reversat <a.reversat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-06 11:47:24 PST ---
-Created attachment 54156
-  --> https://bugs.freedesktop.org/attachment.cgi?id=54156
-Dmesg with drm.debug=0x07 with several connect/disconnect
+Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |DUPLICATE
+
+--- Comment #11 from Patrice Mandin <patmandin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-06 11:56:01 PST ---
+
+
+*** This bug has been marked as a duplicate of bug 39988 ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
