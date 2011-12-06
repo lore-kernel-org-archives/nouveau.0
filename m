@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 37398] some applications (like wine) crash nouveau
  and leave it in an unworkable state
-Date: Tue, 06 Dec 2011 20:15:08 +0000
-Message-ID: <bug-37398-8800-aaFrrYKfit@http.bugs.freedesktop.org/>
+Date: Tue, 06 Dec 2011 20:34:41 +0000
+Message-ID: <bug-37398-8800-jhNIaS3Hcr@http.bugs.freedesktop.org/>
 References: <bug-37398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=37398
 
---- Comment #10 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-06 12:15:08 PST ---
-Thanks. So there is a released xserver with this commit.
+--- Comment #11 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-06 12:34:41 PST ---
+Note I have experienced the same problem and xserver 1.11 did resolve the
+problem
 
-Andy: can you test xorg-server 1.11 (or newer)?
+The issue can be summarised
+
+* Dual head setup
+* Start up wine (possibly other applications as well)
+* Observe the X crash (leading to exaPrepareAccessReg_mixed)
+
+As a "quick and dirty" check (without updating xserver), startup X with only
+one monitor connected to the system
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
