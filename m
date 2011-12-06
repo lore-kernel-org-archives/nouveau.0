@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37398] some applications (like wine) crash nouveau
- and leave it in an unworkable state
-Date: Tue, 06 Dec 2011 19:19:16 +0000
-Message-ID: <bug-37398-8800-6PJOBoloP4@http.bugs.freedesktop.org/>
-References: <bug-37398-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37549] Dell Studio XPS 1340 - fails to enter suspend
+	mode
+Date: Tue, 06 Dec 2011 19:31:47 +0000
+Message-ID: <bug-37549-8800-iJ68LKSKhI@http.bugs.freedesktop.org/>
+References: <bug-37549-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37549-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +21,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzczOTgKCi0tLSBD
-b21tZW50ICM5IGZyb20gTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4gMjAxMS0x
-Mi0wNiAxMToxOToxNiBQU1QgLS0tCkhybSwgSSB0aGluayBJIG1lYW50Cmh0dHA6Ly9jZ2l0LmZy
-ZWVkZXNrdG9wLm9yZy94b3JnL3hzZXJ2ZXIvcGF0Y2gvP2lkPTQwMjBjYWI4OGY1Y2YzMTY0ZmM4
-M2NmOTEyZjk0ZjI4OGFhNWE0NWQKLgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1
-Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFy
-ZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWdu
-ZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=37549
+
+--- Comment #4 from Seth Forshee <seth.forshee-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2011-12-06 11:31:47 PST ---
+(In reply to comment #3)
+> Can you provide dmesg from failed suspend on 64-bit kernel? I bet it will fail
+> differently than 32-bit kernel.
+> 
+> 2 256MB cards + 32-bit kernel without CONFIG_HIGHMEM4G (only 876 MB of RAM
+> directly accessible) = fail. Maybe it's fixable, but I wouldn't count on it.
+
+Marcin: I take it you are referring to failure to suspend due to vmalloc
+failures in the nouveau driver? Indeed, Daniel has verified that this problem
+can be avoided by using a 64-bit kernel or by passing vmalloc=128M to the
+kernel (see the reference bug in Launchpad for details).
+
+When that issue is avoided the system does appear to suspend successfully, but
+then hangs when resuming.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
