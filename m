@@ -1,13 +1,13 @@
-From: "Emil Velikov" <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NVS 4200M support
-Date: Tue, 06 Dec 2011 21:00:53 -0000
-Message-ID: <op.v525koi38t7z9u@arch-laptop>
-References: <4EDE76BD.9000502@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33999] 2.6.37 - NV11 crashes X if glxgears started
+Date: Wed, 07 Dec 2011 01:06:05 +0000
+Message-ID: <bug-33999-8800-ZTSgSM7jV6@http.bugs.freedesktop.org/>
+References: <bug-33999-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4EDE76BD.9000502-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-33999-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,44 +17,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "Dmitry A. Ashkadov" <dmitry.ashkadov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 06 Dec 2011 20:10:37 -0000, Dmitry A. Ashkadov  
-<dmitry.ashkadov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+https://bugs.freedesktop.org/show_bug.cgi?id=33999
 
-> Hello!
->
-> I have Nvidia NVS 4200M installed on my laptop. Does nouveau support it?
-> If I change video to Discrete card in BIOS, then nouveau (version  
-> 0.0.16) logs:
->> nouveau: probe of 0000:01:00.0 failed with error -22
-> and
->> [drm] failed to open device
->> No devices detected
->
-> Thank you!
+--- Comment #12 from Alex Buell <alex.buell-XLQCo7u1tb3e9xe1eoZjHA@public.gmane.org> 2011-12-06 17:06:05 PST ---
+(In reply to comment #11)
 
-Hello Dmitry
+> I will be testing on my old laptop as well.
 
-The card mentioned is supported (as of kernel 3.2), although your  
-experience may vary
+Just tested, glxinfo still crashes with a segfault. 
 
-Can you please try kernel 3.2 or nouveau development tree [1]
-Take a note that external firmware is required [2]
+OpenGL stack used:
 
-Any further problems please feel free to file a bugreport [3]
+xf86-video-nouveau 0.0.16_pre20111109
+mesa 7.11.2
+xorg-server 1.10.4
 
+Kernel:
+3.1.0
 
-Thanks
-
-[1] http://cgit.freedesktop.org/nouveau/linux-2.6/
-[2] http://nouveau.freedesktop.org/wiki/InstallDRM#Firmware
-[3] http://nouveau.freedesktop.org/wiki/Bugs
-
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
