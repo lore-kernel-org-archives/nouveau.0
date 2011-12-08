@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27455] dualhead not working,
 	second display always black
-Date: Thu, 08 Dec 2011 22:17:21 +0000
-Message-ID: <bug-27455-8800-IxNWvg12fl@http.bugs.freedesktop.org/>
+Date: Thu, 08 Dec 2011 23:09:43 +0000
+Message-ID: <bug-27455-8800-ckeqvKkFFp@http.bugs.freedesktop.org/>
 References: <bug-27455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27455
 
---- Comment #14 from sep16-8DAjSxpRXgY@public.gmane.org 2011-12-08 14:17:21 PST ---
-I am experiencing this issue as well with dual DVI outputs.
- - XFX nVidia GeForce 9600GT w/ dual DVI-I outputs
- - dual NEC 2560x1600 monitors
- - xorg-server 1.11.2
- - nouveau 0.0.16_pre20111109
- - Gentoo amd64 linux-3.1.0
+--- Comment #15 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-08 15:09:43 PST ---
+(In reply to comment #14)
+> I am experiencing this issue as well with dual DVI outputs.
+>  - XFX nVidia GeForce 9600GT w/ dual DVI-I outputs
+>  - dual NEC 2560x1600 monitors
+>  - xorg-server 1.11.2
+>  - nouveau 0.0.16_pre20111109
+>  - Gentoo amd64 linux-3.1.0
+> 
+> xrandr -q reports both monitors as detected and properly configured, and in
+> gnome-shell the desktop appears to extend to the second monitor -- I can drag
+> windows to it -- but the second monitor is always in standby mode.
+> 
+> I can attach any logs/dumps that you need to diagnose this if it would help.
 
-xrandr -q reports both monitors as detected and properly configured, and in
-gnome-shell the desktop appears to extend to the second monitor -- I can drag
-windows to it -- but the second monitor is always in standby mode.
-
-I can attach any logs/dumps that you need to diagnose this if it would help.
+Yes, please.  But make it a new bug report, thank you :)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
