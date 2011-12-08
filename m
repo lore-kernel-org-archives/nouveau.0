@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41644] Mouse pointer flickering/disappearing on NV05
-Date: Thu, 08 Dec 2011 20:50:20 +0000
-Message-ID: <bug-41644-8800-FG0Bdb2fs0@http.bugs.freedesktop.org/>
-References: <bug-41644-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27455] dualhead not working,
+	second display always black
+Date: Thu, 08 Dec 2011 22:17:21 +0000
+Message-ID: <bug-27455-8800-IxNWvg12fl@http.bugs.freedesktop.org/>
+References: <bug-27455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41644-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,13 +21,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=41644
+https://bugs.freedesktop.org/show_bug.cgi?id=27455
 
---- Comment #1 from Albert Pool <albertpool-2BgBnwcziRhmR6Xm/wNWPw@public.gmane.org> 2011-12-08 12:50:20 PST ---
-With the 3.1 kernel it has improved a bit. Now the pointer only disappears when
-clicking something, or when a new window opens and covers the pointer.
+--- Comment #14 from sep16-8DAjSxpRXgY@public.gmane.org 2011-12-08 14:17:21 PST ---
+I am experiencing this issue as well with dual DVI outputs.
+ - XFX nVidia GeForce 9600GT w/ dual DVI-I outputs
+ - dual NEC 2560x1600 monitors
+ - xorg-server 1.11.2
+ - nouveau 0.0.16_pre20111109
+ - Gentoo amd64 linux-3.1.0
 
-In my opinion the card is now suitable for basic desktop use.
+xrandr -q reports both monitors as detected and properly configured, and in
+gnome-shell the desktop appears to extend to the second monitor -- I can drag
+windows to it -- but the second monitor is always in standby mode.
+
+I can attach any logs/dumps that you need to diagnose this if it would help.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
