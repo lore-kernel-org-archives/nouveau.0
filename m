@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 43668] Secondary monitor always in standby on dual
 	head NV94
-Date: Fri, 09 Dec 2011 16:45:44 +0000
-Message-ID: <bug-43668-8800-Q2gBV2VJgt@http.bugs.freedesktop.org/>
+Date: Fri, 09 Dec 2011 16:45:51 +0000
+Message-ID: <bug-43668-8800-0ZuV6gcIhq@http.bugs.freedesktop.org/>
 References: <bug-43668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #54270|application/octet-stream    |text/plain
+  Attachment #54274|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
