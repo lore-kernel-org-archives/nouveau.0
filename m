@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43668] Secondary monitor always in standby on dual
-	head NV94
-Date: Fri, 09 Dec 2011 15:31:54 +0000
-Message-ID: <bug-43668-8800-PmYcQJRYhB@http.bugs.freedesktop.org/>
-References: <bug-43668-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27455] dualhead not working,
+	second display always black
+Date: Fri, 09 Dec 2011 15:33:29 +0000
+Message-ID: <bug-27455-8800-yoNlbny1ja@http.bugs.freedesktop.org/>
+References: <bug-27455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-43668-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43668
+https://bugs.freedesktop.org/show_bug.cgi?id=27455
 
---- Comment #4 from sep16-8DAjSxpRXgY@public.gmane.org 2011-12-09 07:31:54 PST ---
-Created attachment 54274
-  --> https://bugs.freedesktop.org/attachment.cgi?id=54274
-dmesg using nvidia-290.10
+--- Comment #16 from sep16-8DAjSxpRXgY@public.gmane.org 2011-12-09 07:33:29 PST ---
+(In reply to comment #15)
+> (In reply to comment #14)
+> > ...
+> > I can attach any logs/dumps that you need to diagnose this if it would help.
+> 
+> Yes, please.  But make it a new bug report, thank you :)
+
+Bug report made:  https://bugs.freedesktop.org/show_bug.cgi?id=43668
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
