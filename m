@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 43668] Secondary monitor always in standby on dual
 	head NV94
-Date: Fri, 09 Dec 2011 15:31:20 +0000
-Message-ID: <bug-43668-8800-J9XkVwzl51@http.bugs.freedesktop.org/>
+Date: Fri, 09 Dec 2011 15:31:54 +0000
+Message-ID: <bug-43668-8800-PmYcQJRYhB@http.bugs.freedesktop.org/>
 References: <bug-43668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=43668
 
---- Comment #3 from sep16-8DAjSxpRXgY@public.gmane.org 2011-12-09 07:31:20 PST ---
-Created attachment 54273
-  --> https://bugs.freedesktop.org/attachment.cgi?id=54273
-dmesg using nouveau-0.0.16_pre20111109
+--- Comment #4 from sep16-8DAjSxpRXgY@public.gmane.org 2011-12-09 07:31:54 PST ---
+Created attachment 54274
+  --> https://bugs.freedesktop.org/attachment.cgi?id=54274
+dmesg using nvidia-290.10
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
