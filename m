@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 43668] Secondary monitor always in standby on dual
 	head NV94
-Date: Fri, 09 Dec 2011 16:45:51 +0000
-Message-ID: <bug-43668-8800-0ZuV6gcIhq@http.bugs.freedesktop.org/>
+Date: Sat, 10 Dec 2011 01:02:40 +0000
+Message-ID: <bug-43668-8800-4wfmDi1aXs@http.bugs.freedesktop.org/>
 References: <bug-43668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=43668
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #54274|application/octet-stream    |text/plain
-          mime type|                            |
+--- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-09 17:02:40 PST ---
+Do both displays work if you tell nouveau to attempt to set your chipset to its
+full clock speeds?  (DISCLAIMER: do this at your own risk) Append
+"nouveau.perflvl_wr=7777 nouveau.perflvl=3" to your kernel options when you
+boot.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
