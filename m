@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43428] Segmentation Fault in nv50_screen_fence_update
-Date: Sun, 11 Dec 2011 16:07:31 +0000
-Message-ID: <bug-43428-8800-XXszfShPIE@http.bugs.freedesktop.org/>
-References: <bug-43428-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: cleanup after display init failure
+Date: Sun, 11 Dec 2011 21:02:05 +0100
+Message-ID: <20111211200205.GA12385@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-43428-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +19,41 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43428
+Depending on exact point of failure, not cleaning would lead to
+BUG_ONs/oopses in various distant places.
 
---- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-11 08:07:31 PST ---
-Commited to 7.11. Thanks.
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_display.c |   11 +++++++++--
+ 1 files changed, 9 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 05f1692..bea7a41 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -304,14 +304,21 @@ nouveau_display_create(struct drm_device *dev)
+ 
+ 	ret = disp->create(dev);
+ 	if (ret)
+-		return ret;
++		goto disp_create_err;
+ 
+ 	if (dev->mode_config.num_crtc) {
+ 		ret = drm_vblank_init(dev, dev->mode_config.num_crtc);
+ 		if (ret)
+-			return ret;
++			goto vblank_err;
+ 	}
+ 
++	return 0;
++
++vblank_err:
++	disp->destroy(dev);
++disp_create_err:
++	drm_kms_helper_poll_fini(dev);
++	drm_mode_config_cleanup(dev);
+ 	return ret;
+ }
+ 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.8.rc3
