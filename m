@@ -1,13 +1,14 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: Re: [PATCH] nouveau: implement precise vblank timestamping
-Date: Sat, 10 Dec 2011 09:53:10 +0100
-Message-ID: <1323507190.1632.3.camel@tellur>
-References: <1322096012-2528-1-git-send-email-dev@lynxeye.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 34554] Nouveau seems to have corrupted my laptop
+ screen's EDID info
+Date: Sun, 11 Dec 2011 06:32:47 +0000
+Message-ID: <bug-34554-8800-6mSgVGBTWS@http.bugs.freedesktop.org/>
+References: <bug-34554-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1322096012-2528-1-git-send-email-dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-34554-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,269 +19,61 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Ping.
-Could someone with knowledge in this area please review this patch, to
-see if it is acceptable? I would really like to see this patch landing
-in the nouveau git repo as soon as Mario comes around to retest it.
+https://bugs.freedesktop.org/show_bug.cgi?id=34554
 
-Thanks,
-Lucas
+--- Comment #21 from chr[] <cr2005-OFU6aHfy9zqzQB+pC5nmwQ@public.gmane.org> 2011-12-10 22:32:47 PST ---
+Hi!
 
-Am Donnerstag, den 24.11.2011, 01:53 +0100 schrieb Lucas Stach:
-> This patch implements the drivers hooks needed for precise vblank
-> timestamping. This is a complementary patch to Mario Kleiner's
-> patches to to improve swap scheduling. With the complete
-> patchset applied nouveau will be able to provide correct and
-> precise pageflip timestamps (compliant to OML_sync_control spec)
-> 
-> Kudos to Mario for his many helpful comments and testing.
-> 
-> Signed-off-by: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-> 
-> ---
-> Please review.
-> 
-> Mario: Could you please get it another go? I fixed up coding style
-> in many places, hope I didn't break anything.
-> ---
->  drivers/gpu/drm/nouveau/nouveau_display.c |  124 +++++++++++++++++++++++++++++
->  drivers/gpu/drm/nouveau/nouveau_drv.c     |    2 +
->  drivers/gpu/drm/nouveau/nouveau_drv.h     |    5 +
->  drivers/gpu/drm/nouveau/nouveau_reg.h     |    9 ++-
->  drivers/gpu/drm/nouveau/nv50_crtc.c       |   19 +++++
->  drivers/gpu/drm/nouveau/nvreg.h           |    1 +
->  6 files changed, 159 insertions(+), 1 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-> index b9a8cad..40c0a84 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -578,3 +578,127 @@ nouveau_display_dumb_map_offset(struct drm_file *file_priv,
->  
->  	return -ENOENT;
->  }
-> +
-> +int
-> +nouveau_get_scanoutpos(struct drm_device *dev, int crtc, int *vpos, int *hpos)
-> +{
-> +	struct drm_nouveau_private *dev_priv = dev->dev_private;
-> +	int vline, hline, ret = 0;
-> +	u32 vbias, hbias, reg, vbl_start, vbl_end;
-> +	struct drm_crtc *drmcrtc;
-> +
-> +	if (crtc < 0 || crtc >= dev->num_crtcs) {
-> +		DRM_ERROR("Invalid crtc %d\n", crtc);
-> +		return -EINVAL;
-> +	}
-> +
-> +	list_for_each_entry(drmcrtc, &dev->mode_config.crtc_list, head) {
-> +		if(nouveau_crtc(drmcrtc)->index == crtc)
-> +			/* stop if we have found crtc with matching index */
-> +			break;
-> +	}
-> +
-> +	if(dev_priv->card_type >= NV_50) {
-> +		/* get vsync and hsync area */
-> +		reg = nv_rd32(dev, NV50_PDISPLAY_CRTC_P(crtc,
-> +		                   SYNC_START_TO_BLANK_END));
-> +		vbias = (reg >> 16) & 0xffff;
-> +		hbias = reg & 0xffff;
-> +
-> +		/* get vertical display size including bias as vbl_start
-> +		 * and vtotal as vbl_end */
-> +		vbl_start = (nv_rd32(dev, NV50_PDISPLAY_CRTC_P(crtc,
-> +		                          VBL_START)) >> 16) & 0xffff;
-> +		vbl_end = (nv_rd32(dev, NV50_PDISPLAY_CRTC_P(crtc,
-> +		                        DISPLAY_TOTAL)) >> 16) & 0xffff;
-> +
-> +		/* get current scanout position from PDISPLAY */
-> +		vline = nv_rd32(dev, NV50_PDISPLAY_CRTC_STAT_VERT(crtc))
-> +		                & NV50_PDISPLAY_CRTC_STAT_VERT_VLINE__MASK;
-> +
-> +		/*
-> +		 * vline == 0 could be invalid:
-> +		 * Some gpu's get stuck on that value inside vblank. Try again
-> +		 * after one scanline duration, if it still reads 0 give up.
-> +		 */
-> +		if (vline == 0) {
-> +			ndelay(drmcrtc->linedur_ns);
-> +			vline = nv_rd32(dev, NV50_PDISPLAY_CRTC_STAT_VERT(crtc))
-> +			        & NV50_PDISPLAY_CRTC_STAT_VERT_VLINE__MASK;
-> +		}
-> +
-> +		hline = nv_rd32(dev, NV50_PDISPLAY_CRTC_STAT_HORZ(crtc))
-> +		                & NV50_PDISPLAY_CRTC_STAT_HORZ_HLINE__MASK;
-> +
-> +		if((vline > 0) && (vline < vbl_end))
-> +			ret |= DRM_SCANOUTPOS_VALID | DRM_SCANOUTPOS_ACCURATE;
-> +
-> +		if((vline >= vbl_start) || (vline < vbias)) {
-> +			/* we are in vblank so do a neg countdown */
-> +			ret |= DRM_SCANOUTPOS_INVBL;
-> +			vline -= (vline < vbias) ? vbias : (vbl_end + vbias);
-> +			hline -= hbias;
-> +		} else {
-> +			/* apply corrective offset */
-> +			vline -= vbias;
-> +			hline -= hbias;
-> +		}
-> +	} else {
-> +		/* get vsync area from PRAMDAC */
-> +		vbl_start = NVReadRAMDAC(dev, crtc, NV_PRAMDAC_FP_VDISPLAY_END)
-> +		            & 0xffff;
-> +		vbl_end = (NVReadRAMDAC(dev, crtc, NV_PRAMDAC_FP_VTOTAL)
-> +			   & 0xffff) + 1;
-> +
-> +		/* get current scanout position from PCRTC */
-> +		vline = nv_rd32(dev, NV_PCRTC_STAT(crtc)) & 0xffff;
-> +
-> +		/*
-> +		 * vline == 0 could be invalid:
-> +		 * Some gpu's get stuck on that value inside vblank. Try again
-> +		 * after one scanline duration, if it still reads 0 give up.
-> +		 */
-> +		if (vline == 0) {
-> +			ndelay(drmcrtc->linedur_ns);
-> +			vline = nv_rd32(dev, NV_PCRTC_STAT(crtc)) & 0xffff;
-> +		}
-> +
-> +		if(vline > 0)
-> +			ret |= DRM_SCANOUTPOS_VALID | DRM_SCANOUTPOS_ACCURATE;
-> +
-> +		/* are we in vblank? if yes: do neg countdown */
-> +		if((vline >= vbl_start) && (vline < vbl_end)) {
-> +			ret |= DRM_SCANOUTPOS_INVBL;
-> +			vline -= vbl_end;
-> +		}
-> +
-> +		hline = 0; /* don't use hline as it's unreliable */
-> +	}
-> +
-> +	*vpos = vline;
-> +	*hpos = hline;
-> +
-> +	return ret;
-> +}
-> +
-> +int
-> +nouveau_get_vblank_timestamp(struct drm_device *dev, int crtc,
-> +			     int *max_error, struct timeval *vblank_time,
-> +			     unsigned flags)
-> +{
-> +	struct drm_crtc *drmcrtc;
-> +
-> +	if (crtc < 0 || crtc >= dev->num_crtcs) {
-> +		DRM_ERROR("Invalid crtc %d\n", crtc);
-> +		return -EINVAL;
-> +	}
-> +
-> +	list_for_each_entry(drmcrtc, &dev->mode_config.crtc_list, head) {
-> +		if(nouveau_crtc(drmcrtc)->index == crtc)
-> +			/* stop if we have found crtc with matching index */
-> +			break;
-> +	}
-> +
-> +	return drm_calc_vbltimestamp_from_scanoutpos(dev, crtc, max_error,
-> +				vblank_time, flags, drmcrtc);
-> +}
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.c b/drivers/gpu/drm/nouveau/nouveau_drv.c
-> index f28d107..f5b8ae6 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drv.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drv.c
-> @@ -408,6 +408,8 @@ static struct drm_driver driver = {
->  	.get_vblank_counter = drm_vblank_count,
->  	.enable_vblank = nouveau_vblank_enable,
->  	.disable_vblank = nouveau_vblank_disable,
-> +	.get_vblank_timestamp = nouveau_get_vblank_timestamp,
-> +	.get_scanout_position = nouveau_get_scanoutpos,
->  	.reclaim_buffers = drm_core_reclaim_buffers,
->  	.ioctls = nouveau_ioctls,
->  	.fops = {
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-> index 81fdf62..52684ff 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-> @@ -1465,6 +1465,11 @@ int nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
->  			   struct drm_pending_vblank_event *event);
->  int nouveau_finish_page_flip(struct nouveau_channel *,
->  			     struct nouveau_page_flip_state *);
-> +int nouveau_get_scanoutpos(struct drm_device *dev, int crtc,
-> +                            int *vpos, int *hpos);
-> +int nouveau_get_vblank_timestamp(struct drm_device *dev, int crtc,
-> +				 int *max_error, struct timeval *vblank_time,
-> +				 unsigned flags);
->  int nouveau_display_dumb_create(struct drm_file *, struct drm_device *,
->  				struct drm_mode_create_dumb *args);
->  int nouveau_display_dumb_map_offset(struct drm_file *, struct drm_device *,
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_reg.h b/drivers/gpu/drm/nouveau/nouveau_reg.h
-> index 43a96b9..0ec1945 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_reg.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_reg.h
-> @@ -762,7 +762,7 @@
->  #define NV50_PDISPLAY_CRTC_CLOCK                                     0x00610ad0
->  #define NV50_PDISPLAY_CRTC_COLOR_CTRL                                0x00610ae0
->  #define NV50_PDISPLAY_CRTC_SYNC_START_TO_BLANK_END                   0x00610ae8
-> -#define NV50_PDISPLAY_CRTC_MODE_UNK1                                 0x00610af0
-> +#define NV50_PDISPLAY_CRTC_VBL_START                                 0x00610af0
->  #define NV50_PDISPLAY_CRTC_DISPLAY_TOTAL                             0x00610af8
->  #define NV50_PDISPLAY_CRTC_SYNC_DURATION                             0x00610b00
->  #define NV50_PDISPLAY_CRTC_MODE_UNK2                                 0x00610b08
-> @@ -800,6 +800,13 @@
->  #define NV50_PDISPLAY_SOR_CLK                                        0x00614000
->  #define NV50_PDISPLAY_SOR_CLK_CTRL2(i)                  ((i) * 0x800 + 0x614300)
->  
-> +#define NV50_PDISPLAY_CRTC_STAT_VERT(i0)		       (0x00616340 + 0x800*(i0))
-> +#define NV50_PDISPLAY_CRTC_STAT_VERT_VLINE__MASK		0x0000ffff
-> +#define NV50_PDISPLAY_CRTC_STAT_VERT_VBLANK_COUNT__MASK		0xffff0000
-> +#define NV50_PDISPLAY_CRTC_STAT_VERT_VBLANK_COUNT__SHIFT	16
-> +#define NV50_PDISPLAY_CRTC_STAT_HORZ(i0)		       (0x00616344 + 0x800*(i0))
-> +#define NV50_PDISPLAY_CRTC_STAT_HORZ_HLINE__MASK		0x0000ffff
-> +
->  #define NV50_PDISPLAY_VGACRTC(r)                                ((r) + 0x619400)
->  
->  #define NV50_PDISPLAY_DAC                                            0x0061a000
-> diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
-> index 8f6c2ac..597cce5 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_crtc.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
-> @@ -503,6 +503,25 @@ static bool
->  nv50_crtc_mode_fixup(struct drm_crtc *crtc, struct drm_display_mode *mode,
->  		     struct drm_display_mode *adjusted_mode)
->  {
-> +	/* crtc_xxx fields are needed by drm core. Init them with the
-> +	 * settings we actually use for mode programming. */
-> +	adjusted_mode->synth_clock = adjusted_mode->clock;
-> +	adjusted_mode->crtc_hdisplay = adjusted_mode->hdisplay;
-> +	adjusted_mode->crtc_hblank_start = 0;
-> +	adjusted_mode->crtc_hblank_end = 0;
-> +	adjusted_mode->crtc_hsync_start = adjusted_mode->hsync_start;
-> +	adjusted_mode->crtc_hsync_end = adjusted_mode->hsync_end;
-> +	adjusted_mode->crtc_htotal = adjusted_mode->htotal;
-> +	adjusted_mode->crtc_hskew = adjusted_mode->hskew;
-> +	adjusted_mode->crtc_vdisplay = adjusted_mode->vdisplay;
-> +	adjusted_mode->crtc_vblank_start = 0;
-> +	adjusted_mode->crtc_vblank_end = 0;
-> +	adjusted_mode->crtc_vsync_start = adjusted_mode->vsync_start;
-> +	adjusted_mode->crtc_vsync_end = adjusted_mode->vsync_end;
-> +	adjusted_mode->crtc_vtotal = adjusted_mode->vtotal;
-> +	adjusted_mode->crtc_hadjusted = 0;
-> +	adjusted_mode->crtc_vadjusted = 0;
-> +
->  	return true;
->  }
->  
-> diff --git a/drivers/gpu/drm/nouveau/nvreg.h b/drivers/gpu/drm/nouveau/nvreg.h
-> index bbfb1a6..e8281c4 100644
-> --- a/drivers/gpu/drm/nouveau/nvreg.h
-> +++ b/drivers/gpu/drm/nouveau/nvreg.h
-> @@ -172,6 +172,7 @@
->  #define NV_PCRTC_834					0x00600834
->  #define NV_PCRTC_850					0x00600850
->  #define NV_PCRTC_ENGINE_CTRL				0x00600860
-> +#define NV_PCRTC_STAT(i0)			(0x00600868 + 0x2000*(i0))
->  #	define NV_CRTC_FSEL_I2C					(1 << 4)
->  #	define NV_CRTC_FSEL_OVERLAY				(1 << 12)
->  
+I got the same problem on my MacBook Pro 6,2
+
+System: debian 64bit, with X backport packages (xorg-server 2:1.10.4-1~bpo60+1)
+kernel: 3.2.0-rc2 from nouveau/master
+
+I used the nouveau driver for a long time now, and it works pretty well
+(xrandr, external display, suspend, hibernate perfect). I also can play games
+like "sauerbraten" with some minor bugs.
+
+I tried to find out, if it can run StarCraft II with wine: It can't. The X
+Server gracefully died and that corrupted the EDID of the LVDS display:
+
+kernel: [  471.507583] [drm:drm_edid_block_valid] *ERROR* EDID checksum is
+invalid, remainder is 217
+kernel: [  471.507587] Raw EDID:
+kernel: [  471.507590]      00 ff ff ff ff ff ff 00 06 10 bb 9c 00 00 00 00
+kernel: [  471.507594]      00 13 01 03 80 21 15 78 0a 50 c5 98 58 52 8e 00
+kernel: [  471.507597]      25 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
+kernel: [  471.507600]      01 01 01 01 01 01 7c 2e 90 a0 60 1a 1e 40 30 20
+kernel: [  471.507603]      36 00 4b cf 10 00 00 18 00 00 00 01 00 06 10 30
+kernel: [  471.507606]      00 00 00 00 00 00 00 00 0a 20 00 00 00 fe 00 4c
+kernel: [  471.507609]      50 31 35 34 57 45 33 2d 54 4c 42 31 00 00 00 fe
+kernel: [  471.507612]      00 43 6f 6c 6f 72 20 4c 43 44 0a 20 20 20 00 dd
+kernel: [  471.507619] nouveau 0000:01:00.0: LVDS-1: EDID block 0 invalid.
+kernel: [  471.507624] [drm] nouveau 0000:01:00.0: DDC responded, but no EDID
+for LVDS-1
+
+Symtoms:
+on boot, black screen after the boot sound.
+Blind select boot option of refit works:
+
+osx comes up but:
+* suspend broken
+* starcraft does not launch at all
+* external display not detected
+* seems to run on nivida card only, no more with the intel gpu
+
+linux comes up, but:
+* internal LVDS stays black
+* external display works
+* *ERROR* EDID checksum spam in system log
+
+I found the correct EDID in an older Xorg.log. Byte 1f flipped from 0x27 to
+0x00.
+
+I was able to fix this with Andy Getz's program: 1000 Thanks !!!
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
