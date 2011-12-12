@@ -1,15 +1,11 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nouveau: get rid of winsys object
-Date: Sun, 11 Dec 2011 21:12:07 +0100
-Message-ID: <20111211201207.GC12385@joi.lan>
-References: <20111202184659.GA3302@joi.lan>
- <20111202220850.GE3302@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 43731] New: No support for DP on NVD9
+Date: Mon, 12 Dec 2011 06:39:51 +0000
+Message-ID: <bug-43731-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20111202220850.GE3302-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,28 +18,35 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Dec 02, 2011 at 11:08:50PM +0100, Marcin Slusarz wrote:
-> Its only purpose was to destroy itself.
-> ---
->  src/gallium/drivers/nouveau/Android.mk             |    4 ++-
->  src/gallium/drivers/nouveau/Makefile               |    3 ++
->  src/gallium/drivers/nouveau/nouveau_screen.c       |    7 ++--
->  src/gallium/drivers/nouveau/nouveau_winsys.h       |    6 ++--
->  src/gallium/drivers/nv50/nv50_context.c            |    2 -
->  src/gallium/drivers/nv50/nv50_screen.c             |    3 +-
->  src/gallium/drivers/nv50/nv50_screen.h             |    1 -
->  src/gallium/drivers/nvc0/nvc0_context.c            |    2 -
->  src/gallium/drivers/nvc0/nvc0_screen.c             |    3 +-
->  src/gallium/drivers/nvc0/nvc0_screen.h             |    1 -
->  src/gallium/drivers/nvfx/nvfx_context.c            |    5 ---
->  src/gallium/drivers/nvfx/nvfx_context.h            |    1 -
->  src/gallium/drivers/nvfx/nvfx_screen.c             |    3 +-
->  src/gallium/drivers/nvfx/nvfx_screen.h             |    1 -
->  src/gallium/winsys/nouveau/drm/nouveau_dri.h       |   28 -----------------
->  .../winsys/nouveau/drm/nouveau_drm_winsys.c        |   32 +------------------
->  .../winsys/nouveau/drm/nouveau_drm_winsys.h        |   28 -----------------
->  17 files changed, 17 insertions(+), 113 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=43731
 
-I'm going to push this patch tomorrow if noone objects.
+             Bug #: 43731
+           Summary: No support for DP on NVD9
+    Classification: Unclassified
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Marcin
+
+Created attachment 54334
+  --> https://bugs.freedesktop.org/attachment.cgi?id=54334
+mmiotrace + edid + dmesg + lspci
+
+There's currently no support for driving DisplayPort outputs on nvd9.
+
+Attached is an mmiotrace of the nvidia driver enabling and disabling the my DP
+monitor.  The only mode it exposes in the EDID appears to be 1920x1200.  I can
+probably rustle up another monitor with more available modes if necessary.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
