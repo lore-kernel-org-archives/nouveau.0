@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] Brightness stuck to low value after
-	suspend/resume
-Date: Mon, 12 Dec 2011 09:56:46 +0000
-Message-ID: <bug-39550-8800-PU7oRhRMxD@http.bugs.freedesktop.org/>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 43668] Secondary monitor always in standby on dual
+	head NV94
+Date: Tue, 13 Dec 2011 22:29:55 +0000
+Message-ID: <bug-43668-8800-v23hNsmV3R@http.bugs.freedesktop.org/>
+References: <bug-43668-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-43668-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,10 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+https://bugs.freedesktop.org/show_bug.cgi?id=43668
 
---- Comment #20 from Auke Booij <auke-ZQY5lnGs3kLQT0dZR+AlfA@public.gmane.org> 2011-12-12 01:56:46 PST ---
-Any updates regarding this bug?
+--- Comment #6 from sep16-8DAjSxpRXgY@public.gmane.org 2011-12-13 14:29:55 PST ---
+No.  The first time I tried "startx" it crashed; the console was unresponsive,
+but I was able to ssh in to reboot.  The second time one monitor came up, with
+the background image and some random green pixels, then went completely white.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
