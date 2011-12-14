@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43668] Secondary monitor always in standby on dual
-	head NV94
-Date: Tue, 13 Dec 2011 22:29:55 +0000
-Message-ID: <bug-43668-8800-v23hNsmV3R@http.bugs.freedesktop.org/>
-References: <bug-43668-8800@http.bugs.freedesktop.org/>
+From: Stayvoid <stayvoid-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Gentoo HOWTO is outdated
+Date: Wed, 14 Dec 2011 20:15:55 +0300
+Message-ID: <CAK5fS_GE1mngTA2iYqnyY=-P01GZ3dKFs5K4FddeV=ULkPAT6Q@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-43668-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +18,18 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43668
+Hi there!
 
---- Comment #6 from sep16-8DAjSxpRXgY@public.gmane.org 2011-12-13 14:29:55 PST ---
-No.  The first time I tried "startx" it crashed; the console was unresponsive,
-but I was able to ssh in to reboot.  The second time one monitor came up, with
-the background image and some random green pixels, then went completely white.
+This HOWTO is outdated:
+http://nouveau.freedesktop.org/wiki/GentooEbuilds
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+x11-base/nouveau-drm from the x11 overlay asks for the 3.2 version of
+kernel, but the latest version is 3.1.5.
+
+This advice is also wrong: "These ebuilds do not have any keyword, as
+it is usual with cvs/svn/git releases. To be able to install them, you
+have to mark them with ** in package.keywords."
+Nowadays you should use package.unmask for such purposes.
+
+
+Cheers!
