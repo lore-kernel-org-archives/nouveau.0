@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41333] Nvidia GTA 240 card (NVA3) locks up when
- loading nouveau.ko module
-Date: Thu, 15 Dec 2011 16:55:10 +0000
-Message-ID: <bug-41333-8800-idA9BUsb2q@http.bugs.freedesktop.org/>
-References: <bug-41333-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41608] Suspending/resuming system with cursor on
+ external screen prevents said screen from restoring after resume
+Date: Fri, 16 Dec 2011 23:44:27 +0000
+Message-ID: <bug-41608-8800-uhvr4yc4iX@http.bugs.freedesktop.org/>
+References: <bug-41608-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-41608-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDEzMzMKCkFuZHJp
-dXMgxaB0aWtvbmFzIDxzdGlrb25hc0BnbWFpbC5jb20+IGNoYW5nZWQ6CgogICAgICAgICAgIFdo
-YXQgICAgfFJlbW92ZWQgICAgICAgICAgICAgICAgICAgICB8QWRkZWQKLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLQogIEF0dGFjaG1lbnQgIzUxNzUzfDAgICAgICAgICAgICAgICAgICAgICAgICAgICB8MQog
-ICAgICAgIGlzIG9ic29sZXRlfCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8CiAgQXR0YWNo
-bWVudCAjNTE3NTR8MCAgICAgICAgICAgICAgICAgICAgICAgICAgIHwxCiAgICAgICAgaXMgb2Jz
-b2xldGV8ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKCi0tLSBDb21tZW50ICM0IGZyb20g
-QW5kcml1cyDFoHRpa29uYXMgPHN0aWtvbmFzQGdtYWlsLmNvbT4gMjAxMS0xMi0xNSAwODo1NTox
-MCBQU1QgLS0tCkNyZWF0ZWQgYXR0YWNobWVudCA1NDQ2NwogIC0tPiBodHRwczovL2J1Z3MuZnJl
-ZWRlc2t0b3Aub3JnL2F0dGFjaG1lbnQuY2dpP2lkPTU0NDY3CmRtZXNnIHdpdGggZHJtLmRlYnVn
-PTE0CgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcv
-dXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1h
-aWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=41608
+
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #4 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2011-12-16 15:44:27 PST ---
+Patch merged long ago - fixed
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
