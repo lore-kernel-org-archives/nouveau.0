@@ -1,17 +1,14 @@
-From: Gianluca Cecchi <gianluca.cecchi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: properly check for _DSM function support and Optimus
- support for vga_switcheroo
-Date: Mon, 19 Dec 2011 11:04:19 +0100
-Message-ID: <CAG2kNCwBwRJ_VrS9NHnmGvOTTLuwmBKd5kG8OknJG+f20Kvqsg@mail.gmail.com>
-References: <CALBR5ZxR9iuvT57bDZ8yW9ZkZjuoUhBTYw4HBsmsiwoRi4gSkw@mail.gmail.com>
-	<CALBR5ZyE2ZRX7eFBhooB22e9BRf0f3H2xqtvXB2iwe8nvKKnvw@mail.gmail.com>
-	<CAOB9epp8EdpetsPStfdnGNx5-2dKi42j3DQiVKN_dzMdFcssWA@mail.gmail.com>
-	<CALBR5Zw0gEDqKrSUF3R30tSSC6DUgfhVm0Y1Mp60e4bB4ObijQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 38074] Dual head doesn't work for some combination
+ of monitors (second screen still off)
+Date: Mon, 19 Dec 2011 11:41:13 +0000
+Message-ID: <bug-38074-8800-RZggCzJoPk@http.bugs.freedesktop.org/>
+References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CALBR5Zw0gEDqKrSUF3R30tSSC6DUgfhVm0Y1Mp60e4bB4ObijQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,36 +21,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
->> On Sat, Dec 17, 2011 at 5:50 PM, Lekensteyn <lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->>>
->>> Hello guys,
->>>
->>> I've prepared a patch based on my findings for the bbswitch module
->>> (https://github.com/Lekensteyn/acpi-stuff/tree/master/bbswitch). This
->>> adds a proper
->>> check whether a _DSM function is supported or not and make OFF / ON for
->>> vga_switcheroo work for nVidia Optimus models. The patch is based against
->>> the
->>> mainline kernel.
->>>
->>> It has been tested on my Clevo B7130 laptop running kernel 3.2 which has
-
-Hello,
-I have an Asus U36SD laptop with Optimus and Fedora 16 with kernel
-3.1.5-6.fc16.x86_64
-Any way I can test it?
-Currently  I'm using acpi_call to switch off nvidia card and gain 4w
-for more battery life.
-
-[g.cecchi@ope46 ~]$ lspci -vnnn|grep -i vga
-00:02.0 VGA compatible controller [0300]: Intel Corporation 2nd
-Generation Core Processor Family Integrated Graphics Controller
-[8086:0126] (rev 09) (prog-if 00 [VGA controller])
-01:00.0 VGA compatible controller [0300]: nVidia Corporation Device
-[10de:1050] (rev ff) (prog-if ff)
-
-What benefit would it give me? Chance to use nvidia for graphic
-related apps ? With nouveau andor nvidia proprietary driver?
-Thanks in advance for any pointer
-
-Gianluca
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzgwNzQKCi0tLSBD
+b21tZW50ICMxMyBmcm9tIEphcm9tw61yIEPDoXDDrWsgPGpjYXBpa0ByZWRoYXQuY29tPiAyMDEx
+LTEyLTE5IDAzOjQxOjEzIFBTVCAtLS0KSGVsbG8gQmVuLgoKSG93IGlzIGl0IGdvaW5nPwpEbyBZ
+b3UgaGF2ZSBhbnkgbmV3cyBoZXJlPwoKVGhhbmtzIGFuZCBoYXZlIGEgbmljZSBkYXkuCkJSLCBK
+LgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Vz
+ZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWls
+IGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
