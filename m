@@ -1,14 +1,11 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Why do non-lvds monitors default to dithering these
-	days?
-Date: Thu, 22 Dec 2011 15:41:55 +0100
-Message-ID: <CAGZ4FESz654ypKhbsnj0ph8L_9pNYQKev87tyCkK3q1zVvcPUw@mail.gmail.com>
-References: <CAGZ4FER0f7u=mGtZaZ4ow6SkUusjxyCA9hE5=AFQxGk-79wncw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 44061] New: dri/nouveau: Build error with clang
+Date: Thu, 22 Dec 2011 15:49:27 +0000
+Message-ID: <bug-44061-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAGZ4FER0f7u=mGtZaZ4ow6SkUusjxyCA9hE5=AFQxGk-79wncw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,31 +16,158 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Dec 18, 2011 at 8:47 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> In the past we assumed that external displays did their own dithering
-> if needed. GPU based dithering is only needed for laptop displays if i
-> had to guess.
->
-> I was almost thinking my monitor was malfunctioning because of strange
-> barely visible flickering. Now it *seems* as if dithering was the
-> problem, although time will have to tell, because it's subtle to see
-> these effects.
->
-> Ofcource i can try and find a way to set the connector property more
-> permanently (if anyone has suggestions besides sticking an xrandr
-> command in my .xinitrc please let me know), but i don't see why we
-> would need to assume that anything but lvds and eDP needs to be
-> dithered.
->
-> --
-> Far away from the primal instinct, the song seems to fade away, the
-> river get wider between your thoughts and the things we do and say.
+https://bugs.freedesktop.org/show_bug.cgi?id=44061
 
-Ping.
+             Bug #: 44061
+           Summary: dri/nouveau: Build error with clang
+    Classification: Unclassified
+           Product: Mesa
+           Version: git
+          Platform: All
+               URL: http://lists.freedesktop.org/archives/mesa-dev/2011-No
+                    vember/014310.html
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: blocker
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
+                CC: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+
+nouveau_array.c:49:16: error: illegal storage class on function
+                *extract_u = EXTRACT(char, unsigned, 1);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+nouveau_array.c:49:16: error: expected ';' at end of declaration
+                *extract_u = EXTRACT(char, unsigned, 1);
+                             ^
+nouveau_array.c:39:50: note: expanded from macro 'EXTRACT'
+                out_t f(struct nouveau_array *a, int i, int j) {        \
+                                                               ^
+nouveau_array.c:50:16: error: illegal storage class on function
+                *extract_f = EXTRACT(char, float, SCHAR_MAX);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+nouveau_array.c:50:16: error: expected ';' at end of declaration
+                *extract_f = EXTRACT(char, float, SCHAR_MAX);
+                             ^
+nouveau_array.c:39:50: note: expanded from macro 'EXTRACT'
+                out_t f(struct nouveau_array *a, int i, int j) {        \
+                                                               ^
+nouveau_array.c:53:16: error: illegal storage class on function
+                *extract_u = EXTRACT(unsigned char, unsigned, 1);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+nouveau_array.c:53:16: error: expected ';' at end of declaration
+                *extract_u = EXTRACT(unsigned char, unsigned, 1);
+                             ^
+nouveau_array.c:39:50: note: expanded from macro 'EXTRACT'
+                out_t f(struct nouveau_array *a, int i, int j) {        \
+                                                               ^
+nouveau_array.c:54:16: error: illegal storage class on function
+                *extract_f = EXTRACT(unsigned char, float, UCHAR_MAX);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+nouveau_array.c:54:16: error: expected ';' at end of declaration
+                *extract_f = EXTRACT(unsigned char, float, UCHAR_MAX);
+                             ^
+nouveau_array.c:39:50: note: expanded from macro 'EXTRACT'
+                out_t f(struct nouveau_array *a, int i, int j) {        \
+                                                               ^
+nouveau_array.c:57:16: error: illegal storage class on function
+                *extract_u = EXTRACT(short, unsigned, 1);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+nouveau_array.c:57:16: error: expected ';' at end of declaration
+                *extract_u = EXTRACT(short, unsigned, 1);
+                             ^
+nouveau_array.c:39:50: note: expanded from macro 'EXTRACT'
+                out_t f(struct nouveau_array *a, int i, int j) {        \
+                                                               ^
+nouveau_array.c:58:16: error: illegal storage class on function
+                *extract_f = EXTRACT(short, float, SHRT_MAX);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+nouveau_array.c:58:16: error: expected ';' at end of declaration
+                *extract_f = EXTRACT(short, float, SHRT_MAX);
+                             ^
+nouveau_array.c:39:50: note: expanded from macro 'EXTRACT'
+                out_t f(struct nouveau_array *a, int i, int j) {        \
+                                                               ^
+nouveau_array.c:61:16: error: illegal storage class on function
+                *extract_u = EXTRACT(unsigned short, unsigned, 1);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+nouveau_array.c:61:16: error: expected ';' at end of declaration
+                *extract_u = EXTRACT(unsigned short, unsigned, 1);
+                             ^
+nouveau_array.c:39:50: note: expanded from macro 'EXTRACT'
+                out_t f(struct nouveau_array *a, int i, int j) {        \
+                                                               ^
+nouveau_array.c:62:16: error: illegal storage class on function
+                *extract_f = EXTRACT(unsigned short, float, USHRT_MAX);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+nouveau_array.c:62:16: error: expected ';' at end of declaration
+                *extract_f = EXTRACT(unsigned short, float, USHRT_MAX);
+                             ^
+nouveau_array.c:39:50: note: expanded from macro 'EXTRACT'
+                out_t f(struct nouveau_array *a, int i, int j) {        \
+                                                               ^
+nouveau_array.c:65:16: error: illegal storage class on function
+                *extract_u = EXTRACT(int, unsigned, 1);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+nouveau_array.c:65:16: error: expected ';' at end of declaration
+                *extract_u = EXTRACT(int, unsigned, 1);
+                             ^
+nouveau_array.c:39:50: note: expanded from macro 'EXTRACT'
+                out_t f(struct nouveau_array *a, int i, int j) {        \
+                                                               ^
+nouveau_array.c:66:16: error: illegal storage class on function
+                *extract_f = EXTRACT(int, float, INT_MAX);
+                             ^
+nouveau_array.c:38:3: note: expanded from macro 'EXTRACT'
+                auto out_t f(struct nouveau_array *, int, int);         \
+                ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+gmake[6]: *** [nouveau_array.o] Error 1
+gmake[6]: *** Waiting for unfinished jobs....
+nouveau_context.c:267:2: warning: expression result unused [-Wunused-value]
+        context_bctx(ctx, FRAMEBUFFER);
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./nouveau_bo_state.h:103:2: note: expanded from macro 'context_bctx'
+        __context_bctx(ctx, NOUVEAU_BO_CONTEXT_##s)
+        ^
+./nouveau_bo_state.h:100:3: note: expanded from macro '__context_bctx'
+                bctx;                                                   \
+                ^~~~
+1 warning generated.
 
 -- 
-Far away from the primal instinct, the song seems to fade away, the
-river get wider between your thoughts and the things we do and say.
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
