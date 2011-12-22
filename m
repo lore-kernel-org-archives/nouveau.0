@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 44052] desktop freezes
-Date: Thu, 22 Dec 2011 13:35:40 +0000
-Message-ID: <bug-44052-8800-UmVyjzecmY@http.bugs.freedesktop.org/>
+Date: Thu, 22 Dec 2011 13:36:06 +0000
+Message-ID: <bug-44052-8800-xJQ1SxpsnK@http.bugs.freedesktop.org/>
 References: <bug-44052-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=44052
 
---- Comment #1 from tonwi <wto.wit01-hi6Y0CQ0nG0@public.gmane.org> 2011-12-22 05:35:40 PST ---
-Created attachment 54689
-  --> https://bugs.freedesktop.org/attachment.cgi?id=54689
-lspci -k
+--- Comment #2 from tonwi <wto.wit01-hi6Y0CQ0nG0@public.gmane.org> 2011-12-22 05:36:06 PST ---
+Created attachment 54690
+  --> https://bugs.freedesktop.org/attachment.cgi?id=54690
+dpkg -l
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
