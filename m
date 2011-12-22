@@ -1,15 +1,15 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nv50: fix ramin heap size for kernel
-	channel too
-Date: Thu, 22 Dec 2011 17:55:05 +0100
-Message-ID: <20111222165505.GB6111@joi.lan>
-References: <20111202193919.GD3302@joi.lan>
+Subject: Re: [PATCH] drm/nouveau: cleanup after display init
+	failure
+Date: Thu, 22 Dec 2011 17:55:22 +0100
+Message-ID: <20111222165522.GC6111@joi.lan>
+References: <20111211200205.GA12385@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20111202193919.GD3302-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <20111211200205.GA12385-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,31 +22,43 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Dec 02, 2011 at 08:39:19PM +0100, Marcin Slusarz wrote:
-> Port change from "drm/nouveau: Keep RAMIN heap within the channel"
-> to kernel channel, which has its own ramin heap initialisation.
+On Sun, Dec 11, 2011 at 09:02:05PM +0100, Marcin Slusarz wrote:
+> Depending on exact point of failure, not cleaning would lead to
+> BUG_ONs/oopses in various distant places.
 > 
 > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > ---
->  drivers/gpu/drm/nouveau/nv50_instmem.c |    2 +-
->  1 files changed, 1 insertions(+), 1 deletions(-)
+>  drivers/gpu/drm/nouveau/nouveau_display.c |   11 +++++++++--
+>  1 files changed, 9 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/nouveau/nv50_instmem.c b/drivers/gpu/drm/nouveau/nv50_instmem.c
-> index a7c12c9..0bba54f 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_instmem.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_instmem.c
-> @@ -83,7 +83,7 @@ nv50_channel_new(struct drm_device *dev, u32 size, struct nouveau_vm *vm,
->  		return ret;
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+> index 05f1692..bea7a41 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> @@ -304,14 +304,21 @@ nouveau_display_create(struct drm_device *dev)
+>  
+>  	ret = disp->create(dev);
+>  	if (ret)
+> -		return ret;
+> +		goto disp_create_err;
+>  
+>  	if (dev->mode_config.num_crtc) {
+>  		ret = drm_vblank_init(dev, dev->mode_config.num_crtc);
+>  		if (ret)
+> -			return ret;
+> +			goto vblank_err;
 >  	}
 >  
-> -	ret = drm_mm_init(&chan->ramin_heap, 0x6000, chan->ramin->size);
-> +	ret = drm_mm_init(&chan->ramin_heap, 0x6000, chan->ramin->size - 0x6000);
->  	if (ret) {
->  		nv50_channel_del(&chan);
->  		return ret;
+> +	return 0;
+> +
+> +vblank_err:
+> +	disp->destroy(dev);
+> +disp_create_err:
+> +	drm_kms_helper_poll_fini(dev);
+> +	drm_mode_config_cleanup(dev);
+>  	return ret;
+>  }
+>  
 > -- 
-> 1.7.8.rc3
-> 
 
 ping
