@@ -1,10 +1,14 @@
-From: Jon Bailey <hobart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Hardware avail: msi nx7600gt vt2d256e
-Date: Fri, 23 Dec 2011 06:59:28 -0700
-Message-ID: <CALNE7p=6Jk6Ppe61fVfNM071tUB2rc3UYu9JaowBtWKB9aZJ9w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 43939] DVI monitor connected via HDMI is blank /
+ standby (NV96 / 9500GS)
+Date: Fri, 23 Dec 2011 21:53:26 +0000
+Message-ID: <bug-43939-8800-nWyZmBzkQd@http.bugs.freedesktop.org/>
+References: <bug-43939-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2120784154=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,33 +21,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============2120784154==
-Content-Type: multipart/alternative; boundary=0016e6d564c853029d04b4c2d38c
+https://bugs.freedesktop.org/show_bug.cgi?id=43939
 
---0016e6d564c853029d04b4c2d38c
-Content-Type: text/plain; charset=ISO-8859-1
+--- Comment #4 from Anthony Foiani <anthony.foiani+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2011-12-23 13:53:26 PST ---
+One last data point: both monitors work fine with the proprietary drivers under
+F16 as well, so the hardware is working correctly.
 
-If somebody is interested in this card for nouveau development/testing,
-please let me know where to send it.
+I was really hoping that this is just a trivial bug, but since I do need the
+second screen, I'll be using the proprietary drivers for now.
 
---0016e6d564c853029d04b4c2d38c
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+I'll be happy to test changes (especially if they end up in the fedora update
+stream; a full custom kernel is a bit more work/research).
 
-<p>If somebody is interested in this card for nouveau development/testing,=
-=A0 please let me know where to send it.</p>
+Thanks!
 
---0016e6d564c853029d04b4c2d38c--
-
---===============2120784154==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2120784154==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
