@@ -1,15 +1,10 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/nv50: handle failures in crtc
- objects construction
-Date: Thu, 22 Dec 2011 17:55:38 +0100
-Message-ID: <20111222165538.GD6111@joi.lan>
-References: <20111211200339.GB12385@joi.lan>
+From: Jon Bailey <hobart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Hardware avail: msi nx7600gt vt2d256e
+Date: Fri, 23 Dec 2011 06:59:28 -0700
+Message-ID: <CALNE7p=6Jk6Ppe61fVfNM071tUB2rc3UYu9JaowBtWKB9aZJ9w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2120784154=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20111211200339.GB12385-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,111 +17,33 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Dec 11, 2011 at 09:03:39PM +0100, Marcin Slusarz wrote:
-> Fixes oopses / leaks depending on point of failure.
-> 
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/nv50_crtc.c    |   59 +++++++++++++++++++++----------
->  drivers/gpu/drm/nouveau/nv50_display.c |    7 +++-
->  2 files changed, 45 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
-> index 8f6c2ac..9fa012d 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_crtc.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
-> @@ -733,18 +733,16 @@ nv50_crtc_create(struct drm_device *dev, int index)
->  
->  	ret = nouveau_bo_new(dev, 4096, 0x100, TTM_PL_FLAG_VRAM,
->  			     0, 0x0000, &nv_crtc->lut.nvbo);
-> -	if (!ret) {
-> -		ret = nouveau_bo_pin(nv_crtc->lut.nvbo, TTM_PL_FLAG_VRAM);
-> -		if (!ret)
-> -			ret = nouveau_bo_map(nv_crtc->lut.nvbo);
-> -		if (ret)
-> -			nouveau_bo_ref(NULL, &nv_crtc->lut.nvbo);
-> -	}
-> +	if (ret)
-> +		goto lut_bo_err;
->  
-> -	if (ret) {
-> -		kfree(nv_crtc);
-> -		return ret;
-> -	}
-> +	ret = nouveau_bo_pin(nv_crtc->lut.nvbo, TTM_PL_FLAG_VRAM);
-> +	if (ret)
-> +		goto lut_bo_pin_err;
-> +
-> +	ret = nouveau_bo_map(nv_crtc->lut.nvbo);
-> +	if (ret)
-> +		goto lut_bo_map_err;
->  
->  	nv_crtc->index = index;
->  
-> @@ -758,14 +756,37 @@ nv50_crtc_create(struct drm_device *dev, int index)
->  
->  	ret = nouveau_bo_new(dev, 64*64*4, 0x100, TTM_PL_FLAG_VRAM,
->  			     0, 0x0000, &nv_crtc->cursor.nvbo);
-> -	if (!ret) {
-> -		ret = nouveau_bo_pin(nv_crtc->cursor.nvbo, TTM_PL_FLAG_VRAM);
-> -		if (!ret)
-> -			ret = nouveau_bo_map(nv_crtc->cursor.nvbo);
-> -		if (ret)
-> -			nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
-> -	}
-> +	if (ret)
-> +		goto cursor_bo_err;
-> +
-> +	ret = nouveau_bo_pin(nv_crtc->cursor.nvbo, TTM_PL_FLAG_VRAM);
-> +	if (ret)
-> +		goto cursor_bo_pin_err;
-> +
-> +	ret = nouveau_bo_map(nv_crtc->cursor.nvbo);
-> +	if (ret)
-> +		goto cursor_bo_map_err;
-> +
-> +	ret = nv50_cursor_init(nv_crtc);
-> +	if (ret)
-> +		goto cursor_init_err;
->  
-> -	nv50_cursor_init(nv_crtc);
->  	return 0;
-> +
-> +cursor_init_err:
-> +	nouveau_bo_unmap(nv_crtc->cursor.nvbo);
-> +cursor_bo_map_err:
-> +	nouveau_bo_unpin(nv_crtc->cursor.nvbo);
-> +cursor_bo_pin_err:
-> +	nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
-> +cursor_bo_err:
-> +	drm_crtc_cleanup(&nv_crtc->base);
-> +	nouveau_bo_unmap(nv_crtc->lut.nvbo);
-> +lut_bo_map_err:
-> +	nouveau_bo_unpin(nv_crtc->lut.nvbo);
-> +lut_bo_pin_err:
-> +	nouveau_bo_ref(NULL, &nv_crtc->lut.nvbo);
-> +lut_bo_err:
-> +	kfree(nv_crtc);
-> +	return ret;
->  }
-> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-> index 7ba28e0..a1b335b 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_display.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
-> @@ -335,8 +335,11 @@ nv50_display_create(struct drm_device *dev)
->  	dev_priv->engine.display.priv = priv;
->  
->  	/* Create CRTC objects */
-> -	for (i = 0; i < 2; i++)
-> -		nv50_crtc_create(dev, i);
-> +	for (i = 0; i < 2; i++) {
-> +		ret = nv50_crtc_create(dev, i);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	/* We setup the encoders from the BIOS table */
->  	for (i = 0 ; i < dcb->entries; i++) {
-> -- 
+--===============2120784154==
+Content-Type: multipart/alternative; boundary=0016e6d564c853029d04b4c2d38c
 
-ping
+--0016e6d564c853029d04b4c2d38c
+Content-Type: text/plain; charset=ISO-8859-1
+
+If somebody is interested in this card for nouveau development/testing,
+please let me know where to send it.
+
+--0016e6d564c853029d04b4c2d38c
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<p>If somebody is interested in this card for nouveau development/testing,=
+=A0 please let me know where to send it.</p>
+
+--0016e6d564c853029d04b4c2d38c--
+
+--===============2120784154==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2120784154==--
