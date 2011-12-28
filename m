@@ -1,17 +1,13 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: "enable ctxprog xfer only when we need it to save
- power" introduces big performance regression
-Date: Wed, 28 Dec 2011 22:39:02 +0100
-Message-ID: <20111228213902.GA4275@joi.lan>
-References: <20111029170801.GA3219@joi.lan> <20111029172923.GA3110@joi.lan>
-	<20111029190938.GA3105@joi.lan> <20111109221009.GD3402@joi.lan>
-	<4EBB78F4.2020902@ensi-bourges.fr>
+Subject: [PATCH] drm/nouveau: move definition of nouveau_grctx to
+ separate file
+Date: Wed, 28 Dec 2011 22:48:02 +0100
+Message-ID: <20111228214802.GB4275@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <4EBB78F4.2020902-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,93 +17,111 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBOb3YgMTAsIDIwMTEgYXQgMDg6MTA6NDRBTSArMDEwMCwgTWFydGluIFBlcmVzIHdy
-b3RlOgo+IExlIDA5LzExLzIwMTEgMjM6MTAsIE1hcmNpbiBTbHVzYXJ6IGEgw6ljcml0IDoKPiA+
-IEZvciBhbnlvbmUgd2hvIGRvbid0IHJlYWQgSVJDIGxvZ3MgLSBpdCB0dXJucyBvdXQgaXQgcmVn
-cmVzc2VkIG9ubHkgb24gCj4gPiBteSBib3gsIGJlY2F1c2UgSSBoYXZlIHBhZ2UgZmxpcHBpbmcg
-ZGlzYWJsZWQgKGR1ZSB0byBwYWdlIGZsaXBwaW5nIAo+ID4gYmVpbmcgdmVyeSBidWdneSBoZXJl
-LCBzZWUgCj4gPiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD00
-MjM5OCksIHdoaWNoIGZvcmNlcyBncHUgCj4gPiBjb250ZXh0IHN3aXRjaCBvbiBldmVyeSBmcmFt
-ZSAtIGV2ZW4gd2l0aCAoT3BlbkdMKSBmdWxsIHNjcmVlbiBhcHBzLiAKPiA+IEFuZCB0aGlzIHBh
-dGNoIHNsb3dzIGRvd24gY29udGV4dCBzd2l0Y2hlcy4gU28sIGNhbiB3ZSBkaXNhYmxlIHhmZXJz
-IAo+ID4gaW4gY3R4cHJvZyBvbmx5IHdoZW4gcGFnZSBmbGlwcGluZyBpcyBlbmFibGVkPyBPciBp
-cyB0aGVyZSBhbnkgb3RoZXIgCj4gPiBvcHRpb24/IE1hcmNpbiAKPiBIbW0sIGl0IGlzbid0IGxv
-Z2ljYWwgeWV0LiBUbyB0ZXN0IGZvciBwZXJmb3JtYW5jZSByZWdyZXNzaW9uLCBJIAo+IGxhdW5j
-aGVkIHRoZSB3ZWxsIGtub3duIGNvbnRleHQgc3dpdGNoIHRlc3QgdGhhdCBpcyBnbHhnZWFycyBh
-bmQgb25seSAKPiBmb3VuZCBhIHBlcmZvcm1hbmNlIGRlY3JlYXNlIG9mIDElLgo+IAo+IEknbGwg
-dGVzdCB3aXRoIHBhZ2VmbGlwIGRpc2FibGVkIHRob3VnaCBhbmQgc2VlIGZvciBteXNlbGYuCj4g
-Cj4gQW55d2F5LCB3ZSdsbCBkbyBzb21ldGhpbmcgYWJvdXQgaXQuIEkganVzdCBob3BlIHRoYXQg
-bW9zdCBjYXJkcyBkb24ndCAKPiBoYXZlIHRoaXMgcHJvYmxlbS4gVGhpcyBpcyBjbGVhcmx5IGFu
-IGh3IHJlZ3Jlc3Npb24uCgpIZWgsIHdpdGggcGFnZSBmbGlwcGluZyBlbmFibGVkLCByZWdyZXNz
-aW9uIGlzIHN0aWxsIHRoZXJlLCBvbmx5IHNtYWxsZXIKKDYxLT41NCwgaW5zdGVhZCBvZiA0OSBG
-UFMpLgoKSSB3YW50IG15IE5vdXZlYXUgcGVyZm9ybWFuY2UgYmFjayA7KQoKLS0tCkZyb206IE1h
-cmNpbiBTbHVzYXJ6IDxtYXJjaW4uc2x1c2FyekBnbWFpbC5jb20+ClN1YmplY3Q6IFtQQVRDSF0g
-ZHJtL252NTAvZ3I6IG1ha2UgInhmZXJzIG9ubHkgaW4gY3R4cHJvZyIgb3B0aW9uYWwKCkNvbW1p
-dCBmYmJhMDM2YTU2ZmUwZTVjNWU4YzkxZGFmM2ZhMjExZjg4ZDk0YTAzCiJkcm0vbnY1MC9ncjog
-ZW5hYmxlIGN0eHByb2cgeGZlciBvbmx5IHdoZW4gd2UgbmVlZCBpdCB0byBzYXZlIHBvd2VyIgpp
-bnRyb2R1Y2VkIHBlcmZvcm1hbmNlIHJlZ3Jlc3Npb24uCgpTbyByZXZlcnQgdG8gcHJldmlvdXMg
-YmVoYXZpb3VyIGFuZCBhZGQgbW9kdWxlIG9wdGlvbiAobnY1MF94ZmVyX2N0eHByb2c9MC8xKQp0
-byByZXN0b3JlIGl0IGJhY2suCgpTaWduZWQtb2ZmLWJ5OiBNYXJjaW4gU2x1c2FyeiA8bWFyY2lu
-LnNsdXNhcnpAZ21haWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-ZHJ2LmMgfCAgICA0ICsrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2Lmgg
-fCAgICAxICsKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JhcGguYyAgfCAgICA1ICsr
-KystCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dyY3R4LmMgIHwgICAgNiArKysrLS0K
-IDQgZmlsZXMgY2hhbmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5jIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuYwppbmRleCA5NzkxZDEzLi42Y2UyMzQ3IDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmMKQEAgLTEyMCw2ICsxMjAsMTAgQEAgTU9E
-VUxFX1BBUk1fREVTQyhtc2ksICJFbmFibGUgTVNJIChkZWZhdWx0OiBvZmYpXG4iKTsKIGludCBu
-b3V2ZWF1X21zaTsKIG1vZHVsZV9wYXJhbV9uYW1lZChtc2ksIG5vdXZlYXVfbXNpLCBpbnQsIDA0
-MDApOwogCitNT0RVTEVfUEFSTV9ERVNDKG52NTBfeGZlcl9jdHhwcm9nLCAiRW5hYmxlIHhmZXJz
-IG9ubHkgaW4gY3R4cHJvZyAoZGVjcmVhc2VzIHBlcmZvcm1hbmNlLCBsb3dlcnMgcG93ZXIgdXNh
-Z2UpIChkZWZhdWx0OiAwKSIpOworaW50IG5vdXZlYXVfbnY1MF94ZmVyX2N0eHByb2cgPSAwOwor
-bW9kdWxlX3BhcmFtX25hbWVkKG52NTBfeGZlcl9jdHhwcm9nLCBub3V2ZWF1X252NTBfeGZlcl9j
-dHhwcm9nLCBpbnQsIDA0MDApOworCiBNT0RVTEVfUEFSTV9ERVNDKGN0eGZ3LCAiVXNlIGV4dGVy
-bmFsIEhVQi9HUEMgdWNvZGUgKGZlcm1pKVxuIik7CiBpbnQgbm91dmVhdV9jdHhmdzsKIG1vZHVs
-ZV9wYXJhbV9uYW1lZChjdHhmdywgbm91dmVhdV9jdHhmdywgaW50LCAwNDAwKTsKZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmggYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCmluZGV4IDRjMGJlM2EuLmNkZjU0OTcgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKKysrIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaApAQCAtODQ5LDYgKzg0OSw3IEBAIGV4dGVybiBp
-bnQgbm91dmVhdV9vdmVycmlkZV9jb25udHlwZTsKIGV4dGVybiBjaGFyICpub3V2ZWF1X3BlcmZs
-dmw7CiBleHRlcm4gaW50IG5vdXZlYXVfcGVyZmx2bF93cjsKIGV4dGVybiBpbnQgbm91dmVhdV9t
-c2k7CitleHRlcm4gaW50IG5vdXZlYXVfbnY1MF94ZmVyX2N0eHByb2c7CiBleHRlcm4gaW50IG5v
-dXZlYXVfY3R4Znc7CiAKIGV4dGVybiBpbnQgbm91dmVhdV9wY2lfc3VzcGVuZChzdHJ1Y3QgcGNp
-X2RldiAqcGRldiwgcG1fbWVzc2FnZV90IHBtX3N0YXRlKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L252NTBfZ3JhcGguYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-NTBfZ3JhcGguYwppbmRleCAwMWU0ZjgxMi4uZDk4MGJjMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnY1MF9ncmFwaC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L252NTBfZ3JhcGguYwpAQCAtMTY3LDcgKzE2NywxMCBAQCBudjUwX2dyYXBoX2luaXQoc3RydWN0
-IGRybV9kZXZpY2UgKmRldiwgaW50IGVuZ2luZSkKIAludl93cjMyKGRldiwgMHg0MDAzMjQsIDB4
-MDAwMDAwMDApOwogCWZvciAoaSA9IDA7IGkgPCBwZ3JhcGgtPmN0eHByb2dfc2l6ZTsgaSsrKQog
-CQludl93cjMyKGRldiwgMHg0MDAzMjgsIHBncmFwaC0+Y3R4cHJvZ1tpXSk7Ci0JbnZfd3IzMihk
-ZXYsIDB4NDAwODI0LCAweDAwMDAwMDAwKTsKKwlpZiAobm91dmVhdV9udjUwX3hmZXJfY3R4cHJv
-ZykKKwkJbnZfd3IzMihkZXYsIDB4NDAwODI0LCAweDAwMDAwMDAwKTsKKwllbHNlCisJCW52X3dy
-MzIoZGV2LCAweDQwMDgyNCwgMHgwMDAwNDAwMCk7CiAJbnZfd3IzMihkZXYsIDB4NDAwODI4LCAw
-eDAwMDAwMDAwKTsKIAludl93cjMyKGRldiwgMHg0MDA4MmMsIDB4MDAwMDAwMDApOwogCW52X3dy
-MzIoZGV2LCAweDQwMDgzMCwgMHgwMDAwMDAwMCk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udjUwX2dyY3R4LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dy
-Y3R4LmMKaW5kZXggNGI0NmQ2OS4uMGJmMmIwYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbnY1MF9ncmN0eC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBf
-Z3JjdHguYwpAQCAtMjAyLDcgKzIwMiw4IEBAIG52NTBfZ3JjdHhfaW5pdChzdHJ1Y3Qgbm91dmVh
-dV9ncmN0eCAqY3R4KQogCX0KIAogCWNwX3NldCAoY3R4LCBTVEFURSwgUlVOTklORyk7Ci0JY3Bf
-c2V0IChjdHgsIFhGRVJfU1dJVENILCBFTkFCTEUpOworCWlmIChub3V2ZWF1X252NTBfeGZlcl9j
-dHhwcm9nKQorCQljcF9zZXQgKGN0eCwgWEZFUl9TV0lUQ0gsIEVOQUJMRSk7CiAJLyogZGVjaWRl
-IHdoZXRoZXIgd2UncmUgbG9hZGluZy91bmxvYWRpbmcgdGhlIGNvbnRleHQgKi8KIAljcF9icmEg
-KGN0eCwgQVVUT19TQVZFLCBQRU5ESU5HLCBjcF9zZXR1cF9zYXZlKTsKIAljcF9icmEgKGN0eCwg
-VVNFUl9TQVZFLCBQRU5ESU5HLCBjcF9zZXR1cF9zYXZlKTsKQEAgLTI2OSw3ICsyNzAsOCBAQCBu
-djUwX2dyY3R4X2luaXQoc3RydWN0IG5vdXZlYXVfZ3JjdHggKmN0eCkKIAljcF9uYW1lKGN0eCwg
-Y3BfZXhpdCk7CiAJY3Bfc2V0IChjdHgsIFVTRVJfU0FWRSwgTk9UX1BFTkRJTkcpOwogCWNwX3Nl
-dCAoY3R4LCBVU0VSX0xPQUQsIE5PVF9QRU5ESU5HKTsKLQljcF9zZXQgKGN0eCwgWEZFUl9TV0lU
-Q0gsIERJU0FCTEUpOworCWlmIChub3V2ZWF1X252NTBfeGZlcl9jdHhwcm9nKQorCQljcF9zZXQg
-KGN0eCwgWEZFUl9TV0lUQ0gsIERJU0FCTEUpOwogCWNwX3NldCAoY3R4LCBTVEFURSwgU1RPUFBF
-RCk7CiAJY3Bfb3V0IChjdHgsIENQX0VORCk7CiAJY3R4LT5jdHh2YWxzX3BvcyArPSAweDQwMDsg
-LyogcGFkZGluZy4uLiBubyBpZGVhIHdoeSB5b3UgbmVlZCBpdCAqLwotLSAKMS43LjgucmMzCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+Avoids conditional definition of grctx build functions, which is hard
+for IDE's to handle properly.
+
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_grctx.h     |   21 ++-------------------
+ drivers/gpu/drm/nouveau/nouveau_grctx_def.h |   21 +++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nv40_graph.c        |    2 +-
+ drivers/gpu/drm/nouveau/nv50_graph.c        |    2 +-
+ 4 files changed, 25 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/nouveau_grctx_def.h
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_grctx.h b/drivers/gpu/drm/nouveau/nouveau_grctx.h
+index 86c2e37..359244c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_grctx.h
++++ b/drivers/gpu/drm/nouveau/nouveau_grctx.h
+@@ -1,24 +1,8 @@
+ #ifndef __NOUVEAU_GRCTX_H__
+ #define __NOUVEAU_GRCTX_H__
+ 
+-struct nouveau_grctx {
+-	struct drm_device *dev;
+-
+-	enum {
+-		NOUVEAU_GRCTX_PROG,
+-		NOUVEAU_GRCTX_VALS
+-	} mode;
+-	void *data;
+-
+-	uint32_t ctxprog_max;
+-	uint32_t ctxprog_len;
+-	uint32_t ctxprog_reg;
+-	int      ctxprog_label[32];
+-	uint32_t ctxvals_pos;
+-	uint32_t ctxvals_base;
+-};
+-
+-#ifdef CP_CTX
++#include "nouveau_grctx_def.h"
++
+ static inline void
+ cp_out(struct nouveau_grctx *ctx, uint32_t inst)
+ {
+@@ -128,6 +112,5 @@ gr_def(struct nouveau_grctx *ctx, uint32_t reg, uint32_t val)
+ 
+ 	nv_wo32(ctx->data, reg * 4, val);
+ }
+-#endif
+ 
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/nouveau_grctx_def.h b/drivers/gpu/drm/nouveau/nouveau_grctx_def.h
+new file mode 100644
+index 0000000..f9a4e12
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/nouveau_grctx_def.h
+@@ -0,0 +1,21 @@
++#ifndef __NOUVEAU_GRCTX_DEF_H__
++#define __NOUVEAU_GRCTX_DEF_H__
++
++struct nouveau_grctx {
++	struct drm_device *dev;
++
++	enum {
++		NOUVEAU_GRCTX_PROG,
++		NOUVEAU_GRCTX_VALS
++	} mode;
++	void *data;
++
++	uint32_t ctxprog_max;
++	uint32_t ctxprog_len;
++	uint32_t ctxprog_reg;
++	int      ctxprog_label[32];
++	uint32_t ctxvals_pos;
++	uint32_t ctxvals_base;
++};
++
++#endif
+diff --git a/drivers/gpu/drm/nouveau/nv40_graph.c b/drivers/gpu/drm/nouveau/nv40_graph.c
+index ba14a93..20bb65a 100644
+--- a/drivers/gpu/drm/nouveau/nv40_graph.c
++++ b/drivers/gpu/drm/nouveau/nv40_graph.c
+@@ -27,7 +27,7 @@
+ #include "drmP.h"
+ #include "drm.h"
+ #include "nouveau_drv.h"
+-#include "nouveau_grctx.h"
++#include "nouveau_grctx_def.h"
+ #include "nouveau_ramht.h"
+ 
+ struct nv40_graph_engine {
+diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
+index ac601f7..01e4f812 100644
+--- a/drivers/gpu/drm/nouveau/nv50_graph.c
++++ b/drivers/gpu/drm/nouveau/nv50_graph.c
+@@ -28,7 +28,7 @@
+ #include "drm.h"
+ #include "nouveau_drv.h"
+ #include "nouveau_ramht.h"
+-#include "nouveau_grctx.h"
++#include "nouveau_grctx_def.h"
+ #include "nouveau_dma.h"
+ #include "nouveau_vm.h"
+ #include "nv50_evo.h"
+-- 
+1.7.8.rc3
