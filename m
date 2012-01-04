@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35452] Pageflipping + nouveau + compiz + fullscreen
 	== FAIL
-Date: Wed, 04 Jan 2012 08:34:01 +0000
-Message-ID: <bug-35452-8800-ngwvC48DTj@http.bugs.freedesktop.org/>
+Date: Wed, 04 Jan 2012 17:40:18 +0000
+Message-ID: <bug-35452-8800-jUGuuQO2fa@http.bugs.freedesktop.org/>
 References: <bug-35452-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-35452-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35452
-
---- Comment #19 from Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org> 2012-01-04 08:34:01 UTC ---
-Hi,
-
-can you try the two patches i just attached against the nouveau ddx?
-
-They are direct translations of what is done in the ati-ddx and intel-ddx. They
-fix the same problem for me. Technically they are independent of each other,
-but the 2nd one (the fix for your problem) doesn't apply without the first one
-atm. Also i wanted to resubmit them for review anyway, so you can be my first
-independent tester.
-
-Both have been successfully tested by me a couple of months ago, i've just
-rebased them against nouveau master. They compile successfully but i haven't
-retested them yet.
-
-The first patch in the series was held back, because Francisco Jerez didn't
-want to have it before the x-server implements a proper swaplimit api, but
-xorg-1.12rc has the api now, so i wanted to resubmit this series anyway.
-
--mario
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzU0NTIKCi0tLSBD
+b21tZW50ICMyMCBmcm9tIG1heGltbGV2aXRza3lAZ21haWwuY29tIDIwMTItMDEtMDQgMDk6NDA6
+MTggUFNUIC0tLQpKdXN0IG9uZSBxdWVzdGlvbiwgZG8gSSBuZWVkIHRvIHVwZGF0ZSB4c2VydmVy
+IGZvciB0aGlzPyBJIGFtIHVzaW5nIHNvbWUKdW5rbm93biB4c2VydmVyIHJldmlzaW9uIGZyb20g
+Z2l0IGFuZCB1c3VhbGx5IHVwZGF0aW5nIHhzZXJ2ZXIgaXMgcXVpdGUgcGFpbmZ1bApwcm9jZXNz
+LgoKSSBjdXJyZW50bHkgdXNlIHRoaXMgcmV2aXNpb24gKyBwYXRjaCB0aGF0ICdmaXhlcycgdGhp
+cyBpc3N1ZSBidXQgc2xvd3MKZXZlcnl0aGluZyBkb3duIGFzIEkgc2FpZCBiZWZvcmUuCgpJIGFt
+IG9uOgoKCmNvbW1pdCA0MDIwY2FiODhmNWNmMzE2NGZjODNjZjkxMmY5NGYyODhhYTVhNDVkCkF1
+dGhvcjogTWljaGVsIETDpG56ZXIgPG1pY2hlbC5kYWVuemVyQGFtZC5jb20+CkRhdGU6ICAgV2Vk
+IEF1ZyAxMCAxMTozNjoxNiAyMDExICswMjAwCgogICAgRVhBL21peGVkOiBVcGRhdGUgc3lzX3Bp
+dGNoIGluIE1QSCBldmVuIHdoZW4gdGhlcmUncyBubyBzeXN0ZW0gbWVtb3J5IGNvcHkuCgogICAg
+T3RoZXJ3aXNlIHN5c19waXRjaCB3aWxsIGJlIHN0YWxlIHdoZW4gYSBzeXN0ZW0gbWVtb3J5IGNv
+cHkgaXMgYWxsb2NhdGVkLgoKICAgIEZpeGVzIGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcv
+c2hvd19idWcuY2dpP2lkPTM4MzIyIGFuZCBhIGNyYXNoIHdoZW4KICAgIHVubG9ja2luZyB0aGUg
+c2NyZWVuIHdpdGggeHNjcmVlbnNhdmVyLCByZXBvcnRlZCBieSBKYW5uZSBIdXR0dW5lbi4KCiAg
+ICBTaWduZWQtb2ZmLWJ5OiBNaWNoZWwgRMOkbnplciA8bWljaGVsLmRhZW56ZXJAYW1kLmNvbT4K
+ICAgIFRlc3RlZC1ieTogSmFubmUgSHV0dHVuZW4gPGphaHV0dHVuQGdtYWlsLmNvbT4KICAgIFRl
+c3RlZC1ieTogSmFuIEtyaWhvIDxFcmJ1cmV0aEBnbWFpbC5jb20+CiAgICBTaWduZWQtb2ZmLWJ5
+OiBLZWl0aCBQYWNrYXJkIDxrZWl0aHBAa2VpdGhwLmNvbT4KCi0tIApDb25maWd1cmUgYnVnbWFp
+bDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAot
+LS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBh
+cmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
