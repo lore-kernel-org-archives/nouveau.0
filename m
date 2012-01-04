@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35452] Pageflipping + nouveau + compiz + fullscreen
 	== FAIL
-Date: Wed, 04 Jan 2012 18:22:36 +0000
-Message-ID: <bug-35452-8800-M9uQYldV7r@http.bugs.freedesktop.org/>
+Date: Wed, 04 Jan 2012 22:51:30 +0000
+Message-ID: <bug-35452-8800-lFxK0QBjFd@http.bugs.freedesktop.org/>
 References: <bug-35452-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,35 +23,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35452
 
---- Comment #22 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-01-04 10:22:36 PST ---
-OK, here are the full results:
+--- Comment #23 from Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org> 2012-01-04 14:51:30 PST ---
+Good. You can try with the 2nd patch only if you want. That should fix your bug
+and should give you an idea of the performance you'll get. The 2nd patch does
+not apply cleanly because of some context it needs from the 1st patch, but you
+can fix this manually. ("Bugfix for nouveau, a direct translation of the bugfix
+in ati-ddx for same problem.")
 
-All tests done without any composition manager using specific scene from
-neverball with accuracy +=1FPS:
+The 1st patch fixes other bugs, but potentially reduces fps a little bit by
+reducing kms-flips from triple-buffered to double-buffered, probably causing
+your lost 6 fps wrt. no fix applied at all.
 
-1. without any patches: 100 FPS
-2. with your patch: 94 FPS
-3. with ugly xserver workaround I used before: 84 FPS
+1st patch wasn't applied to nouveau because of this. But Xserver 1.12 has a new
+swaplimit api that should allow to apply the 1st patch without performance
+loss, once we have a patch using the swaplimit api.
 
-Then I tested with kwin and 'unredirect full screen windows' option, and I
-confirm that your patch indeed fixes the issue, the issue of crazy kwin after I
-end the game 
-
-(I had this with compiz as well - had to stop using it, its just too buggy
-nowadays and its not nouveau fault, I checked, besides kwin finally is good
-both performance and feature wise, and integrates well into KDE).
-
-Also I noticed though that if I don't redirect full screen windows (and I don't
-as I prefer just to disable composing - its easy with kwin, and I had enough of
-problems with this option, everything works fine without any patches. Thus if I
-forget to disable composing, game runs, abet slow - 67 FPS).
-
-So thanks, but it would be great somehow to eliminate the overhead in case
-composing manager is not running, which not the case yet.
-
-Thank a lot for looking into this,
-Best regards,
-     Maxim Levitsky
+I'll prepare those additional patch in the next couple of days and submit them
+to nouveau-devel.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
