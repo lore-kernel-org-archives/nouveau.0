@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35452] Pageflipping + nouveau + compiz + fullscreen
 	== FAIL
-Date: Wed, 04 Jan 2012 17:40:18 +0000
-Message-ID: <bug-35452-8800-jUGuuQO2fa@http.bugs.freedesktop.org/>
+Date: Wed, 04 Jan 2012 17:57:22 +0000
+Message-ID: <bug-35452-8800-B8s4JoJytF@http.bugs.freedesktop.org/>
 References: <bug-35452-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-35452-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzU0NTIKCi0tLSBD
-b21tZW50ICMyMCBmcm9tIG1heGltbGV2aXRza3lAZ21haWwuY29tIDIwMTItMDEtMDQgMDk6NDA6
-MTggUFNUIC0tLQpKdXN0IG9uZSBxdWVzdGlvbiwgZG8gSSBuZWVkIHRvIHVwZGF0ZSB4c2VydmVy
-IGZvciB0aGlzPyBJIGFtIHVzaW5nIHNvbWUKdW5rbm93biB4c2VydmVyIHJldmlzaW9uIGZyb20g
-Z2l0IGFuZCB1c3VhbGx5IHVwZGF0aW5nIHhzZXJ2ZXIgaXMgcXVpdGUgcGFpbmZ1bApwcm9jZXNz
-LgoKSSBjdXJyZW50bHkgdXNlIHRoaXMgcmV2aXNpb24gKyBwYXRjaCB0aGF0ICdmaXhlcycgdGhp
-cyBpc3N1ZSBidXQgc2xvd3MKZXZlcnl0aGluZyBkb3duIGFzIEkgc2FpZCBiZWZvcmUuCgpJIGFt
-IG9uOgoKCmNvbW1pdCA0MDIwY2FiODhmNWNmMzE2NGZjODNjZjkxMmY5NGYyODhhYTVhNDVkCkF1
-dGhvcjogTWljaGVsIETDpG56ZXIgPG1pY2hlbC5kYWVuemVyQGFtZC5jb20+CkRhdGU6ICAgV2Vk
-IEF1ZyAxMCAxMTozNjoxNiAyMDExICswMjAwCgogICAgRVhBL21peGVkOiBVcGRhdGUgc3lzX3Bp
-dGNoIGluIE1QSCBldmVuIHdoZW4gdGhlcmUncyBubyBzeXN0ZW0gbWVtb3J5IGNvcHkuCgogICAg
-T3RoZXJ3aXNlIHN5c19waXRjaCB3aWxsIGJlIHN0YWxlIHdoZW4gYSBzeXN0ZW0gbWVtb3J5IGNv
-cHkgaXMgYWxsb2NhdGVkLgoKICAgIEZpeGVzIGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcv
-c2hvd19idWcuY2dpP2lkPTM4MzIyIGFuZCBhIGNyYXNoIHdoZW4KICAgIHVubG9ja2luZyB0aGUg
-c2NyZWVuIHdpdGggeHNjcmVlbnNhdmVyLCByZXBvcnRlZCBieSBKYW5uZSBIdXR0dW5lbi4KCiAg
-ICBTaWduZWQtb2ZmLWJ5OiBNaWNoZWwgRMOkbnplciA8bWljaGVsLmRhZW56ZXJAYW1kLmNvbT4K
-ICAgIFRlc3RlZC1ieTogSmFubmUgSHV0dHVuZW4gPGphaHV0dHVuQGdtYWlsLmNvbT4KICAgIFRl
-c3RlZC1ieTogSmFuIEtyaWhvIDxFcmJ1cmV0aEBnbWFpbC5jb20+CiAgICBTaWduZWQtb2ZmLWJ5
-OiBLZWl0aCBQYWNrYXJkIDxrZWl0aHBAa2VpdGhwLmNvbT4KCi0tIApDb25maWd1cmUgYnVnbWFp
-bDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMuY2dpP3RhYj1lbWFpbAot
-LS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNlOiAtLS0tLS0tCllvdSBh
-cmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=35452
+
+--- Comment #21 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-01-04 09:57:22 PST ---
+Just tested, appears to be working. FPS didn't increase as much as I expected,
+I will test this more thoughtfully.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
