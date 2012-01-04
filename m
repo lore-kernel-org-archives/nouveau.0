@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35452] Pageflipping + nouveau + compiz + fullscreen
 	== FAIL
-Date: Wed, 04 Jan 2012 17:57:22 +0000
-Message-ID: <bug-35452-8800-B8s4JoJytF@http.bugs.freedesktop.org/>
+Date: Wed, 04 Jan 2012 18:22:36 +0000
+Message-ID: <bug-35452-8800-M9uQYldV7r@http.bugs.freedesktop.org/>
 References: <bug-35452-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,35 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35452
 
---- Comment #21 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-01-04 09:57:22 PST ---
-Just tested, appears to be working. FPS didn't increase as much as I expected,
-I will test this more thoughtfully.
+--- Comment #22 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-01-04 10:22:36 PST ---
+OK, here are the full results:
+
+All tests done without any composition manager using specific scene from
+neverball with accuracy +=1FPS:
+
+1. without any patches: 100 FPS
+2. with your patch: 94 FPS
+3. with ugly xserver workaround I used before: 84 FPS
+
+Then I tested with kwin and 'unredirect full screen windows' option, and I
+confirm that your patch indeed fixes the issue, the issue of crazy kwin after I
+end the game 
+
+(I had this with compiz as well - had to stop using it, its just too buggy
+nowadays and its not nouveau fault, I checked, besides kwin finally is good
+both performance and feature wise, and integrates well into KDE).
+
+Also I noticed though that if I don't redirect full screen windows (and I don't
+as I prefer just to disable composing - its easy with kwin, and I had enough of
+problems with this option, everything works fine without any patches. Thus if I
+forget to disable composing, game runs, abet slow - 67 FPS).
+
+So thanks, but it would be great somehow to eliminate the overhead in case
+composing manager is not running, which not the case yet.
+
+Thank a lot for looking into this,
+Best regards,
+     Maxim Levitsky
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
