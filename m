@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 44608] Freeze after Fn-F8 - Next boots: screen
  remains off after suspend/resume
-Date: Tue, 10 Jan 2012 02:19:57 +0000
-Message-ID: <bug-44608-8800-6FT7zKkJgN@http.bugs.freedesktop.org/>
+Date: Tue, 10 Jan 2012 02:20:52 +0000
+Message-ID: <bug-44608-8800-2Q1YUxbDSi@http.bugs.freedesktop.org/>
 References: <bug-44608-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=44608
 
---- Comment #1 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> 2012-01-09 18:19:57 PST ---
-Created attachment 55360
-  --> https://bugs.freedesktop.org/attachment.cgi?id=55360
-drm.debug=6 dmesg before the suspend
-
-This is from a test with the linux-image-3.2.0-rc7-amd64
-3.2~rc7-1~experimental.1 Debian package.
+--- Comment #2 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> 2012-01-09 18:20:52 PST ---
+Created attachment 55361
+  --> https://bugs.freedesktop.org/attachment.cgi?id=55361
+drm.debug=6 dmesg after the resume
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
