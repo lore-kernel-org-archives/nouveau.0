@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38931] kernel crash in nouveau_fence_update when
-	playing a game
-Date: Thu, 12 Jan 2012 09:29:47 +0000
-Message-ID: <bug-38931-8800-AOLWodb26U@http.bugs.freedesktop.org/>
-References: <bug-38931-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 42384] X fails on NV11 with Error allocating scanout
+	buffer: 0
+Date: Thu, 12 Jan 2012 22:13:16 +0000
+Message-ID: <bug-42384-8800-0zIcvzgCxt@http.bugs.freedesktop.org/>
+References: <bug-42384-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38931-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-42384-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38931
+https://bugs.freedesktop.org/show_bug.cgi?id=42384
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #13 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> 2012-01-12 14:13:16 PST ---
+A patch referencing this bug report has been merged in Linux v3.2-rc2:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+commit 4beb116a454867cc3a98d02d906e0f0459aefe72
+Author: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Date:   Sun Nov 6 21:21:28 2011 +0100
 
---- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-01-12 09:29:47 UTC ---
-Should be fixed by commit "drm/nouveau/gem: fix fence_sync race / oops" by Ben
-Skeggs.
-
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=fd37181d89251aefb3bf8f33ee4e64b6353106bb
+    drm/nv10: Change the BO size threshold determining the memory placement
+range.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
