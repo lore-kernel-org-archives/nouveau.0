@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 42384] X fails on NV11 with Error allocating scanout
-	buffer: 0
-Date: Thu, 12 Jan 2012 22:13:16 +0000
-Message-ID: <bug-42384-8800-0zIcvzgCxt@http.bugs.freedesktop.org/>
-References: <bug-42384-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Why do non-lvds monitors default to dithering these
+	days?
+Date: Fri, 13 Jan 2012 07:37:06 +0100
+Message-ID: <CAGZ4FERAO62_Fzu=ffs-qcWbO7hNxOq6oqaPVGPr6oDmKMrSYg@mail.gmail.com>
+References: <CAGZ4FER0f7u=mGtZaZ4ow6SkUusjxyCA9hE5=AFQxGk-79wncw@mail.gmail.com>
+	<CAGZ4FESz654ypKhbsnj0ph8L_9pNYQKev87tyCkK3q1zVvcPUw@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-42384-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAGZ4FESz654ypKhbsnj0ph8L_9pNYQKev87tyCkK3q1zVvcPUw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,21 +20,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=42384
+On Thu, Dec 22, 2011 at 3:41 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Sun, Dec 18, 2011 at 8:47 PM, Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> In the past we assumed that external displays did their own dithering
+>> if needed. GPU based dithering is only needed for laptop displays if i
+>> had to guess.
+>>
+>> I was almost thinking my monitor was malfunctioning because of strange
+>> barely visible flickering. Now it *seems* as if dithering was the
+>> problem, although time will have to tell, because it's subtle to see
+>> these effects.
+>>
+>> Ofcource i can try and find a way to set the connector property more
+>> permanently (if anyone has suggestions besides sticking an xrandr
+>> command in my .xinitrc please let me know), but i don't see why we
+>> would need to assume that anything but lvds and eDP needs to be
+>> dithered.
+>>
+>> --
+>> Far away from the primal instinct, the song seems to fade away, the
+>> river get wider between your thoughts and the things we do and say.
+>
+> Ping.
+>
+> --
+> Far away from the primal instinct, the song seems to fade away, the
+> river get wider between your thoughts and the things we do and say.
 
---- Comment #13 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> 2012-01-12 14:13:16 PST ---
-A patch referencing this bug report has been merged in Linux v3.2-rc2:
-
-commit 4beb116a454867cc3a98d02d906e0f0459aefe72
-Author: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Date:   Sun Nov 6 21:21:28 2011 +0100
-
-    drm/nv10: Change the BO size threshold determining the memory placement
-range.
+Anyone?
 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Far away from the primal instinct, the song seems to fade away, the
+river get wider between your thoughts and the things we do and say.
