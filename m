@@ -1,71 +1,54 @@
-From: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
-Subject: Re: [PATCH 0/4] nvfx: rework render temps code and fixes
-Date: Sat, 14 Jan 2012 13:14:04 +0100
-Message-ID: <20120114131404.3f742857.mandin.patrice@orange.fr>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Subject: Re: [PATCH 1/4] nvfx: say no to stream output caps
+Date: Sun, 15 Jan 2012 07:41:04 +0100
+Message-ID: <CAAxE2A5hs56sZMK0WhhqFwW1zSQpB_W9LN6bWfpvj6ai76BDNw@mail.gmail.com>
 References: <1326195664-28384-1-git-send-email-dev@lynxeye.de>
+	<1326195664-28384-2-git-send-email-dev@lynxeye.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1326195664-28384-1-git-send-email-dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+In-Reply-To: <1326195664-28384-2-git-send-email-dev@lynxeye.de>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: Lucas Stach <dev@lynxeye.de>
+Cc: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Le Tue, 10 Jan 2012 12:41:00 +0100
-Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> a =E9crit:
-
-> This patch series silences some unknown cap warnings and fixes up
-> coding style (patch 1+4).
-> =
-
-> The most important part of this series are the two patches in the       =
-
-> middle. They rework the state_fb code, so that we are able to   =
-
-> render to not 64 byte aligned targets, as this is the only real
-> use-case for render temporaries this allows us to drop temp code
-> completely and simplifies a lot of cases.
-> =
-
-> This is only tested on nv49, but there should be nothing different
-> in this area for other nv3x or nv4x gpus.
-> =
-
-> I plan on working on top of that in the following days, so please
-> review and apply as time permits.
-> =
-
-> Thanks,
-> Lucas
-
-Hello,
-
-I just tried on my NV34 the whole series. Here is what I noticed:
-
-- Seems rendering is a bit slower (in ioquake3, in the first map q3dm0,
-rendering the mirror and the portal causes more audio stuttering) but
-it it just my feeling.
-
-- ut2004demo hangs at start (display just one frame in the nvidia
-licence plate part), but the system does not crash, and the game can be
-killed.
-
-Do you want me to check which of your patches makes ut2004 hanging?
-
--- =
-
-Patrice Mandin
-WWW: http://pmandin.atari.org/
-Programmeur Linux, Atari
-Sp=E9cialit=E9: D=E9veloppement, jeux
-
-"who writes the code, decides"
+UHVzaGVkLCB0aGFua3MuCgpNYXJlawoKT24gVHVlLCBKYW4gMTAsIDIwMTIgYXQgMTI6NDEgUE0s
+IEx1Y2FzIFN0YWNoIDxkZXZAbHlueGV5ZS5kZT4gd3JvdGU6Cj4gbnZmeCBkb2Vzbid0IHN1cHBv
+cnQgYW55IGtpbmQgb2Ygc3RyZWFtIG91dCwgc28gc2lsZW5jZSB0aGUKPiB1bnVzZWQgY2FwIHdh
+cm5pbmdzLgo+Cj4gU2lnbmVkLW9mZi1ieTogTHVjYXMgU3RhY2ggPGRldkBseW54ZXllLmRlPgo+
+IC0tLQo+IMKgc3JjL2dhbGxpdW0vZHJpdmVycy9udmZ4L252Znhfc2NyZWVuLmMgfCDCoCDCoDYg
+KysrKystCj4gwqAxIGZpbGVzIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbnMo
+LSkKPgo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL252ZngvbnZmeF9zY3JlZW4u
+YyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnZmeC9udmZ4X3NjcmVlbi5jCj4gaW5kZXggYjRhMWIz
+YS4uOTM4ZDY3YiAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL252ZngvbnZmeF9z
+Y3JlZW4uYwo+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnZmeC9udmZ4X3NjcmVlbi5jCj4g
+QEAgLTg4LDggKzg4LDEyIEBAIG52Znhfc2NyZWVuX2dldF9wYXJhbShzdHJ1Y3QgcGlwZV9zY3Jl
+ZW4gKnBzY3JlZW4sIGVudW0gcGlwZV9jYXAgcGFyYW0pCj4gwqAgwqAgwqAgwqBjYXNlIFBJUEVf
+Q0FQX01BWF9URVhFTF9PRkZTRVQ6Cj4gwqAgwqAgwqAgwqBjYXNlIFBJUEVfQ0FQX0NPTkRJVElP
+TkFMX1JFTkRFUjoKPiDCoCDCoCDCoCDCoGNhc2UgUElQRV9DQVBfVEVYVFVSRV9CQVJSSUVSOgo+
+IC0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqByZXR1cm4gMDsKPiDCoCDCoCDCoCDCoGNhc2UgUElQ
+RV9DQVBfTUlYRURfQ09MT1JCVUZGRVJfRk9STUFUUzoKPiArIMKgIMKgIMKgIGNhc2UgUElQRV9D
+QVBfTUFYX1NUUkVBTV9PVVRQVVRfQlVGRkVSUzoKPiArIMKgIMKgIMKgIGNhc2UgUElQRV9DQVBf
+TUFYX1NUUkVBTV9PVVRQVVRfU0VQQVJBVEVfQ09NUE9ORU5UUzoKPiArIMKgIMKgIMKgIGNhc2Ug
+UElQRV9DQVBfTUFYX1NUUkVBTV9PVVRQVVRfSU5URVJMRUFWRURfQ09NUE9ORU5UUzoKPiArIMKg
+IMKgIMKgIGNhc2UgUElQRV9DQVBfVEdTSV9DQU5fQ09NUEFDVF9WQVJZSU5HUzoKPiArIMKgIMKg
+IMKgIGNhc2UgUElQRV9DQVBfVEdTSV9DQU5fQ09NUEFDVF9DT05TVEFOVFM6Cj4gwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgcmV0dXJuIDA7Cj4gwqAgwqAgwqAgwqBkZWZhdWx0Ogo+IMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgTk9VVkVBVV9FUlIoIldhcm5pbmc6IHVua25vd24gUElQRV9DQVAgJWRc
+biIsIHBhcmFtKTsKPiAtLQo+IDEuNy43LjUKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCj4gbWVzYS1kZXYgbWFpbGluZyBsaXN0Cj4gbWVzYS1kZXZA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL21lc2EtZGV2Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21l
+c2EtZGV2Cg==
