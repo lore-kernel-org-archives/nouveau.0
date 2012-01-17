@@ -1,11 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 44849] New: nouveau loads scrambled garbage
-Date: Mon, 16 Jan 2012 19:10:41 +0000
-Message-ID: <bug-44849-8800@http.bugs.freedesktop.org/>
+From: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
+Subject: Re: [PATCH 4/4] nvfx: random cleanups of the state
+ validation code
+Date: Tue, 17 Jan 2012 18:22:59 +0100
+Message-ID: <20120117182259.cc64f260.mandin.patrice@orange.fr>
+References: <1326195664-28384-1-git-send-email-dev@lynxeye.de>
+	<1326195664-28384-5-git-send-email-dev@lynxeye.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1326195664-28384-5-git-send-email-dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,34 +19,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=44849
+Le Tue, 10 Jan 2012 12:41:04 +0100
+Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> a =E9crit:
 
-             Bug #: 44849
-           Summary: nouveau loads scrambled garbage
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: garegin16-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+> Signed-off-by: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+> ---
+>  src/gallium/drivers/nvfx/nvfx_state_emit.c |   49 ++++++++++++----------=
+-----
+>  1 files changed, 22 insertions(+), 27 deletions(-)
+> =
 
+> diff --git a/src/gallium/drivers/nvfx/nvfx_state_emit.c b/src/gallium/dri=
+vers/nvfx/nvfx_state_emit.c
+> index e2cfb76..a959015 100644
+[snip]
+> @@ -302,11 +303,7 @@ nvfx_state_validate_common(struct nvfx_context *nvfx)
+>  	if(dirty & NVFX_NEW_SR)
+>  		nvfx_state_sr_validate(nvfx);
+>  =
 
-when I load ubuntu 11.10 with kernel 3.0 or 12.04 alpha with 3.2 the efi mode
-loads garbage. if i turn off modesetting in bios emulation I get a working vesa
-mode, otherwise it loads a scrambled screen too.
-the gpu is 320m. 
-1.11 / 7.6 x.org version.
+> -/* All these dependencies are wrong, but otherwise
+> -   etracer, neverball, foobillard, glest totally misrender
+> -   TODO: find the right fix
+> -*/
+> -	if(dirty & (NVFX_NEW_VIEWPORT | NVFX_NEW_RAST | NVFX_NEW_ZSA))
+> +	if(dirty & NVFX_NEW_VIEWPORT)
+>  	{
+>  		nvfx_state_viewport_validate(nvfx);
+>  	}
+[snip]
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+After a small revert/compile/try, reverting just that part makes
+rendering working again in ut2004demo.
+
+I noticed another small regressing with it, the splashscreen bitmap is
+also not displayed anymore, so I'll investigate a bit further. Maybe no
+need to revert the whole series.
+
+-- =
+
+Patrice Mandin
+WWW: http://pmandin.atari.org/
+Programmeur Linux, Atari
+Sp=E9cialit=E9: D=E9veloppement, jeux
+
+"who writes the code, decides"
