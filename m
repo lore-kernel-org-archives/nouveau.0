@@ -1,62 +1,93 @@
-From: =?UTF-8?B?VmlrdG9yIE5vdm90bsO9?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
-Subject: [PATCH] drm/nouveau/i2c: Fix i2c initialization on cards
- with DCB older than 1.5
-Date: Wed, 18 Jan 2012 14:28:41 +0100
-Message-ID: <4F16C909.4050503@seznam.cz>
-Reply-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+From: Patrice Mandin <mandin.patrice@orange.fr>
+Subject: Re: [Nouveau] [PATCH 4/4] nvfx: random cleanups of the
+ state validation code
+Date: Wed, 18 Jan 2012 21:54:14 +0100
+Message-ID: <20120118215414.1aef2da3.mandin.patrice@orange.fr>
+References: <1326195664-28384-1-git-send-email-dev@lynxeye.de>
+	<1326195664-28384-5-git-send-email-dev@lynxeye.de>
+	<20120117182259.cc64f260.mandin.patrice@orange.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+In-Reply-To: <20120117182259.cc64f260.mandin.patrice@orange.fr>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: Lucas Stach <dev@lynxeye.de>
+Cc: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Viktor Novotny <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
----
-Hi,
-I think I found a bug - my NV11 fails to init i2c ports and is then unable to read EDID.
-It's because while i2c_table in nouveau_i2c.c:324 returns null for this card,
-i2c is initialized anyway at line 341 and wrong i2c table format is then selected at line 350.
-This patch fixes the problem on NV11 and was tested also on NV25. I hope no cards but those
-with legacy i2c table have i2c table version set to 0.
+Le Tue, 17 Jan 2012 18:22:59 +0100
+Patrice Mandin <mandin.patrice@orange.fr> a =E9crit:
 
-Regards
-	Viktor
+> Le Tue, 10 Jan 2012 12:41:04 +0100
+> Lucas Stach <dev@lynxeye.de> a =E9crit:
+> =
 
- drivers/gpu/drm/nouveau/nouveau_i2c.c |    5 +++--
- 1 files changed, 3 insertions(+), 2 deletions(-)
+> > Signed-off-by: Lucas Stach <dev@lynxeye.de>
+> > ---
+> >  src/gallium/drivers/nvfx/nvfx_state_emit.c |   49 ++++++++++++--------=
+-------
+> >  1 files changed, 22 insertions(+), 27 deletions(-)
+> > =
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_i2c.c b/drivers/gpu/drm/nouveau/nouveau_i2c.c
-index 820ae7f..57bcbc3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_i2c.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_i2c.c
-@@ -344,14 +344,15 @@ nouveau_i2c_init(struct drm_device *dev)
- 		if (i2c[5]) legacy[0][1] = i2c[5];
- 		if (i2c[6]) legacy[1][0] = i2c[6];
- 		if (i2c[7]) legacy[1][1] = i2c[7];
-+		version = 0;
+> > diff --git a/src/gallium/drivers/nvfx/nvfx_state_emit.c b/src/gallium/d=
+rivers/nvfx/nvfx_state_emit.c
+> > index e2cfb76..a959015 100644
+> [snip]
+@@ -212,14 +211,6 @@ nvfx_state_validate_common(struct nvfx_context *nvfx)
+ 		nvfx->relocs_needed =3D NVFX_RELOCATE_ALL;
  	}
- 
--	if (i2c && version >= 0x30) {
-+	if (version >= 0x30) {
- 		entry     = i2c[1] + i2c;
- 		entries   = i2c[2];
- 		recordlen = i2c[3];
- 	} else
--	if (i2c) {
-+	if (version > 0) {
- 		entry     = i2c;
- 		entries   = 16;
- 		recordlen = 4;
--- 
-1.7.8.3
+ =
+
+-	if(nvfx->dirty & NVFX_NEW_SAMPLER) {
+-		nvfx->dirty &=3D~ NVFX_NEW_SAMPLER;
+-		nvfx_fragtex_validate(nvfx);
+-
+-		// TODO: only set this if really necessary
+-		flush_tex_cache =3D TRUE;
+-	}
+-
+ 	dirty =3D nvfx->dirty;
+ =
+
+ 	if(nvfx->render_mode =3D=3D HW)
+@@ -252,6 +243,13 @@ nvfx_state_validate_common(struct nvfx_context *nvfx)
+ 		}
+ 	}
+ =
+
++	if(dirty & NVFX_NEW_SAMPLER) {
++		nvfx_fragtex_validate(nvfx);
++
++		// TODO: only set this if really necessary
++		flush_tex_cache =3D TRUE;
++	}
++
+ 	if(dirty & NVFX_NEW_RAST)
+ 		sb_emit(chan, nvfx->rasterizer->sb, nvfx->rasterizer->sb_len);
+ =
+
+> I noticed another small regression with it, the splashscreen bitmap is
+> also not displayed anymore, so I'll investigate a bit further. Maybe no
+> need to revert the whole series.
+
+And the above part triggers it, the missing nvfx->dirty &=3D~ NVFX_NEW_SAMP=
+LER;
+in the change causes this regression.
+
+-- =
+
+Patrice Mandin
+WWW: http://pmandin.atari.org/
+Programmeur Linux, Atari
+Sp=E9cialit=E9: D=E9veloppement, jeux
+
+"who writes the code, decides"
