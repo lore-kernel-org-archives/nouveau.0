@@ -1,17 +1,11 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: Re: [Mesa-dev] [PATCH 4/4] nvfx: random cleanups of the
- state validation code
-Date: Thu, 19 Jan 2012 01:34:42 +0100
-Message-ID: <1326933282.1649.3.camel@tellur>
-References: <1326195664-28384-1-git-send-email-dev@lynxeye.de>
-	<1326195664-28384-5-git-send-email-dev@lynxeye.de>
-	<20120117182259.cc64f260.mandin.patrice@orange.fr>
-	<20120118215414.1aef2da3.mandin.patrice@orange.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 44942] New: Make nouveau work for G98 nVidia chip
+Date: Thu, 19 Jan 2012 16:06:49 +0000
+Message-ID: <bug-44942-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20120118215414.1aef2da3.mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +15,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gTWl0dHdvY2gsIGRlbiAxOC4wMS4yMDEyLCAyMTo1NCArMDEwMCBzY2hyaWViIFBhdHJpY2Ug
-TWFuZGluOgo+IExlIFR1ZSwgMTcgSmFuIDIwMTIgMTg6MjI6NTkgKzAxMDAKPiBQYXRyaWNlIE1h
-bmRpbiA8bWFuZGluLnBhdHJpY2VAb3JhbmdlLmZyPiBhIMOpY3JpdDoKPiAKPiA+IExlIFR1ZSwg
-MTAgSmFuIDIwMTIgMTI6NDE6MDQgKzAxMDAKPiA+IEx1Y2FzIFN0YWNoIDxkZXZAbHlueGV5ZS5k
-ZT4gYSDDqWNyaXQ6Cj4gPiAKPiA+ID4gU2lnbmVkLW9mZi1ieTogTHVjYXMgU3RhY2ggPGRldkBs
-eW54ZXllLmRlPgo+ID4gPiAtLS0KPiA+ID4gIHNyYy9nYWxsaXVtL2RyaXZlcnMvbnZmeC9udmZ4
-X3N0YXRlX2VtaXQuYyB8ICAgNDkgKysrKysrKysrKysrLS0tLS0tLS0tLS0tLS0tCj4gPiA+ICAx
-IGZpbGVzIGNoYW5nZWQsIDIyIGluc2VydGlvbnMoKyksIDI3IGRlbGV0aW9ucygtKQo+ID4gPiAK
-PiA+ID4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnZmeC9udmZ4X3N0YXRlX2Vt
-aXQuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbnZmeC9udmZ4X3N0YXRlX2VtaXQuYwo+ID4gPiBp
-bmRleCBlMmNmYjc2Li5hOTU5MDE1IDEwMDY0NAo+ID4gW3NuaXBdCj4gQEAgLTIxMiwxNCArMjEx
-LDYgQEAgbnZmeF9zdGF0ZV92YWxpZGF0ZV9jb21tb24oc3RydWN0IG52ZnhfY29udGV4dCAqbnZm
-eCkKPiAgCQludmZ4LT5yZWxvY3NfbmVlZGVkID0gTlZGWF9SRUxPQ0FURV9BTEw7Cj4gIAl9Cj4g
-IAo+IC0JaWYobnZmeC0+ZGlydHkgJiBOVkZYX05FV19TQU1QTEVSKSB7Cj4gLQkJbnZmeC0+ZGly
-dHkgJj1+IE5WRlhfTkVXX1NBTVBMRVI7Cj4gLQkJbnZmeF9mcmFndGV4X3ZhbGlkYXRlKG52Zngp
-Owo+IC0KPiAtCQkvLyBUT0RPOiBvbmx5IHNldCB0aGlzIGlmIHJlYWxseSBuZWNlc3NhcnkKPiAt
-CQlmbHVzaF90ZXhfY2FjaGUgPSBUUlVFOwo+IC0JfQo+IC0KPiAgCWRpcnR5ID0gbnZmeC0+ZGly
-dHk7Cj4gIAo+ICAJaWYobnZmeC0+cmVuZGVyX21vZGUgPT0gSFcpCj4gQEAgLTI1Miw2ICsyNDMs
-MTMgQEAgbnZmeF9zdGF0ZV92YWxpZGF0ZV9jb21tb24oc3RydWN0IG52ZnhfY29udGV4dCAqbnZm
-eCkKPiAgCQl9Cj4gIAl9Cj4gIAo+ICsJaWYoZGlydHkgJiBOVkZYX05FV19TQU1QTEVSKSB7Cj4g
-KwkJbnZmeF9mcmFndGV4X3ZhbGlkYXRlKG52ZngpOwo+ICsKPiArCQkvLyBUT0RPOiBvbmx5IHNl
-dCB0aGlzIGlmIHJlYWxseSBuZWNlc3NhcnkKPiArCQlmbHVzaF90ZXhfY2FjaGUgPSBUUlVFOwo+
-ICsJfQo+ICsKPiAgCWlmKGRpcnR5ICYgTlZGWF9ORVdfUkFTVCkKPiAgCQlzYl9lbWl0KGNoYW4s
-IG52ZngtPnJhc3Rlcml6ZXItPnNiLCBudmZ4LT5yYXN0ZXJpemVyLT5zYl9sZW4pOwo+ICAKPiA+
-IEkgbm90aWNlZCBhbm90aGVyIHNtYWxsIHJlZ3Jlc3Npb24gd2l0aCBpdCwgdGhlIHNwbGFzaHNj
-cmVlbiBiaXRtYXAgaXMKPiA+IGFsc28gbm90IGRpc3BsYXllZCBhbnltb3JlLCBzbyBJJ2xsIGlu
-dmVzdGlnYXRlIGEgYml0IGZ1cnRoZXIuIE1heWJlIG5vCj4gPiBuZWVkIHRvIHJldmVydCB0aGUg
-d2hvbGUgc2VyaWVzLgo+IAo+IEFuZCB0aGUgYWJvdmUgcGFydCB0cmlnZ2VycyBpdCwgdGhlIG1p
-c3NpbmcgbnZmeC0+ZGlydHkgJj1+IE5WRlhfTkVXX1NBTVBMRVI7Cj4gaW4gdGhlIGNoYW5nZSBj
-YXVzZXMgdGhpcyByZWdyZXNzaW9uLgo+IAoKU28gdGhlIHN1cHBvc2VkbHkgbG93IHJpc2sgY2xl
-YW51cHMgYnJva2UgYWxsIG9mIHRob3NlIHRoaW5ncy4gVGhhbmtzIHRvCnRha2UgdGhlIHRpbWUg
-dG8gdHJhY2sgdGhpcyBkb3duIHRvIHRoaXMgbGV2ZWwuIFdpbGwgZml4IGl0IHVwIHNvb24uCgpU
-aGFua3MsCkx1Y2FzCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=44942
+
+             Bug #: 44942
+           Summary: Make nouveau work for G98 nVidia chip
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: harald-sG99zbz/3gfegbzhZkK2zA@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+The nVidia Quadro NVS 450 has two GPUs on it, type G98
+The card has four ports allowing for four displays
+
+nouveau appears to:
+a. Not support the G98 chip
+b. Not support multiple GPUs
+c. Not support more than two displays
+
+Making this card work could be a good idea!
+
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/889538
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
