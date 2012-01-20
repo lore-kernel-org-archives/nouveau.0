@@ -1,11 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 44942] New: Make nouveau work for G98 nVidia chip
-Date: Thu, 19 Jan 2012 16:06:49 +0000
-Message-ID: <bug-44942-8800@http.bugs.freedesktop.org/>
+From: Vincent Pelletier <plr.vincent-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Bisect: i2c regression in
+	63daa9589cb88617d9cc8a0b0282564682a975b7
+Date: Fri, 20 Jan 2012 22:32:23 +0100
+Message-ID: <201201202232.23791.plr.vincent@gmail.com>
+References: <201201012238.25620.plr.vincent@gmail.com>
+	<1325544010.8507.1.camel@nisroch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1325544010.8507.1.camel@nisroch>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,40 +19,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=44942
-
-             Bug #: 44942
-           Summary: Make nouveau work for G98 nVidia chip
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: harald-sG99zbz/3gfegbzhZkK2zA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-The nVidia Quadro NVS 450 has two GPUs on it, type G98
-The card has four ports allowing for four displays
-
-nouveau appears to:
-a. Not support the G98 chip
-b. Not support multiple GPUs
-c. Not support more than two displays
-
-Making this card work could be a good idea!
-
-https://bugs.launchpad.net/ubuntu/+source/linux/+bug/889538
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+TGUgbHVuZGkgMDIgamFudmllciAyMDEyIDIzOjQwOjEwLCBCZW4gU2tlZ2dzIGEgw6ljcml0IDoK
+PiBDb3VsZCB5b3UgaWRlbnRpZnkgd2hldGhlciBib3RoIHRpbWVvdXRzIG5lZWRlZCBkb3VibGlu
+Zywgb3IganVzdCBvbmUgb2YKPiB0aGVtPwoKQWhlbSwgaXQgaGFzIGJlZW4gYSBiaXQgbW9yZSB0
+aGFuIGEgd2Vlay4gT2ggd2VsbC4KCkkgdHJpZWQgbG93ZXJpbmcgYm90aCBkZWZpbmVzIHRvd2Fy
+ZCB0aGVpciBvcmlnaW5hbCB2YWx1ZSwgYW5kIGZhaWxlZCB3dWl0ZSAKZWFybHkuIFRob3NlIGFy
+ZSB0aGUgbWluaW11bXMgd2l0aCB3aGljaCBJIGdvdCBzdWNjZXNzOgoKI2RlZmluZSBUX1JJU0VG
+QUxMIDQ1MDAKI2RlZmluZSBUX0hPTEQgICAgIDk1MDAKCkxvd2VyaW5nIGVpdGhlciBieSA1MCBt
+YWtlcyBod21vbiBkaXNhcHBlYXIuIExvb2tzIGxpa2UgSSBnb3QgbHVja3kgb24gdGhlIApmaXJz
+dCB0cnkgd2l0aCBteSA1ay8xMGsuLi4KClNlbnNvcnMgc3RpbGwgcmVwb3J0ICsxNmvCsEMgb2Nj
+YXNpb25hbGx5LCBzbyBJIG11c3QgYmUgZ2V0dGluZyBzb21ldGhpbmcgd3JvbmcgCnNvbWV3aGVy
+ZS4gSWYgbmVlZGVkLCBJIGNhbiB0cnkgdG8gZGlzYXNzZW1ibGUgbXkgY2FyZCAoSSBhbHJlYWR5
+IGZhaWxlZCBvbmNlIAp0byByZW1vdmUgdGhlIGNvdmVyLCBidXQgZGlkbid0IGhhdmUgYW4gYWN0
+dWFsIG1vdGl2YXRpb24pIGFuZCBzZWUgd2hhdCBteSBEU08gCk5hbm8gY2FuIGdldCAtIGlmIEkg
+Y2FuIGZpbmQgdGhlIHRyYWNlLgoKLS0gClZpbmNlbnQgUGVsbGV0aWVyCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
