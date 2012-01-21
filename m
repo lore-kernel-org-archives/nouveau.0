@@ -1,12 +1,13 @@
 From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Subject: [PATCH 1/2] drm/nv50/display: expose color vibrance
-	control
-Date: Sat, 21 Jan 2012 23:13:26 +0100
-Message-ID: <1327184007-4325-1-git-send-email-e0425955@student.tuwien.ac.at>
+Subject: [PATCH 2/2] drm/nvc0: implement VRAM compression
+Date: Sat, 21 Jan 2012 23:13:27 +0100
+Message-ID: <1327184007-4325-2-git-send-email-e0425955@student.tuwien.ac.at>
+References: <1327184007-4325-1-git-send-email-e0425955@student.tuwien.ac.at>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1327184007-4325-1-git-send-email-e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,210 +20,348 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Safety margins checked on GTX470, not verified on other cards with
+a different number of memory partitions.
 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c |   23 ++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_crtc.h      |    3 ++
- drivers/gpu/drm/nouveau/nouveau_display.c   |   14 +++++++++
- drivers/gpu/drm/nouveau/nouveau_drv.h       |    3 ++
- drivers/gpu/drm/nouveau/nv50_crtc.c         |   42 +++++++++++++++++++++++++-
- drivers/gpu/drm/nouveau/nv50_evo.h          |    3 +-
- 6 files changed, 85 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_state.c |   35 +++++++-------
+ drivers/gpu/drm/nouveau/nvc0_fb.c       |   81 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nvc0_vm.c       |   12 ++++-
+ drivers/gpu/drm/nouveau/nvc0_vram.c     |   78 ++++++++++++++++++++---------
+ 4 files changed, 164 insertions(+), 42 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index f3ce34b..3a3e74d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -519,6 +519,19 @@ nouveau_connector_set_property(struct drm_connector *connector,
- 		return nv_crtc->set_dither(nv_crtc, true);
- 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c b/drivers/gpu/drm/nouveau/nouveau_state.c
+index 13e6102..9511009 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_state.c
++++ b/drivers/gpu/drm/nouveau/nouveau_state.c
+@@ -602,18 +602,26 @@ nouveau_card_init(struct drm_device *dev)
+ 		goto out_mc;
  
-+	if (nv_crtc && nv_crtc->set_color_vibrance) {
-+		/* Hue */
-+		if (property == disp->vibrant_hue_property) {
-+			nv_crtc->vibrant_hue = value - 90;
-+			return nv_crtc->set_color_vibrance(nv_crtc, true);
-+		}
-+		/* Saturation */
-+		if (property == disp->color_vibrance_property) {
-+			nv_crtc->color_vibrance = value - 100;
-+			return nv_crtc->set_color_vibrance(nv_crtc, true);
-+		}
-+	}
+ 	/* PFB */
+-	ret = engine->fb.init(dev);
++	ret = engine->vram.init(dev);
+ 	if (ret)
+ 		goto out_timer;
+ 
+-	ret = engine->vram.init(dev);
++	ret = nouveau_mem_vram_init(dev);
+ 	if (ret)
+-		goto out_fb;
++		goto out_vram;
 +
- 	if (nv_encoder && nv_encoder->dcb->type == OUTPUT_TV)
- 		return get_slave_funcs(encoder)->set_property(
- 			encoder, connector, property, value);
-@@ -1014,6 +1027,16 @@ nouveau_connector_create(struct drm_device *dev, int index)
- 					      0);
- 	}
- 
-+	/* Add hue and saturation options */
-+	if (disp->vibrant_hue_property)
-+		drm_connector_attach_property(connector,
-+					      disp->vibrant_hue_property,
-+					      90);
-+	if (disp->color_vibrance_property)
-+		drm_connector_attach_property(connector,
-+					      disp->color_vibrance_property,
-+					      150);
++	ret = nouveau_mem_gart_init(dev);
++	if (ret)
++		goto out_ttmvram;
 +
- 	switch (nv_connector->type) {
- 	case DCB_CONNECTOR_VGA:
- 		if (dev_priv->card_type >= NV_50) {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_crtc.h b/drivers/gpu/drm/nouveau/nouveau_crtc.h
-index 686f6b4..e6d0d1e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_crtc.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_crtc.h
-@@ -35,6 +35,8 @@ struct nouveau_crtc {
- 	uint32_t dpms_saved_fp_control;
- 	uint32_t fp_users;
- 	int saturation;
-+	int color_vibrance;
-+	int vibrant_hue;
- 	int sharpness;
- 	int last_dpms;
++	ret = engine->fb.init(dev);
++	if (ret)
++		goto out_ttmgart;
  
-@@ -67,6 +69,7 @@ struct nouveau_crtc {
+ 	/* PGPIO */
+ 	ret = nouveau_gpio_create(dev);
+ 	if (ret)
+-		goto out_vram;
++		goto out_fb;
  
- 	int (*set_dither)(struct nouveau_crtc *crtc, bool update);
- 	int (*set_scale)(struct nouveau_crtc *crtc, bool update);
-+	int (*set_color_vibrance)(struct nouveau_crtc *crtc, bool update);
+ 	ret = nouveau_gpuobj_init(dev);
+ 	if (ret)
+@@ -623,14 +631,6 @@ nouveau_card_init(struct drm_device *dev)
+ 	if (ret)
+ 		goto out_gpuobj;
+ 
+-	ret = nouveau_mem_vram_init(dev);
+-	if (ret)
+-		goto out_instmem;
+-
+-	ret = nouveau_mem_gart_init(dev);
+-	if (ret)
+-		goto out_ttmvram;
+-
+ 	nouveau_pm_init(dev);
+ 
+ 	if (!dev_priv->noaccel) {
+@@ -783,19 +783,20 @@ out_engine:
+ 		}
+ 	}
+ 	nouveau_pm_fini(dev);
+-	nouveau_mem_gart_fini(dev);
+-out_ttmvram:
+-	nouveau_mem_vram_fini(dev);
+ out_instmem:
+ 	engine->instmem.takedown(dev);
+ out_gpuobj:
+ 	nouveau_gpuobj_takedown(dev);
+ out_gpio:
+ 	nouveau_gpio_destroy(dev);
+-out_vram:
+-	engine->vram.takedown(dev);
+ out_fb:
+ 	engine->fb.takedown(dev);
++out_ttmgart:
++	nouveau_mem_gart_fini(dev);
++out_ttmvram:
++	nouveau_mem_vram_fini(dev);
++out_vram:
++	engine->vram.takedown(dev);
+ out_timer:
+ 	engine->timer.takedown(dev);
+ out_mc:
+diff --git a/drivers/gpu/drm/nouveau/nvc0_fb.c b/drivers/gpu/drm/nouveau/nvc0_fb.c
+index 5bf5503..b9bb143 100644
+--- a/drivers/gpu/drm/nouveau/nvc0_fb.c
++++ b/drivers/gpu/drm/nouveau/nvc0_fb.c
+@@ -30,6 +30,8 @@
+ struct nvc0_fb_priv {
+ 	struct page *r100c10_page;
+ 	dma_addr_t r100c10;
++	struct nouveau_bo *tag_ram;
++	uint8_t l2_part_nr;
  };
  
- static inline struct nouveau_crtc *nouveau_crtc(struct drm_crtc *crtc)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index 05f1692..6a4e2c0 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -282,6 +282,20 @@ nouveau_display_create(struct drm_device *dev)
- 	disp->underscan_vborder_property->values[0] = 0;
- 	disp->underscan_vborder_property->values[1] = 128;
- 
-+	if (gen == 1) {
-+		disp->vibrant_hue_property =
-+			drm_property_create(dev, DRM_MODE_PROP_RANGE,
-+					    "vibrant hue", 2);
-+		disp->vibrant_hue_property->values[0] = 0;
-+		disp->vibrant_hue_property->values[1] = 180; /* -90..+90 */
-+
-+		disp->color_vibrance_property =
-+			drm_property_create(dev, DRM_MODE_PROP_RANGE,
-+					    "color vibrance", 2);
-+		disp->color_vibrance_property->values[0] = 0;
-+		disp->color_vibrance_property->values[1] = 200; /* -100..+100 */
-+	}
-+
- 	dev->mode_config.funcs = (void *)&nouveau_mode_config_funcs;
- 	dev->mode_config.fb_base = pci_resource_start(dev->pdev, 1);
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index c44e5e5..4b8f4bb 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -406,6 +406,9 @@ struct nouveau_display_engine {
- 	struct drm_property *underscan_property;
- 	struct drm_property *underscan_hborder_property;
- 	struct drm_property *underscan_vborder_property;
-+	/* not really hue and saturation: */
-+	struct drm_property *vibrant_hue_property;
-+	struct drm_property *color_vibrance_property;
- };
- 
- struct nouveau_gpio_engine {
-diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
-index 8f6c2ac..701b927 100644
---- a/drivers/gpu/drm/nouveau/nv50_crtc.c
-+++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
-@@ -170,6 +170,41 @@ nv50_crtc_set_dither(struct nouveau_crtc *nv_crtc, bool update)
- 	return ret;
+ static inline void
+@@ -56,6 +58,74 @@ nvc0_mfb_isr(struct drm_device *dev)
+ 	}
  }
  
 +static int
-+nv50_crtc_set_color_vibrance(struct nouveau_crtc *nv_crtc, bool update)
++nvc0_init_tag_ram(struct drm_device *dev)
 +{
-+	struct drm_device *dev = nv_crtc->base.dev;
-+	struct nouveau_channel *evo = nv50_display(dev)->master;
++	struct drm_nouveau_private *dev_priv = dev->dev_private;
++	struct nouveau_fb_engine *pfb = &dev_priv->engine.fb;
++	struct nvc0_fb_priv *priv = (struct nvc0_fb_priv *)pfb->priv;
 +	int ret;
-+	int adj;
-+	u32 hue, vib;
++	u32 align, buffer;
++	u32 tag_size;
++	u32 num_tags;
++	u64 tag_base;
 +
-+	NV_DEBUG_KMS(dev, "vibrance = %i, hue = %i\n",
-+		     nv_crtc->color_vibrance, nv_crtc->vibrant_hue);
++	priv->l2_part_nr = nv_rd32(dev, 0x121c74);
 +
-+	ret = RING_SPACE(evo, 2 + (update ? 2 : 0));
++	nv_wr32(dev, 0x17e8d8, priv->l2_part_nr);
++	nv_wr32(dev, 0x100800, priv->l2_part_nr);
++
++	/* need to align to l2_part_count * 0x800 */
++	align = ((priv->l2_part_nr + 1) & ~1) * 0x800; /* even -> page sized */
++
++	buffer = align; /* buffer zone to account for address mangling */
++
++	/* allocate tag space for 1/4 of VRAM */
++	num_tags = (dev_priv->vram_size >> 17) >> 2;
++	num_tags = (num_tags + 63) & ~63;
++
++	ret = drm_mm_init(&pfb->tag_heap, 0, num_tags);
++	if (ret)
++		return ret;
++
++	tag_size = (num_tags / 64) * 0x4000 + align + buffer;
++
++	ret = nouveau_bo_new(dev, tag_size, 1 << 12, TTM_PL_FLAG_VRAM,
++			     0, 0, &priv->tag_ram);
++	if (!ret)
++		ret = nouveau_bo_pin(priv->tag_ram, TTM_PL_FLAG_VRAM);
 +	if (ret) {
-+		NV_ERROR(dev, "no space while setting color vibrance\n");
++		nouveau_bo_ref(NULL, &priv->tag_ram);
 +		return ret;
 +	}
 +
-+	adj = (nv_crtc->color_vibrance > 0) ? 50 : 0;
-+	vib = ((nv_crtc->color_vibrance * 2047 + adj) / 100) & 0xfff;
++	tag_base = (priv->tag_ram->bo.mem.start << PAGE_SHIFT) + buffer;
++	tag_base = tag_base + priv->l2_part_nr * 0x800 - 1;
++	tag_base = tag_base / (priv->l2_part_nr * 0x800);
 +
-+	hue = ((nv_crtc->vibrant_hue * 2047) / 100) & 0xfff;
-+
-+	BEGIN_RING(evo, 0, NV50_EVO_CRTC(nv_crtc->index, COLOR_CTRL), 1);
-+	OUT_RING  (evo, (hue << 20) | (vib << 8));
-+
-+	if (update) {
-+		BEGIN_RING(evo, 0, NV50_EVO_UPDATE, 1);
-+		OUT_RING  (evo, 0);
-+		FIRE_RING (evo);
-+	}
++	nv_wr32(dev, 0x17e8d4, tag_base);
 +
 +	return 0;
 +}
 +
- struct nouveau_connector *
- nouveau_crtc_connector_get(struct nouveau_crtc *nv_crtc)
++void
++nvc0_tag_ram_clear(struct drm_device *dev, u32 first, u32 count)
++{
++	struct drm_nouveau_private *dev_priv = dev->dev_private;
++	struct nvc0_fb_priv *priv;
++	int p, i;
++
++	priv = (struct nvc0_fb_priv *)dev_priv->engine.fb.priv;
++
++	nv_wr32(dev, 0x17e8cc, first);
++	nv_wr32(dev, 0x17e8d0, first + count - 1);
++	nv_wr32(dev, 0x17e8c8, 4);
++
++	for (p = 0; p < priv->l2_part_nr; ++p)
++		for (i = 0; i < 2; ++i)
++			nv_wait(dev, 0x1410c8 + p * 0x2000 + i * 0x400, ~0, 0);
++}
++
+ static void
+ nvc0_fb_destroy(struct drm_device *dev)
  {
-@@ -577,8 +612,6 @@ nv50_crtc_do_mode_set_base(struct drm_crtc *crtc,
- 	OUT_RING  (evo, fb->base.depth == 8 ?
- 		   NV50_EVO_CRTC_CLUT_MODE_OFF : NV50_EVO_CRTC_CLUT_MODE_ON);
+@@ -63,6 +133,14 @@ nvc0_fb_destroy(struct drm_device *dev)
+ 	struct nouveau_fb_engine *pfb = &dev_priv->engine.fb;
+ 	struct nvc0_fb_priv *priv = pfb->priv;
  
--	BEGIN_RING(evo, 0, NV50_EVO_CRTC(nv_crtc->index, COLOR_CTRL), 1);
--	OUT_RING  (evo, NV50_EVO_CRTC_COLOR_CTRL_COLOR);
- 	BEGIN_RING(evo, 0, NV50_EVO_CRTC(nv_crtc->index, FB_POS), 1);
- 	OUT_RING  (evo, (y << 16) | x);
++	if (drm_mm_initialized(&pfb->tag_heap))
++		drm_mm_takedown(&pfb->tag_heap);
++
++	if (priv->tag_ram) {
++		nouveau_bo_unpin(priv->tag_ram);
++		nouveau_bo_ref(NULL, &priv->tag_ram);
++	}
++
+ 	nouveau_irq_unregister(dev, 25);
  
-@@ -661,6 +694,7 @@ nv50_crtc_mode_set(struct drm_crtc *crtc, struct drm_display_mode *umode,
+ 	if (priv->r100c10_page) {
+@@ -118,6 +196,9 @@ nvc0_fb_init(struct drm_device *dev)
+ 	}
+ 	priv = dev_priv->engine.fb.priv;
  
- 	nv_crtc->set_dither(nv_crtc, false);
- 	nv_crtc->set_scale(nv_crtc, false);
-+	nv_crtc->set_color_vibrance(nv_crtc, false);
- 
- 	return nv50_crtc_do_mode_set_base(crtc, old_fb, x, y, false);
++	if (nvc0_init_tag_ram(dev))
++		return ret;
++
+ 	nv_wr32(dev, 0x100c10, priv->r100c10 >> 8);
+ 	return 0;
  }
-@@ -721,6 +755,9 @@ nv50_crtc_create(struct drm_device *dev, int index)
- 	if (!nv_crtc)
+diff --git a/drivers/gpu/drm/nouveau/nvc0_vm.c b/drivers/gpu/drm/nouveau/nvc0_vm.c
+index 8360dc8..0f70f47 100644
+--- a/drivers/gpu/drm/nouveau/nvc0_vm.c
++++ b/drivers/gpu/drm/nouveau/nvc0_vm.c
+@@ -27,6 +27,8 @@
+ #include "nouveau_drv.h"
+ #include "nouveau_vm.h"
+ 
++void nvc0_tag_ram_clear(struct drm_device *dev, u32 first, u32 count);
++
+ void
+ nvc0_vm_map_pgt(struct nouveau_gpuobj *pgd, u32 index,
+ 		struct nouveau_gpuobj *pgt[2])
+@@ -61,9 +63,17 @@ void
+ nvc0_vm_map(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+ 	    struct nouveau_mem *mem, u32 pte, u32 cnt, u64 phys, u64 delta)
+ {
+-	u32 next = 1 << (vma->node->type - 8);
++	u64 next = 1 << (vma->node->type - 8);
+ 
+ 	phys  = nvc0_vm_addr(vma, phys, mem->memtype, 0);
++
++	if (mem->tag) {
++		u32 tag = mem->tag->start + (delta >> 17);
++		phys |= (u64)tag << (32 + 12);
++		next |= (u64)1 << (32 + 12);
++		nvc0_tag_ram_clear(vma->vm->dev, tag, cnt);
++	}
++
+ 	pte <<= 3;
+ 	while (cnt--) {
+ 		nv_wo32(pgt, pte + 4, upper_32_bits(phys));
+diff --git a/drivers/gpu/drm/nouveau/nvc0_vram.c b/drivers/gpu/drm/nouveau/nvc0_vram.c
+index fd687ee..85632bf 100644
+--- a/drivers/gpu/drm/nouveau/nvc0_vram.c
++++ b/drivers/gpu/drm/nouveau/nvc0_vram.c
+@@ -26,34 +26,48 @@
+ #include "nouveau_drv.h"
+ #include "nouveau_mm.h"
+ 
+-/* 0 = unsupported
+- * 1 = non-compressed
+- * 3 = compressed
+- */
+-static const u8 types[256] = {
+-	1, 1, 3, 3, 3, 3, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0,
+-	0, 1, 0, 0, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0,
+-	0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3,
+-	3, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-	0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+-	0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 0, 1, 1, 1, 1, 0,
+-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-	0, 0, 0, 3, 3, 3, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0,
+-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+-	3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3,
+-	3, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 3, 0, 3,
+-	3, 0, 3, 3, 3, 3, 3, 0, 0, 3, 0, 3, 0, 3, 3, 0,
+-	3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 1, 1, 0
++/* Map from compressed to corresponding uncompressed storage type. */
++static const u8 storage_type_map[256] =
++{
++	0x00, 0x01, 0x01, 0x01, 0x01, 0x01,   -1, 0x01, /* 0x00 */
++	0x01, 0x01, 0x01,   -1,   -1,   -1,   -1,   -1,
++	  -1, 0x11,   -1,   -1,   -1,   -1,   -1, 0x11, /* 0x10 */
++	0x11, 0x11, 0x11,   -1,   -1,   -1,   -1,   -1,
++	  -1,   -1,   -1,   -1,   -1,   -1, 0x26, 0x27, /* 0x20 */
++	0x28, 0x29,   -1,   -1,   -1,   -1,   -1,   -1,
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1, /* 0x30 */
++	  -1,   -1, 0x26, 0x27, 0x28, 0x29, 0x26, 0x27,
++	0x28, 0x29,   -1,   -1,   -1,   -1, 0x46,   -1, /* 0x40 */
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
++	  -1, 0x46, 0x46, 0x46, 0x46,   -1,   -1,   -1, /* 0x50 */
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1, /* 0x60 */
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1, /* 0x70 */
++	  -1,   -1,   -1, 0x7b,   -1,   -1,   -1,   -1,
++	  -1,   -1,   -1,   -1,   -1,   -1, 0x7b, 0x7b, /* 0x80 */
++	0x7b, 0x7b,   -1, 0x8b, 0x8c, 0x8d, 0x8e,   -1,
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1, /* 0x90 */
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
++	  -1,   -1,   -1, 0x8b, 0x8c, 0x8d, 0x8e, 0xa7, /* 0xa0 */
++	0xa8, 0xa9, 0xaa,   -1,   -1,   -1,   -1,   -1,
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1, /* 0xb0 */
++	  -1,   -1,   -1,   -1,   -1,   -1,   -1, 0xa7,
++	0xa8, 0xa9, 0xaa, 0xc3,   -1,   -1,   -1,   -1, /* 0xc0 */
++	  -1,   -1,   -1,   -1, 0xfe, 0xfe, 0xc3, 0xc3,
++	0xc3, 0xc3,   -1,   -1,   -1,   -1,   -1,   -1, /* 0xd0 */
++	0xfe,   -1,   -1, 0xfe,   -1, 0xfe,   -1, 0xfe,
++	0xfe,   -1, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe,   -1, /* 0xe0 */
++	  -1, 0xfe,   -1, 0xfe,   -1, 0xfe, 0xfe,   -1,
++	0xfe, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe, /* 0xf0 */
++	0xfe, 0xfe, 0xfe, 0xfe,   -1, 0xfe, 0xfe,   -1
+ };
+ 
+ bool
+ nvc0_vram_flags_valid(struct drm_device *dev, u32 tile_flags)
+ {
+ 	u8 memtype = (tile_flags & NOUVEAU_GEM_TILE_LAYOUT_MASK) >> 8;
+-	return likely((types[memtype] == 1));
++	return likely(storage_type_map[memtype] != (u8)-1);
+ }
+ 
+ int
+@@ -65,6 +79,8 @@ nvc0_vram_new(struct drm_device *dev, u64 size, u32 align, u32 ncmin,
+ 	struct nouveau_mm_node *r;
+ 	struct nouveau_mem *mem;
+ 	int ret;
++	u8 memtype = type & 0xff;
++	u8 memtype_noncomp = storage_type_map[memtype];
+ 
+ 	size  >>= 12;
+ 	align >>= 12;
+@@ -74,12 +90,26 @@ nvc0_vram_new(struct drm_device *dev, u64 size, u32 align, u32 ncmin,
+ 	if (!mem)
  		return -ENOMEM;
  
-+	nv_crtc->color_vibrance = 50;
-+	nv_crtc->vibrant_hue = 0;
++	mutex_lock(&mm->mutex);
++	if (memtype != memtype_noncomp) {
++		if (align == 32) {
++			struct nouveau_fb_engine *pfb = &dev_priv->engine.fb;
++			int n = size >> 5;
 +
- 	/* Default CLUT parameters, will be activated on the hw upon
- 	 * first mode set.
- 	 */
-@@ -751,6 +788,7 @@ nv50_crtc_create(struct drm_device *dev, int index)
- 	/* set function pointers */
- 	nv_crtc->set_dither = nv50_crtc_set_dither;
- 	nv_crtc->set_scale = nv50_crtc_set_scale;
-+	nv_crtc->set_color_vibrance = nv50_crtc_set_color_vibrance;
++			mem->tag = drm_mm_search_free(&pfb->tag_heap, n, 0, 0);
++			if (mem->tag)
++				mem->tag = drm_mm_get_block(mem->tag, n, 0);
++		}
++
++		if (unlikely(!mem->tag))
++			memtype = memtype_noncomp;
++	}
++
+ 	INIT_LIST_HEAD(&mem->regions);
+ 	mem->dev = dev_priv->dev;
+-	mem->memtype = (type & 0xff);
++	mem->memtype = memtype;
+ 	mem->size = size;
  
- 	drm_crtc_init(dev, &nv_crtc->base, &nv50_crtc_funcs);
- 	drm_crtc_helper_add(&nv_crtc->base, &nv50_crtc_helper_funcs);
-diff --git a/drivers/gpu/drm/nouveau/nv50_evo.h b/drivers/gpu/drm/nouveau/nv50_evo.h
-index 3860ca6..771d879 100644
---- a/drivers/gpu/drm/nouveau/nv50_evo.h
-+++ b/drivers/gpu/drm/nouveau/nv50_evo.h
-@@ -104,7 +104,8 @@
- #define NV50_EVO_CRTC_SCALE_CTRL_INACTIVE                            0x00000000
- #define NV50_EVO_CRTC_SCALE_CTRL_ACTIVE                              0x00000009
- #define NV50_EVO_CRTC_COLOR_CTRL                                     0x000008a8
--#define NV50_EVO_CRTC_COLOR_CTRL_COLOR                               0x00040000
-+#define NV50_EVO_CRTC_COLOR_CTRL_VIBRANCE                            0x000fff00
-+#define NV50_EVO_CRTC_COLOR_CTRL_HUE                                 0xfff00000
- #define NV50_EVO_CRTC_FB_POS                                         0x000008c0
- #define NV50_EVO_CRTC_REAL_RES                                       0x000008c8
- #define NV50_EVO_CRTC_SCALE_CENTER_OFFSET                            0x000008d4
+-	mutex_lock(&mm->mutex);
+ 	do {
+ 		ret = nouveau_mm_get(mm, 1, size, ncmin, align, &r);
+ 		if (ret) {
 -- 
 1.7.3.4
