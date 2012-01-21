@@ -1,7 +1,9 @@
 From: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/4] nv50: major bits of power saving
-Date: Sun, 22 Jan 2012 00:14:24 +0200
-Message-ID: <1327184067-25936-2-git-send-email-maximlevitsky@gmail.com>
+Subject: [PATCH 2/4] nv50: Power down VDEC when reclocking card.
+	This allows to save lot of power and untill support for video
+	decoding is implemented, its best way to make use of this engine
+Date: Sun, 22 Jan 2012 00:14:25 +0200
+Message-ID: <1327184067-25936-3-git-send-email-maximlevitsky@gmail.com>
 References: <1327184067-25936-1-git-send-email-maximlevitsky@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,41 +22,33 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Enable PCIE power savings and PGRAPH's clock
-gating.
-
-This should be fairy safe to do on NV50 class cards,
-but should be tested on more that NV86.
-
-Also its possible to enable clock gating and otherwice
-reduce power usage of VDEC, but for now I choose just to
-turn it off.
-To be honest, since its usually not used and when it is.
-it will be probably loaded, these powe saving bits don't matter much
-
 Signed-off-by: Maxim Levitsky <maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nv50_mc.c |    8 ++++++++
- 1 files changed, 8 insertions(+), 0 deletions(-)
+ drivers/gpu/drm/nouveau/nv50_pm.c |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_mc.c b/drivers/gpu/drm/nouveau/nv50_mc.c
-index e0a9c3f..fd4ef43 100644
---- a/drivers/gpu/drm/nouveau/nv50_mc.c
-+++ b/drivers/gpu/drm/nouveau/nv50_mc.c
-@@ -32,6 +32,14 @@ int
- nv50_mc_init(struct drm_device *dev)
- {
- 	nv_wr32(dev, NV03_PMC_ENABLE, 0xFFFFFFFF);
+diff --git a/drivers/gpu/drm/nouveau/nv50_pm.c b/drivers/gpu/drm/nouveau/nv50_pm.c
+index 0901e56..2527298 100644
+--- a/drivers/gpu/drm/nouveau/nv50_pm.c
++++ b/drivers/gpu/drm/nouveau/nv50_pm.c
+@@ -595,6 +595,7 @@ calc_mclk(struct drm_device *dev,
+ 		hwsq_wr32(hwsq, 0x611200, 0x00003330); /* enable scanout */
+ 	hwsq_fini(hwsq);
+ 
 +
-+	/* PPCI+0x150 - some PCIE powersave bit*/
-+	nv_mask(dev, 0x088150, 0x00000100, 0x00000000);
-+
-+	/* Enable TP automatic clock gating*/
-+	nv_mask(dev, 0x001098, 0x00000020, 0x00000020);
-+	nv_mask(dev, 0x001588, 0x00000003, 0x00000001);
-+
+ 	*pmast = mast;
  	return 0;
  }
+@@ -678,6 +679,10 @@ nv50_pm_clocks_pre(struct drm_device *dev, struct nouveau_pm_level *perflvl)
+ 		}
+ 	}
  
++	/* I don't use vdec - so I disable it */
++	mast &= ~0x00000f00;
++	mast |=  0x00000500;
++
+ 	/* dom6: nfi what this is, but we're limited to various combinations
+ 	 * of the host clock frequency
+ 	 */
 -- 
 1.7.5.4
