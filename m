@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 45017] [GT216] Distorted screen on MacBook Air 3,2
-Date: Sat, 21 Jan 2012 03:27:08 +0000
-Message-ID: <bug-45017-8800-L9yyM1pwwM@http.bugs.freedesktop.org/>
+Date: Sat, 21 Jan 2012 03:27:28 +0000
+Message-ID: <bug-45017-8800-iR0Vga32y8@http.bugs.freedesktop.org/>
 References: <bug-45017-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=45017
 
---- Comment #1 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2012-01-20 19:27:08 PST ---
-Created attachment 55885
-  --> https://bugs.freedesktop.org/attachment.cgi?id=55885
-DSC03982.JPG
-
-Photo of screen showing corruption.
-
-The background is supposed to be a purple gradient (ala
-https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/898784/+attachment/2616711/+files/Screenshot%20at%202011-12-02%2017%3A17%3A49.png)
+--- Comment #2 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2012-01-20 19:27:28 PST ---
+Created attachment 55886
+  --> https://bugs.freedesktop.org/attachment.cgi?id=55886
+BootDmesg.txt
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
