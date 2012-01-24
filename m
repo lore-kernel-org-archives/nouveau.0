@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 45112] Kernel panic while using Firefox
-Date: Tue, 24 Jan 2012 07:09:53 +0000
-Message-ID: <bug-45112-8800-jAqd8vFzb9@http.bugs.freedesktop.org/>
+Date: Tue, 24 Jan 2012 07:10:53 +0000
+Message-ID: <bug-45112-8800-iYJhA0gRfc@http.bugs.freedesktop.org/>
 References: <bug-45112-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=45112
 
---- Comment #2 from Andrew Evans <freedesktop-kNcr1PmiDNhl57MIdRCFDg@public.gmane.org> 2012-01-23 23:09:53 PST ---
-Same crash here running a99cbf6 of Linus' tree. Both times this oops was
-triggered from Firefox while scrolling up/down long pages.
+Andrew Evans <freedesktop-kNcr1PmiDNhl57MIdRCFDg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #56017|0                           |1
+        is obsolete|                            |
+
+--- Comment #3 from Andrew Evans <freedesktop-kNcr1PmiDNhl57MIdRCFDg@public.gmane.org> 2012-01-23 23:10:53 PST ---
+Created attachment 56064
+  --> https://bugs.freedesktop.org/attachment.cgi?id=56064
+kernel oops
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
