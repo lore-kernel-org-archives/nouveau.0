@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36090] terminal's visual bell is very slow with
-	nouveau
-Date: Mon, 30 Jan 2012 16:34:15 +0000
-Message-ID: <bug-36090-8800-vT8RxwfiGP@http.bugs.freedesktop.org/>
-References: <bug-36090-8800@http.bugs.freedesktop.org/>
+From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH] nvfx: fix nv3x fallout from state validation
+	changes
+Date: Mon, 30 Jan 2012 19:35:00 +0100
+Message-ID: <1327948500.1722.6.camel@tellur>
+References: <1327395271.4520.2.camel@antimon>
+	<20120126205942.7416fabb.mandin.patrice@orange.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36090-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20120126205942.7416fabb.mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,37 +19,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Patrice Mandin <mandin.patrice-1tsiiZ//OF9QFI55V6+gNQ@public.gmane.org>
+Cc: Nouveau Dev List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36090
-
-aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org
-
---- Comment #1 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org 2012-01-30 08:34:15 PST ---
-Also experienced with:
-
-01:00.0 VGA compatible controller: nVidia Corporation NV34GL [Quadro FX 500/600
-PCI] (rev a1) (prog-if 00 [VGA controller])
-        Subsystem: nVidia Corporation Device 01ba
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx-
-        Status: Cap+ 66MHz+ UDF- FastB2B+ ParErr- DEVSEL=medium >TAbort-
-<TAbort- <MAbort- >SERR- <PERR- INTx-
-        Latency: 64 (1250ns min, 250ns max)
-        Interrupt: pin A routed to IRQ 16
-        Region 0: Memory at fc000000 (32-bit, non-prefetchable) [size=16M]
-        Region 1: Memory at f0000000 (32-bit, prefetchable) [size=128M]
-        Expansion ROM at fd000000 [disabled] [size=128K]
-        Capabilities: <access denied>
-        Kernel driver in use: nouveau
-        Kernel modules: nouveau
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+QW0gRG9ubmVyc3RhZywgZGVuIDI2LjAxLjIwMTIsIDIwOjU5ICswMTAwIHNjaHJpZWIgUGF0cmlj
+ZSBNYW5kaW46Cj4gTGUgVHVlLCAyNCBKYW4gMjAxMiAwOTo1NDozMSArMDEwMAo+IEx1Y2FzIFN0
+YWNoIDxkZXZAbHlueGV5ZS5kZT4gYSDDqWNyaXQ6Cj4gCj4gPiBGcm9tIGM5OThmNzMyZDQyZGE1
+ZTk2MmZlNWRhMjk0NDkzMTMyYzNlOGRjNWYgTW9uIFNlcCAxNyAwMDowMDowMCAyMDAxCj4gPiBG
+cm9tOiBMdWNhcyBTdGFjaCA8ZGV2QGx5bnhleWUuZGU+Cj4gPiBEYXRlOiBUdWUsIDI0IEphbiAy
+MDEyIDA5OjQ2OjMyICswMTAwCj4gPiBTdWJqZWN0OiBbUEFUQ0hdIG52Zng6IGZpeCBudjN4IGZh
+bGxvdXQgZnJvbSBzdGF0ZSB2YWxpZGF0aW9uIGNoYW5nZXMKPiA+IAo+ID4gQXBwYXJlbnRseSBu
+djN4IG5lZWRzIHNvbWUgY3VyZGUgaGFja3MgdG8gd29yayBwcm9wZXJseS4gVGhpcwo+ID4gaXMg
+Y2xlYXJseSBub3QgdGhlIHJpZ2h0IGZpeCwgYnV0IGl0J3MgdGhlIGJlaGF2aW91ciBvZiB0aGUg
+b2xkCj4gPiBjb2RlIGFuZCBmaXhlcyByZWdyZXNzaW9ucyBzZWVuIGJ5IHVzZXJzLgo+IAo+IEhl
+bGxvLAo+IAo+IFNvcnJ5IEx1Y2FzLCBidXQgSSBmaW5hbGx5IGZvdW5kIGEgdGVzdCBjYXNlIEkg
+aGF2ZSBmb3Jnb3R0ZW4sIHRoYXQKPiB3b3VsZCBtYXliZSBuZWVkIHJldmVydGluZyB5b3VyIHBh
+dGNoZXMuCj4gCj4gSW4gbWVzYS1kZW1vcy9zcmMvZGVtb3MgeW91J2xsIGZpbmQgZmJvX2ZpcmVj
+dWJlIHRlc3QgcHJvZ3JhbSB0aGF0IGhhdmUKPiB0aGUgc2NlbmUgbWlzcmVuZGVyZXJlZCAodGhl
+IHNjZW5lIHBhcnQgdGhhdCBpcyByZW5kZXJlZCBhbmQgdXNlZCBhcwo+IHRleHR1cmUgb24gdGhl
+IGN1YmUpLgo+IAo+IEFzIGZhciBhcyBJIHJlbWVtYmVyIG5vdywgcmVuZGVyIHRlbXAgc3R1ZmYg
+d2FzIHVzZWQgdG8gaGFuZGxlIGZibwo+IGNvbWJpbmF0aW9ucyBzdXBwb3J0ZWQgb24gbnY0MCBi
+dXQgbm90IG9uIG52MzAsIG9yIHNvbWV0aGluZyBsaWtlIHRoYXQuCj4gCgpUaGFua3MgZm9yIHRo
+ZSBoaW50LiBOb3cgdGhhdCBJIGZpbmFsbHkgb3duIGEgbnYzNSBteXNlbGYsIEkgY2FuCnJlcHJv
+ZHVjZSB0aGUgaXNzdWUgYW5kIEknbSBpbnZlc3RpZ2F0aW5nLiBJJ20gbm90IHlldCBzdXJlIHdo
+eSBpdAptaXNyZW5kZXJzLCBub3JtYWxseSB3ZSBzaG91bGQganVzdCBoaXQgYW4gYXNzZXJ0IGlu
+IGNhc2Ugb2YgaW52YWxpZApmb3JtYXRzLgoKSSB3aWxsIHRyeSB0byBkZWJ1ZyB0aGlzLCBidXQg
+SSBjYW4ndCBwcm9taXNlIHRvIGdldCByZXN1bHRzIGJlZm9yZSBuZXh0CndlZWssIGJlY2F1c2Ug
+Rk9TREVNIHdhbnRzIG15IGF0dGVudGlvbi4KClRoYW5rcywKTHVjYXMKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
