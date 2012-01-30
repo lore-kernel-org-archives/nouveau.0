@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 45421] regression: nouveau.ko fails to load
-Date: Tue, 31 Jan 2012 03:16:52 +0000
-Message-ID: <bug-45421-8800-Bs10XMeKgk@http.bugs.freedesktop.org/>
-References: <bug-45421-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34429] [PATCH]Failure during resume on NV50:
+ INIT_AUXCH: rd auxch fail -121
+Date: Mon, 30 Jan 2012 20:21:30 +0000
+Message-ID: <bug-34429-8800-rNlrRCIS9N@http.bugs.freedesktop.org/>
+References: <bug-34429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-45421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-34429-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +21,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=45421
+https://bugs.freedesktop.org/show_bug.cgi?id=34429
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-01-30 19:16:52 PST ---
-Thanks for the report.
+--- Comment #11 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-01-30 20:21:30 UTC ---
+(In reply to comment #10)
+> Created attachment 56275 [details] [review]
+> Apply power to the panel before enabling hotplug interrupts and before
+> communicating with the panel on the I2C bus
 
-Firstly, are you able to boot with "drm.debug=14 log_buf_len=1M" for me, and
-attach the resulting dmessage.
-
-Secondly, can you also attach /sys/kernel/debug/dri/0/vbios.rom for me please
-(load "working" nouveau, and mount debugfs at /sys/kernel/debug to get it).
-
-And finally, could you also copy all the files from /sys/firmware/acpi/tables
-somewhere, and tar them up and attach them here.
-
-Thanks!
-Ben.
+I just pushed a slightly different version of this patch to nouveau git.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
