@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34429] [PATCH]Failure during resume on NV50:
  INIT_AUXCH: rd auxch fail -121
-Date: Mon, 30 Jan 2012 20:21:30 +0000
-Message-ID: <bug-34429-8800-rNlrRCIS9N@http.bugs.freedesktop.org/>
+Date: Tue, 31 Jan 2012 07:48:45 +0000
+Message-ID: <bug-34429-8800-VBvfHPpbr2@http.bugs.freedesktop.org/>
 References: <bug-34429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34429
 
---- Comment #11 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-01-30 20:21:30 UTC ---
-(In reply to comment #10)
-> Created attachment 56275 [details] [review]
-> Apply power to the panel before enabling hotplug interrupts and before
-> communicating with the panel on the I2C bus
+--- Comment #12 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-01-30 23:48:45 PST ---
+(In reply to comment #11)
+> (In reply to comment #10)
+> > Created attachment 56275 [details] [review] [review]
+> > Apply power to the panel before enabling hotplug interrupts and before
+> > communicating with the panel on the I2C bus
+> 
+> I just pushed a slightly different version of this patch to nouveau git.
 
-I just pushed a slightly different version of this patch to nouveau git.
+Thanks, Ben.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
