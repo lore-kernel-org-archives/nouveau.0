@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 45421] regression: nouveau.ko fails to load
-Date: Tue, 31 Jan 2012 17:23:22 +0000
-Message-ID: <bug-45421-8800-ZJErzezx4W@http.bugs.freedesktop.org/>
+Date: Tue, 31 Jan 2012 17:30:40 +0000
+Message-ID: <bug-45421-8800-WmdRM8BOzN@http.bugs.freedesktop.org/>
 References: <bug-45421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=45421
 
---- Comment #2 from Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> 2012-01-31 09:23:22 PST ---
-Created attachment 56400
-  --> https://bugs.freedesktop.org/attachment.cgi?id=56400
-dmesg with drm.debug=14 from boot with 3.3.0-rc1
+--- Comment #3 from Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> 2012-01-31 09:30:40 PST ---
+Created attachment 56401
+  --> https://bugs.freedesktop.org/attachment.cgi?id=56401
+vbios from HP 8530w/770M
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
