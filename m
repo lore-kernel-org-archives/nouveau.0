@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39550] Brightness stuck to low value after
 	suspend/resume
-Date: Mon, 30 Jan 2012 21:00:11 +0000
-Message-ID: <bug-39550-8800-ij5kt1Ru5c@http.bugs.freedesktop.org/>
+Date: Tue, 31 Jan 2012 01:57:33 +0000
+Message-ID: <bug-39550-8800-5jlwumcdet@http.bugs.freedesktop.org/>
 References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
-Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #22 from Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> 2012-01-30 17:57:33 PST ---
+I tried force_post=1, screen is dark even before suspend (even before going
+into X, just loading frame buffer) - this is a clue the driver is forcing the
+brightness into this mode, right?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
-
---- Comment #21 from Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> 2012-01-30 13:00:11 PST ---
-I am experiencing this bug as well, HP 8530W, brightness controls don't work
-after resume.
+Of course, the tip of tree nouveau won't even load now due to the MXM changes,
+so I haven't been able to test *it* yet, but that is another bug that I'm
+trying to help narrow down.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
