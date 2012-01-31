@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 34429] [PATCH]Failure during resume on NV50:
  INIT_AUXCH: rd auxch fail -121
-Date: Tue, 31 Jan 2012 07:48:45 +0000
-Message-ID: <bug-34429-8800-VBvfHPpbr2@http.bugs.freedesktop.org/>
+Date: Tue, 31 Jan 2012 08:46:10 +0000
+Message-ID: <bug-34429-8800-s7v4VBXFh7@http.bugs.freedesktop.org/>
 References: <bug-34429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=34429
 
---- Comment #12 from Yuriy Khomchik <homyur-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-01-30 23:48:45 PST ---
-(In reply to comment #11)
-> (In reply to comment #10)
-> > Created attachment 56275 [details] [review] [review]
-> > Apply power to the panel before enabling hotplug interrupts and before
-> > communicating with the panel on the I2C bus
+--- Comment #13 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-01-31 00:46:10 PST ---
+(In reply to comment #12)
+> (In reply to comment #11)
+> > (In reply to comment #10)
+> > > Created attachment 56275 [details] [review] [review] [review]
+> > > Apply power to the panel before enabling hotplug interrupts and before
+> > > communicating with the panel on the I2C bus
+> > 
+> > I just pushed a slightly different version of this patch to nouveau git.
 > 
-> I just pushed a slightly different version of this patch to nouveau git.
+> Thanks, Ben.
 
-Thanks, Ben.
+No worries.  Thanks for tracking down the root cause of this.  I was aware of
+this GPIO function previously, but didn't honestly expect any VBIOS init table
+to default it to off when there was a panel attached :)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
