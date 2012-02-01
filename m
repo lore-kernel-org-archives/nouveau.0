@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 45517] [GTX 580] X seems to hang a login prompt --
  PFIFO errors in dmesg
-Date: Wed, 01 Feb 2012 22:24:48 +0000
-Message-ID: <bug-45517-8800-5FdZ5DMoIL@http.bugs.freedesktop.org/>
+Date: Wed, 01 Feb 2012 22:25:01 +0000
+Message-ID: <bug-45517-8800-exdXIWLnny@http.bugs.freedesktop.org/>
 References: <bug-45517-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=45517
 
---- Comment #1 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2012-02-01 14:24:48 PST ---
-Created attachment 56475
-  --> https://bugs.freedesktop.org/attachment.cgi?id=56475
-BootDmesg.txt
+--- Comment #2 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2012-02-01 14:25:01 PST ---
+Created attachment 56476
+  --> https://bugs.freedesktop.org/attachment.cgi?id=56476
+CurrentDmesg.txt
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
