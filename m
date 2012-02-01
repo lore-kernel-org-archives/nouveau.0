@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 45517] [GTX 580] X seems to hang a login prompt --
- PFIFO errors in dmesg
-Date: Wed, 01 Feb 2012 22:25:28 +0000
-Message-ID: <bug-45517-8800-efOPO8e6ii@http.bugs.freedesktop.org/>
-References: <bug-45517-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 45421] regression: nouveau.ko fails to load
+Date: Wed, 01 Feb 2012 23:43:23 +0000
+Message-ID: <bug-45421-8800-XNPTIzMrWC@http.bugs.freedesktop.org/>
+References: <bug-45421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-45517-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-45421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +20,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=45517
+https://bugs.freedesktop.org/show_bug.cgi?id=45421
 
---- Comment #4 from Bryce Harrington <bryce-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> 2012-02-01 14:25:28 PST ---
-Created attachment 56478
-  --> https://bugs.freedesktop.org/attachment.cgi?id=56478
-XorgLogOld.txt
+--- Comment #7 from Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> 2012-02-01 15:43:23 PST ---
+Created attachment 56482
+  --> https://bugs.freedesktop.org/attachment.cgi?id=56482
+output from driver after patch to make it load
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
