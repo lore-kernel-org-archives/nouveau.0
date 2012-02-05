@@ -1,14 +1,15 @@
-From: =?ISO-8859-1?Q?Viktor_Novotn=FD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/i2c: Fix i2c initialization on
- cards with DCB older than 1.5
-Date: Fri, 03 Feb 2012 23:58:04 +0100
-Message-ID: <4F2C667C.5030003@seznam.cz>
-References: <4F16C909.4050503@seznam.cz>
+From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH RFC] drm/nouveau/dp: fix bad comparison in
+ dp_link_train_commit()
+Date: Mon, 06 Feb 2012 09:08:42 +1000
+Message-ID: <1328483322.6149.1.camel@nisroch>
+References: <1328285635-28404-1-git-send-email-xi.wang@gmail.com>
+Reply-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4F16C909.4050503-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
+In-Reply-To: <1328285635-28404-1-git-send-email-xi.wang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,27 +19,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Xi Wang <xi.wang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-did anybody find time to look into this issue? By the way, I think it was i=
-ntroduced by commit 486a45c2.
+On Fri, 2012-02-03 at 11:13 -0500, Xi Wang wrote:
+> The comparison (lpre == DP_TRAIN_PRE_EMPHASIS_9_5) is always false:
+> lpre is initialized as (lane & 0x0c) >> 2, which is at most 3, while
+> DP_TRAIN_PRE_EMPHASIS_9_5 is defined as (3 << 3).
+I've picked up the patch.
 
-Regards
-	Viktor
+Thank you!
+Ben.
 
-On 18.1.2012 14:28, Viktor Novotn=FD wrote:
-> Signed-off-by: Viktor Novotny<noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
+> 
+> Signed-off-by: Xi Wang <xi.wang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > ---
-> Hi,
-> I think I found a bug - my NV11 fails to init i2c ports and is then unabl=
-e to read EDID.
-> It's because while i2c_table in nouveau_i2c.c:324 returns null for this c=
-ard,
-> i2c is initialized anyway at line 341 and wrong i2c table format is then =
-selected at line 350.
-> This patch fixes the problem on NV11 and was tested also on NV25. I hope =
-no cards but those
-> with legacy i2c table have i2c table version set to 0.
-> =
+>  drivers/gpu/drm/nouveau/nouveau_dp.c |    2 +-
+>  1 files changed, 1 insertions(+), 1 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+> index 9b93b70..c51c68b 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_dp.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+> @@ -432,7 +432,7 @@ dp_link_train_commit(struct drm_device *dev, struct dp_state *dp)
+>  		dp->conf[i] = (lpre << 3) | lvsw;
+>  		if (lvsw == DP_TRAIN_VOLTAGE_SWING_1200)
+>  			dp->conf[i] |= DP_TRAIN_MAX_SWING_REACHED;
+> -		if (lpre == DP_TRAIN_PRE_EMPHASIS_9_5)
+> +		if ((lpre << 3) == DP_TRAIN_PRE_EMPHASIS_9_5)
+>  			dp->conf[i] |= DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
+>  
+>  		NV_DEBUG_KMS(dev, "config lane %d %02x\n", i, dp->conf[i]);
