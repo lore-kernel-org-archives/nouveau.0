@@ -1,15 +1,14 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH RFC] drm/nouveau/dp: fix bad comparison in
- dp_link_train_commit()
-Date: Mon, 06 Feb 2012 09:08:42 +1000
-Message-ID: <1328483322.6149.1.camel@nisroch>
-References: <1328285635-28404-1-git-send-email-xi.wang@gmail.com>
-Reply-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
+ is unable to boot
+Date: Mon, 06 Feb 2012 18:11:45 +0000
+Message-ID: <bug-27501-8800-x7uCo5OCsi@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1328285635-28404-1-git-send-email-xi.wang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,35 +18,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Xi Wang <xi.wang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2012-02-03 at 11:13 -0500, Xi Wang wrote:
-> The comparison (lpre == DP_TRAIN_PRE_EMPHASIS_9_5) is always false:
-> lpre is initialized as (lane & 0x0c) >> 2, which is at most 3, while
-> DP_TRAIN_PRE_EMPHASIS_9_5 is defined as (3 << 3).
-I've picked up the patch.
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
-Thank you!
-Ben.
+--- Comment #16 from Roland <rmueller83-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-02-06 10:11:45 PST ---
+I have the same issue booting Arch Linux via EFI on a Macbook Pro 5,2 with
+Kernel version 3.2.4.
 
-> 
-> Signed-off-by: Xi Wang <xi.wang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_dp.c |    2 +-
->  1 files changed, 1 insertions(+), 1 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-> index 9b93b70..c51c68b 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-> @@ -432,7 +432,7 @@ dp_link_train_commit(struct drm_device *dev, struct dp_state *dp)
->  		dp->conf[i] = (lpre << 3) | lvsw;
->  		if (lvsw == DP_TRAIN_VOLTAGE_SWING_1200)
->  			dp->conf[i] |= DP_TRAIN_MAX_SWING_REACHED;
-> -		if (lpre == DP_TRAIN_PRE_EMPHASIS_9_5)
-> +		if ((lpre << 3) == DP_TRAIN_PRE_EMPHASIS_9_5)
->  			dp->conf[i] |= DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
->  
->  		NV_DEBUG_KMS(dev, "config lane %d %02x\n", i, dp->conf[i]);
+Mateusz, how did you disable the 9600GT?
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
