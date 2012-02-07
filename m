@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
- is unable to boot
-Date: Mon, 06 Feb 2012 18:11:45 +0000
-Message-ID: <bug-27501-8800-x7uCo5OCsi@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+From: Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org>
+Subject: [PATCH] nv50: Fix broken assertion
+Date: Tue,  7 Feb 2012 12:15:34 +0000
+Message-ID: <1328616934-5287-1-git-send-email-daniel@fooishbar.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,18 +15,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+The assertion added in f09910f3 broke nv50 completely by asserting that
+the number of elements in a dereferenced pointer (i.e. 1) was greater
+than i (which ranged up to six), rather than checking the number of
+elements in the containing array.
 
---- Comment #16 from Roland <rmueller83-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-02-06 10:11:45 PST ---
-I have the same issue booting Arch Linux via EFI on a Macbook Pro 5,2 with
-Kernel version 3.2.4.
+Signed-off-by: Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org>
+---
+ src/gallium/drivers/nv50/nv50_pc_regalloc.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-Mateusz, how did you disable the 9600GT?
-
+diff --git a/src/gallium/drivers/nv50/nv50_pc_regalloc.c b/src/gallium/drivers/nv50/nv50_pc_regalloc.c
+index 72922cb..12a59cb 100644
+--- a/src/gallium/drivers/nv50/nv50_pc_regalloc.c
++++ b/src/gallium/drivers/nv50/nv50_pc_regalloc.c
+@@ -421,7 +421,7 @@ phi_opnd_for_bb(struct nv_instruction *phi, struct nv_basic_block *b,
+    int i, j;
+ 
+    for (j = -1, i = 0; i < 6 && phi->src[i]; ++i) {
+-      assert(i < Elements(phi->src[i]));
++      assert(i < Elements(phi->src));
+       srci = phi->src[i];
+       /* if already replaced, check with original source first */
+       if (srci->flags & NV_REF_FLAG_REGALLOC_PRIV)
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.9
