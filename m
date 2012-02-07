@@ -1,12 +1,14 @@
-From: Xi Wang <xi.wang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH RFC] drm/nouveau/dp: fix bad comparison in
-	dp_link_train_commit()
-Date: Fri,  3 Feb 2012 11:13:55 -0500
-Message-ID: <1328285635-28404-1-git-send-email-xi.wang@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 45517] [GTX 580] X seems to hang a login prompt --
+ PFIFO errors in dmesg
+Date: Tue, 07 Feb 2012 19:46:12 +0000
+Message-ID: <bug-45517-8800-BEC5jfbjG8@http.bugs.freedesktop.org/>
+References: <bug-45517-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-45517-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,31 +18,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Xi Wang <xi.wang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The comparison (lpre == DP_TRAIN_PRE_EMPHASIS_9_5) is always false:
-lpre is initialized as (lane & 0x0c) >> 2, which is at most 3, while
-DP_TRAIN_PRE_EMPHASIS_9_5 is defined as (3 << 3).
+https://bugs.freedesktop.org/show_bug.cgi?id=45517
 
-Signed-off-by: Xi Wang <xi.wang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_dp.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-07 11:46:12 PST ---
+Hello Bryce
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index 9b93b70..c51c68b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -432,7 +432,7 @@ dp_link_train_commit(struct drm_device *dev, struct dp_state *dp)
- 		dp->conf[i] = (lpre << 3) | lvsw;
- 		if (lvsw == DP_TRAIN_VOLTAGE_SWING_1200)
- 			dp->conf[i] |= DP_TRAIN_MAX_SWING_REACHED;
--		if (lpre == DP_TRAIN_PRE_EMPHASIS_9_5)
-+		if ((lpre << 3) == DP_TRAIN_PRE_EMPHASIS_9_5)
- 			dp->conf[i] |= DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
- 
- 		NV_DEBUG_KMS(dev, "config lane %d %02x\n", i, dp->conf[i]);
+Here are some tips that will help triage the issue
+
+* Is the person using "3d" - try reproducing the issue without it
+Disable AIGLX in the X server
+(Re)move the file (or package providing it)
+"/usr/lib/x86_64-linux-gnu/dri/nouveau_dri.so"
+
+* Try booting with "nouveau.nofbaccel=0"
+
+* Amend the previous option to read "nouveau.noaccel=0"
+
+
+Although before attempting any of the above I would recommend trying the git
+master branch (or as close as) of the following
+
+* [1] xf86-video-nouveau
+* [2] kernel
+* [3] mesa
+
+Note that those tips can be used for any case/issue
+
+Cheers
+Emil
+
+[1] http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/
+[2] http://cgit.freedesktop.org/nouveau/linux-2.6/
+[3] http://cgit.freedesktop.org/mesa/mesa/
+
 -- 
-1.7.5.4
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
