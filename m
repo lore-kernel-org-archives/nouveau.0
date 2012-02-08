@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 45421] regression: nouveau.ko fails to load
-Date: Wed, 08 Feb 2012 17:41:08 +0000
-Message-ID: <bug-45421-8800-BNNQmZ9MmG@http.bugs.freedesktop.org/>
-References: <bug-45421-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 45752] Debian Wheezy with xfce4-power-manager and
+ noveau fails to resume from hibernate
+Date: Wed, 08 Feb 2012 21:42:47 +0000
+Message-ID: <bug-45752-8800-fX41LeNbPu@http.bugs.freedesktop.org/>
+References: <bug-45752-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-45421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-45752-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,23 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=45421
+https://bugs.freedesktop.org/show_bug.cgi?id=45752
 
---- Comment #8 from Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> 2012-02-08 09:41:08 PST ---
-nouveau git commit that seems to fix it:
-f41a8e1bcbd69148dd39568a6f062ae698ad4afc
+--- Comment #2 from rmsystematicfailure-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-02-08 13:42:47 PST ---
+(In reply to comment #1)
+> You might want to take this up with your distribution.  This issue should have
+> been fixed in upstream code a while back.
 
-upstream commit that works around the issue (I think):
-ce2e7895faba8fabaa917f52293126e5f4174fa9
+Thanks for your comment.
 
-thanks Ben!!!
+This might be fixed by the 3.2 kernel which will be available soon in Debian
+wheezy.
+
+If that doesn't solve it I'll revisit this.
+
+See 
+
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=659110
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
