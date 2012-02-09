@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 45752] Debian Wheezy with xfce4-power-manager and
  noveau fails to resume from hibernate
-Date: Wed, 08 Feb 2012 21:42:47 +0000
-Message-ID: <bug-45752-8800-fX41LeNbPu@http.bugs.freedesktop.org/>
+Date: Thu, 09 Feb 2012 08:39:29 +0000
+Message-ID: <bug-45752-8800-NFwZng9Xjo@http.bugs.freedesktop.org/>
 References: <bug-45752-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=45752
 
---- Comment #2 from rmsystematicfailure-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-02-08 13:42:47 PST ---
-(In reply to comment #1)
-> You might want to take this up with your distribution.  This issue should have
-> been fixed in upstream code a while back.
-
-Thanks for your comment.
-
-This might be fixed by the 3.2 kernel which will be available soon in Debian
-wheezy.
-
-If that doesn't solve it I'll revisit this.
-
-See 
-
-http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=659110
+--- Comment #3 from rmsystematicfailure-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-02-09 00:39:29 PST ---
+Unfortunately an upgrade to the 3.2 kernel didn't fix the issue. Do you have
+commit IDs for the fix?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
