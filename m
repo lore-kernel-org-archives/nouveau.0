@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 45752] Debian Wheezy with xfce4-power-manager and
- noveau fails to resume from hibernate
-Date: Thu, 09 Feb 2012 10:37:23 +0000
-Message-ID: <bug-45752-8800-myoQPs62tu@http.bugs.freedesktop.org/>
-References: <bug-45752-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35876] Hard GPU hangs on NV86
+Date: Sun, 12 Feb 2012 21:14:23 +0000
+Message-ID: <bug-35876-8800-NVK0k2C1y2@http.bugs.freedesktop.org/>
+References: <bug-35876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-45752-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=45752
+https://bugs.freedesktop.org/show_bug.cgi?id=35876
 
-Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> changed:
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |svenjoac-Mmb7MZpHnFY@public.gmane.org
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
---- Comment #3 from rmsystematicfailure-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-02-09 00:39:29 PST ---
-Unfortunately an upgrade to the 3.2 kernel didn't fix the issue. Do you have
-commit IDs for the fix?
+--- Comment #31 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-02-12 13:14:23 PST ---
+It really works for me for very very long time. Nouveau here is pretty much uncrashable.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
