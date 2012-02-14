@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 39550] Brightness stuck to low value after
 	suspend/resume
-Date: Tue, 14 Feb 2012 14:29:23 +0000
-Message-ID: <bug-39550-8800-IWoyHxCE9c@http.bugs.freedesktop.org/>
+Date: Tue, 14 Feb 2012 15:48:35 +0000
+Message-ID: <bug-39550-8800-ryTu8CrXKA@http.bugs.freedesktop.org/>
 References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,24 +23,42 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #24 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-14 14:29:23 UTC ---
-Did you have the chance to test a kernel that includes the following commit
+--- Comment #25 from Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> 2012-02-14 15:48:35 UTC ---
+Hi Emil, thanks. Behavior is unchanged with new kernels. I've tested through nouveau commit:
 
-"drm/nouveau/gpio: reimplement as nouveau_gpio.c, fixing a number of issues"
+commit 9a0a03b43176ee676693232f2afe92b83b15233e
+Author: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+Date:   Tue Feb 7 00:29:06 2012 +0100
 
+    drm/nouveau/pm: several fixes for nvc0 memory timings
 
-It does rework the gpio handling and initialization (among other things), that should have positive effect on your issue 
+and 3.3.0-rc2 (actually the above is on top of)
+which contains a0b2563
 
-It is part of linux 3.3rc1 [1] as well as nouveau linux tree [2]
+commit 62aa2b537c6f5957afd98e29f96897419ed5ebab
+Author: Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Date:   Tue Jan 31 13:31:54 2012 -0800
 
+    Linux 3.3-rc2
 
-Cheers
-Emil
+with no change, from that patch or any other.
 
+in fact nvapeek (nouveau git with 3.3.0-rc2) shows:
+before suspend:
+0000e100: 001c1100
+0000e28c: 00000100
+0000e104: 72266640 0441474b
+0000e280: 44444747 00000000
 
-[1] http://git.kernel.org/?p=linux/kernel/git/torvalds/linux.git;h=a0b25635515ef5049f93b032a1e37f18b16e0f6f
+after:
+0000e100: 001c1100
+0000e28c: 00000100
+0000e104: 72266240 0441474b
+0000e280: 44444747 00000000
 
-[2] http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=a0b25635515ef5049f93b032a1e37f18b16e0f6f
+the only difference I see is e104 bit 10 being set before, and not after.
+
+NOTE: I have the exact same laptop as Walther.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
