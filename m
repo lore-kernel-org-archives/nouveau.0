@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] Brightness stuck to low value after
-	suspend/resume
-Date: Tue, 14 Feb 2012 15:13:42 +0000
-Message-ID: <bug-39550-8800-SEX3OIrQrW@http.bugs.freedesktop.org/>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 46059] New: bad NV50 only works with "nomodeset"
+ kernel parameter
+Date: Tue, 14 Feb 2012 19:39:04 +0000
+Message-ID: <bug-46059-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +19,39 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+https://bugs.freedesktop.org/show_bug.cgi?id=46059
 
---- Comment #23 from Walther <walther.MD-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-14 07:13:42 PST ---
-There should be a solution to this dilemma, considering that nvidia's binary blob does it correctly.
+             Bug #: 46059
+           Summary: bad NV50 only works with "nomodeset" kernel parameter
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: mail-998mvGPAGeuzQB+pC5nmwQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I got the nvapeek results for using the binary blob, and the results I got are:
 
-Before
-0000e100: 001c1100
-0000e28c: 00000100
-0000e104: 72266640 0441474b
-0000e280: 44444747 00000000
+Created attachment 57046
+  --> https://bugs.freedesktop.org/attachment.cgi?id=57046
+dmesg|grep "nouveau|drm"
 
-After
-0000e100: 001c1100
-0000e28c: 00000100
-0000e104: 72266640 0441474b
-0000e280: 44444747 00000000
+My HP Pavilion dv9560eg sports a 8600M GS video chip with a design defect (for the interested: http://www.scribd.com/doc/19308567/Nvidia-Class-Action).
 
-Notice that unlike nouveau, register 0xe104's content is unaltered after resuming. What is this particular register for?
+Good thing is, under certain circumstances it may still be used.
 
-The vbios before suspending is identical between nouveau and nvidia, and it is also identical to the one after resuming with nvidia. However, nvgetbios fails
-with nouveau after resuming:
+1. Sometimes it boots up just normally and works for a certain time (hour or so).
+2. If #1 fails I have to set "nomodeset" to actually see something, otherwise (when the mode gets set) the screen get white and fades to grey in an awkward
+way. I can still blindly login  or use ssh.
 
-./nvagetbios > vbios.txt
-No extraction method specified (using -s extraction_method). Defaulting to PRAMIN.
-Attempt to extract the vbios from card 0 (nv96) using PRAMIN
-Invalid signature(0x55aa). You may want to try another retrieval method.
+With "nomodeset" only the first line, otherwise all of those lines can be found in dmesg.
 
-Is this a sign that the vbios is somehow wrong/corrupted after resume?
-
-Note that I am also using a Elitebook 8530W, with an nVidia Corporation G96M [Quadro FX 770M] card, using Linux 3.1.10.
+Unfortunately I haven't logged dmesg output in the few moments the machine boots up normally.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
