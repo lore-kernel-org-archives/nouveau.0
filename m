@@ -1,32 +1,55 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46059] bad NV50 only works with "nomodeset" kernel
-	parameter
-Date: Tue, 14 Feb 2012 19:45:20 +0000
-Message-ID: <bug-46059-8800-J0HzOAuNNh@http.bugs.freedesktop.org/>
-References: <bug-46059-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Subject: [PATCH 2/7] drm/nouveau: do a better job at hiding the NIH i2c bit-banging algo
+Date: Tue, 14 Feb 2012 22:37:20 +0100
+Message-ID: <1329255445-6312-2-git-send-email-daniel.vetter@ffwll.ch>
+References: <1329255445-6312-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46059-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <linux-i2c-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <1329255445-6312-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Sender: linux-i2c-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-i2c-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=46059
+I'd like to export the corresponding functions from the i2c core
+so that I can use them in fallback bit-banging in i915.ko
 
---- Comment #1 from Chatty <mail-998mvGPAGeuzQB+pC5nmwQ@public.gmane.org> 2012-02-14 11:45:20 PST ---
-I'm using "xserver-xorg-video-nouveau 1:0.0.16+git20110823.169512fb-0ubuntu0sarvatt~natty" on Ubuntu 11.10 with kernel 3.3.0-030300rc3-generic-pae.
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_i2c.c |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_i2c.c b/drivers/gpu/drm/nouveau/nouveau_i2c.c
+index 820ae7f..7a7e751 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_i2c.c
++++ b/drivers/gpu/drm/nouveau/nouveau_i2c.c
+@@ -242,7 +242,7 @@ i2c_addr(struct nouveau_i2c_chan *port, struct i2c_msg *msg)
+ }
+ 
+ static int
+-i2c_bit_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
++nouveau_i2c_bit_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
+ {
+ 	struct nouveau_i2c_chan *port = (struct nouveau_i2c_chan *)adap;
+ 	struct i2c_msg *msg = msgs;
+@@ -272,14 +272,14 @@ i2c_bit_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
+ }
+ 
+ static u32
+-i2c_bit_func(struct i2c_adapter *adap)
++nouveau_i2c_bit_func(struct i2c_adapter *adap)
+ {
+ 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
+ }
+ 
+ const struct i2c_algorithm i2c_bit_algo = {
+-	.master_xfer = i2c_bit_xfer,
+-	.functionality = i2c_bit_func
++	.master_xfer = nouveau_i2c_bit_xfer,
++	.functionality = nouveau_i2c_bit_func
+ };
+ 
+ static const uint32_t nv50_i2c_port[] = {
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.7.5
