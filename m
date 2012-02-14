@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46059] bad NV50 only works with "nomodeset" kernel
-	parameter
-Date: Tue, 14 Feb 2012 22:08:06 +0000
-Message-ID: <bug-46059-8800-GSUmRZUJIy@http.bugs.freedesktop.org/>
-References: <bug-46059-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39550] Brightness stuck to low value after
+	suspend/resume
+Date: Tue, 14 Feb 2012 14:29:23 +0000
+Message-ID: <bug-39550-8800-IWoyHxCE9c@http.bugs.freedesktop.org/>
+References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46059-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=46059
+https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-14 14:08:06 PST ---
-Hi Chatty
+--- Comment #24 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-14 14:29:23 UTC ---
+Did you have the chance to test a kernel that includes the following commit
 
-If I have to be honest I'm surprised it works at all (considering the issues nvidia had with those cards)
-
-* Can you please confirm if the blob (proprietary driver) works fine with your card
-
-After a quick look I've noticed that
-
-* Nouveau is using the vbios fetched from the PCIROM
-* The vbios does not appear to be correct
-
-As a workaround can you try appending the following to your kernel command line
-
-nouveau.vbios="pramin"
+"drm/nouveau/gpio: reimplement as nouveau_gpio.c, fixing a number of issues"
 
 
-It will tell nouveau to use the PRAMIN vbios, thus possibly resolving some of your problems
+It does rework the gpio handling and initialization (among other things), that should have positive effect on your issue 
 
-Note - I seriously believe that there is a hardware problem with your card considering the hardware issues that have been noticed (and confirmed in the linked
-document)
+It is part of linux 3.3rc1 [1] as well as nouveau linux tree [2]
+
+
+Cheers
+Emil
+
+
+[1] http://git.kernel.org/?p=linux/kernel/git/torvalds/linux.git;h=a0b25635515ef5049f93b032a1e37f18b16e0f6f
+
+[2] http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=a0b25635515ef5049f93b032a1e37f18b16e0f6f
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
