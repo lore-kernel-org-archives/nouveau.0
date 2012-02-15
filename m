@@ -1,8 +1,7 @@
 From: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-Subject: [PATCH 4/9] dri2: Update front buffer pixmap and name
-	before exchanging buffers
-Date: Thu, 16 Feb 2012 00:45:19 +0100
-Message-ID: <1329349524-11650-5-git-send-email-mario.kleiner@tuebingen.mpg.de>
+Subject: [PATCH 5/9] dri2: Fixes to swap scheduling.
+Date: Thu, 16 Feb 2012 00:45:20 +0100
+Message-ID: <1329349524-11650-6-git-send-email-mario.kleiner@tuebingen.mpg.de>
 References: <1329349524-11650-1-git-send-email-mario.kleiner@tuebingen.mpg.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,106 +21,80 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Buffer exchange assumes that the front buffer pixmap and name
-information is accurate. That may not be the case eg. if the window
-has been (un)redirected since the buffer was created.
+Fix some small off-by-one errors and a mismatch
+between 32 bit kernel interfaces for vblank count
+and 64 bit dri2 interfaces for target_msc et al.
 
-This is a translation to nouveau of a fix that was originally developed
-by Ville Syrjala <syrjala-ORSVBvAovxo@public.gmane.org> for the ati/radeon ddx to fix the
-same bug there.
+Return corrected target_msc to swap scheduling in
+x-server.
 
-See thread at:
-
-http://lists.x.org/archives/xorg-devel/2011-May/021908.html
-
-Fixes FDO bug #35452.
+A revised version of the patch discussed here:
+http://lists.freedesktop.org/archives/nouveau/2011-September/009143.html
 
 Signed-off-by: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
 ---
- src/nouveau_dri2.c |   45 ++++++++++++++++++++++++++++++++++++++++++---
- 1 files changed, 42 insertions(+), 3 deletions(-)
+ src/nouveau_dri2.c |   23 +++++++++++++++++++++--
+ 1 files changed, 21 insertions(+), 2 deletions(-)
 
 diff --git a/src/nouveau_dri2.c b/src/nouveau_dri2.c
-index 2908e56..8608678 100644
+index 8608678..719b3bb 100644
 --- a/src/nouveau_dri2.c
 +++ b/src/nouveau_dri2.c
-@@ -149,6 +149,35 @@ struct nouveau_dri2_vblank_state {
- };
+@@ -387,11 +387,22 @@ nouveau_dri2_schedule_swap(ClientPtr client, DrawablePtr draw,
+ 		if (ret)
+ 			goto fail;
  
- static Bool
-+update_front(DrawablePtr draw, DRI2BufferPtr front)
-+{
-+	int r;
-+	PixmapPtr pixmap;
-+	struct nouveau_dri2_buffer *nvbuf = nouveau_dri2_buffer(front);
++		/* Truncate to match kernel interfaces; means occasional overflow
++		 * misses, but that's generally not a big deal.
++		 */
++		*target_msc &= 0xffffffff;
++		divisor &= 0xffffffff;
++		remainder &= 0xffffffff;
 +
-+	if (draw->type == DRAWABLE_PIXMAP)
-+		pixmap = (PixmapPtr)draw;
-+	else
-+		pixmap = (*draw->pScreen->GetWindowPixmap)((WindowPtr)draw);
-+
-+	pixmap->refcnt++;
-+
-+	exaMoveInPixmap(pixmap);
-+	r = nouveau_bo_handle_get(nouveau_pixmap_bo(pixmap), &front->name);
-+	if (r) {
-+		(*draw->pScreen->DestroyPixmap)(pixmap);
-+		return FALSE;
-+	}
-+
-+	(*draw->pScreen->DestroyPixmap)(nvbuf->ppix);
-+	front->pitch = pixmap->devKind;
-+	front->cpp = pixmap->drawable.bitsPerPixel / 8;
-+	nvbuf->ppix = pixmap;
-+
-+	return TRUE;
-+}
-+
-+static Bool
- can_exchange(DrawablePtr draw, PixmapPtr dst_pix, PixmapPtr src_pix)
- {
- 	ScrnInfoPtr scrn = xf86Screens[draw->pScreen->myNum];
-@@ -234,13 +263,14 @@ nouveau_dri2_finish_swap(DrawablePtr draw, unsigned int frame,
- {
- 	ScrnInfoPtr scrn = xf86Screens[draw->pScreen->myNum];
- 	NVPtr pNv = NVPTR(scrn);
--	PixmapPtr dst_pix = nouveau_dri2_buffer(s->dst)->ppix;
-+	PixmapPtr dst_pix;
- 	PixmapPtr src_pix = nouveau_dri2_buffer(s->src)->ppix;
--	struct nouveau_bo *dst_bo = nouveau_pixmap_bo(dst_pix);
-+	struct nouveau_bo *dst_bo;
- 	struct nouveau_bo *src_bo = nouveau_pixmap_bo(src_pix);
- 	struct nouveau_channel *chan = pNv->chan;
- 	RegionRec reg;
- 	int type, ret;
-+	Bool front_updated;
+ 		/* Calculate a swap target if we don't have one */
+ 		if (current_msc >= *target_msc && divisor)
+ 			*target_msc = current_msc + divisor
+ 				- (current_msc - remainder) % divisor;
  
- 	REGION_INIT(0, &reg, (&(BoxRec){ 0, 0, draw->width, draw->height }), 0);
- 	REGION_TRANSLATE(0, &reg, draw->x, draw->y);
-@@ -257,6 +287,15 @@ nouveau_dri2_finish_swap(DrawablePtr draw, unsigned int frame,
- 	if (ref_crtc_hw_id & 1)
- 		ref_crtc_hw_id = 1;
++		/* Avoid underflow of unsigned value below */
++		if (*target_msc == 0)
++			*target_msc = 1;
++
+ 		/* Request a vblank event one frame before the target */
+ 		ret = nouveau_wait_vblank(draw, DRM_VBLANK_ABSOLUTE |
+ 					  DRM_VBLANK_EVENT,
+@@ -399,7 +410,8 @@ nouveau_dri2_schedule_swap(ClientPtr client, DrawablePtr draw,
+ 					  &expect_msc, NULL, s);
+ 		if (ret)
+ 			goto fail;
+-		s->frame = (unsigned int) expect_msc & 0xffffffff;
++		s->frame = 1 + ((unsigned int) expect_msc & 0xffffffff);
++		*target_msc = 1 + expect_msc;
+ 	} else {
+ 		/* We can't/don't want to sync to vblank, just swap. */
+ 		nouveau_dri2_finish_swap(draw, 0, 0, 0, s);
+@@ -420,6 +432,13 @@ nouveau_dri2_schedule_wait(ClientPtr client, DrawablePtr draw,
+ 	CARD64 current_msc;
+ 	int ret;
  
-+	/* Update frontbuffer pixmap and name: Could have changed due to
-+	 * window (un)redirection as part of compositing.
++	/* Truncate to match kernel interfaces; means occasional overflow
++	 * misses, but that's generally not a big deal.
 +	 */
-+	front_updated = update_front(draw, s->dst);
++	target_msc &= 0xffffffff;
++	divisor &= 0xffffffff;
++	remainder &= 0xffffffff;
 +
-+	/* Assign frontbuffer pixmap, after update in update_front() */
-+	dst_pix = nouveau_dri2_buffer(s->dst)->ppix;
-+	dst_bo = nouveau_pixmap_bo(dst_pix);
-+
- 	/* Throttle on the previous frame before swapping */
- 	nouveau_bo_map(dst_bo, NOUVEAU_BO_RD);
- 	nouveau_bo_unmap(dst_bo);
-@@ -275,7 +314,7 @@ nouveau_dri2_finish_swap(DrawablePtr draw, unsigned int frame,
- 		FIRE_RING(chan);
- 	}
+ 	if (!can_sync_to_vblank(draw)) {
+ 		DRI2WaitMSCComplete(client, draw, target_msc, 0, 0);
+ 		return TRUE;
+@@ -439,7 +458,7 @@ nouveau_dri2_schedule_wait(ClientPtr client, DrawablePtr draw,
+ 		goto fail;
  
--	if (can_exchange(draw, dst_pix, src_pix)) {
-+	if (front_updated && can_exchange(draw, dst_pix, src_pix)) {
- 		type = DRI2_EXCHANGE_COMPLETE;
- 		DamageRegionAppend(draw, &reg);
+ 	/* Calculate a wait target if we don't have one */
+-	if (current_msc > target_msc && divisor)
++	if (current_msc >= target_msc && divisor)
+ 		target_msc = current_msc + divisor
+ 			- (current_msc - remainder) % divisor;
  
 -- 
 1.7.5.4
