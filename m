@@ -1,53 +1,30 @@
-From: Michel =?ISO-8859-1?Q?D=E4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>
-Subject: Re: [PATCH 1/9] dri2: Fix can_exchange() to allow page-flipping on
-	new servers.
-Date: Thu, 16 Feb 2012 11:04:25 +0100
-Message-ID: <1329386665.2859.414.camel@thor.local>
-References: <1329349524-11650-1-git-send-email-mario.kleiner@tuebingen.mpg.de>
-	<1329349524-11650-2-git-send-email-mario.kleiner@tuebingen.mpg.de>
+From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Subject: [Patches][nouveau/kms]: Precise Vblank and pageflip
+	timestamping v2
+Date: Fri, 17 Feb 2012 00:28:21 +0100
+Message-ID: <1329434903-19977-1-git-send-email-dev@lynxeye.de>
+References: <[Patches][nouveau/kms]: Precise Vblank and pageflip timestamping>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <xorg-devel-bounces+gcfxd-xorg-devel=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-In-Reply-To: <1329349524-11650-2-git-send-email-mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-List-Unsubscribe: <http://lists.x.org/mailman/options/xorg-devel>,
-	<mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.x.org/archives/xorg-devel>
-List-Post: <mailto:xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Help: <mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.x.org/mailman/listinfo/xorg-devel>,
-	<mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
-Sender: xorg-devel-bounces+gcfxd-xorg-devel=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-Errors-To: xorg-devel-bounces+gcfxd-xorg-devel=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-To: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-Cc: xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <[Patches][nouveau/kms]: Precise Vblank and pageflip timestamping>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRG9uLCAyMDEyLTAyLTE2IGF0IDAwOjQ1ICswMTAwLCBNYXJpbyBLbGVpbmVyIHdyb3RlOiAK
-PiBjYW5fZXhjaGFuZ2UoKSBmYWlscyBvbiBhdCBsZWFzdCBYb3JnIDEuMTIrLiBUaGlzIGZpeGVz
-Cj4gaXQgaW4gdGhlIHNhbWUgd2F5IGl0IHdhcyBmaXhlZCBpbiB0aGUgYXRpICYgaW50ZWwgZGR4
-Lgo+IAo+IFNpZ25lZC1vZmYtYnk6IE1hcmlvIEtsZWluZXIgPG1hcmlvLmtsZWluZXJAdHVlYmlu
-Z2VuLm1wZy5kZT4KPiAtLS0KPiAgc3JjL25vdXZlYXVfZHJpMi5jIHwgICAgMiArLQo+ICAxIGZp
-bGVzIGNoYW5nZWQsIDEgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0t
-Z2l0IGEvc3JjL25vdXZlYXVfZHJpMi5jIGIvc3JjL25vdXZlYXVfZHJpMi5jCj4gaW5kZXggM2Fh
-NWVjNS4uNWI2MjQyNSAxMDA2NDQKPiAtLS0gYS9zcmMvbm91dmVhdV9kcmkyLmMKPiArKysgYi9z
-cmMvbm91dmVhdV9kcmkyLmMKPiBAQCAtMTYwLDcgKzE2MCw3IEBAIGNhbl9leGNoYW5nZShEcmF3
-YWJsZVB0ciBkcmF3LCBQaXhtYXBQdHIgZHN0X3BpeCwgUGl4bWFwUHRyIHNyY19waXgpCj4gIAly
-ZXR1cm4gKChEUkkyQ2FuRmxpcChkcmF3KSAmJiBwTnYtPmhhc19wYWdlZmxpcCkpICYmCj4gIAkJ
-ZHN0X3BpeC0+ZHJhd2FibGUud2lkdGggPT0gc3JjX3BpeC0+ZHJhd2FibGUud2lkdGggJiYKPiAg
-CQlkc3RfcGl4LT5kcmF3YWJsZS5oZWlnaHQgPT0gc3JjX3BpeC0+ZHJhd2FibGUuaGVpZ2h0ICYm
-Cj4gLQkJZHN0X3BpeC0+ZHJhd2FibGUuZGVwdGggPT0gc3JjX3BpeC0+ZHJhd2FibGUuZGVwdGgg
-JiYKPiArCQlkc3RfcGl4LT5kcmF3YWJsZS5iaXRzUGVyUGl4ZWwgPT0gc3JjX3BpeC0+ZHJhd2Fi
-bGUuYml0c1BlclBpeGVsICYmCj4gIAkJZHN0X3BpeC0+ZGV2S2luZCA9PSBzcmNfcGl4LT5kZXZL
-aW5kOwo+ICB9Cj4gIAoKQWN0dWFsbHksIGl0IHNlZW1zIGxpa2UgdGhlIHBpeG1hcCBkZXB0aHMg
-cmVhbGx5IHNob3VsZCBtYXRjaCwgb3RoZXJ3aXNlCm9uZSBjb3VsZCBlbmQgdXAgd2l0aCB0aGUg
-ZnJvbnQgcGl4bWFwIGRlcHRoIG5vdCBtYXRjaGluZyB0aGUgd2luZG93CmRlcHRoLiBOb3Qgc3Vy
-ZSB0aGF0J3MgYSByZWFsIHByb2JsZW0gcmlnaHQgbm93LCBidXQgaXQgc2VlbXMgd29ua3kgYXQK
-bGVhc3QuLi4KCkhhdmUgeW91IGludmVzdGlnYXRlZCB3aHkgdGhlIGRlcHRocyBkb24ndCBtYXRj
-aD8KCgotLSAKRWFydGhsaW5nIE1pY2hlbCBEw6RuemVyICAgICAgICAgICB8ICAgICAgICAgICAg
-ICAgICAgIGh0dHA6Ly93d3cuYW1kLmNvbQpMaWJyZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAgICAg
-ICAgfCAgICAgICAgICBEZWJpYW4sIFggYW5kIERSSSBkZXZlbG9wZXIKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KeG9yZy1kZXZlbEBsaXN0cy54Lm9yZzog
-WC5PcmcgZGV2ZWxvcG1lbnQKQXJjaGl2ZXM6IGh0dHA6Ly9saXN0cy54Lm9yZy9hcmNoaXZlcy94
-b3JnLWRldmVsCkluZm86IGh0dHA6Ly9saXN0cy54Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL3hvcmct
-ZGV2ZWw=
+Just updated versions of the patches send by Mario Kleiner. This ones are
+rebased on top of the nouveau tree and updated according to the review
+feedback.
+
+Regards,
+Lucas
