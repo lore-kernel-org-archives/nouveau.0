@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
  is unable to boot
-Date: Fri, 17 Feb 2012 11:11:41 +0000
-Message-ID: <bug-27501-8800-MpGI6WM8qL@http.bugs.freedesktop.org/>
+Date: Fri, 17 Feb 2012 15:53:08 +0000
+Message-ID: <bug-27501-8800-qmwQBvfioT@http.bugs.freedesktop.org/>
 References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
---- Comment #17 from Joanand <MacGyver031-S0/GAf8tV78@public.gmane.org> 2012-02-17 03:11:41 PST ---
-> Mateusz, how did you disable the 9600GT?
-I am not Mateusz, but I have succeeded in getting nouveau working without any parameters working by deactivating 9600M GT with gpupwr and loading nouveau
-afterwards.
+--- Comment #18 from Joanand <MacGyver031-S0/GAf8tV78@public.gmane.org> 2012-02-17 07:53:08 PST ---
+I now have found out that using Kernel-3.2.6, and starting with elilo (grub2 with efi has similar result) having both Adapters working, on has to  use the
+parameters noaccel=1 and nofbaccel=1 so that the driver is loaded. It will find both adapters, the screen will be scrambled in console (I have not started X,
+because I need the acceleration, or the driver will be of no use).
 
-Otherwise my system crashes and the last message which is send to my central syslog-server is:
+So to sum up:
+Either you want 9400M with acceleration then:
+use gpupwr to disable the 9600M GT and load nouveau without any parameters. The console will be visible then and one can use X.
 
-2012-02-16 10:23:00    kernel  [drm] nouveau 0000:02:00.0: PRAMIN flush timeout
-2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: PFIFO_INTR 0x04000000 - Ch 1
-2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: PRAMIN flush timeout
-2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: PFIFO_INTR 0x04000000 - Ch 1
-2012-02-16 10:23:00    kernel    [drm] Cannot find any crtc or sizes - going 1024x768
-2012-02-16 10:23:00    kernel    No connectors reported connected with modes
-2012-02-16 10:23:00    kernel    [drm] No driver support for vblank timestamp query.
-2012-02-16 10:23:00    kernel    [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: PRAMIN flush timeout
-2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: 512 MiB GART (aperture)
-2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: Detected 256MiB VRAM
-2012-02-16 10:23:00    kernel    [TTM] Initializing pool allocator.
+Or (I have no idea why someone would need this, but for the sake of documentation):
+load nouveau with noaccel=1 and nofbaccel=1.
+
+So for the moment it looks like acceleration-code for 9600M GT seems to be broken, as well as vga_switcheroo.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
