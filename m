@@ -1,15 +1,14 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: Re: [Patches][nouveau/kms]: Precise Vblank and pageflip
- timestamping v2
-Date: Fri, 17 Feb 2012 00:32:24 +0100
-Message-ID: <1329435144.1716.3.camel@tellur>
-References: <[Patches][nouveau/kms]: Precise Vblank and pageflip timestamping>
-	<1329434903-19977-1-git-send-email-dev@lynxeye.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
+ is unable to boot
+Date: Fri, 17 Feb 2012 11:11:41 +0000
+Message-ID: <bug-27501-8800-MpGI6WM8qL@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1329434903-19977-1-git-send-email-dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,21 +19,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ignore this, apparently git send-email messed up and relayed the old
-patches. WTF?
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
-Am Freitag, den 17.02.2012, 00:28 +0100 schrieb Lucas Stach:
-> Just updated versions of the patches send by Mario Kleiner. This ones are
-> rebased on top of the nouveau tree and updated according to the review
-> feedback.
-> 
-> Regards,
-> Lucas
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
-> 
+--- Comment #17 from Joanand <MacGyver031-S0/GAf8tV78@public.gmane.org> 2012-02-17 03:11:41 PST ---
+> Mateusz, how did you disable the 9600GT?
+I am not Mateusz, but I have succeeded in getting nouveau working without any parameters working by deactivating 9600M GT with gpupwr and loading nouveau
+afterwards.
+
+Otherwise my system crashes and the last message which is send to my central syslog-server is:
+
+2012-02-16 10:23:00    kernel  [drm] nouveau 0000:02:00.0: PRAMIN flush timeout
+2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: PFIFO_INTR 0x04000000 - Ch 1
+2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: PRAMIN flush timeout
+2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: PFIFO_INTR 0x04000000 - Ch 1
+2012-02-16 10:23:00    kernel    [drm] Cannot find any crtc or sizes - going 1024x768
+2012-02-16 10:23:00    kernel    No connectors reported connected with modes
+2012-02-16 10:23:00    kernel    [drm] No driver support for vblank timestamp query.
+2012-02-16 10:23:00    kernel    [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: PRAMIN flush timeout
+2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: 512 MiB GART (aperture)
+2012-02-16 10:23:00    kernel    [drm] nouveau 0000:02:00.0: Detected 256MiB VRAM
+2012-02-16 10:23:00    kernel    [TTM] Initializing pool allocator.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
