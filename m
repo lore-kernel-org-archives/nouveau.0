@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
- is unable to boot
-Date: Fri, 17 Feb 2012 15:53:08 +0000
-Message-ID: <bug-27501-8800-qmwQBvfioT@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 45752] Debian Wheezy with xfce4-power-manager and
+ noveau fails to resume from hibernate
+Date: Fri, 17 Feb 2012 16:17:27 +0000
+Message-ID: <bug-45752-8800-UkmEO7dCZN@http.bugs.freedesktop.org/>
+References: <bug-45752-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-45752-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=45752
 
---- Comment #18 from Joanand <MacGyver031-S0/GAf8tV78@public.gmane.org> 2012-02-17 07:53:08 PST ---
-I now have found out that using Kernel-3.2.6, and starting with elilo (grub2 with efi has similar result) having both Adapters working, on has to  use the
-parameters noaccel=1 and nofbaccel=1 so that the driver is loaded. It will find both adapters, the screen will be scrambled in console (I have not started X,
-because I need the acceleration, or the driver will be of no use).
+Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-So to sum up:
-Either you want 9400M with acceleration then:
-use gpupwr to disable the 9600M GT and load nouveau without any parameters. The console will be visible then and one can use X.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-Or (I have no idea why someone would need this, but for the sake of documentation):
-load nouveau with noaccel=1 and nofbaccel=1.
-
-So for the moment it looks like acceleration-code for 9600M GT seems to be broken, as well as vga_switcheroo.
+--- Comment #4 from Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-17 08:17:27 PST ---
+Rikard tried v3.3-rc3 with the same result.
+http://bugs.debian.org/659110#75
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
