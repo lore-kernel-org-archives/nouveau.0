@@ -1,14 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
- is unable to boot
-Date: Sun, 19 Feb 2012 10:22:47 +0000
-Message-ID: <bug-27501-8800-SL0TttKZyf@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+From: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
+Subject: Re: [PATCH 1/9] dri2: Fix can_exchange() to allow
+ page-flipping on new servers.
+Date: Mon, 20 Feb 2012 05:59:10 +0100
+Message-ID: <4F41D31E.3030901@tuebingen.mpg.de>
+References: <1329349524-11650-1-git-send-email-mario.kleiner@tuebingen.mpg.de>	
+	<1329349524-11650-2-git-send-email-mario.kleiner@tuebingen.mpg.de>
+	<1329386665.2859.414.camel@thor.local>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1329386665.2859.414.camel-2h6evNeVVYGs1BDpvl8NfQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,18 +20,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?B?TWljaGVsIETDpG56ZXI=?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>
+Cc: xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
-
---- Comment #19 from Roland <rmueller83-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-02-19 02:22:47 PST ---
-Thanks! Blacklisting the nouveau module during bootup and afterwards running gpupwr and modprobing the module works for me.
-
-In the Ubuntu docs there are some "outb" commands for grub which should switch the GPU: https://help.ubuntu.com/community/UEFIBooting
-But my grub rejects these outb commands as unknown.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gMDIvMTYvMjAxMiAxMTowNCBBTSwgTWljaGVsIETDpG56ZXIgd3JvdGU6Cj4gT24gRG9uLCAy
+MDEyLTAyLTE2IGF0IDAwOjQ1ICswMTAwLCBNYXJpbyBLbGVpbmVyIHdyb3RlOgo+PiBjYW5fZXhj
+aGFuZ2UoKSBmYWlscyBvbiBhdCBsZWFzdCBYb3JnIDEuMTIrLiBUaGlzIGZpeGVzCj4+IGl0IGlu
+IHRoZSBzYW1lIHdheSBpdCB3YXMgZml4ZWQgaW4gdGhlIGF0aSYgIGludGVsIGRkeC4KPj4KPj4g
+U2lnbmVkLW9mZi1ieTogTWFyaW8gS2xlaW5lcjxtYXJpby5rbGVpbmVyQHR1ZWJpbmdlbi5tcGcu
+ZGU+Cj4+IC0tLQo+PiAgIHNyYy9ub3V2ZWF1X2RyaTIuYyB8ICAgIDIgKy0KPj4gICAxIGZpbGVz
+IGNoYW5nZWQsIDEgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdp
+dCBhL3NyYy9ub3V2ZWF1X2RyaTIuYyBiL3NyYy9ub3V2ZWF1X2RyaTIuYwo+PiBpbmRleCAzYWE1
+ZWM1Li41YjYyNDI1IDEwMDY0NAo+PiAtLS0gYS9zcmMvbm91dmVhdV9kcmkyLmMKPj4gKysrIGIv
+c3JjL25vdXZlYXVfZHJpMi5jCj4+IEBAIC0xNjAsNyArMTYwLDcgQEAgY2FuX2V4Y2hhbmdlKERy
+YXdhYmxlUHRyIGRyYXcsIFBpeG1hcFB0ciBkc3RfcGl4LCBQaXhtYXBQdHIgc3JjX3BpeCkKPj4g
+ICAJcmV0dXJuICgoRFJJMkNhbkZsaXAoZHJhdykmJiAgcE52LT5oYXNfcGFnZWZsaXApKSYmCj4+
+ICAgCQlkc3RfcGl4LT5kcmF3YWJsZS53aWR0aCA9PSBzcmNfcGl4LT5kcmF3YWJsZS53aWR0aCYm
+Cj4+ICAgCQlkc3RfcGl4LT5kcmF3YWJsZS5oZWlnaHQgPT0gc3JjX3BpeC0+ZHJhd2FibGUuaGVp
+Z2h0JiYKPj4gLQkJZHN0X3BpeC0+ZHJhd2FibGUuZGVwdGggPT0gc3JjX3BpeC0+ZHJhd2FibGUu
+ZGVwdGgmJgo+PiArCQlkc3RfcGl4LT5kcmF3YWJsZS5iaXRzUGVyUGl4ZWwgPT0gc3JjX3BpeC0+
+ZHJhd2FibGUuYml0c1BlclBpeGVsJiYKPj4gICAJCWRzdF9waXgtPmRldktpbmQgPT0gc3JjX3Bp
+eC0+ZGV2S2luZDsKPj4gICB9Cj4+Cj4KPiBBY3R1YWxseSwgaXQgc2VlbXMgbGlrZSB0aGUgcGl4
+bWFwIGRlcHRocyByZWFsbHkgc2hvdWxkIG1hdGNoLCBvdGhlcndpc2UKPiBvbmUgY291bGQgZW5k
+IHVwIHdpdGggdGhlIGZyb250IHBpeG1hcCBkZXB0aCBub3QgbWF0Y2hpbmcgdGhlIHdpbmRvdwo+
+IGRlcHRoLiBOb3Qgc3VyZSB0aGF0J3MgYSByZWFsIHByb2JsZW0gcmlnaHQgbm93LCBidXQgaXQg
+c2VlbXMgd29ua3kgYXQKPiBsZWFzdC4uLgo+Cj4gSGF2ZSB5b3UgaW52ZXN0aWdhdGVkIHdoeSB0
+aGUgZGVwdGhzIGRvbid0IG1hdGNoPwo+Cj4KCkRlcGVuZHMgb24gdGhlIG1lYW5pbmcgb2YgImlu
+dmVzdGlnYXRlZCI6IE9uZSBvZiB0aGUgcGl4bWFwcyBoYXMgZGVwdGggCjI0IGJpdHMgKHRoZSBw
+aXhtYXAgb2YgdGhlIHJvb3Qgd2luZG93KSB0aGUgb3RoZXIgMzIgYml0cyAoYXMgcmVxdWVzdGVk
+IApmcm9tIHRoZSBjbGllbnQgdmlhIERSSTJHZXRCdWZmZXJzV2l0aEZvcm1hdCBmb3IgUkdCQTgg
+dmlzdWFscykuIEJvdGggCmhhdmUgMzIgYnBwLiBJIGNoZWNrZWQgd2hhdCB0aGUgaW50ZWwgYW5k
+IGF0aSBkZHggZG8uIFRoZSBhdGkgZGR4IGFsd2F5cyAKY2hlY2tlZCBmb3IgbWF0Y2hpbmcgZHJh
+d2FibGUuYml0c1BlclBpeGVsIHNpbmNlIGttcyBwYWdlZmxpcCBzdXBwb3J0IAp3YXMgaW1wbGVt
+ZW50ZWQuIFRoZSBpbnRlbCBkZHggZG9lcyB0aGUgc2FtZSwgYnV0IHRoZSBjb2RlIGFuZCBjb21t
+ZW50cyAKc3VnZ2VzdHMgdGhleSB0cmllZCBib3RoIGFuZCBjaGVja2luZyBmb3IgbWF0Y2hpbmcg
+ZGVwdGhzIHByb2JhYmx5IApkaWRuJ3Qgd29yazoKCmNkIHhvcmcvZHJpdmVycy94Zjg2LXZpZGVv
+LWludGVsLwpnaXQgbG9nIC1wIGUyNjE1Y2RlZWYwNzhkYmQyZTgzNGI2OGM0MzdmMDk4YTkyYjk0
+MWQKClNvIGV2ZXJ5Ym9keSBkb2VzIGl0IGxpa2UgdGhpcyBjdXJyZW50bHksIGFuZCBpdCBzZWVt
+cyB0byB3b3JrLgoKSSBhbHNvIGp1c3QgdHJpZWQgc2V0dGluZyBEZWZhdWx0RGVwdGggdG8gMzAg
+Yml0cyBvbiBhIE5WNTAgY2FyZCB3aGljaCAKc3VwcG9ydHMgdGhpcy4geGRweWluZm8gY29uZmly
+bXMgYSBzY3JlZW4gZGVwdGggb2YgMzAgYml0ID09IDEwIGJpdHMgcGVyIApyZWQvZ3JlZW4vYmx1
+ZSBjaGFubmVsLiBnbHhpbmZvIHNob3dzIHRoYXQgb25seSBSR0JBOCB2aXN1YWxzIGFyZSAKc3Vw
+cG9ydGVkLiBIZXJlIHdlIGhhdmUgYSBtaXNtYXRjaCBvZiBkZXB0aHMgMzAgdnMuIDI0IGFuZCB0
+aGUgZHJpdmVyIApyZXZlcnRzIGNvcnJlY3RseSBmcm9tIHBhZ2UgZmxpcHBpbmcgdG8gY29weSBz
+d2FwcywgYWx0aG91Z2ggaSBjYW4ndCBzZWUgCmltbWVkaWF0ZWx5IHdoYXQgY2F1c2VzIGl0IHRv
+IGNvcnJlY3RseSBzd2l0Y2ggYmFjayB0byBjb3B5IHN3YXBzLgoKLW1hcmlvCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
