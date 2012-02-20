@@ -1,76 +1,49 @@
-From: Michel =?ISO-8859-1?Q?D=E4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>
-Subject: Re: [PATCH 1/9] dri2: Fix can_exchange() to allow page-flipping on
-	new servers.
-Date: Mon, 20 Feb 2012 11:27:04 +0100
-Message-ID: <1329733624.2859.536.camel@thor.local>
-References: <1329349524-11650-1-git-send-email-mario.kleiner@tuebingen.mpg.de>
-	<1329349524-11650-2-git-send-email-mario.kleiner@tuebingen.mpg.de>
-	<1329386665.2859.414.camel@thor.local>
-	<4F41D31E.3030901@tuebingen.mpg.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 39550] Brightness stuck to low value after
+	suspend/resume
+Date: Mon, 20 Feb 2012 14:16:42 +0000
+Message-ID: <bug-39550-8800-gOllgDVLLV@http.bugs.freedesktop.org/>
+References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <xorg-devel-bounces+gcfxd-xorg-devel=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-In-Reply-To: <4F41D31E.3030901-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-List-Unsubscribe: <http://lists.x.org/mailman/options/xorg-devel>,
-	<mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.x.org/archives/xorg-devel>
-List-Post: <mailto:xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Help: <mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.x.org/mailman/listinfo/xorg-devel>,
-	<mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
-Sender: xorg-devel-bounces+gcfxd-xorg-devel=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-Errors-To: xorg-devel-bounces+gcfxd-xorg-devel=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-To: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-Cc: xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyMDEyLTAyLTIwIGF0IDA1OjU5ICswMTAwLCBNYXJpbyBLbGVpbmVyIHdyb3RlOiAK
-PiBPbiAwMi8xNi8yMDEyIDExOjA0IEFNLCBNaWNoZWwgRMOkbnplciB3cm90ZToKPiA+IE9uIERv
-biwgMjAxMi0wMi0xNiBhdCAwMDo0NSArMDEwMCwgTWFyaW8gS2xlaW5lciB3cm90ZToKPiA+PiBj
-YW5fZXhjaGFuZ2UoKSBmYWlscyBvbiBhdCBsZWFzdCBYb3JnIDEuMTIrLiBUaGlzIGZpeGVzCj4g
-Pj4gaXQgaW4gdGhlIHNhbWUgd2F5IGl0IHdhcyBmaXhlZCBpbiB0aGUgYXRpJiAgaW50ZWwgZGR4
-Lgo+ID4+Cj4gPj4gU2lnbmVkLW9mZi1ieTogTWFyaW8gS2xlaW5lcjxtYXJpby5rbGVpbmVyQHR1
-ZWJpbmdlbi5tcGcuZGU+Cj4gPj4gLS0tCj4gPj4gICBzcmMvbm91dmVhdV9kcmkyLmMgfCAgICAy
-ICstCj4gPj4gICAxIGZpbGVzIGNoYW5nZWQsIDEgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbnMo
-LSkKPiA+Pgo+ID4+IGRpZmYgLS1naXQgYS9zcmMvbm91dmVhdV9kcmkyLmMgYi9zcmMvbm91dmVh
-dV9kcmkyLmMKPiA+PiBpbmRleCAzYWE1ZWM1Li41YjYyNDI1IDEwMDY0NAo+ID4+IC0tLSBhL3Ny
-Yy9ub3V2ZWF1X2RyaTIuYwo+ID4+ICsrKyBiL3NyYy9ub3V2ZWF1X2RyaTIuYwo+ID4+IEBAIC0x
-NjAsNyArMTYwLDcgQEAgY2FuX2V4Y2hhbmdlKERyYXdhYmxlUHRyIGRyYXcsIFBpeG1hcFB0ciBk
-c3RfcGl4LCBQaXhtYXBQdHIgc3JjX3BpeCkKPiA+PiAgIAlyZXR1cm4gKChEUkkyQ2FuRmxpcChk
-cmF3KSYmICBwTnYtPmhhc19wYWdlZmxpcCkpJiYKPiA+PiAgIAkJZHN0X3BpeC0+ZHJhd2FibGUu
-d2lkdGggPT0gc3JjX3BpeC0+ZHJhd2FibGUud2lkdGgmJgo+ID4+ICAgCQlkc3RfcGl4LT5kcmF3
-YWJsZS5oZWlnaHQgPT0gc3JjX3BpeC0+ZHJhd2FibGUuaGVpZ2h0JiYKPiA+PiAtCQlkc3RfcGl4
-LT5kcmF3YWJsZS5kZXB0aCA9PSBzcmNfcGl4LT5kcmF3YWJsZS5kZXB0aCYmCj4gPj4gKwkJZHN0
-X3BpeC0+ZHJhd2FibGUuYml0c1BlclBpeGVsID09IHNyY19waXgtPmRyYXdhYmxlLmJpdHNQZXJQ
-aXhlbCYmCj4gPj4gICAJCWRzdF9waXgtPmRldktpbmQgPT0gc3JjX3BpeC0+ZGV2S2luZDsKPiA+
-PiAgIH0KPiA+Pgo+ID4KPiA+IEFjdHVhbGx5LCBpdCBzZWVtcyBsaWtlIHRoZSBwaXhtYXAgZGVw
-dGhzIHJlYWxseSBzaG91bGQgbWF0Y2gsIG90aGVyd2lzZQo+ID4gb25lIGNvdWxkIGVuZCB1cCB3
-aXRoIHRoZSBmcm9udCBwaXhtYXAgZGVwdGggbm90IG1hdGNoaW5nIHRoZSB3aW5kb3cKPiA+IGRl
-cHRoLiBOb3Qgc3VyZSB0aGF0J3MgYSByZWFsIHByb2JsZW0gcmlnaHQgbm93LCBidXQgaXQgc2Vl
-bXMgd29ua3kgYXQKPiA+IGxlYXN0Li4uCj4gPgo+ID4gSGF2ZSB5b3UgaW52ZXN0aWdhdGVkIHdo
-eSB0aGUgZGVwdGhzIGRvbid0IG1hdGNoPwo+IAo+IERlcGVuZHMgb24gdGhlIG1lYW5pbmcgb2Yg
-ImludmVzdGlnYXRlZCI6IE9uZSBvZiB0aGUgcGl4bWFwcyBoYXMgZGVwdGggCj4gMjQgYml0cyAo
-dGhlIHBpeG1hcCBvZiB0aGUgcm9vdCB3aW5kb3cpIHRoZSBvdGhlciAzMiBiaXRzIChhcyByZXF1
-ZXN0ZWQgCj4gZnJvbSB0aGUgY2xpZW50IHZpYSBEUkkyR2V0QnVmZmVyc1dpdGhGb3JtYXQgZm9y
-IFJHQkE4IHZpc3VhbHMpLiBCb3RoIAo+IGhhdmUgMzIgYnBwLiBJIGNoZWNrZWQgd2hhdCB0aGUg
-aW50ZWwgYW5kIGF0aSBkZHggZG8uIFRoZSBhdGkgZGR4IGFsd2F5cyAKPiBjaGVja2VkIGZvciBt
-YXRjaGluZyBkcmF3YWJsZS5iaXRzUGVyUGl4ZWwgc2luY2Uga21zIHBhZ2VmbGlwIHN1cHBvcnQg
-Cj4gd2FzIGltcGxlbWVudGVkLiBUaGUgaW50ZWwgZGR4IGRvZXMgdGhlIHNhbWUsIGJ1dCB0aGUg
-Y29kZSBhbmQgY29tbWVudHMgCj4gc3VnZ2VzdHMgdGhleSB0cmllZCBib3RoIGFuZCBjaGVja2lu
-ZyBmb3IgbWF0Y2hpbmcgZGVwdGhzIHByb2JhYmx5IAo+IGRpZG4ndCB3b3JrOgo+IAo+IGNkIHhv
-cmcvZHJpdmVycy94Zjg2LXZpZGVvLWludGVsLwo+IGdpdCBsb2cgLXAgZTI2MTVjZGVlZjA3OGRi
-ZDJlODM0YjY4YzQzN2YwOThhOTJiOTQxZAo+IAo+IFNvIGV2ZXJ5Ym9keSBkb2VzIGl0IGxpa2Ug
-dGhpcyBjdXJyZW50bHksIGFuZCBpdCBzZWVtcyB0byB3b3JrLgoKUmlnaHQuIEkgbXVzdCBoYXZl
-IGJlZW4gaW5jb3JyZWN0bHkgdGhpbmtpbmcgb2YgZmxpcHBpbmcgYXMgY2hhbmdpbmcgdGhlCndp
-bmRvdyBwaXhtYXAuCgpJIHN0aWxsIGhhdmUgc29tZSBkb3VidHMg4oCUIGUuZy4gd2h5IGlzIGFu
-IFJHQkEgdmlzdWFsIGNob3NlbiBmb3IgYQpmdWxsc2NyZWVuIHdpbmRvdywgYW5kIGRvZXMgdGhp
-cyByZWFsbHkgaGF2ZSBhbnl0aGluZyB0byBkbyB3aXRoIGNoYW5nZXMKaW4geHNlcnZlciAxLjEy
-LCBvciByYXRoZXIgaW4gTWVzYSDigJQgYnV0IEkgdGhpbmsgdGhlIGNoYW5nZSBpdHNlbGYgaXMK
-b2theS4KCgotLSAKRWFydGhsaW5nIE1pY2hlbCBEw6RuemVyICAgICAgICAgICB8ICAgICAgICAg
-ICAgICAgICAgIGh0dHA6Ly93d3cuYW1kLmNvbQpMaWJyZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAg
-ICAgICAgfCAgICAgICAgICBEZWJpYW4sIFggYW5kIERSSSBkZXZlbG9wZXIKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KeG9yZy1kZXZlbEBsaXN0cy54Lm9y
-ZzogWC5PcmcgZGV2ZWxvcG1lbnQKQXJjaGl2ZXM6IGh0dHA6Ly9saXN0cy54Lm9yZy9hcmNoaXZl
-cy94b3JnLWRldmVsCkluZm86IGh0dHA6Ly9saXN0cy54Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL3hv
-cmctZGV2ZWw=
+https://bugs.freedesktop.org/show_bug.cgi?id=39550
+
+--- Comment #26 from Walther <walther.MD-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-20 06:16:42 PST ---
+I repeated testing using kernel 3.3.0 RC4, and results are similar:
+
+nvapeek (before):
+0000e100: 001c1100
+0000e28c: 00000100
+0000e104: 72267640 0441474b
+0000e280: 44444747 00000000
+
+After:
+0000e100: 001c1100
+0000e28c: 00000100
+0000e104: 72267240 0441474b
+0000e280: 44444747 00000000
+
+Compared to the previous version, the only change is that 0x1000 was added to 0xe104 (and 0x400 is still unset on resume). And, of course, brightness controls
+ceased to response after resuming.
+
+PS: What still worries me is that after resuming nvagetbios still fails, that is a definite vbios bug/corruption somewhere, isn't it...
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
