@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 43029] System won't boot using nouveau and Gainward
  Phantom adapters
-Date: Wed, 22 Feb 2012 21:05:13 +0000
-Message-ID: <bug-43029-8800-RbWijozguf@http.bugs.freedesktop.org/>
+Date: Wed, 22 Feb 2012 21:06:04 +0000
+Message-ID: <bug-43029-8800-mytLlIEUMy@http.bugs.freedesktop.org/>
 References: <bug-43029-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=43029
 
---- Comment #3 from Adrian <trash-iFSAcyRUF8lBDgjK7y7TUQ@public.gmane.org> 2012-02-22 13:05:13 PST ---
-Created attachment 57483
-  --> https://bugs.freedesktop.org/attachment.cgi?id=57483
-lspci output
+--- Comment #4 from Adrian <trash-iFSAcyRUF8lBDgjK7y7TUQ@public.gmane.org> 2012-02-22 13:06:04 PST ---
+Created attachment 57484
+  --> https://bugs.freedesktop.org/attachment.cgi?id=57484
+uname -a
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
