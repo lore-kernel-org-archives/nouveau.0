@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46533] Firefox WebGL crash with Nouveau 3D;
  user claims it came installed by default on OpenSuse 12.1
-Date: Thu, 23 Feb 2012 16:16:58 +0000
-Message-ID: <bug-46533-8800-wT5Crd5fx3@http.bugs.freedesktop.org/>
+Date: Thu, 23 Feb 2012 16:22:18 +0000
+Message-ID: <bug-46533-8800-rxllQDzkSd@http.bugs.freedesktop.org/>
 References: <bug-46533-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46533
 
---- Comment #5 from Christopher James Halse Rogers <chalserogers-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-23 16:16:58 UTC ---
-It's also installed by default on Ubuntu (as of 11.10, IIRC), and Fedora.
+--- Comment #6 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> 2012-02-23 16:22:18 UTC ---
+(In reply to comment #5)
+> It's also installed by default on Ubuntu (as of 11.10, IIRC), and Fedora.
+> 
+> The nouveau wiki page is (a) somewhat out of date, (b) moderately unloved, and
+> (c) overly conservative.
 
-The nouveau wiki page is (a) somewhat out of date, (b) moderately unloved, and
-(c) overly conservative.
+Well the Mozilla bug I'm forwarding here shows that as of Mesa 7.11, the wiki
+page is accurate: creating a WebGL context is enough to get a crash. Maybe it's
+better in 8.0 though.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
