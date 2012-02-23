@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46533] Firefox WebGL crash with Nouveau 3D;
  user claims it came installed by default on OpenSuse 12.1
-Date: Thu, 23 Feb 2012 19:25:30 +0000
-Message-ID: <bug-46533-8800-AjKkT5opLI@http.bugs.freedesktop.org/>
+Date: Thu, 23 Feb 2012 19:34:53 +0000
+Message-ID: <bug-46533-8800-A8GBedNFhL@http.bugs.freedesktop.org/>
 References: <bug-46533-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46533
 
-Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> changed:
+Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Firefox WebGL with Nouveau  |Firefox WebGL crash with
-                   |3D; user claims it came     |Nouveau 3D; user claims it
-                   |installed by default on     |came installed by default
-                   |OpenSuse 12.1               |on OpenSuse 12.1
+             Status|NEW                         |NEEDINFO
+
+--- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2012-02-23 11:34:53 PST ---
+He should try packages from home:jobermayr (daily snapshots of libdrm, Mesa,
+ddx, kernel modules [drm-nouveau-kmp-{flavor}]).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
