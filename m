@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46533] Firefox WebGL crash with Nouveau 3D;
  user claims it came installed by default on OpenSuse 12.1
-Date: Thu, 23 Feb 2012 19:34:53 +0000
-Message-ID: <bug-46533-8800-A8GBedNFhL@http.bugs.freedesktop.org/>
+Date: Thu, 23 Feb 2012 19:41:58 +0000
+Message-ID: <bug-46533-8800-pMEYCUwzGX@http.bugs.freedesktop.org/>
 References: <bug-46533-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46533
 
-Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
+Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+             Status|NEEDINFO                    |NEW
 
---- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2012-02-23 11:34:53 PST ---
-He should try packages from home:jobermayr (daily snapshots of libdrm, Mesa,
-ddx, kernel modules [drm-nouveau-kmp-{flavor}]).
+--- Comment #2 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> 2012-02-23 11:41:58 PST ---
+Johannes, do you know if Nouveau 3D is installed automatically by OpenSuse
+12.1, breaking my assumption that only people who know what they are doing, are
+using it?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
