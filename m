@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46601] New: [drm] nouveau 0000:02:00.0: DCB I2C
-	entry invalid
-Date: Sat, 25 Feb 2012 05:46:31 +0000
-Message-ID: <bug-46601-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 43029] System won't boot using nouveau and Gainward
+ Phantom adapters
+Date: Sat, 25 Feb 2012 09:42:56 +0000
+Message-ID: <bug-43029-8800-Je19KpLRBr@http.bugs.freedesktop.org/>
+References: <bug-43029-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-43029-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,54 +21,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=46601
+https://bugs.freedesktop.org/show_bug.cgi?id=43029
 
-             Bug #: 46601
-           Summary: [drm] nouveau 0000:02:00.0: DCB I2C entry invalid
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: dasfox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #7 from Adrian <trash-iFSAcyRUF8lBDgjK7y7TUQ@public.gmane.org> 2012-02-25 01:42:56 PST ---
+Created attachment 57627
+  --> https://bugs.freedesktop.org/attachment.cgi?id=57627
+Better dmesg.txt while running nouveau
 
-
-Created attachment 57619
-  --> https://bugs.freedesktop.org/attachment.cgi?id=57619
-Kernel Log
-
-Hi,
-
-I'm running Arch i686 and after I did a core/base install and booted up Arch
-for the first time I saw on the bootup/console this message;
-
-[drm] nouveau 0000:02:00.0: DCB I2C entry invalid
-
-Please note that I did not have anything installed other then a base install,
-so there wasn't any nouveau packages installed at this time and this message is
-coming from the kernel drv, not from the Xorg drv.
-
-But these are the packages I have installed in Arch, but with them installed it
-has not changed the message, it still appears.
-
-xf86-video-nouveau-0.0.16_git20120106-1
-nouveau-dri-7.11.2-1 
-
-I'm using an Nvidia GeForce 8400 GS though a HD Samsung SyncMaster P2370HD
-Monitor on HDMI.
-
-My system boots and runs fine, it's just annoying because it's always displayed
-on the screen at bootup, so if anything, it would be great to get this off the
-screen and kept in the logs...
-
-
-THANKS
+Managed to get a better dmesg while actually running with nouveau (dmesg
+through ssh).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
