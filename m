@@ -1,14 +1,12 @@
-From: Omari Stephens <xsdg-X4eXTMIVSMI@public.gmane.org>
-Subject: Re: nouveaufb handover not working properly from VGA on
- GTX460 (NVc0)
-Date: Sat, 25 Feb 2012 00:17:23 +0000
-Message-ID: <4F482893.90209@xsdg.org>
-References: <4F4826BF.5040500@xsdg.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 46601] New: [drm] nouveau 0000:02:00.0: DCB I2C
+	entry invalid
+Date: Sat, 25 Feb 2012 05:46:31 +0000
+Message-ID: <bug-46601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4F4826BF.5040500-X4eXTMIVSMI@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +19,56 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 02/25/2012 12:09 AM, Omari Stephens wrote:
-> Howdy, y'all
->
-> I just got a GTX460 and I'm having a bit of trouble getting it running.
-> In particular, when I modprobe "nouveau," the display goes black (but
-> doesn't enter power saving, so there's a signal of some sort). After
-> doing some searching, I found
-> http://nouveau.freedesktop.org/wiki/KernelModeSetting
->
-> If I unbind the nouveaufb driver, the console starts working again. If I
-> re-bind it, it freezes. Other than the display not showing anything, the
-> system seems to run properly. So clearly, this seems like a handover
-> problem.
->
-> Any suggestions for things I should try? I am using plain VGA right now,
-> which should work according to the page.
->
-> I currently have fbcon and nouveau modularized, but I'm going to try
-> compiling them in just to see if that helps. Since this is my main
-> machine, I'd like to get X working first and foremost, and then I can
-> tweak things afterward.
+https://bugs.freedesktop.org/show_bug.cgi?id=46601
 
-Oops; forgot the kernel message; they are here:
-http://codepad.org/tKIxN5H2
-
-The last message is from when I unbinded nouveaufb.  You can see that my 
-default console is the VGA one.
+             Bug #: 46601
+           Summary: [drm] nouveau 0000:02:00.0: DCB I2C entry invalid
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: dasfox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-As a small update, compiling in fbcon doesn't help anything.  I haven't 
-managed to compile in nouveau yet; there's something in the dependency 
-chain somewhere that's modularized, and I haven't tracked it down yet.
+Created attachment 57619
+  --> https://bugs.freedesktop.org/attachment.cgi?id=57619
+Kernel Log
 
---xsdg
+Hi,
+
+I'm running Arch i686 and after I did a core/base install and booted up Arch
+for the first time I saw on the bootup/console this message;
+
+[drm] nouveau 0000:02:00.0: DCB I2C entry invalid
+
+Please note that I did not have anything installed other then a base install,
+so there wasn't any nouveau packages installed at this time and this message is
+coming from the kernel drv, not from the Xorg drv.
+
+But these are the packages I have installed in Arch, but with them installed it
+has not changed the message, it still appears.
+
+xf86-video-nouveau-0.0.16_git20120106-1
+nouveau-dri-7.11.2-1 
+
+I'm using an Nvidia GeForce 8400 GS though a HD Samsung SyncMaster P2370HD
+Monitor on HDMI.
+
+My system boots and runs fine, it's just annoying because it's always displayed
+on the screen at bootup, so if anything, it would be great to get this off the
+screen and kept in the logs...
+
+
+THANKS
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
