@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 45746] [bisected] ION (NVAC) does not work with
  latest git kernel module
-Date: Sun, 26 Feb 2012 13:52:23 +0000
-Message-ID: <bug-45746-8800-i6KGBx5rcP@http.bugs.freedesktop.org/>
+Date: Sun, 26 Feb 2012 22:32:35 +0000
+Message-ID: <bug-45746-8800-7fsYjrjlKW@http.bugs.freedesktop.org/>
 References: <bug-45746-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,24 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=45746
 
-Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-26 14:32:35 PST ---
+Created attachment 57684
+  --> https://bugs.freedesktop.org/attachment.cgi?id=57684
+Patch
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|ION (NVAC) does not work    |[bisected] ION (NVAC) does
-                   |with latest git kernel      |not work with latest git
-                   |module                      |kernel module
-
---- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2012-02-26 13:52:23 UTC ---
-Offender:
-
-author    Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>    2012-01-12 05:34:54 (GMT)
-committer     Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>    2012-02-01 05:28:40 (GMT)
-commit    5103952cf50e424963ba6f492d0b479b41469498
-
-    drm/nv50-nvc0/vm: support unsnooped system memory
-
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=5103952cf50e424963ba6f492d0b479b41469498
+Can you try the attached patch
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
