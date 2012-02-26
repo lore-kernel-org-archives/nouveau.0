@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46533] Firefox WebGL crash with Nouveau 3D;
- user claims it came installed by default on OpenSuse 12.1
-Date: Sun, 26 Feb 2012 16:17:13 +0000
-Message-ID: <bug-46533-8800-oN8nz8Mnjn@http.bugs.freedesktop.org/>
-References: <bug-46533-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 45746] [bisected] ION (NVAC) does not work with
+ latest git kernel module
+Date: Sun, 26 Feb 2012 13:52:23 +0000
+Message-ID: <bug-45746-8800-i6KGBx5rcP@http.bugs.freedesktop.org/>
+References: <bug-45746-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46533-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-45746-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=46533
+https://bugs.freedesktop.org/show_bug.cgi?id=45746
 
---- Comment #9 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> 2012-02-26 08:17:13 PST ---
-(In reply to comment #8)
-> I can't reproduce it, for me WebGL works fine with mesa-7.11 (git branch) and
-> FireFox 10.0.1 (Gentoo ebuild).
+Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
 
-The user reports that while certain WebGL pages work fine, github.com causes a
-crash. Can you try github?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|ION (NVAC) does not work    |[bisected] ION (NVAC) does
+                   |with latest git kernel      |not work with latest git
+                   |module                      |kernel module
 
-(Not clear to me at all, what github might be doing with WebGL. The user on the
-Mozilla bug might be able to provide more precise STR).
+--- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2012-02-26 13:52:23 UTC ---
+Offender:
 
-> 
-> Things like mere context creation are just supposed to work, the "experimental"
-> excuse certainly doesn't count here.
+author    Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>    2012-01-12 05:34:54 (GMT)
+committer     Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>    2012-02-01 05:28:40 (GMT)
+commit    5103952cf50e424963ba6f492d0b479b41469498
 
-"experimental" in "experimental-webgl" just means that there still exist
-browser bugs, not just driver bugs, causing conformance test failures. Once
-Firefox is able to pass 100% of the conformance tests on some setup, we'll
-enable the "webgl" context id.
+    drm/nv50-nvc0/vm: support unsnooped system memory
+
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=5103952cf50e424963ba6f492d0b479b41469498
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
