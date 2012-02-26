@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 45746] [bisected] ION (NVAC) does not work with
  latest git kernel module
-Date: Sun, 26 Feb 2012 22:32:35 +0000
-Message-ID: <bug-45746-8800-7fsYjrjlKW@http.bugs.freedesktop.org/>
+Date: Sun, 26 Feb 2012 23:06:02 +0000
+Message-ID: <bug-45746-8800-sbixUqrEJi@http.bugs.freedesktop.org/>
 References: <bug-45746-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=45746
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-26 14:32:35 PST ---
-Created attachment 57684
-  --> https://bugs.freedesktop.org/attachment.cgi?id=57684
-Patch
+--- Comment #3 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2012-02-26 15:06:02 PST ---
+Created attachment 57685
+  --> https://bugs.freedesktop.org/attachment.cgi?id=57685
+Latest git master with applied patch
 
-Can you try the attached patch
+The patch fixes the issue.
+
+Please set the bug to RESOLVED/FIXED after push and apply commit SHA.
+(For transparency ...)
+
+Thanks a lot.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
