@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43029] System won't boot using nouveau and Gainward
- Phantom adapters
-Date: Sat, 25 Feb 2012 09:42:56 +0000
-Message-ID: <bug-43029-8800-Je19KpLRBr@http.bugs.freedesktop.org/>
-References: <bug-43029-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 46533] Firefox WebGL crash with Nouveau 3D;
+ user claims it came installed by default on OpenSuse 12.1
+Date: Sun, 26 Feb 2012 13:35:18 +0000
+Message-ID: <bug-46533-8800-xyntVpSOZX@http.bugs.freedesktop.org/>
+References: <bug-46533-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-43029-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-46533-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +21,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43029
+https://bugs.freedesktop.org/show_bug.cgi?id=46533
 
---- Comment #7 from Adrian <trash-iFSAcyRUF8lBDgjK7y7TUQ@public.gmane.org> 2012-02-25 01:42:56 PST ---
-Created attachment 57627
-  --> https://bugs.freedesktop.org/attachment.cgi?id=57627
-Better dmesg.txt while running nouveau
+--- Comment #8 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2012-02-26 05:35:18 PST ---
+I can't reproduce it, for me WebGL works fine with mesa-7.11 (git branch) and
+FireFox 10.0.1 (Gentoo ebuild).
 
-Managed to get a better dmesg while actually running with nouveau (dmesg
-through ssh).
+Things like mere context creation are just supposed to work, the "experimental"
+excuse certainly doesn't count here.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
