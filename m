@@ -1,74 +1,45 @@
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH] drm/nouveau: do a better job at hiding the NIH i2c
-	bit-banging algo
-Date: Tue, 28 Feb 2012 00:42:19 +0100
-Message-ID: <1330386139-22499-1-git-send-email-daniel.vetter@ffwll.ch>
-References: <20120227172548.GG4866@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 38984] xorg-nouveau: Segfault after gdm3 login,
+ EQ overflowing, GeForce 8600 GT (backtrace attached)
+Date: Tue, 28 Feb 2012 20:00:44 +0000
+Message-ID: <bug-38984-8800-NU6kzNVkrS@http.bugs.freedesktop.org/>
+References: <bug-38984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <20120227172548.GG4866@phenom.ffwll.local>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, DRI Development <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-38984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I'd like to export the corresponding functions from the i2c core
-so that I can use them in fallback bit-banging in i915.ko
+https://bugs.freedesktop.org/show_bug.cgi?id=38984
 
-v2: Adapt to new i2c export patch.
+--- Comment #5 from RomaHagen <rbyshko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-02-28 12:00:44 PST ---
+I decided to help out here. I have exactly the same video card as you (NVIDIA
+Corporation G84 [GeForce 8600 GT] (rev a1)).
 
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
----
- drivers/gpu/drm/nouveau/nouveau_i2c.c |    8 ++++----
- 1 files changed, 4 insertions(+), 4 deletions(-)
+I've installed latest kernel 3.3.0-rc5, newest nouveau kernel module and also
+nouveau drivers and mesa from git.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_i2c.c b/drivers/gpu/drm/nouveau/nouveau_i2c.c
-index 820ae7f..8f4f914 100644
---- a/drivers/gpu/drm/nouveau/nouveau_i2c.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_i2c.c
-@@ -277,7 +277,7 @@ i2c_bit_func(struct i2c_adapter *adap)
- 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
- }
- 
--const struct i2c_algorithm i2c_bit_algo = {
-+const struct i2c_algorithm nouveau_i2c_bit_algo = {
- 	.master_xfer = i2c_bit_xfer,
- 	.functionality = i2c_bit_func
- };
-@@ -384,12 +384,12 @@ nouveau_i2c_init(struct drm_device *dev)
- 		case 0: /* NV04:NV50 */
- 			port->drive = entry[0];
- 			port->sense = entry[1];
--			port->adapter.algo = &i2c_bit_algo;
-+			port->adapter.algo = &nouveau_i2c_bit_algo;
- 			break;
- 		case 4: /* NV4E */
- 			port->drive = 0x600800 + entry[1];
- 			port->sense = port->drive;
--			port->adapter.algo = &i2c_bit_algo;
-+			port->adapter.algo = &nouveau_i2c_bit_algo;
- 			break;
- 		case 5: /* NV50- */
- 			port->drive = entry[0] & 0x0f;
-@@ -402,7 +402,7 @@ nouveau_i2c_init(struct drm_device *dev)
- 				port->drive = 0x00d014 + (port->drive * 0x20);
- 				port->sense = port->drive;
- 			}
--			port->adapter.algo = &i2c_bit_algo;
-+			port->adapter.algo = &nouveau_i2c_bit_algo;
- 			break;
- 		case 6: /* NV50- DP AUX */
- 			port->drive = entry[0];
+After that I'm able to log in without problems into GNOME session. The version
+of my GDM is GDM 3.2.1.1.
+
+I can redo tests if you want.
+
+Otherwise, shouldn't be that considered "fixed upstream"?
+
+P.S. I'm new here, so do not trust me that much.
+
 -- 
-1.7.7.5
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
