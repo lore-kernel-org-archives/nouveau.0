@@ -1,16 +1,12 @@
-From: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-Subject: Re: [PATCH 01/10] dri2: Fix can_exchange() to allow
-	page-flipping on more mesa versions.
-Date: Fri, 2 Mar 2012 19:14:38 +0100
-Message-ID: <6BEC4C01-4A88-4C8B-B51F-AB6214A497A9@tuebingen.mpg.de>
-References: <1330625475-7080-1-git-send-email-mario.kleiner@tuebingen.mpg.de>
-	<1330625475-7080-2-git-send-email-mario.kleiner@tuebingen.mpg.de>
-	<CAPj87rM6TmUKnB9CFqrvntQciAtV6enJvqTmVFsWF24JydXNnw@mail.gmail.com>
-Mime-Version: 1.0 (Apple Message framework v753.1)
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 46956] New: Selecting 2xAntiAliasing causes Nexuiz
+ to crash "X Error: BadMatch, failed request (X_CreateWindow)"
+Date: Sun, 04 Mar 2012 14:01:43 +0000
+Message-ID: <bug-46956-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPj87rM6TmUKnB9CFqrvntQciAtV6enJvqTmVFsWF24JydXNnw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +16,67 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org>
-Cc: xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mar 1, 2012, at 9:37 PM, Daniel Stone wrote:
+https://bugs.freedesktop.org/show_bug.cgi?id=46956
 
-> Hi,
->
-> On 1 March 2012 18:11, Mario Kleiner  
-> <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org> wrote:
->> can_exchange() returns false and thereby prevents page
->> flipping on some drawables where page flipping would
->> work fine. This due to non-matching drawable depths values
->> between front buffer pixmap and back buffer pixmap, because
->> front buffer pixmaps inherit the depth of the screen, typically
->> 24 bits, whereas the depth value of back buffer pixmaps for a
->> given RGB8 or RGBA8 visual depends on the mesa version in use,
->> either 24 bits or 32 bits.
->>
->> Use bitsPerPixel instead of depth to decide if drawable
->> is flippable. This will still catch really incompatible
->> formats like 32 bpp vs. 16 bpp buffers.
->
-> In theory, shouldn't this be a format-compatibility check, so you
-> don't (unlikely though it is) attempt to flip to a BGR drawable on an
-> RGB configuration, or a 4444 drawable on 0565?
->
-> Cheers,
-> Daniel
+             Bug #: 46956
+           Summary: Selecting 2xAntiAliasing causes Nexuiz to crash "X
+                    Error: BadMatch, failed request (X_CreateWindow)"
+    Classification: Unclassified
+           Product: Mesa
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
-Yes, i think that would be the best solution, in theory. But i don't  
-think the info is easily available to the ddx? However, i didn't  
-search very hard.
--mario
+Created attachment 58004
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58004
+Nexuiz console output
+
+How to:
+1. Startup Nexuiz
+2. Select Settings>Effects
+3. Set Antialiasing to 2x
+4. Click Apply immediately
+5. Observe the crash
+
+Issue is not present when
+* 0xAA, 4xAA mode is selected in Nexuiz
+* Software rendering is used - LIBGL_ALWAYS_SOFTWARE=1
+
+Issue is independent on
+* kernel version
+* direct/indirect rendering - LIBGL_ALWAYS_INDIRECT=1 makes no difference
+* Desktop enviroment - Gnome3, fluxbox
+
+
+Distribution - Arch x86-64
+Nexuiz - 2.5.2 Nexuiz Linux 02:51:06 Oct  1 2009 9271 release
+kernel - 3.0.22 / 3.2.8 / nouveau-git
+libdrm - 2.4.31
+Mesa - 95594bae47d8b3302be188e6f0be2d69c5507bb3
+xf86-video-nouveau - b0d7f4ddd94154491d04dcb9698d63d61e9240d
+Xorg - 1.11.4
+
+
+
+The issue was bisected to
+
+commit b2dcf880e8bcd61be59602f5a2d18c77a5fc60c1
+Author: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Date:   Mon Jul 11 18:02:27 2011 +0200
+
+    nv50,nvc0: add support for multi-sample resources
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
