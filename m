@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46956] Selecting 2xAntiAliasing causes Nexuiz to
  crash "X Error: BadMatch, failed request (X_CreateWindow)"
-Date: Sun, 04 Mar 2012 14:19:15 +0000
-Message-ID: <bug-46956-8800-FrZFXlWtLU@http.bugs.freedesktop.org/>
+Date: Sun, 04 Mar 2012 14:21:40 +0000
+Message-ID: <bug-46956-8800-Z7OolRnLrm@http.bugs.freedesktop.org/>
 References: <bug-46956-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46956
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-04 06:19:15 PST ---
-Created attachment 58005
-  --> https://bugs.freedesktop.org/attachment.cgi?id=58005
-nv50_screen_is_format_supported - debug info
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-04 06:21:40 PST ---
+Created attachment 58006
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58006
+nv50_screen_is_format_supported - debug info, disallow sample_count=2
+
+Nexuiz works great if we return False when sample_count is 2
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
