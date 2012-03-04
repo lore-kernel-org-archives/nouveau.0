@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46956] Selecting 2xAntiAliasing causes Nexuiz to
  crash "X Error: BadMatch, failed request (X_CreateWindow)"
-Date: Sun, 04 Mar 2012 14:02:55 +0000
-Message-ID: <bug-46956-8800-YrKmKmUY7j@http.bugs.freedesktop.org/>
+Date: Sun, 04 Mar 2012 14:19:15 +0000
+Message-ID: <bug-46956-8800-FrZFXlWtLU@http.bugs.freedesktop.org/>
 References: <bug-46956-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46956
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #58004|application/octet-stream    |text/plain
-          mime type|                            |
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-04 06:19:15 PST ---
+Created attachment 58005
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58005
+nv50_screen_is_format_supported - debug info
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
