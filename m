@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46956] Selecting 2xAntiAliasing causes Nexuiz to
  crash "X Error: BadMatch, failed request (X_CreateWindow)"
-Date: Sun, 04 Mar 2012 14:24:32 +0000
-Message-ID: <bug-46956-8800-p4J5IzBZod@http.bugs.freedesktop.org/>
+Date: Sun, 04 Mar 2012 16:53:54 +0000
+Message-ID: <bug-46956-8800-TK8q5oXnvL@http.bugs.freedesktop.org/>
 References: <bug-46956-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46956
 
---- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-04 06:24:32 PST ---
-IMHO this is a mesa and/or X fault, although I'm out of ideas
+--- Comment #4 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2012-03-04 08:53:54 PST ---
+Created attachment 58007
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58007
+Patch to disable MS visuals.
 
-I'm happy to test any patches/provide any additional information
-
-Thanks
-Emil
+Does that help ?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
