@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47182] New: GeFroce 6150SE nForce 430: misaligned
- reg 0x0060081D
-Date: Sat, 10 Mar 2012 12:07:35 +0000
-Message-ID: <bug-47182-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47191] New: random xorg hang with
+ PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address
+Date: Sat, 10 Mar 2012 18:34:31 +0000
+Message-ID: <bug-47191-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,87 +19,58 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47182
+https://bugs.freedesktop.org/show_bug.cgi?id=47191
 
-             Bug #: 47182
-           Summary: GeFroce 6150SE nForce 430: misaligned reg 0x0060081D
+             Bug #: 47191
+           Summary: random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 -
+                    Unknown fault at address
     Classification: Unclassified
            Product: xorg
-           Version: 7.6 (2010.12)
-          Platform: x86 (IA32)
+           Version: unspecified
+          Platform: x86-64 (AMD64)
         OS/Version: Linux (All)
             Status: NEW
-          Severity: normal
-          Priority: medium
+          Severity: major
+          Priority: high
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
+        ReportedBy: htexmexh-1jCL+rEOqeNBDgjK7y7TUQ@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-On system start-up, the messages "misaligend reg 0x0060081D" appear in the log:
+I get random xorg hangs where the only thing I can do is REISUB out. I am
+running the nouveau driver with xorg-server-1.9.5 and kernel 3.2.7.
 
-[    3.165315] nouveau 0000:00:0d.0: setting latency timer to 64
-[    3.166731] [drm] nouveau 0000:00:0d.0: Detected an NV40 generation card
-(0x04c000a2)
-[    3.166739] fb: conflicting fb hw usage nouveaufb vs VESA VGA - removing
-generic driver
-[    3.169138] [drm] nouveau 0000:00:0d.0: Attempting to load BIOS image from
-PRAMIN
-[    3.208458] [drm] nouveau 0000:00:0d.0: ... appears to be valid
-[    3.208461] [drm] nouveau 0000:00:0d.0: BIT BIOS found
-[    3.208464] [drm] nouveau 0000:00:0d.0: Bios version 05.61.32.14
-[    3.208467] [drm] nouveau 0000:00:0d.0: TMDS table version 1.1
-[    3.208469] [drm] nouveau 0000:00:0d.0: TMDS table script pointers not
-stubbed
-[    3.208549] [drm] nouveau 0000:00:0d.0: MXM: no VBIOS data, nothing to do
-[    3.208552] [drm] nouveau 0000:00:0d.0: DCB version 3.0
-[    3.208555] [drm] nouveau 0000:00:0d.0: DCB outp 00: 01000310 00000023
-[    3.208558] [drm] nouveau 0000:00:0d.0: DCB outp 01: 00110204 974f0000
-[    3.208560] [drm] nouveau 0000:00:0d.0: DCB conn 00: 0000
-[    3.208566] [drm] nouveau 0000:00:0d.0: Parsing VBIOS init table 0 at offset
-0xDA6D
-[    3.208569] [drm] nouveau 0000:00:0d.0: ======= misaligned reg 0x0060081D
-=======
-[    3.208576] [drm] nouveau 0000:00:0d.0: ======= misaligned reg 0x0060081D
-=======
-[    3.208624] [drm] nouveau 0000:00:0d.0: Parsing VBIOS init table 1 at offset
-0xDBC4
-[    3.208626] [drm] nouveau 0000:00:0d.0: Parsing VBIOS init table 2 at offset
-0xDBC5
-[    3.208677] [drm] nouveau 0000:00:0d.0: Parsing VBIOS init table 3 at offset
-0xDD47
-[    3.208681] [drm] nouveau 0000:00:0d.0: Parsing VBIOS init table 4 at offset
-0xDD90
-[    3.209464] [drm] nouveau 0000:00:0d.0: 1 available performance level(s)
-[    3.209468] [drm] nouveau 0000:00:0d.0: 0: core 425MHz shader 425MHz
-fanspeed 100%
-[    3.209475] [drm] nouveau 0000:00:0d.0: c:
-[    3.209656] [drm] nouveau 0000:00:0d.0: Detected 256MiB VRAM
-[    3.210308] [drm] nouveau 0000:00:0d.0: 64 MiB GART (aperture)
-[    3.214207] [drm] nouveau 0000:00:0d.0: DCB type 4 not known
-[    3.214209] [drm] nouveau 0000:00:0d.0: Unknown-1 has no encoders, removing
-[    3.215658] [drm] nouveau 0000:00:0d.0: Setting dpms mode 3 on vga encoder
-(output 0)
-[    3.255055] [drm] nouveau 0000:00:0d.0: allocated 1680x1050 fb: 0x49000, bo
-f0314200
-[    3.255142] fbcon: nouveaufb (fb0) is primary device
-[    3.316418] [drm] nouveau 0000:00:0d.0: Setting dpms mode 0 on vga encoder
-(output 0)
-[    3.316422] [drm] nouveau 0000:00:0d.0: Output VGA-1 is running on CRTC 0
-using output A
-[    3.318438] fb0: nouveaufb frame buffer device
-[    3.318444] [drm] Initialized nouveau 0.0.16 20090420 for 0000:00:0d.0 on
-minor 0
-[  110.134496] [drm] nouveau 0000:00:0d.0: Setting dpms mode 3 on vga encoder
-(output 0)
-[  110.168161] [drm] nouveau 0000:00:0d.0: Setting dpms mode 0 on vga encoder
-(output 0)
-[  110.168173] [drm] nouveau 0000:00:0d.0: Output VGA-1 is running on CRTC 0
-using output A
+I find this in /var/log/messages at the time of the crash:
+Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0:
+PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address 002422c400
+Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0:
+PGRAPH_TRAP_TPDMA_2D - TP 0 - e0c: 00000000, e18: 00000000, e1c: 00100000, e20:
+00000037, e24: 0$
+Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: PGRAPH -
+TRAP
+Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: PGRAPH -
+ch 2 (0x0000b30000) subc 2 class 0x502d mthd 0x0860 data 0xffffffff
+Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: VM:
+trapped write at 0x002422c400 on ch 2 [0x00000b30] PGRAPH/PROP/DST2D reason:
+PAGE_NOT_PRESENT
+Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0:
+PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address 002526b300
+Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0:
+PGRAPH_TRAP_TPDMA_2D - TP 0 - e0c: 00000000, e18: 00000000, e1c: 000c0000, e20:
+00000037, e24: 0$
+Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: PGRAPH -
+TRAP
+Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: PGRAPH -
+ch 2 (0x0000b30000) subc 2 class 0x502d mthd 0x0860 data 0x00000000
+Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: VM:
+trapped write at 0x002526b300 on ch 2 [0x00000b30] PGRAPH/PROP/DST2D reason:
+PAGE_NOT_PRESENT
+Mar 10 16:35:46 greatdemonslayer -- MARK --
 
-
-Tested with kernel 3.1.9 an 3.3.0-rc6.
+I have gotten similar hangs with recent proprietary nvidia drivers, and that's
+why I switched to nouveau. I don't know if this is hardware related, but it
+didn't happen with older nvidia drivers.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
