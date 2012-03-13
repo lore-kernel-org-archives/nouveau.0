@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47288] System hangs with GeForce 6150SE nForce 430
-Date: Tue, 13 Mar 2012 20:30:02 +0000
-Message-ID: <bug-47288-8800-GFPib4kqqg@http.bugs.freedesktop.org/>
+Date: Tue, 13 Mar 2012 20:43:32 +0000
+Message-ID: <bug-47288-8800-6vP0WjYiev@http.bugs.freedesktop.org/>
 References: <bug-47288-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47288
 
---- Comment #1 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-03-13 13:30:02 PDT ---
-Created attachment 58394
-  --> https://bugs.freedesktop.org/attachment.cgi?id=58394
-Xorg.0.log
+--- Comment #2 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2012-03-13 13:43:32 PDT ---
+Please install drm-nouveau-kmp-{flavor}, libllvm, libdrm, Mesa and
+xorg-x11-driver-video from home:jobermayr together with kernel from
+openSUSE:12.1:Update. Only bugs present in them are valid.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
