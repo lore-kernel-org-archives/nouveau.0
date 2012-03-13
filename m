@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47191] New: random xorg hang with
- PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address
-Date: Sat, 10 Mar 2012 18:34:31 +0000
-Message-ID: <bug-47191-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37445] Nouveau regularly reports the TRAP_VFETCH
+	FAULT errors.
+Date: Tue, 13 Mar 2012 04:30:34 +0000
+Message-ID: <bug-37445-8800-ESN5gk3x82@http.bugs.freedesktop.org/>
+References: <bug-37445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-37445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,58 +21,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47191
+https://bugs.freedesktop.org/show_bug.cgi?id=37445
 
-             Bug #: 47191
-           Summary: random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 -
-                    Unknown fault at address
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: high
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: htexmexh-1jCL+rEOqeNBDgjK7y7TUQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #8 from Kevin N. <vekinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-12 21:30:34 PDT ---
+I also run into these errors.  They only occur after I reclock the card to any
+performance level above 1. If I then run Heroes of Newerth (Opengl game)  I run
+into slowdowns that will eventually lock the system up with this message in log
+repeatedly.  The messages and slowdowns stop if I manage to kill X before the
+system becomes unresponsive.  Running the game at the default performance level
+works fine.
 
+01:00.0 VGA compatible controller: nVidia Corporation G96 [GeForce 9600M GT]
+(rev a1)
 
-I get random xorg hangs where the only thing I can do is REISUB out. I am
-running the nouveau driver with xorg-server-1.9.5 and kernel 3.2.7.
-
-I find this in /var/log/messages at the time of the crash:
-Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address 002422c400
-Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_TRAP_TPDMA_2D - TP 0 - e0c: 00000000, e18: 00000000, e1c: 00100000, e20:
-00000037, e24: 0$
-Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: PGRAPH -
+Mar 11 19:23:46 [kernel] [55207.554706] [drm] nouveau 0000:01:00.0: PGRAPH -
+TRAP_VFETCH FAULT
+Mar 11 19:23:46 [kernel] [55207.554724] [drm] nouveau 0000:01:00.0: PGRAPH -
+TRAP_VFETCH 00f00000 0000fe0c 00000000 00000000
+Mar 11 19:23:46 [kernel] [55207.554726] [drm] nouveau 0000:01:00.0: PGRAPH -
 TRAP
-Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: PGRAPH -
-ch 2 (0x0000b30000) subc 2 class 0x502d mthd 0x0860 data 0xffffffff
-Mar 10 16:03:52 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: VM:
-trapped write at 0x002422c400 on ch 2 [0x00000b30] PGRAPH/PROP/DST2D reason:
-PAGE_NOT_PRESENT
-Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address 002526b300
-Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0:
-PGRAPH_TRAP_TPDMA_2D - TP 0 - e0c: 00000000, e18: 00000000, e1c: 000c0000, e20:
-00000037, e24: 0$
-Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: PGRAPH -
-TRAP
-Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: PGRAPH -
-ch 2 (0x0000b30000) subc 2 class 0x502d mthd 0x0860 data 0x00000000
-Mar 10 16:05:55 greatdemonslayer kernel: [drm] nouveau 0000:01:00.0: VM:
-trapped write at 0x002526b300 on ch 2 [0x00000b30] PGRAPH/PROP/DST2D reason:
-PAGE_NOT_PRESENT
-Mar 10 16:35:46 greatdemonslayer -- MARK --
+Mar 11 19:23:46 [kernel] [55207.554730] [drm] nouveau 0000:01:00.0: PGRAPH - ch
+4 (0x00040f0000) subc 5 class 0x8297 mthd 0x0f04 data 0xbef727ba
+Mar 11 19:23:46 [kernel] [55207.554743] [drm] nouveau 0000:01:00.0: VM: trapped
+read at 0x0000000000 on ch 4 [0x000040f0] PGRAPH/VFETCH/00 reason:
+PT_NOT_PRESENT
 
-I have gotten similar hangs with recent proprietary nvidia drivers, and that's
-why I switched to nouveau. I don't know if this is hardware related, but it
-didn't happen with older nvidia drivers.
+libdrm mesa xf86-video-nouveau and kernel current as of 3 PM 02/19/2012 PST
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
