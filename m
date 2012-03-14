@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47306] segfault in nouveau_fence_update
-Date: Wed, 14 Mar 2012 19:18:51 +0000
-Message-ID: <bug-47306-8800-LC7Rwm8G4C@http.bugs.freedesktop.org/>
+Date: Wed, 14 Mar 2012 19:33:23 +0000
+Message-ID: <bug-47306-8800-yPHceoKlls@http.bugs.freedesktop.org/>
 References: <bug-47306-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,19 +22,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47306
 
---- Comment #4 from Brian J. Murrell <brian-SquOHqY54CVWr29BmMi2cA@public.gmane.org> 2012-03-14 12:18:51 PDT ---
-(In reply to comment #3)
-> FYI: I'm getting a similar kernel oops
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-14 12:33:23 PDT ---
+Hello Gents
 
-I'm not getting an oops in the kernel.  I'm getting a segfault in userspace.
+Brian
 
- under openSUSE 12.1 with kernel 3.1.9,
-> but not with kernel 3.3.0-rc6:
+I believe your issue was addressed previously in bug 43428, can you please
+confirm with your distribution if mesa has the patches mentioned?
 
-I'm no expert but I don't think your issue is the same as mine.  In fact
-searching for my issue I did run into lots of oopses in the kernel
-nouveau_fence_update() function but AFAIU, what I am running into is a
-userspace nouveau_fence_update() function segfault.
+
+Frank
+
+Can you take a look at bug 38931, if you believe it's that "fix" for the issue
+we should be possible to "backport"/cherrypick it
+
+
+Regards
+Emil
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
