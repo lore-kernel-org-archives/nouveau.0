@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47306] segfault in nouveau_fence_update
-Date: Wed, 14 Mar 2012 19:33:23 +0000
-Message-ID: <bug-47306-8800-yPHceoKlls@http.bugs.freedesktop.org/>
-References: <bug-47306-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 46956] Selecting 2xAntiAliasing causes Nexuiz to
+ crash "X Error: BadMatch, failed request (X_CreateWindow)"
+Date: Wed, 14 Mar 2012 19:59:19 +0000
+Message-ID: <bug-46956-8800-XBsPTJys3G@http.bugs.freedesktop.org/>
+References: <bug-46956-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-46956-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47306
+https://bugs.freedesktop.org/show_bug.cgi?id=46956
 
---- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-14 12:33:23 PDT ---
-Hello Gents
+--- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-14 12:59:19 PDT ---
+The issue exists in xonotic 0.6 (nexuiz fork)
 
-Brian
-
-I believe your issue was addressed previously in bug 43428, can you please
-confirm with your distribution if mesa has the patches mentioned?
-
-
-Frank
-
-Can you take a look at bug 38931, if you believe it's that "fix" for the issue
-we should be possible to "backport"/cherrypick it
-
+I would not mind filing the bug in xonotic if it is an application issue
 
 Regards
 Emil
