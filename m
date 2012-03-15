@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47306] segfault in nouveau_fence_update
-Date: Thu, 15 Mar 2012 12:48:17 +0000
-Message-ID: <bug-47306-8800-lornJeirjw@http.bugs.freedesktop.org/>
+Date: Thu, 15 Mar 2012 15:47:30 +0000
+Message-ID: <bug-47306-8800-DxhAdDUg2t@http.bugs.freedesktop.org/>
 References: <bug-47306-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,19 +22,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47306
 
---- Comment #8 from Brian J. Murrell <brian-SquOHqY54CVWr29BmMi2cA@public.gmane.org> 2012-03-15 05:48:17 PDT ---
-I've now rolled back to the distribution's mesa and still getting the same
-results from gdb:
+--- Comment #9 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2012-03-15 08:47:30 PDT ---
+Looks like memory corruption to me now, and comically 0x4071d000 could even be
+a valid address, just not on the CPU (on nv50 VRAM virtual addresses start at
+0x40000000 and are at least 4 KiB aligned).
 
+If you want to debug it, I'd either put a watch point on the memory location
+with gdb once it's available, i.e. when chan->user_private = screen is set in
+nv50_screen_create, or add lots of debug prints in the nv50 code to bisect the
+point where it gets modified (usually it shouldn't until screen destruction).
 
-nouveau_fence_update (screen=0x4071d000, flushed=1 '\001')
-    at nouveau_fence.c:141
-141    nouveau_fence.c: No such file or directory.
-    in nouveau_fence.c
-(gdb) print screen
-$1 = (struct nouveau_screen *) 0x4071d000
-(gdb) print *screen
-Cannot access memory at address 0x4071d000
+Or you could try mesa-8.0 and hope it's gone there.
+
+Btw. I hope you're not building with clang, it has issues with the linked-list
+implementation in gallium, and the fence code uses it ...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
