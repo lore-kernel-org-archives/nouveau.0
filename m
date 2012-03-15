@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47306] segfault in nouveau_fence_update
-Date: Thu, 15 Mar 2012 12:39:57 +0000
-Message-ID: <bug-47306-8800-uuVXwFtsiQ@http.bugs.freedesktop.org/>
+Date: Thu, 15 Mar 2012 12:48:17 +0000
+Message-ID: <bug-47306-8800-lornJeirjw@http.bugs.freedesktop.org/>
 References: <bug-47306-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47306
 
---- Comment #7 from Brian J. Murrell <brian-SquOHqY54CVWr29BmMi2cA@public.gmane.org> 2012-03-15 05:39:57 PDT ---
-(In reply to comment #5)
-> 
-> I believe your issue was addressed previously in bug 43428, can you please
-> confirm with your distribution if mesa has the patches mentioned?
+--- Comment #8 from Brian J. Murrell <brian-SquOHqY54CVWr29BmMi2cA@public.gmane.org> 2012-03-15 05:48:17 PDT ---
+I've now rolled back to the distribution's mesa and still getting the same
+results from gdb:
 
-Hrm.  This patch might actually be making it worse.  Before it, I could likely
-start this opengl app. 1 in 5-10 times, but now it seems to be crashing every
-single time.  Tried nearly a dozen times now and no go.
+
+nouveau_fence_update (screen=0x4071d000, flushed=1 '\001')
+    at nouveau_fence.c:141
+141    nouveau_fence.c: No such file or directory.
+    in nouveau_fence.c
+(gdb) print screen
+$1 = (struct nouveau_screen *) 0x4071d000
+(gdb) print *screen
+Cannot access memory at address 0x4071d000
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
