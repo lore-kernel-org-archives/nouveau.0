@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47288] System hangs with GeForce 6150SE nForce 430
-Date: Fri, 16 Mar 2012 09:13:06 +0000
-Message-ID: <bug-47288-8800-FMZcQFosC1@http.bugs.freedesktop.org/>
-References: <bug-47288-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47306] segfault in nouveau_fence_update
+Date: Fri, 16 Mar 2012 09:18:37 +0000
+Message-ID: <bug-47306-8800-nGuSeUmkDH@http.bugs.freedesktop.org/>
+References: <bug-47306-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47288-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,10 +20,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47288
+https://bugs.freedesktop.org/show_bug.cgi?id=47306
 
---- Comment #5 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-03-16 02:13:06 PDT ---
-Got the same hang a few minutes ago with updated packages. :-(
+--- Comment #10 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-03-16 02:18:37 PDT ---
+(In reply to comment #5)
+> ...
+> Frank
+> 
+> Can you take a look at bug 38931, if you believe it's that "fix" for the issue
+> we should be possible to "backport"/cherrypick it
+
+I'm not sure, looks similar. You're the expert ;-)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
