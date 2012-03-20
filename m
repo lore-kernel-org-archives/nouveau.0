@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47556] nouveau driver can`t handle xrandr requests
-Date: Tue, 20 Mar 2012 19:21:41 +0000
-Message-ID: <bug-47556-8800-xVuxhtpTMv@http.bugs.freedesktop.org/>
+Date: Tue, 20 Mar 2012 19:42:39 +0000
+Message-ID: <bug-47556-8800-pcUybpWBf3@http.bugs.freedesktop.org/>
 References: <bug-47556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,24 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47556
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-20 12:42:39 PDT ---
+Hi Elmar
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #58732|text/x-log                  |text/plain
-          mime type|                            |
+Looking at your second log, I've noticed the following
+
+The kernel is failing to allocate new buffer object, meaning that
+either
+* xf86-video-nouveau, is not requesting the correct format/size
+* libdrm is not wise enough to forward the info to the kernel
+or
+* kernel is not aware about the specific format, etc
+
+Can you please check if there is an updated packages from openSUSE - see bug
+47288 comment 2
+
+
+Thanks
+Emil
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
