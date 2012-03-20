@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47556] nouveau driver can`t handle xrandr requests
-Date: Tue, 20 Mar 2012 19:19:53 +0000
-Message-ID: <bug-47556-8800-KaN3PqVYVv@http.bugs.freedesktop.org/>
+Date: Tue, 20 Mar 2012 19:21:41 +0000
+Message-ID: <bug-47556-8800-xVuxhtpTMv@http.bugs.freedesktop.org/>
 References: <bug-47556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #58730|application/x-trash         |text/plain
+  Attachment #58732|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
