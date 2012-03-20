@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
- is unable to boot
-Date: Tue, 20 Mar 2012 05:11:57 +0000
-Message-ID: <bug-27501-8800-cm7ILstq3K@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47556] New: nouveau driver can`t handle xrandr
+	requests
+Date: Tue, 20 Mar 2012 09:14:07 +0000
+Message-ID: <bug-47556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +19,39 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=47556
 
---- Comment #20 from Shea Levy <shea-yfkUTty7RcRWk0Htik3J/w@public.gmane.org> 2012-03-19 22:11:57 PDT ---
-FWIW, I'm seeing this bug as well. Using Linux 3.3, both when EFI booting
-(through the EFI boot stub) and when BIOS booting. I have a MBP 5,5. I'm
-currently using fbdev for X, I'll try some of the workarounds here to see if a
-non-accelerated nouveau works at least.
+             Bug #: 47556
+           Summary: nouveau driver can`t handle xrandr requests
+    Classification: Unclassified
+           Product: xorg
+           Version: 7.6 (2010.12)
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: estellnb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created attachment 58730
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58730
+Xorg.0.log of crashed Xorg
+
+If I try to position my main screen leftsides to my integrated screen nouveau
+comes out on strike:
+
+xrandr --output LVDS-1 --right-of VGA-1
+
+  Previously it was showing garbage on the external screen but now with Xorg
+7.6_1.10.4-201.1 and nouveau-0.0.16_20110720_b806e3f-34 it is just switching to
+the text console (you can see it) and then crashing Xorg itself.
+
+  A Xinerama setup with nouveau would be very fine for my working environment
+(external screen + keyboard, at different resolution).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
