@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47442] nvfx_screen_get_param:95 - Warning: unknown
-	PIPE_CAP
-Date: Sun, 18 Mar 2012 19:57:55 +0000
-Message-ID: <bug-47442-8800-XmXA1mcxWD@http.bugs.freedesktop.org/>
-References: <bug-47442-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
+ is unable to boot
+Date: Tue, 20 Mar 2012 05:11:57 +0000
+Message-ID: <bug-27501-8800-cm7ILstq3K@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47442-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +21,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47442
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
-Tollef Fog Heen <tfheen-YAMvcpje2t0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         AssignedTo|sitewranglers-PD4FTy7X32mqWrfYKbYh0A@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |ktop.org                    |rg
-          QAContact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-            Product|freedesktop.org             |xorg
-          Component|Bugzilla                    |Driver/nouveau
+--- Comment #20 from Shea Levy <shea-yfkUTty7RcRWk0Htik3J/w@public.gmane.org> 2012-03-19 22:11:57 PDT ---
+FWIW, I'm seeing this bug as well. Using Linux 3.3, both when EFI booting
+(through the EFI boot stub) and when BIOS booting. I have a MBP 5,5. I'm
+currently using fbdev for X, I'll try some of the workarounds here to see if a
+non-accelerated nouveau works at least.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
