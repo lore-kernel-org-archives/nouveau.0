@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47556] nouveau driver can`t handle xrandr requests
-Date: Tue, 20 Mar 2012 19:42:39 +0000
-Message-ID: <bug-47556-8800-pcUybpWBf3@http.bugs.freedesktop.org/>
-References: <bug-47556-8800@http.bugs.freedesktop.org/>
+From: Shea Levy <shea-yfkUTty7RcRWk0Htik3J/w@public.gmane.org>
+Subject: Macbook Pro 5,3 Video Issues
+Date: Tue, 20 Mar 2012 18:09:07 -0400
+Message-ID: <4F690003.1040404@shealevy.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,31 +15,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47556
+Hello,
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-20 12:42:39 PDT ---
-Hi Elmar
+On my system (Linux 3.3, booting in EFI mode, using Nouveau with 
+nouveau.noaccel=1 due to 
+https://bugs.freedesktop.org/show_bug.cgi?id=27501 ), I can't figure out 
+how to change the backlight or switch which of the two graphics cards (I 
+have an Nvidia 9600M GT and a 9400M, both are recognized by nouveau but 
+only the 9400M is ever used) Linux uses for the framebuffer or X uses 
+for the output. I have /sys/class/backlight/nv_backlight, and writting 
+to nv_backlight/brightness does change the value in 
+nv_backlight/actual_brightness, but no actual screen changes occur. I'm 
+using the in-tree staging version of nouveau, so I wasn't sure which ML 
+this should go to.
 
-Looking at your second log, I've noticed the following
-
-The kernel is failing to allocate new buffer object, meaning that
-either
-* xf86-video-nouveau, is not requesting the correct format/size
-* libdrm is not wise enough to forward the info to the kernel
-or
-* kernel is not aware about the specific format, etc
-
-Can you please check if there is an updated packages from openSUSE - see bug
-47288 comment 2
-
-
-Thanks
-Emil
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Cheers,
+Shea Levy
