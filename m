@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47556] New: nouveau driver can`t handle xrandr
-	requests
-Date: Tue, 20 Mar 2012 09:14:07 +0000
-Message-ID: <bug-47556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47556] nouveau driver can`t handle xrandr requests
+Date: Tue, 20 Mar 2012 09:16:31 +0000
+Message-ID: <bug-47556-8800-rjg8dO6wnQ@http.bugs.freedesktop.org/>
+References: <bug-47556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-47556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +22,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47556
 
-             Bug #: 47556
-           Summary: nouveau driver can`t handle xrandr requests
-    Classification: Unclassified
-           Product: xorg
-           Version: 7.6 (2010.12)
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: estellnb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Elmar Stellnberger <estellnb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-20 02:16:31 PDT ---
+Created attachment 58732
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58732
+Xorg.0.log: external screen only, 1920x1200
 
-
-Created attachment 58730
-  --> https://bugs.freedesktop.org/attachment.cgi?id=58730
-Xorg.0.log of crashed Xorg
-
-If I try to position my main screen leftsides to my integrated screen nouveau
-comes out on strike:
-
-xrandr --output LVDS-1 --right-of VGA-1
-
-  Previously it was showing garbage on the external screen but now with Xorg
-7.6_1.10.4-201.1 and nouveau-0.0.16_20110720_b806e3f-34 it is just switching to
-the text console (you can see it) and then crashing Xorg itself.
-
-  A Xinerama setup with nouveau would be very fine for my working environment
-(external screen + keyboard, at different resolution).
+Just setting the external screen to 1920x1200 gives an error as well:
+# xrandr --output LVDS-1 --off
+# xrandr --output VGA-1 --mode 1920x1200
+X Error of failed request:  BadMatch (invalid parameter attributes)
+  Major opcode of failed request:  149 (RANDR)
+  Minor opcode of failed request:  7 (RRSetScreenSize)
+  Serial number of failed request:  28
+  Current serial number in output stream:  29
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
