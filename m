@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 45017] [GT216] Distorted screen on MacBook Air 3,2
-Date: Tue, 20 Mar 2012 17:48:48 +0000
-Message-ID: <bug-45017-8800-OhDGKl8Vcc@http.bugs.freedesktop.org/>
-References: <bug-45017-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47556] nouveau driver can`t handle xrandr requests
+Date: Tue, 20 Mar 2012 19:19:53 +0000
+Message-ID: <bug-47556-8800-KaN3PqVYVv@http.bugs.freedesktop.org/>
+References: <bug-47556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-45017-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,10 +20,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=45017
+https://bugs.freedesktop.org/show_bug.cgi?id=47556
 
---- Comment #5 from Peter Hedlund <peter-ZhczRVdH8pMaSmDfWPxaQgC/G2K4zDHf@public.gmane.org> 2012-03-20 10:48:48 PDT ---
-Fixed for me in linux kernel 3.3.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #58730|application/x-trash         |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
