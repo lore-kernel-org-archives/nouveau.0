@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
- is unable to boot
-Date: Tue, 20 Mar 2012 17:26:24 +0000
-Message-ID: <bug-27501-8800-1vm61jgZPj@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 45017] [GT216] Distorted screen on MacBook Air 3,2
+Date: Tue, 20 Mar 2012 17:48:48 +0000
+Message-ID: <bug-45017-8800-OhDGKl8Vcc@http.bugs.freedesktop.org/>
+References: <bug-45017-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-45017-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,10 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=45017
 
---- Comment #21 from Shea Levy <shea-yfkUTty7RcRWk0Htik3J/w@public.gmane.org> 2012-03-20 10:26:24 PDT ---
-(In reply to comment #20)
-> FWIW, I'm seeing this bug as well. Using Linux 3.3, both when EFI booting
-> (through the EFI boot stub) and when BIOS booting. I have a MBP 5,5. I'm
-> currently using fbdev for X, I'll try some of the workarounds here to see if a
-> non-accelerated nouveau works at least.
-
-
-Sorry, I have a 5,3 not a 5,5
+--- Comment #5 from Peter Hedlund <peter-ZhczRVdH8pMaSmDfWPxaQgC/G2K4zDHf@public.gmane.org> 2012-03-20 10:48:48 PDT ---
+Fixed for me in linux kernel 3.3.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
