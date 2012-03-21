@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47556] nouveau driver can`t handle xrandr requests
-Date: Wed, 21 Mar 2012 15:11:12 +0000
-Message-ID: <bug-47556-8800-8ARsDG3Lgp@http.bugs.freedesktop.org/>
+Date: Wed, 21 Mar 2012 15:12:07 +0000
+Message-ID: <bug-47556-8800-3TqFsNe7BD@http.bugs.freedesktop.org/>
 References: <bug-47556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47556
 
---- Comment #9 from Elmar Stellnberger <estellnb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-21 08:11:12 PDT ---
-Created attachment 58820
-  --> https://bugs.freedesktop.org/attachment.cgi?id=58820
-Xorg.ltrace: xinerama setup
+--- Comment #10 from Elmar Stellnberger <estellnb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-21 08:12:07 PDT ---
+Created attachment 58821
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58821
+Xorg.dmesg: xinerama setup
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
