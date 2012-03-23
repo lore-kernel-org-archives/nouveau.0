@@ -1,7 +1,8 @@
 From: Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>
-Subject: [PATCH 1/3] drm/nouveau: Initialize has_optimus
-Date: Fri, 23 Mar 2012 22:57:05 +0100
-Message-ID: <1332539827-13047-2-git-send-email-andreas@meetr.de>
+Subject: [PATCH 2/3] drm/nouveau: Check dsm on switcheroo
+	unregister
+Date: Fri, 23 Mar 2012 22:57:06 +0100
+Message-ID: <1332539827-13047-3-git-send-email-andreas@meetr.de>
 References: <1332539827-13047-1-git-send-email-andreas@meetr.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,27 +21,31 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-During dsm detection it is possible that has_optimus is read uninitialized,
-which can lead to optimus being detected erroneously. This patch
-initialized has_optimus with 0.
+Currently vga_switcheroo_unregister_handler is called unconditionally when
+nouveau is unloaded, even when nouveau never registered a handler. This
+interferes with other switcheroo handlers, as vga_switcheroo doesn't check who
+called unregister_handler, but simply unregisters the current handler. This
+patch adds a check so unregister is only called if a handler was registered by
+nouveau before.
 
 Signed-off-by: Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_acpi.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_acpi.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-index 7814a76..284bd25 100644
+index 284bd25..fc841e8 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-@@ -270,7 +270,7 @@ static bool nouveau_dsm_detect(void)
- 	struct acpi_buffer buffer = {sizeof(acpi_method_name), acpi_method_name};
- 	struct pci_dev *pdev = NULL;
- 	int has_dsm = 0;
--	int has_optimus;
-+	int has_optimus = 0;
- 	int vga_count = 0;
- 	bool guid_valid;
- 	int retval;
+@@ -338,7 +338,8 @@ void nouveau_switcheroo_optimus_dsm(void)
+ 
+ void nouveau_unregister_dsm_handler(void)
+ {
+-	vga_switcheroo_unregister_handler();
++	if (nouveau_dsm_priv.optimus_detected || nouveau_dsm_priv.dsm_detected)
++		vga_switcheroo_unregister_handler();
+ }
+ 
+ /* retrieve the ROM in 4k blocks */
 -- 
 1.7.9.1
