@@ -1,9 +1,9 @@
-From: Shea Levy <shea-yfkUTty7RcRWk0Htik3J/w@public.gmane.org>
-Subject: nv_backlight non-functional on MBP 5,3 in EFI mode
-Date: Thu, 22 Mar 2012 08:20:55 -0400
-Message-ID: <4F6B1927.6080002@shealevy.com>
+From: Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>
+Subject: [PATCH 0/3] Prepare nouveau for other switcheroo handlers
+Date: Fri, 23 Mar 2012 22:57:04 +0100
+Message-ID: <1332539827-13047-1-git-send-email-andreas@meetr.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -18,15 +18,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
+While working on a vga_switcheroo handler for Apple's Macbook Pros I stumbled
+upon a few bugs regarding the usage of nouveau with other switcheroo handlers
+and module unloading, here are my fixes for them.
 
-On my MBP (booted with noaccel=1 due to 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501), the nv_backlight 
-sysfs knob is non-functional (though modifying nv_backlight/brightness 
-does change nv_backlight/actual_brightness). Recently a patch was 
-submitted to LKML to create a brightness control for Apple computers 
-with a gmux (https://lkml.org/lkml/2012/3/16/388), the created sysfs 
-knob does work for me.
 
-Cheers,
-Shea Levy
+Andreas Heider (3):
+  drm/nouveau: Initialize has_optimus
+  drm/nouveau: Check dsm on switcheroo unregister
+  drm/nouveau: Unregister switcheroo client on exit
+
+ drivers/gpu/drm/nouveau/nouveau_acpi.c  |    5 +++--
+ drivers/gpu/drm/nouveau/nouveau_state.c |    2 ++
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+--
+1.7.9.1
