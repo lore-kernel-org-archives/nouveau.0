@@ -1,8 +1,8 @@
 From: Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>
-Subject: [PATCH 2/3] drm/nouveau: Check dsm on switcheroo
-	unregister
-Date: Fri, 23 Mar 2012 22:57:06 +0100
-Message-ID: <1332539827-13047-3-git-send-email-andreas@meetr.de>
+Subject: [PATCH 3/3] drm/nouveau: Unregister switcheroo client on
+	exit
+Date: Fri, 23 Mar 2012 22:57:07 +0100
+Message-ID: <1332539827-13047-4-git-send-email-andreas@meetr.de>
 References: <1332539827-13047-1-git-send-email-andreas@meetr.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,31 +21,31 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Currently vga_switcheroo_unregister_handler is called unconditionally when
-nouveau is unloaded, even when nouveau never registered a handler. This
-interferes with other switcheroo handlers, as vga_switcheroo doesn't check who
-called unregister_handler, but simply unregisters the current handler. This
-patch adds a check so unregister is only called if a handler was registered by
-nouveau before.
-
-Signed-off-by: Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>
+Currently nouveau only registers as a vga_switcheroo client, but never
+unregisters. This patch adds the necessary unregister calls.
 ---
- drivers/gpu/drm/nouveau/nouveau_acpi.c |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_state.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-index 284bd25..fc841e8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-@@ -338,7 +338,8 @@ void nouveau_switcheroo_optimus_dsm(void)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c b/drivers/gpu/drm/nouveau/nouveau_state.c
+index 9da6a74..2e11361 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_state.c
++++ b/drivers/gpu/drm/nouveau/nouveau_state.c
+@@ -912,6 +912,7 @@ out_bios:
+ out_display_early:
+ 	engine->display.late_takedown(dev);
+ out:
++	vga_switcheroo_unregister_client(dev->pdev);
+ 	vga_client_register(dev->pdev, NULL, NULL, NULL);
+ 	return ret;
+ }
+@@ -969,6 +970,7 @@ static void nouveau_card_takedown(struct drm_device *dev)
  
- void nouveau_unregister_dsm_handler(void)
- {
--	vga_switcheroo_unregister_handler();
-+	if (nouveau_dsm_priv.optimus_detected || nouveau_dsm_priv.dsm_detected)
-+		vga_switcheroo_unregister_handler();
+ 	nouveau_irq_fini(dev);
+ 
++	vga_switcheroo_unregister_client(dev->pdev);
+ 	vga_client_register(dev->pdev, NULL, NULL, NULL);
  }
  
- /* retrieve the ROM in 4k blocks */
 -- 
 1.7.9.1
