@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47796] Powerpoint 2010 Viewer crashes with Wine and
  the Nouveau driver: "Unhandled exception: assertion failed"
-Date: Sat, 24 Mar 2012 09:16:17 +0000
-Message-ID: <bug-47796-8800-vutEZyNZVO@http.bugs.freedesktop.org/>
+Date: Sat, 24 Mar 2012 09:17:02 +0000
+Message-ID: <bug-47796-8800-kDBBPR2Biz@http.bugs.freedesktop.org/>
 References: <bug-47796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47796
 
---- Comment #1 from alister.hood-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-03-24 02:16:17 PDT ---
-Created attachment 58960
-  --> https://bugs.freedesktop.org/attachment.cgi?id=58960
-backtrace from Wine
+--- Comment #2 from alister.hood-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-03-24 02:17:02 PDT ---
+Created attachment 58961
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58961
+output of lspci -vvv
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
