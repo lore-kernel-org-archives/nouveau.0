@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47790] sys-kernel/gentoo-sources-3.3.0 - black
- screen on second nouveau display
-Date: Sat, 24 Mar 2012 13:43:01 +0000
-Message-ID: <bug-47790-8800-usIOdVA8n9@http.bugs.freedesktop.org/>
-References: <bug-47790-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 45957] xorg-server 1.12rc3,
+ mesa 8.0 crashes when starting totem 3.2(uses clutter-gst)
+Date: Sat, 24 Mar 2012 18:52:00 +0000
+Message-ID: <bug-45957-8800-ATJ4mZagpm@http.bugs.freedesktop.org/>
+References: <bug-45957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-45957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +21,19 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47790
+https://bugs.freedesktop.org/show_bug.cgi?id=45957
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-24 06:43:01 PDT ---
-Hi Dan
+Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> changed:
 
-Can you attach (plain/text) the dmesg output of 3.3.0 and 3.2.12
-
-Cheers
-Emil
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Status Whiteboard|                            |2012BRB_Reviewed
+           Severity|normal                      |critical
+           Priority|medium                      |high
+         AssignedTo|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+             Blocks|40982                       |
+          Component|Server/Ext/DRI              |Driver/nouveau
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
