@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47790] New: sys-kernel/gentoo-sources-3.3.0 - black
- screen on second nouveau display
-Date: Sat, 24 Mar 2012 04:21:56 +0000
-Message-ID: <bug-47790-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47796] New: Powerpoint 2010 Viewer crashes with Wine
+ and the Nouveau driver: "Unhandled exception: assertion failed"
+Date: Sat, 24 Mar 2012 02:14:38 +0000
+Message-ID: <bug-47796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,42 +19,47 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47790
+https://bugs.freedesktop.org/show_bug.cgi?id=47796
 
-             Bug #: 47790
-           Summary: sys-kernel/gentoo-sources-3.3.0 - black screen on
-                    second nouveau display
+             Bug #: 47796
+           Summary: Powerpoint 2010 Viewer crashes with Wine and the
+                    Nouveau driver: "Unhandled exception: assertion
+                    failed"
     Classification: Unclassified
            Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
          Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: dan-eYclldcT4NIrZ0Rg1FI7rOTW4wlIGRCZ@public.gmane.org
+        ReportedBy: alister.hood-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-As per bug filed here : https://bugs.gentoo.org/show_bug.cgi?id=409243
-Similar to report here :
-http://groups.google.com/group/linux.kernel/browse_thread/thread/84bc3d6514bc4069/8cbfe199bbbdcdda?show_docid=8cbfe199bbbdcdda&pli=1
-Possibly identical... I just noticed he appears to have exactly the same card.
+Created attachment 58959
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58959
+kernel log
 
-Following an upgrade to Linux 3.3.0 (from 3.2.11) all output on second monitor
-connected a single card( 01:00.0 VGA compatible controller: NVIDIA Corporation
-NV36.2 [GeForce FX 5700] (rev a1)) is black/blank.
+I have an Nvidia MX440 graphics card and am running Arch Linux.  When I run MS
+Powerpoint Viewer 2010 (using Wine), a file select dialog opens for me to
+select a powerpoint file, but then it crashes a second or so after the dialog
+opens.
+On the Wine tracker I was told that it was a problem with the nouveau driver,
+not Wine:
 
-The system appears to believe a monitor is connected, it gets EDID, it shows up
-in configuration utils, you can drag windows onto it (but not see them) etc.
+> > This is an assertion in nouveau driver, so you have to try to update it or use
+> > proprietary one.
+> To add to that, the backtrace is missing function names and line numbers, but
+> this is probably the assert in get_rt_format() in nv10_state_fb.c. It gets
+> triggered because during wined3d startup we try to attach a GL_RGB5_A1 texture
+> (among various others) to an FBO. The driver should probably fail the FBO
+> completeness test for formats it doesn't know how to handle instead of
+> asserting.
 
-I have since downgraded again (to 3.2.12) and all is well again.
-
-All this was with the built in nouveau driver in the kernel, the Gentoo team
-suggested using the external module (nouveau-drm-20120322) but this produces
-exactly the same results.
+I am running current GIT, but this issue is longstanding.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
