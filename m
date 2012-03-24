@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47790] sys-kernel/gentoo-sources-3.3.0 - black
  screen on second nouveau display
-Date: Sat, 24 Mar 2012 23:32:54 +0000
-Message-ID: <bug-47790-8800-U20vQvl87K@http.bugs.freedesktop.org/>
+Date: Sat, 24 Mar 2012 23:33:20 +0000
+Message-ID: <bug-47790-8800-mwUNPpz21o@http.bugs.freedesktop.org/>
 References: <bug-47790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47790
 
---- Comment #2 from Dan Goodliffe <dan-eYclldcT4NIrZ0Rg1FI7rOTW4wlIGRCZ@public.gmane.org> 2012-03-24 16:32:54 PDT ---
-Created attachment 58989
-  --> https://bugs.freedesktop.org/attachment.cgi?id=58989
-dmesg from 3.3.0
+--- Comment #3 from Dan Goodliffe <dan-eYclldcT4NIrZ0Rg1FI7rOTW4wlIGRCZ@public.gmane.org> 2012-03-24 16:33:20 PDT ---
+Created attachment 58990
+  --> https://bugs.freedesktop.org/attachment.cgi?id=58990
+dmesg from 3.2.12
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
