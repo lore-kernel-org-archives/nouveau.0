@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47790] sys-kernel/gentoo-sources-3.3.0 - black
  screen on second nouveau display
-Date: Sun, 25 Mar 2012 23:02:44 +0000
-Message-ID: <bug-47790-8800-gYc4P1v3o9@http.bugs.freedesktop.org/>
+Date: Sun, 25 Mar 2012 23:20:49 +0000
+Message-ID: <bug-47790-8800-wWnLrK4aoE@http.bugs.freedesktop.org/>
 References: <bug-47790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47790
 
---- Comment #8 from Dan Goodliffe <dan-eYclldcT4NIrZ0Rg1FI7rOTW4wlIGRCZ@public.gmane.org> 2012-03-25 16:02:44 PDT ---
-Primary display is an Acer X221W connected to the DVI port with a VGA adapter.
-Secondary display is an Aver AL702 connected to the VGA directly.
-vbios coming soon... just need to boot into a kernel with support for it.
+--- Comment #9 from Dan Goodliffe <dan-eYclldcT4NIrZ0Rg1FI7rOTW4wlIGRCZ@public.gmane.org> 2012-03-25 16:20:49 PDT ---
+Created attachment 59043
+  --> https://bugs.freedesktop.org/attachment.cgi?id=59043
+vbios.rom
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
