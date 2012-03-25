@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47846] Nouveau -> overscan using HDMI
-Date: Sun, 25 Mar 2012 22:34:30 +0000
-Message-ID: <bug-47846-8800-QDv2GsYG48@http.bugs.freedesktop.org/>
-References: <bug-47846-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47790] sys-kernel/gentoo-sources-3.3.0 - black
+ screen on second nouveau display
+Date: Sun, 25 Mar 2012 23:02:44 +0000
+Message-ID: <bug-47790-8800-gYc4P1v3o9@http.bugs.freedesktop.org/>
+References: <bug-47790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47846
+https://bugs.freedesktop.org/show_bug.cgi?id=47790
 
---- Comment #2 from lameventanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-03-25 15:34:30 PDT ---
-(In reply to comment #1)
-> Kernel 3.3 introduced underscan control
-> 
-> After updating, you can enable and adjust it using xrandr
-> eg.
-> xrandr --output HDMI-1 --set underscan on
-> xrandr --output HDMI-1 --set "underscan hborder" 54 --set "underscan vborder"
-> 51"
-> 
-> Would you mind giving it a try
-> 
-> Cheers
-> Emil
-
-I will try that, however the boot messages and console is also cropped, it
-would be better to have this working from the beginning.
+--- Comment #8 from Dan Goodliffe <dan-eYclldcT4NIrZ0Rg1FI7rOTW4wlIGRCZ@public.gmane.org> 2012-03-25 16:02:44 PDT ---
+Primary display is an Acer X221W connected to the DVI port with a VGA adapter.
+Secondary display is an Aver AL702 connected to the VGA directly.
+vbios coming soon... just need to boot into a kernel with support for it.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
