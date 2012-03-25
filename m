@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47790] sys-kernel/gentoo-sources-3.3.0 - black
  screen on second nouveau display
-Date: Sat, 24 Mar 2012 23:34:34 +0000
-Message-ID: <bug-47790-8800-mwqUeufzlQ@http.bugs.freedesktop.org/>
+Date: Sun, 25 Mar 2012 04:48:04 +0000
+Message-ID: <bug-47790-8800-LJAgf1Ecsn@http.bugs.freedesktop.org/>
 References: <bug-47790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,31 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47790
 
---- Comment #4 from Dan Goodliffe <dan-eYclldcT4NIrZ0Rg1FI7rOTW4wlIGRCZ@public.gmane.org> 2012-03-24 16:34:34 PDT ---
-dmesgs attached as requested... having just compared them myself, I think the
-interesting bit is around line 396 in 3.3.0... but I'm not the expert :)
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-25 04:48:04 UTC ---
+A quick look indicates
+
+* VGA switcheroo: detected Optimus DSM method \ handle
+The above should not be relevant to your issue
+
+* 0xE4DC: Parsing digital output script table
+Most likely causing the problem
+
+
+Would you mind attaching your vbios [1] and providing more information
+regarding your display/setup
+eg.
+* Primary - connected via the VGA (card), DVI to VGA converter used - xxx
+monitor
+* Secondary ...
+
+Have you tried booting with the secondary monitor only (unplug the primary) ?
 
 Cheers
-Dan
+Emil
+
+[1]
+cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom 
+Note: assuming that you have debugfs mounted on "/sys/kernel/debug"
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
