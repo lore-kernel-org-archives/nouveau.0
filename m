@@ -1,11 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47925] New: [drm] GT220 drm fails on boot
-Date: Mon, 26 Mar 2012 20:24:29 +0000
-Message-ID: <bug-47925-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40050] freezing nouveau,
+	when playing videos on a 2nd screen
+Date: Tue, 27 Mar 2012 02:40:04 +0000
+Message-ID: <bug-40050-8800-Bg2cqCedJt@http.bugs.freedesktop.org/>
+References: <bug-40050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-40050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,35 +21,29 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47925
+https://bugs.freedesktop.org/show_bug.cgi?id=40050
 
-             Bug #: 47925
-           Summary: [drm] GT220 drm fails on boot
-    Classification: Unclassified
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: ca.ingmarsson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #2 from Christoph Anton Mitterer <calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org> 2012-03-26 19:40:04 PDT ---
+Hi.
+
+Well disabling 3D makes the whole thing quit boring, right? ;)
+And isn't it shipped as more or less "stable" now anyway?
 
 
-Created attachment 59092
-  --> https://bugs.freedesktop.org/attachment.cgi?id=59092
-Kernel Log
+Nevertheless, the problem persists, but few news:
+I tried just before with Linux 3.0.0 (upgrading that system to the most recent
+versions is a bit painful).
 
-Hi!
+Things have improved a bit:
+The system no longer freezes forever, it recovers after some time (2-3 minutes)
+and continues to work "flawlessly".
 
-Using the "nouveau/linux-2.6" tree as of 2012-03-26 the drm load fails with:
-nouveau: probe of 0000:01:00.0 failed with error -16
+Also this seems to be no longer specially triggered by watching video but
+rather by e.g. switching the virtual desktop (and the then ongoing compiz 3D
+animations).
 
-I also get the same error using a stock fedora16(-updates) kernel. I've
-attached a kernel log from the boot with the "nouveau/linux-2.6" kernel.
+During the freeze, e.g. the sound continues to work. But mouse/keboard are
+dead.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
