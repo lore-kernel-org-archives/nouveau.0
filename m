@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 45230] freezing nouveau
-Date: Tue, 27 Mar 2012 02:41:12 +0000
-Message-ID: <bug-45230-8800-RyXik0O3c6@http.bugs.freedesktop.org/>
+Date: Tue, 27 Mar 2012 02:42:09 +0000
+Message-ID: <bug-45230-8800-BxuVmPQu0T@http.bugs.freedesktop.org/>
 References: <bug-45230-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=45230
 
---- Comment #1 from Christoph Anton Mitterer <calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org> 2012-03-26 19:41:12 PDT ---
-I'd say now, this is a duplicate of my own bug #39980.
+Christoph Anton Mitterer <calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |DUPLICATE
+
+--- Comment #2 from Christoph Anton Mitterer <calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org> 2012-03-26 19:42:09 PDT ---
+
+
+*** This bug has been marked as a duplicate of bug 39980 ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
