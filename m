@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47965] I can't modify brightness with nVidia 1000m
 	Quadro
-Date: Thu, 29 Mar 2012 16:37:37 +0000
-Message-ID: <bug-47965-8800-C2ZBVBXRpz@http.bugs.freedesktop.org/>
+Date: Thu, 29 Mar 2012 16:38:47 +0000
+Message-ID: <bug-47965-8800-YvHalET3dx@http.bugs.freedesktop.org/>
 References: <bug-47965-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47965
 
---- Comment #3 from Charles-Antoine Couret <cacouret-39ZsbGIQGT5GWvitb5QawA@public.gmane.org> 2012-03-29 09:37:37 PDT ---
-Created attachment 59231
-  --> https://bugs.freedesktop.org/attachment.cgi?id=59231
-dmesg with nouveau and no brightness change
+--- Comment #4 from Charles-Antoine Couret <cacouret-39ZsbGIQGT5GWvitb5QawA@public.gmane.org> 2012-03-29 09:38:47 PDT ---
+Created attachment 59232
+  --> https://bugs.freedesktop.org/attachment.cgi?id=59232
+Xorg.0.log with nouveau and no brightness change
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
