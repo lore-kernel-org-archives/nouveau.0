@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47965] I can't modify brightness with nVidia 1000m
-	Quadro
-Date: Thu, 29 Mar 2012 16:41:17 +0000
-Message-ID: <bug-47965-8800-LHpdw5cpFk@http.bugs.freedesktop.org/>
-References: <bug-47965-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48074] New: 3D / OpenGL clients used with wayland
+ always cause an immediate hang
+Date: Fri, 30 Mar 2012 02:44:11 +0000
+Message-ID: <bug-48074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47965-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +19,45 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDc5NjUKCi0tLSBD
-b21tZW50ICM1IGZyb20gQ2hhcmxlcy1BbnRvaW5lIENvdXJldCA8Y2Fjb3VyZXRAd2FuYWRvby5m
-cj4gMjAxMi0wMy0yOSAwOTo0MToxNyBQRFQgLS0tCk9rLCBJIGhhdmUgcG9zdGVkIHRoZXNlcyBs
-b2dzIHdpdGggYSB0ZXN0LiBJIGhhdmUgdHJpZWQgdG8gY2hhbmdlIGJyaWdodG5lc3MKc29tZSBz
-ZWNvbmRzIGJlZm9yZSB0aGUgc2F2ZSBvZiBsb2dz4oCmCgpCdXQgdGhlIGJyaWdodG5lc3Mgc2Vu
-c29ycyBpcyBhY3RpdmUgYW5kIHRoZSBicmlnaHRuZXNzIGNoYW5nZSB3aXRoIHRoZSBhbWJpZW50
-Cmx1bWlub3NpdHkuCgpJIHVzZSB0aGUgbGFwdG9wIEhQIEVsaXRlYm9vayA4NTYwdy4KCi0tIApD
-b25maWd1cmUgYnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91c2VycHJlZnMu
-Y2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFpbCBiZWNhdXNl
-OiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=48074
+
+             Bug #: 48074
+           Summary: 3D / OpenGL clients used with wayland always cause an
+                    immediate hang
+    Classification: Unclassified
+           Product: Mesa
+           Version: 8.0
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org
+
+
+Using wayland 0.85, mesa built from git branch 8.0.  The gears client that
+comes with weston is the best example.  There was an opengl example that came
+with QT5 that did it too, but I'd have to dig up which one I tried.  But those
+two were enough to convince me to stop trying to run opengl wayland clients.
+
+$ lspci | grep -i vga
+05:00.0 VGA compatible controller: nVidia Corporation G92 [GeForce 8800 GT]
+(rev a2)
+
+Wayland build script I wrote and used is here: 
+http://www.chaosreigns.com/wayland/buildscript/wayland-build-0.85.sh
+
+I was running on Ubuntu Oneric.
+
+This crash was basically the last thing that resulted in me installing a new
+AMD Radeon just now, so I'm not particularly eager to dig up more details.  
+
+I did verify the hang with weston's gears immediately before plugging in my
+AMD, booting, and running the same thing again without a hang.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
