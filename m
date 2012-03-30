@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48090] New: Spam of system log with EDID messages
-Date: Fri, 30 Mar 2012 12:08:34 +0000
-Message-ID: <bug-48090-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48090] Spam of system log with EDID messages
+Date: Fri, 30 Mar 2012 12:09:42 +0000
+Message-ID: <bug-48090-8800-Bip6VIvbvb@http.bugs.freedesktop.org/>
+References: <bug-48090-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-48090-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48090
 
-             Bug #: 48090
-           Summary: Spam of system log with EDID messages
-    Classification: Unclassified
-           Product: Mesa
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: mieszcz-QwMmmZtx9AKLlq1WhhkdqA@public.gmane.org
+--- Comment #1 from mieszcz-QwMmmZtx9AKLlq1WhhkdqA@public.gmane.org 2012-03-30 05:09:42 PDT ---
+Created attachment 59272
+  --> https://bugs.freedesktop.org/attachment.cgi?id=59272
+EDID binary file
 
-
-Created attachment 59271
-  --> https://bugs.freedesktop.org/attachment.cgi?id=59271
-Part of system log
-
-When started kernel with kms-nouveau compiled in, the kernel logi is spammed
-every 10 seconds with unknown EDID messages:
+Edid data file for eDP-1 output
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
