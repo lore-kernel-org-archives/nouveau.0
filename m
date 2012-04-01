@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31920] Brightness control is erratic
- (/sys/class/backlight/nv_backlight/max_brightness is wrong)
-Date: Sat, 31 Mar 2012 23:00:06 +0000
-Message-ID: <bug-31920-8800-QVaqnqSXLs@http.bugs.freedesktop.org/>
-References: <bug-31920-8800@http.bugs.freedesktop.org/>
+From: Robyn Minkler <rminkler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: I'd like to donate a passively cooled 6600 (NV43)
+Date: Sun, 01 Apr 2012 11:50:55 -0700
+Message-ID: <1333306255.1937.1.camel@Ostrea-Edulis.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31920-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +18,6 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31920
+I'm willing to pay shipping in North America. Any takers?
 
-Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #25 from Rohan Dhruva <rohandhruva-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-03-31 23:00:06 UTC ---
-This has been working for me since kernel 3.1, in Fedora 16. I also tried
-kernel 3.2 in Ubuntu 12.04, and it has been working fine out of the box.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+-Robyn
