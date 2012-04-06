@@ -1,10 +1,11 @@
-From: "'Ndrianiaina Mandrantosoa" <tosoa-Gt+wPkI0f4tBDgjK7y7TUQ@public.gmane.org>
-Subject: Procedure to follow to check if a graphic card is really
- working without installing windows
-Date: Fri, 6 Apr 2012 09:48:59 +0300
-Message-ID: <CACJSXD=XZYu7zm+wSKNMLFq-hvuOug=J9JphYw1iyciB0c2xKw@mail.gmail.com>
+From: =?UTF-8?B?VmlrdG9yIE5vdm90bsO9?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
+Subject: [WIP PATCH] dri/nouveau: Add S3TC support for nv20.
+Date: Fri, 06 Apr 2012 17:40:58 +0200
+Message-ID: <4F7F0E8A.6020403@seznam.cz>
+Reply-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=f46d0408d3bf23ba0504bcfd0d89
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,417 +16,493 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---f46d0408d3bf23ba0504bcfd0d89
-Content-Type: text/plain; charset=UTF-8
+---
+Hi,
 
-Hi people,
+this is still WIP, but already passes piglit's s3tc-teximage, s3tc-texsubimage and fbo-generatemipmap-formats(s3tc tests)
+and even Wolfenstein:Enemy-Territory works on my nv25. It's based on Ben's newlib branch. I have few issues though:
+1) So far it needs libtxc_dxtn, but I might expose the s3tc extensions even without encoder using driconf option -
+   Is that desirable?
+2) Looking at blob's dedma'd valgrind-mmt dumps it seems blob uses pitch no smaller than 64 in miptree,
+   but for me everything works as it is. Does it make any difference?
+2) I am not sure about computing the offsets in teximage_map - it works like this, but can somebody confirm it's ok?
+3) If somebody can give me some feedback on the style etc., please do.
+4) S3TC texture seem to be supported also on nv10, I have nv11 somewhere so I might be able to add support to it too,
+   but I don't have nv04, then again, I think it might not support S3TC?
 
-I'm running archlinux on a clevo p150hm with a nvidia gtx460m. lshw
-output is attached.
+If I you think the patch is mostly OK, I will process your feedback, split generic and nv20 specific part and resend it.
 
-I couldn't get it running on any linux distribution, it is not
-supported by nouveau yet (as it is a NVC3 card) - Am I wrong ?
+Regards
+	Viktor
 
-when I use the nvidia driver, I've got a NVRM Xid 44 error (I found
-nothing about this in google) - and someone on the linux nvidia forum
-talked about this but had no answers.
-http://forums.nvidia.com/index.php?s=8ce1c561fff6090e96b58841f507cc75&showtopic=59188&view=findpost&p=1309488
+ src/mesa/drivers/dri/nouveau/nouveau_surface.c |   14 ++-
+ src/mesa/drivers/dri/nouveau/nouveau_texture.c |  143 ++++++++++++++++++-----
+ src/mesa/drivers/dri/nouveau/nouveau_util.h    |   19 +++
+ src/mesa/drivers/dri/nouveau/nv04_surface.c    |   17 +++-
+ src/mesa/drivers/dri/nouveau/nv20_context.c    |    4 +
+ src/mesa/drivers/dri/nouveau/nv20_state_tex.c  |   10 ++
+ 6 files changed, 172 insertions(+), 35 deletions(-)
 
-The thing is, I don't know how to help, as when every file needed to
-help nouveau project needs files generated with the nvidia driver,
-right ?
-
-do I have to install windows to check if my GPU is really working ? I
-use the fbdev xorg driver now, at 1280x800
-
-when using the nvidia driver, I have the logo, then native resolution
-with some red lines on the screen, then kernel panic.
-
-thank you for your help,
-
-tosoa.
-
---f46d0408d3bf23ba0504bcfd0d89
-Content-Type: application/octet-stream; name=jato_hw
-Content-Disposition: attachment; filename=jato_hw
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_h0ovawra0
-
-amF0bwogICAgZGVzY3JpcHRpb246IE5vdGVib29rCiAgICBwcm9kdWN0OiBQMTUwSE14IChOb3Qg
-QXBwbGljYWJsZSkKICAgIHZlbmRvcjogQ0xFVk8KICAgIHZlcnNpb246IE5vdCBBcHBsaWNhYmxl
-CiAgICBzZXJpYWw6IE5vdCBBcHBsaWNhYmxlCiAgICB3aWR0aDogNjQgYml0cwogICAgY2FwYWJp
-bGl0aWVzOiBzbWJpb3MtMi43IGRtaS0yLjcgdnN5c2NhbGwzMgogICAgY29uZmlndXJhdGlvbjog
-Ym9vdD1ub3JtYWwgY2hhc3Npcz1ub3RlYm9vayBmYW1pbHk9Tm90IEFwcGxpY2FibGUgc2t1PU5v
-dCBBcHBsaWNhYmxlIHV1aWQ9MDA5MEY1QzMtM0E3OS0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwCiAg
-Ki1jb3JlCiAgICAgICBkZXNjcmlwdGlvbjogTW90aGVyYm9hcmQKICAgICAgIHByb2R1Y3Q6IFAx
-NTBITXgKICAgICAgIHZlbmRvcjogQ0xFVk8KICAgICAgIHBoeXNpY2FsIGlkOiAwCiAgICAgICB2
-ZXJzaW9uOiBOb3QgQXBwbGljYWJsZQogICAgICAgc2VyaWFsOiBOb3QgQXBwbGljYWJsZQogICAg
-ICAgc2xvdDogTm90IEFwcGxpY2FibGUKICAgICAqLWZpcm13YXJlCiAgICAgICAgICBkZXNjcmlw
-dGlvbjogQklPUwogICAgICAgICAgdmVuZG9yOiBBbWVyaWNhbiBNZWdhdHJlbmRzIEluYy4KICAg
-ICAgICAgIHBoeXNpY2FsIGlkOiAwCiAgICAgICAgICB2ZXJzaW9uOiA0LjYuNAogICAgICAgICAg
-ZGF0ZTogMDgvMDkvMjAxMQogICAgICAgICAgc2l6ZTogNjRLaUIKICAgICAgICAgIGNhcGFjaXR5
-OiAxOTg0S2lCCiAgICAgICAgICBjYXBhYmlsaXRpZXM6IHBjaSB1cGdyYWRlIHNoYWRvd2luZyBj
-ZGJvb3QgYm9vdHNlbGVjdCBzb2NrZXRlZHJvbSBlZGQgaW50MTNmbG9wcHkxMjAwIGludDEzZmxv
-cHB5NzIwIGludDEzZmxvcHB5Mjg4MCBpbnQ1cHJpbnRzY3JlZW4gaW50OWtleWJvYXJkIGludDE0
-c2VyaWFsIGludDE3cHJpbnRlciBhY3BpIHVzYiBiaW9zYm9vdHNwZWNpZmljYXRpb24gdWVmaQog
-ICAgICotY2FjaGU6MAogICAgICAgICAgZGVzY3JpcHRpb246IEwxIGNhY2hlCiAgICAgICAgICBw
-aHlzaWNhbCBpZDogNAogICAgICAgICAgc2l6ZTogMjU2S2lCCiAgICAgICAgICBjYXBhY2l0eTog
-MjU2S2lCCiAgICAgICAgICBjYXBhYmlsaXRpZXM6IGludGVybmFsIHZhcmllcwogICAgICotY2Fj
-aGU6MQogICAgICAgICAgZGVzY3JpcHRpb246IEwyIGNhY2hlCiAgICAgICAgICBwaHlzaWNhbCBp
-ZDogNQogICAgICAgICAgc2l6ZTogMU1pQgogICAgICAgICAgY2FwYWNpdHk6IDFNaUIKICAgICAg
-ICAgIGNhcGFiaWxpdGllczogaW50ZXJuYWwgdmFyaWVzIHVuaWZpZWQKICAgICAqLWNhY2hlOjIK
-ICAgICAgICAgIGRlc2NyaXB0aW9uOiBMMyBjYWNoZQogICAgICAgICAgcGh5c2ljYWwgaWQ6IDYK
-ICAgICAgICAgIHNpemU6IDZNaUIKICAgICAgICAgIGNhcGFjaXR5OiA2TWlCCiAgICAgICAgICBj
-YXBhYmlsaXRpZXM6IGludGVybmFsIHZhcmllcyB1bmlmaWVkCiAgICAgKi1tZW1vcnkKICAgICAg
-ICAgIGRlc2NyaXB0aW9uOiBTeXN0ZW0gTWVtb3J5CiAgICAgICAgICBwaHlzaWNhbCBpZDogNwog
-ICAgICAgICAgc2xvdDogU3lzdGVtIGJvYXJkIG9yIG1vdGhlcmJvYXJkCiAgICAgICAgICBzaXpl
-OiA4R2lCCiAgICAgICAgKi1iYW5rOjAKICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBTT0RJTU0g
-RERSMyBTeW5jaHJvbm91cyAxNjAwIE1IeiAoMC42IG5zKQogICAgICAgICAgICAgcHJvZHVjdDog
-U1VQRVJUQUxFTlQwMgogICAgICAgICAgICAgdmVuZG9yOiA4NjM0CiAgICAgICAgICAgICBwaHlz
-aWNhbCBpZDogMAogICAgICAgICAgICAgc2VyaWFsOiAwMDAwMDAwMAogICAgICAgICAgICAgc2xv
-dDogQ2hhbm5lbEEtRElNTTAKICAgICAgICAgICAgIHNpemU6IDRHaUIKICAgICAgICAgICAgIHdp
-ZHRoOiA2NCBiaXRzCiAgICAgICAgICAgICBjbG9jazogMTYwME1IeiAoMC42bnMpCiAgICAgICAg
-Ki1iYW5rOjEKICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBESU1NIFtlbXB0eV0KICAgICAgICAg
-ICAgIHByb2R1Y3Q6IFtFbXB0eV0KICAgICAgICAgICAgIHZlbmRvcjogW0VtcHR5XQogICAgICAg
-ICAgICAgcGh5c2ljYWwgaWQ6IDEKICAgICAgICAgICAgIHNlcmlhbDogW0VtcHR5XQogICAgICAg
-ICAgICAgc2xvdDogQ2hhbm5lbEEtRElNTTEKICAgICAgICAqLWJhbms6MgogICAgICAgICAgICAg
-ZGVzY3JpcHRpb246IFNPRElNTSBERFIzIFN5bmNocm9ub3VzIDE2MDAgTUh6ICgwLjYgbnMpCiAg
-ICAgICAgICAgICBwcm9kdWN0OiBTVVBFUlRBTEVOVDAyCiAgICAgICAgICAgICB2ZW5kb3I6IDg2
-MzQKICAgICAgICAgICAgIHBoeXNpY2FsIGlkOiAyCiAgICAgICAgICAgICBzZXJpYWw6IDAwMDAw
-MDAwCiAgICAgICAgICAgICBzbG90OiBDaGFubmVsQi1ESU1NMAogICAgICAgICAgICAgc2l6ZTog
-NEdpQgogICAgICAgICAgICAgd2lkdGg6IDY0IGJpdHMKICAgICAgICAgICAgIGNsb2NrOiAxNjAw
-TUh6ICgwLjZucykKICAgICAgICAqLWJhbms6MwogICAgICAgICAgICAgZGVzY3JpcHRpb246IERJ
-TU0gW2VtcHR5XQogICAgICAgICAgICAgcHJvZHVjdDogW0VtcHR5XQogICAgICAgICAgICAgdmVu
-ZG9yOiBbRW1wdHldCiAgICAgICAgICAgICBwaHlzaWNhbCBpZDogMwogICAgICAgICAgICAgc2Vy
-aWFsOiBbRW1wdHldCiAgICAgICAgICAgICBzbG90OiBDaGFubmVsQi1ESU1NMQogICAgICotY3B1
-CiAgICAgICAgICBkZXNjcmlwdGlvbjogQ1BVCiAgICAgICAgICBwcm9kdWN0OiBJbnRlbChSKSBD
-b3JlKFRNKSBpNy0yNzIwUU0gQ1BVIEAgMi4yMEdIegogICAgICAgICAgdmVuZG9yOiBJbnRlbCBD
-b3JwLgogICAgICAgICAgcGh5c2ljYWwgaWQ6IDRmCiAgICAgICAgICBidXMgaW5mbzogY3B1QDAK
-ICAgICAgICAgIHZlcnNpb246IEludGVsKFIpIENvcmUoVE0pIGk3LTI3MjBRTSBDUFUgQCAyLjIw
-R0h6CiAgICAgICAgICBzbG90OiBTT0NLRVQgMAogICAgICAgICAgc2l6ZTogMjIwME1IegogICAg
-ICAgICAgd2lkdGg6IDY0IGJpdHMKICAgICAgICAgIGNsb2NrOiAxMDBNSHoKICAgICAgICAgIGNh
-cGFiaWxpdGllczogeDg2LTY0IGZwdSBmcHVfZXhjZXB0aW9uIHdwIHZtZSBkZSBwc2UgdHNjIG1z
-ciBwYWUgbWNlIGN4OCBhcGljIHNlcCBtdHJyIHBnZSBtY2EgY21vdiBwYXQgcHNlMzYgY2xmbHVz
-aCBkdHMgYWNwaSBtbXggZnhzciBzc2Ugc3NlMiBzcyBodCB0bSBwYmUgc3lzY2FsbCBueCByZHRz
-Y3AgY29uc3RhbnRfdHNjIGFyY2hfcGVyZm1vbiBwZWJzIGJ0cyByZXBfZ29vZCBub3BsIHh0b3Bv
-bG9neSBub25zdG9wX3RzYyBhcGVyZm1wZXJmIHBuaSBwY2xtdWxxZHEgZHRlczY0IG1vbml0b3Ig
-ZHNfY3BsIHZteCBzbXggZXN0IHRtMiBzc3NlMyBjeDE2IHh0cHIgcGRjbSBwY2lkIHNzZTRfMSBz
-c2U0XzIgeDJhcGljIHBvcGNudCB0c2NfZGVhZGxpbmVfdGltZXIgYWVzIHhzYXZlIGF2eCBsYWhm
-X2xtIGlkYSBhcmF0IGVwYiB4c2F2ZW9wdCBwbG4gcHRzIHRwcl9zaGFkb3cgdm5taSBmbGV4cHJp
-b3JpdHkgZXB0IHZwaWQKICAgICAgICAgIGNvbmZpZ3VyYXRpb246IGNvcmVzPTQgZW5hYmxlZGNv
-cmVzPTQgdGhyZWFkcz04CiAgICAgKi1wY2kKICAgICAgICAgIGRlc2NyaXB0aW9uOiBIb3N0IGJy
-aWRnZQogICAgICAgICAgcHJvZHVjdDogMm5kIEdlbmVyYXRpb24gQ29yZSBQcm9jZXNzb3IgRmFt
-aWx5IERSQU0gQ29udHJvbGxlcgogICAgICAgICAgdmVuZG9yOiBJbnRlbCBDb3Jwb3JhdGlvbgog
-ICAgICAgICAgcGh5c2ljYWwgaWQ6IDEwMAogICAgICAgICAgYnVzIGluZm86IHBjaUAwMDAwOjAw
-OjAwLjAKICAgICAgICAgIHZlcnNpb246IDA5CiAgICAgICAgICB3aWR0aDogMzIgYml0cwogICAg
-ICAgICAgY2xvY2s6IDMzTUh6CiAgICAgICAgKi1wY2k6MAogICAgICAgICAgICAgZGVzY3JpcHRp
-b246IFBDSSBicmlkZ2UKICAgICAgICAgICAgIHByb2R1Y3Q6IFhlb24gRTMtMTIwMC8ybmQgR2Vu
-ZXJhdGlvbiBDb3JlIFByb2Nlc3NvciBGYW1pbHkgUENJIEV4cHJlc3MgUm9vdCBQb3J0CiAgICAg
-ICAgICAgICB2ZW5kb3I6IEludGVsIENvcnBvcmF0aW9uCiAgICAgICAgICAgICBwaHlzaWNhbCBp
-ZDogMQogICAgICAgICAgICAgYnVzIGluZm86IHBjaUAwMDAwOjAwOjAxLjAKICAgICAgICAgICAg
-IHZlcnNpb246IDA5CiAgICAgICAgICAgICB3aWR0aDogMzIgYml0cwogICAgICAgICAgICAgY2xv
-Y2s6IDMzTUh6CiAgICAgICAgICAgICBjYXBhYmlsaXRpZXM6IHBjaSBwbSBtc2kgcGNpZXhwcmVz
-cyBub3JtYWxfZGVjb2RlIGJ1c19tYXN0ZXIgY2FwX2xpc3QKICAgICAgICAgICAgIGNvbmZpZ3Vy
-YXRpb246IGRyaXZlcj1wY2llcG9ydAogICAgICAgICAgICAgcmVzb3VyY2VzOiBpcnE6NDEgaW9w
-b3J0OmUwMDAoc2l6ZT00MDk2KSBtZW1vcnk6ZjQwMDAwMDAtZjYwZmZmZmYgaW9wb3J0OmU4MDAw
-MDAwKHNpemU9MjAxMzI2NTkyKQogICAgICAgICAgICotZGlzcGxheSBVTkNMQUlNRUQKICAgICAg
-ICAgICAgICAgIGRlc2NyaXB0aW9uOiBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyCiAgICAgICAg
-ICAgICAgICBwcm9kdWN0OiBHRjEwNiBbR2VGb3JjZSBHVFggNDYwTV0KICAgICAgICAgICAgICAg
-IHZlbmRvcjogTlZJRElBIENvcnBvcmF0aW9uCiAgICAgICAgICAgICAgICBwaHlzaWNhbCBpZDog
-MAogICAgICAgICAgICAgICAgYnVzIGluZm86IHBjaUAwMDAwOjAxOjAwLjAKICAgICAgICAgICAg
-ICAgIHZlcnNpb246IGExCiAgICAgICAgICAgICAgICB3aWR0aDogNjQgYml0cwogICAgICAgICAg
-ICAgICAgY2xvY2s6IDMzTUh6CiAgICAgICAgICAgICAgICBjYXBhYmlsaXRpZXM6IHBtIG1zaSBw
-Y2lleHByZXNzIHZnYV9jb250cm9sbGVyIGJ1c19tYXN0ZXIgY2FwX2xpc3QKICAgICAgICAgICAg
-ICAgIGNvbmZpZ3VyYXRpb246IGxhdGVuY3k9MAogICAgICAgICAgICAgICAgcmVzb3VyY2VzOiBt
-ZW1vcnk6ZjQwMDAwMDAtZjRmZmZmZmYgbWVtb3J5OmU4MDAwMDAwLWVmZmZmZmZmIG1lbW9yeTpm
-MDAwMDAwMC1mMWZmZmZmZiBpb3BvcnQ6ZTAwMChzaXplPTEyOCkgbWVtb3J5OmY2MDAwMDAwLWY2
-MDdmZmZmCiAgICAgICAgICAgKi1tdWx0aW1lZGlhCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlv
-bjogQXVkaW8gZGV2aWNlCiAgICAgICAgICAgICAgICBwcm9kdWN0OiBHRjEwNiBIaWdoIERlZmlu
-aXRpb24gQXVkaW8gQ29udHJvbGxlcgogICAgICAgICAgICAgICAgdmVuZG9yOiBOVklESUEgQ29y
-cG9yYXRpb24KICAgICAgICAgICAgICAgIHBoeXNpY2FsIGlkOiAwLjEKICAgICAgICAgICAgICAg
-IGJ1cyBpbmZvOiBwY2lAMDAwMDowMTowMC4xCiAgICAgICAgICAgICAgICB2ZXJzaW9uOiBhMQog
-ICAgICAgICAgICAgICAgd2lkdGg6IDMyIGJpdHMKICAgICAgICAgICAgICAgIGNsb2NrOiAzM01I
-egogICAgICAgICAgICAgICAgY2FwYWJpbGl0aWVzOiBwbSBtc2kgcGNpZXhwcmVzcyBidXNfbWFz
-dGVyIGNhcF9saXN0CiAgICAgICAgICAgICAgICBjb25maWd1cmF0aW9uOiBkcml2ZXI9c25kX2hk
-YV9pbnRlbCBsYXRlbmN5PTAKICAgICAgICAgICAgICAgIHJlc291cmNlczogaXJxOjE3IG1lbW9y
-eTpmNjA4MDAwMC1mNjA4M2ZmZgogICAgICAgICotY29tbXVuaWNhdGlvbgogICAgICAgICAgICAg
-ZGVzY3JpcHRpb246IENvbW11bmljYXRpb24gY29udHJvbGxlcgogICAgICAgICAgICAgcHJvZHVj
-dDogNiBTZXJpZXMvQzIwMCBTZXJpZXMgQ2hpcHNldCBGYW1pbHkgTUVJIENvbnRyb2xsZXIgIzEK
-ICAgICAgICAgICAgIHZlbmRvcjogSW50ZWwgQ29ycG9yYXRpb24KICAgICAgICAgICAgIHBoeXNp
-Y2FsIGlkOiAxNgogICAgICAgICAgICAgYnVzIGluZm86IHBjaUAwMDAwOjAwOjE2LjAKICAgICAg
-ICAgICAgIHZlcnNpb246IDA0CiAgICAgICAgICAgICB3aWR0aDogNjQgYml0cwogICAgICAgICAg
-ICAgY2xvY2s6IDMzTUh6CiAgICAgICAgICAgICBjYXBhYmlsaXRpZXM6IHBtIG1zaSBidXNfbWFz
-dGVyIGNhcF9saXN0CiAgICAgICAgICAgICBjb25maWd1cmF0aW9uOiBkcml2ZXI9bWVpIGxhdGVu
-Y3k9MAogICAgICAgICAgICAgcmVzb3VyY2VzOiBpcnE6NTMgbWVtb3J5OmY2NTBhMDAwLWY2NTBh
-MDBmCiAgICAgICAgKi11c2I6MAogICAgICAgICAgICAgZGVzY3JpcHRpb246IFVTQiBjb250cm9s
-bGVyCiAgICAgICAgICAgICBwcm9kdWN0OiA2IFNlcmllcy9DMjAwIFNlcmllcyBDaGlwc2V0IEZh
-bWlseSBVU0IgRW5oYW5jZWQgSG9zdCBDb250cm9sbGVyICMyCiAgICAgICAgICAgICB2ZW5kb3I6
-IEludGVsIENvcnBvcmF0aW9uCiAgICAgICAgICAgICBwaHlzaWNhbCBpZDogMWEKICAgICAgICAg
-ICAgIGJ1cyBpbmZvOiBwY2lAMDAwMDowMDoxYS4wCiAgICAgICAgICAgICB2ZXJzaW9uOiAwNQog
-ICAgICAgICAgICAgd2lkdGg6IDMyIGJpdHMKICAgICAgICAgICAgIGNsb2NrOiAzM01IegogICAg
-ICAgICAgICAgY2FwYWJpbGl0aWVzOiBwbSBkZWJ1ZyBlaGNpIGJ1c19tYXN0ZXIgY2FwX2xpc3QK
-ICAgICAgICAgICAgIGNvbmZpZ3VyYXRpb246IGRyaXZlcj1laGNpX2hjZCBsYXRlbmN5PTAKICAg
-ICAgICAgICAgIHJlc291cmNlczogaXJxOjE2IG1lbW9yeTpmNjUwODAwMC1mNjUwODNmZgogICAg
-ICAgICotbXVsdGltZWRpYQogICAgICAgICAgICAgZGVzY3JpcHRpb246IEF1ZGlvIGRldmljZQog
-ICAgICAgICAgICAgcHJvZHVjdDogNiBTZXJpZXMvQzIwMCBTZXJpZXMgQ2hpcHNldCBGYW1pbHkg
-SGlnaCBEZWZpbml0aW9uIEF1ZGlvIENvbnRyb2xsZXIKICAgICAgICAgICAgIHZlbmRvcjogSW50
-ZWwgQ29ycG9yYXRpb24KICAgICAgICAgICAgIHBoeXNpY2FsIGlkOiAxYgogICAgICAgICAgICAg
-YnVzIGluZm86IHBjaUAwMDAwOjAwOjFiLjAKICAgICAgICAgICAgIHZlcnNpb246IDA1CiAgICAg
-ICAgICAgICB3aWR0aDogNjQgYml0cwogICAgICAgICAgICAgY2xvY2s6IDMzTUh6CiAgICAgICAg
-ICAgICBjYXBhYmlsaXRpZXM6IHBtIG1zaSBwY2lleHByZXNzIGJ1c19tYXN0ZXIgY2FwX2xpc3QK
-ICAgICAgICAgICAgIGNvbmZpZ3VyYXRpb246IGRyaXZlcj1zbmRfaGRhX2ludGVsIGxhdGVuY3k9
-MAogICAgICAgICAgICAgcmVzb3VyY2VzOiBpcnE6NTIgbWVtb3J5OmY2NTAwMDAwLWY2NTAzZmZm
-CiAgICAgICAgKi1wY2k6MQogICAgICAgICAgICAgZGVzY3JpcHRpb246IFBDSSBicmlkZ2UKICAg
-ICAgICAgICAgIHByb2R1Y3Q6IDYgU2VyaWVzL0MyMDAgU2VyaWVzIENoaXBzZXQgRmFtaWx5IFBD
-SSBFeHByZXNzIFJvb3QgUG9ydCAxCiAgICAgICAgICAgICB2ZW5kb3I6IEludGVsIENvcnBvcmF0
-aW9uCiAgICAgICAgICAgICBwaHlzaWNhbCBpZDogMWMKICAgICAgICAgICAgIGJ1cyBpbmZvOiBw
-Y2lAMDAwMDowMDoxYy4wCiAgICAgICAgICAgICB2ZXJzaW9uOiBiNQogICAgICAgICAgICAgd2lk
-dGg6IDMyIGJpdHMKICAgICAgICAgICAgIGNsb2NrOiAzM01IegogICAgICAgICAgICAgY2FwYWJp
-bGl0aWVzOiBwY2kgcGNpZXhwcmVzcyBtc2kgcG0gbm9ybWFsX2RlY29kZSBidXNfbWFzdGVyIGNh
-cF9saXN0CiAgICAgICAgICAgICBjb25maWd1cmF0aW9uOiBkcml2ZXI9cGNpZXBvcnQKICAgICAg
-ICAgICAgIHJlc291cmNlczogaXJxOjE2IG1lbW9yeTpmNjQwMDAwMC1mNjRmZmZmZgogICAgICAg
-ICAgICotdXNiCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbjogVVNCIGNvbnRyb2xsZXIKICAg
-ICAgICAgICAgICAgIHByb2R1Y3Q6IHVQRDcyMDIwMCBVU0IgMy4wIEhvc3QgQ29udHJvbGxlcgog
-ICAgICAgICAgICAgICAgdmVuZG9yOiBORUMgQ29ycG9yYXRpb24KICAgICAgICAgICAgICAgIHBo
-eXNpY2FsIGlkOiAwCiAgICAgICAgICAgICAgICBidXMgaW5mbzogcGNpQDAwMDA6MDI6MDAuMAog
-ICAgICAgICAgICAgICAgdmVyc2lvbjogMDQKICAgICAgICAgICAgICAgIHdpZHRoOiA2NCBiaXRz
-CiAgICAgICAgICAgICAgICBjbG9jazogMzNNSHoKICAgICAgICAgICAgICAgIGNhcGFiaWxpdGll
-czogcG0gbXNpIG1zaXggcGNpZXhwcmVzcyB4aGNpIGJ1c19tYXN0ZXIgY2FwX2xpc3QKICAgICAg
-ICAgICAgICAgIGNvbmZpZ3VyYXRpb246IGRyaXZlcj14aGNpX2hjZCBsYXRlbmN5PTAKICAgICAg
-ICAgICAgICAgIHJlc291cmNlczogaXJxOjE2IG1lbW9yeTpmNjQwMDAwMC1mNjQwMWZmZgogICAg
-ICAgICotcGNpOjIKICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBQQ0kgYnJpZGdlCiAgICAgICAg
-ICAgICBwcm9kdWN0OiA2IFNlcmllcy9DMjAwIFNlcmllcyBDaGlwc2V0IEZhbWlseSBQQ0kgRXhw
-cmVzcyBSb290IFBvcnQgMgogICAgICAgICAgICAgdmVuZG9yOiBJbnRlbCBDb3Jwb3JhdGlvbgog
-ICAgICAgICAgICAgcGh5c2ljYWwgaWQ6IDFjLjEKICAgICAgICAgICAgIGJ1cyBpbmZvOiBwY2lA
-MDAwMDowMDoxYy4xCiAgICAgICAgICAgICB2ZXJzaW9uOiBiNQogICAgICAgICAgICAgd2lkdGg6
-IDMyIGJpdHMKICAgICAgICAgICAgIGNsb2NrOiAzM01IegogICAgICAgICAgICAgY2FwYWJpbGl0
-aWVzOiBwY2kgcGNpZXhwcmVzcyBtc2kgcG0gbm9ybWFsX2RlY29kZSBidXNfbWFzdGVyIGNhcF9s
-aXN0CiAgICAgICAgICAgICBjb25maWd1cmF0aW9uOiBkcml2ZXI9cGNpZXBvcnQKICAgICAgICAg
-ICAgIHJlc291cmNlczogaXJxOjE3IGlvcG9ydDpkMDAwKHNpemU9NDA5NikgbWVtb3J5OmY2MzAw
-MDAwLWY2M2ZmZmZmCiAgICAgICAgICAgKi1uZXR3b3JrCiAgICAgICAgICAgICAgICBkZXNjcmlw
-dGlvbjogRXRoZXJuZXQgaW50ZXJmYWNlCiAgICAgICAgICAgICAgICBwcm9kdWN0OiBKTUMyNTAg
-UENJIEV4cHJlc3MgR2lnYWJpdCBFdGhlcm5ldCBDb250cm9sbGVyCiAgICAgICAgICAgICAgICB2
-ZW5kb3I6IEpNaWNyb24gVGVjaG5vbG9neSBDb3JwLgogICAgICAgICAgICAgICAgcGh5c2ljYWwg
-aWQ6IDAKICAgICAgICAgICAgICAgIGJ1cyBpbmZvOiBwY2lAMDAwMDowMzowMC4wCiAgICAgICAg
-ICAgICAgICBsb2dpY2FsIG5hbWU6IGV0aDAKICAgICAgICAgICAgICAgIHZlcnNpb246IDA1CiAg
-ICAgICAgICAgICAgICBzZXJpYWw6IDAwOjkwOmY1OmMzOjNhOjc5CiAgICAgICAgICAgICAgICBz
-aXplOiAxME1iaXQvcwogICAgICAgICAgICAgICAgY2FwYWNpdHk6IDFHYml0L3MKICAgICAgICAg
-ICAgICAgIHdpZHRoOiAzMiBiaXRzCiAgICAgICAgICAgICAgICBjbG9jazogMzNNSHoKICAgICAg
-ICAgICAgICAgIGNhcGFiaWxpdGllczogcG0gcGNpZXhwcmVzcyBtc2l4IG1zaSBidXNfbWFzdGVy
-IGNhcF9saXN0IHJvbSBldGhlcm5ldCBwaHlzaWNhbCB0cCBtaWkgMTBidCAxMGJ0LWZkIDEwMGJ0
-IDEwMGJ0LWZkIDEwMDBidCAxMDAwYnQtZmQgYXV0b25lZ290aWF0aW9uCiAgICAgICAgICAgICAg
-ICBjb25maWd1cmF0aW9uOiBhdXRvbmVnb3RpYXRpb249b24gYnJvYWRjYXN0PXllcyBkcml2ZXI9
-am1lIGRyaXZlcnZlcnNpb249MS4wLjggZHVwbGV4PWhhbGYgbGF0ZW5jeT0wIGxpbms9bm8gbXVs
-dGljYXN0PXllcyBwb3J0PU1JSSBzcGVlZD0xME1iaXQvcwogICAgICAgICAgICAgICAgcmVzb3Vy
-Y2VzOiBpcnE6NTQgbWVtb3J5OmY2MzIwMDAwLWY2MzIzZmZmIGlvcG9ydDpkMTAwKHNpemU9MTI4
-KSBpb3BvcnQ6ZDAwMChzaXplPTI1NikgbWVtb3J5OmY2MzEwMDAwLWY2MzFmZmZmIG1lbW9yeTpm
-NjMwMDAwMC1mNjMwZmZmZgogICAgICAgICAgICotZ2VuZXJpYzowCiAgICAgICAgICAgICAgICBk
-ZXNjcmlwdGlvbjogU3lzdGVtIHBlcmlwaGVyYWwKICAgICAgICAgICAgICAgIHByb2R1Y3Q6IFNE
-L01NQyBIb3N0IENvbnRyb2xsZXIKICAgICAgICAgICAgICAgIHZlbmRvcjogSk1pY3JvbiBUZWNo
-bm9sb2d5IENvcnAuCiAgICAgICAgICAgICAgICBwaHlzaWNhbCBpZDogMC4xCiAgICAgICAgICAg
-ICAgICBidXMgaW5mbzogcGNpQDAwMDA6MDM6MDAuMQogICAgICAgICAgICAgICAgdmVyc2lvbjog
-OTAKICAgICAgICAgICAgICAgIHdpZHRoOiAzMiBiaXRzCiAgICAgICAgICAgICAgICBjbG9jazog
-MzNNSHoKICAgICAgICAgICAgICAgIGNhcGFiaWxpdGllczogcG0gcGNpZXhwcmVzcyBtc2kgYnVz
-X21hc3RlciBjYXBfbGlzdAogICAgICAgICAgICAgICAgY29uZmlndXJhdGlvbjogZHJpdmVyPXNk
-aGNpLXBjaSBsYXRlbmN5PTAKICAgICAgICAgICAgICAgIHJlc291cmNlczogaXJxOjE4IG1lbW9y
-eTpmNjMyNjAwMC1mNjMyNjBmZgogICAgICAgICAgICotZ2VuZXJpYzoxIFVOQ0xBSU1FRAogICAg
-ICAgICAgICAgICAgZGVzY3JpcHRpb246IFNEIEhvc3QgY29udHJvbGxlcgogICAgICAgICAgICAg
-ICAgcHJvZHVjdDogU3RhbmRhcmQgU0QgSG9zdCBDb250cm9sbGVyCiAgICAgICAgICAgICAgICB2
-ZW5kb3I6IEpNaWNyb24gVGVjaG5vbG9neSBDb3JwLgogICAgICAgICAgICAgICAgcGh5c2ljYWwg
-aWQ6IDAuMgogICAgICAgICAgICAgICAgYnVzIGluZm86IHBjaUAwMDAwOjAzOjAwLjIKICAgICAg
-ICAgICAgICAgIHZlcnNpb246IDkwCiAgICAgICAgICAgICAgICB3aWR0aDogMzIgYml0cwogICAg
-ICAgICAgICAgICAgY2xvY2s6IDMzTUh6CiAgICAgICAgICAgICAgICBjYXBhYmlsaXRpZXM6IHBt
-IHBjaWV4cHJlc3MgbXNpIGNhcF9saXN0CiAgICAgICAgICAgICAgICBjb25maWd1cmF0aW9uOiBs
-YXRlbmN5PTAKICAgICAgICAgICAgICAgIHJlc291cmNlczogbWVtb3J5OmY2MzI1MDAwLWY2MzI1
-MGZmCiAgICAgICAgICAgKi1nZW5lcmljOjIKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBT
-eXN0ZW0gcGVyaXBoZXJhbAogICAgICAgICAgICAgICAgcHJvZHVjdDogTVMgSG9zdCBDb250cm9s
-bGVyCiAgICAgICAgICAgICAgICB2ZW5kb3I6IEpNaWNyb24gVGVjaG5vbG9neSBDb3JwLgogICAg
-ICAgICAgICAgICAgcGh5c2ljYWwgaWQ6IDAuMwogICAgICAgICAgICAgICAgYnVzIGluZm86IHBj
-aUAwMDAwOjAzOjAwLjMKICAgICAgICAgICAgICAgIHZlcnNpb246IDkwCiAgICAgICAgICAgICAg
-ICB3aWR0aDogMzIgYml0cwogICAgICAgICAgICAgICAgY2xvY2s6IDMzTUh6CiAgICAgICAgICAg
-ICAgICBjYXBhYmlsaXRpZXM6IHBtIHBjaWV4cHJlc3MgbXNpIGJ1c19tYXN0ZXIgY2FwX2xpc3QK
-ICAgICAgICAgICAgICAgIGNvbmZpZ3VyYXRpb246IGRyaXZlcj1qbWIzOHhfbXMgbGF0ZW5jeT0w
-CiAgICAgICAgICAgICAgICByZXNvdXJjZXM6IGlycToxOCBtZW1vcnk6ZjYzMjQwMDAtZjYzMjQw
-ZmYKICAgICAgICAqLXBjaTozCiAgICAgICAgICAgICBkZXNjcmlwdGlvbjogUENJIGJyaWRnZQog
-ICAgICAgICAgICAgcHJvZHVjdDogNiBTZXJpZXMvQzIwMCBTZXJpZXMgQ2hpcHNldCBGYW1pbHkg
-UENJIEV4cHJlc3MgUm9vdCBQb3J0IDMKICAgICAgICAgICAgIHZlbmRvcjogSW50ZWwgQ29ycG9y
-YXRpb24KICAgICAgICAgICAgIHBoeXNpY2FsIGlkOiAxYy4yCiAgICAgICAgICAgICBidXMgaW5m
-bzogcGNpQDAwMDA6MDA6MWMuMgogICAgICAgICAgICAgdmVyc2lvbjogYjUKICAgICAgICAgICAg
-IHdpZHRoOiAzMiBiaXRzCiAgICAgICAgICAgICBjbG9jazogMzNNSHoKICAgICAgICAgICAgIGNh
-cGFiaWxpdGllczogcGNpIHBjaWV4cHJlc3MgbXNpIHBtIG5vcm1hbF9kZWNvZGUgYnVzX21hc3Rl
-ciBjYXBfbGlzdAogICAgICAgICAgICAgY29uZmlndXJhdGlvbjogZHJpdmVyPXBjaWVwb3J0CiAg
-ICAgICAgICAgICByZXNvdXJjZXM6IGlycToxOCBtZW1vcnk6ZjYyMDAwMDAtZjYyZmZmZmYKICAg
-ICAgICAgICAqLW5ldHdvcmsKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBXaXJlbGVzcyBp
-bnRlcmZhY2UKICAgICAgICAgICAgICAgIHByb2R1Y3Q6IENlbnRyaW5vIEFkdmFuY2VkLU4gNjIz
-MAogICAgICAgICAgICAgICAgdmVuZG9yOiBJbnRlbCBDb3Jwb3JhdGlvbgogICAgICAgICAgICAg
-ICAgcGh5c2ljYWwgaWQ6IDAKICAgICAgICAgICAgICAgIGJ1cyBpbmZvOiBwY2lAMDAwMDowNDow
-MC4wCiAgICAgICAgICAgICAgICBsb2dpY2FsIG5hbWU6IHdsYW4wCiAgICAgICAgICAgICAgICB2
-ZXJzaW9uOiAwMAogICAgICAgICAgICAgICAgc2VyaWFsOiAwMDoxNTowMDo3NzpmMzpmMwogICAg
-ICAgICAgICAgICAgd2lkdGg6IDY0IGJpdHMKICAgICAgICAgICAgICAgIGNsb2NrOiAzM01Iegog
-ICAgICAgICAgICAgICAgY2FwYWJpbGl0aWVzOiBwbSBtc2kgcGNpZXhwcmVzcyBidXNfbWFzdGVy
-IGNhcF9saXN0IGV0aGVybmV0IHBoeXNpY2FsIHdpcmVsZXNzCiAgICAgICAgICAgICAgICBjb25m
-aWd1cmF0aW9uOiBicm9hZGNhc3Q9eWVzIGRyaXZlcj1pd2x3aWZpIGRyaXZlcnZlcnNpb249My4y
-LjEzLTEtQVJDSCBmaXJtd2FyZT0xOC4xNjguNi4xIGlwPTE5Mi4xNjguMC4zIGxhdGVuY3k9MCBs
-aW5rPXllcyBtdWx0aWNhc3Q9eWVzIHdpcmVsZXNzPUlFRUUgODAyLjExYWJnbgogICAgICAgICAg
-ICAgICAgcmVzb3VyY2VzOiBpcnE6NTEgbWVtb3J5OmY2MjAwMDAwLWY2MjAxZmZmCiAgICAgICAg
-Ki1wY2k6NAogICAgICAgICAgICAgZGVzY3JpcHRpb246IFBDSSBicmlkZ2UKICAgICAgICAgICAg
-IHByb2R1Y3Q6IDYgU2VyaWVzL0MyMDAgU2VyaWVzIENoaXBzZXQgRmFtaWx5IFBDSSBFeHByZXNz
-IFJvb3QgUG9ydCA0CiAgICAgICAgICAgICB2ZW5kb3I6IEludGVsIENvcnBvcmF0aW9uCiAgICAg
-ICAgICAgICBwaHlzaWNhbCBpZDogMWMuMwogICAgICAgICAgICAgYnVzIGluZm86IHBjaUAwMDAw
-OjAwOjFjLjMKICAgICAgICAgICAgIHZlcnNpb246IGI1CiAgICAgICAgICAgICB3aWR0aDogMzIg
-Yml0cwogICAgICAgICAgICAgY2xvY2s6IDMzTUh6CiAgICAgICAgICAgICBjYXBhYmlsaXRpZXM6
-IHBjaSBwY2lleHByZXNzIG1zaSBwbSBub3JtYWxfZGVjb2RlIGJ1c19tYXN0ZXIgY2FwX2xpc3QK
-ICAgICAgICAgICAgIGNvbmZpZ3VyYXRpb246IGRyaXZlcj1wY2llcG9ydAogICAgICAgICAgICAg
-cmVzb3VyY2VzOiBpcnE6MTkgbWVtb3J5OmY2MTAwMDAwLWY2MWZmZmZmCiAgICAgICAgICAgKi1m
-aXJld2lyZQogICAgICAgICAgICAgICAgZGVzY3JpcHRpb246IEZpcmVXaXJlIChJRUVFIDEzOTQp
-CiAgICAgICAgICAgICAgICBwcm9kdWN0OiBJRUVFIDEzOTQgSG9zdCBDb250cm9sbGVyCiAgICAg
-ICAgICAgICAgICB2ZW5kb3I6IEpNaWNyb24gVGVjaG5vbG9neSBDb3JwLgogICAgICAgICAgICAg
-ICAgcGh5c2ljYWwgaWQ6IDAKICAgICAgICAgICAgICAgIGJ1cyBpbmZvOiBwY2lAMDAwMDowNTow
-MC4wCiAgICAgICAgICAgICAgICB2ZXJzaW9uOiAzMAogICAgICAgICAgICAgICAgd2lkdGg6IDMy
-IGJpdHMKICAgICAgICAgICAgICAgIGNsb2NrOiAzM01IegogICAgICAgICAgICAgICAgY2FwYWJp
-bGl0aWVzOiBwbSBwY2lleHByZXNzIG1zaSBvaGNpIGJ1c19tYXN0ZXIgY2FwX2xpc3QKICAgICAg
-ICAgICAgICAgIGNvbmZpZ3VyYXRpb246IGRyaXZlcj1maXJld2lyZV9vaGNpIGxhdGVuY3k9MAog
-ICAgICAgICAgICAgICAgcmVzb3VyY2VzOiBpcnE6MTkgbWVtb3J5OmY2MTAxMDAwLWY2MTAxN2Zm
-IG1lbW9yeTpmNjEwMDAwMC1mNjEwMDBmZgogICAgICAgICotdXNiOjEKICAgICAgICAgICAgIGRl
-c2NyaXB0aW9uOiBVU0IgY29udHJvbGxlcgogICAgICAgICAgICAgcHJvZHVjdDogNiBTZXJpZXMv
-QzIwMCBTZXJpZXMgQ2hpcHNldCBGYW1pbHkgVVNCIEVuaGFuY2VkIEhvc3QgQ29udHJvbGxlciAj
-MQogICAgICAgICAgICAgdmVuZG9yOiBJbnRlbCBDb3Jwb3JhdGlvbgogICAgICAgICAgICAgcGh5
-c2ljYWwgaWQ6IDFkCiAgICAgICAgICAgICBidXMgaW5mbzogcGNpQDAwMDA6MDA6MWQuMAogICAg
-ICAgICAgICAgdmVyc2lvbjogMDUKICAgICAgICAgICAgIHdpZHRoOiAzMiBiaXRzCiAgICAgICAg
-ICAgICBjbG9jazogMzNNSHoKICAgICAgICAgICAgIGNhcGFiaWxpdGllczogcG0gZGVidWcgZWhj
-aSBidXNfbWFzdGVyIGNhcF9saXN0CiAgICAgICAgICAgICBjb25maWd1cmF0aW9uOiBkcml2ZXI9
-ZWhjaV9oY2QgbGF0ZW5jeT0wCiAgICAgICAgICAgICByZXNvdXJjZXM6IGlycToyMyBtZW1vcnk6
-ZjY1MDcwMDAtZjY1MDczZmYKICAgICAgICAqLWlzYQogICAgICAgICAgICAgZGVzY3JpcHRpb246
-IElTQSBicmlkZ2UKICAgICAgICAgICAgIHByb2R1Y3Q6IEhNNjUgRXhwcmVzcyBDaGlwc2V0IEZh
-bWlseSBMUEMgQ29udHJvbGxlcgogICAgICAgICAgICAgdmVuZG9yOiBJbnRlbCBDb3Jwb3JhdGlv
-bgogICAgICAgICAgICAgcGh5c2ljYWwgaWQ6IDFmCiAgICAgICAgICAgICBidXMgaW5mbzogcGNp
-QDAwMDA6MDA6MWYuMAogICAgICAgICAgICAgdmVyc2lvbjogMDUKICAgICAgICAgICAgIHdpZHRo
-OiAzMiBiaXRzCiAgICAgICAgICAgICBjbG9jazogMzNNSHoKICAgICAgICAgICAgIGNhcGFiaWxp
-dGllczogaXNhIGJ1c19tYXN0ZXIgY2FwX2xpc3QKICAgICAgICAgICAgIGNvbmZpZ3VyYXRpb246
-IGxhdGVuY3k9MAogICAgICAgICotc3RvcmFnZQogICAgICAgICAgICAgZGVzY3JpcHRpb246IFNB
-VEEgY29udHJvbGxlcgogICAgICAgICAgICAgcHJvZHVjdDogNiBTZXJpZXMvQzIwMCBTZXJpZXMg
-Q2hpcHNldCBGYW1pbHkgNiBwb3J0IFNBVEEgQUhDSSBDb250cm9sbGVyCiAgICAgICAgICAgICB2
-ZW5kb3I6IEludGVsIENvcnBvcmF0aW9uCiAgICAgICAgICAgICBwaHlzaWNhbCBpZDogMWYuMgog
-ICAgICAgICAgICAgYnVzIGluZm86IHBjaUAwMDAwOjAwOjFmLjIKICAgICAgICAgICAgIGxvZ2lj
-YWwgbmFtZTogc2NzaTAKICAgICAgICAgICAgIGxvZ2ljYWwgbmFtZTogc2NzaTIKICAgICAgICAg
-ICAgIHZlcnNpb246IDA1CiAgICAgICAgICAgICB3aWR0aDogMzIgYml0cwogICAgICAgICAgICAg
-Y2xvY2s6IDY2TUh6CiAgICAgICAgICAgICBjYXBhYmlsaXRpZXM6IHN0b3JhZ2UgbXNpIHBtIGFo
-Y2lfMS4wIGJ1c19tYXN0ZXIgY2FwX2xpc3QgZW11bGF0ZWQKICAgICAgICAgICAgIGNvbmZpZ3Vy
-YXRpb246IGRyaXZlcj1haGNpIGxhdGVuY3k9MAogICAgICAgICAgICAgcmVzb3VyY2VzOiBpcnE6
-NTAgaW9wb3J0OmYwNzAoc2l6ZT04KSBpb3BvcnQ6ZjA2MChzaXplPTQpIGlvcG9ydDpmMDUwKHNp
-emU9OCkgaW9wb3J0OmYwNDAoc2l6ZT00KSBpb3BvcnQ6ZjAyMChzaXplPTMyKSBtZW1vcnk6ZjY1
-MDYwMDAtZjY1MDY3ZmYKICAgICAgICAgICAqLWRpc2sKICAgICAgICAgICAgICAgIGRlc2NyaXB0
-aW9uOiBBVEEgRGlzawogICAgICAgICAgICAgICAgcHJvZHVjdDogU1Q5NTAwNDIwQVMKICAgICAg
-ICAgICAgICAgIHZlbmRvcjogU2VhZ2F0ZQogICAgICAgICAgICAgICAgcGh5c2ljYWwgaWQ6IDAK
-ICAgICAgICAgICAgICAgIGJ1cyBpbmZvOiBzY3NpQDA6MC4wLjAKICAgICAgICAgICAgICAgIGxv
-Z2ljYWwgbmFtZTogL2Rldi9zZGEKICAgICAgICAgICAgICAgIHZlcnNpb246IDAwMDIKICAgICAg
-ICAgICAgICAgIHNlcmlhbDogNVZKRUJYQkoKICAgICAgICAgICAgICAgIHNpemU6IDQ2NUdpQiAo
-NTAwR0IpCiAgICAgICAgICAgICAgICBjYXBhYmlsaXRpZXM6IGdwdC0xLjAwIHBhcnRpdGlvbmVk
-IHBhcnRpdGlvbmVkOmdwdAogICAgICAgICAgICAgICAgY29uZmlndXJhdGlvbjogYW5zaXZlcnNp
-b249NSBndWlkPTY0ZGRhM2RjLTI5N2QtNGFlNy05Yjk4LTc5MjYwZTEzNTE5YSBzZWN0b3JzaXpl
-PTUxMgogICAgICAgICAgICAgICotdm9sdW1lOjAKICAgICAgICAgICAgICAgICAgIGRlc2NyaXB0
-aW9uOiBCSU9TIEJvb3QgcGFydGl0aW9uCiAgICAgICAgICAgICAgICAgICB2ZW5kb3I6IEVGSQog
-ICAgICAgICAgICAgICAgICAgcGh5c2ljYWwgaWQ6IDEKICAgICAgICAgICAgICAgICAgIGJ1cyBp
-bmZvOiBzY3NpQDA6MC4wLjAsMQogICAgICAgICAgICAgICAgICAgbG9naWNhbCBuYW1lOiAvZGV2
-L3NkYTEKICAgICAgICAgICAgICAgICAgIHNlcmlhbDogMjFkZjg4ZTQtY2EzMy00ZWE4LTk4MWYt
-MzJkNzEzZjFiZjZiCiAgICAgICAgICAgICAgICAgICBjYXBhY2l0eTogODAxNUtpQgogICAgICAg
-ICAgICAgICAgICAgY2FwYWJpbGl0aWVzOiBub2ZzCiAgICAgICAgICAgICAgICAgICBjb25maWd1
-cmF0aW9uOiBuYW1lPWJpb3NfYm9vdAogICAgICAgICAgICAgICotdm9sdW1lOjEKICAgICAgICAg
-ICAgICAgICAgIGRlc2NyaXB0aW9uOiBMaW51eCBzd2FwIHZvbHVtZQogICAgICAgICAgICAgICAg
-ICAgdmVuZG9yOiBMaW51eAogICAgICAgICAgICAgICAgICAgcGh5c2ljYWwgaWQ6IDIKICAgICAg
-ICAgICAgICAgICAgIGJ1cyBpbmZvOiBzY3NpQDA6MC4wLjAsMgogICAgICAgICAgICAgICAgICAg
-bG9naWNhbCBuYW1lOiAvZGV2L3NkYTIKICAgICAgICAgICAgICAgICAgIHZlcnNpb246IDEKICAg
-ICAgICAgICAgICAgICAgIHNlcmlhbDogYzU1YjZhZmQtNWE5ZC00NzNkLWFhNmEtMTU0MTcwMWE2
-OTc1CiAgICAgICAgICAgICAgICAgICBzaXplOiAxNkdpQgogICAgICAgICAgICAgICAgICAgY2Fw
-YWNpdHk6IDE2R2lCCiAgICAgICAgICAgICAgICAgICBjYXBhYmlsaXRpZXM6IG5vZnMgc3dhcCBp
-bml0aWFsaXplZAogICAgICAgICAgICAgICAgICAgY29uZmlndXJhdGlvbjogZmlsZXN5c3RlbT1z
-d2FwIGxhYmVsPXN3YXAgbmFtZT1zd2FwIHBhZ2VzaXplPTQwOTYKICAgICAgICAgICAgICAqLXZv
-bHVtZToyCiAgICAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbjogZGF0YSBwYXJ0aXRpb24KICAg
-ICAgICAgICAgICAgICAgIHZlbmRvcjogTGludXgKICAgICAgICAgICAgICAgICAgIHBoeXNpY2Fs
-IGlkOiAzCiAgICAgICAgICAgICAgICAgICBidXMgaW5mbzogc2NzaUAwOjAuMC4wLDMKICAgICAg
-ICAgICAgICAgICAgIGxvZ2ljYWwgbmFtZTogL2Rldi9zZGEzCiAgICAgICAgICAgICAgICAgICBs
-b2dpY2FsIG5hbWU6IC9ib290CiAgICAgICAgICAgICAgICAgICB2ZXJzaW9uOiAxLjAKICAgICAg
-ICAgICAgICAgICAgIHNlcmlhbDogODg5ZGZhNzgtZTQxYy00NGE0LWI3MGItMzlhYWVjMDA4OTQz
-CiAgICAgICAgICAgICAgICAgICBzaXplOiAxOTZNaUIKICAgICAgICAgICAgICAgICAgIGNhcGFj
-aXR5OiAxOTZNaUIKICAgICAgICAgICAgICAgICAgIGNhcGFiaWxpdGllczogZXh0ZW5kZWRfYXR0
-cmlidXRlcyBleHQyIGluaXRpYWxpemVkCiAgICAgICAgICAgICAgICAgICBjb25maWd1cmF0aW9u
-OiBmaWxlc3lzdGVtPWV4dDIgbGFiZWw9Ym9vdCBsYXN0bW91bnRwb2ludD0vYm9vdCBtb2RpZmll
-ZD0yMDEyLTA0LTA1IDIwOjEzOjM0IG1vdW50LmZzdHlwZT1leHQyIG1vdW50Lm9wdGlvbnM9cncs
-cmVsYXRpbWUsdXNlcl94YXR0cixhY2wsYmFycmllcj0xIG1vdW50ZWQ9MjAxMi0wNC0wNSAyMDox
-MzozNCBuYW1lPWJvb3Qgc3RhdGU9bW91bnRlZAogICAgICAgICAgICAgICotdm9sdW1lOjMKICAg
-ICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBFWFQ0IHZvbHVtZQogICAgICAgICAgICAgICAg
-ICAgdmVuZG9yOiBMaW51eAogICAgICAgICAgICAgICAgICAgcGh5c2ljYWwgaWQ6IDQKICAgICAg
-ICAgICAgICAgICAgIGJ1cyBpbmZvOiBzY3NpQDA6MC4wLjAsNAogICAgICAgICAgICAgICAgICAg
-bG9naWNhbCBuYW1lOiAvZGV2L3NkYTQKICAgICAgICAgICAgICAgICAgIGxvZ2ljYWwgbmFtZTog
-LwogICAgICAgICAgICAgICAgICAgdmVyc2lvbjogMS4wCiAgICAgICAgICAgICAgICAgICBzZXJp
-YWw6IGViMWI0NjliLTE0OWUtNDE5ZS04MzkzLTFjZGZkYjNlYzliNgogICAgICAgICAgICAgICAg
-ICAgc2l6ZTogMTJHaUIKICAgICAgICAgICAgICAgICAgIGNhcGFjaXR5OiAxMkdpQgogICAgICAg
-ICAgICAgICAgICAgY2FwYWJpbGl0aWVzOiBqb3VybmFsZWQgZXh0ZW5kZWRfYXR0cmlidXRlcyBs
-YXJnZV9maWxlcyBodWdlX2ZpbGVzIGRpcl9ubGluayByZWNvdmVyIGV4dGVudHMgZXh0NCBleHQy
-IGluaXRpYWxpemVkCiAgICAgICAgICAgICAgICAgICBjb25maWd1cmF0aW9uOiBjcmVhdGVkPTIw
-MTItMDItMDkgMjI6MDA6NTQgZmlsZXN5c3RlbT1leHQ0IGxhYmVsPWFyY2ggbGFzdG1vdW50cG9p
-bnQ9LyBtb2RpZmllZD0yMDEyLTA0LTA1IDIwOjEzOjI0IG1vdW50LmZzdHlwZT1leHQ0IG1vdW50
-Lm9wdGlvbnM9cncsbm9hdGltZSx1c2VyX3hhdHRyLGFjbCxiYXJyaWVyPTEsZGF0YT1vcmRlcmVk
-IG1vdW50ZWQ9MjAxMi0wNC0wNSAyMDoxMzoyOCBuYW1lPWFyY2ggc3RhdGU9bW91bnRlZAogICAg
-ICAgICAgICAgICotdm9sdW1lOjQKICAgICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBFWFQ0
-IHZvbHVtZQogICAgICAgICAgICAgICAgICAgdmVuZG9yOiBMaW51eAogICAgICAgICAgICAgICAg
-ICAgcGh5c2ljYWwgaWQ6IDUKICAgICAgICAgICAgICAgICAgIGJ1cyBpbmZvOiBzY3NpQDA6MC4w
-LjAsNQogICAgICAgICAgICAgICAgICAgbG9naWNhbCBuYW1lOiAvZGV2L3NkYTUKICAgICAgICAg
-ICAgICAgICAgIGxvZ2ljYWwgbmFtZTogL2hvbWUKICAgICAgICAgICAgICAgICAgIHZlcnNpb246
-IDEuMAogICAgICAgICAgICAgICAgICAgc2VyaWFsOiA1NzQ3YjJiOC04NmM3LTQzNGUtYjc1Yy1l
-MWU1ZDcwOTQzZjEKICAgICAgICAgICAgICAgICAgIHNpemU6IDQxN0dpQgogICAgICAgICAgICAg
-ICAgICAgY2FwYWNpdHk6IDQxN0dpQgogICAgICAgICAgICAgICAgICAgY2FwYWJpbGl0aWVzOiBq
-b3VybmFsZWQgZXh0ZW5kZWRfYXR0cmlidXRlcyBsYXJnZV9maWxlcyBodWdlX2ZpbGVzIGRpcl9u
-bGluayByZWNvdmVyIGV4dGVudHMgZXh0NCBleHQyIGluaXRpYWxpemVkCiAgICAgICAgICAgICAg
-ICAgICBjb25maWd1cmF0aW9uOiBjcmVhdGVkPTIwMTItMDItMDkgMjI6MDA6NTkgZmlsZXN5c3Rl
-bT1leHQ0IGxhYmVsPWhvbWUgbGFzdG1vdW50cG9pbnQ9L2hvbWUgbW9kaWZpZWQ9MjAxMi0wNC0w
-NSAyMDoxMzozMyBtb3VudC5mc3R5cGU9ZXh0NCBtb3VudC5vcHRpb25zPXJ3LG5vYXRpbWUsdXNl
-cl94YXR0cixhY2wsYmFycmllcj0xLGRhdGE9b3JkZXJlZCBtb3VudGVkPTIwMTItMDQtMDUgMjA6
-MTM6MzMgbmFtZT1ob21lIHN0YXRlPW1vdW50ZWQKICAgICAgICAgICAgICAqLXZvbHVtZTo1CiAg
-ICAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbjogRVhUNCB2b2x1bWUKICAgICAgICAgICAgICAg
-ICAgIHZlbmRvcjogTGludXgKICAgICAgICAgICAgICAgICAgIHBoeXNpY2FsIGlkOiA2CiAgICAg
-ICAgICAgICAgICAgICBidXMgaW5mbzogc2NzaUAwOjAuMC4wLDYKICAgICAgICAgICAgICAgICAg
-IGxvZ2ljYWwgbmFtZTogL2Rldi9zZGE2CiAgICAgICAgICAgICAgICAgICB2ZXJzaW9uOiAxLjAK
-ICAgICAgICAgICAgICAgICAgIHNlcmlhbDogZjIzMzE5ZDQtYTA0Ni00OWQyLTkxY2UtMDM3NmQz
-MTdhOTkwCiAgICAgICAgICAgICAgICAgICBzaXplOiA5NTM2TWlCCiAgICAgICAgICAgICAgICAg
-ICBjYXBhY2l0eTogOTUzNk1pQgogICAgICAgICAgICAgICAgICAgY2FwYWJpbGl0aWVzOiBqb3Vy
-bmFsZWQgZXh0ZW5kZWRfYXR0cmlidXRlcyBsYXJnZV9maWxlcyBodWdlX2ZpbGVzIGRpcl9ubGlu
-ayBleHRlbnRzIGV4dDQgZXh0MiBpbml0aWFsaXplZAogICAgICAgICAgICAgICAgICAgY29uZmln
-dXJhdGlvbjogY3JlYXRlZD0yMDEyLTAyLTEzIDA4OjI1OjQ1IGZpbGVzeXN0ZW09ZXh0NCBsYWJl
-bD11YnVudHUgbGFzdG1vdW50cG9pbnQ9LyBtb2RpZmllZD0yMDEyLTAzLTI5IDEyOjE2OjE1IG1v
-dW50ZWQ9MjAxMi0wMy0yOSAxMjoxNjoxMSBuYW1lPXVidW50dSBzdGF0ZT1jbGVhbgogICAgICAg
-ICAgICotY2Ryb20KICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBEVkQtUkFNIHdyaXRlcgog
-ICAgICAgICAgICAgICAgcHJvZHVjdDogQ0REVkRXIFRTLUw2MzNGCiAgICAgICAgICAgICAgICB2
-ZW5kb3I6IFRTU1Rjb3JwCiAgICAgICAgICAgICAgICBwaHlzaWNhbCBpZDogMQogICAgICAgICAg
-ICAgICAgYnVzIGluZm86IHNjc2lAMjowLjAuMAogICAgICAgICAgICAgICAgbG9naWNhbCBuYW1l
-OiAvZGV2L2Nkcm9tCiAgICAgICAgICAgICAgICBsb2dpY2FsIG5hbWU6IC9kZXYvc3IwCiAgICAg
-ICAgICAgICAgICB2ZXJzaW9uOiBUTTAwCiAgICAgICAgICAgICAgICBjYXBhYmlsaXRpZXM6IHJl
-bW92YWJsZSBhdWRpbyBjZC1yIGNkLXJ3IGR2ZCBkdmQtciBkdmQtcmFtCiAgICAgICAgICAgICAg
-ICBjb25maWd1cmF0aW9uOiBhbnNpdmVyc2lvbj01IHN0YXR1cz1ub2Rpc2MKICAgICAgICAqLXNl
-cmlhbCBVTkNMQUlNRUQKICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBTTUJ1cwogICAgICAgICAg
-ICAgcHJvZHVjdDogNiBTZXJpZXMvQzIwMCBTZXJpZXMgQ2hpcHNldCBGYW1pbHkgU01CdXMgQ29u
-dHJvbGxlcgogICAgICAgICAgICAgdmVuZG9yOiBJbnRlbCBDb3Jwb3JhdGlvbgogICAgICAgICAg
-ICAgcGh5c2ljYWwgaWQ6IDFmLjMKICAgICAgICAgICAgIGJ1cyBpbmZvOiBwY2lAMDAwMDowMDox
-Zi4zCiAgICAgICAgICAgICB2ZXJzaW9uOiAwNQogICAgICAgICAgICAgd2lkdGg6IDY0IGJpdHMK
-ICAgICAgICAgICAgIGNsb2NrOiAzM01IegogICAgICAgICAgICAgY29uZmlndXJhdGlvbjogbGF0
-ZW5jeT0wCiAgICAgICAgICAgICByZXNvdXJjZXM6IG1lbW9yeTpmNjUwNTAwMC1mNjUwNTBmZiBp
-b3BvcnQ6ZjAwMChzaXplPTMyKQogICotcG93ZXIgVU5DTEFJTUVECiAgICAgICBkZXNjcmlwdGlv
-bjogVG8gQmUgRmlsbGVkIEJ5IE8uRS5NLgogICAgICAgcHJvZHVjdDogVG8gQmUgRmlsbGVkIEJ5
-IE8uRS5NLgogICAgICAgdmVuZG9yOiBUbyBCZSBGaWxsZWQgQnkgTy5FLk0uCiAgICAgICBwaHlz
-aWNhbCBpZDogMQogICAgICAgdmVyc2lvbjogVG8gQmUgRmlsbGVkIEJ5IE8uRS5NLgogICAgICAg
-c2VyaWFsOiBUbyBCZSBGaWxsZWQgQnkgTy5FLk0uCiAgICAgICBjYXBhY2l0eTogMzI3NjhtV2gK
---f46d0408d3bf23ba0504bcfd0d89
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---f46d0408d3bf23ba0504bcfd0d89--
+diff --git a/src/mesa/drivers/dri/nouveau/nouveau_surface.c b/src/mesa/drivers/dri/nouveau/nouveau_surface.c
+index f252114..349000a 100644
+--- a/src/mesa/drivers/dri/nouveau/nouveau_surface.c
++++ b/src/mesa/drivers/dri/nouveau/nouveau_surface.c
+@@ -28,6 +28,8 @@
+ #include "nouveau_context.h"
+ #include "nouveau_util.h"
+ 
++#include "main/formats.h"
++
+ void
+ nouveau_surface_alloc(struct gl_context *ctx, struct nouveau_surface *s,
+ 		      enum nouveau_surface_layout layout,
+@@ -36,6 +38,8 @@ nouveau_surface_alloc(struct gl_context *ctx, struct nouveau_surface *s,
+ {
+ 	union nouveau_bo_config config = {};
+ 	int ret, cpp = _mesa_get_format_bytes(format);
++	int pitch = _mesa_format_row_stride(format, width);
++	unsigned size;
+ 
+ 	nouveau_bo_ref(NULL, &s->bo);
+ 
+@@ -45,7 +49,7 @@ nouveau_surface_alloc(struct gl_context *ctx, struct nouveau_surface *s,
+ 		.width = width,
+ 		.height = height,
+ 		.cpp = cpp,
+-		.pitch = width * cpp,
++		.pitch = pitch,
+ 	};
+ 
+ 	if (layout == TILED) {
+@@ -64,8 +68,12 @@ nouveau_surface_alloc(struct gl_context *ctx, struct nouveau_surface *s,
+ 		s->pitch = align(s->pitch, 64);
+ 	}
+ 
+-	ret = nouveau_bo_new(context_dev(ctx), flags, 0, s->pitch * height,
+-			     &config, &s->bo);
++	if (_mesa_is_format_compressed(format))
++		size = s->pitch * nouveau_format_get_nblocksy(format, height);
++	else
++		size = s->pitch * height;
++
++	ret = nouveau_bo_new(context_dev(ctx), flags, 0, size, &config, &s->bo);
+ 	assert(!ret);
+ }
+ 
+diff --git a/src/mesa/drivers/dri/nouveau/nouveau_texture.c b/src/mesa/drivers/dri/nouveau/nouveau_texture.c
+index 643b890..52f0259 100644
+--- a/src/mesa/drivers/dri/nouveau/nouveau_texture.c
++++ b/src/mesa/drivers/dri/nouveau/nouveau_texture.c
+@@ -91,6 +91,7 @@ nouveau_teximage_map(struct gl_context *ctx, struct gl_texture_image *ti,
+ 	if (s->bo) {
+ 		if (!(access & GL_MAP_READ_BIT) &&
+ 		    nouveau_pushbuf_refd(context_push(ctx), s->bo)) {
++			unsigned size;
+ 			/*
+ 			 * Heuristic: use a bounce buffer to pipeline
+ 			 * teximage transfers.
+@@ -104,7 +105,8 @@ nouveau_teximage_map(struct gl_context *ctx, struct gl_texture_image *ti,
+ 			nti->transfer.x = x;
+ 			nti->transfer.y = y;
+ 
+-			nti->base.Map = nouveau_get_scratch(ctx, st->pitch * h,
++			size = nouveau_format_get_nblocksx(st->format, h) * st->pitch;
++			nti->base.Map = nouveau_get_scratch(ctx, size,
+ 						       &st->bo, &st->offset);
+ 
+ 		} else {
+@@ -120,7 +122,10 @@ nouveau_teximage_map(struct gl_context *ctx, struct gl_texture_image *ti,
+ 				assert(!ret);
+ 			}
+ 
+-			nti->base.Map = s->bo->map + y * s->pitch + x * s->cpp;
++			nti->base.Map = s->bo->map +
++				nouveau_format_get_nblocksy(s->format, y) * s->pitch +
++				nouveau_format_get_nblocksx(s->format, x) * s->cpp;
++
+ 		}
+ 	}
+ }
+@@ -166,6 +171,7 @@ nouveau_map_texture_image(struct gl_context *ctx,
+ 	if (s->bo) {
+ 		if (!(mode & GL_MAP_READ_BIT) &&
+ 		    nouveau_pushbuf_refd(context_push(ctx), s->bo)) {
++			unsigned size;
+ 			/*
+ 			 * Heuristic: use a bounce buffer to pipeline
+ 			 * teximage transfers.
+@@ -179,8 +185,8 @@ nouveau_map_texture_image(struct gl_context *ctx,
+ 			nti->transfer.x = x;
+ 			nti->transfer.y = y;
+ 
+-			*map = nouveau_get_scratch(ctx, st->pitch * h,
+-						   &st->bo, &st->offset);
++			size = nouveau_format_get_nblocksy(st->format, h) * st->pitch;
++			*map = nouveau_get_scratch(ctx, size, &st->bo, &st->offset);
+ 			*stride = st->pitch;
+ 		} else {
+ 			int ret, flags = 0;
+@@ -195,11 +201,15 @@ nouveau_map_texture_image(struct gl_context *ctx,
+ 				assert(!ret);
+ 			}
+ 
+-			*map = s->bo->map + y * s->pitch + x * s->cpp;
++			*map = s->bo->map +
++				nouveau_format_get_nblocksy(s->format, y) * s->pitch +
++				nouveau_format_get_nblocksx(s->format, x) * s->cpp;
+ 			*stride = s->pitch;
+ 		}
+ 	} else {
+-		*map = nti->base.Map + y * s->pitch + x * s->cpp;
++		*map = nti->base.Map +
++			nouveau_format_get_nblocksy(s->format, y) * s->pitch +
++			nouveau_format_get_nblocksx(s->format, x) * s->cpp;
+ 		*stride = s->pitch;
+ 	}
+ }
+@@ -291,7 +301,24 @@ nouveau_choose_tex_format(struct gl_context *ctx, GLint internalFormat,
+ 	case GL_INTENSITY8:
+ 		return MESA_FORMAT_I8;
+ 
++	case GL_RGB_S3TC:
++	case GL_RGB4_S3TC:
++	case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
++		return MESA_FORMAT_RGB_DXT1;
++
++	case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
++		return MESA_FORMAT_RGBA_DXT1;
++
++	case GL_RGBA_S3TC:
++	case GL_RGBA4_S3TC:
++	case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
++		return MESA_FORMAT_RGBA_DXT3;
++
++	case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
++		return MESA_FORMAT_RGBA_DXT5;
++
+ 	default:
++		nouveau_error("unexpected internalFormat 0x%x\n", internalFormat);
+ 		assert(0);
+ 	}
+ }
+@@ -358,7 +385,7 @@ relayout_texture(struct gl_context *ctx, struct gl_texture_object *t)
+ 		struct nouveau_surface *ss = to_nouveau_texture(t)->surfaces;
+ 		struct nouveau_surface *s = &to_nouveau_teximage(base)->surface;
+ 		int i, ret, last = get_last_level(t);
+-		unsigned size, offset = 0,
++		unsigned size, pitch, layout, offset = 0,
+ 			width = s->width,
+ 			height = s->height;
+ 
+@@ -368,7 +395,16 @@ relayout_texture(struct gl_context *ctx, struct gl_texture_object *t)
+ 
+ 		/* Relayout the mipmap tree. */
+ 		for (i = t->BaseLevel; i <= last; i++) {
+-			size = width * height * s->cpp;
++
++			if (_mesa_is_format_compressed(s->format)) {
++				layout = LINEAR;
++				pitch = _mesa_format_row_stride(s->format, width);
++				size = nouveau_format_get_nblocksy(s->format, height) * pitch;
++			} else {
++				layout = SWIZZLED;
++				pitch = width * s->cpp;
++				size = height * pitch;
++			}
+ 
+ 			/* Images larger than 16B have to be aligned. */
+ 			if (size > 16)
+@@ -376,12 +412,12 @@ relayout_texture(struct gl_context *ctx, struct gl_texture_object *t)
+ 
+ 			ss[i] = (struct nouveau_surface) {
+ 				.offset = offset,
+-				.layout = SWIZZLED,
++				.layout = layout,
+ 				.format = s->format,
+ 				.width = width,
+ 				.height = height,
+ 				.cpp = s->cpp,
+-				.pitch = width * s->cpp,
++				.pitch = pitch,
+ 			};
+ 
+ 			offset += size;
+@@ -458,8 +494,10 @@ nouveau_teximage(struct gl_context *ctx, GLint dims,
+ 		 struct gl_texture_image *ti,
+ 		 GLint internalFormat,
+ 		 GLint width, GLint height, GLint depth, GLint border,
++		 GLsizei imageSize,
+ 		 GLenum format, GLenum type, const GLvoid *pixels,
+-		 const struct gl_pixelstore_attrib *packing)
++		 const struct gl_pixelstore_attrib *packing,
++		 GLboolean compressed)
+ {
+ 	struct gl_texture_object *t = ti->TexObject;
+ 	const GLuint level = ti->Level;
+@@ -472,9 +510,16 @@ nouveau_teximage(struct gl_context *ctx, GLint dims,
+ 			      ti->TexFormat, width, height);
+ 	nti->base.RowStride = s->pitch / s->cpp;
+ 
+-	pixels = _mesa_validate_pbo_teximage(ctx, dims, width, height, depth,
+-					     format, type, pixels, packing,
+-					     "glTexImage");
++	if (compressed) {
++		pixels = _mesa_validate_pbo_compressed_teximage(ctx,
++			imageSize,
++			pixels, packing, "glCompressedTexImage");
++	} else {
++		pixels = _mesa_validate_pbo_teximage(ctx,
++			dims, width, height, depth, format, type,
++			pixels, packing, "glTexImage");
++	}
++
+ 	if (pixels) {
+ 		/* Store the pixel data. */
+ 		nouveau_teximage_map(ctx, ti, GL_MAP_WRITE_BIT,
+@@ -516,8 +561,8 @@ nouveau_teximage_1d(struct gl_context *ctx,
+ 		    const struct gl_pixelstore_attrib *packing)
+ {
+ 	nouveau_teximage(ctx, 1, ti, internalFormat,
+-			 width, 1, 1, border, format, type, pixels,
+-			 packing);
++			 width, 1, 1, border, 0, format, type, pixels,
++			 packing, GL_FALSE);
+ }
+ 
+ static void
+@@ -529,8 +574,8 @@ nouveau_teximage_2d(struct gl_context *ctx,
+ 		    const struct gl_pixelstore_attrib *packing)
+ {
+ 	nouveau_teximage(ctx, 2, ti, internalFormat,
+-			 width, height, 1, border, format, type, pixels,
+-			 packing);
++			 width, height, 1, border, 0, format, type, pixels,
++			 packing, GL_FALSE);
+ }
+ 
+ static void
+@@ -542,8 +587,20 @@ nouveau_teximage_3d(struct gl_context *ctx,
+ 		    const struct gl_pixelstore_attrib *packing)
+ {
+ 	nouveau_teximage(ctx, 3, ti, internalFormat,
+-			 width, height, depth, border, format, type, pixels,
+-			 packing);
++			 width, height, depth, border, 0, format, type, pixels,
++			 packing, GL_FALSE);
++}
++
++static void
++nouveau_compressed_teximage_2d(struct gl_context *ctx,
++		    struct gl_texture_image *ti,
++		    GLint internalFormat,
++		    GLint width, GLint height, GLint border,
++		    GLsizei imageSize, const GLvoid *data)
++{
++	nouveau_teximage(ctx, 2, ti, internalFormat,
++			 width, height, 1, border, imageSize, 0, 0, data,
++			 &ctx->Unpack, GL_TRUE);
+ }
+ 
+ static void
+@@ -551,21 +608,30 @@ nouveau_texsubimage(struct gl_context *ctx, GLint dims,
+ 		    struct gl_texture_image *ti,
+ 		    GLint xoffset, GLint yoffset, GLint zoffset,
+ 		    GLint width, GLint height, GLint depth,
++		    GLsizei imageSize,
+ 		    GLenum format, GLenum type, const void *pixels,
+-		    const struct gl_pixelstore_attrib *packing)
++		    const struct gl_pixelstore_attrib *packing,
++		    GLboolean compressed)
+ {
+ 	struct nouveau_surface *s = &to_nouveau_teximage(ti)->surface;
+ 	struct nouveau_teximage *nti = to_nouveau_teximage(ti);
+ 	int ret;
+ 
+-	pixels = _mesa_validate_pbo_teximage(ctx, dims, width, height, depth,
+-					     format, type, pixels, packing,
+-					     "glTexSubImage");
++	if (compressed) {
++		pixels = _mesa_validate_pbo_compressed_teximage(ctx,
++				imageSize,
++				pixels, packing, "glCompressedTexSubImage");
++	} else {
++		pixels = _mesa_validate_pbo_teximage(ctx,
++				dims, width, height, depth, format, type,
++				pixels, packing, "glTexSubImage");
++	}
++
+ 	if (pixels) {
+ 		nouveau_teximage_map(ctx, ti, GL_MAP_WRITE_BIT,
+ 				     xoffset, yoffset, width, height);
+ 
+-		ret = _mesa_texstore(ctx, 3, ti->_BaseFormat, ti->TexFormat,
++		ret = _mesa_texstore(ctx, dims, ti->_BaseFormat, ti->TexFormat,
+                                      s->pitch,
+ 				     &nti->base.Map,
+                                      width, height, depth,
+@@ -591,8 +657,8 @@ nouveau_texsubimage_3d(struct gl_context *ctx,
+ 		       const struct gl_pixelstore_attrib *packing)
+ {
+ 	nouveau_texsubimage(ctx, 3, ti, xoffset, yoffset, zoffset,
+-			    width, height, depth, format, type, pixels,
+-			    packing);
++			    width, height, depth, 0, format, type, pixels,
++			    packing, GL_FALSE);
+ }
+ 
+ static void
+@@ -604,8 +670,8 @@ nouveau_texsubimage_2d(struct gl_context *ctx,
+ 		       const struct gl_pixelstore_attrib *packing)
+ {
+ 	nouveau_texsubimage(ctx, 2, ti, xoffset, yoffset, 0,
+-			    width, height, 1, format, type, pixels,
+-			    packing);
++			    width, height, 1, 0, format, type, pixels,
++			    packing, GL_FALSE);
+ }
+ 
+ static void
+@@ -616,8 +682,21 @@ nouveau_texsubimage_1d(struct gl_context *ctx,
+ 		       const struct gl_pixelstore_attrib *packing)
+ {
+ 	nouveau_texsubimage(ctx, 1, ti, xoffset, 0, 0,
+-			    width, 1, 1, format, type, pixels,
+-			    packing);
++			    width, 1, 1, 0, format, type, pixels,
++			    packing, GL_FALSE);
++}
++
++static void
++nouveau_compressed_texsubimage_2d(struct gl_context *ctx,
++		       struct gl_texture_image *ti,
++		       GLint xoffset, GLint yoffset,
++		       GLsizei width, GLint height,
++		       GLenum format,
++		       GLint imageSize, const void *data)
++{
++	nouveau_texsubimage(ctx, 2, ti, xoffset, yoffset, 0,
++			  width, height, 1, imageSize, format, 0, data,
++			  &ctx->Unpack, GL_TRUE);
+ }
+ 
+ static void
+@@ -696,6 +775,8 @@ nouveau_texture_functions_init(struct dd_function_table *functions)
+ 	functions->TexSubImage1D = nouveau_texsubimage_1d;
+ 	functions->TexSubImage2D = nouveau_texsubimage_2d;
+ 	functions->TexSubImage3D = nouveau_texsubimage_3d;
++	functions->CompressedTexImage2D = nouveau_compressed_teximage_2d;
++	functions->CompressedTexSubImage2D = nouveau_compressed_texsubimage_2d;
+ 	functions->BindTexture = nouveau_bind_texture;
+ 	functions->MapTextureImage = nouveau_map_texture_image;
+ 	functions->UnmapTextureImage = nouveau_unmap_texture_image;
+diff --git a/src/mesa/drivers/dri/nouveau/nouveau_util.h b/src/mesa/drivers/dri/nouveau/nouveau_util.h
+index d4cc5c4..af2b175 100644
+--- a/src/mesa/drivers/dri/nouveau/nouveau_util.h
++++ b/src/mesa/drivers/dri/nouveau/nouveau_util.h
+@@ -207,4 +207,23 @@ get_texgen_coeff(struct gl_texgen *c)
+ 		return NULL;
+ }
+ 
++static inline unsigned
++nouveau_format_get_nblocksx(gl_format format,
++		       unsigned x)
++{
++	GLuint blockwidth;
++	GLuint blockheight;
++	_mesa_get_format_block_size(format, &blockwidth, &blockheight);
++	return (x + blockwidth - 1) / blockwidth;
++}
++
++static inline unsigned
++nouveau_format_get_nblocksy(gl_format format,
++		       unsigned y)
++{
++	GLuint blockwidth;
++	GLuint blockheight;
++	_mesa_get_format_block_size(format, &blockwidth, &blockheight);
++	return (y + blockheight - 1) / blockheight;
++}
+ #endif
+diff --git a/src/mesa/drivers/dri/nouveau/nv04_surface.c b/src/mesa/drivers/dri/nouveau/nv04_surface.c
+index b2b260d..bc3cace 100644
+--- a/src/mesa/drivers/dri/nouveau/nv04_surface.c
++++ b/src/mesa/drivers/dri/nouveau/nv04_surface.c
+@@ -291,7 +291,7 @@ nv04_surface_copy_m2mf(struct gl_context *ctx,
+ 	while (h) {
+ 		int count = (h > 2047) ? 2047 : h;
+ 
+-		if (nouveau_pushbuf_space(push, 16, 4, 0) ||
++		if (nouveau_pushbuf_space(push, 18, 4, 0) ||
+ 		    nouveau_pushbuf_refn (push, refs, 2))
+ 			return;
+ 
+@@ -307,6 +307,10 @@ nv04_surface_copy_m2mf(struct gl_context *ctx,
+ 		PUSH_DATA (push, count);
+ 		PUSH_DATA (push, 0x0101);
+ 		PUSH_DATA (push, 0);
++		BEGIN_NV04(push, NV04_GRAPH(M2MF, NOP), 1);
++		PUSH_DATA (push, 0);
++		BEGIN_NV04(push, NV03_M2MF(OFFSET_OUT), 1);
++		PUSH_DATA (push, 0);
+ 
+ 		src_offset += src->pitch * count;
+ 		dst_offset += dst->pitch * count;
+@@ -400,6 +404,17 @@ nv04_surface_copy(struct gl_context *ctx,
+ 		  int dx, int dy, int sx, int sy,
+ 		  int w, int h)
+ {
++	bool compressed = _mesa_is_format_compressed(src->format);
++
++	if (compressed) {
++		sx = nouveau_format_get_nblocksx(src->format, sx);
++		sy = nouveau_format_get_nblocksy(src->format, sy);
++		dx = nouveau_format_get_nblocksx(dst->format, sx);
++		dy = nouveau_format_get_nblocksy(dst->format, sy);
++		w = nouveau_format_get_nblocksx(src->format, w);
++		h = nouveau_format_get_nblocksy(src->format, h);
++	}
++
+ 	/* Linear texture copy. */
+ 	if ((src->layout == LINEAR && dst->layout == LINEAR) ||
+ 	    dst->width <= 2 || dst->height <= 1) {
+diff --git a/src/mesa/drivers/dri/nouveau/nv20_context.c b/src/mesa/drivers/dri/nouveau/nv20_context.c
+index c911717..5a36c87 100644
+--- a/src/mesa/drivers/dri/nouveau/nv20_context.c
++++ b/src/mesa/drivers/dri/nouveau/nv20_context.c
+@@ -460,6 +460,10 @@ nv20_context_create(struct nouveau_screen *screen, const struct gl_config *visua
+ 	ctx->Extensions.ARB_texture_env_dot3 = true;
+ 	ctx->Extensions.NV_fog_distance = true;
+ 	ctx->Extensions.NV_texture_rectangle = true;
++	if (ctx->Mesa_DXTn) {
++		ctx->Extensions.EXT_texture_compression_s3tc = true;
++		ctx->Extensions.S3_s3tc = true;
++	}
+ 
+ 	/* GL constants. */
+ 	ctx->Const.MaxTextureCoordUnits = NV20_TEXTURE_UNITS;
+diff --git a/src/mesa/drivers/dri/nouveau/nv20_state_tex.c b/src/mesa/drivers/dri/nouveau/nv20_state_tex.c
+index 799510d..d8bfdf2 100644
+--- a/src/mesa/drivers/dri/nouveau/nv20_state_tex.c
++++ b/src/mesa/drivers/dri/nouveau/nv20_state_tex.c
+@@ -108,6 +108,16 @@ get_tex_format_pot(struct gl_texture_image *ti)
+ 	case MESA_FORMAT_L8:
+ 		return NV20_3D_TEX_FORMAT_FORMAT_L8;
+ 
++	case MESA_FORMAT_RGB_DXT1:
++	case MESA_FORMAT_RGBA_DXT1:
++		return NV20_3D_TEX_FORMAT_FORMAT_DXT1;
++
++	case MESA_FORMAT_RGBA_DXT3:
++		return NV20_3D_TEX_FORMAT_FORMAT_DXT3;
++
++	case MESA_FORMAT_RGBA_DXT5:
++		return NV20_3D_TEX_FORMAT_FORMAT_DXT5;
++
+ 	default:
+ 		assert(0);
+ 	}
+-- 
+1.7.8.5
