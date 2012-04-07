@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48424] Fix warnings/errors reported by clang's
 	scan-build tool
-Date: Sat, 07 Apr 2012 19:55:28 +0000
-Message-ID: <bug-48424-8800-LVU25TvYHJ@http.bugs.freedesktop.org/>
+Date: Sat, 07 Apr 2012 13:19:14 +0000
+Message-ID: <bug-48424-8800-TpRdI8KozG@http.bugs.freedesktop.org/>
 References: <bug-48424-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,21 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48424
 
-Kenneth Graunke <kenneth-xkhwgxqQjnbNLxjTenLetw@public.gmane.org> changed:
+Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Priority|medium                      |low
-
---- Comment #1 from Kenneth Graunke <kenneth-xkhwgxqQjnbNLxjTenLetw@public.gmane.org> 2012-04-07 12:55:28 PDT ---
-Thanks for running this!  Looks like a neat tool.
-
-Here's a false positive:
-
-Logic error    Assigned value is garbage or undefined    mesa /drivers /dri
-/i965 /brw_vec4_visitor.cpp    1383    3
-
-or: report-3rwkCp.html#EndPath
+           See Also|                            |http://llvm.org/bugs/show_b
+                   |                            |ug.cgi?id=12491
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
