@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48424] New: Fix warnings/errors reported by clang's
- scan-build tool
-Date: Sat, 07 Apr 2012 18:49:03 +0000
-Message-ID: <bug-48424-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48424] Fix warnings/errors reported by clang's
+	scan-build tool
+Date: Sat, 07 Apr 2012 19:55:28 +0000
+Message-ID: <bug-48424-8800-LVU25TvYHJ@http.bugs.freedesktop.org/>
+References: <bug-48424-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-48424-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +23,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48424
 
-             Bug #: 48424
-           Summary: Fix warnings/errors reported by clang's scan-build
-                    tool
-    Classification: Unclassified
-           Product: Mesa
-           Version: git
-          Platform: x86 (IA32)
-               URL: https://gitorious.org/jobermayr/scan-build-mesa
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Mesa core
-        AssignedTo: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
-                CC: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org,
-                    nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Kenneth Graunke <kenneth-xkhwgxqQjnbNLxjTenLetw@public.gmane.org> changed:
 
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |low
 
-https://gitorious.org/jobermayr/scan-build-mesa
+--- Comment #1 from Kenneth Graunke <kenneth-xkhwgxqQjnbNLxjTenLetw@public.gmane.org> 2012-04-07 12:55:28 PDT ---
+Thanks for running this!  Looks like a neat tool.
 
-~ 8 MB to download, 680 MB on disk.
+Here's a false positive:
 
-Please report false positives here. I will forward them.
+Logic error    Assigned value is garbage or undefined    mesa /drivers /dri
+/i965 /brw_vec4_visitor.cpp    1383    3
+
+or: report-3rwkCp.html#EndPath
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
