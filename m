@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48434] New: X freezes with "EQ overflowing"
-Date: Sun, 08 Apr 2012 11:25:58 +0000
-Message-ID: <bug-48434-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48441] New: gnome-control-center crashes with
+	nouveau driver
+Date: Sun, 08 Apr 2012 17:31:47 +0000
+Message-ID: <bug-48441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,104 +19,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=48434
+https://bugs.freedesktop.org/show_bug.cgi?id=48441
 
-             Bug #: 48434
-           Summary: X freezes with "EQ overflowing"
+             Bug #: 48441
+           Summary: gnome-control-center crashes with nouveau driver
     Classification: Unclassified
-           Product: xorg
-           Version: unspecified
+           Product: Mesa
+           Version: 8.0
           Platform: x86-64 (AMD64)
         OS/Version: Linux (All)
             Status: NEW
-          Severity: critical
+          Severity: normal
           Priority: medium
-         Component: Driver/nouveau
+         Component: Drivers/DRI/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: dclemen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+        ReportedBy: askondro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 
-Created attachment 59644
-  --> https://bugs.freedesktop.org/attachment.cgi?id=59644
-gm3 log file
+Created attachment 59651
+  --> https://bugs.freedesktop.org/attachment.cgi?id=59651
+gdb backtrace
 
-My system is Debian Testing, Amd64.
-# uname -a
-Linux dcr64 3.2.0-2-amd64 #1 SMP Tue Mar 20 18:36:37 UTC 2012 x86_64 GNU/Linux
-(I have this problems for a long time ago, and with a others kernels)
+I'm using gnome 3.4 on arch linux (x86_64) and when starting the
+control-center, it crashes.
 
-Hi from a long time ago, I have a problem with Xorg, it crash and have to login
-with another computer with ssh and "killall -s 9 -I xorg" to get X works again.
-When crash, CTRL+ALT+Fx don't work. Crash with firefox, or with Abiword, or
-only with gnome desktop.
+The error in the gdb trace points to the mesa (nouveau_dri.so) component.
 
-[mi] EQ overflowing. The server is probably stuck in an infinite loop.
+The backtrace log is in the attachment .
 
-Backtrace:
-0: /usr/bin/Xorg (xorg_backtrace+0x26) [0x7f0102d0f4d6]
-1: /usr/bin/Xorg (mieqEnqueue+0x191) [0x7f0102cefde1]
-2: /usr/bin/Xorg (0x7f0102b8b000+0x65254) [0x7f0102bf0254]
-3: /usr/lib/xorg/modules/input/evdev_drv.so (0x7f00fc58b000+0x5588)
-[0x7f00fc590588]
-4: /usr/bin/Xorg (0x7f0102b8b000+0x8a947) [0x7f0102c15947]
-5: /usr/bin/Xorg (0x7f0102b8b000+0xb052e) [0x7f0102c3b52e]
-6: /lib/x86_64-linux-gnu/libpthread.so.0 (0x7f0101eb3000+0xf030)
-[0x7f0101ec2030]
-7: /lib/x86_64-linux-gnu/libc.so.6 (ioctl+0x7) [0x7f0100c8e957]
-8: /usr/lib/x86_64-linux-gnu/libdrm.so.2 (drmIoctl+0x28) [0x7f00ff00ca68]
-9: /usr/lib/x86_64-linux-gnu/libdrm.so.2 (drmCommandWrite+0x1b)
-[0x7f00ff00ed5b]
-10: /usr/lib/x86_64-linux-gnu/libdrm_nouveau.so.1 (0x7f00fe9bd000+0x3197)
-[0x7f00fe9c0197]
-11: /usr/lib/x86_64-linux-gnu/libdrm_nouveau.so.1 (nouveau_bo_map_range+0x109)
-[0x7f00fe9c07b9]
-12: /usr/lib/xorg/modules/drivers/nouveau_drv.so (0x7f00febc3000+0x7b23)
-[0x7f00febcab23]
-13: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0x4c47) [0x7f00fe586c47]
-14: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0x82fb) [0x7f00fe58a2fb]
-15: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0x12a07) [0x7f00fe594a07]
-16: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0xf0b8) [0x7f00fe5910b8]
-17: /usr/bin/Xorg (0x7f0102b8b000+0x114f34) [0x7f0102c9ff34]
-18: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0x10330) [0x7f00fe592330]
-19: /usr/bin/Xorg (0x7f0102b8b000+0x10dbf1) [0x7f0102c98bf1]
-20: /usr/bin/Xorg (0x7f0102b8b000+0x51f81) [0x7f0102bdcf81]
-21: /usr/bin/Xorg (0x7f0102b8b000+0x411aa) [0x7f0102bcc1aa]
-22: /lib/x86_64-linux-gnu/libc.so.6 (__libc_start_main+0xfd) [0x7f0100bdbead]
-23: /usr/bin/Xorg (0x7f0102b8b000+0x4149d) [0x7f0102bcc49d]
-[mi] EQ overflowing. The server is probably stuck in an infinite loop.
-
-Backtrace:
-0: /usr/bin/Xorg (xorg_backtrace+0x26) [0x7f0102d0f4d6]
-1: /usr/bin/Xorg (mieqEnqueue+0x191) [0x7f0102cefde1]
-2: /usr/bin/Xorg (0x7f0102b8b000+0x65254) [0x7f0102bf0254]
-3: /usr/lib/xorg/modules/input/evdev_drv.so (0x7f00fc58b000+0x5588)
-[0x7f00fc590588]
-4: /usr/bin/Xorg (0x7f0102b8b000+0x8a947) [0x7f0102c15947]
-5: /usr/bin/Xorg (0x7f0102b8b000+0xb052e) [0x7f0102c3b52e]
-6: /lib/x86_64-linux-gnu/libpthread.so.0 (0x7f0101eb3000+0xf030)
-[0x7f0101ec2030]
-7: /lib/x86_64-linux-gnu/libc.so.6 (ioctl+0x7) [0x7f0100c8e957]
-8: /usr/lib/x86_64-linux-gnu/libdrm.so.2 (drmIoctl+0x28) [0x7f00ff00ca68]
-9: /usr/lib/x86_64-linux-gnu/libdrm.so.2 (drmCommandWrite+0x1b)
-[0x7f00ff00ed5b]
-10: /usr/lib/x86_64-linux-gnu/libdrm_nouveau.so.1 (0x7f00fe9bd000+0x3197)
-[0x7f00fe9c0197]
-11: /usr/lib/x86_64-linux-gnu/libdrm_nouveau.so.1 (nouveau_bo_map_range+0x109)
-[0x7f00fe9c07b9]
-12: /usr/lib/xorg/modules/drivers/nouveau_drv.so (0x7f00febc3000+0x7b23)
-[0x7f00febcab23]
-13: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0x4c47) [0x7f00fe586c47]
-14: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0x82fb) [0x7f00fe58a2fb]
-15: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0x12a07) [0x7f00fe594a07]
-16: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0xf0b8) [0x7f00fe5910b8]
-17: /usr/bin/Xorg (0x7f0102b8b000+0x114f34) [0x7f0102c9ff34]
-18: /usr/lib/xorg/modules/libexa.so (0x7f00fe582000+0x10330) [0x7f00fe592330]
-19: /usr/bin/Xorg (0x7f0102b8b000+0x10dbf1) [0x7f0102c98bf1]
-20: /usr/bin/Xorg (0x7f0102b8b000+0x51f81) [0x7f0102bdcf81]
-21: /usr/bin/Xorg (0x7f0102b8b000+0x411aa) [0x7f0102bcc1aa]
-22: /lib/x86_64-linux-gnu/libc.so.6 (__libc_start_main+0xfd) [0x7f0100bdbead]
-23: /usr/bin/Xorg (0x7f0102b8b000+0x4149d) [0x7f0102bcc49d]
+Additional information regarding this bug can be found on 
+https://bugs.archlinux.org/task/29202
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
