@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48464] Crash when GLXVBlank set to true
-Date: Mon, 09 Apr 2012 12:33:14 +0000
-Message-ID: <bug-48464-8800-SRcGivHoZb@http.bugs.freedesktop.org/>
+Date: Mon, 09 Apr 2012 12:34:35 +0000
+Message-ID: <bug-48464-8800-dFjDtEWoaU@http.bugs.freedesktop.org/>
 References: <bug-48464-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48464
 
---- Comment #1 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> 2012-04-09 05:33:14 PDT ---
-Created attachment 59675
-  --> https://bugs.freedesktop.org/attachment.cgi?id=59675
-kernel log
+Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #59674|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
