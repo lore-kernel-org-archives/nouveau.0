@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48434] X freezes with "EQ overflowing"
-Date: Mon, 09 Apr 2012 09:11:29 +0000
-Message-ID: <bug-48434-8800-S9obQ5YHJE@http.bugs.freedesktop.org/>
+Date: Mon, 09 Apr 2012 09:46:07 +0000
+Message-ID: <bug-48434-8800-lridCqbHIq@http.bugs.freedesktop.org/>
 References: <bug-48434-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48434
 
---- Comment #1 from dacer <dclemen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-09 02:11:29 PDT ---
-*** Bug 48454 has been marked as a duplicate of this bug. ***
+--- Comment #2 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-04-09 02:46:07 PDT ---
+Backtrace looks very similar to the one in bug 47288.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
