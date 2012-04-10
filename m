@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48424] Fix warnings/errors reported by clang's
 	scan-build tool
-Date: Mon, 09 Apr 2012 14:30:44 +0000
-Message-ID: <bug-48424-8800-E0KNDomgtq@http.bugs.freedesktop.org/>
+Date: Tue, 10 Apr 2012 15:45:09 +0000
+Message-ID: <bug-48424-8800-WF8Il2cpWS@http.bugs.freedesktop.org/>
 References: <bug-48424-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48424
 
---- Comment #2 from Chad Versace <chad-iZJ6MPdAOKlJ5E37l6g6+g@public.gmane.org> 2012-04-09 14:30:44 UTC ---
-Thanks for doing this. Here's my review of mesa/main/extensions.c.
+Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
 
-mesa/main/extensions.c:730: Thanks. I just submitted a patch for this memory
-leak. You're CC'd.
-
-mesa/main/extensions.c:866: false positive
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |http://llvm.org/bugs/show_b
+                   |                            |ug.cgi?id=12520
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
