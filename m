@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31139] Wake from sleep doesn't turn on display(s)
-Date: Thu, 12 Apr 2012 09:11:43 +0000
-Message-ID: <bug-31139-8800-FBDoF7utB4@http.bugs.freedesktop.org/>
-References: <bug-31139-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47846] Nouveau -> overscan using HDMI
+Date: Fri, 13 Apr 2012 06:44:00 +0000
+Message-ID: <bug-47846-8800-00AkLoHALk@http.bugs.freedesktop.org/>
+References: <bug-47846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31139-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,11 +20,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31139
+https://bugs.freedesktop.org/show_bug.cgi?id=47846
 
---- Comment #2 from Jon Gjengset <jon-BHX4d+dSxqEZva7W72cSYkEOCMrvLtNR@public.gmane.org> 2012-04-12 02:11:43 PDT ---
-fwiw, this issue is still present in kernel 3.3.1 (Arch Linux) with
-xf86-video-nouveau 0.0.16_git20120210.
+--- Comment #5 from lameventanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-04-12 23:44:00 PDT ---
+After playing with xrandr and this new underscan parameter I have concluded
+this is just an ugly workaround that doesn't fix the root problem which is
+getting EDID right.
+
+Everything still looks wrong, I think the problem is that by using this
+underscan thing the applications still think the resolution is 1366x768 when
+its no longer the case.
+And of course there is also the overscan at boot time problem.
+
+So is there any way to fix the way nouveau interprets the EDID data to make it
+work like nvidia's driver?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
