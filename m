@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48702] New: copypix demo not working correctly on
-	nv43
-Date: Sat, 14 Apr 2012 22:16:58 +0000
-Message-ID: <bug-48702-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48702] copypix demo not working correctly on nv43
+Date: Sat, 14 Apr 2012 22:17:51 +0000
+Message-ID: <bug-48702-8800-sTZ37LuYwD@http.bugs.freedesktop.org/>
+References: <bug-48702-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-48702-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48702
 
-             Bug #: 48702
-           Summary: copypix demo not working correctly on nv43
-    Classification: Unclassified
-           Product: Mesa
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: randrik-JGs/UdohzUI@public.gmane.org
+--- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-14 15:17:51 PDT ---
+Created attachment 59997
+  --> https://bugs.freedesktop.org/attachment.cgi?id=59997
+with LLVMpipe
 
-
-Same setup as in bug 48701:
-
-kernel: commit 965a47fb8ec0a72324aad8b9c0bd1c8b98cc7ca1 (3.4.0-rc2 nouveau,
-master branch up to "drm/nouveau/bios: fix regression on some nv4x board")
-
-mesa: commit b2df031a959f36743527b9abc89913ce4f895de3 ("r300/compiler: Fix
-nested flow control in r500 vertex shaders")
-
-libdrm: master branch commit 292da616fe1f936ca78a3fa8e1b1b19883e343b6
-("nouveau: pull in major libdrm rewrite")
-
-ddx: master up to commit fb3a36b1e5af0f81bb266da894d3442eed8e4e55 ("nve0:
-initial exa/xv acceleration for kepler chipsets")
-
-X server - 1.10.4
-
-Hardware:
-01:00.0 VGA compatible controller: NVIDIA Corporation NV43 [GeForce 6600 GT]
-(rev a2) - AGP version.
-
-trying copypix mesa demo i see difference between llvmpipe and nouveau/gallium
-drivers. See screenshots.
+LIBGL_ALWAYS_SOFTWARE=1 was set
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
