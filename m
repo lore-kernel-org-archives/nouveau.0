@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48701] lodbias demo displays garbage on nv43 with
 	new driver
-Date: Sat, 14 Apr 2012 22:07:07 +0000
-Message-ID: <bug-48701-8800-CG5k3jce3u@http.bugs.freedesktop.org/>
+Date: Sat, 14 Apr 2012 22:08:05 +0000
+Message-ID: <bug-48701-8800-efQK2OTl1Y@http.bugs.freedesktop.org/>
 References: <bug-48701-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48701
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-14 15:07:07 PDT ---
-Created attachment 59992
-  --> https://bugs.freedesktop.org/attachment.cgi?id=59992
-glxinfo
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-14 15:08:05 PDT ---
+Created attachment 59993
+  --> https://bugs.freedesktop.org/attachment.cgi?id=59993
+Correct picture
+
+Taken with LIBGL_ALWAYS_SOFTWARE=1
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
