@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48702] copypix demo not working correctly on nv43
-Date: Sat, 14 Apr 2012 22:17:51 +0000
-Message-ID: <bug-48702-8800-sTZ37LuYwD@http.bugs.freedesktop.org/>
+Date: Sat, 14 Apr 2012 22:19:09 +0000
+Message-ID: <bug-48702-8800-4KuOsPvTXD@http.bugs.freedesktop.org/>
 References: <bug-48702-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48702
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-14 15:17:51 PDT ---
-Created attachment 59997
-  --> https://bugs.freedesktop.org/attachment.cgi?id=59997
-with LLVMpipe
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-14 15:19:09 PDT ---
+Created attachment 59998
+  --> https://bugs.freedesktop.org/attachment.cgi?id=59998
+with nouveau
 
-LIBGL_ALWAYS_SOFTWARE=1 was set
+Note black bars
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
