@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48742] fbotexture -arb misrenders on nv43
-Date: Sun, 15 Apr 2012 22:12:39 +0000
-Message-ID: <bug-48742-8800-cUMSBhoD9f@http.bugs.freedesktop.org/>
+Date: Sun, 15 Apr 2012 22:14:09 +0000
+Message-ID: <bug-48742-8800-kQ8DxAQsvu@http.bugs.freedesktop.org/>
 References: <bug-48742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48742
 
---- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-15 15:12:39 PDT ---
-It says:
-guest@slax:~/botva/src/demos/src/demos$ ./fbotexture -arb
-GL_RENDERER = Gallium 0.4 on NV43
+--- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-15 15:14:09 PDT ---
+for correct image i get
+
+guest@slax:~/botva/src/demos/src/demos$ LIBGL_ALWAYS_SOFTWARE=1 ./fbotexture
+-arb
+GL_RENDERER = Gallium 0.4 on llvmpipe (LLVM 0x209)
 Color/Texture size: 512 x 512
 Depth buffer size: 422 x 422
 Depth renderbuffer size = 24 bits
