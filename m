@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48745] windows are clipped to a certain vertical
 	space
-Date: Sun, 15 Apr 2012 23:32:44 +0000
-Message-ID: <bug-48745-8800-GlsYONjfl5@http.bugs.freedesktop.org/>
+Date: Sun, 15 Apr 2012 23:35:05 +0000
+Message-ID: <bug-48745-8800-0LGDzw7Abd@http.bugs.freedesktop.org/>
 References: <bug-48745-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48745
 
---- Comment #3 from Angelo Arrifano <miknix-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-15 16:32:44 PDT ---
-Created attachment 60039
-  --> https://bugs.freedesktop.org/attachment.cgi?id=60039
-Xorg.0.log
+--- Comment #4 from Angelo Arrifano <miknix-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-15 16:35:05 PDT ---
+I forgot to add that the computer (a laptop) has the TFT screen removed. the
+graphics card has, by this reason, its ?LVDS? cable disconnected.
+
+Thanks!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
