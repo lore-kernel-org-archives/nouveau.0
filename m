@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37681] Tearing with composite extension
-Date: Sun, 15 Apr 2012 06:20:46 +0000
-Message-ID: <bug-37681-8800-FZHph8fWAb@http.bugs.freedesktop.org/>
-References: <bug-37681-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] nv50: fix crash in NV50SyncToVBlank
+Date: Sun, 15 Apr 2012 13:46:42 +0200
+Message-ID: <20120415114642.GA2838@joi.lan>
+References: <20120415010821.GA797@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37681-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20120415010821.GA797-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,13 +21,24 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37681
+Regression from "WIP: port to new libdrm".
+---
+ src/nv50_accel.c |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
 
---- Comment #4 from spb.nevill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-04-14 23:20:46 PDT ---
-Same here on LG S900-U laptop, Nvidia 8600M GT, Kubuntu 12.04, both with
-nouveau and Nvidia drivers. I hope it gets fixed. it is painful to look at.
-
+diff --git a/src/nv50_accel.c b/src/nv50_accel.c
+index 66d6cb8..7c640f2 100644
+--- a/src/nv50_accel.c
++++ b/src/nv50_accel.c
+@@ -44,6 +44,9 @@ NV50SyncToVBlank(PixmapPtr ppix, BoxPtr box)
+ 	if (!crtcs)
+ 		return;
+ 
++	if (!PUSH_SPACE(push, 10))
++		return;
++
+ 	BEGIN_NV04(push, SUBC_NVSW(0x0060), 2);
+ 	PUSH_DATA (push, pNv->vblank_sem->handle);
+ 	PUSH_DATA (push, 0);
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.8.5
