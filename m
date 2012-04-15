@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37445] Nouveau regularly reports the TRAP_VFETCH
-	FAULT errors.
-Date: Sun, 15 Apr 2012 00:06:17 +0000
-Message-ID: <bug-37445-8800-Wbv5fhXFXq@http.bugs.freedesktop.org/>
-References: <bug-37445-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37681] Tearing with composite extension
+Date: Sun, 15 Apr 2012 06:20:46 +0000
+Message-ID: <bug-37681-8800-FZHph8fWAb@http.bugs.freedesktop.org/>
+References: <bug-37681-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37681-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +20,11 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37445
+https://bugs.freedesktop.org/show_bug.cgi?id=37681
 
---- Comment #10 from Kevin N. <vekinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-14 17:06:17 PDT ---
-libdrm mesa xf86-video-nouveau and kernel current as of April 14th 16:00 PST
-
-I can no longer reproduce these errors seems to be fixed.
+--- Comment #4 from spb.nevill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-04-14 23:20:46 PDT ---
+Same here on LG S900-U laptop, Nvidia 8600M GT, Kubuntu 12.04, both with
+nouveau and Nvidia drivers. I hope it gets fixed. it is painful to look at.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
