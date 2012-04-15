@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH resend] drm/nouveau/nv50: handle failures in crtc
-	objects construction
-Date: Sun, 15 Apr 2012 14:36:09 +0200
-Message-ID: <1334493370-23964-4-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH resend] drm/nouveau: move definition of
+	nouveau_grctx to separate file
+Date: Sun, 15 Apr 2012 14:36:10 +0200
+Message-ID: <1334493370-23964-5-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -20,109 +20,108 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes oopses / leaks depending on point of failure.
+Avoids conditional definition of grctx build functions, which is hard
+for IDE's to handle properly.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nv50_crtc.c    |   59 +++++++++++++++++++++----------
- drivers/gpu/drm/nouveau/nv50_display.c |    7 +++-
- 2 files changed, 45 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_grctx.h     |   21 ++-------------------
+ drivers/gpu/drm/nouveau/nouveau_grctx_def.h |   21 +++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nv40_graph.c        |    2 +-
+ drivers/gpu/drm/nouveau/nv50_graph.c        |    2 +-
+ 4 files changed, 25 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/nouveau_grctx_def.h
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
-index 7cbc527..44f96f9 100644
---- a/drivers/gpu/drm/nouveau/nv50_crtc.c
-+++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
-@@ -770,18 +770,16 @@ nv50_crtc_create(struct drm_device *dev, int index)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_grctx.h b/drivers/gpu/drm/nouveau/nouveau_grctx.h
+index 86c2e37..359244c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_grctx.h
++++ b/drivers/gpu/drm/nouveau/nouveau_grctx.h
+@@ -1,24 +1,8 @@
+ #ifndef __NOUVEAU_GRCTX_H__
+ #define __NOUVEAU_GRCTX_H__
  
- 	ret = nouveau_bo_new(dev, 4096, 0x100, TTM_PL_FLAG_VRAM,
- 			     0, 0x0000, &nv_crtc->lut.nvbo);
--	if (!ret) {
--		ret = nouveau_bo_pin(nv_crtc->lut.nvbo, TTM_PL_FLAG_VRAM);
--		if (!ret)
--			ret = nouveau_bo_map(nv_crtc->lut.nvbo);
--		if (ret)
--			nouveau_bo_ref(NULL, &nv_crtc->lut.nvbo);
--	}
-+	if (ret)
-+		goto lut_bo_err;
- 
--	if (ret) {
--		kfree(nv_crtc);
--		return ret;
--	}
-+	ret = nouveau_bo_pin(nv_crtc->lut.nvbo, TTM_PL_FLAG_VRAM);
-+	if (ret)
-+		goto lut_bo_pin_err;
+-struct nouveau_grctx {
+-	struct drm_device *dev;
+-
+-	enum {
+-		NOUVEAU_GRCTX_PROG,
+-		NOUVEAU_GRCTX_VALS
+-	} mode;
+-	void *data;
+-
+-	uint32_t ctxprog_max;
+-	uint32_t ctxprog_len;
+-	uint32_t ctxprog_reg;
+-	int      ctxprog_label[32];
+-	uint32_t ctxvals_pos;
+-	uint32_t ctxvals_base;
+-};
+-
+-#ifdef CP_CTX
++#include "nouveau_grctx_def.h"
 +
-+	ret = nouveau_bo_map(nv_crtc->lut.nvbo);
-+	if (ret)
-+		goto lut_bo_map_err;
+ static inline void
+ cp_out(struct nouveau_grctx *ctx, uint32_t inst)
+ {
+@@ -128,6 +112,5 @@ gr_def(struct nouveau_grctx *ctx, uint32_t reg, uint32_t val)
  
- 	nv_crtc->index = index;
- 
-@@ -796,14 +794,37 @@ nv50_crtc_create(struct drm_device *dev, int index)
- 
- 	ret = nouveau_bo_new(dev, 64*64*4, 0x100, TTM_PL_FLAG_VRAM,
- 			     0, 0x0000, &nv_crtc->cursor.nvbo);
--	if (!ret) {
--		ret = nouveau_bo_pin(nv_crtc->cursor.nvbo, TTM_PL_FLAG_VRAM);
--		if (!ret)
--			ret = nouveau_bo_map(nv_crtc->cursor.nvbo);
--		if (ret)
--			nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
--	}
-+	if (ret)
-+		goto cursor_bo_err;
-+
-+	ret = nouveau_bo_pin(nv_crtc->cursor.nvbo, TTM_PL_FLAG_VRAM);
-+	if (ret)
-+		goto cursor_bo_pin_err;
-+
-+	ret = nouveau_bo_map(nv_crtc->cursor.nvbo);
-+	if (ret)
-+		goto cursor_bo_map_err;
-+
-+	ret = nv50_cursor_init(nv_crtc);
-+	if (ret)
-+		goto cursor_init_err;
- 
--	nv50_cursor_init(nv_crtc);
- 	return 0;
-+
-+cursor_init_err:
-+	nouveau_bo_unmap(nv_crtc->cursor.nvbo);
-+cursor_bo_map_err:
-+	nouveau_bo_unpin(nv_crtc->cursor.nvbo);
-+cursor_bo_pin_err:
-+	nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
-+cursor_bo_err:
-+	drm_crtc_cleanup(&nv_crtc->base);
-+	nouveau_bo_unmap(nv_crtc->lut.nvbo);
-+lut_bo_map_err:
-+	nouveau_bo_unpin(nv_crtc->lut.nvbo);
-+lut_bo_pin_err:
-+	nouveau_bo_ref(NULL, &nv_crtc->lut.nvbo);
-+lut_bo_err:
-+	kfree(nv_crtc);
-+	return ret;
+ 	nv_wo32(ctx->data, reg * 4, val);
  }
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index 211e5e9..b526e3f 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -358,8 +358,11 @@ nv50_display_create(struct drm_device *dev)
- 	dev_priv->engine.display.priv = priv;
+-#endif
  
- 	/* Create CRTC objects */
--	for (i = 0; i < 2; i++)
--		nv50_crtc_create(dev, i);
-+	for (i = 0; i < 2; i++) {
-+		ret = nv50_crtc_create(dev, i);
-+		if (ret)
-+			return ret;
-+	}
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/nouveau_grctx_def.h b/drivers/gpu/drm/nouveau/nouveau_grctx_def.h
+new file mode 100644
+index 0000000..f9a4e12
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/nouveau_grctx_def.h
+@@ -0,0 +1,21 @@
++#ifndef __NOUVEAU_GRCTX_DEF_H__
++#define __NOUVEAU_GRCTX_DEF_H__
++
++struct nouveau_grctx {
++	struct drm_device *dev;
++
++	enum {
++		NOUVEAU_GRCTX_PROG,
++		NOUVEAU_GRCTX_VALS
++	} mode;
++	void *data;
++
++	uint32_t ctxprog_max;
++	uint32_t ctxprog_len;
++	uint32_t ctxprog_reg;
++	int      ctxprog_label[32];
++	uint32_t ctxvals_pos;
++	uint32_t ctxvals_base;
++};
++
++#endif
+diff --git a/drivers/gpu/drm/nouveau/nv40_graph.c b/drivers/gpu/drm/nouveau/nv40_graph.c
+index ba14a93..20bb65a 100644
+--- a/drivers/gpu/drm/nouveau/nv40_graph.c
++++ b/drivers/gpu/drm/nouveau/nv40_graph.c
+@@ -27,7 +27,7 @@
+ #include "drmP.h"
+ #include "drm.h"
+ #include "nouveau_drv.h"
+-#include "nouveau_grctx.h"
++#include "nouveau_grctx_def.h"
+ #include "nouveau_ramht.h"
  
- 	/* We setup the encoders from the BIOS table */
- 	for (i = 0 ; i < dcb->entries; i++) {
+ struct nv40_graph_engine {
+diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
+index 33d5711..f5c1fe7 100644
+--- a/drivers/gpu/drm/nouveau/nv50_graph.c
++++ b/drivers/gpu/drm/nouveau/nv50_graph.c
+@@ -28,7 +28,7 @@
+ #include "drm.h"
+ #include "nouveau_drv.h"
+ #include "nouveau_ramht.h"
+-#include "nouveau_grctx.h"
++#include "nouveau_grctx_def.h"
+ #include "nouveau_dma.h"
+ #include "nouveau_vm.h"
+ #include "nv50_evo.h"
 -- 
 1.7.8.5
