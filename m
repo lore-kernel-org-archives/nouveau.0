@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48742] New: fbotexture -arb misrenders on nv43
-Date: Sun, 15 Apr 2012 22:10:55 +0000
-Message-ID: <bug-48742-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48742] fbotexture -arb misrenders on nv43
+Date: Sun, 15 Apr 2012 22:11:39 +0000
+Message-ID: <bug-48742-8800-YUZu0lIJz3@http.bugs.freedesktop.org/>
+References: <bug-48742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-48742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48742
 
-             Bug #: 48742
-           Summary: fbotexture -arb misrenders on nv43
-    Classification: Unclassified
-           Product: Mesa
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: randrik-JGs/UdohzUI@public.gmane.org
+--- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-15 15:11:39 PDT ---
+Created attachment 60034
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60034
+screenshot
 
-
-Using mesa up to commit 1ce9205f790471214b69c94f2ee07c4eabfa26f0
-("targets/xvmc-nouveau: fix accidental hardcoded include path") and hopefully
-latest libdrm/ddx, on kernel 965a47fb8ec0a72324aad8b9c0bd1c8b98cc7ca1
-("drm/nouveau/bios: fix regression on some nv4x board") gives me some more fun
-to report.
-
-See attached screenshot of mesa demo "fbotexture" with -arb command line key.
-(Image may change if you run demo few times)
-
-It draws OK with llvmpipe.
+Incorrect rendering
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
