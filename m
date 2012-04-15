@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48742] fbotexture -arb misrenders on nv43
-Date: Sun, 15 Apr 2012 22:11:39 +0000
-Message-ID: <bug-48742-8800-YUZu0lIJz3@http.bugs.freedesktop.org/>
+Date: Sun, 15 Apr 2012 22:12:39 +0000
+Message-ID: <bug-48742-8800-cUMSBhoD9f@http.bugs.freedesktop.org/>
 References: <bug-48742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,28 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48742
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-15 15:11:39 PDT ---
-Created attachment 60034
-  --> https://bugs.freedesktop.org/attachment.cgi?id=60034
-screenshot
-
-Incorrect rendering
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-04-15 15:12:39 PDT ---
+It says:
+guest@slax:~/botva/src/demos/src/demos$ ./fbotexture -arb
+GL_RENDERER = Gallium 0.4 on NV43
+Color/Texture size: 512 x 512
+Depth buffer size: 422 x 422
+Depth renderbuffer size = 24 bits
+Stencil renderbuffer size = 8 bits
+Render to texture name: 1
+Color attachment[0] name: 1
+Stencil attachment name: 3
+Depth attachment name: 3
+Usage:
+  -ds  Use combined depth/stencil renderbuffer
+  -arb Try GL_ARB_framebuffer_object's mismatched buffer sizes
+  -ds2 Try GL_ARB_framebuffer_object's GL_DEPTH_STENCIL_ATTACHMENT
+Keys:
+  a    Toggle animation
+  s/s  Step/rotate
+  c    Toggle back-face culling
+  w    Toggle wireframe mode (front-face only)
+  Esc  Exit
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
