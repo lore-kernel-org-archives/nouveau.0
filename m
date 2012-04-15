@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48745] windows are clipped to a certain vertical
 	space
-Date: Sun, 15 Apr 2012 16:29:10 +0000
-Message-ID: <bug-48745-8800-koy43VniLv@http.bugs.freedesktop.org/>
+Date: Sun, 15 Apr 2012 23:32:44 +0000
+Message-ID: <bug-48745-8800-GlsYONjfl5@http.bugs.freedesktop.org/>
 References: <bug-48745-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48745
 
---- Comment #2 from Angelo Arrifano <miknix-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-15 16:29:10 UTC ---
-Created attachment 60038
-  --> https://bugs.freedesktop.org/attachment.cgi?id=60038
-Screen clipping on gnome-mplayer
+--- Comment #3 from Angelo Arrifano <miknix-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-15 16:32:44 PDT ---
+Created attachment 60039
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60039
+Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
