@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48702] copypix demo not working correctly on nv43
-Date: Sun, 15 Apr 2012 12:14:55 +0000
-Message-ID: <bug-48702-8800-IlxIdEq61i@http.bugs.freedesktop.org/>
-References: <bug-48702-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48701] lodbias demo displays garbage on nv43 with
+	new driver
+Date: Sun, 15 Apr 2012 12:15:26 +0000
+Message-ID: <bug-48701-8800-DXnzbqRZF0@http.bugs.freedesktop.org/>
+References: <bug-48701-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48702-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-48701-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,7 +21,7 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=48702
+https://bugs.freedesktop.org/show_bug.cgi?id=48701
 
 Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -29,9 +30,9 @@ Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|                            |FIXED
 
---- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-15 05:14:55 PDT ---
-Thanks for the report, should be fixed in mesa commit
-29128e5ee20b198ebedf0ff979d96c78ad264b8f.
+--- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-15 05:15:26 PDT ---
+Thanks!  I've tracked this down and it should be fixed in mesa commit
+d37f90f131ff18f0902e79853b2dbdfd494baa17.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
