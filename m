@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48745] windows are clipped to a certain vertical
 	space
-Date: Sun, 15 Apr 2012 23:28:36 +0000
-Message-ID: <bug-48745-8800-BSY59W8sdr@http.bugs.freedesktop.org/>
+Date: Sun, 15 Apr 2012 16:29:10 +0000
+Message-ID: <bug-48745-8800-koy43VniLv@http.bugs.freedesktop.org/>
 References: <bug-48745-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48745
 
---- Comment #1 from Angelo Arrifano <miknix-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-15 16:28:36 PDT ---
-Created attachment 60037
-  --> https://bugs.freedesktop.org/attachment.cgi?id=60037
-Screen clipping on evince pdf reader
+--- Comment #2 from Angelo Arrifano <miknix-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-15 16:29:10 UTC ---
+Created attachment 60038
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60038
+Screen clipping on gnome-mplayer
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
