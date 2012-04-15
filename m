@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH resend] drm/nouveau: cleanup after display init
-	failure
-Date: Sun, 15 Apr 2012 14:36:08 +0200
-Message-ID: <1334493370-23964-3-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH resend] drm/nouveau/nv50: handle failures in crtc
+	objects construction
+Date: Sun, 15 Apr 2012 14:36:09 +0200
+Message-ID: <1334493370-23964-4-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -20,41 +20,109 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Depending on exact point of failure, not cleaning would lead to
-BUG_ONs/oopses in various distant places.
+Fixes oopses / leaks depending on point of failure.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_display.c |   11 +++++++++--
- 1 files changed, 9 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nv50_crtc.c    |   59 +++++++++++++++++++++----------
+ drivers/gpu/drm/nouveau/nv50_display.c |    7 +++-
+ 2 files changed, 45 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index 5b4e354..71379f8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -325,14 +325,21 @@ nouveau_display_create(struct drm_device *dev)
+diff --git a/drivers/gpu/drm/nouveau/nv50_crtc.c b/drivers/gpu/drm/nouveau/nv50_crtc.c
+index 7cbc527..44f96f9 100644
+--- a/drivers/gpu/drm/nouveau/nv50_crtc.c
++++ b/drivers/gpu/drm/nouveau/nv50_crtc.c
+@@ -770,18 +770,16 @@ nv50_crtc_create(struct drm_device *dev, int index)
  
- 	ret = disp->create(dev);
- 	if (ret)
+ 	ret = nouveau_bo_new(dev, 4096, 0x100, TTM_PL_FLAG_VRAM,
+ 			     0, 0x0000, &nv_crtc->lut.nvbo);
+-	if (!ret) {
+-		ret = nouveau_bo_pin(nv_crtc->lut.nvbo, TTM_PL_FLAG_VRAM);
+-		if (!ret)
+-			ret = nouveau_bo_map(nv_crtc->lut.nvbo);
+-		if (ret)
+-			nouveau_bo_ref(NULL, &nv_crtc->lut.nvbo);
+-	}
++	if (ret)
++		goto lut_bo_err;
+ 
+-	if (ret) {
+-		kfree(nv_crtc);
 -		return ret;
-+		goto disp_create_err;
- 
- 	if (dev->mode_config.num_crtc) {
- 		ret = drm_vblank_init(dev, dev->mode_config.num_crtc);
- 		if (ret)
--			return ret;
-+			goto vblank_err;
- 	}
- 
-+	return 0;
+-	}
++	ret = nouveau_bo_pin(nv_crtc->lut.nvbo, TTM_PL_FLAG_VRAM);
++	if (ret)
++		goto lut_bo_pin_err;
 +
-+vblank_err:
-+	disp->destroy(dev);
-+disp_create_err:
-+	drm_kms_helper_poll_fini(dev);
-+	drm_mode_config_cleanup(dev);
- 	return ret;
- }
++	ret = nouveau_bo_map(nv_crtc->lut.nvbo);
++	if (ret)
++		goto lut_bo_map_err;
  
+ 	nv_crtc->index = index;
+ 
+@@ -796,14 +794,37 @@ nv50_crtc_create(struct drm_device *dev, int index)
+ 
+ 	ret = nouveau_bo_new(dev, 64*64*4, 0x100, TTM_PL_FLAG_VRAM,
+ 			     0, 0x0000, &nv_crtc->cursor.nvbo);
+-	if (!ret) {
+-		ret = nouveau_bo_pin(nv_crtc->cursor.nvbo, TTM_PL_FLAG_VRAM);
+-		if (!ret)
+-			ret = nouveau_bo_map(nv_crtc->cursor.nvbo);
+-		if (ret)
+-			nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
+-	}
++	if (ret)
++		goto cursor_bo_err;
++
++	ret = nouveau_bo_pin(nv_crtc->cursor.nvbo, TTM_PL_FLAG_VRAM);
++	if (ret)
++		goto cursor_bo_pin_err;
++
++	ret = nouveau_bo_map(nv_crtc->cursor.nvbo);
++	if (ret)
++		goto cursor_bo_map_err;
++
++	ret = nv50_cursor_init(nv_crtc);
++	if (ret)
++		goto cursor_init_err;
+ 
+-	nv50_cursor_init(nv_crtc);
+ 	return 0;
++
++cursor_init_err:
++	nouveau_bo_unmap(nv_crtc->cursor.nvbo);
++cursor_bo_map_err:
++	nouveau_bo_unpin(nv_crtc->cursor.nvbo);
++cursor_bo_pin_err:
++	nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
++cursor_bo_err:
++	drm_crtc_cleanup(&nv_crtc->base);
++	nouveau_bo_unmap(nv_crtc->lut.nvbo);
++lut_bo_map_err:
++	nouveau_bo_unpin(nv_crtc->lut.nvbo);
++lut_bo_pin_err:
++	nouveau_bo_ref(NULL, &nv_crtc->lut.nvbo);
++lut_bo_err:
++	kfree(nv_crtc);
++	return ret;
+ }
+diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+index 211e5e9..b526e3f 100644
+--- a/drivers/gpu/drm/nouveau/nv50_display.c
++++ b/drivers/gpu/drm/nouveau/nv50_display.c
+@@ -358,8 +358,11 @@ nv50_display_create(struct drm_device *dev)
+ 	dev_priv->engine.display.priv = priv;
+ 
+ 	/* Create CRTC objects */
+-	for (i = 0; i < 2; i++)
+-		nv50_crtc_create(dev, i);
++	for (i = 0; i < 2; i++) {
++		ret = nv50_crtc_create(dev, i);
++		if (ret)
++			return ret;
++	}
+ 
+ 	/* We setup the encoders from the BIOS table */
+ 	for (i = 0 ; i < dcb->entries; i++) {
 -- 
 1.7.8.5
