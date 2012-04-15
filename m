@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH resend] drm/nv50: fix ramin heap size for kernel
-	channel too
-Date: Sun, 15 Apr 2012 14:36:07 +0200
-Message-ID: <1334493370-23964-2-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH resend] drm/nouveau: cleanup after display init
+	failure
+Date: Sun, 15 Apr 2012 14:36:08 +0200
+Message-ID: <1334493370-23964-3-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -20,27 +20,41 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Port change from "drm/nouveau: Keep RAMIN heap within the channel"
-to kernel channel, which has its own ramin heap initialisation.
+Depending on exact point of failure, not cleaning would lead to
+BUG_ONs/oopses in various distant places.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Younes Manton <younes.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nv50_instmem.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_display.c |   11 +++++++++--
+ 1 files changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_instmem.c b/drivers/gpu/drm/nouveau/nv50_instmem.c
-index a7c12c9..0bba54f 100644
---- a/drivers/gpu/drm/nouveau/nv50_instmem.c
-+++ b/drivers/gpu/drm/nouveau/nv50_instmem.c
-@@ -83,7 +83,7 @@ nv50_channel_new(struct drm_device *dev, u32 size, struct nouveau_vm *vm,
- 		return ret;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 5b4e354..71379f8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -325,14 +325,21 @@ nouveau_display_create(struct drm_device *dev)
+ 
+ 	ret = disp->create(dev);
+ 	if (ret)
+-		return ret;
++		goto disp_create_err;
+ 
+ 	if (dev->mode_config.num_crtc) {
+ 		ret = drm_vblank_init(dev, dev->mode_config.num_crtc);
+ 		if (ret)
+-			return ret;
++			goto vblank_err;
  	}
  
--	ret = drm_mm_init(&chan->ramin_heap, 0x6000, chan->ramin->size);
-+	ret = drm_mm_init(&chan->ramin_heap, 0x6000, chan->ramin->size - 0x6000);
- 	if (ret) {
- 		nv50_channel_del(&chan);
- 		return ret;
++	return 0;
++
++vblank_err:
++	disp->destroy(dev);
++disp_create_err:
++	drm_kms_helper_poll_fini(dev);
++	drm_mode_config_cleanup(dev);
+ 	return ret;
+ }
+ 
 -- 
 1.7.8.5
