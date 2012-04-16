@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48745] windows are clipped to a certain vertical
-	space
-Date: Sun, 15 Apr 2012 23:35:05 +0000
-Message-ID: <bug-48745-8800-0LGDzw7Abd@http.bugs.freedesktop.org/>
-References: <bug-48745-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47846] Nouveau -> overscan using HDMI
+Date: Mon, 16 Apr 2012 21:31:55 +0000
+Message-ID: <bug-47846-8800-MDIToAIGon@http.bugs.freedesktop.org/>
+References: <bug-47846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48745-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=48745
+https://bugs.freedesktop.org/show_bug.cgi?id=47846
 
---- Comment #4 from Angelo Arrifano <miknix-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-15 16:35:05 PDT ---
-I forgot to add that the computer (a laptop) has the TFT screen removed. the
-graphics card has, by this reason, its ?LVDS? cable disconnected.
+--- Comment #7 from Ian Pilcher <arequipeno-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-16 21:31:55 UTC ---
+Does the patch in this bug help?
 
-Thanks!
+  https://bugzilla.redhat.com/show_bug.cgi?id=806091
+
+You'll need to add "nouveau.hdmi_disable=HDMI-1" (without the quotes) to your
+kernel command line.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
