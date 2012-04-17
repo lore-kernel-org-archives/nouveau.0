@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47846] Nouveau -> overscan using HDMI
-Date: Mon, 16 Apr 2012 21:31:55 +0000
-Message-ID: <bug-47846-8800-MDIToAIGon@http.bugs.freedesktop.org/>
+Date: Tue, 17 Apr 2012 06:31:12 +0000
+Message-ID: <bug-47846-8800-485oHheGcO@http.bugs.freedesktop.org/>
 References: <bug-47846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47846
 
---- Comment #7 from Ian Pilcher <arequipeno-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-16 21:31:55 UTC ---
-Does the patch in this bug help?
+--- Comment #8 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-16 23:31:12 PDT ---
+(In reply to comment #7)
+> Does the patch in this bug help?
+> 
+>   https://bugzilla.redhat.com/show_bug.cgi?id=806091
+> 
+> You'll need to add "nouveau.hdmi_disable=HDMI-1" (without the quotes) to your
+> kernel command line.
 
-  https://bugzilla.redhat.com/show_bug.cgi?id=806091
-
-You'll need to add "nouveau.hdmi_disable=HDMI-1" (without the quotes) to your
-kernel command line.
+I don't think the is the same as your issue Ian.  A great deal of HDMI TVs and
+monitors will overscan regardless, and the only way to fix that is either the
+magic bits in the AVI InfoFrame (if you're lucky enough to have a monitor that
+cares), or to use the overscan compensation options.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
