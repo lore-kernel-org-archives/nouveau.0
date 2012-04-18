@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47846] Nouveau -> overscan using HDMI
-Date: Tue, 17 Apr 2012 12:59:49 +0000
-Message-ID: <bug-47846-8800-Q2UeH8kA33@http.bugs.freedesktop.org/>
-References: <bug-47846-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48890] New: dmesg full of DATA_ERROR
+ SEMANTIC_PTSZ_OVER_LIMIT errors on nouveau driver
+Date: Wed, 18 Apr 2012 12:12:18 +0000
+Message-ID: <bug-48890-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,60 +19,47 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDc4NDYKCi0tLSBD
-b21tZW50ICM5IGZyb20gbGFtZXZlbnRhbmFzQGdtYWlsLmNvbSAyMDEyLTA0LTE3IDA1OjU5OjQ5
-IFBEVCAtLS0K44CA44CAKEluIHJlcGx5IHRvIGNvbW1lbnQgIzcpCj4gRG9lcyB0aGUgcGF0Y2gg
-aW4gdGhpcyBidWcgaGVscD8KPiAKPiAgIGh0dHBzOi8vYnVnemlsbGEucmVkaGF0LmNvbS9zaG93
-X2J1Zy5jZ2k/aWQ9ODA2MDkxCj4gCj4gWW91J2xsIG5lZWQgdG8gYWRkICJub3V2ZWF1LmhkbWlf
-ZGlzYWJsZT1IRE1JLTEiICh3aXRob3V0IHRoZSBxdW90ZXMpIHRvIHlvdXIKPiBrZXJuZWwgY29t
-bWFuZCBsaW5lLgoKVGhhbmtzIGFueXdheSwgYnV0IGl0IGRpZG4ndCB3b3JrLgpJIHVzZWQgbm91
-dmVhdS5oZG1pX2Rpc2FibGU9YWxsLCBnb3QgdGhpcyBpbiBteSBrZXJuZWwgbWVzc2FnZXM6Cgpb
-ZHJtXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogZGlzYWJsaW5nIEhETUkgZnVuY3Rpb25zIG9uIG91
-dHB1dCBWR0EtMQpbZHJtXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogZGlzYWJsaW5nIEhETUkgZnVu
-Y3Rpb25zIG9uIG91dHB1dCBIRE1JLUEtMQoKQnV0IHRoZSBvdmVyc2NhbiBpcyBzdGlsbCB0aGVy
-ZS4KCkkganVzdCByZWFsaXplZCBJIG5ldmVyIHBvc3RlZCBteSBrZXJuZWwgbWVzc2FnZXMgYmVm
-b3JlLCBzbyBoZXJlIGl0IGlzOgoKYmFzaCQgZG1lc2cgfGdyZXAgLWkgbm91dgpLZXJuZWwgY29t
-bWFuZCBsaW5lOiBwY2llX2FzcG09Zm9yY2Ugcm9vdD0vZGV2L3NkYTIgcm8KaW5pdHJkX3Jvb3Q9
-L2Rldi9zc2Qvcm9vdCBxdWlldCBub3V2ZWF1LmhkbWlfZGlzYWJsZT1hbGwKbm91dmVhdSAwMDAw
-OjAyOjAwLjA6IHNldHRpbmcgbGF0ZW5jeSB0aW1lciB0byA2NApbZHJtXSBub3V2ZWF1IDAwMDA6
-MDI6MDAuMDogRGV0ZWN0ZWQgYW4gTlY1MCBnZW5lcmF0aW9uIGNhcmQgKDB4MGFjNTAwYjEpCltk
-cm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiBBdHRlbXB0aW5nIHRvIGxvYWQgQklPUyBpbWFnZSBm
-cm9tIFBSQU1JTgpbZHJtXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogLi4uIGFwcGVhcnMgdG8gYmUg
-dmFsaWQKW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IEJJVCBCSU9TIGZvdW5kCltkcm1dIG5v
-dXZlYXUgMDAwMDowMjowMC4wOiBCaW9zIHZlcnNpb24gNjIuNzkuM2MuMDAKW2RybV0gbm91dmVh
-dSAwMDAwOjAyOjAwLjA6IFRNRFMgdGFibGUgdmVyc2lvbiAyLjAKW2RybV0gbm91dmVhdSAwMDAw
-OjAyOjAwLjA6IE1YTTogbm8gVkJJT1MgZGF0YSwgbm90aGluZyB0byBkbwpbZHJtXSBub3V2ZWF1
-IDAwMDA6MDI6MDAuMDogRENCIHZlcnNpb24gNC4wCltkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4w
-OiBEQ0Igb3V0cCAwMDogMDEwMDAzMDAgMDAwMDAwMWUKW2RybV0gbm91dmVhdSAwMDAwOjAyOjAw
-LjA6IERDQiBvdXRwIDAxOiAwMTAxMTMyMiAwMDAyMDAxMApbZHJtXSBub3V2ZWF1IDAwMDA6MDI6
-MDAuMDogRENCIGNvbm4gMDA6IDAwMDAwMDAwCltkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiBE
-Q0IgY29ubiAwMTogMDAwMDExNjEKW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBhcnNpbmcg
-VkJJT1MgaW5pdCB0YWJsZSAwIGF0IG9mZnNldCAweERCMTEKW2RybV0gbm91dmVhdSAwMDAwOjAy
-OjAwLjA6IFJlZ2lzdGVyIDB4MDAwMDQwMjggbm90IGZvdW5kIGluIFBMTCBsaW1pdHMgdGFibGUK
-W2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBhcnNpbmcgVkJJT1MgaW5pdCB0YWJsZSAxIGF0
-IG9mZnNldCAweEREQzUKW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBhcnNpbmcgVkJJT1Mg
-aW5pdCB0YWJsZSAyIGF0IG9mZnNldCAweEREQzcKW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6
-IFBhcnNpbmcgVkJJT1MgaW5pdCB0YWJsZSAzIGF0IG9mZnNldCAweERFQUMKW2RybV0gbm91dmVh
-dSAwMDAwOjAyOjAwLjA6IFBhcnNpbmcgVkJJT1MgaW5pdCB0YWJsZSA0IGF0IG9mZnNldCAweERG
-NzEKW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IFBhcnNpbmcgVkJJT1MgaW5pdCB0YWJsZSBh
-dCBvZmZzZXQgMHhERkQ2Cltkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiAweERGRDY6IENvbmRp
-dGlvbiBzdGlsbCBub3QgbWV0IGFmdGVyIDIwbXMsCnNraXBwaW5nIGZvbGxvd2luZyBvcGNvZGVz
-Cltkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiAxIGF2YWlsYWJsZSBwZXJmb3JtYW5jZSBsZXZl
-bChzKQpbZHJtXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogMzogY29yZSA1ODBNSHogc2hhZGVyIDE0
-MDBNSHogdm9sdGFnZSAxMjAwbVYKZmFuc3BlZWQgMTAwJQpbZHJtXSBub3V2ZWF1IDAwMDA6MDI6
-MDAuMDogYzoKW2RybV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IERldGVjdGVkIDI1Nk1pQiBWUkFN
-Cltkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiBTdG9sZW4gc3lzdGVtIG1lbW9yeSBhdDogMHgw
-MDcwMDAwMDAwCltkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiA2NCBNaUIgR0FSVCAoYXBlcnR1
-cmUpCltkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiBkaXNhYmxpbmcgSERNSSBmdW5jdGlvbnMg
-b24gb3V0cHV0IFZHQS0xCltkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4wOiBkaXNhYmxpbmcgSERN
-SSBmdW5jdGlvbnMgb24gb3V0cHV0IEhETUktQS0xCltkcm1dIG5vdXZlYXUgMDAwMDowMjowMC4w
-OiBhbGxvY2F0ZWQgMTI4MHg3MjAgZmI6IDB4MmYwMDAwLCBibyBmNGU4NWMwMApmYmNvbjogbm91
-dmVhdWZiIChmYjApIGlzIHByaW1hcnkgZGV2aWNlCmZiMDogbm91dmVhdWZiIGZyYW1lIGJ1ZmZl
-ciBkZXZpY2UKW2RybV0gSW5pdGlhbGl6ZWQgbm91dmVhdSAwLjAuMTYgMjAwOTA0MjAgZm9yIDAw
-MDA6MDI6MDAuMCBvbiBtaW5vciAwCgoKQnkgdGhlIHdheSwgbXkgVFYgaXMgYSBTaGFycCBBcXVv
-cyBMQy0zMkRFNQoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0
-b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcg
-dGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBi
-dWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=48890
+
+             Bug #: 48890
+           Summary: dmesg full of DATA_ERROR SEMANTIC_PTSZ_OVER_LIMIT
+                    errors on nouveau driver
+    Classification: Unclassified
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: askondro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created attachment 60270
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60270
+dmesg log
+
+I have a GTX260 (NV50 I guess) and currently I'm getting a lot of DATA_ERROR
+SEMANTIC_PTSZ_OVER_LIMIT errors in dmesg.
+
+Whenever I see that Chrome has some rendering issues I look in the dmesg log
+file and see all the errors mentioned above.
+
+I can't say for sure that only Chrome produces these errors... 
+
+My system is:
+Linux arch 3.4.0-1-mainline #1 SMP PREEMPT Mon Apr 16 23:30:21 CEST 2012 x86_64
+Intel(R) Core(TM) i7 CPU 920 @ 2.67GHz GenuineIntel GNU/Linux
+
+- mesa (latest from git)
+- libdrm (latest from git)
+- xf86-video-nouveau (latest from git)
+- xserver 1.12.1
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
