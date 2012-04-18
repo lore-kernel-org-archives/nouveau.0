@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48890] dmesg full of DATA_ERROR
  SEMANTIC_PTSZ_OVER_LIMIT errors on nouveau driver
-Date: Wed, 18 Apr 2012 21:35:30 +0000
-Message-ID: <bug-48890-8800-v6WAagQ1E7@http.bugs.freedesktop.org/>
+Date: Wed, 18 Apr 2012 23:38:47 +0000
+Message-ID: <bug-48890-8800-sOyQnuGEhN@http.bugs.freedesktop.org/>
 References: <bug-48890-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48890
 
---- Comment #2 from Alen Skondro <askondro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-18 14:35:30 PDT ---
-Sorry, I couldn't find out on which commit exactly I was so I rebuilt mesa with
-the latest commit 86f53e6d6bd07e2bc3ffcadeb9a4418fbae06e0b.
-
-dmesg is still showing the same errors.
-
-Tell me if need anything else.
+--- Comment #3 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2012-04-18 16:38:47 PDT ---
+Thanks, it would be nice to know the version of Chrome you're using and a
+specific action / site that triggers the error.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
