@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48890] dmesg full of DATA_ERROR
  SEMANTIC_PTSZ_OVER_LIMIT errors on nouveau driver
-Date: Wed, 18 Apr 2012 23:38:47 +0000
-Message-ID: <bug-48890-8800-sOyQnuGEhN@http.bugs.freedesktop.org/>
+Date: Thu, 19 Apr 2012 11:58:16 +0000
+Message-ID: <bug-48890-8800-gMB06dlbdK@http.bugs.freedesktop.org/>
 References: <bug-48890-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48890
 
---- Comment #3 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2012-04-18 16:38:47 PDT ---
-Thanks, it would be nice to know the version of Chrome you're using and a
-specific action / site that triggers the error.
+--- Comment #4 from Alen Skondro <askondro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-19 04:58:16 PDT ---
+Chrome version is 20.
+
+I think that all sites produce this.
+In fact, as soon as I open chrome the errors start to appear.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
