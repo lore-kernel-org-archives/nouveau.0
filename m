@@ -1,92 +1,63 @@
-From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: [PATCH 1/5] drm: add optional per device rwsem for all ioctls
-Date: Mon, 23 Apr 2012 00:18:28 +0200
-Message-ID: <1335133112-8008-1-git-send-email-marcin.slusarz@gmail.com>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 2/5] drm/nouveau: base fence timeout on time of
+	emission
+Date: Mon, 23 Apr 2012 00:18:29 +0200
+Message-ID: <1335133112-8008-2-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Nouveau, in normal circumstances, does not need device lock for every ioctl,
-but incoming "gpu reset" code needs exclusive access to the device.
-This commit adds drm_driver flag which turns on read lock ioctl encapsulation.
+Wait loop can be interrupted by signal, so if signals are raised
+periodically (e.g. SIGALRM) this loop may never finish. Use
+emission time as a base for fence timeout.
 
-Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/drm_drv.c  |    6 ++++++
- drivers/gpu/drm/drm_stub.c |    2 ++
- include/drm/drmP.h         |    4 ++++
- 3 files changed, 12 insertions(+), 0 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_fence.c |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index 6116e3b..c54e9f8 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -464,6 +464,9 @@ long drm_ioctl(struct file *filp,
- 		} else
- 			memset(kdata, 0, usize);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index a22b9ad..59f92e9 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -44,6 +44,7 @@ struct nouveau_fence {
  
-+		if (dev->driver->ioctls_need_rwsem)
-+			down_read(&dev->ioctls_rwsem);
-+
- 		if (ioctl->flags & DRM_UNLOCKED)
- 			retcode = func(dev, kdata, file_priv);
- 		else {
-@@ -472,6 +475,9 @@ long drm_ioctl(struct file *filp,
- 			mutex_unlock(&drm_global_mutex);
- 		}
+ 	uint32_t sequence;
+ 	bool signalled;
++	unsigned long emitted_at;
  
-+		if (dev->driver->ioctls_need_rwsem)
-+			up_read(&dev->ioctls_rwsem);
-+
- 		if (cmd & IOC_OUT) {
- 			if (copy_to_user((void __user *)arg, kdata,
- 					 usize) != 0)
-diff --git a/drivers/gpu/drm/drm_stub.c b/drivers/gpu/drm/drm_stub.c
-index aa454f8..4af3227 100644
---- a/drivers/gpu/drm/drm_stub.c
-+++ b/drivers/gpu/drm/drm_stub.c
-@@ -275,6 +275,8 @@ int drm_fill_in_dev(struct drm_device *dev,
- 	mutex_init(&dev->struct_mutex);
- 	mutex_init(&dev->ctxlist_mutex);
- 
-+	init_rwsem(&dev->ioctls_rwsem);
-+
- 	if (drm_ht_create(&dev->map_hash, 12)) {
- 		return -ENOMEM;
+ 	void (*work)(void *priv, bool signalled);
+ 	void *priv;
+@@ -172,6 +173,7 @@ nouveau_fence_emit(struct nouveau_fence *fence)
  	}
-diff --git a/include/drm/drmP.h b/include/drm/drmP.h
-index dd73104..527dca5 100644
---- a/include/drm/drmP.h
-+++ b/include/drm/drmP.h
-@@ -954,6 +954,8 @@ struct drm_driver {
- 	int dev_priv_size;
- 	struct drm_ioctl_desc *ioctls;
- 	int num_ioctls;
-+	bool ioctls_need_rwsem;
-+
- 	const struct file_operations *fops;
- 	union {
- 		struct pci_driver *pci;
-@@ -1070,6 +1072,8 @@ struct drm_device {
- 	/*@{ */
- 	spinlock_t count_lock;		/**< For inuse, drm_device::open_count, drm_device::buf_use */
- 	struct mutex struct_mutex;	/**< For others */
-+
-+	struct rw_semaphore ioctls_rwsem;
- 	/*@} */
+ 	OUT_RING (chan, fence->sequence);
+ 	FIRE_RING(chan);
++	fence->emitted_at = jiffies;
  
- 	/** \name Usage Counters */
+ 	return 0;
+ }
+@@ -230,7 +232,8 @@ __nouveau_fence_signalled(void *sync_obj, void *sync_arg)
+ int
+ __nouveau_fence_wait(void *sync_obj, void *sync_arg, bool lazy, bool intr)
+ {
+-	unsigned long timeout = jiffies + (3 * DRM_HZ);
++	struct nouveau_fence *fence = nouveau_fence(sync_obj);
++	unsigned long timeout = fence->emitted_at + 3 * DRM_HZ;
+ 	unsigned long sleep_time = NSEC_PER_MSEC / 1000;
+ 	ktime_t t;
+ 	int ret = 0;
 -- 
 1.7.8.5
