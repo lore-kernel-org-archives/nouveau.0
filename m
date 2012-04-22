@@ -1,12 +1,12 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nouveau: remove unnecessary EAGAIN loops
-Date: Mon, 23 Apr 2012 00:31:48 +0200
-Message-ID: <20120422223148.GA8620@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 49061] New: HDMI output clipped since commit of
+ 'enable sending of avi/audio infoframes'
+Date: Sun, 22 Apr 2012 15:47:49 +0000
+Message-ID: <bug-49061-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,48 +19,55 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-drmCommandWrite / drmCommandWriteRead already loop on EAGAIN.
----
- nouveau/nouveau.c |    8 ++------
- nouveau/pushbuf.c |    7 ++-----
- 2 files changed, 4 insertions(+), 11 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=49061
 
-diff --git a/nouveau/nouveau.c b/nouveau/nouveau.c
-index 699b9b7..f0bc2c3 100644
---- a/nouveau/nouveau.c
-+++ b/nouveau/nouveau.c
-@@ -461,12 +461,8 @@ nouveau_bo_wait(struct nouveau_bo *bo, uint32_t access,
- 	if (access & NOUVEAU_BO_NOBLOCK)
- 		req.flags |= NOUVEAU_GEM_CPU_PREP_NOWAIT;
- 
--	do {
--		ret = drmCommandWrite(bo->device->fd,
--				      DRM_NOUVEAU_GEM_CPU_PREP,
--				      &req, sizeof(req));
--	} while (ret == -EAGAIN);
--
-+	ret = drmCommandWrite(bo->device->fd, DRM_NOUVEAU_GEM_CPU_PREP,
-+			      &req, sizeof(req));
- 	if (ret == 0)
- 		nvbo->access = 0;
- 	return ret;
-diff --git a/nouveau/pushbuf.c b/nouveau/pushbuf.c
-index 103737e..7b9dbaa 100644
---- a/nouveau/pushbuf.c
-+++ b/nouveau/pushbuf.c
-@@ -341,11 +341,8 @@ pushbuf_submit(struct nouveau_pushbuf *push, struct nouveau_object *chan)
- 			pushbuf_dump(krec, krec_id++, fifo->channel);
- 
- #ifndef SIMULATE
--		do {
--			ret = drmCommandWriteRead(dev->fd,
--						  DRM_NOUVEAU_GEM_PUSHBUF,
--						  &req, sizeof(req));
--		} while (ret == -EAGAIN);
-+		ret = drmCommandWriteRead(dev->fd, DRM_NOUVEAU_GEM_PUSHBUF,
-+					  &req, sizeof(req));
- 		nvpb->suffix0 = req.suffix0;
- 		nvpb->suffix1 = req.suffix1;
- 		dev->vram_limit = (req.vram_available * 80) / 100;
+             Bug #: 49061
+           Summary: HDMI output clipped since commit of 'enable sending of
+                    avi/audio infoframes'
+    Classification: Unclassified
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: gitbisector-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created attachment 60467
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60467
+drm output from 'dmesg' and output of 'xrandr --verbose' to hopefully describe
+my setup
+
+Since some time now 1920x1200 output on HDMI port of my nv50 based card shows
+two black bands on the left and right side of the screen. It's clipping (i.e.
+pieces of the desktop are not drawn), resolution seems to be correct. 
+
+bisecting of the linux kernel got me here:
+
+b2337f2333c0bdefc9b230da17ed7188e4eb7f6c is the first bad commit
+commit b2337f2333c0bdefc9b230da17ed7188e4eb7f6c
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Wed Oct 5 14:59:14 2011 +1000
+
+    drm/nouveau/hdmi: enable sending of avi/audio infoframes
+
+    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+:040000 040000 edc0d0e6f57362c38edb0845cf19ee076a045f0b
+364748b5ea73b322991331396fb218d8afd65fe7 M    drivers
+
+And indeed taking out these changes from the current 3.4.0-rc4 kernel seems to
+solve my problem.
+
+Seems this enabling of avi/audio infoframes has some bad side effect for my
+hardware.
+
 -- 
-1.7.8.5
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
