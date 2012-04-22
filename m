@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49057] GPU hang with NV50 card
-Date: Sun, 22 Apr 2012 10:18:10 +0000
-Message-ID: <bug-49057-8800-zVx4ZXug9l@http.bugs.freedesktop.org/>
+Date: Sun, 22 Apr 2012 10:19:21 +0000
+Message-ID: <bug-49057-8800-EVRgZBedyF@http.bugs.freedesktop.org/>
 References: <bug-49057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49057
 
---- Comment #1 from Jack Byer <ftn768-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-22 10:18:10 UTC ---
-Created attachment 60457
-  --> https://bugs.freedesktop.org/attachment.cgi?id=60457
-Xorg startup log
+--- Comment #2 from Jack Byer <ftn768-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-22 10:19:21 UTC ---
+Created attachment 60458
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60458
+Display after trying to start X
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
