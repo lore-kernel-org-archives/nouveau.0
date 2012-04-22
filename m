@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47846] Nouveau -> overscan using HDMI
-Date: Fri, 20 Apr 2012 21:57:39 +0000
-Message-ID: <bug-47846-8800-zNBhZuWuvq@http.bugs.freedesktop.org/>
-References: <bug-47846-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49057] New: GPU hang with NV50 card
+Date: Sun, 22 Apr 2012 10:17:39 +0000
+Message-ID: <bug-49057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +18,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47846
+https://bugs.freedesktop.org/show_bug.cgi?id=49057
 
---- Comment #11 from lameventanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-04-20 21:57:39 UTC ---
-(In reply to comment #10)
-> Created attachment 60346 [details] [review]
-> something to try..
-> 
-> This is the only thing I can think of that NVIDIA might be doing that has a
-> chance of making your display decide to not overscan.
-> 
-> Assuming this doesn't work, I'd be *very* interested in seeing a mmiotrace of
-> the binary driver setting your display up so it doesn't overscan.. In my
-> experience, the binary driver does no better than any other driver I've ever
-> seen at avoiding this bad behaviour for crappy displays.
+             Bug #: 49057
+           Summary: GPU hang with NV50 card
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: ftn768-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-The patch didn't help.
-I will do the mmiotrace as soon as possible.
 
-Thanks!
+Created attachment 60456
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60456
+dmesg output
+
+On a desktop machine which was previously using the nvidia propritary driver
+successfully attempting to boot with nouveaufb results in a "GPU lockup"
+message during boot and hangs if X is started eventually resulting in a
+colorful, but useless, display which can only be corrected with a reboot.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
