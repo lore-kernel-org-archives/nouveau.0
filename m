@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: =?utf-8?b?W0J1ZyA0OTA4Nl0gTmV3OiAgbm91dmVhdSDigJQgR2Fs?=
- =?utf-8?q?lium_0_=2E_4_on_NVA5_=E2=80=94_2_=2E1_Mesa_8=2E0=2E2_crashes_Fi?=
- =?utf-8?q?refox_Nightly?=
-Date: Mon, 23 Apr 2012 18:26:07 +0000
-Message-ID: <bug-49086-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49088] New: MapsGL labels doen't render properly on
+	nouveau
+Date: Mon, 23 Apr 2012 13:19:27 +0000
+Message-ID: <bug-49088-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -20,31 +19,55 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDkwODYKCiAgICAg
-ICAgICAgICBCdWcgIzogNDkwODYKICAgICAgICAgICBTdW1tYXJ5OiBub3V2ZWF1IOKAlCBHYWxs
-aXVtIDAuNCBvbiBOVkE1IOKAlCAyLjEgTWVzYSA4LjAuMiBjcmFzaGVzCiAgICAgICAgICAgICAg
-ICAgICAgRmlyZWZveCBOaWdodGx5CiAgICBDbGFzc2lmaWNhdGlvbjogVW5jbGFzc2lmaWVkCiAg
-ICAgICAgICAgUHJvZHVjdDogTWVzYQogICAgICAgICAgIFZlcnNpb246IDguMAogICAgICAgICAg
-UGxhdGZvcm06IHg4Ni02NCAoQU1ENjQpCiAgICAgICAgT1MvVmVyc2lvbjogTGludXggKEFsbCkK
-ICAgICAgICAgICAgU3RhdHVzOiBORVcKICAgICAgICAgIFNldmVyaXR5OiBub3JtYWwKICAgICAg
-ICAgIFByaW9yaXR5OiBtZWRpdW0KICAgICAgICAgQ29tcG9uZW50OiBEcml2ZXJzL0RSSS9ub3V2
-ZWF1CiAgICAgICAgQXNzaWduZWRUbzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKICAg
-ICAgICBSZXBvcnRlZEJ5OiBhbGV4X21heW9yZ2FAeWFob28uY29tCgoKaHR0cHM6Ly9jdnMua2hy
-b25vcy5vcmcvc3ZuL3JlcG9zL3JlZ2lzdHJ5L3RydW5rL3B1YmxpYy93ZWJnbC9jb25mb3JtYW5j
-ZS1zdWl0ZXMvMS4wLjEvY29uZm9ybWFuY2UvZ2xzbC9mdW5jdGlvbnMvZ2xzbC1mdW5jdGlvbi1u
-b3JtYWxpemUuaHRtbApjcmFzaGVzIEZpcmVmb3ggTmlnaHRseSBvbiBjbGljayB3aXRoIHRoaXMg
-Y29uZmlndXJhdGlvbjoKCk1vemlsbGEvNS4wIChYMTE7IFVidW50dTsgTGludXggeDg2XzY0OyBy
-djoxNC4wKSBHZWNrby8yMDEyMDQyMyBGaXJlZm94LzE0LjBhMQpJRDoyMDEyMDQyMzAzNDA1MwoK
-QWRhcHRlciBEZXNjcmlwdGlvbiBub3V2ZWF1IOKAlCBHYWxsaXVtIDAuNCBvbiBOVkE1ClZlbmRv
-ciBJRCBub3V2ZWF1CkRldmljZSBJRCBHYWxsaXVtIDAuNCBvbiBOVkE1CkRyaXZlciBWZXJzaW9u
-IDIuMSBNZXNhIDguMC4yCldlYkdMIFJlbmRlcmVyIG5vdXZlYXUg4oCUIEdhbGxpdW0gMC40IG9u
-IE5WQTUg4oCUIDIuMSBNZXNhIDguMC4yCkdQVSBBY2NlbGVyYXRlZCBXaW5kb3dzIDAKQXp1cmVC
-YWNrZW5kIHNraWEKCkkgd2FzIGRpcmVjdGVkIHRvIHJlcG9ydCB0aGlzIGNyYXNoIHRvIHRoaXMg
-YnVnIHRyYWNrZXIgYXQKaHR0cDovL2Jsb2cubW96aWxsYS5vcmcvYmphY29iLzIwMTIvMDQvMjEv
-d2ViZ2wtMS0wLTEtY29uZm9ybWFuY2UtdGVzdGluZy1wYXJ0LTIvY29tbWVudC1wYWdlLTEvI2Nv
-bW1lbnQtMzA4MgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0
-b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcg
-dGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBi
-dWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=49088
+
+             Bug #: 49088
+           Summary: MapsGL labels doen't render properly on nouveau
+    Classification: Unclassified
+           Product: Mesa
+           Version: 8.0
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: alex_mayorga-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+
+
+Something messed up MapsGL at http://maps.google.com/?vector=1 with this
+configuration:
+
+alex-mayorga@VPCCW1FFXL:~$ uname -a
+Linux VPCCW1FFXL 3.2.0-23-generic #36-Ubuntu SMP Tue Apr 10 20:39:51 UTC 2012
+x86_64 x86_64 x86_64 GNU/Linux
+
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:14.0) Gecko/20120423 Firefox/14.0a1
+ID:20120423034053
+
+Graphics
+Adapter Description nouveau -- Gallium 0.4 on NVA5
+Vendor ID nouveau
+Device ID Gallium 0.4 on NVA5
+Driver Version 2.1 Mesa 8.0.2
+WebGL Renderer nouveau -- Gallium 0.4 on NVA5 -- 2.1 Mesa 8.0.2
+GPU Accelerated Windows 0
+AzureBackend skia
+
+This is how the map looks http://imm.io/n1PJ street names are not visible. Same
+garbled labels appear on Chromium.
+
+At first I thought it was a bug on Firefox and reported it as
+https://bugzilla.mozilla.org/show_bug.cgi?id=745481
+
+Also reported it to the distribution (Ubuntu) as
+https://bugs.launchpad.net/ubuntu/+bug/981883
+
+Both bug reports suggested this was a problem "upstream" and suggested I filed
+the issue here so I'm doing that.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
