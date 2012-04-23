@@ -1,66 +1,50 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/5] drm: add optional per device rwsem for
-	all ioctls
-Date: Mon, 23 Apr 2012 19:20:35 +0200
-Message-ID: <20120423172035.GB2886@joi.lan>
-References: <1335133112-8008-1-git-send-email-marcin.slusarz@gmail.com>
-	<20120423075148.GC4935@phenom.ffwll.local>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: Re: [Nouveau] [PATCH 4/5] drm/nv50: let applications hanging on vm
+	flush to be killed
+Date: Mon, 23 Apr 2012 19:30:46 +0200
+Message-ID: <20120423173046.GC2886@joi.lan>
+References: <1335133112-8008-4-git-send-email-marcin.slusarz@gmail.com>
+	<4F958CE5.50904@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
 Content-Disposition: inline
-In-Reply-To: <20120423075148.GC4935-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+In-Reply-To: <4F958CE5.50904@free.fr>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Martin Peres <martin.peres@free.fr>
+Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Apr 23, 2012 at 09:51:48AM +0200, Daniel Vetter wrote:
-> On Mon, Apr 23, 2012 at 12:18:28AM +0200, Marcin Slusarz wrote:
-> > Nouveau, in normal circumstances, does not need device lock for every ioctl,
-> > but incoming "gpu reset" code needs exclusive access to the device.
-> > This commit adds drm_driver flag which turns on read lock ioctl encapsulation.
-> > 
-> > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> 
-> Why can't we just move this down to nouveau driver code?
-
-I can't wrap drm core ioctls this way and adding locks at driver entry points
-would be at best unmaintainable, at worst - impossible (some of them are
-probably called in atomic context).
-
-> I really hate adding random stuff to drm core that other drivers can't opt
-> out of - all the dri1 nightmares are made of these essentially.
-
-It's enabled only when driver requested it. I'm not sure what dri1 nightmares
-you are talking about - I wasn't involved in dri1. Can you elaborate?
-
-> And radeon
-> and i915 seem to be able to reset without adding anything to drm core.
-
-Both radeon and i915 take per-device locks (radeon_device->cs_mutex for radeon,
-drm_device->struct_mutex for i915), which nouveau does not need. They might be
-bottlenecks some day.
-
-> So why can't nouveau do the same? Also, if this is indeed necessary and we
-> add this as some mandatory core infrastructure, it's not good enough: In
-> i915 we go to great lengths to ensure that all processes waiting for gpu
-> reset are still interruptible, in case the gpu reset dies unexpectedly
-> (which happens), so this would need to be improved.
-
-Well, I don't like non-interruptability of rwsems too, but I don't see any
-other locking primitive which is both interruptible and have read-write
-semantics. I was hoping someone would point me at one.
-
-How gpu reset can "die unexpectedly"?
-
-Marcin
+T24gTW9uLCBBcHIgMjMsIDIwMTIgYXQgMDc6MDk6NTdQTSArMDIwMCwgTWFydGluIFBlcmVzIHdy
+b3RlOgo+IExlIDIzLzA0LzIwMTIgMDA6MTgsIE1hcmNpbiBTbHVzYXJ6IGEgw6ljcml0IDoKPiA+
+IFNpZ25lZC1vZmYtYnk6IE1hcmNpbiBTbHVzYXJ6PG1hcmNpbi5zbHVzYXJ6QGdtYWlsLmNvbT4K
+PiA+IC0tLQo+ID4gICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dyYXBoLmMgfCAgICA1
+ICsrKysrCj4gPiAgIDEgZmlsZXMgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAwIGRlbGV0aW9u
+cygtKQo+ID4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dy
+YXBoLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2dyYXBoLmMKPiA+IGluZGV4IDY4
+OTk1NDcuLmE2MTg1M2YgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+djUwX2dyYXBoLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZ3JhcGgu
+Ywo+ID4gQEAgLTQzNSw2ICs0MzUsMTEgQEAgbnY4NF9ncmFwaF90bGJfZmx1c2goc3RydWN0IGRy
+bV9kZXZpY2UgKmRldiwgaW50IGVuZ2luZSkKPiA+ICAgCQkJaWYgKCh0bXAmICA3KSA9PSAxKQo+
+ID4gICAJCQkJaWRsZSA9IGZhbHNlOwo+ID4gICAJCX0KPiA+ICsKPiA+ICsJCWlmIChmYXRhbF9z
+aWduYWxfcGVuZGluZyhjdXJyZW50KSkgewo+ID4gKwkJCXJldCA9IC1FUkVTVEFSVFNZUzsKPiA+
+ICsJCQlicmVhazsKPiA+ICsJCX0KPiA+ICAgCX0gd2hpbGUgKCFpZGxlJiYgICEodGltZW91dCA9
+IHB0aW1lci0+cmVhZChkZXYpIC0gc3RhcnQ+ICAyMDAwMDAwMDAwKSk7Cj4gPgo+ID4gICAJaWYg
+KHRpbWVvdXQpIHsKPiBHb29kLCBidXQgd2hvIHNob3VsZCBzZW5kIHRoZSBraWxsIHNpZ25hbCBp
+biB0aGUgZmlyc3QgcGxhY2U/Cj4gCj4gU2hvdWxkbid0IG5vdXZlYXUgZHJtIHRlcm1pbmF0ZSB0
+aGUgcHJvY2VzcyhlcykgYXNzb2NpYXRlZCB3aXRoIHRoZSAKPiBjaGFubmVsIHRoYXQgZ2VuZXJh
+dGVkIHRoZSBsb2NrdXAgPwoKV2VsbCwgdGhpcyBwYXRjaCBpcyBub3QgbmVjZXNzYXJ5IGZvciBn
+cHUgcmVzZXQgLSBpdCdzIGp1c3QgImxldCdzIGJlIG5pY2UiIGNoYW5nZS4KQ3VycmVudGx5IGFw
+cGxpY2F0aW9uIGlzIHVua2lsbGFibGUgd2hlbiBoYW5naW5nIG9uIHZtIGZsdXNoIAoKTWFyY2lu
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZl
+bCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
