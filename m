@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49061] HDMI output clipped since commit of 'enable
  sending of avi/audio infoframes'
-Date: Sun, 22 Apr 2012 16:54:10 +0000
-Message-ID: <bug-49061-8800-ULKyP0OgyJ@http.bugs.freedesktop.org/>
+Date: Mon, 23 Apr 2012 01:58:41 +0000
+Message-ID: <bug-49061-8800-qSHu0FOUbR@http.bugs.freedesktop.org/>
 References: <bug-49061-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49061
 
---- Comment #1 from gitbisector-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-04-22 16:54:10 UTC ---
-Found that my monitor is one of a number of types that assume HDTV when they
-receive audio infoframes:
+Ian Pilcher <arequipeno-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-http://www.voetsjoeba.com/misc/edid/
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |arequipeno-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #2 from Ian Pilcher <arequipeno-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-22 18:58:41 PDT ---
+Does the patch in this bug help?
+
+  https://bugzilla.redhat.com/show_bug.cgi?id=806091
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
