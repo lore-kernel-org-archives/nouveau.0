@@ -1,14 +1,14 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [RFC PATCH 5/5] drm/nouveau: gpu lockup recovery
-Date: Mon, 23 Apr 2012 18:56:44 +0200
-Message-ID: <4F9589CC.1030909@free.fr>
-References: <1335133112-8008-5-git-send-email-marcin.slusarz@gmail.com>
-	<4F95161C.9070403@free.fr> <20120423163257.GA2886@joi.lan>
+Subject: Re: [PATCH 4/5] drm/nv50: let applications hanging on vm
+ flush to be killed
+Date: Mon, 23 Apr 2012 19:09:57 +0200
+Message-ID: <4F958CE5.50904@free.fr>
+References: <1335133112-8008-4-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20120423163257.GA2886-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <1335133112-8008-4-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,19 +19,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-TGUgMjMvMDQvMjAxMiAxODozMiwgTWFyY2luIFNsdXNhcnogYSDDqWNyaXQgOgo+Cj4gSnVzdCBy
-dW4gcGlnbGl0LiBFdmVuICJxdWljayIgdGVzdHMgY2FuIGNhdXNlIH41IGxvY2t1cHMgKGl0IGV2
-ZW50dWFsbHkgbWVzc2VzCj4gdXAgRERYIGNoYW5uZWwsIGJ1dCB0aGlzIHBhdGNoc2V0IGNhbid0
-IGZpeCB0aGlzIGNhc2UpLgo+IFlvdSBjYW4gcnVuIGZzLWRpc2NhcmQtZXhpdC0yIHRlc3QgZmly
-c3QgLSBmb3IgbWUgaXQgY2F1c2VzIGluc3RhbnQgR1BVIGxvY2t1cC4KPgo+IE1hcmNpbgpHcmVh
-dCwgVGhhbmtzLgoKRGlkIHlvdSBoYXZlIGEgbG9vayBhdCAKaHR0cHM6Ly9idWdzLmZyZWVkZXNr
-dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDA4ODYgYW5kIApodHRwOi8veG9yZy5mcmVlZGVza3Rv
-cC5vcmcvd2lraS9TdW1tZXJPZkNvZGVJZGVhcyA/ClRoZSBVYnVudHUgeG9yZyBkZXZzIHdlcmUg
-bG9va2luZyBmb3Igc29tZXRoaW5nIGxpa2UgdGhpcywgYnV0IHRoZXkgYWxzbyAKd2FudGVkIGEg
-bG9ja3VwIHJlcG9ydC4gQXJlIHlvdSBhbHNvIGludGVyZXN0ZWQgb24gd29ya2luZyBvbiBpdCA/
-CgpNYXJ0aW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+Le 23/04/2012 00:18, Marcin Slusarz a =E9crit :
+> Signed-off-by: Marcin Slusarz<marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>   drivers/gpu/drm/nouveau/nv50_graph.c |    5 +++++
+>   1 files changed, 5 insertions(+), 0 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouve=
+au/nv50_graph.c
+> index 6899547..a61853f 100644
+> --- a/drivers/gpu/drm/nouveau/nv50_graph.c
+> +++ b/drivers/gpu/drm/nouveau/nv50_graph.c
+> @@ -435,6 +435,11 @@ nv84_graph_tlb_flush(struct drm_device *dev, int eng=
+ine)
+>   			if ((tmp&  7) =3D=3D 1)
+>   				idle =3D false;
+>   		}
+> +
+> +		if (fatal_signal_pending(current)) {
+> +			ret =3D -ERESTARTSYS;
+> +			break;
+> +		}
+>   	} while (!idle&&  !(timeout =3D ptimer->read(dev) - start>  2000000000=
+));
+>
+>   	if (timeout) {
+Good, but who should send the kill signal in the first place?
+
+Shouldn't nouveau drm terminate the process(es) associated with the =
+
+channel that generated the lockup ?
+
+Can you provide more info on how the lockup recovery works?
+
+Thanks in advance,
+Martin
