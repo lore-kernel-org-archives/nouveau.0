@@ -1,45 +1,49 @@
-From: Christoph Bumiller <e0425955@student.tuwien.ac.at>
-Subject: Re: [Nouveau] [RFC PATCH 5/5] drm/nouveau: gpu lockup recovery
-Date: Wed, 25 Apr 2012 13:06:44 +0200
-Message-ID: <4F97DAC4.4060109@student.tuwien.ac.at>
-References: <1335133112-8008-5-git-send-email-marcin.slusarz@gmail.com>
-	<4F95161C.9070403@free.fr> <20120423163257.GA2886@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 49142] New: [NV4A] OpengGL content corruption when
+ width >= 2048
+Date: Wed, 25 Apr 2012 12:59:26 +0000
+Message-ID: <bug-49142-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <20120423163257.GA2886@joi.lan>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 04/23/2012 06:32 PM, Marcin Slusarz wrote:
-> You can run fs-discard-exit-2 test first - for me it causes instant GPU lockup.
-> 
+https://bugs.freedesktop.org/show_bug.cgi?id=49142
 
-That's because it's designed (but not supposed) to do that, it also
-locks up with the blob, it's a harmless shader infinite loop.
+             Bug #: 49142
+           Summary: [NV4A] OpengGL content corruption when width >= 2048
+    Classification: Unclassified
+           Product: Mesa
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-(May be a bug in the MPs or a wrong setting somewhere, but they don't
-pop the control flow stack if all but killed pixels of a partially
-killed quad remain on the current execution path).
 
-Activated the watchdog on nv50 now, too, if you want to produce the
-lockup with current mesa git run with NOUVEAU_SHADER_WATCHDOG=0 (yes
-when we use COMPUTE it will have to be deactivated as well).
+When a window with opengl content with a width >= 2048 the right part show
+random memory. Was easy to discover for me due since I'm using dual head with
+kwin opengl rendering. glxdemo produce the same corruption if enlarged enougth.
+Thought I was not really able to test if the same kind of problem appends with
+expending the height.
+Note that this is a regression in nv30 from nvfx.
 
-> Marcin
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
-> 
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
