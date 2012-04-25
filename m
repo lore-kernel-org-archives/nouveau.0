@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49148] New: nv20_state_fb.c:50: get_rt_format:
- Assertion `0' failed.
-Date: Wed, 25 Apr 2012 16:40:51 +0000
-Message-ID: <bug-49148-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49148] nv20_state_fb.c:50: get_rt_format: Assertion
+	`0' failed.
+Date: Wed, 25 Apr 2012 19:51:55 +0000
+Message-ID: <bug-49148-8800-3ibUyQDNrE@http.bugs.freedesktop.org/>
+References: <bug-49148-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-49148-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49148
 
-             Bug #: 49148
-           Summary: nv20_state_fb.c:50: get_rt_format: Assertion `0'
-                    failed.
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: johndoe99-HPQIj1OAFZMvJsYlp49lxw@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2012-04-25 12:51:55 PDT ---
+Created attachment 60588
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60588
+proposed fix
 
-
-Lubuntu 11.10
-
-0.0 VGA compatible controller: nVidia Corporation NV25 [GeForce4 Ti 4400] (rev
-a3)
-X.Org version: 1.11.2.902
-  dimensions:    1024x768 pixels (270x203 millimeters)
-  depth of root window:    24 planes
-direct rendering: Yes
-server glx vendor string: SGI
-server glx version string: 1.4
---
-OpenGL vendor string: Nouveau
-OpenGL renderer string: Mesa DRI nv25 x86/MMX/SSE2
-OpenGL version string: 1.2 Mesa 8.0.2
-Linux 3.1.3-030103-generic
-xserver-xorg-video-nouveau
-1:0.0.16+git20120328.ab7291d3-0ubuntu0sarvatt~oneiric
-
-Start of some 3D applications. Example 
-
-SweetHome3D-3.3$ ./SweetHome3D
-JAVA 3D: OpenGL 1.2 detected; will run with reduced functionality
-JAVA 3D: OpenGL 1.2 detected; will run with reduced functionality
-java: nv20_state_fb.c:50: get_rt_format: Assertion `0' failed.
+Could you please try the attached patch? It's only compile tested, as I don't
+have any vieux hardware and you have to compile mesa from git, but it should be
+worth a try.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
