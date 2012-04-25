@@ -1,16 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RFC PATCH 5/5] drm/nouveau: gpu lockup recovery
-Date: Wed, 25 Apr 2012 10:32:07 +1000
-Message-ID: <1335313927.1821.5.camel@nisroch>
-References: <1335133112-8008-5-git-send-email-marcin.slusarz@gmail.com>
-	<4F95161C.9070403@free.fr> <20120423163257.GA2886@joi.lan>
-	<4F9589CC.1030909@free.fr> <20120424193150.GC2857@joi.lan>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: rendering problems with latest ddx driver (nv50)
+Date: Wed, 25 Apr 2012 10:38:52 +1000
+Message-ID: <1335314332.1821.7.camel@nisroch>
+References: <CAGZ4FETeOjfQD5DV1+=sx4NCk9xuMrvQhH1fS-TrmoVRiMc7mQ@mail.gmail.com>
+Reply-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20120424193150.GC2857-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <CAGZ4FETeOjfQD5DV1+=sx4NCk9xuMrvQhH1fS-TrmoVRiMc7mQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,50 +18,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCAyMDEyLTA0LTI0IGF0IDIxOjMxICswMjAwLCBNYXJjaW4gU2x1c2FyeiB3cm90ZToK
-PiBPbiBNb24sIEFwciAyMywgMjAxMiBhdCAwNjo1Njo0NFBNICswMjAwLCBNYXJ0aW4gUGVyZXMg
-d3JvdGU6Cj4gPiBMZSAyMy8wNC8yMDEyIDE4OjMyLCBNYXJjaW4gU2x1c2FyeiBhIMOpY3JpdCA6
-Cj4gPiA+Cj4gPiA+IEp1c3QgcnVuIHBpZ2xpdC4gRXZlbiAicXVpY2siIHRlc3RzIGNhbiBjYXVz
-ZSB+NSBsb2NrdXBzIChpdCBldmVudHVhbGx5IG1lc3Nlcwo+ID4gPiB1cCBERFggY2hhbm5lbCwg
-YnV0IHRoaXMgcGF0Y2hzZXQgY2FuJ3QgZml4IHRoaXMgY2FzZSkuCj4gPiA+IFlvdSBjYW4gcnVu
-IGZzLWRpc2NhcmQtZXhpdC0yIHRlc3QgZmlyc3QgLSBmb3IgbWUgaXQgY2F1c2VzIGluc3RhbnQg
-R1BVIGxvY2t1cC4KPiA+ID4KPiA+ID4gTWFyY2luCj4gPiBHcmVhdCwgVGhhbmtzLgo+ID4gCj4g
-PiBEaWQgeW91IGhhdmUgYSBsb29rIGF0IAo+ID4gaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9y
-Zy9zaG93X2J1Zy5jZ2k/aWQ9NDA4ODYgYW5kIAo+ID4gaHR0cDovL3hvcmcuZnJlZWRlc2t0b3Au
-b3JnL3dpa2kvU3VtbWVyT2ZDb2RlSWRlYXMgPwo+IAo+IFllYWgsIEkndmUgc2VlbiB0aGVtIHNv
-bWUgdGltZSBhZ28uCj4gCj4gPiBUaGUgVWJ1bnR1IHhvcmcgZGV2cyB3ZXJlIGxvb2tpbmcgZm9y
-IHNvbWV0aGluZyBsaWtlIHRoaXMsIGJ1dCB0aGV5IGFsc28gCj4gPiB3YW50ZWQgYSBsb2NrdXAg
-cmVwb3J0LiBBcmUgeW91IGFsc28gaW50ZXJlc3RlZCBvbiB3b3JraW5nIG9uIGl0ID8KQXMgSSBh
-cmd1ZWQgYXQgWERDIGxhc3QgeWVhciwgSSByZWFsbHkgcXVlc3Rpb24gdGhlIHVzZWZ1bG5lc3Mg
-b2YKc29tZXRoaW5nIGxpa2UgdGhpcy4gIFdlIGhhdmUgc3R1cGlkbHkgSFVHRSBhbW91bnRzIG9m
-IHN0YXRlIHRoYXQgY291bGQKYmUgcmVsZXZhbnQsIGFuZCB0aGUgc2l0dWF0aW9ucyB3aGVyZSB3
-ZSBldmVuIG5lZWQgc29tZXRoaW5nIGxpa2UgdGhpcwphcmUgUkFSRS4KCkkgZG9uJ3Qgd2FudCB0
-aGlzIHVzZWxlc3MgY3JhcCBpbiBvdXIga2VybmVsIG1vZHVsZSBqdXN0IGJlY2F1c2Ugc29tZQpy
-YW5kb20gZGlzdHJvIHRoaW5rcyBpdCdzIHNvIHVzZWZ1bCwgd2hlbiBpdCdzIG5vdC4gIE9uIHRo
-ZSB2ZXJ5IHZlcnkKcmFyZSAoSSBjYW4gdGhpbmsgb2Ygb25lIHNpdHVhdGlvbiB3aGVyZSB3ZSd2
-ZSB3YW50ZWQgdGhlc2UgcmVnaXN0ZXIKZHVtcHMsIGFuZCB0aGV5IHdlcmVuJ3QgdXNlZnVsIGV2
-ZW4gdGhlbikgb2NjYXNpb25zIHdlIG5lZWQgdGhpcyBpbmZvLAp3ZSBjYW4gYXNrIHBlb3BsZSB0
-byBpbnN0YWxsIGVudnl0b29scyBhbmQgZ3JhYiBpdC4uCgpXZSBoYXZlIGEgR1BVIHdpdGggKnZl
-cnkqIGdvb2QgZXJyb3IgcmVwb3J0aW5nLCBhbmQgd2UgbG9nIHRoaXMgdG8KZG1lc2cuICBUaGlz
-IGlzIGdvb2QgZW5vdWdoLiAgQW55IHJhbmRvbSBlcnJvcmxlc3MgbG9ja3VwcyBhcmUgbXVjaApo
-YXJkZXIsIGFuZCB1bmxlc3MgeW91IGR1bXAgKmFsbCogdGhlIGNhcmQgc3RhdGUgcmlnaHQgZnJv
-bSB0aGUgbWVtb3J5CmNvbnRyb2xsZXJzLCB0byB0aGUgY2xvY2tzLCB0byBQRklGTyB0byB0aGUg
-cGFydGljdWxhciBlbmdpbmUgdGhhdCdzCmludm9sdmVkLi4gSXQncyBnb2luZyB0byBiZSB1c2Vs
-ZXNzLiAgVGhlIHByb2JsZW0gY291bGQgYmUgYW55dGhpbmcuCgo+IAo+IFllcywgd2hlbiB0aGlz
-IHBhdGNoc2V0IHdpbGwgYmUgYXBwbGllZCwgSSdtIGdvaW5nIHRvIHdvcmsgb24gaW1wcm92aW5n
-Cj4gZXJyb3IgcmVwb3J0aW5nLgpBc3N1bWluZyB5b3UncmUgbm90IHRhbGtpbmcgYWJvdXQgYSBy
-ZWdpc3Rlci1kdW1wIHN0eWxlIGxvY2t1cCByZXBvcnQKbGlrZSBhYm92ZSwgdGhpcyBjb3VsZCBi
-ZSBnb29kLiAgUGFydGljdWxhcmx5LCBmbGVzaGluZyBvdXQgYW5kCmltcHJvdmluZy9jb21wbGV0
-aW5nIGVhY2ggZW5naW5lJ3MgSVJRIGhhbmRsZXJzICh3aGljaCB3aWxsIHByb2JhYmx5CmhhdmUg
-dGhlIG5pY2Ugc2lkZS1lZmZlY3Qgb2Ygc3Vydml2aW5nIGEgZmV3IG1vcmUgZXJyb3JzIHdpdGhv
-dXQgbG9ja2luZwp1cCkgOikKCkNoZWVycywKQmVuLgoKPiAKPiBNYXJjaW4KPiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5n
-IGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAoKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Tue, 2012-04-24 at 20:14 +0200, Maarten Maathuis wrote:
+> Do you get rendering errors also when using a nv50 class gpu? I seem
+> to get them in firefox.
+Hmm, I haven't noticed anything on my NVA8 laptop.
+
+> 
+> I also noticed a huge amount of failures when running rendercheck -t
+> gradients, which i find odd, because they are not supposed to be
+> accelerated.
+I think either pixman or the rendercheck test is broken.  It doesn't
+pass with software rendering, or the Intel driver's accelerated version.
+
+The detected/expected colours are very close when I looked at this, so
+it may just be a question of precision.
+
+Ben.
+
+> 
