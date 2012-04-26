@@ -1,16 +1,14 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: Re: [PATCH 2/2] drm/nouveau: implement precise vblank
- timestamping
-Date: Thu, 26 Apr 2012 23:31:24 +0200
-Message-ID: <1335475884.2645.4.camel@tellur>
-References: <1335392782-2141-1-git-send-email-dev@lynxeye.de>
-	<1335392782-2141-2-git-send-email-dev@lynxeye.de>
-	<CAGZ4FEQkr9jt6cpius9DDrk_oPiQehxNnGV_UBBqCzqZomc-ag@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 49088] MapsGL labels doen't render properly on
+	nouveau
+Date: Thu, 26 Apr 2012 21:41:12 +0000
+Message-ID: <bug-49088-8800-8vGYzixdfl@http.bugs.freedesktop.org/>
+References: <bug-49088-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAGZ4FEQkr9jt6cpius9DDrk_oPiQehxNnGV_UBBqCzqZomc-ag-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-49088-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +18,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>, Mario-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Maarten,
+https://bugs.freedesktop.org/show_bug.cgi?id=49088
 
-Am Donnerstag, den 26.04.2012, 23:25 +0200 schrieb Maarten Maathuis:
-> It seems a bit strange to go in between a register and defines that
-> probably belong to that register.
-> 
-Yes, you are right. Thanks for catching this. I will fix this up, but
-will wait for Ben's comments and/or other review feedback before
-spamming the list with just another version of this patch.
+Karl Tomlinson <bugs.freedesktop-685W5sqp211eoWH0uzbU5w@public.gmane.org> changed:
 
--- Lucas
-> On Thu, Apr 26, 2012 at 12:26 AM, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> wrote:
-> >  #define NV_PCRTC_ENGINE_CTRL                           0x00600860
-> > +#define NV_PCRTC_STAT(i0)                      (0x00600868 + 0x2000*(i0))
-> >  #      define NV_CRTC_FSEL_I2C                                 (1 << 4)
-> >  #      define NV_CRTC_FSEL_OVERLAY                             (1 << 12)
-> 
-> 
-> 
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
+                   |rg                          |org
+          Component|Drivers/DRI/nouveau         |Mesa core
+
+--- Comment #1 from Karl Tomlinson <bugs.freedesktop-685W5sqp211eoWH0uzbU5w@public.gmane.org> 2012-04-26 14:41:12 PDT ---
+I see the same issue with r600
+
+OpenGL vendor string: X.Org
+OpenGL renderer string: Gallium 0.4 on AMD JUNIPER
+OpenGL version string: 2.1 Mesa 8.0.2
+OpenGL shading language version string: 1.20
+OpenGL extensions:
+
+but sw works as expected.
+
+OpenGL vendor string: VMware, Inc.
+OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 0x209)
+OpenGL version string: 2.1 Mesa 8.0.2
+OpenGL shading language version string: 1.20
+
+suggesting the problem is in a more core component, possibly dri2-specific.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
