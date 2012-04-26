@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49142] [NV4A] OpengGL content corruption when width
 	>= 2048
-Date: Thu, 26 Apr 2012 23:28:42 +0000
-Message-ID: <bug-49142-8800-eBG22tHj5X@http.bugs.freedesktop.org/>
+Date: Thu, 26 Apr 2012 23:28:51 +0000
+Message-ID: <bug-49142-8800-wdW4NhDgNN@http.bugs.freedesktop.org/>
 References: <bug-49142-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49142
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-26 16:28:42 PDT ---
-Thanks for the report, the issue should be fixed in mesa git.
+Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
