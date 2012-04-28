@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49243] graphical corruption with GeForce 6150SE
 	nForce 430
-Date: Sat, 28 Apr 2012 22:05:55 +0000
-Message-ID: <bug-49243-8800-VaYCcoKtho@http.bugs.freedesktop.org/>
+Date: Sat, 28 Apr 2012 22:13:09 +0000
+Message-ID: <bug-49243-8800-RRdiEuhJ9P@http.bugs.freedesktop.org/>
 References: <bug-49243-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49243
 
---- Comment #2 from Shawn Landden <shawnlandden-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-28 15:05:55 PDT ---
-Created attachment 60750
-  --> https://bugs.freedesktop.org/attachment.cgi?id=60750
-dmesg | grep nouveau
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #60750|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
