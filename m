@@ -1,15 +1,14 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH v2 4/4] drm/nouveau: gpu lockup recovery
-Date: Sat, 28 Apr 2012 16:49:56 +0200
-Message-ID: <20120428144956.GA10116@joi.lan>
+Date: Sat, 28 Apr 2012 16:56:15 +0200
+Message-ID: <20120428145615.GB10116@joi.lan>
 References: <1335388836-13127-4-git-send-email-marcin.slusarz@gmail.com>
-	<1335425549.27165.9.camel@nisroch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1335425549.27165.9.camel@nisroch>
+In-Reply-To: <1335388836-13127-4-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,73 +18,71 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Apr 26, 2012 at 05:32:29PM +1000, Ben Skeggs wrote:
-> On Wed, 2012-04-25 at 23:20 +0200, Marcin Slusarz wrote:
-> > Overall idea:
-> > Detect lockups by watching for timeouts (vm flush / fence), return -EIOs,
-> > handle them at ioctl level, reset the GPU and repeat last ioctl.
-> > 
-> > GPU reset is done by doing suspend / resume cycle with few tweaks:
-> > - CPU-only bo eviction
-> > - ignoring vm flush / fence timeouts
-> > - shortening waits
-> Okay.  I've thought about this a bit for a couple of days and think I'll
-> be able to coherently share my thoughts on this issue now :)
+On Wed, Apr 25, 2012 at 11:20:36PM +0200, Marcin Slusarz wrote:
+> Overall idea:
+> Detect lockups by watching for timeouts (vm flush / fence), return -EIOs,
+> handle them at ioctl level, reset the GPU and repeat last ioctl.
 > 
-> Firstly, while I agree that we need to become more resilient to errors,
-> I don't think that following in the radeon/intel footsteps with
-> something (imo, hackish) like this is the right choice for us
-> necessarily.
-
-This is not only radeon/intel way. Windows, since Vista SP1, does the
-same - see http://msdn.microsoft.com/en-us/windows/hardware/gg487368.
-It's funny how similar it is to this patch (I haven't seen this page earlier).
-
-If you fear people will stop reporting bugs - don't. GPU reset is painfully
-slow and can take up to 50 seconds (BO eviction is the most time consuming
-part), so people will be annoyed enough to report them.
-Currently, GPU lockups make users so angry, they frequently switch to blob
-without even thinking about reporting anything.
-
-> The *vast* majority of "lockups" we have are as a result of us badly
-> mishandling exceptions reported to us by the GPU.  There are a couple of
-> exceptions, however, they're very rare..
-
-> A very common example is where people gain DMA_PUSHERs for whatever
-> reason, and things go haywire eventually.
-
-Nope, I had tens of lockups during testing, and only once I had DMA_PUSHER
-before detecting GPU lockup.
-
-> To handle a DMA_PUSHER
-> sanely, generally you have to drop all pending commands for the channel
-> (set GET=PUT, etc) and continue on.  However, this leaves us with fences
-> and semaphores unsignalled etc, causing issues further up the stack with
-> perfectly good channels hanging on attempting to sync with the crashed
-> channel etc.
+> GPU reset is done by doing suspend / resume cycle with few tweaks:
+> - CPU-only bo eviction
+> - ignoring vm flush / fence timeouts
+> - shortening waits
 > 
-> The next most common example I can think of is nv4x hardware, getting a
-> LIMIT_COLOR/ZETA exception from PGRAPH, and then a hang.  The solution
-> is simple, learn how to handle the exception, log it, and PGRAPH
-> survives.
-> 
-> I strongly believe that if we focused our efforts on dealing with what
-> the GPU reports to us a lot better, we'll find we really don't need such
-> "lockup recovery".
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
 
-While I agree we need to improve on error handling to make "lockup recovery"
-not needed, the reality is we can't predict everything and driver needs to
-cope with its own bugs.
+Martin,
 
-> I am, however, considering pulling the vm flush timeout error
-> propagation and break-out-of-waits-on-signals that builds on it.  As we
-> really do need to become better at having killable processes if things
-> go wrong :)
+I'm wondering how below patch (which builds upon the above) affects
+reclocking stability. I can't test it on my card, because it has only
+one performance level. Can you test it on yours?
 
-Good :)
+---
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: take ioctls_rwsem before reclocking
 
-Marcin
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_pm.c    |    6 ++++++
+ drivers/gpu/drm/nouveau/nouveau_reset.c |    2 +-
+ 2 files changed, 7 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_pm.c b/drivers/gpu/drm/nouveau/nouveau_pm.c
+index 34d591b..4716f39 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_pm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_pm.c
+@@ -383,9 +383,15 @@ nouveau_pm_set_perflvl(struct device *d, struct device_attribute *a,
+ 		       const char *buf, size_t count)
+ {
+ 	struct drm_device *dev = pci_get_drvdata(to_pci_dev(d));
++	struct drm_nouveau_private *dev_priv = dev->dev_private;
+ 	int ret;
+ 
++	intr_rwsem_down_write(&dev_priv->ioctls_rwsem);
++
+ 	ret = nouveau_pm_profile_set(dev, buf);
++
++	intr_rwsem_up_write(&dev_priv->ioctls_rwsem);
++
+ 	if (ret)
+ 		return ret;
+ 	return strlen(buf);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_reset.c b/drivers/gpu/drm/nouveau/nouveau_reset.c
+index e893096..7c25a3c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_reset.c
++++ b/drivers/gpu/drm/nouveau/nouveau_reset.c
+@@ -139,7 +139,7 @@ int nouveau_reset_device(struct drm_device *dev)
+ 		end = jiffies;
+ 		NV_INFO(dev, "GPU reset done, took %lu s\n", (end - start) / DRM_HZ);
+ 		while (intr_rwsem_down_read_interruptible(&dev_priv->ioctls_rwsem))
+-			; /* not possible, we are holding reset_lock */
++			;
+ 	}
+ 	mutex_unlock(&dev_priv->reset_lock);
+ 
+-- 
+1.7.8.5
