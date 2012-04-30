@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49243] graphical corruption with GeForce 6150SE
-	nForce 430
-Date: Sun, 29 Apr 2012 06:12:08 +0000
-Message-ID: <bug-49243-8800-uVJxYfGzoF@http.bugs.freedesktop.org/>
-References: <bug-49243-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49295] New: artifacts in prboom on NV86
+Date: Mon, 30 Apr 2012 08:27:48 +0000
+Message-ID: <bug-49295-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49243-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +18,48 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49243
+https://bugs.freedesktop.org/show_bug.cgi?id=49295
 
---- Comment #3 from Shawn Landden <shawnlandden-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-04-28 23:12:08 PDT ---
-I booted with Fedora 17 Beta LiveCD (to test something completely differn't),
-and it was pretty ugly with gnome-shell. For the most part I just got a big
-blue screen with silhouettes of gnome-shell stuff.
+             Bug #: 49295
+           Summary: artifacts in prboom on NV86
+    Classification: Unclassified
+           Product: Mesa
+           Version: git
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: svenjoac-Mmb7MZpHnFY@public.gmane.org
+
+
+Created attachment 60784
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60784
+Doom 1, Episode 1, Map 4 under prboom 2.5.0
+
+Under prboom 2.5.0 with OpenGL renderer, I'm seeing bad artifacts:
+
+- Walls are very bright, sometimes transparent.  In some cases,
+  the texture disappears completely and is replaced by a solid color.
+
+- A "hall of mirrors effect" as described in
+http://doomwiki.org/wiki/Hall_of_mirrors_effect.
+
+I'm attaching a screenshot from Doom 1, Episode 1, Map 4 shortly after the
+start.
+
+There are no error messages in the kernel logs, and other 3D games (including
+doomsday, another Doom source port) are unaffected.
+
+
+Hardware is a GeForce 8500 GT, software stack as follows:
+
+Mesa from git commit 4c15a77f27
+Kernel 3.4.0-rc5
+Libdrm from git commit 754655c795
+Nouveau DDX from git commit 174f170720
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
