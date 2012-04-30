@@ -1,11 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49295] New: artifacts in prboom on NV86
-Date: Mon, 30 Apr 2012 08:27:48 +0000
-Message-ID: <bug-49295-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH v2 4/4] drm/nouveau: gpu lockup recovery
+Date: Mon, 30 Apr 2012 11:47:46 +0200
+Message-ID: <4F9E5FC2.6030703@free.fr>
+References: <1335388836-13127-4-git-send-email-marcin.slusarz@gmail.com>
+	<20120428145615.GB10116@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20120428145615.GB10116-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,53 +18,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49295
+Le 28/04/2012 16:56, Marcin Slusarz a =E9crit :
+> On Wed, Apr 25, 2012 at 11:20:36PM +0200, Marcin Slusarz wrote:
+>> Overall idea:
+>> Detect lockups by watching for timeouts (vm flush / fence), return -EIOs,
+>> handle them at ioctl level, reset the GPU and repeat last ioctl.
+>>
+>> GPU reset is done by doing suspend / resume cycle with few tweaks:
+>> - CPU-only bo eviction
+>> - ignoring vm flush / fence timeouts
+>> - shortening waits
+>>
+>> Signed-off-by: Marcin Slusarz<marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>> ---
+> Martin,
+>
+> I'm wondering how below patch (which builds upon the above) affects
+> reclocking stability. I can't test it on my card, because it has only
+> one performance level. Can you test it on yours?
+Hi Marcin,
 
-             Bug #: 49295
-           Summary: artifacts in prboom on NV86
-    Classification: Unclassified
-           Product: Mesa
-           Version: git
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: svenjoac-Mmb7MZpHnFY@public.gmane.org
+I was away from my computers for a few days. I'll test this patch tonight.
 
-
-Created attachment 60784
-  --> https://bugs.freedesktop.org/attachment.cgi?id=60784
-Doom 1, Episode 1, Map 4 under prboom 2.5.0
-
-Under prboom 2.5.0 with OpenGL renderer, I'm seeing bad artifacts:
-
-- Walls are very bright, sometimes transparent.  In some cases,
-  the texture disappears completely and is replaced by a solid color.
-
-- A "hall of mirrors effect" as described in
-http://doomwiki.org/wiki/Hall_of_mirrors_effect.
-
-I'm attaching a screenshot from Doom 1, Episode 1, Map 4 shortly after the
-start.
-
-There are no error messages in the kernel logs, and other 3D games (including
-doomsday, another Doom source port) are unaffected.
-
-
-Hardware is a GeForce 8500 GT, software stack as follows:
-
-Mesa from git commit 4c15a77f27
-Kernel 3.4.0-rc5
-Libdrm from git commit 754655c795
-Nouveau DDX from git commit 174f170720
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Martin
