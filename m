@@ -1,47 +1,52 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH v2 4/4] drm/nouveau: gpu lockup recovery
-Date: Mon, 30 Apr 2012 11:47:46 +0200
-Message-ID: <4F9E5FC2.6030703@free.fr>
-References: <1335388836-13127-4-git-send-email-marcin.slusarz@gmail.com>
-	<20120428145615.GB10116@joi.lan>
+From: Lucas Stach <dev@lynxeye.de>
+Subject: [PATCH] nouveau/vieux: only advertise supported texture
+	formats
+Date: Mon, 30 Apr 2012 19:16:54 +0200
+Message-ID: <1335806214-13903-1-git-send-email-dev@lynxeye.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20120428145615.GB10116-OI9uyE9O0yo@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Le 28/04/2012 16:56, Marcin Slusarz a =E9crit :
-> On Wed, Apr 25, 2012 at 11:20:36PM +0200, Marcin Slusarz wrote:
->> Overall idea:
->> Detect lockups by watching for timeouts (vm flush / fence), return -EIOs,
->> handle them at ioctl level, reset the GPU and repeat last ioctl.
->>
->> GPU reset is done by doing suspend / resume cycle with few tweaks:
->> - CPU-only bo eviction
->> - ignoring vm flush / fence timeouts
->> - shortening waits
->>
->> Signed-off-by: Marcin Slusarz<marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->> ---
-> Martin,
->
-> I'm wondering how below patch (which builds upon the above) affects
-> reclocking stability. I can't test it on my card, because it has only
-> one performance level. Can you test it on yours?
-Hi Marcin,
+Fixes an assertion seen by users.
 
-I was away from my computers for a few days. I'll test this patch tonight.
+Signed-off-by: Lucas Stach <dev@lynxeye.de>
+Tested-by: JohnDoe_71Rus on irc
+---
+ src/mesa/drivers/dri/nouveau/nouveau_context.c |    9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Martin
+diff --git a/src/mesa/drivers/dri/nouveau/nouveau_context.c b/src/mesa/drivers/dri/nouveau/nouveau_context.c
+index 4845767..46c0d70 100644
+--- a/src/mesa/drivers/dri/nouveau/nouveau_context.c
++++ b/src/mesa/drivers/dri/nouveau/nouveau_context.c
+@@ -117,6 +117,15 @@ nouveau_context_init(struct gl_context *ctx, struct nouveau_screen *screen,
+ 	nouveau_span_functions_init(ctx);
+ 	_mesa_allow_light_in_model(ctx, GL_FALSE);
+ 
++	/* only advertise supported texture formats */
++	memset(&ctx->TextureFormatSupported, 0,
++	       sizeof(ctx->TextureFormatSupported));
++	ctx->TextureFormatSupported[MESA_FORMAT_XRGB8888] = true;
++	ctx->TextureFormatSupported[MESA_FORMAT_ARGB8888] = true;
++	ctx->TextureFormatSupported[MESA_FORMAT_RGB565] = true;
++	ctx->TextureFormatSupported[MESA_FORMAT_Z16] = true;
++	ctx->TextureFormatSupported[MESA_FORMAT_Z24_S8] = true;
++
+ 	/* Allocate a hardware channel. */
+ 	ret = nouveau_object_new(&context_dev(ctx)->object, 0xbeef0000,
+ 				 NOUVEAU_FIFO_CHANNEL_CLASS,
+-- 
+1.7.10
