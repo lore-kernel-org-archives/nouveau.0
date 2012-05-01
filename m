@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49351] glx-swap-pixmap piglit test breaks display
-Date: Tue, 01 May 2012 20:15:42 +0000
-Message-ID: <bug-49351-8800-JhZXMYobsl@http.bugs.freedesktop.org/>
+Date: Tue, 01 May 2012 20:16:27 +0000
+Message-ID: <bug-49351-8800-V8wAAlYAUI@http.bugs.freedesktop.org/>
 References: <bug-49351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49351
 
---- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-01 13:15:42 PDT ---
-Created attachment 60868
-  --> https://bugs.freedesktop.org/attachment.cgi?id=60868
-screenshot according to "scrot"
+--- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-01 13:16:27 PDT ---
+Created attachment 60869
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60869
+how it actually looks like
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
