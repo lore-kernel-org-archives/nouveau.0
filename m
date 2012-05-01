@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49349] Screen doesn't turn on on boot
-Date: Tue, 01 May 2012 20:39:36 +0000
-Message-ID: <bug-49349-8800-qjOGd29f0s@http.bugs.freedesktop.org/>
+Date: Tue, 01 May 2012 20:39:58 +0000
+Message-ID: <bug-49349-8800-4acXha9Klb@http.bugs.freedesktop.org/>
 References: <bug-49349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49349
 
---- Comment #1 from lamefun.x0r-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-05-01 13:39:36 PDT ---
-Created attachment 60872
-  --> https://bugs.freedesktop.org/attachment.cgi?id=60872
-Xorg log
+lamefun.x0r-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #60872|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
