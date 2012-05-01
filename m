@@ -1,13 +1,11 @@
-From: =?UTF-8?q?Viktor=20Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
-Subject: [PATCH 2/2] dri/nouveau: nv10, nv20: Add support for S3TC
-Date: Tue,  1 May 2012 15:23:51 +0200
-Message-ID: <1335878631-15336-3-git-send-email-noviktor@seznam.cz>
-References: <1335878631-15336-1-git-send-email-noviktor@seznam.cz>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 49349] New: Screen doesn't turn on on boot
+Date: Tue, 01 May 2012 19:05:30 +0000
+Message-ID: <bug-49349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1335878631-15336-1-git-send-email-noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,63 +15,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogVmlrdG9yIE5vdm90bsO9IDxub3Zpa3RvckBzZXpuYW0uY3o+Ci0tLQog
-c3JjL21lc2EvZHJpdmVycy9kcmkvbm91dmVhdS9udjEwX2NvbnRleHQuYyAgIHwgICAgNCArKysr
-CiBzcmMvbWVzYS9kcml2ZXJzL2RyaS9ub3V2ZWF1L252MTBfc3RhdGVfdGV4LmMgfCAgIDEwICsr
-KysrKysrKysKIHNyYy9tZXNhL2RyaXZlcnMvZHJpL25vdXZlYXUvbnYyMF9jb250ZXh0LmMgICB8
-ICAgIDQgKysrKwogc3JjL21lc2EvZHJpdmVycy9kcmkvbm91dmVhdS9udjIwX3N0YXRlX3RleC5j
-IHwgICAxMCArKysrKysrKysrCiA0IGZpbGVzIGNoYW5nZWQsIDI4IGluc2VydGlvbnMoKyksIDAg
-ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL21lc2EvZHJpdmVycy9kcmkvbm91dmVhdS9u
-djEwX2NvbnRleHQuYyBiL3NyYy9tZXNhL2RyaXZlcnMvZHJpL25vdXZlYXUvbnYxMF9jb250ZXh0
-LmMKaW5kZXggOTBjMTU0NS4uYTI0NDhjYSAxMDA2NDQKLS0tIGEvc3JjL21lc2EvZHJpdmVycy9k
-cmkvbm91dmVhdS9udjEwX2NvbnRleHQuYworKysgYi9zcmMvbWVzYS9kcml2ZXJzL2RyaS9ub3V2
-ZWF1L252MTBfY29udGV4dC5jCkBAIC00NDksNiArNDQ5LDEwIEBAIG52MTBfY29udGV4dF9jcmVh
-dGUoc3RydWN0IG5vdXZlYXVfc2NyZWVuICpzY3JlZW4sIGNvbnN0IHN0cnVjdCBnbF9jb25maWcg
-KnZpc3VhCiAJY3R4LT5FeHRlbnNpb25zLkFSQl90ZXh0dXJlX2Vudl9kb3QzID0gdHJ1ZTsKIAlj
-dHgtPkV4dGVuc2lvbnMuTlZfZm9nX2Rpc3RhbmNlID0gdHJ1ZTsKIAljdHgtPkV4dGVuc2lvbnMu
-TlZfdGV4dHVyZV9yZWN0YW5nbGUgPSB0cnVlOworCWlmIChjdHgtPk1lc2FfRFhUbikgeworCQlj
-dHgtPkV4dGVuc2lvbnMuRVhUX3RleHR1cmVfY29tcHJlc3Npb25fczN0YyA9IHRydWU7CisJCWN0
-eC0+RXh0ZW5zaW9ucy5TM19zM3RjID0gdHJ1ZTsKKwl9CiAKIAkvKiBHTCBjb25zdGFudHMuICov
-CiAJY3R4LT5Db25zdC5NYXhUZXh0dXJlTGV2ZWxzID0gMTI7CmRpZmYgLS1naXQgYS9zcmMvbWVz
-YS9kcml2ZXJzL2RyaS9ub3V2ZWF1L252MTBfc3RhdGVfdGV4LmMgYi9zcmMvbWVzYS9kcml2ZXJz
-L2RyaS9ub3V2ZWF1L252MTBfc3RhdGVfdGV4LmMKaW5kZXggMDI1NDM0MS4uYjQ2N2JiMyAxMDA2
-NDQKLS0tIGEvc3JjL21lc2EvZHJpdmVycy9kcmkvbm91dmVhdS9udjEwX3N0YXRlX3RleC5jCisr
-KyBiL3NyYy9tZXNhL2RyaXZlcnMvZHJpL25vdXZlYXUvbnYxMF9zdGF0ZV90ZXguYwpAQCAtMTEx
-LDYgKzExMSwxNiBAQCBnZXRfdGV4X2Zvcm1hdF9wb3Qoc3RydWN0IGdsX3RleHR1cmVfaW1hZ2Ug
-KnRpKQogCWNhc2UgTUVTQV9GT1JNQVRfTDg6CiAJCXJldHVybiBOVjEwXzNEX1RFWF9GT1JNQVRf
-Rk9STUFUX0w4OwogCisJY2FzZSBNRVNBX0ZPUk1BVF9SR0JfRFhUMToKKwljYXNlIE1FU0FfRk9S
-TUFUX1JHQkFfRFhUMToKKwkJcmV0dXJuIE5WMTBfM0RfVEVYX0ZPUk1BVF9GT1JNQVRfRFhUMTsK
-KworCWNhc2UgTUVTQV9GT1JNQVRfUkdCQV9EWFQzOgorCQlyZXR1cm4gTlYxMF8zRF9URVhfRk9S
-TUFUX0ZPUk1BVF9EWFQzOworCisJY2FzZSBNRVNBX0ZPUk1BVF9SR0JBX0RYVDU6CisJCXJldHVy
-biBOVjEwXzNEX1RFWF9GT1JNQVRfRk9STUFUX0RYVDU7CisKIAlkZWZhdWx0OgogCQlhc3NlcnQo
-MCk7CiAJfQpkaWZmIC0tZ2l0IGEvc3JjL21lc2EvZHJpdmVycy9kcmkvbm91dmVhdS9udjIwX2Nv
-bnRleHQuYyBiL3NyYy9tZXNhL2RyaXZlcnMvZHJpL25vdXZlYXUvbnYyMF9jb250ZXh0LmMKaW5k
-ZXggYzkxMTcxNy4uNWEzNmM4NyAxMDA2NDQKLS0tIGEvc3JjL21lc2EvZHJpdmVycy9kcmkvbm91
-dmVhdS9udjIwX2NvbnRleHQuYworKysgYi9zcmMvbWVzYS9kcml2ZXJzL2RyaS9ub3V2ZWF1L252
-MjBfY29udGV4dC5jCkBAIC00NjAsNiArNDYwLDEwIEBAIG52MjBfY29udGV4dF9jcmVhdGUoc3Ry
-dWN0IG5vdXZlYXVfc2NyZWVuICpzY3JlZW4sIGNvbnN0IHN0cnVjdCBnbF9jb25maWcgKnZpc3Vh
-CiAJY3R4LT5FeHRlbnNpb25zLkFSQl90ZXh0dXJlX2Vudl9kb3QzID0gdHJ1ZTsKIAljdHgtPkV4
-dGVuc2lvbnMuTlZfZm9nX2Rpc3RhbmNlID0gdHJ1ZTsKIAljdHgtPkV4dGVuc2lvbnMuTlZfdGV4
-dHVyZV9yZWN0YW5nbGUgPSB0cnVlOworCWlmIChjdHgtPk1lc2FfRFhUbikgeworCQljdHgtPkV4
-dGVuc2lvbnMuRVhUX3RleHR1cmVfY29tcHJlc3Npb25fczN0YyA9IHRydWU7CisJCWN0eC0+RXh0
-ZW5zaW9ucy5TM19zM3RjID0gdHJ1ZTsKKwl9CiAKIAkvKiBHTCBjb25zdGFudHMuICovCiAJY3R4
-LT5Db25zdC5NYXhUZXh0dXJlQ29vcmRVbml0cyA9IE5WMjBfVEVYVFVSRV9VTklUUzsKZGlmZiAt
-LWdpdCBhL3NyYy9tZXNhL2RyaXZlcnMvZHJpL25vdXZlYXUvbnYyMF9zdGF0ZV90ZXguYyBiL3Ny
-Yy9tZXNhL2RyaXZlcnMvZHJpL25vdXZlYXUvbnYyMF9zdGF0ZV90ZXguYwppbmRleCA3OTk1MTBk
-Li5kOGJmZGYyIDEwMDY0NAotLS0gYS9zcmMvbWVzYS9kcml2ZXJzL2RyaS9ub3V2ZWF1L252MjBf
-c3RhdGVfdGV4LmMKKysrIGIvc3JjL21lc2EvZHJpdmVycy9kcmkvbm91dmVhdS9udjIwX3N0YXRl
-X3RleC5jCkBAIC0xMDgsNiArMTA4LDE2IEBAIGdldF90ZXhfZm9ybWF0X3BvdChzdHJ1Y3QgZ2xf
-dGV4dHVyZV9pbWFnZSAqdGkpCiAJY2FzZSBNRVNBX0ZPUk1BVF9MODoKIAkJcmV0dXJuIE5WMjBf
-M0RfVEVYX0ZPUk1BVF9GT1JNQVRfTDg7CiAKKwljYXNlIE1FU0FfRk9STUFUX1JHQl9EWFQxOgor
-CWNhc2UgTUVTQV9GT1JNQVRfUkdCQV9EWFQxOgorCQlyZXR1cm4gTlYyMF8zRF9URVhfRk9STUFU
-X0ZPUk1BVF9EWFQxOworCisJY2FzZSBNRVNBX0ZPUk1BVF9SR0JBX0RYVDM6CisJCXJldHVybiBO
-VjIwXzNEX1RFWF9GT1JNQVRfRk9STUFUX0RYVDM7CisKKwljYXNlIE1FU0FfRk9STUFUX1JHQkFf
-RFhUNToKKwkJcmV0dXJuIE5WMjBfM0RfVEVYX0ZPUk1BVF9GT1JNQVRfRFhUNTsKKwogCWRlZmF1
-bHQ6CiAJCWFzc2VydCgwKTsKIAl9Ci0tIAoxLjcuOC41CgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=49349
+
+             Bug #: 49349
+           Summary: Screen doesn't turn on on boot
+    Classification: Unclassified
+           Product: Mesa
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: lamefun.x0r-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+
+Created attachment 60863
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60863
+DMesg log
+
+I use Fedora 16 with kernel 3.3.2 and some NVIDIA GeForce 400 GPU (I don't
+remember exactly which one, if you know how to get the exact model, tell me).
+When I boot, the screen turns of as soon Nouveau loads, neither DVI nor VGA
+connectors works. DMesg attached.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
