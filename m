@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49351] New: glx-swap-pixmap piglit test breaks
-	display
-Date: Tue, 01 May 2012 20:14:36 +0000
-Message-ID: <bug-49351-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49351] glx-swap-pixmap piglit test breaks display
+Date: Tue, 01 May 2012 20:15:42 +0000
+Message-ID: <bug-49351-8800-JhZXMYobsl@http.bugs.freedesktop.org/>
+References: <bug-49351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-49351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49351
 
-             Bug #: 49351
-           Summary: glx-swap-pixmap piglit test breaks display
-    Classification: Unclassified
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-A picture is worth a thousand words, so I won't event try to describe it. Just
-look at the screenshots.
-
-All components (kernel, libdrm, xf86-video-nouveau, mesa) from git (after
-libdrm rewrite).
-
-Here's the command:
-./piglit-run.py -t "^glx/glx-swap-pixmap$" tests/quick.tests
-results/quick-tmp.results
-
-NV92.
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-01 13:15:42 PDT ---
+Created attachment 60868
+  --> https://bugs.freedesktop.org/attachment.cgi?id=60868
+screenshot according to "scrot"
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
