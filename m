@@ -1,16 +1,15 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: Re: [PATCH] nouveau/vieux: only advertise supported
- texture formats
-Date: Mon, 30 Apr 2012 21:54:18 +0200
-Message-ID: <1335815658.9221.22.camel@tellur>
-References: <1335806214-13903-1-git-send-email-dev@lynxeye.de>
-	<87lildxfbh.fsf@riseup.net> <1335810158.9221.16.camel@tellur>
-	<87vckhvwee.fsf@riseup.net>
+From: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Subject: Re: Question about NV18 and GBM library.
+Date: Tue, 1 May 2012 11:53:54 +0300
+Message-ID: <20120501115354.78d7fb5c@farn.lan>
+References: <CAJvabWDH8U_H-LaHj1LzZXYdSGb8E+grNUwDeJK+W0KrxKgAqg@mail.gmail.com>
+	<1335462119.2645.1.camel@tellur>
+	<CAJvabWApOKF69nDiAmKRrK0vh_9wK+yFe8+J8huiVWMgLYUmsg@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <87vckhvwee.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+In-Reply-To: <CAJvabWApOKF69nDiAmKRrK0vh_9wK+yFe8+J8huiVWMgLYUmsg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,49 +19,64 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: gabriel muguerza <glmcabra-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Am Montag, den 30.04.2012, 21:42 +0200 schrieb Francisco Jerez:
-> Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> writes:
-> 
-> > Am Montag, den 30.04.2012, 20:08 +0200 schrieb Francisco Jerez:
-> >> Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> writes:
-> >>[...]
-> >> > +	/* only advertise supported texture formats */
-> >> > +	memset(&ctx->TextureFormatSupported, 0,
-> >> > +	       sizeof(ctx->TextureFormatSupported));
-> >> > +	ctx->TextureFormatSupported[MESA_FORMAT_XRGB8888] = true;
-> >> > +	ctx->TextureFormatSupported[MESA_FORMAT_ARGB8888] = true;
-> >> > +	ctx->TextureFormatSupported[MESA_FORMAT_RGB565] = true;
-> >> > +	ctx->TextureFormatSupported[MESA_FORMAT_Z16] = true;
-> >> > +	ctx->TextureFormatSupported[MESA_FORMAT_Z24_S8] = true;
-> >> > +
-> >> Hi Lucas,
-> >> 
-> >> It's not obvious to me how this works.  AFAIK nouveau doesn't make use
-> >> of this array.  And even if it did, the texture formats you're listing
-> >> aren't the supported ones.
-> >
-> > Hello Francisco,
-> >
-> > The core mesa code decides what texture formats to advertise based on
-> > this array.
-> 
-> Are you sure?  TextureFormatSupported doesn't seem to have any effect
-> except in drivers that use mesa's default for the ChooseTextureFormat
-> hook.
+On Fri, 27 Apr 2012 21:11:35 -0300
+gabriel muguerza <glmcabra-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 
-I'm not able to test it myself, as I don't have any vieux hardware, but
-I made sure that the patch got tested by the reporter of the bug [1],
-before posting it to the list.
-
-[1] https://bugs.freedesktop.org/show_bug.cgi?id=49148
+> On Thu, Apr 26, 2012 at 2:41 PM, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+> wrote:
 > 
-> > And obviously someone thought it would be a good idea to
-> > init this array to "everything supported" if the driver doesn't
-> > overrides this.
+> > Am Mittwoch, den 25.04.2012, 12:34 -0300 schrieb gabriel
+> > muguerza:
 > >
-> > I opted to only advertise renderable texture formats, for reasons
-> > explained in my mail a minute ago.
+> > > Hi,
+> > >
+> > > I have a geforce 4mx 440 agp 8x, and I'm trying to use the GBM
+> > > library,
+> > > (as jbarnes in:
+> > > http://virtuousgeek.org/blog/index.php/jbarnes/2011/10/
+> > > and David Hermann in KMSCON:
+> > > https://github.com/dvdhrm/kmscon), without success.
+> > >
+> > > when I try to create a gbm_device, I get: (below the code.)
+> > >
+> > > nouveau_drm_screen_create: unknown chipset nv18
+> > > dri_init_screen_helper: failed to create pipe_screen
+> > > loaded /usr/lib/gbm/pipe_nouveau.so
+> > > nouveau_drm_screen_create: unknown chipset nv18
+> > > failed to load driver: nouveau
+> > >
+> > >
+> > > My question is:
+> > > Is this not supported by the driver?,
+> > > It's a GBM problem? or am I doing something wrong?
+> > >
+> > Yep, you are right, your GPU is simply too old. GBM is only
+> > supported with the nouveau gallium drivers, which start with
+> > the nv30 generation. The nouveau_vieux driver for your card
+> > does not support GBM.
+> >
+> > -- Lucas
+> >
+> >
+> Ok, thank you.
+> (and nor Wayland works, I guess).
+
+You mean Weston. Weston uses GL ES 2, which relies on shaders and
+does not have a fixed-function pipeline. NV18 AFAIK does not have
+any shader capability, but only a fixed-function pipeline. This
+is another big obstacle.
+
+Wayland could be made to work, but it would need some work:
+- writing a Wayland server on fixed-function OpenGL
+- writing the infrastructure for using EGL/OpenGL on the
+  framebuffer offered by DRM
+
+and maybe something else I overlooked.
+
+-- 
+Pekka Paalanen
+http://www.iki.fi/pq/
