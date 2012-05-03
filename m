@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49351] glx-swap-pixmap piglit test breaks display
-Date: Thu, 03 May 2012 12:52:03 +0000
-Message-ID: <bug-49351-8800-VH2zAIPjz4@http.bugs.freedesktop.org/>
-References: <bug-49351-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nv50: fix crash in NV50SyncToVBlank
+Date: Thu, 3 May 2012 15:08:56 +0200
+Message-ID: <20120503130856.GA8541@joi.lan>
+References: <20120415010821.GA797@joi.lan>
+ <20120415114642.GA2838@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20120415114642.GA2838-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,14 +22,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49351
+On Sun, Apr 15, 2012 at 01:46:42PM +0200, Marcin Slusarz wrote:
+> Regression from "WIP: port to new libdrm".
+> ---
+>  src/nv50_accel.c |    3 +++
+>  1 files changed, 3 insertions(+), 0 deletions(-)
+> 
+> diff --git a/src/nv50_accel.c b/src/nv50_accel.c
+> index 66d6cb8..7c640f2 100644
+> --- a/src/nv50_accel.c
+> +++ b/src/nv50_accel.c
+> @@ -44,6 +44,9 @@ NV50SyncToVBlank(PixmapPtr ppix, BoxPtr box)
+>  	if (!crtcs)
+>  		return;
+>  
+> +	if (!PUSH_SPACE(push, 10))
+> +		return;
+> +
+>  	BEGIN_NV04(push, SUBC_NVSW(0x0060), 2);
+>  	PUSH_DATA (push, pNv->vblank_sem->handle);
+>  	PUSH_DATA (push, 0);
+> -- 
 
---- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-03 05:52:03 PDT ---
-Thank you. I posted patch - fixing this issue - to Nouveau mailing list.
+Nobody uses "sync to vblank"? It's crashy as hell without this patch...
 
-( http://lists.freedesktop.org/archives/nouveau/2012-May/010291.html )
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Marcin
