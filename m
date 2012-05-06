@@ -1,15 +1,14 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>
 Subject: Re: [envytools PATCH] nv50/pgraph: DATA_ERROR 0x24
-Date: Sun, 6 May 2012 21:14:56 +0200
-Message-ID: <20120506191456.GE4311@joi.lan>
-References: <20120506185103.GA4311@joi.lan>
- <4FA6CA9D.5070107@0x04.net>
+Date: Sun, 06 May 2012 21:18:49 +0200
+Message-ID: <4FA6CE99.2080809@0x04.net>
+References: <20120506185103.GA4311@joi.lan> <4FA6CA9D.5070107@0x04.net>
+	<20120506191456.GE4311@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <4FA6CA9D.5070107-mP9o5jsk0RY@public.gmane.org>
+In-Reply-To: <20120506191456.GE4311-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,51 +18,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin =?utf-8?Q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBNYXkgMDYsIDIwMTIgYXQgMDk6MDE6NDlQTSArMDIwMCwgTWFyY2luIEtvxZtjaWVs
-bmlja2kgd3JvdGU6Cj4gT24gMDYuMDUuMjAxMiAyMDo1MSwgTWFyY2luIFNsdXNhcnogd3JvdGU6
-Cj4gPgo+ID4gLS0tCj4gPiAgIHJubmRiL252NTBfcGdyYXBoLnhtbCB8ICAgIDMgKysrCj4gPiAg
-IDEgZmlsZXMgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAwIGRlbGV0aW9ucygtKQo+ID4KPiA+
-IGRpZmYgLS1naXQgYS9ybm5kYi9udjUwX3BncmFwaC54bWwgYi9ybm5kYi9udjUwX3BncmFwaC54
-bWwKPiA+IGluZGV4IDkyZDY5ZWEuLjY0OTk2MzEgMTAwNjQ0Cj4gPiAtLS0gYS9ybm5kYi9udjUw
-X3BncmFwaC54bWwKPiA+ICsrKyBiL3JubmRiL252NTBfcGdyYXBoLnhtbAo+ID4gQEAgLTkzLDYg
-KzkzLDkgQEAKPiA+ICAgCTx2YWx1ZSB2YWx1ZT0iMHgyMyIgbmFtZT0iWFlfT1VUX09GX0JPVU5E
-UyI+ICA8IS0tIG0ybWYgYXQgbGVhc3QuIDJkIHRvbz8gLS0+Cj4gPiAgIAkJPGJyaWVmPllvdXIg
-eC95IGNvb3JkcyBleGNlZWQgdGhlIHNpemUgb2YgeW91ciBzdXJmYWNlLjwvYnJpZWY+Cj4gPiAg
-IAk8L3ZhbHVlPgo+ID4gKwk8dmFsdWUgdmFsdWU9IjB4MjQiIG5hbWU9IlZQX05PX0lOUFVUX01B
-U0siPgo+ID4gKwkJPGJyaWVmPllvdSB0cmllZCB0byBzdWJtaXQgdmVydGljZXMgd2l0aG91dCBz
-ZXR0aW5nIGlucHV0IG1hc2sgKFZQX0FUVFJfRU4pLjwvYnJpZWY+Cj4gPiArCTwvdmFsdWU+Cj4g
-PiAgIAk8dmFsdWUgdmFsdWU9IjB4MjciIG5hbWU9IkNQX01PUkVfUEFSQU1TX1RIQU5fU0hBUkVE
-Ij4KPiA+ICAgCQk8YnJpZWY+WW91IHRyaWVkIHRvIGxhdW5jaCBibG9jayB3aXRoIG1vcmUgcGFy
-YW1zIHRoYW4gYWxsb2NhdGVkIHNbXSBzcGFjZS48L2JyaWVmPgo+ID4gICAJPC92YWx1ZT4KPiAK
-PiBDb3VsZCB3ZSBnZXQgYSBiZXR0ZXIgbmFtZSArIGRlc2NyaXB0aW9uIGZvciB0aGF0PyBUaGUg
-ZXJyb3IgaGFwcGVucyAKPiB3aGVuIHRoZXJlIGFyZSBubyBlbmFibGVkIGlucHV0cyAoVlBfQVRU
-Ul9FTiBpcyBzZXQsIGJ1dCBpcyAwKSwgbm90IHdoZW4gCj4gaXQncyBub3Qgc2V0IGF0IGFsbC4g
-VlBfWkVST19JTlBVVFMgb3IgVlBfTk9fSU5QVVRTIHBlcmhhcHM/CgpZZXMsIHRoYXQncyBjb3Jy
-ZWN0LgoKPiBBbHNvLCBoYXZlIHlvdSBjaGVja2VkIGlmIHRoYXQgZXJyb3IgaGFwcGVucyBvbiBh
-bGwgc3VibWlzc2lvbiBtZXRob2RzLCAKPiBvciBqdXN0IFZFUlRFWF9EQVRBPyBJIGRvbid0IHNl
-ZSB3aHkgVkVSVEVYX0VMRU1FTlQgLyAKPiBWRVJURVhfQlVGRkVSX0NPVU5UIHdvdWxkIGhhdmUg
-YSBwcm9ibGVtIHdpdGggMCBpbnB1dHMuCgpJdCBkZWZpbml0ZWx5IGhhcyBwcm9ibGVtcyB3aXRo
-IFZFUlRFWF9CVUZGRVJfQ09VTlQsIG9ubHkgbGF0ZXIgSSBkaXNjb3ZlcmVkClZFUlRFWF9EQVRB
-IGhhdmUgdGhlbSB0b28uIEkgZGlkbid0IGNoZWNrIFZCX0VMRU1FTlRfKiwgYnV0IEkgYmV0IGl0
-J3MgdGhlIHNhbWUKc3RvcnkuCgpNYXJjaW4KCi0tLQpGcm9tOiBNYXJjaW4gU2x1c2FyeiA8bWFy
-Y2luLnNsdXNhcnpAZ21haWwuY29tPgpTdWJqZWN0OiBbUEFUQ0hdIG52NTAvcGdyYXBoOiBEQVRB
-X0VSUk9SIDB4MjQKCi0tLQogcm5uZGIvbnY1MF9wZ3JhcGgueG1sIHwgICAgMyArKysKIDEgZmls
-ZXMgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAwIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
-L3JubmRiL252NTBfcGdyYXBoLnhtbCBiL3JubmRiL252NTBfcGdyYXBoLnhtbAppbmRleCA5MmQ2
-OWVhLi5hYTkyNWZhIDEwMDY0NAotLS0gYS9ybm5kYi9udjUwX3BncmFwaC54bWwKKysrIGIvcm5u
-ZGIvbnY1MF9wZ3JhcGgueG1sCkBAIC05Myw2ICs5Myw5IEBACiAJPHZhbHVlIHZhbHVlPSIweDIz
-IiBuYW1lPSJYWV9PVVRfT0ZfQk9VTkRTIj4gPCEtLSBtMm1mIGF0IGxlYXN0LiAyZCB0b28/IC0t
-PgogCQk8YnJpZWY+WW91ciB4L3kgY29vcmRzIGV4Y2VlZCB0aGUgc2l6ZSBvZiB5b3VyIHN1cmZh
-Y2UuPC9icmllZj4KIAk8L3ZhbHVlPgorCTx2YWx1ZSB2YWx1ZT0iMHgyNCIgbmFtZT0iVlBfWkVS
-T19JTlBVVFMiPgorCQk8YnJpZWY+WW91IHRyaWVkIHRvIHN1Ym1pdCB2ZXJ0aWNlcyB3aXRoIFZQ
-IGlucHV0IG1hc2sgKFZQX0FUVFJfRU4pIHNldCB0byAwLjwvYnJpZWY+CisJPC92YWx1ZT4KIAk8
-dmFsdWUgdmFsdWU9IjB4MjciIG5hbWU9IkNQX01PUkVfUEFSQU1TX1RIQU5fU0hBUkVEIj4KIAkJ
-PGJyaWVmPllvdSB0cmllZCB0byBsYXVuY2ggYmxvY2sgd2l0aCBtb3JlIHBhcmFtcyB0aGFuIGFs
-bG9jYXRlZCBzW10gc3BhY2UuPC9icmllZj4KIAk8L3ZhbHVlPgotLSAKMS43LjguNQpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+>> Could we get a better name + description for that? The error happens
+>> when there are no enabled inputs (VP_ATTR_EN is set, but is 0), not when
+>> it's not set at all. VP_ZERO_INPUTS or VP_NO_INPUTS perhaps?
+>
+> Yes, that's correct.
+>
+>> Also, have you checked if that error happens on all submission methods,
+>> or just VERTEX_DATA? I don't see why VERTEX_ELEMENT /
+>> VERTEX_BUFFER_COUNT would have a problem with 0 inputs.
+>
+> It definitely has problems with VERTEX_BUFFER_COUNT, only later I discovered
+> VERTEX_DATA have them too. I didn't check VB_ELEMENT_*, but I bet it's the same
+> story.
+>
+> Marcin
+>
+
+Thanks, pushed.
