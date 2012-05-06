@@ -1,13 +1,13 @@
-From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Subject: Re: [mesa PATCH] nv50: handle VP without inputs
-Date: Sun, 06 May 2012 21:05:21 +0200
-Message-ID: <4FA6CB71.9070308@student.tuwien.ac.at>
-References: <20120506185308.GC4311@joi.lan>
+From: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: Re: [envytools PATCH] nv50/pgraph: DATA_ERROR 0x24
+Date: Sun, 06 May 2012 21:01:49 +0200
+Message-ID: <4FA6CA9D.5070107@0x04.net>
+References: <20120506185103.GA4311@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20120506185308.GC4311-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <20120506185103.GA4311-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +21,27 @@ To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 06.05.2012 20:53, Marcin Slusarz wrote:
-> Fixes 3 piglit tests:
-> general/pos-array
-> shaders/glsl-novertexdata
-> shaders/glsl-vs-point-size
-> and makes shaders/vp-ignore-input not trigger PGRAPH DATA_ERROR
-> ---
-> It's a bit ugly... If there's a way to fix it properly, I'm open to suggestions.
-> ---
->  src/gallium/drivers/nv50/nv50_program.c |    7 +++++++
->  1 files changed, 7 insertions(+), 0 deletions(-)
->
-> diff --git a/src/gallium/drivers/nv50/nv50_program.c b/src/gallium/drivers/nv50/nv50_program.c
-> index 48e8db3..c44f537 100644
-> --- a/src/gallium/drivers/nv50/nv50_program.c
-> +++ b/src/gallium/drivers/nv50/nv50_program.c
-> @@ -53,6 +53,13 @@ nv50_vertprog_assign_slots(struct nv50_ir_prog_info *info)
->           if (info->in[i].mask & (1 << c))
->              info->in[i].slot[c] = n++;
->     }
-> +
-> +   // Corner case: VP has no inputs, but we will still need to submit data to
-> +   // draw it. HW will shout at us and won't draw anything if we don't enable
-> +   // any input, so let's just pretend it's the first one.
-> +   if (info->numInputs == 0)
-> +      prog->vp.attrs[0] |= 0xf;
-> +
->     prog->in_nr = info->numInputs;
->  
->     for (i = 0; i < info->numSysVals; ++i) {
-Ah thank you, I've been wondering how to make the nv50 draw without any
-inputs (on nvc0 it just works even if you don't enable any).
-
-2 issues though:
-- please don't use C++ style comments in here (the style guardians would
-sooner or later patch this up)
-- if InstanceID or VertexID are used, enabling any inputs will move them
-to a different position in input space, they always come after all the
-ordinary vertex attributes; see usage of the "unsigned n" in the code
-directly above & below
+T24gMDYuMDUuMjAxMiAyMDo1MSwgTWFyY2luIFNsdXNhcnogd3JvdGU6Cj4KPiAtLS0KPiAgIHJu
+bmRiL252NTBfcGdyYXBoLnhtbCB8ICAgIDMgKysrCj4gICAxIGZpbGVzIGNoYW5nZWQsIDMgaW5z
+ZXJ0aW9ucygrKSwgMCBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9ybm5kYi9udjUwX3Bn
+cmFwaC54bWwgYi9ybm5kYi9udjUwX3BncmFwaC54bWwKPiBpbmRleCA5MmQ2OWVhLi42NDk5NjMx
+IDEwMDY0NAo+IC0tLSBhL3JubmRiL252NTBfcGdyYXBoLnhtbAo+ICsrKyBiL3JubmRiL252NTBf
+cGdyYXBoLnhtbAo+IEBAIC05Myw2ICs5Myw5IEBACj4gICAJPHZhbHVlIHZhbHVlPSIweDIzIiBu
+YW1lPSJYWV9PVVRfT0ZfQk9VTkRTIj4gIDwhLS0gbTJtZiBhdCBsZWFzdC4gMmQgdG9vPyAtLT4K
+PiAgIAkJPGJyaWVmPllvdXIgeC95IGNvb3JkcyBleGNlZWQgdGhlIHNpemUgb2YgeW91ciBzdXJm
+YWNlLjwvYnJpZWY+Cj4gICAJPC92YWx1ZT4KPiArCTx2YWx1ZSB2YWx1ZT0iMHgyNCIgbmFtZT0i
+VlBfTk9fSU5QVVRfTUFTSyI+Cj4gKwkJPGJyaWVmPllvdSB0cmllZCB0byBzdWJtaXQgdmVydGlj
+ZXMgd2l0aG91dCBzZXR0aW5nIGlucHV0IG1hc2sgKFZQX0FUVFJfRU4pLjwvYnJpZWY+Cj4gKwk8
+L3ZhbHVlPgo+ICAgCTx2YWx1ZSB2YWx1ZT0iMHgyNyIgbmFtZT0iQ1BfTU9SRV9QQVJBTVNfVEhB
+Tl9TSEFSRUQiPgo+ICAgCQk8YnJpZWY+WW91IHRyaWVkIHRvIGxhdW5jaCBibG9jayB3aXRoIG1v
+cmUgcGFyYW1zIHRoYW4gYWxsb2NhdGVkIHNbXSBzcGFjZS48L2JyaWVmPgo+ICAgCTwvdmFsdWU+
+CgpDb3VsZCB3ZSBnZXQgYSBiZXR0ZXIgbmFtZSArIGRlc2NyaXB0aW9uIGZvciB0aGF0PyBUaGUg
+ZXJyb3IgaGFwcGVucyAKd2hlbiB0aGVyZSBhcmUgbm8gZW5hYmxlZCBpbnB1dHMgKFZQX0FUVFJf
+RU4gaXMgc2V0LCBidXQgaXMgMCksIG5vdCB3aGVuIAppdCdzIG5vdCBzZXQgYXQgYWxsLiBWUF9a
+RVJPX0lOUFVUUyBvciBWUF9OT19JTlBVVFMgcGVyaGFwcz8KCkFsc28sIGhhdmUgeW91IGNoZWNr
+ZWQgaWYgdGhhdCBlcnJvciBoYXBwZW5zIG9uIGFsbCBzdWJtaXNzaW9uIG1ldGhvZHMsIApvciBq
+dXN0IFZFUlRFWF9EQVRBPyBJIGRvbid0IHNlZSB3aHkgVkVSVEVYX0VMRU1FTlQgLyAKVkVSVEVY
+X0JVRkZFUl9DT1VOVCB3b3VsZCBoYXZlIGEgcHJvYmxlbSB3aXRoIDAgaW5wdXRzLgoKTWFyY2lu
+IEtvxZtjaWVsbmlja2kKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
