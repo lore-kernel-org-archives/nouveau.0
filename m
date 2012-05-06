@@ -1,7 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [kernel PATCH] drm/nv50: decode PGRAPH DATA_ERROR = 0x24
-Date: Sun, 6 May 2012 20:51:41 +0200
-Message-ID: <20120506185141.GB4311@joi.lan>
+Subject: [mesa PATCH] nv50: handle VP without inputs
+Date: Sun, 6 May 2012 20:53:08 +0200
+Message-ID: <20120506185308.GC4311@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,23 +19,34 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Fixes 3 piglit tests:
+general/pos-array
+shaders/glsl-novertexdata
+shaders/glsl-vs-point-size
+and makes shaders/vp-ignore-input not trigger PGRAPH DATA_ERROR
 ---
- drivers/gpu/drm/nouveau/nv50_graph.c |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+It's a bit ugly... If there's a way to fix it properly, I'm open to suggestions.
+---
+ src/gallium/drivers/nv50/nv50_program.c |    7 +++++++
+ 1 files changed, 7 insertions(+), 0 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
-index d0a2e50..86a4969 100644
---- a/drivers/gpu/drm/nouveau/nv50_graph.c
-+++ b/drivers/gpu/drm/nouveau/nv50_graph.c
-@@ -518,6 +518,7 @@ struct nouveau_enum nv50_data_error_names[] = {
- 	{ 0x0000001f, "RT_BPP128_WITH_MS8", NULL },
- 	{ 0x00000021, "Z_OUT_OF_BOUNDS", NULL },
- 	{ 0x00000023, "XY_OUT_OF_BOUNDS", NULL },
-+	{ 0x00000024, "VP_NO_INPUT_MASK", NULL },
- 	{ 0x00000027, "CP_MORE_PARAMS_THAN_SHARED", NULL },
- 	{ 0x00000028, "CP_NO_REG_SPACE_STRIPED", NULL },
- 	{ 0x00000029, "CP_NO_REG_SPACE_PACKED", NULL },
+diff --git a/src/gallium/drivers/nv50/nv50_program.c b/src/gallium/drivers/nv50/nv50_program.c
+index 48e8db3..c44f537 100644
+--- a/src/gallium/drivers/nv50/nv50_program.c
++++ b/src/gallium/drivers/nv50/nv50_program.c
+@@ -53,6 +53,13 @@ nv50_vertprog_assign_slots(struct nv50_ir_prog_info *info)
+          if (info->in[i].mask & (1 << c))
+             info->in[i].slot[c] = n++;
+    }
++
++   // Corner case: VP has no inputs, but we will still need to submit data to
++   // draw it. HW will shout at us and won't draw anything if we don't enable
++   // any input, so let's just pretend it's the first one.
++   if (info->numInputs == 0)
++      prog->vp.attrs[0] |= 0xf;
++
+    prog->in_nr = info->numInputs;
+ 
+    for (i = 0; i < info->numSysVals; ++i) {
 -- 
 1.7.8.5
