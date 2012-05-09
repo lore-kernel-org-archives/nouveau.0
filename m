@@ -1,8 +1,7 @@
 From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
-Subject: [PATCH 2/4] nv30/vertprog: SSG only requires one source
-	register
-Date: Thu, 10 May 2012 00:06:31 +0200
-Message-ID: <1336601193-19147-3-git-send-email-r.spliet@student.tudelft.nl>
+Subject: [PATCH 3/4] nv30: Silence pipe_cap warnings
+Date: Thu, 10 May 2012 00:06:32 +0200
+Message-ID: <1336601193-19147-4-git-send-email-r.spliet@student.tudelft.nl>
 References: <1336601193-19147-1-git-send-email-r.spliet@student.tudelft.nl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,25 +21,25 @@ To: Nouveau mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.o
 Cc: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Fixes crashing due to assertion error
-
 Signed-off-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 ---
- src/gallium/drivers/nv30/nvfx_vertprog.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ src/gallium/drivers/nv30/nv30_screen.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
 
-diff --git a/src/gallium/drivers/nv30/nvfx_vertprog.c b/src/gallium/drivers/nv30/nvfx_vertprog.c
-index 82972b3..f41f82d 100644
---- a/src/gallium/drivers/nv30/nvfx_vertprog.c
-+++ b/src/gallium/drivers/nv30/nvfx_vertprog.c
-@@ -668,7 +668,7 @@ nvfx_vertprog_parse_instruction(struct nv30_context *nv30, struct nvfx_vpc *vpc,
-       nvfx_vp_emit(vpc, arith(sat, VEC, SNE, dst, mask, src[0], src[1], none));
-       break;
-    case TGSI_OPCODE_SSG:
--      nvfx_vp_emit(vpc, arith(sat, VEC, SSG, dst, mask, src[0], src[1], none));
-+      nvfx_vp_emit(vpc, arith(sat, VEC, SSG, dst, mask, src[0], none, none));
-       break;
-    case TGSI_OPCODE_STR:
-       nvfx_vp_emit(vpc, arith(sat, VEC, STR, dst, mask, src[0], src[1], none));
+diff --git a/src/gallium/drivers/nv30/nv30_screen.c b/src/gallium/drivers/nv30/nv30_screen.c
+index d355f74..26e41c2 100644
+--- a/src/gallium/drivers/nv30/nv30_screen.c
++++ b/src/gallium/drivers/nv30/nv30_screen.c
+@@ -111,6 +111,10 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+    case PIPE_CAP_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION:
+    case PIPE_CAP_MIXED_COLORBUFFER_FORMATS:
+       return 0;
++   case PIPE_CAP_VERTEX_BUFFER_OFFSET_4BYTE_ALIGNED_ONLY:
++   case PIPE_CAP_VERTEX_BUFFER_STRIDE_4BYTE_ALIGNED_ONLY:
++   case PIPE_CAP_VERTEX_ELEMENT_SRC_OFFSET_4BYTE_ALIGNED_ONLY:
++      return 1;
+    default:
+       debug_printf("unknown param %d\n", param);
+       return 0;
 -- 
 1.7.7.6
