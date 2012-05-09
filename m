@@ -1,15 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [kernel PATCH v2] drm/nv50: decode PGRAPH DATA_ERROR
- = 0x24
-Date: Wed, 09 May 2012 10:04:36 +1000
-Message-ID: <1336521876.16209.14.camel@nisroch>
-References: <20120506185141.GB4311@joi.lan> <20120506210855.GB11614@joi.lan>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+Subject: [PATCH 1/4] nv30: Fix generic passing to fragment program
+	in NV34
+Date: Thu, 10 May 2012 00:06:30 +0200
+Message-ID: <1336601193-19147-2-git-send-email-r.spliet@student.tudelft.nl>
+References: <1336601193-19147-1-git-send-email-r.spliet@student.tudelft.nl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20120506210855.GB11614-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <1336601193-19147-1-git-send-email-r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,29 +18,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 2012-05-06 at 23:08 +0200, Marcin Slusarz wrote:
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Pushed, thanks!
+fixes over 800 piglit cases in quick-driver suite for NV34
 
-> ---
-> v2: sync name to envytools
-> ---
->  drivers/gpu/drm/nouveau/nv50_graph.c |    1 +
->  1 files changed, 1 insertions(+), 0 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
-> index d0a2e50..28908f4 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_graph.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_graph.c
-> @@ -518,6 +518,7 @@ struct nouveau_enum nv50_data_error_names[] = {
->  	{ 0x0000001f, "RT_BPP128_WITH_MS8", NULL },
->  	{ 0x00000021, "Z_OUT_OF_BOUNDS", NULL },
->  	{ 0x00000023, "XY_OUT_OF_BOUNDS", NULL },
-> +	{ 0x00000024, "VP_ZERO_INPUTS", NULL },
->  	{ 0x00000027, "CP_MORE_PARAMS_THAN_SHARED", NULL },
->  	{ 0x00000028, "CP_NO_REG_SPACE_STRIPED", NULL },
->  	{ 0x00000029, "CP_NO_REG_SPACE_PACKED", NULL },
+Signed-off-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+---
+ src/gallium/drivers/nv30/nvfx_fragprog.c |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/src/gallium/drivers/nv30/nvfx_fragprog.c b/src/gallium/drivers/nv30/nvfx_fragprog.c
+index 592ad21..da6e234 100644
+--- a/src/gallium/drivers/nv30/nvfx_fragprog.c
++++ b/src/gallium/drivers/nv30/nvfx_fragprog.c
+@@ -959,8 +959,12 @@ nvfx_fragprog_assign_generic(struct nv30_context *nvfx, struct nvfx_fpc *fpc,
+          for (hw = 0; hw < num_texcoords; hw++) {
+             if (fpc->fp->texcoord[hw] == 0xffff) {
+                fpc->fp->texcoord[hw] = fdec->Semantic.Index;
+-               if (hw <= 7) fpc->fp->vp_or |= (0x00004000 << hw);
+-               else         fpc->fp->vp_or |= (0x00001000 << (hw - 8));
++               if (hw <= 7) {
++                  fpc->fp->vp_or |= (0x00004000 << hw);
++                  fpc->fp->samplers |= (0x1 << hw);
++               } else {
++                  fpc->fp->vp_or |= (0x00001000 << (hw - 8));
++               }
+                if (fdec->Semantic.Index == 9)
+                   fpc->fp->point_sprite_control |= (0x00000100 << hw);
+                hw = NVFX_FP_OP_INPUT_SRC_TC(hw);
+-- 
+1.7.7.6
