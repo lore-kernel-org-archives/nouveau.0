@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49746] EDID checksum is invalid
-Date: Thu, 10 May 2012 18:09:15 +0000
-Message-ID: <bug-49746-8800-xVznKiZNp2@http.bugs.freedesktop.org/>
+Date: Thu, 10 May 2012 18:31:34 +0000
+Message-ID: <bug-49746-8800-pOrpHIGeb6@http.bugs.freedesktop.org/>
 References: <bug-49746-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49746
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #61378|text/x-log                  |text/plain
-          mime type|                            |
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-10 11:31:34 PDT ---
+It's probably already fixed by:
+http://git.kernel.org/?p=linux/kernel/git/torvalds/linux.git;a=patch;h=ec9b3a9de6b2a8a08c5250b466db92adf82b8d65
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
