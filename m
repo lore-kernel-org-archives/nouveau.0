@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49736] piglit quck.driver tests kill X server on nv43
-Date: Thu, 10 May 2012 14:40:56 +0000
-Message-ID: <bug-49736-8800-5FsDG6MoAG@http.bugs.freedesktop.org/>
+Subject: [Bug 49736] piglit quick.driver tests kill X server on
+	nv43
+Date: Thu, 10 May 2012 14:42:16 +0000
+Message-ID: <bug-49736-8800-quLgq9zfGo@http.bugs.freedesktop.org/>
 References: <bug-49736-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49736
 
---- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-05-10 07:40:56 PDT ---
-Created attachment 61374
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61374
-piglit html results summary, 7z  compressed
+Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|piglit quck.driver tests    |piglit quick.driver tests
+                   |kill X server  on nv43      |kill X server  on nv43
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
