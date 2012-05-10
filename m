@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49727] wine 1.5.2 and 3Dmark2001se displays only
  black screen with FPS, on nv43/AGP
-Date: Thu, 10 May 2012 12:13:16 +0000
-Message-ID: <bug-49727-8800-WbEa2IfBUU@http.bugs.freedesktop.org/>
+Date: Thu, 10 May 2012 12:13:49 +0000
+Message-ID: <bug-49727-8800-XxqYqo5ojf@http.bugs.freedesktop.org/>
 References: <bug-49727-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49727
 
---- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-05-10 05:13:16 PDT ---
-Created attachment 61355
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61355
-glxinfo
+--- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-05-10 05:13:49 PDT ---
+Created attachment 61356
+  --> https://bugs.freedesktop.org/attachment.cgi?id=61356
+X log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
