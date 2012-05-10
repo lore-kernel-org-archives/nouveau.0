@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49731] wine 1.5.2 and 3Dmark2001se on nv43 hits
  assertion in simplify_cmp: Assertion `inst->dst.index < 4096' failed
-Date: Thu, 10 May 2012 12:27:22 +0000
-Message-ID: <bug-49731-8800-73hFWqItGK@http.bugs.freedesktop.org/>
+Date: Thu, 10 May 2012 05:28:02 +0000
+Message-ID: <bug-49731-8800-LlOIgjEmL9@http.bugs.freedesktop.org/>
 References: <bug-49731-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49731
 
---- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-05-10 05:27:22 PDT ---
-Created attachment 61361
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61361
-glxinfo -l
+--- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-05-10 05:28:02 UTC ---
+Created attachment 61363
+  --> https://bugs.freedesktop.org/attachment.cgi?id=61363
+X log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
