@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49736] piglit quck.driver tests kill X server on nv43
-Date: Thu, 10 May 2012 14:37:36 +0000
-Message-ID: <bug-49736-8800-T1MRboeD8i@http.bugs.freedesktop.org/>
+Date: Thu, 10 May 2012 14:39:13 +0000
+Message-ID: <bug-49736-8800-0ik2yqBNOf@http.bugs.freedesktop.org/>
 References: <bug-49736-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49736
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-05-10 07:37:36 PDT ---
-Created attachment 61372
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61372
-piglit stdout and  stderr log (bz2  compressed)
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> 2012-05-10 07:39:13 PDT ---
+Created attachment 61373
+  --> https://bugs.freedesktop.org/attachment.cgi?id=61373
+X log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
