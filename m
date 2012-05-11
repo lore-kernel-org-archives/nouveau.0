@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49786] In xterm,
  some rectangles are not redrawn when the window is partly covered
-Date: Fri, 11 May 2012 10:28:10 +0000
-Message-ID: <bug-49786-8800-o6l9x9SiWy@http.bugs.freedesktop.org/>
+Date: Fri, 11 May 2012 10:34:16 +0000
+Message-ID: <bug-49786-8800-0uJ9n3B81d@http.bugs.freedesktop.org/>
 References: <bug-49786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49786
 
---- Comment #2 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> 2012-05-11 03:28:10 PDT ---
-Created attachment 61440
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61440
-snapshot showing the correct contents after a full redraw
+--- Comment #3 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> 2012-05-11 03:34:16 PDT ---
+If I disable acceleration with an xorg.conf file containing
+
+Section "Device"
+        Identifier      "Device0"
+        Driver          "nouveau"
+        Option          "NoAccel" "true"
+EndSection
+
+this display problem doesn't occur.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
