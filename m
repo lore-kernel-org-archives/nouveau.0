@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49786] In xterm,
  some rectangles are not redrawn when the window is partly covered
-Date: Fri, 11 May 2012 10:27:17 +0000
-Message-ID: <bug-49786-8800-fVOxt2MO0b@http.bugs.freedesktop.org/>
+Date: Fri, 11 May 2012 10:28:10 +0000
+Message-ID: <bug-49786-8800-o6l9x9SiWy@http.bugs.freedesktop.org/>
 References: <bug-49786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49786
 
---- Comment #1 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> 2012-05-11 03:27:17 PDT ---
-Created attachment 61439
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61439
-snapshot showing the corrupt display (see the top part of the window)
+--- Comment #2 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> 2012-05-11 03:28:10 PDT ---
+Created attachment 61440
+  --> https://bugs.freedesktop.org/attachment.cgi?id=61440
+snapshot showing the correct contents after a full redraw
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
