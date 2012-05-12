@@ -1,8 +1,8 @@
 From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
-Subject: [PATCH 1/4] nv30: Fix generic passing to fragment program
-	in NV34
-Date: Sat, 12 May 2012 03:42:29 +0200
-Message-ID: <1336786951-3325-2-git-send-email-r.spliet@student.tudelft.nl>
+Subject: [PATCH 2/4] nv30/shader: SSG,
+	LIT only requires one source register
+Date: Sat, 12 May 2012 03:42:30 +0200
+Message-ID: <1336786951-3325-3-git-send-email-r.spliet@student.tudelft.nl>
 References: <[Patches]mesa/nv30: Diverse set of patches that improve NV3x
 	render quality>
 	<1336786951-3325-1-git-send-email-r.spliet@student.tudelft.nl>
@@ -24,75 +24,39 @@ To: Nouveau mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.o
 Cc: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-fixes over 800 piglit cases in quick-driver suite for NV34
+Fixes crashing due to assertion error
 
 Signed-off-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 ---
- src/gallium/drivers/nv30/nv30_fragprog.c |    2 +-
- src/gallium/drivers/nv30/nv30_state.h    |    2 +-
- src/gallium/drivers/nv30/nvfx_fragprog.c |   10 +++++++---
- 3 files changed, 9 insertions(+), 5 deletions(-)
+ src/gallium/drivers/nv30/nvfx_fragprog.c |    2 +-
+ src/gallium/drivers/nv30/nvfx_vertprog.c |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/src/gallium/drivers/nv30/nv30_fragprog.c b/src/gallium/drivers/nv30/nv30_fragprog.c
-index 865c828..cfaafd5 100644
---- a/src/gallium/drivers/nv30/nv30_fragprog.c
-+++ b/src/gallium/drivers/nv30/nv30_fragprog.c
-@@ -117,7 +117,7 @@ nv30_fragprog_validate(struct nv30_context *nv30)
-          BEGIN_NV04(push, NV30_3D(FP_REG_CONTROL), 1);
-          PUSH_DATA (push, 0x00010004);
-          BEGIN_NV04(push, NV30_3D(TEX_UNITS_ENABLE), 1);
--         PUSH_DATA (push, fp->samplers);
-+         PUSH_DATA (push, fp->texcoords);
-       } else {
-          BEGIN_NV04(push, SUBC_3D(0x0b40), 1);
-          PUSH_DATA (push, 0x00000000);
-diff --git a/src/gallium/drivers/nv30/nv30_state.h b/src/gallium/drivers/nv30/nv30_state.h
-index a219bf2..df3b696 100644
---- a/src/gallium/drivers/nv30/nv30_state.h
-+++ b/src/gallium/drivers/nv30/nv30_state.h
-@@ -115,6 +115,7 @@ struct nv30_fragprog {
-    unsigned insn_len;
- 
-    uint16_t texcoord[10];
-+   uint32_t texcoords;
-    struct nv30_fragprog_data *consts;
-    unsigned nr_consts;
- 
-@@ -123,7 +124,6 @@ struct nv30_fragprog {
-    uint32_t fp_control;
-    uint32_t point_sprite_control;
-    uint32_t coord_conventions;
--   uint32_t samplers;
-    uint32_t rt_enable;
- };
- 
 diff --git a/src/gallium/drivers/nv30/nvfx_fragprog.c b/src/gallium/drivers/nv30/nvfx_fragprog.c
-index 592ad21..915b926 100644
+index 915b926..121c623 100644
 --- a/src/gallium/drivers/nv30/nvfx_fragprog.c
 +++ b/src/gallium/drivers/nv30/nvfx_fragprog.c
-@@ -217,7 +217,7 @@ nvfx_fp_emit(struct nvfx_fpc *fpc, struct nvfx_insn insn)
-    if(insn.unit >= 0)
-    {
-       hw[0] |= (insn.unit << NVFX_FP_OP_TEX_UNIT_SHIFT);
--      fp->samplers |= (1 << insn.unit);
-+      fp->texcoords |= (1 << insn.unit);
-    }
- 
-    emit_dst(fpc, insn.dst);
-@@ -959,8 +959,12 @@ nvfx_fragprog_assign_generic(struct nv30_context *nvfx, struct nvfx_fpc *fpc,
-          for (hw = 0; hw < num_texcoords; hw++) {
-             if (fpc->fp->texcoord[hw] == 0xffff) {
-                fpc->fp->texcoord[hw] = fdec->Semantic.Index;
--               if (hw <= 7) fpc->fp->vp_or |= (0x00004000 << hw);
--               else         fpc->fp->vp_or |= (0x00001000 << (hw - 8));
-+               if (hw <= 7) {
-+                  fpc->fp->vp_or |= (0x00004000 << hw);
-+                  fpc->fp->texcoords |= (0x1 << hw);
-+               } else {
-+                  fpc->fp->vp_or |= (0x00001000 << (hw - 8));
-+               }
-                if (fdec->Semantic.Index == 9)
-                   fpc->fp->point_sprite_control |= (0x00000100 << hw);
-                hw = NVFX_FP_OP_INPUT_SRC_TC(hw);
+@@ -623,7 +623,7 @@ nvfx_fragprog_parse_instruction(struct nv30_context* nvfx, struct nvfx_fpc *fpc,
+       break;
+    case TGSI_OPCODE_LIT:
+       if(!nvfx->is_nv4x)
+-         nvfx_fp_emit(fpc, arith(sat, LIT_NV30, dst, mask, src[0], src[1], src[2]));
++         nvfx_fp_emit(fpc, arith(sat, LIT_NV30, dst, mask, src[0], none, none));
+       else {
+          /* we use FLT_MIN, so that log2 never gives -infinity, and thus multiplication by
+           * specular 0 always gives 0, so that ex2 gives 1, to satisfy the 0^0 = 1 requirement
+diff --git a/src/gallium/drivers/nv30/nvfx_vertprog.c b/src/gallium/drivers/nv30/nvfx_vertprog.c
+index 82972b3..f41f82d 100644
+--- a/src/gallium/drivers/nv30/nvfx_vertprog.c
++++ b/src/gallium/drivers/nv30/nvfx_vertprog.c
+@@ -668,7 +668,7 @@ nvfx_vertprog_parse_instruction(struct nv30_context *nv30, struct nvfx_vpc *vpc,
+       nvfx_vp_emit(vpc, arith(sat, VEC, SNE, dst, mask, src[0], src[1], none));
+       break;
+    case TGSI_OPCODE_SSG:
+-      nvfx_vp_emit(vpc, arith(sat, VEC, SSG, dst, mask, src[0], src[1], none));
++      nvfx_vp_emit(vpc, arith(sat, VEC, SSG, dst, mask, src[0], none, none));
+       break;
+    case TGSI_OPCODE_STR:
+       nvfx_vp_emit(vpc, arith(sat, VEC, STR, dst, mask, src[0], src[1], none));
 -- 
 1.7.7.6
