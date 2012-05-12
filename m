@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49815] nouveau segfaults in p_atomic_dec_zero
-Date: Fri, 11 May 2012 13:10:40 +0000
-Message-ID: <bug-49815-8800-QaUXAE9l4C@http.bugs.freedesktop.org/>
-References: <bug-49815-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+Subject: [Patches] mesa/nv30: Diverse set of patches that improve
+	NV3x render quality V2
+Date: Sat, 12 May 2012 03:42:28 +0200
+Message-ID: <1336786951-3325-1-git-send-email-r.spliet@student.tudelft.nl>
+References: <[Patches]mesa/nv30: Diverse set of patches that improve NV3x
+	render quality>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49815-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <[Patches]mesa/nv30: Diverse set of patches that improve NV3x
+	render quality>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,17 +20,14 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49815
+A reworked version of 3 out of 4 patches mentioned earlier.
 
---- Comment #1 from Alen Skondro <askondro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-11 13:10:40 UTC ---
-Forgot to add the latest commit I'm using...
+[1/4]: Fixes nearly all piglit vertprog testcases, due to now being able to pass the results on to the fragment shader. V2: rename samplers to texcoords.
+[2/4]: Fixes shader compiler assertion errors, as some source registers do not exist for certain operations. Fixes several piglit tests when mesa is compiled with --enable-debug
+[3/4]: unchanged
+[4/4]: Dropped, requires a more substantial fix. As a quick-fix it's still useable though.
 
-23c0d469e55b3cb79ad4b2fd0d961562a26234fd
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Testers welcome!
