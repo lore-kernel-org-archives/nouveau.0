@@ -1,17 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Patches] mesa/nv30: Diverse set of patches that
- improve NV3x render quality V2
-Date: Sat, 12 May 2012 12:44:26 +1000
-Message-ID: <1336790666.22856.2.camel@nisroch>
-References: <[Patches]mesa/nv30: Diverse set of patches that improve NV3x render
-	quality>
-	<1336786951-3325-1-git-send-email-r.spliet@student.tudelft.nl>
-Reply-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 46557] nouveau: nv40 display corruption in
+ framebuffer and X lockups unless nouveau.noaccel=1
+Date: Sun, 13 May 2012 08:07:06 +0000
+Message-ID: <bug-46557-8800-N8k57udbtz@http.bugs.freedesktop.org/>
+References: <bug-46557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1336786951-3325-1-git-send-email-r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,25 +18,16 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
-Cc: Nouveau mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Am Samstag, den 12.05.2012, 03:42 +0200 schrieb Roy Spliet:
-> A reworked version of 3 out of 4 patches mentioned earlier.
-> 
-> [1/4]: Fixes nearly all piglit vertprog testcases, due to now being able to pass the results on to the fragment shader. V2: rename samplers to texcoords.
-> [2/4]: Fixes shader compiler assertion errors, as some source registers do not exist for certain operations. Fixes several piglit tests when mesa is compiled with --enable-debug
-> [3/4]: unchanged
-2/3 pushed to mesa git!
+https://bugs.freedesktop.org/show_bug.cgi?id=46557
 
-Thanks again!
-Ben.
-> [4/4]: Dropped, requires a more substantial fix. As a quick-fix it's still useable though.
-> 
-> Testers welcome!
-> 
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+--- Comment #4 from Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-13 01:07:06 PDT ---
+After experimenting with a few kernels, acceleration works in the framebuffer
+and X normally on 32-bit (x86) kernels; but not on 64-bit (amd64) kernels.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
