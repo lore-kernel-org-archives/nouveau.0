@@ -1,12 +1,14 @@
-From: rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org (Robert M. Riches Jr.)
-Subject: any way to recover card after cursor disappears or card
-	locks up
-Date: Sun, 13 May 2012 21:11:10 -0700
-Message-ID: <20120514041110.9A9E323420@one.localnet>
+From: Vincent Pelletier <plr.vincent-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: any way to recover card after cursor disappears or
+	card locks up
+Date: Mon, 14 May 2012 08:23:17 +0200
+Message-ID: <201205140823.18067.plr.vincent@gmail.com>
+References: <20120514041110.9A9E323420@one.localnet>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20120514041110.9A9E323420-QrSMeLIW4KwXpj0+iOhflA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,26 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-With an Asus ENGT430 card, which the box says is a GeForce GT 430,
-and with 64-bit Mageia 1 with kernel 2.6.38.8-server-10.mga, about
-once a week, the mouse cursor disappears from at least one monitor
-or the display locks up when exiting X.  (I use runlevel 3 and
-startx.)  Usually, if the cursor disappears and I then exit X, the
-display will lock up showing the X root window background.  Once
-the display has locked up, Alt-Ctrl-F* does nothing, SysRq does not
-display anything (so I can't tell what it's doing).  However, I'm
-able to ssh into the system, and everything other than the display
-is fine.  After a reboot, everything seems fine.  I don't think I
-saw this problem until I did a sensors-detect and added a second
-monitor.  (Main monitor is on DVI, and second monitor is on HDMI.)
-If I gather correctly, he GeForce GT 430 is an NVC1, GF108.
+Le lundi 14 mai 2012 06:11:10, Robert M. Riches Jr. a =E9crit :
+> However, I'm able to ssh into the system, and everything other than the
+> display is fine.
+[...]
+> I understand there is functionality in the kernel to manually switch betw=
+een
+> virtual consoles.  Can that be used to force the card to complete the
+> transition from X to a text console?
 
-Is there any known way to recover from an invisible mouse cursor
-or locked-up display other than rebooting?  I understand there is
-functionality in the kernel to manually switch between virtual
-consoles.  Can that be used to force the card to complete the
-transition from X to a text console?
+"chvt" is probably what you are looking for.
 
-Thanks.
+-- =
 
-Robert Riches
+Vincent Pelletier
