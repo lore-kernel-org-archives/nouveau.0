@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46557] nouveau: nv40 display corruption in
- framebuffer and X lockups unless nouveau.noaccel=1
-Date: Sun, 13 May 2012 08:07:06 +0000
-Message-ID: <bug-46557-8800-N8k57udbtz@http.bugs.freedesktop.org/>
-References: <bug-46557-8800@http.bugs.freedesktop.org/>
+From: rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org (Robert M. Riches Jr.)
+Subject: any way to recover card after cursor disappears or card
+	locks up
+Date: Sun, 13 May 2012 21:11:10 -0700
+Message-ID: <20120514041110.9A9E323420@one.localnet>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,13 +19,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=46557
+With an Asus ENGT430 card, which the box says is a GeForce GT 430,
+and with 64-bit Mageia 1 with kernel 2.6.38.8-server-10.mga, about
+once a week, the mouse cursor disappears from at least one monitor
+or the display locks up when exiting X.  (I use runlevel 3 and
+startx.)  Usually, if the cursor disappears and I then exit X, the
+display will lock up showing the X root window background.  Once
+the display has locked up, Alt-Ctrl-F* does nothing, SysRq does not
+display anything (so I can't tell what it's doing).  However, I'm
+able to ssh into the system, and everything other than the display
+is fine.  After a reboot, everything seems fine.  I don't think I
+saw this problem until I did a sensors-detect and added a second
+monitor.  (Main monitor is on DVI, and second monitor is on HDMI.)
+If I gather correctly, he GeForce GT 430 is an NVC1, GF108.
 
---- Comment #4 from Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-13 01:07:06 PDT ---
-After experimenting with a few kernels, acceleration works in the framebuffer
-and X normally on 32-bit (x86) kernels; but not on 64-bit (amd64) kernels.
+Is there any known way to recover from an invisible mouse cursor
+or locked-up display other than rebooting?  I understand there is
+functionality in the kernel to manually switch between virtual
+consoles.  Can that be used to force the card to complete the
+transition from X to a text console?
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Thanks.
+
+Robert Riches
