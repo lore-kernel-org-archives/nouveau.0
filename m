@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49397] Not able to set monitor resolution
-Date: Mon, 14 May 2012 12:43:09 +0000
-Message-ID: <bug-49397-8800-ESj5SACe2q@http.bugs.freedesktop.org/>
-References: <bug-49397-8800@http.bugs.freedesktop.org/>
+From: rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org (Robert M. Riches Jr.)
+Subject: Re: any way to recover card after cursor disappears
+Date: Mon, 14 May 2012 17:52:44 -0700
+Message-ID: <20120515005245.0145B2342F@one.localnet>
+References: <mailman.63.1337022025.14120.nouveau@lists.freedesktop.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49397-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <mailman.63.1337022025.14120.nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,27 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49397
+> Date: Mon, 14 May 2012 08:23:17 +0200
+> From: Vincent Pelletier <plr.vincent-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Subject: Re: [Nouveau] any way to recover card after cursor disappears
+> 	or	card locks up
+> To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> Message-ID: <201205140823.18067.plr.vincent-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Content-Type: Text/Plain;  charset="iso-8859-1"
+>
+> Le lundi 14 mai 2012 06:11:10, Robert M. Riches Jr. a ?crit :
+> > However, I'm able to ssh into the system, and everything other than the
+> > display is fine.
+> [...]
+> > I understand there is functionality in the kernel to manually switch between
+> > virtual consoles.  Can that be used to force the card to complete the
+> > transition from X to a text console?
+>
+> "chvt" is probably what you are looking for.
+>
+> -- 
+> Vincent Pelletier
 
-Samuel Leathers <sam-e2+Nv14t5wTJuAXsgwRMTA@public.gmane.org> changed:
+Yes, that's it.  Thank you.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #3 from Samuel Leathers <sam-e2+Nv14t5wTJuAXsgwRMTA@public.gmane.org> 2012-05-14 05:43:09 PDT ---
-I got this working by removing /etc/X11/xorg.conf, and then running the
-following in my .xinitrc:
-
-xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088
-1120 -hsync +vsync
-xrandr --addmode VGA-1 1920x1080_60.00
-xrandr --output VGA-1 --mode 1920x1080_60.00
-exec openbox-session
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Robert Riches
