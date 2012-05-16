@@ -1,13 +1,13 @@
-From: rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org (Robert M. Riches Jr.)
-Subject: Re: any way to recover card after cursor disappears
-Date: Mon, 14 May 2012 17:52:44 -0700
-Message-ID: <20120515005245.0145B2342F@one.localnet>
-References: <mailman.63.1337022025.14120.nouveau@lists.freedesktop.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 49815] nouveau segfaults in p_atomic_dec_zero
+Date: Wed, 16 May 2012 03:54:15 +0000
+Message-ID: <bug-49815-8800-1o1zxrjpsb@http.bugs.freedesktop.org/>
+References: <bug-49815-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <mailman.63.1337022025.14120.nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-49815-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,44 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-> Date: Mon, 14 May 2012 08:23:17 +0200
-> From: Vincent Pelletier <plr.vincent-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Subject: Re: [Nouveau] any way to recover card after cursor disappears
-> 	or	card locks up
-> To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> Message-ID: <201205140823.18067.plr.vincent-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Content-Type: Text/Plain;  charset="iso-8859-1"
->
-> Le lundi 14 mai 2012 06:11:10, Robert M. Riches Jr. a ?crit :
-> > However, I'm able to ssh into the system, and everything other than the
-> > display is fine.
-> [...]
-> > I understand there is functionality in the kernel to manually switch between
-> > virtual consoles.  Can that be used to force the card to complete the
-> > transition from X to a text console?
->
-> "chvt" is probably what you are looking for.
->
-> -- 
-> Vincent Pelletier
-
-Yes, that's it.  Thank you.
-
-Robert Riches
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDk4MTUKCi0tLSBD
+b21tZW50ICMyIGZyb20gYW5kcmV3LmdyZWVuLmRmQGdtYWlsLmNvbSAyMDEyLTA1LTE1IDIwOjU0
+OjE1IFBEVCAtLS0KTG9va3MgbGlrZSBJJ3ZlIGJlZW4gYml0dGVuIGJ5IHRoZSBzYW1lIGJ1Zywg
+b3Igc29tZXRoaW5nIHNpbWlsYXIuIApFdmVyeXRoaW5nIHdhcyB3b3JraW5nIGZpbmUgdW50aWwg
+SSBwdWxsZWQgaW4gdGhlIGxhdGVzdCBtZXNhIGZyb20gZ2l0IAphbmQgcmVjb21waWxlZC4gVGhl
+biBnbm9tZSBzdGFydGVkIGdvaW5nIG9ubHkgaW50byBmYWxsYmFjayBtb2RlLiBJbiAKZG1lc2cg
+SSB3YXMgZ2V0dGluZzoKZ25vbWUtc2Vzc2lvbi1jWzM2MThdOiBzZWdmYXVsdCBhdCAxMDAwMTAw
+MDEgaXAgMDAwMDdmMDQxOWFlMDU3MCBzcCAKMDAwMDdmZmZkMzIwNDg3MCBlcnJvciA2IGluIG5v
+dXZlYXVfZHJpLnNvWzdmMDQxOWE2NDAwMCs0OTUwMDBdCgpXaGVuIGluIGZhbGxiYWNrIG1vZGUs
+IGlmIEkgcmFuIGdseGluZm8gaXQgd291bGQgYWxzbyBzZWdmYXVsdDoKZ2x4aW5mb1szNzI5XTog
+c2VnZmF1bHQgYXQgMTAwMDEwMDAxIGlwIDAwMDA3ZmZlMzFmNDk1NzAgc3AgCjAwMDA3ZmZmMjJh
+ODVkZjAgZXJyb3IgNiBpbiBub3V2ZWF1X2RyaS5zb1s3ZmZlMzFlY2QwMDArNDk1MDAwXQoKR29p
+bmcgYmFjayB0byBjb21taXQgYjMyODk0OWEzN2ZlZTdiMGY2OGVkM2UwNjhmZmM0NDI2YzA4MzA0
+MiBmaXhlZCBpdC4KCkknbSBhZnJhaWQgSSBoYXZlIG5vIGJhY2t0cmFjZSBidXQgaWYgc29tZW9u
+ZSBjYW4gcG9pbnQgbWUgdG8gc29tZSBxdWljayAKaW5zdHJ1Y3Rpb25zIEkgc2hvdWxkIGJlIGFi
+bGUgdG8gdHJ5IHRvIGdldCBvbmUgaW4gYSBmZXcgZGF5cy4KCkhlcmUgaXMgd2hhdCBsc3BjaSBz
+YXlzIG15IGNhcmQgaXM6CjAxOjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlcjogTlZJRElB
+IENvcnBvcmF0aW9uIEc4Nk0gW1F1YWRybyBOVlMgCjEzNU1dIChyZXYgYTEpCgpJJ20gdXNpbmcg
+YSB2ZXJ5IG1peGVkIERlYmlhbiB0ZXN0aW5nL3Vuc3RhYmxlL2V4cGVyaW1lbnRhbCwga2VybmVs
+IAozLjIuMC0yLCBhbWQ2NCwgb24gYSBEZWxsIExhdGl0dWRlIEQ2MzAgbGFwdG9wLgoKKEJUVywg
+bm91dmVhdSB3b3JrcyBtb2RlcmF0ZWx5IHdlbGwgb24gbXkgYm94LiBJIGNhbiBydW4gR25vbWUg
+MyBidXQgdGhlIAp6b29tIGFuaW1hdGlvbnMgbG9vayBsaWtlIGNyYXAsIG1heWJlIGJlY2F1c2Ug
+dGhlIGNhcmQgc3RheXMgaW4gCmxvdy1wb3dlciBtb2RlLiAoSSB1c2VkIHRvIHJ1biB0aGUgbnZp
+ZGlhIGJsb2Igd2l0aCBDb21waXosIGFuZCBJIGhhZCB0byAKZGVhY3RpdmF0ZSBwb3dlciBzYXZp
+bmcgdG8gZ2V0IGdvb2QgYW5pbWF0aW9ucyB0aGVuLikgQWZ0ZXIgYWJvdXQgMjAtMzAgCmhvdXJz
+IG9mIHVzZSBJIHVzdWFsbHkgZ2V0IHNvbWUga2luZCBvZiBtZW1vcnkgY29ycnVwdGlvbiwgb3Ig
+WCBsb2NrcyAKdXAsIGFuZCBJIGhhdmUgdG8gcmVib290LiBIb3dldmVyLCB0aGUgMmQgYWNjZWxl
+cmF0aW9uIHJvY2tzLCBtdWNoIApmYXN0ZXIgdGhhbiB0aGUgYmxvYiEgTWFrZXMgaXQgd29ydGgg
+aXQuKQoKQW55d2F5LCB0aGFua3MgdG8gZXZlcnlvbmUgZm9yIHlvdXIgZ3JlYXQgd29yayEgR3Jl
+ZXRpbmdzLApBbmRyZXcKCkVsIDExLzA1LzEyIDA4OjEwLCBidWd6aWxsYS1kYWVtb25AZnJlZWRl
+c2t0b3Aub3JnIGVzY3JpYmnDszoKPiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3df
+YnVnLmNnaT9pZD00OTgxNQo+Cj4gLS0tIENvbW1lbnQgIzEgZnJvbSBBbGVuIFNrb25kcm88YXNr
+b25kcm9AZ21haWwuY29tPiAgMjAxMi0wNS0xMSAxMzoxMDo0MCBVVEMgLS0tCj4gRm9yZ290IHRv
+IGFkZCB0aGUgbGF0ZXN0IGNvbW1pdCBJJ20gdXNpbmcuLi4KPgo+IDIzYzBkNDY5ZTU1YjNjYjc5
+YWQ0YjJmZDBkOTYxNTYyYTI2MjM0ZmQKPgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczov
+L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91
+IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNz
+aWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
