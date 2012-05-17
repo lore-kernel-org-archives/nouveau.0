@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50043] GT240 (nv40) doesn't show anything at boot up,
  nor X starts
-Date: Thu, 17 May 2012 15:00:41 +0000
-Message-ID: <bug-50043-8800-BTg1Udk1Vv@http.bugs.freedesktop.org/>
+Date: Thu, 17 May 2012 15:12:30 +0000
+Message-ID: <bug-50043-8800-dsJvvfXcHK@http.bugs.freedesktop.org/>
 References: <bug-50043-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50043
 
---- Comment #1 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-17 08:00:41 PDT ---
-Two things, it's an NVA3, not NV40.
+--- Comment #2 from Peter Lekensteyn <lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-17 08:12:30 PDT ---
+That optimus message is a mistake that is fixed in newer kernels:
 
-Secondly i notice the word "Optimus" in your log, which to the best of
-knowledge means that you have a mixed intel/nvidia system and the nvidia gpu
-doesn't have any outputs/monitors attached, only the intel.
+commit f24f9104f70cabc2534b16f94149d33127d249d5
+Author: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Wed May 2 20:26:24 2012 +0100
 
-As far as i know optimus is not (well) supported under linux, but others might
-know more about that.
+    nouveau: initialise has_optimus variable.
 
-In the meantime, the intel driver in principle should work (although the nvidia
-gpu may still be consuming energy and doing nothing) if this is really an
-optimus system.
+    commit addde4ec31456c5f1e9b61aae3edcfeb0f338f87 upstream.
+
+    We should initialise this to 0 really to avoid getting false positives.
+
+    Signed-off-by: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+    Signed-off-by: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
