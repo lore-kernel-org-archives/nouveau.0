@@ -1,15 +1,12 @@
-From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
-Subject: [PATCH 1/3] nv30: Fix generic passing to fragment program
-	in NV34
-Date: Wed, 16 May 2012 11:06:46 +0200
-Message-ID: <1337159207-20167-2-git-send-email-r.spliet@student.tudelft.nl>
-References: <1336790666.22856.2.camel@nisroch>
-	<1337159207-20167-1-git-send-email-r.spliet@student.tudelft.nl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 50043] New: GT240 (nv40) doesn't show anything at
+ boot up, nor X starts
+Date: Thu, 17 May 2012 12:14:10 +0000
+Message-ID: <bug-50043-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1337159207-20167-1-git-send-email-r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,72 +16,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-fixes over 800 piglit cases in quick-driver suite for NV34
+https://bugs.freedesktop.org/show_bug.cgi?id=50043
 
-Signed-off-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
----
- src/gallium/drivers/nv30/nv30_fragprog.c |    2 +-
- src/gallium/drivers/nv30/nv30_state.h    |    2 +-
- src/gallium/drivers/nv30/nvfx_fragprog.c |   10 +++++++---
- 3 files changed, 9 insertions(+), 5 deletions(-)
+             Bug #: 50043
+           Summary: GT240 (nv40) doesn't show anything at boot up, nor X
+                    starts
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: blocker
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: dantti12-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-diff --git a/src/gallium/drivers/nv30/nv30_fragprog.c b/src/gallium/drivers/nv30/nv30_fragprog.c
-index 865c828..cfaafd5 100644
---- a/src/gallium/drivers/nv30/nv30_fragprog.c
-+++ b/src/gallium/drivers/nv30/nv30_fragprog.c
-@@ -117,7 +117,7 @@ nv30_fragprog_validate(struct nv30_context *nv30)
-          BEGIN_NV04(push, NV30_3D(FP_REG_CONTROL), 1);
-          PUSH_DATA (push, 0x00010004);
-          BEGIN_NV04(push, NV30_3D(TEX_UNITS_ENABLE), 1);
--         PUSH_DATA (push, fp->samplers);
-+         PUSH_DATA (push, fp->texcoords);
-       } else {
-          BEGIN_NV04(push, SUBC_3D(0x0b40), 1);
-          PUSH_DATA (push, 0x00000000);
-diff --git a/src/gallium/drivers/nv30/nv30_state.h b/src/gallium/drivers/nv30/nv30_state.h
-index a219bf2..964676a 100644
---- a/src/gallium/drivers/nv30/nv30_state.h
-+++ b/src/gallium/drivers/nv30/nv30_state.h
-@@ -123,7 +123,7 @@ struct nv30_fragprog {
-    uint32_t fp_control;
-    uint32_t point_sprite_control;
-    uint32_t coord_conventions;
--   uint32_t samplers;
-+   uint32_t texcoords;
-    uint32_t rt_enable;
- };
- 
-diff --git a/src/gallium/drivers/nv30/nvfx_fragprog.c b/src/gallium/drivers/nv30/nvfx_fragprog.c
-index 320efbb..121c623 100644
---- a/src/gallium/drivers/nv30/nvfx_fragprog.c
-+++ b/src/gallium/drivers/nv30/nvfx_fragprog.c
-@@ -217,7 +217,7 @@ nvfx_fp_emit(struct nvfx_fpc *fpc, struct nvfx_insn insn)
-    if(insn.unit >= 0)
-    {
-       hw[0] |= (insn.unit << NVFX_FP_OP_TEX_UNIT_SHIFT);
--      fp->samplers |= (1 << insn.unit);
-+      fp->texcoords |= (1 << insn.unit);
-    }
- 
-    emit_dst(fpc, insn.dst);
-@@ -959,8 +959,12 @@ nvfx_fragprog_assign_generic(struct nv30_context *nvfx, struct nvfx_fpc *fpc,
-          for (hw = 0; hw < num_texcoords; hw++) {
-             if (fpc->fp->texcoord[hw] == 0xffff) {
-                fpc->fp->texcoord[hw] = fdec->Semantic.Index;
--               if (hw <= 7) fpc->fp->vp_or |= (0x00004000 << hw);
--               else         fpc->fp->vp_or |= (0x00001000 << (hw - 8));
-+               if (hw <= 7) {
-+                  fpc->fp->vp_or |= (0x00004000 << hw);
-+                  fpc->fp->texcoords |= (0x1 << hw);
-+               } else {
-+                  fpc->fp->vp_or |= (0x00001000 << (hw - 8));
-+               }
-                if (fdec->Semantic.Index == 9)
-                   fpc->fp->point_sprite_control |= (0x00000100 << hw);
-                hw = NVFX_FP_OP_INPUT_SRC_TC(hw);
+
+Created attachment 61743
+  --> https://bugs.freedesktop.org/attachment.cgi?id=61743
+dmesg run from ssh
+
+Hi,
+my card is unfortunately useless with nouveau
+when I bootup a "corrupted" screen shows up
+and stay there, after everything is loaded
+and X is supposed to start it doesn't start
+so either X and console doesn't work with it.
+
+I'm using xorg-edgers drivers from ubuntu PPA,
+that use to be quite new, just in case a fedora
+live cd also doesn't boot.
+
+Please ask if so can provide more info
+
+Thanks.
+
 -- 
-1.7.7.6
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
