@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50043] GT240 (nv40) doesn't show anything at boot up,
  nor X starts
-Date: Thu, 17 May 2012 16:05:14 +0000
-Message-ID: <bug-50043-8800-qb72eOpVO7@http.bugs.freedesktop.org/>
+Date: Thu, 17 May 2012 17:45:00 +0000
+Message-ID: <bug-50043-8800-UD1uOMGjnE@http.bugs.freedesktop.org/>
 References: <bug-50043-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50043
 
---- Comment #3 from Daniel Nicoletti <dantti12-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-17 09:05:14 PDT ---
-Ok I didn't know it was NVA3.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-And as the last comment says it's a mistake message,
-since I run a desktop with an off board PCI-E card.
-
-Is it possible that a newer kernel don't think I have
-an intel? Or there might be another issue not
-related to this?
-
-Thanks.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #61743|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
