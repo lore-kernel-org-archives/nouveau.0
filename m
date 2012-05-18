@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50058] [NV86] All OpenGL programs crashing with
 	nouveau dri
-Date: Thu, 17 May 2012 22:20:14 +0000
-Message-ID: <bug-50058-8800-3nIeK9BwYb@http.bugs.freedesktop.org/>
+Date: Fri, 18 May 2012 05:22:28 +0000
+Message-ID: <bug-50058-8800-TDw3bUCjtT@http.bugs.freedesktop.org/>
 References: <bug-50058-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50058
 
---- Comment #2 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> 2012-05-17 22:20:14 UTC ---
-Mesa 8.1-devel (git-6029131) works fine
+Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
