@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50043] GT240 (NVA3) doesn't show anything at boot up,
  nor X starts
-Date: Fri, 18 May 2012 16:08:01 +0000
-Message-ID: <bug-50043-8800-qCTdypnXDf@http.bugs.freedesktop.org/>
+Date: Fri, 18 May 2012 16:08:18 +0000
+Message-ID: <bug-50043-8800-OlBkAejBWO@http.bugs.freedesktop.org/>
 References: <bug-50043-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50043
 
---- Comment #4 from Daniel Nicoletti <dantti12-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-18 16:08:01 UTC ---
-Created attachment 61823
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61823
-kernel 3.4-rc6 dmesg log
+--- Comment #5 from Daniel Nicoletti <dantti12-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-18 16:08:18 UTC ---
+I have some news, I belive the commit shown here
+actually disabled this optimus feature that is not
+really available here, so using a kernel 3.4-rc6
+shows kubuntu logo at 1920.1080 and allows me to
+use the console, however the X still doesn't start.
+Since I got a kernel patch upstream I did the test
+to see if it was working fine and ended up noticing
+nouveau starting to work here...
+
+I'm adding a new dmesg log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
