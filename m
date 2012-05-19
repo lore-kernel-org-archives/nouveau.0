@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] NV34 Fx5200 fails to resume with
  commit 5d720f2450
-Date: Sat, 19 May 2012 16:34:35 +0000
-Message-ID: <bug-50121-8800-BFUPT5vr17@http.bugs.freedesktop.org/>
+Date: Sat, 19 May 2012 16:40:47 +0000
+Message-ID: <bug-50121-8800-sz0elECiZj@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #1 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-19 09:34:35 PDT ---
-Created attachment 61852
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61852
-Dmesg output of correct resume
+--- Comment #2 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-19 09:40:47 PDT ---
+On a small sidenote, compiling current head with
+
+!CONFIG_DRM_NOUVEAU_BACKLIGHT
+
+results in:
+
+http://pastebin.com/8TvZNDqz
+
+Current head means:
+
+1. git pull git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+2. git pull git://anongit.freedesktop.org/nouveau/linux-2.6
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
