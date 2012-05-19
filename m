@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] NV34 Fx5200 fails to resume with
  commit 5d720f2450
-Date: Sat, 19 May 2012 19:29:19 +0000
-Message-ID: <bug-50121-8800-l5UECXGjHS@http.bugs.freedesktop.org/>
+Date: Sat, 19 May 2012 19:29:45 +0000
+Message-ID: <bug-50121-8800-fM0a1md4h4@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #6 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-19 12:29:19 PDT ---
-Created attachment 61860
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61860
-Dmesg boot log of the 'good' kernel
+--- Comment #7 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-19 12:29:45 PDT ---
+Created attachment 61861
+  --> https://bugs.freedesktop.org/attachment.cgi?id=61861
+Dmesg resume log of the 'good' kernel
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
