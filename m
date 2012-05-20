@@ -1,8 +1,8 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 02/14] drm/nouveau: Unregister switcheroo client
-	on exit
-Date: Mon, 21 May 2012 00:14:51 +0100
-Message-ID: <1337555703-18925-3-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 03/14] drm/nouveau/device: Simplify init,
+	fini fuction
+Date: Mon, 21 May 2012 00:14:52 +0100
+Message-ID: <1337555703-18925-4-git-send-email-emil.l.velikov@gmail.com>
 References: <1337555703-18925-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,37 +21,75 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From: Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>
+Removes unnecessary goto statement
+fini subdevices before destroying them
 
-Currently nouveau only registers as a vga_switcheroo client, but never
-unregisters. This patch adds the necessary unregister calls.
-
-Signed-off-by: Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>
+Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
-v2: Rebased on top of master
+ drivers/gpu/drm/nouveau/nouveau_device.c |   26 +++++++++++++++-----------
+ 1 file changed, 15 insertions(+), 11 deletions(-)
 
- drivers/gpu/drm/nouveau/nouveau_state.c |    2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c b/drivers/gpu/drm/nouveau/nouveau_state.c
-index 1a70d07..b84db66 100644
---- a/drivers/gpu/drm/nouveau/nouveau_state.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_state.c
-@@ -344,6 +344,7 @@ out_device_init:
- out_display_early:
- 	engine->display.late_takedown(ndev);
- out:
-+	vga_switcheroo_unregister_client(dev->pdev);
- 	vga_client_register(dev->pdev, NULL, NULL, NULL);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_device.c b/drivers/gpu/drm/nouveau/nouveau_device.c
+index 9cc21d1..38ed71a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_device.c
++++ b/drivers/gpu/drm/nouveau/nouveau_device.c
+@@ -55,13 +55,13 @@ nouveau_device_init(struct nouveau_device *ndev)
+ 
+ 	for (i = 0; i < NVDEV_SUBDEV_NR; i++) {
+ 		ret = nouveau_subdev_init(ndev, i, 0);
+-		if (ret)
+-			goto error;
++		if (ret) {
++			for (--i; i >= 0; i--)
++				nouveau_subdev_fini(ndev, i, false);
++			break;
++		}
+ 	}
+ 
+-error:
+-	for (--i; ret && i >= 0; i--)
+-		nouveau_subdev_fini(ndev, i, false);
  	return ret;
  }
-@@ -387,6 +388,7 @@ static void nouveau_card_takedown(struct nouveau_device *ndev)
  
- 	nouveau_irq_fini(ndev);
+@@ -72,13 +72,13 @@ nouveau_device_fini(struct nouveau_device *ndev, bool suspend)
  
-+	vga_switcheroo_unregister_client(dev->pdev);
- 	vga_client_register(dev->pdev, NULL, NULL, NULL);
+ 	for (i = NVDEV_SUBDEV_NR - 1; i >= 0; i--) {
+ 		ret = nouveau_subdev_fini(ndev, i, suspend);
+-		if (ret)
+-			goto error;
++		if (ret) {
++			for (--i; i >= 0; i--)
++				nouveau_subdev_init(ndev, i, 0);
++			break;
++		}
+ 	}
+ 
+-error:
+-	for (--i; ret && i >= 0; i--)
+-		nouveau_subdev_init(ndev, i, 0);
+ 	return ret;
  }
  
+@@ -96,6 +96,7 @@ nouveau_device_create(struct nouveau_device *ndev)
+ {
+ 	int disable = nouveau_noaccel;
+ 	int ret = 0;
++	int i;
+ 
+ 	/* mask out any engines that are known not to work as they should,
+ 	 * these can be overridden by the user
+@@ -553,7 +554,10 @@ nouveau_device_create(struct nouveau_device *ndev)
+ 		break;
+ 	}
+ 
+-	if (ret)
++	if (ret) {
++		for (i = NVDEV_SUBDEV_NR - 1; i >= 0; i--)
++			nouveau_subdev_fini(ndev, i, false);
+ 		nouveau_device_destroy(ndev);
++	}
+ 	return ret;
+ }
 -- 
 1.7.10.2
