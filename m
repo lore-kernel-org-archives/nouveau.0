@@ -1,7 +1,8 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 10/14] drm/nv30_fb: Purge optional variable
-Date: Mon, 21 May 2012 00:14:59 +0100
-Message-ID: <1337555703-18925-11-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 11/14] drm/nv40/fb: Blend if statement within the
+	switch
+Date: Mon, 21 May 2012 00:15:00 +0100
+Message-ID: <1337555703-18925-12-git-send-email-emil.l.velikov@gmail.com>
 References: <1337555703-18925-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,31 +21,41 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+No functional change, just bike-shedding
+
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nv30_fb.c |    3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nv40_fb.c |   11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv30_fb.c b/drivers/gpu/drm/nouveau/nv30_fb.c
-index ce08f08..bc1c65b 100644
---- a/drivers/gpu/drm/nouveau/nv30_fb.c
-+++ b/drivers/gpu/drm/nouveau/nv30_fb.c
-@@ -113,7 +113,6 @@ nv30_fb_init(struct nouveau_device *ndev, int subdev)
- int
- nv30_fb_create(struct nouveau_device *ndev, int subdev)
- {
--	u32 mem_size = nv_rd32(ndev, 0x10020c);
- 	u32 pbus1218 = nv_rd32(ndev, 0x001218);
- 	struct nv30_fb_priv *priv;
- 	int ret;
-@@ -128,7 +127,7 @@ nv30_fb_create(struct nouveau_device *ndev, int subdev)
- 	case 0x00000200: ndev->vram_type = NV_MEM_TYPE_GDDR3; break;
- 	case 0x00000300: ndev->vram_type = NV_MEM_TYPE_GDDR2; break;
- 	}
--	ndev->vram_size = mem_size & 0xff000000;
-+	ndev->vram_size = nv_rd32(ndev, 0x10020c) & 0xff000000;
+diff --git a/drivers/gpu/drm/nouveau/nv40_fb.c b/drivers/gpu/drm/nouveau/nv40_fb.c
+index 879678b..4f2d436 100644
+--- a/drivers/gpu/drm/nouveau/nv40_fb.c
++++ b/drivers/gpu/drm/nouveau/nv40_fb.c
+@@ -107,13 +107,6 @@ nv40_fb_init(struct nouveau_device *ndev, int subdev)
+ 	u32 tmp;
+ 	int i;
  
- 	priv->base.base.destroy = nv10_fb_destroy;
- 	priv->base.base.init = nv30_fb_init;
+-	if (ndev->chipset != 0x40 && ndev->chipset != 0x45) {
+-		if (nv44_graph_class(ndev))
+-			nv44_fb_init_gart(ndev);
+-		else
+-			nv40_fb_init_gart(ndev);
+-	}
+-
+ 	switch (ndev->chipset) {
+ 	case 0x40:
+ 	case 0x45:
+@@ -121,6 +114,10 @@ nv40_fb_init(struct nouveau_device *ndev, int subdev)
+ 		nv_wr32(ndev, NV10_PFB_CLOSE_PAGE2, tmp & ~(1 << 15));
+ 		break;
+ 	default:
++		if (nv44_graph_class(ndev))
++			nv44_fb_init_gart(ndev);
++		else
++			nv40_fb_init_gart(ndev);
+ 		break;
+ 	}
+ 
 -- 
 1.7.10.2
