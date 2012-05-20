@@ -1,8 +1,8 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 03/14] drm/nouveau/device: Simplify init,
-	fini fuction
-Date: Mon, 21 May 2012 00:14:52 +0100
-Message-ID: <1337555703-18925-4-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 04/14] drm/nouveau: Remove non-relevant function
+	prototypes
+Date: Mon, 21 May 2012 00:14:53 +0100
+Message-ID: <1337555703-18925-5-git-send-email-emil.l.velikov@gmail.com>
 References: <1337555703-18925-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,75 +21,37 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Removes unnecessary goto statement
-fini subdevices before destroying them
-
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_device.c |   26 +++++++++++++++-----------
- 1 file changed, 15 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_fb.h   |    1 -
+ drivers/gpu/drm/nouveau/nouveau_gpio.h |    3 ---
+ 2 files changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_device.c b/drivers/gpu/drm/nouveau/nouveau_device.c
-index 9cc21d1..38ed71a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_device.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_device.c
-@@ -55,13 +55,13 @@ nouveau_device_init(struct nouveau_device *ndev)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fb.h b/drivers/gpu/drm/nouveau/nouveau_fb.h
+index b804fd0..5f62743 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fb.h
++++ b/drivers/gpu/drm/nouveau/nouveau_fb.h
+@@ -37,7 +37,6 @@ void nv30_fb_free_tile_region(struct nouveau_fb *, int i);
+ int  nv40_fb_create(struct nouveau_device *, int);
  
- 	for (i = 0; i < NVDEV_SUBDEV_NR; i++) {
- 		ret = nouveau_subdev_init(ndev, i, 0);
--		if (ret)
--			goto error;
-+		if (ret) {
-+			for (--i; i >= 0; i--)
-+				nouveau_subdev_fini(ndev, i, false);
-+			break;
-+		}
- 	}
+ int  nv50_fb_create(struct nouveau_device *, int);
+-void nv50_fb_vram_fini(struct nouveau_fb *);
+ void nv50_fb_vram_del(struct nouveau_fb *, struct nouveau_mem **);
+ void nv50_fb_vm_trap(struct nouveau_device *, int display);
  
--error:
--	for (--i; ret && i >= 0; i--)
--		nouveau_subdev_fini(ndev, i, false);
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gpio.h b/drivers/gpu/drm/nouveau/nouveau_gpio.h
+index 1814c19..5bd66e8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gpio.h
++++ b/drivers/gpu/drm/nouveau/nouveau_gpio.h
+@@ -53,9 +53,6 @@ struct gpio_func {
  
-@@ -72,13 +72,13 @@ nouveau_device_fini(struct nouveau_device *ndev, bool suspend)
- 
- 	for (i = NVDEV_SUBDEV_NR - 1; i >= 0; i--) {
- 		ret = nouveau_subdev_fini(ndev, i, suspend);
--		if (ret)
--			goto error;
-+		if (ret) {
-+			for (--i; i >= 0; i--)
-+				nouveau_subdev_init(ndev, i, 0);
-+			break;
-+		}
- 	}
- 
--error:
--	for (--i; ret && i >= 0; i--)
--		nouveau_subdev_init(ndev, i, 0);
- 	return ret;
- }
- 
-@@ -96,6 +96,7 @@ nouveau_device_create(struct nouveau_device *ndev)
- {
- 	int disable = nouveau_noaccel;
- 	int ret = 0;
-+	int i;
- 
- 	/* mask out any engines that are known not to work as they should,
- 	 * these can be overridden by the user
-@@ -553,7 +554,10 @@ nouveau_device_create(struct nouveau_device *ndev)
- 		break;
- 	}
- 
--	if (ret)
-+	if (ret) {
-+		for (i = NVDEV_SUBDEV_NR - 1; i >= 0; i--)
-+			nouveau_subdev_fini(ndev, i, false);
- 		nouveau_device_destroy(ndev);
-+	}
- 	return ret;
- }
+ /* nouveau_gpio.c */
+ int  nouveau_gpio_create(struct nouveau_device *, int subdev);
+-void nouveau_gpio_destroy(struct nouveau_device *);
+-int  nouveau_gpio_init(struct nouveau_device *);
+-void nouveau_gpio_fini(struct nouveau_device *);
+ void nouveau_gpio_reset(struct nouveau_device *);
+ int  nouveau_gpio_drive(struct nouveau_device *, int idx, int line,
+ 			int dir, int out);
 -- 
 1.7.10.2
