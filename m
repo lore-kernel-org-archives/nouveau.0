@@ -1,8 +1,8 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 04/14] drm/nouveau: Remove non-relevant function
-	prototypes
-Date: Mon, 21 May 2012 00:14:53 +0100
-Message-ID: <1337555703-18925-5-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 05/14] drm/nouveau/gpuobj: Do not handle
+	gpuobj_init during fail path in gpuobj_fini
+Date: Mon, 21 May 2012 00:14:54 +0100
+Message-ID: <1337555703-18925-6-git-send-email-emil.l.velikov@gmail.com>
 References: <1337555703-18925-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,37 +21,55 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+This approach is already handled by the subdev system. Remove
+unneeded variable in the process
+
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_fb.h   |    1 -
- drivers/gpu/drm/nouveau/nouveau_gpio.h |    3 ---
- 2 files changed, 4 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_gpuobj.c |   12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fb.h b/drivers/gpu/drm/nouveau/nouveau_fb.h
-index b804fd0..5f62743 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fb.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_fb.h
-@@ -37,7 +37,6 @@ void nv30_fb_free_tile_region(struct nouveau_fb *, int i);
- int  nv40_fb_create(struct nouveau_device *, int);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gpuobj.c b/drivers/gpu/drm/nouveau/nouveau_gpuobj.c
+index 2eed5c3..43a7cd2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gpuobj.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gpuobj.c
+@@ -757,7 +757,7 @@ nouveau_gpuobj_fini(struct nouveau_device *ndev, int subdev, bool suspend)
+ {
+ 	struct nouveau_gpuobj_priv *priv = nv_subdev(ndev, subdev);
+ 	struct nouveau_gpuobj *gpuobj;
+-	int i, ret = 0;
++	int i;
  
- int  nv50_fb_create(struct nouveau_device *, int);
--void nv50_fb_vram_fini(struct nouveau_fb *);
- void nv50_fb_vram_del(struct nouveau_fb *, struct nouveau_mem **);
- void nv50_fb_vm_trap(struct nouveau_device *, int display);
+ 	if (suspend) {
+ 		list_for_each_entry(gpuobj, &priv->list, list) {
+@@ -766,8 +766,7 @@ nouveau_gpuobj_fini(struct nouveau_device *ndev, int subdev, bool suspend)
  
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gpio.h b/drivers/gpu/drm/nouveau/nouveau_gpio.h
-index 1814c19..5bd66e8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gpio.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_gpio.h
-@@ -53,9 +53,6 @@ struct gpio_func {
+ 			gpuobj->suspend = vmalloc(gpuobj->size);
+ 			if (!gpuobj->suspend) {
+-				ret = -ENOMEM;
+-				goto error;
++				return -ENOMEM;
+ 			}
  
- /* nouveau_gpio.c */
- int  nouveau_gpio_create(struct nouveau_device *, int subdev);
--void nouveau_gpio_destroy(struct nouveau_device *);
--int  nouveau_gpio_init(struct nouveau_device *);
--void nouveau_gpio_fini(struct nouveau_device *);
- void nouveau_gpio_reset(struct nouveau_device *);
- int  nouveau_gpio_drive(struct nouveau_device *, int idx, int line,
- 			int dir, int out);
+ 			for (i = 0; i < gpuobj->size; i += 4)
+@@ -775,16 +774,13 @@ nouveau_gpuobj_fini(struct nouveau_device *ndev, int subdev, bool suspend)
+ 		}
+ 	}
+ 
+-error:
+-	if (ret)
+-		priv->base.init(ndev, subdev);
+-	return ret;
++	return 0;
+ }
+ 
+ static void
+ nouveau_gpuobj_destroy(struct nouveau_device *ndev, int subdev)
+ {
+-	struct nouveau_gpuobj_priv *priv = nv_subdev(ndev, NVDEV_SUBDEV_GPUOBJ);
++	struct nouveau_gpuobj_priv *priv = nv_subdev(ndev, subdev);
+ 	struct nouveau_gpuobj_method *om, *tm;
+ 	struct nouveau_gpuobj_class *oc, *tc;
+ 
 -- 
 1.7.10.2
