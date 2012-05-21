@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 45421] regression: nouveau.ko fails to load
-Date: Mon, 21 May 2012 19:54:07 +0000
-Message-ID: <bug-45421-8800-IyWYGtderx@http.bugs.freedesktop.org/>
+Date: Mon, 21 May 2012 20:03:26 +0000
+Message-ID: <bug-45421-8800-X8Sq1FJSnO@http.bugs.freedesktop.org/>
 References: <bug-45421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=45421
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+             Status|RESOLVED                    |CLOSED
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
