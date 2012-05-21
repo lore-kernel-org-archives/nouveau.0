@@ -1,16 +1,16 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 03/14] drm/nouveau/device: Simplify init,
- fini fuction
-Date: Mon, 21 May 2012 16:27:06 +1000
-Message-ID: <20120521062706.GB10508@nisroch.bne.redhat.com>
+Subject: Re: [PATCH 14/14] drm/nouveau/therm: Rework
+ nouveau_therm_create()
+Date: Mon, 21 May 2012 16:30:32 +1000
+Message-ID: <20120521063032.GC10508@nisroch.bne.redhat.com>
 References: <1337555703-18925-1-git-send-email-emil.l.velikov@gmail.com>
-	<1337555703-18925-4-git-send-email-emil.l.velikov@gmail.com>
+	<1337555703-18925-15-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1337555703-18925-4-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1337555703-18925-15-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,80 +24,156 @@ To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, May 21, 2012 at 12:14:52AM +0100, Emil Velikov wrote:
-> Removes unnecessary goto statement
-I dropped these changes from this patch for the moment, I might want them yet.
+On Mon, May 21, 2012 at 12:15:03AM +0100, Emil Velikov wrote:
+> It contains a few changes mainly targeting the following
+>  * Therm table is present in BIT vbios
+>  * Parse the vbios table before hooking temp_get(), as it contains the therm
+> sensor calibration data
+>  * Add dummy_therm_temp_get() function to prevent multiple null dereff's
 
-> fini subdevices before destroying them
-I took this hunk, and reworded the commit message to match.
+I didn't take this patch at all yet.  I'll let Martin put his input into
+this instead.  I didn't really touch the thermal stuff aside from matching
+APIs because he's got an overhaul pending anyway.
+
+Comments on specific pieces inline as they may be useful.
 
 > 
 > Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > ---
->  drivers/gpu/drm/nouveau/nouveau_device.c |   26 +++++++++++++++-----------
->  1 file changed, 15 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/nouveau/nouveau_pm.c    |    2 +-
+>  drivers/gpu/drm/nouveau/nouveau_therm.c |   63 ++++++++++++++++++++++++-------
+>  2 files changed, 50 insertions(+), 15 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_device.c b/drivers/gpu/drm/nouveau/nouveau_device.c
-> index 9cc21d1..38ed71a 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_device.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_device.c
-> @@ -55,13 +55,13 @@ nouveau_device_init(struct nouveau_device *ndev)
->  
->  	for (i = 0; i < NVDEV_SUBDEV_NR; i++) {
->  		ret = nouveau_subdev_init(ndev, i, 0);
-> -		if (ret)
-> -			goto error;
-> +		if (ret) {
-> +			for (--i; i >= 0; i--)
-> +				nouveau_subdev_fini(ndev, i, false);
-> +			break;
-> +		}
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_pm.c b/drivers/gpu/drm/nouveau/nouveau_pm.c
+> index 9dd34fe..1b4422b 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_pm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_pm.c
+> @@ -693,7 +693,7 @@ nouveau_hwmon_init(struct nouveau_device *ndev)
 >  	}
 >  
-> -error:
-> -	for (--i; ret && i >= 0; i--)
-> -		nouveau_subdev_fini(ndev, i, false);
->  	return ret;
->  }
+>  	/* if the card can read the fan rpm */
+> -	if (nouveau_gpio_func_valid(ndev, DCB_GPIO_FAN_SENSE)) {
+> +	if (pfan && pfan->sense(pfan) >= 0) {
+>  		ret = sysfs_create_group(&dev->pdev->dev.kobj,
+>  					 &hwmon_fan_rpm_attrgroup);
+>  		if (ret)
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_therm.c b/drivers/gpu/drm/nouveau/nouveau_therm.c
+> index acf81a9..91095be 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_therm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_therm.c
+> @@ -30,6 +30,12 @@
+>  #include "nouveau_pm.h"
+>  #include "nouveau_therm.h"
 >  
-> @@ -72,13 +72,13 @@ nouveau_device_fini(struct nouveau_device *ndev, bool suspend)
->  
->  	for (i = NVDEV_SUBDEV_NR - 1; i >= 0; i--) {
->  		ret = nouveau_subdev_fini(ndev, i, suspend);
-> -		if (ret)
-> -			goto error;
-> +		if (ret) {
-> +			for (--i; i >= 0; i--)
-> +				nouveau_subdev_init(ndev, i, 0);
-> +			break;
-> +		}
->  	}
->  
-> -error:
-> -	for (--i; ret && i >= 0; i--)
-> -		nouveau_subdev_init(ndev, i, 0);
->  	return ret;
->  }
->  
-> @@ -96,6 +96,7 @@ nouveau_device_create(struct nouveau_device *ndev)
+> +static inline int
+> +dummy_therm_temp_get(struct nouveau_therm *ptherm)
+> +{
+> +	return 0;
+> +}
+> +
+I don't really like this, if we can't expose any thermal data I think we
+just shouldn't create a thermal subdev?
+
+>  static int
+>  nv40_sensor_setup(struct nouveau_therm *ptherm)
 >  {
->  	int disable = nouveau_noaccel;
->  	int ret = 0;
-> +	int i;
+> @@ -181,7 +187,7 @@ nouveau_therm_vbios_parse(struct nouveau_therm *ptherm, u8 *temp)
+>  	temp = temp + headerlen;
 >  
->  	/* mask out any engines that are known not to work as they should,
->  	 * these can be overridden by the user
-> @@ -553,7 +554,10 @@ nouveau_device_create(struct nouveau_device *ndev)
->  		break;
+>  	/* Read the entries from the table */
+> -	for (i = 0; i < entries; i++) {
+> +	for (i = 0; i < entries; i++, temp += recordlen) {
+>  		s16 value = ROM16(temp[1]);
+>  
+>  		switch (temp[0]) {
+> @@ -228,7 +234,6 @@ nouveau_therm_vbios_parse(struct nouveau_therm *ptherm, u8 *temp)
+>  			ptherm->fan.pwm_freq = value;
+>  			break;
+>  		}
+> -		temp += recordlen;
 >  	}
 >  
+>  	nouveau_therm_safety_checks(ptherm);
+> @@ -299,6 +304,12 @@ nouveau_therm_probe_i2c(struct nouveau_device *ndev)
+>  			     probe_monitoring_device, NV_I2C_DEFAULT(0));
+>  }
+>  
+> +static void
+> +nouveau_ptherm_destroy(struct nouveau_device *ndev, int subdev)
+> +{
+> +// XXX: Undo probe_monitoring_device
+> +}
+> +
+>  int
+>  nouveau_therm_create(struct nouveau_device *ndev, int subdev)
+>  {
+> @@ -307,29 +318,53 @@ nouveau_therm_create(struct nouveau_device *ndev, int subdev)
+>  	u8 *temp = NULL;
+>  	int ret;
+>  
+> -	ret = nouveau_subdev_create(ndev, subdev, "THERM", "thermal", &ptherm);
 > -	if (ret)
-> +	if (ret) {
-> +		for (i = NVDEV_SUBDEV_NR - 1; i >= 0; i--)
-> +			nouveau_subdev_fini(ndev, i, false);
->  		nouveau_device_destroy(ndev);
+> -		return ret;
+> +	if (bios->type == NVBIOS_BIT) {
+> +		if (bit_table(ndev, 'P', &P))
+> +			return 0;
+The BIT check isn't necessary, bit_table() will fail if it's not a BIT BIOS.
+
+>  
+> -	if (ndev->chipset >= 0x40 && ndev->chipset < 0x84)
+> -		ptherm->temp_get = nv40_therm_temp_get;
+> -	else
+> -	if (ndev->chipset <= 0xd9)
+> -		ptherm->temp_get = nv84_therm_temp_get;
+> -
+> -	if (bit_table(ndev, 'P', &P) == 0) {
+>  		if (P.version == 1)
+>  			temp = ROMPTR(ndev, P.data[12]);
+>  		else
+>  		if (P.version == 2)
+>  			temp = ROMPTR(ndev, P.data[16]);
+> -		else
+> +		else {
+>  			NV_WARN(ndev, "unknown temp for BIT P %d\n", P.version);
+> +		}
+> +	} else {
+> +		return 0;
 > +	}
->  	return ret;
+>  
+> -		nouveau_therm_vbios_parse(ptherm, temp);
+> +	if (!temp) {
+> +		NV_DEBUG(ndev, "temp table pointer invalid\n");
+> +		return 0;
+>  	}
+>  
+> +	ret = nouveau_subdev_create(ndev, subdev, "THERM", "thermal", &ptherm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	nouveau_therm_vbios_parse(ptherm, temp);
+>  	nouveau_therm_probe_i2c(ndev);
+>  
+> +	ptherm->base.destroy = nouveau_ptherm_destroy;
+> +	switch (ndev->card_type) {
+> +	case NV_40:
+> +	case NV_50:
+> +	case NV_C0:
+> +	case NV_D0:
+> +	case NV_E0:
+> +		if (ndev->chipset < 0x84) {
+> +			ptherm->temp_get = nv40_therm_temp_get;
+> +			break;
+> +		} else
+> +		if (ndev->chipset <= 0xd9) {
+> +			ptherm->temp_get = nv84_therm_temp_get;
+> +			break;
+> +		}
+> +	default:
+> +		ptherm->temp_get = dummy_therm_temp_get;
+> +		break;
+> +	}
+> +
+>  	return nouveau_subdev_init(ndev, subdev, ret);
 >  }
 > -- 
 > 1.7.10.2
