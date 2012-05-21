@@ -1,11 +1,11 @@
-From: =?UTF-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: [PATCH] drm/nouveau/nvd9: Fix GPIO initialisation
-	sequence.
-Date: Mon, 21 May 2012 14:51:50 +0200
-Message-ID: <1337604710-3256-1-git-send-email-koriakin@0x04.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 50175] New: [regression kernel 3.4] : nouveau
+ detects internal laptop display as "disconnected" / screen is turned off
+Date: Mon, 21 May 2012 14:20:30 +0000
+Message-ID: <bug-50175-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,20 +19,53 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlha2luQDB4MDQubmV0Pgot
-LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZ3Bpby5jIHwgICAgMiArLQogMSBm
-aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9ncGlvLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2dwaW8uYwppbmRleCBmNzVhZDY2Li5hMDkxMWFmIDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dwaW8uYworKysgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dwaW8uYwpAQCAtMzY5LDcgKzM2OSw3IEBAIG5vdXZlYXVf
-Z3Bpb19yZXNldChzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKm5kZXYpCiAJCWlmIChuZGV2LT5jYXJk
-X3R5cGUgPj0gTlZfRDApIHsKIAkJCW52X21hc2sobmRldiwgMHgwMGQ2MTAgKyAobGluZSAqIDQp
-LCAweGZmLCB1bmswKTsKIAkJCWlmICh1bmsxLS0pCi0JCQkJbnZfbWFzayhuZGV2LCAweDAwZDY0
-MCArICh1bmsxICogNCksIDB4ZmYsIGxpbmUpOworCQkJCW52X21hc2sobmRldiwgMHgwMGQ3NDAg
-KyAodW5rMSAqIDQpLCAweGZmLCBsaW5lKTsKIAkJfSBlbHNlCiAJCWlmIChuZGV2LT5jYXJkX3R5
-cGUgPj0gTlZfNTApIHsKIAkJCXN0YXRpYyBjb25zdCB1MzIgcmVnc1tdID0geyAweGUxMDAsIDB4
-ZTI4YyB9OwotLSAKMS43LjEwLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=50175
+
+             Bug #: 50175
+           Summary: [regression kernel 3.4] : nouveau detects internal
+                    laptop display as "disconnected" / screen is turned
+                    off
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: mus.svz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created attachment 61914
+  --> https://bugs.freedesktop.org/attachment.cgi?id=61914
+dmesg output
+
+After upgrading from kernel 3.3.6 to 3.4.0 the internal display of my laptop
+turns off as soon as the nouveau driver / KMS is loaded. xrandr detects the
+LVDS-1 connection as "disconnected" while my external HDMI display works fine.
+Downgrading back to 3.3.6 fixes the problem.
+
+Note that this is NOT an Optimus laptop, the integrated Intel graphic chip is
+disabled.
+
+Sony Vaio S (VPCS11C5E)
+NVIDIA GeForce 310M
+Intel Core i5 M520
+Arch Linux x64 (testing)
+
+Although I assume this is irrelevant since this is obviously not an X problem:
+xorg-server 1.12.1.902
+xf86-video-nouveau 0.0.16_git20120512
+libdrm 2.4.33
+libdrm-nouveau 2.4.34
+nouveau-dri 8.0.3
+
+output of dmesg, lspci and xrandr are attached.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
