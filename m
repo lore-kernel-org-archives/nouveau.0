@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46557] nouveau: nv4E 2D acceleration broken on
  64-bit kernel; works on 32-bit
-Date: Tue, 22 May 2012 16:55:47 +0000
-Message-ID: <bug-46557-8800-5tkcx7SuGE@http.bugs.freedesktop.org/>
+Date: Tue, 22 May 2012 16:57:19 +0000
+Message-ID: <bug-46557-8800-ZHTTsCnOUf@http.bugs.freedesktop.org/>
 References: <bug-46557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46557
 
-Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #6 from Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-22 09:57:19 PDT ---
+Created attachment 61970
+  --> https://bugs.freedesktop.org/attachment.cgi?id=61970
+32-bit dmesg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #57574|0                           |1
-        is obsolete|                            |
-
---- Comment #5 from Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-22 09:55:47 PDT ---
-Created attachment 61969
-  --> https://bugs.freedesktop.org/attachment.cgi?id=61969
-64-bit dmesg
-
-Here's the "bad" 64-bit dmesg from kernel 3.4.0
+This is the "good" 32-bit dmesg for comaprison (both dmesg have drm.debug=0x06)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
