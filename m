@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 45421] regression: nouveau.ko fails to load
-Date: Mon, 21 May 2012 20:03:26 +0000
-Message-ID: <bug-45421-8800-X8Sq1FJSnO@http.bugs.freedesktop.org/>
-References: <bug-45421-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/nvd9: Fix GPIO initialisation
+ sequence.
+Date: Tue, 22 May 2012 10:43:09 +1000
+Message-ID: <20120522004309.GA1772@nisroch.bne.redhat.com>
+References: <1337604710-3256-1-git-send-email-koriakin@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-45421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <1337604710-3256-1-git-send-email-koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,18 +19,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin =?utf-8?Q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=45421
-
-Jesse Brandeburg <jesse.brandeburg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |CLOSED
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gTW9uLCBNYXkgMjEsIDIwMTIgYXQgMDI6NTE6NTBQTSArMDIwMCwgTWFyY2luIEtvxZtjaWVs
+bmlja2kgd3JvdGU6Cj4gU2lnbmVkLW9mZi1ieTogTWFyY2luIEtvxZtjaWVsbmlja2kgPGtvcmlh
+a2luQDB4MDQubmV0PgpBcHBsaWVkLCB0aGFua3MhCgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2dwaW8uYyB8ICAgIDIgKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5z
+ZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfZ3Bpby5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9ncGlvLmMKPiBpbmRleCBmNzVhZDY2Li5hMDkxMWFmIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZ3Bpby5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9ncGlvLmMKPiBAQCAtMzY5LDcgKzM2OSw3IEBAIG5vdXZlYXVfZ3Bpb19y
+ZXNldChzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKm5kZXYpCj4gIAkJaWYgKG5kZXYtPmNhcmRfdHlw
+ZSA+PSBOVl9EMCkgewo+ICAJCQludl9tYXNrKG5kZXYsIDB4MDBkNjEwICsgKGxpbmUgKiA0KSwg
+MHhmZiwgdW5rMCk7Cj4gIAkJCWlmICh1bmsxLS0pCj4gLQkJCQludl9tYXNrKG5kZXYsIDB4MDBk
+NjQwICsgKHVuazEgKiA0KSwgMHhmZiwgbGluZSk7Cj4gKwkJCQludl9tYXNrKG5kZXYsIDB4MDBk
+NzQwICsgKHVuazEgKiA0KSwgMHhmZiwgbGluZSk7Cj4gIAkJfSBlbHNlCj4gIAkJaWYgKG5kZXYt
+PmNhcmRfdHlwZSA+PSBOVl81MCkgewo+ICAJCQlzdGF0aWMgY29uc3QgdTMyIHJlZ3NbXSA9IHsg
+MHhlMTAwLCAweGUyOGMgfTsKPiAtLSAKPiAxLjcuMTAuMgo+IAo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
