@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46557] nouveau: nv4E 2D acceleration broken on
  64-bit kernel; works on 32-bit
-Date: Tue, 22 May 2012 09:54:28 +0000
-Message-ID: <bug-46557-8800-1kWMDxf5ZA@http.bugs.freedesktop.org/>
+Date: Tue, 22 May 2012 16:55:47 +0000
+Message-ID: <bug-46557-8800-5tkcx7SuGE@http.bugs.freedesktop.org/>
 References: <bug-46557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,15 @@ Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|nouveau: nv40 2D            |nouveau: nv4E 2D
-                   |acceleration broken on      |acceleration broken on
-                   |64-bit kernel; works on     |64-bit kernel; works on
-                   |32-bit                      |32-bit
+  Attachment #57574|0                           |1
+        is obsolete|                            |
+
+--- Comment #5 from Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-22 09:55:47 PDT ---
+Created attachment 61969
+  --> https://bugs.freedesktop.org/attachment.cgi?id=61969
+64-bit dmesg
+
+Here's the "bad" 64-bit dmesg from kernel 3.4.0
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
