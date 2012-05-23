@@ -1,451 +1,98 @@
-From: Christopher James Halse Rogers <christopher.halse.rogers-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: [PATCH (nouveau)] Add xwayland support
-Date: Wed, 23 May 2012 22:08:08 +1000
-Message-ID: <1337774888-11781-1-git-send-email-christopher.halse.rogers@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 50280] New: Mesa 8.0.3 fails to build dri/nouveau
+ against libdrm 2.4.34
+Date: Wed, 23 May 2012 13:10:23 +0000
+Message-ID: <bug-50280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <wayland-devel-bounces+gcfw-wayland-devel=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/wayland-devel>,
-	<mailto:wayland-devel-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/wayland-devel>
-List-Post: <mailto:wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:wayland-devel-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/wayland-devel>,
-	<mailto:wayland-devel-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: wayland-devel-bounces+gcfw-wayland-devel=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: wayland-devel-bounces+gcfw-wayland-devel=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christopher James Halse Rogers <christopher.halse.rogers-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Christopher James Halse Rogers <christopher.halse.rogers-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
----
-This is mostly just for testing, although it should be safe to apply to nouveau
-trunk.
-
- src/nouveau_dri2.c |   34 +++++++++++
- src/nv_driver.c    |  163 +++++++++++++++++++++++++++++++++++++++++++++++-----
- src/nv_type.h      |    7 +++
- 3 files changed, 191 insertions(+), 13 deletions(-)
-
-diff --git a/src/nouveau_dri2.c b/src/nouveau_dri2.c
-index 7e47575..cb1a395 100644
---- a/src/nouveau_dri2.c
-+++ b/src/nouveau_dri2.c
-@@ -8,6 +8,10 @@
- #ifdef DRI2
- #include "dri2.h"
- #endif
-+#ifdef XORG_WAYLAND
-+#include <xf86Priv.h>
-+#include <xwayland.h>
-+#endif
- 
- #if defined(DRI2) && DRI2INFOREC_VERSION >= 3
- struct nouveau_dri2_buffer {
-@@ -660,6 +664,32 @@ nouveau_dri2_flip_event_handler(unsigned int frame, unsigned int tv_sec,
- 	free(flip);
- }
- 
-+#ifdef XORG_WAYLAND
-+static int nouveau_auth_magic(int fd, uint32_t magic)
-+{
-+	ScrnInfoPtr pScrn;
-+	NVPtr pNv;
-+	int i;
-+
-+	/* Not wayland, go stragight to drm */
-+	if (!xorgWayland)
-+		return drmAuthMagic(fd, magic);
-+
-+	/* Technically this should actually iterate over xf86Screens.
-+	   Since direct access to xf86Screens is going away, though, 
-+	   we don't bother right now */
-+	for (i = 0; i < 1; i++) {
-+		pScrn = xf86Screens[i];
-+		pNv = NVPTR(pScrn);
-+		if (xwl_screen_get_drm_fd(pNv->xwl_screen) == fd)
-+			break;
-+	}
-+
-+	/* Forward the request to our host */
-+	return xwl_drm_authenticate(pNv->xwl_screen, magic);
-+}
-+#endif
-+
- Bool
- nouveau_dri2_init(ScreenPtr pScreen)
- {
-@@ -689,6 +719,10 @@ nouveau_dri2_init(ScreenPtr pScreen)
- 	dri2.ScheduleWaitMSC = nouveau_dri2_schedule_wait;
- 	dri2.GetMSC = nouveau_dri2_get_msc;
- 
-+#if DRI2INFOREC_VERSION >= 5 && defined(XORG_WAYLAND)
-+	dri2.AuthMagic = nouveau_auth_magic;
-+#endif
-+
- #if DRI2INFOREC_VERSION >= 6
- 	dri2.SwapLimitValidate = nouveau_dri2_swap_limit_validate;
- #endif
-diff --git a/src/nv_driver.c b/src/nv_driver.c
-index 9f6d75f..79c5c39 100644
---- a/src/nv_driver.c
-+++ b/src/nv_driver.c
-@@ -32,6 +32,10 @@
- #ifdef DRI2
- #include "dri2.h"
- #endif
-+#ifdef XORG_WAYLAND
-+#include <xf86Priv.h>
-+#include <xwayland.h>
-+#endif
- 
- /*
-  * Forward definitions for the functions that make up the driver.
-@@ -73,6 +77,28 @@ static Bool NVPciProbe (	DriverPtr 		drv,
- 				struct pci_device	*dev,
- 				intptr_t		match_data	);
- 
-+
-+static Bool nouveau_driver_func(ScrnInfoPtr pScrn,
-+				xorgDriverFuncOp op,
-+				pointer ptr)
-+{
-+	xorgHWFlags *flag;
-+
-+	switch (op) {
-+	case GET_REQUIRED_HW_INTERFACES:
-+		flag = (CARD32*)ptr;
-+		(*flag) = 0;
-+#ifdef XORG_WAYLAND
-+		if (xorgWayland)
-+			(*flag) = HW_SKIP_CONSOLE;
-+#endif
-+		return TRUE;
-+	default:
-+		/* Unknown or deprecated function */
-+		return FALSE;
-+	}
-+}
-+
- /*
-  * This contains the functions needed by the server after loading the
-  * driver module.  It must be supplied, and gets added the driver list by
-@@ -89,7 +115,7 @@ _X_EXPORT DriverRec NV = {
- 	NVAvailableOptions,
- 	NULL,
- 	0,
--	NULL,
-+	nouveau_driver_func,
- 	nouveau_device_match,
- 	NVPciProbe
- };
-@@ -215,7 +241,28 @@ NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
- 	drmVersion *version;
- 	int chipset, ret;
- 	char *busid;
-+#ifdef XORG_WAYLAND
-+	struct xwl_screen *xwl_screen = NULL;
- 
-+	if (xorgWayland) {
-+		xwl_screen = xwl_screen_create ();
-+		if (!xwl_screen) {
-+			xf86DrvMsg(-1, X_ERROR, "Failed to initialise xwayland.\n");
-+			return FALSE;
-+		}
-+		if (xwl_drm_pre_init(xwl_screen) != Success) {
-+			xwl_screen_destroy(xwl_screen);
-+			xf86DrvMsg(-1, X_ERROR, "Failed to initialise xwayland drm.\n");
-+			return FALSE;
-+		}
-+		ret = nouveau_device_wrap(xwl_screen_get_drm_fd(xwl_screen), 0, &dev);
-+		if (ret) {
-+			xwl_screen_destroy(xwl_screen);
-+			xf86DrvMsg(-1, X_ERROR, "[drm] Failed to create drm device.\n");
-+			return FALSE;
-+		}
-+	} else {
-+#endif
- 	if (!xf86LoaderCheckSymbol("DRICreatePCIBusID")) {
- 		xf86DrvMsg(-1, X_ERROR, "[drm] No DRICreatePCIBusID symbol\n");
- 		return FALSE;
-@@ -229,6 +276,17 @@ NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
- 		return FALSE;
- 	}
- 
-+	ret = drmCheckModesettingSupported(busid);
-+	if (ret) {
-+		xf86DrvMsg(-1, X_ERROR, "[drm] KMS not enabled\n");
-+		return FALSE;
-+	}
-+	free(busid);
-+
-+#ifdef XORG_WAYLAND
-+	}
-+#endif
-+
- 	/* Check the version reported by the kernel module.  In theory we
- 	 * shouldn't have to do this, as libdrm_nouveau will do its own checks.
- 	 * But, we're currently using the kernel patchlevel to also version
-@@ -243,13 +301,6 @@ NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
- 	chipset = dev->chipset;
- 	nouveau_device_del(&dev);
- 
--	ret = drmCheckModesettingSupported(busid);
--	free(busid);
--	if (ret) {
--		xf86DrvMsg(-1, X_ERROR, "[drm] KMS not enabled\n");
--		return FALSE;
--	}
--
- 	switch (chipset & 0xf0) {
- 	case 0x00:
- 	case 0x10:
-@@ -266,14 +317,21 @@ NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
- 	case 0xe0:
- 		break;
- 	default:
-+#ifdef XORG_WAYLAND
-+		xwl_screen_destroy(xwl_screen);
-+#endif
- 		xf86DrvMsg(-1, X_ERROR, "Unknown chipset: NV%02x\n", chipset);
- 		return FALSE;
- 	}
- 
- 	pScrn = xf86ConfigPciEntity(pScrn, 0, entity_num, NVChipsets,
- 				    NULL, NULL, NULL, NULL, NULL);
--	if (!pScrn)
-+	if (!pScrn) {
-+#ifdef XORG_WAYLAND
-+		xwl_screen_destroy(xwl_screen);
-+#endif
- 		return FALSE;
-+	}
- 
- 	pScrn->driverVersion    = NV_VERSION;
- 	pScrn->driverName       = NV_DRIVER_NAME;
-@@ -288,6 +346,10 @@ NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
- 	pScrn->LeaveVT          = NVLeaveVT;
- 	pScrn->FreeScreen       = NVFreeScreen;
- 
-+#ifdef XORG_WAYLAND
-+	pScrn->driverPrivate    = xwl_screen;
-+#endif
-+
- 	xf86SetEntitySharable(entity_num);
- 
- 	pEnt = xf86GetEntityInfo(entity_num);
-@@ -376,6 +438,11 @@ NVFlushCallback(CallbackListPtr *list, pointer user_data, pointer call_data)
- 
- 	if (pScrn->vtSema && !pNv->NoAccel)
- 		nouveau_pushbuf_kick(pNv->pushbuf, pNv->pushbuf->channel);
-+#ifdef XORG_WAYLAND
-+	if (pNv->xwl_screen)
-+		xwl_screen_post_damage(pNv->xwl_screen);
-+#endif
-+
- }
- 
- static void 
-@@ -399,6 +466,11 @@ NVBlockHandler (
- 
- 	if (pNv->VideoTimerCallback) 
- 		(*pNv->VideoTimerCallback)(pScrn, currentTime.milliseconds);
-+
-+#ifdef XORG_WAYLAND
-+	if (pNv->xwl_screen)
-+		xwl_screen_post_damage(pNv->xwl_screen);
-+#endif
- }
- 
- static Bool
-@@ -413,6 +485,11 @@ NVCreateScreenResources(ScreenPtr pScreen)
- 		return FALSE;
- 	pScreen->CreateScreenResources = NVCreateScreenResources;
- 
-+#ifdef XORG_WAYLAND
-+	if (pNv->xwl_screen)
-+		xwl_screen_init(pNv->xwl_screen, pScreen);
-+#endif
-+
- 	drmmode_fbcon_copy(pScreen);
- 	if (!NVEnterVT(pScrn->scrnIndex, 0))
- 		return FALSE;
-@@ -425,6 +502,27 @@ NVCreateScreenResources(ScreenPtr pScreen)
- 	return TRUE;
- }
- 
-+#ifdef XORG_WAYLAND
-+static int nouveau_create_window_buffer(struct xwl_window *xwl_window,
-+					PixmapPtr pixmap)
-+{
-+	uint32_t name;
-+	struct nouveau_bo *bo;
-+
-+	bo = nouveau_pixmap_bo(pixmap);
-+	if (bo == NULL || nouveau_bo_name_get(bo, &name) != 0)
-+		return BadDrawable;
-+
-+	return xwl_create_window_buffer_drm(xwl_window, pixmap, name);
-+}
-+
-+static struct xwl_driver xwl_driver = {
-+	.version = 1,
-+	.use_drm = 1,
-+	.create_window_buffer = nouveau_create_window_buffer
-+};
-+#endif
-+
- /*
-  * This is called at the end of each server generation.  It restores the
-  * original (text) mode.  It should also unmap the video memory, and free
-@@ -439,6 +537,11 @@ NVCloseScreen(int scrnIndex, ScreenPtr pScreen)
- 	ScrnInfoPtr pScrn = xf86Screens[scrnIndex];
- 	NVPtr pNv = NVPTR(pScrn);
- 
-+#ifdef XORG_WAYLAND
-+	if (pNv->xwl_screen)
-+		xwl_screen_close(pNv->xwl_screen);
-+#endif
-+
- 	drmmode_screen_fini(pScreen);
- 
- 	if (!pNv->NoAccel)
-@@ -507,6 +610,11 @@ NVFreeScreen(int scrnIndex, int flags)
- 	if (!pNv)
- 		return;
- 
-+#ifdef XORG_WAYLAND
-+	if (pNv->xwl_screen)
-+		xwl_screen_destroy(pNv->xwl_screen);
-+#endif
-+
- 	NVCloseDRM(pScrn);
- 
- 	free(pScrn->driverPrivate);
-@@ -568,10 +676,16 @@ NVPreInitDRM(ScrnInfoPtr pScrn)
- 	NVPtr pNv = NVPTR(pScrn);
- 	char *bus_id;
- 	int ret;
-+	int drm_fd;
- 
- 	if (!NVDRIGetVersion(pScrn))
- 		return FALSE;
- 
-+#ifdef XORG_WAYLAND
-+	if (pNv->xwl_screen)
-+		drm_fd = xwl_screen_get_drm_fd(pNv->xwl_screen);
-+	else {
-+#endif
- 	/* Load the kernel module, and open the DRM */
- 	bus_id = DRICreatePCIBusID(pNv->PciInfo);
- 	ret = DRIOpenDRMMaster(pScrn, SAREA_MAX, bus_id, "nouveau");
-@@ -582,8 +696,13 @@ NVPreInitDRM(ScrnInfoPtr pScrn)
- 		return FALSE;
- 	}
- 
-+	drm_fd = DRIMasterFD(pScrn);
-+#ifdef XORG_WAYLAND
-+	}
-+#endif
-+
- 	/* Initialise libdrm_nouveau */
--	ret = nouveau_device_wrap(DRIMasterFD(pScrn), 1, &pNv->dev);
-+	ret = nouveau_device_wrap(drm_fd, 1, &pNv->dev);
- 	if (ret) {
- 		xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
- 			   "[drm] error creating device\n");
-@@ -594,7 +713,7 @@ NVPreInitDRM(ScrnInfoPtr pScrn)
- 	if (ret)
- 		return FALSE;
- 
--	pNv->drm_device_name = drmGetDeviceNameFromFd(DRIMasterFD(pScrn));
-+	pNv->drm_device_name = drmGetDeviceNameFromFd(drm_fd);
- 
- 	return TRUE;
- }
-@@ -610,6 +729,9 @@ NVPreInit(ScrnInfoPtr pScrn, int flags)
- 	uint64_t v;
- 	int ret;
- 	int defaultDepth = 0;
-+#ifdef XORG_WAYLAND
-+	struct xwl_screen *xwl_screen = pScrn->driverPrivate;
-+#endif
- 
- 	if (flags & PROBE_DETECT) {
- 		EntityInfoPtr pEnt = xf86GetEntityInfo(pScrn->entityList[0]);
-@@ -643,6 +765,10 @@ NVPreInit(ScrnInfoPtr pScrn, int flags)
- 	if (!(pScrn->driverPrivate = xnfcalloc(1, sizeof(NVRec))))
- 		return FALSE;
- 	pNv = NVPTR(pScrn);
-+	
-+#ifdef XORG_WAYLAND
-+	pNv->xwl_screen = xwl_screen;
-+#endif
- 
- 	/* Get the entity, and make sure it is PCI. */
- 	pNv->pEnt = xf86GetEntityInfo(pScrn->entityList[0]);
-@@ -780,6 +906,14 @@ NVPreInit(ScrnInfoPtr pScrn, int flags)
- 	memcpy(pNv->Options, NVOptions, sizeof(NVOptions));
- 	xf86ProcessOptions(pScrn->scrnIndex, pScrn->options, pNv->Options);
- 
-+#ifdef XORG_WAYLAND
-+	if (xwl_screen) {
-+		if (!xwl_screen_pre_init(pScrn, xwl_screen, 0, &xwl_driver)) {
-+			NVPreInitFail("Failed to initialise xwayland\n");
-+		}
-+	}
-+#endif
-+
- 	from = X_DEFAULT;
- 
- 	pNv->HWCursor = TRUE;
-@@ -887,8 +1021,8 @@ NVPreInit(ScrnInfoPtr pScrn, int flags)
- 	xf86DrvMsg(pScrn->scrnIndex, from, "Swap limit set to %d [Max allowed %d]%s\n",
- 		   pNv->swap_limit, pNv->max_swap_limit, reason);
- 
--	ret = drmmode_pre_init(pScrn, pNv->dev->fd, pScrn->bitsPerPixel >> 3);
--	if (ret == FALSE)
-+	if (!xwl_screen && 
-+		!drmmode_pre_init(pScrn, pNv->dev->fd, pScrn->bitsPerPixel >> 3))
- 		NVPreInitFail("Kernel modesetting failed to initialize\n");
- 
- 	/*
-@@ -1267,6 +1401,9 @@ NVScreenInit(int scrnIndex, ScreenPtr pScreen, int argc, char **argv)
- 	if (serverGeneration == 1)
- 		xf86ShowUnusedOptions(pScrn->scrnIndex, pScrn->options);
- 
-+#ifdef XORG_WAYLAND
-+	if (!pNv->xwl_screen)
-+#endif
- 	drmmode_screen_init(pScreen);
- 	return TRUE;
- }
-diff --git a/src/nv_type.h b/src/nv_type.h
-index 49150ba..4e36b7f 100644
---- a/src/nv_type.h
-+++ b/src/nv_type.h
-@@ -15,6 +15,9 @@
- #else
- #error "This driver requires a DRI-enabled X server"
- #endif
-+#ifdef XORG_WAYLAND
-+#include <xwayland.h>
-+#endif
- 
- #define NV_ARCH_03  0x03
- #define NV_ARCH_04  0x04
-@@ -76,6 +79,10 @@ typedef struct _NVRec {
- 
- 	void *drmmode; /* for KMS */
- 
-+#ifdef XORG_WAYLAND
-+	struct xwl_screen *xwl_screen;
-+#endif
-+
- 	/* DRM interface */
- 	struct nouveau_device *dev;
- 	char *drm_device_name;
--- 
-1.7.10
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NTAyODAKCiAgICAg
+ICAgICAgICBCdWcgIzogNTAyODAKICAgICAgICAgICBTdW1tYXJ5OiBNZXNhIDguMC4zIGZhaWxz
+IHRvIGJ1aWxkIGRyaS9ub3V2ZWF1IGFnYWluc3QgbGliZHJtCiAgICAgICAgICAgICAgICAgICAg
+Mi40LjM0CiAgICBDbGFzc2lmaWNhdGlvbjogVW5jbGFzc2lmaWVkCiAgICAgICAgICAgUHJvZHVj
+dDogTWVzYQogICAgICAgICAgIFZlcnNpb246IDguMAogICAgICAgICAgUGxhdGZvcm06IHg4Ni02
+NCAoQU1ENjQpCiAgICAgICAgT1MvVmVyc2lvbjogTGludXggKEFsbCkKICAgICAgICAgICAgU3Rh
+dHVzOiBORVcKICAgICAgICAgIFNldmVyaXR5OiBtYWpvcgogICAgICAgICAgUHJpb3JpdHk6IGhp
+Z2gKICAgICAgICAgQ29tcG9uZW50OiBEcml2ZXJzL0RSSS9ub3V2ZWF1CiAgICAgICAgQXNzaWdu
+ZWRUbzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKICAgICAgICBSZXBvcnRlZEJ5OiBt
+YzIzNzRAbWNsaW5rLml0CgoKQ3JlYXRlZCBhdHRhY2htZW50IDYyMDE4CiAgLS0+IGh0dHBzOi8v
+YnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NjIwMTgKTG9nIG9mIGEgZmFp
+bGVkIGJ1aWxkCgpBcyBwZXIgc3VtbWFyeS4KQnVpbGRpbmcgYWdhaW5zdCBsaWJkcm0gMi40LjM0
+IGFuZCBrZXJuZWwgMy4yLjE2LCBNYW5kcml2YSAyMDEwLjIgeDg2XzY0LgoKVGhlIG1lc3NhZ2Ug
+ZXJyb3IgaXM6CioqKioqKioqKioqKioqKioqKioqKioqKioqCkluIGZpbGUgaW5jbHVkZWQgZnJv
+bSBub3V2ZWF1X2Ziby5jOjI3Ogpub3V2ZWF1X2RyaXZlci5oOjQxOjI4OiBlcnJvcjogbm91dmVh
+dV9kZXZpY2UuaDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQpub3V2ZWF1X2RyaXZlci5oOjQy
+OjI3OiBlcnJvcjogbm91dmVhdV9ncm9iai5oOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5Cm5v
+dXZlYXVfZHJpdmVyLmg6NDM6Mjk6IGVycm9yOiBub3V2ZWF1X2NoYW5uZWwuaDogTm8gc3VjaCBm
+aWxlIG9yIGRpcmVjdG9yeQpub3V2ZWF1X2RyaXZlci5oOjQ0OjI0OiBlcnJvcjogbm91dmVhdV9i
+by5oOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5Cm5vdXZlYXVfZHJpdmVyLmg6NDU6MzA6IGVy
+cm9yOiBub3V2ZWF1X25vdGlmaWVyLmg6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkKbm91dmVh
+dV9kcml2ZXIuaDo0OToyNjogZXJyb3I6IG52MDRfcHVzaGJ1Zi5oOiBObyBzdWNoIGZpbGUgb3Ig
+ZGlyZWN0b3J5CkluIGZpbGUgaW5jbHVkZWQgZnJvbSBub3V2ZWF1X3NjcmVlbi5jOjI3Ogpub3V2
+ZWF1X2RyaXZlci5oOjQxOjI4OiBlcnJvcjogbm91dmVhdV9kZXZpY2UuaDogTm8gc3VjaCBmaWxl
+IG9yIGRpcmVjdG9yeQpub3V2ZWF1X2RyaXZlci5oOjQyOjI3OiBlcnJvcjogbm91dmVhdV9ncm9i
+ai5oOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5Cm5vdXZlYXVfZHJpdmVyLmg6NDM6Mjk6IGVy
+cm9yOiBub3V2ZWF1X2NoYW5uZWwuaDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQpub3V2ZWF1
+X2RyaXZlci5oOjQ0OjI0OiBlcnJvcjogbm91dmVhdV9iby5oOiBObyBzdWNoIGZpbGUgb3IgZGly
+ZWN0b3J5Cm5vdXZlYXVfZHJpdmVyLmg6NDU6MzA6IGVycm9yOiBub3V2ZWF1X25vdGlmaWVyLmg6
+IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkKbm91dmVhdV9kcml2ZXIuaDo0OToyNjogZXJyb3I6
+IG52MDRfcHVzaGJ1Zi5oOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5Cm5vdXZlYXVfZmJvLmM6
+IEluIGZ1bmN0aW9uIOKAmG5vdXZlYXVfcmVuZGVyYnVmZmVyX3N0b3JhZ2XigJk6Cm5vdXZlYXVf
+ZmJvLmM6OTc6IGVycm9yOiDigJhOT1VWRUFVX0JPX1ZSQU3igJkgdW5kZWNsYXJlZCAoZmlyc3Qg
+dXNlIGluIHRoaXMKZnVuY3Rpb24pICAgIApub3V2ZWF1X2Ziby5jOjk3OiBlcnJvcjogKEVhY2gg
+dW5kZWNsYXJlZCBpZGVudGlmaWVyIGlzIHJlcG9ydGVkIG9ubHkgb25jZQpub3V2ZWF1X2Ziby5j
+Ojk3OiBlcnJvcjogZm9yIGVhY2ggZnVuY3Rpb24gaXQgYXBwZWFycyBpbi4pCm5vdXZlYXVfZmJv
+LmM6OTc6IGVycm9yOiDigJhOT1VWRUFVX0JPX01BUOKAmSB1bmRlY2xhcmVkIChmaXJzdCB1c2Ug
+aW4gdGhpcwpmdW5jdGlvbikKbm91dmVhdV9mYm8uYzogSW4gZnVuY3Rpb24g4oCYbm91dmVhdV9y
+ZW5kZXJidWZmZXJfbWFw4oCZOgpub3V2ZWF1X2Ziby5jOjE0NTogZXJyb3I6IOKAmE5PVVZFQVVf
+Qk9fUkTigJkgdW5kZWNsYXJlZCAoZmlyc3QgdXNlIGluIHRoaXMKZnVuY3Rpb24pICAgICAKbm91
+dmVhdV9mYm8uYzoxNDc6IGVycm9yOiDigJhOT1VWRUFVX0JPX1dS4oCZIHVuZGVjbGFyZWQgKGZp
+cnN0IHVzZSBpbiB0aGlzCmZ1bmN0aW9uKQpub3V2ZWF1X2Ziby5jOjE0OTogd2FybmluZzogaW1w
+bGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24g4oCYbm91dmVhdV9ib19tYXDigJkKbm91dmVh
+dV9mYm8uYzoxNTE6IGVycm9yOiBkZXJlZmVyZW5jaW5nIHBvaW50ZXIgdG8gaW5jb21wbGV0ZSB0
+eXBlCm5vdXZlYXVfZmJvLmM6IEluIGZ1bmN0aW9uIOKAmG5vdXZlYXVfcmVuZGVyYnVmZmVyX3Vu
+bWFw4oCZOgpub3V2ZWF1X2Ziby5jOjE3Mjogd2FybmluZzogaW1wbGljaXQgZGVjbGFyYXRpb24g
+b2YgZnVuY3Rpb24g4oCYbm91dmVhdV9ib191bm1hcOKAmSAKbm91dmVhdV9zY3JlZW4uYzozMToy
+NzogZXJyb3I6IG5vdXZlYXVfZHJtaWYuaDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQpJbiBm
+aWxlIGluY2x1ZGVkIGZyb20gbm91dmVhdV9jb250ZXh0LmM6Mjg6Cm5vdXZlYXVfZHJpdmVyLmg6
+NDE6Mjg6IGVycm9yOiBub3V2ZWF1X2RldmljZS5oOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5
+Cm5vdXZlYXVfZHJpdmVyLmg6NDI6Mjc6IGVycm9yOiBub3V2ZWF1X2dyb2JqLmg6IE5vIHN1Y2gg
+ZmlsZSBvciBkaXJlY3RvcnkKbm91dmVhdV9kcml2ZXIuaDo0MzoyOTogZXJyb3I6IG5vdXZlYXVf
+Y2hhbm5lbC5oOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5Cm5vdXZlYXVfZHJpdmVyLmg6NDQ6
+MjQ6IGVycm9yOiBub3V2ZWF1X2JvLmg6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkKbm91dmVh
+dV9kcml2ZXIuaDo0NTozMDogZXJyb3I6IG5vdXZlYXVfbm90aWZpZXIuaDogTm8gc3VjaCBmaWxl
+IG9yIGRpcmVjdG9yeQpub3V2ZWF1X2RyaXZlci5oOjQ5OjI2OiBlcnJvcjogbnYwNF9wdXNoYnVm
+Lmg6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkKbm91dmVhdV9zY3JlZW4uYzogSW4gZnVuY3Rp
+b24g4oCYbm91dmVhdV9pbml0X3NjcmVlbjLigJk6Cm5vdXZlYXVfc2NyZWVuLmM6MTMxOiB3YXJu
+aW5nOiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBvZiBmdW5jdGlvbgrigJhub3V2ZWF1X2RldmljZV9v
+cGVuX2V4aXN0aW5n4oCZCm5vdXZlYXVfc2NyZWVuLmM6MTQ0OiBlcnJvcjogZGVyZWZlcmVuY2lu
+ZyBwb2ludGVyIHRvIGluY29tcGxldGUgdHlwZQpub3V2ZWF1X3NjcmVlbi5jOiBJbiBmdW5jdGlv
+biDigJhub3V2ZWF1X2Rlc3Ryb3lfc2NyZWVu4oCZOgpub3V2ZWF1X3NjcmVlbi5jOjE3ODogd2Fy
+bmluZzogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24K4oCYbm91dmVhdV9kZXZpY2Vf
+Y2xvc2XigJkKZ21ha2VbNl06ICoqKiBbbm91dmVhdV9mYm8ub10gRXJyb3IgMQpnbWFrZVs2XTog
+KioqIFdhaXRpbmcgZm9yIHVuZmluaXNoZWQgam9icy4uLi4KKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioKCkl0IGNhbm5vdCBmaW5kIGFsbCB0aG9zZSBub3V2ZWF1X1tkZXZpY2Ug
+fCBncm9iaiB8IGNoYW5uZWwgfCBibyB8IG5vdGlmaWVyIHwKZHJpbWlmXSBoZWFkZXJzIGFuZCB0
+aGUgbnYwNF9wdXNoYnVmLmggb25lIGJlY2F1c2UgdGhleSBhcmUgbm8gbW9yZSBwcmVzZW50IGlu
+CnRoZSBsaWJkcm0gaW5jbHVkZSBkaXIuCgpUaGUgcHJldmlvdXMgcmVsZWFzZSBvZiBsaWJkcm0g
+KDIuNC4zMykgc3RpbGwgcHJvdmlkZXMgdGhlIG5lZWRlZCAuaCBmaWxlcyBhbmQKb2J2aW91c2x5
+IHdvcmtzLgoKClNlZSB0aGUgYXR0YWNoZWQgbG9nIGZvciBtb3JlIGluZm9zLgoKLS0gCkNvbmZp
+Z3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/
+dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSByZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0t
+LS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUgZm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
