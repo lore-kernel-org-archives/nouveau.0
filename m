@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50374] New: nouveau fails to obtain EDID from NV11
-	(nforce IGP)
-Date: Sat, 26 May 2012 09:28:17 +0000
-Message-ID: <bug-50374-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 50375] New: NV11: KMS/fbcon accel failing after
+ scrolling/tty switch
+Date: Sat, 26 May 2012 16:55:22 +0000
+Message-ID: <bug-50375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,10 +19,11 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50374
+https://bugs.freedesktop.org/show_bug.cgi?id=50375
 
-             Bug #: 50374
-           Summary: nouveau fails to obtain EDID from NV11 (nforce IGP)
+             Bug #: 50375
+           Summary: NV11: KMS/fbcon accel failing after scrolling/tty
+                    switch
     Classification: Unclassified
            Product: xorg
            Version: unspecified
@@ -37,17 +38,19 @@ https://bugs.freedesktop.org/show_bug.cgi?id=50374
          QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-On an nforce1 based system nouveau (KMS) driver only used default (small) modes
-while attached monitor can do up to 1280x1024. Looking at
-/sys/class/drm/.../edid returns empty file.
+Created attachment 62127
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62127
+kernel log
 
-System:
-  Mainboard: MSI K7N420 Pro
-  Monitor: Iiyama E431S, 1280x1024, connected with VGA
-  Kernel is 3.4.0 (same applies to all older kernels tried).
+Shortly after loading nouveau kernel module it floods kernel log with messages
+and switches to software fbcon. Somewhere in the flood it reports lockup and
+the switch.
+The easies trigger is switching vts a few times or scrolling text, e.g. with
+less.
 
-System info (lspci, ioports, iomem) at attachment #33464 of bug #26670, the
-Xorg.0.log and xorg.conf parts apply to past nv approach on that bug.
+System is NV11 (nforce IGP) running 3.4.0 kernel.
+
+Extra system information is available at attachment #33464.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
