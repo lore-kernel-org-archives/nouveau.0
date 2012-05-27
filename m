@@ -1,14 +1,12 @@
-From: =?UTF-8?q?Viktor=20Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
-Subject: [PATCH] nv04/exa: Reset destination surface offset in the
-	same call of NV04EXACopy
-Date: Sat, 26 May 2012 22:15:20 +0200
-Message-ID: <1338063320-9274-1-git-send-email-noviktor@seznam.cz>
-References: <bug-48954-8800@http.bugs.freedesktop.org/>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 50403] New: NV28 double cursor & ugly graphics &
+	crashes
+Date: Sun, 27 May 2012 19:25:53 +0000
+Message-ID: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48954-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +19,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Rml4ZXMgRkRPIGJ1ZyAjNDg5NTQuCgpTaWduZWQtb2ZmLWJ5OiBWaWt0b3IgTm92b3Ruw70gPG5v
-dmlrdG9yQHNlem5hbS5jej4KLS0tCiBzcmMvbnYwNF9leGEuYyB8ICAgMTUgKysrKysrKystLS0t
-LS0tCiAxIGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCmRp
-ZmYgLS1naXQgYS9zcmMvbnYwNF9leGEuYyBiL3NyYy9udjA0X2V4YS5jCmluZGV4IDdlZGU5ZDku
-LmNhOTI4NjggMTAwNjQ0Ci0tLSBhL3NyYy9udjA0X2V4YS5jCisrKyBiL3NyYy9udjA0X2V4YS5j
-CkBAIC0yMjAsNyArMjIwLDcgQEAgTlYwNEVYQUNvcHkoUGl4bWFwUHRyIHBkcGl4LCBpbnQgc3Jj
-WCwgaW50IHNyY1ksIGludCBkc3RYLCBpbnQgZHN0WSwKIAlpbnQgc3BsaXRfZHN0WSA9IE5PVVZF
-QVVfQUxJR04oZHN0WSArIDEsIDY0KTsKIAlpbnQgc3BsaXRfaGVpZ2h0ID0gc3BsaXRfZHN0WSAt
-IGRzdFk7CiAKLQlpZiAobm91dmVhdV9wdXNoYnVmX3NwYWNlKHB1c2gsIDE2LCAxLCAwKSkKKwlp
-ZiAobm91dmVhdV9wdXNoYnVmX3NwYWNlKHB1c2gsIDE2LCAyLCAwKSkKIAkJcmV0dXJuOwogCiAJ
-aWYgKCh3aWR0aCAqIGhlaWdodCkgPj0gMjAwMDAwICYmIHBOdi0+cHNwaXggIT0gcE52LT5wZHBp
-eCAmJgpAQCAtMjQ5LDcgKzI0OSwxMyBAQCBOVjA0RVhBQ29weShQaXhtYXBQdHIgcGRwaXgsIGlu
-dCBzcmNYLCBpbnQgc3JjWSwgaW50IGRzdFgsIGludCBkc3RZLAogCQloZWlnaHQgLT0gc3BsaXRf
-aGVpZ2h0OwogCQlkc3RZID0gMDsKIAkJcE52LT5wbXBpeCA9IHBkcGl4OwotCX0gZWxzZQorCX0K
-KworCUJFR0lOX05WMDQocHVzaCwgTlYwMV9CTElUKFBPSU5UX0lOKSwgMyk7CisJUFVTSF9EQVRB
-IChwdXNoLCAoc3JjWSA8PCAxNikgfCBzcmNYKTsKKwlQVVNIX0RBVEEgKHB1c2gsIChkc3RZIDw8
-IDE2KSB8IGRzdFgpOworCVBVU0hfREFUQSAocHVzaCwgKGhlaWdodCAgPDwgMTYpIHwgd2lkdGgp
-OworCiAJaWYgKHBOdi0+cG1waXgpIHsKIAkJc3RydWN0IG5vdXZlYXVfYm8gKmRzdF9ibyA9IG5v
-dXZlYXVfcGl4bWFwX2JvKHBkcGl4KTsKIApAQCAtMjU4LDExICsyNjQsNiBAQCBOVjA0RVhBQ29w
-eShQaXhtYXBQdHIgcGRwaXgsIGludCBzcmNYLCBpbnQgc3JjWSwgaW50IGRzdFgsIGludCBkc3RZ
-LAogCQlwTnYtPnBtcGl4ID0gTlVMTDsKIAl9CiAKLQlCRUdJTl9OVjA0KHB1c2gsIE5WMDFfQkxJ
-VChQT0lOVF9JTiksIDMpOwotCVBVU0hfREFUQSAocHVzaCwgKHNyY1kgPDwgMTYpIHwgc3JjWCk7
-Ci0JUFVTSF9EQVRBIChwdXNoLCAoZHN0WSA8PCAxNikgfCBkc3RYKTsKLQlQVVNIX0RBVEEgKHB1
-c2gsIChoZWlnaHQgIDw8IDE2KSB8IHdpZHRoKTsKLQogCWlmICgod2lkdGggKiBoZWlnaHQpID49
-IDUxMikKIAkJUFVTSF9LSUNLKHB1c2gpOwogfQotLSAKMS43LjguNgoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=50403
+
+             Bug #: 50403
+           Summary: NV28 double cursor & ugly graphics & crashes
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: f0rhum-GANU6spQydw@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Dell Laptop Latitude D800 A13 BIOS
+Pentium M 1,4 GHz (non pae)
+nvidia GeForce4 Ti4200Go latest video bios from Dell (6.14.10.6742, A06)
+1680*1050 LCD (resolution not listed in grub's vbeinfo output)
+Because of high crashes rate (and poor skills), I post this now from windows,
+then I'll go back to linux to post dmesg and xorg.0.log
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
