@@ -1,15 +1,13 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2 3/4] drm/nv50: let applications hanging on
- vm flush to be killed
-Date: Sun, 27 May 2012 21:40:44 +0200
-Message-ID: <20120527194044.GB2907@joi.lan>
-References: <1335388836-13127-3-git-send-email-marcin.slusarz@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
+Date: Sun, 27 May 2012 19:41:27 +0000
+Message-ID: <bug-50403-8800-bCujDB91Yz@http.bugs.freedesktop.org/>
+References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1335388836-13127-3-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-50403-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,33 +17,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v3] drm/nv50: let applications hanging on vm flush to be killed
+https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
-v3: rebased on top of current nouveau-git
----
- drivers/gpu/drm/nouveau/nv50_graph.c |    4 ++++
- 1 files changed, 4 insertions(+), 0 deletions(-)
+--- Comment #1 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-27 12:41:27 PDT ---
+ERRATUM (video bios info) : 
+Title      : Video:nVidia GeForce4 4200 Go BIOS
+Version    : A05
+OEM Name   : nVidia
+OEM Ver    : 4.28.20.31.C1
+Computers  : Inspiron - 8500, 8600;
+Latitude - D800
+Oses       : Windows 2000 Professional,Windows XP Home Edition,Windows XP
+Professional
+Languages  : English
+Created    : Wed Jan 21 16:33:39 CST 2004
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
-index 78365fe..ef6757f 100644
---- a/drivers/gpu/drm/nouveau/nv50_graph.c
-+++ b/drivers/gpu/drm/nouveau/nv50_graph.c
-@@ -242,6 +242,10 @@ nv84_graph_tlb_flush(struct nouveau_device *ndev, int engine)
- 			if ((tmp & 7) == 1)
- 				idle = false;
- 		}
-+		if (fatal_signal_pending(current)) {
-+			ret = -ERESTARTSYS;
-+			break;
-+		}
- 	} while (!idle &&
- 		 !(timeout = ptimer->read(ptimer) - start > 2000000000));
- 
 -- 
-1.7.8.6
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
