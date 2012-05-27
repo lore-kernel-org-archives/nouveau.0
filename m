@@ -1,15 +1,12 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH resend] drm/nouveau: fix acpi related kbuild
-	warnings
-Date: Sun, 27 May 2012 21:58:04 +0200
-Message-ID: <20120527195804.GD2907@joi.lan>
-References: <1334493370-23964-1-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau/pm: fix oops on get/set_perflvl
+Date: Sun, 27 May 2012 22:00:41 +0200
+Message-ID: <20120527200041.GE2907@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1334493370-23964-1-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,31 +16,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Apr 15, 2012 at 02:36:06PM +0200, Marcin Slusarz wrote:
-> Currently when X86 && ACPI && !X86_PLATFORM_DEVICES kbuild spits:
-> 
-> warning: (DRM_NOUVEAU) selects ACPI_WMI which has unmet direct
-> dependencies (X86 && X86_PLATFORM_DEVICES && ACPI)
-> warning: (DRM_NOUVEAU) selects MXM_WMI which has unmet direct
-> dependencies (X86 && X86_PLATFORM_DEVICES && ACPI_WMI)
-> 
-> and goes on, which leaves a situation where ACPI_WMI (which depends on
-> X86_PLATFORM_DEVICES) is enabled but X86_PLATFORM_DEVICES is not.
-> Additionally, Nouveau on IA64 would enable these X86-related drivers
-> when ACPI is enabled (doesn't matter but is wrong) and build
-> nouveau_acpi.c which depends on them.
-> 
-> To fix this, introduce hidden DRM_NOUVEAU_ACPI variable which selects
-> all acpi/x86 related configs and select it when both X86 and ACPI are
-> enabled.
-> 
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
+Regression from "drm/nouveau: very scary looking cleanup commit"
 
-What's up with this patch?
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_pm.c |    6 ++++--
+ 1 files changed, 4 insertions(+), 2 deletions(-)
 
-Marcin
+diff --git a/drivers/gpu/drm/nouveau/nouveau_pm.c b/drivers/gpu/drm/nouveau/nouveau_pm.c
+index 9dd34fe..5539482 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_pm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_pm.c
+@@ -306,7 +306,8 @@ nouveau_pm_get_perflvl_info(struct device *d,
+ static ssize_t
+ nouveau_pm_get_perflvl(struct device *d, struct device_attribute *a, char *buf)
+ {
+-	struct nouveau_device *ndev = pci_get_drvdata(to_pci_dev(d));
++	struct drm_device *dev = pci_get_drvdata(to_pci_dev(d));
++	struct nouveau_device *ndev = nouveau_device(dev);
+ 	struct nouveau_pm_engine *pm = &ndev->subsys.pm;
+ 	struct nouveau_pm_level cur;
+ 	int len = PAGE_SIZE, ret;
+@@ -327,7 +328,8 @@ static ssize_t
+ nouveau_pm_set_perflvl(struct device *d, struct device_attribute *a,
+ 		       const char *buf, size_t count)
+ {
+-	struct nouveau_device *ndev = pci_get_drvdata(to_pci_dev(d));
++	struct drm_device *dev = pci_get_drvdata(to_pci_dev(d));
++	struct nouveau_device *ndev = nouveau_device(dev);
+ 	int ret;
+ 
+ 	ret = nouveau_pm_profile_set(ndev, buf);
+-- 
+1.7.8.6
