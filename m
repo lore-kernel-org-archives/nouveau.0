@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Mon, 28 May 2012 08:38:05 +0000
-Message-ID: <bug-50403-8800-USq96uSdbf@http.bugs.freedesktop.org/>
+Date: Mon, 28 May 2012 08:45:47 +0000
+Message-ID: <bug-50403-8800-SIs812Utv2@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,23 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #11 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-28 01:38:05 PDT ---
-Direct snap link:
-https://launchpadlibrarian.net/105898820/rub.png
+--- Comment #12 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-28 01:45:47 PDT ---
+(In reply to comment #6)
+> Here a copy/paste of the 2 strange lines (+1 before/after) in xorg.0.log:
+> ...
+> Unknown vendor-specific block f
+> T[0007][0004][0007][0001]3997FA
+>  \C0\A3\92\85p]@
+> EDID (in hex):
+> ...
+
+The 2 successive lines are at 26.296 in Xorg.0.log
+The brackets enclosed numbers are show in gedit in a square matrix this way:
+
+____
+|00|
+|07|
+----
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
