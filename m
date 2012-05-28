@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Sun, 27 May 2012 20:24:19 +0000
-Message-ID: <bug-50403-8800-mRjVYOQUw6@http.bugs.freedesktop.org/>
+Date: Mon, 28 May 2012 06:09:08 +0000
+Message-ID: <bug-50403-8800-VFLSGyVDig@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #2 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-27 13:24:19 PDT ---
-dpkg -s xserver-xorg-video-nouveau
-;;;
-Version: 1:0.0.16+git20120525.7041e30a-0ubuntu0sarvatt~precise
-;;;
+--- Comment #3 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-27 23:09:08 PDT ---
+Created attachment 62151
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62151
+full dmesg output
+
+posted from windows again ("Open file" firefox dialog always crashes xorg in
+Linux side)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
