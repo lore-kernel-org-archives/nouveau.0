@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50280] Mesa 8.0.3 fails to build dri/nouveau against
  libdrm 2.4.34
-Date: Mon, 28 May 2012 20:18:22 +0000
-Message-ID: <bug-50280-8800-fbqVJe5y2l@http.bugs.freedesktop.org/>
+Date: Mon, 28 May 2012 20:51:38 +0000
+Message-ID: <bug-50280-8800-T5uymEitcQ@http.bugs.freedesktop.org/>
 References: <bug-50280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50280
 
---- Comment #2 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2012-05-28 13:18:22 PDT ---
-At least for mesa backporting's not going to happen.
+--- Comment #3 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> 2012-05-28 13:51:38 PDT ---
+(In reply to comment #2)
+> At least for mesa backporting's not going to happen.
+> 
+> You can easily have both old and new versions and headers of libdrm_nouveau
+> installed at the same time and it will build and work fine.
 
-You can easily have both old and new versions and headers of libdrm_nouveau
-installed at the same time and it will build and work fine.
+Fine isn't the word I would use. It works but if the ddx and mesa aren't
+compiled with the same libdrm_nouveau, you loose AIGLX.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
