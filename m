@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Mon, 28 May 2012 09:53:28 +0000
-Message-ID: <bug-50403-8800-EVW9fr5x4j@http.bugs.freedesktop.org/>
+Date: Mon, 28 May 2012 11:15:02 +0000
+Message-ID: <bug-50403-8800-nx6I06okUJ@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #15 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> 2012-05-28 02:53:28 PDT ---
-@Martin
-I forgot to say I stick using Gnome classic (no-effects) that's why I posted
-here in xorg instead of mesa. Should I move the bug?
-Thank you
+--- Comment #16 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-05-28 04:15:02 PDT ---
+There is an easy way to check (you have to run this from Xorg), that is to run
+"glxinfo":
+
+This line (or something like it) "OpenGL renderer string: Software Rasterizer"
+means you don't have the nouveau opengl driver installed, but if it lists
+something other than software rasterizer you may have it installed.
+
+I'm guessing mesa-utils is not the driver package.
+
+To "rule out a problem" means "to check something is not the problem" in this
+case.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
