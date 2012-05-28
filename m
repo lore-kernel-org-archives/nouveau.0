@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Mon, 28 May 2012 06:18:13 +0000
-Message-ID: <bug-50403-8800-v5lm5cYvC8@http.bugs.freedesktop.org/>
+Date: Mon, 28 May 2012 07:57:53 +0000
+Message-ID: <bug-50403-8800-mG2P9BXxzJ@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
-f0rhum-GANU6spQydw@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|normal                      |blocker
-           Priority|medium                      |highest
+--- Comment #6 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-28 00:57:53 PDT ---
+Here a copy/paste of the 2 strange lines (+1 before/after) in xorg.0.log:
+...
+Unknown vendor-specific block f
+T[0007][0004][0007][0001]3997FA
+ \C0\A3\92\85p]@
+EDID (in hex):
+...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
