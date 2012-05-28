@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Mon, 28 May 2012 08:23:55 +0000
-Message-ID: <bug-50403-8800-a02fxglpRd@http.bugs.freedesktop.org/>
+Date: Mon, 28 May 2012 08:30:42 +0000
+Message-ID: <bug-50403-8800-Scx1NNFI0J@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,13 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #9 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-28 01:23:55 PDT ---
-When xserver crashes, I sometimes get a popup on restart after killing it
-stating:
-"The system is running in low-graphics mode: Your screen, graphic card, and
-input device settings could not be detected correctly. You need to configure
-these yourself."
-Then, no mouse keybord available I need to power down to reboot.
+--- Comment #10 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-28 01:30:42 PDT ---
+PS: the snapshot shows gnome3 (gnome-session-fallback because I don't like the
+Unity desktop); On the picture, you cannot see the "double/echo" cursor,
+although it is really here
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
