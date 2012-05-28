@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Mon, 28 May 2012 08:30:42 +0000
-Message-ID: <bug-50403-8800-Scx1NNFI0J@http.bugs.freedesktop.org/>
+Date: Mon, 28 May 2012 08:38:05 +0000
+Message-ID: <bug-50403-8800-USq96uSdbf@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #10 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-28 01:30:42 PDT ---
-PS: the snapshot shows gnome3 (gnome-session-fallback because I don't like the
-Unity desktop); On the picture, you cannot see the "double/echo" cursor,
-although it is really here
+--- Comment #11 from f0rhum-GANU6spQydw@public.gmane.org 2012-05-28 01:38:05 PDT ---
+Direct snap link:
+https://launchpadlibrarian.net/105898820/rub.png
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
