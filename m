@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Tue, 29 May 2012 20:48:26 +0000
-Message-ID: <bug-50403-8800-YCNATRXGr7@http.bugs.freedesktop.org/>
+Date: Tue, 29 May 2012 21:03:20 +0000
+Message-ID: <bug-50403-8800-cze9mwfplW@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,18 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #23 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> 2012-05-29 13:48:26 PDT ---
-Good night gentlemen
-Just a little more comment to add 2 other symtoms. Not sure if they are
-usefull: clicking the drop-lists is this very page olso hangs the xserver, and
-about the double cursor in the title, in fact it is not truely a double well
-drawn clean double cursors, instead it is badly drawn and blury, and if you
-know the grid (I learnt today it is the name of this thing) that displays over
-the background picture of the default ubuntu loging screen (the greeting screen
-is the name I beleive), so each point of the grid is doubled, about 1mm on the
-right (or left, I can't know), like the phantom/echo on old tv with poor signal
-before DVB. I'll post a photography of the current cursor just in a few
-minutes...
+--- Comment #24 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> 2012-05-29 14:03:20 PDT ---
+When I opened the cursor photo, metacity repported an error.
+In fact on login, the grid over the flat purple color is not doubled
+immediately; it turns doubled at the same time the artwork shiny picture
+overrides the flat purple. Now I switch to win to post the photo, and maybe a
+small video to show what happens on login.;;
+bye bye
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
