@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Tue, 29 May 2012 07:17:14 +0000
-Message-ID: <bug-50403-8800-1vVMXtFb5Q@http.bugs.freedesktop.org/>
+Date: Tue, 29 May 2012 07:18:45 +0000
+Message-ID: <bug-50403-8800-Hn15WEvvej@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #19 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> 2012-05-29 00:17:14 PDT ---
-Hi Ben
-here are the 2 files; I had to switch to windows to post them, so I also add
-the glxinfo;
+--- Comment #20 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> 2012-05-29 00:18:45 PDT ---
+Created attachment 62192
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62192
+full glxinfo output
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
