@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Tue, 29 May 2012 06:55:17 +0000
-Message-ID: <bug-50403-8800-bufneyScP2@http.bugs.freedesktop.org/>
+Date: Tue, 29 May 2012 07:17:14 +0000
+Message-ID: <bug-50403-8800-1vVMXtFb5Q@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #18 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> 2012-05-28 23:55:17 PDT ---
-Hi Maarteen
-Thank you for spending time with me. Hope this is not waste.
-Here the line I read from glxinfo > glxinfo.txt:
-OpenGL renderer string: Mesa DRI nv28 x86/MMX/SSE2
-
-Would you advise me to uninstall something. If you need to read the full file,
-please tell me, I'll attach if (xserver hanged just after issueing the command
-and Ctrl+Alt+PrtScn+K won't revive it)
+--- Comment #19 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> 2012-05-29 00:17:14 PDT ---
+Hi Ben
+here are the 2 files; I had to switch to windows to post them, so I also add
+the glxinfo;
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
