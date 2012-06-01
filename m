@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Fri, 01 Jun 2012 07:22:25 +0000
-Message-ID: <bug-50571-8800-4Qsmf8x9UL@http.bugs.freedesktop.org/>
+Date: Fri, 01 Jun 2012 07:22:48 +0000
+Message-ID: <bug-50571-8800-vMLpLEy3xg@http.bugs.freedesktop.org/>
 References: <bug-50571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #62357|application/octet-stream    |text/plain
+  Attachment #62358|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
