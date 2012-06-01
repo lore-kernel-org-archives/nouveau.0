@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Fri, 01 Jun 2012 00:11:45 +0000
-Message-ID: <bug-50571-8800-SL7iHmKFta@http.bugs.freedesktop.org/>
+Date: Fri, 01 Jun 2012 07:13:29 +0000
+Message-ID: <bug-50571-8800-609uqTNHTb@http.bugs.freedesktop.org/>
 References: <bug-50571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50571
 
---- Comment #1 from Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> 2012-06-01 00:11:45 UTC ---
-Created attachment 62358
-  --> https://bugs.freedesktop.org/attachment.cgi?id=62358
-Kernel messages - partedmagic - starting Xorg
+Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |http://bugs.debian.org/6753
+                   |                            |02
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
