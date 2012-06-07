@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49397] Not able to set monitor resolution
-Date: Thu, 07 Jun 2012 07:41:08 +0000
-Message-ID: <bug-49397-8800-S9p3XgRMMb@http.bugs.freedesktop.org/>
-References: <bug-49397-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nv04/exa: Reset destination surface offset in
+ the same call of NV04EXACopy
+Date: Thu, 7 Jun 2012 14:51:00 +0200
+Message-ID: <20120607123627.GA3114@joi.lan>
+References: <bug-48954-8800@http.bugs.freedesktop.org/>
+	<1338063320-9274-1-git-send-email-noviktor@seznam.cz>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49397-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <1338063320-9274-1-git-send-email-noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,56 +20,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Viktor =?utf-8?Q?Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49397
-
---- Comment #4 from Rob Koll <rob-Mw7XmEnvAQ/z+pZb47iToQ@public.gmane.org> 2012-06-07 00:41:08 PDT ---
-I am using Ubuntu 12.4, without a file .xinitrc. The xrandr commands:
-
-xrandr --newmode "1920x1080_60.00" 149.82 1920 1960 2000 2040 1200 1208 1216
-1224  +HSync -Vsync
-xrandr --addmode DVI-D-1 1920x1080_60.00
-
-have been put in a shell script. This script was added to the startup
-application in the system menu (power symbol at right side top, Startup
-Applications ...).
-
-Reboot and enjoy the wanted resolution.
-
-I did not find a way to configure the resolution from the xorg.config file,
-that seems to me still either an error on my side or a bug. The following
-xorg.config seems not to work:
-
-Section "Monitor"
-    Identifier     "Monitor0"
-    VendorName     "Philips"
-    ModelName      "Brilliance 240S"
-    HorizSync       20.0 - 50.0
-    VertRefresh     20.0 - 99.0
-    Modeline       "1920x1200_60.00" 149.82 1920 1960 2000 2040 1200 1208 1216
-1224  +HSync -Vsync
-EndSection
-
-Section "Screen"
-    Identifier     "Screen0"
-    Device         "DVI"
-    Monitor        "Monitor0"
-    SubSection     "Display"
-        Modes      "1920x1200_60.00"
-    EndSubSection
-EndSection
-
-Section "Device"
-    Identifier "DVI"
-    Driver     "nouveau"
-EndSection
-
-Kid regards,
-Rob Koll
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+T24gU2F0LCBNYXkgMjYsIDIwMTIgYXQgMTA6MTU6MjBQTSArMDIwMCwgVmlrdG9yIE5vdm90bsO9
+IHdyb3RlOgo+IEZpeGVzIEZETyBidWcgIzQ4OTU0Lgo+IAo+IFNpZ25lZC1vZmYtYnk6IFZpa3Rv
+ciBOb3ZvdG7DvSA8bm92aWt0b3JAc2V6bmFtLmN6Pgo+IC0tLQoKUmV2aWV3ZWQtYnk6IE1hcmNp
+biBTbHVzYXJ6IDxtYXJjaW4uc2x1c2FyekBnbWFpbC5jb20+CgpJdCBzZWVtcyB0aGlzIGNvZGUg
+d2FzIGJ1Z2d5IHNpbmNlIGl0IHdhcyBpbnRyb2R1Y2VkIGluICJudjA0LW52NDAvZXhhOiBNYWtl
+CnRoZSBjb3B5IGhvb2sgYmxpdCBkb3dud2FyZHMgZm9yIG5vbi1vdmVybGFwcGluZyByZWdpb25z
+LiIgKE9GRlNFVF9ERVNUSU4gd2FzCm5vdCB6ZXJvZWQgZm9yIHRoZSBzZWNvbmQgcGFydCksIG9u
+bHkgIldJUDogcG9ydCB0byBuZXcgbGliZHJtIiBtYWRlIGl0IG1vcmUKYXBwYXJlbnQuCgo+ICBz
+cmMvbnYwNF9leGEuYyB8ICAgMTUgKysrKysrKystLS0tLS0tCj4gIDEgZmlsZXMgY2hhbmdlZCwg
+OCBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9zcmMvbnYw
+NF9leGEuYyBiL3NyYy9udjA0X2V4YS5jCj4gaW5kZXggN2VkZTlkOS4uY2E5Mjg2OCAxMDA2NDQK
+PiAtLS0gYS9zcmMvbnYwNF9leGEuYwo+ICsrKyBiL3NyYy9udjA0X2V4YS5jCj4gQEAgLTIyMCw3
+ICsyMjAsNyBAQCBOVjA0RVhBQ29weShQaXhtYXBQdHIgcGRwaXgsIGludCBzcmNYLCBpbnQgc3Jj
+WSwgaW50IGRzdFgsIGludCBkc3RZLAo+ICAJaW50IHNwbGl0X2RzdFkgPSBOT1VWRUFVX0FMSUdO
+KGRzdFkgKyAxLCA2NCk7Cj4gIAlpbnQgc3BsaXRfaGVpZ2h0ID0gc3BsaXRfZHN0WSAtIGRzdFk7
+Cj4gIAo+IC0JaWYgKG5vdXZlYXVfcHVzaGJ1Zl9zcGFjZShwdXNoLCAxNiwgMSwgMCkpCj4gKwlp
+ZiAobm91dmVhdV9wdXNoYnVmX3NwYWNlKHB1c2gsIDE2LCAyLCAwKSkKPiAgCQlyZXR1cm47Cj4g
+IAo+ICAJaWYgKCh3aWR0aCAqIGhlaWdodCkgPj0gMjAwMDAwICYmIHBOdi0+cHNwaXggIT0gcE52
+LT5wZHBpeCAmJgo+IEBAIC0yNDksNyArMjQ5LDEzIEBAIE5WMDRFWEFDb3B5KFBpeG1hcFB0ciBw
+ZHBpeCwgaW50IHNyY1gsIGludCBzcmNZLCBpbnQgZHN0WCwgaW50IGRzdFksCj4gIAkJaGVpZ2h0
+IC09IHNwbGl0X2hlaWdodDsKPiAgCQlkc3RZID0gMDsKPiAgCQlwTnYtPnBtcGl4ID0gcGRwaXg7
+Cj4gLQl9IGVsc2UKPiArCX0KPiArCj4gKwlCRUdJTl9OVjA0KHB1c2gsIE5WMDFfQkxJVChQT0lO
+VF9JTiksIDMpOwo+ICsJUFVTSF9EQVRBIChwdXNoLCAoc3JjWSA8PCAxNikgfCBzcmNYKTsKPiAr
+CVBVU0hfREFUQSAocHVzaCwgKGRzdFkgPDwgMTYpIHwgZHN0WCk7Cj4gKwlQVVNIX0RBVEEgKHB1
+c2gsIChoZWlnaHQgIDw8IDE2KSB8IHdpZHRoKTsKPiArCj4gIAlpZiAocE52LT5wbXBpeCkgewo+
+ICAJCXN0cnVjdCBub3V2ZWF1X2JvICpkc3RfYm8gPSBub3V2ZWF1X3BpeG1hcF9ibyhwZHBpeCk7
+Cj4gIAo+IEBAIC0yNTgsMTEgKzI2NCw2IEBAIE5WMDRFWEFDb3B5KFBpeG1hcFB0ciBwZHBpeCwg
+aW50IHNyY1gsIGludCBzcmNZLCBpbnQgZHN0WCwgaW50IGRzdFksCj4gIAkJcE52LT5wbXBpeCA9
+IE5VTEw7Cj4gIAl9Cj4gIAo+IC0JQkVHSU5fTlYwNChwdXNoLCBOVjAxX0JMSVQoUE9JTlRfSU4p
+LCAzKTsKPiAtCVBVU0hfREFUQSAocHVzaCwgKHNyY1kgPDwgMTYpIHwgc3JjWCk7Cj4gLQlQVVNI
+X0RBVEEgKHB1c2gsIChkc3RZIDw8IDE2KSB8IGRzdFgpOwo+IC0JUFVTSF9EQVRBIChwdXNoLCAo
+aGVpZ2h0ICA8PCAxNikgfCB3aWR0aCk7Cj4gLQo+ICAJaWYgKCh3aWR0aCAqIGhlaWdodCkgPj0g
+NTEyKQo+ICAJCVBVU0hfS0lDSyhwdXNoKTsKPiAgfQo+IC0tIApfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
