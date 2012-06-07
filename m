@@ -1,16 +1,14 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nv04/exa: Reset destination surface offset in
- the same call of NV04EXACopy
-Date: Thu, 7 Jun 2012 14:51:00 +0200
-Message-ID: <20120607123627.GA3114@joi.lan>
-References: <bug-48954-8800@http.bugs.freedesktop.org/>
-	<1338063320-9274-1-git-send-email-noviktor@seznam.cz>
+Subject: Re: GeForce 8500 GT Connectors Reversed
+Date: Thu, 7 Jun 2012 15:13:44 +0200
+Message-ID: <20120607131344.GB3114@joi.lan>
+References: <CAELBVzD-5ArMA5aVwNOkxPTkPuhntzP8Sypq+ohEsmKHQg+bYA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1338063320-9274-1-git-send-email-noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
+In-Reply-To: <CAELBVzD-5ArMA5aVwNOkxPTkPuhntzP8Sypq+ohEsmKHQg+bYA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,43 +18,80 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Viktor =?utf-8?Q?Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBNYXkgMjYsIDIwMTIgYXQgMTA6MTU6MjBQTSArMDIwMCwgVmlrdG9yIE5vdm90bsO9
-IHdyb3RlOgo+IEZpeGVzIEZETyBidWcgIzQ4OTU0Lgo+IAo+IFNpZ25lZC1vZmYtYnk6IFZpa3Rv
-ciBOb3ZvdG7DvSA8bm92aWt0b3JAc2V6bmFtLmN6Pgo+IC0tLQoKUmV2aWV3ZWQtYnk6IE1hcmNp
-biBTbHVzYXJ6IDxtYXJjaW4uc2x1c2FyekBnbWFpbC5jb20+CgpJdCBzZWVtcyB0aGlzIGNvZGUg
-d2FzIGJ1Z2d5IHNpbmNlIGl0IHdhcyBpbnRyb2R1Y2VkIGluICJudjA0LW52NDAvZXhhOiBNYWtl
-CnRoZSBjb3B5IGhvb2sgYmxpdCBkb3dud2FyZHMgZm9yIG5vbi1vdmVybGFwcGluZyByZWdpb25z
-LiIgKE9GRlNFVF9ERVNUSU4gd2FzCm5vdCB6ZXJvZWQgZm9yIHRoZSBzZWNvbmQgcGFydCksIG9u
-bHkgIldJUDogcG9ydCB0byBuZXcgbGliZHJtIiBtYWRlIGl0IG1vcmUKYXBwYXJlbnQuCgo+ICBz
-cmMvbnYwNF9leGEuYyB8ICAgMTUgKysrKysrKystLS0tLS0tCj4gIDEgZmlsZXMgY2hhbmdlZCwg
-OCBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9zcmMvbnYw
-NF9leGEuYyBiL3NyYy9udjA0X2V4YS5jCj4gaW5kZXggN2VkZTlkOS4uY2E5Mjg2OCAxMDA2NDQK
-PiAtLS0gYS9zcmMvbnYwNF9leGEuYwo+ICsrKyBiL3NyYy9udjA0X2V4YS5jCj4gQEAgLTIyMCw3
-ICsyMjAsNyBAQCBOVjA0RVhBQ29weShQaXhtYXBQdHIgcGRwaXgsIGludCBzcmNYLCBpbnQgc3Jj
-WSwgaW50IGRzdFgsIGludCBkc3RZLAo+ICAJaW50IHNwbGl0X2RzdFkgPSBOT1VWRUFVX0FMSUdO
-KGRzdFkgKyAxLCA2NCk7Cj4gIAlpbnQgc3BsaXRfaGVpZ2h0ID0gc3BsaXRfZHN0WSAtIGRzdFk7
-Cj4gIAo+IC0JaWYgKG5vdXZlYXVfcHVzaGJ1Zl9zcGFjZShwdXNoLCAxNiwgMSwgMCkpCj4gKwlp
-ZiAobm91dmVhdV9wdXNoYnVmX3NwYWNlKHB1c2gsIDE2LCAyLCAwKSkKPiAgCQlyZXR1cm47Cj4g
-IAo+ICAJaWYgKCh3aWR0aCAqIGhlaWdodCkgPj0gMjAwMDAwICYmIHBOdi0+cHNwaXggIT0gcE52
-LT5wZHBpeCAmJgo+IEBAIC0yNDksNyArMjQ5LDEzIEBAIE5WMDRFWEFDb3B5KFBpeG1hcFB0ciBw
-ZHBpeCwgaW50IHNyY1gsIGludCBzcmNZLCBpbnQgZHN0WCwgaW50IGRzdFksCj4gIAkJaGVpZ2h0
-IC09IHNwbGl0X2hlaWdodDsKPiAgCQlkc3RZID0gMDsKPiAgCQlwTnYtPnBtcGl4ID0gcGRwaXg7
-Cj4gLQl9IGVsc2UKPiArCX0KPiArCj4gKwlCRUdJTl9OVjA0KHB1c2gsIE5WMDFfQkxJVChQT0lO
-VF9JTiksIDMpOwo+ICsJUFVTSF9EQVRBIChwdXNoLCAoc3JjWSA8PCAxNikgfCBzcmNYKTsKPiAr
-CVBVU0hfREFUQSAocHVzaCwgKGRzdFkgPDwgMTYpIHwgZHN0WCk7Cj4gKwlQVVNIX0RBVEEgKHB1
-c2gsIChoZWlnaHQgIDw8IDE2KSB8IHdpZHRoKTsKPiArCj4gIAlpZiAocE52LT5wbXBpeCkgewo+
-ICAJCXN0cnVjdCBub3V2ZWF1X2JvICpkc3RfYm8gPSBub3V2ZWF1X3BpeG1hcF9ibyhwZHBpeCk7
-Cj4gIAo+IEBAIC0yNTgsMTEgKzI2NCw2IEBAIE5WMDRFWEFDb3B5KFBpeG1hcFB0ciBwZHBpeCwg
-aW50IHNyY1gsIGludCBzcmNZLCBpbnQgZHN0WCwgaW50IGRzdFksCj4gIAkJcE52LT5wbXBpeCA9
-IE5VTEw7Cj4gIAl9Cj4gIAo+IC0JQkVHSU5fTlYwNChwdXNoLCBOVjAxX0JMSVQoUE9JTlRfSU4p
-LCAzKTsKPiAtCVBVU0hfREFUQSAocHVzaCwgKHNyY1kgPDwgMTYpIHwgc3JjWCk7Cj4gLQlQVVNI
-X0RBVEEgKHB1c2gsIChkc3RZIDw8IDE2KSB8IGRzdFgpOwo+IC0JUFVTSF9EQVRBIChwdXNoLCAo
-aGVpZ2h0ICA8PCAxNikgfCB3aWR0aCk7Cj4gLQo+ICAJaWYgKCh3aWR0aCAqIGhlaWdodCkgPj0g
-NTEyKQo+ICAJCVBVU0hfS0lDSyhwdXNoKTsKPiAgfQo+IC0tIApfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+On Wed, Jun 06, 2012 at 08:58:30PM -0300, Kevin Winchester wrote:
+> Hi,
+> 
+> I have noticed that the nouveau DRM kernel driver seems to get the
+> connectors reversed on my GeForce 8500 GT card.  My setup looks like:
+> 
+> 8500GT----------VGA-----------Samsung 2043W (1680x1050)
+>            |______DVI_______LG L1920P (1280x1024)
+> 
+> but as far as the kernel is concerned, the Samsung monitor gets
+> detected via the DVI probing:
+> 
+> [    0.521009] [drm:drm_helper_probe_single_connector_modes],
+> [CONNECTOR:15:DVI-I-1] probed modes :
+> [    0.521015] [drm:drm_mode_debug_printmodeline], Modeline
+> 21:"1680x1050" 60 119000 1680 1728 1760 1840 1050 1053 1059 1080 0x48
+> 0x9
+> 
+> and the LG via the VGA probing:
+> 
+> [    0.551267] [drm:drm_helper_probe_single_connector_modes],
+> [CONNECTOR:17:VGA-1] probed modes :
+> [    0.551272] [drm:drm_mode_debug_printmodeline], Modeline
+> 89:"1280x1024" 60 108000 1280 1328 1440 1688 1024 1025 1028 1066 0x48
+> 0x5
+> 
+> I have used my xorg.conf configuration to re-reverse the monitor
+> definitions to get a working system, but should some quirk be added to
+> handle this particular card:
+> 
+> 01:00.0 VGA compatible controller: NVIDIA Corporation G86 [GeForce
+> 8500 GT] (rev a1) (prog-if 00 [VGA controller])
+> 	Subsystem: eVga.com. Corp. Device c793
+> 	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+> Stepping- SERR+ FastB2B- DisINTx-
+> 	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort-
+> <TAbort- <MAbort- >SERR- <PERR- INTx-
+> 	Latency: 0, Cache Line Size: 64 bytes
+> 	Interrupt: pin A routed to IRQ 25
+> 	Region 0: Memory at fd000000 (32-bit, non-prefetchable) [size=16M]
+> 	Region 1: Memory at a0000000 (64-bit, prefetchable) [size=256M]
+> 	Region 3: Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
+> 	Region 5: I/O ports at dc00 [size=128]
+> 	Expansion ROM at fe7e0000 [disabled] [size=128K]
+> 	Capabilities: [60] Power Management version 2
+> 		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
+> 		Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
+> 	Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+> 		Address: 0000000000000000  Data: 0000
+> 	Capabilities: [78] Express (v1) Endpoint, MSI 00
+> 		DevCap:	MaxPayload 128 bytes, PhantFunc 0, Latency L0s <512ns, L1 <4us
+> 			ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
+> 		DevCtl:	Report errors: Correctable- Non-Fatal- Fatal- Unsupported-
+> 			RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop-
+> 			MaxPayload 128 bytes, MaxReadReq 512 bytes
+> 		DevSta:	CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr- TransPend-
+> 		LnkCap:	Port #213, Speed 2.5GT/s, Width x16, ASPM L0s L1, Latency L0
+> <512ns, L1 <4us
+> 			ClockPM- Surprise- LLActRep- BwNot-
+> 		LnkCtl:	ASPM Disabled; RCB 128 bytes Disabled- Retrain- CommClk+
+> 			ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+> 		LnkSta:	Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+ DLActive-
+> BWMgmt- ABWMgmt-
+> 	Kernel driver in use: nouveau
+> 
+> Are there any other details I can provide that could help?  Even if I
+> had to write the patch myself and test it, that would be fine by me
+> with a little advice.
+
+Please follow this page: http://nouveau.freedesktop.org/wiki/Bugs
+and file a bug report.
+
+Marcin
