@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50836] New: [bisected] ION fails to probe
-Date: Thu, 07 Jun 2012 14:58:24 +0000
-Message-ID: <bug-50836-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 50830] GeForce 8500 GT Connectors Reversed
+Date: Thu, 07 Jun 2012 15:10:51 +0000
+Message-ID: <bug-50830-8800-ta2Fja8Kp0@http.bugs.freedesktop.org/>
+References: <bug-50830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-50830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,41 +20,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50836
+https://bugs.freedesktop.org/show_bug.cgi?id=50830
 
-             Bug #: 50836
-           Summary: [bisected] ION fails to probe
-    Classification: Unclassified
-           Product: xorg
-           Version: git
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created attachment 62724
-  --> https://bugs.freedesktop.org/attachment.cgi?id=62724
-dmesg output
-
-7c3aaddad4ca45eca4bc587973396b546e7a19d9 is the first bad commit
-commit 7c3aaddad4ca45eca4bc587973396b546e7a19d9
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Mon May 14 01:06:51 2012 +1000
-
-    drm/nouveau/instmem: new implementation, on top of new interfaces
-
-    Split instmem/bar setup into separate modules, which allows us to go back
-    to hardcoded BAR channel setup (less code than interfacing with the vm
-    subsystem, and can remove some special cases), and also allows some
-    not-so-obvious ordering requirements of instmem/gpuobj to disappear.
-
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+--- Comment #1 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-07 08:10:51 PDT ---
+Created attachment 62725
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62725
+vbios.rom for the video card
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
