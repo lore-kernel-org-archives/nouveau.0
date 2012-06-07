@@ -1,11 +1,13 @@
-From: Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: GeForce 8500 GT Connectors Reversed
-Date: Wed, 6 Jun 2012 20:58:30 -0300
-Message-ID: <CAELBVzD-5ArMA5aVwNOkxPTkPuhntzP8Sypq+ohEsmKHQg+bYA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 49397] Not able to set monitor resolution
+Date: Thu, 07 Jun 2012 07:41:08 +0000
+Message-ID: <bug-49397-8800-S9p3XgRMMb@http.bugs.freedesktop.org/>
+References: <bug-49397-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-49397-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,73 +20,53 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+https://bugs.freedesktop.org/show_bug.cgi?id=49397
 
-I have noticed that the nouveau DRM kernel driver seems to get the
-connectors reversed on my GeForce 8500 GT card.  My setup looks like:
+--- Comment #4 from Rob Koll <rob-Mw7XmEnvAQ/z+pZb47iToQ@public.gmane.org> 2012-06-07 00:41:08 PDT ---
+I am using Ubuntu 12.4, without a file .xinitrc. The xrandr commands:
 
-8500GT----------VGA-----------Samsung 2043W (1680x1050)
-           |______DVI_______LG L1920P (1280x1024)
+xrandr --newmode "1920x1080_60.00" 149.82 1920 1960 2000 2040 1200 1208 1216
+1224  +HSync -Vsync
+xrandr --addmode DVI-D-1 1920x1080_60.00
 
-but as far as the kernel is concerned, the Samsung monitor gets
-detected via the DVI probing:
+have been put in a shell script. This script was added to the startup
+application in the system menu (power symbol at right side top, Startup
+Applications ...).
 
-[    0.521009] [drm:drm_helper_probe_single_connector_modes],
-[CONNECTOR:15:DVI-I-1] probed modes :
-[    0.521015] [drm:drm_mode_debug_printmodeline], Modeline
-21:"1680x1050" 60 119000 1680 1728 1760 1840 1050 1053 1059 1080 0x48
-0x9
+Reboot and enjoy the wanted resolution.
 
-and the LG via the VGA probing:
+I did not find a way to configure the resolution from the xorg.config file,
+that seems to me still either an error on my side or a bug. The following
+xorg.config seems not to work:
 
-[    0.551267] [drm:drm_helper_probe_single_connector_modes],
-[CONNECTOR:17:VGA-1] probed modes :
-[    0.551272] [drm:drm_mode_debug_printmodeline], Modeline
-89:"1280x1024" 60 108000 1280 1328 1440 1688 1024 1025 1028 1066 0x48
-0x5
+Section "Monitor"
+    Identifier     "Monitor0"
+    VendorName     "Philips"
+    ModelName      "Brilliance 240S"
+    HorizSync       20.0 - 50.0
+    VertRefresh     20.0 - 99.0
+    Modeline       "1920x1200_60.00" 149.82 1920 1960 2000 2040 1200 1208 1216
+1224  +HSync -Vsync
+EndSection
 
-I have used my xorg.conf configuration to re-reverse the monitor
-definitions to get a working system, but should some quirk be added to
-handle this particular card:
+Section "Screen"
+    Identifier     "Screen0"
+    Device         "DVI"
+    Monitor        "Monitor0"
+    SubSection     "Display"
+        Modes      "1920x1200_60.00"
+    EndSubSection
+EndSection
 
-01:00.0 VGA compatible controller: NVIDIA Corporation G86 [GeForce
-8500 GT] (rev a1) (prog-if 00 [VGA controller])
-	Subsystem: eVga.com. Corp. Device c793
-	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR+ FastB2B- DisINTx-
-	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort-
-<TAbort- <MAbort- >SERR- <PERR- INTx-
-	Latency: 0, Cache Line Size: 64 bytes
-	Interrupt: pin A routed to IRQ 25
-	Region 0: Memory at fd000000 (32-bit, non-prefetchable) [size=16M]
-	Region 1: Memory at a0000000 (64-bit, prefetchable) [size=256M]
-	Region 3: Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
-	Region 5: I/O ports at dc00 [size=128]
-	Expansion ROM at fe7e0000 [disabled] [size=128K]
-	Capabilities: [60] Power Management version 2
-		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
-		Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
-	Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
-		Address: 0000000000000000  Data: 0000
-	Capabilities: [78] Express (v1) Endpoint, MSI 00
-		DevCap:	MaxPayload 128 bytes, PhantFunc 0, Latency L0s <512ns, L1 <4us
-			ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
-		DevCtl:	Report errors: Correctable- Non-Fatal- Fatal- Unsupported-
-			RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop-
-			MaxPayload 128 bytes, MaxReadReq 512 bytes
-		DevSta:	CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr- TransPend-
-		LnkCap:	Port #213, Speed 2.5GT/s, Width x16, ASPM L0s L1, Latency L0
-<512ns, L1 <4us
-			ClockPM- Surprise- LLActRep- BwNot-
-		LnkCtl:	ASPM Disabled; RCB 128 bytes Disabled- Retrain- CommClk+
-			ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-		LnkSta:	Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+ DLActive-
-BWMgmt- ABWMgmt-
-	Kernel driver in use: nouveau
+Section "Device"
+    Identifier "DVI"
+    Driver     "nouveau"
+EndSection
 
-Are there any other details I can provide that could help?  Even if I
-had to write the patch myself and test it, that would be fine by me
-with a little advice.
+Kid regards,
+Rob Koll
 
-Thanks,
-Kevin
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
