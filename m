@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50830] GeForce 8500 GT Connectors Reversed
-Date: Thu, 07 Jun 2012 15:10:51 +0000
-Message-ID: <bug-50830-8800-ta2Fja8Kp0@http.bugs.freedesktop.org/>
+Date: Thu, 07 Jun 2012 15:15:55 +0000
+Message-ID: <bug-50830-8800-KlSbG48ujP@http.bugs.freedesktop.org/>
 References: <bug-50830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50830
 
---- Comment #1 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-07 08:10:51 PDT ---
-Created attachment 62725
-  --> https://bugs.freedesktop.org/attachment.cgi?id=62725
-vbios.rom for the video card
+--- Comment #2 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-07 08:15:55 PDT ---
+Created attachment 62726
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62726
+dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
