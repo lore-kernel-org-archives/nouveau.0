@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50175] [regression kernel 3.4] : nouveau detects
  internal laptop display as "disconnected" / screen is turned off
-Date: Fri, 08 Jun 2012 13:51:41 +0000
-Message-ID: <bug-50175-8800-zBZfOZ15F4@http.bugs.freedesktop.org/>
+Date: Fri, 08 Jun 2012 14:00:30 +0000
+Message-ID: <bug-50175-8800-yWwGO1fUAk@http.bugs.freedesktop.org/>
 References: <bug-50175-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50175
 
---- Comment #4 from m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-06-08 06:51:41 PDT ---
-Xorg log perhaps :)
+--- Comment #5 from mus.svz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-06-08 07:00:30 PDT ---
+Created attachment 62795
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62795
+Xorg.0.log
+
+this is with xorg-server 1.12.2 / kernel 3.4.1
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
