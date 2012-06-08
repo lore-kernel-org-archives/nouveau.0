@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50830] GeForce 8500 GT Connectors Reversed
-Date: Fri, 08 Jun 2012 00:26:33 +0000
-Message-ID: <bug-50830-8800-YjJQSHUqY5@http.bugs.freedesktop.org/>
+Date: Fri, 08 Jun 2012 00:43:34 +0000
+Message-ID: <bug-50830-8800-YBdyRwasV7@http.bugs.freedesktop.org/>
 References: <bug-50830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50830
 
---- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-07 17:26:33 PDT ---
-Created attachment 62772
-  --> https://bugs.freedesktop.org/attachment.cgi?id=62772
-dcb table quirk
+--- Comment #6 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-07 17:43:34 PDT ---
+I had to fudge the patch a bit because I applied it against mainline linux
+rather than the nouveau tree, but it seems to work perfectly.  The new dmesg
+shows the right monitors probed through the right connectors, and I was able to
+switch my xorg configuration back to normal and everything still works.
 
-How does it go with this patch?
+Thanks alot!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
