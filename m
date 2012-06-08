@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50830] GeForce 8500 GT Connectors Reversed
-Date: Fri, 08 Jun 2012 00:53:41 +0000
-Message-ID: <bug-50830-8800-ssNjX6lBWW@http.bugs.freedesktop.org/>
-References: <bug-50830-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31961] [drm:drm_crtc_helper_set_config] *ERROR*
+ failed to set mode on [CRTC:6]
+Date: Fri, 08 Jun 2012 04:49:13 +0000
+Message-ID: <bug-31961-8800-Q42TVJasfa@http.bugs.freedesktop.org/>
+References: <bug-31961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50830
+https://bugs.freedesktop.org/show_bug.cgi?id=31961
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-07 17:53:41 PDT ---
-Thanks for letting me know!  I've pushed this to nouveau git, it'll make its
-way to Linus' tree in due time :)
+--- Comment #13 from Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-07 21:49:13 PDT ---
+Created attachment 62778
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62778
+video ROM BOIS
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
