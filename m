@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Fri, 08 Jun 2012 04:45:57 +0000
-Message-ID: <bug-15758-8800-hc5EmtUX70@http.bugs.freedesktop.org/>
+Date: Fri, 08 Jun 2012 04:56:16 +0000
+Message-ID: <bug-15758-8800-8GKK4zDdVF@http.bugs.freedesktop.org/>
 References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,33 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=15758
 
-Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|INVALID                     |
-
---- Comment #26 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-08 04:45:57 UTC ---
-This bug is still here, I'm currently using:
-
-xf86-video-nouveau-0.0.16_pre20120322
-libdrm-2.4.33
-xorg-server-1.12
-kernel 3.5rc1 (vanilla, not nouveau HEAD)
-
-The cursor icon (sometimes!) dissappears after:
-
-- extensive VT switching
-- switching resolution with xrandr
-- plugging VGA-1
-- (new) keeping the laptop idle for a while
-
-I'm bluntly reopening this bug, please feel free to close it. However, to my
-opinion this same issue is still here, so reopening another bug seems
-pointless.
-
-                     Ronald
+--- Comment #27 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-08 04:56:16 UTC ---
+Sidenote, disabling HWCursor in xorg.conf seems to resolve the issue. However,
+if I leave my X running and switch to TTY1 everything is fine. However, when I
+switch back (TTY1 -> TTY7) Xorg dies. The screen shows up very dim for a short
+while, hangs and then X restarts.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
