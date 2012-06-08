@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] NV34 Fx5200 fails to resume with
- commit 5d720f2450
-Date: Fri, 08 Jun 2012 04:31:58 +0000
-Message-ID: <bug-50121-8800-GYdHXyzL2Q@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
+Date: Fri, 08 Jun 2012 04:45:57 +0000
+Message-ID: <bug-15758-8800-hc5EmtUX70@http.bugs.freedesktop.org/>
+References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,35 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
+https://bugs.freedesktop.org/show_bug.cgi?id=15758
 
---- Comment #8 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-08 04:31:58 UTC ---
-I tried kernel 3.5-rc1, because it seems that some recent patches were left out
-during the merge. I was hoping that this newer kernel would somehow solve this.
-However, I'm still having the same issue's in this release.
+Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-On a further note, the commit before 5d720f2450 was a pretty good release for
-this card. Glxgears reported almost 400fps and window resizing was smooth. With
-v3.4.1 or v3.5-rc1, this performance regressed to it's original state. Glxgears
-reports 100ftps and resizing is choppy again.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|INVALID                     |
+
+--- Comment #26 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-08 04:45:57 UTC ---
+This bug is still here, I'm currently using:
+
+xf86-video-nouveau-0.0.16_pre20120322
+libdrm-2.4.33
+xorg-server-1.12
+kernel 3.5rc1 (vanilla, not nouveau HEAD)
+
+The cursor icon (sometimes!) dissappears after:
+
+- extensive VT switching
+- switching resolution with xrandr
+- plugging VGA-1
+- (new) keeping the laptop idle for a while
+
+I'm bluntly reopening this bug, please feel free to close it. However, to my
+opinion this same issue is still here, so reopening another bug seems
+pointless.
+
+                     Ronald
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
