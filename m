@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: =?utf-8?q?=5BBug_49086=5D__nouveau_=E2=80=94_Gallium_0_?=
  =?utf-8?q?=2E_4_on_NVA5_=E2=80=94_2_=2E1_Mesa_8=2E0=2E2_crashes_Firefox_N?=
  =?utf-8?q?ightly?=
-Date: Sat, 09 Jun 2012 12:15:07 +0000
-Message-ID: <bug-49086-8800-wQKNQgh4bP@http.bugs.freedesktop.org/>
+Date: Sat, 09 Jun 2012 13:36:24 +0000
+Message-ID: <bug-49086-8800-SNPwiw9GZP@http.bugs.freedesktop.org/>
 References: <bug-49086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,19 +24,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49086
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #3 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> 2012-06-09 06:36:24 PDT ---
+Created attachment 62847
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62847
+Patch for issue.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |e0425955-oe7qfRrRQffzPE21tAIdcn47sPnzM2Jh@public.gmane.org
-                   |                            |at
-
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-09 05:15:07 PDT ---
-This is:
-assert(i->opcode == NV_OP_RCP && !src0->mod);
-in nv50_pc_emit.c/emit_flop
-
-CC'ing Christoph
+This should get rid of the assertion failure (obviously) and handle the case
+correctly.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
