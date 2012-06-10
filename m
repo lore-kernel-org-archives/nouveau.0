@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34429] [PATCH]Failure during resume on NV50:
- INIT_AUXCH: rd auxch fail -121
-Date: Sun, 10 Jun 2012 09:09:29 +0000
-Message-ID: <bug-34429-8800-C5d3dvQsRY@http.bugs.freedesktop.org/>
-References: <bug-34429-8800@http.bugs.freedesktop.org/>
+From: Arnout Engelen <nouveau-xdCxd1SecUs@public.gmane.org>
+Subject: [PATCH] More explicit error message when the kernel
+ module has been configured 'noaccel' but the xorg configuration doesn't
+ disable accelleration
+Date: Sun, 10 Jun 2012 14:49:32 +0200
+Message-ID: <20120610124932.GA2822@bzzt.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34429-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,19 +21,31 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34429
+I ran into this the other day - this more explicit error message might save someone some
+head-scratching ;).
+---
+ src/nv_dma.c |    9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #14 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-10 02:09:29 PDT ---
-As mentioned, the fix has been pushed. Please reopen if the issue persist
-
+diff --git a/src/nv_dma.c b/src/nv_dma.c
+index d2a6d00..339b4fe 100644
+--- a/src/nv_dma.c
++++ b/src/nv_dma.c
+@@ -53,8 +53,13 @@ NVInitDma(ScrnInfoPtr pScrn)
+ 	ret = nouveau_object_new(device, 0, NOUVEAU_FIFO_CHANNEL_CLASS,
+ 				 data, size, &pNv->channel);
+ 	if (ret) {
+-		xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
+-			   "Error creating GPU channel: %d\n", ret);
++		if (ret == -ENODEV)
++			xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
++				   "'No such device' while creating GPU channel: perhaps you disabled "
++			           "accelleration in your module config but not in your X.Org config\n");
++		else
++			xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
++				   "Error creating GPU channel: %d, %s\n", ret, strerror(-ret));
+ 		return FALSE;
+ 	}
+ 
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.10
