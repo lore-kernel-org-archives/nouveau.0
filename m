@@ -1,9 +1,7 @@
-From: Arnout Engelen <nouveau-xdCxd1SecUs@public.gmane.org>
-Subject: [PATCH] More explicit error message when the kernel
- module has been configured 'noaccel' but the xorg configuration doesn't
- disable accelleration
-Date: Sun, 10 Jun 2012 14:49:32 +0200
-Message-ID: <20120610124932.GA2822@bzzt.net>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv84: decode PCRYPT errors
+Date: Mon, 11 Jun 2012 00:21:12 +0200
+Message-ID: <20120610222053.GA32589@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -21,31 +19,57 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I ran into this the other day - this more explicit error message might save someone some
-head-scratching ;).
----
- src/nv_dma.c |    9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/src/nv_dma.c b/src/nv_dma.c
-index d2a6d00..339b4fe 100644
---- a/src/nv_dma.c
-+++ b/src/nv_dma.c
-@@ -53,8 +53,13 @@ NVInitDma(ScrnInfoPtr pScrn)
- 	ret = nouveau_object_new(device, 0, NOUVEAU_FIFO_CHANNEL_CLASS,
- 				 data, size, &pNv->channel);
- 	if (ret) {
--		xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
--			   "Error creating GPU channel: %d\n", ret);
-+		if (ret == -ENODEV)
-+			xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
-+				   "'No such device' while creating GPU channel: perhaps you disabled "
-+			           "accelleration in your module config but not in your X.Org config\n");
-+		else
-+			xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
-+				   "Error creating GPU channel: %d, %s\n", ret, strerror(-ret));
- 		return FALSE;
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nv84_crypt.c |   19 ++++++++++++++++---
+ 1 files changed, 16 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nv84_crypt.c b/drivers/gpu/drm/nouveau/nv84_crypt.c
+index 6059f0e..88beab7 100644
+--- a/drivers/gpu/drm/nouveau/nv84_crypt.c
++++ b/drivers/gpu/drm/nouveau/nv84_crypt.c
+@@ -32,6 +32,7 @@
+ #include "nouveau_instmem.h"
+ #include "nouveau_gpuobj.h"
+ #include "nouveau_crypt.h"
++#include "nouveau_graph.h"
+ 
+ struct nv84_crypt_priv {
+ 	struct nouveau_crypt_priv base;
+@@ -120,18 +121,30 @@ nv84_crypt_tlb_flush(struct nouveau_device *ndev, int engine)
+ 	return nv50_vm_flush_engine(ndev, 0x0a);
+ }
+ 
++static struct nouveau_bitfield nv84_crypt_intr[] = {
++	{ 0x00000001, "INVALID_STATE" },
++	{ 0x00000002, "ILLEGAL_MTHD" },
++	{ 0x00000004, "ILLEGAL_CLASS" },
++	{ 0x00000080, "QUERY" },
++	{ 0x00000100, "FAULT" },
++	{}
++};
++
+ static void
+ nv84_crypt_isr(struct nouveau_device *ndev)
+ {
+ 	u32 stat = nv_rd32(ndev, 0x102130);
+ 	u32 mthd = nv_rd32(ndev, 0x102190);
+ 	u32 data = nv_rd32(ndev, 0x102194);
+-	u32 inst = nv_rd32(ndev, 0x102188) & 0x7fffffff;
++	u64 inst = (u64)(nv_rd32(ndev, 0x102188) & 0x7fffffff) << 12;
+ 	int show = nouveau_ratelimit();
++	int chid = nv50_graph_isr_chid(ndev, inst);
+ 
+ 	if (show) {
+-		NV_INFO(ndev, "PCRYPT_INTR: 0x%08x 0x%08x 0x%08x 0x%08x\n",
+-			     stat, mthd, data, inst);
++		NV_INFO(ndev, "PCRYPT -");
++		nouveau_bitfield_print(nv84_crypt_intr, stat);
++		printk(KERN_CONT " - ch %d (0x%010llx) mthd 0x%04x data 0x%08x\n",
++			chid, inst, mthd, data);
  	}
  
+ 	nv_wr32(ndev, 0x102130, stat);
 -- 
-1.7.10
+1.7.8.6
