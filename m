@@ -1,7 +1,7 @@
 From: Pauli Nieminen <pauli.nieminen@linux.intel.com>
-Subject: [PATCH 10/21] nouveau: Add support for ARB_sampler_object
-Date: Mon, 11 Jun 2012 09:59:28 +0300
-Message-ID: <1339397983-31219-19-git-send-email-pauli.nieminen@linux.intel.com>
+Subject: [PATCH 09/21] nouveau: Add support for ARB_sampler_object
+Date: Mon, 11 Jun 2012 09:59:27 +0300
+Message-ID: <1339397983-31219-18-git-send-email-pauli.nieminen@linux.intel.com>
 References: <1339397983-31219-1-git-send-email-pauli.nieminen@linux.intel.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
