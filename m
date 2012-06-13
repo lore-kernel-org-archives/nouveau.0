@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Thu, 14 Jun 2012 00:08:19 +0000
-Message-ID: <bug-50571-8800-LIku8yqt7h@http.bugs.freedesktop.org/>
+Date: Wed, 13 Jun 2012 17:16:18 +0000
+Message-ID: <bug-50571-8800-H92VF27qpC@http.bugs.freedesktop.org/>
 References: <bug-50571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50571
 
---- Comment #8 from Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> 2012-06-13 17:08:19 PDT ---
-Created attachment 62998
-  --> https://bugs.freedesktop.org/attachment.cgi?id=62998
-Linux 3.5 - works
+--- Comment #9 from Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> 2012-06-13 17:16:18 UTC ---
+Created attachment 62999
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62999
+Linux 3.4.1 - works
 
-OK sorry that was really obvious.. :D
+Yea, that works too.
 
-gdm3 starts fine with linux 3.5 and I can log in and use the desktop, so far I
-see no obvious issue.
-
-Guess I should try the 3.4.1 currently in experimental..
+OK, anything else I can do to help?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
