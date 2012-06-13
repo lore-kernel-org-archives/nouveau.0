@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Wed, 13 Jun 2012 22:42:15 +0000
-Message-ID: <bug-50571-8800-WIBw8R2N5w@http.bugs.freedesktop.org/>
+Date: Wed, 13 Jun 2012 22:49:56 +0000
+Message-ID: <bug-50571-8800-ptHgVHHZgt@http.bugs.freedesktop.org/>
 References: <bug-50571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50571
 
---- Comment #6 from Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> 2012-06-13 15:42:15 PDT ---
-On 6/1/2012 3:55 PM, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org wrote:
-> # get latest rev from nouveau tree
-> git remote add nouveau \
->    git://anongit.freedesktop.org/git/nouveau/linux-2.6
-~$ git remote add nouveau 
-git://anongit.freedesktop.org/git/nouveau/linux-2.6
-fatal: Not a git repository (or any parent up to mount parent )
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+--- Comment #7 from Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-13 15:49:56 PDT ---
+> ~$ git remote add nouveau git://anongit.freedesktop.org/git/nouveau/linux-2.6
+> fatal: Not a git repository (or any parent up to mount parent )
+> Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+>
+> What am I doing wrong?
 
-What am I doing wrong?
+My bad.  The step I left out is "cd linux".
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
