@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Wed, 13 Jun 2012 17:36:23 +0000
-Message-ID: <bug-50571-8800-JrXbDaa4vm@http.bugs.freedesktop.org/>
+Date: Wed, 13 Jun 2012 22:42:15 +0000
+Message-ID: <bug-50571-8800-WIBw8R2N5w@http.bugs.freedesktop.org/>
 References: <bug-50571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50571
 
---- Comment #5 from Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> 2012-06-13 10:36:23 PDT ---
-Created attachment 62981
-  --> https://bugs.freedesktop.org/attachment.cgi?id=62981
-ROM of my "ASUS ENGT520 Silent/DI/1GD3(LP) GeForce GT 520"
+--- Comment #6 from Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> 2012-06-13 15:42:15 PDT ---
+On 6/1/2012 3:55 PM, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org wrote:
+> # get latest rev from nouveau tree
+> git remote add nouveau \
+>    git://anongit.freedesktop.org/git/nouveau/linux-2.6
+~$ git remote add nouveau 
+git://anongit.freedesktop.org/git/nouveau/linux-2.6
+fatal: Not a git repository (or any parent up to mount parent )
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
 
-Sorry for such a long delay.
-This was dumped using vbtracetool.
-NVIDIA non-free drivers were in use at the time, hope it doesn't matter.
+What am I doing wrong?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
