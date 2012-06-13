@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Tue, 12 Jun 2012 23:33:55 +0000
-Message-ID: <bug-50403-8800-bPh3hbDCBj@http.bugs.freedesktop.org/>
+Date: Wed, 13 Jun 2012 06:34:24 +0000
+Message-ID: <bug-50403-8800-x4ge6550jG@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #28 from Glenn <brumfield.glenn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-12 16:33:55 PDT ---
-+1
-
-Ubuntu 8.04 supported this card with the nv driver. Nouveau has never, to the
-best of my knowlege, supported this card. We could really use nouveau support,
-as I have read that nvidia is considering ending support for this and all
-nvidia-96 cards. I have the same pointer and desktop graphics corruption in
-Ubuntu 12.04.
+--- Comment #29 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> 2012-06-12 23:34:24 PDT ---
+Thank you Glenn, I ended feeling I just posted silly noise
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
