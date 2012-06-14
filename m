@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Wed, 13 Jun 2012 22:49:56 +0000
-Message-ID: <bug-50571-8800-ptHgVHHZgt@http.bugs.freedesktop.org/>
+Date: Thu, 14 Jun 2012 00:08:19 +0000
+Message-ID: <bug-50571-8800-LIku8yqt7h@http.bugs.freedesktop.org/>
 References: <bug-50571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50571
 
---- Comment #7 from Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-13 15:49:56 PDT ---
-> ~$ git remote add nouveau git://anongit.freedesktop.org/git/nouveau/linux-2.6
-> fatal: Not a git repository (or any parent up to mount parent )
-> Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
->
-> What am I doing wrong?
+--- Comment #8 from Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> 2012-06-13 17:08:19 PDT ---
+Created attachment 62998
+  --> https://bugs.freedesktop.org/attachment.cgi?id=62998
+Linux 3.5 - works
 
-My bad.  The step I left out is "cd linux".
+OK sorry that was really obvious.. :D
+
+gdm3 starts fine with linux 3.5 and I can log in and use the desktop, so far I
+see no obvious issue.
+
+Guess I should try the 3.4.1 currently in experimental..
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
