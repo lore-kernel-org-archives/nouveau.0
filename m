@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Wed, 13 Jun 2012 17:16:18 +0000
-Message-ID: <bug-50571-8800-H92VF27qpC@http.bugs.freedesktop.org/>
+Date: Thu, 14 Jun 2012 01:43:24 +0000
+Message-ID: <bug-50571-8800-n3qTE1nnrD@http.bugs.freedesktop.org/>
 References: <bug-50571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,50 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50571
 
---- Comment #9 from Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> 2012-06-13 17:16:18 UTC ---
-Created attachment 62999
-  --> https://bugs.freedesktop.org/attachment.cgi?id=62999
-Linux 3.4.1 - works
+--- Comment #10 from Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-13 18:43:24 PDT ---
+Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> wrote:
 
-Yea, that works too.
+> OK, anything else I can do to help?
 
-OK, anything else I can do to help?
+If you can find the fix by bisecting, that would make me very happy.
+
+Note that this will be a little confusing.  When you say "git bisect
+bad", that means the kernel did _not_ exhibit the problem.  When you
+say "git bisect good", that means the kernel _did_ exhibit the
+problem.  The "first bad commit" is the patch that fixed it. :)
+
+It works like this:
+
+    cd linux
+    git bisect start v3.5-rc1 v3.3 -- drivers/gpu/drm/nouveau
+    make deb-pkg; # maybe with -j4
+
+That builds a version half-way between to test.  So:
+
+    dpkg -i ../<name of package>; # as root
+    reboot
+
+    cd linux
+    git bisect good; # if it crashed
+    git bisect bad; # if it worked fine
+    git bisect skip; # if some other bug makes it hard to test
+
+Then another version to test will be automatically checked out
+and the process continues.
+
+Again, remember: good = crashy.
+
+Finding the patch should take about 8 rounds.  If the gitk package is
+installed, you can see the range with the fix narrowing by running
+"git bisect visualize" at any step.  If you get bored before the
+process finishes, "git bisect log" will list the results discovered so
+far.  Even a few rounds can help a lot in narrowing down which patch
+is responsible.
+
+Then we should be better prepared to fix this in stable kernels.
+
+Thanks,
+Jonathan
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
