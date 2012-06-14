@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Thu, 14 Jun 2012 01:43:24 +0000
-Message-ID: <bug-50571-8800-n3qTE1nnrD@http.bugs.freedesktop.org/>
-References: <bug-50571-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv50: rename INVALID_QUERY_OR_TEXTURE error
+ to INVALID_OPERATION
+Date: Thu, 14 Jun 2012 23:58:08 +0200
+Message-ID: <20120614215808.GA21795@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50571-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,54 +20,26 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50571
+Current name is misleading, because this error can be triggered by other
+conditions, like changing STRMOUT parameter without disabling STRMOUT first.
 
---- Comment #10 from Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-13 18:43:24 PDT ---
-Gedalya <gedalya-UGXokjX7p+DR7s880joybQ@public.gmane.org> wrote:
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nv50_graph.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-> OK, anything else I can do to help?
-
-If you can find the fix by bisecting, that would make me very happy.
-
-Note that this will be a little confusing.  When you say "git bisect
-bad", that means the kernel did _not_ exhibit the problem.  When you
-say "git bisect good", that means the kernel _did_ exhibit the
-problem.  The "first bad commit" is the patch that fixed it. :)
-
-It works like this:
-
-    cd linux
-    git bisect start v3.5-rc1 v3.3 -- drivers/gpu/drm/nouveau
-    make deb-pkg; # maybe with -j4
-
-That builds a version half-way between to test.  So:
-
-    dpkg -i ../<name of package>; # as root
-    reboot
-
-    cd linux
-    git bisect good; # if it crashed
-    git bisect bad; # if it worked fine
-    git bisect skip; # if some other bug makes it hard to test
-
-Then another version to test will be automatically checked out
-and the process continues.
-
-Again, remember: good = crashy.
-
-Finding the patch should take about 8 rounds.  If the gitk package is
-installed, you can see the range with the fix narrowing by running
-"git bisect visualize" at any step.  If you get bored before the
-process finishes, "git bisect log" will list the results discovered so
-far.  Even a few rounds can help a lot in narrowing down which patch
-is responsible.
-
-Then we should be better prepared to fix this in stable kernels.
-
-Thanks,
-Jonathan
-
+diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
+index 0289a96..0fd1117 100644
+--- a/drivers/gpu/drm/nouveau/nv50_graph.c
++++ b/drivers/gpu/drm/nouveau/nv50_graph.c
+@@ -299,7 +299,7 @@ static struct nouveau_bitfield nv50_graph_trap_ccache[] = {
+ 
+ /* There must be a *lot* of these. Will take some time to gather them up. */
+ struct nouveau_enum nv50_data_error_names[] = {
+-	{ 0x00000003, "INVALID_QUERY_OR_TEXTURE", NULL },
++	{ 0x00000003, "INVALID_OPERATION", NULL },
+ 	{ 0x00000004, "INVALID_VALUE", NULL },
+ 	{ 0x00000005, "INVALID_ENUM", NULL },
+ 	{ 0x00000008, "INVALID_OBJECT", NULL },
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.8.6
