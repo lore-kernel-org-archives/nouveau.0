@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48434] X freezes with "EQ overflowing"
-Date: Fri, 15 Jun 2012 05:50:59 +0000
-Message-ID: <bug-48434-8800-4bH99KO9PI@http.bugs.freedesktop.org/>
+Date: Fri, 15 Jun 2012 15:19:53 +0000
+Message-ID: <bug-48434-8800-4X7BSFQ1ZE@http.bugs.freedesktop.org/>
 References: <bug-48434-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48434
 
-Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org> changed:
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         AssignedTo|peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org    |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-          Component|Input/evdev                 |Driver/nouveau
-
---- Comment #3 from Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org> 2012-06-14 22:50:59 PDT ---
-that message occurs when the input driver tries to submit input events but
-something else is hogging the server. Not an evdev problem.
+  Attachment #59644|application/octet-stream    |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
