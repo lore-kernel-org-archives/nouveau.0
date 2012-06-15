@@ -1,12 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Karol Babioch <karol-+CCwuOEMgH6ELgA04lAiVw@public.gmane.org>
 Subject: Re: Regression: Blank screen with kernel 3.4
-Date: Sat, 16 Jun 2012 06:31:18 +1000
-Message-ID: <CACAvsv44j9tNeoYtYOdZCd+RZ8y3=OxkkRsdyZQqNrBb5Dqz=g@mail.gmail.com>
+Date: Fri, 15 Jun 2012 22:58:07 +0200
+Message-ID: <4FDBA1DF.40908@babioch.de>
 References: <4FDB711F.4070800@babioch.de>
+	<CACAvsv44j9tNeoYtYOdZCd+RZ8y3=OxkkRsdyZQqNrBb5Dqz=g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1305142675=="
+Content-Type: multipart/mixed; boundary="===============1690579109=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4FDB711F.4070800-+CCwuOEMgH6ELgA04lAiVw@public.gmane.org>
+In-Reply-To: <CACAvsv44j9tNeoYtYOdZCd+RZ8y3=OxkkRsdyZQqNrBb5Dqz=g@mail.gmail.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,116 +17,62 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Karol Babioch <karol-+CCwuOEMgH6ELgA04lAiVw@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1305142675==
-Content-Type: multipart/alternative; boundary=20cf3071d0bad991b104c288b2e3
+This is an OpenPGP/MIME signed message (RFC 2440 and 3156)
+--===============1690579109==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature";
+ boundary="------------enigAFFB076D8BC84318E6C079F4"
 
---20cf3071d0bad991b104c288b2e3
-Content-Type: text/plain; charset=ISO-8859-1
-
-Am Samstag, 16. Juni 2012 schrieb Karol Babioch :
-
->
-> Hi,
->
-> there seems to be a quite serious regression in kernel 3.4, at least for
-> me. As soon as the nouveau module gets loaded my screen goes blank.
->
-> There is already a bug reported on this issue in your bug tracker, see
-> [1]. Interestingly enough I've got nearly the same laptop as the
-> reporter of the issue. Personally I've got a Sony VAIO VPCS12C5E. The
-> reporter got a VPCS11C5E. We both have a dedicated graphics card (NVIDIA
-> GeForce 310M). The CPU does provide its own GPU, but it is disabled,
-> which can't be accessed or changed within the BIOS.
->
-> It worked fine for kernels 2.6.39 up until now (3.3). I'm not quite sure
-> whether 2.6.38 worked, or not, but it was somewhere around this time
-> that it got fixed.
->
-> From reading various threads, I've got the feeling that a lot of the
-> black/blank screen issues should be fixed with 3.4. My best guess would
-> be that something was changed, which introduced this kind of regression.
->
-> As there are already some logfiles provided within the bug issued in
-> your tracker (see [1]), I won't attach anything here. But I'm happy to
-> provide anything you need, of course. Just let me know.
-
-Thanks!  I'm aware of the issue and will look into it after the weekend. I
-don't have any effected hw, so i'll ping you for testing as needed :)
-
-Ben.
-
->
-> Would be nice, to narrow this one down, as I would like to use kernel
-> 3.4 and later at some point in the future ;).
->
-> Best regards,
-> Karol Babioch
->
-> [1] https://bugs.freedesktop.org/show_bug.cgi?id=50175
->
->
-
---20cf3071d0bad991b104c288b2e3
-Content-Type: text/html; charset=ISO-8859-1
+This is an OpenPGP/MIME signed message (RFC 2440 and 3156)
+--------------enigAFFB076D8BC84318E6C079F4
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Am Samstag, 16. Juni 2012 schrieb Karol Babioch :<br><span class=3D"Apple-s=
-tyle-span" style>=A0</span><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-<br>
-there seems to be a quite serious regression in kernel 3.4, at least for<br=
->
-me. As soon as the nouveau module gets loaded my screen goes blank.<br>
-<br>
-There is already a bug reported on this issue in your bug tracker, see<br>
-[1]. Interestingly enough I&#39;ve got nearly the same laptop as the<br>
-reporter of the issue. Personally I&#39;ve got a Sony VAIO VPCS12C5E. The<b=
-r>
-reporter got a VPCS11C5E. We both have a dedicated graphics card (NVIDIA<br=
->
-GeForce 310M). The CPU does provide its own GPU, but it is disabled,<br>
-which can&#39;t be accessed or changed within the BIOS.<br>
-<br>
-It worked fine for kernels 2.6.39 up until now (3.3). I&#39;m not quite sur=
-e<br>
-whether 2.6.38 worked, or not, but it was somewhere around this time<br>
-that it got fixed.<br>
-<br>
-From reading various threads, I&#39;ve got the feeling that a lot of the<br=
->
-black/blank screen issues should be fixed with 3.4. My best guess would<br>
-be that something was changed, which introduced this kind of regression.<br=
->
-<br>
-As there are already some logfiles provided within the bug issued in<br>
-your tracker (see [1]), I won&#39;t attach anything here. But I&#39;m happy=
- to<br>
-provide anything you need, of course. Just let me know.</blockquote><div>Th=
-anks! =A0I&#39;m aware of the issue and will look into it after the weekend=
-. I don&#39;t have any effected hw, so i&#39;ll ping you for testing as nee=
-ded :)</div>
-<div><br></div><div>Ben.<span></span></div><div></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
-left:1ex">
-<br>
-Would be nice, to narrow this one down, as I would like to use kernel<br>
-3.4 and later at some point in the future ;).<br>
-<br>
-Best regards,<br>
-Karol Babioch<br>
-<br>
-[1] <a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D50175" target=
-=3D"_blank">https://bugs.freedesktop.org/show_bug.cgi?id=3D50175</a><br>
-<br>
-</blockquote>
+Hi,
 
---20cf3071d0bad991b104c288b2e3--
+Am 15.06.2012 22:31, schrieb Ben Skeggs:
+> Thanks!  I'm aware of the issue and will look into it after the weekend=
+=2E
+> I don't have any effected hw, so i'll ping you for testing as needed :)=
 
---===============1305142675==
+
+Sounds great. I'm happy to test anything you will come up with.
+
+Best regards,
+Karol Babioch
+
+
+--------------enigAFFB076D8BC84318E6C079F4
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+
+iQIcBAEBAgAGBQJP26HfAAoJEHSaZc1HnzIVk3gP/330RgI63CljLUB8GLmiv9ga
+xgOgJmLyTIb6j15CFiqcmkcFPtONzjofmvjStN11Xc+b3dqOJshQxqnd8qKxmSXB
+3OyzCMbczHCkwbUZ5nNiR9Iqn/ujW07cYbiiPIlk0iWBfYcGV1iPBxAswb1GF9OZ
+ixnigRjWC5LWjgrjtplSSd3MKNs+QPfJ8ftj46sU3MFg9Z/ZyLtG5ymmmYd/nVhx
+Etno7ggAT2ADlfZe/SvCUlZaQh9PsU+PFEaAmrTn5N+Vk0u1w/p4grkRhWYlOSIE
+JuI9z3M/Vx1zgvzPCkBJG5RySRHEZahf4lzmmZ6u8J9BBdEWmhRqh9hEHioIRO3o
+x6LaQwrfVie/i1rtZ7MN0ugcPJpHLrRehR4MgH5f+qy8wZ52+CYswReb/UftVbjA
+wH1NxriuvS7V2a5Jtc2vaRS3PwP6JEbfThXvvz7BoSdtTkfBzXpjYz2BOlmWqIOK
+ijS9kuvJDzAaTcywqAPRQEjyvx/FDBwA038atNuEVl9jCUmhkskxjc+LB9V/dDt2
+Jo3J3R96I+BJF63l/TDEf4OHViIAsX2DLHo6nB2/AKiwRDrypoC3cMdzl1A/5Z3N
+ZZKQJcIxJDsf0H/uyj3idDhp2x4bflEh/pIosnbRbJS5R4sXtiQV1bCZ78eDr5g8
+DF6OiP67mbsTi8AVT4L/
+=bvhK
+-----END PGP SIGNATURE-----
+
+--------------enigAFFB076D8BC84318E6C079F4--
+
+--===============1690579109==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -136,4 +83,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1305142675==--
+--===============1690579109==--
