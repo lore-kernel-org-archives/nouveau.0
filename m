@@ -1,15 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nv50: rename INVALID_QUERY_OR_TEXTURE
- error to INVALID_OPERATION
-Date: Fri, 15 Jun 2012 10:17:35 +1000
-Message-ID: <20120615001735.GA2245@nisroch.redhat.com>
-References: <20120614215808.GA21795@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 48434] X freezes with "EQ overflowing"
+Date: Fri, 15 Jun 2012 05:50:59 +0000
+Message-ID: <bug-48434-8800-4bH99KO9PI@http.bugs.freedesktop.org/>
+References: <bug-48434-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20120614215808.GA21795-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <bug-48434-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,38 +17,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jun 14, 2012 at 11:58:08PM +0200, Marcin Slusarz wrote:
-> Current name is misleading, because this error can be triggered by other
-> conditions, like changing STRMOUT parameter without disabling STRMOUT first.
-> 
-Applied, thanks.
+https://bugs.freedesktop.org/show_bug.cgi?id=48434
 
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/nv50_graph.c |    2 +-
->  1 files changed, 1 insertions(+), 1 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nv50_graph.c b/drivers/gpu/drm/nouveau/nv50_graph.c
-> index 0289a96..0fd1117 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_graph.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_graph.c
-> @@ -299,7 +299,7 @@ static struct nouveau_bitfield nv50_graph_trap_ccache[] = {
->  
->  /* There must be a *lot* of these. Will take some time to gather them up. */
->  struct nouveau_enum nv50_data_error_names[] = {
-> -	{ 0x00000003, "INVALID_QUERY_OR_TEXTURE", NULL },
-> +	{ 0x00000003, "INVALID_OPERATION", NULL },
->  	{ 0x00000004, "INVALID_VALUE", NULL },
->  	{ 0x00000005, "INVALID_ENUM", NULL },
->  	{ 0x00000008, "INVALID_OBJECT", NULL },
-> -- 
-> 1.7.8.6
-> 
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         AssignedTo|peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org    |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+          Component|Input/evdev                 |Driver/nouveau
+
+--- Comment #3 from Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org> 2012-06-14 22:50:59 PDT ---
+that message occurs when the input driver tries to submit input events but
+something else is hogging the server. Not an evdev problem.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
