@@ -1,13 +1,11 @@
-From: Karol Babioch <karol-+CCwuOEMgH6ELgA04lAiVw@public.gmane.org>
-Subject: Re: Regression: Blank screen with kernel 3.4
-Date: Fri, 15 Jun 2012 22:58:07 +0200
-Message-ID: <4FDBA1DF.40908@babioch.de>
-References: <4FDB711F.4070800@babioch.de>
-	<CACAvsv44j9tNeoYtYOdZCd+RZ8y3=OxkkRsdyZQqNrBb5Dqz=g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 51144] New: significant pixel corruption in text
+Date: Fri, 15 Jun 2012 23:26:27 +0000
+Message-ID: <bug-51144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1690579109=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv44j9tNeoYtYOdZCd+RZ8y3=OxkkRsdyZQqNrBb5Dqz=g@mail.gmail.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,70 +15,110 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 2440 and 3156)
---===============1690579109==
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature";
- boundary="------------enigAFFB076D8BC84318E6C079F4"
+https://bugs.freedesktop.org/show_bug.cgi?id=51144
 
-This is an OpenPGP/MIME signed message (RFC 2440 and 3156)
---------------enigAFFB076D8BC84318E6C079F4
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Am 15.06.2012 22:31, schrieb Ben Skeggs:
-> Thanks!  I'm aware of the issue and will look into it after the weekend=
-=2E
-> I don't have any effected hw, so i'll ping you for testing as needed :)=
-
-
-Sounds great. I'm happy to test anything you will come up with.
-
-Best regards,
-Karol Babioch
+             Bug #: 51144
+           Summary: significant pixel corruption in text
+    Classification: Unclassified
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: basile-VdE74OAlGqnvXjIo7pOF+l6hYfS7NtTn@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
---------------enigAFFB076D8BC84318E6C079F4
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Created attachment 63099
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63099
+photo of screen portion with corrupted text pixels
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+(perhaps bug similar to 20363)
 
-iQIcBAEBAgAGBQJP26HfAAoJEHSaZc1HnzIVk3gP/330RgI63CljLUB8GLmiv9ga
-xgOgJmLyTIb6j15CFiqcmkcFPtONzjofmvjStN11Xc+b3dqOJshQxqnd8qKxmSXB
-3OyzCMbczHCkwbUZ5nNiR9Iqn/ujW07cYbiiPIlk0iWBfYcGV1iPBxAswb1GF9OZ
-ixnigRjWC5LWjgrjtplSSd3MKNs+QPfJ8ftj46sU3MFg9Z/ZyLtG5ymmmYd/nVhx
-Etno7ggAT2ADlfZe/SvCUlZaQh9PsU+PFEaAmrTn5N+Vk0u1w/p4grkRhWYlOSIE
-JuI9z3M/Vx1zgvzPCkBJG5RySRHEZahf4lzmmZ6u8J9BBdEWmhRqh9hEHioIRO3o
-x6LaQwrfVie/i1rtZ7MN0ugcPJpHLrRehR4MgH5f+qy8wZ52+CYswReb/UftVbjA
-wH1NxriuvS7V2a5Jtc2vaRS3PwP6JEbfThXvvz7BoSdtTkfBzXpjYz2BOlmWqIOK
-ijS9kuvJDzAaTcywqAPRQEjyvx/FDBwA038atNuEVl9jCUmhkskxjc+LB9V/dDt2
-Jo3J3R96I+BJF63l/TDEf4OHViIAsX2DLHo6nB2/AKiwRDrypoC3cMdzl1A/5Z3N
-ZZKQJcIxJDsf0H/uyj3idDhp2x4bflEh/pIosnbRbJS5R4sXtiQV1bCZ78eDr5g8
-DF6OiP67mbsTi8AVT4L/
-=bvhK
------END PGP SIGNATURE-----
+with latest git of xf86-video-nouveau:
 
---------------enigAFFB076D8BC84318E6C079F4--
+commit 36d3f8c28c55c05ccf4efa985831d2d249bad2fe
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Wed Jun 13 22:41:58 2012 +1000
 
---===============1690579109==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+    dri2: kill debug spam
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
---===============1690579109==--
+
+with latest git of drm
+ % git log    
+commit d1fcfb17b9642ae351b03056a27b328f314ca80a
+Author: Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Tue Jun 12 18:09:55 2012 -0400
+
+    radeon: force 1D array mode for z/stencil surface
+
+    On r6xx or evergreen z/stencil surface don't support linear or
+    linear aligned surface, force 1D tiled mode for those.
+
+    Signed-off-by: Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+=======================================
+hardware (bought last week, june 2012):
+   motherboard ASUS P8Z77-V
+   Intel(R) Core(TM) i7-3770K CPU
+   one graphic card Gigabyte GTS 450
+   16Gb RAM, SSD disk + Sata disks
+=========================
+kernel: Linux 3.4.2 AMD64 (downloaded from kernel.org, compiled thru make-kpkg)
+
+% lspci
+00:00.0 Host bridge: Intel Corporation 3rd Gen Core processor DRAM Controller
+(rev 09)
+00:01.0 PCI bridge: Intel Corporation 3rd Gen Core processor PCI Express Root
+Port (rev 09)
+00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor
+Graphics Controller (rev 09)
+00:14.0 USB controller: Intel Corporation 7 Series Chipset Family USB xHCI Host
+Controller (rev 04)
+00:16.0 Communication controller: Intel Corporation 7 Series Chipset Family MEI
+Controller #1 (rev 04)
+00:19.0 Ethernet controller: Intel Corporation 82579V Gigabit Network
+Connection (rev 04)
+00:1a.0 USB controller: Intel Corporation 7 Series Chipset Family USB Enhanced
+Host Controller #2 (rev 04)
+00:1b.0 Audio device: Intel Corporation 7 Series Chipset Family High Definition
+Audio Controller (rev 04)
+00:1c.0 PCI bridge: Intel Corporation 7 Series Chipset Family PCI Express Root
+Port 1 (rev c4)
+00:1c.3 PCI bridge: Intel Corporation 7 Series Chipset Family PCI Express Root
+Port 4 (rev c4)
+00:1c.4 PCI bridge: Intel Corporation 82801 PCI Bridge (rev c4)
+00:1c.7 PCI bridge: Intel Corporation 7 Series Chipset Family PCI Express Root
+Port 8 (rev c4)
+00:1d.0 USB controller: Intel Corporation 7 Series Chipset Family USB Enhanced
+Host Controller #1 (rev 04)
+00:1f.0 ISA bridge: Intel Corporation Z77 Express Chipset LPC Controller (rev
+04)
+00:1f.2 SATA controller: Intel Corporation 7 Series Chipset Family 6-port SATA
+AHCI Controller (rev 04)
+00:1f.3 SMBus: Intel Corporation 7 Series Chipset Family SMBus Controller (rev
+04)
+01:00.0 VGA compatible controller: NVIDIA Corporation GF116 [GeForce GTS 450]
+(rev a1)
+01:00.1 Audio device: NVIDIA Corporation GF116 High Definition Audio Controller
+(rev a1)
+03:00.0 SATA controller: ASMedia Technology Inc. ASM1062 Serial ATA Controller
+(rev 01)
+04:00.0 PCI bridge: ASMedia Technology Inc. ASM1083/1085 PCIe to PCI Bridge
+(rev 03)
+06:00.0 USB controller: ASMedia Technology Inc. ASM1042 SuperSpeed USB Host
+Controller
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
