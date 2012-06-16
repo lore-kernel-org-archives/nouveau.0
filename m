@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51144] significant pixel corruption in text ;
  driver nouveau - GF116 [GeForce GTS 450]
-Date: Sat, 16 Jun 2012 10:34:37 +0000
-Message-ID: <bug-51144-8800-RT2z5KpzRr@http.bugs.freedesktop.org/>
+Date: Sat, 16 Jun 2012 10:34:39 +0000
+Message-ID: <bug-51144-8800-kgUa7UbMPk@http.bugs.freedesktop.org/>
 References: <bug-51144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #63100|text/x-log                  |text/plain
+  Attachment #63101|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
