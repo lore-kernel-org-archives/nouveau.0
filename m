@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51157] GeForce GT 540M not working anymore
-Date: Sat, 16 Jun 2012 20:23:08 +0000
-Message-ID: <bug-51157-8800-3Zj8ufMOqN@http.bugs.freedesktop.org/>
+Date: Sat, 16 Jun 2012 20:23:42 +0000
+Message-ID: <bug-51157-8800-LtLJADJMfo@http.bugs.freedesktop.org/>
 References: <bug-51157-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51157
 
---- Comment #1 from Diego Fernandez <aiguo.fernandez-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-16 13:23:08 PDT ---
-Created attachment 63118
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63118
-dmesg from lts kernel
+--- Comment #2 from Diego Fernandez <aiguo.fernandez-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-16 13:23:42 PDT ---
+Created attachment 63119
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63119
+vbios rom
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
