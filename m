@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51144] significant pixel corruption in text nouveau
  - GF116 [GeForce GTS 450]
-Date: Sat, 16 Jun 2012 06:31:20 +0000
-Message-ID: <bug-51144-8800-fBZDLknK3j@http.bugs.freedesktop.org/>
+Date: Sat, 16 Jun 2012 06:32:45 +0000
+Message-ID: <bug-51144-8800-cC8lnxtPnq@http.bugs.freedesktop.org/>
 References: <bug-51144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51144
 
-Basile Starynkevitch <basile-VdE74OAlGqnvXjIo7pOF+l6hYfS7NtTn@public.gmane.org> changed:
+--- Comment #2 from Basile Starynkevitch <basile-VdE74OAlGqnvXjIo7pOF+l6hYfS7NtTn@public.gmane.org> 2012-06-15 23:32:45 PDT ---
+Created attachment 63101
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63101
+dmesg output
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |basile-VdE74OAlGqnvXjIo7pOF+l6hYfS7NtTn@public.gmane.org
-            Summary|significant pixel           |significant pixel
-                   |corruption in text          |corruption in text  nouveau
-                   |                            |- GF116 [GeForce GTS 450]
+output of dmesg command
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
