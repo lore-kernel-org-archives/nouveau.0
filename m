@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51144] significant pixel corruption in text ;
  driver nouveau - GF116 [GeForce GTS 450]
-Date: Sat, 16 Jun 2012 06:37:13 +0000
-Message-ID: <bug-51144-8800-ufwUS7YKrS@http.bugs.freedesktop.org/>
+Date: Sat, 16 Jun 2012 06:41:19 +0000
+Message-ID: <bug-51144-8800-RyNNea927v@http.bugs.freedesktop.org/>
 References: <bug-51144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51144
 
---- Comment #3 from Basile Starynkevitch <basile-VdE74OAlGqnvXjIo7pOF+l6hYfS7NtTn@public.gmane.org> 2012-06-15 23:37:13 PDT ---
-Text appear corrupted in Iceaweasel (firefox), roxterm..
-
-But xterm showing ok
-
-(perhaps some fonts are ok and other are not)
+--- Comment #4 from Basile Starynkevitch <basile-VdE74OAlGqnvXjIo7pOF+l6hYfS7NtTn@public.gmane.org> 2012-06-15 23:41:19 PDT ---
+dual screen, dual head, both screens are samsung !sync!laster 206BW
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
