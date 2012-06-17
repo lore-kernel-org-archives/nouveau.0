@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46557] nouveau: nv4E 2D acceleration broken on
  64-bit kernel; works on 32-bit
-Date: Sun, 17 Jun 2012 13:26:33 +0000
-Message-ID: <bug-46557-8800-LNSSSbmEmV@http.bugs.freedesktop.org/>
+Date: Sun, 17 Jun 2012 13:26:39 +0000
+Message-ID: <bug-46557-8800-alJcQgL6jJ@http.bugs.freedesktop.org/>
 References: <bug-46557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,7 +27,7 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #63134|text/x-log                  |text/plain
+  Attachment #63135|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
