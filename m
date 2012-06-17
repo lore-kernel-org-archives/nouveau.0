@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46557] nouveau: nv4E 2D acceleration broken on
  64-bit kernel; works on 32-bit
-Date: Sun, 17 Jun 2012 13:27:03 +0000
-Message-ID: <bug-46557-8800-VsixJfyHAq@http.bugs.freedesktop.org/>
+Date: Sun, 17 Jun 2012 14:16:35 +0000
+Message-ID: <bug-46557-8800-r1hAOzV6ZR@http.bugs.freedesktop.org/>
 References: <bug-46557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46557
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #13 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-17 07:16:35 PDT ---
+Created attachment 63137
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63137
+ugly workaround
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #63136|text/x-log                  |text/plain
-          mime type|                            |
+Does this patch help too? It's still a workaround, but it doesn't lose memory
+above 2GB.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
