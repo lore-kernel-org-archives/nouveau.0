@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Sat, 16 Jun 2012 23:41:44 +0000
-Message-ID: <bug-50571-8800-zxAIjkojku@http.bugs.freedesktop.org/>
+Date: Sun, 17 Jun 2012 00:54:10 +0000
+Message-ID: <bug-50571-8800-kmkGZNJ89v@http.bugs.freedesktop.org/>
 References: <bug-50571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,25 +22,38 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50571
 
-Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #13 from Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-16 17:54:10 PDT ---
+Created attachment 63122
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63122
+drm/nvd0/disp: disconnect encoders before reprogramming them
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Thanks again for your hard work tracking this down.
 
---- Comment #12 from Jonathan Nieder <jrnieder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-16 16:41:44 PDT ---
-Adding Ben Skeggs to cc.  Ben, can you think of any reason not to include
+3.3.y (unlike 3.2.y) is not maintained any more, but the backport
+to 3.3 is easier, so let's start there.
 
- commit 4cbb0f8d2b06c72aae3552ff1a0a57814c6ce7d2
- Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
- Date:   Mon Mar 12 15:23:44 2012 +1000
+Please test the attached patch against the 3.3.y tree, like so:
 
-      drm/nvd0/disp: disconnect encoders before reprogramming them
+  cd linux
 
-      Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+  # fetch point releases
+  git remote add stable \
+    git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+  git fetch stable
 
-in stable kernels?  Gedalya is finding it fixes a hang that can also
-be experienced with 3.2.y and 3.3.y.
+  # 3.3.y
+  git checkout stable/linux-3.3.y
+  make silentoldconfig
+  make deb-pkg; # maybe with -j4
+  dpkg -i ../<name of package>
+  reboot
+
+  # hopefully it reproduces the problem. So try the patch:
+  cd linux
+  git am -3sc /path/to/patch
+  make deb-pkg; # maybe with -j4
+  dpkg -i ../<name of package>
+  reboot
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
