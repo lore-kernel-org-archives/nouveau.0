@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46557] nouveau: nv4E 2D acceleration broken on
- 64-bit kernel; works on 32-bit
-Date: Sun, 17 Jun 2012 10:52:34 +0000
-Message-ID: <bug-46557-8800-nXEIV2o1Ok@http.bugs.freedesktop.org/>
-References: <bug-46557-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49746] EDID checksum is invalid
+Date: Sun, 17 Jun 2012 18:09:40 +0000
+Message-ID: <bug-49746-8800-fwwAP6AV7T@http.bugs.freedesktop.org/>
+References: <bug-49746-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-49746-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,10 +20,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=46557
+https://bugs.freedesktop.org/show_bug.cgi?id=49746
 
---- Comment #16 from D. Hugh Redelmeier <hugh-pmF8o41NoarQT0dZR+AlfA@public.gmane.org> 2012-06-17 10:52:34 UTC ---
-Sorry, I said my notebook had 3G of RAM.  I misremembered.  It has 2.25G.
+christoph <spam-7bUvwKseDQ1hl2p70BpVqQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #2 from christoph <spam-7bUvwKseDQ1hl2p70BpVqQ@public.gmane.org> 2012-06-17 11:09:40 PDT ---
+Kernel 3.4.2 made it from testing to core in Arch Linux this weekend. The EDID
+checksum errors are gone, monitor is detected and resolution is fine. Thanks.
+
+christoph
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
