@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46557] nouveau: nv4E 2D acceleration broken on
  64-bit kernel; works on 32-bit
-Date: Sun, 17 Jun 2012 13:14:37 +0000
-Message-ID: <bug-46557-8800-OVXR5PTu57@http.bugs.freedesktop.org/>
+Date: Sun, 17 Jun 2012 13:16:18 +0000
+Message-ID: <bug-46557-8800-mrG7zGlNsV@http.bugs.freedesktop.org/>
 References: <bug-46557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46557
 
---- Comment #9 from D. Hugh Redelmeier <hugh-pmF8o41NoarQT0dZR+AlfA@public.gmane.org> 2012-06-17 06:14:37 PDT ---
-Created attachment 63133
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63133
-Hugh's dmesg + lspci + /proc/modules
+--- Comment #10 from D. Hugh Redelmeier <hugh-pmF8o41NoarQT0dZR+AlfA@public.gmane.org> 2012-06-17 06:16:18 PDT ---
+Created attachment 63134
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63134
+Hugh's Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
