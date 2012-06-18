@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51144] significant pixel corruption in text ;
  driver nouveau - GF116 [GeForce GTS 450]
-Date: Sun, 17 Jun 2012 22:52:26 +0000
-Message-ID: <bug-51144-8800-vv3yOqLoCa@http.bugs.freedesktop.org/>
+Date: Mon, 18 Jun 2012 05:55:43 +0000
+Message-ID: <bug-51144-8800-Dx8RnvhS80@http.bugs.freedesktop.org/>
 References: <bug-51144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,22 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51144
 
---- Comment #6 from Basile Starynkevitch <basile-VdE74OAlGqnvXjIo7pOF+l6hYfS7NtTn@public.gmane.org> 2012-06-17 22:52:26 UTC ---
-Seems to be much better with latest git commits on xf86-video-nouveau:
- % git log     
-commit 6dbf4ea12600275775123f9f564469454415da55
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Mon Jun 18 13:28:07 2012 +1000
-
-    bump version to 1.0.0
-
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-commit 5e74cee90eeb4e8e638b371a5f1a2c6737be70ff
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Mon Jun 18 15:36:47 2012 +1000
-
-    distcheck fixes
+--- Comment #7 from Basile Starynkevitch <basile-VdE74OAlGqnvXjIo7pOF+l6hYfS7NtTn@public.gmane.org> 2012-06-17 22:55:43 PDT ---
+But the issue still appears sometimes...., probably much less frequently...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
