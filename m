@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51207] Background corruption in Firefox w/ cairo
-Date: Mon, 18 Jun 2012 15:44:45 +0000
-Message-ID: <bug-51207-8800-fdwDrV7aJ9@http.bugs.freedesktop.org/>
+Date: Mon, 18 Jun 2012 15:46:52 +0000
+Message-ID: <bug-51207-8800-7Q8wkr8ml4@http.bugs.freedesktop.org/>
 References: <bug-51207-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51207
 
---- Comment #1 from Tim Koopman <n.t.koopman-TNUcmE4EBc2sTnJN9+BGXg@public.gmane.org> 2012-06-18 08:44:45 PDT ---
-Created attachment 63181
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63181
-X.org log
+--- Comment #2 from Tim Koopman <n.t.koopman-TNUcmE4EBc2sTnJN9+BGXg@public.gmane.org> 2012-06-18 08:46:52 PDT ---
+Created attachment 63182
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63182
+Another example
+
+Another website affected by this is http://planet.gnome.org (With the blue
+gradient at the top)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
