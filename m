@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51207] Background corruption in Firefox w/ cairo
-Date: Mon, 18 Jun 2012 15:46:52 +0000
-Message-ID: <bug-51207-8800-7Q8wkr8ml4@http.bugs.freedesktop.org/>
-References: <bug-51207-8800@http.bugs.freedesktop.org/>
+From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/2] nouveau/exa: unref bo if map failed
+Date: Tue, 19 Jun 2012 00:28:59 +0200
+Message-ID: <1340058540-12607-1-git-send-email-madman2003@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51207-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +18,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51207
+Signed-off-by: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ src/nouveau_exa.c |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
 
---- Comment #2 from Tim Koopman <n.t.koopman-TNUcmE4EBc2sTnJN9+BGXg@public.gmane.org> 2012-06-18 08:46:52 PDT ---
-Created attachment 63182
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63182
-Another example
-
-Another website affected by this is http://planet.gnome.org (With the blue
-gradient at the top)
-
+diff --git a/src/nouveau_exa.c b/src/nouveau_exa.c
+index 55dce99..c51a799 100644
+--- a/src/nouveau_exa.c
++++ b/src/nouveau_exa.c
+@@ -175,11 +175,15 @@ nouveau_exa_scratch(NVPtr pNv, int size, struct nouveau_bo **pbo, int *off)
+ 		ret = nouveau_bo_new(pNv->dev, NOUVEAU_BO_GART | NOUVEAU_BO_MAP,
+ 				     0, NOUVEAU_ALIGN(size, 1 * 1024 * 1024),
+ 				     NULL, &bo);
+-		if (ret == 0)
+-			ret = nouveau_bo_map(bo, NOUVEAU_BO_RDWR, pNv->client);
+ 		if (ret != 0)
+ 			return ret;
+ 
++		ret = nouveau_bo_map(bo, NOUVEAU_BO_RDWR, pNv->client);
++		if (ret != 0) {
++			nouveau_bo_ref(NULL, &bo);
++			return ret;
++		}
++
+ 		nouveau_bo_ref(bo, &pNv->transfer);
+ 		pNv->transfer_offset = 0;
+ 	}
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.8.6
