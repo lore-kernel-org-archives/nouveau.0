@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51207] Background corruption in Firefox w/ cairo
-Date: Tue, 19 Jun 2012 09:44:16 +0000
-Message-ID: <bug-51207-8800-61ULfVAVlD@http.bugs.freedesktop.org/>
-References: <bug-51207-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 50175] [regression kernel 3.4] : nouveau detects
+ internal laptop display as "disconnected" / screen is turned off
+Date: Tue, 19 Jun 2012 13:25:40 +0000
+Message-ID: <bug-50175-8800-QdhPE5Zng2@http.bugs.freedesktop.org/>
+References: <bug-50175-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51207-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-50175-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +21,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51207
+https://bugs.freedesktop.org/show_bug.cgi?id=50175
 
-Tim Koopman <n.t.koopman-TNUcmE4EBc2sTnJN9+BGXg@public.gmane.org> changed:
+--- Comment #10 from Karol Babioch <karol-+CCwuOEMgH6ELgA04lAiVw@public.gmane.org> 2012-06-19 06:25:40 PDT ---
+There seems to be a working patch over at the kernel.org bug tracker (see [1]).
+Interestingly enough I was pointed at it while trying to fix another issue, so
+I was quite surprised that it fixes this one.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+Maybe someone else could try it in order to confirm it.
 
---- Comment #3 from Tim Koopman <n.t.koopman-TNUcmE4EBc2sTnJN9+BGXg@public.gmane.org> 2012-06-19 02:44:16 PDT ---
-And it was fixed in 1.0.1..
+[1] https://bugzilla.kernel.org/attachment.cgi?id=73576
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
