@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50175] [regression kernel 3.4] : nouveau detects
- internal laptop display as "disconnected" / screen is turned off
-Date: Tue, 19 Jun 2012 21:02:16 +0000
-Message-ID: <bug-50175-8800-6eFNn6eBCf@http.bugs.freedesktop.org/>
-References: <bug-50175-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] Nouveau + nvidia GT240 = unworkable
+Date: Tue, 19 Jun 2012 21:05:20 +0000
+Message-ID: <bug-33165-8800-jcZ3W3pC7s@http.bugs.freedesktop.org/>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50175-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50175
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #6 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> 2012-06-19 14:05:20 PDT ---
+Also following up on your mailinglist post:
+there is no general problem with nouveau and nv92, which is one of the most
+common chipsets and works without problems for the most of us.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |NOTOURBUG
-
---- Comment #13 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-19 14:02:16 PDT ---
-Duplicate of https://bugzilla.kernel.org/show_bug.cgi?id=43168
+So you have to be more specific about what problems you do encounter in order
+to get real help.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
