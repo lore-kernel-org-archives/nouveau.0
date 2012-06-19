@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Tue, 19 Jun 2012 08:08:35 +0000
-Message-ID: <bug-15758-8800-VUzNc6LTDM@http.bugs.freedesktop.org/>
-References: <bug-15758-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51207] Background corruption in Firefox w/ cairo
+Date: Tue, 19 Jun 2012 09:44:16 +0000
+Message-ID: <bug-51207-8800-61ULfVAVlD@http.bugs.freedesktop.org/>
+References: <bug-51207-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51207-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=15758
+https://bugs.freedesktop.org/show_bug.cgi?id=51207
 
-Chi-Thanh Christopher Nguyen <chithanh-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> changed:
+Tim Koopman <n.t.koopman-TNUcmE4EBc2sTnJN9+BGXg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=7309,
-                   |                            |https://bugs.gentoo.org/sho
-                   |                            |w_bug.cgi?id=321799
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #3 from Tim Koopman <n.t.koopman-TNUcmE4EBc2sTnJN9+BGXg@public.gmane.org> 2012-06-19 02:44:16 PDT ---
+And it was fixed in 1.0.1..
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
