@@ -1,11 +1,13 @@
-From: Eduard Gotwig <gotwig-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Subject: NVIDIA GEFORCE (R) GT(S) 240, GT(S) 250 support,
- support in general for NV92
-Date: Tue, 19 Jun 2012 20:31:33 +0200
-Message-ID: <CAE3uxttJCDB3ziE+p-v6s2V-dCYi8FcAcfzg6BAAoz52jaiNPw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33165] Nouveau + nvidia GT240 = unworkable
+Date: Tue, 19 Jun 2012 18:56:16 +0000
+Message-ID: <bug-33165-8800-qZuKqBEuq6@http.bugs.freedesktop.org/>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0551752161=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,43 +20,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0551752161==
-Content-Type: multipart/alternative; boundary=20cf306f71f627d16a04c2d77f6b
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
---20cf306f71f627d16a04c2d77f6b
-Content-Type: text/plain; charset=ISO-8859-1
+--- Comment #5 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-19 11:56:16 PDT ---
+You might want to actually post a recent kernel log showing your problem,
+because the developers won't get anywhere with vague descriptions.
 
-Hey, I want to ask how the progress is for NV92 graphics cards, especially
-for my unsupported gt 240 (see
-https://bugs.freedesktop.org/show_bug.cgi?id=33165)
-
-The VBIOS is attached in the bug report.
-
-Thank you.
-
---20cf306f71f627d16a04c2d77f6b
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hey, I want to ask how the progress is for NV92 graphics cards, especially =
-for my unsupported gt 240 (see=A0<a href=3D"https://bugs.freedesktop.org/sh=
-ow_bug.cgi?id=3D33165">https://bugs.freedesktop.org/show_bug.cgi?id=3D33165=
-</a>)<div>
-
-<br></div><div>The VBIOS is attached in the bug report.</div><div><br></div=
-><div>Thank you.</div><div><br></div>
-
---20cf306f71f627d16a04c2d77f6b--
-
---===============0551752161==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0551752161==--
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
