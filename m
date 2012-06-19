@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46557] nouveau: NV4E acceleration corruption when
- DMA above 31-bit (2 Gig barrier)
-Date: Tue, 19 Jun 2012 05:20:17 +0000
-Message-ID: <bug-46557-8800-eTUrHg05tp@http.bugs.freedesktop.org/>
-References: <bug-46557-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
+Date: Tue, 19 Jun 2012 08:08:35 +0000
+Message-ID: <bug-15758-8800-VUzNc6LTDM@http.bugs.freedesktop.org/>
+References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +20,16 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=46557
+https://bugs.freedesktop.org/show_bug.cgi?id=15758
 
-Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Chi-Thanh Christopher Nguyen <chithanh-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|nouveau: NV4E acceleration  |nouveau: NV4E acceleration
-                   |corruption when DMA about   |corruption when DMA above
-                   |31-bit (2 G)                |31-bit (2 Gig barrier)
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=7309,
+                   |                            |https://bugs.gentoo.org/sho
+                   |                            |w_bug.cgi?id=321799
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
