@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 16:52:28 +0000
-Message-ID: <bug-51281-8800-7IvSO3Mkw5@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 18:33:37 +0000
+Message-ID: <bug-51281-8800-cv9ozMY98I@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
---- Comment #3 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 09:52:28 PDT ---
-The restart is rather instant, and it happens the same if I use keyboard to
-change brightness or the Xfce panel plugin for brightness.
+--- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 11:33:37 PDT ---
+Does "xrandr --verbose" show some kind of brightness property attached to
+LVDS-1?
+
+If so, does modifying this cause the same problems? Please double check that
+the property actually changes.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
