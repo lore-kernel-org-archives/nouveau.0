@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51018] kernel >=3.4.0: nouveau triggers kernel BUG
  in slub.c on GTX 560 Ti
-Date: Tue, 19 Jun 2012 23:04:18 +0000
-Message-ID: <bug-51018-8800-GqSLRtGjYV@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 05:45:49 +0000
+Message-ID: <bug-51018-8800-G7a9Gctlax@http.bugs.freedesktop.org/>
 References: <bug-51018-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51018
 
---- Comment #3 from WorMzy Tykashi <wormzy.tykashi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-19 16:04:18 PDT ---
-Same problem here, also on a GTX 560 Ti. Can confirm that slub_debug kernel
-option allows the system to boot, although on my system it then crashes when
-SLiM is loaded/X is started, and appears to show garbled images from a previous
-X session (somehow?).
+--- Comment #4 from Vlad K <vlad.kvs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-20 22:45:49 PDT ---
+I had similar problems with my GTX 560 as well after switch to 3.4.X. Monitor
+would go blank, or machine would reboot, or BUG screen appeared randomly (never
+bothered to save it). After bisecting, issue is due to a removed variable in
+drm code (https://bugzilla.kernel.org/show_bug.cgi?id=43353). Can you guys
+check if you are having same issue? 
 
-Kernels 3.4+ (all the way up to 3.5.0-rc2, haven't tried rc3 yet) appear to be
-affected, but the 3.3.x kernels are not.
+
+include/drm/drm_fb_helper.h:
+
+struct drm_fb_helper_crtc {
+        uint32_t crtc_id;
+        struct drm_mode_set mode_set;
+        struct drm_display_mode *desired_mode;
+};
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
