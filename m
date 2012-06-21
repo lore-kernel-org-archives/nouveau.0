@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 14:01:36 +0000
-Message-ID: <bug-51281-8800-slBlutBK6m@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 23:17:16 +0000
+Message-ID: <bug-51281-8800-N7DxMuMrMy@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,14 +22,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
---- Comment #10 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 14:01:36 UTC ---
-there was only one device and it also worked to use it:
+Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org> changed:
 
-$ echo 8 | sudo tee /sys/class/backlight/acpi_video0/brightness
-root's password:
-8
-$ echo 6 | sudo tee /sys/class/backlight/acpi_video0/brightness
-6
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+                 CC|                            |peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org
+
+--- Comment #11 from Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org> 2012-06-21 16:17:16 PDT ---
+I don't think that's a keyboard issue, otherwise it wouldn't crash on manual
+panel trigger. quick skim of the xfce power manager plugin code shows you can
+run that manually with "set-brightness", can you check if this works?
+
+the other possibility: if xfce4 crashes it may shut down your X server, similar
+to how GNOME does it. Do see the same effect if you run xinit and then start
+xfce from the terminal?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
