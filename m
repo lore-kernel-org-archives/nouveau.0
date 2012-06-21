@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Fri, 22 Jun 2012 00:26:21 +0000
-Message-ID: <bug-51281-8800-lOYbQ4yp5W@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 17:30:02 +0000
+Message-ID: <bug-51281-8800-G88q1SaCiT@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
---- Comment #14 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 17:26:21 PDT ---
-just checked, there is no option to steer it from command line, it's all
-automated stuff, I can not trigger the change manually unless using keybord /
-panel icon.
-
-btw. I just tried both 
-
-echo 6 | sudo tee /sys/class/backlight/acpi_video0/brightness
-xrandr --output LVDS-1 --brightness 0.8
-
-with different values, they all worked fine
+--- Comment #15 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 17:30:02 UTC ---
+and then I tried to do darker with keyboard and it crashed right away, so any
+switches, options configurations to produce more output/log I can attach, just
+please make them not to annoying.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
