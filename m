@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 20:53:02 +0000
-Message-ID: <bug-51281-8800-LKiPNOiZpm@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 14:01:36 +0000
+Message-ID: <bug-51281-8800-slBlutBK6m@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
---- Comment #9 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 13:53:02 PDT ---
-Also check if there is more than one backlight device and try those too.
+--- Comment #10 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 14:01:36 UTC ---
+there was only one device and it also worked to use it:
+
+$ echo 8 | sudo tee /sys/class/backlight/acpi_video0/brightness
+root's password:
+8
+$ echo 6 | sudo tee /sys/class/backlight/acpi_video0/brightness
+6
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
