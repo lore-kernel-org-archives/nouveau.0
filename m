@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 13:48:36 +0000
-Message-ID: <bug-51281-8800-9r8VXrEuuI@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 20:53:02 +0000
+Message-ID: <bug-51281-8800-LKiPNOiZpm@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
---- Comment #8 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 13:48:36 UTC ---
-It seems there is (another) way to control the backlight.
-
-/sys/class/backlight/nv_backlight/brightness
-
-You can write to that, but check the value of
-/sys/class/backlight/nv_backlight/max_brightness first.
-
-I'm not a 100% sure the name is nv_backlight, but that should be easy to check.
-
-Please try that and see if this causes problems.
+--- Comment #9 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 13:53:02 PDT ---
+Also check if there is more than one backlight device and try those too.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
