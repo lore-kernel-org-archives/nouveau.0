@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 18:33:37 +0000
-Message-ID: <bug-51281-8800-cv9ozMY98I@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 19:06:50 +0000
+Message-ID: <bug-51281-8800-SzbhlDRQuD@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
---- Comment #4 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 11:33:37 PDT ---
-Does "xrandr --verbose" show some kind of brightness property attached to
-LVDS-1?
+--- Comment #5 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 12:06:50 PDT ---
+$ xrandr --verbose | grep rightness
+    Brightness: 1.0
+$ xrandr --output LVDS-1 --brightness 0.8
+$ xrandr --verbose | grep rightness
+    Brightness: 0.80
 
-If so, does modifying this cause the same problems? Please double check that
-the property actually changes.
+And I see the difference ... I will try to repeat it later as it does not
+happen always.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
