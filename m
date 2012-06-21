@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 11:03:52 +0000
-Message-ID: <bug-51281-8800-SOxEglXYS5@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 11:04:13 +0000
+Message-ID: <bug-51281-8800-RfANFvkTx9@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #63284|application/x-trash         |text/plain
+  Attachment #63285|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
