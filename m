@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 16:30:21 +0000
-Message-ID: <bug-51281-8800-EJ3aQfiHPb@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 16:52:28 +0000
+Message-ID: <bug-51281-8800-7IvSO3Mkw5@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 09:30:21 PDT ---
-There's nothing about Nouveau crashing in these logs.
-Maybe something reprograms brightness button to do something which triggers
-xserver shutdown?
+--- Comment #3 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 09:52:28 PDT ---
+The restart is rather instant, and it happens the same if I use keyboard to
+change brightness or the Xfce panel plugin for brightness.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
