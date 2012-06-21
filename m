@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 23:31:15 +0000
-Message-ID: <bug-51281-8800-U0UGAgEi2J@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 23:56:50 +0000
+Message-ID: <bug-51281-8800-aOyefiC9YP@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,21 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
-Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |NEW
-
---- Comment #12 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 16:31:15 PDT ---
-ok I need some help here, how do I manually "set-brightness"?
-
-as for the second possibility, is there no other way, maybe some config file to
-enable additional logging?
-
-I'm using this setup for work so any interruptions and inconveniences are not
-welcome - and as the issue happens after few hours you understand it might be
-hard to run it using single commands.
+--- Comment #13 from Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org> 2012-06-21 16:56:50 PDT ---
+again, just looking at the source here but there should be a
+xfce4-power-manager binary that takes a set-brightness argument or so. I
+suspect that's the one called from the panel and may be the one that crashes
+xfce.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
