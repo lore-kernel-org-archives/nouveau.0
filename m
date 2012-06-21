@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 19:06:50 +0000
-Message-ID: <bug-51281-8800-SzbhlDRQuD@http.bugs.freedesktop.org/>
+Date: Thu, 21 Jun 2012 19:33:15 +0000
+Message-ID: <bug-51281-8800-J1uwa0WPO3@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,15 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
---- Comment #5 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 12:06:50 PDT ---
-$ xrandr --verbose | grep rightness
-    Brightness: 1.0
-$ xrandr --output LVDS-1 --brightness 0.8
-$ xrandr --verbose | grep rightness
-    Brightness: 0.80
-
-And I see the difference ... I will try to repeat it later as it does not
-happen always.
+--- Comment #6 from Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 12:33:15 PDT ---
+Oh, that brightness just adjust the gamma settings, but doesn't affect the
+backlight. Isn't there another setting somewhere? Maybe paste the output of
+"xrandr --verbose"?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
