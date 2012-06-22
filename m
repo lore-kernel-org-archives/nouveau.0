@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51281] X server restarts on brightness change
-Date: Thu, 21 Jun 2012 23:56:50 +0000
-Message-ID: <bug-51281-8800-aOyefiC9YP@http.bugs.freedesktop.org/>
+Date: Fri, 22 Jun 2012 00:26:21 +0000
+Message-ID: <bug-51281-8800-lOYbQ4yp5W@http.bugs.freedesktop.org/>
 References: <bug-51281-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,11 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51281
 
---- Comment #13 from Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org> 2012-06-21 16:56:50 PDT ---
-again, just looking at the source here but there should be a
-xfce4-power-manager binary that takes a set-brightness argument or so. I
-suspect that's the one called from the panel and may be the one that crashes
-xfce.
+--- Comment #14 from Michal Papis <mpapis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-21 17:26:21 PDT ---
+just checked, there is no option to steer it from command line, it's all
+automated stuff, I can not trigger the change manually unless using keybord /
+panel icon.
+
+btw. I just tried both 
+
+echo 6 | sudo tee /sys/class/backlight/acpi_video0/brightness
+xrandr --output LVDS-1 --brightness 0.8
+
+with different values, they all worked fine
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
