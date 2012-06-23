@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51362] DisplayPort output on nVidia Quadro K2000M
- (ThinkPad W530) doesn't work
-Date: Sat, 23 Jun 2012 18:28:58 +0000
-Message-ID: <bug-51362-8800-1K7KHwKeLr@http.bugs.freedesktop.org/>
+Subject: [Bug 51362] [NVE7] DisplayPort output on nVidia Quadro
+ K2000M (ThinkPad W530) doesn't work
+Date: Sat, 23 Jun 2012 18:37:35 +0000
+Message-ID: <bug-51362-8800-B2IEa9ORys@http.bugs.freedesktop.org/>
 References: <bug-51362-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,10 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #63375|application/octet-stream    |text/plain
-          mime type|                            |
+            Summary|DisplayPort output on       |[NVE7] DisplayPort output
+                   |nVidia Quadro K2000M        |on nVidia Quadro K2000M
+                   |(ThinkPad W530) doesn't     |(ThinkPad W530) doesn't
+                   |work                        |work
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
