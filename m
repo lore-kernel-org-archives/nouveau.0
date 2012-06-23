@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51018] kernel >=3.4.0: nouveau triggers kernel BUG
- in slub.c on GTX 560 Ti
-Date: Sat, 23 Jun 2012 12:05:06 +0000
-Message-ID: <bug-51018-8800-7WRs0D8kfV@http.bugs.freedesktop.org/>
-References: <bug-51018-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51362] New: DisplayPort output on nVidia Quadro
+ K2000M (ThinkPad W530) doesn't work
+Date: Sat, 23 Jun 2012 18:20:23 +0000
+Message-ID: <bug-51362-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51018-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +19,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51018
+https://bugs.freedesktop.org/show_bug.cgi?id=51362
 
---- Comment #6 from Jiri Dluhos <jiri.bluebear.dluhos-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-23 05:05:06 PDT ---
-To be precise, I reverted the second part of this patch:
+             Bug #: 51362
+           Summary: DisplayPort output on nVidia Quadro K2000M (ThinkPad
+                    W530) doesn't work
+    Classification: Unclassified
+           Product: xorg
+           Version: git
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-http://git.kernel.org/?p=linux/kernel/git/stable/linux-stable.git;a=commitdiff;h=4f988d132d2668b4f3b42bfc70daa531115ccca1
 
-I.e. added "uint32_t crtc_id" back to the front of the drm_fb_helper_crtc
-structure. Reverting the first part of the patch (adding crtc_id to the
-enumeration loop) seems unnecessary, so it looks like the 32 bits work just
-like a padding. :-)
+Created attachment 63375
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63375
+Kernel Log
+
+I've disabled Optimus in the BIOS, so only the K2000M is running. Xrandr shows
+all my available ports, but no matter what mode I set on the DisplayPort
+(connected to an Acer monitor via a known-good MiniDP to HDMI adapter), I get
+the error "Input Not Supported" on my monitor.
+
+What other information besides the kernel log can I submit to help with this
+bug?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
