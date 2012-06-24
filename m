@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51362] [NVE7] DisplayPort output on nVidia Quadro
  K2000M (ThinkPad W530) doesn't work
-Date: Sun, 24 Jun 2012 01:41:37 +0000
-Message-ID: <bug-51362-8800-spiS9lPkSb@http.bugs.freedesktop.org/>
+Date: Sun, 24 Jun 2012 01:42:08 +0000
+Message-ID: <bug-51362-8800-DLteHQSTGq@http.bugs.freedesktop.org/>
 References: <bug-51362-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51362
 
---- Comment #3 from e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org 2012-06-23 18:41:37 PDT ---
-(In reply to comment #2)
-> Can you retry with "nouveau.vbios=ACPI" appended in your boot options?
-
-Same symptoms. I'll attach the new VBIOS dump and kernel log.
+--- Comment #4 from e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org 2012-06-23 18:42:08 PDT ---
+Created attachment 63387
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63387
+Kernel Log with nouveau.vbios=ACPI
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
