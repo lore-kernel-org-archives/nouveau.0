@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51391] no window border with nouveau driver
-Date: Mon, 25 Jun 2012 00:54:19 +0000
-Message-ID: <bug-51391-8800-VxWJlww5KP@http.bugs.freedesktop.org/>
+Date: Sun, 24 Jun 2012 17:54:55 +0000
+Message-ID: <bug-51391-8800-XwEgebApQv@http.bugs.freedesktop.org/>
 References: <bug-51391-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51391
 
---- Comment #1 from nicholas-0kP14tYp4NU0n/F98K4Iww@public.gmane.org 2012-06-24 17:54:19 PDT ---
-Created attachment 63417
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63417
-dmesg
+--- Comment #2 from nicholas-0kP14tYp4NU0n/F98K4Iww@public.gmane.org 2012-06-24 17:54:55 UTC ---
+Created attachment 63418
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63418
+Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
