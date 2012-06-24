@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50175] [regression kernel 3.4] : nouveau detects
- internal laptop display as "disconnected" / screen is turned off
-Date: Sun, 24 Jun 2012 21:53:56 +0000
-Message-ID: <bug-50175-8800-9dwTu9zJML@http.bugs.freedesktop.org/>
-References: <bug-50175-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39550] Brightness stuck to low value after
+	suspend/resume
+Date: Sun, 24 Jun 2012 15:31:19 +0000
+Message-ID: <bug-39550-8800-H0a9XooxT1@http.bugs.freedesktop.org/>
+References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50175-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,10 +21,15 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50175
+https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
---- Comment #14 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-24 14:53:56 PDT ---
-Just to clarify - this is an ACPI issue and nouveau is the victim of it
+--- Comment #32 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-24 15:31:19 UTC ---
+It appears that even the blob was experiencing the same issue [1]
+
+Affected blob 180.44, fixed in 180.60. I would expect that a specific quirk was
+added to handle the issue
+
+[1] http://www.bartromgens.org/wordpress/?p=274
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
