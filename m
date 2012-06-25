@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51391] no window border with nouveau driver
-Date: Sun, 24 Jun 2012 17:54:55 +0000
-Message-ID: <bug-51391-8800-XwEgebApQv@http.bugs.freedesktop.org/>
+Date: Mon, 25 Jun 2012 09:30:22 +0000
+Message-ID: <bug-51391-8800-BNSunZ50os@http.bugs.freedesktop.org/>
 References: <bug-51391-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,21 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51391
 
---- Comment #2 from nicholas-0kP14tYp4NU0n/F98K4Iww@public.gmane.org 2012-06-24 17:54:55 UTC ---
-Created attachment 63418
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63418
-Xorg.0.log
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |WORKSFORME
+
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-25 02:30:22 PDT ---
+Looks like Xserver/EXA bug (nv used XAA instead of EXA, so it didn't affect
+it).
+
+And it works here.
+
+As you are using ancient version of Nouveau with equally old Xserver, I'm
+closing this bug as RESOLVED/WORKSFORME and advise you to upgrade.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
