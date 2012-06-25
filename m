@@ -1,13 +1,12 @@
 From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
-Subject: [PATCH 2/2] drm/nv50/pm: Assortment of timing fixes
-Date: Mon, 25 Jun 2012 20:51:05 +0200
-Message-ID: <1340650265-2232-2-git-send-email-r.spliet@student.tudelft.nl>
-References: <1340650265-2232-1-git-send-email-r.spliet@student.tudelft.nl>
+Subject: [PATCH 1/2] drm/nouveau/pm: Prepare for more GDDR5 MR
+	values
+Date: Mon, 25 Jun 2012 20:51:04 +0200
+Message-ID: <1340650265-2232-1-git-send-email-r.spliet@student.tudelft.nl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1340650265-2232-1-git-send-email-r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,68 +20,85 @@ To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.o
 Cc: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-- Last timing problem with NVA3:NVC0
-- Typo fix in NV50 path
-- Fix debug output
+v2: style fixes
 
 Signed-off-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_mem.c |   15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drv.h |    2 +-
+ drivers/gpu/drm/nouveau/nouveau_mem.c |   25 +++++++++++++++++++------
+ 2 files changed, 20 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index b8fa77d..fe242a3 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -352,7 +352,7 @@ struct nouveau_pm_memtiming {
+ 	int id;
+ 
+ 	u32 reg[9];
+-	u32 mr[4];
++	u32 mr[9];
+ 
+ 	u8 tCWL;
+ 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_mem.c b/drivers/gpu/drm/nouveau/nouveau_mem.c
-index 1d290ab..538e958 100644
+index 1e1483e..1d290ab 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_mem.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_mem.c
-@@ -352,7 +352,8 @@ nv50_mem_timing_calc(struct nouveau_device *ndev, u32 freq,
+@@ -626,6 +626,7 @@ nouveau_mem_gddr5_mr(struct nouveau_device *ndev, u32 freq,
+ 		     struct nouveau_pm_memtiming *boot,
+ 		     struct nouveau_pm_memtiming *t)
  {
- 	struct nouveau_fb *pfb = nv_subdev(ndev, NVDEV_SUBDEV_FB);
- 	struct bit_entry P;
--	u8 unk18 = 1, unk20 = 0, unk21 = 0, tmp7_3;
-+	u8 unk18 = 1, unk20 = 0, unk21 = 0;
-+	int tUnk_base;
- 
- 	if (bit_table(ndev, 'P', &P))
- 		return -EINVAL;
-@@ -398,7 +399,6 @@ nv50_mem_timing_calc(struct nouveau_device *ndev, u32 freq,
- 		t->reg[4] |= boot->reg[4] & 0xffff0000;
- 
- 		t->reg[6] = (0x33 - t->tCWL) << 16 |
--			    t->tCWL << 8 |
- 			    (0x2e + e->tCL - t->tCWL);
- 
- 		t->reg[7] = 0x4000202 | (e->tCL - 1) << 16;
-@@ -431,9 +431,10 @@ nv50_mem_timing_calc(struct nouveau_device *ndev, u32 freq,
- 			    (6 - e->tCL + t->tCWL) << 8 |
- 			    (0x50 + e->tCL - t->tCWL);
- 
--		tmp7_3 = (boot->reg[7] & 0xff000000) >> 24;
--		t->reg[7] = (tmp7_3 << 24) |
--			    ((tmp7_3 - 6 + e->tCL) << 16) |
-+		tUnk_base = ((boot->reg[7] & 0x00ff0000) >> 16) -
-+			    (boot->reg[3] & 0x000000ff) - 1;
-+		t->reg[7] = (boot->reg[7] & 0xff000000) |
-+			    ((tUnk_base + e->tCL) << 16) |
- 			    0x202;
++	u8 add_term; /* CMD/ADD termination */
+ 	if (len < 15) {
+ 		t->drive_strength = boot->drive_strength;
+ 		t->odt = boot->odt;
+@@ -644,18 +645,24 @@ nouveau_mem_gddr5_mr(struct nouveau_device *ndev, u32 freq,
+ 		return -ERANGE;
  	}
  
-@@ -687,6 +688,9 @@ nouveau_mem_timing_calc(struct nouveau_device *ndev, u32 freq,
- 	e = (struct nouveau_pm_tbl_entry *)ptr;
- 
- 	t->tCWL = boot->tCWL;
-+	ramcfg = nouveau_perf_ramcfg(ndev, freq, &ver, &len);
-+	if(ramcfg)
-+		t->id = ramcfg[1];
- 
- 	switch (ndev->card_type) {
- 	case NV_40:
-@@ -722,7 +726,6 @@ nouveau_mem_timing_calc(struct nouveau_device *ndev, u32 freq,
- 		break;
+-	if (t->odt > 3) {
++	if (t->odt > 2) {
+ 		NV_WARN(ndev, "(%u) Invalid odt value, assuming autocal: %x",
+ 			t->id, t->odt);
+ 		t->odt = 0;
  	}
  
--	ramcfg = nouveau_perf_ramcfg(ndev, freq, &ver, &len);
- 	if (ramcfg) {
- 		int dll_off;
++	if(t->odt)
++		add_term = t->odt;
++	else
++		add_term = 3;
++
+ 	t->mr[0] = (boot->mr[0] & 0x007) |
+ 		   ((e->tCL - 5) << 3) |
+ 		   ((e->tWR - 4) << 8);
+-	t->mr[1] = (boot->mr[1] & 0x1007f0) |
++	t->mr[1] = (boot->mr[1] & 0x1007c0) |
+ 		   t->drive_strength |
+-		   (t->odt << 2);
++		   (t->odt << 2) |
++		   (add_term << 4);
  
+ 	NV_DEBUG(ndev, "(%u) MR: %08x %08x", t->id, t->mr[0], t->mr[1]);
+ 	return 0;
+@@ -783,9 +790,15 @@ nouveau_mem_timing_read(struct nouveau_device *ndev, struct nouveau_pm_memtiming
+ 	}
+ 
+ 	t->mr[0] = nv_rd32(ndev, mr_base);
+-	t->mr[1] = nv_rd32(ndev, mr_base + 0x04);
+-	t->mr[2] = nv_rd32(ndev, mr_base + 0x20);
+-	t->mr[3] = nv_rd32(ndev, mr_base + 0x24);
++	if (pfb->ram.type == NV_MEM_TYPE_GDDR5 &&
++		ndev->card_type >= 0xC0) {
++		for (i = 0; i < 8; i++)
++			t->mr[i+1] = nv_rd32(ndev, mr_base + 0x30 + (i * 4));
++	} else {
++		t->mr[1] = nv_rd32(ndev, mr_base + 0x04);
++		t->mr[2] = nv_rd32(ndev, mr_base + 0x20);
++		t->mr[3] = nv_rd32(ndev, mr_base + 0x24);
++	}
+ 
+ 	t->odt = 0;
+ 	t->drive_strength = 0;
 -- 
 1.7.10.2
