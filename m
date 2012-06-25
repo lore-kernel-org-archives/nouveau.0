@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] Brightness stuck to low value after
-	suspend/resume
-Date: Sun, 24 Jun 2012 15:31:19 +0000
-Message-ID: <bug-39550-8800-H0a9XooxT1@http.bugs.freedesktop.org/>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51391] New: no window border with nouveau driver
+Date: Mon, 25 Jun 2012 00:52:56 +0000
+Message-ID: <bug-51391-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +18,30 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+https://bugs.freedesktop.org/show_bug.cgi?id=51391
 
---- Comment #32 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-24 15:31:19 UTC ---
-It appears that even the blob was experiencing the same issue [1]
+             Bug #: 51391
+           Summary: no window border with nouveau driver
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: nicholas-0kP14tYp4NU0n/F98K4Iww@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Affected blob 180.44, fixed in 180.60. I would expect that a specific quirk was
-added to handle the issue
 
-[1] http://www.bartromgens.org/wordpress/?p=274
+Created attachment 63416
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63416
+test case
+
+The attached test program should create a window with a border. The "nv" driver
+succeeds; the "nouveau" driver fails.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
