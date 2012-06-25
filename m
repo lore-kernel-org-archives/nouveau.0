@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51409] when ubuntu tests the gnome environment the
- nouveau_vieux_dri (ver) segfaults
-Date: Mon, 25 Jun 2012 07:14:03 +0000
-Message-ID: <bug-51409-8800-j7mcbkLvx8@http.bugs.freedesktop.org/>
+Subject: [Bug 51409] [NV05] when ubuntu tests the gnome
+ environment the nouveau_vieux_dri (ver) segfaults
+Date: Mon, 25 Jun 2012 14:24:22 +0000
+Message-ID: <bug-51409-8800-JaRx6rD1ph@http.bugs.freedesktop.org/>
 References: <bug-51409-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,8 +27,10 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #63451|text/x-log                  |text/plain
-          mime type|                            |
+            Summary|when ubuntu tests the gnome |[NV05] when ubuntu tests
+                   |environment the             |the gnome environment the
+                   |nouveau_vieux_dri (ver)     |nouveau_vieux_dri (ver)
+                   |segfaults                   |segfaults
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
