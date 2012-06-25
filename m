@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51391] no window border with nouveau driver
-Date: Mon, 25 Jun 2012 09:30:22 +0000
-Message-ID: <bug-51391-8800-BNSunZ50os@http.bugs.freedesktop.org/>
-References: <bug-51391-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51409] New: when ubuntu tests the gnome environment
+ the nouveau_vieux_dri (ver) segfaults
+Date: Mon, 25 Jun 2012 14:02:17 +0000
+Message-ID: <bug-51409-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51391-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +19,38 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51391
+https://bugs.freedesktop.org/show_bug.cgi?id=51409
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+             Bug #: 51409
+           Summary: when ubuntu tests the gnome environment the
+                    nouveau_vieux_dri (ver) segfaults
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: gullik.webjorn-WP0GwCHJM80OP4wsBPIw7w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |WORKSFORME
 
---- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-25 02:30:22 PDT ---
-Looks like Xserver/EXA bug (nv used XAA instead of EXA, so it didn't affect
-it).
+Created attachment 63451
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63451
+log from desktop computer with nvidia agp card
 
-And it works here.
+Ubuntu 12.04 LTS logs "system errors", and activates error reporting tool,
+however the error tool claims 12.04 is "stable" and thus not being worked on.
+I thought you might be interested, since the error footprint(s) look solveable.
 
-As you are using ancient version of Nouveau with equally old Xserver, I'm
-closing this bug as RESOLVED/WORKSFORME and advise you to upgrade.
+I attach my dmesg.log, there are 3 bugchecks in the last few lines
+
+Regards,
+
+Gullik
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
