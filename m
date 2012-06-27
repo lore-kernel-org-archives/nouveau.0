@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
 	2MX/MX400
-Date: Wed, 27 Jun 2012 06:29:57 +0000
-Message-ID: <bug-51477-8800-0jkpftSHb4@http.bugs.freedesktop.org/>
+Date: Wed, 27 Jun 2012 06:33:08 +0000
+Message-ID: <bug-51477-8800-VYL8aVUPY0@http.bugs.freedesktop.org/>
 References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
---- Comment #4 from Gerrit Keller <gerrit.keller-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-27 06:29:57 UTC ---
-Created attachment 63516
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63516
-Iceape screenshot using old (working) version
+--- Comment #5 from Gerrit Keller <gerrit.keller-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-27 06:33:08 UTC ---
+Created attachment 63517
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63517
+Libreoffice screenshot using old/working version
 
-For comparison this is what the Iceape screenshot should look like.
+and the same for Libreoffice.
+Last two screenshots were taken using mentioned good version
+0.0.16+git20120322+ab7291d-1.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
