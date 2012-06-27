@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51455] /r/equesting freedesktop.org account
-Date: Tue, 26 Jun 2012 18:19:33 +0000
-Message-ID: <bug-51455-8800-tOlrhMOwhj@http.bugs.freedesktop.org/>
-References: <bug-51455-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51477] New: bad/missing graphics with NV11 / GeForce
+	2MX/MX400
+Date: Wed, 27 Jun 2012 06:22:31 +0000
+Message-ID: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +19,30 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51455
-
---- Comment #1 from m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-06-26 11:19:33 PDT ---
-Created attachment 63494
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63494
-ssh public -key
-
-ssh-rsa
-AAAAB3NzaC1yc2EAAAADAQABAAABAQDEqPWjJau7RZOxQIRxDbUAyMeZLb75ea6pMaEtmj3SiMql5HdawBPPYDkEIMD4d253nwlhR3WI48UQj+6KfDIKTo0QtabUl0tJ3yy3NrwnKil91RScwsqwMIQLEz27PtpNlwF6ztSwnMY536yVPZzop2ADbpCt/hQn1FxJebWl+upSqHs1+ybUkV2HE3Sq178ZUDChCx7YlsLHeK4e3SJJFSt82JJMlzVraz3kGep1V2ZKdOgeyzzTvhUGTXG6LdSAtC9WMj+AOHvQaVhVFDA+tuSyz7wiUNQAdtx1WksZv202rGwKh11iToSNowf6VgZPfiLNxeuPPN6ljbfSrsbF
-mlankhorst@home
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NTE0NzcKCiAgICAg
+ICAgICAgICBCdWcgIzogNTE0NzcKICAgICAgICAgICBTdW1tYXJ5OiBiYWQvbWlzc2luZyBncmFw
+aGljcyB3aXRoIE5WMTEgLyBHZUZvcmNlIDJNWC9NWDQwMAogICAgQ2xhc3NpZmljYXRpb246IFVu
+Y2xhc3NpZmllZAogICAgICAgICAgIFByb2R1Y3Q6IHhvcmcKICAgICAgICAgICBWZXJzaW9uOiB1
+bnNwZWNpZmllZAogICAgICAgICAgUGxhdGZvcm06IHg4NiAoSUEzMikKICAgICAgICBPUy9WZXJz
+aW9uOiBMaW51eCAoQWxsKQogICAgICAgICAgICBTdGF0dXM6IE5FVwogICAgICAgICAgU2V2ZXJp
+dHk6IG5vcm1hbAogICAgICAgICAgUHJpb3JpdHk6IG1lZGl1bQogICAgICAgICBDb21wb25lbnQ6
+IERyaXZlci9ub3V2ZWF1CiAgICAgICAgQXNzaWduZWRUbzogbm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKICAgICAgICBSZXBvcnRlZEJ5OiBnZXJyaXQua2VsbGVyQGdtYWlsLmNvbQogICAg
+ICAgICBRQUNvbnRhY3Q6IHhvcmctdGVhbUBsaXN0cy54Lm9yZwoKCkNyZWF0ZWQgYXR0YWNobWVu
+dCA2MzUxMgogIC0tPiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL2F0dGFjaG1lbnQuY2dp
+P2lkPTYzNTEyCmtlcm5lbCBsb2cKClVzaW5nIHJlY2VudCBub3V2ZWF1IHZlcnNpb25zIEnigJlt
+IGVuY291bnRlcmluZyBtaXNzaW5nIGdyYXBoaWNzIGluIHZhcmlvdXMKcHJvZ3JhbXMgKGUuZy4g
+Z3Rr4oCZcyBmaWxlY2hvb3NlciwgTGlicmVPZmZpY2UsIEljZWFwZSwgUGlkZ2luLCB4ZmNlNC1w
+YW5lbOKAmXMKcGFnZXIgYW5kIG9uIGxpZ2h0ZG3igJlzIGd0ay1ncmVldGVyKS4KTW92aW5nIHRo
+ZSBtb3VzZSBjdXJzb3Igb3ZlciB0aGVzZSBwbGFjZXMgb3IgcmVzaXppbmcgdGhlIHdpbmRvd3Mg
+bWFrZXMgdGhlCmljb25zIGFwcGVhciBzb21ldGltZXMgKGJ1dCBhbHNvIGRpc2FwcGVhciBpbiB0
+aGUgc2FtZSBtYW5uZXIpLgoKVGVzdGVkIGJyb2tlbiAoRGViaWFuIHBhY2thZ2UpIHZlcnNpb25z
+IGFyZToKMC4wLjE2K2dpdDIwMTIwNTI5K2FjZTc3YjYtMQowLjAuMTYrZ2l0MjAxMjA2MTQrMzZk
+M2Y4Yy0xCjEuMC4xLTEKCjAuMC4xNitnaXQyMDEyMDMyMithYjcyOTFkLTEgd2FzIChhbmQgc3Rp
+bGwgaXMpIHdvcmtpbmcgZmluZS4KCktlcm5lbCB2ZXJzaW9uIGlzIDMuNC40CmxpYmRybSAyLjQu
+MzMKCi0tIApDb25maWd1cmUgYnVnbWFpbDogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy91
+c2VycHJlZnMuY2dpP3RhYj1lbWFpbAotLS0tLS0tIFlvdSBhcmUgcmVjZWl2aW5nIHRoaXMgbWFp
+bCBiZWNhdXNlOiAtLS0tLS0tCllvdSBhcmUgdGhlIGFzc2lnbmVlIGZvciB0aGUgYnVnLgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
