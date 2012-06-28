@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
 	2MX/MX400
-Date: Thu, 28 Jun 2012 12:02:49 +0000
-Message-ID: <bug-51477-8800-zC7wY2Pl6v@http.bugs.freedesktop.org/>
+Date: Thu, 28 Jun 2012 15:22:45 +0000
+Message-ID: <bug-51477-8800-cQpytDhm3o@http.bugs.freedesktop.org/>
 References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,26 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
---- Comment #7 from Gerrit Keller <gerrit.keller-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-28 05:02:49 PDT ---
-> To quickly check, please disable AIGLX in your xorg.conf
+--- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-28 08:22:45 PDT ---
+Created attachment 63568
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63568
+possible fix
 
-Still happens with AIGLX disabled.
-
-> If you're still having problems with AIGLX switched off, can you bisect - it
-> should take 5-6 steps
-
-% git bisect bad
-b09a61780ea6710b679a6a099e35987e7a5f559f is the first bad commit
-commit b09a61780ea6710b679a6a099e35987e7a5f559f
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Mon Apr 23 14:49:22 2012 +1000
-
-    nv10/exa: implement support for solid pictures
-
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-:040000 040000 7a47e308b9d7d7d316d0881eb3ee2a0b4cfbc272
-f66526f015f5e5abe07d0d8da72d0feacdec7faf M      src
+does it work with this patch?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
