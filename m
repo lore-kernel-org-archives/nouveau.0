@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
-	2MX/MX400
-Date: Thu, 28 Jun 2012 15:33:21 +0000
-Message-ID: <bug-51477-8800-ZUzPkDZ7bW@http.bugs.freedesktop.org/>
-References: <bug-51477-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51018] kernel >=3.4.0: nouveau triggers kernel BUG
+ in slub.c on GTX 560 Ti
+Date: Thu, 28 Jun 2012 15:41:04 +0000
+Message-ID: <bug-51018-8800-4XhGDoBQB7@http.bugs.freedesktop.org/>
+References: <bug-51018-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51018-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +21,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51477
+https://bugs.freedesktop.org/show_bug.cgi?id=51018
 
---- Comment #9 from Gerrit Keller <gerrit.keller-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-28 08:33:21 PDT ---
-> Created attachment 63568 [details] [review]
-> possible fix
-> 
-> does it work with this patch?
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-No, still broken.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |FIXED
+
+--- Comment #9 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-28 08:41:04 PDT ---
+Fixed by Ben Skeggs: 
+http://git.kernel.org/?p=linux/kernel/git/torvalds/linux.git;a=commit;h=9bd0c15fcfb42f6245447c53347d65ad9e72080b
+
+It will appear in 3.4-stable soon (3.4.5 or 3.4.6).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
