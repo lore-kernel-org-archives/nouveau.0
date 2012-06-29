@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
 	2MX/MX400
-Date: Thu, 28 Jun 2012 23:18:35 +0000
-Message-ID: <bug-51477-8800-JdWueY6WxJ@http.bugs.freedesktop.org/>
+Date: Fri, 29 Jun 2012 07:50:27 +0000
+Message-ID: <bug-51477-8800-CnKgM0Z1t7@http.bugs.freedesktop.org/>
 References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
---- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-06-28 16:18:35 PDT ---
-Created attachment 63583
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63583
-another try
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #63568|0                           |1
+        is obsolete|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
