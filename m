@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51455] /r/equesting freedesktop.org account
-Date: Fri, 29 Jun 2012 10:26:09 +0000
-Message-ID: <bug-51455-8800-PWdK4WG8kF@http.bugs.freedesktop.org/>
-References: <bug-51455-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51362] [NVE7] DisplayPort output on nVidia Quadro
+ K2000M (ThinkPad W530) doesn't work
+Date: Fri, 29 Jun 2012 15:58:54 +0000
+Message-ID: <bug-51362-8800-CjjcUouctQ@http.bugs.freedesktop.org/>
+References: <bug-51362-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +21,17 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51455
+https://bugs.freedesktop.org/show_bug.cgi?id=51362
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         AssignedTo|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |sitewranglers-PD4FTy7X32mqWrfYKbYh0A@public.gmane.org
-                   |rg                          |ktop.org
-          QAContact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
-            Product|xorg                        |freedesktop.org
-          Component|Driver/nouveau              |New Accounts
+             Status|NEEDINFO                    |NEW
+
+--- Comment #6 from e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org 2012-06-29 08:58:54 PDT ---
+Information added as requested. Not sure which status I should set, so putting
+it back to NEW. Sorry if that's incorrect.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
