@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35452] Pageflipping + nouveau + compiz + fullscreen
-	== FAIL
-Date: Sat, 30 Jun 2012 11:35:26 +0000
-Message-ID: <bug-35452-8800-bEkk8F2INj@http.bugs.freedesktop.org/>
-References: <bug-35452-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51579] Xv video support is black on NVidia NVa8
+ Chipset in latest git
+Date: Sat, 30 Jun 2012 19:56:44 +0000
+Message-ID: <bug-51579-8800-kXB2gUuQuz@http.bugs.freedesktop.org/>
+References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35452-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +21,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35452
+https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
-Mike Lothian <mike-4+n8WJKc9ve9FHfhHBbuYA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-                 CC|                            |mike-4+n8WJKc9ve9FHfhHBbuYA@public.gmane.org
-
---- Comment #24 from Mike Lothian <mike-4+n8WJKc9ve9FHfhHBbuYA@public.gmane.org> 2012-06-30 04:35:26 PDT ---
-Seems to be working fine these days - closing this off
+--- Comment #1 from Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> 2012-06-30 12:56:44 PDT ---
+Created attachment 63652
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63652
+Dmesg of my system.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
