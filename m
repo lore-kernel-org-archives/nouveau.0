@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51579] Xv video support is black on NVidia NVa8
  Chipset in latest git
-Date: Sat, 30 Jun 2012 12:57:17 +0000
-Message-ID: <bug-51579-8800-kngHuj2g6p@http.bugs.freedesktop.org/>
+Date: Sat, 30 Jun 2012 20:01:28 +0000
+Message-ID: <bug-51579-8800-pgAvcmbED2@http.bugs.freedesktop.org/>
 References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #2 from Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> 2012-06-30 12:57:17 UTC ---
-Created attachment 63653
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63653
-Xorg log
+--- Comment #3 from Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> 2012-06-30 13:01:28 PDT ---
+I did some additional tests with mplayer.
+
+mplayer -vo X11 Test.avi = Works
+mplayer -vo Xv Test.avi = Black screen
+mplayer -vo gl Test.avi = Works
+mplayer -vo gl2 Test.avi = Works
+
+I wonder if it's something specific to nva+ chipsets?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
