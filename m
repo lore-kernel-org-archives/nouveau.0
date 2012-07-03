@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51144] significant pixel corruption in text ;
  driver nouveau - GF116 [GeForce GTS 450]
-Date: Tue, 03 Jul 2012 15:19:32 +0000
-Message-ID: <bug-51144-8800-vpQ0viVIdk@http.bugs.freedesktop.org/>
+Date: Tue, 03 Jul 2012 08:51:52 +0000
+Message-ID: <bug-51144-8800-ntI1Qh5jzH@http.bugs.freedesktop.org/>
 References: <bug-51144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51144
 
---- Comment #12 from Tollef Fog Heen <tfheen-YAMvcpje2t0@public.gmane.org> 2012-07-03 08:19:32 PDT ---
-I'm still occasionally seeing it with 1:1.0.1-1 for Debian.
+--- Comment #13 from Klaas De Craemer <klaasdc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-03 08:51:52 UTC ---
+It is remarkable that I haven't seen these artifacts in KDE/Qt, but only in
+GTK-based applications
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
