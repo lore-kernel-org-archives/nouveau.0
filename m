@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51144] significant pixel corruption in text ;
  driver nouveau - GF116 [GeForce GTS 450]
-Date: Tue, 03 Jul 2012 14:47:52 +0000
-Message-ID: <bug-51144-8800-qo260Wgd63@http.bugs.freedesktop.org/>
+Date: Tue, 03 Jul 2012 15:00:46 +0000
+Message-ID: <bug-51144-8800-IIM6v64ME8@http.bugs.freedesktop.org/>
 References: <bug-51144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51144
 
-Klaas De Craemer <klaasdc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |klaasdc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #10 from Klaas De Craemer <klaasdc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-03 07:47:52 PDT ---
-*** Bug 51645 has been marked as a duplicate of this bug. ***
+--- Comment #11 from Klaas De Craemer <klaasdc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-03 08:00:46 PDT ---
+I installed xserver-xorg-video-nouveau 1:1.0.1-1 from Debian Unstable and so
+far no more issues with pixel corruption.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
