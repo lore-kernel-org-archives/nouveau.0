@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51645] Unreadable and flickering text in iceweasel
-Date: Tue, 03 Jul 2012 09:51:49 +0000
-Message-ID: <bug-51645-8800-fmaGJh6cQ2@http.bugs.freedesktop.org/>
+Date: Tue, 03 Jul 2012 14:47:52 +0000
+Message-ID: <bug-51645-8800-ozCpq4luGF@http.bugs.freedesktop.org/>
 References: <bug-51645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,9 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51645
 
---- Comment #1 from Klaas De Craemer <klaasdc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-03 02:51:49 PDT ---
-Actually, it happens in other applications quite regularly, such as the package
-view in synaptic. Maybe it is related to GTK applications only, not sure yet.
+Klaas De Craemer <klaasdc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |DUPLICATE
+
+--- Comment #2 from Klaas De Craemer <klaasdc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-03 07:47:52 PDT ---
+Okay, this is a duplicate of https://bugs.freedesktop.org/show_bug.cgi?id=51144
+
+*** This bug has been marked as a duplicate of bug 51144 ***
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
