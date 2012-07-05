@@ -1,36 +1,38 @@
-From: "Henrik Rydberg" <rydberg@euromail.se>
-Subject: Re: [REGRESSION] nouveau: Memory corruption using nva3 engine for
- 0xaf
-Date: Thu, 5 Jul 2012 10:34:10 +0200
-Message-ID: <20120705083410.GA395@polaris.bitmath.org>
-References: <1341469873-1582-1-git-send-email-rydberg@euromail.se>
- <20120705064049.GA8693@nisroch.bne.redhat.com>
- <20120705065446.GA1849@polaris.bitmath.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 51144] significant pixel corruption in text ;
+ driver nouveau - GF116 [GeForce GTS 450]
+Date: Thu, 05 Jul 2012 11:52:54 +0000
+Message-ID: <bug-51144-8800-7JNhR7FKfD@http.bugs.freedesktop.org/>
+References: <bug-51144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20120705065446.GA1849@polaris.bitmath.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-51144-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jul 05, 2012 at 08:54:46AM +0200, Henrik Rydberg wrote:
-> > Thanks for tracking down the source of this corruption.  I don't have
-> > any such hardware, so until someone can figure it out, I think we
-> > should apply this patch.
-> 
-> In that case, I would have to massage the patch a bit first; it
-> creates a problem with suspend/resume. Might be something with
-> nva3_pm.c, who knows. I am really stabbing in the dark here. :-)
+https://bugs.freedesktop.org/show_bug.cgi?id=51144
 
-It seems the suspend/resume problem is unrelated (bad systemd update),
-so I am fine with applying this as is. Obviously not the best
-solution, and if I have time I will continue to look for problems in
-the nva3 copy code, but for now,
+--- Comment #14 from Klaas De Craemer <klaasdc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-05 04:52:54 PDT ---
+(In reply to comment #12)
+> I'm still occasionally seeing it with 1:1.0.1-1 for Debian.
 
-    Signed-off-by: Henrik Rydberg <rydberg@euromail.se>
+Okay, I can confirm there are still issues. Now mostly menus that don't appear
+at all or incompletely until the mouse is moved over it to highlight items.
+Additionally, borders of floating windows do not appear (mouse-over tips in
+Eclipse in my case). Again GTK-apps only.
 
-Thanks,
-Henrik
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
