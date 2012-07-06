@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51798] Cannot enable second video card on nvidia
 	quadro NVS420
-Date: Fri, 06 Jul 2012 19:39:37 +0000
-Message-ID: <bug-51798-8800-Oh71knzDe6@http.bugs.freedesktop.org/>
+Date: Fri, 06 Jul 2012 19:49:14 +0000
+Message-ID: <bug-51798-8800-vPzx1IoQ8b@http.bugs.freedesktop.org/>
 References: <bug-51798-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,22 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51798
 
---- Comment #1 from Ilya Ilyin <ilyin-qar0IOKqGHQ@public.gmane.org> 2012-07-06 12:39:37 PDT ---
-Created attachment 63904
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63904
-kernel messages on drm
+--- Comment #2 from Ilya Ilyin <ilyin-qar0IOKqGHQ@public.gmane.org> 2012-07-06 12:49:14 PDT ---
+Created attachment 63905
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63905
+Xorg log
 
-Kernel drm messages for the two PCI 03 and 04 are rather the same.
+As the result, X server opens only the first two monitors of card0. Any
+experiments without xorg.conf or with it have no positive outcome: the last two
+monitors are always blank as disabled.
+
+With the commercial nvidia driver everything works from a scratch on four
+displays as one long screen with Xinerama extension, but it has no proper ARGB
+support for Quardro NVS.
+
+How to enable /dev/dri/card1? Is there another way for manual tuning with KMS?
+I tried video=DP-1:e video=DP-2:e video=DP-3:e video=DP-4:e, but the result is
+the same.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
