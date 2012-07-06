@@ -1,11 +1,11 @@
-From: =?UTF-8?q?Viktor=20Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
-Subject: [PATCH] dri/nouveau: Add AllocTextureImageBuffer()
-	implementation
-Date: Fri,  6 Jul 2012 19:27:15 +0200
-Message-ID: <1341595635-9369-1-git-send-email-noviktor@seznam.cz>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 51798] New: Cannot enable second video card on
+ nvidia quadro NVS420
+Date: Fri, 06 Jul 2012 19:32:34 +0000
+Message-ID: <bug-51798-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,87 +16,119 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Rml4ZXMgbWlwbWFwIGdlbmVyYXRpb24uCgpTaWduZWQtb2ZmLWJ5OiBWaWt0b3IgTm92b3Ruw70g
-PG5vdmlrdG9yQHNlem5hbS5jej4KLS0tCkhpLAoKdGhpcyBmaXhlcyBidWcgd2l0aCBtaXBtYXBz
-IEkgb2JzZXJ2ZWQgb24gbnYyNSwgd2hlcmUgaW4gX21lc2FfcHJlcGFyZV9taXBtYXBfbGV2ZWwg
-Y2FsbCB0bwpEcml2ZXIuRnJlZVRleHR1cmVJbWFnZUJ1ZmZlciB1bnJlZmVyZW5jZXMgbm91dmVh
-dV90ZXhpbWFnZSdzIG5vdXZlYXVfc3VyZmFjZSwgd2hpY2ggdGhlbgpkb2VzbnQgZ2V0IHJlYWxs
-b2NhdGVkIGluIERyaXZlci5BbGxvY1RleHR1cmVJbWFnZUJ1ZmZlciwgYmVjYXVzZSB2aWV1eCB1
-c2VzIHN3cmFzdCBpbXBsZW1lbnRhdGlvbiwKdWx0aW1hdGVseSBsZWFkaW5nIHRvIGFzc2VydGlv
-biBmYWlsdXJlIGluIGdldF9ydF9mb3JtYXQgaW4gbnYyMF9idWZmZXJfZW1pdC4KCkFwYXJ0IGZy
-b20gYWRkaW5nIG5vdXZlYXVfYWxsb2NfdGV4dHVyZV9pbWFnZV9idWZmZXIgSSByZW5hbWVkIG5v
-dXZlYXVfdGV4aW1hZ2VfZnJlZS4KV2hhdCBJIGFtIHVuc3VyZSBvZiBpcyB0aGUgY29kZSBjb25j
-ZXJuaW5nIHN3cmFzdF90ZXh0dXJlX2ltYWdlIGFuZCB0aGUgdGVzdCBmb3IgZWFybHkgcmV0dXJu
-CmluIG5vdXZlYXVfYWxsb2NfdGV4dHVyZV9pbWFnZV9idWZmZXIuIAoKCVZpa3RvcgoKIHNyYy9t
-ZXNhL2RyaXZlcnMvZHJpL25vdXZlYXUvbm91dmVhdV90ZXh0dXJlLmMgfCAgIDcxICsrKysrKysr
-KysrKysrKysrKystLS0tLQogMSBmaWxlcyBjaGFuZ2VkLCA1NiBpbnNlcnRpb25zKCspLCAxNSBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvbWVzYS9kcml2ZXJzL2RyaS9ub3V2ZWF1L25v
-dXZlYXVfdGV4dHVyZS5jIGIvc3JjL21lc2EvZHJpdmVycy9kcmkvbm91dmVhdS9ub3V2ZWF1X3Rl
-eHR1cmUuYwppbmRleCAwMDYwZjQ2Li43NzU3YjE5IDEwMDY0NAotLS0gYS9zcmMvbWVzYS9kcml2
-ZXJzL2RyaS9ub3V2ZWF1L25vdXZlYXVfdGV4dHVyZS5jCisrKyBiL3NyYy9tZXNhL2RyaXZlcnMv
-ZHJpL25vdXZlYXUvbm91dmVhdV90ZXh0dXJlLmMKQEAgLTQwLDYgKzQwLDcgQEAKICNpbmNsdWRl
-ICJtYWluL3RleGltYWdlLmgiCiAjaW5jbHVkZSAiZHJpdmVycy9jb21tb24vbWV0YS5oIgogI2lu
-Y2x1ZGUgInN3cmFzdC9zX3RleGZldGNoLmgiCisjaW5jbHVkZSAic3dyYXN0L3N3cmFzdC5oIgog
-CiBzdGF0aWMgc3RydWN0IGdsX3RleHR1cmVfb2JqZWN0ICoKIG5vdXZlYXVfdGV4dHVyZV9uZXco
-c3RydWN0IGdsX2NvbnRleHQgKmN0eCwgR0x1aW50IG5hbWUsIEdMZW51bSB0YXJnZXQpCkBAIC03
-MSwxMiArNzIsNjQgQEAgbm91dmVhdV90ZXhpbWFnZV9uZXcoc3RydWN0IGdsX2NvbnRleHQgKmN0
-eCkKIAlyZXR1cm4gJm50aS0+YmFzZS5CYXNlOwogfQogCitzdGF0aWMgdW5zaWduZWQKK2dldF90
-ZXhpbWFnZV9wbGFjZW1lbnQoc3RydWN0IGdsX3RleHR1cmVfaW1hZ2UgKnRpKQoreworCWlmICh0
-aS0+VGV4Rm9ybWF0ID09IE1FU0FfRk9STUFUX0E4IHx8CisJICAgIHRpLT5UZXhGb3JtYXQgPT0g
-TUVTQV9GT1JNQVRfTDggfHwKKwkgICAgdGktPlRleEZvcm1hdCA9PSBNRVNBX0ZPUk1BVF9JOCkK
-KwkJLyogMSBjcHAgZm9ybWF0cyB3aWxsIGhhdmUgdG8gYmUgc3dpenpsZWQgYnkgdGhlIENQVSwK
-KwkJICogc28gbGVhdmUgdGhlbSBpbiBzeXN0ZW0gUkFNIGZvciBub3cuICovCisJCXJldHVybiBO
-T1VWRUFVX0JPX01BUDsKKwllbHNlCisJCXJldHVybiBOT1VWRUFVX0JPX0dBUlQgfCBOT1VWRUFV
-X0JPX01BUDsKK30KKworc3RhdGljIEdMYm9vbGVhbgorbm91dmVhdV9hbGxvY190ZXh0dXJlX2lt
-YWdlX2J1ZmZlcihzdHJ1Y3QgZ2xfY29udGV4dCAqY3R4LAorCQkJICBzdHJ1Y3QgZ2xfdGV4dHVy
-ZV9pbWFnZSAqdGksCisJCQkgIGdsX2Zvcm1hdCBmb3JtYXQsIEdMc2l6ZWkgd2lkdGgsCisJCQkg
-IEdMc2l6ZWkgaGVpZ2h0LCBHTHNpemVpIGRlcHRoKQoreworCXN0cnVjdCBub3V2ZWF1X3RleGlt
-YWdlICpudGkgPSB0b19ub3V2ZWF1X3RleGltYWdlKHRpKTsKKwlzdHJ1Y3Qgbm91dmVhdV9zdXJm
-YWNlICpzID0gJm50aS0+c3VyZmFjZTsKKworCWlmIChzLT5ibyAmJiBzLT5mb3JtYXQgPT0gdGkt
-PlRleEZvcm1hdCAmJgorCQlzLT53aWR0aCA9PSB0aS0+V2lkdGggJiYgcy0+aGVpZ2h0ID09IHRp
-LT5IZWlnaHQgJiYKKwkJbnRpLT5iYXNlLkltYWdlT2Zmc2V0cykKKwkJLyogSW1hZ2UgZml0cyBv
-biBzdXJmYWNlLCBubyBuZWVkIHRvIGFsbG9jIGFueXRoaW5nICovCisJCQlyZXR1cm4gR0xfVFJV
-RTsKKworCWN0eC0+RHJpdmVyLkZyZWVUZXh0dXJlSW1hZ2VCdWZmZXIoY3R4LCB0aSk7CisKKwlh
-c3NlcnQoIW50aS0+YmFzZS5JbWFnZU9mZnNldHMpOworCW50aS0+YmFzZS5JbWFnZU9mZnNldHMg
-PSBtYWxsb2Moc2l6ZW9mKEdMdWludCkpOworCV9zd3Jhc3RfaW5pdF90ZXh0dXJlX2ltYWdlKHRp
-LCB3aWR0aCwgaGVpZ2h0LCBkZXB0aCk7CisJCisJbm91dmVhdV9zdXJmYWNlX2FsbG9jKGN0eCwg
-cywgTElORUFSLCBnZXRfdGV4aW1hZ2VfcGxhY2VtZW50KHRpKSwKKwkJCSAgdGktPlRleEZvcm1h
-dCwgd2lkdGgsIGhlaWdodCk7CisJbnRpLT5iYXNlLlJvd1N0cmlkZSA9IHMtPnBpdGNoIC8gcy0+
-Y3BwOworCisJcmV0dXJuIEdMX1RSVUU7Cit9CisKIHN0YXRpYyB2b2lkCi1ub3V2ZWF1X3RleGlt
-YWdlX2ZyZWUoc3RydWN0IGdsX2NvbnRleHQgKmN0eCwgc3RydWN0IGdsX3RleHR1cmVfaW1hZ2Ug
-KnRpKQorbm91dmVhdV9mcmVlX3RleHR1cmVfaW1hZ2VfYnVmZmVyKHN0cnVjdCBnbF9jb250ZXh0
-ICpjdHgsCisJCQkgIHN0cnVjdCBnbF90ZXh0dXJlX2ltYWdlICp0aSkKIHsKIAlzdHJ1Y3Qgbm91
-dmVhdV90ZXhpbWFnZSAqbnRpID0gdG9fbm91dmVhdV90ZXhpbWFnZSh0aSk7CiAKIAlub3V2ZWF1
-X3N1cmZhY2VfcmVmKE5VTEwsICZudGktPnN1cmZhY2UpOworCisJaWYgKG50aS0+YmFzZS5CdWZm
-ZXIpIHsKKwkJX21lc2FfYWxpZ25fZnJlZShudGktPmJhc2UuQnVmZmVyKTsKKwkJbnRpLT5iYXNl
-LkJ1ZmZlciA9IE5VTEw7CisJfQorCisJaWYgKG50aS0+YmFzZS5JbWFnZU9mZnNldHMpIHsKKwkJ
-ZnJlZShudGktPmJhc2UuSW1hZ2VPZmZzZXRzKTsKKwkJbnRpLT5iYXNlLkltYWdlT2Zmc2V0cyA9
-IE5VTEw7CisJfQogfQogCiBzdGF0aWMgdm9pZApAQCAtNDY1LDE5ICs1MTgsNiBAQCBub3V2ZWF1
-X3RleHR1cmVfcmVhbGxvY2F0ZShzdHJ1Y3QgZ2xfY29udGV4dCAqY3R4LCBzdHJ1Y3QgZ2xfdGV4
-dHVyZV9vYmplY3QgKnQpCiAJfQogfQogCi1zdGF0aWMgdW5zaWduZWQKLWdldF90ZXhpbWFnZV9w
-bGFjZW1lbnQoc3RydWN0IGdsX3RleHR1cmVfaW1hZ2UgKnRpKQotewotCWlmICh0aS0+VGV4Rm9y
-bWF0ID09IE1FU0FfRk9STUFUX0E4IHx8Ci0JICAgIHRpLT5UZXhGb3JtYXQgPT0gTUVTQV9GT1JN
-QVRfTDggfHwKLQkgICAgdGktPlRleEZvcm1hdCA9PSBNRVNBX0ZPUk1BVF9JOCkKLQkJLyogMSBj
-cHAgZm9ybWF0cyB3aWxsIGhhdmUgdG8gYmUgc3dpenpsZWQgYnkgdGhlIENQVSwKLQkJICogc28g
-bGVhdmUgdGhlbSBpbiBzeXN0ZW0gUkFNIGZvciBub3cuICovCi0JCXJldHVybiBOT1VWRUFVX0JP
-X01BUDsKLQllbHNlCi0JCXJldHVybiBOT1VWRUFVX0JPX0dBUlQgfCBOT1VWRUFVX0JPX01BUDsK
-LX0KLQogc3RhdGljIHZvaWQKIG5vdXZlYXVfdGV4aW1hZ2Uoc3RydWN0IGdsX2NvbnRleHQgKmN0
-eCwgR0xpbnQgZGltcywKIAkJIHN0cnVjdCBnbF90ZXh0dXJlX2ltYWdlICp0aSwKQEAgLTcwNCw3
-ICs3NDQsOCBAQCBub3V2ZWF1X3RleHR1cmVfZnVuY3Rpb25zX2luaXQoc3RydWN0IGRkX2Z1bmN0
-aW9uX3RhYmxlICpmdW5jdGlvbnMpCiAJZnVuY3Rpb25zLT5OZXdUZXh0dXJlT2JqZWN0ID0gbm91
-dmVhdV90ZXh0dXJlX25ldzsKIAlmdW5jdGlvbnMtPkRlbGV0ZVRleHR1cmUgPSBub3V2ZWF1X3Rl
-eHR1cmVfZnJlZTsKIAlmdW5jdGlvbnMtPk5ld1RleHR1cmVJbWFnZSA9IG5vdXZlYXVfdGV4aW1h
-Z2VfbmV3OwotCWZ1bmN0aW9ucy0+RnJlZVRleHR1cmVJbWFnZUJ1ZmZlciA9IG5vdXZlYXVfdGV4
-aW1hZ2VfZnJlZTsKKwlmdW5jdGlvbnMtPkFsbG9jVGV4dHVyZUltYWdlQnVmZmVyID0gbm91dmVh
-dV9hbGxvY190ZXh0dXJlX2ltYWdlX2J1ZmZlcjsKKwlmdW5jdGlvbnMtPkZyZWVUZXh0dXJlSW1h
-Z2VCdWZmZXIgPSBub3V2ZWF1X2ZyZWVfdGV4dHVyZV9pbWFnZV9idWZmZXI7CiAJZnVuY3Rpb25z
-LT5DaG9vc2VUZXh0dXJlRm9ybWF0ID0gbm91dmVhdV9jaG9vc2VfdGV4X2Zvcm1hdDsKIAlmdW5j
-dGlvbnMtPlRleEltYWdlID0gbm91dmVhdV90ZXhpbWFnZV8xMjNkOwogCWZ1bmN0aW9ucy0+VGV4
-U3ViSW1hZ2UgPSBub3V2ZWF1X3RleHN1YmltYWdlXzEyM2Q7Ci0tIAoxLjcuOC42CgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+https://bugs.freedesktop.org/show_bug.cgi?id=51798
+
+             Bug #: 51798
+           Summary: Cannot enable second video card on nvidia quadro
+                    NVS420
+    Classification: Unclassified
+           Product: xorg
+           Version: 7.7 (2011)
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: ilyin-qar0IOKqGHQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created attachment 63903
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63903
+lspci
+
+With nouveau module I can only see two monitors working which are connected to
+the first video card out of two cards of NVS420, connected via PCI bridge
+pci 03:00 and 04:00:
+
+-[0000:00]-+-00.0  Intel Corporation 4 Series Chipset DRAM Controller
+           +-01.0-[01-04]----00.0-[02-04]--+-00.0-[03]----00.0 G98 Quadro
+NVS420
+           |                               \-02.0-[04]----00.0 G98 Quadro
+NVS420
+
+Full list of PCIs are in the attachment.
+
+DRI status is given here and shows that the second video card (card1) is not
+set to any PCI bus: 
+
+dristat -a
+
+/dev/dri/card0
+  Busid: pci:0000:03:00.0
+  Version information:
+    Name: nouveau
+    Version: 1.0.0
+    Date: 20120316
+    Desc: nVidia Riva/TNT/GeForce
+  VM map information:
+  flags: (R)estricted (r)ead/(w)rite (l)ocked (k)ernel (W)rite-combine (L)ock:
+    slot     offset       size type flags    address mtrr
+       0 0x11839000 0x00002000 SHM  w   L 0x1b7ff000 none
+  DRI client information:
+    a   pid   uid      magic     ioctls   prog
+    y  1482     0          0          7   dristat
+    y   761     0          0       3824   /usr/bin/Xorg
+  System statistics:
+    Lock                 0x00000000
+    Opens                         2
+    Closes                        1
+    Ioctls                     3834
+    Locks                         0
+    Unlocks                       0
+
+/dev/dri/card1
+  Busid: (not set)
+  Version information:
+    Name: nouveau
+    Version: 1.0.0
+    Date: 20120316
+    Desc: nVidia Riva/TNT/GeForce
+  VM map information:
+  flags: (R)estricted (r)ead/(w)rite (l)ocked (k)ernel (W)rite-combine (L)ock:
+    slot     offset       size type flags    address mtrr
+  DRI client information:
+    a   pid   uid      magic     ioctls   prog
+    y  1482     0          0          6   dristat
+  System statistics:
+    Lock                 0x00000000
+    Opens                         0
+    Closes                        0
+    Ioctls                        8
+    Locks                         0
+    Unlocks                       0
+
+
+
+
+Though all the DisplayPorts are connected:
+
+ls /sys/class/drm/*/status | xargs -I {} -i bash -c "echo -n {}: ; cat {}"
+
+/sys/class/drm/card0-DP-1/status:connected
+/sys/class/drm/card0-DP-2/status:connected
+/sys/class/drm/card1-DP-3/status:connected
+/sys/class/drm/card1-DP-4/status:connected
+
+BUT
+
+ls /sys/bus/pci/devices/*/drm/*/card*/enabled | xargs -I {} -i bash -c "echo -n
+{}: ; cat {}"
+
+/sys/bus/pci/devices/0000:03:00.0/drm/card0/card0-DP-1/enabled:enabled
+/sys/bus/pci/devices/0000:03:00.0/drm/card0/card0-DP-2/enabled:enabled
+
+/sys/bus/pci/devices/0000:04:00.0/drm/card1/card1-DP-3/enabled:disabled
+/sys/bus/pci/devices/0000:04:00.0/drm/card1/card1-DP-4/enabled:disabled
+
+i.e. the last two ports of card1 are disabled.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
