@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50374] nouveau fails to obtain EDID from NV11
 	(nforce IGP)
-Date: Sat, 07 Jul 2012 14:49:31 +0000
-Message-ID: <bug-50374-8800-avukPT9iUE@http.bugs.freedesktop.org/>
+Date: Sat, 07 Jul 2012 15:02:02 +0000
+Message-ID: <bug-50374-8800-jn7Yv8jfOG@http.bugs.freedesktop.org/>
 References: <bug-50374-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,20 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50374
 
---- Comment #1 from Ilya Ilyin <ilyin-qar0IOKqGHQ@public.gmane.org> 2012-07-07 07:49:31 PDT ---
-use 
-edid-decode /sys/class/drm/.../edid
-to read the file
+--- Comment #2 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> 2012-07-07 08:02:02 PDT ---
+(In reply to comment #1)
+> use 
+> edid-decode /sys/class/drm/.../edid
+> to read the file
+
+That won't help as nouveau (and older UMS nv driver) are not getting I2C right
+(they don't know where the right I2C bus is located) to do the EDID transfer.
+
+It's rather a matter of either finding out how nvidia closed driver knows where
+to look and replicating that or finding out where the I2C bus is for
+nforce/mainboard.
+
+see also: bug #26670
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
