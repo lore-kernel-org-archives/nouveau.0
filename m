@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51862] New: Shader optimizer is extremely slow
-Date: Sun, 08 Jul 2012 12:03:59 +0000
-Message-ID: <bug-51862-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51862] Shader optimizer is extremely slow
+Date: Sun, 08 Jul 2012 12:05:09 +0000
+Message-ID: <bug-51862-8800-5vPa6O2PaQ@http.bugs.freedesktop.org/>
+References: <bug-51862-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-51862-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51862
 
-             Bug #: 51862
-           Summary: Shader optimizer is extremely slow
-    Classification: Unclassified
-           Product: Mesa
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: tiziano-dNrdRo8CweYdbCeoMzGj59i2O/JbrIOy@public.gmane.org
-
-
-Created attachment 63969
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63969
-Comparison of shader compile times between mesa and nvidia driver
-
-Shader optimizer is extremely slow and causes games like Crysis that loads
-content while playing to go very slow or freeze temporarily
-
-On nvidia proprietary driver sometimes compiling is even 200x faster
+--- Comment #1 from Tiziano Bacocco <tiziano-dNrdRo8CweYdbCeoMzGj59i2O/JbrIOy@public.gmane.org> 2012-07-08 05:05:09 PDT ---
+Created attachment 63970
+  --> https://bugs.freedesktop.org/attachment.cgi?id=63970
+Profiler output while running a programm that continously compiles shaders
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
