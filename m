@@ -1,42 +1,63 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47182] GeFroce 6150SE nForce 430: misaligned reg
-	0x0060081D
-Date: Mon, 09 Jul 2012 23:05:27 +0000
-Message-ID: <bug-47182-8800-0qOrRSgZy4@http.bugs.freedesktop.org/>
-References: <bug-47182-8800@http.bugs.freedesktop.org/>
+From: "Henrik Rydberg" <rydberg@bitmath.se>
+Subject: Re: [REGRESSION] nouveau: Memory corruption using nva3 engine for
+ 0xaf
+Date: Mon, 9 Jul 2012 20:27:00 +0200
+Message-ID: <20120709182700.GA383@polaris.bitmath.org>
+References: <1341469873-1582-1-git-send-email-rydberg@euromail.se>
+ <20120705064049.GA8693@nisroch.bne.redhat.com>
+ <20120705065446.GA1849@polaris.bitmath.org>
+ <20120705083410.GA395@polaris.bitmath.org>
+ <20120709131325.GA22653@polaris.bitmath.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47182-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20120709131325.GA22653@polaris.bitmath.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47182
+On Mon, Jul 09, 2012 at 03:13:25PM +0200, Henrik Rydberg wrote:
+> On Thu, Jul 05, 2012 at 10:34:10AM +0200, Henrik Rydberg wrote:
+> > On Thu, Jul 05, 2012 at 08:54:46AM +0200, Henrik Rydberg wrote:
+> > > > Thanks for tracking down the source of this corruption.  I don't have
+> > > > any such hardware, so until someone can figure it out, I think we
+> > > > should apply this patch.
+> > > 
+> > > In that case, I would have to massage the patch a bit first; it
+> > > creates a problem with suspend/resume. Might be something with
+> > > nva3_pm.c, who knows. I am really stabbing in the dark here. :-)
+> > 
+> > It seems the suspend/resume problem is unrelated (bad systemd update),
+> > so I am fine with applying this as is. Obviously not the best
+> > solution, and if I have time I will continue to look for problems in
+> > the nva3 copy code, but for now,
+> > 
+> >     Signed-off-by: Henrik Rydberg <rydberg@euromail.se>
+> 
+> I have not encountered the problem in a long while, and I do not have
+> the patch applied. It is entirely possible that this was fixed by
+> something else. Unless you have already applied the patch, I would
+> suggest holding on to it to see if the problem reappears.
+> 
+> Sorry for the churn.
 
---- Comment #1 from rgquadro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-07-09 16:05:27 PDT ---
-Same bug.
-[drm] Initialized drm 1.1.0 20060810
-[drm] nouveau 0000:00:0d.0: ======= misaligned reg 0x0060081D =======
-[drm] nouveau 0000:00:0d.0: ======= misaligned reg 0x0060081D =======
+... and there it was again, hours after giving up on it. Oh well.
 
+What makes this bug particularly difficult is that as soon as the
+patch is applied, the problem disappears and does not show itself
+again - with or without the patch applied. Sounds very much like the
+problem is a failure state that does not get reset by current
+mainline, but somehow gets reset with the patch applied.
 
-Video :
-00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce 7025 /
-nForce 630a] (rev a2)
-Kernel : 3.2 & 3.4
-Arch : amd64
+I also learnt that the problem is not in the nva3_copy code itself; I
+reverted nva3_copy.c and nva3_pm.c back to v3.4, but the problem persisted.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+A DMA problem elsewhere, in the drm code or in the pci layer, seems
+more likely than this particular hardware having problems with this
+particular copy engine. As it stands, though, applying the patch is
+the only thing known to work.
+
+Thanks,
+Henrik
