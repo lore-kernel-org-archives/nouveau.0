@@ -1,14 +1,14 @@
-From: Gianluca Cecchi <gianluca.cecchi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Problem with GT520 and optimus on Fedora 17
-Date: Mon, 9 Jul 2012 15:39:54 +0200
-Message-ID: <CAG2kNCztP+NCPC=fzNzYm=zTtLD5pw7GoKiTWv3sUQof=DjEog@mail.gmail.com>
-References: <CAG2kNCxHWS2vzLweyuZE2yfMOb1g3mAagTXX9qedz70YDRqV8Q@mail.gmail.com>
-	<op.wgaw2ewz8t7z9u@arch-laptop>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 47182] GeFroce 6150SE nForce 430: misaligned reg
+	0x0060081D
+Date: Mon, 09 Jul 2012 23:05:27 +0000
+Message-ID: <bug-47182-8800-0qOrRSgZy4@http.bugs.freedesktop.org/>
+References: <bug-47182-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <op.wgaw2ewz8t7z9u@arch-laptop>
+In-Reply-To: <bug-47182-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,26 +18,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Jun 22, 2012 at 1:06 PM, Emil Velikov wrote:
+https://bugs.freedesktop.org/show_bug.cgi?id=47182
 
-> Honestly I do no believe you have is not caused by nouveau, moreover it's
-> an underlying ACPI problem causing nouveau to fail - note the ACPI errors
-> appear even before we're loading. That taken aside I would recommend if
-> you can bisect the problem as it would ease and fasten the resolution
-> Adding [bisected] to the bug [1] and CC the author of the patch would be
-> encouraged
+--- Comment #1 from rgquadro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-07-09 16:05:27 PDT ---
+Same bug.
+[drm] Initialized drm 1.1.0 20060810
+[drm] nouveau 0000:00:0d.0: ======= misaligned reg 0x0060081D =======
+[drm] nouveau 0000:00:0d.0: ======= misaligned reg 0x0060081D =======
 
-Sorry for the delay.
-I would like to help, but any link helping me to understand what to do
-to "bisect"...?
-I'm using a fedora kernel. I know that if I boot with
-kernel-3.3.7-1.fc17.x86_64 it works, while any other following kernel
-released not
-(right today I tried with kernel-3.4.4-5.fc17.x86_64).
 
-Thanks,
-Gianluca
+Video :
+00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce 7025 /
+nForce 630a] (rev a2)
+Kernel : 3.2 & 3.4
+Arch : amd64
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
