@@ -1,33 +1,45 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51862] Shader optimizer is extremely slow
-Date: Sun, 08 Jul 2012 12:05:09 +0000
-Message-ID: <bug-51862-8800-5vPa6O2PaQ@http.bugs.freedesktop.org/>
-References: <bug-51862-8800@http.bugs.freedesktop.org/>
+From: "Henrik Rydberg" <rydberg@euromail.se>
+Subject: Re: [REGRESSION] nouveau: Memory corruption using nva3 engine for
+ 0xaf
+Date: Mon, 9 Jul 2012 15:13:25 +0200
+Message-ID: <20120709131325.GA22653@polaris.bitmath.org>
+References: <1341469873-1582-1-git-send-email-rydberg@euromail.se>
+ <20120705064049.GA8693@nisroch.bne.redhat.com>
+ <20120705065446.GA1849@polaris.bitmath.org>
+ <20120705083410.GA395@polaris.bitmath.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51862-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20120705083410.GA395@polaris.bitmath.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51862
+On Thu, Jul 05, 2012 at 10:34:10AM +0200, Henrik Rydberg wrote:
+> On Thu, Jul 05, 2012 at 08:54:46AM +0200, Henrik Rydberg wrote:
+> > > Thanks for tracking down the source of this corruption.  I don't have
+> > > any such hardware, so until someone can figure it out, I think we
+> > > should apply this patch.
+> > 
+> > In that case, I would have to massage the patch a bit first; it
+> > creates a problem with suspend/resume. Might be something with
+> > nva3_pm.c, who knows. I am really stabbing in the dark here. :-)
+> 
+> It seems the suspend/resume problem is unrelated (bad systemd update),
+> so I am fine with applying this as is. Obviously not the best
+> solution, and if I have time I will continue to look for problems in
+> the nva3 copy code, but for now,
+> 
+>     Signed-off-by: Henrik Rydberg <rydberg@euromail.se>
 
---- Comment #1 from Tiziano Bacocco <tiziano-dNrdRo8CweYdbCeoMzGj59i2O/JbrIOy@public.gmane.org> 2012-07-08 05:05:09 PDT ---
-Created attachment 63970
-  --> https://bugs.freedesktop.org/attachment.cgi?id=63970
-Profiler output while running a programm that continously compiles shaders
+I have not encountered the problem in a long while, and I do not have
+the patch applied. It is entirely possible that this was fixed by
+something else. Unless you have already applied the patch, I would
+suggest holding on to it to see if the problem reappears.
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Sorry for the churn.
+
+Thanks,
+Henrik
