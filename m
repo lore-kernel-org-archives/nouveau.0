@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
 	No Connectors
-Date: Wed, 11 Jul 2012 09:17:27 +0000
-Message-ID: <bug-51971-8800-RyoUijDdXm@http.bugs.freedesktop.org/>
+Date: Wed, 11 Jul 2012 09:17:53 +0000
+Message-ID: <bug-51971-8800-39niF9487b@http.bugs.freedesktop.org/>
 References: <bug-51971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51971
 
---- Comment #3 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-11 02:17:27 PDT ---
-Created attachment 64091
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64091
-vbios
+--- Comment #4 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-11 02:17:53 PDT ---
+Created attachment 64092
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64092
+output of lspci -v
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
