@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
 	No Connectors
-Date: Wed, 11 Jul 2012 16:12:03 +0000
-Message-ID: <bug-51971-8800-T0p7XeKCgD@http.bugs.freedesktop.org/>
+Date: Wed, 11 Jul 2012 16:29:56 +0000
+Message-ID: <bug-51971-8800-oMOjR8YRyK@http.bugs.freedesktop.org/>
 References: <bug-51971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51971
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #6 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-11 16:29:56 UTC ---
+I've tracked this connector issue down to the nouveau_probe_i2c_addr call
+returning false as a result of the i2c_transfer call returning -ENXIO. I'm
+attempting at the moment to determine if the address is correct.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #64094|application/octet-stream    |text/plain
-          mime type|                            |
+I've run the nvidia blob and it detects the connectors and EDID correctly. I've
+turned up I2C debugging and will see if I can find out what address it's using.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
