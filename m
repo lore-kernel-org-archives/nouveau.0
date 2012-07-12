@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
-	No Connectors
-Date: Wed, 11 Jul 2012 16:29:56 +0000
-Message-ID: <bug-51971-8800-oMOjR8YRyK@http.bugs.freedesktop.org/>
-References: <bug-51971-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47182] GeFroce 6150SE nForce 430: misaligned reg
+	0x0060081D
+Date: Thu, 12 Jul 2012 00:54:57 +0000
+Message-ID: <bug-47182-8800-eDbonIm1zL@http.bugs.freedesktop.org/>
+References: <bug-47182-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51971-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47182-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,15 +21,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51971
+https://bugs.freedesktop.org/show_bug.cgi?id=47182
 
---- Comment #6 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-11 16:29:56 UTC ---
-I've tracked this connector issue down to the nouveau_probe_i2c_addr call
-returning false as a result of the i2c_transfer call returning -ENXIO. I'm
-attempting at the moment to determine if the address is correct.
+Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> changed:
 
-I've run the nvidia blob and it detects the connectors and EDID correctly. I've
-turned up I2C debugging and will see if I can find out what address it's using.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEEDINFO                    |NEW
+
+--- Comment #3 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-07-11 17:54:57 PDT ---
+(In reply to comment #2)
+> Have you experienced any issues with nouveau ?
+
+Yes, I have several issues with the GeForce 6150SE, e.g. Bug 48434 (, problems
+with flash player, pixmap/image/background corruption, ...).
+
+What's the function of reg 0x0060081D ?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
