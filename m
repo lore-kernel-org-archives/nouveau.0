@@ -1,15 +1,14 @@
-From: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH 9/9] dri2: Fix corner case crash for swaplimit
-	> 1
-Date: Thu, 12 Jul 2012 22:39:16 +0300
-Message-ID: <0d082daa8340ab694169e75ff2c3044c@mail.onse.fi>
-References: <1329349524-11650-1-git-send-email-mario.kleiner@tuebingen.mpg.de>
-	<1329349524-11650-10-git-send-email-mario.kleiner@tuebingen.mpg.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
+	No Connectors
+Date: Fri, 13 Jul 2012 04:17:47 +0000
+Message-ID: <bug-51971-8800-k8BCdxoVPM@http.bugs.freedesktop.org/>
+References: <bug-51971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1329349524-11650-10-git-send-email-mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
+In-Reply-To: <bug-51971-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,161 +18,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-Cc: xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi!
+https://bugs.freedesktop.org/show_bug.cgi?id=51971
 
-On 16.02.2012 02:45, Mario Kleiner wrote:
-> If a swaplimit > 1 is set on a server which
-> supports the swaplimit api (XOrg 1.12.0+),
-> the following can happen:
->
-> 1. Client calls glXSwapBuffersMscOML() with a
->    swap target > 1 vblank in the future, or a
->    client calls glXSwapbuffers() while the swap
->    interval is set to > 1 (unusual but possible).
->
-> 2. nouveau_dri2_finish_swap() is therefore called
->    only at the target vblank, instead of immediately.
->
-> 3. Because of the deferred execution of
->    nouveu_dri2_finish_swap(), the OpenGL client
->    can call x-servers DRI2GetBuffersWithFormat()
->    before nouveau_dri2_finish_swap() executes and
->    it deletes pixmaps that would be needed by
->    nouveau_dri2_finish_swap() --> Segfault --> Crash.
->
-> Prevent this: When a swap is scheduled into the
-> future, we temporarily reduce the swaplimit to 1
-> until nouveau_dri2_finish_swap() is done, then
-> restore it to its original value. This throttles
-> the client inside the server in DRI2ThrottleClient()
-> before it can call the evil DRI2GetbuffersWithFormat().
->
-> The client will still be released one video refresh
-> interval before swap completion, so there is still
-> some potential win.
->
-> This doesn't affect the common case of swapping at
-> the next vblank, where this throttling is not needed
-> or done.
+--- Comment #8 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-12 21:17:47 PDT ---
+I've reverse engineered the ACPI calls the nVidia blob makes during the process
+of loading and unloading. None of them are helpful in enabling the panel's I2C.
+I've even gone so far as to reproduce the calls and run them via a script
+outside of the nVidia blob, followed by a load of the nouveau driver. They have
+no effect.
 
-
-After upgrading my system to X server 1.12.3, I've started to
-experience some crashes/freezes related to apparent memory
-corruption.
-Debugging with valgrind and gdb, it seems to me like the "evil"
-DRI2GetbuffersWithFormat() can be called before swap even when
-target_msc == current_msc + 1. This results in writes+reads to
-freed memory when the vblank event is finally being handled.
-
-I'm not an Xorg/drm expert, but with a glance at the code I
-didn't see anything that would/should prevent
-DRI2GetbuffersWithFormat() from being called before the vblank
-event is handled. Even if the event is immediately sent by the
-kernel, isn't it possible that the X server services some other
-requests before the event is dispatched?
-
-Am I missing something, or is that a bug?
-
-In any case, I'm running ddx 1.0.1, xserver 1.12.3, libdrm 2.4.37,
-kernel 3.4.4, and I have Option "GLXVBlank" "true".
-
-Here's one of the invalid write errors:
-
-==24537== Invalid write of size 4
-==24537==    at 0x8D45029: nouveau_bo_name_get (nouveau.c:426)
-==24537==    by 0x8B1EFFD: nouveau_dri2_finish_swap 
-(nouveau_dri2.c:173)
-==24537==    by 0x8B1F65F: nouveau_dri2_vblank_handler 
-(nouveau_dri2.c:598)
-==24537==    by 0x8707BA0: drmHandleEvent (xf86drmMode.c:808)
-==24537==    by 0x8B37BC5: drmmode_wakeup_handler 
-(drmmode_display.c:1447)
-==24537==    by 0x43EA15: WakeupHandler (dixutils.c:421)
-==24537==    by 0x5D7429: WaitForSomething (WaitFor.c:224)
-==24537==    by 0x430B8B: Dispatch (dispatch.c:357)
-==24537==    by 0x421D6C: main (main.c:288)
-==24537==  Address 0xdd7c6d4 is 4 bytes inside a block of size 40 
-free'd
-==24537==    at 0x4C25A9E: free (in 
-/usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)
-==24537==    by 0x890E5A4: update_dri2_drawable_buffers (dri2.c:415)
-==24537==    by 0x890E97D: do_get_buffers (dri2.c:525)
-==24537==    by 0x890EB60: DRI2GetBuffersWithFormat (dri2.c:582)
-==24537==    by 0x8910A7E: ProcDRI2GetBuffersWithFormat (dri2ext.c:299)
-==24537==    by 0x8911256: ProcDRI2Dispatch (dri2ext.c:564)
-==24537==    by 0x430DDF: Dispatch (dispatch.c:428)
-==24537==    by 0x421D6C: main (main.c:288)
-
-I stored some additional data regarding the vblank event request in
-nouveau_dri2_vblank_state, so that I could retrieve the information
-at invalid write time:
-(gdb) print *(struct nouveau_dri2_vblank_state*) event_data
-$1 = {action = SWAP, client = 0x7740b20, draw = 37748775, dst = 
-0xdd7c6d0, src = 0xbd1f5a0, func = 0x8910bf2 <DRI2SwapEvent>, data = 
-0x99247b0, frame = 302185, current_msc = 302184, target_msc = 302185, 
-remainder = 0, divisor = 0, hit = 0}
-
-As you can see, in this event target_msc was current_msc + 1, but
-still DRI2GetBuffersWithFormat() apparently managed to get called
-first (and since swap limit was not altered, the call was not
-throttled).
-
-
-> Signed-off-by: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-> ---
->  src/nouveau_dri2.c |   26 ++++++++++++++++++++++++++
->  1 files changed, 26 insertions(+), 0 deletions(-)
->
-> diff --git a/src/nouveau_dri2.c b/src/nouveau_dri2.c
-> index f0c7fec..7878a5a 100644
-> --- a/src/nouveau_dri2.c
-> +++ b/src/nouveau_dri2.c
-> @@ -445,6 +445,26 @@ nouveau_dri2_schedule_swap(ClientPtr client,
-> DrawablePtr draw,
->  		if (*target_msc == 0)
->  			*target_msc = 1;
->
-> +#if DRI2INFOREC_VERSION >= 6
-> +		/* Is this a swap in the future, ie. the vblank event will
-> +		 * not be immediately dispatched, but only at a future vblank?
-> +		 * If so, we need to temporarily lower the swaplimit to 1, so
-> +		 * that DRI2GetBuffersWithFormat() requests from the client get
-> +		 * deferred in the x-server until the vblank event has been
-> +		 * dispatched to us and nouveau_dri2_finish_swap() is done. If
-> +		 * we wouldn't do this, DRI2GetBuffersWithFormat() would operate
-> +		 * on wrong (pre-swap) buffers, and cause a segfault later on in
-> +		 * nouveau_dri2_finish_swap(). Our vblank event handler restores
-> +		 * the old swaplimit immediately after nouveau_dri2_finish_swap()
-> +		 * is done, so we still get 1 video refresh cycle worth of
-> +		 * triple-buffering. For a swap at next vblank, dispatch of the
-> +		 * vblank event happens immediately, so there isn't any need
-> +		 * for this lowered swaplimit.
-> +		 */
-> +		if (current_msc < *target_msc - 1)
-> +			DRI2SwapLimit(draw, 1);
-> +#endif
-> +
->  		/* Request a vblank event one frame before the target */
->  		ret = nouveau_wait_vblank(draw, DRM_VBLANK_ABSOLUTE |
->  					  DRM_VBLANK_EVENT,
-> @@ -557,6 +577,12 @@ nouveau_dri2_vblank_handler(int fd, unsigned int 
-> frame,
->  	switch (s->action) {
->  	case SWAP:
->  		nouveau_dri2_finish_swap(draw, frame, tv_sec, tv_usec, s);
-> +#if DRI2INFOREC_VERSION >= 6
-> +		/* Restore real swap limit on drawable, now that it is safe. */
-> +		ScrnInfoPtr scrn = xf86Screens[draw->pScreen->myNum];
-> +		DRI2SwapLimit(draw, NVPTR(scrn)->swap_limit);
-> +#endif
-> +
->  		break;
->
->  	case WAIT:
+I'll continue pounding away at this.
 
 -- 
-Anssi Hannula
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
