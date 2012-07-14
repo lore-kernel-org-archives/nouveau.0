@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27680] Misaligned reg ... nVidia Corporation C67
  [GeForce 7150M / nForce 630M] (rev a2)
-Date: Sat, 14 Jul 2012 18:09:30 +0000
-Message-ID: <bug-27680-8800-U7aL4kb9gv@http.bugs.freedesktop.org/>
+Date: Sat, 14 Jul 2012 18:10:06 +0000
+Message-ID: <bug-27680-8800-MplbmklBTH@http.bugs.freedesktop.org/>
 References: <bug-27680-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,17 +27,8 @@ Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-14 11:09:30 PDT ---
-Hi Max
-
-Are you still having problems with nouveau ?
-Can you describe the issue a bit more (a picture says a thousand words). Attach
-your dmesg and Xorg.0.log (if relevant) accoring to our bugpolicy [1]
-
-
-[1] http://nouveau.freedesktop.org/wiki/Bugs
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=47182
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
