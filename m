@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52089] Wrong resolution on GeForce GT 520
-Date: Sat, 14 Jul 2012 22:49:58 +0000
-Message-ID: <bug-52089-8800-tkqq4Lipcj@http.bugs.freedesktop.org/>
+Date: Sat, 14 Jul 2012 22:51:16 +0000
+Message-ID: <bug-52089-8800-nR9ZRxm7N7@http.bugs.freedesktop.org/>
 References: <bug-52089-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52089
 
---- Comment #1 from Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> 2012-07-14 15:49:58 PDT ---
-Created attachment 64209
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64209
-Xorg nouveau log
+--- Comment #2 from Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> 2012-07-14 15:51:16 PDT ---
+Created attachment 64210
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64210
+Xorg nvidia log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
