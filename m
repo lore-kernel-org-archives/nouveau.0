@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 52089] New: Wrong resolution on GeForce GT 520
-Date: Sat, 14 Jul 2012 22:33:15 +0000
-Message-ID: <bug-52089-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 52089] Wrong resolution on GeForce GT 520
+Date: Sat, 14 Jul 2012 22:49:58 +0000
+Message-ID: <bug-52089-8800-tkqq4Lipcj@http.bugs.freedesktop.org/>
+References: <bug-52089-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-52089-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52089
 
-             Bug #: 52089
-           Summary: Wrong resolution on GeForce GT 520
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-When using nouveau driver, resolution reported by the monitor is 1921x1201,
-whereas xrandr report 1920x1200.
-The extra pixel leads to a blur screen.
-
-$ uname -a
-Kernel : Linux 3.2.0-3-rt-amd64 #1 SMP PREEMPT RT Thu Jun 28 10:46:01 UTC 2012
-x86_64 GNU/Linux
-
-$ dpkg -l | grep nouveau
-ii  libdrm-nouveau1a:amd64                2.4.33-3                          
-Userspace interface to nouveau-specific kernel DRM services -- runtime
-ii  xserver-xorg-video-nouveau            1:0.0.16+git20120322+ab7291d-1    
-X.Org X server -- Nouveau display driver
+--- Comment #1 from Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> 2012-07-14 15:49:58 PDT ---
+Created attachment 64209
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64209
+Xorg nouveau log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
