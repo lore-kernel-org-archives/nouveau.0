@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52089] Wrong resolution on GeForce GT 520
-Date: Sat, 14 Jul 2012 23:06:07 +0000
-Message-ID: <bug-52089-8800-cuwsPK5xKZ@http.bugs.freedesktop.org/>
+Date: Sat, 14 Jul 2012 23:06:14 +0000
+Message-ID: <bug-52089-8800-uvCnfkXL70@http.bugs.freedesktop.org/>
 References: <bug-52089-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> change
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #64210|application/octet-stream    |text/plain
+  Attachment #64209|application/octet-stream    |text/plain
           mime type|                            |
 
 -- 
