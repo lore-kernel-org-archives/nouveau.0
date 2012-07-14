@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52089] Wrong resolution on GeForce GT 520
-Date: Sat, 14 Jul 2012 22:51:16 +0000
-Message-ID: <bug-52089-8800-nR9ZRxm7N7@http.bugs.freedesktop.org/>
+Date: Sat, 14 Jul 2012 22:51:57 +0000
+Message-ID: <bug-52089-8800-eGi3cmqabD@http.bugs.freedesktop.org/>
 References: <bug-52089-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,31 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52089
 
---- Comment #2 from Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> 2012-07-14 15:51:16 PDT ---
-Created attachment 64210
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64210
-Xorg nvidia log
+--- Comment #3 from Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> 2012-07-14 15:51:57 PDT ---
+$ xrandr 
+Screen 0: minimum 320 x 200, current 3600 x 1200, maximum 8192 x 8192
+DVI-I-1 connected 1920x1200+1680+0 (normal left inverted right x axis y axis)
+518mm x 324mm
+   1920x1200      60.0*+
+   1920x1080      60.0  
+   1600x1200      60.0  
+   1680x1050      60.0  
+   1280x1024      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.3  
+   640x480        60.0  
+   720x400        70.1  
+HDMI-1 disconnected (normal left inverted right x axis y axis)
+VGA-1 connected 1680x1050+0+0 (normal left inverted right x axis y axis) 473mm
+x 296mm
+   1680x1050      60.0*+
+   1280x1024      75.0     60.0  
+   1152x864       75.0  
+   1024x768       75.1     60.0  
+   800x600        75.0     60.3  
+   640x480        75.0     60.0  
+   720x400        70.1
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
