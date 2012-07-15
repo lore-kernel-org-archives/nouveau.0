@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
-	No Connectors
-Date: Sun, 15 Jul 2012 05:37:43 +0000
-Message-ID: <bug-51971-8800-7cuAWObldU@http.bugs.freedesktop.org/>
-References: <bug-51971-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+Subject: Re: [PATCH] nv30: Support negative offsets in indirect
+	constant access
+Date: Sun, 15 Jul 2012 21:53:42 +0200
+Message-ID: <1342382023-16889-1-git-send-email-r.spliet@student.tudelft.nl>
+References: <1341944623.1407.3.camel@tellur>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51971-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1341944623.1407.3.camel@tellur>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,22 +18,7 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51971
-
---- Comment #11 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-15 05:37:43 UTC ---
-Created attachment 64226
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64226
-Patch to call nouveau_gpio_reset outside of vbios post.
-
-This patch calls nouveau_gpio_reset at the end of nouveau_run_vbios_init when
-the vbios post isn't run. I don't know if this is an appropriate place to put
-the call or not, or even if it will cause it to break on other devices, but it
-works on the Retina.
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Re-did a small part based on logic and ran regression test on NV34. Thanks for your feedback Lucas, agree with this reworked patch too?
