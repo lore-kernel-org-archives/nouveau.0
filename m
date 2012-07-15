@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
 	No Connectors
-Date: Sun, 15 Jul 2012 05:25:17 +0000
-Message-ID: <bug-51971-8800-cbsiz510JH@http.bugs.freedesktop.org/>
+Date: Sun, 15 Jul 2012 05:37:43 +0000
+Message-ID: <bug-51971-8800-7cuAWObldU@http.bugs.freedesktop.org/>
 References: <bug-51971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,17 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51971
 
---- Comment #10 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-15 05:25:17 UTC ---
-I've gotten the connectors working and it pulls the correct EDID from the
-monitor. I'll have a patch that will fix this _only_ for the MacBook Pro 10,1
-as it's probably unsuitable for anything else.
+--- Comment #11 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-15 05:37:43 UTC ---
+Created attachment 64226
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64226
+Patch to call nouveau_gpio_reset outside of vbios post.
 
-It doesn't seem to be loading the EDID correctly, though. When in efifb
-everything works fine. When nouveau loads and sets the 2880x1800 modeline, it
-looks as if the mode is incorrect. Setting different refresh rates does not
-effect the situation - the crtc fixup replaces it with the builtin preferred
-modeline. Disabling that code and forcing a different refresh corrupts the
-screen further, so I doubt that's a good idea.
+This patch calls nouveau_gpio_reset at the end of nouveau_run_vbios_init when
+the vbios post isn't run. I don't know if this is an appropriate place to put
+the call or not, or even if it will cause it to break on other devices, but it
+works on the Retina.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
