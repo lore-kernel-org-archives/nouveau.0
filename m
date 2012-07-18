@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51579] Xv video support is black on NVidia NVa8
  Chipset in latest git
-Date: Wed, 18 Jul 2012 13:26:18 +0000
-Message-ID: <bug-51579-8800-irisNBHeHx@http.bugs.freedesktop.org/>
+Date: Wed, 18 Jul 2012 13:48:43 +0000
+Message-ID: <bug-51579-8800-TwwuxzoFQq@http.bugs.freedesktop.org/>
 References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,25 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #6 from Russ Dill <Russ.Dill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-18 06:26:18 PDT ---
-Yes, same here:
+--- Comment #7 from Russ Dill <Russ.Dill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-18 06:48:43 PDT ---
+I verified that with a build of 5ac2ca8c5 (the parent commit of b48bcc09),
+xvideo under mplayer does work. Before I had been using 1.0.1.
 
-[    29.786] (--) NOUVEAU(0): Chipset: "NVIDIA NV50"
-01:00.0 VGA compatible controller: NVIDIA Corporation G80 [GeForce 8800 GTS]
-(rev a2)
-
-I have not tested git revisions, but I also get black video on Xvideo playback.
-I first noticed with mythtv, but Xvideo also does not work under mplayer.
-However, X11, gl, and gl2 work.
-
-I'm not sure if this is of interest:
-
-Starting playback...
-Unsupported PixelFormat 61
-Unsupported PixelFormat 53
-Unsupported PixelFormat 81
-Movie-Aspect is 1.85:1 - prescaling to correct movie aspect.
-VO: [xv] 720x464 => 858x464 Planar YV12
+Unfortunately for me, xvideo under mythtv still produces a black screen. But I
+can verify Boris's original report.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
