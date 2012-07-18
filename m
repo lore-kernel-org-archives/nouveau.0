@@ -1,7 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47288] System hangs with GeForce 6150SE nForce 430
-Date: Wed, 18 Jul 2012 04:05:54 +0000
-Message-ID: <bug-47288-8800-DR1dQ3Pj9B@http.bugs.freedesktop.org/>
+ ("EQ overflowing")
+Date: Wed, 18 Jul 2012 04:07:09 +0000
+Message-ID: <bug-47288-8800-hnmWX9PyHP@http.bugs.freedesktop.org/>
 References: <bug-47288-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,28 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47288
 
---- Comment #7 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-07-17 21:05:54 PDT ---
-Still happens (even more often than before) with
+Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> changed:
 
-kernel 3.4.5
-Mesa 8.0.99.git20120707
-libdrm 2.4.99.git20120706
-libllvm 3.1.99.svn20120708
-
-
-The kernel logs now show much more of these lines:
-
-[drm] nouveau 0000:00:0d.0: fail pre-validate sync
-[drm] nouveau 0000:00:0d.0: validate vram_list
-[drm] nouveau 0000:00:0d.0: validate: -16
-[drm] nouveau 0000:00:0d.0: cal_space: -16
-[drm] nouveau 0000:00:0d.0: cal_space: -16
-[drm] nouveau 0000:00:0d.0: cal_space: -16
-...
-
-
-This bug is really easy to trigger, all you need to do is to enable KDE
-standard desktop effects => lockup in less than 5 minutes !
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|System hangs with GeForce   |System hangs with GeForce
+                   |6150SE nForce 430           |6150SE nForce 430 ("EQ
+                   |                            |overflowing")
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
