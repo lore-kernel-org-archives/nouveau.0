@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51579] Xv video support is black on NVidia NVa8
  Chipset in latest git
-Date: Wed, 18 Jul 2012 13:48:43 +0000
-Message-ID: <bug-51579-8800-TwwuxzoFQq@http.bugs.freedesktop.org/>
+Date: Wed, 18 Jul 2012 13:54:31 +0000
+Message-ID: <bug-51579-8800-DUklLT7RXb@http.bugs.freedesktop.org/>
 References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #7 from Russ Dill <Russ.Dill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-18 06:48:43 PDT ---
-I verified that with a build of 5ac2ca8c5 (the parent commit of b48bcc09),
-xvideo under mplayer does work. Before I had been using 1.0.1.
-
-Unfortunately for me, xvideo under mythtv still produces a black screen. But I
-can verify Boris's original report.
+--- Comment #8 from Russ Dill <Russ.Dill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-18 06:54:31 PDT ---
+And now I can verify that under b48bcc094b, mplayer with -vo xv gives a black
+screen, just like 1.0.1.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
