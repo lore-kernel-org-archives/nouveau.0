@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 47288] System hangs with GeForce 6150SE nForce 430
  ("EQ overflowing")
-Date: Wed, 18 Jul 2012 04:07:09 +0000
-Message-ID: <bug-47288-8800-hnmWX9PyHP@http.bugs.freedesktop.org/>
+Date: Wed, 18 Jul 2012 04:08:04 +0000
+Message-ID: <bug-47288-8800-vBsgIitrhn@http.bugs.freedesktop.org/>
 References: <bug-47288-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=47288
 
-Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|System hangs with GeForce   |System hangs with GeForce
-                   |6150SE nForce 430           |6150SE nForce 430 ("EQ
-                   |                            |overflowing")
+--- Comment #8 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> 2012-07-17 21:08:04 PDT ---
+Created attachment 64332
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64332
+Updated Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
