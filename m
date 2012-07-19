@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 52244] [ 4.876531] [drm] nouveau 0000:01:00.0: GPU
- lockup - switching to software fbcon
-Date: Thu, 19 Jul 2012 21:22:12 +0000
-Message-ID: <bug-52244-8800-ko1z7ywl53@http.bugs.freedesktop.org/>
-References: <bug-52244-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51579] Xv video support is black on NVidia NVa8
+ Chipset in latest git
+Date: Thu, 19 Jul 2012 19:06:17 +0000
+Message-ID: <bug-51579-8800-cvHUcRaayH@http.bugs.freedesktop.org/>
+References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-52244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,11 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=52244
+https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #4 from Kevin Martin <ktmdms-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-19 14:22:12 PDT ---
-Created attachment 64393
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64393
-vbios as requested.
+--- Comment #12 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-19 19:06:17 UTC ---
+Does enabling/disabling compositing change anything?
+Is there anything (new) in dmesg during video playback?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
