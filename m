@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Thu, 19 Jul 2012 02:55:43 +0000
-Message-ID: <bug-21273-8800-JR6RzglB1Y@http.bugs.freedesktop.org/>
+Date: Thu, 19 Jul 2012 03:52:32 +0000
+Message-ID: <bug-21273-8800-2oRZ0BX1XZ@http.bugs.freedesktop.org/>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,13 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #71 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2012-07-18 19:55:43 PDT ---
-Created attachment 64362
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64362
-Log after previous patch
+--- Comment #72 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2012-07-18 20:52:32 PDT ---
+Created attachment 64364
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64364
+Log of initialization
 
-Unfortunately, this change doesn't make good effect. I guess code of
-fabrication outputs for PowerMac is incorrect.
+I noted, that outputs fabricate only for PowerMac4,5, but I have PowerMac3,6.
+After changing I got this log. There is a correct resolution of monitor
+1600X1200, but monitor suspended and I didn't see console.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
