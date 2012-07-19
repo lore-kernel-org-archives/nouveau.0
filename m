@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51579] Xv video support is black on NVidia NVa8
  Chipset in latest git
-Date: Thu, 19 Jul 2012 00:07:58 +0000
-Message-ID: <bug-51579-8800-c6JmTWQ3r5@http.bugs.freedesktop.org/>
+Date: Thu, 19 Jul 2012 02:21:40 +0000
+Message-ID: <bug-51579-8800-PaJ5yXOyQc@http.bugs.freedesktop.org/>
 References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #9 from Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> 2012-07-18 17:07:58 PDT ---
-I downloaded the latest nouveau from git today and it's still black when using
-Xv. I tried with both mplayer AND now vdr and it still black.
-
-03:00.0 VGA compatible controller: NVIDIA Corporation GT218 [ION] (rev a2)
+--- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-18 19:21:40 PDT ---
+It may be useful to compare the xorg-server version as well as the output of
+mplayer
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
