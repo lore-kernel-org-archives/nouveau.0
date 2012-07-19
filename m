@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] Driver can't detect video output and xserver
- doesn't start
-Date: Wed, 18 Jul 2012 22:49:02 +0000
-Message-ID: <bug-21273-8800-LeMHwbmzZT@http.bugs.freedesktop.org/>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51579] Xv video support is black on NVidia NVa8
+ Chipset in latest git
+Date: Thu, 19 Jul 2012 00:07:58 +0000
+Message-ID: <bug-51579-8800-c6JmTWQ3r5@http.bugs.freedesktop.org/>
+References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,14 +21,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
+https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #69 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2012-07-18 15:49:02 PDT ---
-Created attachment 64352
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64352
-Log of kernel 3.4.5
+--- Comment #9 from Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> 2012-07-18 17:07:58 PDT ---
+I downloaded the latest nouveau from git today and it's still black when using
+Xv. I tried with both mplayer AND now vdr and it still black.
 
-Problem is still actual on  the kernel 3.4.5
+03:00.0 VGA compatible controller: NVIDIA Corporation GT218 [ION] (rev a2)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
