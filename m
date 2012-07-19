@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52244] [ 4.876531] [drm] nouveau 0000:01:00.0: GPU
  lockup - switching to software fbcon
-Date: Thu, 19 Jul 2012 06:19:31 +0000
-Message-ID: <bug-52244-8800-KXFAlxyVas@http.bugs.freedesktop.org/>
+Date: Thu, 19 Jul 2012 08:40:40 +0000
+Message-ID: <bug-52244-8800-1wQyvgkM8K@http.bugs.freedesktop.org/>
 References: <bug-52244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52244
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #2 from Kevin Martin <ktmdms-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-19 01:40:40 PDT ---
+Created attachment 64370
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64370
+dmesg showing drm/nouveau messages during the boot up and attempted running of
+X with kernel 3.5.0
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-18 23:19:31 PDT ---
-Hi Kevin
-
-Would you mind providing more information as per our bug policy [1]. I can
-inform you that nouveau runs on quite a few gpus/cards without problems, thus
-the more information you provide the easier the resolution would be
-
-Regards
-Emil
-
-[1] http://nouveau.freedesktop.org/wiki/Bugs
+dmesg output as requested.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
