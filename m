@@ -1,79 +1,100 @@
-From: Adam Jackson <ajax-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH nouveau] Implement ->driverFunc
-Date: Thu, 19 Jul 2012 18:24:14 -0400
-Message-ID: <1342736654-6662-1-git-send-email-ajax@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 21273] Driver can't detect video output and xserver
+ doesn't start
+Date: Fri, 20 Jul 2012 15:18:52 +0000
+Message-ID: <bug-21273-8800-liR01ECc5E@http.bugs.freedesktop.org/>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <xorg-devel-bounces+gcfxd-xorg-devel=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Unsubscribe: <http://lists.x.org/mailman/options/xorg-devel>,
-	<mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.x.org/archives/xorg-devel>
-List-Post: <mailto:xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Help: <mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.x.org/mailman/listinfo/xorg-devel>,
-	<mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
-Sender: xorg-devel-bounces+gcfxd-xorg-devel=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-Errors-To: xorg-devel-bounces+gcfxd-xorg-devel=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-To: xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Copied from fbdev, makes it so we can run without iopl.
+https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
-Signed-off-by: Adam Jackson <ajax-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
----
- src/nv_driver.c |   19 ++++++++++++++++++-
- 1 files changed, 18 insertions(+), 1 deletions(-)
+Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> changed:
 
-diff --git a/src/nv_driver.c b/src/nv_driver.c
-index beef789..9342dc8 100644
---- a/src/nv_driver.c
-+++ b/src/nv_driver.c
-@@ -48,6 +48,8 @@ static Bool    NVSaveScreen(ScreenPtr pScreen, int mode);
- static void    NVCloseDRM(ScrnInfoPtr);
- 
- /* Optional functions */
-+static Bool    NVDriverFunc(ScrnInfoPtr scrn, xorgDriverFuncOp op,
-+			    void *data);
- static Bool    NVSwitchMode(SWITCH_MODE_ARGS_DECL);
- static void    NVAdjustFrame(ADJUST_FRAME_ARGS_DECL);
- static void    NVFreeScreen(FREE_SCREEN_ARGS_DECL);
-@@ -88,7 +90,7 @@ _X_EXPORT DriverRec NV = {
- 	NVAvailableOptions,
- 	NULL,
- 	0,
--	NULL,
-+	NVDriverFunc,
- 	nouveau_device_match,
- 	NVPciProbe
- };
-@@ -200,6 +202,21 @@ NVIdentify(int flags)
- }
- 
- static Bool
-+NVDriverFunc(ScrnInfoPtr scrn, xorgDriverFuncOp op, void *data)
-+{
-+    xorgHWFlags *flag;
-+    
-+    switch (op) {
-+	case GET_REQUIRED_HW_INTERFACES:
-+	    flag = (CARD32 *)data;
-+	    (*flag) = 0;
-+	    return TRUE;
-+	default:
-+	    return FALSE;
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #64352|0                           |1
+        is obsolete|                            |
+  Attachment #64361|0                           |1
+        is obsolete|                            |
+  Attachment #64362|0                           |1
+        is obsolete|                            |
+  Attachment #64364|0                           |1
+        is obsolete|                            |
+
+--- Comment #73 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2012-07-20 08:18:52 PDT ---
+Created attachment 64417
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64417
+Log initialization
+
+After this patch
+diff -u linux_stock/drivers/gpu/drm/nouveau/nouveau_bios.c
+linux-3.4/drivers/gpu/drm/nouveau/nouveau_bios.c
+--- linux_stock/drivers/gpu/drm/nouveau/nouveau_bios.c    2012-07-18
+23:28:42.467787857 +0400
++++ linux-3.4/drivers/gpu/drm/nouveau/nouveau_bios.c    2012-07-20
+00:05:20.048039574 +0400
+@@ -6092,10 +6092,18 @@
+ #ifdef __powerpc__
+     /* Apple iMac G4 NV17 */
+     if (of_machine_is_compatible("PowerMac4,5")) {
++        NV_INFO(dev, "Fabricate outputs for Apple iMac G4 NV17\n");
+         fabricate_dcb_output(dcb, OUTPUT_TMDS, 0, all_heads, 1);
+         fabricate_dcb_output(dcb, OUTPUT_ANALOG, 1, all_heads, 2);
+         return;
+     }
++    /* Apple PowerMac G4 NV17 */
++    if (of_machine_is_compatible("PowerMac3,6")) {
++        NV_INFO(dev, "Fabricate outputs for Apple PowerMac G4 NV17\n");
++        fabricate_dcb_output(dcb, OUTPUT_TMDS, 0, all_heads, 1);
++        fabricate_dcb_output(dcb, OUTPUT_TMDS, 1, all_heads, 2);
++        return;
 +    }
-+}
-+
-+static Bool
- NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
- 	   intptr_t match_data)
- {
--- 
-1.7.7.6
+ #endif
 
-_______________________________________________
-xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org: X.Org development
-Archives: http://lists.x.org/archives/xorg-devel
-Info: http://lists.x.org/mailman/listinfo/xorg-devel
+     /* Make up some sane defaults */
+@@ -6485,19 +6493,23 @@
+     if (!NVInitVBIOS(dev))
+         return -ENODEV;
+
++    NV_INFO(dev, "Init BIOS");
+     ret = nouveau_parse_vbios_struct(dev);
+     if (ret)
+         return ret;
+
+-    ret = nouveau_i2c_init(dev);
++    NV_INFO(dev, "Init MXM");
++    ret = nouveau_mxm_init(dev);
+     if (ret)
+         return ret;
+
+-    ret = nouveau_mxm_init(dev);
++    NV_INFO(dev, "Parse dcd table");
++    ret = parse_dcb_table(dev, bios);
+     if (ret)
+         return ret;
+
+-    ret = parse_dcb_table(dev, bios);
++    NV_INFO(dev, "Init I2C");
++    ret = nouveau_i2c_init(dev);
+     if (ret)
+         return ret;
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
