@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] Driver can't detect video output and xserver
  doesn't start
-Date: Sat, 21 Jul 2012 02:02:25 +0000
-Message-ID: <bug-21273-8800-T2ushevrzY@http.bugs.freedesktop.org/>
+Date: Sat, 21 Jul 2012 02:38:51 +0000
+Message-ID: <bug-21273-8800-eIkcR4HQ37@http.bugs.freedesktop.org/>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #74 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-20 19:02:25 PDT ---
-So, does it work with this patch?
+--- Comment #75 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> 2012-07-20 19:38:51 PDT ---
+No, it doesn't work. Monitor suspends.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
