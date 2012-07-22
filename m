@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51579] Xv video support is black on NVidia NVa8
  Chipset in latest git
-Date: Sat, 21 Jul 2012 20:18:07 +0000
-Message-ID: <bug-51579-8800-lLJSZqqTzN@http.bugs.freedesktop.org/>
+Date: Sun, 22 Jul 2012 01:34:02 +0000
+Message-ID: <bug-51579-8800-MQiYWoAgqY@http.bugs.freedesktop.org/>
 References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #14 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-21 13:18:07 PDT ---
-Weird, I can't reproduce it on xserver 1.13.0 RC 2 (NV92 here)
+--- Comment #15 from Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> 2012-07-21 18:34:02 PDT ---
+I tried enabling/disabling compositing and no difference. I wonder if its
+something specific to the NVAx series?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
