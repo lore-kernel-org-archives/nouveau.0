@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52398] nouveau: DPMS permanently turns off display
  when starting X.org, text console works fine
-Date: Mon, 23 Jul 2012 21:27:12 +0000
-Message-ID: <bug-52398-8800-SGZx4vXyqy@http.bugs.freedesktop.org/>
+Date: Mon, 23 Jul 2012 21:27:32 +0000
+Message-ID: <bug-52398-8800-LsCrgGDEyw@http.bugs.freedesktop.org/>
 References: <bug-52398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52398
 
---- Comment #3 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> 2012-07-23 14:27:12 PDT ---
-Created attachment 64547
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64547
-Xorg.0.log of affected machine
+--- Comment #4 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> 2012-07-23 14:27:32 PDT ---
+Created attachment 64548
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64548
+Output of xrandr --verbose
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
