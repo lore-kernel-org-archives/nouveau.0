@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52411] NV43 [GeForce 6600] nouveau in linux kernel
- 3.4.0 to 3.4.2 hangs at boot
-Date: Tue, 24 Jul 2012 03:41:39 +0000
-Message-ID: <bug-52411-8800-7opgGsej0C@http.bugs.freedesktop.org/>
+ 3.4.0 to 3.4.5 hangs at boot
+Date: Tue, 24 Jul 2012 03:43:44 +0000
+Message-ID: <bug-52411-8800-WTTol9wK5g@http.bugs.freedesktop.org/>
 References: <bug-52411-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52411
 
---- Comment #1 from loisl-htSm2yLGOjU@public.gmane.org 2012-07-23 20:41:39 PDT ---
-*** Bug 51198 has been marked as a duplicate of this bug. ***
+loisl-htSm2yLGOjU@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|NV43 [GeForce 6600] nouveau |NV43 [GeForce 6600] nouveau
+                   |in linux kernel 3.4.0 to    |in linux kernel 3.4.0 to
+                   |3.4.2 hangs at boot         |3.4.5 hangs at boot
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
