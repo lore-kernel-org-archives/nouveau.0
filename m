@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52449] nouveau_vbo_t.c compilation broken due to
  implicit declaration
-Date: Tue, 24 Jul 2012 16:34:04 +0000
-Message-ID: <bug-52449-8800-xLvYhaGSIY@http.bugs.freedesktop.org/>
+Date: Tue, 24 Jul 2012 23:49:09 +0000
+Message-ID: <bug-52449-8800-qoetXSyZs2@http.bugs.freedesktop.org/>
 References: <bug-52449-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,15 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52449
 
-Brian Paul <brian.e.paul-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Joe Konno <joe.konno-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
+             Status|RESOLVED                    |VERIFIED
 
---- Comment #1 from Brian Paul <brian.e.paul-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-24 16:34:04 UTC ---
-Fixed in commmit 1f9239ec8d67c3e8ee64e6f5306499b6d97ea136.
+--- Comment #2 from Joe Konno <joe.konno-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> 2012-07-24 16:49:09 PDT ---
+Thanks Brian! Build now succeeds as of the commit you specified.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
