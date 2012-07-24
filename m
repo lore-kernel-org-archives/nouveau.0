@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52449] nouveau_vbo_t.c compilation broken due to
  implicit declaration
-Date: Tue, 24 Jul 2012 23:49:09 +0000
-Message-ID: <bug-52449-8800-qoetXSyZs2@http.bugs.freedesktop.org/>
+Date: Tue, 24 Jul 2012 23:49:59 +0000
+Message-ID: <bug-52449-8800-kT2EQkNE7o@http.bugs.freedesktop.org/>
 References: <bug-52449-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,10 +27,7 @@ Joe Konno <joe.konno-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |VERIFIED
-
---- Comment #2 from Joe Konno <joe.konno-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> 2012-07-24 16:49:09 PDT ---
-Thanks Brian! Build now succeeds as of the commit you specified.
+             Status|VERIFIED                    |CLOSED
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
