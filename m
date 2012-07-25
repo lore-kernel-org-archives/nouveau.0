@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
  is unable to boot
-Date: Wed, 25 Jul 2012 01:31:40 +0000
-Message-ID: <bug-27501-8800-UXnATjGKZx@http.bugs.freedesktop.org/>
+Date: Wed, 25 Jul 2012 04:13:53 +0000
+Message-ID: <bug-27501-8800-rY8f2KWeoW@http.bugs.freedesktop.org/>
 References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
-John Flatness <john-A00MZEC2jljaVm2ux5mvEw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |john-A00MZEC2jljaVm2ux5mvEw@public.gmane.org
-
---- Comment #22 from John Flatness <john-A00MZEC2jljaVm2ux5mvEw@public.gmane.org> 2012-07-24 18:31:40 PDT ---
-Is there some kind of tracing or debugging people experiencing this problem can
-do to help? It seems that the "full" mmiotrace of the blob loading mentioned
-above has succumbed to bitrot.
+--- Comment #23 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-24 21:13:53 PDT ---
+Does it work with nouveau.force_post=1 in kernel command line, by any chance?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
