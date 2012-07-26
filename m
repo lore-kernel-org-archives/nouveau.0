@@ -1,8 +1,8 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 52509] New: System hangs completely after loading
- nouveau kernel module
-Date: Thu, 26 Jul 2012 05:35:20 +0000
-Message-ID: <bug-52509-8800@http.bugs.freedesktop.org/>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Subject: [PATCH] drm/nvd0/disp: mask off high 16 bit of negative
+	cursor x-coordinate
+Date: Thu, 26 Jul 2012 20:53:19 +0200
+Message-ID: <1343328799-9372-1-git-send-email-e0425955@student.tuwien.ac.at>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,43 +19,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=52509
+---
+ drivers/gpu/drm/nouveau/nvd0_display.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-             Bug #: 52509
-           Summary: System hangs completely after loading nouveau kernel
-                    module
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: eugene-l/Z4ZXB6TmzR7s880joybQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Created attachment 64686
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64686
-Kernel messages after loading noveau module
-
-GT 240 card (10de:0ca3), works nice with proprietary driver
-Gentoo kernels 3.2.12 and 3.3.8 Fedora 16, 17 with 3.4.4 - same behavior, even
-same last messages.
-Almost immediately after loading nouveau kernel module the system hangs
-completely, even Alt+SysRq keys don't work. Few times it looked like panic -
-keyboard LEDs started blinking, but usually it just hangs.
-I used systemd.unit=emergency.target to isolate the situation - boot to minimal
-system and run modprobe nouveau manually, netconsole to extract messages -
-strangely, it got nothing more than I can see on the screen. I'm afraid nothing
-useful is there, last one being "[drm] No driver support for vblank timestamp
-query.", but I attached log of all messages which appear after executing
-modprobe. Maybe, I can get more debug output somehow?
-
+diff --git a/drivers/gpu/drm/nouveau/nvd0_display.c b/drivers/gpu/drm/nouveau/nvd0_display.c
+index c486d3c..c50b075 100644
+--- a/drivers/gpu/drm/nouveau/nvd0_display.c
++++ b/drivers/gpu/drm/nouveau/nvd0_display.c
+@@ -790,7 +790,7 @@ nvd0_crtc_cursor_move(struct drm_crtc *crtc, int x, int y)
+ 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+ 	int ch = EVO_CURS(nv_crtc->index);
+ 
+-	evo_piow(crtc->dev, ch, 0x0084, (y << 16) | x);
++	evo_piow(crtc->dev, ch, 0x0084, (y << 16) | (x & 0xffff));
+ 	evo_piow(crtc->dev, ch, 0x0080, 0x00000000);
+ 	return 0;
+ }
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.3.4
