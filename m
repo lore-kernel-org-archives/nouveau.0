@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
  is unable to boot
-Date: Wed, 25 Jul 2012 04:13:53 +0000
-Message-ID: <bug-27501-8800-rY8f2KWeoW@http.bugs.freedesktop.org/>
+Date: Thu, 26 Jul 2012 01:56:51 +0000
+Message-ID: <bug-27501-8800-EeF2HT9G5q@http.bugs.freedesktop.org/>
 References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
---- Comment #23 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-24 21:13:53 PDT ---
-Does it work with nouveau.force_post=1 in kernel command line, by any chance?
+--- Comment #24 from John Flatness <john-A00MZEC2jljaVm2ux5mvEw@public.gmane.org> 2012-07-25 18:56:51 PDT ---
+force_post=1 caused the screen to blank out (which isn't normally what
+happens), but the system still appeared to hang in basically the same way as
+without that option.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
