@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] nVidia 9600M GT (Macbook Pro current model)
- is unable to boot
-Date: Thu, 26 Jul 2012 01:56:51 +0000
-Message-ID: <bug-27501-8800-EeF2HT9G5q@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 52509] New: System hangs completely after loading
+ nouveau kernel module
+Date: Thu, 26 Jul 2012 05:35:20 +0000
+Message-ID: <bug-52509-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +19,41 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=52509
 
---- Comment #24 from John Flatness <john-A00MZEC2jljaVm2ux5mvEw@public.gmane.org> 2012-07-25 18:56:51 PDT ---
-force_post=1 caused the screen to blank out (which isn't normally what
-happens), but the system still appeared to hang in basically the same way as
-without that option.
+             Bug #: 52509
+           Summary: System hangs completely after loading nouveau kernel
+                    module
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: eugene-l/Z4ZXB6TmzR7s880joybQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created attachment 64686
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64686
+Kernel messages after loading noveau module
+
+GT 240 card (10de:0ca3), works nice with proprietary driver
+Gentoo kernels 3.2.12 and 3.3.8 Fedora 16, 17 with 3.4.4 - same behavior, even
+same last messages.
+Almost immediately after loading nouveau kernel module the system hangs
+completely, even Alt+SysRq keys don't work. Few times it looked like panic -
+keyboard LEDs started blinking, but usually it just hangs.
+I used systemd.unit=emergency.target to isolate the situation - boot to minimal
+system and run modprobe nouveau manually, netconsole to extract messages -
+strangely, it got nothing more than I can see on the screen. I'm afraid nothing
+useful is there, last one being "[drm] No driver support for vblank timestamp
+query.", but I attached log of all messages which appear after executing
+modprobe. Maybe, I can get more debug output somehow?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
