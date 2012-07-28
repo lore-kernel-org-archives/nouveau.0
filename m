@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51362] [NVE7] DisplayPort output on nVidia Quadro
  K2000M (ThinkPad W530) doesn't work
-Date: Sat, 28 Jul 2012 03:04:30 +0000
-Message-ID: <bug-51362-8800-rIQxMXtIQY@http.bugs.freedesktop.org/>
+Date: Sat, 28 Jul 2012 03:05:17 +0000
+Message-ID: <bug-51362-8800-zuEO2GUwb4@http.bugs.freedesktop.org/>
 References: <bug-51362-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,18 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51362
 
---- Comment #8 from e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org 2012-07-27 20:04:30 PDT ---
-I'm still getting "Input not supported" on my monitor.
-
-I followed the guide at http://nouveau.freedesktop.org/wiki/InstallNouveau to
-make sure I had the latest libdrm and xf86-video-nouveau. I see your commit in
-my kernel source, but still, no luck.
-
-$ uname -a
-Linux svoboda 3.5.0-ARCH-g3f3dbea #1 SMP PREEMPT Fri Jul 27 14:58:16 EDT 2012
-x86_64 GNU/Linux
-
-dmesg attached.
+--- Comment #9 from e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org 2012-07-27 20:05:17 PDT ---
+Created attachment 64806
+  --> https://bugs.freedesktop.org/attachment.cgi?id=64806
+Dmesg
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
