@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51579] Xv video support is black on NVidia NVa8
  Chipset in latest git
-Date: Sat, 28 Jul 2012 14:20:35 +0000
-Message-ID: <bug-51579-8800-BvEkGbj5Jg@http.bugs.freedesktop.org/>
+Date: Sat, 28 Jul 2012 14:33:48 +0000
+Message-ID: <bug-51579-8800-b5BYRRcpjc@http.bugs.freedesktop.org/>
 References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #16 from Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> 2012-07-28 07:20:35 PDT ---
-Created attachment 64812
-  --> https://bugs.freedesktop.org/attachment.cgi?id=64812
-Fix for Xv against the latest xf86-video-nouveau from git.
+--- Comment #17 from Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> 2012-07-28 07:33:48 PDT ---
+I have spent the last day debugging and checking what was different between the
+two revisions and working against the latest xf86-video-nouveau from git and I
+have come with a fix (atleast for me) that now shows Xv again. Mplayer and vdr
+using Xv now works.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
