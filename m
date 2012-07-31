@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51579] Xv video support is black on NVidia NVa8
  Chipset in latest git [fixed with patch]
-Date: Tue, 31 Jul 2012 13:34:34 +0000
-Message-ID: <bug-51579-8800-GZfXSNGM2O@http.bugs.freedesktop.org/>
+Date: Tue, 31 Jul 2012 16:16:59 +0000
+Message-ID: <bug-51579-8800-hiP613XMAS@http.bugs.freedesktop.org/>
 References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
-Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Xv video support is black   |Xv video support is black
-                   |on NVidia NVa8 Chipset in   |on NVidia NVa8 Chipset in
-                   |latest git                  |latest git [fixed with
-                   |                            |patch]
+--- Comment #18 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-07-31 16:16:59 UTC ---
+Please send it (with a changelog) to Nouveau mailing list.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
