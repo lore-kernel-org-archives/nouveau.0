@@ -1,44 +1,112 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Wed, 01 Aug 2012 19:26:33 +0000
-Message-ID: <bug-50403-8800-VnrWNP4CR7@http.bugs.freedesktop.org/>
-References: <bug-50403-8800@http.bugs.freedesktop.org/>
+From: Lucas Stach <dev@lynxeye.de>
+Subject: =?j?q?=5BPATCH=201/4=5D=20nouveau=3A=20use=20automake=20to=20generate=20Makefile?=
+Date: Fri,  3 Aug 2012 01:53:07 +0200
+Message-ID: <1343951590-31439-2-git-send-email-dev@lynxeye.de>
+References: <1343951590-31439-1-git-send-email-dev@lynxeye.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50403-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============1117127968=="
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+In-Reply-To: <1343951590-31439-1-git-send-email-dev@lynxeye.de>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50403
+--===============1117127968==
+Content-Type: text/plain; charset=j
+Content-Transfer-Encoding: quoted-printable
 
---- Comment #31 from tesloid-/E1597aS9LQAvxtiuMwx3w@public.gmane.org 2012-08-01 19:26:33 UTC ---
-I am previewing the next release of Slackware, on a similar D800, and am seeing
-even worse corruption than your screenshots indicate.
+---
+ configure.ac                            |  1 +
+ src/gallium/drivers/nouveau/Makefile    | 16 ----------------
+ src/gallium/drivers/nouveau/Makefile.am | 16 ++++++++++++++++
+ 3 Dateien ge=C3=A4ndert, 17 Zeilen hinzugef=C3=BCgt(+), 16 Zeilen entfer=
+nt(-)
+ delete mode 100644 src/gallium/drivers/nouveau/Makefile
+ create mode 100644 src/gallium/drivers/nouveau/Makefile.am
 
-The problem is, the current version of Xorg will no long work with the
-proprietary nvidia driver (Nvidia has not updated their legacy driver);
+diff --git a/configure.ac b/configure.ac
+index b6481a6..d1fc0f3 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -2129,6 +2129,7 @@ AC_CONFIG_FILES([configs/current
+ 		src/gallium/auxiliary/pipe-loader/Makefile
+ 		src/gallium/state_trackers/clover/Makefile
+ 		src/gallium/drivers/Makefile
++		src/gallium/drivers/nouveau/Makefile
+ 		src/gallium/drivers/r300/Makefile
+ 		src/gallium/drivers/r600/Makefile
+ 		src/gallium/targets/opencl/Makefile
+diff --git a/src/gallium/drivers/nouveau/Makefile b/src/gallium/drivers/n=
+ouveau/Makefile
+deleted file mode 100644
+index d583324..0000000
+--- a/src/gallium/drivers/nouveau/Makefile
++++ /dev/null
+@@ -1,16 +0,0 @@
+-TOP =3D ../../../..
+-include $(TOP)/configs/current
+-
+-LIBNAME =3D nouveau
+-
+-LIBRARY_INCLUDES =3D \
+-	$(LIBDRM_CFLAGS) \
+-	-I$(TOP)/src/gallium/drivers/nouveau/include
+-
+-LIBRARY_INCLUDES +=3D $(shell $(PKG_CONFIG) libdrm libdrm_nouveau --cfla=
+gs-only-I)
+-LIBRARY_DEFINES +=3D $(shell $(PKG_CONFIG) libdrm libdrm_nouveau --cflag=
+s-only-other)
+-
+-# get C_SOURCES
+-include Makefile.sources
+-
+-include ../../Makefile.template
+diff --git a/src/gallium/drivers/nouveau/Makefile.am b/src/gallium/driver=
+s/nouveau/Makefile.am
+new file mode 100644
+index 0000000..dd4a767
+--- /dev/null
++++ b/src/gallium/drivers/nouveau/Makefile.am
+@@ -0,0 +1,16 @@
++include Makefile.sources
++
++noinst_LIBRARIES =3D libnouveau.a
++
++AM_CFLAGS =3D \
++	-I$(top_srcdir)/src/gallium/include \
++	-I$(top_srcdir)/src/gallium/auxiliary \
++	-I$(top_srcdir)/src/gallium/drivers \
++	-I$(top_srcdir)/include \
++	$(NOUVEAU_CFLAGS) \
++	$(DEFINES) \
++	$(PIC_FLAGS) \
++	$(VISIBILITY_CFLAGS)
++
++libnouveau_a_SOURCES =3D \
++	$(C_SOURCES)
+\ No newline at end of file
+--=20
+1.7.11.2
 
-The "nv" driver segfaults (I have not been able to figure out why: this is
-using a configuration that used to be fine).
 
-The nouveau driver is all that will load in 1920x1200 now, and the graphics are
-too corrupted to be used.
+--===============1117127968==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-I cannot find a way to get 1920x1200, even unaccelerated, with an nv28 card
-now.
+_______________________________________________
+mesa-dev mailing list
+mesa-dev@lists.freedesktop.org
+http://lists.freedesktop.org/mailman/listinfo/mesa-dev
 
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+--===============1117127968==--
