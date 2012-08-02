@@ -1,12 +1,10 @@
 From: Lucas Stach <dev@lynxeye.de>
-Subject: =?j?q?=5BPATCH=201/4=5D=20nouveau=3A=20use=20automake=20to=20generate=20Makefile?=
-Date: Fri,  3 Aug 2012 01:53:07 +0200
-Message-ID: <1343951590-31439-2-git-send-email-dev@lynxeye.de>
-References: <1343951590-31439-1-git-send-email-dev@lynxeye.de>
+Subject: =?j?q?=5BPATCH=200/4=5D=20Convert=20Nouveau=20gallium=20drivers=20to=20automake?=
+Date: Fri,  3 Aug 2012 01:53:06 +0200
+Message-ID: <1343951590-31439-1-git-send-email-dev@lynxeye.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1117127968=="
+Content-Type: multipart/mixed; boundary="===============1119992056=="
 Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
-In-Reply-To: <1343951590-31439-1-git-send-email-dev@lynxeye.de>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
 	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
@@ -20,85 +18,48 @@ To: nouveau@lists.freedesktop.org
 Cc: mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
---===============1117127968==
+--===============1119992056==
 Content-Type: text/plain; charset=j
 Content-Transfer-Encoding: quoted-printable
 
----
- configure.ac                            |  1 +
+Trivial series to convert Nouveau gallium drivers to automake
+in order to generate Makefiles.
+
+This is just the general direction in which the MESA buildsystem
+is moving. Aside from this it makes the "make" output a lot more
+readable and therefore helps to spot compiler warnings more easily.
+
+Lucas Stach (4):
+  nouveau: use automake to generate Makefile
+  nv30: use automake to generate Makefile
+  nv50: use automake to generate Makefile
+  nvc0: use automake to generate Makefile
+
+ configure.ac                            |  4 ++++
  src/gallium/drivers/nouveau/Makefile    | 16 ----------------
  src/gallium/drivers/nouveau/Makefile.am | 16 ++++++++++++++++
- 3 Dateien ge=C3=A4ndert, 17 Zeilen hinzugef=C3=BCgt(+), 16 Zeilen entfer=
+ src/gallium/drivers/nv30/Makefile       | 12 ------------
+ src/gallium/drivers/nv30/Makefile.am    | 16 ++++++++++++++++
+ src/gallium/drivers/nv50/Makefile       | 12 ------------
+ src/gallium/drivers/nv50/Makefile.am    | 25 +++++++++++++++++++++++++
+ src/gallium/drivers/nvc0/Makefile       | 12 ------------
+ src/gallium/drivers/nvc0/Makefile.am    | 25 +++++++++++++++++++++++++
+ 9 Dateien ge=C3=A4ndert, 86 Zeilen hinzugef=C3=BCgt(+), 52 Zeilen entfer=
 nt(-)
  delete mode 100644 src/gallium/drivers/nouveau/Makefile
  create mode 100644 src/gallium/drivers/nouveau/Makefile.am
+ delete mode 100644 src/gallium/drivers/nv30/Makefile
+ create mode 100644 src/gallium/drivers/nv30/Makefile.am
+ delete mode 100644 src/gallium/drivers/nv50/Makefile
+ create mode 100644 src/gallium/drivers/nv50/Makefile.am
+ delete mode 100644 src/gallium/drivers/nvc0/Makefile
+ create mode 100644 src/gallium/drivers/nvc0/Makefile.am
 
-diff --git a/configure.ac b/configure.ac
-index b6481a6..d1fc0f3 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -2129,6 +2129,7 @@ AC_CONFIG_FILES([configs/current
- 		src/gallium/auxiliary/pipe-loader/Makefile
- 		src/gallium/state_trackers/clover/Makefile
- 		src/gallium/drivers/Makefile
-+		src/gallium/drivers/nouveau/Makefile
- 		src/gallium/drivers/r300/Makefile
- 		src/gallium/drivers/r600/Makefile
- 		src/gallium/targets/opencl/Makefile
-diff --git a/src/gallium/drivers/nouveau/Makefile b/src/gallium/drivers/n=
-ouveau/Makefile
-deleted file mode 100644
-index d583324..0000000
---- a/src/gallium/drivers/nouveau/Makefile
-+++ /dev/null
-@@ -1,16 +0,0 @@
--TOP =3D ../../../..
--include $(TOP)/configs/current
--
--LIBNAME =3D nouveau
--
--LIBRARY_INCLUDES =3D \
--	$(LIBDRM_CFLAGS) \
--	-I$(TOP)/src/gallium/drivers/nouveau/include
--
--LIBRARY_INCLUDES +=3D $(shell $(PKG_CONFIG) libdrm libdrm_nouveau --cfla=
-gs-only-I)
--LIBRARY_DEFINES +=3D $(shell $(PKG_CONFIG) libdrm libdrm_nouveau --cflag=
-s-only-other)
--
--# get C_SOURCES
--include Makefile.sources
--
--include ../../Makefile.template
-diff --git a/src/gallium/drivers/nouveau/Makefile.am b/src/gallium/driver=
-s/nouveau/Makefile.am
-new file mode 100644
-index 0000000..dd4a767
---- /dev/null
-+++ b/src/gallium/drivers/nouveau/Makefile.am
-@@ -0,0 +1,16 @@
-+include Makefile.sources
-+
-+noinst_LIBRARIES =3D libnouveau.a
-+
-+AM_CFLAGS =3D \
-+	-I$(top_srcdir)/src/gallium/include \
-+	-I$(top_srcdir)/src/gallium/auxiliary \
-+	-I$(top_srcdir)/src/gallium/drivers \
-+	-I$(top_srcdir)/include \
-+	$(NOUVEAU_CFLAGS) \
-+	$(DEFINES) \
-+	$(PIC_FLAGS) \
-+	$(VISIBILITY_CFLAGS)
-+
-+libnouveau_a_SOURCES =3D \
-+	$(C_SOURCES)
-\ No newline at end of file
 --=20
 1.7.11.2
 
 
---===============1117127968==
+--===============1119992056==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,4 +70,4 @@ mesa-dev mailing list
 mesa-dev@lists.freedesktop.org
 http://lists.freedesktop.org/mailman/listinfo/mesa-dev
 
---===============1117127968==--
+--===============1119992056==--
