@@ -1,86 +1,110 @@
-From: Tom Stellard <tstellar@gmail.com>
-Subject: Re: [PATCH 0/4] Convert Nouveau gallium drivers to
- automake
-Date: Thu, 2 Aug 2012 20:40:07 -0400
-Message-ID: <20120803004006.GA3379@thinkpadr51e>
-References: <1343951590-31439-1-git-send-email-dev@lynxeye.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 53101] New: Fedora 17 "PFIFO - playlist update
+	failed" on boot
+Date: Fri, 03 Aug 2012 17:53:25 +0000
+Message-ID: <bug-53101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <1343951590-31439-1-git-send-email-dev@lynxeye.de>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-To: Lucas Stach <dev@lynxeye.de>
-Cc: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Aug 03, 2012 at 01:53:06AM +0200, Lucas Stach wrote:
-> Trivial series to convert Nouveau gallium drivers to automake
-> in order to generate Makefiles.
-> =
+https://bugs.freedesktop.org/show_bug.cgi?id=53101
 
-> This is just the general direction in which the MESA buildsystem
-> is moving. Aside from this it makes the "make" output a lot more
-> readable and therefore helps to spot compiler warnings more easily.
-> =
-
-> Lucas Stach (4):
->   nouveau: use automake to generate Makefile
->   nv30: use automake to generate Makefile
->   nv50: use automake to generate Makefile
->   nvc0: use automake to generate Makefile
->
-
-Hi Lucas,
-
-I haven't had time to clean up these patches[1] yet, but there are
-examples in that series of how to build both .a and .la libraries at
-the same time (see [PATCH 3/6] r300g: Build a libtool archive), which
-will make it easier to transition the gallium targets to automake.
-You may want to do the same with the nouveau builds.
-
--Tom
-
-[1]
-http://www.mail-archive.com/mesa-dev@lists.freedesktop.org/msg23538.html
+             Bug #: 53101
+           Summary: Fedora 17 "PFIFO - playlist update failed" on boot
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: mog55356-5veXjMIWDG/QI89fQ/gtADe48wsgrGvP@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
->  configure.ac                            |  4 ++++
->  src/gallium/drivers/nouveau/Makefile    | 16 ----------------
->  src/gallium/drivers/nouveau/Makefile.am | 16 ++++++++++++++++
->  src/gallium/drivers/nv30/Makefile       | 12 ------------
->  src/gallium/drivers/nv30/Makefile.am    | 16 ++++++++++++++++
->  src/gallium/drivers/nv50/Makefile       | 12 ------------
->  src/gallium/drivers/nv50/Makefile.am    | 25 +++++++++++++++++++++++++
->  src/gallium/drivers/nvc0/Makefile       | 12 ------------
->  src/gallium/drivers/nvc0/Makefile.am    | 25 +++++++++++++++++++++++++
->  9 Dateien ge=E4ndert, 86 Zeilen hinzugef=FCgt(+), 52 Zeilen entfernt(-)
->  delete mode 100644 src/gallium/drivers/nouveau/Makefile
->  create mode 100644 src/gallium/drivers/nouveau/Makefile.am
->  delete mode 100644 src/gallium/drivers/nv30/Makefile
->  create mode 100644 src/gallium/drivers/nv30/Makefile.am
->  delete mode 100644 src/gallium/drivers/nv50/Makefile
->  create mode 100644 src/gallium/drivers/nv50/Makefile.am
->  delete mode 100644 src/gallium/drivers/nvc0/Makefile
->  create mode 100644 src/gallium/drivers/nvc0/Makefile.am
-> =
+Created attachment 65099
+  --> https://bugs.freedesktop.org/attachment.cgi?id=65099
+Kernel log from boot
 
-> -- =
+Problem:
+    Can no longer start x server.
 
-> 1.7.11.2
-> =
+Steps to reproduce:
+    1. Boot the computer
+Expected behaviour:
+    User expects to reach the login prompt.
+Actual behaviour:
+    X Server fails to start
 
+History:
+    Updated to latest kernel on Fedora 17 x86_64: Linux version
+3.5.0-2.fc17.x86_64 (mockbuild-pT0yeVfQFYmUpIjiNHrHsa8bZ1dH7QcMqApY+AHhFKvYtjvyW6yDsg@public.gmane.org) (gcc version
+4.7.0 20120507 (Red Hat 4.7.0-5) (GCC) ) #1 SMP Mon Jul 30 14:48:59 UTC 2012
+    Rebooted
+    Saw fedora begin to boot up, but instead of being presented with a login
+screen I saw noise/leftover images from previous boot
+    X server terminated and I saw some nouveau errors on screen:
+        [   43.155163] [drm] nouveau 0000:01:00.0: PFIFO - playlist update
+failed
+        [   53.020045] [drm] nouveau 0000:01:00.0: Failed to idle channel 1.
+        [   57.019076] [drm] nouveau 0000:01:00.0: PFIFO - playlist update
+failed
+        [   60.017783] [drm] nouveau 0000:01:00.0: Failed to idle channel 2.
+        [   64.016807] [drm] nouveau 0000:01:00.0: PFIFO - playlist update
+failed
+    The screen then went back to noise/leftovers for a few seconds, then
+displayed those error messages again in sequence
+    This continued endlessly until I boot with the previous kernel.
 
-> _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/mesa-dev
+Hardware information:
+    The model is a GTX 580m. According to the wiki, this is an NVCE (GF114).
+    sudo lspci -v | less found this:
+        01:00.0 VGA compatible controller: nVidia Corporation Device 1211 (rev
+a1) (prog-if 00 [VGA controller])
+            Subsystem: CLEVO/KAPOK Computer Device 7100
+            Flags: bus master, fast devsel, latency 0, IRQ 16
+            Memory at f4000000 (32-bit, non-prefetchable) [size=32M]
+            Memory at e8000000 (64-bit, prefetchable) [size=128M]
+            Memory at f0000000 (64-bit, prefetchable) [size=64M]
+            I/O ports at e000 [size=128]
+            Expansion ROM at f6000000 [disabled] [size=512K]
+            Capabilities: [60] Power Management version 3
+            Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+            Capabilities: [78] Express Endpoint, MSI 00
+            Capabilities: [b4] Vendor Specific Information: Len=14 <?>
+            Capabilities: [100] Virtual Channel
+            Capabilities: [128] Power Budgeting <?>
+            Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1
+Len=024 <?>
+            Kernel driver in use: nouveau
+
+Attached files:
+    messages.txt
+        This is the kernel log from the boot with the new kernel. The Fatal X
+server error and the PFIFO errors can be found near the end of the log. If I
+had let the computer keep running, the last few messages would have looped,
+presumably endlessly.
+        NOTE: THE LOG CAN ALSO BE ACCESSED HERE - http://pastebin.com/rrVddzgq
+
+Thank you for taking the time to look into this matter. Please let me know if
+you require any additional information.
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
