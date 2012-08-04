@@ -1,52 +1,43 @@
-From: Gianluca Cecchi <gianluca.cecchi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Problem with GT520 and optimus on Fedora 17
-Date: Fri, 3 Aug 2012 23:45:27 +0200
-Message-ID: <CAG2kNCyo6QhWwp2czDpOhz3-1WGSnwWaLkfTOeA+fm0EqRXYUQ@mail.gmail.com>
-References: <CAG2kNCxHWS2vzLweyuZE2yfMOb1g3mAagTXX9qedz70YDRqV8Q@mail.gmail.com>
-	<op.wgaw2ewz8t7z9u@arch-laptop>
-	<CAG2kNCztP+NCPC=fzNzYm=zTtLD5pw7GoKiTWv3sUQof=DjEog@mail.gmail.com>
-	<op.wg69xsvl8t7z9u@arch-laptop>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <op.wg69xsvl8t7z9u@arch-laptop>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+From: "Henrik Rydberg" <rydberg@euromail.se>
+Subject: [PATCH] nouveau: Do not use nva3 engine for 0xaf chipset
+Date: Sat,  4 Aug 2012 08:00:45 +0200
+Message-ID: <1344060045-784-1-git-send-email-rydberg@euromail.se>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: Dave Airlie <airlied@gmail.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Henrik Rydberg <rydberg@euromail.se>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 10, 2012 at 12:26 AM, Emil Velikov wrote:
-> On Mon, 09 Jul 2012 14:39:54 +0100, Gianluca Cecchi wrote:
->
->> On Fri, Jun 22, 2012 at 1:06 PM, Emil Velikov wrote:
->>
->>> Honestly I do no believe you have is not caused by nouveau, moreover it's
->>> an underlying ACPI problem causing nouveau to fail - note the ACPI errors
->>> appear even before we're loading. That taken aside I would recommend if
->>> you can bisect the problem as it would ease and fasten the resolution
->>> Adding [bisected] to the bug [1] and CC the author of the patch would be
->>> encouraged
+The nva3 copy engine exhibits random memory corruption in at least one
+case, the GeForce 320M (nv50, 0xaf) in the MacBookAir3,1.  This patch
+omits creating the engine for the specific chipset, falling back to
+M2MF, which kills the symptoms.
 
-Hi,
-unfortunately I didn't have time to analyze and bisect with Fedora
-kernels, but I did try all the new kernel released.
-And I can say that finally today the 3.5.0-2.fc17.x86_64 is the first
-kernel after
-kernel-3.3.7-1.fc17.x86_64 where I can use my Nvidia again and run the command
-sudo optirun glxgears
-without errors.
-Also, the discrete card is correctly disabled after optirun exits.
-More tests to come
+Signed-off-by: Henrik Rydberg <rydberg@euromail.se>
+---
+Hi Ben,
 
-Thanks (possibly due to upstream changes in 3.5...)
+this patch is still needed in 3.6-rc1, so perhaps we should apply it
+after all. I have been running it without problems for a long time
+now.
 
-Gianluca
+Thanks,
+Henrik
+
+ drivers/gpu/drm/nouveau/nouveau_state.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_state.c b/drivers/gpu/drm/nouveau/nouveau_state.c
+index 1cdfd6e..1866dbb 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_state.c
++++ b/drivers/gpu/drm/nouveau/nouveau_state.c
+@@ -731,7 +731,6 @@ nouveau_card_init(struct drm_device *dev)
+ 			case 0xa3:
+ 			case 0xa5:
+ 			case 0xa8:
+-			case 0xaf:
+ 				nva3_copy_create(dev);
+ 				break;
+ 			}
+-- 
+1.7.11.4
