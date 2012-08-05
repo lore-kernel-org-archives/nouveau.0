@@ -1,15 +1,14 @@
-From: Andrew Green <andrew.green.df-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Mesa build issue... is it just me? [solved]
-Date: Sun, 05 Aug 2012 08:38:37 -0500
-Message-ID: <501E775D.9030701@gmail.com>
-References: <50156F7D.4010001@gmail.com>
-	<CAGZ4FERUgC6buGM-TT9jONFR1kH21cd_EfHmTdyVHwZK3ZD6WQ@mail.gmail.com>
-	<5015C916.2070203@gmail.com>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: BIG changes to kernel module
+Date: Sun, 5 Aug 2012 22:56:37 +0200
+Message-ID: <20120805205637.GA3107@joi.lan>
+References: <CACAvsv6XAV4n=9n32weJeLWCQjv2ip2QMz3Zg96DySvyoe6SSw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5015C916.2070203-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CACAvsv6XAV4n=9n32weJeLWCQjv2ip2QMz3Zg96DySvyoe6SSw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,156 +18,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-El 29/07/12 18:36, Andrew Green escribi=F3:
-> El 29/07/12 12:54, Maarten Maathuis escribi=F3:
->> On Sun, Jul 29, 2012 at 7:14 PM, Andrew =
+On Sun, Aug 05, 2012 at 12:40:15PM +1000, Ben Skeggs wrote:
+> Hey all,
+> 
+> I've just pushed a major rework/rewrite of the Nouveau kernel module to git[1].
+> 
+> Details of the whys and what-nots of the rework are in the various commit
+> messages.  At this point don't expect any exciting cool functionality, the
+> work so far is merely a restructure to allow moving forward on a number
+> of fronts in the future.
+> 
+> I expect that for a while there will be a *lot* of stupid typos/thinkos that
+> cause all sorts of breakage, so please test everything any anything you can
+> and report *regressions* from the pre-rework code (vs 3.6-rc1 for example).
+> 
+> I'll endeavour to hunt down and fix the regressions as quickly as possible, so
+> please report any issues to this list and/or the freedesktop bugzilla.
+> 
+> There's two areas that didn't get "properly" ported over, that is PM-related
+> things and modesetting.  I'll be handling the modesetting and clk/volt reworks
+> starting from nowish (in between fixing regressions), and I suspect Martin
+> will handle the rest of the PM bits (therm and fanctrl) since he knows the
+> design he's going for there.
+> 
+> One thing to note is that some kernel module options have changed now, the
+> more important ones are:
+> 
+> nouveau.vbios=<blah> -> nouveau.config=NvBIOS=<blah>
+> nouveau.noaccel=<bool> -> nouveau.config=PGRAPH=<bool>
+> 
+> Multiple options are specified like:
+> 
+> nouveau.config=NvBIOS=ACPI,PGRAPH=1
+> 
+> The nouveau.noaccel option now controls acceleration enable/disable for the
+> DRM's own GPU usage, and for the "abi16" (the new interfaces aren't even
+> exposed to userspace yet) interfaces.
+> 
+> The DRM debugging options (drm.debug=<bitfield>) now only effect the DRM
+> specific parts of the nouveau module.  To enable additional debugging etc
+> for the core, incantations like the following are used now:
+> 
+> for debug output
+> 
+> nouveau.debug=debug
+> 
+> or for even more verbose debug output
+> 
+> nouveau.debug=trace
+> 
+> or for trace output for everything, and register write logging from POST
+> 
+> nouveau.debug=trace,DEVINIT=spam
+> 
+> Each individual subdev/engine module has its own debug level that can
+> override the master debug level.
 
->> Green<andrew.green.df-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>  wrote:
->>> Anyone else getting this when building the latest mesa?
->>>
->>> make[3]: Entering directory
->>> `/usr/local/nouveau/mesa2/mesa/src/gallium/targets/dri-nouveau'
->>> gcc -c -I. -I../../../../src/mesa/drivers/dri/common -Iserver
->>> -I../../../../include -I../../../../include/GL/internal
->>> -I../../../../src/mapi -I../../../../src/gallium/include
->>> -I../../../../src/gallium/auxiliary -I../../../../src/gallium/drivers
->>> -I../../../../src/gallium/winsys -I../../../../src/mesa
->>> -I../../../../src/mesa/main -I../../../../src/mesa/math
->>> -I../../../../src/mesa/transform -I../../../../src/mesa/shader
->>> -I../../../../src/mesa/swrast -I../../../../src/mesa/swrast_setup
->>> -I../../../../src/egl/main -I../../../../src/egl/drivers/dri
->>> -I/usr/local/include -I/usr/local/include/libdrm    -g -O2 -Wall =
+It would be very helpful to document this convention and all options in some
+text file in-tree (and later update it when things change).
 
->>> -std=3Dc99
->>> -Werror=3Dimplicit-function-declaration -Werror=3Dmissing-prototypes
->>> -fno-strict-aliasing -fno-builtin-memcmp -g -g -O2 -fPIC -D_GNU_SOURCE
->>> -DPTHREADS -DDEBUG -DTEXTURE_FLOAT_ENABLED -DHAVE_POSIX_MEMALIGN =
+Some things I noticed:
+- corruptions / lockups in Warsow (1.0) on one of the bomb maps (I didn't test
+  too much, so it might happen on others too) - initially bisected to
+  "drm/nouveau/instmem: completely new implementation, as a subdev module",
+  but I'm not so sure about it - with this commit most textures are corrupted
+  and there are PGRAPH_TRAP_MP_EXEC errors in dmesg, but on HEAD I see total
+  mayhem with DATA_ERROR, followed by TRAP_MP_EXEC and endless stream of page
+  faults
+- new lockups triggerable by piglit
+- VRAM leak? (probably triggered by piglit)
+- missing channel id in error messages
+- debugfs removed (not advertised in any commit, so I don't know if it's
+  intentional or not)
+- some leftovers:
+  - XXX_THIS_IS_A_HACK
+  - /* yell very loudly!! */ (no code implementing yelling ;)
 
->>> -DUSE_XCB
->>> -DGLX_INDIRECT_RENDERING -DGLX_DIRECT_RENDERING -DGLX_USE_TLS =
-
->>> -DPTHREADS
->>> -DUSE_EXTERNAL_DXTN_LIB=3D1 -DIN_DRI_DRIVER -DHAVE_ALIAS =
-
->>> -fvisibility=3Dhidden
->>> -DGALLIUM_RBUG -DGALLIUM_TRACE target.c -o target.o
->>> /bin/sh ../../../../bin/mklib -o nouveau_dri.so.tmp -noprefix =
-
->>> -linker 'g++'
->>> -ldflags '' \
->>>          target.o ../../../../src/mesa/drivers/dri/common/utils.o
->>> ../../../../src/mesa/drivers/dri/common/dri_util.o
->>> ../../../../src/mesa/drivers/dri/common/xmlconfig.o
->>> ../../../../src/gallium/state_trackers/dri/drm/libdridrm.a
->>> ../../../../src/gallium/winsys/nouveau/drm/libnouveaudrm.a
->>> ../../../../src/gallium/drivers/trace/libtrace.a
->>> ../../../../src/gallium/drivers/rbug/librbug.a
->>> ../../../../src/gallium/drivers/nv30/libnv30.a
->>> ../../../../src/gallium/drivers/nv50/libnv50.a
->>> ../../../../src/gallium/drivers/nvc0/libnvc0.a
->>> ../../../../src/gallium/drivers/nouveau/libnouveau.a \
->>>                  -Wl,--start-group =
-
->>> ../../../../src/mesa/libmesagallium.a
->>> ../../../../src/gallium/auxiliary/libgallium.a -Wl,--end-group \
->>>                    ../../../../lib/libdricore8.1.0.so  =
-
->>> -L/usr/local/lib -ldrm
->>> -lexpat -lm -lpthread -ldl -ldrm_nouveau
->>> mklib: Making Linux shared library:  nouveau_dri.so.tmp
->>> g++ -g -O2 -Wall -std=3Dc99 -Werror=3Dimplicit-function-declaration
->>> -Werror=3Dmissing-prototypes -fno-strict-aliasing -fno-builtin-memcmp =
-
->>> -g -g
->>> -O2 -fPIC -D_GNU_SOURCE -DPTHREADS -DDEBUG -DTEXTURE_FLOAT_ENABLED
->>> -DHAVE_POSIX_MEMALIGN -DUSE_XCB -DGLX_INDIRECT_RENDERING
->>> -DGLX_DIRECT_RENDERING -DGLX_USE_TLS -DPTHREADS =
-
->>> -DUSE_EXTERNAL_DXTN_LIB=3D1
->>> -DIN_DRI_DRIVER -DHAVE_ALIAS -fvisibility=3Dhidden -o nouveau_dri.so.te=
-st
->>> ../../../../src/mesa/drivers/dri/common/dri_test.o nouveau_dri.so.tmp
->>> ../../../../lib/libdricore8.1.0.so  -L/usr/local/lib -ldrm   -lexpat =
-
->>> -lm
->>> -lpthread -ldl -ldrm_nouveau   ;
->>> /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib/libdrm_nouveau.so:
->>> undefined reference to `drmPrimeHandleToFD'
->>> /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib/libdrm_nouveau.so:
->>> undefined reference to `drmPrimeFDToHandle'
->>> collect2: error: ld returned 1 exit status
->>>
->>> I'm on a mixed Debian testing/unstable/experimental, with Linux
->>> 3.4-trunk-amd64. Didn't have any build issues before doing a git =
-
->>> pull and an
->>> apt-get upgrade just prior.
->>>
->>> I noticed this (refers to intel and drm):
->>> http://blog.gmane.org/gmane.comp.video.dri.patches . Says something =
-
->>> about
->>> distributions having changed ld to default to =
-
->>> --no-copy-dt-needed-entries.
->>>
->>> Many thanks in advance for any suggestions, greetings,
->>> Andrew
->>>
->>> P.S. Here is my config:
->>>
->>> ./autogen.sh --prefix=3D/usr --bindir=3D/usr/bin --libdir=3D/usr/lib
->>> --includedir=3D/usr/include --with-dri-drivers=3D
->>> --with-gallium-drivers=3Dswrast,nouveau --enable-debug =
-
->>> --enable-texture-float
->>> --disable-asm --enable-opengl --disable-gles2 --disable-openvg
->>> --enable-texture-float --disable-asm --enable-opengl --disable-gles2
->>> --disable-openvg --enable-dri --enable-glx --enable-xvmc --disable-va
->>> --disable-vdpau --disable-osmesa --disable-egl --disable-xorg
->>> --disable-d3d1x --disable-xa --disable-gbm --disable-xlib-glx
->>> --disable-gallium-egl --disable-gallium-gbm --disable-gallium-llvm
->>> --enable-driglx-direct --enable-glx-tls --enable-glu --prefix=3D/usr/
->>>
->>>
->>> _______________________________________________
->>> Nouveau mailing list
->>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->>> http://lists.freedesktop.org/mailman/listinfo/nouveau
->>>
->> Sounds like something is wrong with your libdrm install if i had to =
-
->> guess.
->>
->> Those symbols were added recently it seems:
->> http://cgit.freedesktop.org/mesa/drm/commit/?id=3Dcc0a14575d9fd0aafe73cb=
-4aa445eaf024436114 =
-
->>
-> It does look like something like that. But I've compiled drm from the =
-
-> most recent git, which includes that commit. And a grep -R for those =
-
-> symbols in my drm source tree does indeed find them. I also removed =
-
-> the libdrm files provided by my distribution, and then ran ldconfig. =
-
-> In /usr/lib/ I have lots of libdrm stuff, all compiled by me, and a =
-
-> grep of those binary files also finds the supposedly missing symbols. =
-
-> Could there still be some old/distribution-installed libdrm stuff =
-
-> lurking somewhere? (The file mentioned by the error, =
-
-> /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib/libdrm_nouveau.so, =
-
-> was compiled by me.) What about the "--no-copy-dt-needed-entries" issue?
-Found it... there were some old files in that I had compiled and that I =
-
-didn't realize were being linked to...  *embarrassed grin* Many thanks =
-
-for your help...
+Marcin
