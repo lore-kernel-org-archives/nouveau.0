@@ -1,14 +1,14 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: BIG changes to kernel module
-Date: Sun, 5 Aug 2012 22:56:37 +0200
-Message-ID: <20120805205637.GA3107@joi.lan>
-References: <CACAvsv6XAV4n=9n32weJeLWCQjv2ip2QMz3Zg96DySvyoe6SSw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] drm/nouveau: gpu lockup recovery
+Date: Sun, 5 Aug 2012 23:15:55 +0200
+Message-ID: <20120805211555.GB3107@joi.lan>
+References: <1335388836-13127-4-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <CACAvsv6XAV4n=9n32weJeLWCQjv2ip2QMz3Zg96DySvyoe6SSw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <1335388836-13127-4-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,84 +18,12 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Aug 05, 2012 at 12:40:15PM +1000, Ben Skeggs wrote:
-> Hey all,
-> 
-> I've just pushed a major rework/rewrite of the Nouveau kernel module to git[1].
-> 
-> Details of the whys and what-nots of the rework are in the various commit
-> messages.  At this point don't expect any exciting cool functionality, the
-> work so far is merely a restructure to allow moving forward on a number
-> of fronts in the future.
-> 
-> I expect that for a while there will be a *lot* of stupid typos/thinkos that
-> cause all sorts of breakage, so please test everything any anything you can
-> and report *regressions* from the pre-rework code (vs 3.6-rc1 for example).
-> 
-> I'll endeavour to hunt down and fix the regressions as quickly as possible, so
-> please report any issues to this list and/or the freedesktop bugzilla.
-> 
-> There's two areas that didn't get "properly" ported over, that is PM-related
-> things and modesetting.  I'll be handling the modesetting and clk/volt reworks
-> starting from nowish (in between fixing regressions), and I suspect Martin
-> will handle the rest of the PM bits (therm and fanctrl) since he knows the
-> design he's going for there.
-> 
-> One thing to note is that some kernel module options have changed now, the
-> more important ones are:
-> 
-> nouveau.vbios=<blah> -> nouveau.config=NvBIOS=<blah>
-> nouveau.noaccel=<bool> -> nouveau.config=PGRAPH=<bool>
-> 
-> Multiple options are specified like:
-> 
-> nouveau.config=NvBIOS=ACPI,PGRAPH=1
-> 
-> The nouveau.noaccel option now controls acceleration enable/disable for the
-> DRM's own GPU usage, and for the "abi16" (the new interfaces aren't even
-> exposed to userspace yet) interfaces.
-> 
-> The DRM debugging options (drm.debug=<bitfield>) now only effect the DRM
-> specific parts of the nouveau module.  To enable additional debugging etc
-> for the core, incantations like the following are used now:
-> 
-> for debug output
-> 
-> nouveau.debug=debug
-> 
-> or for even more verbose debug output
-> 
-> nouveau.debug=trace
-> 
-> or for trace output for everything, and register write logging from POST
-> 
-> nouveau.debug=trace,DEVINIT=spam
-> 
-> Each individual subdev/engine module has its own debug level that can
-> override the master debug level.
+Hi
 
-It would be very helpful to document this convention and all options in some
-text file in-tree (and later update it when things change).
-
-Some things I noticed:
-- corruptions / lockups in Warsow (1.0) on one of the bomb maps (I didn't test
-  too much, so it might happen on others too) - initially bisected to
-  "drm/nouveau/instmem: completely new implementation, as a subdev module",
-  but I'm not so sure about it - with this commit most textures are corrupted
-  and there are PGRAPH_TRAP_MP_EXEC errors in dmesg, but on HEAD I see total
-  mayhem with DATA_ERROR, followed by TRAP_MP_EXEC and endless stream of page
-  faults
-- new lockups triggerable by piglit
-- VRAM leak? (probably triggered by piglit)
-- missing channel id in error messages
-- debugfs removed (not advertised in any commit, so I don't know if it's
-  intentional or not)
-- some leftovers:
-  - XXX_THIS_IS_A_HACK
-  - /* yell very loudly!! */ (no code implementing yelling ;)
+I refreshed this patchset to current nouveau git.
+http://people.freedesktop.org/~mslusarz/gpu-lockup-recovery/
 
 Marcin
