@@ -1,124 +1,57 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: BIG changes to kernel module
-Date: Mon, 6 Aug 2012 16:58:14 +1000
-Message-ID: <20120806065814.GB17565@turiel.redhat.com>
-References: <CACAvsv6XAV4n=9n32weJeLWCQjv2ip2QMz3Zg96DySvyoe6SSw@mail.gmail.com>
-	<20120805205637.GA3107@joi.lan>
+From: Maxim Levitsky <maximlevitsky@gmail.com>
+Subject: Re: [bisected] nouveau: "Failed to idle channel x" after resume
+Date: Mon, 06 Aug 2012 23:38:04 +0300
+Message-ID: <1344285484.14543.0.camel@maxim-laptop>
+References: <20120611231842.221bd738@europa>
+	 <20120705222429.43586868@europa>
+	 <CAJCn4U=pLjiLVW_TT+JN5G177dh4RUwg=vinjBrS4udChOyqoQ@mail.gmail.com>
+	 <1344091275.4520.1.camel@maxim-laptop>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20120805205637.GA3107-OI9uyE9O0yo@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1344091275.4520.1.camel@maxim-laptop>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Aioanei Rares <krnl.list@gmail.com>
+Cc: Martin Nyhus <martin.nyhus@gmx.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Aug 05, 2012 at 10:56:37PM +0200, Marcin Slusarz wrote:
-> On Sun, Aug 05, 2012 at 12:40:15PM +1000, Ben Skeggs wrote:
-> > Hey all,
+On Sat, 2012-08-04 at 17:41 +0300, Maxim Levitsky wrote: 
+> On Mon, 2012-07-23 at 18:25 +0300, Aioanei Rares wrote: 
+> > On Thu, Jul 5, 2012 at 11:24 PM, Martin Nyhus <martin.nyhus@gmx.com> wrote:
+> > >
+> > > On Mon, 11 Jun 2012 23:18:42 +0200 Martin Nyhus wrote:
+> > > > after resuming from suspend nouveau starts writing Failed to idle
+> > > > channel x (where x is 2 or 3) to the log and X appears to stop and
+> > > > then restart only to stop again. Starting Firefox after resuming
+> > > > triggers the bugs every time, and bisecting leads to 03bd6efa
+> > > > ("drm/nv50/fifo: use hardware channel kickoff functionality").
+> > >
+> > > Hi Ben,
+> > > I'm still seeing this bug with the latest from Linus
+> > > (v3.5-rc5-98-g9e85a6f) and linux-next (next-20120705).
+> > >
+> > > lspci output:
+> > > 01:00.0 VGA compatible controller: nVidia Corporation G86 [GeForce
+> > > 8400M GS] (rev a1)
+> > >
+> > > Sorry I haven't followed up on this earlier,
+> > > Martin
 > > 
-> > I've just pushed a major rework/rewrite of the Nouveau kernel module to git[1].
-> > 
-> > Details of the whys and what-nots of the rework are in the various commit
-> > messages.  At this point don't expect any exciting cool functionality, the
-> > work so far is merely a restructure to allow moving forward on a number
-> > of fronts in the future.
-> > 
-> > I expect that for a while there will be a *lot* of stupid typos/thinkos that
-> > cause all sorts of breakage, so please test everything any anything you can
-> > and report *regressions* from the pre-rework code (vs 3.6-rc1 for example).
-> > 
-> > I'll endeavour to hunt down and fix the regressions as quickly as possible, so
-> > please report any issues to this list and/or the freedesktop bugzilla.
-> > 
-> > There's two areas that didn't get "properly" ported over, that is PM-related
-> > things and modesetting.  I'll be handling the modesetting and clk/volt reworks
-> > starting from nowish (in between fixing regressions), and I suspect Martin
-> > will handle the rest of the PM bits (therm and fanctrl) since he knows the
-> > design he's going for there.
-> > 
-> > One thing to note is that some kernel module options have changed now, the
-> > more important ones are:
-> > 
-> > nouveau.vbios=<blah> -> nouveau.config=NvBIOS=<blah>
-> > nouveau.noaccel=<bool> -> nouveau.config=PGRAPH=<bool>
-> > 
-> > Multiple options are specified like:
-> > 
-> > nouveau.config=NvBIOS=ACPI,PGRAPH=1
-> > 
-> > The nouveau.noaccel option now controls acceleration enable/disable for the
-> > DRM's own GPU usage, and for the "abi16" (the new interfaces aren't even
-> > exposed to userspace yet) interfaces.
-> > 
-> > The DRM debugging options (drm.debug=<bitfield>) now only effect the DRM
-> > specific parts of the nouveau module.  To enable additional debugging etc
-> > for the core, incantations like the following are used now:
-> > 
-> > for debug output
-> > 
-> > nouveau.debug=debug
-> > 
-> > or for even more verbose debug output
-> > 
-> > nouveau.debug=trace
-> > 
-> > or for trace output for everything, and register write logging from POST
-> > 
-> > nouveau.debug=trace,DEVINIT=spam
-> > 
-> > Each individual subdev/engine module has its own debug level that can
-> > override the master debug level.
+> > I can confirm this with 3.5.0, Chromium and Arch Linux. It's a HP
+> > Pavilion laptop with a G86 [GeForce 8400 M GS] video card .
+> > Seems related to this bug:
+> > http://lists.freedesktop.org/archives/nouveau/2011-January/007358.html
+> > . If I can do anything else
+> > to help, I will be glad to.
+> Added nouveau@lists.freedesktop.org>
 > 
-> It would be very helpful to document this convention and all options in some
-> text file in-tree (and later update it when things change).
-Yes, good point.  I'll see to that before any of this hits Linus'.
+> I confirm the same issue here.
+> will try to do dig it.
+Nope,can't dig this :-(
 
-> 
-> Some things I noticed:
-> - corruptions / lockups in Warsow (1.0) on one of the bomb maps (I didn't test
->   too much, so it might happen on others too) - initially bisected to
->   "drm/nouveau/instmem: completely new implementation, as a subdev module",
->   but I'm not so sure about it - with this commit most textures are corrupted
->   and there are PGRAPH_TRAP_MP_EXEC errors in dmesg, but on HEAD I see total
->   mayhem with DATA_ERROR, followed by TRAP_MP_EXEC and endless stream of page
->   faults
-> - new lockups triggerable by piglit
-> - VRAM leak? (probably triggered by piglit)
-I'll see if I can reproduce these at all during the week.
 
-> - missing channel id in error messages
-This is actually deliberate, since technically the channel address *is* the
-chid on most engines.  PFIFO errors still log the chid, because there are
-actually indices there.
 
-I do see how it can be useful to have the PFIFO channel ID too though in
-error messages, so I'll bring them back.
-
-> - debugfs removed (not advertised in any commit, so I don't know if it's
->   intentional or not)
-Oops, that *was* a separate commit at some point.  Might have accidentally
-squashed it.  It's intentional for now, it'll come back (better) later.
-
-> - some leftovers:
->   - XXX_THIS_IS_A_HACK
->   - /* yell very loudly!! */ (no code implementing yelling ;)
-Oops, thanks.  I've fixed both of these and I'll push them shortly.
-
-Thanks a LOT for looking this over for me.
-
-Cheers,
-Ben.
-
-> 
-> Marcin
+-- 
+Best regards,
+        Maxim Levitsky
