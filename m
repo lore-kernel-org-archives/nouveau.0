@@ -1,50 +1,73 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 53219] New: glxgears crashes kernel
-Date: Tue, 07 Aug 2012 18:12:01 +0000
-Message-ID: <bug-53219-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [bisected] nouveau: "Failed to idle channel x" after resume
+Date: Wed, 8 Aug 2012 15:37:16 +1000
+Message-ID: <20120808053716.GA10092@turiel.bne.redhat.com>
+References: <20120611231842.221bd738@europa>
+ <20120705222429.43586868@europa>
+ <CAJCn4U=pLjiLVW_TT+JN5G177dh4RUwg=vinjBrS4udChOyqoQ@mail.gmail.com>
+ <1344091275.4520.1.camel@maxim-laptop>
+ <1344285484.14543.0.camel@maxim-laptop>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <1344285484.14543.0.camel@maxim-laptop>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Maxim Levitsky <maximlevitsky@gmail.com>
+Cc: Aioanei Rares <krnl.list@gmail.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Martin Nyhus <martin.nyhus@gmx.com>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=53219
+On Mon, Aug 06, 2012 at 11:38:04PM +0300, Maxim Levitsky wrote:
+> On Sat, 2012-08-04 at 17:41 +0300, Maxim Levitsky wrote: 
+> > On Mon, 2012-07-23 at 18:25 +0300, Aioanei Rares wrote: 
+> > > On Thu, Jul 5, 2012 at 11:24 PM, Martin Nyhus <martin.nyhus@gmx.com> wrote:
+> > > >
+> > > > On Mon, 11 Jun 2012 23:18:42 +0200 Martin Nyhus wrote:
+> > > > > after resuming from suspend nouveau starts writing Failed to idle
+> > > > > channel x (where x is 2 or 3) to the log and X appears to stop and
+> > > > > then restart only to stop again. Starting Firefox after resuming
+> > > > > triggers the bugs every time, and bisecting leads to 03bd6efa
+> > > > > ("drm/nv50/fifo: use hardware channel kickoff functionality").
+> > > >
+> > > > Hi Ben,
+> > > > I'm still seeing this bug with the latest from Linus
+> > > > (v3.5-rc5-98-g9e85a6f) and linux-next (next-20120705).
+> > > >
+> > > > lspci output:
+> > > > 01:00.0 VGA compatible controller: nVidia Corporation G86 [GeForce
+> > > > 8400M GS] (rev a1)
+> > > >
+> > > > Sorry I haven't followed up on this earlier,
+> > > > Martin
+> > > 
+> > > I can confirm this with 3.5.0, Chromium and Arch Linux. It's a HP
+> > > Pavilion laptop with a G86 [GeForce 8400 M GS] video card .
+> > > Seems related to this bug:
+> > > http://lists.freedesktop.org/archives/nouveau/2011-January/007358.html
+> > > . If I can do anything else
+> > > to help, I will be glad to.
+> > Added nouveau@lists.freedesktop.org>
+> > 
+> > I confirm the same issue here.
+> > will try to do dig it.
+> Nope,can't dig this :-(
+Interestingly, this works just fine for me after the driver rework.
 
-             Bug #: 53219
-           Summary: glxgears crashes kernel
-    Classification: Unclassified
-           Product: xorg
-           Version: git
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: johannesobermayr-Mmb7MZpHnFY@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+I can confirm issues on G86 with 3.5/3.6-rc1 stock though.  I'll
+attempt to find a fix suitable for the non-reworked driver.
 
+Ben.
 
-Created attachment 65245
-  --> https://bugs.freedesktop.org/attachment.cgi?id=65245
-dmesg output after kernel crash
-
-[drm] Initialized drm 1.1.0 20120806 088fba1
-
-$ glxgears -> instantly crash
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+> 
+> 
+> 
+> -- 
+> Best regards,
+>         Maxim Levitsky
+> 
+> 
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
