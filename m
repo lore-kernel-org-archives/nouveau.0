@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 53283] Rendering problems in Sacred with Radeon and
 	Nvidia
-Date: Thu, 09 Aug 2012 14:54:08 +0000
-Message-ID: <bug-53283-8800-GYLqOWKwU9@http.bugs.freedesktop.org/>
+Date: Thu, 09 Aug 2012 21:05:31 +0000
+Message-ID: <bug-53283-8800-ywgwmpqnCM@http.bugs.freedesktop.org/>
 References: <bug-53283-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,14 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=53283
 
---- Comment #8 from kh3095-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org 2012-08-09 14:54:08 UTC ---
-OK, I'll try.
+--- Comment #9 from kh3095-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org 2012-08-09 21:05:31 UTC ---
+I found that this problem is related to conflict between amd64 and i386. Sacred
+Gold is i386, so running on amd64 with open drivers causes this problem. I
+tried to install i386 librares (with Debian multiarch), and it really solves
+the problem. Unfortunately, new problem arises -- everything renders correctly,
+but there's no text at all (menu, speech, items exlanation, etc.).
+
+The bug report is closed.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
