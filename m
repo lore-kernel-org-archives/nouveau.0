@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 53283] Rendering problems in Sacred with Radeon and
 	Nvidia
-Date: Thu, 09 Aug 2012 14:53:22 +0000
-Message-ID: <bug-53283-8800-VYfVkcvsYj@http.bugs.freedesktop.org/>
+Date: Thu, 09 Aug 2012 14:54:08 +0000
+Message-ID: <bug-53283-8800-GYLqOWKwU9@http.bugs.freedesktop.org/>
 References: <bug-53283-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=53283
 
-kh3095-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|normal                      |critical
+--- Comment #8 from kh3095-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org 2012-08-09 14:54:08 UTC ---
+OK, I'll try.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
