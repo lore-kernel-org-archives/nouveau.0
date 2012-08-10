@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
 	No Connectors
-Date: Fri, 10 Aug 2012 10:11:08 +0000
-Message-ID: <bug-51971-8800-3ofP64Q9pZ@http.bugs.freedesktop.org/>
+Date: Fri, 10 Aug 2012 11:59:25 +0000
+Message-ID: <bug-51971-8800-CfiMDWgANb@http.bugs.freedesktop.org/>
 References: <bug-51971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,8 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51971
 
---- Comment #13 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2012-08-10 10:11:08 UTC ---
-I confirm that kernel 3.6-rc1 with 2 last patch working.
+--- Comment #14 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2012-08-10 11:59:25 UTC ---
+I quite disappointed,
+
+I cleaned up my kernel install, removed old modules/kernel from my system, them
+rebuilt the patched kernel, then issue is back.
+
+Do run proprietary driver before can be the reason ?
+
+Ryan do you had same issue ?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
