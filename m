@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
 	No Connectors
-Date: Fri, 10 Aug 2012 05:12:25 +0000
-Message-ID: <bug-51971-8800-VAu8E7VCJH@http.bugs.freedesktop.org/>
+Date: Fri, 10 Aug 2012 10:11:08 +0000
+Message-ID: <bug-51971-8800-3ofP64Q9pZ@http.bugs.freedesktop.org/>
 References: <bug-51971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,20 +23,8 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51971
 
---- Comment #12 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-10 05:12:25 UTC ---
-Created attachment 65367
-  --> https://bugs.freedesktop.org/attachment.cgi?id=65367
-Patch to force bpc to 6
-
-There's work going on with the Intel card. It was discovered that when they
-forced BPC to 8 they were able to display to the Retina display properly. I
-added some debug into the section of code that determines the correct bpc and
-found that it was already choosing 8. I force it to 6 and all of a sudden it
-works.
-
-I've attached the patch that fixes that. Of course, like the other patch, the
-fix only applies to the MBP Retina. I don't yet know the proper way to override
-this on a per-device basis.
+--- Comment #13 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2012-08-10 10:11:08 UTC ---
+I confirm that kernel 3.6-rc1 with 2 last patch working.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
