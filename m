@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
 	No Connectors
-Date: Sat, 11 Aug 2012 02:36:26 +0000
-Message-ID: <bug-51971-8800-5FXzFP3Dsw@http.bugs.freedesktop.org/>
+Date: Sat, 11 Aug 2012 02:39:33 +0000
+Message-ID: <bug-51971-8800-LdQJRJQMus@http.bugs.freedesktop.org/>
 References: <bug-51971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,16 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51971
 
---- Comment #17 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2012-08-11 02:36:26 UTC ---
-I was not totally wrong, there is a bug :)
-
-When you switch to intel and them switch back to nvidia with OS X, video output
-is broken again.
-
-To solve issue reboot in OS X, setup video to nvidia turn off from mac, then
-power on.
-
-Best regards
+--- Comment #18 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-11 02:39:33 UTC ---
+Based on how I'm reading it that makes sense...if you're running the Intel card
+without the Intel patches for the Retina it's not going to work. But that's not
+a problem with nouveau.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
