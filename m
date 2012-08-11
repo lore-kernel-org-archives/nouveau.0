@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
 	No Connectors
-Date: Sat, 11 Aug 2012 02:39:33 +0000
-Message-ID: <bug-51971-8800-LdQJRJQMus@http.bugs.freedesktop.org/>
+Date: Sat, 11 Aug 2012 02:50:46 +0000
+Message-ID: <bug-51971-8800-yxPZVAFBPl@http.bugs.freedesktop.org/>
 References: <bug-51971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,19 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51971
 
---- Comment #18 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-11 02:39:33 UTC ---
-Based on how I'm reading it that makes sense...if you're running the Intel card
-without the Intel patches for the Retina it's not going to work. But that's not
-a problem with nouveau.
+--- Comment #19 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2012-08-11 02:50:46 UTC ---
+I didn't explain well :)
+
+0. boot linux with nouveau patched kernel, work well
+1. boot OS X switch to intel.
+2. boot linux, work well with intel patched kernel
+3. boot OS X switch to nvidia
+4. boot linux with nouveau patched kernel(same kernel as 0.), you get garbage
+on screen :)
+
+I hope this is more precise.
+
+Best regards
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
