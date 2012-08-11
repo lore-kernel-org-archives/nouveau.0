@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51971] MacBook Pro 10, 1 Retina - Display Resets,
 	No Connectors
-Date: Sat, 11 Aug 2012 03:04:06 +0000
-Message-ID: <bug-51971-8800-KJuWwFjHUh@http.bugs.freedesktop.org/>
+Date: Sat, 11 Aug 2012 03:22:07 +0000
+Message-ID: <bug-51971-8800-N5ytv6xktH@http.bugs.freedesktop.org/>
 References: <bug-51971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,11 +23,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51971
 
---- Comment #20 from Ryan Bourgeois <bluedragonx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-11 03:04:06 UTC ---
-I'm guessing the whole vbios isn't posting properly. Do that again, but this
-time boot with the following kernel commandline option: nouveau.force_post=1
+--- Comment #21 from Benoit Gschwind <gschwind-1YmjpbiIw0bR7s880joybQ@public.gmane.org> 2012-08-11 03:22:07 UTC ---
 
-This will force the NVIDIA vbios to post when the driver loads.
+Yes, this solve this minor issue, I followed this step :
+
+0. boot OS X switch to nvidia
+1. boot linux, get garbage
+2. boot linux with nouveau.force_post=1, no more garbage.
+
+:)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
