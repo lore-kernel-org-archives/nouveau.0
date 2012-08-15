@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 53519] Missing bits of geometry in Unigine tropics
-Date: Wed, 15 Aug 2012 01:42:58 +0000
-Message-ID: <bug-53519-8800-NASF9ZS959@http.bugs.freedesktop.org/>
+Date: Wed, 15 Aug 2012 02:40:49 +0000
+Message-ID: <bug-53519-8800-P926CgoCUD@http.bugs.freedesktop.org/>
 References: <bug-53519-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,17 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=53519
 
---- Comment #2 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-08-15 01:42:58 UTC ---
-Created attachment 65578
-  --> https://bugs.freedesktop.org/attachment.cgi?id=65578
-additional revert
+maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-It turns out that clean revert of above isn't enough, and by doing diff between
-older revert patches and these, I get this patch, and when it applied only then
-the bug disappers.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
-Of course I didn't look at all at inner working of this, and I will soon.
-So most likely these reverts weren't that useful
+--- Comment #3 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-08-15 02:40:49 UTC ---
+It turned out this this bug got fixed (accidently or not) recently, I just
+forgot to pull mesa.
+So closing this till it breaks again :-)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
