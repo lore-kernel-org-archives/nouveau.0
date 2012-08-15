@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37445] Nouveau regularly reports the TRAP_VFETCH
-	FAULT errors.
-Date: Tue, 14 Aug 2012 22:27:57 +0000
-Message-ID: <bug-37445-8800-ChorFIZ9C8@http.bugs.freedesktop.org/>
-References: <bug-37445-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 53519] New: Missing bits of geometry in Unigine
+	tropics
+Date: Wed, 15 Aug 2012 00:51:50 +0000
+Message-ID: <bug-53519-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +19,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37445
+https://bugs.freedesktop.org/show_bug.cgi?id=53519
 
-maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+             Bug #: 53519
+           Summary: Missing bits of geometry in Unigine tropics
+    Classification: Unclassified
+           Product: Mesa
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: minor
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #11 from maximlevitsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-08-14 22:27:57 UTC ---
-Yep, this is fixed by new shader compiler ages ago.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
