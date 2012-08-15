@@ -1,115 +1,92 @@
-From: Maarten Maathuis <madman2003@gmail.com>
-Subject: Re: [Nouveau] [bisected] nouveau: "Failed to idle channel x" after resume
-Date: Wed, 15 Aug 2012 08:53:54 +0200
-Message-ID: <CAGZ4FETJAU+13RRj_DOq=Xng-MguLFAwae=h_BT=_NSrXe9UXQ@mail.gmail.com>
-References: <20120611231842.221bd738@europa>
-	<20120705222429.43586868@europa>
-	<CAJCn4U=pLjiLVW_TT+JN5G177dh4RUwg=vinjBrS4udChOyqoQ@mail.gmail.com>
-	<1344091275.4520.1.camel@maxim-laptop>
-	<1344285484.14543.0.camel@maxim-laptop>
-	<20120808053716.GA10092@turiel.bne.redhat.com>
-	<87lihpkjnu.fsf@turtle.gmx.de>
-	<20120808060841.GB10092@turiel.bne.redhat.com>
-	<87fw7xkiu6.fsf@turtle.gmx.de>
-	<87d32uzrq5.fsf@turtle.gmx.de>
-	<1344887375.7580.2.camel@maxim-laptop>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 53535] New: G84M [Quadro NVS 140M] X crash after
+ waking up from suspend: Process /usr/bin/Xorg was killed by signal 6
+ (SIGABRT)
+Date: Wed, 15 Aug 2012 10:49:54 +0000
+Message-ID: <bug-53535-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1344887375.7580.2.camel@maxim-laptop>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: Sven Joachim <svenjoac@gmx.de>, Aioanei Rares <krnl.list@gmail.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Martin Nyhus <martin.nyhus@gmx.com>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Maxim Levitsky <maximlevitsky@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Aug 13, 2012 at 9:49 PM, Maxim Levitsky <maximlevitsky@gmail.com> wrote:
-> On Mon, 2012-08-13 at 18:22 +0200, Sven Joachim wrote:
->> On 2012-08-08 08:18 +0200, Sven Joachim wrote:
->>
->> > On 2012-08-08 08:08 +0200, Ben Skeggs wrote:
->> >
->> >> On Wed, Aug 08, 2012 at 08:00:21AM +0200, Sven Joachim wrote:
->> >>> Not for me on my GeForce 8500 GT, and I still cannot suspend more than
->> >>> once, subsequent attempts fail:
->> >>>
->> >>> ,----
->> >>> | Aug 8 07:49:16 turtle kernel: [ 91.697068] nouveau W[
->> >>> | PGRAPH][0000:01:00.0][0x0200502d][ffff880037be1d40] parent failed
->> >>> | suspend, -16
->> >>> | Aug  8 07:49:16 turtle kernel: [   91.697078] nouveau  [     DRM][0000:01:00.0] resuming display...
->> >>> `----
->> >> Interesting.  Were there any messages prior to that?
->> >
->> > Nothing interesting:
->> >
->> > ,----
->> > | Aug  8 07:49:16 turtle kernel: [   89.655362] nouveau  [     DRM][0000:01:00.0] suspending fbcon...
->> > | Aug  8 07:49:16 turtle kernel: [   89.655367] nouveau  [     DRM][0000:01:00.0] suspending display...
->> > | Aug  8 07:49:16 turtle kernel: [   89.696888] nouveau  [     DRM][0000:01:00.0] unpinning framebuffer(s)...
->> > | Aug  8 07:49:16 turtle kernel: [   89.696909] nouveau  [     DRM][0000:01:00.0] evicting buffers...
->> > | Aug  8 07:49:16 turtle kernel: [   89.696913] nouveau  [     DRM][0000:01:00.0] suspending client object trees...
->> > `----
->> >
->> >> I guess the the fifo
->> >> code detected a timeout when trying to save the graphics context, I have
->> >> I have other patches in my tree (I'll push them soon, tied up with other
->> >> work atm) that might help here.
->> >
->> > Thanks, I'll try them when they are available.
->>
->> With current nouveau master ("drm/nouveau: fix find/replace bug in
->> license header") suspending works again, thanks!  However, it is a bit
->> slow, taking between two and five seconds:
->>
->> ,----
->> | Aug 13 18:17:56 turtle kernel: [  678.524814] PM: Syncing filesystems ... done.
->> | Aug 13 18:18:09 turtle kernel: [  678.639202] Freezing user space processes ... (elapsed 0.01 seconds) done.
->> | Aug 13 18:18:09 turtle kernel: [  678.649954] Freezing remaining freezable tasks ... (elapsed 0.01 seconds) done.
->> | Aug 13 18:18:09 turtle kernel: [  678.663298] Suspending console(s) (use no_console_suspend to debug)
->> | Aug 13 18:18:09 turtle kernel: [  678.680884] sd 0:0:0:0: [sda] Synchronizing SCSI cache
->> | Aug 13 18:18:09 turtle kernel: [  678.681000] sd 0:0:0:0: [sda] Stopping disk
->> | Aug 13 18:18:09 turtle kernel: [  678.695141] parport_pc 00:07: disabled
->> | Aug 13 18:18:09 turtle kernel: [  678.695204] serial 00:06: disabled
->> | Aug 13 18:18:09 turtle kernel: [  678.695209] serial 00:06: wake-up capability disabled by ACPI
->> | Aug 13 18:18:09 turtle kernel: [  678.695235] nouveau  [     DRM][0000:01:00.0] suspending fbcon...
->> | Aug 13 18:18:09 turtle kernel: [  678.695239] nouveau  [     DRM][0000:01:00.0] suspending display...
->> | Aug 13 18:18:09 turtle kernel: [  678.742111] nouveau  [     DRM][0000:01:00.0] unpinning framebuffer(s)...
->> | Aug 13 18:18:09 turtle kernel: [  678.742189] nouveau  [     DRM][0000:01:00.0] evicting buffers...
->> | Aug 13 18:18:09 turtle kernel: [  682.357319] nouveau  [     DRM][0000:01:00.0] suspending client object trees...
->> | Aug 13 18:18:09 turtle kernel: [  683.526646] PM: suspend of devices complete after 4863.181 msecs
->> `----
->>
->> With the 3.4.8 kernel, suspending takes little more than one second.
->>
->> Cheers,
->>        Sven
-> I confirm exactly the same thing.
->
-> Here suspend takes more that 10 seconds:
->
-> [ 2165.363878] nouveau  [     DRM][0000:01:00.0] suspending fbcon...
-> [ 2165.363885] nouveau  [     DRM][0000:01:00.0] suspending display...
-> [ 2165.475791] sd 0:0:0:0: [sda] Stopping disk
-> [ 2166.396877] nouveau  [     DRM][0000:01:00.0] unpinning
-> framebuffer(s)...
-> [ 2166.396926] nouveau  [     DRM][0000:01:00.0] evicting buffers...
-> [ 2174.809084] nouveau  [     DRM][0000:01:00.0] suspending client
-> object trees...
-> [ 2177.950222] nouveau 0000:01:00.0: power state changed by ACPI to D3
->
->
-> Best regards,
-> Maxim Levitsky
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+https://bugs.freedesktop.org/show_bug.cgi?id=53535
 
-In my case suspend also takes longer than usual, in the order of 10 seconds.
+             Bug #: 53535
+           Summary: G84M [Quadro NVS 140M] X crash after waking up from
+                    suspend: Process /usr/bin/Xorg was killed by signal 6
+                    (SIGABRT)
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: reklov-EMRzualFZlQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-@Ben: Have you been able to reproduce this?
+
+Created attachment 65596
+  --> https://bugs.freedesktop.org/attachment.cgi?id=65596
+Xorg backtrace
+
+After waking up from suspend and starting firefox X crashes.
+
+cmdline: /usr/bin/Xorg :0 -background none -logverbose 7 -auth
+/var/run/gdm/auth-for-gdm-u1CSc3/database -seat seat0 -nolisten tcp vt1
+
+Packages:
+kernel.x86_64                      3.5.1-1.fc17     
+xorg-x11-drv-ast.x86_64            0.93.9-6.fc17    
+xorg-x11-drv-ati.x86_64            6.14.4-6.20120602git930760942.fc17
+
+xorg-x11-drv-cirrus.x86_64         1.3.2-19.fc17    
+xorg-x11-drv-dummy.x86_64          0.3.5-4.fc17     
+xorg-x11-drv-evdev.x86_64          2.7.0-2.fc17     
+xorg-x11-drv-fbdev.x86_64          0.4.2-8.fc17     
+xorg-x11-drv-intel.x86_64          2.20.1-1.fc17    
+xorg-x11-drv-mga.x86_64            1.4.13-19.20120104git9223c44a7.fc17
+
+xorg-x11-drv-nouveau.x86_64        1:0.0.16-37.20120306gitf5d1cd2.fc17
+
+xorg-x11-drv-nouveau-debuginfo.x86_64
+                                   1:0.0.16-37.20120306gitf5d1cd2.fc17
+
+xorg-x11-drv-openchrome.x86_64     0.2.906-1.fc17   
+xorg-x11-drv-qxl.x86_64            0.0.22-0.fc17    
+xorg-x11-drv-synaptics.x86_64      1.6.2-1.fc17     
+xorg-x11-drv-vesa.x86_64           2.3.1-1.fc17     
+xorg-x11-drv-vmmouse.x86_64        12.8.0-1.fc17    
+xorg-x11-drv-vmware.x86_64         12.0.2-1.fc17    
+xorg-x11-drv-void.x86_64           1.4.0-8.fc17     
+xorg-x11-drv-wacom.x86_64          0.14.0-2.fc17    
+xorg-x11-font-utils.x86_64         1:7.5-7.fc17     
+xorg-x11-fonts-misc.noarch         7.5-5.fc17       
+xorg-x11-server-Xephyr.x86_64      1.12.2-4.fc17    
+xorg-x11-server-Xorg.x86_64        1.12.2-4.fc17    
+xorg-x11-server-common.x86_64      1.12.2-4.fc17    
+xorg-x11-server-debuginfo.x86_64   1.12.2-4.fc17    
+xorg-x11-server-utils.x86_64       7.5-12.fc17      
+xorg-x11-utils.x86_64              7.5-6.fc17       
+xorg-x11-xauth.x86_64              1:1.0.7-1.fc17   
+xorg-x11-xinit.x86_64              1.3.2-5.fc17     
+xorg-x11-xkb-utils.x86_64          7.5-6.fc17
 
 -- 
-Far away from the primal instinct, the song seems to fade away, the
-river get wider between your thoughts and the things we do and say.
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
