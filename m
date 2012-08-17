@@ -1,40 +1,48 @@
-From: Daniel J Blueman <daniel@quora.org>
-Subject: nouveau Macbook EDID fix upstreaming...
-Date: Fri, 17 Aug 2012 16:33:25 +0800
-Message-ID: <CAMVG2ssDVjwm2Fp6gBTKg2=MqWMDoO1_FpqoXOnskz5W58Unkg@mail.gmail.com>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: restore hw accelerated buffer copies
+Date: Fri, 17 Aug 2012 23:47:44 +0200
+Message-ID: <20120817214744.GA9955@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ryan Bourgeois <bluedragonx@gmail.com>, Dave Airlie <airlied@linux.ie>
-Cc: nouveau@lists.freedesktop.org, Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-It looks like Ryan's Nouveau patch [1,2] to get the I2C working for
-EDID (thus modelines) is crucial for avoiding the Nvidia binary
-drivers on MacbookPro 2012s.
+Regression from "drm/nve0: use async copy engine for ttm buffer moves
+if available".
 
-Any plans/chance for it to be upstreamed to eg 3.6-rc3?
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-Many thanks,
-  Daniel
-
---- [1]
-
-diff -urNp a/drivers/gpu/drm/nouveau/nouveau_bios.c
-b/drivers/gpu/drm/nouveau/nouveau_bios.c
---- a/drivers/gpu/drm/nouveau/nouveau_bios.c	2012-07-08 22:48:05.589828510 -0500
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.c	2012-07-15 00:28:18.578864693 -0500
-@@ -6461,6 +6461,9 @@ nouveau_run_vbios_init(struct drm_device
- 		}
- 	}
-
-+	if (!bios->execute)
-+		nouveau_gpio_reset(dev);
-+
- 	return ret;
- }
-
-[2] https://bugs.freedesktop.org/show_bug.cgi?id=51971
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 325b8cb..dc04395 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -1037,9 +1037,9 @@ nouveau_bo_move_init(struct nouveau_drm *drm)
+ 		u32 handle = (mthd->engine << 16) | mthd->oclass;
+ 
+ 		if (mthd->init == nve0_bo_move_init)
+-			chan = drm->channel;
+-		else
+ 			chan = drm->cechan;
++		else
++			chan = drm->channel;
+ 		if (chan == NULL)
+ 			continue;
+ 
 -- 
-Daniel J Blueman
+1.7.8.6
