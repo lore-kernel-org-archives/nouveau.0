@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 04/10] drm/nouveau: constify instances of
-	nouveau_bitfield and nouveau_enum structs
-Date: Sun, 19 Aug 2012 22:59:59 +0200
-Message-ID: <1345410004-27729-4-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH 05/10] drm/nouveau: quiet some static-related
+	sparse noise
+Date: Sun, 19 Aug 2012 23:00:00 +0200
+Message-ID: <1345410004-27729-5-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -21,379 +21,566 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/engine/copy/nva3.c    |    2 +-
- drivers/gpu/drm/nouveau/core/engine/copy/nvc0.c    |    2 +-
- drivers/gpu/drm/nouveau/core/engine/crypt/nv84.c   |    2 +-
- drivers/gpu/drm/nouveau/core/engine/crypt/nv98.c   |    2 +-
- drivers/gpu/drm/nouveau/core/engine/fifo/nvc0.c    |   10 +++++-----
- drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c    |   10 +++++-----
- drivers/gpu/drm/nouveau/core/engine/graph/nv04.c   |    6 +++---
- drivers/gpu/drm/nouveau/core/engine/graph/nv10.c   |    4 ++--
- drivers/gpu/drm/nouveau/core/engine/graph/nv50.c   |   16 ++++++++--------
- drivers/gpu/drm/nouveau/core/include/core/enum.h   |    2 +-
- .../gpu/drm/nouveau/core/include/engine/graph.h    |    8 ++++----
- drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c      |   16 ++++++++--------
- 12 files changed, 40 insertions(+), 40 deletions(-)
+ drivers/gpu/drm/nouveau/core/core/gpuobj.c         |    2 +-
+ drivers/gpu/drm/nouveau/core/core/object.c         |    8 ++++----
+ drivers/gpu/drm/nouveau/core/core/option.c         |    2 +-
+ .../drm/nouveau/core/engine/copy/fuc/nva3.fuc.h    |    4 ++--
+ .../drm/nouveau/core/engine/copy/fuc/nvc0.fuc.h    |    4 ++--
+ .../drm/nouveau/core/engine/crypt/fuc/nv98.fuc.h   |    4 ++--
+ drivers/gpu/drm/nouveau/core/engine/disp/vga.c     |    1 +
+ drivers/gpu/drm/nouveau/core/engine/fifo/base.c    |    2 +-
+ drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c    |    2 +-
+ .../nouveau/core/engine/graph/fuc/gpcnvc0.fuc.h    |    4 ++--
+ .../nouveau/core/engine/graph/fuc/hubnvc0.fuc.h    |    4 ++--
+ drivers/gpu/drm/nouveau/core/engine/graph/nv40.c   |    2 +-
+ drivers/gpu/drm/nouveau/core/engine/graph/nv50.c   |    2 +-
+ drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c    |    4 ++--
+ drivers/gpu/drm/nouveau/core/subdev/bios/conn.c    |    1 +
+ drivers/gpu/drm/nouveau/core/subdev/mxm/base.c     |    2 +-
+ drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c      |   10 +++++-----
+ drivers/gpu/drm/nouveau/core/subdev/vm/nvc0.c      |   10 +++++-----
+ drivers/gpu/drm/nouveau/nouveau_chan.c             |    2 +-
+ drivers/gpu/drm/nouveau/nouveau_dp.c               |    2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |   12 ++++++------
+ drivers/gpu/drm/nouveau/nouveau_irq.c              |    1 +
+ drivers/gpu/drm/nouveau/nouveau_mem.c              |    6 +++---
+ drivers/gpu/drm/nouveau/nouveau_ttm.c              |    6 +++---
+ drivers/gpu/drm/nouveau/nouveau_vga.c              |    1 +
+ 25 files changed, 51 insertions(+), 47 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/copy/nva3.c b/drivers/gpu/drm/nouveau/core/engine/copy/nva3.c
-index fd4ea19..22e99e4 100644
---- a/drivers/gpu/drm/nouveau/core/engine/copy/nva3.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/copy/nva3.c
-@@ -93,7 +93,7 @@ nva3_copy_cclass = {
-  * PCOPY engine/subdev functions
-  ******************************************************************************/
- 
--static struct nouveau_enum nva3_copy_isr_error_name[] = {
-+static const struct nouveau_enum nva3_copy_isr_error_name[] = {
- 	{ 0x0001, "ILLEGAL_MTHD" },
- 	{ 0x0002, "INVALID_ENUM" },
- 	{ 0x0003, "INVALID_BITFIELD" },
-diff --git a/drivers/gpu/drm/nouveau/core/engine/copy/nvc0.c b/drivers/gpu/drm/nouveau/core/engine/copy/nvc0.c
-index 6835d7d..69ae2d7 100644
---- a/drivers/gpu/drm/nouveau/core/engine/copy/nvc0.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/copy/nvc0.c
-@@ -104,7 +104,7 @@ nvc0_copy1_cclass = {
-  * PCOPY engine/subdev functions
-  ******************************************************************************/
- 
--static struct nouveau_enum nvc0_copy_isr_error_name[] = {
-+static const struct nouveau_enum nvc0_copy_isr_error_name[] = {
- 	{ 0x0001, "ILLEGAL_MTHD" },
- 	{ 0x0002, "INVALID_ENUM" },
- 	{ 0x0003, "INVALID_BITFIELD" },
-diff --git a/drivers/gpu/drm/nouveau/core/engine/crypt/nv84.c b/drivers/gpu/drm/nouveau/core/engine/crypt/nv84.c
-index 67622aa..b0c7d68 100644
---- a/drivers/gpu/drm/nouveau/core/engine/crypt/nv84.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/crypt/nv84.c
-@@ -122,7 +122,7 @@ nv84_crypt_cclass = {
-  * PCRYPT engine/subdev functions
-  ******************************************************************************/
- 
--static struct nouveau_bitfield nv84_crypt_intr_mask[] = {
-+static const struct nouveau_bitfield nv84_crypt_intr_mask[] = {
- 	{ 0x00000001, "INVALID_STATE" },
- 	{ 0x00000002, "ILLEGAL_MTHD" },
- 	{ 0x00000004, "ILLEGAL_CLASS" },
-diff --git a/drivers/gpu/drm/nouveau/core/engine/crypt/nv98.c b/drivers/gpu/drm/nouveau/core/engine/crypt/nv98.c
-index 9a589d3..a2e7c0c 100644
---- a/drivers/gpu/drm/nouveau/core/engine/crypt/nv98.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/crypt/nv98.c
-@@ -92,7 +92,7 @@ nv98_crypt_cclass = {
-  * PCRYPT engine/subdev functions
-  ******************************************************************************/
- 
--static struct nouveau_enum nv98_crypt_isr_error_name[] = {
-+static const struct nouveau_enum nv98_crypt_isr_error_name[] = {
- 	{ 0x0000, "ILLEGAL_MTHD" },
- 	{ 0x0001, "INVALID_BITFIELD" },
- 	{ 0x0002, "INVALID_ENUM" },
-diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nvc0.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nvc0.c
-index 31f5a96..0da6643 100644
---- a/drivers/gpu/drm/nouveau/core/engine/fifo/nvc0.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nvc0.c
-@@ -324,7 +324,7 @@ nvc0_fifo_cclass = {
-  * PFIFO engine
-  ******************************************************************************/
- 
--struct nouveau_enum nvc0_fifo_fault_unit[] = {
-+static const struct nouveau_enum nvc0_fifo_fault_unit[] = {
- 	{ 0x00, "PGRAPH" },
- 	{ 0x03, "PEEPHOLE" },
- 	{ 0x04, "BAR1" },
-@@ -340,7 +340,7 @@ struct nouveau_enum nvc0_fifo_fault_unit[] = {
- 	{}
+diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+index e85d940..368d082 100644
+--- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
++++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+@@ -136,7 +136,7 @@ struct nouveau_gpuobj_class {
+ 	u32 flags;
  };
  
--struct nouveau_enum nvc0_fifo_fault_reason[] = {
-+static const struct nouveau_enum nvc0_fifo_fault_reason[] = {
- 	{ 0x00, "PT_NOT_PRESENT" },
- 	{ 0x01, "PT_TOO_SHORT" },
- 	{ 0x02, "PAGE_NOT_PRESENT" },
-@@ -353,7 +353,7 @@ struct nouveau_enum nvc0_fifo_fault_reason[] = {
- 	{}
- };
- 
--struct nouveau_enum nvc0_fifo_fault_hubclient[] = {
-+static const struct nouveau_enum nvc0_fifo_fault_hubclient[] = {
- 	{ 0x01, "PCOPY0" },
- 	{ 0x02, "PCOPY1" },
- 	{ 0x04, "DISPATCH" },
-@@ -371,7 +371,7 @@ struct nouveau_enum nvc0_fifo_fault_hubclient[] = {
- 	{}
- };
- 
--struct nouveau_enum nvc0_fifo_fault_gpcclient[] = {
-+static const struct nouveau_enum nvc0_fifo_fault_gpcclient[] = {
- 	{ 0x01, "TEX" },
- 	{ 0x0c, "ESETUP" },
- 	{ 0x0e, "CTXCTL" },
-@@ -379,7 +379,7 @@ struct nouveau_enum nvc0_fifo_fault_gpcclient[] = {
- 	{}
- };
- 
--struct nouveau_bitfield nvc0_fifo_subfifo_intr[] = {
-+static const struct nouveau_bitfield nvc0_fifo_subfifo_intr[] = {
- /*	{ 0x00008000, "" }	seen with null ib push */
- 	{ 0x00200000, "ILLEGAL_MTHD" },
- 	{ 0x00800000, "EMPTY_SUBC" },
-diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c
-index b2612b0..04b65ae 100644
---- a/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c
-@@ -368,11 +368,11 @@ nve0_fifo_cclass = {
-  * PFIFO engine
-  ******************************************************************************/
- 
--struct nouveau_enum nve0_fifo_fault_unit[] = {
-+static const struct nouveau_enum nve0_fifo_fault_unit[] = {
- 	{}
- };
- 
--struct nouveau_enum nve0_fifo_fault_reason[] = {
-+static const struct nouveau_enum nve0_fifo_fault_reason[] = {
- 	{ 0x00, "PT_NOT_PRESENT" },
- 	{ 0x01, "PT_TOO_SHORT" },
- 	{ 0x02, "PAGE_NOT_PRESENT" },
-@@ -385,15 +385,15 @@ struct nouveau_enum nve0_fifo_fault_reason[] = {
- 	{}
- };
- 
--struct nouveau_enum nve0_fifo_fault_hubclient[] = {
-+static const struct nouveau_enum nve0_fifo_fault_hubclient[] = {
- 	{}
- };
- 
--struct nouveau_enum nve0_fifo_fault_gpcclient[] = {
-+static const struct nouveau_enum nve0_fifo_fault_gpcclient[] = {
- 	{}
- };
- 
--struct nouveau_bitfield nve0_fifo_subfifo_intr[] = {
-+static const struct nouveau_bitfield nve0_fifo_subfifo_intr[] = {
- 	{ 0x00200000, "ILLEGAL_MTHD" },
- 	{ 0x00800000, "EMPTY_SUBC" },
- 	{}
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv04.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv04.c
-index 267ac60..e41411e 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv04.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv04.c
-@@ -1213,13 +1213,13 @@ nv04_graph_idle(void *obj)
- 	return true;
- }
- 
--static struct nouveau_bitfield
-+static const struct nouveau_bitfield
- nv04_graph_intr_name[] = {
- 	{ NV_PGRAPH_INTR_NOTIFY, "NOTIFY" },
- 	{}
- };
- 
--static struct nouveau_bitfield
-+static const struct nouveau_bitfield
- nv04_graph_nstatus[] = {
- 	{ NV04_PGRAPH_NSTATUS_STATE_IN_USE,       "STATE_IN_USE" },
- 	{ NV04_PGRAPH_NSTATUS_INVALID_STATE,      "INVALID_STATE" },
-@@ -1228,7 +1228,7 @@ nv04_graph_nstatus[] = {
- 	{}
- };
- 
--struct nouveau_bitfield
-+const struct nouveau_bitfield
- nv04_graph_nsource[] = {
- 	{ NV03_PGRAPH_NSOURCE_NOTIFICATION,       "NOTIFICATION" },
- 	{ NV03_PGRAPH_NSOURCE_DATA_ERROR,         "DATA_ERROR" },
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv10.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv10.c
-index 35c4d71..d3289ef 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv10.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv10.c
-@@ -1135,13 +1135,13 @@ nv10_graph_tile_prog(struct nouveau_engine *engine, int i)
- 	pfifo->start(pfifo, &flags);
- }
- 
--struct nouveau_bitfield nv10_graph_intr_name[] = {
-+const struct nouveau_bitfield nv10_graph_intr_name[] = {
- 	{ NV_PGRAPH_INTR_NOTIFY, "NOTIFY" },
- 	{ NV_PGRAPH_INTR_ERROR,  "ERROR"  },
- 	{}
- };
- 
--struct nouveau_bitfield nv10_graph_nstatus[] = {
-+const struct nouveau_bitfield nv10_graph_nstatus[] = {
- 	{ NV10_PGRAPH_NSTATUS_STATE_IN_USE,       "STATE_IN_USE" },
- 	{ NV10_PGRAPH_NSTATUS_INVALID_STATE,      "INVALID_STATE" },
- 	{ NV10_PGRAPH_NSTATUS_BAD_ARGUMENT,       "BAD_ARGUMENT" },
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-index 6859514..d425db7 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-@@ -184,7 +184,7 @@ nv50_graph_tlb_flush(struct nouveau_engine *engine)
+-int
++static int
+ _nouveau_gpuobj_ctor(struct nouveau_object *parent,
+ 		     struct nouveau_object *engine,
+ 		     struct nouveau_oclass *oclass, void *data, u32 size,
+diff --git a/drivers/gpu/drm/nouveau/core/core/object.c b/drivers/gpu/drm/nouveau/core/core/object.c
+index c7b430a..d94cb66 100644
+--- a/drivers/gpu/drm/nouveau/core/core/object.c
++++ b/drivers/gpu/drm/nouveau/core/core/object.c
+@@ -61,7 +61,7 @@ nouveau_object_create_(struct nouveau_object *parent,
  	return 0;
  }
  
--static struct nouveau_bitfield nv50_pgraph_status[] = {
-+static const struct nouveau_bitfield nv50_pgraph_status[] = {
- 	{ 1<<0, "BUSY" }, /* set when any bit is set */
- 	{ 1<<1, "DISPATCH" },
- 	{ 1<<2, "UNK2" },
-@@ -302,7 +302,7 @@ nv84_graph_tlb_flush(struct nouveau_engine *engine)
- 	return timeout ? -EBUSY : 0;
+-int
++static int
+ _nouveau_object_ctor(struct nouveau_object *parent,
+ 		     struct nouveau_object *engine,
+ 		     struct nouveau_oclass *oclass, void *data, u32 size,
+@@ -91,7 +91,7 @@ nouveau_object_destroy(struct nouveau_object *object)
+ 	kfree(object);
  }
  
--static struct nouveau_enum nv50_mp_exec_error_names[] = {
-+static const struct nouveau_enum nv50_mp_exec_error_names[] = {
- 	{ 3, "STACK_UNDERFLOW", NULL },
- 	{ 4, "QUADON_ACTIVE", NULL },
- 	{ 8, "TIMEOUT", NULL },
-@@ -311,30 +311,30 @@ static struct nouveau_enum nv50_mp_exec_error_names[] = {
- 	{}
+-void
++static void
+ _nouveau_object_dtor(struct nouveau_object *object)
+ {
+ 	nouveau_object_destroy(object);
+@@ -103,7 +103,7 @@ nouveau_object_init(struct nouveau_object *object)
+ 	return 0;
+ }
+ 
+-int
++static int
+ _nouveau_object_init(struct nouveau_object *object)
+ {
+ 	return nouveau_object_init(object);
+@@ -115,7 +115,7 @@ nouveau_object_fini(struct nouveau_object *object, bool suspend)
+ 	return 0;
+ }
+ 
+-int
++static int
+ _nouveau_object_fini(struct nouveau_object *object, bool suspend)
+ {
+ 	return nouveau_object_fini(object, suspend);
+diff --git a/drivers/gpu/drm/nouveau/core/core/option.c b/drivers/gpu/drm/nouveau/core/core/option.c
+index 1b53ebb..62a432e 100644
+--- a/drivers/gpu/drm/nouveau/core/core/option.c
++++ b/drivers/gpu/drm/nouveau/core/core/option.c
+@@ -22,7 +22,7 @@
+  * Authors: Ben Skeggs
+  */
+ 
+-#include <core/os.h>
++#include <core/option.h>
+ #include <core/debug.h>
+ 
+ /* compares unterminated string 'str' with zero-terminated string 'cmp' */
+diff --git a/drivers/gpu/drm/nouveau/core/engine/copy/fuc/nva3.fuc.h b/drivers/gpu/drm/nouveau/core/engine/copy/fuc/nva3.fuc.h
+index 37d6de3..c92520f 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/copy/fuc/nva3.fuc.h
++++ b/drivers/gpu/drm/nouveau/core/engine/copy/fuc/nva3.fuc.h
+@@ -1,4 +1,4 @@
+-u32 nva3_pcopy_data[] = {
++static u32 nva3_pcopy_data[] = {
+ /* 0x0000: ctx_object */
+ 	0x00000000,
+ /* 0x0004: ctx_dma */
+@@ -183,7 +183,7 @@ u32 nva3_pcopy_data[] = {
+ 	0x00000800,
  };
  
--static struct nouveau_bitfield nv50_graph_trap_m2mf[] = {
-+static const struct nouveau_bitfield nv50_graph_trap_m2mf[] = {
- 	{ 0x00000001, "NOTIFY" },
- 	{ 0x00000002, "IN" },
- 	{ 0x00000004, "OUT" },
- 	{}
+-u32 nva3_pcopy_code[] = {
++static u32 nva3_pcopy_code[] = {
+ /* 0x0000: main */
+ 	0x04fe04bd,
+ 	0x3517f000,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/copy/fuc/nvc0.fuc.h b/drivers/gpu/drm/nouveau/core/engine/copy/fuc/nvc0.fuc.h
+index cd879f3..0d98c6c 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/copy/fuc/nvc0.fuc.h
++++ b/drivers/gpu/drm/nouveau/core/engine/copy/fuc/nvc0.fuc.h
+@@ -1,4 +1,4 @@
+-u32 nvc0_pcopy_data[] = {
++static u32 nvc0_pcopy_data[] = {
+ /* 0x0000: ctx_object */
+ 	0x00000000,
+ /* 0x0004: ctx_query_address_high */
+@@ -171,7 +171,7 @@ u32 nvc0_pcopy_data[] = {
+ 	0x00000800,
  };
  
--static struct nouveau_bitfield nv50_graph_trap_vfetch[] = {
-+static const struct nouveau_bitfield nv50_graph_trap_vfetch[] = {
- 	{ 0x00000001, "FAULT" },
- 	{}
+-u32 nvc0_pcopy_code[] = {
++static u32 nvc0_pcopy_code[] = {
+ /* 0x0000: main */
+ 	0x04fe04bd,
+ 	0x3517f000,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/crypt/fuc/nv98.fuc.h b/drivers/gpu/drm/nouveau/core/engine/crypt/fuc/nv98.fuc.h
+index 38676c7..09962e4 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/crypt/fuc/nv98.fuc.h
++++ b/drivers/gpu/drm/nouveau/core/engine/crypt/fuc/nv98.fuc.h
+@@ -1,4 +1,4 @@
+-uint32_t nv98_pcrypt_data[] = {
++static uint32_t nv98_pcrypt_data[] = {
+ /* 0x0000: ctx_dma */
+ /* 0x0000: ctx_dma_query */
+ 	0x00000000,
+@@ -150,7 +150,7 @@ uint32_t nv98_pcrypt_data[] = {
+ 	0x00000000,
  };
  
--static struct nouveau_bitfield nv50_graph_trap_strmout[] = {
-+static const struct nouveau_bitfield nv50_graph_trap_strmout[] = {
- 	{ 0x00000001, "FAULT" },
- 	{}
+-uint32_t nv98_pcrypt_code[] = {
++static uint32_t nv98_pcrypt_code[] = {
+ 	0x17f004bd,
+ 	0x0010fe35,
+ 	0xf10004fe,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/vga.c b/drivers/gpu/drm/nouveau/core/engine/disp/vga.c
+index cec2110..5a1c684 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/disp/vga.c
++++ b/drivers/gpu/drm/nouveau/core/engine/disp/vga.c
+@@ -24,6 +24,7 @@
+ 
+ #include <core/subdev.h>
+ #include <core/device.h>
++#include <subdev/vga.h>
+ 
+ u8
+ nv_rdport(void *obj, int head, u16 port)
+diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/base.c b/drivers/gpu/drm/nouveau/core/engine/fifo/base.c
+index 87dcf32..543fcaf 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/fifo/base.c
++++ b/drivers/gpu/drm/nouveau/core/engine/fifo/base.c
+@@ -132,7 +132,7 @@ _nouveau_fifo_channel_wr32(struct nouveau_object *object, u32 addr, u32 data)
+ 	((volatile u32 *)chan->user)[addr / 4] = data;
+ }
+ 
+-int
++static int
+ nouveau_fifo_chid(struct nouveau_fifo *priv, struct nouveau_object *object)
+ {
+ 	int engidx = nv_hclass(priv) & 0xff;
+diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c
+index 80c3927..2890257 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c
++++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c
+@@ -247,7 +247,7 @@ nv84_fifo_sclass[] = {
+  * FIFO context - basically just the instmem reserved for the channel
+  ******************************************************************************/
+ 
+-int
++static int
+ nv84_fifo_context_ctor(struct nouveau_object *parent,
+ 		       struct nouveau_object *engine,
+ 		       struct nouveau_oclass *oclass, void *data, u32 size,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/fuc/gpcnvc0.fuc.h b/drivers/gpu/drm/nouveau/core/engine/graph/fuc/gpcnvc0.fuc.h
+index a988b8a..826a7b3 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/fuc/gpcnvc0.fuc.h
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/fuc/gpcnvc0.fuc.h
+@@ -1,4 +1,4 @@
+-uint32_t nvc0_grgpc_data[] = {
++static uint32_t nvc0_grgpc_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -150,7 +150,7 @@ uint32_t nvc0_grgpc_data[] = {
+ 	0x08000750,
  };
  
--static struct nouveau_bitfield nv50_graph_trap_ccache[] = {
-+static const struct nouveau_bitfield nv50_graph_trap_ccache[] = {
- 	{ 0x00000001, "FAULT" },
- 	{}
+-uint32_t nvc0_grgpc_code[] = {
++static uint32_t nvc0_grgpc_code[] = {
+ 	0x03060ef5,
+ 	0x9800d898,
+ 	0x86f001d9,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/fuc/hubnvc0.fuc.h b/drivers/gpu/drm/nouveau/core/engine/graph/fuc/hubnvc0.fuc.h
+index c5ed307..db0c0ee 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/fuc/hubnvc0.fuc.h
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/fuc/hubnvc0.fuc.h
+@@ -1,4 +1,4 @@
+-uint32_t nvc0_grhub_data[] = {
++static uint32_t nvc0_grhub_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -194,7 +194,7 @@ uint32_t nvc0_grhub_data[] = {
+ 	0x00000000,
  };
  
- /* There must be a *lot* of these. Will take some time to gather them up. */
--struct nouveau_enum nv50_data_error_names[] = {
-+const struct nouveau_enum nv50_data_error_names[] = {
- 	{ 0x00000003, "INVALID_OPERATION", NULL },
- 	{ 0x00000004, "INVALID_VALUE", NULL },
- 	{ 0x00000005, "INVALID_ENUM", NULL },
-@@ -380,7 +380,7 @@ struct nouveau_enum nv50_data_error_names[] = {
- 	{}
+-uint32_t nvc0_grhub_code[] = {
++static uint32_t nvc0_grhub_code[] = {
+ 	0x03090ef5,
+ 	0x9800d898,
+ 	0x86f001d9,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c
+index 7817f53..b3f3b02 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c
+@@ -75,7 +75,7 @@ nv40_graph_object_ctor(struct nouveau_object *parent,
+ 	return 0;
+ }
+ 
+-struct nouveau_ofuncs
++static struct nouveau_ofuncs
+ nv40_graph_ofuncs = {
+ 	.ctor = nv40_graph_object_ctor,
+ 	.dtor = _nouveau_gpuobj_dtor,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
+index d425db7..60edd2f 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
+@@ -73,7 +73,7 @@ nv50_graph_object_ctor(struct nouveau_object *parent,
+ 	return 0;
+ }
+ 
+-struct nouveau_ofuncs
++static struct nouveau_ofuncs
+ nv50_graph_ofuncs = {
+ 	.ctor = nv50_graph_object_ctor,
+ 	.dtor = _nouveau_gpuobj_dtor,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c
+index 9adcefc..1f394a2 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c
++++ b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c
+@@ -109,7 +109,7 @@ nv31_mpeg_mthd_dma(struct nouveau_object *object, u32 mthd, void *arg, u32 len)
+ 	return 0;
+ }
+ 
+-struct nouveau_ofuncs
++static struct nouveau_ofuncs
+ nv31_mpeg_ofuncs = {
+ 	.ctor = nv31_mpeg_object_ctor,
+ 	.dtor = _nouveau_gpuobj_dtor,
+@@ -119,7 +119,7 @@ nv31_mpeg_ofuncs = {
+ 	.wr32 = _nouveau_gpuobj_wr32,
  };
  
--static struct nouveau_bitfield nv50_graph_intr_name[] = {
-+static const struct nouveau_bitfield nv50_graph_intr_name[] = {
- 	{ 0x00000001, "NOTIFY" },
- 	{ 0x00000002, "COMPUTE_QUERY" },
- 	{ 0x00000010, "ILLEGAL_MTHD" },
-diff --git a/drivers/gpu/drm/nouveau/core/include/core/enum.h b/drivers/gpu/drm/nouveau/core/include/core/enum.h
-index 62ec041..e7b1e18 100644
---- a/drivers/gpu/drm/nouveau/core/include/core/enum.h
-+++ b/drivers/gpu/drm/nouveau/core/include/core/enum.h
-@@ -4,7 +4,7 @@
- struct nouveau_enum {
- 	u32 value;
- 	const char *name;
--	void *data;
-+	const void *data;
- };
+-struct nouveau_omthds
++static struct nouveau_omthds
+ nv31_mpeg_omthds[] = {
+ 	{ 0x0190, nv31_mpeg_mthd_dma },
+ 	{ 0x01a0, nv31_mpeg_mthd_dma },
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/bios/conn.c b/drivers/gpu/drm/nouveau/core/subdev/bios/conn.c
+index ac4026c..5ac010e 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/bios/conn.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/bios/conn.c
+@@ -26,6 +26,7 @@
  
- const struct nouveau_enum *
-diff --git a/drivers/gpu/drm/nouveau/core/include/engine/graph.h b/drivers/gpu/drm/nouveau/core/include/engine/graph.h
-index 388cfcf..6943b40 100644
---- a/drivers/gpu/drm/nouveau/core/include/engine/graph.h
-+++ b/drivers/gpu/drm/nouveau/core/include/engine/graph.h
-@@ -60,13 +60,13 @@ extern struct nouveau_oclass nv50_graph_oclass;
- extern struct nouveau_oclass nvc0_graph_oclass;
- extern struct nouveau_oclass nve0_graph_oclass;
+ #include <subdev/bios.h>
+ #include <subdev/bios/dcb.h>
++#include <subdev/bios/conn.h>
  
--extern struct nouveau_bitfield nv04_graph_nsource[];
-+extern const struct nouveau_bitfield nv04_graph_nsource[];
- extern struct nouveau_ofuncs nv04_graph_ofuncs;
- bool nv04_graph_idle(void *obj);
- 
--extern struct nouveau_bitfield nv10_graph_intr_name[];
--extern struct nouveau_bitfield nv10_graph_nstatus[];
-+extern const struct nouveau_bitfield nv10_graph_intr_name[];
-+extern const struct nouveau_bitfield nv10_graph_nstatus[];
- 
--extern struct nouveau_enum nv50_data_error_names[];
-+extern const struct nouveau_enum nv50_data_error_names[];
- 
+ u16
+ dcb_conntab(struct nouveau_bios *bios, u8 *ver, u8 *hdr, u8 *cnt, u8 *len)
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/mxm/base.c b/drivers/gpu/drm/nouveau/core/subdev/mxm/base.c
+index 684f396..93e3ddf 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/mxm/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/mxm/base.c
+@@ -210,7 +210,7 @@ mxm_shadow_wmi(struct nouveau_mxm *mxm, u8 version)
+ }
  #endif
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-index a36d190..767d9c4 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-@@ -331,7 +331,7 @@ nv50_fb_oclass = {
- 	},
+ 
+-struct mxm_shadow_h {
++static struct mxm_shadow_h {
+ 	const char *name;
+ 	bool (*exec)(struct nouveau_mxm *, u8 version);
+ } _mxm_shadow[] = {
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c
+index 0f0d3a5..d83489c 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c
+@@ -34,7 +34,7 @@ struct nv50_vmmgr_priv {
+ 	spinlock_t lock;
  };
  
--static struct nouveau_enum vm_dispatch_subclients[] = {
-+static const struct nouveau_enum vm_dispatch_subclients[] = {
- 	{ 0x00000000, "GRCTX", NULL },
- 	{ 0x00000001, "NOTIFY", NULL },
- 	{ 0x00000002, "QUERY", NULL },
-@@ -342,14 +342,14 @@ static struct nouveau_enum vm_dispatch_subclients[] = {
- 	{}
+-void
++static void
+ nv50_vm_map_pgt(struct nouveau_gpuobj *pgd, u32 pde,
+ 		struct nouveau_gpuobj *pgt[2])
+ {
+@@ -76,7 +76,7 @@ vm_addr(struct nouveau_vma *vma, u64 phys, u32 memtype, u32 target)
+ 	return phys;
+ }
+ 
+-void
++static void
+ nv50_vm_map(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+ 	    struct nouveau_mem *mem, u32 pte, u32 cnt, u64 phys, u64 delta)
+ {
+@@ -123,7 +123,7 @@ nv50_vm_map(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+ 	}
+ }
+ 
+-void
++static void
+ nv50_vm_map_sg(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+ 	       struct nouveau_mem *mem, u32 pte, u32 cnt, dma_addr_t *list)
+ {
+@@ -137,7 +137,7 @@ nv50_vm_map_sg(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+ 	}
+ }
+ 
+-void
++static void
+ nv50_vm_unmap(struct nouveau_gpuobj *pgt, u32 pte, u32 cnt)
+ {
+ 	pte <<= 3;
+@@ -148,7 +148,7 @@ nv50_vm_unmap(struct nouveau_gpuobj *pgt, u32 pte, u32 cnt)
+ 	}
+ }
+ 
+-void
++static void
+ nv50_vm_flush(struct nouveau_vm *vm)
+ {
+ 	struct nouveau_engine *engine;
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/vm/nvc0.c
+index e48ece2..44721a4 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/vm/nvc0.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/vm/nvc0.c
+@@ -34,7 +34,7 @@ struct nvc0_vmmgr_priv {
+ 	spinlock_t lock;
  };
  
--static struct nouveau_enum vm_ccache_subclients[] = {
-+static const struct nouveau_enum vm_ccache_subclients[] = {
- 	{ 0x00000000, "CB", NULL },
- 	{ 0x00000001, "TIC", NULL },
- 	{ 0x00000002, "TSC", NULL },
- 	{}
- };
+-void
++static void
+ nvc0_vm_map_pgt(struct nouveau_gpuobj *pgd, u32 index,
+ 		struct nouveau_gpuobj *pgt[2])
+ {
+@@ -64,7 +64,7 @@ nvc0_vm_addr(struct nouveau_vma *vma, u64 phys, u32 memtype, u32 target)
+ 	return phys;
+ }
  
--static struct nouveau_enum vm_prop_subclients[] = {
-+static const struct nouveau_enum vm_prop_subclients[] = {
- 	{ 0x00000000, "RT0", NULL },
- 	{ 0x00000001, "RT1", NULL },
- 	{ 0x00000002, "RT2", NULL },
-@@ -366,19 +366,19 @@ static struct nouveau_enum vm_prop_subclients[] = {
- 	{}
- };
+-void
++static void
+ nvc0_vm_map(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+ 	    struct nouveau_mem *mem, u32 pte, u32 cnt, u64 phys, u64 delta)
+ {
+@@ -80,7 +80,7 @@ nvc0_vm_map(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+ 	}
+ }
  
--static struct nouveau_enum vm_pfifo_subclients[] = {
-+static const struct nouveau_enum vm_pfifo_subclients[] = {
- 	{ 0x00000000, "PUSHBUF", NULL },
- 	{ 0x00000001, "SEMAPHORE", NULL },
- 	{}
- };
+-void
++static void
+ nvc0_vm_map_sg(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+ 	       struct nouveau_mem *mem, u32 pte, u32 cnt, dma_addr_t *list)
+ {
+@@ -95,7 +95,7 @@ nvc0_vm_map_sg(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+ 	}
+ }
  
--static struct nouveau_enum vm_bar_subclients[] = {
-+static const struct nouveau_enum vm_bar_subclients[] = {
- 	{ 0x00000000, "FB", NULL },
- 	{ 0x00000001, "IN", NULL },
- 	{}
- };
+-void
++static void
+ nvc0_vm_unmap(struct nouveau_gpuobj *pgt, u32 pte, u32 cnt)
+ {
+ 	pte <<= 3;
+@@ -132,7 +132,7 @@ nvc0_vm_flush_engine(struct nouveau_subdev *subdev, u64 addr, int type)
+ 	spin_unlock_irqrestore(&priv->lock, flags);
+ }
  
--static struct nouveau_enum vm_client[] = {
-+static const struct nouveau_enum vm_client[] = {
- 	{ 0x00000000, "STRMOUT", NULL },
- 	{ 0x00000003, "DISPATCH", vm_dispatch_subclients },
- 	{ 0x00000004, "PFIFO_WRITE", NULL },
-@@ -397,7 +397,7 @@ static struct nouveau_enum vm_client[] = {
- 	{}
- };
+-void
++static void
+ nvc0_vm_flush(struct nouveau_vm *vm)
+ {
+ 	struct nouveau_vm_pgd *vpgd;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index f95563c..fd15ebf 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -182,7 +182,7 @@ nouveau_channel_prep(struct nouveau_drm *drm, struct nouveau_cli *cli,
+ 	return 0;
+ }
  
--static struct nouveau_enum vm_engine[] = {
-+static const struct nouveau_enum vm_engine[] = {
- 	{ 0x00000000, "PGRAPH", NULL },
- 	{ 0x00000001, "PVP", NULL },
- 	{ 0x00000004, "PEEPHOLE", NULL },
-@@ -413,7 +413,7 @@ static struct nouveau_enum vm_engine[] = {
- 	{}
- };
+-int
++static int
+ nouveau_channel_ind(struct nouveau_drm *drm, struct nouveau_cli *cli,
+ 		    u32 parent, u32 handle, u32 engine,
+ 		    struct nouveau_channel **pchan)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index 78e54cb..e1387bd 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -286,7 +286,7 @@ dp_link_train_fini(struct drm_device *dev, struct dp_state *dp)
+ 	nouveau_bios_run_init_table(dev, script, dp->dcb, dp->crtc);
+ }
  
--static struct nouveau_enum vm_fault[] = {
-+static const struct nouveau_enum vm_fault[] = {
- 	{ 0x00000000, "PT_NOT_PRESENT", NULL },
- 	{ 0x00000001, "PT_TOO_SHORT", NULL },
- 	{ 0x00000002, "PAGE_NOT_PRESENT", NULL },
+-bool
++static bool
+ nouveau_dp_link_train(struct drm_encoder *encoder, u32 datarate,
+ 		      struct dp_train_func *func)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 575abaa..9fb56b3 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -64,7 +64,7 @@ static int nouveau_noaccel = 0;
+ module_param_named(noaccel, nouveau_noaccel, int, 0400);
+ 
+ MODULE_PARM_DESC(modeset, "enable driver");
+-int nouveau_modeset = -1;
++static int nouveau_modeset = -1;
+ module_param_named(modeset, nouveau_modeset, int, 0400);
+ 
+ static struct drm_driver driver;
+@@ -238,7 +238,7 @@ nouveau_drm_probe(struct pci_dev *pdev, const struct pci_device_id *pent)
+ 	return 0;
+ }
+ 
+-int
++static int
+ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ {
+ 	struct pci_dev *pdev = dev->pdev;
+@@ -352,7 +352,7 @@ fail_device:
+ 	return ret;
+ }
+ 
+-int
++static int
+ nouveau_drm_unload(struct drm_device *dev)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+@@ -482,7 +482,7 @@ nouveau_drm_resume(struct pci_dev *pdev)
+ 	return 0;
+ }
+ 
+-int
++static int
+ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
+ {
+ 	struct pci_dev *pdev = dev->pdev;
+@@ -511,7 +511,7 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
+ 	return 0;
+ }
+ 
+-void
++static void
+ nouveau_drm_preclose(struct drm_device *dev, struct drm_file *fpriv)
+ {
+ 	struct nouveau_cli *cli = nouveau_cli(fpriv);
+@@ -525,7 +525,7 @@ nouveau_drm_preclose(struct drm_device *dev, struct drm_file *fpriv)
+ 	mutex_unlock(&drm->client.mutex);
+ }
+ 
+-void
++static void
+ nouveau_drm_postclose(struct drm_device *dev, struct drm_file *fpriv)
+ {
+ 	struct nouveau_cli *cli = nouveau_cli(fpriv);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_irq.c b/drivers/gpu/drm/nouveau/nouveau_irq.c
+index af0cfe8..9ca8afd 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_irq.c
++++ b/drivers/gpu/drm/nouveau/nouveau_irq.c
+@@ -25,6 +25,7 @@
+ #include <subdev/mc.h>
+ 
+ #include "nouveau_drm.h"
++#include "nouveau_irq.h"
+ #include "nv50_display.h"
+ 
+ void
+diff --git a/drivers/gpu/drm/nouveau/nouveau_mem.c b/drivers/gpu/drm/nouveau/nouveau_mem.c
+index 8f8f421..7e0ff10 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_mem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_mem.c
+@@ -248,7 +248,7 @@ nouveau_mem_ddr2_mr(struct drm_device *dev, u32 freq,
+ 	return 0;
+ }
+ 
+-uint8_t nv_mem_wr_lut_ddr3[NV_MEM_WR_DDR3_MAX] = {
++static const uint8_t nv_mem_wr_lut_ddr3[NV_MEM_WR_DDR3_MAX] = {
+ 	0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 6, 6, 7, 7, 0, 0};
+ 
+ static int
+@@ -297,9 +297,9 @@ nouveau_mem_ddr3_mr(struct drm_device *dev, u32 freq,
+ 	return 0;
+ }
+ 
+-uint8_t nv_mem_cl_lut_gddr3[NV_MEM_CL_GDDR3_MAX] = {
++static const uint8_t nv_mem_cl_lut_gddr3[NV_MEM_CL_GDDR3_MAX] = {
+ 	0, 0, 0, 0, 4, 5, 6, 7, 0, 1, 2, 3, 8, 9, 10, 11};
+-uint8_t nv_mem_wr_lut_gddr3[NV_MEM_WR_GDDR3_MAX] = {
++static const uint8_t nv_mem_wr_lut_gddr3[NV_MEM_WR_GDDR3_MAX] = {
+ 	0, 0, 0, 0, 0, 2, 3, 8, 9, 10, 11, 0, 0, 1, 1, 0, 3};
+ 
+ static int
+diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+index 4bddb9e..6af724b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+@@ -101,7 +101,7 @@ nouveau_vram_manager_new(struct ttm_mem_type_manager *man,
+ 	return 0;
+ }
+ 
+-void
++static void
+ nouveau_vram_manager_debug(struct ttm_mem_type_manager *man, const char *prefix)
+ {
+ 	struct nouveau_mm *mm = man->priv;
+@@ -176,7 +176,7 @@ nouveau_gart_manager_new(struct ttm_mem_type_manager *man,
+ 	return 0;
+ }
+ 
+-void
++static void
+ nouveau_gart_manager_debug(struct ttm_mem_type_manager *man, const char *prefix)
+ {
+ }
+@@ -248,7 +248,7 @@ nv04_gart_manager_new(struct ttm_mem_type_manager *man,
+ 	return 0;
+ }
+ 
+-void
++static void
+ nv04_gart_manager_debug(struct ttm_mem_type_manager *man, const char *prefix)
+ {
+ }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+index 9d45544..7bf7d13 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_vga.c
++++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+@@ -7,6 +7,7 @@
+ #include "nouveau_drm.h"
+ #include "nouveau_acpi.h"
+ #include "nouveau_fbcon.h"
++#include "nouveau_vga.h"
+ 
+ static unsigned int
+ nouveau_vga_set_decode(void *priv, bool state)
 -- 
 1.7.8.6
