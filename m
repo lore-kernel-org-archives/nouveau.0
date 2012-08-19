@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 08/10] drm/nouveau: use
-	ioread32_native/iowrite32_native for fifo control registers
-Date: Sun, 19 Aug 2012 23:00:03 +0200
-Message-ID: <1345410004-27729-8-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH 09/10] drm/nv50/evo: store iomem pointer in
+	properly typed field
+Date: Sun, 19 Aug 2012 23:00:04 +0200
+Message-ID: <1345410004-27729-9-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,33 +19,78 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Abuse of function pointer was noticed by sparse.
+
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
-Do I miss something important why was it written this way?
----
- drivers/gpu/drm/nouveau/core/engine/fifo/base.c |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nv50_evo.c |   18 ++++++++++++------
+ 1 files changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/base.c b/drivers/gpu/drm/nouveau/core/engine/fifo/base.c
-index 543fcaf..bbb43c6 100644
---- a/drivers/gpu/drm/nouveau/core/engine/fifo/base.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/fifo/base.c
-@@ -122,14 +122,14 @@ u32
- _nouveau_fifo_channel_rd32(struct nouveau_object *object, u32 addr)
+diff --git a/drivers/gpu/drm/nouveau/nv50_evo.c b/drivers/gpu/drm/nouveau/nv50_evo.c
+index 0f53416..0483cbd 100644
+--- a/drivers/gpu/drm/nouveau/nv50_evo.c
++++ b/drivers/gpu/drm/nouveau/nv50_evo.c
+@@ -33,17 +33,22 @@
+ #include <subdev/timer.h>
+ #include <subdev/fb.h>
+ 
++struct evo_object {
++	struct nouveau_object parent;
++	void __iomem *iomem;
++};
++
+ static u32
+ nv50_evo_rd32(struct nouveau_object *object, u32 addr)
  {
- 	struct nouveau_fifo_chan *chan = (void *)object;
--	return ((volatile u32 *)chan->user)[addr / 4];
-+	return ioread32_native(chan->user + addr);
+-	void __iomem *iomem = object->oclass->ofuncs->rd08;
++	void __iomem *iomem = ((struct evo_object *)object)->iomem;
+ 	return ioread32_native(iomem + addr);
  }
  
- void
- _nouveau_fifo_channel_wr32(struct nouveau_object *object, u32 addr, u32 data)
+ static void
+ nv50_evo_wr32(struct nouveau_object *object, u32 addr, u32 data)
  {
- 	struct nouveau_fifo_chan *chan = (void *)object;
--	((volatile u32 *)chan->user)[addr / 4] = data;
-+	iowrite32_native(data, chan->user + addr);
+-	void __iomem *iomem = object->oclass->ofuncs->rd08;
++	void __iomem *iomem = ((struct evo_object *)object)->iomem;
+ 	iowrite32_native(data, iomem + addr);
  }
  
- static int
+@@ -60,7 +65,7 @@ nv50_evo_channel_del(struct nouveau_channel **pevo)
+ 	nouveau_bo_ref(NULL, &evo->push.buffer);
+ 
+ 	if (evo->object)
+-		iounmap(evo->object->oclass->ofuncs);
++		iounmap(((struct evo_object *)evo->object)->iomem);
+ 
+ 	kfree(evo);
+ }
+@@ -112,6 +117,7 @@ nv50_evo_channel_new(struct drm_device *dev, int chid,
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nv50_display *disp = nv50_display(dev);
+ 	struct nouveau_channel *evo;
++	struct evo_object *evo_object;
+ 	int ret;
+ 
+ 	evo = kzalloc(sizeof(struct nouveau_channel), GFP_KERNEL);
+@@ -142,7 +148,8 @@ nv50_evo_channel_new(struct drm_device *dev, int chid,
+ 		return ret;
+ 	}
+ 
+-	evo->object = kzalloc(sizeof(*evo->object), GFP_KERNEL);
++	evo_object = kzalloc(sizeof(*evo_object), GFP_KERNEL);
++	evo->object = &evo_object->parent;
+ #ifdef NOUVEAU_OBJECT_MAGIC
+ 	evo->object->_magic = NOUVEAU_OBJECT_MAGIC;
+ #endif
+@@ -154,8 +161,7 @@ nv50_evo_channel_new(struct drm_device *dev, int chid,
+ 		kzalloc(sizeof(*evo->object->oclass->ofuncs), GFP_KERNEL);
+ 	evo->object->oclass->ofuncs->rd32 = nv50_evo_rd32;
+ 	evo->object->oclass->ofuncs->wr32 = nv50_evo_wr32;
+-	evo->object->oclass->ofuncs->rd08 =
+-		ioremap(pci_resource_start(dev->pdev, 0) +
++	evo_object->iomem = ioremap(pci_resource_start(dev->pdev, 0) +
+ 			NV50_PDISPLAY_USER(evo->handle), PAGE_SIZE);
+ 	return 0;
+ }
 -- 
 1.7.8.6
