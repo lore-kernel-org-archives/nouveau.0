@@ -1,15 +1,10 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 10/10] drm/nouveau: fix off-by-one bugs
- related to command submission in IB mode
-Date: Mon, 20 Aug 2012 16:33:24 +1000
-Message-ID: <20120820063323.GF2013@nisroch.redhat.com>
-References: <20120819210200.GA26902@joi.lan>
+From: Samuel Dorsaz <samuel-avM6dXf0zwbpWzRi28bHsw@public.gmane.org>
+Subject: did you needr freezes on GeForce 9400M (MacBookPro) ?
+Date: Mon, 20 Aug 2012 10:53:14 +0200
+Message-ID: <1345452794.2586.1.camel@samuel-MacBookPro>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1666547361=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20120819210200.GA26902-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,87 +14,60 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Aug 19, 2012 at 11:02:00PM +0200, Marcin Slusarz wrote:
-> Commit "drm/nouveau: port all engines to new engine module format" changed
-> IB size calculation to be less wasteful, but didn't take into account already
-> existing off-by-one bugs :).
-> 
-> So:
-> - ib_max is the last entry, so we need to +1 when calculating number of
->   free entries
-> - nv50_dma_wait already does +1 (for FIRE_RING), so we don't need another +1
->   on nouveau_gem_ioctl_pushbuf side
-> - there are 512 allocated IB entries (and it needs to be round number), so we
->   can accept at most 511 entries from userspace (we need one for FIRE_RING) -
->   fortunately userspace already flushes at 511, so nr_push check change won't
->   have any impact
-Also skipped this patch for now as I have work in progress that will improve this and
-related code.  I should have it in the tree soon.
 
-> 
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_chan.c |    2 +-
->  drivers/gpu/drm/nouveau/nouveau_dma.c  |    2 +-
->  drivers/gpu/drm/nouveau/nouveau_gem.c  |    4 ++--
->  3 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
-> index fd15ebf..d0c0271 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_chan.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-> @@ -318,7 +318,7 @@ nouveau_channel_init(struct nouveau_channel *chan, u32 vram, u32 gart)
->  		chan->dma.ib_base =  0x10000 / 4;
->  		chan->dma.ib_max  = (0x01000 / 8) - 1;
->  		chan->dma.ib_put  = 0;
-> -		chan->dma.ib_free = chan->dma.ib_max - chan->dma.ib_put;
-> +		chan->dma.ib_free = chan->dma.ib_max - chan->dma.ib_put + 1;
->  		chan->dma.max = chan->dma.ib_base;
->  		break;
->  	}
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.c b/drivers/gpu/drm/nouveau/nouveau_dma.c
-> index 40f91e1..e814fab 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_dma.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_dma.c
-> @@ -128,7 +128,7 @@ nv50_dma_push_wait(struct nouveau_channel *chan, int count)
->  
->  		chan->dma.ib_free = get - chan->dma.ib_put;
->  		if (chan->dma.ib_free <= 0)
-> -			chan->dma.ib_free += chan->dma.ib_max;
-> +			chan->dma.ib_free += chan->dma.ib_max + 1;
->  	}
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> index 6454370..d19c7aa 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> @@ -662,7 +662,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
->  	if (unlikely(req->nr_push == 0))
->  		goto out_next;
->  
-> -	if (unlikely(req->nr_push > NOUVEAU_GEM_MAX_PUSH)) {
-> +	if (unlikely(req->nr_push >= NOUVEAU_GEM_MAX_PUSH)) {
->  		NV_ERROR(drm, "pushbuf push count exceeds limit: %d max %d\n",
->  			 req->nr_push, NOUVEAU_GEM_MAX_PUSH);
->  		return nouveau_abi16_put(abi16, -EINVAL);
-> @@ -718,7 +718,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
->  	}
->  
->  	if (chan->dma.ib_max) {
-> -		ret = nouveau_dma_wait(chan, req->nr_push + 1, 16);
-> +		ret = nouveau_dma_wait(chan, req->nr_push, 16);
->  		if (ret) {
->  			NV_ERROR(drm, "nv50cal_space: %d\n", ret);
->  			goto out;
-> -- 
-> 1.7.8.6
-> 
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+--===============1666547361==
+Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
+	boundary="=-OlVlpf2kKDFsA8ZeYh1y"
+
+
+--=-OlVlpf2kKDFsA8ZeYh1y
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I just want to know if you are interested by report for freeze issue on
+a MacBook Pro (5,1 if I remember) with a GeForce 9400M card using nv50.
+
+I imagine how many MacBook user have reported and just want to know
+if my contribution can be useful or absolutely not.
+
+Sincerly,
+
+Samuel
+
+--=-OlVlpf2kKDFsA8ZeYh1y
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iQEcBAABAgAGBQJQMfr6AAoJENBtaiPJ0miF4GcIANAJraQhuSUtNRq6SP4sSr3K
+V8cs6nMP5S2y0DRS4kBHUdjK5EURNXXu/6nu+yCN15wmaMxNB0L2JdkZf/5IKrwp
+j0ndH/rF//BAY9ABtfNL2uaMUSwoUqRz/gWpMIfHYlirU+16TH6RfrqlDM1g9rtJ
+bULEjtSpLKDSjedXAweCguyplideAwQaTx34uVNBxfuJuAzh6GrShLDUng1Fv/le
++kd3cgcheh3l4WoaVB5ORT7l6n2iCb22/1yWa8Q5faZaXJ07HIZcclfiJLrtfEto
+3djgQShMtQfYb6qTON0hl378eOodaS1JVGS5NFCHtQ9p0gUup80pUMZGjFKUjpk=
+=1q/f
+-----END PGP SIGNATURE-----
+
+--=-OlVlpf2kKDFsA8ZeYh1y--
+
+
+--===============1666547361==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1666547361==--
