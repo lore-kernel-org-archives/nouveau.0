@@ -1,18 +1,17 @@
-From: Maarten Maathuis <madman2003-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 10/10] drm/nouveau: fix off-by-one bugs
- related to command submission in IB mode
-Date: Mon, 20 Aug 2012 23:55:10 +0200
-Message-ID: <CAGZ4FET9iXm1rQw8M7BZkECaJy1zOOmz9B0w2V7UoORpDk9zow@mail.gmail.com>
-References: <20120819210200.GA26902@joi.lan>
-	<20120820063323.GF2013@nisroch.redhat.com>
-	<20120820170719.GB3143@joi.lan>
-	<CACAvsv7FKZFoVi9akwfmnry8O+draX_ZfuBbFF_2zEOV9kkK6Q@mail.gmail.com>
-	<20120820214151.GA5687@joi.lan>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 01/10] drm/nv50: decode PGRAPH status
+ registers on TLB flush fail
+Date: Tue, 21 Aug 2012 00:08:32 +0200
+Message-ID: <20120820220832.GB5687@joi.lan>
+References: <1345410004-27729-1-git-send-email-marcin.slusarz@gmail.com>
+	<20120820062718.GB2013@nisroch.redhat.com>
+	<20120820170246.GA3143@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20120820214151.GA5687-OI9uyE9O0yo@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20120820170246.GA3143-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,84 +21,151 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Aug 20, 2012 at 11:41 PM, Marcin Slusarz
-<marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Tue, Aug 21, 2012 at 07:13:23AM +1000, Ben Skeggs wrote:
->>    Am Dienstag, 21. August 2012 schrieb Marcin Slusarz :
->>
->>      On Mon, Aug 20, 2012 at 04:33:24PM +1000, Ben Skeggs wrote:
->>      > On Sun, Aug 19, 2012 at 11:02:00PM +0200, Marcin Slusarz wrote:
->>      > > Commit "drm/nouveau: port all engines to new engine module
->>      format" changed
->>      > > IB size calculation to be less wasteful, but didn't take into
->>      account already
->>      > > existing off-by-one bugs :).
->>      > >
->>      > > So:
->>      > > - ib_max is the last entry, so we need to +1 when calculating
->>      number of
->>      > >   free entries
->>      > > - nv50_dma_wait already does +1 (for FIRE_RING), so we don't
->>      need another +1
->>      > >   on nouveau_gem_ioctl_pushbuf side
->>      > > - there are 512 allocated IB entries (and it needs to be round
->>      number), so we
->>      > >   can accept at most 511 entries from userspace (we need one for
->>      FIRE_RING) -
->>      > >   fortunately userspace already flushes at 511, so nr_push check
->>      change won't
->>      > >   have any impact
->>      > Also skipped this patch for now as I have work in progress that
->>      will improve this and
->>      > related code.  I should have it in the tree soon.
->>      Maybe I should have written this in the changelog, but this patch
->>      fixes total
->>      mayhem seen in warsow and nexuiz (at least). It's better to
->>      integrate it sooner
->>      than later.
->>
->>    I presume bumping the IB size to 8KiB also helps?
->
-> Yes, my first patch did exactly this and it worked.
->
-> However, Maarten can still reproduce this bug, so my patch is not completely
-> correct. I discovered that RING_SPACE calls nouveau_dma_wait with slots=1 and
-> nv50_dma_wait increases it again, so we need to move +1 from nv50_dma_wait
-> to nouveau_gem_ioctl_pushbuf. But once I do this everything explodes, because
-> we do 2 FIRE_RING's (one from fence_emit, and one from nv50_dma_wait), so...
->
->>    I prefer this in the
->>    meantime, and it's probably best to do anyway, I didn't take into
->>    account what we allow userspace to do in one shot.  If this works too,
->>    i'll push that change this morning.
->
-> ... it's probably a good idea to do this and forget about the problem.
->
->>    I did try and reproduce on a couple of cards with warsow and wasn't
->>    able to.
->
-> Nexuiz is even better. It draws artifacts immediately after demo start.
->
->>    Also, what happened to instmem being the culprit here?
->
-> It was bad bisection. Once I knew what is the problem, I verified
-> "drm/nouveau: port all engines to new engine module format" is the first
-> bad commit.
->
-> Marcin
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+On Mon, Aug 20, 2012 at 07:02:46PM +0200, Marcin Slusarz wrote:
+> On Mon, Aug 20, 2012 at 04:27:18PM +1000, Ben Skeggs wrote:
+> > On Sun, Aug 19, 2012 at 10:59:56PM +0200, Marcin Slusarz wrote:
+> > > Now it outputs:
+> > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH TLB flush idle timeout fail
+> > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_STATUS: BUSY DISPATCH VFETCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 UNK14XX UNK1CXX CLIPID ZCULL ENG2D UNK34XX TPRAST TPROP ROP (0x011fde03)
+> > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS_0: CCACHE (0x00145b4d)
+> > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS_1: (0x0000002d)
+> > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS_2: ENG2D ROP (0x0034db40)
+> > > 
+> > > instead of:
+> > > [drm] nouveau 0000:02:00.0: PGRAPH TLB flush idle timeout fail: 0x011fde03 0x00145b4d 0x0000002d 0x0034db40
+> > 
+> > I didn't push these first few patches yet as I have a couple of thoughts on it.
+> > 
+> > Mostly I was thinking we should probably have a:
+> > 
+> > nv_printf(obj, lvl, fmt, args...)
+> > 
+> > to replace the printk's which just does a continued print while still obeying
+> > the debug level?
+> 
+> Well, this patch does not use nv_printk_enabled, so these concerns should
+> not apply to it, right? I'll fix up bitfield list and resend it.
 
-One thing, i think FIRE_RING should check for available ib slots,
-currently it doesn't and that seems a bit dangerous. Just a thought
-for Ben :-)
+---
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv50: decode PGRAPH status registers on TLB flush fail
 
+Now it outputs:
+nouveau E[  PGRAPH][0000:02:00.0] PGRAPH TLB flush idle timeout fail
+nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_STATUS: BUSY DISPATCH VFETCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 UNK14XX UNK1CXX CLIPID ZCULL ENG2D UNK34XX TPRAST TPROP ROP (0x011fde03)
+nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS_0: CCACHE (0x00145b4d)
+nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS_1: (0x0000002d)
+nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS_2: ENG2D ROP (0x0034db40)
+
+instead of:
+[drm] nouveau 0000:02:00.0: PGRAPH TLB flush idle timeout fail: 0x011fde03 0x00145b4d 0x0000002d 0x0034db40
+
+Based on envytools docs.
+
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/engine/graph/nv50.c |   78 ++++++++++++++++++++-
+ 1 files changed, 74 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
+index c93b525..3789bd2 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
+@@ -184,6 +184,62 @@ nv50_graph_tlb_flush(struct nouveau_engine *engine)
+ 	return 0;
+ }
+ 
++static const struct nouveau_bitfield nv50_pgraph_status[] = {
++	{ 0x00000001, "BUSY" }, /* set when any bit is set */
++	{ 0x00000002, "DISPATCH" },
++	{ 0x00000004, "UNK2" },
++	{ 0x00000008, "UNK3" },
++	{ 0x00000010, "UNK4" },
++	{ 0x00000020, "UNK5" },
++	{ 0x00000040, "M2MF" },
++	{ 0x00000080, "UNK7" },
++	{ 0x00000100, "CTXPROG" },
++	{ 0x00000200, "VFETCH" },
++	{ 0x00000400, "CCACHE_UNK4" },
++	{ 0x00000800, "STRMOUT_GSCHED_UNK5" },
++	{ 0x00001000, "UNK14XX" },
++	{ 0x00002000, "UNK24XX_CSCHED" },
++	{ 0x00004000, "UNK1CXX" },
++	{ 0x00008000, "CLIPID" },
++	{ 0x00010000, "ZCULL" },
++	{ 0x00020000, "ENG2D" },
++	{ 0x00040000, "UNK34XX" },
++	{ 0x00080000, "TPRAST" },
++	{ 0x00100000, "TPROP" },
++	{ 0x00200000, "TEX" },
++	{ 0x00400000, "TPVP" },
++	{ 0x00800000, "MP" },
++	{ 0x01000000, "ROP" },
++	{}
++};
++
++static const char *const nv50_pgraph_vstatus_0[] = {
++	"VFETCH", "CCACHE", "UNK4", "UNK5", "GSCHED", "STRMOUT", "UNK14XX", NULL
++};
++
++static const char *const nv50_pgraph_vstatus_1[] = {
++	"TPRAST", "TPROP", "TEXTURE", "TPVP", "MP", NULL
++};
++
++static const char *const nv50_pgraph_vstatus_2[] = {
++	"UNK24XX", "CSCHED", "UNK1CXX", "CLIPID", "ZCULL", "ENG2D", "UNK34XX",
++	"ROP", NULL
++};
++
++static void nouveau_pgraph_vstatus_print(const char *const units[], u32 status)
++{
++	int i;
++	u32 tmp = status;
++	for (i = 0; units[i] && tmp; i++) {
++		if ((tmp & 7) == 1)
++			pr_cont("%s ", units[i]);
++		tmp >>= 3;
++	}
++	if (tmp)
++		pr_cont("invalid: %x ", tmp);
++	pr_cont("(0x%08x)\n", status);
++}
++
+ static int
+ nv84_graph_tlb_flush(struct nouveau_engine *engine)
+ {
+@@ -219,10 +275,24 @@ nv84_graph_tlb_flush(struct nouveau_engine *engine)
+ 		 !(timeout = ptimer->read(ptimer) - start > 2000000000));
+ 
+ 	if (timeout) {
+-		nv_error(priv, "PGRAPH TLB flush idle timeout fail: "
+-			      "0x%08x 0x%08x 0x%08x 0x%08x\n",
+-			 nv_rd32(priv, 0x400700), nv_rd32(priv, 0x400380),
+-			 nv_rd32(priv, 0x400384), nv_rd32(priv, 0x400388));
++		nv_error(priv, "PGRAPH TLB flush idle timeout fail\n");
++
++		nv_error(priv, "PGRAPH_STATUS: ");
++		tmp = nv_rd32(priv, 0x400700);
++		nouveau_bitfield_print(nv50_pgraph_status, tmp);
++		pr_cont(" (0x%08x)\n", tmp);
++
++		nv_error(priv, "PGRAPH_VSTATUS_0: ");
++		nouveau_pgraph_vstatus_print(nv50_pgraph_vstatus_0,
++				nv_rd32(priv, 0x400380));
++
++		nv_error(priv, "PGRAPH_VSTATUS_1: ");
++		nouveau_pgraph_vstatus_print(nv50_pgraph_vstatus_1,
++				nv_rd32(priv, 0x400384));
++
++		nv_error(priv, "PGRAPH_VSTATUS_2: ");
++		nouveau_pgraph_vstatus_print(nv50_pgraph_vstatus_2,
++				nv_rd32(priv, 0x400388));
+ 	}
+ 
+ 	nv50_vm_flush_engine(&engine->base, 0x00);
 -- 
-Far away from the primal instinct, the song seems to fade away, the
-river get wider between your thoughts and the things we do and say.
+1.7.8.6
