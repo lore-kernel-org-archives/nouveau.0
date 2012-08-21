@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 53101] Fedora 17 "PFIFO - playlist update failed" on
 	boot
-Date: Tue, 21 Aug 2012 19:46:12 +0000
-Message-ID: <bug-53101-8800-VoWBoPRmQc@http.bugs.freedesktop.org/>
+Date: Tue, 21 Aug 2012 19:53:27 +0000
+Message-ID: <bug-53101-8800-04o8RzfwUD@http.bugs.freedesktop.org/>
 References: <bug-53101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=53101
 
---- Comment #6 from Vlad K <vlad.kvs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-21 19:46:12 UTC ---
-Michael, either your bug is a different regression and needs new bug report, or
-I will reopen bug 53566.
+--- Comment #7 from michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-08-21 19:53:27 UTC ---
+(In reply to comment #6)
+> Michael, either your bug is a different regression and needs new bug report, or
+> I will reopen bug 53566.
+
+I am not even sure bug 53566 is a duplicate as your bisection determined first
+bad commit is different to what I bisected.
+
+What's the stance from the devs on this?
+Reopen 53566? Me filing a new bug (replicating the info here)? Both?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
