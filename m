@@ -1,8 +1,9 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] NV34 Fx5200 fails to resume with
- commit 'convert to exec engine, and improve channel sync'
-Date: Wed, 22 Aug 2012 17:30:51 +0000
-Message-ID: <bug-50121-8800-NJPVaDii2A@http.bugs.freedesktop.org/>
+Subject: [Bug 50121] [Regression] NV34 Fx5200 & NVC3/Quadro 2000M
+ both fail to resume with commit 'convert to exec engine,
+ and improve channel sync'
+Date: Wed, 22 Aug 2012 17:31:14 +0000
+Message-ID: <bug-50121-8800-8DafIalgWG@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -27,9 +28,10 @@ Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[Regression] NV34 Fx5200    |[Regression] NV34 Fx5200
-                   |fails to resume with commit |fails to resume with commit
-                   |5d720f2450                  |'convert to exec engine,
+            Summary|[Regression] NV34 Fx5200    |[Regression] NV34 Fx5200 &
+                   |fails to resume with commit |NVC3/Quadro 2000M both fail
+                   |'convert to exec engine,    |to resume with commit
+                   |and improve channel sync'   |'convert to exec engine,
                    |                            |and improve channel sync'
 
 -- 
