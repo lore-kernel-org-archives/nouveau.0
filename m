@@ -1,15 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] NV34 Fx5200 & NVC3/Quadro 2000M
- both fail to resume with commit 'convert to exec engine,
- and improve channel sync'
-Date: Wed, 22 Aug 2012 17:33:50 +0000
-Message-ID: <bug-50121-8800-zUt9ZjkbAC@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 53402] nouveau_bo.c:463:3: error: implicit
+ declaration of function 'ttm_agp_tt_create'
+Date: Wed, 22 Aug 2012 17:35:05 +0000
+Message-ID: <bug-53402-8800-rFXujoKj5I@http.bugs.freedesktop.org/>
+References: <bug-53402-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-53402-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,17 +21,10 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
+https://bugs.freedesktop.org/show_bug.cgi?id=53402
 
---- Comment #11 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-22 17:33:50 UTC ---
-Thanks for your info and a 'me2'. I updated the title as you requested. I
-placed the entire commit title.
-
-Everytime a new kernel is released, the nouveau project does a 'git rebase'
-which essentially wipes all patches outside of Linus' tree and places them back
-one by one. This implies a change in the SHA hash since git treats those
-patches that are being reapplied (but are essentially the same) and new (and
-thus different commits).
+--- Comment #4 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-22 17:35:05 UTC ---
+Thanks a lot, I will test with your patch applied.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
