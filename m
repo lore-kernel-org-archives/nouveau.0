@@ -2,8 +2,8 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] NV34 Fx5200 & NVC3/Quadro 2000M
  both fail to resume with commit 'convert to exec engine,
  and improve channel sync'
-Date: Wed, 22 Aug 2012 17:31:14 +0000
-Message-ID: <bug-50121-8800-8DafIalgWG@http.bugs.freedesktop.org/>
+Date: Wed, 22 Aug 2012 17:33:50 +0000
+Message-ID: <bug-50121-8800-zUt9ZjkbAC@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,15 +24,15 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
-Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #11 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-22 17:33:50 UTC ---
+Thanks for your info and a 'me2'. I updated the title as you requested. I
+placed the entire commit title.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[Regression] NV34 Fx5200    |[Regression] NV34 Fx5200 &
-                   |fails to resume with commit |NVC3/Quadro 2000M both fail
-                   |'convert to exec engine,    |to resume with commit
-                   |and improve channel sync'   |'convert to exec engine,
-                   |                            |and improve channel sync'
+Everytime a new kernel is released, the nouveau project does a 'git rebase'
+which essentially wipes all patches outside of Linus' tree and places them back
+one by one. This implies a change in the SHA hash since git treats those
+patches that are being reapplied (but are essentially the same) and new (and
+thus different commits).
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
