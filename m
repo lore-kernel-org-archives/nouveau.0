@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 53101] Fedora 17 "PFIFO - playlist update failed" on
 	boot
-Date: Sat, 25 Aug 2012 18:17:13 +0000
-Message-ID: <bug-53101-8800-bNUx8AHGqm@http.bugs.freedesktop.org/>
+Date: Sat, 25 Aug 2012 18:17:23 +0000
+Message-ID: <bug-53101-8800-IP7XvfiOrS@http.bugs.freedesktop.org/>
 References: <bug-53101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,14 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=53101
 
---- Comment #13 from mog55356-5veXjMIWDG/QI89fQ/gtADe48wsgrGvP@public.gmane.org 2012-08-25 18:17:13 UTC ---
-Sorry, when I created this bug I had no idea it was affecting other nvc0 cards.
-I Googled extensively and couldn't find anyone else who had my exact error, so
-I assumed that it was some esoteric detail about my specific hardware
-configuration. I didn't want to make it seem like a big deal if it wasn't.
-Since this seems to be affecting all nvc0's on 3.5+, I'll mark it as high
-priority critical. If those are not the correct importance settings just let me
-know.
+mog55356-5veXjMIWDG/QI89fQ/gtADe48wsgrGvP@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|normal                      |critical
+           Priority|medium                      |high
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
