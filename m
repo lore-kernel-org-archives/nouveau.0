@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 53101] Fedora 17 "PFIFO - playlist update failed" on
 	boot
-Date: Sat, 25 Aug 2012 18:17:23 +0000
-Message-ID: <bug-53101-8800-IP7XvfiOrS@http.bugs.freedesktop.org/>
+Date: Sat, 25 Aug 2012 18:23:30 +0000
+Message-ID: <bug-53101-8800-FHHpkSXSLA@http.bugs.freedesktop.org/>
 References: <bug-53101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,12 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=53101
 
-mog55356-5veXjMIWDG/QI89fQ/gtADe48wsgrGvP@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|normal                      |critical
-           Priority|medium                      |high
+--- Comment #14 from Vlad K <vlad.kvs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-25 18:23:30 UTC ---
+In the meantime, you can just revert commit
+1a46098e910b96337f0fe3838223db43b923bad4, which allowed me to boot properly.
+Ubuntu devs can do the same if its not fixed in time for release.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
