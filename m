@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 53402] nouveau_bo.c:463:3: error: implicit
  declaration of function 'ttm_agp_tt_create'
-Date: Sat, 25 Aug 2012 18:39:29 +0000
-Message-ID: <bug-53402-8800-jQS1NIiPfh@http.bugs.freedesktop.org/>
+Date: Sat, 25 Aug 2012 18:39:57 +0000
+Message-ID: <bug-53402-8800-J3WMuR0pBX@http.bugs.freedesktop.org/>
 References: <bug-53402-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=53402
 
---- Comment #5 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-25 18:39:29 UTC ---
-Created attachment 66112
-  --> https://bugs.freedesktop.org/attachment.cgi?id=66112
-Makes latest nouveau build with !CONFIG_AGP
+--- Comment #6 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-25 18:39:57 UTC ---
+Thanks again for your suggestion, build proceeds nice and dandy! I have
+attached a patch for all the other souls who end up on this bug. Warning, I
+have no idea if this is 100% correct.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
