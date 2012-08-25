@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 53101] Fedora 17 "PFIFO - playlist update failed" on
-	boot
-Date: Fri, 24 Aug 2012 02:34:33 +0000
-Message-ID: <bug-53101-8800-cbLx61uSmo@http.bugs.freedesktop.org/>
-References: <bug-53101-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54056] New: plenty of errors trapped write at plus
+	PGRAPH error
+Date: Sat, 25 Aug 2012 15:23:15 +0000
+Message-ID: <bug-54056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-53101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +19,64 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=53101
+https://bugs.freedesktop.org/show_bug.cgi?id=54056
 
---- Comment #11 from Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-24 02:34:33 UTC ---
-I have been playing around with this a bit and made some progress.  It seems to
-affect any nvc0 card (I have a GTX 580).  I went through the commits between
-3.4.0 and 3.5.0-rc1 and determined that the cause of the error is
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=1a46098e910b96337f0fe3838223db43b923bad4
+             Bug #: 54056
+           Summary: plenty of errors trapped write at plus PGRAPH error
+    Classification: Unclassified
+           Product: xorg
+           Version: git
+          Platform: Other
+        OS/Version: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: alinm.elena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-The cards work fine with the latest nouveau git tree if you comment out:
-        { "COPY1", 5, 0x90b8, nvc0_bo_move_copy, nvc0_bo_move_init },
-        { "COPY0", 4, 0x90b5, nvc0_bo_move_copy, nvc0_bo_move_init },
 
-which seems to imply that the nvc0_bo_move_copy function is not working
-correctly.  I don't know nearly enough about nouveau to try to fix this
-function or know what consequence commenting out these lines has, but hopefully
-this helps.
+Created attachment 66109
+  --> https://bugs.freedesktop.org/attachment.cgi?id=66109
+dmesg output
 
-On a possibly related note, running glxinfo seems to crash xorg and produce
-some more PFIFO errors in dmesg, I have no idea if this is related to those
-lines being commented out or not (this is the first time I have ever gotten
-nouveau working on this computer).  Everything else seems stable... so far...
+Hi,
+
+I have an nvidia 320m on a mac book pro 7,1.
+I run opensuse on it... nouveau from yesterday's master [   14.127006] nouveau
+E[     
+[alin@abbaton:~]: uname -a 
+Linux abbaton.ucd.ie 3.6.0-rc2-1-desktop #1 SMP PREEMPT Tue Aug 21 16:17:16 UTC
+2012 (e0fa472) x86_64 x86_64 x86_64 GNU/Linux
+
+mesa version 
+i | Mesa                    | package | 8.0.4-23.4  | x86_64 |
+openSUSE-Factory-Oss
+
+
+I get plenty of these...
+PFB][0000:04:00.0] trapped write at 0x0000369af0 on channel 0x0000fee0
+BAR/PFIFO_WRITE/FB reason: VRAM_LIMIT
+[   14.127006] nouveau E[     PFB][0000:04:00.0] trapped write at 0x00003a85cc
+on channel 0x0000fee0 BAR/PFIFO_WRITE/FB reason: VRAM_LIMIT
+[   14.127006] nouveau E[     PFB][0000:04:00.0] trapped read at 0x00003e30f4
+on channel 0x0000fee0 BAR/PFIFO_READ/FB reason: VRAM_LIMIT
+
+plus this 
+[   35.384336] nouveau W[    PCE0][0000:04:00.0] disabled, PCE0=1 to enable
+[   36.337789] nouveau E[  PGRAPH][0000:04:00.0] DATA_ERROR INVALID_VALUE
+[   36.337794] nouveau  [  PGRAPH][0000:04:00.0]  DATA_ERROR
+[   36.337799] nouveau E[  PGRAPH][0000:04:00.0] ch 2 [0x000fb4a000] subc 7
+class 0x8697 mthd 0x16b0 data 0x00000000
+[   62.805500] nouveau W[    PCE0][0000:04:00.0] disabled, PCE0=1 to enable
+[   64.363133] nouveau W[    PCE0][0000:04:00.0] disabled, PCE0=1 to enable
+
+
+as a side effect I get randomnly crashes of X but I do not know if is related
+to the write errors...
+
+Alin
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
