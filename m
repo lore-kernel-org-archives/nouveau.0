@@ -1,14 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [patch] "Junior" ToDo Warn if Modesetting Disabled
-Date: Mon, 27 Aug 2012 00:18:06 +0200
-Message-ID: <503AA09E.7090409@free.fr>
-References: <20120826211500.18936vaz6qo2nkes@www.careysoft.co.nz>
-	<20120827090558.33082n3ef2x2nbg6@www.careysoft.co.nz>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 46810] Mesa Failing To Build
+Date: Mon, 27 Aug 2012 04:16:41 +0000
+Message-ID: <bug-46810-8800-CUvebzJun6@http.bugs.freedesktop.org/>
+References: <bug-46810-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20120827090558.33082n3ef2x2nbg6-H39yYvbTrNBS04pZAofVr6U/zSkkHjvu@public.gmane.org>
+In-Reply-To: <bug-46810-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +20,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 26/08/2012 23:05, Mark Carey wrote:
-> v2 spaces to tabs as per RSpliets feedback on IRC
-Hi Mark,
+https://bugs.freedesktop.org/show_bug.cgi?id=46810
 
-Thanks for the patch, it is indeed needed :)
+Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-However, I don't like the wording. Instead of telling that it isn't 
-normal, we don't tell what should be done neither what it will impact.
-I guess something like "modesetting disabled, hw acceleration disabled" 
-would be more suitable.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|                            |INVALID
 
-Speaking about that, I wonder how Nouveau would work on a CRTC-less card :D
+--- Comment #1 from Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-27 04:16:41 UTC ---
+Whenever configure.ac or any Makefile.am's change, make clean *is* *not*
+*sufficient*.
 
-Martin
+Run
 
-PS: I have tested booting Arch with "nomodeset" and x-server loads VESA. 
-Exactly the behaviour we are looking for :)
+$ git clean -dfx
+$ ./autogen.sh ...
+$ make
+
+Marking as invalid since I've seen so many built failures like this
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
