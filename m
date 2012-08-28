@@ -1,11 +1,9 @@
-From: mwc28-CklgBQt3EwWO6V2BHUzxHg@public.gmane.org
-Subject: [patch] "Junior" ToDo Warn if Modesetting Disabled
-Date: Sun, 26 Aug 2012 21:15:00 +1200
-Message-ID: <20120826211500.18936vaz6qo2nkes@www.careysoft.co.nz>
+From: "3rik.gm" <3rik.gm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: GTX 580 : X freezes
+Date: Tue, 28 Aug 2012 20:32:48 +0200
+Message-ID: <CA+T9nP_HJ3g12Cw7taq5NXs1SqWRRdxK9KBJ5Xor_6c-_8Lhkw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="=_18drr33ndi99"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1984282893=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,67 +17,235 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This message is in MIME format.
+--===============1984282893==
+Content-Type: multipart/alternative; boundary=f46d0401723f55df3604c857abb3
 
---=_18drr33ndi99
-Content-Type: text/plain;
- charset=ISO-8859-1;
- DelSp="Yes";
- format="flowed"
-Content-Disposition: inline
-Content-Transfer-Encoding: 7bit
+--f46d0401723f55df3604c857abb3
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+Hello,
 
-ToDo list item - totally untested.
+Running Archlinux x86_64, kernel 3.4.9, xf86-video-nouveau-git and mesa-full
 
-Bikeshed away about the text of the message and I can change.
+No matter what I do, X freezes.
 
-Cheers,
+Here is the kernel log as regards nouveau :
 
-Mark
+[    1.147790] [drm] nouveau 0000:01:00.0: Detected an NVc0 generation
+card (0x0c8000a1)
+[    1.148583] fb: conflicting fb hw usage nouveaufb vs VESA VGA -
+removing generic driver
+[    1.151874] [drm] nouveau 0000:01:00.0: Checking PRAMIN for VBIOS
+[    1.251089] [drm] nouveau 0000:01:00.0: ... appears to be valid
+[    1.251090] [drm] nouveau 0000:01:00.0: Using VBIOS from PRAMIN
+[    1.251092] [drm] nouveau 0000:01:00.0: BIT BIOS found
+[    1.251093] [drm] nouveau 0000:01:00.0: Bios version 70.10.17.00
+[    1.251094] [drm] nouveau 0000:01:00.0: TMDS table version 2.0
+[    1.251253] [drm] nouveau 0000:01:00.0: MXM: no VBIOS data, nothing to do
+[    1.251255] [drm] nouveau 0000:01:00.0: DCB version 4.0
+[    1.251256] [drm] nouveau 0000:01:00.0: DCB outp 00: 02000300 00000000
+[    1.251258] [drm] nouveau 0000:01:00.0: DCB outp 01: 01000302 00020030
+[    1.251259] [drm] nouveau 0000:01:00.0: DCB outp 02: 04011380 00000000
+[    1.251260] [drm] nouveau 0000:01:00.0: DCB outp 03: 08011382 00020030
+[    1.251261] [drm] nouveau 0000:01:00.0: DCB outp 04: 02022362 00020010
+[    1.251262] [drm] nouveau 0000:01:00.0: DCB conn 00: 00001030
+[    1.251264] [drm] nouveau 0000:01:00.0: DCB conn 01: 00010130
+[    1.251265] [drm] nouveau 0000:01:00.0: DCB conn 02: 00002261
+[    1.251268] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 0
+at offset 0x69CF
+[    1.272470] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 1
+at offset 0x706F
+[    1.279827] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 2
+at offset 0x84CC
+[    1.279829] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 3
+at offset 0x84D6
+[    1.279903] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 4
+at offset 0x874A
+[    1.279905] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table at
+offset 0x87AF
+[    1.299888] [drm] nouveau 0000:01:00.0: 0x87AF: Condition still not
+met after 20ms, skipping following opcodes
+[    1.305265] [drm] nouveau 0000:01:00.0: Detected 1536MiB VRAM (GDDR5)
+[    1.305284] [drm] nouveau 0000:01:00.0: 512 MiB GART (aperture)
+[    1.324224] [drm] nouveau 0000:01:00.0: 0 available performance level(s)
+[    1.324226] [drm] nouveau 0000:01:00.0: c: core 50MHz shader 101MHz
+memory 135MHz voltage 963mV fanspeed 40%
+[    1.616099] [drm] nouveau 0000:01:00.0: allocated 1920x1200 fb:
+0x1e0000, bo ffff88031c662800
+[    1.616250] fbcon: nouveaufb (fb0) is primary device
+[    1.643495] fb0: nouveaufb frame buffer device
+[    1.643498] [drm] Initialized nouveau 1.0.0 20120316 for
+0000:01:00.0 on minor 0
+[    1.643507] nouveau 0000:02:00.0: enabling device (0000 -> 0003)
+[    1.643964] [drm] nouveau 0000:02:00.0: Detected an NVc0 generation
+card (0x0c8000a1)
+[    1.647488] [drm] nouveau 0000:02:00.0: Checking PRAMIN for VBIOS
+[    1.657203] [drm] nouveau 0000:02:00.0: ... BIOS signature not found
+[    1.657206] [drm] nouveau 0000:02:00.0: Checking PROM for VBIOS
+[    1.916632] [drm] nouveau 0000:02:00.0: ... appears to be valid
+[    1.916633] [drm] nouveau 0000:02:00.0: Using VBIOS from PROM
+[    1.916635] [drm] nouveau 0000:02:00.0: BIT BIOS found
+[    1.916636] [drm] nouveau 0000:02:00.0: Bios version 70.10.17.00
+[    1.916637] [drm] nouveau 0000:02:00.0: TMDS table version 2.0
+[    1.916817] [drm] nouveau 0000:02:00.0: MXM: no VBIOS data, nothing to do
+[    1.916819] [drm] nouveau 0000:02:00.0: DCB version 4.0
+[    1.916820] [drm] nouveau 0000:02:00.0: DCB outp 00: 02000300 00000000
+[    1.916822] [drm] nouveau 0000:02:00.0: DCB outp 01: 01000302 00020030
+[    1.916823] [drm] nouveau 0000:02:00.0: DCB outp 02: 04011380 00000000
+[    1.916825] [drm] nouveau 0000:02:00.0: DCB outp 03: 08011382 00020030
+[    1.916826] [drm] nouveau 0000:02:00.0: DCB outp 04: 02022362 00020010
+[    1.916827] [drm] nouveau 0000:02:00.0: DCB conn 00: 00001030
+[    1.916828] [drm] nouveau 0000:02:00.0: DCB conn 01: 00010130
+[    1.916829] [drm] nouveau 0000:02:00.0: DCB conn 02: 00002261
+[    1.916843] [drm] nouveau 0000:02:00.0: Adaptor not initialised,
+running VBIOS init tables.
+[    1.916845] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 0
+at offset 0x69CF
+[    1.978917] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 1
+at offset 0x706F
+[    2.006404] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 2
+at offset 0x84CC
+[    2.006410] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 3
+at offset 0x84D6
+[    2.006536] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 4
+at offset 0x874A
+[    2.006537] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table at
+offset 0x87AF
+[    2.031813] [drm] nouveau 0000:02:00.0: Detected 1536MiB VRAM (GDDR5)
+[    2.031825] [drm] nouveau 0000:02:00.0: 512 MiB GART (aperture)
+[    2.050859] [drm] nouveau 0000:02:00.0: 0 available performance level(s)
+[    2.050861] [drm] nouveau 0000:02:00.0: c: core 50MHz shader 101MHz
+memory 135MHz voltage 963mV fanspeed 40%
+[    2.334686] [drm] nouveau 0000:02:00.0: allocated 1024x768 fb:
+0x1e0000, bo ffff88031b80a800
+[    2.334862] fb1: nouveaufb frame buffer device
+[    2.334865] [drm] Initialized nouveau 1.0.0 20120316 for
+0000:02:00.0 on minor 1
+[ 1642.831909] [drm] nouveau 0000:01:00.0: illegal object class: 0x906e
+[ 1642.831911] [drm] nouveau 0000:01:00.0: Error creating object: -22
+(1/0x001f906e)
+[ 4730.269562] [drm] nouveau 0000:01:00.0: illegal object class: 0x906e
+[ 4730.269565] [drm] nouveau 0000:01:00.0: Error creating object: -22
+(3/0x001f906e)
 
---=_18drr33ndi99
-Content-Type: text/x-patch;
- charset=UTF-8;
- name="modeset.patch"
-Content-Disposition: attachment;
- filename="modeset.patch"
-Content-Transfer-Encoding: 7bit
+Tried with stable nouveau, no way.
 
-From cc3257d8b29c5302de869bfb2a442a1daf01f387 Mon Sep 17 00:00:00 2001
-From: Mark Carey <mark-CklgBQt3EwWO6V2BHUzxHg@public.gmane.org>
-Date: Sun, 26 Aug 2012 21:09:39 +1200
-Subject: [PATCH] drm/nouveau: warn during init if modesetting disabled
+Nothing wrong in Xorg log...
 
-Reported-by: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Signed-off-by: Mark Carey <mark-CklgBQt3EwWO6V2BHUzxHg@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_drm.c |    5 ++++-
- 1 files changed, 4 insertions(+), 1 deletions(-)
+Thanks for your help,
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 9fb56b3..3dbf081 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -655,8 +655,11 @@ nouveau_drm_init(void)
- 			nouveau_modeset = 1;
- 	}
- 
--	if (!nouveau_modeset)
-+    if (!nouveau_modeset) {
-+		NV_FATAL(NULL, "modesetting disabled\n");
-+		NV_FATAL(NULL, "modesetting required for normal operation\n");
- 		return 0;
-+    }
- 
- 	nouveau_register_dsm_handler();
- 	return drm_pci_init(&driver, &nouveau_drm_pci_driver);
--- 
-1.7.5.1
+Eric
 
+--f46d0401723f55df3604c857abb3
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
---=_18drr33ndi99
+Hello,<br><br>Running Archlinux x86_64, kernel 3.4.9, xf86-video-nouveau-gi=
+t and mesa-full<br><br>No matter what I do, X freezes.<br><br>Here is the k=
+ernel log as regards nouveau :<br><br><pre>[    1.147790] [drm] nouveau 000=
+0:01:00.0: Detected an NVc0 generation card (0x0c8000a1)
+[    1.148583] fb: conflicting fb hw usage nouveaufb vs VESA VGA - removing=
+ generic driver
+[    1.151874] [drm] nouveau 0000:01:00.0: Checking PRAMIN for VBIOS
+[    1.251089] [drm] nouveau 0000:01:00.0: ... appears to be valid
+[    1.251090] [drm] nouveau 0000:01:00.0: Using VBIOS from PRAMIN
+[    1.251092] [drm] nouveau 0000:01:00.0: BIT BIOS found
+[    1.251093] [drm] nouveau 0000:01:00.0: Bios version 70.10.17.00
+[    1.251094] [drm] nouveau 0000:01:00.0: TMDS table version 2.0
+[    1.251253] [drm] nouveau 0000:01:00.0: MXM: no VBIOS data, nothing to d=
+o
+[    1.251255] [drm] nouveau 0000:01:00.0: DCB version 4.0
+[    1.251256] [drm] nouveau 0000:01:00.0: DCB outp 00: 02000300 00000000
+[    1.251258] [drm] nouveau 0000:01:00.0: DCB outp 01: 01000302 00020030
+[    1.251259] [drm] nouveau 0000:01:00.0: DCB outp 02: 04011380 00000000
+[    1.251260] [drm] nouveau 0000:01:00.0: DCB outp 03: 08011382 00020030
+[    1.251261] [drm] nouveau 0000:01:00.0: DCB outp 04: 02022362 00020010
+[    1.251262] [drm] nouveau 0000:01:00.0: DCB conn 00: 00001030
+[    1.251264] [drm] nouveau 0000:01:00.0: DCB conn 01: 00010130
+[    1.251265] [drm] nouveau 0000:01:00.0: DCB conn 02: 00002261
+[    1.251268] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 0 at of=
+fset 0x69CF
+[    1.272470] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 1 at of=
+fset 0x706F
+[    1.279827] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 2 at of=
+fset 0x84CC
+[    1.279829] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 3 at of=
+fset 0x84D6
+[    1.279903] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table 4 at of=
+fset 0x874A
+[    1.279905] [drm] nouveau 0000:01:00.0: Parsing VBIOS init table at offs=
+et 0x87AF
+[    1.299888] [drm] nouveau 0000:01:00.0: 0x87AF: Condition still not met =
+after 20ms, skipping following opcodes
+[    1.305265] [drm] nouveau 0000:01:00.0: Detected 1536MiB VRAM (GDDR5)
+[    1.305284] [drm] nouveau 0000:01:00.0: 512 MiB GART (aperture)
+[    1.324224] [drm] nouveau 0000:01:00.0: 0 available performance level(s)
+[    1.324226] [drm] nouveau 0000:01:00.0: c: core 50MHz shader 101MHz memo=
+ry 135MHz voltage 963mV fanspeed 40%
+[    1.616099] [drm] nouveau 0000:01:00.0: allocated 1920x1200 fb: 0x1e0000=
+, bo ffff88031c662800
+[    1.616250] fbcon: nouveaufb (fb0) is primary device
+[    1.643495] fb0: nouveaufb frame buffer device
+[    1.643498] [drm] Initialized nouveau 1.0.0 20120316 for 0000:01:00.0 on=
+ minor 0
+[    1.643507] nouveau 0000:02:00.0: enabling device (0000 -&gt; 0003)
+[    1.643964] [drm] nouveau 0000:02:00.0: Detected an NVc0 generation card=
+ (0x0c8000a1)
+[    1.647488] [drm] nouveau 0000:02:00.0: Checking PRAMIN for VBIOS
+[    1.657203] [drm] nouveau 0000:02:00.0: ... BIOS signature not found
+[    1.657206] [drm] nouveau 0000:02:00.0: Checking PROM for VBIOS
+[    1.916632] [drm] nouveau 0000:02:00.0: ... appears to be valid
+[    1.916633] [drm] nouveau 0000:02:00.0: Using VBIOS from PROM
+[    1.916635] [drm] nouveau 0000:02:00.0: BIT BIOS found
+[    1.916636] [drm] nouveau 0000:02:00.0: Bios version 70.10.17.00
+[    1.916637] [drm] nouveau 0000:02:00.0: TMDS table version 2.0
+[    1.916817] [drm] nouveau 0000:02:00.0: MXM: no VBIOS data, nothing to d=
+o
+[    1.916819] [drm] nouveau 0000:02:00.0: DCB version 4.0
+[    1.916820] [drm] nouveau 0000:02:00.0: DCB outp 00: 02000300 00000000
+[    1.916822] [drm] nouveau 0000:02:00.0: DCB outp 01: 01000302 00020030
+[    1.916823] [drm] nouveau 0000:02:00.0: DCB outp 02: 04011380 00000000
+[    1.916825] [drm] nouveau 0000:02:00.0: DCB outp 03: 08011382 00020030
+[    1.916826] [drm] nouveau 0000:02:00.0: DCB outp 04: 02022362 00020010
+[    1.916827] [drm] nouveau 0000:02:00.0: DCB conn 00: 00001030
+[    1.916828] [drm] nouveau 0000:02:00.0: DCB conn 01: 00010130
+[    1.916829] [drm] nouveau 0000:02:00.0: DCB conn 02: 00002261
+[    1.916843] [drm] nouveau 0000:02:00.0: Adaptor not initialised, running=
+ VBIOS init tables.
+[    1.916845] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 0 at of=
+fset 0x69CF
+[    1.978917] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 1 at of=
+fset 0x706F
+[    2.006404] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 2 at of=
+fset 0x84CC
+[    2.006410] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 3 at of=
+fset 0x84D6
+[    2.006536] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table 4 at of=
+fset 0x874A
+[    2.006537] [drm] nouveau 0000:02:00.0: Parsing VBIOS init table at offs=
+et 0x87AF
+[    2.031813] [drm] nouveau 0000:02:00.0: Detected 1536MiB VRAM (GDDR5)
+[    2.031825] [drm] nouveau 0000:02:00.0: 512 MiB GART (aperture)
+[    2.050859] [drm] nouveau 0000:02:00.0: 0 available performance level(s)
+[    2.050861] [drm] nouveau 0000:02:00.0: c: core 50MHz shader 101MHz memo=
+ry 135MHz voltage 963mV fanspeed 40%
+[    2.334686] [drm] nouveau 0000:02:00.0: allocated 1024x768 fb: 0x1e0000,=
+ bo ffff88031b80a800
+[    2.334862] fb1: nouveaufb frame buffer device
+[    2.334865] [drm] Initialized nouveau 1.0.0 20120316 for 0000:02:00.0 on=
+ minor 1
+[ 1642.831909] [drm] nouveau 0000:01:00.0: illegal object class: 0x906e
+[ 1642.831911] [drm] nouveau 0000:01:00.0: Error creating object: -22 (1/0x=
+001f906e)
+[ 4730.269562] [drm] nouveau 0000:01:00.0: illegal object class: 0x906e
+[ 4730.269565] [drm] nouveau 0000:01:00.0: Error creating object: -22 (3/0x=
+001f906e)
+<br><br>Tried with stable nouveau, no way.<br><br>Nothing wrong in Xorg log=
+...<br><br>Thanks for your help,<br><br>Eric<br></pre><br>
+
+--f46d0401723f55df3604c857abb3--
+
+--===============1984282893==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +256,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---=_18drr33ndi99--
+--===============1984282893==--
