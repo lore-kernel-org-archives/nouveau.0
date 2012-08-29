@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52244] [ 4.876531] [drm] nouveau 0000:01:00.0: GPU
  lockup - switching to software fbcon
-Date: Wed, 29 Aug 2012 14:49:23 +0000
-Message-ID: <bug-52244-8800-do1PTmQNil@http.bugs.freedesktop.org/>
+Date: Wed, 29 Aug 2012 14:54:31 +0000
+Message-ID: <bug-52244-8800-N5DmGwDFNZ@http.bugs.freedesktop.org/>
 References: <bug-52244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,19 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52244
 
---- Comment #5 from O'car Campos <ocar.campos-YSSmc3T0awQUy5906dfpTQ@public.gmane.org> 2012-08-29 14:49:23 UTC ---
-Archlinux with gtx-560 and nouveau drivers currently running kernel
-linux-3.4.9-1 without problems. Yesterday I updated to kernel 3.5.3-1 and after
-booting got no login screen at all, when I changed tty to log in I discovered
-the messages:
-
-Failed to idle channel 1.
-PFIFO - playlist update failed
-PFIFO - playlist update failed
-
-I tried to fix it from there but it wouldn't allow me because it kept showing
-those messages all the time. I had to boot on run level 3 to be able to roll
-back to kernel 3.4.9-1.
+--- Comment #6 from O'car Campos <ocar.campos-YSSmc3T0awQUy5906dfpTQ@public.gmane.org> 2012-08-29 14:54:31 UTC ---
+Created attachment 66279
+  --> https://bugs.freedesktop.org/attachment.cgi?id=66279
+kernel error I got
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
