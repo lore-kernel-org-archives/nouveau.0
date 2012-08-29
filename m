@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52244] [ 4.876531] [drm] nouveau 0000:01:00.0: GPU
  lockup - switching to software fbcon
-Date: Wed, 29 Aug 2012 14:56:37 +0000
-Message-ID: <bug-52244-8800-f0R45TQbdZ@http.bugs.freedesktop.org/>
+Date: Wed, 29 Aug 2012 14:57:51 +0000
+Message-ID: <bug-52244-8800-85gJDu04gu@http.bugs.freedesktop.org/>
 References: <bug-52244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52244
 
---- Comment #7 from Luc <overlord.luchao-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-29 14:56:37 UTC ---
-Created attachment 66280
-  --> https://bugs.freedesktop.org/attachment.cgi?id=66280
-Parsed error file showing similar results.
+--- Comment #8 from Luc <overlord.luchao-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-08-29 14:57:51 UTC ---
+Created attachment 66281
+  --> https://bugs.freedesktop.org/attachment.cgi?id=66281
+Full system report from HardInfo 0.5.1 to aid invesitigation.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
