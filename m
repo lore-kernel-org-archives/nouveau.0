@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54056] plenty of errors trapped write at plus PGRAPH
-	error
-Date: Fri, 31 Aug 2012 14:44:42 +0000
-Message-ID: <bug-54056-8800-Pqoiyx3k5r@http.bugs.freedesktop.org/>
-References: <bug-54056-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54359] New: X crashes after resume (8600GT / NV84)
+Date: Sat, 01 Sep 2012 19:26:02 +0000
+Message-ID: <bug-54359-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54056-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +18,53 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54056
+https://bugs.freedesktop.org/show_bug.cgi?id=54359
 
---- Comment #1 from Sebastian-6b102mguJBqELgA04lAiVw@public.gmane.org <sebastian-7CH+t18bm0uELgA04lAiVw@public.gmane.org> 2012-08-31 14:44:42 UTC ---
-I get very similar symptoms, corrupted screen (Ubuntu login screen constantly
-attempts to redraw itself with widgets in the wrong place) and missing mouse
-pointer after login on my MacBookPro7,1 Nvidia 320M:
+             Bug #: 54359
+           Summary: X crashes after resume (8600GT / NV84)
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: luca.wehrstedt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-VM: trapped write at 0x00523b0000 on ch 2 [0x000007f9] PGRAPHG/PROP/DST2D
-reason: VRAM_LIMIT
-...
 
+Created attachment 66458
+  --> https://bugs.freedesktop.org/attachment.cgi?id=66458
+The dmesg output
 
-there are *plenty* of those. Kernel is 3.5.0-13 #14-Ubuntu SMP
+I have a NVIDIA GeForce 8600GT graphics card. I'm using Gentoo on a AMD64
+machine with a custom built 3.5 kernel.
 
-The very first *error* in dmesg that I can see is
- PGRAPH - TRAP_TEXTURE - TP0: Unhandled ustatus 0x000000003
+I've been using nouveau for more than a year by now without any kind of
+problems. Yet, since I enabled the last kernel options I needed to get 3D
+hardware acceleration, I'm having some issues.
+
+When closing applications like web browsers or video players the X server
+suddenly hangs (I cannot even move the pointer) and, after a few seconds, it
+crashes and I see a TTY console. Then, I think, gdm tries to restart it and
+after a few seconds I have again some graphics on the screen which often is a
+corrupted image of what I was seeing before the crash. Then X crashes again,
+gdm tries to restart it and so on.
+
+When I'm on the TTYs I'm having some keyboard issues (keys double-typed or
+missed) but otherwise they work fine, so I was able to log in and get some
+dmesg output and X logs, which I'm attaching.
+
+This issue only appears after I suspend and resume the PC. I can trigger this
+behavior almost at will after a resume but I'm not able to do it before. It
+also seems to be related to Xorg drivers and/or 3D, since I didn't encounter it
+before activating hardware acceleration and it only affects the X server, even
+after a restart, while having no effect at all on TTYs.
+
+If you need more detailed information just let me know.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
