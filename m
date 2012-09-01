@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54359] X crashes after resume (8600GT / NV84)
-Date: Sat, 01 Sep 2012 19:27:25 +0000
-Message-ID: <bug-54359-8800-iNgn9OHJB7@http.bugs.freedesktop.org/>
+Date: Sat, 01 Sep 2012 19:58:32 +0000
+Message-ID: <bug-54359-8800-vtUxVLz4GK@http.bugs.freedesktop.org/>
 References: <bug-54359-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54359
 
---- Comment #2 from Luca Wehrstedt <luca.wehrstedt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-01 19:27:25 UTC ---
-Created attachment 66460
-  --> https://bugs.freedesktop.org/attachment.cgi?id=66460
-The X.org log of subsequent crashes
+Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #66458|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
