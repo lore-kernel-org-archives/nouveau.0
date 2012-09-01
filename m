@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54359] X crashes after resume (8600GT / NV84)
-Date: Sat, 01 Sep 2012 19:58:32 +0000
-Message-ID: <bug-54359-8800-vtUxVLz4GK@http.bugs.freedesktop.org/>
+Date: Sat, 01 Sep 2012 19:59:02 +0000
+Message-ID: <bug-54359-8800-2YFgYir6nH@http.bugs.freedesktop.org/>
 References: <bug-54359-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -26,7 +26,7 @@ Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #66458|text/x-log                  |text/plain
+  Attachment #66459|text/x-log                  |text/plain
           mime type|                            |
 
 -- 
