@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54359] X crashes after resume (8600GT / NV84)
-Date: Sat, 01 Sep 2012 22:03:52 +0000
-Message-ID: <bug-54359-8800-Y4MTzzY2jI@http.bugs.freedesktop.org/>
-References: <bug-54359-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
+	2MX/MX400
+Date: Sun, 02 Sep 2012 01:56:36 +0000
+Message-ID: <bug-51477-8800-xcxvCIMVVX@http.bugs.freedesktop.org/>
+References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54359-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +21,24 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54359
-
-Luca Wehrstedt <luca.wehrstedt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |FIXED
-
---- Comment #4 from Luca Wehrstedt <luca.wehrstedt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-01 22:03:52 UTC ---
-I tried out kernel 3.6_rc3 and indeed it seems the bug is fixed. Thanks!
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NTE0NzcKCi0tLSBD
+b21tZW50ICMxMiBmcm9tIEd5w7ZyZ3kgQmFsbMOzIDxiYWxsb2d5QGZyZWVzdGFydC5odT4gMjAx
+Mi0wOS0wMiAwMTo1NjozNiBVVEMgLS0tCkkgaGF2ZSBhbiBOVjE3IFtHZUZvcmNlNCBNWCA0NDBd
+IGNhcmQsIGFuZCBJIGhhdmUgc2ltaWxhciByZW5kZXJpbmcgaXNzdWVzLgoKVGhlIGlzc3VlcyBh
+cmUgc3RhcnRlZCBmb3IgbWUgYWZ0ZXIgdGhpcyBjb21taXQgKHRoZSBuZXcgbGliZHJtIHBvcnQp
+OgpodHRwOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvbm91dmVhdS94Zjg2LXZpZGVvLW5vdXZlYXUv
+Y29tbWl0Lz9pZD1lNzBkODAxYWU5Mjg3ZWFiNWU4MmY0ZDQ2N2RjOGNkNGJlMWIzMWE4CgpTbyBJ
+IHRoaW5rIHRoZSBwcm9ibGVtIGlzIGluIHRoaXMgY29tbWl0IG9yIGluIHRoZSBuZXcgbGliZHJt
+LgoKVGhlIGdyYXBoaWNzIGNvcnJ1cHRpb24sIHdoYXQgSSBleHBlcmllbmNlZCBzb21ldGltZXM6
+Ci0gTWlzc2luZyBpY29ucyBpbiBOYXV0aWx1cy4KLSBUaGUgdG9vbGJhciBpbiBOYXV0aWx1cyBh
+bmQgdGhlIHRhYnMgaW4gRmlyZWZveCBhcmUgc2hvd24gYnJpZ2h0ZXIgdGhhbiBpdApzaG91bGQg
+YmUuCi0gVGhlIHRleHQgaW4gR05PTUUgVGVybWluYWwgaXMgc2hvd24gaW4gb3RoZXIgY29sb3Ig
+dGhhbiBpdCBzaG91bGQgYmUuCgpUaGVzZSBwcm9ibGVtcyBhcmUgdXN1YWxseSBkaXNhcHBlYXIs
+IHdoZW4gSSBtb3ZlIHRoZSBtb3VzZSBvdmVyIHRoZSBlbGVtZW50cwpvciBtb3ZlIHRoZSBhcHBs
+aWNhdGlvbidzIHdpbmRvdy4KCkknbSB1c2luZyBHTk9NRSAzIGZhbGxiYWNrIG1vZGUuCgotLSAK
+Q29uZmlndXJlIGJ1Z21haWw6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZz
+LmNnaT90YWI9ZW1haWwKLS0tLS0tLSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVz
+ZTogLS0tLS0tLQpZb3UgYXJlIHRoZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
