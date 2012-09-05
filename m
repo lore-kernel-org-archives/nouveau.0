@@ -1,11 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54537] New: native mode, forcing panel scaling
-Date: Wed, 05 Sep 2012 07:58:20 +0000
-Message-ID: <bug-54537-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48074] 3D / OpenGL clients used with wayland always
+ cause an immediate hang
+Date: Wed, 05 Sep 2012 20:39:45 +0000
+Message-ID: <bug-48074-8800-tjsmqaKX8I@http.bugs.freedesktop.org/>
+References: <bug-48074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-48074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,38 +21,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54537
-
-             Bug #: 54537
-           Summary: native mode, forcing panel scaling
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86-64 (AMD64)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Hi
-
-When I insert my HDMI cable in my GeForce GT 540M laptop, I get the following
-message:
-Sep  5 07:43:53 laptop-jl kernel: [   69.233511] [drm] nouveau 0000:01:00.0: no
-native mode, forcing panel scaling
-
-As noted in https://bugs.freedesktop.org/show_bug.cgi?id=54512 this could be a
-nouveau bug.
-
-The attached dmesg.txt should give all the info in the other bug.
-If some more debug,info is needed, i'm happy to supply it :)
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDgwNzQKClBoaWxp
+cHAgQnLDvHNjaHdlaWxlciA8YmxlaTQyQGdtYWlsLmNvbT4gY2hhbmdlZDoKCiAgICAgICAgICAg
+V2hhdCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tCiAgICAgICAgICAgICBTdGF0dXN8TkVXICAgICAgICAgICAgICAgICAgICAgICAgIHxS
+RVNPTFZFRAogICAgICAgICBSZXNvbHV0aW9ufCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8
+V09SS1NGT1JNRQoKLS0tIENvbW1lbnQgIzEgZnJvbSBQaGlsaXBwIEJyw7xzY2h3ZWlsZXIgPGJs
+ZWk0MkBnbWFpbC5jb20+IDIwMTItMDktMDUgMjA6Mzk6NDUgVVRDIC0tLQpUaGlzIGhhc24ndCBy
+ZWNlaXZlZCBhbnkgdXBkYXRlcyBmb3Igc29tZSB0aW1lLCBhbmQgd2F5bGFuZC93ZXN0b24vbWVz
+YSBoYWQKc29tZSBjaGFuZ2VzIGluIHRoZSBtZWFuIHRpbWUuIGdlYXJzIHdvcmtzIGluIHgxMSBt
+b2RlIGZvciBtZSwgc28gSSdsbCBjbG9zZQp0aGlzIHVubGVzcyBzb21lb25lIGVsc2Ugc3RpbGwg
+bm90aWNlcyB0aGlzIGNyYXNoLgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3Mu
+ZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSBy
+ZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUg
+Zm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
