@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54512] xrandr does not detect HDMI screen
-Date: Wed, 05 Sep 2012 06:44:46 +0000
-Message-ID: <bug-54512-8800-6zAJ1RilFe@http.bugs.freedesktop.org/>
-References: <bug-54512-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54537] New: native mode, forcing panel scaling
+Date: Wed, 05 Sep 2012 07:58:20 +0000
+Message-ID: <bug-54537-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54512-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +18,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54512
+https://bugs.freedesktop.org/show_bug.cgi?id=54537
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+             Bug #: 54537
+           Summary: native mode, forcing panel scaling
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86-64 (AMD64)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |NOTABUG
 
---- Comment #8 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-05 06:44:46 UTC ---
-(In reply to comment #5)
-> Now I booted my system without HDMI cable in. When I insert the cable after
-> bootup:
-> 
-> dmesg:
-> Sep  5 07:43:53 laptop-jl kernel: [   69.233511] [drm] nouveau 0000:01:00.0: no
-> native mode, forcing panel scaling\
-This is probably a bug in nouveau I'd say, but it deserves a new report.
+Hi
 
-I'm closing this bug due to it not actually being a bug :)
+When I insert my HDMI cable in my GeForce GT 540M laptop, I get the following
+message:
+Sep  5 07:43:53 laptop-jl kernel: [   69.233511] [drm] nouveau 0000:01:00.0: no
+native mode, forcing panel scaling
 
-> 
-> Xorg.0.log:
-> [    68.990] removing GPU device
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/drm/card1 1889035200
-> [    68.990] xf86: remove device 0
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/drm/card1
-> [    68.990] (II) config/udev: Adding drm device (/dev/dri/card1)
-> 
-> 
-> xrandr still:
-> HDMI1 disconnected (normal left inverted right x axis y axis)
-> 
-> (notice its HDMI1 again)
+As noted in https://bugs.freedesktop.org/show_bug.cgi?id=54512 this could be a
+nouveau bug.
+
+The attached dmesg.txt should give all the info in the other bug.
+If some more debug,info is needed, i'm happy to supply it :)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
