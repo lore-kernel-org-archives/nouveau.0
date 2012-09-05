@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54512] xrandr does not detect HDMI screen
-Date: Tue, 04 Sep 2012 22:02:15 +0000
-Message-ID: <bug-54512-8800-4uglxyo7Kc@http.bugs.freedesktop.org/>
+Date: Wed, 05 Sep 2012 02:03:25 +0000
+Message-ID: <bug-54512-8800-fpzVnjdTR7@http.bugs.freedesktop.org/>
 References: <bug-54512-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,12 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54512
 
-Jean-Louis Dupond <jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|xrandr does not detect      |xrandr does not detect HDMI
-                   |screen                      |screen
+--- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-05 02:03:25 UTC ---
+Can I see your Xorg.0.log please.  Nouveau appears to be detecting your HDMI
+display just fine from what I can see.. Not sure yet why X thinks it doesn't...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
