@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54512] xrandr does not detect HDMI screen
-Date: Wed, 05 Sep 2012 05:46:33 +0000
-Message-ID: <bug-54512-8800-3Ja80C0jj4@http.bugs.freedesktop.org/>
+Date: Wed, 05 Sep 2012 06:42:39 +0000
+Message-ID: <bug-54512-8800-Mo9MzhJyZo@http.bugs.freedesktop.org/>
 References: <bug-54512-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,26 +22,38 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54512
 
---- Comment #5 from Jean-Louis Dupond <jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org> 2012-09-05 05:46:33 UTC ---
-Now I booted my system without HDMI cable in. When I insert the cable after
-bootup:
+--- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-05 06:42:39 UTC ---
+(In reply to comment #2)
+> Thanks for the quick response.
+> 
+> Attached my Xorg.0.log now.
+> This is when I booted my system WITHOUT a xorg.conf.
+> I do get the boot logo on my HDMI screen, but still xrandr doesn't see my
+> screen.
+Yes, I suspected this was your issue initially and your X log confirms it. 
+You're using an Optimus laptop, and the Intel GPU (which is the one X is using)
+is NOT wired up the the HDMI connector.
 
-dmesg:
-Sep  5 07:43:53 laptop-jl kernel: [   69.233511] [drm] nouveau 0000:01:00.0: no
-native mode, forcing panel scaling
+The boot logo on your screen *is* nouveau's doing, and show's nouveau's
+(mostly, see below) done its job correctly.
 
-Xorg.0.log:
-[    68.990] removing GPU device
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/drm/card1 1889035200
-[    68.990] xf86: remove device 0
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/drm/card1
-[    68.990] (II) config/udev: Adding drm device (/dev/dri/card1)
+If possible in you BIOS setup, you can select "Discrete Graphics" mode and your
+NVIDIA GPU will become the primary adaptor and X should JustWork with the HDMI
+display.  But, a great deal of manufacturers don't allow this mode, so it may
+not be available.
 
+Your last resort until X is able to handle Optimus properly (coming up in the
+next X server release), is to create an xorg.conf specifying two X screens, one
+on the intel (to drive the laptop panel) and another on nouveau (to handle your
+external outputs).
 
-xrandr still:
-HDMI1 disconnected (normal left inverted right x axis y axis)
-
-(notice its HDMI1 again)
+> 
+> Also notice something strange in the xrandr output:
+> HDMI2 disconnected (normal left inverted right x axis y axis)
+> 
+> It now says HDMI2 somehow
+This will highly depend on the ordering of which the Intel and Nouveau drivers
+load and create the connector objects.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
