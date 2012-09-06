@@ -1,7 +1,7 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] New: Flickering screen on Geforece 4
-Date: Thu, 06 Sep 2012 09:00:59 +0000
-Message-ID: <bug-54587-8800@http.bugs.freedesktop.org/>
+From: =?ISO-8859-15?Q?Sven_K=F6hler?= <sven.koehler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Second monitor needs explicit ModeLine
+Date: Thu, 06 Sep 2012 16:59:06 +0200
+Message-ID: <k2adnq$qph$1@ger.gmane.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,34 +18,28 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54587
+Hi,
 
-             Bug #: 54587
-           Summary: Flickering screen on Geforece 4
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: x86 (IA32)
-        OS/Version: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: piip-O5WfVfzUwx8@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+without an explicit ModeLine in xorg.conf, the full resolution of my
+secondary monitor is not listed in Xorg.0.log, xrandr, or gnome's
+configuration tool. If the secondary Monitor is the only one that is
+connected, its native resolution works and is chosen by default.
+
+I was able to get a suitable ModeLine by disconnecting my primary
+monitor. Right now, with the ModeLine in place, both monitors work
+perfectly.
+
+My primary monitor is a P24W-3 and the secondary is a P20-1.
+The native resolutions of the LCD screens are 1920x1200 and 1600x1200.
+If both monitors are connected, the 1600x1200 is not available by
+default for some reason.
+
+Note, that I'm using video=1600x1200-16 on my kernel command line
+without problems. Any ideas what could be the cause?
+
+Here is my Xorg.0.log with the ModeLine in place:
+http://pastebin.com/3fLg61SN
 
 
-I have Geforce 4 display adapter. I updated Ubuntu from 10.04 LTS to 12.04.01
-LTS. I was using proprietary Nvidia driver with 10.04. Now it is no more
-supported with 12.04. Also NV driver is not supported. I try to use Nouveau,
-but my screen flickers so badly that it is not usable. I am using the same
-resolution and refresh rate as with 10.04. I have to continue using 10.04 until
-this bug is fixed. I am not alone with this problem. Read this description:
-
-https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/575092
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Regards,
+  Sven
