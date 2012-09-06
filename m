@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48074] 3D / OpenGL clients used with wayland always
- cause an immediate hang
-Date: Wed, 05 Sep 2012 20:39:45 +0000
-Message-ID: <bug-48074-8800-tjsmqaKX8I@http.bugs.freedesktop.org/>
-References: <bug-48074-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54587] New: Flickering screen on Geforece 4
+Date: Thu, 06 Sep 2012 09:00:59 +0000
+Message-ID: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +18,34 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NDgwNzQKClBoaWxp
-cHAgQnLDvHNjaHdlaWxlciA8YmxlaTQyQGdtYWlsLmNvbT4gY2hhbmdlZDoKCiAgICAgICAgICAg
-V2hhdCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tCiAgICAgICAgICAgICBTdGF0dXN8TkVXICAgICAgICAgICAgICAgICAgICAgICAgIHxS
-RVNPTFZFRAogICAgICAgICBSZXNvbHV0aW9ufCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8
-V09SS1NGT1JNRQoKLS0tIENvbW1lbnQgIzEgZnJvbSBQaGlsaXBwIEJyw7xzY2h3ZWlsZXIgPGJs
-ZWk0MkBnbWFpbC5jb20+IDIwMTItMDktMDUgMjA6Mzk6NDUgVVRDIC0tLQpUaGlzIGhhc24ndCBy
-ZWNlaXZlZCBhbnkgdXBkYXRlcyBmb3Igc29tZSB0aW1lLCBhbmQgd2F5bGFuZC93ZXN0b24vbWVz
-YSBoYWQKc29tZSBjaGFuZ2VzIGluIHRoZSBtZWFuIHRpbWUuIGdlYXJzIHdvcmtzIGluIHgxMSBt
-b2RlIGZvciBtZSwgc28gSSdsbCBjbG9zZQp0aGlzIHVubGVzcyBzb21lb25lIGVsc2Ugc3RpbGwg
-bm90aWNlcyB0aGlzIGNyYXNoLgoKLS0gCkNvbmZpZ3VyZSBidWdtYWlsOiBodHRwczovL2J1Z3Mu
-ZnJlZWRlc2t0b3Aub3JnL3VzZXJwcmVmcy5jZ2k/dGFiPWVtYWlsCi0tLS0tLS0gWW91IGFyZSBy
-ZWNlaXZpbmcgdGhpcyBtYWlsIGJlY2F1c2U6IC0tLS0tLS0KWW91IGFyZSB0aGUgYXNzaWduZWUg
-Zm9yIHRoZSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+https://bugs.freedesktop.org/show_bug.cgi?id=54587
+
+             Bug #: 54587
+           Summary: Flickering screen on Geforece 4
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: piip-O5WfVfzUwx8@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+I have Geforce 4 display adapter. I updated Ubuntu from 10.04 LTS to 12.04.01
+LTS. I was using proprietary Nvidia driver with 10.04. Now it is no more
+supported with 12.04. Also NV driver is not supported. I try to use Nouveau,
+but my screen flickers so badly that it is not usable. I am using the same
+resolution and refresh rate as with 10.04. I have to continue using 10.04 until
+this bug is fixed. I am not alone with this problem. Read this description:
+
+https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/575092
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
