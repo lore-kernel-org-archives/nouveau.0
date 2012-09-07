@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54587] Flickering screen on Geforece 4
-Date: Fri, 07 Sep 2012 12:05:23 +0000
-Message-ID: <bug-54587-8800-9tEmhFgiTc@http.bugs.freedesktop.org/>
+Date: Fri, 07 Sep 2012 13:19:30 +0000
+Message-ID: <bug-54587-8800-v5Si521pf2@http.bugs.freedesktop.org/>
 References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54587
 
---- Comment #4 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> 2012-09-07 12:05:23 UTC ---
-Created attachment 66785
-  --> https://bugs.freedesktop.org/attachment.cgi?id=66785
-Screen 2
+--- Comment #5 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> 2012-09-07 13:19:30 UTC ---
+This flickering is very strong when I move a window. Some interference can be
+seen when I move mouse. Screen is stable when nothing changes in screen.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
