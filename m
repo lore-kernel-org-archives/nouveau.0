@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54646] New: i2c failure on Quadro NVS 4200M (GF119
-	(NVD9))
-Date: Fri, 07 Sep 2012 15:48:58 +0000
-Message-ID: <bug-54646-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54587] Flickering screen on Geforece 4
+Date: Fri, 07 Sep 2012 19:17:51 +0000
+Message-ID: <bug-54587-8800-TRG6NgXLNV@http.bugs.freedesktop.org/>
+References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,33 +20,10 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54646
+https://bugs.freedesktop.org/show_bug.cgi?id=54587
 
-             Bug #: 54646
-           Summary: i2c failure on Quadro NVS 4200M (GF119 (NVD9))
-    Classification: Unclassified
-           Product: xorg
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: jano.vesely-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-
-Kernel 3.5.3 says during boot:
-[drm] nouveau 0000:01:00.0: 0x7291: i2c wr fail: -6
-[drm] nouveau 0000:01:00.0: 0x72A3: i2c rd fail: -6
-
-nouveau git(with nouveau.debug=debug) says (50x):
-nouveau D[     I2C][0000:01:00.0] AUXCH(0): 4: 0x00000050 1
-nouveau D[     I2C][0000:01:00.0] AUXCH(0): sink not detected
-nouveau D[     I2C][0000:01:00.0] AUXCH(1): 4: 0x00000050 1
-nouveau D[     I2C][0000:01:00.0] AUXCH(1): sink not detected
+--- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-07 19:17:51 UTC ---
+Does it work if you boot with video=TV-1:d in kernel command line?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
