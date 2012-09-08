@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54587] Flickering screen on Geforece 4
-Date: Sat, 08 Sep 2012 09:34:48 +0000
-Message-ID: <bug-54587-8800-Fh1HV7Z2qO@http.bugs.freedesktop.org/>
+Date: Sat, 08 Sep 2012 13:25:28 +0000
+Message-ID: <bug-54587-8800-bUSqVNYvxq@http.bugs.freedesktop.org/>
 References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,23 +22,17 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54587
 
---- Comment #7 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> 2012-09-08 09:34:48 UTC ---
-This kernel option reduced interference.
+--- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-08 13:25:28 UTC ---
+Do you use xorg.conf? If yes, please remove it and recheck.
+Periodical flickering might disappear with drm_kms_helper.poll=0 in kernel
+command line.
 
-At 1024x768:
-- no interference when the screen changes
-- occasionally the screen trembles quickly at 10 seconds interval
-- leftmost part of the screen shows in the right side 
-
-At 1920x1080
-- moving a window causes snow
-- constant quick trembling at 10 seconds interval
-- horizontally the screen is ok
-
-In both cases
-- bottom of the screen is missing
-- vertically the screen seems to be off position about on line down. For
-example in menus mouse pointer selects the item below.
+After you do the above, please attach:
+- new dmesg
+- Xorg.0.log
+- vbios (see http://nouveau.freedesktop.org/wiki/DumpingVideoBios - nouveau
+wiki is unavailable today, but you can find old copy of this page on
+archive.org / google cache)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
