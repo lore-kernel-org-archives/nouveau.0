@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 09 Sep 2012 18:49:06 +0000
-Message-ID: <bug-54700-8800-rQube8QPPB@http.bugs.freedesktop.org/>
+Date: Sun, 09 Sep 2012 18:50:12 +0000
+Message-ID: <bug-54700-8800-PdsaXJncBN@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,10 +23,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #1 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-09-09 18:49:06 UTC ---
-Created attachment 66890
-  --> https://bugs.freedesktop.org/attachment.cgi?id=66890
-dd if=/dev/mem of=vbios.rom bs=1k skip=768 count=64
+--- Comment #2 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-09-09 18:50:12 UTC ---
+Created attachment 66892
+  --> https://bugs.freedesktop.org/attachment.cgi?id=66892
+Xorg.0.log
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
