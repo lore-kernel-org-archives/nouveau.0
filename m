@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50403] NV28 double cursor & ugly graphics & crashes
-Date: Sun, 09 Sep 2012 18:54:50 +0000
-Message-ID: <bug-50403-8800-99l0ewXiPD@http.bugs.freedesktop.org/>
+Date: Sun, 09 Sep 2012 19:15:06 +0000
+Message-ID: <bug-50403-8800-EWQ3MfVzQf@http.bugs.freedesktop.org/>
 References: <bug-50403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,10 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50403
 
---- Comment #32 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 2012-09-09 18:54:50 UTC ---
-Hi this bug might be related to the one I've reported here
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
-as asked by debian mantainers.
+--- Comment #33 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> 2012-09-09 19:15:06 UTC ---
+nvdia just released a new driver: see
+https://bugs.launchpad.net/ubuntu/+source/nvidia-graphics-drivers-173/+bug/948053
+post #119
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
