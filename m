@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39010] better handling of large pixmaps
-Date: Sun, 09 Sep 2012 17:43:40 +0000
-Message-ID: <bug-39010-8800-huPukydzil@http.bugs.freedesktop.org/>
-References: <bug-39010-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54700] New: Distorted graphics (double cursor) with
+ GeForce 4200Go (NV28)
+Date: Sun, 09 Sep 2012 18:46:01 +0000
+Message-ID: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +19,96 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzkwMTAKCkd5w7Zy
-Z3kgQmFsbMOzIDxiYWxsb2d5QGZyZWVzdGFydC5odT4gY2hhbmdlZDoKCiAgICAgICAgICAgV2hh
-dCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tCiAgQXR0YWNobWVudCAjNTI5MDV8MCAgICAgICAgICAgICAgICAgICAgICAgICAgIHwxCiAg
-ICAgICAgaXMgb2Jzb2xldGV8ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKCi0tLSBDb21t
-ZW50ICM2IGZyb20gR3nDtnJneSBCYWxsw7MgPGJhbGxvZ3lAZnJlZXN0YXJ0Lmh1PiAyMDEyLTA5
-LTA5IDE3OjQzOjQwIFVUQyAtLS0KQ3JlYXRlZCBhdHRhY2htZW50IDY2ODg1CiAgLS0+IGh0dHBz
-Oi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NjY4ODUKZXhhOiBzZXQg
-bWF4IGRpbWVuc2lvbnMgYmFzZWQgb24gYXZhaWxhYmxlIFZSQU0KCkkgdXBkYXRlZCB0aGUgcGF0
-Y2ggZm9yIHRoZSBjdXJyZW50IGdpdCBtYXN0ZXIuCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0
-dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0t
-LSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRo
-ZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+https://bugs.freedesktop.org/show_bug.cgi?id=54700
+
+             Bug #: 54700
+           Summary: Distorted graphics (double cursor) with GeForce 4200Go
+                    (NV28)
+    Classification: Unclassified
+           Product: xorg
+           Version: unspecified
+          Platform: x86 (IA32)
+        OS/Version: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+        ReportedBy: r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+
+Created attachment 66889
+  --> https://bugs.freedesktop.org/attachment.cgi?id=66889
+dmesg output
+
+In a newly installed debian wheezy (no non-free nvidia drivers around) nouveau
+gives distorted graphics with a Geforce 4200Go (Dell inspiron 8500), see png
+attached. The mouse pointer is distorted and the desktop difficultly usable.
+
+This bug has been reported in debian
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=686611
+and might be related to 
+https://bugs.freedesktop.org/show_bug.cgi?id=50403
+
+The files I attach refer to
+
+# cat /etc/X11/xorg.conf.d/98-me
+Section "Device"
+Identifier "Device0"
+Driver "nouveau"
+EndSection
+
+and no other tricks, but I've also tried:
+
+1) boot with nouveau.noaccel=1 in kernel line
+   TTY and X badly screwed up
+
+2) boot with nouveau.nofbaccel=1 in kernel line
+   TTY badly screwed up, X distorted as in the plain case
+
+3) boot with Option "NoAccel" "On"
+X distorted
+
+4) Booted with experimenta kernel
+linux-image-3.5-trunk-686-pae   
+Version: 3.5.2-1~experimental.1
+black TTY and black X so I cannot document this.
+
+-----Kernel version
+# cat /proc/version
+Linux version 3.2.0-3-686-pae (Debian 3.2.23-1)
+(debian-kernel-0aAXYlwwYIJuHlm7Suoebg@public.gmane.org) (gcc version 4.6.3 (Debian 4.6.3-8) ) #1 SMP
+Mon Jul 23 03:50:34 UTC 2012
+
+-----Nouveau version
+# aptitude show xserver-xorg-video-nouveau
+Package: xserver-xorg-video-nouveau      
+State: installed
+Automatically installed: yes
+Version: 1:1.0.1-3
+Priority: optional
+Section: x11
+Maintainer: Debian X Strike Force <debian-x-0aAXYlwwYIJuHlm7Suoebg@public.gmane.org>
+Architecture: i386
+Uncompressed Size: 483 k
+Depends: libc6 (>= 2.4), libdrm2 (>= 2.4.17), libudev0 (>= 146),
+xorg-video-abi-12, xserver-xorg-core (>= 2:1.11.99.901)
+Recommends: libgl1-mesa-dri (>= 7.11.1)
+Provides: xorg-driver-video
+Description: X.Org X server -- Nouveau display driver
+ This driver for the X.Org X server (see xserver-xorg for a further
+description) provides support for NVIDIA Riva, TNT,
+ GeForce, and Quadro cards.                                                     
+
+ This package provides 2D support including EXA acceleration, Xv and RandR.  3D
+functionality is provided by the           
+ libgl1-mesa-dri package.                                                       
+
+ This package is built from the FreeDesktop.org xf86-video-nouveau driver.      
+Homepage: http://nouveau.freedesktop.org/wiki/
+
+-- 
+Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
+------- You are receiving this mail because: -------
+You are the assignee for the bug.
