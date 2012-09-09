@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54587] Flickering screen on Geforece 4
-Date: Sun, 09 Sep 2012 05:55:27 +0000
-Message-ID: <bug-54587-8800-qBMuisMULY@http.bugs.freedesktop.org/>
+Date: Sun, 09 Sep 2012 10:59:51 +0000
+Message-ID: <bug-54587-8800-2sMWady08x@http.bugs.freedesktop.org/>
 References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54587
 
---- Comment #13 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> 2012-09-09 05:55:27 UTC ---
-Created attachment 66869
-  --> https://bugs.freedesktop.org/attachment.cgi?id=66869
-Photo of my monitor
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #66865|text/x-log                  |text/plain
+          mime type|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
