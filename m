@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54587] Flickering screen on Geforece 4
-Date: Sun, 09 Sep 2012 05:47:23 +0000
-Message-ID: <bug-54587-8800-RuAmb1mJFm@http.bugs.freedesktop.org/>
+Date: Sun, 09 Sep 2012 05:54:03 +0000
+Message-ID: <bug-54587-8800-wOrEWL9pk3@http.bugs.freedesktop.org/>
 References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,11 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54587
 
---- Comment #11 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> 2012-09-09 05:47:23 UTC ---
-Created attachment 66866
-  --> https://bugs.freedesktop.org/attachment.cgi?id=66866
-VGA ROM
+--- Comment #12 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> 2012-09-09 05:54:03 UTC ---
+I had xorg.conf because Ubuntu display settings did not offer the correct
+resolution for my monitor (1920x1080). Removing it did not help. Removing
+polling worked. See attached photo of the monitor and notice the wrong position
+of the screen and difference in mouse pointer and focus.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
