@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] Flickering screen on Geforece 4
-Date: Sun, 09 Sep 2012 10:59:51 +0000
-Message-ID: <bug-54587-8800-2sMWady08x@http.bugs.freedesktop.org/>
-References: <bug-54587-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39010] better handling of large pixmaps
+Date: Sun, 09 Sep 2012 17:43:40 +0000
+Message-ID: <bug-39010-8800-huPukydzil@http.bugs.freedesktop.org/>
+References: <bug-39010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54587
-
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #66865|text/x-log                  |text/plain
-          mime type|                            |
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzkwMTAKCkd5w7Zy
+Z3kgQmFsbMOzIDxiYWxsb2d5QGZyZWVzdGFydC5odT4gY2hhbmdlZDoKCiAgICAgICAgICAgV2hh
+dCAgICB8UmVtb3ZlZCAgICAgICAgICAgICAgICAgICAgIHxBZGRlZAotLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tCiAgQXR0YWNobWVudCAjNTI5MDV8MCAgICAgICAgICAgICAgICAgICAgICAgICAgIHwxCiAg
+ICAgICAgaXMgb2Jzb2xldGV8ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKCi0tLSBDb21t
+ZW50ICM2IGZyb20gR3nDtnJneSBCYWxsw7MgPGJhbGxvZ3lAZnJlZXN0YXJ0Lmh1PiAyMDEyLTA5
+LTA5IDE3OjQzOjQwIFVUQyAtLS0KQ3JlYXRlZCBhdHRhY2htZW50IDY2ODg1CiAgLS0+IGh0dHBz
+Oi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9NjY4ODUKZXhhOiBzZXQg
+bWF4IGRpbWVuc2lvbnMgYmFzZWQgb24gYXZhaWxhYmxlIFZSQU0KCkkgdXBkYXRlZCB0aGUgcGF0
+Y2ggZm9yIHRoZSBjdXJyZW50IGdpdCBtYXN0ZXIuCgotLSAKQ29uZmlndXJlIGJ1Z21haWw6IGh0
+dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvdXNlcnByZWZzLmNnaT90YWI9ZW1haWwKLS0tLS0t
+LSBZb3UgYXJlIHJlY2VpdmluZyB0aGlzIG1haWwgYmVjYXVzZTogLS0tLS0tLQpZb3UgYXJlIHRo
+ZSBhc3NpZ25lZSBmb3IgdGhlIGJ1Zy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
