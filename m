@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54587] Flickering screen on Geforece 4
-Date: Sun, 09 Sep 2012 21:15:01 +0000
-Message-ID: <bug-54587-8800-gZqiK2i5qX@http.bugs.freedesktop.org/>
+Date: Mon, 10 Sep 2012 11:36:56 +0000
+Message-ID: <bug-54587-8800-3eK6Up2sKR@http.bugs.freedesktop.org/>
 References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54587
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #15 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> 2012-09-10 11:36:56 UTC ---
+I tried to move screen position with xvidtune but it did not allow. I took
+xvidtune -show in my current well working Ubuntu 10.04 setup:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org,
-                   |                            |marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+"1920x1080"   148.50   1920 2008 2056 2200   1080 1084 1089 1125 +hsync +vsync
 
---- Comment #14 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-09 21:15:01 UTC ---
-Quite unlikely, but maybe you can fix it with cvt / xvidtune. 
-Other than that I have no idea how to proceed. Let's CC curro.
+I set exactly like this in Ubuntu 12.04 modeline. Still there is a grey block
+above the top of the screen and missing lines at the bottom. The mouse cursor
+and focus does not sync. Snow when scrolling window contents and even when the
+mouse pointer has a waiting animation on. Horizontally the screen is fine.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
