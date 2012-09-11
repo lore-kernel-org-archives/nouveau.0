@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52244] [ 4.876531] [drm] nouveau 0000:01:00.0: GPU
  lockup - switching to software fbcon
-Date: Tue, 11 Sep 2012 09:18:46 +0000
-Message-ID: <bug-52244-8800-cerGOXprtm@http.bugs.freedesktop.org/>
+Date: Tue, 11 Sep 2012 09:20:14 +0000
+Message-ID: <bug-52244-8800-k0TQFpsoEc@http.bugs.freedesktop.org/>
 References: <bug-52244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,23 +23,9 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52244
 
---- Comment #11 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-11 09:18:46 UTC ---
-I also have this in the kernel log but I don't know if it is indicative of the
-same issue:
-
-Sep 11 09:31:20 localhost kernel: [    9.278108] [drm] nouveau 0000:01:00.0:
-allocated 1680x1050 fb: 0x2b0000, bo ffff88011284e400
-Sep 11 09:31:20 localhost kernel: [    9.278195] fbcon: nouveaufb (fb0) is
-primary device
-Sep 11 09:31:20 localhost kernel: [    9.317007] Console: switching to colour
-frame buffer device 210x65
-Sep 11 09:31:20 localhost kernel: [    9.321037] fb0: nouveaufb frame buffer
-device
-Sep 11 09:31:20 localhost kernel: [    9.321039] drm: registered panic notifier
-Sep 11 09:31:20 localhost kernel: [    9.321044] [drm] Initialized nouveau
-1.0.0 20120316 for 0000:01:00.0 on minor 0
-
-Does the reference to panic notifier indicate a problem or is that expected?
+--- Comment #12 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-11 09:20:14 UTC ---
+I forgot to add that I am using card NVIDIA Corporation G86M [Quadro FX 360M]
+(rev a1)
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
