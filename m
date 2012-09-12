@@ -1,10 +1,10 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: inline nv_printk into nv_assert
-Date: Thu, 13 Sep 2012 00:49:23 +0200
-Message-ID: <20120912224923.GB8067@joi.lan>
+Subject: [PATCH] drm/nouveau: add default debug level override
+Date: Thu, 13 Sep 2012 00:50:06 +0200
+Message-ID: <20120912225006.GC8067@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,42 @@ To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-bnZfb2JqZWN0IHVzZXMgbnZfYXNzZXJ0LCBudl9hc3NlcnQgdXNlcyBudl9wcmludGsgYW5kIG52
-X3ByaW50ayB1c2VzCm52X29iamVjdCAtIHdoaWNoIGxlYWRzIHRvIHJlY3Vyc2lvbjoKCmRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvaW5jbHVkZS9jb3JlL29iamVjdC5oOjMxOjE6IHNvcnJ5
-LCB1bmltcGxlbWVudGVkOgppbmxpbmluZyBmYWlsZWQgaW4gY2FsbCB0byDigJhudl9vYmplY3Qu
-Y29uc3Rwcm9wLjDigJk6IHJlY3Vyc2l2ZSBpbmxpbmluZwoKQXMgbnZfb2JqZWN0IGNhbGwgZnJv
-bSBudl9hc3NlcnQgaXMgbm90IG5lZWRlZCAob2JqZWN0IGlzIGFsd2F5cyBOVUxMKSwgaW5saW5l
-Cm52X3ByaW50ayBpbnRvIG52X2Fzc2VydC4KCkl0IHdvdWxkIGJlIGdvb2QgdG8gZm9sZCBpdCBp
-bnRvIGNvbW1pdCB3aGljaCBpbnRyb2R1Y2VkIGxvZ2dpbmcgbWFjcm9zIGJlY2F1c2UKaXQgYnJl
-YWtzIGJpc2VjdGlvbi4KClNpZ25lZC1vZmYtYnk6IE1hcmNpbiBTbHVzYXJ6IDxtYXJjaW4uc2x1
-c2FyekBnbWFpbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9pbmNsdWRl
-L2NvcmUvcHJpbnRrLmggfCAzICsrLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwg
-MSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUv
-aW5jbHVkZS9jb3JlL3ByaW50ay5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9pbmNs
-dWRlL2NvcmUvcHJpbnRrLmgKaW5kZXggN2RlZWFlMi4uODllYmEwMiAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9pbmNsdWRlL2NvcmUvcHJpbnRrLmgKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9pbmNsdWRlL2NvcmUvcHJpbnRrLmgKQEAgLTM3LDcg
-KzM3LDggQEAgYm9vbCBudl9wcmludGtfZW5hYmxlZF8oc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpv
-YmplY3QsIGludCBsZXZlbCk7CiAjZGVmaW5lIG52X3NwYW0obyxmLGEuLi4pIG52X3ByaW50aygo
-byksIFNQQU0sIGYsICMjYSkKIAogI2RlZmluZSBudl9hc3NlcnQoZixhLi4uKSBkbyB7ICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKLQludl9wcmludGso
-TlVMTCwgRkFUQUwsIGYgIlxuIiwgIyNhKTsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIFwKKwlpZiAoTlZfREJHX0ZBVEFMIDw9IENPTkZJR19OT1VWRUFVX0RFQlVHKSAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIFwKKwkJbnZfcHJpbnRrXyhOVUxMLCBOVl9QUklOVEtfRkFU
-QUwsIE5WX0RCR19GQVRBTCwgZiAiXG4iLCAjI2EpOyAgXAogCUJVR19PTigxKTsgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXAogfSB3
-aGlsZSgwKQogCi0tIAoxLjcuMTIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+Useful when we don't know which subsystem is failing.
+
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/core/option.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/core/core/option.c b/drivers/gpu/drm/nouveau/core/core/option.c
+index 62a432e..fde06b0 100644
+--- a/drivers/gpu/drm/nouveau/core/core/option.c
++++ b/drivers/gpu/drm/nouveau/core/core/option.c
+@@ -22,9 +22,16 @@
+  * Authors: Ben Skeggs
+  */
+ 
++#include <linux/module.h>
+ #include <core/option.h>
+ #include <core/debug.h>
+ 
++MODULE_PARM_DESC(debug_level, "nv_printk level (0-"
++		__stringify(CONFIG_NOUVEAU_DEBUG) ", default "
++		__stringify(CONFIG_NOUVEAU_DEBUG_DEFAULT) ")");
++static int nouveau_debug_level = CONFIG_NOUVEAU_DEBUG_DEFAULT;
++module_param_named(debug_level, nouveau_debug_level, int, 0400);
++
+ /* compares unterminated string 'str' with zero-terminated string 'cmp' */
+ static inline int
+ strncasecmpz(const char *str, const char *cmp, size_t len)
+@@ -86,7 +93,7 @@ nouveau_boolopt(const char *optstr, const char *opt, bool value)
+ int
+ nouveau_dbgopt(const char *optstr, const char *sub)
+ {
+-	int mode = 1, level = CONFIG_NOUVEAU_DEBUG_DEFAULT;
++	int mode = 1, level = nouveau_debug_level;
+ 
+ 	while (optstr) {
+ 		int len = strcspn(optstr, ",=");
+-- 
+1.7.12
