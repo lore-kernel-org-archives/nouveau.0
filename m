@@ -1,14 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54056] plenty of errors trapped write at plus PGRAPH
-	error
-Date: Wed, 12 Sep 2012 16:20:07 +0000
-Message-ID: <bug-54056-8800-p4Xgj4QmLz@http.bugs.freedesktop.org/>
-References: <bug-54056-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 53219] ION: crash in nouveau_mm_head+0x37/0x170
+ (regression of module rework)
+Date: Wed, 12 Sep 2012 17:55:53 +0000
+Message-ID: <bug-53219-8800-FsSLLdFC5M@http.bugs.freedesktop.org/>
+References: <bug-53219-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54056-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-53219-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +21,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54056
+https://bugs.freedesktop.org/show_bug.cgi?id=53219
 
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-12 16:20:07 UTC ---
-Created attachment 67059
-  --> https://bugs.freedesktop.org/attachment.cgi?id=67059
-possible fix
+Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
 
-Does this patch happen to fix your first issue by any chance?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|glxgears crashes kernel     |ION: crash in
+                   |                            |nouveau_mm_head+0x37/0x170
+                   |                            |(regression of module
+                   |                            |rework)
 
-Sebastian: your bug looks completely different. Please file new bug report as
-described here: http://nouveau.freedesktop.org/wiki/Bugs
+--- Comment #1 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> 2012-09-12 17:55:53 UTC ---
+Better summary.
+
+Before I had bug 50836.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
