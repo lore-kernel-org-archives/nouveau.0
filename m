@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54883] New: Nvidia GLX560M: Display corruption in
- GTK+ apps and unable to wake from sleep
-Date: Thu, 13 Sep 2012 17:14:56 +0000
-Message-ID: <bug-54883-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54892] New: [patch] confusing error message with
+	noaccel
+Date: Thu, 13 Sep 2012 21:01:51 +0000
+Message-ID: <bug-54892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,35 +19,31 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54883
+https://bugs.freedesktop.org/show_bug.cgi?id=54892
 
-             Bug #: 54883
-           Summary: Nvidia GLX560M: Display corruption in GTK+ apps and
-                    unable to wake from sleep
+             Bug #: 54892
+           Summary: [patch] confusing error message with noaccel
     Classification: Unclassified
-           Product: Mesa
+           Product: xorg
            Version: git
-          Platform: x86-64 (AMD64)
+          Platform: All
         OS/Version: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
-         Component: Drivers/DRI/nouveau
+         Component: Driver/nouveau
         AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: kuba-fOcxhLKPfRSrDJvtcaxF/A@public.gmane.org
+        ReportedBy: freedesktop-xdCxd1SecUs@public.gmane.org
+         QAContact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
 
-I originally reported it in Gentoo Bugzilla:
+When the kernel module is given the 'noaccel' option, but acceleration is not
+turned off in the x.org configuration, a confusing '-19' (ENODEV) error appears
+in the x.org logs.
 
-https://bugs.gentoo.org/show_bug.cgi?id=429636
-
-After switch from mesa-8.0.x to 9.0 snapshots or git master I have screen
-corruptions in GTK+ apps (two I use are Firefox and MySQL workbench).
-Furthermore after waking from suspend to RAM I see totally corrupted screen and
-non-responsive keyboard.
-
-I'd gladly help in any way in resolving this. I just need to be instructed what
-kind of information may be useful and how to obtain them.
+The patch at
+http://lists.freedesktop.org/archives/nouveau/2012-June/010523.html provides a
+more useful error message.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
