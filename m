@@ -1,15 +1,15 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH] drm/nouveau: add default debug level override
-Date: Thu, 13 Sep 2012 13:25:16 +0200
-Message-ID: <20120913112516.GA3243@joi.lan>
+Date: Thu, 13 Sep 2012 13:31:53 +0200
+Message-ID: <20120913113153.GB3243@joi.lan>
 References: <20120912225006.GC8067@joi.lan>
-	<20120913020920.GA11828@nisroch.bne.redhat.com>
+ <50516236.6000405@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20120913020920.GA11828-7ZJhIA9XobDzA+JJ9lL7d4GKTjYczspe@public.gmane.org>
+In-Reply-To: <50516236.6000405-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,24 +19,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Sep 13, 2012 at 12:09:20PM +1000, Ben Skeggs wrote:
-> On Thu, Sep 13, 2012 at 12:50:06AM +0200, Marcin Slusarz wrote:
+On Thu, Sep 13, 2012 at 06:33:58AM +0200, Maarten Lankhorst wrote:
+> Hey,
+> 
+> Op 13-09-12 00:50, Marcin Slusarz schreef:
 > > Useful when we don't know which subsystem is failing.
-> This is really unnecessary unless I'm missing something.  You can pass nouveau.debug=LEVEL (without specifying a subdev name) to set the default already.
-
-Does not work for me: http://bpaste.net/show/45252/
-(ignore gpio debugging messages - I'm looking for suspend regression)
-
-> > 
+> >
 > > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > > ---
 > >  drivers/gpu/drm/nouveau/core/core/option.c | 9 ++++++++-
 > >  1 file changed, 8 insertions(+), 1 deletion(-)
-> > 
+> >
 > > diff --git a/drivers/gpu/drm/nouveau/core/core/option.c b/drivers/gpu/drm/nouveau/core/core/option.c
 > > index 62a432e..fde06b0 100644
 > > --- a/drivers/gpu/drm/nouveau/core/core/option.c
@@ -54,19 +51,9 @@ Does not work for me: http://bpaste.net/show/45252/
 > > +		__stringify(CONFIG_NOUVEAU_DEBUG_DEFAULT) ")");
 > > +static int nouveau_debug_level = CONFIG_NOUVEAU_DEBUG_DEFAULT;
 > > +module_param_named(debug_level, nouveau_debug_level, int, 0400);
-> > +
-> >  /* compares unterminated string 'str' with zero-terminated string 'cmp' */
-> >  static inline int
-> >  strncasecmpz(const char *str, const char *cmp, size_t len)
-> > @@ -86,7 +93,7 @@ nouveau_boolopt(const char *optstr, const char *opt, bool value)
-> >  int
-> >  nouveau_dbgopt(const char *optstr, const char *sub)
-> >  {
-> > -	int mode = 1, level = CONFIG_NOUVEAU_DEBUG_DEFAULT;
-> > +	int mode = 1, level = nouveau_debug_level;
-> >  
-> >  	while (optstr) {
-> >  		int len = strcspn(optstr, ",=");
-> > -- 
-> > 1.7.12
-> > 
+> Why make default 0400? 0600 or 0644 would make more sense..
+
+No particular reason. I copied it from other module parameter (_all_ of
+them use 0400). 0644 sounds ok.
+
+Marcin
