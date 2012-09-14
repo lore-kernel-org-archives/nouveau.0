@@ -1,13 +1,14 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: POST the card before GPIO
-	initialization
-Date: Fri, 14 Sep 2012 00:21:33 +0200
-Message-ID: <20120913222133.GA8982@joi.lan>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: inline nv_printk into nv_assert
+Date: Fri, 14 Sep 2012 10:25:11 +1000
+Message-ID: <20120914002510.GA4289@nisroch.bne.redhat.com>
+References: <20120912224923.GB8067@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
+In-Reply-To: <20120912224923.GB8067-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,69 +18,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Otherwise my card (nv92) never resumes from suspend to ram, hanging on
-nv_mask in nv50_gpio_drive. Before rework, initialization was done only
-from POST, so this patch restores previous behaviour.
-
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
-
-Let me tell you little story about this patch...
-
-It took me ~week to figure it out.
-1) I bisected it to "drm/nouveau/gpio: port gpio to subdev interfaces", but
-looking at this commit I couldn't spot anything (who would...).
-2) Netconsole hanged immediately on boot (I found the commit which broke
-netconsole and it turned out to be already known broken with patch fixing it
-waiting for pull).
-3) Even with netconsole working, completely nothing reached netconsole across
-S/R - I had to add no_console_suspend on kernel command line to see anything.
-4) I still couldn't see anything Nouveau related, because Nouveau tried to
-resume before network card... (so when network card finally resumed on another
-CPU, Nouveau's resume was already hanging)
-5) With information from 1) I found hanging code by placing BUG()'s in various
-places and seeing if network card resumed...
-6) Then I had the idea to add msleep(10000) at the beginning of
-nouveau_drm_resume and voila! I could see Nouveau resuming.
-7) ... But I still couldn't see debugging messages (only KERN_INFO and above),
-so I patched nv_printk to emit all debugging messages on KERN_INFO level.
-8) I checked all variables in nv50_gpio_reset to see if dcb entries are
-calculated correctly - they were.
-9) At this point my S/R counter reached ~40, so I started to wonder how to
-debug it without actually doing S/R. So I came up with an idea of booting
-with NvForcePost=1. With all debugging messages reaching console I hit
-what turned out to be vgacon/Nouveau memory corruption bug... Facepalm.
-I fixed it 2 days later (patch posted yesterday), but... I still couldn't
-reproduce original issue without suspending.
-10) And then... I noticed in resume log that GPIO init is the very first thing
-Nouveau does on resume. Moving GPIO init after POST fixed everything. Yeah!
-
-PS: Yes, I know my English is awkward - sorry about it.
-
----
- drivers/gpu/drm/nouveau/core/include/core/device.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/core/include/core/device.h b/drivers/gpu/drm/nouveau/core/include/core/device.h
-index 588deb9..3a6482e 100644
---- a/drivers/gpu/drm/nouveau/core/include/core/device.h
-+++ b/drivers/gpu/drm/nouveau/core/include/core/device.h
-@@ -8,11 +8,11 @@
- enum nv_subdev_type {
- 	NVDEV_SUBDEV_DEVICE,
- 	NVDEV_SUBDEV_VBIOS,
--	NVDEV_SUBDEV_GPIO,
- 	NVDEV_SUBDEV_I2C,
- 	NVDEV_SUBDEV_CLOCK,
- 	NVDEV_SUBDEV_MXM,
- 	NVDEV_SUBDEV_DEVINIT,
-+	NVDEV_SUBDEV_GPIO,
- 	NVDEV_SUBDEV_MC,
- 	NVDEV_SUBDEV_TIMER,
- 	NVDEV_SUBDEV_FB,
--- 
-1.7.12
+T24gVGh1LCBTZXAgMTMsIDIwMTIgYXQgMTI6NDk6MjNBTSArMDIwMCwgTWFyY2luIFNsdXNhcnog
+d3JvdGU6Cj4gbnZfb2JqZWN0IHVzZXMgbnZfYXNzZXJ0LCBudl9hc3NlcnQgdXNlcyBudl9wcmlu
+dGsgYW5kIG52X3ByaW50ayB1c2VzCj4gbnZfb2JqZWN0IC0gd2hpY2ggbGVhZHMgdG8gcmVjdXJz
+aW9uOgo+IAo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvaW5jbHVkZS9jb3JlL29iamVj
+dC5oOjMxOjE6IHNvcnJ5LCB1bmltcGxlbWVudGVkOgo+IGlubGluaW5nIGZhaWxlZCBpbiBjYWxs
+IHRvIOKAmG52X29iamVjdC5jb25zdHByb3AuMOKAmTogcmVjdXJzaXZlIGlubGluaW5nCj4gCj4g
+QXMgbnZfb2JqZWN0IGNhbGwgZnJvbSBudl9hc3NlcnQgaXMgbm90IG5lZWRlZCAob2JqZWN0IGlz
+IGFsd2F5cyBOVUxMKSwgaW5saW5lCj4gbnZfcHJpbnRrIGludG8gbnZfYXNzZXJ0Lgo+IAo+IEl0
+IHdvdWxkIGJlIGdvb2QgdG8gZm9sZCBpdCBpbnRvIGNvbW1pdCB3aGljaCBpbnRyb2R1Y2VkIGxv
+Z2dpbmcgbWFjcm9zIGJlY2F1c2UKPiBpdCBicmVha3MgYmlzZWN0aW9uLgpUaGFua3MsIHNxdWFz
+aGVkIGludG8gdGhlIHJlbGV2YW50IGNvbW1pdC4KCj4gCj4gU2lnbmVkLW9mZi1ieTogTWFyY2lu
+IFNsdXNhcnogPG1hcmNpbi5zbHVzYXJ6QGdtYWlsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvY29yZS9pbmNsdWRlL2NvcmUvcHJpbnRrLmggfCAzICsrLQo+ICAxIGZpbGUg
+Y2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvaW5jbHVkZS9jb3JlL3ByaW50ay5oIGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9pbmNsdWRlL2NvcmUvcHJpbnRrLmgKPiBpbmRleCA3
+ZGVlYWUyLi44OWViYTAyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Nv
+cmUvaW5jbHVkZS9jb3JlL3ByaW50ay5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+Y29yZS9pbmNsdWRlL2NvcmUvcHJpbnRrLmgKPiBAQCAtMzcsNyArMzcsOCBAQCBib29sIG52X3By
+aW50a19lbmFibGVkXyhzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iamVjdCwgaW50IGxldmVsKTsK
+PiAgI2RlZmluZSBudl9zcGFtKG8sZixhLi4uKSBudl9wcmludGsoKG8pLCBTUEFNLCBmLCAjI2Ep
+Cj4gIAo+ICAjZGVmaW5lIG52X2Fzc2VydChmLGEuLi4pIGRvIHsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXAo+IC0JbnZfcHJpbnRrKE5VTEwsIEZBVEFM
+LCBmICJcbiIsICMjYSk7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcCj4gKwlp
+ZiAoTlZfREJHX0ZBVEFMIDw9IENPTkZJR19OT1VWRUFVX0RFQlVHKSAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIFwKPiArCQludl9wcmludGtfKE5VTEwsIE5WX1BSSU5US19GQVRBTCwgTlZf
+REJHX0ZBVEFMLCBmICJcbiIsICMjYSk7ICBcCj4gIAlCVUdfT04oMSk7ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKPiAgfSB3aGls
+ZSgwKQo+ICAKPiAtLSAKPiAxLjcuMTIKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
