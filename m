@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43731] No support for DP on NVD9
-Date: Fri, 14 Sep 2012 00:27:25 +0000
-Message-ID: <bug-43731-8800-wWwrB7TOeb@http.bugs.freedesktop.org/>
-References: <bug-43731-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 53402] nouveau_bo.c:463:3: error: implicit
+ declaration of function 'ttm_agp_tt_create'
+Date: Fri, 14 Sep 2012 06:42:24 +0000
+Message-ID: <bug-53402-8800-7Ya6K7rCcD@http.bugs.freedesktop.org/>
+References: <bug-53402-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-43731-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-53402-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +21,10 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43731
+https://bugs.freedesktop.org/show_bug.cgi?id=53402
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|                            |NOTABUG
-
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-14 00:27:25 UTC ---
-DP support for GF119 and up was added in kernel 3.5.
+--- Comment #7 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-14 06:42:24 UTC ---
+Any idea why your fix has not made it upstream yet?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
