@@ -1,11 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54910] New: Problems with nouveau and Gforce 2MX
-Date: Fri, 14 Sep 2012 08:39:56 +0000
-Message-ID: <bug-54910-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: POST the card before GPIO
+	initialization
+Date: Fri, 14 Sep 2012 13:45:18 +0200
+Message-ID: <20120914114518.GA3619@joi.lan>
+References: <20120913222133.GA8982@joi.lan>
+	<20120914064459.GE4289@nisroch.bne.redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20120914064459.GE4289-7ZJhIA9XobDzA+JJ9lL7d4GKTjYczspe@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,73 +20,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54910
+On Fri, Sep 14, 2012 at 04:44:59PM +1000, Ben Skeggs wrote:
+> On Fri, Sep 14, 2012 at 12:21:33AM +0200, Marcin Slusarz wrote:
+> > Otherwise my card (nv92) never resumes from suspend to ram, hanging on
+> > nv_mask in nv50_gpio_drive. Before rework, initialization was done only
+> > from POST, so this patch restores previous behaviour.
+> This patch would break the cold-boot behaviour (DEVINIT needs GPIO etc
+> to have been created so it can call out to them).
+> 
+> I've modified nouveau git so that it restores the behaviour of the first
+> version of the rework and has DEVINIT be the first in the init ordering,
+> but delays its init until all its dependencies have been created.
+> 
+> Can you confirm your issue is resolved now?
 
-             Bug #: 54910
-           Summary: Problems with nouveau and Gforce 2MX
-    Classification: Unclassified
-           Product: Mesa
-           Version: unspecified
-          Platform: Other
-        OS/Version: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-        AssignedTo: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-        ReportedBy: klxout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Yes.
 
+Two thoughts:
 
-Created attachment 67143
-  --> https://bugs.freedesktop.org/attachment.cgi?id=67143
-logs dmes, Xorg, lspci -v
+Your commit message states that the next commit triggers the bad behaviour,
+but it's not completely true - I had resume lockups even before this commit
+hit the tree. Though I don't know what was the problem.
 
-Hello,
+It's a bit sad when ones spends a lot of time on debugging something and
+the patch is redone the next day by the maintainer. If you would give me
+the feedback on the patch, I would improve it and resend.
 
-I have installed Debian 6 (Squeeze) and 7 (wheezy) with a nouveau and Xorg
-doesn't work correctly when I try to enter in Gnome. Appears a login but after
-enter user/password hangs on and nothing appears
-
-I have attached dmes logs and Xorg logs, and lspci -v
-
-We are using a Pentium 4 with Gforce 2 MX. 
-With Debian 5 (Lenny) and without nouveau all is working correctly
-
-There are many error in logs, like:
-
-
-[ 1484.279058] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2/3 class 0x0062 mthd
-0x0288 data 0x20042000
-[ 1484.279064] [drm] nouveau 0000:01:00.0: PGRAPH - (unknown bits 0x00000010)
-nsource: nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 1484.279072] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2/3 class 0x0062 mthd
-0x028c data 0x20001400
-[ 1484.279078] [drm] nouveau 0000:01:00.0: PGRAPH - (unknown bits 0x00000010)
-nsource: nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 1484.279087] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2/3 class 0x0062 mthd
-0x0228 data 0x00000000
-[ 1484.279093] [drm] nouveau 0000:01:00.0: PGRAPH - ERROR nsource: ILLEGAL_MTHD
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 1484.279102] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2/3 class 0x0062 mthd
-0x0d04 data 0x00002032
-[ 1484.279109] [drm] nouveau 0000:01:00.0: PGRAPH - ERROR nsource: ILLEGAL_MTHD
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 1484.279118] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2/3 class 0x0062 mthd
-0x0d0c data 0x00002044
-[ 1484.279124] [drm] nouveau 0000:01:00.0: PGRAPH - ERROR nsource: ILLEGAL_MTHD
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 1484.279133] [drm] nouveau 0000:01:00.0: PGRAPH - ch 2/3 class 0x0062 mthd
-0x0d14 data 0x00000002
-
-
-Where is the problem?
-
-Thanks
-
--- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+Marcin
