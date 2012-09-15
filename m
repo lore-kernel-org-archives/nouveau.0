@@ -1,8 +1,8 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54970] EOG Eye of gnome shows black stripe in
  pictures with nouveau driver
-Date: Sat, 15 Sep 2012 16:19:25 +0000
-Message-ID: <bug-54970-8800-5hXdBEBL2W@http.bugs.freedesktop.org/>
+Date: Sat, 15 Sep 2012 16:20:39 +0000
+Message-ID: <bug-54970-8800-TCNFUi4fB5@http.bugs.freedesktop.org/>
 References: <bug-54970-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,9 +23,12 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54970
 
---- Comment #1 from Adam Niedling <kricsek-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> 2012-09-15 16:19:25 UTC ---
-Error message can be seen in the nouveau Xorg.0.log:
-http://bugzilla-attachments.gnome.org/attachment.cgi?id=219397
+Adam Niedling <kricsek-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #67209|Xorg.0.log                  |nVidia-173 Xorg.0.log
+        description|                            |
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
