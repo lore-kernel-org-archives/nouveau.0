@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54988] [C51PV] Garbage on initial Console Screen
-Date: Sun, 16 Sep 2012 19:58:49 +0000
-Message-ID: <bug-54988-8800-qMift14YQI@http.bugs.freedesktop.org/>
+Date: Sun, 16 Sep 2012 20:04:39 +0000
+Message-ID: <bug-54988-8800-cLdgWyPusB@http.bugs.freedesktop.org/>
 References: <bug-54988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,16 +22,18 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54988
 
---- Comment #6 from D. Hugh Redelmeier <hugh-pmF8o41NoarQT0dZR+AlfA@public.gmane.org> 2012-09-16 19:58:49 UTC ---
-Marcin:
+--- Comment #7 from baldur-htSm2yLGOjU@public.gmane.org 2012-09-16 20:04:39 UTC ---
+I can add another data point, which indicates it is not the hardware.
 
-As I mentioned in 46557, I'm not convinced that the problem is hardware.  It
-could easily be some widening bug in C code.  It smells like sign-extension of
-a 32 bit quantity that should be zero-extended.  But it could be the truncation
-of a wider-than-32-bit quantity to 32 bits.  And, of course, it could be
-hardware.
 
-Why would the 32-bit Linux have no trouble with the identical hardware?
+This card works "flawless" with the nvidia driver since 4.5 years. It is only
+my curiosity, why i try nouveau from time to time.
+
+As recompiling the kernel on every new update from fedora is not an option i am
+going back to the nvidia driver.
+
+But at least i know now how to install a "fresh" fedora (mem=2G), so your help
+is greatly appreciated!
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
