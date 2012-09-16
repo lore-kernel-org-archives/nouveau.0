@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54988] [C51PV] Garbage on initial Console Screen
-Date: Sun, 16 Sep 2012 20:38:51 +0000
-Message-ID: <bug-54988-8800-OhC5ZRdpLH@http.bugs.freedesktop.org/>
-References: <bug-54988-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 52244] [ 4.876531] [drm] nouveau 0000:01:00.0: GPU
+ lockup - switching to software fbcon
+Date: Sun, 16 Sep 2012 22:38:18 +0000
+Message-ID: <bug-52244-8800-gB34b4vH6j@http.bugs.freedesktop.org/>
+References: <bug-52244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-52244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,18 +21,20 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54988
+https://bugs.freedesktop.org/show_bug.cgi?id=52244
 
---- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-16 20:38:51 UTC ---
-D. Hugh Redelmeier:
-If you can prove it's "widening bug", please do (by fixing it).
-Memory used by the kernel in 32-bit mode is allocated in first GB, so you can't
-hit this bug there.
+--- Comment #13 from WorMzy Tykashi <wormzy.tykashi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-16 22:38:18 UTC ---
+https://bugs.freedesktop.org/show_bug.cgi?id=53101 and
+https://bugs.freedesktop.org/show_bug.cgi?id=53566 look to be a duplicates of
+this bug.
 
-Dietmar:
-Nvidia driver may:
-a) init the hardware in a way we don't, fixing this bug
-b) workaround it internally by allocating memory in first 2G
+Can confirm that reverting commit 1a46098e910b96337f0fe3838223db43b923bad4
+'fixes'* the problem. I'm using 3.6.0-rc5 right now after doing just that.
+
+
+*Haven't extensively tested this yet, I've only just compiled and booted a
+'fixed' kernel, but everything seems fine so far. In the second report, Vlad K
+suggests that reverting this commit may only delay the lockup.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
