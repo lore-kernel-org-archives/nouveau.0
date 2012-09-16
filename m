@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54988] [C51PV] Garbage on initial Console Screen
-Date: Sun, 16 Sep 2012 16:31:48 +0000
-Message-ID: <bug-54988-8800-Gu4Brn4lhb@http.bugs.freedesktop.org/>
+Date: Sun, 16 Sep 2012 19:41:48 +0000
+Message-ID: <bug-54988-8800-WWbgJknUXW@http.bugs.freedesktop.org/>
 References: <bug-54988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,8 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54988
 
---- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-16 16:31:48 UTC ---
-does it work if you boot with mem=2G in kernel command line?
+--- Comment #4 from baldur-htSm2yLGOjU@public.gmane.org 2012-09-16 19:41:48 UTC ---
+
+yes it works!
+(with mem=2G)
+
+
+But memory is already low on my system, so limiting it to 2G is not an option
+for me.
+
+This is an 64 bit system. So i am wondering why i have a 32bit (2G?) problem?
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
