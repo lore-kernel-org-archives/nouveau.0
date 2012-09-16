@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54988] [C51PV] Garbage on initial Console Screen
-Date: Sun, 16 Sep 2012 16:06:40 +0000
-Message-ID: <bug-54988-8800-TgZ1LKC6VJ@http.bugs.freedesktop.org/>
+Date: Sun, 16 Sep 2012 16:11:37 +0000
+Message-ID: <bug-54988-8800-HW0s1SbZqZ@http.bugs.freedesktop.org/>
 References: <bug-54988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,10 +22,13 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54988
 
---- Comment #1 from baldur-htSm2yLGOjU@public.gmane.org 2012-09-16 16:06:40 UTC ---
-Created attachment 67248
-  --> https://bugs.freedesktop.org/attachment.cgi?id=67248
-lspci -vv output
+--- Comment #2 from baldur-htSm2yLGOjU@public.gmane.org 2012-09-16 16:11:37 UTC ---
+Created attachment 67250
+  --> https://bugs.freedesktop.org/attachment.cgi?id=67250
+/var/log/dmesg from fedora
+
+as there are some initial lines missing from my dmesg output, this is what
+fedora had stored...
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
