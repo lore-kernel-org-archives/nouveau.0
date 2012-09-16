@@ -1,7 +1,7 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54988] [C51PV] Garbage on initial Console Screen
-Date: Sun, 16 Sep 2012 20:04:39 +0000
-Message-ID: <bug-54988-8800-cLdgWyPusB@http.bugs.freedesktop.org/>
+Date: Sun, 16 Sep 2012 20:38:51 +0000
+Message-ID: <bug-54988-8800-OhC5ZRdpLH@http.bugs.freedesktop.org/>
 References: <bug-54988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,18 +22,16 @@ List-Id: nouveau.vger.kernel.org
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54988
 
---- Comment #7 from baldur-htSm2yLGOjU@public.gmane.org 2012-09-16 20:04:39 UTC ---
-I can add another data point, which indicates it is not the hardware.
+--- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-16 20:38:51 UTC ---
+D. Hugh Redelmeier:
+If you can prove it's "widening bug", please do (by fixing it).
+Memory used by the kernel in 32-bit mode is allocated in first GB, so you can't
+hit this bug there.
 
-
-This card works "flawless" with the nvidia driver since 4.5 years. It is only
-my curiosity, why i try nouveau from time to time.
-
-As recompiling the kernel on every new update from fedora is not an option i am
-going back to the nvidia driver.
-
-But at least i know now how to install a "fresh" fedora (mem=2G), so your help
-is greatly appreciated!
+Dietmar:
+Nvidia driver may:
+a) init the hardware in a way we don't, fixing this bug
+b) workaround it internally by allocating memory in first 2G
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
