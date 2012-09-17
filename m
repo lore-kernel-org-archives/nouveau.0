@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37521] Regression in 2.6.39: No longer output on
- external monitor
-Date: Mon, 17 Sep 2012 15:20:18 +0000
-Message-ID: <bug-37521-8800-dyFckvZQH6@http.bugs.freedesktop.org/>
-References: <bug-37521-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35172] Nouveau crashes my gnome session
+Date: Mon, 17 Sep 2012 15:21:19 +0000
+Message-ID: <bug-35172-8800-KdCuqv9uBz@http.bugs.freedesktop.org/>
+References: <bug-35172-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37521-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35172-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,7 +20,7 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37521
+https://bugs.freedesktop.org/show_bug.cgi?id=35172
 
 LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> changed:
 
@@ -30,8 +29,8 @@ LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|                            |WONTFIX
 
---- Comment #3 from LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> 2012-09-17 15:20:18 UTC ---
-Not using Nouveau anymore till it is more stable.
+--- Comment #6 from LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> 2012-09-17 15:21:19 UTC ---
+Not using Nouveau anymore.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
