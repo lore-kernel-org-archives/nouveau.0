@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37521] Regression in 2.6.39: No longer output on
- external monitor
-Date: Mon, 17 Sep 2012 16:39:34 +0000
-Message-ID: <bug-37521-8800-TRuFi70ys8@http.bugs.freedesktop.org/>
-References: <bug-37521-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35172] Nouveau crashes my gnome session
+Date: Mon, 17 Sep 2012 16:41:57 +0000
+Message-ID: <bug-35172-8800-PyJB63GemH@http.bugs.freedesktop.org/>
+References: <bug-35172-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37521-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35172-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,11 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37521
+https://bugs.freedesktop.org/show_bug.cgi?id=35172
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|WONTFIX                     |INVALID
-
---- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-17 16:39:34 UTC ---
-Lack of requested data, so WONTFIX->INVALID.
+--- Comment #8 from LCID Fire <lcid-fire-hi6Y0CQ0nG0@public.gmane.org> 2012-09-17 16:41:57 UTC ---
+Sorry, to burst your bubble, but X does not even start up with Mesa 9.0 and
+Nouveau.
 
 -- 
 Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
