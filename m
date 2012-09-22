@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34430] nouveau driver does not return VGA connector
- status breaking upower
-Date: Sat, 22 Sep 2012 06:46:53 +0000
-Message-ID: <bug-34430-8800-5ltuTXZEZK@http.bugs.freedesktop.org/>
-References: <bug-34430-8800@http.bugs.freedesktop.org/>
+From: Dmitry Eremin-Solenikov <dmitry_eremin-nmGgyN9QBj3QT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau/i2c: correct default settings for i2c
+	ports
+Date: Sat, 22 Sep 2012 21:33:50 +0400
+Message-ID: <1348335230-20502-1-git-send-email-dmitry_eremin@mentor.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34430-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +19,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34430
+Fix typo introduced when converting to core infrastructure.
 
-Ilya Basin <basinilya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-nmGgyN9QBj3QT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/bios/i2c.c |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |basinilya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #1 from Ilya Basin <basinilya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> 2012-09-22 06:46:53 UTC ---
-Similar problem here. I added to /etc/rc.local:
-  echo OFF > /sys/kernel/debug/vgaswitcheroo/switch
-
-When Gnome tries to start, upowerd eats 100% CPU. So, to start Gnome I have to
-temporarily enable the card, then disable it again.
-Similarly,
-  cat
-"/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/drm/card0/card0-VGA-1/status"
-
-hangs when the card is OFF.
-
-
-Laptop Acer Aspire 5755G
-Archlinux 64
-kernel 3.5.3
-upower 0.9.17
-gnome 3.4.2
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/bios/i2c.c b/drivers/gpu/drm/nouveau/core/subdev/bios/i2c.c
+index 5fcce5d..ad577db 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/bios/i2c.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/bios/i2c.c
+@@ -112,13 +112,13 @@ dcb_i2c_parse(struct nouveau_bios *bios, u8 idx, struct dcb_i2c_entry *info)
+ 			info->drive = nv_ro08(bios, ent + 4);
+ 			if (!info->drive) info->drive = 0x3f;
+ 			info->sense = nv_ro08(bios, ent + 5);
+-			if (!info->sense) info->drive = 0x3e;
++			if (!info->sense) info->sense = 0x3e;
+ 		} else
+ 		if (idx == 1) {
+ 			info->drive = nv_ro08(bios, ent + 6);
+ 			if (!info->drive) info->drive = 0x37;
+ 			info->sense = nv_ro08(bios, ent + 7);
+-			if (!info->sense) info->drive = 0x36;
++			if (!info->sense) info->sense = 0x36;
+ 		}
+ 
+ 		info->type = DCB_I2C_NV04_BIT;
 -- 
-Configure bugmail: https://bugs.freedesktop.org/userprefs.cgi?tab=email
-------- You are receiving this mail because: -------
-You are the assignee for the bug.
+1.7.10.4
