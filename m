@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55294] Running EGL demos on DRM from mesa-demos
- causes a corrupted output on NV50
-Date: Mon, 24 Sep 2012 21:39:52 +0000
-Message-ID: <bug-55294-8800-ebKLhKV8hG@http.bugs.freedesktop.org/>
-References: <bug-55294-8800@http.bugs.freedesktop.org/>
+From: Dmitry Eremin-Solenikov <dmitry_eremin-nmGgyN9QBj3QT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau: fix pm initialization order
+Date: Tue, 25 Sep 2012 10:31:40 +0400
+Message-ID: <1348554700-7137-1-git-send-email-dmitry_eremin@mentor.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1614505404=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55294-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,73 +18,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+If nouveau_pm_perflvl_get() fails, pm->profiles list will be left
+uninitialized, which causes oops during nouveau_pm_fini().
 
---===============1614505404==
-Content-Type: multipart/alternative; boundary="1348522792.6fb01Ff01.12342"; charset="us-ascii"
+Move INIT_LIST_HEAD before call to nouveau_pm_perflvl_get().
 
+Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-nmGgyN9QBj3QT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_pm.c |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
---1348522792.6fb01Ff01.12342
-Date: Mon, 24 Sep 2012 21:39:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=55294
-
---- Comment #1 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 67650
-  --> https://bugs.freedesktop.org/attachment.cgi?id=67650&action=edit
-Photograph of corrupted output
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_pm.c b/drivers/gpu/drm/nouveau/nouveau_pm.c
+index 3c55ec2..d2f2de6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_pm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_pm.c
+@@ -916,6 +916,8 @@ nouveau_pm_init(struct drm_device *dev)
+ 	nouveau_volt_init(dev);
+ 	nouveau_temp_init(dev);
+ 
++	INIT_LIST_HEAD(&pm->profiles);
++
+ 	/* determine current ("boot") performance level */
+ 	ret = nouveau_pm_perflvl_get(dev, &pm->boot);
+ 	if (ret) {
+@@ -927,7 +929,6 @@ nouveau_pm_init(struct drm_device *dev)
+ 	strncpy(pm->boot.profile.name, "boot", 4);
+ 	pm->boot.profile.func = &nouveau_pm_static_profile_func;
+ 
+-	INIT_LIST_HEAD(&pm->profiles);
+ 	list_add(&pm->boot.profile.head, &pm->profiles);
+ 
+ 	pm->profile_ac = &pm->boot.profile;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1348522792.6fb01Ff01.12342
-Date: Mon, 24 Sep 2012 21:39:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294">bug 55294</a>
-              from <span class="vcard"><a class="email" href="mailto:lubosz&#64;gmail.com" title="Lubosz Sarnecki &lt;lubosz&#64;gmail.com&gt;"> <span class="fn">Lubosz Sarnecki</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=67650" name="attach_67650" title="Photograph of corrupted output">attachment 67650</a> <a href="attachment.cgi?id=67650&amp;action=edit" title="Photograph of corrupted output">[details]</a></span>
-Photograph of corrupted output</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1348522792.6fb01Ff01.12342--
-
---===============1614505404==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1614505404==--
+1.7.10.4
