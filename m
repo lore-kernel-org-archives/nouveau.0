@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 55310] incorrect rendering of some borders in
  certain gtk3 themes
-Date: Tue, 25 Sep 2012 09:37:57 +0000
-Message-ID: <bug-55310-8800-rkTx0k95mf@http.bugs.freedesktop.org/>
+Date: Tue, 25 Sep 2012 16:29:02 +0000
+Message-ID: <bug-55310-8800-nKwQEDuf0U@http.bugs.freedesktop.org/>
 References: <bug-55310-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1852012522=="
+Content-Type: multipart/mixed; boundary="===============0622801942=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-55310-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1852012522==
-Content-Type: multipart/alternative; boundary="1348565877.aba2D1.20839"; charset="us-ascii"
+--===============0622801942==
+Content-Type: multipart/alternative; boundary="1348590542.DbDaC0B1.30697"; charset="us-ascii"
 
 
---1348565877.aba2D1.20839
-Date: Tue, 25 Sep 2012 09:37:57 +0000
+--1348590542.DbDaC0B1.30697
+Date: Tue, 25 Sep 2012 16:29:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=55310
 
---- Comment #1 from Sebastian Keller <sebastian-keller-Mmb7MZpHnFY@public.gmane.org> ---
-Created attachment 67670
-  --> https://bugs.freedesktop.org/attachment.cgi?id=67670&action=edit
-Patch to fix the issue
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #67669|text/plain                  |image/png
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1348565877.aba2D1.20839
-Date: Tue, 25 Sep 2012 09:37:57 +0000
+--1348590542.DbDaC0B1.30697
+Date: Tue, 25 Sep 2012 16:29:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - incorrect rendering of some borders in certain gtk3 themes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55310#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - incorrect rendering of some borders in certain gtk3 themes"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=55310">bug 55310</a>
-              from <span class="vcard"><a class="email" href="mailto:sebastian-keller&#64;gmx.de" title="Sebastian Keller &lt;sebastian-keller&#64;gmx.de&gt;"> <span class="fn">Sebastian Keller</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=67670" name="attach_67670" title="Patch to fix the issue">attachment 67670</a> <a href="attachment.cgi?id=67670&amp;action=edit" title="Patch to fix the issue">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=55310&amp;attachment=67670'>[review]</a>
-Patch to fix the issue</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #67669 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/png
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +84,9 @@ Patch to fix the issue</pre>
     </body>
 </html>
 
---1348565877.aba2D1.20839--
+--1348590542.DbDaC0B1.30697--
 
---===============1852012522==
+--===============0622801942==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1852012522==--
+--===============0622801942==--
