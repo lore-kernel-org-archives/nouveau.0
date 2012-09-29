@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55450] New: nouveau driver fails to restore screen
+Subject: [Bug 55450] nouveau driver fails to restore screen
  content / video mode after resume from s2ram
-Date: Sat, 29 Sep 2012 12:39:01 +0000
-Message-ID: <bug-55450-8800@http.bugs.freedesktop.org/>
+Date: Sat, 29 Sep 2012 12:45:02 +0000
+Message-ID: <bug-55450-8800-w5s7XAr9Wb@http.bugs.freedesktop.org/>
+References: <bug-55450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0611710726=="
+Content-Type: multipart/mixed; boundary="===============1038012867=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-55450-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,44 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0611710726==
-Content-Type: multipart/alternative; boundary="1348922341.4614F1.31344"; charset="us-ascii"
+--===============1038012867==
+Content-Type: multipart/alternative; boundary="1348922702.bd8C32f1.31787"; charset="us-ascii"
 
 
---1348922341.4614F1.31344
-Date: Sat, 29 Sep 2012 12:39:01 +0000
+--1348922702.bd8C32f1.31787
+Date: Sat, 29 Sep 2012 12:45:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=55450
 
-          Priority: medium
-            Bug ID: 55450
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: nouveau driver fails to restore screen content / video
-                    mode after resume from s2ram
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: 7.6 (2010.12)
-         Component: Driver/nouveau
-           Product: xorg
-
-Last time it stayed on the text console swamping the whole screen with [drm]
-messages; another time the mouse pointer was working but elsewise console text
-had stayed on the display (screen content not restored). Had to kill the X
-server this time; see attachements for further info.
+--- Comment #1 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 67849
+  --> https://bugs.freedesktop.org/attachment.cgi?id=67849&action=edit
+/var/log/messages
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1348922341.4614F1.31344
-Date: Sat, 29 Sep 2012 12:39:01 +0000
+--1348922702.bd8C32f1.31787
+Date: Sat, 29 Sep 2012 12:45:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,99 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau driver fails to restore screen content / video mode after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450">55450</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nouveau driver fails to restore screen content / video mode after resume from s2ram
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>estellnb&#64;elstel.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>7.6 (2010.12)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Last time it stayed on the text console swamping the whole screen with [drm]
-messages; another time the mouse pointer was working but elsewise console text
-had stayed on the display (screen content not restored). Had to kill the X
-server this time; see attachements for further info.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau driver fails to restore screen content / video mode after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau driver fails to restore screen content / video mode after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450">bug 55450</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=67849" name="attach_67849" title="/var/log/messages">attachment 67849</a> <a href="attachment.cgi?id=67849&amp;action=edit" title="/var/log/messages">[details]</a></span>
+/var/log/messages</pre>
         </div>
       </p>
       <hr>
@@ -168,9 +76,9 @@ server this time; see attachements for further info.</pre>
     </body>
 </html>
 
---1348922341.4614F1.31344--
+--1348922702.bd8C32f1.31787--
 
---===============0611710726==
+--===============1038012867==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -181,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0611710726==--
+--===============1038012867==--
