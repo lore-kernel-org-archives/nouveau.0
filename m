@@ -1,9 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55449] New: Problems identifying card
-Date: Sat, 29 Sep 2012 12:28:28 +0000
-Message-ID: <bug-55449-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 55450] New: nouveau driver fails to restore screen
+ content / video mode after resume from s2ram
+Date: Sat, 29 Sep 2012 12:39:01 +0000
+Message-ID: <bug-55450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2012254704=="
+Content-Type: multipart/mixed; boundary="===============0611710726=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,75 +19,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2012254704==
-Content-Type: multipart/alternative; boundary="1348921709.0b861.30721"; charset="us-ascii"
+--===============0611710726==
+Content-Type: multipart/alternative; boundary="1348922341.4614F1.31344"; charset="us-ascii"
 
 
---1348921709.0b861.30721
-Date: Sat, 29 Sep 2012 12:28:29 +0000
+--1348922341.4614F1.31344
+Date: Sat, 29 Sep 2012 12:39:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55449
+https://bugs.freedesktop.org/show_bug.cgi?id=55450
 
           Priority: medium
-            Bug ID: 55449
+            Bug ID: 55450
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Problems identifying card
+           Summary: nouveau driver fails to restore screen content / video
+                    mode after resume from s2ram
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
           Severity: normal
     Classification: Unclassified
-                OS: Linux (All)
-          Reporter: dbaryshkov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: PowerPC
+                OS: All
+          Reporter: estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org
+          Hardware: Other
             Status: NEW
-           Version: unspecified
+           Version: 7.6 (2010.12)
          Component: Driver/nouveau
            Product: xorg
 
-I'm trying to bootstrap nouveau on the NV15 (Geforce 2 GTS / Asus V7700 TVR)
-card on my PowerPC board. System hangs early if the driver is made builtin into
-the kernel. I tried building the  driver as module and here is the log:
-
-
-nouveau 0000:f0:10.0: enabling device (0000 -> 0002)
-nouveau 0000:f0:10.0: enabling bus mastering
-[drm] nouveau 0000:f0:10.0: Detected an NV30 generation card (0xa3005001)
-[drm] nouveau 0000:f0:10.0: Unable to get the OF node
-[drm] nouveau 0000:f0:10.0: Checking PRAMIN for VBIOS
-[drm] nouveau 0000:f0:10.0: ... BIOS signature not found
-[drm] nouveau 0000:f0:10.0: Checking PROM for VBIOS
-[drm] nouveau 0000:f0:10.0: ... appears to be valid
-[drm] nouveau 0000:f0:10.0: Using VBIOS from PROM
-[drm] nouveau 0000:f0:10.0: BMP BIOS found
-[drm] nouveau 0000:f0:10.0: BMP version 5.6
-[drm] nouveau 0000:f0:10.0: Bios version 02.15.01.14
-[drm] nouveau 0000:f0:10.0: No useful DCB data in VBIOS
-[drm] nouveau 0000:f0:10.0: MXM: no VBIOS data, nothing to do
-[drm] nouveau 0000:f0:10.0: Adaptor not initialised, running VBIOS init tables.
-[drm] nouveau 0000:f0:10.0: PTIMER: unknown input clock freq
-[TTM] Zone  kernel: Available graphics memory: 501592 kiB
-[TTM] Initializing pool allocator
-[TTM] Initializing DMA pool allocator
-[drm] nouveau 0000:f0:10.0: Detected 0MiB VRAM (SDRAM)
-[drm] nouveau 0000:f0:10.0: 128 MiB GART (aperture)
-[drm:drm_mm_takedown] *ERROR* Memory manager not clean. Delaying takedown
-[drm:drm_mm_takedown] *ERROR* Memory manager not clean. Delaying takedown
-[TTM] Finalizing pool allocator
-[TTM] Finalizing DMA pool allocator
-[TTM] Zone  kernel: Used memory at exit: 9 kiB
-nouveau: probe of 0000:f0:10.0 failed with error -22
-
-
-System information: PowerPC 970FX, Linux v3.6-rc7. AGP GART support is disabled
-as AGP is not working properly on this system.
+Last time it stayed on the text console swamping the whole screen with [drm]
+messages; another time the mouse pointer was working but elsewise console text
+had stayed on the display (screen content not restored). Had to kill the X
+server this time; see attachements for further info.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1348921709.0b861.30721
-Date: Sat, 29 Sep 2012 12:28:29 +0000
+--1348922341.4614F1.31344
+Date: Sat, 29 Sep 2012 12:39:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -105,8 +75,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Problems identifying card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55449">55449</a>
+   title="NEW --- - nouveau driver fails to restore screen content / video mode after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450">55450</a>
           </td>
         </tr>
 
@@ -118,7 +88,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>Problems identifying card
+          <td>nouveau driver fails to restore screen content / video mode after resume from s2ram
           </td>
         </tr>
 
@@ -142,19 +112,19 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>OS</th>
-          <td>Linux (All)
+          <td>All
           </td>
         </tr>
 
         <tr>
           <th>Reporter</th>
-          <td>dbaryshkov&#64;gmail.com
+          <td>estellnb&#64;elstel.org
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>PowerPC
+          <td>Other
           </td>
         </tr>
 
@@ -166,7 +136,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Version</th>
-          <td>unspecified
+          <td>7.6 (2010.12)
           </td>
         </tr>
 
@@ -183,42 +153,10 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>I'm trying to bootstrap nouveau on the NV15 (Geforce 2 GTS / Asus V7700 TVR)
-card on my PowerPC board. System hangs early if the driver is made builtin into
-the kernel. I tried building the  driver as module and here is the log:
-
-
-nouveau 0000:f0:10.0: enabling device (0000 -&gt; 0002)
-nouveau 0000:f0:10.0: enabling bus mastering
-[drm] nouveau 0000:f0:10.0: Detected an NV30 generation card (0xa3005001)
-[drm] nouveau 0000:f0:10.0: Unable to get the OF node
-[drm] nouveau 0000:f0:10.0: Checking PRAMIN for VBIOS
-[drm] nouveau 0000:f0:10.0: ... BIOS signature not found
-[drm] nouveau 0000:f0:10.0: Checking PROM for VBIOS
-[drm] nouveau 0000:f0:10.0: ... appears to be valid
-[drm] nouveau 0000:f0:10.0: Using VBIOS from PROM
-[drm] nouveau 0000:f0:10.0: BMP BIOS found
-[drm] nouveau 0000:f0:10.0: BMP version 5.6
-[drm] nouveau 0000:f0:10.0: Bios version 02.15.01.14
-[drm] nouveau 0000:f0:10.0: No useful DCB data in VBIOS
-[drm] nouveau 0000:f0:10.0: MXM: no VBIOS data, nothing to do
-[drm] nouveau 0000:f0:10.0: Adaptor not initialised, running VBIOS init tables.
-[drm] nouveau 0000:f0:10.0: PTIMER: unknown input clock freq
-[TTM] Zone  kernel: Available graphics memory: 501592 kiB
-[TTM] Initializing pool allocator
-[TTM] Initializing DMA pool allocator
-[drm] nouveau 0000:f0:10.0: Detected 0MiB VRAM (SDRAM)
-[drm] nouveau 0000:f0:10.0: 128 MiB GART (aperture)
-[drm:drm_mm_takedown] *ERROR* Memory manager not clean. Delaying takedown
-[drm:drm_mm_takedown] *ERROR* Memory manager not clean. Delaying takedown
-[TTM] Finalizing pool allocator
-[TTM] Finalizing DMA pool allocator
-[TTM] Zone  kernel: Used memory at exit: 9 kiB
-nouveau: probe of 0000:f0:10.0 failed with error -22
-
-
-System information: PowerPC 970FX, Linux v3.6-rc7. AGP GART support is disabled
-as AGP is not working properly on this system.</pre>
+        <pre>Last time it stayed on the text console swamping the whole screen with [drm]
+messages; another time the mouse pointer was working but elsewise console text
+had stayed on the display (screen content not restored). Had to kill the X
+server this time; see attachements for further info.</pre>
         </div>
       </p>
       <hr>
@@ -230,9 +168,9 @@ as AGP is not working properly on this system.</pre>
     </body>
 </html>
 
---1348921709.0b861.30721--
+--1348922341.4614F1.31344--
 
---===============2012254704==
+--===============0611710726==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -243,4 +181,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2012254704==--
+--===============0611710726==--
