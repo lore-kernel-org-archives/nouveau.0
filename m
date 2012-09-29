@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55294] Running EGL demos on DRM from mesa-demos
- causes a corrupted output on NV50
-Date: Sat, 29 Sep 2012 13:20:19 +0000
-Message-ID: <bug-55294-8800-YwRkXVyyOR@http.bugs.freedesktop.org/>
-References: <bug-55294-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54437] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg
+ freezes when using accel
+Date: Sat, 29 Sep 2012 14:32:38 +0000
+Message-ID: <bug-54437-8800-yDiiJxAUR5@http.bugs.freedesktop.org/>
+References: <bug-54437-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1934286855=="
+Content-Type: multipart/mixed; boundary="===============1731394230=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55294-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54437-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1934286855==
-Content-Type: multipart/alternative; boundary="1348924819.B0E01.1434"; charset="us-ascii"
+--===============1731394230==
+Content-Type: multipart/alternative; boundary="1348929158.d8F81.5257"; charset="us-ascii"
 
 
---1348924819.B0E01.1434
-Date: Sat, 29 Sep 2012 13:20:19 +0000
+--1348929158.d8F81.5257
+Date: Sat, 29 Sep 2012 14:32:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55294
+https://bugs.freedesktop.org/show_bug.cgi?id=54437
 
---- Comment #5 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thank you very much for the patch. With the patched mesa I could successfully
-run the eglut demos with my native resolution on linux 3.6.0 rc7.
+--- Comment #2 from Eric <3rik.gm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hello,
 
-Should this be a mesa / gallium bug then?
+Using external GTX 580 firmware helped !
+
+Eric
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1348924819.B0E01.1434
-Date: Sat, 29 Sep 2012 13:20:19 +0000
+--1348929158.d8F81.5257
+Date: Sat, 29 Sep 2012 14:32:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,18 +57,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294#c5">Comment # 5</a>
+   title="NEW --- - linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294">bug 55294</a>
-              from <span class="vcard"><a class="email" href="mailto:lubosz&#64;gmail.com" title="Lubosz Sarnecki &lt;lubosz&#64;gmail.com&gt;"> <span class="fn">Lubosz Sarnecki</span></a>
+   title="NEW --- - linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437">bug 54437</a>
+              from <span class="vcard"><a class="email" href="mailto:3rik.gm&#64;gmail.com" title="Eric &lt;3rik.gm&#64;gmail.com&gt;"> <span class="fn">Eric</span></a>
 </span></b>
-        <pre>Thank you very much for the patch. With the patched mesa I could successfully
-run the eglut demos with my native resolution on linux 3.6.0 rc7.
+        <pre>Hello,
 
-Should this be a mesa / gallium bug then?</pre>
+Using external GTX 580 firmware helped !
+
+Eric</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +81,9 @@ Should this be a mesa / gallium bug then?</pre>
     </body>
 </html>
 
---1348924819.B0E01.1434--
+--1348929158.d8F81.5257--
 
---===============1934286855==
+--===============1731394230==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1934286855==--
+--===============1731394230==--
