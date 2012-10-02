@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55294] Running EGL demos on DRM from mesa-demos
- causes a corrupted output on NV50
-Date: Tue, 02 Oct 2012 00:14:37 +0000
-Message-ID: <bug-55294-8800-DA3PVnOehL@http.bugs.freedesktop.org/>
-References: <bug-55294-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 46557] nouveau: NV4E acceleration corruption when
+ DMA above 31-bit (2 Gig barrier)
+Date: Tue, 02 Oct 2012 16:24:06 +0000
+Message-ID: <bug-46557-8800-Ij2apqmK6L@http.bugs.freedesktop.org/>
+References: <bug-46557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0320656563=="
+Content-Type: multipart/mixed; boundary="===============1718692455=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55294-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0320656563==
-Content-Type: multipart/alternative; boundary="1349136878.F8840.21741"; charset="us-ascii"
+--===============1718692455==
+Content-Type: multipart/alternative; boundary="1349195046.ce7f4.27949"; charset="us-ascii"
 
 
---1349136878.F8840.21741
-Date: Tue, 2 Oct 2012 00:14:37 +0000
+--1349195046.ce7f4.27949
+Date: Tue, 2 Oct 2012 16:24:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55294
+https://bugs.freedesktop.org/show_bug.cgi?id=46557
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #20 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I talked to Ben about this bug at XDC2012 and he told me we are using
+nv04-style virtual memory interface, because of some then unknown bugs in nv4x
+implementation - and this is probably the reason why you are seeing this bug.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #67841|0                           |1
-        is obsolete|                            |
-
---- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 67956
-  --> https://bugs.freedesktop.org/attachment.cgi?id=67956&action=edit
-fix v2
-
-Yes. This is Mesa-side bug. I've changed product/component.
-
-After closer look, I came to a conclusion that my patch was not quite correct.
-Please test the new one (although I managed to reproduced this issue and both
-patches fix it).
+Since XDC, Ben fixed and enabled nv4x-style virtual memory in nouveau.git, so
+please test it!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1349136878.F8840.21741
-Date: Tue, 2 Oct 2012 00:14:38 +0000
+--1349195046.ce7f4.27949
+Date: Tue, 2 Oct 2012 16:24:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,48 +53,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294">bug 55294</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #67841 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294#c6">Comment # 6</a>
+   title="NEW --- - nouveau: NV4E acceleration corruption when DMA above 31-bit (2 Gig barrier)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46557#c20">Comment # 20</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294">bug 55294</a>
+   title="NEW --- - nouveau: NV4E acceleration corruption when DMA above 31-bit (2 Gig barrier)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46557">bug 46557</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=67956" name="attach_67956" title="fix v2">attachment 67956</a> <a href="attachment.cgi?id=67956&amp;action=edit" title="fix v2">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=55294&amp;attachment=67956'>[review]</a>
-fix v2
+        <pre>I talked to Ben about this bug at XDC2012 and he told me we are using
+nv04-style virtual memory interface, because of some then unknown bugs in nv4x
+implementation - and this is probably the reason why you are seeing this bug.
 
-Yes. This is Mesa-side bug. I've changed product/component.
-
-After closer look, I came to a conclusion that my patch was not quite correct.
-Please test the new one (although I managed to reproduced this issue and both
-patches fix it).</pre>
+Since XDC, Ben fixed and enabled nv4x-style virtual memory in nouveau.git, so
+please test it!</pre>
         </div>
       </p>
       <hr>
@@ -116,9 +83,9 @@ patches fix it).</pre>
     </body>
 </html>
 
---1349136878.F8840.21741--
+--1349195046.ce7f4.27949--
 
---===============0320656563==
+--===============1718692455==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -129,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0320656563==--
+--===============1718692455==--
