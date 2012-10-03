@@ -1,15 +1,13 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] gallium/nouveau: use pre-calculated stride
- for resource_get_handle
-Date: Thu, 4 Oct 2012 16:58:21 +0200
-Message-ID: <20121004145821.GE4979@joi.lan>
-References: <20121004112911.GA4979@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 50280] Mesa 8.0.3 fails to build dri/nouveau against
+ libdrm 2.4.34
+Date: Wed, 03 Oct 2012 20:21:08 +0000
+Message-ID: <bug-50280-8800-Ptz20hHBny@http.bugs.freedesktop.org/>
+References: <bug-50280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1420336799=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20121004112911.GA4979-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <bug-50280-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,42 +20,89 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Oct 04, 2012 at 01:29:11PM +0200, Marcin Slusarz wrote:
-> Fixes FDO#55294.
-> ---
 
-BTW, I'd like to also apply it to 9.0 branch.
+--===============1420336799==
+Content-Type: multipart/alternative; boundary="1349295668.Dd21Fcb1.19753"; charset="us-ascii"
 
->  src/gallium/drivers/nv30/nv30_miptree.c | 3 +--
->  src/gallium/drivers/nv50/nv50_miptree.c | 3 +--
->  2 files changed, 2 insertions(+), 4 deletions(-)
-> 
-> diff --git a/src/gallium/drivers/nv30/nv30_miptree.c b/src/gallium/drivers/nv30/nv30_miptree.c
-> index 5a9a63b..9700fa8 100644
-> --- a/src/gallium/drivers/nv30/nv30_miptree.c
-> +++ b/src/gallium/drivers/nv30/nv30_miptree.c
-> @@ -56,8 +56,7 @@ nv30_miptree_get_handle(struct pipe_screen *pscreen,
->     if (!mt || !mt->base.bo)
->        return FALSE;
->  
-> -   stride = util_format_get_stride(mt->base.base.format,
-> -                                   mt->base.base.width0);
-> +   stride = mt->level[0].pitch;
->  
->     return nouveau_screen_bo_get_handle(pscreen, mt->base.bo, stride, handle);
->  }
-> diff --git a/src/gallium/drivers/nv50/nv50_miptree.c b/src/gallium/drivers/nv50/nv50_miptree.c
-> index 7b8dfb8..70e8c77 100644
-> --- a/src/gallium/drivers/nv50/nv50_miptree.c
-> +++ b/src/gallium/drivers/nv50/nv50_miptree.c
-> @@ -133,8 +133,7 @@ nv50_miptree_get_handle(struct pipe_screen *pscreen,
->     if (!mt || !mt->base.bo)
->        return FALSE;
->  
-> -   stride = util_format_get_stride(mt->base.base.format,
-> -                                   mt->base.base.width0);
-> +   stride = mt->level[0].pitch;
->  
->     return nouveau_screen_bo_get_handle(pscreen,
->                                         mt->base.bo,
-> -- 
+
+--1349295668.Dd21Fcb1.19753
+Date: Wed, 3 Oct 2012 20:21:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=50280
+
+Giovanni Mariani <mc2374-dP4/7z9UC85eoWH0uzbU5w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WONTFIX
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1349295668.Dd21Fcb1.19753
+Date: Wed, 3 Oct 2012 20:21:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:mc2374&#64;mclink.it" title="Giovanni Mariani &lt;mc2374&#64;mclink.it&gt;"> <span class="fn">Giovanni Mariani</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Mesa 8.0.3 fails to build dri/nouveau against libdrm 2.4.34"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50280">bug 50280</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WONTFIX
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1349295668.Dd21Fcb1.19753--
+
+--===============1420336799==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1420336799==--
