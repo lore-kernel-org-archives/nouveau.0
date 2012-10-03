@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 46557] nouveau: NV4E acceleration corruption when
  DMA above 31-bit (2 Gig barrier)
-Date: Wed, 03 Oct 2012 07:47:46 +0000
-Message-ID: <bug-46557-8800-1UhwLXZzVx@http.bugs.freedesktop.org/>
+Date: Wed, 03 Oct 2012 11:14:04 +0000
+Message-ID: <bug-46557-8800-dAl6atkmHo@http.bugs.freedesktop.org/>
 References: <bug-46557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0917450915=="
+Content-Type: multipart/mixed; boundary="===============1943992878=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,39 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0917450915==
-Content-Type: multipart/alternative; boundary="1349250467.B1BcA3.25360"; charset="us-ascii"
+--===============1943992878==
+Content-Type: multipart/alternative; boundary="1349262844.ecA2C33.7272"; charset="us-ascii"
 
 
---1349250467.B1BcA3.25360
-Date: Wed, 3 Oct 2012 07:47:47 +0000
+--1349262844.ecA2C33.7272
+Date: Wed, 3 Oct 2012 11:14:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=46557
 
---- Comment #21 from Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 68024
-  --> https://bugs.freedesktop.org/attachment.cgi?id=68024&action=edit
-dmesg of new kernel
+--- Comment #22 from baldur-htSm2yLGOjU@public.gmane.org ---
+For my system (reported Bug 54988) it starts up now and works for a RAM size of
+3G.
 
-It runs FAR better - the distortion and lockups are gone, and the picture us
-substantially better (on par with the blob).
+But after logging into the gnome desktop the screen becomes blurry and 
+and while trying to open any gnome menu, the screen gets scrambled now.
+This is even a problem when i boot with mem=2G - this used to work with the
+current version of the fedora driver in kernel 3.5.4.
 
-Its not quite 100% - X crashes reliably if I switch to another VT, back to X,
-and then use something with video acceleration (after it crashes and restart
-its distored like before, but not locked up. If I apply the workaround in bug
-31961, X still crashes but restarts withotu distortion)
+Seems the DMA problem is gone, however some new bugs are showing up :-)
 
-Regardless of console switching, CACHE_ERROR start flooding the syslog but not
-immedately, but there no noticable artfacts or slowdown.
+System Description is still the same as 54988. I am running a current fedora
+kernel,patched with nouveau from 2nd October.
+
+
+Linux version 3.5.4-2.localnouveau.fc17.x86_64 (root@baldur) (gcc version 4.7.2
+20120921 (Red Hat 4.7.2-2) (GCC) ) #1 SMP Wed Oct 3 11:36:49 CEST 2012
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1349250467.B1BcA3.25360
-Date: Wed, 3 Oct 2012 07:47:47 +0000
+--1349262844.ecA2C33.7272
+Date: Wed, 3 Oct 2012 11:14:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,29 +69,32 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau: NV4E acceleration corruption when DMA above 31-bit (2 Gig barrier)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=46557#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46557#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau: NV4E acceleration corruption when DMA above 31-bit (2 Gig barrier)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=46557">bug 46557</a>
-              from <span class="vcard"><a class="email" href="mailto:salah.coronya&#64;gmail.com" title="Salah Coronya &lt;salah.coronya&#64;gmail.com&gt;"> <span class="fn">Salah Coronya</span></a>
+              from <span class="vcard"><a class="email" href="mailto:baldur&#64;email.de" title="baldur&#64;email.de">baldur&#64;email.de</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=68024" name="attach_68024" title="dmesg of new kernel">attachment 68024</a> <a href="attachment.cgi?id=68024&amp;action=edit" title="dmesg of new kernel">[details]</a></span>
-dmesg of new kernel
+        <pre>For my system (reported <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [C51PV] Garbage on initial Console Screen"
+   href="show_bug.cgi?id=54988">Bug 54988</a>) it starts up now and works for a RAM size of
+3G.
 
-It runs FAR better - the distortion and lockups are gone, and the picture us
-substantially better (on par with the blob).
+But after logging into the gnome desktop the screen becomes blurry and 
+and while trying to open any gnome menu, the screen gets scrambled now.
+This is even a problem when i boot with mem=2G - this used to work with the
+current version of the fedora driver in kernel 3.5.4.
 
-Its not quite 100% - X crashes reliably if I switch to another VT, back to X,
-and then use something with video acceleration (after it crashes and restart
-its distored like before, but not locked up. If I apply the workaround in <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [drm:drm_crtc_helper_set_config] *ERROR* failed to set mode on [CRTC:6]"
-   href="show_bug.cgi?id=31961">bug
-31961</a>, X still crashes but restarts withotu distortion)
+Seems the DMA problem is gone, however some new bugs are showing up :-)
 
-Regardless of console switching, CACHE_ERROR start flooding the syslog but not
-immedately, but there no noticable artfacts or slowdown.</pre>
+System Description is still the same as 54988. I am running a current fedora
+kernel,patched with nouveau from 2nd October.
+
+
+Linux version 3.5.4-2.localnouveau.fc17.x86_64 (root&#64;baldur) (gcc version 4.7.2
+20120921 (Red Hat 4.7.2-2) (GCC) ) #1 SMP Wed Oct 3 11:36:49 CEST 2012</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +106,9 @@ immedately, but there no noticable artfacts or slowdown.</pre>
     </body>
 </html>
 
---1349250467.B1BcA3.25360--
+--1349262844.ecA2C33.7272--
 
---===============0917450915==
+--===============1943992878==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +119,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0917450915==--
+--===============1943992878==--
