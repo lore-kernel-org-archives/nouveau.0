@@ -1,18 +1,13 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 01/10] drm/nv50: decode PGRAPH status
- registers on TLB flush fail
-Date: Thu, 4 Oct 2012 13:43:15 +0200
-Message-ID: <20121004114315.GD4979@joi.lan>
-References: <1345410004-27729-1-git-send-email-marcin.slusarz@gmail.com>
-	<20120820062718.GB2013@nisroch.redhat.com>
-	<20120820170246.GA3143@joi.lan> <20120820220832.GB5687@joi.lan>
-	<20120912224753.GA8067@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27064] Nouveau fails to start X. This is a Nvidia
+ G210m, the laptop is an asus UL50vt
+Date: Thu, 04 Oct 2012 19:48:11 +0000
+Message-ID: <bug-27064-8800-l5XbCbdjIl@http.bugs.freedesktop.org/>
+References: <bug-27064-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1887007905=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20120912224753.GA8067-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <bug-27064-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,154 +17,289 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Sep 13, 2012 at 12:47:53AM +0200, Marcin Slusarz wrote:
-> On Tue, Aug 21, 2012 at 12:08:32AM +0200, Marcin Slusarz wrote:
-> > On Mon, Aug 20, 2012 at 07:02:46PM +0200, Marcin Slusarz wrote:
-> > > On Mon, Aug 20, 2012 at 04:27:18PM +1000, Ben Skeggs wrote:
-> > > > On Sun, Aug 19, 2012 at 10:59:56PM +0200, Marcin Slusarz wrote:
-> > > > > Now it outputs:
-> > > > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH TLB flush idle timeout fail
-> > > > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_STATUS: BUSY DISPATCH VFETCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 UNK14XX UNK1CXX CLIPID ZCULL ENG2D UNK34XX TPRAST TPROP ROP (0x011fde03)
-> > > > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS_0: CCACHE (0x00145b4d)
-> > > > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS_1: (0x0000002d)
-> > > > > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS_2: ENG2D ROP (0x0034db40)
-> > > > > 
-> > > > > instead of:
-> > > > > [drm] nouveau 0000:02:00.0: PGRAPH TLB flush idle timeout fail: 0x011fde03 0x00145b4d 0x0000002d 0x0034db40
-> > > > 
-> > > > I didn't push these first few patches yet as I have a couple of thoughts on it.
-> > > > 
-> > > > Mostly I was thinking we should probably have a:
-> > > > 
-> > > > nv_printf(obj, lvl, fmt, args...)
-> > > > 
-> > > > to replace the printk's which just does a continued print while still obeying
-> > > > the debug level?
-> > > 
-> > > Well, this patch does not use nv_printk_enabled, so these concerns should
-> > > not apply to it, right? I'll fix up bitfield list and resend it.
-> 
-> New version, which prints VSTATUS regs on one line.
-> 
-> PS: I pushed this and some other patches to my github repo.
->  ( https://github.com/mslusarz/linux )
-> ---
-> From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Subject: [PATCH 01/11] drm/nv50: decode PGRAPH status registers on TLB flush fail
-> 
-> Now it outputs:
-> nouveau E[  PGRAPH][0000:02:00.0] PGRAPH TLB flush idle timeout fail
-> nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_STATUS: BUSY DISPATCH VFETCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 UNK14XX UNK1CXX CLIPID ZCULL ENG2D UNK34XX TPRAST TPROP ROP (0x011fde03)
-> nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS: CCACHE (0x00145b4d) (0x0000002d) ENG2D ROP (0x0034db40)
-> 
-> instead of:
-> [drm] nouveau 0000:02:00.0: PGRAPH TLB flush idle timeout fail: 0x011fde03 0x00145b4d 0x0000002d 0x0034db40
-> 
-> Based on envytools docs.
-> 
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/core/engine/graph/nv50.c | 75 ++++++++++++++++++++++--
->  1 file changed, 71 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-> index ab3b9dc..5f1adca 100644
-> --- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-> +++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-> @@ -184,6 +184,62 @@ nv50_graph_tlb_flush(struct nouveau_engine *engine)
->  	return 0;
->  }
->  
-> +static const struct nouveau_bitfield nv50_pgraph_status[] = {
-> +	{ 0x00000001, "BUSY" }, /* set when any bit is set */
-> +	{ 0x00000002, "DISPATCH" },
-> +	{ 0x00000004, "UNK2" },
-> +	{ 0x00000008, "UNK3" },
-> +	{ 0x00000010, "UNK4" },
-> +	{ 0x00000020, "UNK5" },
-> +	{ 0x00000040, "M2MF" },
-> +	{ 0x00000080, "UNK7" },
-> +	{ 0x00000100, "CTXPROG" },
-> +	{ 0x00000200, "VFETCH" },
-> +	{ 0x00000400, "CCACHE_UNK4" },
-> +	{ 0x00000800, "STRMOUT_GSCHED_UNK5" },
-> +	{ 0x00001000, "UNK14XX" },
-> +	{ 0x00002000, "UNK24XX_CSCHED" },
-> +	{ 0x00004000, "UNK1CXX" },
-> +	{ 0x00008000, "CLIPID" },
-> +	{ 0x00010000, "ZCULL" },
-> +	{ 0x00020000, "ENG2D" },
-> +	{ 0x00040000, "UNK34XX" },
-> +	{ 0x00080000, "TPRAST" },
-> +	{ 0x00100000, "TPROP" },
-> +	{ 0x00200000, "TEX" },
-> +	{ 0x00400000, "TPVP" },
-> +	{ 0x00800000, "MP" },
-> +	{ 0x01000000, "ROP" },
-> +	{}
-> +};
-> +
-> +static const char *const nv50_pgraph_vstatus_0[] = {
-> +	"VFETCH", "CCACHE", "UNK4", "UNK5", "GSCHED", "STRMOUT", "UNK14XX", NULL
-> +};
-> +
-> +static const char *const nv50_pgraph_vstatus_1[] = {
-> +	"TPRAST", "TPROP", "TEXTURE", "TPVP", "MP", NULL
-> +};
-> +
-> +static const char *const nv50_pgraph_vstatus_2[] = {
-> +	"UNK24XX", "CSCHED", "UNK1CXX", "CLIPID", "ZCULL", "ENG2D", "UNK34XX",
-> +	"ROP", NULL
-> +};
-> +
-> +static void nouveau_pgraph_vstatus_print(const char *const units[], u32 status)
-> +{
-> +	int i;
-> +	u32 tmp = status;
-> +	for (i = 0; units[i] && tmp; i++) {
-> +		if ((tmp & 7) == 1)
-> +			pr_cont("%s ", units[i]);
-> +		tmp >>= 3;
-> +	}
-> +	if (tmp)
-> +		pr_cont("invalid: %x ", tmp);
-> +	pr_cont("(0x%08x) ", status);
-> +}
-> +
->  static int
->  nv84_graph_tlb_flush(struct nouveau_engine *engine)
->  {
-> @@ -219,10 +275,21 @@ nv84_graph_tlb_flush(struct nouveau_engine *engine)
->  		 !(timeout = ptimer->read(ptimer) - start > 2000000000));
->  
->  	if (timeout) {
-> -		nv_error(priv, "PGRAPH TLB flush idle timeout fail: "
-> -			      "0x%08x 0x%08x 0x%08x 0x%08x\n",
-> -			 nv_rd32(priv, 0x400700), nv_rd32(priv, 0x400380),
-> -			 nv_rd32(priv, 0x400384), nv_rd32(priv, 0x400388));
-> +		nv_error(priv, "PGRAPH TLB flush idle timeout fail\n");
-> +
-> +		nv_error(priv, "PGRAPH_STATUS: ");
-> +		tmp = nv_rd32(priv, 0x400700);
-> +		nouveau_bitfield_print(nv50_pgraph_status, tmp);
-> +		pr_cont(" (0x%08x)\n", tmp);
-> +
-> +		nv_error(priv, "PGRAPH_VSTATUS: ");
-> +		nouveau_pgraph_vstatus_print(nv50_pgraph_vstatus_0,
-> +				nv_rd32(priv, 0x400380));
-> +		nouveau_pgraph_vstatus_print(nv50_pgraph_vstatus_1,
-> +				nv_rd32(priv, 0x400384));
-> +		nouveau_pgraph_vstatus_print(nv50_pgraph_vstatus_2,
-> +				nv_rd32(priv, 0x400388));
-> +		pr_cont("\n");
->  	}
->  
->  	nv50_vm_flush_engine(&engine->base, 0x00);
-> -- 
+
+--===============1887007905==
+Content-Type: multipart/alternative; boundary="1349380091.0BdB2.586"; charset="us-ascii"
 
 
-ping
+--1349380091.0BdB2.586
+Date: Thu, 4 Oct 2012 19:48:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=27064
+
+--- Comment #6 from Miles Lane <miles.lane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Are any of you involved in the development of the nouveau kernel driver?  I am
+currently attempting to get the nouveau kernel driver to load/setup
+successfully.  I also have a UL50VT.  This laptop does not support Optimus, but
+rather has a hardware MUX.
+
+I looked at the nouveau and i915 code and see they need to parse DSM
+information to determine whether vgaswitcheroo is supported.  In addition to
+the nouveau driver not getting set up correctly, I don't see
+/sys/kernel/debug/vgaswitcheroo.
+
+nouveau T[  DEVICE][0000:01:00.0] inc() == 2
+nouveau T[     DRM] inc() == 3
+nouveau T[     DRM] inc() == 4
+nouveau T[     DRM] inc() == 5
+nouveau T[  DEVICE][0000:01:00.0] inc() == 3
+nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0a8a00a2
+nouveau  [  DEVICE][0000:01:00.0] Chipset: GT218 (NVA8)
+nouveau  [  DEVICE][0000:01:00.0] Family : NV50
+nouveau D[  DEVICE][0000:01:00.0] crystal freq: 27000KHz
+nouveau T[  DEVICE][0000:01:00.0] inc() == 4
+nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
+nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+nouveau  [   VBIOS][0000:01:00.0] checking PROM for image...
+nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+nouveau  [   VBIOS][0000:01:00.0] checking ACPI for image...
+nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+nouveau  [   VBIOS][0000:01:00.0] checking PCIROM for image...
+nouveau 0000:01:00.0: Invalid ROM contents
+nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+nouveau E[   VBIOS][0000:01:00.0] unable to locate usable image
+nouveau E[  DEVICE][0000:01:00.0] failed to create 0x10000001, -22
+nouveau T[  DEVICE][0000:01:00.0] dec() == 3
+nouveau E[     DRM] failed to create 0x80000080, -22
+nouveau T[  DEVICE][0000:01:00.0] dec() == 2
+nouveau T[     DRM] dec() == 4
+nouveau T[     DRM] dec() == 3
+nouveau T[     DRM] dec() == 2
+nouveau D[     DRM] fini running
+nouveau T[     DRM] 0xffffffff:0xffffffff fini children
+nouveau T[     DRM] 0xffffffff:0xffffffff fini running
+nouveau T[     DRM] use(-1) == 1
+nouveau T[     DRM] 0xffffffff:0xffffffff fini completed
+nouveau D[     DRM] fini completed with 0
+nouveau T[     DRM] dec() == 0
+nouveau D[     DRM] destroying
+nouveau T[  DEVICE][0000:01:00.0] dec() == 1
+nouveau T[     DRM] 0xffffffff:0xffffffff destroy running
+nouveau T[     DRM] 0xffffffff:0xffffffff destroy completed
+nouveau T[     DRM] dec() == -1
+nouveau T[  DEVICE][0000:01:00.0] dec() == 0
+nouveau D[  DEVICE][0000:01:00.0] destroying
+nouveau: probe of 0000:01:00.0 failed with error -22
+
+# lspci
+00:02.0 VGA compatible controller: Intel Corporation Mobile 4 Series Chipset
+Integrated Graphics Controller (rev 07)
+01:00.0 VGA compatible controller: NVIDIA Corporation GT218 [GeForce G210M]
+(rev a2)
+
+dmesg:
+
+[    3.517680] vesafb: mode is 1024x768x32, linelength=4096, pages=0
+[    3.517691] vesafb: scrolling: redraw
+[    3.517700] vesafb: Truecolor: size=8:8:8:8, shift=24:16:8:0
+[    3.518342] vesafb: framebuffer at 0xd0000000, mapped to 0xffffc90011380000,
+using 3072k, total 3072k
+[    3.555338] Console: switching to colour frame buffer device 128x48
+[    3.585908] fb0: VESA VGA frame buffer device
+[   21.367309] Linux agpgart interface v0.103
+[   21.422456] ACPI: AC Adapter [AC0] (on-line)
+[   21.425939] agpgart-intel 0000:00:00.0: Intel GM45 Chipset
+[   21.426209] agpgart-intel 0000:00:00.0: detected gtt size: 2097152K total,
+262144K mappable
+[   21.427707] agpgart-intel 0000:00:00.0: detected 32768K stolen memory
+[   21.429098] agpgart-intel 0000:00:00.0: AGP aperture is 256M @ 0xd0000000
+[   21.704900] [drm] Initialized drm 1.1.0 20060810
+[   23.171595] ACPI Error: Needed [Buffer/String/Package], found [Integer]
+ffff88013a694000 (20120711/exresop-590)
+[   23.171605] ACPI Exception: AE_AML_OPERAND_TYPE, While resolving operands
+for [OpcodeName unavailable] (20120711/dswexec-460)
+[   23.171899] ACPI Error: Method parse/execution failed [\_SB_.PCI0.VGA_._DSM]
+(Node ffff88013ab50000), AE_AML_OPERAND_TYPE (20120711/psparse-536)
+[   23.172151] failed to evaluate _DSM: 12291
+[   23.193181] ACPI Error: Needed [Buffer/String/Package], found [Integer]
+ffff88013a695c20 (20120711/exresop-590)
+[   23.193192] ACPI Exception: AE_AML_OPERAND_TYPE, While resolving operands
+for [OpcodeName unavailable] (20120711/dswexec-460)
+[   23.193548] ACPI Error: Method parse/execution failed [\_SB_.PCI0.VGA_._DSM]
+(Node ffff88013ab50000), AE_AML_OPERAND_TYPE (20120711/psparse-536)
+[   23.193669] ACPI Error: Method parse/execution failed
+[\_SB_.PCI0.P0P1.VGA_._DSM] (Node ffff88013ab6a730), AE_AML_OPERAND_TYPE
+(20120711/psparse-536)
+[   23.193955] failed to evaluate _DSM: 12291
+[   23.199675] checking generic (d0000000 300000) vs hw (e0000000 10000000)
+[   23.199680] checking generic (d0000000 300000) vs hw (fa000000 2000000)
+[   23.199911] nouveau 0000:01:00.0: enabling device (0004 -> 0007)
+[   23.215724] asus_laptop: Asus Laptop Support version 0.42
+[   23.265572] asus_laptop:   UL50VT model detected
+[   23.287663] checking generic (d0000000 300000) vs hw (d0000000 10000000)
+[   23.287668] fb: conflicting fb hw usage inteldrmfb vs VESA VGA - removing
+generic driver
+[   23.482305] i915 0000:00:02.0: setting latency timer to 64
+[   23.622888] i915 0000:00:02.0: irq 46 for MSI/MSI-X
+[   23.632024] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+[   23.632029] [drm] Driver supports precise vblank timestamp query.
+[   23.811555] vgaarb: device changed decodes:
+PCI:0000:00:02.0,olddecodes=io+mem,decodes=none:owns=io+mem
+[   23.811560] vgaarb: transferring owner from PCI:0000:00:02.0 to
+PCI:0000:01:00.0
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1349380091.0BdB2.586
+Date: Thu, 4 Oct 2012 19:48:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau fails to start X. This is a Nvidia G210m, the laptop is an asus UL50vt"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27064#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau fails to start X. This is a Nvidia G210m, the laptop is an asus UL50vt"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27064">bug 27064</a>
+              from <span class="vcard"><a class="email" href="mailto:miles.lane&#64;gmail.com" title="Miles Lane &lt;miles.lane&#64;gmail.com&gt;"> <span class="fn">Miles Lane</span></a>
+</span></b>
+        <pre>Are any of you involved in the development of the nouveau kernel driver?  I am
+currently attempting to get the nouveau kernel driver to load/setup
+successfully.  I also have a UL50VT.  This laptop does not support Optimus, but
+rather has a hardware MUX.
+
+I looked at the nouveau and i915 code and see they need to parse DSM
+information to determine whether vgaswitcheroo is supported.  In addition to
+the nouveau driver not getting set up correctly, I don't see
+/sys/kernel/debug/vgaswitcheroo.
+
+nouveau T[  DEVICE][0000:01:00.0] inc() == 2
+nouveau T[     DRM] inc() == 3
+nouveau T[     DRM] inc() == 4
+nouveau T[     DRM] inc() == 5
+nouveau T[  DEVICE][0000:01:00.0] inc() == 3
+nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0a8a00a2
+nouveau  [  DEVICE][0000:01:00.0] Chipset: GT218 (NVA8)
+nouveau  [  DEVICE][0000:01:00.0] Family : NV50
+nouveau D[  DEVICE][0000:01:00.0] crystal freq: 27000KHz
+nouveau T[  DEVICE][0000:01:00.0] inc() == 4
+nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
+nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+nouveau  [   VBIOS][0000:01:00.0] checking PROM for image...
+nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+nouveau  [   VBIOS][0000:01:00.0] checking ACPI for image...
+nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+nouveau  [   VBIOS][0000:01:00.0] checking PCIROM for image...
+nouveau 0000:01:00.0: Invalid ROM contents
+nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+nouveau E[   VBIOS][0000:01:00.0] unable to locate usable image
+nouveau E[  DEVICE][0000:01:00.0] failed to create 0x10000001, -22
+nouveau T[  DEVICE][0000:01:00.0] dec() == 3
+nouveau E[     DRM] failed to create 0x80000080, -22
+nouveau T[  DEVICE][0000:01:00.0] dec() == 2
+nouveau T[     DRM] dec() == 4
+nouveau T[     DRM] dec() == 3
+nouveau T[     DRM] dec() == 2
+nouveau D[     DRM] fini running
+nouveau T[     DRM] 0xffffffff:0xffffffff fini children
+nouveau T[     DRM] 0xffffffff:0xffffffff fini running
+nouveau T[     DRM] use(-1) == 1
+nouveau T[     DRM] 0xffffffff:0xffffffff fini completed
+nouveau D[     DRM] fini completed with 0
+nouveau T[     DRM] dec() == 0
+nouveau D[     DRM] destroying
+nouveau T[  DEVICE][0000:01:00.0] dec() == 1
+nouveau T[     DRM] 0xffffffff:0xffffffff destroy running
+nouveau T[     DRM] 0xffffffff:0xffffffff destroy completed
+nouveau T[     DRM] dec() == -1
+nouveau T[  DEVICE][0000:01:00.0] dec() == 0
+nouveau D[  DEVICE][0000:01:00.0] destroying
+nouveau: probe of 0000:01:00.0 failed with error -22
+
+# lspci
+00:02.0 VGA compatible controller: Intel Corporation Mobile 4 Series Chipset
+Integrated Graphics Controller (rev 07)
+01:00.0 VGA compatible controller: NVIDIA Corporation GT218 [GeForce G210M]
+(rev a2)
+
+dmesg:
+
+[    3.517680] vesafb: mode is 1024x768x32, linelength=4096, pages=0
+[    3.517691] vesafb: scrolling: redraw
+[    3.517700] vesafb: Truecolor: size=8:8:8:8, shift=24:16:8:0
+[    3.518342] vesafb: framebuffer at 0xd0000000, mapped to 0xffffc90011380000,
+using 3072k, total 3072k
+[    3.555338] Console: switching to colour frame buffer device 128x48
+[    3.585908] fb0: VESA VGA frame buffer device
+[   21.367309] Linux agpgart interface v0.103
+[   21.422456] ACPI: AC Adapter [AC0] (on-line)
+[   21.425939] agpgart-intel 0000:00:00.0: Intel GM45 Chipset
+[   21.426209] agpgart-intel 0000:00:00.0: detected gtt size: 2097152K total,
+262144K mappable
+[   21.427707] agpgart-intel 0000:00:00.0: detected 32768K stolen memory
+[   21.429098] agpgart-intel 0000:00:00.0: AGP aperture is 256M &#64; 0xd0000000
+[   21.704900] [drm] Initialized drm 1.1.0 20060810
+[   23.171595] ACPI Error: Needed [Buffer/String/Package], found [Integer]
+ffff88013a694000 (20120711/exresop-590)
+[   23.171605] ACPI Exception: AE_AML_OPERAND_TYPE, While resolving operands
+for [OpcodeName unavailable] (20120711/dswexec-460)
+[   23.171899] ACPI Error: Method parse/execution failed [\_SB_.PCI0.VGA_._DSM]
+(Node ffff88013ab50000), AE_AML_OPERAND_TYPE (20120711/psparse-536)
+[   23.172151] failed to evaluate _DSM: 12291
+[   23.193181] ACPI Error: Needed [Buffer/String/Package], found [Integer]
+ffff88013a695c20 (20120711/exresop-590)
+[   23.193192] ACPI Exception: AE_AML_OPERAND_TYPE, While resolving operands
+for [OpcodeName unavailable] (20120711/dswexec-460)
+[   23.193548] ACPI Error: Method parse/execution failed [\_SB_.PCI0.VGA_._DSM]
+(Node ffff88013ab50000), AE_AML_OPERAND_TYPE (20120711/psparse-536)
+[   23.193669] ACPI Error: Method parse/execution failed
+[\_SB_.PCI0.P0P1.VGA_._DSM] (Node ffff88013ab6a730), AE_AML_OPERAND_TYPE
+(20120711/psparse-536)
+[   23.193955] failed to evaluate _DSM: 12291
+[   23.199675] checking generic (d0000000 300000) vs hw (e0000000 10000000)
+[   23.199680] checking generic (d0000000 300000) vs hw (fa000000 2000000)
+[   23.199911] nouveau 0000:01:00.0: enabling device (0004 -&gt; 0007)
+[   23.215724] asus_laptop: Asus Laptop Support version 0.42
+[   23.265572] asus_laptop:   UL50VT model detected
+[   23.287663] checking generic (d0000000 300000) vs hw (d0000000 10000000)
+[   23.287668] fb: conflicting fb hw usage inteldrmfb vs VESA VGA - removing
+generic driver
+[   23.482305] i915 0000:00:02.0: setting latency timer to 64
+[   23.622888] i915 0000:00:02.0: irq 46 for MSI/MSI-X
+[   23.632024] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+[   23.632029] [drm] Driver supports precise vblank timestamp query.
+[   23.811555] vgaarb: device changed decodes:
+PCI:0000:00:02.0,olddecodes=io+mem,decodes=none:owns=io+mem
+[   23.811560] vgaarb: transferring owner from PCI:0000:00:02.0 to
+PCI:0000:01:00.0</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1349380091.0BdB2.586--
+
+--===============1887007905==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1887007905==--
