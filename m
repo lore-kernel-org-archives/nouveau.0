@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55596] weston-launch causes graphical corruption /
-	lockup
-Date: Wed, 03 Oct 2012 22:03:46 +0000
-Message-ID: <bug-55596-8800-nSeUkDdToo@http.bugs.freedesktop.org/>
-References: <bug-55596-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27064] Nouveau fails to start X. This is a Nvidia
+ G210m, the laptop is an asus UL50vt
+Date: Thu, 04 Oct 2012 19:53:16 +0000
+Message-ID: <bug-27064-8800-H8GY5cTXoD@http.bugs.freedesktop.org/>
+References: <bug-27064-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1167324365=="
+Content-Type: multipart/mixed; boundary="===============2136295053=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55596-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27064-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1167324365==
-Content-Type: multipart/alternative; boundary="1349301826.0Cd6Dd1D1.25388"; charset="us-ascii"
+--===============2136295053==
+Content-Type: multipart/alternative; boundary="1349380396.eFBFA12.918"; charset="us-ascii"
 
 
---1349301826.0Cd6Dd1D1.25388
-Date: Wed, 3 Oct 2012 22:03:46 +0000
+--1349380396.eFBFA12.918
+Date: Thu, 4 Oct 2012 19:53:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55596
+https://bugs.freedesktop.org/show_bug.cgi?id=27064
 
-Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> changed:
+--- Comment #7 from Miles Lane <miles.lane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Also, I downloaded the source for the acpi_call modules.  When I run
+test_off.sh, I get:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org
-
---- Comment #2 from Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> ---
-Related bug open for weston: 
-https://bugs.freedesktop.org/show_bug.cgi?id=54576
+     Trying \_SB.PCI0.P0P1.VGA._OFF: works!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1349301826.0Cd6Dd1D1.25388
-Date: Wed, 3 Oct 2012 22:03:46 +0000
+--1349380396.eFBFA12.918
+Date: Thu, 4 Oct 2012 19:53:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,45 +51,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:darxus&#64;chaosreigns.com" title="Darxus &lt;darxus&#64;chaosreigns.com&gt;"> <span class="fn">Darxus</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - weston-launch causes graphical corruption / lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55596">bug 55596</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>darxus&#64;chaosreigns.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - weston-launch causes graphical corruption / lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55596#c2">Comment # 2</a>
+   title="NEW --- - Nouveau fails to start X. This is a Nvidia G210m, the laptop is an asus UL50vt"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27064#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - weston-launch causes graphical corruption / lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55596">bug 55596</a>
-              from <span class="vcard"><a class="email" href="mailto:darxus&#64;chaosreigns.com" title="Darxus &lt;darxus&#64;chaosreigns.com&gt;"> <span class="fn">Darxus</span></a>
+   title="NEW --- - Nouveau fails to start X. This is a Nvidia G210m, the laptop is an asus UL50vt"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27064">bug 27064</a>
+              from <span class="vcard"><a class="email" href="mailto:miles.lane&#64;gmail.com" title="Miles Lane &lt;miles.lane&#64;gmail.com&gt;"> <span class="fn">Miles Lane</span></a>
 </span></b>
-        <pre>Related bug open for weston: 
-<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - complete lock up when running weston on drm with nouveau"
-   href="show_bug.cgi?id=54576">https://bugs.freedesktop.org/show_bug.cgi?id=54576</a></pre>
+        <pre>Also, I downloaded the source for the acpi_call modules.  When I run
+test_off.sh, I get:
+
+     Trying \_SB.PCI0.P0P1.VGA._OFF: works!</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +79,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1349301826.0Cd6Dd1D1.25388--
+--1349380396.eFBFA12.918--
 
---===============1167324365==
+--===============2136295053==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -118,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1167324365==--
+--===============2136295053==--
