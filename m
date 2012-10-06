@@ -1,7 +1,7 @@
 From: Zbigniew <zbigniew2011-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Problem with GFX 5500 Inno 3D - 2
-Date: Sat, 6 Oct 2012 12:19:04 +0000
-Message-ID: <CALT7RM8v8X2YJmG=F0A3S884nuzMLPhw6d-1LskW8v8qv4TDVA@mail.gmail.com>
+Subject: Problem with GFX 5500 Inno 3D - 3
+Date: Sat, 6 Oct 2012 13:06:34 +0000
+Message-ID: <CALT7RM82-5rHuhM6uJRwyT1zOaGG8tj-wTfjYZG6rsrC1Jhbyg@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,11 +18,12 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I forgot: maybe useful will be additional information, that I'm unable
-to get any "framebuffer" mode functional with this card and nouveau
-module loaded - for example, when I set as "boot parameter" something
-like "VGA=0x314", then screen gets dark and blank, when entering
-framebuffer mode; fortunately, I can shutdown machine in such case
-with power button (therefore the system is still running).
+I'm sorry: the "supplemental info" can be a little misleading: just
+checked, that got no framebuffer WITH OR WITHOUT nouveau module
+loaded, then it must be kernel-related problem. But still there is a
+difference: with nouveau module loaded the machine doesn't want to
+make "poweroff" when pressed power button (not being able to see
+anything on the screen, I'm not sure, did it make a proper shutdown) -
+while without the module it shuts the power off properly.
 -- 
 Z.
