@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] Flickering screen on Geforece 4
-Date: Sat, 06 Oct 2012 11:13:59 +0000
-Message-ID: <bug-54587-8800-HoUr26OLBf@http.bugs.freedesktop.org/>
-References: <bug-54587-8800@http.bugs.freedesktop.org/>
+From: Zbigniew <zbigniew2011-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Problem with GFX 5500 Inno 3D - 2
+Date: Sat, 6 Oct 2012 12:19:04 +0000
+Message-ID: <CALT7RM8v8X2YJmG=F0A3S884nuzMLPhw6d-1LskW8v8qv4TDVA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0289081777=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,84 +18,11 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0289081777==
-Content-Type: multipart/alternative; boundary="1349522039.bd2dfc3.31036"; charset="us-ascii"
-
-
---1349522039.bd2dfc3.31036
-Date: Sat, 6 Oct 2012 11:13:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=54587
-
---- Comment #17 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> ---
-I was not able to get any better results. I do not expect any simple trick to
-get this adapter work well. I think you should get Geforce 4 and code/test
-yourselves. 
-
-In the meantime, NVidia has recently released a new and final official driver
-version 96.43.23 for X.Org xserver versions 1.11 and 1.12. I hope Ubuntu
-distribution will soon include it. 
-http://www.nvidia.co.uk/object/linux-display-ia32-96.43.23-driver-uk.html
-
+I forgot: maybe useful will be additional information, that I'm unable
+to get any "framebuffer" mode functional with this card and nouveau
+module loaded - for example, when I set as "boot parameter" something
+like "VGA=0x314", then screen gets dark and blank, when entering
+framebuffer mode; fortunately, I can shutdown machine in such case
+with power button (therefore the system is still running).
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1349522039.bd2dfc3.31036
-Date: Sat, 6 Oct 2012 11:13:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
-              from <span class="vcard"><a class="email" href="mailto:piip&#64;mail.com" title="Vesa &lt;piip&#64;mail.com&gt;"> <span class="fn">Vesa</span></a>
-</span></b>
-        <pre>I was not able to get any better results. I do not expect any simple trick to
-get this adapter work well. I think you should get Geforce 4 and code/test
-yourselves. 
-
-In the meantime, NVidia has recently released a new and final official driver
-version 96.43.23 for X.Org xserver versions 1.11 and 1.12. I hope Ubuntu
-distribution will soon include it. 
-<a href="http://www.nvidia.co.uk/object/linux-display-ia32-96.43.23-driver-uk.html">http://www.nvidia.co.uk/object/linux-display-ia32-96.43.23-driver-uk.html</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1349522039.bd2dfc3.31036--
-
---===============0289081777==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0289081777==--
+Z.
