@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55744] [NVC3] Hangs on resume
-Date: Sun, 07 Oct 2012 21:00:06 +0000
-Message-ID: <bug-55744-8800-oBK87mIpTg@http.bugs.freedesktop.org/>
-References: <bug-55744-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv50: wire up pll_calc hook
+Date: Mon,  8 Oct 2012 00:49:27 +0200
+Message-ID: <1349650171-25045-1-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0238206278=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,80 +18,43 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Fixes crash during reclocking.
+Call Trace:
+ pll_calc == NULL
+ calc_pll
+ calc_mclk
+ nv50_pm_clocks_pre
+ nouveau_pm_perflvl_set
+ nouveau_pm_trigger
+ nouveau_pm_profile_set
+ nouveau_pm_set_perflvl
+ dev_attr_store
+ sysfs_write_file
+ vfs_write
+ sys_write
+ system_call_fastpath
 
---===============0238206278==
-Content-Type: multipart/alternative; boundary="1349643606.e1ba2.29788"; charset="us-ascii"
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
 
+It's weird nobody noticed this... nva3+ code does not set this hook either,
+but there's no existing function to wire up...
 
---1349643606.e1ba2.29788
-Date: Sun, 7 Oct 2012 21:00:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+---
+ drivers/gpu/drm/nouveau/core/subdev/clock/nv50.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55744
-
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Hangs on resume             |[NVC3] Hangs on resume
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/clock/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/clock/nv50.c
+index fd181fb..f4147f6 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/clock/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/clock/nv50.c
+@@ -90,6 +90,7 @@ nv50_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 		return ret;
+ 
+ 	priv->base.pll_set = nv50_clock_pll_set;
++	priv->base.pll_calc = nv04_clock_pll_calc;
+ 	return 0;
+ }
+ 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1349643606.e1ba2.29788
-Date: Sun, 7 Oct 2012 21:00:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC3] Hangs on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55744">bug 55744</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Hangs on resume
-           </td>
-           <td>[NVC3] Hangs on resume
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1349643606.e1ba2.29788--
-
---===============0238206278==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0238206278==--
+1.7.12
