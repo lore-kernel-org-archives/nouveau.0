@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55744] Hangs on resume
-Date: Sun, 07 Oct 2012 20:49:01 +0000
-Message-ID: <bug-55744-8800-PiqA6RDY6B@http.bugs.freedesktop.org/>
+Subject: [Bug 55744] [NVC3] Hangs on resume
+Date: Sun, 07 Oct 2012 21:00:06 +0000
+Message-ID: <bug-55744-8800-oBK87mIpTg@http.bugs.freedesktop.org/>
 References: <bug-55744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1561425110=="
+Content-Type: multipart/mixed; boundary="===============0238206278=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-55744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1561425110==
-Content-Type: multipart/alternative; boundary="1349642941.bB061.29307"; charset="us-ascii"
+--===============0238206278==
+Content-Type: multipart/alternative; boundary="1349643606.e1ba2.29788"; charset="us-ascii"
 
 
---1349642941.bB061.29307
-Date: Sun, 7 Oct 2012 20:49:01 +0000
+--1349643606.e1ba2.29788
+Date: Sun, 7 Oct 2012 21:00:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=55744
 
-francoism <francois5537-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Priority|medium                      |high
+            Summary|Hangs on resume             |[NVC3] Hangs on resume
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1349642941.bB061.29307
-Date: Sun, 7 Oct 2012 20:49:01 +0000
+--1349643606.e1ba2.29788
+Date: Sun, 7 Oct 2012 21:00:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,11 +50,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:francois5537&#64;gmail.com" title="francoism &lt;francois5537&#64;gmail.com&gt;"> <span class="fn">francoism</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Hangs on resume"
+   title="NEW --- - [NVC3] Hangs on resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=55744">bug 55744</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -65,10 +65,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Priority</td>
-           <td>medium
+           <td style="text-align:right;">Summary</td>
+           <td>Hangs on resume
            </td>
-           <td>high
+           <td>[NVC3] Hangs on resume
            </td>
          </tr></table>
       <p>
@@ -82,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1349642941.bB061.29307--
+--1349643606.e1ba2.29788--
 
---===============1561425110==
+--===============0238206278==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1561425110==--
+--===============0238206278==--
