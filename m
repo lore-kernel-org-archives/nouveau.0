@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] Brightness stuck to low value after
-	suspend/resume
-Date: Sat, 06 Oct 2012 20:03:55 +0000
-Message-ID: <bug-39550-8800-OU4hMSWsY6@http.bugs.freedesktop.org/>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54587] Flickering screen on Geforece 4
+Date: Sun, 07 Oct 2012 11:26:27 +0000
+Message-ID: <bug-54587-8800-1R1aq8D0pd@http.bugs.freedesktop.org/>
+References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1354358032=="
+Content-Type: multipart/mixed; boundary="===============0949568138=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1354358032==
-Content-Type: multipart/alternative; boundary="1349553836.D222CF6.26782"; charset="us-ascii"
+--===============0949568138==
+Content-Type: multipart/alternative; boundary="1349609187.38cEA4d2.32280"; charset="us-ascii"
 
 
---1349553836.D222CF6.26782
-Date: Sat, 6 Oct 2012 20:03:56 +0000
+--1349609187.38cEA4d2.32280
+Date: Sun, 7 Oct 2012 11:26:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+https://bugs.freedesktop.org/show_bug.cgi?id=54587
 
---- Comment #34 from ChriS <chris00-cBm5OqgzVeIUrb4e85K3Fw@public.gmane.org> ---
-The problem is still present in the git version of the driver.
+--- Comment #18 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> ---
+I installed directly NVidia 96.43.23 driver and it works well at full
+resolution. It conflicts with Nouveau so I have to use "nouveau.modeset=0" in
+kernel boot parameters.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1349553836.D222CF6.26782
-Date: Sat, 6 Oct 2012 20:03:56 +0000
+--1349609187.38cEA4d2.32280
+Date: Sun, 7 Oct 2012 11:26:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +54,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Brightness stuck to low value after suspend/resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550#c34">Comment # 34</a>
+   title="NEW --- - Flickering screen on Geforece 4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Brightness stuck to low value after suspend/resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550">bug 39550</a>
-              from <span class="vcard"><a class="email" href="mailto:chris00&#64;aliceadsl.fr" title="ChriS &lt;chris00&#64;aliceadsl.fr&gt;"> <span class="fn">ChriS</span></a>
+   title="NEW --- - Flickering screen on Geforece 4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
+              from <span class="vcard"><a class="email" href="mailto:piip&#64;mail.com" title="Vesa &lt;piip&#64;mail.com&gt;"> <span class="fn">Vesa</span></a>
 </span></b>
-        <pre>The problem is still present in the git version of the driver.</pre>
+        <pre>I installed directly NVidia 96.43.23 driver and it works well at full
+resolution. It conflicts with Nouveau so I have to use &quot;nouveau.modeset=0&quot; in
+kernel boot parameters.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1349553836.D222CF6.26782--
+--1349609187.38cEA4d2.32280--
 
---===============1354358032==
+--===============0949568138==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1354358032==--
+--===============0949568138==--
