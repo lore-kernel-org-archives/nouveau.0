@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: remove >1 sclass support from
-	nouveau_parent_create_
-Date: Mon,  8 Oct 2012 00:49:30 +0200
-Message-ID: <1349650171-25045-4-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau: fix error handling in core/core
+	object creation functions
+Date: Mon,  8 Oct 2012 00:49:31 +0200
+Message-ID: <1349650171-25045-5-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,80 +19,89 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-It's unused (only one codepath passes sclass at all and it's always one),
-broken (overwrites the same field, leaking previous one) and confusing.
-
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/core/client.c           | 2 +-
- drivers/gpu/drm/nouveau/core/core/parent.c           | 3 +--
- drivers/gpu/drm/nouveau/core/include/subdev/device.h | 2 +-
- drivers/gpu/drm/nouveau/core/subdev/device/base.c    | 6 +++---
- 4 files changed, 6 insertions(+), 7 deletions(-)
+This patch relies on "drm/nouveau: remove >1 sclass support from nouveau_parent_create_".
 
-diff --git a/drivers/gpu/drm/nouveau/core/core/client.c b/drivers/gpu/drm/nouveau/core/core/client.c
-index c617f04..87850ec 100644
---- a/drivers/gpu/drm/nouveau/core/core/client.c
-+++ b/drivers/gpu/drm/nouveau/core/core/client.c
-@@ -58,7 +58,7 @@ nouveau_client_create_(const char *name, u64 devname, const char *cfg,
- 		return -ENODEV;
- 
- 	ret = nouveau_namedb_create_(NULL, NULL, &nouveau_client_oclass,
--				     NV_CLIENT_CLASS, nouveau_device_sclass,
-+				     NV_CLIENT_CLASS, &nouveau_device_sclass,
- 				     0, length, pobject);
- 	client = *pobject;
- 	if (ret)
-diff --git a/drivers/gpu/drm/nouveau/core/core/parent.c b/drivers/gpu/drm/nouveau/core/core/parent.c
-index 0e7733c..1a48e58 100644
---- a/drivers/gpu/drm/nouveau/core/core/parent.c
-+++ b/drivers/gpu/drm/nouveau/core/core/parent.c
-@@ -85,7 +85,7 @@ nouveau_parent_create_(struct nouveau_object *parent,
- 	if (ret)
+There are *many* *more* code paths without proper error handling - I counted
+at least 106 in 41 functions. If someone would like to do a bit of janitorial
+work I marked those code paths and uploaded "patch" here:
+http://people.freedesktop.org/~mslusarz/0001-codepaths-without-error-handling.patch
+(Please let me know if you are going to fix those to not duplicate work)
+---
+ drivers/gpu/drm/nouveau/core/core/engine.c | 1 +
+ drivers/gpu/drm/nouveau/core/core/gpuobj.c | 9 ++++++---
+ drivers/gpu/drm/nouveau/core/core/parent.c | 4 +++-
+ 3 files changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/core/core/engine.c b/drivers/gpu/drm/nouveau/core/core/engine.c
+index 09b3bd5..4319854 100644
+--- a/drivers/gpu/drm/nouveau/core/core/engine.c
++++ b/drivers/gpu/drm/nouveau/core/core/engine.c
+@@ -44,6 +44,7 @@ nouveau_engine_create_(struct nouveau_object *parent,
  		return ret;
  
--	while (sclass && sclass->ofuncs) {
-+	if (sclass && sclass->ofuncs) {
- 		nclass = kzalloc(sizeof(*nclass), GFP_KERNEL);
- 		if (!nclass)
- 			return -ENOMEM;
-@@ -94,7 +94,6 @@ nouveau_parent_create_(struct nouveau_object *parent,
- 		object->sclass = nclass;
- 		nclass->engine = engine ? nv_engine(engine) : NULL;
- 		nclass->oclass = sclass;
--		sclass++;
+ 	if (!nouveau_boolopt(device->cfgopt, iname, enable)) {
++		nouveau_subdev_destroy(&engine->base);
+ 		if (!enable)
+ 			nv_warn(engine, "disabled, %s=1 to enable\n", iname);
+ 		return -ENODEV;
+diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+index c2a7608..6254d52 100644
+--- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
++++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+@@ -40,7 +40,7 @@ nouveau_gpuobj_destroy(struct nouveau_gpuobj *gpuobj)
  	}
  
- 	object->engine = engcls;
-diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/device.h b/drivers/gpu/drm/nouveau/core/include/subdev/device.h
-index c9e4c4a..0966f33 100644
---- a/drivers/gpu/drm/nouveau/core/include/subdev/device.h
-+++ b/drivers/gpu/drm/nouveau/core/include/subdev/device.h
-@@ -18,7 +18,7 @@ int nv50_identify(struct nouveau_device *);
- int nvc0_identify(struct nouveau_device *);
- int nve0_identify(struct nouveau_device *);
+ 	if (gpuobj->heap.block_size)
+-		nouveau_mm_fini(&gpuobj->heap);
++		WARN_ON(nouveau_mm_fini(&gpuobj->heap));
  
--extern struct nouveau_oclass nouveau_device_sclass[];
-+extern struct nouveau_oclass nouveau_device_sclass;
- struct nouveau_device *nouveau_device_find(u64 name);
+ 	nouveau_object_destroy(&gpuobj->base);
+ }
+@@ -113,7 +113,7 @@ nouveau_gpuobj_create_(struct nouveau_object *parent,
+ 		ret = nouveau_mm_head(heap, 1, size, size,
+ 				      max(align, (u32)1), &gpuobj->node);
+ 		if (ret)
+-			return ret;
++			goto err;
  
- #endif
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/device/base.c b/drivers/gpu/drm/nouveau/core/subdev/device/base.c
-index 2cec8a8..352a940 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/device/base.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/device/base.c
-@@ -409,9 +409,9 @@ nouveau_devobj_ofuncs = {
-  * nouveau_device: engine functions
-  *****************************************************************************/
- struct nouveau_oclass
--nouveau_device_sclass[] = {
--	{ 0x0080, &nouveau_devobj_ofuncs },
--	{}
-+nouveau_device_sclass = {
-+	.handle = 0x0080,
-+	.ofuncs = &nouveau_devobj_ofuncs,
- };
+ 		gpuobj->addr += gpuobj->node->offset;
+ 	}
+@@ -121,7 +121,7 @@ nouveau_gpuobj_create_(struct nouveau_object *parent,
+ 	if (gpuobj->flags & NVOBJ_FLAG_HEAP) {
+ 		ret = nouveau_mm_init(&gpuobj->heap, 0, gpuobj->size, 1);
+ 		if (ret)
+-			return ret;
++			goto err;
+ 	}
  
- static void
+ 	if (flags & NVOBJ_FLAG_ZERO_ALLOC) {
+@@ -130,6 +130,9 @@ nouveau_gpuobj_create_(struct nouveau_object *parent,
+ 	}
+ 
+ 	return ret;
++err:
++	nouveau_gpuobj_destroy(gpuobj);
++	return ret;
+ }
+ 
+ struct nouveau_gpuobj_class {
+diff --git a/drivers/gpu/drm/nouveau/core/core/parent.c b/drivers/gpu/drm/nouveau/core/core/parent.c
+index 1a48e58..d2ea7c2 100644
+--- a/drivers/gpu/drm/nouveau/core/core/parent.c
++++ b/drivers/gpu/drm/nouveau/core/core/parent.c
+@@ -87,8 +87,10 @@ nouveau_parent_create_(struct nouveau_object *parent,
+ 
+ 	if (sclass && sclass->ofuncs) {
+ 		nclass = kzalloc(sizeof(*nclass), GFP_KERNEL);
+-		if (!nclass)
++		if (!nclass) {
++			nouveau_parent_destroy(object);
+ 			return -ENOMEM;
++		}
+ 
+ 		nclass->sclass = object->sclass;
+ 		object->sclass = nclass;
 -- 
 1.7.12
