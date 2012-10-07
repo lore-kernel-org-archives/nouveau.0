@@ -1,8 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: comment out unused
-	_nouveau_parent_ctor
-Date: Mon,  8 Oct 2012 00:49:28 +0200
-Message-ID: <1349650171-25045-2-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau: add some comments about class fields
+Date: Mon,  8 Oct 2012 00:49:29 +0200
+Message-ID: <1349650171-25045-3-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -21,46 +20,37 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/core/parent.c         | 2 ++
- drivers/gpu/drm/nouveau/core/include/core/parent.h | 3 +++
+ drivers/gpu/drm/nouveau/core/include/core/engine.h | 4 ++++
+ drivers/gpu/drm/nouveau/core/include/core/parent.h | 1 +
  2 files changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/core/core/parent.c b/drivers/gpu/drm/nouveau/core/core/parent.c
-index a1ea034..0e7733c 100644
---- a/drivers/gpu/drm/nouveau/core/core/parent.c
-+++ b/drivers/gpu/drm/nouveau/core/core/parent.c
-@@ -101,6 +101,7 @@ nouveau_parent_create_(struct nouveau_object *parent,
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/nouveau/core/include/core/engine.h b/drivers/gpu/drm/nouveau/core/include/core/engine.h
+index 666d06d..09b2828 100644
+--- a/drivers/gpu/drm/nouveau/core/include/core/engine.h
++++ b/drivers/gpu/drm/nouveau/core/include/core/engine.h
+@@ -9,7 +9,11 @@
  
-+#if 0
- int
- _nouveau_parent_ctor(struct nouveau_object *parent,
- 		     struct nouveau_object *engine,
-@@ -117,6 +118,7 @@ _nouveau_parent_ctor(struct nouveau_object *parent,
+ struct nouveau_engine {
+ 	struct nouveau_subdev base;
++
++	/* context class */
+ 	struct nouveau_oclass *cclass;
++
++	/* array of possible subclasses */
+ 	struct nouveau_oclass *sclass;
  
- 	return 0;
- }
-+#endif
- 
- void
- nouveau_parent_destroy(struct nouveau_parent *parent)
+ 	struct list_head contexts;
 diff --git a/drivers/gpu/drm/nouveau/core/include/core/parent.h b/drivers/gpu/drm/nouveau/core/include/core/parent.h
-index d3aa251..58bf6b5 100644
+index 58bf6b5..31a32b0 100644
 --- a/drivers/gpu/drm/nouveau/core/include/core/parent.h
 +++ b/drivers/gpu/drm/nouveau/core/include/core/parent.h
-@@ -50,9 +50,12 @@ int  nouveau_parent_create_(struct nouveau_object *, struct nouveau_object *,
- 			    int size, void **);
- void nouveau_parent_destroy(struct nouveau_parent *);
+@@ -13,6 +13,7 @@ struct nouveau_sclass {
+ struct nouveau_parent {
+ 	struct nouveau_object base;
  
-+#if 0
- int  _nouveau_parent_ctor(struct nouveau_object *, struct nouveau_object *,
- 			  struct nouveau_oclass *, void *, u32,
- 			  struct nouveau_object **);
-+#endif
-+
- void _nouveau_parent_dtor(struct nouveau_object *);
- #define _nouveau_parent_init _nouveau_object_init
- #define _nouveau_parent_fini _nouveau_object_fini
++	/* subclass */
+ 	struct nouveau_sclass *sclass;
+ 	u32 engine;
+ 
 -- 
 1.7.12
