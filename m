@@ -1,8 +1,8 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH] drm/nouveau: fix error handling in core/core
  object creation functions
-Date: Mon, 8 Oct 2012 01:01:00 +0200
-Message-ID: <20121007230100.GA25474@joi.lan>
+Date: Mon, 8 Oct 2012 11:05:33 +1000
+Message-ID: <20121008010533.GA4197@turiel.bne.redhat.com>
 References: <1349650171-25045-5-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -19,7 +19,8 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 On Mon, Oct 08, 2012 at 12:49:31AM +0200, Marcin Slusarz wrote:
@@ -27,7 +28,15 @@ On Mon, Oct 08, 2012 at 12:49:31AM +0200, Marcin Slusarz wrote:
 > ---
 > This patch relies on "drm/nouveau: remove >1 sclass support from nouveau_parent_create_".
 > 
-> There are *many* *more* code paths without proper error handling - I counted
+> There are *many* *more* code paths without proper error handling -
+This is *not* a bug.  An object's constructor should be called via
+nouveau_object_ctor(), which has the semantics that the constructor
+returns and error *and* a pointer returned via pobject, then the
+class's destructor will be called to cleanup.
+
+Ben.
+
+> I counted
 > at least 106 in 41 functions. If someone would like to do a bit of janitorial
 > work I marked those code paths and uploaded "patch" here:
 > http://people.freedesktop.org/~mslusarz/0001-codepaths-without-error-handling.patch
@@ -60,10 +69,6 @@ On Mon, Oct 08, 2012 at 12:49:31AM +0200, Marcin Slusarz wrote:
 >  	if (gpuobj->heap.block_size)
 > -		nouveau_mm_fini(&gpuobj->heap);
 > +		WARN_ON(nouveau_mm_fini(&gpuobj->heap));
-
-Ha! This is triggering on channel close. Maybe it's the leak which is
-preventing piglit from finishing...
-
 >  
 >  	nouveau_object_destroy(&gpuobj->base);
 >  }
@@ -114,3 +119,7 @@ preventing piglit from finishing...
 > -- 
 > 1.7.12
 > 
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
