@@ -1,15 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: comment out unused
- _nouveau_parent_ctor
-Date: Mon, 8 Oct 2012 11:07:34 +1000
-Message-ID: <20121008010734.GC4197@turiel.bne.redhat.com>
-References: <1349650171-25045-2-git-send-email-marcin.slusarz@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27680] Misaligned reg ... nVidia Corporation C67
+ [GeForce 7150M / nForce 630M] (rev a2)
+Date: Mon, 08 Oct 2012 19:56:31 +0000
+Message-ID: <bug-27680-8800-C1rfWlXLBa@http.bugs.freedesktop.org/>
+References: <bug-27680-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0613249018=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1349650171-25045-2-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-27680-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,66 +17,87 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Oct 08, 2012 at 12:49:28AM +0200, Marcin Slusarz wrote:
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/core/core/parent.c         | 2 ++
->  drivers/gpu/drm/nouveau/core/include/core/parent.h | 3 +++
->  2 files changed, 5 insertions(+)
-Feel free to just kill it completely.  There's a few bits and pieces
-of left-overs like this around the place, I'll be killing them as
-I run across them too.
 
-What do you think?
+--===============0613249018==
+Content-Type: multipart/alternative; boundary="1349726191.C1EA2.5285"; charset="us-ascii"
 
-Ben.
 
-> 
-> diff --git a/drivers/gpu/drm/nouveau/core/core/parent.c b/drivers/gpu/drm/nouveau/core/core/parent.c
-> index a1ea034..0e7733c 100644
-> --- a/drivers/gpu/drm/nouveau/core/core/parent.c
-> +++ b/drivers/gpu/drm/nouveau/core/core/parent.c
-> @@ -101,6 +101,7 @@ nouveau_parent_create_(struct nouveau_object *parent,
->  	return 0;
->  }
->  
-> +#if 0
->  int
->  _nouveau_parent_ctor(struct nouveau_object *parent,
->  		     struct nouveau_object *engine,
-> @@ -117,6 +118,7 @@ _nouveau_parent_ctor(struct nouveau_object *parent,
->  
->  	return 0;
->  }
-> +#endif
->  
->  void
->  nouveau_parent_destroy(struct nouveau_parent *parent)
-> diff --git a/drivers/gpu/drm/nouveau/core/include/core/parent.h b/drivers/gpu/drm/nouveau/core/include/core/parent.h
-> index d3aa251..58bf6b5 100644
-> --- a/drivers/gpu/drm/nouveau/core/include/core/parent.h
-> +++ b/drivers/gpu/drm/nouveau/core/include/core/parent.h
-> @@ -50,9 +50,12 @@ int  nouveau_parent_create_(struct nouveau_object *, struct nouveau_object *,
->  			    int size, void **);
->  void nouveau_parent_destroy(struct nouveau_parent *);
->  
-> +#if 0
->  int  _nouveau_parent_ctor(struct nouveau_object *, struct nouveau_object *,
->  			  struct nouveau_oclass *, void *, u32,
->  			  struct nouveau_object **);
-> +#endif
-> +
->  void _nouveau_parent_dtor(struct nouveau_object *);
->  #define _nouveau_parent_init _nouveau_object_init
->  #define _nouveau_parent_fini _nouveau_object_fini
-> -- 
-> 1.7.12
-> 
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+--1349726191.C1EA2.5285
+Date: Mon, 8 Oct 2012 19:56:31 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D27680
+
+--- Comment #2 from M=C4=81ris Vilks <kaaposc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 68282
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D68282&action=3Dedit
+dmesg
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1349726191.C1EA2.5285
+Date: Mon, 8 Oct 2012 19:56:31 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO --- - Misaligned reg ... nVidia Corporation C67 [GeFor=
+ce 7150M / nForce 630M] (rev a2)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D27680#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO --- - Misaligned reg ... nVidia Corporation C67 [GeFor=
+ce 7150M / nForce 630M] (rev a2)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D27680">bug 27680<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+kaaposc&#64;gmail.com" title=3D"M=C4=81ris Vilks &lt;kaaposc&#64;gmail.com&=
+gt;"> <span class=3D"fn">M=C4=81ris Vilks</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D68282"=
+ name=3D"attach_68282" title=3D"dmesg">attachment 68282</a> <a href=3D"atta=
+chment.cgi?id=3D68282&amp;action=3Dedit" title=3D"dmesg">[details]</a></spa=
+n>
+dmesg</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1349726191.C1EA2.5285--
+
+--===============0613249018==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0613249018==--
