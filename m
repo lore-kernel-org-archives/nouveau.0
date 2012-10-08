@@ -1,16 +1,16 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix error handling in core/core
- object creation functions
-Date: Tue, 9 Oct 2012 00:50:59 +0200
-Message-ID: <20121008225059.GD3103@joi.lan>
-References: <1349650171-25045-5-git-send-email-marcin.slusarz@gmail.com>
-	<20121008010533.GA4197@turiel.bne.redhat.com>
+Subject: Re: [PATCH] drm/nouveau: remove >1 sclass support from
+ nouveau_parent_create_
+Date: Tue, 9 Oct 2012 01:02:08 +0200
+Message-ID: <20121008230208.GE3103@joi.lan>
+References: <1349650171-25045-4-git-send-email-marcin.slusarz@gmail.com>
+	<20121008010646.GB4197@turiel.bne.redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20121008010533.GA4197-6RkuLLNOGXsZ315U/fw+0NvLeJWuRmrY@public.gmane.org>
+In-Reply-To: <20121008010646.GB4197-6RkuLLNOGXsZ315U/fw+0NvLeJWuRmrY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,21 +24,20 @@ To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Oct 08, 2012 at 11:05:33AM +1000, Ben Skeggs wrote:
-> On Mon, Oct 08, 2012 at 12:49:31AM +0200, Marcin Slusarz wrote:
-> > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > ---
-> > This patch relies on "drm/nouveau: remove >1 sclass support from nouveau_parent_create_".
-> > 
-> > There are *many* *more* code paths without proper error handling -
-> This is *not* a bug.  An object's constructor should be called via
-> nouveau_object_ctor(), which has the semantics that the constructor
-> returns and error *and* a pointer returned via pobject, then the
-> class's destructor will be called to cleanup.
+On Mon, Oct 08, 2012 at 11:06:46AM +1000, Ben Skeggs wrote:
+> On Mon, Oct 08, 2012 at 12:49:30AM +0200, Marcin Slusarz wrote:
+> > It's unused (only one codepath passes sclass at all and it's always one),
+> > broken (overwrites the same field, leaking previous one) and confusing.
+> It's only *currently* unused, I have WIP code in branches that uses it,
+> otherwise it wouldn't still exist :)
 
-That's... clever, and crazy, and unlike anything in kernel land...
+Yeah, like _nouveau_parent_ctor :P
 
-Please put a comment near ctor field in nouveau_ofuncs to make this
-information easier to discover, without need to review the whole call chain...
+> I will take a look today at the claims it's broken, it wasn't at some
+> point but may have got busted along the way somehow.
+
+Oh, it chains them in list...
+
+/me hides.
 
 Marcin
