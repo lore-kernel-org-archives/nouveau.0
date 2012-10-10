@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] NV34 Fx5200 & NVC3/Quadro 2000M
- both fail to resume with commit 'convert to exec engine,
- and improve channel sync'
-Date: Wed, 10 Oct 2012 12:23:24 +0000
-Message-ID: <bug-50121-8800-gZuP3JSm3i@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 55294] Running EGL demos on DRM from mesa-demos
+ causes a corrupted output on NV50
+Date: Wed, 10 Oct 2012 13:18:35 +0000
+Message-ID: <bug-55294-8800-zJ3CKTfrjL@http.bugs.freedesktop.org/>
+References: <bug-55294-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0729970726=="
+Content-Type: multipart/mixed; boundary="===============0856239903=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-55294-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,32 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0729970726==
-Content-Type: multipart/alternative; boundary="1349871804.67444c82.25707"; charset="us-ascii"
+--===============0856239903==
+Content-Type: multipart/alternative; boundary="1349875114.2eea0.3204"; charset="us-ascii"
 
 
---1349871804.67444c82.25707
-Date: Wed, 10 Oct 2012 12:23:24 +0000
+--1349875114.2eea0.3204
+Date: Wed, 10 Oct 2012 13:18:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
+https://bugs.freedesktop.org/show_bug.cgi?id=55294
 
---- Comment #15 from francoism <francois5537-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Same issue here with my EVGA GeForce 450 GTS (1GB).
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-It works fine with the nVidia drivers.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-Kernel: 3.6.1
-nouveau-git & libdrm-git
-OS: Archlinux
+--- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The patch has been pushed upstream
+master 93eba269351c6e256db3a4cc7c7018f5a3fae5a1
+
+Please reopen if the issue persist
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1349871804.67444c82.25707
-Date: Wed, 10 Oct 2012 12:23:24 +0000
+--1349875114.2eea0.3204
+Date: Wed, 10 Oct 2012 13:18:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,26 +58,51 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294">bug 55294</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c15">Comment # 15</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-              from <span class="vcard"><a class="email" href="mailto:francois5537&#64;gmail.com" title="francoism &lt;francois5537&#64;gmail.com&gt;"> <span class="fn">francoism</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294">bug 55294</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Same issue here with my EVGA GeForce 450 GTS (1GB).
+        <pre>The patch has been pushed upstream
+master 93eba269351c6e256db3a4cc7c7018f5a3fae5a1
 
-It works fine with the nVidia drivers.
-
-Kernel: 3.6.1
-nouveau-git &amp; libdrm-git
-OS: Archlinux</pre>
+Please reopen if the issue persist</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +114,9 @@ OS: Archlinux</pre>
     </body>
 </html>
 
---1349871804.67444c82.25707--
+--1349875114.2eea0.3204--
 
---===============0729970726==
+--===============0856239903==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0729970726==--
+--===============0856239903==--
