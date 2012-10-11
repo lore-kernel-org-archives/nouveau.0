@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55294] Running EGL demos on DRM from mesa-demos
- causes a corrupted output on NV50
-Date: Wed, 10 Oct 2012 13:18:35 +0000
-Message-ID: <bug-55294-8800-zJ3CKTfrjL@http.bugs.freedesktop.org/>
-References: <bug-55294-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nv50: wire up pll_calc hook
+Date: Thu, 11 Oct 2012 19:36:02 +0200
+Message-ID: <20121011173602.GA4053@joi.lan>
+References: <1349650171-25045-1-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0856239903=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55294-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <1349650171-25045-1-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,114 +18,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Mon, Oct 08, 2012 at 12:49:27AM +0200, Marcin Slusarz wrote:
+> Fixes crash during reclocking.
+> Call Trace:
+>  pll_calc == NULL
+>  calc_pll
+>  calc_mclk
+>  nv50_pm_clocks_pre
+>  nouveau_pm_perflvl_set
+>  nouveau_pm_trigger
+>  nouveau_pm_profile_set
+>  nouveau_pm_set_perflvl
+>  dev_attr_store
+>  sysfs_write_file
+>  vfs_write
+>  sys_write
+>  system_call_fastpath
+> 
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+> 
+> It's weird nobody noticed this... nva3+ code does not set this hook either,
+> but there's no existing function to wire up...
+> 
+And it seems to crash in the same way, see:
+http://www.phoronix.com/image-viewer.php?id=ubuntu_1210_nouvre&image=ubuntu_nouveau_pointer_lrg
 
---===============0856239903==
-Content-Type: multipart/alternative; boundary="1349875114.2eea0.3204"; charset="us-ascii"
+BTW, reclocking crashes without this patch:
+https://gitorious.org/linux-nouveau-pm/linux-nouveau-pm/commit/f3ed9b23ee611891166da9bac792a22844217c7a
 
+Applying this patch:
+https://gitorious.org/linux-nouveau-pm/linux-nouveau-pm/commit/abdd905d2bf362d48c125fd7c556c54c7ae1cbb9
+would be good too, because perflvl module option is useless without it.
 
---1349875114.2eea0.3204
-Date: Wed, 10 Oct 2012 13:18:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=55294
-
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The patch has been pushed upstream
-master 93eba269351c6e256db3a4cc7c7018f5a3fae5a1
-
-Please reopen if the issue persist
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1349875114.2eea0.3204
-Date: Wed, 10 Oct 2012 13:18:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294">bug 55294</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Running EGL demos on DRM from mesa-demos causes a corrupted output on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55294">bug 55294</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>The patch has been pushed upstream
-master 93eba269351c6e256db3a4cc7c7018f5a3fae5a1
-
-Please reopen if the issue persist</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1349875114.2eea0.3204--
-
---===============0856239903==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0856239903==--
+Marcin
