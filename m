@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55976] New: Account request
-Date: Sun, 14 Oct 2012 17:11:10 +0000
-Message-ID: <bug-55976-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 55976] Account request
+Date: Sun, 14 Oct 2012 17:12:13 +0000
+Message-ID: <bug-55976-8800-cjXJjwjK0y@http.bugs.freedesktop.org/>
+References: <bug-55976-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0825338735=="
+Content-Type: multipart/mixed; boundary="===============1026645903=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-55976-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,42 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0825338735==
-Content-Type: multipart/alternative; boundary="1350234671.32bF1.2120"; charset="us-ascii"
+--===============1026645903==
+Content-Type: multipart/alternative; boundary="1350234733.6c208E01.2296"; charset="us-ascii"
 
 
---1350234671.32bF1.2120
-Date: Sun, 14 Oct 2012 17:11:11 +0000
+--1350234733.6c208E01.2296
+Date: Sun, 14 Oct 2012 17:12:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=55976
 
-          Priority: medium
-            Bug ID: 55976
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Account request
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 68553
-  --> https://bugs.freedesktop.org/attachment.cgi?id=68553&action=edit
-My public GPG key
+--- Comment #1 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Created attachment 68554
+  --> https://bugs.freedesktop.org/attachment.cgi?id=68554&action=edit
+My public ssh key
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1350234671.32bF1.2120
-Date: Sun, 14 Oct 2012 17:11:11 +0000
+--1350234733.6c208E01.2296
+Date: Sun, 14 Oct 2012 17:12:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,97 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Account request"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55976">55976</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Account request
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>martin.peres&#64;ensi-bourges.fr
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=68553" name="attach_68553" title="My public GPG key">attachment 68553</a> <a href="attachment.cgi?id=68553&amp;action=edit" title="My public GPG key">[details]</a></span>
-My public GPG key</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Account request"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55976#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Account request"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55976">bug 55976</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=68554" name="attach_68554" title="My public ssh key">attachment 68554</a> <a href="attachment.cgi?id=68554&amp;action=edit" title="My public ssh key">[details]</a></span>
+My public ssh key</pre>
         </div>
       </p>
       <hr>
@@ -163,9 +75,9 @@ My public GPG key</pre>
     </body>
 </html>
 
---1350234671.32bF1.2120--
+--1350234733.6c208E01.2296--
 
---===============0825338735==
+--===============1026645903==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -176,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0825338735==--
+--===============1026645903==--
