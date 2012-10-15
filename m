@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55980] X Segfault on second screen resize
-Date: Mon, 15 Oct 2012 17:23:17 +0000
-Message-ID: <bug-55980-8800-MbFkBpT2pO@http.bugs.freedesktop.org/>
-References: <bug-55980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 55832] xf86-video-nouveau-1.0.2 - Xorg crashes once
+ a week : segmentation fault in NVRefreshArea
+Date: Mon, 15 Oct 2012 17:48:19 +0000
+Message-ID: <bug-55832-8800-P4clerCHk4@http.bugs.freedesktop.org/>
+References: <bug-55832-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0188556014=="
+Content-Type: multipart/mixed; boundary="===============0510997934=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-55832-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0188556014==
-Content-Type: multipart/alternative; boundary="1350321797.cAb4E2.1736"; charset="us-ascii"
+--===============0510997934==
+Content-Type: multipart/alternative; boundary="1350323298.FbC8C1.6070"; charset="us-ascii"
 
 
---1350321797.cAb4E2.1736
-Date: Mon, 15 Oct 2012 17:23:17 +0000
+--1350323298.FbC8C1.6070
+Date: Mon, 15 Oct 2012 17:48:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55980
+https://bugs.freedesktop.org/show_bug.cgi?id=55832
 
---- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It looks more like xserver bug. Because of zero appearance of Nouveau in the
-callchain it's not certain you are using Nouveau...
-Please follow instructions from
-http://nouveau.freedesktop.org/wiki/Bugs#HowToReport and attach dmesg and xorg
-logs.
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Please attach full kernel and xserver logs as described here:
+http://nouveau.freedesktop.org/wiki/Bugs#HowToReport
+
+And next time it will crash, "print" (gdb command) as many variables from:
+http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/tree/src/nv_shadow.c#n32
+as possible, in particular pNv->scanout->map.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1350321797.cAb4E2.1736
-Date: Mon, 15 Oct 2012 17:23:17 +0000
+--1350323298.FbC8C1.6070
+Date: Mon, 15 Oct 2012 17:48:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,19 +58,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980#c3">Comment # 3</a>
+   title="NEW --- - xf86-video-nouveau-1.0.2 - Xorg crashes once a week : segmentation fault in NVRefreshArea"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55832#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980">bug 55980</a>
+   title="NEW --- - xf86-video-nouveau-1.0.2 - Xorg crashes once a week : segmentation fault in NVRefreshArea"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55832">bug 55832</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>It looks more like xserver bug. Because of zero appearance of Nouveau in the
-callchain it's not certain you are using Nouveau...
-Please follow instructions from
-<a href="http://nouveau.freedesktop.org/wiki/Bugs#HowToReport">http://nouveau.freedesktop.org/wiki/Bugs#HowToReport</a> and attach dmesg and xorg
-logs.</pre>
+        <pre>Please attach full kernel and xserver logs as described here:
+<a href="http://nouveau.freedesktop.org/wiki/Bugs#HowToReport">http://nouveau.freedesktop.org/wiki/Bugs#HowToReport</a>
+
+And next time it will crash, &quot;print&quot; (gdb command) as many variables from:
+<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/tree/src/nv_shadow.c#n32">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/tree/src/nv_shadow.c#n32</a>
+as possible, in particular pNv-&gt;scanout-&gt;map.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +83,9 @@ logs.</pre>
     </body>
 </html>
 
---1350321797.cAb4E2.1736--
+--1350323298.FbC8C1.6070--
 
---===============0188556014==
+--===============0510997934==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0188556014==--
+--===============0510997934==--
