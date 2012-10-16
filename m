@@ -1,14 +1,15 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: handle same-fb page flips
-Date: Tue, 16 Oct 2012 23:40:33 +0200
-Message-ID: <20121016214033.GB21336@joi.lan>
-References: <20121005193759.GA8531@joi.lan>
+Subject: Re: [PATCH] drm/nouveau: fix nouveau_mm/nouveau_mm_node
+	leak
+Date: Tue, 16 Oct 2012 23:41:43 +0200
+Message-ID: <20121016214143.GC21336@joi.lan>
+References: <20121011215309.GA3511@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20121005193759.GA8531-OI9uyE9O0yo@public.gmane.org>
+In-Reply-To: <20121011215309.GA3511-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,66 +19,56 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Oct 05, 2012 at 09:37:59PM +0200, Marcin Slusarz wrote:
-> It's questionable use case, but weston/wayland already relies on this behaviour,
-> and other drivers don't care about it, so it's a matter of compatibility.
-> Without it, process invoking such page flip hangs in unkillable state, trying
-> to reserve the same buffer twice.
-> 
+On Thu, Oct 11, 2012 at 11:53:09PM +0200, Marcin Slusarz wrote:
 > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > ---
->  drivers/gpu/drm/nouveau/nouveau_display.c | 20 +++++++++++++++-----
->  1 file changed, 15 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/nouveau/core/core/gpuobj.c         | 6 +++++-
+>  drivers/gpu/drm/nouveau/core/include/core/gpuobj.h | 3 +++
+>  2 files changed, 8 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-> index 61f370d..a52cfd3 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -530,9 +530,11 @@ nouveau_page_flip_reserve(struct nouveau_bo *old_bo,
->  	if (ret)
->  		goto fail;
+> diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> index c2a7608..48121d2 100644
+> --- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> +++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> @@ -39,8 +39,11 @@ nouveau_gpuobj_destroy(struct nouveau_gpuobj *gpuobj)
+>  			nv_wo32(gpuobj, i, 0x00000000);
+>  	}
 >  
-> -	ret = ttm_bo_reserve(&old_bo->bo, false, false, false, 0);
-> -	if (ret)
-> -		goto fail_unreserve;
-> +	if (likely(old_bo != new_bo)) {
-> +		ret = ttm_bo_reserve(&old_bo->bo, false, false, false, 0);
-> +		if (ret)
-> +			goto fail_unreserve;
-> +	}
->  
->  	return 0;
->  
-> @@ -551,8 +553,10 @@ nouveau_page_flip_unreserve(struct nouveau_bo *old_bo,
->  	nouveau_bo_fence(new_bo, fence);
->  	ttm_bo_unreserve(&new_bo->bo);
->  
-> -	nouveau_bo_fence(old_bo, fence);
-> -	ttm_bo_unreserve(&old_bo->bo);
-> +	if (likely(old_bo != new_bo)) {
-> +		nouveau_bo_fence(old_bo, fence);
-> +		ttm_bo_unreserve(&old_bo->bo);
-> +	}
->  
->  	nouveau_bo_unpin(old_bo);
->  }
-> @@ -624,6 +628,12 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
->  	if (!drm->channel)
->  		return -ENODEV;
->  
-> +	if (unlikely(old_bo == new_bo)) {
-> +		char name[sizeof(current->comm)];
-> +		pr_debug_ratelimited("'%s': useless page flip invoked\n",
-> +				get_task_comm(name, current));
-> +	}
+> +	if (gpuobj->node)
+> +		nouveau_mm_free(gpuobj->node_heap, &gpuobj->node);
 > +
->  	s = kzalloc(sizeof(*s), GFP_KERNEL);
->  	if (!s)
->  		return -ENOMEM;
+>  	if (gpuobj->heap.block_size)
+> -		nouveau_mm_fini(&gpuobj->heap);
+> +		WARN_ON(nouveau_mm_fini(&gpuobj->heap));
+>  
+>  	nouveau_object_destroy(&gpuobj->base);
+>  }
+> @@ -114,6 +117,7 @@ nouveau_gpuobj_create_(struct nouveau_object *parent,
+>  				      max(align, (u32)1), &gpuobj->node);
+>  		if (ret)
+>  			return ret;
+> +		gpuobj->node_heap = heap;
+>  
+>  		gpuobj->addr += gpuobj->node->offset;
+>  	}
+> diff --git a/drivers/gpu/drm/nouveau/core/include/core/gpuobj.h b/drivers/gpu/drm/nouveau/core/include/core/gpuobj.h
+> index d09adf1..f65bf5b 100644
+> --- a/drivers/gpu/drm/nouveau/core/include/core/gpuobj.h
+> +++ b/drivers/gpu/drm/nouveau/core/include/core/gpuobj.h
+> @@ -16,7 +16,10 @@ struct nouveau_vm;
+>  struct nouveau_gpuobj {
+>  	struct nouveau_object base;
+>  	struct nouveau_object *parent;
+> +
+> +	struct nouveau_mm *node_heap;
+>  	struct nouveau_mm_node *node;
+> +
+>  	struct nouveau_mm heap;
+>  
+>  	u32 flags;
 > -- 
 
-ping
+What's wrong with this patch?
