@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55948] [nvd9 optimus] drm/nouveau/bios: attempt to
- fetch entire acpi rom image in one shot breaks module load
-Date: Tue, 16 Oct 2012 00:12:30 +0000
-Message-ID: <bug-55948-8800-keCH6dHwq5@http.bugs.freedesktop.org/>
-References: <bug-55948-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 55976] Account request
+Date: Tue, 16 Oct 2012 00:14:04 +0000
+Message-ID: <bug-55976-8800-nA0vFGm4lw@http.bugs.freedesktop.org/>
+References: <bug-55976-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0560738349=="
+Content-Type: multipart/mixed; boundary="===============0578653256=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55948-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-55976-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0560738349==
-Content-Type: multipart/alternative; boundary="1350346350.1a6eDD271.7109"; charset="us-ascii"
+--===============0578653256==
+Content-Type: multipart/alternative; boundary="1350346443.dAF62.7380"; charset="us-ascii"
 
 
---1350346350.1a6eDD271.7109
-Date: Tue, 16 Oct 2012 00:12:30 +0000
+--1350346443.dAF62.7380
+Date: Tue, 16 Oct 2012 00:14:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55948
+https://bugs.freedesktop.org/show_bug.cgi?id=55976
 
 --- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I don't suppose you can copy /sys/firmware/acpi/tables/DSDT somewhere (copy
-might be necessary to avoid getting a 0-byte file) and attach it for me?
+ACK
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1350346350.1a6eDD271.7109
-Date: Tue, 16 Oct 2012 00:12:30 +0000
+--1350346443.dAF62.7380
+Date: Tue, 16 Oct 2012 00:14:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +52,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nvd9 optimus] drm/nouveau/bios: attempt to fetch entire acpi rom image in one shot breaks module load"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55948#c2">Comment # 2</a>
+   title="NEW --- - Account request"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55976#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nvd9 optimus] drm/nouveau/bios: attempt to fetch entire acpi rom image in one shot breaks module load"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55948">bug 55948</a>
+   title="NEW --- - Account request"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55976">bug 55976</a>
               from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>I don't suppose you can copy /sys/firmware/acpi/tables/DSDT somewhere (copy
-might be necessary to avoid getting a 0-byte file) and attach it for me?</pre>
+        <pre>ACK</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +72,9 @@ might be necessary to avoid getting a 0-byte file) and attach it for me?</pre>
     </body>
 </html>
 
---1350346350.1a6eDD271.7109--
+--1350346443.dAF62.7380--
 
---===============0560738349==
+--===============0578653256==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0560738349==--
+--===============0578653256==--
