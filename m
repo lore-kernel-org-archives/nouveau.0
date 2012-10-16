@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 55948] [nvd9 optimus] drm/nouveau/bios: attempt to
  fetch entire acpi rom image in one shot breaks module load
-Date: Tue, 16 Oct 2012 07:20:04 +0000
-Message-ID: <bug-55948-8800-IS2pl0F0cO@http.bugs.freedesktop.org/>
+Date: Tue, 16 Oct 2012 09:23:36 +0000
+Message-ID: <bug-55948-8800-j3zB87Ao1D@http.bugs.freedesktop.org/>
 References: <bug-55948-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0994739484=="
+Content-Type: multipart/mixed; boundary="===============0714580410=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-55948-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0994739484==
-Content-Type: multipart/alternative; boundary="1350372004.EDcDF1.16158"; charset="us-ascii"
+--===============0714580410==
+Content-Type: multipart/alternative; boundary="1350379416.dCD21.6596"; charset="us-ascii"
 
 
---1350372004.EDcDF1.16158
-Date: Tue, 16 Oct 2012 07:20:04 +0000
+--1350379416.dCD21.6596
+Date: Tue, 16 Oct 2012 09:23:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=55948
 
---- Comment #3 from Jan Vesely <jano.vesely-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 68601
-  --> https://bugs.freedesktop.org/attachment.cgi?id=68601&action=edit
-DSDT acpi table
+Peter Wu <lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #4 from Peter Wu <lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The DSDT does not contain a _ROM method. It must be in one of the SSDT files,
+can you run:
+
+    acpidump > acpidump.txt
+and attach the acpidump.txt file? You need to install acpidump first.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1350372004.EDcDF1.16158
-Date: Tue, 16 Oct 2012 07:20:04 +0000
+--1350379416.dCD21.6596
+Date: Tue, 16 Oct 2012 09:23:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +58,45 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:lekensteyn&#64;gmail.com" title="Peter Wu &lt;lekensteyn&#64;gmail.com&gt;"> <span class="fn">Peter Wu</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvd9 optimus] drm/nouveau/bios: attempt to fetch entire acpi rom image in one shot breaks module load"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55948">bug 55948</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>lekensteyn&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nvd9 optimus] drm/nouveau/bios: attempt to fetch entire acpi rom image in one shot breaks module load"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55948#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55948#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nvd9 optimus] drm/nouveau/bios: attempt to fetch entire acpi rom image in one shot breaks module load"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=55948">bug 55948</a>
-              from <span class="vcard"><a class="email" href="mailto:jano.vesely&#64;gmail.com" title="Jan Vesely &lt;jano.vesely&#64;gmail.com&gt;"> <span class="fn">Jan Vesely</span></a>
+              from <span class="vcard"><a class="email" href="mailto:lekensteyn&#64;gmail.com" title="Peter Wu &lt;lekensteyn&#64;gmail.com&gt;"> <span class="fn">Peter Wu</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=68601" name="attach_68601" title="DSDT acpi table">attachment 68601</a> <a href="attachment.cgi?id=68601&amp;action=edit" title="DSDT acpi table">[details]</a></span>
-DSDT acpi table</pre>
+        <pre>The DSDT does not contain a _ROM method. It must be in one of the SSDT files,
+can you run:
+
+    acpidump &gt; acpidump.txt
+and attach the acpidump.txt file? You need to install acpidump first.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +108,9 @@ DSDT acpi table</pre>
     </body>
 </html>
 
---1350372004.EDcDF1.16158--
+--1350379416.dCD21.6596--
 
---===============0994739484==
+--===============0714580410==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0994739484==--
+--===============0714580410==--
