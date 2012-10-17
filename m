@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55948] [nvd9 optimus] drm/nouveau/bios: attempt to
- fetch entire acpi rom image in one shot breaks module load
-Date: Wed, 17 Oct 2012 01:39:43 +0000
-Message-ID: <bug-55948-8800-oSJvXkVyoX@http.bugs.freedesktop.org/>
-References: <bug-55948-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: handle same-fb page flips
+Date: Wed, 17 Oct 2012 14:30:56 +1000
+Message-ID: <20121017043056.GA4049@turiel.redhat.com>
+References: <20121005193759.GA8531@joi.lan>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0383981849=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55948-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20121005193759.GA8531-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,116 +18,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Oct 05, 2012 at 09:37:59PM +0200, Marcin Slusarz wrote:
+> It's questionable use case, but weston/wayland already relies on this behaviour,
+> and other drivers don't care about it, so it's a matter of compatibility.
+> Without it, process invoking such page flip hangs in unkillable state, trying
+> to reserve the same buffer twice.
+> 
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_display.c | 20 +++++++++++++++-----
+>  1 file changed, 15 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+> index 61f370d..a52cfd3 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> @@ -530,9 +530,11 @@ nouveau_page_flip_reserve(struct nouveau_bo *old_bo,
+>  	if (ret)
+>  		goto fail;
+>  
+> -	ret = ttm_bo_reserve(&old_bo->bo, false, false, false, 0);
+> -	if (ret)
+> -		goto fail_unreserve;
+> +	if (likely(old_bo != new_bo)) {
+> +		ret = ttm_bo_reserve(&old_bo->bo, false, false, false, 0);
+> +		if (ret)
+> +			goto fail_unreserve;
+> +	}
+>  
+>  	return 0;
+>  
+> @@ -551,8 +553,10 @@ nouveau_page_flip_unreserve(struct nouveau_bo *old_bo,
+>  	nouveau_bo_fence(new_bo, fence);
+>  	ttm_bo_unreserve(&new_bo->bo);
+>  
+> -	nouveau_bo_fence(old_bo, fence);
+> -	ttm_bo_unreserve(&old_bo->bo);
+> +	if (likely(old_bo != new_bo)) {
+> +		nouveau_bo_fence(old_bo, fence);
+> +		ttm_bo_unreserve(&old_bo->bo);
+> +	}
+>  
+>  	nouveau_bo_unpin(old_bo);
+>  }
+> @@ -624,6 +628,12 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+>  	if (!drm->channel)
+>  		return -ENODEV;
+>  
+> +	if (unlikely(old_bo == new_bo)) {
+> +		char name[sizeof(current->comm)];
+> +		pr_debug_ratelimited("'%s': useless page flip invoked\n",
+> +				get_task_comm(name, current));
+> +	}
+> +
+The patch looks alright, except I think we should just drop this hunk,
+no other driver reports it either.
 
---===============0383981849==
-Content-Type: multipart/alternative; boundary="1350437983.1da75c2.7868"; charset="us-ascii"
+Thoughts?
 
+Ben.
 
---1350437983.1da75c2.7868
-Date: Wed, 17 Oct 2012 01:39:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=55948
-
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-                   |rg                          |
-
---- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 68662
-  --> https://bugs.freedesktop.org/attachment.cgi?id=68662&action=edit
-fallback to slow _ROM access if checksum fails
-
-How do you go if you apply this?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1350437983.1da75c2.7868
-Date: Wed, 17 Oct 2012 01:39:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - [nvd9 optimus] drm/nouveau/bios: attempt to fetch entire acpi rom image in one shot breaks module load"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55948">bug 55948</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>ASSIGNED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>skeggsb&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - [nvd9 optimus] drm/nouveau/bios: attempt to fetch entire acpi rom image in one shot breaks module load"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55948#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - [nvd9 optimus] drm/nouveau/bios: attempt to fetch entire acpi rom image in one shot breaks module load"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55948">bug 55948</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=68662" name="attach_68662" title="fallback to slow _ROM access if checksum fails">attachment 68662</a> <a href="attachment.cgi?id=68662&amp;action=edit" title="fallback to slow _ROM access if checksum fails">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=55948&amp;attachment=68662'>[review]</a>
-fallback to slow _ROM access if checksum fails
-
-How do you go if you apply this?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1350437983.1da75c2.7868--
-
---===============0383981849==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0383981849==--
+>  	s = kzalloc(sizeof(*s), GFP_KERNEL);
+>  	if (!s)
+>  		return -ENOMEM;
+> -- 
+> 1.7.12
+> 
