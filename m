@@ -1,112 +1,92 @@
-From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 03/10] drm: dp helper: extract
-	drm_dp_clock_recovery_ok
-Date: Thu, 18 Oct 2012 10:15:25 +0200
-Message-ID: <1350548132-3037-4-git-send-email-daniel.vetter@ffwll.ch>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH 04/10] drm/nouveau: use the cr_ok/chanel_eq_ok
+	helpers
+Date: Thu, 18 Oct 2012 10:15:26 +0200
+Message-ID: <1350548132-3037-5-git-send-email-daniel.vetter@ffwll.ch>
 References: <1350548132-3037-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1350548132-3037-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Return-path: <intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1350548132-3037-1-git-send-email-daniel.vetter@ffwll.ch>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/intel-gfx>,
+	<mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+	<mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Sender: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
+Errors-To: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: nouveau@lists.freedesktop.org, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, xorg-driver-ati@lists.x.org, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-radeon and intel use the exact same definition.
+Only compile-tested, due to a lack of nouveau dp hw. Should be
+equivalent code though.
 
-Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/i915/intel_dp.c      |  4 ++--
- drivers/gpu/drm/radeon/atombios_dp.c | 25 +------------------------
- include/drm/drm_dp_helper.h          |  2 ++
- 3 files changed, 5 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_dp.c | 26 +++++---------------------
+ 1 file changed, 5 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/intel_dp.c
-index d3f4db0..5a9ab3a 100644
---- a/drivers/gpu/drm/i915/intel_dp.c
-+++ b/drivers/gpu/drm/i915/intel_dp.c
-@@ -1845,7 +1845,7 @@ intel_dp_start_link_train(struct intel_dp *intel_dp)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index e754aa3..60d561e 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -298,7 +298,7 @@ dp_link_train_cr(struct drm_device *dev, struct dp_state *dp)
+ {
+ 	bool cr_done = false, abort = false;
+ 	int voltage = dp->conf[0] & DP_TRAIN_VOLTAGE_SWING_MASK;
+-	int tries = 0, i;
++	int tries = 0;
+ 
+ 	dp_set_training_pattern(dev, dp, DP_TRAINING_PATTERN_1);
+ 
+@@ -307,16 +307,7 @@ dp_link_train_cr(struct drm_device *dev, struct dp_state *dp)
+ 		    dp_link_train_update(dev, dp, 100))
  			break;
- 		}
  
--		if (intel_clock_recovery_ok(link_status, intel_dp->lane_count)) {
-+		if (drm_dp_clock_recovery_ok(link_status, intel_dp->lane_count)) {
- 			DRM_DEBUG_KMS("clock recovery OK\n");
- 			clock_recovery = true;
+-		cr_done = true;
+-		for (i = 0; i < dp->link_nr; i++) {
+-			u8 lane = (dp->stat[i >> 1] >> ((i & 1) * 4)) & 0xf;
+-			if (!(lane & DP_LANE_CR_DONE)) {
+-				cr_done = false;
+-				if (dp->conf[i] & DP_TRAIN_MAX_SWING_REACHED)
+-					abort = true;
+-				break;
+-			}
+-		}
++		cr_done = drm_dp_clock_recovery_ok(dp->stat, dp->link_nr);
+ 
+ 		if ((dp->conf[0] & DP_TRAIN_VOLTAGE_SWING_MASK) != voltage) {
+ 			voltage = dp->conf[0] & DP_TRAIN_VOLTAGE_SWING_MASK;
+@@ -331,7 +322,7 @@ static int
+ dp_link_train_eq(struct drm_device *dev, struct dp_state *dp)
+ {
+ 	bool eq_done, cr_done = true;
+-	int tries = 0, i;
++	int tries = 0;
+ 
+ 	dp_set_training_pattern(dev, dp, DP_TRAINING_PATTERN_2);
+ 
+@@ -339,15 +330,8 @@ dp_link_train_eq(struct drm_device *dev, struct dp_state *dp)
+ 		if (dp_link_train_update(dev, dp, 400))
  			break;
-@@ -1932,7 +1932,7 @@ intel_dp_complete_link_train(struct intel_dp *intel_dp)
+ 
+-		eq_done = !!(dp->stat[2] & DP_INTERLANE_ALIGN_DONE);
+-		for (i = 0; i < dp->link_nr && eq_done; i++) {
+-			u8 lane = (dp->stat[i >> 1] >> ((i & 1) * 4)) & 0xf;
+-			if (!(lane & DP_LANE_CR_DONE))
+-				cr_done = false;
+-			if (!(lane & DP_LANE_CHANNEL_EQ_DONE) ||
+-			    !(lane & DP_LANE_SYMBOL_LOCKED))
+-				eq_done = false;
+-		}
++		eq_done = drm_dp_channel_eq_ok(dp->stat, dp->link_nr);
++		cr_done = drm_dp_clock_recovery_ok(dp->stat, dp->link_nr);
+ 
+ 		if (dp_link_train_commit(dev, dp))
  			break;
- 
- 		/* Make sure clock is still ok */
--		if (!intel_clock_recovery_ok(link_status, intel_dp->lane_count)) {
-+		if (!drm_dp_clock_recovery_ok(link_status, intel_dp->lane_count)) {
- 			intel_dp_start_link_train(intel_dp);
- 			cr_tries++;
- 			continue;
-diff --git a/drivers/gpu/drm/radeon/atombios_dp.c b/drivers/gpu/drm/radeon/atombios_dp.c
-index 8aa8187..75fdf34 100644
---- a/drivers/gpu/drm/radeon/atombios_dp.c
-+++ b/drivers/gpu/drm/radeon/atombios_dp.c
-@@ -294,29 +294,6 @@ static u8 dp_link_status(u8 link_status[DP_LINK_STATUS_SIZE], int r)
- 	return link_status[r - DP_LANE0_1_STATUS];
- }
- 
--static u8 dp_get_lane_status(u8 link_status[DP_LINK_STATUS_SIZE],
--			     int lane)
--{
--	int i = DP_LANE0_1_STATUS + (lane >> 1);
--	int s = (lane & 1) * 4;
--	u8 l = dp_link_status(link_status, i);
--	return (l >> s) & 0xf;
--}
--
--static bool dp_clock_recovery_ok(u8 link_status[DP_LINK_STATUS_SIZE],
--				 int lane_count)
--{
--	int lane;
--	u8 lane_status;
--
--	for (lane = 0; lane < lane_count; lane++) {
--		lane_status = dp_get_lane_status(link_status, lane);
--		if ((lane_status & DP_LANE_CR_DONE) == 0)
--			return false;
--	}
--	return true;
--}
--
- static u8 dp_get_adjust_request_voltage(u8 link_status[DP_LINK_STATUS_SIZE],
- 					int lane)
- 
-@@ -811,7 +788,7 @@ static int radeon_dp_link_train_cr(struct radeon_dp_link_train_info *dp_info)
- 			break;
- 		}
- 
--		if (dp_clock_recovery_ok(dp_info->link_status, dp_info->dp_lane_count)) {
-+		if (drm_dp_clock_recovery_ok(dp_info->link_status, dp_info->dp_lane_count)) {
- 			clock_recovery = true;
- 			break;
- 		}
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index 9e10420..89e92c9 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -326,5 +326,7 @@ i2c_dp_aux_add_bus(struct i2c_adapter *adapter);
- #define DP_LINK_STATUS_SIZE	   6
- bool drm_dp_channel_eq_ok(u8 link_status[DP_LINK_STATUS_SIZE],
- 			  int lane_count);
-+bool drm_dp_clock_recovery_ok(u8 link_status[DP_LINK_STATUS_SIZE],
-+			      int lane_count);
- 
- #endif /* _DRM_DP_HELPER_H_ */
 -- 
 1.7.11.4
