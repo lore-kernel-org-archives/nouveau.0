@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48434] [NV43] X freezes with "EQ overflowing"
-Date: Thu, 18 Oct 2012 08:06:47 +0000
-Message-ID: <bug-48434-8800-IgSaomajfL@http.bugs.freedesktop.org/>
+Date: Thu, 18 Oct 2012 08:07:38 +0000
+Message-ID: <bug-48434-8800-HdQpHUQ7Y4@http.bugs.freedesktop.org/>
 References: <bug-48434-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1413957704=="
+Content-Type: multipart/mixed; boundary="===============1664934336=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-48434-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1413957704==
-Content-Type: multipart/alternative; boundary="1350547607.BeEAfa31.24036"; charset="us-ascii"
+--===============1664934336==
+Content-Type: multipart/alternative; boundary="1350547658.d5DE0e4f1.24231"; charset="us-ascii"
 
 
---1350547607.BeEAfa31.24036
-Date: Thu, 18 Oct 2012 08:06:47 +0000
+--1350547658.d5DE0e4f1.24231
+Date: Thu, 18 Oct 2012 08:07:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48434
 
---- Comment #6 from dacer <dclemen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 68749
-  --> https://bugs.freedesktop.org/attachment.cgi?id=68749&action=edit
-dmesg file
+--- Comment #7 from dacer <dclemen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 68751
+  --> https://bugs.freedesktop.org/attachment.cgi?id=68751&action=edit
+Xorg
+
+Xorg file, but after reboot
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1350547607.BeEAfa31.24036
-Date: Thu, 18 Oct 2012 08:06:47 +0000
+--1350547658.d5DE0e4f1.24231
+Date: Thu, 18 Oct 2012 08:07:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [NV43] X freezes with &quot;EQ overflowing&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [NV43] X freezes with &quot;EQ overflowing&quot;"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=48434">bug 48434</a>
               from <span class="vcard"><a class="email" href="mailto:dclemen&#64;gmail.com" title="dacer &lt;dclemen&#64;gmail.com&gt;"> <span class="fn">dacer</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=68749" name="attach_68749" title="dmesg file">attachment 68749</a> <a href="attachment.cgi?id=68749&amp;action=edit" title="dmesg file">[details]</a></span>
-dmesg file</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=68751" name="attach_68751" title="Xorg">attachment 68751</a> <a href="attachment.cgi?id=68751&amp;action=edit" title="Xorg">[details]</a></span>
+Xorg
+
+Xorg file, but after reboot</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +79,9 @@ dmesg file</pre>
     </body>
 </html>
 
---1350547607.BeEAfa31.24036--
+--1350547658.d5DE0e4f1.24231--
 
---===============1413957704==
+--===============1664934336==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1413957704==--
+--===============1664934336==--
