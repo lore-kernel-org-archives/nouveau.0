@@ -1,171 +1,129 @@
-From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 09/10] drm: extract dp link bw helpers
-Date: Thu, 18 Oct 2012 10:15:31 +0200
-Message-ID: <1350548132-3037-10-git-send-email-daniel.vetter@ffwll.ch>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH 10/10] drm: extract drm_dp_max_lane_count helper
+Date: Thu, 18 Oct 2012 10:15:32 +0200
+Message-ID: <1350548132-3037-11-git-send-email-daniel.vetter@ffwll.ch>
 References: <1350548132-3037-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-In-Reply-To: <1350548132-3037-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-List-Unsubscribe: <http://lists.x.org/mailman/options/xorg-driver-ati>,
-	<mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.x.org/archives/xorg-driver-ati>
-List-Post: <mailto:xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Help: <mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.x.org/mailman/listinfo/xorg-driver-ati>,
-	<mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
-Sender: xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-Errors-To: xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1350548132-3037-1-git-send-email-daniel.vetter@ffwll.ch>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: nouveau@lists.freedesktop.org, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, xorg-driver-ati@lists.x.org, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/drm_dp_helper.c      | 28 ++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/intel_dp.c      |  5 +----
- drivers/gpu/drm/radeon/atombios_dp.c | 32 +++-----------------------------
- include/drm/drm_dp_helper.h          |  8 ++++++++
- 4 files changed, 40 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/i915/intel_dp.c      | 17 ++---------------
+ drivers/gpu/drm/nouveau/nouveau_dp.c |  2 +-
+ drivers/gpu/drm/radeon/atombios_dp.c |  7 +------
+ include/drm/drm_dp_helper.h          |  7 +++++++
+ 4 files changed, 11 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index e43ddde..d8a4189 100644
---- a/drivers/gpu/drm/drm_dp_helper.c
-+++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -298,3 +298,31 @@ void drm_dp_link_train_channel_eq_delay(u8 dpcd[DP_RECEIVER_CAP_SIZE]) {
- 		mdelay(dpcd[DP_TRAINING_AUX_RD_INTERVAL] * 4);
- }
- EXPORT_SYMBOL(drm_dp_link_train_channel_eq_delay);
-+
-+u8 drm_dp_link_rate_to_bw_code(int link_rate)
-+{
-+	switch (link_rate) {
-+	case 162000:
-+	default:
-+		return DP_LINK_BW_1_62;
-+	case 270000:
-+		return DP_LINK_BW_2_7;
-+	case 540000:
-+		return DP_LINK_BW_5_4;
-+	}
-+}
-+EXPORT_SYMBOL(drm_dp_link_rate_to_bw_code);
-+
-+int drm_dp_bw_code_to_link_rate(u8 link_bw)
-+{
-+	switch (link_bw) {
-+	case DP_LINK_BW_1_62:
-+	default:
-+		return 162000;
-+	case DP_LINK_BW_2_7:
-+		return 270000;
-+	case DP_LINK_BW_5_4:
-+		return 540000;
-+	}
-+}
-+EXPORT_SYMBOL(drm_dp_bw_code_to_link_rate);
 diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/intel_dp.c
-index 865f7f3..fea768d 100644
+index fea768d..72fbd6c 100644
 --- a/drivers/gpu/drm/i915/intel_dp.c
 +++ b/drivers/gpu/drm/i915/intel_dp.c
-@@ -111,10 +111,7 @@ intel_edp_link_config(struct intel_encoder *intel_encoder,
- 	struct intel_dp *intel_dp = container_of(intel_encoder, struct intel_dp, base);
- 
- 	*lane_num = intel_dp->lane_count;
--	if (intel_dp->link_bw == DP_LINK_BW_1_62)
--		*link_bw = 162000;
--	else if (intel_dp->link_bw == DP_LINK_BW_2_7)
--		*link_bw = 270000;
-+	*link_bw = drm_dp_bw_code_to_link_rate(intel_dp->link_bw);
+@@ -127,19 +127,6 @@ intel_edp_target_clock(struct intel_encoder *intel_encoder,
  }
  
- int
+ static int
+-intel_dp_max_lane_count(struct intel_dp *intel_dp)
+-{
+-	int max_lane_count = intel_dp->dpcd[DP_MAX_LANE_COUNT] & 0x1f;
+-	switch (max_lane_count) {
+-	case 1: case 2: case 4:
+-		break;
+-	default:
+-		max_lane_count = 4;
+-	}
+-	return max_lane_count;
+-}
+-
+-static int
+ intel_dp_max_link_bw(struct intel_dp *intel_dp)
+ {
+ 	int max_link_bw = intel_dp->dpcd[DP_MAX_LINK_RATE];
+@@ -199,7 +186,7 @@ intel_dp_adjust_dithering(struct intel_dp *intel_dp,
+ 			  bool adjust_mode)
+ {
+ 	int max_link_clock = intel_dp_link_clock(intel_dp_max_link_bw(intel_dp));
+-	int max_lanes = intel_dp_max_lane_count(intel_dp);
++	int max_lanes = drm_dp_max_lane_count(intel_dp->dpcd);
+ 	int max_rate, mode_rate;
+ 
+ 	mode_rate = intel_dp_link_required(mode->clock, 24);
+@@ -675,7 +662,7 @@ intel_dp_mode_fixup(struct drm_encoder *encoder,
+ 	struct drm_device *dev = encoder->dev;
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 	int lane_count, clock;
+-	int max_lane_count = intel_dp_max_lane_count(intel_dp);
++	int max_lane_count = drm_dp_max_lane_count(intel_dp->dpcd);
+ 	int max_clock = intel_dp_max_link_bw(intel_dp) == DP_LINK_BW_2_7 ? 1 : 0;
+ 	int bpp, mode_rate;
+ 	static int bws[2] = { DP_LINK_BW_1_62, DP_LINK_BW_2_7 };
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index d46a8ff..2786594 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -528,7 +528,7 @@ nouveau_dp_detect(struct drm_encoder *encoder)
+ 		return false;
+ 
+ 	nv_encoder->dp.link_bw = 27000 * dpcd[1];
+-	nv_encoder->dp.link_nr = dpcd[2] & DP_MAX_LANE_COUNT_MASK;
++	nv_encoder->dp.link_nr = drm_dp_max_lane_count(dpcd);
+ 
+ 	NV_DEBUG_KMS(dev, "display: %dx%d dpcd 0x%02x\n",
+ 		     nv_encoder->dp.link_nr, nv_encoder->dp.link_bw, dpcd[0]);
 diff --git a/drivers/gpu/drm/radeon/atombios_dp.c b/drivers/gpu/drm/radeon/atombios_dp.c
-index 4551ea5..aebd4d3 100644
+index aebd4d3..d808cb4 100644
 --- a/drivers/gpu/drm/radeon/atombios_dp.c
 +++ b/drivers/gpu/drm/radeon/atombios_dp.c
-@@ -347,37 +347,11 @@ static int dp_get_max_dp_pix_clock(int link_rate,
+@@ -347,11 +347,6 @@ static int dp_get_max_dp_pix_clock(int link_rate,
  	return (link_rate * lane_num * 8) / bpp;
  }
  
--static int dp_get_max_link_rate(u8 dpcd[DP_DPCD_SIZE])
+-static u8 dp_get_max_lane_number(u8 dpcd[DP_DPCD_SIZE])
 -{
--	switch (dpcd[DP_MAX_LINK_RATE]) {
--	case DP_LINK_BW_1_62:
--	default:
--		return 162000;
--	case DP_LINK_BW_2_7:
--		return 270000;
--	case DP_LINK_BW_5_4:
--		return 540000;
--	}
--}
--
- static u8 dp_get_max_lane_number(u8 dpcd[DP_DPCD_SIZE])
- {
- 	return dpcd[DP_MAX_LANE_COUNT] & DP_MAX_LANE_COUNT_MASK;
- }
- 
--static u8 dp_get_dp_link_rate_coded(int link_rate)
--{
--	switch (link_rate) {
--	case 162000:
--	default:
--		return DP_LINK_BW_1_62;
--	case 270000:
--		return DP_LINK_BW_2_7;
--	case 540000:
--		return DP_LINK_BW_5_4;
--	}
+-	return dpcd[DP_MAX_LANE_COUNT] & DP_MAX_LANE_COUNT_MASK;
 -}
 -
  /***** radeon specific DP functions *****/
  
  /* First get the min lane# when low rate is used according to pixel clock
-@@ -389,7 +363,7 @@ static int radeon_dp_get_dp_lane_number(struct drm_connector *connector,
- 					int pix_clock)
+@@ -364,7 +359,7 @@ static int radeon_dp_get_dp_lane_number(struct drm_connector *connector,
  {
  	int bpp = convert_bpc_to_bpp(radeon_get_monitor_bpc(connector));
--	int max_link_rate = dp_get_max_link_rate(dpcd);
-+	int max_link_rate = drm_dp_max_link_rate(dpcd);
- 	int max_lane_num = dp_get_max_lane_number(dpcd);
+ 	int max_link_rate = drm_dp_max_link_rate(dpcd);
+-	int max_lane_num = dp_get_max_lane_number(dpcd);
++	int max_lane_num = drm_dp_max_lane_count(dpcd);
  	int lane_num;
  	int max_dp_pix_clock;
-@@ -427,7 +401,7 @@ static int radeon_dp_get_dp_link_clock(struct drm_connector *connector,
- 			return 540000;
- 	}
  
--	return dp_get_max_link_rate(dpcd);
-+	return drm_dp_max_link_rate(dpcd);
- }
- 
- static u8 radeon_dp_encoder_service(struct radeon_device *rdev,
-@@ -692,7 +666,7 @@ static int radeon_dp_link_train_init(struct radeon_dp_link_train_info *dp_info)
- 	radeon_write_dpcd_reg(dp_info->radeon_connector, DP_LANE_COUNT_SET, tmp);
- 
- 	/* set the link rate on the sink */
--	tmp = dp_get_dp_link_rate_coded(dp_info->dp_clock);
-+	tmp = drm_dp_link_rate_to_bw_code(dp_info->dp_clock);
- 	radeon_write_dpcd_reg(dp_info->radeon_connector, DP_LINK_BW_SET, tmp);
- 
- 	/* start training on the source */
 diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index 60bd8d3..455f8e0 100644
+index 455f8e0..c09d367 100644
 --- a/include/drm/drm_dp_helper.h
 +++ b/include/drm/drm_dp_helper.h
-@@ -338,4 +338,12 @@ u8 drm_dp_get_adjust_request_pre_emphasis(u8 link_status[DP_LINK_STATUS_SIZE],
- void drm_dp_link_train_clock_recovery_delay(u8 dpcd[DP_RECEIVER_CAP_SIZE]);
- void drm_dp_link_train_channel_eq_delay(u8 dpcd[DP_RECEIVER_CAP_SIZE]);
- 
-+u8 drm_dp_link_rate_to_bw_code(int link_rate);
-+int drm_dp_bw_code_to_link_rate(u8 link_bw);
+@@ -346,4 +346,11 @@ drm_dp_max_link_rate(u8 dpcd[DP_RECEIVER_CAP_SIZE])
+ {
+ 	return drm_dp_bw_code_to_link_rate(dpcd[DP_MAX_LINK_RATE]);
+ }
 +
-+static inline int
-+drm_dp_max_link_rate(u8 dpcd[DP_RECEIVER_CAP_SIZE])
++static inline u8
++drm_dp_max_lane_count(u8 dpcd[DP_RECEIVER_CAP_SIZE])
 +{
-+	return drm_dp_bw_code_to_link_rate(dpcd[DP_MAX_LINK_RATE]);
++	return dpcd[DP_MAX_LANE_COUNT] & DP_MAX_LANE_COUNT_MASK;
 +}
++
  #endif /* _DRM_DP_HELPER_H_ */
 -- 
 1.7.11.4
