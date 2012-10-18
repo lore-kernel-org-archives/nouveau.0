@@ -1,8 +1,8 @@
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH 04/10] drm/nouveau: use the cr_ok/chanel_eq_ok
-	helpers
-Date: Thu, 18 Oct 2012 10:15:26 +0200
-Message-ID: <1350548132-3037-5-git-send-email-daniel.vetter@ffwll.ch>
+Subject: [PATCH 05/10] drm: extract helpers to compute new
+	training values from sink request
+Date: Thu, 18 Oct 2012 10:15:27 +0200
+Message-ID: <1350548132-3037-6-git-send-email-daniel.vetter@ffwll.ch>
 References: <1350548132-3037-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,71 +22,169 @@ To: DRI Development <dri-devel@lists.freedesktop.org>
 Cc: nouveau@lists.freedesktop.org, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, xorg-driver-ati@lists.x.org, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-Only compile-tested, due to a lack of nouveau dp hw. Should be
-equivalent code though.
+Safe for the minor difference that the intel versions get an offset
+into the link_status as an argument, both are the same again.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/nouveau/nouveau_dp.c | 26 +++++---------------------
- 1 file changed, 5 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/drm_dp_helper.c      | 27 +++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_dp.c      | 30 ++----------------------------
+ drivers/gpu/drm/radeon/atombios_dp.c | 34 ++--------------------------------
+ include/drm/drm_dp_helper.h          |  4 ++++
+ 4 files changed, 35 insertions(+), 60 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index e754aa3..60d561e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -298,7 +298,7 @@ dp_link_train_cr(struct drm_device *dev, struct dp_state *dp)
- {
- 	bool cr_done = false, abort = false;
- 	int voltage = dp->conf[0] & DP_TRAIN_VOLTAGE_SWING_MASK;
--	int tries = 0, i;
-+	int tries = 0;
+diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+index 9dde04a..d1a196f 100644
+--- a/drivers/gpu/drm/drm_dp_helper.c
++++ b/drivers/gpu/drm/drm_dp_helper.c
+@@ -256,3 +256,30 @@ bool drm_dp_clock_recovery_ok(u8 link_status[DP_LINK_STATUS_SIZE],
+ 	return true;
+ }
+ EXPORT_SYMBOL(drm_dp_clock_recovery_ok);
++
++u8 drm_dp_get_adjust_request_voltage(u8 link_status[DP_LINK_STATUS_SIZE],
++				     int lane)
++{
++	int i = DP_ADJUST_REQUEST_LANE0_1 + (lane >> 1);
++	int s = ((lane & 1) ?
++		 DP_ADJUST_VOLTAGE_SWING_LANE1_SHIFT :
++		 DP_ADJUST_VOLTAGE_SWING_LANE0_SHIFT);
++	u8 l = dp_link_status(link_status, i);
++
++	return ((l >> s) & 0x3) << DP_TRAIN_VOLTAGE_SWING_SHIFT;
++}
++EXPORT_SYMBOL(drm_dp_get_adjust_request_voltage);
++
++u8 drm_dp_get_adjust_request_pre_emphasis(u8 link_status[DP_LINK_STATUS_SIZE],
++					  int lane)
++{
++	int i = DP_ADJUST_REQUEST_LANE0_1 + (lane >> 1);
++	int s = ((lane & 1) ?
++		 DP_ADJUST_PRE_EMPHASIS_LANE1_SHIFT :
++		 DP_ADJUST_PRE_EMPHASIS_LANE0_SHIFT);
++	u8 l = dp_link_status(link_status, i);
++
++	return ((l >> s) & 0x3) << DP_TRAIN_PRE_EMPHASIS_SHIFT;
++}
++EXPORT_SYMBOL(drm_dp_get_adjust_request_pre_emphasis);
++
+diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/intel_dp.c
+index 5a9ab3a..4cd957a 100644
+--- a/drivers/gpu/drm/i915/intel_dp.c
++++ b/drivers/gpu/drm/i915/intel_dp.c
+@@ -1399,31 +1399,6 @@ intel_dp_get_link_status(struct intel_dp *intel_dp, uint8_t link_status[DP_LINK_
+ 					      DP_LINK_STATUS_SIZE);
+ }
  
- 	dp_set_training_pattern(dev, dp, DP_TRAINING_PATTERN_1);
+-static uint8_t
+-intel_get_adjust_request_voltage(uint8_t adjust_request[2],
+-				 int lane)
+-{
+-	int	    s = ((lane & 1) ?
+-			 DP_ADJUST_VOLTAGE_SWING_LANE1_SHIFT :
+-			 DP_ADJUST_VOLTAGE_SWING_LANE0_SHIFT);
+-	uint8_t l = adjust_request[lane>>1];
+-
+-	return ((l >> s) & 3) << DP_TRAIN_VOLTAGE_SWING_SHIFT;
+-}
+-
+-static uint8_t
+-intel_get_adjust_request_pre_emphasis(uint8_t adjust_request[2],
+-				      int lane)
+-{
+-	int	    s = ((lane & 1) ?
+-			 DP_ADJUST_PRE_EMPHASIS_LANE1_SHIFT :
+-			 DP_ADJUST_PRE_EMPHASIS_LANE0_SHIFT);
+-	uint8_t l = adjust_request[lane>>1];
+-
+-	return ((l >> s) & 3) << DP_TRAIN_PRE_EMPHASIS_SHIFT;
+-}
+-
+-
+ #if 0
+ static char	*voltage_names[] = {
+ 	"0.4V", "0.6V", "0.8V", "1.2V"
+@@ -1502,13 +1477,12 @@ intel_get_adjust_train(struct intel_dp *intel_dp, uint8_t link_status[DP_LINK_ST
+ 	uint8_t v = 0;
+ 	uint8_t p = 0;
+ 	int lane;
+-	uint8_t	*adjust_request = link_status + (DP_ADJUST_REQUEST_LANE0_1 - DP_LANE0_1_STATUS);
+ 	uint8_t voltage_max;
+ 	uint8_t preemph_max;
  
-@@ -307,16 +307,7 @@ dp_link_train_cr(struct drm_device *dev, struct dp_state *dp)
- 		    dp_link_train_update(dev, dp, 100))
- 			break;
+ 	for (lane = 0; lane < intel_dp->lane_count; lane++) {
+-		uint8_t this_v = intel_get_adjust_request_voltage(adjust_request, lane);
+-		uint8_t this_p = intel_get_adjust_request_pre_emphasis(adjust_request, lane);
++		uint8_t this_v = drm_dp_get_adjust_request_voltage(link_status, lane);
++		uint8_t this_p = drm_dp_get_adjust_request_pre_emphasis(link_status, lane);
  
--		cr_done = true;
--		for (i = 0; i < dp->link_nr; i++) {
--			u8 lane = (dp->stat[i >> 1] >> ((i & 1) * 4)) & 0xf;
--			if (!(lane & DP_LANE_CR_DONE)) {
--				cr_done = false;
--				if (dp->conf[i] & DP_TRAIN_MAX_SWING_REACHED)
--					abort = true;
--				break;
--			}
--		}
-+		cr_done = drm_dp_clock_recovery_ok(dp->stat, dp->link_nr);
+ 		if (this_v > v)
+ 			v = this_v;
+diff --git a/drivers/gpu/drm/radeon/atombios_dp.c b/drivers/gpu/drm/radeon/atombios_dp.c
+index 75fdf34..5479832 100644
+--- a/drivers/gpu/drm/radeon/atombios_dp.c
++++ b/drivers/gpu/drm/radeon/atombios_dp.c
+@@ -289,36 +289,6 @@ int radeon_dp_i2c_aux_ch(struct i2c_adapter *adapter, int mode,
  
- 		if ((dp->conf[0] & DP_TRAIN_VOLTAGE_SWING_MASK) != voltage) {
- 			voltage = dp->conf[0] & DP_TRAIN_VOLTAGE_SWING_MASK;
-@@ -331,7 +322,7 @@ static int
- dp_link_train_eq(struct drm_device *dev, struct dp_state *dp)
- {
- 	bool eq_done, cr_done = true;
--	int tries = 0, i;
-+	int tries = 0;
+ /***** general DP utility functions *****/
  
- 	dp_set_training_pattern(dev, dp, DP_TRAINING_PATTERN_2);
+-static u8 dp_link_status(u8 link_status[DP_LINK_STATUS_SIZE], int r)
+-{
+-	return link_status[r - DP_LANE0_1_STATUS];
+-}
+-
+-static u8 dp_get_adjust_request_voltage(u8 link_status[DP_LINK_STATUS_SIZE],
+-					int lane)
+-
+-{
+-	int i = DP_ADJUST_REQUEST_LANE0_1 + (lane >> 1);
+-	int s = ((lane & 1) ?
+-		 DP_ADJUST_VOLTAGE_SWING_LANE1_SHIFT :
+-		 DP_ADJUST_VOLTAGE_SWING_LANE0_SHIFT);
+-	u8 l = dp_link_status(link_status, i);
+-
+-	return ((l >> s) & 0x3) << DP_TRAIN_VOLTAGE_SWING_SHIFT;
+-}
+-
+-static u8 dp_get_adjust_request_pre_emphasis(u8 link_status[DP_LINK_STATUS_SIZE],
+-					     int lane)
+-{
+-	int i = DP_ADJUST_REQUEST_LANE0_1 + (lane >> 1);
+-	int s = ((lane & 1) ?
+-		 DP_ADJUST_PRE_EMPHASIS_LANE1_SHIFT :
+-		 DP_ADJUST_PRE_EMPHASIS_LANE0_SHIFT);
+-	u8 l = dp_link_status(link_status, i);
+-
+-	return ((l >> s) & 0x3) << DP_TRAIN_PRE_EMPHASIS_SHIFT;
+-}
+-
+ #define DP_VOLTAGE_MAX         DP_TRAIN_VOLTAGE_SWING_1200
+ #define DP_PRE_EMPHASIS_MAX    DP_TRAIN_PRE_EMPHASIS_9_5
  
-@@ -339,15 +330,8 @@ dp_link_train_eq(struct drm_device *dev, struct dp_state *dp)
- 		if (dp_link_train_update(dev, dp, 400))
- 			break;
+@@ -331,8 +301,8 @@ static void dp_get_adjust_train(u8 link_status[DP_LINK_STATUS_SIZE],
+ 	int lane;
  
--		eq_done = !!(dp->stat[2] & DP_INTERLANE_ALIGN_DONE);
--		for (i = 0; i < dp->link_nr && eq_done; i++) {
--			u8 lane = (dp->stat[i >> 1] >> ((i & 1) * 4)) & 0xf;
--			if (!(lane & DP_LANE_CR_DONE))
--				cr_done = false;
--			if (!(lane & DP_LANE_CHANNEL_EQ_DONE) ||
--			    !(lane & DP_LANE_SYMBOL_LOCKED))
--				eq_done = false;
--		}
-+		eq_done = drm_dp_channel_eq_ok(dp->stat, dp->link_nr);
-+		cr_done = drm_dp_clock_recovery_ok(dp->stat, dp->link_nr);
+ 	for (lane = 0; lane < lane_count; lane++) {
+-		u8 this_v = dp_get_adjust_request_voltage(link_status, lane);
+-		u8 this_p = dp_get_adjust_request_pre_emphasis(link_status, lane);
++		u8 this_v = drm_dp_get_adjust_request_voltage(link_status, lane);
++		u8 this_p = drm_dp_get_adjust_request_pre_emphasis(link_status, lane);
  
- 		if (dp_link_train_commit(dev, dp))
- 			break;
+ 		DRM_DEBUG_KMS("requested signal parameters: lane %d voltage %s pre_emph %s\n",
+ 			  lane,
+diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+index 89e92c9..57e6dbd 100644
+--- a/include/drm/drm_dp_helper.h
++++ b/include/drm/drm_dp_helper.h
+@@ -328,5 +328,9 @@ bool drm_dp_channel_eq_ok(u8 link_status[DP_LINK_STATUS_SIZE],
+ 			  int lane_count);
+ bool drm_dp_clock_recovery_ok(u8 link_status[DP_LINK_STATUS_SIZE],
+ 			      int lane_count);
++u8 drm_dp_get_adjust_request_voltage(u8 link_status[DP_LINK_STATUS_SIZE],
++				     int lane);
++u8 drm_dp_get_adjust_request_pre_emphasis(u8 link_status[DP_LINK_STATUS_SIZE],
++					  int lane);
+ 
+ #endif /* _DRM_DP_HELPER_H_ */
 -- 
 1.7.11.4
