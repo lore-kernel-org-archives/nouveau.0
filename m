@@ -1,87 +1,98 @@
-From: Thomas Hellstrom <thomas@shipmail.org>
-Subject: Re: [PATCH 1/3] drm/nouveau: add reservation to
-	nouveau_gem_ioctl_cpu_prep
-Date: Thu, 18 Oct 2012 18:30:12 +0200
-Message-ID: <50802E94.3040706@shipmail.org>
-References: <50783208.305@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 48434] [NV43] X freezes with "EQ overflowing"
+Date: Thu, 18 Oct 2012 17:39:56 +0000
+Message-ID: <bug-48434-8800-euQY0CqwZr@http.bugs.freedesktop.org/>
+References: <bug-48434-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <50783208.305@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1600634642=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-48434-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-So this is a typical case where a NO_WAIT can indeed become a WAIT
-because of the use of a reservation instead of a spinlock.
 
-(See the remove_fence_lock discussion)
-
-/Thomas
+--===============1600634642==
+Content-Type: multipart/alternative; boundary="1350581996.bc6b6bB2.634"; charset="us-ascii"
 
 
-On 10/12/2012 05:06 PM, Maarten Lankhorst wrote:
-> Apart from some code inside ttm itself and nouveau_bo_vma_del,
-> this is the only place where ttm_bo_wait is used without a reservation.
-> Fix this so we can remove the fence_lock later on.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-> ---
->   drivers/gpu/drm/nouveau/nouveau_gem.c |   22 ++++++++++++++++++----
->   1 file changed, 18 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> index 5e2f521..18342b0 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> @@ -837,17 +837,31 @@ nouveau_gem_ioctl_cpu_prep(struct drm_device *dev, void *data,
->   	struct drm_gem_object *gem;
->   	struct nouveau_bo *nvbo;
->   	bool no_wait = !!(req->flags & NOUVEAU_GEM_CPU_PREP_NOWAIT);
-> -	int ret = -EINVAL;
-> +	int ret;
-> +	struct nouveau_fence *fence = NULL;
->   
->   	gem = drm_gem_object_lookup(dev, file_priv, req->handle);
->   	if (!gem)
->   		return -ENOENT;
->   	nvbo = nouveau_gem_object(gem);
->   
-> -	spin_lock(&nvbo->bo.bdev->fence_lock);
-> -	ret = ttm_bo_wait(&nvbo->bo, true, true, no_wait);
-> -	spin_unlock(&nvbo->bo.bdev->fence_lock);
-> +	ret = ttm_bo_reserve(&nvbo->bo, true, false, false, 0);
-> +	if (!ret) {
-> +		spin_lock(&nvbo->bo.bdev->fence_lock);
-> +		ret = ttm_bo_wait(&nvbo->bo, true, true, true);
-> +		if (!no_wait && ret)
-> +			fence = nouveau_fence_ref(nvbo->bo.sync_obj);
-> +		spin_unlock(&nvbo->bo.bdev->fence_lock);
-> +
-> +		ttm_bo_unreserve(&nvbo->bo);
-> +	}
->   	drm_gem_object_unreference_unlocked(gem);
-> +
-> +	if (fence) {
-> +		ret = nouveau_fence_wait(fence, true, no_wait);
-> +		nouveau_fence_unref(&fence);
-> +	}
-> +
->   	return ret;
->   }
->   
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+--1350581996.bc6b6bB2.634
+Date: Thu, 18 Oct 2012 17:39:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=48434
+
+--- Comment #10 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Please attach part of kernel log from boot to start of these INVALID_STATE
+errors. 
+
+(X crashed -> fbcon started to do image blits -> hw complained about them in
+form of these INVALID_STATE errors, which means something else should be before
+them)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1350581996.bc6b6bB2.634
+Date: Thu, 18 Oct 2012 17:39:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV43] X freezes with &quot;EQ overflowing&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV43] X freezes with &quot;EQ overflowing&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434">bug 48434</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>Please attach part of kernel log from boot to start of these INVALID_STATE
+errors. 
+
+(X crashed -&gt; fbcon started to do image blits -&gt; hw complained about them in
+form of these INVALID_STATE errors, which means something else should be before
+them)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1350581996.bc6b6bB2.634--
+
+--===============1600634642==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1600634642==--
