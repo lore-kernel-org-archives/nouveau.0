@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] Brightness stuck to low value after
-	suspend/resume
-Date: Thu, 18 Oct 2012 19:48:45 +0000
-Message-ID: <bug-39550-8800-DoI9n60NfZ@http.bugs.freedesktop.org/>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: fix nouveau_mm/nouveau_mm_node
+ leak
+Date: Fri, 19 Oct 2012 16:05:14 +1000
+Message-ID: <20121019060514.GA11173@turiel.bne.redhat.com>
+References: <20121011215309.GA3511@joi.lan>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1405501618=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20121011215309.GA3511-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,80 +19,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Oct 11, 2012 at 11:53:09PM +0200, Marcin Slusarz wrote:
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/core/core/gpuobj.c         | 6 +++++-
+>  drivers/gpu/drm/nouveau/core/include/core/gpuobj.h | 3 +++
+>  2 files changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> index c2a7608..48121d2 100644
+> --- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> +++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> @@ -39,8 +39,11 @@ nouveau_gpuobj_destroy(struct nouveau_gpuobj *gpuobj)
+>  			nv_wo32(gpuobj, i, 0x00000000);
+>  	}
+>  
+> +	if (gpuobj->node)
+> +		nouveau_mm_free(gpuobj->node_heap, &gpuobj->node);
+> +
+if (gpuobj->node) {
+	nouveau_mm_free(&nv_gpuobj(gpuobj->parent)->heap,
+			&gpuobj->node);
+}
 
---===============1405501618==
-Content-Type: multipart/alternative; boundary="1350589726.e80867.21825"; charset="us-ascii"
+Or something to that effect, instead of having to store the heap
+pointer again.
 
+>  	if (gpuobj->heap.block_size)
+> -		nouveau_mm_fini(&gpuobj->heap);
+> +		WARN_ON(nouveau_mm_fini(&gpuobj->heap));
+Alright, I get this.  However, perhaps we should go the full hog here
+and make nouveau_mm_fini() directly do the WARN_ON() in this situation?
 
---1350589726.e80867.21825
-Date: Thu, 18 Oct 2012 19:48:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+There was, once upon a time, reasons for it not doing this, I don't
+believe they're valid anymore though.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+If you want to do this, that'd be great.  Bonus points for being in a
+separate patch :)
 
---- Comment #36 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 68764
-  --> https://bugs.freedesktop.org/attachment.cgi?id=68764&action=edit
-Enable the PANEL_BACKLIGHT_LEVEL GPIO
-
-Guys can you try the patch. It should apply against the latest nouveau tree
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1350589726.e80867.21825
-Date: Thu, 18 Oct 2012 19:48:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Brightness stuck to low value after suspend/resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550#c36">Comment # 36</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Brightness stuck to low value after suspend/resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550">bug 39550</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=68764" name="attach_68764" title="Enable the PANEL_BACKLIGHT_LEVEL GPIO">attachment 68764</a> <a href="attachment.cgi?id=68764&amp;action=edit" title="Enable the PANEL_BACKLIGHT_LEVEL GPIO">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=39550&amp;attachment=68764'>[review]</a>
-Enable the PANEL_BACKLIGHT_LEVEL GPIO
-
-Guys can you try the patch. It should apply against the latest nouveau tree</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1350589726.e80867.21825--
-
---===============1405501618==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1405501618==--
+>  
+>  	nouveau_object_destroy(&gpuobj->base);
+>  }
+> @@ -114,6 +117,7 @@ nouveau_gpuobj_create_(struct nouveau_object *parent,
+>  				      max(align, (u32)1), &gpuobj->node);
+>  		if (ret)
+>  			return ret;
+> +		gpuobj->node_heap = heap;
+>  
+>  		gpuobj->addr += gpuobj->node->offset;
+>  	}
+> diff --git a/drivers/gpu/drm/nouveau/core/include/core/gpuobj.h b/drivers/gpu/drm/nouveau/core/include/core/gpuobj.h
+> index d09adf1..f65bf5b 100644
+> --- a/drivers/gpu/drm/nouveau/core/include/core/gpuobj.h
+> +++ b/drivers/gpu/drm/nouveau/core/include/core/gpuobj.h
+> @@ -16,7 +16,10 @@ struct nouveau_vm;
+>  struct nouveau_gpuobj {
+>  	struct nouveau_object base;
+>  	struct nouveau_object *parent;
+> +
+> +	struct nouveau_mm *node_heap;
+>  	struct nouveau_mm_node *node;
+> +
+>  	struct nouveau_mm heap;
+>  
+>  	u32 flags;
+> -- 
+> 1.7.12
+> 
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
