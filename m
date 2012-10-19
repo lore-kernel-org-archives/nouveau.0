@@ -1,15 +1,11 @@
-From: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-Subject: Re: [PATCH] dri2: Fix potential race and crash for swap
-	at next vblank.
-Date: Fri, 19 Oct 2012 22:04:01 +0200
-Message-ID: <5081B231.3090507@tuebingen.mpg.de>
-References: <1349766419-2647-1-git-send-email-mario.kleiner@tuebingen.mpg.de>
-	<1349766419-2647-2-git-send-email-mario.kleiner@tuebingen.mpg.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56202] New: [regression][kms] Clock rework causes
+ kms boot regression for NV4E (v3.7-rc1, 3.6+nouveau)
+Date: Fri, 19 Oct 2012 20:21:18 +0000
+Message-ID: <bug-56202-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1134376513=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1349766419-2647-2-git-send-email-mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,132 +16,246 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Ping :)
--mario
 
-On 09.10.12 09:06, Mario Kleiner wrote:
-> This fixes a potential race + crash that wasn't properly
-> handled by commit 248de8cdbd6d0bc062633b49896fa4791148cd3b
-> and happened at least on one users machine.
->
-> That commit wrongly assumed no special action would be needed
-> for swaps at next vblank while triple-buffering is enabled on
-> XOrg server 1.12 or later.
->
-> Closer inspection of the x-server main dispatch loop shows
-> it is possible that the client manages to get the server
-> to dispatch a new DRI2GetBuffersWithFormat() call before
-> the server calls the vblank event handler and executes
-> the nouveau_dri2_finish_swap() routine. Such a race would
-> cause a crash, as described in above commit.
->
-> This commit handles the "swap at next vblank" case by
-> calling nouveau_dri2_finish_swap() immediately without
-> the roundtrip (queue vblank_event -> kernel -> deliver event
-> -> x-server processes event -> nouveau vblank event handler),
-> before control gets returned to the client.
->
-> This avoids the race while retaining triple-buffering. As
-> a bonus, time-critical swaps at next vblank get processed
-> without roundtrip delay, increasing the chance of not
-> skipping a frame due to vblank miss while sync to vblank is
-> on.
->
-> Thanks to Anssi for reporting this problem on the nouveau
-> mailing list at 12th July 2012 and for testing this patch.
->
-> Reported-by: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
-> Tested-by: Anssi Hannula <anssi.hannula-X3B1VOXEql0@public.gmane.org>
-> Signed-off-by: Mario Kleiner <mario.kleiner-TdbV1Z3I5XE0NhjG498hmQ@public.gmane.org>
-> ---
->   src/nouveau_dri2.c |   51 ++++++++++++++++++++++++++++++++++++++-------------
->   1 file changed, 38 insertions(+), 13 deletions(-)
->
-> diff --git a/src/nouveau_dri2.c b/src/nouveau_dri2.c
-> index 71cff26..bf69505 100644
-> --- a/src/nouveau_dri2.c
-> +++ b/src/nouveau_dri2.c
-> @@ -479,6 +479,7 @@ nouveau_dri2_schedule_swap(ClientPtr client, DrawablePtr draw,
->   {
->   	struct nouveau_dri2_vblank_state *s;
->   	CARD64 current_msc, expect_msc;
-> +	CARD64 current_ust;
->   	int ret;
->
->   	/* Initialize a swap structure */
-> @@ -490,9 +491,9 @@ nouveau_dri2_schedule_swap(ClientPtr client, DrawablePtr draw,
->   		{ SWAP, client, draw->id, dst, src, func, data, 0 };
->
->   	if (can_sync_to_vblank(draw)) {
-> -		/* Get current sequence */
-> +		/* Get current sequence and vblank time*/
->   		ret = nouveau_wait_vblank(draw, DRM_VBLANK_RELATIVE, 0,
-> -					  &current_msc, NULL, NULL);
-> +					  &current_msc, &current_ust, NULL);
->   		if (ret)
->   			goto fail;
->
-> @@ -512,24 +513,48 @@ nouveau_dri2_schedule_swap(ClientPtr client, DrawablePtr draw,
->   		if (*target_msc == 0)
->   			*target_msc = 1;
->
-> +		/* Swap at next possible vblank requested? */
-> +		if (current_msc >= *target_msc - 1) {
-> +			/* Special case: Need to swap at next vblank.
-> +			 * Schedule swap immediately, bypassing the kernel
-> +			 * vblank event mechanism to avoid a dangerous race
-> +			 * between the client and the x-server vblank event
-> +			 * dispatch in the main x-server dispatch loop when
-> +			 * the swap_limit is set to 2 for triple-buffering.
-> +			 *
-> +			 * This also optimizes for the common case of swap
-> +			 * at next vblank, avoiding vblank dispatch delay.
-> +			 */
-> +			s->frame = 1 + ((unsigned int) current_msc & 0xffffffff);
-> +			*target_msc = 1 + current_msc;
-> +			nouveau_dri2_finish_swap(draw, current_msc,
-> +						 (unsigned int) (current_ust / 1000000),
-> +						 (unsigned int) (current_ust % 1000000),
-> +						 s);
-> +			return TRUE;
-> +		}
-> +
-> +		/* This is a swap in the future, ie. the vblank event will
-> +		 * only get dispatched at least 2 vblanks into the future.
-> +		 */
-> +
->   #if DRI2INFOREC_VERSION >= 6
-> -		/* Is this a swap in the future, ie. the vblank event will
-> -		 * not be immediately dispatched, but only at a future vblank?
-> -		 * If so, we need to temporarily lower the swaplimit to 1, so
-> -		 * that DRI2GetBuffersWithFormat() requests from the client get
-> +		/* On XOrg 1.12+ we need to temporarily lower the swaplimit to 1,
-> +		 * so that DRI2GetBuffersWithFormat() requests from the client get
->   		 * deferred in the x-server until the vblank event has been
->   		 * dispatched to us and nouveau_dri2_finish_swap() is done. If
->   		 * we wouldn't do this, DRI2GetBuffersWithFormat() would operate
->   		 * on wrong (pre-swap) buffers, and cause a segfault later on in
-> -		 * nouveau_dri2_finish_swap(). Our vblank event handler restores
-> +		 * nouveau_dri2_finish_swap(). Our vblank event handler will restore
->   		 * the old swaplimit immediately after nouveau_dri2_finish_swap()
-> -		 * is done, so we still get 1 video refresh cycle worth of
-> -		 * triple-buffering. For a swap at next vblank, dispatch of the
-> -		 * vblank event happens immediately, so there isn't any need
-> -		 * for this lowered swaplimit.
-> +		 * is done, so we still get 1 video refresh cycle worth of triple-
-> +		 * buffering, because the client can start rendering again 1 cycle
-> +		 * before the pending swap is completed.
-> +		 *
-> +		 * The same race would happen for the "swap at next vblank" case,
-> +		 * but the special case "swap immediately" code above prevents this.
->   		 */
-> -		if (current_msc < *target_msc - 1)
-> -			DRI2SwapLimit(draw, 1);
-> +		DRI2SwapLimit(draw, 1);
->   #endif
->
->   		/* Request a vblank event one frame before the target */
->
+--===============1134376513==
+Content-Type: multipart/alternative; boundary="1350678078.Ad10F651.9160"; charset="us-ascii"
+
+
+--1350678078.Ad10F651.9160
+Date: Fri, 19 Oct 2012 20:21:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=56202
+
+          Priority: medium
+            Bug ID: 56202
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [regression][kms] Clock rework causes kms boot
+                    regression for NV4E (v3.7-rc1, 3.6+nouveau)
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 68815
+  --> https://bugs.freedesktop.org/attachment.cgi?id=68815&action=edit
+v3.6.0+ @ the commit that caused the regression
+
+The following commit causes KMS initialisation to result in a scrambled screen
+with mostly blue elements. The screen responds to changes based on actual
+content (e.g. system booting, lightdm starting).
+
+drm/nouveau/clock: pull in the implementation from all over the place
+
+I have tested and verified this regression on a 3.6 tree and the recent v3.7
+tree pulled from git.kernel.org.
+
+Below you will find some more data about my VGA card.
+
+Attached you will find two dmesg output logs (don't know if they differ):
+
+both are from the v3.7-rc1 tree (they are noted as 3.6.0+ in the logs)
+dmesg-good.txt @ the commit before the one that caused the regression
+dmesg-bad.txt @ the commit that caused the regression
+
+00:05.0 0300: 10de:0244 (rev a2) (prog-if 00 [VGA controller])
+    Subsystem: 103c:30b7
+00:05.0 VGA compatible controller: NVIDIA Corporation C51 [GeForce Go 6150]
+(rev a2) (prog-if 00 [VGA controller])
+    Subsystem: Hewlett-Packard Company Presario V6133CL
+    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx-
+    Status: Cap+ 66MHz+ UDF- FastB2B+ ParErr- DEVSEL=fast >TAbort- <TAbort-
+<MAbort- >SERR- <PERR- INTx-
+    Latency: 0
+    Interrupt: pin A routed to IRQ 18
+    Region 0: Memory at b2000000 (32-bit, non-prefetchable) [size=16M]
+    Region 1: Memory at c0000000 (64-bit, prefetchable) [size=256M]
+    Region 3: Memory at b1000000 (64-bit, non-prefetchable) [size=16M]
+    [virtual] Expansion ROM at 40000000 [disabled] [size=128K]
+    Capabilities: [48] Power Management version 2
+        Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+        Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
+    Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
+        Address: 0000000000000000  Data: 0000
+    Kernel driver in use: nouveau
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1350678078.Ad10F651.9160
+Date: Fri, 19 Oct 2012 20:21:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [regression][kms] Clock rework causes kms boot regression for NV4E (v3.7-rc1, 3.6+nouveau)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56202">56202</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[regression][kms] Clock rework causes kms boot regression for NV4E (v3.7-rc1, 3.6+nouveau)
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ronald645&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=68815" name="attach_68815" title="v3.6.0+ &#64; the commit that caused the regression">attachment 68815</a> <a href="attachment.cgi?id=68815&amp;action=edit" title="v3.6.0+ &#64; the commit that caused the regression">[details]</a></span>
+v3.6.0+ &#64; the commit that caused the regression
+
+The following commit causes KMS initialisation to result in a scrambled screen
+with mostly blue elements. The screen responds to changes based on actual
+content (e.g. system booting, lightdm starting).
+
+drm/nouveau/clock: pull in the implementation from all over the place
+
+I have tested and verified this regression on a 3.6 tree and the recent v3.7
+tree pulled from git.kernel.org.
+
+Below you will find some more data about my VGA card.
+
+Attached you will find two dmesg output logs (don't know if they differ):
+
+both are from the v3.7-rc1 tree (they are noted as 3.6.0+ in the logs)
+dmesg-good.txt &#64; the commit before the one that caused the regression
+dmesg-bad.txt &#64; the commit that caused the regression
+
+00:05.0 0300: 10de:0244 (rev a2) (prog-if 00 [VGA controller])
+    Subsystem: 103c:30b7
+00:05.0 VGA compatible controller: NVIDIA Corporation C51 [GeForce Go 6150]
+(rev a2) (prog-if 00 [VGA controller])
+    Subsystem: Hewlett-Packard Company Presario V6133CL
+    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx-
+    Status: Cap+ 66MHz+ UDF- FastB2B+ ParErr- DEVSEL=fast &gt;TAbort- &lt;TAbort-
+&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+    Latency: 0
+    Interrupt: pin A routed to IRQ 18
+    Region 0: Memory at b2000000 (32-bit, non-prefetchable) [size=16M]
+    Region 1: Memory at c0000000 (64-bit, prefetchable) [size=256M]
+    Region 3: Memory at b1000000 (64-bit, non-prefetchable) [size=16M]
+    [virtual] Expansion ROM at 40000000 [disabled] [size=128K]
+    Capabilities: [48] Power Management version 2
+        Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+        Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
+    Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
+        Address: 0000000000000000  Data: 0000
+    Kernel driver in use: nouveau</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1350678078.Ad10F651.9160--
+
+--===============1134376513==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1134376513==--
