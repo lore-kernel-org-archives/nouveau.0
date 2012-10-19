@@ -1,12 +1,12 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: How to install nouveau manually?
-Date: Fri, 19 Oct 2012 16:06:08 +0200
-Message-ID: <50815E50.9010406@free.fr>
-References: <CANmygmAQaSYSTtjY-puAsWC2Uf3xi7aUOVjYfQDODviPBFFqQw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 48434] [NV43] X freezes with "EQ overflowing"
+Date: Fri, 19 Oct 2012 16:31:01 +0000
+Message-ID: <bug-48434-8800-byNeQ582uT@http.bugs.freedesktop.org/>
+References: <bug-48434-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0012741950=="
+Content-Type: multipart/mixed; boundary="===============0466095093=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CANmygmAQaSYSTtjY-puAsWC2Uf3xi7aUOVjYfQDODviPBFFqQw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-48434-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,66 +19,64 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============0012741950==
-Content-Type: multipart/alternative;
- boundary="------------020007050101070804090805"
 
-This is a multi-part message in MIME format.
---------------020007050101070804090805
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--===============0466095093==
+Content-Type: multipart/alternative; boundary="1350664261.2b6F123.11693"; charset="us-ascii"
 
-On 10/17/12 22:11, Nilton Teixeira wrote:
-> Please, I tried to install xserver-xorg-video-nouveau and Xterm (Linux=20
-> Ubuntu) returned this information: /"xserver-xorg-video-nouveau=20
-> configurado para instalar manualmente"/ (xserver-xorg-video-nouveau=20
-> set to install manually". How should I proceed?
->
-> Thanks,
-> Nilton Teixeira
-> Santo Andr=E9-SP
-Please follow this http://nouveau.freedesktop.org/wiki/InstallNouveau
 
-MuPuF
+--1350664261.2b6F123.11693
+Date: Fri, 19 Oct 2012 16:31:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
---------------020007050101070804090805
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+https://bugs.freedesktop.org/show_bug.cgi?id=48434
+
+--- Comment #13 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This is not what I asked you to attach.
+See http://nouveau.freedesktop.org/wiki/Bugs#KernelLog
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1350664261.2b6F123.11693
+Date: Fri, 19 Oct 2012 16:31:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
 <html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 10/17/12 22:11, Nilton Teixeira
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CANmygmAQaSYSTtjY-puAsWC2Uf3xi7aUOVjYfQDODviPBFFqQw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org"
-      type="cite">Please, I tried to install xserver-xorg-video-nouveau
-      and Xterm (Linux Ubuntu) returned this information: <i>"xserver-xorg-video-nouveau
-        configurado para instalar manualmente"</i>
-      (xserver-xorg-video-nouveau set to install manually". How should I
-      proceed?<br>
-      <br>
-      Thanks,<br>
-      Nilton Teixeira<br>
-      Santo Andr&eacute;-SP<br>
-    </blockquote>
-    Please follow this
-    <meta http-equiv="content-type" content="text/html;
-      charset=ISO-8859-1">
-    <a href="http://nouveau.freedesktop.org/wiki/InstallNouveau">http://nouveau.freedesktop.org/wiki/InstallNouveau</a><br>
-    <br>
-    MuPuF<br>
-  </body>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV43] X freezes with &quot;EQ overflowing&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434#c13">Comment # 13</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV43] X freezes with &quot;EQ overflowing&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434">bug 48434</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>This is not what I asked you to attach.
+See <a href="http://nouveau.freedesktop.org/wiki/Bugs#KernelLog">http://nouveau.freedesktop.org/wiki/Bugs#KernelLog</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
 </html>
 
---------------020007050101070804090805--
+--1350664261.2b6F123.11693--
 
---===============0012741950==
+--===============0466095093==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0012741950==--
+--===============0466095093==--
