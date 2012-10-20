@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] NV34 Fx5200 & NVC3/Quadro 2000M
- both fail to resume with commit 'convert to exec engine,
- and improve channel sync'
-Date: Fri, 19 Oct 2012 21:46:24 +0000
-Message-ID: <bug-50121-8800-xznbuZuIOv@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56202] [regression][kms] Clock rework causes kms
+ boot regression for NV4E (v3.7-rc1, 3.6+nouveau)
+Date: Sat, 20 Oct 2012 07:51:23 +0000
+Message-ID: <bug-56202-8800-ZSaeRjctjD@http.bugs.freedesktop.org/>
+References: <bug-56202-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1112477303=="
+Content-Type: multipart/mixed; boundary="===============1350452972=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56202-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,36 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1112477303==
-Content-Type: multipart/alternative; boundary="1350683184.b231Db3F2.19695"; charset="us-ascii"
+--===============1350452972==
+Content-Type: multipart/alternative; boundary="1350719483.65Db1.16390"; charset="us-ascii"
 
 
---1350683184.b231Db3F2.19695
-Date: Fri, 19 Oct 2012 21:46:24 +0000
+--1350719483.65Db1.16390
+Date: Sat, 20 Oct 2012 07:51:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
+https://bugs.freedesktop.org/show_bug.cgi?id=56202
 
---- Comment #16 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Francois,
+--- Comment #2 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I guess this just turned pretty obvious, I took another look at both the dmesg
+output of both kernels.
 
-You can you confirm that your regression is also caused by the following
-commit?
+Good kernel says:
++[drm] nouveau 0000:00:05.0: c:
 
-drm/nouveau/fence: convert to exec engine, and improve channel sync
+Bad kernel says:
+-[drm] nouveau 0000:00:05.0: c: core 24MHz
 
-Michael and my problems are not there when we build a kernel before this patch
-is applied.
-
-Please test to make sure that you are not having a seperate problem. Thank you.
+That is not a typo!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1350683184.b231Db3F2.19695
-Date: Fri, 19 Oct 2012 21:46:24 +0000
+--1350719483.65Db1.16390
+Date: Sat, 20 Oct 2012 07:51:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,25 +62,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c16">Comment # 16</a>
+   title="NEW --- - [regression][kms] Clock rework causes kms boot regression for NV4E (v3.7-rc1, 3.6+nouveau)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56202#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
+   title="NEW --- - [regression][kms] Clock rework causes kms boot regression for NV4E (v3.7-rc1, 3.6+nouveau)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56202">bug 56202</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Francois,
+        <pre>I guess this just turned pretty obvious, I took another look at both the dmesg
+output of both kernels.
 
-You can you confirm that your regression is also caused by the following
-commit?
+Good kernel says:
++[drm] nouveau 0000:00:05.0: c:
 
-drm/nouveau/fence: convert to exec engine, and improve channel sync
+Bad kernel says:
+-[drm] nouveau 0000:00:05.0: c: core 24MHz
 
-Michael and my problems are not there when we build a kernel before this patch
-is applied.
-
-Please test to make sure that you are not having a seperate problem. Thank you.</pre>
+That is not a typo!</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +91,9 @@ Please test to make sure that you are not having a seperate problem. Thank you.<
     </body>
 </html>
 
---1350683184.b231Db3F2.19695--
+--1350719483.65Db1.16390--
 
---===============1112477303==
+--===============1350452972==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1112477303==--
+--===============1350452972==--
