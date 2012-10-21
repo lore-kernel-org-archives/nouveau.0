@@ -1,14 +1,16 @@
-From: Lekensteyn <lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/bios: use size provided by _ROM
-	method
-Date: Sun, 21 Oct 2012 14:53:03 +0200
-Message-ID: <450304285.kMiQM72imv@al>
-References: <6085585.gbMWY34h3C@al> <20121021122005.GB22587@joi.lan>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: fix nouveau_mm/nouveau_mm_node
+ leak
+Date: Mon, 22 Oct 2012 00:19:35 +0200
+Message-ID: <20121021221935.GA2925@joi.lan>
+References: <20121011215309.GA3511@joi.lan>
+	<20121019060514.GA11173@turiel.bne.redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20121021122005.GB22587-OI9uyE9O0yo@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20121019060514.GA11173-6RkuLLNOGXsZ315U/fw+0NvLeJWuRmrY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,33 +20,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sunday 21 October 2012 14:20:05 Marcin Slusarz wrote:
-> BTW, _ROM method from https://lkml.org/lkml/2012/10/21/11 multiplies length
-> by 8, so maybe we can read 32kB in one batch?
+On Fri, Oct 19, 2012 at 04:05:14PM +1000, Ben Skeggs wrote:
+> On Thu, Oct 11, 2012 at 11:53:09PM +0200, Marcin Slusarz wrote:
+> > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > ---
+> >  drivers/gpu/drm/nouveau/core/core/gpuobj.c         | 6 +++++-
+> >  drivers/gpu/drm/nouveau/core/include/core/gpuobj.h | 3 +++
+> >  2 files changed, 8 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> > index c2a7608..48121d2 100644
+> > --- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> > +++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> > @@ -39,8 +39,11 @@ nouveau_gpuobj_destroy(struct nouveau_gpuobj *gpuobj)
+> >  			nv_wo32(gpuobj, i, 0x00000000);
+> >  	}
+> >  
+> > +	if (gpuobj->node)
+> > +		nouveau_mm_free(gpuobj->node_heap, &gpuobj->node);
+> > +
+> if (gpuobj->node) {
+> 	nouveau_mm_free(&nv_gpuobj(gpuobj->parent)->heap,
+> 			&gpuobj->node);
+> }
 > 
-> Marcin
+> Or something to that effect, instead of having to store the heap
+> pointer again.
 
-That holds for that specific model, but it is not standard (in ACPI). Ben 
-Skeggs has a laptop (Lenovo?) W530 that allows you to read the whole VBIOS in 
-one call (that means chunk size > 4KiB), but there is another machine where 
-this does not work (https://bugs.freedesktop.org/show_bug.cgi?id=55948). That 
-machine allows you to read lengths of 4 KiB only (the buffer size is hard-coded 
-to 4096, the upper bound of the returned size).
+Oh, right.
+(Somehow I assumed pargpu to be different object than parent when
+I first read it.)
 
-I'd say, stick to 4 KiB for the first read, then try to read the remaining 
-VBIOS in one shot and finally fallback to reading in chunks of min(4096, bios-
->size - i). That should give a count of least 512 bytes. On my machine the 
-length is 0x7d which translates to exactly 64 KB (not KiB).
+> >  	if (gpuobj->heap.block_size)
+> > -		nouveau_mm_fini(&gpuobj->heap);
+> > +		WARN_ON(nouveau_mm_fini(&gpuobj->heap));
+> Alright, I get this.  However, perhaps we should go the full hog here
+> and make nouveau_mm_fini() directly do the WARN_ON() in this situation?
+> 
+> There was, once upon a time, reasons for it not doing this, I don't
+> believe they're valid anymore though.
 
-After your patch in https://lkml.org/lkml/2012/10/20/150, "drm/nouveau/bios: 
-attempt to fetch entire acpi rom image in one shot" could be improved to only 
-read the unknown VBIOS:
- /* disobey the acpi spec - much faster on at least w530 ... */
-- ret = nouveau_acpi_get_bios_chunk(bios->data, 0, bios->size);
-+ ret = nouveau_acpi_get_bios_chunk(bios->data, 4096, bios->size - 4096);
+OK.
 
-Peter
+Marcin
