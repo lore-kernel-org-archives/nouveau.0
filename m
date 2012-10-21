@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix nouveau_mm/nouveau_mm_node
- leak
-Date: Mon, 22 Oct 2012 00:19:35 +0200
-Message-ID: <20121021221935.GA2925@joi.lan>
+Subject: [PATCH v2] drm/nouveau: fix nouveau_mm/nouveau_mm_node
+	leak
+Date: Mon, 22 Oct 2012 00:20:32 +0200
+Message-ID: <20121021222032.GB2925@joi.lan>
 References: <20121011215309.GA3511@joi.lan>
 	<20121019060514.GA11173@turiel.bne.redhat.com>
 Mime-Version: 1.0
@@ -24,46 +24,28 @@ To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Oct 19, 2012 at 04:05:14PM +1000, Ben Skeggs wrote:
-> On Thu, Oct 11, 2012 at 11:53:09PM +0200, Marcin Slusarz wrote:
-> > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > ---
-> >  drivers/gpu/drm/nouveau/core/core/gpuobj.c         | 6 +++++-
-> >  drivers/gpu/drm/nouveau/core/include/core/gpuobj.h | 3 +++
-> >  2 files changed, 8 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
-> > index c2a7608..48121d2 100644
-> > --- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
-> > +++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
-> > @@ -39,8 +39,11 @@ nouveau_gpuobj_destroy(struct nouveau_gpuobj *gpuobj)
-> >  			nv_wo32(gpuobj, i, 0x00000000);
-> >  	}
-> >  
-> > +	if (gpuobj->node)
-> > +		nouveau_mm_free(gpuobj->node_heap, &gpuobj->node);
-> > +
-> if (gpuobj->node) {
-> 	nouveau_mm_free(&nv_gpuobj(gpuobj->parent)->heap,
-> 			&gpuobj->node);
-> }
-> 
-> Or something to that effect, instead of having to store the heap
-> pointer again.
+v2: use already existing parent
 
-Oh, right.
-(Somehow I assumed pargpu to be different object than parent when
-I first read it.)
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/core/gpuobj.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> >  	if (gpuobj->heap.block_size)
-> > -		nouveau_mm_fini(&gpuobj->heap);
-> > +		WARN_ON(nouveau_mm_fini(&gpuobj->heap));
-> Alright, I get this.  However, perhaps we should go the full hog here
-> and make nouveau_mm_fini() directly do the WARN_ON() in this situation?
-> 
-> There was, once upon a time, reasons for it not doing this, I don't
-> believe they're valid anymore though.
-
-OK.
-
-Marcin
+diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+index c2a7608..18b3f5c 100644
+--- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
++++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+@@ -39,6 +39,11 @@ nouveau_gpuobj_destroy(struct nouveau_gpuobj *gpuobj)
+ 			nv_wo32(gpuobj, i, 0x00000000);
+ 	}
+ 
++	if (gpuobj->node) {
++		nouveau_mm_free(&nv_gpuobj(gpuobj->parent)->heap,
++				&gpuobj->node);
++	}
++
+ 	if (gpuobj->heap.block_size)
+ 		nouveau_mm_fini(&gpuobj->heap);
+ 
+-- 
+1.7.12
