@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v2] drm/nouveau: fix nouveau_mm/nouveau_mm_node
-	leak
-Date: Mon, 22 Oct 2012 00:20:32 +0200
-Message-ID: <20121021222032.GB2925@joi.lan>
+Subject: [PATCH] drm/nouveau: warn when trying to free mm which is
+ still in use
+Date: Mon, 22 Oct 2012 00:21:39 +0200
+Message-ID: <20121021222139.GC2925@joi.lan>
 References: <20121011215309.GA3511@joi.lan>
 	<20121019060514.GA11173@turiel.bne.redhat.com>
 Mime-Version: 1.0
@@ -24,28 +24,23 @@ To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-v2: use already existing parent
-
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/core/gpuobj.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/nouveau/core/core/mm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
-index c2a7608..18b3f5c 100644
---- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
-+++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
-@@ -39,6 +39,11 @@ nouveau_gpuobj_destroy(struct nouveau_gpuobj *gpuobj)
- 			nv_wo32(gpuobj, i, 0x00000000);
- 	}
+diff --git a/drivers/gpu/drm/nouveau/core/core/mm.c b/drivers/gpu/drm/nouveau/core/core/mm.c
+index bfddf87..4d62064 100644
+--- a/drivers/gpu/drm/nouveau/core/core/mm.c
++++ b/drivers/gpu/drm/nouveau/core/core/mm.c
+@@ -236,7 +236,7 @@ nouveau_mm_fini(struct nouveau_mm *mm)
+ 	int nodes = 0;
  
-+	if (gpuobj->node) {
-+		nouveau_mm_free(&nv_gpuobj(gpuobj->parent)->heap,
-+				&gpuobj->node);
-+	}
-+
- 	if (gpuobj->heap.block_size)
- 		nouveau_mm_fini(&gpuobj->heap);
+ 	list_for_each_entry(node, &mm->nodes, nl_entry) {
+-		if (nodes++ == mm->heap_nodes)
++		if (WARN_ON(nodes++ == mm->heap_nodes))
+ 			return -EBUSY;
+ 	}
  
 -- 
 1.7.12
